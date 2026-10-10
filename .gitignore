@@ -1,0 +1,27 @@
+# Vídeos y datos: NUNCA al repo (viven en C:\tenis\videos y C:\tenis\output)
+*.mp4
+*.mkv
+*.ts
+*.mov
+*.avi
+*.webm
+*.wav
+*.npz
+*.parquet
+output/
+videos/
+data/
+
+# Modelos (se descargan con un script)
+models/*.onnx
+models/*.pt
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+*.egg-info/
+
+# Config local por equipo
+config/local.yaml
