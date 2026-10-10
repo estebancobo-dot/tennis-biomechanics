@@ -48,12 +48,32 @@ Después: revés, saque, volea y otros jugadores.
 - Solo cinemática, no fuerzas.
 - Modo **semiautomático**: el usuario revisa los golpes dudosos (umbral de confianza → cola de revisión).
 
+## Validación y posicionamiento
+- No competimos en precisión con sistemas multicámara (Hawk-Eye SkeleTRACK, laboratorios):
+  el valor está en escala (muchos golpes de la misma jugadora), contexto del partido
+  (marcador, presión, fatiga) y acceso (vídeo público).
+- **Fiabilidad de cada métrica**: anotar a mano ~30 golpes y medir la variabilidad
+  entre golpes casi idénticos (ruido de medida). Una diferencia entre condiciones solo
+  se reporta si supera ese ruido. El informe muestra siempre la incertidumbre.
+- **3D monocular** (tipo MotionBERT / DreamPose3D) se probará en la fase 2 solo para las
+  rotaciones de cadera y hombros, que es donde el 2D es más ambiguo.
+
 ## Fases del proyecto
-0. Entorno + medir fps reales de inferencia en este equipo.
+0. Entorno + medir fps reales de inferencia en este equipo (`scripts/benchmark.py`).
 1. Prototipo 1 partido, solo lado cercano: lista de derechas con vídeo y pose.
-2. Métricas e informe básico.
+2. Métricas e informe básico + validación de fiabilidad + prueba de 3D monocular.
 3. Los 4 partidos + OCR de marcador y contexto: comparativas, fatiga, presión.
 4. Otros golpes y jugadores; lado lejano con menos detalle.
+
+## Stack decidido (fase 0)
+- `uv` con `pyproject.toml` y `uv.lock`. En Windows se instala `onnxruntime-directml`
+  (override de la dependencia `onnxruntime` de rtmlib); en el resto, `onnxruntime`.
+- Pose con **rtmlib** (YOLOX + RTMPose en ONNX), formato **Halpe26** (incluye pies).
+  `tennisbio.pose.estimator` crea las sesiones en `dml`, `cpu` u `openvino`.
+- Vídeo con ffmpeg por tubería (`tennisbio.io.video.read_frames`). Si la fuente es
+  entrelazada: a resolución completa se desentrelaza a un fotograma por campo
+  (`yadif=1`); en lecturas reducidas no se desentrelaza.
+- Tests: `uv run pytest`.
 
 ## Convenciones
 - Código en inglés (nombres, docstrings); comunicación y docs para el usuario en español.

@@ -1,0 +1,7 @@
+# Copiar a config/local.yaml (no se versiona) y ajustar.
+paths:
+  videos: 'C:\tenis\videos'
+  output: 'C:\tenis\output'
+# Sobrescribe aquí cualquier clave de default.yaml, p. ej. tras medir con el benchmark:
+# device: cpu
+# hwaccel: d3d11va

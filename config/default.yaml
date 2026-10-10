@@ -1,0 +1,35 @@
+# Valores por defecto. Lo específico de cada equipo va en config/local.yaml.
+
+# Pasada barata (partido entero): resolución y fps reducidos.
+cheap_pass:
+  width: 640
+  fps: 10
+  detector: lightweight
+
+# Pasada fina (ventanas de ±window_s alrededor de cada golpe), fps nativos.
+fine_pass:
+  window_s: 1.0
+  detector: balanced
+  pose: performance
+
+# Modelos de rtmlib (ONNX). Halpe26 = 17 puntos COCO + pies (necesarios para el tipo de apoyo).
+models:
+  detectors:
+    lightweight:
+      url: https://download.openmmlab.com/mmpose/v1/projects/rtmposev1/onnx_sdk/yolox_tiny_8xb8-300e_humanart-6f3252f9.zip
+      input_size: [416, 416]
+    balanced:
+      url: https://download.openmmlab.com/mmpose/v1/projects/rtmposev1/onnx_sdk/yolox_m_8xb8-300e_humanart-c2c7a14a.zip
+      input_size: [640, 640]
+  poses:
+    balanced:
+      url: https://download.openmmlab.com/mmpose/v1/projects/rtmposev1/onnx_sdk/rtmpose-m_simcc-body7_pt-body7-halpe26_700e-256x192-4d3e73dd_20230605.zip
+      input_size: [192, 256]
+    performance:
+      url: https://download.openmmlab.com/mmpose/v1/projects/rtmposev1/onnx_sdk/rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.zip
+      input_size: [288, 384]
+
+# Dispositivo de inferencia: dml (iGPU con DirectML), cpu u openvino (CPU).
+device: dml
+# Aceleración por hardware del decodificador de ffmpeg (d3d11va en Windows; null = software).
+hwaccel: null

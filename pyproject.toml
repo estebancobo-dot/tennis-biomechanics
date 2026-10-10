@@ -1,0 +1,37 @@
+[project]
+name = "tennisbio"
+version = "0.0.1"
+description = "Análisis biomecánico cinemático de golpes de tenis a partir de vídeo de TV"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "pyarrow>=15",
+    "pyyaml>=6",
+    "tqdm>=4.66",
+    "opencv-python>=4.9",
+    "librosa>=0.10",
+    "rtmlib>=0.0.16",
+    # ONNX Runtime: DirectML (iGPU Radeon) en Windows, CPU en el resto.
+    "onnxruntime-directml>=1.20; sys_platform == 'win32'",
+    "onnxruntime>=1.20; sys_platform != 'win32'",
+]
+
+[project.optional-dependencies]
+openvino = ["openvino>=2024.0"]
+dev = ["pytest>=8", "onnx>=1.16"]
+
+[tool.uv]
+# rtmlib pide `onnxruntime`, que choca con `onnxruntime-directml` (mismo módulo).
+# En Windows nos quedamos solo con la variante DirectML.
+override-dependencies = ["onnxruntime>=1.20; sys_platform != 'win32'"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tennisbio"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
