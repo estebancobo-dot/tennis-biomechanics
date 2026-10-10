@@ -94,6 +94,24 @@ La bola no se mide directamente (pequeña y borrosa en TV); se deduce indirectam
 - No fiable sin seguimiento de bola: efecto (liftado/cortado) y dirección exacta del golpe.
   Seguimiento de bola tipo TrackNet = ampliación opcional en fase 3-4.
 
+## Informe y salida visual
+- Usuario del informe: el propio autor del proyecto (técnico; vocabulario biomecánico con glosario).
+- HTML offline en 5 pantallas: resumen con conclusiones en frases (y su confianza), derecha típica,
+  explorador de golpes con filtros y comparación lado a lado, comparativas por situación,
+  mapa de pista. Cada número enlaza a sus clips. Herramienta de revisión aparte.
+- **Secuencia de 8 fotogramas clave por golpe** (recorte ampliado de la jugadora, esqueleto y valores):
+  1 espera/split step (impacto del rival, audio) · 2 inicio de preparación (empiezan a girar
+  los hombros) · 3 armado completo (máxima rotación de hombros) · 4 inicio de aceleración
+  (empieza a girar la cadera; punto más bajo de la muñeca) · 5 impacto (audio) ·
+  6 extensión (~40-60 ms después) · 7 terminación (muñeca en su punto más alto) ·
+  8 recuperación (primer paso de vuelta). Los momentos salen de eventos de la pose y del
+  audio; se pueden corregir en la revisión. Además: imagen estroboscópica (esqueletos
+  superpuestos y trayectoria de la muñeca) y tira de contactos.
+- **Galerías por tipo de golpe y situación** (apoyo, bola, presión, resultado), ordenadas por:
+  calidad de captura (confianza de la pose, sin oclusión ni desenfoque), representatividad
+  (cercanía a la mediana de la jugadora) y resultado del punto. **No** hay una puntuación de
+  "mejor técnica" absoluta: no está validada para vídeo de TV.
+
 ## Limitaciones asumidas (no "arreglarlas" con falsa precisión)
 - 2D desde una sola cámara; cualquier 3D es estimación.
 - Desenfoque en el impacto a 25-50 fps: velocidades absolutas no fiables, **comparaciones relativas sí**.
