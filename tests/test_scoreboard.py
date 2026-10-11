@@ -23,3 +23,11 @@ def test_parse_plain_points_no_pressure_and_ocr_typo():
 
 def test_parse_missing_name_returns_none():
     assert parse([(box(60, 70), "SABALENKA", .9)], ("Rybakina", "Sabalenka")) is None
+
+
+def test_opponent_from_items():
+    from tennisbio.scoreboard import opponent_from_items
+    items = [(box(50, 30, 200), "BREAKPOINT#2", .99), (box(60, 70, 150), "SABALENKA", .98), (box(400, 70), "472", 1.0),
+             (box(60, 115, 140), "RYBAKINA", .99), (box(230, 115), "KAZ", .99), (box(400, 115), "654", 1.0)]
+    assert opponent_from_items(items, "Rybakina") == "Sabalenka"
+    assert opponent_from_items(items[3:], "Rybakina") is None

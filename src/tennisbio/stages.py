@@ -274,15 +274,21 @@ def st_score(ctx: Context):
     """TV scoreboard every few seconds of main camera (sets, games, points, pressure)."""
     sc = _read(ctx.path("scenes.json"))
     fps, every = sc["fps"], (ctx.cfg.get("score") or {}).get("every_s", 5.0)
-    names = (_surname(ctx.match.player.name), _surname(ctx.match.opponent))
-    if not all(names):
-        _write(ctx.path("score.json"), {"readings": [], "note": "falta el nombre del rival en matches.yaml"})
-        return {"readings": 0}
     try:
-        from .scoreboard import ScoreReader
+        from .scoreboard import ScoreReader, discover_opponent
     except ImportError:
         _write(ctx.path("score.json"), {"readings": [], "note": "uv sync --extra ocr"})
         return {"readings": 0, "note": "sin OCR instalado"}
+    mains = [s for s in sc["shots"] if s["main_camera"]]
+    opponent = _surname(ctx.match.opponent)
+    if not opponent and mains:       # not in matches.yaml: read it from the scoreboard
+        times = [((s["start"] + s["end"]) / 2) / fps for s in mains[:: max(1, len(mains) // 40)]]
+        opponent = discover_opponent((f for f in (grab_frame(ctx.match.video, t) for t in times) if f is not None),
+                                     _surname(ctx.match.player.name)) or ""
+    names = (_surname(ctx.match.player.name), opponent)
+    if not all(names):
+        _write(ctx.path("score.json"), {"readings": [], "note": "no se encontró el nombre del rival en el marcador"})
+        return {"readings": 0}
     reader, out = ScoreReader(*names), []
     for s in sc["shots"]:
         if not s["main_camera"]:
@@ -294,7 +300,7 @@ def st_score(ctx: Context):
             if st is not None:
                 out.append({"t": round(t, 2), **st.to_dict()})
             t += every
-    _write(ctx.path("score.json"), {"readings": out, "names": names})
+    _write(ctx.path("score.json"), {"readings": out, "names": names, "opponent": opponent})
     return {"readings": len(out), "pressure": sum(r["pressure"] for r in out)}
 
 

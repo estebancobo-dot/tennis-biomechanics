@@ -191,3 +191,51 @@ class ScoreReader:
         x0, y0, x1, y1 = self.roi
         roi = frame[y0:y1, x0:x1]
         return parse(self._items(roi), self.names, roi)
+
+
+BANNED = {"BREAK", "POINT", "SET", "MATCH", "GAME", "DEUCE", "ADV", "SERVE", "SPEED", "MPH", "KMH", "TIEBREAK",
+          "CHALLENGE", "REVIEW", "STATS", "ACES", "WINNERS"}
+
+
+def opponent_from_items(items: list, player_surname: str) -> str | None:
+    """The other name on the scoreboard: an alphabetic word left-aligned with the player's name
+    one row above or below it (country codes and captions are excluded)."""
+    me = None
+    for box, text, _ in items:
+        if _is_name(text, player_surname):
+            me = (np.asarray(box, float), text)
+            break
+    if me is None:
+        return None
+    b0 = me[0]
+    x0, h0 = b0[:, 0].min(), b0[:, 1].max() - b0[:, 1].min()
+    y0 = b0[:, 1].mean()
+    best = None
+    for box, text, _ in items:
+        b = np.asarray(box, float)
+        word = re.sub(r"[^A-Za-zÀ-ÿ\- ]", "", text).strip()
+        letters = re.sub(r"[^A-Za-zÀ-ÿ]", "", word)
+        if len(letters) < 4 or _norm(word) in BANNED or _is_name(text, player_surname):
+            continue
+        dy = abs(b[:, 1].mean() - y0)
+        if 0.6 * h0 <= dy <= 2.6 * h0 and abs(b[:, 0].min() - x0) <= 2.5 * h0:
+            if best is None or dy < best[0]:
+                best = (dy, word.split()[-1])
+    return best[1].capitalize() if best else None
+
+
+def discover_opponent(frames, player_surname: str, need=3) -> str | None:
+    """Opponent's surname read from the scoreboard over several frames (majority of readings)."""
+    from collections import Counter
+
+    from rapidocr_onnxruntime import RapidOCR
+
+    ocr, votes = RapidOCR(), Counter()
+    for frame in frames:
+        res, _ = ocr(frame)
+        name = opponent_from_items(res or [], player_surname)
+        if name:
+            votes[_norm(name)] += 1
+            if votes.most_common(1)[0][1] >= need:
+                break
+    return votes.most_common(1)[0][0].capitalize() if votes else None

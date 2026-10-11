@@ -218,7 +218,8 @@ def collect(matches: list[Match], out_root: Path, stroke="forehand", player_id: 
             r["_phases"] = s.get("phases", {})
             strokes.append(r)
             review += bool(r["review"])
-        rival = match.player.name if is_opp else (match.opponent or "—")
+        found = json.loads((d / "score.json").read_text(encoding="utf-8")).get("opponent") if (d / "score.json").exists() else None
+        rival = match.player.name if is_opp else (match.opponent or found or "—")
         ms.append({"id": match.id, "rival": rival, "surf": match.surface or "—",
                    "round": match.round or "—", "date": match.date or "—", "sets": None, "n": len(rows), "res": "—"})
     keep = stroke_metrics(stroke)
