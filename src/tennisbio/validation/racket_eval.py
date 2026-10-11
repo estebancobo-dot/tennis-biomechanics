@@ -18,11 +18,25 @@ class RacketMatch:
     head_err_rel: float | None    # head-centre error / racket length
 
 
+HEAD_FRACTION = 0.56   # tip→throat / tip→butt, median over RacketVision tennis annotations
+
+
 def gt_geometry(kps: np.ndarray):
-    k = np.asarray(kps, float)[:, :2]
-    head = (k[TIP] + k[THROAT]) / 2
-    d = k[TIP] - k[BUTT]
-    return k[BUTT], head, float(np.linalg.norm(d)), float(np.degrees(np.arctan2(-d[1], abs(d[0]))))
+    """(butt, head centre, length, elevation) from annotated keypoints, or None if unusable.
+
+    Invisible keypoints come as (0, 0) with visibility 0; the butt is hidden in about half of
+    the annotations (inside the hand), so the axis uses throat→tip and the butt is extrapolated.
+    """
+    k = np.asarray(kps, float)
+    vis = (k[:, 2] > 0) & ~(k[:, :2] == 0).all(1)
+    if not (vis[TIP] and vis[THROAT]):
+        return None
+    tip, throat = k[TIP, :2], k[THROAT, :2]
+    head = (tip + throat) / 2
+    length = float(np.linalg.norm(tip - throat)) / HEAD_FRACTION
+    butt = k[BUTT, :2] if vis[BUTT] else tip + (throat - tip) / HEAD_FRACTION
+    d = tip - throat
+    return butt, head, length, float(np.degrees(np.arctan2(-d[1], abs(d[0]))))
 
 
 def box_iou(a, b):
@@ -33,13 +47,17 @@ def box_iou(a, b):
     return inter / ((a[2] - a[0]) * (a[3] - a[1]) + (b[2] - b[0]) * (b[3] - b[1]) - inter + 1e-9)
 
 
-def match_racket(gt_kps, gt_bbox_xywh, polys: list, wrists: np.ndarray) -> RacketMatch:
+def match_racket(gt_kps, gt_bbox_xywh, polys: list, wrists: np.ndarray) -> RacketMatch | None:
     """Evaluate the best-overlapping predicted outline against one annotated racket.
 
     wrists: (N, 2) wrist positions of all detected people; the one closest to the true butt is
     used to orient the racket, as the pipeline would with the tracked player's wrist.
+    Returns None when the annotation lacks the tip or throat.
     """
-    butt, head, length, elev = gt_geometry(gt_kps)
+    geo = gt_geometry(gt_kps)
+    if geo is None:
+        return None
+    butt, head, length, elev = geo
     x, y, w, h = gt_bbox_xywh
     gb = [x, y, x + w, y + h]
     best, best_iou = None, 0.05

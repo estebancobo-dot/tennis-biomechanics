@@ -36,3 +36,12 @@ def test_racket_eval_counts_misses():
     kps = np.array([[160, 200, 1], [145, 225, 1], [100, 300, 1], [150, 210, 1], [168, 222, 1]], float)
     m = match_racket(kps, [95, 195, 75, 110], [], wrists=np.zeros((0, 2)))
     assert not m.detected and rsummary([m])["recall"] == 0.0
+
+
+def test_racket_eval_with_hidden_butt():
+    # butt hidden (0, 0, v=0) as in half of RacketVision: the axis must come from throat→tip
+    kps = np.array([[160, 200, 1], [145, 225, 1], [0, 0, 0], [150, 210, 1], [168, 222, 1]], float)
+    poly = np.array([[98, 302], [102, 298], [166, 196], [158, 204]], float)
+    m = match_racket(kps, [95, 195, 75, 110], [poly], wrists=np.array([[97.0, 305.0]]))
+    assert m.detected and m.head_correct and m.axis_err_deg < 8
+    assert 80 < m.length_px < 90
