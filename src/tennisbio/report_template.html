@@ -275,7 +275,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
   </div>
   <div class="cols c-3-1">
     <div class="panel">
-      <header><h2>Raqueta durante el golpe</h2><span class="note">Silueta de la raqueta · franja rayada: desenfoque, valor poco fiable</span></header>
+      <header><h2>Raqueta durante el golpe</h2><span class="note">5 puntos de la raqueta + mano 3D · franja rayada: desenfoque, valor interpolado</span></header>
       <div class="body chart" style="display:grid;gap:4px"><div id="g-rh"></div><div id="g-rf"></div></div>
     </div>
     <div class="panel">
@@ -549,6 +549,8 @@ function drawFrame(ctx, Wc, Hc, f, opts) {
     for (const [a, b, c] of BONES) { if (!q[a] || !q[b]) continue; const [x1, y1] = P(q[a]), [x2, y2] = P(q[b]); ctx.strokeStyle = SKC[c]; ctx.lineWidth = lw * 1.4; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
     for (let j = 5; j < 17; j++) { if (!q[j]) continue; const [x, y] = P(q[j]); ctx.fillStyle = "#0c0f13"; ctx.strokeStyle = SKC[j % 2 ? "l" : "r"]; ctx.lineWidth = lw; ctx.beginPath(); ctx.arc(x, y, lw * 1.6, 0, 7); ctx.fill(); ctx.stroke(); }
   }
+  const fk = ser && ser.face && ser.face.keypoints && ser.face.keypoints[String(f + ser.first)];
+  if (opts.skel && fk) { const R = fk.map(P); ctx.strokeStyle = "#ff5fd2"; ctx.lineWidth = lw; ctx.beginPath(); [[0, 3], [3, 1], [1, 4], [4, 0], [1, 2]].forEach(([u, v]) => { ctx.moveTo(...R[u]); ctx.lineTo(...R[v]); }); ctx.stroke(); }
   if (opts.ball && ser && ser.ball) { const b = ser.ball[f]; if (b && b[0] !== null) { const [x, y] = P(b); ctx.strokeStyle = "#ff5fd2"; ctx.lineWidth = lw; ctx.beginPath(); ctx.arc(x, y, lw * 4, 0, 7); ctx.stroke(); } }
 }
 function hud(t) {
@@ -558,6 +560,8 @@ function hud(t) {
   cx.fillStyle = "#aab4be"; cx.font = "18px JetBrains Mono, monospace"; cx.fillText(sitTxt(cur), 28, 64);
   cx.textAlign = "right"; cx.fillStyle = "#f1f4f6"; cx.font = "600 22px JetBrains Mono, monospace"; cx.fillText(`${t >= 0 ? "+" : "−"}${fmt(Math.abs(t), 2)} s`, cv.width - 28, 44);
   cx.fillStyle = "#aab4be"; cx.font = "18px JetBrains Mono, monospace"; cx.fillText(`FOT ${fIdx(t) + 1}/${NF} · ${fmt(FPS)} fps`, cv.width - 28, 64); cx.textAlign = "left";
+  const fc = ser && ser.face, fi = fc ? fIdx(t) + ser.first - fc.first : -1;
+  if (fc && fc.label[fi]) { const tl = fc.tilt[fi], txt = `CUERDAS → ${fc.label[fi].toUpperCase()} · ${tl >= 0 ? "CERRADA" : "ABIERTA"} ${fmt(Math.abs(tl))}°${fc.observed[fi] ? "" : " (interpolada)"}`; cx.font = "600 20px JetBrains Mono, monospace"; const w = cx.measureText(txt).width; cx.fillStyle = "rgba(10,13,16,.8)"; cx.fillRect(cv.width - w - 44, cv.height - 60, w + 28, 44); cx.fillStyle = "#ff5fd2"; cx.fillText(txt, cv.width - w - 30, cv.height - 31); }
   if (ph && Math.abs(ph.t - t) < 1.5 / FPS) { const txt = ph.long.toUpperCase(); cx.font = "700 24px Archivo, sans-serif"; const w = cx.measureText(txt).width; cx.fillStyle = "rgba(10,13,16,.8)"; cx.fillRect(16, cv.height - 60, w + 28, 44); cx.fillStyle = "#d4f03a"; cx.fillText(txt, 30, cv.height - 30); }
 }
 function seek(t) { return new Promise(res => { if (!cur || !cur.video) return res(); const target = cur.vImpact + t; if (Math.abs(video.currentTime - target) < 1e-3 && video.readyState >= 2) return res(); video.addEventListener("seeked", () => res(), { once: true }); video.currentTime = Math.max(0, target); }); }
@@ -642,10 +646,14 @@ function renderCtx() {
 function renderRacket() {
   const rk = ser && ser.racket;
   lineChart(document.getElementById("g-rh"), [{ n: "Cabeza − muñeca", v: rk ? rk.head_cm : [], col: "var(--s1)" }], { label: "Altura de la cabeza de la raqueta respecto a la muñeca", unit: " cm", H: 170, W: 900, blur: true, zero: true, yName: "Altura de la cabeza respecto a la muñeca (cm) · + por encima" });
-  lineChart(document.getElementById("g-rf"), [{ n: "Inclinación", v: rk ? rk.elev : [], col: "var(--s2)" }], { label: "Inclinación de la raqueta", unit: "°", H: 170, W: 900, blur: true, zero: true, yName: "Inclinación de la raqueta sobre la horizontal (°) · + cabeza arriba" });
+  const fc = ser && ser.face, fAt = arr => fc ? Array.from({ length: NF }, (_, f) => arr[f + ser.first - fc.first] ?? null) : [];
+  lineChart(document.getElementById("g-rf"), fc ? [{ n: "Cierre de la cara", v: fAt(fc.tilt), col: "var(--s2)" }, { n: "Dirección", v: fAt(fc.yaw), col: "var(--s4)" }] : [{ n: "Inclinación", v: rk ? rk.elev : [], col: "var(--s2)" }],
+    fc ? { label: "Orientación de las cuerdas", unit: "°", H: 190, W: 900, blur: true, zero: true, legendEl: null, yName: `Cuerdas (°) · cierre: + hacia el suelo, − hacia el cielo · dirección: 0 = a la red · ${fc.source}${fc.hand3d ? " + mano 3D" : ""}` }
+       : { label: "Inclinación de la raqueta", unit: "°", H: 170, W: 900, blur: true, zero: true, yName: "Inclinación de la raqueta sobre la horizontal (°) · + cabeza arriba" });
   const relP = [3, 3, 3, 2, 1, 1, 3, 3];
-  document.getElementById("g-rtable").innerHTML = `<thead><tr><th>Fase</th><th class="r">Altura</th><th class="r">Inclinación</th><th>Fiab.</th></tr></thead><tbody>` +
-    PH.map((p, i) => { const f = isN(p.t) ? fIdx(p.t) : null, h = rk && f !== null ? rk.head_cm[f] : null, e = rk && f !== null ? rk.elev[f] : null; return `<tr data-t="${isN(p.t) ? p.t : ""}"><td>${i + 1} ${p.n}</td><td class="r num">${isN(h) ? sign(h) + fmt(Math.abs(h)) + " cm" : "—"}</td><td class="r num">${isN(e) ? fmt(e) + "°" : "—"}</td><td>${relBars(relP[i])}</td></tr>`; }).join("") + `</tbody>`;
+  const tilt = fAt(fc ? fc.tilt : []), lab = fAt(fc ? fc.label : []);
+  document.getElementById("g-rtable").innerHTML = `<thead><tr><th>Fase</th><th class="r">Altura</th><th>Cuerdas →</th><th class="r">Cierre</th><th>Fiab.</th></tr></thead><tbody>` +
+    PH.map((p, i) => { const f = isN(p.t) ? fIdx(p.t) : null, h = rk && f !== null ? rk.head_cm[f] : null, tl = f !== null ? tilt[f] : null, lb = f !== null ? lab[f] : null; return `<tr data-t="${isN(p.t) ? p.t : ""}"><td>${i + 1} ${p.n}</td><td class="r num">${isN(h) ? sign(h) + fmt(Math.abs(h)) + " cm" : "—"}</td><td>${lb || "—"}</td><td class="r num">${isN(tl) ? sign(tl) + fmt(Math.abs(tl)) + "°" : "—"}</td><td>${relBars(relP[i])}</td></tr>`; }).join("") + `</tbody>`;
   document.querySelectorAll("#g-rtable tbody tr").forEach(tr => tr.addEventListener("click", () => { if (tr.dataset.t !== "") { stopPlay(); setT(+tr.dataset.t); } }));
 }
 async function loadStroke(s) {

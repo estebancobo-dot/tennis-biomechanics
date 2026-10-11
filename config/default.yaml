@@ -41,3 +41,12 @@ hwaccel: null
 ball:
   onnx: models/balltrack.onnx
   threshold: 0.5
+
+# Orientación de las cuerdas en la pasada fina: 5 puntos de la raqueta (RacketVision,
+# `scripts/export_racketpose.py`) y, si está, la mano/antebrazo en 3D (RTMW3D, más lento:
+# se evalúa uno de cada `hand3d_step` fotogramas).
+racket_face:
+  enabled: true
+  pose_onnx: models/racketpose.onnx
+  hand3d_onnx: models/rtmw3d-x.onnx
+  hand3d_step: 2

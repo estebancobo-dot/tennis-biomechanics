@@ -215,7 +215,8 @@ def cut_window(video: Path, t0: float, dur: float, dest: Path) -> Path:
 
 
 @stage("fine", "3", deps=("candidates", "court"),
-       settings=lambda c: {"fine": c["fine_pass"], "imgsz": c.get("fine_imgsz", 1280), "ball": c.get("ball")})
+       settings=lambda c: {"fine": c["fine_pass"], "imgsz": c.get("fine_imgsz", 1280), "ball": c.get("ball"),
+                           "racket_face": c.get("racket_face")})
 def st_fine(ctx: Context):
     """Full-quality analysis of each candidate in its own window (same code as analyze_clip)."""
     from .clip_pipeline import run_clip
@@ -231,6 +232,15 @@ def st_fine(ctx: Context):
     if ball is not None:      # reach back to the opponent's hit (time available, split step)
         pre = max(pre, ctx.cfg["fine_pass"].get("ball_lead_s", 2.2))
     p = ctx.match.player
+    fcfg = ctx.cfg.get("racket_face") or {}
+    rpose = wb3d = None
+    if fcfg.get("enabled", True):
+        if fcfg.get("pose_onnx") and Path(fcfg["pose_onnx"]).exists():
+            from .racket_pose import RacketPose
+            rpose = RacketPose(fcfg["pose_onnx"], ctx.cfg.get("device", "cpu"))
+        if fcfg.get("hand3d_onnx") and Path(fcfg["hand3d_onnx"]).exists():
+            from .pose.wholebody3d import WholeBody3D
+            wb3d = WholeBody3D(fcfg["hand3d_onnx"], ctx.cfg.get("device", "cpu"))
     strokes = []
     for k, c in enumerate(cands):
         t0 = max(0.0, c["t"] - pre)
@@ -256,6 +266,12 @@ def st_fine(ctx: Context):
         from .series import stroke_series
         ser = stroke_series(run.img, run.conf, run.boxes, run.sk, run.fps, run.height_px, r.impact_frame,
                             r.racket_track, run.ball)
+        if fcfg.get("enabled", True):
+            from .racket_orientation import stroke_faces
+            faces = stroke_faces(clip, run, r, p.height_m, pitch if H is not None else None, rpose, wb3d,
+                                 fcfg.get("hand3d_step", 2), p.forehand_grip_close_deg)
+            d["face"] = faces["phases"]
+            ser["face"] = {key: faces[key] for key in ("first", "tilt", "yaw", "label", "observed", "keypoints", "source", "hand3d")}
         sdir = ctx.path("series")
         sdir.mkdir(exist_ok=True)
         _write(sdir / f"w{k:04d}.json", ser)

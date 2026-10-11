@@ -29,6 +29,10 @@ METRICS = {
     "rHead": ("racket", "Altura de la cabeza en el armado", "cm por encima de la muñeca", "cm", 0, 6, 3, None),
     "rDrop": ("racket", "Caída de la raqueta", "cm por debajo de la muñeca al iniciar la aceleración", "cm", 0, 6, 2, None),
     "rElevImp": ("racket", "Inclinación en el impacto", "° de la raqueta sobre la horizontal", "°", 0, 8, 1, None),
+    "rFaceArm": ("racket", "Cara en el armado", "° de cierre (+ cuerdas al suelo, − al cielo)", "°", 0, 10, 2, None),
+    "rFaceImp": ("racket", "Cara en el impacto", "° de cierre · estimada (desenfoque)", "°", 0, 12, 1, None),
+    "rFaceFin": ("racket", "Cara en la terminación", "° de cierre", "°", 0, 10, 2, None),
+    "rYawImp": ("racket", "Dirección de la cara en el impacto", "° (0 = a la red, + hacia su lado dominante)", "°", 0, 12, 1, None),
     "split": ("feet", "Split step", "aterrizaje, ms tras el golpe del rival", "ms", 0, 30, 2, None),
     "base": ("feet", "Anchura de la base", "% de altura, armado", "%", 0, 4.5, 3, "base_width_loaded_pct"),
     "baseM": ("feet", "Anchura de la base", "metros en la pista, impacto", "m", 2, 0.08, 3, None),
@@ -58,6 +62,10 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
     acc = _num((rk.get("acceleration") or {}).get("head_above_wrist_cm"))
     vals["rDrop"] = None if acc is None else -acc
     vals["rElevImp"] = _num((rk.get("impact") or {}).get("elevation_deg"))
+    face = s.get("face") or {}
+    for key, ph_name, field in (("rFaceArm", "loaded", "tilt_deg"), ("rFaceImp", "impact", "tilt_deg"),
+                                ("rFaceFin", "finish", "tilt_deg"), ("rYawImp", "impact", "yaw_deg")):
+        vals[key] = _num((face.get(ph_name) or {}).get(field))
     ready = ph.get("ready") or {}
     if ready.get("method") == "split_step_landing" and t_av is not None and ready.get("t_rel") is not None:
         vals["split"] = round((ready["t_rel"] + t_av) * 1000)
@@ -78,6 +86,7 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
         "quality": round(quality, 3), "review": s.get("review", []), "source": s.get("impact_source"),
         "m": vals, "vt": t, "sit": sit,
         "phases": {k: v.get("t_rel") for k, v in ph.items()},
+        "face": {k: (v or {}).get("points_to") for k, v in face.items()},
         "video": None, "vImpact": s.get("window_impact_s"), "series": None,
     }
 
