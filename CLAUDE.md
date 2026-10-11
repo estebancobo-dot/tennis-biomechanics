@@ -170,8 +170,9 @@ La bola no se mide directamente (pequeña y borrosa en TV); se deduce indirectam
   lejana (~60-90 px). Se busca en la mitad lejana ampliada y se sigue con un **recorte que la
   sigue** (4× su altura, ampliado a 640 px). Sus golpes se confirman con la bola; el análisis
   refleja la imagen (está de frente) y la pista se expresa en su propio marco (su fondo en y = 0).
-  Del lado lejano solo se usan las métricas fiables a esa distancia (posición, base,
-  desplazamiento, altura del impacto, destino del golpe); nada de cuerdas ni rotaciones.
+  Del lado lejano solo se usan las métricas fiables a esa distancia (posición, desplazamiento,
+  altura del impacto, destino del golpe); nada de cuerdas, rotaciones, apoyo ni anchura de base
+  (los tobillos de una jugadora de ~70 px salen demasiado imprecisos).
 - Las fases se calculan sobre la velocidad suavizada de la muñeca (a 60 fps el ruido creaba
   armados falsos a 3 fotogramas del impacto).
 - Derecha/revés por votación (lado de la muñeca en el armado, dirección del swing, lado en el

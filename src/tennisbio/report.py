@@ -52,7 +52,7 @@ METRICS = {
 }
 NET_Y = 11.885
 # metrics that stay reliable when she is at the far end (small, facing the camera)
-FAR_OK = {"contactH", "baseM", "disp", "shotDepth", "split", "recov", "landing"}
+FAR_OK = {"contactH", "disp", "shotDepth", "split", "recov", "landing"}
 
 
 def _num(v):

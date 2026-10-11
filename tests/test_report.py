@@ -70,4 +70,4 @@ def test_far_strokes_keep_only_reliable_metrics():
     m = Match("m1", None, Player("p", "P"))
     r = stroke_record(stroke(10.0, side="far", displacement_m=2.0), 0, m, 100.0, 0)
     assert r["side"] == "far" and r["m"]["xf"] is None and r["m"]["rDrop"] is None
-    assert r["m"]["contactH"] == 55.0 and r["m"]["disp"] == 2.0
+    assert r["m"]["contactH"] == 55.0 and r["m"]["disp"] == 2.0 and r["m"]["baseM"] is None

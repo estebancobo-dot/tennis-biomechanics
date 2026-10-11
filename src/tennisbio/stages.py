@@ -445,7 +445,11 @@ def _fine(ctx: Context, p, keep, out_name: str):
             from .court_metrics import court_metrics
             ta = r.metrics.get("time_available_s")
             opp = None if ta is None else r.impact_frame - int(round(ta * run.fps))
-            d.update(court_metrics(run.img, run.sk, H, r.stroke, r.impact_frame, opp), camera_pitch_deg=pitch)
+            cm = court_metrics(run.img, run.sk, H, r.stroke, r.impact_frame, opp)
+            if side == "far":       # ankles of a ~70 px player are too rough for stance and base width
+                for k in ("stance", "stance_angle_deg", "stance_width_m"):
+                    cm.pop(k, None)
+            d.update(cm, camera_pitch_deg=pitch)
             if r.stroke == "overhead":                  # landing after the serve: how far into the court
                 from .court_metrics import feet_on_court
                 ft = feet_on_court(run.img, min(len(run.img) - 1, r.impact_frame + int(0.4 * run.fps)), run.sk, H)
