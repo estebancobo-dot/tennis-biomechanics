@@ -141,9 +141,9 @@ class StrokeClip:
 
     def _crops(self):
         """Per-frame crop: centred on her box, constant zoom (median height), smoothed over ~0.3 s."""
-        cap = cv2.VideoCapture(str(self.video))
-        self.vw, self.vh = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)) or 1920, int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)) or 1080
-        cap.release()
+        from .io.video import probe
+        self.info = probe(self.video)          # ffmpeg, not OpenCV: paths with accents work on Windows
+        self.vw, self.vh = self.info.width, self.info.height
         bx = np.array([[np.nan] * 4 if b is None else b for b in self.ser["box"]], float)
         if not np.isfinite(bx).any():
             cx, cy, h = np.full(self.n, self.vw / 2), np.full(self.n, self.vh / 2), np.full(self.n, self.vh / 2.1)
@@ -160,18 +160,19 @@ class StrokeClip:
         self.sy = np.clip(cy - ch / 2, 0, np.maximum(0, self.vh - ch))
 
     def _read(self) -> list:
-        cap = cv2.VideoCapture(str(self.video))
-        cap.set(cv2.CAP_PROP_POS_FRAMES, self.first)
+        from .io.video import read_frames
+        # decoded from the start and counted, exactly like the pose extraction indexed them
         out = []
-        for f in range(self.n):
-            ok, fr = cap.read()
-            if not ok:
-                fr = out[-1] if out else np.zeros((self.size[1], self.size[0], 3), np.uint8)
-                out.append(fr)
+        for g, fr in enumerate(read_frames(self.info)):
+            if g < self.first:
                 continue
+            f = g - self.first
+            if f >= self.n:
+                break
             M = np.float32([[self.scale[f], 0, -self.sx[f] * self.scale[f]], [0, self.scale[f], -self.sy[f] * self.scale[f]]])
             out.append(cv2.warpAffine(fr, M, self.size, flags=cv2.INTER_CUBIC, borderValue=(0, 0, 0)))
-        cap.release()
+        while len(out) < self.n:               # short video: hold the last frame
+            out.append(out[-1] if out else np.zeros((self.size[1], self.size[0], 3), np.uint8))
         return out
 
     def P(self, f, p):
@@ -360,6 +361,15 @@ class Encoder:
     def write(self, img: np.ndarray):
         self.p.stdin.write(np.ascontiguousarray(img).tobytes())
 
+    def abort(self):
+        try:
+            self.p.stdin.close()
+        except OSError:
+            pass
+        self.p.kill()
+        self.p.wait()
+        self.tmp.unlink(missing_ok=True)
+
     def close(self):
         self.p.stdin.close()
         if self.p.wait() != 0:
@@ -394,7 +404,8 @@ def write_still(path: Path, img: np.ndarray, seconds: float):
 
 def concat(parts: list[Path], out: Path):
     lst = out.with_suffix(".txt")
-    lst.write_text("".join(f"file '{p.resolve().as_posix()}'\n" for p in parts), encoding="utf-8")
+    q = lambda p: p.resolve().as_posix().replace("'", "'\\''")          # quoting of the concat list
+    lst.write_text("".join(f"file '{q(p)}'\n" for p in parts), encoding="utf-8")
     tmp = out.with_name(out.stem + ".part.mp4")
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(lst), "-c", "copy",
                     "-movflags", "+faststart", str(tmp)], check=True)
@@ -644,6 +655,7 @@ def export(matches, out_root: Path, dest: Path, stroke="forehand", player_id: st
         src = [Path(s["_dir"]) / "windows" / s["_window"], Path(s["_dir"]) / s["_series"]]
         if _fresh(out, *src):
             continue
+        enc = None
         try:
             clip = StrokeClip(s, ctx)
             enc = Encoder(out)
@@ -652,6 +664,8 @@ def export(matches, out_root: Path, dest: Path, stroke="forehand", player_id: st
             enc.close()
             done += 1
         except Exception as e:           # one broken window must not stop the export
+            if enc is not None:
+                enc.abort()
             log(f"  {s['id']}: no se pudo exportar ({e})")
             paths.pop(s["id"], None)
         if (i + 1) % 10 == 0:

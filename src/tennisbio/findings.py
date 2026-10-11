@@ -99,7 +99,12 @@ def representativeness(data: dict, dist: dict) -> None:
     for s in data["strokes"]:
         z = [((s["m"][m["k"]] - dist[m["k"]]["p50"]) / dist[m["k"]]["sd"]) ** 2 for m in data["metrics"]
              if dist.get(m["k"]) and s["m"].get(m["k"]) is not None and math.isfinite(s["m"][m["k"]])]
-        s["repr"] = 1 / (1 + math.sqrt(sum(z) / len(z))) if z else 0.0
+        # a stroke with few measured metrics (far side, racket unseen) cannot be "the typical one"
+        avail = [m for m in data["metrics"] if dist.get(m["k"])]
+        cover = len(z) / len(avail) if avail else 0.0
+        s["repr"] = (1 / (1 + math.sqrt(sum(z) / len(z)))) * min(1.0, cover / 0.7) if z else 0.0
+        if s.get("side") == "far":
+            s["repr"] *= 0.3
 
 
 def show_score(s: dict) -> float:

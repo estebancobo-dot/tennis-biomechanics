@@ -468,7 +468,10 @@ const quant = (a, q) => { const b = fin(a).sort((x, y) => x - y); if (!b.length)
 const sd = a => { const b = fin(a); if (b.length < 2) return NaN; const mu = mean(b); return Math.sqrt(mean(b.map(v => (v - mu) ** 2))); };
 const DIST = {};
 METRICS.forEach(m => { const v = fin(STROKES.map(s => s.m[m.k])); DIST[m.k] = v.length ? { p10: quant(v, .1), p50: quant(v, .5), p90: quant(v, .9), lo: Math.min(...v), hi: Math.max(...v), sd: sd(v) || m.noise, n: v.length } : null; });
-STROKES.forEach(s => { const z = METRICS.filter(m => DIST[m.k] && isN(s.m[m.k])).map(m => ((s.m[m.k] - DIST[m.k].p50) / DIST[m.k].sd) ** 2); s.repr = z.length ? 1 / (1 + Math.sqrt(mean(z))) : 0; });
+// representativeness: near her median in every metric AND most metrics measured (a far or
+// partly seen stroke cannot be "the typical one")
+const AVAIL = METRICS.filter(m => DIST[m.k]).length || 1;
+STROKES.forEach(s => { const z = METRICS.filter(m => DIST[m.k] && isN(s.m[m.k])).map(m => ((s.m[m.k] - DIST[m.k].p50) / DIST[m.k].sd) ** 2); s.repr = z.length ? (1 / (1 + Math.sqrt(mean(z)))) * Math.min(1, z.length / AVAIL / 0.7) * (s.side === "far" ? 0.3 : 1) : 0; });
 const fmt = (v, d = 0) => isN(v) ? v.toLocaleString("es-ES", { minimumFractionDigits: d, maximumFractionDigits: d }) : "—";
 const unitStr = m => m.unit === "°" ? "°" : " " + m.unit;
 const fmtM = (k, v) => isN(v) ? `${fmt(v, MK[k].dec)}${unitStr(MK[k])}` : "—";
