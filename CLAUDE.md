@@ -166,6 +166,12 @@ La bola no se mide directamente (pequeña y borrosa en TV); se deduce indirectam
 - Con emisiones a 50-60 fps la bola se procesa a ~25 fps (como se entrenó el modelo).
 - El audio llega 2-4 fotogramas tarde respecto al contacto visible; la bola es más precisa.
 - Dobles: se detectan por homografía (dos personas dentro de la mitad cercana) y se excluyen.
+- **Lado lejano**: YOLO sobre el fotograma entero (ni sobre la mitad lejana) no ve a la jugadora
+  lejana (~60-90 px). Se busca en la mitad lejana ampliada y se sigue con un **recorte que la
+  sigue** (4× su altura, ampliado a 640 px). Sus golpes se confirman con la bola; el análisis
+  refleja la imagen (está de frente) y la pista se expresa en su propio marco (su fondo en y = 0).
+  Del lado lejano solo se usan las métricas fiables a esa distancia (posición, base,
+  desplazamiento, altura del impacto, destino del golpe); nada de cuerdas ni rotaciones.
 - Las fases se calculan sobre la velocidad suavizada de la muñeca (a 60 fps el ruido creaba
   armados falsos a 3 fotogramas del impacto).
 - Derecha/revés por votación (lado de la muñeca en el armado, dirección del swing, lado en el

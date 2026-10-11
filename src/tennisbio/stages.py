@@ -316,23 +316,17 @@ def court_at(court: dict, t: float):
     return None, None
 
 
-def far_start(clip: Path, H) -> dict | None:
-    """Where the far player is at the start of a window: people found in the far half of the
-    court (enlarged region), the one standing in it; plus the net row that she never crosses."""
+def far_start(clip: Path, H, search_s=2.0, step=5) -> dict | None:
+    """Where the far player is near the start of a window: people found in the far half of the
+    court (enlarged region) in the first frames (she may be blurred in a serve jump), the one
+    standing in it; plus the net row that she never crosses."""
     if H is None:
         return None
-    import cv2
+    from .court_metrics import net_row
+    from .pose.yolo import find_far_player
 
-    from .court_metrics import far_roi, net_row, pick_far_player
-    from .pose.yolo import detect_people
-
-    cap = cv2.VideoCapture(str(clip))
-    ok, frame = cap.read()
-    cap.release()
-    if not ok:
-        return None
-    box = pick_far_player(detect_people(frame, far_roi(H, frame.shape)), H)
-    return None if box is None else dict(roi="follow", init_box=box, max_bottom=net_row(H))
+    found = find_far_player(clip, H, search_s, step)
+    return None if found is None else dict(roi="follow", init_box=found, max_bottom=net_row(H))
 
 
 def cut_window(video: Path, t0: float, dur: float, dest: Path) -> Path:

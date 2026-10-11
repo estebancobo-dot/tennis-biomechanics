@@ -53,7 +53,7 @@ def far_init(video: Path, cache: Path, imgsz: int):
     import numpy as np
 
     from tennisbio.court import fit_court
-    from tennisbio.court_metrics import far_roi, net_row, pick_far_player  # noqa: F401
+    from tennisbio.court_metrics import net_row
 
     cap = cv2.VideoCapture(str(video))
     ok, frame = cap.read()
@@ -61,13 +61,8 @@ def far_init(video: Path, cache: Path, imgsz: int):
     fit = fit_court(frame) if ok else None
     if fit is None or fit.score < 0.5:
         return None
-    # find her once on the far half (enlarged region), then follow her with a small enlarged crop
-    from ultralytics import YOLO
-    x0, y0, x1, y1 = far_roi(fit.H, frame.shape)
-    r = YOLO("yolo11m-pose.pt").predict(frame[y0:y1, x0:x1], imgsz=1920, conf=0.25, verbose=False)[0]
-    if not len(r.boxes):
-        return None
-    box = pick_far_player(r.boxes.xyxy.cpu().numpy() + [x0, y0, x0, y0], fit.H)
+    from tennisbio.pose.yolo import find_far_player
+    box = find_far_player(video, fit.H)
     if box is None:
         return None
     return dict(roi="follow", max_bottom=net_row(fit.H), init_box=box)

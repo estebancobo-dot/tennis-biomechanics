@@ -154,3 +154,25 @@ def detect_people(frame: np.ndarray, roi=None, pose_model="yolo11m-pose.pt", img
         src = frame[y0:y1, x0:x1]
     r = YOLO(pose_model).predict(src, imgsz=imgsz, conf=conf, verbose=False)[0]
     return r.boxes.xyxy.cpu().numpy() + [x0, y0, x0, y0] if len(r.boxes) else np.zeros((0, 4))
+
+
+def find_far_player(video: str | Path, H: np.ndarray, search_s=2.0, step=5):
+    """First box of the far player within the first `search_s` of a video (every `step` frames);
+    the box is returned for the first frame of the video (the follow crop starts there and
+    re-centres on her within a few frames). None when she is not found."""
+    from ..court_metrics import far_roi, pick_far_player
+
+    cap = cv2.VideoCapture(str(video))
+    fps = cap.get(cv2.CAP_PROP_FPS) or 25
+    i, box = 0, None
+    while i <= search_s * fps:
+        ok, frame = cap.read()
+        if not ok:
+            break
+        if i % step == 0:
+            box = pick_far_player(detect_people(frame, far_roi(H, frame.shape)), H)
+            if box is not None:
+                break
+        i += 1
+    cap.release()
+    return box

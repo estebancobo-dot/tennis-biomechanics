@@ -108,16 +108,22 @@ def pick_far_player(boxes: np.ndarray, H: np.ndarray) -> np.ndarray | None:
 
 def far_roi(H: np.ndarray, frame_shape, behind_m=7.0, side_m=4.0, player_px_frac=0.14) -> tuple:
     """Image region of the far half of the court plus where the far player can stand (behind the
-    baseline, out wide) and her height above her feet."""
+    baseline, out wide) and her height above her feet. Points that project behind the camera are
+    ignored; if the region degenerates, the band above the net row is used."""
     h, w = frame_shape[:2]
     pts = np.array([[-DOUBLES_HALF - side_m, NET], [DOUBLES_HALF + side_m, NET],
-                    [-DOUBLES_HALF - side_m, LENGTH + behind_m], [DOUBLES_HALF + side_m, LENGTH + behind_m]])
-    p = np.c_[pts, np.ones(4)] @ H.T
-    xy = p[:, :2] / p[:, 2:]
-    x0, x1 = np.clip([xy[:, 0].min(), xy[:, 0].max()], 0, w)
-    y0 = max(0.0, xy[:, 1].min() - player_px_frac * h)
-    y1 = min(float(h), xy[:2, 1].max() + 0.03 * h)
-    return int(x0), int(y0), int(x1), int(y1)
+                    [-DOUBLES_HALF - side_m, LENGTH + behind_m], [DOUBLES_HALF + side_m, LENGTH + behind_m],
+                    [-DOUBLES_HALF - side_m, LENGTH], [DOUBLES_HALF + side_m, LENGTH]])
+    p = np.c_[pts, np.ones(len(pts))] @ H.T
+    ok = p[:, 2] > 1e-9
+    xy = p[ok, :2] / p[ok, 2:]
+    row = min(float(h), net_row(H) + 0.03 * h)
+    if len(xy) >= 3:
+        x0, x1 = np.clip([xy[:, 0].min(), xy[:, 0].max()], 0, w)
+        y0 = max(0.0, xy[:, 1].min() - player_px_frac * h)
+        if x1 - x0 > 0.2 * w and row - y0 > 0.1 * h:
+            return int(x0), int(y0), int(x1), int(row)
+    return 0, 0, int(w), int(row)
 
 
 def player_frame_H(H: np.ndarray, side: str) -> np.ndarray:
