@@ -264,6 +264,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
       </div>
       <div class="timeline" id="timeline"></div>
       <div class="kf" id="kf"></div>
+      <div style="padding:0 12px 12px"><div class="note" style="margin-bottom:6px">Estroboscópica: esqueletos de las fases sobre el fotograma del impacto (de azul a amarillo) y trayectoria de la muñeca</div><canvas id="strobe" width="1280" height="720" style="width:100%;border-radius:6px;background:#000"></canvas></div>
     </div>
     <div style="display:grid;gap:16px;align-content:start">
       <div class="panel">
@@ -618,6 +619,21 @@ function renderTimeline() {
   svg.addEventListener("pointerdown", ev => { const sk = ev.target.closest("[data-seek]"); stopPlay(); if (sk) { setT(+sk.dataset.seek); return; } setT(toT(ev)); });
   svg.addEventListener("keydown", ev => { if (ev.key === "ArrowRight") { setT(tNow + 1 / FPS); ev.preventDefault(); } if (ev.key === "ArrowLeft") { setT(tNow - 1 / FPS); ev.preventDefault(); } });
 }
+async function renderStrobe(id) {
+  const c = document.getElementById("strobe"), ctx = c.getContext("2d");
+  if (!cur.video || !ser) { ctx.fillStyle = "#000"; ctx.fillRect(0, 0, c.width, c.height); return; }
+  const imp = PH.find(p => p.k === "impact"), f0 = fIdx(0);
+  await seek(0); if (cur.id !== id) return;
+  drawFrame(ctx, c.width, c.height, f0, { skel: false, trail: false, ball: false });
+  ctx.fillStyle = "rgba(0,0,0,.35)"; ctx.fillRect(0, 0, c.width, c.height);
+  const [sx, sy, sw] = cropRect(f0, c.width / c.height), k = c.width / sw, P = p => [(p[0] - sx) * k, (p[1] - sy) * k];
+  const ph = PH.filter(p => isN(p.t)), col = i => `hsl(${200 - 150 * i / Math.max(1, ph.length - 1)}, 90%, 60%)`;
+  ctx.lineWidth = 3; ctx.strokeStyle = "#d4f03a"; ctx.beginPath(); let st = false;
+  for (let g = 0; g < NF; g++) { const q = kpAt(g), w = q && q[domW()]; if (!w) { st = false; continue; } const [x, y] = P(w); if (st) ctx.lineTo(x, y); else ctx.moveTo(x, y); st = true; } ctx.stroke();
+  ph.forEach((p, i) => { const q = kpAt(fIdx(p.t)); if (!q) return; ctx.strokeStyle = col(i); ctx.lineWidth = 3;
+    for (const [a, b] of BONES) { if (!q[a] || !q[b]) continue; const [x1, y1] = P(q[a]), [x2, y2] = P(q[b]); ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
+    const w = q[domW()]; if (w) { const [x, y] = P(w); ctx.fillStyle = col(i); ctx.font = "600 20px JetBrains Mono, monospace"; ctx.fillText(String(PHASE_DEF.findIndex(d => d.k === p.k) + 1), x + 8, y - 8); } });
+}
 async function renderKF() {
   const box = document.getElementById("kf"), id = cur.id;
   box.innerHTML = PH.map((p, i) => `<button data-t="${isN(p.t) ? p.t : ""}" ${isN(p.t) ? "" : "disabled"} title="${p.long}"><canvas width="320" height="200"></canvas><span><b>${i + 1} ${p.n}</b><span class="mono">${isN(p.t) ? (p.t >= 0 ? "+" : "−") + fmt(Math.abs(p.t), 2) : "no detectado"}</span></span></button>`).join("");
@@ -629,6 +645,7 @@ async function renderKF() {
     await seek(snap(PH[i].t)); if (cur.id !== id) return;
     drawFrame(cvs[i].getContext("2d"), 320, 200, fIdx(snap(PH[i].t)), { skel: true, trail: false, ball: false });
   }
+  await renderStrobe(id); if (cur.id !== id) return;
   await seek(tNow); renderStage();
 }
 function setT(t) { tNow = snap(t); renderStage(); renderTimeline(); document.querySelectorAll("#kf button").forEach(b => b.setAttribute("aria-current", b.dataset.t !== "" && Math.abs(+b.dataset.t - tNow) < .6 / FPS)); }
