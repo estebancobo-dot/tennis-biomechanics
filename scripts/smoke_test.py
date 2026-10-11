@@ -34,6 +34,9 @@ def main():
     out_root = Path(cfg.get("paths", {}).get("output", "output")) / "_smoke"
     out_root.mkdir(parents=True, exist_ok=True)
     src = Path(args.video)
+    full = probe(src).duration
+    if args.start + args.minutes * 60 > full:          # short video: take the piece from its first third
+        args.start = max(0.0, min(full * 0.3, full - args.minutes * 60))
     clip = out_root / f"{src.stem}_{int(args.start)}_{int(args.minutes)}m{src.suffix}"
     if not clip.exists():
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(args.start), "-i", str(src), "-t", str(args.minutes * 60),
@@ -48,7 +51,6 @@ def main():
     for name, m in manifest.items():
         print(f"  {name:11} {m['seconds']:7.1f} s  {m['summary']}")
     report = build([match], out_root, out_root / "informe")
-    full = probe(src).duration
     if done:
         print(f"\nTotal {total / 60:.1f} min para {args.minutes:g} min de vídeo → partido de {full / 60:.0f} min "
               f"≈ {total * full / (args.minutes * 60) / 3600:.1f} h (estimación lineal)")
