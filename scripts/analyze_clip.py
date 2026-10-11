@@ -7,9 +7,7 @@ pipeline used for full matches. Needs the optional YOLO backend: `uv sync --extr
 """
 import argparse
 import json
-import subprocess
 import sys
-import tempfile
 from pathlib import Path
 
 import cv2
@@ -17,26 +15,13 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from tennisbio.impacts import audio_onsets, fuse, swing_peaks  # noqa: E402
-from tennisbio.kinematics import body_height, clean, speed, to_body_frame  # noqa: E402
+from tennisbio.clip_pipeline import run_clip  # noqa: E402
+from tennisbio.kinematics import to_body_frame  # noqa: E402
 from tennisbio.phases import PHASES  # noqa: E402
 from tennisbio.racket import pick_racket, racket_from_polygon  # noqa: E402
 from tennisbio.render import PHASE_TITLES, crop_around, draw_pose, draw_racket, label, strip  # noqa: E402
-from tennisbio.skeleton import Skeleton  # noqa: E402
-from tennisbio.stroke_analysis import analyze_stroke  # noqa: E402
-from tennisbio.tracking import track_target  # noqa: E402
 
 STROKE_ES = {"forehand": "derecha", "backhand": "revés"}
-
-
-def load_audio(video: Path, sr=22050):
-    import librosa
-
-    with tempfile.TemporaryDirectory() as d:
-        wav = Path(d) / "a.wav"
-        subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(video), "-vn", "-ac", "1", "-ar", str(sr), str(wav)], check=True)
-        y, _ = librosa.load(wav, sr=sr)
-    return y, sr
 
 
 def phase_caption(name: str, r, fps) -> list[str]:
@@ -136,62 +121,15 @@ def main():
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     cache = Path(args.cache or out / "extract.npz")
-    if not cache.exists():
-        from tennisbio.pose.yolo import extract
-        extract(args.video, cache)
-    d = np.load(cache, allow_pickle=True)
-    fps, boxes, kps, confs, feats = float(d["fps"]), d["boxes"], d["kps"], d["confs"], d["feats"]
-    sk = Skeleton("coco17", args.hand)
-
-    # 1. follow the player: the largest person in the first frame with detections
-    first = next(t for t in range(len(boxes)) if len(boxes[t]))
-    b0 = boxes[first]
-    init = b0[np.argmax((b0[:, 2] - b0[:, 0]) * (b0[:, 3] - b0[:, 1]))]
-    sel = track_target(list(boxes), list(feats), init)
-    T = len(boxes)
-    kp = np.full((T, len(sk), 2), np.nan)
-    cf = np.zeros((T, len(sk)))
-    boxes_t = [None] * T
-    for t, j in enumerate(sel):
-        if j >= 0:
-            kp[t], cf[t], boxes_t[t] = kps[t][j], confs[t][j], boxes[t][j]
-    print(f"jugadora seguida en {np.mean(sel >= 0) * 100:.0f} % de los fotogramas")
-
-    # 2. strokes: swing peaks of the dominant wrist relative to the body, fused with audio
-    img = clean(kp, cf)
-    height_px = body_height(img, sk)
-    body = to_body_frame(img, sk, height_px)
-    v = speed(body[:, sk["dom_wrist"]], fps)
-    swings = swing_peaks(v, fps)
-    y, sr = load_audio(Path(args.video))
-    onsets, _ = audio_onsets(y, sr)
-    impacts = fuse(swings, fps, onsets)
-    print(f"altura ≈ {height_px:.0f} px · {len(swings)} golpes · {sum(i.source == 'audio+swing' for i in impacts)} confirmados por audio")
-
-    # 3. rackets, only around each stroke
-    rcache = cache.with_name(cache.stem + "_rackets.npz")
-    need = sorted({f for imp in impacts for f in range(max(0, imp.frame - int(fps)), min(T, imp.frame + int(0.8 * fps) + 1))})
-    if not rcache.exists() or not set(need) <= set(np.load(rcache, allow_pickle=True)["frames"].tolist()):
-        from tennisbio.pose.yolo import extract_rackets
-        print(f"segmentando la raqueta en {len(need)} fotogramas", flush=True)
-        extract_rackets(args.video, need, rcache)
-    rd = np.load(rcache, allow_pickle=True)
-    rackets = [[] for _ in range(T)]
-    for f, p in zip(rd["frames"], rd["polys"]):
-        rackets[int(f)] = p
-
-    # 4. per stroke
+    run = run_clip(args.video, cache, args.hand, args.height_m)
     cap = cv2.VideoCapture(str(args.video))
-    results = []
-    for k, imp in enumerate(impacts):
-        prev = [t for t in onsets if 0.5 < imp.t - t < 2.0]
-        opp = int(round(prev[-1] * fps)) if prev else None
-        r = analyze_stroke(img, cf, sk, fps, height_px, imp.frame, imp.source, rackets, args.height_m, opp)
-        results.append(r)
-        cv2.imwrite(str(out / f"golpe_{k:02d}_fases.jpg"), render_strip(cap, r, img, boxes_t, rackets, sk, height_px, k), [cv2.IMWRITE_JPEG_QUALITY, 88])
-        render_curves(out / f"golpe_{k:02d}_curvas.png", r, img, sk, fps, height_px)
+    for k, (imp, r) in enumerate(zip(run.impacts, run.strokes)):
+        cv2.imwrite(str(out / f"golpe_{k:02d}_fases.jpg"),
+                    render_strip(cap, r, run.img, run.boxes, run.rackets, run.sk, run.height_px, k), [cv2.IMWRITE_JPEG_QUALITY, 88])
+        render_curves(out / f"golpe_{k:02d}_curvas.png", r, run.img, run.sk, run.fps, run.height_px)
         ph = " ".join(f"{p[:4]}:{r.phases[p]['t_rel']:+.2f}" if r.phases[p]["t_rel"] is not None else f"{p[:4]}:--" for p in PHASES)
         print(f"#{k:02d} {imp.t:6.2f}s {STROKE_ES[r.stroke]:8} {ph}  cadena {'>'.join(r.chain['order'])}  revisar={r.review}")
+    results = run.strokes
     (out / "golpes.json").write_text(json.dumps([r.to_dict() for r in results], indent=1, default=float), encoding="utf-8")
     print(f"\nResultados en {out}")
 

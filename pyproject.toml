@@ -23,6 +23,8 @@ openvino = ["openvino>=2024.0"]
 # Ultralytics YOLO pose/segmentation for clips and racket outlines (AGPL-3.0, uses PyTorch).
 yolo = ["ultralytics>=8.3", "onnx>=1.16"]
 viz = ["matplotlib>=3.8"]
+# Automatic validation against public datasets (F3Set videos come from YouTube).
+validation = ["yt-dlp>=2025.1"]
 dev = ["pytest>=8", "onnx>=1.16"]
 
 [tool.uv]
