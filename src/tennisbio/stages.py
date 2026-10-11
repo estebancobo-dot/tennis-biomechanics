@@ -214,7 +214,7 @@ def cut_window(video: Path, t0: float, dur: float, dest: Path) -> Path:
     return dest
 
 
-@stage("fine", "2", deps=("candidates", "court"),
+@stage("fine", "3", deps=("candidates", "court"),
        settings=lambda c: {"fine": c["fine_pass"], "imgsz": c.get("fine_imgsz", 1280), "ball": c.get("ball")})
 def st_fine(ctx: Context):
     """Full-quality analysis of each candidate in its own window (same code as analyze_clip)."""
@@ -248,14 +248,10 @@ def st_fine(ctx: Context):
         d.update(window=str(clip.name), window_start_s=t0, match_time_s=t_imp, candidate_audio=c["audio"])
         H, pitch = court_at(court, t_imp)
         if H is not None:
-            from .skeleton import Skeleton
-            sk = Skeleton("coco17", p.hand)
-            feet = run.img[r.impact_frame, [sk["left_ankle"], sk["right_ankle"]]]
-            if not np.isnan(feet).any():
-                q = np.c_[feet, np.ones(2)] @ np.linalg.inv(H).T
-                q = q[:, :2] / q[:, 2:]
-                d.update(court_pos_m=[round(float(v), 2) for v in q.mean(0)],
-                         stance_width_m=round(float(np.linalg.norm(q[0] - q[1])), 2), camera_pitch_deg=pitch)
+            from .court_metrics import court_metrics
+            ta = r.metrics.get("time_available_s")
+            opp = None if ta is None else r.impact_frame - int(round(ta * run.fps))
+            d.update(court_metrics(run.img, run.sk, H, r.stroke, r.impact_frame, opp), camera_pitch_deg=pitch)
         strokes.append(d)
     _write(ctx.path("strokes.json"), strokes)
     return {"candidates": len(cands), "confirmed": len(strokes),
