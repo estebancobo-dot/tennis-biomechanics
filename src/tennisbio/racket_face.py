@@ -7,7 +7,7 @@ from .racket3d import Camera, describe_face, hand_prior, observe_polygon, refine
 
 def face_track(frames: dict, boxes: list, img_kp: np.ndarray, rackets: list, sk, height_px: float,
                height_m: float, impact: int, a: int, b: int, wb3d=None, cam: Camera = Camera(),
-               grip_close_deg=15.0) -> list[dict]:
+               grip_close_deg=15.0, fps: float = 30.0) -> list[dict]:
     """Per frame in [a, b): hitting-face direction and angles.
 
     frames: {frame_index: BGR image} (needed only for the 3D hand model); boxes: tracked box per frame;
@@ -25,6 +25,11 @@ def face_track(frames: dict, boxes: list, img_kp: np.ndarray, rackets: list, sk,
             pr = hand_prior(k3, sc, cam, sk.hand, grip_close_deg)
         priors.append(pr)
     i = impact - a
+    # the outline is unreliable around contact (motion blur): ignore it within ~80 ms and let the
+    # contact anchor and continuity decide there
+    blur = max(1, int(round(0.08 * fps)))
+    for k in range(max(0, i - blur), min(len(obs), i + blur + 1)):
+        obs[k] = None
     axes, normals, amb = solve_sequence(obs, cam, i, priors=priors)
     if all(n is None for n in normals):
         return [dict(frame=f, face=None) for f in range(a, b)]

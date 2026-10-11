@@ -63,7 +63,7 @@ def main():
             if ok:
                 frames[f] = fr
         track = face_track(frames, run.boxes, run.img, run.rackets, run.sk, run.height_px, args.height_m,
-                           i, a, b, wb, cam, args.grip_close)
+                           i, a, b, wb, cam, args.grip_close, fps=run.fps)
         by_frame = {t["frame"]: t for t in track}
         allres[k] = track
         tiles = []

@@ -253,6 +253,12 @@ def refine(axes, normals, obs: list[Observation | None], cam: Camera, impact: in
     o_wr = np.array([obs[t].width_ratio for t in o_idx])
     sa, sr, sacc = np.radians(sd_axis_deg), sd_ratio, np.radians(sd_acc_deg)
     f_idx = [t for t in range(T) if priors is not None and priors[t] is not None and priors[t].face is not None]
+    # contact anchor: if the racket is not seen around contact (blur), smoothing alone would decide
+    # the face there, so the anchor gets stronger and covers the neighbouring frames
+    seen_at_contact = impact is not None and any(obs[t] is not None for t in range(max(0, impact - 2), min(T, impact + 3)))
+    anchor = [] if impact is None else ([impact] if seen_at_contact else
+                                        list(range(max(0, impact - 1), min(T, impact + 2))))
+    anchor_tol = impact_tol_deg if seen_at_contact else 15.0
 
     def rots(x):
         return Rotation.from_rotvec(x.reshape(T, 3)) * ref
@@ -267,8 +273,7 @@ def refine(axes, normals, obs: list[Observation | None], cam: Camera, impact: in
             rel = (Rt[1:] * Rt[:-1].inv()).as_rotvec()
             res.append((rel[1:] - rel[:-1]).ravel() / sacc)
         if impact is not None:
-            n = M[impact, :, 2]
-            res.append(np.array([_ang(n, shot) / impact_tol_deg]))
+            res.append(np.array([_ang(M[t, :, 2], shot) / anchor_tol for t in anchor]))
         if f_idx:
             res.append(np.array([_ang(M[t, :, 2], priors[t].face) / priors[t].face_sd_deg for t in f_idx]))
         return np.concatenate(res)
@@ -278,8 +283,9 @@ def refine(axes, normals, obs: list[Observation | None], cam: Camera, impact: in
 
     n_obs = 3 * len(o_idx)
     n_acc = 3 * max(0, T - 2)
-    J = lil_matrix((n_obs + n_acc + (impact is not None) + len(f_idx), 3 * T), dtype=int)
-    f_row = {t: n_obs + n_acc + (impact is not None) + k for k, t in enumerate(f_idx)}
+    J = lil_matrix((n_obs + n_acc + len(anchor) + len(f_idx), 3 * T), dtype=int)
+    f_row = {t: n_obs + n_acc + len(anchor) + k for k, t in enumerate(f_idx)}
+    a_row = {t: n_obs + n_acc + k for k, t in enumerate(anchor)}
     pos = {t: k for k, t in enumerate(o_idx)}
     for t in range(T):
         cols = slice(3 * t, 3 * t + 3)
@@ -289,8 +295,8 @@ def refine(axes, normals, obs: list[Observation | None], cam: Camera, impact: in
         for j in (t - 2, t - 1, t):
             if 0 <= j < T - 2:
                 J[n_obs + 3 * j:n_obs + 3 * j + 3, cols] = 1
-        if impact is not None and t == impact:
-            J[n_obs + n_acc, cols] = 1
+        if t in a_row:
+            J[a_row[t], cols] = 1
         if t in f_row:
             J[f_row[t], cols] = 1
     sol = least_squares(resid, np.zeros(3 * T), method="trf", x_scale=0.1, max_nfev=60, jac_sparsity=J)
