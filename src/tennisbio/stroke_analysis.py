@@ -25,15 +25,28 @@ class StrokeResult:
         return asdict(self)
 
 
-def classify_side(body: np.ndarray, sk: Skeleton, f: int) -> str:
+def classify_side(body: np.ndarray, sk: Skeleton, f: int, fps: float = 30.0) -> str:
     """'overhead' (serve or smash) if the dominant wrist is above the head at contact; otherwise
-    forehand if contact is on the dominant side of the body, backhand if not."""
-    dw, nw = body[f, sk["dom_wrist"]], body[f, sk["non_wrist"]]
-    if dw[1] > body[f, sk["nose"], 1] + 0.03:
+    forehand or backhand by a vote of three cues, so that an impact frame off by one or two
+    frames (wrist already crossing the body) does not flip the answer:
+    - side of the dominant wrist during the backswing (0.45-0.15 s before contact),
+    - direction of the swing across the body around contact (forehand: towards the non-dominant side),
+    - side of the dominant wrist at contact (and both hands together → backhand)."""
+    dw, nw = body[:, sk["dom_wrist"]], body[:, sk["non_wrist"]]
+    if dw[f, 1] > body[f, sk["nose"], 1] + 0.03:
         return "overhead"
-    two_hands = np.linalg.norm(dw - nw) < 0.08
-    on_dom_side = dw[0] * sk.dom_sign > 0
-    return "forehand" if on_dom_side and not two_hands else "backhand"
+    s = sk.dom_sign
+    votes = []
+    back = dw[max(0, f - round(0.45 * fps)):max(1, f - round(0.15 * fps)), 0]
+    if np.isfinite(back).any():
+        votes.append(np.nanmedian(back) * s > 0)
+    a, b = max(0, f - round(0.1 * fps)), min(len(dw) - 1, f + round(0.05 * fps))
+    if b > a and np.isfinite(dw[[a, b], 0]).all() and abs(dw[b, 0] - dw[a, 0]) > 0.03:
+        votes.append((dw[b, 0] - dw[a, 0]) * s < 0)
+    if np.isfinite(dw[f, 0]):
+        two_hands = np.linalg.norm(dw[f] - nw[f]) < 0.08
+        votes.append(dw[f, 0] * s > 0 and not two_hands)
+    return "forehand" if sum(votes) * 2 > len(votes) else "backhand"
 
 
 def analyze_stroke(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, height_px: float,
@@ -49,7 +62,7 @@ def analyze_stroke(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, 
     cm = height_m * 100                               # body heights -> cm
 
     events = detect_phases(w_img, body, w_conf, sk, fps, height_px, i, opp)
-    res = StrokeResult(impact_frame=impact, impact_source=impact_source, stroke=classify_side(body, sk, i))
+    res = StrokeResult(impact_frame=impact, impact_source=impact_source, stroke=classify_side(body, sk, i, fps))
     for e in events:
         res.phases[e.name] = dict(frame=None if e.frame is None else a + e.frame,
                                   t_rel=None if e.frame is None else round((e.frame - i) / fps, 3),

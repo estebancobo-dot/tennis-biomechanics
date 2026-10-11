@@ -101,13 +101,15 @@ def status(ctx: Context) -> dict[str, str]:
 
 
 def run(ctx: Context, names=None, force=False) -> list[str]:
-    """Run the requested stages (default: all) that are missing or stale. Returns those executed."""
+    """Run the requested stages (default: all) that are missing or stale, plus whatever upstream is
+    missing or stale. force re-runs the requested stages only, not their dependencies."""
     ctx.dir.mkdir(parents=True, exist_ok=True)
     m = load_manifest(ctx.dir)
     done = []
+    requested = set(names or STAGES)
     for n in order(names or list(STAGES)):
         fp = fingerprint(n, ctx, m)
-        if not force and m.get(n, {}).get("fingerprint") == fp:
+        if not (force and n in requested) and m.get(n, {}).get("fingerprint") == fp:
             continue
         t0 = time.time()
         ctx.log(f"[{ctx.match.id}] {n}…")

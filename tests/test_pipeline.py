@@ -53,3 +53,8 @@ def test_catalog(tmp_path):
     (tmp_path / "matches.yaml").write_text("matches:\n  - id: m1\n    video: a.mp4\n    player: ryba\n    surface: hard\n")
     m = load_matches({"paths": {"videos": "/v"}}, tmp_path)[0]
     assert m.id == "m1" and m.player.height_m == 1.84 and m.surface == "hard" and m.video.name == "a.mp4"
+
+
+def test_force_reruns_only_requested(tmp_path, fake_stages):
+    pipeline.run(make_ctx(tmp_path))
+    assert pipeline.run(make_ctx(tmp_path), ["b"], force=True) == ["b"]
