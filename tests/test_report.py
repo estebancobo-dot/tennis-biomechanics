@@ -1,0 +1,33 @@
+import json
+
+from tennisbio.catalog import Match, Player
+from tennisbio.report import build, stroke_record
+
+
+def stroke(t, **kw):
+    s = {"stroke": "forehand", "match_time_s": t, "impact_source": "audio+ball+swing", "review": [],
+         "metrics": {"x_factor_deg": 20.0, "contact_height_pct": 55.0, "time_available_s": 1.0},
+         "phases": {"ready": {"t_rel": -0.6, "method": "split_step_landing", "confidence": 0.9},
+                    "recovery": {"t_rel": 0.5, "method": "first_step", "confidence": 0.8}},
+         "racket": {"loaded": {"head_above_wrist_cm": 30.0}, "acceleration": {"head_above_wrist_cm": -20.0}},
+         "chain": {"proximal_to_distal": True}, "court_pos_m": [1.0, -1.5], "stance": "abierto", "stance_width_m": 0.9}
+    s.update(kw)
+    return s
+
+
+def test_stroke_record_situation_and_metrics():
+    m = Match("m1", None, Player("p", "P"))
+    r = stroke_record(stroke(10.0), 0, m, 100.0, 0)
+    assert r["fast"] is True and r["height"] == "media" and abs(r["y"] - 13.385) < 1e-6
+    assert r["m"]["xf"] == 20.0 and r["m"]["rDrop"] == 20.0 and r["m"]["split"] == 400 and r["m"]["recov"] == 0.5
+    assert r["frac"] == 0.1 and r["sit"]["neutra"] is False
+
+
+def test_build_writes_page_with_data(tmp_path):
+    d = tmp_path / "m1"
+    d.mkdir()
+    (d / "strokes.json").write_text(json.dumps([stroke(5.0), stroke(9.0, stroke="backhand")]))
+    (d / "probe.json").write_text(json.dumps({"duration": 60}))
+    out = build([Match("m1", None, Player("p", "P"))], tmp_path)
+    html = out.read_text(encoding="utf-8")
+    assert "__DATA__" not in html and '"m1-001"' in html and '"m1-002"' not in html

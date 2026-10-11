@@ -234,7 +234,8 @@ def st_fine(ctx: Context):
     strokes = []
     for k, c in enumerate(cands):
         t0 = max(0.0, c["t"] - pre)
-        clip = cut_window(ctx.match.video, t0, pre + post, ctx.path("windows") / f"w{k:04d}.mp4")
+        # the name carries the interval, so a different window never reuses an old cut (or its caches)
+        clip = cut_window(ctx.match.video, t0, pre + post, ctx.path("windows") / f"w{k:04d}_{int(t0 * 1000)}_{int((pre + post) * 1000)}.mp4")
         run = run_clip(clip, clip.with_suffix(".npz"), p.hand, p.height_m, init_mode="near",
                        imgsz=ctx.cfg.get("fine_imgsz", 1280), log=lambda *_: None, ball=ball)
         if not run.strokes:

@@ -31,8 +31,14 @@ def stroke_series(img: np.ndarray, conf: np.ndarray, boxes: list, sk: Skeleton, 
         "forearm": segment_angle(body[:, sk["dom_elbow"]], body[:, sk["dom_wrist"]]),
     }
     kin = {}
+    k5 = max(1, int(round(0.05 * fps)))                # ~50 ms moving average: 2D angles are jittery
     for k, x in sig.items():
         v = np.abs(speed(x, fps))
+        if k5 > 1:
+            ok = np.isfinite(v)
+            num = np.convolve(np.where(ok, v, 0), np.ones(k5), "same")
+            den = np.convolve(ok.astype(float), np.ones(k5), "same")
+            v = np.where(den > 0, num / np.maximum(den, 1e-9), np.nan)
         mx = np.nanmax(v) if np.isfinite(v).any() else np.nan
         kin[k] = _r(v / mx if mx and np.isfinite(mx) else v, 3)
     elbow = joint_angle(body[:, sk["dom_shoulder"]], body[:, sk["dom_elbow"]], body[:, sk["dom_wrist"]])

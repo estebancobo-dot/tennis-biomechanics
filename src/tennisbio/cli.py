@@ -20,11 +20,22 @@ def main(argv=None):
     r.add_argument("--force", action="store_true", help="repetir aunque esté al día")
     s = sub.add_parser("status", help="estado de cada etapa por partido")
     s.add_argument("--match", nargs="+")
+    rp = sub.add_parser("report", help="informe HTML con todos los partidos de un jugador")
+    rp.add_argument("--player", help="id del jugador (config/players/<id>.yaml); por defecto, el del primer partido")
+    rp.add_argument("--stroke", default="forehand", choices=["forehand", "backhand", "overhead"])
+    rp.add_argument("--out", help="carpeta del informe (por defecto <output>/informe)")
     args = ap.parse_args(argv)
 
     cfg = load_config()
     out_root = Path(cfg.get("paths", {}).get("output", "output"))
     matches = load_matches(cfg)
+    if args.cmd == "report":
+        from .report import build
+        pid = args.player or (matches[0].player.id if matches else None)
+        mine = [m for m in matches if m.player.id == pid]
+        out = build(mine, out_root, Path(args.out) if args.out else None, args.stroke)
+        print(f"informe: {out}")
+        return
     if getattr(args, "match", None):
         matches = [m for m in matches if m.id in args.match]
     for m in matches:
