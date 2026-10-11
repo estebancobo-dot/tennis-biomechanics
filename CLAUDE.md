@@ -155,6 +155,21 @@ La bola no se mide directamente (pequeña y borrosa en TV); se deduce indirectam
 - **Tipo de golpe por contexto**: el clip eran sobre todo voleas junto a la red; la
   clasificación debe usar la posición en pista además de la pose.
 
+## Lecciones de la validación automática (RacketVision, final del US Open)
+- **El golpe se decide con la bola**: solo con el pico de muñeca (sin audio) la detección daba
+  F1 ≈ 0,3 (las carreras parecen golpes). Con la bola (TrackNetV3 de RacketVision) + pose:
+  precisión 0,73, recall 0,84, error de instante de 1 fotograma (ver `docs/validacion.md`).
+  Golpe = giro más brusco de la trayectoria tras el cual la bola se aleja (el bote gira menos y,
+  en el lado cercano, la bola sigue viniendo hacia la cámara). Un giro de bola sin movimiento de
+  brazo no es golpe.
+- Con emisiones a 50-60 fps la bola se procesa a ~25 fps (como se entrenó el modelo).
+- El audio llega 2-4 fotogramas tarde respecto al contacto visible; la bola es más precisa.
+- Dobles: se detectan por homografía (dos personas dentro de la mitad cercana) y se excluyen.
+- Las fases se calculan sobre la velocidad suavizada de la muñeca (a 60 fps el ruido creaba
+  armados falsos a 3 fotogramas del impacto).
+- Derecha/revés por votación (lado de la muñeca en el armado, dirección del swing, lado en el
+  impacto): un solo fotograma de impacto desplazado invertía la clasificación.
+
 ## Limitaciones asumidas (no "arreglarlas" con falsa precisión)
 - 2D desde una sola cámara; cualquier 3D es estimación.
 - Desenfoque en el impacto a 25-50 fps: velocidades absolutas no fiables, **comparaciones relativas sí**.
@@ -220,7 +235,14 @@ se usa "brazo dominante", "pie adelantado", etc., resueltos con la configuració
   puro y exportados a ONNX: `scripts/export_balltrack.py` (TrackNetV3, bola) y
   `scripts/export_racketpose.py` (RTMPose-m, 5 puntos de la raqueta). Sin mmpose/mmcv.
 - Homografía de la pista desde las líneas (`tennisbio.court`): da la inclinación de la cámara
-  y las posiciones en metros.
+  y las posiciones en metros (apoyo, anchura de base, desplazamiento, posición en el impacto).
+- Marcador de TV con OCR (`rapidocr-onnxruntime`, extra `ocr`; `tennisbio.scoreboard`): sets,
+  juegos, puntos y presión (30-40, 40-30, iguales, ventaja, tie-break, rótulos "BREAK POINT").
+- Rotación 3D de hombros/cadera (X-factor 3D) con RTMW3D, reutilizando la pasada de la mano.
+- Etapas: probe → scenes → audio → players → candidates → court → score → fine. La pasada fina
+  guarda por golpe `strokes.json` y series fotograma a fotograma (`series/`) para el informe.
+- Informe: `tennisbio report` → `<output>/informe/index.html` (diseño de la maqueta, vídeo real
+  de cada ventana con el esqueleto superpuesto; los datos que faltan se muestran como "—").
 - Tests: `uv run pytest`.
 
 ## Convenciones
