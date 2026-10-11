@@ -33,3 +33,23 @@ def test_peak():
     hm[100:105, 200:205] = 0.9
     x, y, c = _peak(hm, 0.5)
     assert abs(x - 202.5) < 1 and abs(y - 102.5) < 1 and c > 0.8
+
+
+def test_track_step_interpolates():
+    from tennisbio.ball import BallTracker
+
+    class FakeSess:
+        def get_inputs(self):
+            return [type("I", (), {"name": "frames"})()]
+
+        def run(self, _, feed):
+            n = feed["frames"].shape[0]
+            hm = np.zeros((n, 1, 288, 512), np.float32)
+            hm[:, 0, 100:103, 200:203] = 0.9
+            return [hm]
+
+    bt = BallTracker.__new__(BallTracker)
+    bt.sess, bt.threshold, bt.batch = FakeSess(), 0.5, 4
+    out = bt.track([np.zeros((576, 1024, 3), np.uint8)] * 7, step=2)
+    assert out.shape == (7, 3) and not np.isnan(out[:7, 0]).any()
+    assert abs(out[1, 0] - 201.5 * 2) < 1

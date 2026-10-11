@@ -8,9 +8,10 @@ import tempfile
 from dataclasses import dataclass, field
 from pathlib import Path
 
+import cv2
 import numpy as np
 
-from .impacts import Impact, audio_onsets, fuse, swing_peaks
+from .impacts import Impact, audio_onsets, fuse, fuse_with_ball, swing_peaks
 from .kinematics import body_height, clean, speed, to_body_frame
 from .skeleton import Skeleton
 from .stroke_analysis import StrokeResult, analyze_stroke
@@ -29,7 +30,18 @@ class ClipRun:
     onsets: np.ndarray
     impacts: list[Impact]
     rackets: list = field(default_factory=list)
+    ball: np.ndarray | None = None              # (T, 3) ball x, y, confidence (NaN when unseen)
     strokes: list[StrokeResult] = field(default_factory=list)
+
+
+def _cv2_frames(video: Path):
+    cap = cv2.VideoCapture(str(video))
+    while True:
+        ok, frame = cap.read()
+        if not ok:
+            break
+        yield frame
+    cap.release()
 
 
 def load_audio(video: Path, sr=22050):
@@ -61,7 +73,11 @@ def pick_initial(boxes, mode="largest") -> tuple[int, np.ndarray]:
 
 
 def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, rackets=True,
-             init_mode="largest", imgsz=960, log=print) -> ClipRun:
+             init_mode="largest", imgsz=960, log=print, ball=None) -> ClipRun:
+    """Pose, tracking, impacts and stroke analysis of a short clip (cached).
+
+    ball: optional tennisbio.ball.BallTracker; its track is cached next to the pose cache and
+    used to time and confirm the strokes (fuse_with_ball)."""
     video, cache = Path(video), Path(cache)
     cache.parent.mkdir(parents=True, exist_ok=True)
     if not cache.exists():
@@ -93,9 +109,27 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     y, sr = load_audio(video)
     onsets = audio_onsets(y, sr)[0] if len(y) else np.zeros(0)
     impacts = fuse(swings, fps, onsets)
+    ball_track = None
+    if ball is not None:
+        from .ball import ball_hits, clean_track
+
+        bcache = cache.with_name(cache.stem + "_ball.npy")
+        if bcache.exists():
+            ball_track = np.load(bcache)
+        else:      # same decoder as the pose extraction, so frame indices match
+            ball_track = ball.track(_cv2_frames(video), step=max(1, round(fps / 25)))
+            np.save(bcache, ball_track)
+        cap = cv2.VideoCapture(str(video))
+        fw, fh = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        cap.release()
+        ball_track = clean_track(ball_track, width=fw)
+        n = min(T, len(ball_track))
+        hits = ball_hits(ball_track[:n], fh, fps)
+        impacts = fuse_with_ball(impacts, fps, hits, ~np.isnan(ball_track[:n, 0]), boxes_t)
     log(f"jugadora seguida en {np.mean(sel >= 0) * 100:.0f} % · altura ≈ {height_px:.0f} px · {len(impacts)} golpes "
         f"({sum(i.source == 'audio+swing' for i in impacts)} con audio)")
     run = ClipRun(fps, sk, img, cf, boxes_t, float(np.mean(sel >= 0)), height_px, onsets, impacts)
+    run.ball = ball_track
 
     run.rackets = [[] for _ in range(T)]
     if rackets and impacts:

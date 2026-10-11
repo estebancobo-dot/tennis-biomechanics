@@ -24,23 +24,46 @@ class BallTracker:
         self.sess = _ort_session(str(onnx_path), device)
         self.threshold, self.batch = threshold, batch
 
-    def track(self, frames: list[np.ndarray], background: np.ndarray | None = None) -> np.ndarray:
-        """(T, 3) array of x, y (image px, NaN when not seen) and confidence for each frame (BGR)."""
-        h0, w0 = frames[0].shape[:2]
-        small = np.stack([cv2.resize(f, (W, H)) for f in frames]).astype(np.float32) / 255.0
-        bg = cv2.resize(background if background is not None else median_background(frames), (W, H))
+    def track(self, frames, background: np.ndarray | None = None, step: int = 1) -> np.ndarray:
+        """(T, 3) array of x, y (image px, NaN when not seen) and confidence for each BGR frame.
+
+        frames: any iterable; each frame is shrunk to 512x288 as it arrives, so a long window at
+        1080p does not have to fit in memory. background: median image of the shot (computed from
+        the frames themselves when not given). step: run on every step-th frame (the model was
+        trained at 25-30 fps: use step 2 for 50-60 fps broadcasts) and interpolate in between."""
+        small, size, total = [], None, 0
+        for k, f in enumerate(frames):
+            total = k + 1
+            if k % step:
+                continue
+            size = size or f.shape[:2]
+            small.append(cv2.resize(f, (W, H)))          # same interpolation as in training
+        if not small:
+            return np.zeros((0, 3))
+        h0, w0 = size
+        bg = cv2.resize(background, (W, H)) if background is not None else median_background(small)
         bg = np.moveaxis(bg.astype(np.float32) / 255.0, -1, 0)
-        out = np.full((len(frames), 3), np.nan)
-        for s in range(0, len(frames), self.batch):
-            idx = range(s, min(len(frames), s + self.batch))
-            x = np.stack([np.concatenate([bg] + [np.moveaxis(small[max(0, i - k)], -1, 0) for k in range(SEQ - 1, -1, -1)])
+        norm = [np.moveaxis(f.astype(np.float32) / 255.0, -1, 0) for f in small]
+        out = np.full((len(small), 3), np.nan)
+        for s in range(0, len(small), self.batch):
+            idx = range(s, min(len(small), s + self.batch))
+            x = np.stack([np.concatenate([bg] + [norm[max(0, i - k)] for k in range(SEQ - 1, -1, -1)])
                           for i in idx]).astype(np.float32)
             hm = self.sess.run(None, {self.sess.get_inputs()[0].name: x})[0][:, 0]
             for i, m in zip(idx, hm):
                 p = _peak(m, self.threshold)
                 if p is not None:
                     out[i] = (p[0] * w0 / W, p[1] * h0 / H, p[2])
-        return out
+        if step == 1:
+            return out
+        full = np.full((total, 3), np.nan)
+        full[::step] = out
+        for i in range(total):                    # linear fill between two seen samples only
+            if i % step and i // step + 1 < len(out):
+                a, b = out[i // step], out[i // step + 1]
+                if not (np.isnan(a).any() or np.isnan(b).any()):
+                    full[i] = a + (b - a) * (i % step) / step
+        return full
 
 
 def _peak(heatmap: np.ndarray, threshold: float):

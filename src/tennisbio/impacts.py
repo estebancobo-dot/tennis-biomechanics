@@ -55,3 +55,38 @@ def fuse(swing_frames: np.ndarray, fps: float, onset_times: np.ndarray, tol=0.12
         else:
             out.append(Impact(int(f), t, "swing", None, 0.5))
     return out
+
+
+def fuse_with_ball(impacts: list[Impact], fps: float, hits: list, ball_seen: np.ndarray, boxes: list,
+                   tol=0.2, seen_needed=0.5) -> list[Impact]:
+    """Refine and filter swing/audio impacts with the ball (tennisbio.ball.ball_hits, near side).
+
+    - A near-player ball hit within `tol` s of a swing: the contact is the ball's turning point.
+    - A swing with the ball well seen around it (≥ seen_needed of the frames within ±0.3 s) but no
+      ball hit: not a stroke (running, shadow swings, racket twirls) → dropped.
+    - A swing where the ball is not seen: kept as it was (cannot be checked).
+    - A ball hit next to the tracked player with no swing: added (source "ball").
+    ball_seen: (T,) bool; boxes: tracked player box per frame or None.
+    """
+    near = [h for h in hits if h.side == "near"]
+    used, out = set(), []
+    w = max(1, round(0.3 * fps))
+    for imp in impacts:
+        best = min(near, key=lambda h: abs(h.frame - imp.frame), default=None)
+        if best is not None and abs(best.frame - imp.frame) <= tol * fps:
+            used.add(best.frame)
+            src = ("audio+" if imp.source.startswith("audio") else "") + "ball+swing"
+            out.append(Impact(best.frame, best.frame / fps, src, imp.audio_offset_ms, 0.95))
+            continue
+        a, b = max(0, imp.frame - w), min(len(ball_seen), imp.frame + w + 1)
+        if b > a and ball_seen[a:b].mean() >= seen_needed:
+            continue
+        out.append(imp)
+    for h in near:
+        if h.frame in used or h.frame >= len(boxes) or boxes[h.frame] is None:
+            continue
+        x0, y0, x1, y1 = boxes[h.frame]
+        bw = x1 - x0
+        if x0 - bw <= h.x <= x1 + bw and y0 - 0.3 * (y1 - y0) <= h.y <= y1:
+            out.append(Impact(h.frame, h.frame / fps, "ball", None, 0.7))
+    return sorted(out, key=lambda i: i.frame)

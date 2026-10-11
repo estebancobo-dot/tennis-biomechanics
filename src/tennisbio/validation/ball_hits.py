@@ -29,6 +29,6 @@ def hits_from_ball(track: np.ndarray, height: int, fps: float = 25.0) -> dict:
 
     if len(track) < 3:
         return {"near": [], "far": []}
-    hits = turning_hits(track[:, 0].astype(int), track[:, 1:3], height, span=6, away=round(0.6 * fps),
+    hits = turning_hits(track[:, 0].astype(int), track[:, 1:3], height, span=12, away=round(0.6 * fps),
                         group=round(0.6 * fps))
     return {"near": [h.frame for h in hits if h.side == "near"], "far": [h.frame for h in hits if h.side == "far"]}

@@ -69,7 +69,7 @@ def analyze_stroke(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, 
                                   method=e.method, confidence=e.confidence)
         if e.frame is None or e.confidence < 0.4:
             res.review.append(f"phase:{e.name}")
-    if impact_source != "audio+swing":
+    if "audio" not in impact_source and "ball" not in impact_source:
         res.review.append("impact_without_audio")
 
     ev = {e.name: e.frame for e in events}

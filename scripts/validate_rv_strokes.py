@@ -1,8 +1,9 @@
 """Automatic validation of near-player stroke detection on broadcast clips (RacketVision).
 
 Reference contacts come from the annotated ball track (see tennisbio.validation.ball_hits).
-These clips have no audio, so this measures the motion-only detection; tolerance ±4 frames
-(annotations are every ~5 frames).
+These clips have no audio: this measures pose (+ ball, with --ball) detection; tolerance ±6
+frames (annotations are every 5-11 frames). Doubles clips (two players on the near side) are
+out of scope and skipped.
 
     uv run python scripts/validate_rv_strokes.py --root C:\\tenis\\datasets --clips 12
 """
@@ -19,22 +20,44 @@ from tennisbio.validation.datasets import RV_BASE, fetch, racketvision_video  # 
 from tennisbio.validation.impact_eval import GTEvent, Pred, match, summarize  # noqa: E402
 
 
+def is_doubles(cache: Path) -> bool:
+    """Two people of player size standing in the lower half of most frames."""
+    import numpy as np
+    d = np.load(cache, allow_pickle=True)
+    counts = []
+    for b in d["boxes"]:
+        if len(b):
+            h = b[:, 3] - b[:, 1]
+            counts.append(int(np.sum((h >= 0.6 * h.max()) & (b[:, 3] > 540))))
+    return bool(counts) and float(np.median(counts)) >= 2
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default="datasets")
     ap.add_argument("--clips", type=int, default=12)
-    ap.add_argument("--tol", type=int, default=4)
+    ap.add_argument("--tol", type=int, default=6)
+    ap.add_argument("--ball", default=None, help="models/balltrack.onnx para usar la bola")
+    ap.add_argument("--device", default="cpu")
     ap.add_argument("--imgsz", type=int, default=960)
     args = ap.parse_args()
     root = Path(args.root)
     split = json.loads(fetch(f"{RV_BASE}/info/test.json", root / "rv" / "test.json").read_text())
     sel = split[:: max(1, len(split) // args.clips)][:args.clips]
+    ball = None
+    if args.ball:
+        from tennisbio.ball import BallTracker
+        ball = BallTracker(args.ball, args.device)
     pairs_all, fp_all, fn_all, rows = [], [], [], []
     for match_id, clip in sel:
         video = racketvision_video(root, match_id, clip)
         ball = read_ball_csv(fetch(f"{RV_BASE}/all/{match_id}/csv/{clip}_ball.csv", root / "rv" / "ball" / f"{match_id}_{clip}.csv"))
         gt = hits_from_ball(ball, 1080)["near"]
-        run = run_clip(video, root / "rv" / "cache" / f"{match_id}_{clip}.npz", rackets=False, imgsz=args.imgsz, log=lambda *_: None)
+        cache = root / "rv" / "cache" / f"{match_id}_{clip}.npz"
+        run = run_clip(video, cache, rackets=False, imgsz=args.imgsz, init_mode="near", log=lambda *_: None, ball=ball)
+        if is_doubles(cache):
+            print(f"  {match_id}_{clip}: dobles, se omite")
+            continue
         preds = [Pred(r.impact_frame, "fh" if r.stroke == "forehand" else "bh") for r in run.strokes]
         pairs, fp, fn = match(preds, [GTEvent(g, "near", "stroke", "-", "-") for g in gt], args.tol)
         pairs_all += pairs; fp_all += fp; fn_all += fn
