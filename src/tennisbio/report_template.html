@@ -480,13 +480,14 @@ const PAIRS = [
   { key: "fatiga", t: "al final del partido", c: "último tercio frente al primero", A: s => s.frac < 1 / 3, B: s => s.frac >= 2 / 3, neutral: true },
   { key: "sets", t: "en el último set", c: "último set frente al primero", A: s => s.set === 1, B: s => maxSet > 1 && s.set === maxSet, neutral: true },
   { key: "presion", t: "bajo presión", c: "puntos de presión frente al resto", A: s => s.pressure === false, B: s => s.pressure === true, neutral: true },
-  { key: "rapida", t: "con bola rápida", c: "bola rápida frente a lenta", A: s => isN(s.tAvail) && !s.fast, B: s => s.fast, neutral: false },
+  // split step is timed from the opponent's hit: with a faster ball it changes by definition
+  { key: "rapida", t: "con bola rápida", c: "bola rápida frente a lenta", A: s => isN(s.tAvail) && !s.fast, B: s => s.fast, neutral: false, skip: ["split"] },
   { key: "resultado", t: "en los errores", c: "errores frente a golpes que siguen el punto o ganan", A: s => s.outcome === "sigue" || s.outcome === "ganador", B: s => s.outcome === "error", neutral: false },
 ];
 const FIND = [];
 (function discover() {
   const all = [];
-  for (const p of PAIRS) for (const m of METRICS) {
+  for (const p of PAIRS) for (const m of METRICS.filter(m => !(p.skip || []).includes(m.k))) {
     let neu = p.neutral, A = STROKES.filter(s => p.A(s) && (!neu || s.sit.neutra)), B = STROKES.filter(s => p.B(s) && (!neu || s.sit.neutra));
     let e = effect(m.k, A, B);
     if (neu && !isN(e.d)) { neu = false; A = STROKES.filter(p.A); B = STROKES.filter(p.B); e = effect(m.k, A, B); }
