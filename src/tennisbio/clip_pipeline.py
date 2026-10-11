@@ -53,11 +53,11 @@ def pick_initial(boxes, mode="largest") -> tuple[int, np.ndarray]:
 
 
 def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, rackets=True,
-             init_mode="largest", log=print) -> ClipRun:
+             init_mode="largest", imgsz=960, log=print) -> ClipRun:
     video, cache = Path(video), Path(cache)
     if not cache.exists():
         from .pose.yolo import extract
-        extract(video, cache, progress=False)
+        extract(video, cache, imgsz=imgsz, progress=False)
     d = np.load(cache, allow_pickle=True)
     fps, boxes, kps, confs, feats = float(d["fps"]), d["boxes"], d["kps"], d["confs"], d["feats"]
     sk = Skeleton("coco17", hand)
@@ -90,7 +90,7 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         if not rcache.exists() or not set(need) <= set(np.load(rcache, allow_pickle=True)["frames"].tolist()):
             from .pose.yolo import extract_rackets
             log(f"segmentando la raqueta en {len(need)} fotogramas")
-            extract_rackets(video, need, rcache)
+            extract_rackets(video, need, rcache, imgsz=imgsz)
         rd = np.load(rcache, allow_pickle=True)
         for f, p in zip(rd["frames"], rd["polys"]):
             run.rackets[int(f)] = p

@@ -117,11 +117,12 @@ def main():
     ap.add_argument("--cache", help="npz de tennisbio.pose.yolo.extract (se crea si no existe)")
     ap.add_argument("--hand", default="right")
     ap.add_argument("--height-m", type=float, default=1.84)
+    ap.add_argument("--imgsz", type=int, default=960, help="resolución de inferencia (1280 para planos generales de TV)")
     args = ap.parse_args()
     out = Path(args.out)
     out.mkdir(parents=True, exist_ok=True)
     cache = Path(args.cache or out / "extract.npz")
-    run = run_clip(args.video, cache, args.hand, args.height_m)
+    run = run_clip(args.video, cache, args.hand, args.height_m, imgsz=args.imgsz)
     cap = cv2.VideoCapture(str(args.video))
     for k, (imp, r) in enumerate(zip(run.impacts, run.strokes)):
         cv2.imwrite(str(out / f"golpe_{k:02d}_fases.jpg"),
