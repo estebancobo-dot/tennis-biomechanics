@@ -31,3 +31,13 @@ def test_build_writes_page_with_data(tmp_path):
     out = build([Match("m1", None, Player("p", "P"))], tmp_path)
     html = out.read_text(encoding="utf-8")
     assert "__DATA__" not in html and '"m1-001"' in html and '"m1-002"' not in html
+
+
+def test_frame_noise_recovers_white_noise_on_a_ramp():
+    import numpy as np
+    from tennisbio.report import frame_noise
+    rng = np.random.default_rng(0)
+    x = list(np.linspace(0, 50, 200) + rng.normal(0, 2.0, 200))
+    est = np.median([frame_noise(x, k, half=10) for k in range(20, 180, 10)])
+    assert 1.5 < est < 2.6
+    assert frame_noise([None] * 10, 5) is None

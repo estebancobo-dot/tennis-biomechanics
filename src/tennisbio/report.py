@@ -8,6 +8,8 @@ on demand (works from file://), and the stage shows the real window video with t
 """
 import json
 import os
+
+import numpy as np
 import time
 from dataclasses import asdict
 from pathlib import Path
@@ -105,6 +107,45 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
     }
 
 
+# metric → (series group, series key, phase used by the metric)
+SERIES_NOISE = {"elbow": ("ang", "Codo", "impact"), "xf": ("ang", "X-factor", "loaded"),
+                "rFaceArm": ("face", "tilt", "loaded"), "rFaceImp": ("face", "tilt", "impact"),
+                "rFaceFin": ("face", "tilt", "finish")}
+
+
+def frame_noise(x, k: int, half=6) -> float | None:
+    """Frame-to-frame jitter of a per-frame series around frame k from the second difference
+    (x[t-1] - 2x[t] + x[t+1] has variance 6σ² for white noise): robust σ = 1.4826·median|Δ²| / √6.
+
+    The keypoints are already smoothed (kinematics.clean), so this is a LOWER bound of the
+    measurement noise; the stroke-to-stroke noise also includes phase timing. The report keeps
+    the larger of this and the provisional value until it is measured on equivalent strokes."""
+    vals = []
+    for t in range(max(1, k - half), min(len(x) - 1, k + half + 1)):
+        a, b, c = x[t - 1], x[t], x[t + 1]
+        if None not in (a, b, c):
+            vals.append(abs(a - 2 * b + c))
+    return None if len(vals) < 3 else 1.4826 * float(np.median(vals)) / np.sqrt(6)
+
+
+def noise_from_series(series_files: list[tuple[Path, dict]]) -> dict:
+    """Median over strokes of the frame-to-frame noise of each metric that has a per-frame series."""
+    per = {k: [] for k in SERIES_NOISE}
+    for path, phases in series_files:
+        ser = json.loads(path.read_text(encoding="utf-8"))
+        for key, (grp, name, phase) in SERIES_NOISE.items():
+            f = (phases.get(phase) or {}).get("frame")
+            src = ser.get(grp) or {}
+            x = src.get(name)
+            if f is None or x is None:
+                continue
+            k = f - (src.get("first", ser["first"]) if grp == "face" else ser["first"])
+            n = frame_noise(x, k)
+            if n is not None:
+                per[key].append(n)
+    return {k: round(float(np.median(v)), 2) for k, v in per.items() if len(v) >= 3}
+
+
 def collect(matches: list[Match], out_root: Path, stroke="forehand") -> dict:
     ms, strokes, review = [], [], 0
     for mi, match in enumerate(matches):
@@ -118,6 +159,7 @@ def collect(matches: list[Match], out_root: Path, stroke="forehand") -> dict:
             r = stroke_record(s, len(ms), match, dur, k)
             r["idx"] = len(strokes)
             r["_dir"], r["_window"], r["_series"] = str(d), s.get("window"), s.get("series")
+            r["_phases"] = s.get("phases", {})
             strokes.append(r)
             review += bool(r["review"])
         ms.append({"id": match.id, "rival": match.opponent or "—", "surf": match.surface or "—",
@@ -137,7 +179,16 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
     dest = Path(dest or out_root / "informe")
     (dest / "series").mkdir(parents=True, exist_ok=True)
     data = collect(matches, out_root, stroke)
+    series_files = [(Path(r["_dir"]) / r["_series"], r["_phases"]) for r in data["strokes"]
+                    if r["_series"] and (Path(r["_dir"]) / r["_series"]).exists()]
+    auto = noise_from_series(series_files)
+    for m in data["metrics"]:
+        if m["k"] in auto:              # lower bound: never claim more precision than the provisional value
+            m["noise"] = max(m["noise"], auto[m["k"]])
+            m["noise_auto"] = auto[m["k"]]
+    data["noise_auto"] = auto
     for r in data["strokes"]:
+        r.pop("_phases", None)
         d = Path(r.pop("_dir"))
         win, ser = r.pop("_window"), r.pop("_series")
         if win:

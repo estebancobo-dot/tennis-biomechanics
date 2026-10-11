@@ -48,6 +48,29 @@ def trunk_rotation_3d(k3: np.ndarray, sc: np.ndarray, cam: Camera, hand="right",
     return tuple(out)
 
 
+def _fold(a: float) -> float:
+    """A line has no direction: fold to (-90, 90]."""
+    return (a + 90.0) % 180.0 - 90.0
+
+
+def trunk_at(rot: dict, frame: int | None, half_window: int, max_xf=80.0, max_mad=15.0) -> dict:
+    """Shoulder/hip turn and X-factor around one frame from the monocular 3D readings within
+    ±half_window: median, and only when the readings agree (median absolute deviation of both
+    turns ≤ max_mad); monocular depth from behind is unstable, so disagreement means no value."""
+    if frame is None:
+        return {}
+    vals = np.array([(_fold(sh), _fold(hp)) for f, (sh, hp) in rot.items() if abs(f - frame) <= half_window])
+    if len(vals) < 2:
+        return {}
+    med = np.median(vals, axis=0)
+    mad = np.median(np.abs(vals - med), axis=0)
+    xf = _fold(med[0] - med[1])
+    if mad.max() > max_mad or abs(xf) > max_xf:
+        return {"trunk3d_unstable": True}
+    return {"shoulder_turn_3d_deg": round(float(med[0]), 1), "hip_turn_3d_deg": round(float(med[1]), 1),
+            "x_factor_3d_deg": round(float(xf), 1), "trunk3d_readings": int(len(vals))}
+
+
 def read_frames(video: Path, a: int, b: int) -> dict:
     cap = cv2.VideoCapture(str(video))
     cap.set(cv2.CAP_PROP_POS_FRAMES, a)
@@ -97,13 +120,7 @@ def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | N
             continue
         phases[name] = {k: t[k] for k in ("points_to", "tilt_deg", "yaw_deg", "observed", "hand_evidence", "ambiguous")}
     per = [by_f.get(f) or {} for f in range(a, b)]
-    trunk = {}
-    lf = (stroke.phases.get("loaded") or {}).get("frame")
-    if lf is not None and rot:
-        near = min(rot, key=lambda f: abs(f - lf))
-        if abs(near - lf) <= max(1, hand3d_step):
-            sh, hp = rot[near]
-            trunk = {"shoulder_turn_3d_deg": round(sh, 1), "hip_turn_3d_deg": round(hp, 1), "x_factor_3d_deg": round(sh - hp, 1)}
+    trunk = trunk_at(rot, (stroke.phases.get("loaded") or {}).get("frame"), 3 * max(1, hand3d_step))
     return {
         "trunk3d": trunk,
         "rot3d": {str(f): [round(v, 1) for v in rt] for f, rt in rot.items()},

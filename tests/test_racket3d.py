@@ -82,3 +82,11 @@ def test_trunk_rotation_3d_square_and_turned():
     k3[6, 2], k3[5, 2] = -0.2, 0.2        # right shoulder back (towards the camera), left forward
     sh, hp = trunk_rotation_3d(k3, sc, cam)
     assert 30 < sh < 70 and abs(hp) < 1e-6
+
+
+def test_trunk_at_needs_agreeing_readings():
+    from tennisbio.racket_orientation import trunk_at
+    t = trunk_at({10: (60.0, 30.0), 12: (64.0, 30.0), 14: (62.0, 31.0)}, 12, 4)
+    assert t["shoulder_turn_3d_deg"] == 62.0 and t["x_factor_3d_deg"] == 32.0 and t["trunk3d_readings"] == 3
+    assert trunk_at({10: (-20.0, 0.0), 12: (60.0, 0.0), 14: (-10.0, 30.0), 16: (70.0, 30.0)}, 12, 4) == {"trunk3d_unstable": True}
+    assert trunk_at({10: (60.0, 0.0)}, 10, 4) == {} and trunk_at({}, None, 4) == {}
