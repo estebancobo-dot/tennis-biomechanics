@@ -74,23 +74,29 @@ def _merge(segs, kind):
     return [g["L"] for g in groups]
 
 
-def score_homography(H_court_to_img: np.ndarray, mask: np.ndarray, samples=60) -> float:
+def _model_samples(samples=60) -> np.ndarray:
+    t = np.linspace(0, 1, samples)[:, None]
+    return np.vstack([np.c_[(1 - t) * np.array(p) + t * np.array(q), np.ones(samples)] for p, q in LINES.values()])
+
+
+MODEL_PTS = _model_samples()
+
+
+def dilate_lines(mask: np.ndarray) -> np.ndarray:
+    return cv2.dilate(mask, np.ones((5, 5), np.uint8))
+
+
+def score_homography(H_court_to_img: np.ndarray, mask: np.ndarray, dilated: np.ndarray | None = None) -> float:
     """Fraction of points sampled along all model lines that fall on (dilated) white pixels."""
-    h, w = mask.shape
-    dil = cv2.dilate(mask, np.ones((5, 5), np.uint8))
-    hit = tot = 0
-    for p, q in LINES.values():
-        t = np.linspace(0, 1, samples)[:, None]
-        pts = np.c_[(1 - t) * np.array(p) + t * np.array(q), np.ones(samples)]
-        img = (H_court_to_img @ pts.T).T
-        if np.any(img[:, 2] <= 0):
-            return 0.0
-        img = img[:, :2] / img[:, 2:]
-        inside = (img[:, 0] >= 0) & (img[:, 0] < w) & (img[:, 1] >= 0) & (img[:, 1] < h)
-        tot += samples
-        xy = img[inside].astype(int)
-        hit += int(dil[xy[:, 1], xy[:, 0]].sum())
-    return hit / max(1, tot)
+    dil = dilate_lines(mask) if dilated is None else dilated
+    h, w = dil.shape
+    img = MODEL_PTS @ H_court_to_img.T
+    if np.any(img[:, 2] <= 0):
+        return 0.0
+    img = img[:, :2] / img[:, 2:]
+    inside = (img[:, 0] >= 0) & (img[:, 0] < w) & (img[:, 1] >= 0) & (img[:, 1] < h)
+    xy = img[inside].astype(int)
+    return int(dil[xy[:, 1], xy[:, 0]].sum()) / len(MODEL_PTS)
 
 
 def plausible(H_court_to_img: np.ndarray, shape, min_area=0.04) -> bool:
@@ -131,6 +137,7 @@ class CourtFit:
 
 def fit_court(frame: np.ndarray, max_lines=6) -> CourtFit | None:
     mask = white_lines(frame)
+    dil = dilate_lines(mask)
     h, w = mask.shape
     segs = cv2.HoughLinesP(mask * 255, 1, np.pi / 360, threshold=60, minLineLength=w // 12, maxLineGap=10)
     if segs is None:
@@ -155,7 +162,7 @@ def fit_court(frame: np.ndarray, max_lines=6) -> CourtFit | None:
                     H = cv2.getPerspectiveTransform(court, pts.astype(np.float32))
                     if not plausible(H, (h, w)):
                         continue
-                    sc = score_homography(H, mask)
+                    sc = score_homography(H, mask, dil)
                     if best is None or sc > best.score:
                         best = CourtFit(H, sc)
     return best
