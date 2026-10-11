@@ -141,6 +141,20 @@ La bola no se mide directamente (pequeña y borrosa en TV); se deduce indirectam
   (cercanía a la mediana de la jugadora) y resultado del punto. **No** hay una puntuación de
   "mejor técnica" absoluta: no está validada para vídeo de TV.
 
+## Lecciones del primer clip real (entrenamiento US Open, móvil, 30 fps, 42 s)
+- La pose (YOLO11-pose) es muy buena con la jugadora grande en imagen; la raqueta se ve
+  nítida en el armado y **borrosa en el impacto**, como se esperaba.
+- **Identidad**: al cambiar de plano el seguimiento saltó al entrenador → hace falta
+  seguimiento por identidad (tracker + apariencia) y confirmación, no "la persona más grande".
+- **Cortes y fundidos**: el clip editado tiene fundidos encadenados (dos imágenes mezcladas);
+  la detección de cortes debe cubrir fundidos, no solo cortes secos.
+- **Audio**: solo 4 de 18 golpes tenían un impacto de audio a ≤120 ms; el sonido estaba lleno
+  de transitorios ajenos. Regla: el impacto se decide **fusionando** audio + pico de
+  velocidad de la muñeca **relativo al cuerpo** (y bola cerca de la raqueta cuando se vea);
+  si no coinciden, el golpe va a la cola de revisión.
+- **Tipo de golpe por contexto**: el clip eran sobre todo voleas junto a la red; la
+  clasificación debe usar la posición en pista además de la pose.
+
 ## Limitaciones asumidas (no "arreglarlas" con falsa precisión)
 - 2D desde una sola cámara; cualquier 3D es estimación.
 - Desenfoque en el impacto a 25-50 fps: velocidades absolutas no fiables, **comparaciones relativas sí**.
