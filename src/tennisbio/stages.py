@@ -106,16 +106,11 @@ def st_players(ctx: Context):
     return {"frames": len(idx)}
 
 
-@stage("candidates", "1", deps=("players", "audio"))
-def st_candidates(ctx: Context, tol_s=0.35):
-    """Near-player stroke candidates: swing peaks of the near player at cheap fps, confirmed by
-    an audio transient when one is close. Each candidate is checked again in the fine pass."""
-    d = np.load(ctx.path("players.npz"), allow_pickle=True)
+def near_runs(d, sk):
+    """Each continuous run of main-camera frames with the near player tracked (cuts break tracking).
+
+    Yields (run indices, cleaned keypoints, confidences, body height px, mean appearance)."""
     fps, frames = float(d["fps"]), d["frames"]
-    sk = Skeleton("coco17", ctx.match.player.hand)
-    onsets = np.array(_read(ctx.path("audio_onsets.json"))["t"])
-    cands = []
-    # process each continuous run of main-camera frames separately (cuts break tracking)
     runs = np.split(np.arange(len(frames)), np.flatnonzero(np.diff(frames) > 1) + 1)
     for run in runs:
         if len(run) < fps:
@@ -128,24 +123,84 @@ def st_candidates(ctx: Context, tol_s=0.35):
         h0 = b0[:, 3] - b0[:, 1]
         cand = np.flatnonzero(h0 >= 0.5 * h0.max())
         init = b0[cand[np.argmax(b0[cand, 3])]]
-        sel = track_target(bx, [d["feats"][k] for k in run], init, min_bottom=float(0.5 * init[3]))
+        feats = [d["feats"][k] for k in run]
+        sel = track_target(bx, feats, init, min_bottom=float(0.5 * init[3]))
         kp = np.full((len(run), 17, 2), np.nan)
         cf = np.zeros((len(run), 17))
+        app = []
         for t, j in enumerate(sel):
             if j >= 0:
                 kp[t], cf[t] = d["kps"][run[t]][j], d["confs"][run[t]][j]
+                app.append(feats[t][j])
         img = clean(kp, cf, max_gap=2, window=5)
-        if np.isnan(img).all():
+        if np.isnan(img).all() or not app:
             continue
-        h = body_height(img, sk)
+        yield run, img, cf, body_height(img, sk), np.mean(app, axis=0)
+
+
+@stage("identity", "1", deps=("players", "score"))
+def st_identity(ctx: Context):
+    """Is the near player the target in each run? Clothing clusters + serves + scoreboard marker."""
+    from .identity import assign, cluster_two, near_serves
+
+    d = np.load(ctx.path("players.npz"), allow_pickle=True)
+    fps, frames = float(d["fps"]), d["frames"]
+    sk = Skeleton("coco17", ctx.match.player.hand)
+    score = _read(ctx.path("score.json"))
+    runs, feats, votes = [], [], []
+    for run, img, cf, h, app in near_runs(d, sk):
+        i = len(runs)
+        runs.append({"start": int(frames[run[0]]), "end": int(frames[run[-1]]) + 1})
+        feats.append(app)
+        f = near_serves(img, cf, fps, h)
+        if f is not None:
+            sr = score_at(score, frames[run[f]] / fps, max_age_s=25.0)
+            if sr is not None and sr.get("server") is not None:
+                votes.append((i, sr["server"] == 0))
+                runs[i]["serve_vote"] = sr["server"] == 0
+    labels = cluster_two(np.array(feats)) if feats else np.zeros(0, int)
+    res = assign(labels, votes)
+    for r, lab in zip(runs, labels):
+        r["cluster"] = int(lab)
+        r["near_is_target"] = None if res["target_cluster"] is None else bool(lab == res["target_cluster"])
+    _write(ctx.path("identity.json"), {"fps": fps, **res, "runs": runs})
+    return {"runs": len(runs), "votes": res["votes"], "confidence": res["confidence"],
+            "decided": res["target_cluster"] is not None}
+
+
+def near_is_target(identity: dict, frame: int):
+    for r in identity.get("runs", []):
+        if r["start"] <= frame < r["end"]:
+            return r.get("near_is_target")
+    return None
+
+
+@stage("candidates", "2", deps=("players", "audio", "identity"))
+def st_candidates(ctx: Context, tol_s=0.35):
+    """Near-player stroke candidates: swing peaks of the near player at cheap fps, confirmed by
+    an audio transient when one is close. Runs where the near player is the opponent are skipped
+    (ends change every two games); undecided runs are kept. Each candidate is checked again in
+    the fine pass."""
+    d = np.load(ctx.path("players.npz"), allow_pickle=True)
+    fps, frames = float(d["fps"]), d["frames"]
+    sk = Skeleton("coco17", ctx.match.player.hand)
+    onsets = np.array(_read(ctx.path("audio_onsets.json"))["t"])
+    identity = _read(ctx.path("identity.json"))
+    cands, skipped = [], 0
+    for run, img, cf, h, _ in near_runs(d, sk):
+        who = near_is_target(identity, int(frames[run[0]]))
+        if who is False:
+            skipped += 1
+            continue
         v = speed(to_body_frame(img, sk, h)[:, sk["dom_wrist"]], fps)
         for p in swing_peaks(v, fps, min_gap=1.0, height=1.5, prominence=1.0):
             t = frames[run[p]] / fps
             near = onsets[np.abs(onsets - t) <= tol_s] if len(onsets) else []
             cands.append({"t": float(near[np.argmin(np.abs(near - t))]) if len(near) else float(t),
-                          "audio": bool(len(near)), "wrist_peak_t": float(t)})
+                          "audio": bool(len(near)), "wrist_peak_t": float(t), "identity": who})
     _write(ctx.path("candidates.json"), cands)
-    return {"candidates": len(cands), "with_audio": sum(c["audio"] for c in cands)}
+    return {"candidates": len(cands), "with_audio": sum(c["audio"] for c in cands),
+            "opponent_runs_skipped": skipped, "identity_unknown": sum(c["identity"] is None for c in cands)}
 
 
 def grab_frame(video: Path, t: float) -> np.ndarray | None:

@@ -20,6 +20,7 @@ class ScoreState:
     games: list[list[int]]                 # per set, [player, opponent]; the last one is the current set
     points: list[str | None]               # [player, opponent], None when not shown
     banner: str = ""                       # e.g. "BREAK POINT", "SET POINT" when the broadcast shows it
+    server: int | None = None              # 0 player, 1 opponent (serve marker on the scoreboard)
     flags: list[str] = field(default_factory=list)
 
     @property
@@ -44,7 +45,7 @@ class ScoreState:
         return p in {("40", "40"), ("30", "40"), ("40", "30")} or "AD" in p or "A" in p
 
     def to_dict(self) -> dict:
-        return {"games": self.games, "points": self.points, "banner": self.banner, "set": self.set_number,
+        return {"games": self.games, "points": self.points, "banner": self.banner, "server": self.server, "set": self.set_number,
                 "sets_won": self.sets_won, "tiebreak": self.tiebreak, "pressure": self.pressure, "flags": self.flags}
 
 
@@ -81,8 +82,35 @@ def find_rows(items: list, surnames: tuple[str, str]):
     return ys[0], ys[1], (b[:, 0].min() - h, min(ys) - 1.5 * h, b[:, 0].max() + 12 * h, max(ys) + 1.2 * h)
 
 
-def parse(items: list, surnames: tuple[str, str]) -> ScoreState | None:
-    """Score state from OCR items of the scoreboard region (any coordinates)."""
+def serve_marker(image: np.ndarray, items: list, rows_y: tuple[float, float], min_area=30) -> int | None:
+    """Row (0/1) with the serve marker: a saturated coloured blob that is not text (a ball icon,
+    dot or arrow next to the server's name). OCR text boxes are masked out, so coloured digits
+    (sets won) and the names do not count."""
+    import cv2
+
+    hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    m = ((hsv[..., 1] > 110) & (hsv[..., 2] > 120)).astype(np.uint8)
+    for box, _, _ in items:
+        b = np.asarray(box, int)
+        cv2.fillPoly(m, [b], 0)
+    gap = abs(rows_y[0] - rows_y[1])
+    n, _, st, cen = cv2.connectedComponentsWithStats(m)
+    hits = [0.0, 0.0]
+    for i in range(1, n):
+        x, y, w, h, area = st[i]
+        if area < min_area or h > 0.8 * gap or w > 3 * gap:     # banners and big panels are not markers
+            continue
+        for k, ry in enumerate(rows_y):
+            if abs(cen[i][1] - ry) < 0.35 * gap:
+                hits[k] += area
+    if max(hits) == 0 or min(hits) > 0.5 * max(hits):
+        return None
+    return int(np.argmax(hits))
+
+
+def parse(items: list, surnames: tuple[str, str], image: np.ndarray | None = None) -> ScoreState | None:
+    """Score state from OCR items of the scoreboard region (any coordinates); with the region
+    image, also who serves."""
     rows = find_rows(items, surnames)
     if rows is None:
         return None
@@ -130,7 +158,8 @@ def parse(items: list, surnames: tuple[str, str]) -> ScoreState | None:
         pts[0] = "40"
     if pts[1] is None and pts[0] == "AD":
         pts[1] = "40"
-    return ScoreState(games, pts, banner, flags)
+    server = serve_marker(image, items, (y_p, y_o)) if image is not None else None
+    return ScoreState(games, pts, banner, server, flags)
 
 
 class ScoreReader:
@@ -160,4 +189,5 @@ class ScoreReader:
         if self.roi is None and not self.locate(frame):
             return None
         x0, y0, x1, y1 = self.roi
-        return parse(self._items(frame[y0:y1, x0:x1]), self.names)
+        roi = frame[y0:y1, x0:x1]
+        return parse(self._items(roi), self.names, roi)
