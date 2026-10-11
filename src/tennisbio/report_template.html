@@ -446,6 +446,7 @@ const FIND = [
   { k: "baseM", t: "Base con bola rápida", c: "Rápida frente a lenta", A: s => isN(s.tAvail) && !s.fast, B: s => s.fast, go: { pair: "rapida", sit: "", g: "feet" } },
   { k: "contactH", t: "Altura del impacto con bola rápida", c: "Rápida frente a lenta", A: s => isN(s.tAvail) && !s.fast, B: s => s.fast, go: { pair: "rapida", sit: "" } },
 ];
+FIND.splice(0, FIND.length, ...FIND.filter(f => MK[f.k]));      // only metrics of this stroke type
 function verdict(e, noise) {
   if (!isN(e.d)) return { cls: "crit", icon: "–", txt: "Pocos golpes" };
   const z = Math.abs(e.d) / noise, sure = Math.sign(e.lo) === Math.sign(e.hi);
@@ -468,8 +469,8 @@ document.getElementById("forest").innerHTML = `<div class="frow head"><span>Hall
   }).join("");
 document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { const g = FIND[+b.dataset.go].go; document.getElementById("c-pair").value = g.pair; document.getElementById("c-sit").value = g.sit; document.getElementById("c-group").value = g.g || MK[FIND[+b.dataset.go].k].g; renderCompare(); showTab("comparativas"); }));
 
-let evoK = "xf";
-const EVO_LABEL = { xf: "X-factor", sh: "Hombros", knee: "Cadera", baseM: "Base" };
+const EVO_LABEL = Object.fromEntries(Object.entries({ xf: "X-factor", sh: "Hombros", knee: "Cadera", baseM: "Base", elbow: "Codo" }).filter(([k]) => MK[k]).slice(0, 4));
+let evoK = Object.keys(EVO_LABEL)[0];
 document.getElementById("evo-metric").innerHTML = Object.keys(EVO_LABEL).map(k => `<button data-v="${k}" aria-pressed="${k === evoK}">${EVO_LABEL[k]}</button>`).join("");
 document.querySelectorAll("#evo-metric button").forEach(b => b.addEventListener("click", () => { evoK = b.dataset.v; document.querySelectorAll("#evo-metric button").forEach(x => x.setAttribute("aria-pressed", x === b)); renderEvo(); }));
 function renderEvo() {
@@ -489,7 +490,7 @@ function renderEvo() {
   g += pts.map(p => `<circle cx="${X(p.x)}" cy="${Y(p.mu)}" r="3.5" fill="var(--s1)"/><rect x="${X(p.x) - (W - L - R) / N / 2}" y="${T}" width="${(W - L - R) / N}" height="${H - T - B}" fill="transparent" data-tip="<b>${fmt(p.x * 100)} % del partido</b><div class='mono'>${m.name}: ${fmtM(k, p.mu)}<br>IC 95 %: ${fmt(p.lo, 1)} … ${fmt(p.hi, 1)}<br>n=${p.n} golpes</div>"/>`).join("");
   document.getElementById("evo").innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${m.name} a lo largo del partido">${g}</svg><div class="legend" style="margin-top:4px"><span><i style="background:var(--s1)"></i>${m.name}: media por tramo (todos los partidos)</span><span><i style="background:var(--s1);opacity:.35;height:8px"></i>IC 95 %</span><span>Eje X: progreso del partido</span></div>`;
 }
-renderEvo();
+if (evoK) renderEvo();
 function propRow(label, a, b, la, lb) {
   return `<div style="display:grid;gap:6px"><b style="font-weight:600;font-size:13px">${label}</b>` + [[la, a], [lb, b]].map(([l, v]) => `<div style="display:grid;grid-template-columns:96px 1fr 44px;gap:8px;align-items:center;font-size:12px"><span class="dim">${l}</span><div style="height:8px;background:var(--raise);border-radius:4px;overflow:hidden"><div style="width:${isN(v) ? v : 0}%;height:100%;background:var(--s1);border-radius:0 4px 4px 0"></div></div><span class="mono" style="text-align:right">${fmt(v)} %</span></div>`).join("") + `</div>`;
 }
@@ -499,8 +500,8 @@ document.getElementById("props").innerHTML =
   propRow("Cadena cinética en orden", pct(chK.filter(early), s => s.chainOK), pct(chK.filter(late), s => s.chainOK), "Inicio", "Final") +
   propRow("Golpea detrás de la línea", pct(posK.filter(early), s => s.y > 11.885), pct(posK.filter(late), s => s.y > 11.885), "Inicio", "Final");
 function spark(vals) { const v = fin(vals); if (v.length < 2) return ""; const lo = Math.min(...v) - 1, hi = Math.max(...v) + 1, W = 90, H = 22, X = i => 4 + i * (W - 8) / Math.max(1, vals.length - 1), Y = x => H - 4 - (x - lo) / (hi - lo) * (H - 8); return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="vertical-align:middle">${vals.map((x, i) => isN(x) ? `<circle cx="${X(i)}" cy="${Y(x)}" r="2.5" fill="var(--s1)"/>` : "").join("")}</svg>`; }
-document.getElementById("matches").innerHTML = `<thead><tr><th>Partido</th><th>Fecha</th><th>Superficie</th><th>Ronda</th><th class="r">Golpes</th><th class="r">Con dudas</th><th class="r">X-factor medio</th><th>X-factor por tercio</th></tr></thead><tbody>` +
-  MATCHES.map((m, i) => { const a = STROKES.filter(s => s.match === i), byT = [1, 2, 3].map(t => mean(a.filter(s => third(s) === t).map(s => s.m.xf))); return `<tr data-m="${i}"><td><b>${m.id}</b> <span class="dim">vs ${m.rival}</span></td><td class="num">${m.date}</td><td>${m.surf}</td><td>${m.round}</td><td class="r num">${a.length}</td><td class="r num">${a.filter(s => s.review.length).length}</td><td class="r num">${fmt(mean(a.map(s => s.m.xf)), 1)}°</td><td>${spark(byT)} <span class="mono dim3" style="font-size:11px">${byT.map(v => fmt(v, 1)).join(" · ")}</span></td></tr>`; }).join("") + "</tbody>";
+document.getElementById("matches").innerHTML = `<thead><tr><th>Partido</th><th>Fecha</th><th>Superficie</th><th>Ronda</th><th class="r">Golpes</th><th class="r">Con dudas</th><th class="r">${evoK ? MK[evoK].name : ""} medio</th><th>Por tercio del partido</th></tr></thead><tbody>` +
+  MATCHES.map((m, i) => { const a = STROKES.filter(s => s.match === i), byT = [1, 2, 3].map(t => mean(a.filter(s => third(s) === t).map(s => s.m[evoK]))); return `<tr data-m="${i}"><td><b>${m.id}</b> <span class="dim">vs ${m.rival}</span></td><td class="num">${m.date}</td><td>${m.surf}</td><td>${m.round}</td><td class="r num">${a.length}</td><td class="r num">${a.filter(s => s.review.length).length}</td><td class="r num">${evoK ? fmtM(evoK, mean(a.map(s => s.m[evoK]))) : "—"}</td><td>${spark(byT)} <span class="mono dim3" style="font-size:11px">${byT.map(v => fmt(v, 1)).join(" · ")}</span></td></tr>`; }).join("") + "</tbody>";
 document.querySelectorAll("#matches tbody tr").forEach(r => r.addEventListener("click", () => { resetFilters(); document.getElementById("f-match").value = r.dataset.m; exPage = 0; renderTable(); showTab("explorador"); }));
 
 const REFS = [
@@ -709,7 +710,7 @@ document.getElementById("gnext").addEventListener("click", () => { const a = nav
 let exSort = { k: "quality", dir: -1 }, exPage = 0; const PAGE = 25;
 const F = id => document.getElementById(id).value;
 function resetFilters() { ["f-match", "f-stance", "f-sit", "f-press", "f-rev", "f-preset"].forEach(id => { document.getElementById(id).value = ""; }); }
-const EXM = ["xf", "elbow", "rDrop", "contactH", "baseM"];
+const EXM = ["xf", "elbow", "rDrop", "rFaceImp", "contactH", "baseM"].filter(k => MK[k]).slice(0, 5);
 const COLS = [{ k: "id", h: "Golpe" }, { k: "vt", h: "Vídeo" }, { k: "score", h: "Marcador" }, { k: "sit", h: "Bola" }, { k: "stance", h: "Apoyo" }, ...EXM.map(k => ({ k, h: MK[k].name, metric: true })), { k: "chainOK", h: "Cadena" }, { k: "review", h: "Dudas" }, { k: "quality", h: "Captura", r: true }, { k: "repr", h: "Repr.", r: true }];
 function exRows() {
   const a = STROKES.filter(s => (F("f-match") === "" || s.match === +F("f-match")) && (F("f-stance") === "" || s.stance === F("f-stance")) && (F("f-sit") === "" || s.sit[F("f-sit")]) && (F("f-press") === "" || (s.pressure !== null && +s.pressure === +F("f-press"))) && (F("f-rev") === "" || +(s.review.length > 0) === +F("f-rev")));

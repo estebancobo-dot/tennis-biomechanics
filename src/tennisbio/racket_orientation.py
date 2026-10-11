@@ -85,7 +85,8 @@ def read_frames(video: Path, a: int, b: int) -> dict:
 
 
 def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | None = None, rpose=None,
-                 wb3d=None, hand3d_step: int = 2, grip_close_deg: float = 15.0, window=(1.0, 0.8)) -> dict:
+                 wb3d=None, hand3d_step: int = 2, grip_close_deg: float = 15.0, window=(1.0, 0.8),
+                 hitting_face: str | None = None) -> dict:
     """{"phases": {phase: face summary}, "frames": [first, ...per-frame tilt/yaw/label/observed]}."""
     fps, i = run.fps, stroke.impact_frame
     a = max(0, i - int(round(window[0] * fps)))
@@ -102,8 +103,11 @@ def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | N
     hand_frames = {f: fr for f, fr in frames.items() if (f - a) % max(1, hand3d_step) == 0} if wb3d is not None else {}
     cam = Camera(pitch_deg if pitch_deg is not None else 20.0)
     rec = _Recorder(wb3d, hand_frames) if wb3d is not None else None
+    if hitting_face is None:      # forehand: palm side of the dominant hand; backhand: back of the hand
+        hitting_face = "back" if stroke.stroke == "backhand" else "palm"
     track = face_track(hand_frames, run.boxes, run.img, run.rackets, sk, run.height_px, height_m, i, a, b,
-                       rec, cam, grip_close_deg, fps=fps, racket_kps=rkps if rpose is not None else None)
+                       rec, cam, grip_close_deg, fps=fps, racket_kps=rkps if rpose is not None else None,
+                       hitting_face=hitting_face)
     rot = {}
     if rec is not None:
         for f, res in rec.out.items():

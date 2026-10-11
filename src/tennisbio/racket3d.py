@@ -310,11 +310,12 @@ H_WRIST, H_INDEX_MCP, H_PINKY_MCP = 0, 5, 17
 
 
 def hand_prior(kp3d: np.ndarray, scores: np.ndarray, cam: Camera, hand="right", grip_close_deg=15.0,
-               min_score=0.4, px_per_m: float | None = None) -> HandPrior | None:
+               min_score=0.4, px_per_m: float | None = None, hitting_face="palm") -> HandPrior | None:
     """Palm normal and forearm direction from RTMW3D keypoints (x, y in crop px; z depth, away = +).
 
-    The hitting face of a forehand is on the palm side; the grip offset (semi-western closes the
-    face) rotates it about the forearm-hand line. Returned vectors are in the world frame.
+    The hitting face of a forehand is on the palm side of the dominant hand, that of a backhand on
+    the back of the hand (hitting_face="back"); the grip offset (semi-western closes the face)
+    rotates it about the forearm-hand line. Returned vectors are in the world frame.
     """
     r, u, f = cam.basis
     base = RIGHT_HAND if hand == "right" else LEFT_HAND
@@ -332,6 +333,8 @@ def hand_prior(kp3d: np.ndarray, scores: np.ndarray, cam: Camera, hand="right", 
         w0, i0, p0 = to_w(hk[H_WRIST]), to_w(hk[H_INDEX_MCP]), to_w(hk[H_PINKY_MCP])
         palm = np.cross(i0 - w0, p0 - w0)
         if hand == "left":
+            palm = -palm
+        if hitting_face == "back":
             palm = -palm
         if np.linalg.norm(palm) > 1e-9:
             palm = _unit(palm)

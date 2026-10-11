@@ -314,8 +314,9 @@ def st_fine(ctx: Context):
                             r.racket_track, run.ball)
         if fcfg.get("enabled", True):
             from .racket_orientation import stroke_faces
+            grip = p.backhand_grip_close_deg if r.stroke == "backhand" else p.forehand_grip_close_deg
             faces = stroke_faces(clip, run, r, p.height_m, pitch if H is not None else None, rpose, wb3d,
-                                 fcfg.get("hand3d_step", 2), p.forehand_grip_close_deg)
+                                 fcfg.get("hand3d_step", 2), grip)
             d["face"] = faces["phases"]
             d["metrics"].update(faces["trunk3d"])
             ser["face"] = {key: faces[key] for key in ("first", "tilt", "yaw", "label", "observed", "keypoints", "source", "hand3d", "rot3d")}

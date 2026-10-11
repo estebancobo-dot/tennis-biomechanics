@@ -86,6 +86,9 @@ def analyze_stroke(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, 
     if m["shoulder_turn_loaded_deg"] is not None and m["hip_turn_loaded_deg"] is not None:
         m["x_factor_deg"] = m["shoulder_turn_loaded_deg"] - m["hip_turn_loaded_deg"]
     m["elbow_impact_deg"] = g(elbow, i)
+    non_elbow = joint_angle(body[:, sk["non_shoulder"]], body[:, sk["non_elbow"]], body[:, sk["non_wrist"]])
+    m["non_elbow_impact_deg"] = g(non_elbow, i)                   # two-handed backhand: second arm
+    m["non_arm_extension_loaded_deg"] = g(non_elbow, ev["loaded"])  # forehand: free arm in the loading
     if m["elbow_impact_deg"] is not None and m["elbow_impact_deg"] < 60:
         res.review.append("elbow_implausible_at_impact")   # usually a blurred or swapped arm keypoint
     m["contact_height_pct"] = None if np.isnan(body[i, dw, 1] - feet_y[i]) else float((body[i, dw, 1] - feet_y[i]) * 100)

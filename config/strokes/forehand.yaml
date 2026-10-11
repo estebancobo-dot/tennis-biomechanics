@@ -1,0 +1,7 @@
+# Derecha. Reconocimiento: impacto en el lado dominante (votación: armado, dirección del swing, impacto).
+name: Derecha
+hitting_face: palm            # cara que golpea: palma de la mano dominante
+front_foot: non_dominant      # pie adelantado para el tipo de apoyo
+report_metrics: [xf, sh, xf3d, sh3d, knee, elbow, offArm, lat, contactH, head, finishH,
+                 rHead, rDrop, rElevImp, rFaceArm, rFaceImp, rFaceFin, rYawImp,
+                 split, base, baseM, disp, recov]

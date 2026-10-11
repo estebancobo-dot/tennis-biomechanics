@@ -90,3 +90,16 @@ def test_trunk_at_needs_agreeing_readings():
     assert t["shoulder_turn_3d_deg"] == 62.0 and t["x_factor_3d_deg"] == 32.0 and t["trunk3d_readings"] == 3
     assert trunk_at({10: (-20.0, 0.0), 12: (60.0, 0.0), 14: (-10.0, 30.0), 16: (70.0, 30.0)}, 12, 4) == {"trunk3d_unstable": True}
     assert trunk_at({10: (60.0, 0.0)}, 10, 4) == {} and trunk_at({}, None, 4) == {}
+
+
+def test_backhand_hitting_face_is_back_of_hand():
+    from tennisbio.racket3d import RIGHT_HAND, Camera, hand_prior
+    cam = Camera(20.0)
+    k3 = np.zeros((133, 3))
+    k3[0], k3[15], k3[16] = [0, 0, 0], [0, 300, 0], [0, 300, 0]
+    k3[8], k3[10] = [40, 100, 0], [60, 120, 0]
+    k3[RIGHT_HAND + 0], k3[RIGHT_HAND + 5], k3[RIGHT_HAND + 17] = [60, 120, 0], [70, 130, 0.05], [70, 130, -0.05]
+    sc = np.ones(133)
+    fh = hand_prior(k3, sc, cam, "right", 0.0)
+    bh = hand_prior(k3, sc, cam, "right", 0.0, hitting_face="back")
+    assert np.allclose(fh.face, -bh.face)

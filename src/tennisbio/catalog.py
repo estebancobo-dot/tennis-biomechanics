@@ -15,6 +15,7 @@ class Player:
     backhand: str = "two_handed"
     height_m: float = 1.80
     forehand_grip_close_deg: float = 15.0
+    backhand_grip_close_deg: float = 0.0
 
 
 @dataclass

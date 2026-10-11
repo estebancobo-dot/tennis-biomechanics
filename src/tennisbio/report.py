@@ -26,6 +26,8 @@ METRICS = {
     "sh3d": ("body", "Rotación de hombros 3D", "estimación monocular, armado · 0 = de cara a la red", "°", 0, 8, 2, "shoulder_turn_3d_deg"),
     "knee": ("body", "Descenso de cadera", "% de altura, espera → armado", "%", 1, 1.4, 2, "hip_drop_pct"),
     "elbow": ("body", "Codo en el impacto", "hombro–codo–muñeca", "°", 0, 7, 2, "elbow_impact_deg"),
+    "offArm": ("body", "Brazo no dominante en el armado", "ángulo del codo (180 = extendido)", "°", 0, 10, 2, "non_arm_extension_loaded_deg"),
+    "elbowNon": ("body", "Codo no dominante en el impacto", "revés a dos manos: segundo brazo", "°", 0, 8, 2, "non_elbow_impact_deg"),
     "lat": ("body", "Impacto lateral", "% de altura desde la cadera", "%", 1, 3.5, 3, "contact_lateral_pct"),
     "contactH": ("body", "Altura del impacto", "% de su altura sobre el suelo", "%", 0, 4, 3, "contact_height_pct"),
     "head": ("body", "Estabilidad de la cabeza", "desplazamiento ±50 ms del impacto", "cm", 1, 1, 2, "head_motion_impact_cm"),
@@ -191,9 +193,20 @@ def collect(matches: list[Match], out_root: Path, stroke="forehand") -> dict:
             review += bool(r["review"])
         ms.append({"id": match.id, "rival": match.opponent or "—", "surf": match.surface or "—",
                    "round": match.round or "—", "date": match.date or "—", "sets": None, "n": len(rows), "res": "—"})
+    keep = stroke_metrics(stroke)
     return {"matches": ms, "strokes": strokes, "review": review,
             "metrics": [{"k": k, "g": g, "name": n, "sub": sub, "unit": u, "dec": dec, "noise": noise, "rel": rel}
-                        for k, (g, n, sub, u, dec, noise, rel, _) in METRICS.items()]}
+                        for k, (g, n, sub, u, dec, noise, rel, _) in METRICS.items() if k in keep]}
+
+
+def stroke_metrics(stroke: str) -> list[str]:
+    """Report metrics of a stroke type (config/strokes/<stroke>.yaml), all when not configured."""
+    import yaml
+    from .config import CONFIG_DIR
+
+    f = CONFIG_DIR / "strokes" / f"{stroke}.yaml"
+    keys = yaml.safe_load(f.read_text(encoding="utf-8")).get("report_metrics") if f.exists() else None
+    return [k for k in (keys or METRICS) if k in METRICS]
 
 
 def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke="forehand",
