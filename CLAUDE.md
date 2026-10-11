@@ -57,6 +57,34 @@ Después: revés, saque, volea y otros jugadores.
 - Agregados: por partido/set, inicio vs final (fatiga), ganadores vs errores, presión.
 - Salida: **informe HTML** con gráficos y fotogramas con el esqueleto dibujado.
 
+## Métricas ampliadas (como los sistemas profesionales, dentro de lo medible en TV)
+**Cuerpo:** además de las anteriores, altura del impacto (% de altura), inclinación lateral del
+tronco en el impacto, extensión del brazo no dominante en el armado, estabilidad de la cabeza
+(±50 ms del impacto), tipo de terminación (sobre el hombro / limpiaparabrisas).
+
+**Raqueta** (modelo de 5 keypoints: empuñadura, garganta, punta, dos laterales del cabezal;
+base pública: RacketVision, AAAI 2026, entrenado con RTMPose → encaja en el stack; afinar
+con ~300-500 fotogramas propios etiquetados). Curvas a lo largo de todo el golpe:
+- Altura de la cabeza respecto a la muñeca (armado: por encima; caída antes de acelerar).
+- Ángulo de la cara (abierta/cerrada) a partir de la elipse del cabezal (ambigüedad de signo
+  resuelta con la continuidad temporal).
+- Trayectoria bajo → alto en los ~60 ms previos al impacto; ángulo antebrazo–raqueta (lag);
+  altura de la terminación.
+- **Fiabilidad por fase:** buena en espera, preparación, armado y terminación; **baja en
+  aceleración e impacto** (a 25-50 fps la cabeza recorre 40-70 cm por fotograma y sale
+  borrosa). La cara en el impacto es una estimación interpolada y se marca como tal.
+
+**Pies y equilibrio:** split step (aterrizaje respecto al impacto del rival, audio + tobillos),
+tiempo de reacción (primer movimiento), pasos de ajuste, tiempo y distancia de recuperación.
+
+**No medible desde TV** (lo tienen Hawk-Eye/laboratorio): velocidad de cabeza de raqueta absoluta,
+efecto (rpm), velocidad de bola, altura sobre la red, fuerzas. Seguimiento de bola (TrackNet)
+daría dirección y profundidad aproximadas (fase 3-4).
+
+**Vídeos de YouTube**: enlaces de referencia en el informe (no se descargan). Si el usuario
+aporta clips propios en cámara lenta (p. ej. entrenamientos a pie de pista), pueden servir como
+fuente secundaria con mejor visibilidad de la raqueta; uso bajo su responsabilidad.
+
 ## Fiabilidad de cada métrica según la cámara
 Fuente: cámara principal de TV, detrás del fondo y elevada. La jugadora del lado cercano
 se ve de espaldas y desde arriba. No hay vistas laterales ni frontales sincronizadas
@@ -96,6 +124,7 @@ La bola no se mide directamente (pequeña y borrosa en TV); se deduce indirectam
 
 ## Informe y salida visual
 - Usuario del informe: el propio autor del proyecto (técnico; vocabulario biomecánico con glosario).
+- Maqueta de referencia del diseño: `docs/maqueta-informe.html` (datos inventados).
 - HTML offline en 5 pantallas: resumen con conclusiones en frases (y su confianza), derecha típica,
   explorador de golpes con filtros y comparación lado a lado, comparativas por situación,
   mapa de pista. Cada número enlaza a sus clips. Herramienta de revisión aparte.

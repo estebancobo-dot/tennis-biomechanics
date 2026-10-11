@@ -1,0 +1,975 @@
+<title>Maqueta informe derecha</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: estación de análisis (tema oscuro único, como software de vídeo deportivo).
+   Barra lateral de navegación + área de trabajo; el visor de golpe es la pieza central. */
+:root {
+  color-scheme: dark;
+  --bg: #0c0f13;
+  --panel: #14181d;
+  --panel-2: #1a2027;
+  --raise: #222a33;
+  --line: #262e38;
+  --line-2: #323c48;
+  --ink: #e7ebee;
+  --ink-2: #aab4be;
+  --ink-3: #727e8a;
+  --accent: #d4f03a;
+  --accent-ink: #11140a;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500;
+  --s5: #d55181; --s7: #9085e9;
+  --good: #22b14c; --warn: #fab219; --crit: #e0524f;
+  --sk-l: #4fb0ff; --sk-r: #ff9f43; --sk-c: #7bd88f;
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --body: "Archivo", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { background: var(--bg); color: var(--ink); }
+body { font-family: var(--body); font-size: 14px; line-height: 1.45; font-variation-settings: "wdth" 100; }
+h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 700; line-height: 1.1; text-wrap: balance; }
+h2 { font-size: 1.25rem; font-variation-settings: "wdth" 88; letter-spacing: .005em; }
+h3 { font-size: .78rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-2); }
+p { margin: 0; }
+.mono, .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.dim { color: var(--ink-2); } .dim3 { color: var(--ink-3); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.app { display: grid; grid-template-columns: 216px minmax(0, 1fr); min-height: 100vh; }
+.side { background: var(--panel); border-right: 1px solid var(--line); padding-block: 16px; display: flex; flex-direction: column; gap: 20px; position: sticky; top: 0; height: 100vh; }
+.brand { display: flex; gap: 10px; align-items: center; padding-inline: 16px; }
+.brand .mark { width: 28px; height: 28px; border-radius: 6px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font: 800 13px var(--display); font-variation-settings: "wdth" 75; }
+.brand b { font: 700 15px var(--display); font-variation-settings: "wdth" 80; letter-spacing: .02em; }
+.brand span { display: block; font-size: 11px; color: var(--ink-3); }
+.nav { display: grid; gap: 2px; padding-inline: 8px; }
+.nav button { display: flex; align-items: center; gap: 10px; text-align: left; background: none; border: 0; border-radius: 6px; padding: 8px 10px; color: var(--ink-2); cursor: pointer; font-weight: 500; white-space: nowrap; }
+.nav button svg { width: 16px; height: 16px; flex: none; }
+.nav button:hover { background: var(--panel-2); color: var(--ink); }
+.nav button[aria-current="page"] { background: var(--raise); color: var(--ink); }
+.nav button[aria-current="page"] svg { color: var(--accent); }
+.side .foot { margin-top: auto; padding-inline: 16px; font-size: 11px; color: var(--ink-3); display: grid; gap: 4px; }
+.side .foot .mono { color: var(--ink-2); }
+
+.main { min-width: 0; }
+.topbar { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: space-between; padding: 14px 24px; border-bottom: 1px solid var(--line); background: var(--bg); position: sticky; top: 0; z-index: 6; }
+.crumbs { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+.crumbs h1 { font-size: 1.35rem; font-variation-settings: "wdth" 82; }
+.crumbs .sep { color: var(--ink-3); }
+.scope { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.tag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 3px 8px; border-radius: 4px; background: var(--panel-2); border: 1px solid var(--line); color: var(--ink-2); white-space: nowrap; }
+.tag b { color: var(--ink); font-family: var(--mono); font-weight: 500; }
+.tag.sample { background: rgba(250,178,25,.12); border-color: rgba(250,178,25,.35); color: var(--warn); font-weight: 600; letter-spacing: .04em; }
+.content { padding: 20px 24px 48px; display: grid; gap: 16px; }
+.screen { display: grid; gap: 16px; }
+
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; min-width: 0; }
+.panel > header { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; justify-content: space-between; padding: 12px 16px 0; }
+.panel .body { padding: 12px 16px 16px; }
+.cols { display: grid; gap: 16px; }
+.c-3-1 { grid-template-columns: minmax(0, 2.2fr) minmax(300px, 1fr); }
+.c-1-1 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (max-width: 1100px) { .c-3-1, .c-1-1 { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 860px) {
+  .app { grid-template-columns: minmax(0, 1fr); }
+  .side { position: static; height: auto; flex-direction: row; flex-wrap: wrap; align-items: center; padding: 10px 16px; gap: 10px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .brand { padding: 0; } .side .foot { display: none; }
+  .nav { grid-auto-flow: column; overflow-x: auto; padding: 0; max-width: 100%; }
+  .topbar { position: static; padding: 12px 16px; }
+  .content { padding: 16px 16px 40px; }
+}
+
+.seg { display: inline-flex; background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px; padding: 2px; gap: 2px; flex-wrap: wrap; }
+.seg button { background: none; border: 0; border-radius: 4px; padding: 4px 10px; font-size: 12px; color: var(--ink-2); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--raise); color: var(--ink); }
+.ctl { display: grid; gap: 4px; font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .08em; font-weight: 600; }
+select { font: 13px var(--body); color: var(--ink); background: var(--panel-2); border: 1px solid var(--line-2); border-radius: 6px; padding: 6px 8px; }
+.filterbar { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: end; padding: 12px 16px; }
+.ibtn { display: inline-grid; place-items: center; width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--line-2); background: var(--panel-2); cursor: pointer; color: var(--ink); }
+.ibtn:hover { border-color: var(--ink-3); }
+.ibtn svg { width: 14px; height: 14px; }
+.btn { font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 6px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--ink); cursor: pointer; white-space: nowrap; }
+.btn:hover { border-color: var(--ink-3); }
+
+.st { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.st i { width: 14px; height: 14px; border-radius: 50%; display: inline-grid; place-items: center; font-style: normal; font-size: 10px; color: #0c0f13; font-weight: 800; }
+.st.good { color: var(--good); } .st.good i { background: var(--good); }
+.st.warn { color: var(--warn); } .st.warn i { background: var(--warn); }
+.st.crit { color: var(--crit); } .st.crit i { background: var(--crit); }
+.rel { display: inline-flex; gap: 2px; vertical-align: 1px; }
+.rel b { width: 6px; height: 6px; border-radius: 1px; background: var(--line-2); }
+.rel b.on { background: var(--ink-2); }
+
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 900px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.kpi { padding: 14px 16px; display: grid; gap: 6px; }
+.kpi .v { font: 700 2rem/1 var(--display); font-variation-settings: "wdth" 78; font-variant-numeric: tabular-nums; }
+.kpi .v small { font-size: .9rem; color: var(--ink-3); font-weight: 600; margin-left: 4px; }
+.kpi .s { font-size: 12px; color: var(--ink-3); }
+.bar1 { display: flex; height: 6px; gap: 2px; border-radius: 3px; overflow: hidden; }
+.bar1 span { height: 100%; }
+
+.tw { overflow-x: auto; }
+table.data { width: 100%; border-collapse: collapse; font-size: 13px; }
+table.data th { text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-3); padding: 8px 10px; border-bottom: 1px solid var(--line-2); white-space: nowrap; background: var(--panel); }
+table.data th.r, table.data td.r { text-align: right; }
+table.data th[data-sort] { cursor: pointer; }
+table.data th[data-sort]:hover { color: var(--ink); }
+table.data th .arr { color: var(--accent); }
+table.data td { padding: 7px 10px; border-bottom: 1px solid var(--line); white-space: nowrap; vertical-align: middle; }
+table.data td.num, table.data td .num { font-family: var(--mono); font-size: 12.5px; }
+table.data tbody tr { cursor: pointer; }
+table.data tbody tr:hover td { background: var(--panel-2); }
+table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
+.thumb { width: 64px; height: 36px; border-radius: 3px; overflow: hidden; display: block; position: relative; }
+.thumb svg { width: 100%; height: 100%; display: block; }
+.chip { display: inline-block; font-size: 11px; padding: 1px 6px; border-radius: 3px; background: var(--raise); color: var(--ink-2); margin-right: 3px; }
+.dev { display: inline-flex; align-items: center; gap: 6px; }
+.dev .t { width: 34px; height: 4px; background: var(--raise); position: relative; border-radius: 2px; }
+.dev .t i { position: absolute; top: -2px; width: 3px; height: 8px; border-radius: 1px; background: var(--ink-2); }
+.dev .t::after { content: ""; position: absolute; left: 50%; top: -3px; width: 1px; height: 10px; background: var(--ink-3); }
+.qb { width: 48px; height: 4px; background: var(--raise); border-radius: 2px; overflow: hidden; display: inline-block; vertical-align: middle; }
+.qb i { display: block; height: 100%; background: var(--ink-2); }
+.pager { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; font-size: 12px; color: var(--ink-3); gap: 10px; flex-wrap: wrap; }
+
+.stage { position: relative; background: #000; border-radius: 8px 8px 0 0; overflow: hidden; aspect-ratio: 16 / 9; max-width: 100%; }
+.stage svg { width: 100%; height: 100%; display: block; }
+.vtools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 10px 12px; border-top: 1px solid var(--line); }
+.vtools .grp { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.tc { font-family: var(--mono); font-size: 12px; color: var(--ink-2); }
+.tc b { color: var(--ink); font-weight: 500; }
+.timeline { padding: 0 12px 12px; }
+.timeline svg { width: 100%; height: auto; display: block; touch-action: none; cursor: pointer; }
+.kf { display: grid; grid-template-columns: repeat(8, minmax(92px, 1fr)); gap: 6px; overflow-x: auto; padding: 0 12px 12px; }
+.kf button { background: none; border: 1px solid var(--line); border-radius: 5px; padding: 0; cursor: pointer; overflow: hidden; display: grid; text-align: left; }
+.kf button svg { width: 100%; aspect-ratio: 16/10; display: block; }
+.kf button > span { font-size: 11px; padding: 4px 6px 5px; color: var(--ink-2); display: grid; gap: 1px; }
+.kf button > span b { color: var(--ink); font-weight: 600; }
+.kf button[aria-current="true"] { border-color: var(--accent); }
+.kf button[aria-current="true"] > span b { color: var(--accent); }
+.mlist { display: grid; }
+.mrow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 10px; padding: 9px 0; border-bottom: 1px solid var(--line); }
+.mrow:last-child { border-bottom: 0; }
+.mrow .n { font-size: 13px; font-weight: 500; }
+.mrow .v { font-family: var(--mono); font-size: 13px; text-align: right; }
+.mrow .v small { color: var(--ink-3); font-size: 11px; margin-left: 6px; }
+.mrow svg { grid-column: 1 / -1; width: 100%; height: 18px; display: block; }
+.mrow .meta { grid-column: 1 / -1; display: flex; justify-content: space-between; font-size: 11px; color: var(--ink-3); gap: 8px; }
+.ctx { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 16px; font-size: 12px; }
+.ctx div { display: grid; gap: 1px; }
+.ctx span { color: var(--ink-3); font-size: 11px; text-transform: uppercase; letter-spacing: .06em; }
+.ctx b { font-weight: 500; font-family: var(--mono); font-size: 13px; }
+.chart svg { width: 100%; height: auto; display: block; }
+.legend { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 12px; color: var(--ink-2); }
+.legend i { display: inline-block; width: 12px; height: 3px; border-radius: 2px; margin-right: 6px; vertical-align: 3px; }
+.legend i.dot { width: 8px; height: 8px; border-radius: 50%; vertical-align: 0; }
+.note { font-size: 12px; color: var(--ink-3); }
+.seqbadge { display: inline-flex; gap: 4px; align-items: center; font-family: var(--mono); font-size: 12px; flex-wrap: wrap; }
+.seqbadge > span:not(.st) { padding: 2px 6px; border-radius: 3px; background: var(--raise); }
+
+.forest { display: grid; }
+.frow { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(220px, 1fr) 150px 56px; gap: 12px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--line); }
+.frow:last-child { border-bottom: 0; }
+.frow.head { padding-block: 8px; font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-3); font-weight: 600; }
+.frow .t b { display: block; font-weight: 600; font-size: 13.5px; }
+.frow .t span { font-size: 12px; color: var(--ink-3); }
+.frow svg { width: 100%; height: 26px; display: block; }
+@media (max-width: 760px) { .frow { grid-template-columns: minmax(0, 1fr) auto; } .frow > div[data-tip] { grid-column: 1 / -1; grid-row: 2; } .frow.head { display: none; } .frow .btn { display: none; } }
+
+.refs { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.ref { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: 10px; align-items: center; padding: 10px; border: 1px solid var(--line); border-radius: 6px; background: var(--panel-2); color: var(--ink); text-decoration: none; }
+.ref:hover { border-color: var(--ink-3); }
+.ref .pl { width: 56px; height: 36px; border-radius: 4px; background: var(--raise); display: grid; place-items: center; color: var(--accent); }
+.ref b { font-weight: 600; font-size: 13px; display: block; }
+.ref span { font-size: 11.5px; color: var(--ink-3); }
+#tip { position: fixed; z-index: 50; pointer-events: none; background: #0a0d10; border: 1px solid var(--line-2); border-radius: 6px; padding: 6px 8px; font-size: 12px; color: var(--ink); box-shadow: 0 6px 20px rgba(0,0,0,.45); max-width: 260px; }
+#tip .mono { font-size: 11.5px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+</style>
+
+<div class="app">
+  <aside class="side">
+    <div class="brand"><div class="mark">TB</div><div><b>TENNISBIO</b><span>Análisis cinemático</span></div></div>
+    <nav class="nav" aria-label="Pantallas">
+      <button data-tab="panel" aria-current="page"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="1.5" width="5" height="5" rx="1"/><rect x="9.5" y="1.5" width="5" height="5" rx="1"/><rect x="1.5" y="9.5" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></svg>Panel</button>
+      <button data-tab="golpe"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><path d="M6.5 6v4l3.5-2z" fill="currentColor"/></svg>Análisis de golpe</button>
+      <button data-tab="explorador"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4h12M2 8h12M2 12h8"/></svg>Explorador</button>
+      <button data-tab="comparativas"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 14V7M8 14V2M13 14V9"/></svg>Comparativas</button>
+      <button data-tab="pista"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="1.5" width="10" height="13"/><path d="M3 8h10M8 4.5v7"/></svg>Pista</button>
+    </nav>
+    <div class="foot">
+      <span>Pipeline <span class="mono">v0.4.0</span> · pose <span class="mono">rtmpose-x halpe26</span></span>
+      <span>Última ejecución <span class="mono">2026-10-10 18:42</span></span>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="crumbs"><h1>E. Rybakina</h1><span class="sep">/</span><h1 style="color:var(--ink-2)">Derecha</h1></div>
+      <div class="scope" id="scope"></div>
+    </div>
+
+    <div class="content">
+
+<section class="screen" id="tab-panel">
+  <div class="kpis" id="kpis"></div>
+  <div class="panel">
+    <header><h2>Hallazgos</h2><span class="note">Diferencia entre grupos en múltiplos del ruido de medida. Fuera de la banda gris (±1) es una diferencia real.</span></header>
+    <div class="forest" id="forest" style="margin-top:8px"></div>
+  </div>
+  <div class="cols c-3-1">
+    <div class="panel">
+      <header><h2>Evolución durante el partido</h2><div class="seg" id="evo-metric"></div></header>
+      <div class="body chart" id="evo"></div>
+    </div>
+    <div class="panel">
+      <header><h2>Proporciones</h2><span class="note">Bolas no abiertas</span></header>
+      <div class="body" id="props" style="display:grid;gap:14px"></div>
+    </div>
+  </div>
+  <div class="panel">
+    <header><h2>Vídeos de referencia</h2><span class="note">Análisis y cámara lenta publicados en YouTube · se abren en una pestaña nueva</span></header>
+    <div class="body refs" id="refs"></div>
+  </div>
+  <div class="panel">
+    <header><h2>Partidos</h2><span class="note">Pulsa una fila para ver sus golpes</span></header>
+    <div class="body tw" style="padding-inline:0"><table class="data" id="matches"></table></div>
+  </div>
+</section>
+
+<section class="screen" id="tab-golpe" hidden>
+  <div class="cols c-3-1">
+    <div class="panel">
+      <div class="stage" id="stage"></div>
+      <div class="vtools">
+        <div class="grp">
+          <button class="ibtn" id="prevf" aria-label="Fotograma anterior"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2h2v10H3zM12 2v10L6 7z"/></svg></button>
+          <button class="ibtn" id="play" aria-label="Reproducir"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2v10l9-5z"/></svg></button>
+          <button class="ibtn" id="nextf" aria-label="Fotograma siguiente"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M9 2h2v10H9zM2 2v10l6-5z"/></svg></button>
+          <div class="seg" id="speed"><button data-v="0.25" aria-pressed="true">0,25×</button><button data-v="0.5" aria-pressed="false">0,5×</button><button data-v="1" aria-pressed="false">1×</button></div>
+          <span class="tc" id="tc"></span>
+        </div>
+        <div class="grp">
+          <div class="seg" id="view"><button data-v="crop" aria-pressed="true">Recorte</button><button data-v="full" aria-pressed="false">Plano completo</button></div>
+          <div class="seg" id="layers"><button data-v="skel" aria-pressed="true">Esqueleto</button><button data-v="ang" aria-pressed="true">Ángulos</button><button data-v="trail" aria-pressed="true">Trayectoria</button><button data-v="rk" aria-pressed="true">Raqueta</button></div>
+        </div>
+      </div>
+      <div class="timeline" id="timeline"></div>
+      <div class="kf" id="kf"></div>
+    </div>
+    <div style="display:grid;gap:16px;align-content:start">
+      <div class="panel">
+        <header><h2 id="g-title" class="mono"></h2><div style="display:flex;gap:6px"><button class="ibtn" id="gprev" aria-label="Golpe anterior"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2 4 7l5 5"/></svg></button><button class="ibtn" id="gnext" aria-label="Golpe siguiente"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 2 5 5-5 5"/></svg></button></div></header>
+        <div class="body"><div class="ctx" id="g-ctx"></div></div>
+      </div>
+      <div class="panel">
+        <header><h2>Métricas</h2><div class="seg" id="g-group"><button data-v="body" aria-pressed="true">Cuerpo</button><button data-v="racket" aria-pressed="false">Raqueta</button><button data-v="feet" aria-pressed="false">Pies</button></div></header>
+        <p class="note" style="padding:6px 16px 0">Barra: su rango habitual (p10–p90) y su mediana. Punto: este golpe.</p>
+        <div class="body mlist" id="g-metrics"></div>
+      </div>
+    </div>
+  </div>
+  <div class="cols c-3-1">
+    <div class="panel">
+      <header><h2>Raqueta durante el golpe</h2><span class="note">5 puntos de la raqueta (modelo tipo RacketVision) · franja rayada: desenfoque, valor poco fiable</span></header>
+      <div class="body chart" style="display:grid;gap:4px"><div id="g-rh"></div><div id="g-rf"></div></div>
+    </div>
+    <div class="panel">
+      <header><h2>Raqueta por fase</h2><span class="note">Este golpe</span></header>
+      <div class="tw"><table class="data" id="g-rtable"></table></div>
+    </div>
+  </div>
+  <div class="cols c-1-1">
+    <div class="panel">
+      <header><h2>Cadena cinética</h2><span id="g-seq" class="seqbadge"></span></header>
+      <div class="body chart"><div id="g-kin"></div><div class="legend" id="g-kin-leg" style="margin-top:6px"></div><p class="note" style="margin-top:6px">Velocidad angular normalizada a su pico. A 50 fps el valor absoluto no es fiable; el orden y el momento de los picos sí.</p></div>
+    </div>
+    <div class="panel">
+      <header><h2>Ángulos articulares</h2><span class="note">Muestreo a 50 fps · pulsa para ir a ese fotograma</span></header>
+      <div class="body chart"><div id="g-ang"></div><div class="legend" id="g-ang-leg" style="margin-top:6px"></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="screen" id="tab-explorador" hidden>
+  <div class="panel">
+    <div class="filterbar">
+      <label class="ctl">Partido<select id="f-match"></select></label>
+      <label class="ctl">Set<select id="f-set"><option value="">Todos</option><option>1</option><option>2</option><option>3</option></select></label>
+      <label class="ctl">Apoyo<select id="f-stance"><option value="">Todos</option><option value="abierto">Abierto</option><option value="semiabierto">Semiabierto</option><option value="cerrado">Cerrado</option></select></label>
+      <label class="ctl">Situación<select id="f-sit"><option value="">Todas</option><option value="neutra">Neutra</option><option value="abierta">Bola abierta</option><option value="rapida">Bola rápida</option><option value="baja">Bola baja</option><option value="corta">Bola corta</option></select></label>
+      <label class="ctl">Presión<select id="f-press"><option value="">Todos</option><option value="1">Bajo presión</option><option value="0">Sin presión</option></select></label>
+      <label class="ctl">Resultado<select id="f-out"><option value="">Todos</option><option value="ganador">Ganador</option><option value="error">Error</option><option value="sigue">Sigue</option></select></label>
+      <label class="ctl">Vista rápida<select id="f-preset"><option value="">—</option><option value="best">Mejor capturados</option><option value="typ">Más representativos</option><option value="win">Ganadores mejor capturados</option></select></label>
+    </div>
+    <div class="tw"><table class="data" id="ex-table"></table></div>
+    <div class="pager"><span id="ex-count"></span><span style="display:flex;gap:6px"><button class="btn" id="ex-prev">Anterior</button><button class="btn" id="ex-next">Siguiente</button></span></div>
+  </div>
+</section>
+
+<section class="screen" id="tab-comparativas" hidden>
+  <div class="panel">
+    <div class="filterbar">
+      <label class="ctl">Comparar<select id="c-pair">
+        <option value="fatiga">Set 1 / Set 3</option>
+        <option value="presion">Sin presión / Bajo presión</option>
+        <option value="resultado">Errores / Ganadores</option>
+        <option value="partidos">Partido a partido</option>
+      </select></label>
+      <label class="ctl">Métricas<select id="c-group"><option value="body">Cuerpo</option><option value="racket">Raqueta</option><option value="feet">Pies y equilibrio</option></select></label>
+      <label class="ctl">Situación de bola<select id="c-sit">
+        <option value="neutra">Neutra (recomendado)</option>
+        <option value="">Todas</option>
+        <option value="abierta">Abierta</option>
+        <option value="rapida">Rápida</option>
+      </select></label>
+      <span class="note" style="margin-left:auto;max-width:46ch">Con "Todas" se mezclan golpes con distinta bola: una diferencia puede deberse a la bola recibida y no a la técnica.</span>
+    </div>
+    <div class="tw" style="border-top:1px solid var(--line)"><table class="data" id="c-table"></table></div>
+  </div>
+  <div class="cols c-1-1" id="c-grid"></div>
+</section>
+
+<section class="screen" id="tab-pista" hidden>
+  <div class="cols c-3-1">
+    <div class="panel">
+      <header><h2>Posición en el impacto</h2><div class="seg" id="p-mode"><button data-v="density" aria-pressed="true">Densidad</button><button data-v="stance" aria-pressed="false">Apoyo</button><button data-v="out" aria-pressed="false">Resultado</button></div></header>
+      <div class="body chart" id="court"></div>
+    </div>
+    <div style="display:grid;gap:16px;align-content:start">
+      <div class="panel"><div class="filterbar">
+        <label class="ctl">Partido<select id="p-match"></select></label>
+        <label class="ctl">Set<select id="p-set"><option value="">Todos</option><option>1</option><option>2</option><option>3</option></select></label>
+      </div></div>
+      <div class="panel"><header><h2>Resumen</h2></header><div class="body" id="p-stats" style="display:grid;gap:12px"></div></div>
+      <div class="panel"><header><h2>Leyenda</h2></header><div class="body legend" id="p-legend"></div></div>
+    </div>
+  </div>
+</section>
+
+    </div>
+  </div>
+</div>
+<div id="tip" hidden></div>
+
+<script>
+/* ===== Datos de ejemplo (generador con semilla) ===== */
+function mulberry32(a) { return function () { a |= 0; a = a + 0x6D2B79F5 | 0; let t = Math.imul(a ^ a >>> 15, 1 | a); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
+const rnd = mulberry32(20261010);
+const norm = (m, s, r = rnd) => { let u = 0, v = 0; while (!u) u = r(); while (!v) v = r(); return m + s * Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v); };
+const clamp = (x, a, b) => Math.max(a, Math.min(b, x));
+const lerp = (a, b, t) => a + (b - a) * t;
+function hashRand(str) { let h = 2166136261; for (const c of str) h = Math.imul(h ^ c.charCodeAt(0), 16777619); return mulberry32(h); }
+
+const MATCHES = [
+  { id: "P1", rival: "Rival A", surf: "Dura", round: "R2", date: "2026-01-14", sets: 3, n: 112, res: "6-4 3-6 6-3" },
+  { id: "P2", rival: "Rival B", surf: "Dura", round: "R16", date: "2026-01-18", sets: 2, n: 86, res: "6-3 7-5" },
+  { id: "P3", rival: "Rival C", surf: "Hierba", round: "QF", date: "2026-07-08", sets: 3, n: 118, res: "4-6 6-4 7-5" },
+  { id: "P4", rival: "Rival D", surf: "Tierra", round: "SF", date: "2026-05-29", sets: 3, n: 96, res: "6-7 6-2 4-6" },
+];
+const SCORES = ["0-0", "15-0", "15-15", "30-15", "30-30", "40-30", "30-40", "15-40", "40-40", "AD", "0-15", "0-30"];
+const PRESS = new Set(["30-40", "15-40", "40-40", "AD"]);
+const STROKES = [];
+MATCHES.forEach((m, mi) => {
+  for (let i = 0; i < m.n; i++) {
+    const frac = i / m.n;
+    const set = m.sets === 2 ? (frac < .52 ? 1 : 2) : (frac < .36 ? 1 : frac < .7 ? 2 : 3);
+    const score = SCORES[Math.floor(rnd() * SCORES.length)];
+    const pressure = PRESS.has(score) && rnd() < .9;
+    const tAvail = clamp(norm(1.38, .26), .72, 2.1);
+    const disp = Math.abs(norm(1.7, 1.15));
+    const hr = rnd(), height = hr < .18 ? "baja" : hr < .82 ? "media" : "alta";
+    const y = clamp(norm(12.3, 1.05), 6.5, 15);
+    const fast = tAvail < 1.15, wide = disp > 2.6, short = y < 10.6;
+    const pOpen = .38 + (wide ? .3 : 0) + (fast ? .12 : 0) + (pressure ? .14 : 0), pClosed = short ? .45 : .2;
+    const sr = rnd(), stance = sr < pOpen ? "abierto" : sr < pOpen + pClosed ? "cerrado" : "semiabierto";
+    const orr = rnd(), outcome = orr < .12 ? "ganador" : orr < .27 ? "error" : "sigue";
+    const fatigue = set === 3 ? 1 : set === 2 && frac > .5 ? .35 : 0;
+    const xf = norm(24.5, 3.6) - 5.8 * fatigue - (set === 3 ? frac * 2 : 0) - (fast ? 2.2 : 0) - (wide ? 1.5 : 0);
+    const sh = norm(96, 7) - 4 * fatigue - (fast ? 5 : 0);
+    const base = norm(68, 7) + (stance === "abierto" ? 7 : stance === "cerrado" ? -4 : 0);
+    const knee = norm(9.2, 1.8) + (height === "baja" ? 3.2 : height === "alta" ? -1.5 : 0) - .6 * fatigue;
+    const elbow = norm(143, 9) - (height === "alta" ? 6 : 0) + (pressure ? -2 : 0);
+    const lat = norm(47, 5.5) + (wide ? -4 : 0) + (outcome === "ganador" ? 3.5 : outcome === "error" ? -3 : 0);
+    const chainOK = rnd() < (set === 3 ? .71 : .86);
+    const quality = clamp(.55 + .45 * Math.pow(rnd(), .6) - (fast ? .08 : 0), .3, .99);
+    const x = clamp(norm(1.3, 1.7) + (wide ? 1.4 : 0), -4.6, 5.3);
+    const racket = {
+      rHead: norm(34, 6), rDrop: norm(27, 5.5) - 5 * fatigue, rFaceArm: norm(24, 6), rFaceImp: norm(7, 6) + (outcome === "error" ? 3 : 0),
+      rPath: norm(29, 5) + (height === "baja" ? 6 : 0) - 2.5 * fatigue, rLag: norm(152, 8) + 5 * fatigue, rFinish: norm(18, 8) - (wide ? 8 : 0),
+    };
+    const foot = {
+      split: norm(170, 40) + 28 * fatigue, react: norm(245, 38) + 22 * fatigue, steps: Math.round(clamp(norm(4, 1.1) + (wide ? 1.5 : 0), 1, 9)),
+      recov: norm(1.05, .18) + .14 * fatigue, contactH: norm(52, 5) + (height === "baja" ? -12 : height === "alta" ? 14 : 0),
+      lean: norm(8, 3.5) + (wide ? 3 : 0), offArm: norm(150, 11) - 6 * fatigue, head: Math.abs(norm(3.4, 1.2)) + .7 * fatigue,
+    };
+    const finishType = rnd() < (wide || fast ? .5 : .78) ? "sobre el hombro" : "limpiaparabrisas";
+    STROKES.push({ id: `${m.id}-${String(i + 1).padStart(3, "0")}`, idx: STROKES.length, match: mi, frac, set, game: 1 + Math.floor(rnd() * 12), score, pressure, tAvail, disp, height, y, x, fast, wide, short, stance, outcome, chainOK, quality, finishType, m: { xf, sh, base, knee, elbow, lat, ...racket, ...foot }, vt: Math.round((frac * 125 + 4 + rnd()) * 60) });
+  }
+});
+STROKES.forEach(s => { s.sit = { neutra: !s.fast && !s.wide && s.height === "media" && !s.short, abierta: s.wide, rapida: s.fast, baja: s.height === "baja", corta: s.short }; });
+
+const GROUPS = { body: "Cuerpo", racket: "Raqueta", feet: "Pies y equilibrio" };
+const METRICS = [
+  { g: "body", k: "xf", name: "X-factor", sub: "separación hombros–cadera, armado", unit: "°", dec: 1, noise: 3.4, rel: 2 },
+  { g: "body", k: "sh", name: "Rotación de hombros", sub: "máxima, armado", unit: "°", dec: 0, noise: 6, rel: 2 },
+  { g: "body", k: "knee", name: "Descenso de cadera", sub: "% de altura, espera → armado", unit: "%", dec: 1, noise: 1.4, rel: 2 },
+  { g: "body", k: "elbow", name: "Codo en el impacto", sub: "hombro–codo–muñeca", unit: "°", dec: 0, noise: 7, rel: 2 },
+  { g: "body", k: "lat", name: "Impacto lateral", sub: "% de altura desde la cadera", unit: "%", dec: 1, noise: 3.5, rel: 3 },
+  { g: "body", k: "contactH", name: "Altura del impacto", sub: "% de su altura sobre el suelo", unit: "%", dec: 0, noise: 4, rel: 3 },
+  { g: "body", k: "lean", name: "Inclinación lateral del tronco", sub: "en el impacto", unit: "°", dec: 1, noise: 3, rel: 3 },
+  { g: "body", k: "offArm", name: "Brazo no dominante", sub: "extensión en el armado", unit: "°", dec: 0, noise: 10, rel: 2 },
+  { g: "body", k: "head", name: "Estabilidad de la cabeza", sub: "desplazamiento ±50 ms del impacto", unit: "cm", dec: 1, noise: 1, rel: 2 },
+  { g: "racket", k: "rHead", name: "Altura de la cabeza en el armado", sub: "cm por encima de la muñeca", unit: "cm", dec: 0, noise: 6, rel: 3 },
+  { g: "racket", k: "rDrop", name: "Caída de la raqueta", sub: "cm por debajo de la muñeca antes de acelerar", unit: "cm", dec: 0, noise: 6, rel: 2 },
+  { g: "racket", k: "rFaceArm", name: "Cara en el armado", sub: "° cerrada respecto a la vertical", unit: "°", dec: 0, noise: 6, rel: 2 },
+  { g: "racket", k: "rFaceImp", name: "Cara en el impacto", sub: "° cerrada · estimada (desenfoque)", unit: "°", dec: 0, noise: 9, rel: 1 },
+  { g: "racket", k: "rPath", name: "Trayectoria bajo → alto", sub: "ángulo del swing en los 60 ms previos", unit: "°", dec: 0, noise: 5, rel: 2 },
+  { g: "racket", k: "rLag", name: "Ángulo antebrazo–raqueta", sub: "en el impacto (lag)", unit: "°", dec: 0, noise: 8, rel: 1 },
+  { g: "racket", k: "rFinish", name: "Altura de la terminación", sub: "% de altura sobre el hombro", unit: "%", dec: 0, noise: 7, rel: 3 },
+  { g: "feet", k: "split", name: "Split step", sub: "aterrizaje, ms tras el impacto del rival", unit: "ms", dec: 0, noise: 30, rel: 2 },
+  { g: "feet", k: "react", name: "Tiempo de reacción", sub: "primer movimiento hacia la bola", unit: "ms", dec: 0, noise: 35, rel: 2 },
+  { g: "feet", k: "steps", name: "Pasos de ajuste", sub: "entre el split step y el apoyo", unit: "pasos", dec: 0, noise: 1, rel: 2 },
+  { g: "feet", k: "base", name: "Anchura de la base", sub: "% de altura, armado", unit: "%", dec: 0, noise: 4.5, rel: 3 },
+  { g: "feet", k: "recov", name: "Tiempo de recuperación", sub: "del impacto al primer paso de vuelta", unit: "s", dec: 2, noise: .15, rel: 3 },
+];
+const MK = Object.fromEntries(METRICS.map(m => [m.k, m]));
+const mean = a => a.reduce((x, y) => x + y, 0) / (a.length || 1);
+const quant = (a, q) => { const b = [...a].sort((x, y) => x - y); if (!b.length) return 0; const p = (b.length - 1) * q, lo = Math.floor(p); return b[lo] + (b[Math.min(lo + 1, b.length - 1)] - b[lo]) * (p - lo); };
+const sd = a => { const mu = mean(a); return Math.sqrt(mean(a.map(v => (v - mu) ** 2))); };
+const DIST = {};
+METRICS.forEach(m => { const v = STROKES.map(s => s.m[m.k]); DIST[m.k] = { p10: quant(v, .1), p50: quant(v, .5), p90: quant(v, .9), lo: Math.min(...v), hi: Math.max(...v), sd: sd(v) }; });
+STROKES.forEach(s => { const d = Math.sqrt(mean(METRICS.map(m => ((s.m[m.k] - DIST[m.k].p50) / DIST[m.k].sd) ** 2))); s.repr = 1 / (1 + d); });
+const fmt = (v, d = 0) => v.toLocaleString("es-ES", { minimumFractionDigits: d, maximumFractionDigits: d });
+const unitStr = m => m.unit === "°" ? "°" : " " + m.unit;
+const fmtM = (k, v) => `${fmt(v, MK[k].dec)}${unitStr(MK[k])}`;
+const sign = v => (v > 0 ? "+" : v < 0 ? "−" : "±");
+const clock = sec => { const h = Math.floor(sec / 3600), mi = Math.floor(sec / 60) % 60, s = Math.floor(sec % 60); return `${h}:${String(mi).padStart(2, "0")}:${String(s).padStart(2, "0")}`; };
+const relBars = r => `<span class="rel" title="Fiabilidad ${["", "baja", "media", "alta"][r]}">${[1, 2, 3].map(i => `<b class="${i <= r ? "on" : ""}"></b>`).join("")}</span>`;
+const REVIEW = 23;
+const STANCE = { abierto: "var(--s1)", semiabierto: "var(--s2)", cerrado: "var(--s3)" };
+const pct = (a, f) => 100 * a.filter(f).length / (a.length || 1);
+function niceTicks(lo, hi, n = 5) { const span = hi - lo, m = 10 ** Math.floor(Math.log10(span / n)); const st = [1, 2, 2.5, 5, 10].map(x => x * m).find(x => span / x <= n) || 10 * m; const t = []; for (let v = Math.ceil(lo / st) * st; v <= hi + 1e-9; v += st) t.push(+v.toFixed(6)); return t; }
+
+/* ===== Tooltip ===== */
+const tip = document.getElementById("tip");
+function showTip(html, ev) { tip.innerHTML = html; tip.hidden = false; moveTip(ev); }
+function moveTip(ev) { const w = tip.offsetWidth, h = tip.offsetHeight; let x = ev.clientX + 14, y = ev.clientY + 14; if (x + w > innerWidth - 8) x = ev.clientX - w - 14; if (y + h > innerHeight - 8) y = ev.clientY - h - 14; tip.style.left = x + "px"; tip.style.top = y + "px"; }
+document.addEventListener("mouseover", e => { const el = e.target.closest && e.target.closest("[data-tip]"); if (el) showTip(el.dataset.tip, e); });
+document.addEventListener("mousemove", e => { if (!tip.hidden) moveTip(e); });
+document.addEventListener("mouseout", e => { if (e.target.closest && e.target.closest("[data-tip]")) tip.hidden = true; });
+
+/* ===== Escena: pista vista por la cámara principal de TV ===== */
+const CAM = { yh: -6.7, K: 2374, c: 8, Kx: 379, cx: 320 };
+const proj = (x, d, h = 0) => { const s = 1 / (d + CAM.c); return [CAM.cx + x * CAM.Kx * s, CAM.yh + CAM.K * s - h * CAM.Kx * s]; };
+const P2 = a => `${a[0].toFixed(1)},${a[1].toFixed(1)}`;
+let COURT = null;
+function courtSVG() {
+  if (COURT) return COURT;
+  const poly = pts => pts.map(P2).join(" ");
+  let g = `<rect width="640" height="360" fill="#244f3a"/>
+  <rect width="640" height="44" fill="#0e1720"/><rect y="44" width="640" height="10" fill="#15324a"/><rect y="34" width="640" height="2" fill="#2a4d6b"/>`;
+  g += `<polygon points="${poly([proj(-9, -6), proj(9, -6), proj(9, 29), proj(-9, 29)])}" fill="#2a5a3e"/>`;
+  g += `<polygon points="${poly([proj(-5.485, 0), proj(5.485, 0), proj(5.485, 23.77), proj(-5.485, 23.77)])}" fill="#2a5e95"/>`;
+  const L = (x1, d1, x2, d2, w) => { const a = proj(x1, d1), b = proj(x2, d2); return `<line x1="${a[0]}" y1="${a[1]}" x2="${b[0]}" y2="${b[1]}" stroke="#eef3f6" stroke-width="${w}"/>`; };
+  g += L(-5.485, 0, 5.485, 0, 2.2) + L(-5.485, 23.77, 5.485, 23.77, 1) + L(-5.485, 0, -5.485, 23.77, 1.3) + L(5.485, 0, 5.485, 23.77, 1.3) + L(-4.115, 0, -4.115, 23.77, 1.3) + L(4.115, 0, 4.115, 23.77, 1.3);
+  g += L(-4.115, 5.485, 4.115, 5.485, 1.4) + L(-4.115, 18.285, 4.115, 18.285, 1) + L(0, 5.485, 0, 18.285, 1.1) + L(0, 0, 0, .25, 2) + L(0, 23.52, 0, 23.77, 1);
+  const n1 = proj(-6.4, 11.885), n2 = proj(6.4, 11.885), t1 = proj(-6.4, 11.885, 1.07), t2 = proj(6.4, 11.885, 1.07), tm = proj(0, 11.885, .914);
+  g += `<polygon points="${P2(n1)} ${P2(n2)} ${P2(t2)} ${P2(tm)} ${P2(t1)}" fill="#0b1118" fill-opacity=".55"/><polyline points="${P2(t1)} ${P2(tm)} ${P2(t2)}" fill="none" stroke="#f2f5f7" stroke-width="1.6"/>`;
+  g += `<line x1="${n1[0]}" y1="${n1[1]}" x2="${t1[0]}" y2="${t1[1]}" stroke="#c9d1d8" stroke-width="2"/><line x1="${n2[0]}" y1="${n2[1]}" x2="${t2[0]}" y2="${t2[1]}" stroke="#c9d1d8" stroke-width="2"/>`;
+  return COURT = g;
+}
+
+/* ===== Pose ===== */
+const J = ["head", "lsh", "rsh", "lel", "rel", "lwr", "rwr", "lhip", "rhip", "lkn", "rkn", "lank", "rank", "tip"];
+const PZ = a => Object.fromEntries(J.map((j, i) => [j, [a[2 * i], a[2 * i + 1]]]));
+const KEY = [
+  PZ([100,40, 78,70, 122,70, 80,104, 120,104, 95,124, 105,124, 87,140, 113,140, 79,185, 121,185, 73,228, 127,228, 100,92]),
+  PZ([101,40, 84,67, 121,74, 98,96, 132,100, 116,106, 142,112, 88,140, 114,142, 80,186, 131,186, 74,228, 139,228, 152,92]),
+  PZ([99,42, 90,63, 117,80, 96,90, 140,93, 110,88, 156,100, 90,143, 116,147, 84,191, 137,193, 78,232, 146,232, 172,68]),
+  PZ([99,42, 88,65, 119,78, 85,96, 139,110, 79,110, 150,131, 86,146, 116,148, 82,191, 135,193, 78,232, 146,232, 166,152]),
+  PZ([100,40, 78,68, 124,70, 71,90, 141,88, 63,100, 147,77, 84,144, 115,144, 80,188, 131,190, 76,230, 144,230, 158,48]),
+  PZ([100,40, 77,70, 122,66, 67,92, 133,62, 70,110, 128,47, 84,143, 115,142, 80,187, 129,188, 76,229, 143,229, 121,20]),
+  PZ([99,41, 80,74, 118,62, 70,96, 106,52, 84,108, 83,46, 85,141, 115,139, 81,186, 126,186, 76,228, 138,222, 60,60]),
+  PZ([92,40, 70,70, 114,70, 72,104, 112,104, 87,124, 97,124, 79,140, 105,140, 71,185, 113,185, 65,228, 119,228, 92,92]),
+];
+const PHASES = [
+  { n: "Espera", long: "Espera / split step", t: -0.92, show: "base", ev: "Impacto del rival (audio)" },
+  { n: "Preparación", long: "Inicio de preparación", t: -0.66, show: "sh", ev: "Los hombros empiezan a girar" },
+  { n: "Armado", long: "Armado completo", t: -0.34, show: "xf", ev: "Máxima rotación de hombros" },
+  { n: "Aceleración", long: "Inicio de aceleración", t: -0.12, show: "knee", ev: "La cadera inicia el giro" },
+  { n: "Impacto", long: "Impacto", t: 0, show: "elbow", ev: "Sonido del golpe" },
+  { n: "Extensión", long: "Extensión", t: 0.06, show: "lat", ev: "≈60 ms tras el impacto" },
+  { n: "Terminación", long: "Terminación", t: 0.28, show: null, ev: "Muñeca en su punto más alto" },
+  { n: "Recuperación", long: "Recuperación", t: 0.62, show: null, ev: "Primer paso de vuelta" },
+];
+const T0 = -1.0, T1 = 0.7, FPS = 50, NF = Math.round((T1 - T0) * FPS) + 1;
+function keyPose(i, s) {
+  const p = JSON.parse(JSON.stringify(KEY[i]));
+  if (!s) return p;
+  const r = hashRand(s.id + "k" + i), w = s.m.base / 68;
+  for (const j of ["lank", "lkn"]) p[j][0] = 100 - (100 - p[j][0]) * w;
+  for (const j of ["rank", "rkn"]) p[j][0] = 100 + (p[j][0] - 100) * w;
+  if (i >= 2 && i <= 5) {
+    const f = s.stance === "cerrado" ? 1 : s.stance === "semiabierto" ? .5 : 0;
+    p.lank = [p.lank[0] + 16 * f, p.lank[1] - 20 * f]; p.lkn = [p.lkn[0] + 8 * f, p.lkn[1] - 10 * f];
+    const drop = (s.m.knee - 9.2) * 1.6;
+    for (const j of ["head", "lsh", "rsh", "lel", "rel", "lwr", "rwr", "lhip", "rhip", "tip"]) p[j][1] += drop;
+    if (i === 2) { const turn = (s.m.xf - 24.5) * .6; p.lsh[0] += turn; p.lsh[1] -= turn * .4; }
+  }
+  for (const j of J) { p[j][0] += (r() - .5) * 2.4; p[j][1] += (r() - .5) * 2.4; }
+  return p;
+}
+const POSES = new Map();
+function keyPoses(s) { const k = s ? s.id : "_"; if (!POSES.has(k)) POSES.set(k, KEY.map((_, i) => keyPose(i, s))); return POSES.get(k); }
+function poseAt(t, s) {
+  const K = keyPoses(s), ts = PHASES.map(p => p.t);
+  if (t <= ts[0]) return K[0]; if (t >= ts[7]) return K[7];
+  let i = 0; while (t > ts[i + 1]) i++;
+  const u = (t - ts[i]) / (ts[i + 1] - ts[i]), e = u * u * (3 - 2 * u), out = {};
+  for (const j of J) out[j] = [lerp(K[i][j][0], K[i + 1][j][0], e), lerp(K[i][j][1], K[i + 1][j][1], e)];
+  return out;
+}
+function placement(s) { const xm = s ? clamp(s.x * .5 + .4, -1.8, 2.6) : 1.0; const [fx, fy] = proj(xm, -1.2); return { fx, fy, sc: (1.84 * CAM.Kx / (-1.2 + CAM.c)) / 197 }; }
+function toScreen(p, pl) { const o = {}; for (const j of J) o[j] = [pl.fx + (p[j][0] - 100) * pl.sc, pl.fy + (p[j][1] - 228) * pl.sc]; return o; }
+
+function bodySVG(q, sc) {
+  const SK = "#c99b7f", TOP = "#e3e8ec", SKIRT = "#2b3644", SHOE = "#f4f6f8", HAIR = "#3a2a20", W = v => (v * sc).toFixed(2);
+  const seg = (a, b, w, c) => `<line x1="${q[a][0]}" y1="${q[a][1]}" x2="${q[b][0]}" y2="${q[b][1]}" stroke="${c}" stroke-width="${W(w)}" stroke-linecap="round"/>`;
+  const mid = (a, b, t) => [lerp(q[a][0], q[b][0], t), lerp(q[a][1], q[b][1], t)];
+  let g = `<ellipse cx="${(q.lank[0] + q.rank[0]) / 2}" cy="${Math.max(q.lank[1], q.rank[1]) + 2 * sc}" rx="${W(40)}" ry="${W(7)}" fill="#000" fill-opacity=".28"/>`;
+  g += seg("lhip", "lkn", 13, SK) + seg("lkn", "lank", 10, SK) + seg("rhip", "rkn", 13, SK) + seg("rkn", "rank", 10, SK);
+  g += `<ellipse cx="${q.lank[0]}" cy="${q.lank[1] + 3 * sc}" rx="${W(8)}" ry="${W(5)}" fill="${SHOE}"/><ellipse cx="${q.rank[0]}" cy="${q.rank[1] + 3 * sc}" rx="${W(8)}" ry="${W(5)}" fill="${SHOE}"/>`;
+  const lk = mid("lhip", "lkn", .38), rk = mid("rhip", "rkn", .38);
+  g += `<polygon points="${P2([q.lhip[0] - 5 * sc, q.lhip[1] - 4 * sc])} ${P2([q.rhip[0] + 5 * sc, q.rhip[1] - 4 * sc])} ${P2([rk[0] + 8 * sc, rk[1]])} ${P2([lk[0] - 8 * sc, lk[1]])}" fill="${SKIRT}"/>`;
+  g += `<polygon points="${P2([q.lsh[0] - 3 * sc, q.lsh[1]])} ${P2([q.rsh[0] + 3 * sc, q.rsh[1]])} ${P2([q.rhip[0] + 4 * sc, q.rhip[1]])} ${P2([q.lhip[0] - 4 * sc, q.lhip[1]])}" fill="${TOP}" stroke="${TOP}" stroke-width="${W(8)}" stroke-linejoin="round"/>`;
+  g += seg("lsh", "lel", 8.5, SK) + seg("lel", "lwr", 7, SK);
+  const nk = [(q.lsh[0] + q.rsh[0]) / 2, (q.lsh[1] + q.rsh[1]) / 2];
+  g += `<line x1="${nk[0]}" y1="${nk[1]}" x2="${q.head[0]}" y2="${q.head[1] + 8 * sc}" stroke="${SK}" stroke-width="${W(8)}" stroke-linecap="round"/>`;
+  g += `<circle cx="${q.head[0]}" cy="${q.head[1]}" r="${W(10)}" fill="${HAIR}"/><path d="M${q.head[0]} ${q.head[1] + 4 * sc} q ${3 * sc} ${10 * sc} ${-1 * sc} ${18 * sc}" stroke="${HAIR}" stroke-width="${W(6)}" fill="none" stroke-linecap="round"/>`;
+  g += seg("rsh", "rel", 8.5, SK) + seg("rel", "rwr", 7, SK);
+  const ang = Math.atan2(q.tip[1] - q.rwr[1], q.tip[0] - q.rwr[0]), hx = q.tip[0] - Math.cos(ang) * 11 * sc, hy = q.tip[1] - Math.sin(ang) * 11 * sc;
+  g += `<line x1="${q.rwr[0]}" y1="${q.rwr[1]}" x2="${hx}" y2="${hy}" stroke="#15181c" stroke-width="${W(3.4)}" stroke-linecap="round"/>`;
+  g += `<ellipse cx="${q.tip[0]}" cy="${q.tip[1]}" rx="${W(13)}" ry="${W(9)}" transform="rotate(${(ang * 180 / Math.PI).toFixed(1)} ${q.tip[0]} ${q.tip[1]})" fill="#ffffff" fill-opacity=".14" stroke="#15181c" stroke-width="${W(3)}"/>`;
+  return g;
+}
+const SKB = [["lsh", "rsh", "c"], ["lhip", "rhip", "c"], ["lsh", "lhip", "l"], ["rsh", "rhip", "r"], ["lsh", "lel", "l"], ["lel", "lwr", "l"], ["rsh", "rel", "r"], ["rel", "rwr", "r"], ["lhip", "lkn", "l"], ["lkn", "lank", "l"], ["rhip", "rkn", "r"], ["rkn", "rank", "r"]];
+function skelSVG(q, w) {
+  const col = { l: "var(--sk-l)", r: "var(--sk-r)", c: "var(--sk-c)" };
+  let g = SKB.map(([a, b, c]) => `<line x1="${q[a][0]}" y1="${q[a][1]}" x2="${q[b][0]}" y2="${q[b][1]}" stroke="${col[c]}" stroke-width="${w}" stroke-linecap="round"/>`).join("");
+  const nk = [(q.lsh[0] + q.rsh[0]) / 2, (q.lsh[1] + q.rsh[1]) / 2];
+  g += `<line x1="${nk[0]}" y1="${nk[1]}" x2="${q.head[0]}" y2="${q.head[1]}" stroke="var(--sk-c)" stroke-width="${w}"/>`;
+  for (const j of J) if (j !== "tip") g += `<circle cx="${q[j][0]}" cy="${q[j][1]}" r="${w * 1.25}" fill="#0c0f13" stroke="${j[0] === "l" ? col.l : j[0] === "r" ? col.r : col.c}" stroke-width="${w * .8}"/>`;
+  return g;
+}
+let CHIPK = 1;
+function chipSVG(x, y, txt, edge) {
+  const k = CHIPK, w = (txt.length * 4.3 + 8) * k;
+  return `<g><rect x="${x}" y="${y - 8 * k}" width="${w}" height="${11 * k}" rx="${2 * k}" fill="#0a0d10" fill-opacity=".86" stroke="${edge}" stroke-width="${.5 * k}"/><text x="${x + 4 * k}" y="${y}" fill="#f1f4f6" font-size="${7 * k}" font-family="JetBrains Mono, monospace">${txt}</text></g>`;
+}
+function angleSVG(q, key, s, sc) {
+  const v = s ? s.m : Object.fromEntries(METRICS.map(m => [m.k, DIST[m.k].p50])), Y = "#d4f03a", C = "#5fd3e6";
+  if (key === "base") { const y = Math.max(q.lank[1], q.rank[1]) + 9 * sc; return `<path d="M${q.lank[0]} ${y - 3} V${y} H${q.rank[0]} V${y - 3}" stroke="${Y}" fill="none" stroke-width=".9"/>` + chipSVG(q.rank[0] + 4, y + 3, `BASE ${fmt(v.base)}%`, Y); }
+  if (key === "sh" || key === "xf") {
+    const ext = (a, b, k) => [lerp(q[a][0], q[b][0], -k), lerp(q[a][1], q[b][1], -k), lerp(q[a][0], q[b][0], 1 + k), lerp(q[a][1], q[b][1], 1 + k)];
+    const s1 = ext("lsh", "rsh", .35), h1 = ext("lhip", "rhip", .35);
+    let g = `<line x1="${s1[0]}" y1="${s1[1]}" x2="${s1[2]}" y2="${s1[3]}" stroke="${Y}" stroke-width="1" stroke-dasharray="3 2"/>`;
+    if (key === "xf") g += `<line x1="${h1[0]}" y1="${h1[1]}" x2="${h1[2]}" y2="${h1[3]}" stroke="${C}" stroke-width="1" stroke-dasharray="3 2"/>`;
+    return g + chipSVG(s1[2] + 3, s1[3] - 2, key === "xf" ? `X-FACTOR ${fmt(v.xf, 1)}°` : `HOMBROS ${fmt(v.sh)}°`, Y);
+  }
+  if (key === "knee") return `<line x1="${q.rhip[0] + 18 * sc}" y1="${q.rhip[1] - 6 * sc}" x2="${q.rhip[0] + 18 * sc}" y2="${q.rhip[1]}" stroke="${C}" stroke-width="1"/>` + chipSVG(q.rhip[0] + 22 * sc, q.rhip[1], `CADERA −${fmt(v.knee, 1)}%`, C);
+  if (key === "elbow") {
+    const a1 = Math.atan2(q.rsh[1] - q.rel[1], q.rsh[0] - q.rel[0]), a2 = Math.atan2(q.rwr[1] - q.rel[1], q.rwr[0] - q.rel[0]), r = 9.8 * sc;
+    const p1 = [q.rel[0] + Math.cos(a1) * r, q.rel[1] + Math.sin(a1) * r], p2 = [q.rel[0] + Math.cos(a2) * r, q.rel[1] + Math.sin(a2) * r];
+    return `<path d="M${P2(p1)} A${r} ${r} 0 0 ${((a2 - a1 + 2 * Math.PI) % (2 * Math.PI)) < Math.PI ? 1 : 0} ${P2(p2)}" fill="none" stroke="${Y}" stroke-width="1.1"/>` + chipSVG(q.rel[0] + 8, q.rel[1] + 10, `CODO ${fmt(v.elbow)}°`, Y);
+  }
+  if (key === "lat") { const cx = (q.lhip[0] + q.rhip[0]) / 2; return `<line x1="${cx}" y1="${q.rwr[1]}" x2="${q.rwr[0]}" y2="${q.rwr[1]}" stroke="${Y}" stroke-width="1" stroke-dasharray="2 2"/><line x1="${cx}" y1="${q.rwr[1] - 3}" x2="${cx}" y2="${q.rwr[1] + 3}" stroke="${Y}" stroke-width="1"/>` + chipSVG(q.rwr[0] + 6, q.rwr[1] - 4, `LATERAL ${fmt(v.lat, 1)}%`, Y); }
+  return "";
+}
+let FAR = null;
+function farPlayer() {
+  if (FAR) return FAR;
+  const p = KEY[0], [fx, fy] = proj(-1.6, 25), sc = (1.75 * CAM.Kx / (25 + CAM.c)) / 197, q = {};
+  for (const j of J) q[j] = [fx - (p[j][0] - 100) * sc, fy + (p[j][1] - 228) * sc];
+  return FAR = bodySVG(q, sc);
+}
+function racketKP(q, sc) {
+  const a = Math.atan2(q.tip[1] - q.rwr[1], q.tip[0] - q.rwr[0]), c = Math.cos(a), sn = Math.sin(a), at = (d, o = 0) => [q.rwr[0] + c * d * sc - sn * o * sc, q.rwr[1] + sn * d * sc + c * o * sc];
+  const L = Math.hypot(q.tip[0] - q.rwr[0], q.tip[1] - q.rwr[1]) / sc;
+  return { butt: at(-6), throat: at(L - 24), tip: at(L + 13), left: at(L - 3, -9), right: at(L - 3, 9) };
+}
+function racketLayer(q, sc, t, s, k) {
+  const p = racketKP(q, sc), M = "#ff5fd2", blur = Math.abs(t) < .045;
+  let g = `<g opacity="${blur ? .55 : 1}"><line x1="${p.butt[0]}" y1="${p.butt[1]}" x2="${p.tip[0]}" y2="${p.tip[1]}" stroke="${M}" stroke-width="${.8 * k}" stroke-dasharray="${blur ? 2 * k + " " + 2 * k : "none"}"/><line x1="${p.left[0]}" y1="${p.left[1]}" x2="${p.right[0]}" y2="${p.right[1]}" stroke="${M}" stroke-width="${.8 * k}"/>`;
+  for (const n of ["butt", "throat", "tip", "left", "right"]) g += `<circle cx="${p[n][0]}" cy="${p[n][1]}" r="${1.3 * k}" fill="#0c0f13" stroke="${M}" stroke-width="${.7 * k}"/>`;
+  g += `</g>`;
+  let txt;
+  if (blur) txt = "RAQUETA: DESENFOQUE · BAJA CONFIANZA";
+  else { const rs = racketSeries(s || STROKES[0]), f = Math.round((t - T0) * FPS), face = rs.f[f], hh = rs.h[f]; txt = `CARA ${fmt(Math.abs(face))}° ${face >= 2 ? "CERRADA" : face <= -2 ? "ABIERTA" : "NEUTRA"} · ${sign(hh)}${fmt(Math.abs(hh))} cm`; }
+  const w = (txt.length * 4.3 + 8) * CHIPK, left = p.tip[0] > (q.lhip[0] + q.rhip[0]) / 2 + 10 * sc;
+  g += chipSVG(left ? p.tip[0] - w - 6 * CHIPK : p.tip[0] + 6 * CHIPK, p.tip[1] + 12 * CHIPK, txt, M);
+  return g;
+}
+function frameSVG({ s, t, view = "crop", skel = true, ang = true, trail = true, hud = true, rk = false }) {
+  const pl = placement(s), q = toScreen(poseAt(t, s), pl);
+  const cw = 205, ch = cw * 9 / 16, vb = view === "crop" ? [pl.fx - cw * .52, pl.fy - ch * .93, cw, ch] : [0, 0, 640, 360];
+  let g = courtSVG() + farPlayer() + bodySVG(q, pl.sc);
+  if (trail) { const pts = []; for (let tt = T0; tt <= t + 1e-6; tt += 1 / FPS) pts.push(toScreen(poseAt(tt, s), pl).rwr); g += `<polyline points="${pts.map(P2).join(" ")}" fill="none" stroke="#d4f03a" stroke-width="${view === "crop" ? 1.1 : 1.4}" stroke-opacity=".85" stroke-linejoin="round"/>`; }
+  if (skel) g += skelSVG(q, view === "crop" ? .9 : 1.3);
+  const ph = PHASES.reduce((b, p, i) => Math.abs(p.t - t) < Math.abs(PHASES[b].t - t) ? i : b, 0);
+  CHIPK = view === "crop" ? .5 : 1;
+  if (ang && Math.abs(PHASES[ph].t - t) < .021 && PHASES[ph].show) g += angleSVG(q, PHASES[ph].show, s, pl.sc);
+  if (rk) g += racketLayer(q, pl.sc, t, s, view === "crop" ? 1 : 1.6);
+  const xs = J.map(j => q[j][0]), ys = J.map(j => q[j][1]), bx = [Math.min(...xs) - 4, Math.min(...ys) - 12, Math.max(...xs) + 4, Math.max(...ys) + 5];
+  g += `<rect x="${bx[0]}" y="${bx[1]}" width="${bx[2] - bx[0]}" height="${bx[3] - bx[1]}" fill="none" stroke="#d4f03a" stroke-width=".6" stroke-dasharray="3 2"/>`;
+  g += `<text x="${bx[0]}" y="${bx[1] - 2}" fill="#d4f03a" font-size="${view === "crop" ? 5 : 7}" font-family="JetBrains Mono, monospace">RYBAKINA ${s ? fmt(s.quality, 2) : "0,93"}</text>`;
+  let hudG = "";
+  if (hud) {
+    const fr = Math.round((t - T0) * FPS) + 1;
+    hudG = `<svg viewBox="0 0 640 360" style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none">
+      <rect x="12" y="12" width="196" height="40" rx="3" fill="#0a0d10" fill-opacity=".8"/>
+      <text x="22" y="28" fill="#f1f4f6" font-size="11" font-family="JetBrains Mono, monospace" font-weight="600">${s ? MATCHES[s.match].id + " · SET " + s.set : "MEDIANA"}</text>
+      <text x="22" y="43" fill="#aab4be" font-size="10" font-family="JetBrains Mono, monospace">${s ? "JUEGO " + s.game + " · " + s.score + (s.pressure ? " · PRESIÓN" : "") : "412 derechas"}</text>
+      <rect x="512" y="12" width="116" height="40" rx="3" fill="#0a0d10" fill-opacity=".8"/>
+      <text x="620" y="28" text-anchor="end" fill="#f1f4f6" font-size="11" font-family="JetBrains Mono, monospace">${t >= 0 ? "+" : "−"}${fmt(Math.abs(t), 2)} s</text>
+      <text x="620" y="43" text-anchor="end" fill="#aab4be" font-size="10" font-family="JetBrains Mono, monospace">FOT ${String(fr).padStart(2, "0")}/${NF} · 50p</text>
+      <rect x="12" y="320" width="${PHASES[ph].long.length * 8.6 + 24}" height="26" rx="3" fill="#0a0d10" fill-opacity=".8"/>
+      <text x="22" y="337" fill="#d4f03a" font-size="12" font-family="Archivo, sans-serif" font-weight="700" letter-spacing=".05em">${PHASES[ph].long.toUpperCase()}</text></svg>`;
+  }
+  return `<svg viewBox="${vb.map(v => v.toFixed(1)).join(" ")}" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Fotograma">${g}</svg>${hudG}`;
+}
+
+/* ===== Navegación ===== */
+const TABS = ["panel", "golpe", "explorador", "comparativas", "pista"];
+function showTab(name) {
+  if (!TABS.includes(name)) name = "panel";
+  TABS.forEach(t => { document.getElementById("tab-" + t).hidden = t !== name; });
+  document.querySelectorAll(".nav button").forEach(b => { if (b.dataset.tab === name) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+  try { history.replaceState(null, "", "#" + name); } catch (e) { }
+  if (name !== "golpe") stopPlay();
+  tip.hidden = true;
+  window.scrollTo({ top: 0 });
+}
+document.querySelectorAll(".nav button").forEach(b => b.addEventListener("click", () => showTab(b.dataset.tab)));
+document.getElementById("scope").innerHTML = `<span class="tag"><b>${MATCHES.length}</b> partidos</span><span class="tag"><b>${STROKES.length}</b> golpes · lado cercano</span><span class="tag"><b>${REVIEW}</b> por revisar</span><span class="tag">Diestra · revés a 2 manos</span><span class="tag sample" data-tip="Maqueta: todos los datos, golpes y figuras son inventados para enseñar el diseño.">DATOS DE EJEMPLO</span>`;
+
+/* ===== PANEL ===== */
+const winN = STROKES.filter(s => s.outcome === "ganador").length, errN = STROKES.filter(s => s.outcome === "error").length;
+const stShare = ["abierto", "semiabierto", "cerrado"].map(k => [k, pct(STROKES, s => s.stance === k)]);
+document.getElementById("kpis").innerHTML = [
+  { l: "Derechas analizadas", v: STROKES.length, s: MATCHES.map(m => `${m.id} ${m.n}`).join(" · "), extra: `<div class="bar1">${MATCHES.map((m, i) => `<span style="flex:${m.n};background:var(--ink-3);opacity:${.45 + i * .15}"></span>`).join("")}</div>` },
+  { l: "Revisión", v: `${fmt(100 * (1 - REVIEW / STROKES.length))}<small>%</small>`, s: `${REVIEW} golpes dudosos pendientes`, extra: `<div class="bar1"><span style="flex:${STROKES.length - REVIEW};background:var(--good)"></span><span style="flex:${REVIEW};background:var(--raise)"></span></div>` },
+  { l: "Tipo de apoyo", v: `${fmt(stShare[0][1])}<small>% abierto</small>`, s: stShare.map(([k, p]) => `${k} ${fmt(p)} %`).join(" · "), extra: `<div class="bar1">${stShare.map(([k, p]) => `<span style="flex:${p};background:${STANCE[k]}"></span>`).join("")}</div>` },
+  { l: "Ganadores / errores", v: `${winN}<small>/ ${errN}</small>`, s: `ratio ${fmt(winN / errN, 2)} · ${fmt(100 * (winN + errN) / STROKES.length)} % acaban el punto`, extra: `<div class="bar1"><span style="flex:${winN};background:var(--good)"></span><span style="flex:${errN};background:var(--crit)"></span><span style="flex:${STROKES.length - winN - errN};background:var(--raise)"></span></div>` },
+].map(k => `<div class="panel kpi"><h3>${k.l}</h3><div class="v">${k.v}</div>${k.extra}<div class="s">${k.s}</div></div>`).join("");
+
+function effect(k, A, B) {
+  const a = A.map(s => s.m[k]), b = B.map(s => s.m[k]), d = mean(b) - mean(a), se = Math.sqrt(sd(a) ** 2 / (a.length || 1) + sd(b) ** 2 / (b.length || 1));
+  return { d, lo: d - 1.96 * se, hi: d + 1.96 * se, na: a.length, nb: b.length, ma: mean(a), mb: mean(b) };
+}
+const FIND = [
+  { k: "xf", t: "X-factor en el set 3", c: "Set 3 frente a set 1 · bolas neutras", A: s => s.sit.neutra && s.set === 1, B: s => s.sit.neutra && s.set === 3, go: { pair: "fatiga", sit: "neutra" } },
+  { k: "sh", t: "Rotación de hombros en el set 3", c: "Set 3 frente a set 1 · bolas neutras", A: s => s.sit.neutra && s.set === 1, B: s => s.sit.neutra && s.set === 3, go: { pair: "fatiga", sit: "neutra" } },
+  { k: "knee", t: "Descenso de cadera en el set 3", c: "Set 3 frente a set 1 · bolas neutras", A: s => s.sit.neutra && s.set === 1, B: s => s.sit.neutra && s.set === 3, go: { pair: "fatiga", sit: "neutra" } },
+  { k: "rDrop", t: "Caída de la raqueta en el set 3", c: "Set 3 frente a set 1 · bolas neutras", A: s => s.sit.neutra && s.set === 1, B: s => s.sit.neutra && s.set === 3, go: { pair: "fatiga", sit: "neutra", g: "racket" } },
+  { k: "split", t: "Split step en el set 3", c: "Set 3 frente a set 1 · bolas neutras", A: s => s.sit.neutra && s.set === 1, B: s => s.sit.neutra && s.set === 3, go: { pair: "fatiga", sit: "neutra", g: "feet" } },
+  { k: "rFaceImp", t: "Cara en el impacto en los errores", c: "Errores frente a ganadores · todas las bolas", A: s => s.outcome === "ganador", B: s => s.outcome === "error", go: { pair: "resultado", sit: "", g: "racket" } },
+  { k: "lat", t: "Impacto lateral en ganadores", c: "Ganadores frente a errores · todas las bolas", A: s => s.outcome === "error", B: s => s.outcome === "ganador", go: { pair: "resultado", sit: "" } },
+  { k: "elbow", t: "Codo bajo presión", c: "Bajo presión frente a sin presión · neutras", A: s => s.sit.neutra && !s.pressure, B: s => s.sit.neutra && s.pressure, go: { pair: "presion", sit: "neutra" } },
+  { k: "base", t: "Base bajo presión", c: "Bajo presión frente a sin presión · neutras", A: s => s.sit.neutra && !s.pressure, B: s => s.sit.neutra && s.pressure, go: { pair: "presion", sit: "neutra" } },
+];
+function verdict(e, noise) {
+  const z = Math.abs(e.d) / noise, sure = Math.sign(e.lo) === Math.sign(e.hi);
+  if (z > 1 && sure) return { cls: "good", icon: "✓", txt: "Diferencia real" };
+  if (z > 1 || (sure && z > .6)) return { cls: "warn", icon: "!", txt: "Probable" };
+  return { cls: "crit", icon: "–", txt: "Dentro del ruido" };
+}
+function forestSVG(e, noise) {
+  const W = 300, H = 26, R = 3.2, X = v => W / 2 + clamp(v / noise, -R, R) * (W / 2 - 6) / R;
+  let g = `<rect x="${X(-noise)}" y="3" width="${X(noise) - X(-noise)}" height="${H - 6}" fill="var(--raise)" rx="2"/>`;
+  for (const v of [-3, -2, -1, 0, 1, 2, 3]) g += `<line x1="${X(v * noise)}" x2="${X(v * noise)}" y1="${v ? 9 : 2}" y2="${v ? H - 9 : H - 2}" stroke="${v ? "var(--line-2)" : "var(--ink-3)"}"/>`;
+  g += `<line x1="${X(e.lo)}" x2="${X(e.hi)}" y1="${H / 2}" y2="${H / 2}" stroke="var(--ink)" stroke-width="2"/><circle cx="${X(e.d)}" cy="${H / 2}" r="5" fill="var(--accent)" stroke="var(--panel)" stroke-width="2"/>`;
+  return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Efecto">${g}</svg>`;
+}
+document.getElementById("forest").innerHTML = `<div class="frow head"><span>Hallazgo</span><span style="display:flex;justify-content:space-between"><span>−3</span><span>ruido ±1</span><span>+3</span></span><span>Veredicto</span><span></span></div>` +
+  FIND.map((f, i) => {
+    const e = effect(f.k, STROKES.filter(f.A), STROKES.filter(f.B)), v = verdict(e, MK[f.k].noise), m = MK[f.k];
+    const tipTxt = `<b>${m.name}</b><div class='mono'>${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)} (${sign(e.d)}${fmt(Math.abs(e.d), m.dec)})<br>IC 95 %: ${fmt(e.lo, 1)} … ${fmt(e.hi, 1)}<br>ruido ±${fmt(m.noise, 1)} · n=${e.na}/${e.nb}</div>`;
+    return `<div class="frow"><div class="t"><b>${f.t}: ${sign(e.d)}${fmt(Math.abs(e.d), m.dec)}${unitStr(m)}</b><span>${f.c} · <span class="mono">${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}</span> ${relBars(m.rel)}</span></div><div data-tip="${tipTxt}">${forestSVG(e, m.noise)}</div><span class="st ${v.cls}"><i>${v.icon}</i>${v.txt}</span><button class="btn" data-go="${i}">Ver</button></div>`;
+  }).join("");
+document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { const g = FIND[+b.dataset.go].go; document.getElementById("c-pair").value = g.pair; document.getElementById("c-sit").value = g.sit; document.getElementById("c-group").value = g.g || MK[FIND[+b.dataset.go].k].g; renderCompare(); showTab("comparativas"); }));
+
+let evoK = "xf";
+const EVO_LABEL = { xf: "X-factor", sh: "Hombros", knee: "Cadera", base: "Base" };
+document.getElementById("evo-metric").innerHTML = Object.keys(EVO_LABEL).map(k => `<button data-v="${k}" aria-pressed="${k === evoK}">${EVO_LABEL[k]}</button>`).join("");
+document.querySelectorAll("#evo-metric button").forEach(b => b.addEventListener("click", () => { evoK = b.dataset.v; document.querySelectorAll("#evo-metric button").forEach(x => x.setAttribute("aria-pressed", x === b)); renderEvo(); }));
+function renderEvo() {
+  const k = evoK, m = MK[k], a = STROKES.filter(s => s.sit.neutra);
+  const W = 720, H = 240, L = 44, R = 16, T = 14, B = 30, N = 12, pts = [];
+  for (let i = 0; i < N; i++) { const lo = i / N, hi = (i + 1) / N, b = a.filter(s => s.frac >= lo && s.frac < hi).map(s => s.m[k]); if (b.length > 3) { const mu = mean(b), se = sd(b) / Math.sqrt(b.length); pts.push({ x: (lo + hi) / 2, mu, lo: mu - 1.96 * se, hi: mu + 1.96 * se, n: b.length }); } }
+  const ref = mean(a.filter(s => s.frac < .3).map(s => s.m[k]));
+  const ylo = Math.min(...pts.map(p => p.lo), ref - m.noise) - .5, yhi = Math.max(...pts.map(p => p.hi), ref + m.noise) + .5;
+  const X = v => L + v * (W - L - R), Y = v => T + (1 - (v - ylo) / (yhi - ylo)) * (H - T - B);
+  let g = `<rect x="${L}" y="${Y(ref + m.noise)}" width="${W - L - R}" height="${Y(ref - m.noise) - Y(ref + m.noise)}" fill="var(--raise)" opacity=".7"/>`;
+  niceTicks(ylo, yhi, 4).forEach(t => { g += `<line x1="${L}" x2="${W - R}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--line)"/><text x="${L - 8}" y="${Y(t) + 4}" text-anchor="end" font-size="11" fill="var(--ink-3)" font-family="JetBrains Mono, monospace">${fmt(t, t % 1 ? 1 : 0)}</text>`; });
+  g += `<text x="${W - R - 4}" y="${Y(ref + m.noise) - 5}" text-anchor="end" font-size="10.5" fill="var(--ink-3)" font-family="JetBrains Mono, monospace">ruido ±${fmt(m.noise, 1)} sobre el primer 30 %</text>`;
+  [0, .25, .5, .75, 1].forEach(v => { g += `<text x="${X(v)}" y="${H - 8}" text-anchor="${v === 0 ? "start" : v === 1 ? "end" : "middle"}" font-size="11" fill="var(--ink-3)" font-family="JetBrains Mono, monospace">${fmt(v * 100)} %</text>`; });
+  g += `<path d="M${pts.map(p => `${X(p.x)},${Y(p.hi)}`).join(" L")} L${[...pts].reverse().map(p => `${X(p.x)},${Y(p.lo)}`).join(" L")} Z" fill="var(--s1)" fill-opacity=".18"/>`;
+  g += `<polyline points="${pts.map(p => `${X(p.x)},${Y(p.mu)}`).join(" ")}" fill="none" stroke="var(--s1)" stroke-width="2" stroke-linejoin="round"/>`;
+  const lp = pts[pts.length - 1]; g += `<circle cx="${X(lp.x)}" cy="${Y(lp.mu)}" r="4" fill="var(--s1)" stroke="var(--panel)" stroke-width="2"/><text x="${X(lp.x) - 8}" y="${Y(lp.mu) - 9}" text-anchor="end" font-size="11" fill="var(--ink)" font-family="JetBrains Mono, monospace">${fmtM(k, lp.mu)}</text>`;
+  g += pts.map(p => `<rect x="${X(p.x) - (W - L - R) / N / 2}" y="${T}" width="${(W - L - R) / N}" height="${H - T - B}" fill="transparent" data-tip="<b>${fmt(p.x * 100)} % del partido</b><div class='mono'>${m.name}: ${fmtM(k, p.mu)}<br>IC 95 %: ${fmt(p.lo, 1)} … ${fmt(p.hi, 1)}<br>n=${p.n} golpes</div>"/>`).join("");
+  document.getElementById("evo").innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${m.name} a lo largo del partido">${g}</svg><div class="legend" style="margin-top:4px"><span><i style="background:var(--s1)"></i>${m.name}: media por tramo (bolas neutras, 4 partidos)</span><span><i style="background:var(--s1);opacity:.35;height:8px"></i>IC 95 %</span><span>Eje X: progreso del partido</span></div>`;
+}
+renderEvo();
+function propRow(label, a, b, la, lb) {
+  return `<div style="display:grid;gap:6px"><b style="font-weight:600;font-size:13px">${label}</b>` + [[la, a], [lb, b]].map(([l, v]) => `<div style="display:grid;grid-template-columns:96px 1fr 44px;gap:8px;align-items:center;font-size:12px"><span class="dim">${l}</span><div style="height:8px;background:var(--raise);border-radius:4px;overflow:hidden"><div style="width:${v}%;height:100%;background:var(--s1);border-radius:0 4px 4px 0"></div></div><span class="mono" style="text-align:right">${fmt(v)} %</span></div>`).join("") + `</div>`;
+}
+const nw = STROKES.filter(s => !s.wide);
+document.getElementById("props").innerHTML =
+  propRow("Apoyo abierto", pct(nw.filter(s => !s.pressure), s => s.stance === "abierto"), pct(nw.filter(s => s.pressure), s => s.stance === "abierto"), "Sin presión", "Bajo presión") +
+  propRow("Cadena cinética en orden", pct(STROKES.filter(s => s.set === 1), s => s.chainOK), pct(STROKES.filter(s => s.set === 3), s => s.chainOK), "Set 1", "Set 3") +
+  propRow("Golpea detrás de la línea", pct(STROKES.filter(s => s.set === 1), s => s.y > 11.885), pct(STROKES.filter(s => s.set === 3), s => s.y > 11.885), "Set 1", "Set 3");
+function spark(vals, lo, hi) { const W = 90, H = 22, X = i => 4 + i * (W - 8) / Math.max(1, vals.length - 1), Y = v => H - 4 - (v - lo) / (hi - lo) * (H - 8); return `<svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" style="vertical-align:middle"><polyline points="${vals.map((v, i) => `${X(i)},${Y(v)}`).join(" ")}" fill="none" stroke="var(--s1)" stroke-width="2"/>${vals.map((v, i) => `<circle cx="${X(i)}" cy="${Y(v)}" r="2.5" fill="var(--s1)"/>`).join("")}</svg>`; }
+document.getElementById("matches").innerHTML = `<thead><tr><th>Partido</th><th>Fecha</th><th>Superficie</th><th>Ronda</th><th>Resultado</th><th class="r">Derechas</th><th class="r">Gan. / err.</th><th class="r">X-factor medio</th><th>X-factor por set</th></tr></thead><tbody>` +
+  MATCHES.map((m, i) => { const a = STROKES.filter(s => s.match === i), bySet = [1, 2, 3].slice(0, m.sets).map(st => mean(a.filter(s => s.set === st).map(s => s.m.xf))); return `<tr data-m="${i}"><td><b>${m.id}</b> <span class="dim">vs ${m.rival}</span></td><td class="num">${m.date}</td><td>${m.surf}</td><td>${m.round}</td><td class="num">${m.res}</td><td class="r num">${a.length}</td><td class="r num">${a.filter(s => s.outcome === "ganador").length} / ${a.filter(s => s.outcome === "error").length}</td><td class="r num">${fmt(mean(a.map(s => s.m.xf)), 1)}°</td><td>${spark(bySet, 15, 28)} <span class="mono dim3" style="font-size:11px">${bySet.map(v => fmt(v, 1)).join(" · ")}</span></td></tr>`; }).join("") + "</tbody>";
+document.querySelectorAll("#matches tbody tr").forEach(r => r.addEventListener("click", () => { resetFilters(); document.getElementById("f-match").value = r.dataset.m; exPage = 0; renderTable(); showTab("explorador"); }));
+
+const REFS = [
+  { u: "https://www.youtube.com/watch?v=12VXBn6ExRI", t: "WTA Forehand Techniques and Biomechanics", d: "Análisis biomecánico · Andreeva, Pegula, Rybakina, Navarro" },
+  { u: "https://www.youtube.com/watch?v=YQDx7xiZCSE", t: "Rybakina's Effortless Forehand Power", d: "Análisis de la derecha" },
+  { u: "https://www.youtube.com/watch?v=W0uSDf3AaY8", t: "Elena Rybakina Forehand Backhand Serve SLOW MOTION", d: "Cámara lenta · entrenamiento" },
+  { u: "https://www.youtube.com/watch?v=6y5DoJ_OJ7U", t: "WTA 1000 Dubai 2021 · Rybakina forehand slow motion", d: "Cámara lenta · entrenamiento" },
+  { u: "https://www.youtube.com/shorts/x2xpZOnAa-w", t: "Rybakina vs Sinner forehand comparison", d: "Comparación en cámara lenta" },
+  { u: "https://www.youtube.com/watch?v=gXaDjchPVJg", t: "Elena Rybakina Shows How To Put Away A Forehand", d: "Golpe de definición" },
+];
+document.getElementById("refs").innerHTML = REFS.map(r => `<a class="ref" href="${r.u}" target="_blank" rel="noopener"><span class="pl"><svg viewBox="0 0 14 14" width="14" height="14" fill="currentColor"><path d="M3 2v10l9-5z"/></svg></span><span><b>${r.t}</b><span>${r.d} · youtube.com</span></span></a>`).join("");
+
+/* ===== ANÁLISIS DE GOLPE ===== */
+let cur = [...STROKES].sort((a, b) => (b.repr * .7 + b.quality * .3) - (a.repr * .7 + a.quality * .3))[0];
+let tNow = 0, view = "crop", layers = { skel: true, ang: true, trail: true, rk: true }, speed = .25, playing = false, raf = 0, lastTs = 0;
+const snap = t => Math.round(clamp(t, T0, T1) * FPS) / FPS;
+function kinSeries(s) {
+  const r = hashRand(s.id + "kin"), peaks = s.chainOK ? [-.115, -.075, -.04, -.012] : [-.1, -.035, -.07, -.01], widths = [.075, .06, .045, .03];
+  return ["Pelvis", "Tronco", "Brazo", "Mano"].map((n, i) => { const pk = peaks[i] + (r() - .5) * .01, out = []; for (let f = 0; f < NF; f++) { const t = T0 + f / FPS; out.push(Math.max(0, Math.exp(-((t - pk) ** 2) / (2 * widths[i] ** 2)) + (r() - .5) * .04)); } const mx = Math.max(...out); return { n, pk, v: out.map(v => v / mx) }; });
+}
+function angSeries(s) {
+  const r = hashRand(s.id + "ang"), el = [], xfv = [];
+  for (let f = 0; f < NF; f++) {
+    const t = T0 + f / FPS;
+    el.push(s.m.elbow - 4 - 38 * Math.exp(-((t + .25) ** 2) / (2 * .12 ** 2)) + 22 / (1 + Math.exp(-(t - .12) * 25)) + (r() - .5) * 2);
+    xfv.push(s.m.xf * Math.exp(-((t + .32) ** 2) / (2 * .16 ** 2)) - 6 * Math.exp(-((t - .1) ** 2) / (2 * .08 ** 2)) + (r() - .5) * 1.2);
+  }
+  return [{ n: "Codo", v: el, col: "var(--s5)" }, { n: "X-factor", v: xfv, col: "var(--s7)" }];
+}
+function racketSeries(s) {
+  const r = hashRand(s.id + "rk"), m = s.m, ts = PHASES.map(p => p.t);
+  const hk = [6, 26, m.rHead, -m.rDrop, 2, 14, 30 + m.rFinish, 8], fk = [0, 12, m.rFaceArm, 16, m.rFaceImp, 5, 38, 2];
+  const at = (k, t) => { if (t <= ts[0]) return k[0]; if (t >= ts[7]) return k[7]; let i = 0; while (t > ts[i + 1]) i++; const u = (t - ts[i]) / (ts[i + 1] - ts[i]), e = u * u * (3 - 2 * u); return lerp(k[i], k[i + 1], e); };
+  const h = [], f = [];
+  for (let i = 0; i < NF; i++) { const t = T0 + i / FPS, blur = Math.abs(t) < .045 ? 4 : 1; h.push(at(hk, t) + (r() - .5) * 2 * blur); f.push(at(fk, t) + (r() - .5) * 2.5 * blur); }
+  return { h, f, hk, fk };
+}
+function lineChart(el, series, { label, norm1 = false, peaks = false, legendEl, unit = "", H = 210, W = 520, blur = false, zero = false, yName = "" }) {
+  const L = 40, R = 14, T = 16, B = 26, X = t => L + (t - T0) / (T1 - T0) * (W - L - R);
+  const all = series.flatMap(s => s.v), ylo = norm1 ? 0 : Math.floor(Math.min(...all) / 10) * 10, yhi = norm1 ? 1.08 : Math.ceil(Math.max(...all) / 10) * 10;
+  const Y = v => T + (1 - (v - ylo) / (yhi - ylo)) * (H - T - B);
+  let g = "";
+  if (blur) g += `<defs><pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="6" stroke="var(--line-2)" stroke-width="2"/></pattern></defs><rect x="${X(-.045)}" y="${T}" width="${X(.045) - X(-.045)}" height="${H - T - B}" fill="url(#hatch)"/>`;
+  if (zero && ylo < 0) g += `<line x1="${L}" x2="${W - R}" y1="${Y(0)}" y2="${Y(0)}" stroke="var(--ink-3)"/>`;
+  if (yName) g += `<text x="${L}" y="${T - 5}" font-size="10.5" fill="var(--ink-2)" font-family="Archivo, sans-serif">${yName}</text>`;
+  (norm1 ? [0, .5, 1] : niceTicks(ylo, yhi, 4)).forEach(t => { g += `<line x1="${L}" x2="${W - R}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--line)"/><text x="${L - 6}" y="${Y(t) + 4}" text-anchor="end" font-size="10.5" fill="var(--ink-3)" font-family="JetBrains Mono, monospace">${norm1 ? fmt(t, 1) : fmt(t)}</text>`; });
+  [-1, -.5, 0, .5].forEach(t => { g += `<text x="${X(t)}" y="${H - 6}" text-anchor="middle" font-size="10.5" fill="var(--ink-3)" font-family="JetBrains Mono, monospace">${t === 0 ? "impacto" : (t > 0 ? "+" : "−") + fmt(Math.abs(t), 1) + " s"}</text>`; });
+  g += `<line x1="${X(0)}" x2="${X(0)}" y1="${T}" y2="${H - B}" stroke="var(--ink-3)" stroke-dasharray="3 3"/>`;
+  series.forEach(s => { g += `<polyline points="${s.v.map((v, f) => `${X(T0 + f / FPS).toFixed(1)},${Y(v).toFixed(1)}`).join(" ")}" fill="none" stroke="${s.col}" stroke-width="2" stroke-linejoin="round"/>`; });
+  if (peaks) { const ord = [...series].sort((a, b) => a.pk - b.pk); ord.forEach((s, i) => { const f = s.v.indexOf(Math.max(...s.v)), x = X(T0 + f / FPS); g += `<circle cx="${x}" cy="${Y(s.v[f])}" r="4.5" fill="${s.col}" stroke="var(--panel)" stroke-width="2"/><text x="${x}" y="${Y(s.v[f]) - 8 - (i % 2) * 10}" text-anchor="middle" font-size="10" font-weight="600" fill="var(--ink)" font-family="JetBrains Mono, monospace">${i + 1}</text>`; }); }
+  else series.forEach(s => { const lv = s.v[s.v.length - 1]; g += `<text x="${W - R - 2}" y="${Y(lv) - 6}" text-anchor="end" font-size="10.5" fill="var(--ink-2)" font-family="Archivo, sans-serif">${s.n}</text>`; });
+  g += `<line class="ph" x1="${X(tNow)}" x2="${X(tNow)}" y1="${T}" y2="${H - B}" stroke="var(--accent)" stroke-width="1.5"/><line class="hv" x1="0" x2="0" y1="${T}" y2="${H - B}" stroke="var(--ink-2)" visibility="hidden"/>`;
+  g += `<rect class="hit" x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" fill="transparent" style="cursor:crosshair"/>`;
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${label}">${g}</svg>`;
+  const svg = el.querySelector("svg"), hit = svg.querySelector(".hit"), hv = svg.querySelector(".hv");
+  const toT = ev => { const r = svg.getBoundingClientRect(), x = (ev.clientX - r.left) / r.width * W; return snap(T0 + (x - L) / (W - L - R) * (T1 - T0)); };
+  hit.addEventListener("mousemove", ev => { const t = toT(ev), f = Math.round((t - T0) * FPS); hv.setAttribute("x1", X(t)); hv.setAttribute("x2", X(t)); hv.setAttribute("visibility", "visible"); showTip(`<b class="mono">${t >= 0 ? "+" : "−"}${fmt(Math.abs(t), 2)} s</b><div class="mono">${series.map(s => `<span style="color:${s.col}">■</span> ${s.n}: ${norm1 ? fmt(s.v[f], 2) : fmt(s.v[f]) + unit}`).join("<br>")}</div>`, ev); });
+  hit.addEventListener("mouseleave", () => { hv.setAttribute("visibility", "hidden"); tip.hidden = true; });
+  hit.addEventListener("click", ev => { stopPlay(); setT(toT(ev)); });
+  if (legendEl) legendEl.innerHTML = series.map(s => `<span><i style="background:${s.col}"></i>${s.n}</span>`).join("");
+  el._X = X;
+}
+let gGroup = "body";
+function renderMetricsPanel() {
+  document.getElementById("g-metrics").innerHTML = METRICS.filter(m => m.g === gGroup).map(m => {
+    const d = DIST[m.k], v = cur.m[m.k], W = 300, X = x => 6 + (x - d.lo) / (d.hi - d.lo) * (W - 12), z = (v - d.p50) / m.noise;
+    const svg = `<svg viewBox="0 0 ${W} 18" preserveAspectRatio="none"><rect x="6" y="8" width="${W - 12}" height="2" fill="var(--raise)"/><rect x="${X(d.p10)}" y="5" width="${X(d.p90) - X(d.p10)}" height="8" rx="2" fill="var(--line-2)"/><line x1="${X(d.p50)}" x2="${X(d.p50)}" y1="2" y2="16" stroke="var(--ink-2)" stroke-width="2"/><circle cx="${X(v)}" cy="9" r="5" fill="var(--accent)" stroke="var(--panel)" stroke-width="2"/></svg>`;
+    return `<div class="mrow"><span class="n">${m.name} ${relBars(m.rel)}</span><span class="v">${fmtM(m.k, v)}<small>${sign(v - d.p50)}${fmt(Math.abs(v - d.p50), m.dec)}</small></span>${svg}<div class="meta"><span>${m.sub}</span><span class="mono">${Math.abs(z) <= 1 ? "en su rango" : (z > 0 ? "por encima" : "por debajo") + " · " + fmt(Math.abs(z), 1) + "× ruido"}</span></div></div>`;
+  }).join("");
+}
+function renderCtx() {
+  const s = cur, m = MATCHES[s.match];
+  document.getElementById("g-title").textContent = s.id;
+  const sit = s.sit.neutra ? "neutra" : [s.wide && "abierta", s.fast && "rápida", s.height !== "media" && s.height, s.short && "corta"].filter(Boolean).join(", ");
+  document.getElementById("g-ctx").innerHTML = [["Partido", `${m.id} vs ${m.rival}`], ["Vídeo", clock(s.vt)], ["Set · juego", `${s.set} · ${s.game}`], ["Marcador", `${s.score}${s.pressure ? " · presión" : ""}`], ["Bola", sit], ["Tiempo disponible", `${fmt(s.tAvail, 2)} s`], ["Desplazamiento", `${fmt(s.disp, 1)} m`], ["Apoyo", s.stance], ["Resultado", s.outcome === "sigue" ? "sigue el punto" : s.outcome], ["Captura", `${fmt(s.quality * 100)} %`]].map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join("");
+}
+function renderTimeline() {
+  const W = 900, H = 74, L = 8, R = 8, X = t => L + (t - T0) / (T1 - T0) * (W - L - R), r = hashRand(cur.id + "wav");
+  let g = `<rect x="${L}" y="4" width="${W - L - R}" height="36" rx="3" fill="var(--panel-2)"/>`;
+  for (let i = 0; i < 300; i++) { const t = T0 + i / 300 * (T1 - T0), spike = Math.exp(-((t + .92) ** 2) / .00012) * .85 + Math.exp(-(t ** 2) / .0001) + Math.exp(-((t + .38) ** 2) / .00008) * .28, a = clamp(.06 + r() * .1 + spike, 0, 1) * 16; g += `<line x1="${X(t)}" x2="${X(t)}" y1="${22 - a}" y2="${22 + a}" stroke="${spike > .2 ? "var(--ink)" : "var(--ink-3)"}" stroke-width="1.6"/>`; }
+  g += `<text x="${X(-.92) + 5}" y="15" font-size="10" fill="var(--ink-2)" font-family="JetBrains Mono, monospace">impacto rival</text><text x="${X(-.38) + 4}" y="15" font-size="10" fill="var(--ink-3)" font-family="JetBrains Mono, monospace">bote</text><text x="${X(0) + 5}" y="15" font-size="10" fill="var(--ink)" font-family="JetBrains Mono, monospace">impacto</text>`;
+  for (let f = 0; f < NF; f++) { const t = T0 + f / FPS; g += `<line x1="${X(t)}" x2="${X(t)}" y1="44" y2="${f % 5 ? 47 : 50}" stroke="var(--line-2)"/>`; }
+  PHASES.forEach((p, i) => { const on = Math.abs(p.t - tNow) < .011; g += `<g data-seek="${p.t}" style="cursor:pointer"><rect x="${X(p.t) - 9}" y="53" width="18" height="18" rx="3" fill="${on ? "var(--accent)" : "var(--raise)"}"/><text x="${X(p.t)}" y="66" text-anchor="middle" font-size="10.5" font-weight="600" fill="${on ? "var(--accent-ink)" : "var(--ink)"}" font-family="JetBrains Mono, monospace">${i + 1}</text><title>${p.long} · ${p.ev}</title></g>`; });
+  g += `<line x1="${X(tNow)}" x2="${X(tNow)}" y1="0" y2="52" stroke="var(--accent)" stroke-width="2"/><polygon points="${X(tNow) - 5},0 ${X(tNow) + 5},0 ${X(tNow)},6" fill="var(--accent)"/>`;
+  const el = document.getElementById("timeline");
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="slider" aria-label="Línea de tiempo del golpe" aria-valuemin="${T0}" aria-valuemax="${T1}" aria-valuenow="${tNow}" tabindex="0">${g}</svg>`;
+  const svg = el.querySelector("svg");
+  const toT = ev => { const rr = svg.getBoundingClientRect(); return snap(T0 + ((ev.clientX - rr.left) / rr.width * W - L) / (W - L - R) * (T1 - T0)); };
+  svg.addEventListener("pointerdown", ev => { const sk = ev.target.closest("[data-seek]"); stopPlay(); if (sk) { setT(+sk.dataset.seek); return; } svg.setPointerCapture(ev.pointerId); setT(toT(ev)); svg.onpointermove = e2 => { tNow = snap(toT(e2)); renderStage(); }; });
+  svg.addEventListener("pointerup", () => { svg.onpointermove = null; setT(tNow); });
+  svg.addEventListener("keydown", ev => { if (ev.key === "ArrowRight") { setT(tNow + 1 / FPS); ev.preventDefault(); } if (ev.key === "ArrowLeft") { setT(tNow - 1 / FPS); ev.preventDefault(); } });
+}
+function renderKF() {
+  document.getElementById("kf").innerHTML = PHASES.map((p, i) => `<button data-t="${p.t}" aria-current="${Math.abs(p.t - tNow) < .011}" title="${p.long} · ${p.ev}">${frameSVG({ s: cur, t: p.t, view: "crop", trail: false, ang: false, hud: false })}<span><b>${i + 1} ${p.n}</b><span class="mono">${p.t >= 0 ? "+" : "−"}${fmt(Math.abs(p.t), 2)}</span></span></button>`).join("");
+  document.querySelectorAll("#kf button").forEach(b => b.addEventListener("click", () => { stopPlay(); setT(+b.dataset.t); }));
+}
+function renderStage() {
+  document.getElementById("stage").innerHTML = frameSVG({ s: cur, t: tNow, view, skel: layers.skel, ang: layers.ang, trail: layers.trail, rk: layers.rk });
+  document.getElementById("tc").innerHTML = `<b>${clock(cur.vt + tNow)}</b> · fot ${Math.round((tNow - T0) * FPS) + 1}/${NF}`;
+  ["g-kin", "g-ang", "g-rh", "g-rf"].forEach(id => { const el = document.getElementById(id), l = el.querySelector(".ph"); if (l && el._X) { l.setAttribute("x1", el._X(tNow)); l.setAttribute("x2", el._X(tNow)); } });
+}
+function setT(t) { tNow = snap(t); renderStage(); renderTimeline(); document.querySelectorAll("#kf button").forEach(b => b.setAttribute("aria-current", Math.abs(+b.dataset.t - tNow) < .011)); }
+function renderRacket(s) {
+  const rs = racketSeries(s);
+  lineChart(document.getElementById("g-rh"), [{ n: "Altura cabeza − muñeca", v: rs.h, col: "var(--s1)" }], { label: "Altura de la cabeza de la raqueta respecto a la muñeca", unit: " cm", H: 170, W: 900, blur: true, zero: true, yName: "Altura de la cabeza respecto a la muñeca (cm) · + por encima" });
+  lineChart(document.getElementById("g-rf"), [{ n: "Cara", v: rs.f, col: "var(--s2)" }], { label: "Ángulo de la cara de la raqueta", unit: "°", H: 170, W: 900, blur: true, zero: true, yName: "Ángulo de la cara (°) · + cerrada, − abierta" });
+  const relP = [3, 3, 3, 2, 1, 1, 3, 3];
+  document.getElementById("g-rtable").innerHTML = `<thead><tr><th>Fase</th><th class="r">Altura</th><th class="r">Cara</th><th>Fiab.</th></tr></thead><tbody>` +
+    PHASES.map((p, i) => `<tr data-t="${p.t}"><td>${i + 1} ${p.n}</td><td class="r num">${sign(rs.hk[i])}${fmt(Math.abs(rs.hk[i]))} cm</td><td class="r num">${fmt(Math.abs(rs.fk[i]))}° ${rs.fk[i] >= 2 ? "cerrada" : rs.fk[i] <= -2 ? "abierta" : "neutra"}</td><td>${relBars(relP[i])}</td></tr>`).join("") + `</tbody>`;
+  document.querySelectorAll("#g-rtable tbody tr").forEach(tr => tr.addEventListener("click", () => { stopPlay(); setT(+tr.dataset.t); }));
+}
+function loadStroke(s) {
+  cur = s; stopPlay(); tNow = 0;
+  renderCtx(); renderMetricsPanel(); renderKF(); renderRacket(s);
+  const kin = kinSeries(s), cols = ["var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)"];
+  kin.forEach((k, i) => { k.col = cols[i]; });
+  lineChart(document.getElementById("g-kin"), kin, { label: "Velocidad angular normalizada", norm1: true, peaks: true, legendEl: document.getElementById("g-kin-leg") });
+  const order = [...kin].sort((a, b) => a.pk - b.pk).map(k => k.n);
+  document.getElementById("g-seq").innerHTML = order.map(n => `<span>${n}</span>`).join("→") + (s.chainOK ? ` <span class="st good"><i>✓</i>en orden</span>` : ` <span class="st crit"><i>!</i>desordenada</span>`);
+  lineChart(document.getElementById("g-ang"), angSeries(s), { label: "Ángulos articulares", legendEl: document.getElementById("g-ang-leg"), unit: "°" });
+  setT(PHASES[2].t);
+}
+function stopPlay() { playing = false; cancelAnimationFrame(raf); const b = document.getElementById("play"); if (b) b.innerHTML = `<svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2v10l9-5z"/></svg>`; }
+function tick(ts) { if (!playing) return; const dt = lastTs ? (ts - lastTs) / 1000 : 0; lastTs = ts; let t = tNow + dt * speed; if (t > T1) t = T0; tNow = t; renderStage(); raf = requestAnimationFrame(tick); }
+document.getElementById("play").addEventListener("click", () => {
+  if (playing) { stopPlay(); setT(tNow); return; }
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { setT(tNow + 1 / FPS > T1 ? T0 : tNow + 1 / FPS); return; }
+  playing = true; lastTs = 0; document.getElementById("play").innerHTML = `<svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2h3v10H3zM8 2h3v10H8z"/></svg>`; raf = requestAnimationFrame(tick);
+});
+document.getElementById("prevf").addEventListener("click", () => { stopPlay(); setT(tNow - 1 / FPS); });
+document.getElementById("nextf").addEventListener("click", () => { stopPlay(); setT(tNow + 1 / FPS); });
+function bindSeg(id, fn) { document.querySelectorAll(`#${id} button`).forEach(b => b.addEventListener("click", () => fn(b))); }
+bindSeg("g-group", b => { gGroup = b.dataset.v; document.querySelectorAll("#g-group button").forEach(x => x.setAttribute("aria-pressed", x === b)); renderMetricsPanel(); });
+bindSeg("speed", b => { speed = +b.dataset.v; document.querySelectorAll("#speed button").forEach(x => x.setAttribute("aria-pressed", x === b)); });
+bindSeg("view", b => { view = b.dataset.v; document.querySelectorAll("#view button").forEach(x => x.setAttribute("aria-pressed", x === b)); renderStage(); });
+bindSeg("layers", b => { layers[b.dataset.v] = !layers[b.dataset.v]; b.setAttribute("aria-pressed", layers[b.dataset.v]); renderStage(); });
+const navList = () => { const a = exRows(); return a.length ? a : STROKES; };
+document.getElementById("gprev").addEventListener("click", () => { const a = navList(), i = a.indexOf(cur); loadStroke(a[(i - 1 + a.length) % a.length]); });
+document.getElementById("gnext").addEventListener("click", () => { const a = navList(), i = a.indexOf(cur); loadStroke(a[(i + 1) % a.length]); });
+
+/* ===== EXPLORADOR ===== */
+[document.getElementById("f-match"), document.getElementById("p-match")].forEach(sel => { sel.innerHTML = `<option value="">Todos</option>` + MATCHES.map((m, i) => `<option value="${i}">${m.id} · ${m.rival}</option>`).join(""); });
+let exSort = { k: "quality", dir: -1 }, exPage = 0; const PAGE = 25;
+const F = id => document.getElementById(id).value;
+function resetFilters() { ["f-match", "f-set", "f-stance", "f-sit", "f-press", "f-out", "f-preset"].forEach(id => { document.getElementById(id).value = ""; }); }
+const COLS = [{ k: "thumb", h: "" }, { k: "id", h: "Golpe" }, { k: "set", h: "Set" }, { k: "score", h: "Marcador" }, { k: "sit", h: "Bola" }, { k: "stance", h: "Apoyo" }, { k: "xf", h: "X-factor", metric: true }, { k: "elbow", h: "Codo", metric: true }, { k: "rDrop", h: "Caída rqta.", metric: true }, { k: "rFaceArm", h: "Cara armado", metric: true }, { k: "split", h: "Split step", metric: true }, { k: "chainOK", h: "Cadena" }, { k: "outcome", h: "Resultado" }, { k: "quality", h: "Captura", r: true }, { k: "repr", h: "Repr.", r: true }];
+function exRows() {
+  const a = STROKES.filter(s => (F("f-match") === "" || s.match === +F("f-match")) && (F("f-set") === "" || s.set === +F("f-set")) && (F("f-stance") === "" || s.stance === F("f-stance")) && (F("f-sit") === "" || s.sit[F("f-sit")]) && (F("f-press") === "" || +s.pressure === +F("f-press")) && (F("f-out") === "" || s.outcome === F("f-out")));
+  const k = exSort.k, val = s => MK[k] ? s.m[k] : k === "id" ? s.idx : k === "chainOK" ? +s.chainOK : k === "sit" ? +s.sit.neutra : s[k];
+  return a.sort((x, y) => { const vx = val(x), vy = val(y); return (vx > vy ? 1 : vx < vy ? -1 : 0) * exSort.dir; });
+}
+function devCell(k, v) { const d = DIST[k], z = clamp((v - d.p50) / (d.sd * 2), -1, 1); return `<span class="dev"><span class="num">${fmtM(k, v)}</span><span class="t"><i style="left:calc(${50 + z * 50}% - 1.5px)"></i></span></span>`; }
+function renderTable() {
+  const a = exRows(), pages = Math.max(1, Math.ceil(a.length / PAGE)); exPage = clamp(exPage, 0, pages - 1);
+  const rows = a.slice(exPage * PAGE, exPage * PAGE + PAGE);
+  document.getElementById("ex-table").innerHTML = `<thead><tr>${COLS.map(c => `<th ${c.k !== "thumb" ? `data-sort="${c.k}"` : ""} class="${c.metric || c.r ? "r" : ""}">${c.h}${exSort.k === c.k ? ` <span class="arr">${exSort.dir > 0 ? "▲" : "▼"}</span>` : ""}</th>`).join("")}</tr></thead><tbody>` +
+    rows.map(s => `<tr data-id="${s.id}" class="${s === cur ? "sel" : ""}"><td><span class="thumb">${frameSVG({ s, t: 0, view: "crop", ang: false, trail: false, hud: false })}</span></td><td><b class="mono" style="font-weight:500">${s.id}</b><div class="dim3" style="font-size:11px">${MATCHES[s.match].rival} · ${clock(s.vt)}</div></td><td class="num">${s.set}</td><td class="num">${s.score}${s.pressure ? ` <span class="chip">P</span>` : ""}</td><td>${s.sit.neutra ? `<span class="chip">neutra</span>` : [s.wide && "abierta", s.fast && "rápida", s.height === "baja" && "baja", s.height === "alta" && "alta", s.short && "corta"].filter(Boolean).map(x => `<span class="chip">${x}</span>`).join("")}</td><td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${STANCE[s.stance]};margin-right:6px"></span>${s.stance}</td>${["xf", "elbow", "rDrop", "rFaceArm", "split"].map(k => `<td class="r">${devCell(k, s.m[k])}</td>`).join("")}<td>${s.chainOK ? `<span class="st good"><i>✓</i></span>` : `<span class="st crit"><i>!</i></span>`}</td><td>${s.outcome === "ganador" ? `<span class="st good"><i>✓</i>Ganador</span>` : s.outcome === "error" ? `<span class="st crit"><i>✕</i>Error</span>` : `<span class="dim3">sigue</span>`}</td><td class="r"><span class="qb"><i style="width:${s.quality * 100}%"></i></span> <span class="num">${fmt(s.quality * 100)}</span></td><td class="r num">${fmt(s.repr * 100)}</td></tr>`).join("") + "</tbody>";
+  document.getElementById("ex-count").textContent = `${a.length} golpes · página ${exPage + 1} de ${pages} · la marca junto a cada métrica es su posición respecto a su mediana`;
+  document.querySelectorAll("#ex-table th[data-sort]").forEach(th => th.addEventListener("click", () => { const k = th.dataset.sort; exSort = { k, dir: exSort.k === k ? -exSort.dir : (k === "id" || k === "set" ? 1 : -1) }; renderTable(); }));
+  document.querySelectorAll("#ex-table tbody tr").forEach(tr => tr.addEventListener("click", () => { loadStroke(STROKES.find(s => s.id === tr.dataset.id)); showTab("golpe"); }));
+}
+["f-match", "f-set", "f-stance", "f-sit", "f-press", "f-out"].forEach(id => document.getElementById(id).addEventListener("change", () => { document.getElementById("f-preset").value = ""; exPage = 0; renderTable(); }));
+document.getElementById("f-preset").addEventListener("change", e => { const v = e.target.value; resetFilters(); e.target.value = v; if (v === "best" || v === "win") exSort = { k: "quality", dir: -1 }; if (v === "typ") exSort = { k: "repr", dir: -1 }; if (v === "win") document.getElementById("f-out").value = "ganador"; exPage = 0; renderTable(); });
+document.getElementById("ex-prev").addEventListener("click", () => { exPage--; renderTable(); });
+document.getElementById("ex-next").addEventListener("click", () => { exPage++; renderTable(); });
+
+/* ===== COMPARATIVAS ===== */
+function groupsFor(pair, sit) {
+  const b = STROKES.filter(s => !sit || s.sit[sit]);
+  if (pair === "fatiga") return [{ l: "Set 1", a: b.filter(s => s.set === 1) }, { l: "Set 3", a: b.filter(s => s.set === 3) }];
+  if (pair === "presion") return [{ l: "Sin presión", a: b.filter(s => !s.pressure) }, { l: "Bajo presión", a: b.filter(s => s.pressure) }];
+  if (pair === "resultado") return [{ l: "Errores", a: b.filter(s => s.outcome === "error") }, { l: "Ganadores", a: b.filter(s => s.outcome === "ganador") }];
+  return MATCHES.map((m, i) => ({ l: m.id, a: b.filter(s => s.match === i) }));
+}
+function distSVG(m, groups) {
+  const W = 520, L = 92, R = 14, T = 8, rowH = groups.length > 2 ? 36 : 50, H = T + rowH * groups.length + 24;
+  const all = groups.flatMap(g => g.a.map(s => s.m[m.k])), lo = Math.min(...all), hi = Math.max(...all), pad = (hi - lo) * .04, x0 = lo - pad, x1 = hi + pad;
+  const X = v => L + (v - x0) / (x1 - x0) * (W - L - R), ref = mean(groups[0].a.map(s => s.m[m.k]));
+  let g = `<rect x="${X(ref - m.noise)}" y="${T}" width="${X(ref + m.noise) - X(ref - m.noise)}" height="${rowH * groups.length}" fill="var(--raise)" opacity=".7"/>`;
+  niceTicks(x0, x1, 5).forEach(t => { g += `<line x1="${X(t)}" x2="${X(t)}" y1="${T}" y2="${T + rowH * groups.length}" stroke="var(--line)"/><text x="${X(t)}" y="${H - 6}" text-anchor="middle" font-size="10.5" fill="var(--ink-3)" font-family="JetBrains Mono, monospace">${fmt(t, t % 1 ? 1 : 0)}</text>`; });
+  groups.forEach((gr, i) => {
+    const cy = T + rowH * i + rowH / 2, r = hashRand(m.k + gr.l), v = gr.a.map(s => s.m[m.k]);
+    g += `<text x="0" y="${cy - 2}" font-size="12" fill="var(--ink)" font-family="Archivo, sans-serif" font-weight="600">${gr.l}</text><text x="0" y="${cy + 12}" font-size="10.5" fill="var(--ink-3)" font-family="JetBrains Mono, monospace">n=${gr.a.length}</text>`;
+    if (!v.length) return;
+    const q1 = quant(v, .25), q3 = quant(v, .75), md = quant(v, .5), mu = mean(v), j = rowH * .32;
+    gr.a.forEach(s => { g += `<circle cx="${X(s.m[m.k]).toFixed(1)}" cy="${(cy + (r() - .5) * 2 * j).toFixed(1)}" r="2.6" fill="${STANCE[s.stance]}" fill-opacity=".6" data-id="${s.id}" data-tip="<b class='mono'>${s.id}</b><div class='mono'>${fmtM(m.k, s.m[m.k])} · ${s.stance}</div>" style="cursor:pointer"/>`; });
+    g += `<rect x="${X(q1)}" y="${cy - j - 2}" width="${X(q3) - X(q1)}" height="${2 * j + 4}" fill="none" stroke="var(--ink-2)" rx="2"/><line x1="${X(md)}" x2="${X(md)}" y1="${cy - j - 2}" y2="${cy + j + 2}" stroke="var(--ink-2)"/><line x1="${X(mu)}" x2="${X(mu)}" y1="${cy - j - 6}" y2="${cy + j + 6}" stroke="var(--accent)" stroke-width="2.5"/>`;
+  });
+  return `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${m.name} por grupo">${g}</svg>`;
+}
+function renderCompare() {
+  const groups = groupsFor(F("c-pair"), F("c-sit")), two = groups.length === 2, MS = METRICS.filter(m => m.g === F("c-group"));
+  document.getElementById("c-table").innerHTML = `<thead><tr><th>Métrica</th><th>Fiab.</th>${groups.map(g => `<th class="r">${g.l} <span style="text-transform:none;font-weight:400">n=${g.a.length}</span></th>`).join("")}${two ? `<th class="r">Diferencia</th><th class="r">IC 95 %</th>` : `<th class="r">Máx − mín</th>`}<th class="r">÷ ruido</th><th>Veredicto</th></tr></thead><tbody>` +
+    MS.map(m => {
+      const mus = groups.map(g => mean(g.a.map(s => s.m[m.k])));
+      let e, z, v;
+      if (two) { e = effect(m.k, groups[0].a, groups[1].a); z = e.d / m.noise; v = verdict(e, m.noise); }
+      else { const sp = Math.max(...mus) - Math.min(...mus); e = { d: sp }; z = sp / m.noise; v = z > 1 ? { cls: "warn", icon: "!", txt: "Varía entre partidos" } : { cls: "crit", icon: "–", txt: "Dentro del ruido" }; }
+      return `<tr><td><b style="font-weight:600">${m.name}</b> <span class="dim3" style="font-size:11px">${m.sub}</span></td><td>${relBars(m.rel)}</td>${mus.map(x => `<td class="r num">${fmtM(m.k, x)}</td>`).join("")}<td class="r num">${two ? sign(e.d) : ""}${fmt(Math.abs(e.d), m.dec)}</td>${two ? `<td class="r num dim">${fmt(e.lo, 1)} … ${fmt(e.hi, 1)}</td>` : ""}<td class="r num">${fmt(Math.abs(z), 1)}×</td><td><span class="st ${v.cls}"><i>${v.icon}</i>${v.txt}</span></td></tr>`;
+    }).join("") + `<tr><td><b style="font-weight:600">Apoyo abierto</b> <span class="dim3" style="font-size:11px">% de golpes</span></td><td>${relBars(3)}</td>${groups.map(g => `<td class="r num">${fmt(pct(g.a, s => s.stance === "abierto"))} %</td>`).join("")}<td></td>${two ? "<td></td>" : ""}<td></td><td></td></tr></tbody>`;
+  document.getElementById("c-grid").innerHTML = MS.map(m => `<div class="panel"><header><h2>${m.name}</h2><span class="note">ruido ±${fmt(m.noise, 1)} ${relBars(m.rel)}</span></header><div class="body chart">${distSVG(m, groups)}</div></div>`).join("") +
+    `<div class="panel" style="grid-column:1/-1"><div class="body legend"><span><i class="dot" style="background:var(--s1)"></i>Abierto</span><span><i class="dot" style="background:var(--s2)"></i>Semiabierto</span><span><i class="dot" style="background:var(--s3)"></i>Cerrado</span><span><i style="background:var(--accent);width:3px;height:12px;vertical-align:-2px"></i>Media</span><span><i style="background:none;border:1px solid var(--ink-2);width:14px;height:9px;vertical-align:-1px"></i>Rango intercuartílico y mediana</span><span><i style="background:var(--raise);width:14px;height:9px;vertical-align:-1px"></i>Ruido alrededor del primer grupo</span><span>Pulsa un punto para abrir el golpe</span></div></div>`;
+  document.querySelectorAll("#c-grid circle[data-id]").forEach(c => c.addEventListener("click", () => { loadStroke(STROKES.find(s => s.id === c.dataset.id)); showTab("golpe"); }));
+}
+["c-pair", "c-sit", "c-group"].forEach(id => document.getElementById(id).addEventListener("change", renderCompare));
+
+/* ===== PISTA ===== */
+let pMode = "density";
+const RAMP = ["#184f95", "#256abf", "#3987e5", "#6da7ec", "#9ec5f4", "#cde2fb"];
+bindSeg("p-mode", b => { pMode = b.dataset.v; document.querySelectorAll("#p-mode button").forEach(x => x.setAttribute("aria-pressed", x === b)); renderCourt(); });
+function renderCourt() {
+  const S = 34, ox = 7 * S, top = 16, W = 14 * S, H = 16.4 * S + top, X = x => ox + x * S, Y = d => top + d * S;
+  const a = STROKES.filter(s => (F("p-match") === "" || s.match === +F("p-match")) && (F("p-set") === "" || s.set === +F("p-set")));
+  let g = `<rect x="${X(-6.9)}" y="${Y(0)}" width="${13.8 * S}" height="${16 * S}" fill="#1d3b2c" rx="4"/><rect x="${X(-5.485)}" y="${Y(0)}" width="${10.97 * S}" height="${11.885 * S}" fill="#24507d"/>`;
+  if (pMode === "density") {
+    const r = .55, hw = r * Math.sqrt(3), bins = new Map();
+    a.forEach(s => { const row = Math.round(s.y / (1.5 * r)), col = Math.round((s.x - (row % 2 ? hw / 2 : 0)) / hw), k = row + "," + col; bins.set(k, (bins.get(k) || 0) + 1); });
+    const mx = Math.max(1, ...bins.values());
+    bins.forEach((n, k) => { const [row, col] = k.split(",").map(Number), cx = col * hw + (row % 2 ? hw / 2 : 0), cy = row * 1.5 * r; const pts = [0, 1, 2, 3, 4, 5].map(i => { const an = Math.PI / 180 * (60 * i - 30); return `${X(cx + r * Math.cos(an)).toFixed(1)},${Y(cy + r * Math.sin(an)).toFixed(1)}`; }).join(" "); g += `<polygon points="${pts}" fill="${RAMP[Math.min(5, Math.floor((n / mx) * 5.999))]}" stroke="#1d3b2c" stroke-width="1" data-tip="<span class='mono'>${n} golpes</span>"/>`; });
+  }
+  const L = (x1, d1, x2, d2, w = 2) => `<line x1="${X(x1)}" y1="${Y(d1)}" x2="${X(x2)}" y2="${Y(d2)}" stroke="#eef3f6" stroke-width="${w}" stroke-opacity=".9"/>`;
+  g += L(-6.4, 0, 6.4, 0, 4) + L(-5.485, 0, -5.485, 11.885) + L(5.485, 0, 5.485, 11.885) + L(-4.115, 0, -4.115, 11.885) + L(4.115, 0, 4.115, 11.885) + L(-5.485, 11.885, 5.485, 11.885, 3) + L(-4.115, 6.4, 4.115, 6.4) + L(0, 0, 0, 6.4) + L(0, 11.685, 0, 11.885);
+  if (pMode !== "density") a.forEach(s => { const c = pMode === "stance" ? STANCE[s.stance] : s.outcome === "ganador" ? "var(--good)" : s.outcome === "error" ? "var(--crit)" : "#8b96a1"; g += `<circle cx="${X(s.x).toFixed(1)}" cy="${Y(s.y).toFixed(1)}" r="4.5" fill="${c}" fill-opacity=".85" stroke="#0c0f13" stroke-width="1" data-id="${s.id}" data-tip="<b class='mono'>${s.id}</b><div class='mono'>${s.stance} · ${s.outcome}</div>" style="cursor:pointer"/>`; });
+  g += `<text x="${X(6.55)}" y="${Y(0) + 4}" font-size="11" fill="var(--ink-3)" font-family="Archivo, sans-serif">RED</text><text x="${X(5.6)}" y="${Y(11.885) + 4}" font-size="11" fill="var(--ink-3)" font-family="Archivo, sans-serif">FONDO</text>`;
+  g += `<line x1="${X(-6.6)}" y1="${Y(15.6)}" x2="${X(-4.6)}" y2="${Y(15.6)}" stroke="var(--ink-2)" stroke-width="1.5"/><text x="${X(-6.6)}" y="${Y(15.6) - 5}" font-size="10.5" fill="var(--ink-2)" font-family="JetBrains Mono, monospace">2 m</text>`;
+  document.getElementById("court").innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Posición en el impacto" style="max-height:640px">${g}</svg>`;
+  document.querySelectorAll("#court circle[data-id]").forEach(c => c.addEventListener("click", () => { loadStroke(STROKES.find(s => s.id === c.dataset.id)); showTab("golpe"); }));
+  document.getElementById("p-legend").innerHTML = pMode === "density" ? `<span style="display:flex;align-items:center;gap:4px">menos ${RAMP.map(c => `<i style="background:${c};width:14px;height:10px;margin:0;border-radius:2px"></i>`).join("")} más golpes</span>` : pMode === "stance" ? `<span><i class="dot" style="background:var(--s1)"></i>Abierto</span><span><i class="dot" style="background:var(--s2)"></i>Semiabierto</span><span><i class="dot" style="background:var(--s3)"></i>Cerrado</span>` : `<span><i class="dot" style="background:var(--good)"></i>Ganador</span><span><i class="dot" style="background:var(--crit)"></i>Error</span><span><i class="dot" style="background:#8b96a1"></i>Sigue</span>`;
+  const avgY = mean(a.map(s => s.y)) - 11.885;
+  const st = (l, v, d) => `<div style="display:grid;gap:2px"><h3>${l}</h3><div class="mono" style="font-size:20px;font-weight:500">${v}</div><div class="note">${d}</div></div>`;
+  document.getElementById("p-stats").innerHTML = st("Golpes", a.length, "con los filtros actuales") + st("Detrás de la línea", `${fmt(pct(a, s => s.y > 11.885))} %`, `media ${fmt(Math.abs(avgY), 1)} m ${avgY > 0 ? "detrás" : "delante"} de la línea de fondo`) + st("Bola corta", `${fmt(pct(a, s => s.y < 10.6))} %`, "impacto a más de 1,3 m dentro de la pista") + st("Mitad derecha", `${fmt(pct(a, s => s.x > 0))} %`, "impacto en el lado de la derecha");
+}
+["p-match", "p-set"].forEach(id => document.getElementById(id).addEventListener("change", renderCourt));
+
+/* ===== Inicio ===== */
+renderTable(); loadStroke(cur); renderCompare(); renderCourt();
+showTab((location.hash || "").slice(1));
+</script>
