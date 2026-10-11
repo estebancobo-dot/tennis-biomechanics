@@ -27,8 +27,9 @@ Después: revés, saque, volea y otros jugadores.
    - Detección ligera de jugadores → lado de pista y quién golpea.
    - Se registran **todos los impactos de ambos jugadores** (no solo el golpe objetivo):
      así otro golpe u otro jugador del mismo vídeo no exige repetir esta pasada.
-   - El usuario confirma **con un clic** quién es la jugadora al inicio de cada partido;
-     el seguimiento tiene en cuenta los cambios de lado.
+   - Identidad **automática** (el usuario no revisa vídeo): la ropa del jugador cercano agrupa
+     los planos en dos personas; cuando el cercano saca al empezar el punto, el icono de saque del
+     marcador dice si es la jugadora objetivo (etapa `identity`). Así se siguen los cambios de lado.
    - (Fase 3) OCR del marcador de TV: set/juego/tanteo, situaciones de presión.
 2. **Pasada fina**: pose a máxima calidad y fps completos solo en ventanas de **±1 s**
    alrededor de cada golpe de la jugadora objetivo.
