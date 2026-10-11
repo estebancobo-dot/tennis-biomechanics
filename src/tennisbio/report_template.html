@@ -397,10 +397,10 @@ document.addEventListener("mouseout", e => { if (e.target.closest && e.target.cl
 const PL = DATA.player || {}, STROKE_ES = { forehand: "Derecha", backhand: "Revés", overhead: "Saque / remate" };
 document.getElementById("h-player").textContent = PL.name || "Jugador";
 document.getElementById("h-stroke").textContent = STROKE_ES[DATA.stroke] || DATA.stroke;
-document.getElementById("foot").innerHTML = `<span>Generado <span class="mono">${DATA.generated || ""}</span></span><span>Ruido de medida <span class="mono">${DATA.noise_validated ? "validado" : "provisional"}</span></span>`;
+document.getElementById("foot").innerHTML = `<span>Generado <span class="mono">${DATA.generated || ""}</span></span><span>Ruido de medida <span class="mono">${DATA.noise_validated ? "medido en golpes equivalentes" : "provisional"}</span></span>`;
 const handTxt = PL.hand ? `${PL.hand === "left" ? "Zurda" : "Diestra"}${PL.backhand ? " · revés a " + (PL.backhand === "one_handed" ? "1 mano" : "2 manos") : ""}` : "";
 document.getElementById("scope").innerHTML = `<span class="tag"><b>${MATCHES.length}</b> partidos</span><span class="tag"><b>${STROKES.length}</b> golpes · lado cercano</span><span class="tag"><b>${REVIEW}</b> con dudas</span>${handTxt ? `<span class="tag">${handTxt}</span>` : ""}`;
-document.getElementById("noise-note").textContent = `Diferencia entre grupos en múltiplos del ruido de medida${DATA.noise_validated ? "" : " (provisional: pendiente de la validación con golpes repetidos)"}. Solo con al menos 5 golpes por grupo.`;
+document.getElementById("noise-note").textContent = `Diferencia entre grupos en múltiplos del ruido de medida${DATA.noise_validated ? " (medido sobre pares de golpes equivalentes de la jugadora: cota conservadora)" : " (provisional: hacen falta al menos 20 golpes con bola neutra)"}. Solo con al menos 5 golpes por grupo.`;
 
 /* ===== Navegación ===== */
 const TABS = ["panel", "golpe", "explorador", "comparativas", "pista"];

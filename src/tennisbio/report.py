@@ -146,6 +146,33 @@ def noise_from_series(series_files: list[tuple[Path, dict]]) -> dict:
     return {k: round(float(np.median(v)), 2) for k, v in per.items() if len(v) >= 3}
 
 
+def noise_from_pairs(strokes: list[dict], min_strokes=20) -> dict:
+    """Upper bound of the measurement noise: for neutral-ball strokes, pair each one with the most
+    similar stroke (time available, contact height, court position, standardised) and take the
+    robust spread of their differences / √2. It also contains real technique variation, so it
+    over-estimates the noise — a conservative threshold for "real difference"."""
+    pool = [s for s in strokes if s["sit"].get("neutra")]
+    feats = []
+    for s in pool:
+        f = [s.get("tAvail"), s["m"].get("contactH"), s.get("x"), s.get("y")]
+        feats.append([np.nan if v is None else float(v) for v in f])
+    if len(pool) < min_strokes:
+        return {}
+    F = np.array(feats)
+    F = (F - np.nanmean(F, 0)) / (np.nanstd(F, 0) + 1e-9)
+    F = np.nan_to_num(F)
+    D = np.linalg.norm(F[:, None] - F[None], axis=-1)
+    np.fill_diagonal(D, np.inf)
+    nn = D.argmin(1)
+    out = {}
+    for k in METRICS:
+        diffs = [pool[i]["m"].get(k) - pool[j]["m"].get(k) for i, j in enumerate(nn)
+                 if pool[i]["m"].get(k) is not None and pool[j]["m"].get(k) is not None]
+        if len(diffs) >= min_strokes // 2:
+            out[k] = round(1.4826 * float(np.median(np.abs(diffs))) / np.sqrt(2), 2)
+    return out
+
+
 def collect(matches: list[Match], out_root: Path, stroke="forehand") -> dict:
     ms, strokes, review = [], [], 0
     for mi, match in enumerate(matches):
@@ -187,6 +214,13 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
             m["noise"] = max(m["noise"], auto[m["k"]])
             m["noise_auto"] = auto[m["k"]]
     data["noise_auto"] = auto
+    pairs = noise_from_pairs(data["strokes"])
+    for m in data["metrics"]:
+        if m["k"] in pairs:             # measured on her own equivalent strokes: replaces the provisional value
+            m["noise"] = max(pairs[m["k"]], auto.get(m["k"], 0.0))
+            m["noise_pairs"] = pairs[m["k"]]
+    data["noise_pairs"] = pairs
+    data["noise_validated"] = bool(pairs)
     for r in data["strokes"]:
         r.pop("_phases", None)
         d = Path(r.pop("_dir"))
@@ -200,7 +234,6 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
     data["player"] = player or {}
     data["stroke"] = stroke
     data["generated"] = time.strftime("%Y-%m-%d %H:%M")
-    data["noise_validated"] = False
     html = TEMPLATE.read_text(encoding="utf-8").replace("/*__DATA__*/null", json.dumps(data, ensure_ascii=False))
     out = dest / "index.html"
     out.write_text(html, encoding="utf-8")

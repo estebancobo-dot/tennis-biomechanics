@@ -41,3 +41,14 @@ def test_frame_noise_recovers_white_noise_on_a_ramp():
     est = np.median([frame_noise(x, k, half=10) for k in range(20, 180, 10)])
     assert 1.5 < est < 2.6
     assert frame_noise([None] * 10, 5) is None
+
+
+def test_noise_from_pairs_needs_enough_neutral_strokes():
+    import numpy as np
+    from tennisbio.report import noise_from_pairs
+    rng = np.random.default_rng(1)
+    strokes = [{"sit": {"neutra": True}, "tAvail": 1.3 + 0.01 * i, "x": 0.0, "y": 13.0,
+                "m": {"contactH": 55.0, "xf": 20 + rng.normal(0, 3)}} for i in range(300)]
+    n = noise_from_pairs(strokes)
+    assert 2.3 < n["xf"] < 3.8
+    assert noise_from_pairs(strokes[:10]) == {}
