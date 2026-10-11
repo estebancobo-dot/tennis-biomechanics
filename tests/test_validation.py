@@ -1,3 +1,4 @@
+import pytest
 import numpy as np
 
 from tennisbio.validation.impact_eval import GTEvent, Pred, clip_bounds, match, parse_label, summarize
@@ -44,4 +45,4 @@ def test_racket_eval_with_hidden_butt():
     poly = np.array([[98, 302], [102, 298], [166, 196], [158, 204]], float)
     m = match_racket(kps, [95, 195, 75, 110], [poly], wrists=np.array([[97.0, 305.0]]))
     assert m.detected and m.head_correct and m.axis_err_deg < 8
-    assert 80 < m.length_px < 90
+    assert m.length_px == pytest.approx(np.hypot(15, 25) / 0.56, rel=1e-3)   # throat→tip extrapolated
