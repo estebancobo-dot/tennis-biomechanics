@@ -46,6 +46,18 @@ def _num(v):
     return None if v is None else float(v)
 
 
+def _score_fields(sc: dict | None) -> dict:
+    """set / game / score text / pressure from the scoreboard reading at the stroke (or None)."""
+    if not sc:
+        return {"set": None, "game": None, "score": None, "pressure": None}
+    g = sc.get("games") or [[0, 0]]
+    pts = sc.get("points") or [None, None]
+    games = f"{g[-1][0]}-{g[-1][1]}"
+    points = "-".join(p or "0" for p in pts) if any(pts) else ""
+    return {"set": sc.get("set"), "game": sum(g[-1]) + 1, "score": f"{games} {points}".strip() + (f" · {sc['banner'].lower()}" if sc.get("banner") else ""),
+            "pressure": bool(sc.get("pressure"))}
+
+
 def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx: int) -> dict:
     """One stroke in the report's schema (see the mockup's STROKES)."""
     m, ph, rk = s.get("metrics", {}), s.get("phases", {}), s.get("racket", {})
@@ -79,7 +91,7 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
     t = float(s.get("match_time_s", 0))
     return {
         "id": f"{match.id}-{idx + 1:03d}", "idx": 0, "match": match_idx, "frac": t / duration_s if duration_s else 0,
-        "set": None, "game": None, "score": None, "pressure": None, "outcome": None, "finishType": None,
+        **_score_fields(s.get("score")), "outcome": None, "finishType": None,
         "tAvail": t_av, "disp": disp, "height": height, "x": x, "y": y, "fast": fast, "wide": wide, "short": short,
         "stance": s.get("stance"), "stanceAngle": s.get("stance_angle_deg"),
         "chainOK": (s.get("chain") or {}).get("proximal_to_distal"), "chainPeaks": (s.get("chain") or {}).get("peaks_s"),

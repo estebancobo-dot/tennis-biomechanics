@@ -197,6 +197,48 @@ def st_court(ctx: Context, n_fit=6, min_score=0.5):
             "pitch_deg_median": float(np.median([o["pitch_deg"] for o in ok])) if ok else None}
 
 
+def _surname(name: str) -> str:
+    return name.strip().split()[-1] if name and name.strip() else ""
+
+
+@stage("score", "1", deps=("scenes",), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)})
+def st_score(ctx: Context):
+    """TV scoreboard every few seconds of main camera (sets, games, points, pressure)."""
+    sc = _read(ctx.path("scenes.json"))
+    fps, every = sc["fps"], (ctx.cfg.get("score") or {}).get("every_s", 5.0)
+    names = (_surname(ctx.match.player.name), _surname(ctx.match.opponent))
+    if not all(names):
+        _write(ctx.path("score.json"), {"readings": [], "note": "falta el nombre del rival en matches.yaml"})
+        return {"readings": 0}
+    try:
+        from .scoreboard import ScoreReader
+    except ImportError:
+        _write(ctx.path("score.json"), {"readings": [], "note": "uv sync --extra ocr"})
+        return {"readings": 0, "note": "sin OCR instalado"}
+    reader, out = ScoreReader(*names), []
+    for s in sc["shots"]:
+        if not s["main_camera"]:
+            continue
+        t = s["start"] / fps + 0.5
+        while t < s["end"] / fps:
+            fr = grab_frame(ctx.match.video, t)
+            st = reader.read(fr) if fr is not None else None
+            if st is not None:
+                out.append({"t": round(t, 2), **st.to_dict()})
+            t += every
+    _write(ctx.path("score.json"), {"readings": out, "names": names})
+    return {"readings": len(out), "pressure": sum(r["pressure"] for r in out)}
+
+
+def score_at(score: dict, t: float, max_age_s=40.0):
+    """The latest scoreboard reading before time t (within max_age_s), or None."""
+    best = None
+    for r in score.get("readings", []):
+        if r["t"] <= t + 1.0 and t - r["t"] <= max_age_s:
+            best = r
+    return best
+
+
 def court_at(court: dict, t: float):
     """(H court→image, pitch) of the main-camera shot containing time t, or (None, None)."""
     f = t * court.get("fps", 1)
@@ -214,7 +256,7 @@ def cut_window(video: Path, t0: float, dur: float, dest: Path) -> Path:
     return dest
 
 
-@stage("fine", "3", deps=("candidates", "court"),
+@stage("fine", "4", deps=("candidates", "court", "score"),
        settings=lambda c: {"fine": c["fine_pass"], "imgsz": c.get("fine_imgsz", 1280), "ball": c.get("ball"),
                            "racket_face": c.get("racket_face")})
 def st_fine(ctx: Context):
@@ -223,6 +265,7 @@ def st_fine(ctx: Context):
 
     cands = _read(ctx.path("candidates.json"))
     court = _read(ctx.path("court.json"))
+    score = _read(ctx.path("score.json"))
     ball = None
     bcfg = ctx.cfg.get("ball") or {}
     if bcfg.get("onnx") and Path(bcfg["onnx"]).exists():
@@ -257,6 +300,9 @@ def st_fine(ctx: Context):
         d = r.to_dict()
         t_imp = t0 + r.impact_frame / run.fps
         d.update(window=str(clip.name), window_start_s=t0, match_time_s=t_imp, candidate_audio=c["audio"])
+        sr = score_at(score, t_imp)
+        if sr is not None:
+            d["score"] = {k: sr[k] for k in ("games", "points", "banner", "set", "sets_won", "tiebreak", "pressure")}
         H, pitch = court_at(court, t_imp)
         if H is not None:
             from .court_metrics import court_metrics

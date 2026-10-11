@@ -301,6 +301,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
       <label class="ctl">Partido<select id="f-match"></select></label>
       <label class="ctl">Apoyo<select id="f-stance"><option value="">Todos</option><option value="abierto">Abierto</option><option value="semiabierto">Semiabierto</option><option value="cerrado">Cerrado</option></select></label>
       <label class="ctl">Situación<select id="f-sit"><option value="">Todas</option><option value="neutra">Neutra</option><option value="abierta">Bola abierta</option><option value="rapida">Bola rápida</option><option value="baja">Bola baja</option><option value="corta">Bola corta</option></select></label>
+      <label class="ctl">Presión<select id="f-press"><option value="">Todos</option><option value="1">Bajo presión</option><option value="0">Sin presión</option></select></label>
       <label class="ctl">Revisión<select id="f-rev"><option value="">Todos</option><option value="0">Sin dudas</option><option value="1">Con dudas</option></select></label>
       <label class="ctl">Vista rápida<select id="f-preset"><option value="">—</option><option value="best">Mejor capturados</option><option value="typ">Más representativos</option></select></label>
     </div>
@@ -315,6 +316,8 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
       <label class="ctl">Comparar<select id="c-pair">
         <option value="fatiga">Primer tercio / Último tercio del partido</option>
         <option value="rapida">Bola lenta / Bola rápida</option>
+        <option value="presion">Sin presión / Bajo presión</option>
+        <option value="sets">Primer set / Último set</option>
         <option value="partidos">Partido a partido</option>
       </select></label>
       <label class="ctl">Métricas<select id="c-group"><option value="body">Cuerpo</option><option value="racket">Raqueta</option><option value="feet">Pies y equilibrio</option></select></label>
@@ -436,6 +439,9 @@ const FIND = [
   { k: "knee", t: "Descenso de cadera al final", c: "Último tercio frente a primero · bolas neutras", A: s => s.sit.neutra && early(s), B: s => s.sit.neutra && late(s), go: { pair: "fatiga", sit: "neutra" } },
   { k: "split", t: "Split step al final", c: "Último tercio frente a primero · todas las bolas", A: early, B: late, go: { pair: "fatiga", sit: "", g: "feet" } },
   { k: "recov", t: "Recuperación al final", c: "Último tercio frente a primero · todas las bolas", A: early, B: late, go: { pair: "fatiga", sit: "", g: "feet" } },
+  { k: "elbow", t: "Codo bajo presión", c: "Bajo presión frente a sin presión · bolas neutras", A: s => s.sit.neutra && s.pressure === false, B: s => s.sit.neutra && s.pressure === true, go: { pair: "presion", sit: "neutra" } },
+  { k: "xf", t: "X-factor bajo presión", c: "Bajo presión frente a sin presión · bolas neutras", A: s => s.sit.neutra && s.pressure === false, B: s => s.sit.neutra && s.pressure === true, go: { pair: "presion", sit: "neutra" } },
+  { k: "rFaceImp", t: "Cara en el impacto bajo presión", c: "Bajo presión frente a sin presión · todas", A: s => s.pressure === false, B: s => s.pressure === true, go: { pair: "presion", sit: "", g: "racket" } },
   { k: "xf", t: "X-factor con bola rápida", c: "Rápida frente a lenta", A: s => isN(s.tAvail) && !s.fast, B: s => s.fast, go: { pair: "rapida", sit: "" } },
   { k: "baseM", t: "Base con bola rápida", c: "Rápida frente a lenta", A: s => isN(s.tAvail) && !s.fast, B: s => s.fast, go: { pair: "rapida", sit: "", g: "feet" } },
   { k: "contactH", t: "Altura del impacto con bola rápida", c: "Rápida frente a lenta", A: s => isN(s.tAvail) && !s.fast, B: s => s.fast, go: { pair: "rapida", sit: "" } },
@@ -641,7 +647,7 @@ function renderMetricsPanel() {
 function renderCtx() {
   const s = cur, m = MATCHES[s.match];
   document.getElementById("g-title").textContent = s.id;
-  document.getElementById("g-ctx").innerHTML = [["Partido", `${m.id} vs ${m.rival}`], ["Vídeo", clock(s.vt)], ["Bola", sitTxt(s)], ["Tiempo disponible", isN(s.tAvail) ? `${fmt(s.tAvail, 2)} s` : "—"], ["Desplazamiento", isN(s.disp) ? `${fmt(s.disp, 1)} m` : "—"], ["Apoyo", s.stance ? `${s.stance}${isN(s.stanceAngle) ? ` (${fmt(s.stanceAngle)}°)` : ""}` : "—"], ["Impacto", s.source || "—"], ["Captura", `${fmt(s.quality * 100)} %`], ["Marcador · resultado", "pendiente (fase 3)"], ["Dudas", s.review.length ? `<span class="flags">${s.review.map(r => `<span class="chip">${revTxt(r)}</span>`).join("")}</span>` : "ninguna"]].map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join("");
+  document.getElementById("g-ctx").innerHTML = [["Partido", `${m.id} vs ${m.rival}`], ["Vídeo", clock(s.vt)], ["Bola", sitTxt(s)], ["Tiempo disponible", isN(s.tAvail) ? `${fmt(s.tAvail, 2)} s` : "—"], ["Desplazamiento", isN(s.disp) ? `${fmt(s.disp, 1)} m` : "—"], ["Apoyo", s.stance ? `${s.stance}${isN(s.stanceAngle) ? ` (${fmt(s.stanceAngle)}°)` : ""}` : "—"], ["Impacto", s.source || "—"], ["Captura", `${fmt(s.quality * 100)} %`], ["Set · marcador", s.score ? `${s.set} · ${s.score}${s.pressure ? " · <b style='color:var(--accent)'>presión</b>" : ""}` : "sin lectura del marcador"], ["Dudas", s.review.length ? `<span class="flags">${s.review.map(r => `<span class="chip">${revTxt(r)}</span>`).join("")}</span>` : "ninguna"]].map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join("");
 }
 function renderRacket() {
   const rk = ser && ser.racket;
@@ -702,11 +708,11 @@ document.getElementById("gnext").addEventListener("click", () => { const a = nav
 [document.getElementById("f-match"), document.getElementById("p-match")].forEach(sel => { sel.innerHTML = `<option value="">Todos</option>` + MATCHES.map((m, i) => `<option value="${i}">${m.id} · ${m.rival}</option>`).join(""); });
 let exSort = { k: "quality", dir: -1 }, exPage = 0; const PAGE = 25;
 const F = id => document.getElementById(id).value;
-function resetFilters() { ["f-match", "f-stance", "f-sit", "f-rev", "f-preset"].forEach(id => { document.getElementById(id).value = ""; }); }
+function resetFilters() { ["f-match", "f-stance", "f-sit", "f-press", "f-rev", "f-preset"].forEach(id => { document.getElementById(id).value = ""; }); }
 const EXM = ["xf", "elbow", "rDrop", "contactH", "baseM"];
-const COLS = [{ k: "id", h: "Golpe" }, { k: "vt", h: "Vídeo" }, { k: "sit", h: "Bola" }, { k: "stance", h: "Apoyo" }, ...EXM.map(k => ({ k, h: MK[k].name, metric: true })), { k: "chainOK", h: "Cadena" }, { k: "review", h: "Dudas" }, { k: "quality", h: "Captura", r: true }, { k: "repr", h: "Repr.", r: true }];
+const COLS = [{ k: "id", h: "Golpe" }, { k: "vt", h: "Vídeo" }, { k: "score", h: "Marcador" }, { k: "sit", h: "Bola" }, { k: "stance", h: "Apoyo" }, ...EXM.map(k => ({ k, h: MK[k].name, metric: true })), { k: "chainOK", h: "Cadena" }, { k: "review", h: "Dudas" }, { k: "quality", h: "Captura", r: true }, { k: "repr", h: "Repr.", r: true }];
 function exRows() {
-  const a = STROKES.filter(s => (F("f-match") === "" || s.match === +F("f-match")) && (F("f-stance") === "" || s.stance === F("f-stance")) && (F("f-sit") === "" || s.sit[F("f-sit")]) && (F("f-rev") === "" || +(s.review.length > 0) === +F("f-rev")));
+  const a = STROKES.filter(s => (F("f-match") === "" || s.match === +F("f-match")) && (F("f-stance") === "" || s.stance === F("f-stance")) && (F("f-sit") === "" || s.sit[F("f-sit")]) && (F("f-press") === "" || (s.pressure !== null && +s.pressure === +F("f-press"))) && (F("f-rev") === "" || +(s.review.length > 0) === +F("f-rev")));
   const k = exSort.k, val = s => MK[k] ? (isN(s.m[k]) ? s.m[k] : -Infinity) : k === "id" ? s.idx : k === "chainOK" ? +!!s.chainOK : k === "sit" ? +s.sit.neutra : k === "review" ? s.review.length : (s[k] ?? "");
   return a.sort((x, y) => { const vx = val(x), vy = val(y); return (vx > vy ? 1 : vx < vy ? -1 : 0) * exSort.dir; });
 }
@@ -715,12 +721,12 @@ function renderTable() {
   const a = exRows(), pages = Math.max(1, Math.ceil(a.length / PAGE)); exPage = clamp(exPage, 0, pages - 1);
   const rows = a.slice(exPage * PAGE, exPage * PAGE + PAGE);
   document.getElementById("ex-table").innerHTML = `<thead><tr>${COLS.map(c => `<th data-sort="${c.k}" class="${c.metric || c.r ? "r" : ""}">${c.h}${exSort.k === c.k ? ` <span class="arr">${exSort.dir > 0 ? "▲" : "▼"}</span>` : ""}</th>`).join("")}</tr></thead><tbody>` +
-    rows.map(s => `<tr data-id="${s.id}" class="${s === cur ? "sel" : ""}"><td><b class="mono" style="font-weight:500">${s.id}</b><div class="dim3" style="font-size:11px">${MATCHES[s.match].rival}</div></td><td class="num">${clock(s.vt)}</td><td>${s.sit.neutra ? `<span class="chip">neutra</span>` : [s.wide && "abierta", s.fast && "rápida", s.height === "baja" && "baja", s.height === "alta" && "alta", s.short && "corta"].filter(Boolean).map(x => `<span class="chip">${x}</span>`).join("")}</td><td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${stCol(s)};margin-right:6px"></span>${s.stance || "—"}</td>${EXM.map(k => `<td class="r">${devCell(k, s.m[k])}</td>`).join("")}<td>${s.chainOK === true ? `<span class="st good"><i>✓</i></span>` : s.chainOK === false ? `<span class="st crit"><i>!</i></span>` : "—"}</td><td>${s.review.length ? `<span class="st warn" data-tip="${s.review.map(revTxt).join("<br>")}"><i>!</i>${s.review.length}</span>` : ""}</td><td class="r"><span class="qb"><i style="width:${s.quality * 100}%"></i></span> <span class="num">${fmt(s.quality * 100)}</span></td><td class="r num">${fmt(s.repr * 100)}</td></tr>`).join("") + "</tbody>";
+    rows.map(s => `<tr data-id="${s.id}" class="${s === cur ? "sel" : ""}"><td><b class="mono" style="font-weight:500">${s.id}</b><div class="dim3" style="font-size:11px">${MATCHES[s.match].rival}</div></td><td class="num">${clock(s.vt)}</td><td class="num">${s.score ? s.set + " · " + s.score.split(" · ")[0] : "—"}${s.pressure ? ` <span class="chip">P</span>` : ""}</td><td>${s.sit.neutra ? `<span class="chip">neutra</span>` : [s.wide && "abierta", s.fast && "rápida", s.height === "baja" && "baja", s.height === "alta" && "alta", s.short && "corta"].filter(Boolean).map(x => `<span class="chip">${x}</span>`).join("")}</td><td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${stCol(s)};margin-right:6px"></span>${s.stance || "—"}</td>${EXM.map(k => `<td class="r">${devCell(k, s.m[k])}</td>`).join("")}<td>${s.chainOK === true ? `<span class="st good"><i>✓</i></span>` : s.chainOK === false ? `<span class="st crit"><i>!</i></span>` : "—"}</td><td>${s.review.length ? `<span class="st warn" data-tip="${s.review.map(revTxt).join("<br>")}"><i>!</i>${s.review.length}</span>` : ""}</td><td class="r"><span class="qb"><i style="width:${s.quality * 100}%"></i></span> <span class="num">${fmt(s.quality * 100)}</span></td><td class="r num">${fmt(s.repr * 100)}</td></tr>`).join("") + "</tbody>";
   document.getElementById("ex-count").textContent = `${a.length} golpes · página ${exPage + 1} de ${pages} · la marca junto a cada métrica es su posición respecto a su mediana`;
   document.querySelectorAll("#ex-table th[data-sort]").forEach(th => th.addEventListener("click", () => { const k = th.dataset.sort; exSort = { k, dir: exSort.k === k ? -exSort.dir : (k === "id" || k === "vt" ? 1 : -1) }; renderTable(); }));
   document.querySelectorAll("#ex-table tbody tr").forEach(tr => tr.addEventListener("click", () => { loadStroke(STROKES.find(s => s.id === tr.dataset.id)); showTab("golpe"); }));
 }
-["f-match", "f-stance", "f-sit", "f-rev"].forEach(id => document.getElementById(id).addEventListener("change", () => { document.getElementById("f-preset").value = ""; exPage = 0; renderTable(); }));
+["f-match", "f-stance", "f-sit", "f-press", "f-rev"].forEach(id => document.getElementById(id).addEventListener("change", () => { document.getElementById("f-preset").value = ""; exPage = 0; renderTable(); }));
 document.getElementById("f-preset").addEventListener("change", e => { const v = e.target.value; resetFilters(); e.target.value = v; if (v === "best") exSort = { k: "quality", dir: -1 }; if (v === "typ") exSort = { k: "repr", dir: -1 }; exPage = 0; renderTable(); });
 document.getElementById("ex-prev").addEventListener("click", () => { exPage--; renderTable(); });
 document.getElementById("ex-next").addEventListener("click", () => { exPage++; renderTable(); });
@@ -729,6 +735,8 @@ document.getElementById("ex-next").addEventListener("click", () => { exPage++; r
 function groupsFor(pair, sit) {
   const b = STROKES.filter(s => !sit || s.sit[sit]);
   if (pair === "fatiga") return [{ l: "Primer tercio", a: b.filter(early) }, { l: "Último tercio", a: b.filter(late) }];
+  if (pair === "presion") return [{ l: "Sin presión", a: b.filter(s => s.pressure === false) }, { l: "Bajo presión", a: b.filter(s => s.pressure === true) }];
+  if (pair === "sets") { const last = Math.max(1, ...b.map(s => s.set || 0)); return [{ l: "Set 1", a: b.filter(s => s.set === 1) }, { l: `Set ${last}`, a: b.filter(s => s.set === last && last > 1) }]; }
   if (pair === "rapida") return [{ l: "Bola lenta", a: b.filter(s => isN(s.tAvail) && !s.fast) }, { l: "Bola rápida", a: b.filter(s => s.fast) }];
   return MATCHES.map((m, i) => ({ l: m.id, a: b.filter(s => s.match === i) }));
 }
