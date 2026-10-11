@@ -38,8 +38,9 @@ def racket_from_points(pts: np.ndarray, wrist: np.ndarray) -> RacketObs | None:
         ends.reverse()
         proj, lo, hi = -proj, -hi, -lo
     butt = ends[0]
-    # head centre: mean of the pixels in the far 35 % of the racket (the frame is wider there)
-    far = pts[proj >= lo + 0.65 * (hi - lo)]
+    # head centre: mean of the pixels of the head, the far 56 % of the racket (tip→throat share
+    # measured on RacketVision); the strings fill it, so its centroid is the centre of the head
+    far = pts[proj >= lo + 0.44 * (hi - lo)]
     head = far.mean(0) if len(far) else ends[1]
     d = head - butt
     return RacketObs(butt=butt, head=head, elevation_deg=float(np.degrees(np.arctan2(-d[1], abs(d[0])))),
