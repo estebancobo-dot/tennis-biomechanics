@@ -588,6 +588,23 @@ def _fine_one(ctx, p, c, pre, post, interlaced, ph, court, score, onsets, scenes
         d["face"] = faces["phases"]
         d["metrics"].update(faces["trunk3d"])
         ser["face"] = {key: faces[key] for key in ("first", "tilt", "yaw", "label", "observed", "keypoints", "source", "hand3d", "rot3d")}
+    # the technique model of this stroke: every body part and the racket at each phase, footwork,
+    # timing and the classes of its variant
+    from .technique import stroke_technique
+    ph_frames = {k: v.get("frame") for k, v in r.phases.items()}
+    ta = r.metrics.get("time_available_s")
+    opp_f = None if ta is None else r.impact_frame - int(round(ta * run.fps))
+    d["technique"] = stroke_technique(
+        run.img, run.conf, run.sk, run.fps, run.height_t if run.height_t is not None else np.full(len(run.img), run.height_px),
+        r.impact_frame, ph_frames, r.stroke, H if side == "near" else None, opp_f, (r.ball or {}).get("bounce_frame"),
+        ser.get("face"), None,
+        {"court_pos": d.get("court_pos_m"), "displacement": d.get("displacement_m"), "t_avail": ta,
+         "contact_h": r.metrics.get("contact_height_pct"), "shot_direction": d.get("shot_direction"),
+         "split": (r.phases.get("ready") or {}).get("method") == "split_step_landing"})
+    if side == "far":                       # 70 px player: only position-level classes are kept
+        d["technique"] = {"classes": {k: v for k, v in d["technique"]["classes"].items()
+                                      if k in ("ball_speed", "ball_height", "depth", "court_side", "width", "intent", "shot_type")},
+                          "phases": {}, "stroke": {}, "footwork": {}}
     sdir = ctx.path("series")
     sdir.mkdir(exist_ok=True)
     sname = f"{wid}_{side}.json"

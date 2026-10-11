@@ -10,17 +10,30 @@ ORT_PROVIDERS = {
 }
 
 
+_warned: set = set()
+
+
 def _ort_session(model_path: str, device: str) -> ort.InferenceSession:
-    providers = ORT_PROVIDERS[device]
-    missing = set(providers) - set(ort.get_available_providers())
-    if missing:
-        raise RuntimeError(f"ONNX Runtime has no {missing}; installed: {ort.get_available_providers()}")
+    """Session on the requested device, falling back to the CPU (with a warning) when that device
+    is not available or fails to load the model: the analysis is slower but never stops."""
+    available = set(ort.get_available_providers())
+    providers = [p for p in ORT_PROVIDERS.get(device, ORT_PROVIDERS["cpu"]) if p in available] or ["CPUExecutionProvider"]
+    if device not in ORT_PROVIDERS or providers == ["CPUExecutionProvider"] and device != "cpu":
+        if device not in _warned:
+            print(f"AVISO: el dispositivo '{device}' no está disponible; se usa la CPU (más lento)")
+            _warned.add(device)
     opts = ort.SessionOptions()
-    if device == "dml":
+    if "DmlExecutionProvider" in providers:
         # Required by the DirectML provider.
         opts.enable_mem_pattern = False
         opts.execution_mode = ort.ExecutionMode.ORT_SEQUENTIAL
-    return ort.InferenceSession(model_path, sess_options=opts, providers=providers)
+    try:
+        return ort.InferenceSession(model_path, sess_options=opts, providers=providers)
+    except Exception as e:                    # driver problem on the iGPU: CPU instead
+        if providers == ["CPUExecutionProvider"]:
+            raise
+        print(f"AVISO: la iGPU falló al cargar {model_path} ({e}); se usa la CPU")
+        return ort.InferenceSession(model_path, providers=["CPUExecutionProvider"])
 
 
 def _build(cls, model: str, input_size, device: str, **kwargs):
