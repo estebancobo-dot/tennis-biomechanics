@@ -38,9 +38,10 @@ Leyenda: ✔ lo hace · ◐ parcial o aproximado · ✘ no · ? no confirmado
 | Comparar golpes **equivalentes** (misma situación) | ✘ | ◐ | ✘ | ✘ | **✔ (núcleo del diseño)** |
 | Fatiga (inicio vs final), presión, partido a partido | ◐ | ✔ | ✘ | ✘ | ✔ |
 | Incertidumbre y ruido de medida en cada conclusión | ✘ | ✘ (no publicado) | ✘ | ✘ | **✔ (bandas de ruido, IC 95 %, confianza)** |
-| Vídeo con esqueleto superpuesto | ✘ (marcador superpuesto) | ✔ (TV) | ✔ | ✔ (dibujas tú) | ✔ cada golpe, cuadro a cuadro |
+| Vídeo con esqueleto superpuesto | ✘ (marcador superpuesto) | ✔ (TV) | ✔ | ✔ (dibujas tú) | ✔ cada golpe, cuadro a cuadro, con ángulos, bola, cuerdas y minipista |
+| Videoteca y listas de reproducción | ✔ (por partido) | ✔ | ◐ | ◐ | ✔ filtros, "reproducir todos" y cada conclusión abre sus vídeos |
 | Estroboscópica, 8 fotogramas clave | ✘ | ? | ? | ✔ (Dartfish *stromotion*; manual) | ✔ automático |
-| Lado a lado de dos golpes | ◐ | ? | ✔ | ✔ | **✘ (pendiente)** |
+| Lado a lado de dos golpes | ◐ | ? | ✔ | ✔ | **✔ sincronizados en el impacto, lado a lado o superpuestos** |
 | Exportar vídeo con datos | ✔ (resúmenes para redes) | ✔ (TV) | ✔ | ✔ | **✘ (pendiente)** |
 | Recomendaciones de entrenamiento | ✔ (objetivos semanales) | ✘ (datos) | ✔ | ✘ | **✘** (describe, no prescribe) |
 | Escala: miles de golpes de una jugadora | ✘ (tu juego) | ✔ | ✘ | ✘ | **✔** |
@@ -62,7 +63,7 @@ Leyenda: ✔ lo hace · ◐ parcial o aproximado · ✘ no · ? no confirmado
 - **Precisión 3D:** una cámara de TV detrás y elevada frente a varias cámaras de estadio. Las rotaciones y el impacto delante/detrás del cuerpo son mucho menos fiables.
 - **Golpes:** sin volea, remate ni cortado todavía.
 - **Lado lejano:** detalle reducido.
-- **Producto:** sin lado a lado, sin exportar clips, sin recomendaciones.
+- **Producto:** sin exportar clips (previsto al final) y sin recomendaciones.
 
 ## 4. ¿Son útiles los informes? Valoración sincera
 **Qué dan de verdad (información, no solo datos):**
