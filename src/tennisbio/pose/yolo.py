@@ -1,0 +1,85 @@
+"""Extraction with Ultralytics YOLO: people (pose) on every frame, rackets (segmentation) on demand.
+
+Optional backend (`uv sync --extra yolo`). Everything detected is cached, so tracking, stroke
+detection and racket analysis can be re-run without inference. Rackets are segmented only in
+the frames around each stroke (same idea as the two-pass pipeline).
+"""
+from pathlib import Path
+
+import cv2
+import numpy as np
+
+RACKET_CLASS = 38  # "tennis racket" in COCO
+
+
+def _objects(items: list) -> np.ndarray:
+    """1-D object array (np.array would merge equally shaped items into one block)."""
+    arr = np.empty(len(items), dtype=object)
+    arr[:] = items
+    return arr
+
+
+def appearance(frame: np.ndarray, box: np.ndarray, bins=(8, 4)) -> np.ndarray:
+    """Normalised hue/saturation histogram of a person's box, for re-identification."""
+    x0, y0, x1, y1 = np.clip(box, 0, [frame.shape[1], frame.shape[0]] * 2).astype(int)
+    patch = frame[y0:y1, x0:x1]
+    if patch.size == 0:
+        return np.zeros(bins[0] * bins[1], np.float32)
+    hsv = cv2.cvtColor(patch, cv2.COLOR_BGR2HSV)
+    h = cv2.calcHist([hsv], [0, 1], None, list(bins), [0, 180, 0, 256]).ravel()
+    return (h / (h.sum() + 1e-9)).astype(np.float32)
+
+
+def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", imgsz=960, every=1, progress=True) -> Path:
+    """Run pose on every `every`-th frame and save all people (boxes, keypoints, appearance) to .npz."""
+    from ultralytics import YOLO
+
+    pose = YOLO(pose_model)
+    cap = cv2.VideoCapture(str(video))
+    fps = cap.get(cv2.CAP_PROP_FPS) / every
+    boxes, kps, confs, feats = [], [], [], []
+    i = 0
+    while True:
+        ok, frame = cap.read()
+        if not ok:
+            break
+        if i % every:
+            i += 1
+            continue
+        r = pose.predict(frame, imgsz=imgsz, conf=0.3, verbose=False)[0]
+        b = r.boxes.xyxy.cpu().numpy() if len(r.boxes) else np.zeros((0, 4))
+        boxes.append(b.astype(np.float32))
+        kps.append(r.keypoints.xy.cpu().numpy().astype(np.float32) if len(b) else np.zeros((0, 17, 2), np.float32))
+        confs.append(r.keypoints.conf.cpu().numpy().astype(np.float32) if len(b) else np.zeros((0, 17), np.float32))
+        feats.append(np.array([appearance(frame, bb) for bb in b], np.float32).reshape(len(b), 32))
+        i += 1
+        if progress and len(boxes) % 100 == 0:
+            print(f"{len(boxes)} frames", flush=True)
+    out = Path(out)
+    np.savez_compressed(out, fps=fps, n=len(boxes),
+                        boxes=_objects(boxes), kps=_objects(kps), confs=_objects(confs),
+                        feats=_objects(feats))
+    return out
+
+
+def extract_rackets(video: str | Path, frames, out: str | Path, seg_model="yolo11m-seg.pt", imgsz=960) -> Path:
+    """Racket outlines (segmentation) only for the given frame indices, saved to .npz."""
+    from ultralytics import YOLO
+
+    seg = YOLO(seg_model)
+    cap = cv2.VideoCapture(str(video))
+    frames = sorted(set(int(f) for f in frames))
+    polys, pos = [], -1
+    for f in frames:
+        if f != pos + 1:
+            cap.set(cv2.CAP_PROP_POS_FRAMES, f)
+        ok, frame = cap.read()
+        pos = f
+        if not ok:
+            polys.append([])
+            continue
+        s = seg.predict(frame, imgsz=imgsz, conf=0.15, classes=[RACKET_CLASS], verbose=False)[0]
+        polys.append([p.astype(np.float32) for p in (s.masks.xy if s.masks is not None else [])])
+    out = Path(out)
+    np.savez_compressed(out, frames=np.array(frames), polys=_objects(polys))
+    return out

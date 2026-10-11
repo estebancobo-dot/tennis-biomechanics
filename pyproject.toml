@@ -11,6 +11,7 @@ dependencies = [
     "tqdm>=4.66",
     "opencv-python>=4.9",
     "librosa>=0.10",
+    "scipy>=1.11",
     "rtmlib>=0.0.16",
     # ONNX Runtime: DirectML (iGPU Radeon) en Windows, CPU en el resto.
     "onnxruntime-directml>=1.20; sys_platform == 'win32'",
@@ -19,6 +20,9 @@ dependencies = [
 
 [project.optional-dependencies]
 openvino = ["openvino>=2024.0"]
+# Ultralytics YOLO pose/segmentation for clips and racket outlines (AGPL-3.0, uses PyTorch).
+yolo = ["ultralytics>=8.3"]
+viz = ["matplotlib>=3.8"]
 dev = ["pytest>=8", "onnx>=1.16"]
 
 [tool.uv]
