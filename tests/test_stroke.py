@@ -31,9 +31,9 @@ def synthetic_forehand(T=90):
     kp[:, sk["right_shoulder"]] = np.c_[200 + ws, np.full(T, 90)]
     kp[:, sk["left_hip"]] = np.c_[200 - wh, np.full(T, 230)]
     kp[:, sk["right_hip"]] = np.c_[200 + wh, np.full(T, 230)]
-    tk = [-1, -0.6, -0.3, -0.12, 0, 0.3, 0.6, 1]
-    wx = np.interp(t, tk, [220, 220, 300, 290, 260, 150, 200, 210])
-    wy = np.interp(t, tk, [200, 200, 150, 262, 190, 60, 180, 200])
+    tk = [-1, -0.6, -0.3, -0.26, -0.12, 0, 0.3, 0.6, 1]       # wrist pauses at the top of the backswing
+    wx = np.interp(t, tk, [220, 220, 300, 300, 290, 260, 150, 200, 210])
+    wy = np.interp(t, tk, [200, 200, 150, 150, 262, 190, 60, 180, 200])
     kp[:, sk["right_wrist"]] = np.c_[wx, wy]
     kp[:, sk["left_wrist"]] = np.c_[np.full(T, 170), np.full(T, 190)]
     for side in ("left", "right"):
@@ -76,7 +76,7 @@ def test_phases_on_synthetic_forehand():
     sk, kp, conf = synthetic_forehand()
     h = body_height(kp, sk)
     ev = {e.name: e for e in detect_phases(kp, to_body_frame(kp, sk, h), conf, sk, FPS, h, IMPACT)}
-    expect = {"ready": -0.80, "takeback": -0.525, "loaded": -0.30, "acceleration": -0.12,
+    expect = {"ready": -0.80, "takeback": -0.60, "loaded": -0.28, "acceleration": -0.12,
               "impact": 0.0, "extension": 0.05, "finish": 0.30, "recovery": 0.45}
     for name, t in expect.items():
         assert ev[name].frame is not None, name
@@ -88,8 +88,8 @@ def test_analyze_stroke_metrics():
     sk, kp, conf = synthetic_forehand()
     r = analyze_stroke(kp, conf, sk, FPS, body_height(kp, sk), IMPACT, "audio+swing")
     assert r.stroke == "forehand"
-    assert r.metrics["shoulder_turn_loaded_deg"] == pytest.approx(60, abs=2)
-    assert r.metrics["x_factor_deg"] == pytest.approx(30, abs=3)
+    assert r.metrics["shoulder_turn_loaded_deg"] == pytest.approx(60, abs=6)
+    assert r.metrics["x_factor_deg"] == pytest.approx(30, abs=6)
     assert set(r.chain["order"]) == {"pelvis", "trunk", "upper_arm", "forearm"}
     assert r.review == []
 
@@ -101,6 +101,8 @@ def test_racket_axis_and_head():
     assert np.linalg.norm(r.butt - [100, 302]) < 15
     assert r.head[0] > 160 and r.head[1] < 240
     assert 30 < r.elevation_deg < 60
+    flipped = racket_from_polygon((poly * [-1, 1] + [400, 0]).astype(float), wrist=np.array([305.0, 305.0]))
+    assert 30 < flipped.elevation_deg < 60          # pointing left: same tilt, no ±180° jump
 
 
 def test_fuse_prefers_audio_when_close():

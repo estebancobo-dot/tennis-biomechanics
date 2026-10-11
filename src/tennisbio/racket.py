@@ -13,7 +13,7 @@ import numpy as np
 class RacketObs:
     butt: np.ndarray          # end nearest the hand (image px)
     head: np.ndarray          # centre of the far end (image px)
-    elevation_deg: float      # angle of butt→head above the horizontal (y up); +90 = head straight up
+    elevation_deg: float      # tilt of butt→head from horizontal, -90..+90: + head above the handle
     length_px: float
     area_px: float
 
@@ -42,7 +42,7 @@ def racket_from_points(pts: np.ndarray, wrist: np.ndarray) -> RacketObs | None:
     far = pts[proj >= lo + 0.65 * (hi - lo)]
     head = far.mean(0) if len(far) else ends[1]
     d = head - butt
-    return RacketObs(butt=butt, head=head, elevation_deg=float(np.degrees(np.arctan2(-d[1], d[0]))),
+    return RacketObs(butt=butt, head=head, elevation_deg=float(np.degrees(np.arctan2(-d[1], abs(d[0])))),
                      length_px=float(hi - lo), area_px=float(len(pts)))
 
 

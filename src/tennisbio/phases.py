@@ -35,6 +35,24 @@ def _argext(x: np.ndarray, a: int, b: int, fn) -> int | None:
     return a + int(fn(x[a:b]))
 
 
+def _walk_down(x: np.ndarray, i: int, lo: int) -> int:
+    """From i, move backwards while the signal keeps decreasing (to the nearest local minimum)."""
+    while i - 1 >= lo and not np.isnan(x[i - 1]) and x[i - 1] <= x[i]:
+        i -= 1
+    return i
+
+
+def _walk_up(x: np.ndarray, i: int, lo: int, tol=0.03) -> int:
+    """From i, move backwards while the signal keeps increasing or stays on a plateau; returns the
+    highest point found (nearest local maximum)."""
+    best = i
+    while i - 1 >= lo and not np.isnan(x[i - 1]) and x[i - 1] >= x[i] - tol * max(x[best], 1e-6):
+        i -= 1
+        if x[i] > x[best]:
+            best = i
+    return best
+
+
 def detect_split_step(img: np.ndarray, sk: Skeleton, height: float, fps: float, a: int, b: int):
     """Landing of a small two-footed hop between frames a and b (image coordinates).
 
@@ -71,8 +89,8 @@ def detect_phases(img: np.ndarray, body: np.ndarray, conf: np.ndarray, sk: Skele
     T = len(img)
     s = lambda sec: int(round(sec * fps))
     dw = sk["dom_wrist"]
-    sh = line_turn(img, sk, "shoulder")
     wrist_y = body[:, dw, 1]
+    wv = speed(body[:, dw], fps)          # body-relative: camera pans and zooms cancel out
     events: dict[str, Event] = {}
 
     def conf_at(f, base):
@@ -81,26 +99,35 @@ def detect_phases(img: np.ndarray, body: np.ndarray, conf: np.ndarray, sk: Skele
         c = conf[f, [sk["dom_shoulder"], sk["dom_elbow"], dw, sk["left_hip"], sk["right_hip"]]]
         return float(round(base * np.nanmean(c), 2))
 
-    # 3 loaded: maximum shoulder turn before contact
-    loaded = _argext(sh, impact - s(0.9), impact - s(0.05), np.nanargmax)
-    events["loaded"] = Event("loaded", loaded, "max_shoulder_turn", conf_at(loaded, 0.9))
+    # 3 loaded: end of the backswing = the wrist pause right before the forward swing.
+    # Walk back from the forward-swing speed peak to the nearest local minimum. Defined on the
+    # wrist rather than on the shoulder turn, whose 2D proxy depends on the camera angle.
+    loaded = None
+    fwd = _argext(wv, impact - s(0.25), impact + 2, np.nanargmax)
+    if fwd is not None:
+        f = _walk_down(wv, fwd, max(0, impact - s(0.8)))
+        loaded = f if f < impact - 1 else None
+    events["loaded"] = Event("loaded", loaded, "wrist_pause_before_forward_swing", conf_at(loaded, 0.9))
 
-    # 2 takeback: the shoulder turn crosses 25 % of its range on the way to "loaded"
-    takeback = None
+    # 2 takeback: before "loaded" the wrist went back (a backswing speed hump); its start is the
+    # pause before that hump. Volleys and blocked returns may have no real backswing.
+    takeback, method = None, "no_backswing"
     if loaded is not None:
-        lo = _argext(sh, loaded - s(0.8), loaded, np.nanargmin)
-        if lo is not None and loaded > lo:
-            rng = sh[loaded] - sh[lo]
-            cross = np.flatnonzero(sh[lo:loaded + 1] >= sh[lo] + 0.25 * rng)
-            takeback = lo + int(cross[0]) if len(cross) and rng > 5 else None
-    events["takeback"] = Event("takeback", takeback, "shoulder_turn_onset", conf_at(takeback, 0.8))
+        lo = max(0, loaded - s(0.8))
+        back_pk = _walk_up(wv, loaded, lo)
+        hump = wv[back_pk] - wv[loaded]
+        if back_pk < loaded and hump > 0.4:                          # body heights per second
+            slow = np.flatnonzero(wv[lo:back_pk + 1] < wv[loaded] + 0.25 * hump)
+            takeback = lo + int(slow[-1]) if len(slow) else lo
+            method = "wrist_starts_back"
+    events["takeback"] = Event("takeback", takeback, method, conf_at(takeback, 0.8))
 
     # 1 ready / split step: hop landing around the opponent's hit, else before the takeback
-    if opponent_impact is not None:
-        win = (opponent_impact - s(0.35), opponent_impact + s(0.45))
+    end = takeback if takeback is not None else (loaded if loaded is not None else impact - s(0.5))
+    if opponent_impact is not None and opponent_impact < end:
+        win = (opponent_impact - s(0.35), min(end, opponent_impact + s(0.45)))
     else:
-        end = takeback if takeback is not None else impact - s(0.5)
-        win = (end - s(0.7), end)
+        win = (end - s(0.7), end)   # the split step always comes before the takeback
     hop = detect_split_step(img, sk, height, fps, *win)
     if hop:
         events["ready"] = Event("ready", hop[0], "split_step_landing", conf_at(hop[0], 0.85))
@@ -114,9 +141,8 @@ def detect_phases(img: np.ndarray, body: np.ndarray, conf: np.ndarray, sk: Skele
         acc = _argext(wrist_y, loaded, impact - 1, np.nanargmin)
         method = "wrist_low_point"
         if acc is not None and acc <= loaded + 1:      # no visible drop: use the speed ramp instead
-            v = speed(body[:, dw], fps)
-            peak = np.nanmax(v[loaded:impact + 1])
-            ramp = np.flatnonzero(v[loaded:impact + 1] >= 0.5 * peak)
+            peak = np.nanmax(wv[loaded:impact + 1])
+            ramp = np.flatnonzero(wv[loaded:impact + 1] >= 0.5 * peak)
             acc = loaded + int(ramp[0]) if len(ramp) else None
             method = "wrist_speed_ramp"
     events["acceleration"] = Event("acceleration", acc, method if acc is not None else "none", conf_at(acc, 0.7))
