@@ -148,6 +148,64 @@ def st_candidates(ctx: Context, tol_s=0.35):
     return {"candidates": len(cands), "with_audio": sum(c["audio"] for c in cands)}
 
 
+def grab_frame(video: Path, t: float) -> np.ndarray | None:
+    """One full-resolution BGR frame at time t (fast seek)."""
+    import cv2
+
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{t:.3f}", "-i", str(video), "-frames:v", "1",
+                          "-f", "image2pipe", "-vcodec", "png", "pipe:1"], capture_output=True).stdout
+    return cv2.imdecode(np.frombuffer(raw, np.uint8), cv2.IMREAD_COLOR) if raw else None
+
+
+@stage("court", "1", deps=("scenes",))
+def st_court(ctx: Context, n_fit=6, min_score=0.5):
+    """Court homography of the main camera: fitted on a few long main-camera shots, the best one
+    is checked on every main-camera shot (the broadcast camera barely moves); shots where it does
+    not fit get their own fit."""
+    from .court import CourtFit, camera_pitch_deg, fit_court, score_homography, white_lines
+
+    sc = _read(ctx.path("scenes.json"))
+    fps = sc["fps"]
+    main = [s for s in sc["shots"] if s["main_camera"]]
+    if not main:
+        _write(ctx.path("court.json"), {"shots": []})
+        return {"main_camera_shots": 0}
+    mid = lambda s: (s["start"] + s["end"]) / 2 / fps
+    best = None
+    for s in sorted(main, key=lambda s: s["start"] - s["end"])[:n_fit]:          # longest first
+        fr = grab_frame(ctx.match.video, mid(s))
+        fit = fit_court(fr) if fr is not None else None
+        if fit is not None and (best is None or fit.score > best[0].score):
+            best = (fit, fr.shape)
+    out = []
+    for s in main:
+        fr = grab_frame(ctx.match.video, mid(s))
+        if fr is None:
+            continue
+        fit, score = best[0] if best else None, 0.0
+        if fit is not None:
+            score = score_homography(fit.H, white_lines(fr))
+        if score < min_score:
+            own = fit_court(fr)
+            fit, score = (own, own.score) if own is not None else (None, 0.0)
+        out.append({"start": s["start"], "end": s["end"], "score": round(score, 3),
+                    "H": None if fit is None or score < min_score else fit.H.tolist(),
+                    "pitch_deg": None if fit is None or score < min_score else round(camera_pitch_deg(fit, fr.shape), 1)})
+    _write(ctx.path("court.json"), {"fps": fps, "shots": out})
+    ok = [o for o in out if o["H"] is not None]
+    return {"main_camera_shots": len(out), "with_court": len(ok),
+            "pitch_deg_median": float(np.median([o["pitch_deg"] for o in ok])) if ok else None}
+
+
+def court_at(court: dict, t: float):
+    """(H court→image, pitch) of the main-camera shot containing time t, or (None, None)."""
+    f = t * court.get("fps", 1)
+    for o in court.get("shots", []):
+        if o["start"] <= f < o["end"] and o["H"] is not None:
+            return np.array(o["H"]), o["pitch_deg"]
+    return None, None
+
+
 def cut_window(video: Path, t0: float, dur: float, dest: Path) -> Path:
     if not dest.exists():
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -156,12 +214,19 @@ def cut_window(video: Path, t0: float, dur: float, dest: Path) -> Path:
     return dest
 
 
-@stage("fine", "1", deps=("candidates",), settings=lambda c: {"fine": c["fine_pass"], "imgsz": c.get("fine_imgsz", 1280)})
+@stage("fine", "2", deps=("candidates", "court"),
+       settings=lambda c: {"fine": c["fine_pass"], "imgsz": c.get("fine_imgsz", 1280), "ball": c.get("ball")})
 def st_fine(ctx: Context):
     """Full-quality analysis of each candidate in its own window (same code as analyze_clip)."""
     from .clip_pipeline import run_clip
 
     cands = _read(ctx.path("candidates.json"))
+    court = _read(ctx.path("court.json"))
+    ball = None
+    bcfg = ctx.cfg.get("ball") or {}
+    if bcfg.get("onnx") and Path(bcfg["onnx"]).exists():
+        from .ball import BallTracker
+        ball = BallTracker(bcfg["onnx"], ctx.cfg.get("device", "cpu"), bcfg.get("threshold", 0.5))
     pre, post = ctx.cfg["fine_pass"]["window_s"] + 0.3, ctx.cfg["fine_pass"]["window_s"]
     p = ctx.match.player
     strokes = []
@@ -169,7 +234,7 @@ def st_fine(ctx: Context):
         t0 = max(0.0, c["t"] - pre)
         clip = cut_window(ctx.match.video, t0, pre + post, ctx.path("windows") / f"w{k:04d}.mp4")
         run = run_clip(clip, clip.with_suffix(".npz"), p.hand, p.height_m, init_mode="near",
-                       imgsz=ctx.cfg.get("fine_imgsz", 1280), log=lambda *_: None)
+                       imgsz=ctx.cfg.get("fine_imgsz", 1280), log=lambda *_: None, ball=ball)
         if not run.strokes:
             continue
         target = (c["t"] - t0) * run.fps
@@ -177,8 +242,18 @@ def st_fine(ctx: Context):
         if abs(r.impact_frame - target) > 0.4 * run.fps:
             continue                              # the fine pass did not confirm this candidate
         d = r.to_dict()
-        d.update(window=str(clip.name), window_start_s=t0, match_time_s=t0 + r.impact_frame / run.fps,
-                 candidate_audio=c["audio"])
+        t_imp = t0 + r.impact_frame / run.fps
+        d.update(window=str(clip.name), window_start_s=t0, match_time_s=t_imp, candidate_audio=c["audio"])
+        H, pitch = court_at(court, t_imp)
+        if H is not None:
+            from .skeleton import Skeleton
+            sk = Skeleton("coco17", p.hand)
+            feet = run.img[r.impact_frame, [sk["left_ankle"], sk["right_ankle"]]]
+            if not np.isnan(feet).any():
+                q = np.c_[feet, np.ones(2)] @ np.linalg.inv(H).T
+                q = q[:, :2] / q[:, 2:]
+                d.update(court_pos_m=[round(float(v), 2) for v in q.mean(0)],
+                         stance_width_m=round(float(np.linalg.norm(q[0] - q[1])), 2), camera_pitch_deg=pitch)
         strokes.append(d)
     _write(ctx.path("strokes.json"), strokes)
     return {"candidates": len(cands), "confirmed": len(strokes),
