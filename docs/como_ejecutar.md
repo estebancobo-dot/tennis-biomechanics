@@ -1,7 +1,14 @@
 # Cómo ejecutarlo en tu PC (Windows)
 
-**Lo más fácil: tres ficheros con doble clic**, en la carpeta del proyecto:
-1. `1_instalar.bat` — instala todo (Git, ffmpeg, uv, Python, librerías, modelos) y lo comprueba.
+**Primera vez (sin Git):** pega esta línea en PowerShell (tecla Windows, escribe PowerShell, Intro):
+```
+irm https://raw.githubusercontent.com/estebancobo-dot/tennis-biomechanics/claude/tennis-biomech-setup-jggqb0/scripts/windows/bootstrap.ps1 | iex
+```
+Descarga el proyecto en `C:\tenis\tennis-biomech` e instala todo. Después, todo es con doble clic.
+
+**Después: tres ficheros con doble clic**, en `C:\tenis\tennis-biomech`:
+1. `1_instalar.bat` — actualiza el proyecto a la última versión e instala lo que falte (ffmpeg, uv,
+   Python, librerías, modelos); lo comprueba todo.
 2. `2_prueba_rapida.bat` — mide la velocidad del equipo y analiza 4 minutos de un partido de
    `C:\tenis\videos` de principio a fin; abre el informe.
 3. `3_analisis_completo.bat` — todos los vídeos de `C:\tenis\videos`, todas las etapas y los

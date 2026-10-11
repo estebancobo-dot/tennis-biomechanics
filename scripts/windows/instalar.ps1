@@ -8,11 +8,8 @@ try {
     Sin-Suspender
     if (-not (Tiene winget)) { throw "Falta winget (App Installer). Instalalo desde Microsoft Store y repite." }
 
-    Paso "1/7 Git"
-    if (Tiene git) { Ok "ya estaba" } else {
-        Ejecutar winget @("install", "--id", "Git.Git", "-e", "--silent", "--accept-package-agreements", "--accept-source-agreements")
-        Refrescar-Path
-    }
+    Paso "1/7 Actualizar el codigo (sin Git: zip de GitHub)"
+    Ok "se actualiza con 1_instalar.bat / bootstrap; Git no hace falta"
 
     Paso "2/7 ffmpeg (lectura de video y audio)"
     if (Tiene ffmpeg) { Ok "ya estaba" } else {
@@ -30,15 +27,9 @@ try {
 
     Paso "4/7 Codigo del proyecto"
     if (-not (Test-Path (Join-Path $RepoDir "pyproject.toml"))) {
-        # el script se ejecuto suelto: descargar el proyecto en C:\tenis\tennis-biomech
-        $RepoDir = "$Base\tennis-biomech"
-        if (-not (Test-Path $RepoDir)) { Ejecutar git @("clone", "-b", $Rama, $RepoUrl, $RepoDir) }
+        throw "Este script debe estar dentro del proyecto. Usa el comando de arranque (bootstrap.ps1)."
     }
     Set-Location $RepoDir
-    if (Test-Path ".git") {
-        git pull --ff-only 2>$null
-        if ($LASTEXITCODE -ne 0) { Aviso "No se pudo actualizar el codigo (sigo con la version que hay)" }
-    }
     Ok "proyecto en $RepoDir"
 
     Paso "5/7 Python 3.11 y librerias (10-15 min la primera vez)"
