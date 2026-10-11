@@ -270,6 +270,13 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
         d.update(racket_at(kps, img, sk, f, float(scale[f]), fy, faces, first_face))
         out["phases"][p] = d
+        # the pose itself, hip-centred, in body heights, dominant side to the right (+x): averaged
+        # over strokes it gives the "mean skeleton" of each moment
+        q = body[f] * np.array([sk.dom_sign, 1.0])
+        if sk.dom_sign < 0:                       # left-hander: swap left/right joints so "right" = dominant
+            q = q[[0, 2, 1, 4, 3, 6, 5, 8, 7, 10, 9, 12, 11, 14, 13, 16, 15]]
+        out.setdefault("pose", {})[p] = [None if not np.isfinite(v).all() else [round(float(v[0]), 3), round(float(v[1]), 3)]
+                                         for v in q]
     # timing
     s = out["stroke"]
     for p in ("takeback", "loaded", "acceleration"):
