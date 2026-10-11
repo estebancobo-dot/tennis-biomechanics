@@ -50,3 +50,7 @@ racket_face:
   pose_onnx: models/racketpose.onnx
   hand3d_onnx: models/rtmw3d-x.onnx
   hand3d_step: 2
+
+# Analizar también a la rival con los mismos vídeos (planos en los que ella está en el lado
+# cercano). Su perfil: `opponent_id` en matches.yaml → config/players/<opponent_id>.yaml.
+analyze_opponent: false

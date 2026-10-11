@@ -175,12 +175,12 @@ def near_is_target(identity: dict, frame: int):
     return None
 
 
-@stage("candidates", "2", deps=("players", "audio", "identity"))
+@stage("candidates", "3", deps=("players", "audio", "identity"))
 def st_candidates(ctx: Context, tol_s=0.35):
     """Near-player stroke candidates: swing peaks of the near player at cheap fps, confirmed by
-    an audio transient when one is close. Runs where the near player is the opponent are skipped
-    (ends change every two games); undecided runs are kept. Each candidate is checked again in
-    the fine pass."""
+    an audio transient when one is close. Each candidate records who the near player is
+    (identity: True target, False opponent, None undecided); the fine passes pick their own.
+    Each candidate is checked again in the fine pass."""
     d = np.load(ctx.path("players.npz"), allow_pickle=True)
     fps, frames = float(d["fps"]), d["frames"]
     sk = Skeleton("coco17", ctx.match.player.hand)
@@ -189,9 +189,7 @@ def st_candidates(ctx: Context, tol_s=0.35):
     cands, skipped = [], 0
     for run, img, cf, h, _ in near_runs(d, sk):
         who = near_is_target(identity, int(frames[run[0]]))
-        if who is False:
-            skipped += 1
-            continue
+        skipped += who is False
         v = speed(to_body_frame(img, sk, h)[:, sk["dom_wrist"]], fps)
         for p in swing_peaks(v, fps, min_gap=1.0, height=1.5, prominence=1.0):
             t = frames[run[p]] / fps
@@ -200,7 +198,7 @@ def st_candidates(ctx: Context, tol_s=0.35):
                           "audio": bool(len(near)), "wrist_peak_t": float(t), "identity": who})
     _write(ctx.path("candidates.json"), cands)
     return {"candidates": len(cands), "with_audio": sum(c["audio"] for c in cands),
-            "opponent_runs_skipped": skipped, "identity_unknown": sum(c["identity"] is None for c in cands)}
+            "opponent_runs": skipped, "identity_unknown": sum(c["identity"] is None for c in cands)}
 
 
 def grab_frame(video: Path, t: float) -> np.ndarray | None:
@@ -311,11 +309,40 @@ def cut_window(video: Path, t0: float, dur: float, dest: Path) -> Path:
     return dest
 
 
-@stage("fine", "4", deps=("candidates", "court", "score"),
-       settings=lambda c: {"fine": c["fine_pass"], "imgsz": c.get("fine_imgsz", 1280), "ball": c.get("ball"),
-                           "racket_face": c.get("racket_face")})
+def _fine_settings(c):
+    return {"fine": c["fine_pass"], "imgsz": c.get("fine_imgsz", 1280), "ball": c.get("ball"),
+            "racket_face": c.get("racket_face")}
+
+
+@stage("fine", "5", deps=("candidates", "court", "score"), settings=_fine_settings)
 def st_fine(ctx: Context):
-    """Full-quality analysis of each candidate in its own window (same code as analyze_clip)."""
+    """Full-quality analysis of the target player's candidates (and undecided ones)."""
+    return _fine(ctx, ctx.match.player, lambda c: c.get("identity") is not False, "strokes.json")
+
+
+def opponent_profile(match):
+    """The opponent's profile: config/players/<opponent_id>.yaml when given in matches.yaml."""
+    from .catalog import Player, load_player
+
+    oid = match.extra.get("opponent_id")
+    if oid:
+        return load_player(oid)
+    return Player(id="opponent", name=match.opponent or "Rival", hand=match.extra.get("opponent_hand", "right"))
+
+
+@stage("fine_opponent", "1", deps=("candidates", "court", "score"),
+       settings=lambda c: {**_fine_settings(c), "enabled": c.get("analyze_opponent", False)})
+def st_fine_opponent(ctx: Context):
+    """The opponent's strokes from the same video (runs where the near player is the opponent).
+    Off unless `analyze_opponent: true` in the config."""
+    if not ctx.cfg.get("analyze_opponent", False):
+        _write(ctx.path("strokes_opponent.json"), [])
+        return {"enabled": False}
+    return _fine(ctx, opponent_profile(ctx.match), lambda c: c.get("identity") is False, "strokes_opponent.json")
+
+
+def _fine(ctx: Context, p, keep, out_name: str):
+    """Full-quality analysis of each kept candidate in its own window (same code as analyze_clip)."""
     from .clip_pipeline import run_clip
 
     cands = _read(ctx.path("candidates.json"))
@@ -329,7 +356,6 @@ def st_fine(ctx: Context):
     pre, post = ctx.cfg["fine_pass"]["window_s"] + 0.3, ctx.cfg["fine_pass"]["window_s"]
     if ball is not None:      # reach back to the opponent's hit (time available, split step)
         pre = max(pre, ctx.cfg["fine_pass"].get("ball_lead_s", 2.2))
-    p = ctx.match.player
     fcfg = ctx.cfg.get("racket_face") or {}
     rpose = wb3d = None
     if fcfg.get("enabled", True):
@@ -341,6 +367,8 @@ def st_fine(ctx: Context):
             wb3d = WholeBody3D(fcfg["hand3d_onnx"], ctx.cfg.get("device", "cpu"))
     strokes = []
     for k, c in enumerate(cands):
+        if not keep(c):
+            continue
         t0 = max(0.0, c["t"] - pre)
         # the name carries the interval, so a different window never reuses an old cut (or its caches)
         clip = cut_window(ctx.match.video, t0, pre + post, ctx.path("windows") / f"w{k:04d}_{int(t0 * 1000)}_{int((pre + post) * 1000)}.mp4")
@@ -390,6 +418,6 @@ def st_fine(ctx: Context):
         _write(sdir / f"w{k:04d}.json", ser)
         d.update(series=f"series/w{k:04d}.json", window_impact_s=r.impact_frame / run.fps)
         strokes.append(d)
-    _write(ctx.path("strokes.json"), strokes)
-    return {"candidates": len(cands), "confirmed": len(strokes),
+    _write(ctx.path(out_name), strokes)
+    return {"candidates": sum(map(keep, cands)), "confirmed": len(strokes),
             "forehands": sum(s["stroke"] == "forehand" for s in strokes)}

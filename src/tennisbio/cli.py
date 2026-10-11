@@ -32,8 +32,8 @@ def main(argv=None):
     if args.cmd == "report":
         from .report import build
         pid = args.player or (matches[0].player.id if matches else None)
-        mine = [m for m in matches if m.player.id == pid]
-        out = build(mine, out_root, Path(args.out) if args.out else None, args.stroke)
+        mine = [m for m in matches if m.player.id == pid or m.extra.get("opponent_id") == pid]
+        out = build(mine, out_root, Path(args.out) if args.out else None, args.stroke, player_id=pid)
         print(f"informe: {out}")
         return
     if getattr(args, "match", None):

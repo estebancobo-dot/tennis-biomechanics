@@ -4,7 +4,8 @@ matches:
   - id: 2023-ao-f
     video: 2023_AO_F_Sabalenka_Rybakina.mp4
     player: rybakina
-    opponent: Aryna Sabalenka
+    opponent: Aryna Sabalenka          # tal como sale en el marcador (OCR) — basta el apellido
+    opponent_id: sabalenka             # opcional: config/players/sabalenka.yaml para analizarla también
     tournament: Australian Open
     date: 2023-01-28
     surface: hard

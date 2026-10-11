@@ -187,11 +187,14 @@ def noise_from_pairs(strokes: list[dict], min_strokes=20) -> dict:
     return out
 
 
-def collect(matches: list[Match], out_root: Path, stroke="forehand") -> dict:
+def collect(matches: list[Match], out_root: Path, stroke="forehand", player_id: str | None = None) -> dict:
+    """player_id: the match's player (strokes.json) or its opponent (strokes_opponent.json, when
+    matches.yaml gives opponent_id); default: each match's player."""
     ms, strokes, review = [], [], 0
     for mi, match in enumerate(matches):
         d = out_root / match.id
-        f = d / "strokes.json"
+        is_opp = player_id is not None and player_id != match.player.id
+        f = d / ("strokes_opponent.json" if is_opp else "strokes.json")
         if not f.exists():
             continue
         dur = json.loads((d / "probe.json").read_text(encoding="utf-8")).get("duration", 0) if (d / "probe.json").exists() else 0
@@ -203,7 +206,8 @@ def collect(matches: list[Match], out_root: Path, stroke="forehand") -> dict:
             r["_phases"] = s.get("phases", {})
             strokes.append(r)
             review += bool(r["review"])
-        ms.append({"id": match.id, "rival": match.opponent or "—", "surf": match.surface or "—",
+        rival = match.player.name if is_opp else (match.opponent or "—")
+        ms.append({"id": match.id, "rival": rival, "surf": match.surface or "—",
                    "round": match.round or "—", "date": match.date or "—", "sets": None, "n": len(rows), "res": "—"})
     keep = stroke_metrics(stroke)
     return {"matches": ms, "strokes": strokes, "review": review,
@@ -222,15 +226,19 @@ def stroke_metrics(stroke: str) -> list[str]:
 
 
 def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke="forehand",
-          player: dict | None = None) -> Path:
+          player: dict | None = None, player_id: str | None = None) -> Path:
     """Write the report (index.html + series/*.js) and return the path of index.html.
 
     matches: those of one player (the report is per player and stroke)."""
     if player is None and matches:
-        player = asdict(matches[0].player)
+        if player_id and player_id != matches[0].player.id:
+            from .stages import opponent_profile
+            player = asdict(opponent_profile(matches[0]))
+        else:
+            player = asdict(matches[0].player)
     dest = Path(dest or out_root / "informe")
     (dest / "series").mkdir(parents=True, exist_ok=True)
-    data = collect(matches, out_root, stroke)
+    data = collect(matches, out_root, stroke, player_id)
     series_files = [(Path(r["_dir"]) / r["_series"], r["_phases"]) for r in data["strokes"]
                     if r["_series"] and (Path(r["_dir"]) / r["_series"]).exists()]
     auto = noise_from_series(series_files)

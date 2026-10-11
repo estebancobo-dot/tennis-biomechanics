@@ -52,3 +52,15 @@ def test_noise_from_pairs_needs_enough_neutral_strokes():
     n = noise_from_pairs(strokes)
     assert 2.3 < n["xf"] < 3.8
     assert noise_from_pairs(strokes[:10]) == {}
+
+
+def test_report_for_the_opponent(tmp_path):
+    d = tmp_path / "m1"
+    d.mkdir()
+    (d / "strokes.json").write_text(json.dumps([stroke(5.0)]))
+    (d / "strokes_opponent.json").write_text(json.dumps([stroke(7.0), stroke(9.0)]))
+    m = Match("m1", None, Player("ryba", "E. Rybakina"), opponent="A. Sabalenka", extra={"opponent_id": "saba"})
+    from tennisbio.report import collect
+    data = collect([m], tmp_path, player_id="saba")
+    assert len(data["strokes"]) == 2 and data["matches"][0]["rival"] == "E. Rybakina"
+    assert len(collect([m], tmp_path)["strokes"]) == 1
