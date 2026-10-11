@@ -5,6 +5,43 @@ Centrado en **1 jugador y 1 tipo de golpe** por análisis, parametrizable.
 Primer caso: **derecha de Elena Rybakina** en 4 partidos completos.
 Después: revés, saque, volea y otros jugadores.
 
+## Requisitos del usuario (vinculantes; resumen de todo lo pedido)
+1. **Objetivo del producto:** a partir solo de retransmisiones de TV de la jugadora, responder de forma
+   profesional a "¿qué hay que hacer para pegar una derecha como X?", con **todas sus variantes**
+   (bola rápida/lenta, alta/baja, corta/profunda, en carrera/parada/salto, cada apoyo, dirección,
+   ataque/defensa) y **toda la taxonomía del golpe**: espera, empuñadura (en espera y al golpear, si
+   se puede ver), split step, primer paso, pasos y juego de pies, preparación, armado, aceleración,
+   impacto, terminación, recuperación, ritmo. Que cualquiera pueda usar el golpe analizado como base.
+2. **Información, no tablas:** cada pantalla dice qué hace y cómo, con vídeo real como prueba.
+   Nivel de las apps profesionales (Hawk-Eye/TennisViz, Sportsbox, SwingVision): vídeo primero,
+   pocos números bien elegidos. Nada de "trabajo de instituto" ni PDF enormes.
+3. **Nada inventado:** todo sale de sus golpes medidos; si no hay datos suficientes o la medida no
+   es fiable, no se muestra o se dice "no medible desde la tele". Las diferencias solo si superan
+   el error de medida.
+4. **Cuerdas / orientación de la cara de la raqueta**: obligatorio (honesto donde es estimación).
+5. **100 % automático:** el usuario no revisa datos, no lee documentos, no anota, no edita
+   configuración. Instalación, prueba y análisis completo con scripts de doble clic.
+6. **Sin fuentes externas:** nada de vídeos del usuario, de entrenadores ni de otras jugadoras.
+7. **Partido completo solo cuando la aplicación tenga todas las funciones:** se ejecuta una vez,
+   al final. Antes, todo se construye y valida aquí con clips públicos (RacketVision, F3Set).
+8. **Cobertura de casos:** nominales, límite, esquina y error en fuentes, algoritmos, modelos IA,
+   procesado, rendimiento/velocidad e informe.
+9. **Rendimiento:** viable en el Beelink (iGPU, sin CUDA); un partido en horas, no días.
+10. **Orden:** primero la base completa de la derecha (no otros golpes); exportación hecha;
+    **móvil/nube al final**, cuando todo funcione en el PC. El PC no puede ser servidor.
+
+## Plan vigente (en orden)
+1. Corregir los fallos graves de `docs/revision_completa.md` (identidad, cara en el impacto,
+   cadena cinética, medidas con escala por fotograma, ventana previa, entrelazado, robustez,
+   cachés, informes).
+2. Medir lo que falta de la taxonomía (sección 3 de la revisión), lo que permita la tele.
+3. Estadística única en Python (ajuste por situación y partido, comparaciones múltiples).
+4. Pantalla "Su derecha": selector de situación, 8 fases con fotograma real + esqueleto medio +
+   claves medidas, pies, cambios respecto a lo habitual; cada dato enlaza a sus vídeos.
+5. Validación automática de cada medida con clips públicos anotados.
+6. Velocidad: pose en la iGPU (ONNX/DirectML), menos trabajo repetido.
+7. Ejecución de los 4 partidos en el PC (una vez). 8. Móvil/nube.
+
 ## Rutas (Windows, fuera del repo)
 - Vídeos: `C:\tenis\videos\` (~5 GB por partido, retransmisión completa). **Nunca a git.**
 - Salidas (datos extraídos, recortes, informes): `C:\tenis\output\`.
