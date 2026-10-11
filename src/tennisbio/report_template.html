@@ -191,6 +191,43 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .stage canvas, .kf canvas { width: 100%; height: 100%; display: block; }
 .kf button canvas { aspect-ratio: 16/10; height: auto; }
 .empty { padding: 24px; color: var(--ink-3); font-size: 13px; }
+/* Videoteca */
+.libbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--line); }
+.btn.pri { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn.pri:hover { filter: brightness(1.08); }
+.btn[disabled] { opacity: .45; cursor: default; }
+.lib { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 12px; padding: 14px 16px 16px; }
+.card { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; cursor: pointer; display: grid; position: relative; }
+.card:hover, .card:focus-visible { border-color: var(--ink-3); outline: none; }
+.card.pick { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.card .th { position: relative; aspect-ratio: 16 / 10; background: #000 center / cover no-repeat; }
+.card .th video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.card .badge, .card .cmpb, .card .dur { z-index: 1; }
+.card .th .noimg { position: absolute; inset: 0; display: grid; place-items: center; color: var(--ink-3); font-size: 12px; }
+.card .badge { position: absolute; top: 6px; left: 6px; display: flex; gap: 4px; flex-wrap: wrap; }
+.card .badge span, .card .cmpb { font-size: 10.5px; font-weight: 600; padding: 2px 6px; border-radius: 3px; background: rgba(10,13,16,.82); color: var(--ink); }
+.card .badge .g { color: #7ee29b; } .card .badge .e { color: #ff8a87; } .card .badge .a { color: var(--accent); }
+.card .cmpb { position: absolute; top: 6px; right: 6px; border: 1px solid var(--line-2); cursor: pointer; }
+.card.pick .cmpb { background: var(--accent); color: var(--accent-ink); }
+.card .dur { position: absolute; bottom: 6px; right: 6px; font: 500 10.5px var(--mono); background: rgba(10,13,16,.82); padding: 1px 5px; border-radius: 3px; }
+.card .meta { padding: 8px 10px 10px; display: grid; gap: 4px; font-size: 12px; color: var(--ink-2); }
+.card .meta b { color: var(--ink); font-weight: 600; font-family: var(--mono); font-size: 12px; }
+.card .meta .mv { display: flex; gap: 10px; font-family: var(--mono); font-size: 11.5px; color: var(--ink); }
+.card .meta .mv span { color: var(--ink-3); font-family: var(--body); }
+.cmpdock { position: fixed; bottom: 16px; left: 50%; transform: translateX(-50%); background: var(--raise); border: 1px solid var(--line-2); border-radius: 8px; padding: 8px 12px; display: flex; gap: 10px; align-items: center; z-index: 20; box-shadow: 0 8px 24px rgba(0,0,0,.5); font-size: 13px; }
+/* Lista de reproducción */
+.plbar { display: flex; gap: 10px; align-items: center; padding: 8px 12px; background: var(--raise); border-radius: 8px 8px 0 0; font-size: 13px; border-bottom: 1px solid var(--line-2); }
+.plbar b { color: var(--accent); }
+.plbar .sp { margin-left: auto; display: flex; gap: 6px; }
+/* Comparar */
+.cmpgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px; background: #000; }
+.cmpgrid.one { grid-template-columns: 1fr; }
+.cmpgrid canvas { width: 100%; display: block; border-radius: 4px; background: #000; }
+.cmpgrid .lbl { font: 600 12px var(--mono); padding: 4px 2px; color: var(--ink-2); display: flex; gap: 8px; align-items: center; }
+.cmpgrid .lbl i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
+@media (max-width: 860px) { .cmpgrid { grid-template-columns: 1fr; } }
+.evid { display: inline-flex; gap: 6px; margin-left: 8px; }
+.evid .btn { padding: 3px 8px; font-size: 11.5px; }
 .flags { display: flex; flex-wrap: wrap; gap: 4px; }
 </style>
 
@@ -199,7 +236,9 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
     <div class="brand"><div class="mark">TB</div><div><b>TENNISBIO</b><span>Análisis cinemático</span></div></div>
     <nav class="nav" aria-label="Pantallas">
       <button data-tab="panel" aria-current="page"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="1.5" width="5" height="5" rx="1"/><rect x="9.5" y="1.5" width="5" height="5" rx="1"/><rect x="1.5" y="9.5" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></svg>Panel</button>
+      <button data-tab="videoteca"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="2.5" width="5.5" height="4.5" rx="1"/><rect x="9" y="2.5" width="5.5" height="4.5" rx="1"/><rect x="1.5" y="9" width="5.5" height="4.5" rx="1"/><rect x="9" y="9" width="5.5" height="4.5" rx="1"/></svg>Videoteca</button>
       <button data-tab="golpe"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><path d="M6.5 6v4l3.5-2z" fill="currentColor"/></svg>Análisis de golpe</button>
+      <button data-tab="comparar"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="3" width="5.5" height="10" rx="1"/><rect x="9" y="3" width="5.5" height="10" rx="1"/></svg>Comparar golpes</button>
       <button data-tab="explorador"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4h12M2 8h12M2 12h8"/></svg>Explorador</button>
       <button data-tab="comparativas"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 14V7M8 14V2M13 14V9"/></svg>Comparativas</button>
       <button data-tab="pista"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="1.5" width="10" height="13"/><path d="M3 8h10M8 4.5v7"/></svg>Pista</button>
@@ -245,9 +284,24 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
   </div>
 </section>
 
+<section class="screen" id="tab-videoteca" hidden>
+  <div class="panel">
+    <div id="slot-videoteca"></div>
+    <div class="libbar">
+      <button class="btn pri" id="lib-play">▶ Reproducir todos</button>
+      <label class="ctl">Orden<select id="lib-sort"><option value="repr">Más representativos</option><option value="quality">Mejor capturados</option><option value="time">Cronológico</option><option value="dev">Más atípicos</option></select></label>
+      <span class="note" id="lib-count"></span>
+      <span class="note" style="margin-left:auto">Pasa el ratón por un golpe para verlo en movimiento · pulsa para analizarlo · <b>⧉</b> para elegir dos y compararlos</span>
+    </div>
+    <div class="lib" id="lib"></div>
+    <div class="pager"><span></span><button class="btn" id="lib-more">Ver más</button></div>
+  </div>
+</section>
+
 <section class="screen" id="tab-golpe" hidden>
   <div class="cols c-3-1">
     <div class="panel">
+      <div class="plbar" id="plbar" hidden></div>
       <div class="stage" id="stage"><canvas id="cv" width="1280" height="720"></canvas></div>
       <div class="vtools">
         <div class="grp">
@@ -259,7 +313,8 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
         </div>
         <div class="grp">
           <div class="seg" id="view"><button data-v="crop" aria-pressed="true">Recorte</button><button data-v="full" aria-pressed="false">Plano completo</button></div>
-          <div class="seg" id="layers"><button data-v="skel" aria-pressed="true">Esqueleto</button><button data-v="trail" aria-pressed="true">Trayectoria</button><button data-v="ball" aria-pressed="true">Bola</button></div>
+          <div class="seg" id="layers"><button data-v="skel" aria-pressed="true">Esqueleto</button><button data-v="ang" aria-pressed="true">Ángulos</button><button data-v="trail" aria-pressed="true">Trayectoria</button><button data-v="ball" aria-pressed="true">Bola</button><button data-v="court" aria-pressed="true">Pista</button></div>
+          <button class="btn" id="g-cmp" title="Abrir este golpe en Comparar">⧉ Comparar</button>
         </div>
       </div>
       <div class="timeline" id="timeline"></div>
@@ -300,9 +355,37 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
   </div>
 </section>
 
-<section class="screen" id="tab-explorador" hidden>
+<section class="screen" id="tab-comparar" hidden>
   <div class="panel">
     <div class="filterbar">
+      <label class="ctl"><span><i style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--s1);margin-right:4px"></i>Golpe A</span><select id="k-a"></select></label>
+      <label class="ctl"><span><i style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--s2);margin-right:4px"></i>Golpe B</span><select id="k-b"></select></label>
+      <div class="seg" id="k-mode"><button data-v="side" aria-pressed="true">Lado a lado</button><button data-v="over" aria-pressed="false">Superpuestos</button></div>
+      <button class="btn" id="k-swap">⇄</button>
+    </div>
+    <div class="cmpgrid" id="k-grid"></div>
+    <div class="vtools">
+      <div class="grp">
+        <button class="ibtn" id="k-prev" aria-label="Fotograma anterior"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2h2v10H3zM12 2v10L6 7z"/></svg></button>
+        <button class="ibtn" id="k-play" aria-label="Reproducir"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2v10l9-5z"/></svg></button>
+        <button class="ibtn" id="k-next" aria-label="Fotograma siguiente"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M9 2h2v10H9zM2 2v10l6-5z"/></svg></button>
+        <div class="seg" id="k-speed"><button data-v="0.25" aria-pressed="true">0,25×</button><button data-v="0.5" aria-pressed="false">0,5×</button><button data-v="1" aria-pressed="false">1×</button></div>
+        <span class="tc" id="k-tc"></span>
+      </div>
+      <div class="grp"><span class="note">Sincronizados en el impacto · en "Superpuestos", el esqueleto de B se alinea con la cadera de A y se escala a su tronco</span></div>
+    </div>
+    <div class="timeline" id="k-tl"></div>
+  </div>
+  <div class="panel">
+    <header><h2>Diferencias</h2><span class="note">B − A; resaltadas las que superan el ruido de medida de la métrica</span></header>
+    <div class="tw"><table class="data" id="k-table"></table></div>
+  </div>
+</section>
+
+<section class="screen" id="tab-explorador" hidden>
+  <div class="panel">
+    <div id="slot-explorador"></div>
+    <div class="filterbar" id="filters">
       <label class="ctl">Partido<select id="f-match"></select></label>
       <label class="ctl">Apoyo<select id="f-stance"><option value="">Todos</option><option value="abierto">Abierto</option><option value="semiabierto">Semiabierto</option><option value="cerrado">Cerrado</option></select></label>
       <label class="ctl">Situación<select id="f-sit"><option value="">Todas</option><option value="neutra">Neutra</option><option value="abierta">Bola abierta</option><option value="rapida">Bola rápida</option><option value="baja">Bola baja</option><option value="corta">Bola corta</option></select></label>
@@ -412,13 +495,17 @@ document.getElementById("scope").innerHTML = `<span class="tag"><b>${MATCHES.len
 document.getElementById("noise-note").textContent = `Diferencia entre grupos en múltiplos del ruido de medida${DATA.noise_validated ? " (medido sobre pares de golpes equivalentes de la jugadora: cota conservadora)" : " (provisional: hacen falta al menos 20 golpes con bola neutra)"}. Solo con al menos 5 golpes por grupo.`;
 
 /* ===== Navegación ===== */
-const TABS = ["panel", "golpe", "explorador", "comparativas", "pista"];
+const TABS = ["panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista"];
 function showTab(name) {
   if (!TABS.includes(name)) name = "panel";
   TABS.forEach(t => { document.getElementById("tab-" + t).hidden = t !== name; });
   document.querySelectorAll(".nav button").forEach(b => { if (b.dataset.tab === name) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
   try { history.replaceState(null, "", "#" + name); } catch (e) { }
   if (name !== "golpe") stopPlay();
+  if (name !== "comparar") kStop();
+  if (name === "videoteca" || name === "explorador") document.getElementById("slot-" + name).appendChild(document.getElementById("filters"));
+  if (name === "videoteca") renderLibrary();
+  else renderDock();
   tip.hidden = true;
   window.scrollTo({ top: 0 });
 }
@@ -499,6 +586,20 @@ const FIND = [];
   all.sort((a, b) => b.z - a.z);
   FIND.push(...all.slice(0, 10));      // the largest differences, real or not (the verdict says which)
 })();
+/* Pruebas en vídeo: cada conclusión abre sus golpes */
+const LISTS = [];
+const plBtn = (name, arr, label) => { if (!arr.length) return ""; LISTS.push({ name, arr }); return `<button class="btn" data-pl="${LISTS.length - 1}" title="Reproducir estos golpes uno tras otro">▶ ${label || arr.length + " vídeos"}</button>`; };
+const byShow = (a, b) => (b.repr * .6 + b.quality * .4) - (a.repr * .6 + a.quality * .4);
+function typical(arr, k) {         // the stroke that best represents a group for one metric: near its median, well captured
+  const v = arr.filter(s => isN(s.m[k]) && s.video); if (!v.length) return null;
+  const md = quant(v.map(s => s.m[k]), .5), nz = MK[k].noise || 1;
+  return v.reduce((b, s) => (Math.abs(s.m[k] - md) / nz - s.quality) < (Math.abs(b.m[k] - md) / nz - b.quality) ? s : b);
+}
+function findEvidence(f) {
+  const A = STROKES.filter(f.A), B = STROKES.filter(f.B), ta = typical(A, f.k), tb = typical(B, f.k);
+  LISTS.push({ name: `${f.t} (${f.c})`, arr: [...B].sort(byShow) });
+  return `<span class="evid"><button class="btn" data-pl="${LISTS.length - 1}" title="Reproducir los golpes de este grupo">▶ ${B.length} vídeos</button>${ta && tb ? `<button class="btn" data-cmp="${ta.id}|${tb.id}" title="Golpe típico de cada grupo, lado a lado">⧉ Típicos</button>` : ""}</span>`;
+}
 function verdict(e, noise) {
   if (!isN(e.d)) return { cls: "crit", icon: "–", txt: "Pocos golpes" };
   const z = Math.abs(e.d) / noise, sure = Math.sign(e.lo) === Math.sign(e.hi);
@@ -517,7 +618,7 @@ document.getElementById("forest").innerHTML = `<div class="frow head"><span>Hall
   FIND.map((f, i) => {
     const e = effect(f.k, STROKES.filter(f.A), STROKES.filter(f.B)), v = verdict(e, MK[f.k].noise), m = MK[f.k];
     const tipTxt = `<b>${m.name}</b><div class='mono'>${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}${isN(e.d) ? ` (${sign(e.d)}${fmt(Math.abs(e.d), m.dec)})<br>IC 95 %: ${fmt(e.lo, 1)} … ${fmt(e.hi, 1)}` : ""}<br>ruido ±${fmt(m.noise, 1)} · n=${e.na}/${e.nb}</div>`;
-    return `<div class="frow"><div class="t"><b>${f.t}: ${isN(e.d) ? sign(e.d) + fmt(Math.abs(e.d), m.dec) + unitStr(m) : "—"}</b><span>${f.c} · <span class="mono">n=${e.na}/${e.nb} · ${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}</span> ${relBars(m.rel)}</span>${isN(e.d) && v.cls !== "crit" ? `<span style="color:var(--ink-2)">→ ${meaning(f.k, e.d)}</span>` : ""}</div><div data-tip="${tipTxt}">${forestSVG(e, m.noise)}</div><span class="st ${v.cls}"><i>${v.icon}</i>${v.txt}</span><button class="btn" data-go="${i}">Ver</button></div>`;
+    return `<div class="frow"><div class="t"><b>${f.t}: ${isN(e.d) ? sign(e.d) + fmt(Math.abs(e.d), m.dec) + unitStr(m) : "—"}</b><span>${f.c} · <span class="mono">n=${e.na}/${e.nb} · ${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}</span> ${relBars(m.rel)}</span>${isN(e.d) && v.cls !== "crit" ? `<span style="color:var(--ink-2)">→ ${meaning(f.k, e.d)}</span>` : ""}</div><div data-tip="${tipTxt}">${forestSVG(e, m.noise)}</div><span class="st ${v.cls}"><i>${v.icon}</i>${v.txt}</span><span style="display:flex;gap:6px">${findEvidence(f)}<button class="btn" data-go="${i}">Datos</button></span></div>`;
   }).join("");
 document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { const g = FIND[+b.dataset.go].go; document.getElementById("c-pair").value = g.pair; document.getElementById("c-sit").value = g.sit; document.getElementById("c-group").value = g.g || MK[FIND[+b.dataset.go].k].g; renderCompare(); showTab("comparativas"); }));
 
@@ -527,19 +628,19 @@ function conclusions() {
   const out = [], n = STROKES.length, conf = (txt, cls) => `<span class="st ${cls}"><i>${cls === "good" ? "✓" : cls === "warn" ? "!" : "–"}</i>${txt}</span>`;
   if (n < 10) out.push([`Con ${n} golpe${n === 1 ? "" : "s"} solo se describe lo observado; las comparaciones necesitan al menos 5 golpes por grupo y el ruido de medida, 20 con bola neutra.`, conf("pocos datos", "crit")]);
   const st = ["abierto", "semiabierto", "cerrado"].map(k => [k, STROKES.filter(s => s.stance === k).length]).sort((a, b) => b[1] - a[1]), nst = st.reduce((a, b) => a + b[1], 0);
-  if (nst) out.push([`Apoyo más frecuente: <b>${st[0][0]}</b> (${fmt(100 * st[0][1] / nst)} % de ${nst} golpes${st[1][1] ? `; ${st[1][0]} ${fmt(100 * st[1][1] / nst)} %` : ""}).`, conf(nst >= 20 ? "fiable" : "orientativo", nst >= 20 ? "good" : "warn")]);
+  if (nst) out.push([`Apoyo más frecuente: <b>${st[0][0]}</b> (${fmt(100 * st[0][1] / nst)} % de ${nst} golpes${st[1][1] ? `; ${st[1][0]} ${fmt(100 * st[1][1] / nst)} %` : ""}).<span class="evid">${plBtn("Apoyo " + st[0][0], STROKES.filter(s => s.stance === st[0][0]).sort(byShow))}</span>`, conf(nst >= 20 ? "fiable" : "orientativo", nst >= 20 ? "good" : "warn")]);
   const faceAt = ph => STROKES.map(s => s.face && s.face[ph]).filter(Boolean), mode = a => { const c = {}; a.forEach(x => c[x] = (c[x] || 0) + 1); return Object.entries(c).sort((x, y) => y[1] - x[1])[0]; };
   [["loaded", "en el armado"], ["impact", "en el impacto"], ["finish", "en la terminación"]].forEach(([ph, txt]) => { const a = faceAt(ph); if (a.length) { const [lab, c] = mode(a), k = { loaded: "rFaceArm", impact: "rFaceImp", finish: "rFaceFin" }[ph], md = MK[k] && DIST[k] ? DIST[k].p50 : NaN; out.push([`Las cuerdas apuntan ${txt} hacia <b>${lab}</b> en ${fmt(100 * c / a.length)} % de los golpes${isN(md) ? `, cara ${md >= 0 ? "cerrada" : "abierta"} ${fmt(Math.abs(md))}° (mediana)` : ""}.`, conf(ph === "impact" ? "estimada (desenfoque)" : a.length >= 20 ? "media" : "orientativo", ph === "impact" ? "crit" : "warn")]); } });
   const dir = STROKES.filter(s => s.shotDir);
   if (dir.length) { const c = k => fmt(pct(dir, s => s.shotDir === k)); out.push([`Dirección de su golpe: <b>${c("cruzada")} % cruzada</b>, ${c("paralela")} % paralela, ${c("al centro")} % al centro; ${fmt(pct(STROKES.filter(s => s.shotIn !== null && s.shotIn !== undefined), s => s.shotIn === false))} % fuera${MK.shotDepth && DIST.shotDepth ? `; bota a ${fmt(DIST.shotDepth.p50, 1)} m del fondo rival (mediana)` : ""}.`, conf(dir.length >= 20 ? "fiable" : "orientativo", dir.length >= 20 ? "good" : "warn")]); }
   const known = STROKES.filter(s => s.outcome);
-  if (known.length) out.push([`Resultado conocido en ${known.length} de ${n} golpes: <b>${known.filter(s => s.outcome === "ganador").length} ganadores probables</b>, ${known.filter(s => s.outcomeDetail === "out").length} errores fuera, ${known.filter(s => s.outcomeDetail === "net").length} a la red; el resto sigue el punto.`, conf(known.length >= 20 ? "media" : "orientativo", "warn")]);
+  if (known.length) out.push([`Resultado conocido en ${known.length} de ${n} golpes: <b>${known.filter(s => s.outcome === "ganador").length} ganadores probables</b>, ${known.filter(s => s.outcomeDetail === "out").length} errores fuera, ${known.filter(s => s.outcomeDetail === "net").length} a la red; el resto sigue el punto.<span class="evid">${plBtn("Ganadores probables", known.filter(s => s.outcome === "ganador").sort(byShow), "ganadores")}${plBtn("Errores", known.filter(s => s.outcome === "error").sort(byShow), "errores")}</span>`, conf(known.length >= 20 ? "media" : "orientativo", "warn")]);
   const chain = STROKES.filter(s => s.chainOK !== null && s.chainOK !== undefined);
   if (chain.length) out.push([`Cadena cinética en orden (pelvis → tronco → brazo → antebrazo) en <b>${fmt(pct(chain, s => s.chainOK))} %</b> de ${chain.length} golpes.`, conf("media", "warn")]);
   const ta = fin(STROKES.map(s => s.tAvail));
   if (ta.length) out.push([`Tiempo disponible entre el golpe del rival y el suyo: mediana <b>${fmt(quant(ta, .5), 2)} s</b> (${fmt(pct(STROKES.filter(s => isN(s.tAvail)), s => s.fast))} % de bolas rápidas, &lt; 1,15 s).`, conf(ta.length >= 20 ? "fiable" : "orientativo", ta.length >= 20 ? "good" : "warn")]);
   if (MK.baseM && DIST.baseM) out.push([`Base en el impacto: mediana <b>${fmtM("baseM", DIST.baseM.p50)}</b> (p10–p90 ${fmt(DIST.baseM.p10, 2)}–${fmt(DIST.baseM.p90, 2)} m, ${DIST.baseM.n} golpes).`, DIST.baseM.n >= 20 ? conf("fiable", "good") : conf("orientativo", "warn")]);
-  FIND.forEach(f => { const e = effect(f.k, STROKES.filter(f.A), STROKES.filter(f.B)), v = verdict(e, MK[f.k].noise); if (v.cls === "good" || v.cls === "warn") out.push([`${f.t}: <b>${sign(e.d)}${fmt(Math.abs(e.d), MK[f.k].dec)}${unitStr(MK[f.k])}</b> — ${meaning(f.k, e.d)} (${fmt(e.ma, MK[f.k].dec)} → ${fmt(e.mb, MK[f.k].dec)}; ${f.c.toLowerCase()}, n=${e.na}/${e.nb}).`, conf(v.cls === "good" ? "diferencia real" : "probable", v.cls)]); });
+  FIND.forEach(f => { const e = effect(f.k, STROKES.filter(f.A), STROKES.filter(f.B)), v = verdict(e, MK[f.k].noise); if (v.cls === "good" || v.cls === "warn") out.push([`${f.t}: <b>${sign(e.d)}${fmt(Math.abs(e.d), MK[f.k].dec)}${unitStr(MK[f.k])}</b> — ${meaning(f.k, e.d)} (${fmt(e.ma, MK[f.k].dec)} → ${fmt(e.mb, MK[f.k].dec)}; ${f.c.toLowerCase()}, n=${e.na}/${e.nb}).${findEvidence(f)}`, conf(v.cls === "good" ? "diferencia real" : "probable", v.cls)]); });
   if (!FIND.some(f => verdict(effect(f.k, STROKES.filter(f.A), STROKES.filter(f.B)), MK[f.k].noise).cls !== "crit") && n >= 10) out.push(["Ninguna diferencia entre situaciones (fatiga, presión, bola rápida) supera el ruido de medida.", conf("según los datos actuales", "warn")]);
   document.getElementById("concl").innerHTML = out.map(([t, c]) => `<div style="display:flex;gap:12px;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px"><span style="font-size:14px;line-height:1.45">${t}</span>${c}</div>`).join("") || `<div class="empty">Sin golpes.</div>`;
 }
@@ -602,7 +703,7 @@ const SKC = { l: "#5fd3e6", r: "#ff9f43", c: "#e3e8ec" };
 const video = document.createElement("video");
 video.muted = true; video.playsInline = true; video.preload = "auto";
 const cv = document.getElementById("cv"), cx = cv.getContext("2d");
-let cur = null, ser = null, PH = [], T0 = -1, T1 = .8, FPS = 50, NF = 1, tNow = 0, view = "crop", layers = { skel: true, trail: true, ball: true }, speed = .25, playing = false;
+let cur = null, ser = null, PH = [], T0 = -1, T1 = .8, FPS = 50, NF = 1, tNow = 0, view = "crop", layers = { skel: true, ang: true, trail: true, ball: true, court: true }, speed = .25, playing = false;
 const snap = t => Math.round(clamp(t, T0, T1) * FPS) / FPS;
 const fIdx = t => clamp(Math.round((t - T0) * FPS), 0, NF - 1);
 const domW = () => (PL.hand === "left" ? 9 : 10);
@@ -613,28 +714,83 @@ function loadSeries(s) {
     const el = document.createElement("script"); el.src = s.series; el.onload = () => res(window.SERIES[s.id] || null); el.onerror = () => res(null); document.head.appendChild(el);
   });
 }
-function kpAt(f) { if (!ser) return null; const k = ser.kp[f]; if (!k) return null; const p = []; for (let i = 0; i < k.length; i += 2) p.push(k[i] === null ? null : [k[i], k[i + 1]]); return p; }
-function cropRect(f, aspect = 16 / 9) {
-  const W = video.videoWidth || 1920, H = video.videoHeight || 1080;
-  if (view === "full" || !ser) return [0, 0, W, H];
-  let b = null; for (let d = 0; d < NF && !b; d++) b = ser.box[clamp(f + d, 0, NF - 1)] || ser.box[clamp(f - d, 0, NF - 1)];
+// A "source" is one stroke being drawn: its window video, its frame series and the view mode.
+// The analysis screen uses MAIN; the comparison screen has two of its own.
+const MAIN = { get video() { return video; }, get ser() { return ser; }, get NF() { return NF; }, get view() { return view; } };
+function kpAt(f, S = MAIN) { const sr = S.ser; if (!sr) return null; const k = sr.kp[f]; if (!k) return null; const p = []; for (let i = 0; i < k.length; i += 2) p.push(k[i] === null ? null : [k[i], k[i + 1]]); return p; }
+function cropRect(f, aspect = 16 / 9, S = MAIN) {
+  const V = S.video, sr = S.ser, n = S.NF, W = V.videoWidth || 1920, H = V.videoHeight || 1080;
+  if (S.view === "full" || !sr) return [0, 0, W, H];
+  let b = null; for (let d = 0; d < n && !b; d++) b = sr.box[clamp(f + d, 0, n - 1)] || sr.box[clamp(f - d, 0, n - 1)];
   if (!b) return [0, 0, W, H];
   const h = (b[3] - b[1]) * 2.1, w = h * aspect, cxm = (b[0] + b[2]) / 2, cym = (b[1] + b[3]) / 2;
   return [clamp(cxm - w / 2, 0, Math.max(0, W - w)), clamp(cym - h / 2, 0, Math.max(0, H - h)), Math.min(w, W), Math.min(h, H)];
 }
-function drawFrame(ctx, Wc, Hc, f, opts) {
-  const [sx, sy, sw, sh] = cropRect(f, Wc / Hc), k = Wc / sw, P = p => [(p[0] - sx) * k, (p[1] - sy) * k];
-  ctx.fillStyle = "#000"; ctx.fillRect(0, 0, Wc, Hc);
-  try { ctx.drawImage(video, sx, sy, sw, sh, 0, 0, Wc, sh * k); } catch (e) { }
-  const q = kpAt(f), lw = Math.max(1.5, Wc / 400);
-  if (opts.trail && ser) { ctx.strokeStyle = "#d4f03a"; ctx.lineWidth = lw; ctx.beginPath(); let st = false; for (let g = 0; g <= f; g++) { const p = kpAt(g); const w = p && p[domW()]; if (!w) { st = false; continue; } const [x, y] = P(w); if (st) ctx.lineTo(x, y); else ctx.moveTo(x, y); st = true; } ctx.stroke(); }
-  if (opts.skel && q) {
-    for (const [a, b, c] of BONES) { if (!q[a] || !q[b]) continue; const [x1, y1] = P(q[a]), [x2, y2] = P(q[b]); ctx.strokeStyle = SKC[c]; ctx.lineWidth = lw * 1.4; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
-    for (let j = 5; j < 17; j++) { if (!q[j]) continue; const [x, y] = P(q[j]); ctx.fillStyle = "#0c0f13"; ctx.strokeStyle = SKC[j % 2 ? "l" : "r"]; ctx.lineWidth = lw; ctx.beginPath(); ctx.arc(x, y, lw * 1.6, 0, 7); ctx.fill(); ctx.stroke(); }
+const mid = (a, b) => a && b ? [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2] : null;
+function angleAt(a, b, c) { if (!a || !b || !c) return NaN; const u = [a[0] - b[0], a[1] - b[1]], v = [c[0] - b[0], c[1] - b[1]], n = Math.hypot(...u) * Math.hypot(...v); return n ? Math.acos(clamp((u[0] * v[0] + u[1] * v[1]) / n, -1, 1)) * 180 / Math.PI : NaN; }
+function torsoLen(S) {          // median shoulder-mid to hip-mid distance of the stroke (px), cached
+  const sr = S.ser; if (!sr) return NaN; if (sr._torso) return sr._torso;
+  const d = []; for (let f = 0; f < sr.n; f++) { const q = kpAt(f, S); if (!q) continue; const a = mid(q[5], q[6]), b = mid(q[11], q[12]); if (a && b) d.push(Math.hypot(a[0] - b[0], a[1] - b[1])); }
+  return (sr._torso = quant(d, .5));
+}
+function skeleton(ctx, q, P, lw, colFor, alpha = 1) {
+  ctx.globalAlpha = alpha;
+  for (const [a, b, c] of BONES) { if (!q[a] || !q[b]) continue; const [x1, y1] = P(q[a]), [x2, y2] = P(q[b]); ctx.strokeStyle = colFor(c); ctx.lineWidth = lw * 1.4; ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
+  for (let j = 5; j < 17; j++) { if (!q[j]) continue; const [x, y] = P(q[j]); ctx.fillStyle = "#0c0f13"; ctx.strokeStyle = colFor(j % 2 ? "l" : "r"); ctx.lineWidth = lw; ctx.beginPath(); ctx.arc(x, y, lw * 1.6, 0, 7); ctx.fill(); ctx.stroke(); }
+  ctx.globalAlpha = 1;
+}
+function angleLabels(ctx, q, P, lw, dw) {
+  const de = dw - 2, ds = dw - 4, items = [[ds, de, dw, "Codo"], [11, 13, 15, "Rod."], [12, 14, 16, "Rod."]];
+  ctx.font = `600 ${Math.round(lw * 7)}px JetBrains Mono, monospace`;
+  for (const [a, b, c, n] of items) {
+    const v = angleAt(q[a], q[b], q[c]); if (!isN(v)) continue;
+    const [x, y] = P(q[b]), txt = `${n} ${fmt(v)}°`, w = ctx.measureText(txt).width, side = (b % 2) === (dw % 2) ? 1 : -1;
+    const tx = side > 0 ? x + lw * 5 : x - lw * 5 - w - lw * 4;
+    ctx.fillStyle = "rgba(10,13,16,.78)"; ctx.fillRect(tx, y - lw * 6, w + lw * 4, lw * 8.5);
+    ctx.fillStyle = n === "Codo" ? "#ffd166" : "#e3e8ec"; ctx.fillText(txt, tx + lw * 2, y);
   }
-  const fk = ser && ser.face && ser.face.keypoints && ser.face.keypoints[String(f + ser.first)];
+}
+function inv3(m) {
+  const [a, b, c] = m[0], [d, e, f] = m[1], [g, h, i] = m[2], A = e * i - f * h, B = -(d * i - f * g), C = d * h - e * g, det = a * A + b * B + c * C;
+  if (!det) return null;
+  return [[A / det, -(b * i - c * h) / det, (b * f - c * e) / det], [B / det, (a * i - c * g) / det, -(a * f - c * d) / det], [C / det, -(a * h - b * g) / det, (a * e - b * d) / det]];
+}
+function toCourt(Hi, p) { const w = Hi[2][0] * p[0] + Hi[2][1] * p[1] + Hi[2][2]; return [(Hi[0][0] * p[0] + Hi[0][1] * p[1] + Hi[0][2]) / w, (Hi[1][0] * p[0] + Hi[1][1] * p[1] + Hi[1][2]) / w]; }
+function miniCourt(ctx, Wc, Hc, f, S) {      // her own court frame: her baseline at the bottom, the net in the middle
+  const sr = S.ser; if (!sr || !sr.H) return;
+  const Hi = sr._Hi || (sr._Hi = inv3(sr.H)); if (!Hi) return;
+  const mh = Math.round(Hc * .46), mw = Math.round(mh * 15 / 31), x0 = Wc - mw - 16, y0 = 84, k = mh / 31;
+  const X = x => x0 + mw / 2 + x * k, Y = y => y0 + mh - (y + 3.5) * k;
+  ctx.fillStyle = "rgba(16,40,30,.88)"; ctx.fillRect(x0, y0, mw, mh);
+  ctx.strokeStyle = "rgba(238,243,246,.85)"; ctx.lineWidth = 1.2; ctx.beginPath();
+  [[-5.485, 0, 5.485, 0], [-5.485, 23.77, 5.485, 23.77], [-5.485, 0, -5.485, 23.77], [5.485, 0, 5.485, 23.77], [-4.115, 0, -4.115, 23.77], [4.115, 0, 4.115, 23.77], [-4.115, 5.485, 4.115, 5.485], [-4.115, 18.285, 4.115, 18.285], [0, 5.485, 0, 18.285]].forEach(([a, b, c, d]) => { ctx.moveTo(X(a), Y(b)); ctx.lineTo(X(c), Y(d)); });
+  ctx.stroke(); ctx.strokeStyle = "#e3e8ec"; ctx.lineWidth = 2.5; ctx.beginPath(); ctx.moveTo(X(-6.4), Y(11.885)); ctx.lineTo(X(6.4), Y(11.885)); ctx.stroke();
+  const feet = g => { const q = kpAt(g, S); const m = q && mid(q[15], q[16]); return m ? toCourt(Hi, m) : null; };
+  ctx.strokeStyle = "#d4f03a"; ctx.lineWidth = 2; ctx.beginPath(); let st = false;
+  for (let g = 0; g <= f; g++) { const c = feet(g); if (!c || Math.abs(c[0]) > 9 || c[1] < -4 || c[1] > 14) { st = false; continue; } st ? ctx.lineTo(X(c[0]), Y(c[1])) : ctx.moveTo(X(c[0]), Y(c[1])); st = true; }
+  ctx.stroke();
+  const c = feet(f); if (c && Math.abs(c[0]) < 9 && c[1] > -4 && c[1] < 14) { ctx.fillStyle = "#d4f03a"; ctx.beginPath(); ctx.arc(X(c[0]), Y(c[1]), 4.5, 0, 7); ctx.fill(); }
+  const ring = (pt, col) => { if (!pt) return; ctx.strokeStyle = col; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(X(pt[0]), Y(pt[1]), 4, 0, 7); ctx.stroke(); };
+  ring(sr.bounce_court_m, "#ff5fd2");
+  if (f >= sr.impact - sr.first) ring(sr.shot_bounce_m, "#5fd3e6");
+  ctx.font = "600 11px JetBrains Mono, monospace"; ctx.fillStyle = "#aab4be"; ctx.fillText("PISTA", x0 + 4, y0 + 12);
+}
+function drawFrame(ctx, Wc, Hc, f, opts, S = MAIN) {
+  const V = S.video, sr = S.ser, [sx, sy, sw, sh] = cropRect(f, Wc / Hc, S), k = Wc / sw, P = p => [(p[0] - sx) * k, (p[1] - sy) * k];
+  ctx.fillStyle = "#000"; ctx.fillRect(0, 0, Wc, Hc);
+  try { ctx.drawImage(V, sx, sy, sw, sh, 0, 0, Wc, sh * k); } catch (e) { }
+  const q = kpAt(f, S), lw = Math.max(1.5, Wc / 400), dw = domW();
+  if (opts.trail && sr) { ctx.strokeStyle = "#d4f03a"; ctx.lineWidth = lw; ctx.beginPath(); let st = false; for (let g = 0; g <= f; g++) { const p = kpAt(g, S); const w = p && p[dw]; if (!w) { st = false; continue; } const [x, y] = P(w); if (st) ctx.lineTo(x, y); else ctx.moveTo(x, y); st = true; } ctx.stroke(); }
+  if (opts.ghost && q) {          // the other stroke, aligned on the hips and scaled to this torso
+    const G = opts.ghost, qg = kpAt(G.f, G.S), ha = mid(q[11], q[12]), hb = qg && mid(qg[11], qg[12]), sc = torsoLen(S) / torsoLen(G.S);
+    if (qg && ha && hb && isN(sc)) skeleton(ctx, qg.map(p => p && [ha[0] + (p[0] - hb[0]) * sc, ha[1] + (p[1] - hb[1]) * sc]), P, lw, () => G.col, .95);
+  }
+  if (opts.skel && q) skeleton(ctx, q, P, lw, opts.mono ? () => opts.mono : c => SKC[c]);
+  if (opts.ang && q) angleLabels(ctx, q, P, lw, dw);
+  const fk = sr && sr.face && sr.face.keypoints && sr.face.keypoints[String(f + sr.first)];
   if (opts.skel && fk) { const R = fk.map(P); ctx.strokeStyle = "#ff5fd2"; ctx.lineWidth = lw; ctx.beginPath(); [[0, 3], [3, 1], [1, 4], [4, 0], [1, 2]].forEach(([u, v]) => { ctx.moveTo(...R[u]); ctx.lineTo(...R[v]); }); ctx.stroke(); }
-  if (opts.ball && ser && ser.ball) { const b = ser.ball[f]; if (b && b[0] !== null) { const [x, y] = P(b); ctx.strokeStyle = "#ff5fd2"; ctx.lineWidth = lw; ctx.beginPath(); ctx.arc(x, y, lw * 4, 0, 7); ctx.stroke(); } }
+  if (opts.ball && sr && sr.ball) { const b = sr.ball[f]; if (b && b[0] !== null) { const [x, y] = P(b); ctx.strokeStyle = "#ff5fd2"; ctx.lineWidth = lw; ctx.beginPath(); ctx.arc(x, y, lw * 4, 0, 7); ctx.stroke(); } }
+  if (opts.court) miniCourt(ctx, Wc, Hc, f, S);
 }
 function hud(t) {
   const ph = PH.reduce((b, p) => isN(p.t) && (b === null || Math.abs(p.t - t) < Math.abs(b.t - t)) ? p : b, null);
@@ -647,7 +803,9 @@ function hud(t) {
   if (fc && fc.label[fi]) { const tl = fc.tilt[fi], txt = `CUERDAS → ${fc.label[fi].toUpperCase()} · ${tl >= 0 ? "CERRADA" : "ABIERTA"} ${fmt(Math.abs(tl))}°${fc.observed[fi] ? "" : " (interpolada)"}`; cx.font = "600 20px JetBrains Mono, monospace"; const w = cx.measureText(txt).width; cx.fillStyle = "rgba(10,13,16,.8)"; cx.fillRect(cv.width - w - 44, cv.height - 60, w + 28, 44); cx.fillStyle = "#ff5fd2"; cx.fillText(txt, cv.width - w - 30, cv.height - 31); }
   if (ph && Math.abs(ph.t - t) < 1.5 / FPS) { const txt = ph.long.toUpperCase(); cx.font = "700 24px Archivo, sans-serif"; const w = cx.measureText(txt).width; cx.fillStyle = "rgba(10,13,16,.8)"; cx.fillRect(16, cv.height - 60, w + 28, 44); cx.fillStyle = "#d4f03a"; cx.fillText(txt, 30, cv.height - 30); }
 }
-function seek(t) { return new Promise(res => { if (!cur || !cur.video) return res(); const target = cur.vImpact + t; if (Math.abs(video.currentTime - target) < 1e-3 && video.readyState >= 2) return res(); video.addEventListener("seeked", () => res(), { once: true }); video.currentTime = Math.max(0, target); }); }
+// resolves on "seeked", or at once when the video cannot play (missing file, unsupported codec) so nothing waits forever
+function seekVideo(V, target) { return new Promise(res => { if (V.error || !V.getAttribute("src")) return res(); if (Math.abs(V.currentTime - target) < 1e-3 && V.readyState >= 2) return res(); const done = () => { clearTimeout(to); V.removeEventListener("error", done); res(); }, to = setTimeout(done, 2000); V.addEventListener("seeked", done, { once: true }); V.addEventListener("error", done, { once: true }); V.currentTime = Math.max(0, target); }); }
+function seek(t) { return !cur || !cur.video ? Promise.resolve() : seekVideo(video, cur.vImpact + t); }
 async function renderStage() {
   if (!cur) return;
   if (!cur.video) { cx.fillStyle = "#000"; cx.fillRect(0, 0, cv.width, cv.height); cx.fillStyle = "#aab4be"; cx.font = "24px Archivo, sans-serif"; cx.fillText("Vídeo de la ventana no disponible", 40, 80); return; }
@@ -755,7 +913,9 @@ function renderRacket() {
     PH.map((p, i) => { const f = isN(p.t) ? fIdx(p.t) : null, h = rk && f !== null ? rk.head_cm[f] : null, tl = f !== null ? tilt[f] : null, lb = f !== null ? lab[f] : null; return `<tr data-t="${isN(p.t) ? p.t : ""}"><td>${i + 1} ${p.n}</td><td class="r num">${isN(h) ? sign(h) + fmt(Math.abs(h)) + " cm" : "—"}</td><td>${lb || "—"}</td><td class="r num">${isN(tl) ? sign(tl) + fmt(Math.abs(tl)) + "°" : "—"}</td><td>${relBars(relP[i])}</td></tr>`; }).join("") + `</tbody>`;
   document.querySelectorAll("#g-rtable tbody tr").forEach(tr => tr.addEventListener("click", () => { if (tr.dataset.t !== "") { stopPlay(); setT(+tr.dataset.t); } }));
 }
-async function loadStroke(s) {
+let kfDone = Promise.resolve();
+async function loadStroke(s, fromList = false) {
+  if (!fromList) endPlaylist();
   cur = s; stopPlay(); ser = await loadSeries(s); if (cur !== s) return;
   FPS = ser ? ser.fps : 50; NF = ser ? ser.n : 1; T0 = ser ? (ser.first - ser.impact) / FPS : -1; T1 = ser ? T0 + (NF - 1) / FPS : 0.8;
   PH = PHASE_DEF.map(p => ({ ...p, t: isN(s.phases[p.k]) ? s.phases[p.k] : null }));
@@ -775,16 +935,53 @@ async function loadStroke(s) {
   document.getElementById("g-ang-note").textContent = `Muestreo a ${fmt(FPS)} fps · pulsa para ir a ese fotograma`;
   const loaded = PH.find(p => p.k === "loaded");
   setT(loaded && isN(loaded.t) ? loaded.t : 0);
-  renderKF();
+  kfDone = renderKF();
 }
 function stopPlay() { playing = false; video.pause(); const b = document.getElementById("play"); if (b) b.innerHTML = `<svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2v10l9-5z"/></svg>`; }
-function tick() { if (!playing) return; let t = video.currentTime - cur.vImpact; if (t > T1) { video.currentTime = cur.vImpact + T0; t = T0; } tNow = t; renderStage(); (video.requestVideoFrameCallback ? video.requestVideoFrameCallback(tick) : requestAnimationFrame(tick)); }
-document.getElementById("play").addEventListener("click", async () => {
-  if (playing) { stopPlay(); setT(tNow); return; }
-  if (!cur || !cur.video) return;
+// the time of the frame on screen (mediaTime) and not currentTime, which runs ahead of the decoded frame
+const shownTime = (V, md) => md && isN(md.mediaTime) ? md.mediaTime : V.currentTime;
+function tick(now, md) { if (!playing) return; let t = shownTime(video, md) - cur.vImpact; if (t > T1 && PLAY) { stopPlay(); plStep(1, true); return; } if (t > T1) { video.currentTime = cur.vImpact + T0; t = T0; } tNow = t; renderStage(); (video.requestVideoFrameCallback ? video.requestVideoFrameCallback(tick) : requestAnimationFrame(tick)); }
+async function startPlay() {
+  if (!cur || !cur.video || playing) return;
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) { setT(tNow + 1 / FPS > T1 ? T0 : tNow + 1 / FPS); return; }
   playing = true; video.playbackRate = speed; await seek(tNow); try { await video.play(); } catch (e) { playing = false; return; }
   document.getElementById("play").innerHTML = `<svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2h3v10H3zM8 2h3v10H8z"/></svg>`; tick();
+}
+document.getElementById("play").addEventListener("click", () => { if (playing) { stopPlay(); setT(tNow); return; } startPlay(); });
+
+/* ===== Listas de reproducción: los golpes de una conclusión o de la videoteca, uno tras otro ===== */
+let PLAY = null;
+function renderPl() {
+  const bar = document.getElementById("plbar");
+  if (!PLAY) { bar.hidden = true; return; }
+  bar.hidden = false;
+  bar.innerHTML = `<span>▶ <b>${PLAY.name}</b></span><span class="mono">${PLAY.i + 1} / ${PLAY.list.length}</span><span class="sp"><button class="btn" id="pl-prev">◀ Anterior</button><button class="btn" id="pl-next">Siguiente ▶</button><button class="btn" id="pl-stop">Salir de la lista</button></span>`;
+  document.getElementById("pl-prev").onclick = () => plStep(-1, true);
+  document.getElementById("pl-next").onclick = () => plStep(1, true);
+  document.getElementById("pl-stop").onclick = () => { stopPlay(); endPlaylist(); };
+}
+function endPlaylist() { if (!PLAY) return; PLAY = null; renderPl(); }
+async function plGo(autoplay) {
+  const s = PLAY.list[PLAY.i]; renderPl();
+  await loadStroke(s, true); await kfDone;
+  if (!PLAY || PLAY.list[PLAY.i] !== s || cur !== s) return;
+  tNow = T0; await seek(T0); renderStage(); renderTimeline(); if (autoplay) startPlay();
+}
+function plStep(d, autoplay) {
+  if (!PLAY) return;
+  const i = PLAY.i + d;
+  if (i >= PLAY.list.length) { PLAY.i = PLAY.list.length - 1; renderPl(); document.querySelector("#plbar .mono").textContent = "fin de la lista"; return; }
+  PLAY.i = clamp(i, 0, PLAY.list.length - 1); plGo(autoplay);
+}
+function startPlaylist(list, name) {
+  list = list.filter(s => s.video); if (!list.length) return;
+  PLAY = { list, i: 0, name }; showTab("golpe"); plGo(true);
+}
+document.addEventListener("click", ev => {
+  const b = ev.target.closest("[data-pl],[data-cmp]"); if (!b) return;
+  ev.preventDefault(); ev.stopPropagation();
+  if (b.dataset.pl !== undefined) { const L = LISTS[+b.dataset.pl]; startPlaylist(L.arr, L.name); }
+  else { const [a, c] = b.dataset.cmp.split("|").map(id => STROKES.find(s => s.id === id)); openCompare(a, c); }
 });
 document.getElementById("prevf").addEventListener("click", () => { stopPlay(); setT(tNow - 1 / FPS); });
 document.getElementById("nextf").addEventListener("click", () => { stopPlay(); setT(tNow + 1 / FPS); });
@@ -794,8 +991,8 @@ bindSeg("speed", b => { speed = +b.dataset.v; video.playbackRate = speed; docume
 bindSeg("view", b => { view = b.dataset.v; document.querySelectorAll("#view button").forEach(x => x.setAttribute("aria-pressed", x === b)); const vw = video.videoWidth || 16, vh = video.videoHeight || 9; cv.height = Math.round(cv.width * (view === "full" ? vh / vw : 9 / 16)); renderStage(); });
 bindSeg("layers", b => { layers[b.dataset.v] = !layers[b.dataset.v]; b.setAttribute("aria-pressed", layers[b.dataset.v]); renderStage(); });
 const navList = () => { const a = exRows(); return a.length ? a : STROKES; };
-document.getElementById("gprev").addEventListener("click", () => { const a = navList(), i = a.indexOf(cur); loadStroke(a[(i - 1 + a.length) % a.length]); });
-document.getElementById("gnext").addEventListener("click", () => { const a = navList(), i = a.indexOf(cur); loadStroke(a[(i + 1) % a.length]); });
+document.getElementById("gprev").addEventListener("click", () => { if (PLAY) return plStep(-1, false); const a = navList(), i = a.indexOf(cur); loadStroke(a[(i - 1 + a.length) % a.length]); });
+document.getElementById("gnext").addEventListener("click", () => { if (PLAY) return plStep(1, false); const a = navList(), i = a.indexOf(cur); loadStroke(a[(i + 1) % a.length]); });
 
 /* ===== EXPLORADOR ===== */
 [document.getElementById("f-match"), document.getElementById("p-match")].forEach(sel => { sel.innerHTML = `<option value="">Todos</option>` + MATCHES.map((m, i) => `<option value="${i}">${m.id} · ${m.rival}</option>`).join(""); });
@@ -819,8 +1016,8 @@ function renderTable() {
   document.querySelectorAll("#ex-table th[data-sort]").forEach(th => th.addEventListener("click", () => { const k = th.dataset.sort; exSort = { k, dir: exSort.k === k ? -exSort.dir : (k === "id" || k === "vt" ? 1 : -1) }; renderTable(); }));
   document.querySelectorAll("#ex-table tbody tr").forEach(tr => tr.addEventListener("click", () => { loadStroke(STROKES.find(s => s.id === tr.dataset.id)); showTab("golpe"); }));
 }
-["f-match", "f-side", "f-stance", "f-sit", "f-press", "f-out", "f-rev"].forEach(id => document.getElementById(id).addEventListener("change", () => { document.getElementById("f-preset").value = ""; exPage = 0; renderTable(); }));
-document.getElementById("f-preset").addEventListener("change", e => { const v = e.target.value; resetFilters(); e.target.value = v; if (v === "best") exSort = { k: "quality", dir: -1 }; if (v === "typ") exSort = { k: "repr", dir: -1 }; exPage = 0; renderTable(); });
+["f-match", "f-side", "f-stance", "f-sit", "f-press", "f-out", "f-rev"].forEach(id => document.getElementById(id).addEventListener("change", () => { document.getElementById("f-preset").value = ""; exPage = 0; renderTable(); libN = LIBPAGE; renderLibrary(); }));
+document.getElementById("f-preset").addEventListener("change", e => { const v = e.target.value; resetFilters(); e.target.value = v; if (v === "best") exSort = { k: "quality", dir: -1 }; if (v === "typ") exSort = { k: "repr", dir: -1 }; exPage = 0; renderTable(); libN = LIBPAGE; renderLibrary(); });
 document.getElementById("ex-prev").addEventListener("click", () => { exPage--; renderTable(); });
 document.getElementById("ex-next").addEventListener("click", () => { exPage++; renderTable(); });
 
@@ -899,8 +1096,168 @@ function renderCourt() {
 }
 document.getElementById("p-match").addEventListener("change", renderCourt);
 
+/* ===== VIDEOTECA ===== */
+const LIBPAGE = 48;
+let libN = LIBPAGE, PICK = [];
+function libRows() {
+  const a = exRows().slice(), k = document.getElementById("lib-sort").value;
+  const dev = s => EXM.reduce((t, m) => t + (DIST[m] && isN(s.m[m]) ? Math.abs(s.m[m] - DIST[m].p50) / (DIST[m].sd || 1) : 0), 0);
+  if (k === "time") return a.sort((x, y) => x.match - y.match || x.vt - y.vt);
+  if (k === "dev") return a.sort((x, y) => dev(y) - dev(x));
+  return a.sort((x, y) => y[k] - x[k]);
+}
+function card(s) {
+  const m = MATCHES[s.match], oc = s.outcome === "ganador" ? `<span class="g">GANADOR</span>` : s.outcome === "error" ? `<span class="e">${s.outcomeDetail === "net" ? "RED" : "FUERA"}</span>` : "";
+  const mv = EXM.slice(0, 3).filter(k => isN(s.m[k])).map(k => `<div>${fmtM(k, s.m[k])} <span>${MK[k].name.toLowerCase()}</span></div>`).join("");
+  return `<div class="card${PICK.includes(s) ? " pick" : ""}" data-id="${s.id}" tabindex="0" role="button" aria-label="Golpe ${s.id}">
+    <div class="th" style="${s.thumb ? `background-image:url('${s.thumb}')` : ""}">${s.thumb ? "" : `<div class="noimg">${s.video ? "vídeo" : "sin vídeo"}</div>`}
+      <div class="badge">${oc}${s.pressure ? `<span class="a">PRESIÓN</span>` : ""}${s.side === "far" ? "<span>FONDO</span>" : ""}${s.review.length ? "<span>DUDAS</span>" : ""}</div>
+      <button class="cmpb" data-pick="${s.id}" title="Elegir para comparar">⧉</button><span class="dur">${clock(s.vt)}</span></div>
+    <div class="meta"><div><b>${s.id}</b> · vs ${m.rival}</div>
+      <div>${s.score ? `${s.set}º set · ${s.score.split(" · ")[0]} · ` : ""}${sitTxt(s)}${s.stance ? " · " + s.stance : ""}</div>
+      <div class="mv">${mv || `<span>sin métricas</span>`}</div></div></div>`;
+}
+function renderLibrary() {
+  const a = libRows(), el = document.getElementById("lib");
+  el.innerHTML = a.slice(0, libN).map(card).join("") || `<div class="empty">Ningún golpe con estos filtros.</div>`;
+  document.getElementById("lib-count").textContent = `${a.length} golpes${a.length > libN ? ` · mostrando ${libN}` : ""}`;
+  document.getElementById("lib-more").hidden = a.length <= libN;
+  document.getElementById("lib-play").disabled = !a.some(s => s.video);
+  renderDock();
+}
+function previewOn(cardEl) {
+  const s = STROKES.find(x => x.id === cardEl.dataset.id); if (!s || !s.video || cardEl.querySelector("video")) return;
+  const v = document.createElement("video"), t0 = Math.max(0, (s.vImpact || 0) - 1.2), t1 = (s.vImpact || 0) + 0.8;
+  v.muted = true; v.playsInline = true; v.src = s.video; v.playbackRate = .5;
+  v.addEventListener("loadedmetadata", () => { v.currentTime = t0; v.playbackRate = .5; v.play().catch(() => { }); }, { once: true });
+  v.addEventListener("timeupdate", () => { if (v.currentTime > t1) v.currentTime = t0; });
+  cardEl.querySelector(".th").appendChild(v);
+}
+function previewOff(cardEl) { const v = cardEl.querySelector("video"); if (v) { v.pause(); v.removeAttribute("src"); v.load(); v.remove(); } }
+const libEl = document.getElementById("lib");
+libEl.addEventListener("mouseover", ev => { const c = ev.target.closest(".card"); if (c && !c.contains(ev.relatedTarget)) previewOn(c); });
+libEl.addEventListener("mouseout", ev => { const c = ev.target.closest(".card"); if (c && !c.contains(ev.relatedTarget)) previewOff(c); });
+libEl.addEventListener("click", ev => {
+  const pk = ev.target.closest("[data-pick]");
+  if (pk) { const s = STROKES.find(x => x.id === pk.dataset.pick); PICK = PICK.includes(s) ? PICK.filter(x => x !== s) : [...PICK, s].slice(-2); libEl.querySelectorAll(".card").forEach(c => c.classList.toggle("pick", PICK.some(x => x.id === c.dataset.id))); renderDock(); return; }
+  const c = ev.target.closest(".card"); if (!c) return;
+  previewOff(c); loadStroke(STROKES.find(x => x.id === c.dataset.id)); showTab("golpe");
+});
+libEl.addEventListener("keydown", ev => { if (ev.key === "Enter" && ev.target.classList.contains("card")) ev.target.click(); });
+function renderDock() {
+  let d = document.getElementById("dock");
+  if (!PICK.length || document.getElementById("tab-videoteca").hidden) { if (d) d.remove(); return; }
+  if (!d) { d = document.createElement("div"); d.id = "dock"; d.className = "cmpdock"; document.body.appendChild(d); }
+  d.innerHTML = `<span><b style="color:var(--s1)">A</b> <span class="mono">${PICK[0].id}</span>${PICK[1] ? ` · <b style="color:var(--s2)">B</b> <span class="mono">${PICK[1].id}</span>` : " · elige otro golpe"}</span><button class="btn pri" id="dock-go" ${PICK.length < 2 ? "disabled" : ""}>⧉ Comparar</button><button class="btn" id="dock-x">✕</button>`;
+  document.getElementById("dock-go").onclick = () => { if (PICK.length === 2) openCompare(PICK[0], PICK[1]); };
+  document.getElementById("dock-x").onclick = () => { PICK = []; renderLibrary(); };
+}
+document.getElementById("lib-sort").addEventListener("change", () => { libN = LIBPAGE; renderLibrary(); });
+document.getElementById("lib-more").addEventListener("click", () => { libN += LIBPAGE; renderLibrary(); });
+document.getElementById("lib-play").addEventListener("click", () => startPlaylist(libRows(), `Videoteca · ${libRows().length} golpes`));
+
+/* ===== COMPARAR: dos golpes sincronizados en el impacto, lado a lado o superpuestos ===== */
+function mkSrc() { const v = document.createElement("video"); v.muted = true; v.playsInline = true; v.preload = "auto"; return { video: v, ser: null, NF: 1, view: "crop", s: null, FPS: 50, T0: -1, T1: .8 }; }
+const KA = mkSrc(), KB = mkSrc(), KCOL = ["#4fb0ff", "#ff8c42"];
+let kT = 0, kMode = "side", kSpeed = .25, kPlaying = false, kGen = 0;
+async function loadSrc(S, s) {
+  S.s = s; S.ser = await loadSeries(s);
+  S.FPS = S.ser ? S.ser.fps : 50; S.NF = S.ser ? S.ser.n : 1; S.T0 = S.ser ? (S.ser.first - S.ser.impact) / S.FPS : -1; S.T1 = S.ser ? S.T0 + (S.NF - 1) / S.FPS : .8;
+  if (s.video && S.video.getAttribute("src") !== s.video) { S.video.src = s.video; await new Promise(r => { S.video.addEventListener("loadeddata", r, { once: true }); S.video.addEventListener("error", r, { once: true }); }); }
+}
+const kF = (S, t) => clamp(Math.round((t - S.T0) * S.FPS), 0, S.NF - 1);
+const kRange = () => [Math.max(KA.T0, KB.T0), Math.min(KA.T1, KB.T1)];
+function seekSrc(S, t) { return !S.s || !S.s.video ? Promise.resolve() : seekVideo(S.video, S.s.vImpact + t); }
+const kOpt = s => `<option value="${s.id}">${s.id} · ${MATCHES[s.match].rival} · ${clock(s.vt)}${s.outcome ? " · " + s.outcome : ""}</option>`;
+["k-a", "k-b"].forEach(id => { document.getElementById(id).innerHTML = STROKES.filter(s => s.video).map(kOpt).join(""); });
+async function openCompare(a, b) {
+  if (!a || !b) return;
+  showTab("comparar"); kStop();
+  document.getElementById("k-a").value = a.id; document.getElementById("k-b").value = b.id;
+  const g = ++kGen;
+  await Promise.all([loadSrc(KA, a), loadSrc(KB, b)]); if (g !== kGen) return;
+  kT = 0; kLayout(); await kDraw(); renderKTl(); renderKTable();
+}
+function kLayout() {
+  const one = kMode === "over";
+  document.getElementById("k-grid").className = "cmpgrid" + (one ? " one" : "");
+  document.getElementById("k-grid").innerHTML = one
+    ? `<div><div class="lbl"><i style="background:${KCOL[0]}"></i>A ${KA.s.id}<i style="background:${KCOL[1]};margin-left:10px"></i>B ${KB.s.id} (alineado en la cadera)</div><canvas id="k-c0" width="1280" height="720"></canvas></div>`
+    : [KA, KB].map((S, i) => `<div><div class="lbl"><i style="background:${KCOL[i]}"></i>${"AB"[i]} · ${S.s.id} · ${sitTxt(S.s)}${S.s.outcome ? " · " + S.s.outcome : ""}</div><canvas id="k-c${i}" width="960" height="540"></canvas></div>`).join("");
+}
+function kLabel(ctx, W, S, t, col) {
+  ctx.font = "600 20px JetBrains Mono, monospace"; const txt = `${t >= 0 ? "+" : "−"}${fmt(Math.abs(t), 2)} s · fot ${kF(S, t) + 1}/${S.NF}`, w = ctx.measureText(txt).width;
+  ctx.fillStyle = "rgba(10,13,16,.8)"; ctx.fillRect(12, 12, w + 24, 36); ctx.fillStyle = col; ctx.fillText(txt, 24, 37);
+}
+async function kDraw() {
+  if (!KA.s || !KB.s) return;
+  if (!kPlaying) await Promise.all([seekSrc(KA, kT), seekSrc(KB, kT)]);
+  if (kMode === "over") {
+    const c = document.getElementById("k-c0"); if (!c) return; const ctx = c.getContext("2d");
+    const same = KA.s.side === KB.s.side;
+    drawFrame(ctx, c.width, c.height, kF(KA, kT), { skel: true, mono: KCOL[0], ghost: same ? { S: KB, f: kF(KB, kT), col: KCOL[1] } : null, ang: false, trail: false, ball: false }, KA);
+    kLabel(ctx, c.width, KA, kT, "#f1f4f6");
+    if (!same) { ctx.fillStyle = "rgba(10,13,16,.85)"; ctx.fillRect(12, c.height - 52, 620, 38); ctx.fillStyle = "#ffb4b2"; ctx.font = "18px Archivo, sans-serif"; ctx.fillText("Uno es del lado cercano y otro del lejano: no se superponen", 24, c.height - 27); }
+  } else {
+    [KA, KB].forEach((S, i) => { const c = document.getElementById("k-c" + i); if (!c) return; const ctx = c.getContext("2d"); drawFrame(ctx, c.width, c.height, kF(S, kT), { skel: true, ang: true, trail: true, ball: true, court: false }, S); kLabel(ctx, c.width, S, kT, KCOL[i]); });
+  }
+  document.getElementById("k-tc").innerHTML = `<b>${kT >= 0 ? "+" : "−"}${fmt(Math.abs(kT), 2)} s</b> respecto al impacto`;
+  const tl = document.getElementById("k-tl"), ph = tl.querySelector(".ph"); if (ph && tl._X) { ph.setAttribute("x1", tl._X(kT)); ph.setAttribute("x2", tl._X(kT)); }
+}
+function kSet(t) { const [lo, hi] = kRange(); kT = Math.round(clamp(t, lo, hi) * 100) / 100; kDraw(); renderKTl(); }
+function renderKTl() {
+  const [lo, hi] = kRange(), W = 900, H = 64, L = 8, R = 8, X = t => L + (t - lo) / ((hi - lo) || 1) * (W - L - R);
+  let g = `<rect x="${L}" y="4" width="${W - L - R}" height="22" rx="3" fill="var(--panel-2)"/><line x1="${X(0)}" x2="${X(0)}" y1="4" y2="26" stroke="var(--ink)" stroke-width="2"/><text x="${X(0) + 5}" y="19" font-size="10" fill="var(--ink)" font-family="JetBrains Mono, monospace">impacto</text>`;
+  [KA, KB].forEach((S, j) => PHASE_DEF.forEach((p, i) => { const t = S.s.phases[p.k]; if (!isN(t) || t < lo || t > hi) return; g += `<g data-seek="${t}" style="cursor:pointer"><rect x="${X(t) - 8}" y="${31 + j * 16}" width="16" height="14" rx="3" fill="${KCOL[j]}"/><text x="${X(t)}" y="${42 + j * 16}" text-anchor="middle" font-size="10" font-weight="700" fill="#0c0f13" font-family="JetBrains Mono, monospace">${i + 1}</text><title>${"AB"[j]}: ${p.long}</title></g>`; }));
+  g += `<line class="ph" x1="${X(kT)}" x2="${X(kT)}" y1="0" y2="${H}" stroke="var(--accent)" stroke-width="2"/>`;
+  const el = document.getElementById("k-tl");
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" tabindex="0" role="slider" aria-label="Tiempo respecto al impacto" aria-valuemin="${lo}" aria-valuemax="${hi}" aria-valuenow="${kT}">${g}</svg>`; el._X = X;
+  const svg = el.querySelector("svg");
+  svg.addEventListener("pointerdown", ev => { kStop(); const sk = ev.target.closest("[data-seek]"); if (sk) return kSet(+sk.dataset.seek); const r = svg.getBoundingClientRect(); kSet(lo + ((ev.clientX - r.left) / r.width * W - L) / (W - L - R) * (hi - lo)); });
+  svg.addEventListener("keydown", ev => { const d = 1 / Math.max(KA.FPS, KB.FPS); if (ev.key === "ArrowRight") { kStop(); kSet(kT + d); ev.preventDefault(); } if (ev.key === "ArrowLeft") { kStop(); kSet(kT - d); ev.preventDefault(); } });
+}
+function renderKTable() {
+  const a = KA.s, b = KB.s, rows = METRICS.filter(m => isN(a.m[m.k]) || isN(b.m[m.k]));
+  const ctxRows = [["Situación de la bola", sitTxt(a), sitTxt(b)], ["Apoyo", a.stance || "—", b.stance || "—"], ["Resultado", a.outcomeDetail ? OUT_ES[a.outcomeDetail] : "—", b.outcomeDetail ? OUT_ES[b.outcomeDetail] : "—"], ["Marcador", a.score ? `${a.set}º set · ${a.score}` : "—", b.score ? `${b.set}º set · ${b.score}` : "—"], ["Cadena cinética", a.chainOK === true ? "en orden" : a.chainOK === false ? "desordenada" : "—", b.chainOK === true ? "en orden" : b.chainOK === false ? "desordenada" : "—"]];
+  document.getElementById("k-table").innerHTML = `<thead><tr><th>Métrica</th><th class="r" style="color:${KCOL[0]}">A · ${a.id}</th><th class="r" style="color:${KCOL[1]}">B · ${b.id}</th><th class="r">B − A</th><th>¿Supera el ruido?</th><th>Fiab.</th></tr></thead><tbody>` +
+    ctxRows.map(([n, x, y]) => `<tr><td>${n}</td><td class="r">${x}</td><td class="r">${y}</td><td></td><td></td><td></td></tr>`).join("") +
+    rows.map(m => { const va = a.m[m.k], vb = b.m[m.k], d = vb - va, big = isN(d) && Math.abs(d) > m.noise; return `<tr><td>${m.name}</td><td class="r num">${fmtM(m.k, va)}</td><td class="r num">${fmtM(m.k, vb)}</td><td class="r num" style="${big ? "color:var(--accent);font-weight:600" : ""}">${isN(d) ? sign(d) + fmt(Math.abs(d), m.dec) : "—"}</td><td>${isN(d) ? (big ? `<span class="st good"><i>✓</i>sí (ruido ±${fmt(m.noise, m.dec)})</span>` : `<span class="dim3">no (ruido ±${fmt(m.noise, m.dec)})</span>`) : ""}</td><td>${relBars(m.rel)}</td></tr>`; }).join("") + "</tbody>";
+}
+function kStop() { kPlaying = false; KA.video.pause(); KB.video.pause(); const b = document.getElementById("k-play"); if (b) b.innerHTML = `<svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2v10l9-5z"/></svg>`; }
+async function kPlay() {
+  if (!KA.s || !KB.s || !KA.s.video || !KB.s.video) return;
+  const [lo, hi] = kRange(); if (kT >= hi - .01) kT = lo;
+  await Promise.all([seekSrc(KA, kT), seekSrc(KB, kT)]);
+  kPlaying = true; [KA, KB].forEach(S => { S.video.playbackRate = kSpeed; });
+  try { await Promise.all([KA.video.play(), KB.video.play()]); } catch (e) { kStop(); return; }
+  document.getElementById("k-play").innerHTML = `<svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2h3v10H3zM8 2h3v10H8z"/></svg>`;
+  const next = fn => KA.video.requestVideoFrameCallback ? KA.video.requestVideoFrameCallback(fn) : requestAnimationFrame(fn);
+  const loop = async (now, md) => {
+    if (!kPlaying) return;
+    const t = shownTime(KA.video, md) - KA.s.vImpact, tb = KB.video.currentTime - KB.s.vImpact;
+    if (t > hi || KA.video.ended) { KA.video.pause(); KB.video.pause(); kT = lo; await Promise.all([seekSrc(KA, lo), seekSrc(KB, lo)]); if (!kPlaying) return; KA.video.play(); KB.video.play(); next(loop); return; }
+    if (Math.abs(tb - t) > .06) KB.video.currentTime = KB.s.vImpact + t;     // keep B on A's clock
+    kT = t; kDraw(); next(loop);
+  };
+  next(loop);
+}
+document.getElementById("k-play").addEventListener("click", () => kPlaying ? (kStop(), kSet(kT)) : kPlay());
+document.getElementById("k-prev").addEventListener("click", () => { kStop(); kSet(kT - 1 / Math.max(KA.FPS, KB.FPS)); });
+document.getElementById("k-next").addEventListener("click", () => { kStop(); kSet(kT + 1 / Math.max(KA.FPS, KB.FPS)); });
+bindSeg("k-speed", b => { kSpeed = +b.dataset.v; [KA, KB].forEach(S => { S.video.playbackRate = kSpeed; }); document.querySelectorAll("#k-speed button").forEach(x => x.setAttribute("aria-pressed", x === b)); });
+bindSeg("k-mode", b => { kMode = b.dataset.v; document.querySelectorAll("#k-mode button").forEach(x => x.setAttribute("aria-pressed", x === b)); if (KA.s) { kLayout(); kDraw(); } });
+["k-a", "k-b"].forEach(id => document.getElementById(id).addEventListener("change", () => openCompare(STROKES.find(s => s.id === document.getElementById("k-a").value), STROKES.find(s => s.id === document.getElementById("k-b").value))));
+document.getElementById("k-swap").addEventListener("click", () => { if (KA.s && KB.s) openCompare(KB.s, KA.s); });
+document.getElementById("g-cmp").addEventListener("click", () => {
+  if (!cur) return;
+  const other = PICK.find(s => s !== cur) || [...STROKES].filter(s => s !== cur && s.video && s.side === cur.side).sort(byShow)[0];
+  if (other) openCompare(cur, other);
+});
+video.addEventListener("ended", () => { if (playing && PLAY) { stopPlay(); plStep(1, true); } });
+
 /* ===== Inicio ===== */
 renderTable(); renderCompare(); renderCourt();
+if (STROKES.filter(s => s.video).length >= 2) { const o = STROKES.filter(s => s.video).sort(byShow); const a = o[0], b = o.find(s => s !== a && s.side === a.side) || o[1]; document.getElementById("k-a").value = a.id; document.getElementById("k-b").value = b.id; Promise.all([loadSrc(KA, a), loadSrc(KB, b)]).then(() => { kLayout(); renderKTl(); renderKTable(); kDraw(); }); }
 if (STROKES.length) loadStroke([...STROKES].sort((a, b) => (b.repr * .7 + b.quality * .3) - (a.repr * .7 + a.quality * .3))[0]);
 showTab((location.hash || "").slice(1));
 </script>

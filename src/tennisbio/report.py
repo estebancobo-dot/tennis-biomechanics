@@ -8,6 +8,8 @@ on demand (works from file://), and the stage shows the real window video with t
 """
 import json
 import os
+import shutil
+import subprocess
 
 import numpy as np
 import time
@@ -45,7 +47,7 @@ METRICS = {
     "landing": ("feet", "Aterrizaje", "saque: m dentro de la pista tras el impacto", "m", 2, 0.15, 3, None),
     "shotDepth": ("feet", "Profundidad de su golpe", "m desde la línea de fondo rival al bote (− = larga)", "m", 1, 0.3, 3, None),
     "split": ("feet", "Split step", "aterrizaje, ms tras el golpe del rival", "ms", 0, 30, 2, None),
-    "base": ("feet", "Anchura de la base", "% de altura, armado", "%", 0, 4.5, 3, "base_width_loaded_pct"),
+    "base": ("feet", "Base (% de altura)", "% de altura, armado", "%", 0, 4.5, 3, "base_width_loaded_pct"),
     "baseM": ("feet", "Anchura de la base", "metros en la pista, impacto", "m", 2, 0.08, 3, None),
     "disp": ("feet", "Desplazamiento", "m desde el golpe del rival", "m", 1, 0.3, 3, None),
     "recov": ("feet", "Recuperación", "s del impacto al primer paso", "s", 2, 0.15, 2, None),
@@ -240,6 +242,27 @@ def stroke_metrics(stroke: str) -> list[str]:
     return [k for k in (keys or METRICS) if k in METRICS]
 
 
+def thumbnail(video: Path, t: float, box: list | None, out: Path, width=360) -> bool:
+    """Poster of a stroke for the video library: the frame of the impact, cropped around the player
+    (16:10) when her box is known. Skipped when it already exists and is newer than the video."""
+    if out.exists() and out.stat().st_mtime >= video.stat().st_mtime:
+        return True
+    if not shutil.which("ffmpeg"):
+        return False
+    vf = f"scale={width}:-2"
+    if box:
+        x0, y0, x1, y1 = box
+        h = max(40.0, (y1 - y0) * 2.1)
+        w = h * 1.6
+        cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+        vf = (f"crop='min({w:.0f},iw)':'min({h:.0f},ih)':"
+              f"'max(0,min(iw-min({w:.0f},iw),{cx - w / 2:.0f}))':'max(0,min(ih-min({h:.0f},ih),{cy - h / 2:.0f}))',"
+              f"scale={width}:-2")
+    r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{max(0.0, t):.3f}", "-i", str(video), "-frames:v", "1",
+                        "-vf", vf, "-q:v", "4", str(out)], capture_output=True)
+    return r.returncode == 0 and out.exists()
+
+
 def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke="forehand",
           player: dict | None = None, player_id: str | None = None) -> Path:
     """Write the report (index.html + series/*.js) and return the path of index.html.
@@ -275,12 +298,23 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
         r.pop("_phases", None)
         d = Path(r.pop("_dir"))
         win, ser = r.pop("_window"), r.pop("_series")
-        if win:
-            r["video"] = Path(os.path.relpath(d / "windows" / win, dest)).as_posix()
+        box = None
         if ser and (d / ser).exists():
+            txt = (d / ser).read_text(encoding="utf-8")
             js = dest / "series" / f"{r['id']}.js"
-            js.write_text(f"window.SERIES[{json.dumps(r['id'])}]={(d / ser).read_text(encoding='utf-8')};", encoding="utf-8")
+            js.write_text(f"window.SERIES[{json.dumps(r['id'])}]={txt};", encoding="utf-8")
             r["series"] = f"series/{r['id']}.js"
+            sj = json.loads(txt)
+            k = sj["impact"] - sj["first"]
+            box = next((sj["box"][j] for j in (k, k - 1, k + 1, k - 2, k + 2) if 0 <= j < len(sj["box"]) and sj["box"][j]), None)
+        if win and (d / "windows" / win).exists():
+            r["video"] = Path(os.path.relpath(d / "windows" / win, dest)).as_posix()
+            th = dest / "thumbs" / f"{r['id']}.jpg"
+            th.parent.mkdir(exist_ok=True)
+            if r.get("vImpact") is not None and thumbnail(d / "windows" / win, r["vImpact"], box, th):
+                r["thumb"] = f"thumbs/{r['id']}.jpg"
+        elif win:
+            r["video"] = Path(os.path.relpath(d / "windows" / win, dest)).as_posix()
     data["player"] = player or {}
     data["stroke"] = stroke
     data["generated"] = time.strftime("%Y-%m-%d %H:%M")

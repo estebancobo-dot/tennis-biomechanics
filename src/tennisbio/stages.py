@@ -339,7 +339,10 @@ def cut_window(video: Path, t0: float, dur: float, dest: Path) -> Path:
     if not dest.exists():
         dest.parent.mkdir(parents=True, exist_ok=True)
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{max(0.0, t0):.3f}", "-i", str(video), "-t", f"{dur:.3f}",
-                        "-c:v", "libx264", "-crf", "16", "-preset", "veryfast", "-c:a", "aac", str(dest)], check=True)
+                        # a keyframe every 8 frames: frame-by-frame scrubbing in the report stays instant;
+                        # yuv420p: the only chroma format every browser plays (broadcasts can be 4:2:2)
+                        "-c:v", "libx264", "-crf", "16", "-preset", "veryfast", "-g", "8", "-pix_fmt", "yuv420p",
+                        "-movflags", "+faststart", "-c:a", "aac", str(dest)], check=True)
     return dest
 
 
@@ -484,6 +487,11 @@ def _fine(ctx: Context, p, keep, out_name: str):
         from .series import stroke_series
         ser = stroke_series(run.img, run.conf, run.boxes, run.sk, run.fps, run.height_px, r.impact_frame,
                             r.racket_track, run.ball)
+        ser["side"] = side
+        if H is not None:          # player-frame court → image, for the court minimap of the report
+            ser["H"] = np.round(H, 8).tolist()
+        ser["shot_bounce_m"] = d.get("shot_bounce_m")
+        ser["bounce_court_m"] = d.get("bounce_court_m")
         if fcfg.get("enabled", True) and side == "near":      # strings: not measurable at the far end
             from .racket_orientation import stroke_faces
             grip = p.backhand_grip_close_deg if r.stroke == "backhand" else p.forehand_grip_close_deg
