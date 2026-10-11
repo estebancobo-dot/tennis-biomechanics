@@ -146,7 +146,7 @@ def _pairs(strokes: list) -> list[dict]:
     has_t = lambda s: s.get("tAvail") is not None
     return [
         dict(key="fatiga", t="al final del partido", c="último tercio frente al primero", neutral=True,
-             A=lambda s: s["frac"] < 1 / 3, B=lambda s: s["frac"] >= 2 / 3),
+             A=lambda s: s["frac"] is not None and s["frac"] < 1 / 3, B=lambda s: s["frac"] is not None and s["frac"] >= 2 / 3),
         dict(key="sets", t="en el último set", c="último set frente al primero", neutral=True,
              A=lambda s: s.get("set") == 1, B=lambda s: max_set > 1 and s.get("set") == max_set),
         dict(key="presion", t="bajo presión", c="puntos de presión frente al resto", neutral=True,
@@ -181,7 +181,7 @@ def discover(data: dict, top=10) -> list[Finding]:
     strokes, out = data["strokes"], []
     for p in _pairs(strokes):
         for m in data["metrics"]:
-            if m["k"] in p.get("skip", []):
+            if m["k"] in p.get("skip", []) or m.get("est"):     # estimates are never findings
                 continue
             neu = p["neutral"]
             A = [s for s in strokes if p["A"](s) and (not neu or s["sit"].get("neutra"))]

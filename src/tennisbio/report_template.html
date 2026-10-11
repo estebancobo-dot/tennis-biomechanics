@@ -1,3 +1,8 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Informe tennisbio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -230,6 +235,8 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .evid .btn { padding: 3px 8px; font-size: 11.5px; }
 .flags { display: flex; flex-wrap: wrap; gap: 4px; }
 </style>
+</head>
+<body>
 
 <div class="app">
   <aside class="side">
@@ -512,7 +519,7 @@ function showTab(name) {
 document.querySelectorAll(".nav button").forEach(b => b.addEventListener("click", () => showTab(b.dataset.tab)));
 
 /* ===== PANEL ===== */
-const third = s => s.frac < 1 / 3 ? 1 : s.frac < 2 / 3 ? 2 : 3;
+const third = s => !isN(s.frac) ? null : s.frac < 1 / 3 ? 1 : s.frac < 2 / 3 ? 2 : 3;
 const stShare = ["abierto", "semiabierto", "cerrado"].map(k => [k, pct(STROKES.filter(s => s.stance), s => s.stance === k)]);
 const withT = STROKES.filter(s => isN(s.tAvail));
 document.getElementById("kpis").innerHTML = [
@@ -528,7 +535,7 @@ function effect(k, A, B) {
   const d = mean(b) - mean(a), se = Math.sqrt(sd(a) ** 2 / a.length + sd(b) ** 2 / b.length);
   return { d, lo: d - 1.96 * se, hi: d + 1.96 * se, na: a.length, nb: b.length, ma: mean(a), mb: mean(b) };
 }
-const early = s => s.frac < 1 / 3, late = s => s.frac >= 2 / 3;
+const early = s => isN(s.frac) && s.frac < 1 / 3, late = s => isN(s.frac) && s.frac >= 2 / 3;
 /* Hallazgos: búsqueda automática en todas las métricas y comparaciones, en situaciones equivalentes */
 const MEANING = {
   xf: ["más separación tronco–cadera en el armado: más energía elástica acumulada", "menos separación tronco–cadera: cadera y tronco giran juntos, menos «muelle»"],
@@ -564,7 +571,7 @@ const MEANING = {
 const meaning = (k, d) => (MEANING[k] || [])[d > 0 ? 0 : 1] || "";
 const maxSet = Math.max(1, ...STROKES.map(s => s.set || 0));
 const PAIRS = [
-  { key: "fatiga", t: "al final del partido", c: "último tercio frente al primero", A: s => s.frac < 1 / 3, B: s => s.frac >= 2 / 3, neutral: true },
+  { key: "fatiga", t: "al final del partido", c: "último tercio frente al primero", A: early, B: late, neutral: true },
   { key: "sets", t: "en el último set", c: "último set frente al primero", A: s => s.set === 1, B: s => maxSet > 1 && s.set === maxSet, neutral: true },
   { key: "presion", t: "bajo presión", c: "puntos de presión frente al resto", A: s => s.pressure === false, B: s => s.pressure === true, neutral: true },
   // split step is timed from the opponent's hit: with a faster ball it changes by definition
@@ -574,7 +581,7 @@ const PAIRS = [
 const FIND = [];
 (function discover() {
   const all = [];
-  for (const p of PAIRS) for (const m of METRICS.filter(m => !(p.skip || []).includes(m.k))) {
+  for (const p of PAIRS) for (const m of METRICS.filter(m => !m.est && !(p.skip || []).includes(m.k))) {
     let neu = p.neutral, A = STROKES.filter(s => p.A(s) && (!neu || s.sit.neutra)), B = STROKES.filter(s => p.B(s) && (!neu || s.sit.neutra));
     let e = effect(m.k, A, B);
     if (neu && !isN(e.d)) { neu = false; A = STROKES.filter(p.A); B = STROKES.filter(p.B); e = effect(m.k, A, B); }
@@ -652,7 +659,7 @@ document.querySelectorAll("#evo-metric button").forEach(b => b.addEventListener(
 function renderEvo() {
   const k = evoK, m = MK[k], a = STROKES.filter(s => isN(s.m[k]));
   const W = 720, H = 240, L = 44, R = 16, T = 14, B = 30, N = 6, pts = [];
-  for (let i = 0; i < N; i++) { const lo = i / N, hi = (i + 1) / N, b = a.filter(s => s.frac >= lo && s.frac < hi).map(s => s.m[k]); if (b.length >= 3) { const mu = mean(b), se = sd(b) / Math.sqrt(b.length); pts.push({ x: (lo + hi) / 2, mu, lo: mu - 1.96 * se, hi: mu + 1.96 * se, n: b.length }); } }
+  for (let i = 0; i < N; i++) { const lo = i / N, hi = (i + 1) / N, b = a.filter(s => isN(s.frac) && s.frac >= lo && s.frac < hi).map(s => s.m[k]); if (b.length >= 3) { const mu = mean(b), se = sd(b) / Math.sqrt(b.length); pts.push({ x: (lo + hi) / 2, mu, lo: mu - 1.96 * se, hi: mu + 1.96 * se, n: b.length }); } }
   if (pts.length < 2) { document.getElementById("evo").innerHTML = `<div class="empty">Hacen falta al menos 3 golpes en dos tramos del partido para dibujar la evolución de ${m.name.toLowerCase()} (hay ${a.length}).</div>`; return; }
   const ref = pts[0].mu;
   const ylo = Math.min(...pts.map(p => p.lo), ref - m.noise) - .5, yhi = Math.max(...pts.map(p => p.hi), ref + m.noise) + .5;
@@ -680,15 +687,9 @@ document.getElementById("matches").innerHTML = `<thead><tr><th>Partido</th><th>F
   MATCHES.map((m, i) => { const a = STROKES.filter(s => s.match === i), byT = [1, 2, 3].map(t => mean(a.filter(s => third(s) === t).map(s => s.m[evoK]))); return `<tr data-m="${i}"><td><b>${m.id}</b> <span class="dim">vs ${m.rival}</span></td><td class="num">${m.date}</td><td>${m.surf}</td><td>${m.round}</td><td class="r num">${a.length}</td><td class="r num">${a.filter(s => s.review.length).length}</td><td class="r num">${evoK ? fmtM(evoK, mean(a.map(s => s.m[evoK]))) : "—"}</td><td>${spark(byT)} <span class="mono dim3" style="font-size:11px">${byT.map(v => fmt(v, 1)).join(" · ")}</span></td></tr>`; }).join("") + "</tbody>";
 document.querySelectorAll("#matches tbody tr").forEach(r => r.addEventListener("click", () => { resetFilters(); document.getElementById("f-match").value = r.dataset.m; exPage = 0; renderTable(); showTab("explorador"); }));
 
-const REFS = [
-  { u: "https://www.youtube.com/watch?v=12VXBn6ExRI", t: "WTA Forehand Techniques and Biomechanics", d: "Análisis biomecánico · Andreeva, Pegula, Rybakina, Navarro" },
-  { u: "https://www.youtube.com/watch?v=YQDx7xiZCSE", t: "Rybakina's Effortless Forehand Power", d: "Análisis de la derecha" },
-  { u: "https://www.youtube.com/watch?v=W0uSDf3AaY8", t: "Elena Rybakina Forehand Backhand Serve SLOW MOTION", d: "Cámara lenta · entrenamiento" },
-  { u: "https://www.youtube.com/watch?v=6y5DoJ_OJ7U", t: "WTA 1000 Dubai 2021 · Rybakina forehand slow motion", d: "Cámara lenta · entrenamiento" },
-  { u: "https://www.youtube.com/shorts/x2xpZOnAa-w", t: "Rybakina vs Sinner forehand comparison", d: "Comparación en cámara lenta" },
-  { u: "https://www.youtube.com/watch?v=gXaDjchPVJg", t: "Elena Rybakina Shows How To Put Away A Forehand", d: "Golpe de definición" },
-];
-document.getElementById("refs").innerHTML = (DATA.refs || REFS).map(r => `<a class="ref" href="${r.u}" target="_blank" rel="noopener"><span class="pl"><svg viewBox="0 0 14 14" width="14" height="14" fill="currentColor"><path d="M3 2v10l9-5z"/></svg></span><span><b>${r.t}</b><span>${r.d} · youtube.com</span></span></a>`).join("");
+const REFS = (DATA.player && DATA.player.references || []).filter(r => !r.stroke || r.stroke === DATA.stroke);
+document.getElementById("refs").closest(".panel").hidden = !REFS.length;
+document.getElementById("refs").innerHTML = REFS.map(r => `<a class="ref" href="${r.u}" target="_blank" rel="noopener"><span class="pl"><svg viewBox="0 0 14 14" width="14" height="14" fill="currentColor"><path d="M3 2v10l9-5z"/></svg></span><span><b>${r.t}</b><span>${r.d} · youtube.com</span></span></a>`).join("");
 
 /* ===== ANÁLISIS DE GOLPE: vídeo real de la ventana + esqueleto ===== */
 const PHASE_DEF = [
@@ -902,7 +903,7 @@ function renderMetricsPanel() {
 function renderCtx() {
   const s = cur, m = MATCHES[s.match];
   document.getElementById("g-title").textContent = s.id;
-  document.getElementById("g-ctx").innerHTML = [["Partido", `${m.id} vs ${m.rival}`], ["Lado", s.side === "far" ? "<b style='color:var(--accent)'>lejano · detalle reducido</b>" : "cercano"], ["Vídeo", clock(s.vt)], ["Bola", sitTxt(s)], ["Tiempo disponible", isN(s.tAvail) ? `${fmt(s.tAvail, 2)} s` : "—"], ["Desplazamiento", isN(s.disp) ? `${fmt(s.disp, 1)} m` : "—"], ["Su golpe", isN(s.shotY) ? `${s.shotDir || "—"} · bota a ${fmt(s.shotY - 11.885 > 0 ? 23.77 - s.shotY : NaN, 1)} m del fondo rival · ${s.shotIn ? "dentro" : "<b style='color:var(--crit)'>fuera</b>"}` : "—"], ["Bote", isN(s.bounceDepth) ? `${fmt(s.bounceDepth, 1)} m dentro de la pista${isN(s.bounceToImpact) ? ` · ${fmt(s.bounceToImpact, 2)} s antes` : ""}` : "—"], ["Apoyo", s.stance ? `${s.stance}${isN(s.stanceAngle) ? ` (${fmt(s.stanceAngle)}°)` : ""}` : "—"], ["Impacto", s.source || "—"], ["Captura", `${fmt(s.quality * 100)} %`], ["Resultado", s.outcomeDetail ? (s.outcome === "error" ? `<b style='color:var(--crit)'>${OUT_ES[s.outcomeDetail]}</b>` : s.outcome === "ganador" ? `<b style='color:var(--good)'>${OUT_ES[s.outcomeDetail]}</b>` : OUT_ES[s.outcomeDetail]) : "sin determinar"], ["Set · marcador", s.score ? `${s.set} · ${s.score}${s.pressure ? " · <b style='color:var(--accent)'>presión</b>" : ""}` : "sin lectura del marcador"], ["Dudas", s.review.length ? `<span class="flags">${s.review.map(r => `<span class="chip">${revTxt(r)}</span>`).join("")}</span>` : "ninguna"]].map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join("");
+  document.getElementById("g-ctx").innerHTML = [["Partido", `${m.id} vs ${m.rival}`], ["Lado", s.side === "far" ? "<b style='color:var(--accent)'>lejano · detalle reducido</b>" : "cercano"], ["Vídeo", clock(s.vt)], ["Bola", sitTxt(s)], ["Tiempo disponible", isN(s.tAvail) ? `${fmt(s.tAvail, 2)} s` : "—"], ["Desplazamiento", isN(s.disp) ? `${fmt(s.disp, 1)} m` : "—"], ["Su golpe", isN(s.shotY) ? `${s.shotDir || "—"} · bota a ${fmt(s.shotY - 11.885 > 0 ? 23.77 - s.shotY : NaN, 1)} m del fondo rival · ${s.shotIn === true ? "dentro" : s.shotIn === false ? "<b style='color:var(--crit)'>fuera</b>" : "dentro/fuera sin determinar"}` : "—"], ["Bote", isN(s.bounceDepth) ? `${fmt(s.bounceDepth, 1)} m dentro de la pista${isN(s.bounceToImpact) ? ` · ${fmt(s.bounceToImpact, 2)} s antes` : ""}` : "—"], ["Apoyo", s.stance ? `${s.stance}${isN(s.stanceAngle) ? ` (${fmt(s.stanceAngle)}°)` : ""}` : "—"], ["Impacto", s.source || "—"], ["Captura", `${fmt(s.quality * 100)} %`], ["Resultado", s.outcomeDetail ? (s.outcome === "error" ? `<b style='color:var(--crit)'>${OUT_ES[s.outcomeDetail]}</b>` : s.outcome === "ganador" ? `<b style='color:var(--good)'>${OUT_ES[s.outcomeDetail]}</b>` : OUT_ES[s.outcomeDetail]) : "sin determinar"], ["Set · marcador", s.score ? `${s.set} · ${s.score}${s.pressure ? " · <b style='color:var(--accent)'>presión</b>" : ""}` : "sin lectura del marcador"], ["Dudas", s.review.length ? `<span class="flags">${s.review.map(r => `<span class="chip">${revTxt(r)}</span>`).join("")}</span>` : "ninguna"]].map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join("");
 }
 function renderRacket() {
   const rk = ser && ser.racket;
@@ -1087,7 +1088,7 @@ function renderCourt() {
   const Ln = (x1, d1, x2, d2, w = 2) => `<line x1="${X(x1)}" y1="${Y(d1)}" x2="${X(x2)}" y2="${Y(d2)}" stroke="#eef3f6" stroke-width="${w}" stroke-opacity=".9"/>`;
   g += Ln(-6.4, 0, 6.4, 0, 4) + Ln(-5.485, 0, -5.485, 11.885) + Ln(5.485, 0, 5.485, 11.885) + Ln(-4.115, 0, -4.115, 11.885) + Ln(4.115, 0, 4.115, 11.885) + Ln(-5.485, 11.885, 5.485, 11.885, 3) + Ln(-4.115, 6.4, 4.115, 6.4) + Ln(0, 0, 0, 6.4) + Ln(0, 11.685, 0, 11.885);
   if (pMode === "bounce") STROKES.filter(s => isN(s.bounceDepth) && (F("p-match") === "" || s.match === +F("p-match"))).forEach(s => { g += `<circle cx="${X(s.bounceX).toFixed(1)}" cy="${Y(11.885 - s.bounceDepth).toFixed(1)}" r="4.5" fill="var(--accent)" fill-opacity=".85" stroke="#0c0f13" stroke-width="1" data-id="${s.id}" data-tip="<b class='mono'>${s.id}</b><div class='mono'>bote a ${fmt(s.bounceDepth, 1)} m de la línea de fondo${isN(s.bounceToImpact) ? " · " + fmt(s.bounceToImpact, 2) + " s antes del impacto" : ""}</div>" style="cursor:pointer"/>`; });
-  if (pMode === "dest") STROKES.filter(s => isN(s.shotY) && (F("p-match") === "" || s.match === +F("p-match"))).forEach(s => { const c = s.shotIn ? (s.shotDir === "cruzada" ? "var(--s1)" : s.shotDir === "paralela" ? "var(--s2)" : "var(--s3)") : "var(--crit)"; g += `<circle cx="${X(s.shotX).toFixed(1)}" cy="${Y(s.shotY - 11.885).toFixed(1)}" r="4.5" fill="${c}" fill-opacity=".9" stroke="#0c0f13" stroke-width="1" data-id="${s.id}" data-tip="<b class='mono'>${s.id}</b><div class='mono'>${s.shotDir || "—"} · ${fmt(23.77 - s.shotY, 1)} m del fondo rival · ${s.shotIn ? "dentro" : "fuera"}</div>" style="cursor:pointer"/>`; });
+  if (pMode === "dest") STROKES.filter(s => isN(s.shotY) && (F("p-match") === "" || s.match === +F("p-match"))).forEach(s => { const c = s.shotIn === false ? "var(--crit)" : s.shotIn === true ? (s.shotDir === "cruzada" ? "var(--s1)" : s.shotDir === "paralela" ? "var(--s2)" : "var(--s3)") : "#8b96a1"; g += `<circle cx="${X(s.shotX).toFixed(1)}" cy="${Y(s.shotY - 11.885).toFixed(1)}" r="4.5" fill="${c}" fill-opacity=".9" stroke="#0c0f13" stroke-width="1" data-id="${s.id}" data-tip="<b class='mono'>${s.id}</b><div class='mono'>${s.shotDir || "—"} · ${fmt(23.77 - s.shotY, 1)} m del fondo rival · ${s.shotIn === true ? "dentro" : s.shotIn === false ? "fuera" : "sin determinar"}</div>" style="cursor:pointer"/>`; });
   if (pMode !== "density" && pMode !== "bounce" && pMode !== "dest") a.forEach(s => { const c = pMode === "stance" ? stCol(s) : SITC(s); g += `<circle cx="${X(s.x).toFixed(1)}" cy="${Y(s.y).toFixed(1)}" r="4.5" fill="${c}" fill-opacity=".85" stroke="#0c0f13" stroke-width="1" data-id="${s.id}" data-tip="<b class='mono'>${s.id}</b><div class='mono'>${s.stance || "—"} · ${sitTxt(s)}</div>" style="cursor:pointer"/>`; });
   g += `<text x="${X(6.55)}" y="${Y(0) + 4}" font-size="11" fill="var(--ink-3)" font-family="Archivo, sans-serif">RED</text><text x="${X(5.6)}" y="${Y(11.885) + 4}" font-size="11" fill="var(--ink-3)" font-family="Archivo, sans-serif">FONDO</text>`;
   g += `<line x1="${X(-6.6)}" y1="${Y(15.6)}" x2="${X(-4.6)}" y2="${Y(15.6)}" stroke="var(--ink-2)" stroke-width="1.5"/><text x="${X(-6.6)}" y="${Y(15.6) - 5}" font-size="10.5" fill="var(--ink-2)" font-family="JetBrains Mono, monospace">2 m</text>`;
@@ -1265,3 +1266,5 @@ if (STROKES.filter(s => s.video).length >= 2) { const o = STROKES.filter(s => s.
 if (STROKES.length) loadStroke([...STROKES].sort((a, b) => (b.repr * .7 + b.quality * .3) - (a.repr * .7 + a.quality * .3))[0]);
 showTab((location.hash || "").slice(1));
 </script>
+</body>
+</html>

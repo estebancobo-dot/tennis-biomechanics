@@ -9,7 +9,27 @@ from . import pipeline, stages
 assert stages  # importing the module registers the stages
 
 
+def _out_name(kind: str, pid: str | None, stroke: str, own: str | None) -> str:
+    """informe_derecha / exportar_reves for the main player; with the player id for anyone else,
+    so reports of different players or strokes never overwrite each other."""
+    es = {"forehand": "derecha", "backhand": "reves", "overhead": "saque"}[stroke]
+    return f"{kind}_{es}" if pid is None or pid == own else f"{kind}_{pid}_{es}"
+
+
 def main(argv=None):
+    try:
+        return _main(argv)
+    except KeyboardInterrupt:
+        print("\nInterrumpido. Al relanzar se continúa donde se quedó.")
+        return 130
+    except Exception as e:                    # a message the user can act on, the detail in the log
+        import traceback
+        traceback.print_exc()
+        print(f"\nERROR: {e}\nPasa a Claude el fichero de registro (.log) de C:\\tenis\\output.")
+        return 1
+
+
+def _main(argv=None):
     ap = argparse.ArgumentParser(prog="tennisbio")
     sub = ap.add_subparsers(dest="cmd", required=True)
     r = sub.add_parser("run", help="ejecuta lo que falte o haya cambiado")
@@ -35,31 +55,65 @@ def main(argv=None):
     cfg = load_config()
     out_root = Path(cfg.get("paths", {}).get("output", "output"))
     matches = load_matches(cfg)
+    own = matches[0].player.id if matches else None
     if args.cmd == "report":
         from .report import build
-        pid = args.player or (matches[0].player.id if matches else None)
+        pid = args.player or own
         mine = [m for m in matches if m.player.id == pid or m.extra.get("opponent_id") == pid]
-        out = build(mine, out_root, Path(args.out) if args.out else None, args.stroke, player_id=pid)
+        out = build(mine, out_root, Path(args.out) if args.out else out_root / _out_name("informe", pid, args.stroke, own),
+                    args.stroke, player_id=pid)
         print(f"informe: {out}")
         return
     if args.cmd == "export":
         from .export import export
-        pid = args.player or (matches[0].player.id if matches else None)
+        pid = args.player or own
         mine = [m for m in matches if m.player.id == pid or m.extra.get("opponent_id") == pid]
-        out = Path(args.out) if args.out else out_root / f"exportar_{args.stroke}"
+        out = Path(args.out) if args.out else out_root / _out_name("exportar", pid, args.stroke, own)
         export(mine, out_root, out, args.stroke, player_id=pid, reel_max=args.max, strokes_all=not args.solo_montajes)
         return
     if getattr(args, "match", None):
+        unknown = set(args.match) - {m.id for m in matches}
+        if unknown:
+            print(f"AVISO: no están en config/matches.yaml: {', '.join(sorted(unknown))}")
         matches = [m for m in matches if m.id in args.match]
+    failed = []
     for m in matches:
-        ctx = pipeline.Context(m, cfg, out_root / m.id)
-        if args.cmd == "status":
-            st = pipeline.status(ctx)
-            print(f"{m.id:20} " + "  ".join(f"{k}:{v}" for k, v in st.items()))
-        else:
-            done = pipeline.run(ctx, args.stages, force=args.force)
-            print(f"{m.id}: {'ejecutado ' + ', '.join(done) if done else 'al día'}")
+        ctx = pipeline.Context(m, cfg, out_root / m.id, log=_logger(out_root / m.id))
+        try:
+            if args.cmd == "status":
+                st = pipeline.status(ctx)
+                print(f"{m.id:20} " + "  ".join(f"{k}:{v}" for k, v in st.items()))
+            else:
+                done = pipeline.run(ctx, args.stages, force=args.force)
+                print(f"{m.id}: {'ejecutado ' + ', '.join(done) if done else 'al día'}")
+        except pipeline.MissingVideo:
+            print(f"{m.id}: el vídeo ya no está ({m.video}); se conservan sus resultados")
+        except KeyboardInterrupt:
+            raise
+        except Exception as e:                # one bad match never stops the others
+            import traceback
+            ctx.log(traceback.format_exc())
+            print(f"{m.id}: ERROR ({e}); se sigue con los demás. Detalle en {ctx.dir / 'registro.log'}")
+            failed.append(m.id)
+    if failed:
+        print(f"Partidos con error: {', '.join(failed)}")
+        return 1
+
+
+def _logger(d: Path):
+    """Print and append to <output>/<match>/registro.log (UTF-8, survives the console)."""
+    import time
+
+    def log(msg: str):
+        print(msg, flush=True)
+        try:
+            d.mkdir(parents=True, exist_ok=True)
+            with open(d / "registro.log", "a", encoding="utf-8") as f:
+                f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} {msg}\n")
+        except OSError:
+            pass
+    return log
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

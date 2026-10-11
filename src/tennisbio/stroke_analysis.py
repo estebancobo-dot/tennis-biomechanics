@@ -70,17 +70,25 @@ def serve_events(body: np.ndarray, sk: Skeleton, fps: float, i: int) -> dict:
 
 def analyze_stroke(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, height_px: float,
                    impact: int, impact_source: str, rackets: list | None = None, height_m: float = 1.84,
-                   opponent_impact: int | None = None, window=(1.0, 0.8)) -> StrokeResult:
-    """Analyse one stroke. img/conf cover the whole clip; work happens in a window around impact."""
-    a = max(0, impact - int(window[0] * fps))
+                   opponent_impact: int | None = None, window=(1.0, 0.8), scale=None) -> StrokeResult:
+    """Analyse one stroke. img/conf cover the whole clip; work happens in a window around impact.
+
+    The window reaches back to half a second before the opponent's hit when it is known (up to
+    2.2 s), so the split step and long backswings are inside it whatever the ball speed.
+    scale: body height in pixels per frame of the clip (kinematics.scale_track)."""
+    pre = window[0]
+    if opponent_impact is not None and opponent_impact < impact:
+        pre = min(2.2, max(pre, (impact - opponent_impact) / fps + 0.5))
+    a = max(0, impact - int(round(pre * fps)))
     b = min(len(img), impact + int(window[1] * fps) + 1)
     w_img, w_conf = img[a:b], conf[a:b]
-    body = to_body_frame(w_img, sk, height_px)
+    hs = np.full(b - a, float(height_px)) if scale is None else np.asarray(scale, float)[a:b]
+    body = to_body_frame(w_img, sk, hs)
     i = impact - a
     opp = None if opponent_impact is None else opponent_impact - a
     cm = height_m * 100                               # body heights -> cm
 
-    events = detect_phases(w_img, body, w_conf, sk, fps, height_px, i, opp)
+    events = detect_phases(w_img, body, w_conf, sk, fps, float(np.median(hs)), i, opp)
     res = StrokeResult(impact_frame=impact, impact_source=impact_source, stroke=classify_side(body, sk, i, fps))
     if res.stroke == "overhead":
         from .phases import Event
@@ -98,13 +106,13 @@ def analyze_stroke(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, 
         res.review.append("impact_without_audio")
 
     ev = {e.name: e.frame for e in events}
-    sh, hp = line_turn(w_img, sk, "shoulder"), line_turn(w_img, sk, "hip")
+    sh, hp = line_turn(w_img, sk, "shoulder", scale=hs), line_turn(w_img, sk, "hip", scale=hs)
     g = lambda arr, f: None if f is None or np.isnan(arr[f]) else float(arr[f])
     dsh, del_, dw = sk["dom_shoulder"], sk["dom_elbow"], sk["dom_wrist"]
     elbow = joint_angle(body[:, dsh], body[:, del_], body[:, dw])
     feet_y = np.fmin(body[:, sk["left_ankle"], 1], body[:, sk["right_ankle"], 1])
     base = np.abs(body[:, sk["left_ankle"], 0] - body[:, sk["right_ankle"], 0])
-    hip_y_img = (w_img[:, sk["left_hip"], 1] + w_img[:, sk["right_hip"], 1]) / 2
+    hip_h = -feet_y                       # hip height above the lower foot, body heights (scale-free)
     m = res.metrics
     m["shoulder_turn_loaded_deg"] = g(sh, ev["loaded"])
     m["hip_turn_loaded_deg"] = g(hp, ev["loaded"])
@@ -120,29 +128,33 @@ def analyze_stroke(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, 
     m["contact_lateral_pct"] = None if np.isnan(body[i, dw, 0]) else float(abs(body[i, dw, 0]) * 100)
     m["base_width_loaded_pct"] = None if ev["loaded"] is None else g(base * 100, ev["loaded"])
     if ev["ready"] is not None and ev["loaded"] is not None:
-        m["hip_drop_pct"] = float((hip_y_img[ev["loaded"]] - hip_y_img[ev["ready"]]) / height_px * 100)
+        d = hip_h[ev["ready"]] - hip_h[ev["loaded"]]
+        m["hip_drop_pct"] = None if np.isnan(d) else float(d * 100)
     m["finish_wrist_height_pct"] = None if ev["finish"] is None else g(body[:, dw, 1] * 100, ev["finish"])
-    n0, n1 = max(0, i - 2), min(len(body) - 1, i + 2)
-    nose = w_img[:, sk["nose"]]
-    m["head_motion_impact_cm"] = None if np.isnan(nose[[n0, n1]]).any() else float(np.linalg.norm(nose[n1] - nose[n0]) / height_px * cm)
+    k50 = max(1, int(round(0.05 * fps)))            # ±50 ms, whatever the frame rate
+    n0, n1 = max(0, i - k50), min(len(body) - 1, i + k50)
+    nose = body[:, sk["nose"]]                       # relative to the hips: running and panning cancel out
+    m["head_motion_impact_cm"] = None if np.isnan(nose[[n0, n1]]).any() else float(np.linalg.norm(nose[n1] - nose[n0]) * cm)
     if res.stroke == "overhead" and ev["loaded"] is not None:
         t = ev["loaded"]
         ls, rs = body[t, sk["non_shoulder"]], body[t, sk["dom_shoulder"]]
         if not (np.isnan(ls).any() or np.isnan(rs).any()):     # + = tossing-side shoulder higher
             m["serve_shoulder_tilt_trophy_deg"] = float(np.degrees(np.arctan2(ls[1] - rs[1], abs(ls[0] - rs[0]))))
         m["serve_toss_arm_height_pct"] = g((body[:, sk["non_wrist"], 1] - feet_y) * 100, t)
-        start = hip_y_img[:max(1, int(0.3 * fps))]
-        if np.isfinite(start).any() and not np.isnan(hip_y_img[t]):
-            m["serve_knee_bend_hip_drop_pct"] = float((hip_y_img[t] - np.nanmin(start)) / height_px * 100)
+        start = hip_h[:max(1, int(0.3 * fps))]
+        if np.isfinite(start).any() and not np.isnan(hip_h[t]):
+            m["serve_knee_bend_hip_drop_pct"] = float((np.nanmax(start) - hip_h[t]) * 100)
     for name in ("ready", "takeback", "loaded", "acceleration"):
         if ev[name] is not None:
             m[f"time_{name}_to_impact_s"] = round((i - ev[name]) / fps, 3)
     if ev["finish"] is not None:
         m["time_impact_to_finish_s"] = round((ev["finish"] - i) / fps, 3)
 
-    peaks, order = kinetic_chain(w_img, body, sk, fps, ev["loaded"] if ev["loaded"] is not None else i - int(0.4 * fps), i)
+    peaks, order, resolved = kinetic_chain(w_img, body, sk, fps, ev["loaded"] if ev["loaded"] is not None else i - int(0.4 * fps),
+                                           i, scale=hs)
+    # the order is judged only when every segment has its own, separated peak
     res.chain = {"peaks_s": peaks, "order": order,
-                 "proximal_to_distal": order == [s for s in ["pelvis", "trunk", "upper_arm", "forearm"] if s in order]}
+                 "proximal_to_distal": (order == ["pelvis", "trunk", "upper_arm", "forearm"]) if resolved else None}
 
     # racket through the whole window
     if rackets is not None:
@@ -153,7 +165,7 @@ def analyze_stroke(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, 
             if obs is None:
                 res.racket_track.append([round((f - i) / fps, 3), None, None])
             else:
-                above = (wrist[1] - obs.head[1]) / height_px * cm
+                above = (wrist[1] - obs.head[1]) / hs[f] * cm
                 res.racket_track.append([round((f - i) / fps, 3), round(obs.elevation_deg, 1), round(float(above), 1)])
         for name in PHASES:
             f = ev[name]

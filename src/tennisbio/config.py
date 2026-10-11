@@ -4,6 +4,25 @@ from pathlib import Path
 import yaml
 
 CONFIG_DIR = Path(__file__).resolve().parents[2] / "config"
+ROOT = CONFIG_DIR.parent
+
+
+def resolve_path(p: str | Path | None) -> Path | None:
+    """A path from the config: relative paths are relative to the repository, not to the current
+    directory (scripts may be launched from anywhere)."""
+    if not p:
+        return None
+    p = Path(p)
+    return p if p.is_absolute() else ROOT / p
+
+
+def model_state(p: str | Path | None) -> str | None:
+    """Fingerprint of a model file (missing → None), so adding or replacing a model re-runs its stage."""
+    f = resolve_path(p)
+    if f is None or not f.exists():
+        return None
+    st = f.stat()
+    return f"{st.st_size}-{int(st.st_mtime)}"
 
 
 def _merge(base: dict, override: dict) -> dict:

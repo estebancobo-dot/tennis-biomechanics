@@ -30,7 +30,7 @@ def test_build_writes_page_with_data(tmp_path):
     (d / "probe.json").write_text(json.dumps({"duration": 60}))
     out = build([Match("m1", None, Player("p", "P"))], tmp_path)
     html = out.read_text(encoding="utf-8")
-    assert "__DATA__" not in html and '"m1-001"' in html and '"m1-002"' not in html
+    assert "__DATA__" not in html and '"m1-0000500"' in html and '"m1-0000900"' not in html
 
 
 def test_frame_noise_recovers_white_noise_on_a_ramp():

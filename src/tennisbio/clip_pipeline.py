@@ -12,7 +12,8 @@ import cv2
 import numpy as np
 
 from .impacts import Impact, audio_onsets, fuse, fuse_with_ball, swing_peaks
-from .kinematics import body_height, clean, speed, to_body_frame
+from .pipeline import load_npz, save_npy_atomic
+from .kinematics import body_height, clean, scale_track, speed, to_body_frame
 from .skeleton import Skeleton
 from .stroke_analysis import StrokeResult, analyze_stroke
 from .tracking import track_target
@@ -34,6 +35,7 @@ class ClipRun:
     side: str = "near"
     hits: list = field(default_factory=list)     # ball turns of both players (tennisbio.ball.BallHit)
     strokes: list[StrokeResult] = field(default_factory=list)
+    height_t: np.ndarray | None = None          # body height in px per frame (kinematics.scale_track)
 
 
 def _cv2_frames(video: Path):
@@ -88,14 +90,16 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     her from init_box; pose.yolo.extract_follow)."""
     video, cache = Path(video), Path(cache)
     cache.parent.mkdir(parents=True, exist_ok=True)
-    if not cache.exists():
+    if load_npz(cache) is None:          # missing or damaged (interrupted run): extract again
         from .pose.yolo import extract
         if roi == "follow":            # small far player: crop that follows her, enlarged
             from .pose.yolo import extract_follow
             extract_follow(video, cache, init_box, max_bottom=max_bottom)
         else:
             extract(video, cache, imgsz=imgsz, progress=False, roi=roi)
-    d = np.load(cache, allow_pickle=True)
+    d = load_npz(cache)
+    if d is None:
+        raise RuntimeError(f"no se pudo extraer la pose de {video.name}")
     fps, boxes, kps, confs, feats = float(d["fps"]), d["boxes"], d["kps"], d["confs"], d["feats"]
     sk = Skeleton("coco17", hand)
     T = len(boxes)
@@ -125,7 +129,8 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     if side == "far":                      # facing the camera: mirror so the analysis sees her from behind
         img_a = img.copy()
         img_a[..., 0] = fw - img_a[..., 0]
-    body = to_body_frame(img_a, sk, height_px)
+    height_t = scale_track(img, sk, height_px, fps)
+    body = to_body_frame(img_a, sk, height_t)
     swings = swing_peaks(speed(body[:, sk["dom_wrist"]], fps), fps)
     y, sr = load_audio(video)
     onsets = audio_onsets(y, sr)[0] if len(y) else np.zeros(0)
@@ -135,11 +140,14 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         from .ball import ball_hits, clean_track
 
         bcache = cache.with_name(cache.stem.removesuffix("_far") + "_ball.npy")      # same ball for both ends
-        if bcache.exists():
-            ball_track = np.load(bcache)
-        else:      # same decoder as the pose extraction, so frame indices match
+        try:
+            ball_track = np.load(bcache) if bcache.exists() else None
+        except Exception:                 # damaged cache
+            bcache.unlink(missing_ok=True)
+            ball_track = None
+        if ball_track is None:      # same decoder as the pose extraction, so frame indices match
             ball_track = ball.track(_cv2_frames(video), step=max(1, round(fps / 25)))
-            np.save(bcache, ball_track)
+            save_npy_atomic(bcache, ball_track)
         ball_track = clean_track(ball_track, width=fw)
         n = min(T, len(ball_track))
         hits = ball_hits(ball_track[:n], fh, fps)
@@ -154,16 +162,18 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     run.side = side
     run.hits = run_hits if ball is not None else []
     run.ball = ball_track
+    run.height_t = height_t
 
     run.rackets = [[] for _ in range(T)]
     if rackets and impacts:
         rcache = cache.with_name(cache.stem + "_rackets.npz")
         need = sorted({f for imp in impacts for f in range(max(0, imp.frame - int(fps)), min(T, imp.frame + int(0.8 * fps) + 1))})
-        if not rcache.exists() or not set(need) <= set(np.load(rcache, allow_pickle=True)["frames"].tolist()):
+        rd = load_npz(rcache)
+        if rd is None or not set(need) <= set(rd["frames"].tolist()):
             from .pose.yolo import extract_rackets
             log(f"segmentando la raqueta en {len(need)} fotogramas")
             extract_rackets(video, need, rcache, imgsz=imgsz)
-        rd = np.load(rcache, allow_pickle=True)
+            rd = load_npz(rcache)
         for f, p in zip(rd["frames"], rd["polys"]):
             run.rackets[int(f)] = p
 
@@ -173,7 +183,7 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         prev = [t for t in onsets if 0.5 < imp.t - t < 2.0]
         opp = prev_ball[-1] if prev_ball else (int(round(prev[-1] * fps)) if prev else None)
         r = analyze_stroke(img_a, cf, sk, fps, height_px, imp.frame, imp.source,
-                           run.rackets if rackets else None, height_m, opp)
+                           run.rackets if rackets else None, height_m, opp, scale=height_t)
         if ball_track is not None and imp.source.find("ball") >= 0:
             from .ball import bounce_before
             # incoming bounce on her half; her shot lands on the other half (image rows split near the net)

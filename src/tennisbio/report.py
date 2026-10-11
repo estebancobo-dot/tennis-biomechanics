@@ -18,6 +18,11 @@ from pathlib import Path
 
 from .catalog import Match
 
+
+def opponent_profile(match):
+    from .stages import opponent_profile as op
+    return op(match)
+
 TEMPLATE = Path(__file__).with_name("report_template.html")
 
 # report key → (group, name, subtitle, unit, decimals, provisional noise, reliability 1-3, source)
@@ -54,7 +59,9 @@ METRICS = {
 }
 NET_Y = 11.885
 # metrics that stay reliable when she is at the far end (small, facing the camera)
-FAR_OK = {"contactH", "disp", "shotDepth", "split", "recov", "landing"}
+FAR_OK = {"contactH", "disp", "shotDepth", "landing"}
+# estimates, not measurements (the racket is blurred at contact): shown, never used as findings
+ESTIMATED = {"rFaceImp", "rYawImp"}
 
 
 def _num(v):
@@ -73,13 +80,15 @@ def _score_fields(sc: dict | None) -> dict:
             "pressure": bool(sc.get("pressure"))}
 
 
-def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx: int) -> dict:
-    """One stroke in the report's schema (see the mockup's STROKES)."""
+def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx: int, hand: str | None = None) -> dict:
+    """One stroke in the report's schema (see the mockup's STROKES). hand: of the analysed player
+    (the opponent's when the rows are hers)."""
+    hand = hand or match.player.hand
     m, ph, rk = s.get("metrics", {}), s.get("phases", {}), s.get("racket", {})
     t_av = _num(m.get("time_available_s"))
     pos = s.get("court_pos_m")
     # left-handers are mirrored so that "+x" is always the forehand side (comparable players)
-    x = None if pos is None else (-pos[0] if match.player.hand == "left" else pos[0])
+    x = None if pos is None else (-pos[0] if hand == "left" else pos[0])
     y = None if pos is None else NET_Y - pos[1]                # distance from the net, as in the mockup
     ch = _num(m.get("contact_height_pct"))
     height = None if ch is None else "baja" if ch < 40 else "alta" if ch > 75 else "media"
@@ -109,26 +118,29 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
     far = s.get("side") == "far"
     if far:
         vals = {k: (v if k in FAR_OK else None) for k, v in vals.items()}
+    chain = s.get("chain") or {}
     confs = [p.get("confidence", 0) for p in ph.values()]
     quality = max(0.05, min(0.99, (sum(confs) / len(confs) if confs else 0.5) - 0.08 * len(s.get("review", []))))
     sit = {"neutra": not (fast or wide or short) and height == "media" and t_av is not None,
            "abierta": wide, "rapida": fast, "baja": height == "baja", "corta": short}
     t = float(s.get("match_time_s", 0))
     return {
-        "id": f"{match.id}-{idx + 1:03d}", "idx": 0, "match": match_idx, "frac": t / duration_s if duration_s else 0,
+        # stable id: the match and the instant of the impact (a re-run that adds a stroke elsewhere keeps it)
+        "id": s.get("stroke_id") or f"{match.id}-{int(round(t * 100)):07d}", "idx": 0, "match": match_idx,
+        "frac": t / duration_s if duration_s else None,
         **_score_fields(s.get("score")), "finishType": None,
         # out = error (from where it bounced); otherwise unknown until the point is followed further
         "outcome": {"out": "error", "net": "error", "winner": "ganador", "rally": "sigue"}.get(
             s.get("outcome") or ("out" if s.get("shot_in") is False else "")),
         "outcomeDetail": s.get("outcome") or ("out" if s.get("shot_in") is False else None),
         "shotIn": s.get("shot_in"), "shotDir": s.get("shot_direction"), "shotSide": s.get("shot_side"),
-        "shotX": None if not s.get("shot_bounce_m") else (-s["shot_bounce_m"][0] if match.player.hand == "left" else s["shot_bounce_m"][0]),
+        "shotX": None if not s.get("shot_bounce_m") else (-s["shot_bounce_m"][0] if hand == "left" else s["shot_bounce_m"][0]),
         "shotY": None if not s.get("shot_bounce_m") else s["shot_bounce_m"][1],
         "tAvail": t_av, "bounceDepth": bounce_depth,
-        "bounceX": None if bounce is None else (-bounce[0] if match.player.hand == "left" else bounce[0]),
+        "bounceX": None if bounce is None else (-bounce[0] if hand == "left" else bounce[0]),
         "bounceToImpact": _num(m.get("bounce_to_impact_s")), "disp": disp, "height": height, "x": x, "y": y, "fast": fast, "wide": wide, "short": short,
-        "stance": s.get("stance"), "stanceAngle": s.get("stance_angle_deg"),
-        "chainOK": (s.get("chain") or {}).get("proximal_to_distal"), "chainPeaks": (s.get("chain") or {}).get("peaks_s"),
+        "stance": None if far else s.get("stance"), "stanceAngle": None if far else s.get("stance_angle_deg"),
+        "chainOK": None if far else chain.get("proximal_to_distal"), "chainPeaks": None if far else chain.get("peaks_s"),
         "quality": round(quality * (0.6 if far else 1.0), 3), "side": "far" if far else "near", "review": s.get("review", []), "source": s.get("impact_source"),
         "m": vals, "vt": t, "sit": sit,
         "phases": {k: v.get("t_rel") for k, v in ph.items()},
@@ -216,7 +228,7 @@ def collect(matches: list[Match], out_root: Path, stroke="forehand", player_id: 
         dur = json.loads((d / "probe.json").read_text(encoding="utf-8")).get("duration", 0) if (d / "probe.json").exists() else 0
         rows = [s for s in json.loads(f.read_text(encoding="utf-8")) if s.get("stroke") == stroke]
         for k, s in enumerate(rows):
-            r = stroke_record(s, len(ms), match, dur, k)
+            r = stroke_record(s, len(ms), match, dur, k, opponent_profile(match).hand if is_opp else match.player.hand)
             r["idx"] = len(strokes)
             r["_dir"], r["_window"], r["_series"] = str(d), s.get("window"), s.get("series")
             r["_phases"] = s.get("phases", {})
@@ -228,7 +240,8 @@ def collect(matches: list[Match], out_root: Path, stroke="forehand", player_id: 
                    "round": match.round or "—", "date": match.date or "—", "sets": None, "n": len(rows), "res": "—"})
     keep = stroke_metrics(stroke)
     return {"matches": ms, "strokes": strokes, "review": review,
-            "metrics": [{"k": k, "g": g, "name": n, "sub": sub, "unit": u, "dec": dec, "noise": noise, "rel": rel}
+            "metrics": [{"k": k, "g": g, "name": n, "sub": sub, "unit": u, "dec": dec, "noise": noise, "rel": rel,
+                         "est": k in ESTIMATED}
                         for k, (g, n, sub, u, dec, noise, rel, _) in METRICS.items() if k in keep]}
 
 

@@ -9,6 +9,8 @@ from pathlib import Path
 import cv2
 import numpy as np
 
+from ..pipeline import savez_atomic
+
 RACKET_CLASS = 38  # "tennis racket" in COCO
 
 
@@ -65,7 +67,7 @@ def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", im
         if progress and len(boxes) % 100 == 0:
             print(f"{len(boxes)} frames", flush=True)
     out = Path(out)
-    np.savez_compressed(out, fps=fps, n=len(boxes),
+    savez_atomic(out, fps=fps, n=len(boxes),
                         boxes=_objects(boxes), kps=_objects(kps), confs=_objects(confs),
                         feats=_objects(feats))
     return out
@@ -90,7 +92,7 @@ def extract_rackets(video: str | Path, frames, out: str | Path, seg_model="yolo1
         s = seg.predict(frame, imgsz=imgsz, conf=0.15, classes=[RACKET_CLASS], verbose=False)[0]
         polys.append([p.astype(np.float32) for p in (s.masks.xy if s.masks is not None else [])])
     out = Path(out)
-    np.savez_compressed(out, frames=np.array(frames), polys=_objects(polys))
+    savez_atomic(out, frames=np.array(frames), polys=_objects(polys))
     return out
 
 
@@ -144,7 +146,7 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
         if progress and len(boxes) % 100 == 0:
             print(f"{len(boxes)} frames", flush=True)
     out = Path(out)
-    np.savez_compressed(out, fps=fps, n=len(boxes), boxes=_objects(boxes), kps=_objects(kps), confs=_objects(confs),
+    savez_atomic(out, fps=fps, n=len(boxes), boxes=_objects(boxes), kps=_objects(kps), confs=_objects(confs),
                         feats=_objects(feats))
     return out
 

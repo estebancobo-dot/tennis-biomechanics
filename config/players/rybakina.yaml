@@ -5,3 +5,10 @@ height_m: 1.84
 # grados que su empuñadura de derecha cierra la cara respecto a la palma (para la orientación
 # de las cuerdas); semi-western ≈ 15. Ajustable cuando haya golpes suyos validados.
 forehand_grip_close_deg: 15
+# Vídeos públicos enlazados en el informe (no se descargan).
+references:
+  - {u: "https://www.youtube.com/watch?v=12VXBn6ExRI", t: "WTA Forehand Techniques and Biomechanics", d: "Análisis biomecánico · Andreeva, Pegula, Rybakina, Navarro", stroke: forehand}
+  - {u: "https://www.youtube.com/watch?v=YQDx7xiZCSE", t: "Rybakina's Effortless Forehand Power", d: "Análisis de la derecha", stroke: forehand}
+  - {u: "https://www.youtube.com/watch?v=W0uSDf3AaY8", t: "Elena Rybakina Forehand Backhand Serve SLOW MOTION", d: "Cámara lenta · entrenamiento"}
+  - {u: "https://www.youtube.com/watch?v=6y5DoJ_OJ7U", t: "WTA 1000 Dubai 2021 · Rybakina forehand slow motion", d: "Cámara lenta · entrenamiento", stroke: forehand}
+  - {u: "https://www.youtube.com/watch?v=gXaDjchPVJg", t: "Elena Rybakina Shows How To Put Away A Forehand", d: "Golpe de definición", stroke: forehand}

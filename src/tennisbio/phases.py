@@ -190,26 +190,34 @@ def detect_phases(img: np.ndarray, body: np.ndarray, conf: np.ndarray, sk: Skele
     return [events[p] for p in PHASES]
 
 
-def kinetic_chain(img: np.ndarray, body: np.ndarray, sk: Skeleton, fps: float, start: int, impact: int):
+def kinetic_chain(img: np.ndarray, body: np.ndarray, sk: Skeleton, fps: float, start: int, impact: int, scale=None):
     """Peak timing of segment rotation speeds between `start` and just after contact.
 
-    Returns {segment: seconds_before_impact_of_peak} and the order of the peaks. In 2D the order
-    is more trustworthy than the magnitudes.
+    Pelvis and trunk: the speed at which the hip and shoulder lines unwind (their turn away from
+    the camera decreases during the forward swing). Arm and forearm: angular speed of the
+    segment in the body frame. Every signal is smoothed over ~50 ms first: a raw 2D derivative
+    peaks on single-frame jitter.
+
+    Returns ({segment: seconds from impact of its peak}, order, resolved). resolved is False when
+    two peaks fall on the same frame or a segment is missing: the order is then not judged.
     """
-    from .kinematics import segment_angle
+    from .kinematics import segment_angle, smooth
 
     sl = slice(max(0, start), min(len(img), impact + 3))
     sig = {
-        "pelvis": line_turn(img, sk, "hip"),
-        "trunk": line_turn(img, sk, "shoulder"),
-        "upper_arm": segment_angle(body[:, sk["dom_shoulder"]], body[:, sk["dom_elbow"]]),
-        "forearm": segment_angle(body[:, sk["dom_elbow"]], body[:, sk["dom_wrist"]]),
+        "pelvis": -np.gradient(smooth(line_turn(img, sk, "hip", scale=scale), fps)) * fps,
+        "trunk": -np.gradient(smooth(line_turn(img, sk, "shoulder", scale=scale), fps)) * fps,
+        "upper_arm": np.abs(np.gradient(smooth(segment_angle(body[:, sk["dom_shoulder"]], body[:, sk["dom_elbow"]]), fps))) * fps,
+        "forearm": np.abs(np.gradient(smooth(segment_angle(body[:, sk["dom_elbow"]], body[:, sk["dom_wrist"]]), fps))) * fps,
     }
-    peaks = {}
+    peaks, frames = {}, {}
     for name, x in sig.items():
-        w = speed(x, fps)[sl]
-        if np.all(np.isnan(w)):
+        w = x[sl]
+        if np.all(np.isnan(w)) or np.nanmax(w) <= 0:
             continue
-        peaks[name] = round((sl.start + int(np.nanargmax(w)) - impact) / fps, 3)
+        f = sl.start + int(np.nanargmax(w))
+        frames[name] = f
+        peaks[name] = round((f - impact) / fps, 3)
     order = sorted(peaks, key=peaks.get)
-    return peaks, order
+    resolved = len(frames) == 4 and len(set(frames.values())) == 4
+    return peaks, order, resolved

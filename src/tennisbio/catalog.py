@@ -16,6 +16,7 @@ class Player:
     height_m: float = 1.80
     forehand_grip_close_deg: float = 15.0
     backhand_grip_close_deg: float = 0.0
+    references: list = field(default_factory=list)    # public videos linked in the report: {u, t, d, stroke}
 
 
 @dataclass
@@ -32,8 +33,9 @@ class Match:
 
 
 def load_player(player_id: str, config_dir: Path = CONFIG_DIR) -> Player:
-    data = yaml.safe_load((config_dir / "players" / f"{player_id}.yaml").read_text(encoding="utf-8"))
-    return Player(id=player_id, **data)
+    data = yaml.safe_load((config_dir / "players" / f"{player_id}.yaml").read_text(encoding="utf-8")) or {}
+    known = set(Player.__dataclass_fields__)
+    return Player(id=player_id, **{k: v for k, v in data.items() if k in known})
 
 
 def load_matches(cfg: dict, config_dir: Path = CONFIG_DIR) -> list[Match]:

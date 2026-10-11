@@ -19,14 +19,15 @@ def _r(a, nd=1):
 
 def stroke_series(img: np.ndarray, conf: np.ndarray, boxes: list, sk: Skeleton, fps: float, height_px: float,
                   impact: int, racket_track: list | None = None, ball: np.ndarray | None = None,
-                  window=(1.0, 0.8)) -> dict:
+                  window=(1.0, 0.8), scale=None) -> dict:
     a = max(0, impact - int(round(window[0] * fps)))
     b = min(len(img), impact + int(round(window[1] * fps)) + 1)
     w = img[a:b]
-    body = to_body_frame(w, sk, height_px)
+    hs = np.full(b - a, float(height_px)) if scale is None else np.asarray(scale, float)[a:b]
+    body = to_body_frame(w, sk, hs)
     sig = {
-        "pelvis": line_turn(w, sk, "hip"),
-        "trunk": line_turn(w, sk, "shoulder"),
+        "pelvis": line_turn(w, sk, "hip", scale=hs),
+        "trunk": line_turn(w, sk, "shoulder", scale=hs),
         "upper_arm": segment_angle(body[:, sk["dom_shoulder"]], body[:, sk["dom_elbow"]]),
         "forearm": segment_angle(body[:, sk["dom_elbow"]], body[:, sk["dom_wrist"]]),
     }
