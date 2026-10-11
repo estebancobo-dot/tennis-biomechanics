@@ -228,6 +228,8 @@ def st_fine(ctx: Context):
         from .ball import BallTracker
         ball = BallTracker(bcfg["onnx"], ctx.cfg.get("device", "cpu"), bcfg.get("threshold", 0.5))
     pre, post = ctx.cfg["fine_pass"]["window_s"] + 0.3, ctx.cfg["fine_pass"]["window_s"]
+    if ball is not None:      # reach back to the opponent's hit (time available, split step)
+        pre = max(pre, ctx.cfg["fine_pass"].get("ball_lead_s", 2.2))
     p = ctx.match.player
     strokes = []
     for k, c in enumerate(cands):
