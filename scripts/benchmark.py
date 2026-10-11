@@ -91,6 +91,42 @@ def bench_yolo(specs, devices, frames, out):
     return res
 
 
+def bench_extra(devices, frames) -> dict:
+    """ms por llamada de: bola (lote de 8 fotogramas a 25 fps), raqueta 5 puntos, OCR del marcador."""
+    from tennisbio.ball import BallTracker
+    from tennisbio.racket_pose import RacketPose
+
+    models = Path(__file__).resolve().parents[1] / "models"
+    out = {}
+    for device in devices:
+        r = {}
+        try:
+            if (models / "balltrack.onnx").exists():
+                bt = BallTracker(models / "balltrack.onnx", device)
+                t0 = time.perf_counter()
+                bt.track(frames[:24])
+                r["ball_ms_per_frame"] = (time.perf_counter() - t0) * 1000 / len(frames[:24])
+            if (models / "racketpose.onnx").exists():
+                rp = RacketPose(models / "racketpose.onnx", device)
+                h, w = frames[0].shape[:2]
+                box = [[w * .45, h * .55, w * .55, h * .7]]
+                r["racket_pose_ms"] = time_calls(lambda f: rp(f, box), frames[:20])
+        except Exception as e:
+            r["error"] = str(e)
+        out[device] = r
+        for k, v in r.items():
+            print(f"  [{device}] {k:24} {v:8.1f}" if isinstance(v, float) else f"  [{device}] {k}: {v}")
+    try:
+        from rapidocr_onnxruntime import RapidOCR
+        ocr = RapidOCR()
+        h, w = frames[0].shape[:2]
+        out["ocr_roi_ms"] = time_calls(lambda f: ocr(f[int(h * .75):, :w // 2]), frames[:5])
+        print(f"  OCR (zona del marcador)     {out['ocr_roi_ms']:8.1f} ms")
+    except ImportError:
+        out["ocr_roi_ms"] = None
+    return out
+
+
 def main():
     cfg = load_config()
     ap = argparse.ArgumentParser()
@@ -169,6 +205,9 @@ def main():
 
     # 3b. YOLO exportado a ONNX (personas + pose en una sola pasada; seg = silueta de la raqueta)
     results["yolo"] = bench_yolo(args.yolo, args.devices, full, out)
+
+    # 3c. Bola, raqueta de 5 puntos y marcador (si los modelos están en models/: setup_models.py)
+    results["extra"] = bench_extra(args.devices, full)
 
     # 4. Proyección por partido con el mejor dispositivo
     ok = {d: r for d, r in results["models"].items() if "error" not in r and r["pose_performance_ms_per_person"]}
