@@ -142,3 +142,17 @@ def test_stroke_series_shapes():
     s = stroke_series(kp, conf, [None] * len(kp), sk, FPS, body_height(kp, sk), IMPACT)
     assert s["n"] == len(s["kp"]) == len(s["kin"]["Pelvis"]) == len(s["ang"]["Codo"])
     assert len(s["kp"][0]) == 34 and s["impact"] - s["first"] == FPS
+
+
+def test_serve_events_trophy_and_racket_drop():
+    from tennisbio.stroke_analysis import serve_events
+    sk = Skeleton("coco17", "right")
+    fps, i, T = 50, 60, 80
+    t = (np.arange(T) - i) / fps
+    body = np.zeros((T, 17, 2))
+    body[:, sk["non_wrist"], 1] = np.interp(t, [-1.2, -0.9, -0.4, 0, 0.4], [0.3, 0.2, 1.1, 0.5, 0.4])   # toss
+    body[:, sk["dom_wrist"], 1] = np.interp(t, [-1.2, -0.4, -0.2, 0, 0.4], [0.4, 0.6, 0.1, 1.2, 0.3])    # drop then up
+    ev = serve_events(body, sk, fps, i)
+    assert abs((ev["loaded"] - i) / fps + 0.4) < 0.03
+    assert abs((ev["takeback"] - i) / fps + 0.9) < 0.03
+    assert abs((ev["acceleration"] - i) / fps + 0.2) < 0.03

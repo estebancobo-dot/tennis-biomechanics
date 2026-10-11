@@ -50,6 +50,24 @@ def classify_side(body: np.ndarray, sk: Skeleton, f: int, fps: float = 30.0) -> 
     return "forehand" if sum(votes) * 2 > len(votes) else "backhand"
 
 
+def serve_events(body: np.ndarray, sk: Skeleton, fps: float, i: int) -> dict:
+    """Overhead (serve) moments that replace the groundstroke ones: toss start (takeback),
+    trophy (loaded: tossing hand at its highest), racket drop (acceleration: hitting hand at its
+    lowest between trophy and contact)."""
+    nw, dw = body[:, sk["non_wrist"], 1], body[:, sk["dom_wrist"], 1]
+    lo, hi = max(0, i - int(1.2 * fps)), max(1, i - int(0.15 * fps))
+    out = {}
+    if np.isfinite(nw[lo:hi]).any():
+        trophy = lo + int(np.nanargmax(nw[lo:hi]))
+        out["loaded"] = trophy
+        seg = nw[lo:trophy + 1]
+        if np.isfinite(seg).any():                     # toss start: tossing hand at its lowest before the trophy
+            out["takeback"] = lo + int(np.nanargmin(seg))
+        if i - trophy > 2 and np.isfinite(dw[trophy:i]).any():
+            out["acceleration"] = trophy + int(np.nanargmin(dw[trophy:i]))
+    return out
+
+
 def analyze_stroke(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, height_px: float,
                    impact: int, impact_source: str, rackets: list | None = None, height_m: float = 1.84,
                    opponent_impact: int | None = None, window=(1.0, 0.8)) -> StrokeResult:
@@ -64,6 +82,12 @@ def analyze_stroke(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, 
 
     events = detect_phases(w_img, body, w_conf, sk, fps, height_px, i, opp)
     res = StrokeResult(impact_frame=impact, impact_source=impact_source, stroke=classify_side(body, sk, i, fps))
+    if res.stroke == "overhead":
+        from .phases import Event
+        se = serve_events(body, sk, fps, i)
+        events = [Event(e.name, se[e.name], {"loaded": "trophy_toss_arm_highest", "takeback": "toss_start",
+                                               "acceleration": "racket_drop_wrist_lowest"}[e.name], 0.8)
+                  if e.name in se else e for e in events]
     for e in events:
         res.phases[e.name] = dict(frame=None if e.frame is None else a + e.frame,
                                   t_rel=None if e.frame is None else round((e.frame - i) / fps, 3),
@@ -101,6 +125,15 @@ def analyze_stroke(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, 
     n0, n1 = max(0, i - 2), min(len(body) - 1, i + 2)
     nose = w_img[:, sk["nose"]]
     m["head_motion_impact_cm"] = None if np.isnan(nose[[n0, n1]]).any() else float(np.linalg.norm(nose[n1] - nose[n0]) / height_px * cm)
+    if res.stroke == "overhead" and ev["loaded"] is not None:
+        t = ev["loaded"]
+        ls, rs = body[t, sk["non_shoulder"]], body[t, sk["dom_shoulder"]]
+        if not (np.isnan(ls).any() or np.isnan(rs).any()):     # + = tossing-side shoulder higher
+            m["serve_shoulder_tilt_trophy_deg"] = float(np.degrees(np.arctan2(ls[1] - rs[1], abs(ls[0] - rs[0]))))
+        m["serve_toss_arm_height_pct"] = g((body[:, sk["non_wrist"], 1] - feet_y) * 100, t)
+        start = hip_y_img[:max(1, int(0.3 * fps))]
+        if np.isfinite(start).any() and not np.isnan(hip_y_img[t]):
+            m["serve_knee_bend_hip_drop_pct"] = float((hip_y_img[t] - np.nanmin(start)) / height_px * 100)
     for name in ("ready", "takeback", "loaded", "acceleration"):
         if ev[name] is not None:
             m[f"time_{name}_to_impact_s"] = round((i - ev[name]) / fps, 3)

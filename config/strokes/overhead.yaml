@@ -1,6 +1,6 @@
 # Saque / remate (muñeca por encima de la cabeza en el impacto). Métricas propias del saque
-# (trofeo, inclinación de hombros, aterrizaje) pendientes; se muestran las comunes.
+# Fases propias: 2 = inicio del lanzamiento, 3 = trofeo, 4 = caída de la raqueta.
 name: Saque / remate
 hitting_face: palm
 front_foot: non_dominant
-report_metrics: [sh, knee, elbow, contactH, head, rHead, rElevImp, rFaceImp, base, baseM]
+report_metrics: [trophyKnee, trophyTilt, toss, contactH, elbow, head, rHead, rElevImp, rFaceImp, baseM, landing]

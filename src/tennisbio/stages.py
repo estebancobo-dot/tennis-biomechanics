@@ -364,6 +364,11 @@ def st_fine(ctx: Context):
             ta = r.metrics.get("time_available_s")
             opp = None if ta is None else r.impact_frame - int(round(ta * run.fps))
             d.update(court_metrics(run.img, run.sk, H, r.stroke, r.impact_frame, opp), camera_pitch_deg=pitch)
+            if r.stroke == "overhead":                  # landing after the serve: how far into the court
+                from .court_metrics import feet_on_court
+                ft = feet_on_court(run.img, min(len(run.img) - 1, r.impact_frame + int(0.4 * run.fps)), run.sk, H)
+                if ft is not None:
+                    d["landing_inside_m"] = round(float((ft[0][1] + ft[1][1]) / 2), 2)
             if r.ball.get("bounce_px"):          # on the ground: the homography is exact there
                 from .court_metrics import to_court
                 bx, by = to_court(H, np.array([r.ball["bounce_px"]]))[0]
