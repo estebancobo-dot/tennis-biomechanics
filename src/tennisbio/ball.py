@@ -142,5 +142,7 @@ def ball_hits(track: np.ndarray, frame_h: int, fps: float, span_s=0.12, away_s=0
     """Hits from a per-frame ball track (T, ≥2) with NaN where the ball was not seen."""
     ok = ~np.isnan(track[:, :2]).any(1)
     frames = np.flatnonzero(ok)
-    return turning_hits(frames, track[ok, :2], frame_h, max(2, round(span_s * fps)), round(away_s * fps),
+    hits = turning_hits(frames, track[ok, :2], frame_h, max(2, round(span_s * fps)), round(away_s * fps),
                         group=round(0.6 * fps))
+    edge = round(0.2 * fps)                    # too little track around it to tell a hit from a bounce
+    return [h for h in hits if edge <= h.frame < len(track) - edge]

@@ -58,15 +58,19 @@ def fuse(swing_frames: np.ndarray, fps: float, onset_times: np.ndarray, tol=0.12
 
 
 def fuse_with_ball(impacts: list[Impact], fps: float, hits: list, ball_seen: np.ndarray, boxes: list,
-                   tol=0.2, seen_needed=0.5) -> list[Impact]:
+                   tol=0.2, seen_needed=0.5, wrist_speed: np.ndarray | None = None, min_arm_speed=1.2,
+                   min_gap=0.4) -> list[Impact]:
     """Refine and filter swing/audio impacts with the ball (tennisbio.ball.ball_hits, near side).
 
     - A near-player ball hit within `tol` s of a swing: the contact is the ball's turning point.
     - A swing with the ball well seen around it (≥ seen_needed of the frames within ±0.3 s) but no
       ball hit: not a stroke (running, shadow swings, racket twirls) → dropped.
     - A swing where the ball is not seen: kept as it was (cannot be checked).
-    - A ball hit next to the tracked player with no swing: added (source "ball").
-    ball_seen: (T,) bool; boxes: tracked player box per frame or None.
+    - A ball hit next to the tracked player with no detected swing peak: added (source "ball") if
+      the dominant wrist still moves at least min_arm_speed body heights/s within ±tol (a ball
+      turning near a still player is a bounce, a net cord or a tracking error, not a stroke).
+    - Two impacts closer than min_gap s: the one with more evidence is kept.
+    ball_seen: (T,) bool; boxes: tracked player box per frame or None; wrist_speed: (T,) body-relative.
     """
     near = [h for h in hits if h.side == "near"]
     used, out = set(), []
@@ -87,6 +91,20 @@ def fuse_with_ball(impacts: list[Impact], fps: float, hits: list, ball_seen: np.
             continue
         x0, y0, x1, y1 = boxes[h.frame]
         bw = x1 - x0
-        if x0 - bw <= h.x <= x1 + bw and y0 - 0.3 * (y1 - y0) <= h.y <= y1:
-            out.append(Impact(h.frame, h.frame / fps, "ball", None, 0.7))
-    return sorted(out, key=lambda i: i.frame)
+        if not (x0 - bw <= h.x <= x1 + bw and y0 - 0.3 * (y1 - y0) <= h.y <= y1):
+            continue
+        if wrist_speed is not None:
+            a, b = max(0, h.frame - round(tol * fps)), min(len(wrist_speed), h.frame + round(tol * fps) + 1)
+            seg = wrist_speed[a:b]
+            if not (np.isfinite(seg).any() and np.nanmax(seg) >= min_arm_speed):
+                continue
+        out.append(Impact(h.frame, h.frame / fps, "ball", None, 0.7))
+    out.sort(key=lambda i: i.frame)
+    kept = []
+    for imp in out:
+        if kept and imp.frame - kept[-1].frame < min_gap * fps:
+            if imp.confidence > kept[-1].confidence:
+                kept[-1] = imp
+            continue
+        kept.append(imp)
+    return kept

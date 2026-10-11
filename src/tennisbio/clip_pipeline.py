@@ -125,7 +125,8 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         ball_track = clean_track(ball_track, width=fw)
         n = min(T, len(ball_track))
         hits = ball_hits(ball_track[:n], fh, fps)
-        impacts = fuse_with_ball(impacts, fps, hits, ~np.isnan(ball_track[:n, 0]), boxes_t)
+        impacts = fuse_with_ball(impacts, fps, hits, ~np.isnan(ball_track[:n, 0]), boxes_t,
+                                 wrist_speed=speed(body[:, sk["dom_wrist"]], fps))
         far_hits = [h.frame for h in hits if h.side == "far"]
     log(f"jugadora seguida en {np.mean(sel >= 0) * 100:.0f} % · altura ≈ {height_px:.0f} px · {len(impacts)} golpes "
         f"({sum(i.source == 'audio+swing' for i in impacts)} con audio)")

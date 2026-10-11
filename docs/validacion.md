@@ -31,6 +31,21 @@ Eje punta–garganta: error mediano 2,9°, p90 9,2°. Las puntuaciones del model
 aciertos de fallos (no se filtra por ellas; la continuidad temporal decide). Los bordes dan la
 anchura aparente del cabezal → apertura de la cara, sin depender de la silueta.
 
+## Golpes del jugador cercano — RacketVision sin audio (pose + bola)
+`uv run python scripts/validate_rv_strokes.py --root <datasets> --clips 12 --ball models/balltrack.onnx`
+Referencia: giros de la bola anotada (cada 5-11 fotogramas), tolerancia ±6. Clips de dobles
+(dos personas dentro de la mitad cercana, por homografía) excluidos: 3 de 12.
+
+| Método | Precisión | Recall | F1 | Error del instante (mediana) |
+|---|---|---|---|---|
+| Solo pose (pico de muñeca) | 0,22 | 0,43 | 0,30 | 2 fot. |
+| Solo bola | 0,74 | 0,89 | 0,81 | — |
+| **Pose + bola (pipeline)** | **0,73** | **0,84** | **0,78** | **1 fot.** |
+
+Revisados a ojo 2 de los 6 "falsos positivos": ambos son golpes reales que la referencia no
+recoge (la bola no estaba anotada en ese tramo), así que la precisión real es mayor. Bola: vista en
+el 73-100 % de los fotogramas, 96-100 % a ≤15 px de la anotación (mediana 2 px).
+
 ## Impactos — F3Set-Tennis (TV, contacto exacto por fotograma)
 `uv run python scripts/validate_f3set.py --root <datasets> --player Rybakina --clips 20`
 Se ejecuta en el PC del usuario (los vídeos vienen de YouTube, bloqueado desde la nube).

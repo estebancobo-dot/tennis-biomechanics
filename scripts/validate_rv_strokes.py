@@ -20,15 +20,29 @@ from tennisbio.validation.datasets import RV_BASE, fetch, racketvision_video  # 
 from tennisbio.validation.impact_eval import GTEvent, Pred, match, summarize  # noqa: E402
 
 
-def is_doubles(cache: Path) -> bool:
-    """Two people of player size standing in the lower half of most frames."""
+def is_doubles(cache: Path, video: Path) -> bool:
+    """Two people standing inside the near half of the court (feet on court, via the homography)
+    in most frames. Ball kids and line judges stand outside the court lines."""
+    import cv2
     import numpy as np
+
+    from tennisbio.court import fit_court
+    from tennisbio.court_metrics import to_court
+
+    cap = cv2.VideoCapture(str(video))
+    ok, frame = cap.read()
+    cap.release()
+    fit = fit_court(frame) if ok else None
+    if fit is None or fit.score < 0.5:
+        return False
     d = np.load(cache, allow_pickle=True)
     counts = []
-    for b in d["boxes"]:
-        if len(b):
-            h = b[:, 3] - b[:, 1]
-            counts.append(int(np.sum((h >= 0.6 * h.max()) & (b[:, 3] > 540))))
+    for b in d["boxes"][::5]:
+        if not len(b):
+            continue
+        feet = to_court(fit.H, np.c_[(b[:, 0] + b[:, 2]) / 2, b[:, 3]])
+        inside = (np.abs(feet[:, 0]) < 6.5) & (feet[:, 1] > -3) & (feet[:, 1] < 11.885)
+        counts.append(int(inside.sum()))
     return bool(counts) and float(np.median(counts)) >= 2
 
 
@@ -55,7 +69,7 @@ def main():
         gt = hits_from_ball(ball, 1080)["near"]
         cache = root / "rv" / "cache" / f"{match_id}_{clip}.npz"
         run = run_clip(video, cache, rackets=False, imgsz=args.imgsz, init_mode="near", log=lambda *_: None, ball=ball)
-        if is_doubles(cache):
+        if is_doubles(cache, video):
             print(f"  {match_id}_{clip}: dobles, se omite")
             continue
         preds = [Pred(r.impact_frame, "fh" if r.stroke == "forehand" else "bh") for r in run.strokes]
