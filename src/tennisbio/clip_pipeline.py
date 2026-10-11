@@ -126,6 +126,7 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         n = min(T, len(ball_track))
         hits = ball_hits(ball_track[:n], fh, fps)
         impacts = fuse_with_ball(impacts, fps, hits, ~np.isnan(ball_track[:n, 0]), boxes_t)
+        far_hits = [h.frame for h in hits if h.side == "far"]
     log(f"jugadora seguida en {np.mean(sel >= 0) * 100:.0f} % · altura ≈ {height_px:.0f} px · {len(impacts)} golpes "
         f"({sum(i.source == 'audio+swing' for i in impacts)} con audio)")
     run = ClipRun(fps, sk, img, cf, boxes_t, float(np.mean(sel >= 0)), height_px, onsets, impacts)
@@ -144,8 +145,14 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
             run.rackets[int(f)] = p
 
     for imp in impacts:
+        # opponent's hit: from the ball when seen (far-side turn), else the previous audio transient
+        prev_ball = [f for f in (far_hits if ball_track is not None else []) if 0.4 * fps < imp.frame - f < 2.5 * fps]
         prev = [t for t in onsets if 0.5 < imp.t - t < 2.0]
-        opp = int(round(prev[-1] * fps)) if prev else None
-        run.strokes.append(analyze_stroke(img, cf, sk, fps, height_px, imp.frame, imp.source,
-                                          run.rackets if rackets else None, height_m, opp))
+        opp = prev_ball[-1] if prev_ball else (int(round(prev[-1] * fps)) if prev else None)
+        r = analyze_stroke(img, cf, sk, fps, height_px, imp.frame, imp.source,
+                           run.rackets if rackets else None, height_m, opp)
+        if opp is not None:      # time the ball took from the opponent's racket: fast / slow ball
+            r.metrics["time_available_s"] = round((imp.frame - opp) / fps, 3)
+            r.metrics["opponent_hit_source"] = "ball" if prev_ball else "audio"
+        run.strokes.append(r)
     return run
