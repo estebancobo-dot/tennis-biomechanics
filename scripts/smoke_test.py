@@ -51,10 +51,13 @@ def main():
     for name, m in manifest.items():
         print(f"  {name:11} {m['seconds']:7.1f} s  {m['summary']}")
     report = build([match], out_root, out_root / "informe")
+    from tennisbio.export import export
+    exp = export([match], out_root, out_root / "exportar", strokes_all=True)
     if done:
         print(f"\nTotal {total / 60:.1f} min para {args.minutes:g} min de vídeo → partido de {full / 60:.0f} min "
               f"≈ {total * full / (args.minutes * 60) / 3600:.1f} h (estimación lineal)")
     print(f"Informe: {report}")
+    print(f"Vídeos, montajes y resumen PDF: {exp}")
 
 
 if __name__ == "__main__":

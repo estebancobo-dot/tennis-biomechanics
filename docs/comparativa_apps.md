@@ -42,7 +42,7 @@ Leyenda: ✔ lo hace · ◐ parcial o aproximado · ✘ no · ? no confirmado
 | Videoteca y listas de reproducción | ✔ (por partido) | ✔ | ◐ | ◐ | ✔ filtros, "reproducir todos" y cada conclusión abre sus vídeos |
 | Estroboscópica, 8 fotogramas clave | ✘ | ? | ? | ✔ (Dartfish *stromotion*; manual) | ✔ automático |
 | Lado a lado de dos golpes | ◐ | ? | ✔ | ✔ | **✔ sincronizados en el impacto, lado a lado o superpuestos** |
-| Exportar vídeo con datos | ✔ (resúmenes para redes) | ✔ (TV) | ✔ | ✔ | **✘ (pendiente)** |
+| Exportar vídeo con datos | ✔ (resúmenes para redes) | ✔ (TV) | ✔ | ✔ | ✔ MP4 por golpe con capas, montajes por conclusión y resumen PDF |
 | Recomendaciones de entrenamiento | ✔ (objetivos semanales) | ✘ (datos) | ✔ | ✘ | **✘** (describe, no prescribe) |
 | Escala: miles de golpes de una jugadora | ✘ (tu juego) | ✔ | ✘ | ✘ | **✔** |
 | Coste | 96-300 $/año | No accesible a particulares | Suscripción | Gratis (Kinovea) a caro (Dartfish) | Gratis; tu PC |
@@ -63,7 +63,7 @@ Leyenda: ✔ lo hace · ◐ parcial o aproximado · ✘ no · ? no confirmado
 - **Precisión 3D:** una cámara de TV detrás y elevada frente a varias cámaras de estadio. Las rotaciones y el impacto delante/detrás del cuerpo son mucho menos fiables.
 - **Golpes:** sin volea, remate ni cortado todavía.
 - **Lado lejano:** detalle reducido.
-- **Producto:** sin exportar clips (previsto al final) y sin recomendaciones.
+- **Producto:** sin recomendaciones; la entrega automática al móvil (nube) queda para después de validar en el PC.
 
 ## 4. ¿Son útiles los informes? Valoración sincera
 **Qué dan de verdad (información, no solo datos):**
@@ -87,9 +87,9 @@ Leyenda: ✔ lo hace · ◐ parcial o aproximado · ✘ no · ? no confirmado
   - Datos: `C:\tenis\output\<partido>\strokes.json` y el resto de ficheros por etapa.
 - **Compartir:** comprimir `C:\tenis\output` entero. El informe enlaza los vídeos con rutas relativas, así que la carpeta del informe sola no basta.
 - **Grabar:**
-  - Hoy no se puede exportar un vídeo con el esqueleto superpuesto. Se puede hacer captura de pantalla del navegador o grabar la pantalla.
-  - Los recortes `.mp4` de cada golpe son vídeo normal, sin superposición.
-  - Exportar MP4 con esqueleto y datos sería la mejora natural (como SwingVision o Dartfish).
+  - `tennisbio export` genera un MP4 por golpe con el esqueleto y los datos dibujados, montajes por
+    conclusión y un resumen PDF (`C:\tenis\output\exportar_<golpe>\`).
+  - Los recortes `.mp4` de `windows\` siguen siendo el vídeo original, sin superposición.
 
 ## Fuentes
 - SwingVision, ficha de la App Store: <https://apps.apple.com/us/app/swingvision-tennis-pickleball/id989461317>

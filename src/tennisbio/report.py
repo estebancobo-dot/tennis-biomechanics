@@ -263,19 +263,9 @@ def thumbnail(video: Path, t: float, box: list | None, out: Path, width=360) -> 
     return r.returncode == 0 and out.exists()
 
 
-def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke="forehand",
-          player: dict | None = None, player_id: str | None = None) -> Path:
-    """Write the report (index.html + series/*.js) and return the path of index.html.
-
-    matches: those of one player (the report is per player and stroke)."""
-    if player is None and matches:
-        if player_id and player_id != matches[0].player.id:
-            from .stages import opponent_profile
-            player = asdict(opponent_profile(matches[0]))
-        else:
-            player = asdict(matches[0].player)
-    dest = Path(dest or out_root / "informe")
-    (dest / "series").mkdir(parents=True, exist_ok=True)
+def prepare(matches: list[Match], out_root: Path, stroke="forehand", player_id: str | None = None) -> dict:
+    """Strokes and metrics with the measurement noise settled (shared by the report and the export).
+    Each stroke keeps _dir, _window, _series and _phases (paths into the match folders)."""
     data = collect(matches, out_root, stroke, player_id)
     series_files = [(Path(r["_dir"]) / r["_series"], r["_phases"]) for r in data["strokes"]
                     if r["_series"] and (Path(r["_dir"]) / r["_series"]).exists()]
@@ -294,6 +284,28 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
             m["noise_pairs"] = pairs[m["k"]]
     data["noise_pairs"] = pairs
     data["noise_validated"] = bool(pairs)
+    return data
+
+
+def player_dict(matches: list[Match], player_id: str | None = None) -> dict:
+    if not matches:
+        return {}
+    if player_id and player_id != matches[0].player.id:
+        from .stages import opponent_profile
+        return asdict(opponent_profile(matches[0]))
+    return asdict(matches[0].player)
+
+
+def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke="forehand",
+          player: dict | None = None, player_id: str | None = None) -> Path:
+    """Write the report (index.html + series/*.js) and return the path of index.html.
+
+    matches: those of one player (the report is per player and stroke)."""
+    if player is None:
+        player = player_dict(matches, player_id)
+    dest = Path(dest or out_root / "informe")
+    (dest / "series").mkdir(parents=True, exist_ok=True)
+    data = prepare(matches, out_root, stroke, player_id)
     for r in data["strokes"]:
         r.pop("_phases", None)
         d = Path(r.pop("_dir"))

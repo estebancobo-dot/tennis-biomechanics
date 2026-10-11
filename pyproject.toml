@@ -10,6 +10,7 @@ dependencies = [
     "pyyaml>=6",
     "tqdm>=4.66",
     "opencv-python>=4.9",
+    "pillow>=10.1",            # text with accents on exported videos and the PDF summary
     "librosa>=0.10",
     "scipy>=1.11",
     "rtmlib>=0.0.16",

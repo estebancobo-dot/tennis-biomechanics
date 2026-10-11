@@ -24,6 +24,12 @@ def main(argv=None):
     rp.add_argument("--player", help="id del jugador (config/players/<id>.yaml); por defecto, el del primer partido")
     rp.add_argument("--stroke", default="forehand", choices=["forehand", "backhand", "overhead"])
     rp.add_argument("--out", help="carpeta del informe (por defecto <output>/informe)")
+    ex = sub.add_parser("export", help="vídeos MP4 por golpe, montajes por conclusión y resumen PDF")
+    ex.add_argument("--player", help="id del jugador; por defecto, el del primer partido")
+    ex.add_argument("--stroke", default="forehand", choices=["forehand", "backhand", "overhead"])
+    ex.add_argument("--out", help="carpeta de salida (por defecto <output>/exportar_<golpe>)")
+    ex.add_argument("--solo-montajes", action="store_true", help="exportar solo los golpes que salen en los montajes")
+    ex.add_argument("--max", type=int, default=10, help="golpes por montaje")
     args = ap.parse_args(argv)
 
     cfg = load_config()
@@ -35,6 +41,13 @@ def main(argv=None):
         mine = [m for m in matches if m.player.id == pid or m.extra.get("opponent_id") == pid]
         out = build(mine, out_root, Path(args.out) if args.out else None, args.stroke, player_id=pid)
         print(f"informe: {out}")
+        return
+    if args.cmd == "export":
+        from .export import export
+        pid = args.player or (matches[0].player.id if matches else None)
+        mine = [m for m in matches if m.player.id == pid or m.extra.get("opponent_id") == pid]
+        out = Path(args.out) if args.out else out_root / f"exportar_{args.stroke}"
+        export(mine, out_root, out, args.stroke, player_id=pid, reel_max=args.max, strokes_all=not args.solo_montajes)
         return
     if getattr(args, "match", None):
         matches = [m for m in matches if m.id in args.match]

@@ -11,8 +11,9 @@ Descarga el proyecto en `C:\tenis\tennis-biomech` e instala todo. Después, todo
    Python, librerías, modelos); lo comprueba todo.
 2. `2_prueba_rapida.bat` — mide la velocidad del equipo y analiza 4 minutos de un partido de
    `C:\tenis\videos` de principio a fin; abre el informe.
-3. `3_analisis_completo.bat` — todos los vídeos de `C:\tenis\videos`, todas las etapas y los
-   informes de derecha, revés y saque. Se puede cortar y relanzar.
+3. `3_analisis_completo.bat` — todos los vídeos de `C:\tenis\videos`, todas las etapas, los
+   informes de derecha, revés y saque, y la exportación (vídeos, montajes y resumen PDF). Se puede
+   cortar y relanzar.
 
 No hay que editar nada: el catálogo se crea solo y el rival se lee del marcador. Cada script
 guarda su registro en `C:\tenis\output\*.log`; si algo falla, pasa ese fichero a Claude.
@@ -73,6 +74,22 @@ uv run tennisbio report --stroke overhead    # saques y remates
 uv run tennisbio report --player sabalenka   # la rival (con analyze_opponent: true)
 ```
 Sale en `C:\tenis\output\informe\index.html`.
+
+## 8. Vídeos, montajes y resumen PDF
+```
+uv run tennisbio export                      # derechas
+uv run tennisbio export --stroke backhand    # reveses
+```
+En `C:\tenis\output\exportar_<golpe>\`:
+- `golpes\<golpe>.mp4`: cada golpe con esqueleto, ángulos, bola, raqueta y cuerdas, y minipista;
+  primero a velocidad real, luego a 0,25× alrededor del impacto y al final una pausa en el impacto
+  con sus métricas frente a su mediana.
+- `montajes\NN_<conclusión>.mp4`: un rótulo con la conclusión y su confianza, (en los hallazgos)
+  el golpe típico de cada grupo lado a lado, y los golpes que la respaldan.
+- `resumen.pdf`: conclusiones, hallazgos, su golpe típico en 8 fases, tabla de métricas y pista.
+
+Son MP4 normales (H.264): se ven en el móvil, la tele o se mandan por mensajería. Relanzar solo
+genera lo que falta o ha cambiado. `--solo-montajes` exporta solo los golpes de los montajes.
 
 ## Si algo falla
 - Copia el error completo (las últimas 20 líneas) y pásamelo.
