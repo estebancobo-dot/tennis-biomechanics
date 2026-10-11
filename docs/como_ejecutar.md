@@ -1,6 +1,16 @@
 # Cómo ejecutarlo en tu PC (Windows)
 
-Todo se hace desde PowerShell en `C:\tenis\tennis-biomech`. Cada paso dice qué debería salir.
+**Lo más fácil: tres ficheros con doble clic**, en la carpeta del proyecto:
+1. `1_instalar.bat` — instala todo (Git, ffmpeg, uv, Python, librerías, modelos) y lo comprueba.
+2. `2_prueba_rapida.bat` — mide la velocidad del equipo y analiza 4 minutos de un partido de
+   `C:\tenis\videos` de principio a fin; abre el informe.
+3. `3_analisis_completo.bat` — todos los vídeos de `C:\tenis\videos`, todas las etapas y los
+   informes de derecha, revés y saque. Se puede cortar y relanzar.
+
+No hay que editar nada: el catálogo se crea solo y el rival se lee del marcador. Cada script
+guarda su registro en `C:\tenis\output\*.log`; si algo falla, pasa ese fichero a Claude.
+
+Lo que sigue es lo mismo paso a paso, por si hiciera falta.
 
 ## 0. Requisitos (una vez)
 - Python 3.11 y `uv` instalados; `ffmpeg` en el PATH (`ffmpeg -version` responde).
