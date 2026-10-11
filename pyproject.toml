@@ -18,6 +18,9 @@ dependencies = [
     "onnxruntime>=1.20; sys_platform != 'win32'",
 ]
 
+[project.scripts]
+tennisbio = "tennisbio.cli:main"
+
 [project.optional-dependencies]
 openvino = ["openvino>=2024.0"]
 # Ultralytics YOLO pose/segmentation for clips and racket outlines (AGPL-3.0, uses PyTorch).

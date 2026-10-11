@@ -1,0 +1,11 @@
+# Copiar a config/matches.yaml (no versionado: contiene nombres de ficheros locales).
+# video: ruta relativa a paths.videos de config/local.yaml.
+matches:
+  - id: 2023-ao-f
+    video: 2023_AO_F_Sabalenka_Rybakina.mp4
+    player: rybakina
+    opponent: Aryna Sabalenka
+    tournament: Australian Open
+    date: 2023-01-28
+    surface: hard
+    round: F

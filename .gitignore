@@ -25,3 +25,6 @@ __pycache__/
 
 # Config local por equipo
 config/local.yaml
+
+# Catálogo local de partidos
+config/matches.yaml

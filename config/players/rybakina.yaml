@@ -1,0 +1,7 @@
+name: Elena Rybakina
+hand: right
+backhand: two_handed
+height_m: 1.84
+# grados que su empuñadura de derecha cierra la cara respecto a la palma (para la orientación
+# de las cuerdas); semi-western ≈ 15. Ajustable cuando haya golpes suyos validados.
+forehand_grip_close_deg: 15
