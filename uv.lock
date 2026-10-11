@@ -1640,6 +1640,7 @@ viz = [
     { name = "matplotlib" },
 ]
 yolo = [
+    { name = "onnx" },
     { name = "ultralytics" },
 ]
 
@@ -1649,6 +1650,7 @@ requires-dist = [
     { name = "matplotlib", marker = "extra == 'viz'", specifier = ">=3.8" },
     { name = "numpy", specifier = ">=1.26" },
     { name = "onnx", marker = "extra == 'dev'", specifier = ">=1.16" },
+    { name = "onnx", marker = "extra == 'yolo'", specifier = ">=1.16" },
     { name = "onnxruntime", marker = "sys_platform != 'win32'", specifier = ">=1.20" },
     { name = "onnxruntime-directml", marker = "sys_platform == 'win32'", specifier = ">=1.20" },
     { name = "opencv-python", specifier = ">=4.9" },

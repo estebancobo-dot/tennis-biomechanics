@@ -22,6 +22,8 @@ from rtmlib import draw_bbox, draw_skeleton  # noqa: E402
 from tennisbio.config import load_config  # noqa: E402
 from tennisbio.io.video import probe, read_frames  # noqa: E402
 from tennisbio.pose.estimator import Detector, PoseEstimator  # noqa: E402
+from tennisbio.render import draw_pose  # noqa: E402
+from tennisbio.skeleton import Skeleton  # noqa: E402
 
 WARMUP = 3
 
@@ -49,6 +51,46 @@ def largest(boxes, k=2):
     return boxes[np.argsort(area)[::-1][:k]]
 
 
+def bench_yolo(specs, devices, frames, out):
+    """Export each YOLO model to ONNX once and time it on every device. Needs the 'yolo' extra to export."""
+    from tennisbio.pose.yolo_onnx import YoloOnnx, export_onnx, letterbox
+
+    res = {}
+    if not specs:
+        return res
+    print("\n== YOLO (ONNX) ==")
+    sk = Skeleton("coco17", "right")
+    for spec in specs:
+        name, size = spec.split(":")
+        try:
+            path = export_onnx(name, int(size))
+        except Exception as e:
+            print(f"  {spec}: no se pudo exportar ({e}). ¿Falta `uv sync --extra yolo`?")
+            res[spec] = {"error": str(e)}
+            continue
+        for device in devices:
+            key = f"{spec}@{device}"
+            try:
+                model = YoloOnnx(path, device)
+            except Exception as e:
+                print(f"  {key:28} no disponible: {e}")
+                res[key] = {"error": str(e)}
+                continue
+            if "pose" in name:
+                ms = time_calls(model.pose, frames)
+                boxes, _, kps, kc = model.pose(frames[len(frames) // 2])
+                res[key] = {"ms": ms, "persons": int(len(boxes))}
+                img = frames[len(frames) // 2].copy()
+                for k, c in zip(kps, kc):
+                    draw_pose(img, np.where(c[:, None] > 0.3, k, np.nan), sk)
+                cv2.imwrite(str(out / f"yolo_{name}_{size}_{device}.jpg"), img)
+            else:
+                ms = time_calls(lambda f: model.infer(letterbox(f, model.size)[0]), frames)
+                res[key] = {"ms": ms}
+            print(f"  {key:28} {ms:8.1f} ms/fotograma")
+    return res
+
+
 def main():
     cfg = load_config()
     ap = argparse.ArgumentParser()
@@ -58,6 +100,8 @@ def main():
     ap.add_argument("--frames", type=int, default=40, help="fotogramas para medir los modelos")
     ap.add_argument("--devices", nargs="+", default=["dml", "cpu"], help="dml, cpu, openvino")
     ap.add_argument("--strokes", type=int, default=400, help="golpes estimados de la jugadora por partido")
+    ap.add_argument("--yolo", nargs="*", default=["yolo11m-pose:640", "yolo11m-pose:960", "yolo11m-seg:960"],
+                    help="modelos YOLO a medir como nombre:tamaño (vacío para omitir)")
     ap.add_argument("--out", default=None)
     args = ap.parse_args()
 
@@ -123,8 +167,17 @@ def main():
             img = draw_skeleton(img, kpts, scores, kpt_thr=0.3)
             cv2.imwrite(str(out / f"skeleton_{device}_{i:03d}.jpg"), img)
 
+    # 3b. YOLO exportado a ONNX (personas + pose en una sola pasada; seg = silueta de la raqueta)
+    results["yolo"] = bench_yolo(args.yolo, args.devices, full, out)
+
     # 4. Proyección por partido con el mejor dispositivo
     ok = {d: r for d, r in results["models"].items() if "error" not in r and r["pose_performance_ms_per_person"]}
+    yolo_ok = {k: v for k, v in results["yolo"].items() if "ms" in v and ":" in k and "pose" in k}
+    if yolo_ok:
+        k, v = min(yolo_ok.items(), key=lambda kv: kv[1]["ms"])
+        fine_frames = args.strokes * 2 * cfg["fine_pass"]["window_s"] * info.fps * (2 if info.interlaced else 1)
+        results["projection_yolo"] = {"model_device": k, "fine_pass_min": fine_frames * v["ms"] / 1000 / 60}
+        print(f"\nProyección YOLO ({k}): pasada fina ({args.strokes} golpes) ≈ {fine_frames * v['ms'] / 1000 / 60:.0f} min")
     if ok:
         best = min(ok, key=lambda d: ok[d]["det_balanced_full_ms"] + ok[d]["pose_performance_ms_per_person"])
         r = ok[best]
