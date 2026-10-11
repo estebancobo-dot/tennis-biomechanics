@@ -11,7 +11,7 @@ def rally(fps=25):
         if t < 75:   # far hit (y=300) → bounce near (y=850, small kink) → near hit (y=900)
             y = 300 + 600 * s if s < 0.8 else 780 + 120 * (s - 0.8) / 0.2
         else:        # near hit → goes back up to the far player
-            y = 900 - 600 * s
+            y = max(300, 900 - 1200 * s)
         pts.append((900 + 3 * t, y))
     return np.array([[x, y, 0.9] for x, y in pts])
 

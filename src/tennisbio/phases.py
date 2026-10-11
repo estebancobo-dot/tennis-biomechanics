@@ -53,6 +53,19 @@ def _walk_up(x: np.ndarray, i: int, lo: int, tol=0.03) -> int:
     return best
 
 
+def _smooth(x: np.ndarray, k: int) -> np.ndarray:
+    """Centred moving average over k frames that tolerates NaN gaps."""
+    if k <= 1:
+        return x
+    v = np.where(np.isnan(x), 0.0, x)
+    w = (~np.isnan(x)).astype(float)
+    ker = np.ones(k)
+    num, den = np.convolve(v, ker, "same"), np.convolve(w, ker, "same")
+    out = num / np.maximum(den, 1e-9)
+    out[den == 0] = np.nan
+    return out
+
+
 def detect_split_step(img: np.ndarray, sk: Skeleton, height: float, fps: float, a: int, b: int):
     """Landing of a small two-footed hop between frames a and b (image coordinates).
 
@@ -90,7 +103,7 @@ def detect_phases(img: np.ndarray, body: np.ndarray, conf: np.ndarray, sk: Skele
     s = lambda sec: int(round(sec * fps))
     dw = sk["dom_wrist"]
     wrist_y = body[:, dw, 1]
-    wv = speed(body[:, dw], fps)          # body-relative: camera pans and zooms cancel out
+    wv = _smooth(speed(body[:, dw], fps), max(1, s(0.06)))   # body-relative: pans and zooms cancel out
     events: dict[str, Event] = {}
 
     def conf_at(f, base):
@@ -102,10 +115,14 @@ def detect_phases(img: np.ndarray, body: np.ndarray, conf: np.ndarray, sk: Skele
     # 3 loaded: end of the backswing = the wrist pause right before the forward swing.
     # Walk back from the forward-swing speed peak to the nearest local minimum. Defined on the
     # wrist rather than on the shoulder turn, whose 2D proxy depends on the camera angle.
+    # The pause is a real slowdown (below 35 % of the forward-swing peak), not just any dip of a
+    # noisy speed curve.
     loaded = None
     fwd = _argext(wv, impact - s(0.25), impact + 2, np.nanargmax)
     if fwd is not None:
-        f = _walk_down(wv, fwd, max(0, impact - s(0.8)))
+        lo = max(0, impact - s(0.8))
+        slow = np.flatnonzero(wv[lo:fwd] <= 0.35 * wv[fwd])
+        f = _walk_down(wv, lo + int(slow[-1]), lo) if len(slow) else _walk_down(wv, fwd, lo)
         loaded = f if f < impact - 1 else None
     events["loaded"] = Event("loaded", loaded, "wrist_pause_before_forward_swing", conf_at(loaded, 0.9))
 
@@ -116,7 +133,7 @@ def detect_phases(img: np.ndarray, body: np.ndarray, conf: np.ndarray, sk: Skele
         lo = max(0, loaded - s(0.8))
         back_pk = _walk_up(wv, loaded, lo)
         hump = wv[back_pk] - wv[loaded]
-        if back_pk < loaded and hump > 0.4:                          # body heights per second
+        if back_pk < loaded and hump > 0.25:                         # body heights per second
             slow = np.flatnonzero(wv[lo:back_pk + 1] < wv[loaded] + 0.25 * hump)
             takeback = lo + int(slow[-1]) if len(slow) else lo
             method = "wrist_starts_back"
@@ -160,8 +177,9 @@ def detect_phases(img: np.ndarray, body: np.ndarray, conf: np.ndarray, sk: Skele
     if fin is not None:
         gap = np.abs(img[:, sk["left_ankle"], 0] - img[:, sk["right_ankle"], 0]) / height
         v = speed(gap, fps)
-        moving = np.flatnonzero(v[fin:min(T, fin + s(0.8))] > 0.8)
-        rec = fin + int(moving[0]) if len(moving) else None
+        start = fin + s(0.1)                  # the feet keep moving during the swing itself
+        moving = np.flatnonzero(v[start:min(T, fin + s(0.8))] > 0.8)
+        rec = start + int(moving[0]) if len(moving) else None
         if rec is None:
             rec = min(T - 1, fin + s(0.3))
             events["recovery"] = Event("recovery", rec, "fallback_after_finish", conf_at(rec, 0.3))

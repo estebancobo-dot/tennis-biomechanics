@@ -72,45 +72,52 @@ class BallHit:
     frame: int
     x: float
     y: float
-    side: str          # "near" (moving away after the hit) or "far"
+    side: str          # "near" (the ball then goes up the image, away from the camera) or "far"
     turn_deg: float
 
 
-def ball_hits(track: np.ndarray, frame_h: int, fps: float, min_gap_s=0.5, span_s=0.2) -> list[BallHit]:
-    """Hits from the ball track: the ball's vertical image motion reverses.
+def turning_hits(frames: np.ndarray, xy: np.ndarray, frame_h: int, span: int, away: int,
+                 away_frac=0.12, group=15, near_min_y=0.45) -> list[BallHit]:
+    """Hits as the sharpest turns of the ball path after which the ball travels away.
 
-    Near player: the ball comes down the image (towards the camera) and goes back up after the hit.
-    A bounce on the near court also slows the descent but the ball keeps coming down afterwards,
-    so the reversal must hold for `span_s` on both sides. Far player: the opposite reversal near
-    the top of the court.
+    frames: (N,) frame numbers of the visible ball positions xy (N, 2), sorted. A bounce also
+    turns the ball, but less sharply than a hit, and on the near court the ball keeps coming
+    towards the camera; so each hit is the point of maximum turn in its group of candidates
+    that are followed, within `away` frames, by the ball moving up the image (near player) by
+    away_frac of the frame height, or down it by half that (far player).
     """
-    xy = track[:, :2]
-    T = len(xy)
-    k = max(2, round(span_s * fps))
-    hits = []
-    for i in range(k, T - k):
-        if np.isnan(xy[i]).any():
+    cands = []
+    for i in range(len(frames)):
+        f = frames[i]
+        b = np.flatnonzero((frames >= f - span) & (frames < f))
+        a = np.flatnonzero((frames > f) & (frames <= f + span))
+        if not len(b) or not len(a):
             continue
-        before = xy[i - k:i][~np.isnan(xy[i - k:i]).any(1)]
-        after = xy[i + 1:i + k + 1][~np.isnan(xy[i + 1:i + k + 1]).any(1)]
-        if len(before) < 2 or len(after) < 2:
+        vb, va = xy[i] - xy[b[0]], xy[a[-1]] - xy[i]
+        if np.linalg.norm(vb) < 1e-6 or np.linalg.norm(va) < 1e-6:
             continue
-        vb = (xy[i] - before[0]) / max(1, i - (i - k))
-        va = (after[-1] - xy[i]) / max(1, k)
-        side = None
-        if vb[1] > 0 and va[1] < 0 and xy[i, 1] >= np.nanmax(np.r_[before[:, 1], after[:, 1]]) - 1:
+        turn = float(np.degrees(np.arccos(np.clip(vb @ va / np.linalg.norm(vb) / np.linalg.norm(va), -1, 1))))
+        ahead = xy[(frames > f) & (frames <= f + away), 1]
+        if va[1] < 0 and xy[i, 1] > near_min_y * frame_h and ahead.min() <= xy[i, 1] - away_frac * frame_h:
             side = "near"
-        elif vb[1] < 0 and va[1] > 0 and xy[i, 1] <= np.nanmin(np.r_[before[:, 1], after[:, 1]]) + 1:
+        elif va[1] > 0 and ahead.max() >= xy[i, 1] + 0.5 * away_frac * frame_h:
             side = "far"
-        if side is None:
+        else:
             continue
-        cos = vb @ va / (np.linalg.norm(vb) * np.linalg.norm(va) + 1e-9)
-        hits.append(BallHit(i, float(xy[i, 0]), float(xy[i, 1]), side, float(np.degrees(np.arccos(np.clip(cos, -1, 1))))))
-    out = []                                  # one hit per reversal (keep the sharpest)
-    for h in hits:
-        if out and h.side == out[-1].side and h.frame - out[-1].frame < min_gap_s * fps:
+        cands.append(BallHit(int(f), float(xy[i, 0]), float(xy[i, 1]), side, turn))
+    out = []
+    for h in cands:
+        if out and h.side == out[-1].side and h.frame - out[-1].frame <= group:
             if h.turn_deg > out[-1].turn_deg:
                 out[-1] = h
             continue
         out.append(h)
-    return out
+    return [h for h in out if h.turn_deg >= 30]
+
+
+def ball_hits(track: np.ndarray, frame_h: int, fps: float, span_s=0.12, away_s=0.6) -> list[BallHit]:
+    """Hits from a per-frame ball track (T, ≥2) with NaN where the ball was not seen."""
+    ok = ~np.isnan(track[:, :2]).any(1)
+    frames = np.flatnonzero(ok)
+    return turning_hits(frames, track[ok, :2], frame_h, max(2, round(span_s * fps)), round(away_s * fps),
+                        group=round(0.6 * fps))
