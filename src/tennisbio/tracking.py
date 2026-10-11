@@ -50,6 +50,17 @@ def track_target(boxes: list[np.ndarray], feats: list[np.ndarray], init_box: np.
             ok = ref is None or hist_similarity(ref / ref_n, f[j:j + 1])[0] >= min_sim - 0.15
         else:  # lost (cut or occlusion): re-acquire by appearance and similar size only
             if ref is None:
+                # not locked on yet (the start box may be a few frames off): nearest person of a
+                # similar size within a few body heights
+                h0 = last[3] - last[1]
+                d = np.hypot((b[:, 0] + b[:, 2] - last[0] - last[2]) / 2, (b[:, 1] + b[:, 3] - last[1] - last[3]) / 2)
+                size_ok = np.abs((b[:, 3] - b[:, 1]) / h0 - 1) < 0.5
+                cand = np.flatnonzero(size_ok & (d < 3 * h0))
+                if not len(cand):
+                    continue
+                j = int(cand[np.argmin(d[cand])])
+                out[t], last = int(idx_map[j]), b[j]
+                ref, ref_n = f[j].copy(), 1
                 continue
             sim = hist_similarity(ref / ref_n, f)
             h_last = last[3] - last[1]

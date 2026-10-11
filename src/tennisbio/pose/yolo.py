@@ -106,6 +106,7 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
     cap = cv2.VideoCapture(str(video))
     fps = cap.get(cv2.CAP_PROP_FPS)
     last = np.asarray(init_box, float)
+    misses = 0                      # frames in a row without her: the crop grows to find her again
     boxes, kps, confs, feats = [], [], [], []
     while True:
         ok, frame = cap.read()
@@ -113,10 +114,10 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
             break
         H, W = frame.shape[:2]
         cx, cy = (last[0] + last[2]) / 2, (last[1] + last[3]) / 2
-        side = max(min_side, context * (last[3] - last[1]))
+        side = min(max(H, W), max(min_side, context * (last[3] - last[1])) * (1 + 0.5 * min(misses, 6)))
         x0, y0 = int(np.clip(cx - side / 2, 0, max(0, W - side))), int(np.clip(cy - side / 2, 0, max(0, H - side)))
         crop = frame[y0:y0 + int(side), x0:x0 + int(side)]
-        r = pose.predict(crop, imgsz=imgsz, conf=0.25, verbose=False)[0]
+        r = pose.predict(crop, imgsz=imgsz if misses < 2 else max(imgsz, 960), conf=0.25, verbose=False)[0]
         if len(r.boxes):
             b = r.boxes.xyxy.cpu().numpy() + [x0, y0, x0, y0]
             k = r.keypoints.xy.cpu().numpy() + [x0, y0]
@@ -129,8 +130,13 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
         if len(b):
             d = np.hypot((b[:, 0] + b[:, 2]) / 2 - cx, (b[:, 1] + b[:, 3]) / 2 - cy)
             j = int(np.argmin(d))
-            if d[j] < 1.5 * (last[3] - last[1]):
+            if d[j] < (1.5 + 0.5 * min(misses, 6)) * (last[3] - last[1]):
                 last = b[j].astype(float)
+                misses = 0
+            else:
+                misses += 1
+        else:
+            misses += 1
         boxes.append(b.astype(np.float32))
         kps.append(k.astype(np.float32))
         confs.append(c.astype(np.float32))
