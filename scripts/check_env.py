@@ -11,7 +11,8 @@ import shutil
 import subprocess
 import sys
 
-PACKAGES = ["numpy", "pandas", "cv2", "librosa", "onnxruntime"]
+PACKAGES = ["numpy", "pandas", "cv2", "librosa", "onnxruntime", "ultralytics", "rapidocr_onnxruntime"]
+MODELS = ["balltrack.onnx", "racketpose.onnx", "rtmw3d-x.onnx"]
 
 
 def check_tools():
@@ -30,6 +31,10 @@ def check_tools():
         print("ORT providers:", ort.get_available_providers())
     except ImportError:
         pass
+    models = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "models")
+    for m in MODELS:
+        p = os.path.join(models, m)
+        print(f"{m:18} {'OK' if os.path.exists(p) else 'falta (uv run python scripts/setup_models.py)'}")
 
 
 def probe(path):

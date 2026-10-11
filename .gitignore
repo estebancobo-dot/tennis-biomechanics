@@ -15,6 +15,7 @@ data/
 # Modelos (se descargan con un script)
 models/*.onnx
 models/*.pt
+models/*.pth
 
 # Python
 __pycache__/
