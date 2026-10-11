@@ -354,8 +354,9 @@ def _fine(ctx: Context, p, keep, out_name: str):
         from .ball import BallTracker
         ball = BallTracker(bcfg["onnx"], ctx.cfg.get("device", "cpu"), bcfg.get("threshold", 0.5))
     pre, post = ctx.cfg["fine_pass"]["window_s"] + 0.3, ctx.cfg["fine_pass"]["window_s"]
-    if ball is not None:      # reach back to the opponent's hit (time available, split step)
-        pre = max(pre, ctx.cfg["fine_pass"].get("ball_lead_s", 2.2))
+    if ball is not None:      # reach back to the opponent's hit (time available, split step) and
+        pre = max(pre, ctx.cfg["fine_pass"].get("ball_lead_s", 2.2))       # forward to where her shot lands
+        post = max(post, ctx.cfg["fine_pass"].get("ball_tail_s", 1.4))
     fcfg = ctx.cfg.get("racket_face") or {}
     rpose = wb3d = None
     if fcfg.get("enabled", True):
@@ -397,6 +398,10 @@ def _fine(ctx: Context, p, keep, out_name: str):
                 ft = feet_on_court(run.img, min(len(run.img) - 1, r.impact_frame + int(0.4 * run.fps)), run.sk, H)
                 if ft is not None:
                     d["landing_inside_m"] = round(float((ft[0][1] + ft[1][1]) / 2), 2)
+            if r.ball.get("shot_bounce_candidates"):   # where her shot landed on the far court
+                from .court_metrics import shot_landing
+                d.update(shot_landing(H, r.ball["shot_bounce_candidates"], (d.get("court_pos_m") or [None])[0],
+                                      run.fps, r.impact_frame))
             if r.ball.get("bounce_px"):          # on the ground: the homography is exact there
                 from .court_metrics import to_court
                 bx, by = to_court(H, np.array([r.ball["bounce_px"]]))[0]

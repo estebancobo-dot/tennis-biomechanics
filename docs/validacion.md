@@ -46,6 +46,17 @@ Revisados a ojo 2 de los 6 "falsos positivos": ambos son golpes reales que la re
 recoge (la bola no estaba anotada en ese tramo), así que la precisión real es mayor. Bola: vista en
 el 73-100 % de los fotogramas, 96-100 % a ≤15 px de la anotación (mediana 2 px).
 
+## Destino del golpe (bote en el campo rival) — final del US Open, revisado a ojo
+| Golpe | Desde | Resultado | A ojo |
+|---|---|---|---|
+| 5,28 s | x = +3,6 m (derecha) | cruzada, dentro, 5,5 m del fondo rival, 0,73 s tras el impacto | correcto (bota a 6,02 s) |
+| 7,66 s | x = +2,3 m | paralela, dentro, 5,5 m del fondo rival, 0,83 s | correcto (bota a 8,49 s) |
+| 1,97 s | x = −2,6 m | sin valor | bola muy profunda: tras botar sigue subiendo en la imagen, sin quiebro visible |
+
+El bote está en el suelo, así que la homografía da su posición exacta. Las bolas muy profundas
+pueden quedar sin dato (no se inventan). El golpe de la rival en el aire se descarta porque su
+proyección cae detrás del fondo.
+
 ## Impactos — F3Set-Tennis (TV, contacto exacto por fotograma)
 `uv run python scripts/validate_f3set.py --root <datasets> --player Rybakina --clips 20`
 Se ejecuta en el PC del usuario (los vídeos vienen de YouTube, bloqueado desde la nube).

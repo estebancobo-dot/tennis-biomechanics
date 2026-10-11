@@ -4,4 +4,4 @@ hitting_face: back            # cara que golpea: dorso de la mano dominante
 front_foot: dominant
 report_metrics: [xf, sh, xf3d, sh3d, knee, elbow, elbowNon, lat, contactH, head, finishH,
                  rHead, rDrop, rElevImp, rFaceArm, rFaceImp, rFaceFin, rYawImp,
-                 split, base, baseM, disp, recov]
+                 split, base, baseM, disp, recov, shotDepth]

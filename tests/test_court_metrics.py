@@ -21,3 +21,15 @@ def test_court_metrics_identity_homography():
     m = court_metrics(kp, sk, np.eye(3), "forehand", impact=4, opponent_hit=0)
     assert m["stance"] == "abierto" and m["stance_width_m"] == 1.0
     assert m["court_pos_m"] == [0.5, 0.0] and m["displacement_m"] == 3.0
+
+
+def test_shot_landing_picks_the_candidate_on_the_far_court():
+    from tennisbio.court_metrics import shot_landing
+    H = np.eye(3)                         # image px = court metres, to keep it readable
+    cands = [[-1.4, 28.3, 50], [2.9, 18.2, 40]]          # sharpest is the opponent's hit in the air
+    r = shot_landing(H, cands, contact_x=-2.5, fps=50, impact_frame=0)
+    assert r["shot_bounce_m"] == [2.9, 18.2] and r["shot_in"] and r["shot_direction"] == "cruzada"
+    assert abs(r["shot_depth_m"] - 5.57) < 1e-6 and r["impact_to_shot_bounce_s"] == 0.8
+    long = shot_landing(H, [[0.5, 24.5, 30]], contact_x=0.3, fps=50, impact_frame=0)
+    assert long["shot_in"] is False and long["shot_direction"] == "al centro"
+    assert shot_landing(H, [[0, 30, 5]], 0, 50, 0) == {}

@@ -57,3 +57,32 @@ def court_metrics(img_kp: np.ndarray, sk: Skeleton, H: np.ndarray, stroke: str, 
     if g is not None:
         out["displacement_m"] = round(float(np.linalg.norm(mid - (g[0] + g[1]) / 2)), 2)
     return out
+
+
+SINGLES_HALF, DOUBLES_HALF, LENGTH, NET = 4.115, 5.485, 23.77, 11.885
+
+
+def shot_landing(H: np.ndarray, candidates: list, contact_x: float | None, fps: float, impact_frame: int) -> dict:
+    """Where the player's shot bounced on the far court and what that means.
+
+    candidates: [[x_px, y_px, frame], ...] sharpest first (ball.bounce_after). The first one that
+    maps onto the far half (with up to 1.5 m for long balls: the opponent's hit, a ball in the air,
+    projects further back) is the bounce. Returns depth from the far baseline, side (thirds of the
+    singles court, x + = to her right), direction relative to where she hit from, and whether it
+    was in."""
+    for x, y, f in candidates or []:
+        cx, cy = to_court(H, np.array([[x, y]]))[0]
+        if NET - 0.3 <= cy <= LENGTH + 1.5 and abs(cx) <= DOUBLES_HALF + 1.5:
+            out = {"shot_bounce_m": [round(float(cx), 2), round(float(cy), 2)],
+                   "shot_depth_m": round(float(LENGTH - cy), 2),               # from the far baseline (− = long)
+                   "shot_in": bool(abs(cx) <= SINGLES_HALF + 0.03 and NET <= cy <= LENGTH + 0.03),
+                   "impact_to_shot_bounce_s": round((f - impact_frame) / fps, 3)}
+            side = "centro" if abs(cx) <= SINGLES_HALF / 3 else ("derecha" if cx > 0 else "izquierda")
+            out["shot_side"] = side
+            if contact_x is not None and abs(contact_x) > 1.0 and side != "centro":
+                # from her forehand/backhand corner: same side of the court = down the line
+                out["shot_direction"] = "paralela" if (cx > 0) == (contact_x > 0) else "cruzada"
+            elif side == "centro":
+                out["shot_direction"] = "al centro"
+            return out
+    return {}

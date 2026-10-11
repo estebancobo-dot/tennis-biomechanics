@@ -43,6 +43,7 @@ METRICS = {
     "trophyTilt": ("body", "Inclinación de hombros en el trofeo", "saque: + hombro del brazo de lanzamiento más alto", "°", 0, 5, 3, "serve_shoulder_tilt_trophy_deg"),
     "toss": ("body", "Brazo de lanzamiento", "saque: altura de la mano en el trofeo, % de altura", "%", 0, 4, 3, "serve_toss_arm_height_pct"),
     "landing": ("feet", "Aterrizaje", "saque: m dentro de la pista tras el impacto", "m", 2, 0.15, 3, None),
+    "shotDepth": ("feet", "Profundidad de su golpe", "m desde la línea de fondo rival al bote (− = larga)", "m", 1, 0.3, 3, None),
     "split": ("feet", "Split step", "aterrizaje, ms tras el golpe del rival", "ms", 0, 30, 2, None),
     "base": ("feet", "Anchura de la base", "% de altura, armado", "%", 0, 4.5, 3, "base_width_loaded_pct"),
     "baseM": ("feet", "Anchura de la base", "metros en la pista, impacto", "m", 2, 0.08, 3, None),
@@ -99,6 +100,7 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
     vals["baseM"] = _num(s.get("stance_width_m"))
     vals["disp"] = disp
     vals["landing"] = _num(s.get("landing_inside_m"))
+    vals["shotDepth"] = _num(s.get("shot_depth_m"))
     vals["recov"] = _num((ph.get("recovery") or {}).get("t_rel")) if (ph.get("recovery") or {}).get("method") == "first_step" else None
     confs = [p.get("confidence", 0) for p in ph.values()]
     quality = max(0.05, min(0.99, (sum(confs) / len(confs) if confs else 0.5) - 0.08 * len(s.get("review", []))))
@@ -107,7 +109,12 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
     t = float(s.get("match_time_s", 0))
     return {
         "id": f"{match.id}-{idx + 1:03d}", "idx": 0, "match": match_idx, "frac": t / duration_s if duration_s else 0,
-        **_score_fields(s.get("score")), "outcome": None, "finishType": None,
+        **_score_fields(s.get("score")), "finishType": None,
+        # out = error (from where it bounced); otherwise unknown until the point is followed further
+        "outcome": "error" if s.get("shot_in") is False else None,
+        "shotIn": s.get("shot_in"), "shotDir": s.get("shot_direction"), "shotSide": s.get("shot_side"),
+        "shotX": None if not s.get("shot_bounce_m") else (-s["shot_bounce_m"][0] if match.player.hand == "left" else s["shot_bounce_m"][0]),
+        "shotY": None if not s.get("shot_bounce_m") else s["shot_bounce_m"][1],
         "tAvail": t_av, "bounceDepth": bounce_depth,
         "bounceX": None if bounce is None else (-bounce[0] if match.player.hand == "left" else bounce[0]),
         "bounceToImpact": _num(m.get("bounce_to_impact_s")), "disp": disp, "height": height, "x": x, "y": y, "fast": fast, "wide": wide, "short": short,

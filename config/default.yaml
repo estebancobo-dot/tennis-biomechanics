@@ -11,6 +11,8 @@ fine_pass:
   window_s: 1.0
   # con bola: la ventana empieza antes para incluir el golpe de la rival (tiempo disponible)
   ball_lead_s: 2.2
+  # con bola: y termina más tarde para ver dónde bota su golpe en el campo rival
+  ball_tail_s: 1.4
   detector: balanced
   pose: performance
 

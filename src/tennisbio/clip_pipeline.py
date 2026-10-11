@@ -160,6 +160,11 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
                 r.metrics["bounce_to_impact_s"] = round((imp.frame - b.frame) / fps, 3)
                 if r.metrics["bounce_to_impact_s"] < 0.12 and (r.metrics.get("contact_height_pct") or 100) < 35:
                     r.review.append("half_volley_candidate")
+            from .ball import bounce_after
+            nxt = [f for f in far_hits if f > imp.frame + 0.2 * fps]
+            obs_ = bounce_after(ball_track[:n], imp.frame, fps, nxt[0] if nxt else None, max_y=0.55 * fh)
+            if obs_:                # where her shot lands: candidates in image px, checked on the court later
+                r.ball["shot_bounce_candidates"] = [[round(b.x, 1), round(b.y, 1), b.frame] for b in obs_]
         if opp is not None:      # time the ball took from the opponent's racket: fast / slow ball
             r.metrics["time_available_s"] = round((imp.frame - opp) / fps, 3)
             r.metrics["opponent_hit_source"] = "ball" if prev_ball else "audio"
