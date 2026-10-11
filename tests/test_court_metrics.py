@@ -33,3 +33,12 @@ def test_shot_landing_picks_the_candidate_on_the_far_court():
     long = shot_landing(H, [[0.5, 24.5, 30]], contact_x=0.3, fps=50, impact_frame=0)
     assert long["shot_in"] is False and long["shot_direction"] == "al centro"
     assert shot_landing(H, [[0, 30, 5]], 0, 50, 0) == {}
+
+
+def test_player_frame_for_the_far_end():
+    from tennisbio.court_metrics import player_frame_H, to_court
+    H = np.eye(3)                                   # image = court metres
+    Hf = player_frame_H(H, "far")
+    # a point 1 m inside the far baseline, 2 m to the image left = her right (she faces the camera)
+    assert np.allclose(to_court(Hf, np.array([[-2.0, 22.77]])), [[2.0, 1.0]])
+    assert player_frame_H(H, "near") is H

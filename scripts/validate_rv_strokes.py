@@ -46,6 +46,33 @@ def is_doubles(cache: Path, video: Path) -> bool:
     return bool(counts) and float(np.median(counts)) >= 2
 
 
+def far_init(video: Path, cache: Path, imgsz: int):
+    """(far-court region, image row of the net, initial far-player box) from the homography;
+    runs the pose on that region (cached) to find her."""
+    import cv2
+    import numpy as np
+
+    from tennisbio.court import fit_court
+    from tennisbio.court_metrics import far_roi, net_row, pick_far_player  # noqa: F401
+
+    cap = cv2.VideoCapture(str(video))
+    ok, frame = cap.read()
+    cap.release()
+    fit = fit_court(frame) if ok else None
+    if fit is None or fit.score < 0.5:
+        return None
+    # find her once on the far half (enlarged region), then follow her with a small enlarged crop
+    from ultralytics import YOLO
+    x0, y0, x1, y1 = far_roi(fit.H, frame.shape)
+    r = YOLO("yolo11m-pose.pt").predict(frame[y0:y1, x0:x1], imgsz=1920, conf=0.25, verbose=False)[0]
+    if not len(r.boxes):
+        return None
+    box = pick_far_player(r.boxes.xyxy.cpu().numpy() + [x0, y0, x0, y0], fit.H)
+    if box is None:
+        return None
+    return dict(roi="follow", max_bottom=net_row(fit.H), init_box=box)
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default="datasets")
@@ -53,23 +80,36 @@ def main():
     ap.add_argument("--tol", type=int, default=6)
     ap.add_argument("--ball", default=None, help="models/balltrack.onnx para usar la bola")
     ap.add_argument("--device", default="cpu")
+    ap.add_argument("--side", default="near", choices=["near", "far"], help="jugador cercano o lejano")
     ap.add_argument("--imgsz", type=int, default=960)
     args = ap.parse_args()
     root = Path(args.root)
     split = json.loads(fetch(f"{RV_BASE}/info/test.json", root / "rv" / "test.json").read_text())
     sel = split[:: max(1, len(split) // args.clips)][:args.clips]
-    ball = None
+    tracker = None
     if args.ball:
         from tennisbio.ball import BallTracker
-        ball = BallTracker(args.ball, args.device)
+        tracker = BallTracker(args.ball, args.device)
     pairs_all, fp_all, fn_all, rows = [], [], [], []
     for match_id, clip in sel:
         video = racketvision_video(root, match_id, clip)
         ball = read_ball_csv(fetch(f"{RV_BASE}/all/{match_id}/csv/{clip}_ball.csv", root / "rv" / "ball" / f"{match_id}_{clip}.csv"))
-        gt = hits_from_ball(ball, 1080)["near"]
+        gt = hits_from_ball(ball, 1080)[args.side]
         cache = root / "rv" / "cache" / f"{match_id}_{clip}.npz"
-        run = run_clip(video, cache, rackets=False, imgsz=args.imgsz, init_mode="near", log=lambda *_: None, ball=ball)
-        if is_doubles(cache, video):
+        if cache.exists() and is_doubles(cache, video):
+            print(f"  {match_id}_{clip}: dobles, se omite")
+            continue
+        extra = {}
+        if args.side == "far":
+            cache = cache.with_name(cache.stem + "_far.npz")
+            fi = far_init(video, cache, args.imgsz)
+            if fi is None:
+                print(f"  {match_id}_{clip}: sin pista o sin jugador lejano, se omite")
+                continue
+            extra = dict(side="far", **fi)
+        run = run_clip(video, cache, rackets=False, imgsz=args.imgsz, init_mode="near", log=lambda *_: None,
+                       ball=tracker, **extra)
+        if not extra and is_doubles(cache, video):     # cache just created: check now
             print(f"  {match_id}_{clip}: dobles, se omite")
             continue
         preds = [Pred(r.impact_frame, "fh" if r.stroke == "forehand" else "bh") for r in run.strokes]
@@ -80,8 +120,8 @@ def main():
     s = summarize(pairs_all, fp_all, fn_all)
     out = root / "reports"
     out.mkdir(parents=True, exist_ok=True)
-    (out / "rv_strokes_validation.json").write_text(json.dumps({"summary": s, "clips": rows}, indent=1))
-    print("\nRESUMEN (jugador cercano, sin audio)")
+    (out / f"rv_strokes_validation_{args.side}.json").write_text(json.dumps({"summary": s, "clips": rows}, indent=1))
+    print(f"\nRESUMEN (jugador {'cercano' if args.side == 'near' else 'lejano'}, sin audio)")
     for k in ("gt", "detected", "true_positives", "precision", "recall", "f1", "timing_err_frames_median", "timing_bias_frames"):
         print(f"  {k:28} {s[k]}")
 

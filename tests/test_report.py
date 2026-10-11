@@ -64,3 +64,10 @@ def test_report_for_the_opponent(tmp_path):
     data = collect([m], tmp_path, player_id="saba")
     assert len(data["strokes"]) == 2 and data["matches"][0]["rival"] == "E. Rybakina"
     assert len(collect([m], tmp_path)["strokes"]) == 1
+
+
+def test_far_strokes_keep_only_reliable_metrics():
+    m = Match("m1", None, Player("p", "P"))
+    r = stroke_record(stroke(10.0, side="far", displacement_m=2.0), 0, m, 100.0, 0)
+    assert r["side"] == "far" and r["m"]["xf"] is None and r["m"]["rDrop"] is None
+    assert r["m"]["contactH"] == 55.0 and r["m"]["disp"] == 2.0

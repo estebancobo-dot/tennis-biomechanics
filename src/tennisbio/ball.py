@@ -182,18 +182,20 @@ def turn_candidates(track: np.ndarray, lo: int, hi: int, fps: float, min_turn=15
 
 
 def bounce_before(track: np.ndarray, hit_frame: int, fps: float, prev_hit: int | None = None,
-                  min_turn=15.0, span_s=0.06, guard_s=0.05, min_y: float | None = None) -> Bounce | None:
+                  min_turn=15.0, span_s=0.06, guard_s=0.05, min_y: float | None = None,
+                  max_y: float | None = None) -> Bounce | None:
     """Bounce of the incoming ball before a near-player hit: the sharpest turn of the ball path
     between the previous hit (or 1.5 s before) and just before the hit. min_y: only below this
     image row (the near half of the court; the opponent's hit is also a sharp turn, further up)."""
     k = max(2, round(span_s * fps))
     lo = (prev_hit + k) if prev_hit is not None else hit_frame - round(1.5 * fps)
     hi = hit_frame - max(1, round(guard_s * fps))
-    return sharpest_turn(track, lo, hi, fps, min_turn, span_s, min_y=min_y)
+    return sharpest_turn(track, lo, hi, fps, min_turn, span_s, min_y=min_y, max_y=max_y)
 
 
 def bounce_after(track: np.ndarray, hit_frame: int, fps: float, next_hit: int | None = None,
-                 max_s=1.6, min_turn=10.0, span_s=0.06, guard_s=0.15, max_y: float | None = None) -> list[Bounce]:
+                 max_s=1.6, min_turn=10.0, span_s=0.06, guard_s=0.15, max_y: float | None = None,
+                 min_y: float | None = None) -> list[Bounce]:
     """Candidates for the bounce of the player's own shot on the far court, sharpest first: turns
     after her hit and before the opponent's next hit (or max_s). The opponent's hit, when the ball
     tracker missed it as a hit, is a sharp turn too; the caller keeps the first candidate that maps
@@ -201,7 +203,7 @@ def bounce_after(track: np.ndarray, hit_frame: int, fps: float, next_hit: int | 
     far away the image motion is small, so turns are subtler: lower min_turn)."""
     lo = hit_frame + max(1, round(guard_s * fps))
     hi = (next_hit - max(1, round(0.05 * fps))) if next_hit is not None else hit_frame + round(max_s * fps)
-    return turn_candidates(track, lo, hi, fps, min_turn, span_s, max_y=max_y)[:4]
+    return turn_candidates(track, lo, hi, fps, min_turn, span_s, min_y=min_y, max_y=max_y)[:4]
 
 
 def ball_hits(track: np.ndarray, frame_h: int, fps: float, span_s=0.12, away_s=0.6) -> list[BallHit]:

@@ -86,3 +86,45 @@ def shot_landing(H: np.ndarray, candidates: list, contact_x: float | None, fps: 
                 out["shot_direction"] = "al centro"
             return out
     return {}
+
+
+def net_row(H: np.ndarray, x: float = 0.0) -> float:
+    """Image row of the net line at court x (feet of the far player are always above it)."""
+    p = np.array([x, NET, 1.0]) @ H.T
+    return float(p[1] / p[2])
+
+
+def pick_far_player(boxes: np.ndarray, H: np.ndarray) -> np.ndarray | None:
+    """The person standing in the far half (feet mapped by the homography), nearest the centre line."""
+    if not len(boxes):
+        return None
+    feet = to_court(H, np.c_[(boxes[:, 0] + boxes[:, 2]) / 2, boxes[:, 3]])
+    ok = (feet[:, 1] > NET + 0.5) & (feet[:, 1] < LENGTH + 8) & (np.abs(feet[:, 0]) < DOUBLES_HALF + 2.5)
+    if not ok.any():
+        return None
+    idx = np.flatnonzero(ok)
+    return boxes[idx[np.argmin(np.abs(feet[idx, 0]))]]
+
+
+def far_roi(H: np.ndarray, frame_shape, behind_m=7.0, side_m=4.0, player_px_frac=0.14) -> tuple:
+    """Image region of the far half of the court plus where the far player can stand (behind the
+    baseline, out wide) and her height above her feet."""
+    h, w = frame_shape[:2]
+    pts = np.array([[-DOUBLES_HALF - side_m, NET], [DOUBLES_HALF + side_m, NET],
+                    [-DOUBLES_HALF - side_m, LENGTH + behind_m], [DOUBLES_HALF + side_m, LENGTH + behind_m]])
+    p = np.c_[pts, np.ones(4)] @ H.T
+    xy = p[:, :2] / p[:, 2:]
+    x0, x1 = np.clip([xy[:, 0].min(), xy[:, 0].max()], 0, w)
+    y0 = max(0.0, xy[:, 1].min() - player_px_frac * h)
+    y1 = min(float(h), xy[:2, 1].max() + 0.03 * h)
+    return int(x0), int(y0), int(x1), int(y1)
+
+
+def player_frame_H(H: np.ndarray, side: str) -> np.ndarray:
+    """Homography from the player's own court frame (her baseline at y = 0, x + = her right) to
+    the image. For the far player (facing the camera) both axes are flipped, so every court metric
+    (stance, position, bounce, where her shot lands) reads the same at either end."""
+    if side != "far":
+        return H
+    M = np.array([[-1.0, 0, 0], [0, -1.0, LENGTH], [0, 0, 1.0]])
+    return H @ M

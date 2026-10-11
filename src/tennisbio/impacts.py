@@ -59,7 +59,7 @@ def fuse(swing_frames: np.ndarray, fps: float, onset_times: np.ndarray, tol=0.12
 
 def fuse_with_ball(impacts: list[Impact], fps: float, hits: list, ball_seen: np.ndarray, boxes: list,
                    tol=0.2, seen_needed=0.5, wrist_speed: np.ndarray | None = None, min_arm_speed=1.2,
-                   min_gap=0.4) -> list[Impact]:
+                   min_gap=0.4, side="near") -> list[Impact]:
     """Refine and filter swing/audio impacts with the ball (tennisbio.ball.ball_hits, near side).
 
     - A near-player ball hit within `tol` s of a swing: the contact is the ball's turning point.
@@ -72,7 +72,7 @@ def fuse_with_ball(impacts: list[Impact], fps: float, hits: list, ball_seen: np.
     - Two impacts closer than min_gap s: the one with more evidence is kept.
     ball_seen: (T,) bool; boxes: tracked player box per frame or None; wrist_speed: (T,) body-relative.
     """
-    near = [h for h in hits if h.side == "near"]
+    near = [h for h in hits if h.side == side]          # hits of the tracked player's end
     used, out = set(), []
     w = max(1, round(0.3 * fps))
     for imp in impacts:

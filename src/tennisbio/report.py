@@ -51,6 +51,8 @@ METRICS = {
     "recov": ("feet", "Recuperación", "s del impacto al primer paso", "s", 2, 0.15, 2, None),
 }
 NET_Y = 11.885
+# metrics that stay reliable when she is at the far end (small, facing the camera)
+FAR_OK = {"contactH", "baseM", "disp", "shotDepth", "split", "recov", "landing"}
 
 
 def _num(v):
@@ -102,6 +104,9 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
     vals["landing"] = _num(s.get("landing_inside_m"))
     vals["shotDepth"] = _num(s.get("shot_depth_m"))
     vals["recov"] = _num((ph.get("recovery") or {}).get("t_rel")) if (ph.get("recovery") or {}).get("method") == "first_step" else None
+    far = s.get("side") == "far"
+    if far:
+        vals = {k: (v if k in FAR_OK else None) for k, v in vals.items()}
     confs = [p.get("confidence", 0) for p in ph.values()]
     quality = max(0.05, min(0.99, (sum(confs) / len(confs) if confs else 0.5) - 0.08 * len(s.get("review", []))))
     sit = {"neutra": not (fast or wide or short) and height == "media" and t_av is not None,
@@ -120,7 +125,7 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
         "bounceToImpact": _num(m.get("bounce_to_impact_s")), "disp": disp, "height": height, "x": x, "y": y, "fast": fast, "wide": wide, "short": short,
         "stance": s.get("stance"), "stanceAngle": s.get("stance_angle_deg"),
         "chainOK": (s.get("chain") or {}).get("proximal_to_distal"), "chainPeaks": (s.get("chain") or {}).get("peaks_s"),
-        "quality": round(quality, 3), "review": s.get("review", []), "source": s.get("impact_source"),
+        "quality": round(quality * (0.6 if far else 1.0), 3), "side": "far" if far else "near", "review": s.get("review", []), "source": s.get("impact_source"),
         "m": vals, "vt": t, "sit": sit,
         "phases": {k: v.get("t_rel") for k, v in ph.items()},
         "face": {k: (v or {}).get("points_to") for k, v in face.items()},

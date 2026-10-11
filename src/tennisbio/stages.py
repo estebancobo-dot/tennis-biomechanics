@@ -175,7 +175,7 @@ def near_is_target(identity: dict, frame: int):
     return None
 
 
-@stage("candidates", "3", deps=("players", "audio", "identity"))
+@stage("candidates", "4", deps=("players", "audio", "identity"))
 def st_candidates(ctx: Context, tol_s=0.35):
     """Near-player stroke candidates: swing peaks of the near player at cheap fps, confirmed by
     an audio transient when one is close. Each candidate records who the near player is
@@ -191,13 +191,28 @@ def st_candidates(ctx: Context, tol_s=0.35):
         who = near_is_target(identity, int(frames[run[0]]))
         skipped += who is False
         v = speed(to_body_frame(img, sk, h)[:, sk["dom_wrist"]], fps)
+        near_t = []
         for p in swing_peaks(v, fps, min_gap=1.0, height=1.5, prominence=1.0):
             t = frames[run[p]] / fps
             near = onsets[np.abs(onsets - t) <= tol_s] if len(onsets) else []
+            near_t.append(t)
             cands.append({"t": float(near[np.argmin(np.abs(near - t))]) if len(near) else float(t),
-                          "audio": bool(len(near)), "wrist_peak_t": float(t), "identity": who})
+                          "audio": bool(len(near)), "wrist_peak_t": float(t), "side": "near",
+                          "identity": who, "target": who})
+        if who is None or not len(onsets):
+            continue
+        # the far player's hits: impact sounds of this run that are not the near player's; the
+        # fine pass keeps only those confirmed by the ball turning at the far player
+        t0, t1 = frames[run[0]] / fps, frames[run[-1]] / fps
+        last = -9.0
+        for t in onsets[(onsets >= t0 + 0.5) & (onsets <= t1 - 0.5)]:
+            if any(abs(t - x) <= 0.5 for x in near_t) or t - last < 1.0:
+                continue
+            last = t
+            cands.append({"t": float(t), "audio": True, "side": "far", "identity": who, "target": not who})
     _write(ctx.path("candidates.json"), cands)
-    return {"candidates": len(cands), "with_audio": sum(c["audio"] for c in cands),
+    return {"candidates": len(cands), "far": sum(c["side"] == "far" for c in cands),
+            "with_audio": sum(c["audio"] for c in cands),
             "opponent_runs": skipped, "identity_unknown": sum(c["identity"] is None for c in cands)}
 
 
@@ -301,6 +316,25 @@ def court_at(court: dict, t: float):
     return None, None
 
 
+def far_start(clip: Path, H) -> dict | None:
+    """Where the far player is at the start of a window: people found in the far half of the
+    court (enlarged region), the one standing in it; plus the net row that she never crosses."""
+    if H is None:
+        return None
+    import cv2
+
+    from .court_metrics import far_roi, net_row, pick_far_player
+    from .pose.yolo import detect_people
+
+    cap = cv2.VideoCapture(str(clip))
+    ok, frame = cap.read()
+    cap.release()
+    if not ok:
+        return None
+    box = pick_far_player(detect_people(frame, far_roi(H, frame.shape)), H)
+    return None if box is None else dict(roi="follow", init_box=box, max_bottom=net_row(H))
+
+
 def cut_window(video: Path, t0: float, dur: float, dest: Path) -> Path:
     if not dest.exists():
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -314,10 +348,12 @@ def _fine_settings(c):
             "racket_face": c.get("racket_face")}
 
 
-@stage("fine", "5", deps=("candidates", "court", "score"), settings=_fine_settings)
+@stage("fine", "6", deps=("candidates", "court", "score"), settings=_fine_settings)
 def st_fine(ctx: Context):
     """Full-quality analysis of the target player's candidates (and undecided ones)."""
-    return _fine(ctx, ctx.match.player, lambda c: c.get("identity") is not False, "strokes.json")
+    # near strokes of the target and undecided runs; far strokes only when she is known to be far
+    return _fine(ctx, ctx.match.player, lambda c: c.get("target", c.get("identity")) is not False
+                 and (c.get("side", "near") == "near" or c.get("target") is True), "strokes.json")
 
 
 def opponent_profile(match):
@@ -330,7 +366,7 @@ def opponent_profile(match):
     return Player(id="opponent", name=match.opponent or "Rival", hand=match.extra.get("opponent_hand", "right"))
 
 
-@stage("fine_opponent", "1", deps=("candidates", "court", "score"),
+@stage("fine_opponent", "2", deps=("candidates", "court", "score"),
        settings=lambda c: {**_fine_settings(c), "enabled": c.get("analyze_opponent", False)})
 def st_fine_opponent(ctx: Context):
     """The opponent's strokes from the same video (runs where the near player is the opponent).
@@ -338,7 +374,8 @@ def st_fine_opponent(ctx: Context):
     if not ctx.cfg.get("analyze_opponent", False):
         _write(ctx.path("strokes_opponent.json"), [])
         return {"enabled": False}
-    return _fine(ctx, opponent_profile(ctx.match), lambda c: c.get("identity") is False, "strokes_opponent.json")
+    return _fine(ctx, opponent_profile(ctx.match), lambda c: c.get("target", c.get("identity")) is False,
+                 "strokes_opponent.json")
 
 
 def _fine(ctx: Context, p, keep, out_name: str):
@@ -373,8 +410,17 @@ def _fine(ctx: Context, p, keep, out_name: str):
         t0 = max(0.0, c["t"] - pre)
         # the name carries the interval, so a different window never reuses an old cut (or its caches)
         clip = cut_window(ctx.match.video, t0, pre + post, ctx.path("windows") / f"w{k:04d}_{int(t0 * 1000)}_{int((pre + post) * 1000)}.mp4")
-        run = run_clip(clip, clip.with_suffix(".npz"), p.hand, p.height_m, init_mode="near",
-                       imgsz=ctx.cfg.get("fine_imgsz", 1280), log=lambda *_: None, ball=ball)
+        side = c.get("side", "near")
+        extra, cache = {}, clip.with_suffix(".npz")
+        if side == "far":
+            fi = far_start(clip, court_at(court, c["t"])[0])
+            if fi is None:
+                continue                          # no court or no far player found: nothing reliable
+            extra, cache = dict(side="far", **fi), clip.with_name(clip.stem + "_far.npz")
+        run = run_clip(clip, cache, p.hand, p.height_m, init_mode="near", rackets=side == "near",
+                       imgsz=ctx.cfg.get("fine_imgsz", 1280), log=lambda *_: None, ball=ball, **extra)
+        if side == "far":                         # far strokes count only when the ball confirms them
+            run.strokes = [s for s in run.strokes if "ball" in s.impact_source]
         if not run.strokes:
             continue
         target = (c["t"] - t0) * run.fps
@@ -388,6 +434,11 @@ def _fine(ctx: Context, p, keep, out_name: str):
         if sr is not None:
             d["score"] = {k: sr[k] for k in ("games", "points", "banner", "set", "sets_won", "tiebreak", "pressure")}
         H, pitch = court_at(court, t_imp)
+        d["side"] = side
+        H_img = H
+        if H is not None:
+            from .court_metrics import player_frame_H
+            H = player_frame_H(H, side)            # her own court frame at either end
         if H is not None:
             from .court_metrics import court_metrics
             ta = r.metrics.get("time_available_s")
@@ -410,10 +461,10 @@ def _fine(ctx: Context, p, keep, out_name: str):
         from .series import stroke_series
         ser = stroke_series(run.img, run.conf, run.boxes, run.sk, run.fps, run.height_px, r.impact_frame,
                             r.racket_track, run.ball)
-        if fcfg.get("enabled", True):
+        if fcfg.get("enabled", True) and side == "near":      # strings: not measurable at the far end
             from .racket_orientation import stroke_faces
             grip = p.backhand_grip_close_deg if r.stroke == "backhand" else p.forehand_grip_close_deg
-            faces = stroke_faces(clip, run, r, p.height_m, pitch if H is not None else None, rpose, wb3d,
+            faces = stroke_faces(clip, run, r, p.height_m, pitch if H_img is not None else None, rpose, wb3d,
                                  fcfg.get("hand3d_step", 2), grip)
             d["face"] = faces["phases"]
             d["metrics"].update(faces["trunk3d"])

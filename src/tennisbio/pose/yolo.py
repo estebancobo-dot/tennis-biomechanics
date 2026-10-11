@@ -30,8 +30,12 @@ def appearance(frame: np.ndarray, box: np.ndarray, bins=(8, 4)) -> np.ndarray:
     return (h / (h.sum() + 1e-9)).astype(np.float32)
 
 
-def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", imgsz=960, every=1, progress=True) -> Path:
-    """Run pose on every `every`-th frame and save all people (boxes, keypoints, appearance) to .npz."""
+def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", imgsz=960, every=1, progress=True,
+            roi: tuple | None = None) -> Path:
+    """Run pose on every `every`-th frame and save all people (boxes, keypoints, appearance) to .npz.
+
+    roi: (x0, y0, x1, y1) — run only on that region (e.g. the far half of the court, where the far
+    player is too small for the full frame); coordinates are returned in the full frame."""
     from ultralytics import YOLO
 
     pose = YOLO(pose_model)
@@ -46,10 +50,15 @@ def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", im
         if i % every:
             i += 1
             continue
-        r = pose.predict(frame, imgsz=imgsz, conf=0.3, verbose=False)[0]
-        b = r.boxes.xyxy.cpu().numpy() if len(r.boxes) else np.zeros((0, 4))
+        ox = oy = 0
+        src = frame
+        if roi is not None:
+            x0, y0, x1, y1 = (int(v) for v in roi)
+            src, ox, oy = frame[y0:y1, x0:x1], x0, y0
+        r = pose.predict(src, imgsz=imgsz, conf=0.3, verbose=False)[0]
+        b = r.boxes.xyxy.cpu().numpy() + [ox, oy, ox, oy] if len(r.boxes) else np.zeros((0, 4))
         boxes.append(b.astype(np.float32))
-        kps.append(r.keypoints.xy.cpu().numpy().astype(np.float32) if len(b) else np.zeros((0, 17, 2), np.float32))
+        kps.append(r.keypoints.xy.cpu().numpy().astype(np.float32) + [ox, oy] if len(b) else np.zeros((0, 17, 2), np.float32))
         confs.append(r.keypoints.conf.cpu().numpy().astype(np.float32) if len(b) else np.zeros((0, 17), np.float32))
         feats.append(np.array([appearance(frame, bb) for bb in b], np.float32).reshape(len(b), 32))
         i += 1
@@ -83,3 +92,65 @@ def extract_rackets(video: str | Path, frames, out: str | Path, seg_model="yolo1
     out = Path(out)
     np.savez_compressed(out, frames=np.array(frames), polys=_objects(polys))
     return out
+
+
+def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yolo11m-pose.pt", imgsz=640,
+                   context=4.0, min_side=256, progress=False, max_bottom: float | None = None) -> Path:
+    """Pose of a small, distant player: every frame, a square crop centred on her last position
+    (side = context × her height) is enlarged to `imgsz` for the model, so she is seen 2-3× bigger
+    than in the full frame. Same output format as `extract` (full-frame coordinates; only the
+    people inside the crop). The followed box is the detection nearest to the last one."""
+    from ultralytics import YOLO
+
+    pose = YOLO(pose_model)
+    cap = cv2.VideoCapture(str(video))
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    last = np.asarray(init_box, float)
+    boxes, kps, confs, feats = [], [], [], []
+    while True:
+        ok, frame = cap.read()
+        if not ok:
+            break
+        H, W = frame.shape[:2]
+        cx, cy = (last[0] + last[2]) / 2, (last[1] + last[3]) / 2
+        side = max(min_side, context * (last[3] - last[1]))
+        x0, y0 = int(np.clip(cx - side / 2, 0, max(0, W - side))), int(np.clip(cy - side / 2, 0, max(0, H - side)))
+        crop = frame[y0:y0 + int(side), x0:x0 + int(side)]
+        r = pose.predict(crop, imgsz=imgsz, conf=0.25, verbose=False)[0]
+        if len(r.boxes):
+            b = r.boxes.xyxy.cpu().numpy() + [x0, y0, x0, y0]
+            k = r.keypoints.xy.cpu().numpy() + [x0, y0]
+            c = r.keypoints.conf.cpu().numpy()
+            if max_bottom is not None:
+                keep = b[:, 3] <= max_bottom
+                b, k, c = b[keep], k[keep], c[keep]
+        else:
+            b, k, c = np.zeros((0, 4)), np.zeros((0, 17, 2)), np.zeros((0, 17))
+        if len(b):
+            d = np.hypot((b[:, 0] + b[:, 2]) / 2 - cx, (b[:, 1] + b[:, 3]) / 2 - cy)
+            j = int(np.argmin(d))
+            if d[j] < 1.5 * (last[3] - last[1]):
+                last = b[j].astype(float)
+        boxes.append(b.astype(np.float32))
+        kps.append(k.astype(np.float32))
+        confs.append(c.astype(np.float32))
+        feats.append(np.array([appearance(frame, bb) for bb in b], np.float32).reshape(len(b), 32))
+        if progress and len(boxes) % 100 == 0:
+            print(f"{len(boxes)} frames", flush=True)
+    out = Path(out)
+    np.savez_compressed(out, fps=fps, n=len(boxes), boxes=_objects(boxes), kps=_objects(kps), confs=_objects(confs),
+                        feats=_objects(feats))
+    return out
+
+
+def detect_people(frame: np.ndarray, roi=None, pose_model="yolo11m-pose.pt", imgsz=1920, conf=0.25) -> np.ndarray:
+    """Person boxes (N, 4) in full-frame coordinates, optionally only inside roi (enlarged)."""
+    from ultralytics import YOLO
+
+    x0, y0 = 0, 0
+    src = frame
+    if roi is not None:
+        x0, y0, x1, y1 = (int(v) for v in roi)
+        src = frame[y0:y1, x0:x1]
+    r = YOLO(pose_model).predict(src, imgsz=imgsz, conf=conf, verbose=False)[0]
+    return r.boxes.xyxy.cpu().numpy() + [x0, y0, x0, y0] if len(r.boxes) else np.zeros((0, 4))
