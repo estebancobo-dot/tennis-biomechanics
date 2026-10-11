@@ -252,6 +252,13 @@ def st_fine(ctx: Context):
             ta = r.metrics.get("time_available_s")
             opp = None if ta is None else r.impact_frame - int(round(ta * run.fps))
             d.update(court_metrics(run.img, run.sk, H, r.stroke, r.impact_frame, opp), camera_pitch_deg=pitch)
+        from .series import stroke_series
+        ser = stroke_series(run.img, run.conf, run.boxes, run.sk, run.fps, run.height_px, r.impact_frame,
+                            r.racket_track, run.ball)
+        sdir = ctx.path("series")
+        sdir.mkdir(exist_ok=True)
+        _write(sdir / f"w{k:04d}.json", ser)
+        d.update(series=f"series/w{k:04d}.json", window_impact_s=r.impact_frame / run.fps)
         strokes.append(d)
     _write(ctx.path("strokes.json"), strokes)
     return {"candidates": len(cands), "confirmed": len(strokes),

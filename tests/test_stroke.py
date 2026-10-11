@@ -134,3 +134,11 @@ def test_overhead_classification():
     kp[IMPACT, sk["right_wrist"]] = [230, 10]            # wrist above the head at contact
     r = analyze_stroke(kp, conf, sk, FPS, body_height(kp, sk), IMPACT, "audio+swing")
     assert r.stroke == "overhead"
+
+
+def test_stroke_series_shapes():
+    from tennisbio.series import stroke_series
+    sk, kp, conf = synthetic_forehand()
+    s = stroke_series(kp, conf, [None] * len(kp), sk, FPS, body_height(kp, sk), IMPACT)
+    assert s["n"] == len(s["kp"]) == len(s["kin"]["Pelvis"]) == len(s["ang"]["Codo"])
+    assert len(s["kp"][0]) == 34 and s["impact"] - s["first"] == FPS
