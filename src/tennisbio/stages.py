@@ -309,6 +309,11 @@ def st_fine(ctx: Context):
             ta = r.metrics.get("time_available_s")
             opp = None if ta is None else r.impact_frame - int(round(ta * run.fps))
             d.update(court_metrics(run.img, run.sk, H, r.stroke, r.impact_frame, opp), camera_pitch_deg=pitch)
+            if r.ball.get("bounce_px"):          # on the ground: the homography is exact there
+                from .court_metrics import to_court
+                bx, by = to_court(H, np.array([r.ball["bounce_px"]]))[0]
+                if -1.5 <= by <= 11.885 and abs(bx) <= 6.5:
+                    d["bounce_court_m"] = [round(float(bx), 2), round(float(by), 2)]
         from .series import stroke_series
         ser = stroke_series(run.img, run.conf, run.boxes, run.sk, run.fps, run.height_px, r.impact_frame,
                             r.racket_track, run.ball)

@@ -17,7 +17,8 @@ class StrokeResult:
     phases: dict = field(default_factory=dict)   # name -> {frame, t_rel, method, confidence}
     metrics: dict = field(default_factory=dict)
     racket: dict = field(default_factory=dict)   # name -> per-phase racket values
-    racket_track: list = field(default_factory=list)  # per frame in window: [t_rel, elevation, head_above_wrist_cm]
+    racket_track: list = field(default_factory=list)
+    ball: dict = field(default_factory=dict)   # bounce before contact (image px, s before contact)  # per frame in window: [t_rel, elevation, head_above_wrist_cm]
     chain: dict = field(default_factory=dict)
     review: list = field(default_factory=list)   # reasons to send to manual review
 

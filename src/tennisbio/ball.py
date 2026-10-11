@@ -123,7 +123,9 @@ def turning_hits(frames: np.ndarray, xy: np.ndarray, frame_h: int, span: int, aw
         ahead = xy[(frames > f) & (frames <= f + away), 1]
         if va[1] < 0 and xy[i, 1] > near_min_y * frame_h and ahead.min() <= xy[i, 1] - away_frac * frame_h:
             side = "near"
-        elif va[1] > 0 and ahead.max() >= xy[i, 1] + 0.5 * away_frac * frame_h:
+        elif vb[1] < 0 and va[1] > 0 and ahead.max() >= xy[i, 1] + 0.5 * away_frac * frame_h:
+            # far hit: the ball was going away (up the image) and now comes back; without the
+            # first condition a bounce on the near court (descent that flattens) looked the same
             side = "far"
         else:
             continue
@@ -136,6 +138,39 @@ def turning_hits(frames: np.ndarray, xy: np.ndarray, frame_h: int, span: int, aw
             continue
         out.append(h)
     return [h for h in out if h.turn_deg >= 30]
+
+
+@dataclass
+class Bounce:
+    frame: int
+    x: float
+    y: float          # image px: the ball is on the ground, so the court homography maps it exactly
+    turn_deg: float
+
+
+def bounce_before(track: np.ndarray, hit_frame: int, fps: float, prev_hit: int | None = None,
+                  min_turn=15.0, span_s=0.06, guard_s=0.05, min_y: float | None = None) -> Bounce | None:
+    """Bounce of the incoming ball before a near-player hit: the sharpest turn of the ball path
+    between the previous hit (or 1.5 s before) and just before the hit. min_y: only below this
+    image row (the near half of the court; the opponent's hit is also a sharp turn, further up)."""
+    ok = ~np.isnan(track[:, :2]).any(1)
+    k = max(2, round(span_s * fps))
+    lo = max(k, (prev_hit + k) if prev_hit is not None else hit_frame - round(1.5 * fps))
+    hi = hit_frame - max(1, round(guard_s * fps))
+    best = None
+    for i in range(lo, hi):
+        if not (ok[i] and ok[i - k] and i + k < len(track) and ok[i + k]):
+            continue
+        if min_y is not None and track[i, 1] < min_y:
+            continue
+        vb, va = track[i, :2] - track[i - k, :2], track[i + k, :2] - track[i, :2]
+        nb, na = np.linalg.norm(vb), np.linalg.norm(va)
+        if nb < 1e-6 or na < 1e-6:
+            continue
+        turn = float(np.degrees(np.arccos(np.clip(vb @ va / nb / na, -1, 1))))
+        if turn >= min_turn and (best is None or turn > best.turn_deg):
+            best = Bounce(i, float(track[i, 0]), float(track[i, 1]), turn)
+    return best
 
 
 def ball_hits(track: np.ndarray, frame_h: int, fps: float, span_s=0.12, away_s=0.6) -> list[BallHit]:

@@ -152,6 +152,14 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         opp = prev_ball[-1] if prev_ball else (int(round(prev[-1] * fps)) if prev else None)
         r = analyze_stroke(img, cf, sk, fps, height_px, imp.frame, imp.source,
                            run.rackets if rackets else None, height_m, opp)
+        if ball_track is not None and imp.source.find("ball") >= 0:
+            from .ball import bounce_before
+            b = bounce_before(ball_track[:n], imp.frame, fps, prev_ball[-1] if prev_ball else None, min_y=0.4 * fh)
+            if b is not None:
+                r.ball = {"bounce_px": [round(b.x, 1), round(b.y, 1)], "bounce_frame": b.frame}
+                r.metrics["bounce_to_impact_s"] = round((imp.frame - b.frame) / fps, 3)
+                if r.metrics["bounce_to_impact_s"] < 0.12 and (r.metrics.get("contact_height_pct") or 100) < 35:
+                    r.review.append("half_volley_candidate")
         if opp is not None:      # time the ball took from the opponent's racket: fast / slow ball
             r.metrics["time_available_s"] = round((imp.frame - opp) / fps, 3)
             r.metrics["opponent_hit_source"] = "ball" if prev_ball else "audio"

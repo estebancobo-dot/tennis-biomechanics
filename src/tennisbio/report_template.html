@@ -218,6 +218,10 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 <section class="screen" id="tab-panel">
   <div class="kpis" id="kpis"></div>
   <div class="panel">
+    <header><h2>Conclusiones</h2><span class="note">Generadas a partir de los datos; cada una con su confianza</span></header>
+    <div class="body" id="concl" style="display:grid;gap:10px"></div>
+  </div>
+  <div class="panel">
     <header><h2>Hallazgos</h2><span class="note" id="noise-note"></span></header>
     <div class="forest" id="forest" style="margin-top:8px"></div>
   </div>
@@ -337,7 +341,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 <section class="screen" id="tab-pista" hidden>
   <div class="cols c-3-1">
     <div class="panel">
-      <header><h2>Posición en el impacto</h2><div class="seg" id="p-mode"><button data-v="density" aria-pressed="true">Densidad</button><button data-v="stance" aria-pressed="false">Apoyo</button><button data-v="sit" aria-pressed="false">Bola</button></div></header>
+      <header><h2>Posición en el impacto</h2><div class="seg" id="p-mode"><button data-v="density" aria-pressed="true">Densidad</button><button data-v="stance" aria-pressed="false">Apoyo</button><button data-v="sit" aria-pressed="false">Bola</button><button data-v="bounce" aria-pressed="false">Botes</button></div></header>
       <div class="body chart" id="court"></div>
     </div>
     <div style="display:grid;gap:16px;align-content:start">
@@ -382,7 +386,7 @@ const stCol = s => STANCE[s.stance] || "#8b96a1";
 const pct = (a, f) => a.length ? 100 * a.filter(f).length / a.length : NaN;
 function niceTicks(lo, hi, n = 5) { const span = (hi - lo) || 1, m = 10 ** Math.floor(Math.log10(span / n)); const st = [1, 2, 2.5, 5, 10].map(x => x * m).find(x => span / x <= n) || 10 * m; const t = []; for (let v = Math.ceil(lo / st) * st; v <= hi + 1e-9; v += st) t.push(+v.toFixed(6)); return t; }
 const sitTxt = s => s.sit.neutra ? "neutra" : [s.wide && "abierta", s.fast && "rápida", s.height && s.height !== "media" && s.height, s.short && "corta"].filter(Boolean).join(", ") || "sin clasificar";
-const REVIEW_ES = { impact_without_audio: "impacto sin audio ni bola", racket_not_seen_when_loaded: "raqueta no vista en el armado", elbow_implausible: "codo inverosímil" };
+const REVIEW_ES = { half_volley_candidate: "media volea candidata", impact_without_audio: "impacto sin audio ni bola", racket_not_seen_when_loaded: "raqueta no vista en el armado", elbow_implausible: "codo inverosímil" };
 const revTxt = r => r.startsWith("phase:") ? "fase dudosa: " + r.slice(6) : (REVIEW_ES[r] || r);
 
 /* ===== Tooltip ===== */
@@ -470,6 +474,25 @@ document.getElementById("forest").innerHTML = `<div class="frow head"><span>Hall
 document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { const g = FIND[+b.dataset.go].go; document.getElementById("c-pair").value = g.pair; document.getElementById("c-sit").value = g.sit; document.getElementById("c-group").value = g.g || MK[FIND[+b.dataset.go].k].g; renderCompare(); showTab("comparativas"); }));
 
 const EVO_LABEL = Object.fromEntries(Object.entries({ xf: "X-factor", sh: "Hombros", knee: "Cadera", baseM: "Base", elbow: "Codo" }).filter(([k]) => MK[k]).slice(0, 4));
+/* Conclusiones en frases */
+function conclusions() {
+  const out = [], n = STROKES.length, conf = (txt, cls) => `<span class="st ${cls}"><i>${cls === "good" ? "✓" : cls === "warn" ? "!" : "–"}</i>${txt}</span>`;
+  if (n < 10) out.push([`Con ${n} golpe${n === 1 ? "" : "s"} solo se describe lo observado; las comparaciones necesitan al menos 5 golpes por grupo y el ruido de medida, 20 con bola neutra.`, conf("pocos datos", "crit")]);
+  const st = ["abierto", "semiabierto", "cerrado"].map(k => [k, STROKES.filter(s => s.stance === k).length]).sort((a, b) => b[1] - a[1]), nst = st.reduce((a, b) => a + b[1], 0);
+  if (nst) out.push([`Apoyo más frecuente: <b>${st[0][0]}</b> (${fmt(100 * st[0][1] / nst)} % de ${nst} golpes${st[1][1] ? `; ${st[1][0]} ${fmt(100 * st[1][1] / nst)} %` : ""}).`, conf(nst >= 20 ? "fiable" : "orientativo", nst >= 20 ? "good" : "warn")]);
+  const faceAt = ph => STROKES.map(s => s.face && s.face[ph]).filter(Boolean), mode = a => { const c = {}; a.forEach(x => c[x] = (c[x] || 0) + 1); return Object.entries(c).sort((x, y) => y[1] - x[1])[0]; };
+  [["loaded", "en el armado"], ["impact", "en el impacto"], ["finish", "en la terminación"]].forEach(([ph, txt]) => { const a = faceAt(ph); if (a.length) { const [lab, c] = mode(a), k = { loaded: "rFaceArm", impact: "rFaceImp", finish: "rFaceFin" }[ph], md = MK[k] && DIST[k] ? DIST[k].p50 : NaN; out.push([`Las cuerdas apuntan ${txt} hacia <b>${lab}</b> en ${fmt(100 * c / a.length)} % de los golpes${isN(md) ? `, cara ${md >= 0 ? "cerrada" : "abierta"} ${fmt(Math.abs(md))}° (mediana)` : ""}.`, conf(ph === "impact" ? "estimada (desenfoque)" : a.length >= 20 ? "media" : "orientativo", ph === "impact" ? "crit" : "warn")]); } });
+  const chain = STROKES.filter(s => s.chainOK !== null && s.chainOK !== undefined);
+  if (chain.length) out.push([`Cadena cinética en orden (pelvis → tronco → brazo → antebrazo) en <b>${fmt(pct(chain, s => s.chainOK))} %</b> de ${chain.length} golpes.`, conf("media", "warn")]);
+  const ta = fin(STROKES.map(s => s.tAvail));
+  if (ta.length) out.push([`Tiempo disponible entre el golpe del rival y el suyo: mediana <b>${fmt(quant(ta, .5), 2)} s</b> (${fmt(pct(STROKES.filter(s => isN(s.tAvail)), s => s.fast))} % de bolas rápidas, &lt; 1,15 s).`, conf(ta.length >= 20 ? "fiable" : "orientativo", ta.length >= 20 ? "good" : "warn")]);
+  if (MK.baseM && DIST.baseM) out.push([`Base en el impacto: mediana <b>${fmtM("baseM", DIST.baseM.p50)}</b> (p10–p90 ${fmt(DIST.baseM.p10, 2)}–${fmt(DIST.baseM.p90, 2)} m, ${DIST.baseM.n} golpes).`, DIST.baseM.n >= 20 ? conf("fiable", "good") : conf("orientativo", "warn")]);
+  FIND.forEach(f => { const e = effect(f.k, STROKES.filter(f.A), STROKES.filter(f.B)), v = verdict(e, MK[f.k].noise); if (v.cls === "good" || v.cls === "warn") out.push([`${f.t}: <b>${sign(e.d)}${fmt(Math.abs(e.d), MK[f.k].dec)}${unitStr(MK[f.k])}</b> (${fmt(e.ma, MK[f.k].dec)} → ${fmt(e.mb, MK[f.k].dec)}; ${f.c.toLowerCase()}, n=${e.na}/${e.nb}).`, conf(v.cls === "good" ? "diferencia real" : "probable", v.cls)]); });
+  if (!FIND.some(f => verdict(effect(f.k, STROKES.filter(f.A), STROKES.filter(f.B)), MK[f.k].noise).cls !== "crit") && n >= 10) out.push(["Ninguna diferencia entre situaciones (fatiga, presión, bola rápida) supera el ruido de medida.", conf("según los datos actuales", "warn")]);
+  document.getElementById("concl").innerHTML = out.map(([t, c]) => `<div style="display:flex;gap:12px;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px"><span style="font-size:14px;line-height:1.45">${t}</span>${c}</div>`).join("") || `<div class="empty">Sin golpes.</div>`;
+}
+conclusions();
+
 let evoK = Object.keys(EVO_LABEL)[0];
 document.getElementById("evo-metric").innerHTML = Object.keys(EVO_LABEL).map(k => `<button data-v="${k}" aria-pressed="${k === evoK}">${EVO_LABEL[k]}</button>`).join("");
 document.querySelectorAll("#evo-metric button").forEach(b => b.addEventListener("click", () => { evoK = b.dataset.v; document.querySelectorAll("#evo-metric button").forEach(x => x.setAttribute("aria-pressed", x === b)); renderEvo(); }));
@@ -648,7 +671,7 @@ function renderMetricsPanel() {
 function renderCtx() {
   const s = cur, m = MATCHES[s.match];
   document.getElementById("g-title").textContent = s.id;
-  document.getElementById("g-ctx").innerHTML = [["Partido", `${m.id} vs ${m.rival}`], ["Vídeo", clock(s.vt)], ["Bola", sitTxt(s)], ["Tiempo disponible", isN(s.tAvail) ? `${fmt(s.tAvail, 2)} s` : "—"], ["Desplazamiento", isN(s.disp) ? `${fmt(s.disp, 1)} m` : "—"], ["Apoyo", s.stance ? `${s.stance}${isN(s.stanceAngle) ? ` (${fmt(s.stanceAngle)}°)` : ""}` : "—"], ["Impacto", s.source || "—"], ["Captura", `${fmt(s.quality * 100)} %`], ["Set · marcador", s.score ? `${s.set} · ${s.score}${s.pressure ? " · <b style='color:var(--accent)'>presión</b>" : ""}` : "sin lectura del marcador"], ["Dudas", s.review.length ? `<span class="flags">${s.review.map(r => `<span class="chip">${revTxt(r)}</span>`).join("")}</span>` : "ninguna"]].map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join("");
+  document.getElementById("g-ctx").innerHTML = [["Partido", `${m.id} vs ${m.rival}`], ["Vídeo", clock(s.vt)], ["Bola", sitTxt(s)], ["Tiempo disponible", isN(s.tAvail) ? `${fmt(s.tAvail, 2)} s` : "—"], ["Desplazamiento", isN(s.disp) ? `${fmt(s.disp, 1)} m` : "—"], ["Bote", isN(s.bounceDepth) ? `${fmt(s.bounceDepth, 1)} m dentro de la pista${isN(s.bounceToImpact) ? ` · ${fmt(s.bounceToImpact, 2)} s antes` : ""}` : "—"], ["Apoyo", s.stance ? `${s.stance}${isN(s.stanceAngle) ? ` (${fmt(s.stanceAngle)}°)` : ""}` : "—"], ["Impacto", s.source || "—"], ["Captura", `${fmt(s.quality * 100)} %`], ["Set · marcador", s.score ? `${s.set} · ${s.score}${s.pressure ? " · <b style='color:var(--accent)'>presión</b>" : ""}` : "sin lectura del marcador"], ["Dudas", s.review.length ? `<span class="flags">${s.review.map(r => `<span class="chip">${revTxt(r)}</span>`).join("")}</span>` : "ninguna"]].map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join("");
 }
 function renderRacket() {
   const rk = ser && ser.racket;
@@ -792,15 +815,16 @@ function renderCourt() {
   }
   const Ln = (x1, d1, x2, d2, w = 2) => `<line x1="${X(x1)}" y1="${Y(d1)}" x2="${X(x2)}" y2="${Y(d2)}" stroke="#eef3f6" stroke-width="${w}" stroke-opacity=".9"/>`;
   g += Ln(-6.4, 0, 6.4, 0, 4) + Ln(-5.485, 0, -5.485, 11.885) + Ln(5.485, 0, 5.485, 11.885) + Ln(-4.115, 0, -4.115, 11.885) + Ln(4.115, 0, 4.115, 11.885) + Ln(-5.485, 11.885, 5.485, 11.885, 3) + Ln(-4.115, 6.4, 4.115, 6.4) + Ln(0, 0, 0, 6.4) + Ln(0, 11.685, 0, 11.885);
-  if (pMode !== "density") a.forEach(s => { const c = pMode === "stance" ? stCol(s) : SITC(s); g += `<circle cx="${X(s.x).toFixed(1)}" cy="${Y(s.y).toFixed(1)}" r="4.5" fill="${c}" fill-opacity=".85" stroke="#0c0f13" stroke-width="1" data-id="${s.id}" data-tip="<b class='mono'>${s.id}</b><div class='mono'>${s.stance || "—"} · ${sitTxt(s)}</div>" style="cursor:pointer"/>`; });
+  if (pMode === "bounce") STROKES.filter(s => isN(s.bounceDepth) && (F("p-match") === "" || s.match === +F("p-match"))).forEach(s => { g += `<circle cx="${X(s.bounceX).toFixed(1)}" cy="${Y(11.885 - s.bounceDepth).toFixed(1)}" r="4.5" fill="var(--accent)" fill-opacity=".85" stroke="#0c0f13" stroke-width="1" data-id="${s.id}" data-tip="<b class='mono'>${s.id}</b><div class='mono'>bote a ${fmt(s.bounceDepth, 1)} m de la línea de fondo${isN(s.bounceToImpact) ? " · " + fmt(s.bounceToImpact, 2) + " s antes del impacto" : ""}</div>" style="cursor:pointer"/>`; });
+  if (pMode !== "density" && pMode !== "bounce") a.forEach(s => { const c = pMode === "stance" ? stCol(s) : SITC(s); g += `<circle cx="${X(s.x).toFixed(1)}" cy="${Y(s.y).toFixed(1)}" r="4.5" fill="${c}" fill-opacity=".85" stroke="#0c0f13" stroke-width="1" data-id="${s.id}" data-tip="<b class='mono'>${s.id}</b><div class='mono'>${s.stance || "—"} · ${sitTxt(s)}</div>" style="cursor:pointer"/>`; });
   g += `<text x="${X(6.55)}" y="${Y(0) + 4}" font-size="11" fill="var(--ink-3)" font-family="Archivo, sans-serif">RED</text><text x="${X(5.6)}" y="${Y(11.885) + 4}" font-size="11" fill="var(--ink-3)" font-family="Archivo, sans-serif">FONDO</text>`;
   g += `<line x1="${X(-6.6)}" y1="${Y(15.6)}" x2="${X(-4.6)}" y2="${Y(15.6)}" stroke="var(--ink-2)" stroke-width="1.5"/><text x="${X(-6.6)}" y="${Y(15.6) - 5}" font-size="10.5" fill="var(--ink-2)" font-family="JetBrains Mono, monospace">2 m</text>`;
   document.getElementById("court").innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Posición en el impacto" style="max-height:640px">${g}</svg>`;
   document.querySelectorAll("#court circle[data-id]").forEach(c => c.addEventListener("click", () => { loadStroke(STROKES.find(s => s.id === c.dataset.id)); showTab("golpe"); }));
-  document.getElementById("p-legend").innerHTML = pMode === "density" ? `<span style="display:flex;align-items:center;gap:4px">menos ${RAMP.map(c => `<i style="background:${c};width:14px;height:10px;margin:0;border-radius:2px"></i>`).join("")} más golpes</span>` : pMode === "stance" ? `<span><i class="dot" style="background:var(--s1)"></i>Abierto</span><span><i class="dot" style="background:var(--s2)"></i>Semiabierto</span><span><i class="dot" style="background:var(--s3)"></i>Cerrado</span>` : `<span><i class="dot" style="background:var(--crit)"></i>Rápida</span><span><i class="dot" style="background:var(--warn, #e3b341)"></i>Abierta</span><span><i class="dot" style="background:var(--good)"></i>Neutra</span><span><i class="dot" style="background:#8b96a1"></i>Otra</span>`;
+  document.getElementById("p-legend").innerHTML = pMode === "density" ? `<span style="display:flex;align-items:center;gap:4px">menos ${RAMP.map(c => `<i style="background:${c};width:14px;height:10px;margin:0;border-radius:2px"></i>`).join("")} más golpes</span>` : pMode === "bounce" ? `<span><i class="dot" style="background:var(--accent)"></i>Bote de la bola del rival (posición exacta: la bola está en el suelo)</span>` : pMode === "stance" ? `<span><i class="dot" style="background:var(--s1)"></i>Abierto</span><span><i class="dot" style="background:var(--s2)"></i>Semiabierto</span><span><i class="dot" style="background:var(--s3)"></i>Cerrado</span>` : `<span><i class="dot" style="background:var(--crit)"></i>Rápida</span><span><i class="dot" style="background:var(--warn, #e3b341)"></i>Abierta</span><span><i class="dot" style="background:var(--good)"></i>Neutra</span><span><i class="dot" style="background:#8b96a1"></i>Otra</span>`;
   const avgY = mean(a.map(s => s.y)) - 11.885;
   const st = (l, v, d) => `<div style="display:grid;gap:2px"><h3>${l}</h3><div class="mono" style="font-size:20px;font-weight:500">${v}</div><div class="note">${d}</div></div>`;
-  document.getElementById("p-stats").innerHTML = st("Golpes", a.length, "con posición en pista") + st("Detrás de la línea", `${fmt(pct(a, s => s.y > 11.885))} %`, isN(avgY) ? `media ${fmt(Math.abs(avgY), 1)} m ${avgY > 0 ? "detrás" : "delante"} de la línea de fondo` : "—") + st("Bola corta", `${fmt(pct(a, s => s.y < 10.6))} %`, "impacto a más de 1,3 m dentro de la pista") + st("Mitad derecha", `${fmt(pct(a, s => s.x > 0))} %`, "impacto en el lado derecho de la imagen");
+  document.getElementById("p-stats").innerHTML = st("Golpes", a.length, "con posición en pista") + st("Detrás de la línea", `${fmt(pct(a, s => s.y > 11.885))} %`, isN(avgY) ? `media ${fmt(Math.abs(avgY), 1)} m ${avgY > 0 ? "detrás" : "delante"} de la línea de fondo` : "—") + st("Bola corta", `${fmt(pct(a, s => s.y < 10.6))} %`, "impacto a más de 1,3 m dentro de la pista") + st("Lado de su derecha", `${fmt(pct(a, s => s.x > 0))} %`, "impacto en la mitad de la pista de su derecha (zurdos reflejados)");
 }
 document.getElementById("p-match").addEventListener("change", renderCourt);
 

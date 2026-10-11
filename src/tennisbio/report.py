@@ -69,12 +69,17 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
     m, ph, rk = s.get("metrics", {}), s.get("phases", {}), s.get("racket", {})
     t_av = _num(m.get("time_available_s"))
     pos = s.get("court_pos_m")
-    x = None if pos is None else pos[0]
+    # left-handers are mirrored so that "+x" is always the forehand side (comparable players)
+    x = None if pos is None else (-pos[0] if match.player.hand == "left" else pos[0])
     y = None if pos is None else NET_Y - pos[1]                # distance from the net, as in the mockup
     ch = _num(m.get("contact_height_pct"))
     height = None if ch is None else "baja" if ch < 40 else "alta" if ch > 75 else "media"
     disp = _num(s.get("displacement_m"))
-    fast, wide, short = (t_av is not None and t_av < 1.15), (disp is not None and disp > 2.6), (y is not None and y < 10.6)
+    bounce = s.get("bounce_court_m")
+    bounce_depth = None if bounce is None else round(bounce[1], 2)      # m in front of her baseline
+    # short ball: bounce more than 4.5 m inside the court when known (else: hit from inside the court)
+    short_ball = (bounce_depth > 4.5) if bounce_depth is not None else (y is not None and y < 10.6)
+    fast, wide, short = (t_av is not None and t_av < 1.15), (disp is not None and disp > 2.6), short_ball
     vals = {k: (_num(m.get(src)) if src else None) for k, (*_, src) in METRICS.items()}
     vals["rHead"] = _num((rk.get("loaded") or {}).get("head_above_wrist_cm"))
     acc = _num((rk.get("acceleration") or {}).get("head_above_wrist_cm"))
@@ -98,7 +103,9 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
     return {
         "id": f"{match.id}-{idx + 1:03d}", "idx": 0, "match": match_idx, "frac": t / duration_s if duration_s else 0,
         **_score_fields(s.get("score")), "outcome": None, "finishType": None,
-        "tAvail": t_av, "disp": disp, "height": height, "x": x, "y": y, "fast": fast, "wide": wide, "short": short,
+        "tAvail": t_av, "bounceDepth": bounce_depth,
+        "bounceX": None if bounce is None else (-bounce[0] if match.player.hand == "left" else bounce[0]),
+        "bounceToImpact": _num(m.get("bounce_to_impact_s")), "disp": disp, "height": height, "x": x, "y": y, "fast": fast, "wide": wide, "short": short,
         "stance": s.get("stance"), "stanceAngle": s.get("stance_angle_deg"),
         "chainOK": (s.get("chain") or {}).get("proximal_to_distal"), "chainPeaks": (s.get("chain") or {}).get("peaks_s"),
         "quality": round(quality, 3), "review": s.get("review", []), "source": s.get("impact_source"),

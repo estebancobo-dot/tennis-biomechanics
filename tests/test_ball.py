@@ -53,3 +53,19 @@ def test_track_step_interpolates():
     out = bt.track([np.zeros((576, 1024, 3), np.uint8)] * 7, step=2)
     assert out.shape == (7, 3) and not np.isnan(out[:7, 0]).any()
     assert abs(out[1, 0] - 201.5 * 2) < 1
+
+
+def test_bounce_before_hit_on_near_half():
+    from tennisbio.ball import bounce_before
+    T, fps = 80, 25
+    tr = np.full((T, 3), np.nan)
+    for t in range(T):
+        if t <= 40:
+            tr[t, :2] = (900 + 4 * t, 300 + 10 * t)                # coming down the image to the bounce
+        elif t <= 60:
+            tr[t, :2] = (1060 + 4 * (t - 40), 700 + 1 * (t - 40))  # after the bounce: flatter
+        else:
+            tr[t, :2] = (1140 - 6 * (t - 60), 720 - 15 * (t - 60))  # hit at 60
+    b = bounce_before(tr, 60, fps, min_y=432)
+    assert b is not None and abs(b.frame - 40) <= 1
+    assert bounce_before(tr, 60, fps, min_y=900) is None
