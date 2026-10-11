@@ -13,6 +13,40 @@ from .racket import pick_racket
 from .racket3d import Camera
 from .racket_face import face_track
 
+L_SH, R_SH, L_HIP, R_HIP = 5, 6, 11, 12          # COCO-WholeBody indices (RTMW3D)
+
+
+class _Recorder:
+    """Wraps the 3D whole-body model to keep its outputs (reused for 3D trunk rotation)."""
+
+    def __init__(self, model, frames: dict):
+        self.model, self.by_id, self.out = model, {id(fr): f for f, fr in frames.items()}, {}
+
+    def __call__(self, frame, box):
+        res = self.model(frame, box)
+        self.out[self.by_id.get(id(frame))] = res
+        return res
+
+
+def trunk_rotation_3d(k3: np.ndarray, sc: np.ndarray, cam: Camera, hand="right", min_score=0.4):
+    """(shoulder turn, hip turn) in degrees about the vertical, from RTMW3D keypoints.
+
+    0 = line square to the net; + = dominant shoulder/hip turned back (towards the camera), as in
+    the backswing of a forehand. Same world frame as the racket solver (Camera basis)."""
+    if min(sc[[L_SH, R_SH, L_HIP, R_HIP]]) < min_score:
+        return None
+    r, u, f = cam.basis
+    px_per_m = (max(k3[15, 1], k3[16, 1]) - k3[0, 1]) / (0.93 * 1.8)
+    if px_per_m <= 0:
+        return None
+    to_w = lambda p: (p[0] / px_per_m) * r - (p[1] / px_per_m) * u + p[2] * f
+    dom = 1 if hand == "right" else -1
+    out = []
+    for a, b in ((L_SH, R_SH), (L_HIP, R_HIP)):
+        d = to_w(k3[b]) - to_w(k3[a])                     # left → right in world (x right, y to the net)
+        out.append(float(-dom * np.degrees(np.arctan2(d[1], d[0] * dom))))
+    return tuple(out)
+
 
 def read_frames(video: Path, a: int, b: int) -> dict:
     cap = cv2.VideoCapture(str(video))
@@ -43,9 +77,17 @@ def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | N
             if poly is not None:
                 rkps[f] = rpose(fr, [[*poly.min(0), *poly.max(0)]])[0][0]
     hand_frames = {f: fr for f, fr in frames.items() if (f - a) % max(1, hand3d_step) == 0} if wb3d is not None else {}
+    cam = Camera(pitch_deg if pitch_deg is not None else 20.0)
+    rec = _Recorder(wb3d, hand_frames) if wb3d is not None else None
     track = face_track(hand_frames, run.boxes, run.img, run.rackets, sk, run.height_px, height_m, i, a, b,
-                       wb3d, Camera(pitch_deg if pitch_deg is not None else 20.0), grip_close_deg, fps=fps,
-                       racket_kps=rkps if rpose is not None else None)
+                       rec, cam, grip_close_deg, fps=fps, racket_kps=rkps if rpose is not None else None)
+    rot = {}
+    if rec is not None:
+        for f, res in rec.out.items():
+            if f is not None and res is not None:
+                rt = trunk_rotation_3d(res[0], res[1], cam, sk.hand)
+                if rt is not None:
+                    rot[f] = rt
     by_f = {t["frame"]: t for t in track}
     phases = {}
     for name, p in stroke.phases.items():
@@ -55,7 +97,16 @@ def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | N
             continue
         phases[name] = {k: t[k] for k in ("points_to", "tilt_deg", "yaw_deg", "observed", "hand_evidence", "ambiguous")}
     per = [by_f.get(f) or {} for f in range(a, b)]
+    trunk = {}
+    lf = (stroke.phases.get("loaded") or {}).get("frame")
+    if lf is not None and rot:
+        near = min(rot, key=lambda f: abs(f - lf))
+        if abs(near - lf) <= max(1, hand3d_step):
+            sh, hp = rot[near]
+            trunk = {"shoulder_turn_3d_deg": round(sh, 1), "hip_turn_3d_deg": round(hp, 1), "x_factor_3d_deg": round(sh - hp, 1)}
     return {
+        "trunk3d": trunk,
+        "rot3d": {str(f): [round(v, 1) for v in rt] for f, rt in rot.items()},
         "phases": phases,
         "first": a,
         "tilt": [t.get("tilt_deg") for t in per],

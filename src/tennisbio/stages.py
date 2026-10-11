@@ -317,7 +317,8 @@ def st_fine(ctx: Context):
             faces = stroke_faces(clip, run, r, p.height_m, pitch if H is not None else None, rpose, wb3d,
                                  fcfg.get("hand3d_step", 2), p.forehand_grip_close_deg)
             d["face"] = faces["phases"]
-            ser["face"] = {key: faces[key] for key in ("first", "tilt", "yaw", "label", "observed", "keypoints", "source", "hand3d")}
+            d["metrics"].update(faces["trunk3d"])
+            ser["face"] = {key: faces[key] for key in ("first", "tilt", "yaw", "label", "observed", "keypoints", "source", "hand3d", "rot3d")}
         sdir = ctx.path("series")
         sdir.mkdir(exist_ok=True)
         _write(sdir / f"w{k:04d}.json", ser)

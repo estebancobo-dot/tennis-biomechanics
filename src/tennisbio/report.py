@@ -20,6 +20,8 @@ TEMPLATE = Path(__file__).with_name("report_template.html")
 METRICS = {
     "xf": ("body", "X-factor", "separación hombros–cadera, armado", "°", 1, 3.4, 2, "x_factor_deg"),
     "sh": ("body", "Rotación de hombros", "armado", "°", 0, 6, 2, "shoulder_turn_loaded_deg"),
+    "xf3d": ("body", "X-factor 3D", "estimación monocular (RTMW3D), armado", "°", 0, 6, 2, "x_factor_3d_deg"),
+    "sh3d": ("body", "Rotación de hombros 3D", "estimación monocular, armado · 0 = de cara a la red", "°", 0, 8, 2, "shoulder_turn_3d_deg"),
     "knee": ("body", "Descenso de cadera", "% de altura, espera → armado", "%", 1, 1.4, 2, "hip_drop_pct"),
     "elbow": ("body", "Codo en el impacto", "hombro–codo–muñeca", "°", 0, 7, 2, "elbow_impact_deg"),
     "lat": ("body", "Impacto lateral", "% de altura desde la cadera", "%", 1, 3.5, 3, "contact_lateral_pct"),

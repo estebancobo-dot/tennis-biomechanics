@@ -66,3 +66,19 @@ def test_observe_keypoints_face_on_and_edge_on():
     edge_on = face_on.copy()
     edge_on[3:, 0] = 0
     assert observe_keypoints(edge_on, ppm).width_ratio < 1e-6
+
+
+def test_trunk_rotation_3d_square_and_turned():
+    from tennisbio.racket3d import Camera
+    from tennisbio.racket_orientation import trunk_rotation_3d
+    cam = Camera(0.0)                     # level camera behind the player: x right, depth = towards the net
+    k3 = np.zeros((133, 3))
+    k3[0] = [0, 0, 0]
+    k3[15], k3[16] = [0, 300, 0], [0, 300, 0]
+    k3[5], k3[6], k3[11], k3[12] = [-40, 60, 0], [40, 60, 0], [-30, 160, 0], [30, 160, 0]
+    sc = np.ones(133)
+    sh, hp = trunk_rotation_3d(k3, sc, cam)
+    assert abs(sh) < 1e-6 and abs(hp) < 1e-6
+    k3[6, 2], k3[5, 2] = -0.2, 0.2        # right shoulder back (towards the camera), left forward
+    sh, hp = trunk_rotation_3d(k3, sc, cam)
+    assert 30 < sh < 70 and abs(hp) < 1e-6
