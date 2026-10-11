@@ -35,12 +35,17 @@ SIDELINES = {"left_doubles": -W_DOUBLES / 2, "left_singles": -W_SINGLES / 2,
              "right_singles": W_SINGLES / 2, "right_doubles": W_DOUBLES / 2}
 
 
-def white_lines(frame: np.ndarray) -> np.ndarray:
+# (top-hat contrast, max saturation, min brightness): strict first; then faint thin lines in wide
+# shots; then lines tinted by the surface (clay)
+LINE_PARAMS = [(25, 70, 150), (15, 70, 130), (20, 115, 140)]
+
+
+def white_lines(frame: np.ndarray, tophat_min=25, max_sat=70, min_val=150) -> np.ndarray:
     """Binary mask of thin bright low-saturation structures (court lines)."""
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     tophat = cv2.morphologyEx(gray, cv2.MORPH_TOPHAT, cv2.getStructuringElement(cv2.MORPH_RECT, (15, 15)))
-    m = (tophat > 25) & (hsv[..., 1] < 70) & (hsv[..., 2] > 150)
+    m = (tophat > tophat_min) & (hsv[..., 1] < max_sat) & (hsv[..., 2] > min_val)
     return m.astype(np.uint8)
 
 
@@ -87,7 +92,9 @@ def dilate_lines(mask: np.ndarray) -> np.ndarray:
 
 
 def score_homography(H_court_to_img: np.ndarray, mask: np.ndarray, dilated: np.ndarray | None = None) -> float:
-    """Fraction of points sampled along all model lines that fall on (dilated) white pixels."""
+    """Fraction of points sampled along all model lines that fall on (dilated) white pixels,
+    minus the share of white pixels of the area those points cover (on crowd, logos or a
+    textured surface almost any line "hits", which says nothing)."""
     dil = dilate_lines(mask) if dilated is None else dilated
     h, w = dil.shape
     img = MODEL_PTS @ H_court_to_img.T
@@ -96,7 +103,13 @@ def score_homography(H_court_to_img: np.ndarray, mask: np.ndarray, dilated: np.n
     img = img[:, :2] / img[:, 2:]
     inside = (img[:, 0] >= 0) & (img[:, 0] < w) & (img[:, 1] >= 0) & (img[:, 1] < h)
     xy = img[inside].astype(int)
-    return int(dil[xy[:, 1], xy[:, 0]].sum()) / len(MODEL_PTS)
+    hits = int(dil[xy[:, 1], xy[:, 0]].sum()) / len(MODEL_PTS)
+    if len(xy) < 3:
+        return hits
+    x0, y0 = xy.min(0)
+    x1, y1 = xy.max(0) + 1
+    density = float(dil[y0:y1, x0:x1].mean())               # white share of the court's bounding box
+    return hits - density
 
 
 def plausible(H_court_to_img: np.ndarray, shape, min_area=0.04) -> bool:
@@ -110,11 +123,18 @@ def plausible(H_court_to_img: np.ndarray, shape, min_area=0.04) -> bool:
     q = corners[:, :2] / corners[:, 2:]
     if not cv2.isContourConvex(q.astype(np.float32)):
         return False
+    # the whole doubles court stays near the frame (main camera), and no side collapses
+    if (q[:, 0] < -0.3 * w).any() or (q[:, 0] > 1.3 * w).any() or (q[:, 1] < -0.2 * h).any() or (q[:, 1] > 1.25 * h).any():
+        return False
+    if min(np.linalg.norm(q - np.roll(q, 1, axis=0), axis=1)) < 0.08 * min(w, h):
+        return False
     if cv2.contourArea(q.astype(np.float32)) < min_area * w * h:
         return False
     near_y, far_y = q[:2, 1].mean(), q[2:, 1].mean()
     near_w, far_w = abs(q[1, 0] - q[0, 0]), abs(q[2, 0] - q[3, 0])
-    return near_y > far_y + 0.1 * h and near_w > far_w and q[1, 0] > q[0, 0]
+    # broadcast perspective: the far baseline is 15-95 % of the near one, both reasonably wide
+    return (near_y > far_y + 0.1 * h and q[1, 0] > q[0, 0] and 0.15 * near_w < far_w < 0.95 * near_w
+            and near_w > 0.25 * w and far_y > -0.05 * h and near_y > 0.45 * h)
 
 
 @dataclass
@@ -135,8 +155,19 @@ class CourtFit:
         return p[:, :2] / p[:, 2:]
 
 
-def fit_court(frame: np.ndarray, max_lines=6) -> CourtFit | None:
-    mask = white_lines(frame)
+def fit_court(frame: np.ndarray, max_lines=6, good=0.8, min_score=0.5) -> CourtFit | None:
+    """Best court homography; tries stricter line masks first, then more permissive ones."""
+    best = None
+    for params in LINE_PARAMS:
+        fit = _fit_with(frame, white_lines(frame, *params), max_lines)
+        if fit is not None and (best is None or fit.score > best.score):
+            best = fit
+        if best is not None and best.score >= good:
+            break
+    return best if best is not None and best.score >= min_score else None
+
+
+def _fit_with(frame: np.ndarray, mask: np.ndarray, max_lines=6) -> CourtFit | None:
     dil = dilate_lines(mask)
     h, w = mask.shape
     segs = cv2.HoughLinesP(mask * 255, 1, np.pi / 360, threshold=60, minLineLength=w // 12, maxLineGap=10)
@@ -144,8 +175,10 @@ def fit_court(frame: np.ndarray, max_lines=6) -> CourtFit | None:
         return None
     segs = segs.reshape(-1, 4).astype(float)        # (N, 1, 4) or (N, 4) depending on the OpenCV version
     ang = np.degrees(np.arctan2(segs[:, 3] - segs[:, 1], segs[:, 2] - segs[:, 0])) % 180
-    horiz = _merge(segs[(ang < 12) | (ang > 168)], "h")[:max_lines]
-    sides = _merge(segs[(ang > 25) & (ang < 155)], "s")[:max_lines]
+    # broadcast cameras have no roll: court "horizontal" lines are horizontal in the image; the
+    # sidelines may be shallow from a low camera, so everything else is a sideline candidate
+    horiz = _merge(segs[(ang < 4) | (ang > 176)], "h")[:max_lines]
+    sides = _merge(segs[(ang > 6) & (ang < 174)], "s")[:max_lines]
     best = None
     for h2 in combinations(horiz, 2):
         h2 = sorted(h2, key=lambda L: -(-L[2] / L[1]))            # lower line in the image first (nearer)
