@@ -39,3 +39,17 @@ sd 0,083 con cabezas de 25-50 px y 0,045 con 50-100 px (sesgo +0,05 / +0,01).
 Conclusión: con la silueta sola **no es suficiente**. Incluso sin ruido, ~11 % de fotogramas
 caen en la rama espejo. Falta la restricción de la mano/antebrazo en 3D y una medida más
 precisa del cabezal (modelo de 5 puntos, más resolución).
+
+### Con la mano y el antebrazo en 3D (RTMW3D)
+La normal de la palma (más el desfase de la empuñadura) y la dirección del antebrazo entran como
+evidencia ponderada en la búsqueda. Validación sintética con ruido de silueta 0,06:
+
+| Error de la evidencia de la mano | Error mediano | ≤15° | ≤30° | "Apunta a…" correcto |
+|---|---|---|---|---|
+| Sin mano | 20° | 42 % | 60 % | 72 % |
+| 60° | 8,6° | 75 % | 90 % | 87 % |
+| 40° | 7,6° | 83 % | 96 % | 91 % |
+| 25° | 6,6° | 90 % | 99 % | 92 % |
+
+Pendiente: medir el error real de la palma de RTMW3D en TV (no hay datos públicos con la
+orientación 3D de la mano en tenis; primera comprobación por coherencia en clips reales).

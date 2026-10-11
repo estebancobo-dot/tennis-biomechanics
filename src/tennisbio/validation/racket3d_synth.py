@@ -8,7 +8,7 @@ face direction is recovered.
 import numpy as np
 from scipy.spatial.transform import Rotation, Slerp
 
-from ..racket3d import Camera, Observation, describe_face, refine, solve_sequence, synthetic_observation
+from ..racket3d import Camera, HandPrior, Observation, describe_face, refine, solve_sequence, synthetic_observation
 
 
 def random_stroke(rng, T=60, impact=36, fps=50):
@@ -42,7 +42,17 @@ def noisy(obs: Observation, rng, axis_deg=3.0, ratio_sd=0.05) -> Observation:
                        float(np.clip(obs.width_ratio + rng.normal(0, ratio_sd), 0, 1.05)))
 
 
-def run(n_strokes=200, seed=0, blur_frames=2, pitch_true=(15, 25), solver_pitch=20.0, use_refine=True, **noise):
+def perturb(v, rng, sd_deg):
+    """Unit vector v rotated by a random angle with standard deviation sd_deg."""
+    axis = rng.normal(size=3)
+    axis -= (axis @ v) * v
+    axis /= np.linalg.norm(axis)
+    ang = np.radians(rng.normal(0, sd_deg))
+    return v * np.cos(ang) + np.cross(axis, v) * np.sin(ang)
+
+
+def run(n_strokes=200, seed=0, blur_frames=2, pitch_true=(15, 25), solver_pitch=20.0, use_refine=True,
+        hand_sd_deg=None, hand_coverage=0.8, **noise):
     rng = np.random.default_rng(seed)
     errs, errs_out, label_ok, amb = [], [], [], []
     for _ in range(n_strokes):
@@ -52,9 +62,14 @@ def run(n_strokes=200, seed=0, blur_frames=2, pitch_true=(15, 25), solver_pitch=
         if blur_frames:
             for k in range(imp - blur_frames, imp + blur_frames + 1):
                 obs[k] = None
-        axes, normals, ambiguous = solve_sequence(obs, Camera(solver_pitch), imp)
+        priors = None
+        if hand_sd_deg is not None:   # simulated hand/forearm evidence with its own error
+            priors = [HandPrior(face=perturb(n, rng, hand_sd_deg), face_sd_deg=max(hand_sd_deg, 15.0),
+                                forearm=perturb(a, rng, 30.0)) if rng.random() < hand_coverage else None
+                      for a, n in zip(A, N)]
+        axes, normals, ambiguous = solve_sequence(obs, Camera(solver_pitch), imp, priors=priors)
         if use_refine:
-            axes, normals = refine(axes, normals, obs, Camera(solver_pitch), imp)
+            axes, normals = refine(axes, normals, obs, Camera(solver_pitch), imp, priors=priors)
         for t in range(len(A)):
             e = float(np.degrees(np.arccos(np.clip(normals[t] @ N[t], -1, 1))))
             errs.append(e)

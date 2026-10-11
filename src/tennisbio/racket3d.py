@@ -116,9 +116,30 @@ def _rot(a, n):
     return Rotation.from_matrix(np.c_[a, np.cross(n, a), n])
 
 
+@dataclass
+class HandPrior:
+    """Per-frame evidence from the 3D hand/forearm (world frame, unit vectors or None)."""
+    face: np.ndarray | None = None       # expected hitting-face normal (palm normal + grip offset)
+    face_sd_deg: float = 30.0
+    forearm: np.ndarray | None = None    # elbow → wrist
+
+
+def prior_cost(a, n, p: "HandPrior | None") -> float:
+    if p is None:
+        return 0.0
+    c = 0.0
+    if p.face is not None:
+        c += (_ang(n, p.face) / p.face_sd_deg) ** 2
+    if p.forearm is not None:
+        # the racket leaves the hand forwards: pointing back along the forearm is anatomically impossible
+        c += (max(0.0, -0.2 - float(a @ p.forearm)) / 0.3) ** 2
+    return c
+
+
 def solve_sequence(obs: list[Observation | None], cam: Camera, impact: int | None,
                    shot_dir=np.array([0.0, 1.0, 0.15]), impact_tol_deg=35.0,
-                   max_turn_deg_per_frame=25.0, max_accel_deg_per_frame2=12.0):
+                   max_turn_deg_per_frame=25.0, max_accel_deg_per_frame2=12.0,
+                   priors: list | None = None):
     """Most consistent orientation per frame. Returns (axes, normals, ambiguous) lists.
 
     Second-order Viterbi over pairs of consecutive observed frames: besides small rotations
@@ -140,10 +161,12 @@ def solve_sequence(obs: list[Observation | None], cam: Camera, impact: int | Non
 
     def unary(k):
         t = idx[k]
+        pr = priors[t] if priors is not None else None
+        u = np.array([prior_cost(a, n, pr) for a, n in C[k]])
         if impact is None or abs(t - impact) > 6:
-            return np.zeros(len(C[k]))
+            return u
         tol = impact_tol_deg + 8.0 * abs(t - impact)
-        return np.array([(_ang(n, shot) / tol) ** 2 for _, n in C[k]])
+        return u + np.array([(_ang(n, shot) / tol) ** 2 for _, n in C[k]])
 
     def vel(k):  # rotation vectors from frame k-1 to k, per frame: shape (n_k, n_{k-1}, 3)
         gap = idx[k] - idx[k - 1]
@@ -210,7 +233,8 @@ def _predict(Rm: np.ndarray, cam: Camera):
 
 
 def refine(axes, normals, obs: list[Observation | None], cam: Camera, impact: int | None,
-           shot_dir=np.array([0.0, 1.0, 0.15]), sd_axis_deg=3.0, sd_ratio=0.05, sd_acc_deg=6.0, impact_tol_deg=35.0):
+           shot_dir=np.array([0.0, 1.0, 0.15]), sd_axis_deg=3.0, sd_ratio=0.05, sd_acc_deg=6.0, impact_tol_deg=35.0,
+           priors: list | None = None):
     """Maximum a posteriori refinement of a whole stroke, starting from the Viterbi sequence.
 
     Unknowns: one rotation per frame (including blurred frames). Terms: reproduce each observed
@@ -228,6 +252,7 @@ def refine(axes, normals, obs: list[Observation | None], cam: Camera, impact: in
     o_lr = np.array([obs[t].length_ratio for t in o_idx])
     o_wr = np.array([obs[t].width_ratio for t in o_idx])
     sa, sr, sacc = np.radians(sd_axis_deg), sd_ratio, np.radians(sd_acc_deg)
+    f_idx = [t for t in range(T) if priors is not None and priors[t] is not None and priors[t].face is not None]
 
     def rots(x):
         return Rotation.from_rotvec(x.reshape(T, 3)) * ref
@@ -244,6 +269,8 @@ def refine(axes, normals, obs: list[Observation | None], cam: Camera, impact: in
         if impact is not None:
             n = M[impact, :, 2]
             res.append(np.array([_ang(n, shot) / impact_tol_deg]))
+        if f_idx:
+            res.append(np.array([_ang(M[t, :, 2], priors[t].face) / priors[t].face_sd_deg for t in f_idx]))
         return np.concatenate(res)
 
     # sparsity: frame t only touches its own observation, three acceleration terms and the anchor
@@ -251,7 +278,8 @@ def refine(axes, normals, obs: list[Observation | None], cam: Camera, impact: in
 
     n_obs = 3 * len(o_idx)
     n_acc = 3 * max(0, T - 2)
-    J = lil_matrix((n_obs + n_acc + (impact is not None), 3 * T), dtype=int)
+    J = lil_matrix((n_obs + n_acc + (impact is not None) + len(f_idx), 3 * T), dtype=int)
+    f_row = {t: n_obs + n_acc + (impact is not None) + k for k, t in enumerate(f_idx)}
     pos = {t: k for k, t in enumerate(o_idx)}
     for t in range(T):
         cols = slice(3 * t, 3 * t + 3)
@@ -263,9 +291,50 @@ def refine(axes, normals, obs: list[Observation | None], cam: Camera, impact: in
                 J[n_obs + 3 * j:n_obs + 3 * j + 3, cols] = 1
         if impact is not None and t == impact:
             J[n_obs + n_acc, cols] = 1
+        if t in f_row:
+            J[f_row[t], cols] = 1
     sol = least_squares(resid, np.zeros(3 * T), method="trf", x_scale=0.1, max_nfev=60, jac_sparsity=J)
     M = rots(sol.x).as_matrix()
     return [M[t, :, 0] for t in range(T)], [M[t, :, 2] for t in range(T)]
+
+
+RIGHT_HAND, LEFT_HAND = 112, 91          # COCO-WholeBody: first keypoint of each hand
+H_WRIST, H_INDEX_MCP, H_PINKY_MCP = 0, 5, 17
+
+
+def hand_prior(kp3d: np.ndarray, scores: np.ndarray, cam: Camera, hand="right", grip_close_deg=15.0,
+               min_score=0.4, px_per_m: float | None = None) -> HandPrior | None:
+    """Palm normal and forearm direction from RTMW3D keypoints (x, y in crop px; z depth, away = +).
+
+    The hitting face of a forehand is on the palm side; the grip offset (semi-western closes the
+    face) rotates it about the forearm-hand line. Returned vectors are in the world frame.
+    """
+    r, u, f = cam.basis
+    base = RIGHT_HAND if hand == "right" else LEFT_HAND
+    elbow, wrist = (8, 10) if hand == "right" else (7, 9)
+    if px_per_m is None:   # nose → lowest ankle ≈ 0.93 of the height
+        px_per_m = (max(kp3d[15, 1], kp3d[16, 1]) - kp3d[0, 1]) / (0.93 * 1.8)
+    to_w = lambda p: (p[0] / px_per_m) * r - (p[1] / px_per_m) * u + p[2] * f
+    hk = kp3d[base:base + 21]
+    hs = scores[base:base + 21]
+    out = HandPrior()
+    if min(scores[elbow], scores[wrist]) >= min_score:
+        fa = to_w(kp3d[wrist]) - to_w(kp3d[elbow])
+        out.forearm = _unit(fa)
+    if min(hs[H_WRIST], hs[H_INDEX_MCP], hs[H_PINKY_MCP]) >= min_score:
+        w0, i0, p0 = to_w(hk[H_WRIST]), to_w(hk[H_INDEX_MCP]), to_w(hk[H_PINKY_MCP])
+        palm = np.cross(i0 - w0, p0 - w0)
+        if hand == "left":
+            palm = -palm
+        if np.linalg.norm(palm) > 1e-9:
+            palm = _unit(palm)
+            hand_dir = _unit((i0 + p0) / 2 - w0)
+            g = np.radians(-grip_close_deg if hand == "right" else grip_close_deg)
+            # Rodrigues rotation of the palm normal about the hand direction
+            out.face = _unit(palm * np.cos(g) + np.cross(hand_dir, palm) * np.sin(g) + hand_dir * (hand_dir @ palm) * (1 - np.cos(g)))
+            spread = np.linalg.norm(i0 - p0)
+            out.face_sd_deg = float(np.clip(25.0 * 0.06 / max(spread, 1e-3), 25.0, 80.0))   # tiny hands → weak evidence
+    return out if (out.face is not None or out.forearm is not None) else None
 
 
 FACE_LABELS_ES = {"down": "suelo", "up": "cielo", "back": "valla trasera", "front": "red",
@@ -294,6 +363,31 @@ def observe(head_px: np.ndarray, tip_px: np.ndarray, wrist_px: np.ndarray, head_
     d = tip_px - wrist_px
     return Observation(axis2d=_unit(d), length_ratio=float(np.linalg.norm(d) / (GRIP_TO_TIP * px_per_m)),
                        width_ratio=float(head_width_px / (HEAD_WIDTH * px_per_m)))
+
+
+def observe_polygon(poly: np.ndarray, wrist_px: np.ndarray, px_per_m: float) -> Observation | None:
+    """Observation from a racket outline: tip = far end from the hand, head width measured across
+    the head part (the far 56 % of the racket)."""
+    from .racket import polygon_mask
+
+    if poly is None or len(poly) < 3 or np.any(np.isnan(wrist_px)):
+        return None
+    x0, y0 = np.floor(poly.min(0)).astype(int)
+    x1, y1 = np.ceil(poly.max(0)).astype(int)
+    m = polygon_mask(poly - [x0, y0], (y1 - y0 + 1, x1 - x0 + 1))
+    ys, xs = np.nonzero(m)
+    pts = np.c_[xs + x0, ys + y0].astype(float)
+    if len(pts) < 20:
+        return None
+    d = pts - wrist_px
+    dist = np.linalg.norm(d, axis=1)
+    tip = pts[np.argsort(dist)[-max(3, len(pts) // 50):]].mean(0)
+    axis = _unit(tip - wrist_px)
+    along = d @ axis
+    head = pts[along >= along.max() * 0.44]
+    perp = (head - wrist_px) @ np.array([-axis[1], axis[0]])
+    width = float(np.percentile(perp, 98) - np.percentile(perp, 2))
+    return observe(None, tip, wrist_px, width, px_per_m)
 
 
 def synthetic_observation(a: np.ndarray, n: np.ndarray, cam: Camera) -> Observation:
