@@ -15,6 +15,22 @@ Cada número sale de un script reproducible contra datos anotados por humanos; n
 Notas: en ~57 % de las anotaciones la empuñadura está oculta en la mano; el eje se toma de
 garganta→punta. La cara abierta/cerrada no se mide con la silueta (requiere el modelo de 5 puntos).
 
+### Modelo de 5 puntos (RacketVision RTMPose-m, exportado a ONNX)
+`uv run python scripts/export_racketpose.py` (pesos oficiales, licencia MIT). Con la caja de la
+raqueta, 292 raquetas del split `test` (L = longitud punta→garganta):
+
+| Punto | Error mediano | PCK@0,2·L |
+|---|---|---|
+| Punta | 0,054·L | 93 % |
+| Garganta | 0,057·L | 93 % |
+| Empuñadura (visible en 130) | 0,066·L | 88 % |
+| Borde izquierdo | 0,093·L | 74 % |
+| Borde derecho | 0,089·L | 76 % |
+
+Eje punta–garganta: error mediano 2,9°, p90 9,2°. Las puntuaciones del modelo no separan
+aciertos de fallos (no se filtra por ellas; la continuidad temporal decide). Los bordes dan la
+anchura aparente del cabezal → apertura de la cara, sin depender de la silueta.
+
 ## Impactos — F3Set-Tennis (TV, contacto exacto por fotograma)
 `uv run python scripts/validate_f3set.py --root <datasets> --player Rybakina --clips 20`
 Se ejecuta en el PC del usuario (los vídeos vienen de YouTube, bloqueado desde la nube).

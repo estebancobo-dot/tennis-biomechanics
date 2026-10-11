@@ -23,6 +23,7 @@ import numpy as np
 RACKET_LENGTH = 0.685     # m, butt → tip
 GRIP_TO_TIP = 0.60        # m, from the wrist (hand on the grip) to the tip
 HEAD_WIDTH = 0.26         # m, outer width of the head
+HEAD_LENGTH = 0.384       # m, tip to throat (0.56 of a 0.686 m racket, as annotated in RacketVision)
 
 
 @dataclass
@@ -394,6 +395,25 @@ def observe_polygon(poly: np.ndarray, wrist_px: np.ndarray, px_per_m: float) -> 
     perp = (head - wrist_px) @ np.array([-axis[1], axis[0]])
     width = float(np.percentile(perp, 98) - np.percentile(perp, 2))
     return observe(None, tip, wrist_px, width, px_per_m)
+
+
+def observe_keypoints(kps: np.ndarray, px_per_m: float) -> Observation | None:
+    """Observation from the 5 racket keypoints (tip, throat, butt, left, right; racket_pose).
+
+    Independent of the wrist: axis throat→tip, foreshortening from the head length, face
+    opening from the head width measured across the axis."""
+    kps = np.asarray(kps, float)
+    if np.isnan(kps).any():
+        return None
+    tip, throat, left, right = kps[0], kps[1], kps[3], kps[4]
+    d = tip - throat
+    L = float(np.linalg.norm(d))
+    if L < 2:
+        return None
+    axis = d / L
+    width = abs(float((right - left) @ np.array([-axis[1], axis[0]])))
+    return Observation(axis2d=axis, length_ratio=min(1.05, L / (HEAD_LENGTH * px_per_m)),
+                       width_ratio=min(1.05, width / (HEAD_WIDTH * px_per_m)))
 
 
 def synthetic_observation(a: np.ndarray, n: np.ndarray, cam: Camera) -> Observation:

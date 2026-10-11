@@ -54,3 +54,15 @@ def test_hand_prior_palm_sign():
     k3l[7], k3l[9] = [100, 260, -0.1], [100, 200, 0.0]
     left = hand_prior(k3l, sc, Camera(0.0), "left", grip_close_deg=0.0, px_per_m=100.0)
     assert left.face[1] > 0.95
+
+
+def test_observe_keypoints_face_on_and_edge_on():
+    from tennisbio.racket3d import HEAD_LENGTH, HEAD_WIDTH, observe_keypoints
+    ppm = 100.0
+    L, W = HEAD_LENGTH * ppm, HEAD_WIDTH * ppm
+    face_on = np.array([[0, -L], [0, 0], [0, 30], [-W / 2, -L / 2], [W / 2, -L / 2]])
+    o = observe_keypoints(face_on, ppm)
+    assert np.allclose(o.axis2d, [0, -1]) and abs(o.length_ratio - 1) < 1e-6 and abs(o.width_ratio - 1) < 1e-6
+    edge_on = face_on.copy()
+    edge_on[3:, 0] = 0
+    assert observe_keypoints(edge_on, ppm).width_ratio < 1e-6

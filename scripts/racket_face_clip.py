@@ -20,6 +20,7 @@ from tennisbio.pose.wholebody3d import RTMW3D_URL, WholeBody3D  # noqa: E402
 from tennisbio.racket import pick_racket, racket_from_polygon  # noqa: E402
 from tennisbio.racket3d import Camera  # noqa: E402
 from tennisbio.racket_face import face_track  # noqa: E402
+from tennisbio.racket_pose import RacketPose  # noqa: E402
 from tennisbio.render import PHASE_TITLES, crop_around, draw_pose, draw_racket, label, strip  # noqa: E402
 
 
@@ -30,6 +31,15 @@ def draw_face(img, head, n, cam, scale):
     cv2.arrowedLine(img, tuple(map(int, head)), tuple(map(int, end)), (0, 230, 255), 3, cv2.LINE_AA, tipLength=0.3)
     toward_cam = float(np.asarray(n) @ cam.basis[2]) < 0
     cv2.circle(img, tuple(map(int, end)), 6, (0, 230, 255), 2 if toward_cam else -1, cv2.LINE_AA)
+
+
+def draw_racket_kps(img, k):
+    """Racket keypoints: frame outline (tip-left-throat-right), handle, tip in yellow."""
+    p = [tuple(map(int, q)) for q in k]
+    for u, v in ((0, 3), (3, 1), (1, 4), (4, 0)):
+        cv2.line(img, p[u], p[v], (255, 255, 255), 2, cv2.LINE_AA)
+    cv2.line(img, p[1], p[2], (60, 60, 255), 2, cv2.LINE_AA)
+    cv2.circle(img, p[0], 4, (0, 230, 255), -1, cv2.LINE_AA)
 
 
 def main():
@@ -43,12 +53,15 @@ def main():
     ap.add_argument("--grip-close", type=float, default=15.0, help="grados que la empuñadura cierra la cara respecto a la palma")
     ap.add_argument("--camera-pitch", type=float, default=20.0)
     ap.add_argument("--wb3d", default=RTMW3D_URL, help="modelo RTMW3D (ruta local o URL)")
+    ap.add_argument("--racket-pose", default="models/racketpose.onnx",
+                    help="modelo de 5 puntos de la raqueta (scripts/export_racketpose.py); si no existe, se usa la silueta")
     ap.add_argument("--device", default="cpu")
     args = ap.parse_args()
     out = Path(args.out)
     run = run_clip(args.video, out / "extract.npz", args.hand, args.height_m, imgsz=args.imgsz)
     cam = Camera(args.camera_pitch)
     wb = WholeBody3D(args.wb3d, args.device)
+    rpose = RacketPose(args.racket_pose, args.device) if Path(args.racket_pose).exists() else None
     cap = cv2.VideoCapture(str(args.video))
     sel = args.strokes if args.strokes else range(len(run.strokes))
     allres = {}
@@ -62,8 +75,14 @@ def main():
             ok, fr = cap.read()
             if ok:
                 frames[f] = fr
+        rkps = {}
+        if rpose is not None:
+            for f, fr in frames.items():
+                poly = pick_racket(run.rackets[f], run.img[f, run.sk["dom_wrist"]], 0.3 * run.height_px)
+                if poly is not None:
+                    rkps[f] = rpose(fr, [[*poly.min(0), *poly.max(0)]])[0][0]
         track = face_track(frames, run.boxes, run.img, run.rackets, run.sk, run.height_px, args.height_m,
-                           i, a, b, wb, cam, args.grip_close, fps=run.fps)
+                           i, a, b, wb, cam, args.grip_close, fps=run.fps, racket_kps=rkps if rpose else None)
         by_frame = {t["frame"]: t for t in track}
         allres[k] = track
         tiles = []
@@ -77,15 +96,18 @@ def main():
             poly = pick_racket(run.rackets[f], wrist, 0.3 * run.height_px)
             obs = racket_from_polygon(poly, wrist) if poly is not None else None
             t = by_frame.get(f, {})
-            if obs is not None:
+            if f in rkps:
+                draw_racket_kps(img, rkps[f])
+            elif obs is not None:
                 draw_racket(img, obs, 3)
             if t.get("face") is not None:
-                head = obs.head if obs is not None else wrist
+                head = rkps[f][[0, 1]].mean(0) if f in rkps else (obs.head if obs is not None else wrist)
                 draw_face(img, head, t["face"], cam, 0.12 * run.height_px)
             tile = crop_around(img, run.boxes[f])
             label(tile, [PHASE_TITLES[PHASES.index(name)], f"{r.phases[name]['t_rel']:+.2f} s"], top=True)
             if t.get("face") is not None:
-                src = ("silueta+mano" if t["hand_evidence"] else "silueta") if t["observed"] else "interpolado"
+                kind = "5 puntos" if f in rkps else "silueta"
+                src = (kind + "+mano" if t["hand_evidence"] else kind) if t["observed"] else "interpolado"
                 label(tile, [f"cuerdas -> {t['points_to']}", f"cierre {t['tilt_deg']:+.0f}  giro {t['yaw_deg']:+.0f}  ({src})"], top=False)
             tiles.append(tile)
         img = strip(tiles, f"#{k}  orientación de las cuerdas  (flecha amarilla: hacia dónde miran; punto relleno = hacia la red, hueco = hacia la cámara)")

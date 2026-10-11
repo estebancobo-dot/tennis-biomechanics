@@ -216,6 +216,11 @@ se usa "brazo dominante", "pie adelantado", etc., resueltos con la configuració
 - Vídeo con ffmpeg por tubería (`tennisbio.io.video.read_frames`). Si la fuente es
   entrelazada: a resolución completa se desentrelaza a un fotograma por campo
   (`yadif=1`); en lecturas reducidas no se desentrelaza.
+- Bola y raqueta con los pesos oficiales de **RacketVision** (MIT), reimplementados en PyTorch
+  puro y exportados a ONNX: `scripts/export_balltrack.py` (TrackNetV3, bola) y
+  `scripts/export_racketpose.py` (RTMPose-m, 5 puntos de la raqueta). Sin mmpose/mmcv.
+- Homografía de la pista desde las líneas (`tennisbio.court`): da la inclinación de la cámara
+  y las posiciones en metros.
 - Tests: `uv run pytest`.
 
 ## Convenciones
