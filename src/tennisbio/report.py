@@ -265,7 +265,9 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
     pairs = noise_from_pairs(data["strokes"])
     for m in data["metrics"]:
         if m["k"] in pairs:             # measured on her own equivalent strokes: replaces the provisional value
-            m["noise"] = max(pairs[m["k"]], auto.get(m["k"], 0.0))
+            # never below a third of the provisional value: a metric that barely varies would
+            # otherwise make any tiny difference look real
+            m["noise"] = max(pairs[m["k"]], auto.get(m["k"], 0.0), m["noise"] / 3)
             m["noise_pairs"] = pairs[m["k"]]
     data["noise_pairs"] = pairs
     data["noise_validated"] = bool(pairs)

@@ -442,24 +442,62 @@ function effect(k, A, B) {
   return { d, lo: d - 1.96 * se, hi: d + 1.96 * se, na: a.length, nb: b.length, ma: mean(a), mb: mean(b) };
 }
 const early = s => s.frac < 1 / 3, late = s => s.frac >= 2 / 3;
-const FIND = [
-  { k: "xf", t: "X-factor al final del partido", c: "Último tercio frente a primero · bolas neutras", A: s => s.sit.neutra && early(s), B: s => s.sit.neutra && late(s), go: { pair: "fatiga", sit: "neutra" } },
-  { k: "sh", t: "Rotación de hombros al final", c: "Último tercio frente a primero · bolas neutras", A: s => s.sit.neutra && early(s), B: s => s.sit.neutra && late(s), go: { pair: "fatiga", sit: "neutra" } },
-  { k: "knee", t: "Descenso de cadera al final", c: "Último tercio frente a primero · bolas neutras", A: s => s.sit.neutra && early(s), B: s => s.sit.neutra && late(s), go: { pair: "fatiga", sit: "neutra" } },
-  { k: "split", t: "Split step al final", c: "Último tercio frente a primero · todas las bolas", A: early, B: late, go: { pair: "fatiga", sit: "", g: "feet" } },
-  { k: "recov", t: "Recuperación al final", c: "Último tercio frente a primero · todas las bolas", A: early, B: late, go: { pair: "fatiga", sit: "", g: "feet" } },
-  { k: "elbow", t: "Codo bajo presión", c: "Bajo presión frente a sin presión · bolas neutras", A: s => s.sit.neutra && s.pressure === false, B: s => s.sit.neutra && s.pressure === true, go: { pair: "presion", sit: "neutra" } },
-  { k: "xf", t: "X-factor bajo presión", c: "Bajo presión frente a sin presión · bolas neutras", A: s => s.sit.neutra && s.pressure === false, B: s => s.sit.neutra && s.pressure === true, go: { pair: "presion", sit: "neutra" } },
-  { k: "rFaceImp", t: "Cara en el impacto bajo presión", c: "Bajo presión frente a sin presión · todas", A: s => s.pressure === false, B: s => s.pressure === true, go: { pair: "presion", sit: "", g: "racket" } },
-  { k: "shotDepth", t: "Profundidad de su golpe con bola rápida", c: "Rápida frente a lenta", A: s => isN(s.tAvail) && !s.fast, B: s => s.fast, go: { pair: "rapida", sit: "", g: "feet" } },
-  { k: "shotDepth", t: "Profundidad de su golpe bajo presión", c: "Bajo presión frente a sin presión", A: s => s.pressure === false, B: s => s.pressure === true, go: { pair: "presion", sit: "", g: "feet" } },
-  { k: "contactH", t: "Altura del impacto en los errores", c: "Errores frente a ganadores · todas", A: s => s.outcome === "ganador", B: s => s.outcome === "error", go: { pair: "resultado", sit: "" } },
-  { k: "rFaceImp", t: "Cara en el impacto en los errores", c: "Errores frente a ganadores · todas", A: s => s.outcome === "ganador", B: s => s.outcome === "error", go: { pair: "resultado", sit: "", g: "racket" } },
-  { k: "xf", t: "X-factor con bola rápida", c: "Rápida frente a lenta", A: s => isN(s.tAvail) && !s.fast, B: s => s.fast, go: { pair: "rapida", sit: "" } },
-  { k: "baseM", t: "Base con bola rápida", c: "Rápida frente a lenta", A: s => isN(s.tAvail) && !s.fast, B: s => s.fast, go: { pair: "rapida", sit: "", g: "feet" } },
-  { k: "contactH", t: "Altura del impacto con bola rápida", c: "Rápida frente a lenta", A: s => isN(s.tAvail) && !s.fast, B: s => s.fast, go: { pair: "rapida", sit: "" } },
+/* Hallazgos: búsqueda automática en todas las métricas y comparaciones, en situaciones equivalentes */
+const MEANING = {
+  xf: ["más separación tronco–cadera en el armado: más energía elástica acumulada", "menos separación tronco–cadera: cadera y tronco giran juntos, menos «muelle»"],
+  sh: ["más giro de hombros en el armado: preparación más completa", "menos giro de hombros: preparación más corta"],
+  xf3d: ["más separación tronco–cadera (3D, experimental)", "menos separación tronco–cadera (3D, experimental)"],
+  sh3d: ["más giro de hombros (3D, experimental)", "menos giro de hombros (3D, experimental)"],
+  knee: ["baja más la cadera: más carga de piernas", "golpea más erguida: menos uso de piernas"],
+  elbow: ["brazo más extendido en el impacto", "codo más flexionado: impacto más pegado al cuerpo"],
+  elbowNon: ["segundo brazo más extendido en el impacto", "segundo brazo más flexionado en el impacto"],
+  offArm: ["brazo libre más extendido en el armado", "brazo libre más recogido en el armado"],
+  lat: ["impacta más separada del cuerpo", "impacta más cerca del cuerpo (más «atascada»)"],
+  contactH: ["impacta más alto respecto a su cuerpo", "impacta más bajo respecto a su cuerpo"],
+  head: ["la cabeza se mueve más en el impacto: menos estabilidad", "cabeza más estable en el impacto"],
+  finishH: ["terminación más alta", "terminación más baja o más corta"],
+  rHead: ["cabeza de la raqueta más alta en el armado", "raqueta más baja en el armado"],
+  rDrop: ["deja caer más la raqueta antes de acelerar: más recorrido de abajo arriba", "menos caída de la raqueta: swing más plano"],
+  rElevImp: ["raqueta más levantada en el impacto", "raqueta más horizontal en el impacto"],
+  rFaceArm: ["cara más cerrada en el armado", "cara más abierta en el armado"],
+  rFaceImp: ["cara más cerrada en el impacto: la bola tiende a salir más baja y con más efecto", "cara más abierta en el impacto: la bola tiende a salir más alta y larga"],
+  rFaceFin: ["cara más cerrada en la terminación: más giro de muñeca", "menos giro de muñeca en la terminación"],
+  rYawImp: ["cara orientada más hacia el lado de su brazo dominante", "cara orientada más hacia el lado contrario"],
+  split: ["aterriza el split step más tarde respecto al golpe rival", "aterriza el split step antes"],
+  base: ["base más ancha en el armado", "base más estrecha en el armado"],
+  baseM: ["base más ancha en el impacto", "base más estrecha en el impacto"],
+  disp: ["llega con más desplazamiento", "se desplaza menos para llegar"],
+  recov: ["tarda más en iniciar la recuperación", "recupera antes"],
+  shotDepth: ["su bola bota más lejos del fondo rival: golpes más cortos", "su bola bota más cerca del fondo rival: golpes más profundos"],
+  trophyKnee: ["más flexión de piernas en el trofeo", "menos flexión de piernas en el trofeo"],
+  trophyTilt: ["más inclinación de hombros en el trofeo", "hombros más horizontales en el trofeo"],
+  toss: ["brazo de lanzamiento más alto", "brazo de lanzamiento más bajo"],
+  landing: ["aterriza más dentro de la pista", "aterriza más atrás"],
+};
+const meaning = (k, d) => (MEANING[k] || [])[d > 0 ? 0 : 1] || "";
+const maxSet = Math.max(1, ...STROKES.map(s => s.set || 0));
+const PAIRS = [
+  { key: "fatiga", t: "al final del partido", c: "último tercio frente al primero", A: s => s.frac < 1 / 3, B: s => s.frac >= 2 / 3, neutral: true },
+  { key: "sets", t: "en el último set", c: "último set frente al primero", A: s => s.set === 1, B: s => maxSet > 1 && s.set === maxSet, neutral: true },
+  { key: "presion", t: "bajo presión", c: "puntos de presión frente al resto", A: s => s.pressure === false, B: s => s.pressure === true, neutral: true },
+  { key: "rapida", t: "con bola rápida", c: "bola rápida frente a lenta", A: s => isN(s.tAvail) && !s.fast, B: s => s.fast, neutral: false },
+  { key: "resultado", t: "en los errores", c: "errores frente a golpes que siguen el punto o ganan", A: s => s.outcome === "sigue" || s.outcome === "ganador", B: s => s.outcome === "error", neutral: false },
 ];
-FIND.splice(0, FIND.length, ...FIND.filter(f => MK[f.k]));      // only metrics of this stroke type
+const FIND = [];
+(function discover() {
+  const all = [];
+  for (const p of PAIRS) for (const m of METRICS) {
+    let neu = p.neutral, A = STROKES.filter(s => p.A(s) && (!neu || s.sit.neutra)), B = STROKES.filter(s => p.B(s) && (!neu || s.sit.neutra));
+    let e = effect(m.k, A, B);
+    if (neu && !isN(e.d)) { neu = false; A = STROKES.filter(p.A); B = STROKES.filter(p.B); e = effect(m.k, A, B); }
+    if (!isN(e.d)) continue;
+    const z = Math.abs(e.d) / m.noise, sure = Math.sign(e.lo) === Math.sign(e.hi);
+    all.push({ k: m.k, z: z * (sure ? 1 : 0.5) * m.rel / 3, t: `${m.name} ${p.t}`, c: `${p.c} · ${neu ? "bolas neutras" : "todas las bolas"}`,
+               A: s => p.A(s) && (!neu || s.sit.neutra), B: s => p.B(s) && (!neu || s.sit.neutra), go: { pair: p.key, sit: neu ? "neutra" : "", g: m.g } });
+  }
+  all.sort((a, b) => b.z - a.z);
+  FIND.push(...all.slice(0, 10));      // the largest differences, real or not (the verdict says which)
+})();
 function verdict(e, noise) {
   if (!isN(e.d)) return { cls: "crit", icon: "–", txt: "Pocos golpes" };
   const z = Math.abs(e.d) / noise, sure = Math.sign(e.lo) === Math.sign(e.hi);
@@ -478,7 +516,7 @@ document.getElementById("forest").innerHTML = `<div class="frow head"><span>Hall
   FIND.map((f, i) => {
     const e = effect(f.k, STROKES.filter(f.A), STROKES.filter(f.B)), v = verdict(e, MK[f.k].noise), m = MK[f.k];
     const tipTxt = `<b>${m.name}</b><div class='mono'>${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}${isN(e.d) ? ` (${sign(e.d)}${fmt(Math.abs(e.d), m.dec)})<br>IC 95 %: ${fmt(e.lo, 1)} … ${fmt(e.hi, 1)}` : ""}<br>ruido ±${fmt(m.noise, 1)} · n=${e.na}/${e.nb}</div>`;
-    return `<div class="frow"><div class="t"><b>${f.t}: ${isN(e.d) ? sign(e.d) + fmt(Math.abs(e.d), m.dec) + unitStr(m) : "—"}</b><span>${f.c} · <span class="mono">n=${e.na}/${e.nb} · ${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}</span> ${relBars(m.rel)}</span></div><div data-tip="${tipTxt}">${forestSVG(e, m.noise)}</div><span class="st ${v.cls}"><i>${v.icon}</i>${v.txt}</span><button class="btn" data-go="${i}">Ver</button></div>`;
+    return `<div class="frow"><div class="t"><b>${f.t}: ${isN(e.d) ? sign(e.d) + fmt(Math.abs(e.d), m.dec) + unitStr(m) : "—"}</b><span>${f.c} · <span class="mono">n=${e.na}/${e.nb} · ${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}</span> ${relBars(m.rel)}</span>${isN(e.d) && v.cls !== "crit" ? `<span style="color:var(--ink-2)">→ ${meaning(f.k, e.d)}</span>` : ""}</div><div data-tip="${tipTxt}">${forestSVG(e, m.noise)}</div><span class="st ${v.cls}"><i>${v.icon}</i>${v.txt}</span><button class="btn" data-go="${i}">Ver</button></div>`;
   }).join("");
 document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { const g = FIND[+b.dataset.go].go; document.getElementById("c-pair").value = g.pair; document.getElementById("c-sit").value = g.sit; document.getElementById("c-group").value = g.g || MK[FIND[+b.dataset.go].k].g; renderCompare(); showTab("comparativas"); }));
 
@@ -500,7 +538,7 @@ function conclusions() {
   const ta = fin(STROKES.map(s => s.tAvail));
   if (ta.length) out.push([`Tiempo disponible entre el golpe del rival y el suyo: mediana <b>${fmt(quant(ta, .5), 2)} s</b> (${fmt(pct(STROKES.filter(s => isN(s.tAvail)), s => s.fast))} % de bolas rápidas, &lt; 1,15 s).`, conf(ta.length >= 20 ? "fiable" : "orientativo", ta.length >= 20 ? "good" : "warn")]);
   if (MK.baseM && DIST.baseM) out.push([`Base en el impacto: mediana <b>${fmtM("baseM", DIST.baseM.p50)}</b> (p10–p90 ${fmt(DIST.baseM.p10, 2)}–${fmt(DIST.baseM.p90, 2)} m, ${DIST.baseM.n} golpes).`, DIST.baseM.n >= 20 ? conf("fiable", "good") : conf("orientativo", "warn")]);
-  FIND.forEach(f => { const e = effect(f.k, STROKES.filter(f.A), STROKES.filter(f.B)), v = verdict(e, MK[f.k].noise); if (v.cls === "good" || v.cls === "warn") out.push([`${f.t}: <b>${sign(e.d)}${fmt(Math.abs(e.d), MK[f.k].dec)}${unitStr(MK[f.k])}</b> (${fmt(e.ma, MK[f.k].dec)} → ${fmt(e.mb, MK[f.k].dec)}; ${f.c.toLowerCase()}, n=${e.na}/${e.nb}).`, conf(v.cls === "good" ? "diferencia real" : "probable", v.cls)]); });
+  FIND.forEach(f => { const e = effect(f.k, STROKES.filter(f.A), STROKES.filter(f.B)), v = verdict(e, MK[f.k].noise); if (v.cls === "good" || v.cls === "warn") out.push([`${f.t}: <b>${sign(e.d)}${fmt(Math.abs(e.d), MK[f.k].dec)}${unitStr(MK[f.k])}</b> — ${meaning(f.k, e.d)} (${fmt(e.ma, MK[f.k].dec)} → ${fmt(e.mb, MK[f.k].dec)}; ${f.c.toLowerCase()}, n=${e.na}/${e.nb}).`, conf(v.cls === "good" ? "diferencia real" : "probable", v.cls)]); });
   if (!FIND.some(f => verdict(effect(f.k, STROKES.filter(f.A), STROKES.filter(f.B)), MK[f.k].noise).cls !== "crit") && n >= 10) out.push(["Ninguna diferencia entre situaciones (fatiga, presión, bola rápida) supera el ruido de medida.", conf("según los datos actuales", "warn")]);
   document.getElementById("concl").innerHTML = out.map(([t, c]) => `<div style="display:flex;gap:12px;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px"><span style="font-size:14px;line-height:1.45">${t}</span>${c}</div>`).join("") || `<div class="empty">Sin golpes.</div>`;
 }
@@ -718,7 +756,7 @@ function renderRacket() {
 }
 async function loadStroke(s) {
   cur = s; stopPlay(); ser = await loadSeries(s); if (cur !== s) return;
-  FPS = ser ? ser.fps : 50; NF = ser ? ser.n : 1; T0 = ser ? (ser.first - ser.impact) / FPS : -1; T1 = T0 + (NF - 1) / FPS;
+  FPS = ser ? ser.fps : 50; NF = ser ? ser.n : 1; T0 = ser ? (ser.first - ser.impact) / FPS : -1; T1 = ser ? T0 + (NF - 1) / FPS : 0.8;
   PH = PHASE_DEF.map(p => ({ ...p, t: isN(s.phases[p.k]) ? s.phases[p.k] : null }));
   tNow = 0;
   if (s.video && video.getAttribute("src") !== s.video) { video.src = s.video; await new Promise(r => { video.addEventListener("loadeddata", r, { once: true }); video.addEventListener("error", r, { once: true }); }); }
