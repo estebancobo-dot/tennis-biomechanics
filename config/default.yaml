@@ -33,3 +33,9 @@ models:
 device: dml
 # Aceleración por hardware del decodificador de ffmpeg (d3d11va en Windows; null = software).
 hwaccel: null
+
+# Seguimiento de bola: TrackNetV3 de RacketVision (licencia MIT), entrenado en tenis de TV.
+# Se genera con `uv run python scripts/export_balltrack.py` (descarga los pesos de Hugging Face).
+ball:
+  onnx: models/balltrack.onnx
+  threshold: 0.5
