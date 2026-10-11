@@ -19,3 +19,23 @@ garganta→punta. La cara abierta/cerrada no se mide con la silueta (requiere el
 `uv run python scripts/validate_f3set.py --root <datasets> --player Rybakina --clips 20`
 Se ejecuta en el PC del usuario (los vídeos vienen de YouTube, bloqueado desde la nube).
 Pendiente del primer resultado.
+
+## Orientación de las cuerdas (3D) — validación sintética
+`tennisbio.validation.racket3d_synth.run()` · golpes sintéticos con orientación conocida, cámara
+con inclinación 15-25° (el solver asume 20°), ±2 fotogramas de desenfoque en el impacto.
+Método actual: silueta (acortamiento del eje y del cabezal) + ancla del impacto + continuidad de
+giro (Viterbi de 2.º orden) + ajuste continuo.
+
+Ruido real de la proporción anchura/longitud del cabezal medido en RacketVision:
+sd 0,083 con cabezas de 25-50 px y 0,045 con 50-100 px (sesgo +0,05 / +0,01).
+
+| Ruido de la proporción | Error mediano de la normal | ≤15° | ≤30° | "Apunta a…" correcto |
+|---|---|---|---|---|
+| 0 (ideal) | 0° | 76 % | 81 % | 89 % |
+| 0,02 | 14° | 51 % | 65 % | 77 % |
+| 0,045 (cabeza 50-100 px) | 21° | 42 % | 58 % | 71 % |
+| 0,08 (cabeza 25-50 px) | 26° | 34 % | 54 % | 68 % |
+
+Conclusión: con la silueta sola **no es suficiente**. Incluso sin ruido, ~11 % de fotogramas
+caen en la rama espejo. Falta la restricción de la mano/antebrazo en 3D y una medida más
+precisa del cabezal (modelo de 5 puntos, más resolución).
