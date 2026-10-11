@@ -32,6 +32,7 @@ class ClipRun:
     rackets: list = field(default_factory=list)
     ball: np.ndarray | None = None              # (T, 3) ball x, y, confidence (NaN when unseen)
     side: str = "near"
+    hits: list = field(default_factory=list)     # ball turns of both players (tennisbio.ball.BallHit)
     strokes: list[StrokeResult] = field(default_factory=list)
 
 
@@ -144,12 +145,14 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         hits = ball_hits(ball_track[:n], fh, fps)
         impacts = fuse_with_ball(impacts, fps, hits, ~np.isnan(ball_track[:n, 0]), boxes_t,
                                  wrist_speed=speed(body[:, sk["dom_wrist"]], fps), side=side)
+        run_hits = hits
         other = "far" if side == "near" else "near"
         far_hits = [h.frame for h in hits if h.side == other]          # the opponent's hits
     log(f"jugadora seguida en {np.mean(sel >= 0) * 100:.0f} % · altura ≈ {height_px:.0f} px · {len(impacts)} golpes "
         f"({sum(i.source == 'audio+swing' for i in impacts)} con audio)")
     run = ClipRun(fps, sk, img, cf, boxes_t, float(np.mean(sel >= 0)), height_px, onsets, impacts)
     run.side = side
+    run.hits = run_hits if ball is not None else []
     run.ball = ball_track
 
     run.rackets = [[] for _ in range(T)]

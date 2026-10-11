@@ -385,6 +385,8 @@ def _fine(ctx: Context, p, keep, out_name: str):
     cands = _read(ctx.path("candidates.json"))
     court = _read(ctx.path("court.json"))
     score = _read(ctx.path("score.json"))
+    onsets = np.array(_read(ctx.path("audio_onsets.json"))["t"]) if ctx.path("audio_onsets.json").exists() else np.zeros(0)
+    scenes = _read(ctx.path("scenes.json")) if ctx.path("scenes.json").exists() else {"fps": 1, "shots": []}
     ball = None
     bcfg = ctx.cfg.get("ball") or {}
     if bcfg.get("onnx") and Path(bcfg["onnx"]).exists():
@@ -458,6 +460,23 @@ def _fine(ctx: Context, p, keep, out_name: str):
                 bx, by = to_court(H, np.array([r.ball["bounce_px"]]))[0]
                 if -1.5 <= by <= 11.885 and abs(bx) <= 6.5:
                     d["bounce_court_m"] = [round(float(bx), 2), round(float(by), 2)]
+        # what happened with the shot (out / net / probable winner / rally)
+        from .outcome import crossed_net, shot_outcome
+        sfps = scenes["fps"]
+        shot_end = next((sh["end"] / sfps for sh in scenes["shots"]
+                         if sh["main_camera"] and sh["start"] / sfps <= t_imp < sh["end"] / sfps), None)
+        other = "far" if side == "near" else "near"
+        ret = next((h.frame for h in getattr(run, "hits", []) if h.side == other and h.frame > r.impact_frame + 0.3 * run.fps), None)
+        net_y = None
+        if H_img is not None:
+            from .court_metrics import net_row
+            net_y = net_row(H_img)
+        crossed = crossed_net(run.ball, r.impact_frame, run.fps, net_y, side) if net_y is not None else None
+        b_t = None if d.get("impact_to_shot_bounce_s") is None else t_imp + d["impact_to_shot_bounce_s"]
+        oc = shot_outcome(t_imp, d.get("shot_in"), b_t, None if ret is None else t0 + ret / run.fps,
+                          onsets, shot_end, crossed)
+        if oc is not None:
+            d["outcome"] = oc
         from .series import stroke_series
         ser = stroke_series(run.img, run.conf, run.boxes, run.sk, run.fps, run.height_px, r.impact_frame,
                             r.racket_track, run.ball)

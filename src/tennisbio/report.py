@@ -116,7 +116,9 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
         "id": f"{match.id}-{idx + 1:03d}", "idx": 0, "match": match_idx, "frac": t / duration_s if duration_s else 0,
         **_score_fields(s.get("score")), "finishType": None,
         # out = error (from where it bounced); otherwise unknown until the point is followed further
-        "outcome": "error" if s.get("shot_in") is False else None,
+        "outcome": {"out": "error", "net": "error", "winner": "ganador", "rally": "sigue"}.get(
+            s.get("outcome") or ("out" if s.get("shot_in") is False else "")),
+        "outcomeDetail": s.get("outcome") or ("out" if s.get("shot_in") is False else None),
         "shotIn": s.get("shot_in"), "shotDir": s.get("shot_direction"), "shotSide": s.get("shot_side"),
         "shotX": None if not s.get("shot_bounce_m") else (-s["shot_bounce_m"][0] if match.player.hand == "left" else s["shot_bounce_m"][0]),
         "shotY": None if not s.get("shot_bounce_m") else s["shot_bounce_m"][1],
