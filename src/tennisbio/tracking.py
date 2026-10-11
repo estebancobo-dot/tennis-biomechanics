@@ -22,11 +22,20 @@ def hist_similarity(a: np.ndarray, b: np.ndarray) -> np.ndarray:
 
 
 def track_target(boxes: list[np.ndarray], feats: list[np.ndarray], init_box: np.ndarray,
-                 min_iou=0.3, min_sim=0.8, ref_frames=15) -> np.ndarray:
-    """Index of the target detection in each frame (-1 when absent or uncertain)."""
+                 min_iou=0.3, min_sim=0.8, ref_frames=15, min_bottom: float | None = None) -> np.ndarray:
+    """Index of the target detection in each frame (-1 when absent or uncertain).
+
+    min_bottom: only boxes whose feet are below this image y can be the target (near player on
+    the main TV camera: excludes the far player, the chair umpire and the crowd).
+    """
     out = np.full(len(boxes), -1)
     last, ref, ref_n = np.asarray(init_box, float), None, 0
     for t, (b, f) in enumerate(zip(boxes, feats)):
+        if len(b) and min_bottom is not None:
+            keep = b[:, 3] >= min_bottom
+            b, f, idx_map = b[keep], f[keep], np.flatnonzero(keep)
+        else:
+            idx_map = np.arange(len(b))
         if len(b) == 0:
             continue
         ov = iou(last, b)
@@ -45,7 +54,7 @@ def track_target(boxes: list[np.ndarray], feats: list[np.ndarray], init_box: np.
             j = int(cand[np.argmax(sim[cand])])
             ok = True
         if ok:
-            out[t], last = j, b[j]
+            out[t], last = int(idx_map[j]), b[j]
             if ref_n < ref_frames:
                 ref = f[j].copy() if ref is None else ref + f[j]
                 ref_n += 1

@@ -45,16 +45,25 @@ def load_audio(video: Path, sr=22050):
 
 
 def pick_initial(boxes, mode="largest") -> tuple[int, np.ndarray]:
-    """Initial box of the target: 'largest' (near player in TV / phone clips) or 'lowest' (bottom-most)."""
+    """Initial box of the target.
+
+    'largest': biggest person (phone clips). 'near': near player on the main TV camera = the
+    person standing lowest in the image among those at least half as tall as the tallest
+    (the chair umpire and line judges are higher up or smaller).
+    """
     first = next(t for t in range(len(boxes)) if len(boxes[t]))
     b = boxes[first]
-    key = (b[:, 2] - b[:, 0]) * (b[:, 3] - b[:, 1]) if mode == "largest" else b[:, 3]
-    return first, b[int(np.argmax(key))]
+    h = b[:, 3] - b[:, 1]
+    if mode == "near":
+        cand = np.flatnonzero(h >= 0.5 * h.max())
+        return first, b[cand[np.argmax(b[cand, 3])]]
+    return first, b[int(np.argmax(h * (b[:, 2] - b[:, 0])))]
 
 
 def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, rackets=True,
              init_mode="largest", imgsz=960, log=print) -> ClipRun:
     video, cache = Path(video), Path(cache)
+    cache.parent.mkdir(parents=True, exist_ok=True)
     if not cache.exists():
         from .pose.yolo import extract
         extract(video, cache, imgsz=imgsz, progress=False)
@@ -63,8 +72,13 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     sk = Skeleton("coco17", hand)
     T = len(boxes)
 
-    _, init = pick_initial(boxes, init_mode)
-    sel = track_target(list(boxes), list(feats), init)
+    first, init = pick_initial(boxes, init_mode)
+    min_bottom = None
+    if init_mode == "near":
+        # the near player's feet stay below the net, roughly the lower half of the frame;
+        # half of the initial feet height keeps her even when she comes to the net
+        min_bottom = float(0.5 * init[3])
+    sel = track_target(list(boxes), list(feats), init, min_bottom=min_bottom)
     kp = np.full((T, len(sk), 2), np.nan)
     cf = np.zeros((T, len(sk)))
     boxes_t = [None] * T

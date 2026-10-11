@@ -118,3 +118,19 @@ def test_tracking_does_not_jump_to_another_person():
     feats = [np.array([f_me]), np.array([f_me]), np.array([f_coach]), np.array([f_coach, f_me])]
     sel = track_target(boxes, feats, me)
     assert list(sel) == [0, 0, -1, 1]   # skips the coach after the cut, re-acquires by appearance
+
+
+def test_tracking_ignores_people_above_the_limit():
+    me, umpire = np.array([100, 300, 200, 600.0]), np.array([300, 100, 360, 250.0])
+    f = np.ones(32) / 32
+    boxes = [np.array([me]), np.array([umpire]), np.array([umpire, me + 2])]
+    feats = [np.array([f]), np.array([f]), np.array([f, f])]
+    sel = track_target(boxes, feats, me, min_bottom=300)
+    assert list(sel) == [0, -1, 1]
+
+
+def test_overhead_classification():
+    sk, kp, conf = synthetic_forehand()
+    kp[IMPACT, sk["right_wrist"]] = [230, 10]            # wrist above the head at contact
+    r = analyze_stroke(kp, conf, sk, FPS, body_height(kp, sk), IMPACT, "audio+swing")
+    assert r.stroke == "overhead"

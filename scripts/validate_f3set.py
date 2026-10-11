@@ -19,7 +19,7 @@ from tennisbio.clip_pipeline import run_clip  # noqa: E402
 from tennisbio.validation.datasets import f3set_tennis  # noqa: E402
 from tennisbio.validation.impact_eval import Pred, clip_bounds, match, parse_label, summarize  # noqa: E402
 
-HAND = {"forehand": "fh", "backhand": "bh"}
+HAND = {"forehand": "fh", "backhand": "bh", "overhead": "-"}
 
 
 def download(yt_id: str, dest: Path) -> Path | None:

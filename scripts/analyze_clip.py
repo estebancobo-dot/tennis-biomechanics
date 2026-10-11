@@ -21,7 +21,7 @@ from tennisbio.phases import PHASES  # noqa: E402
 from tennisbio.racket import pick_racket, racket_from_polygon  # noqa: E402
 from tennisbio.render import PHASE_TITLES, crop_around, draw_pose, draw_racket, label, strip  # noqa: E402
 
-STROKE_ES = {"forehand": "derecha", "backhand": "revés"}
+STROKE_ES = {"forehand": "derecha", "backhand": "revés", "overhead": "saque/remate"}
 
 
 def phase_caption(name: str, r, fps) -> list[str]:

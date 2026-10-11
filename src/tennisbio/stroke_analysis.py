@@ -26,8 +26,11 @@ class StrokeResult:
 
 
 def classify_side(body: np.ndarray, sk: Skeleton, f: int) -> str:
-    """Forehand if contact is on the dominant side of the body, backhand otherwise."""
+    """'overhead' (serve or smash) if the dominant wrist is above the head at contact; otherwise
+    forehand if contact is on the dominant side of the body, backhand if not."""
     dw, nw = body[f, sk["dom_wrist"]], body[f, sk["non_wrist"]]
+    if dw[1] > body[f, sk["nose"], 1] + 0.03:
+        return "overhead"
     two_hands = np.linalg.norm(dw - nw) < 0.08
     on_dom_side = dw[0] * sk.dom_sign > 0
     return "forehand" if on_dom_side and not two_hands else "backhand"
