@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261012135248
+Start time: 20261012135440
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\prueba_rapida.ps1
-Process ID: 7884
+Process ID: 10272
 PSVersion: 5.1.26100.9549
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
@@ -66,5 +66,5 @@ ERROR: Fallo: uv run python scripts/check_env.py C:\tenis\videos\Теннис.Ю
 El registro (C:\tenis\output\prueba_rapida.log) se envia a Claude automaticamente.
 **********************
 Windows PowerShell transcript end
-End time: 20261012135250
+End time: 20261012135442
 **********************
