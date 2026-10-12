@@ -148,7 +148,7 @@ de TV detrás del fondo (necesita laboratorio, sensores o varias cámaras) y el 
 | Extensión del codo | Matriz del usuario | ✔ | `elbow_dom`, `arm_extension` |
 | Pronación del antebrazo, flexión palmar y desviación de la muñeca | Matriz del usuario | ✘ | rotaciones sobre el eje del brazo, invisibles en 2D |
 | Retraso de la muñeca (lag) y su liberación | Matriz del usuario | ◐ | `racket_forearm` (ángulo 2D; en el impacto, borroso) |
-| Mirada fija en el punto de impacto («quiet eye») | Matriz del usuario | ✘ | se la ve de espaldas |
+| Mirada fija en el punto de impacto («quiet eye») | Matriz del usuario | ✘ | la mirada no se ve; indicio: cabeza girada hacia el impacto, vista frontal de entrenamiento: `practice.front_metrics` (`head_to_contact_idx`) |
 | Cabeza estable y eje vertical | Matriz del usuario | ✔ | `head_motion_cm`, `head_over_base`, `trunk_tilt` |
 | Brazo recto o doble flexión | Matriz del usuario | ✔ | clase `arm`, `elbow_dom` |
 | Brazo libre paralelo a la línea de fondo en el giro; distancia a la bola | Matriz del usuario | ✔ | `shoulder_abd_non`, `elbow_non`, `wrist_dom_lateral` |

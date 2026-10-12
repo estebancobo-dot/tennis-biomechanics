@@ -96,6 +96,16 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
   rodillas, tronco, caída de la raqueta bajo el impacto y ángulo antebrazo–raqueta (lag / casting).
   Pantalla propia y marcada en el informe («Vista lateral (entreno)»); resumen solo con ≥ 12 derechas de
   lado. Prueba rápida: 2 vídeos × 90 s; prueba media: 8 × 300 s (incremental). Falta verlo en el PC.
+- ✔ Repeticiones de la cámara de fondo con el marcador visible (normales o a cámara lenta): se detectan
+  porque sus pies repiten un recorrido reciente más despacio o sin sonido de impactos (`replays.py`,
+  etapa candidates v7). Pendiente: usar las repeticiones de otras cámaras (laterales, frontales) de la
+  propia retransmisión como vista lateral, enlazadas a su golpe en directo (así la identidad y el
+  instante salen del directo y solo se miden ángulos, que no dependen de la cámara lenta).
+- ✔ Vista lateral: lista elegida a mano (`config/practice_videos.yaml`) tras mirar tres fotogramas de cada
+  vídeo; fuera los grabados por detrás y los de cámara lenta sin factor conocido. Clasificador de cámara
+  por el cambio de anchura de hombros entre espera y armado; golpes con valores imposibles descartados.
+- ✔ Auditoría (12-10): combinaciones medida × situación, cada petición del chat (sección 11), validación
+  F3Set, tablas a la vista y examen interno con las afirmaciones de entrenadores.
 - Pendiente de la auditoría (pedido el 12-10): comprobar cada combinación medida × situación, convertir
   las 63 peticiones del chat (`docs/peticiones_usuario.md`) y las 25 afirmaciones de entrenadores en
   comprobaciones automáticas, y validar la exactitud de más medidas con clips anotados.

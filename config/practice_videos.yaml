@@ -1,0 +1,21 @@
+# Practice videos of the player on YouTube for the side / front view (separate, marked section of the
+# report; never match data). Chosen by looking at three frames of each video (YouTube's automatic
+# thumbnails at 25/50/75 %) and its description: camera beside or in front of her, at court level,
+# real time. Left out on purpose:
+#  - filmed from behind (the TV already gives that view): W0uSDf3AaY8, euvmArnIrZY, G0Cq8fvIKbA,
+#    hwo8xpK2sSU, AmQjdwt1Ozg, ujbqEz-JtZA, MNeXfbFEelw;
+#  - slow motion with an unknown factor (timings would be wrong): XEshCsHrvcc, A89PHT3_yI0,
+#    lOHM3WXWSgc, UXWNFyzpR4Y;
+#  - far away behind a fence: H_gEfZCWQmg.
+# start / end (s): only the real-time part. Order = value: the quick test takes the first ones.
+rybakina:
+  - {id: n5-P-RxsHCM, title: "Elena Rybakina CRUSHING Forehand & Backhand Side View", channel: Courtside Tennis Highlights,
+     camera: "de lado, a ras de pista (US Open 2026)", fps: 30}
+  - {id: P4kwF30432U, title: "Elena Rybakina forehand, backhand from forehand perspective, Rogers cup 2023", channel: Tennis Workshop,
+     camera: "de lado y de frente, desde el lado de su derecha", fps: 60}
+  - {id: BZTdhztMFqc, title: "Elena RYBAKINA Groundstrokes + Slow Motion | Australian Open 2026", channel: NEBTA OFFICIAL,
+     camera: "de lado y de frente, a ras de pista", fps: 60, start: 0, end: 66}
+  - {id: QmCVixzz6-Y, title: "See How Clean Rybakina Hits at Court Level", channel: Courtside Tennis Highlights,
+     camera: "de lado, a ras de pista (misma sesión que el primero)"}
+  - {id: Q6YTDYr_bRM, title: "Elena Rybakina- Camila Osorio practicing at Wimbledon 2021", channel: TOP TENNIS MATCH,
+     camera: "en diagonal y de frente"}

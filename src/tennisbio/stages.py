@@ -5,6 +5,7 @@ frames) → candidates (near-player strokes) → fine (full-quality analysis in 
 """
 import hashlib
 import json
+import warnings
 import os
 import shutil
 import subprocess
@@ -353,7 +354,7 @@ def near_is_target(identity: dict, frame: int):
     return None
 
 
-@stage("candidates", "6", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"))
+@stage("candidates", "7", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"))
 def st_candidates(ctx: Context, tol_s=0.35):
     """Near-player stroke candidates: swing peaks of the near player at cheap fps, confirmed by
     an audio transient when one is close. Each candidate records who the near player is
@@ -392,10 +393,26 @@ def st_candidates(ctx: Context, tol_s=0.35):
     no_board = [(x["start"], x["end"]) for x in score.get("shots", [])
                 if x["tried"] >= 2 and x["read"] == 0 and x["end"] - x["start"] < 30]
     board_works = sum(x["read"] for x in score.get("shots", [])) >= 10
-    for run, img, cf, h, _ in near_runs(d, sk, court):
+    # replays from the main camera with the scoreboard still on: her feet retrace a path of the last
+    # seconds, slower (slow motion) or without impact sounds (tennisbio.replays)
+    from .court_metrics import to_court
+    from .replays import Run, find_replays
+    runs_all, paths = list(near_runs(d, sk, court)), []
+    for run, img, cf, h, _ in runs_all:
+        t0, t1 = frames[run[0]] / fps, frames[run[-1]] / fps
+        H = court_at(court, t0)[0]
+        with warnings.catch_warnings():          # an ankle unseen in a frame stays NaN
+            warnings.simplefilter("ignore", RuntimeWarning)
+            feet = np.nanmean(img[:, [sk["left_ankle"], sk["right_ankle"]]], axis=1) if H is not None else None
+        path = to_court(H, np.nan_to_num(feet, nan=-1e6)) if feet is not None else np.full((len(run), 2), np.nan)
+        if feet is not None:
+            path[~np.isfinite(feet).all(1)] = np.nan
+        paths.append(Run(t0, t1, path, fps, int(np.sum((onsets >= t0) & (onsets <= t1))) if len(onsets) else 0))
+    slow_replays = set(find_replays(paths))
+    for k, (run, img, cf, h, _) in enumerate(runs_all):
         t_mid = frames[run[len(run) // 2]] / fps
-        if board_works and any(a <= t_mid < b for a, b in no_board):
-            replays += 1                  # probably a replay: its strokes were already counted live
+        if (board_works and any(a <= t_mid < b for a, b in no_board)) or k in slow_replays:
+            replays += 1                  # a replay: its strokes were already counted live
             continue
         who = near_is_target(identity, int(frames[run[0]]))
         skipped += who is False
@@ -423,7 +440,7 @@ def st_candidates(ctx: Context, tol_s=0.35):
     return {"candidates": len(cands), "far": sum(c["side"] == "far" for c in cands),
             "with_audio": sum(c["audio"] for c in cands),
             "opponent_runs": skipped, "identity_unknown": sum(c["identity"] is None for c in cands),
-            "replay_runs_skipped": replays, "audio_track": track}
+            "replay_runs_skipped": replays, "replays_by_path": len(slow_replays), "audio_track": track}
 
 
 def grab_frame(video: Path, t: float) -> np.ndarray | None:

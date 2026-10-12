@@ -69,8 +69,26 @@ def search(per_query: int) -> list[dict]:
     return out
 
 
+def curated(player: str) -> list[dict]:
+    """The videos chosen by hand for their camera (config/practice_videos.yaml), in order of value."""
+    import yaml
+
+    f = Path(__file__).resolve().parents[1] / "config" / "practice_videos.yaml"
+    if not f.exists():
+        return []
+    out = []
+    for e in (yaml.safe_load(f.read_text(encoding="utf-8")) or {}).get(player) or []:
+        e = dict(e)
+        e["url"] = f"https://www.youtube.com/watch?v={e['id']}"
+        e.setdefault("start", 0)
+        e["duration_s"] = float(e.get("end", 0) - e["start"]) if e.get("end") else 1e9      # known after the download
+        e["query"] = "lista elegida"
+        out.append(e)
+    return out
+
+
 def download(v: dict, d: Path, seconds: float) -> Path | None:
-    """The first `seconds` of the video at ≤720p and 30 fps (H.264 + sound); the download is deleted."""
+    """`seconds` of the video from its start mark, at ≤720p and 30 fps (H.264 + sound); the download is deleted."""
     seg = d / "segmento.mp4"
     if seg.exists() and v.get("seconds_kept", 0) >= min(seconds, v["duration_s"]) - 1:
         return seg
@@ -81,7 +99,15 @@ def download(v: dict, d: Path, seconds: float) -> Path | None:
         if not raw:
             v["error"] = (r.stderr or r.stdout or "")[-300:]
             return None
-    r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(raw[0]), "-t", f"{seconds:.0f}",
+    if v["duration_s"] >= 1e9:              # length known only now
+        try:
+            dur = float(subprocess.run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", str(raw[0])],
+                                       capture_output=True, text=True).stdout.strip())
+            v["duration_s"] = dur - v.get("start", 0)
+        except ValueError:
+            v["duration_s"] = seconds
+    seconds = min(seconds, v["duration_s"])
+    r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{v.get('start', 0):.2f}", "-i", str(raw[0]), "-t", f"{seconds:.0f}",
                         "-vf", "scale=-2:'min(720,ih)',fps=30", "-c:v", "libx264", "-preset", "veryfast", "-crf", "20",
                         "-pix_fmt", "yuv420p", "-c:a", "aac", "-ac", "1", str(seg)], capture_output=True)
     for f in raw if not v.get("local") else []:
@@ -89,7 +115,7 @@ def download(v: dict, d: Path, seconds: float) -> Path | None:
     if r.returncode or not seg.exists():
         v["error"] = r.stderr.decode(errors="replace")[-300:]
         return None
-    v["seconds_kept"] = min(seconds, v["duration_s"])
+    v["seconds_kept"] = seconds
     return seg
 
 
@@ -176,13 +202,18 @@ def analyse(v: dict, d: Path, seg: Path, clips: Path, hand: str, height_m: float
         for k, st in enumerate(run.strokes):
             i = st.impact_frame
             ph = {p: x["frame"] for p, x in st.phases.items()}
-            view = practice.camera_view(run.img, run.conf, sk, ph.get("ready"), i, run.fps)
+            view = practice.camera_view(run.img, run.conf, sk, ph.get("ready"), i, run.fps, ph.get("loaded"))
             rec = {"id": f"{v['id']}_{n:02d}_{k:02d}", "video_id": v["id"], "title": v["title"], "channel": v["channel"],
                    "url": v["url"], "t": round((s + i) / fps, 2), "view": view, "stroke": st.stroke,
                    "source": st.impact_source, "metrics": {}}
             if view == "lateral" and st.stroke == "forehand":
                 rec["metrics"] = practice.side_metrics(run.img, run.conf, sk, run.fps, i, ph, run.height_px, height_m,
                                                        heads(run, sk, i - int(0.8 * run.fps), i + 1))
+            elif view == "frontal" and st.stroke == "forehand":
+                rec["metrics"] = practice.front_metrics(run.img, run.conf, sk, i)
+            bad = practice.implausible(rec["metrics"])
+            if bad:                                   # contact frame or arm not trustworthy: nothing measured
+                rec["discarded"], rec["metrics"] = bad, {}
             clip, th = clips / f"{rec['id']}.mp4", clips / f"{rec['id']}.jpg"
             try:
                 write_clip(shot, run, sk, i, clip, th)
@@ -201,6 +232,7 @@ def main():
     ap.add_argument("--per-query", type=int, default=6)
     ap.add_argument("--player", default="rybakina")
     ap.add_argument("--file", help="analizar un vídeo local en vez de buscar (pruebas)")
+    ap.add_argument("--search", action="store_true", help="buscar en YouTube si no hay lista elegida (config/practice_videos.yaml)")
     args = ap.parse_args()
     out = Path(args.out)
     clips = out / "clips"
@@ -221,7 +253,13 @@ def main():
         vids = [{"id": "local_" + f.stem[:20].replace(" ", "_"), "title": f.stem, "channel": "local", "duration_s": dur,
                  "url": f.resolve().as_uri(), "local": str(f)}]
         idx.write_text(json.dumps(vids, ensure_ascii=False, indent=1), encoding="utf-8")
-    if not vids:
+    chosen = curated(args.player)
+    known = {v["id"] for v in vids}
+    if chosen and not args.file:          # the chosen list first (cameras checked by eye), keeping what was analysed
+        vids = [v for v in vids if v["id"] in {c["id"] for c in chosen}] + [c for c in chosen if c["id"] not in known]
+        vids.sort(key=lambda v: [c["id"] for c in chosen].index(v["id"]))
+        idx.write_text(json.dumps(vids, ensure_ascii=False, indent=1), encoding="utf-8")
+    if not vids and args.search:
         log("Buscando vídeos de entrenamiento de la jugadora en YouTube…")
         vids = search(args.per_query)
         idx.write_text(json.dumps(vids, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -233,25 +271,28 @@ def main():
         d = out / v["id"]
         d.mkdir(exist_ok=True)
         res = d / "golpes.json"
-        if res.exists() and v.get("analysed_s", 0) >= min(args.max_seconds, v["duration_s"]) - 1:
+        if res.exists() and v.get("analysed_s", 0) >= min(args.max_seconds, v.get("duration_s", 1e9)) - 1:
             done += 1
             continue
         log(f"  {v['title'][:70]} ({v['channel']})")
         t0 = time.time()
+        before = v.get("seconds_kept")
         seg = download(v, d, args.max_seconds)
         if seg is None:
             log(f"    no se pudo bajar: {v.get('error', '')[:150]}")
             continue
-        for f in d.glob("plano_*"):                    # a longer segment: the shots change
-            if v.get("analysed_s") is not None:
+        if before is not None and v.get("seconds_kept") != before:     # a longer segment: the shots change
+            for f in d.glob("plano_*"):
                 f.unlink(missing_ok=True)
         strokes = analyse(v, d, seg, clips, pl.hand, pl.height_m)
         res.write_text(json.dumps(strokes, ensure_ascii=False, indent=1), encoding="utf-8")
         v["analysed_s"] = v["seconds_kept"]
         v["strokes"] = len(strokes)
-        v["lateral_forehands"] = sum(1 for s in strokes if s["view"] == "lateral" and s["stroke"] == "forehand")
+        v["lateral_forehands"] = sum(1 for s in strokes if s["view"] == "lateral" and s["stroke"] == "forehand" and not s.get("discarded"))
+        v["discarded"] = sum(1 for s in strokes if s.get("discarded"))
         idx.write_text(json.dumps(vids, ensure_ascii=False, indent=1), encoding="utf-8")
-        log(f"    {len(strokes)} golpes, {v['lateral_forehands']} derechas de lado ({time.time() - t0:.0f} s)")
+        log(f"    {len(strokes)} golpes, {v['lateral_forehands']} derechas de lado medidas, {v['discarded']} descartadas "
+            f"por valores imposibles ({time.time() - t0:.0f} s)")
         done += 1
     allst = []
     for v in vids:
@@ -263,7 +304,7 @@ def main():
                "strokes": allst, "views": practice.views_count(allst), "summary": practice.summarize(allst),
                "min_n": practice.MIN_N}
     (out / "entrenamiento.json").write_text(json.dumps(summary, ensure_ascii=False, indent=1), encoding="utf-8")
-    nl = sum(1 for s in allst if s["view"] == "lateral" and s["stroke"] == "forehand")
+    nl = sum(1 for s in allst if s["view"] == "lateral" and s["stroke"] == "forehand" and not s.get("discarded"))
     log(f"Hecho: {len(summary['videos'])} vídeos, {len(allst)} golpes, {nl} derechas de lado → {out}")
     return 0
 

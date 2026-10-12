@@ -25,17 +25,33 @@ def body(T=60, shoulder_w=100.0, face_conf=0.9):
     return kp, cf
 
 
+def turning(w_wait, w_turn, face_conf=0.9):
+    """Shoulders w_wait apart while she waits (frames < 25) and w_turn apart once turned."""
+    kp, cf = body(shoulder_w=w_wait, face_conf=face_conf)
+    k2, _ = body(shoulder_w=w_turn, face_conf=face_conf)
+    kp[25:] = k2[25:]
+    return kp, cf
+
+
 def test_camera_view_side_back_front():
-    kp, cf = body(shoulder_w=8)
-    assert practice.camera_view(kp, cf, SK, 10, 40, FPS) == "lateral"
-    kp, cf = body(shoulder_w=100, face_conf=0.1)
-    assert practice.camera_view(kp, cf, SK, 10, 40, FPS) == "trasera"
-    kp, cf = body(shoulder_w=100, face_conf=0.9)
-    assert practice.camera_view(kp, cf, SK, 10, 40, FPS) == "frontal"
-    kp, cf = body(shoulder_w=70)
+    kp, cf = turning(8, 100)                           # side: narrow waiting, wide when turned
+    assert practice.camera_view(kp, cf, SK, 10, 40, FPS, 30) == "lateral"
+    kp, cf = turning(100, 15, face_conf=0.1)           # behind: wide waiting, narrow when turned
+    assert practice.camera_view(kp, cf, SK, 10, 40, FPS, 30) == "trasera"
+    kp, cf = turning(100, 15, face_conf=0.9)
+    assert practice.camera_view(kp, cf, SK, 10, 40, FPS, 30) == "frontal"
+    kp, cf = turning(8, 10)                            # narrow all along: an angled camera, never "side"
+    assert practice.camera_view(kp, cf, SK, 10, 40, FPS, 30) == "diagonal"
+    kp, cf = turning(70, 70)
     assert practice.camera_view(kp, cf, SK, None, 40, FPS) == "diagonal"
     kp[:] = np.nan                                     # player not seen: never a confident view
-    assert practice.camera_view(kp, cf, SK, 10, 40, FPS) == "diagonal"
+    assert practice.camera_view(kp, cf, SK, 10, 40, FPS, 30) == "diagonal"
+
+
+def test_implausible_values_are_named():
+    assert practice.implausible({"elbow_impact_deg": 23.7, "swing_angle_deg": 30.0, "racket_drop_below_contact_cm": 140}) == \
+        ["elbow_impact_deg", "racket_drop_below_contact_cm"]
+    assert practice.implausible({"elbow_impact_deg": 140.0}) == []
 
 
 def test_side_metrics_forward_low_to_high_both_directions():
@@ -111,3 +127,17 @@ def test_exam_needs_min_n_and_decides():
     assert got["R1"] == CONFIRMS and got["R10"] == CONFIRMS and got["R17"] == CONFIRMS and got["R18"] == REFUTES
     assert got["R2"] == FEW and got["R16"] == UNDECIDABLE         # no data / not visible from TV: never confirmed
     assert {c[0]: c[2] for c in claims([v] * 5, 12)}["R1"] == FEW
+
+
+def test_front_head_towards_contact():
+    kp, cf = body(shoulder_w=100)
+    i = 40
+    kp[:, SK["left_ear"]], kp[:, SK["right_ear"]] = (320, 120), (280, 120)
+    kp[i, SK["dom_wrist"]] = (150, 300)                # right hand, seen from the front: image-left
+    kp[i, SK["nose"]] = (285, 125)                     # nose towards the hand
+    cf[:, [SK["left_ear"], SK["right_ear"]]] = 0.9
+    assert practice.front_metrics(kp, cf, SK, i)["head_to_contact_idx"] == 0.75
+    kp[i, SK["nose"]] = (315, 125)
+    assert practice.front_metrics(kp, cf, SK, i)["head_to_contact_idx"] == -0.75
+    cf[i, SK["left_ear"]] = 0.1
+    assert practice.front_metrics(kp, cf, SK, i) == {}

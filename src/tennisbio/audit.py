@@ -459,23 +459,27 @@ def _combination_items(model: dict, vals: list[dict], min_n: int, factors: dict)
 
 
 def _practice_items(pr: dict | None, report_dir: Path | None) -> list[dict]:
-    from .practice import MIN_N, SIDE_METRICS
+    from .practice import FRONT_METRICS, MIN_N, SIDE_METRICS
 
     area = "Vista lateral (entrenamiento)"
     if not pr or not pr.get("videos"):
         return [_item(6, area, "Vídeos de entrenamiento analizados", "aviso",
                       "todavía no hay vídeos de entrenamiento (se bajan en el PC con la prueba rápida; ver el registro)")]
     st = pr.get("strokes") or []
-    side = [s for s in st if s.get("view") == "lateral" and s.get("stroke") == "forehand"]
+    side = [s for s in st if s.get("view") == "lateral" and s.get("stroke") == "forehand" and not s.get("discarded")]
+    disc = [s for s in st if s.get("discarded")]
     items = [_item(6, area, "Vídeos de entrenamiento analizados", "ok",
-                   f"{len(pr['videos'])} vídeos, {len(st)} golpes; cámara: {pr.get('views')}"),
+                   f"{len(pr['videos'])} vídeos, {len(st)} golpes; cámara: {pr.get('views')}; "
+                   f"{len(disc)} descartados por valores imposibles"),
              _item(6, area, "Derechas filmadas de lado", "ok" if len(side) >= MIN_N else "pocos datos",
                    f"{len(side)} (se resume cada medida con {MIN_N} o más)")]
-    for k, (lab, _, _) in SIDE_METRICS.items():
+    front = [s for s in st if s.get("view") == "frontal" and s.get("stroke") == "forehand" and not s.get("discarded")]
+    for k, (lab, _, _) in {**SIDE_METRICS, **FRONT_METRICS}.items():
         e = (pr.get("summary") or {}).get(k) or {}
         n = e.get("n", 0)
-        status = "ok" if e.get("median") is not None else "pocos datos" if n or len(side) < MIN_N else "falta"
-        items.append(_item(1, area, lab, status, f"{n} derechas de lado con esta medida"
+        own = front if k in FRONT_METRICS else side
+        status = "ok" if e.get("median") is not None else "pocos datos" if n or len(own) < MIN_N else "falta"
+        items.append(_item(1, area, lab, status, f"{n} derechas {'de frente' if k in FRONT_METRICS else 'de lado'} con esta medida"
                            + (f"; mediana {e['median']}" if e.get("median") is not None else "")))
     if report_dir and pr.get("base"):
         miss = [s["id"] for s in st if not s.get("clip") or not (report_dir / pr["base"] / s["clip"]).exists()]

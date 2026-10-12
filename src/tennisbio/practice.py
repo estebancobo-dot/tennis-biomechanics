@@ -37,7 +37,23 @@ SIDE_METRICS = {
     "lag_pre_impact_deg": ("Ángulo antebrazo–raqueta antes del impacto", "°",
                            "el mismo ángulo ~50 ms antes del impacto: si ya está en línea mucho antes, suelta la muñeca pronto"),
 }
-MIN_N = 12          # as everywhere in the report: no summary from fewer strokes
+# per-stroke measurement of the front view (face visible): where the head points at contact
+FRONT_METRICS = {
+    "head_to_contact_idx": ("Cabeza girada hacia el impacto", "índice",
+                            "+1 = la cara mira hacia el lado del impacto, 0 = al frente, −1 = al lado contrario"),
+}
+MIN_N = 12
+# a value outside these is a measurement error (wrong contact frame, arm hidden behind the body): the
+# whole stroke is left out, since its contact frame cannot be trusted either
+LIMITS = {"contact_in_front_pct": (-40, 80), "swing_angle_deg": (-30, 80), "elbow_impact_deg": (60, 180),
+          "back_knee_loaded_deg": (70, 180), "front_knee_impact_deg": (70, 180), "trunk_lean_impact_deg": (-35, 45),
+          "racket_drop_below_contact_cm": (-40, 90), "lag_accel_deg": (40, 180), "lag_pre_impact_deg": (40, 180),
+          "head_to_contact_idx": (-1.5, 1.5)}
+
+
+def implausible(metrics: dict) -> list[str]:
+    """Names of the values outside their physical limits."""
+    return [k for k, (lo, hi) in LIMITS.items() if metrics.get(k) is not None and not lo <= metrics[k] <= hi]          # as everywhere in the report: no summary from fewer strokes
 
 
 def _mean_pt(kp, *idx):
@@ -46,25 +62,35 @@ def _mean_pt(kp, *idx):
         return np.nanmean(np.stack([kp[..., i, :] for i in idx]), axis=0)
 
 
-def camera_view(img: np.ndarray, conf: np.ndarray, sk: Skeleton, ready: int | None, impact: int, fps: float) -> str:
-    """Where the camera films her from, judged while she waits facing the net (split step): from the
-    side her shoulders overlap; from behind or the front they are far apart. Front and back are told
-    apart by the face (eyes and nose detected)."""
-    f = ready if ready is not None else max(0, impact - int(0.9 * fps))
-    a, b = max(0, f - int(0.1 * fps)), min(len(img), f + int(0.1 * fps) + 1)
+def _shoulder_ratio(img: np.ndarray, sk: Skeleton, f: int, fps: float, half: float = 0.08) -> float:
+    """Apparent shoulder width / torso length around frame f (0 = shoulders overlap)."""
+    a, b = max(0, f - int(half * fps)), min(len(img), f + int(half * fps) + 1)
     seg = img[a:b]
     if not len(seg):
-        return "diagonal"
+        return float("nan")
     sh = np.abs(seg[:, sk["left_shoulder"], 0] - seg[:, sk["right_shoulder"], 0])
     torso = np.linalg.norm(_mean_pt(seg, sk["left_shoulder"], sk["right_shoulder"]) - _mean_pt(seg, sk["left_hip"], sk["right_hip"]), axis=-1)
     with np.errstate(invalid="ignore", divide="ignore"), warnings.catch_warnings():
         warnings.simplefilter("ignore", RuntimeWarning)
-        r = np.nanmedian(sh / torso)
-    if not np.isfinite(r):
+        return float(np.nanmedian(sh / torso))
+
+
+def camera_view(img: np.ndarray, conf: np.ndarray, sk: Skeleton, ready: int | None, impact: int, fps: float,
+                loaded: int | None = None) -> str:
+    """Where the camera films her from. A forehand turns the shoulders about 90° between the wait
+    (facing the net) and the end of the backswing: filmed from the side, the shoulders look narrow
+    while she waits and wide when she has turned; from behind or the front, the other way round.
+    Both moments are needed: one alone is fooled by a camera at an angle. Front and back are told
+    apart by the face (eyes and nose detected)."""
+    fr = ready if ready is not None else max(0, impact - int(0.9 * fps))
+    fl = loaded if loaded is not None else max(0, impact - int(0.3 * fps))
+    r_wait, r_turn = _shoulder_ratio(img, sk, fr, fps), _shoulder_ratio(img, sk, fl, fps)
+    if not (np.isfinite(r_wait) and np.isfinite(r_turn)) or fl <= fr:
         return "diagonal"
-    if r < 0.35:
+    if r_wait < 0.35 and r_turn > r_wait + 0.25:
         return "lateral"
-    if r > 0.6:
+    if r_wait > 0.6 and r_wait > r_turn + 0.2:
+        a, b = max(0, fr - int(0.1 * fps)), min(len(img), fr + int(0.1 * fps) + 1)
         face = np.nanmean(conf[a:b][:, [sk["nose"], sk["left_eye"], sk["right_eye"]]])
         return "frontal" if face > 0.5 else "trasera"
     return "diagonal"
@@ -135,18 +161,34 @@ def side_metrics(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, im
     return {k: v for k, v in out.items() if v is not None}
 
 
+def front_metrics(img: np.ndarray, conf: np.ndarray, sk: Skeleton, impact: int) -> dict:
+    """Head turn towards the contact, from the front: the nose against the middle of the ears, in units
+    of half the distance between the ears, signed towards the side of the hitting hand."""
+    i = impact
+    le, re_, n, w = sk["left_ear"], sk["right_ear"], sk["nose"], sk["dom_wrist"]
+    if min(conf[i, le], conf[i, re_], conf[i, n]) < 0.4 or not np.isfinite(img[i, [le, re_, n, w]]).all():
+        return {}
+    mid = (img[i, le, 0] + img[i, re_, 0]) / 2
+    half = abs(img[i, le, 0] - img[i, re_, 0]) / 2
+    side = np.sign(img[i, w, 0] - mid)
+    if half < 1 or side == 0:
+        return {}
+    return {"head_to_contact_idx": round(float(np.clip((img[i, n, 0] - mid) / half * side, -1.5, 1.5)), 2)}
+
+
 def summarize(strokes: list[dict]) -> dict:
-    """Median and spread of each side-view measurement over the side-view forehands; a measurement
-    with fewer than MIN_N strokes only gives its count (nothing is concluded from it)."""
-    side = [s for s in strokes if s.get("view") == "lateral" and s.get("stroke") == "forehand"]
+    """Median and spread of each measurement over the forehands filmed from its view (side or front);
+    a measurement with fewer than MIN_N strokes only gives its count (nothing is concluded from it)."""
     out = {}
-    for k, (lab, unit, what) in SIDE_METRICS.items():
-        v = np.array([s["metrics"][k] for s in side if s.get("metrics", {}).get(k) is not None], float)
-        e = {"label": lab, "unit": unit, "what": what, "n": int(len(v))}
-        if len(v) >= MIN_N:
-            q1, med, q3 = np.percentile(v, [25, 50, 75])
-            e.update(median=round(float(med), 1), q1=round(float(q1), 1), q3=round(float(q3), 1))
-        out[k] = e
+    for view, table in (("lateral", SIDE_METRICS), ("frontal", FRONT_METRICS)):
+        own = [s for s in strokes if s.get("view") == view and s.get("stroke") == "forehand" and not s.get("discarded")]
+        for k, (lab, unit, what) in table.items():
+            v = np.array([s["metrics"][k] for s in own if s.get("metrics", {}).get(k) is not None], float)
+            e = {"label": lab, "unit": unit, "what": what, "n": int(len(v)), "view": view}
+            if len(v) >= MIN_N:
+                q1, med, q3 = np.percentile(v, [25, 50, 75])
+                e.update(median=round(float(med), 2), q1=round(float(q1), 2), q3=round(float(q3), 2))
+            out[k] = e
     return out
 
 
