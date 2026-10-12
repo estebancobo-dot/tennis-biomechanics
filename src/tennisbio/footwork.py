@@ -348,6 +348,18 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
         out["recovery_pattern"] = kinds_text([k for _, k in rec])
         out["recovery_first_step"] = rec[0][1]
         out["recovery_start_s"] = round((rec[0][0].start - impact) / fps, 3)
+    bj = 0 if back == "dom" else 1
+    # step-in (attack step): the front foot steps forward, into the court, in the last 0.5 s
+    front = "non" if back == "dom" else "dom"
+    out["step_in"] = any(x.foot == front and x.dy > 0.25 and impact - s(0.5) <= x.land <= impact + s(0.04) for x, _ in appr)
+    # drag foot: after contact the back foot slides forward on the ground (not lifted) at least 0.25 m
+    w2 = slice(impact, min(T, impact + s(0.4)))
+    pb = feet[w2, bj]
+    lifted_b = air[w2, bj]
+    okb = np.isfinite(pb).all(axis=1) & ~lifted_b
+    if okb.sum() >= 3:
+        q = pb[okb]
+        out["drag_foot"] = bool((q[-1][1] - q[0][1]) > 0.25 and lifted_b.mean() < 0.3)
     # kick-back (scissor kick): the back foot leaves the ground right after contact while the front
     # one stays down, for at least 0.08 s
     bj = 0 if back == "dom" else 1
@@ -376,7 +388,8 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
         for k in [k for k in out if k.startswith(("steps", "first_step", "last_plant", "last_step", "split_",
                                                     "adjustment", "rear_leg", "feet_at_impact", "weight_loaded",
                                                     "approach_steps", "approach_pattern", "braking", "recovery_steps",
-                                                    "recovery_pattern", "recovery_first", "recovery_start", "kick_back"))]:
+                                                    "recovery_pattern", "recovery_first", "recovery_start", "kick_back",
+                                                    "step_in", "drag_foot"))]:
             del out[k]
         out["steps_reliable"] = False
     else:

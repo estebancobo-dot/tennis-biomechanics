@@ -92,6 +92,9 @@ def _lines():
                                                          "La cabeza de la raqueta sigue a la altura de la mano o por encima.")),
         ("acceleration.racket_forearm", lambda t: f"Ángulo antebrazo–raqueta de {fmt(t['median'])}° (retraso de la muñeca)."),
         ("stroke.dur_forward", lambda t: f"Del armado al impacto tarda {fmt(t['median'], 2)} s ({_rng(t, 2)} s)."),
+        ("stroke.shoulders_open_first", lambda t: ("La cadera abre antes que los hombros: mantiene la separación hasta el final." if t["median"] < -0.02 else
+                                                   "Los hombros empiezan a abrirse antes que la cadera (apertura prematura): pierde parte de la separación."
+                                                   if t["median"] > 0.04 else "Cadera y hombros abren casi a la vez.")),
         ("stroke.acceleration_vs_bounce", lambda t: (f"Empieza a acelerar {fmt(t['median'], 2)} s después del bote." if t["median"] > 0.02 else
                                                      f"Empieza a acelerar {fmt(-t['median'], 2)} s antes del bote." if t["median"] < -0.02 else
                                                      "Empieza a acelerar justo cuando bota la bola.")),
@@ -124,6 +127,8 @@ def _lines():
                                             f"({_rng(t)} %; fiabilidad baja: la mano mide pocos píxeles)."),
     ]
     L["extension"] = [
+        ("extension.wrist_non_lateral", lambda t: ("El brazo libre se recoge pegado al cuerpo tras el contacto («catch»)." if t["median"] > -12 else
+                                                   f"El brazo libre queda separado del cuerpo tras el contacto ({fmt(-t['median'])} % de su altura).")),
         ("extension.arm_extension", lambda t: f"Brazo extendido al {fmt(t['median'])} % hacia delante tras el contacto."),
         ("stroke.swing_rise_after", lambda t: f"La mano sube un {fmt(t['median'])} % de su altura en los 150 ms siguientes."),
     ]
@@ -131,6 +136,10 @@ def _lines():
         ("stroke.t_finish", lambda t: f"Termina {fmt(t['median'], 2)} s después del impacto."),
         ("finish.wrist_dom_vs_shoulder", lambda t: f"Mano {'por encima' if t['median'] > 0 else 'por debajo'} del hombro ({fmt(abs(t['median']))} %)."),
         ("finish.wrist_dom_lateral", lambda t: f"Mano al {'lado contrario' if t['median'] < 0 else 'lado de su brazo'} del cuerpo."),
+        ("finish.head_over_base", lambda t: ("Termina en equilibrio: la cabeza sobre los pies." if abs(t["median"]) < 6 else
+                                             f"Termina con la cabeza desplazada {fmt(abs(t['median']))} % de su altura hacia su {'lado del brazo' if t['median'] > 0 else 'lado contrario'}.")),
+        ("finish.trunk_tilt", lambda t: "Tronco vertical al terminar." if abs(t["median"]) < 8 else
+                                        f"Tronco inclinado {fmt(abs(t['median']))}° al terminar."),
         ("finish.face_tilt", lambda t: f"Cara de la raqueta {'cerrada' if t['median'] >= 0 else 'abierta'} {fmt(abs(t['median']))}°."),
     ]
     L["recovery"] = [
@@ -260,6 +269,14 @@ COACH = {
     "stroke.acceleration_vs_bounce": ("Esperar al bote para empezar a acelerar sincroniza el swing con la bola.", "ITF (Crespo, Reid)"),
     "stroke.hip_rise": ("Subir con las piernas al golpear inicia la cadena cinética desde el suelo y ayuda al efecto liftado.", "Elliott 2006; Reid 2013"),
     "stroke.weight_shift": ("Pasar el peso hacia delante (o de la pierna exterior a la otra en apoyo abierto) lleva la energía del suelo a la bola.", "Tennis Australia"),
+    "extension.wrist_non_lateral": ("Recoger el brazo libre contra el pecho («catch») frena el lado izquierdo y acelera el giro del tronco.", "Tennis Australia; ITF"),
+    "finish.head_over_base": ("Terminar con la cabeza sobre los pies indica que no perdió el equilibrio al frenar el giro.", "Tennis Australia"),
+    "finish.trunk_tilt": ("Un tronco estable al terminar indica que no hubo «desplome» tras el golpe.", "Tennis Australia"),
+    "stroke.shoulders_open_first": ("Si los hombros abren antes que la cadera se pierde la separación (fuga de energía, «apertura prematura»).", "Landlinger 2010; Elliott 2006"),
+    "footwork.step_in": ("El paso de ataque (step-in) lleva el peso hacia delante, dentro de la pista.", "Tennis Australia; Kovacs 2009"),
+    "footwork.drag_foot": ("Arrastrar el pie de atrás tras golpear mantiene el equilibrio en carrera.", "Tennis Australia"),
+    "step_in": ("El paso de ataque (step-in) lleva el peso hacia delante, dentro de la pista.", "Tennis Australia; Kovacs 2009"),
+    "drag_foot": ("Arrastrar el pie de atrás tras golpear mantiene el equilibrio en carrera.", "Tennis Australia"),
 }
 # What a coach checks at each moment (critical features: Knudson 2006; Tennis Australia)
 PHASE_FOCUS = {
@@ -281,8 +298,8 @@ PRIMARY = {
     "acceleration": ["acceleration.racket_head_vs_wrist", "chain", "stroke.hip_rise", "class.swing"],
     "impact": ["class.ball_phase", "impact.wrist_dom_vs_hip", "class.arm", "class.stance_impact", "stroke.weight_shift",
                "stroke.head_motion_cm", "strings"],
-    "extension": ["extension.arm_extension", "stroke.swing_rise_after"],
-    "finish": ["class.finish", "finish.wrist_dom_vs_shoulder", "strings"],
+    "extension": ["extension.arm_extension", "stroke.swing_rise_after", "extension.wrist_non_lateral"],
+    "finish": ["class.finish", "finish.wrist_dom_vs_shoulder", "finish.head_over_base", "strings"],
     "recovery": ["footwork.recovery_to_centre_m", "footwork.off_centre_at_opp_hit_m", "rear_leg_step_after"],
 }
 STRINGS_REL = {"ready": 3, "takeback": 3, "loaded": 3, "acceleration": 1, "impact": 1, "extension": 1, "finish": 3, "recovery": 2}
@@ -432,7 +449,9 @@ def copy_cue(p: str, model: dict, classes: dict) -> str | None:
             parts.append("sigue empujando hacia la bola con el brazo después del contacto")
     elif p == "finish":
         if top("finish"):
-            parts.append(f"termina {top('finish')}" if top("finish").startswith(("sobre", "alrededor")) else f"termina con un final {top('finish')}")
+            fin = top("finish")
+            parts.append("termina en látigo, sobre el mismo hombro" if fin.startswith("látigo") else
+                         f"termina {fin}" if fin.startswith(("sobre", "alrededor")) else f"termina con un final {fin}")
     elif p == "recovery":
         if top("recovery_first_step"):
             parts.append(f"vuelve hacia el centro empezando con un paso {top('recovery_first_step')}")
@@ -576,6 +595,11 @@ NOT_MEASURABLE = [
     "Nuevo split step antes del siguiente golpe de la rival: el vídeo de cada golpe acaba 0,8 s después del impacto.",
     "Punto del cordaje donde golpea, presión de agarre y contribución de cada segmento a la velocidad: necesitan "
     "sensores o cámaras de laboratorio.",
+    "Reacción y fuerzas contra el suelo, tasa de desarrollo de fuerza, activación muscular (electromiografía), "
+    "estabilidad lumbopélvica, rangos articulares y cargas del codo: necesitan plataformas de fuerza, sensores o laboratorio.",
+    "Propiedades de la raqueta (swingweight, rigidez, encordado, tensión), relajación o tensión de la empuñadura, "
+    "trayectoria horizontal del swing (de dentro a fuera), velocidad angular en grados por segundo, aerodinámica, "
+    "altitud, temperatura y humedad: no se ven en la retransmisión.",
 ]
 
 
@@ -599,5 +623,6 @@ def model_view(model: dict, stroke: str) -> dict:
             "typical_strokes": model.get("typical_strokes", []), "n": model["n_strokes"], "n_near": model["n_near"],
             "footwork": model["footwork"], "not_measurable": nm, "min_n": MIN_N,
             "coach": {k: v[0] for k, v in COACH.items() if k.startswith("footwork.") or k in (
-                "first_step_right_way", "rear_leg_step_after", "approach_main", "recovery_first_step", "braking_step", "kick_back", "around_ball")}, "curves": model.get("curves"),
+                "first_step_right_way", "rear_leg_step_after", "approach_main", "recovery_first_step", "braking_step", "kick_back", "around_ball",
+                "step_in", "drag_foot")}, "curves": model.get("curves"),
             "factors": {fk: FACTORS[fk][0] for fk in model["variants"]}}

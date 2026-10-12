@@ -59,7 +59,7 @@ def test_finish_classes():
     assert finish_class(over, SK, 3, {}) == "sobre el hombro"
     around = body.copy()
     around[:, SK["right_wrist"]] = [-0.15, 0.1]                                  # low, on the other side
-    assert finish_class(around, SK, 3, {}) == "alrededor del cuerpo"
+    assert finish_class(around, SK, 3, {}) == "alrededor del cuerpo (cintura contraria)"
 
 
 def test_steps_and_first_step_on_the_court():

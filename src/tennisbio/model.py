@@ -238,7 +238,7 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
     out["footwork"]["last_plant_foot"] = _counts([(s["technique"].get("footwork") or {}).get("last_plant_foot") for s in near])
     out["footwork"]["move_direction"] = _counts([(s["technique"].get("classes") or {}).get("move_direction") for s in near])
     out["footwork"]["rear_leg_step_after"] = _counts([(s["technique"].get("footwork") or {}).get("rear_leg_step_after") for s in near])
-    for k in ("braking_step", "kick_back"):
+    for k in ("braking_step", "kick_back", "step_in", "drag_foot"):
         out["footwork"][k] = _counts([(s["technique"].get("footwork") or {}).get(k) for s in near])
     out["footwork"]["first_step_right_way"] = _counts([(s["technique"].get("footwork") or {}).get("first_step_right_way") for s in near])
     out["skeleton"] = _mean_skeleton(near)

@@ -91,6 +91,8 @@ STROKE_DESCRIPTORS = {
     "wrist_drop": ("raqueta", "Caída de la mano antes de acelerar", "%", 3, "del armado al punto más bajo"),
     "split_hop": ("pies", "Altura del split step", "%", 2, "salto, % de altura"),
     "loaded_vs_bounce": ("ritmo", "Armado completo respecto al bote", "s", 2, "− = ya armada cuando bota la bola"),
+    "shoulders_open_first": ("ritmo", "Apertura de hombros antes que la cadera", "s", 2,
+                             "máximo giro de la cadera − máximo giro de hombros (+ = los hombros empiezan a abrirse antes: apertura prematura)"),
     "acceleration_vs_bounce": ("ritmo", "Inicio de la aceleración respecto al bote", "s", 2, "+ = empieza a acelerar después del bote"),
     "takeback_vs_first_step": ("ritmo", "Giro respecto al primer paso", "s", 2, "− = empieza a girar antes de dar el primer paso (gira mientras se mueve)"),
     "hip_rise": ("piernas", "Empuje de piernas", "%", 2, "lo que sube la cadera del punto más bajo (armado/aceleración) al impacto, % de altura"),
@@ -326,12 +328,12 @@ def finish_class(body: np.ndarray, sk: Skeleton, f: int, racket: dict, stroke: s
             return "corta (delante)"
         return "sobre el hombro" if above_sh > -0.03 else "baja"
     if lat > 0.05 and above_sh > 0.08:
-        return "invertida"                          # reverse / buggy whip: ends above the head, on the hitting side
+        return "látigo (sobre el mismo hombro)"     # buggy whip / reverse: ends above the head, on the hitting side
     if lat > -0.03:
         return "limpiaparabrisas"                   # wrist stays in front, the racket turns over
     if above_sh > -0.03:
         return "sobre el hombro"
-    return "alrededor del cuerpo"
+    return "alrededor del cuerpo (cintura contraria)"
 
 
 def situation(m: dict, court_pos, displacement, t_avail, contact_h, dom_sign: int) -> dict:
@@ -464,6 +466,9 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
             s[key] = round((impact - (lo + int(np.nanargmax(w)))) / fps, 3)
     if ev["loaded"] is not None and bounce is not None:
         s["loaded_vs_bounce"] = round((ev["loaded"] - bounce) / fps, 3)
+    # early opening (energy leak): the hips should start unwinding before the shoulders
+    if s.get("t_max_shoulder_turn") is not None and s.get("t_max_hip_turn") is not None:
+        s["shoulders_open_first"] = round(s["t_max_shoulder_turn"] - s["t_max_hip_turn"], 3)
     if ev["acceleration"] is not None and bounce is not None:
         s["acceleration_vs_bounce"] = round((ev["acceleration"] - bounce) / fps, 3)
     # leg drive ("sit down and come up") and weight transfer, from the postures already measured

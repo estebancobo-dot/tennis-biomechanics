@@ -130,6 +130,71 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Ganador / error (forzado o no) | F3Set, SwingVision | ◐ | fuera ✔, red y ganador probables; forzado/no forzado ✘ (subjetivo) |
 | Presión, set, fatiga | ATP/WTA | ✔ | marcador (OCR) |
 
+
+## 6. Matriz del usuario (12-10): análisis integral de la derecha
+
+Cada punto de la matriz que pidió el usuario, con su estado. Lo marcado ✘ no se ve desde una cámara
+de TV detrás del fondo (necesita laboratorio, sensores o varias cámaras) y el informe lo dice.
+
+| Elemento | Fuente | Estado | Implementación / acción |
+|---|---|---|---|
+| Reacción al suelo (fuerza contra la pista) | Matriz del usuario | ✘ | solo cinemática: se usa el empuje de piernas como indicio |
+| Empuje de piernas / extensión triple (tobillo, rodilla, cadera) | Matriz del usuario | ◐ | `hip_rise`, `hip_height` (rodillas 2D con escorzo) |
+| Rotación pélvica | Matriz del usuario | ◐ | `hip_turn`, `t_max_hip_turn` (2D) |
+| Separación cadera–hombro (torque) | Matriz del usuario | ◐ | `x_factor` (2D y 3D estimado) |
+| Giro de hombros (unit turn) | Matriz del usuario | ✔ | `takeback.shoulder_turn`, `loaded.shoulder_turn`, `hands_apart` |
+| Extensión del codo | Matriz del usuario | ✔ | `elbow_dom`, `arm_extension` |
+| Pronación del antebrazo, flexión palmar y desviación de la muñeca | Matriz del usuario | ✘ | rotaciones sobre el eje del brazo, invisibles en 2D |
+| Retraso de la muñeca (lag) y su liberación | Matriz del usuario | ◐ | `racket_forearm` (ángulo 2D; en el impacto, borroso) |
+| Mirada fija en el punto de impacto («quiet eye») | Matriz del usuario | ✘ | se la ve de espaldas |
+| Cabeza estable y eje vertical | Matriz del usuario | ✔ | `head_motion_cm`, `head_over_base`, `trunk_tilt` |
+| Brazo recto o doble flexión | Matriz del usuario | ✔ | clase `arm`, `elbow_dom` |
+| Brazo libre paralelo a la línea de fondo en el giro; distancia a la bola | Matriz del usuario | ✔ | `shoulder_abd_non`, `elbow_non`, `wrist_dom_lateral` |
+| Brazo libre recogido al pecho tras el contacto («catch») | Matriz del usuario | ✔ | `extension.wrist_non_lateral` |
+| Inclinación lateral del tronco | Matriz del usuario | ✔ | `trunk_tilt` |
+| Estabilidad lumbopélvica, activación de oblicuos (fugas de energía musculares) | Matriz del usuario | ✘ | necesita electromiografía |
+| Carga: flexión de rodillas | Matriz del usuario | ◐ | `knee_*` (2D, escorzo), `hip_height` |
+| Pie de arrastre (pie trasero que se arrastra) | Matriz del usuario | ◐ | `drag_foot` (cuando los tobillos se ven) |
+| Bucle de la preparación (forma) | Matriz del usuario | ✔ | clase `takeback`, `takeback_path` |
+| Caída de la raqueta por debajo de la mano | Matriz del usuario | ✔ | `racket_head_vs_wrist`, `wrist_drop` |
+| Caída de la raqueta por debajo de la bola | Matriz del usuario | ○ | pendiente: punta de la raqueta respecto a la altura del contacto (borroso) |
+| Cara de la raqueta en la caída y en el impacto | Matriz del usuario | ◐ | `face_tilt` por fase; en el impacto solo estimación |
+| Trayectoria vertical del swing (de abajo arriba) | Matriz del usuario | ◐ | `swing_low_to_high`, clase `swing` (el ángulo exacto no) |
+| Trayectoria horizontal del swing (de dentro a fuera) | Matriz del usuario | ✘ | es la dirección hacia la cámara |
+| Apoyos abierto, semiabierto, neutro, cerrado | Matriz del usuario | ✔ | `stance_impact`, `stance_loaded` |
+| Apoyo en suspensión (salto) | Matriz del usuario | ✔ | clase `movement` («en el aire») |
+| Apoyo abierto extremo defensivo | Matriz del usuario | ✔ | clase `stance_role` |
+| Split step | Matriz del usuario | ✔ | `split_landing_vs_opp_s` |
+| Pasos de ajuste | Matriz del usuario | ✔ | `adjustment_steps` |
+| Pasos cruzados | Matriz del usuario | ✔ | `step_kinds` («cruzado») |
+| Paso de ataque hacia dentro de la pista (step-in) | Matriz del usuario | ✔ | `step_in` |
+| Pasos de recuperación (laterales o cruzados) | Matriz del usuario | ✔ | `recovery_pattern`, `recovery_first_step` |
+| Golpe plano, liftado o cortado | Matriz del usuario | ◐ | clase `swing` (por la trayectoria de la mano; el efecto en rpm no) |
+| Botepronto (media volea) | Matriz del usuario | ○ | pendiente: separar del resto (impacto muy bajo justo tras el bote) |
+| Volea de derecha | Matriz del usuario | ○ | pendiente: otro golpe (cerca de la red, sin bote) |
+| Terminación sobre el hombro contrario | Matriz del usuario | ✔ | clase `finish` |
+| Terminación en látigo sobre el mismo hombro (buggy whip) | Matriz del usuario | ✔ | clase `finish` («látigo») |
+| Terminación baja, a la cintura contraria | Matriz del usuario | ✔ | clase `finish` («alrededor del cuerpo») |
+| Adaptación a bola rápida, corta, alta, abierta | Matriz del usuario | ✔ | situaciones de «Su derecha» (`ball_speed`, `depth`, `ball_height`, `width`) |
+| Dirección: cruzado, paralelo, dentro-fuera, dentro-dentro | Matriz del usuario | ✔ | clase `shot_type` |
+| Zona de impacto: altura y separación lateral | Matriz del usuario | ✔ | `wrist_dom_vs_hip`, `wrist_dom_lateral` |
+| Zona de impacto: delante de la cadera | Matriz del usuario | ✘ | eje de profundidad (hacia la cámara) |
+| Relajación y tensión de la empuñadura | Matriz del usuario | ✘ | no se ve en vídeo |
+| Equilibrio al terminar | Matriz del usuario | ✔ | `finish.head_over_base`, `finish.trunk_tilt` |
+| Propiedades de la raqueta: swingweight, rigidez, encordado, tensión | Matriz del usuario | ✘ | no se ven en vídeo |
+| Velocidad de la cabeza de la raqueta en km/h | Matriz del usuario | ✘ | borrosa; solo comparación relativa (`racket_speed_rel`) |
+| Velocidad angular de cada segmento en grados por segundo | Matriz del usuario | ✘ | solo el orden de los picos (`chain`) |
+| Tasa de desarrollo de fuerza contra el suelo | Matriz del usuario | ✘ | necesita plataforma de fuerza |
+| Efecto, ángulo y velocidad de salida de la bola | Matriz del usuario | ✘ | bola pequeña y borrosa; velocidad media en pista ◐ (`ball_speed_avg_kmh`) |
+| Latencia de reacción al golpe de la rival | Matriz del usuario | ◐ | `split_landing_vs_opp_s`, `first_step_s` |
+| Activación muscular (electromiografía) | Matriz del usuario | ✘ | necesita sensores |
+| Rangos articulares de muñeca, codo y hombro; cargas del codo | Matriz del usuario | ✘ | rotaciones y fuerzas invisibles en 2D |
+| Apertura prematura de hombros (fuga de energía) | Matriz del usuario | ◐ | `shoulders_open_first` (orden de los máximos de giro, 2D) |
+| Liberación anticipada de la muñeca («casting») | Matriz del usuario | ○ | pendiente: el ángulo antebrazo–raqueta antes del impacto sale borroso |
+| Fuerza en dirección incorrecta (horizontal o descendente) | Matriz del usuario | ◐ | `swing_low_to_high` |
+| Superficie de la pista | Matriz del usuario | ✔ | `surface` del partido; deslizar solo en tierra o hierba |
+| Aerodinámica, altitud, temperatura, humedad | Matriz del usuario | ✘ | no hay datos de la retransmisión |
+
 ## Huecos medibles pendientes
 - Final de la extensión: el avance horizontal de la muñeca va hacia la red (profundidad, invisible
   desde detrás); se mantiene +50 ms, como en la literatura (40-60 ms).
