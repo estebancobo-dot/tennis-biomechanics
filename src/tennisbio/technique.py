@@ -413,6 +413,8 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         out["footwork"] = fw
         if fw.get("movement"):
             c["movement"] = fw["movement"]
+        # feet_at_impact is kept in the footwork data but not used as a class: at 50 fps the ankle
+        # keypoints jitter enough to look like a moving foot (user's PC: 8 of 10 "no foot still")
         ft = feet_track(img, sk, H)
         for p in ("loaded", "impact"):
             f = ev[p]

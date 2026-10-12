@@ -40,13 +40,13 @@ CLASS_KEYS = ["stance_loaded", "stance_impact", "stance_role", "finish", "finish
               "ready_hands", "movement", "move_direction", "play", "shot_type", "swing",
               "intent", "ball_speed", "ball_height", "depth", "width", "court_side"]
 FOOTWORK_KEYS = ["steps_to_impact", "adjustment_steps", "first_step_s", "first_step_length_m", "last_step_length_m",
-                 "last_plant_before_impact_s", "speed_at_impact_mps", "path_m", "peak_speed_mps", "direction_changes",
+                 "last_plant_before_impact_s", "approach_speed_mps", "path_m", "peak_speed_mps", "direction_changes",
                  "split_takeoff_vs_opp_s", "split_landing_vs_opp_s", "speed_pre_split_mps", "speed_post_split_mps",
                  "recovery_to_centre_m", "off_centre_at_opp_hit_m", "weight_loaded_to_non"]
 FOOTWORK_NAMES = {
     "steps_to_impact": ("Pasos hasta el impacto", "", 3), "adjustment_steps": ("Pasos de ajuste (últimos 0,8 s)", "", 2),
     "first_step_s": ("Primer paso tras el split step", "s", 2), "last_plant_before_impact_s": ("Último apoyo antes del impacto", "s", 2),
-    "speed_at_impact_mps": ("Velocidad en el impacto", "m/s", 3), "path_m": ("Recorrido hasta la bola", "m", 3),
+    "approach_speed_mps": ("Velocidad al llegar a la bola (antes del swing)", "m/s", 3), "path_m": ("Recorrido hasta la bola", "m", 3),
     "peak_speed_mps": ("Velocidad máxima de desplazamiento", "m/s", 3),
     "recovery_to_centre_m": ("Recuperación hacia el centro (1 s)", "m", 3),
     "weight_loaded_to_non": ("Peso en el armado (0 = pie dominante, 1 = el otro)", "", 2),

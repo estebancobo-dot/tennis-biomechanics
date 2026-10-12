@@ -211,8 +211,31 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
     out["airborne_at_impact"] = bool((runs >= need).any())
     one = air[i0:i1].any(axis=1)
     out["one_foot_at_impact"] = bool(len(one) > 1 and (one[1:] & one[:-1]).any()) and not out["airborne_at_impact"]
-    v_imp = float(np.nanmedian(spd[max(0, impact - s(0.1)):impact + 1])) if np.isfinite(spd[max(0, impact - s(0.1)):impact + 1]).any() else None
+    # speed AT contact: displacement of the feet midpoint (both feet down, lightly smoothed) over
+    # ±0.06 s. The ~0.3 s smoothed track is fine for the path, but at contact it carried the run that
+    # brought her to the ball into a stroke hit with both feet set (user's PC, contact sheets).
+    with np.errstate(invalid="ignore"), warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)
+        pos_c = smooth(mid, fps, 0.06)
+    i0c, i1c = max(0, impact - s(0.06)), min(T - 1, impact + s(0.06))
+    v_imp = None
+    if i1c > i0c and np.isfinite(pos_c[[i0c, i1c]]).all():
+        v_imp = float(np.linalg.norm(pos_c[i1c] - pos_c[i0c]) / ((i1c - i0c) / fps))
+        v_imp = None if v_imp > MAX_SPEED else v_imp
     out["speed_at_impact_mps"] = None if v_imp is None else round(v_imp, 2)
+    # how she arrives: mean speed from 0.8 to 0.3 s before contact, BEFORE the forward swing. Around
+    # contact the body moves 2-3 m/s with the weight transfer of the stroke itself (hips and feet,
+    # measured on the user's PC with both feet set), which is not running to the ball.
+    i0a, i1a = max(0, impact - s(0.8)), max(0, impact - s(0.3))
+    if i1a > i0a and np.isfinite(pos[[i0a, i1a]]).all():
+        va = float(np.linalg.norm(pos[i1a] - pos[i0a]) / ((i1a - i0a) / fps))
+        if va <= MAX_SPEED:
+            out["approach_speed_mps"] = round(va, 2)
+    # feet at contact: both set, one foot, (in the air below)
+    pc = plant[max(0, impact - s(0.04)):impact + s(0.04) + 1]
+    if len(pc):
+        out["feet_at_impact"] = ("dos pies apoyados" if pc.all(axis=1).any() else
+                                 "un pie apoyado" if pc.any(axis=1).any() else "ningún pie quieto")
     # sliding: a foot on the ground that keeps moving fast on the court (only on clay or grass;
     # on a hard court it is tracking noise)
     slide_surface = any(w in (surface or "").lower() for w in ("clay", "tierra", "arcilla", "grass", "hierba"))
@@ -275,7 +298,8 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
         out["off_centre_at_opp_hit_m"] = round(float(abs(pos[next_opp, 0])), 2)
         sp = spd[max(0, next_opp - 2):next_opp + 1]
         out["moving_at_opp_hit_mps"] = None if not np.isfinite(sp).any() else round(float(np.nanmedian(sp)), 2)
-    v = out.get("speed_at_impact_mps")
+    # how she gets to the ball (before the swing), or in the air / sliding at contact
+    v = out.get("approach_speed_mps")
     out["movement"] = ("en el aire" if out["airborne_at_impact"] else "deslizando" if out.get("sliding_at_impact")
                        else None if v is None else "parada" if v < 0.7 else "en movimiento" if v < 2.0 else "en carrera")
     return out
