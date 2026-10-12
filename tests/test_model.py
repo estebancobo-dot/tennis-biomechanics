@@ -43,3 +43,18 @@ def test_model_finds_the_real_adaptation_and_not_the_confounded_one():
 def test_model_with_few_strokes_says_nothing():
     m = build_model(_strokes(n=8))
     assert m["typical"] == {} and m["effects"] == [] and m["variants"] == {}
+
+
+def test_inseparable_situations_claim_nothing():
+    """'defence' is exactly 'very fast ball' here: neither can be told apart, so no effect is claimed
+    for them even though the takeback is shorter in both."""
+    import numpy as np
+    rng = np.random.default_rng(3)
+    rows = []
+    for i in range(200):
+        fast = i % 3 == 0
+        rows.append({"stroke_id": f"m0-{i:07d}", "side": "near", "technique": {
+            "phases": {}, "stroke": {"takeback_path": 50 - (12 if fast else 0) + rng.normal(0, 3)}, "footwork": {},
+            "classes": {"ball_speed": "muy rápida" if fast else "media", "intent": "defensa" if fast else "neutra"}}})
+    m = build_model(rows)
+    assert not [e for e in m["effects"] if e["key"] == "stroke.takeback_path"]

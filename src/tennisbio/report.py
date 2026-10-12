@@ -341,8 +341,19 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
                 r["thumb"] = f"thumbs/{r['id']}.jpg"
         elif win:
             r["video"] = Path(os.path.relpath(d / "windows" / win, dest)).as_posix()
+    from . import findings as F
     from .explain import model_view
     from .model import build_model
+    dist = F.distributions(data)
+    F.representativeness(data, dist)
+    finds = F.discover(data)
+    concl = F.conclusions(data, dist, finds)
+    pair_of = {p["t"]: p["key"] for p in F._pairs(data["strokes"])}
+    data["findings"] = [{"k": f.k, "t": f.title, "c": f.context, "A": [s["id"] for s in f.A], "B": [s["id"] for s in f.B],
+                         "e": vars(f.effect), "v": list(f.verdict), "q": getattr(f, "q", None),
+                         "pair": next((v for t, v in pair_of.items() if f.title.endswith(t)), "")} for f in finds]
+    data["conclusions"] = [{"text": c.text, "conf": c.confidence, "level": c.level, "ids": [s["id"] for s in c.strokes[:40]],
+                            "find": finds.index(c.finding) if c.finding in finds else None} for c in concl]
     data["model"] = model_view(build_model(data.pop("_raw", [])), stroke)
     data["player"] = player or {}
     data["stroke"] = stroke

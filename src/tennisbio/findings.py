@@ -157,7 +157,7 @@ def _pairs(strokes: list) -> list[dict]:
         dict(key="presion", t="bajo presión", c="puntos de presión frente al resto", neutral=True,
              A=lambda s: s.get("pressure") is False, B=lambda s: s.get("pressure") is True),
         # split step is timed from the opponent's hit: with a faster ball it changes by definition
-        dict(key="rapida", t="con bola rápida", c="bola rápida frente a lenta", neutral=False, skip=["split"],
+        dict(key="rapida", t="con bola rápida", c="bola rápida frente a lenta", neutral=False, skip=["split"], defines=("tAvail",),
              A=lambda s: has_t(s) and not s.get("fast"), B=lambda s: bool(s.get("fast"))),
         dict(key="resultado", t="en los errores", c="errores frente a golpes que siguen el punto o ganan", neutral=False,
              A=lambda s: s.get("outcome") in ("sigue", "ganador"), B=lambda s: s.get("outcome") == "error"),
@@ -181,27 +181,77 @@ class Finding:
                 f"({fmt(e.ma, metric['dec'])} → {fmt(e.mb, metric['dec'])}; {self.context}, n={e.na}/{e.nb})")
 
 
+def _covariates(rows: list, skip_key: str | None, skip=()) -> list[np.ndarray]:
+    """Situation of each stroke (time available, displacement, depth, contact height), so that a
+    difference between two groups is not just a difference in the balls they received. Missing
+    values: the median plus a "missing" column."""
+    cols = []
+    for key, get in (("tAvail", lambda s: s.get("tAvail")), ("disp", lambda s: s.get("disp")), ("y", lambda s: s.get("y")),
+                     ("contactH", lambda s: s["m"].get("contactH"))):
+        if key == skip_key or key in skip:
+            continue
+        v = np.array([np.nan if get(s) is None else float(get(s)) for s in rows])
+        ok = np.isfinite(v)
+        if ok.sum() < 5 or np.nanstd(v) == 0:
+            continue
+        cols.append(np.where(ok, v, np.nanmedian(v)))
+        if (~ok).any():
+            cols.append((~ok).astype(float))
+    return cols
+
+
 def discover(data: dict, top=10) -> list[Finding]:
-    """The largest differences between situations, ranked by size in noise units × reliability."""
-    strokes, out = data["strokes"], []
+    """Differences between two groups of strokes (end vs start of the match, pressure, fast ball,
+    errors…), each one adjusted for the ball received and for the match (least squares with robust
+    errors), with the Benjamini-Hochberg correction over every comparison made. "Diferencia real"
+    needs q < 0.05 and a size above the measurement noise; "Probable" q < 0.2."""
+    from .model import _bh, _norm_p, _ols
+
+    strokes = data["strokes"]
+    tests = []
     for p in _pairs(strokes):
         for m in data["metrics"]:
             if m["k"] in p.get("skip", []) or m.get("est"):     # estimates are never findings
                 continue
-            neu = p["neutral"]
-            A = [s for s in strokes if p["A"](s) and (not neu or s["sit"].get("neutra"))]
-            B = [s for s in strokes if p["B"](s) and (not neu or s["sit"].get("neutra"))]
-            e = effect(m["k"], A, B)
-            if neu and not math.isfinite(e.d):
-                neu = False
-                A, B = [s for s in strokes if p["A"](s)], [s for s in strokes if p["B"](s)]
-                e = effect(m["k"], A, B)
-            if not math.isfinite(e.d):
+            rows = [s for s in strokes if (p["A"](s) or p["B"](s)) and s["m"].get(m["k"]) is not None]
+            A = [s for s in rows if p["A"](s)]
+            B = [s for s in rows if p["B"](s)]
+            raw = effect(m["k"], A, B)
+            if not math.isfinite(raw.d):
                 continue
-            z = abs(e.d) / m["noise"]
-            sure = math.copysign(1, e.lo) == math.copysign(1, e.hi)
-            out.append(Finding(m["k"], f"{m['name']} {p['t']}", f"{p['c']} · {'bolas neutras' if neu else 'todas las bolas'}",
-                               A, B, e, verdict(e, m["noise"]), z * (1 if sure else .5) * m["rel"] / 3))
+            y = np.array([s["m"][m["k"]] for s in rows], float)
+            g = np.array([1.0 if p["B"](s) else 0.0 for s in rows])
+            cov = _covariates(rows, m["k"], p.get("defines", ()))
+            # an adjustment that (almost) predicts the group would make the comparison meaningless
+            if cov:
+                C = np.column_stack([np.ones(len(rows))] + cov)
+                gh = C @ np.linalg.lstsq(C, g, rcond=None)[0]
+                r2 = 1 - np.sum((g - gh) ** 2) / max(np.sum((g - g.mean()) ** 2), 1e-12)
+                if r2 > 0.6:
+                    cov = []
+            cols = [np.ones(len(rows)), g] + cov
+            matches = sorted({s.get("match", 0) for s in rows})
+            cols += [np.array([1.0 if s.get("match", 0) == mm else 0.0 for s in rows]) for mm in matches[1:]]
+            X = np.column_stack(cols)
+            if X.shape[0] <= X.shape[1] + 3:
+                continue
+            b, se = _ols(y, X)
+            if not se[1] > 0:
+                continue
+            e = Effect(float(b[1]), float(b[1] - 1.96 * se[1]), float(b[1] + 1.96 * se[1]), raw.na, raw.nb, raw.ma, raw.mb)
+            tests.append((p, m, A, B, e, _norm_p(b[1] / se[1])))
+    if not tests:
+        return []
+    q = _bh(np.array([t[5] for t in tests]))
+    out = []
+    for (p, m, A, B, e, pv), qq in zip(tests, q):
+        big = abs(e.d) > m["noise"]
+        v = ("good", "Diferencia real") if qq < 0.05 and big else ("warn", "Probable") if qq < 0.2 and big else \
+            ("crit", "Dentro del ruido" if not big else "No concluyente")
+        score = (abs(e.d) / m["noise"]) * (1 - min(qq, 1)) * m["rel"] / 3
+        f = Finding(m["k"], f"{m['name']} {p['t']}", f"{p['c']} · ajustado por la bola recibida y el partido", A, B, e, v, score)
+        f.q = float(qq)
+        out.append(f)
     out.sort(key=lambda f: -f.score)
     return out[:top]
 
@@ -270,10 +320,9 @@ def conclusions(data: dict, dist: dict, finds: list[Finding]) -> list[Conclusion
         out.append(Conclusion(f"Base en el impacto: mediana {fmt_metric(MK['baseM'], b['p50'])} (p10–p90 {fmt(b['p10'], 2)}–{fmt(b['p90'], 2)} m, {b['n']} golpes).",
                               "fiable" if b["n"] >= 20 else "orientativo", "good" if b["n"] >= 20 else "warn"))
     for f in finds:
-        if f.verdict[0] in ("good", "warn"):
-            out.append(Conclusion(f.sentence(MK[f.k]) + ".", "diferencia real" if f.verdict[0] == "good" else "probable",
-                                  f.verdict[0], best(f.B), f))
-    if n >= 10 and not any(f.verdict[0] != "crit" for f in finds):
+        if f.verdict[0] == "good":            # "probable" stays in the findings, never as a conclusion
+            out.append(Conclusion(f.sentence(MK[f.k]) + ".", "diferencia real", "good", best(f.B), f))
+    if n >= 10 and not any(f.verdict[0] == "good" for f in finds):
         out.append(Conclusion("Ninguna diferencia entre situaciones (fatiga, presión, bola rápida) supera el ruido de medida.",
                               "según los datos actuales", "warn"))
     return out

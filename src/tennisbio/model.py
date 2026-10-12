@@ -161,6 +161,13 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
         for j, nm in enumerate(names):
             if nm is None or se[j] <= 0:
                 continue
+            # a situation almost fully determined by the others (e.g. "defence" and "very fast
+            # ball") cannot be separated from them: no effect is claimed for it
+            others = np.delete(X, j, axis=1)
+            fit = others @ np.linalg.lstsq(others, X[:, j], rcond=None)[0]
+            r2 = 1 - np.sum((X[:, j] - fit) ** 2) / max(np.sum((X[:, j] - X[:, j].mean()) ** 2), 1e-12)
+            if r2 > 0.8:
+                continue
             fk, lv, ref = nm
             n_lv = int(X[:, j].sum())
             if n_lv < min_n:

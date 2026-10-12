@@ -455,7 +455,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
         <option value="rapida">Bola lenta / Bola rápida</option>
         <option value="presion">Sin presión / Bajo presión</option>
         <option value="sets">Primer set / Último set</option>
-        <option value="resultado">Errores / Ganadores</option>
+        <option value="resultado">Siguen o ganan / Errores</option>
         <option value="partidos">Partido a partido</option>
       </select></label>
       <label class="ctl">Métricas<select id="c-group"><option value="body">Cuerpo</option><option value="racket">Raqueta</option><option value="feet">Pies y equilibrio</option></select></label>
@@ -621,21 +621,10 @@ const PAIRS = [
   { key: "rapida", t: "con bola rápida", c: "bola rápida frente a lenta", A: s => isN(s.tAvail) && !s.fast, B: s => s.fast, neutral: false, skip: ["split"] },
   { key: "resultado", t: "en los errores", c: "errores frente a golpes que siguen el punto o ganan", A: s => s.outcome === "sigue" || s.outcome === "ganador", B: s => s.outcome === "error", neutral: false },
 ];
-const FIND = [];
-(function discover() {
-  const all = [];
-  for (const p of PAIRS) for (const m of METRICS.filter(m => !m.est && !(p.skip || []).includes(m.k))) {
-    let neu = p.neutral, A = STROKES.filter(s => p.A(s) && (!neu || s.sit.neutra)), B = STROKES.filter(s => p.B(s) && (!neu || s.sit.neutra));
-    let e = effect(m.k, A, B);
-    if (neu && !isN(e.d)) { neu = false; A = STROKES.filter(p.A); B = STROKES.filter(p.B); e = effect(m.k, A, B); }
-    if (!isN(e.d)) continue;
-    const z = Math.abs(e.d) / m.noise, sure = Math.sign(e.lo) === Math.sign(e.hi);
-    all.push({ k: m.k, z: z * (sure ? 1 : 0.5) * m.rel / 3, t: `${m.name} ${p.t}`, c: `${p.c} · ${neu ? "bolas neutras" : "todas las bolas"}`,
-               A: s => p.A(s) && (!neu || s.sit.neutra), B: s => p.B(s) && (!neu || s.sit.neutra), go: { pair: p.key, sit: neu ? "neutra" : "", g: m.g } });
-  }
-  all.sort((a, b) => b.z - a.z);
-  FIND.push(...all.slice(0, 10));      // the largest differences, real or not (the verdict says which)
-})();
+// Findings and conclusions come from Python (tennisbio.findings): adjusted for the ball received
+// and the match, corrected for multiple comparisons. The page only draws them.
+const SBYID = Object.fromEntries(STROKES.map(s => [s.id, s]));
+const FIND = (DATA.findings || []).map(f => { const A = new Set(f.A), B = new Set(f.B); return { ...f, A: s => A.has(s.id), B: s => B.has(s.id), go: { pair: f.pair, sit: "", g: (MK[f.k] || {}).g } }; });
 /* Pruebas en vídeo: cada conclusión abre sus golpes */
 const LISTS = [];
 const plBtn = (name, arr, label) => { if (!arr.length) return ""; LISTS.push({ name, arr }); return `<button class="btn" data-pl="${LISTS.length - 1}" title="Reproducir estos golpes uno tras otro">▶ ${label || arr.length + " vídeos"}</button>`; };
@@ -666,32 +655,21 @@ function forestSVG(e, noise) {
 }
 document.getElementById("forest").innerHTML = `<div class="frow head"><span>Hallazgo</span><span style="display:flex;justify-content:space-between"><span>−3</span><span>ruido ±1</span><span>+3</span></span><span>Veredicto</span><span></span></div>` +
   FIND.map((f, i) => {
-    const e = effect(f.k, STROKES.filter(f.A), STROKES.filter(f.B)), v = verdict(e, MK[f.k].noise), m = MK[f.k];
-    const tipTxt = `<b>${m.name}</b><div class='mono'>${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}${isN(e.d) ? ` (${sign(e.d)}${fmt(Math.abs(e.d), m.dec)})<br>IC 95 %: ${fmt(e.lo, 1)} … ${fmt(e.hi, 1)}` : ""}<br>ruido ±${fmt(m.noise, 1)} · n=${e.na}/${e.nb}</div>`;
+    const e = f.e, v = { cls: f.v[0], icon: f.v[0] === "good" ? "✓" : f.v[0] === "warn" ? "!" : "–", txt: f.v[1] }, m = MK[f.k];
+    const tipTxt = `<b>${m.name}</b><div class='mono'>${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}${isN(e.d) ? ` (${sign(e.d)}${fmt(Math.abs(e.d), m.dec)})<br>IC 95 %: ${fmt(e.lo, 1)} … ${fmt(e.hi, 1)}` : ""}<br>ruido ±${fmt(m.noise, 1)} · n=${e.na}/${e.nb} · q=${fmt(f.q, 3)}</div>`;
     return `<div class="frow"><div class="t"><b>${f.t}: ${isN(e.d) ? sign(e.d) + fmt(Math.abs(e.d), m.dec) + unitStr(m) : "—"}</b><span>${f.c} · <span class="mono">n=${e.na}/${e.nb} · ${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}</span> ${relBars(m.rel)}</span>${isN(e.d) && v.cls !== "crit" ? `<span style="color:var(--ink-2)">→ ${meaning(f.k, e.d)}</span>` : ""}</div><div data-tip="${tipTxt}">${forestSVG(e, m.noise)}</div><span class="st ${v.cls}"><i>${v.icon}</i>${v.txt}</span><span style="display:flex;gap:6px">${findEvidence(f)}<button class="btn" data-go="${i}">Datos</button></span></div>`;
   }).join("");
 document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { const g = FIND[+b.dataset.go].go; document.getElementById("c-pair").value = g.pair; document.getElementById("c-sit").value = g.sit; document.getElementById("c-group").value = g.g || MK[FIND[+b.dataset.go].k].g; renderCompare(); showTab("comparativas"); }));
 
 const EVO_LABEL = Object.fromEntries(Object.entries({ xf: "X-factor", sh: "Hombros", knee: "Cadera", baseM: "Base", elbow: "Codo" }).filter(([k]) => MK[k]).slice(0, 4));
-/* Conclusiones en frases */
+/* Conclusiones en frases (Python) con sus vídeos */
 function conclusions() {
-  const out = [], n = STROKES.length, conf = (txt, cls) => `<span class="st ${cls}"><i>${cls === "good" ? "✓" : cls === "warn" ? "!" : "–"}</i>${txt}</span>`;
-  if (n < 10) out.push([`Con ${n} golpe${n === 1 ? "" : "s"} solo se describe lo observado; las comparaciones necesitan al menos 5 golpes por grupo y el ruido de medida, 20 con bola neutra.`, conf("pocos datos", "crit")]);
-  const st = ["abierto", "semiabierto", "cerrado"].map(k => [k, STROKES.filter(s => s.stance === k).length]).sort((a, b) => b[1] - a[1]), nst = st.reduce((a, b) => a + b[1], 0);
-  if (nst) out.push([`Apoyo más frecuente: <b>${st[0][0]}</b> (${fmt(100 * st[0][1] / nst)} % de ${nst} golpes${st[1][1] ? `; ${st[1][0]} ${fmt(100 * st[1][1] / nst)} %` : ""}).<span class="evid">${plBtn("Apoyo " + st[0][0], STROKES.filter(s => s.stance === st[0][0]).sort(byShow))}</span>`, conf(nst >= 20 ? "fiable" : "orientativo", nst >= 20 ? "good" : "warn")]);
-  const faceAt = ph => STROKES.map(s => s.face && s.face[ph]).filter(Boolean), mode = a => { const c = {}; a.forEach(x => c[x] = (c[x] || 0) + 1); return Object.entries(c).sort((x, y) => y[1] - x[1])[0]; };
-  [["loaded", "en el armado"], ["impact", "en el impacto"], ["finish", "en la terminación"]].forEach(([ph, txt]) => { const a = faceAt(ph); if (a.length) { const [lab, c] = mode(a), k = { loaded: "rFaceArm", impact: "rFaceImp", finish: "rFaceFin" }[ph], md = MK[k] && DIST[k] ? DIST[k].p50 : NaN; out.push([`Las cuerdas apuntan ${txt} hacia <b>${lab}</b> en ${fmt(100 * c / a.length)} % de los golpes${isN(md) ? `, cara ${md >= 0 ? "cerrada" : "abierta"} ${fmt(Math.abs(md))}° (mediana)` : ""}.`, conf(ph === "impact" ? "estimada (desenfoque)" : a.length >= 20 ? "media" : "orientativo", ph === "impact" ? "crit" : "warn")]); } });
-  const dir = STROKES.filter(s => s.shotDir);
-  if (dir.length) { const c = k => fmt(pct(dir, s => s.shotDir === k)); out.push([`Dirección de su golpe: <b>${c("cruzada")} % cruzada</b>, ${c("paralela")} % paralela, ${c("al centro")} % al centro; ${fmt(pct(STROKES.filter(s => s.shotIn !== null && s.shotIn !== undefined), s => s.shotIn === false))} % fuera${MK.shotDepth && DIST.shotDepth ? `; bota a ${fmt(DIST.shotDepth.p50, 1)} m del fondo rival (mediana)` : ""}.`, conf(dir.length >= 20 ? "fiable" : "orientativo", dir.length >= 20 ? "good" : "warn")]); }
-  const known = STROKES.filter(s => s.outcome);
-  if (known.length) out.push([`Resultado conocido en ${known.length} de ${n} golpes: <b>${known.filter(s => s.outcome === "ganador").length} ganadores probables</b>, ${known.filter(s => s.outcomeDetail === "out").length} errores fuera, ${known.filter(s => s.outcomeDetail === "net").length} a la red; el resto sigue el punto.<span class="evid">${plBtn("Ganadores probables", known.filter(s => s.outcome === "ganador").sort(byShow), "ganadores")}${plBtn("Errores", known.filter(s => s.outcome === "error").sort(byShow), "errores")}</span>`, conf(known.length >= 20 ? "media" : "orientativo", "warn")]);
-  const chain = STROKES.filter(s => s.chainOK !== null && s.chainOK !== undefined);
-  if (chain.length) out.push([`Cadena cinética en orden (pelvis → tronco → brazo → antebrazo) en <b>${fmt(pct(chain, s => s.chainOK))} %</b> de ${chain.length} golpes.`, conf("media", "warn")]);
-  const ta = fin(STROKES.map(s => s.tAvail));
-  if (ta.length) out.push([`Tiempo disponible entre el golpe del rival y el suyo: mediana <b>${fmt(quant(ta, .5), 2)} s</b> (${fmt(pct(STROKES.filter(s => isN(s.tAvail)), s => s.fast))} % de bolas rápidas, &lt; 1,15 s).`, conf(ta.length >= 20 ? "fiable" : "orientativo", ta.length >= 20 ? "good" : "warn")]);
-  if (MK.baseM && DIST.baseM) out.push([`Base en el impacto: mediana <b>${fmtM("baseM", DIST.baseM.p50)}</b> (p10–p90 ${fmt(DIST.baseM.p10, 2)}–${fmt(DIST.baseM.p90, 2)} m, ${DIST.baseM.n} golpes).`, DIST.baseM.n >= 20 ? conf("fiable", "good") : conf("orientativo", "warn")]);
-  FIND.forEach(f => { const e = effect(f.k, STROKES.filter(f.A), STROKES.filter(f.B)), v = verdict(e, MK[f.k].noise); if (v.cls === "good" || v.cls === "warn") out.push([`${f.t}: <b>${sign(e.d)}${fmt(Math.abs(e.d), MK[f.k].dec)}${unitStr(MK[f.k])}</b> — ${meaning(f.k, e.d)} (${fmt(e.ma, MK[f.k].dec)} → ${fmt(e.mb, MK[f.k].dec)}; ${f.c.toLowerCase()}, n=${e.na}/${e.nb}).${findEvidence(f)}`, conf(v.cls === "good" ? "diferencia real" : "probable", v.cls)]); });
-  if (!FIND.some(f => verdict(effect(f.k, STROKES.filter(f.A), STROKES.filter(f.B)), MK[f.k].noise).cls !== "crit") && n >= 10) out.push(["Ninguna diferencia entre situaciones (fatiga, presión, bola rápida) supera el ruido de medida.", conf("según los datos actuales", "warn")]);
+  const conf = (txt, cls) => `<span class="st ${cls}"><i>${cls === "good" ? "✓" : cls === "warn" ? "!" : "–"}</i>${txt}</span>`;
+  const out = (DATA.conclusions || []).map(c => {
+    const ids = (c.ids || []).map(id => SBYID[id]).filter(Boolean);
+    const ev = c.find !== null && c.find !== undefined && FIND[c.find] ? findEvidence(FIND[c.find]) : ids.length ? `<span class="evid">${plBtn(c.text.slice(0, 60), ids)}</span>` : "";
+    return [`${c.text}${ev}`, conf(c.conf, c.level)];
+  });
   document.getElementById("concl").innerHTML = out.map(([t, c]) => `<div style="display:flex;gap:12px;justify-content:space-between;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:8px"><span style="font-size:14px;line-height:1.45">${t}</span>${c}</div>`).join("") || `<div class="empty">Sin golpes.</div>`;
 }
 conclusions();
@@ -1074,8 +1052,9 @@ function groupsFor(pair, sit) {
   const b = STROKES.filter(s => !sit || s.sit[sit]);
   if (pair === "fatiga") return [{ l: "Primer tercio", a: b.filter(early) }, { l: "Último tercio", a: b.filter(late) }];
   if (pair === "presion") return [{ l: "Sin presión", a: b.filter(s => s.pressure === false) }, { l: "Bajo presión", a: b.filter(s => s.pressure === true) }];
-  if (pair === "sets") { const last = Math.max(1, ...b.map(s => s.set || 0)); return [{ l: "Set 1", a: b.filter(s => s.set === 1) }, { l: `Set ${last}`, a: b.filter(s => s.set === last && last > 1) }]; }
-  if (pair === "resultado") return [{ l: "Errores", a: b.filter(s => s.outcome === "error") }, { l: "Ganadores", a: b.filter(s => s.outcome === "ganador") }];
+  if (pair === "sets") return [{ l: "Set 1", a: b.filter(s => s.set === 1) }, { l: `Set ${maxSet}`, a: b.filter(s => s.set === maxSet && maxSet > 1) }];
+  // the same groups as the findings: the rest (rally + winners) against the errors
+  if (pair === "resultado") return [{ l: "Siguen o ganan", a: b.filter(s => s.outcome === "sigue" || s.outcome === "ganador") }, { l: "Errores", a: b.filter(s => s.outcome === "error") }];
   if (pair === "rapida") return [{ l: "Bola lenta", a: b.filter(s => isN(s.tAvail) && !s.fast) }, { l: "Bola rápida", a: b.filter(s => s.fast) }];
   return MATCHES.map((m, i) => ({ l: m.id, a: b.filter(s => s.match === i) }));
 }
