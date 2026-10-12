@@ -211,6 +211,8 @@ COACH = {
     "impact.elbow_dom": ("Brazo recto o doble flexión son dos modelos válidos; el recto suele ir con empuñaduras más cerradas.", "Elliott 1989, 1997"),
     "class.arm": ("Brazo recto o doble flexión son dos modelos válidos; el recto suele ir con empuñaduras más cerradas.", "Elliott 1989, 1997"),
     "class.ball_phase": ("Tomar la bola subiendo quita tiempo a la rival; tomarla cayendo da más tiempo propio.", "ITF (Crespo, Reid)"),
+    "class.contact_type": ("La media volea (justo tras el bote, muy baja) y la volea (sin bote, junto a la red) piden un swing "
+                           "más corto y la cara más estable que la derecha normal: se separan para no mezclarlas.", "ITF (Crespo, Reid)"),
     "stroke.contact_vs_top": ("Tomar la bola subiendo quita tiempo a la rival; tomarla cayendo da más tiempo propio.", "ITF (Crespo, Reid)"),
     "stroke.contact_height_m": ("La altura de la bola en el contacto dice qué bolas le llegan y cuáles elige.", "Reid, Elliott y Crespo 2013"),
     "stroke.swing_low_to_high": ("La mano sube hacia la bola en el contacto: golpe con efecto liftado.", "Takahashi; Elliott y Marsh 1989"),
@@ -308,11 +310,13 @@ CLASS_TEXT = {
     "takeback_face": "Cara al final del armado", "finish": "Terminación", "arm": "Brazo",
     "takeback": "Preparación", "ready_hands": "Manos en la espera", "movement": "Cómo llega a la bola", "feet_at_impact": "Pies en el impacto",
     "swing": "Trayectoria", "ball_phase": "Bola en el contacto", "finish_3x90": "Termina con hombro y codo a unos 90° («3 × 90°»)",
+    "contact_type": "Contacto (tras el bote, media volea o volea)",
 }
 CLASS_PHASE = {"ready_hands": "ready", "takeback": "takeback", "stance_loaded": "loaded", "takeback_face": "loaded",
                "ball_phase": "impact",
                "stance_impact": "impact", "stance_role": "impact",
-               "arm": "impact", "finish": "finish", "finish_3x90": "finish", "movement": "impact", "feet_at_impact": "impact", "swing": "acceleration"}
+               "arm": "impact", "finish": "finish", "finish_3x90": "finish", "movement": "impact", "feet_at_impact": "impact", "swing": "acceleration",
+               "contact_type": "impact"}
 
 
 def _class_line(c: dict) -> str | None:

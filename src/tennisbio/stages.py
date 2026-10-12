@@ -1085,10 +1085,12 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
          "contact_h": r.metrics.get("contact_height_pct"), "shot_direction": d.get("shot_direction"),
          "split": (r.phases.get("ready") or {}).get("method") == "split_step_landing",
          "surface": ctx.match.surface or "", "next_opp": ret, "return": is_return, "ball": ball_m,
-         "head_motion_cm": r.metrics.get("head_motion_impact_cm")})
+         "head_motion_cm": r.metrics.get("head_motion_impact_cm"),
+         "bounce_to_impact": r.metrics.get("bounce_to_impact_s"), "ball_hit": "ball" in (r.impact_source or "")})
     if side == "far":                       # 70 px player: only position-level classes are kept
         d["technique"] = {"classes": {k: v for k, v in d["technique"]["classes"].items()
-                                      if k in ("ball_speed", "ball_height", "depth", "court_side", "width", "intent", "shot_type")},
+                                      if k in ("ball_speed", "ball_height", "depth", "court_side", "width", "intent", "shot_type",
+                                               "contact_type")},
                           "phases": {}, "stroke": {}, "footwork": {}}
     sdir = ctx.path("series")
     sdir.mkdir(exist_ok=True)

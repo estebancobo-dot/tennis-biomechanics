@@ -336,6 +336,21 @@ def finish_class(body: np.ndarray, sk: Skeleton, f: int, racket: dict, stroke: s
     return "alrededor del cuerpo (cintura contraria)"
 
 
+SERVICE_LINE_M = 18.285 - 11.885         # from her baseline: 6.4 m (court y grows into the court)
+
+
+def contact_type(bounce_to_impact_s, contact_h, ball_hit: bool | None, court_pos) -> str | None:
+    """After the bounce, half volley (hit just after the bounce, low) or volley (no bounce on her side
+    while the ball was followed, inside the service line). None when the ball tells nothing."""
+    if bounce_to_impact_s is not None:
+        if bounce_to_impact_s < 0.15 and (contact_h if contact_h is not None else 100) < 45:
+            return "media volea"
+        return "tras el bote"
+    if ball_hit and court_pos is not None and court_pos[1] > SERVICE_LINE_M:
+        return "volea"
+    return None
+
+
 def situation(m: dict, court_pos, displacement, t_avail, contact_h, dom_sign: int) -> dict:
     """Detailed situation of the ball she receives and of her position (classes used by the model)."""
     out = {}
@@ -591,6 +606,10 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
             c["around_ball"] = True
         if context.get("return") is not None:
             c["play"] = "resto" if context["return"] else "inicio del punto"      # refined later with its shot number
+        ct = contact_type(context.get("bounce_to_impact"), context.get("contact_h"), context.get("ball_hit"),
+                          context.get("court_pos"))
+        if ct:
+            c["contact_type"] = ct
         # role of the stance (Martin et al. 2021): open attacking / open defensive / neutral attacking
         st_ = c.get("stance_impact")
         if st_:

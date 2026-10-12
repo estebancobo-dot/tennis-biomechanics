@@ -159,6 +159,7 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
         "feet": None if far else feet_record(s),
         "shotType": None if far else ((s.get("technique") or {}).get("classes") or {}).get("shot_type"),
         "ballPhase": None if far else ((s.get("technique") or {}).get("classes") or {}).get("ball_phase"),
+        "contactType": ((s.get("technique") or {}).get("classes") or {}).get("contact_type"),
         "face": {k: (v or {}).get("points_to") for k, v in face.items()},
         "video": None, "vImpact": s.get("window_impact_s"), "series": None,
     }

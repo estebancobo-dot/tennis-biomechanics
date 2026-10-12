@@ -172,8 +172,8 @@ de TV detrás del fondo (necesita laboratorio, sensores o varias cámaras) y el 
 | Paso de ataque hacia dentro de la pista (step-in) | Matriz del usuario | ✔ | `step_in` |
 | Pasos de recuperación (laterales o cruzados) | Matriz del usuario | ✔ | `recovery_pattern`, `recovery_first_step` |
 | Golpe plano, liftado o cortado | Matriz del usuario | ◐ | clase `swing` (por la trayectoria de la mano; el efecto en rpm no) |
-| Botepronto (media volea) | Matriz del usuario | ○ | pendiente: separar del resto (impacto muy bajo justo tras el bote) |
-| Volea de derecha | Matriz del usuario | ○ | pendiente: otro golpe (cerca de la red, sin bote) |
+| Botepronto (media volea) | Matriz del usuario | ◐ | `class.contact_type` («media volea»: impacto bajo < 0,15 s tras el bote, con la bola) |
+| Volea de derecha | Matriz del usuario | ◐ | `class.contact_type` («volea»: sin bote en su lado con la bola seguida, dentro de la línea de saque); su técnica propia (golpe corto) es otra ampliación |
 | Terminación sobre el hombro contrario | Matriz del usuario | ✔ | clase `finish` |
 | Terminación en látigo sobre el mismo hombro (buggy whip) | Matriz del usuario | ✔ | clase `finish` («látigo») |
 | Terminación baja, a la cintura contraria | Matriz del usuario | ✔ | clase `finish` («alrededor del cuerpo») |

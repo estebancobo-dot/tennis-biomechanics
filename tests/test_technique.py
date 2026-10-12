@@ -226,3 +226,14 @@ def test_copy_cue_is_built_only_from_her_values():
     i = copy_cue("impact", model, classes)
     assert i.startswith("Toma la bola subiendo, a la altura de la cintura") and "brazo" not in i      # arm: 4 strokes, not enough
     assert copy_cue("finish", model, classes) is None                                                 # nothing measured: nothing said
+
+
+def test_contact_type_half_volley_and_volley():
+    from tennisbio.technique import contact_type
+
+    assert contact_type(0.08, 30, True, (0, -1)) == "media volea"           # low, just after the bounce
+    assert contact_type(0.08, 70, True, (0, -1)) == "tras el bote"          # quick but high: a normal rising ball
+    assert contact_type(0.6, 60, True, (0, -1)) == "tras el bote"
+    assert contact_type(None, 80, True, (0, 9.0)) == "volea"                # no bounce on her side, near the net
+    assert contact_type(None, 80, True, (0, 2.0)) is None                   # no bounce seen at the baseline: unknown
+    assert contact_type(None, 80, False, (0, 9.0)) is None                  # ball not followed: never a volley
