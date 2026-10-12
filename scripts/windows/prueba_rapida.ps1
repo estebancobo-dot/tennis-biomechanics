@@ -21,17 +21,23 @@ try {
     Paso "1/4 Comprobacion del entorno"
     Ejecutar uv @("run", "python", "scripts/check_env.py", $video.FullName)
 
-    Paso "2/4 Velocidad de este equipo (5 min)"
-    Ejecutar uv @("run", "python", "scripts/benchmark.py", $video.FullName)
+    # la velocidad del equipo y la validacion con F3Set solo se miden la primera vez (ya enviadas a
+    # Claude); para repetirlas, borrar output\benchmark o datasets\reports
+    Paso "2/4 Velocidad de este equipo (5 min, solo la primera vez)"
+    if (Test-Path "$Base\output\benchmark\results.json") { Ok "ya medida" }
+    else { Ejecutar uv @("run", "python", "scripts/benchmark.py", $video.FullName) }
 
     Paso "3/4 Cuatro minutos de partido, todas las etapas e informe (15-30 min)"
     Ejecutar uv @("run", "python", "scripts/smoke_test.py", $video.FullName, "--minutes", "4")
 
-    Paso "4/4 Validacion automatica: 30 puntos anotados de partidos de Rybakina (F3Set; 20-40 min)"
-    try {
-        Ejecutar uv @("run", "python", "scripts/validate_f3set.py", "--root", "$Base\datasets", "--clips", "30")
-    } catch {
-        Write-Host "La validacion no se pudo completar (descarga de YouTube?). No impide usar el programa." -ForegroundColor Yellow
+    Paso "4/4 Validacion automatica: puntos anotados de partidos de Rybakina (F3Set; 20-40 min, solo la primera vez)"
+    if (Test-Path "$Base\datasets\reports\f3set_validation.json") { Ok "ya hecha" }
+    else {
+        try {
+            Ejecutar uv @("run", "python", "scripts/validate_f3set.py", "--root", "$Base\datasets", "--clips", "30")
+        } catch {
+            Write-Host "La validacion no se pudo completar (descarga de YouTube?). No impide usar el programa." -ForegroundColor Yellow
+        }
     }
 
     $informe = "$Base\output\_smoke\informe\index.html"

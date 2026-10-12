@@ -82,6 +82,12 @@ function Subir-Registros {
                 if (Test-Path $f) { Copy-Item $f "$d\partidos\$($m.Name)_$j" -Force }
             }
         }
+        # imagenes de diagnostico de la prueba rapida (planos con la pista dibujada) y lo que lee el OCR
+        if (Test-Path "$Base\output\_smoke\diag") {
+            New-Item -ItemType Directory -Force -Path "$d\diag" | Out-Null
+            Remove-Item "$d\diag\*" -Force -ErrorAction SilentlyContinue
+            Copy-Item "$Base\output\_smoke\diag\*" "$d\diag" -Force -ErrorAction SilentlyContinue
+        }
         foreach ($f in @("$Base\output\benchmark\results.json", "$Base\datasets\reports\f3set_validation.json")) {
             if (Test-Path $f) { Copy-Item $f "$d\$(Split-Path $f -Leaf)" -Force }
         }

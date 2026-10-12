@@ -51,6 +51,7 @@ def main():
     print(f"\nEtapas ejecutadas: {', '.join(done) or 'ninguna (ya estaba al día)'}")
     for name, m in manifest.items():
         print(f"  {name:11} {m['seconds']:7.1f} s  {m['summary']}")
+    diagnostics(ctx, out_root / "diag")
     report = build([match], out_root, out_root / "informe")
     from tennisbio.export import export
     exp = export([match], out_root, out_root / "exportar", strokes_all=True)
@@ -59,6 +60,61 @@ def main():
               f"≈ {total * full / (args.minutes * 60) / 3600:.1f} h (estimación lineal)")
     print(f"Informe: {report}")
     print(f"Vídeos, montajes y resumen PDF: {exp}")
+
+
+def diagnostics(ctx, dest: Path, n_frames=8):
+    """Small images and texts for Claude (uploaded with the logs; the video never is): the middle
+    frame of a few main-camera shots with the fitted court drawn, and what the OCR reads there."""
+    import cv2
+    import numpy as np
+    from tennisbio.court import LINES
+    from tennisbio.stages import court_at, grab_frame
+
+    dest.mkdir(parents=True, exist_ok=True)
+    for f in dest.glob("*"):
+        f.unlink()
+    sc = json.loads(ctx.path("scenes.json").read_text(encoding="utf-8"))
+    court = json.loads(ctx.path("court.json").read_text(encoding="utf-8")) if ctx.path("court.json").exists() else {}
+    fps = sc["fps"]
+    shots = [x for x in sc["shots"] if x["main_camera"]] or sc["shots"]
+    shots = shots[:: max(1, len(shots) // n_frames)][:n_frames]
+    try:
+        from rapidocr_onnxruntime import RapidOCR
+        ocr = RapidOCR()
+    except ImportError:
+        ocr = None
+    lines = []
+    for k, x in enumerate(shots):
+        t = (x["start"] + x["end"]) / 2 / fps
+        fr = grab_frame(ctx.video, t)
+        if fr is None:
+            continue
+        H, _ = court_at(court, t)
+        img = fr.copy()
+        if H is not None:
+            for a, b in LINES.values():
+                p = np.array([[*a, 1.0], [*b, 1.0]]) @ np.asarray(H).T
+                p = p[:, :2] / p[:, 2:]
+                cv2.line(img, tuple(int(v) for v in p[0]), tuple(int(v) for v in p[1]), (0, 255, 255), 2)
+        cv2.putText(img, f"t={t:.1f}s main={x['main_camera']} court={'si' if H is not None else 'no'}", (20, 40),
+                    cv2.FONT_HERSHEY_SIMPLEX, 1.2, (0, 0, 255), 3)
+        small = cv2.resize(img, (960, int(960 * img.shape[0] / img.shape[1])))
+        ok, buf = cv2.imencode(".jpg", small, [cv2.IMWRITE_JPEG_QUALITY, 80])
+        if ok:
+            (dest / f"plano_{k:02d}.jpg").write_bytes(buf.tobytes())
+        if ocr is not None:
+            res, _ = ocr(fr)
+            lines.append(f"t={t:.1f}s: " + " | ".join(
+                f"{txt} @({int(np.asarray(b)[:, 0].min())},{int(np.asarray(b)[:, 1].min())})" for b, txt, _ in (res or [])))
+    # a few frames of every shot type (main camera or not) to see why shots are rejected
+    for k, x in enumerate([x for x in sc["shots"] if not x["main_camera"]][:4]):
+        fr = grab_frame(ctx.video, (x["start"] + x["end"]) / 2 / fps)
+        if fr is not None:
+            small = cv2.resize(fr, (640, int(640 * fr.shape[0] / fr.shape[1])))
+            ok, buf = cv2.imencode(".jpg", small, [cv2.IMWRITE_JPEG_QUALITY, 75])
+            if ok:
+                (dest / f"otro_plano_{k:02d}.jpg").write_bytes(buf.tobytes())
+    (dest / "ocr.txt").write_text("\n".join(lines), encoding="utf-8")
 
 
 if __name__ == "__main__":
