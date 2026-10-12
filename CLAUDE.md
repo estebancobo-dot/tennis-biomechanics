@@ -314,3 +314,5 @@ se usa "brazo dominante", "pie adelantado", etc., resueltos con la configuració
   `C:\tenis\output\<match_id>\` (parquet/JSON), para poder relanzar etapas sueltas.
 - Jugador y golpe son parámetros (`config/players/*.yaml`, `config/strokes/*.yaml`), nunca constantes.
 - Antes de escribir mucho código, enseñar el plan y esperar confirmación.
+- **Nunca borrar trabajo hecho** (vistas, medidas, pantallas): lo complejo se queda como extra y lo
+  nuevo se añade encima (decisión del usuario, 13-10).

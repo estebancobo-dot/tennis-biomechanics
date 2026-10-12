@@ -118,6 +118,10 @@ select { font: 13px var(--body); color: var(--ink); background: var(--panel-2); 
 .bar1 span { height: 100%; }
 
 .tw { overflow-x: auto; }
+.say { margin: 0; padding: 12px 16px 10px 32px; display: grid; gap: 6px; font-size: 13.5px; line-height: 1.45; }
+.say li::marker { color: var(--accent); }
+.say a { color: var(--accent); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+details.extra > summary { padding: 6px 16px; font-size: 12px; color: var(--ink-3); cursor: pointer; border-top: 1px solid var(--line); }
 table.data { width: 100%; border-collapse: collapse; font-size: 13px; }
 table.data th { text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-3); padding: 8px 10px; border-bottom: 1px solid var(--line-2); white-space: nowrap; background: var(--panel); }
 table.data th.r, table.data td.r { text-align: right; }
@@ -455,7 +459,8 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
     </div>
     <div class="panel">
       <header><h2>Raqueta por fase</h2><span class="note">Este golpe</span></header>
-      <div class="tw"><table class="data" id="g-rtable"></table></div>
+      <ul class="say" id="g-rsay"></ul>
+      <details class="extra" open><summary>Tabla completa</summary><div class="tw"><table class="data" id="g-rtable"></table></div></details>
     </div>
   </div>
   <details class="tech"><summary>Detalles técnicos: cadena cinética (velocidad de cada segmento) y ángulos de las articulaciones</summary>
@@ -496,7 +501,8 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
   </div>
   <div class="panel">
     <header><h2>Diferencias</h2><span class="note">B − A; resaltadas las que superan el ruido de medida de la métrica</span></header>
-    <div class="tw"><table class="data" id="k-table"></table></div>
+    <ul class="say" id="k-say"></ul>
+    <details class="extra" open><summary>Tabla completa</summary><div class="tw"><table class="data" id="k-table"></table></div></details>
   </div>
 </section>
 
@@ -514,7 +520,8 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
       <label class="ctl">Revisión<select id="f-rev"><option value="">Todos</option><option value="0">Sin dudas</option><option value="1">Con dudas</option></select></label>
       <label class="ctl">Vista rápida<select id="f-preset"><option value="">—</option><option value="best">Mejor capturados</option><option value="typ">Más representativos</option></select></label>
     </div>
-    <div class="tw"><table class="data" id="ex-table"></table></div>
+    <ul class="say" id="ex-say"></ul>
+    <details class="extra" open><summary>Tabla completa</summary><div class="tw"><table class="data" id="ex-table"></table></div></details>
     <div class="pager"><span id="ex-count"></span><span style="display:flex;gap:6px"><button class="btn" id="ex-prev">Anterior</button><button class="btn" id="ex-next">Siguiente</button></span></div>
   </div>
 </section>
@@ -540,7 +547,8 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
       </select></label>
       <span class="note" style="margin-left:auto;max-width:46ch">Con "Todas" se mezclan golpes con distinta bola: una diferencia puede deberse a la bola recibida y no a la técnica.</span>
     </div>
-    <div class="tw" style="border-top:1px solid var(--line)"><table class="data" id="c-table"></table></div>
+    <ul class="say" id="c-say"></ul>
+    <details class="extra" open><summary>Tabla completa</summary><div class="tw" style="border-top:1px solid var(--line)"><table class="data" id="c-table"></table></div></details>
   </div>
   <div class="cols c-1-1" id="c-grid"></div>
 </section>
@@ -1215,6 +1223,17 @@ function renderRacket() {
   document.getElementById("g-rtable").innerHTML = `<thead><tr><th>Fase</th><th class="r">Altura</th><th>Cuerdas →</th><th class="r">Cierre</th><th>Fiab.</th></tr></thead><tbody>` +
     PH.map((p, i) => { const f = isN(p.t) ? fIdx(p.t) : null, h = rk && f !== null ? rk.head_cm[f] : null, tl = f !== null ? tilt[f] : null, lb = f !== null ? lab[f] : null; return `<tr data-t="${isN(p.t) ? p.t : ""}"><td>${i + 1} ${p.n}</td><td class="r num">${isN(h) ? sign(h) + fmt(Math.abs(h)) + " cm" : "—"}</td><td>${lb || "—"}</td><td class="r num">${isN(tl) ? sign(tl) + fmt(Math.abs(tl)) + "°" : "—"}</td><td>${relBars(relP[i])}</td></tr>`; }).join("") + `</tbody>`;
   document.querySelectorAll("#g-rtable tbody tr").forEach(tr => tr.addEventListener("click", () => { if (tr.dataset.t !== "") { stopPlay(); setT(+tr.dataset.t); } }));
+  // the same values said in words, phase by phase (the table stays below)
+  const say = PH.map((p, i) => {
+    const f = isN(p.t) ? fIdx(p.t) : null, h = rk && f !== null ? rk.head_cm[f] : null, tl = f !== null ? tilt[f] : null, lb = f !== null ? lab[f] : null;
+    if (!isN(h) && !lb) return null;
+    const parts = [isN(h) ? `cabeza de la raqueta ${fmt(Math.abs(h))} cm ${h >= 0 ? "por encima" : "por debajo"} de la mano` : null,
+                   lb ? `cuerdas hacia ${lb}${isN(tl) ? ` (${tl >= 0 ? "cerradas" : "abiertas"} ${fmt(Math.abs(tl))}°)` : ""}` : null].filter(Boolean);
+    return `<li data-t="${p.t}"><b>${p.n}</b>: ${parts.join("; ")}${relP[i] === 1 ? ` <span class="dim3">(estimación: la raqueta sale borrosa)</span>` : ""}. <a>ver</a></li>`;
+  }).filter(Boolean);
+  const gs = document.getElementById("g-rsay");
+  gs.innerHTML = say.join("") || `<li class="dim3">La raqueta no se ve bien en este golpe.</li>`;
+  gs.querySelectorAll("li[data-t] a").forEach(a => a.addEventListener("click", () => { stopPlay(); setT(+a.parentElement.dataset.t); }));
 }
 function renderHeights() {
   const s = cur, C = (DATA.model || {}).curves || {}, el = document.getElementById("g-hts"), sc = s.curves || {};
@@ -1342,6 +1361,20 @@ function renderTable() {
   const rows = a.slice(exPage * PAGE, exPage * PAGE + PAGE);
   document.getElementById("ex-table").innerHTML = `<thead><tr>${COLS.map(c => `<th data-sort="${c.k}" class="${c.metric || c.r ? "r" : ""}">${c.h}${exSort.k === c.k ? ` <span class="arr">${exSort.dir > 0 ? "▲" : "▼"}</span>` : ""}</th>`).join("")}</tr></thead><tbody>` +
     rows.map(s => `<tr data-id="${s.id}" class="${s === cur ? "sel" : ""}"><td><b class="mono" style="font-weight:500">${s.id}</b>${s.side === "far" ? ` <span class="chip">lejos</span>` : ""}<div class="dim3" style="font-size:11px">${MATCHES[s.match].rival}</div></td><td class="num">${clock(s.vt)}</td><td class="num">${s.score ? s.set + " · " + s.score.split(" · ")[0] : "—"}${s.pressure ? ` <span class="chip">P</span>` : ""}</td><td>${s.sit.neutra ? `<span class="chip">neutra</span>` : [s.wide && "abierta", s.fast && "rápida", s.height === "baja" && "baja", s.height === "alta" && "alta", s.short && "corta"].filter(Boolean).map(x => `<span class="chip">${x}</span>`).join("")}</td><td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${stCol(s)};margin-right:6px"></span>${s.stance || "—"}</td>${EXM.map(k => `<td class="r">${devCell(k, s.m[k])}</td>`).join("")}<td>${s.chainOK === true ? `<span class="st good"><i>✓</i></span>` : s.chainOK === false ? `<span class="st crit"><i>!</i></span>` : "—"}</td><td>${s.outcome === "ganador" ? `<span class="st good"><i>✓</i>Ganador</span>` : s.outcome === "error" ? `<span class="st crit"><i>✕</i>${s.outcomeDetail === "net" ? "Red" : "Fuera"}</span>` : s.outcome === "sigue" ? `<span class="dim3">sigue</span>` : "—"}</td><td>${s.review.length ? `<span class="st warn" data-tip="${s.review.map(revTxt).join("<br>")}"><i>!</i>${s.review.length}</span>` : ""}</td><td class="r"><span class="qb"><i style="width:${s.quality * 100}%"></i></span> <span class="num">${fmt(s.quality * 100)}</span></td><td class="r num">${fmt(s.repr * 100)}</td></tr>`).join("") + "</tbody>";
+  {
+    const near = a.filter(s => s.side !== "far"), st = {};
+    near.forEach(s => { if (s.stance) st[s.stance] = (st[s.stance] || 0) + 1; });
+    const top = Object.entries(st).sort((x, y) => y[1] - x[1])[0];
+    const typ = [...a].sort((x, y) => y.repr - x.repr)[0], best = [...a].sort((x, y) => y.quality - x.quality)[0];
+    const won = a.filter(s => s.outcome === "ganador").length, err = a.filter(s => s.outcome === "error").length;
+    const lk = s => s ? `<a data-id="${s.id}">${s.id}</a>` : "—";
+    document.getElementById("ex-say").innerHTML = !a.length ? `<li class="dim3">Ningún golpe con estos filtros.</li>` :
+      `<li><b>${a.length} golpes</b> con estos filtros${near.length < a.length ? ` (${a.length - near.length} del lado lejano, con menos detalle)` : ""}.</li>`
+      + `<li>El más representativo de ella: ${lk(typ)}; el mejor captado: ${lk(best)}.</li>`
+      + (top ? `<li>Apoyo más frecuente: <b>${top[0]}</b> (${fmt(100 * top[1] / near.filter(s => s.stance).length)} %).</li>` : "")
+      + (won || err ? `<li>${won} sin devolver por la rival y ${err} errores.</li>` : "");
+    document.querySelectorAll("#ex-say a[data-id]").forEach(x => x.addEventListener("click", () => { loadStroke(STROKES.find(s => s.id === x.dataset.id)); showTab("golpe"); }));
+  }
   document.getElementById("ex-count").textContent = `${a.length} golpes · página ${exPage + 1} de ${pages} · la marca junto a cada métrica es su posición respecto a su mediana`;
   document.querySelectorAll("#ex-table th[data-sort]").forEach(th => th.addEventListener("click", () => { const k = th.dataset.sort; exSort = { k, dir: exSort.k === k ? -exSort.dir : (k === "id" || k === "vt" ? 1 : -1) }; renderTable(); }));
   document.querySelectorAll("#ex-table tbody tr").forEach(tr => tr.addEventListener("click", () => { loadStroke(STROKES.find(s => s.id === tr.dataset.id)); showTab("golpe"); }));
@@ -1391,6 +1424,25 @@ function renderCompare() {
       else { const ok = fin(mus), sp = ok.length > 1 ? Math.max(...ok) - Math.min(...ok) : NaN; e = { d: sp }; z = sp / m.noise; v = !isN(sp) ? { cls: "crit", icon: "–", txt: "Pocos datos" } : z > 1 ? { cls: "warn", icon: "!", txt: "Varía entre partidos" } : { cls: "crit", icon: "–", txt: "Dentro del ruido" }; }
       return `<tr><td><b style="font-weight:600">${m.name}</b> <span class="dim3" style="font-size:11px">${m.sub}</span></td><td>${relBars(m.rel)}</td>${mus.map(x => `<td class="r num">${fmtM(m.k, x)}</td>`).join("")}<td class="r num">${two && isN(e.d) ? sign(e.d) : ""}${fmt(Math.abs(e.d), m.dec)}</td>${two ? `<td class="r num dim">${fmt(e.lo, 1)} … ${fmt(e.hi, 1)}</td>` : ""}<td class="r num">${isN(z) ? fmt(Math.abs(z), 1) + "×" : "—"}</td><td><span class="st ${v.cls}"><i>${v.icon}</i>${v.txt}</span></td></tr>`;
     }).join("") + `<tr><td><b style="font-weight:600">Apoyo abierto</b> <span class="dim3" style="font-size:11px">% de golpes</span></td><td>${relBars(3)}</td>${groups.map(g => `<td class="r num">${fmt(pct(g.a.filter(s => s.stance), s => s.stance === "abierto"))} %</td>`).join("")}<td></td>${two ? "<td></td>" : ""}<td></td><td></td></tr></tbody>`;
+  {
+    const lines = [];
+    MS.forEach(m => {
+      if (two) {
+        const e = effect(m.k, groups[0].a, groups[1].a), v = verdict(e, m.noise);
+        if (v.txt === "Diferencia real" || v.txt === "Probable")
+          lines.push({ z: Math.abs(e.d / m.noise), t: `${v.txt === "Probable" ? "Probablemente, " : ""}${groups[1].l.toLowerCase()}: <b>${m.name.toLowerCase()}</b> ${e.d > 0 ? "más alto" : "más bajo"} (${fmtM(m.k, e.mb)} frente a ${fmtM(m.k, e.ma)}; ${fmt(Math.abs(e.d / m.noise), 1)} veces el error de medida).` });
+      } else {
+        const mus = groups.map(g => { const v = g.a.map(s => s.m[m.k]).filter(isN); return v.length >= 5 ? mean(v) : NaN; }), ok = fin(mus);
+        const sp = ok.length > 1 ? Math.max(...ok) - Math.min(...ok) : NaN;
+        if (isN(sp) && sp > m.noise) lines.push({ z: sp / m.noise, t: `<b>${m.name}</b> varía entre partidos: de ${fmtM(m.k, Math.min(...ok))} a ${fmtM(m.k, Math.max(...ok))} (${fmt(sp / m.noise, 1)} veces el error de medida).` });
+      }
+    });
+    lines.sort((x, y) => y.z - x.z);
+    const few = groups.some(g => g.a.length < 5);
+    document.getElementById("c-say").innerHTML = few ? `<li class="dim3">Pocos golpes en algún grupo (${groups.map(g => `${g.l}: ${g.a.length}`).join(", ")}): no se puede comparar todavía.</li>`
+      : lines.length ? lines.slice(0, 6).map(x => `<li>${x.t}</li>`).join("") + (lines.length > 6 ? `<li class="dim3">Y ${lines.length - 6} diferencias más en la tabla.</li>` : "")
+      : `<li>Ninguna medida cambia más que el error de medida entre ${groups.map(g => g.l.toLowerCase()).join(" y ")}: su técnica se mantiene.</li>`;
+  }
   document.getElementById("c-grid").innerHTML = MS.map(m => `<div class="panel"><header><h2>${m.name}</h2><span class="note">ruido ±${fmt(m.noise, m.dec)} ${relBars(m.rel)}</span></header><div class="body chart">${distSVG(m, groups)}</div></div>`).join("") +
     `<div class="panel" style="grid-column:1/-1"><div class="body legend"><span><i class="dot" style="background:var(--s1)"></i>Abierto</span><span><i class="dot" style="background:var(--s2)"></i>Semiabierto</span><span><i class="dot" style="background:var(--s3)"></i>Cerrado</span><span><i style="background:var(--accent);width:3px;height:12px;vertical-align:-2px"></i>Media</span><span><i style="background:none;border:1px solid var(--ink-2);width:14px;height:9px;vertical-align:-1px"></i>Rango intercuartílico y mediana</span><span><i style="background:var(--raise);width:14px;height:9px;vertical-align:-1px"></i>Ruido alrededor del primer grupo</span><span>Pulsa un punto para abrir el golpe</span></div></div>`;
   document.querySelectorAll("#c-grid circle[data-id]").forEach(c => c.addEventListener("click", () => { loadStroke(STROKES.find(s => s.id === c.dataset.id)); showTab("golpe"); }));
@@ -1567,6 +1619,15 @@ function renderKTl() {
 }
 function renderKTable() {
   const a = KA.s, b = KB.s, rows = METRICS.filter(m => isN(a.m[m.k]) || isN(b.m[m.k]));
+  {
+    const big = rows.map(m => ({ m, d: b.m[m.k] - a.m[m.k] })).filter(x => isN(x.d) && Math.abs(x.d) > x.m.noise)
+      .sort((x, y) => Math.abs(y.d / y.m.noise) - Math.abs(x.d / x.m.noise));
+    const ctx = [sitTxt(a) !== sitTxt(b) ? `bola distinta (A: ${sitTxt(a)}; B: ${sitTxt(b)})` : null,
+                 a.stance !== b.stance ? `apoyo distinto (A ${a.stance || "—"}, B ${b.stance || "—"})` : null].filter(Boolean);
+    document.getElementById("k-say").innerHTML = (ctx.length ? `<li>Ojo: ${ctx.join(" y ")}; parte de las diferencias puede venir de ahí.</li>` : `<li>Misma situación de bola y mismo apoyo: las diferencias son de técnica.</li>`)
+      + (big.length ? big.slice(0, 6).map(x => `<li>En B, <b>${x.m.name.toLowerCase()}</b> ${x.d > 0 ? "más alto" : "más bajo"}: ${fmtM(x.m.k, b.m[x.m.k])} frente a ${fmtM(x.m.k, a.m[x.m.k])} (supera el error de ±${fmt(x.m.noise, x.m.dec)}).</li>`).join("")
+                    : `<li>Ninguna medida difiere más que el error de medida: los dos golpes son técnicamente iguales.</li>`);
+  }
   const ctxRows = [["Situación de la bola", sitTxt(a), sitTxt(b)], ["Apoyo", a.stance || "—", b.stance || "—"], ["Resultado", a.outcomeDetail ? OUT_ES[a.outcomeDetail] : "—", b.outcomeDetail ? OUT_ES[b.outcomeDetail] : "—"], ["Marcador", a.score ? `${a.set}º set · ${a.score}` : "—", b.score ? `${b.set}º set · ${b.score}` : "—"], ["Cadena cinética", a.chainOK === true ? "en orden" : a.chainOK === false ? "desordenada" : "—", b.chainOK === true ? "en orden" : b.chainOK === false ? "desordenada" : "—"]];
   document.getElementById("k-table").innerHTML = `<thead><tr><th>Métrica</th><th class="r" style="color:${KCOL[0]}">A · ${a.id}</th><th class="r" style="color:${KCOL[1]}">B · ${b.id}</th><th class="r">B − A</th><th>¿Supera el ruido?</th><th>Fiab.</th></tr></thead><tbody>` +
     ctxRows.map(([n, x, y]) => `<tr><td>${n}</td><td class="r">${x}</td><td class="r">${y}</td><td></td><td></td><td></td></tr>`).join("") +

@@ -568,7 +568,11 @@ def _screens(shots_dir: Path) -> list[dict]:
               ("golpe", "feet_cycle", "«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)", 8),
               ("golpe", "heights_layer", "Barras de altura de la cabeza y la cadera sobre el vídeo", 1),
               ("videoteca", "lib_filters", "Filtros combinables de la videoteca (apoyo, dirección, bola, contacto…)", 10),
-              ("modelo", "news", "Novedades de la versión en la pantalla de entrada", 1)]
+              ("modelo", "news", "Novedades de la versión en la pantalla de entrada", 1),
+              ("golpe", "sentences", "«Análisis de golpe»: la raqueta por fase dicha en frases (la tabla sigue debajo)", 1),
+              ("explorador", "sentences", "«Explorador»: resumen en frases de los golpes filtrados (la tabla sigue debajo)", 1),
+              ("comparativas", "sentences", "«Comparativas»: qué cambia, en frases (la tabla sigue debajo)", 1),
+              ("comparar", "sentences", "«Comparar golpes»: diferencias en frases (la tabla sigue debajo)", 1)]
     for tab, key, name, need in checks:
         v = (by.get(tab) or {}).get(key)
         if v is None:

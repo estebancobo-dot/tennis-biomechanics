@@ -111,6 +111,10 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
   Arreglado: análisis reflejado cuando se le ve la cara (`practice.faces_camera`) y estimación 3D en su propio
   marco del cuerpo (RTMW3D, `practice.metrics_3d`) para lado, diagonal y frente, marcada como estimación.
   Auditoría: además, el árbol de ficheros de cada ejecución (`audit.file_tree_items`).
+- ✔ Regla del usuario (13-10): **nunca borrar trabajo hecho**; las vistas complejas se quedan como extra y
+  lo nuevo se añade. Las 4 tablas (raqueta por fase, Comparar, Explorador, Comparativas) siguen igual,
+  ahora con frases encima que dicen lo importante («Tabla completa» debajo, abierta). La auditoría
+  comprueba que haya frases en esas pantallas y solo avisa de tablas sin frases.
 - Pendiente de la auditoría (pedido el 12-10): comprobar cada combinación medida × situación, convertir
   las 63 peticiones del chat (`docs/peticiones_usuario.md`) y las 25 afirmaciones de entrenadores en
   comprobaciones automáticas, y validar la exactitud de más medidas con clips anotados.

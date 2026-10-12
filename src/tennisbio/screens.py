@@ -40,7 +40,9 @@ _JS_SCREEN = """(tab) => {
     news: !!sec.querySelector('#news'),
     intro: !!(sec.querySelector('.intro') && sec.querySelector('.intro').innerText.trim().length > 20),
     external_links: [...sec.querySelectorAll('a[href^="http"]')].filter(a => a.offsetParent).length,
-    tables: [...sec.querySelectorAll('table')].filter(t => t.offsetParent && t.rows.length > 2).length,
+    // a table kept as an extra (inside details.extra, below its sentences) is fine; only bare tables count
+    tables: [...sec.querySelectorAll('table')].filter(t => t.offsetParent && t.rows.length > 2 && !t.closest('details.extra')).length,
+    sentences: [...sec.querySelectorAll('ul.say li')].filter(l => l.offsetParent).length,
     many_lines: [...sec.querySelectorAll('svg')].filter(g => g.offsetParent && g.querySelectorAll('polyline').length > 4).length,
   };
 }"""
