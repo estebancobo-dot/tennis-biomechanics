@@ -57,7 +57,7 @@
    "shoulder_turn_loaded_deg": 63.57469970991255,
    "hip_turn_loaded_deg": 54.568173097167225,
    "x_factor_deg": 9.006526612745326,
-   "elbow_impact_deg": 25.45526238771839,
+   "elbow_impact_deg": null,
    "non_elbow_impact_deg": 30.197888612726214,
    "non_arm_extension_loaded_deg": 147.8943166773001,
    "contact_height_pct": 100.05916517237661,
@@ -711,7 +711,8 @@
    "proximal_to_distal": null
   },
   "review": [
-   "elbow_implausible_at_impact"
+   "elbow_implausible_at_impact",
+   "impossible:elbow_impact_deg"
   ],
   "window": "w000015163_7199.mp4",
   "window_start_s": 15.162721088435376,
@@ -1904,7 +1905,7 @@
    "shoulder_turn_loaded_deg": 63.52857272949667,
    "hip_turn_loaded_deg": 73.64000693260893,
    "x_factor_deg": -10.111434203112253,
-   "elbow_impact_deg": 9.436834269230433,
+   "elbow_impact_deg": null,
    "non_elbow_impact_deg": 49.32119646771235,
    "non_arm_extension_loaded_deg": 148.16403803432675,
    "contact_height_pct": 71.4712437250503,
@@ -2647,7 +2648,8 @@
   },
   "review": [
    "impact_without_audio",
-   "elbow_implausible_at_impact"
+   "elbow_implausible_at_impact",
+   "impossible:elbow_impact_deg"
   ],
   "window": "w000015163_7199.mp4",
   "window_start_s": 15.162721088435376,
@@ -3789,7 +3791,7 @@
    "non_arm_extension_loaded_deg": 147.73450303459592,
    "contact_height_pct": 64.08900015306767,
    "contact_lateral_pct": 66.57503099569485,
-   "base_width_loaded_pct": 2.2017940828345997,
+   "base_width_loaded_pct": null,
    "hip_drop_pct": -6.808236605101681,
    "finish_wrist_height_pct": 23.62736819773779,
    "head_motion_impact_cm": null,
@@ -4542,7 +4544,8 @@
    "proximal_to_distal": false
   },
   "review": [
-   "racket_not_seen_when_loaded"
+   "racket_not_seen_when_loaded",
+   "impossible:base_width_loaded_pct"
   ],
   "window": "w000073915_4784.mp4",
   "window_start_s": 73.91501133786848,
@@ -5747,7 +5750,7 @@
    "shoulder_turn_loaded_deg": 50.08217367386787,
    "hip_turn_loaded_deg": 44.48597100878534,
    "x_factor_deg": 5.596202665082529,
-   "elbow_impact_deg": 22.309224052028856,
+   "elbow_impact_deg": null,
    "non_elbow_impact_deg": 131.54880926491575,
    "non_arm_extension_loaded_deg": 23.009473844076698,
    "contact_height_pct": 75.60166785971195,
@@ -6539,7 +6542,8 @@
   },
   "review": [
    "elbow_implausible_at_impact",
-   "racket_not_seen_when_loaded"
+   "racket_not_seen_when_loaded",
+   "impossible:elbow_impact_deg"
   ],
   "window": "w000130746_8134.mp4",
   "window_start_s": 130.74585034013606,
@@ -13667,8 +13671,8 @@
    "shoulder_turn_loaded_deg": 60.25231163248538,
    "hip_turn_loaded_deg": 50.26643884742541,
    "x_factor_deg": 9.985872785059968,
-   "elbow_impact_deg": 35.12524757415996,
-   "non_elbow_impact_deg": 2.5135099189807213,
+   "elbow_impact_deg": null,
+   "non_elbow_impact_deg": null,
    "non_arm_extension_loaded_deg": 107.82913420798727,
    "contact_height_pct": 89.95907306029154,
    "contact_lateral_pct": 9.543199216420682,
@@ -14293,7 +14297,9 @@
   },
   "review": [
    "phase:takeback",
-   "elbow_implausible_at_impact"
+   "elbow_implausible_at_impact",
+   "impossible:elbow_impact_deg",
+   "impossible:non_elbow_impact_deg"
   ],
   "window": "w000174887_5812.mp4",
   "window_start_s": 174.88698412698415,

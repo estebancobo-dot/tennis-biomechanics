@@ -3,9 +3,10 @@
  "screens": [
   {
    "title": "Su derecha",
-   "text_chars": 3097,
-   "charts": 9,
+   "text_chars": 2526,
+   "charts": 8,
    "videos": 0,
+   "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
    "dashes": 0,
@@ -18,6 +19,7 @@
    "text_chars": 2912,
    "charts": 0,
    "videos": 0,
+   "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [
     "Hacen falta al menos 3 golpes en dos tramos del partido para dibujar la evolución de x-factor (hay 6)."
@@ -29,9 +31,10 @@
   },
   {
    "title": "Videoteca",
-   "text_chars": 1666,
+   "text_chars": 1643,
    "charts": 0,
    "videos": 0,
+   "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
    "dashes": 1,
@@ -43,7 +46,8 @@
    "title": "Análisis de golpe",
    "text_chars": 3161,
    "charts": 15,
-   "videos": 0,
+   "videos": 1,
+   "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
    "dashes": 8,
@@ -56,6 +60,7 @@
    "text_chars": 3134,
    "charts": 2,
    "videos": 0,
+   "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
    "dashes": 2,
@@ -65,12 +70,13 @@
   },
   {
    "title": "Explorador",
-   "text_chars": 1638,
+   "text_chars": 1634,
    "charts": 0,
    "videos": 0,
+   "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 8,
+   "dashes": 9,
    "tab": "explorador",
    "file": "pantalla_6_explorador.jpg",
    "errors": []
@@ -80,6 +86,7 @@
    "text_chars": 2432,
    "charts": 10,
    "videos": 0,
+   "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [
     "Sin datos de estabilidad de la cabeza en estos grupos."
@@ -94,6 +101,7 @@
    "text_chars": 420,
    "charts": 1,
    "videos": 0,
+   "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
    "dashes": 0,

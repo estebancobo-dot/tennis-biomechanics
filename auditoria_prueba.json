@@ -3,10 +3,10 @@
  "strokes": 6,
  "near": 6,
  "summary": {
-  "ok": 55,
-  "falta": 8,
-  "pocos datos": 54,
-  "aviso": 6
+  "ok": 53,
+  "falta": 0,
+  "pocos datos": 70,
+  "aviso": 0
  },
  "items": [
   {
@@ -34,8 +34,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "1. Fases · Inicio del giro de bloque (preparación)",
-   "status": "ok",
-   "detail": "medido en el 83% de los golpes y en el informe",
+   "status": "pocos datos",
+   "detail": "se mide (83% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "class.takeback",
     "face.takeback",
@@ -96,8 +96,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "1. Fases · Final de la terminación",
-   "status": "ok",
-   "detail": "medido en el 100% de los golpes y en el informe",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "class.finish",
     "face.finish",
@@ -141,8 +141,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "2. Cuerpo · Mano libre en la garganta de la raqueta en la espera / giro de bloque",
-   "status": "ok",
-   "detail": "medido en el 100% de los golpes y en el informe",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "acceleration.hands_apart",
     "ball_bounce.hands_apart",
@@ -273,15 +273,15 @@
    "req": 3,
    "area": "Taxonomía",
    "name": "2. Cuerpo · Momento de los picos en ms",
-   "status": "aviso",
-   "detail": "no observable desde la tele, pero el informe no lo dice en «Lo que la tele no permite medir»"
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
   },
   {
    "req": 3,
    "area": "Taxonomía",
    "name": "2. Cuerpo · Rotación interna del hombro, pronación, desviaciones de la muñeca",
-   "status": "aviso",
-   "detail": "no observable desde la tele, pero el informe no lo dice en «Lo que la tele no permite medir»"
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
   },
   {
    "req": 1,
@@ -323,8 +323,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "2. Cuerpo · Ángulo del codo en el impacto (brazo recto / doble flexión)",
-   "status": "ok",
-   "detail": "medido en el 50% de los golpes y en el informe",
+   "status": "pocos datos",
+   "detail": "se mide (50% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "class.arm",
     "impact.elbow_dom"
@@ -346,8 +346,8 @@
    "req": 3,
    "area": "Taxonomía",
    "name": "2. Cuerpo · Mirada",
-   "status": "aviso",
-   "detail": "no observable desde la tele, pero el informe no lo dice en «Lo que la tele no permite medir»"
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
   },
   {
    "req": 1,
@@ -383,8 +383,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "2. Cuerpo · Terminación sobre el hombro / limpiaparabrisas / alrededor / invertida",
-   "status": "ok",
-   "detail": "medido en el 100% de los golpes y en el informe",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "class.finish",
     "face.finish",
@@ -397,8 +397,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "2. Cuerpo · \"3 × 90°\" al final",
-   "status": "falta",
-   "detail": "se mide (33% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "status": "pocos datos",
+   "detail": "se mide (33% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "class.finish_3x90"
    ],
@@ -417,8 +417,8 @@
    "req": 3,
    "area": "Taxonomía",
    "name": "2. Cuerpo · Fuerzas, momentos articulares",
-   "status": "aviso",
-   "detail": "no observable desde la tele, pero el informe no lo dice en «Lo que la tele no permite medir»"
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
   },
   {
    "req": 1,
@@ -495,8 +495,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Primer paso: dirección correcta respecto a la bola",
-   "status": "falta",
-   "detail": "se mide (17% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "status": "ok",
+   "detail": "medido en el 17% de los golpes y en el informe",
    "keys": [
     "footwork.first_step_right_way"
    ],
@@ -586,8 +586,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Tipo de apoyo (abierto, semiabierto, neutro, cerrado)",
-   "status": "ok",
-   "detail": "medido en el 100% de los golpes y en el informe",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "class.stance_impact",
     "class.stance_loaded"
@@ -598,8 +598,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Subtipos: abierto de ataque, abierto defensivo, neutro de ataque",
-   "status": "ok",
-   "detail": "medido en el 100% de los golpes y en el informe",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "class.stance_role"
    ],
@@ -620,8 +620,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · En carrera, en salto, a un pie, deslizando",
-   "status": "ok",
-   "detail": "medido en el 100% de los golpes y en el informe",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "class.movement",
     "footwork.movement"
@@ -658,8 +658,8 @@
    "req": 3,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Orientación del pie, apoyo de talón/punta",
-   "status": "aviso",
-   "detail": "no observable desde la tele, pero el informe no lo dice en «Lo que la tele no permite medir»"
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
   },
   {
    "req": 3,
@@ -672,8 +672,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "4. Raqueta, swing y empuñadura · Forma del armado: bucle, recto, \"pat the dog\"",
-   "status": "ok",
-   "detail": "medido en el 100% de los golpes y en el informe",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "class.takeback",
     "class.takeback_face",
@@ -737,8 +737,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "4. Raqueta, swing y empuñadura · Trayectoria de abajo arriba (signo) / liftado-plano-cortado",
-   "status": "ok",
-   "detail": "medido en el 100% de los golpes y en el informe",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "class.swing",
     "stroke.swing_low_to_high"
@@ -772,8 +772,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "4. Raqueta, swing y empuñadura · Velocidad de la raqueta relativa entre golpes",
-   "status": "falta",
-   "detail": "se mide (83% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "status": "pocos datos",
+   "detail": "se mide (83% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "stroke.racket_speed_rel"
    ],
@@ -783,8 +783,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "4. Raqueta, swing y empuñadura · Posición de la mano en el mango",
-   "status": "falta",
-   "detail": "se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "stroke.hand_on_handle"
    ],
@@ -817,8 +817,8 @@
    "req": 3,
    "area": "Taxonomía",
    "name": "4. Raqueta, swing y empuñadura · Pronación, contribución de cada segmento, punto en el cordaje, presión de agarre",
-   "status": "aviso",
-   "detail": "no observable desde la tele, pero el informe no lo dice en «Lo que la tele no permite medir»"
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
   },
   {
    "req": 1,
@@ -860,8 +860,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "5. Bola, resultado y contexto · Altura de la bola en su vuelo, bote, punto más alto; contacto subiendo / arriba / cayendo",
-   "status": "ok",
-   "detail": "medido en el 83% de los golpes y en el informe (parcial: ver la matriz)",
+   "status": "pocos datos",
+   "detail": "se mide (83% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "ball_flight.apex_height_m",
     "class.ball_phase",
@@ -1020,8 +1020,9 @@
    "req": 1,
    "area": "Situaciones",
    "name": "Dirección del golpe",
-   "status": "falta",
-   "detail": "se mide por golpe (dirección del golpe) pero no es una situación de «Su derecha»"
+   "status": "pocos datos",
+   "detail": "cruzada 0, paralela 0, al centro 2, invertida cruzada 0, invertida paralela 2, invertida al centro 0 (se muestra con ≥ 12 golpes)",
+   "shown": []
   },
   {
    "req": 1,
@@ -1142,22 +1143,22 @@
    "req": 3,
    "area": "Valores posibles",
    "name": "Valores dentro de límites físicos",
-   "status": "falta",
-   "detail": "metrics.elbow_impact_deg: 1 de 6 fuera de 40–180; metrics.base_width_loaded_pct: 1 de 6 fuera de 5–90"
+   "status": "ok",
+   "detail": "23 medidas comprobadas en 6 golpes"
   },
   {
    "req": 3,
    "area": "Valores posibles",
    "name": "Cada frase lleva cuántos golpes la respaldan y su fiabilidad",
-   "status": "falta",
-   "detail": "11 frases; sin respaldo suficiente: class.ready_hands, class.arm"
+   "status": "pocos datos",
+   "detail": "0 frases"
   },
   {
    "req": 3,
    "area": "Valores posibles",
    "name": "Lo no medible se dice",
    "status": "ok",
-   "detail": "5 elementos en «Lo que la tele no permite medir»"
+   "detail": "14 elementos en «Lo que la tele no permite medir»"
   },
   {
    "req": 2,
@@ -1185,7 +1186,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Su derecha»",
    "status": "ok",
-   "detail": "3097 caracteres de texto, 0 vídeos, 9 gráficos",
+   "detail": "2526 caracteres de texto, 0 vídeos, 8 gráficos",
    "file": "pantalla_1_modelo.jpg"
   },
   {
@@ -1201,15 +1202,15 @@
    "area": "Pantallas",
    "name": "Pantalla «Videoteca»",
    "status": "ok",
-   "detail": "1666 caracteres de texto, 0 vídeos, 0 gráficos",
+   "detail": "1643 caracteres de texto, 0 vídeos, 0 gráficos",
    "file": "pantalla_3_videoteca.jpg"
   },
   {
    "req": 2,
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
-   "status": "falta",
-   "detail": "3161 caracteres de texto, 0 vídeos, 15 gráficos; el vídeo del golpe no se carga",
+   "status": "ok",
+   "detail": "3161 caracteres de texto, 1 vídeos, 15 gráficos",
    "file": "pantalla_4_golpe.jpg"
   },
   {
@@ -1225,7 +1226,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Explorador»",
    "status": "ok",
-   "detail": "1638 caracteres de texto, 0 vídeos, 0 gráficos",
+   "detail": "1634 caracteres de texto, 0 vídeos, 0 gráficos",
    "file": "pantalla_6_explorador.jpg"
   },
   {
