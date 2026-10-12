@@ -1,4 +1,1385 @@
 {
- "readings": [],
- "note": "no se encontró el nombre del rival en el marcador"
+ "readings": [
+  {
+   "t": 0.5,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    null,
+    "15"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 5.5,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    null,
+    "15"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 10.5,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    null,
+    "15"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 15.5,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    null,
+    "15"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 20.5,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    null,
+    "15"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 25.5,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    null,
+    "15"
+   ],
+   "banner": "",
+   "server": null,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 48.4,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "15",
+    "15"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 53.4,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "15"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 58.4,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "15"
+   ],
+   "banner": "",
+   "server": 0,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 63.4,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "15"
+   ],
+   "banner": "",
+   "server": null,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 68.4,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "15"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 73.4,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "15"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 78.4,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "15"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 83.4,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "15"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 88.4,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "15"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 93.4,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "15"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 98.1,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "30"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 103.1,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "30"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 108.1,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "30"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 113.1,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "30"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 118.1,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "30"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 123.1,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "30"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 124.5,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "30"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 129.5,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "30"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 130.8,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "30"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 135.8,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "30"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 140.8,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "30"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "flags": []
+  },
+  {
+   "t": 147.2,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "40"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 152.2,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "40"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 157.2,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "40"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 159.8,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "40"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 164.8,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "40"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 169.8,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "40"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 174.8,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "40"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 179.8,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "40"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 184.8,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "30",
+    "40"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 189.8,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "40",
+    "40"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 194.8,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "40",
+    "40"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 199.8,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "40",
+    "40"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 204.5,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "40",
+    "40"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 208.2,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "40",
+    "40"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 213.2,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "40",
+    "40"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 218.2,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "40",
+    "AD"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 223.2,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "40",
+    "AD"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 225.9,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "40",
+    "AD"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 229.3,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "40",
+    "AD"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 234.3,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "40",
+    "AD"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  },
+  {
+   "t": 237.2,
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     5
+    ]
+   ],
+   "points": [
+    "40",
+    "AD"
+   ],
+   "banner": "",
+   "server": 1,
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": true,
+   "flags": []
+  }
+ ],
+ "names": [
+  "Rybakina",
+  "Sabalenka"
+ ],
+ "opponent": "Sabalenka",
+ "shots": [
+  {
+   "start": 0.0,
+   "end": 30.0,
+   "tried": 6,
+   "read": 6
+  },
+  {
+   "start": 30.0,
+   "end": 42.9,
+   "tried": 3,
+   "read": 0
+  },
+  {
+   "start": 42.9,
+   "end": 97.6,
+   "tried": 11,
+   "read": 10
+  },
+  {
+   "start": 97.6,
+   "end": 124.0,
+   "tried": 6,
+   "read": 6
+  },
+  {
+   "start": 124.0,
+   "end": 130.3,
+   "tried": 2,
+   "read": 2
+  },
+  {
+   "start": 130.3,
+   "end": 141.6,
+   "tried": 3,
+   "read": 3
+  },
+  {
+   "start": 146.7,
+   "end": 159.3,
+   "tried": 3,
+   "read": 3
+  },
+  {
+   "start": 159.3,
+   "end": 204.0,
+   "tried": 9,
+   "read": 9
+  },
+  {
+   "start": 204.0,
+   "end": 207.7,
+   "tried": 1,
+   "read": 1
+  },
+  {
+   "start": 207.7,
+   "end": 225.4,
+   "tried": 4,
+   "read": 4
+  },
+  {
+   "start": 225.4,
+   "end": 228.8,
+   "tried": 1,
+   "read": 1
+  },
+  {
+   "start": 228.8,
+   "end": 236.7,
+   "tried": 2,
+   "read": 2
+  },
+  {
+   "start": 236.7,
+   "end": 240.5,
+   "tried": 1,
+   "read": 1
+  }
+ ]
 }

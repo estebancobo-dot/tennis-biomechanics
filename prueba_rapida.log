@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261012152757
+Start time: 20261012153350
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\prueba_rapida.ps1
-Process ID: 3196
+Process ID: 8876
 PSVersion: 5.1.26100.9549
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
@@ -20,7 +20,7 @@ From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
 Already up to date.
 Resolved 107 packages in 1ms
-Checked 80 packages in 5ms
+Checked 80 packages in 4ms
 Video: C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv
 
 ==> 1/4 Comprobacion del entorno
@@ -54,21 +54,38 @@ C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Р
 ya medida
 
 ==> 3/4 Cuatro minutos de partido, todas las etapas e informe (15-30 min)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+Tramo de juego encontrado en el minuto 121
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] probe…
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] scenes…
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] audio…
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] court…
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] players…
+  juego con pista: 1.4 min de 3.9 min de cámara principal
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] score…
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] identity…
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] candidates…
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine…
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent…
 
-Etapas ejecutadas: ninguna (ya estaba al día)
-  probe           0.3 s  {'duration_min': 4.0, 'fps': 50.0, 'size': '1920x1080', 'cleaned': False, 'vfr': False}
-  scenes         13.6 s  {'shots': 25, 'main_camera_shots': 13, 'main_camera_min': 3.3}
-  audio          11.7 s  {'onsets': 217, 'tracks': 1}
-  players       277.5 s  {'frames': 1961}
-  score          12.5 s  {'readings': 0}
-  court          20.8 s  {'segments': 11, 'with_court': 3, 'pitch_deg_median': 18.6}
-  identity       22.7 s  {'runs': 8, 'votes': 0, 'confidence': 0.0, 'by_end_changes': 0, 'by_clothes': 0, 'conflicts': 0, 'decided': 0}
-  candidates     22.6 s  {'candidates': 2, 'far': 0, 'with_audio': 1, 'opponent_runs': 0, 'identity_unknown': 2, 'replay_runs_skipped': 0, 'audio_track': 0}
-  fine            1.5 s  {'candidates': 0, 'confirmed': 0, 'errors': 0, 'warnings': [], 'forehands': 0}
+Etapas ejecutadas: probe, scenes, audio, court, players, score, identity, candidates, fine, fine_opponent
+  probe           0.2 s  {'duration_min': 4.0, 'fps': 50.0, 'size': '1920x1080', 'cleaned': False, 'vfr': True}
+  scenes         13.5 s  {'shots': 14, 'main_camera_shots': 13, 'main_camera_min': 3.9}
+  audio           1.4 s  {'onsets': 243, 'tracks': 1}
+  players       121.1 s  {'frames': 861}
+  score          57.3 s  {'readings': 48, 'pressure': 21}
+  court          27.5 s  {'segments': 20, 'with_court': 11, 'pitch_deg_median': 18.3}
+  identity        3.8 s  {'runs': 10, 'votes': 0, 'confidence': 0.0, 'by_end_changes': 0, 'by_clothes': 0, 'conflicts': 0, 'decided': 0}
+  candidates      3.9 s  {'candidates': 13, 'far': 0, 'with_audio': 12, 'opponent_runs': 0, 'identity_unknown': 13, 'replay_runs_skipped': 0, 'audio_track': 0}
+  fine            1.2 s  {'candidates': 0, 'confirmed': 0, 'errors': 0, 'warnings': [], 'forehands': 0}
   fine_opponent     0.0 s  {'enabled': False}
 Golpes: 0 nuevos, 0 en C:\tenis\output\_smoke\exportar\golpes
 Montajes: 0 en C:\tenis\output\_smoke\exportar\montajes
 Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
+
+Total 3.8 min para 4 min de vídeo → partido de 210 min ≈ 3.4 h (estimación lineal)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Vídeos, montajes y resumen PDF: C:\tenis\output\_smoke\exportar
 
@@ -79,5 +96,5 @@ PRUEBA TERMINADA. El informe se ha abierto en el navegador.
 El registro se envia a Claude automaticamente.
 **********************
 Windows PowerShell transcript end
-End time: 20261012152811
+End time: 20261012154012
 **********************
