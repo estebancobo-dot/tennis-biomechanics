@@ -399,7 +399,8 @@ def _screens(shots_dir: Path) -> list[dict]:
         blank = img is None or float(np.std(img)) < 6
         empty = sc.get("text_chars", 0) < 80
         no_video = sc.get("tab") == "golpe" and meta.get("h264", True) and not sc.get("videos")
-        st = "falta" if blank or empty or sc.get("errors") or no_video else "ok"
+        black = sc.get("black_canvases", 0)
+        st = "falta" if blank or empty or sc.get("errors") or no_video or black else "ok"
         det = f"{sc.get('text_chars', 0)} caracteres de texto, {sc.get('videos', 0)} vídeos, {sc.get('charts', 0)} gráficos"
         if sc.get("empty_msgs"):
             det += f"; mensajes de vacío: {sc['empty_msgs']}"
@@ -409,6 +410,8 @@ def _screens(shots_dir: Path) -> list[dict]:
             det += "; la imagen sale vacía"
         if no_video:
             det += "; el vídeo del golpe no se carga"
+        if black:
+            det += f"; {black} imágenes salen en negro"
         items.append(_item(2, "Pantallas", f"Pantalla «{sc.get('title', sc.get('tab'))}»", st, det, file=sc.get("file")))
     if meta.get("errors"):
         items.append(_item(2, "Pantallas", "Errores de la página", "falta", "; ".join(meta["errors"][:5])))

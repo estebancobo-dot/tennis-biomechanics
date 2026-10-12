@@ -274,7 +274,15 @@ def _typical_ids(rows: list, flat: list, typical: dict, k: int = 8) -> list[str]
         if not z or cover < 0.6:
             continue
         scores.append((math.sqrt(sum(z) / len(z)) - 0.5 * cover, s.get("stroke_id")))
-    return [sid for _, sid in sorted(scores)[:k] if sid]
+    ids = [sid for _, sid in sorted(scores)[:k] if sid]
+    if ids:
+        return ids
+    # too few strokes to know what is typical: the best captured ones (pose confidence of their
+    # phases, fewer doubts), so that every screen still shows real strokes
+    def capture(s):
+        c = [p.get("confidence", 0) for p in (s.get("phases") or {}).values() if isinstance(p, dict)]
+        return (sum(c) / len(c) if c else 0) - 0.1 * len(s.get("review") or [])
+    return [s.get("stroke_id") for s in sorted(rows, key=capture, reverse=True)[:k] if s.get("stroke_id")]
 
 
 def _typical_curves(rows: list, min_n: int = 5) -> dict:

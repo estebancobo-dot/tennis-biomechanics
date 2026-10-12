@@ -1395,7 +1395,7 @@ function renderFeet() {
 async function drawCard(cvEl, card, s) {
   const ctx = cvEl.getContext("2d"), W = cvEl.width, Hh = cvEl.height;
   ctx.fillStyle = "#000"; ctx.fillRect(0, 0, W, Hh);
-  if (!s || !MSRC) return;
+  if (!s || !MSRC || !s.video) { ctx.fillStyle = "#727e8a"; ctx.font = "16px Archivo, sans-serif"; ctx.fillText(!s ? "Sin golpes para enseñar esta fase" : "Vídeo de este golpe no disponible", 16, 30); return; }
   const t = s.phases[card.phase];
   if (!isN(t)) { ctx.fillStyle = "#727e8a"; ctx.font = "16px Archivo, sans-serif"; ctx.fillText("Momento no detectado en este golpe", 16, 30); return; }
   if (MSRC.s !== s) await loadSrc(MSRC, s);

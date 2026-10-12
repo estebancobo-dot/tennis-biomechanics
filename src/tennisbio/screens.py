@@ -21,7 +21,13 @@ _JS_SCREEN = """(tab) => {
     title: (document.querySelector(`.nav button[data-tab="${tab}"]`) || {}).innerText || tab,
     text_chars: (sec.innerText || '').trim().length,
     charts: sec.querySelectorAll('svg[role="img"], canvas').length,
-    videos: vids.filter(v => v.readyState >= 2).length,
+    // the stroke screen draws its video on a canvas from a video element kept off the page
+    videos: vids.filter(v => v.readyState >= 2).length + (tab === 'golpe' && typeof video !== 'undefined' && video.readyState >= 2 ? 1 : 0),
+    // canvases left black (a phase image, a stroke frame that was never drawn)
+    black_canvases: [...sec.querySelectorAll('canvas')].filter(c => c.offsetParent && c.width > 50).filter(c => {
+      try { const d = c.getContext('2d').getImageData(0, 0, c.width, c.height).data; let m = 0;
+            for (let i = 0; i < d.length; i += 4 * 97) m = Math.max(m, d[i] + d[i + 1] + d[i + 2]); return m < 30; }
+      catch (e) { return false; } }).length,
     videos_failed: vids.filter(v => v.error).map(v => v.getAttribute('src')).slice(0, 5),
     empty_msgs: [...sec.querySelectorAll('.empty')].filter(e => e.offsetParent).map(e => e.innerText.trim()).slice(0, 8),
     dashes: ((sec.innerText || '').match(/—/g) || []).length,

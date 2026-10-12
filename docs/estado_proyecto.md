@@ -67,7 +67,16 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
   subiendo / arriba / cayendo; `ball3d.py`) y curvas de altura sincronizadas con el vídeo (cabeza,
   cadera, mano, raqueta) con su curva típica y su franja por situación (informe: «Análisis de golpe»
   y «Su derecha»). Falta verlo con golpes reales del PC (prueba rápida).
-- Auditoría automática de requisitos sobre las salidas reales + hoja de imágenes de golpes al azar.
+- ✔ Auditoría automática de requisitos (`tennisbio audit`, `docs` → `pc-logs:auditoria_prueba.md` y
+  `capturas_prueba/`): corre al final de la prueba rápida y del análisis completo; capturas con Brave
+  (el usuario no quiere Edge ni descargas). Primera auditoría en el PC (12-10): medido y no mostrado
+  (3×90°, dirección del primer paso, velocidad relativa de la raqueta, mano en el mango), dirección
+  del golpe no es situación, porcentajes de < 5 golpes, lista de "no medible" incompleta (13), 2
+  valores fuera de rango (codo, base); imágenes de las 8 fases en negro con pocos golpes (arreglado:
+  golpes mejor captados cuando no hay típico).
+- El usuario no entiende el informe (12-10): rehacer la entrada con una sola pantalla que se explique
+  sola, con vídeo y frases; después, aprender de vídeos de análisis de entrenadores (subtítulos e
+  imágenes bajados en el PC) cómo explicarlo.
 
 Pendiente que **solo puede hacerse en el PC**:
 1. Instalación (falló la primera vez; ver `pc-logs:instalacion.log`).
