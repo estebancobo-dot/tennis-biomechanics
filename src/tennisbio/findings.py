@@ -287,7 +287,8 @@ def conclusions(data: dict, dist: dict, finds: list[Finding]) -> list[Conclusion
             continue
         lab = max(set(labs), key=labs.count)
         md = (dist.get(k) or {}).get("p50") if k in MK else None
-        face = f", cara {'cerrada' if md >= 0 else 'abierta'} {fmt(abs(md))}° (mediana)" if md is not None else ""
+        # at contact the racket is blurred: the face is an estimate, given without degrees
+        face = "" if ph == "impact" or md is None else f", cara {'cerrada' if md >= 0 else 'abierta'} {fmt(abs(md))}° (mediana)"
         out.append(Conclusion(f"Las cuerdas apuntan {txt} hacia {lab} en {fmt(100 * labs.count(lab) / len(labs))} % de los golpes{face}.",
                               "estimada (desenfoque)" if ph == "impact" else "media" if len(labs) >= 20 else "orientativo",
                               "crit" if ph == "impact" else "warn", best([s for s in st if (s.get("face") or {}).get(ph) == lab])))

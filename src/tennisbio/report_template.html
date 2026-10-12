@@ -1311,7 +1311,15 @@ function renderFeet() {
   add("Pasos hasta la bola", v("steps_to_impact", 0, "")); add("Pasos de ajuste en los últimos 0,8 s", v("adjustment_steps", 0, ""));
   add("Primer paso tras el split step", v("first_step_s", 2, " s")); add("Último apoyo antes de golpear", v("last_plant_before_impact_s", 2, " s"));
   add("Recorrido hasta la bola", v("path_m", 1, " m")); add("Velocidad máxima", v("peak_speed_mps", 1, " m/s")); add("Velocidad al golpear", v("speed_at_impact_mps", 1, " m/s"));
+  add("Despegue del split step respecto al golpe de la rival", v("split_takeoff_vs_opp_s", 2, " s"));
+  add("Aterrizaje del split step respecto al golpe de la rival", v("split_landing_vs_opp_s", 2, " s"));
+  add("Velocidad antes / después del split step", f.speed_pre_split_mps && f.speed_post_split_mps ? `<b>${fmt(f.speed_pre_split_mps.median, 1)} → ${fmt(f.speed_post_split_mps.median, 1)} m/s</b>` : null);
+  add("Longitud del primer paso", v("first_step_length_m", 2, " m")); add("Longitud del último paso", v("last_step_length_m", 2, " m"));
+  add("Cambios de dirección hasta la bola", v("direction_changes", 0, ""));
   add("Vuelta hacia el centro en 1 s", v("recovery_to_centre_m", 1, " m"));
+  add("Distancia al centro cuando la rival vuelve a golpear", v("off_centre_at_opp_hit_m", 1, " m"));
+  const md_ = f.move_direction; if (md_ && md_.n) L.push(`<li>Dirección del desplazamiento: ${Object.entries(md_.counts).slice(0, 4).map(([k, n]) => `${k} ${Math.round(100 * n / md_.n)} %`).join(", ")}</li>`);
+  const rl = f.rear_leg_step_after; if (rl && rl.n) L.push(`<li>La pierna de atrás pasa adelante tras el impacto en ${Math.round(100 * (rl.counts.true || 0) / rl.n)} % de los golpes</li>`);
   const c = f.first_step_type; if (c && c.n) L.push(`<li>Tipo de primer paso: ${Object.entries(c.counts).slice(0, 4).map(([k, n]) => `${k} ${Math.round(100 * n / c.n)} %`).join(", ")}</li>`);
   document.getElementById("m-feet").innerHTML = L.join("") || `<li>Sin datos de pies todavía.</li>`;
 }

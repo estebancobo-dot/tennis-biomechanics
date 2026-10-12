@@ -30,17 +30,17 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 |---|---|---|---|
 | Postura de espera (rodillas, base, peso) | TA 2013; Elliott 2006 | ✔ | `ready.body_height`, `base_width`, `hip_height` |
 | Mano libre en la garganta de la raqueta en la espera / giro de bloque | TA 2013; ITF | ✔ | `hands_apart`, clase `ready_hands` |
-| Momento del armado respecto al bote ("armado completo al botar") | TA 2013 | ○ | añadir `loaded_vs_bounce` |
+| Momento del armado respecto al bote ("armado completo al botar") | TA 2013 | ✔ | `stroke.loaded_vs_bounce` |
 | Giro de cadera y de hombros al final del armado | Takahashi; Landlinger | ◐ | `loaded.shoulder_turn`, `hip_turn` (2D, magnitud; 3D experimental) |
 | Separación cadera–hombros (X-factor) | Takahashi; Landlinger; TA | ◐ | `loaded.x_factor` (2D, media) |
-| Pausa entre armado y swing | Elliott 2006 | ○ | añadir `pause_at_loaded` (muñeca casi quieta) |
+| Pausa entre armado y swing | Elliott 2006 | ✔ | `stroke.pause_at_loaded` |
 | Brazo libre extendido y cruzado | Elliott; TA | ✔ | `loaded.elbow_non`, `shoulder_abd_non`, `wrist_non_*` |
 | Carga de la pierna exterior / descenso de cadera | TA; Nesbit 2008 | ✔ | `hip_height`, `knee_*` (2D, baja), `weight_loaded_to_non` |
 | Peso entre los pies / equilibrio | iTPA; TA | ✔ | `com_over_feet`, `head_over_base`, `trunk_tilt` |
 | Cadena cinética (orden pelvis → tronco → brazo → antebrazo) | Landlinger; Elliott | ✔ | orden de picos suavizados; **solo el orden** (los 18 ms que separan a la élite no se resuelven) |
 | Momento de los picos en ms | Landlinger | ✘ | por debajo de 1 fotograma |
 | Rotación interna del hombro, pronación, desviaciones de la muñeca | Elliott 1997; Pedro 2022 | ✘ | rotaciones sobre el eje del segmento: invisibles en 2D |
-| Altura del contacto (respecto a rodilla, cadera, hombro) | Elliott 1989; Reid 2013 | ◐ | `impact.wrist_dom_height` en % de altura; ○ añadir `contact_vs_hip` |
+| Altura del contacto (respecto a rodilla, cadera, hombro) | Elliott 1989; Reid 2013 | ✔ | `impact.wrist_dom_height`, `wrist_dom_vs_hip`, `wrist_dom_vs_shoulder` |
 | Separación lateral del contacto | Knudson 2006 (se observa desde detrás) | ✔ | `impact.wrist_dom_lateral` |
 | Contacto delante/detrás del cuerpo | TA; ITF | ✘ | eje de profundidad (solo 3D estimado) |
 | Ángulo del codo en el impacto (brazo recto / doble flexión) | Elliott 1989/1997; Gordon | ✔ | `impact.elbow_dom` (2D, media) + clase `arm` |
@@ -49,8 +49,8 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Hombros más girados que la cadera en el impacto | Reid; Landlinger | ◐ | `impact.shoulder_turn`, `hip_turn` (2D) |
 | Extensión tras el contacto | ITF | ✔ | `extension.arm_extension`, `swing_rise_after` |
 | Terminación sobre el hombro / limpiaparabrisas / alrededor / invertida | TA; Counts | ✔ | clase `finish` (heurística) |
-| "3 × 90°" al final | Reid 2013 | ○ | añadir `finish_3x90` (hombro y codo ≈ 90°) |
-| Paso adelante de la pierna trasera tras el impacto | Landlinger 2010 | ○ | añadir `rear_leg_step_after` |
+| "3 × 90°" al final | Reid 2013 | ✔ | clase `finish_3x90` (hombro y codo; la muñeca no se ve) |
+| Paso adelante de la pierna trasera tras el impacto | Landlinger 2010 | ✔ | `footwork.rear_leg_step_after` |
 | Fuerzas, momentos articulares | — | ✘ | cinemática solamente |
 
 ## 3. Pies y desplazamiento
@@ -58,25 +58,25 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Elemento | Fuente | Estado | Implementación / acción |
 |---|---|---|---|
 | Split step: aterrizaje respecto al golpe del rival | Uzu 2009; Filipcic 2017 | ✔ | `ready` + `takeback_after_opp` |
-| Split step: despegue respecto al golpe del rival | Avilés; Mecheri | ○ | añadir `split_takeoff_vs_opp` |
+| Split step: despegue y aterrizaje respecto al golpe del rival | Avilés; Mecheri; Filipcic | ✔ | `split_takeoff_vs_opp_s`, `split_landing_vs_opp_s` |
 | Presencia del split | Cardiff Met | ✔ | método de `ready` |
-| Velocidad 0,2 s antes y después del split | Filipcic 2017 | ○ | añadir `speed_pre_split`, `speed_post_split` |
+| Velocidad 0,2 s antes y después del split | Filipcic 2017 | ✔ | `speed_pre_split_mps`, `speed_post_split_mps` |
 | Primer paso: momento (reacción) | Uzu; Mecheri | ✔ | `first_step_s` |
-| Primer paso: tipo (gravity, jab, pivot, counter, cruzado, lateral) | Bragg 2001; Vuong 2022 | ◐ | hoy: cruzado, pivote, lateral, delante, atrás; ○ añadir gravity y jab |
+| Primer paso: tipo (gravity, jab, pivot, counter, cruzado, lateral) | Bragg 2001; Vuong 2022 | ◐ | cruzado, gravity, jab, pivote, lateral, delante, atrás (counter step no se distingue del gravity sin los pies) |
 | Primer paso: dirección correcta respecto a la bola | Mecheri | ○ | con el bote de la bola entrante |
 | Número de pasos hasta la bola | Tanabe (≈2 H, ≈3 M) | ✔ | `steps_to_impact` |
-| Longitud de cada paso; anchura del primero | Tanabe | ◐ | lista de pasos; ○ añadir `first_step_length`, `last_step_length` |
+| Longitud de cada paso; anchura del primero | Tanabe | ✔ | lista de pasos, `first_step_length_m`, `last_step_length_m` |
 | Pasos de ajuste | Cardiff Met; Giles | ✔ | `adjustment_steps` |
-| Distribución lateral / delante / atrás | Weber; Kovacs | ○ | añadir clase `move_direction` |
-| Cambios de dirección | Giles 2023 | ○ | añadir `direction_changes` |
+| Distribución lateral / delante / atrás | Weber; Kovacs | ✔ | clase `move_direction` |
+| Cambios de dirección | Giles 2023 | ✔ | `direction_changes` |
 | Velocidad media y máxima de carrera | Martínez-Gallego; TA | ✔ | `peak_speed_mps` (p90, suavizado), `speed_at_impact_mps` |
 | Recorrido hasta la bola | Reid 2013 (70 % tras 3-4 m) | ✔ | `path_m` |
 | Tipo de apoyo (abierto, semiabierto, neutro, cerrado) | IJSSC 2025 (abierto 83,6 %) | ✔ | `stance_loaded`, `stance_impact` |
-| Subtipos: abierto de ataque, abierto defensivo, neutro de ataque | Martin 2021 | ○ | clase `stance_role` (apoyo + intención + velocidad de llegada) |
+| Subtipos: abierto de ataque, abierto defensivo, neutro de ataque | Martin 2021 | ✔ | clase `stance_role` |
 | Pierna que carga | Sandamas 2013 | ✔ | `weight_loaded_to_non` (proxy) |
 | En carrera, en salto, a un pie, deslizando | Giles & Reid 2021; Starbuck | ✔ | clase `movement`; deslizar solo en tierra/hierba |
-| Última zancada más larga en carrera | Giles & Reid 2021 | ○ | `last_step_length` por velocidad |
-| Recuperación: distancia, dirección, tiempo | Armstrong 2024; Yandell | ◐ | `recovery_*` a 1 s; ○ añadir `recovered_at_opp_hit` |
+| Última zancada más larga en carrera | Giles & Reid 2021 | ✔ | `last_step_length_m` (por situación en el modelo) |
+| Recuperación: distancia, dirección, tiempo | Armstrong 2024; Yandell | ✔ | `recovery_*` a 1 s, `off_centre_at_opp_hit_m`, `moving_at_opp_hit_mps` |
 | Orientación del pie, apoyo de talón/punta | — | ✘ | COCO-17 sin puntas ni talones |
 | Altura del split step | — | ✘ | eje vertical confundido con la profundidad |
 
@@ -84,19 +84,19 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 
 | Elemento | Fuente | Estado | Implementación / acción |
 |---|---|---|---|
-| Forma del armado: bucle, recto, "pat the dog" | Yandell; TA | ◐ | clase `takeback` (compacta / bucle alto / amplia); ○ añadir "pat the dog" (cara al suelo, punta atrás) |
+| Forma del armado: bucle, recto, "pat the dog" | Yandell; TA | ✔ | clases `takeback` y `takeback_face` (cara al suelo = pat the dog) |
 | Altura de la mano en el armado (no por encima de la cabeza) | TA | ✔ | `loaded.wrist_dom_vs_shoulder` |
 | Cara de la raqueta al final del armado | Elliott & Marsh 1989 | ✔ | `loaded.face_tilt`, `face_points_to` (fiabilidad buena) |
 | Caída de la raqueta antes de acelerar | Yandell; Reid 2013 | ✔ | `acceleration.racket_head_vs_wrist`, `wrist_drop` |
 | Retraso de la muñeca (lag) | Landlinger; Pedro 2022 | ◐ | `racket_forearm` (ángulo proyectado; no es la extensión anatómica) |
 | Trayectoria de abajo arriba (signo) / liftado-plano-cortado | Takahashi; Elliott & Marsh | ✔ | `swing_low_to_high` + clase `swing` |
 | Ángulo exacto de la trayectoria en el impacto | Kwon 2017 | ✘ | las diferencias reales (3°) están por debajo del error |
-| Cara en el impacto | Kwon 2017; Choppin 2011 | ◐ | **solo estimación interpolada, sin grados en el texto** |
+| Cara en el impacto | Kwon 2017; Choppin 2011 | ◐ | solo estimación interpolada; las conclusiones no dan grados |
 | Velocidad de la raqueta absoluta | Landlinger (33 m/s) | ✘ | desenfoque |
-| Velocidad de la raqueta relativa entre golpes | sensores | ○ | añadir `racket_speed_rel` (punta antes y después del desenfoque, en alturas/s) |
-| Posición de la mano en el mango | Yandell | ○ | añadir `hand_on_handle` (muñeca–empuñadura / longitud) |
+| Velocidad de la raqueta relativa entre golpes | sensores | ◐ | `racket_speed_rel` (baja fiabilidad, solo para comparar) |
+| Posición de la mano en el mango | Yandell | ◐ | `hand_on_handle` (baja fiabilidad) |
 | Empuñadura (bisel) | Yandell; Elliott 1997 | ✘ | mano de 20-40 px |
-| Empuñadura: "compatible con este / semioccidental-occidental" | Elliott 1989/1997 | ○ | añadir clase `grip_compatible` (altura del impacto respecto a la cadera por situación + codo + cara cerrada en el armado) |
+| Empuñadura: "compatible con este / semioccidental-occidental" | Elliott 1989/1997 | ✔ | `explain.grip_compatible` (tres indicios; nunca el bisel) |
 | Empuñadura en la espera y cambio de empuñadura | — | ✘ | no hay estudio ni imagen suficiente |
 | Pronación, contribución de cada segmento, punto en el cordaje, presión de agarre | Pedro 2022; Choppin | ✘ | |
 
@@ -106,23 +106,22 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 |---|---|---|---|
 | Bote: profundidad, anchura, dentro/fuera | Hawk-Eye, SwingVision | ✔ | `shot_landing` |
 | Dirección cruzada, paralela, al centro, invertidas | F3Set, TennisViz | ✔ | `shot_direction`, `shot_type` |
-| Velocidad media de la bola en pista | Hawk-Eye, sensores | ○ | añadir `ball_speed_avg_kmh` (impacto → bote / tiempo) |
+| Velocidad media de la bola en pista | Hawk-Eye, sensores | ✔ | `ball_speed_avg_kmh` (horizontal, media; no la de salida) |
 | Efecto (rpm), velocidad de salida, altura sobre la red | Hawk-Eye | ✘ | bola pequeña y borrosa; sin 3D |
 | Fase ataque / neutra / defensa | TennisViz | ✔ | clase `intent` |
-| Calidad del golpe (sustituto: profundidad, anchura, tiempo que deja, desplazamiento que obliga) | TennisViz (Shot Quality) | ○ | añadir `shot_quality_proxy` |
+| Calidad del golpe (sustituto: profundidad, anchura, velocidad media) | TennisViz (Shot Quality) | ✔ | `shot_quality_proxy` (indicador propio, no el de TennisViz) |
 | Puntos ganados en ataque / en defensa | TennisViz (Conversion / Steal) | ○ | con el marcador: quién gana el punto |
 | Longitud del peloteo | todos | ○ | contar impactos del punto |
-| Resto, globo, dejada, volea, subida a la red | F3Set, SwingVision | ◐ | subida ✔ (`approach`); ○ resto (primer golpe tras el saque rival) |
+| Resto, globo, dejada, volea, subida a la red | F3Set, SwingVision | ◐ | subida ✔ (`approach`), resto ✔ (`play`); globo, dejada y volea: otros golpes, después |
 | Ganador / error (forzado o no) | F3Set, SwingVision | ◐ | fuera ✔, red y ganador probables; forzado/no forzado ✘ (subjetivo) |
 | Presión, set, fatiga | ATP/WTA | ✔ | marcador (OCR) |
 
-## Huecos medibles que se implementan (orden)
-1. Momentos: `loaded_vs_bounce`, `pause_at_loaded`, `split_takeoff_vs_opp`, velocidad antes y después del split.
-2. Pies: `first_step_length`, `last_step_length`, gravity/jab, `move_direction`, `direction_changes`,
-   `recovered_at_opp_hit`, `rear_leg_step_after`, `stance_role`.
-3. Cuerpo y raqueta: `contact_vs_hip`, `finish_3x90`, "pat the dog", `hand_on_handle`, `racket_speed_rel`,
-   `grip_compatible`; cara en el impacto solo como estimación.
-4. Bola y contexto: `ball_speed_avg_kmh`, `shot_quality_proxy`, longitud del peloteo, resto.
+## Huecos medibles pendientes
+- Puntos ganados en ataque / en defensa (necesita el ganador de cada punto desde el marcador).
+- Longitud del peloteo (contar los impactos del punto).
+- Dirección correcta del primer paso respecto a la bola entrante.
+- Final del armado: contrastar la pausa de la muñeca con el máximo giro de hombros.
+- Final de la extensión: hoy +50 ms fijo; medirlo por el avance horizontal de la muñeca.
 
 ## Fuentes principales
 - Reid M, Elliott B, Crespo M (2013). Mechanics and learning practices associated with the tennis forehand: a review. *J Sports Sci Med* 12:225-231.

@@ -33,11 +33,15 @@ FACTORS = {
     "stance_impact": ("Apoyo", ["abierto", "semiabierto", "neutro", "cerrado"]),
     "court_side": ("Lado de la pista", ["lado de su derecha", "centro", "lado de su revés"]),
     "swing": ("Efecto", ["liftado (de abajo arriba)", "plano", "cortado (de arriba abajo)"]),
+    "play": ("Momento del punto", ["resto", "intercambio"]),
 }
-CLASS_KEYS = ["stance_loaded", "stance_impact", "finish", "arm", "takeback", "ready_hands", "movement", "shot_type", "swing",
+CLASS_KEYS = ["stance_loaded", "stance_impact", "stance_role", "finish", "finish_3x90", "arm", "takeback", "takeback_face",
+              "ready_hands", "movement", "move_direction", "play", "shot_type", "swing",
               "intent", "ball_speed", "ball_height", "depth", "width", "court_side"]
-FOOTWORK_KEYS = ["steps_to_impact", "adjustment_steps", "first_step_s", "last_plant_before_impact_s", "speed_at_impact_mps",
-                 "path_m", "peak_speed_mps", "recovery_to_centre_m", "weight_loaded_to_non"]
+FOOTWORK_KEYS = ["steps_to_impact", "adjustment_steps", "first_step_s", "first_step_length_m", "last_step_length_m",
+                 "last_plant_before_impact_s", "speed_at_impact_mps", "path_m", "peak_speed_mps", "direction_changes",
+                 "split_takeoff_vs_opp_s", "split_landing_vs_opp_s", "speed_pre_split_mps", "speed_post_split_mps",
+                 "recovery_to_centre_m", "off_centre_at_opp_hit_m", "weight_loaded_to_non"]
 FOOTWORK_NAMES = {
     "steps_to_impact": ("Pasos hasta el impacto", "", 3), "adjustment_steps": ("Pasos de ajuste (últimos 0,8 s)", "", 2),
     "first_step_s": ("Primer paso tras el split step", "s", 2), "last_plant_before_impact_s": ("Último apoyo antes del impacto", "s", 2),
@@ -45,6 +49,12 @@ FOOTWORK_NAMES = {
     "peak_speed_mps": ("Velocidad máxima de desplazamiento", "m/s", 3),
     "recovery_to_centre_m": ("Recuperación hacia el centro (1 s)", "m", 3),
     "weight_loaded_to_non": ("Peso en el armado (0 = pie dominante, 1 = el otro)", "", 2),
+    "first_step_length_m": ("Longitud del primer paso", "m", 2), "last_step_length_m": ("Longitud del último paso", "m", 2),
+    "direction_changes": ("Cambios de dirección", "", 2),
+    "split_takeoff_vs_opp_s": ("Despegue del split step respecto al golpe rival", "s", 2),
+    "split_landing_vs_opp_s": ("Aterrizaje del split step respecto al golpe rival", "s", 2),
+    "speed_pre_split_mps": ("Velocidad antes del split step", "m/s", 2), "speed_post_split_mps": ("Velocidad después del split step", "m/s", 2),
+    "off_centre_at_opp_hit_m": ("Distancia al centro cuando la rival vuelve a golpear", "m", 3),
 }
 # minimum difference worth telling, by unit (below it, even a solid difference is not technique)
 MIN_DIFF = {"°": 4.0, "%": 2.5, "s": 0.04, "": 0.12, "m": 0.2, "m/s": 0.3, "cm": 3.0}
@@ -202,6 +212,8 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
     out["footwork"] = {k: out["typical"].get(f"footwork.{k}") for k in FOOTWORK_KEYS if out["typical"].get(f"footwork.{k}")}
     out["footwork"]["first_step_type"] = _counts([(s["technique"].get("footwork") or {}).get("first_step_type") for s in near])
     out["footwork"]["last_plant_foot"] = _counts([(s["technique"].get("footwork") or {}).get("last_plant_foot") for s in near])
+    out["footwork"]["move_direction"] = _counts([(s["technique"].get("classes") or {}).get("move_direction") for s in near])
+    out["footwork"]["rear_leg_step_after"] = _counts([(s["technique"].get("footwork") or {}).get("rear_leg_step_after") for s in near])
     out["skeleton"] = _mean_skeleton(near)
     out["typical_strokes"] = _typical_ids(near, flat, out["typical"])
     return out

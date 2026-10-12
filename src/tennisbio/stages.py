@@ -664,6 +664,28 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
         d["face"] = faces["phases"]
         d["metrics"].update(faces["trunk3d"])
         ser["face"] = {key: faces[key] for key in ("first", "tilt", "yaw", "label", "observed", "keypoints", "source", "hand3d", "rot3d")}
+    # her ball: average horizontal speed from contact to bounce, and a shot-quality indicator
+    # (deep, wide, fast): our own proxy of the pro systems' "shot quality", not theirs
+    if d.get("shot_bounce_m") and d.get("court_pos_m") and d.get("impact_to_shot_bounce_s"):
+        dist = float(np.hypot(d["shot_bounce_m"][0] - d["court_pos_m"][0], d["shot_bounce_m"][1] - d["court_pos_m"][1]))
+        tt = d["impact_to_shot_bounce_s"]
+        if tt > 0.2:
+            d["ball_speed_avg_kmh"] = round(dist / tt * 3.6, 1)
+    if d.get("shot_bounce_m") and d.get("shot_in") is not False:
+        depth = float(np.clip(1 - (d.get("shot_depth_m") or 6) / 6.4, 0, 1))          # 1 = on the baseline
+        width = float(np.clip(abs(d["shot_bounce_m"][0]) / 4.115, 0, 1))              # 1 = on the sideline
+        speed = float(np.clip((d.get("ball_speed_avg_kmh") or 60) / 110, 0, 1))
+        d["shot_quality_proxy"] = round(100 * (0.45 * depth + 0.25 * width + 0.30 * speed), 0)
+    # return of serve: the opponent's hit was the first sound of the main-camera shot (her serve)
+    is_return = None
+    ta_ = r.metrics.get("time_available_s")
+    shot_start = next((sh["start"] / sfps for sh in scenes["shots"]
+                       if sh["main_camera"] and sh["start"] / sfps <= t_imp < sh["end"] / sfps), None)
+    if ta_ is not None and shot_start is not None and len(onsets):
+        t_opp = t_imp - ta_
+        before = onsets[(onsets > shot_start + 0.3) & (onsets < t_opp - 0.3)]
+        is_return = bool(len(before) == 0 and t_opp - shot_start < 8.0)
+        d["is_return"] = is_return
     # the technique model of this stroke: every body part and the racket at each phase, footwork,
     # timing and the classes of its variant
     from .technique import stroke_technique
@@ -677,7 +699,7 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
         {"court_pos": d.get("court_pos_m"), "displacement": d.get("displacement_m"), "t_avail": ta,
          "contact_h": r.metrics.get("contact_height_pct"), "shot_direction": d.get("shot_direction"),
          "split": (r.phases.get("ready") or {}).get("method") == "split_step_landing",
-         "surface": ctx.match.surface or ""})
+         "surface": ctx.match.surface or "", "next_opp": ret, "return": is_return})
     if side == "far":                       # 70 px player: only position-level classes are kept
         d["technique"] = {"classes": {k: v for k, v in d["technique"]["classes"].items()
                                       if k in ("ball_speed", "ball_height", "depth", "court_side", "width", "intent", "shot_type")},

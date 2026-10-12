@@ -41,6 +41,8 @@ def _lines():
         ("stroke.takeback_after_opp", lambda t: f"Arranca {fmt(t['median'], 2)} s después del golpe de la rival."),
         ("stroke.takeback_vs_bounce", lambda t: (f"Lo hace {fmt(abs(t['median']), 2)} s antes del bote." if t["median"] < 0 else
                                                  f"Lo hace {fmt(t['median'], 2)} s después del bote.")),
+        ("stroke.loaded_vs_bounce", lambda t: (f"Termina de armar {fmt(-t['median'], 2)} s antes de que bote la bola." if t["median"] < 0 else
+                                               f"Termina de armar {fmt(t['median'], 2)} s después del bote.")),
         ("takeback.hands_apart", lambda t: "Gira con la mano libre todavía en la raqueta (giro unitario)." if t["median"] < 15 else
          "La mano libre ya se ha separado de la raqueta."),
         ("takeback.shoulder_turn", lambda t: f"Hombros girados {fmt(t['median'])}° al empezar."),
@@ -60,6 +62,7 @@ def _lines():
         ("loaded.com_over_feet", lambda t: ("Peso sobre el pie de atrás (el de su brazo)." if t["median"] < 0.4 else
                                             "Peso sobre el pie adelantado." if t["median"] > 0.6 else "Peso repartido entre los dos pies.")),
         ("loaded.face_tilt", lambda t: f"Cara de la raqueta {'cerrada' if t['median'] >= 0 else 'abierta'} {fmt(abs(t['median']))}°."),
+        ("stroke.pause_at_loaded", lambda t: f"Pausa en el armado: {fmt(t['median'], 2)} s."),
     ]
     L["acceleration"] = [
         ("stroke.t_acceleration", lambda t: f"Empieza a acelerar {fmt(t['median'], 2)} s antes del impacto."),
@@ -71,6 +74,7 @@ def _lines():
     ]
     L["impact"] = [
         ("impact.wrist_dom_height", lambda t: f"Golpea con la mano a un {fmt(t['median'])} % de su altura ({_rng(t)} %)."),
+        ("impact.wrist_dom_vs_hip", lambda t: (f"Contacto {fmt(abs(t['median']))} % de su altura {'por encima' if t['median'] > 0 else 'por debajo'} de la cadera.")),
         ("impact.wrist_dom_lateral", lambda t: f"Separada del cuerpo: la mano a {fmt(t['median'])} % de su altura de la cadera."),
         ("impact.elbow_dom", lambda t: f"Codo a {fmt(t['median'])}° ({'brazo casi recto' if t['median'] >= 150 else 'brazo flexionado'})."),
         ("stroke.swing_low_to_high", lambda t: f"Llega a la bola subiendo: trayectoria de la mano de {fmt(t['median'])}° hacia arriba."),
@@ -99,11 +103,13 @@ def _lines():
 
 LINES = _lines()
 CLASS_TEXT = {
-    "stance_loaded": "Apoyo al armar", "stance_impact": "Apoyo en el impacto", "finish": "Terminación", "arm": "Brazo",
+    "stance_loaded": "Apoyo al armar", "stance_impact": "Apoyo en el impacto", "stance_role": "Función del apoyo",
+    "takeback_face": "Cara al final del armado", "finish": "Terminación", "arm": "Brazo",
     "takeback": "Preparación", "ready_hands": "Manos en la espera", "movement": "Cómo llega a la bola",
     "swing": "Trayectoria",
 }
-CLASS_PHASE = {"ready_hands": "ready", "takeback": "takeback", "stance_loaded": "loaded", "stance_impact": "impact",
+CLASS_PHASE = {"ready_hands": "ready", "takeback": "takeback", "stance_loaded": "loaded", "takeback_face": "loaded",
+               "stance_impact": "impact", "stance_role": "impact",
                "arm": "impact", "finish": "finish", "movement": "impact", "swing": "acceleration"}
 
 
@@ -188,10 +194,36 @@ def summary(model: dict, stroke: str) -> list[str]:
     tp = _t(model, "stroke.dur_preparation")
     if tf and tp:
         out.append(f"Ritmo: prepara en {fmt(tp['median'], 2)} s y acelera en {fmt(tf['median'], 2)} s.")
+    g = grip_compatible(model)
+    if g:
+        out.append(g)
     n_const = len([k for k in model["constants"] if model["typical"][k]["rel"] >= 2])
     n_eff = len({e["key"] for e in model["effects"]})
     out.append(f"{n_const} rasgos se mantienen en todas las situaciones (su técnica de base) y {n_eff} cambian según la bola.")
     return out
+
+
+def grip_compatible(model: dict) -> str | None:
+    """The grip cannot be seen (a 20-40 px hand); it can only be called *compatible* with a family,
+    from three signs reported in the literature (Elliott et al. 1989, 1997): contact above the hip,
+    a bent elbow at contact and a closed face at the end of the backswing go with semi-western /
+    western grips; contact below the hip, a straighter arm and a vertical face with eastern."""
+    h, e, f = (_t(model, k) for k in ("impact.wrist_dom_vs_hip", "impact.elbow_dom", "loaded.face_tilt"))
+    votes = []
+    if h:
+        votes.append(1 if h["median"] > 3 else -1 if h["median"] < -2 else 0)
+    if e:
+        votes.append(1 if e["median"] < 115 else -1 if e["median"] > 135 else 0)
+    if f:
+        votes.append(1 if f["median"] > 10 else -1 if f["median"] < 0 else 0)
+    if len(votes) < 2:
+        return None
+    sc = sum(votes)
+    fam = ("semioccidental u occidental" if sc >= 2 else "este" if sc <= -2 else None)
+    if fam is None:
+        return "Empuñadura: no concluyente desde la tele (los indicios no coinciden)."
+    return (f"Empuñadura: compatible con {fam} (altura del contacto, codo y cara en el armado). "
+            "El tipo exacto no se ve en la retransmisión.")
 
 
 NOT_MEASURABLE = [

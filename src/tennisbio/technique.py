@@ -46,6 +46,7 @@ DESCRIPTORS = {
     "wrist_dom_height": ("brazo", "Altura de la mano dominante", "%", 3, "sobre el pie más bajo, % de altura"),
     "wrist_dom_lateral": ("brazo", "Mano dominante, lateral", "%", 3, "respecto a la cadera (+ lado dominante)"),
     "wrist_dom_vs_shoulder": ("brazo", "Mano dominante respecto al hombro", "%", 3, "vertical (+ por encima)"),
+    "wrist_dom_vs_hip": ("brazo", "Mano dominante respecto a la cadera", "%", 3, "vertical (+ por encima); en el impacto, altura del contacto respecto a la cadera"),
     "wrist_non_height": ("brazo", "Altura de la mano libre", "%", 3, "sobre el pie más bajo"),
     "wrist_non_lateral": ("brazo", "Mano libre, lateral", "%", 3, "respecto a la cadera (+ lado dominante)"),
     "hands_apart": ("brazo", "Separación entre manos", "%", 3, "pequeña = las dos manos en la raqueta"),
@@ -75,6 +76,10 @@ STROKE_DESCRIPTORS = {
     "swing_rise_after": ("raqueta", "Subida tras el impacto", "%", 3, "subida de la muñeca en 150 ms tras el impacto"),
     "wrist_drop": ("raqueta", "Caída de la mano antes de acelerar", "%", 3, "del armado al punto más bajo"),
     "split_hop": ("pies", "Altura del split step", "%", 2, "salto, % de altura"),
+    "loaded_vs_bounce": ("ritmo", "Armado completo respecto al bote", "s", 2, "− = ya armada cuando bota la bola"),
+    "pause_at_loaded": ("ritmo", "Pausa en el armado", "s", 2, "mano casi quieta entre el armado y el swing"),
+    "hand_on_handle": ("raqueta", "Mano en el mango", "%", 1, "distancia muñeca–final del mango, % de la longitud de la raqueta"),
+    "racket_speed_rel": ("raqueta", "Velocidad de la raqueta (relativa)", "alt/s", 1, "punta antes y después del desenfoque, en alturas por segundo: solo para comparar sus golpes"),
 }
 
 
@@ -154,6 +159,7 @@ def posture(body: np.ndarray, img: np.ndarray, sk: Skeleton, f: int, scale: floa
             out[ak] = _deg(math.degrees(math.acos(np.clip(c, -1, 1))))
     if ok("dom_wrist") and np.isfinite(feet_y):
         out["wrist_dom_height"] = _pct(j("dom_wrist")[1] - feet_y)
+        out["wrist_dom_vs_hip"] = _pct(j("dom_wrist")[1])                 # the hips are the origin
         out["wrist_dom_lateral"] = _pct(j("dom_wrist")[0] * ds)
         if ok("dom_shoulder"):
             out["wrist_dom_vs_shoulder"] = _pct(j("dom_wrist")[1] - j("dom_shoulder")[1])
@@ -328,6 +334,40 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         s["wrist_drop"] = _pct(dw[ev["loaded"], 1] - dw[ev["acceleration"], 1])
     if split_hop is not None:
         s["split_hop"] = _pct(split_hop)
+    if ev["loaded"] is not None and bounce is not None:
+        s["loaded_vs_bounce"] = round((ev["loaded"] - bounce) / fps, 3)
+    if ev["loaded"] is not None:                 # how long the hand stays (almost) still at the end of the backswing
+        from .kinematics import smooth, speed
+        wv = smooth(speed(dw, fps), fps, 0.06)
+        if np.isfinite(wv[ev["loaded"]:impact + 1]).any():
+            thr = 0.3 * np.nanmax(wv[ev["loaded"]:impact + 1])
+            a = b = ev["loaded"]
+            while a - 1 >= 0 and np.isfinite(wv[a - 1]) and wv[a - 1] < thr:
+                a -= 1
+            while b + 1 < impact and np.isfinite(wv[b + 1]) and wv[b + 1] < thr:
+                b += 1
+            s["pause_at_loaded"] = round((b - a + 1) / fps, 3)
+    # racket: hand position on the handle and relative speed of the tip around the blur
+    if kps:
+        ratios, tips = [], {}
+        for key, k in kps.items():
+            f = int(key)
+            if not 0 <= f < T:
+                continue
+            k = np.asarray(k, float)
+            tips[f] = k[0]
+            w = img[f, sk["dom_wrist"]]
+            L = np.linalg.norm(k[0] - k[2])
+            if np.isfinite(w).all() and L > 0.08 * scale[f]:               # racket seen long, not end-on
+                ratios.append(np.linalg.norm(w - k[2]) / L)
+        if len(ratios) >= 3:
+            s["hand_on_handle"] = _pct(float(np.median(ratios)))
+        before = [f for f in tips if impact - int(0.25 * fps) <= f < impact]
+        after = [f for f in tips if impact < f <= impact + int(0.25 * fps)]
+        if before and after:
+            f0, f1 = max(before), min(after)
+            d = np.linalg.norm(tips[f1] - tips[f0]) / np.mean(scale[[f0, f1]])
+            s["racket_speed_rel"] = round(float(d / ((f1 - f0) / fps)), 2)
     s = {k: v for k, v in s.items() if v is not None}
     out["stroke"] = s
     # classes
@@ -344,16 +384,24 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
     if e is not None:
         c["arm"] = "brazo recto" if e >= 150 else "doble flexión" if e < 135 else "intermedio"
     tp = s.get("takeback_path")
+    ld = out["phases"].get("loaded", {})
     if tp is not None:
         hi = s.get("takeback_peak_vs_shoulder", -99)
         c["takeback"] = ("compacta" if tp < 35 else "en bucle alto" if hi > 5 else "amplia")
+    if ld.get("face_tilt") is not None and ld["face_tilt"] > 45 and ld.get("racket_head_vs_wrist", 0) > 0:
+        c["takeback_face"] = "cara al suelo (pat the dog)"
+    elif ld.get("face_tilt") is not None:
+        c["takeback_face"] = "cara cerrada" if ld["face_tilt"] > 10 else "cara abierta" if ld["face_tilt"] < -10 else "cara vertical"
+    fn = out["phases"].get("finish", {})
+    if fn.get("shoulder_abd_dom") is not None and fn.get("elbow_dom") is not None:
+        c["finish_3x90"] = bool(abs(fn["shoulder_abd_dom"] - 90) <= 25 and abs(fn["elbow_dom"] - 90) <= 30)
     rd = out["phases"].get("ready", {})
     if "hands_apart" in rd:
         c["ready_hands"] = "dos manos en la raqueta" if rd["hands_apart"] < 12 else "mano libre separada"
     if H is not None:
         from .footwork import feet_track
         fw = footwork(img, sk, H, scale, fps, impact, opp, ev["ready"] if (context or {}).get("split") else None,
-                      ev["finish"], ev["loaded"], (context or {}).get("surface", ""))
+                      ev["finish"], ev["loaded"], (context or {}).get("surface", ""), (context or {}).get("next_opp"), stroke)
         out["footwork"] = fw
         if fw.get("movement"):
             c["movement"] = fw["movement"]
@@ -367,6 +415,8 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
                 out["phases"][p]["base_m"] = round(float(np.linalg.norm(ft[f, 0] - ft[f, 1])), 2)
         if fw.get("moves_to_net"):
             c["approach"] = True
+        if fw.get("move_direction"):
+            c["move_direction"] = fw["move_direction"]
     if context:
         c.update(situation(out, context.get("court_pos"), context.get("displacement"), context.get("t_avail"),
                            context.get("contact_h"), sk.dom_sign))
@@ -375,6 +425,15 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
                 if context["shot_direction"] == "paralela" else "invertida al centro"
         elif context.get("shot_direction"):
             c["shot_type"] = context["shot_direction"]
+        if context.get("return") is not None:
+            c["play"] = "resto" if context["return"] else "intercambio"
+        # role of the stance (Martin et al. 2021): open attacking / open defensive / neutral attacking
+        st_ = c.get("stance_impact")
+        if st_:
+            fast_run = c.get("movement") in ("en carrera", "deslizando") or c.get("intent") == "defensa"
+            c["stance_role"] = (f"{st_} defensivo" if st_ in ("abierto", "semiabierto") and fast_run else
+                                f"{st_} de ataque" if c.get("intent") == "ataque" or st_ in ("neutro", "cerrado") else
+                                f"{st_} neutro")
     return out
 
 

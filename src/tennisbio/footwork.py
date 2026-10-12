@@ -110,8 +110,10 @@ def hip_court(img: np.ndarray, sk: Skeleton, H: np.ndarray, feet: np.ndarray) ->
 
 
 def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fps: float, impact: int,
-             opp: int | None, split: int | None, finish: int | None, loaded: int | None, surface: str = "") -> dict:
-    """All footwork descriptors of one stroke (frame indices are clip frames)."""
+             opp: int | None, split: int | None, finish: int | None, loaded: int | None, surface: str = "",
+             next_opp: int | None = None, stroke: str = "forehand") -> dict:
+    """All footwork descriptors of one stroke (frame indices are clip frames). next_opp: the
+    opponent's next hit (to know whether she had recovered by then)."""
     T = len(img)
     feet = feet_track(img, sk, H)
     air = airborne(img, sk, scale, fps)
@@ -140,14 +142,29 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
         out["first_step_foot"] = f.foot
         ang = float(np.degrees(np.arctan2(f.dy, f.dx * sk.dom_sign)))     # 0 = towards her forehand side
         out["first_step_dir_deg"] = round(ang, 0)
-        out["first_step_type"] = ("cruzado" if f.crossover else
-                                  "pivote" if f.length_m < 0.3 else
-                                  "lateral" if abs(f.dy) < 0.5 * abs(f.dx) else "hacia delante" if f.dy > 0 else "hacia atrás")
+        # where she has to go (the impact position) decides gravity / jab steps
+        ball_dx = None
+        if opp is not None and np.isfinite(pos[[opp, impact]]).all():
+            ball_dx = pos[impact, 0] - pos[opp, 0]
+        fi = 0 if f.foot == "dom" else 1
+        p0 = feet_g[f.start, fi]
+        po = feet_g[f.start, 1 - fi]
+        near_foot = None
+        if ball_dx is not None and abs(ball_dx) > 0.5 and np.isfinite(p0).all() and np.isfinite(po).all():
+            near_foot = (p0[0] - po[0]) * np.sign(ball_dx) > 0          # this foot is on the side of the ball
+        out["first_step_length_m"] = round(f.length_m, 2)
+        out["first_step_type"] = (
+            "cruzado" if f.crossover else
+            "gravity (contrapaso)" if ball_dx is not None and abs(ball_dx) > 0.5 and f.dx * np.sign(ball_dx) < -0.05 else
+            "jab (pie cercano hacia la bola)" if near_foot and f.dx * np.sign(ball_dx) > 0.15 else
+            "pivote" if f.length_m < 0.3 else
+            "lateral" if abs(f.dy) < 0.5 * abs(f.dx) else "hacia delante" if f.dy > 0 else "hacia atrás")
     adj = [x for x in pre if x.land >= impact - s(0.8) and x.length_m < 0.5]
     out["adjustment_steps"] = len(adj)
     if pre:
         last = pre[-1]
         out["last_plant_foot"] = last.foot
+        out["last_step_length_m"] = round(last.length_m, 2)
         out["last_plant_before_impact_s"] = round((impact - last.land) / fps, 3)
     if loaded is not None and 0 <= loaded < T:                        # loading foot: the hips over which foot
         hips = (img[loaded, sk["left_hip"], 0] + img[loaded, sk["right_hip"], 0]) / 2
@@ -187,6 +204,44 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
             out["recovery_to_centre_m"] = round(float(abs(pos[impact][0]) - abs(pos[r1][0])), 2)
             if d[1] > 1.5:
                 out["moves_to_net"] = True                   # approach: keeps going forward after the hit
+    # split step: take-off (feet start rising) and speed just before / after it
+    if split is not None and 0 < split < T:
+        y = (img[:, sk["left_ankle"], 1] + img[:, sk["right_ankle"], 1]) / 2
+        a0 = max(0, split - s(0.6))
+        seg = y[a0:split + 1]
+        if np.isfinite(seg).sum() >= 4:
+            base = np.nanmax(seg)                                  # ground level (image y grows down)
+            lift = (base - seg) / np.nanmedian(scale[a0:split + 1])
+            pk = int(np.nanargmax(lift))
+            up = np.flatnonzero(lift[:pk + 1] < 0.25 * lift[pk]) if lift[pk] > 0.005 else []
+            if len(up):
+                take = a0 + int(up[-1])
+                out["split_takeoff_s"] = round((take - impact) / fps, 3)
+                if opp is not None:
+                    out["split_takeoff_vs_opp_s"] = round((take - opp) / fps, 3)
+                    out["split_landing_vs_opp_s"] = round((split - opp) / fps, 3)
+        for key, a, b in (("speed_pre_split_mps", split - s(0.2), split), ("speed_post_split_mps", split, split + s(0.2))):
+            w = spd[max(0, a):min(T, b + 1)]
+            if np.isfinite(w).sum() >= 2:
+                out[key] = round(float(np.nanmedian(w)), 2)
+    # main direction of the run to the ball, and changes of direction on the way
+    if opp is not None and out.get("move_dx_m") is not None:
+        dx, dy = out["move_dx_m"], out["move_dy_m"]
+        out["move_direction"] = ("sin desplazamiento" if np.hypot(dx, dy) < 0.8 else
+                                 "lateral" if abs(dx) >= abs(dy) else "hacia delante" if dy > 0 else "hacia atrás")
+        vx = vel[opp:min(T, impact + s(1.0)), 0]
+        sp = spd[opp:min(T, impact + s(1.0))]
+        sg = np.sign(vx[np.isfinite(vx) & (sp > 1.0)])
+        out["direction_changes"] = int(np.sum(sg[1:] != sg[:-1])) if len(sg) > 1 else 0
+    # the back leg stepping through after contact (strong trunk rotation)
+    back = "dom" if stroke != "backhand" else "non"
+    through = [x for x in st if x.foot == back and impact <= x.start <= impact + s(0.5) and x.dy > 0.2]
+    out["rear_leg_step_after"] = bool(through)
+    # recovered when the opponent hits again: distance from the centre of her baseline area
+    if next_opp is not None and 0 <= next_opp < T and np.isfinite(pos[next_opp]).all():
+        out["off_centre_at_opp_hit_m"] = round(float(abs(pos[next_opp, 0])), 2)
+        sp = spd[max(0, next_opp - 2):next_opp + 1]
+        out["moving_at_opp_hit_mps"] = None if not np.isfinite(sp).any() else round(float(np.nanmedian(sp)), 2)
     v = out.get("speed_at_impact_mps")
     out["movement"] = ("en el aire" if out["airborne_at_impact"] else "deslizando" if out.get("sliding_at_impact")
                        else None if v is None else "parada" if v < 0.7 else "en movimiento" if v < 2.0 else "en carrera")

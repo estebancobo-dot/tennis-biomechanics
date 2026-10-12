@@ -51,6 +51,8 @@ METRICS = {
     "toss": ("body", "Brazo de lanzamiento", "saque: altura de la mano en el trofeo, % de altura", "%", 0, 4, 3, "serve_toss_arm_height_pct"),
     "landing": ("feet", "Aterrizaje", "saque: m dentro de la pista tras el impacto", "m", 2, 0.15, 3, None),
     "shotDepth": ("feet", "Profundidad de su golpe", "m desde la línea de fondo rival al bote (− = larga)", "m", 1, 0.3, 3, None),
+    "ballKmh": ("feet", "Velocidad media de su bola", "km/h en horizontal, del impacto al bote (no la de salida)", "km/h", 0, 5, 2, None),
+    "shotQ": ("feet", "Calidad del golpe (indicador propio)", "0-100: profundidad, anchura y velocidad media", "", 0, 6, 2, None),
     "split": ("feet", "Split step", "aterrizaje, ms tras el golpe del rival", "ms", 0, 30, 2, None),
     "base": ("feet", "Base (% de altura)", "% de altura, armado", "%", 0, 4.5, 3, "base_width_loaded_pct"),
     "baseM": ("feet", "Anchura de la base", "metros en la pista, impacto", "m", 2, 0.08, 3, None),
@@ -59,7 +61,7 @@ METRICS = {
 }
 NET_Y = 11.885
 # metrics that stay reliable when she is at the far end (small, facing the camera)
-FAR_OK = {"contactH", "disp", "shotDepth", "landing"}
+FAR_OK = {"contactH", "disp", "shotDepth", "landing", "ballKmh", "shotQ"}
 # estimates, not measurements (the racket is blurred at contact): shown, never used as findings
 ESTIMATED = {"rFaceImp", "rYawImp"}
 
@@ -114,6 +116,8 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
     vals["disp"] = disp
     vals["landing"] = _num(s.get("landing_inside_m"))
     vals["shotDepth"] = _num(s.get("shot_depth_m"))
+    vals["ballKmh"] = _num(s.get("ball_speed_avg_kmh"))
+    vals["shotQ"] = _num(s.get("shot_quality_proxy"))
     vals["recov"] = _num((ph.get("recovery") or {}).get("t_rel")) if (ph.get("recovery") or {}).get("method") == "first_step" else None
     far = s.get("side") == "far"
     if far:
