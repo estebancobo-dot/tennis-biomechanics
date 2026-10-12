@@ -122,3 +122,17 @@ def test_orphan_windows_and_series_are_deleted(tmp_path):
     _drop_orphans(ctx, [{"t": 12.0}], strokes, [])
     assert sorted(f.name for f in (ctx.dir / "windows").iterdir()) == ["w000010000_4000.mp4", "w000010000_4000_ab12cd34.npz"]
     assert [f.name for f in (ctx.dir / "series").iterdir()] == ["w000010000_4000_near_120.json"]
+
+
+def test_superseded_windows_are_deleted_but_not_the_other_pass(tmp_path):
+    from tennisbio.stages import _drop_orphans
+    ctx = make_ctx(tmp_path)
+    (ctx.dir / "windows").mkdir(parents=True)
+    names = ("w000000000_3600.mp4",       # old single-stroke window, now inside a grouped one
+             "w000000000_9225.mp4",       # this pass's grouped window
+             "w000020000_3600.mp4")       # the opponent's candidate (not analysed by this pass)
+    for n in names:
+        (ctx.dir / "windows" / n).write_bytes(b"x")
+    cands = [{"t": 2.0}, {"t": 5.0}, {"t": 21.0}]
+    _drop_orphans(ctx, cands, [], [], {"w000000000_9225"}, cands[:2])
+    assert sorted(f.name for f in (ctx.dir / "windows").iterdir()) == ["w000000000_9225.mp4", "w000020000_3600.mp4"]

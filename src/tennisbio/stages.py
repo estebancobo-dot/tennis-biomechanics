@@ -753,7 +753,8 @@ def _fine(ctx: Context, p, keep, out_name: str):
     _rally_position(strokes, cands, scenes)
     _write(ctx.path(out_name), strokes)
     other = ctx.path("strokes_opponent.json" if out_name == "strokes.json" else "strokes.json")
-    _drop_orphans(ctx, cands, strokes, _read(other) if other.exists() else [])
+    _drop_orphans(ctx, cands, strokes, _read(other) if other.exists() else [],
+                  {_window_of(g, pre, post)[2] for g in groups}, kept)
     _write(ctx.path(out_name.replace(".json", "_errores.json")), errors)
     if errors:
         ctx.log(f"  {len(errors)} golpes no se pudieron analizar (detalle en {out_name.replace('.json', '_errores.json')})")
@@ -792,22 +793,28 @@ def _window_of(group: list[dict], pre: float, post: float) -> tuple[float, float
     return t0, dur, f"w{int(round(t0 * 1000)):09d}_{int(round(dur * 1000))}"
 
 
-def _drop_orphans(ctx: Context, cands: list[dict], strokes: list[dict], others: list[dict]):
-    """Windows (and their caches) that no candidate of either fine pass falls in any more, and
-    series of strokes that no longer exist, are deleted: re-runs never fill the disk. others: the
-    strokes of the other fine pass (target / opponent), whose files share the folders."""
+def _drop_orphans(ctx: Context, cands: list[dict], strokes: list[dict], others: list[dict],
+                  wids: set | None = None, kept: list | None = None):
+    """Windows (and their caches) no fine pass uses any more, and series of strokes that no longer
+    exist, are deleted: re-runs never fill the disk. A window is kept when it is one of this pass
+    (wids) or holds a candidate this pass does not analyse (the other pass's: target / opponent).
+    others: the strokes of the other fine pass, whose files share the folders."""
     keep_series = {Path(d["series"]).name for d in strokes + others if d.get("series")}
     for f in ctx.path("series").glob("*.json") if ctx.path("series").exists() else []:
         if f.name not in keep_series:
             f.unlink(missing_ok=True)
-    ts = np.array(sorted(c["t"] for c in cands))
+    mine = {c["t"] for c in (kept or [])}
+    foreign = np.array(sorted(c["t"] for c in cands if c["t"] not in mine)) if wids is not None else \
+        np.array(sorted(c["t"] for c in cands))
     for f in ctx.path("windows").glob("w*") if ctx.path("windows").exists() else []:
         parts = f.name.split(".")[0].split("_")
         try:
             t0, dur = int(parts[0][1:]) / 1000, int(parts[1]) / 1000
         except (IndexError, ValueError):
             continue
-        if not np.any((ts >= t0) & (ts <= t0 + dur)):
+        if wids is not None and f"{parts[0]}_{parts[1]}" in wids:
+            continue
+        if not np.any((foreign >= t0) & (foreign <= t0 + dur)):
             f.unlink(missing_ok=True)
 
 

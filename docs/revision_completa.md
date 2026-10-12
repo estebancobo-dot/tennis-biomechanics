@@ -273,7 +273,7 @@ anotación de 30-50 golpes para medir el error real de cada métrica, y la taxon
 - ✔ Dobles: CLAUDE.md dice que se excluyen; las etapas no lo hacen (solo el script de validación).
 - Marcador: se localiza una vez; si se equivoca (panel de estadísticas) o cambia de sitio, falla todo el partido; nombres compuestos o abreviados ("RYB", "Zheng Qinwen") no se reconocen; "BREAK" en rótulos de estadísticas.
 - ✔ Identidad: un brazo levantado celebrando cuenta como saque; un recogepelotas cerca de la cámara puede ganar a la jugadora. *(el saque exige swing rápido y pies en el fondo; el seguimiento empieza en quien está dentro de la pista)*
-- ◐ DirectML sin respaldo automático a CPU *(✔ hecho)*; `device: openvino` no funciona con bola y raqueta.
+- ✔ DirectML sin respaldo automático a CPU; `device: openvino` no funciona con bola y raqueta. *(con openvino, bola y raqueta corren en la CPU con aviso; nunca se para)*
 - ✔ Rutas con acentos: OpenCV falla en Windows (0 fotogramas); YAML con comillas convierte `\t` en tabulador. *(ruta corta de Windows para OpenCV; ids de partido en ASCII; local.yaml con comillas simples)*
 - ✔ La huella no incluye rival, mano ni altura: corregirlos no rehace nada.
 - ✔ El manifiesto no comprueba que las salidas existan; ventanas viejas no se borran; no se mira el espacio libre.
