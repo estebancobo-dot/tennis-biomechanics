@@ -682,7 +682,7 @@ def _fine_settings(c):
 
 FINE_CODE = ("stages", "clip_pipeline", "stroke_analysis", "phases", "kinematics", "impacts", "ball", "court_metrics",
              "outcome", "series", "racket", "racket3d", "racket_face", "racket_orientation", "tracking", "technique",
-             "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend")
+             "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend", "ball3d")
 
 
 def _player_fields(p) -> dict:
@@ -1037,6 +1037,18 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
     ph_frames = {k: v.get("frame") for k, v in r.phases.items()}
     ta = r.metrics.get("time_available_s")
     opp_f = None if ta is None else r.impact_frame - int(round(ta * run.fps))
+    # the ball's flight around the stroke (ball3d): net crossing, top of the bounce, rising/dropping
+    ball_m = {}
+    if side == "near" and H_img is not None and run.ball is not None and (r.ball or {}).get("bounce_frame") is not None:
+        from .ball3d import flights
+        from .io.video import probe as _probe
+        ci = _probe(clip)
+        cz = r.metrics.get("contact_height_pct")
+        ball_m = flights(run.ball, run.fps, H_img, (ci.height, ci.width), r.ball["bounce_frame"], r.impact_frame, opp_f,
+                         None if cz is None else cz / 100 * p.height_m + 0.08,         # the ankle is ~8 cm above the ground
+                         (d.get("court_pos_m") or [None, None])[1])
+        if ball_m:
+            d["ball_flight"] = ball_m
     d["technique"] = stroke_technique(
         run.img, run.conf, run.sk, run.fps, run.height_t if run.height_t is not None else np.full(len(run.img), run.height_px),
         r.impact_frame, ph_frames, r.stroke, H if side == "near" else None, opp_f, (r.ball or {}).get("bounce_frame"),
@@ -1044,7 +1056,7 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
         {"court_pos": d.get("court_pos_m"), "displacement": d.get("displacement_m"), "t_avail": ta,
          "contact_h": r.metrics.get("contact_height_pct"), "shot_direction": d.get("shot_direction"),
          "split": (r.phases.get("ready") or {}).get("method") == "split_step_landing",
-         "surface": ctx.match.surface or "", "next_opp": ret, "return": is_return})
+         "surface": ctx.match.surface or "", "next_opp": ret, "return": is_return, "ball": ball_m})
     if side == "far":                       # 70 px player: only position-level classes are kept
         d["technique"] = {"classes": {k: v for k, v in d["technique"]["classes"].items()
                                       if k in ("ball_speed", "ball_height", "depth", "court_side", "width", "intent", "shot_type")},

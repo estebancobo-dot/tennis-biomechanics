@@ -30,6 +30,7 @@ FACTORS = {
     "depth": ("Dónde golpea", ["dentro de la pista", "sobre la línea", "1-2 m detrás", "2-4 m detrás", "muy atrás"]),
     "width": ("Desplazamiento", ["centrada", "abierta", "muy abierta"]),
     "movement": ("Cómo llega", ["parada", "en movimiento", "en carrera", "deslizando", "en el aire"]),
+    "ball_phase": ("Bola en el contacto", ["bola subiendo", "bola arriba", "bola cayendo"]),
     "intent": ("Intención", ["ataque", "neutra", "defensa"]),
     "stance_impact": ("Apoyo", ["abierto", "semiabierto", "neutro", "cerrado"]),
     "court_side": ("Lado de la pista", ["lado de su derecha", "centro", "lado de su revés"]),
@@ -37,7 +38,7 @@ FACTORS = {
     "play": ("Momento del punto", ["resto", "inicio del punto", "peloteo"]),
 }
 CLASS_KEYS = ["stance_loaded", "stance_impact", "stance_role", "finish", "finish_3x90", "arm", "takeback", "takeback_face",
-              "ready_hands", "movement", "move_direction", "play", "shot_type", "swing",
+              "ready_hands", "movement", "move_direction", "play", "shot_type", "swing", "ball_phase",
               "intent", "ball_speed", "ball_height", "depth", "width", "court_side"]
 FOOTWORK_KEYS = ["steps_to_impact", "adjustment_steps", "first_step_s", "first_step_length_m", "last_step_length_m",
                  "last_plant_before_impact_s", "approach_speed_mps", "path_m", "peak_speed_mps", "direction_changes",
@@ -222,6 +223,7 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
                 "effects": eff, "strokes": _typical_ids([near[i] for i in idx], [flat[i] for i in idx], out["typical"]),
                 "classes": {ck: _counts([cls[i].get(ck) for i in idx]) for ck in ("stance_impact", "finish", "takeback", "movement")},
                 "skeleton": _mean_skeleton([near[i] for i in idx]),
+                "curves": _typical_curves([near[i] for i in idx]),
             }
     # 5. footwork summary and the overall mean skeleton
     out["footwork"] = {k: out["typical"].get(f"footwork.{k}") for k in FOOTWORK_KEYS if out["typical"].get(f"footwork.{k}")}
@@ -233,6 +235,7 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
     out["footwork"]["move_direction"] = _counts([(s["technique"].get("classes") or {}).get("move_direction") for s in near])
     out["footwork"]["rear_leg_step_after"] = _counts([(s["technique"].get("footwork") or {}).get("rear_leg_step_after") for s in near])
     out["skeleton"] = _mean_skeleton(near)
+    out["curves"] = _typical_curves(near)
     # points won by the phase of play of her last stroke in each point (TennisViz "conversion"
     # in attack, "steal" in defence): one stroke per point
     last = {}
@@ -272,6 +275,39 @@ def _typical_ids(rows: list, flat: list, typical: dict, k: int = 8) -> list[str]
             continue
         scores.append((math.sqrt(sum(z) / len(z)) - 0.5 * cover, s.get("stroke_id")))
     return [sid for _, sid in sorted(scores)[:k] if sid]
+
+
+def _typical_curves(rows: list, min_n: int = 5) -> dict:
+    """Her typical heights through the stroke (technique.stroke_curves): per curve the median and the
+    usual band (25-75 %) at each instant, with at least min_n strokes there; plus the typical
+    instants of her phases and of the ball (net, bounce, top), in s from contact."""
+    from .technique import CURVE_T
+
+    out = {"t": [float(t) for t in CURVE_T]}
+    for name in ("head", "hip", "hand", "racket"):
+        arr = [s["technique"].get("curves", {}).get(name) for s in rows]
+        arr = np.array([[np.nan if v is None else v for v in a] for a in arr if a and len(a) == len(CURVE_T)], float)
+        if len(arr) < min_n:
+            continue
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", RuntimeWarning)
+            n = np.sum(np.isfinite(arr), axis=0)
+            q = np.nanpercentile(arr, [25, 50, 75], axis=0)
+        q[:, n < min_n] = np.nan
+        out[name] = {k: [None if not np.isfinite(x) else round(float(x), 1) for x in row] for k, row in zip(("p25", "p50", "p75"), q)}
+    ev = {}
+    for key, sign in (("t_takeback", -1), ("t_loaded", -1), ("t_acceleration", -1), ("t_finish", 1)):
+        v = [s["technique"].get("stroke", {}).get(key) for s in rows]
+        v = [x for x in v if x is not None]
+        if len(v) >= min_n:
+            ev[key[2:]] = round(sign * float(np.median(v)), 3)
+    for m in ("ball_net", "ball_bounce", "ball_top"):
+        v = [s["technique"].get("phases", {}).get(m, {}).get("t_to_contact") for s in rows]
+        v = [x for x in v if x is not None]
+        if len(v) >= min_n:
+            ev[m] = round(-float(np.median(v)), 3)
+    out["events"] = ev
+    return out
 
 
 def _mean_skeleton(rows: list) -> dict:

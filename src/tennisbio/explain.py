@@ -20,7 +20,7 @@ def fmt(v, d=0):
 
 
 def _rng(t, d=0, unit=""):
-    return f"{fmt(t['p25'], d)}–{fmt(t['p75'], d)}{unit}"
+    return f"{fmt(t['p25'], d)} a {fmt(t['p75'], d)}{unit}"
 
 
 def _t(model, key):
@@ -38,6 +38,8 @@ def _lines():
         # knee angles seen from behind and above are foreshortened (legs look straight): not shown,
         # the leg load is told by the hip height instead
         ("ready.hip_height", lambda t: f"Cadera a un {fmt(t['median'])} % de su altura (rodillas flexionadas: {_rng(t)} %)."),
+        ("ball_net.hip_height", lambda t: f"Cuando la bola cruza la red: cadera a un {fmt(t['median'])} % de su altura ({_rng(t)} %)."),
+        ("ball_net.shoulder_turn", lambda t: f"Cuando la bola cruza la red: hombros ya girados {fmt(t['median'])}°."),
     ]
     L["takeback"] = [
         ("stroke.t_takeback", lambda t: f"Empieza a preparar {fmt(t['median'], 2)} s antes del impacto ({_rng(t, 2)} s)."),
@@ -46,6 +48,10 @@ def _lines():
                                                  f"Lo hace {fmt(t['median'], 2)} s después del bote.")),
         ("stroke.loaded_vs_bounce", lambda t: (f"Termina de armar {fmt(-t['median'], 2)} s antes de que bote la bola." if t["median"] < 0 else
                                                f"Termina de armar {fmt(t['median'], 2)} s después del bote.")),
+        ("stroke.takeback_vs_net", lambda t: (f"Empieza a preparar {fmt(abs(t['median']), 2)} s antes de que la bola cruce la red." if t["median"] < -0.03 else
+                                              f"Empieza a preparar {fmt(t['median'], 2)} s después de que la bola cruce la red." if t["median"] > 0.03 else
+                                              "Empieza a preparar justo cuando la bola cruza la red.")),
+        ("ball_bounce.hip_height", lambda t: f"Cuando bota la bola: cadera a un {fmt(t['median'])} % de su altura."),
         ("takeback.hands_apart", lambda t: "Gira con la mano libre todavía en la raqueta (giro unitario)." if t["median"] < 15 else
          "La mano libre ya se ha separado de la raqueta."),
         ("takeback.shoulder_turn", lambda t: f"Hombros girados {fmt(t['median'])}° al empezar."),
@@ -66,6 +72,8 @@ def _lines():
                                             "Peso sobre el pie adelantado." if t["median"] > 0.6 else "Peso repartido entre los dos pies.")),
         ("loaded.face_tilt", lambda t: f"Cara de la raqueta {'cerrada' if t['median'] >= 0 else 'abierta'} {fmt(abs(t['median']))}°."),
         ("stroke.pause_at_loaded", lambda t: f"Pausa en el armado: {fmt(t['median'], 2)} s."),
+        ("stroke.loaded_vs_top", lambda t: (f"Termina de armar {fmt(abs(t['median']), 2)} s antes de que la bola llegue a lo más alto del bote."
+                                            if t["median"] < 0 else f"Termina de armar {fmt(t['median'], 2)} s después de lo más alto del bote.")),
     ]
     L["acceleration"] = [
         ("stroke.t_acceleration", lambda t: f"Empieza a acelerar {fmt(t['median'], 2)} s antes del impacto."),
@@ -80,7 +88,11 @@ def _lines():
         ("impact.wrist_dom_vs_hip", lambda t: (f"Contacto {fmt(abs(t['median']))} % de su altura {'por encima' if t['median'] > 0 else 'por debajo'} de la cadera.")),
         ("impact.wrist_dom_lateral", lambda t: f"Separada del cuerpo: la mano a {fmt(t['median'])} % de su altura de la cadera."),
         ("impact.elbow_dom", lambda t: f"Codo a {fmt(t['median'])}° ({'brazo casi recto' if t['median'] >= 150 else 'brazo flexionado'})."),
-        ("stroke.swing_low_to_high", lambda t: f"Llega a la bola subiendo: trayectoria de la mano de {fmt(t['median'])}° hacia arriba."),
+        ("stroke.contact_vs_top", lambda t: (f"Toma la bola subiendo, {fmt(abs(t['median']), 2)} s antes de lo más alto del bote ({_rng(t, 2)} s)."
+                                             if t["median"] < -0.05 else f"Toma la bola cayendo, {fmt(t['median'], 2)} s después de lo más alto del bote."
+                                             if t["median"] > 0.05 else "Toma la bola en lo más alto del bote.")),
+        ("stroke.contact_height_m", lambda t: f"La bola está a {fmt(t['median'], 2)} m del suelo en el contacto ({_rng(t, 2)} m)."),
+        ("stroke.swing_low_to_high", lambda t: f"El swing sube hacia la bola: la mano va {fmt(t['median'])}° hacia arriba."),
         ("impact.trunk_tilt", lambda t: (f"Tronco inclinado {fmt(abs(t['median']))}° hacia su {'lado del brazo' if t['median'] > 0 else 'lado contrario'}."
                                          if abs(t["median"]) >= 4 else "Tronco vertical.")),
         ("impact.head_over_base", lambda t: ("Cabeza centrada sobre los pies." if abs(t["median"]) < 4 else
@@ -109,9 +121,10 @@ CLASS_TEXT = {
     "stance_loaded": "Apoyo al armar", "stance_impact": "Apoyo en el impacto", "stance_role": "Función del apoyo",
     "takeback_face": "Cara al final del armado", "finish": "Terminación", "arm": "Brazo",
     "takeback": "Preparación", "ready_hands": "Manos en la espera", "movement": "Cómo llega a la bola", "feet_at_impact": "Pies en el impacto",
-    "swing": "Trayectoria",
+    "swing": "Trayectoria", "ball_phase": "Bola en el contacto",
 }
 CLASS_PHASE = {"ready_hands": "ready", "takeback": "takeback", "stance_loaded": "loaded", "takeback_face": "loaded",
+               "ball_phase": "impact",
                "stance_impact": "impact", "stance_role": "impact",
                "arm": "impact", "finish": "finish", "movement": "impact", "feet_at_impact": "impact", "swing": "acceleration"}
 
@@ -251,6 +264,7 @@ def model_view(model: dict, stroke: str) -> dict:
                 "factor": fk, "factor_name": FACTORS[fk][0], "level": lv, "n": v["n"], "share": v["share"], "usual": v["usual"],
                 "cards": phase_cards(model, stroke, fk, lv), "strokes": v["strokes"],
                 "changes": [change_text(model, e) for e in v["effects"]],
+                "curves": v.get("curves"),
             }
     nm = list(NOT_MEASURABLE)
     if model.get("steps_reliable_share") is not None and model["steps_reliable_share"] < 0.5:
@@ -259,5 +273,5 @@ def model_view(model: dict, stroke: str) -> dict:
                   "su desplazamiento, la velocidad con la que llega y su recuperación.")
     return {"summary": summary(model, stroke), "cards": phase_cards(model, stroke), "variants": variants,
             "typical_strokes": model.get("typical_strokes", []), "n": model["n_strokes"], "n_near": model["n_near"],
-            "footwork": model["footwork"], "not_measurable": nm,
+            "footwork": model["footwork"], "not_measurable": nm, "curves": model.get("curves"),
             "factors": {fk: FACTORS[fk][0] for fk in model["variants"]}}

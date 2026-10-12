@@ -71,6 +71,14 @@ STROKE_DESCRIPTORS = {
     "tempo_ratio": ("ritmo", "Relación preparación / swing", "", 2, "duración de la preparación / del swing"),
     "takeback_after_opp": ("ritmo", "Preparación tras el golpe rival", "s", 2, "inicio de su preparación desde el golpe del rival"),
     "takeback_vs_bounce": ("ritmo", "Preparación respecto al bote", "s", 2, "− = empieza antes del bote"),
+    "takeback_vs_net": ("ritmo", "Preparación respecto a cuando la bola cruza la red", "s", 2,
+                        "− = empieza a preparar antes de que la bola pase la red"),
+    "loaded_vs_top": ("ritmo", "Armado respecto al punto más alto del bote", "s", 2, "− = termina de armar antes de que la bola llegue arriba"),
+    "contact_vs_top": ("bola", "Contacto respecto al punto más alto del bote", "s", 2,
+                       "− = golpea con la bola subiendo, + = cayendo (vuelo de la bola en 3D desde la cámara)"),
+    "contact_height_m": ("bola", "Altura de la bola en el contacto", "m", 2, "su mano en el impacto, con su altura real"),
+    "apex_height_m": ("bola", "Altura máxima del bote", "m", 1, "estimación (±0,3 m)"),
+    "bounce_to_apex_s": ("bola", "Del bote al punto más alto", "s", 2, "vuelo de la bola en 3D"),
     "takeback_path": ("raqueta", "Recorrido de la mano en la preparación", "%", 2, "longitud del camino de la muñeca, % de altura"),
     "takeback_peak_vs_shoulder": ("raqueta", "Altura máxima de la mano en la preparación", "%", 2, "respecto al hombro (+ por encima)"),
     "swing_low_to_high": ("raqueta", "Trayectoria del swing (bajo → alto)", "°", 2, "dirección de la muñeca en los 100 ms previos al impacto"),
@@ -175,6 +183,45 @@ def posture(body: np.ndarray, img: np.ndarray, sk: Skeleton, f: int, scale: floa
         L = np.linalg.norm(j("dom_elbow") - j("dom_shoulder")) + np.linalg.norm(j("dom_wrist") - j("dom_elbow"))
         out["arm_extension"] = _pct(np.linalg.norm(j("dom_wrist") - j("dom_shoulder")) / (L + 1e-9))
     return {k: v for k, v in out.items() if v is not None}
+
+
+CURVE_T = np.round(np.arange(-1.2, 0.8001, 0.04), 2)       # s from contact: the curves of the report
+
+
+def stroke_curves(img: np.ndarray, sk: Skeleton, scale: np.ndarray, impact: int, fps: float, kps: dict | None) -> dict:
+    """Heights through the stroke, in % of her height above the ground (her lowest foot), sampled
+    every 40 ms from 1.2 s before contact to 0.8 s after: head, hips, hitting hand and racket head.
+    The report draws them under the video and as her typical curve (median and usual band)."""
+    from .kinematics import smooth
+
+    T = len(img)
+    ground = np.nanmax(img[:, [sk["left_ankle"], sk["right_ankle"]], 1], axis=1)       # image y grows down
+    ok_g = np.isfinite(ground)
+    hip = (img[:, sk["left_hip"], 1] + img[:, sk["right_hip"], 1]) / 2
+    series = {"head": img[:, sk["nose"], 1], "hip": hip, "hand": img[:, sk["dom_wrist"], 1]}
+    rk = np.full(T, np.nan)
+    for key, k in (kps or {}).items():
+        f = int(key)
+        if 0 <= f < T and k is not None:
+            k = np.asarray(k, float)
+            rk[f] = (k[0, 1] + k[1, 1]) / 2
+    series["racket"] = rk
+    t_f = (np.arange(T) - impact) / fps
+    out = {}
+    for name, y in series.items():
+        h = np.where(ok_g & np.isfinite(y), (ground - y) / scale * 100, np.nan)
+        if name != "racket":                        # the racket is seen in few frames: not smoothed
+            with np.errstate(invalid="ignore"):
+                h = smooth(h, fps, 0.06)
+        ok = np.isfinite(h)
+        if ok.sum() < 3:
+            continue
+        v = np.interp(CURVE_T, t_f[ok], h[ok], left=np.nan, right=np.nan)
+        # no value where the samples around are missing for more than 0.1 s (no invented curve)
+        near = np.array([np.min(np.abs(t_f[ok] - t)) for t in CURVE_T])
+        v[near > 0.1] = np.nan
+        out[name] = [None if not np.isfinite(x) else round(float(x), 1) for x in v]
+    return out
 
 
 def racket_at(kps: dict, img: np.ndarray, sk: Skeleton, f: int, scale: float, feet_img_y: float, faces: dict | None,
@@ -297,6 +344,23 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
             q = q[[0, 2, 1, 4, 3, 6, 5, 8, 7, 10, 9, 12, 11, 14, 13, 16, 15]]
         out.setdefault("pose", {})[p] = [None if not np.isfinite(v).all() else [round(float(v[0]), 3), round(float(v[1]), 3)]
                                          for v in q]
+    # her body and racket at each moment of the ball (ball3d.flights): when it crosses the net, when it
+    # bounces, at the top of its bounce; and in which phase of her stroke she is then
+    bm = (context or {}).get("ball") or {}
+    order = [(p, ev[p]) for p in PHASES if ev[p] is not None]
+    for name, f in (("ball_net", bm.get("net_frame")), ("ball_bounce", bounce), ("ball_top", bm.get("apex_frame"))):
+        if f is None or not 0 <= f < T or f > impact:
+            continue
+        d = posture(body, img, sk, f, float(scale[f]))
+        if np.isfinite(sh[f]):
+            d["shoulder_turn"] = _deg(sh[f])
+        fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+        d.update(racket_at(kps, img, sk, f, float(scale[f]), fy, faces, first_face))
+        before = [p for p, fp in order if fp <= f]
+        d["t_to_contact"] = round((impact - f) / fps, 3)
+        out["phases"][name] = d
+        out.setdefault("ball_phase_of_stroke", {})[name] = before[-1] if before else "ready"
+    out["curves"] = stroke_curves(img, sk, scale, impact, fps, kps)
     # timing
     s = out["stroke"]
     for p in ("takeback", "loaded", "acceleration"):
@@ -314,6 +378,15 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         s["takeback_after_opp"] = round((ev["takeback"] - opp) / fps, 3)
     if ev["takeback"] is not None and bounce is not None:
         s["takeback_vs_bounce"] = round((ev["takeback"] - bounce) / fps, 3)
+    if ev["takeback"] is not None and bm.get("net_frame") is not None:
+        s["takeback_vs_net"] = round((ev["takeback"] - bm["net_frame"]) / fps, 3)
+    if bm.get("apex_frame") is not None:
+        s["contact_vs_top"] = round((impact - bm["apex_frame"]) / fps, 3)
+        if ev["loaded"] is not None:
+            s["loaded_vs_top"] = round((ev["loaded"] - bm["apex_frame"]) / fps, 3)
+    for k in ("contact_height_m", "apex_height_m", "bounce_to_apex_s"):
+        if bm.get(k) is not None:
+            s[k] = bm[k]
     dw, dsh = body[:, sk["dom_wrist"]], body[:, sk["dom_shoulder"]]
     if ev["takeback"] is not None and ev["loaded"] is not None and ev["loaded"] > ev["takeback"]:
         seg = dw[ev["takeback"]:ev["loaded"] + 1]
@@ -385,6 +458,8 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         fc = finish_class(body, sk, fin, out["phases"].get("finish", {}), stroke)
         if fc:
             c["finish"] = fc
+    if bm.get("contact_phase"):                         # takes the ball rising / at the top / dropping
+        c["ball_phase"] = {"subiendo": "bola subiendo", "arriba": "bola arriba", "cayendo": "bola cayendo"}[bm["contact_phase"]]
     lh = s.get("swing_low_to_high")
     if lh is not None:                    # the swing path just before contact says the spin she gives
         c["swing"] = "liftado (de abajo arriba)" if lh > 20 else "cortado (de arriba abajo)" if lh < -5 else "plano"
