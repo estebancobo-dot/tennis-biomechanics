@@ -36,8 +36,20 @@ def main():
     out_root.mkdir(parents=True, exist_ok=True)
     src = Path(args.video)
     full = probe(src).duration
-    if args.start is None:
-        args.start = find_play(src, full, args.minutes * 60)
+    if args.start is None:            # searched once per video; remembered in _smoke/tramo.json
+        memo = out_root / "tramo.json"
+        key = f"{src.name}|{src.stat().st_size}"
+        try:
+            known = json.loads(memo.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            known = {}
+        if key in known:
+            args.start = float(known[key])
+            print(f"Tramo de juego (ya buscado): minuto {args.start / 60:.0f}")
+        else:
+            args.start = find_play(src, full, args.minutes * 60)
+            known[key] = args.start
+            memo.write_text(json.dumps(known, ensure_ascii=False), encoding="utf-8")
     if args.start + args.minutes * 60 > full:          # short video: take the piece from its first third
         args.start = max(0.0, min(full * 0.3, full - args.minutes * 60))
     from tennisbio.catalog import ascii_id
@@ -77,9 +89,14 @@ def find_play(video: Path, full: float, need_s: float, step_s=60.0) -> float:
     n = max(2, int(need_s / dt))
     hits = []
     t = full * 0.15
+    print(f"Buscando un tramo de juego (un fotograma cada {dt:.0f} s desde el minuto {t / 60:.0f})…", flush=True)
+    t_start = time.time()
     while t < full * 0.85:
         fr = grab_frame(video, t)
         hits.append((t, fr is not None and fit_court(fr) is not None))
+        if len(hits) % 10 == 0:
+            print(f"  minuto {t / 60:.0f}: pista vista en {sum(h for _, h in hits[-10:])} de los últimos 10 fotogramas "
+                  f"({time.time() - t_start:.0f} s)", flush=True)
         if len(hits) >= n and sum(h for _, h in hits[-n:]) >= 0.6 * n:
             start = hits[-n][0]
             print(f"Tramo de juego encontrado en el minuto {start / 60:.0f}")
