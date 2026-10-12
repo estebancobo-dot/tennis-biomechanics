@@ -1,0 +1,569 @@
+{
+ "summary": {
+  "gt": 51,
+  "detected": 36,
+  "true_positives": 33,
+  "precision": 0.917,
+  "recall": 0.647,
+  "f1": 0.759,
+  "timing_err_frames_median": 1.0,
+  "timing_bias_frames": -0.76,
+  "fh_bh_accuracy": 0.969,
+  "recall_by_technique": {
+   "-": "1/15",
+   "gs": "29/33",
+   "slice": "3/3"
+  },
+  "direction_n": 26,
+  "direction_accuracy": 0.885,
+  "direction_confusion": {
+   "CC->CC": 5,
+   "CC->II": 1,
+   "DL->DL": 5,
+   "DM->DL": 1,
+   "DM->DM": 11,
+   "IO->IO": 2
+  },
+  "slice_recall": 1.0,
+  "topspin_flat_kept": 0.821,
+  "approach_accuracy": 0.97,
+  "error_precision": 0.333,
+  "error_recall": 0.5
+ },
+ "clips": [
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_2503_2629",
+   "near": "Victoria Azarenka",
+   "tracked": 0.99,
+   "gt": 0,
+   "detected": 0,
+   "true_positives": 0,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "timing_err_frames_median": null,
+   "timing_bias_frames": null,
+   "fh_bh_accuracy": null,
+   "recall_by_technique": {},
+   "direction_n": 0,
+   "direction_accuracy": null,
+   "direction_confusion": {},
+   "approach_accuracy": null
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_9658_9759",
+   "near": "Elena Rybakina",
+   "tracked": 0.99,
+   "gt": 0,
+   "detected": 0,
+   "true_positives": 0,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "timing_err_frames_median": null,
+   "timing_bias_frames": null,
+   "fh_bh_accuracy": null,
+   "recall_by_technique": {},
+   "direction_n": 0,
+   "direction_accuracy": null,
+   "direction_confusion": {},
+   "approach_accuracy": null
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_12721_12975",
+   "near": "Elena Rybakina",
+   "tracked": 1.0,
+   "gt": 4,
+   "detected": 4,
+   "true_positives": 4,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "timing_err_frames_median": 1.0,
+   "timing_bias_frames": -0.75,
+   "fh_bh_accuracy": 1.0,
+   "recall_by_technique": {
+    "-": "1/1",
+    "gs": "3/3"
+   },
+   "direction_n": 3,
+   "direction_accuracy": 0.667,
+   "direction_confusion": {
+    "DM->DM": 1,
+    "IO->IO": 1
+   },
+   "slice_recall": null,
+   "topspin_flat_kept": 1.0,
+   "approach_accuracy": 1.0,
+   "error_precision": 0.0,
+   "error_recall": 0.0
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_15731_15921",
+   "near": "Victoria Azarenka",
+   "tracked": 0.01,
+   "gt": 3,
+   "detected": 0,
+   "true_positives": 0,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "timing_err_frames_median": null,
+   "timing_bias_frames": null,
+   "fh_bh_accuracy": null,
+   "recall_by_technique": {
+    "-": "0/1",
+    "gs": "0/2"
+   },
+   "direction_n": 0,
+   "direction_accuracy": null,
+   "direction_confusion": {},
+   "approach_accuracy": null
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_32498_32600",
+   "near": "Elena Rybakina",
+   "tracked": 0.99,
+   "gt": 1,
+   "detected": 0,
+   "true_positives": 0,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "timing_err_frames_median": null,
+   "timing_bias_frames": null,
+   "fh_bh_accuracy": null,
+   "recall_by_technique": {
+    "-": "0/1"
+   },
+   "direction_n": 0,
+   "direction_accuracy": null,
+   "direction_confusion": {},
+   "approach_accuracy": null
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_34563_34709",
+   "near": "Victoria Azarenka",
+   "tracked": 0.99,
+   "gt": 2,
+   "detected": 1,
+   "true_positives": 1,
+   "precision": 1.0,
+   "recall": 0.5,
+   "f1": 0.667,
+   "timing_err_frames_median": 0.0,
+   "timing_bias_frames": 0.0,
+   "fh_bh_accuracy": 1.0,
+   "recall_by_technique": {
+    "-": "0/1",
+    "gs": "1/1"
+   },
+   "direction_n": 1,
+   "direction_accuracy": 0.0,
+   "direction_confusion": {
+    "DM->DL": 1
+   },
+   "slice_recall": null,
+   "topspin_flat_kept": 1.0,
+   "approach_accuracy": 1.0,
+   "error_precision": 0.0,
+   "error_recall": 0.0
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_39261_39834",
+   "near": "Victoria Azarenka",
+   "tracked": 1.0,
+   "gt": 8,
+   "detected": 7,
+   "true_positives": 7,
+   "precision": 1.0,
+   "recall": 0.875,
+   "f1": 0.933,
+   "timing_err_frames_median": 1.0,
+   "timing_bias_frames": -0.86,
+   "fh_bh_accuracy": 0.857,
+   "recall_by_technique": {
+    "-": "0/1",
+    "gs": "6/6",
+    "slice": "1/1"
+   },
+   "direction_n": 5,
+   "direction_accuracy": 1.0,
+   "direction_confusion": {
+    "DL->DL": 2,
+    "DM->DM": 3
+   },
+   "slice_recall": 1.0,
+   "topspin_flat_kept": 0.5,
+   "approach_accuracy": 1.0,
+   "error_precision": 0.0,
+   "error_recall": 0.0
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_44164_44377",
+   "near": "Victoria Azarenka",
+   "tracked": 0.96,
+   "gt": 2,
+   "detected": 3,
+   "true_positives": 2,
+   "precision": 0.667,
+   "recall": 1.0,
+   "f1": 0.8,
+   "timing_err_frames_median": 0.5,
+   "timing_bias_frames": -0.5,
+   "fh_bh_accuracy": 1.0,
+   "recall_by_technique": {
+    "gs": "1/1",
+    "slice": "1/1"
+   },
+   "direction_n": 2,
+   "direction_accuracy": 1.0,
+   "direction_confusion": {
+    "CC->CC": 1,
+    "DM->DM": 1
+   },
+   "slice_recall": 1.0,
+   "topspin_flat_kept": 1.0,
+   "approach_accuracy": 1.0,
+   "error_precision": 0.0,
+   "error_recall": 0.0
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_54610_54717",
+   "near": "Elena Rybakina",
+   "tracked": 0.99,
+   "gt": 1,
+   "detected": 1,
+   "true_positives": 1,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "timing_err_frames_median": 0.0,
+   "timing_bias_frames": 0.0,
+   "fh_bh_accuracy": 1.0,
+   "recall_by_technique": {
+    "gs": "1/1"
+   },
+   "direction_n": 1,
+   "direction_accuracy": 1.0,
+   "direction_confusion": {
+    "DM->DM": 1
+   },
+   "slice_recall": null,
+   "topspin_flat_kept": 1.0,
+   "approach_accuracy": 1.0,
+   "error_precision": 0.0,
+   "error_recall": 0.0
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_56000_56179",
+   "near": "Elena Rybakina",
+   "tracked": 0.99,
+   "gt": 2,
+   "detected": 2,
+   "true_positives": 2,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "timing_err_frames_median": 0.5,
+   "timing_bias_frames": -0.5,
+   "fh_bh_accuracy": 1.0,
+   "recall_by_technique": {
+    "gs": "2/2"
+   },
+   "direction_n": 2,
+   "direction_accuracy": 1.0,
+   "direction_confusion": {
+    "CC->CC": 1,
+    "IO->IO": 1
+   },
+   "slice_recall": null,
+   "topspin_flat_kept": 1.0,
+   "approach_accuracy": 1.0,
+   "error_precision": 1.0,
+   "error_recall": 1.0
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_58785_58999",
+   "near": "Elena Rybakina",
+   "tracked": 1.0,
+   "gt": 3,
+   "detected": 2,
+   "true_positives": 2,
+   "precision": 1.0,
+   "recall": 0.667,
+   "f1": 0.8,
+   "timing_err_frames_median": 1.5,
+   "timing_bias_frames": -1.5,
+   "fh_bh_accuracy": 1.0,
+   "recall_by_technique": {
+    "-": "0/1",
+    "gs": "2/2"
+   },
+   "direction_n": 2,
+   "direction_accuracy": 1.0,
+   "direction_confusion": {
+    "DM->DM": 2
+   },
+   "slice_recall": null,
+   "topspin_flat_kept": 1.0,
+   "approach_accuracy": 1.0,
+   "error_precision": 0.0,
+   "error_recall": 0.0
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_60925_61145",
+   "near": "Elena Rybakina",
+   "tracked": 1.0,
+   "gt": 1,
+   "detected": 0,
+   "true_positives": 0,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "timing_err_frames_median": null,
+   "timing_bias_frames": null,
+   "fh_bh_accuracy": null,
+   "recall_by_technique": {
+    "-": "0/1"
+   },
+   "direction_n": 0,
+   "direction_accuracy": null,
+   "direction_confusion": {},
+   "approach_accuracy": null
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_63600_63672",
+   "near": "Elena Rybakina",
+   "tracked": 0.99,
+   "gt": 1,
+   "detected": 0,
+   "true_positives": 0,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "timing_err_frames_median": null,
+   "timing_bias_frames": null,
+   "fh_bh_accuracy": null,
+   "recall_by_technique": {
+    "-": "0/1"
+   },
+   "direction_n": 0,
+   "direction_accuracy": null,
+   "direction_confusion": {},
+   "approach_accuracy": null
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_66382_66797",
+   "near": "Victoria Azarenka",
+   "tracked": 1.0,
+   "gt": 5,
+   "detected": 4,
+   "true_positives": 4,
+   "precision": 1.0,
+   "recall": 0.8,
+   "f1": 0.889,
+   "timing_err_frames_median": 1.0,
+   "timing_bias_frames": -1.0,
+   "fh_bh_accuracy": 1.0,
+   "recall_by_technique": {
+    "-": "0/1",
+    "gs": "4/4"
+   },
+   "direction_n": 3,
+   "direction_accuracy": 1.0,
+   "direction_confusion": {
+    "CC->CC": 2,
+    "DM->DM": 1
+   },
+   "slice_recall": null,
+   "topspin_flat_kept": 1.0,
+   "approach_accuracy": 1.0,
+   "error_precision": 0.0,
+   "error_recall": 0.0
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_68252_68518",
+   "near": "Victoria Azarenka",
+   "tracked": 0.98,
+   "gt": 3,
+   "detected": 2,
+   "true_positives": 2,
+   "precision": 1.0,
+   "recall": 0.667,
+   "f1": 0.8,
+   "timing_err_frames_median": 0.5,
+   "timing_bias_frames": -0.5,
+   "fh_bh_accuracy": 1.0,
+   "recall_by_technique": {
+    "-": "0/1",
+    "gs": "1/1",
+    "slice": "1/1"
+   },
+   "direction_n": 2,
+   "direction_accuracy": 1.0,
+   "direction_confusion": {
+    "DL->DL": 2
+   },
+   "slice_recall": 1.0,
+   "topspin_flat_kept": 1.0,
+   "approach_accuracy": 0.5,
+   "error_precision": 0.0,
+   "error_recall": 0.0
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_77686_77918",
+   "near": "Elena Rybakina",
+   "tracked": 1.0,
+   "gt": 3,
+   "detected": 3,
+   "true_positives": 2,
+   "precision": 0.667,
+   "recall": 0.667,
+   "f1": 0.667,
+   "timing_err_frames_median": 0.5,
+   "timing_bias_frames": -0.5,
+   "fh_bh_accuracy": 1.0,
+   "recall_by_technique": {
+    "-": "0/1",
+    "gs": "2/2"
+   },
+   "direction_n": 2,
+   "direction_accuracy": 1.0,
+   "direction_confusion": {
+    "CC->CC": 1,
+    "DM->DM": 1
+   },
+   "slice_recall": null,
+   "topspin_flat_kept": 1.0,
+   "approach_accuracy": 1.0,
+   "error_precision": 0.0,
+   "error_recall": 0.0
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_88040_88314",
+   "near": "Victoria Azarenka",
+   "tracked": 0.96,
+   "gt": 4,
+   "detected": 2,
+   "true_positives": 2,
+   "precision": 1.0,
+   "recall": 0.5,
+   "f1": 0.667,
+   "timing_err_frames_median": 1.0,
+   "timing_bias_frames": -1.0,
+   "fh_bh_accuracy": 1.0,
+   "recall_by_technique": {
+    "-": "0/1",
+    "gs": "2/3"
+   },
+   "direction_n": 1,
+   "direction_accuracy": 0.0,
+   "direction_confusion": {
+    "CC->II": 1
+   },
+   "slice_recall": null,
+   "topspin_flat_kept": 1.0,
+   "approach_accuracy": 1.0,
+   "error_precision": 0.0,
+   "error_recall": 0.0
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_90852_90961",
+   "near": "Elena Rybakina",
+   "tracked": 0.99,
+   "gt": 1,
+   "detected": 0,
+   "true_positives": 0,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "timing_err_frames_median": null,
+   "timing_bias_frames": null,
+   "fh_bh_accuracy": null,
+   "recall_by_technique": {
+    "-": "0/1"
+   },
+   "direction_n": 0,
+   "direction_accuracy": null,
+   "direction_confusion": {},
+   "approach_accuracy": null
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_92689_92824",
+   "near": "Elena Rybakina",
+   "tracked": 0.99,
+   "gt": 2,
+   "detected": 1,
+   "true_positives": 0,
+   "precision": 0.0,
+   "recall": 0.0,
+   "f1": 0.0,
+   "timing_err_frames_median": null,
+   "timing_bias_frames": null,
+   "fh_bh_accuracy": null,
+   "recall_by_technique": {
+    "-": "0/1",
+    "gs": "0/1"
+   },
+   "direction_n": 0,
+   "direction_accuracy": null,
+   "direction_confusion": {},
+   "approach_accuracy": null
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_100375_100613",
+   "near": "Victoria Azarenka",
+   "tracked": 1.0,
+   "gt": 3,
+   "detected": 3,
+   "true_positives": 3,
+   "precision": 1.0,
+   "recall": 1.0,
+   "f1": 1.0,
+   "timing_err_frames_median": 1.0,
+   "timing_bias_frames": -1.0,
+   "fh_bh_accuracy": 1.0,
+   "recall_by_technique": {
+    "gs": "3/3"
+   },
+   "direction_n": 2,
+   "direction_accuracy": 1.0,
+   "direction_confusion": {
+    "DL->DL": 1,
+    "DM->DM": 1
+   },
+   "slice_recall": null,
+   "topspin_flat_kept": 0.333,
+   "approach_accuracy": 1.0,
+   "error_precision": 0.0,
+   "error_recall": 0.0
+  },
+  {
+   "clip": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_103892_104053",
+   "near": "Victoria Azarenka",
+   "tracked": 0.99,
+   "gt": 2,
+   "detected": 1,
+   "true_positives": 1,
+   "precision": 1.0,
+   "recall": 0.5,
+   "f1": 0.667,
+   "timing_err_frames_median": 0.0,
+   "timing_bias_frames": 0.0,
+   "fh_bh_accuracy": 1.0,
+   "recall_by_technique": {
+    "-": "0/1",
+    "gs": "1/1"
+   },
+   "direction_n": 0,
+   "direction_accuracy": null,
+   "direction_confusion": {},
+   "slice_recall": null,
+   "topspin_flat_kept": 1.0,
+   "approach_accuracy": 1.0,
+   "error_precision": 0.0,
+   "error_recall": 0.0
+  }
+ ]
+}

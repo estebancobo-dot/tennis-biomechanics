@@ -1,0 +1,16 @@
+{
+ "path": "C:\\tenis\\output\\_smoke\\tennis-yusipopen-final-sobolenko-rybakin_1800_4m.mkv",
+ "width": 1920,
+ "height": 1080,
+ "fps": 50.0,
+ "duration": 241.82,
+ "codec": "h264",
+ "interlaced": false,
+ "audio_rate": 48000,
+ "audio_channels": 2,
+ "vfr": false,
+ "audio_tracks": 1,
+ "start_time": 0.0,
+ "jumps": 0,
+ "cleaned": false
+}

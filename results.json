@@ -1,0 +1,93 @@
+{
+  "video": {
+    "path": "C:\\tenis\\videos\\\u0422\u0435\u043d\u043d\u0438\u0441.\u042e\u0421\u0418\u041f\u041e\u041f\u0415\u041d.\u0424\u0438\u043d\u0430\u043b.\u0421\u043e\u0431\u043e\u043b\u0435\u043d\u043a\u043e\u2014\u0420\u044b\u0431\u0430\u043a\u0438\u043d\u0430.12.09.2026.1080\u0440.50fps.\u041c\u043e\u0441\u0433\u043e\u0440\u0442\u0440\u0430\u043d\u0441.mkv",
+    "width": 1920,
+    "height": 1080,
+    "fps": 50.0,
+    "duration": 12626.729,
+    "codec": "h264",
+    "interlaced": false,
+    "audio_rate": 48000,
+    "audio_channels": 2,
+    "vfr": false,
+    "audio_tracks": 2,
+    "start_time": 0.0
+  },
+  "decode": {
+    "full": {
+      "frames": 1000,
+      "fps": 27.050334911529674,
+      "realtime_x": 0.5410066982305934
+    },
+    "cheap": {
+      "frames": 200,
+      "fps": 240.71328159088154,
+      "realtime_x": 24.071328159088154
+    },
+    "full_d3d11va": {
+      "frames": 1000,
+      "fps": 39.97291259569454,
+      "realtime_x": 0.7994582519138907
+    }
+  },
+  "models": {
+    "dml": {
+      "det_lightweight_small_ms": 9.510605000832584,
+      "det_balanced_full_ms": 40.526587500062305,
+      "persons_per_frame": 2.0,
+      "pose_balanced_ms_per_person": 10.38877999963006,
+      "pose_performance_ms_per_person": 26.821672500227578
+    },
+    "cpu": {
+      "det_lightweight_small_ms": 19.327124999836087,
+      "det_balanced_full_ms": 159.1176899994025,
+      "persons_per_frame": 2.0,
+      "pose_balanced_ms_per_person": 13.92249499913305,
+      "pose_performance_ms_per_person": 141.5995400006068
+    }
+  },
+  "yolo": {
+    "yolo11m-pose:640@dml": {
+      "ms": 52.32385000126669,
+      "persons": 4
+    },
+    "yolo11m-pose:640@cpu": {
+      "ms": 225.49113999994006,
+      "persons": 4
+    },
+    "yolo11m-pose:960@dml": {
+      "ms": 111.6994550000527,
+      "persons": 8
+    },
+    "yolo11m-pose:960@cpu": {
+      "ms": 479.00633749959525,
+      "persons": 8
+    },
+    "yolo11m-seg:960@dml": {
+      "ms": 152.56109250040026
+    },
+    "yolo11m-seg:960@cpu": {
+      "ms": 715.6330024998169
+    }
+  },
+  "extra": {
+    "dml": {
+      "ball_ms_per_frame": 133.68375416757772,
+      "racket_pose_ms": 10.370464998413809
+    },
+    "cpu": {
+      "ball_ms_per_frame": 381.6977291668688,
+      "racket_pose_ms": 16.901390001294203
+    },
+    "ocr_roi_ms": 401.7029199982062
+  },
+  "projection_yolo": {
+    "model_device": "yolo11m-pose:640@dml",
+    "fine_pass_min": 34.88256666751113
+  },
+  "projection": {
+    "device": "dml",
+    "cheap_pass_min": 28.757217465326455,
+    "fine_pass_min": 44.89884000019325
+  }
+}

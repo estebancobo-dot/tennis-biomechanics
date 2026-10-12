@@ -1,0 +1,117 @@
+{
+ "probe": {
+  "fingerprint": "add09f27ca0ae43d",
+  "version": "2",
+  "seconds": 0.3,
+  "finished": "2026-10-12 14:00:49",
+  "summary": {
+   "duration_min": 4.0,
+   "fps": 50.0,
+   "size": "1920x1080",
+   "cleaned": false,
+   "vfr": false
+  }
+ },
+ "scenes": {
+  "fingerprint": "80861f2e3999d998",
+  "version": "1",
+  "seconds": 13.6,
+  "finished": "2026-10-12 14:01:03",
+  "summary": {
+   "shots": 25,
+   "main_camera_shots": 13,
+   "main_camera_min": 3.3
+  }
+ },
+ "audio": {
+  "fingerprint": "aa16b21329a636b0",
+  "version": "2",
+  "seconds": 11.7,
+  "finished": "2026-10-12 14:01:14",
+  "summary": {
+   "onsets": 217,
+   "tracks": 1
+  }
+ },
+ "players": {
+  "fingerprint": "e55f3681e8b0f2f2",
+  "version": "2",
+  "seconds": 277.5,
+  "finished": "2026-10-12 14:05:52",
+  "summary": {
+   "frames": 1961
+  }
+ },
+ "score": {
+  "fingerprint": "f5c169a86d0fda0c",
+  "version": "3",
+  "seconds": 12.5,
+  "finished": "2026-10-12 14:06:04",
+  "summary": {
+   "readings": 0
+  }
+ },
+ "court": {
+  "fingerprint": "7b3ff0063059c3e1",
+  "version": "2",
+  "seconds": 20.8,
+  "finished": "2026-10-12 14:06:25",
+  "summary": {
+   "segments": 11,
+   "with_court": 3,
+   "pitch_deg_median": 18.6
+  }
+ },
+ "identity": {
+  "fingerprint": "d9a6eaa4289e334f",
+  "version": "3",
+  "seconds": 22.7,
+  "finished": "2026-10-12 14:06:48",
+  "summary": {
+   "runs": 8,
+   "votes": 0,
+   "confidence": 0.0,
+   "by_end_changes": 0,
+   "by_clothes": 0,
+   "conflicts": 0,
+   "decided": 0
+  }
+ },
+ "candidates": {
+  "fingerprint": "0ce2908021c73b6b",
+  "version": "6",
+  "seconds": 22.6,
+  "finished": "2026-10-12 14:07:10",
+  "summary": {
+   "candidates": 2,
+   "far": 0,
+   "with_audio": 1,
+   "opponent_runs": 0,
+   "identity_unknown": 2,
+   "replay_runs_skipped": 0,
+   "audio_track": 0
+  }
+ },
+ "fine": {
+  "fingerprint": "d12e4f62548b875a",
+  "version": "8",
+  "seconds": 1.5,
+  "finished": "2026-10-12 14:07:12",
+  "summary": {
+   "candidates": 0,
+   "confirmed": 0,
+   "errors": 0,
+   "warnings": [],
+   "forehands": 0
+  }
+ },
+ "fine_opponent": {
+  "fingerprint": "778b5d486c4a06ee",
+  "version": "3",
+  "seconds": 0.0,
+  "finished": "2026-10-12 14:07:12",
+  "summary": {
+   "enabled": false
+  }
+ }
+}
