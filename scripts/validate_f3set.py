@@ -33,7 +33,11 @@ def download(yt_id: str, dest: Path, t0: float | None = None, t1: float | None =
     if t0 is not None:
         cmd += ["--download-sections", f"*{t0:.2f}-{t1:.2f}", "--force-keyframes-at-cuts"]
     cmd.append(f"https://www.youtube.com/watch?v={yt_id}")
-    r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
+    try:                                # a stalled download never blocks the quick test
+        r = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=240)
+    except subprocess.TimeoutExpired:
+        print(f"  {yt_id}: la descarga no termina en 4 min; se omite")
+        return None
     if r.returncode or not dest.exists():
         print(f"  no se pudo descargar {yt_id}: {r.stderr.strip()[-200:]}")
         return None

@@ -108,3 +108,14 @@ function Actualizar-Codigo {
         }
     } catch { Aviso "No se pudo actualizar el codigo: $_" }
 }
+
+# Mientras un script largo trabaja, sube su registro cada 10 minutos: Claude ve el avance sin esperar
+# al final. Devuelve el trabajo en segundo plano (pararlo con Stop-Job al terminar).
+function Iniciar-Avisos {
+    $comun = Join-Path $PSScriptRoot "comun.ps1"
+    Start-Job -ArgumentList $comun -ScriptBlock {
+        param($comun)
+        . $comun
+        while ($true) { Start-Sleep -Seconds 600; Subir-Registros | Out-Null }
+    }
+}
