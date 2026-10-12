@@ -535,7 +535,7 @@ function niceTicks(lo, hi, n = 5) { const span = (hi - lo) || 1, m = 10 ** Math.
 const sitTxt = s => s.sit.neutra ? "neutra" : [s.wide && "abierta", s.fast && "rápida", s.height && s.height !== "media" && s.height, s.short && "corta"].filter(Boolean).join(", ") || "sin clasificar";
 const OUT_ES = { out: "error (fuera)", net: "error (red)", winner: "no devuelta (ganador o error forzado)", rally: "sigue el punto" };
 const REVIEW_ES = { half_volley_candidate: "media volea candidata", impact_without_audio: "impacto sin audio ni bola", racket_not_seen_when_loaded: "raqueta no vista en el armado", elbow_implausible: "codo inverosímil" };
-const revTxt = r => r.startsWith("phase:") ? "fase dudosa: " + r.slice(6) : (REVIEW_ES[r] || r);
+const revTxt = r => r.startsWith("phase:") ? "fase dudosa: " + r.slice(6) : r.startsWith("impossible:") ? "medida imposible descartada: " + r.slice(11) : (REVIEW_ES[r] || r);
 
 /* ===== Tooltip ===== */
 const tip = document.getElementById("tip");
@@ -1387,9 +1387,11 @@ function renderFeet() {
   add("Cambios de dirección hasta la bola", v("direction_changes", 0, ""));
   add("Vuelta hacia el centro en 1 s", v("recovery_to_centre_m", 1, " m"));
   add("Distancia al centro cuando la rival vuelve a golpear", v("off_centre_at_opp_hit_m", 1, " m"));
-  const md_ = f.move_direction; if (md_ && md_.n) L.push(`<li>Dirección del desplazamiento: ${Object.entries(md_.counts).slice(0, 4).map(([k, n]) => `${k} ${Math.round(100 * n / md_.n)} %`).join(", ")}</li>`);
-  const rl = f.rear_leg_step_after; if (rl && rl.n) L.push(`<li>La pierna de atrás pasa adelante tras el impacto en ${Math.round(100 * (rl.counts.true || 0) / rl.n)} % de los golpes</li>`);
-  const c = f.first_step_type; if (c && c.n) L.push(`<li>Tipo de primer paso: ${Object.entries(c.counts).slice(0, 4).map(([k, n]) => `${k} ${Math.round(100 * n / c.n)} %`).join(", ")}</li>`);
+  const MN = MODEL.min_n || 12, fs = f.first_step_right_way;
+  if (fs && fs.n >= MN) L.push(`<li>El primer paso va hacia donde golpeará en el ${Math.round(100 * (fs.counts.true || 0) / fs.n)} % de los golpes</li>`);
+  const md_ = f.move_direction; if (md_ && md_.n >= MN) L.push(`<li>Dirección del desplazamiento: ${Object.entries(md_.counts).slice(0, 4).map(([k, n]) => `${k} ${Math.round(100 * n / md_.n)} %`).join(", ")}</li>`);
+  const rl = f.rear_leg_step_after; if (rl && rl.n >= MN) L.push(`<li>La pierna de atrás pasa adelante tras el impacto en ${Math.round(100 * (rl.counts.true || 0) / rl.n)} % de los golpes</li>`);
+  const c = f.first_step_type; if (c && c.n >= MN) L.push(`<li>Tipo de primer paso: ${Object.entries(c.counts).slice(0, 4).map(([k, n]) => `${k} ${Math.round(100 * n / c.n)} %`).join(", ")}</li>`);
   document.getElementById("m-feet").innerHTML = L.join("") || `<li>Sin datos de pies todavía.</li>`;
 }
 async function drawCard(cvEl, card, s) {

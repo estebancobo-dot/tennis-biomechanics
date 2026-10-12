@@ -682,7 +682,7 @@ def _fine_settings(c):
 
 FINE_CODE = ("stages", "clip_pipeline", "stroke_analysis", "phases", "kinematics", "impacts", "ball", "court_metrics",
              "outcome", "series", "racket", "racket3d", "racket_face", "racket_orientation", "tracking", "technique",
-             "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend", "ball3d")
+             "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend", "ball3d", "limits")
 
 
 def _player_fields(p) -> dict:
@@ -927,6 +927,8 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
     if abs(r.impact_frame - target) > 0.4 * run.fps:
         return None                           # the fine pass did not confirm this candidate
     used.add(r.impact_frame)
+    from .limits import sanitize
+    r.review += [f"impossible:{k}" for k in sanitize(r.metrics)]      # measurement errors, never shown
     d = r.to_dict()
     t_imp = t0 + r.impact_frame / run.fps
     d.update(window=str(clip.name), window_start_s=t0, match_time_s=t_imp, candidate_audio=c.get("audio"),

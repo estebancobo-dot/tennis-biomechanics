@@ -4,7 +4,7 @@ and usual range); a sentence whose numbers are missing is simply not written.
 """
 import math
 
-from .model import FACTORS
+from .model import FACTORS, MIN_N
 
 PHASE_TITLES = {"ready": "Espera", "takeback": "Preparación", "loaded": "Armado", "acceleration": "Aceleración",
                 "impact": "Impacto", "extension": "Extensión", "finish": "Terminación", "recovery": "Recuperación"}
@@ -75,6 +75,8 @@ def _lines():
         ("stroke.loaded_vs_top", lambda t: (f"Termina de armar {fmt(abs(t['median']), 2)} s antes de que la bola llegue a lo más alto del bote."
                                             if t["median"] < 0 else f"Termina de armar {fmt(t['median'], 2)} s después de lo más alto del bote.")),
     ]
+    L["loaded"].append(("loaded.racket_forearm", lambda t: f"Al terminar de armar, ángulo antebrazo–raqueta de {fmt(t['median'])}° "
+                                                       f"({_rng(t)}°): la muñeca ya va echada hacia atrás (retraso)."))
     L["acceleration"] = [
         ("stroke.t_acceleration", lambda t: f"Empieza a acelerar {fmt(t['median'], 2)} s antes del impacto."),
         ("stroke.wrist_drop", lambda t: f"Antes deja caer la mano un {fmt(t['median'])} % de su altura ({_rng(t)} %)."),
@@ -82,6 +84,8 @@ def _lines():
                                                          "La cabeza de la raqueta sigue a la altura de la mano o por encima.")),
         ("acceleration.racket_forearm", lambda t: f"Ángulo antebrazo–raqueta de {fmt(t['median'])}° (retraso de la muñeca)."),
         ("stroke.dur_forward", lambda t: f"Del armado al impacto tarda {fmt(t['median'], 2)} s ({_rng(t, 2)} s)."),
+        ("stroke.racket_speed_rel", lambda t: f"Velocidad de la raqueta: {fmt(t['median'], 1)} alturas por segundo ({_rng(t, 1)}); "
+                                              "no es su velocidad real (sale borrosa), solo sirve para comparar sus golpes entre sí."),
     ]
     L["impact"] = [
         ("impact.wrist_dom_height", lambda t: f"Golpea con la mano a un {fmt(t['median'])} % de su altura ({_rng(t)} %)."),
@@ -99,6 +103,8 @@ def _lines():
                                              f"Cabeza desplazada un {fmt(abs(t['median']))} % hacia su {'lado del brazo' if t['median'] > 0 else 'lado contrario'}.")),
         ("impact.body_height", lambda t: f"Cuerpo a un {fmt(t['median'])} % de su altura de pie."),
         ("impact.base_m", lambda t: f"Base de {fmt(t['median'], 2)} m ({_rng(t, 2)} m)."),
+        ("stroke.hand_on_handle", lambda t: f"Agarra la raqueta con la mano a un {fmt(t['median'])} % de su longitud desde el final del mango "
+                                            f"({_rng(t)} %; fiabilidad baja: la mano mide pocos píxeles)."),
     ]
     L["extension"] = [
         ("extension.arm_extension", lambda t: f"Brazo extendido al {fmt(t['median'])} % hacia delante tras el contacto."),
@@ -121,18 +127,21 @@ CLASS_TEXT = {
     "stance_loaded": "Apoyo al armar", "stance_impact": "Apoyo en el impacto", "stance_role": "Función del apoyo",
     "takeback_face": "Cara al final del armado", "finish": "Terminación", "arm": "Brazo",
     "takeback": "Preparación", "ready_hands": "Manos en la espera", "movement": "Cómo llega a la bola", "feet_at_impact": "Pies en el impacto",
-    "swing": "Trayectoria", "ball_phase": "Bola en el contacto",
+    "swing": "Trayectoria", "ball_phase": "Bola en el contacto", "finish_3x90": "Termina con hombro y codo a unos 90° («3 × 90°»)",
 }
 CLASS_PHASE = {"ready_hands": "ready", "takeback": "takeback", "stance_loaded": "loaded", "takeback_face": "loaded",
                "ball_phase": "impact",
                "stance_impact": "impact", "stance_role": "impact",
-               "arm": "impact", "finish": "finish", "movement": "impact", "feet_at_impact": "impact", "swing": "acceleration"}
+               "arm": "impact", "finish": "finish", "finish_3x90": "finish", "movement": "impact", "feet_at_impact": "impact", "swing": "acceleration"}
 
 
 def _class_line(c: dict) -> str | None:
-    if not c or not c.get("n"):
+    if not c or (c.get("n") or 0) < MIN_N:        # a percentage of a handful of strokes says nothing
         return None
     tot = c["n"]
+    if set(c["counts"]) <= {True, False, "True", "False", "true", "false"}:       # yes/no classes
+        yes = sum(v for k, v in c["counts"].items() if str(k).lower() == "true")
+        return f"en el {round(100 * yes / tot)} % de sus golpes"
     parts = [f"{k} {round(100 * v / tot)} %" for k, v in list(c["counts"].items())[:3]]
     return ", ".join(parts)
 
@@ -197,7 +206,7 @@ def summary(model: dict, stroke: str) -> list[str]:
     c = model["classes"]
     def top(ck):
         x = c.get(ck)
-        if not x or not x["counts"]:
+        if not x or not x["counts"] or x["n"] < MIN_N:
             return None
         k, v = next(iter(x["counts"].items()))
         return k, round(100 * v / x["n"]), x["n"]
@@ -219,7 +228,11 @@ def summary(model: dict, stroke: str) -> list[str]:
         out.append(g)
     n_const = len([k for k in model["constants"] if model["typical"][k]["rel"] >= 2])
     n_eff = len({e["key"] for e in model["effects"]})
-    out.append(f"{n_const} rasgos se mantienen en todas las situaciones (su técnica de base) y {n_eff} cambian según la bola.")
+    if model.get("n_near", 0) < MIN_N:
+        out.append(f"Con {model.get('n_near', 0)} golpes analizados todavía no se puede describir su técnica: hacen falta al menos "
+                   f"{MIN_N} para dar cualquier dato (los vídeos de cada golpe sí se pueden ver).")
+    elif n_const or n_eff:
+        out.append(f"{n_const} rasgos se mantienen en todas las situaciones (su técnica de base) y {n_eff} cambian según la bola.")
     return out
 
 
@@ -247,11 +260,24 @@ def grip_compatible(model: dict) -> str | None:
 
 
 NOT_MEASURABLE = [
-    "Empuñadura exacta (en espera y al golpear): la mano mide pocos píxeles en la retransmisión.",
+    "Empuñadura exacta (el bisel), en la espera y al golpear, y el cambio de empuñadura: la mano mide pocos píxeles "
+    "en la retransmisión. Solo se dice si sus golpes son compatibles con una empuñadura semioccidental u occidental.",
     "Impacto delante o detrás del cuerpo: es la dirección hacia la cámara; solo se estima en 3D.",
-    "Velocidad de la raqueta y de la bola, y efecto (liftado/cortado): sale borroso a 25-60 fotogramas por segundo.",
+    "Velocidad de la raqueta y de la bola en km/h, y el efecto (vueltas por minuto): salen borrosas a 25-60 fotogramas "
+    "por segundo. La velocidad de la raqueta solo se compara entre sus golpes.",
+    "Altura de la bola sobre la red y velocidad de salida de su golpe: la bola es pequeña y no hay una segunda cámara.",
     "Cara de la raqueta justo en el impacto: es una estimación interpolada (desenfoque).",
+    "Ángulo exacto de la trayectoria de la raqueta en el impacto: las diferencias reales (unos 3°) son menores que el error.",
     "Flexión de rodillas exacta: escorzo desde detrás; se usa la altura de la cadera.",
+    "Rotación interna del hombro, pronación del antebrazo y movimientos de la muñeca: son giros sobre el propio eje del "
+    "brazo, invisibles en la imagen.",
+    "Momento exacto (en milisegundos) de cada pico de la cadena cinética: está por debajo de un fotograma; se da el orden.",
+    "Mirada: se la ve de espaldas.",
+    "Fuerzas y cargas en las articulaciones: solo se mide el movimiento.",
+    "Orientación del pie y apoyo de talón o de punta: el esqueleto no tiene puntos en los pies.",
+    "Altura del salto del split step: desde detrás, subir se confunde con alejarse.",
+    "Punto del cordaje donde golpea, presión de agarre y contribución de cada segmento a la velocidad: necesitan "
+    "sensores o cámaras de laboratorio.",
 ]
 
 
@@ -273,5 +299,5 @@ def model_view(model: dict, stroke: str) -> dict:
                   "su desplazamiento, la velocidad con la que llega y su recuperación.")
     return {"summary": summary(model, stroke), "cards": phase_cards(model, stroke), "variants": variants,
             "typical_strokes": model.get("typical_strokes", []), "n": model["n_strokes"], "n_near": model["n_near"],
-            "footwork": model["footwork"], "not_measurable": nm, "curves": model.get("curves"),
+            "footwork": model["footwork"], "not_measurable": nm, "min_n": MIN_N, "curves": model.get("curves"),
             "factors": {fk: FACTORS[fk][0] for fk in model["variants"]}}

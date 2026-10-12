@@ -36,17 +36,17 @@ REQUIREMENTS = {
 # requirement 1, word by word: each variant the user named → factor of the model ("" = none)
 VARIANTS_ASKED = {
     "Bola rápida / lenta": "ball_speed", "Bola alta / baja": "ball_height", "Bola corta / profunda": "depth",
-    "En carrera / parada / en salto": "movement", "Cada apoyo": "stance_impact", "Dirección del golpe": "",
+    "En carrera / parada / en salto": "movement", "Cada apoyo": "stance_impact", "Dirección del golpe": "shot_type",
     "Ataque / defensa": "intent", "Bola subiendo / arriba / cayendo": "ball_phase", "Bola centrada / abierta": "width",
 }
 KEY_MOMENTS = {"ready": "espera / split step", "takeback": "inicio de preparación", "loaded": "armado",
                "acceleration": "inicio de aceleración", "impact": "impacto", "extension": "extensión",
                "finish": "terminación", "recovery": "recuperación"}
 # physical limits of what is shown (a value outside them is a measurement error that got through)
+from .limits import METRIC_LIMITS
+
 LIMITS = {
-    "metrics.contact_height_pct": (10, 140), "metrics.elbow_impact_deg": (40, 180), "metrics.x_factor_deg": (-60, 90),
-    "metrics.shoulder_turn_loaded_deg": (-30, 200), "metrics.time_available_s": (0.25, 4.0),
-    "metrics.head_motion_impact_cm": (0, 40), "metrics.base_width_loaded_pct": (5, 90),
+    **{f"metrics.{k}": v for k, v in METRIC_LIMITS.items()},
     "ball_flight.incoming_speed_kmh": (15, 240), "ball_flight.apex_height_m": (0.2, 4.0),
     "ball_flight.contact_height_m": (0.05, 3.0), "footwork.peak_speed_mps": (0, 9.5), "footwork.path_m": (0, 20),
     "footwork.approach_speed_mps": (0, 9.5), "displacement_m": (0, 20), "stance_width_m": (0.1, 2.5),
@@ -169,7 +169,7 @@ def planned_keys() -> set[str]:
     keys |= {f"class.{k}" for k in CLASS_PHASE}
     keys |= {f"footwork.{k}" for k in FOOTWORK_KEYS}
     # counted in the feet panel of «Su derecha»; factors are the situations to choose
-    keys |= {f"footwork.{k}" for k in ("first_step_type", "last_plant_foot", "move_direction", "rear_leg_step_after")}
+    keys |= {f"footwork.{k}" for k in ("first_step_type", "last_plant_foot", "move_direction", "rear_leg_step_after", "first_step_right_way")}
     keys |= {f"class.{k}" for k in FACTORS} | {"point_won"}
     keys |= {f"metrics.{spec[-1]}" for spec in METRICS.values()}
     keys |= {f"curves.{k}" for k in ("head", "hip", "hand", "racket")}
@@ -232,12 +232,13 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
         if row["status"] == "○":
             items.append(_item(1, "Taxonomía", name, "falta", "hueco medible sin implementar"))
             continue
-        found, code_ok, best, is_shown, is_planned = [], True, 0.0, False, False
+        found, code_ok, best, is_shown, is_planned, plan_any = [], True, 0.0, False, False, False
         for ident in row["ids"]:
             c = _code_ref(ident)
             if c is not None:
                 code_ok &= c
                 continue
+            plan_any |= any(_matches(ident, k) for k in planned)
             ks = [k for k in all_keys if _matches(ident, k)]
             found += ks
             for k in ks:
@@ -253,6 +254,10 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
             det = f"no aparece en los datos de ningún golpe de esta ejecución ({', '.join(row['ids'])})"
         elif best == 0:
             st, det = ("pocos datos" if few else "falta"), "en los datos, pero sin valor en ningún golpe de esta ejecución"
+        elif not is_planned and plan_any:
+            # the report shows it at one moment (e.g. the end of the backswing) where this run could not see it
+            st, det = ("pocos datos" if few else "aviso"), (f"se mide ({best:.0%} de los golpes) en otros momentos, pero no en el "
+                                                            "que enseña el informe (no se vio en esta ejecución)")
         elif not is_planned:
             st, det = "falta", f"se mide ({best:.0%} de los golpes) pero el informe no lo enseña en ninguna pantalla"
         elif not is_shown:
@@ -316,7 +321,7 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
                        "; ".join(bad) if bad else f"{len(LIMITS) + len(CURVE_LIMITS)} medidas comprobadas en {len(near)} golpes"))
     if data:
         lines = [ln for c in (model.get("cards") or []) for ln in c.get("lines") or []]
-        weak = [ln["key"] for ln in lines if (ln.get("n") or 0) < 5 or ln.get("rel") is None]
+        weak = [ln["key"] for ln in lines if (ln.get("n") or 0) < MIN_N or ln.get("rel") is None]
         items.append(_item(3, "Valores posibles", "Cada frase lleva cuántos golpes la respaldan y su fiabilidad",
                            "falta" if weak else "ok" if lines else "pocos datos",
                            f"{len(lines)} frases" + (f"; sin respaldo suficiente: {', '.join(weak[:6])}" if weak else "")))

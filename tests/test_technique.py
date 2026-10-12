@@ -191,8 +191,8 @@ def test_curves_follow_the_hip_dip_and_see_the_head_from_behind():
     # outside the clip there is no value (nothing invented)
     c2 = stroke_curves(img[40:], SK, np.full(T - 40, px), impact - 40, fps, None)
     assert c2["hip"][0] is None
-    # typical curve: needs 5 strokes; the band holds the median
-    rows = [{"technique": {"curves": c, "stroke": {"t_loaded": 0.4}, "phases": {"ball_bounce": {"t_to_contact": 0.5}}}}] * 5
+    # typical curve: needs 12 strokes; the band holds the median
+    rows = [{"technique": {"curves": c, "stroke": {"t_loaded": 0.4}, "phases": {"ball_bounce": {"t_to_contact": 0.5}}}}] * 12
     tc = _typical_curves(rows)
     assert tc["hip"]["p50"][k] == c["hip"][k] and tc["events"] == {"loaded": -0.4, "ball_bounce": -0.5}
-    assert "hip" not in _typical_curves(rows[:4])
+    assert "hip" not in _typical_curves(rows[:11])                # fewer than 12 strokes: no typical curve

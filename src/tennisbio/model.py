@@ -36,6 +36,8 @@ FACTORS = {
     "court_side": ("Lado de la pista", ["lado de su derecha", "centro", "lado de su revés"]),
     "swing": ("Efecto", ["liftado (de abajo arriba)", "plano", "cortado (de arriba abajo)"]),
     "play": ("Momento del punto", ["resto", "inicio del punto", "peloteo"]),
+    "shot_type": ("Dirección de su golpe", ["cruzada", "paralela", "al centro", "invertida cruzada", "invertida paralela",
+                                            "invertida al centro"]),
 }
 CLASS_KEYS = ["stance_loaded", "stance_impact", "stance_role", "finish", "finish_3x90", "arm", "takeback", "takeback_face",
               "ready_hands", "movement", "move_direction", "play", "shot_type", "swing", "ball_phase",
@@ -234,6 +236,7 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
     out["footwork"]["last_plant_foot"] = _counts([(s["technique"].get("footwork") or {}).get("last_plant_foot") for s in near])
     out["footwork"]["move_direction"] = _counts([(s["technique"].get("classes") or {}).get("move_direction") for s in near])
     out["footwork"]["rear_leg_step_after"] = _counts([(s["technique"].get("footwork") or {}).get("rear_leg_step_after") for s in near])
+    out["footwork"]["first_step_right_way"] = _counts([(s["technique"].get("footwork") or {}).get("first_step_right_way") for s in near])
     out["skeleton"] = _mean_skeleton(near)
     out["curves"] = _typical_curves(near)
     # points won by the phase of play of her last stroke in each point (TennisViz "conversion"
@@ -285,7 +288,7 @@ def _typical_ids(rows: list, flat: list, typical: dict, k: int = 8) -> list[str]
     return [s.get("stroke_id") for s in sorted(rows, key=capture, reverse=True)[:k] if s.get("stroke_id")]
 
 
-def _typical_curves(rows: list, min_n: int = 5) -> dict:
+def _typical_curves(rows: list, min_n: int = MIN_N) -> dict:
     """Her typical heights through the stroke (technique.stroke_curves): per curve the median and the
     usual band (25-75 %) at each instant, with at least min_n strokes there; plus the typical
     instants of her phases and of the ball (net, bounce, top), in s from contact."""

@@ -23,7 +23,7 @@ def test_audit_of_a_tiny_run(tmp_path):
     res = audit([d], None)
     by = {i["name"]: i for i in res["items"]}
     assert by["Valores dentro de límites físicos"]["status"] == "falta"
-    assert by["Dirección del golpe"]["status"] == "falta"
+    assert by["Dirección del golpe"]["status"] == "pocos datos"       # a situation now; one stroke is not enough
     assert by["Fotograma clave: espera / split step"]["status"] == "falta"
     assert by["Bola rápida / lenta"]["status"] == "pocos datos"
     assert "Auditoría" in to_markdown(res)
