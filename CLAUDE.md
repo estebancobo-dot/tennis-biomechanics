@@ -58,7 +58,8 @@ que copie registros.
 - Las rutas se leen de `config/local.yaml` (no versionado); nada de rutas absolutas en el código.
 
 ## Equipo y restricciones técnicas
-- Beelink SER5 MAX: Ryzen 7 7735U (8C/16T), 24 GB RAM, SSD 500 GB, iGPU Radeon 680M. Windows 11.
+- PC (según su propio registro, `pc-logs:equipo.txt`): Ryzen 7 8745HS (8C/16T), 20 GB RAM visibles, iGPU Radeon 780M,
+  Windows 11 (PowerShell 5.1), ~300 GB libres en C:.
 - **Sin NVIDIA / sin CUDA / sin WSL.** Inferencia con ONNX Runtime: `onnxruntime-directml`
   (iGPU) o CPU. Todo el código debe funcionar nativo en Windows (ojo con rutas, `multiprocessing` con `spawn`).
 - Python 3.11 gestionado con `uv`. ffmpeg en el PATH.

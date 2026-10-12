@@ -12,8 +12,10 @@ try {
     Ok "se actualiza con 1_instalar.bat (con Git si el proyecto esta clonado; si no, zip de GitHub)"
 
     Paso "2/7 ffmpeg (lectura de video y audio)"
+    Refrescar-Path
     if (Tiene ffmpeg) { Ok "ya estaba" } else {
-        Ejecutar winget @("install", "--id", "Gyan.FFmpeg", "-e", "--silent", "--accept-package-agreements", "--accept-source-agreements")
+        # -1978335189 / -1978335212: ya instalado o sin actualizacion (winget lo trata como error)
+        Ejecutar winget @("install", "--id", "Gyan.FFmpeg", "-e", "--silent", "--accept-package-agreements", "--accept-source-agreements") @(0, -1978335189, -1978335212)
         Refrescar-Path
         if (-not (Tiene ffmpeg)) { Aviso "ffmpeg instalado; si el paso 7 falla, cierra esta ventana y repite 1_instalar.bat" }
     }
@@ -45,7 +47,11 @@ try {
 
     Paso "7/7 Comprobacion"
     Ejecutar uv @("run", "python", "scripts/check_env.py")
-    Ejecutar uv @("run", "pytest", "-q")
+    # las pruebas no bloquean la instalacion: su resultado se guarda y llega a Claude
+    $ErrorActionPreference = "Continue"
+    uv run pytest -q -p no:cacheprovider 2>&1 | ForEach-Object { "$_" } | Tee-Object -FilePath "$Base\output\pruebas.log" | Out-Host
+    if ($LASTEXITCODE -ne 0) { Aviso "Alguna prueba automatica fallo (detalle en pruebas.log, ya enviado a Claude). Se puede seguir." }
+    $ErrorActionPreference = "Stop"
 
     Write-Host ""
     Ok "TODO LISTO."

@@ -9,14 +9,25 @@ function Ok($texto) { Write-Host $texto -ForegroundColor Green }
 function Aviso($texto) { Write-Host $texto -ForegroundColor Yellow }
 function Tiene($cmd) { [bool](Get-Command $cmd -ErrorAction SilentlyContinue) }
 function Refrescar-Path {
+    # winget deja ffmpeg en WinGet\Links; uv en .local\bin
     $env:Path = [Environment]::GetEnvironmentVariable("Path", "Machine") + ";" +
-                [Environment]::GetEnvironmentVariable("Path", "User") + ";$HOME\.local\bin"
+                [Environment]::GetEnvironmentVariable("Path", "User") + ";$HOME\.local\bin;" +
+                "$env:LOCALAPPDATA\Microsoft\WinGet\Links"
+    if (-not (Get-Command ffmpeg -ErrorAction SilentlyContinue)) {
+        $ff = Get-ChildItem "$env:LOCALAPPDATA\Microsoft\WinGet\Packages" -Recurse -Filter ffmpeg.exe -ErrorAction SilentlyContinue |
+              Select-Object -First 1
+        if ($ff) { $env:Path += ";" + $ff.DirectoryName }
+    }
 }
 # Ejecuta un programa y para todo si falla (PowerShell no lo hace solo con programas externos)
+# Su salida pasa por PowerShell para que quede en el registro (si no, el registro no dice por que fallo)
 function Ejecutar {
-    param([string]$Exe, [string[]]$Argumentos)
-    & $Exe @Argumentos
-    if ($LASTEXITCODE -ne 0) { throw "Fallo: $Exe $($Argumentos -join ' ') (codigo $LASTEXITCODE)" }
+    param([string]$Exe, [string[]]$Argumentos, [int[]]$CodigosOk = @(0))
+    $ErrorActionPreference = "Continue"           # los avisos en stderr no son errores
+    $env:UV_NO_PROGRESS = "1"
+    & $Exe @Argumentos 2>&1 | ForEach-Object { "$_" } | Out-Host
+    $code = $LASTEXITCODE
+    if ($CodigosOk -notcontains $code) { throw "Fallo: $Exe $($Argumentos -join ' ') (codigo $code)" }
 }
 # Evita que el PC se suspenda mientras el script trabaja
 function Sin-Suspender {
