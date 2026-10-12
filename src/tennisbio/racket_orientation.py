@@ -93,6 +93,12 @@ def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | N
     fps, i = run.fps, stroke.impact_frame
     a = max(0, i - int(round(window[0] * fps)))
     b = min(len(run.img), i + int(round(window[1] * fps)) + 1)
+    # the wait (split step) often comes before the window: reach back to it, with the 3D hand only
+    # around it (the frames in between keep the continuity of the face, no extra 3D)
+    ready = (stroke.phases.get("ready") or {}).get("frame")
+    a0 = a
+    if ready is not None and 0 <= ready - 1 < a:
+        a = ready - 1
     frames = read_frames(video, a, b)
     sk, wrist_k = run.sk, run.sk["dom_wrist"]
     rkps = {}
@@ -102,7 +108,9 @@ def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | N
             poly = pick_racket(polys, run.img[f, wrist_k], 0.3 * run.height_px) if polys is not None else None
             if poly is not None:
                 rkps[f] = rpose(fr, [[*poly.min(0), *poly.max(0)]])[0][0]
-    hand_frames = {f: fr for f, fr in frames.items() if (f - a) % max(1, hand3d_step) == 0} if wb3d is not None else {}
+    hand_frames = ({f: fr for f, fr in frames.items()
+                    if (f >= a0 and (f - a0) % max(1, hand3d_step) == 0) or (ready is not None and abs(f - ready) <= 1)}
+                   if wb3d is not None else {})
     cam = Camera(pitch_deg if pitch_deg is not None else 20.0)
     rec = _Recorder(wb3d, hand_frames) if wb3d is not None else None
     if hitting_face is None:      # forehand: palm side of the dominant hand; backhand: back of the hand

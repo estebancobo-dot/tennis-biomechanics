@@ -220,4 +220,51 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
             r.metrics["time_available_s"] = round((imp.frame - opp) / fps, 3)
             r.metrics["opponent_hit_source"] = "ball" if prev_ball else "audio"
         run.strokes.append(r)
+    if rackets and run.strokes:
+        _racket_at_ready(run, video, cache, imgsz, height_m, timing)
     return run
+
+
+def _racket_at_ready(run: ClipRun, video: Path, cache: Path, imgsz: int, height_m: float, timing: dict):
+    """The racket outline is segmented from the backswing on; the wait (split step) usually comes
+    earlier. Only the frames around each stroke's wait are added (3 per stroke, a separate cache),
+    so the racket and its face are known there too without segmenting the whole approach."""
+    import time
+    from .racket import pick_racket, racket_from_polygon
+
+    T = len(run.img)
+    want = sorted({f for s in run.strokes for r0 in [(s.phases.get("ready") or {}).get("frame")] if r0 is not None
+                   for f in range(r0 - 1, r0 + 2) if 0 <= f < T and not len(run.rackets[f])})
+    if not want:
+        return
+    rcache = cache.with_name(cache.stem + "_rackets_ready.npz")
+    rd = load_npz(rcache)
+    if rd is None or not set(want) <= set(rd["frames"].tolist()):
+        from .pose.yolo import extract_rackets
+        t_ = time.time()
+        old = {} if rd is None else {int(f): p for f, p in zip(rd["frames"], rd["polys"])}
+        extract_rackets(video, sorted(set(want) | set(old)), rcache, imgsz=imgsz)
+        timing["raqueta"] = timing.get("raqueta", 0.0) + time.time() - t_
+        rd = load_npz(rcache)
+    if rd is None:
+        return
+    for f, p in zip(rd["frames"], rd["polys"]):
+        if 0 <= int(f) < T and not len(run.rackets[int(f)]):
+            run.rackets[int(f)] = p
+    dw = run.sk["dom_wrist"]
+    for s in run.strokes:
+        f = (s.phases.get("ready") or {}).get("frame")
+        if f is None or (s.racket.get("ready") or {}).get("detected"):
+            continue
+        poly = pick_racket(run.rackets[f], run.img[f, dw], max_dist=0.25 * run.height_px)
+        obs = racket_from_polygon(poly, run.img[f, dw]) if poly is not None else None
+        if obs is None:
+            continue
+        h = float(run.height_t[f]) if run.height_t is not None and np.isfinite(run.height_t[f]) else run.height_px
+        above = (run.img[f, dw, 1] - obs.head[1]) / h * height_m * 100
+        el = obs.elevation_deg
+        s.racket["ready"] = dict(detected=True, elevation_deg=round(float(el), 1), head_above_wrist_cm=round(float(above), 1))
+        t_rel = round((f - s.impact_frame) / run.fps, 3)
+        for e in s.racket_track:
+            if e[0] == t_rel and e[1] is None:
+                e[1], e[2] = round(float(el), 1), round(float(above), 1)
