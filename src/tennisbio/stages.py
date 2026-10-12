@@ -435,7 +435,7 @@ def _player_fields(p) -> dict:
             "grip": [getattr(p, "forehand_grip_close_deg", None), getattr(p, "backhand_grip_close_deg", None)]}
 
 
-@stage("fine", "7", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
+@stage("fine", "8", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
        code=FINE_CODE, match_fields=lambda m: _player_fields(m.player))
 def st_fine(ctx: Context):
     """Full-quality analysis of the target player's candidates. Runs whose identity could not be
@@ -520,17 +520,28 @@ def _fine(ctx: Context, p, keep, out_name: str):
     ph = hashlib.sha1(json.dumps([ctx.cfg.get("yolo_pose", "yolo11m-pose.pt"), ctx.cfg.get("fine_imgsz", 1280),
                                   model_state(bcfg.get("onnx")), "v2"]).encode()).hexdigest()[:8]
     strokes, errors = [], []
-    kept = [(k, c) for k, c in enumerate(cands) if keep(c)]
-    for n, (k, c) in enumerate(kept):
-        if n and n % 20 == 0:
-            ctx.log(f"  {n}/{len(kept)} golpes candidatos")
+    kept = sorted((c for c in cands if keep(c)), key=lambda c: (c.get("side", "near"), c["t"]))
+    # candidates whose windows overlap (strokes of the same rally) share one window: the pose,
+    # ball and racket of those frames are computed once
+    groups = []
+    for c in kept:
+        g = groups[-1] if groups else None
+        if (g and g[-1].get("side", "near") == c.get("side", "near") and c["t"] - g[-1]["t"] < pre + post
+                and c["t"] - g[0]["t"] < 10.0):
+            g.append(c)
+        else:
+            groups.append([c])
+    done = 0
+    for g in groups:
+        if done // 20 != (done + len(g)) // 20:
+            ctx.log(f"  {done + len(g)}/{len(kept)} golpes candidatos")
+        done += len(g)
         try:
-            d = _fine_one(ctx, p, c, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose, wb3d, fcfg)
+            strokes += _fine_one(ctx, p, g, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose, wb3d, fcfg)
         except Exception as e:                    # one bad window never stops the match
-            errors.append({"t": c["t"], "error": f"{type(e).__name__}: {e}", "trace": traceback.format_exc()[-1500:]})
-            continue
-        if d is not None:
-            strokes.append(d)
+            for c in g:
+                errors.append({"t": c["t"], "error": f"{type(e).__name__}: {e}", "trace": traceback.format_exc()[-1500:]})
+    strokes.sort(key=lambda d: d["match_time_s"])
     _write(ctx.path(out_name), strokes)
     _write(ctx.path(out_name.replace(".json", "_errores.json")), errors)
     if errors:
@@ -539,35 +550,53 @@ def _fine(ctx: Context, p, keep, out_name: str):
             "forehands": sum(s["stroke"] == "forehand" for s in strokes)}
 
 
-def _fine_one(ctx, p, c, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose, wb3d, fcfg):
-    """One candidate: cut its window, pose, ball, phases, metrics, court, outcome, racket, series."""
+def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose, wb3d, fcfg):
+    """Candidates of one stretch of play (overlapping windows): one window is cut and analysed once
+    (pose, ball, rackets), then each candidate gets its phases, metrics, court, outcome, racket and
+    technique. Returns the confirmed strokes."""
     from .clip_pipeline import run_clip
     from .pose.backend import set_device
 
     set_device(ctx.cfg.get("device", "cpu"))
 
+    c = group[0]
     t0 = max(0.0, c["t"] - pre)
+    dur = group[-1]["t"] + post - t0
     # named by its interval (not by its position in the list): a new candidate elsewhere never
     # renames, and so never re-analyses, the existing windows
-    wid = f"w{int(round(t0 * 1000)):09d}_{int((pre + post) * 1000)}"
-    clip = cut_window(ctx.match.video, t0, pre + post, ctx.path("windows") / f"{wid}.mp4", interlaced)
+    wid = f"w{int(round(t0 * 1000)):09d}_{int(round(dur * 1000))}"
+    clip = cut_window(ctx.match.video, t0, dur, ctx.path("windows") / f"{wid}.mp4", interlaced)
     side = c.get("side", "near")
     extra, cache = {}, clip.with_name(f"{clip.stem}_{ph}.npz")
     if side == "far":
         fi = far_start(clip, court_at(court, c["t"])[0])
         if fi is None:
-            return None                       # no court or no far player found: nothing reliable
+            return []                         # no court or no far player found: nothing reliable
         extra, cache = dict(side="far", **fi), clip.with_name(f"{clip.stem}_{ph}_far.npz")
     run = run_clip(clip, cache, p.hand, p.height_m, init_mode="near", rackets=side == "near",
                    imgsz=ctx.cfg.get("fine_imgsz", 1280), log=lambda *_: None, ball=ball, **extra)
     if side == "far":                         # far strokes count only when the ball confirms them
         run.strokes = [s for s in run.strokes if "ball" in s.impact_source]
     if not run.strokes:
-        return None
+        return []
+    out, used = [], set()
+    for c in group:
+        d = _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets, scenes, rpose, wb3d, fcfg)
+        if d is not None:
+            out.append(d)
+    return out
+
+
+def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets, scenes, rpose, wb3d, fcfg):
+    """One confirmed stroke of an analysed window, or None."""
     target = (c["t"] - t0) * run.fps
-    r = min(run.strokes, key=lambda s: abs(s.impact_frame - target))
+    free = [s for s in run.strokes if s.impact_frame not in used]
+    if not free:
+        return None
+    r = min(free, key=lambda s: abs(s.impact_frame - target))
     if abs(r.impact_frame - target) > 0.4 * run.fps:
         return None                           # the fine pass did not confirm this candidate
+    used.add(r.impact_frame)
     d = r.to_dict()
     t_imp = t0 + r.impact_frame / run.fps
     d.update(window=str(clip.name), window_start_s=t0, match_time_s=t_imp, candidate_audio=c.get("audio"),
@@ -656,7 +685,7 @@ def _fine_one(ctx, p, c, pre, post, interlaced, ph, court, score, onsets, scenes
                           "phases": {}, "stroke": {}, "footwork": {}}
     sdir = ctx.path("series")
     sdir.mkdir(exist_ok=True)
-    sname = f"{wid}_{side}.json"
+    sname = f"{wid}_{side}_{r.impact_frame}.json"
     _write(sdir / sname, ser)
     d.update(series=f"series/{sname}", window_impact_s=r.impact_frame / run.fps)
     return d
