@@ -30,6 +30,10 @@ Después: revés, saque, volea y otros jugadores.
 10. **Orden:** primero la base completa de la derecha (no otros golpes); exportación hecha;
     **móvil/nube al final**, cuando todo funcione en el PC. El PC no puede ser servidor.
 
+**Referencia de completitud:** `docs/matriz_cobertura.md` (taxonomía de la derecha con fuentes:
+ITF/Elliott-Reid-Crespo, Landlinger, Knudson, Tennis Australia, estudios de pies, sistemas
+profesionales). Toda medida nueva sale de ella y se marca allí; los huecos medibles se cierran.
+
 ## Plan vigente (en orden)
 1. Corregir los fallos graves de `docs/revision_completa.md` (identidad, cara en el impacto,
    cadena cinética, medidas con escala por fotograma, ventana previa, entrelazado, robustez,
