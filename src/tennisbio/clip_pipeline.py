@@ -38,6 +38,7 @@ class ClipRun:
     hits: list = field(default_factory=list)     # ball turns of both players (tennisbio.ball.BallHit)
     strokes: list[StrokeResult] = field(default_factory=list)
     height_t: np.ndarray | None = None          # body height in px per frame (kinematics.scale_track)
+    timing: dict = field(default_factory=dict)   # seconds spent in each model (only what was computed now)
 
 
 def _cv2_frames(video: Path):
@@ -90,8 +91,11 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     reads as for a player seen from behind (run.img keeps the real image coordinates).
     roi: run the pose on that region only, or "follow" (far player: an enlarged crop that follows
     her from init_box; pose.yolo.extract_follow)."""
+    import time
     video, cache = Path(video), Path(cache)
     cache.parent.mkdir(parents=True, exist_ok=True)
+    timing = {}
+    t_ = time.time()
     if load_npz(cache) is None:          # missing or damaged (interrupted run): extract again
         from .pose.yolo import extract
         if roi == "follow":            # small far player: crop that follows her, enlarged
@@ -102,6 +106,7 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     d = load_npz(cache)
     if d is None:
         raise RuntimeError(f"no se pudo extraer la pose de {video.name}")
+    timing["pose"] = time.time() - t_
     fps, boxes, kps, confs, feats = float(d["fps"]), d["boxes"], d["kps"], d["confs"], d["feats"]
     sk = Skeleton("coco17", hand)
     T = len(boxes)
@@ -148,8 +153,10 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
             bcache.unlink(missing_ok=True)
             ball_track = None
         if ball_track is None:      # same decoder as the pose extraction, so frame indices match
+            t_ = time.time()
             ball_track = ball.track(_cv2_frames(video), step=max(1, round(fps / 25)))
             save_npy_atomic(bcache, ball_track)
+            timing["bola"] = time.time() - t_
         ball_track = clean_track(ball_track, width=fw)
         n = min(T, len(ball_track))
         hits = ball_hits(ball_track[:n], fh, fps)
@@ -166,15 +173,22 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     run.ball = ball_track
     run.height_t = height_t
 
+    run.timing = timing
     run.rackets = [[] for _ in range(T)]
     if rackets and impacts:
         rcache = cache.with_name(cache.stem + "_rackets.npz")
-        need = sorted({f for imp in impacts for f in range(max(0, imp.frame - int(fps)), min(T, imp.frame + int(0.8 * fps) + 1))})
+        # the racket outline (slow model) from the backswing to the finish, one frame in two at
+        # 50-60 fps: the racket keypoints and the face need it there, not all over the window
+        step = 2 if fps >= 40 else 1
+        need = sorted({f for imp in impacts
+                       for f in range(max(0, imp.frame - int(0.7 * fps)), min(T, imp.frame + int(0.5 * fps) + 1), step)})
         rd = load_npz(rcache)
         if rd is None or not set(need) <= set(rd["frames"].tolist()):
             from .pose.yolo import extract_rackets
             log(f"segmentando la raqueta en {len(need)} fotogramas")
+            t_ = time.time()
             extract_rackets(video, need, rcache, imgsz=imgsz)
+            timing["raqueta"] = time.time() - t_
             rd = load_npz(rcache)
         for f, p in zip(rd["frames"], rd["polys"]):
             run.rackets[int(f)] = p

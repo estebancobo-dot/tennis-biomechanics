@@ -76,12 +76,23 @@ def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", im
 
 
 def extract_rackets(video: str | Path, frames, out: str | Path, seg_model="yolo11m-seg.pt", imgsz=960) -> Path:
-    """Racket outlines (segmentation) only for the given frame indices, saved to .npz."""
-    from ultralytics import YOLO
+    """Racket outlines (segmentation) only for the given frame indices, saved to .npz. Runs the ONNX
+    export on the iGPU (DirectML) when it is there (5x faster than PyTorch on the CPU)."""
+    from .backend import DEFAULT_DEVICE
+    from .yolo_onnx import MODELS_DIR, YoloOnnx, export_onnx
 
-    from .yolo_onnx import MODELS_DIR
-    # a bare name lives in models/ (downloaded there the first time), never in the current directory
-    seg = YOLO(str(MODELS_DIR / seg_model) if Path(seg_model).name == str(seg_model) else seg_model)
+    name = Path(seg_model).stem
+    onnx = MODELS_DIR / f"{name}_{imgsz}.onnx"
+    if not onnx.exists():
+        try:
+            onnx = export_onnx(name, imgsz)
+        except Exception:
+            onnx = None
+    seg_onnx = YoloOnnx(onnx, DEFAULT_DEVICE) if onnx is not None and onnx.exists() else None
+    if seg_onnx is None:
+        from ultralytics import YOLO
+        # a bare name lives in models/ (downloaded there the first time), never in the current directory
+        seg = YOLO(str(MODELS_DIR / seg_model) if Path(seg_model).name == str(seg_model) else seg_model)
     cap = open_capture(video)
     frames = sorted(set(int(f) for f in frames))
     polys, pos = [], -1
@@ -92,6 +103,9 @@ def extract_rackets(video: str | Path, frames, out: str | Path, seg_model="yolo1
         pos = f
         if not ok:
             polys.append([])
+            continue
+        if seg_onnx is not None:
+            polys.append(seg_onnx.segment(frame, RACKET_CLASS, conf=0.15))
             continue
         s = seg.predict(frame, imgsz=imgsz, conf=0.15, classes=[RACKET_CLASS], verbose=False)[0]
         polys.append([p.astype(np.float32) for p in (s.masks.xy if s.masks is not None else [])])

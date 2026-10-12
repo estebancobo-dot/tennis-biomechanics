@@ -74,3 +74,36 @@ class YoloOnnx:
         kp = p[:, 5:].reshape(-1, 17, 3)
         undo = lambda xy: (xy - [dx, dy]) / s
         return undo(boxes.reshape(-1, 2, 2)).reshape(-1, 4), p[:, 4], undo(kp[..., :2]), kp[..., 2]
+
+    def segment(self, img: np.ndarray, cls: int, conf=0.15, iou=0.7, n_classes=80) -> list[np.ndarray]:
+        """Outlines (polygons (n, 2) in image px) of the objects of one class, as Ultralytics'
+        masks.xy: box + 32 mask coefficients per detection, combined with the prototype masks."""
+        h0, w0 = img.shape[:2]
+        x, s, (dx, dy) = letterbox(img, self.size)
+        out = self.infer(x)
+        p, protos = out[0][0].T, out[1][0]                 # (anchors, 4 + classes + 32), (32, mh, mw)
+        score = p[:, 4 + cls]
+        keep = score >= conf
+        p, score = p[keep], score[keep]
+        if not len(p):
+            return []
+        xywh = p[:, :4]
+        boxes = np.c_[xywh[:, :2] - xywh[:, 2:] / 2, xywh[:, :2] + xywh[:, 2:] / 2]
+        idx = np.array(cv2.dnn.NMSBoxes(np.c_[boxes[:, :2], xywh[:, 2:]].tolist(), score.tolist(), conf, iou)).ravel()
+        nm, mh, mw = protos.shape
+        coef = p[idx, 4 + n_classes:4 + n_classes + nm]
+        masks = 1 / (1 + np.exp(-(coef @ protos.reshape(nm, -1)))).reshape(-1, mh, mw)
+        polys = []
+        r = mw / self.size                                  # letterbox px → prototype px
+        for m, b in zip(masks, boxes[idx]):
+            x0, y0, x1, y1 = (b * r).round().astype(int)
+            crop = np.zeros_like(m)
+            crop[max(0, y0):max(0, y1), max(0, x0):max(0, x1)] = m[max(0, y0):max(0, y1), max(0, x0):max(0, x1)]
+            up = cv2.resize(crop, (self.size, self.size), interpolation=cv2.INTER_LINEAR)
+            nh, nw = round(h0 * s), round(w0 * s)
+            up = up[dy:dy + nh, dx:dx + nw]
+            full = cv2.resize(up, (w0, h0), interpolation=cv2.INTER_LINEAR) > 0.5
+            cs, _ = cv2.findContours(full.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+            if cs:                                          # all pieces, as Ultralytics' masks.xy
+                polys.append(np.concatenate([c.reshape(-1, 2) for c in cs]).astype(np.float32))
+        return polys

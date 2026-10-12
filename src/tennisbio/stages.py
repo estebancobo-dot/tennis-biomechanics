@@ -662,7 +662,7 @@ def cut_window(video: Path, t0: float, dur: float, dest: Path, interlaced: bool 
 
 def _fine_settings(c):
     rf = c.get("racket_face") or {}
-    return {"fine": c["fine_pass"], "imgsz": c.get("fine_imgsz", 1280), "ball": c.get("ball"),
+    return {"fine": c["fine_pass"], "imgsz": c.get("fine_imgsz", 960), "ball": c.get("ball"),
             "racket_face": rf, "include_undecided": c.get("include_undecided", False),
             # the models themselves: adding or replacing one re-runs the fine pass
             "models": {"ball": model_state((c.get("ball") or {}).get("onnx")), "racket": model_state(rf.get("pose_onnx")),
@@ -671,7 +671,7 @@ def _fine_settings(c):
 
 FINE_CODE = ("stages", "clip_pipeline", "stroke_analysis", "phases", "kinematics", "impacts", "ball", "court_metrics",
              "outcome", "series", "racket", "racket3d", "racket_face", "racket_orientation", "tracking", "technique",
-             "footwork")
+             "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend")
 
 
 def _player_fields(p) -> dict:
@@ -759,7 +759,7 @@ def _fine(ctx: Context, p, keep, out_name: str):
         ctx.log(f"  AVISO: {w}")
     interlaced = bool(_read(ctx.path("probe.json")).get("interlaced")) if ctx.path("probe.json").exists() else False
     # caches of the pose, ball and racket of each window carry the models and settings that made them
-    ph = hashlib.sha1(json.dumps([ctx.cfg.get("yolo_pose", "yolo11m-pose.pt"), ctx.cfg.get("fine_imgsz", 1280),
+    ph = hashlib.sha1(json.dumps([ctx.cfg.get("yolo_pose", "yolo11m-pose.pt"), ctx.cfg.get("fine_imgsz", 960),
                                   model_state(bcfg.get("onnx")), "v2"]).encode()).hexdigest()[:8]
     strokes, errors = [], []
     kept = sorted((c for c in cands if keep(c)), key=lambda c: (c.get("side", "near"), c["t"]))
@@ -774,6 +774,7 @@ def _fine(ctx: Context, p, keep, out_name: str):
         else:
             groups.append([c])
     done = 0
+    _TIMES.clear()
     for g in groups:
         if done // 20 != (done + len(g)) // 20:
             ctx.log(f"  {done + len(g)}/{len(kept)} golpes candidatos")
@@ -793,7 +794,17 @@ def _fine(ctx: Context, p, keep, out_name: str):
     if errors:
         ctx.log(f"  {len(errors)} golpes no se pudieron analizar (detalle en {out_name.replace('.json', '_errores.json')})")
     return {"candidates": len(kept), "confirmed": len(strokes), "errors": len(errors), "warnings": warnings,
-            "forehands": sum(s["stroke"] == "forehand" for s in strokes)}
+            "forehands": sum(s["stroke"] == "forehand" for s in strokes), "windows": len(groups),
+            # where the time goes (seconds; only what was computed now, not read from the caches)
+            "seconds": {k: round(v, 1) for k, v in sorted(_TIMES.items(), key=lambda kv: -kv[1])}}
+
+
+_TIMES: dict = {}
+
+
+def _took(key: str, t0: float):
+    import time
+    _TIMES[key] = _TIMES.get(key, 0.0) + time.time() - t0
 
 
 def _rally_position(strokes: list[dict], cands: list[dict], scenes: dict) -> None:
@@ -865,8 +876,11 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
     t0, dur, wid = _window_of(group, pre, post)
     pr = _read(ctx.path("probe.json")) if ctx.path("probe.json").exists() else {}
     track = _read(ctx.path("audio_track.json"))["track"] if ctx.path("audio_track.json").exists() else 0
+    import time
+    t_ = time.time()
     clip = cut_window(ctx.video, t0, dur, ctx.path("windows") / f"{wid}.mp4", interlaced, track,
                       pr.get("width", 0), pr.get("fps") if pr.get("vfr") else None)
+    _took("recorte", t_)
     ws = window_scale(pr.get("width", 0))
     side = c.get("side", "near")
     extra, cache = {}, clip.with_name(f"{clip.stem}_{ph}.npz")
@@ -875,8 +889,12 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
         if fi is None:
             return []                         # no court or no far player found: nothing reliable
         extra, cache = dict(side="far", **fi), clip.with_name(f"{clip.stem}_{ph}_far.npz")
+    t_ = time.time()
     run = run_clip(clip, cache, p.hand, p.height_m, init_mode="near", rackets=side == "near",
-                   imgsz=ctx.cfg.get("fine_imgsz", 1280), log=lambda *_: None, ball=ball, **extra)
+                   imgsz=ctx.cfg.get("fine_imgsz", 960), log=lambda *_: None, ball=ball, **extra)
+    for k, v in run.timing.items():
+        _TIMES[k] = _TIMES.get(k, 0.0) + v
+    _took("analisis_ventana", t_ + sum(run.timing.values()))         # the rest of run_clip
     if side == "far":                         # far strokes count only when the ball confirms them
         run.strokes = [s for s in run.strokes if "ball" in s.impact_source]
     if not run.strokes:
@@ -965,8 +983,13 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
     if fcfg.get("enabled", True) and side == "near":      # strings: not measurable at the far end
         from .racket_orientation import stroke_faces
         grip = p.backhand_grip_close_deg if r.stroke == "backhand" else p.forehand_grip_close_deg
+        import time
+        t_ = time.time()
+        # the 3D hand model is slow: about 12 frames per second of play whatever the broadcast rate
+        step3d = max(int(fcfg.get("hand3d_step", 2)), int(round(run.fps / 12.5)))
         faces = stroke_faces(clip, run, r, p.height_m, pitch if H_img is not None else None, rpose, wb3d,
-                             fcfg.get("hand3d_step", 2), grip)
+                             step3d, grip)
+        _took("cuerdas_y_3d", t_)
         d["face"] = faces["phases"]
         d["metrics"].update(faces["trunk3d"])
         ser["face"] = {key: faces[key] for key in ("first", "tilt", "yaw", "label", "observed", "keypoints", "source", "hand3d", "rot3d")}
