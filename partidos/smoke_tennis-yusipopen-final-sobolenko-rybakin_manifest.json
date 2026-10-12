@@ -53,13 +53,13 @@
   }
  },
  "court": {
-  "fingerprint": "c80a7943f1d34fad",
+  "fingerprint": "7e8b4ef3a5956a18",
   "version": "2",
-  "seconds": 27.5,
-  "finished": "2026-10-12 15:36:53",
+  "seconds": 998.6,
+  "finished": "2026-10-13 01:52:38",
   "summary": {
-   "segments": 20,
-   "with_court": 11,
+   "segments": 162,
+   "with_court": 82,
    "pitch_deg_median": 18.3
   }
  },
