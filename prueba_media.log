@@ -1,0 +1,58 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261013004917
+Username: esteban\esteb
+RunAs User: esteban\esteb
+Configuration Name: 
+Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
+Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\prueba_rapida.ps1 -Minutos 35
+Process ID: 13804
+PSVersion: 5.1.26100.9549
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
+BuildVersion: 10.0.26100.9549
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+From https://github.com/estebancobo-dot/tennis-biomechanics
+ * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
+Already up to date.
+Resolved 110 packages in 1ms
+Checked 83 packages in 3ms
+Video: C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv
+
+==> [2026-10-13 00:49:17] 1/4 Comprobacion del entorno
+Python   3.11.17  (Windows-10-10.0.26200-SP0)
+CPUs     16
+ffmpeg   C:\Users\esteb\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffmpeg.EXE
+ffprobe  C:\Users\esteb\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffprobe.EXE
+git      C:\Program Files\Git\cmd\git.EXE
+uv       C:\Users\esteb\.local\bin\uv.EXE
+numpy        2.4.6
+pandas       3.0.6
+cv2          5.0.0
+librosa      0.11.0
+onnxruntime  1.24.4
+ultralytics  8.4.175
+rapidocr_onnxruntime ?
+ORT providers: ['DmlExecutionProvider', 'CPUExecutionProvider']
+balltrack.onnx     OK
+racketpose.onnx    OK
+rtmw3d-x.onnx      OK
+yolo11m-pose_960.onnx OK
+yolo11m-pose_1280.onnx OK
+
+C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv
+  contenedor matroska,webm  duración 210.4 min  tamaño 5.53 GB  bitrate 3.5 Mb/s
+  vídeo  h264 1920x1080  r_frame_rate=50/1 avg_frame_rate=50/1  field_order=progressive  pix_fmt=yuv420p
+  audio  aac 48000 Hz  2 canales
+  audio  aac 48000 Hz  2 canales
+    (paso terminado en 2 s)
+
+==> [2026-10-13 00:49:19] 2/4 Velocidad de este equipo (5 min, solo la primera vez)
+ya medida
+    (paso terminado en 0 s)
+
+==> [2026-10-13 00:49:19] Vista lateral: videos de entrenamiento de la jugadora (YouTube; solo lo que falte)
