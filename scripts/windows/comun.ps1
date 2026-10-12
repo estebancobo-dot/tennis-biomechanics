@@ -107,6 +107,11 @@ function Subir-Registros {
                 Copy-Item "$($a[0])\capturas\*" $c -Force -ErrorAction SilentlyContinue
             }
         }
+        # videos de analisis de entrenadores (texto e imagenes pequenas), una sola vez
+        if ((Test-Path "$Base\output\investigacion\indice.json") -and -not (Test-Path "$d\investigacion\indice.json")) {
+            New-Item -ItemType Directory -Force -Path "$d\investigacion" | Out-Null
+            Copy-Item "$Base\output\investigacion\*" "$d\investigacion" -Recurse -Force -ErrorAction SilentlyContinue
+        }
         if (Test-Path "$Base\output\progreso.json") { Copy-Item "$Base\output\progreso.json" "$d\progreso.json" -Force }
         if (Test-Path "$Base\output\_smoke\progreso.json") { Copy-Item "$Base\output\_smoke\progreso.json" "$d\progreso_prueba.json" -Force }
         foreach ($f in @("$Base\output\benchmark\results.json", "$Base\datasets\reports\f3set_validation.json")) {

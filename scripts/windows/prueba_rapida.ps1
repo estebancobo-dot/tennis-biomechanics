@@ -42,6 +42,15 @@ try {
         }
     }
 
+    # una sola vez: videos de analisis de entrenadores (solo texto e imagenes pequenas) para que Claude
+    # aprenda como analizan y explican una derecha; nunca se usan como datos de la jugadora
+    Paso "Extra: videos de analisis de entrenadores en YouTube (10-20 min, solo la primera vez)"
+    if (Test-Path "$Base\output\investigacion\indice.json") { Ok "ya hecho" }
+    else {
+        try { Ejecutar uv @("run", "python", "scripts/youtube_research.py", "--out", "$Base\output\investigacion") }
+        catch { Write-Host "No se pudieron bajar (no impide usar el programa)." -ForegroundColor Yellow }
+    }
+
     $informe = "$Base\output\_smoke\informe\index.html"
     if (Test-Path $informe) { Start-Process $informe }
     Write-Host ""
