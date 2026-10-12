@@ -52,6 +52,16 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
   40 fps (d3d11va). Estimación lineal 5,6 h por partido sin la pasada fina → ~1 día los 4. La etapa
   de jugadores domina (277 s por 4 min).
 
+- Tercera/cuarta prueba: 10 golpes confirmados (6 derechas), identidad decidida (voto de resto).
+  Pasada fina 93 → 26 s por golpe (raqueta en la iGPU en proceso aparte: el controlador DirectML
+  dio un 0xC0000005 en el proceso principal). Estimación ~5 h por partido (~2 h jugadores, ~2 h
+  pasada fina). Progreso por etapa con % y tiempo restante; hojas de imágenes de cada golpe.
+- Revisión a ojo de los 10 golpes: derecha/revés 10/10; apoyo razonable. Corregido: "en el aire"
+  (10/10 por la perspectiva al avanzar), terminación de revés, "cómo llega" = velocidad antes del
+  swing (en el contacto el cuerpo se mueve 2-3 m/s por el traslado de peso). Pasos uno a uno, apoyos
+  y split step NO medibles en esta retransmisión (tobillos de ~190 px a 50 fps tiemblan 0,2-1 m/s):
+  se ocultan por golpe cuando un pie no se ve quieto en ≥ 40 % de los fotogramas.
+
 ### Pedido por el usuario y pendiente (después de arreglar su retransmisión)
 - Lo que hace respecto a la bola en cada momento (cruza la red, cae, bota, sube; golpea subiendo /
   arriba / cayendo) y curvas sincronizadas con el vídeo (cabeza, cadera, muñeca, raqueta) con su
