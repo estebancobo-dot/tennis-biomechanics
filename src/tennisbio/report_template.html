@@ -236,8 +236,10 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .mhead { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: start; }
 .msum { display: grid; gap: 6px; font-size: 14px; line-height: 1.45; }
 .msum li { margin-left: 18px; }
-.sitbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 12px 16px; border-top: 1px solid var(--line); }
+.sitbar { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 8px 14px; align-items: center; padding: 12px 16px; border-top: 1px solid var(--line); }
+.sitbar .fl { font-size: 12px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .04em; }
 .sitbar .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+@media (max-width: 640px) { .sitbar { grid-template-columns: minmax(0, 1fr); } }
 .sitbar .chips button { font-size: 12px; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--ink-2); cursor: pointer; }
 .sitbar .chips button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
 .sitbar .chips button small { opacity: .75; margin-left: 4px; }
@@ -250,7 +252,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .pcard canvas { width: 100%; aspect-ratio: 4 / 5; display: block; background: #000; cursor: pointer; }
 .pcard h3 { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px 4px; margin: 0; font-size: 15px; }
 .pcard h3 .ch { font-size: 11px; font-weight: 600; color: var(--accent-ink); background: var(--accent); border-radius: 999px; padding: 1px 8px; }
-.pcard ul { list-style: none; margin: 0; padding: 4px 12px 12px; display: grid; gap: 6px; font-size: 13px; line-height: 1.4; color: var(--ink); }
+.pcard ul { list-style: none; margin: 0; padding: 4px 12px 12px; display: grid; gap: 6px; font-size: 13px; line-height: 1.4; color: var(--ink); align-content: start; }
 .pcard li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: baseline; }
 .pcard li.chg { color: var(--accent); }
 .pcard li .dv { font: 600 11px var(--mono); }
@@ -290,7 +292,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
   <div class="panel">
     <header><h2 id="m-title">Su golpe</h2><span class="note" id="m-n"></span></header>
     <div class="body mhead"><ul class="msum" id="m-sum"></ul><button class="btn pri" id="m-play">▶ Ver sus golpes típicos</button></div>
-    <div class="sitbar"><span class="note" style="min-width:90px">Situación</span><div class="chips" id="m-sit"></div></div>
+    <div class="sitbar" id="m-sit"></div>
     <div class="mchanges" id="m-changes" hidden></div>
   </div>
   <div class="mlegend"><span><i style="background:#e3e8ec"></i>Esqueleto de un golpe real típico</span><span><i style="background:var(--accent)"></i>Postura media de todos sus golpes de esta situación</span><span>Pulsa una imagen para ver ese momento en vídeo</span></div>
@@ -1295,8 +1297,8 @@ document.getElementById("m-nm").innerHTML = (MODEL.not_measurable || []).map(t =
 (function sitChips() {
   const byF = {};
   Object.entries(MODEL.variants || {}).forEach(([k, v]) => { (byF[v.factor] = byF[v.factor] || { name: v.factor_name, items: [] }).items.push([k, v]); });
-  let h = `<button data-k="" aria-pressed="true">Todas</button>`;
-  Object.values(byF).forEach(f => { h += `<span class="note" style="margin-left:6px">${f.name}:</span>` + f.items.map(([k, v]) => `<button data-k="${k}" aria-pressed="false" title="${v.n} golpes${v.usual ? " · su situación habitual" : ""}">${v.level}<small>${Math.round(v.share * 100)} %</small></button>`).join(""); });
+  let h = `<span class="fl">Situación</span><div class="chips"><button data-k="" aria-pressed="true">Todas sus ${STROKE_ES[DATA.stroke] ? STROKE_ES[DATA.stroke].toLowerCase() + "s" : "golpes"}</button></div>`;
+  Object.values(byF).forEach(f => { h += `<span class="fl">${f.name}</span><div class="chips">` + f.items.map(([k, v]) => `<button data-k="${k}" aria-pressed="false" title="${v.n} golpes${v.usual ? " · su situación habitual" : ""}">${v.level}<small>${Math.round(v.share * 100)} %</small></button>`).join("") + `</div>`; });
   const el = document.getElementById("m-sit"); el.innerHTML = h;
   el.addEventListener("click", ev => { const b = ev.target.closest("button[data-k]"); if (!b) return; mSit = b.dataset.k; el.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b)); renderModel(); });
 })();

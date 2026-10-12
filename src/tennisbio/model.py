@@ -17,6 +17,7 @@ Nothing is invented: a descriptor without enough strokes is left out; every numb
 many strokes it stands.
 """
 import math
+import warnings
 
 import numpy as np
 
@@ -28,7 +29,7 @@ FACTORS = {
     "depth": ("Dónde golpea", ["dentro de la pista", "sobre la línea", "1-2 m detrás", "2-4 m detrás", "muy atrás"]),
     "width": ("Desplazamiento", ["centrada", "abierta", "muy abierta"]),
     "movement": ("Cómo llega", ["parada", "en movimiento", "en carrera", "deslizando", "en el aire"]),
-    "intent": ("Situación", ["ataque", "neutra", "defensa"]),
+    "intent": ("Intención", ["ataque", "neutra", "defensa"]),
     "stance_impact": ("Apoyo", ["abierto", "semiabierto", "neutro", "cerrado"]),
     "court_side": ("Lado de la pista", ["lado de su derecha", "centro", "lado de su revés"]),
 }
@@ -232,6 +233,8 @@ def _mean_skeleton(rows: list) -> dict:
         poses = [s["technique"].get("pose", {}).get(p) for s in rows]
         poses = [np.array([[np.nan, np.nan] if v is None else v for v in q], float) for q in poses if q]
         if len(poses) >= 5:
-            m = np.nanmedian(np.stack(poses), axis=0)
+            with warnings.catch_warnings():
+                warnings.simplefilter("ignore", RuntimeWarning)       # joints never seen
+                m = np.nanmedian(np.stack(poses), axis=0)
             out[p] = [None if not np.isfinite(v).all() else [round(float(v[0]), 3), round(float(v[1]), 3)] for v in m]
     return out

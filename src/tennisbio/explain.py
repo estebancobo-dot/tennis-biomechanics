@@ -132,6 +132,9 @@ def phase_cards(model: dict, stroke: str, factor: str | None = None, level: str 
             except (TypeError, ValueError, KeyError):
                 continue
             e = eff.get(key)
+            if e:                         # the value in this situation, not only the difference
+                d = 2 if t["unit"] in ("s", "m", "m/s", "") else 0
+                text = f"{text} En esta situación: {fmt(t['median'] + e['diff'], d)}{_u(t['unit'])}."
             lines.append({"key": key, "text": text, "rel": t["rel"], "n": t["n"],
                           "change": None if not e else {"diff": round(e["diff"], 3), "unit": t["unit"], "ref": e["ref"]}})
         for ck, cp in CLASS_PHASE.items():
