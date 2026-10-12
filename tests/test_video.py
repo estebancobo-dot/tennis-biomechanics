@@ -10,7 +10,9 @@ def interlaced_video(tmp_path_factory):
     path = tmp_path_factory.mktemp("video") / "inter.mp4"
     subprocess.run(
         ["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "testsrc=duration=2:size=640x360:rate=25",
-         "-f", "lavfi", "-i", "sine=d=2", "-shortest", "-flags", "+ildct+ilme", "-top", "1", str(path)],
+         # setfield (not -top, removed in ffmpeg 9): top field first, encoded as interlaced
+         "-f", "lavfi", "-i", "sine=d=2", "-shortest", "-vf", "setfield=tff", "-flags", "+ildct+ilme",
+         "-c:v", "libx264", "-c:a", "aac", str(path)],
         check=True,
     )
     return path

@@ -49,7 +49,11 @@ try {
     Ejecutar uv @("run", "python", "scripts/check_env.py")
     # las pruebas no bloquean la instalacion: su resultado se guarda y llega a Claude
     $ErrorActionPreference = "Continue"
-    uv run pytest -q -p no:cacheprovider 2>&1 | ForEach-Object { "$_" } | Tee-Object -FilePath "$Base\output\pruebas.log" | Out-Host
+    $salida = uv run pytest -q -p no:cacheprovider 2>&1 | ForEach-Object { "$_" }
+    $code = $LASTEXITCODE
+    $salida | Out-Host
+    $salida | Out-File -FilePath "$Base\output\pruebas.log" -Encoding utf8      # Tee-Object escribe UTF-16
+    $global:LASTEXITCODE = $code
     if ($LASTEXITCODE -ne 0) { Aviso "Alguna prueba automatica fallo (detalle en pruebas.log, ya enviado a Claude). Se puede seguir." }
     $ErrorActionPreference = "Stop"
 
