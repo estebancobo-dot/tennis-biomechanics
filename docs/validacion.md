@@ -46,6 +46,17 @@ Revisados a ojo 2 de los 6 "falsos positivos": ambos son golpes reales que la re
 recoge (la bola no estaba anotada en ese tramo), así que la precisión real es mayor. Bola: vista en
 el 73-100 % de los fotogramas, 96-100 % a ≤15 px de la anotación (mediana 2 px).
 
+## Golpes del jugador lejano — RacketVision sin audio (pose en recorte que la sigue + bola)
+`uv run python scripts/validate_rv_strokes.py --root <datasets> --clips 12 --ball models/balltrack.onnx --side far`
+
+| Clips | Golpes de referencia | Precisión | Recall | F1 | Error del instante |
+|---|---|---|---|---|---|
+| 12 (2 de dobles excluidos) | 11 | 0,67 | 0,73 | 0,70 | 2 fot. |
+
+Cuando el recorte la sigue (94-100 % de los fotogramas) encuentra casi todos sus golpes; los
+fallos vienen de clips donde se pierde (3 %) o de giros de la bola sin golpe. Del lado lejano
+solo se publican posición, desplazamiento, altura del impacto y destino.
+
 ## Destino del golpe (bote en el campo rival) — final del US Open, revisado a ojo
 | Golpe | Desde | Resultado | A ojo |
 |---|---|---|---|
@@ -58,8 +69,11 @@ pueden quedar sin dato (no se inventan). El golpe de la rival en el aire se desc
 proyección cae detrás del fondo.
 
 ## Impactos — F3Set-Tennis (TV, contacto exacto por fotograma)
-`uv run python scripts/validate_f3set.py --root <datasets> --player Rybakina --clips 20`
-Se ejecuta en el PC del usuario (los vídeos vienen de YouTube, bloqueado desde la nube).
+`uv run python scripts/validate_f3set.py --root <datasets> --player Rybakina --clips 30`
+Se ejecuta solo en el PC del usuario (paso 4 de `2_prueba_rapida.bat`): YouTube bloquea las
+descargas desde servidores. Descarga solo los segundos de cada punto anotado (4 partidos de
+Rybakina en F3Set) y mide, golpe a golpe: detección, derecha/revés, dirección de su golpe
+(cruzada, paralela, al centro, invertida cruzada, invertida paralela), subida a la red y errores.
 Pendiente del primer resultado.
 
 ## Orientación de las cuerdas (3D) — validación sintética
