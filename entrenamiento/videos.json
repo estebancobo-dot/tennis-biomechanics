@@ -58,8 +58,14 @@
   "camera": "de lado, a ras de pista (misma sesión que el primero)",
   "url": "https://www.youtube.com/watch?v=QmCVixzz6-Y",
   "start": 0,
-  "duration_s": 1000000000.0,
-  "query": "lista elegida"
+  "duration_s": 56.679909,
+  "query": "lista elegida",
+  "seconds_kept": 56.679909,
+  "analysed_s": 56.679909,
+  "version": 3,
+  "strokes": 23,
+  "lateral_forehands": 7,
+  "discarded": 1
  },
  {
   "id": "Q6YTDYr_bRM",
