@@ -160,17 +160,36 @@ def _pose_detector(cfg: dict):
     return detect
 
 
-@stage("players", "2", deps=("scenes",), settings=lambda c: {"fps": c["cheap_pass"]["fps"], "imgsz": c["cheap_pass"].get("imgsz", 960)},
+def play_mask(sc: dict, court: dict | None) -> np.ndarray:
+    """Frames (at the scenes' fps) of match play: main camera AND the court found there. A broadcast
+    has long stretches the shot classifier can take for the main camera (anthem, ceremony, practice
+    footage, close-ups on a blue background); without the court lines there is nothing to analyse."""
+    n = max([s["end"] for s in sc["shots"]] + [0])
+    main = np.zeros(n, bool)
+    for s in sc["shots"]:
+        main[s["start"]:s["end"]] = s["main_camera"]
+    if court is None or not court.get("shots"):
+        return main
+    has = np.zeros(n, bool)
+    for o in court["shots"]:
+        if o["H"] is not None:
+            has[o["start"]:o["end"]] = True
+    return main & has
+
+
+@stage("players", "3", deps=("scenes", "court"), settings=lambda c: {"fps": c["cheap_pass"]["fps"], "imgsz": c["cheap_pass"].get("imgsz", 960)},
        outputs=("players.npz",))
 def st_players(ctx: Context):
-    """Cheap pose on main-camera frames only (cheap fps, full width for small players)."""
+    """Cheap pose on match-play frames only (main camera with the court found; cheap fps, full
+    width for small players)."""
     from .pose.yolo import _objects, appearance
 
     sc = _read(ctx.path("scenes.json"))
     fps = sc["fps"]
-    main = np.zeros(max([s["end"] for s in sc["shots"]] + [0]), bool)
-    for s in sc["shots"]:
-        main[s["start"]:s["end"]] = s["main_camera"]
+    court = _read(ctx.path("court.json")) if ctx.path("court.json").exists() else None
+    main = play_mask(sc, court)
+    total_main = sum(s["end"] - s["start"] for s in sc["shots"] if s["main_camera"])
+    ctx.log(f"  juego con pista: {main.sum() / fps / 60:.1f} min de {total_main / fps / 60:.1f} min de cámara principal")
     detect = _pose_detector(ctx.cfg)
     info = probe(ctx.video)
     boxes, kps, confs, feats, idx = [], [], [], [], []
@@ -449,7 +468,7 @@ def _surname(name: str) -> str:
     return name.strip().split()[-1] if name and name.strip() else ""
 
 
-@stage("score", "3", deps=("scenes",), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
+@stage("score", "4", deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
        outputs=("score.json",), match_fields=lambda m: {"player": m.player.name, "opponent": m.opponent})
 def st_score(ctx: Context):
     """TV scoreboard every few seconds of main camera (sets, games, points, pressure)."""
@@ -461,9 +480,13 @@ def st_score(ctx: Context):
         _write(ctx.path("score.json"), {"readings": [], "note": "uv sync --extra ocr"})
         return {"readings": 0, "note": "sin OCR instalado"}
     mains = [s for s in sc["shots"] if s["main_camera"]]
+    court = _read(ctx.path("court.json")) if ctx.path("court.json").exists() else {}
+    # the opponent's name is looked for during match play (court found): before the match a
+    # broadcast shows the anthem, other matches' scoreboards and recaps
+    play = [o for o in court.get("shots", []) if o["H"] is not None] or mains
     opponent = _surname(ctx.match.opponent)
-    if not opponent and mains:       # not in matches.yaml: read it from the scoreboard
-        times = [((s["start"] + s["end"]) / 2) / fps for s in mains[:: max(1, len(mains) // 40)]]
+    if not opponent and play:        # not in matches.yaml: read it from the scoreboard
+        times = [((s["start"] + s["end"]) / 2) / fps for s in play[:: max(1, len(play) // 60)]]
         opponent = discover_opponent((f for f in (grab_frame(ctx.video, t) for t in times) if f is not None),
                                      _surname(ctx.match.player.name)) or ""
     names = (_surname(ctx.match.player.name), opponent)

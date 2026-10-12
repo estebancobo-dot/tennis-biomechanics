@@ -40,8 +40,11 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
 - **Su vídeo (final US Open 2026, retransmisión rusa, 1080p50, 210 min): 0 golpes analizados.**
   Marcador 0 lecturas (sin nombre del rival en el catálogo y el OCR no lo encontró), pista en 3 de
   11 tramos, identidad sin decidir → todo descartado; solo 2 candidatos en 4 min. **Bloqueante.**
-  Diagnóstico: la prueba rápida sube ahora imágenes de los planos con la pista dibujada y lo que
-  lee el OCR (`pc-logs:diag/`).
+  **Causa (imágenes de diagnóstico):** los 4 min elegidos (minuto 30) eran la previa: himno,
+  bandera, entrenamientos y un resumen del partido anterior de Sabalenka contra Noskova; no había
+  juego. El clasificador de planos tomaba esos planos por "cámara principal". Retransmisión de
+  Eurosport con el marcador internacional (latino, legible). Arreglado: la prueba rápida busca
+  sola un tramo con juego; jugadores y lectura del rival solo donde se ve la pista.
 - Velocidad: YOLO 960 en la iGPU 112 ms/fotograma (CPU 479); decodificación 1080p50 27 fps (CPU),
   40 fps (d3d11va). Estimación lineal 5,6 h por partido sin la pasada fina → ~1 día los 4. La etapa
   de jugadores domina (277 s por 4 min).

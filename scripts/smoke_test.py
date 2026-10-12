@@ -26,7 +26,8 @@ def main():
     ap.add_argument("video")
     ap.add_argument("--player", default="rybakina")
     ap.add_argument("--opponent", default="", help="nombre del rival tal como sale en el marcador (para el OCR)")
-    ap.add_argument("--start", type=float, default=1800, help="segundo de inicio del trozo")
+    ap.add_argument("--start", type=float, default=None,
+                    help="segundo de inicio del trozo (por defecto: un tramo de juego buscado automáticamente)")
     ap.add_argument("--minutes", type=float, default=4)
     args = ap.parse_args()
 
@@ -35,6 +36,8 @@ def main():
     out_root.mkdir(parents=True, exist_ok=True)
     src = Path(args.video)
     full = probe(src).duration
+    if args.start is None:
+        args.start = find_play(src, full, args.minutes * 60)
     if args.start + args.minutes * 60 > full:          # short video: take the piece from its first third
         args.start = max(0.0, min(full * 0.3, full - args.minutes * 60))
     from tennisbio.catalog import ascii_id
@@ -60,6 +63,30 @@ def main():
               f"≈ {total * full / (args.minutes * 60) / 3600:.1f} h (estimación lineal)")
     print(f"Informe: {report}")
     print(f"Vídeos, montajes y resumen PDF: {exp}")
+
+
+def find_play(video: Path, full: float, need_s: float, step_s=60.0) -> float:
+    """Start of a stretch of match play: a broadcast begins with a long pre-match (anthem, recaps,
+    interviews). Frames every step_s/2 from 15 % to 85 % of the video; the first window of need_s
+    in which most samples show the court lines (between points there are close-ups and replays)
+    starts the piece."""
+    from tennisbio.court import fit_court
+    from tennisbio.stages import grab_frame
+
+    dt = step_s / 2
+    n = max(2, int(need_s / dt))
+    hits = []
+    t = full * 0.15
+    while t < full * 0.85:
+        fr = grab_frame(video, t)
+        hits.append((t, fr is not None and fit_court(fr) is not None))
+        if len(hits) >= n and sum(h for _, h in hits[-n:]) >= 0.6 * n:
+            start = hits[-n][0]
+            print(f"Tramo de juego encontrado en el minuto {start / 60:.0f}")
+            return float(start)
+        t += dt
+    print("No se encontró un tramo largo de juego; se usa el 30 % del vídeo")
+    return full * 0.3
 
 
 def diagnostics(ctx, dest: Path, n_frames=8):
