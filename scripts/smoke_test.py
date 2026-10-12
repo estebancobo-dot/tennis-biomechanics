@@ -70,9 +70,11 @@ def main():
     report = build([match], out_root, out_root / "informe")
     from tennisbio.export import export
     exp = export([match], out_root, out_root / "exportar", strokes_all=True)
-    if done:
+    if "players" in done and "fine" in done:        # a partial re-run (caches) says nothing about the time
         print(f"\nTotal {total / 60:.1f} min para {args.minutes:g} min de vídeo → partido de {full / 60:.0f} min "
               f"≈ {total * full / (args.minutes * 60) / 3600:.1f} h (estimación lineal)")
+    elif done:
+        print("\n(Solo se rehicieron algunas etapas: el tiempo no sirve para estimar un partido)")
     print(f"Informe: {report}")
     print(f"Vídeos, montajes y resumen PDF: {exp}")
 
@@ -159,6 +161,63 @@ def diagnostics(ctx, dest: Path, n_frames=8):
             if ok:
                 (dest / f"otro_plano_{k:02d}.jpg").write_bytes(buf.tobytes())
     (dest / "ocr.txt").write_text("\n".join(lines), encoding="utf-8")
+    stroke_sheets(ctx, dest)
+
+
+def stroke_sheets(ctx, dest: Path, per_sheet=6):
+    """Contact sheets of the analysed strokes: for each one the frame at the end of the backswing
+    and at contact, cropped around her, with what the program says about it (stroke, stance, how
+    she arrives, speed, steps, finish, ball height), so Claude can check by eye that the classes
+    match the images."""
+    import cv2
+    import numpy as np
+    from tennisbio.stages import grab_frame
+
+    p = ctx.path("strokes.json")
+    if not p.exists():
+        return
+    strokes = json.loads(p.read_text(encoding="utf-8"))
+    tiles = []
+    for k, s in enumerate(strokes):
+        win = ctx.path("windows") / s.get("window", "")
+        ser = ctx.dir / s["series"] if s.get("series") else None
+        if not win.exists() or ser is None or not ser.exists():
+            continue
+        sj = json.loads(ser.read_text(encoding="utf-8"))
+        fps = float(sj["fps"])
+        c = (s.get("technique") or {}).get("classes", {})
+        f = (s.get("technique") or {}).get("footwork", {})
+        crops = []
+        for name in ("loaded", "impact"):
+            fr_i = (s.get("phases") or {}).get(name, {}).get("frame") if name != "impact" else s.get("impact_frame")
+            img = grab_frame(win, fr_i / fps) if fr_i is not None else None
+            box = None
+            if fr_i is not None and 0 <= fr_i - sj["first"] < len(sj["box"]):
+                box = sj["box"][fr_i - sj["first"]]
+            if img is None or not box:
+                crops.append(np.zeros((360, 300, 3), np.uint8))
+                continue
+            x0, y0, x1, y1 = [int(v) for v in box]
+            h = y1 - y0
+            cx = (x0 + x1) // 2
+            a0, a1 = max(0, y0 - h // 3), min(img.shape[0], y1 + h // 5)
+            b0, b1 = max(0, cx - h), min(img.shape[1], cx + h)
+            crops.append(cv2.resize(img[a0:a1, b0:b1], (300, 360)))
+        tile = np.hstack(crops)
+        txt = [f"#{k} {s['stroke']} t={s['match_time_s']:.0f}s",
+               f"apoyo {c.get('stance_impact')} | {c.get('movement')} {f.get('speed_at_impact_mps')} m/s",
+               f"pasos {f.get('steps_to_impact')} | fin {c.get('finish')} | bola {c.get('ball_height')}"]
+        for i, t in enumerate(txt):
+            cv2.putText(tile, t, (6, 22 + 22 * i), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (0, 255, 255), 2)
+        tiles.append(tile)
+    for n in range(0, len(tiles), per_sheet):
+        g = tiles[n:n + per_sheet]
+        while len(g) < per_sheet:
+            g.append(np.zeros_like(tiles[0]))
+        sheet = np.vstack([np.hstack(g[i:i + 2]) for i in range(0, per_sheet, 2)])
+        ok, buf = cv2.imencode(".jpg", sheet, [cv2.IMWRITE_JPEG_QUALITY, 80])
+        if ok:
+            (dest / f"golpes_{n // per_sheet:02d}.jpg").write_bytes(buf.tobytes())
 
 
 if __name__ == "__main__":
