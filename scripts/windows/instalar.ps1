@@ -8,8 +8,8 @@ try {
     Sin-Suspender
     if (-not (Tiene winget)) { throw "Falta winget (App Installer). Instalalo desde Microsoft Store y repite." }
 
-    Paso "1/7 Actualizar el codigo (sin Git: zip de GitHub)"
-    Ok "se actualiza con 1_instalar.bat / bootstrap; Git no hace falta"
+    Paso "1/7 Actualizar el codigo"
+    Ok "se actualiza con 1_instalar.bat (con Git si el proyecto esta clonado; si no, zip de GitHub)"
 
     Paso "2/7 ffmpeg (lectura de video y audio)"
     if (Tiene ffmpeg) { Ok "ya estaba" } else {

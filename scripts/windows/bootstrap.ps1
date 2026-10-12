@@ -8,6 +8,18 @@ $Dest = "$Base\tennis-biomech"
 $Rama = "claude/tennis-biomech-setup-jggqb0"
 $Zip = "https://codeload.github.com/estebancobo-dot/tennis-biomechanics/zip/refs/heads/$Rama"
 New-Item -ItemType Directory -Force -Path $Base, "$Base\videos", "$Base\output" | Out-Null
+# Con Git (repo clonado en C:\tenis\tennis-biomech): se actualiza con git y no con el zip
+if ((Test-Path "$Dest\.git") -and (Get-Command git -ErrorAction SilentlyContinue)) {
+    Write-Host "==> Actualizando con Git..." -ForegroundColor Cyan
+    git -C $Dest fetch origin $Rama
+    if ($LASTEXITCODE -ne 0) { throw "git fetch fallo (conexion o permisos de GitHub)" }
+    git -C $Dest checkout $Rama
+    git -C $Dest pull --ff-only origin $Rama
+    if ($LASTEXITCODE -ne 0) { throw "git pull fallo: hay cambios locales en $Dest (git status para verlos)" }
+    Write-Host "==> Proyecto en $Dest" -ForegroundColor Green
+    & powershell -NoProfile -ExecutionPolicy Bypass -File "$Dest\scripts\windows\instalar.ps1"
+    return
+}
 $tmp = Join-Path $env:TEMP ("tennisbio_" + [guid]::NewGuid().ToString("N"))
 New-Item -ItemType Directory -Force -Path $tmp | Out-Null
 Write-Host "==> Descargando el proyecto..." -ForegroundColor Cyan

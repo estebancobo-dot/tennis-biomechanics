@@ -6,6 +6,17 @@ irm https://raw.githubusercontent.com/estebancobo-dot/tennis-biomechanics/claude
 ```
 Descarga el proyecto en `C:\tenis\tennis-biomech` e instala todo. Después, todo es con doble clic.
 
+**Primera vez (con Git)**, en PowerShell:
+```
+winget install --id Git.Git -e
+```
+cierra y abre PowerShell, y:
+```
+git clone -b claude/tennis-biomech-setup-jggqb0 https://github.com/estebancobo-dot/tennis-biomechanics.git C:\tenis\tennis-biomech
+C:\tenis\tennis-biomech\1_instalar.bat
+```
+Con el proyecto clonado, `1_instalar.bat` actualiza con Git (`git pull`) en lugar de con el zip.
+
 **Después: tres ficheros con doble clic**, en `C:\tenis\tennis-biomech`:
 1. `1_instalar.bat` — actualiza el proyecto a la última versión e instala lo que falte (ffmpeg, uv,
    Python, librerías, modelos); lo comprueba todo.
