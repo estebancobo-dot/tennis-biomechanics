@@ -22,10 +22,10 @@ VIDEO_EXT = {".mp4", ".mkv", ".ts", ".mov", ".avi", ".m4v", ".webm"}
 
 
 def slug(name: str) -> str:
-    """ASCII id (accents transliterated: "Świątek" → "swiatek"): it names the output folder."""
-    name = unicodedata.normalize("NFKD", name.replace("ł", "l").replace("Ł", "L")).encode("ascii", "ignore").decode()
-    s = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
-    return s[:60] or "partido"
+    """ASCII id from the file name (it names the output folder)."""
+    from tennisbio.catalog import ascii_id
+
+    return ascii_id(name)
 
 
 def main():

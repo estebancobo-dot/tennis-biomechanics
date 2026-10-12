@@ -40,7 +40,7 @@ def check_tools():
 def probe(path):
     out = subprocess.run(
         ["ffprobe", "-v", "error", "-show_format", "-show_streams", "-of", "json", path],
-        capture_output=True, text=True, check=True,
+        capture_output=True, text=True, check=True, encoding="utf-8", errors="replace",
     ).stdout
     info = json.loads(out)
     fmt = info["format"]

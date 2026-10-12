@@ -4,6 +4,12 @@ $RepoDir = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)       # scripts
 $RepoUrl = "https://github.com/estebancobo-dot/tennis-biomechanics.git"
 $Rama = "claude/tennis-biomech-setup-jggqb0"
 
+# Python y PowerShell en UTF-8: nombres de video en cirilico o con acentos no rompen nada
+$env:PYTHONUTF8 = "1"
+$env:PYTHONIOENCODING = "utf-8"
+try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 } catch {}
+$OutputEncoding = [System.Text.Encoding]::UTF8
+
 function Paso($texto) { Write-Host ""; Write-Host "==> $texto" -ForegroundColor Cyan }
 function Ok($texto) { Write-Host $texto -ForegroundColor Green }
 function Aviso($texto) { Write-Host $texto -ForegroundColor Yellow }

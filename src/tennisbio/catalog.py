@@ -51,3 +51,20 @@ def load_matches(cfg: dict, config_dir: Path = CONFIG_DIR) -> list[Match]:
         out.append(Match(id=str(mid), video=videos / video, player=load_player(player, config_dir),
                          **{k: str(v) for k, v in known.items()}, extra=m))
     return out
+
+
+_CYR = dict(zip("абвгдеёжзийклмнопрстуфхцчшщъыьэюяіїєґ",
+                ["a", "b", "v", "g", "d", "e", "e", "zh", "z", "i", "y", "k", "l", "m", "n", "o", "p", "r", "s", "t",
+                 "u", "f", "kh", "ts", "ch", "sh", "shch", "", "y", "", "e", "yu", "ya", "i", "yi", "ye", "g"]))
+
+
+def ascii_id(name: str, n: int = 60, default: str = "partido") -> str:
+    """ASCII id for folders and files: accents removed ("Świątek" → "swiatek"), Cyrillic
+    transliterated ("Рыбакина" → "rybakina"). On Windows, OpenCV cannot open non-ASCII paths."""
+    import re
+    import unicodedata
+
+    # dashes, dots and any other non-letter become separators before the accents are dropped
+    t = "".join(_CYR.get(c, c) if (c.isalnum() or c in _CYR) else " " for c in name.lower().replace("ł", "l"))
+    t = unicodedata.normalize("NFKD", t).encode("ascii", "ignore").decode()
+    return re.sub(r"[^a-z0-9]+", "-", t).strip("-")[:n].strip("-") or default

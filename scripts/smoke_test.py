@@ -37,11 +37,12 @@ def main():
     full = probe(src).duration
     if args.start + args.minutes * 60 > full:          # short video: take the piece from its first third
         args.start = max(0.0, min(full * 0.3, full - args.minutes * 60))
-    clip = out_root / f"{src.stem}_{int(args.start)}_{int(args.minutes)}m{src.suffix}"
+    from tennisbio.catalog import ascii_id
+    clip = out_root / f"{ascii_id(src.stem, 40)}_{int(args.start)}_{int(args.minutes)}m{src.suffix}"
     if not clip.exists():
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(args.start), "-i", str(src), "-t", str(args.minutes * 60),
                         "-c", "copy", str(clip)], check=True)
-    match = Match(f"smoke_{src.stem}", clip, load_player(args.player), opponent=args.opponent)
+    match = Match(f"smoke_{ascii_id(src.stem, 40)}", clip, load_player(args.player), opponent=args.opponent)
     ctx = pipeline.Context(match, cfg, out_root / match.id)
     t0 = time.time()
     done = pipeline.run(ctx)
