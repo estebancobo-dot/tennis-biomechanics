@@ -438,3 +438,78 @@ Copia los partidos a C:\tenis\videos y ejecuta 2_prueba_rapida.bat
 Windows PowerShell transcript end
 End time: 20261012134905
 **********************
+**********************
+Windows PowerShell transcript start
+Start time: 20261012135627
+Username: esteban\esteb
+RunAs User: esteban\esteb
+Configuration Name: 
+Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\instalar.ps1
+Process ID: 5476
+PSVersion: 5.1.26100.9549
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
+BuildVersion: 10.0.26100.9549
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+==> 1/7 Actualizar el codigo
+se actualiza con 1_instalar.bat (con Git si el proyecto esta clonado; si no, zip de GitHub)
+
+==> 2/7 ffmpeg (lectura de video y audio)
+ya estaba
+
+==> 3/7 uv (gestor de Python)
+ya estaba
+
+==> 4/7 Codigo del proyecto
+proyecto en C:\tenis\tennis-biomech
+
+==> 5/7 Python 3.11 y librerias (10-15 min la primera vez)
+Python 3.11 is already installed
+Resolved 107 packages in 1ms
+Checked 80 packages in 3ms
+
+==> 6/7 Configuracion y modelos (~1 GB la primera vez)
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+rtmw3d-x.onnx      OK 369 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+
+==> 7/7 Comprobacion
+Python   3.11.17  (Windows-10-10.0.26200-SP0)
+CPUs     16
+ffmpeg   C:\Users\esteb\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffmpeg.EXE
+ffprobe  C:\Users\esteb\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffprobe.EXE
+git      C:\Program Files\Git\cmd\git.EXE
+uv       C:\Users\esteb\.local\bin\uv.EXE
+numpy        2.4.6
+pandas       3.0.6
+cv2          5.0.0
+librosa      0.11.0
+onnxruntime  1.24.4
+ultralytics  8.4.175
+rapidocr_onnxruntime ?
+ORT providers: ['DmlExecutionProvider', 'CPUExecutionProvider']
+balltrack.onnx     OK
+racketpose.onnx    OK
+rtmw3d-x.onnx      OK
+yolo11m-pose_960.onnx OK
+yolo11m-pose_1280.onnx OK
+........................................................................ [ 81%]
+................                                                         [100%]
+88 passed in 3.50s
+
+TODO LISTO.
+Copia los partidos a C:\tenis\videos y ejecuta 2_prueba_rapida.bat
+**********************
+Windows PowerShell transcript end
+End time: 20261012135635
+**********************
