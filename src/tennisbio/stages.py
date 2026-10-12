@@ -150,7 +150,7 @@ def _pose_detector(cfg: dict):
     return detect
 
 
-@stage("players", "1", deps=("scenes",), settings=lambda c: {"fps": c["cheap_pass"]["fps"], "imgsz": c["cheap_pass"].get("imgsz", 960)},
+@stage("players", "2", deps=("scenes",), settings=lambda c: {"fps": c["cheap_pass"]["fps"], "imgsz": c["cheap_pass"].get("imgsz", 960)},
        outputs=("players.npz",))
 def st_players(ctx: Context):
     """Cheap pose on main-camera frames only (cheap fps, full width for small players)."""
@@ -164,13 +164,19 @@ def st_players(ctx: Context):
     detect = _pose_detector(ctx.cfg)
     info = probe(ctx.video)
     boxes, kps, confs, feats, idx = [], [], [], [], []
-    for i, frame in enumerate(read_frames(info, fps=fps, hwaccel=ctx.cfg.get("hwaccel"))):
-        if i >= len(main) or not main[i]:
-            continue
-        b, k, c = detect(frame)
-        boxes.append(b.astype(np.float32)); kps.append(k.astype(np.float32)); confs.append(c.astype(np.float32))
-        feats.append(np.array([appearance(frame, bb) for bb in b], np.float32).reshape(len(b), 32))
-        idx.append(i)
+    # only the main-camera stretches are decoded (seeking past replays, close-ups and changeovers:
+    # a third of a broadcast or more)
+    edges = np.flatnonzero(np.diff(np.r_[0, main.astype(int), 0]))
+    for a, b_ in zip(edges[::2], edges[1::2]):
+        for k_, frame in enumerate(read_frames(info, start=a / fps, duration=(b_ - a) / fps, fps=fps,
+                                               hwaccel=ctx.cfg.get("hwaccel"))):
+            i = int(a) + k_
+            if i >= b_:
+                break
+            b, k, c = detect(frame)
+            boxes.append(b.astype(np.float32)); kps.append(k.astype(np.float32)); confs.append(c.astype(np.float32))
+            feats.append(np.array([appearance(frame, bb) for bb in b], np.float32).reshape(len(b), 32))
+            idx.append(i)
     savez_atomic(ctx.path("players.npz"), fps=fps, frames=np.array(idx), height=info.height,
                         boxes=_objects(boxes), kps=_objects(kps), confs=_objects(confs), feats=_objects(feats))
     return {"frames": len(idx)}

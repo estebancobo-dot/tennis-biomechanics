@@ -102,6 +102,28 @@ def probe(path: str | Path) -> VideoInfo:
     )
 
 
+_HW: dict = {}
+
+
+def auto_hwaccel() -> str | None:
+    """The GPU video decoder when it works here (d3d11va on Windows: the Radeon decodes H.264/HEVC
+    and frees the CPU for the pose), else None (software). Tested once per run; ffmpeg falls back
+    to software by itself when a particular file cannot be decoded on the GPU."""
+    if "v" not in _HW:
+        _HW["v"] = None
+        if os.name == "nt":
+            with tempfile.TemporaryDirectory() as d:
+                f = str(Path(d) / "t.mp4")
+                subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "testsrc=duration=0.4:size=640x360:rate=25",
+                                "-c:v", "libx264", "-pix_fmt", "yuv420p", f], capture_output=True)
+                # frames kept on the GPU: fails instead of silently falling back to the CPU
+                r = subprocess.run(["ffmpeg", "-v", "error", "-hwaccel", "d3d11va", "-hwaccel_output_format", "d3d11",
+                                    "-i", f, "-f", "null", "-"], capture_output=True)
+                if r.returncode == 0 and Path(f).exists():
+                    _HW["v"] = "d3d11va"
+    return _HW["v"]
+
+
 def read_frames(
     info: VideoInfo,
     start: float = 0.0,
@@ -129,6 +151,7 @@ def read_frames(
         filters.append(f"scale={out_w}:{out_h}")
 
     cmd = ["ffmpeg", "-v", "error", "-nostdin"]
+    hwaccel = auto_hwaccel() if hwaccel == "auto" else hwaccel
     if hwaccel:
         cmd += ["-hwaccel", hwaccel]
     cmd += ["-ss", str(start), "-i", str(info.path)]

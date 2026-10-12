@@ -35,8 +35,8 @@ models:
 
 # Dispositivo de inferencia: dml (iGPU con DirectML), cpu u openvino (CPU).
 device: dml
-# Aceleración por hardware del decodificador de ffmpeg (d3d11va en Windows; null = software).
-hwaccel: null
+# Decodificador de vídeo en la gráfica: auto (d3d11va en Windows si funciona), d3d11va o null (CPU).
+hwaccel: auto
 
 # Seguimiento de bola: TrackNetV3 de RacketVision (licencia MIT), entrenado en tenis de TV.
 # Se genera con `uv run python scripts/export_balltrack.py` (descarga los pesos de Hugging Face).
