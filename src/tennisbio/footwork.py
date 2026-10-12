@@ -7,6 +7,7 @@ the court; a step is a foot that leaves one planted spot and lands on another. T
 exact only on the ground, so a foot in the air (higher in the image than its planted level)
 is never used as a position and marks the frame as airborne instead.
 """
+import warnings
 from dataclasses import dataclass
 
 import numpy as np
@@ -116,7 +117,9 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
     feet_g = feet.copy()
     feet_g[air] = np.nan                       # positions only from feet on the ground
     plant = planted(feet_g, air, fps)
-    pos = smooth(np.nanmean(feet_g, axis=1), fps, 0.1)
+    with np.errstate(invalid="ignore"), warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)        # frames with no foot on the ground
+        pos = smooth(np.nanmean(feet_g, axis=1), fps, 0.1)
     vel = np.gradient(pos, axis=0) * fps
     spd = np.linalg.norm(vel, axis=1)
     s = lambda sec: int(round(sec * fps))
@@ -159,7 +162,7 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
     if v_imp is not None:
         g = feet_g[max(0, impact - s(0.15)):impact + 1]
         gv = [np.linalg.norm(np.nanmean(np.diff(g[:, j], axis=0), axis=0)) * fps for j in range(2)
-              if np.isfinite(g[:, j]).sum() >= 3]
+              if np.isfinite(np.diff(g[:, j], axis=0)).all(axis=1).sum() >= 2]
         out["sliding_at_impact"] = bool(gv and max(gv) > 1.2 and not out["airborne_at_impact"])
     if opp is not None and np.isfinite(pos[opp]).all() and np.isfinite(pos[impact]).all():
         path = pos[opp:impact + 1]

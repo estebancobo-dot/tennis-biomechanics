@@ -72,16 +72,13 @@ def st_audio(ctx: Context, chunk_s=300.0, overlap_s=1.0):
 
 def _pose_detector(cfg: dict):
     """frame → (boxes (N,4), keypoints (N,17,2), conf (N,17)) with the YOLO pose model."""
-    from ultralytics import YOLO
+    from .pose.backend import pose_model, set_device
 
-    model = YOLO(cfg.get("yolo_pose", "yolo11m-pose.pt"))
-    imgsz = cfg["cheap_pass"].get("imgsz", 960)
+    set_device(cfg.get("device", "cpu"))
+    model = pose_model(cfg.get("yolo_pose", "yolo11m-pose.pt"), cfg["cheap_pass"].get("imgsz", 960))
 
     def detect(frame):
-        r = model.predict(frame, imgsz=imgsz, conf=0.3, verbose=False)[0]
-        if not len(r.boxes):
-            return np.zeros((0, 4)), np.zeros((0, 17, 2)), np.zeros((0, 17))
-        return r.boxes.xyxy.cpu().numpy(), r.keypoints.xy.cpu().numpy(), r.keypoints.conf.cpu().numpy()
+        return model.predict(frame, conf=0.3)
     return detect
 
 
@@ -545,6 +542,9 @@ def _fine(ctx: Context, p, keep, out_name: str):
 def _fine_one(ctx, p, c, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose, wb3d, fcfg):
     """One candidate: cut its window, pose, ball, phases, metrics, court, outcome, racket, series."""
     from .clip_pipeline import run_clip
+    from .pose.backend import set_device
+
+    set_device(ctx.cfg.get("device", "cpu"))
 
     t0 = max(0.0, c["t"] - pre)
     # named by its interval (not by its position in the list): a new candidate elsewhere never

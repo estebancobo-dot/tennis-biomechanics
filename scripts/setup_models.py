@@ -7,6 +7,7 @@
 - racketpose.onnx   5 puntos de la raqueta (RacketVision RTMPose-m, MIT)
 - rtmw3d-x.onnx     cuerpo y manos en 3D (RTMW3D) para la orientación de las cuerdas
 - yolo11m-pose.pt / yolo11m-seg.pt  personas y silueta de la raqueta (Ultralytics los descarga solos)
+- yolo11m-pose_<tamaño>.onnx  la pose exportada a ONNX para la iGPU (DirectML), a cada tamaño usado
 """
 import subprocess
 import sys
@@ -16,6 +17,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MODELS = ROOT / "models"
 sys.path.insert(0, str(ROOT / "src"))
+
+
+POSE_SIZES = (640, 960, 1280, 1920)
 
 
 def run(script: str, *args: str):
@@ -37,6 +41,9 @@ def main():
         from ultralytics import YOLO
         for m in ("yolo11m-pose.pt", "yolo11m-seg.pt"):
             YOLO(m)
+        from tennisbio.pose.yolo_onnx import export_onnx
+        for size in POSE_SIZES:                 # cheap pass 960, fine 1280, far crop 640/960, far search 1920
+            export_onnx("yolo11m-pose", size)
     except ImportError:
         print("falta ultralytics: uv sync --extra yolo")
     try:
@@ -44,7 +51,7 @@ def main():
         RapidOCR()
     except ImportError:
         print("falta el OCR del marcador: uv sync --extra ocr")
-    for f in ("balltrack.onnx", "racketpose.onnx", "rtmw3d-x.onnx"):
+    for f in ("balltrack.onnx", "racketpose.onnx", "rtmw3d-x.onnx", *[f"yolo11m-pose_{z}.onnx" for z in POSE_SIZES]):
         p = MODELS / f
         print(f"{f:18} {'OK ' + str(round(p.stat().st_size / 1e6)) + ' MB' if p.exists() else 'FALTA'}")
 

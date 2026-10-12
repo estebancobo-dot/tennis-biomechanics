@@ -38,9 +38,9 @@ def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", im
 
     roi: (x0, y0, x1, y1) — run only on that region (e.g. the far half of the court, where the far
     player is too small for the full frame); coordinates are returned in the full frame."""
-    from ultralytics import YOLO
+    from .backend import pose_model as _pm
 
-    pose = YOLO(pose_model)
+    pose = _pm(pose_model, imgsz)
     cap = cv2.VideoCapture(str(video))
     fps = cap.get(cv2.CAP_PROP_FPS) / every
     boxes, kps, confs, feats = [], [], [], []
@@ -57,11 +57,11 @@ def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", im
         if roi is not None:
             x0, y0, x1, y1 = (int(v) for v in roi)
             src, ox, oy = frame[y0:y1, x0:x1], x0, y0
-        r = pose.predict(src, imgsz=imgsz, conf=0.3, verbose=False)[0]
-        b = r.boxes.xyxy.cpu().numpy() + [ox, oy, ox, oy] if len(r.boxes) else np.zeros((0, 4))
+        b, k, c = pose.predict(src, conf=0.3)
+        b = b + [ox, oy, ox, oy] if len(b) else np.zeros((0, 4))
         boxes.append(b.astype(np.float32))
-        kps.append(r.keypoints.xy.cpu().numpy().astype(np.float32) + [ox, oy] if len(b) else np.zeros((0, 17, 2), np.float32))
-        confs.append(r.keypoints.conf.cpu().numpy().astype(np.float32) if len(b) else np.zeros((0, 17), np.float32))
+        kps.append(k.astype(np.float32) + [ox, oy] if len(b) else np.zeros((0, 17, 2), np.float32))
+        confs.append(c.astype(np.float32) if len(b) else np.zeros((0, 17), np.float32))
         feats.append(np.array([appearance(frame, bb) for bb in b], np.float32).reshape(len(b), 32))
         i += 1
         if progress and len(boxes) % 100 == 0:
@@ -102,9 +102,8 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
     (side = context × her height) is enlarged to `imgsz` for the model, so she is seen 2-3× bigger
     than in the full frame. Same output format as `extract` (full-frame coordinates; only the
     people inside the crop). The followed box is the detection nearest to the last one."""
-    from ultralytics import YOLO
+    from .backend import pose_model as _pm
 
-    pose = YOLO(pose_model)
     cap = cv2.VideoCapture(str(video))
     fps = cap.get(cv2.CAP_PROP_FPS)
     last = np.asarray(init_box, float)
@@ -119,11 +118,10 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
         side = min(max(H, W), max(min_side, context * (last[3] - last[1])) * (1 + 0.5 * min(misses, 6)))
         x0, y0 = int(np.clip(cx - side / 2, 0, max(0, W - side))), int(np.clip(cy - side / 2, 0, max(0, H - side)))
         crop = frame[y0:y0 + int(side), x0:x0 + int(side)]
-        r = pose.predict(crop, imgsz=imgsz if misses < 2 else max(imgsz, 960), conf=0.25, verbose=False)[0]
-        if len(r.boxes):
-            b = r.boxes.xyxy.cpu().numpy() + [x0, y0, x0, y0]
-            k = r.keypoints.xy.cpu().numpy() + [x0, y0]
-            c = r.keypoints.conf.cpu().numpy()
+        b, k, c = _pm(pose_model, imgsz if misses < 2 else max(imgsz, 960)).predict(crop, conf=0.25)
+        if len(b):
+            b = b + [x0, y0, x0, y0]
+            k = k + [x0, y0]
             if max_bottom is not None:
                 keep = b[:, 3] <= max_bottom
                 b, k, c = b[keep], k[keep], c[keep]
@@ -153,15 +151,15 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
 
 def detect_people(frame: np.ndarray, roi=None, pose_model="yolo11m-pose.pt", imgsz=1920, conf=0.25) -> np.ndarray:
     """Person boxes (N, 4) in full-frame coordinates, optionally only inside roi (enlarged)."""
-    from ultralytics import YOLO
+    from .backend import pose_model as _pm
 
     x0, y0 = 0, 0
     src = frame
     if roi is not None:
         x0, y0, x1, y1 = (int(v) for v in roi)
         src = frame[y0:y1, x0:x1]
-    r = YOLO(pose_model).predict(src, imgsz=imgsz, conf=conf, verbose=False)[0]
-    return r.boxes.xyxy.cpu().numpy() + [x0, y0, x0, y0] if len(r.boxes) else np.zeros((0, 4))
+    b, _, _ = _pm(pose_model, imgsz).predict(src, conf=conf)
+    return b + [x0, y0, x0, y0] if len(b) else np.zeros((0, 4))
 
 
 def find_far_player(video: str | Path, H: np.ndarray, search_s=2.0, step=5):
