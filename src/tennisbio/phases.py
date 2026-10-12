@@ -117,12 +117,15 @@ def detect_phases(img: np.ndarray, body: np.ndarray, conf: np.ndarray, sk: Skele
     # wrist rather than on the shoulder turn, whose 2D proxy depends on the camera angle.
     # The pause is a real slowdown (below 35 % of the forward-swing peak), not just any dip of a
     # noisy speed curve.
+    # A forward swing never takes less than ~0.1 s (elite forehands: 0.15-0.3 s), so the pause is
+    # looked for before that: a dip of the speed inside the blurred acceleration is not the pause.
     loaded = None
     fwd = _argext(wv, impact - s(0.25), impact + 2, np.nanargmax)
     if fwd is not None:
         lo = max(0, impact - s(0.8))
-        slow = np.flatnonzero(wv[lo:fwd] <= 0.35 * wv[fwd])
-        f = _walk_down(wv, lo + int(slow[-1]), lo) if len(slow) else _walk_down(wv, fwd, lo)
+        hi = max(lo + 1, min(fwd, impact - max(2, s(0.1))))
+        slow = np.flatnonzero(wv[lo:hi] <= 0.35 * wv[fwd])
+        f = _walk_down(wv, lo + int(slow[-1]), lo) if len(slow) else _walk_down(wv, hi, lo)
         loaded = f if f < impact - 1 else None
     events["loaded"] = Event("loaded", loaded, "wrist_pause_before_forward_swing", conf_at(loaded, 0.9))
 

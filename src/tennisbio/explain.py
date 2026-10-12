@@ -15,6 +15,7 @@ PHASE_TITLES_OVERHEAD = {"takeback": "Lanzamiento", "loaded": "Trofeo", "acceler
 def fmt(v, d=0):
     if v is None or not math.isfinite(v):
         return "—"
+    v = round(v, d) + 0.0                     # no "-0"
     return f"{v:,.{d}f}".replace(",", " ").replace(".", ",").replace(" ", ".")
 
 
@@ -34,7 +35,9 @@ def _lines():
         ("ready.base_width", lambda t: f"Pies separados un {fmt(t['median'])} % de su altura ({_rng(t)} %)."),
         ("ready.hands_apart", lambda t: "Las dos manos en la raqueta." if t["median"] < 12 else
          f"La mano libre separada de la raqueta ({fmt(t['median'])} % de su altura)."),
-        ("ready.knee_dom", lambda t: f"Rodillas a unos {fmt(t['median'])}° (estimación 2D)."),
+        # knee angles seen from behind and above are foreshortened (legs look straight): not shown,
+        # the leg load is told by the hip height instead
+        ("ready.hip_height", lambda t: f"Cadera a un {fmt(t['median'])} % de su altura (rodillas flexionadas: {_rng(t)} %)."),
     ]
     L["takeback"] = [
         ("stroke.t_takeback", lambda t: f"Empieza a preparar {fmt(t['median'], 2)} s antes del impacto ({_rng(t, 2)} s)."),

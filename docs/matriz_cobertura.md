@@ -17,7 +17,7 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 |---|---|---|
 | Golpe del rival → split step | ✔ | `ready` (aterrizaje del split) |
 | Inicio del giro de bloque (preparación) | ✔ | `takeback` |
-| Final del armado (máximo giro, raqueta más atrás) | ◐ | `loaded` = pausa de la muñeca; falta contrastar con el máximo giro de hombros |
+| Final del armado (máximo giro, raqueta más atrás) | ◐ | `loaded` = pausa de la muñeca, al menos 0,1 s antes del impacto (ningún swing hacia delante dura menos). Contrastado con el máximo giro de hombros en 24 golpes de TV: diferencia mediana 0,08 s, 54 % a menos de 100 ms (ver `docs/validacion.md`). Las dos señales son ruidosas en 2D; se guardan ambas |
 | Inicio del swing hacia delante | ✔ | `acceleration` |
 | Impacto | ✔ | bola + pose (validado: ±1 fotograma) |
 | Final de la extensión | ◐ | `extension` = impacto + 50 ms fijo |
@@ -117,8 +117,6 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Presión, set, fatiga | ATP/WTA | ✔ | marcador (OCR) |
 
 ## Huecos medibles pendientes
-- Final del armado: la pausa de la muñeca se guarda junto al momento del máximo giro de hombros y
-  de cadera (`t_max_shoulder_turn`, `t_max_hip_turn`); falta validarlos con golpes anotados.
 - Final de la extensión: el avance horizontal de la muñeca va hacia la red (profundidad, invisible
   desde detrás); se mantiene +50 ms, como en la literatura (40-60 ms).
 
