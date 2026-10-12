@@ -86,9 +86,21 @@ def _pct(v):
     return None if v is None or not np.isfinite(v) else round(float(v) * 100, 1)
 
 
+def segment_ok(body: np.ndarray, sk: Skeleton, a: str, b: str, f: int, min_frac=0.65) -> bool:
+    """False when the segment a→b points towards / away from the camera at frame f: its length in
+    the image is then much shorter than its true length (its longest over the stroke), and any 2D
+    angle using it is meaningless."""
+    L = np.linalg.norm(body[:, sk[a]] - body[:, sk[b]], axis=-1)
+    if not np.isfinite(L[f]) or not np.isfinite(L).any():
+        return False
+    return L[f] >= min_frac * np.nanpercentile(L, 95)
+
+
 def posture(body: np.ndarray, img: np.ndarray, sk: Skeleton, f: int, scale: float) -> dict:
-    """Body descriptors at frame f (body frame: hip centre, body heights, y up)."""
+    """Body descriptors at frame f (body frame: hip centre, body heights, y up). Angles whose
+    segments are foreshortened at that frame are left out."""
     q = body[f]
+    seg = lambda a, b: segment_ok(body, sk, a, b, f)
     ds = sk.dom_sign
     j = lambda n: q[sk[n]]
     ok = lambda *ns: all(np.isfinite(q[sk[n]]).all() for n in ns)
@@ -106,10 +118,10 @@ def posture(body: np.ndarray, img: np.ndarray, sk: Skeleton, f: int, scale: floa
     sh_mid = (j("left_shoulder") + j("right_shoulder")) / 2
     if np.isfinite(sh_mid).all():
         out["trunk_tilt"] = _deg(math.degrees(math.atan2(sh_mid[0] * ds, sh_mid[1])))
-    if ok("dom_shoulder", "non_shoulder"):
+    if ok("dom_shoulder", "non_shoulder") and seg("dom_shoulder", "non_shoulder"):     # not when side-on
         d = j("non_shoulder") - j("dom_shoulder")
         out["shoulder_tilt"] = _deg(math.degrees(math.atan2(d[1], abs(d[0]) + 1e-9)))     # + = dominant one lower
-    if ok("dom_hip", "non_hip"):
+    if ok("dom_hip", "non_hip") and seg("dom_hip", "non_hip"):
         d = j("non_hip") - j("dom_hip")
         out["hip_tilt"] = _deg(math.degrees(math.atan2(d[1], abs(d[0]) + 1e-9)))
     # centre of mass from segment weights (Dempster, simplified), lateral, between the feet
@@ -126,15 +138,16 @@ def posture(body: np.ndarray, img: np.ndarray, sk: Skeleton, f: int, scale: floa
         if abs(nfo - dfo) > 0.04:
             out["com_over_feet"] = round(float(np.clip((cx - dfo) / (nfo - dfo), -0.5, 1.5)), 2)
     for side, key in (("dom", "knee_dom"), ("non", "knee_non")):
-        if ok(f"{side}_hip", f"{side}_knee", f"{side}_ankle"):
+        if ok(f"{side}_hip", f"{side}_knee", f"{side}_ankle") and seg(f"{side}_hip", f"{side}_knee") and seg(f"{side}_knee", f"{side}_ankle"):
             out[key] = _deg(joint_angle(j(f"{side}_hip")[None], j(f"{side}_knee")[None], j(f"{side}_ankle")[None])[0])
     if ok("left_ankle", "right_ankle"):
         out["base_width"] = _pct(abs(j("left_ankle")[0] - j("right_ankle")[0]))
     trunk_axis = sh_mid                                                     # hips are the origin
     for side, ek, ak in (("dom", "elbow_dom", "shoulder_abd_dom"), ("non", "elbow_non", "shoulder_abd_non")):
-        if ok(f"{side}_shoulder", f"{side}_elbow", f"{side}_wrist"):
+        if ok(f"{side}_shoulder", f"{side}_elbow", f"{side}_wrist") and seg(f"{side}_shoulder", f"{side}_elbow") \
+                and seg(f"{side}_elbow", f"{side}_wrist"):
             out[ek] = _deg(joint_angle(j(f"{side}_shoulder")[None], j(f"{side}_elbow")[None], j(f"{side}_wrist")[None])[0])
-        if ok(f"{side}_shoulder", f"{side}_elbow") and np.isfinite(trunk_axis).all():
+        if ok(f"{side}_shoulder", f"{side}_elbow") and np.isfinite(trunk_axis).all() and seg(f"{side}_shoulder", f"{side}_elbow"):
             down = -trunk_axis                                               # from the shoulders towards the hips
             arm = j(f"{side}_elbow") - j(f"{side}_shoulder")
             c = float(down @ arm / (np.linalg.norm(down) * np.linalg.norm(arm) + 1e-9))
@@ -265,8 +278,8 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
             d["shoulder_turn"] = _deg(sh[f])
         if np.isfinite(hp[f]):
             d["hip_turn"] = _deg(hp[f])
-        if "shoulder_turn" in d and "hip_turn" in d:
-            d["x_factor"] = round(d["shoulder_turn"] - d["hip_turn"], 1)
+        if "shoulder_turn" in d and "hip_turn" in d and p in ("takeback", "loaded", "acceleration"):
+            d["x_factor"] = round(d["shoulder_turn"] - d["hip_turn"], 1)     # meaningful only while coiled
         fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
         d.update(racket_at(kps, img, sk, f, float(scale[f]), fy, faces, first_face))
         out["phases"][p] = d
@@ -337,7 +350,7 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
     if H is not None:
         from .footwork import feet_track
         fw = footwork(img, sk, H, scale, fps, impact, opp, ev["ready"] if (context or {}).get("split") else None,
-                      ev["finish"], ev["loaded"])
+                      ev["finish"], ev["loaded"], (context or {}).get("surface", ""))
         out["footwork"] = fw
         if fw.get("movement"):
             c["movement"] = fw["movement"]

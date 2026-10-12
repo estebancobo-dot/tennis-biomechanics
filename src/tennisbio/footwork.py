@@ -18,7 +18,8 @@ from .skeleton import Skeleton
 
 PLANTED_SPEED = 0.7          # m/s: below this a foot counts as on the ground
 MIN_STEP_M = 0.15            # shorter displacements are weight shifts, not steps
-AIR_PCT = 0.025              # ankle higher than its ground level by > 2.5 % of the height = in the air
+AIR_PCT = 0.04               # ankle higher than its ground level by > 4 % of the height = in the air
+MAX_SPEED = 9.0              # m/s: faster than any tennis player; above it the feet track is noise
 
 
 @dataclass
@@ -109,7 +110,7 @@ def hip_court(img: np.ndarray, sk: Skeleton, H: np.ndarray, feet: np.ndarray) ->
 
 
 def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fps: float, impact: int,
-             opp: int | None, split: int | None, finish: int | None, loaded: int | None) -> dict:
+             opp: int | None, split: int | None, finish: int | None, loaded: int | None, surface: str = "") -> dict:
     """All footwork descriptors of one stroke (frame indices are clip frames)."""
     T = len(img)
     feet = feet_track(img, sk, H)
@@ -119,9 +120,10 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
     plant = planted(feet_g, air, fps)
     with np.errstate(invalid="ignore"), warnings.catch_warnings():
         warnings.simplefilter("ignore", RuntimeWarning)        # frames with no foot on the ground
-        pos = smooth(np.nanmean(feet_g, axis=1), fps, 0.1)
+        pos = smooth(np.nanmean(feet_g, axis=1), fps, 0.25)          # body position: ~0.25 s smoothing
     vel = np.gradient(pos, axis=0) * fps
     spd = np.linalg.norm(vel, axis=1)
+    spd[spd > MAX_SPEED] = np.nan
     s = lambda sec: int(round(sec * fps))
     a = opp if opp is not None else max(0, impact - s(1.2))
     b = min(T, impact + s(1.0))
@@ -153,13 +155,18 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
         if np.isfinite(ax).all() and np.isfinite(hips) and abs(ax[0] - ax[1]) > 0.04 * scale[loaded]:
             w = (hips - ax[0]) / (ax[1] - ax[0])                     # 0 = over the dominant foot, 1 = over the other
             out["weight_loaded_to_non"] = round(float(np.clip(w, -0.5, 1.5)), 2)
-    i0, i1 = max(0, impact - 1), min(T, impact + 2)
-    out["airborne_at_impact"] = bool(air[i0:i1].all(axis=1).any())
-    out["one_foot_at_impact"] = bool(air[i0:i1].any(axis=1).any()) and not out["airborne_at_impact"]
+    # in the air: both feet up for at least 2 consecutive frames around contact (one noisy frame is not a jump)
+    i0, i1 = max(0, impact - 2), min(T, impact + 3)
+    both = air[i0:i1].all(axis=1)
+    out["airborne_at_impact"] = bool(len(both) > 1 and (both[1:] & both[:-1]).any())
+    one = air[i0:i1].any(axis=1)
+    out["one_foot_at_impact"] = bool(len(one) > 1 and (one[1:] & one[:-1]).any()) and not out["airborne_at_impact"]
     v_imp = float(np.nanmedian(spd[max(0, impact - s(0.1)):impact + 1])) if np.isfinite(spd[max(0, impact - s(0.1)):impact + 1]).any() else None
     out["speed_at_impact_mps"] = None if v_imp is None else round(v_imp, 2)
-    # sliding: a planted-looking foot (on the ground) that keeps moving fast on the court
-    if v_imp is not None:
+    # sliding: a foot on the ground that keeps moving fast on the court (only on clay or grass;
+    # on a hard court it is tracking noise)
+    slide_surface = any(w in (surface or "").lower() for w in ("clay", "tierra", "arcilla", "grass", "hierba"))
+    if v_imp is not None and slide_surface:
         g = feet_g[max(0, impact - s(0.15)):impact + 1]
         gv = [np.linalg.norm(np.nanmean(np.diff(g[:, j], axis=0), axis=0)) * fps for j in range(2)
               if np.isfinite(np.diff(g[:, j], axis=0)).all(axis=1).sum() >= 2]
@@ -171,7 +178,7 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
         d = pos[impact] - pos[opp]
         out["move_dx_m"], out["move_dy_m"] = round(float(d[0]), 2), round(float(d[1]), 2)
         pk = spd[opp:impact + 1]
-        out["peak_speed_mps"] = round(float(np.nanmax(pk)), 2) if np.isfinite(pk).any() else None
+        out["peak_speed_mps"] = round(float(np.nanpercentile(pk, 90)), 2) if np.isfinite(pk).sum() >= 3 else None
     if finish is not None and np.isfinite(pos[impact]).all():
         r1 = min(T - 1, impact + s(1.0))
         if np.isfinite(pos[r1]).all():
