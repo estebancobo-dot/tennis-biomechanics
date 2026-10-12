@@ -274,7 +274,7 @@ def conclusions(data: dict, dist: dict, finds: list[Finding]) -> list[Conclusion
     if n < 10:
         out.append(Conclusion(f"Con {n} golpe{'' if n == 1 else 's'} solo se describe lo observado; las comparaciones necesitan "
                               "al menos 5 golpes por grupo y el ruido de medida, 20 con bola neutra.", "pocos datos", "crit"))
-    counts = sorted(((k, sum(1 for s in st if s.get("stance") == k)) for k in ("abierto", "semiabierto", "cerrado")), key=lambda x: -x[1])
+    counts = sorted(((k, sum(1 for s in st if s.get("stance") == k)) for k in ("abierto", "semiabierto", "neutro", "cerrado")), key=lambda x: -x[1])
     nst = sum(c for _, c in counts)
     if nst:
         extra = f"; {counts[1][0]} {fmt(100 * counts[1][1] / nst)} %" if counts[1][1] else ""

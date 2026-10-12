@@ -8,7 +8,9 @@ def test_stance_forehand_right_handed():
     right, left = np.array([1.0, 0.0]), np.array([0.0, 0.0])
     assert stance(right, left, "forehand")[0] == "abierto"                      # side by side
     assert stance(right, left + [0, 0.5], "forehand")[0] == "semiabierto"      # left foot 0.5 m ahead
-    assert stance(right, np.array([0.8, 0.9]), "forehand")[0] == "cerrado"     # left foot in front
+    assert stance(right, np.array([0.8, 0.9]), "forehand")[0] == "neutro"      # left foot straight ahead
+    assert stance(right, np.array([1.6, 0.6]), "forehand")[0] == "cerrado"     # left foot crossed over
+    assert stance(left, right, "forehand", dom_sign=-1)[0] == "abierto"       # left-handed, side by side
     assert stance(right, left - [0, 0.4], "forehand")[1] < 0                   # very open
 
 

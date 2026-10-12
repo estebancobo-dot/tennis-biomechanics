@@ -266,27 +266,27 @@ anotación de 30-50 golpes para medir el error real de cada métrica, y la taxon
 ## Apéndice A. Fallos de prioridad media y baja
 
 **Fuentes y procesado**
-- ffprobe: `avg_frame_rate=0/0`, sin duración o sin moov rompen con errores en inglés; falta comprobar ffmpeg al arrancar.
-- VFR y TS con saltos de tiempo: el corte no fuerza fps constante; los tiempos derivan.
-- Audio: sin pista no avisa; varias pistas (comentario / ambiente) no se pueden elegir; en el lado lejano cada transitorio del comentario abre una ventana cara.
+- ✔ ffprobe: `avg_frame_rate=0/0`, sin duración o sin moov rompen con errores en inglés; falta comprobar ffmpeg al arrancar. *(mensajes en español y respaldos de fps/duración; probado con ficheros vacíos, cortados, sin vídeo)*
+- ✔ VFR y TS con saltos de tiempo: el corte no fuerza fps constante; los tiempos derivan. *(se detectan leyendo las marcas de tiempo; .ts y saltos → copia limpia sin recodificar; VFR → ventanas a fps constante)*
+- ✔ Audio: sin pista no avisa; varias pistas (comentario / ambiente) no se pueden elegir; en el lado lejano cada transitorio del comentario abre una ventana cara. *(aviso; se analizan todas las pistas y se queda la que suena con sus golpes)*
 - Repeticiones lentas con ángulo parecido y animaciones del Hawk-Eye pueden pasar por cámara principal (duplicados). Pista: en directo el marcador está visible.
-- Dobles: CLAUDE.md dice que se excluyen; las etapas no lo hacen (solo el script de validación).
+- ✔ Dobles: CLAUDE.md dice que se excluyen; las etapas no lo hacen (solo el script de validación).
 - Marcador: se localiza una vez; si se equivoca (panel de estadísticas) o cambia de sitio, falla todo el partido; nombres compuestos o abreviados ("RYB", "Zheng Qinwen") no se reconocen; "BREAK" en rótulos de estadísticas.
-- Identidad: un brazo levantado celebrando cuenta como saque; un recogepelotas cerca de la cámara puede ganar a la jugadora.
-- DirectML sin respaldo automático a CPU; `device: openvino` no funciona con bola y raqueta.
-- Rutas con acentos: OpenCV falla en Windows (0 fotogramas); YAML con comillas convierte `\t` en tabulador.
-- La huella no incluye rival, mano ni altura: corregirlos no rehace nada.
-- El manifiesto no comprueba que las salidas existan; ventanas viejas no se borran; no se mira el espacio libre.
-- Cambiar una fórmula de métrica sin subir la versión deja datos viejos; la pasada fina es monolítica (cambiar una métrica rehace bola, raqueta y 3D).
-- `auto_catalog.py` borra los comentarios de `matches.yaml` y asigna todos los vídeos a Rybakina.
-- Mensajes: trazas en inglés; sin progreso durante horas; sin log propio de Python.
-- Rendimiento menor: el modelo YOLO se carga en cada fotograma o ventana en algunos caminos.
+- ✔ Identidad: un brazo levantado celebrando cuenta como saque; un recogepelotas cerca de la cámara puede ganar a la jugadora. *(el saque exige swing rápido y pies en el fondo; el seguimiento empieza en quien está dentro de la pista)*
+- ◐ DirectML sin respaldo automático a CPU *(✔ hecho)*; `device: openvino` no funciona con bola y raqueta.
+- ✔ Rutas con acentos: OpenCV falla en Windows (0 fotogramas); YAML con comillas convierte `\t` en tabulador. *(ruta corta de Windows para OpenCV; ids de partido en ASCII; local.yaml con comillas simples)*
+- ✔ La huella no incluye rival, mano ni altura: corregirlos no rehace nada.
+- ✔ El manifiesto no comprueba que las salidas existan; ventanas viejas no se borran; no se mira el espacio libre.
+- ✔ Cambiar una fórmula de métrica sin subir la versión deja datos viejos *(huella del código)*; ◐ la pasada fina es monolítica, pero la pose, la bola y la raqueta de cada ventana quedan en caché.
+- ◐ `auto_catalog.py` borra los comentarios de `matches.yaml` y asigna todos los vídeos a Rybakina. *(el rival se lee del marcador; ids en ASCII)*
+- ✔ Mensajes: trazas en inglés; sin progreso durante horas; sin log propio de Python. *(registro.log por partido, progreso por golpes)*
+- ✔ Rendimiento menor: el modelo YOLO se carga en cada fotograma o ventana en algunos caminos.
 
 **Algoritmos**
 - Apoyo: neutro y cerrado se confunden (no se conserva el signo); se mide en el impacto, no al armar; con los pies en el aire la homografía falla; umbrales 20°/55° sin calibrar; la pose es COCO-17 (sin puntera ni talón), no Halpe26.
-- Fases: "armado" = pausa de la muñeca (no máxima rotación de hombros); extensión fija a +50 ms; terminación = muñeca más alta (falla con limpiaparabrisas y cortados); el split step usa la media de los tobillos (cualquier paso cuenta).
+- ◐ Fases: "armado" = pausa de la muñeca (no máxima rotación de hombros) *(contrastado: 0,08 s de diferencia mediana)*; extensión fija a +50 ms; terminación = muñeca más alta (falla con limpiaparabrisas y cortados); el split step usa la media de los tobillos (cualquier paso cuenta).
 - Lado lejano: split step y recuperación no son fiables a ~70 px pero se muestran.
-- Homografía: una por plano (un zoom dentro del plano la invalida); sin error de reproyección; giro de cámara supuesto nulo.
+- ✔ Homografía: una por plano (un zoom dentro del plano la invalida); sin error de reproyección; giro de cámara supuesto nulo. *(se comprueba cada ~8 s y en el fotograma de cada impacto; si no encaja, se reajusta o no se usa)*
 - 3D: mezcla unidades de RTMW3D con píxeles convertidos suponiendo 1,8 m.
 - Empuñadura: supuesta en la configuración, condiciona la cara estimada.
 - Altura de la raqueta respecto a la muñeca en el plano de imagen: con la cámara inclinada, "hacia la red" parece "alta"; su fiabilidad está sobrevalorada.
@@ -299,9 +299,9 @@ anotación de 30-50 golpes para medir el error real de cada métrica, y la taxon
 - Sin `probe.json` todos los golpes caen en el "primer tercio".
 - Saque: nunca hay golpes "neutros"; se muestran apoyos y bola rápida sin sentido.
 - "Partido a partido": sin mínimo de golpes por partido.
-- Escala: el cálculo de pares usa una matriz n×n (≈1 GB con 6.000 golpes); los ficheros de series se reescriben enteros y nunca se borran los huérfanos.
+- ✔ Escala: el cálculo de pares usa una matriz n×n (≈1 GB con 6.000 golpes); los ficheros de series se reescriben enteros y nunca se borran los huérfanos.
 - Referencias de YouTube fijas de Rybakina en todos los informes.
-- Exportación: los MP4 no se rehacen cuando cambian la mediana o el ruido; si falla a medias queda un `.part.mp4`; rutas con `'` rompen los montajes; OpenCV con acentos en Windows.
+- ✔ Exportación: los MP4 no se rehacen cuando cambian la mediana o el ruido; si falla a medias queda un `.part.mp4`; rutas con `'` rompen los montajes; OpenCV con acentos en Windows.
 - El "ruido de medida" no es ruido de medida: es variabilidad golpe a golpe (incluye técnica real). Falta la anotación manual prevista.
 - Móvil: el HTML local con vídeos no funciona en iOS/Android; en el móvil sirven el MP4 y el PDF.
 

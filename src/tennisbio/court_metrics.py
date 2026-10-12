@@ -8,7 +8,6 @@ import numpy as np
 from .skeleton import Skeleton
 
 # stance from the angle of the back→front foot line with the baseline (0° = feet side by side)
-OPEN_MAX_DEG, SEMI_MAX_DEG = 20.0, 55.0
 
 
 def to_court(H_court_to_img: np.ndarray, pts_img: np.ndarray) -> np.ndarray:
@@ -27,18 +26,21 @@ def feet_on_court(img_kp: np.ndarray, frame: int, sk: Skeleton, H: np.ndarray):
     return q[0], q[1]
 
 
-def stance(dom_foot: np.ndarray, non_foot: np.ndarray, stroke: str) -> tuple[str, float]:
-    """('abierto' | 'semiabierto' | 'cerrado', angle in degrees).
+def stance(dom_foot: np.ndarray, non_foot: np.ndarray, stroke: str, dom_sign: int = 1) -> tuple[str, float]:
+    """4 stances from the feet on the court (her frame: x + = her right, y + = towards the net):
+    'abierto' | 'semiabierto' | 'neutro' | 'cerrado', and the angle α in degrees.
 
-    The front foot is the non-dominant one on a forehand and the dominant one on a backhand.
-    The angle is how far the front foot is ahead (towards the net) of the back foot, relative to
-    the feet line: 0° side by side (open), 90° one behind the other (closed); negative when the
-    "front" foot is actually behind (very open)."""
-    front, back = (non_foot, dom_foot) if stroke == "forehand" else (dom_foot, non_foot)
+    α = direction from the back foot to the front foot (forehand: non-dominant foot in front),
+    measured from "sideways towards the front-foot side": 0° open (feet parallel to the baseline),
+    ~45° semi-open, ~90° neutral (front foot straight ahead), > 115° closed (front foot crossed
+    over to the other side); negative when the front foot is behind (very open).
+    dom_sign: +1 right-handed, -1 left-handed."""
+    front, back = (non_foot, dom_foot) if stroke != "backhand" else (dom_foot, non_foot)
     d = front - back
-    ang = float(np.degrees(np.arctan2(d[1], abs(d[0]))))
-    kind = "abierto" if ang < OPEN_MAX_DEG else "semiabierto" if ang < SEMI_MAX_DEG else "cerrado"
-    return kind, ang
+    side = -dom_sign if stroke != "backhand" else dom_sign        # the front-foot side, in court x
+    a = float(np.degrees(np.arctan2(d[1], d[0] * side)))
+    kind = "abierto" if a < 25 else "semiabierto" if a < 65 else "neutro" if a < 115 else "cerrado"
+    return kind, a
 
 
 def court_metrics(img_kp: np.ndarray, sk: Skeleton, H: np.ndarray, stroke: str, impact: int,
@@ -50,7 +52,7 @@ def court_metrics(img_kp: np.ndarray, sk: Skeleton, H: np.ndarray, stroke: str, 
         return out
     dom, non = f
     mid = (dom + non) / 2
-    kind, ang = stance(dom, non, stroke)
+    kind, ang = stance(dom, non, stroke, sk.dom_sign)
     out.update(court_pos_m=[round(float(v), 2) for v in mid], stance_width_m=round(float(np.linalg.norm(dom - non)), 2),
                stance=kind, stance_angle_deg=round(ang, 1))
     g = feet_on_court(img_kp, opponent_hit, sk, H)

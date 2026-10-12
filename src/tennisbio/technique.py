@@ -210,17 +210,10 @@ def racket_at(kps: dict, img: np.ndarray, sk: Skeleton, f: int, scale: float, fe
 
 
 def stance_class(dom: np.ndarray, non: np.ndarray, stroke: str, dom_sign: int) -> tuple[str, float]:
-    """4 stances from the feet on the court (her frame: x + = her right, y + = towards the net).
+    """4 stances from the feet on the court (see court_metrics.stance: one definition everywhere)."""
+    from .court_metrics import stance
 
-    α = direction from the back foot to the front foot (forehand: non-dominant foot in front),
-    measured from "sideways towards the front-foot side": 0° open (feet parallel to the baseline),
-    ~45° semi-open, ~90° neutral (front foot straight ahead), > 115° closed (front foot crossed
-    over to the other side)."""
-    front, back = (non, dom) if stroke != "backhand" else (dom, non)
-    d = front - back
-    side = -dom_sign if stroke != "backhand" else dom_sign        # the front-foot side, in court x
-    a = math.degrees(math.atan2(d[1], d[0] * side))
-    kind = "abierto" if a < 25 else "semiabierto" if a < 65 else "neutro" if a < 115 else "cerrado"
+    kind, a = stance(dom, non, stroke, dom_sign)
     return kind, round(a, 1)
 
 
