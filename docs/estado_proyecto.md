@@ -45,6 +45,9 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
   juego. El clasificador de planos tomaba esos planos por "cámara principal". Retransmisión de
   Eurosport con el marcador internacional (latino, legible). Arreglado: la prueba rápida busca
   sola un tramo con juego; jugadores y lectura del rival solo donde se ve la pista.
+- Segunda prueba (minuto 121, un juego al saque de Sabalenka desde el fondo): marcador 48 lecturas,
+  13 candidatos, pero identidad sin decidir → 0 golpes. Causa: solo se votaba cuando la cercana
+  sacaba. Arreglado: si saca la del fondo, la cercana es la que resta (voto de resto).
 - Velocidad: YOLO 960 en la iGPU 112 ms/fotograma (CPU 479); decodificación 1080p50 27 fps (CPU),
   40 fps (d3d11va). Estimación lineal 5,6 h por partido sin la pasada fina → ~1 día los 4. La etapa
   de jugadores domina (277 s por 4 min).

@@ -106,3 +106,35 @@ def near_serves(kps: np.ndarray, conf: np.ndarray, fps: float, height_px: float,
             continue
         return t
     return None
+
+
+def near_receives(kps: np.ndarray, conf: np.ndarray, fps: float, height_px: float, onsets_k: list,
+                  feet_y: np.ndarray | None = None, within_s=5.0) -> int | None:
+    """Frame of the opponent's serve while the near player waits to return it, or None.
+
+    The serve is the first impact sound of the run (onsets_k: frame indices of the run); the near
+    player is receiving when, in the 1.5 s before it, neither wrist rises above her shoulders (no
+    toss, no trophy position), she stands at or behind her baseline, and she swings (the return)
+    0.3-2 s after it. A serve she does not touch (an ace) gives no answer."""
+    n = min(len(kps), int(within_s * fps))
+    wr = kps[:, [9, 10]]
+    v = np.linalg.norm(np.diff(wr, axis=0), axis=-1) * fps / max(height_px, 1.0)
+    v = np.r_[np.full((1, 2), np.nan), v]
+    for k in onsets_k:
+        if not int(0.5 * fps) <= k < n:
+            continue
+        a = max(0, k - int(1.5 * fps))
+        seg, c = kps[a:k + 1], conf[a:k + 1]
+        sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+        ok = (c[:, [9, 10]] > 0.3) & np.isfinite(seg[:, [9, 10], 1])
+        if not ok.any():
+            return None
+        if np.any((seg[:, [9, 10], 1] < sh[:, None] - 0.03 * height_px) & ok):
+            return None                                                # an arm up: she may be serving
+        if feet_y is not None and np.isfinite(feet_y[k]) and not -6.0 <= feet_y[k] <= 1.0:
+            return None
+        after = v[k + int(0.3 * fps):k + int(2.0 * fps)]
+        if np.isfinite(after).any() and np.nanmax(after) >= 1.5:
+            return k
+        return None
+    return None

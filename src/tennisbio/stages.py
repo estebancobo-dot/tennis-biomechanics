@@ -260,28 +260,39 @@ def near_runs(d, sk, court: dict | None = None):
         yield run, img, cf, body_height(img, sk), np.mean(app, axis=0)
 
 
-@stage("identity", "3", deps=("players", "score", "court"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
+@stage("identity", "4", deps=("players", "score", "court", "audio"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
 def st_identity(ctx: Context):
-    """Is the near player the target in each run? Clothing clusters + serves + scoreboard marker."""
-    from .identity import assign, cluster_two, decide_by_ends, end_changes, near_serves
+    """Is the near player the target in each run? Clothing clusters + serves + scoreboard marker:
+    when the near player serves she is the scoreboard's server; when she waits to return a serve
+    she is the other one."""
+    from .identity import assign, cluster_two, decide_by_ends, end_changes, near_receives, near_serves
 
     d = np.load(ctx.path("players.npz"), allow_pickle=True)
     fps, frames = float(d["fps"]), d["frames"]
     sk = Skeleton("coco17", ctx.match.player.hand)
     score = _read(ctx.path("score.json"))
     court = _read(ctx.path("court.json"))
+    onsets = load_onsets(ctx)
     runs, feats, votes = [], [], []
     for run, img, cf, h, app in near_runs(d, sk, court):
         i = len(runs)
         runs.append({"start": int(frames[run[0]]), "end": int(frames[run[-1]]) + 1})
         feats.append(app)
         H = court_at(court, frames[run[0]] / fps)[0]
-        f = near_serves(img, cf, fps, h, feet_y=_feet_court_y(img, H))
+        fy = _feet_court_y(img, H)
+        f = near_serves(img, cf, fps, h, feet_y=fy)
+        serving = True
+        if f is None:                    # the opponent serves from the far end: she returns
+            ts = frames[run] / fps
+            ks = [int(np.searchsorted(ts, t)) for t in onsets[(onsets >= ts[0]) & (onsets <= ts[-1])]]
+            f = near_receives(img, cf, fps, h, ks, feet_y=fy)
+            serving = False
         if f is not None:
             sr = score_at(score, frames[run[f]] / fps, max_age_s=25.0)
             if sr is not None and sr.get("server") is not None:
-                votes.append((i, sr["server"] == 0))
-                runs[i]["serve_vote"] = sr["server"] == 0
+                vote = (sr["server"] == 0) == serving
+                votes.append((i, vote))
+                runs[i]["serve_vote" if serving else "return_vote"] = vote
     labels = cluster_two(np.array(feats)) if feats else np.zeros(0, int)
     res = assign(labels, votes)
     # end changes from the scoreboard at the middle of each run

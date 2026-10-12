@@ -63,3 +63,19 @@ def test_one_serve_vote_fixes_every_run_through_the_end_changes():
     assert base is True                                   # → at an even count she is near
     assert decide_by_ends(parities, []) is None
     assert decide_by_ends(parities, [(0, True), (1, True)]) is None    # contradictory evidence
+
+
+def test_near_receives_when_the_opponent_serves():
+    from tennisbio.identity import near_receives
+    T, fps = 40, 10
+    kps, conf = np.zeros((T, 17, 2)), np.ones((T, 17))
+    kps[:, 0] = [100, 100]
+    kps[:, 5], kps[:, 6] = [80, 130], [120, 130]                 # shoulders
+    kps[:, 9], kps[:, 10] = [85, 200], [115, 200]                # hands low: waiting to return
+    kps[22:26, 10] = [[160, 190], [220, 170], [260, 160], [280, 150]]   # the return swing
+    assert near_receives(kps, conf, fps, 200, [12]) == 12
+    kps[8, 10] = [115, 60]                                        # an arm up before the sound: her own serve
+    assert near_receives(kps, conf, fps, 200, [12]) is None
+    kps[8, 10] = [115, 200]
+    kps[22:26, 10] = [115, 200]                                   # no return (an ace): no answer
+    assert near_receives(kps, conf, fps, 200, [12]) is None
