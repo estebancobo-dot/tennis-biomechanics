@@ -157,6 +157,13 @@ def shown_keys(data: dict) -> set[str]:
     for k, spec in METRICS.items():
         if any((s.get("m") or {}).get(k) is not None for s in data.get("strokes", [])):
             shown.add(f"metrics.{spec[-1]}")
+    # «Sus pies en este golpe» (stroke screen): every footwork value of each stroke
+    for s in data.get("strokes", []):
+        for k, v in (s.get("feet") or {}).items():
+            if v not in (None, False, [], ""):
+                shown.add(f"footwork.{k}")
+                if k == "around_ball":
+                    shown.add("class.around_ball")
     return shown
 
 
@@ -171,7 +178,9 @@ def planned_keys() -> set[str]:
     keys |= {f"footwork.{k}" for k in FOOTWORK_KEYS}
     # counted in the feet panel of «Su derecha»; factors are the situations to choose
     keys |= {f"footwork.{k}" for k in ("first_step_type", "last_plant_foot", "move_direction", "rear_leg_step_after", "first_step_right_way")}
-    keys |= {f"class.{k}" for k in FACTORS} | {"point_won"}
+    keys |= {f"class.{k}" for k in FACTORS} | {"point_won", "class.around_ball", "class.approach_main", "class.recovery_first_step"}
+    from .report import FEET_KEYS
+    keys |= {f"footwork.{k}" for k in FEET_KEYS}
     keys |= {f"metrics.{spec[-1]}" for spec in METRICS.values()}
     keys |= {f"curves.{k}" for k in ("head", "hip", "hand", "racket")}
     # stroke fields the stroke screen and the explorer read directly

@@ -244,10 +244,12 @@ def run(ctx: Context, names=None, force=False) -> list[str]:
                            "se sigue donde se quedó.")
         t0 = time.time()
         k = order(names or list(STAGES)).index(n) + 1
-        ctx.log(f"[{ctx.match.id}] {n}… ({time.strftime('%H:%M')}, etapa {k} de {len(STAGES)})")
+        ctx.log(f"[{ctx.match.id}] {n}… ({time.strftime('%Y-%m-%d %H:%M:%S')}, etapa {k} de {len(STAGES)})")
         ctx._prog["stage"] = n
         summary = STAGES[n].run(ctx) or {}
-        ctx.log(f"[{ctx.match.id}] {n} terminada en {(time.time() - t0) / 60:.1f} min")
+        dt = time.time() - t0
+        ctx.log(f"[{ctx.match.id}] {n} terminada a las {time.strftime('%H:%M:%S')} en "
+                + (f"{dt / 60:.1f} min" if dt >= 60 else f"{dt:.0f} s"))
         m[n] = {"fingerprint": fp, "version": STAGES[n].version, "seconds": round(time.time() - t0, 1),
                 "finished": time.strftime("%Y-%m-%d %H:%M:%S"), "summary": summary}
         save_manifest(ctx.dir, m)          # after every stage, so an interruption loses little

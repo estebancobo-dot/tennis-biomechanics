@@ -41,6 +41,7 @@ try {
     Write-Host "ERROR: $_" -ForegroundColor Red
     Write-Host "El registro se envia a Claude automaticamente. Relanzar este script continua donde se quedo." -ForegroundColor Red
 } finally {
+    Resumen-Tiempo
     if ($avisos) { Stop-Job $avisos -ErrorAction SilentlyContinue; Remove-Job $avisos -Force -ErrorAction SilentlyContinue }
     Stop-Transcript | Out-Null
     Subir-Registros

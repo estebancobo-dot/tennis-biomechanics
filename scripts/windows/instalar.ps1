@@ -65,6 +65,7 @@ try {
     Write-Host "ERROR: $_" -ForegroundColor Red
     Write-Host "El registro ($Log) se envia a Claude automaticamente." -ForegroundColor Red
 } finally {
+    Resumen-Tiempo
     Stop-Transcript | Out-Null
     Subir-Registros
 }

@@ -60,8 +60,10 @@ def main():
     match = Match(f"smoke_{ascii_id(src.stem, 40)}", clip, load_player(args.player), opponent=args.opponent)
     ctx = pipeline.Context(match, cfg, out_root / match.id)
     t0 = time.time()
+    print(f"Análisis del tramo: empieza {time.strftime('%Y-%m-%d %H:%M:%S')}", flush=True)
     done = pipeline.run(ctx)
     total = time.time() - t0
+    print(f"Análisis del tramo: termina {time.strftime('%Y-%m-%d %H:%M:%S')} ({total / 60:.1f} min)", flush=True)
     manifest = json.loads((ctx.dir / "manifest.json").read_text(encoding="utf-8"))
     print(f"\nEtapas ejecutadas: {', '.join(done) or 'ninguna (ya estaba al día)'}")
     for name, m in manifest.items():

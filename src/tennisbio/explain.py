@@ -459,6 +459,7 @@ NOT_MEASURABLE = [
     "Fuerzas y cargas en las articulaciones: solo se mide el movimiento.",
     "Orientación del pie y apoyo de talón o de punta: el esqueleto no tiene puntos en los pies.",
     "Altura del salto del split step: desde detrás, subir se confunde con alejarse.",
+    "Nuevo split step antes del siguiente golpe de la rival: el vídeo de cada golpe acaba 0,8 s después del impacto.",
     "Punto del cordaje donde golpea, presión de agarre y contribución de cada segmento a la velocidad: necesitan "
     "sensores o cámaras de laboratorio.",
 ]

@@ -12,7 +12,20 @@ $env:PYTHONUNBUFFERED = "1"
 try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 } catch {}
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
-function Paso($texto) { Write-Host ""; Write-Host "==> $texto" -ForegroundColor Cyan }
+# Cada paso con su fecha y hora, y lo que tardo el anterior (en el registro y en pantalla)
+$script:InicioScript = Get-Date
+$script:InicioPaso = $null
+function Duracion($ts) { if ($ts.TotalHours -ge 1) { "{0} h {1:00} min" -f [int][math]::Floor($ts.TotalHours), $ts.Minutes } elseif ($ts.TotalMinutes -ge 1) { "{0} min {1:00} s" -f [int][math]::Floor($ts.TotalMinutes), $ts.Seconds } else { "{0} s" -f [int]$ts.TotalSeconds } }
+function Fin-Paso { if ($script:InicioPaso) { Write-Host ("    (paso terminado en {0})" -f (Duracion ((Get-Date) - $script:InicioPaso))) -ForegroundColor DarkGray } }
+function Paso($texto) {
+    Fin-Paso
+    $script:InicioPaso = Get-Date
+    Write-Host ""; Write-Host ("==> [{0:yyyy-MM-dd HH:mm:ss}] $texto" -f $script:InicioPaso) -ForegroundColor Cyan
+}
+function Resumen-Tiempo {
+    Fin-Paso; $script:InicioPaso = $null
+    Write-Host ("Empezado {0:yyyy-MM-dd HH:mm:ss} - terminado {1:yyyy-MM-dd HH:mm:ss} - duracion total {2}" -f $script:InicioScript, (Get-Date), (Duracion ((Get-Date) - $script:InicioScript))) -ForegroundColor Cyan
+}
 function Ok($texto) { Write-Host $texto -ForegroundColor Green }
 function Aviso($texto) { Write-Host $texto -ForegroundColor Yellow }
 function Tiene($cmd) { [bool](Get-Command $cmd -ErrorAction SilentlyContinue) }
