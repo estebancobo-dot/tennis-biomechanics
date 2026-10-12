@@ -149,6 +149,10 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
         "quality": round(quality * (0.6 if far else 1.0), 3), "side": "far" if far else "near", "review": s.get("review", []), "source": s.get("impact_source"),
         "m": vals, "vt": t, "sit": sit,
         "phases": {k: v.get("t_rel") for k, v in ph.items()},
+        # heights through the stroke and the ball moments (s from contact): near side only
+        "curves": None if far else (s.get("technique") or {}).get("curves"),
+        "ballT": None if far else {k: -v["t_to_contact"] for k, v in ((s.get("technique") or {}).get("phases") or {}).items()
+                                   if k.startswith("ball_") and isinstance(v, dict) and v.get("t_to_contact") is not None},
         "face": {k: (v or {}).get("points_to") for k, v in face.items()},
         "video": None, "vImpact": s.get("window_impact_s"), "series": None,
     }

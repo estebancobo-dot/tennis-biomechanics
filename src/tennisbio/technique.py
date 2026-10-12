@@ -12,6 +12,8 @@ on it is marked low or left out.
 """
 import math
 
+import warnings
+
 import numpy as np
 
 from .footwork import footwork
@@ -195,10 +197,21 @@ def stroke_curves(img: np.ndarray, sk: Skeleton, scale: np.ndarray, impact: int,
     from .kinematics import smooth
 
     T = len(img)
-    ground = np.nanmax(img[:, [sk["left_ankle"], sk["right_ankle"]], 1], axis=1)       # image y grows down
+    def mean_y(*names):
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", RuntimeWarning)        # joints not seen in a frame
+            return np.nanmean(img[:, [sk[n] for n in names], 1], axis=1)
+
+    # the ground under her body: midway between her ankles (seen from behind, the lowest ankle is the
+    # one further back and puts the ground too low when the feet are apart along the court), smoothed
+    # over a short window; ankles are ~8 cm above the ground (Winter: 0.039 of the height)
+    ground = smooth(mean_y("left_ankle", "right_ankle"), fps, 0.06) + 0.039 * scale
     ok_g = np.isfinite(ground)
-    hip = (img[:, sk["left_hip"], 1] + img[:, sk["right_hip"], 1]) / 2
-    series = {"head": img[:, sk["nose"], 1], "hip": hip, "hand": img[:, sk["dom_wrist"], 1]}
+    # the head from behind: the nose is often hidden; ears and eyes are at about the same height
+    head = img[:, sk["nose"], 1].copy()
+    for alt in (mean_y("left_ear", "right_ear"), mean_y("left_eye", "right_eye")):
+        head = np.where(np.isfinite(head), head, alt)
+    series = {"head": head, "hip": mean_y("left_hip", "right_hip"), "hand": img[:, sk["dom_wrist"], 1]}
     rk = np.full(T, np.nan)
     for key, k in (kps or {}).items():
         f = int(key)
@@ -207,6 +220,9 @@ def stroke_curves(img: np.ndarray, sk: Skeleton, scale: np.ndarray, impact: int,
             rk[f] = (k[0, 1] + k[1, 1]) / 2
     series["racket"] = rk
     t_f = (np.arange(T) - impact) / fps
+    # (the camera from the court lines would remove the perspective of the feet, but its focal length
+    # is uncertain and it put her head 15 % too low on the US Open clip; her own body in the image is
+    # the more reliable ruler)
     out = {}
     for name, y in series.items():
         h = np.where(ok_g & np.isfinite(y), (ground - y) / scale * 100, np.nan)

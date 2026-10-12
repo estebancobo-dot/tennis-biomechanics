@@ -63,9 +63,10 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
   se ocultan por golpe cuando un pie no se ve quieto en ≥ 40 % de los fotogramas.
 
 ### Pedido por el usuario y pendiente (después de arreglar su retransmisión)
-- Lo que hace respecto a la bola en cada momento (cruza la red, cae, bota, sube; golpea subiendo /
-  arriba / cayendo) y curvas sincronizadas con el vídeo (cabeza, cadera, muñeca, raqueta) con su
-  curva típica y su margen, como Sportsbox.
+- ✔ Lo que hace respecto a la bola en cada momento (cruza la red, bota, punto más alto; golpea
+  subiendo / arriba / cayendo; `ball3d.py`) y curvas de altura sincronizadas con el vídeo (cabeza,
+  cadera, mano, raqueta) con su curva típica y su franja por situación (informe: «Análisis de golpe»
+  y «Su derecha»). Falta verlo con golpes reales del PC (prueba rápida).
 - Auditoría automática de requisitos sobre las salidas reales + hoja de imágenes de golpes al azar.
 
 Pendiente que **solo puede hacerse en el PC**:

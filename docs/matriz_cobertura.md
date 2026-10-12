@@ -107,7 +107,10 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Bote: profundidad, anchura, dentro/fuera | Hawk-Eye, SwingVision | ✔ | `shot_landing` |
 | Dirección cruzada, paralela, al centro, invertidas | F3Set, TennisViz | ✔ | `shot_direction`, `shot_type` |
 | Velocidad media de la bola en pista | Hawk-Eye, sensores | ✔ | `ball_speed_avg_kmh` (horizontal, media; no la de salida) |
-| Efecto (rpm), velocidad de salida, altura sobre la red | Hawk-Eye | ✘ | bola pequeña y borrosa; sin 3D |
+| Altura de la bola en su vuelo, bote, punto más alto; contacto subiendo / arriba / cayendo | Hawk-Eye, TennisViz | ◐ | `ball3d.flights`: cámara a partir de la homografía, anclada en el bote y en la altura de su mano en el contacto (error ±0,15 m en la mano → ±0,3 m en el punto más alto). Clase `ball_phase`, `contact_vs_top`, `apex_height_m` |
+| Qué hace ella en cada momento de la bola (cruza la red, bota, punto más alto) | Sportsbox (por fases) | ✔ | fases `ball_net`, `ball_bounce`, `ball_top`: postura, giro de hombros y raqueta; `takeback_vs_net`, `loaded_vs_top` |
+| Curvas de altura (cabeza, cadera, mano, cabeza de la raqueta) a lo largo del golpe, con su curva típica y su franja | Sportsbox | ✔ | `technique.stroke_curves` (cada 40 ms, −1,2 a +0,8 s), `model._typical_curves` (p25-p50-p75 por situación); informe: bajo el vídeo de cada golpe y en «Su derecha» |
+| Efecto (rpm), velocidad de salida, altura sobre la red | Hawk-Eye | ✘ | bola pequeña y borrosa; la altura sobre la red se interpola (rival a ~1 m → bote), no se muestra |
 | Fase ataque / neutra / defensa | TennisViz | ✔ | clase `intent` |
 | Calidad del golpe (sustituto: profundidad, anchura, velocidad media) | TennisViz (Shot Quality) | ✔ | `shot_quality_proxy` (indicador propio, no el de TennisViz) |
 | Puntos ganados en ataque / en defensa | TennisViz (Conversion / Steal) | ✔ | `point_won` (cambio del marcador) × intención del último golpe del punto |

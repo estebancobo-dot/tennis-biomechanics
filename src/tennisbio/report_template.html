@@ -297,6 +297,10 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
   </div>
   <div class="mlegend"><span><i style="background:#e3e8ec"></i>Esqueleto de un golpe real típico</span><span><i style="background:var(--accent)"></i>Postura media de todos sus golpes de esta situación</span><span>Pulsa una imagen para ver ese momento en vídeo</span></div>
   <div class="pcards" id="m-cards"></div>
+  <div class="panel" style="margin-top:16px" id="m-curves-p">
+    <header><h2>Cómo sube y baja durante el golpe</h2><span class="note">Mediana y franja habitual (la mitad central de sus golpes) · en % de su altura sobre el suelo</span></header>
+    <div class="body chart"><div id="m-curves"></div><div class="legend" id="m-curves-leg" style="margin-top:6px"></div><ul class="msum" id="m-curves-txt" style="margin-top:8px"></ul></div>
+  </div>
   <div class="cols c-1-1" style="margin-top:16px">
     <div class="panel"><header><h2>Pies</h2><span class="note">Desde el golpe de la rival hasta la recuperación</span></header><div class="body msum" id="m-feet"></div></div>
     <div class="panel"><header><h2>Lo que la tele no permite medir</h2></header><div class="body"><ul class="msum" id="m-nm"></ul></div></div>
@@ -381,6 +385,10 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
         <div class="body mlist" id="g-metrics"></div>
       </div>
     </div>
+  </div>
+  <div class="panel" style="margin-bottom:16px">
+    <header><h2>Alturas durante el golpe</h2><span class="note">Sobre el suelo, en % de su altura · línea: este golpe · franja: lo habitual en ella · pulsa para ir a ese momento</span></header>
+    <div class="body chart"><div id="g-hts"></div><div class="legend" id="g-hts-leg" style="margin-top:6px"></div><p class="note" id="g-hts-txt" style="margin-top:6px"></p></div>
   </div>
   <div class="cols c-3-1">
     <div class="panel">
@@ -847,7 +855,7 @@ async function renderStage() {
   if (!playing) await seek(tNow);
   drawFrame(cx, cv.width, cv.height, fIdx(tNow), layers); hud(tNow);
   document.getElementById("tc").innerHTML = `<b>${clock(cur.vt + tNow)}</b> · fot ${fIdx(tNow) + 1}/${NF}`;
-  ["g-kin", "g-ang", "g-rh", "g-rf"].forEach(id => { const el = document.getElementById(id), l = el.querySelector(".ph"); if (l && el._X) { l.setAttribute("x1", el._X(tNow)); l.setAttribute("x2", el._X(tNow)); } });
+  ["g-kin", "g-ang", "g-rh", "g-rf", "g-hts"].forEach(id => { const el = document.getElementById(id), l = el.querySelector(".ph"); if (l && el._X) { l.setAttribute("x1", el._X(tNow)); l.setAttribute("x2", el._X(tNow)); } });
 }
 function renderTimeline() {
   const W = 900, H = 60, L = 8, R = 8, X = t => L + (t - T0) / (T1 - T0) * (W - L - R);
@@ -894,6 +902,49 @@ async function renderKF() {
   await seek(tNow); renderStage();
 }
 function setT(t) { tNow = snap(t); renderStage(); renderTimeline(); document.querySelectorAll("#kf button").forEach(b => b.setAttribute("aria-current", b.dataset.t !== "" && Math.abs(+b.dataset.t - tNow) < .6 / FPS)); }
+// Heights through the stroke on the common grid of technique.stroke_curves (s from contact).
+const CURVE_DEF = [["head", "Su cabeza", "var(--s1)"], ["hip", "Cadera", "var(--s3)"], ["hand", "Mano", "var(--s2)"], ["racket", "Cabeza de la raqueta", "var(--s4)"]];
+const BALL_EV = { ball_net: "bola en la red", ball_bounce: "bote", ball_top: "bola arriba" };
+const PH_EV = { takeback: "inicio de preparación", loaded: "armado", acceleration: "aceleración", finish: "terminación" };
+function curveChart(el, { tGrid, lines = [], bands = [], events = [], t0, t1, H = 230, W = 900, cursor = false, onPick = null, label = "Alturas" }) {
+  const L = 40, R = 14, T = 18, B = 26, X = t => L + (t - t0) / (t1 - t0) * (W - L - R);
+  const all = fin([...lines.flatMap(l => l.v), ...bands.flatMap(b => [...b.lo, ...b.hi])]);
+  if (!all.length) { el.innerHTML = `<div class="empty">${label}: sin datos suficientes.</div>`; el._X = null; return; }
+  const ylo = Math.max(0, Math.floor(Math.min(...all) / 10) * 10), yhi = Math.ceil(Math.max(...all) / 10) * 10 + 5;
+  const Y = v => T + (1 - (v - ylo) / (yhi - ylo)) * (H - T - B);
+  const inR = t => t >= t0 - 1e-6 && t <= t1 + 1e-6;
+  let g = `<text x="${L}" y="${T - 6}" font-size="10.5" fill="var(--ink-2)" font-family="Archivo, sans-serif">Altura sobre el suelo (% de su altura)</text>`;
+  niceTicks(ylo, yhi, 4).forEach(t => { g += `<line x1="${L}" x2="${W - R}" y1="${Y(t)}" y2="${Y(t)}" stroke="var(--line)"/><text x="${L - 6}" y="${Y(t) + 4}" text-anchor="end" font-size="10.5" fill="var(--ink-3)" font-family="JetBrains Mono, monospace">${fmt(t)}</text>`; });
+  [-1, -.5, 0, .5].filter(inR).forEach(t => { g += `<text x="${X(t)}" y="${H - 6}" text-anchor="middle" font-size="10.5" fill="var(--ink-3)" font-family="JetBrains Mono, monospace">${t === 0 ? "impacto" : (t > 0 ? "+" : "−") + fmt(Math.abs(t), 1) + " s"}</text>`; });
+  events.filter(e => isN(e.t) && inR(e.t)).forEach((e, i) => { g += `<line x1="${X(e.t)}" x2="${X(e.t)}" y1="${T}" y2="${H - B}" stroke="${e.ball ? "var(--accent)" : "var(--ink-3)"}" stroke-dasharray="${e.ball ? "2 3" : "3 3"}"/><text x="${X(e.t) + 3}" y="${T + 10 + (i % 3) * 11}" font-size="10" fill="${e.ball ? "var(--accent)" : "var(--ink-3)"}" font-family="Archivo, sans-serif">${e.n}</text>`; });
+  g += `<line x1="${X(0)}" x2="${X(0)}" y1="${T}" y2="${H - B}" stroke="var(--ink-2)"/>`;
+  const segs = (v, f) => { const out = []; let seg = []; v.forEach((y, i) => { const t = tGrid[i]; if (inR(t) && f(i)) seg.push(i); else if (seg.length) { out.push(seg); seg = []; } }); if (seg.length) out.push(seg); return out; };
+  bands.forEach(b => segs(b.lo, i => isN(b.lo[i]) && isN(b.hi[i])).forEach(sg => { if (sg.length < 2) return; const up = sg.map(i => `${X(tGrid[i]).toFixed(1)},${Y(b.hi[i]).toFixed(1)}`), dn = sg.slice().reverse().map(i => `${X(tGrid[i]).toFixed(1)},${Y(b.lo[i]).toFixed(1)}`); g += `<polygon points="${up.concat(dn).join(" ")}" fill="${b.col}" opacity=".16"/>`; }));
+  lines.forEach(l => segs(l.v, i => isN(l.v[i])).forEach(sg => { const pts = sg.map(i => `${X(tGrid[i]).toFixed(1)},${Y(l.v[i]).toFixed(1)}`); g += pts.length > 1 ? `<polyline points="${pts.join(" ")}" fill="none" stroke="${l.col}" stroke-width="${l.dash ? 1.5 : 2.2}" ${l.dash ? 'stroke-dasharray="5 4" opacity=".8"' : ""} stroke-linejoin="round"/>` : `<circle cx="${pts[0].split(",")[0]}" cy="${pts[0].split(",")[1]}" r="2.5" fill="${l.col}"/>`; }));
+  if (cursor) g += `<line class="ph" x1="${X(tNow)}" x2="${X(tNow)}" y1="${T}" y2="${H - B}" stroke="var(--accent)" stroke-width="1.5"/>`;
+  g += `<line class="hv" x1="0" x2="0" y1="${T}" y2="${H - B}" stroke="var(--ink-2)" visibility="hidden"/><rect class="hit" x="${L}" y="${T}" width="${W - L - R}" height="${H - T - B}" fill="transparent" style="cursor:crosshair"/>`;
+  el.innerHTML = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${label}">${g}</svg>`;
+  const svg = el.querySelector("svg"), hit = svg.querySelector(".hit"), hv = svg.querySelector(".hv");
+  const toT = ev => { const r = svg.getBoundingClientRect(); return t0 + ((ev.clientX - r.left) / r.width * W - L) / (W - L - R) * (t1 - t0); };
+  const near = t => { let k = 0; tGrid.forEach((x, i) => { if (Math.abs(x - t) < Math.abs(tGrid[k] - t)) k = i; }); return k; };
+  hit.addEventListener("mousemove", ev => { const t = toT(ev), k = near(t); hv.setAttribute("x1", X(t)); hv.setAttribute("x2", X(t)); hv.setAttribute("visibility", "visible");
+    const rows = lines.filter(l => !l.dash).map(l => `<span style="color:${l.col}">■</span> ${l.n}: ${isN(l.v[k]) ? fmt(l.v[k]) + " %" : "—"}`).concat(bands.map(b => `<span style="color:${b.col}">▒</span> ${b.n} habitual: ${isN(b.lo[k]) ? fmt(b.lo[k]) + "–" + fmt(b.hi[k]) + " %" : "—"}`));
+    showTip(`<b class="mono">${t >= 0 ? "+" : "−"}${fmt(Math.abs(t), 2)} s</b><div class="mono">${rows.join("<br>")}</div>`, ev); });
+  hit.addEventListener("mouseleave", () => { hv.setAttribute("visibility", "hidden"); tip.hidden = true; });
+  if (onPick) hit.addEventListener("click", ev => onPick(toT(ev)));
+  el._X = X;
+}
+// One sentence per curve from her typical curves: lowest point before contact and how much it drops.
+function curveSentences(C) {
+  const out = [], t = C.t, ev = C.events || {};
+  const at = (arr, tt) => { if (!isN(tt)) return NaN; let k = 0; t.forEach((x, i) => { if (Math.abs(x - tt) < Math.abs(t[k] - tt)) k = i; }); return arr[k]; };
+  const low = (arr, a, b) => { let k = -1; t.forEach((x, i) => { if (x >= a && x <= b && isN(arr[i]) && (k < 0 || arr[i] < arr[k])) k = i; }); return k; };
+  if (C.hip) { const m = C.hip.p50, k = low(m, -0.8, 0.05), start = fin(m.filter((_, i) => t[i] <= -0.8)); if (k >= 0 && start.length) { const d = Math.max(...start) - m[k]; if (d >= 2.5) out.push(`La cadera baja <b>${fmt(d)} %</b> de su altura antes de golpear; el punto más bajo llega <b>${fmt(Math.abs(t[k]), 2)} s</b> ${t[k] <= 0 ? "antes" : "después"} del impacto${isN(ev.ball_bounce) ? ` (bote de la bola: ${fmt(Math.abs(ev.ball_bounce), 2)} s antes)` : ""}.`); } }
+  if (C.head) { const m = C.head.p50, a = at(m, -0.1), b = at(m, 0.1); if (isN(a) && isN(b)) out.push(Math.abs(b - a) < 1.5 ? `Su cabeza se queda quieta en el impacto (varía ${fmt(Math.abs(b - a), 1)} % de su altura entre −0,1 y +0,1 s).` : `Su cabeza ${b > a ? "sube" : "baja"} ${fmt(Math.abs(b - a), 1)} % de su altura alrededor del impacto (−0,1 a +0,1 s).`); }
+  if (C.hand) { const m = C.hand.p50, k = low(m, -0.6, 0), c = at(m, 0), f = Math.max(...fin(m.filter((_, i) => t[i] > 0))); if (k >= 0 && isN(c)) out.push(`La mano baja hasta el <b>${fmt(m[k])} %</b> de su altura ${fmt(Math.abs(t[k]), 2)} s antes del impacto, golpea al ${fmt(c)} % y termina al ${fmt(f)} %: el swing sube ${fmt(f - m[k])} % de su altura.`); }
+  if (C.racket) { const m = C.racket.p50, hd = C.hand && C.hand.p50, k = low(m, -0.6, 0); if (k >= 0) out.push(`La cabeza de la raqueta llega a su punto más bajo (${fmt(m[k])} % de su altura) ${fmt(Math.abs(t[k]), 2)} s antes del impacto${hd && isN(hd[k]) ? `, ${m[k] < hd[k] ? "por debajo" : "por encima"} de la mano` : ""}.`); }
+  return out;
+}
 function lineChart(el, series, { label, norm1 = false, peaks = false, legendEl, unit = "", H = 210, W = 520, blur = false, zero = false, yName = "" }) {
   const L = 40, R = 14, T = 16, B = 26, X = t => L + (t - T0) / (T1 - T0) * (W - L - R);
   const all = fin(series.flatMap(s => s.v));
@@ -948,6 +999,16 @@ function renderRacket() {
     PH.map((p, i) => { const f = isN(p.t) ? fIdx(p.t) : null, h = rk && f !== null ? rk.head_cm[f] : null, tl = f !== null ? tilt[f] : null, lb = f !== null ? lab[f] : null; return `<tr data-t="${isN(p.t) ? p.t : ""}"><td>${i + 1} ${p.n}</td><td class="r num">${isN(h) ? sign(h) + fmt(Math.abs(h)) + " cm" : "—"}</td><td>${lb || "—"}</td><td class="r num">${isN(tl) ? sign(tl) + fmt(Math.abs(tl)) + "°" : "—"}</td><td>${relBars(relP[i])}</td></tr>`; }).join("") + `</tbody>`;
   document.querySelectorAll("#g-rtable tbody tr").forEach(tr => tr.addEventListener("click", () => { if (tr.dataset.t !== "") { stopPlay(); setT(+tr.dataset.t); } }));
 }
+function renderHeights() {
+  const s = cur, C = (DATA.model || {}).curves || {}, el = document.getElementById("g-hts"), sc = s.curves || {};
+  const tg = C.t || Array.from({ length: 51 }, (_, i) => Math.round((-1.2 + i * .04) * 100) / 100);
+  const lines = CURVE_DEF.filter(([k]) => sc[k]).map(([k, n, col]) => ({ n, v: sc[k], col }));
+  const bands = CURVE_DEF.filter(([k]) => sc[k] && C[k]).map(([k, n, col]) => ({ n, lo: C[k].p25, hi: C[k].p75, col }));
+  const events = PH.filter(p => PH_EV[p.k] && isN(p.t)).map(p => ({ t: p.t, n: PH_EV[p.k] })).concat(Object.entries(s.ballT || {}).map(([k, t]) => ({ t, n: BALL_EV[k] || k, ball: true })));
+  curveChart(el, { tGrid: tg, lines, bands, events, t0: Math.max(T0, tg[0]), t1: Math.min(T1, tg[tg.length - 1]), cursor: true, onPick: t => { stopPlay(); setT(snap(t)); }, label: "Alturas durante el golpe" });
+  document.getElementById("g-hts-leg").innerHTML = lines.map(l => `<span><i style="background:${l.col}"></i>${l.n}</span>`).join("") + (Object.keys(s.ballT || {}).length ? `<span><i style="background:var(--accent)"></i>momentos de la bola</span>` : "");
+  document.getElementById("g-hts-txt").textContent = s.side === "far" ? "Lado lejano: las alturas no son fiables a esa distancia." : (sc.racket ? "" : "La raqueta solo se ve en algunos fotogramas; sin ella, solo el cuerpo.");
+}
 let kfDone = Promise.resolve();
 async function loadStroke(s, fromList = false) {
   if (!fromList) endPlaylist();
@@ -957,7 +1018,7 @@ async function loadStroke(s, fromList = false) {
   tNow = 0;
   if (s.video && video.getAttribute("src") !== s.video) { video.src = s.video; await new Promise(r => { video.addEventListener("loadeddata", r, { once: true }); video.addEventListener("error", r, { once: true }); }); }
   const vw = video.videoWidth || 16, vh = video.videoHeight || 9; cv.height = Math.round(cv.width * (view === "full" ? vh / vw : 9 / 16));
-  renderCtx(); renderMetricsPanel(); renderRacket();
+  renderCtx(); renderMetricsPanel(); renderRacket(); renderHeights();
   const cols = ["var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)"];
   // peaks: the ones the pipeline used to judge the order (between the backswing and contact)
   const PK = { Pelvis: "pelvis", Tronco: "trunk", Brazo: "upper_arm", Antebrazo: "forearm" }, cp = s.chainPeaks || {};
@@ -1310,7 +1371,7 @@ document.getElementById("m-nm").innerHTML = (MODEL.not_measurable || []).map(t =
   const el = document.getElementById("m-sit"); el.innerHTML = h;
   el.addEventListener("click", ev => { const b = ev.target.closest("button[data-k]"); if (!b) return; mSit = b.dataset.k; el.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b)); renderModel(); });
 })();
-function mView() { return mSit && MODEL.variants[mSit] ? MODEL.variants[mSit] : { cards: MODEL.cards, strokes: MODEL.typical_strokes, changes: [] }; }
+function mView() { return mSit && MODEL.variants[mSit] ? MODEL.variants[mSit] : { cards: MODEL.cards, strokes: MODEL.typical_strokes, changes: [], curves: MODEL.curves }; }
 function mStrokes() { return (mView().strokes || []).map(id => SID[id]).filter(s => s && s.video); }
 function renderFeet() {
   const f = MODEL.footwork || {}, L = [];
@@ -1357,12 +1418,23 @@ async function drawCard(cvEl, card, s) {
   for (const [a, b] of BONES) { if (!skL[a] || !skL[b]) continue; const [x1, y1] = P(skL[a]), [x2, y2] = P(skL[b]); ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
   ctx.globalAlpha = 1;
 }
+function renderModelCurves(C) {
+  const p = document.getElementById("m-curves-p"), has = C && CURVE_DEF.some(([k]) => C[k]);
+  p.hidden = !has; if (!has) return;
+  const ev = C.events || {};
+  const events = Object.entries(PH_EV).filter(([k]) => isN(ev[k])).map(([k, n]) => ({ t: ev[k], n })).concat(Object.entries(BALL_EV).filter(([k]) => isN(ev[k])).map(([k, n]) => ({ t: ev[k], n, ball: true })));
+  const D = CURVE_DEF.filter(([k]) => C[k]);
+  curveChart(document.getElementById("m-curves"), { tGrid: C.t, lines: D.map(([k, n, col]) => ({ n, v: C[k].p50, col })), bands: D.map(([k, n, col]) => ({ n, lo: C[k].p25, hi: C[k].p75, col })), events, t0: C.t[0], t1: C.t[C.t.length - 1], label: "Sus alturas típicas" });
+  document.getElementById("m-curves-leg").innerHTML = D.map(([, n, col]) => `<span><i style="background:${col}"></i>${n}</span>`).join("") + (Object.keys(BALL_EV).some(k => isN(ev[k])) ? `<span><i style="background:var(--accent)"></i>momentos de la bola (mediana)</span>` : "");
+  document.getElementById("m-curves-txt").innerHTML = curveSentences(C).map(t => `<li>${t}</li>`).join("");
+}
 let mGen = 0;
 async function renderModel() {
   const v = mView(), g = ++mGen, ss = mStrokes(), s = ss[0];
   const ch = document.getElementById("m-changes");
   ch.hidden = !mSit;
   if (mSit) { const V = MODEL.variants[mSit]; ch.innerHTML = `<div><b>${V.factor_name}: ${V.level}</b> · ${V.n} golpes (${Math.round(V.share * 100)} %)${V.usual ? " · es su situación habitual: la referencia de las comparaciones" : ""}</div>` + (V.changes.length ? V.changes.map(t => `<div>· ${t}</div>`).join("") : `<div class="dim3">Ningún rasgo cambia de forma clara respecto a lo habitual (con el error de medida y la corrección por comparaciones múltiples).</div>`); }
+  renderModelCurves(v.curves || (mSit ? null : MODEL.curves));
   const box = document.getElementById("m-cards");
   box.innerHTML = (v.cards || []).map((c, i) => `<div class="pcard"><canvas width="400" height="500" data-i="${i}" title="Ver este momento en vídeo"></canvas><h3><span>${i + 1} · ${c.title}</span>${c.changes ? `<span class="ch">${c.changes} cambia${c.changes > 1 ? "n" : ""}</span>` : ""}</h3><ul>${c.lines.map(l => `<li class="${l.change ? "chg" : ""}"><span>${l.text}</span><span>${l.change ? `<span class="dv">${l.change.diff > 0 ? "+" : "−"}${fmt(Math.abs(l.change.diff), ["s", "m", "m/s", ""].includes(l.change.unit) ? 2 : 0)}${l.change.unit === "°" || l.change.unit === "%" ? l.change.unit : " " + l.change.unit}</span>` : relBars(l.rel)}</span></li>`).join("") || `<li class="dim3">Sin datos suficientes en esta fase.</li>`}</ul></div>`).join("");
   box.querySelectorAll("canvas").forEach(cv => cv.addEventListener("click", () => { const c = v.cards[+cv.dataset.i]; if (!s) return; loadStroke(s).then(() => { const t = s.phases[c.phase]; if (isN(t)) setT(t); }); showTab("golpe"); }));

@@ -160,3 +160,33 @@ def test_a_lifted_foot_is_not_a_sprint():
     out = footwork(img, sk, np.eye(3), scale, fps, 30, None, None, None, None)
     assert out["speed_at_impact_mps"] is not None and out["speed_at_impact_mps"] < 0.5
     assert out["movement"] == "parada"
+
+
+def test_curves_follow_the_hip_dip_and_see_the_head_from_behind():
+    from tennisbio.model import _typical_curves
+    from tennisbio.technique import CURVE_T, stroke_curves
+
+    fps, T, impact, px = 50.0, 120, 70, 200.0                 # 200 px per body height
+    t = (np.arange(T) - impact) / fps
+    img = np.full((T, 17, 2), np.nan)
+    ground = 900.0
+    dip = 0.08 * np.exp(-((t + 0.3) / 0.12) ** 2)             # hips 8 % lower 0.3 s before contact
+    for n, h in (("left_ankle", 0.039), ("right_ankle", 0.039), ("left_hip", 0.52), ("right_hip", 0.52),
+                 ("left_ear", 0.92), ("right_ear", 0.92), ("right_wrist", 0.55)):
+        img[:, SK[n], 0] = 500
+        img[:, SK[n], 1] = ground - (h - (dip if "hip" in n or "ear" in n else 0)) * px
+    img[:, SK["left_ankle"], 1] += np.where(np.arange(T) % 7 == 0, np.nan, 0)   # a few missing frames
+    c = stroke_curves(img, SK, np.full(T, px), impact, fps, None)
+    assert set(c) == {"head", "hip", "hand"}                   # no racket points: no racket curve
+    hip = np.array([np.nan if v is None else v for v in c["hip"]])
+    k = int(np.nanargmin(hip))
+    assert abs(CURVE_T[k] + 0.3) <= 0.08 and 42 < hip[k] < 47 and abs(hip[0] - 52) < 1
+    assert abs(c["head"][0] - 92) < 1                          # the ears stand in for the hidden nose
+    # outside the clip there is no value (nothing invented)
+    c2 = stroke_curves(img[40:], SK, np.full(T - 40, px), impact - 40, fps, None)
+    assert c2["hip"][0] is None
+    # typical curve: needs 5 strokes; the band holds the median
+    rows = [{"technique": {"curves": c, "stroke": {"t_loaded": 0.4}, "phases": {"ball_bounce": {"t_to_contact": 0.5}}}}] * 5
+    tc = _typical_curves(rows)
+    assert tc["hip"]["p50"][k] == c["hip"][k] and tc["events"] == {"loaded": -0.4, "ball_bounce": -0.5}
+    assert "hip" not in _typical_curves(rows[:4])

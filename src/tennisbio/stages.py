@@ -1038,11 +1038,14 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
     ta = r.metrics.get("time_available_s")
     opp_f = None if ta is None else r.impact_frame - int(round(ta * run.fps))
     # the ball's flight around the stroke (ball3d): net crossing, top of the bounce, rising/dropping
-    ball_m = {}
-    if side == "near" and H_img is not None and run.ball is not None and (r.ball or {}).get("bounce_frame") is not None:
-        from .ball3d import flights
+    ball_m, cam = {}, None
+    if side == "near" and H_img is not None:
+        from .ball3d import camera
         from .io.video import probe as _probe
         ci = _probe(clip)
+        cam = camera(H_img, (ci.height, ci.width))
+    if cam is not None and run.ball is not None and (r.ball or {}).get("bounce_frame") is not None:
+        from .ball3d import flights
         cz = r.metrics.get("contact_height_pct")
         ball_m = flights(run.ball, run.fps, H_img, (ci.height, ci.width), r.ball["bounce_frame"], r.impact_frame, opp_f,
                          None if cz is None else cz / 100 * p.height_m + 0.08,         # the ankle is ~8 cm above the ground
