@@ -1,0 +1,85 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261012133704
+Username: esteban\esteb
+RunAs User: esteban\esteb
+Configuration Name: 
+Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\instalar.ps1
+Process ID: 3376
+PSVersion: 5.1.26100.9549
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
+BuildVersion: 10.0.26100.9549
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+==> 1/7 Actualizar el codigo
+se actualiza con 1_instalar.bat (con Git si el proyecto esta clonado; si no, zip de GitHub)
+
+==> 2/7 ffmpeg (lectura de video y audio)
+Path environment variable modified; restart your shell to use the new value.
+Command line alias added: "ffmpeg"
+Command line alias added: "ffplay"
+Command line alias added: "ffprobe"
+Successfully installed
+
+==> 3/7 uv (gestor de Python)
+
+
+==> 4/7 Codigo del proyecto
+proyecto en C:\tenis\tennis-biomech
+
+==> 5/7 Python 3.11 y librerias (10-15 min la primera vez)
+
+
+
+==> 6/7 Configuracion y modelos (~1 GB la primera vez)
+
+
+==> 7/7 Comprobacion
+
+
+PS>TerminatingError(): "Fallo: uv run pytest -q (codigo 1)"
+
+ERROR: Fallo: uv run pytest -q (codigo 1)
+Pasa a Claude el fichero C:\tenis\output\instalacion.log
+**********************
+Windows PowerShell transcript end
+End time: 20261012133818
+**********************
+**********************
+Windows PowerShell transcript start
+Start time: 20261012134605
+Username: esteban\esteb
+RunAs User: esteban\esteb
+Configuration Name: 
+Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\instalar.ps1
+Process ID: 10112
+PSVersion: 5.1.26100.9549
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
+BuildVersion: 10.0.26100.9549
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+==> 1/7 Actualizar el codigo
+se actualiza con 1_instalar.bat (con Git si el proyecto esta clonado; si no, zip de GitHub)
+
+==> 2/7 ffmpeg (lectura de video y audio)
+
+PS>TerminatingError(): "Fallo: winget install --id Gyan.FFmpeg -e --silent --accept-package-agreements --accept-source-agreements (codigo -1978335189)"
+
+ERROR: Fallo: winget install --id Gyan.FFmpeg -e --silent --accept-package-agreements --accept-source-agreements (codigo -1978335189)
+El registro (C:\tenis\output\instalacion.log) se envia a Claude automaticamente.
+**********************
+Windows PowerShell transcript end
+End time: 20261012134606
+**********************
