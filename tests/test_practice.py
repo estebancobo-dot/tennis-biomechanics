@@ -100,3 +100,14 @@ def test_audit_combinations_flag_hidden_measure_and_count_few():
     view["ball_speed|lenta"]["cards"][0]["lines"].append({"key": key})
     it = {i["name"].split(":")[0]: i for i in _combination_items({"variants": view}, vals, 3, FACTORS)}["Bola rápida / lenta"]
     assert it["status"] == "ok" and it["shown"] == 1 and "media 1" in it["detail"]
+
+
+def test_exam_needs_min_n_and_decides():
+    from tennisbio.exam import CONFIRMS, FEW, REFUTES, UNDECIDABLE, claims
+
+    v = {"class.swing": "liftado (de abajo arriba)", "stroke.swing_low_to_high": 40.0, "stroke.loaded_vs_bounce": 0.05,
+         "class.finish": "sobre el hombro", "class.takeback": "amplia"}
+    got = {c[0]: c[2] for c in claims([v] * 12, 12)}
+    assert got["R1"] == CONFIRMS and got["R10"] == CONFIRMS and got["R17"] == CONFIRMS and got["R18"] == REFUTES
+    assert got["R2"] == FEW and got["R16"] == UNDECIDABLE         # no data / not visible from TV: never confirmed
+    assert {c[0]: c[2] for c in claims([v] * 5, 12)}["R1"] == FEW

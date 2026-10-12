@@ -321,6 +321,12 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
     # must be there, each with its lines, her mean skeleton and its videos; with fewer, it is counted
     items += _combination_items(model, vals, MIN_N, FACTORS)
 
+    # 3. internal exam: what coaches say about her forehand, against her measured strokes (never in the report)
+    from .exam import CONFIRMS, FEW, REFUTES, claims
+    for rid, text, verdict, det in claims(vals, MIN_N):
+        items.append(_item(3, "Examen de entrenadores", f"{rid} {text}",
+                           {CONFIRMS: "ok", FEW: "pocos datos", REFUTES: "aviso"}.get(verdict, "ok"), f"{verdict}: {det}"))
+
     # 1. the 8 key moments of every stroke
     for p, name in KEY_MOMENTS.items():
         sh = _share([v.get(f"phase.{p}") for v in vals])
