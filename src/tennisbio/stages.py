@@ -999,8 +999,14 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
         t_ = time.time()
         # the 3D hand model is slow: about 12 frames per second of play whatever the broadcast rate
         step3d = max(int(fcfg.get("hand3d_step", 2)), int(round(run.fps / 12.5)))
+        # the court direction of her shot (contact → bounce), for the face at contact
+        sdir = None
+        if d.get("shot_bounce_m") and d.get("court_pos_m"):
+            dx, dy = d["shot_bounce_m"][0] - d["court_pos_m"][0], d["shot_bounce_m"][1] - d["court_pos_m"][1]
+            if dy > 3:
+                sdir = [dx, dy, 0.15 * float(np.hypot(dx, dy))]
         faces = stroke_faces(clip, run, r, p.height_m, pitch if H_img is not None else None, rpose, wb3d,
-                             step3d, grip)
+                             step3d, grip, shot_dir=sdir)
         _took("cuerdas_y_3d", t_)
         d["face"] = faces["phases"]
         d["metrics"].update(faces["trunk3d"])

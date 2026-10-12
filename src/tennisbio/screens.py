@@ -32,6 +32,11 @@ _JS_SCREEN = """(tab) => {
     empty_msgs: [...sec.querySelectorAll('.empty')].filter(e => e.offsetParent).map(e => e.innerText.trim()).slice(0, 8),
     dashes: ((sec.innerText || '').match(/—/g) || []).length,
     // human sense: an opening sentence, no links to outside sources, no visible chart with many lines
+    // the per-stroke views and filters asked for (they work from the first stroke)
+    ball_moments: sec.querySelectorAll('#bm button').length,
+    heights_layer: !!sec.querySelector('#layers button[data-v="heights"]'),
+    lib_filters: sec.querySelectorAll('#lib-chips button').length,
+    news: !!sec.querySelector('#news'),
     intro: !!(sec.querySelector('.intro') && sec.querySelector('.intro').innerText.trim().length > 20),
     external_links: [...sec.querySelectorAll('a[href^="http"]')].filter(a => a.offsetParent).length,
     many_lines: [...sec.querySelectorAll('svg')].filter(g => g.offsetParent && g.querySelectorAll('polyline').length > 4).length,

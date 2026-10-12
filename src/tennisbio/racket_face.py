@@ -8,7 +8,7 @@ from .racket3d import Camera, describe_face, hand_prior, observe_keypoints, obse
 def face_track(frames: dict, boxes: list, img_kp: np.ndarray, rackets: list, sk, height_px: float,
                height_m: float, impact: int, a: int, b: int, wb3d=None, cam: Camera = Camera(),
                grip_close_deg=15.0, fps: float = 30.0, racket_kps: dict | None = None,
-               hitting_face="palm") -> list[dict]:
+               hitting_face="palm", shot_dir=None) -> list[dict]:
     """Per frame in [a, b): hitting-face direction and angles.
 
     frames: {frame_index: BGR image} (needed only for the 3D hand model); boxes: tracked box per frame;
@@ -35,10 +35,13 @@ def face_track(frames: dict, boxes: list, img_kp: np.ndarray, rackets: list, sk,
     blur = max(1, int(round(0.08 * fps)))
     for k in range(max(0, i - blur), min(len(obs), i + blur + 1)):
         obs[k] = None
-    axes, normals, amb = solve_sequence(obs, cam, i, priors=priors)
+    # where the ball went (court direction of her shot): the face at contact points that way, give
+    # or take the anchor's tolerance; without it, straight towards the net
+    sd = {} if shot_dir is None else {"shot_dir": np.asarray(shot_dir, float)}
+    axes, normals, amb = solve_sequence(obs, cam, i, priors=priors, **sd)
     if all(n is None for n in normals):
         return [dict(frame=f, face=None) for f in range(a, b)]
-    axes, normals = refine(axes, normals, obs, cam, i, priors=priors)
+    axes, normals = refine(axes, normals, obs, cam, i, priors=priors, **sd)
     out = []
     for k, f in enumerate(range(a, b)):
         d = describe_face(normals[k], sk.hand)

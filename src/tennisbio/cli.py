@@ -126,6 +126,20 @@ def run_audit(root: Path, report: Path, dest: Path, stroke: str = "forehand") ->
         shots = None
     dirs = [d for d in sorted(root.iterdir()) if d.is_dir() and (d / "manifest.json").exists()] if root.exists() else []
     res = audit(dirs, report, stroke, shots)
+    # the PDF summary: exists, how many pages, and a copy for Claude to read (uploaded with the logs)
+    es = {"forehand": "derecha", "backhand": "reves", "overhead": "saque"}[stroke]
+    pdf = next((p for p in (report.parent / "exportar" / "resumen.pdf", report.parent / f"exportar_{es}" / "resumen.pdf") if p.exists()), None)
+    if pdf is None:
+        res["items"].append({"req": 2, "area": "PDF", "name": "Resumen PDF", "status": "aviso", "detail": "no se encontró resumen.pdf"})
+    else:
+        import re as _re
+        import shutil as _sh
+        pages = len(_re.findall(rb"/Type\s*/Page[^s]", pdf.read_bytes()))
+        res["items"].append({"req": 2, "area": "PDF", "name": "Resumen PDF", "status": "ok" if pages else "falta",
+                             "detail": f"{pages} páginas, {pdf.stat().st_size / 1e6:.1f} MB"})
+        if shots is not None and pdf.stat().st_size < 15e6:
+            _sh.copy2(pdf, shots / "resumen.pdf")
+    res["summary"] = {st: sum(i["status"] == st for i in res["items"]) for st in ("ok", "falta", "pocos datos", "aviso")}
     md = write(res, dest)
     s = res["summary"]
     print(f"Auditoría: {s['ok']} cumplidos, {s['falta']} no cumplidos, {s['pocos datos']} sin golpes suficientes, "

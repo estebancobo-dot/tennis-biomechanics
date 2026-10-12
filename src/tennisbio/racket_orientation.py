@@ -88,7 +88,7 @@ def read_frames(video: Path, a: int, b: int) -> dict:
 
 def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | None = None, rpose=None,
                  wb3d=None, hand3d_step: int = 2, grip_close_deg: float = 15.0, window=(1.0, 0.8),
-                 hitting_face: str | None = None) -> dict:
+                 hitting_face: str | None = None, shot_dir=None) -> dict:
     """{"phases": {phase: face summary}, "frames": [first, ...per-frame tilt/yaw/label/observed]}."""
     fps, i = run.fps, stroke.impact_frame
     a = max(0, i - int(round(window[0] * fps)))
@@ -109,7 +109,7 @@ def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | N
         hitting_face = "back" if stroke.stroke == "backhand" else "palm"
     track = face_track(hand_frames, run.boxes, run.img, run.rackets, sk, run.height_px, height_m, i, a, b,
                        rec, cam, grip_close_deg, fps=fps, racket_kps=rkps if rpose is not None else None,
-                       hitting_face=hitting_face)
+                       hitting_face=hitting_face, shot_dir=shot_dir)
     rot = {}
     if rec is not None:
         for f, res in rec.out.items():

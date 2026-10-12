@@ -129,9 +129,9 @@ tiempo de reacción (primer movimiento), pasos de ajuste, tiempo y distancia de 
 efecto (rpm), velocidad de bola, altura sobre la red, fuerzas. Seguimiento de bola (TrackNet)
 daría dirección y profundidad aproximadas (fase 3-4).
 
-**Vídeos de YouTube**: enlaces de referencia en el informe (no se descargan). Si el usuario
-aporta clips propios en cámara lenta (p. ej. entrenamientos a pie de pista), pueden servir como
-fuente secundaria con mejor visibilidad de la raqueta; uso bajo su responsabilidad.
+**Vídeos de YouTube**: nunca en el informe ni como datos de la jugadora (sin fuentes externas). Solo
+para que Claude aprenda cómo analizan y explican los entrenadores (`scripts/youtube_research.py`,
+en el PC, una vez). Tampoco se usan clips propios del usuario (decisión del usuario).
 
 ## Fiabilidad de cada métrica según la cámara
 Fuente: cámara principal de TV, detrás del fondo y elevada. La jugadora del lado cercano
@@ -175,7 +175,7 @@ La bola no se mide directamente (pequeña y borrosa en TV); se deduce indirectam
 - Maqueta de referencia del diseño: `docs/maqueta-informe.html` (datos inventados).
 - HTML offline en 5 pantallas: resumen con conclusiones en frases (y su confianza), derecha típica,
   explorador de golpes con filtros y comparación lado a lado, comparativas por situación,
-  mapa de pista. Cada número enlaza a sus clips. Herramienta de revisión aparte.
+  mapa de pista. Cada número enlaza a sus clips. Sin herramienta de revisión manual (100 % automático).
 - **Secuencia de 8 fotogramas clave por golpe** (recorte ampliado de la jugadora, esqueleto y valores):
   1 espera/split step (impacto del rival, audio) · 2 inicio de preparación (empiezan a girar
   los hombros) · 3 armado completo (máxima rotación de hombros) · 4 inicio de aceleración
@@ -230,7 +230,7 @@ La bola no se mide directamente (pequeña y borrosa en TV); se deduce indirectam
 - Desenfoque en el impacto a 25-50 fps: velocidades absolutas no fiables, **comparaciones relativas sí**.
 - La jugadora del fondo sale pequeña: prioridad a los golpes del **lado cercano**.
 - Solo cinemática, no fuerzas.
-- Modo **semiautomático**: el usuario revisa los golpes dudosos (umbral de confianza → cola de revisión).
+- **100 % automático** (decisión del usuario): nadie revisa golpes; los dudosos se marcan en el informe, no se piden.
 
 ## Validación y posicionamiento
 - No competimos en precisión con sistemas multicámara (Hawk-Eye SkeleTRACK, laboratorios):

@@ -305,9 +305,10 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
     for p in ("ready", "takeback", "loaded", "impact", "finish"):
         sh = _share([v.get(f"face.{p}") for v in vals])
         exp = p == "impact"
-        items.append(_item(4, "Cuerdas", f"Cara de la raqueta: {KEY_MOMENTS[p]}",
-                           "ok" if sh >= (0.3 if exp else 0.5) else "aviso" if sh > 0 else "falta",
-                           f"en el {sh:.0%} de los golpes" + (" (estimación interpolada, se marca así)" if exp else "")))
+        st = "ok" if sh >= (0.3 if exp else 0.5) else "aviso" if sh > 0 or p == "ready" else "falta"
+        items.append(_item(4, "Cuerdas", f"Cara de la raqueta: {KEY_MOMENTS[p]}", st,
+                           f"en el {sh:.0%} de los golpes" + (" (estimación interpolada, se marca así)" if exp else "")
+                           + (" (la espera suele caer antes del segundo que se analiza con la raqueta)" if p == "ready" and sh < 0.5 else "")))
 
     # 3. physical limits of what is shown
     bad = []
@@ -435,6 +436,16 @@ def _screens(shots_dir: Path) -> list[dict]:
         items.append(_item(2, "Pantallas", f"Pantalla «{sc.get('title', sc.get('tab'))}»", st, det, file=sc.get("file")))
     if meta.get("errors"):
         items.append(_item(2, "Pantallas", "Errores de la página", "falta", "; ".join(meta["errors"][:5])))
+    by = {sc.get("tab"): sc for sc in meta.get("screens", [])}
+    checks = [("golpe", "ball_moments", "«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella", 2),
+              ("golpe", "heights_layer", "Barras de altura de la cabeza y la cadera sobre el vídeo", 1),
+              ("videoteca", "lib_filters", "Filtros combinables de la videoteca (apoyo, dirección, bola, contacto…)", 10),
+              ("modelo", "news", "Novedades de la versión en la pantalla de entrada", 1)]
+    for tab, key, name, need in checks:
+        v = (by.get(tab) or {}).get(key)
+        if v is None:
+            continue
+        items.append(_item(2, "Vistas pedidas", name, "ok" if int(v) >= need else "falta", f"{int(v)} en la pantalla"))
     return items
 
 

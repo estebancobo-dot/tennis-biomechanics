@@ -132,7 +132,9 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
         # stable id: the match and the instant of the impact (a re-run that adds a stroke elsewhere keeps it)
         "id": s.get("stroke_id") or f"{match.id}-{int(round(t * 100)):07d}", "idx": 0, "match": match_idx,
         "frac": t / duration_s if duration_s else None,
-        **_score_fields(s.get("score")), "finishType": None,
+        **_score_fields(s.get("score")),
+        "finishType": None if far else ((s.get("technique") or {}).get("classes") or {}).get("finish"),
+        "movement": None if far else ((s.get("technique") or {}).get("classes") or {}).get("movement"),
         # out = error (from where it bounced); otherwise unknown until the point is followed further
         "outcome": {"out": "error", "net": "error", "winner": "ganador", "rally": "sigue"}.get(
             s.get("outcome") or ("out" if s.get("shot_in") is False else "")),
