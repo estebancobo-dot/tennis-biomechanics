@@ -800,8 +800,14 @@ const PHASE_DEF = [
 if (DATA.stroke === "overhead") Object.assign(PHASE_DEF[1], { n: "Lanzamiento", long: "Inicio del lanzamiento" }), Object.assign(PHASE_DEF[2], { n: "Trofeo", long: "Posición de trofeo" }), Object.assign(PHASE_DEF[3], { n: "Caída", long: "Caída de la raqueta" }), Object.assign(PHASE_DEF[7], { n: "Aterrizaje", long: "Aterrizaje / recuperación" });
 const BONES = [[5, 6, "c"], [11, 12, "c"], [5, 11, "l"], [6, 12, "r"], [5, 7, "l"], [7, 9, "l"], [6, 8, "r"], [8, 10, "r"], [11, 13, "l"], [13, 15, "l"], [12, 14, "r"], [14, 16, "r"]];
 const SKC = { l: "#5fd3e6", r: "#ff9f43", c: "#e3e8ec" };
+// Every video element lives on the page (tiny, out of the way): a normal browser window only decodes
+// and presents frames of videos that are in the document; a detached one showed a single frame
+// (headless browsers do not show the difference).
+const VHOLD = document.createElement("div");
+VHOLD.style.cssText = "position:fixed;right:0;bottom:0;width:4px;height:4px;overflow:hidden;opacity:.01;pointer-events:none;z-index:-1";
+document.body.appendChild(VHOLD);
 const video = document.createElement("video");
-video.muted = true; video.playsInline = true; video.preload = "auto";
+video.muted = true; video.playsInline = true; video.preload = "auto"; video.style.cssText = "width:4px;height:4px"; VHOLD.appendChild(video);
 const cv = document.getElementById("cv"), cx = cv.getContext("2d");
 let cur = null, ser = null, PH = [], T0 = -1, T1 = .8, FPS = 50, NF = 1, tNow = 0, view = "crop", layers = { skel: true, ang: true, trail: true, ball: true, court: true, heights: true, lines: true }, speed = .25, playing = false;
 const snap = t => Math.round(clamp(t, T0, T1) * FPS) / FPS;
@@ -1232,12 +1238,28 @@ async function loadStroke(s, fromList = false) {
 function stopPlay() { playing = false; video.pause(); const b = document.getElementById("play"); if (b) b.innerHTML = `<svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2v10l9-5z"/></svg>`; }
 // the time of the frame on screen (mediaTime) and not currentTime, which runs ahead of the decoded frame
 const shownTime = (V, md) => md && isN(md.mediaTime) ? md.mediaTime : V.currentTime;
-function tick(now, md) { if (!playing) return; let t = shownTime(video, md) - cur.vImpact; if (t > T1 && PLAY) { stopPlay(); plStep(1, true); return; } if (t > T1) { video.currentTime = cur.vImpact + T0; t = T0; } tNow = t; renderStage(); (video.requestVideoFrameCallback ? video.requestVideoFrameCallback(tick) : requestAnimationFrame(tick)); }
+function tick() { if (!playing) return; let t = video.currentTime - cur.vImpact; if (t > T1 && PLAY) { stopPlay(); plStep(1, true); return; } if (t > T1 || video.ended) { video.currentTime = cur.vImpact + T0; t = T0; if (video.paused) video.play().catch(() => {}); } tNow = t; renderStage(); requestAnimationFrame(tick); }
+// Play: the video is told to play at once, inside the click (a browser that blocks autoplay still
+// allows it then); if the browser refuses anyway, the report plays it itself by stepping the video
+// at the chosen speed (seeking always works: it draws the thumbnails). The reason is kept for the audit.
+let manualPlay = false;
 async function startPlay() {
   if (!cur || !cur.video || playing) return;
-  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { setT(tNow + 1 / FPS > T1 ? T0 : tNow + 1 / FPS); return; }
-  playing = true; video.playbackRate = speed; await seek(tNow); try { await video.play(); } catch (e) { playing = false; return; }
-  document.getElementById("play").innerHTML = `<svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2h3v10H3zM8 2h3v10H8z"/></svg>`; tick();
+  playing = true; manualPlay = false; video.playbackRate = speed;
+  try { video.currentTime = Math.max(0, cur.vImpact + tNow); } catch (e) { }
+  let ok = true;
+  try { await video.play(); } catch (e) { ok = false; window.__playErr = String(e && e.name || e) + ": " + String(e && e.message || ""); }
+  if (!playing) { video.pause(); return; }
+  document.getElementById("play").innerHTML = `<svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2h3v10H3zM8 2h3v10H8z"/></svg>`;
+  if (ok) { tick(); return; }
+  manualPlay = true; window.__playMode = "manual";
+  let last = performance.now();
+  while (playing && manualPlay) {
+    const now = performance.now(); let t = tNow + (now - last) / 1000 * speed; last = now;
+    if (t > T1) { if (PLAY) { stopPlay(); plStep(1, true); return; } t = T0; }
+    tNow = t; await seek(t); if (!playing) return; renderStage();
+    await new Promise(r => requestAnimationFrame(r));
+  }
 }
 document.getElementById("play").addEventListener("click", () => { if (playing) { stopPlay(); setT(tNow); return; } startPlay(); });
 
@@ -1469,7 +1491,7 @@ document.getElementById("lib-more").addEventListener("click", () => { libN += LI
 document.getElementById("lib-play").addEventListener("click", () => startPlaylist(libRows(), `Videoteca · ${libRows().length} golpes`));
 
 /* ===== COMPARAR: dos golpes sincronizados en el impacto, lado a lado o superpuestos ===== */
-function mkSrc() { const v = document.createElement("video"); v.muted = true; v.playsInline = true; v.preload = "auto"; return { video: v, ser: null, NF: 1, view: "crop", s: null, FPS: 50, T0: -1, T1: .8 }; }
+function mkSrc() { const v = document.createElement("video"); v.muted = true; v.playsInline = true; v.preload = "auto"; v.style.cssText = "width:4px;height:4px"; VHOLD.appendChild(v); return { video: v, ser: null, NF: 1, view: "crop", s: null, FPS: 50, T0: -1, T1: .8 }; }
 const KA = mkSrc(), KB = mkSrc(), KCOL = ["#4fb0ff", "#ff8c42"];
 let kT = 0, kMode = "side", kSpeed = .25, kPlaying = false, kGen = 0;
 async function loadSrc(S, s) {
@@ -1543,7 +1565,7 @@ async function kPlay() {
   kPlaying = true; [KA, KB].forEach(S => { S.video.playbackRate = kSpeed; });
   try { await Promise.all([KA.video.play(), KB.video.play()]); } catch (e) { kStop(); return; }
   document.getElementById("k-play").innerHTML = `<svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2h3v10H3zM8 2h3v10H8z"/></svg>`;
-  const next = fn => KA.video.requestVideoFrameCallback ? KA.video.requestVideoFrameCallback(fn) : requestAnimationFrame(fn);
+  const next = fn => requestAnimationFrame(fn);
   const loop = async (now, md) => {
     if (!kPlaying) return;
     const t = shownTime(KA.video, md) - KA.s.vImpact, tb = KB.video.currentTime - KB.s.vImpact;

@@ -446,7 +446,8 @@ def _screens(shots_dir: Path) -> list[dict]:
     if meta.get("errors"):
         items.append(_item(2, "Pantallas", "Errores de la página", "falta", "; ".join(meta["errors"][:5])))
     by = {sc.get("tab"): sc for sc in meta.get("screens", [])}
-    for pb in meta.get("plays") or []:
+    for pb in (meta.get("plays") or []) + [{**x, "name": x["name"] + " (con las animaciones de Windows desactivadas)"}
+                                           for x in meta.get("plays_reduced_motion") or []]:
         if not pb.get("present"):
             continue
         ok = pb.get("plays") or not meta.get("h264", True)

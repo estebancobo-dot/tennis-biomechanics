@@ -92,7 +92,11 @@ def _test_plays(pg) -> list[dict]:
             btn.click()
             pg.wait_for_timeout(2500)
             t1, paused = pg.evaluate(f"[{vid}.currentTime, {vid}.paused]")
-            out.append({"name": name, "present": True, "plays": bool(t1 != t0 and not paused)})
+            err, mode = pg.evaluate("[window.__playErr || null, window.__playMode || 'video']")
+            if mode == "manual":            # the browser refused play(); the report stepped the video itself
+                t1, paused = pg.evaluate("tNow"), False
+                t0 = None
+            out.append({"name": name, "present": True, "plays": bool(t1 != t0 and not paused), "mode": mode, "play_error": err})
             if tab == "comparar" and not paused:
                 btn.click()
         except Exception as e:                    # a broken button is a finding, never a crash
@@ -143,6 +147,9 @@ def capture(report_html: Path, dest: Path, wait_ms: int = 2500) -> Path:
             info.update(tab=tab, file=f, errors=[e for e in errs if "Failed to load resource" not in e])
             meta["screens"].append(info)
         meta["plays"] = _test_plays(pg)
+        # and with Windows animations off ("reduce motion"), as on the user's PC: play must still play
+        pg.emulate_media(reduced_motion="reduce")
+        meta["plays_reduced_motion"] = _test_plays(pg)
         b.close()
     out = dest / "capturas.json"
     out.write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
