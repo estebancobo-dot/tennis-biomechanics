@@ -1,9 +1,10 @@
 """Screenshots of the report as the user sees it, for the audit (tennisbio.audit) and for Claude:
-the report is opened in a real browser (Edge on Windows, already installed; Chromium elsewhere),
+the report is opened in a real browser already installed (Brave on the user's PC; nothing is
+downloaded),
 each screen is shown in turn and photographed, and what the page says is written down: its text,
 its videos (loaded or not), its charts, its "no data" messages and every error of the page.
 
-Needs the `playwright` package (extra `validation`); no browser download (Edge is used)."""
+Needs the `playwright` package (extra `validation`) to drive that browser."""
 from __future__ import annotations
 
 import json
@@ -29,16 +30,25 @@ _JS_SCREEN = """(tab) => {
 
 
 def _browser(p):
+    """A browser already installed, never downloaded: Brave (the user's), else Edge or Chrome if they
+    are there; on Linux, the machine's Chromium."""
     kw = {"args": ["--allow-file-access-from-files", "--autoplay-policy=no-user-gesture-required"]}
+    exes = [os.environ.get("TENNISBIO_BROWSER", "")]
     if sys.platform == "win32":
-        try:
-            return p.chromium.launch(channel="msedge", **kw)
-        except Exception:
-            pass
-    exe = os.environ.get("TENNISBIO_CHROMIUM") or "/opt/pw-browsers/chromium"
-    if Path(exe).exists():
-        return p.chromium.launch(executable_path=exe, **kw)
-    return p.chromium.launch(**kw)
+        bases = [os.environ.get(v, "") for v in ("ProgramFiles", "ProgramFiles(x86)", "LOCALAPPDATA")]
+        for rel in (("BraveSoftware", "Brave-Browser", "Application", "brave.exe"),
+                    ("Microsoft", "Edge", "Application", "msedge.exe"),
+                    ("Google", "Chrome", "Application", "chrome.exe")):
+            exes += [str(Path(b, *rel)) for b in bases if b]
+    exes.append("/opt/pw-browsers/chromium")
+    tried = []
+    for exe in exes:
+        if exe and Path(exe).exists():
+            try:
+                return p.chromium.launch(executable_path=exe, **kw)
+            except Exception as e:
+                tried.append(f"{exe}: {str(e).splitlines()[0]}")
+    raise RuntimeError("no se encontró Brave (ni Edge ni Chrome) instalado" + (": " + " | ".join(tried) if tried else ""))
 
 
 def capture(report_html: Path, dest: Path, wait_ms: int = 2500) -> Path:

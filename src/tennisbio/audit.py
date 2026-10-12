@@ -393,7 +393,7 @@ def _screens(shots_dir: Path) -> list[dict]:
     items = []
     if not meta.get("h264", True):
         items.append(_item(2, "Pantallas", "Navegador de las capturas", "aviso",
-                           f"{meta.get('browser', '')} no reproduce H.264: las capturas salen sin vídeo (Edge sí lo reproduce)"))
+                           f"{meta.get('browser', '')} no reproduce H.264: las capturas salen sin vídeo (Brave en Windows sí lo reproduce)"))
     for sc in meta.get("screens", []):
         img = cv2.imread(str(shots_dir / sc["file"])) if sc.get("file") else None
         blank = img is None or float(np.std(img)) < 6
