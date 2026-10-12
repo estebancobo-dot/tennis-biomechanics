@@ -3,10 +3,10 @@
  "strokes": 5,
  "near": 5,
  "summary": {
-  "ok": 147,
+  "ok": 158,
   "falta": 7,
-  "pocos datos": 145,
-  "aviso": 16
+  "pocos datos": 150,
+  "aviso": 9
  },
  "items": [
   {
@@ -2283,6 +2283,41 @@
    "detail": "0 derechas de frente con esta medida"
   },
   {
+   "req": 1,
+   "area": "Vista lateral (entrenamiento)",
+   "name": "Impacto delante de la cadera (3D)",
+   "status": "pocos datos",
+   "detail": "5 derechas con estimación 3D con esta medida"
+  },
+  {
+   "req": 1,
+   "area": "Vista lateral (entrenamiento)",
+   "name": "Ángulo del swing (3D)",
+   "status": "pocos datos",
+   "detail": "5 derechas con estimación 3D con esta medida"
+  },
+  {
+   "req": 1,
+   "area": "Vista lateral (entrenamiento)",
+   "name": "Codo en el impacto (3D)",
+   "status": "pocos datos",
+   "detail": "5 derechas con estimación 3D con esta medida"
+  },
+  {
+   "req": 1,
+   "area": "Vista lateral (entrenamiento)",
+   "name": "Rodilla de atrás en el armado (3D)",
+   "status": "pocos datos",
+   "detail": "5 derechas con estimación 3D con esta medida"
+  },
+  {
+   "req": 1,
+   "area": "Vista lateral (entrenamiento)",
+   "name": "Tronco en el impacto (3D)",
+   "status": "pocos datos",
+   "detail": "5 derechas con estimación 3D con esta medida"
+  },
+  {
    "req": 2,
    "area": "Vista lateral (entrenamiento)",
    "name": "Cada golpe de entrenamiento tiene su vídeo con el esqueleto",
@@ -2337,61 +2372,33 @@
   {
    "req": 2,
    "area": "Pantallas",
-   "name": "Tablas a la vista en «Análisis de golpe»",
-   "status": "aviso",
-   "detail": "1 tablas (el usuario pidió información en frases, no tablas)"
-  },
-  {
-   "req": 2,
-   "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "4623 caracteres de texto, 6 vídeos, 20 gráficos",
+   "detail": "5236 caracteres de texto, 6 vídeos, 20 gráficos",
    "file": "pantalla_4_golpe.jpg"
-  },
-  {
-   "req": 2,
-   "area": "Pantallas",
-   "name": "Tablas a la vista en «Comparar golpes»",
-   "status": "aviso",
-   "detail": "1 tablas (el usuario pidió información en frases, no tablas)"
   },
   {
    "req": 2,
    "area": "Pantallas",
    "name": "Pantalla «Comparar golpes»",
    "status": "ok",
-   "detail": "3056 caracteres de texto, 5 vídeos, 2 gráficos",
+   "detail": "3727 caracteres de texto, 5 vídeos, 2 gráficos",
    "file": "pantalla_5_comparar.jpg"
-  },
-  {
-   "req": 2,
-   "area": "Pantallas",
-   "name": "Tablas a la vista en «Explorador»",
-   "status": "aviso",
-   "detail": "1 tablas (el usuario pidió información en frases, no tablas)"
   },
   {
    "req": 2,
    "area": "Pantallas",
    "name": "Pantalla «Explorador»",
    "status": "ok",
-   "detail": "1573 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "1855 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_6_explorador.jpg"
-  },
-  {
-   "req": 2,
-   "area": "Pantallas",
-   "name": "Tablas a la vista en «Comparativas»",
-   "status": "aviso",
-   "detail": "1 tablas (el usuario pidió información en frases, no tablas)"
   },
   {
    "req": 2,
    "area": "Pantallas",
    "name": "Pantalla «Comparativas»",
    "status": "ok",
-   "detail": "2638 caracteres de texto, 5 vídeos, 0 gráficos; mensajes de vacío: ['Sin datos de x-factor en estos grupos.', 'Sin datos de rotación de hombros en estos grupos.', 'Sin datos de x-factor 3d en estos grupos.', 'Sin datos de rotación de hombros 3d en estos grupos.', 'Sin datos de descenso de cadera en estos grupos.', 'Sin datos de codo en el impacto en estos grupos.', 'Sin datos de brazo no dominante en el armado en estos grupos.', 'Sin datos de impacto lateral en estos grupos.']",
+   "detail": "2749 caracteres de texto, 5 vídeos, 0 gráficos; mensajes de vacío: ['Sin datos de x-factor en estos grupos.', 'Sin datos de rotación de hombros en estos grupos.', 'Sin datos de x-factor 3d en estos grupos.', 'Sin datos de rotación de hombros 3d en estos grupos.', 'Sin datos de descenso de cadera en estos grupos.', 'Sin datos de codo en el impacto en estos grupos.', 'Sin datos de brazo no dominante en el armado en estos grupos.', 'Sin datos de impacto lateral en estos grupos.']",
    "file": "pantalla_7_comparativas.jpg"
   },
   {
@@ -2407,7 +2414,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Vista lateral\n(entreno)»",
    "status": "ok",
-   "detail": "3566 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "4896 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_9_lateral.jpg"
   },
   {
@@ -2509,6 +2516,34 @@
    "detail": "1 en la pantalla"
   },
   {
+   "req": 2,
+   "area": "Vistas pedidas",
+   "name": "«Análisis de golpe»: la raqueta por fase dicha en frases (la tabla sigue debajo)",
+   "status": "ok",
+   "detail": "8 en la pantalla"
+  },
+  {
+   "req": 2,
+   "area": "Vistas pedidas",
+   "name": "«Explorador»: resumen en frases de los golpes filtrados (la tabla sigue debajo)",
+   "status": "ok",
+   "detail": "4 en la pantalla"
+  },
+  {
+   "req": 2,
+   "area": "Vistas pedidas",
+   "name": "«Comparativas»: qué cambia, en frases (la tabla sigue debajo)",
+   "status": "ok",
+   "detail": "1 en la pantalla"
+  },
+  {
+   "req": 2,
+   "area": "Vistas pedidas",
+   "name": "«Comparar golpes»: diferencias en frases (la tabla sigue debajo)",
+   "status": "ok",
+   "detail": "7 en la pantalla"
+  },
+  {
    "req": 5,
    "area": "Automático",
    "name": "Golpes que fallaron al procesarse",
@@ -2549,6 +2584,34 @@
    "name": "Vídeos de análisis de entrenadores (solo para aprender)",
    "status": "ok",
    "detail": "24 vídeos, 16 con texto (docs/aprendido_entrenadores.md); nunca en el informe"
+  },
+  {
+   "req": 5,
+   "area": "Ficheros",
+   "name": "Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series",
+   "status": "ok",
+   "detail": "11 ficheros de etapa, 9 golpes con ventana y serie"
+  },
+  {
+   "req": 5,
+   "area": "Ficheros",
+   "name": "Informe: index.html, series y miniaturas",
+   "status": "ok",
+   "detail": "5 golpes; series que faltan 0, miniaturas que faltan 0"
+  },
+  {
+   "req": 5,
+   "area": "Ficheros",
+   "name": "Exportación: resumen PDF y un vídeo por golpe",
+   "status": "ok",
+   "detail": "5 vídeos"
+  },
+  {
+   "req": 5,
+   "area": "Ficheros",
+   "name": "Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe",
+   "status": "ok",
+   "detail": "31 de 31 vídeos"
   },
   {
    "req": 11,
@@ -2611,7 +2674,7 @@
    "area": "Peticiones",
    "name": "#9 Información y no tablas: profesional, entendible, «con sentido humano», al nivel de las apps del estado del ar",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 13 comprobaciones: 4 aviso, 9 ok; la peor: «Tablas a la vista en «Análisis de golpe»» (1 tablas (el usuario pidió información en frases, no tablas))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok"
   },
   {
    "req": 11,
@@ -2625,7 +2688,7 @@
    "area": "Peticiones",
    "name": "#11 Validar automáticamente que las salidas reales tienen todo lo pedido y todos los casos del modelo técnico y la",
    "status": "falta",
-   "detail": "167 comprobaciones: 3 falta, 95 pocos datos, 69 ok; la peor: «4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)» (hueco medible sin implementar)"
+   "detail": "171 comprobaciones: 3 falta, 95 pocos datos, 73 ok; la peor: «4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)» (hueco medible sin implementar)"
   },
   {
    "req": 11,
@@ -2855,8 +2918,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#44 Nada de vídeos del usuario, de entrenadores ni de otras jugadoras",
-   "status": "aviso",
-   "detail": "14 comprobaciones: 4 aviso, 10 ok; la peor: «Tablas a la vista en «Análisis de golpe»» (1 tablas (el usuario pidió información en frases, no tablas))"
+   "status": "ok",
+   "detail": "10 comprobaciones: 10 ok"
   },
   {
    "req": 11,
@@ -2918,8 +2981,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#53 No pasar de 100 a 0: conservar e integrar lo anterior",
-   "status": "aviso",
-   "detail": "13 comprobaciones: 4 aviso, 9 ok; la peor: «Tablas a la vista en «Análisis de golpe»» (1 tablas (el usuario pidió información en frases, no tablas))"
+   "status": "ok",
+   "detail": "9 comprobaciones: 9 ok"
   },
   {
    "req": 11,
@@ -2946,8 +3009,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#57 Que no haya gráficas con muchas líneas ni tablas sin lenguaje natural en la vista principal",
-   "status": "aviso",
-   "detail": "13 comprobaciones: 4 aviso, 9 ok; la peor: «Tablas a la vista en «Análisis de golpe»» (1 tablas (el usuario pidió información en frases, no tablas))"
+   "status": "ok",
+   "detail": "9 comprobaciones: 9 ok"
   },
   {
    "req": 11,

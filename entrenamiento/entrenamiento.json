@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-13 00:19",
+ "generated": "2026-10-13 00:42",
  "player": "Elena Rybakina",
  "videos": [
   {
@@ -16,7 +16,8 @@
    "analysed_s": 77.833288,
    "strokes": 11,
    "lateral_forehands": 1,
-   "discarded": 0
+   "discarded": 0,
+   "version": 3
   },
   {
    "id": "P4kwF30432U",
@@ -32,7 +33,8 @@
    "analysed_s": 50.99102,
    "strokes": 20,
    "lateral_forehands": 0,
-   "discarded": 2
+   "discarded": 2,
+   "version": 3
   }
  ],
  "strokes": [
@@ -84,7 +86,13 @@
    "view": "diagonal",
    "stroke": "forehand",
    "source": "swing",
-   "metrics": {},
+   "metrics": {
+    "contact_in_front_3d_pct": -20.3,
+    "trunk_lean_impact_3d_deg": 4.3,
+    "swing_angle_3d_deg": 1.0,
+    "elbow_impact_3d_deg": 167.4,
+    "back_knee_loaded_3d_deg": 134.0
+   },
    "clip": "n5-P-RxsHCM_00_02.mp4",
    "thumb": "n5-P-RxsHCM_00_02.jpg"
   },
@@ -112,7 +120,13 @@
    "view": "diagonal",
    "stroke": "forehand",
    "source": "swing",
-   "metrics": {},
+   "metrics": {
+    "contact_in_front_3d_pct": -14.5,
+    "trunk_lean_impact_3d_deg": 9.4,
+    "swing_angle_3d_deg": -15.2,
+    "elbow_impact_3d_deg": 170.8,
+    "back_knee_loaded_3d_deg": 146.2
+   },
    "clip": "n5-P-RxsHCM_00_04.mp4",
    "thumb": "n5-P-RxsHCM_00_04.jpg"
   },
@@ -126,7 +140,13 @@
    "view": "diagonal",
    "stroke": "forehand",
    "source": "swing",
-   "metrics": {},
+   "metrics": {
+    "contact_in_front_3d_pct": -27.0,
+    "trunk_lean_impact_3d_deg": 6.8,
+    "swing_angle_3d_deg": 15.9,
+    "elbow_impact_3d_deg": 136.1,
+    "back_knee_loaded_3d_deg": 113.6
+   },
    "clip": "n5-P-RxsHCM_00_05.mp4",
    "thumb": "n5-P-RxsHCM_00_05.jpg"
   },
@@ -154,7 +174,13 @@
    "view": "diagonal",
    "stroke": "forehand",
    "source": "swing",
-   "metrics": {},
+   "metrics": {
+    "contact_in_front_3d_pct": -19.8,
+    "trunk_lean_impact_3d_deg": 7.8,
+    "swing_angle_3d_deg": 3.1,
+    "elbow_impact_3d_deg": 122.5,
+    "back_knee_loaded_3d_deg": 105.0
+   },
    "clip": "n5-P-RxsHCM_00_07.mp4",
    "thumb": "n5-P-RxsHCM_00_07.jpg"
   },
@@ -168,7 +194,13 @@
    "view": "diagonal",
    "stroke": "forehand",
    "source": "swing",
-   "metrics": {},
+   "metrics": {
+    "contact_in_front_3d_pct": -0.4,
+    "trunk_lean_impact_3d_deg": 10.7,
+    "swing_angle_3d_deg": -12.1,
+    "elbow_impact_3d_deg": 132.6,
+    "back_knee_loaded_3d_deg": 126.9
+   },
    "clip": "n5-P-RxsHCM_00_08.mp4",
    "thumb": "n5-P-RxsHCM_00_08.jpg"
   },
@@ -442,6 +474,10 @@
    "stroke": "forehand",
    "source": "swing",
    "metrics": {},
+   "discarded_3d": [
+    "swing_angle_3d_deg",
+    "elbow_impact_3d_deg"
+   ],
    "clip": "P4kwF30432U_00_16.mp4",
    "thumb": "P4kwF30432U_00_16.jpg"
   },
@@ -563,6 +599,41 @@
    "what": "+1 = la cara mira hacia el lado del impacto, 0 = al frente, −1 = al lado contrario",
    "n": 0,
    "view": "frontal"
+  },
+  "contact_in_front_3d_pct": {
+   "label": "Impacto delante de la cadera (3D)",
+   "unit": "% altura",
+   "what": "estimación 3D: mano por delante del centro de la cadera",
+   "n": 5,
+   "view": "3d"
+  },
+  "swing_angle_3d_deg": {
+   "label": "Ángulo del swing (3D)",
+   "unit": "°",
+   "what": "estimación 3D: subida de la mano en los ~70 ms previos al impacto",
+   "n": 5,
+   "view": "3d"
+  },
+  "elbow_impact_3d_deg": {
+   "label": "Codo en el impacto (3D)",
+   "unit": "°",
+   "what": "estimación 3D; 180° = brazo recto",
+   "n": 5,
+   "view": "3d"
+  },
+  "back_knee_loaded_3d_deg": {
+   "label": "Rodilla de atrás en el armado (3D)",
+   "unit": "°",
+   "what": "estimación 3D; 180° = pierna recta",
+   "n": 5,
+   "view": "3d"
+  },
+  "trunk_lean_impact_3d_deg": {
+   "label": "Tronco en el impacto (3D)",
+   "unit": "°",
+   "what": "estimación 3D; + hacia delante",
+   "n": 5,
+   "view": "3d"
   }
  },
  "min_n": 12
