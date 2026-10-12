@@ -318,6 +318,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
       <button data-tab="explorador"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4h12M2 8h12M2 12h8"/></svg>Explorador</button>
       <button data-tab="comparativas"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 14V7M8 14V2M13 14V9"/></svg>Comparativas</button>
       <button data-tab="pista"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="1.5" width="10" height="13"/><path d="M3 8h10M8 4.5v7"/></svg>Pista</button>
+      <button data-tab="lateral"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="3" r="1.5"/><path d="M9 5l-1 5-3 4M8 10l3 4M9 6l3 2M9 6L6 8"/></svg>Vista lateral <small style="opacity:.7">(entreno)</small></button>
     </nav>
     <div class="foot" id="foot"></div>
   </aside>
@@ -544,6 +545,18 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
   <div class="cols c-1-1" id="c-grid"></div>
 </section>
 
+<section class="screen" id="tab-lateral" hidden>
+<p class="intro"><b>Su derecha vista de lado, en entrenamientos.</b> Lo que la cámara de la tele (detrás del fondo) no deja ver: cuánto por delante del cuerpo golpea, el ángulo real del swing, las rodillas, el tronco y la caída y el retraso de la raqueta.</p>
+<div class="panel" style="padding:14px 16px;border-color:var(--raise);margin-bottom:16px" id="pr-warn"></div>
+<div class="cols c-3-1">
+  <div class="panel"><header><h2>Lo que se ve de lado</h2></header><div class="body" id="pr-sum" style="display:grid;gap:10px;padding:14px 16px"></div></div>
+  <div class="panel"><header><h2>De dónde sale</h2></header><div class="body" id="pr-src" style="padding:14px 16px;font-size:13px"></div></div>
+</div>
+<div class="panel" style="margin-top:16px"><header><h2>Sus golpes de entrenamiento</h2><span class="dim" id="pr-count"></span></header>
+  <div class="seg" id="pr-view" style="padding:10px 16px 0"><button data-v="lateral" aria-pressed="true">De lado</button><button data-v="all" aria-pressed="false">Todos</button></div>
+  <div class="lib" id="pr-lib"></div></div>
+</section>
+
 <section class="screen" id="tab-pista" hidden>
 <p class="intro"><b>Dónde golpea y dónde bota su bola</b>, dibujado sobre la pista.</p>
   <div class="cols c-3-1">
@@ -618,7 +631,7 @@ document.getElementById("scope").innerHTML = `<span class="tag"><b>${MATCHES.len
 document.getElementById("noise-note").textContent = `Diferencia entre grupos en múltiplos del ruido de medida${DATA.noise_validated ? " (medido sobre pares de golpes equivalentes de la jugadora: cota conservadora)" : " (provisional: hacen falta al menos 20 golpes con bola neutra)"}. Solo con al menos 5 golpes por grupo.`;
 
 /* ===== Navegación ===== */
-const TABS = ["modelo", "panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista"];
+const TABS = ["modelo", "panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista", "lateral"];
 const EMPTY = !STROKES.length;
 if (EMPTY) {                     // nothing analysed yet: one clear message instead of empty screens
   const m = document.createElement("section");
@@ -628,13 +641,15 @@ if (EMPTY) {                     // nothing analysed yet: one clear message inst
 }
 function showTab(name) {
   if (!TABS.includes(name)) name = "modelo";
-  TABS.forEach(t => { document.getElementById("tab-" + t).hidden = EMPTY || t !== name; });
+  TABS.forEach(t => { document.getElementById("tab-" + t).hidden = (EMPTY && t !== "lateral") || t !== name; });
   document.querySelectorAll(".nav button").forEach(b => { if (b.dataset.tab === name) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
   try { history.replaceState(null, "", "#" + name); } catch (e) { }
   if (name !== "golpe") stopPlay();
   if (name !== "comparar") kStop();
   if (name === "videoteca" || name === "explorador") document.getElementById("slot-" + name).appendChild(document.getElementById("filters"));
   if (name === "videoteca") { renderLibChips(); renderLibrary(); }
+  if (name === "lateral") renderPractice();
+  else document.querySelectorAll("#pr-lib video").forEach(v => v.pause());
   else renderDock();
   tip.hidden = true;
   window.scrollTo({ top: 0 });
@@ -1696,6 +1711,42 @@ renderFeet();
 renderTable(); renderCompare(); renderCourt();
 if (STROKES.filter(s => s.video).length >= 2) { const o = STROKES.filter(s => s.video).sort(byShow); const a = o[0], b = o.find(s => s !== a && s.side === a.side) || o[1]; document.getElementById("k-a").value = a.id; document.getElementById("k-b").value = b.id; Promise.all([loadSrc(KA, a), loadSrc(KB, b)]).then(() => { kLayout(); renderKTl(); renderKTable(); kDraw(); }); }
 if (STROKES.length) loadStroke([...STROKES].sort((a, b) => (b.repr * .7 + b.quality * .3) - (a.repr * .7 + a.quality * .3))[0]);
+
+/* ===== VISTA LATERAL (entrenamientos de YouTube; fuente aparte, nunca mezclada con los partidos) ===== */
+const PR = DATA.practice || null;
+let prView = "lateral";
+const VIEW_ES = { lateral: "de lado", frontal: "de frente", trasera: "por detrás", diagonal: "en diagonal" };
+function renderPractice() {
+  const warn = document.getElementById("pr-warn"), sum = document.getElementById("pr-sum"), src = document.getElementById("pr-src"), lib = document.getElementById("pr-lib");
+  warn.innerHTML = `<b style="color:var(--raise)">Fuente aparte: vídeos de entrenamiento de YouTube.</b> <span class="dim">No son partidos ni se mezclan con el resto del informe. Cada vídeo tiene su cámara; entrenar no es competir; se supone que la jugadora es la persona más grande de la imagen (la cámara la sigue). Solo se resumen las medidas con ${(PR && PR.min_n) || 12} golpes de lado o más.</span>`;
+  if (!PR || !PR.strokes) {
+    sum.innerHTML = `<div class="empty">Todavía no hay vídeos de entrenamiento analizados. Se bajan y analizan solos en la prueba rápida y en la media.</div>`;
+    src.innerHTML = ""; lib.innerHTML = ""; document.getElementById("pr-count").textContent = ""; return;
+  }
+  const side = PR.strokes.filter(s => s.view === "lateral" && s.stroke === "forehand");
+  sum.innerHTML = Object.entries(PR.summary || {}).map(([k, e]) => {
+    const has = isN(e.median), u = e.unit === "°" ? "°" : " " + e.unit;
+    const val = has ? `<b style="font:600 18px var(--mono)">${fmt(e.median, 0)}${u}</b> <span class="dim">(la mitad de sus golpes entre ${fmt(e.q1, 0)} y ${fmt(e.q3, 0)}${u})</span>`
+                    : `<span class="dim">${e.n ? `pocos golpes de lado con esta medida (${e.n} de ${PR.min_n} necesarios): se ve en cada vídeo, sin resumen` : "sin golpes de lado con esta medida todavía"}</span>`;
+    return `<div style="display:grid;gap:2px;border-bottom:1px solid var(--line);padding-bottom:8px"><div>${e.label}</div><div>${val}</div><div class="dim3" style="font-size:12px">${e.what} · ${e.n} golpes</div></div>`;
+  }).join("");
+  const vc = PR.views || {};
+  src.innerHTML = `<p style="margin:0 0 8px">${PR.videos.length} vídeos · ${PR.strokes.length} golpes encontrados · <b>${side.length} derechas de lado</b> (las únicas que se miden).</p>`
+    + `<p class="dim" style="margin:0 0 8px">Cámara de cada golpe: ${Object.entries(vc).map(([k, n]) => `${VIEW_ES[k] || k} ${n}`).join(" · ")}</p>`
+    + `<ul style="margin:0;padding-left:18px">${PR.videos.map(v => `<li>${v.title} <span class="dim3">· ${v.channel}${v.analysed_s ? ` · ${Math.round(v.analysed_s)} s analizados` : ""}</span></li>`).join("")}</ul>`;
+  const rows = PR.strokes.filter(s => prView === "all" || (s.view === "lateral" && s.stroke === "forehand"));
+  document.getElementById("pr-count").textContent = `${rows.length} golpes`;
+  lib.innerHTML = rows.map(s => {
+    const mv = Object.entries(s.metrics || {}).filter(([k]) => PR.summary[k]).slice(0, 4).map(([k, v]) => { const e = PR.summary[k]; return `<span title="${e.label}">${e.label.split(" ")[0]} ${fmt(v, 0)}${e.unit === "°" ? "°" : " " + e.unit}</span>`; }).join("");
+    return `<div class="card" style="cursor:default"><div class="th">${s.clip ? `<video controls playsinline preload="none" ${s.thumb ? `poster="${PR.base}/${s.thumb}"` : ""} src="${PR.base}/${s.clip}" style="pointer-events:auto;object-fit:contain"></video>` : `<div class="noimg">sin vídeo</div>`}`
+      + `<div class="badge"><span class="a">${VIEW_ES[s.view] || s.view}</span><span>${s.stroke === "forehand" ? "derecha" : s.stroke === "backhand" ? "revés" : "saque/remate"}</span></div></div>`
+      + `<div class="meta"><div class="mv" style="flex-wrap:wrap">${mv || '<span class="dim">no se mide (no es una derecha de lado)</span>'}</div><div class="dim3">${s.title.slice(0, 60)} · ${clock(s.t)}</div></div></div>`;
+  }).join("") || `<div class="empty">Ninguna derecha filmada de lado todavía.</div>`;
+}
+document.getElementById("pr-view").addEventListener("click", ev => {
+  const b = ev.target.closest("button"); if (!b) return; prView = b.dataset.v;
+  document.querySelectorAll("#pr-view button").forEach(x => x.setAttribute("aria-pressed", x === b)); renderPractice();
+});
 showTab((location.hash || "").slice(1));
 renderModel();
 </script>

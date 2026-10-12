@@ -33,6 +33,7 @@ REQUIREMENTS = {
     5: "100 % automático",
     6: "Sin fuentes externas (nada de vídeos de otros)",
     9: "Rendimiento: un partido en horas, no días",
+    11: "Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una",
 }
 # requirement 1, word by word: each variant the user named → factor of the model ("" = none)
 VARIANTS_ASKED = {
@@ -242,6 +243,19 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
         if row["status"] == "○":
             items.append(_item(1, "Taxonomía", name, "falta", "hueco medible sin implementar"))
             continue
+        from .practice import MIN_N as P_MIN, SIDE_METRICS
+        pkeys = [i for i in row["ids"] if i in SIDE_METRICS]
+        if pkeys:                    # measured on the side view of the practice videos (own screen)
+            pr = (data or {}).get("practice") or {}
+            summ = pr.get("summary") or {}
+            ns = {k: (summ.get(k) or {}).get("n", 0) for k in pkeys}
+            done = [k for k in pkeys if (summ.get(k) or {}).get("median") is not None]
+            st = "ok" if len(done) == len(pkeys) else "pocos datos" if pr else "aviso"
+            items.append(_item(1, "Taxonomía", name, st,
+                               "vista lateral de entrenamiento: " + ", ".join(f"{k} en {n} derechas de lado" for k, n in ns.items())
+                               + ("" if pr else " (todavía no hay vídeos de entrenamiento analizados)")
+                               + ("" if st == "ok" else f"; se resume con {P_MIN} o más"), keys=pkeys))
+            continue
         found, code_ok, best, is_shown, is_planned, plan_any = [], True, 0.0, False, False, False
         for ident in row["ids"]:
             c = _code_ref(ident)
@@ -303,6 +317,10 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
                            det + (f"; con golpes suficientes y sin mostrar: {', '.join(missing)}" if missing else ""),
                            shown=shown_lv))
 
+    # 1. every combination measurement × situation level: with enough strokes in that level its 8 phases
+    # must be there, each with its lines, her mean skeleton and its videos; with fewer, it is counted
+    items += _combination_items(model, vals, MIN_N, FACTORS)
+
     # 1. the 8 key moments of every stroke
     for p, name in KEY_MOMENTS.items():
         sh = _share([v.get(f"phase.{p}") for v in vals])
@@ -341,6 +359,10 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
                            f"{len(lines)} frases" + (f"; sin respaldo suficiente: {', '.join(weak[:6])}" if weak else "")))
         items.append(_item(3, "Valores posibles", "Lo no medible se dice", "ok" if model.get("not_measurable") else "falta",
                            f"{len(model.get('not_measurable') or [])} elementos en «Lo que la tele no permite medir»"))
+
+    # 6. side view from practice videos: a separate, marked source (never mixed with the matches)
+    if data is not None:
+        items += _practice_items(data.get("practice"), report_dir)
 
     # 2. video for every stroke of the report
     if data and report_dir:
@@ -387,6 +409,75 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
     return {"stroke": stroke, "strokes": len(strokes), "near": len(near), "summary": summary, "items": items}
 
 
+def _combination_items(model: dict, vals: list[dict], min_n: int, factors: dict) -> list[dict]:
+    from .explain import LINES
+
+    keys = [k for p in LINES for k, _ in LINES[p]]
+    view = model.get("variants") or {}
+    out = []
+    for label, fk in VARIANTS_ASKED.items():
+        if not fk:
+            continue
+        levels = factors[fk][1] if fk in factors else []
+        ok_lv, few_lv, bad = [], [], []
+        combos = combos_ok = 0
+        for lv in levels:
+            own = [v for v in vals if v.get(f"class.{fk}") == lv]
+            n_k = {k: sum(1 for v in own if v.get(k) is not None) for k in keys}
+            v = view.get(f"{fk}|{lv}")
+            enough = [k for k, n in n_k.items() if n >= min_n]
+            combos += len(keys)
+            if len(own) < min_n or v is None:
+                if len(own) >= min_n:
+                    bad.append(f"{lv}: {len(own)} golpes y no está en «Su derecha»")
+                few_lv.append(f"{lv} {len(own)}")
+                continue
+            cards = v.get("cards") or []
+            shown = {ln["key"] for c in cards for ln in c.get("lines", [])}
+            miss = [k for k in enough if k not in shown]
+            empty = [c["phase"] for c in cards if not c.get("lines")]
+            if len(cards) < 8 or empty:
+                bad.append(f"{lv}: fases sin contenido {empty or len(cards)}")
+            if not v.get("strokes"):
+                bad.append(f"{lv}: sin vídeos")
+            if miss:
+                bad.append(f"{lv}: {len(miss)} medidas con golpes suficientes sin mostrar ({', '.join(miss[:4])})")
+            combos_ok += len(enough) - len(miss)
+            ok_lv.append(lv)
+        st = "falta" if bad else "ok" if ok_lv else "pocos datos"
+        out.append(_item(1, "Combinaciones", f"{label}: cada medida en cada nivel",
+                         st, f"{len(keys)} medidas × {len(levels)} niveles = {combos} combinaciones; "
+                         f"{combos_ok} mostradas con ≥ {min_n} golpes" + (f"; niveles con pocos golpes: {', '.join(few_lv)}" if few_lv else "")
+                         + (f"; PROBLEMAS: {'; '.join(bad[:4])}" if bad else ""), combos=combos, shown=combos_ok))
+    return out
+
+
+def _practice_items(pr: dict | None, report_dir: Path | None) -> list[dict]:
+    from .practice import MIN_N, SIDE_METRICS
+
+    area = "Vista lateral (entrenamiento)"
+    if not pr or not pr.get("videos"):
+        return [_item(6, area, "Vídeos de entrenamiento analizados", "aviso",
+                      "todavía no hay vídeos de entrenamiento (se bajan en el PC con la prueba rápida; ver el registro)")]
+    st = pr.get("strokes") or []
+    side = [s for s in st if s.get("view") == "lateral" and s.get("stroke") == "forehand"]
+    items = [_item(6, area, "Vídeos de entrenamiento analizados", "ok",
+                   f"{len(pr['videos'])} vídeos, {len(st)} golpes; cámara: {pr.get('views')}"),
+             _item(6, area, "Derechas filmadas de lado", "ok" if len(side) >= MIN_N else "pocos datos",
+                   f"{len(side)} (se resume cada medida con {MIN_N} o más)")]
+    for k, (lab, _, _) in SIDE_METRICS.items():
+        e = (pr.get("summary") or {}).get(k) or {}
+        n = e.get("n", 0)
+        status = "ok" if e.get("median") is not None else "pocos datos" if n or len(side) < MIN_N else "falta"
+        items.append(_item(1, area, lab, status, f"{n} derechas de lado con esta medida"
+                           + (f"; mediana {e['median']}" if e.get("median") is not None else "")))
+    if report_dir and pr.get("base"):
+        miss = [s["id"] for s in st if not s.get("clip") or not (report_dir / pr["base"] / s["clip"]).exists()]
+        items.append(_item(2, area, "Cada golpe de entrenamiento tiene su vídeo con el esqueleto", "falta" if miss else "ok",
+                           f"{len(st) - len(miss)} de {len(st)}" + (f"; sin vídeo: {', '.join(miss[:5])}" if miss else "")))
+    return items
+
+
 def _codecs(files: list[Path]) -> dict:
     if not shutil.which("ffprobe"):
         return {}
@@ -424,6 +515,9 @@ def _screens(shots_dir: Path) -> list[dict]:
             st, det_intro = "falta", "; no dice para qué sirve (sin frase de entrada)"
         else:
             det_intro = ""
+        if sc.get("tables"):
+            items.append(_item(2, "Pantallas", f"Tablas a la vista en «{sc.get('title', sc.get('tab'))}»", "aviso",
+                               f"{sc['tables']} tablas (el usuario pidió información en frases, no tablas)"))
         if sc.get("many_lines"):
             st = "falta"
             det_intro += f"; {sc['many_lines']} gráficas con más de 4 líneas a la vista (difíciles de leer)"
@@ -469,6 +563,110 @@ def _screens(shots_dir: Path) -> list[dict]:
             continue
         items.append(_item(2, "Vistas pedidas", name, "ok" if int(v) >= need else "falta", f"{int(v)} en la pantalla"))
     return items
+
+
+PETITIONS_DOC = ROOT / "docs" / "peticiones_usuario.md"
+# petition number → the audit items (name or area, regular expression) that check it on the real outputs;
+# a string instead is why it cannot be checked on the outputs of a run
+class Note(str):
+    """Why a request is not checked on the outputs of a run (process, decision, document)."""
+
+
+PETITIONS = {
+    1: Note("pendiente por diseño: los 4 partidos se analizan una vez, al final"), 2: Note("aplazado por el usuario (móvil al final)"),
+    3: Note("aplazado por el usuario (nube al final)"),
+    4: r"^Taxonomía$|^Situaciones$|^Combinaciones$", 5: r"^Situaciones$|^Combinaciones$",
+    6: r"Pies y desplazamiento|Sus pies en este golpe|Split step|Pasos", 7: r"· Empuñadura|Posición de la mano en el mango|Mano libre en la garganta", 8: r"^Cuerdas$|Cara de la raqueta",
+    9: r"^Pantallas$|Tablas a la vista", 10: r"Novedades|Reproducir", 11: r"^Taxonomía$|^Combinaciones$|^Vistas pedidas$",
+    12: r"Validación con clips anotados", 13: Note("en los tests del código (uv run pytest, pc-logs:pruebas.log), no en las salidas"),
+    14: r"^Rendimiento$", 15: r"Vídeos de análisis de entrenadores", 16: r"Botepronto|Volea",
+    17: r"Pantalla «Su (derecha|golpe)»|Novedades", 18: r"golpes analizados", 19: r"Cada golpe tiene su vídeo",
+    20: r"^Rendimiento$", 21: r"golpes analizados", 22: r"golpes analizados", 23: r"golpes analizados",
+    24: r"Presión, set, fatiga", 25: r"Separación cadera|Ángulo del codo|Tipo de apoyo|Cadena cinética",
+    26: r"Fotograma clave", 27: r"Presión, set, fatiga", 28: r"Cada golpe tiene su esqueleto|Cada golpe tiene su vídeo",
+    29: r"^Rendimiento$", 30: Note("documento de estado del arte (docs), no una salida"), 31: Note("proceso (caché por etapas), no una salida"),
+    32: Note("configuración (config/players, config/strokes), no una salida"), 33: r"Fotograma clave",
+    34: Note("maqueta (docs/maqueta-informe.html), no una salida"), 35: r"Cara de la raqueta|Caída de la raqueta",
+    36: r"Retraso de la muñeca|Posición de la mano en el mango", 37: r"golpes analizados",
+    38: r"Dirección|Bote: profundidad", 39: r"golpes analizados", 40: Note("scripts de doble clic (instalar, prueba, análisis)"),
+    41: r"Resumen PDF", 42: r"Cada golpe tiene su vídeo|Reproducir", 43: Note("decisión de arquitectura (sin servidor)"),
+    44: r"Enlaces externos|Vídeos de entrenamiento analizados|^Pantallas$", 45: r"Nada pide revisión manual|Golpes que fallaron",
+    46: r"Resumen PDF|Valores dentro de límites", 47: r"^Taxonomía$", 48: r"Curvas de altura|Cabeza estable",
+    49: Note("registros subidos solos a pc-logs"), 50: Note("registros con fecha y duración en la terminal"),
+    51: Note("el mismo código (clip_pipeline, stages) en la prueba y en los partidos"), 52: r"Navegador de las capturas|Pantalla «",
+    53: r"^Pantallas$", 54: r"La bola y ella", 55: r"Filtros combinables", 56: r"Barras de altura", 57: r"más de 4 líneas|Tablas a la vista|^Pantallas$",
+    58: Note("elección de modelos (RTMPose, YOLO11, TrackNetV3, RTMW3D)"), 59: r"^Valores posibles$|Cada frase lleva",
+}
+ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
+
+
+def parse_petitions(path: Path = PETITIONS_DOC) -> list[tuple[int, str, str]]:
+    """(number, request, state in the document) of each row of the table of user requests."""
+    out = []
+    for line in path.read_text(encoding="utf-8").splitlines() if path.exists() else []:
+        c = [x.strip() for x in line.strip().strip("|").split("|")]
+        if len(c) >= 3 and c[0].isdigit():
+            out.append((int(c[0]), c[1], c[2]))
+    return out
+
+
+def side_checks(out_root: Path) -> list[dict]:
+    """Outputs that live next to the match folders: the validation with annotated public clips and the
+    coach videos Claude learned from."""
+    base = [out_root, out_root.parent, out_root.parent.parent]
+    items = []
+    f3 = next((b / "datasets" / "reports" / "f3set_validation.json" for b in base
+               if (b / "datasets" / "reports" / "f3set_validation.json").exists()), None)
+    if f3 is None:
+        items.append(_item(3, "Validación", "Validación con clips anotados (F3Set)", "aviso", "no se encontró f3set_validation.json"))
+    else:
+        sm = json.loads(f3.read_text(encoding="utf-8")).get("summary", {})
+        items.append(_item(3, "Validación", "Validación con clips anotados (F3Set)", "ok" if sm.get("f1", 0) >= 0.6 else "falta",
+                           f"golpes: precisión {sm.get('precision')}, recall {sm.get('recall')}; derecha/revés {sm.get('fh_bh_accuracy')}; "
+                           f"dirección {sm.get('direction_accuracy')}. Solo detección y clases: el valor de cada medida (codo, rodillas, "
+                           "pasos…) aún no tiene clips anotados con los que compararse"))
+    inv = next((b / "investigacion" / "indice.json" for b in base if (b / "investigacion" / "indice.json").exists()), None)
+    if inv is None:
+        items.append(_item(6, "Aprendizaje", "Vídeos de análisis de entrenadores (solo para aprender)", "aviso", "no se han bajado"))
+    else:
+        v = json.loads(inv.read_text(encoding="utf-8"))
+        n = sum(1 for x in v if x.get("subtitles"))
+        items.append(_item(6, "Aprendizaje", "Vídeos de análisis de entrenadores (solo para aprender)", "ok" if n else "aviso",
+                           f"{len(v)} vídeos, {n} con texto (docs/aprendido_entrenadores.md); nunca en el informe"))
+    return items
+
+
+def petition_items(items: list[dict]) -> list[dict]:
+    """One item per user request: the worst status of the audit items that check it on the outputs."""
+    out = []
+    for n, text, state in parse_petitions():
+        name = f"#{n} {re.sub(r' [(][0-9]{2}-10 .*$', '', text)[:110]}"
+        rule = PETITIONS.get(n)
+        if state.startswith("NO APLICA"):
+            continue
+        if rule is None:
+            out.append(_item(11, "Peticiones", name, "aviso", "sin comprobación automática asignada"))
+            continue
+        if not rule.startswith(("^", "(")) and not any(ch in rule for ch in "|\\[") and " " in rule and not rule[0].isupper():
+            out.append(_item(11, "Peticiones", name, "ok" if state.startswith("HECHO") else "pocos datos",
+                             f"no se comprueba en las salidas: {rule} (estado: {state.split(' ')[0]})"))
+            continue
+        rx = re.compile(rule)
+        hit = [i for i in items if i.get("req") != 11 and (rx.search(i["name"]) or rx.search(i.get("area", "")))]
+        if not hit:
+            out.append(_item(11, "Peticiones", name, "aviso", f"ninguna comprobación de esta ejecución la cubre ({rule})"))
+            continue
+        worst = min(hit, key=lambda i: ORDER[i["status"]])
+        cnt = {st: sum(i["status"] == st for i in hit) for st in ORDER}
+        st = worst["status"]
+        partial = state.startswith(("PARCIAL", "NO"))
+        if st == "ok" and partial:                 # its checks pass, but part of it is not built yet
+            st = "aviso"
+        out.append(_item(11, "Peticiones", name, st,
+                         ("sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); " if st == "aviso" and partial else "") +
+                         f"{len(hit)} comprobaciones: " + ", ".join(f"{v} {k}" for k, v in cnt.items() if v)
+                         + ("" if worst["status"] == "ok" else f"; la peor: «{worst['name']}» ({worst['detail'][:120]})")))
+    return out
 
 
 def to_markdown(res: dict) -> str:

@@ -29,6 +29,14 @@ try {
     if (Test-Path "$Base\output\benchmark\results.json") { Ok "ya medida" }
     else { Ejecutar uv @("run", "python", "scripts/benchmark.py", $video.FullName) }
 
+    # vista lateral: videos de entrenamiento de la jugadora en YouTube (apartado aparte y marcado del
+    # informe, nunca mezclado con los partidos). Incremental: cada video se baja y analiza una vez;
+    # la prueba media amplia a mas videos y mas segundos de cada uno.
+    $pv = if ($Minutos -gt 4) { @("--max-videos", "8", "--max-seconds", "300") } else { @("--max-videos", "2", "--max-seconds", "90") }
+    Paso "Vista lateral: videos de entrenamiento de la jugadora (YouTube; solo lo que falte)"
+    try { Ejecutar uv (@("run", "python", "scripts/practice_videos.py", "--out", "$Base\output\entrenamiento") + $pv) }
+    catch { Write-Host "No se pudieron bajar o analizar (no impide usar el programa)." -ForegroundColor Yellow }
+
     Paso ("3/4 {0} minutos de partido, todas las etapas e informe ({1})" -f $Minutos, $(if ($Minutos -gt 4) { "unos 60 min" } else { "15-30 min" }))
     Ejecutar uv @("run", "python", "scripts/smoke_test.py", $video.FullName, "--minutes", "$Minutos")
 

@@ -12,7 +12,7 @@ import os
 import sys
 from pathlib import Path
 
-TABS = ["modelo", "panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista"]
+TABS = ["modelo", "panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista", "lateral"]
 _JS_SCREEN = """(tab) => {
   const sec = document.getElementById('tab-' + tab);
   if (!sec) return null;
@@ -40,6 +40,7 @@ _JS_SCREEN = """(tab) => {
     news: !!sec.querySelector('#news'),
     intro: !!(sec.querySelector('.intro') && sec.querySelector('.intro').innerText.trim().length > 20),
     external_links: [...sec.querySelectorAll('a[href^="http"]')].filter(a => a.offsetParent).length,
+    tables: [...sec.querySelectorAll('table')].filter(t => t.offsetParent && t.rows.length > 2).length,
     many_lines: [...sec.querySelectorAll('svg')].filter(g => g.offsetParent && g.querySelectorAll('polyline').length > 4).length,
   };
 }"""

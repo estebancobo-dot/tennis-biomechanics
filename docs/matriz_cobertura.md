@@ -133,7 +133,9 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 
 ## 6. Matriz del usuario (12-10): análisis integral de la derecha
 
-Cada punto de la matriz que pidió el usuario, con su estado. Lo marcado ✘ no se ve desde una cámara
+Cada punto de la matriz que pidió el usuario, con su estado. «Vista lateral de entrenamiento» = vídeos de
+entrenamiento de YouTube filmados de lado (apartado aparte y marcado del informe, decisión del usuario del
+12-10; nunca se mezcla con los datos de partido). Lo marcado ✘ no se ve desde una cámara
 de TV detrás del fondo (necesita laboratorio, sensores o varias cámaras) y el informe lo dice.
 
 | Elemento | Fuente | Estado | Implementación / acción |
@@ -157,7 +159,7 @@ de TV detrás del fondo (necesita laboratorio, sensores o varias cámaras) y el 
 | Pie de arrastre (pie trasero que se arrastra) | Matriz del usuario | ◐ | `drag_foot` (cuando los tobillos se ven) |
 | Bucle de la preparación (forma) | Matriz del usuario | ✔ | clase `takeback`, `takeback_path` |
 | Caída de la raqueta por debajo de la mano | Matriz del usuario | ✔ | `racket_head_vs_wrist`, `wrist_drop` |
-| Caída de la raqueta por debajo de la bola | Matriz del usuario | ○ | pendiente: punta de la raqueta respecto a la altura del contacto (borroso) |
+| Caída de la raqueta por debajo de la bola | Matriz del usuario | ◐ | desde la tele, borroso; vista lateral de entrenamiento: `practice.side_metrics` (`racket_drop_below_contact_cm`) |
 | Cara de la raqueta en la caída y en el impacto | Matriz del usuario | ◐ | `face_tilt` por fase; en el impacto solo estimación |
 | Trayectoria vertical del swing (de abajo arriba) | Matriz del usuario | ◐ | `swing_low_to_high`, clase `swing` (el ángulo exacto no) |
 | Trayectoria horizontal del swing (de dentro a fuera) | Matriz del usuario | ✘ | es la dirección hacia la cámara |
@@ -178,7 +180,7 @@ de TV detrás del fondo (necesita laboratorio, sensores o varias cámaras) y el 
 | Adaptación a bola rápida, corta, alta, abierta | Matriz del usuario | ✔ | situaciones de «Su derecha» (`ball_speed`, `depth`, `ball_height`, `width`) |
 | Dirección: cruzado, paralelo, dentro-fuera, dentro-dentro | Matriz del usuario | ✔ | clase `shot_type` |
 | Zona de impacto: altura y separación lateral | Matriz del usuario | ✔ | `wrist_dom_vs_hip`, `wrist_dom_lateral` |
-| Zona de impacto: delante de la cadera | Matriz del usuario | ✘ | eje de profundidad (hacia la cámara) |
+| Zona de impacto: delante de la cadera | Matriz del usuario | ◐ | no desde la tele (eje hacia la cámara); vista lateral de entrenamiento: `practice.side_metrics` (`contact_in_front_pct`) |
 | Relajación y tensión de la empuñadura | Matriz del usuario | ✘ | no se ve en vídeo |
 | Equilibrio al terminar | Matriz del usuario | ✔ | `finish.head_over_base`, `finish.trunk_tilt` |
 | Propiedades de la raqueta: swingweight, rigidez, encordado, tensión | Matriz del usuario | ✘ | no se ven en vídeo |
@@ -190,8 +192,11 @@ de TV detrás del fondo (necesita laboratorio, sensores o varias cámaras) y el 
 | Activación muscular (electromiografía) | Matriz del usuario | ✘ | necesita sensores |
 | Rangos articulares de muñeca, codo y hombro; cargas del codo | Matriz del usuario | ✘ | rotaciones y fuerzas invisibles en 2D |
 | Apertura prematura de hombros (fuga de energía) | Matriz del usuario | ◐ | `shoulders_open_first` (orden de los máximos de giro, 2D) |
-| Liberación anticipada de la muñeca («casting») | Matriz del usuario | ○ | pendiente: el ángulo antebrazo–raqueta antes del impacto sale borroso |
+| Liberación anticipada de la muñeca («casting») | Matriz del usuario | ◐ | vista lateral de entrenamiento: `practice.side_metrics` (`lag_accel_deg` frente a `lag_pre_impact_deg`) |
 | Fuerza en dirección incorrecta (horizontal o descendente) | Matriz del usuario | ◐ | `swing_low_to_high` |
+| Ángulo real del swing de abajo arriba (+10° a +45°) | Matriz del usuario | ◐ | vista lateral de entrenamiento: `practice.side_metrics` (`swing_angle_deg`) |
+| Rodilla de atrás en la carga (110–130°) y de delante en el impacto | Matriz del usuario | ◐ | vista lateral de entrenamiento: `practice.side_metrics` (`back_knee_loaded_deg`, `front_knee_impact_deg`) |
+| Inclinación del tronco hacia delante o atrás en el impacto | Matriz del usuario | ◐ | vista lateral de entrenamiento: `practice.side_metrics` (`trunk_lean_impact_deg`) |
 | Superficie de la pista | Matriz del usuario | ✔ | `surface` del partido; deslizar solo en tierra o hierba |
 | Aerodinámica, altitud, temperatura, humedad | Matriz del usuario | ✘ | no hay datos de la retransmisión |
 

@@ -125,6 +125,15 @@ function Subir-Registros {
             New-Item -ItemType Directory -Force -Path "$d\investigacion" | Out-Null
             Copy-Item "$Base\output\investigacion\*" "$d\investigacion" -Recurse -Force -ErrorAction SilentlyContinue
         }
+        # vista lateral de entrenamiento: el resumen y las imagenes del impacto (los videos no)
+        if (Test-Path "$Base\output\entrenamiento\entrenamiento.json") {
+            $e = "$d\entrenamiento"
+            New-Item -ItemType Directory -Force -Path $e | Out-Null
+            Remove-Item "$e\*" -Force -ErrorAction SilentlyContinue
+            Copy-Item "$Base\output\entrenamiento\entrenamiento.json", "$Base\output\entrenamiento\videos.json" $e -Force -ErrorAction SilentlyContinue
+            Get-ChildItem "$Base\output\entrenamiento\clips\*.jpg" -ErrorAction SilentlyContinue | Select-Object -First 40 |
+                ForEach-Object { Copy-Item $_.FullName $e -Force }
+        }
         if (Test-Path "$Base\output\progreso.json") { Copy-Item "$Base\output\progreso.json" "$d\progreso.json" -Force }
         if (Test-Path "$Base\output\_smoke\progreso.json") { Copy-Item "$Base\output\_smoke\progreso.json" "$d\progreso_prueba.json" -Force }
         foreach ($f in @("$Base\output\benchmark\results.json", "$Base\datasets\reports\f3set_validation.json")) {

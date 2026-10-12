@@ -86,6 +86,19 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
   respecto al bote, girar mientras se mueve. Pendiente de esa lista: raqueta al lado/detrás del cuerpo
   (plano), punta vs cabeza, freno de hombros, «lo que la distingue», clase de estilo, y el examen de 25
   afirmaciones sobre su derecha como validación interna (nunca en el informe), con golpes suficientes.
+- ✔ Prueba rápida del 12-10 23:34 en el PC: el play funciona en Brave (también con las animaciones de
+  Windows desactivadas). Auditoría: 109 cumplidos, 5 huecos sin implementar y 91 «sin golpes
+  suficientes» (solo 6 derechas en 4 min): hace falta la prueba media para confirmarlos.
+- ◐ Vista lateral de entrenamiento (12-10, decisión del usuario): `scripts/practice_videos.py` baja en el
+  PC vídeos de entrenamiento de la jugadora (YouTube), los corta en planos, la sigue (persona más grande),
+  detecta sus golpes, decide la cámara de cada uno (`practice.camera_view`) y mide en las derechas de lado
+  lo que la tele no ve (`practice.side_metrics`): impacto delante de la cadera, ángulo real del swing,
+  rodillas, tronco, caída de la raqueta bajo el impacto y ángulo antebrazo–raqueta (lag / casting).
+  Pantalla propia y marcada en el informe («Vista lateral (entreno)»); resumen solo con ≥ 12 derechas de
+  lado. Prueba rápida: 2 vídeos × 90 s; prueba media: 8 × 300 s (incremental). Falta verlo en el PC.
+- Pendiente de la auditoría (pedido el 12-10): comprobar cada combinación medida × situación, convertir
+  las 63 peticiones del chat (`docs/peticiones_usuario.md`) y las 25 afirmaciones de entrenadores en
+  comprobaciones automáticas, y validar la exactitud de más medidas con clips anotados.
 - El usuario no entiende el informe (12-10): rehacer la entrada con una sola pantalla que se explique
   sola, con vídeo y frases; después, aprender de vídeos de análisis de entrenadores (subtítulos e
   imágenes bajados en el PC) cómo explicarlo.

@@ -4,6 +4,11 @@ Revisión de los 151 mensajes del chat (10-10 a 12-10-2026). No se cuentan los i
 
 **Resumen:** 63 peticiones únicas (los duplicados están fusionados).
 
+**Comprobación automática (12-10):** cada fila se comprueba sola en cada ejecución (sección 11 de la
+auditoría, `audit.PETITIONS`): el número de la petición apunta a las comprobaciones de la auditoría que
+la verifican en las salidas reales (o dice por qué no es una salida: proceso, decisión, documento).
+Una petición marcada aquí PARCIAL nunca sale «cumplida», aunque pasen sus comprobaciones.
+
 | Estado | Nº |
 |---|---|
 | NO | 3 (las 3 aplazadas o pendientes por decisión del propio usuario) |

@@ -22,6 +22,9 @@ Después: revés, saque, volea y otros jugadores.
 5. **100 % automático:** el usuario no revisa datos, no lee documentos, no anota, no edita
    configuración. Instalación, prueba y análisis completo con scripts de doble clic.
 6. **Sin fuentes externas:** nada de vídeos del usuario, de entrenadores ni de otras jugadoras.
+   **Excepción (12-10):** vídeos de entrenamiento de la propia jugadora en YouTube, filmados de lado,
+   en un apartado aparte y marcado del informe («Vista lateral (entreno)», `scripts/practice_videos.py`,
+   `tennisbio.practice`): solo lo que la tele no ve; nunca se mezcla con los datos de partido.
 7. **Partido completo solo cuando la aplicación tenga todas las funciones:** se ejecuta una vez,
    al final. Antes, todo se construye y valida aquí con clips públicos (RacketVision, F3Set).
 8. **Cobertura de casos:** nominales, límite, esquina y error en fuentes, algoritmos, modelos IA,
@@ -129,7 +132,8 @@ tiempo de reacción (primer movimiento), pasos de ajuste, tiempo y distancia de 
 efecto (rpm), velocidad de bola, altura sobre la red, fuerzas. Seguimiento de bola (TrackNet)
 daría dirección y profundidad aproximadas (fase 3-4).
 
-**Vídeos de YouTube**: nunca en el informe ni como datos de la jugadora (sin fuentes externas). Solo
+**Vídeos de YouTube**: nunca en el informe ni como datos de partido de la jugadora (sin fuentes externas),
+salvo la vista lateral de sus entrenamientos (requisito 6, apartado aparte y marcado). Solo
 para que Claude aprenda cómo analizan y explican los entrenadores (`scripts/youtube_research.py`,
 en el PC, una vez). Tampoco se usan clips propios del usuario (decisión del usuario).
 

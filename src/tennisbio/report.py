@@ -406,6 +406,22 @@ def player_dict(matches: list[Match], player_id: str | None = None) -> dict:
     return asdict(matches[0].player)
 
 
+def practice_data(out_root: Path, dest: Path) -> dict | None:
+    """Side view from practice videos (scripts/practice_videos.py), a separate source shown on its own
+    screen: <output>/entrenamiento/entrenamiento.json (next to the match folders or one level up, for
+    the test runs in <output>/_smoke). Clips are linked, not copied."""
+    for d in (Path(out_root) / "entrenamiento", Path(out_root).parent / "entrenamiento"):
+        f = d / "entrenamiento.json"
+        if f.exists():
+            try:
+                pr = json.loads(f.read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                return None
+            pr["base"] = Path(os.path.relpath(d / "clips", dest)).as_posix()
+            return pr
+    return None
+
+
 def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke="forehand",
           player: dict | None = None, player_id: str | None = None) -> Path:
     """Write the report (index.html + series/*.js) and return the path of index.html.
@@ -454,6 +470,7 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
     data["player"] = player or {}
     data["stroke"] = stroke
     data["generated"] = time.strftime("%Y-%m-%d %H:%M")
+    data["practice"] = practice_data(out_root, dest)
     ids = {r["id"] for r in data["strokes"]}
     for sub, ext in (("series", ".js"), ("thumbs", ".jpg")):          # strokes that no longer exist
         for f in (dest / sub).glob(f"*{ext}") if (dest / sub).exists() else []:
