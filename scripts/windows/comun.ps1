@@ -68,13 +68,22 @@ function Subir-Registros {
         else { git -C $d checkout -q -B pc-logs 2>$null }
         Copy-Item "$Base\output\*.log" $d -Force -ErrorAction SilentlyContinue
         New-Item -ItemType Directory -Force -Path "$d\partidos" | Out-Null
-        Get-ChildItem "$Base\output" -Directory -ErrorAction SilentlyContinue | ForEach-Object {
-            $r = Join-Path $_.FullName "registro.log"
-            if (Test-Path $r) { Copy-Item $r "$d\partidos\$($_.Name).log" -Force }
-            foreach ($j in @("manifest.json", "strokes_errores.json")) {
-                $f = Join-Path $_.FullName $j
-                if (Test-Path $f) { Copy-Item $f "$d\partidos\$($_.Name)_$j" -Force }
+        # cada partido (y los de la prueba rapida, en output\_smoke): registro, etapas y errores;
+        # de la prueba rapida tambien sus golpes (pocos), para revisar la calidad de lo medido
+        $dirs = @(Get-ChildItem "$Base\output" -Directory -ErrorAction SilentlyContinue) +
+                @(Get-ChildItem "$Base\output\_smoke" -Directory -ErrorAction SilentlyContinue)
+        foreach ($m in $dirs) {
+            $r = Join-Path $m.FullName "registro.log"
+            if (Test-Path $r) { Copy-Item $r "$d\partidos\$($m.Name).log" -Force }
+            $extra = @("manifest.json", "strokes_errores.json")
+            if ($m.Name -like "smoke_*") { $extra += @("strokes.json", "candidates.json", "identity.json", "score.json", "court.json", "probe.json") }
+            foreach ($j in $extra) {
+                $f = Join-Path $m.FullName $j
+                if (Test-Path $f) { Copy-Item $f "$d\partidos\$($m.Name)_$j" -Force }
             }
+        }
+        foreach ($f in @("$Base\output\benchmark\results.json", "$Base\datasets\reports\f3set_validation.json")) {
+            if (Test-Path $f) { Copy-Item $f "$d\$(Split-Path $f -Leaf)" -Force }
         }
         # equipo: lo necesario para entender la velocidad (sin datos personales)
         $eq = "$d\equipo.txt"
