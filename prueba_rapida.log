@@ -1,0 +1,70 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261012135248
+Username: esteban\esteb
+RunAs User: esteban\esteb
+Configuration Name: 
+Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
+Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\prueba_rapida.ps1
+Process ID: 7884
+PSVersion: 5.1.26100.9549
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
+BuildVersion: 10.0.26100.9549
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Video: C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv
+
+==> 1/4 Comprobacion del entorno
+Python   3.11.17  (Windows-10-10.0.26200-SP0)
+CPUs     16
+ffmpeg   C:\Users\esteb\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffmpeg.EXE
+ffprobe  C:\Users\esteb\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffprobe.EXE
+git      C:\Program Files\Git\cmd\git.EXE
+uv       C:\Users\esteb\.local\bin\uv.EXE
+numpy        2.4.6
+pandas       3.0.6
+cv2          5.0.0
+librosa      0.11.0
+onnxruntime  1.24.4
+Exception in thread Thread-1 (_readerthread):
+Traceback (most recent call last):
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\subprocess.py", line 1599, in _readerthread
+    buffer.append(fh.read())
+                  ^^^^^^^^^
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\encodings\cp1252.py", line 23, in decode
+    return codecs.charmap_decode(input,self.errors,decoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeDecodeError: 'charmap' codec can't decode byte 0x81 in position 7766: character maps to <undefined>
+ultralytics  8.4.175
+rapidocr_onnxruntime ?
+ORT providers: ['DmlExecutionProvider', 'CPUExecutionProvider']
+balltrack.onnx     OK
+racketpose.onnx    OK
+rtmw3d-x.onnx      OK
+yolo11m-pose_960.onnx OK
+yolo11m-pose_1280.onnx OK
+Traceback (most recent call last):
+  File "C:\tenis\tennis-biomech\scripts\check_env.py", line 62, in <module>
+    probe(p)
+  File "C:\tenis\tennis-biomech\scripts\check_env.py", line 45, in probe
+    info = json.loads(out)
+           ^^^^^^^^^^^^^^^
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\json\__init__.py", line 339, in loads
+    raise TypeError(f'the JSON object must be str, bytes or bytearray, '
+TypeError: the JSON object must be str, bytes or bytearray, not NoneType
+PS>TerminatingError(): "Fallo: uv run python scripts/check_env.py C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv (codigo 1)"
+
+ERROR: Fallo: uv run python scripts/check_env.py C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv (codigo 1)
+El registro (C:\tenis\output\prueba_rapida.log) se envia a Claude automaticamente.
+**********************
+Windows PowerShell transcript end
+End time: 20261012135250
+**********************
