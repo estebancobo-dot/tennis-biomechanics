@@ -139,6 +139,15 @@ function Subir-Registros {
         foreach ($f in @("$Base\output\benchmark\results.json", "$Base\datasets\reports\f3set_validation.json")) {
             if (Test-Path $f) { Copy-Item $f "$d\$(Split-Path $f -Leaf)" -Force }
         }
+        # cuanto ocupa cada carpeta de salida (MB), para vigilar el disco
+        $tam = "$d\tamanos.txt"
+        "fecha: $(Get-Date -Format s)" | Set-Content $tam
+        foreach ($c in @(Get-ChildItem "$Base\output" -Directory -ErrorAction SilentlyContinue) + @(Get-ChildItem "$Base\output\_smoke" -Directory -ErrorAction SilentlyContinue)) {
+            try {
+                $mb = [math]::Round(((Get-ChildItem $c.FullName -Recurse -File -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum) / 1MB, 1)
+                "{0,10} MB  {1}" -f $mb, $c.FullName.Substring($Base.Length) | Add-Content $tam
+            } catch {}
+        }
         # equipo: lo necesario para entender la velocidad (sin datos personales)
         $eq = "$d\equipo.txt"
         "fecha: $(Get-Date -Format s)" | Set-Content $eq
