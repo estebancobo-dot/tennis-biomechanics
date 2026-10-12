@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261012230924
+Start time: 20261012233212
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\prueba_rapida.ps1
-Process ID: 10488
+Process ID: 8560
 PSVersion: 5.1.26100.9549
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
@@ -20,10 +20,10 @@ From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
 Already up to date.
 Resolved 110 packages in 1ms
-Checked 83 packages in 5ms
+Checked 83 packages in 4ms
 Video: C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv
 
-==> [2026-10-12 23:09:25] 1/4 Comprobacion del entorno
+==> [2026-10-12 23:32:13] 1/4 Comprobacion del entorno
 Python   3.11.17  (Windows-10-10.0.26200-SP0)
 CPUs     16
 ffmpeg   C:\Users\esteb\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffmpeg.EXE
@@ -51,16 +51,27 @@ C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Р
   audio  aac 48000 Hz  2 canales
     (paso terminado en 2 s)
 
-==> [2026-10-12 23:09:27] 2/4 Velocidad de este equipo (5 min, solo la primera vez)
+==> [2026-10-12 23:32:15] 2/4 Velocidad de este equipo (5 min, solo la primera vez)
 ya medida
     (paso terminado en 0 s)
 
-==> [2026-10-12 23:09:27] 3/4 4 minutos de partido, todas las etapas e informe (15-30 min)
+==> [2026-10-12 23:32:15] 3/4 4 minutos de partido, todas las etapas e informe (15-30 min)
 Tramo de juego (ya buscado): minuto 121
-Análisis del tramo: empieza 2026-10-12 23:09:28
-Análisis del tramo: termina 2026-10-12 23:09:28 (0.0 min)
+Análisis del tramo: empieza 2026-10-12 23:32:16
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (2026-10-12 23:32:16, etapa 9 de 10)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+  fine:  15 % (2/13 golpes candidatos · 2 confirmados) · 0 s · quedan ≈ 0 s
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:135: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:406: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+  fine: 100 % (13/13 golpes candidatos · 10 confirmados) · 19 s · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine terminada a las 23:32:45 en 29 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (2026-10-12 23:32:45, etapa 10 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent terminada a las 23:32:45 en 0 s
+Análisis del tramo: termina 2026-10-12 23:32:45 (0.5 min)
 
-Etapas ejecutadas: ninguna (ya estaba al día)
+Etapas ejecutadas: fine, fine_opponent
   probe           0.2 s  {'duration_min': 4.0, 'fps': 50.0, 'size': '1920x1080', 'cleaned': False, 'vfr': True}
   scenes         13.5 s  {'shots': 14, 'main_camera_shots': 13, 'main_camera_min': 3.9}
   audio           1.4 s  {'onsets': 243, 'tracks': 1}
@@ -69,29 +80,35 @@ Etapas ejecutadas: ninguna (ya estaba al día)
   court          27.5 s  {'segments': 20, 'with_court': 11, 'pitch_deg_median': 18.3}
   identity        3.7 s  {'runs': 10, 'votes': 4, 'confidence': 1.0, 'by_end_changes': 9, 'by_clothes': 0, 'conflicts': 1, 'decided': 9}
   candidates      3.8 s  {'candidates': 50, 'far': 37, 'with_audio': 49, 'opponent_runs': 0, 'identity_unknown': 0, 'replay_runs_skipped': 0, 'audio_track': 0}
-  fine           62.0 s  {'candidates': 13, 'confirmed': 10, 'errors': 0, 'warnings': [], 'forehands': 6, 'windows': 7, 'seconds': {'cuerdas_y_3d': 33.2, 'analisis_ventana': 3.8, 'recorte': 0.3, 'pose': 0.0}}
+  fine           29.1 s  {'candidates': 13, 'confirmed': 10, 'errors': 0, 'warnings': [], 'forehands': 6, 'windows': 7, 'seconds': {'cuerdas_y_3d': 20.1, 'analisis_ventana': 1.6, 'recorte': 0.3, 'pose': 0.0}}
   fine_opponent     0.0 s  {'enabled': False}
-Golpes: 0 nuevos, 6 en C:\tenis\output\_smoke\exportar\golpes
+Golpes: 6 nuevos, 6 en C:\tenis\output\_smoke\exportar\golpes
 Montajes: 2 en C:\tenis\output\_smoke\exportar\montajes
 Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
+
+(Solo se rehicieron algunas etapas: el tiempo no sirve para estimar un partido)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Vídeos, montajes y resumen PDF: C:\tenis\output\_smoke\exportar
-Auditoría: 83 cumplidos, 1 no cumplidos, 61 sin golpes suficientes, 0 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+Auditoría: 109 cumplidos, 5 no cumplidos, 91 sin golpes suficientes, 0 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
   ✘ 4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP): hueco medible sin implementar
-    (paso terminado en 59 s)
+  ✘ 6. Matriz del usuario · Caída de la raqueta por debajo de la bola: hueco medible sin implementar
+  ✘ 6. Matriz del usuario · Botepronto (media volea): hueco medible sin implementar
+  ✘ 6. Matriz del usuario · Volea de derecha: hueco medible sin implementar
+  ✘ 6. Matriz del usuario · Liberación anticipada de la muñeca («casting»): hueco medible sin implementar
+    (paso terminado en 2 min 16 s)
 
-==> [2026-10-12 23:10:26] 4/4 Validacion automatica: puntos anotados de partidos de Rybakina (F3Set; 20-40 min, solo la primera vez)
+==> [2026-10-12 23:34:31] 4/4 Validacion automatica: puntos anotados de partidos de Rybakina (F3Set; 20-40 min, solo la primera vez)
 ya hecha
     (paso terminado en 0 s)
 
-==> [2026-10-12 23:10:26] Extra: videos de analisis de entrenadores en YouTube (10-20 min, solo la primera vez)
+==> [2026-10-12 23:34:31] Extra: videos de analisis de entrenadores en YouTube (10-20 min, solo la primera vez)
 ya hecho
 
 PRUEBA TERMINADA. El informe se ha abierto en el navegador.
 El registro se envia a Claude automaticamente.
     (paso terminado en 0 s)
-Empezado 2026-10-12 23:09:24 - terminado 2026-10-12 23:10:26 - duracion total 1 min 01 s
+Empezado 2026-10-12 23:32:12 - terminado 2026-10-12 23:34:31 - duracion total 2 min 19 s
 **********************
 Windows PowerShell transcript end
-End time: 20261012231026
+End time: 20261012233431
 **********************

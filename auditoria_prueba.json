@@ -3,9 +3,9 @@
  "strokes": 6,
  "near": 6,
  "summary": {
-  "ok": 83,
-  "falta": 1,
-  "pocos datos": 61,
+  "ok": 109,
+  "falta": 5,
+  "pocos datos": 91,
   "aviso": 0
  },
  "items": [
@@ -1114,6 +1114,655 @@
    "measured": 0.0
   },
   {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Reacción al suelo (fuerza contra la pista)",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Empuje de piernas / extensión triple (tobillo, rodilla, cadera)",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.hip_height",
+    "ball_bounce.hip_height",
+    "ball_net.hip_height",
+    "ball_top.hip_height",
+    "extension.hip_height",
+    "finish.hip_height",
+    "impact.hip_height",
+    "loaded.hip_height"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Rotación pélvica",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.hip_turn",
+    "extension.hip_turn",
+    "finish.hip_turn",
+    "impact.hip_turn",
+    "loaded.hip_turn",
+    "ready.hip_turn",
+    "recovery.hip_turn",
+    "stroke.t_max_hip_turn"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Separación cadera–hombro (torque)",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.x_factor",
+    "loaded.x_factor",
+    "takeback.x_factor"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Giro de hombros (unit turn)",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.hands_apart",
+    "ball_bounce.hands_apart",
+    "ball_net.hands_apart",
+    "ball_top.hands_apart",
+    "extension.hands_apart",
+    "finish.hands_apart",
+    "impact.hands_apart",
+    "loaded.hands_apart"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Extensión del codo",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.arm_extension",
+    "acceleration.elbow_dom",
+    "ball_bounce.arm_extension",
+    "ball_bounce.elbow_dom",
+    "ball_net.arm_extension",
+    "ball_net.elbow_dom",
+    "ball_top.arm_extension",
+    "extension.arm_extension"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Pronación del antebrazo, flexión palmar y desviación de la muñeca",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Retraso de la muñeca (lag) y su liberación",
+   "status": "pocos datos",
+   "detail": "se mide (33% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.racket_forearm",
+    "ball_bounce.racket_forearm",
+    "ball_top.racket_forearm",
+    "finish.racket_forearm",
+    "loaded.racket_forearm",
+    "recovery.racket_forearm"
+   ],
+   "measured": 0.33
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Mirada fija en el punto de impacto («quiet eye»)",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Cabeza estable y eje vertical",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.head_over_base",
+    "acceleration.trunk_tilt",
+    "ball_bounce.head_over_base",
+    "ball_bounce.trunk_tilt",
+    "ball_net.trunk_tilt",
+    "ball_top.head_over_base",
+    "ball_top.trunk_tilt",
+    "extension.head_over_base"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Brazo recto o doble flexión",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.elbow_dom",
+    "ball_bounce.elbow_dom",
+    "ball_net.elbow_dom",
+    "class.arm",
+    "extension.elbow_dom",
+    "finish.elbow_dom",
+    "impact.elbow_dom",
+    "loaded.elbow_dom"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Brazo libre paralelo a la línea de fondo en el giro; distancia a la bola",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.elbow_non",
+    "acceleration.shoulder_abd_non",
+    "acceleration.wrist_dom_lateral",
+    "ball_bounce.elbow_non",
+    "ball_bounce.shoulder_abd_non",
+    "ball_bounce.wrist_dom_lateral",
+    "ball_net.elbow_non",
+    "ball_net.shoulder_abd_non"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Brazo libre recogido al pecho tras el contacto («catch»)",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "extension.wrist_non_lateral"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Inclinación lateral del tronco",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.trunk_tilt",
+    "ball_bounce.trunk_tilt",
+    "ball_net.trunk_tilt",
+    "ball_top.trunk_tilt",
+    "extension.trunk_tilt",
+    "finish.trunk_tilt",
+    "impact.trunk_tilt",
+    "loaded.trunk_tilt"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Estabilidad lumbopélvica, activación de oblicuos (fugas de energía musculares)",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Carga: flexión de rodillas",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.hip_height",
+    "acceleration.knee_dom",
+    "acceleration.knee_non",
+    "ball_bounce.hip_height",
+    "ball_bounce.knee_dom",
+    "ball_bounce.knee_non",
+    "ball_net.hip_height",
+    "ball_net.knee_dom"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Pie de arrastre (pie trasero que se arrastra)",
+   "status": "ok",
+   "detail": "medido en el 50% de los golpes y en el informe (parcial: ver la matriz)",
+   "keys": [
+    "footwork.drag_foot"
+   ],
+   "measured": 0.5
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Bucle de la preparación (forma)",
+   "status": "pocos datos",
+   "detail": "se mide (83% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.takeback",
+    "face.takeback",
+    "phase.takeback",
+    "stroke.takeback_path",
+    "tphase.takeback"
+   ],
+   "measured": 0.83
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Caída de la raqueta por debajo de la mano",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.racket_head_vs_wrist",
+    "ball_bounce.racket_head_vs_wrist",
+    "ball_top.racket_head_vs_wrist",
+    "finish.racket_head_vs_wrist",
+    "loaded.racket_head_vs_wrist",
+    "recovery.racket_head_vs_wrist",
+    "stroke.wrist_drop"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Caída de la raqueta por debajo de la bola",
+   "status": "falta",
+   "detail": "hueco medible sin implementar"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Cara de la raqueta en la caída y en el impacto",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.face_tilt",
+    "ball_bounce.face_tilt",
+    "ball_net.face_tilt",
+    "ball_top.face_tilt",
+    "extension.face_tilt",
+    "finish.face_tilt",
+    "impact.face_tilt",
+    "loaded.face_tilt"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Trayectoria vertical del swing (de abajo arriba)",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.swing",
+    "stroke.swing_low_to_high"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Trayectoria horizontal del swing (de dentro a fuera)",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Apoyos abierto, semiabierto, neutro, cerrado",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.stance_impact",
+    "class.stance_loaded"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Apoyo en suspensión (salto)",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
+   "keys": [
+    "class.movement",
+    "footwork.movement"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Apoyo abierto extremo defensivo",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.stance_role"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Split step",
+   "status": "ok",
+   "detail": "medido en el 33% de los golpes y en el informe",
+   "keys": [
+    "footwork.split_landing_vs_opp_s"
+   ],
+   "measured": 0.33
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Pasos de ajuste",
+   "status": "ok",
+   "detail": "medido en el 50% de los golpes y en el informe",
+   "keys": [
+    "footwork.adjustment_steps"
+   ],
+   "measured": 0.5
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Pasos cruzados",
+   "status": "pocos datos",
+   "detail": "no aparece en los datos de ningún golpe de esta ejecución (step_kinds)",
+   "keys": [],
+   "measured": 0.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Paso de ataque hacia dentro de la pista (step-in)",
+   "status": "ok",
+   "detail": "medido en el 50% de los golpes y en el informe",
+   "keys": [
+    "footwork.step_in"
+   ],
+   "measured": 0.5
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Pasos de recuperación (laterales o cruzados)",
+   "status": "ok",
+   "detail": "medido en el 33% de los golpes y en el informe",
+   "keys": [
+    "class.recovery_first_step",
+    "footwork.recovery_first_step",
+    "footwork.recovery_pattern"
+   ],
+   "measured": 0.33
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Golpe plano, liftado o cortado",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.swing"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Botepronto (media volea)",
+   "status": "falta",
+   "detail": "hueco medible sin implementar"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Volea de derecha",
+   "status": "falta",
+   "detail": "hueco medible sin implementar"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Terminación sobre el hombro contrario",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.finish",
+    "face.finish",
+    "phase.finish",
+    "tphase.finish"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Terminación en látigo sobre el mismo hombro (buggy whip)",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.finish",
+    "face.finish",
+    "phase.finish",
+    "tphase.finish"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Terminación baja, a la cintura contraria",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.finish",
+    "face.finish",
+    "phase.finish",
+    "tphase.finish"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Adaptación a bola rápida, corta, alta, abierta",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.ball_height",
+    "class.ball_speed",
+    "class.depth",
+    "class.width"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Dirección: cruzado, paralelo, dentro-fuera, dentro-dentro",
+   "status": "pocos datos",
+   "detail": "se mide (67% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.shot_type"
+   ],
+   "measured": 0.67
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Zona de impacto: altura y separación lateral",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.wrist_dom_lateral",
+    "acceleration.wrist_dom_vs_hip",
+    "ball_bounce.wrist_dom_lateral",
+    "ball_bounce.wrist_dom_vs_hip",
+    "ball_net.wrist_dom_lateral",
+    "ball_net.wrist_dom_vs_hip",
+    "ball_top.wrist_dom_lateral",
+    "ball_top.wrist_dom_vs_hip"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Zona de impacto: delante de la cadera",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Relajación y tensión de la empuñadura",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Equilibrio al terminar",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "finish.head_over_base",
+    "finish.trunk_tilt"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Propiedades de la raqueta: swingweight, rigidez, encordado, tensión",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Velocidad de la cabeza de la raqueta en km/h",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Velocidad angular de cada segmento en grados por segundo",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Tasa de desarrollo de fuerza contra el suelo",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Efecto, ángulo y velocidad de salida de la bola",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Latencia de reacción al golpe de la rival",
+   "status": "ok",
+   "detail": "medido en el 50% de los golpes y en el informe (parcial: ver la matriz)",
+   "keys": [
+    "footwork.first_step_s",
+    "footwork.split_landing_vs_opp_s"
+   ],
+   "measured": 0.5
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Activación muscular (electromiografía)",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Rangos articulares de muñeca, codo y hombro; cargas del codo",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Apertura prematura de hombros (fuga de energía)",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "stroke.shoulders_open_first"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Liberación anticipada de la muñeca («casting»)",
+   "status": "falta",
+   "detail": "hueco medible sin implementar"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Fuerza en dirección incorrecta (horizontal o descendente)",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "stroke.swing_low_to_high"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Superficie de la pista",
+   "status": "pocos datos",
+   "detail": "no aparece en los datos de ningún golpe de esta ejecución (surface)",
+   "keys": [],
+   "measured": 0.0
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "6. Matriz del usuario · Aerodinámica, altitud, temperatura, humedad",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
    "req": 1,
    "area": "Situaciones",
    "name": "Bola rápida / lenta",
@@ -1295,7 +1944,7 @@
    "area": "Valores posibles",
    "name": "Lo no medible se dice",
    "status": "ok",
-   "detail": "15 elementos en «Lo que la tele no permite medir»"
+   "detail": "17 elementos en «Lo que la tele no permite medir»"
   },
   {
    "req": 2,
@@ -1323,7 +1972,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Su derecha»",
    "status": "ok",
-   "detail": "5116 caracteres de texto, 0 vídeos, 8 gráficos",
+   "detail": "5624 caracteres de texto, 5 vídeos, 8 gráficos",
    "file": "pantalla_1_modelo.jpg"
   },
   {
@@ -1331,7 +1980,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Panel»",
    "status": "ok",
-   "detail": "1389 caracteres de texto, 0 vídeos, 0 gráficos; mensajes de vacío: ['Hacen falta al menos 3 golpes en dos tramos del partido para dibujar la evolución de x-factor (hay 6).']",
+   "detail": "1389 caracteres de texto, 5 vídeos, 0 gráficos; mensajes de vacío: ['Hacen falta al menos 3 golpes en dos tramos del partido para dibujar la evolución de x-factor (hay 6).']",
    "file": "pantalla_2_panel.jpg"
   },
   {
@@ -1339,7 +1988,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Videoteca»",
    "status": "ok",
-   "detail": "2038 caracteres de texto, 0 vídeos, 0 gráficos",
+   "detail": "2038 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_3_videoteca.jpg"
   },
   {
@@ -1347,7 +1996,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "4602 caracteres de texto, 1 vídeos, 20 gráficos",
+   "detail": "4623 caracteres de texto, 6 vídeos, 20 gráficos",
    "file": "pantalla_4_golpe.jpg"
   },
   {
@@ -1355,7 +2004,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Comparar golpes»",
    "status": "ok",
-   "detail": "3226 caracteres de texto, 0 vídeos, 2 gráficos",
+   "detail": "3226 caracteres de texto, 5 vídeos, 2 gráficos",
    "file": "pantalla_5_comparar.jpg"
   },
   {
@@ -1363,7 +2012,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Explorador»",
    "status": "ok",
-   "detail": "1730 caracteres de texto, 0 vídeos, 0 gráficos",
+   "detail": "1730 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_6_explorador.jpg"
   },
   {
@@ -1371,7 +2020,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Comparativas»",
    "status": "ok",
-   "detail": "2625 caracteres de texto, 0 vídeos, 10 gráficos; mensajes de vacío: ['Sin datos de estabilidad de la cabeza en estos grupos.']",
+   "detail": "2625 caracteres de texto, 5 vídeos, 10 gráficos; mensajes de vacío: ['Sin datos de estabilidad de la cabeza en estos grupos.']",
    "file": "pantalla_7_comparativas.jpg"
   },
   {
@@ -1379,7 +2028,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Pista»",
    "status": "ok",
-   "detail": "481 caracteres de texto, 0 vídeos, 1 gráficos",
+   "detail": "481 caracteres de texto, 5 vídeos, 1 gráficos",
    "file": "pantalla_8_pista.jpg"
   },
   {
@@ -1407,6 +2056,34 @@
    "req": 2,
    "area": "Vídeo",
    "name": "Reproducir: Comparar golpes → ▶",
+   "status": "ok",
+   "detail": "el vídeo arranca y avanza"
+  },
+  {
+   "req": 2,
+   "area": "Vídeo",
+   "name": "Reproducir: «Su derecha» → ▶ Ver sus golpes típicos (con las animaciones de Windows desactivadas)",
+   "status": "ok",
+   "detail": "el vídeo arranca y avanza"
+  },
+  {
+   "req": 2,
+   "area": "Vídeo",
+   "name": "Reproducir: Videoteca → ▶ Reproducir todos (con las animaciones de Windows desactivadas)",
+   "status": "ok",
+   "detail": "el vídeo arranca y avanza"
+  },
+  {
+   "req": 2,
+   "area": "Vídeo",
+   "name": "Reproducir: Análisis de golpe → ▶ (con las animaciones de Windows desactivadas)",
+   "status": "ok",
+   "detail": "el vídeo arranca y avanza"
+  },
+  {
+   "req": 2,
+   "area": "Vídeo",
+   "name": "Reproducir: Comparar golpes → ▶ (con las animaciones de Windows desactivadas)",
    "status": "ok",
    "detail": "el vídeo arranca y avanza"
   },
@@ -1471,7 +2148,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "5 min para 4 min de vídeo ≈ 4.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "4 min para 4 min de vídeo ≈ 3.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,

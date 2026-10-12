@@ -1,10 +1,14 @@
 # Auditoría de requisitos (forehand)
 
-6 golpes del lado cercano. ✔ 83 cumplidos · ✘ 1 no cumplidos · … 61 sin golpes suficientes en esta ejecución · ! 0 avisos
+6 golpes del lado cercano. ✔ 109 cumplidos · ✘ 5 no cumplidos · … 91 sin golpes suficientes en esta ejecución · ! 0 avisos
 
 ## 1. Toda la taxonomía del golpe y todas sus variantes (situaciones)
 
 - ✘ **4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)**: hueco medible sin implementar
+- ✘ **6. Matriz del usuario · Caída de la raqueta por debajo de la bola**: hueco medible sin implementar
+- ✘ **6. Matriz del usuario · Botepronto (media volea)**: hueco medible sin implementar
+- ✘ **6. Matriz del usuario · Volea de derecha**: hueco medible sin implementar
+- ✘ **6. Matriz del usuario · Liberación anticipada de la muñeca («casting»)**: hueco medible sin implementar
 - … **forehand: golpes analizados**: 6 del lado cercano (con todo el detalle), 0 del lejano; con menos de 20 muchas situaciones no se pueden describir
 - … **1. Fases · Golpe del rival → split step**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **1. Fases · Inicio del giro de bloque (preparación)**: se mide (83% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
@@ -56,6 +60,36 @@
 - … **5. Bola, resultado y contexto · Puntos ganados en ataque / en defensa**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **5. Bola, resultado y contexto · Longitud del peloteo**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **5. Bola, resultado y contexto · Resto, globo, dejada, volea, subida a la red**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Empuje de piernas / extensión triple (tobillo, rodilla, cadera)**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Rotación pélvica**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Separación cadera–hombro (torque)**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Giro de hombros (unit turn)**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Extensión del codo**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Retraso de la muñeca (lag) y su liberación**: se mide (33% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Cabeza estable y eje vertical**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Brazo recto o doble flexión**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Brazo libre paralelo a la línea de fondo en el giro; distancia a la bola**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Brazo libre recogido al pecho tras el contacto («catch»)**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Inclinación lateral del tronco**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Carga: flexión de rodillas**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Bucle de la preparación (forma)**: se mide (83% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Caída de la raqueta por debajo de la mano**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Cara de la raqueta en la caída y en el impacto**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Trayectoria vertical del swing (de abajo arriba)**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Apoyos abierto, semiabierto, neutro, cerrado**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Apoyo abierto extremo defensivo**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Pasos cruzados**: no aparece en los datos de ningún golpe de esta ejecución (step_kinds)
+- … **6. Matriz del usuario · Golpe plano, liftado o cortado**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Terminación sobre el hombro contrario**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Terminación en látigo sobre el mismo hombro (buggy whip)**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Terminación baja, a la cintura contraria**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Adaptación a bola rápida, corta, alta, abierta**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Dirección: cruzado, paralelo, dentro-fuera, dentro-dentro**: se mide (67% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Zona de impacto: altura y separación lateral**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Equilibrio al terminar**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Apertura prematura de hombros (fuga de energía)**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Fuerza en dirección incorrecta (horizontal o descendente)**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **6. Matriz del usuario · Superficie de la pista**: no aparece en los datos de ningún golpe de esta ejecución (surface)
 - … **Bola rápida / lenta**: lenta 2, media 3, rápida 0, muy rápida 1 (se muestra con ≥ 12 golpes)
 - … **Bola alta / baja**: rodilla 0, cadera 1, cintura-pecho 3, pecho-hombro 1, por encima del hombro 1 (se muestra con ≥ 12 golpes)
 - … **Bola corta / profunda**: dentro de la pista 1, sobre la línea 4, 1-2 m detrás 1, 2-4 m detrás 0, muy atrás 0 (se muestra con ≥ 12 golpes)
@@ -94,6 +128,13 @@
 - ✔ **5. Bola, resultado y contexto · Curvas de altura (cabeza, cadera, mano, cabeza de la raqueta) a lo largo del golpe, con su curva típica y su franja**: implementado (sin nombre de dato en la matriz)
 - ✔ **5. Bola, resultado y contexto · Ganador / error (forzado o no)**: implementado (sin nombre de dato en la matriz) (parcial: ver la matriz)
 - ✔ **5. Bola, resultado y contexto · Presión, set, fatiga**: implementado (sin nombre de dato en la matriz)
+- ✔ **6. Matriz del usuario · Pie de arrastre (pie trasero que se arrastra)**: medido en el 50% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Apoyo en suspensión (salto)**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Split step**: medido en el 33% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Pasos de ajuste**: medido en el 50% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Paso de ataque hacia dentro de la pista (step-in)**: medido en el 50% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Pasos de recuperación (laterales o cruzados)**: medido en el 33% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Latencia de reacción al golpe de la rival**: medido en el 50% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **Fotograma clave: espera / split step**: encontrado en el 100% de los golpes
 - ✔ **Fotograma clave: inicio de preparación**: encontrado en el 83% de los golpes
 - ✔ **Fotograma clave: armado**: encontrado en el 100% de los golpes
@@ -108,18 +149,22 @@
 - ✔ **Cada golpe tiene su vídeo**: 6 de 6 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 6 de 6
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Su derecha»**: 5116 caracteres de texto, 0 vídeos, 8 gráficos
-- ✔ **Pantalla «Panel»**: 1389 caracteres de texto, 0 vídeos, 0 gráficos; mensajes de vacío: ['Hacen falta al menos 3 golpes en dos tramos del partido para dibujar la evolución de x-factor (hay 6).']
-- ✔ **Pantalla «Videoteca»**: 2038 caracteres de texto, 0 vídeos, 0 gráficos
-- ✔ **Pantalla «Análisis de golpe»**: 4602 caracteres de texto, 1 vídeos, 20 gráficos
-- ✔ **Pantalla «Comparar golpes»**: 3226 caracteres de texto, 0 vídeos, 2 gráficos
-- ✔ **Pantalla «Explorador»**: 1730 caracteres de texto, 0 vídeos, 0 gráficos
-- ✔ **Pantalla «Comparativas»**: 2625 caracteres de texto, 0 vídeos, 10 gráficos; mensajes de vacío: ['Sin datos de estabilidad de la cabeza en estos grupos.']
-- ✔ **Pantalla «Pista»**: 481 caracteres de texto, 0 vídeos, 1 gráficos
+- ✔ **Pantalla «Su derecha»**: 5624 caracteres de texto, 5 vídeos, 8 gráficos
+- ✔ **Pantalla «Panel»**: 1389 caracteres de texto, 5 vídeos, 0 gráficos; mensajes de vacío: ['Hacen falta al menos 3 golpes en dos tramos del partido para dibujar la evolución de x-factor (hay 6).']
+- ✔ **Pantalla «Videoteca»**: 2038 caracteres de texto, 5 vídeos, 0 gráficos
+- ✔ **Pantalla «Análisis de golpe»**: 4623 caracteres de texto, 6 vídeos, 20 gráficos
+- ✔ **Pantalla «Comparar golpes»**: 3226 caracteres de texto, 5 vídeos, 2 gráficos
+- ✔ **Pantalla «Explorador»**: 1730 caracteres de texto, 5 vídeos, 0 gráficos
+- ✔ **Pantalla «Comparativas»**: 2625 caracteres de texto, 5 vídeos, 10 gráficos; mensajes de vacío: ['Sin datos de estabilidad de la cabeza en estos grupos.']
+- ✔ **Pantalla «Pista»**: 481 caracteres de texto, 5 vídeos, 1 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
 - ✔ **Reproducir: Comparar golpes → ▶**: el vídeo arranca y avanza
+- ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos (con las animaciones de Windows desactivadas)**: el vídeo arranca y avanza
+- ✔ **Reproducir: Videoteca → ▶ Reproducir todos (con las animaciones de Windows desactivadas)**: el vídeo arranca y avanza
+- ✔ **Reproducir: Análisis de golpe → ▶ (con las animaciones de Windows desactivadas)**: el vídeo arranca y avanza
+- ✔ **Reproducir: Comparar golpes → ▶ (con las animaciones de Windows desactivadas)**: el vídeo arranca y avanza
 - ✔ **El vídeo del golpe se reproduce al pulsar ▶**: avanza y sigue reproduciéndose
 - ✔ **«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella**: 4 en la pantalla
 - ✔ **«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)**: 9 en la pantalla
@@ -145,8 +190,23 @@
 - ✔ **4. Raqueta, swing y empuñadura · Empuñadura en la espera y cambio de empuñadura**: no observable desde la tele; el informe lo dice
 - ✔ **4. Raqueta, swing y empuñadura · Pronación, contribución de cada segmento, punto en el cordaje, presión de agarre**: no observable desde la tele; el informe lo dice
 - ✔ **5. Bola, resultado y contexto · Efecto (rpm), velocidad de salida, altura sobre la red**: no observable desde la tele; el informe lo dice
+- ✔ **6. Matriz del usuario · Reacción al suelo (fuerza contra la pista)**: no observable desde la tele; el informe lo dice
+- ✔ **6. Matriz del usuario · Pronación del antebrazo, flexión palmar y desviación de la muñeca**: no observable desde la tele; el informe lo dice
+- ✔ **6. Matriz del usuario · Mirada fija en el punto de impacto («quiet eye»)**: no observable desde la tele; el informe lo dice
+- ✔ **6. Matriz del usuario · Estabilidad lumbopélvica, activación de oblicuos (fugas de energía musculares)**: no observable desde la tele; el informe lo dice
+- ✔ **6. Matriz del usuario · Trayectoria horizontal del swing (de dentro a fuera)**: no observable desde la tele; el informe lo dice
+- ✔ **6. Matriz del usuario · Zona de impacto: delante de la cadera**: no observable desde la tele; el informe lo dice
+- ✔ **6. Matriz del usuario · Relajación y tensión de la empuñadura**: no observable desde la tele; el informe lo dice
+- ✔ **6. Matriz del usuario · Propiedades de la raqueta: swingweight, rigidez, encordado, tensión**: no observable desde la tele; el informe lo dice
+- ✔ **6. Matriz del usuario · Velocidad de la cabeza de la raqueta en km/h**: no observable desde la tele; el informe lo dice
+- ✔ **6. Matriz del usuario · Velocidad angular de cada segmento en grados por segundo**: no observable desde la tele; el informe lo dice
+- ✔ **6. Matriz del usuario · Tasa de desarrollo de fuerza contra el suelo**: no observable desde la tele; el informe lo dice
+- ✔ **6. Matriz del usuario · Efecto, ángulo y velocidad de salida de la bola**: no observable desde la tele; el informe lo dice
+- ✔ **6. Matriz del usuario · Activación muscular (electromiografía)**: no observable desde la tele; el informe lo dice
+- ✔ **6. Matriz del usuario · Rangos articulares de muñeca, codo y hombro; cargas del codo**: no observable desde la tele; el informe lo dice
+- ✔ **6. Matriz del usuario · Aerodinámica, altitud, temperatura, humedad**: no observable desde la tele; el informe lo dice
 - ✔ **Valores dentro de límites físicos**: 23 medidas comprobadas en 6 golpes
-- ✔ **Lo no medible se dice**: 15 elementos en «Lo que la tele no permite medir»
+- ✔ **Lo no medible se dice**: 17 elementos en «Lo que la tele no permite medir»
 
 ## 4. Cuerdas / orientación de la cara de la raqueta
 
@@ -163,4 +223,4 @@
 
 ## 9. Rendimiento: un partido en horas, no días
 
-- ✔ **Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 5 min para 4 min de vídeo ≈ 4.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
+- ✔ **Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 4 min para 4 min de vídeo ≈ 3.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
