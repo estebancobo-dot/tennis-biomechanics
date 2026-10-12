@@ -722,16 +722,16 @@
    "area": "Taxonomía",
    "name": "4. Raqueta, swing y empuñadura · Retraso de la muñeca (lag)",
    "status": "pocos datos",
-   "detail": "se mide (67% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "detail": "se mide (33% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "acceleration.racket_forearm",
     "ball_bounce.racket_forearm",
     "ball_top.racket_forearm",
     "finish.racket_forearm",
     "loaded.racket_forearm",
-    "takeback.racket_forearm"
+    "recovery.racket_forearm"
    ],
-   "measured": 0.67
+   "measured": 0.33
   },
   {
    "req": 1,
@@ -1186,7 +1186,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Su derecha»",
    "status": "ok",
-   "detail": "2526 caracteres de texto, 0 vídeos, 8 gráficos",
+   "detail": "4346 caracteres de texto, 0 vídeos, 8 gráficos",
    "file": "pantalla_1_modelo.jpg"
   },
   {
@@ -1194,7 +1194,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Panel»",
    "status": "ok",
-   "detail": "2912 caracteres de texto, 0 vídeos, 0 gráficos; mensajes de vacío: ['Hacen falta al menos 3 golpes en dos tramos del partido para dibujar la evolución de x-factor (hay 6).']",
+   "detail": "1389 caracteres de texto, 0 vídeos, 0 gráficos; mensajes de vacío: ['Hacen falta al menos 3 golpes en dos tramos del partido para dibujar la evolución de x-factor (hay 6).']",
    "file": "pantalla_2_panel.jpg"
   },
   {
@@ -1202,7 +1202,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Videoteca»",
    "status": "ok",
-   "detail": "1643 caracteres de texto, 0 vídeos, 0 gráficos",
+   "detail": "1968 caracteres de texto, 0 vídeos, 0 gráficos",
    "file": "pantalla_3_videoteca.jpg"
   },
   {
@@ -1210,7 +1210,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "3161 caracteres de texto, 1 vídeos, 15 gráficos",
+   "detail": "3660 caracteres de texto, 1 vídeos, 19 gráficos",
    "file": "pantalla_4_golpe.jpg"
   },
   {
@@ -1218,7 +1218,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Comparar golpes»",
    "status": "ok",
-   "detail": "3134 caracteres de texto, 0 vídeos, 2 gráficos",
+   "detail": "3224 caracteres de texto, 0 vídeos, 2 gráficos",
    "file": "pantalla_5_comparar.jpg"
   },
   {
@@ -1226,7 +1226,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Explorador»",
    "status": "ok",
-   "detail": "1634 caracteres de texto, 0 vídeos, 0 gráficos",
+   "detail": "1730 caracteres de texto, 0 vídeos, 0 gráficos",
    "file": "pantalla_6_explorador.jpg"
   },
   {
@@ -1234,7 +1234,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Comparativas»",
    "status": "ok",
-   "detail": "2432 caracteres de texto, 0 vídeos, 10 gráficos; mensajes de vacío: ['Sin datos de estabilidad de la cabeza en estos grupos.']",
+   "detail": "2625 caracteres de texto, 0 vídeos, 10 gráficos; mensajes de vacío: ['Sin datos de estabilidad de la cabeza en estos grupos.']",
    "file": "pantalla_7_comparativas.jpg"
   },
   {
@@ -1242,7 +1242,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Pista»",
    "status": "ok",
-   "detail": "420 caracteres de texto, 0 vídeos, 1 gráficos",
+   "detail": "481 caracteres de texto, 0 vídeos, 1 gráficos",
    "file": "pantalla_8_pista.jpg"
   },
   {

@@ -50,7 +50,7 @@
 - … **4. Raqueta, swing y empuñadura · Altura de la mano en el armado (no por encima de la cabeza)**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **4. Raqueta, swing y empuñadura · Cara de la raqueta al final del armado**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **4. Raqueta, swing y empuñadura · Caída de la raqueta antes de acelerar**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- … **4. Raqueta, swing y empuñadura · Retraso de la muñeca (lag)**: se mide (67% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **4. Raqueta, swing y empuñadura · Retraso de la muñeca (lag)**: se mide (33% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **4. Raqueta, swing y empuñadura · Trayectoria de abajo arriba (signo) / liftado-plano-cortado**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **4. Raqueta, swing y empuñadura · Velocidad de la raqueta relativa entre golpes**: se mide (83% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **4. Raqueta, swing y empuñadura · Posición de la mano en el mango**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
@@ -98,14 +98,14 @@
 - ✔ **Cada golpe tiene su vídeo**: 6 de 6 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 6 de 6
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Su derecha»**: 2526 caracteres de texto, 0 vídeos, 8 gráficos
-- ✔ **Pantalla «Panel»**: 2912 caracteres de texto, 0 vídeos, 0 gráficos; mensajes de vacío: ['Hacen falta al menos 3 golpes en dos tramos del partido para dibujar la evolución de x-factor (hay 6).']
-- ✔ **Pantalla «Videoteca»**: 1643 caracteres de texto, 0 vídeos, 0 gráficos
-- ✔ **Pantalla «Análisis de golpe»**: 3161 caracteres de texto, 1 vídeos, 15 gráficos
-- ✔ **Pantalla «Comparar golpes»**: 3134 caracteres de texto, 0 vídeos, 2 gráficos
-- ✔ **Pantalla «Explorador»**: 1634 caracteres de texto, 0 vídeos, 0 gráficos
-- ✔ **Pantalla «Comparativas»**: 2432 caracteres de texto, 0 vídeos, 10 gráficos; mensajes de vacío: ['Sin datos de estabilidad de la cabeza en estos grupos.']
-- ✔ **Pantalla «Pista»**: 420 caracteres de texto, 0 vídeos, 1 gráficos
+- ✔ **Pantalla «Su derecha»**: 4346 caracteres de texto, 0 vídeos, 8 gráficos
+- ✔ **Pantalla «Panel»**: 1389 caracteres de texto, 0 vídeos, 0 gráficos; mensajes de vacío: ['Hacen falta al menos 3 golpes en dos tramos del partido para dibujar la evolución de x-factor (hay 6).']
+- ✔ **Pantalla «Videoteca»**: 1968 caracteres de texto, 0 vídeos, 0 gráficos
+- ✔ **Pantalla «Análisis de golpe»**: 3660 caracteres de texto, 1 vídeos, 19 gráficos
+- ✔ **Pantalla «Comparar golpes»**: 3224 caracteres de texto, 0 vídeos, 2 gráficos
+- ✔ **Pantalla «Explorador»**: 1730 caracteres de texto, 0 vídeos, 0 gráficos
+- ✔ **Pantalla «Comparativas»**: 2625 caracteres de texto, 0 vídeos, 10 gráficos; mensajes de vacío: ['Sin datos de estabilidad de la cabeza en estos grupos.']
+- ✔ **Pantalla «Pista»**: 481 caracteres de texto, 0 vídeos, 1 gráficos
 
 ## 3. Nada inventado: valores posibles, respaldados por sus golpes; lo no medible se dice
 
