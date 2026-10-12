@@ -43,7 +43,13 @@
   "end": 66,
   "url": "https://www.youtube.com/watch?v=BZTdhztMFqc",
   "duration_s": 66.0,
-  "query": "lista elegida"
+  "query": "lista elegida",
+  "seconds_kept": 66.0,
+  "analysed_s": 66.0,
+  "version": 3,
+  "strokes": 22,
+  "lateral_forehands": 5,
+  "discarded": 1
  },
  {
   "id": "QmCVixzz6-Y",
