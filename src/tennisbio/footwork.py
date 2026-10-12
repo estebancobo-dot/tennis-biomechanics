@@ -153,6 +153,8 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
         if ball_dx is not None and abs(ball_dx) > 0.5 and np.isfinite(p0).all() and np.isfinite(po).all():
             near_foot = (p0[0] - po[0]) * np.sign(ball_dx) > 0          # this foot is on the side of the ball
         out["first_step_length_m"] = round(f.length_m, 2)
+        if ball_dx is not None and abs(ball_dx) > 0.5 and not (f.dx * np.sign(ball_dx) < -0.05 and f.length_m < 0.4):
+            out["first_step_right_way"] = bool(f.dx * np.sign(ball_dx) > 0)      # a gravity step back is not a wrong way
         out["first_step_type"] = (
             "cruzado" if f.crossover else
             "gravity (contrapaso)" if ball_dx is not None and abs(ball_dx) > 0.5 and f.dx * np.sign(ball_dx) < -0.05 else

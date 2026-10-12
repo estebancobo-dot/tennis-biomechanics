@@ -365,6 +365,42 @@ def score_at(score: dict, t: float, max_age_s=40.0):
     return best
 
 
+def point_won(score: dict, t: float, horizon_s=60.0):
+    """Did the target player (scoreboard row 0) win the point being played at time t? From the next
+    change of the scoreboard: her points or games go up, or the opponent's. None when unclear."""
+    rd = [r for r in score.get("readings", []) if r.get("games")]
+    before = None
+    for r in rd:
+        if r["t"] <= t:
+            before = r
+        elif before is not None and r["t"] - t <= horizon_s:
+            def key(x):
+                g = x["games"]
+                pts = x.get("points") or [None, None]
+                rank = {"0": 0, "15": 1, "30": 2, "40": 3, "AD": 4, "A": 4}
+                return [(int(a), int(b)) for a, b in g], [rank.get(str(p_), int(p_) if str(p_).isdigit() else 0) for p_ in pts]
+            try:
+                (g0, p0), (g1, p1) = key(before), key(r)
+            except (TypeError, ValueError):
+                return None
+            if (g0, p0) == (g1, p1):
+                continue
+            if len(g1) > len(g0) or g1[-1] != g0[-1]:              # a game (or set) went to someone
+                a = (g1[-1][0] - g0[-1][0]) if len(g1) == len(g0) else (g0[-1][0] >= g0[-1][1])
+                b = (g1[-1][1] - g0[-1][1]) if len(g1) == len(g0) else (g0[-1][1] > g0[-1][0])
+                return None if a == b else bool(a > b)
+            if p1[0] > p0[0] and p1[1] <= p0[1]:
+                return True
+            if p1[1] > p0[1] and p1[0] <= p0[0]:
+                return False
+            if p1[0] < p0[0] and p0[0] == 4:                       # her advantage lost: deuce
+                return False
+            if p1[1] < p0[1] and p0[1] == 4:
+                return True
+            return None
+    return None
+
+
 def court_at(court: dict, t: float):
     """(H court→image, pitch) of the main-camera shot containing time t, or (None, None)."""
     f = t * court.get("fps", 1)
@@ -664,6 +700,10 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
         d["face"] = faces["phases"]
         d["metrics"].update(faces["trunk3d"])
         ser["face"] = {key: faces[key] for key in ("first", "tilt", "yaw", "label", "observed", "keypoints", "source", "hand3d", "rot3d")}
+    # who won the point (from the next change of the scoreboard); target = row 0 of the scoreboard
+    pw = point_won(score, t_imp)
+    if pw is not None:
+        d["point_won"] = pw if p.id == ctx.match.player.id else (not pw)
     # her ball: average horizontal speed from contact to bounce, and a shot-quality indicator
     # (deep, wide, fast): our own proxy of the pro systems' "shot quality", not theirs
     if d.get("shot_bounce_m") and d.get("court_pos_m") and d.get("impact_to_shot_bounce_s"):

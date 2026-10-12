@@ -58,3 +58,18 @@ def test_catalog(tmp_path):
 def test_force_reruns_only_requested(tmp_path, fake_stages):
     pipeline.run(make_ctx(tmp_path))
     assert pipeline.run(make_ctx(tmp_path), ["b"], force=True) == ["b"]
+
+
+def test_point_won_from_the_next_scoreboard_change():
+    from tennisbio.stages import point_won
+    sc = {"readings": [
+        {"t": 0, "games": [[2, 3]], "points": ["15", "30"]},
+        {"t": 20, "games": [[2, 3]], "points": ["15", "30"]},
+        {"t": 30, "games": [[2, 3]], "points": ["30", "30"]},       # she won the point played at t=25
+        {"t": 60, "games": [[2, 3]], "points": ["30", "40"]},       # she lost the next one
+        {"t": 90, "games": [[2, 4]], "points": ["0", "0"]},         # and the game
+    ]}
+    assert point_won(sc, 25) is True
+    assert point_won(sc, 45) is False
+    assert point_won(sc, 75) is False
+    assert point_won({"readings": []}, 5) is None

@@ -194,6 +194,10 @@ def summary(model: dict, stroke: str) -> list[str]:
     tp = _t(model, "stroke.dur_preparation")
     if tf and tp:
         out.append(f"Ritmo: prepara en {fmt(tp['median'], 2)} s y acelera en {fmt(tf['median'], 2)} s.")
+    pts = model.get("points_by_intent") or {}
+    parts = [f"{k} {round(100 * v['won'] / v['n'])} % de {v['n']}" for k, v in sorted(pts.items()) if v["n"] >= 10]
+    if parts:
+        out.append("Puntos que gana según cómo acaba el punto con su golpe: " + ", ".join(parts) + ".")
     g = grip_compatible(model)
     if g:
         out.append(g)

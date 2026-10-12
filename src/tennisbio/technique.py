@@ -77,6 +77,8 @@ STROKE_DESCRIPTORS = {
     "wrist_drop": ("raqueta", "Caída de la mano antes de acelerar", "%", 3, "del armado al punto más bajo"),
     "split_hop": ("pies", "Altura del split step", "%", 2, "salto, % de altura"),
     "loaded_vs_bounce": ("ritmo", "Armado completo respecto al bote", "s", 2, "− = ya armada cuando bota la bola"),
+    "t_max_shoulder_turn": ("ritmo", "Máximo giro de hombros", "s", 2, "antes del impacto (élite ≈ 0,23 s, Landlinger 2010)"),
+    "t_max_hip_turn": ("ritmo", "Máximo giro de cadera", "s", 2, "antes del impacto (élite ≈ 0,24 s, Landlinger 2010)"),
     "pause_at_loaded": ("ritmo", "Pausa en el armado", "s", 2, "mano casi quieta entre el armado y el swing"),
     "hand_on_handle": ("raqueta", "Mano en el mango", "%", 1, "distancia muñeca–final del mango, % de la longitud de la raqueta"),
     "racket_speed_rel": ("raqueta", "Velocidad de la raqueta (relativa)", "alt/s", 1, "punta antes y después del desenfoque, en alturas por segundo: solo para comparar sus golpes"),
@@ -334,6 +336,11 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         s["wrist_drop"] = _pct(dw[ev["loaded"], 1] - dw[ev["acceleration"], 1])
     if split_hop is not None:
         s["split_hop"] = _pct(split_hop)
+    lo = ev["takeback"] if ev["takeback"] is not None else max(0, impact - int(0.8 * fps))
+    for key, sig in (("t_max_shoulder_turn", sh), ("t_max_hip_turn", hp)):
+        w = sig[lo:impact + 1]
+        if np.isfinite(w).sum() >= 3:
+            s[key] = round((impact - (lo + int(np.nanargmax(w)))) / fps, 3)
     if ev["loaded"] is not None and bounce is not None:
         s["loaded_vs_bounce"] = round((ev["loaded"] - bounce) / fps, 3)
     if ev["loaded"] is not None:                 # how long the hand stays (almost) still at the end of the backswing

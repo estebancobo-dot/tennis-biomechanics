@@ -63,7 +63,7 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Velocidad 0,2 s antes y después del split | Filipcic 2017 | ✔ | `speed_pre_split_mps`, `speed_post_split_mps` |
 | Primer paso: momento (reacción) | Uzu; Mecheri | ✔ | `first_step_s` |
 | Primer paso: tipo (gravity, jab, pivot, counter, cruzado, lateral) | Bragg 2001; Vuong 2022 | ◐ | cruzado, gravity, jab, pivote, lateral, delante, atrás (counter step no se distingue del gravity sin los pies) |
-| Primer paso: dirección correcta respecto a la bola | Mecheri | ○ | con el bote de la bola entrante |
+| Primer paso: dirección correcta respecto a la bola | Mecheri | ✔ | `first_step_right_way` (respecto a dónde golpea) |
 | Número de pasos hasta la bola | Tanabe (≈2 H, ≈3 M) | ✔ | `steps_to_impact` |
 | Longitud de cada paso; anchura del primero | Tanabe | ✔ | lista de pasos, `first_step_length_m`, `last_step_length_m` |
 | Pasos de ajuste | Cardiff Met; Giles | ✔ | `adjustment_steps` |
@@ -110,18 +110,18 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Efecto (rpm), velocidad de salida, altura sobre la red | Hawk-Eye | ✘ | bola pequeña y borrosa; sin 3D |
 | Fase ataque / neutra / defensa | TennisViz | ✔ | clase `intent` |
 | Calidad del golpe (sustituto: profundidad, anchura, velocidad media) | TennisViz (Shot Quality) | ✔ | `shot_quality_proxy` (indicador propio, no el de TennisViz) |
-| Puntos ganados en ataque / en defensa | TennisViz (Conversion / Steal) | ○ | con el marcador: quién gana el punto |
+| Puntos ganados en ataque / en defensa | TennisViz (Conversion / Steal) | ✔ | `point_won` (cambio del marcador) × intención del último golpe del punto |
 | Longitud del peloteo | todos | ○ | contar impactos del punto |
 | Resto, globo, dejada, volea, subida a la red | F3Set, SwingVision | ◐ | subida ✔ (`approach`), resto ✔ (`play`); globo, dejada y volea: otros golpes, después |
 | Ganador / error (forzado o no) | F3Set, SwingVision | ◐ | fuera ✔, red y ganador probables; forzado/no forzado ✘ (subjetivo) |
 | Presión, set, fatiga | ATP/WTA | ✔ | marcador (OCR) |
 
 ## Huecos medibles pendientes
-- Puntos ganados en ataque / en defensa (necesita el ganador de cada punto desde el marcador).
 - Longitud del peloteo (contar los impactos del punto).
-- Dirección correcta del primer paso respecto a la bola entrante.
-- Final del armado: contrastar la pausa de la muñeca con el máximo giro de hombros.
-- Final de la extensión: hoy +50 ms fijo; medirlo por el avance horizontal de la muñeca.
+- Final del armado: la pausa de la muñeca se guarda junto al momento del máximo giro de hombros y
+  de cadera (`t_max_shoulder_turn`, `t_max_hip_turn`); falta validarlos con golpes anotados.
+- Final de la extensión: el avance horizontal de la muñeca va hacia la red (profundidad, invisible
+  desde detrás); se mantiene +50 ms, como en la literatura (40-60 ms).
 
 ## Fuentes principales
 - Reid M, Elliott B, Crespo M (2013). Mechanics and learning practices associated with the tennis forehand: a review. *J Sports Sci Med* 12:225-231.

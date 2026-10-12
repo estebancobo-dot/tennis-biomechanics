@@ -16,6 +16,7 @@
 Nothing is invented: a descriptor without enough strokes is left out; every number says on how
 many strokes it stands.
 """
+import json
 import math
 import warnings
 
@@ -215,6 +216,23 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
     out["footwork"]["move_direction"] = _counts([(s["technique"].get("classes") or {}).get("move_direction") for s in near])
     out["footwork"]["rear_leg_step_after"] = _counts([(s["technique"].get("footwork") or {}).get("rear_leg_step_after") for s in near])
     out["skeleton"] = _mean_skeleton(near)
+    # points won by the phase of play of her last stroke in each point (TennisViz "conversion"
+    # in attack, "steal" in defence): one stroke per point
+    last = {}
+    for s_ in allc:
+        sc = s_.get("score") or {}
+        if s_.get("point_won") is None or not sc:
+            continue
+        key = (s_.get("match_id"), json.dumps(sc.get("games")), json.dumps(sc.get("points")))
+        if key not in last or s_.get("match_time_s", 0) > last[key].get("match_time_s", 0):
+            last[key] = s_
+    pts = {}
+    for s_ in last.values():
+        it = (s_["technique"].get("classes") or {}).get("intent")
+        if it:
+            w, n = pts.get(it, (0, 0))
+            pts[it] = (w + bool(s_["point_won"]), n + 1)
+    out["points_by_intent"] = {k: {"won": w, "n": n} for k, (w, n) in pts.items()}
     out["typical_strokes"] = _typical_ids(near, flat, out["typical"])
     return out
 
