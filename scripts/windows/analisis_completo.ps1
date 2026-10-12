@@ -13,22 +13,24 @@ try {
     Set-Location $RepoDir
     $inicio = Get-Date
 
-    Paso "1/4 Catalogo de partidos (se anaden solos los videos nuevos)"
+    Paso "1/5 Catalogo de partidos (se anaden solos los videos nuevos)"
     Ejecutar uv @("run", "python", "scripts/auto_catalog.py", "--player", "rybakina")
 
-    Paso "2/4 Analisis de los partidos (horas; se puede cortar y relanzar)"
+    Paso "2/5 Analisis de los partidos (horas; se puede cortar y relanzar)"
     Ejecutar uv @("run", "tennisbio", "run", "--all")
     Ejecutar uv @("run", "tennisbio", "status")
 
-    Paso "3/4 Informes"
+    Paso "3/5 Informes"
     Ejecutar uv @("run", "tennisbio", "report", "--stroke", "forehand", "--out", "$Base\output\informe_derecha")
     Ejecutar uv @("run", "tennisbio", "report", "--stroke", "backhand", "--out", "$Base\output\informe_reves")
     Ejecutar uv @("run", "tennisbio", "report", "--stroke", "overhead", "--out", "$Base\output\informe_saque")
 
-    Paso "4/4 Videos por golpe, montajes por conclusion y resumen PDF"
+    Paso "4/5 Videos por golpe, montajes por conclusion y resumen PDF"
     Ejecutar uv @("run", "tennisbio", "export", "--stroke", "forehand", "--out", "$Base\output\exportar_derecha")
     Ejecutar uv @("run", "tennisbio", "export", "--stroke", "backhand", "--out", "$Base\output\exportar_reves")
     Ejecutar uv @("run", "tennisbio", "export", "--stroke", "overhead", "--out", "$Base\output\exportar_saque")
+    Paso "5/5 Comprobacion automatica de requisitos (capturas del informe incluidas; se envia a Claude)"
+    Ejecutar uv @("run", "tennisbio", "audit", "--stroke", "forehand")
     Start-Process "$Base\output\informe_derecha\index.html"
 
     $dur = (Get-Date) - $inicio

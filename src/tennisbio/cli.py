@@ -50,6 +50,11 @@ def _main(argv=None):
     ex.add_argument("--out", help="carpeta de salida (por defecto <output>/exportar_<golpe>)")
     ex.add_argument("--solo-montajes", action="store_true", help="exportar solo los golpes que salen en los montajes")
     ex.add_argument("--max", type=int, default=10, help="golpes por montaje")
+    au = sub.add_parser("audit", help="comprueba las salidas reales contra los requisitos (capturas del informe incluidas)")
+    au.add_argument("--report", help="carpeta del informe (por defecto <output>/informe_derecha)")
+    au.add_argument("--stroke", default="forehand", choices=["forehand", "backhand", "overhead"])
+    au.add_argument("--root", help="carpeta con las carpetas de los partidos (por defecto <output>)")
+    au.add_argument("--out", help="carpeta de la auditoría (por defecto <output>/auditoria)")
     args = ap.parse_args(argv)
 
     cfg = load_config()
@@ -64,6 +69,10 @@ def _main(argv=None):
                     args.stroke, player_id=pid)
         print(f"informe: {out}")
         return
+    if args.cmd == "audit":
+        return run_audit(Path(args.root) if args.root else out_root,
+                         Path(args.report) if args.report else out_root / _out_name("informe", own, args.stroke, own),
+                         Path(args.out) if args.out else out_root / "auditoria", args.stroke)
     if args.cmd == "export":
         from .export import export
         pid = args.player or own
@@ -101,6 +110,30 @@ def _main(argv=None):
     if failed:
         print(f"Partidos con error: {', '.join(failed)}")
         return 1
+
+
+def run_audit(root: Path, report: Path, dest: Path, stroke: str = "forehand") -> int:
+    """Screenshots of the report (if the browser can be driven) and the audit of every match folder
+    under root; prints the summary and what is not met."""
+    from .audit import audit, write
+
+    shots = dest / "capturas"
+    try:
+        from .screens import capture
+        capture(report / "index.html", shots)
+    except Exception as e:                    # no browser: the audit goes on without the screens
+        print(f"AVISO: no se pudieron hacer las capturas del informe ({e})")
+        shots = None
+    dirs = [d for d in sorted(root.iterdir()) if d.is_dir() and (d / "manifest.json").exists()] if root.exists() else []
+    res = audit(dirs, report, stroke, shots)
+    md = write(res, dest)
+    s = res["summary"]
+    print(f"Auditoría: {s['ok']} cumplidos, {s['falta']} no cumplidos, {s['pocos datos']} sin golpes suficientes, "
+          f"{s['aviso']} avisos → {md}")
+    for i in res["items"]:
+        if i["status"] == "falta":
+            print(f"  ✘ {i['name']}: {i['detail']}")
+    return 0
 
 
 def _logger(d: Path):

@@ -77,6 +77,13 @@ def main():
         print("\n(Solo se rehicieron algunas etapas: el tiempo no sirve para estimar un partido)")
     print(f"Informe: {report}")
     print(f"Vídeos, montajes y resumen PDF: {exp}")
+    # the audit of these outputs against the requirements, with screenshots of the report as the
+    # user sees it (uploaded to Claude with the logs)
+    from tennisbio.cli import run_audit
+    try:
+        run_audit(out_root, report.parent, out_root / "auditoria")
+    except Exception as e:                  # the test itself went well: never fail it for the audit
+        print(f"AVISO: la auditoría no se pudo hacer ({e})")
 
 
 def find_play(video: Path, full: float, need_s: float, step_s=60.0) -> float:

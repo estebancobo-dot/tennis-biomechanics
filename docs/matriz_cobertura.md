@@ -44,7 +44,7 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Separación lateral del contacto | Knudson 2006 (se observa desde detrás) | ✔ | `impact.wrist_dom_lateral` |
 | Contacto delante/detrás del cuerpo | TA; ITF | ✘ | eje de profundidad (solo 3D estimado) |
 | Ángulo del codo en el impacto (brazo recto / doble flexión) | Elliott 1989/1997; Gordon | ✔ | `impact.elbow_dom` (2D, media) + clase `arm` |
-| Cabeza estable en el impacto | Lafont 2008; TA | ✔ | `head_motion` (relativa a la cadera, ±50 ms) |
+| Cabeza estable en el impacto | Lafont 2008; TA | ✔ | `head_motion_impact_cm` (relativa a la cadera, ±50 ms) |
 | Mirada | Lafont 2008 | ✘ | se ve de espaldas |
 | Hombros más girados que la cadera en el impacto | Reid; Landlinger | ◐ | `impact.shoulder_turn`, `hip_turn` (2D) |
 | Extensión tras el contacto | ITF | ✔ | `extension.arm_extension`, `swing_rise_after` |
@@ -104,7 +104,7 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 
 | Elemento | Quién lo da | Estado | Implementación / acción |
 |---|---|---|---|
-| Bote: profundidad, anchura, dentro/fuera | Hawk-Eye, SwingVision | ✔ | `shot_landing` |
+| Bote: profundidad, anchura, dentro/fuera | Hawk-Eye, SwingVision | ✔ | `shot_bounce_m`, `shot_in`, `shot_depth_m` |
 | Dirección cruzada, paralela, al centro, invertidas | F3Set, TennisViz | ✔ | `shot_direction`, `shot_type` |
 | Velocidad media de la bola en pista | Hawk-Eye, sensores | ✔ | `ball_speed_avg_kmh` (horizontal, media; no la de salida) |
 | Altura de la bola en su vuelo, bote, punto más alto; contacto subiendo / arriba / cayendo | Hawk-Eye, TennisViz | ◐ | `ball3d.flights`: cámara a partir de la homografía, anclada en el bote y en la altura de su mano en el contacto (error ±0,15 m en la mano → ±0,3 m en el punto más alto). Clase `ball_phase`, `contact_vs_top`, `apex_height_m` |

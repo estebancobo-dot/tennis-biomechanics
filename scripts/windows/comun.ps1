@@ -96,6 +96,17 @@ function Subir-Registros {
             Remove-Item "$d\diag\*" -Force -ErrorAction SilentlyContinue
             Copy-Item "$Base\output\_smoke\diag\*" "$d\diag" -Force -ErrorAction SilentlyContinue
         }
+        # auditoria de requisitos y capturas del informe (de la prueba rapida y del analisis completo)
+        foreach ($a in @(@("$Base\output\_smoke\auditoria", "prueba"), @("$Base\output\auditoria", "partidos"))) {
+            if (Test-Path "$($a[0])\auditoria.md") {
+                Copy-Item "$($a[0])\auditoria.md" "$d\auditoria_$($a[1]).md" -Force
+                Copy-Item "$($a[0])\auditoria.json" "$d\auditoria_$($a[1]).json" -Force -ErrorAction SilentlyContinue
+                $c = "$d\capturas_$($a[1])"
+                New-Item -ItemType Directory -Force -Path $c | Out-Null
+                Remove-Item "$c\*" -Force -ErrorAction SilentlyContinue
+                Copy-Item "$($a[0])\capturas\*" $c -Force -ErrorAction SilentlyContinue
+            }
+        }
         if (Test-Path "$Base\output\progreso.json") { Copy-Item "$Base\output\progreso.json" "$d\progreso.json" -Force }
         if (Test-Path "$Base\output\_smoke\progreso.json") { Copy-Item "$Base\output\_smoke\progreso.json" "$d\progreso_prueba.json" -Force }
         foreach ($f in @("$Base\output\benchmark\results.json", "$Base\datasets\reports\f3set_validation.json")) {
