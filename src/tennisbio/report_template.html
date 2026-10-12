@@ -1017,7 +1017,8 @@ const KIND_COL = { "lateral": "#7cc4ff", "cruzado": "#ff9f43", "carrera": "#ff5f
 function renderFeetPanel() {
   const s = cur, F = s.feet, wrap = document.getElementById("feetwrap");
   wrap.hidden = !F; if (!F) return;
-  const nm = F.steps_reliable === false ? `<span class="nm">no medible en este golpe: sus tobillos se ven quietos solo en el ${fmt((F.feet_still_share || 0) * 100)} % de los fotogramas (hacen falta 40 %)</span>` : null;
+  // when the ankles are not sharp enough the reason is said once, and each item just says so
+  const nm = F.steps_reliable === false ? `<span class="nm">no medible en este golpe</span>` : null;
   const tt = t => isN(t) ? ` <span class="nm">(${t >= 0 ? "+" : "−"}${fmt(Math.abs(t), 2)} s)</span>` : "";
   const L = [];
   const add = (title, txt, t) => L.push(`<li data-t="${isN(t) ? t : ""}"><b>${title}:</b> ${txt}${tt(t)}</li>`);
@@ -1043,7 +1044,8 @@ function renderFeetPanel() {
   add("Tras golpear", F.steps_reliable === false ? nm : [F.rear_leg_step_after ? "la pierna de atrás pasa adelante" : "la pierna de atrás no pasa adelante", F.kick_back ? "patada atrás (tijera) con la pierna de atrás" : null].filter(Boolean).join("; "), 0.15);
   // 8 recovery
   add("Recuperación", `${F.recovery_pattern ? F.recovery_pattern + (isN(F.recovery_start_s) ? `, empezando ${fmt(F.recovery_start_s, 2)} s después del impacto` : "") : F.steps_reliable === false ? nm : "sin pasos de vuelta dentro del vídeo"}${isN(F.recovery_to_centre_m) ? `; en 1 s se acerca ${fmt(F.recovery_to_centre_m, 1)} m al centro` : ""}`, isN(F.recovery_start_s) ? F.recovery_start_s : null);
-  const ol = document.getElementById("feet-txt"); ol.innerHTML = L.join("");
+  const ol = document.getElementById("feet-txt");
+  ol.innerHTML = (F.steps_reliable === false ? `<li class="nm" style="list-style:none;margin-left:-20px;cursor:default">En este golpe sus tobillos se ven quietos solo en el ${fmt((F.feet_still_share || 0) * 100)} % de los fotogramas (hacen falta 40 %): los pasos uno a uno no se pueden medir; recorrido, velocidad, apoyo y recuperación sí.</li>` : "") + L.join("");
   ol.querySelectorAll("li").forEach(li => li.addEventListener("click", () => { if (li.dataset.t !== "") { stopPlay(); setT(snap(clamp(+li.dataset.t, T0, T1))); } }));
   drawFeetCourt(F);
 }

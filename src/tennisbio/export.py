@@ -501,10 +501,23 @@ def pdf_summary(path: Path, data: dict, dist: dict, finds: list, concl: list, ty
            f"{data['review']} con dudas · ruido de medida {'medido en golpes equivalentes' if data['noise_validated'] else 'provisional'}")
     dr.text((90, 122), sub, font=font("regular", 24), fill=INK2)
     dr.text((90, 160), "Partidos: " + " · ".join(f"{m['id']} vs {m['rival']}" for m in data["matches"]), font=font("regular", 20), fill=INK3)
+    # the same model the report shows: «En pocas palabras» and the 8 phases in sentences
+    from .explain import model_view
+    from .model import build_model
+    mv = model_view(build_model(data.get("_raw", [])), ctx["stroke"]) if data.get("_raw") else {}
     y = 220
+    fr = font("regular", 23)
+    if mv.get("summary"):
+        dr.text((90, y), "En pocas palabras", font=font("bold", 32), fill=INK)
+        y += 56
+        for t in mv["summary"]:
+            for k, ln in enumerate(wrap(t, fr, 1350)):
+                dr.text((90 if k == 0 else 112, y), ("• " if k == 0 else "") + ln, font=fr, fill=INK)
+                y += 34
+            y += 6
+        y += 24
     dr.text((90, y), "Conclusiones", font=font("bold", 32), fill=INK)
     y += 56
-    fr = font("regular", 23)
     for c in concl:
         lines = wrap(c.text, fr, 1250)
         need = 34 * len(lines) + (28 if c.strokes and c.text in reel_names else 0) + 18
@@ -545,15 +558,18 @@ def pdf_summary(path: Path, data: dict, dist: dict, finds: list, concl: list, ty
             if y > PAGE[1] - 160:
                 break
 
-    # 3. the typical stroke in 8 phases
+    # 3. the typical stroke in 8 phases, with what she does at each one (key points of «Su derecha»
+    # and «Para copiarla»), 4 phases per page
+    cards = {c["phase"]: c for c in (mv.get("cards") or [])}
     if typical is not None:
-        im, dr = pdf.page("Su golpe típico, en 8 fases")
         r = typical.rec
-        dr.text((90, 122), f"{r['id']} · el más cercano a su mediana en todas las métricas, bien capturado · "
-                           f"{F.fmt(r.get('tAvail'), 2)} s disponibles · {r.get('stance') or '—'}", font=font("regular", 22), fill=INK2)
-        tw, th = 370, 400
+        tw, th, fs = 370, 380, font("regular", 18)
         for i, (k, short, long) in enumerate(F.phases_for(ctx["stroke"])):
-            x, y = 90 + (i % 4) * (tw + 22), 175 + (i // 4) * (th + 90)
+            if i % 4 == 0:
+                im, dr = pdf.page("Su golpe, fase a fase" + (" (continuación)" if i else ""))
+                dr.text((90, 122), f"Golpe típico: {r['id']} · {r.get('stance') or '—'} · las frases salen de todos sus golpes "
+                                   f"(solo con golpes suficientes)", font=font("regular", 20), fill=INK2)
+            x, y = 90 + (i % 4) * (tw + 22), 170
             t = r["phases"].get(k)
             if t is None:
                 dr.rectangle((x, y, x + tw, y + th), outline=LINE, width=2)
@@ -563,32 +579,22 @@ def pdf_summary(path: Path, data: dict, dist: dict, finds: list, concl: list, ty
                 tx = Texts()
                 img = tx.render(typical.draw(f, tx, layers=("skel", "trail", "racket")))
                 cw = int(img.shape[0] * tw / th)              # the player is centred in the crop
-                img = img[:, (img.shape[1] - cw) // 2:(img.shape[1] + cw) // 2]
+                img = img[:, max(0, (img.shape[1] - cw) // 2):(img.shape[1] + cw) // 2]
                 im.paste(Image.fromarray(cv2.cvtColor(cv2.resize(img, (tw, th), interpolation=cv2.INTER_AREA), cv2.COLOR_BGR2RGB)), (int(x), int(y)))
-            dr.text((x, y + th + 8), f"{i + 1} · {long}", font=font("bold", 22), fill=INK)
-            dr.text((x, y + th + 38), "" if t is None else f"{fmt_t(t)} respecto al impacto", font=font("regular", 19), fill=INK2)
-
-    # 4. metrics table
-    im, dr = pdf.page("Métricas")
-    cols = [90, 620, 840, 1100, 1250, 1450]
-    hdr = ["Métrica", "Mediana", "p10 – p90", "Golpes", "Ruido ±", "Fiabilidad"]
-    y = 140
-    for x, h in zip(cols, hdr):
-        dr.text((x, y), h, font=font("bold", 20), fill=INK2)
-    y += 40
-    for m in data["metrics"]:
-        d = dist.get(m["k"])
-        if not d:
-            continue
-        if y > PAGE[1] - 120:
-            im, dr = pdf.page("Métricas (continuación)")
-            y = 150
-        vals = [m["name"], F.fmt_metric(m, d["p50"]), f"{F.fmt(d['p10'], m['dec'])} – {F.fmt(d['p90'], m['dec'])}", str(d["n"]),
-                F.fmt(m["noise"], m["dec"]), ["", "baja", "media", "alta"][m["rel"]]]
-        for x, v in zip(cols, vals):
-            dr.text((x, y), v, font=font("regular", 20), fill=INK)
-        dr.line((90, y + 32, PAGE[0] - 90, y + 32), fill=LINE)
-        y += 40
+            yy = y + th + 10
+            dr.text((x, yy), f"{i + 1} · {long}", font=font("bold", 22), fill=INK)
+            yy += 34
+            c = cards.get(k) or {}
+            texts = [ln["text"] for ln in c.get("lines", []) if ln.get("main")][:4]
+            if not texts:
+                texts = ["Sin datos suficientes en esta fase."]
+            for t_ in texts + ([f"Para copiarla: {c['copy']}"] if c.get("copy") else []):
+                for ln in wrap(t_, fs, tw):
+                    if yy > PAGE[1] - 90:
+                        break
+                    dr.text((x, yy), ln, font=fs, fill=(120, 140, 20) if t_.startswith("Para copiarla") else INK)
+                    yy += 24
+                yy += 8
 
     # 5. court
     pos = [s for s in st if s.get("x") is not None and s.get("y") is not None]
