@@ -218,7 +218,7 @@ def stance_class(dom: np.ndarray, non: np.ndarray, stroke: str, dom_sign: int) -
     return kind, round(a, 1)
 
 
-def finish_class(body: np.ndarray, sk: Skeleton, f: int, racket: dict) -> str | None:
+def finish_class(body: np.ndarray, sk: Skeleton, f: int, racket: dict, stroke: str = "forehand") -> str | None:
     """Where the swing ends: over the shoulder, around the body, windshield-wiper or reverse."""
     q = body[f]
     w, ns, ds_ = q[sk["dom_wrist"]], q[sk["non_shoulder"]], q[sk["dom_shoulder"]]
@@ -226,8 +226,13 @@ def finish_class(body: np.ndarray, sk: Skeleton, f: int, racket: dict) -> str | 
         return None
     lat = w[0] * sk.dom_sign                        # + = still on her dominant side
     above_sh = w[1] - max(ns[1], ds_[1])
-    if lat > 0.05 and above_sh > 0.02:
-        return "invertida"                          # reverse / buggy whip: ends above, on the hitting side
+    if stroke == "backhand":                        # a backhand ends on her dominant side: mirrored,
+        lat = -lat                                  # and it has no "reverse" finish
+        if lat > -0.03:
+            return "corta (delante)"
+        return "sobre el hombro" if above_sh > -0.03 else "baja"
+    if lat > 0.05 and above_sh > 0.08:
+        return "invertida"                          # reverse / buggy whip: ends above the head, on the hitting side
     if lat > -0.03:
         return "limpiaparabrisas"                   # wrist stays in front, the racket turns over
     if above_sh > -0.03:
@@ -377,7 +382,7 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
     c = out["classes"]
     fin = ev["finish"]
     if fin is not None:
-        fc = finish_class(body, sk, fin, out["phases"].get("finish", {}))
+        fc = finish_class(body, sk, fin, out["phases"].get("finish", {}), stroke)
         if fc:
             c["finish"] = fc
     lh = s.get("swing_low_to_high")

@@ -52,17 +52,25 @@ def feet_track(img: np.ndarray, sk: Skeleton, H: np.ndarray):
 
 
 def airborne(img: np.ndarray, sk: Skeleton, scale: np.ndarray, fps: float) -> np.ndarray:
-    """(T, 2) bool: each ankle above its ground level (the lower envelope of its image height
-    over ~0.6 s), by more than AIR_PCT of the body height."""
+    """(T, 2) bool: each ankle above its ground level by more than AIR_PCT of the body height.
+
+    The ground level is the LOWER of the two envelopes before and after (~0.3 s each side): a foot
+    in the air comes back down, so it is above the ground on both sides. Running towards the net
+    also raises the feet in the image (depth), but only relative to the past, never to the future:
+    with a one-sided envelope every stroke on the move looked like a jump (user's PC, 10 of 10)."""
     T = len(img)
     out = np.zeros((T, 2), bool)
     k = max(2, int(0.3 * fps))
     for j, name in enumerate(("dom_ankle", "non_ankle")):
         y = img[:, sk[name], 1]
         for t in range(T):
-            seg = y[max(0, t - k):t + k + 1]
-            if np.isfinite(y[t]) and np.isfinite(seg).any():
-                out[t, j] = (np.nanmax(seg) - y[t]) > AIR_PCT * scale[t]      # image y grows downwards
+            if not np.isfinite(y[t]):
+                continue
+            before, after = y[max(0, t - k):t], y[t + 1:t + k + 1]
+            if not (np.isfinite(before).any() and np.isfinite(after).any()):
+                continue
+            ground = min(np.nanmax(before), np.nanmax(after))           # image y grows downwards
+            out[t, j] = (ground - y[t]) > AIR_PCT * scale[t]
     return out
 
 
@@ -177,10 +185,13 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
         if np.isfinite(ax).all() and np.isfinite(hips) and abs(ax[0] - ax[1]) > 0.04 * scale[loaded]:
             w = (hips - ax[0]) / (ax[1] - ax[0])                     # 0 = over the dominant foot, 1 = over the other
             out["weight_loaded_to_non"] = round(float(np.clip(w, -0.5, 1.5)), 2)
-    # in the air: both feet up for at least 2 consecutive frames around contact (one noisy frame is not a jump)
-    i0, i1 = max(0, impact - 2), min(T, impact + 3)
+    # in the air: both feet up for at least 0.08 s around contact (a heel lifting on a noisy frame
+    # is not a jump)
+    i0, i1 = max(0, impact - s(0.06)), min(T, impact + s(0.06) + 1)
     both = air[i0:i1].all(axis=1)
-    out["airborne_at_impact"] = bool(len(both) > 1 and (both[1:] & both[:-1]).any())
+    need = max(2, s(0.08))
+    runs = np.convolve(both.astype(int), np.ones(need, int), "valid") if len(both) >= need else np.zeros(0)
+    out["airborne_at_impact"] = bool((runs >= need).any())
     one = air[i0:i1].any(axis=1)
     out["one_foot_at_impact"] = bool(len(one) > 1 and (one[1:] & one[:-1]).any()) and not out["airborne_at_impact"]
     v_imp = float(np.nanmedian(spd[max(0, impact - s(0.1)):impact + 1])) if np.isfinite(spd[max(0, impact - s(0.1)):impact + 1]).any() else None

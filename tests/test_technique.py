@@ -126,3 +126,22 @@ def test_steps_reject_runs_without_ground_contact():
     feet[:, 0, 0] = 0.4 + np.clip((np.arange(T) - 20) / 50, 0, 1) * 3.0      # 3 m in 1 s, never planted
     plant = planted(feet, np.zeros((T, 2), bool), fps)
     assert steps(feet, plant, 0, T, fps) == []
+
+
+def test_running_towards_the_net_is_not_a_jump():
+    from tennisbio.footwork import airborne
+    from tennisbio.skeleton import Skeleton
+    sk = Skeleton("coco17", "right")
+    T, fps = 60, 50.0
+    img = np.full((T, 17, 2), np.nan)
+    y = 900 - np.arange(T) * 4.0                          # both ankles rise in the image: moving away (depth)
+    img[:, sk["dom_ankle"], 1] = y
+    img[:, sk["non_ankle"], 1] = y + 5
+    img[:, sk["dom_ankle"], 0] = img[:, sk["non_ankle"], 0] = 500
+    scale = np.full(T, 300.0)
+    assert not airborne(img, sk, scale, fps)[10:50].any()
+    hop = y.copy()
+    hop[28:34] -= 40                                       # a real jump: up and back down
+    img[:, sk["dom_ankle"], 1] = hop
+    img[:, sk["non_ankle"], 1] = hop + 5
+    assert airborne(img, sk, scale, fps)[29:33].all()
