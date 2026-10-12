@@ -88,6 +88,9 @@ def _main(argv=None):
                 print(f"{m.id}: {'ejecutado ' + ', '.join(done) if done else 'al día'}")
         except pipeline.MissingVideo:
             print(f"{m.id}: el vídeo ya no está ({m.video}); se conservan sus resultados")
+        except pipeline.DiskFull as e:          # every other match would fail the same way
+            print(f"{m.id}: {e}")
+            return 1
         except KeyboardInterrupt:
             raise
         except Exception as e:                # one bad match never stops the others

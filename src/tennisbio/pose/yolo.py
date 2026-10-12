@@ -7,8 +7,10 @@ the frames around each stroke (same idea as the two-pass pipeline).
 from pathlib import Path
 
 import cv2
+
 import numpy as np
 
+from ..io.video import open_capture
 from ..pipeline import savez_atomic
 
 RACKET_CLASS = 38  # "tennis racket" in COCO
@@ -41,7 +43,7 @@ def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", im
     from .backend import pose_model as _pm
 
     pose = _pm(pose_model, imgsz)
-    cap = cv2.VideoCapture(str(video))
+    cap = open_capture(video)
     fps = cap.get(cv2.CAP_PROP_FPS) / every
     boxes, kps, confs, feats = [], [], [], []
     i = 0
@@ -77,8 +79,10 @@ def extract_rackets(video: str | Path, frames, out: str | Path, seg_model="yolo1
     """Racket outlines (segmentation) only for the given frame indices, saved to .npz."""
     from ultralytics import YOLO
 
-    seg = YOLO(seg_model)
-    cap = cv2.VideoCapture(str(video))
+    from .yolo_onnx import MODELS_DIR
+    # a bare name lives in models/ (downloaded there the first time), never in the current directory
+    seg = YOLO(str(MODELS_DIR / seg_model) if Path(seg_model).name == str(seg_model) else seg_model)
+    cap = open_capture(video)
     frames = sorted(set(int(f) for f in frames))
     polys, pos = [], -1
     for f in frames:
@@ -104,7 +108,7 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
     people inside the crop). The followed box is the detection nearest to the last one."""
     from .backend import pose_model as _pm
 
-    cap = cv2.VideoCapture(str(video))
+    cap = open_capture(video)
     fps = cap.get(cv2.CAP_PROP_FPS)
     last = np.asarray(init_box, float)
     misses = 0                      # frames in a row without her: the crop grows to find her again
@@ -168,7 +172,7 @@ def find_far_player(video: str | Path, H: np.ndarray, search_s=2.0, step=5):
     re-centres on her within a few frames). None when she is not found."""
     from ..court_metrics import far_roi, pick_far_player
 
-    cap = cv2.VideoCapture(str(video))
+    cap = open_capture(video)
     fps = cap.get(cv2.CAP_PROP_FPS) or 25
     i, box = 0, None
     while i <= search_s * fps:

@@ -88,3 +88,37 @@ def test_rally_position_counts_her_hits_of_the_point():
     assert strokes[0]["technique"]["classes"]["play"] == "inicio del punto"
     assert strokes[1]["technique"]["classes"]["play"] == "peloteo"
     assert "shot_in_point" not in strokes[2]
+
+
+def test_low_disk_stops_before_a_stage(tmp_path, monkeypatch, fake_stages):
+    import shutil
+    from collections import namedtuple
+    U = namedtuple("U", "total used free")
+    monkeypatch.setattr(shutil, "disk_usage", lambda p: U(1e12, 1e12, 1e9))
+    with pytest.raises(pipeline.DiskFull):
+        pipeline.run(make_ctx(tmp_path))
+    assert fake_stages == []
+
+
+def test_ctx_video_is_the_clean_copy_only_when_recorded(tmp_path):
+    ctx = make_ctx(tmp_path)
+    ctx.dir.mkdir(parents=True)
+    (ctx.dir / "source.mkv").write_bytes(b"x")
+    assert ctx.video == ctx.match.video            # no source.json: a half-written copy is never used
+    (ctx.dir / "source.json").write_text("{}")
+    assert ctx.video == ctx.dir / "source.mkv"
+
+
+def test_orphan_windows_and_series_are_deleted(tmp_path):
+    from tennisbio.stages import _drop_orphans
+    ctx = make_ctx(tmp_path)
+    (ctx.dir / "windows").mkdir(parents=True)
+    (ctx.dir / "series").mkdir()
+    for n in ("w000010000_4000.mp4", "w000010000_4000_ab12cd34.npz", "w000090000_4000.mp4"):
+        (ctx.dir / "windows" / n).write_bytes(b"x")
+    for n in ("w000010000_4000_near_120.json", "w000090000_4000_near_100.json"):
+        (ctx.dir / "series" / n).write_text("{}")
+    strokes = [{"series": "series/w000010000_4000_near_120.json"}]
+    _drop_orphans(ctx, [{"t": 12.0}], strokes, [])
+    assert sorted(f.name for f in (ctx.dir / "windows").iterdir()) == ["w000010000_4000.mp4", "w000010000_4000_ab12cd34.npz"]
+    assert [f.name for f in (ctx.dir / "series").iterdir()] == ["w000010000_4000_near_120.json"]

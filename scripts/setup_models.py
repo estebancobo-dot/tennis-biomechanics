@@ -40,7 +40,7 @@ def main():
     try:
         from ultralytics import YOLO
         for m in ("yolo11m-pose.pt", "yolo11m-seg.pt"):
-            YOLO(m)
+            YOLO(str(MODELS / m))          # downloaded into models/, where the pipeline looks
         from tennisbio.pose.yolo_onnx import export_onnx
         for size in POSE_SIZES:                 # cheap pass 960, fine 1280, far crop 640/960, far search 1920
             export_onnx("yolo11m-pose", size)

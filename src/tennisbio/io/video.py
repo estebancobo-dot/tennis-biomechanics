@@ -1,5 +1,6 @@
 """Video access through ffmpeg: metadata and streaming of decoded frames."""
 import json
+import os
 import subprocess
 import tempfile
 from dataclasses import dataclass
@@ -22,6 +23,8 @@ class VideoInfo:
     audio_rate: int | None
     audio_channels: int | None
     vfr: bool = False
+    audio_tracks: int = 0
+    start_time: float = 0.0
 
 
 class VideoError(RuntimeError):
@@ -37,6 +40,13 @@ def _rate(s: dict) -> float:
         if 1.0 < v < 400.0:
             return v
     return 0.0
+
+
+def _float(v) -> float:
+    try:
+        return float(v)
+    except (TypeError, ValueError):
+        return 0.0
 
 
 def probe(path: str | Path) -> VideoInfo:
@@ -55,7 +65,8 @@ def probe(path: str | Path) -> VideoInfo:
     video = next((s for s in streams if s.get("codec_type") == "video" and s.get("disposition", {}).get("attached_pic") != 1), None)
     if video is None:
         raise VideoError(f"{path.name} no tiene pista de vídeo")
-    audio = next((s for s in streams if s.get("codec_type") == "audio"), None)
+    audios = [s for s in streams if s.get("codec_type") == "audio"]
+    audio = audios[0] if audios else None
     fps = _rate(video)
     if not fps:
         raise VideoError(f"No se puede saber los fotogramas por segundo de {path.name}")
@@ -86,6 +97,8 @@ def probe(path: str | Path) -> VideoInfo:
         audio_rate=int(audio["sample_rate"]) if audio and audio.get("sample_rate") else None,
         audio_channels=int(audio["channels"]) if audio and audio.get("channels") else None,
         vfr=bool(r and a and abs(r - a) / max(r, a) > 0.02),
+        audio_tracks=len(audios),
+        start_time=_float(video.get("start_time")),
     )
 
 
@@ -147,3 +160,44 @@ def read_frames(
         # decoding warnings of a broadcast recording are normal; fail only when nothing came out
         if n == 0 and msg:
             raise VideoError(f"ffmpeg no pudo leer {Path(info.path).name}: {msg[-300:]}")
+
+
+def timeline(path: str | Path) -> dict:
+    """Timestamps of the video packets: jumps (recorded broadcasts in .ts restart or skip their
+    clock) and a variable frame rate (phones, some screen recordings). Reads the whole file once
+    (packet headers only, no decoding)."""
+    out = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "packet=dts_time",
+                          "-of", "csv=p=0", str(path)], capture_output=True, text=True, encoding="utf-8", errors="replace").stdout
+    t = []
+    for line in out.splitlines():
+        try:
+            t.append(float(line.strip().strip(",")))
+        except ValueError:
+            continue
+    t = np.array(t)
+    if len(t) < 3:
+        return {"packets": len(t), "jumps": 0, "vfr": False}
+    d = np.diff(t)
+    jumps = int(np.sum((d > 1.0) | (d < -0.5)))
+    reg = d[(d > 0) & (d <= 1.0)]
+    vfr = bool(len(reg) > 10 and np.mean(np.abs(reg - np.median(reg)) > 0.25 * np.median(reg)) > 0.01)
+    return {"packets": len(t), "jumps": jumps, "vfr": vfr}
+
+
+def capture_path(path: str | Path) -> str:
+    """Path string OpenCV can open. On Windows OpenCV's video reader does not accept non-ASCII
+    paths (accents in a folder name): the short 8.3 form of the path is used then."""
+    s = str(path)
+    if os.name != "nt" or s.isascii():
+        return s
+    import ctypes
+
+    buf = ctypes.create_unicode_buffer(1024)
+    n = ctypes.windll.kernel32.GetShortPathNameW(s, buf, 1024)
+    return buf.value if 0 < n < 1024 and buf.value.isascii() else s
+
+
+def open_capture(path: str | Path):
+    import cv2
+
+    return cv2.VideoCapture(capture_path(path))

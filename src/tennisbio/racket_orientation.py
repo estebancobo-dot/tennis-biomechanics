@@ -7,8 +7,10 @@ is tennisbio.racket_face.face_track.
 from pathlib import Path
 
 import cv2
+
 import numpy as np
 
+from .io.video import open_capture
 from .racket import pick_racket
 from .racket3d import Camera
 from .racket_face import face_track
@@ -72,7 +74,7 @@ def trunk_at(rot: dict, frame: int | None, half_window: int, max_xf=80.0, max_ma
 
 
 def read_frames(video: Path, a: int, b: int) -> dict:
-    cap = cv2.VideoCapture(str(video))
+    cap = open_capture(video)
     cap.set(cv2.CAP_PROP_POS_FRAMES, a)
     out = {}
     for f in range(a, b):

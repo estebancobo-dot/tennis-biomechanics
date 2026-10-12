@@ -33,7 +33,7 @@ class Match:
 
 
 def load_player(player_id: str, config_dir: Path = CONFIG_DIR) -> Player:
-    data = yaml.safe_load((config_dir / "players" / f"{player_id}.yaml").read_text(encoding="utf-8")) or {}
+    data = yaml.safe_load((config_dir / "players" / f"{player_id}.yaml").read_text(encoding="utf-8-sig")) or {}
     known = set(Player.__dataclass_fields__)
     return Player(id=player_id, **{k: v for k, v in data.items() if k in known})
 
@@ -44,7 +44,7 @@ def load_matches(cfg: dict, config_dir: Path = CONFIG_DIR) -> list[Match]:
         raise FileNotFoundError(f"Falta {path}: copia config/matches.example.yaml y rellénalo")
     videos = Path(cfg.get("paths", {}).get("videos", "."))
     out = []
-    for m in yaml.safe_load(path.read_text(encoding="utf-8"))["matches"]:
+    for m in yaml.safe_load(path.read_text(encoding="utf-8-sig"))["matches"]:
         m = dict(m)
         known = {k: m.pop(k) for k in ("opponent", "tournament", "date", "surface", "round") if k in m}
         mid, video, player = m.pop("id"), m.pop("video"), m.pop("player")

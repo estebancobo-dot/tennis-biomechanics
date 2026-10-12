@@ -26,7 +26,21 @@ def test_near_serves_detects_arm_above_head():
     kps[:, 9], kps[:, 10] = [90, 150], [110, 150]
     kps[8, 10] = [110, 50]                     # wrist 50 px above the nose (height 200 px → 0.25)
     assert near_serves(kps, conf, 10, 200) == 8
+    feet_y = np.full(T, -0.5)
+    assert near_serves(kps, conf, 10, 200, feet_y=feet_y) == 8
+    feet_y[:] = 6.0                            # mid-court: not a serve
+    assert near_serves(kps, conf, 10, 200, feet_y=feet_y) is None
     kps[8, 10] = [110, 150]
+    assert near_serves(kps, conf, 10, 200) is None
+
+
+def test_celebration_with_raised_arms_is_not_a_serve():
+    T, kps, conf = 40, np.zeros((40, 17, 2)), np.ones((40, 17))
+    kps[:, 0] = [100, 100]
+    up = np.linspace(150, 40, 10)               # both arms rise slowly and stay up
+    for t in range(T):
+        y = up[min(t, 9)]
+        kps[t, 9], kps[t, 10] = [80, y], [120, y]
     assert near_serves(kps, conf, 10, 200) is None
 
 

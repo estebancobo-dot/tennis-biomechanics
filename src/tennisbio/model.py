@@ -108,6 +108,18 @@ def _ols(y: np.ndarray, X: np.ndarray):
     return b, np.sqrt(np.maximum(np.diag(V), 0))
 
 
+def _r2_each(X: np.ndarray, names: list) -> np.ndarray:
+    """R² of each situation column explained by all the other columns (collinearity)."""
+    r2 = np.zeros(X.shape[1])
+    for j, nm in enumerate(names):
+        if nm is None:
+            continue
+        others = np.delete(X, j, axis=1)
+        fit = others @ np.linalg.lstsq(others, X[:, j], rcond=None)[0]
+        r2[j] = 1 - np.sum((X[:, j] - fit) ** 2) / max(np.sum((X[:, j] - X[:, j].mean()) ** 2), 1e-12)
+    return r2
+
+
 def _norm_p(z: float) -> float:
     return math.erfc(abs(z) / math.sqrt(2))
 
@@ -145,7 +157,7 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
             ref = max(ok, key=vals.count)                     # her usual situation is the reference
             levels[fk] = (ref, [lv for lv in ok if lv != ref])
     matches = sorted(set(match))
-    tests = []
+    tests, r2_cache = [], {}
     for k, t in out["typical"].items():
         rows = [i for i, f in enumerate(flat) if k in f and np.isfinite(f[k])]
         if len(rows) < 2 * min_n:
@@ -171,15 +183,17 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
         if X.shape[0] <= X.shape[1] + 5:
             continue
         b, se = _ols(y, X)
+        # most measures share the same strokes, hence the same design: its collinearity is computed once
+        hx = hash(X.tobytes())
+        if hx not in r2_cache:
+            r2_cache[hx] = _r2_each(X, names)
+        r2s = r2_cache[hx]
         for j, nm in enumerate(names):
             if nm is None or se[j] <= 0:
                 continue
             # a situation almost fully determined by the others (e.g. "defence" and "very fast
             # ball") cannot be separated from them: no effect is claimed for it
-            others = np.delete(X, j, axis=1)
-            fit = others @ np.linalg.lstsq(others, X[:, j], rcond=None)[0]
-            r2 = 1 - np.sum((X[:, j] - fit) ** 2) / max(np.sum((X[:, j] - X[:, j].mean()) ** 2), 1e-12)
-            if r2 > 0.8:
+            if r2s[j] > 0.8:
                 continue
             fk, lv, ref = nm
             n_lv = int(X[:, j].sum())

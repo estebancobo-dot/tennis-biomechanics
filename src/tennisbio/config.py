@@ -39,5 +39,5 @@ def load_config(config_dir: Path = CONFIG_DIR) -> dict:
     cfg = yaml.safe_load((config_dir / "default.yaml").read_text(encoding="utf-8"))
     local = config_dir / "local.yaml"
     if local.exists():
-        cfg = _merge(cfg, yaml.safe_load(local.read_text(encoding="utf-8")) or {})
+        cfg = _merge(cfg, yaml.safe_load(local.read_text(encoding="utf-8-sig")) or {})
     return cfg

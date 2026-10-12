@@ -13,6 +13,7 @@ a TV, a messaging app. Output (re-running only renders what is missing or change
 import json
 import math
 import os
+import hashlib
 import re
 import shutil
 import subprocess
@@ -161,19 +162,29 @@ class StrokeClip:
 
     def _read(self) -> list:
         from .io.video import read_frames
-        # decoded from the start and counted, exactly like the pose extraction indexed them
+        # frame-exact seek to the first frame of the series (the windows are constant-rate, so frame
+        # k starts at k/fps; half a frame earlier lands on it): same frames as decoding from the start
         out = []
-        for g, fr in enumerate(read_frames(self.info)):
-            if g < self.first:
-                continue
-            f = g - self.first
+        start = self.info.start_time + (self.first - 0.5) / self.info.fps if self.first > 0 else 0.0
+        for f, fr in enumerate(read_frames(self.info, start=start)):
             if f >= self.n:
                 break
-            M = np.float32([[self.scale[f], 0, -self.sx[f] * self.scale[f]], [0, self.scale[f], -self.sy[f] * self.scale[f]]])
-            out.append(cv2.warpAffine(fr, M, self.size, flags=cv2.INTER_CUBIC, borderValue=(0, 0, 0)))
+            out.append(self._crop(fr, f))
         while len(out) < self.n:               # short video: hold the last frame
             out.append(out[-1] if out else np.zeros((self.size[1], self.size[0], 3), np.uint8))
         return out
+
+    def _crop(self, fr: np.ndarray, f: int) -> np.ndarray:
+        """Her crop of frame f at the output size: a slice and a resize (fast) when it fits inside
+        the frame, an affine warp with black borders otherwise."""
+        sc, x0, y0 = float(self.scale[f]), float(self.sx[f]), float(self.sy[f])
+        w, h = self.size[0] / sc, self.size[1] / sc
+        xi, yi = int(round(x0)), int(round(y0))
+        wi, hi = int(round(w)), int(round(h))
+        if xi >= 0 and yi >= 0 and xi + wi <= fr.shape[1] and yi + hi <= fr.shape[0] and wi > 1 and hi > 1:
+            return cv2.resize(fr[yi:yi + hi, xi:xi + wi], self.size, interpolation=cv2.INTER_LINEAR)
+        M = np.float32([[sc, 0, -x0 * sc], [0, sc, -y0 * sc]])
+        return cv2.warpAffine(fr, M, self.size, flags=cv2.INTER_LINEAR, borderValue=(0, 0, 0))
 
     def P(self, f, p):
         return (float((p[0] - self.sx[f]) * self.scale[f]), float((p[1] - self.sy[f]) * self.scale[f]))
@@ -649,12 +660,23 @@ def export(matches, out_root: Path, dest: Path, stroke="forehand", player_id: st
 
     t0, done = time.time(), 0
     paths = {}
+    # each clip shows this stroke against her median and the noise: it is redone when they change
+    sig_path = dest / "golpes" / "firmas.json"
+    try:
+        sigs = json.loads(sig_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        sigs = {}
+    base = json.dumps([[m.get("k"), m.get("noise")] for m in key_metrics] + [dist.get(m.get("k")) for m in key_metrics],
+                      sort_keys=True, default=str)
     for i, s in enumerate(need):
         out = dest / "golpes" / f"{s['id']}.mp4"
         paths[s["id"]] = out
         src = [Path(s["_dir"]) / "windows" / s["_window"], Path(s["_dir"]) / s["_series"]]
-        if _fresh(out, *src):
+        sig = hashlib.sha1((base + json.dumps({k: v for k, v in s.items() if not k.startswith("_")},
+                                              sort_keys=True, default=str)).encode()).hexdigest()[:12]
+        if _fresh(out, *src) and sigs.get(s["id"]) == sig:
             continue
+        sigs[s["id"]] = sig
         enc = None
         try:
             clip = StrokeClip(s, ctx)
@@ -670,6 +692,12 @@ def export(matches, out_root: Path, dest: Path, stroke="forehand", player_id: st
             paths.pop(s["id"], None)
         if (i + 1) % 10 == 0:
             log(f"  golpes {i + 1}/{len(need)} ({time.time() - t0:.0f} s)")
+    if strokes_all:                      # clips of strokes that no longer exist
+        for f in (dest / "golpes").glob("*.mp4"):
+            if f.stem not in paths:
+                f.unlink(missing_ok=True)
+                sigs.pop(f.stem, None)
+    sig_path.write_text(json.dumps(sigs), encoding="utf-8")
     log(f"Golpes: {done} nuevos, {len(paths)} en {dest / 'golpes'}")
 
     # reels: title card + (for a finding) its typical strokes side by side + its strokes

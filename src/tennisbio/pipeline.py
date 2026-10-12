@@ -9,6 +9,7 @@ metric formula reruns only the metrics, and manual review files are never touche
 import hashlib
 import json
 import os
+import shutil
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -39,6 +40,13 @@ class Context:
     def path(self, name: str) -> Path:
         return self.dir / name
 
+    @property
+    def video(self) -> Path:
+        """The video the stages read: the match video, or its clean copy when the probe stage had
+        to rewrite its timeline (see stages.st_probe)."""
+        src = self.dir / "source.mkv"
+        return src if src.exists() and (self.dir / "source.json").exists() else self.match.video
+
 
 STAGES: dict[str, Stage] = {}
 
@@ -48,6 +56,13 @@ def stage(name, version, deps=(), settings=lambda cfg: {}, outputs=(), code=(), 
         STAGES[name] = Stage(name, version, tuple(deps), settings, fn, tuple(outputs), tuple(code), match_fields)
         return fn
     return register
+
+
+MIN_FREE_BYTES = 3e9          # below this a stage could fill the disk half-way
+
+
+class DiskFull(RuntimeError):
+    """Not enough free disk to run a stage safely; the message is for the user (Spanish)."""
 
 
 class MissingVideo(FileNotFoundError):
@@ -195,6 +210,11 @@ def run(ctx: Context, names=None, force=False) -> list[str]:
         fp = fingerprint(n, ctx, m)
         if not (force and n in requested) and m.get(n, {}).get("fingerprint") == fp and outputs_ok(n, ctx):
             continue
+        free = shutil.disk_usage(ctx.dir).free
+        if free < MIN_FREE_BYTES:
+            raise DiskFull(f"Queda muy poco espacio en el disco ({free / 1e9:.1f} GB libres en {ctx.dir.anchor or ctx.dir}). "
+                           "Libera al menos 5 GB (por ejemplo, borra vídeos ya analizados) y vuelve a ejecutar: "
+                           "se sigue donde se quedó.")
         t0 = time.time()
         ctx.log(f"[{ctx.match.id}] {n}…")
         summary = STAGES[n].run(ctx) or {}

@@ -82,15 +82,27 @@ def decide_by_ends(parities: list, votes: list[tuple[int, bool]], min_share=0.75
     return est.count(True) >= est.count(False)
 
 
-def near_serves(kps: np.ndarray, conf: np.ndarray, fps: float, height_px: float, within_s=4.0) -> int | None:
-    """Frame (within the first `within_s` of a run) where the near player serves: a wrist well
-    above the head (either hand: the opponent may be left-handed), or None."""
+def near_serves(kps: np.ndarray, conf: np.ndarray, fps: float, height_px: float, within_s=4.0,
+                feet_y: np.ndarray | None = None, min_swing=1.5, swing_within_s=1.5) -> int | None:
+    """Frame (within the first `within_s` of a run) where the near player serves, or None: a wrist
+    well above the head (either hand: the opponent may be left-handed), followed by a fast arm
+    swing (raised arms in a celebration or a stretch move slowly), standing at the baseline when
+    the court is known (feet_y: court y of the feet per frame, m from her baseline)."""
     n = min(len(kps), int(within_s * fps))
+    wr = kps[:, [9, 10]]
+    v = np.linalg.norm(np.diff(wr, axis=0), axis=-1) * fps / max(height_px, 1.0)      # heights/s
+    v = np.r_[np.full((1, 2), np.nan), v]
     for t in range(n):
         k, c = kps[t], conf[t]
-        if np.isnan(k).any() or c[0] < 0.3:
+        if np.isnan(k[0]).any() or c[0] < 0.3:
             continue
         wy = min(k[9, 1] if c[9] > 0.3 else np.inf, k[10, 1] if c[10] > 0.3 else np.inf)
-        if wy < k[0, 1] - 0.12 * height_px:
-            return t
+        if not wy < k[0, 1] - 0.12 * height_px:
+            continue
+        w = v[t + 1:t + 1 + int(swing_within_s * fps)]
+        if not (np.isfinite(w).any() and np.nanmax(w) >= min_swing):
+            continue
+        if feet_y is not None and np.isfinite(feet_y[t]) and not -3.0 <= feet_y[t] <= 1.0:
+            continue
+        return t
     return None

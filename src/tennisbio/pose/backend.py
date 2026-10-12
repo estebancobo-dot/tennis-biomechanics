@@ -34,7 +34,7 @@ class PoseModel:
         self.torch = None
         if self.onnx is None:
             from ultralytics import YOLO
-            self.torch = YOLO(f"{self.name}.pt" if not str(name).endswith(".pt") else name)
+            self.torch = YOLO(str(MODELS_DIR / f"{self.name}.pt"))     # downloaded into models/ if missing
 
     @property
     def backend(self) -> str:

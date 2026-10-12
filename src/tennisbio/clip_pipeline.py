@@ -9,8 +9,10 @@ from dataclasses import dataclass, field
 from pathlib import Path
 
 import cv2
+
 import numpy as np
 
+from .io.video import open_capture
 from .impacts import Impact, audio_onsets, fuse, fuse_with_ball, swing_peaks
 from .pipeline import load_npz, save_npy_atomic
 from .kinematics import body_height, clean, scale_track, speed, to_body_frame
@@ -39,7 +41,7 @@ class ClipRun:
 
 
 def _cv2_frames(video: Path):
-    cap = cv2.VideoCapture(str(video))
+    cap = open_capture(video)
     while True:
         ok, frame = cap.read()
         if not ok:
@@ -104,7 +106,7 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     sk = Skeleton("coco17", hand)
     T = len(boxes)
 
-    cap = cv2.VideoCapture(str(video))
+    cap = open_capture(video)
     fw, fh = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     cap.release()
     first, init = pick_initial(boxes, init_mode)

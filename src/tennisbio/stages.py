@@ -6,6 +6,7 @@ frames) → candidates (near-player strokes) → fine (full-quality analysis in 
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import traceback
 from pathlib import Path
@@ -30,18 +31,49 @@ def _read(path: Path):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
-@stage("probe", "1", outputs=("probe.json",))
+@stage("probe", "2", outputs=("probe.json",))
 def st_probe(ctx: Context):
-    info = probe(ctx.match.video)
+    """Metadata of the match video. A video whose clock jumps (recorded .ts broadcasts) or a .ts
+    container (imprecise seeking) is first copied once, without re-encoding, into a clean file
+    (<match>/source.mkv) that every other stage reads."""
+    from .io.video import timeline
+
+    src, meta = ctx.path("source.mkv"), ctx.path("source.json")
+    meta.unlink(missing_ok=True)                  # a new or changed video decides again
+    src.unlink(missing_ok=True)
+    info = probe(ctx.video)
+    tl = timeline(ctx.match.video)
+    ts = ctx.match.video.suffix.lower() in (".ts", ".m2ts", ".mts", ".trp")
+    if tl["jumps"] or ts:
+        size = ctx.match.video.stat().st_size
+        free = shutil.disk_usage(ctx.dir).free
+        if free < size * 1.1 + 2e9:
+            ctx.log(f"  AVISO: no hay espacio para limpiar el vídeo ({free / 1e9:.0f} GB libres); "
+                    "se usa tal cual (los tiempos pueden fallar tras un salto)")
+        else:
+            ctx.log("  el vídeo tiene saltos de tiempo o es .ts: se copia una vez a un fichero limpio (sin recodificar)")
+            tmp = src.with_name("source.part.mkv")
+            r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(ctx.match.video), "-map", "0:v:0", "-map", "0:a?",
+                                "-dn", "-sn", "-c", "copy", str(tmp)], capture_output=True, text=True,
+                               encoding="utf-8", errors="replace")
+            if r.returncode == 0 and _valid_video(tmp):
+                os.replace(tmp, src)
+                _write(meta, {"from": str(ctx.match.video), "jumps": tl["jumps"], "ts": ts})
+                info = probe(src)
+            else:
+                tmp.unlink(missing_ok=True)
+                ctx.log(f"  AVISO: no se pudo limpiar el vídeo ({(r.stderr or '').strip()[-150:]}); se usa tal cual")
     d = {k: (str(v) if isinstance(v, Path) else v) for k, v in vars(info).items()}
+    d.update(jumps=tl["jumps"], vfr=bool(info.vfr or tl["vfr"]), cleaned=src.exists())
     _write(ctx.path("probe.json"), d)
-    return {"duration_min": round(info.duration / 60, 1), "fps": info.fps, "size": f"{info.width}x{info.height}"}
+    return {"duration_min": round(info.duration / 60, 1), "fps": info.fps, "size": f"{info.width}x{info.height}",
+            "cleaned": d["cleaned"], "vfr": d["vfr"]}
 
 
 @stage("scenes", "1", deps=("probe",), settings=lambda c: {"fps": c["cheap_pass"]["fps"]}, outputs=("scenes.json",))
 def st_scenes(ctx: Context):
     fps = ctx.cfg["cheap_pass"]["fps"]
-    info = probe(ctx.match.video)
+    info = probe(ctx.video)
     shots, mask = analyse_video(read_frames(info, width=160, fps=fps, hwaccel=ctx.cfg.get("hwaccel")))
     _write(ctx.path("scenes.json"), {"fps": fps, "shots": [vars(s) for s in shots]})
     main = [s for s in shots if s.main_camera]
@@ -49,25 +81,61 @@ def st_scenes(ctx: Context):
             "main_camera_min": round(sum(s.end - s.start for s in main) / fps / 60, 1)}
 
 
-@stage("audio", "1", deps=("probe",), outputs=("audio_onsets.json",))
+@stage("audio", "2", deps=("probe",), outputs=("audio_onsets.json",))
 def st_audio(ctx: Context, chunk_s=300.0, overlap_s=1.0):
-    """Impact-like transients over the whole match, in 5-minute chunks (memory stays small)."""
-    info = probe(ctx.match.video)
-    sr, times, strengths = 22050, [], []
-    t = 0.0
-    while t < info.duration:
-        dur = min(chunk_s + overlap_s, info.duration - t)
-        raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{t:.3f}", "-t", f"{dur:.3f}", "-i", str(ctx.match.video),
-                              "-vn", "-ac", "1", "-ar", str(sr), "-f", "f32le", "pipe:1"], capture_output=True).stdout
-        y = np.frombuffer(raw, np.float32)
-        if len(y) > sr:
-            on, st = audio_onsets(y, sr)
-            keep = on < chunk_s if t + chunk_s < info.duration else np.ones(len(on), bool)
-            times += list(on[keep] + t)
-            strengths += list(st[keep])
-        t += chunk_s
-    _write(ctx.path("audio_onsets.json"), {"t": times, "strength": strengths})
-    return {"onsets": len(times)}
+    """Impact-like transients over the whole match, in 5-minute chunks (memory stays small).
+    Every audio track is analysed (broadcasts can carry commentary and ambient sound apart); the
+    candidates stage keeps the track whose transients coincide with the swings."""
+    info = probe(ctx.video)
+    sr, tracks = 22050, []
+    for k in range(min(info.audio_tracks, 4)):
+        times, strengths = [], []
+        t = 0.0
+        while t < info.duration:
+            dur = min(chunk_s + overlap_s, info.duration - t)
+            raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{t:.3f}", "-t", f"{dur:.3f}", "-i", str(ctx.video),
+                                  "-map", f"0:a:{k}", "-vn", "-ac", "1", "-ar", str(sr), "-f", "f32le", "pipe:1"],
+                                 capture_output=True).stdout
+            y = np.frombuffer(raw, np.float32)
+            if len(y) > sr:
+                on, st = audio_onsets(y, sr)
+                keep = on < chunk_s if t + chunk_s < info.duration else np.ones(len(on), bool)
+                times += list(on[keep] + t)
+                strengths += list(st[keep])
+            t += chunk_s
+        tracks.append({"t": times, "strength": strengths})
+    if not tracks:
+        ctx.log("  AVISO: el vídeo no tiene sonido; los golpes se detectan solo con la imagen (algo peor)")
+    first = tracks[0] if tracks else {"t": [], "strength": []}
+    _write(ctx.path("audio_onsets.json"), {"t": first["t"], "strength": first["strength"], "track": 0, "tracks": tracks})
+    return {"onsets": len(first["t"]), "tracks": len(tracks)}
+
+
+def choose_audio_track(tracks: list[dict], peaks: np.ndarray, tol_s: float, span_s: float) -> int:
+    """The audio track whose transients coincide with the near player's swings, beyond what its
+    rate of transients would give by chance (commentary also has onsets, at random times)."""
+    best, best_score = 0, -np.inf
+    for k, tr in enumerate(tracks):
+        on = np.asarray(tr["t"])
+        if not len(peaks) or not len(on):
+            score = -1.0
+        else:
+            hits = sum(bool(np.any(np.abs(on - t) <= tol_s)) for t in peaks)
+            chance = len(peaks) * (1 - np.exp(-len(on) / max(span_s, 1.0) * 2 * tol_s))
+            score = (hits - chance) / len(peaks)
+        if score > best_score:
+            best, best_score = k, score
+    return best
+
+
+def load_onsets(ctx: Context) -> np.ndarray:
+    """Audio transients of the chosen track (see choose_audio_track)."""
+    if not ctx.path("audio_onsets.json").exists():
+        return np.zeros(0)
+    a = _read(ctx.path("audio_onsets.json"))
+    k = _read(ctx.path("audio_track.json"))["track"] if ctx.path("audio_track.json").exists() else 0
+    tracks = a.get("tracks") or [a]
+    return np.array(tracks[k]["t"] if k < len(tracks) else a["t"])
 
 
 def _pose_detector(cfg: dict):
@@ -94,7 +162,7 @@ def st_players(ctx: Context):
     for s in sc["shots"]:
         main[s["start"]:s["end"]] = s["main_camera"]
     detect = _pose_detector(ctx.cfg)
-    info = probe(ctx.match.video)
+    info = probe(ctx.video)
     boxes, kps, confs, feats, idx = [], [], [], [], []
     for i, frame in enumerate(read_frames(info, fps=fps, hwaccel=ctx.cfg.get("hwaccel"))):
         if i >= len(main) or not main[i]:
@@ -108,8 +176,22 @@ def st_players(ctx: Context):
     return {"frames": len(idx)}
 
 
-def near_runs(d, sk):
+def _on_court(boxes: np.ndarray, H) -> np.ndarray:
+    """Which boxes stand where a near player can be (inside the doubles width with a margin,
+    from deep behind the baseline to the net): ball kids and line judges at the back corners or
+    on the sides are not."""
+    from .court_metrics import to_court
+
+    if H is None or not len(boxes):
+        return np.ones(len(boxes), bool)
+    feet = np.c_[(boxes[:, 0] + boxes[:, 2]) / 2, boxes[:, 3]]
+    c = to_court(H, feet)
+    return (np.abs(c[:, 0]) <= 5.5) & (c[:, 1] >= -7.0) & (c[:, 1] <= 11.885)
+
+
+def near_runs(d, sk, court: dict | None = None):
     """Each continuous run of main-camera frames with the near player tracked (cuts break tracking).
+    court: the court stage's output, to start the tracking on the person standing on the court.
 
     Yields (run indices, cleaned keypoints, confidences, body height px, mean appearance)."""
     fps, frames = float(d["fps"]), d["frames"]
@@ -123,7 +205,10 @@ def near_runs(d, sk):
             continue
         b0 = bx[first]
         h0 = b0[:, 3] - b0[:, 1]
-        cand = np.flatnonzero(h0 >= 0.5 * h0.max())
+        tall = h0 >= 0.5 * h0.max()
+        H = court_at(court, frames[run[first]] / fps)[0] if court else None
+        on = tall & _on_court(b0, H)
+        cand = np.flatnonzero(on if on.any() else tall)
         init = b0[cand[np.argmax(b0[cand, 3])]]
         feats = [d["feats"][k] for k in run]
         sel = track_target(bx, feats, init, min_bottom=float(0.5 * init[3]))
@@ -140,7 +225,7 @@ def near_runs(d, sk):
         yield run, img, cf, body_height(img, sk), np.mean(app, axis=0)
 
 
-@stage("identity", "2", deps=("players", "score"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
+@stage("identity", "3", deps=("players", "score", "court"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
 def st_identity(ctx: Context):
     """Is the near player the target in each run? Clothing clusters + serves + scoreboard marker."""
     from .identity import assign, cluster_two, decide_by_ends, end_changes, near_serves
@@ -149,12 +234,14 @@ def st_identity(ctx: Context):
     fps, frames = float(d["fps"]), d["frames"]
     sk = Skeleton("coco17", ctx.match.player.hand)
     score = _read(ctx.path("score.json"))
+    court = _read(ctx.path("court.json"))
     runs, feats, votes = [], [], []
-    for run, img, cf, h, app in near_runs(d, sk):
+    for run, img, cf, h, app in near_runs(d, sk, court):
         i = len(runs)
         runs.append({"start": int(frames[run[0]]), "end": int(frames[run[-1]]) + 1})
         feats.append(app)
-        f = near_serves(img, cf, fps, h)
+        H = court_at(court, frames[run[0]] / fps)[0]
+        f = near_serves(img, cf, fps, h, feet_y=_feet_court_y(img, H))
         if f is not None:
             sr = score_at(score, frames[run[f]] / fps, max_age_s=25.0)
             if sr is not None and sr.get("server") is not None:
@@ -189,6 +276,21 @@ def st_identity(ctx: Context):
             "decided": sum(r["near_is_target"] is not None for r in runs)}
 
 
+def _feet_court_y(img: np.ndarray, H) -> np.ndarray | None:
+    """Court y (m from the near baseline) of the midpoint of the ankles per frame, or None."""
+    from .court_metrics import to_court
+
+    if H is None:
+        return None
+    a, b = img[:, 15], img[:, 16]
+    ank = np.where(np.isfinite(a) & np.isfinite(b), (a + b) / 2, np.where(np.isfinite(a), a, b))
+    y = np.full(len(img), np.nan)
+    ok = np.isfinite(ank).all(axis=1)
+    if ok.any():
+        y[ok] = to_court(H, ank[ok])[:, 1]
+    return y
+
+
 def near_is_target(identity: dict, frame: int):
     for r in identity.get("runs", []):
         if r["start"] <= frame < r["end"]:
@@ -196,7 +298,7 @@ def near_is_target(identity: dict, frame: int):
     return None
 
 
-@stage("candidates", "5", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json",))
+@stage("candidates", "6", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"))
 def st_candidates(ctx: Context, tol_s=0.35):
     """Near-player stroke candidates: swing peaks of the near player at cheap fps, confirmed by
     an audio transient when one is close. Each candidate records who the near player is
@@ -205,11 +307,22 @@ def st_candidates(ctx: Context, tol_s=0.35):
     d = np.load(ctx.path("players.npz"), allow_pickle=True)
     fps, frames = float(d["fps"]), d["frames"]
     sk = Skeleton("coco17", ctx.match.player.hand)
-    onsets = np.array(_read(ctx.path("audio_onsets.json"))["t"])
+    court = _read(ctx.path("court.json"))
+    audio = _read(ctx.path("audio_onsets.json"))
+    tracks = audio.get("tracks") or [audio]
+    track = 0
+    if len(tracks) > 1:                    # commentary vs ambient: the one that sounds with her swings
+        peaks = [frames[run[p]] / fps for run, img, cf, h, _ in near_runs(d, sk, court)
+                 for p in swing_peaks(speed(to_body_frame(img, sk, h)[:, sk["dom_wrist"]], fps), fps,
+                                      min_gap=1.0, height=1.5, prominence=1.0)]
+        span = float(frames[-1] - frames[0]) / fps if len(frames) else 0.0
+        track = choose_audio_track(tracks, np.array(peaks), tol_s, span)
+        ctx.log(f"  sonido: pista {track + 1} de {len(tracks)} (la que coincide con los golpes)")
+    _write(ctx.path("audio_track.json"), {"track": track, "tracks": len(tracks)})
+    onsets = np.array(tracks[track]["t"]) if tracks else np.zeros(0)
     identity = _read(ctx.path("identity.json"))
     # doubles are out of scope: two people inside the near half in most main-camera frames
     from .court_metrics import people_in_near_half
-    court = _read(ctx.path("court.json"))
     counts = []
     for i in range(0, len(frames), 10):
         H, _ = court_at(court, frames[i] / fps)
@@ -224,7 +337,7 @@ def st_candidates(ctx: Context, tol_s=0.35):
     no_board = [(x["start"], x["end"]) for x in score.get("shots", [])
                 if x["tried"] >= 2 and x["read"] == 0 and x["end"] - x["start"] < 30]
     board_works = sum(x["read"] for x in score.get("shots", [])) >= 10
-    for run, img, cf, h, _ in near_runs(d, sk):
+    for run, img, cf, h, _ in near_runs(d, sk, court):
         t_mid = frames[run[len(run) // 2]] / fps
         if board_works and any(a <= t_mid < b for a, b in no_board):
             replays += 1                  # probably a replay: its strokes were already counted live
@@ -255,7 +368,7 @@ def st_candidates(ctx: Context, tol_s=0.35):
     return {"candidates": len(cands), "far": sum(c["side"] == "far" for c in cands),
             "with_audio": sum(c["audio"] for c in cands),
             "opponent_runs": skipped, "identity_unknown": sum(c["identity"] is None for c in cands),
-            "replay_runs_skipped": replays}
+            "replay_runs_skipped": replays, "audio_track": track}
 
 
 def grab_frame(video: Path, t: float) -> np.ndarray | None:
@@ -267,8 +380,8 @@ def grab_frame(video: Path, t: float) -> np.ndarray | None:
     return cv2.imdecode(np.frombuffer(raw, np.uint8), cv2.IMREAD_COLOR) if raw else None
 
 
-@stage("court", "1", deps=("scenes",), outputs=("court.json",))
-def st_court(ctx: Context, n_fit=6, min_score=0.5):
+@stage("court", "2", deps=("scenes",), outputs=("court.json",))
+def st_court(ctx: Context, n_fit=6, min_score=0.5, every_s=8.0):
     """Court homography of the main camera: fitted on a few long main-camera shots, the best one
     is checked on every main-camera shot (the broadcast camera barely moves); shots where it does
     not fit get their own fit."""
@@ -283,27 +396,36 @@ def st_court(ctx: Context, n_fit=6, min_score=0.5):
     mid = lambda s: (s["start"] + s["end"]) / 2 / fps
     best = None
     for s in sorted(main, key=lambda s: s["start"] - s["end"])[:n_fit]:          # longest first
-        fr = grab_frame(ctx.match.video, mid(s))
+        fr = grab_frame(ctx.video, mid(s))
         fit = fit_court(fr) if fr is not None else None
         if fit is not None and (best is None or fit.score > best[0].score):
             best = (fit, fr.shape)
     out = []
     for s in main:
-        fr = grab_frame(ctx.match.video, mid(s))
-        if fr is None:
-            continue
-        fit, score = best[0] if best else None, 0.0
-        if fit is not None:
-            score = score_homography(fit.H, white_lines(fr))
-        if score < min_score:
-            own = fit_court(fr)
-            fit, score = (own, own.score) if own is not None else (None, 0.0)
-        out.append({"start": s["start"], "end": s["end"], "score": round(score, 3),
-                    "H": None if fit is None or score < min_score else fit.H.tolist(),
-                    "pitch_deg": None if fit is None or score < min_score else round(camera_pitch_deg(fit, fr.shape), 1)})
+        # checked every ~every_s seconds, not only once: a zoom or a pan inside the shot gets its
+        # own fit (or no court) for that stretch instead of a wrong one
+        n = int(np.clip(round((s["end"] - s["start"]) / fps / every_s), 1, 8))
+        edges = np.linspace(s["start"], s["end"], n + 1).round().astype(int)
+        for a, b in zip(edges[:-1], edges[1:]):
+            fr = grab_frame(ctx.video, (a + b) / 2 / fps)
+            if fr is None:
+                continue
+            fit, score = best[0] if best else None, 0.0
+            if fit is not None:
+                score = score_homography(fit.H, white_lines(fr))
+            if score < min_score:
+                own = fit_court(fr)
+                fit, score = (own, own.score) if own is not None else (None, 0.0)
+            seg = {"start": int(a), "end": int(b), "score": round(score, 3),
+                   "H": None if fit is None or score < min_score else fit.H.tolist(),
+                   "pitch_deg": None if fit is None or score < min_score else round(camera_pitch_deg(fit, fr.shape), 1)}
+            if out and out[-1]["end"] == seg["start"] and out[-1]["H"] == seg["H"]:
+                out[-1]["end"] = seg["end"]               # same court: one segment
+            else:
+                out.append(seg)
     _write(ctx.path("court.json"), {"fps": fps, "shots": out})
     ok = [o for o in out if o["H"] is not None]
-    return {"main_camera_shots": len(out), "with_court": len(ok),
+    return {"segments": len(out), "with_court": len(ok),
             "pitch_deg_median": float(np.median([o["pitch_deg"] for o in ok])) if ok else None}
 
 
@@ -326,7 +448,7 @@ def st_score(ctx: Context):
     opponent = _surname(ctx.match.opponent)
     if not opponent and mains:       # not in matches.yaml: read it from the scoreboard
         times = [((s["start"] + s["end"]) / 2) / fps for s in mains[:: max(1, len(mains) // 40)]]
-        opponent = discover_opponent((f for f in (grab_frame(ctx.match.video, t) for t in times) if f is not None),
+        opponent = discover_opponent((f for f in (grab_frame(ctx.video, t) for t in times) if f is not None),
                                      _surname(ctx.match.player.name)) or ""
     names = (_surname(ctx.match.player.name), opponent)
     if not all(names):
@@ -339,7 +461,7 @@ def st_score(ctx: Context):
         t = s["start"] / fps + 0.5
         tried = read = 0
         while t < s["end"] / fps:
-            fr = grab_frame(ctx.match.video, t)
+            fr = grab_frame(ctx.video, t)
             st = reader.read(fr) if fr is not None else None
             tried += 1
             if st is not None:
@@ -401,13 +523,31 @@ def point_won(score: dict, t: float, horizon_s=60.0):
     return None
 
 
-def court_at(court: dict, t: float):
-    """(H court→image, pitch) of the main-camera shot containing time t, or (None, None)."""
+def court_at(court: dict, t: float, scale: float = 1.0):
+    """(H court→image, pitch) of the main-camera shot containing time t, or (None, None).
+    scale: image pixels of the windows per pixel of the match video (window_scale)."""
     f = t * court.get("fps", 1)
     for o in court.get("shots", []):
         if o["start"] <= f < o["end"] and o["H"] is not None:
-            return np.array(o["H"]), o["pitch_deg"]
+            H = np.array(o["H"])
+            return (np.diag([scale, scale, 1.0]) @ H if scale != 1.0 else H), o["pitch_deg"]
     return None, None
+
+
+def _check_court(clip: Path, t: float, H, pitch, min_score=0.5):
+    """The court of the shot checked on the window's own impact frame (a zoom or a pan the
+    sampled frames missed): kept, refitted on that frame, or dropped."""
+    from .court import camera_pitch_deg, fit_court, score_homography, white_lines
+
+    fr = grab_frame(clip, t)
+    if fr is None:
+        return H, pitch, None
+    if H is not None and score_homography(H, white_lines(fr)) >= min_score:
+        return H, pitch, "ok"
+    own = fit_court(fr)
+    if own is not None and own.score >= min_score:
+        return own.H, round(camera_pitch_deg(own, fr.shape), 1), "refit"
+    return None, None, "none"
 
 
 def far_start(clip: Path, H, search_s=2.0, step=5) -> dict | None:
@@ -430,20 +570,38 @@ def _valid_video(p: Path) -> bool:
         return False
 
 
-def cut_window(video: Path, t0: float, dur: float, dest: Path, interlaced: bool = False) -> Path:
+MAX_WINDOW_WIDTH = 1920       # 4K windows would need ~25 MB per frame in memory; pose runs at 1280 anyway
+
+
+def window_scale(width: int) -> float:
+    """Factor from the match video's pixels to its windows' pixels."""
+    return min(1.0, MAX_WINDOW_WIDTH / width) if width else 1.0
+
+
+def cut_window(video: Path, t0: float, dur: float, dest: Path, interlaced: bool = False, audio_track: int = 0,
+               width: int = 0, cfr_fps: float | None = None) -> Path:
     """Re-encoded window of the match. Interlaced broadcasts (1080i) are deinterlaced to one frame
-    per field (yadif=1): 50 sharp frames per second instead of 25 combed ones. Written through a
-    temporary file and checked, so an interrupted cut is never reused."""
+    per field (yadif=1): 50 sharp frames per second instead of 25 combed ones. Larger than 1080p is
+    scaled down (window_scale), a variable frame rate is made constant (frame index = time), and
+    the chosen audio track is kept. Written through a temporary file and checked, so an
+    interrupted cut is never reused."""
     if dest.exists() and _valid_video(dest):
         return dest
     dest.parent.mkdir(parents=True, exist_ok=True)
     tmp = dest.with_name(dest.stem + ".part" + dest.suffix)
-    vf = ["-vf", "yadif=1"] if interlaced else []
-    r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{max(0.0, t0):.3f}", "-i", str(video), "-t", f"{dur:.3f}", *vf,
+    filters = ["yadif=1"] if interlaced else []
+    f = window_scale(width)
+    if f < 1.0:
+        filters.append(f"scale={MAX_WINDOW_WIDTH}:-2")
+    if cfr_fps:
+        filters.append(f"fps={cfr_fps * (2 if interlaced else 1):.6f}")
+    vf = ["-vf", ",".join(filters)] if filters else []
+    r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{max(0.0, t0):.3f}", "-i", str(video), "-t", f"{dur:.3f}",
+                        "-map", "0:v:0", "-map", f"0:a:{audio_track}?", *vf,
                         # a keyframe every 8 frames: frame-by-frame scrubbing in the report stays instant;
                         # yuv420p: the only chroma format every browser plays (broadcasts can be 4:2:2)
                         "-c:v", "libx264", "-crf", "16", "-preset", "veryfast", "-g", "8", "-pix_fmt", "yuv420p",
-                        "-movflags", "+faststart", "-c:a", "aac", str(tmp)], capture_output=True, text=True,
+                        "-movflags", "+faststart", "-c:a", "aac", "-ac", "2", str(tmp)], capture_output=True, text=True,
                        encoding="utf-8", errors="replace")
     if r.returncode != 0 or not _valid_video(tmp):
         tmp.unlink(missing_ok=True)
@@ -518,7 +676,7 @@ def _fine(ctx: Context, p, keep, out_name: str):
     cands = _read(ctx.path("candidates.json"))
     court = _read(ctx.path("court.json"))
     score = _read(ctx.path("score.json"))
-    onsets = np.array(_read(ctx.path("audio_onsets.json"))["t"]) if ctx.path("audio_onsets.json").exists() else np.zeros(0)
+    onsets = load_onsets(ctx)
     scenes = _read(ctx.path("scenes.json")) if ctx.path("scenes.json").exists() else {"fps": 1, "shots": []}
     ball, warnings = None, []
     bcfg = ctx.cfg.get("ball") or {}
@@ -578,6 +736,8 @@ def _fine(ctx: Context, p, keep, out_name: str):
     strokes.sort(key=lambda d: d["match_time_s"])
     _rally_position(strokes, cands, scenes)
     _write(ctx.path(out_name), strokes)
+    other = ctx.path("strokes_opponent.json" if out_name == "strokes.json" else "strokes.json")
+    _drop_orphans(ctx, cands, strokes, _read(other) if other.exists() else [])
     _write(ctx.path(out_name.replace(".json", "_errores.json")), errors)
     if errors:
         ctx.log(f"  {len(errors)} golpes no se pudieron analizar (detalle en {out_name.replace('.json', '_errores.json')})")
@@ -607,6 +767,34 @@ def _rally_position(strokes: list[dict], cands: list[dict], scenes: dict) -> Non
             cl["play"] = "inicio del punto" if k <= 2 else "peloteo"
 
 
+def _window_of(group: list[dict], pre: float, post: float) -> tuple[float, float, str]:
+    """Start, duration and name of the window of a group of candidates. Named by its interval (not
+    by its position in the list): a new candidate elsewhere never renames, and so never
+    re-analyses, the existing windows."""
+    t0 = max(0.0, group[0]["t"] - pre)
+    dur = group[-1]["t"] + post - t0
+    return t0, dur, f"w{int(round(t0 * 1000)):09d}_{int(round(dur * 1000))}"
+
+
+def _drop_orphans(ctx: Context, cands: list[dict], strokes: list[dict], others: list[dict]):
+    """Windows (and their caches) that no candidate of either fine pass falls in any more, and
+    series of strokes that no longer exist, are deleted: re-runs never fill the disk. others: the
+    strokes of the other fine pass (target / opponent), whose files share the folders."""
+    keep_series = {Path(d["series"]).name for d in strokes + others if d.get("series")}
+    for f in ctx.path("series").glob("*.json") if ctx.path("series").exists() else []:
+        if f.name not in keep_series:
+            f.unlink(missing_ok=True)
+    ts = np.array(sorted(c["t"] for c in cands))
+    for f in ctx.path("windows").glob("w*") if ctx.path("windows").exists() else []:
+        parts = f.name.split(".")[0].split("_")
+        try:
+            t0, dur = int(parts[0][1:]) / 1000, int(parts[1]) / 1000
+        except (IndexError, ValueError):
+            continue
+        if not np.any((ts >= t0) & (ts <= t0 + dur)):
+            f.unlink(missing_ok=True)
+
+
 def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose, wb3d, fcfg):
     """Candidates of one stretch of play (overlapping windows): one window is cut and analysed once
     (pose, ball, rackets), then each candidate gets its phases, metrics, court, outcome, racket and
@@ -617,16 +805,16 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
     set_device(ctx.cfg.get("device", "cpu"))
 
     c = group[0]
-    t0 = max(0.0, c["t"] - pre)
-    dur = group[-1]["t"] + post - t0
-    # named by its interval (not by its position in the list): a new candidate elsewhere never
-    # renames, and so never re-analyses, the existing windows
-    wid = f"w{int(round(t0 * 1000)):09d}_{int(round(dur * 1000))}"
-    clip = cut_window(ctx.match.video, t0, dur, ctx.path("windows") / f"{wid}.mp4", interlaced)
+    t0, dur, wid = _window_of(group, pre, post)
+    pr = _read(ctx.path("probe.json")) if ctx.path("probe.json").exists() else {}
+    track = _read(ctx.path("audio_track.json"))["track"] if ctx.path("audio_track.json").exists() else 0
+    clip = cut_window(ctx.video, t0, dur, ctx.path("windows") / f"{wid}.mp4", interlaced, track,
+                      pr.get("width", 0), pr.get("fps") if pr.get("vfr") else None)
+    ws = window_scale(pr.get("width", 0))
     side = c.get("side", "near")
     extra, cache = {}, clip.with_name(f"{clip.stem}_{ph}.npz")
     if side == "far":
-        fi = far_start(clip, court_at(court, c["t"])[0])
+        fi = far_start(clip, court_at(court, c["t"], ws)[0])
         if fi is None:
             return []                         # no court or no far player found: nothing reliable
         extra, cache = dict(side="far", **fi), clip.with_name(f"{clip.stem}_{ph}_far.npz")
@@ -661,7 +849,9 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
     sr = score_at(score, t_imp)
     if sr is not None:
         d["score"] = {k: sr[k] for k in ("games", "points", "banner", "set", "sets_won", "tiebreak", "pressure")}
-    H, pitch = court_at(court, t_imp)
+    pr = _read(ctx.path("probe.json")) if ctx.path("probe.json").exists() else {}
+    H, pitch = court_at(court, t_imp, window_scale(pr.get("width", 0)))
+    H, pitch, d["court_check"] = _check_court(clip, r.impact_frame / run.fps, H, pitch)
     d["side"] = side
     H_img = H
     if H is not None:

@@ -208,9 +208,10 @@ def noise_from_pairs(strokes: list[dict], min_strokes=20) -> dict:
     F = np.array(feats)
     F = (F - np.nanmean(F, 0)) / (np.nanstd(F, 0) + 1e-9)
     F = np.nan_to_num(F)
-    D = np.linalg.norm(F[:, None] - F[None], axis=-1)
-    np.fill_diagonal(D, np.inf)
-    nn = D.argmin(1)
+    from scipy.spatial import cKDTree      # nearest neighbour without an n×n matrix (thousands of strokes)
+
+    _, idx = cKDTree(F).query(F, k=2)
+    nn = np.where(idx[:, 0] == np.arange(len(F)), idx[:, 1], idx[:, 0])     # itself, unless duplicated
     out = {}
     for k in METRICS:
         diffs = [pool[i]["m"].get(k) - pool[j]["m"].get(k) for i, j in enumerate(nn)
@@ -363,6 +364,11 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
     data["player"] = player or {}
     data["stroke"] = stroke
     data["generated"] = time.strftime("%Y-%m-%d %H:%M")
+    ids = {r["id"] for r in data["strokes"]}
+    for sub, ext in (("series", ".js"), ("thumbs", ".jpg")):          # strokes that no longer exist
+        for f in (dest / sub).glob(f"*{ext}") if (dest / sub).exists() else []:
+            if f.stem not in ids:
+                f.unlink(missing_ok=True)
     html = TEMPLATE.read_text(encoding="utf-8").replace("/*__DATA__*/null", json.dumps(data, ensure_ascii=False))
     out = dest / "index.html"
     out.write_text(html, encoding="utf-8")

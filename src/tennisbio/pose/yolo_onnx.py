@@ -21,7 +21,8 @@ def export_onnx(name: str, imgsz: int, models_dir: Path = MODELS_DIR) -> Path:
         return target
     from ultralytics import YOLO
 
-    exported = Path(YOLO(f"{name}.pt").export(format="onnx", imgsz=imgsz, dynamic=False, simplify=False))
+    # weights kept in models/ (downloaded there the first time), never in the current directory
+    exported = Path(YOLO(str(models_dir / f"{name}.pt")).export(format="onnx", imgsz=imgsz, dynamic=False, simplify=False))
     exported.replace(target)
     return target
 
