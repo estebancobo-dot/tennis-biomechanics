@@ -91,6 +91,33 @@ Fallos encontrados y corregidos:
 - "Resto" en el primer golpe de un plano que empieza a mitad de punto: si el plano empieza menos de
   1,5 s antes del golpe del rival, no se sabe si es resto y no se dice.
 
+## Final del armado frente al máximo giro de hombros — 24 golpes de RacketVision
+Dos definiciones del final del armado: la pausa de la muñeca (la que usa el programa) y el máximo
+giro de hombros (la de la literatura). En 2D desde detrás las dos son ruidosas.
+
+| | Diferencia mediana | A menos de 100 ms |
+|---|---|---|
+| Antes (pausa buscada hasta el impacto) | 0,12 s | 48 % |
+| Ahora (la pausa no puede estar en los últimos 0,1 s: ningún swing dura menos) | **0,08 s** | **54 %** |
+
+La detección de golpes no cambia (P 0,73 · R 0,84). La cadera llega a su giro máximo 25 ms antes que
+los hombros (mediana), como describe la literatura (separación cadera–hombros al empezar el swing).
+
+## Escala de 4 partidos (datos sintéticos, 2.400 derechas)
+Generados a partir de los golpes reales del US Open con variaciones, para medir el informe y la
+estadística con el tamaño real de los 4 partidos.
+
+| Paso | Antes | Ahora |
+|---|---|---|
+| Modelo técnico ("Su derecha", efectos ajustados) | 101 s con 600 golpes | 2,6 s con 600; informe completo de 2.400 en 47 s |
+| Ruido por pares | matriz n×n (≈1 GB con 6.000 golpes) | árbol de vecinos (0,6 s con 8.000) |
+| Memoria del informe | — | 363 MB |
+| Página | — | 6 MB; carga en 2,7 s; cada pestaña < 0,4 s; 24 MB de memoria en el navegador |
+| Vídeo por golpe (exportación, CPU compartida) | 8,5 s por golpe | 6,9 s (busca el golpe en la ventana en lugar de decodificarla entera); después, recorte sin transformación afín (sin medir aún) |
+
+Con datos al azar (sin efectos reales) el modelo no encuentra ninguna diferencia "real" entre
+situaciones: 0 falsos positivos.
+
 ## Impactos — F3Set-Tennis (TV, contacto exacto por fotograma)
 `uv run python scripts/validate_f3set.py --root <datasets> --player Rybakina --clips 30`
 Se ejecuta solo en el PC del usuario (paso 4 de `2_prueba_rapida.bat`): YouTube bloquea las
