@@ -11,7 +11,7 @@ import json
 import os
 import shutil
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Callable
 
@@ -36,9 +36,36 @@ class Context:
     cfg: dict
     dir: Path
     log: Callable[[str], None] = print
+    _prog: dict = field(default_factory=dict, repr=False)
 
     def path(self, name: str) -> Path:
         return self.dir / name
+
+    def progress(self, done: int, total: int, what: str = "", every_s: float = 30.0):
+        """Progress of the running stage: a line with %, elapsed time and the time left, at most every
+        `every_s` seconds (and at the end), and the file <output>/progreso.json that the PC uploads
+        for Claude with the logs. Nobody has to watch a silent window for hours."""
+        now = time.time()
+        p = self._prog
+        done = min(done, total)
+        if p.get("stage") != p.get("_seen"):
+            p.update(_seen=p.get("stage"), t0=now, last=0.0, ended=False)
+        if p["ended"] or (done < total and now - p["last"] < every_s):
+            return
+        p["last"], p["ended"] = now, done >= total
+        el = now - p["t0"]
+        frac = done / total if total else 1.0
+        left = el * (1 - frac) / frac if frac > 0 else None
+        fmt = lambda s: "?" if s is None else (f"{s / 60:.0f} min" if s >= 90 else f"{s:.0f} s")
+        msg = f"  {p.get('stage', '')}: {frac * 100:3.0f} % ({done}/{total}{' ' + what if what else ''}) · {fmt(el)} · quedan ≈ {fmt(left)}"
+        self.log(msg)
+        try:
+            write_atomic(self.dir.parent / "progreso.json", json.dumps({
+                "partido": self.match.id, "etapa": p.get("stage"), "hecho": done, "total": total,
+                "porcentaje": round(frac * 100, 1), "segundos": round(el), "quedan_s": None if left is None else round(left),
+                "hora": time.strftime("%Y-%m-%d %H:%M:%S")}, ensure_ascii=False))
+        except OSError:
+            pass
 
     @property
     def video(self) -> Path:
@@ -216,8 +243,11 @@ def run(ctx: Context, names=None, force=False) -> list[str]:
                            "Libera al menos 5 GB (por ejemplo, borra vídeos ya analizados) y vuelve a ejecutar: "
                            "se sigue donde se quedó.")
         t0 = time.time()
-        ctx.log(f"[{ctx.match.id}] {n}…")
+        k = order(names or list(STAGES)).index(n) + 1
+        ctx.log(f"[{ctx.match.id}] {n}… ({time.strftime('%H:%M')}, etapa {k} de {len(STAGES)})")
+        ctx._prog["stage"] = n
         summary = STAGES[n].run(ctx) or {}
+        ctx.log(f"[{ctx.match.id}] {n} terminada en {(time.time() - t0) / 60:.1f} min")
         m[n] = {"fingerprint": fp, "version": STAGES[n].version, "seconds": round(time.time() - t0, 1),
                 "finished": time.strftime("%Y-%m-%d %H:%M:%S"), "summary": summary}
         save_manifest(ctx.dir, m)          # after every stage, so an interruption loses little

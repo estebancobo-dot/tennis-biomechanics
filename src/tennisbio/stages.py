@@ -74,7 +74,13 @@ def st_probe(ctx: Context):
 def st_scenes(ctx: Context):
     fps = ctx.cfg["cheap_pass"]["fps"]
     info = probe(ctx.video)
-    shots, mask = analyse_video(read_frames(info, width=160, fps=fps, hwaccel=ctx.cfg.get("hwaccel")))
+    total = int(info.duration * fps)
+
+    def frames_with_progress():
+        for i, fr in enumerate(read_frames(info, width=160, fps=fps, hwaccel=ctx.cfg.get("hwaccel"))):
+            ctx.progress(i + 1, total, "fotogramas")
+            yield fr
+    shots, mask = analyse_video(frames_with_progress())
     _write(ctx.path("scenes.json"), {"fps": fps, "shots": [vars(s) for s in shots]})
     main = [s for s in shots if s.main_camera]
     return {"shots": len(shots), "main_camera_shots": len(main),
@@ -103,6 +109,8 @@ def st_audio(ctx: Context, chunk_s=300.0, overlap_s=1.0):
                 times += list(on[keep] + t)
                 strengths += list(st[keep])
             t += chunk_s
+            n_tr = min(info.audio_tracks, 4)
+            ctx.progress(int(k * info.duration + min(t, info.duration)), int(n_tr * info.duration), "s de sonido")
         tracks.append({"t": times, "strength": strengths})
     if not tracks:
         ctx.log("  AVISO: el vídeo no tiene sonido; los golpes se detectan solo con la imagen (algo peor)")
@@ -206,6 +214,7 @@ def st_players(ctx: Context):
             boxes.append(b.astype(np.float32)); kps.append(k.astype(np.float32)); confs.append(c.astype(np.float32))
             feats.append(np.array([appearance(frame, bb) for bb in b], np.float32).reshape(len(b), 32))
             idx.append(i)
+            ctx.progress(len(idx), int(main.sum()), "fotogramas con jugadoras")
     savez_atomic(ctx.path("players.npz"), fps=fps, frames=np.array(idx), height=info.height,
                         boxes=_objects(boxes), kps=_objects(kps), confs=_objects(confs), feats=_objects(feats))
     return {"frames": len(idx)}
@@ -447,7 +456,8 @@ def st_court(ctx: Context, n_fit=6, min_score=0.5, every_s=8.0):
         if fit is not None and (best is None or fit.score > best[0].score):
             best = (fit, fr.shape)
     out = []
-    for s in main:
+    for i_s, s in enumerate(main):
+        ctx.progress(i_s + 1, len(main), "planos")
         # checked every ~every_s seconds, not only once: a zoom or a pan inside the shot gets its
         # own fit (or no court) for that stretch instead of a wrong one
         n = int(np.clip(round((s["end"] - s["start"]) / fps / every_s), 1, 8))
@@ -505,7 +515,8 @@ def st_score(ctx: Context):
         _write(ctx.path("score.json"), {"readings": [], "note": "no se encontró el nombre del rival en el marcador"})
         return {"readings": 0}
     reader, out, shots = ScoreReader(*names), [], []
-    for s in sc["shots"]:
+    for i_s, s in enumerate(sc["shots"]):
+        ctx.progress(i_s + 1, len(sc["shots"]), f"planos · {len(out)} lecturas")
         if not s["main_camera"]:
             continue
         t = s["start"] / fps + 0.5
@@ -776,14 +787,13 @@ def _fine(ctx: Context, p, keep, out_name: str):
     done = 0
     _TIMES.clear()
     for g in groups:
-        if done // 20 != (done + len(g)) // 20:
-            ctx.log(f"  {done + len(g)}/{len(kept)} golpes candidatos")
-        done += len(g)
         try:
             strokes += _fine_one(ctx, p, g, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose, wb3d, fcfg)
         except Exception as e:                    # one bad window never stops the match
             for c in g:
                 errors.append({"t": c["t"], "error": f"{type(e).__name__}: {e}", "trace": traceback.format_exc()[-1500:]})
+        done += len(g)
+        ctx.progress(done, len(kept), f"golpes candidatos · {len(strokes)} confirmados")
     strokes.sort(key=lambda d: d["match_time_s"])
     _rally_position(strokes, cands, scenes)
     _write(ctx.path(out_name), strokes)

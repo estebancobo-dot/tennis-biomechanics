@@ -7,6 +7,8 @@ $Rama = "claude/tennis-biomech-setup-jggqb0"
 # Python y PowerShell en UTF-8: nombres de video en cirilico o con acentos no rompen nada
 $env:PYTHONUTF8 = "1"
 $env:PYTHONIOENCODING = "utf-8"
+# sin esto Python guarda lo que escribe y la ventana no muestra el progreso hasta el final
+$env:PYTHONUNBUFFERED = "1"
 try { [Console]::OutputEncoding = [System.Text.Encoding]::UTF8 } catch {}
 $OutputEncoding = [System.Text.Encoding]::UTF8
 
@@ -88,6 +90,8 @@ function Subir-Registros {
             Remove-Item "$d\diag\*" -Force -ErrorAction SilentlyContinue
             Copy-Item "$Base\output\_smoke\diag\*" "$d\diag" -Force -ErrorAction SilentlyContinue
         }
+        if (Test-Path "$Base\output\progreso.json") { Copy-Item "$Base\output\progreso.json" "$d\progreso.json" -Force }
+        if (Test-Path "$Base\output\_smoke\progreso.json") { Copy-Item "$Base\output\_smoke\progreso.json" "$d\progreso_prueba.json" -Force }
         foreach ($f in @("$Base\output\benchmark\results.json", "$Base\datasets\reports\f3set_validation.json")) {
             if (Test-Path $f) { Copy-Item $f "$d\$(Split-Path $f -Leaf)" -Force }
         }
