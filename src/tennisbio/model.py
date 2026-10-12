@@ -34,7 +34,7 @@ FACTORS = {
     "stance_impact": ("Apoyo", ["abierto", "semiabierto", "neutro", "cerrado"]),
     "court_side": ("Lado de la pista", ["lado de su derecha", "centro", "lado de su revés"]),
     "swing": ("Efecto", ["liftado (de abajo arriba)", "plano", "cortado (de arriba abajo)"]),
-    "play": ("Momento del punto", ["resto", "intercambio"]),
+    "play": ("Momento del punto", ["resto", "inicio del punto", "peloteo"]),
 }
 CLASS_KEYS = ["stance_loaded", "stance_impact", "stance_role", "finish", "finish_3x90", "arm", "takeback", "takeback_face",
               "ready_hands", "movement", "move_direction", "play", "shot_type", "swing",

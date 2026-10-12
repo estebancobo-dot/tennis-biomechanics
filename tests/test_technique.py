@@ -84,7 +84,7 @@ def test_steps_and_first_step_on_the_court():
         feet[t, 1, 0] = non_x[t] if not (50 <= t < 58) else feet[t, 1, 0]
     air = np.zeros((T, 2), bool)
     plant = planted(feet, air, fps)
-    st = steps(feet, plant, 20, 100)
+    st = steps(feet, plant, 20, 100, fps)
     assert len(st) == 3 and st[0].foot == "dom" and all(s.dx > 0 for s in st)
 
 
@@ -116,3 +116,13 @@ def test_stroke_technique_end_to_end_on_a_synthetic_swing():
     assert c["stance_impact"] in ("abierto", "semiabierto") and c["movement"] == "parada" and c["intent"] == "neutra"
     flat = flatten(tech)
     assert "loaded.elbow_dom" in flat and "stroke.dur_forward" in flat and "footwork.steps_to_impact" in flat
+
+
+def test_steps_reject_runs_without_ground_contact():
+    from tennisbio.footwork import planted, steps
+    T, fps = 100, 50.0
+    feet = np.zeros((T, 2, 2))
+    feet[:, 1, 0] = -0.4
+    feet[:, 0, 0] = 0.4 + np.clip((np.arange(T) - 20) / 50, 0, 1) * 3.0      # 3 m in 1 s, never planted
+    plant = planted(feet, np.zeros((T, 2), bool), fps)
+    assert steps(feet, plant, 0, T, fps) == []

@@ -137,6 +137,7 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
         "outcome": {"out": "error", "net": "error", "winner": "ganador", "rally": "sigue"}.get(
             s.get("outcome") or ("out" if s.get("shot_in") is False else "")),
         "outcomeDetail": s.get("outcome") or ("out" if s.get("shot_in") is False else None),
+        "shotInPoint": s.get("shot_in_point"), "shotsInPoint": s.get("shots_in_point"),
         "shotIn": s.get("shot_in"), "shotDir": s.get("shot_direction"), "shotSide": s.get("shot_side"),
         "shotX": None if not s.get("shot_bounce_m") else (-s["shot_bounce_m"][0] if hand == "left" else s["shot_bounce_m"][0]),
         "shotY": None if not s.get("shot_bounce_m") else s["shot_bounce_m"][1],

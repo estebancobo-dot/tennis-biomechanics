@@ -111,13 +111,12 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Fase ataque / neutra / defensa | TennisViz | ✔ | clase `intent` |
 | Calidad del golpe (sustituto: profundidad, anchura, velocidad media) | TennisViz (Shot Quality) | ✔ | `shot_quality_proxy` (indicador propio, no el de TennisViz) |
 | Puntos ganados en ataque / en defensa | TennisViz (Conversion / Steal) | ✔ | `point_won` (cambio del marcador) × intención del último golpe del punto |
-| Longitud del peloteo | todos | ○ | contar impactos del punto |
+| Longitud del peloteo | todos | ◐ | sus golpes del punto contados con los impactos de la pasada barata (`shot_in_point`, `shots_in_point`); clase "resto / inicio del punto / peloteo". Solo si el plano empieza antes del punto |
 | Resto, globo, dejada, volea, subida a la red | F3Set, SwingVision | ◐ | subida ✔ (`approach`), resto ✔ (`play`); globo, dejada y volea: otros golpes, después |
 | Ganador / error (forzado o no) | F3Set, SwingVision | ◐ | fuera ✔, red y ganador probables; forzado/no forzado ✘ (subjetivo) |
 | Presión, set, fatiga | ATP/WTA | ✔ | marcador (OCR) |
 
 ## Huecos medibles pendientes
-- Longitud del peloteo (contar los impactos del punto).
 - Final del armado: la pausa de la muñeca se guarda junto al momento del máximo giro de hombros y
   de cadera (`t_max_shoulder_turn`, `t_max_hip_turn`); falta validarlos con golpes anotados.
 - Final de la extensión: el avance horizontal de la muñeca va hacia la red (profundidad, invisible

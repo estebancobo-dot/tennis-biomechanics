@@ -18,6 +18,8 @@ from .skeleton import Skeleton
 
 PLANTED_SPEED = 0.7          # m/s: below this a foot counts as on the ground
 MIN_STEP_M = 0.15            # shorter displacements are weight shifts, not steps
+MAX_STEP_M = 2.2             # longer "steps" are runs where the ground contacts were not seen
+MAX_STEP_S = 0.7             # a foot cannot stay in the air this long in one step
 AIR_PCT = 0.04               # ankle higher than its ground level by > 4 % of the height = in the air
 MAX_SPEED = 9.0              # m/s: faster than any tennis player; above it the feet track is noise
 
@@ -74,8 +76,9 @@ def planted(feet: np.ndarray, air: np.ndarray, fps: float) -> np.ndarray:
     return (sp < PLANTED_SPEED) & ~air
 
 
-def steps(feet: np.ndarray, plant: np.ndarray, a: int, b: int) -> list[Step]:
-    """Steps of either foot between frames a and b (a step that lands in the interval counts)."""
+def steps(feet: np.ndarray, plant: np.ndarray, a: int, b: int, fps: float) -> list[Step]:
+    """Steps of either foot between frames a and b (a step that lands in the interval counts).
+    Displacements too long or too slow for one step (missed ground contacts) are left out."""
     out = []
     for j, foot in enumerate(("dom", "non")):
         t = max(1, a)
@@ -91,7 +94,7 @@ def steps(feet: np.ndarray, plant: np.ndarray, a: int, b: int) -> list[Step]:
                 if np.isfinite(p0).all() and np.isfinite(p1).all():
                     d = p1 - p0
                     L = float(np.linalg.norm(d))
-                    if L >= MIN_STEP_M:
+                    if L >= MIN_STEP_M and L <= MAX_STEP_M and (u - start) <= MAX_STEP_S * fps:
                         other = feet[start:u + 1, 1 - j, 0]
                         mov = feet[start:u + 1, j, 0]
                         rel = mov - other
@@ -129,7 +132,7 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
     s = lambda sec: int(round(sec * fps))
     a = opp if opp is not None else max(0, impact - s(1.2))
     b = min(T, impact + s(1.0))
-    st = steps(feet_g, plant, a, b)
+    st = steps(feet_g, plant, a, b, fps)
     out: dict = {}
     pre = [x for x in st if x.land <= impact]
     out["steps_to_impact"] = len(pre)

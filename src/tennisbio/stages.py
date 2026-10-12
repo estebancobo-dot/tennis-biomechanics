@@ -576,12 +576,35 @@ def _fine(ctx: Context, p, keep, out_name: str):
             for c in g:
                 errors.append({"t": c["t"], "error": f"{type(e).__name__}: {e}", "trace": traceback.format_exc()[-1500:]})
     strokes.sort(key=lambda d: d["match_time_s"])
+    _rally_position(strokes, cands, scenes)
     _write(ctx.path(out_name), strokes)
     _write(ctx.path(out_name.replace(".json", "_errores.json")), errors)
     if errors:
         ctx.log(f"  {len(errors)} golpes no se pudieron analizar (detalle en {out_name.replace('.json', '_errores.json')})")
     return {"candidates": len(kept), "confirmed": len(strokes), "errors": len(errors), "warnings": warnings,
             "forehands": sum(s["stroke"] == "forehand" for s in strokes)}
+
+
+def _rally_position(strokes: list[dict], cands: list[dict], scenes: dict) -> None:
+    """Her shot number within the point and her shots in the whole point, counted from the hits of
+    the cheap pass on her side of the same main-camera shot. Only when the shot starts at least
+    1.5 s before its first hit (the point is seen from its start). The point's moment class
+    (return / start of the point / rally) is refined with it."""
+    sfps = scenes.get("fps") or 1
+    for d in strokes:
+        t, side = d["match_time_s"], d.get("side", "near")
+        sh = next((x for x in scenes.get("shots", []) if x["main_camera"] and x["start"] / sfps <= t < x["end"] / sfps), None)
+        if sh is None:
+            continue
+        a, b = sh["start"] / sfps, sh["end"] / sfps
+        hits = sorted(c["t"] for c in cands if c.get("side", "near") == side and a <= c["t"] < b)
+        if not hits or hits[0] - a < 1.5:
+            continue
+        k = sum(h <= t + 0.3 for h in hits)
+        d["shot_in_point"], d["shots_in_point"] = k, len(hits)
+        cl = (d.get("technique") or {}).get("classes")
+        if cl is not None and not d.get("is_return"):
+            cl["play"] = "inicio del punto" if k <= 2 else "peloteo"
 
 
 def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose, wb3d, fcfg):
@@ -724,8 +747,10 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
     if ta_ is not None and shot_start is not None and len(onsets):
         t_opp = t_imp - ta_
         before = onsets[(onsets > shot_start + 0.3) & (onsets < t_opp - 0.3)]
-        is_return = bool(len(before) == 0 and t_opp - shot_start < 8.0)
-        d["is_return"] = is_return
+        # a shot that starts less than 1.5 s before the opponent's hit may begin mid-rally: unknown
+        if t_opp - shot_start >= 1.5:
+            is_return = bool(len(before) == 0 and t_opp - shot_start < 8.0)
+            d["is_return"] = is_return
     # the technique model of this stroke: every body part and the racket at each phase, footwork,
     # timing and the classes of its variant
     from .technique import stroke_technique

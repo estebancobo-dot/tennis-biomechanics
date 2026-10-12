@@ -349,11 +349,13 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         if np.isfinite(wv[ev["loaded"]:impact + 1]).any():
             thr = 0.3 * np.nanmax(wv[ev["loaded"]:impact + 1])
             a = b = ev["loaded"]
-            while a - 1 >= 0 and np.isfinite(wv[a - 1]) and wv[a - 1] < thr:
+            lo_p = ev["takeback"] if ev["takeback"] is not None else max(0, ev["loaded"] - int(0.4 * fps))
+            while a - 1 >= lo_p and np.isfinite(wv[a - 1]) and wv[a - 1] < thr:
                 a -= 1
             while b + 1 < impact and np.isfinite(wv[b + 1]) and wv[b + 1] < thr:
                 b += 1
-            s["pause_at_loaded"] = round((b - a + 1) / fps, 3)
+            if a > lo_p or ev["takeback"] is not None:     # otherwise the stillness is the ready position
+                s["pause_at_loaded"] = round((b - a + 1) / fps, 3)
     # racket: hand position on the handle and relative speed of the tip around the blur
     if kps:
         ratios, tips = [], {}
@@ -433,7 +435,7 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         elif context.get("shot_direction"):
             c["shot_type"] = context["shot_direction"]
         if context.get("return") is not None:
-            c["play"] = "resto" if context["return"] else "intercambio"
+            c["play"] = "resto" if context["return"] else "inicio del punto"      # refined later with its shot number
         # role of the stance (Martin et al. 2021): open attacking / open defensive / neutral attacking
         st_ = c.get("stance_impact")
         if st_:

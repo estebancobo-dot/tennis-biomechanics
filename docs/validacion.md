@@ -68,6 +68,29 @@ El bote está en el suelo, así que la homografía da su posición exacta. Las b
 pueden quedar sin dato (no se inventan). El golpe de la rival en el aire se descarta porque su
 proyección cae detrás del fondo.
 
+## Derecha/revés y apoyo — 21 golpes de RacketVision, revisados a ojo (sin ver la predicción)
+Hoja de contactos por golpe (fotograma de armado + fotograma de impacto); primero se etiqueta a ojo
+y después se compara con el programa.
+
+| Medida | Golpes con etiqueta clara | Coinciden | Nota |
+|---|---|---|---|
+| Derecha / revés | 9 de 21 | **9/9** | En los otros 12 la miniatura no permite decidirlo con seguridad (raqueta borrosa, jugador de frente o tapado) |
+| Apoyo en el impacto | 3 de 21 | 2/3 (el tercero: "neutro" frente a "semiabierto", clases vecinas) | Desde detrás y arriba el ángulo de los pies es difícil incluso a ojo |
+
+Conclusión: la clasificación derecha/revés es fiable; el **apoyo no queda validado** con esta prueba
+(muy pocas etiquetas seguras). Por eso el informe lo presenta como clase con su reparto (no como un
+ángulo exacto). Ningún conjunto público anota el apoyo (F3Set anota golpe, dirección, subida a la
+red y resultado, no los pies); la derecha/revés sí se vuelve a medir con F3Set en la prueba rápida del PC.
+
+## Juego de pies en un vídeo real (final del US Open, 3 derechas) — comprobación de coherencia
+Fallos encontrados y corregidos:
+- Pasos de 2,6-3,7 m (imposibles): eran carreras en las que no se vieron los apoyos. Ahora un
+  desplazamiento de más de 2,2 m o de más de 0,7 s en el aire no cuenta como paso.
+- "Pausa en el armado" de 0,67 s cuando no se detectó el inicio de la preparación: medía la quietud
+  de la posición de espera. Ahora, sin inicio de preparación, solo se mide si la pausa queda acotada.
+- "Resto" en el primer golpe de un plano que empieza a mitad de punto: si el plano empieza menos de
+  1,5 s antes del golpe del rival, no se sabe si es resto y no se dice.
+
 ## Impactos — F3Set-Tennis (TV, contacto exacto por fotograma)
 `uv run python scripts/validate_f3set.py --root <datasets> --player Rybakina --clips 30`
 Se ejecuta solo en el PC del usuario (paso 4 de `2_prueba_rapida.bat`): YouTube bloquea las

@@ -73,3 +73,18 @@ def test_point_won_from_the_next_scoreboard_change():
     assert point_won(sc, 45) is False
     assert point_won(sc, 75) is False
     assert point_won({"readings": []}, 5) is None
+
+
+def test_rally_position_counts_her_hits_of_the_point():
+    from tennisbio.stages import _rally_position
+    scenes = {"fps": 10, "shots": [{"start": 0, "end": 200, "main_camera": True},
+                                   {"start": 200, "end": 260, "main_camera": True}]}
+    cands = [{"t": 3.0}, {"t": 6.0}, {"t": 9.0}, {"t": 20.3}, {"t": 23.0}]
+    strokes = [{"match_time_s": 6.0, "technique": {"classes": {"play": "inicio del punto"}}},
+               {"match_time_s": 9.0, "technique": {"classes": {}}},
+               {"match_time_s": 23.0}]                 # its shot starts 0.3 s before the first hit: unknown
+    _rally_position(strokes, cands, scenes)
+    assert (strokes[0]["shot_in_point"], strokes[0]["shots_in_point"]) == (2, 3)
+    assert strokes[0]["technique"]["classes"]["play"] == "inicio del punto"
+    assert strokes[1]["technique"]["classes"]["play"] == "peloteo"
+    assert "shot_in_point" not in strokes[2]
