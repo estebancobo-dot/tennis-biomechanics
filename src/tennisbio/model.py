@@ -32,8 +32,9 @@ FACTORS = {
     "intent": ("Intención", ["ataque", "neutra", "defensa"]),
     "stance_impact": ("Apoyo", ["abierto", "semiabierto", "neutro", "cerrado"]),
     "court_side": ("Lado de la pista", ["lado de su derecha", "centro", "lado de su revés"]),
+    "swing": ("Efecto", ["liftado (de abajo arriba)", "plano", "cortado (de arriba abajo)"]),
 }
-CLASS_KEYS = ["stance_loaded", "stance_impact", "finish", "arm", "takeback", "ready_hands", "movement", "shot_type",
+CLASS_KEYS = ["stance_loaded", "stance_impact", "finish", "arm", "takeback", "ready_hands", "movement", "shot_type", "swing",
               "intent", "ball_speed", "ball_height", "depth", "width", "court_side"]
 FOOTWORK_KEYS = ["steps_to_impact", "adjustment_steps", "first_step_s", "last_plant_before_impact_s", "speed_at_impact_mps",
                  "path_m", "peak_speed_mps", "recovery_to_centre_m", "weight_loaded_to_non"]

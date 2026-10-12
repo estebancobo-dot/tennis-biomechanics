@@ -84,7 +84,11 @@ def shot_labels(run, r, H, hand: str):
     b = feet_on_court(run.img, min(len(run.img) - 1, r.impact_frame + int(run.fps)), run.sk, H)
     approach = None if a is None or b is None else bool(np.mean([b[0][1], b[1][1]]) - np.mean([a[0][1], a[1][1]]) > 1.5)
     err = None if land.get("shot_in") is None else not land["shot_in"]
-    return d, approach, err
+    from tennisbio.technique import stroke_technique
+    ph = {k: v.get("frame") for k, v in r.phases.items()}
+    tech = stroke_technique(run.img, run.conf, run.sk, run.fps, run.height_t, r.impact_frame, ph, r.stroke)
+    sw = tech["classes"].get("swing")
+    return d, approach, err, None if sw is None else sw.startswith("cortado")
 
 
 def main():

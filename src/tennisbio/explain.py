@@ -101,9 +101,10 @@ LINES = _lines()
 CLASS_TEXT = {
     "stance_loaded": "Apoyo al armar", "stance_impact": "Apoyo en el impacto", "finish": "Terminación", "arm": "Brazo",
     "takeback": "Preparación", "ready_hands": "Manos en la espera", "movement": "Cómo llega a la bola",
+    "swing": "Trayectoria",
 }
 CLASS_PHASE = {"ready_hands": "ready", "takeback": "takeback", "stance_loaded": "loaded", "stance_impact": "impact",
-               "arm": "impact", "finish": "finish", "movement": "impact"}
+               "arm": "impact", "finish": "finish", "movement": "impact", "swing": "acceleration"}
 
 
 def _class_line(c: dict) -> str | None:

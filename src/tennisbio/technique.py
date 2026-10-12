@@ -337,6 +337,9 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         fc = finish_class(body, sk, fin, out["phases"].get("finish", {}))
         if fc:
             c["finish"] = fc
+    lh = s.get("swing_low_to_high")
+    if lh is not None:                    # the swing path just before contact says the spin she gives
+        c["swing"] = "liftado (de abajo arriba)" if lh > 20 else "cortado (de arriba abajo)" if lh < -5 else "plano"
     e = out["phases"].get("impact", {}).get("elbow_dom")
     if e is not None:
         c["arm"] = "brazo recto" if e >= 150 else "doble flexión" if e < 135 else "intermedio"

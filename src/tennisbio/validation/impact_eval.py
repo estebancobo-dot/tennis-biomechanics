@@ -42,6 +42,7 @@ class Pred:
     direction: str = "-"     # same codes as GTEvent (from where her ball bounced)
     approach: bool | None = None
     error: bool | None = None  # her ball out (None: unknown)
+    slice: bool | None = None  # swing from high to low (None: unknown)
 
 
 def match(preds: list[Pred], gts: list[GTEvent], tol: int) -> tuple[list, list, list]:
@@ -86,6 +87,10 @@ def summarize(pairs, fp, fn, fps_list=None) -> dict:
     out["direction_accuracy"] = None if not dp else round(float(np.mean([a == b for a, b in dp])), 3)
     out["direction_confusion"] = {f"{b}->{a}": sum(1 for x, y in dp if x == a and y == b) for b in ("CC", "DL", "DM", "IO", "II")
                                   for a in ("CC", "DL", "DM", "IO", "II") if any(x == a and y == b for x, y in dp)}
+    sp = [(p.slice, g.technique == "slice") for p, g in pairs if p.slice is not None and g.technique in ("gs", "slice")]
+    if sp:
+        out["slice_recall"] = None if not any(b for _, b in sp) else round(sum(1 for a, b in sp if a and b) / sum(1 for _, b in sp if b), 3)
+        out["topspin_flat_kept"] = round(sum(1 for a, b in sp if not a and not b) / max(1, sum(1 for _, b in sp if not b)), 3)
     ap = [(p.approach, g.approach) for p, g in pairs if p.approach is not None]
     out["approach_accuracy"] = None if not ap else round(float(np.mean([a == b for a, b in ap])), 3)
     ep = [(p.error, g.outcome in ("forced-err", "unforced-err")) for p, g in pairs if p.error is not None and g.outcome != "-"]
