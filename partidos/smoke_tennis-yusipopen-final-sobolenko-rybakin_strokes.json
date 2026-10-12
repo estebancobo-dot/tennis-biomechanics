@@ -1100,112 +1100,10 @@
     "stance_role": "semiabierto neutro"
    },
    "footwork": {
-    "steps_to_impact": 6,
-    "steps": [
-     {
-      "foot": "dom",
-      "t_start": -1.0,
-      "t_land": -0.74,
-      "length_m": 0.19,
-      "dx": 0.16,
-      "dy": 0.09,
-      "crossover": false
-     },
-     {
-      "foot": "non",
-      "t_start": -0.88,
-      "t_land": -0.62,
-      "length_m": 0.51,
-      "dx": 0.46,
-      "dy": -0.24,
-      "crossover": false
-     },
-     {
-      "foot": "non",
-      "t_start": -0.62,
-      "t_land": -0.28,
-      "length_m": 0.83,
-      "dx": 0.22,
-      "dy": -0.8,
-      "crossover": false
-     },
-     {
-      "foot": "dom",
-      "t_start": -0.6,
-      "t_land": -0.26,
-      "length_m": 0.76,
-      "dx": 0.07,
-      "dy": -0.75,
-      "crossover": false
-     },
-     {
-      "foot": "dom",
-      "t_start": -0.24,
-      "t_land": -0.12,
-      "length_m": 0.28,
-      "dx": -0.14,
-      "dy": 0.25,
-      "crossover": false
-     },
-     {
-      "foot": "non",
-      "t_start": -0.24,
-      "t_land": -0.12,
-      "length_m": 0.34,
-      "dx": -0.2,
-      "dy": 0.28,
-      "crossover": false
-     },
-     {
-      "foot": "non",
-      "t_start": -0.1,
-      "t_land": 0.14,
-      "length_m": 0.17,
-      "dx": -0.17,
-      "dy": -0.04,
-      "crossover": false
-     },
-     {
-      "foot": "dom",
-      "t_start": -0.1,
-      "t_land": 0.16,
-      "length_m": 0.15,
-      "dx": -0.13,
-      "dy": -0.08,
-      "crossover": false
-     },
-     {
-      "foot": "dom",
-      "t_start": 0.18,
-      "t_land": 0.38,
-      "length_m": 0.93,
-      "dx": 0.36,
-      "dy": -0.85,
-      "crossover": false
-     },
-     {
-      "foot": "non",
-      "t_start": 0.14,
-      "t_land": 0.52,
-      "length_m": 0.41,
-      "dx": 0.22,
-      "dy": -0.35,
-      "crossover": false
-     }
-    ],
-    "first_step_s": 0.18,
-    "first_step_foot": "non",
-    "first_step_dir_deg": -75.0,
-    "first_step_length_m": 0.83,
-    "first_step_type": "hacia atrás",
-    "adjustment_steps": 3,
-    "last_plant_foot": "non",
-    "last_step_length_m": 0.34,
-    "last_plant_before_impact_s": 0.12,
-    "weight_loaded_to_non": 0.62,
     "airborne_at_impact": true,
     "one_foot_at_impact": false,
-    "speed_at_impact_mps": 1.05,
+    "speed_at_impact_mps": 0.71,
+    "approach_speed_mps": 1.49,
     "path_m": 1.21,
     "move_dx_m": 0.27,
     "move_dy_m": -0.68,
@@ -1217,10 +1115,11 @@
     "speed_post_split_mps": 1.1,
     "move_direction": "sin desplazamiento",
     "direction_changes": 2,
-    "rear_leg_step_after": false,
     "off_centre_at_opp_hit_m": 1.42,
     "moving_at_opp_hit_mps": 1.66,
-    "movement": "en el aire"
+    "movement": "en el aire",
+    "feet_still_share": 0.35,
+    "steps_reliable": false
    },
    "pose": {
     "ready": [
@@ -2881,59 +2780,10 @@
     "stance_role": "cerrado de ataque"
    },
    "footwork": {
-    "steps_to_impact": 1,
-    "steps": [
-     {
-      "foot": "non",
-      "t_start": -1.26,
-      "t_land": -1.08,
-      "length_m": 0.22,
-      "dx": -0.05,
-      "dy": 0.21,
-      "crossover": true
-     },
-     {
-      "foot": "dom",
-      "t_start": 0.28,
-      "t_land": 0.74,
-      "length_m": 1.08,
-      "dx": -1.03,
-      "dy": 0.32,
-      "crossover": false
-     },
-     {
-      "foot": "non",
-      "t_start": 0.92,
-      "t_land": 1.22,
-      "length_m": 0.39,
-      "dx": -0.03,
-      "dy": 0.39,
-      "crossover": false
-     },
-     {
-      "foot": "dom",
-      "t_start": 0.74,
-      "t_land": 1.26,
-      "length_m": 0.59,
-      "dx": 0.37,
-      "dy": 0.46,
-      "crossover": false
-     }
-    ],
-    "first_step_s": 1.44,
-    "first_step_foot": "dom",
-    "first_step_dir_deg": 163.0,
-    "first_step_length_m": 1.08,
-    "first_step_right_way": true,
-    "first_step_type": "lateral",
-    "adjustment_steps": 0,
-    "last_plant_foot": "non",
-    "last_step_length_m": 0.22,
-    "last_plant_before_impact_s": 1.08,
-    "weight_loaded_to_non": -0.37,
     "airborne_at_impact": false,
     "one_foot_at_impact": false,
-    "speed_at_impact_mps": 3.69,
+    "speed_at_impact_mps": 5.04,
+    "approach_speed_mps": 2.2,
     "path_m": 4.15,
     "move_dx_m": -3.1,
     "move_dy_m": 2.57,
@@ -2941,15 +2791,13 @@
     "recovery_dx_m": -1.23,
     "recovery_dy_m": 0.83,
     "recovery_to_centre_m": -1.23,
-    "split_takeoff_s": -1.32,
-    "split_takeoff_vs_opp_s": 0.0,
-    "split_landing_vs_opp_s": 0.16,
     "speed_pre_split_mps": 2.15,
     "speed_post_split_mps": 4.21,
     "move_direction": "lateral",
     "direction_changes": 1,
-    "rear_leg_step_after": false,
-    "movement": "en carrera"
+    "movement": "en carrera",
+    "feet_still_share": 0.15,
+    "steps_reliable": false
    },
    "pose": {
     "ready": [
@@ -4609,7 +4457,7 @@
     "takeback": "compacta",
     "takeback_face": "cara abierta",
     "finish_3x90": false,
-    "movement": "en carrera",
+    "movement": "en movimiento",
     "stance_loaded": "abierto",
     "stance_impact": "cerrado",
     "move_direction": "lateral",
@@ -4623,67 +4471,10 @@
     "stance_role": "cerrado de ataque"
    },
    "footwork": {
-    "steps_to_impact": 3,
-    "steps": [
-     {
-      "foot": "dom",
-      "t_start": -1.32,
-      "t_land": -1.16,
-      "length_m": 0.15,
-      "dx": 0.02,
-      "dy": -0.15,
-      "crossover": false
-     },
-     {
-      "foot": "non",
-      "t_start": -1.04,
-      "t_land": -0.9,
-      "length_m": 0.28,
-      "dx": 0.16,
-      "dy": -0.23,
-      "crossover": false
-     },
-     {
-      "foot": "dom",
-      "t_start": -0.74,
-      "t_land": -0.6,
-      "length_m": 0.27,
-      "dx": 0.1,
-      "dy": -0.25,
-      "crossover": false
-     },
-     {
-      "foot": "dom",
-      "t_start": 0.76,
-      "t_land": 1.12,
-      "length_m": 0.66,
-      "dx": 0.58,
-      "dy": -0.31,
-      "crossover": false
-     },
-     {
-      "foot": "non",
-      "t_start": 0.46,
-      "t_land": 1.12,
-      "length_m": 1.44,
-      "dx": 1.24,
-      "dy": -0.74,
-      "crossover": false
-     }
-    ],
-    "first_step_s": 0.24,
-    "first_step_foot": "non",
-    "first_step_dir_deg": -55.0,
-    "first_step_length_m": 0.28,
-    "first_step_right_way": true,
-    "first_step_type": "pivote",
-    "adjustment_steps": 1,
-    "last_plant_foot": "dom",
-    "last_step_length_m": 0.27,
-    "last_plant_before_impact_s": 0.6,
     "airborne_at_impact": false,
     "one_foot_at_impact": true,
-    "speed_at_impact_mps": 2.95,
+    "speed_at_impact_mps": 4.27,
+    "approach_speed_mps": 1.77,
     "path_m": 1.77,
     "move_dx_m": 1.29,
     "move_dy_m": -1.02,
@@ -4695,10 +4486,11 @@
     "speed_post_split_mps": 0.34,
     "move_direction": "lateral",
     "direction_changes": 0,
-    "rear_leg_step_after": false,
     "off_centre_at_opp_hit_m": 0.34,
     "moving_at_opp_hit_mps": 1.53,
-    "movement": "en carrera"
+    "movement": "en movimiento",
+    "feet_still_share": 0.3,
+    "steps_reliable": false
    },
    "pose": {
     "ready": [
@@ -6403,7 +6195,7 @@
     "takeback": "compacta",
     "takeback_face": "cara cerrada",
     "ready_hands": "mano libre separada",
-    "movement": "en carrera",
+    "movement": "en movimiento",
     "stance_loaded": "abierto",
     "stance_impact": "abierto",
     "move_direction": "hacia delante",
@@ -6414,7 +6206,7 @@
     "width": "abierta",
     "intent": "ataque",
     "shot_type": "al centro",
-    "stance_role": "abierto defensivo",
+    "stance_role": "abierto de ataque",
     "play": "inicio del punto"
    },
    "footwork": {
@@ -6505,7 +6297,9 @@
     "weight_loaded_to_non": 0.36,
     "airborne_at_impact": false,
     "one_foot_at_impact": false,
-    "speed_at_impact_mps": 3.4,
+    "speed_at_impact_mps": 4.64,
+    "approach_speed_mps": 0.77,
+    "feet_at_impact": "ningún pie quieto",
     "path_m": 1.64,
     "move_dx_m": 0.46,
     "move_dy_m": 1.17,
@@ -6523,7 +6317,9 @@
     "rear_leg_step_after": false,
     "off_centre_at_opp_hit_m": 3.54,
     "moving_at_opp_hit_mps": 3.77,
-    "movement": "en carrera"
+    "movement": "en movimiento",
+    "feet_still_share": 0.65,
+    "steps_reliable": true
    },
    "pose": {
     "ready": [
@@ -8184,7 +7980,7 @@
     "takeback": "amplia",
     "takeback_face": "cara vertical",
     "ready_hands": "mano libre separada",
-    "movement": "parada",
+    "movement": "en carrera",
     "stance_loaded": "abierto",
     "stance_impact": "semiabierto",
     "move_direction": "lateral",
@@ -8195,89 +7991,13 @@
     "width": "muy abierta",
     "intent": "neutra",
     "play": "inicio del punto",
-    "stance_role": "semiabierto neutro"
+    "stance_role": "semiabierto defensivo"
    },
    "footwork": {
-    "steps_to_impact": 3,
-    "steps": [
-     {
-      "foot": "dom",
-      "t_start": -1.12,
-      "t_land": -0.74,
-      "length_m": 1.8,
-      "dx": -1.77,
-      "dy": -0.34,
-      "crossover": false
-     },
-     {
-      "foot": "non",
-      "t_start": -0.52,
-      "t_land": -0.34,
-      "length_m": 0.24,
-      "dx": -0.23,
-      "dy": 0.04,
-      "crossover": false
-     },
-     {
-      "foot": "dom",
-      "t_start": -0.7,
-      "t_land": -0.2,
-      "length_m": 1.24,
-      "dx": -0.57,
-      "dy": -1.1,
-      "crossover": false
-     },
-     {
-      "foot": "non",
-      "t_start": -0.14,
-      "t_land": 0.54,
-      "length_m": 1.0,
-      "dx": -0.36,
-      "dy": -0.93,
-      "crossover": false
-     },
-     {
-      "foot": "dom",
-      "t_start": 0.52,
-      "t_land": 0.76,
-      "length_m": 0.51,
-      "dx": -0.45,
-      "dy": -0.25,
-      "crossover": false
-     },
-     {
-      "foot": "non",
-      "t_start": 0.7,
-      "t_land": 0.98,
-      "length_m": 0.37,
-      "dx": -0.12,
-      "dy": -0.35,
-      "crossover": false
-     },
-     {
-      "foot": "dom",
-      "t_start": 0.78,
-      "t_land": 1.08,
-      "length_m": 0.25,
-      "dx": 0.24,
-      "dy": -0.07,
-      "crossover": false
-     }
-    ],
-    "first_step_s": 0.32,
-    "first_step_foot": "non",
-    "first_step_dir_deg": 170.0,
-    "first_step_length_m": 0.24,
-    "first_step_right_way": true,
-    "first_step_type": "jab (pie cercano hacia la bola)",
-    "adjustment_steps": 1,
-    "last_plant_foot": "dom",
-    "last_step_length_m": 1.24,
-    "last_plant_before_impact_s": 0.2,
-    "weight_loaded_to_non": 0.33,
     "airborne_at_impact": false,
     "one_foot_at_impact": true,
-    "speed_at_impact_mps": 0.39,
+    "speed_at_impact_mps": 0.57,
+    "approach_speed_mps": 2.18,
     "path_m": 3.04,
     "move_dx_m": -2.62,
     "move_dy_m": -1.08,
@@ -8289,10 +8009,11 @@
     "speed_post_split_mps": 3.76,
     "move_direction": "lateral",
     "direction_changes": 0,
-    "rear_leg_step_after": false,
     "off_centre_at_opp_hit_m": 0.72,
     "moving_at_opp_hit_mps": 1.15,
-    "movement": "parada"
+    "movement": "en carrera",
+    "feet_still_share": 0.16,
+    "steps_reliable": false
    },
    "pose": {
     "ready": [
@@ -9908,7 +9629,7 @@
     "takeback_face": "cara abierta",
     "finish_3x90": false,
     "ready_hands": "mano libre separada",
-    "movement": "en carrera",
+    "movement": "en movimiento",
     "stance_loaded": "semiabierto",
     "stance_impact": "semiabierto",
     "move_direction": "lateral",
@@ -9920,7 +9641,7 @@
     "intent": "neutra",
     "shot_type": "al centro",
     "play": "peloteo",
-    "stance_role": "semiabierto defensivo"
+    "stance_role": "semiabierto neutro"
    },
    "footwork": {
     "steps_to_impact": 3,
@@ -9992,7 +9713,9 @@
     "weight_loaded_to_non": 0.63,
     "airborne_at_impact": false,
     "one_foot_at_impact": false,
-    "speed_at_impact_mps": 3.57,
+    "speed_at_impact_mps": 3.71,
+    "approach_speed_mps": 1.85,
+    "feet_at_impact": "ningún pie quieto",
     "path_m": 2.55,
     "move_dx_m": -1.53,
     "move_dy_m": -0.63,
@@ -10007,7 +9730,9 @@
     "rear_leg_step_after": false,
     "off_centre_at_opp_hit_m": 1.91,
     "moving_at_opp_hit_mps": 0.53,
-    "movement": "en carrera"
+    "movement": "en movimiento",
+    "feet_still_share": 0.5,
+    "steps_reliable": true
    },
    "pose": {
     "ready": [
@@ -11742,7 +11467,9 @@
     "weight_loaded_to_non": 0.59,
     "airborne_at_impact": false,
     "one_foot_at_impact": false,
-    "speed_at_impact_mps": 1.98,
+    "speed_at_impact_mps": 1.91,
+    "approach_speed_mps": 0.84,
+    "feet_at_impact": "un pie apoyado",
     "path_m": 1.07,
     "move_dx_m": -0.05,
     "move_dy_m": 0.75,
@@ -11753,7 +11480,9 @@
     "move_direction": "sin desplazamiento",
     "direction_changes": 1,
     "rear_leg_step_after": false,
-    "movement": "en movimiento"
+    "movement": "en movimiento",
+    "feet_still_share": 0.58,
+    "steps_reliable": true
    },
    "pose": {
     "ready": [
@@ -13204,7 +12933,7 @@
     "takeback_face": "cara abierta",
     "finish_3x90": true,
     "ready_hands": "dos manos en la raqueta",
-    "movement": "en carrera",
+    "movement": "parada",
     "stance_loaded": "abierto",
     "stance_impact": "abierto",
     "move_direction": "sin desplazamiento",
@@ -13267,7 +12996,9 @@
     "weight_loaded_to_non": 0.49,
     "airborne_at_impact": false,
     "one_foot_at_impact": false,
-    "speed_at_impact_mps": 2.65,
+    "speed_at_impact_mps": 3.0,
+    "approach_speed_mps": 0.66,
+    "feet_at_impact": "ningún pie quieto",
     "path_m": 0.85,
     "move_dx_m": 0.0,
     "move_dy_m": 0.77,
@@ -13285,7 +13016,9 @@
     "rear_leg_step_after": false,
     "off_centre_at_opp_hit_m": 2.19,
     "moving_at_opp_hit_mps": 3.4,
-    "movement": "en carrera"
+    "movement": "parada",
+    "feet_still_share": 0.65,
+    "steps_reliable": true
    },
    "pose": {
     "ready": [
@@ -14987,67 +14720,10 @@
     "stance_role": "cerrado de ataque"
    },
    "footwork": {
-    "steps_to_impact": 2,
-    "steps": [
-     {
-      "foot": "dom",
-      "t_start": -1.18,
-      "t_land": -0.94,
-      "length_m": 0.44,
-      "dx": -0.44,
-      "dy": 0.08,
-      "crossover": false
-     },
-     {
-      "foot": "dom",
-      "t_start": -0.84,
-      "t_land": -0.36,
-      "length_m": 1.95,
-      "dx": -0.24,
-      "dy": 1.93,
-      "crossover": false
-     },
-     {
-      "foot": "dom",
-      "t_start": -0.2,
-      "t_land": 0.22,
-      "length_m": 1.77,
-      "dx": -0.42,
-      "dy": 1.72,
-      "crossover": false
-     },
-     {
-      "foot": "non",
-      "t_start": -0.02,
-      "t_land": 0.5,
-      "length_m": 1.25,
-      "dx": -0.16,
-      "dy": 1.24,
-      "crossover": false
-     },
-     {
-      "foot": "non",
-      "t_start": 0.52,
-      "t_land": 1.12,
-      "length_m": 2.15,
-      "dx": 0.57,
-      "dy": 2.07,
-      "crossover": false
-     }
-    ],
-    "first_step_s": 0.42,
-    "first_step_foot": "dom",
-    "first_step_dir_deg": 170.0,
-    "first_step_length_m": 0.44,
-    "first_step_type": "lateral",
-    "adjustment_steps": 0,
-    "last_plant_foot": "dom",
-    "last_step_length_m": 1.95,
-    "last_plant_before_impact_s": 0.36,
-    "weight_loaded_to_non": 0.44,
     "airborne_at_impact": false,
     "one_foot_at_impact": false,
-    "speed_at_impact_mps": 4.49,
+    "speed_at_impact_mps": 3.2,
+    "approach_speed_mps": 2.98,
     "path_m": 3.62,
     "move_dx_m": -0.22,
     "move_dy_m": 2.47,
@@ -15060,8 +14736,9 @@
     "speed_post_split_mps": 2.57,
     "move_direction": "hacia delante",
     "direction_changes": 4,
-    "rear_leg_step_after": false,
-    "movement": "en carrera"
+    "movement": "en carrera",
+    "feet_still_share": 0.0,
+    "steps_reliable": false
    },
    "pose": {
     "ready": [
@@ -16602,7 +16279,7 @@
     "takeback": "amplia",
     "takeback_face": "cara abierta",
     "ready_hands": "mano libre separada",
-    "movement": "en carrera",
+    "movement": "en movimiento",
     "stance_loaded": "abierto",
     "stance_impact": "abierto",
     "move_direction": "lateral",
@@ -16675,7 +16352,9 @@
     "weight_loaded_to_non": 0.33,
     "airborne_at_impact": false,
     "one_foot_at_impact": false,
-    "speed_at_impact_mps": 3.2,
+    "speed_at_impact_mps": 4.02,
+    "approach_speed_mps": 0.83,
+    "feet_at_impact": "ningún pie quieto",
     "path_m": 0.85,
     "move_dx_m": 0.6,
     "move_dy_m": 0.54,
@@ -16691,7 +16370,9 @@
     "move_direction": "lateral",
     "direction_changes": 1,
     "rear_leg_step_after": false,
-    "movement": "en carrera"
+    "movement": "en movimiento",
+    "feet_still_share": 0.7,
+    "steps_reliable": true
    },
    "pose": {
     "ready": [
