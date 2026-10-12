@@ -1,6 +1,6 @@
 # Auditoría de requisitos (forehand)
 
-6 golpes del lado cercano. ✔ 48 cumplidos · ✘ 7 no cumplidos · … 54 sin golpes suficientes en esta ejecución · ! 6 avisos
+6 golpes del lado cercano. ✔ 55 cumplidos · ✘ 8 no cumplidos · … 54 sin golpes suficientes en esta ejecución · ! 6 avisos
 
 ## 1. Toda la taxonomía del golpe y todas sus variantes (situaciones)
 
@@ -95,9 +95,17 @@
 
 ## 2. Información, no tablas: vídeo real como prueba en cada pantalla
 
+- ✘ **Pantalla «Análisis de golpe»**: 3161 caracteres de texto, 0 vídeos, 15 gráficos; el vídeo del golpe no se carga
 - ✔ **Cada golpe tiene su vídeo**: 6 de 6 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 6 de 6
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
+- ✔ **Pantalla «Su derecha»**: 3097 caracteres de texto, 0 vídeos, 9 gráficos
+- ✔ **Pantalla «Panel»**: 2912 caracteres de texto, 0 vídeos, 0 gráficos; mensajes de vacío: ['Hacen falta al menos 3 golpes en dos tramos del partido para dibujar la evolución de x-factor (hay 6).']
+- ✔ **Pantalla «Videoteca»**: 1666 caracteres de texto, 0 vídeos, 0 gráficos
+- ✔ **Pantalla «Comparar golpes»**: 3134 caracteres de texto, 0 vídeos, 2 gráficos
+- ✔ **Pantalla «Explorador»**: 1638 caracteres de texto, 0 vídeos, 0 gráficos
+- ✔ **Pantalla «Comparativas»**: 2432 caracteres de texto, 0 vídeos, 10 gráficos; mensajes de vacío: ['Sin datos de estabilidad de la cabeza en estos grupos.']
+- ✔ **Pantalla «Pista»**: 420 caracteres de texto, 0 vídeos, 1 gráficos
 
 ## 3. Nada inventado: valores posibles, respaldados por sus golpes; lo no medible se dice
 

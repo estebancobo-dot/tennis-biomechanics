@@ -3,8 +3,8 @@
  "strokes": 6,
  "near": 6,
  "summary": {
-  "ok": 48,
-  "falta": 7,
+  "ok": 55,
+  "falta": 8,
   "pocos datos": 54,
   "aviso": 6
  },
@@ -1179,6 +1179,70 @@
    "name": "El navegador puede reproducir los vídeos",
    "status": "ok",
    "detail": "formatos: h264"
+  },
+  {
+   "req": 2,
+   "area": "Pantallas",
+   "name": "Pantalla «Su derecha»",
+   "status": "ok",
+   "detail": "3097 caracteres de texto, 0 vídeos, 9 gráficos",
+   "file": "pantalla_1_modelo.jpg"
+  },
+  {
+   "req": 2,
+   "area": "Pantallas",
+   "name": "Pantalla «Panel»",
+   "status": "ok",
+   "detail": "2912 caracteres de texto, 0 vídeos, 0 gráficos; mensajes de vacío: ['Hacen falta al menos 3 golpes en dos tramos del partido para dibujar la evolución de x-factor (hay 6).']",
+   "file": "pantalla_2_panel.jpg"
+  },
+  {
+   "req": 2,
+   "area": "Pantallas",
+   "name": "Pantalla «Videoteca»",
+   "status": "ok",
+   "detail": "1666 caracteres de texto, 0 vídeos, 0 gráficos",
+   "file": "pantalla_3_videoteca.jpg"
+  },
+  {
+   "req": 2,
+   "area": "Pantallas",
+   "name": "Pantalla «Análisis de golpe»",
+   "status": "falta",
+   "detail": "3161 caracteres de texto, 0 vídeos, 15 gráficos; el vídeo del golpe no se carga",
+   "file": "pantalla_4_golpe.jpg"
+  },
+  {
+   "req": 2,
+   "area": "Pantallas",
+   "name": "Pantalla «Comparar golpes»",
+   "status": "ok",
+   "detail": "3134 caracteres de texto, 0 vídeos, 2 gráficos",
+   "file": "pantalla_5_comparar.jpg"
+  },
+  {
+   "req": 2,
+   "area": "Pantallas",
+   "name": "Pantalla «Explorador»",
+   "status": "ok",
+   "detail": "1638 caracteres de texto, 0 vídeos, 0 gráficos",
+   "file": "pantalla_6_explorador.jpg"
+  },
+  {
+   "req": 2,
+   "area": "Pantallas",
+   "name": "Pantalla «Comparativas»",
+   "status": "ok",
+   "detail": "2432 caracteres de texto, 0 vídeos, 10 gráficos; mensajes de vacío: ['Sin datos de estabilidad de la cabeza en estos grupos.']",
+   "file": "pantalla_7_comparativas.jpg"
+  },
+  {
+   "req": 2,
+   "area": "Pantallas",
+   "name": "Pantalla «Pista»",
+   "status": "ok",
+   "detail": "420 caracteres de texto, 0 vídeos, 1 gráficos",
+   "file": "pantalla_8_pista.jpg"
   },
   {
    "req": 5,
