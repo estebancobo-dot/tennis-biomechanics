@@ -53,6 +53,8 @@ DESCRIPTORS = {
     "wrist_non_lateral": ("brazo", "Mano libre, lateral", "%", 3, "respecto a la cadera (+ lado dominante)"),
     "hands_apart": ("brazo", "Separación entre manos", "%", 3, "pequeña = las dos manos en la raqueta"),
     "arm_extension": ("brazo", "Extensión del brazo dominante", "%", 2, "hombro–muñeca / longitud del brazo"),
+    "elbow_dom_vs_shoulder": ("brazo", "Codo dominante respecto al hombro", "%", 3, "vertical (+ por encima), % de altura"),
+    "elbow_dom_lateral": ("brazo", "Separación del codo dominante del cuerpo", "%", 3, "codo respecto al hombro dominante, lateral (+ hacia fuera), % de altura"),
     # racket (5 points, near side)
     "racket_head_vs_wrist": ("raqueta", "Cabeza de la raqueta respecto a la muñeca", "%", 1,
                              "vertical en la imagen (+ por encima); con la cámara inclinada, apuntar hacia la red también parece «arriba»"),
@@ -89,6 +91,10 @@ STROKE_DESCRIPTORS = {
     "wrist_drop": ("raqueta", "Caída de la mano antes de acelerar", "%", 3, "del armado al punto más bajo"),
     "split_hop": ("pies", "Altura del split step", "%", 2, "salto, % de altura"),
     "loaded_vs_bounce": ("ritmo", "Armado completo respecto al bote", "s", 2, "− = ya armada cuando bota la bola"),
+    "acceleration_vs_bounce": ("ritmo", "Inicio de la aceleración respecto al bote", "s", 2, "+ = empieza a acelerar después del bote"),
+    "takeback_vs_first_step": ("ritmo", "Giro respecto al primer paso", "s", 2, "− = empieza a girar antes de dar el primer paso (gira mientras se mueve)"),
+    "hip_rise": ("piernas", "Empuje de piernas", "%", 2, "lo que sube la cadera del punto más bajo (armado/aceleración) al impacto, % de altura"),
+    "weight_shift": ("equilibrio", "Transferencia de peso", "", 2, "cambio del peso entre los pies del armado al impacto (+ hacia el pie no dominante)"),
     "t_max_shoulder_turn": ("ritmo", "Máximo giro de hombros", "s", 2, "antes del impacto (élite ≈ 0,23 s, Landlinger 2010)"),
     "t_max_hip_turn": ("ritmo", "Máximo giro de cadera", "s", 2, "antes del impacto (élite ≈ 0,24 s, Landlinger 2010)"),
     "pause_at_loaded": ("ritmo", "Pausa en el armado", "s", 2, "mano casi quieta entre el armado y el swing"),
@@ -177,6 +183,11 @@ def posture(body: np.ndarray, img: np.ndarray, sk: Skeleton, f: int, scale: floa
         out["wrist_dom_lateral"] = _pct(j("dom_wrist")[0] * ds)
         if ok("dom_shoulder"):
             out["wrist_dom_vs_shoulder"] = _pct(j("dom_wrist")[1] - j("dom_shoulder")[1])
+    # the elbow: high or low against the shoulder, and away from or tucked to the body (coaches use
+    # both to tell the "beside the body" backswing from the "around the back" one)
+    if ok("dom_elbow", "dom_shoulder"):
+        out["elbow_dom_vs_shoulder"] = _pct(j("dom_elbow")[1] - j("dom_shoulder")[1])
+        out["elbow_dom_lateral"] = _pct((j("dom_elbow")[0] - j("dom_shoulder")[0]) * ds)
     if ok("non_wrist") and np.isfinite(feet_y):
         out["wrist_non_height"] = _pct(j("non_wrist")[1] - feet_y)
         out["wrist_non_lateral"] = _pct(j("non_wrist")[0] * ds)
@@ -453,6 +464,16 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
             s[key] = round((impact - (lo + int(np.nanargmax(w)))) / fps, 3)
     if ev["loaded"] is not None and bounce is not None:
         s["loaded_vs_bounce"] = round((ev["loaded"] - bounce) / fps, 3)
+    if ev["acceleration"] is not None and bounce is not None:
+        s["acceleration_vs_bounce"] = round((ev["acceleration"] - bounce) / fps, 3)
+    # leg drive ("sit down and come up") and weight transfer, from the postures already measured
+    ph_ = out["phases"]
+    lows = [ph_.get(p, {}).get("hip_height") for p in ("loaded", "acceleration")]
+    lows = [x for x in lows if x is not None]
+    if lows and ph_.get("impact", {}).get("hip_height") is not None:
+        s["hip_rise"] = round(ph_["impact"]["hip_height"] - min(lows), 1)
+    if ph_.get("loaded", {}).get("com_over_feet") is not None and ph_.get("impact", {}).get("com_over_feet") is not None:
+        s["weight_shift"] = round(ph_["impact"]["com_over_feet"] - ph_["loaded"]["com_over_feet"], 2)
     if ev["loaded"] is not None:                 # how long the hand stays (almost) still at the end of the backswing
         from .kinematics import smooth, speed
         wv = smooth(speed(dw, fps), fps, 0.06)
@@ -524,6 +545,10 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         fw = footwork(img, sk, H, scale, fps, impact, opp, ev["ready"] if (context or {}).get("split") else None,
                       ev["finish"], ev["loaded"], (context or {}).get("surface", ""), (context or {}).get("next_opp"), stroke)
         out["footwork"] = fw
+        # does she turn while she is still moving? (coaches: "turn while running")
+        appr = fw.get("approach_steps") or []
+        if appr and out["stroke"].get("t_takeback") is not None:
+            out["stroke"]["takeback_vs_first_step"] = round(-out["stroke"]["t_takeback"] - appr[0]["t_start"], 3)
         if fw.get("movement"):
             c["movement"] = fw["movement"]
         # feet_at_impact is kept in the footwork data but not used as a class: at 50 fps the ankle

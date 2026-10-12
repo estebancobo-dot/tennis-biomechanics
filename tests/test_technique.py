@@ -211,3 +211,18 @@ def test_every_step_is_named_like_a_coach():
     k = step_kinds(st, impact, fps)
     assert k == ["lateral", "cruzado", "carrera", "carrera", "ajuste", "hacia atrás"]
     assert kinds_text(k[:5]) == "1 paso lateral, 1 paso cruzado, 2 pasos de carrera y 1 paso de ajuste"
+
+
+def test_copy_cue_is_built_only_from_her_values():
+    from tennisbio.explain import copy_cue
+
+    st = lambda m: {"median": m, "p25": m, "p75": m, "n": 20, "rel": 2, "unit": "", "name": ""}
+    model = {"typical": {"stroke.loaded_vs_bounce": st(-0.1), "loaded.shoulder_turn": st(83), "loaded.shoulder_abd_non": st(80),
+                         "impact.wrist_dom_vs_hip": st(8), "stroke.head_motion_cm": st(2)}, "chain": None}
+    classes = {"stance_loaded": {"n": 20, "counts": {"abierto": 15, "cerrado": 5}},
+               "ball_phase": {"n": 20, "counts": {"bola subiendo": 14}}, "arm": {"n": 4, "counts": {"recto": 4}}}
+    c = copy_cue("loaded", model, classes)
+    assert c == "Termina de armar antes de que bote la bola, con los hombros girados unos 85°, apoyo abierto y el brazo libre señalando la bola."
+    i = copy_cue("impact", model, classes)
+    assert i.startswith("Toma la bola subiendo, a la altura de la cintura") and "brazo" not in i      # arm: 4 strokes, not enough
+    assert copy_cue("finish", model, classes) is None                                                 # nothing measured: nothing said

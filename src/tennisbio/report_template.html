@@ -288,6 +288,8 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .pcard .focus { padding: 0 12px 12px; font-size: 12.5px; color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 8px; margin: 0 12px 12px; padding-left: 0; padding-right: 0; }
 .pcard .focus b { color: var(--ink); }
 details.tech { margin-top: 16px; }
+.pcard .copy { margin: 0 12px 8px; padding: 8px 10px; font-size: 13px; line-height: 1.45; background: var(--raise); border-left: 3px solid var(--accent); border-radius: 4px; }
+.pcard .copy b { color: var(--accent); }
 .pcard details.more { padding: 0 12px 10px; font-size: 12.5px; }
 .pcard details.more summary { cursor: pointer; color: var(--ink-3); }
 .pcard details.more ul { padding: 6px 0 0; }
@@ -333,6 +335,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
   <li><b>«Su derecha»:</b> cada fase dice sus claves en frases, <i>por qué importan</i> (con su fuente) y <i>qué mirar</i>; incluye cuerdas, apoyos, pies y cadena cinética. Necesita al menos 12 golpes.</li>
   <li><b>«Análisis de golpe» → «La bola y ella»:</b> qué hace la jugadora cuando golpea la rival, cuando la bola cruza la red, cuando bota, cuando llega arriba y cuando golpea. Se ve en cada golpe, sin mínimo.</li>
   <li><b>«Análisis de golpe» → «Sus pies en este golpe»:</b> el ciclo completo de pies en 8 pasos (split step, primer paso, cada paso hasta la bola con su tipo —lateral, cruzado, de carrera, de ajuste—, frenado, apoyo, impacto, tras golpear y recuperación) y la pista vista desde arriba con su recorrido y cada pisada. Lo que no se ve en un golpe lo dice («no medible en este golpe»).</li>
+  <li><b>Lo aprendido de 16 vídeos de entrenadores:</b> capa «Líneas» en el vídeo (hombros, cadera y plano del hombro); en «Su derecha», «Para copiarla» en cada fase y medidas nuevas (codo al armar, transferencia de peso, empuje de piernas, aceleración respecto al bote, si gira mientras se mueve).</li>
   <li><b>«Análisis de golpe» → capa «Alturas»:</b> barras horizontales de la cabeza y la cadera sobre el vídeo: discontinua = su altura en la espera, continua = ahora, y cuántos cm ha bajado o subido.</li>
   <li><b>«Videoteca»:</b> filtros combinables (apoyo, dirección, bola, contacto, resultado): por ejemplo «cerrado» + «paralela», o «cerca de la red».</li>
   <li><b>Fases:</b> la preparación empieza cuando giran los hombros y la terminación se busca después del impacto (antes salían demasiado tarde y demasiado pronto).</li>
@@ -416,7 +419,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
         </div>
         <div class="grp">
           <div class="seg" id="view"><button data-v="crop" aria-pressed="true">Recorte</button><button data-v="full" aria-pressed="false">Plano completo</button></div>
-          <div class="seg" id="layers"><button data-v="skel" aria-pressed="true">Esqueleto</button><button data-v="ang" aria-pressed="true">Ángulos</button><button data-v="trail" aria-pressed="true">Trayectoria</button><button data-v="ball" aria-pressed="true">Bola</button><button data-v="court" aria-pressed="true">Pista</button><button data-v="heights" aria-pressed="true" title="Altura de la cabeza y la cadera respecto a la espera">Alturas</button></div>
+          <div class="seg" id="layers"><button data-v="skel" aria-pressed="true">Esqueleto</button><button data-v="ang" aria-pressed="true">Ángulos</button><button data-v="trail" aria-pressed="true">Trayectoria</button><button data-v="ball" aria-pressed="true">Bola</button><button data-v="court" aria-pressed="true">Pista</button><button data-v="heights" aria-pressed="true" title="Altura de la cabeza y la cadera respecto a la espera">Alturas</button><button data-v="lines" aria-pressed="true" title="Líneas de hombros y cadera y plano del hombro, como las dibujan los entrenadores">Líneas</button></div>
           <button class="btn" id="g-cmp" title="Abrir este golpe en Comparar">⧉ Comparar</button>
         </div>
       </div>
@@ -800,7 +803,7 @@ const SKC = { l: "#5fd3e6", r: "#ff9f43", c: "#e3e8ec" };
 const video = document.createElement("video");
 video.muted = true; video.playsInline = true; video.preload = "auto";
 const cv = document.getElementById("cv"), cx = cv.getContext("2d");
-let cur = null, ser = null, PH = [], T0 = -1, T1 = .8, FPS = 50, NF = 1, tNow = 0, view = "crop", layers = { skel: true, ang: true, trail: true, ball: true, court: true, heights: true }, speed = .25, playing = false;
+let cur = null, ser = null, PH = [], T0 = -1, T1 = .8, FPS = 50, NF = 1, tNow = 0, view = "crop", layers = { skel: true, ang: true, trail: true, ball: true, court: true, heights: true, lines: true }, speed = .25, playing = false;
 const snap = t => Math.round(clamp(t, T0, T1) * FPS) / FPS;
 const fIdx = t => clamp(Math.round((t - T0) * FPS), 0, NF - 1);
 const domW = () => (PL.hand === "left" ? 9 : 10);
@@ -891,12 +894,27 @@ function drawFrame(ctx, Wc, Hc, f, opts, S = MAIN) {
     for (let g = Math.max(0, f - nt); g < f; g++) { const b = sr.ball[g]; if (!b || b[0] === null) continue; const [x, y] = P(b); ctx.fillStyle = `rgba(255,95,210,${.15 + .6 * (g - f + nt) / nt})`; ctx.beginPath(); ctx.arc(x, y, lw * 1.6, 0, 7); ctx.fill(); }
     const b = sr.ball[f]; if (b && b[0] !== null) { const [x, y] = P(b); ctx.strokeStyle = "#ff5fd2"; ctx.lineWidth = lw; ctx.beginPath(); ctx.arc(x, y, lw * 4, 0, 7); ctx.stroke(); }
   }
+  if (opts.lines && q) coachLines(ctx, q, P, lw, S);
   if (opts.heights && q) heightBars(ctx, f, P, lw, S);
   if (opts.court) miniCourt(ctx, Wc, Hc, f, S);
 }
 // Height of her head and hips above her own feet now, against the same at the start of the stroke
 // (the ready position): dashed line = where the head (hips) would be at the ready height, solid line =
 // where it is; the difference in cm (her torso as the ruler, 0.288 of her height: Winter).
+// The lines coaches draw over a frame: the shoulder line and the hip line (how much each has turned:
+// from behind, a turned line looks shorter), and the vertical "plane" through the hitting shoulder
+// (does the racket go behind it, or stay beside the body?).
+function coachLines(ctx, q, P, lw, S) {
+  const tl = torsoLen(S); if (!isN(tl)) return;
+  const line = (a, b, col, label) => { if (!a || !b) return; const dx = b[0] - a[0], dy = b[1] - a[1], n = Math.hypot(dx, dy) || 1, e = tl * .35;
+    const p1 = P([a[0] - dx / n * e, a[1] - dy / n * e]), p2 = P([b[0] + dx / n * e, b[1] + dy / n * e]);
+    ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = lw * 1.2; ctx.globalAlpha = .9; ctx.beginPath(); ctx.moveTo(...p1); ctx.lineTo(...p2); ctx.stroke();
+    ctx.font = `600 ${Math.max(10, lw * 6)}px JetBrains Mono, monospace`; ctx.fillStyle = col; ctx.fillText(label, p2[0] + 4, p2[1]); ctx.restore(); };
+  line(q[5], q[6], "#ffb347", "línea de hombros"); line(q[11], q[12], "#b38bff", "línea de cadera");
+  const ds = q[PL.hand === "left" ? 5 : 6]; if (ds) { const top = P([ds[0], ds[1] - tl * .9]), bot = P([ds[0], ds[1] + tl * 1.3]);
+    ctx.save(); ctx.strokeStyle = "rgba(255,255,255,.75)"; ctx.lineWidth = lw; ctx.setLineDash([3, 4]); ctx.beginPath(); ctx.moveTo(...top); ctx.lineTo(...bot); ctx.stroke();
+    ctx.setLineDash([]); ctx.font = `600 ${Math.max(10, lw * 6)}px JetBrains Mono, monospace`; ctx.fillStyle = "rgba(255,255,255,.85)"; ctx.fillText("plano del hombro", top[0] + 4, top[1] + 10); ctx.restore(); }
+}
 function headY(q) { if (q[0]) return q[0][1]; const e = [q[3], q[4], q[1], q[2]].filter(Boolean); return e.length ? e.reduce((a, p) => a + p[1], 0) / e.length : null; }
 function feetY(q) { return q[15] && q[16] ? (q[15][1] + q[16][1]) / 2 : null; }
 function hRef(S) {
@@ -990,7 +1008,7 @@ async function renderKF() {
   for (let i = 0; i < PH.length; i++) {
     if (!isN(PH[i].t) || cur.id !== id) continue;
     await seekSrc(TS, snap(PH[i].t)); if (cur.id !== id) return;
-    drawFrame(cvs[i].getContext("2d"), 320, 200, kF(TS, snap(PH[i].t)), { skel: true, trail: false, ball: false }, TS);
+    drawFrame(cvs[i].getContext("2d"), 320, 200, kF(TS, snap(PH[i].t)), { skel: true, trail: false, ball: false, lines: true }, TS);
   }
   await renderBallMoments(id); if (cur.id !== id) return;
   await renderStrobe(id);
@@ -1640,7 +1658,7 @@ async function renderModel() {
   if (mSit) { const V = MODEL.variants[mSit]; ch.innerHTML = `<div><b>${V.factor_name}: ${V.level}</b> · ${V.n} golpes (${Math.round(V.share * 100)} %)${V.usual ? " · es su situación habitual: la referencia de las comparaciones" : ""}</div>` + (V.changes.length ? V.changes.map(t => `<div>· ${t}</div>`).join("") : `<div class="dim3">Ningún rasgo cambia de forma clara respecto a lo habitual (con el error de medida y la corrección por comparaciones múltiples).</div>`); }
   renderModelCurves(v.curves || (mSit ? null : MODEL.curves));
   const box = document.getElementById("m-cards");
-  box.innerHTML = (v.cards || []).map((c, i) => `<div class="pcard"><canvas width="400" height="500" data-i="${i}" title="Ver este momento en vídeo"></canvas><h3><span>${i + 1} · ${c.title}</span>${c.changes ? `<span class="ch">${c.changes} cambia${c.changes > 1 ? "n" : ""}</span>` : ""}</h3><ul>${c.lines.filter(l => l.main).map(l => mLine(c, l, true)).join("") || `<li class="dim3">${c.lines.length ? "Sin claves medidas con golpes suficientes en esta fase." : "Sin datos suficientes en esta fase."}</li>`}</ul>${c.lines.some(l => !l.main) ? `<details class="more"><summary>Más medidas de esta fase (${c.lines.filter(l => !l.main).length})</summary><ul>${c.lines.filter(l => !l.main).map(l => mLine(c, l, false)).join("")}</ul></details>` : ""}${c.focus ? `<div class="focus"><b>Qué mirar:</b> ${c.focus}</div>` : ""}</div>`).join("");
+  box.innerHTML = (v.cards || []).map((c, i) => `<div class="pcard"><canvas width="400" height="500" data-i="${i}" title="Ver este momento en vídeo"></canvas><h3><span>${i + 1} · ${c.title}</span>${c.changes ? `<span class="ch">${c.changes} cambia${c.changes > 1 ? "n" : ""}</span>` : ""}</h3><ul>${c.lines.filter(l => l.main).map(l => mLine(c, l, true)).join("") || `<li class="dim3">${c.lines.length ? "Sin claves medidas con golpes suficientes en esta fase." : "Sin datos suficientes en esta fase."}</li>`}</ul>${c.lines.some(l => !l.main) ? `<details class="more"><summary>Más medidas de esta fase (${c.lines.filter(l => !l.main).length})</summary><ul>${c.lines.filter(l => !l.main).map(l => mLine(c, l, false)).join("")}</ul></details>` : ""}${c.copy ? `<div class="copy"><b>Para copiarla:</b> ${c.copy}</div>` : ""}${c.focus ? `<div class="focus"><b>Qué mirar:</b> ${c.focus}</div>` : ""}</div>`).join("");
   box.querySelectorAll("canvas").forEach(cv => cv.addEventListener("click", () => { const c = v.cards[+cv.dataset.i]; if (!s) return; loadStroke(s).then(() => { const t = s.phases[c.phase]; if (isN(t)) setT(t); }); showTab("golpe"); }));
   box.querySelectorAll("li[data-ph]").forEach(li => li.addEventListener("click", () => { if (!s) return; const ph = li.dataset.ph; loadStroke(s).then(() => { const t = s.phases[ph]; if (isN(t)) setT(t); }); showTab("golpe"); }));
   document.getElementById("m-play").disabled = !ss.length;

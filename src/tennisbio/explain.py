@@ -77,6 +77,14 @@ def _lines():
     ]
     L["loaded"].append(("loaded.racket_forearm", lambda t: f"Al terminar de armar, ángulo antebrazo–raqueta de {fmt(t['median'])}° "
                                                        f"({_rng(t)}°): la muñeca ya va echada hacia atrás (retraso)."))
+    L["loaded"] += [
+        ("loaded.elbow_dom_vs_shoulder", lambda t: f"Codo {'por encima' if t['median'] > 2 else 'por debajo' if t['median'] < -2 else 'a la altura'} del hombro al armar "
+                                                   f"({fmt(abs(t['median']))} % de su altura)."),
+        ("loaded.elbow_dom_lateral", lambda t: f"Codo separado del cuerpo un {fmt(t['median'])} % de su altura al armar."
+                                               if t["median"] > 6 else "Codo pegado al cuerpo al armar."),
+        ("stroke.takeback_vs_first_step", lambda t: (f"Gira los hombros {fmt(abs(t['median']), 2)} s antes de dar el primer paso: gira mientras se mueve."
+                                                     if t["median"] < -0.05 else f"Gira después de empezar a moverse ({fmt(t['median'], 2)} s).")),
+    ]
     L["acceleration"] = [
         ("stroke.t_acceleration", lambda t: f"Empieza a acelerar {fmt(t['median'], 2)} s antes del impacto."),
         ("stroke.wrist_drop", lambda t: f"Antes deja caer la mano un {fmt(t['median'])} % de su altura ({_rng(t)} %)."),
@@ -84,6 +92,11 @@ def _lines():
                                                          "La cabeza de la raqueta sigue a la altura de la mano o por encima.")),
         ("acceleration.racket_forearm", lambda t: f"Ángulo antebrazo–raqueta de {fmt(t['median'])}° (retraso de la muñeca)."),
         ("stroke.dur_forward", lambda t: f"Del armado al impacto tarda {fmt(t['median'], 2)} s ({_rng(t, 2)} s)."),
+        ("stroke.acceleration_vs_bounce", lambda t: (f"Empieza a acelerar {fmt(t['median'], 2)} s después del bote." if t["median"] > 0.02 else
+                                                     f"Empieza a acelerar {fmt(-t['median'], 2)} s antes del bote." if t["median"] < -0.02 else
+                                                     "Empieza a acelerar justo cuando bota la bola.")),
+        ("stroke.hip_rise", lambda t: f"Empuja con las piernas: la cadera sube un {fmt(t['median'])} % de su altura hasta el impacto." if t["median"] > 1.5
+                            else "Golpea sin subir la cadera (sin empuje vertical de piernas)."),
         ("stroke.racket_speed_rel", lambda t: f"Velocidad de la raqueta: {fmt(t['median'], 1)} alturas por segundo ({_rng(t, 1)}); "
                                               "no es su velocidad real (sale borrosa), solo sirve para comparar sus golpes entre sí."),
     ]
@@ -103,6 +116,10 @@ def _lines():
                                              f"Cabeza desplazada un {fmt(abs(t['median']))} % hacia su {'lado del brazo' if t['median'] > 0 else 'lado contrario'}.")),
         ("impact.body_height", lambda t: f"Cuerpo a un {fmt(t['median'])} % de su altura de pie."),
         ("impact.base_m", lambda t: f"Base de {fmt(t['median'], 2)} m ({_rng(t, 2)} m)."),
+        ("stroke.weight_shift", lambda t: ("Pasa el peso hacia el pie de delante del armado al impacto." if t["median"] > 0.1 else
+                                           "Se queda con el peso atrás en el impacto." if t["median"] < -0.1 else
+                                           "Mantiene el peso repartido entre los pies del armado al impacto.")),
+        ("impact.elbow_dom_vs_shoulder", lambda t: f"En el impacto el codo está {fmt(abs(t['median']))} % de su altura {'por encima' if t['median'] > 0 else 'por debajo'} del hombro."),
         ("stroke.hand_on_handle", lambda t: f"Agarra la raqueta con la mano a un {fmt(t['median'])} % de su longitud desde el final del mango "
                                             f"({_rng(t)} %; fiabilidad baja: la mano mide pocos píxeles)."),
     ]
@@ -236,6 +253,13 @@ COACH = {
     "braking_step": ("En carrera, frenar con un último paso largo permite golpear en equilibrio.", "Giles y Reid 2021"),
     "kick_back": ("La patada atrás (tijera) compensa el giro del tronco cuando golpea en el aire o en carrera.", "Tennis Australia"),
     "around_ball": ("Rodear la bola para pegar de derecha desde el lado del revés (derecha invertida) es una decisión táctica de ataque.", "TennisViz; Tennis Australia"),
+    "loaded.elbow_dom_vs_shoulder": ("Codo alto y separado del cuerpo: armado al lado del cuerpo; codo bajo y pegado: armado más por detrás de la espalda.", "Análisis de entrenadores WTA/ATP; Tennis Australia"),
+    "loaded.elbow_dom_lateral": ("Codo alto y separado del cuerpo: armado al lado del cuerpo; codo bajo y pegado: armado más por detrás de la espalda.", "Análisis de entrenadores WTA/ATP; Tennis Australia"),
+    "impact.elbow_dom_vs_shoulder": ("La altura del codo en el impacto dice cuánto «tira» el brazo hacia arriba en el contacto.", "Elliott 1997"),
+    "stroke.takeback_vs_first_step": ("Girar mientras se desplaza ahorra tiempo: llega a la bola ya preparada.", "Tennis Australia; ITF"),
+    "stroke.acceleration_vs_bounce": ("Esperar al bote para empezar a acelerar sincroniza el swing con la bola.", "ITF (Crespo, Reid)"),
+    "stroke.hip_rise": ("Subir con las piernas al golpear inicia la cadena cinética desde el suelo y ayuda al efecto liftado.", "Elliott 2006; Reid 2013"),
+    "stroke.weight_shift": ("Pasar el peso hacia delante (o de la pierna exterior a la otra en apoyo abierto) lleva la energía del suelo a la bola.", "Tennis Australia"),
 }
 # What a coach checks at each moment (critical features: Knudson 2006; Tennis Australia)
 PHASE_FOCUS = {
@@ -252,9 +276,11 @@ PHASE_FOCUS = {
 PRIMARY = {
     "ready": ["footwork.split_landing_vs_opp_s", "ready.hip_height", "class.ready_hands"],
     "takeback": ["stroke.takeback_vs_net", "stroke.takeback_vs_bounce", "takeback.shoulder_turn", "class.takeback", "first_step_right_way"],
-    "loaded": ["stroke.loaded_vs_bounce", "loaded.x_factor", "class.stance_loaded", "class.takeback_face", "strings", "loaded.shoulder_abd_non"],
-    "acceleration": ["acceleration.racket_head_vs_wrist", "chain", "class.swing"],
-    "impact": ["class.ball_phase", "impact.wrist_dom_vs_hip", "class.arm", "class.stance_impact", "stroke.head_motion_cm", "strings"],
+    "loaded": ["stroke.loaded_vs_bounce", "loaded.x_factor", "class.stance_loaded", "class.takeback_face", "strings",
+               "loaded.elbow_dom_vs_shoulder", "loaded.shoulder_abd_non"],
+    "acceleration": ["acceleration.racket_head_vs_wrist", "chain", "stroke.hip_rise", "class.swing"],
+    "impact": ["class.ball_phase", "impact.wrist_dom_vs_hip", "class.arm", "class.stance_impact", "stroke.weight_shift",
+               "stroke.head_motion_cm", "strings"],
     "extension": ["extension.arm_extension", "stroke.swing_rise_after"],
     "finish": ["class.finish", "finish.wrist_dom_vs_shoulder", "strings"],
     "recovery": ["footwork.recovery_to_centre_m", "footwork.off_centre_at_opp_hit_m", "rear_leg_step_after"],
@@ -326,8 +352,96 @@ def phase_cards(model: dict, stroke: str, factor: str | None = None, level: str 
                               "change": {"diff": round(e["diff"], 3), "unit": t["unit"], "ref": e["ref"]}})
         skel = ((var or {}).get("skeleton") or {}).get(p) or model["skeleton"].get(p)
         cards.append({"phase": p, "title": title, "lines": lines, "skeleton": skel, "focus": PHASE_FOCUS.get(p),
+                      "copy": copy_cue(p, model, classes),
                       "changes": sum(1 for l in lines if l["change"])})
     return cards
+
+
+def copy_cue(p: str, model: dict, classes: dict) -> str | None:
+    """«Para copiarla»: what to do at this moment, as a coach would say it, built only from her
+    measured values (median of her strokes; the main class when it has enough strokes)."""
+    t = lambda k: _t(model, k)
+    def top(ck):
+        c = classes.get(ck)
+        return next(iter(c["counts"])) if c and c.get("n", 0) >= MIN_N and c.get("counts") else None
+    def height_word(v):       # contact height against the hips (% of her height)
+        return "las rodillas" if v < -15 else "la cadera" if v < 3 else "la cintura" if v < 12 else "el pecho" if v < 22 else "los hombros"
+    parts = []
+    if p == "ready":
+        if top("ready_hands") == "dos manos en la raqueta":
+            parts.append("espera con las dos manos en la raqueta")
+        h = t("ready.hip_height")
+        if h:
+            parts.append(f"con las rodillas flexionadas (cadera a un {fmt(h['median'])} % de tu altura)")
+        sp = t("footwork.split_landing_vs_opp_s")
+        if sp:
+            parts.append("y cae del split step justo cuando golpea la rival" if abs(sp["median"]) <= 0.1 else
+                         f"y cae del split step {fmt(abs(sp['median']), 2)} s {'después' if sp['median'] > 0 else 'antes'} del golpe de la rival")
+    elif p == "takeback":
+        n = t("stroke.takeback_vs_net")
+        if n:
+            parts.append("empieza a girar los hombros antes de que la bola cruce la red" if n["median"] < -0.03 else
+                         "empieza a girar los hombros cuando la bola cruza la red" if n["median"] <= 0.05 else
+                         f"empieza a girar los hombros {fmt(n['median'], 2)} s después de que la bola cruce la red")
+        ha = t("takeback.hands_apart")
+        if ha and ha["median"] < 15:
+            parts.append("con la mano libre todavía en la raqueta")
+        if top("takeback"):
+            parts.append(f"con una preparación {top('takeback')}")
+        tf = t("stroke.takeback_vs_first_step")
+        if tf and tf["median"] < -0.05:
+            parts.append("girando mientras te mueves")
+    elif p == "loaded":
+        lb = t("stroke.loaded_vs_bounce")
+        if lb:
+            parts.append("termina de armar antes de que bote la bola" if lb["median"] < 0 else "termina de armar justo después del bote")
+        sh = t("loaded.shoulder_turn")
+        if sh:
+            parts.append(f"con los hombros girados unos {fmt(round(sh['median'] / 5) * 5)}°")
+        if top("stance_loaded"):
+            parts.append(f"apoyo {top('stance_loaded')}")
+        ab = t("loaded.shoulder_abd_non")
+        if ab and ab["median"] > 60:
+            parts.append("y el brazo libre señalando la bola")
+    elif p == "acceleration":
+        r = t("acceleration.racket_head_vs_wrist")
+        if r and r["median"] < -2:
+            parts.append("deja caer la raqueta por debajo de la mano")
+        hr = t("stroke.hip_rise")
+        if hr and hr["median"] > 1.5:
+            parts.append("empuja hacia arriba con las piernas")
+        ch = model.get("chain")
+        if ch and ch.get("n", 0) >= MIN_N:
+            parts.append("y deja que la cadera y el tronco arrastren al brazo")
+    elif p == "impact":
+        if top("ball_phase"):
+            parts.append(f"toma la bola {top('ball_phase').replace('bola ', '')}")
+        h = t("impact.wrist_dom_vs_hip")
+        if h:
+            parts.append(f"a la altura de {height_word(h['median'])}")
+        if top("arm"):
+            parts.append(f"con el brazo en {top('arm')}" if top("arm") == "doble flexión" else f"con el brazo {top('arm')}")
+        if top("stance_impact"):
+            parts.append(f"apoyo {top('stance_impact')}")
+        hm = t("stroke.head_motion_cm")
+        if hm and hm["median"] <= 3:
+            parts.append("y la cabeza quieta")
+    elif p == "extension":
+        e = t("extension.arm_extension")
+        if e:
+            parts.append("sigue empujando hacia la bola con el brazo después del contacto")
+    elif p == "finish":
+        if top("finish"):
+            parts.append(f"termina {top('finish')}" if top("finish").startswith(("sobre", "alrededor")) else f"termina con un final {top('finish')}")
+    elif p == "recovery":
+        if top("recovery_first_step"):
+            parts.append(f"vuelve hacia el centro empezando con un paso {top('recovery_first_step')}")
+        elif t("footwork.recovery_to_centre_m"):
+            parts.append("vuelve hacia el centro en cuanto terminas el golpe")
+    if not parts:
+        return None
+    s = ", ".join(parts).replace(", y ", " y ")
+    return s[0].upper() + s[1:] + "."
 
 
 def _share_true(c: dict | None) -> tuple[int, int] | None:
