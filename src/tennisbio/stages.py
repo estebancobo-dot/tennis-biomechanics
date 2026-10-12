@@ -478,9 +478,7 @@ def st_fine_opponent(ctx: Context):
 
 
 def _fine(ctx: Context, p, keep, out_name: str):
-    """Full-quality analysis of each kept candidate in its own window (same code as analyze_clip)."""
-    from .clip_pipeline import run_clip
-
+    """Full-quality analysis of the kept candidates, one window per stretch of play."""
     cands = _read(ctx.path("candidates.json"))
     court = _read(ctx.path("court.json"))
     score = _read(ctx.path("score.json"))
