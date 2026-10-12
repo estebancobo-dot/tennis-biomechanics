@@ -3,10 +3,10 @@
  "strokes": 6,
  "near": 6,
  "summary": {
-  "ok": 60,
-  "falta": 5,
-  "pocos datos": 70,
-  "aviso": 1
+  "ok": 79,
+  "falta": 1,
+  "pocos datos": 61,
+  "aviso": 0
  },
  "items": [
   {
@@ -228,8 +228,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "2. Cuerpo · Carga de la pierna exterior / descenso de cadera",
-   "status": "pocos datos",
-   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
    "keys": [
     "acceleration.hip_height",
     "acceleration.knee_dom",
@@ -414,6 +414,53 @@
    "measured": 0.0
   },
   {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Altura y separación del codo (armado e impacto)",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.elbow_dom_lateral",
+    "acceleration.elbow_dom_vs_shoulder",
+    "ball_bounce.elbow_dom_lateral",
+    "ball_bounce.elbow_dom_vs_shoulder",
+    "ball_net.elbow_dom_lateral",
+    "ball_net.elbow_dom_vs_shoulder",
+    "ball_top.elbow_dom_lateral",
+    "ball_top.elbow_dom_vs_shoulder"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Transferencia de peso del armado al impacto",
+   "status": "pocos datos",
+   "detail": "se mide (50% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.com_over_feet",
+    "ball_bounce.com_over_feet",
+    "ball_top.com_over_feet",
+    "extension.com_over_feet",
+    "finish.com_over_feet",
+    "impact.com_over_feet",
+    "loaded.com_over_feet",
+    "recovery.com_over_feet"
+   ],
+   "measured": 0.5
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Empuje de piernas («bajar y subir»)",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "stroke.hip_rise"
+   ],
+   "measured": 1.0
+  },
+  {
    "req": 3,
    "area": "Taxonomía",
    "name": "2. Cuerpo · Fuerzas, momentos articulares",
@@ -438,8 +485,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Split step: despegue y aterrizaje respecto al golpe del rival",
-   "status": "pocos datos",
-   "detail": "se mide (33% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 33% de los golpes y en el informe",
    "keys": [
     "footwork.split_landing_vs_opp_s",
     "footwork.split_takeoff_vs_opp_s"
@@ -463,8 +510,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Velocidad 0,2 s antes y después del split",
-   "status": "pocos datos",
-   "detail": "se mide (83% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 83% de los golpes y en el informe",
    "keys": [
     "footwork.speed_post_split_mps",
     "footwork.speed_pre_split_mps"
@@ -475,8 +522,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Primer paso: momento (reacción)",
-   "status": "pocos datos",
-   "detail": "se mide (50% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "footwork.first_step_s"
    ],
@@ -517,8 +564,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Longitud de cada paso; anchura del primero",
-   "status": "pocos datos",
-   "detail": "se mide (50% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "footwork.first_step_length_m",
     "footwork.last_step_length_m"
@@ -529,8 +576,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Pasos de ajuste",
-   "status": "pocos datos",
-   "detail": "se mide (50% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "footwork.adjustment_steps"
    ],
@@ -552,8 +599,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Cambios de dirección",
-   "status": "pocos datos",
-   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
    "keys": [
     "footwork.direction_changes"
    ],
@@ -563,8 +610,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Velocidad media y máxima de carrera",
-   "status": "pocos datos",
-   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
    "keys": [
     "footwork.peak_speed_mps",
     "footwork.speed_at_impact_mps"
@@ -575,8 +622,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Recorrido hasta la bola",
-   "status": "pocos datos",
-   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
    "keys": [
     "footwork.path_m"
    ],
@@ -609,8 +656,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Pierna que carga",
-   "status": "pocos datos",
-   "detail": "se mide (50% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "footwork.weight_loaded_to_non"
    ],
@@ -620,8 +667,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · En carrera, en salto, a un pie, deslizando",
-   "status": "pocos datos",
-   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
    "keys": [
     "class.movement",
     "footwork.movement"
@@ -632,8 +679,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Última zancada más larga en carrera",
-   "status": "pocos datos",
-   "detail": "se mide (33% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 33% de los golpes y en el informe",
    "keys": [
     "footwork.last_step_length_m"
    ],
@@ -643,8 +690,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Recuperación: distancia, dirección, tiempo",
-   "status": "pocos datos",
-   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
    "keys": [
     "class.recovery_first_step",
     "footwork.moving_at_opp_hit_mps",
@@ -661,8 +708,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Cada paso nombrado: lateral (sin cruzar), cruzado, de carrera, hacia delante, hacia atrás, de ajuste",
-   "status": "falta",
-   "detail": "se mide (50% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "status": "ok",
+   "detail": "medido en el 50% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "class.approach_main",
     "footwork.approach_pattern",
@@ -674,8 +721,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Rodear la bola para la derecha invertida",
-   "status": "falta",
-   "detail": "se mide (50% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "status": "ok",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "class.around_ball"
    ],
@@ -685,8 +732,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Frenado: último paso largo con caída de la velocidad",
-   "status": "falta",
-   "detail": "se mide (33% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "status": "ok",
+   "detail": "medido en el 33% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "footwork.braking_step"
    ],
@@ -696,8 +743,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Patada atrás (tijera) tras el impacto",
-   "status": "falta",
-   "detail": "se mide (50% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "status": "ok",
+   "detail": "medido en el 50% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "footwork.kick_back"
    ],
@@ -707,8 +754,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Recuperación: tipo de cada paso de vuelta, cuándo empieza",
-   "status": "falta",
-   "detail": "se mide (50% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "status": "ok",
+   "detail": "medido en el 50% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "class.recovery_first_step",
     "footwork.recovery_first_step",
@@ -722,8 +769,8 @@
    "req": 3,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Nuevo split step antes del siguiente golpe de la rival",
-   "status": "aviso",
-   "detail": "no observable desde la tele, pero el informe no lo dice en «Lo que la tele no permite medir»"
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
   },
   {
    "req": 3,
@@ -753,6 +800,25 @@
     "tphase.takeback"
    ],
    "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)",
+   "status": "falta",
+   "detail": "hueco medible sin implementar"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Inicio de la aceleración respecto al bote; girar mientras se desplaza",
+   "status": "pocos datos",
+   "detail": "se mide (83% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "stroke.acceleration_vs_bounce",
+    "stroke.takeback_vs_first_step"
+   ],
+   "measured": 0.83
   },
   {
    "req": 1,
@@ -1229,7 +1295,7 @@
    "area": "Valores posibles",
    "name": "Lo no medible se dice",
    "status": "ok",
-   "detail": "14 elementos en «Lo que la tele no permite medir»"
+   "detail": "15 elementos en «Lo que la tele no permite medir»"
   },
   {
    "req": 2,
@@ -1257,7 +1323,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Su derecha»",
    "status": "ok",
-   "detail": "4718 caracteres de texto, 0 vídeos, 8 gráficos",
+   "detail": "5116 caracteres de texto, 0 vídeos, 8 gráficos",
    "file": "pantalla_1_modelo.jpg"
   },
   {
@@ -1281,7 +1347,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "4904 caracteres de texto, 1 vídeos, 20 gráficos",
+   "detail": "4911 caracteres de texto, 1 vídeos, 20 gráficos",
    "file": "pantalla_4_golpe.jpg"
   },
   {
@@ -1377,7 +1443,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "4 min para 4 min de vídeo ≈ 3.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "5 min para 4 min de vídeo ≈ 4.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
