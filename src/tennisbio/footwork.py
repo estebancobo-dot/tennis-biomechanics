@@ -22,6 +22,7 @@ MAX_STEP_M = 2.2             # longer "steps" are runs where the ground contacts
 MAX_STEP_S = 0.7             # a foot cannot stay in the air this long in one step
 AIR_PCT = 0.04               # ankle higher than its ground level by > 4 % of the height = in the air
 MAX_SPEED = 9.0              # m/s: faster than any tennis player; above it the feet track is noise
+STEPS_MIN_STILL = 0.4        # share of frames with a foot seen still, below which steps are not measured
 
 
 @dataclass
@@ -302,4 +303,18 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
     v = out.get("approach_speed_mps")
     out["movement"] = ("en el aire" if out["airborne_at_impact"] else "deslizando" if out.get("sliding_at_impact")
                        else None if v is None else "parada" if v < 0.7 else "en movimiento" if v < 2.0 else "en carrera")
+    # Are single steps measurable here? In a rally a foot is on the ground most of the time; when
+    # the ankles of this player (small in the image, 50 fps) jitter so much that a foot is seen still
+    # in less than 40 % of the frames, steps, plants and the split step are not measured: they would
+    # be invented (user's PC: 5-36 % on a ~190 px player). Position, distance and speeds stay.
+    ground = plant[a:b][np.isfinite(feet_g[a:b]).all(axis=2)]
+    still = float(np.mean(ground)) if ground.size else 0.0
+    out["feet_still_share"] = round(still, 2)
+    if still < STEPS_MIN_STILL:
+        for k in [k for k in out if k.startswith(("steps", "first_step", "last_plant", "last_step", "split_",
+                                                    "adjustment", "rear_leg", "feet_at_impact", "weight_loaded"))]:
+            del out[k]
+        out["steps_reliable"] = False
+    else:
+        out["steps_reliable"] = True
     return out

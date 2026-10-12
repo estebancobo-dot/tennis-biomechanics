@@ -225,6 +225,9 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
             }
     # 5. footwork summary and the overall mean skeleton
     out["footwork"] = {k: out["typical"].get(f"footwork.{k}") for k in FOOTWORK_KEYS if out["typical"].get(f"footwork.{k}")}
+    rel = [(s["technique"].get("footwork") or {}).get("steps_reliable") for s in near]
+    rel = [r for r in rel if r is not None]
+    out["steps_reliable_share"] = round(sum(rel) / len(rel), 2) if rel else None
     out["footwork"]["first_step_type"] = _counts([(s["technique"].get("footwork") or {}).get("first_step_type") for s in near])
     out["footwork"]["last_plant_foot"] = _counts([(s["technique"].get("footwork") or {}).get("last_plant_foot") for s in near])
     out["footwork"]["move_direction"] = _counts([(s["technique"].get("classes") or {}).get("move_direction") for s in near])

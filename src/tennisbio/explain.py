@@ -252,7 +252,12 @@ def model_view(model: dict, stroke: str) -> dict:
                 "cards": phase_cards(model, stroke, fk, lv), "strokes": v["strokes"],
                 "changes": [change_text(model, e) for e in v["effects"]],
             }
+    nm = list(NOT_MEASURABLE)
+    if model.get("steps_reliable_share") is not None and model["steps_reliable_share"] < 0.5:
+        nm.append("Pasos uno a uno, primer paso y split step: en estas imágenes sus tobillos tiemblan demasiado "
+                  f"(medibles solo en el {round(100 * model['steps_reliable_share'])} % de los golpes); sí se miden "
+                  "su desplazamiento, la velocidad con la que llega y su recuperación.")
     return {"summary": summary(model, stroke), "cards": phase_cards(model, stroke), "variants": variants,
             "typical_strokes": model.get("typical_strokes", []), "n": model["n_strokes"], "n_near": model["n_near"],
-            "footwork": model["footwork"], "not_measurable": NOT_MEASURABLE,
+            "footwork": model["footwork"], "not_measurable": nm,
             "factors": {fk: FACTORS[fk][0] for fk in model["variants"]}}
