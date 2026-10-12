@@ -56,3 +56,15 @@ ya medida
     (paso terminado en 0 s)
 
 ==> [2026-10-13 00:49:19] Vista lateral: videos de entrenamiento de la jugadora (YouTube; solo lo que falte)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+[00:49:21] 5 vídeos candidatos; se analizan 5 (300 s de cada uno)
+[00:49:21]   Elena RYBAKINA Groundstrokes + Slow Motion | Australian Open 2026 (NEBTA OFFICIAL)
+[01:00:26]     22 golpes, 5 derechas de lado medidas, 1 descartadas por valores imposibles (665 s)
+[01:00:26]   See How Clean Rybakina Hits at Court Level (Courtside Tennis Highlights)
+[01:12:23]     23 golpes, 7 derechas de lado medidas, 1 descartadas por valores imposibles (717 s)
+[01:12:23]   Elena Rybakina- Camila Osorio practicing at Wimbledon 2021 (TOP TENNIS MATCH)
+[01:33:09]     15 golpes, 2 derechas de lado medidas, 0 descartadas por valores imposibles (1247 s)
+[01:33:09] Hecho: 5 vídeos, 91 golpes, 15 derechas de lado → C:\tenis\output\entrenamiento
+    (paso terminado en 43 min 50 s)
+
+==> [2026-10-13 01:33:10] 3/4 35 minutos de partido, todas las etapas e informe (unos 60 min)

@@ -74,7 +74,13 @@
   "camera": "en diagonal y de frente",
   "url": "https://www.youtube.com/watch?v=Q6YTDYr_bRM",
   "start": 0,
-  "duration_s": 1000000000.0,
-  "query": "lista elegida"
+  "duration_s": 150.929705,
+  "query": "lista elegida",
+  "seconds_kept": 150.929705,
+  "analysed_s": 150.929705,
+  "version": 3,
+  "strokes": 15,
+  "lateral_forehands": 2,
+  "discarded": 0
  }
 ]
