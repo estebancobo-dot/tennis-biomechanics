@@ -83,6 +83,12 @@ function Subir-Registros {
                 $f = Join-Path $m.FullName $j
                 if (Test-Path $f) { Copy-Item $f "$d\partidos\$($m.Name)_$j" -Force }
             }
+            # de la prueba rapida: las series fotograma a fotograma de sus golpes (unos 100 KB cada una)
+            if ($m.Name -like "smoke_*" -and (Test-Path "$($m.FullName)\series")) {
+                New-Item -ItemType Directory -Force -Path "$d\series" | Out-Null
+                Remove-Item "$d\series\*" -Force -ErrorAction SilentlyContinue
+                Copy-Item "$($m.FullName)\series\*.json" "$d\series" -Force -ErrorAction SilentlyContinue
+            }
         }
         # imagenes de diagnostico de la prueba rapida (planos con la pista dibujada) y lo que lee el OCR
         if (Test-Path "$Base\output\_smoke\diag") {
