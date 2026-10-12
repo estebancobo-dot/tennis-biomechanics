@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261012164821
+Start time: 20261012170046
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\prueba_rapida.ps1
-Process ID: 5572
+Process ID: 13048
 PSVersion: 5.1.26100.9549
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
@@ -54,41 +54,17 @@ C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Р
 ya medida
 
 ==> 3/4 Cuatro minutos de partido, todas las etapas e informe (15-30 min)
-Buscando un tramo de juego (un fotograma cada 30 s desde el minuto 32)…
-  minuto 36: pista vista en 0 de los últimos 10 fotogramas (6 s)
-  minuto 41: pista vista en 0 de los últimos 10 fotogramas (13 s)
-  minuto 46: pista vista en 3 de los últimos 10 fotogramas (19 s)
-  minuto 51: pista vista en 2 de los últimos 10 fotogramas (26 s)
-  minuto 56: pista vista en 2 de los últimos 10 fotogramas (34 s)
-  minuto 61: pista vista en 5 de los últimos 10 fotogramas (41 s)
-  minuto 66: pista vista en 2 de los últimos 10 fotogramas (46 s)
-  minuto 71: pista vista en 3 de los últimos 10 fotogramas (52 s)
-  minuto 76: pista vista en 4 de los últimos 10 fotogramas (59 s)
-  minuto 81: pista vista en 1 de los últimos 10 fotogramas (66 s)
-  minuto 86: pista vista en 0 de los últimos 10 fotogramas (72 s)
-  minuto 91: pista vista en 4 de los últimos 10 fotogramas (79 s)
-  minuto 96: pista vista en 2 de los últimos 10 fotogramas (84 s)
-  minuto 101: pista vista en 3 de los últimos 10 fotogramas (92 s)
-  minuto 106: pista vista en 4 de los últimos 10 fotogramas (101 s)
-  minuto 111: pista vista en 3 de los últimos 10 fotogramas (110 s)
-  minuto 116: pista vista en 3 de los últimos 10 fotogramas (117 s)
-  minuto 121: pista vista en 4 de los últimos 10 fotogramas (124 s)
-Tramo de juego encontrado en el minuto 121
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (16:50, etapa 9 de 10)
+Tramo de juego (ya buscado): minuto 121
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (17:00, etapa 9 de 10)
 load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
   fine:  15 % (2/13 golpes candidatos · 2 confirmados) · 0 s · quedan ≈ 0 s
 C:\tenis\tennis-biomech\src\tennisbio\technique.py:116: RuntimeWarning: All-NaN axis encountered
   feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:285: RuntimeWarning: All-NaN slice encountered
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:290: RuntimeWarning: All-NaN slice encountered
   fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
-  fine:  31 % (4/13 golpes candidatos · 3 confirmados) · 48 s · quedan ≈ 2 min
-  fine:  46 % (6/13 golpes candidatos · 3 confirmados) · 2 min · quedan ≈ 2 min
-  fine:  69 % (9/13 golpes candidatos · 6 confirmados) · 3 min · quedan ≈ 85 s
-  fine:  77 % (10/13 golpes candidatos · 7 confirmados) · 4 min · quedan ≈ 69 s
-  fine:  92 % (12/13 golpes candidatos · 9 confirmados) · 5 min · quedan ≈ 24 s
-  fine: 100 % (13/13 golpes candidatos · 10 confirmados) · 6 min · quedan ≈ 0 s
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine terminada en 5.7 min
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (16:56, etapa 10 de 10)
+  fine: 100 % (13/13 golpes candidatos · 10 confirmados) · 18 s · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine terminada en 0.5 min
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (17:01, etapa 10 de 10)
 [smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent terminada en 0.0 min
 
 Etapas ejecutadas: fine, fine_opponent
@@ -100,13 +76,13 @@ Etapas ejecutadas: fine, fine_opponent
   court          27.5 s  {'segments': 20, 'with_court': 11, 'pitch_deg_median': 18.3}
   identity        3.7 s  {'runs': 10, 'votes': 4, 'confidence': 1.0, 'by_end_changes': 9, 'by_clothes': 0, 'conflicts': 1, 'decided': 9}
   candidates      3.8 s  {'candidates': 50, 'far': 37, 'with_audio': 49, 'opponent_runs': 0, 'identity_unknown': 0, 'replay_runs_skipped': 0, 'audio_track': 0}
-  fine          342.0 s  {'candidates': 13, 'confirmed': 10, 'errors': 0, 'warnings': [], 'forehands': 6, 'windows': 7, 'seconds': {'pose': 185.7, 'bola': 65.0, 'raqueta': 61.8, 'cuerdas_y_3d': 20.6, 'analisis_ventana': 1.7, 'recorte': 0.3}}
+  fine           29.2 s  {'candidates': 13, 'confirmed': 10, 'errors': 0, 'warnings': [], 'forehands': 6, 'windows': 7, 'seconds': {'cuerdas_y_3d': 20.3, 'analisis_ventana': 1.7, 'recorte': 0.3, 'pose': 0.0}}
   fine_opponent     0.0 s  {'enabled': False}
 Golpes: 6 nuevos, 6 en C:\tenis\output\_smoke\exportar\golpes
 Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
 Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
 
-Total 5.7 min para 4 min de vídeo → partido de 210 min ≈ 5.0 h (estimación lineal)
+Total 0.5 min para 4 min de vídeo → partido de 210 min ≈ 0.4 h (estimación lineal)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Vídeos, montajes y resumen PDF: C:\tenis\output\_smoke\exportar
 
@@ -117,5 +93,5 @@ PRUEBA TERMINADA. El informe se ha abierto en el navegador.
 El registro se envia a Claude automaticamente.
 **********************
 Windows PowerShell transcript end
-End time: 20261012165656
+End time: 20261012170200
 **********************
