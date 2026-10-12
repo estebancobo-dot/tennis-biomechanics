@@ -61,6 +61,8 @@ DESCRIPTORS = {
     "racket_angle": ("raqueta", "Inclinación de la raqueta", "°", 2, "eje empuñadura→punta respecto a la horizontal de la imagen"),
     "racket_forearm": ("raqueta", "Ángulo antebrazo–raqueta", "°", 2, "retraso de la muñeca (lag); 2D"),
     "racket_tip_height": ("raqueta", "Altura de la punta de la raqueta", "%", 2, "sobre el pie más bajo"),
+    "racket_head_lateral": ("raqueta", "Cabeza de la raqueta respecto al hombro dominante", "%", 2,
+                            "lateral, % de altura: + por fuera (al lado del cuerpo), − hacia la espalda"),
     "face_tilt": ("raqueta", "Cierre de la cara", "°", 2, "+ cuerdas hacia el suelo; en el impacto es una estimación"),
     "face_yaw": ("raqueta", "Dirección de la cara", "°", 2, "0 = hacia la red"),
 }
@@ -293,6 +295,9 @@ def racket_at(kps: dict, img: np.ndarray, sk: Skeleton, f: int, scale: float, fe
             out["racket_forearm"] = _deg(math.degrees(math.acos(np.clip(c, -1, 1))))
         if np.isfinite(feet_img_y):
             out["racket_tip_height"] = _pct((feet_img_y - tip[1]) / scale)
+        sh = img[f, sk["dom_shoulder"]]
+        if np.isfinite(sh).all():         # + outside the hitting shoulder (beside the body), − towards her back
+            out["racket_head_lateral"] = _pct((head[0] - sh[0]) * sk.dom_sign / scale)
     if faces and first_face is not None:
         i = f - first_face
         if 0 <= i < len(faces.get("tilt", [])):
@@ -554,6 +559,9 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         c["takeback_face"] = "cara al suelo (pat the dog)"
     elif ld.get("face_tilt") is not None:
         c["takeback_face"] = "cara cerrada" if ld["face_tilt"] > 10 else "cara abierta" if ld["face_tilt"] < -10 else "cara vertical"
+    if ld.get("racket_head_lateral") is not None:      # the WTA/ATP debate: racket beside the body or behind the back
+        v = ld["racket_head_lateral"]
+        c["racket_plane"] = "al lado del cuerpo" if v > 5 else "por detrás de la espalda" if v < -2 else "a la altura del hombro"
     fn = out["phases"].get("finish", {})
     if fn.get("shoulder_abd_dom") is not None and fn.get("elbow_dom") is not None:
         c["finish_3x90"] = bool(abs(fn["shoulder_abd_dom"] - 90) <= 25 and abs(fn["elbow_dom"] - 90) <= 30)

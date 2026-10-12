@@ -237,3 +237,21 @@ def test_contact_type_half_volley_and_volley():
     assert contact_type(None, 80, True, (0, 9.0)) == "volea"                # no bounce on her side, near the net
     assert contact_type(None, 80, True, (0, 2.0)) is None                   # no bounce seen at the baseline: unknown
     assert contact_type(None, 80, False, (0, 9.0)) is None                  # ball not followed: never a volley
+
+
+def test_racket_head_beside_or_behind_the_body():
+    import numpy as np
+    from tennisbio.skeleton import Skeleton
+    from tennisbio.technique import racket_at
+
+    sk = Skeleton("coco17", "right")
+    img = np.full((3, 17, 2), np.nan)
+    img[1, sk["dom_wrist"]] = (330, 200)
+    img[1, sk["dom_elbow"]] = (320, 230)
+    img[1, sk["dom_shoulder"]] = (300, 150)
+    # seen from behind, right-hander: image-right is her hitting side
+    beside = {"1": [[380, 120], [370, 140], [335, 205], [375, 130], [385, 130]]}     # head 70 px outside the shoulder
+    behind = {"1": [[260, 120], [270, 140], [320, 205], [265, 130], [255, 130]]}     # head towards her back
+    a = racket_at(beside, img, sk, 1, 400.0, np.nan, None, None)["racket_head_lateral"]
+    b = racket_at(behind, img, sk, 1, 400.0, np.nan, None, None)["racket_head_lateral"]
+    assert a > 5 and b < -2

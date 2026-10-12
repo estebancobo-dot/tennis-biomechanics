@@ -211,6 +211,11 @@ COACH = {
     "impact.elbow_dom": ("Brazo recto o doble flexión son dos modelos válidos; el recto suele ir con empuñaduras más cerradas.", "Elliott 1989, 1997"),
     "class.arm": ("Brazo recto o doble flexión son dos modelos válidos; el recto suele ir con empuñaduras más cerradas.", "Elliott 1989, 1997"),
     "class.ball_phase": ("Tomar la bola subiendo quita tiempo a la rival; tomarla cayendo da más tiempo propio.", "ITF (Crespo, Reid)"),
+    "class.racket_plane": ("Con la raqueta al lado del cuerpo el armado es más corto y estable; por detrás de la espalda "
+                           "el recorrido es más largo (más aceleración, más difícil de sincronizar). Es un debate abierto "
+                           "entre entrenadores del circuito.", "Entrenadores WTA/ATP"),
+    "loaded.racket_head_lateral": ("Dónde queda la cabeza de la raqueta respecto al hombro al final del armado: al lado del "
+                                   "cuerpo o hacia la espalda.", "Entrenadores WTA/ATP"),
     "class.contact_type": ("La media volea (justo tras el bote, muy baja) y la volea (sin bote, junto a la red) piden un swing "
                            "más corto y la cara más estable que la derecha normal: se separan para no mezclarlas.", "ITF (Crespo, Reid)"),
     "stroke.contact_vs_top": ("Tomar la bola subiendo quita tiempo a la rival; tomarla cayendo da más tiempo propio.", "ITF (Crespo, Reid)"),
@@ -311,12 +316,13 @@ CLASS_TEXT = {
     "takeback": "Preparación", "ready_hands": "Manos en la espera", "movement": "Cómo llega a la bola", "feet_at_impact": "Pies en el impacto",
     "swing": "Trayectoria", "ball_phase": "Bola en el contacto", "finish_3x90": "Termina con hombro y codo a unos 90° («3 × 90°»)",
     "contact_type": "Contacto (tras el bote, media volea o volea)",
+    "racket_plane": "Raqueta al final del armado",
 }
 CLASS_PHASE = {"ready_hands": "ready", "takeback": "takeback", "stance_loaded": "loaded", "takeback_face": "loaded",
                "ball_phase": "impact",
                "stance_impact": "impact", "stance_role": "impact",
                "arm": "impact", "finish": "finish", "finish_3x90": "finish", "movement": "impact", "feet_at_impact": "impact", "swing": "acceleration",
-               "contact_type": "impact"}
+               "contact_type": "impact", "racket_plane": "loaded"}
 
 
 def _class_line(c: dict) -> str | None:

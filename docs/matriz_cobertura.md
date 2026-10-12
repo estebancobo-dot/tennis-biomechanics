@@ -94,7 +94,7 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Elemento | Fuente | Estado | Implementación / acción |
 |---|---|---|---|
 | Forma del armado: bucle, recto, "pat the dog" | Yandell; TA | ✔ | clases `takeback` y `takeback_face` (cara al suelo = pat the dog) |
-| Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP) | Entrenadores WTA/ATP | ○ | pendiente: punta de la raqueta respecto al plano del hombro (`docs/aprendido_entrenadores.md`) |
+| Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP) | Entrenadores WTA/ATP | ◐ | `loaded.racket_head_lateral`, `class.racket_plane` (cabeza de la raqueta respecto al hombro dominante, 2D desde detrás) |
 | Inicio de la aceleración respecto al bote; girar mientras se desplaza | ITF; Tennis Australia | ✔ | `acceleration_vs_bounce`, `takeback_vs_first_step` |
 | Altura de la mano en el armado (no por encima de la cabeza) | TA | ✔ | `loaded.wrist_dom_vs_shoulder` |
 | Cara de la raqueta al final del armado | Elliott & Marsh 1989 | ✔ | `loaded.face_tilt`, `face_points_to` (fiabilidad buena) |

@@ -43,7 +43,7 @@ FACTORS = {
 CLASS_KEYS = ["stance_loaded", "stance_impact", "stance_role", "finish", "finish_3x90", "arm", "takeback", "takeback_face",
               "ready_hands", "movement", "move_direction", "play", "shot_type", "swing", "ball_phase",
               "intent", "ball_speed", "ball_height", "depth", "width", "court_side", "approach_main", "recovery_first_step",
-              "around_ball", "contact_type"]
+              "around_ball", "contact_type", "racket_plane"]
 FOOTWORK_KEYS = ["steps_to_impact", "adjustment_steps", "first_step_s", "first_step_length_m", "last_step_length_m",
                  "last_plant_before_impact_s", "approach_speed_mps", "path_m", "peak_speed_mps", "direction_changes",
                  "split_takeoff_vs_opp_s", "split_landing_vs_opp_s", "speed_pre_split_mps", "speed_post_split_mps",
