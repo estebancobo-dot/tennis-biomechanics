@@ -56,3 +56,74 @@ ya medida
     (paso terminado en 0 s)
 
 ==> [2026-10-13 00:08:25] Vista lateral: videos de entrenamiento de la jugadora (YouTube; solo lo que falte)
+[00:08:26] 5 vídeos candidatos; se analizan 2 (90 s de cada uno)
+[00:08:26]   Elena Rybakina CRUSHING Forehand & Backhand Side View (Courtside Tennis Highlights)
+[00:14:11]     11 golpes, 1 derechas de lado medidas, 0 descartadas por valores imposibles (345 s)
+[00:14:11]   Elena Rybakina forehand, backhand from forehand perspective, Rogers cu (Tennis Workshop)
+[00:19:07]     20 golpes, 0 derechas de lado medidas, 2 descartadas por valores imposibles (297 s)
+[00:19:07] Hecho: 2 vídeos, 31 golpes, 1 derechas de lado → C:\tenis\output\entrenamiento
+    (paso terminado en 10 min 42 s)
+
+==> [2026-10-13 00:19:08] 3/4 4 minutos de partido, todas las etapas e informe (15-30 min)
+Tramo de juego (ya buscado): minuto 121
+Análisis del tramo: empieza 2026-10-13 00:19:08
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] candidates… (2026-10-13 00:19:08, etapa 8 de 10)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] candidates terminada a las 00:19:12 en 4 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (2026-10-13 00:19:12, etapa 9 de 10)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+  fine:  17 % (2/12 golpes candidatos · 2 confirmados) · 0 s · quedan ≈ 0 s
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:135: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:406: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+  fine: 100 % (12/12 golpes candidatos · 9 confirmados) · 16 s · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine terminada a las 00:19:39 en 27 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (2026-10-13 00:19:39, etapa 10 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent terminada a las 00:19:39 en 0 s
+Análisis del tramo: termina 2026-10-13 00:19:39 (0.5 min)
+
+Etapas ejecutadas: candidates, fine, fine_opponent
+  probe           0.2 s  {'duration_min': 4.0, 'fps': 50.0, 'size': '1920x1080', 'cleaned': False, 'vfr': True}
+  scenes         13.5 s  {'shots': 14, 'main_camera_shots': 13, 'main_camera_min': 3.9}
+  audio           1.4 s  {'onsets': 243, 'tracks': 1}
+  players       121.1 s  {'frames': 861}
+  score          57.3 s  {'readings': 48, 'pressure': 21}
+  court          27.5 s  {'segments': 20, 'with_court': 11, 'pitch_deg_median': 18.3}
+  identity        3.7 s  {'runs': 10, 'votes': 4, 'confidence': 1.0, 'by_end_changes': 9, 'by_clothes': 0, 'conflicts': 1, 'decided': 9}
+  candidates      4.1 s  {'candidates': 45, 'far': 33, 'with_audio': 44, 'opponent_runs': 0, 'identity_unknown': 0, 'replay_runs_skipped': 1, 'replays_by_path': 1, 'audio_track': 0}
+  fine           27.0 s  {'candidates': 12, 'confirmed': 9, 'errors': 0, 'warnings': [], 'forehands': 5, 'windows': 6, 'seconds': {'cuerdas_y_3d': 18.1, 'analisis_ventana': 1.5, 'recorte': 0.3, 'pose': 0.0}}
+  fine_opponent     0.0 s  {'enabled': False}
+Golpes: 5 nuevos, 5 en C:\tenis\output\_smoke\exportar\golpes
+Montajes: 2 en C:\tenis\output\_smoke\exportar\montajes
+Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
+
+(Solo se rehicieron algunas etapas: el tiempo no sirve para estimar un partido)
+Informe: C:\tenis\output\_smoke\informe\index.html
+Vídeos, montajes y resumen PDF: C:\tenis\output\_smoke\exportar
+Auditoría: 147 cumplidos, 7 no cumplidos, 145 sin golpes suficientes, 16 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+  ✘ 4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP): hueco medible sin implementar
+  ✘ 6. Matriz del usuario · Botepronto (media volea): hueco medible sin implementar
+  ✘ 6. Matriz del usuario · Volea de derecha: hueco medible sin implementar
+  ✘ #4 Responder de forma profesional a «¿qué hay que hacer para pegar una derecha como X?», con todas las posibilida: 171 comprobaciones: 3 falta, 104 pocos datos, 64 ok; la peor: «4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)» (hueco medible sin implementar)
+  ✘ #11 Validar automáticamente que las salidas reales tienen todo lo pedido y todos los casos del modelo técnico y la: 167 comprobaciones: 3 falta, 95 pocos datos, 69 ok; la peor: «4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)» (hueco medible sin implementar)
+  ✘ #16 Clasificar el golpe por contexto (derechas junto a la red frente a voleas) y cubrir las medias voleas: 2 comprobaciones: 2 falta; la peor: «6. Matriz del usuario · Botepronto (media volea)» (hueco medible sin implementar)
+  ✘ #47 Modelo técnico con fuentes y forma de saber si está completo: 153 comprobaciones: 3 falta, 86 pocos datos, 64 ok; la peor: «4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)» (hueco medible sin implementar)
+    (paso terminado en 2 min 07 s)
+
+==> [2026-10-13 00:21:15] 4/4 Validacion automatica: puntos anotados de partidos de Rybakina (F3Set; 20-40 min, solo la primera vez)
+ya hecha
+    (paso terminado en 0 s)
+
+==> [2026-10-13 00:21:15] Extra: videos de analisis de entrenadores en YouTube (10-20 min, solo la primera vez)
+ya hecho
+
+PRUEBA TERMINADA. El informe se ha abierto en el navegador.
+El registro se envia a Claude automaticamente.
+    (paso terminado en 0 s)
+Empezado 2026-10-13 00:08:22 - terminado 2026-10-13 00:21:15 - duracion total 12 min 52 s
+**********************
+Windows PowerShell transcript end
+End time: 20261013002115
+**********************

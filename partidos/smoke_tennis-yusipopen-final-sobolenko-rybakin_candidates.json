@@ -247,42 +247,6 @@
   "target": false
  },
  {
-  "t": 162.21460317460318,
-  "audio": true,
-  "wrist_peak_t": 162.3,
-  "side": "near",
-  "identity": true,
-  "target": true
- },
- {
-  "t": 161.2625850340136,
-  "audio": true,
-  "side": "far",
-  "identity": true,
-  "target": false
- },
- {
-  "t": 162.8995918367347,
-  "audio": true,
-  "side": "far",
-  "identity": true,
-  "target": false
- },
- {
-  "t": 164.5249886621315,
-  "audio": true,
-  "side": "far",
-  "identity": true,
-  "target": false
- },
- {
-  "t": 165.93560090702948,
-  "audio": true,
-  "side": "far",
-  "identity": true,
-  "target": false
- },
- {
   "t": 177.08698412698413,
   "audio": true,
   "wrist_peak_t": 176.9,

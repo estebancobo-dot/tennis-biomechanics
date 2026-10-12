@@ -79,45 +79,46 @@
   }
  },
  "candidates": {
-  "fingerprint": "b6591473be42cb0b",
-  "version": "6",
-  "seconds": 3.8,
-  "finished": "2026-10-12 15:50:06",
+  "fingerprint": "570816526f1705e7",
+  "version": "7",
+  "seconds": 4.1,
+  "finished": "2026-10-13 00:19:12",
   "summary": {
-   "candidates": 50,
-   "far": 37,
-   "with_audio": 49,
+   "candidates": 45,
+   "far": 33,
+   "with_audio": 44,
    "opponent_runs": 0,
    "identity_unknown": 0,
-   "replay_runs_skipped": 0,
+   "replay_runs_skipped": 1,
+   "replays_by_path": 1,
    "audio_track": 0
   }
  },
  "fine": {
-  "fingerprint": "cf1528fdb15d6406",
+  "fingerprint": "7e3e27414cc0d9b5",
   "version": "8",
-  "seconds": 29.1,
-  "finished": "2026-10-12 23:32:45",
+  "seconds": 27.0,
+  "finished": "2026-10-13 00:19:39",
   "summary": {
-   "candidates": 13,
-   "confirmed": 10,
+   "candidates": 12,
+   "confirmed": 9,
    "errors": 0,
    "warnings": [],
-   "forehands": 6,
-   "windows": 7,
+   "forehands": 5,
+   "windows": 6,
    "seconds": {
-    "cuerdas_y_3d": 20.1,
-    "analisis_ventana": 1.6,
+    "cuerdas_y_3d": 18.1,
+    "analisis_ventana": 1.5,
     "recorte": 0.3,
     "pose": 0.0
    }
   }
  },
  "fine_opponent": {
-  "fingerprint": "a1ba820136f6bd7d",
+  "fingerprint": "efcd495669bcedc5",
   "version": "3",
   "seconds": 0.0,
-  "finished": "2026-10-12 23:32:45",
+  "finished": "2026-10-13 00:19:39",
   "summary": {
    "enabled": false
   }
