@@ -64,31 +64,31 @@
   }
  },
  "identity": {
-  "fingerprint": "a4f53e948626f86f",
-  "version": "3",
-  "seconds": 3.8,
-  "finished": "2026-10-12 15:39:55",
+  "fingerprint": "914c6eb3abaac066",
+  "version": "4",
+  "seconds": 3.7,
+  "finished": "2026-10-12 15:50:02",
   "summary": {
    "runs": 10,
-   "votes": 0,
-   "confidence": 0.0,
-   "by_end_changes": 0,
+   "votes": 4,
+   "confidence": 1.0,
+   "by_end_changes": 9,
    "by_clothes": 0,
-   "conflicts": 0,
-   "decided": 0
+   "conflicts": 1,
+   "decided": 9
   }
  },
  "candidates": {
-  "fingerprint": "339da8e756750156",
+  "fingerprint": "b6591473be42cb0b",
   "version": "6",
-  "seconds": 3.9,
-  "finished": "2026-10-12 15:39:59",
+  "seconds": 3.8,
+  "finished": "2026-10-12 15:50:06",
   "summary": {
-   "candidates": 13,
-   "far": 0,
-   "with_audio": 12,
+   "candidates": 50,
+   "far": 37,
+   "with_audio": 49,
    "opponent_runs": 0,
-   "identity_unknown": 13,
+   "identity_unknown": 0,
    "replay_runs_skipped": 0,
    "audio_track": 0
   }

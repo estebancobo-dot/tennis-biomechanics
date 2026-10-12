@@ -1,106 +1,365 @@
 [
  {
+  "t": 2.6586848072562357,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 4.080907029478458,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 5.131609977324263,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 6.321632653061225,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
   "t": 17.362721088435375,
   "audio": true,
   "wrist_peak_t": 17.6,
   "side": "near",
-  "identity": null,
-  "target": null
+  "identity": true,
+  "target": true
  },
  {
   "t": 20.961814058956914,
   "audio": true,
   "wrist_peak_t": 20.9,
   "side": "near",
-  "identity": null,
-  "target": null
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 15.51673469387755,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 16.72997732426304,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 18.587573696145125,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 20.18394557823129,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 21.751292517006803,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 44.17015873015873,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 45.28471655328798,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 46.817233560090706,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 48.36716553287982,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 49.621043083900226,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
  },
  {
   "t": 76.11501133786848,
   "audio": true,
   "wrist_peak_t": 76.0,
   "side": "near",
-  "identity": null,
-  "target": null
+  "identity": true,
+  "target": true
  },
  {
   "t": 77.29922902494332,
   "audio": true,
   "wrist_peak_t": 77.1,
   "side": "near",
-  "identity": null,
-  "target": null
+  "identity": true,
+  "target": true
  },
  {
   "t": 84.3,
   "audio": false,
   "wrist_peak_t": 84.3,
   "side": "near",
-  "identity": null,
-  "target": null
+  "identity": true,
+  "target": true
  },
  {
   "t": 87.24897959183673,
   "audio": true,
   "wrist_peak_t": 87.5,
   "side": "near",
-  "identity": null,
-  "target": null
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 75.46485260770974,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 78.09451247165534,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 79.18004535147392,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 80.51519274376417,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 81.86195011337868,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 83.34802721088435,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 85.76290249433107,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 88.03845804988661,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
  },
  {
   "t": 132.94585034013605,
   "audio": true,
   "wrist_peak_t": 133.2,
   "side": "near",
-  "identity": null,
-  "target": null
+  "identity": true,
+  "target": true
  },
  {
   "t": 135.06467120181406,
   "audio": true,
   "wrist_peak_t": 135.4,
   "side": "near",
-  "identity": null,
-  "target": null
+  "identity": true,
+  "target": true
  },
  {
   "t": 137.47954648526078,
   "audio": true,
   "wrist_peak_t": 137.7,
   "side": "near",
-  "identity": null,
-  "target": null
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 131.97061224489795,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 133.8049886621315,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 136.46947845804988,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
  },
  {
   "t": 162.21460317460318,
   "audio": true,
   "wrist_peak_t": 162.3,
   "side": "near",
-  "identity": null,
-  "target": null
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 161.2625850340136,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 162.8995918367347,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 164.5249886621315,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 165.93560090702948,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
  },
  {
   "t": 177.08698412698413,
   "audio": true,
   "wrist_peak_t": 176.9,
   "side": "near",
-  "identity": null,
-  "target": null
+  "identity": true,
+  "target": true
  },
  {
   "t": 179.29868480725622,
   "audio": true,
   "wrist_peak_t": 179.5,
   "side": "near",
-  "identity": null,
-  "target": null
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 175.2003628117914,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 177.55138321995466,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 178.67174603174604,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 180.29133786848072,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
  },
  {
   "t": 211.80081632653062,
   "audio": true,
   "wrist_peak_t": 211.6,
   "side": "near",
-  "identity": null,
-  "target": null
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 209.38013605442177,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 212.31746031746033,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 213.495873015873,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 239.75764172335602,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
  }
 ]

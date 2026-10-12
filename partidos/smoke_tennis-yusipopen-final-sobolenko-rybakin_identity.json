@@ -1,41 +1,41 @@
 {
  "fps": 10.0,
- "target_cluster": null,
- "confidence": 0.0,
- "votes": 0,
- "ends_base": null,
+ "target_cluster": 1,
+ "confidence": 1.0,
+ "votes": 4,
+ "ends_base": true,
  "runs": [
   {
    "start": 0,
    "end": 75,
    "cluster": 1,
    "end_changes": 10,
-   "near_is_target": null,
-   "method": null
+   "near_is_target": true,
+   "method": "cambios de lado"
   },
   {
    "start": 150,
    "end": 225,
    "cluster": 1,
    "end_changes": 10,
-   "near_is_target": null,
-   "method": null
+   "near_is_target": true,
+   "method": "cambios de lado"
   },
   {
    "start": 429,
    "end": 507,
    "cluster": 1,
    "end_changes": 10,
-   "near_is_target": null,
-   "method": null
+   "near_is_target": true,
+   "method": "cambios de lado"
   },
   {
    "start": 742,
    "end": 898,
    "cluster": 1,
    "end_changes": 10,
-   "near_is_target": null,
-   "method": null
+   "near_is_target": true,
+   "method": "cambios de lado"
   },
   {
    "start": 1152,
@@ -43,47 +43,51 @@
    "cluster": 0,
    "end_changes": 10,
    "near_is_target": null,
-   "method": null
+   "method": "conflicto"
   },
   {
    "start": 1303,
    "end": 1416,
+   "return_vote": true,
    "cluster": 1,
    "end_changes": 10,
-   "near_is_target": null,
-   "method": null
+   "near_is_target": true,
+   "method": "cambios de lado"
   },
   {
    "start": 1593,
    "end": 1668,
+   "return_vote": true,
    "cluster": 1,
    "end_changes": 10,
-   "near_is_target": null,
-   "method": null
+   "near_is_target": true,
+   "method": "cambios de lado"
   },
   {
    "start": 1742,
    "end": 1816,
+   "return_vote": true,
    "cluster": 1,
    "end_changes": 10,
-   "near_is_target": null,
-   "method": null
+   "near_is_target": true,
+   "method": "cambios de lado"
   },
   {
    "start": 2077,
    "end": 2166,
+   "return_vote": true,
    "cluster": 1,
    "end_changes": 10,
-   "near_is_target": null,
-   "method": null
+   "near_is_target": true,
+   "method": "cambios de lado"
   },
   {
    "start": 2367,
    "end": 2405,
    "cluster": 1,
    "end_changes": 10,
-   "near_is_target": null,
-   "method": null
+   "near_is_target": true,
+   "method": "cambios de lado"
   }
  ]
 }
