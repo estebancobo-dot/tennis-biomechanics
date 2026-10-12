@@ -148,6 +148,24 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .tc b { color: var(--ink); font-weight: 500; }
 .timeline { padding: 0 12px 12px; }
 .timeline svg { width: 100%; height: auto; display: block; touch-action: none; cursor: pointer; }
+.news { background: var(--panel); border: 1px solid var(--accent); border-radius: 8px; padding: 10px 16px; margin: 0 0 14px; font-size: 13.5px; }
+.news summary { cursor: pointer; color: var(--ink); }
+.news ul { margin: 8px 0 2px; padding-left: 18px; display: grid; gap: 5px; color: var(--ink-2); }
+.news li b { color: var(--ink); }
+.bmwrap { padding: 0 12px 12px; }
+.libchips { display: grid; grid-template-columns: max-content 1fr; gap: 6px 12px; padding: 4px 16px 12px; align-items: center; }
+.libchips .fl { color: var(--ink-3); font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; }
+.libchips .chips { display: flex; flex-wrap: wrap; gap: 5px; }
+.libchips button { background: var(--raise); color: var(--ink-2); border: 1px solid var(--line); border-radius: 999px; padding: 3px 10px; font: inherit; font-size: 12.5px; cursor: pointer; }
+.libchips button small { color: var(--ink-3); margin-left: 4px; }
+.libchips button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.libchips button[aria-pressed="true"] small { color: var(--accent-ink); }
+.bm { display: grid; grid-template-columns: repeat(5, minmax(150px, 1fr)); gap: 8px; overflow-x: auto; }
+.bm button { background: var(--raise); border: 1px solid var(--line); border-radius: 6px; padding: 0; cursor: pointer; overflow: hidden; text-align: left; color: var(--ink); font: inherit; display: grid; align-content: start; }
+.bm button canvas { width: 100%; aspect-ratio: 16/10; display: block; background: #000; }
+.bm button > div { padding: 6px 8px 8px; font-size: 12px; line-height: 1.4; color: var(--ink-2); }
+.bm button > div b { display: block; color: var(--accent); font-size: 12.5px; }
+.bm button[aria-current="true"] { border-color: var(--accent); }
 .kf { display: grid; grid-template-columns: repeat(8, minmax(92px, 1fr)); gap: 6px; overflow-x: auto; padding: 0 12px 12px; }
 .kf button { background: none; border: 1px solid var(--line); border-radius: 5px; padding: 0; cursor: pointer; overflow: hidden; display: grid; text-align: left; }
 .kf button svg { width: 100%; aspect-ratio: 16/10; display: block; }
@@ -303,6 +321,14 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
     <div class="content">
 
 <section class="screen" id="tab-modelo" hidden>
+<details class="news" id="news" open><summary><b>Novedades de esta versión</b> · dónde mirarlas</summary><ul>
+  <li><b>«Su derecha»:</b> cada fase dice sus claves en frases, <i>por qué importan</i> (con su fuente) y <i>qué mirar</i>; incluye cuerdas, apoyos, pies y cadena cinética. Necesita al menos 12 golpes.</li>
+  <li><b>«Análisis de golpe» → «La bola y ella»:</b> qué hace la jugadora cuando golpea la rival, cuando la bola cruza la red, cuando bota, cuando llega arriba y cuando golpea. Se ve en cada golpe, sin mínimo.</li>
+  <li><b>«Análisis de golpe» → capa «Alturas»:</b> barras horizontales de la cabeza y la cadera sobre el vídeo: discontinua = su altura en la espera, continua = ahora, y cuántos cm ha bajado o subido.</li>
+  <li><b>«Videoteca»:</b> filtros combinables (apoyo, dirección, bola, contacto, resultado): por ejemplo «cerrado» + «paralela», o «cerca de la red».</li>
+  <li><b>Fases:</b> la preparación empieza cuando giran los hombros y la terminación se busca después del impacto (antes salían demasiado tarde y demasiado pronto).</li>
+  <li>Sin enlaces a YouTube; las gráficas técnicas, plegadas al final de «Análisis de golpe».</li>
+</ul></details>
 <p class="intro"><b>Cómo pega la derecha.</b> Fase a fase: lo que hace (medido en sus golpes), por qué importa y qué mirar. Elige una bola para ver qué cambia. Pulsa una imagen o una frase para verla en vídeo.</p>
   <div class="panel">
     <header><h2 id="m-title">Su golpe</h2><span class="note" id="m-n"></span></header>
@@ -359,6 +385,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
       <span class="note" id="lib-count"></span>
       <span class="note" style="margin-left:auto">Pasa el ratón por un golpe para verlo en movimiento · pulsa para analizarlo · <b>⧉</b> para elegir dos y compararlos</span>
     </div>
+    <div class="libchips" id="lib-chips"></div>
     <div class="lib" id="lib"></div>
     <div class="pager"><span></span><button class="btn" id="lib-more">Ver más</button></div>
   </div>
@@ -380,12 +407,13 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
         </div>
         <div class="grp">
           <div class="seg" id="view"><button data-v="crop" aria-pressed="true">Recorte</button><button data-v="full" aria-pressed="false">Plano completo</button></div>
-          <div class="seg" id="layers"><button data-v="skel" aria-pressed="true">Esqueleto</button><button data-v="ang" aria-pressed="true">Ángulos</button><button data-v="trail" aria-pressed="true">Trayectoria</button><button data-v="ball" aria-pressed="true">Bola</button><button data-v="court" aria-pressed="true">Pista</button></div>
+          <div class="seg" id="layers"><button data-v="skel" aria-pressed="true">Esqueleto</button><button data-v="ang" aria-pressed="true">Ángulos</button><button data-v="trail" aria-pressed="true">Trayectoria</button><button data-v="ball" aria-pressed="true">Bola</button><button data-v="court" aria-pressed="true">Pista</button><button data-v="heights" aria-pressed="true" title="Altura de la cabeza y la cadera respecto a la espera">Alturas</button></div>
           <button class="btn" id="g-cmp" title="Abrir este golpe en Comparar">⧉ Comparar</button>
         </div>
       </div>
       <div class="timeline" id="timeline"></div>
       <div class="kf" id="kf"></div>
+      <div class="bmwrap" id="bmwrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">La bola y ella</b> · qué está haciendo cuando golpea la rival, cuando la bola cruza la red, cuando bota, cuando llega a lo más alto y cuando ella golpea (pulsa para ir a ese momento)</div><div class="bm" id="bm"></div></div>
       <div style="padding:0 12px 12px"><div class="note" style="margin-bottom:6px">Estroboscópica: esqueletos de las fases sobre el fotograma del impacto (de azul a amarillo) y trayectoria de la muñeca</div><canvas id="strobe" width="1280" height="720" style="width:100%;border-radius:6px;background:#000"></canvas></div>
     </div>
     <div style="display:grid;gap:16px;align-content:start">
@@ -591,7 +619,7 @@ function showTab(name) {
   if (name !== "golpe") stopPlay();
   if (name !== "comparar") kStop();
   if (name === "videoteca" || name === "explorador") document.getElementById("slot-" + name).appendChild(document.getElementById("filters"));
-  if (name === "videoteca") renderLibrary();
+  if (name === "videoteca") { renderLibChips(); renderLibrary(); }
   else renderDock();
   tip.hidden = true;
   window.scrollTo({ top: 0 });
@@ -760,7 +788,7 @@ const SKC = { l: "#5fd3e6", r: "#ff9f43", c: "#e3e8ec" };
 const video = document.createElement("video");
 video.muted = true; video.playsInline = true; video.preload = "auto";
 const cv = document.getElementById("cv"), cx = cv.getContext("2d");
-let cur = null, ser = null, PH = [], T0 = -1, T1 = .8, FPS = 50, NF = 1, tNow = 0, view = "crop", layers = { skel: true, ang: true, trail: true, ball: true, court: true }, speed = .25, playing = false;
+let cur = null, ser = null, PH = [], T0 = -1, T1 = .8, FPS = 50, NF = 1, tNow = 0, view = "crop", layers = { skel: true, ang: true, trail: true, ball: true, court: true, heights: true }, speed = .25, playing = false;
 const snap = t => Math.round(clamp(t, T0, T1) * FPS) / FPS;
 const fIdx = t => clamp(Math.round((t - T0) * FPS), 0, NF - 1);
 const domW = () => (PL.hand === "left" ? 9 : 10);
@@ -851,7 +879,38 @@ function drawFrame(ctx, Wc, Hc, f, opts, S = MAIN) {
     for (let g = Math.max(0, f - nt); g < f; g++) { const b = sr.ball[g]; if (!b || b[0] === null) continue; const [x, y] = P(b); ctx.fillStyle = `rgba(255,95,210,${.15 + .6 * (g - f + nt) / nt})`; ctx.beginPath(); ctx.arc(x, y, lw * 1.6, 0, 7); ctx.fill(); }
     const b = sr.ball[f]; if (b && b[0] !== null) { const [x, y] = P(b); ctx.strokeStyle = "#ff5fd2"; ctx.lineWidth = lw; ctx.beginPath(); ctx.arc(x, y, lw * 4, 0, 7); ctx.stroke(); }
   }
+  if (opts.heights && q) heightBars(ctx, f, P, lw, S);
   if (opts.court) miniCourt(ctx, Wc, Hc, f, S);
+}
+// Height of her head and hips above her own feet now, against the same at the start of the stroke
+// (the ready position): dashed line = where the head (hips) would be at the ready height, solid line =
+// where it is; the difference in cm (her torso as the ruler, 0.288 of her height: Winter).
+function headY(q) { if (q[0]) return q[0][1]; const e = [q[3], q[4], q[1], q[2]].filter(Boolean); return e.length ? e.reduce((a, p) => a + p[1], 0) / e.length : null; }
+function feetY(q) { return q[15] && q[16] ? (q[15][1] + q[16][1]) / 2 : null; }
+function hRef(S) {
+  const sr = S.ser; if (!sr) return null; if (sr._href !== undefined) return sr._href;
+  const rd = S === MAIN ? PH.find(p => p.k === "ready") : null;
+  // the ready position, or the first frame of the clip when the split step came before it
+  let f0 = clamp(rd && isN(rd.t) ? Math.round((rd.t - T0) * FPS) : 0, 0, sr.n - 1), r = null;
+  for (let g = f0; g < Math.min(sr.n, f0 + Math.round(FPS * .3)) && !r; g++) { const q = kpAt(g, S); if (!q) continue; const gy = feetY(q), hy = headY(q), hp = mid(q[11], q[12]); if (gy !== null && hy !== null && hp) r = { head: gy - hy, hip: gy - hp[1] }; }
+  return (sr._href = r);
+}
+function heightBars(ctx, f, P, lw, S) {
+  const q = kpAt(f, S), r = hRef(S), gy = q && feetY(q), tl = torsoLen(S), H = (PL.height_m || 1.8) * 100;
+  if (!r || gy === null || !isN(tl)) return;
+  const cx = mid(q[11], q[12]) || q[0]; if (!cx) return;
+  const cm = px => px / tl * 0.288 * H, half = tl * 1.1;
+  [["cabeza", headY(q), r.head, "#7cc4ff"], ["cadera", (mid(q[11], q[12]) || [0, null])[1], r.hip, "#9be37b"]].forEach(([n, y, h0, col]) => {
+    if (y === null) return;
+    const yRef = gy - h0, d = cm(yRef - y);           // + = higher than at the ready position
+    const [x1, y1] = P([cx[0] - half, yRef]), [x2] = P([cx[0] + half, yRef]), [, yc] = P([0, y]);
+    ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = lw; ctx.setLineDash([6, 5]); ctx.globalAlpha = .9;
+    ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y1); ctx.stroke();
+    ctx.setLineDash([]); ctx.beginPath(); ctx.moveTo(x1, yc); ctx.lineTo(x2, yc); ctx.stroke();
+    const txt = `${n} ${d >= 0 ? "+" : "−"}${fmt(Math.abs(d))} cm`; ctx.font = `600 ${Math.max(11, lw * 7)}px JetBrains Mono, monospace`;
+    const w = ctx.measureText(txt).width; ctx.fillStyle = "rgba(10,13,16,.75)"; ctx.fillRect(x2 + 4, yc - lw * 6, w + 8, lw * 8.5);
+    ctx.fillStyle = col; ctx.fillText(txt, x2 + 8, yc + lw * 1.2); ctx.restore();
+  });
 }
 function hud(t) {
   const ph = PH.reduce((b, p) => isN(p.t) && (b === null || Math.abs(p.t - t) < Math.abs(b.t - t)) ? p : b, null);
@@ -916,8 +975,22 @@ async function renderKF() {
     await seek(snap(PH[i].t)); if (cur.id !== id) return;
     drawFrame(cvs[i].getContext("2d"), 320, 200, fIdx(snap(PH[i].t)), { skel: true, trail: false, ball: false });
   }
+  await renderBallMoments(id); if (cur.id !== id) return;
   await renderStrobe(id); if (cur.id !== id) return;
   await seek(tNow); renderStage();
+}
+async function renderBallMoments(id) {
+  const box = document.getElementById("bm"), ms = cur.ballMoments || [];
+  document.getElementById("bmwrap").hidden = !ms.length;
+  box.innerHTML = ms.map(m => `<button data-t="${m.t}"><canvas width="320" height="200"></canvas><div><b>${m.title} · ${m.t === 0 ? "impacto" : (m.t > 0 ? "+" : "−") + fmt(Math.abs(m.t), 2) + " s"}</b>${m.text}</div></button>`).join("");
+  box.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { stopPlay(); setT(+b.dataset.t); }));
+  if (!cur.video) return;
+  const cvs = [...box.querySelectorAll("canvas")];
+  for (let i = 0; i < ms.length; i++) {
+    const t = snap(ms[i].t); if (t < T0 || t > T1 || cur.id !== id) continue;
+    await seek(t); if (cur.id !== id) return;
+    drawFrame(cvs[i].getContext("2d"), 320, 200, fIdx(t), { skel: true, trail: false, ball: true, heights: true });
+  }
 }
 function setT(t) { tNow = snap(t); renderStage(); renderTimeline(); document.querySelectorAll("#kf button").forEach(b => b.setAttribute("aria-current", b.dataset.t !== "" && Math.abs(+b.dataset.t - tNow) < .6 / FPS)); }
 // Heights through the stroke on the common grid of technique.stroke_curves (s from contact).
@@ -1215,8 +1288,24 @@ document.getElementById("p-match").addEventListener("change", renderCourt);
 /* ===== VIDEOTECA ===== */
 const LIBPAGE = 48;
 let libN = LIBPAGE, PICK = [];
+// Combinable filters of the video library: one choice per group, all groups at once (e.g. closed
+// stance + down the line + rising ball)
+const LIBF = {
+  "Apoyo": [["abierto", s => s.stance === "abierto"], ["semiabierto", s => s.stance === "semiabierto"], ["neutro", s => s.stance === "neutro"], ["cerrado", s => s.stance === "cerrado"]],
+  "Dirección": [["cruzada", s => s.shotDir === "cruzada" && !(s.shotType || "").startsWith("invertida")], ["paralela", s => s.shotDir === "paralela" && !(s.shotType || "").startsWith("invertida")], ["al centro", s => s.shotDir === "al centro"], ["invertida", s => (s.shotType || "").startsWith("invertida")]],
+  "Bola": [["rápida", s => s.fast], ["lenta", s => isN(s.tAvail) && s.tAvail > 1.6], ["baja", s => s.height === "baja"], ["alta", s => s.height === "alta"], ["corta", s => s.short], ["abierta", s => s.wide], ["cerca de la red", s => isN(s.y) && s.y < 8]],
+  "Contacto": [["bola subiendo", s => s.ballPhase === "bola subiendo"], ["bola arriba", s => s.ballPhase === "bola arriba"], ["bola cayendo", s => s.ballPhase === "bola cayendo"]],
+  "Resultado": [["no devuelta", s => s.outcome === "ganador"], ["error", s => s.outcome === "error"]],
+};
+const libSel = {};
+function renderLibChips() {
+  const el = document.getElementById("lib-chips"), base = exRows();
+  el.innerHTML = Object.entries(LIBF).map(([g, opts]) => `<span class="fl">${g}</span><div class="chips">${opts.map(([n, fn]) => { const c = base.filter(fn).length; return `<button data-g="${g}" data-n="${n}" aria-pressed="${libSel[g] === n}" ${c ? "" : "disabled"}>${n}<small>${c}</small></button>`; }).join("")}</div>`).join("");
+  el.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { libSel[b.dataset.g] = libSel[b.dataset.g] === b.dataset.n ? undefined : b.dataset.n; libN = LIBPAGE; renderLibChips(); renderLibrary(); }));
+}
 function libRows() {
-  const a = exRows().slice(), k = document.getElementById("lib-sort").value;
+  const fs = Object.entries(libSel).filter(([, n]) => n).map(([g, n]) => LIBF[g].find(o => o[0] === n)[1]);
+  const a = exRows().filter(s => fs.every(fn => fn(s))), k = document.getElementById("lib-sort").value;
   const dev = s => EXM.reduce((t, m) => t + (DIST[m] && isN(s.m[m]) ? Math.abs(s.m[m] - DIST[m].p50) / (DIST[m].sd || 1) : 0), 0);
   if (k === "time") return a.sort((x, y) => x.match - y.match || x.vt - y.vt);
   if (k === "dev") return a.sort((x, y) => dev(y) - dev(x));

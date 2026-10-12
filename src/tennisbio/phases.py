@@ -92,6 +92,27 @@ def detect_split_step(img: np.ndarray, sk: Skeleton, height: float, fps: float, 
     return a + int(land), float(props["prominences"].max())
 
 
+def _shoulder_turn_start(img: np.ndarray, sk: Skeleton, fps: float, impact: int, min_rise_deg=25.0) -> int | None:
+    from .kinematics import line_turn, smooth
+
+    s = lambda sec: int(round(sec * fps))
+    with np.errstate(invalid="ignore"):
+        sh = smooth(line_turn(img, sk, "shoulder"), fps, 0.1)
+    a, b = max(0, impact - s(0.6)), impact - s(0.12)
+    if b <= a or not np.isfinite(sh[a:b]).any():
+        return None
+    pk = a + int(np.nanargmax(sh[a:b]))
+    lo = max(0, impact - s(1.1))                 # a groundstroke preparation takes 0.5-1 s
+    if not np.isfinite(sh[lo:pk + 1]).any():
+        return None
+    base = float(np.nanmin(sh[lo:pk + 1]))
+    rise = float(sh[pk]) - base
+    if rise < min_rise_deg:
+        return None
+    idx = [i for i in range(lo, pk) if np.isfinite(sh[i]) and sh[i] <= base + 0.2 * rise]
+    return idx[-1] if idx else None
+
+
 def detect_phases(img: np.ndarray, body: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float,
                   height: float, impact: int, opponent_impact: int | None = None) -> list[Event]:
     """Detect the 8 moments for one stroke.
@@ -140,6 +161,13 @@ def detect_phases(img: np.ndarray, body: np.ndarray, conf: np.ndarray, sk: Skele
             slow = np.flatnonzero(wv[lo:back_pk + 1] < wv[loaded] + 0.25 * hump)
             takeback = lo + int(slow[-1]) if len(slow) else lo
             method = "wrist_starts_back"
+    # The unit turn starts with the shoulders (ITF; Tennis Australia; CLAUDE.md: "empiezan a girar los
+    # hombros"): with a fluid loop the wrist never pauses and its hump starts late (-0.3 s on TV
+    # strokes, where the shoulders start at -0.5 to -0.85 s). The shoulder-line turn proxy, smoothed,
+    # peaks 0.12-0.6 s before contact; the start is where it last sat within 20 % of its rise.
+    sh_start = _shoulder_turn_start(img, sk, fps, impact)
+    if sh_start is not None and (takeback is None or sh_start < takeback) and (loaded is None or sh_start < loaded):
+        takeback, method = sh_start, "shoulders_start_turning"
     events["takeback"] = Event("takeback", takeback, method, conf_at(takeback, 0.8))
 
     # 1 ready / split step: hop landing around the opponent's hit, else before the takeback
@@ -171,9 +199,19 @@ def detect_phases(img: np.ndarray, body: np.ndarray, conf: np.ndarray, sk: Skele
     ext = min(impact + max(1, s(0.05)), T - 1)
     events["extension"] = Event("extension", ext, "impact_plus_50ms", conf_at(ext, 0.8))
 
-    # 7 finish: highest dominant wrist after contact
-    fin = _argext(wrist_y, impact + 1, impact + s(0.7), np.nanargmax)
-    events["finish"] = Event("finish", fin, "wrist_high_point", conf_at(fin, 0.9))
+    # 7 finish: highest dominant wrist after contact, looked for from 0.12 s after it (on TV strokes
+    # the highest point came at +0.02-0.06 s: a high contact is already high, and wrapped around the
+    # neck the wrist is hidden from behind). If the wrist is not seen, where the swing stops (wrist
+    # speed under 25 % of its forward-swing peak).
+    fin, fmethod = _argext(wrist_y, impact + max(2, s(0.12)), impact + s(0.7), np.nanargmax), "wrist_high_point"
+    if fin is None:
+        fmethod = "wrist_stops_after_swing"
+        pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+        if np.isfinite(pk_v) and pk_v > 0:
+            a = impact + max(2, s(0.12))
+            stop = np.flatnonzero(wv[a:min(T, impact + s(0.7))] <= 0.25 * pk_v)
+            fin = a + int(stop[0]) if len(stop) else None
+    events["finish"] = Event("finish", fin, fmethod, conf_at(fin, 0.9))
 
     # 8 recovery: first clear foot movement after the finish (ankle spacing changes fast)
     rec = None

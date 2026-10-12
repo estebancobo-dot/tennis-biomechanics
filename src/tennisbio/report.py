@@ -153,9 +153,71 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
         "curves": None if far else (s.get("technique") or {}).get("curves"),
         "ballT": None if far else {k: -v["t_to_contact"] for k, v in ((s.get("technique") or {}).get("phases") or {}).items()
                                    if k.startswith("ball_") and isinstance(v, dict) and v.get("t_to_contact") is not None},
+        "ballMoments": None if far else ball_moments(s),
+        "shotType": None if far else ((s.get("technique") or {}).get("classes") or {}).get("shot_type"),
+        "ballPhase": None if far else ((s.get("technique") or {}).get("classes") or {}).get("ball_phase"),
         "face": {k: (v or {}).get("points_to") for k, v in face.items()},
         "video": None, "vImpact": s.get("window_impact_s"), "series": None,
     }
+
+
+PHASE_DOING = {"ready": "en la espera", "takeback": "empezando a preparar", "loaded": "con el armado completo",
+               "acceleration": "acelerando hacia la bola", "impact": "golpeando", "extension": "extendiendo el brazo",
+               "finish": "terminando", "recovery": "recuperando"}
+
+
+def ball_moments(s: dict) -> list[dict]:
+    """What she is doing at each moment of the ball of this stroke: the opponent's hit, the ball over
+    the net, its bounce, the top of its bounce and her contact. One stroke, no statistics: shown
+    whatever the number of strokes (an observation of this stroke, not a conclusion)."""
+    from .explain import fmt
+
+    tech = s.get("technique") or {}
+    tp, of = tech.get("phases") or {}, tech.get("ball_phase_of_stroke") or {}
+    ph = {k: (v or {}).get("t_rel") for k, v in (s.get("phases") or {}).items() if isinstance(v, dict)}
+
+    def doing_at(t):
+        order = [(k, v) for k, v in ph.items() if v is not None and k in PHASE_DOING]
+        before = [k for k, v in sorted(order, key=lambda x: x[1]) if v <= t + 1e-6]
+        return PHASE_DOING.get(before[-1] if before else "ready")
+
+    def body(d):
+        out = []
+        if d.get("shoulder_turn") is not None:
+            out.append(f"hombros girados {fmt(d['shoulder_turn'])}°")
+        if d.get("hip_height") is not None:
+            out.append(f"cadera al {fmt(d['hip_height'])} % de su altura")
+        r = d.get("racket_head_vs_wrist")
+        if r is not None:
+            out.append("raqueta por encima de la mano" if r > 3 else "raqueta por debajo de la mano" if r < -3 else "raqueta a la altura de la mano")
+        if d.get("face_points_to"):
+            out.append(f"cuerdas hacia {d['face_points_to']}")
+        return out
+
+    out = []
+    ta = (s.get("metrics") or {}).get("time_available_s")
+    if ta:
+        txt = f"Ella está {doing_at(-ta)}"
+        rd = (s.get("phases") or {}).get("ready") or {}
+        if rd.get("method") == "split_step_landing" and rd.get("t_rel") is not None and abs(rd["t_rel"] + ta) < 0.15:
+            txt += ", cayendo del split step"
+        out.append({"k": "opp", "t": round(-ta, 3), "title": "Golpea la rival", "text": txt + "."})
+    names = {"ball_net": "La bola cruza la red", "ball_bounce": "La bola bota", "ball_top": "La bola, en lo más alto"}
+    for k, title in names.items():
+        d = tp.get(k)
+        if not d or d.get("t_to_contact") is None:
+            continue
+        doing = PHASE_DOING.get(of.get(k), doing_at(-d["t_to_contact"]))
+        parts = body(d)
+        out.append({"k": k, "t": round(-d["t_to_contact"], 3), "title": title,
+                    "text": f"Ella está {doing}" + (": " + ", ".join(parts) if parts else "") + "."})
+    d = tp.get("impact") or {}
+    cls = tech.get("classes") or {}
+    parts = [x for x in (cls.get("ball_phase"), f"apoyo {s['stance']}" if s.get("stance") else None,
+                         f"mano {fmt(abs(d['wrist_dom_vs_hip']))} % de su altura {'por encima' if d['wrist_dom_vs_hip'] > 0 else 'por debajo'} de la cadera"
+                         if d.get("wrist_dom_vs_hip") is not None else None) if x]
+    out.append({"k": "impact", "t": 0.0, "title": "Su impacto", "text": "Golpea" + (": " + ", ".join(parts) if parts else "") + "."})
+    return sorted(out, key=lambda m: m["t"])
 
 
 # metric → (series group, series key, phase used by the metric)
