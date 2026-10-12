@@ -52,7 +52,8 @@ DESCRIPTORS = {
     "hands_apart": ("brazo", "Separación entre manos", "%", 3, "pequeña = las dos manos en la raqueta"),
     "arm_extension": ("brazo", "Extensión del brazo dominante", "%", 2, "hombro–muñeca / longitud del brazo"),
     # racket (5 points, near side)
-    "racket_head_vs_wrist": ("raqueta", "Cabeza de la raqueta respecto a la muñeca", "%", 2, "vertical en la imagen (+ por encima)"),
+    "racket_head_vs_wrist": ("raqueta", "Cabeza de la raqueta respecto a la muñeca", "%", 1,
+                             "vertical en la imagen (+ por encima); con la cámara inclinada, apuntar hacia la red también parece «arriba»"),
     "racket_angle": ("raqueta", "Inclinación de la raqueta", "°", 2, "eje empuñadura→punta respecto a la horizontal de la imagen"),
     "racket_forearm": ("raqueta", "Ángulo antebrazo–raqueta", "°", 2, "retraso de la muñeca (lag); 2D"),
     "racket_tip_height": ("raqueta", "Altura de la punta de la raqueta", "%", 2, "sobre el pie más bajo"),
