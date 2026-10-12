@@ -35,7 +35,8 @@ try {
 } catch {
     Write-Host ""
     Write-Host "ERROR: $_" -ForegroundColor Red
-    Write-Host "Pasa a Claude el fichero $Log (relanzar este script continua donde se quedo)" -ForegroundColor Red
+    Write-Host "El registro se envia a Claude automaticamente. Relanzar este script continua donde se quedo." -ForegroundColor Red
 } finally {
     Stop-Transcript | Out-Null
+    Subir-Registros
 }

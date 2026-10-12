@@ -34,6 +34,11 @@ Después: revés, saque, volea y otros jugadores.
 ITF/Elliott-Reid-Crespo, Landlinger, Knudson, Tennis Australia, estudios de pies, sistemas
 profesionales). Toda medida nueva sale de ella y se marca allí; los huecos medibles se cierran.
 
+**Estado y contexto para continuar:** `docs/estado_proyecto.md` (leerlo al empezar cualquier sesión).
+**Registros del PC:** los scripts de Windows los suben solos a la rama `pc-logs`
+(`git fetch origin pc-logs && git show origin/pc-logs:instalacion.log`). Nunca pedir al usuario
+que copie registros.
+
 ## Plan vigente (en orden)
 1. Corregir los fallos graves de `docs/revision_completa.md` (identidad, cara en el impacto,
    cadena cinética, medidas con escala por fotograma, ventana previa, entrelazado, robustez,

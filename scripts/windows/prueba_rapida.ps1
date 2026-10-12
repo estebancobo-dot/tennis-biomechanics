@@ -36,11 +36,12 @@ try {
     if (Test-Path $informe) { Start-Process $informe }
     Write-Host ""
     Ok "PRUEBA TERMINADA. El informe se ha abierto en el navegador."
-    Ok "Pasa a Claude el fichero $Log"
+    Ok "El registro se envia a Claude automaticamente."
 } catch {
     Write-Host ""
     Write-Host "ERROR: $_" -ForegroundColor Red
-    Write-Host "Pasa a Claude el fichero $Log" -ForegroundColor Red
+    Write-Host "El registro ($Log) se envia a Claude automaticamente." -ForegroundColor Red
 } finally {
     Stop-Transcript | Out-Null
+    Subir-Registros
 }

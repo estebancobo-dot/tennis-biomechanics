@@ -53,7 +53,8 @@ try {
 } catch {
     Write-Host ""
     Write-Host "ERROR: $_" -ForegroundColor Red
-    Write-Host "Pasa a Claude el fichero $Log" -ForegroundColor Red
+    Write-Host "El registro ($Log) se envia a Claude automaticamente." -ForegroundColor Red
 } finally {
     Stop-Transcript | Out-Null
+    Subir-Registros
 }
