@@ -96,6 +96,15 @@ def capture(report_html: Path, dest: Path, wait_ms: int = 2500) -> Path:
             pg.evaluate(f"document.querySelector('.nav button[data-tab=\"{tab}\"]').click()")
             pg.wait_for_timeout(wait_ms)
             info = pg.evaluate(_JS_SCREEN, tab) or {"title": tab}
+            if tab == "golpe" and pg.query_selector("#play"):
+                # play as the user does, right away: the video must advance and keep playing
+                t0 = pg.evaluate("typeof video !== 'undefined' ? video.currentTime : null")
+                pg.click("#play")
+                pg.wait_for_timeout(1500)
+                t1, paused = pg.evaluate("typeof video !== 'undefined' ? [video.currentTime, video.paused] : [null, true]")
+                info["plays"] = bool(t0 is not None and t1 is not None and t1 > t0 + 0.1 and not paused)
+                if not paused:
+                    pg.click("#play")
             f = f"pantalla_{i + 1}_{tab}.jpg"
             pg.screenshot(path=str(dest / f), full_page=True, type="jpeg", quality=70)
             info.update(tab=tab, file=f, errors=[e for e in errs if "Failed to load resource" not in e])

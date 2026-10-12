@@ -901,7 +901,7 @@ function headY(q) { if (q[0]) return q[0][1]; const e = [q[3], q[4], q[1], q[2]]
 function feetY(q) { return q[15] && q[16] ? (q[15][1] + q[16][1]) / 2 : null; }
 function hRef(S) {
   const sr = S.ser; if (!sr) return null; if (sr._href !== undefined) return sr._href;
-  const rd = S === MAIN ? PH.find(p => p.k === "ready") : null;
+  const rd = S === MAIN || (TSRC && S === TSRC) ? PH.find(p => p.k === "ready") : null;
   // the ready position, or the first frame of the clip when the split step came before it
   let f0 = clamp(rd && isN(rd.t) ? Math.round((rd.t - T0) * FPS) : 0, 0, sr.n - 1), r = null;
   for (let g = f0; g < Math.min(sr.n, f0 + Math.round(FPS * .3)) && !r; g++) { const q = kpAt(g, S); if (!q) continue; const gy = feetY(q), hy = headY(q), hp = mid(q[11], q[12]); if (gy !== null && hy !== null && hp) r = { head: gy - hy, hip: gy - hp[1] }; }
@@ -961,14 +961,17 @@ function renderTimeline() {
   svg.addEventListener("pointerdown", ev => { const sk = ev.target.closest("[data-seek]"); stopPlay(); if (sk) { setT(+sk.dataset.seek); return; } setT(toT(ev)); });
   svg.addEventListener("keydown", ev => { if (ev.key === "ArrowRight") { setT(tNow + 1 / FPS); ev.preventDefault(); } if (ev.key === "ArrowLeft") { setT(tNow - 1 / FPS); ev.preventDefault(); } });
 }
+let TSRC = null;
+async function thumbSrc() { if (!TSRC) TSRC = mkSrc(); if (TSRC.s !== cur) await loadSrc(TSRC, cur); return TSRC; }
 async function renderStrobe(id) {
   const c = document.getElementById("strobe"), ctx = c.getContext("2d");
   if (!cur.video || !ser) { ctx.fillStyle = "#000"; ctx.fillRect(0, 0, c.width, c.height); return; }
-  const imp = PH.find(p => p.k === "impact"), f0 = fIdx(0);
-  await seek(0); if (cur.id !== id) return;
-  drawFrame(ctx, c.width, c.height, f0, { skel: false, trail: false, ball: false });
+  const TS = await thumbSrc(); if (cur.id !== id) return;
+  const imp = PH.find(p => p.k === "impact"), f0 = kF(TS, 0);
+  await seekSrc(TS, 0); if (cur.id !== id) return;
+  drawFrame(ctx, c.width, c.height, f0, { skel: false, trail: false, ball: false }, TS);
   ctx.fillStyle = "rgba(0,0,0,.35)"; ctx.fillRect(0, 0, c.width, c.height);
-  const [sx, sy, sw] = cropRect(f0, c.width / c.height), k = c.width / sw, P = p => [(p[0] - sx) * k, (p[1] - sy) * k];
+  const [sx, sy, sw] = cropRect(f0, c.width / c.height, TS), k = c.width / sw, P = p => [(p[0] - sx) * k, (p[1] - sy) * k];
   const ph = PH.filter(p => isN(p.t)), col = i => `hsl(${200 - 150 * i / Math.max(1, ph.length - 1)}, 90%, 60%)`;
   ctx.lineWidth = 3; ctx.strokeStyle = "#d4f03a"; ctx.beginPath(); let st = false;
   for (let g = 0; g < NF; g++) { const q = kpAt(g), w = q && q[domW()]; if (!w) { st = false; continue; } const [x, y] = P(w); if (st) ctx.lineTo(x, y); else ctx.moveTo(x, y); st = true; } ctx.stroke();
@@ -981,15 +984,16 @@ async function renderKF() {
   box.innerHTML = PH.map((p, i) => `<button data-t="${isN(p.t) ? p.t : ""}" ${isN(p.t) ? "" : "disabled"} title="${p.long}"><canvas width="320" height="200"></canvas><span><b>${i + 1} ${p.n}</b><span class="mono">${isN(p.t) ? (p.t >= 0 ? "+" : "−") + fmt(Math.abs(p.t), 2) : "no detectado"}</span></span></button>`).join("");
   box.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { if (b.dataset.t !== "") { stopPlay(); setT(+b.dataset.t); } }));
   if (!cur.video) return;
+  // thumbnails come from a copy of the video, so playing the stroke meanwhile is never disturbed
+  const TS = await thumbSrc(); if (cur.id !== id) return;
   const cvs = [...box.querySelectorAll("canvas")];
   for (let i = 0; i < PH.length; i++) {
     if (!isN(PH[i].t) || cur.id !== id) continue;
-    await seek(snap(PH[i].t)); if (cur.id !== id) return;
-    drawFrame(cvs[i].getContext("2d"), 320, 200, fIdx(snap(PH[i].t)), { skel: true, trail: false, ball: false });
+    await seekSrc(TS, snap(PH[i].t)); if (cur.id !== id) return;
+    drawFrame(cvs[i].getContext("2d"), 320, 200, kF(TS, snap(PH[i].t)), { skel: true, trail: false, ball: false }, TS);
   }
   await renderBallMoments(id); if (cur.id !== id) return;
-  await renderStrobe(id); if (cur.id !== id) return;
-  await seek(tNow); renderStage();
+  await renderStrobe(id);
 }
 const KIND_COL = { "lateral": "#7cc4ff", "cruzado": "#ff9f43", "carrera": "#ff5fd2", "hacia delante": "#9be37b", "hacia atrás": "#c39bff", "ajuste": "#e3e8ec" };
 function renderFeetPanel() {
@@ -1065,11 +1069,12 @@ async function renderBallMoments(id) {
   box.innerHTML = ms.map(m => `<button data-t="${m.t}"><canvas width="320" height="200"></canvas><div><b>${m.title} · ${m.t === 0 ? "impacto" : (m.t > 0 ? "+" : "−") + fmt(Math.abs(m.t), 2) + " s"}</b>${m.text}</div></button>`).join("");
   box.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { stopPlay(); setT(+b.dataset.t); }));
   if (!cur.video) return;
+  const TS = await thumbSrc(); if (cur.id !== id) return;
   const cvs = [...box.querySelectorAll("canvas")];
   for (let i = 0; i < ms.length; i++) {
     const t = snap(ms[i].t); if (t < T0 || t > T1 || cur.id !== id) continue;
-    await seek(t); if (cur.id !== id) return;
-    drawFrame(cvs[i].getContext("2d"), 320, 200, fIdx(t), { skel: true, trail: false, ball: true, heights: true });
+    await seekSrc(TS, t); if (cur.id !== id) return;
+    drawFrame(cvs[i].getContext("2d"), 320, 200, kF(TS, t), { skel: true, trail: false, ball: true, heights: true }, TS);
   }
 }
 function setT(t) { tNow = snap(t); renderStage(); renderTimeline(); document.querySelectorAll("#kf button").forEach(b => b.setAttribute("aria-current", b.dataset.t !== "" && Math.abs(+b.dataset.t - tNow) < .6 / FPS)); }
