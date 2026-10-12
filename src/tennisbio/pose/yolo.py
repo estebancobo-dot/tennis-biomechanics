@@ -76,9 +76,32 @@ def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", im
 
 
 def extract_rackets(video: str | Path, frames, out: str | Path, seg_model="yolo11m-seg.pt", imgsz=960) -> Path:
-    """Racket outlines (segmentation) only for the given frame indices, saved to .npz. Runs the ONNX
-    export on the iGPU (DirectML) when it is there (5x faster than PyTorch on the CPU)."""
+    """Racket outlines (segmentation) only for the given frame indices, saved to .npz.
+
+    On the iGPU (DirectML, ~5x faster than the CPU) it runs in a separate process: a driver crash
+    there (it happened on the user's PC: access violation, which no Python code can catch) only
+    loses that attempt; it is then done on the CPU here, and the iGPU is not tried again
+    (models/seg_gpu_falla.txt)."""
+    import json
+    import subprocess
+    import sys
+
     from .backend import DEFAULT_DEVICE
+    from .yolo_onnx import MODELS_DIR
+
+    flag = MODELS_DIR / "seg_gpu_falla.txt"
+    if DEFAULT_DEVICE != "cpu" and not flag.exists():
+        r = subprocess.run([sys.executable, "-m", "tennisbio.pose.yolo", str(video), json.dumps(sorted(set(int(f) for f in frames))),
+                            str(out), seg_model, str(imgsz), DEFAULT_DEVICE], capture_output=True, text=True,
+                           encoding="utf-8", errors="replace")
+        if r.returncode == 0 and Path(out).exists():
+            return Path(out)
+        flag.write_text(f"codigo {r.returncode}\n{(r.stderr or '')[-1500:]}", encoding="utf-8")
+        print(f"AVISO: la gráfica falló al segmentar la raqueta (código {r.returncode}); se hace en la CPU desde ahora")
+    return _extract_rackets(video, frames, out, seg_model, imgsz, "cpu")
+
+
+def _extract_rackets(video, frames, out, seg_model="yolo11m-seg.pt", imgsz=960, device="cpu") -> Path:
     from .yolo_onnx import MODELS_DIR, YoloOnnx, export_onnx
 
     name = Path(seg_model).stem
@@ -88,7 +111,7 @@ def extract_rackets(video: str | Path, frames, out: str | Path, seg_model="yolo1
             onnx = export_onnx(name, imgsz)
         except Exception:
             onnx = None
-    seg_onnx = YoloOnnx(onnx, DEFAULT_DEVICE) if onnx is not None and onnx.exists() else None
+    seg_onnx = YoloOnnx(onnx, device) if onnx is not None and onnx.exists() else None
     if seg_onnx is None:
         from ultralytics import YOLO
         # a bare name lives in models/ (downloaded there the first time), never in the current directory
@@ -200,3 +223,11 @@ def find_far_player(video: str | Path, H: np.ndarray, search_s=2.0, step=5):
         i += 1
     cap.release()
     return box
+
+
+if __name__ == "__main__":            # worker of extract_rackets: video, frames (JSON), out, model, imgsz, device
+    import json
+    import sys
+
+    v, fr, o, m, sz, dev = sys.argv[1:7]
+    _extract_rackets(v, json.loads(fr), o, m, int(sz), dev)
