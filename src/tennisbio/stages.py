@@ -120,9 +120,14 @@ def choose_audio_track(tracks: list[dict], peaks: np.ndarray, tol_s: float, span
         if not len(peaks) or not len(on):
             score = -1.0
         else:
-            hits = sum(bool(np.any(np.abs(on - t) <= tol_s)) for t in peaks)
-            chance = len(peaks) * (1 - np.exp(-len(on) / max(span_s, 1.0) * 2 * tol_s))
-            score = (hits - chance) / len(peaks)
+            # swings that have a transient (recall) and transients that fall on a swing
+            # (precision), each beyond what chance gives at that density
+            rate = len(on) / max(span_s, 1.0)
+            recall = np.mean([bool(np.any(np.abs(on - t) <= tol_s)) for t in peaks])
+            precision = np.mean([bool(np.any(np.abs(peaks - t) <= tol_s)) for t in on])
+            recall_0 = 1 - np.exp(-rate * 2 * tol_s)
+            precision_0 = min(1.0, len(peaks) * 2 * tol_s / max(span_s, 1.0))
+            score = (recall - recall_0) + (precision - precision_0)
         if score > best_score:
             best, best_score = k, score
     return best
