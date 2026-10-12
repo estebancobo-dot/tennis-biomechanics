@@ -252,6 +252,20 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .pcard canvas { width: 100%; aspect-ratio: 4 / 5; display: block; background: #000; cursor: pointer; }
 .pcard h3 { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px 4px; margin: 0; font-size: 15px; }
 .pcard h3 .ch { font-size: 11px; font-weight: 600; color: var(--accent-ink); background: var(--accent); border-radius: 999px; padding: 1px 8px; }
+.intro { margin: 0 0 14px; color: var(--ink-2); font-size: 14px; line-height: 1.5; max-width: 980px; }
+.intro b { color: var(--ink); }
+#m-feet .why { display: block; color: var(--ink-3); font-size: 12px; }
+.pcard li .why { display: block; color: var(--ink-3); font-size: 12px; margin-top: 2px; }
+.pcard li .why i { font-style: normal; opacity: .8; }
+.pcard li[data-ph] { cursor: pointer; }
+.pcard li[data-ph]:hover > span:first-child { color: var(--accent); }
+.pcard .focus { padding: 0 12px 12px; font-size: 12.5px; color: var(--ink-2); border-top: 1px solid var(--line); padding-top: 8px; margin: 0 12px 12px; padding-left: 0; padding-right: 0; }
+.pcard .focus b { color: var(--ink); }
+details.tech { margin-top: 16px; }
+.pcard details.more { padding: 0 12px 10px; font-size: 12.5px; }
+.pcard details.more summary { cursor: pointer; color: var(--ink-3); }
+.pcard details.more ul { padding: 6px 0 0; }
+details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px; font-size: 14px; }
 .pcard ul { list-style: none; margin: 0; padding: 4px 12px 12px; display: grid; gap: 6px; font-size: 13px; line-height: 1.4; color: var(--ink); align-content: start; }
 .pcard li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: baseline; }
 .pcard li.chg { color: var(--accent); }
@@ -289,6 +303,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
     <div class="content">
 
 <section class="screen" id="tab-modelo" hidden>
+<p class="intro"><b>Cómo pega la derecha.</b> Fase a fase: lo que hace (medido en sus golpes), por qué importa y qué mirar. Elige una bola para ver qué cambia. Pulsa una imagen o una frase para verla en vídeo.</p>
   <div class="panel">
     <header><h2 id="m-title">Su golpe</h2><span class="note" id="m-n"></span></header>
     <div class="body mhead"><ul class="msum" id="m-sum"></ul><button class="btn pri" id="m-play">▶ Ver sus golpes típicos</button></div>
@@ -308,6 +323,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 </section>
 
 <section class="screen" id="tab-panel" hidden>
+<p class="intro"><b>Resumen.</b> Las conclusiones principales de todos sus golpes, cada una con sus vídeos y con su grado de confianza.</p>
   <div class="kpis" id="kpis"></div>
   <div class="panel">
     <header><h2>Conclusiones</h2><span class="note">Generadas a partir de los datos; cada una con su confianza</span></header>
@@ -328,16 +344,13 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
     </div>
   </div>
   <div class="panel">
-    <header><h2>Vídeos de referencia</h2><span class="note">Análisis y cámara lenta publicados en YouTube · se abren en una pestaña nueva</span></header>
-    <div class="body refs" id="refs"></div>
-  </div>
-  <div class="panel">
     <header><h2>Partidos</h2><span class="note">Pulsa una fila para ver sus golpes</span></header>
     <div class="body tw" style="padding-inline:0"><table class="data" id="matches"></table></div>
   </div>
 </section>
 
 <section class="screen" id="tab-videoteca" hidden>
+<p class="intro"><b>Todos sus golpes en vídeo.</b> Filtra por situación; pulsa uno para verlo en detalle.</p>
   <div class="panel">
     <div id="slot-videoteca"></div>
     <div class="libbar">
@@ -352,6 +365,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 </section>
 
 <section class="screen" id="tab-golpe" hidden>
+<p class="intro"><b>Un golpe en detalle.</b> Vídeo a cámara lenta con el esqueleto, sus 8 fases y sus medidas comparadas con lo habitual en ella. Las gráficas técnicas están al final, plegadas.</p>
   <div class="cols c-3-1">
     <div class="panel">
       <div class="plbar" id="plbar" hidden></div>
@@ -400,6 +414,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
       <div class="tw"><table class="data" id="g-rtable"></table></div>
     </div>
   </div>
+  <details class="tech"><summary>Detalles técnicos: cadena cinética (velocidad de cada segmento) y ángulos de las articulaciones</summary>
   <div class="cols c-1-1">
     <div class="panel">
       <header><h2>Cadena cinética</h2><span id="g-seq" class="seqbadge"></span></header>
@@ -410,9 +425,11 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
       <div class="body chart"><div id="g-ang"></div><div class="legend" id="g-ang-leg" style="margin-top:6px"></div></div>
     </div>
   </div>
+  </details>
 </section>
 
 <section class="screen" id="tab-comparar" hidden>
+<p class="intro"><b>Dos golpes lado a lado</b>, sincronizados en el impacto, para ver la diferencia con los ojos.</p>
   <div class="panel">
     <div class="filterbar">
       <label class="ctl"><span><i style="display:inline-block;width:9px;height:9px;border-radius:2px;background:var(--s1);margin-right:4px"></i>Golpe A</span><select id="k-a"></select></label>
@@ -440,6 +457,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 </section>
 
 <section class="screen" id="tab-explorador" hidden>
+<p class="intro"><b>Buscar un golpe.</b> La lista de todos sus golpes con sus datos principales; pulsa uno para verlo.</p>
   <div class="panel">
     <div id="slot-explorador"></div>
     <div class="filterbar" id="filters">
@@ -458,6 +476,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 </section>
 
 <section class="screen" id="tab-comparativas" hidden>
+<p class="intro"><b>¿Cambia su técnica entre dos grupos de golpes?</b> Inicio y final del partido, presión, errores… comparando bolas equivalentes. Solo se da por buena una diferencia mayor que el error de medida.</p>
   <div class="panel">
     <div class="filterbar">
       <label class="ctl">Comparar<select id="c-pair">
@@ -483,6 +502,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 </section>
 
 <section class="screen" id="tab-pista" hidden>
+<p class="intro"><b>Dónde golpea y dónde bota su bola</b>, dibujado sobre la pista.</p>
   <div class="cols c-3-1">
     <div class="panel">
       <header><h2>Posición en el impacto</h2><div class="seg" id="p-mode"><button data-v="density" aria-pressed="true">Densidad</button><button data-v="stance" aria-pressed="false">Apoyo</button><button data-v="sit" aria-pressed="false">Bola</button><button data-v="bounce" aria-pressed="false">Botes</button><button data-v="dest" aria-pressed="false">Destino</button></div></header>
@@ -725,9 +745,7 @@ document.getElementById("matches").innerHTML = `<thead><tr><th>Partido</th><th>F
   MATCHES.map((m, i) => { const a = STROKES.filter(s => s.match === i), byT = [1, 2, 3].map(t => mean(a.filter(s => third(s) === t).map(s => s.m[evoK]))); return `<tr data-m="${i}"><td><b>${m.id}</b> <span class="dim">vs ${m.rival}</span></td><td class="num">${m.date}</td><td>${m.surf}</td><td>${m.round}</td><td class="r num">${a.length}</td><td class="r num">${a.filter(s => s.review.length).length}</td><td class="r num">${evoK ? fmtM(evoK, mean(a.map(s => s.m[evoK]))) : "—"}</td><td>${spark(byT)} <span class="mono dim3" style="font-size:11px">${byT.map(v => fmt(v, 1)).join(" · ")}</span></td></tr>`; }).join("") + "</tbody>";
 document.querySelectorAll("#matches tbody tr").forEach(r => r.addEventListener("click", () => { resetFilters(); document.getElementById("f-match").value = r.dataset.m; exPage = 0; renderTable(); showTab("explorador"); }));
 
-const REFS = (DATA.player && DATA.player.references || []).filter(r => !r.stroke || r.stroke === DATA.stroke);
-document.getElementById("refs").closest(".panel").hidden = !REFS.length;
-document.getElementById("refs").innerHTML = REFS.map(r => `<a class="ref" href="${r.u}" target="_blank" rel="noopener"><span class="pl"><svg viewBox="0 0 14 14" width="14" height="14" fill="currentColor"><path d="M3 2v10l9-5z"/></svg></span><span><b>${r.t}</b><span>${r.d} · youtube.com</span></span></a>`).join("");
+// no YouTube or other external videos: everything comes from her own strokes (requirement 6)
 
 /* ===== ANÁLISIS DE GOLPE: vídeo real de la ventana + esqueleto ===== */
 const PHASE_DEF = [
@@ -1375,11 +1393,12 @@ function mView() { return mSit && MODEL.variants[mSit] ? MODEL.variants[mSit] : 
 function mStrokes() { return (mView().strokes || []).map(id => SID[id]).filter(s => s && s.video); }
 function renderFeet() {
   const f = MODEL.footwork || {}, L = [];
-  const v = (k, d, u) => f[k] ? `<b>${fmt(f[k].median, d)}${u}</b> <span class="dim3">(${fmt(f[k].p25, d)}–${fmt(f[k].p75, d)}${u}, ${f[k].n} golpes)</span>` : null;
+  const CO = MODEL.coach || {}, why = k => CO["footwork." + k] || CO[k] ? `<span class="why">${CO["footwork." + k] || CO[k]}</span>` : "";
+  const v = (k, d, u) => f[k] ? `<b>${fmt(f[k].median, d)}${u}</b> <span class="dim3">(${fmt(f[k].p25, d)}–${fmt(f[k].p75, d)}${u}, ${f[k].n} golpes)</span>${why(k)}` : null;
   const add = (t, x) => { if (x) L.push(`<li>${t}: ${x}</li>`); };
   add("Pasos hasta la bola", v("steps_to_impact", 0, "")); add("Pasos de ajuste en los últimos 0,8 s", v("adjustment_steps", 0, ""));
   add("Primer paso tras el split step", v("first_step_s", 2, " s")); add("Último apoyo antes de golpear", v("last_plant_before_impact_s", 2, " s"));
-  add("Recorrido hasta la bola", v("path_m", 1, " m")); add("Velocidad máxima", v("peak_speed_mps", 1, " m/s")); add("Velocidad al golpear", v("speed_at_impact_mps", 1, " m/s"));
+  add("Recorrido hasta la bola", v("path_m", 1, " m")); add("Velocidad máxima", v("peak_speed_mps", 1, " m/s")); add("Velocidad al llegar a la bola (antes del swing)", v("approach_speed_mps", 1, " m/s"));
   add("Despegue del split step respecto al golpe de la rival", v("split_takeoff_vs_opp_s", 2, " s"));
   add("Aterrizaje del split step respecto al golpe de la rival", v("split_landing_vs_opp_s", 2, " s"));
   add("Velocidad antes / después del split step", f.speed_pre_split_mps && f.speed_post_split_mps ? `<b>${fmt(f.speed_pre_split_mps.median, 1)} → ${fmt(f.speed_post_split_mps.median, 1)} m/s</b>` : null);
@@ -1430,6 +1449,10 @@ function renderModelCurves(C) {
   document.getElementById("m-curves-leg").innerHTML = D.map(([, n, col]) => `<span><i style="background:${col}"></i>${n}</span>`).join("") + (Object.keys(BALL_EV).some(k => isN(ev[k])) ? `<span><i style="background:var(--accent)"></i>momentos de la bola (mediana)</span>` : "");
   document.getElementById("m-curves-txt").innerHTML = curveSentences(C).map(t => `<li>${t}</li>`).join("");
 }
+function mLine(c, l, why) {
+  const dv = l.change ? `<span class="dv">${l.change.diff > 0 ? "+" : "−"}${fmt(Math.abs(l.change.diff), ["s", "m", "m/s", ""].includes(l.change.unit) ? 2 : 0)}${l.change.unit === "°" || l.change.unit === "%" ? l.change.unit : " " + l.change.unit}</span>` : relBars(l.rel);
+  return `<li class="${l.change ? "chg" : ""}" data-ph="${c.phase}" title="Ver este momento en vídeo"><span>${l.text}${why && l.why ? `<span class="why">${l.why}${l.src && l.src !== "—" ? ` <i>· ${l.src}</i>` : ""}</span>` : ""}</span><span>${dv}</span></li>`;
+}
 let mGen = 0;
 async function renderModel() {
   const v = mView(), g = ++mGen, ss = mStrokes(), s = ss[0];
@@ -1438,8 +1461,9 @@ async function renderModel() {
   if (mSit) { const V = MODEL.variants[mSit]; ch.innerHTML = `<div><b>${V.factor_name}: ${V.level}</b> · ${V.n} golpes (${Math.round(V.share * 100)} %)${V.usual ? " · es su situación habitual: la referencia de las comparaciones" : ""}</div>` + (V.changes.length ? V.changes.map(t => `<div>· ${t}</div>`).join("") : `<div class="dim3">Ningún rasgo cambia de forma clara respecto a lo habitual (con el error de medida y la corrección por comparaciones múltiples).</div>`); }
   renderModelCurves(v.curves || (mSit ? null : MODEL.curves));
   const box = document.getElementById("m-cards");
-  box.innerHTML = (v.cards || []).map((c, i) => `<div class="pcard"><canvas width="400" height="500" data-i="${i}" title="Ver este momento en vídeo"></canvas><h3><span>${i + 1} · ${c.title}</span>${c.changes ? `<span class="ch">${c.changes} cambia${c.changes > 1 ? "n" : ""}</span>` : ""}</h3><ul>${c.lines.map(l => `<li class="${l.change ? "chg" : ""}"><span>${l.text}</span><span>${l.change ? `<span class="dv">${l.change.diff > 0 ? "+" : "−"}${fmt(Math.abs(l.change.diff), ["s", "m", "m/s", ""].includes(l.change.unit) ? 2 : 0)}${l.change.unit === "°" || l.change.unit === "%" ? l.change.unit : " " + l.change.unit}</span>` : relBars(l.rel)}</span></li>`).join("") || `<li class="dim3">Sin datos suficientes en esta fase.</li>`}</ul></div>`).join("");
+  box.innerHTML = (v.cards || []).map((c, i) => `<div class="pcard"><canvas width="400" height="500" data-i="${i}" title="Ver este momento en vídeo"></canvas><h3><span>${i + 1} · ${c.title}</span>${c.changes ? `<span class="ch">${c.changes} cambia${c.changes > 1 ? "n" : ""}</span>` : ""}</h3><ul>${c.lines.filter(l => l.main).map(l => mLine(c, l, true)).join("") || `<li class="dim3">${c.lines.length ? "Sin claves medidas con golpes suficientes en esta fase." : "Sin datos suficientes en esta fase."}</li>`}</ul>${c.lines.some(l => !l.main) ? `<details class="more"><summary>Más medidas de esta fase (${c.lines.filter(l => !l.main).length})</summary><ul>${c.lines.filter(l => !l.main).map(l => mLine(c, l, false)).join("")}</ul></details>` : ""}${c.focus ? `<div class="focus"><b>Qué mirar:</b> ${c.focus}</div>` : ""}</div>`).join("");
   box.querySelectorAll("canvas").forEach(cv => cv.addEventListener("click", () => { const c = v.cards[+cv.dataset.i]; if (!s) return; loadStroke(s).then(() => { const t = s.phases[c.phase]; if (isN(t)) setT(t); }); showTab("golpe"); }));
+  box.querySelectorAll("li[data-ph]").forEach(li => li.addEventListener("click", () => { if (!s) return; const ph = li.dataset.ph; loadStroke(s).then(() => { const t = s.phases[ph]; if (isN(t)) setT(t); }); showTab("golpe"); }));
   document.getElementById("m-play").disabled = !ss.length;
   for (let i = 0; i < (v.cards || []).length; i++) { if (g !== mGen) return; await drawCard(box.querySelectorAll("canvas")[i], v.cards[i], s); }
 }

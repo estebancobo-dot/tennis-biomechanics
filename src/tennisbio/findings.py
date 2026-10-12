@@ -271,9 +271,10 @@ def conclusions(data: dict, dist: dict, finds: list[Finding]) -> list[Conclusion
     best = lambda a: sorted(a, key=lambda s: -show_score(s))
     pct = lambda a, f: 100 * sum(1 for s in a if f(s)) / len(a) if a else math.nan
     out = []
-    if n < 10:
-        out.append(Conclusion(f"Con {n} golpe{'' if n == 1 else 's'} solo se describe lo observado; las comparaciones necesitan "
-                              "al menos 5 golpes por grupo y el ruido de medida, 20 con bola neutra.", "pocos datos", "crit"))
+    from .model import MIN_N
+    if n < MIN_N:                 # no percentage of a handful of strokes (the same rule as «Su derecha»)
+        return [Conclusion(f"Con {n} golpe{'' if n == 1 else 's'} todavía no se saca ninguna conclusión: hacen falta al menos "
+                           f"{MIN_N}. Los vídeos de cada golpe sí se pueden ver.", "pocos datos", "crit")]
     counts = sorted(((k, sum(1 for s in st if s.get("stance") == k)) for k in ("abierto", "semiabierto", "neutro", "cerrado")), key=lambda x: -x[1])
     nst = sum(c for _, c in counts)
     if nst:

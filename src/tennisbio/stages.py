@@ -1061,7 +1061,8 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
         {"court_pos": d.get("court_pos_m"), "displacement": d.get("displacement_m"), "t_avail": ta,
          "contact_h": r.metrics.get("contact_height_pct"), "shot_direction": d.get("shot_direction"),
          "split": (r.phases.get("ready") or {}).get("method") == "split_step_landing",
-         "surface": ctx.match.surface or "", "next_opp": ret, "return": is_return, "ball": ball_m})
+         "surface": ctx.match.surface or "", "next_opp": ret, "return": is_return, "ball": ball_m,
+         "head_motion_cm": r.metrics.get("head_motion_impact_cm")})
     if side == "far":                       # 70 px player: only position-level classes are kept
         d["technique"] = {"classes": {k: v for k, v in d["technique"]["classes"].items()
                                       if k in ("ball_speed", "ball_height", "depth", "court_side", "width", "intent", "shot_type")},

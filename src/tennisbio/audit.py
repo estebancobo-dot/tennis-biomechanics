@@ -31,6 +31,7 @@ REQUIREMENTS = {
     3: "Nada inventado: valores posibles, respaldados por sus golpes; lo no medible se dice",
     4: "Cuerdas / orientación de la cara de la raqueta",
     5: "100 % automático",
+    6: "Sin fuentes externas (nada de vídeos de otros)",
     9: "Rendimiento: un partido en horas, no días",
 }
 # requirement 1, word by word: each variant the user named → factor of the model ("" = none)
@@ -264,6 +265,9 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
             st, det = "pocos datos", f"se mide ({best:.0%} de los golpes); el informe lo enseñará con más golpes o más fiabilidad"
         else:
             st, det = "ok", f"medido en el {best:.0%} de los golpes y en el informe"
+            from .explain import COACH
+            if not any(k in COACH or k.split(".")[-1] in COACH or "class." + k.split(".")[-1] in COACH for k in found if k in planned):
+                st, det = "aviso", det + ", pero sin explicación de qué significa (por qué importa)"
         if row["status"] == "◐" and st == "ok":
             det += " (parcial: ver la matriz)"
         items.append(_item(1, "Taxonomía", name, st, det, keys=sorted(set(found))[:8], measured=round(best, 2)))
@@ -406,6 +410,16 @@ def _screens(shots_dir: Path) -> list[dict]:
         no_video = sc.get("tab") == "golpe" and meta.get("h264", True) and not sc.get("videos")
         black = sc.get("black_canvases", 0)
         st = "falta" if blank or empty or sc.get("errors") or no_video or black else "ok"
+        if "intro" in sc and not sc["intro"]:
+            st, det_intro = "falta", "; no dice para qué sirve (sin frase de entrada)"
+        else:
+            det_intro = ""
+        if sc.get("many_lines"):
+            st = "falta"
+            det_intro += f"; {sc['many_lines']} gráficas con más de 4 líneas a la vista (difíciles de leer)"
+        if sc.get("external_links"):
+            items.append(_item(6, "Pantallas", f"Enlaces externos en «{sc.get('title', sc.get('tab'))}»", "falta",
+                               f"{sc['external_links']} enlaces a otras webs"))
         det = f"{sc.get('text_chars', 0)} caracteres de texto, {sc.get('videos', 0)} vídeos, {sc.get('charts', 0)} gráficos"
         if sc.get("empty_msgs"):
             det += f"; mensajes de vacío: {sc['empty_msgs']}"
@@ -417,6 +431,7 @@ def _screens(shots_dir: Path) -> list[dict]:
             det += "; el vídeo del golpe no se carga"
         if black:
             det += f"; {black} imágenes salen en negro"
+        det += det_intro
         items.append(_item(2, "Pantallas", f"Pantalla «{sc.get('title', sc.get('tab'))}»", st, det, file=sc.get("file")))
     if meta.get("errors"):
         items.append(_item(2, "Pantallas", "Errores de la página", "falta", "; ".join(meta["errors"][:5])))

@@ -123,6 +123,138 @@ def _lines():
 
 
 LINES = _lines()
+# feet and split step inside the phases where a coach looks at them
+LINES["ready"].insert(0, ("footwork.split_landing_vs_opp_s", lambda t: (
+    "Cae del split step justo cuando golpea la rival." if abs(t["median"]) <= 0.08 else
+    f"Cae del split step {fmt(abs(t['median']), 2)} s {'después' if t['median'] > 0 else 'antes'} de que golpee la rival.")))
+LINES["takeback"].append(("footwork.first_step_s", lambda t: f"Da el primer paso {fmt(t['median'], 2)} s después del split step ({_rng(t, 2)} s)."))
+LINES["takeback"].append(("footwork.steps_to_impact", lambda t: f"Llega a la bola en {fmt(t['median'])} pasos."))
+LINES["impact"].append(("stroke.head_motion_cm", lambda t: ("Su cabeza se queda quieta en el impacto" if t["median"] <= 3 else
+                                                         "Su cabeza se mueve en el impacto") +
+                        f" ({fmt(t['median'], 1)} cm en ±50 ms)."))
+LINES["recovery"].append(("footwork.off_centre_at_opp_hit_m", lambda t: f"Cuando la rival vuelve a golpear está a {fmt(t['median'], 1)} m del centro."))
+
+# What each measurement means for the stroke, as a coach would say it, with where it comes from
+# (the sources of docs/matriz_cobertura.md). Shown under every sentence of «Su derecha».
+COACH = {
+    "ready.body_height": ("Esperar con las rodillas flexionadas permite salir antes hacia la bola.", "Tennis Australia"),
+    "ready.hip_height": ("Esperar con las rodillas flexionadas permite salir antes hacia la bola.", "Tennis Australia"),
+    "ready.base_width": ("Los pies algo más separados que los hombros dan una base estable para el primer paso.", "Tennis Australia"),
+    "ready.hands_apart": ("La mano libre en la raqueta ayuda a girar hombros y raqueta a la vez.", "Tennis Australia; ITF"),
+    "class.ready_hands": ("La mano libre en la raqueta ayuda a girar hombros y raqueta a la vez.", "Tennis Australia; ITF"),
+    "footwork.split_landing_vs_opp_s": ("Caer del split step cuando golpea la rival permite reaccionar antes a la dirección de la bola.", "Uzu 2009; Filipcic 2017"),
+    "ball_net.hip_height": ("Dónde está su cuerpo cuando la bola cruza la red dice si va por delante o por detrás de la bola.", "Tennis Australia"),
+    "ball_net.shoulder_turn": ("Haber girado ya los hombros cuando la bola cruza la red indica una preparación temprana.", "ITF (Crespo, Reid)"),
+    "stroke.t_takeback": ("Preparar pronto da tiempo a armar del todo antes del bote.", "ITF (Crespo, Reid); Tennis Australia"),
+    "stroke.takeback_after_opp": ("Cuanto antes arranca tras el golpe de la rival, más tiempo tiene para colocarse.", "ITF (Crespo, Reid)"),
+    "stroke.takeback_vs_bounce": ("Empezar a preparar antes del bote es lo que piden los manuales de técnica.", "Tennis Australia"),
+    "stroke.takeback_vs_net": ("Empezar a preparar con la bola en el aire, antes de que cruce la red, es preparación temprana.", "ITF (Crespo, Reid)"),
+    "stroke.loaded_vs_bounce": ("Tennis Australia pide el armado completo cuando bota la bola.", "Tennis Australia 2013"),
+    "stroke.loaded_vs_top": ("Armar antes de que la bola llegue a lo más alto deja el swing listo para tomarla subiendo.", "Reid, Elliott y Crespo 2013"),
+    "ball_bounce.hip_height": ("Bajar la cadera cuando bota la bola carga las piernas para el swing.", "Tennis Australia; Nesbit 2008"),
+    "takeback.hands_apart": ("Girar con la mano libre en la raqueta es el «giro unitario»: hombros y raqueta van juntos.", "Tennis Australia; ITF"),
+    "takeback.shoulder_turn": ("La preparación empieza por el giro del tronco, no por el brazo.", "ITF (Crespo, Reid)"),
+    "class.takeback": ("Una preparación compacta ahorra tiempo contra bolas rápidas; una amplia da más recorrido al swing.", "Yandell; Tennis Australia"),
+    "footwork.first_step_s": ("Un primer paso rápido tras el split step es la base de llegar bien a la bola.", "Uzu 2009; Mecheri"),
+    "footwork.steps_to_impact": ("Las profesionales suelen llegar con 2-3 pasos y ajustar con pasos cortos al final.", "Tanabe; Cardiff Met"),
+    "loaded.shoulder_turn": ("Girar los hombros carga el tronco para el swing.", "Landlinger 2010; Elliott 2006"),
+    "loaded.hip_turn": ("La cadera gira menos que los hombros: esa diferencia estira el tronco.", "Landlinger 2010"),
+    "loaded.x_factor": ("Girar los hombros más que la cadera estira el tronco y almacena energía para el swing.", "Landlinger 2010; Tennis Australia"),
+    "loaded.racket_head_vs_wrist": ("La raqueta por encima de la mano al armar prepara el bucle y la caída posterior.", "Yandell; Tennis Australia"),
+    "loaded.wrist_dom_vs_shoulder": ("La mano no debe subir por encima de la cabeza al armar.", "Tennis Australia"),
+    "loaded.shoulder_abd_non": ("El brazo libre señalando la bola ayuda a girar el tronco y a medir la distancia.", "Elliott 2006; Tennis Australia"),
+    "loaded.elbow_non": ("El brazo libre extendido equilibra el giro y luego tira del tronco hacia delante.", "Elliott 2006; Tennis Australia"),
+    "loaded.hip_height": ("Cargar el peso en la pierna exterior es la fuente de la rotación.", "Tennis Australia; Nesbit 2008"),
+    "loaded.com_over_feet": ("Dónde está el peso entre los pies al armar dice qué pierna empuja la rotación.", "Tennis Australia"),
+    "loaded.face_tilt": ("La cara de la raqueta al final del armado define el bucle: cerrada (hacia el suelo) o abierta.", "Elliott y Marsh 1989"),
+    "class.takeback_face": ("La cara de la raqueta al final del armado define el bucle: cerrada (hacia el suelo) o abierta.", "Elliott y Marsh 1989"),
+    "class.stance_loaded": ("El apoyo con el que arma decide cuánto puede girar la cadera.", "Martin 2021; Tennis Australia"),
+    "stroke.pause_at_loaded": ("Una pausa breve al final del armado sincroniza el swing con la bola.", "Elliott 2006"),
+    "loaded.racket_forearm": ("La muñeca echada hacia atrás al armar se suelta al final del swing y aporta velocidad.", "Landlinger 2010; Pedro 2022"),
+    "acceleration.racket_forearm": ("La muñeca echada hacia atrás se suelta al final del swing y aporta velocidad.", "Landlinger 2010; Pedro 2022"),
+    "stroke.t_acceleration": ("En las profesionales el swing hacia delante es corto y muy rápido.", "Landlinger 2010"),
+    "stroke.dur_forward": ("En las profesionales el swing hacia delante es corto y muy rápido.", "Landlinger 2010"),
+    "stroke.wrist_drop": ("Dejar caer la mano y la raqueta por debajo de la bola permite golpear de abajo arriba (liftado).", "Reid, Elliott y Crespo 2013"),
+    "acceleration.racket_head_vs_wrist": ("La cabeza de la raqueta cae por debajo de la mano antes de subir hacia la bola: es la base del liftado.", "Reid, Elliott y Crespo 2013; Yandell"),
+    "class.swing": ("La dirección del swing (de abajo arriba o plano) decide el efecto de la bola.", "Takahashi; Elliott y Marsh 1989"),
+    "chain": ("Picos de velocidad en orden cadera → tronco → brazo → antebrazo: el cuerpo pasa la energía al brazo.", "Landlinger 2010; Elliott 2006"),
+    "stroke.racket_speed_rel": ("La velocidad real no se ve en la tele; esta solo compara sus golpes entre sí.", "—"),
+    "impact.wrist_dom_height": ("La altura del contacto marca qué bolas le resultan cómodas.", "Reid, Elliott y Crespo 2013"),
+    "impact.wrist_dom_vs_hip": ("Golpear entre la cintura y el pecho es la zona de contacto más habitual del circuito.", "Elliott 1989; Reid 2013"),
+    "impact.wrist_dom_lateral": ("Golpear separada del cuerpo deja espacio para extender el brazo.", "Knudson 2006"),
+    "impact.elbow_dom": ("Brazo recto o doble flexión son dos modelos válidos; el recto suele ir con empuñaduras más cerradas.", "Elliott 1989, 1997"),
+    "class.arm": ("Brazo recto o doble flexión son dos modelos válidos; el recto suele ir con empuñaduras más cerradas.", "Elliott 1989, 1997"),
+    "class.ball_phase": ("Tomar la bola subiendo quita tiempo a la rival; tomarla cayendo da más tiempo propio.", "ITF (Crespo, Reid)"),
+    "stroke.contact_vs_top": ("Tomar la bola subiendo quita tiempo a la rival; tomarla cayendo da más tiempo propio.", "ITF (Crespo, Reid)"),
+    "stroke.contact_height_m": ("La altura de la bola en el contacto dice qué bolas le llegan y cuáles elige.", "Reid, Elliott y Crespo 2013"),
+    "stroke.swing_low_to_high": ("La mano sube hacia la bola en el contacto: golpe con efecto liftado.", "Takahashi; Elliott y Marsh 1989"),
+    "impact.trunk_tilt": ("Un tronco estable en el impacto da precisión.", "Tennis Australia"),
+    "impact.head_over_base": ("La cabeza centrada sobre los pies indica equilibrio en el impacto.", "Tennis Australia"),
+    "stroke.head_motion_cm": ("Las mejores jugadoras mantienen la cabeza quieta en el impacto.", "Lafont 2008"),
+    "impact.body_height": ("Lo que baja el cuerpo en el impacto dice cuánto usa las piernas.", "Tennis Australia"),
+    "impact.base_m": ("Una base ancha da estabilidad en el impacto.", "Tennis Australia"),
+    "class.stance_impact": ("El apoyo abierto es el más usado en el circuito (84 % de las derechas en un estudio de 2025); el cerrado aparece más al atacar bolas cortas.", "IJSSC 2025; Martin 2021"),
+    "class.stance_role": ("El mismo apoyo puede ser de ataque o de defensa según cómo llega a la bola.", "Martin 2021"),
+    "class.movement": ("Cómo llega a la bola (parada o en carrera) cambia el apoyo y la terminación.", "Giles y Reid 2021"),
+    "stroke.hand_on_handle": ("Dónde agarra el mango cambia el brazo de palanca; desde la tele es una medida poco fiable.", "Yandell"),
+    "extension.arm_extension": ("Seguir hacia la bola tras el contacto indica que el swing no se frena.", "ITF (Crespo, Reid)"),
+    "stroke.swing_rise_after": ("La mano sigue subiendo tras el contacto: el swing termina el efecto liftado.", "Takahashi"),
+    "stroke.t_finish": ("Una terminación completa indica que no frenó el brazo.", "Tennis Australia"),
+    "finish.wrist_dom_vs_shoulder": ("Terminar con la mano por encima del hombro es la terminación clásica de una derecha con efecto.", "Tennis Australia"),
+    "finish.wrist_dom_lateral": ("Cruzar el brazo al otro lado del cuerpo indica que el tronco ha girado del todo.", "Tennis Australia"),
+    "finish.face_tilt": ("La cara de la raqueta al terminar refleja cómo ha girado el antebrazo.", "Elliott 1997"),
+    "class.finish": ("Sobre el hombro en golpes largos; limpiaparabrisas en bolas con más efecto o abiertas.", "Tennis Australia"),
+    "class.finish_3x90": ("La terminación «3 × 90°» (hombro, codo y muñeca a unos 90°) es la referencia de los manuales.", "Reid 2013"),
+    "footwork.recovery_to_centre_m": ("Volver hacia el centro tras golpear prepara la siguiente bola.", "Armstrong 2024"),
+    "footwork.off_centre_at_opp_hit_m": ("Estar cerca del centro cuando golpea la rival reduce lo que tiene que correr.", "Armstrong 2024; Yandell"),
+    "strings": ("Hacia dónde miran las cuerdas en cada momento describe el bucle de la raqueta.", "Elliott y Marsh 1989"),
+    "first_step_right_way": ("Que el primer paso vaya hacia la bola indica una lectura temprana.", "Mecheri"),
+    "rear_leg_step_after": ("Pasar la pierna de atrás adelante tras golpear indica una rotación completa del tronco.", "Landlinger 2010"),
+    "footwork.speed_pre_split_mps": ("Frenar antes del split step y acelerar después indica un split bien hecho.", "Filipcic 2017"),
+    "footwork.speed_post_split_mps": ("Frenar antes del split step y acelerar después indica un split bien hecho.", "Filipcic 2017"),
+    "footwork.split_takeoff_vs_opp_s": ("Despegar justo antes de que golpee la rival permite caer cuando ya se ve la dirección.", "Uzu 2009; Avilés"),
+    "footwork.first_step_length_m": ("Un primer paso largo y rápido es el que más distancia gana.", "Tanabe"),
+    "footwork.last_step_length_m": ("En carrera, la última zancada más larga sirve para frenar y golpear.", "Giles y Reid 2021"),
+    "footwork.adjustment_steps": ("Los pasos cortos de ajuste al final colocan el cuerpo a la distancia justa de la bola.", "Cardiff Met; Giles"),
+    "footwork.direction_changes": ("Muchos cambios de dirección indican que leyó tarde la bola.", "Giles 2023"),
+    "footwork.peak_speed_mps": ("La velocidad máxima dice cuánto tuvo que correr para llegar.", "Martínez-Gallego 2013"),
+    "footwork.approach_speed_mps": ("Llegar frenada a la bola permite golpear en equilibrio.", "Giles y Reid 2021"),
+    "footwork.path_m": ("La mayoría de golpes del circuito llegan tras correr 3-4 m o menos.", "Reid 2013"),
+    "footwork.weight_loaded_to_non": ("Qué pierna carga el peso al armar decide de dónde sale la rotación.", "Sandamas 2013"),
+    "footwork.move_direction": ("Hacia dónde se mueve (lateral, delante, atrás) cambia el apoyo que puede usar.", "Weber; Kovacs"),
+    "class.move_direction": ("Hacia dónde se mueve (lateral, delante, atrás) cambia el apoyo que puede usar.", "Weber; Kovacs"),
+    "footwork.first_step_type": ("El tipo de primer paso (cruzado, lateral, pivote) depende de hacia dónde y cuánto tiene que ir.", "Bragg 2001; Vuong 2022"),
+    "metrics.head_motion_impact_cm": ("Las mejores jugadoras mantienen la cabeza quieta en el impacto.", "Lafont 2008"),
+    "class.shot_type": ("La dirección de su golpe (cruzada, paralela, invertida) cambia la preparación y el apoyo.", "F3Set; TennisViz"),
+    "shot_direction": ("La dirección de su golpe (cruzada, paralela, invertida) cambia la preparación y el apoyo.", "F3Set; TennisViz"),
+    "class.intent": ("Atacar, mantener o defender cambia la técnica: compararla en cada caso evita confundir técnica con situación.", "TennisViz"),
+    "point_won": ("Cuántos puntos gana atacando o defendiendo con su derecha.", "TennisViz (Conversion / Steal)"),
+    "class.play": ("Resto, inicio del punto o peloteo: cada momento del punto pide una derecha distinta.", "F3Set"),
+    "approach": ("Las subidas a la red empiezan con una derecha de ataque desde dentro de la pista.", "SwingVision; F3Set"),
+}
+# What a coach checks at each moment (critical features: Knudson 2006; Tennis Australia)
+PHASE_FOCUS = {
+    "ready": "que caiga del split step justo cuando golpea la rival, con una base estable.",
+    "takeback": "que empiece girando los hombros, no solo el brazo, en cuanto sabe a qué lado va la bola.",
+    "loaded": "armado completo antes del bote: hombros girados, raqueta arriba y brazo libre señalando la bola.",
+    "acceleration": "que la raqueta caiga por debajo de la mano y que la cadera arranque antes que el brazo.",
+    "impact": "contacto delante y al lado del cuerpo, con la cabeza quieta.",
+    "extension": "que el brazo siga hacia la bola antes de cruzar el cuerpo.",
+    "finish": "terminación completa y en equilibrio.",
+    "recovery": "el primer paso de vuelta antes de que golpee la rival.",
+}
+# The keys a coach says first at each moment (the rest is folded under «Más medidas»)
+PRIMARY = {
+    "ready": ["footwork.split_landing_vs_opp_s", "ready.hip_height", "class.ready_hands"],
+    "takeback": ["stroke.takeback_vs_net", "stroke.takeback_vs_bounce", "takeback.shoulder_turn", "class.takeback", "first_step_right_way"],
+    "loaded": ["stroke.loaded_vs_bounce", "loaded.x_factor", "class.stance_loaded", "class.takeback_face", "strings", "loaded.shoulder_abd_non"],
+    "acceleration": ["acceleration.racket_head_vs_wrist", "chain", "class.swing"],
+    "impact": ["class.ball_phase", "impact.wrist_dom_vs_hip", "class.arm", "class.stance_impact", "stroke.head_motion_cm", "strings"],
+    "extension": ["extension.arm_extension", "stroke.swing_rise_after"],
+    "finish": ["class.finish", "finish.wrist_dom_vs_shoulder", "strings"],
+    "recovery": ["footwork.recovery_to_centre_m", "footwork.off_centre_at_opp_hit_m", "rear_leg_step_after"],
+}
+STRINGS_REL = {"ready": 3, "takeback": 3, "loaded": 3, "acceleration": 1, "impact": 1, "extension": 1, "finish": 3, "recovery": 2}
 CLASS_TEXT = {
     "stance_loaded": "Apoyo al armar", "stance_impact": "Apoyo en el impacto", "stance_role": "Función del apoyo",
     "takeback_face": "Cara al final del armado", "finish": "Terminación", "arm": "Brazo",
@@ -174,6 +306,12 @@ def phase_cards(model: dict, stroke: str, factor: str | None = None, level: str 
                 txt = _class_line(classes[ck])
                 if txt:
                     lines.append({"key": "class." + ck, "text": f"{CLASS_TEXT[ck]}: {txt}.", "rel": 3, "n": classes[ck]["n"], "change": None})
+        lines += _extra_lines(p, var or model)
+        for ln in lines:
+            ln["why"], ln["src"] = COACH.get(ln["key"], (None, None))
+            ln["main"] = ln["key"] in PRIMARY.get(p, []) or bool(ln["change"])
+        order = PRIMARY.get(p, [])
+        lines.sort(key=lambda ln: (not ln["main"], order.index(ln["key"]) if ln["key"] in order else 99))
         # the effects of this situation on this phase that no template covers
         for key, e in eff.items():
             if key.split(".")[0] == p and not any(l["key"] == key for l in lines):
@@ -182,9 +320,48 @@ def phase_cards(model: dict, stroke: str, factor: str | None = None, level: str 
                               f"(habitual {fmt(t['median'], 1)}{_u(t['unit'])}).", "rel": t["rel"], "n": e["n"],
                               "change": {"diff": round(e["diff"], 3), "unit": t["unit"], "ref": e["ref"]}})
         skel = ((var or {}).get("skeleton") or {}).get(p) or model["skeleton"].get(p)
-        cards.append({"phase": p, "title": title, "lines": lines, "skeleton": skel,
+        cards.append({"phase": p, "title": title, "lines": lines, "skeleton": skel, "focus": PHASE_FOCUS.get(p),
                       "changes": sum(1 for l in lines if l["change"])})
     return cards
+
+
+def _share_true(c: dict | None) -> tuple[int, int] | None:
+    if not c or (c.get("n") or 0) < MIN_N:
+        return None
+    yes = sum(v for k, v in c["counts"].items() if str(k).lower() == "true")
+    return round(100 * yes / c["n"]), c["n"]
+
+
+def _extra_lines(p: str, src: dict) -> list[dict]:
+    """Sentences that come from counts rather than medians: where the strings point, the kinetic
+    chain, the first step and the back leg. src: the model or one of its variants."""
+    out = []
+    st = (src.get("strings") or {}).get(p)
+    if st and st.get("n", 0) >= MIN_N:
+        (to, k), = list(st["counts"].items())[:1]
+        tilt = st.get("tilt")
+        face = "" if tilt is None else (f", cara cerrada {fmt(tilt)}° (hacia el suelo)" if tilt > 5 else
+                                        f", cara abierta {fmt(-tilt)}° (hacia el cielo)" if tilt < -5 else ", cara vertical")
+        est = " Es una estimación: en este momento la raqueta sale borrosa." if STRINGS_REL[p] == 1 else ""
+        out.append({"key": "strings", "text": f"Cuerdas mirando hacia {to} en el {round(100 * k / st['n'])} % de los golpes{face}.{est}",
+                    "rel": STRINGS_REL[p], "n": st["n"], "change": None})
+    if p == "acceleration":
+        ch = _share_true(src.get("chain"))
+        if ch:
+            out.append({"key": "chain", "text": f"El cuerpo arrastra al brazo en orden (cadera → tronco → brazo → antebrazo) en el {ch[0]} % "
+                        "de los golpes; se mide el orden, no los milisegundos.", "rel": 2, "n": ch[1], "change": None})
+    fw = src.get("footwork") or {}
+    if p == "takeback":
+        r = _share_true(fw.get("first_step_right_way"))
+        if r:
+            out.append({"key": "first_step_right_way", "text": f"Su primer paso va hacia la bola en el {r[0]} % de los golpes.",
+                        "rel": 2, "n": r[1], "change": None})
+    if p == "finish":
+        r = _share_true(fw.get("rear_leg_step_after"))
+        if r:
+            out.append({"key": "rear_leg_step_after", "text": f"La pierna de atrás pasa adelante tras golpear en el {r[0]} % de los golpes.",
+                        "rel": 2, "n": r[1], "change": None})
+    return out
 
 
 def _u(unit: str) -> str:
@@ -200,21 +377,22 @@ def change_text(model: dict, e: dict) -> str:
     return f"{t['name']}{(' · ' + ph.lower()) if ph else ''}: {sign}{fmt(abs(e['diff']), d)}{_u(t['unit'])} respecto a «{e['ref']}»"
 
 
+# «En pocas palabras»: the first sentence available of each group, taken from the phase cards so the
+# summary and the phases always say the same thing
+SUMMARY_KEYS = [["stroke.takeback_vs_net", "stroke.takeback_vs_bounce", "stroke.t_takeback"],
+                ["stroke.loaded_vs_bounce", "loaded.x_factor", "loaded.shoulder_turn"],
+                ["class.ball_phase", "stroke.contact_vs_top"], ["impact.wrist_dom_vs_hip", "class.arm"],
+                ["class.stance_impact"], ["stroke.head_motion_cm"], ["class.finish"], ["footwork.split_landing_vs_opp_s"]]
+
+
 def summary(model: dict, stroke: str) -> list[str]:
-    """Her stroke in a few sentences: the classes that define it and her constants."""
+    """Her stroke in a few sentences: what she does at the key moments, then rhythm and grip."""
     out = []
-    c = model["classes"]
-    def top(ck):
-        x = c.get(ck)
-        if not x or not x["counts"] or x["n"] < MIN_N:
-            return None
-        k, v = next(iter(x["counts"].items()))
-        return k, round(100 * v / x["n"]), x["n"]
-    for ck, txt in (("stance_impact", "Apoyo en el impacto"), ("finish", "Terminación"), ("takeback", "Preparación"),
-                    ("arm", "Brazo en el impacto"), ("movement", "Llega a la bola")):
-        t = top(ck)
-        if t:
-            out.append(f"{txt}: {t[0]} ({t[1]} % de {t[2]} golpes).")
+    lines = {ln["key"]: ln for c in phase_cards(model, stroke) for ln in c["lines"]}
+    for group in SUMMARY_KEYS:
+        ln = next((lines[k] for k in group if k in lines), None)
+        if ln:
+            out.append(ln["text"])
     tf = _t(model, "stroke.dur_forward")
     tp = _t(model, "stroke.dur_preparation")
     if tf and tp:
@@ -299,5 +477,6 @@ def model_view(model: dict, stroke: str) -> dict:
                   "su desplazamiento, la velocidad con la que llega y su recuperación.")
     return {"summary": summary(model, stroke), "cards": phase_cards(model, stroke), "variants": variants,
             "typical_strokes": model.get("typical_strokes", []), "n": model["n_strokes"], "n_near": model["n_near"],
-            "footwork": model["footwork"], "not_measurable": nm, "min_n": MIN_N, "curves": model.get("curves"),
+            "footwork": model["footwork"], "not_measurable": nm, "min_n": MIN_N,
+            "coach": {k: v[0] for k, v in COACH.items() if k.startswith("footwork.") or k in ("first_step_right_way", "rear_leg_step_after")}, "curves": model.get("curves"),
             "factors": {fk: FACTORS[fk][0] for fk in model["variants"]}}

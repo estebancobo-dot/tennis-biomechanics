@@ -31,6 +31,10 @@ _JS_SCREEN = """(tab) => {
     videos_failed: vids.filter(v => v.error).map(v => v.getAttribute('src')).slice(0, 5),
     empty_msgs: [...sec.querySelectorAll('.empty')].filter(e => e.offsetParent).map(e => e.innerText.trim()).slice(0, 8),
     dashes: ((sec.innerText || '').match(/—/g) || []).length,
+    // human sense: an opening sentence, no links to outside sources, no visible chart with many lines
+    intro: !!(sec.querySelector('.intro') && sec.querySelector('.intro').innerText.trim().length > 20),
+    external_links: [...sec.querySelectorAll('a[href^="http"]')].filter(a => a.offsetParent).length,
+    many_lines: [...sec.querySelectorAll('svg')].filter(g => g.offsetParent && g.querySelectorAll('polyline').length > 4).length,
   };
 }"""
 

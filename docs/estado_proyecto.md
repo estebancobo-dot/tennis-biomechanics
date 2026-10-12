@@ -74,6 +74,13 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
   del golpe no es situación, porcentajes de < 5 golpes, lista de "no medible" incompleta (13), 2
   valores fuera de rango (codo, base); imágenes de las 8 fases en negro con pocos golpes (arreglado:
   golpes mejor captados cuando no hay típico).
+- ✔ Capa de interpretación (12-10): cada frase de «Su derecha» lleva qué significa y su fuente
+  (`explain.COACH`), cada fase sus claves a la vista (`PRIMARY`) y el resto plegado, «Qué mirar»
+  (`PHASE_FOCUS`), cuerdas por fase, cadena cinética, primer paso y pierna trasera; resumen sacado de
+  las mismas frases; frase de entrada en cada pantalla; gráficas técnicas plegadas; sin YouTube
+  (requisito 6); conclusiones del Panel con el mínimo de 12 golpes. La auditoría comprueba además
+  frase de entrada, enlaces externos, gráficas de más de 4 líneas y que cada medida tenga su
+  explicación. `2b_prueba_media.bat`: 35 min de partido para verlo con golpes suficientes.
 - El usuario no entiende el informe (12-10): rehacer la entrada con una sola pantalla que se explique
   sola, con vídeo y frases; después, aprender de vídeos de análisis de entrenadores (subtítulos e
   imágenes bajados en el PC) cómo explicarlo.

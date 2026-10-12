@@ -223,7 +223,8 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
             out["variants"].setdefault(fk, {})[lv] = {
                 "n": len(idx), "share": round(len(idx) / max(1, len(near)), 3), "usual": lv == ref,
                 "effects": eff, "strokes": _typical_ids([near[i] for i in idx], [flat[i] for i in idx], out["typical"]),
-                "classes": {ck: _counts([cls[i].get(ck) for i in idx]) for ck in ("stance_impact", "finish", "takeback", "movement")},
+                "classes": {ck: _counts([cls[i].get(ck) for i in idx]) for ck in CLASS_KEYS},
+                "strings": _strings([near[i] for i in idx]), "chain": _chain([near[i] for i in idx]),
                 "skeleton": _mean_skeleton([near[i] for i in idx]),
                 "curves": _typical_curves([near[i] for i in idx]),
             }
@@ -238,6 +239,8 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
     out["footwork"]["rear_leg_step_after"] = _counts([(s["technique"].get("footwork") or {}).get("rear_leg_step_after") for s in near])
     out["footwork"]["first_step_right_way"] = _counts([(s["technique"].get("footwork") or {}).get("first_step_right_way") for s in near])
     out["skeleton"] = _mean_skeleton(near)
+    out["strings"] = _strings(near)
+    out["chain"] = _chain(near)
     out["curves"] = _typical_curves(near)
     # points won by the phase of play of her last stroke in each point (TennisViz "conversion"
     # in attack, "steal" in defence): one stroke per point
@@ -319,6 +322,24 @@ def _typical_curves(rows: list, min_n: int = MIN_N) -> dict:
             ev[m] = round(-float(np.median(v)), 3)
     out["events"] = ev
     return out
+
+
+def _strings(rows: list) -> dict:
+    """Where the strings point at each moment (technique phases' face_points_to), counted over the
+    strokes where the racket was found; with the median closing angle of the face."""
+    out = {}
+    for p in PHASES:
+        ds = [(s["technique"].get("phases") or {}).get(p) or {} for s in rows]
+        to = [d.get("face_points_to") for d in ds if d.get("face_points_to")]
+        tilt = [d["face_tilt"] for d in ds if d.get("face_tilt") is not None]
+        if to:
+            out[p] = {**_counts(to), "tilt": round(float(np.median(tilt)), 1) if tilt else None}
+    return out
+
+
+def _chain(rows: list) -> dict:
+    """Kinetic chain in order (pelvis → trunk → arm → forearm peaks) or not, per stroke."""
+    return _counts([(s.get("chain") or {}).get("proximal_to_distal") for s in rows])
 
 
 def _mean_skeleton(rows: list) -> dict:

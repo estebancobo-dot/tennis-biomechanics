@@ -64,6 +64,7 @@ DESCRIPTORS = {
 }
 # per-stroke (not per phase)
 STROKE_DESCRIPTORS = {
+    "head_motion_cm": ("equilibrio", "Movimiento de la cabeza en el impacto", "cm", 2, "±50 ms del impacto, relativo a la cadera"),
     "t_takeback": ("ritmo", "Inicio de la preparación", "s", 2, "antes del impacto"),
     "t_loaded": ("ritmo", "Armado completo", "s", 2, "antes del impacto"),
     "t_acceleration": ("ritmo", "Inicio de la aceleración", "s", 2, "antes del impacto"),
@@ -409,6 +410,8 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         s["dur_forward"] = round((impact - ev["loaded"]) / fps, 3)
         if s.get("dur_preparation"):
             s["tempo_ratio"] = round(s["dur_preparation"] / max(s["dur_forward"], 1e-3), 2)
+    if (context or {}).get("head_motion_cm") is not None:
+        s["head_motion_cm"] = round(float(context["head_motion_cm"]), 1)
     if ev["takeback"] is not None and opp is not None:
         s["takeback_after_opp"] = round((ev["takeback"] - opp) / fps, 3)
     if ev["takeback"] is not None and bounce is not None:
