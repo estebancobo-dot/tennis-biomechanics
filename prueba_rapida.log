@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261012195450
+Start time: 20261012201836
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\prueba_rapida.ps1
-Process ID: 14156
+Process ID: 9524
 PSVersion: 5.1.26100.9549
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
@@ -20,7 +20,7 @@ From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
 Already up to date.
 Resolved 110 packages in 1ms
-Checked 83 packages in 5ms
+Checked 83 packages in 4ms
 Video: C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv
 
 ==> 1/4 Comprobacion del entorno
@@ -55,7 +55,7 @@ ya medida
 
 ==> 3/4 4 minutos de partido, todas las etapas e informe (15-30 min)
 Tramo de juego (ya buscado): minuto 121
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (19:54, etapa 9 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (20:18, etapa 9 de 10)
 load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
   fine:  15 % (2/13 golpes candidatos · 2 confirmados) · 0 s · quedan ≈ 0 s
 C:\tenis\tennis-biomech\src\tennisbio\technique.py:127: RuntimeWarning: All-NaN axis encountered
@@ -64,7 +64,7 @@ C:\tenis\tennis-biomech\src\tennisbio\technique.py:393: RuntimeWarning: All-NaN 
   fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
   fine: 100 % (13/13 golpes candidatos · 10 confirmados) · 19 s · quedan ≈ 0 s
 [smoke_tennis-yusipopen-final-sobolenko-rybakin] fine terminada en 0.5 min
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (19:55, etapa 10 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (20:19, etapa 10 de 10)
 [smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent terminada en 0.0 min
 
 Etapas ejecutadas: fine, fine_opponent
@@ -76,7 +76,7 @@ Etapas ejecutadas: fine, fine_opponent
   court          27.5 s  {'segments': 20, 'with_court': 11, 'pitch_deg_median': 18.3}
   identity        3.7 s  {'runs': 10, 'votes': 4, 'confidence': 1.0, 'by_end_changes': 9, 'by_clothes': 0, 'conflicts': 1, 'decided': 9}
   candidates      3.8 s  {'candidates': 50, 'far': 37, 'with_audio': 49, 'opponent_runs': 0, 'identity_unknown': 0, 'replay_runs_skipped': 0, 'audio_track': 0}
-  fine           32.9 s  {'candidates': 13, 'confirmed': 10, 'errors': 0, 'warnings': [], 'forehands': 6, 'windows': 7, 'seconds': {'cuerdas_y_3d': 23.9, 'analisis_ventana': 1.6, 'recorte': 0.3, 'pose': 0.0}}
+  fine           29.1 s  {'candidates': 13, 'confirmed': 10, 'errors': 0, 'warnings': [], 'forehands': 6, 'windows': 7, 'seconds': {'cuerdas_y_3d': 20.1, 'analisis_ventana': 1.6, 'recorte': 0.3, 'pose': 0.0}}
   fine_opponent     0.0 s  {'enabled': False}
 Golpes: 6 nuevos, 6 en C:\tenis\output\_smoke\exportar\golpes
 Montajes: 2 en C:\tenis\output\_smoke\exportar\montajes
@@ -85,43 +85,22 @@ Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
 (Solo se rehicieron algunas etapas: el tiempo no sirve para estimar un partido)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Vídeos, montajes y resumen PDF: C:\tenis\output\_smoke\exportar
-Auditoría: 53 cumplidos, 0 no cumplidos, 70 sin golpes suficientes, 0 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+Auditoría: 60 cumplidos, 5 no cumplidos, 70 sin golpes suficientes, 1 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+  ✘ 3. Pies y desplazamiento · Cada paso nombrado: lateral (sin cruzar), cruzado, de carrera, hacia delante, hacia atrás, de ajuste: se mide (50% de los golpes) pero el informe no lo enseña en ninguna pantalla
+  ✘ 3. Pies y desplazamiento · Rodear la bola para la derecha invertida: se mide (50% de los golpes) pero el informe no lo enseña en ninguna pantalla
+  ✘ 3. Pies y desplazamiento · Frenado: último paso largo con caída de la velocidad: se mide (33% de los golpes) pero el informe no lo enseña en ninguna pantalla
+  ✘ 3. Pies y desplazamiento · Patada atrás (tijera) tras el impacto: se mide (50% de los golpes) pero el informe no lo enseña en ninguna pantalla
+  ✘ 3. Pies y desplazamiento · Recuperación: tipo de cada paso de vuelta, cuándo empieza: se mide (50% de los golpes) pero el informe no lo enseña en ninguna pantalla
 
 ==> 4/4 Validacion automatica: puntos anotados de partidos de Rybakina (F3Set; 20-40 min, solo la primera vez)
 ya hecha
 
 ==> Extra: videos de analisis de entrenadores en YouTube (10-20 min, solo la primera vez)
-Buscando vídeos de análisis de la derecha…
-24 vídeos encontrados
-  1/24 Rybakina’s Effortless Forehand Power – Technique Breakdown
-  2/24 BEST Three Tennis Fundamentals To Copy From Australian Open Champion,
-  3/24 Elena Rybakina Perfects Her Forehand with Coach Stefano Vukov 🎾🔥
-  4/24 Elena Rybakina Builds UNSTOPPABLE Forehand Power
-  5/24 Elena Rybakina  | Forehand and Backhand Slow-motion [4k 120fps]
-  6/24 Why Rybakina’s Backhand Is So Clean (Copy This Technique)-Full Analysi
-  7/24 Elena RYBAKINA Forehand Backhand Serve SLOW MOTION
-  8/24 Elena Rybakina Forehand Backhand [Slow-Motion]
-  9/24 Elena Rybakina’s World No.1 Forehand Slow Motion (4K)
-  10/24 リバキナのフォアハンドストローク（スロー）/ Elena Rybakina Forehand Stroke Slow Motion
-  11/24 Full Forehand Lesson: WTA Pro Player Case Study - From 450WTA to 254 W
-  12/24 The WTA Forehand is BETTER (than ATP)
-  13/24 WTA tour Forehands
-  14/24 ATP vs WTA Forehand Technique - Why Women & Men Have Different Form
-  15/24 WTA vs ATP Forehand (and how to hit ATP style)
-  16/24 Why the WTA Forehand Has a Large Backswing (featuring former WTA Playe
-  17/24 Tennis Forehand Biomechanics Breakdown
-  18/24 Turn Your Forehand Into A Weapon: Unlock Pros Biomechanics : Introduct
-  19/24 The Secret Behind Sinner’s Insane Forehand Power (The Whip Forehand Ex
-  20/24 4 Science-Based Ways to Hit MASSIVE Topspin Forehands
-  21/24 Shots of the pros, EPISODE 1: Novak Djokovic's forehand
-  22/24 Turn Your Forehand Into A Weapon: Unlock Pros Biomechanics : Position
-  23/24 The Secret to a Modern Forehand: It’s Not What You Think
-  24/24 Modern Forehand Technique | Jannik Sinner Forehand Breakdown
-Hecho: 16 de 24 vídeos con texto o imágenes → C:\tenis\output\investigacion
+ya hecho
 
 PRUEBA TERMINADA. El informe se ha abierto en el navegador.
 El registro se envia a Claude automaticamente.
 **********************
 Windows PowerShell transcript end
-End time: 20261012195849
+End time: 20261012202017
 **********************

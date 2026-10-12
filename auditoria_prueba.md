@@ -1,9 +1,14 @@
 # Auditoría de requisitos (forehand)
 
-6 golpes del lado cercano. ✔ 53 cumplidos · ✘ 0 no cumplidos · … 70 sin golpes suficientes en esta ejecución · ! 0 avisos
+6 golpes del lado cercano. ✔ 60 cumplidos · ✘ 5 no cumplidos · … 70 sin golpes suficientes en esta ejecución · ! 1 avisos
 
 ## 1. Toda la taxonomía del golpe y todas sus variantes (situaciones)
 
+- ✘ **3. Pies y desplazamiento · Cada paso nombrado: lateral (sin cruzar), cruzado, de carrera, hacia delante, hacia atrás, de ajuste**: se mide (50% de los golpes) pero el informe no lo enseña en ninguna pantalla
+- ✘ **3. Pies y desplazamiento · Rodear la bola para la derecha invertida**: se mide (50% de los golpes) pero el informe no lo enseña en ninguna pantalla
+- ✘ **3. Pies y desplazamiento · Frenado: último paso largo con caída de la velocidad**: se mide (33% de los golpes) pero el informe no lo enseña en ninguna pantalla
+- ✘ **3. Pies y desplazamiento · Patada atrás (tijera) tras el impacto**: se mide (50% de los golpes) pero el informe no lo enseña en ninguna pantalla
+- ✘ **3. Pies y desplazamiento · Recuperación: tipo de cada paso de vuelta, cuándo empieza**: se mide (50% de los golpes) pero el informe no lo enseña en ninguna pantalla
 - … **forehand: golpes analizados**: 6 del lado cercano (con todo el detalle), 0 del lejano; con menos de 20 muchas situaciones no se pueden describir
 - … **1. Fases · Golpe del rival → split step**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **1. Fases · Inicio del giro de bloque (preparación)**: se mide (83% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
@@ -98,17 +103,25 @@
 - ✔ **Cada golpe tiene su vídeo**: 6 de 6 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 6 de 6
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Su derecha»**: 4346 caracteres de texto, 0 vídeos, 8 gráficos
+- ✔ **Pantalla «Su derecha»**: 4718 caracteres de texto, 0 vídeos, 8 gráficos
 - ✔ **Pantalla «Panel»**: 1389 caracteres de texto, 0 vídeos, 0 gráficos; mensajes de vacío: ['Hacen falta al menos 3 golpes en dos tramos del partido para dibujar la evolución de x-factor (hay 6).']
-- ✔ **Pantalla «Videoteca»**: 1968 caracteres de texto, 0 vídeos, 0 gráficos
-- ✔ **Pantalla «Análisis de golpe»**: 3660 caracteres de texto, 1 vídeos, 19 gráficos
-- ✔ **Pantalla «Comparar golpes»**: 3224 caracteres de texto, 0 vídeos, 2 gráficos
+- ✔ **Pantalla «Videoteca»**: 2038 caracteres de texto, 0 vídeos, 0 gráficos
+- ✔ **Pantalla «Análisis de golpe»**: 4904 caracteres de texto, 1 vídeos, 20 gráficos
+- ✔ **Pantalla «Comparar golpes»**: 3226 caracteres de texto, 0 vídeos, 2 gráficos
 - ✔ **Pantalla «Explorador»**: 1730 caracteres de texto, 0 vídeos, 0 gráficos
 - ✔ **Pantalla «Comparativas»**: 2625 caracteres de texto, 0 vídeos, 10 gráficos; mensajes de vacío: ['Sin datos de estabilidad de la cabeza en estos grupos.']
 - ✔ **Pantalla «Pista»**: 481 caracteres de texto, 0 vídeos, 1 gráficos
+- ✔ **El vídeo del golpe se reproduce al pulsar ▶**: avanza y sigue reproduciéndose
+- ✔ **«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella**: 4 en la pantalla
+- ✔ **«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)**: 8 en la pantalla
+- ✔ **Barras de altura de la cabeza y la cadera sobre el vídeo**: 1 en la pantalla
+- ✔ **Filtros combinables de la videoteca (apoyo, dirección, bola, contacto…)**: 25 en la pantalla
+- ✔ **Novedades de la versión en la pantalla de entrada**: 1 en la pantalla
+- ✔ **Resumen PDF**: 5 páginas, 0.6 MB
 
 ## 3. Nada inventado: valores posibles, respaldados por sus golpes; lo no medible se dice
 
+- ! **3. Pies y desplazamiento · Nuevo split step antes del siguiente golpe de la rival**: no observable desde la tele, pero el informe no lo dice en «Lo que la tele no permite medir»
 - … **Cada frase lleva cuántos golpes la respaldan y su fiabilidad**: 0 frases
 - ✔ **2. Cuerpo · Momento de los picos en ms**: no observable desde la tele; el informe lo dice
 - ✔ **2. Cuerpo · Rotación interna del hombro, pronación, desviaciones de la muñeca**: no observable desde la tele; el informe lo dice
