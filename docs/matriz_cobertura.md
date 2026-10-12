@@ -51,6 +51,9 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Terminación sobre el hombro / limpiaparabrisas / alrededor / invertida | TA; Counts | ✔ | clase `finish` (heurística) |
 | "3 × 90°" al final | Reid 2013 | ✔ | clase `finish_3x90` (hombro y codo; la muñeca no se ve) |
 | Paso adelante de la pierna trasera tras el impacto | Landlinger 2010 | ✔ | `footwork.rear_leg_step_after` |
+| Altura y separación del codo (armado e impacto) | Entrenadores WTA/ATP; Tennis Australia | ✔ | `elbow_dom_vs_shoulder`, `elbow_dom_lateral` |
+| Transferencia de peso del armado al impacto | Tennis Australia | ◐ | `stroke.weight_shift` (desde `com_over_feet`) |
+| Empuje de piernas («bajar y subir») | Elliott 2006; Reid 2013 | ◐ | `stroke.hip_rise` |
 | Fuerzas, momentos articulares | — | ✘ | cinemática solamente |
 
 ## 3. Pies y desplazamiento
@@ -91,6 +94,8 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Elemento | Fuente | Estado | Implementación / acción |
 |---|---|---|---|
 | Forma del armado: bucle, recto, "pat the dog" | Yandell; TA | ✔ | clases `takeback` y `takeback_face` (cara al suelo = pat the dog) |
+| Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP) | Entrenadores WTA/ATP | ○ | pendiente: punta de la raqueta respecto al plano del hombro (`docs/aprendido_entrenadores.md`) |
+| Inicio de la aceleración respecto al bote; girar mientras se desplaza | ITF; Tennis Australia | ✔ | `acceleration_vs_bounce`, `takeback_vs_first_step` |
 | Altura de la mano en el armado (no por encima de la cabeza) | TA | ✔ | `loaded.wrist_dom_vs_shoulder` |
 | Cara de la raqueta al final del armado | Elliott & Marsh 1989 | ✔ | `loaded.face_tilt`, `face_points_to` (fiabilidad buena) |
 | Caída de la raqueta antes de acelerar | Yandell; Reid 2013 | ✔ | `acceleration.racket_head_vs_wrist`, `wrist_drop` |

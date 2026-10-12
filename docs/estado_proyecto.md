@@ -81,6 +81,11 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
   (requisito 6); conclusiones del Panel con el mínimo de 12 golpes. La auditoría comprueba además
   frase de entrada, enlaces externos, gráficas de más de 4 líneas y que cada medida tenga su
   explicación. `2b_prueba_media.bat`: 35 min de partido para verlo con golpes suficientes.
+- ✔ Vídeos de entrenadores (12-10): 16 transcripciones analizadas (`docs/aprendido_entrenadores.md`);
+  hecho: capa «Líneas», «Para copiarla», codo, transferencia de peso, empuje de piernas, aceleración
+  respecto al bote, girar mientras se mueve. Pendiente de esa lista: raqueta al lado/detrás del cuerpo
+  (plano), punta vs cabeza, freno de hombros, «lo que la distingue», clase de estilo, y el examen de 25
+  afirmaciones sobre su derecha como validación interna (nunca en el informe), con golpes suficientes.
 - El usuario no entiende el informe (12-10): rehacer la entrada con una sola pantalla que se explique
   sola, con vídeo y frases; después, aprender de vídeos de análisis de entrenadores (subtítulos e
   imágenes bajados en el PC) cómo explicarlo.
