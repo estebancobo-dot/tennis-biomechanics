@@ -28,3 +28,24 @@ def test_near_serves_detects_arm_above_head():
     assert near_serves(kps, conf, 10, 200) == 8
     kps[8, 10] = [110, 150]
     assert near_serves(kps, conf, 10, 200) is None
+
+
+def test_end_changes_follow_the_rules():
+    from tennisbio.identity import end_changes
+    assert end_changes([[0, 0]]) == 0
+    assert end_changes([[1, 0]]) == 1             # after the 1st game
+    assert end_changes([[1, 1]]) == 1             # not after the 2nd
+    assert end_changes([[2, 1]]) == 2             # after the 3rd
+    assert end_changes([[6, 4], [0, 0]]) == 5     # 10 games: changes after 1,3,5,7,9
+    assert end_changes([[6, 3], [0, 0]]) == 5     # 9 games: after 1,3,5,7,9 (the set end)
+    assert end_changes([[6, 6]], ["5", "1"], tiebreak=True) == 6 + 1
+    assert end_changes([]) is None
+
+
+def test_one_serve_vote_fixes_every_run_through_the_end_changes():
+    from tennisbio.identity import decide_by_ends
+    parities = [0, 1, 2, 3, None]
+    base = decide_by_ends(parities, [(1, False)])        # at 1 change the near player is the opponent
+    assert base is True                                   # → at an even count she is near
+    assert decide_by_ends(parities, []) is None
+    assert decide_by_ends(parities, [(0, True), (1, True)]) is None    # contradictory evidence

@@ -143,10 +143,10 @@ def near_runs(d, sk):
         yield run, img, cf, body_height(img, sk), np.mean(app, axis=0)
 
 
-@stage("identity", "1", deps=("players", "score"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
+@stage("identity", "2", deps=("players", "score"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
 def st_identity(ctx: Context):
     """Is the near player the target in each run? Clothing clusters + serves + scoreboard marker."""
-    from .identity import assign, cluster_two, near_serves
+    from .identity import assign, cluster_two, decide_by_ends, end_changes, near_serves
 
     d = np.load(ctx.path("players.npz"), allow_pickle=True)
     fps, frames = float(d["fps"]), d["frames"]
@@ -165,12 +165,31 @@ def st_identity(ctx: Context):
                 runs[i]["serve_vote"] = sr["server"] == 0
     labels = cluster_two(np.array(feats)) if feats else np.zeros(0, int)
     res = assign(labels, votes)
-    for r, lab in zip(runs, labels):
+    # end changes from the scoreboard at the middle of each run
+    parities = []
+    for r in runs:
+        sr = score_at(score, (r["start"] + r["end"]) / 2 / fps, max_age_s=150.0)
+        parities.append(None if sr is None else end_changes(sr.get("games"), sr.get("points"), sr.get("tiebreak", False)))
+    base = decide_by_ends(parities, votes)
+    by_ends = by_clothes = conflicts = 0
+    for r, lab, par in zip(runs, labels, parities):
         r["cluster"] = int(lab)
-        r["near_is_target"] = None if res["target_cluster"] is None else bool(lab == res["target_cluster"])
-    _write(ctx.path("identity.json"), {"fps": fps, **res, "runs": runs})
+        r["end_changes"] = par
+        a_cl = None if res["target_cluster"] is None else bool(lab == res["target_cluster"])
+        a_end = None if base is None or par is None else bool(base ^ bool(par % 2))
+        if a_cl is not None and a_end is not None and a_cl != a_end:
+            r["near_is_target"], r["method"] = None, "conflicto"
+            conflicts += 1
+        elif a_end is not None:
+            r["near_is_target"], r["method"] = a_end, "cambios de lado"
+            by_ends += 1
+        else:
+            r["near_is_target"], r["method"] = a_cl, None if a_cl is None else "ropa"
+            by_clothes += a_cl is not None
+    _write(ctx.path("identity.json"), {"fps": fps, **res, "ends_base": base, "runs": runs})
     return {"runs": len(runs), "votes": res["votes"], "confidence": res["confidence"],
-            "decided": res["target_cluster"] is not None}
+            "by_end_changes": by_ends, "by_clothes": by_clothes, "conflicts": conflicts,
+            "decided": sum(r["near_is_target"] is not None for r in runs)}
 
 
 def near_is_target(identity: dict, frame: int):

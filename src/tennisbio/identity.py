@@ -1,9 +1,12 @@
 """Who is the near player in each main-camera run (players change ends every two games).
 
-Fully automatic: the near player's clothing (colour histogram) splits the runs into two people;
-each run where the near player serves at the start of the point is matched with the scoreboard's
-serve marker (who serves this game), which says whether that person is the target player. The
-majority vote of each appearance cluster decides; runs without enough evidence stay uncertain.
+Fully automatic, from two independent cues:
+- the rule of tennis: players change ends after every odd game and every 6 tie-break points, so
+  the scoreboard's games say how many changes there have been; a single run where we know who is
+  near (she serves and the scoreboard's serve marker says who serves) fixes every other run;
+- the near player's clothing (colour histogram) splits the runs into two people, and the serve
+  votes say which one is the target.
+When both are available and disagree on a run, that run stays undecided.
 """
 import numpy as np
 
@@ -42,6 +45,41 @@ def assign(labels: np.ndarray, votes: list[tuple[int, bool]], min_votes=2, min_s
     if share < min_share:
         return {"target_cluster": None, "confidence": round(share, 2), "votes": n}
     return {"target_cluster": best, "confidence": round(share, 2), "votes": n}
+
+
+def end_changes(games: list, points=None, tiebreak: bool = False) -> int | None:
+    """How many times the players have changed ends so far, from the scoreboard.
+
+    Rules of tennis: ends change after the 1st, 3rd, 5th… game of every set (so after a set with an
+    odd number of games too), and every 6 points inside a tie-break. games: [[a, b], …] one pair per
+    set, the last one being the current set."""
+    if not games:
+        return None
+    try:
+        done = sum((int(a) + int(b) + 1) // 2 for a, b in games[:-1])
+        a, b = games[-1]
+        cur = (int(a) + int(b) + 1) // 2
+    except (TypeError, ValueError):
+        return None
+    tb = 0
+    if tiebreak and points:
+        try:
+            tb = (int(points[0]) + int(points[1])) // 6
+        except (TypeError, ValueError):
+            tb = 0
+    return done + cur + tb
+
+
+def decide_by_ends(parities: list, votes: list[tuple[int, bool]], min_share=0.75) -> bool | None:
+    """Is the near player the target at an even number of end changes? One consistent vote is
+    enough (the rule is exact); conflicting votes need a clear majority."""
+    est = [is_t ^ bool(parities[i] % 2) for i, is_t in votes if parities[i] is not None]
+    if not est:
+        return None
+    share = max(est.count(True), est.count(False)) / len(est)
+    if share < min_share:
+        return None
+    return est.count(True) >= est.count(False)
 
 
 def near_serves(kps: np.ndarray, conf: np.ndarray, fps: float, height_px: float, within_s=4.0) -> int | None:
