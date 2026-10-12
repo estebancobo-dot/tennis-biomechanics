@@ -446,6 +446,14 @@ def _screens(shots_dir: Path) -> list[dict]:
     if meta.get("errors"):
         items.append(_item(2, "Pantallas", "Errores de la página", "falta", "; ".join(meta["errors"][:5])))
     by = {sc.get("tab"): sc for sc in meta.get("screens", [])}
+    for pb in meta.get("plays") or []:
+        if not pb.get("present"):
+            continue
+        ok = pb.get("plays") or not meta.get("h264", True)
+        items.append(_item(2, "Vídeo", f"Reproducir: {pb['name']}", "ok" if pb.get("plays") else "aviso" if ok else "falta",
+                           "el vídeo arranca y avanza" if pb.get("plays") else
+                           ("sin H.264 en este navegador: no se puede comprobar" if ok else "al pulsarlo el vídeo no arranca")
+                           + (f" ({pb['error']})" if pb.get("error") else "")))
     if "plays" in (by.get("golpe") or {}) and meta.get("h264", True):
         items.append(_item(2, "Vídeo", "El vídeo del golpe se reproduce al pulsar ▶", "ok" if by["golpe"]["plays"] else "falta",
                            "avanza y sigue reproduciéndose" if by["golpe"]["plays"] else "al pulsar ▶ no avanza o se para"))

@@ -48,7 +48,8 @@ _JS_SCREEN = """(tab) => {
 def _browser(p):
     """A browser already installed, never downloaded: Brave (the user's), else Edge or Chrome if they
     are there; on Linux, the machine's Chromium."""
-    kw = {"args": ["--allow-file-access-from-files", "--autoplay-policy=no-user-gesture-required"]}
+    # as the user opens it: no special autoplay permission (play must work from the click itself)
+    kw = {"args": ["--allow-file-access-from-files"]}
     exes = [os.environ.get("TENNISBIO_BROWSER", "")]
     if sys.platform == "win32":
         bases = [os.environ.get(v, "") for v in ("ProgramFiles", "ProgramFiles(x86)", "LOCALAPPDATA")]
@@ -65,6 +66,38 @@ def _browser(p):
             except Exception as e:
                 tried.append(f"{exe}: {str(e).splitlines()[0]}")
     raise RuntimeError("no se encontró Brave (ni Edge ni Chrome) instalado" + (": " + " | ".join(tried) if tried else ""))
+
+
+# every button that plays strokes, as the user clicks it: the video must advance within ~2 s
+_PLAY_BUTTONS = [("modelo", "#m-play", "«Su derecha» → ▶ Ver sus golpes típicos"),
+                 ("videoteca", "#lib-play", "Videoteca → ▶ Reproducir todos"),
+                 ("golpe", "#play", "Análisis de golpe → ▶"),
+                 ("comparar", "#k-play", "Comparar golpes → ▶"),
+                 ("panel", "#concl button[data-pl]", "Panel → ▶ vídeos de una conclusión")]
+
+
+def _test_plays(pg) -> list[dict]:
+    out = []
+    for tab, sel, name in _PLAY_BUTTONS:
+        try:
+            pg.evaluate("() => { try { stopPlay(); endPlaylist(); } catch (e) {} }")
+            pg.evaluate(f"document.querySelector('.nav button[data-tab=\"{tab}\"]').click()")
+            pg.wait_for_timeout(800)
+            btn = pg.query_selector(sel)
+            if not btn or not btn.is_visible():
+                out.append({"name": name, "present": False})
+                continue
+            vid = "KA.video" if tab == "comparar" else "video"
+            t0 = pg.evaluate(f"{vid}.currentTime")
+            btn.click()
+            pg.wait_for_timeout(2500)
+            t1, paused = pg.evaluate(f"[{vid}.currentTime, {vid}.paused]")
+            out.append({"name": name, "present": True, "plays": bool(t1 != t0 and not paused)})
+            if tab == "comparar" and not paused:
+                btn.click()
+        except Exception as e:                    # a broken button is a finding, never a crash
+            out.append({"name": name, "present": True, "plays": False, "error": str(e)[:120]})
+    return out
 
 
 def capture(report_html: Path, dest: Path, wait_ms: int = 2500) -> Path:
@@ -109,6 +142,7 @@ def capture(report_html: Path, dest: Path, wait_ms: int = 2500) -> Path:
             pg.screenshot(path=str(dest / f), full_page=True, type="jpeg", quality=70)
             info.update(tab=tab, file=f, errors=[e for e in errs if "Failed to load resource" not in e])
             meta["screens"].append(info)
+        meta["plays"] = _test_plays(pg)
         b.close()
     out = dest / "capturas.json"
     out.write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")

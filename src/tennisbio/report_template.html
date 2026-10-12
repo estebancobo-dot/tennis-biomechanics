@@ -1255,7 +1255,8 @@ function renderPl() {
 function endPlaylist() { if (!PLAY) return; PLAY = null; renderPl(); }
 async function plGo(autoplay) {
   const s = PLAY.list[PLAY.i]; renderPl();
-  await loadStroke(s, true); await kfDone;
+  // the thumbnails draw from their own copy of the video: no need to wait for them to play
+  await loadStroke(s, true);
   if (!PLAY || PLAY.list[PLAY.i] !== s || cur !== s) return;
   tNow = T0; await seek(T0); renderStage(); renderTimeline(); if (autoplay) startPlay();
 }
