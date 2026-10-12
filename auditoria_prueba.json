@@ -1,0 +1,1205 @@
+{
+ "stroke": "forehand",
+ "strokes": 6,
+ "near": 6,
+ "summary": {
+  "ok": 48,
+  "falta": 7,
+  "pocos datos": 54,
+  "aviso": 6
+ },
+ "items": [
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "forehand: golpes analizados",
+   "status": "pocos datos",
+   "detail": "6 del lado cercano (con todo el detalle), 0 del lejano; con menos de 20 muchas situaciones no se pueden describir",
+   "n": 6
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "1. Fases · Golpe del rival → split step",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "face.ready",
+    "phase.ready",
+    "tphase.ready"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "1. Fases · Inicio del giro de bloque (preparación)",
+   "status": "ok",
+   "detail": "medido en el 83% de los golpes y en el informe",
+   "keys": [
+    "class.takeback",
+    "face.takeback",
+    "phase.takeback",
+    "tphase.takeback"
+   ],
+   "measured": 0.83
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "1. Fases · Final del armado (máximo giro, raqueta más atrás)",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "face.loaded",
+    "phase.loaded",
+    "tphase.loaded"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "1. Fases · Inicio del swing hacia delante",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "face.acceleration",
+    "phase.acceleration",
+    "tphase.acceleration"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "1. Fases · Impacto",
+   "status": "ok",
+   "detail": "implementado (sin nombre de dato en la matriz)",
+   "keys": [],
+   "measured": 0.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "1. Fases · Final de la extensión",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "face.extension",
+    "phase.extension",
+    "tphase.extension"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "1. Fases · Final de la terminación",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
+   "keys": [
+    "class.finish",
+    "face.finish",
+    "phase.finish",
+    "tphase.finish"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "1. Fases · Primer paso de recuperación",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "face.recovery",
+    "phase.recovery",
+    "tphase.recovery"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Postura de espera (rodillas, base, peso)",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.base_width",
+    "acceleration.hip_height",
+    "ball_bounce.base_width",
+    "ball_bounce.hip_height",
+    "ball_net.base_width",
+    "ball_net.hip_height",
+    "ball_top.base_width",
+    "ball_top.hip_height"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Mano libre en la garganta de la raqueta en la espera / giro de bloque",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
+   "keys": [
+    "acceleration.hands_apart",
+    "ball_bounce.hands_apart",
+    "ball_net.hands_apart",
+    "ball_top.hands_apart",
+    "class.ready_hands",
+    "extension.hands_apart",
+    "finish.hands_apart",
+    "impact.hands_apart"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Momento del armado respecto al bote (\"armado completo al botar\")",
+   "status": "pocos datos",
+   "detail": "se mide (83% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "stroke.loaded_vs_bounce"
+   ],
+   "measured": 0.83
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Giro de cadera y de hombros al final del armado",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.hip_turn",
+    "extension.hip_turn",
+    "finish.hip_turn",
+    "impact.hip_turn",
+    "loaded.hip_turn",
+    "loaded.shoulder_turn",
+    "ready.hip_turn",
+    "recovery.hip_turn"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Separación cadera–hombros (X-factor)",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "loaded.x_factor"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Pausa entre armado y swing",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "stroke.pause_at_loaded"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Brazo libre extendido y cruzado",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.shoulder_abd_non",
+    "acceleration.wrist_non_height",
+    "acceleration.wrist_non_lateral",
+    "ball_bounce.shoulder_abd_non",
+    "ball_bounce.wrist_non_height",
+    "ball_bounce.wrist_non_lateral",
+    "ball_net.shoulder_abd_non",
+    "ball_net.wrist_non_height"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Carga de la pierna exterior / descenso de cadera",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.hip_height",
+    "acceleration.knee_dom",
+    "acceleration.knee_non",
+    "ball_bounce.hip_height",
+    "ball_bounce.knee_dom",
+    "ball_bounce.knee_non",
+    "ball_net.hip_height",
+    "ball_net.knee_dom"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Peso entre los pies / equilibrio",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.com_over_feet",
+    "acceleration.head_over_base",
+    "acceleration.trunk_tilt",
+    "ball_bounce.com_over_feet",
+    "ball_bounce.head_over_base",
+    "ball_bounce.trunk_tilt",
+    "ball_net.trunk_tilt",
+    "ball_top.com_over_feet"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Cadena cinética (orden pelvis → tronco → brazo → antebrazo)",
+   "status": "ok",
+   "detail": "implementado (sin nombre de dato en la matriz)",
+   "keys": [],
+   "measured": 0.0
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Momento de los picos en ms",
+   "status": "aviso",
+   "detail": "no observable desde la tele, pero el informe no lo dice en «Lo que la tele no permite medir»"
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Rotación interna del hombro, pronación, desviaciones de la muñeca",
+   "status": "aviso",
+   "detail": "no observable desde la tele, pero el informe no lo dice en «Lo que la tele no permite medir»"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Altura del contacto (respecto a rodilla, cadera, hombro)",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.wrist_dom_vs_hip",
+    "acceleration.wrist_dom_vs_shoulder",
+    "ball_bounce.wrist_dom_vs_hip",
+    "ball_bounce.wrist_dom_vs_shoulder",
+    "ball_net.wrist_dom_vs_hip",
+    "ball_net.wrist_dom_vs_shoulder",
+    "ball_top.wrist_dom_vs_hip",
+    "ball_top.wrist_dom_vs_shoulder"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Separación lateral del contacto",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "impact.wrist_dom_lateral"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Contacto delante/detrás del cuerpo",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Ángulo del codo en el impacto (brazo recto / doble flexión)",
+   "status": "ok",
+   "detail": "medido en el 50% de los golpes y en el informe",
+   "keys": [
+    "class.arm",
+    "impact.elbow_dom"
+   ],
+   "measured": 0.5
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Cabeza estable en el impacto",
+   "status": "ok",
+   "detail": "medido en el 17% de los golpes y en el informe",
+   "keys": [
+    "metrics.head_motion_impact_cm"
+   ],
+   "measured": 0.17
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Mirada",
+   "status": "aviso",
+   "detail": "no observable desde la tele, pero el informe no lo dice en «Lo que la tele no permite medir»"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Hombros más girados que la cadera en el impacto",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.hip_turn",
+    "extension.hip_turn",
+    "finish.hip_turn",
+    "impact.hip_turn",
+    "impact.shoulder_turn",
+    "loaded.hip_turn",
+    "ready.hip_turn",
+    "recovery.hip_turn"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Extensión tras el contacto",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "extension.arm_extension",
+    "stroke.swing_rise_after"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Terminación sobre el hombro / limpiaparabrisas / alrededor / invertida",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
+   "keys": [
+    "class.finish",
+    "face.finish",
+    "phase.finish",
+    "tphase.finish"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · \"3 × 90°\" al final",
+   "status": "falta",
+   "detail": "se mide (33% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "keys": [
+    "class.finish_3x90"
+   ],
+   "measured": 0.33
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Paso adelante de la pierna trasera tras el impacto",
+   "status": "pocos datos",
+   "detail": "no aparece en los datos de ningún golpe de esta ejecución (footwork.rear_leg_step_after)",
+   "keys": [],
+   "measured": 0.0
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "2. Cuerpo · Fuerzas, momentos articulares",
+   "status": "aviso",
+   "detail": "no observable desde la tele, pero el informe no lo dice en «Lo que la tele no permite medir»"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Split step: aterrizaje respecto al golpe del rival",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "face.ready",
+    "phase.ready",
+    "stroke.takeback_after_opp",
+    "tphase.ready"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Split step: despegue y aterrizaje respecto al golpe del rival",
+   "status": "pocos datos",
+   "detail": "se mide (33% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "footwork.split_landing_vs_opp_s",
+    "footwork.split_takeoff_vs_opp_s"
+   ],
+   "measured": 0.33
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Presencia del split",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "face.ready",
+    "phase.ready",
+    "tphase.ready"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Velocidad 0,2 s antes y después del split",
+   "status": "pocos datos",
+   "detail": "se mide (83% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "footwork.speed_post_split_mps",
+    "footwork.speed_pre_split_mps"
+   ],
+   "measured": 0.83
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Primer paso: momento (reacción)",
+   "status": "pocos datos",
+   "detail": "se mide (50% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "footwork.first_step_s"
+   ],
+   "measured": 0.5
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Primer paso: tipo (gravity, jab, pivot, counter, cruzado, lateral)",
+   "status": "ok",
+   "detail": "implementado (sin nombre de dato en la matriz) (parcial: ver la matriz)",
+   "keys": [],
+   "measured": 0.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Primer paso: dirección correcta respecto a la bola",
+   "status": "falta",
+   "detail": "se mide (17% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "keys": [
+    "footwork.first_step_right_way"
+   ],
+   "measured": 0.17
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Número de pasos hasta la bola",
+   "status": "pocos datos",
+   "detail": "se mide (50% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "footwork.steps_to_impact"
+   ],
+   "measured": 0.5
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Longitud de cada paso; anchura del primero",
+   "status": "pocos datos",
+   "detail": "se mide (50% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "footwork.first_step_length_m",
+    "footwork.last_step_length_m"
+   ],
+   "measured": 0.5
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Pasos de ajuste",
+   "status": "pocos datos",
+   "detail": "se mide (50% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "footwork.adjustment_steps"
+   ],
+   "measured": 0.5
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Distribución lateral / delante / atrás",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
+   "keys": [
+    "class.move_direction",
+    "footwork.move_direction"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Cambios de dirección",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "footwork.direction_changes"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Velocidad media y máxima de carrera",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "footwork.peak_speed_mps",
+    "footwork.speed_at_impact_mps"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Recorrido hasta la bola",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "footwork.path_m"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Tipo de apoyo (abierto, semiabierto, neutro, cerrado)",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
+   "keys": [
+    "class.stance_impact",
+    "class.stance_loaded"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Subtipos: abierto de ataque, abierto defensivo, neutro de ataque",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
+   "keys": [
+    "class.stance_role"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Pierna que carga",
+   "status": "pocos datos",
+   "detail": "se mide (50% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "footwork.weight_loaded_to_non"
+   ],
+   "measured": 0.5
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · En carrera, en salto, a un pie, deslizando",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
+   "keys": [
+    "class.movement",
+    "footwork.movement"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Última zancada más larga en carrera",
+   "status": "pocos datos",
+   "detail": "se mide (33% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "footwork.last_step_length_m"
+   ],
+   "measured": 0.33
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Recuperación: distancia, dirección, tiempo",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "footwork.moving_at_opp_hit_mps",
+    "footwork.off_centre_at_opp_hit_m",
+    "footwork.recovery_dx_m",
+    "footwork.recovery_dy_m",
+    "footwork.recovery_to_centre_m"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Orientación del pie, apoyo de talón/punta",
+   "status": "aviso",
+   "detail": "no observable desde la tele, pero el informe no lo dice en «Lo que la tele no permite medir»"
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Altura del split step",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Forma del armado: bucle, recto, \"pat the dog\"",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
+   "keys": [
+    "class.takeback",
+    "class.takeback_face",
+    "face.takeback",
+    "phase.takeback",
+    "tphase.takeback"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Altura de la mano en el armado (no por encima de la cabeza)",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "loaded.wrist_dom_vs_shoulder"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Cara de la raqueta al final del armado",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "loaded.face_tilt"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Caída de la raqueta antes de acelerar",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.racket_head_vs_wrist",
+    "stroke.wrist_drop"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Retraso de la muñeca (lag)",
+   "status": "pocos datos",
+   "detail": "se mide (67% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "acceleration.racket_forearm",
+    "ball_bounce.racket_forearm",
+    "ball_top.racket_forearm",
+    "finish.racket_forearm",
+    "loaded.racket_forearm",
+    "takeback.racket_forearm"
+   ],
+   "measured": 0.67
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Trayectoria de abajo arriba (signo) / liftado-plano-cortado",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
+   "keys": [
+    "class.swing",
+    "stroke.swing_low_to_high"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Ángulo exacto de la trayectoria en el impacto",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Cara en el impacto",
+   "status": "ok",
+   "detail": "implementado (sin nombre de dato en la matriz) (parcial: ver la matriz)",
+   "keys": [],
+   "measured": 0.0
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Velocidad de la raqueta absoluta",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Velocidad de la raqueta relativa entre golpes",
+   "status": "falta",
+   "detail": "se mide (83% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "keys": [
+    "stroke.racket_speed_rel"
+   ],
+   "measured": 0.83
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Posición de la mano en el mango",
+   "status": "falta",
+   "detail": "se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "keys": [
+    "stroke.hand_on_handle"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Empuñadura (bisel)",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Empuñadura: \"compatible con este / semioccidental-occidental\"",
+   "status": "ok",
+   "detail": "implementado (sin nombre de dato en la matriz)",
+   "keys": [],
+   "measured": 0.0
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Empuñadura en la espera y cambio de empuñadura",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "4. Raqueta, swing y empuñadura · Pronación, contribución de cada segmento, punto en el cordaje, presión de agarre",
+   "status": "aviso",
+   "detail": "no observable desde la tele, pero el informe no lo dice en «Lo que la tele no permite medir»"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Bote: profundidad, anchura, dentro/fuera",
+   "status": "pocos datos",
+   "detail": "se mide (83% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "shot_bounce_m",
+    "shot_depth_m",
+    "shot_in"
+   ],
+   "measured": 0.83
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Dirección cruzada, paralela, al centro, invertidas",
+   "status": "pocos datos",
+   "detail": "se mide (67% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.shot_type",
+    "shot_direction"
+   ],
+   "measured": 0.67
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Velocidad media de la bola en pista",
+   "status": "pocos datos",
+   "detail": "se mide (83% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "ball_speed_avg_kmh"
+   ],
+   "measured": 0.83
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Altura de la bola en su vuelo, bote, punto más alto; contacto subiendo / arriba / cayendo",
+   "status": "ok",
+   "detail": "medido en el 83% de los golpes y en el informe (parcial: ver la matriz)",
+   "keys": [
+    "ball_flight.apex_height_m",
+    "class.ball_phase",
+    "stroke.apex_height_m",
+    "stroke.contact_vs_top"
+   ],
+   "measured": 0.83
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Qué hace ella en cada momento de la bola (cruza la red, bota, punto más alto)",
+   "status": "pocos datos",
+   "detail": "se mide (83% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "stroke.loaded_vs_top",
+    "stroke.takeback_vs_net",
+    "tphase.ball_bounce",
+    "tphase.ball_net",
+    "tphase.ball_top"
+   ],
+   "measured": 0.83
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Curvas de altura (cabeza, cadera, mano, cabeza de la raqueta) a lo largo del golpe, con su curva típica y su franja",
+   "status": "ok",
+   "detail": "implementado (sin nombre de dato en la matriz)",
+   "keys": [],
+   "measured": 0.0
+  },
+  {
+   "req": 3,
+   "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Efecto (rpm), velocidad de salida, altura sobre la red",
+   "status": "ok",
+   "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Fase ataque / neutra / defensa",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.intent"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Calidad del golpe (sustituto: profundidad, anchura, velocidad media)",
+   "status": "pocos datos",
+   "detail": "se mide (50% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "shot_quality_proxy"
+   ],
+   "measured": 0.5
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Puntos ganados en ataque / en defensa",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "point_won"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Longitud del peloteo",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "shot_in_point",
+    "shots_in_point"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Resto, globo, dejada, volea, subida a la red",
+   "status": "pocos datos",
+   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.approach",
+    "class.play"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Ganador / error (forzado o no)",
+   "status": "ok",
+   "detail": "implementado (sin nombre de dato en la matriz) (parcial: ver la matriz)",
+   "keys": [],
+   "measured": 0.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Presión, set, fatiga",
+   "status": "ok",
+   "detail": "implementado (sin nombre de dato en la matriz)",
+   "keys": [],
+   "measured": 0.0
+  },
+  {
+   "req": 1,
+   "area": "Situaciones",
+   "name": "Bola rápida / lenta",
+   "status": "pocos datos",
+   "detail": "lenta 2, media 3, rápida 0, muy rápida 1 (se muestra con ≥ 12 golpes)",
+   "shown": []
+  },
+  {
+   "req": 1,
+   "area": "Situaciones",
+   "name": "Bola alta / baja",
+   "status": "pocos datos",
+   "detail": "rodilla 0, cadera 1, cintura-pecho 3, pecho-hombro 1, por encima del hombro 1 (se muestra con ≥ 12 golpes)",
+   "shown": []
+  },
+  {
+   "req": 1,
+   "area": "Situaciones",
+   "name": "Bola corta / profunda",
+   "status": "pocos datos",
+   "detail": "dentro de la pista 1, sobre la línea 4, 1-2 m detrás 1, 2-4 m detrás 0, muy atrás 0 (se muestra con ≥ 12 golpes)",
+   "shown": []
+  },
+  {
+   "req": 1,
+   "area": "Situaciones",
+   "name": "En carrera / parada / en salto",
+   "status": "pocos datos",
+   "detail": "parada 0, en movimiento 4, en carrera 2, deslizando 0, en el aire 0 (se muestra con ≥ 12 golpes)",
+   "shown": []
+  },
+  {
+   "req": 1,
+   "area": "Situaciones",
+   "name": "Cada apoyo",
+   "status": "pocos datos",
+   "detail": "abierto 3, semiabierto 1, neutro 0, cerrado 2 (se muestra con ≥ 12 golpes)",
+   "shown": []
+  },
+  {
+   "req": 1,
+   "area": "Situaciones",
+   "name": "Dirección del golpe",
+   "status": "falta",
+   "detail": "se mide por golpe (dirección del golpe) pero no es una situación de «Su derecha»"
+  },
+  {
+   "req": 1,
+   "area": "Situaciones",
+   "name": "Ataque / defensa",
+   "status": "pocos datos",
+   "detail": "ataque 2, neutra 3, defensa 1 (se muestra con ≥ 12 golpes)",
+   "shown": []
+  },
+  {
+   "req": 1,
+   "area": "Situaciones",
+   "name": "Bola subiendo / arriba / cayendo",
+   "status": "pocos datos",
+   "detail": "bola subiendo 4, bola arriba 1, bola cayendo 0 (se muestra con ≥ 12 golpes)",
+   "shown": []
+  },
+  {
+   "req": 1,
+   "area": "Situaciones",
+   "name": "Bola centrada / abierta",
+   "status": "pocos datos",
+   "detail": "centrada 2, abierta 3, muy abierta 1 (se muestra con ≥ 12 golpes)",
+   "shown": []
+  },
+  {
+   "req": 1,
+   "area": "Fases",
+   "name": "Fotograma clave: espera / split step",
+   "status": "ok",
+   "detail": "encontrado en el 100% de los golpes"
+  },
+  {
+   "req": 1,
+   "area": "Fases",
+   "name": "Fotograma clave: inicio de preparación",
+   "status": "ok",
+   "detail": "encontrado en el 83% de los golpes"
+  },
+  {
+   "req": 1,
+   "area": "Fases",
+   "name": "Fotograma clave: armado",
+   "status": "ok",
+   "detail": "encontrado en el 100% de los golpes"
+  },
+  {
+   "req": 1,
+   "area": "Fases",
+   "name": "Fotograma clave: inicio de aceleración",
+   "status": "ok",
+   "detail": "encontrado en el 100% de los golpes"
+  },
+  {
+   "req": 1,
+   "area": "Fases",
+   "name": "Fotograma clave: impacto",
+   "status": "ok",
+   "detail": "encontrado en el 100% de los golpes"
+  },
+  {
+   "req": 1,
+   "area": "Fases",
+   "name": "Fotograma clave: extensión",
+   "status": "ok",
+   "detail": "encontrado en el 100% de los golpes"
+  },
+  {
+   "req": 1,
+   "area": "Fases",
+   "name": "Fotograma clave: terminación",
+   "status": "ok",
+   "detail": "encontrado en el 100% de los golpes"
+  },
+  {
+   "req": 1,
+   "area": "Fases",
+   "name": "Fotograma clave: recuperación",
+   "status": "ok",
+   "detail": "encontrado en el 100% de los golpes"
+  },
+  {
+   "req": 4,
+   "area": "Cuerdas",
+   "name": "Cara de la raqueta: espera / split step",
+   "status": "ok",
+   "detail": "en el 50% de los golpes"
+  },
+  {
+   "req": 4,
+   "area": "Cuerdas",
+   "name": "Cara de la raqueta: inicio de preparación",
+   "status": "ok",
+   "detail": "en el 83% de los golpes"
+  },
+  {
+   "req": 4,
+   "area": "Cuerdas",
+   "name": "Cara de la raqueta: armado",
+   "status": "ok",
+   "detail": "en el 100% de los golpes"
+  },
+  {
+   "req": 4,
+   "area": "Cuerdas",
+   "name": "Cara de la raqueta: impacto",
+   "status": "ok",
+   "detail": "en el 100% de los golpes (estimación interpolada, se marca así)"
+  },
+  {
+   "req": 4,
+   "area": "Cuerdas",
+   "name": "Cara de la raqueta: terminación",
+   "status": "ok",
+   "detail": "en el 100% de los golpes"
+  },
+  {
+   "req": 3,
+   "area": "Valores posibles",
+   "name": "Valores dentro de límites físicos",
+   "status": "falta",
+   "detail": "metrics.elbow_impact_deg: 1 de 6 fuera de 40–180; metrics.base_width_loaded_pct: 1 de 6 fuera de 5–90"
+  },
+  {
+   "req": 3,
+   "area": "Valores posibles",
+   "name": "Cada frase lleva cuántos golpes la respaldan y su fiabilidad",
+   "status": "falta",
+   "detail": "11 frases; sin respaldo suficiente: class.ready_hands, class.arm"
+  },
+  {
+   "req": 3,
+   "area": "Valores posibles",
+   "name": "Lo no medible se dice",
+   "status": "ok",
+   "detail": "5 elementos en «Lo que la tele no permite medir»"
+  },
+  {
+   "req": 2,
+   "area": "Vídeo",
+   "name": "Cada golpe tiene su vídeo",
+   "status": "ok",
+   "detail": "6 de 6 golpes con vídeo"
+  },
+  {
+   "req": 2,
+   "area": "Vídeo",
+   "name": "Cada golpe tiene su esqueleto fotograma a fotograma",
+   "status": "ok",
+   "detail": "6 de 6"
+  },
+  {
+   "req": 2,
+   "area": "Vídeo",
+   "name": "El navegador puede reproducir los vídeos",
+   "status": "ok",
+   "detail": "formatos: h264"
+  },
+  {
+   "req": 5,
+   "area": "Automático",
+   "name": "Golpes que fallaron al procesarse",
+   "status": "ok",
+   "detail": "ninguno"
+  },
+  {
+   "req": 5,
+   "area": "Automático",
+   "name": "Nada pide revisión manual",
+   "status": "ok",
+   "detail": "4 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario"
+  },
+  {
+   "req": 9,
+   "area": "Rendimiento",
+   "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
+   "status": "ok",
+   "detail": "4 min para 4 min de vídeo ≈ 3.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+  }
+ ]
+}

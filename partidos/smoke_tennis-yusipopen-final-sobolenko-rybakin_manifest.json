@@ -94,10 +94,10 @@
   }
  },
  "fine": {
-  "fingerprint": "c0dda861686fe187",
+  "fingerprint": "7349f969d227d0be",
   "version": "8",
-  "seconds": 29.8,
-  "finished": "2026-10-12 18:17:36",
+  "seconds": 29.1,
+  "finished": "2026-10-12 18:45:40",
   "summary": {
    "candidates": 13,
    "confirmed": 10,
@@ -106,18 +106,18 @@
    "forehands": 6,
    "windows": 7,
    "seconds": {
-    "cuerdas_y_3d": 20.6,
-    "analisis_ventana": 1.6,
+    "cuerdas_y_3d": 20.1,
+    "analisis_ventana": 1.7,
     "recorte": 0.3,
     "pose": 0.0
    }
   }
  },
  "fine_opponent": {
-  "fingerprint": "d290ffc84a8b4b96",
+  "fingerprint": "9054eff36dfcdc89",
   "version": "3",
   "seconds": 0.0,
-  "finished": "2026-10-12 18:17:36",
+  "finished": "2026-10-12 18:45:40",
   "summary": {
    "enabled": false
   }

@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261012181703
+Start time: 20261012184507
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\prueba_rapida.ps1
-Process ID: 13164
+Process ID: 3224
 PSVersion: 5.1.26100.9549
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
@@ -19,8 +19,18 @@ SerializationVersion: 1.1.0.1
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
 Already up to date.
-Resolved 107 packages in 1ms
-Checked 80 packages in 4ms
+Resolved 110 packages in 1ms
+   Building tennisbio @ file:///C:/tenis/tennis-biomech
+Downloading playwright (36.8MiB)
+ Downloaded playwright
+      Built tennisbio @ file:///C:/tenis/tennis-biomech
+Prepared 4 packages in 489ms
+Uninstalled 1 package in 1ms
+Installed 4 packages in 39ms
+ + greenlet==3.5.6
+ + playwright==1.63.0
+ + pyee==13.0.1
+ ~ tennisbio==0.0.1 (from file:///C:/tenis/tennis-biomech)
 Video: C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv
 
 ==> 1/4 Comprobacion del entorno
@@ -55,7 +65,7 @@ ya medida
 
 ==> 3/4 Cuatro minutos de partido, todas las etapas e informe (15-30 min)
 Tramo de juego (ya buscado): minuto 121
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (18:17, etapa 9 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (18:45, etapa 9 de 10)
 load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
   fine:  15 % (2/13 golpes candidatos · 2 confirmados) · 0 s · quedan ≈ 0 s
 C:\tenis\tennis-biomech\src\tennisbio\technique.py:126: RuntimeWarning: All-NaN axis encountered
@@ -66,7 +76,7 @@ C:\tenis\tennis-biomech\src\tennisbio\technique.py:392: RuntimeWarning: All-NaN 
   fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
   fine: 100 % (13/13 golpes candidatos · 10 confirmados) · 19 s · quedan ≈ 0 s
 [smoke_tennis-yusipopen-final-sobolenko-rybakin] fine terminada en 0.5 min
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (18:17, etapa 10 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (18:45, etapa 10 de 10)
 [smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent terminada en 0.0 min
 
 Etapas ejecutadas: fine, fine_opponent
@@ -78,7 +88,7 @@ Etapas ejecutadas: fine, fine_opponent
   court          27.5 s  {'segments': 20, 'with_court': 11, 'pitch_deg_median': 18.3}
   identity        3.7 s  {'runs': 10, 'votes': 4, 'confidence': 1.0, 'by_end_changes': 9, 'by_clothes': 0, 'conflicts': 1, 'decided': 9}
   candidates      3.8 s  {'candidates': 50, 'far': 37, 'with_audio': 49, 'opponent_runs': 0, 'identity_unknown': 0, 'replay_runs_skipped': 0, 'audio_track': 0}
-  fine           29.8 s  {'candidates': 13, 'confirmed': 10, 'errors': 0, 'warnings': [], 'forehands': 6, 'windows': 7, 'seconds': {'cuerdas_y_3d': 20.6, 'analisis_ventana': 1.6, 'recorte': 0.3, 'pose': 0.0}}
+  fine           29.1 s  {'candidates': 13, 'confirmed': 10, 'errors': 0, 'warnings': [], 'forehands': 6, 'windows': 7, 'seconds': {'cuerdas_y_3d': 20.1, 'analisis_ventana': 1.7, 'recorte': 0.3, 'pose': 0.0}}
   fine_opponent     0.0 s  {'enabled': False}
 Golpes: 6 nuevos, 6 en C:\tenis\output\_smoke\exportar\golpes
 Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
@@ -87,6 +97,23 @@ Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
 (Solo se rehicieron algunas etapas: el tiempo no sirve para estimar un partido)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Vídeos, montajes y resumen PDF: C:\tenis\output\_smoke\exportar
+AVISO: no se pudieron hacer las capturas del informe (BrowserType.launch: Executable doesn't exist at C:\Users\esteb\AppData\Local\ms-playwright\chromium_headless_shell-1243\chrome-headless-shell-win64\chrome-headless-shell.exe
+╔════════════════════════════════════════════════════════════╗
+║ Looks like Playwright was just installed or updated.       ║
+║ Please run the following command to download new browsers: ║
+║                                                            ║
+║     playwright install                                     ║
+║                                                            ║
+║ <3 Playwright Team                                         ║
+╚════════════════════════════════════════════════════════════╝)
+Auditoría: 48 cumplidos, 7 no cumplidos, 54 sin golpes suficientes, 6 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+  ✘ 2. Cuerpo · "3 × 90°" al final: se mide (33% de los golpes) pero el informe no lo enseña en ninguna pantalla
+  ✘ 3. Pies y desplazamiento · Primer paso: dirección correcta respecto a la bola: se mide (17% de los golpes) pero el informe no lo enseña en ninguna pantalla
+  ✘ 4. Raqueta, swing y empuñadura · Velocidad de la raqueta relativa entre golpes: se mide (83% de los golpes) pero el informe no lo enseña en ninguna pantalla
+  ✘ 4. Raqueta, swing y empuñadura · Posición de la mano en el mango: se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla
+  ✘ Dirección del golpe: se mide por golpe (dirección del golpe) pero no es una situación de «Su derecha»
+  ✘ Valores dentro de límites físicos: metrics.elbow_impact_deg: 1 de 6 fuera de 40–180; metrics.base_width_loaded_pct: 1 de 6 fuera de 5–90
+  ✘ Cada frase lleva cuántos golpes la respaldan y su fiabilidad: 11 frases; sin respaldo suficiente: class.ready_hands, class.arm
 
 ==> 4/4 Validacion automatica: puntos anotados de partidos de Rybakina (F3Set; 20-40 min, solo la primera vez)
 ya hecha
@@ -95,5 +122,5 @@ PRUEBA TERMINADA. El informe se ha abierto en el navegador.
 El registro se envia a Claude automaticamente.
 **********************
 Windows PowerShell transcript end
-End time: 20261012181819
+End time: 20261012184623
 **********************
