@@ -218,7 +218,7 @@ def noise_from_pairs(strokes: list[dict], min_strokes=20) -> dict:
 def collect(matches: list[Match], out_root: Path, stroke="forehand", player_id: str | None = None) -> dict:
     """player_id: the match's player (strokes.json) or its opponent (strokes_opponent.json, when
     matches.yaml gives opponent_id); default: each match's player."""
-    ms, strokes, review = [], [], 0
+    ms, strokes, review, raw = [], [], 0, []
     for mi, match in enumerate(matches):
         d = out_root / match.id
         is_opp = player_id is not None and player_id != match.player.id
@@ -234,12 +234,13 @@ def collect(matches: list[Match], out_root: Path, stroke="forehand", player_id: 
             r["_phases"] = s.get("phases", {})
             strokes.append(r)
             review += bool(r["review"])
+            raw.append({**s, "match_id": match.id, "stroke_id": r["id"]})
         found = json.loads((d / "score.json").read_text(encoding="utf-8")).get("opponent") if (d / "score.json").exists() else None
         rival = match.player.name if is_opp else (match.opponent or found or "—")
         ms.append({"id": match.id, "rival": rival, "surf": match.surface or "—",
                    "round": match.round or "—", "date": match.date or "—", "sets": None, "n": len(rows), "res": "—"})
     keep = stroke_metrics(stroke)
-    return {"matches": ms, "strokes": strokes, "review": review,
+    return {"matches": ms, "strokes": strokes, "review": review, "_raw": raw,
             "metrics": [{"k": k, "g": g, "name": n, "sub": sub, "unit": u, "dec": dec, "noise": noise, "rel": rel,
                          "est": k in ESTIMATED}
                         for k, (g, n, sub, u, dec, noise, rel, _) in METRICS.items() if k in keep]}
@@ -340,6 +341,9 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
                 r["thumb"] = f"thumbs/{r['id']}.jpg"
         elif win:
             r["video"] = Path(os.path.relpath(d / "windows" / win, dest)).as_posix()
+    from .explain import model_view
+    from .model import build_model
+    data["model"] = model_view(build_model(data.pop("_raw", [])), stroke)
     data["player"] = player or {}
     data["stroke"] = stroke
     data["generated"] = time.strftime("%Y-%m-%d %H:%M")

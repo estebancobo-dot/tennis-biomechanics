@@ -54,10 +54,14 @@ def _norm(s: str) -> str:
 
 
 def _is_name(text: str, surname: str, min_ratio=0.75) -> bool:
+    """The OCR text is this player's name: full surname, a close misreading, or the 3-letter
+    abbreviation some broadcasters use (RYB, SAB)."""
     t, n = _norm(text), _norm(surname)
     if not t or not n:
         return False
     if n in t:
+        return True
+    if len(t) == 3 and t.isalpha() and n.startswith(t):
         return True
     return difflib.SequenceMatcher(None, t[:len(n) + 2], n).ratio() >= min_ratio
 
@@ -165,12 +169,16 @@ def parse(items: list, surnames: tuple[str, str], image: np.ndarray | None = Non
 class ScoreReader:
     """Reads the scoreboard of one match; finds it on the first frames where both names appear."""
 
-    def __init__(self, player_surname: str, opponent_surname: str):
+    def __init__(self, player_surname: str, opponent_surname: str, relocate_after=6):
         from rapidocr_onnxruntime import RapidOCR
 
         self.ocr = RapidOCR()
         self.names = (player_surname, opponent_surname)
         self.roi = None
+        self.misses = 0                 # consecutive reads without the names in the region
+        self.full_fails = 0             # consecutive full-frame searches without both names
+        self.calls = 0
+        self.relocate_after = relocate_after
 
     def _items(self, img):
         res, _ = self.ocr(img)
@@ -182,15 +190,36 @@ class ScoreReader:
             return False
         h, w = frame.shape[:2]
         x0, y0, x1, y1 = rows[2]
-        self.roi = (max(0, int(x0)), max(0, int(y0)), min(w, int(x1)), min(h, int(y1)))
+        roi = (max(0, int(x0)), max(0, int(y0)), min(w, int(x1)), min(h, int(y1)))
+        # a scoreboard is a small box near an edge; a statistics panel in a break is big and central
+        area = (roi[2] - roi[0]) * (roi[3] - roi[1]) / float(w * h)
+        cy = (roi[1] + roi[3]) / 2 / h
+        if area > 0.2 or 0.35 < cy < 0.65:
+            return False
+        self.roi = roi
         return True
 
     def read(self, frame) -> ScoreState | None:
-        if self.roi is None and not self.locate(frame):
-            return None
+        self.calls += 1
+        if self.roi is None:
+            # after many failed full-frame searches (no scoreboard on screen, names not readable),
+            # search only one frame in four: OCR of the whole frame is the expensive part
+            if self.full_fails > 20 and self.calls % 4:
+                return None
+            if not self.locate(frame):
+                self.full_fails += 1
+                return None
+            self.full_fails = 0
         x0, y0, x1, y1 = self.roi
         roi = frame[y0:y1, x0:x1]
-        return parse(self._items(roi), self.names, roi)
+        st = parse(self._items(roi), self.names, roi)
+        if st is None:
+            self.misses += 1
+            if self.misses >= self.relocate_after:      # moved, resized or was the wrong box: look again
+                self.roi, self.misses = None, 0
+        else:
+            self.misses = 0
+        return st
 
 
 BANNED = {"BREAK", "POINT", "SET", "MATCH", "GAME", "DEUCE", "ADV", "SERVE", "SPEED", "MPH", "KMH", "TIEBREAK",

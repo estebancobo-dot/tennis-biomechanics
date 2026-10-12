@@ -293,7 +293,7 @@ def _surname(name: str) -> str:
     return name.strip().split()[-1] if name and name.strip() else ""
 
 
-@stage("score", "1", deps=("scenes",), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
+@stage("score", "2", deps=("scenes",), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
        outputs=("score.json",), match_fields=lambda m: {"player": m.player.name, "opponent": m.opponent})
 def st_score(ctx: Context):
     """TV scoreboard every few seconds of main camera (sets, games, points, pressure)."""
@@ -326,6 +326,9 @@ def st_score(ctx: Context):
                 out.append({"t": round(t, 2), **st.to_dict()})
             t += every
     _write(ctx.path("score.json"), {"readings": out, "names": names, "opponent": opponent})
+    if not out:
+        ctx.log(f"  AVISO: no se pudo leer el marcador con «{names[0]}» y «{names[1]}»: sin marcador no se sabe "
+                f"quién está en cada lado; compruebe que el partido es de {ctx.match.player.name}")
     return {"readings": len(out), "pressure": sum(r["pressure"] for r in out)}
 
 

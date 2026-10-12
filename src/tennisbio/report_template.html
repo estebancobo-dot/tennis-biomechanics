@@ -232,6 +232,30 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .cmpgrid .lbl i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
 @media (max-width: 860px) { .cmpgrid { grid-template-columns: 1fr; } }
 .evid { display: inline-flex; gap: 6px; margin-left: 8px; }
+/* Su golpe: modelo técnico */
+.mhead { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: start; }
+.msum { display: grid; gap: 6px; font-size: 14px; line-height: 1.45; }
+.msum li { margin-left: 18px; }
+.sitbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 12px 16px; border-top: 1px solid var(--line); }
+.sitbar .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.sitbar .chips button { font-size: 12px; padding: 5px 10px; border-radius: 999px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--ink-2); cursor: pointer; }
+.sitbar .chips button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.sitbar .chips button small { opacity: .75; margin-left: 4px; }
+.mchanges { padding: 10px 16px 14px; display: grid; gap: 4px; font-size: 13.5px; }
+.mchanges b { color: var(--accent); }
+.pcards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 1200px) { .pcards { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .pcards { grid-template-columns: minmax(0, 1fr); } }
+.pcard { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; overflow: hidden; display: grid; grid-template-rows: auto auto 1fr; }
+.pcard canvas { width: 100%; aspect-ratio: 4 / 5; display: block; background: #000; cursor: pointer; }
+.pcard h3 { display: flex; justify-content: space-between; align-items: center; padding: 10px 12px 4px; margin: 0; font-size: 15px; }
+.pcard h3 .ch { font-size: 11px; font-weight: 600; color: var(--accent-ink); background: var(--accent); border-radius: 999px; padding: 1px 8px; }
+.pcard ul { list-style: none; margin: 0; padding: 4px 12px 12px; display: grid; gap: 6px; font-size: 13px; line-height: 1.4; color: var(--ink); }
+.pcard li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px; align-items: baseline; }
+.pcard li.chg { color: var(--accent); }
+.pcard li .dv { font: 600 11px var(--mono); }
+.mlegend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12px; color: var(--ink-2); padding: 0 16px 12px; }
+.mlegend i { display: inline-block; width: 18px; height: 3px; vertical-align: middle; margin-right: 6px; border-radius: 2px; }
 .evid .btn { padding: 3px 8px; font-size: 11.5px; }
 .flags { display: flex; flex-wrap: wrap; gap: 4px; }
 </style>
@@ -242,7 +266,8 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
   <aside class="side">
     <div class="brand"><div class="mark">TB</div><div><b>TENNISBIO</b><span>Análisis cinemático</span></div></div>
     <nav class="nav" aria-label="Pantallas">
-      <button data-tab="panel" aria-current="page"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="1.5" width="5" height="5" rx="1"/><rect x="9.5" y="1.5" width="5" height="5" rx="1"/><rect x="1.5" y="9.5" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></svg>Panel</button>
+      <button data-tab="modelo"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="3" r="1.6"/><path d="M8 5v5M8 10l-3 4M8 10l3 4M4 7l4-1 4 1"/></svg><span id="nav-modelo">Su golpe</span></button>
+      <button data-tab="panel"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="1.5" width="5" height="5" rx="1"/><rect x="9.5" y="1.5" width="5" height="5" rx="1"/><rect x="1.5" y="9.5" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></svg>Panel</button>
       <button data-tab="videoteca"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="2.5" width="5.5" height="4.5" rx="1"/><rect x="9" y="2.5" width="5.5" height="4.5" rx="1"/><rect x="1.5" y="9" width="5.5" height="4.5" rx="1"/><rect x="9" y="9" width="5.5" height="4.5" rx="1"/></svg>Videoteca</button>
       <button data-tab="golpe"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><path d="M6.5 6v4l3.5-2z" fill="currentColor"/></svg>Análisis de golpe</button>
       <button data-tab="comparar"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="3" width="5.5" height="10" rx="1"/><rect x="9" y="3" width="5.5" height="10" rx="1"/></svg>Comparar golpes</button>
@@ -261,7 +286,22 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 
     <div class="content">
 
-<section class="screen" id="tab-panel">
+<section class="screen" id="tab-modelo" hidden>
+  <div class="panel">
+    <header><h2 id="m-title">Su golpe</h2><span class="note" id="m-n"></span></header>
+    <div class="body mhead"><ul class="msum" id="m-sum"></ul><button class="btn pri" id="m-play">▶ Ver sus golpes típicos</button></div>
+    <div class="sitbar"><span class="note" style="min-width:90px">Situación</span><div class="chips" id="m-sit"></div></div>
+    <div class="mchanges" id="m-changes" hidden></div>
+  </div>
+  <div class="mlegend"><span><i style="background:#e3e8ec"></i>Esqueleto de un golpe real típico</span><span><i style="background:var(--accent)"></i>Postura media de todos sus golpes de esta situación</span><span>Pulsa una imagen para ver ese momento en vídeo</span></div>
+  <div class="pcards" id="m-cards"></div>
+  <div class="cols c-1-1" style="margin-top:16px">
+    <div class="panel"><header><h2>Pies</h2><span class="note">Desde el golpe de la rival hasta la recuperación</span></header><div class="body msum" id="m-feet"></div></div>
+    <div class="panel"><header><h2>Lo que la tele no permite medir</h2></header><div class="body"><ul class="msum" id="m-nm"></ul></div></div>
+  </div>
+</section>
+
+<section class="screen" id="tab-panel" hidden>
   <div class="kpis" id="kpis"></div>
   <div class="panel">
     <header><h2>Conclusiones</h2><span class="note">Generadas a partir de los datos; cada una con su confianza</span></header>
@@ -505,9 +545,9 @@ document.getElementById("scope").innerHTML = `<span class="tag"><b>${MATCHES.len
 document.getElementById("noise-note").textContent = `Diferencia entre grupos en múltiplos del ruido de medida${DATA.noise_validated ? " (medido sobre pares de golpes equivalentes de la jugadora: cota conservadora)" : " (provisional: hacen falta al menos 20 golpes con bola neutra)"}. Solo con al menos 5 golpes por grupo.`;
 
 /* ===== Navegación ===== */
-const TABS = ["panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista"];
+const TABS = ["modelo", "panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista"];
 function showTab(name) {
-  if (!TABS.includes(name)) name = "panel";
+  if (!TABS.includes(name)) name = "modelo";
   TABS.forEach(t => { document.getElementById("tab-" + t).hidden = t !== name; });
   document.querySelectorAll(".nav button").forEach(b => { if (b.dataset.tab === name) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
   try { history.replaceState(null, "", "#" + name); } catch (e) { }
@@ -1263,11 +1303,84 @@ document.getElementById("g-cmp").addEventListener("click", () => {
 });
 video.addEventListener("ended", () => { if (playing && PLAY) { stopPlay(); plStep(1, true); } });
 
+/* ===== SU GOLPE: el modelo técnico (todo calculado en Python; aquí solo se pinta) ===== */
+const MODEL = DATA.model || { cards: [], variants: {}, summary: [], footwork: {}, not_measurable: [] };
+const SID = Object.fromEntries(STROKES.map(s => [s.id, s]));
+let mSit = "";
+const MSRC = (typeof mkSrc === "function") ? mkSrc() : null;
+document.getElementById("nav-modelo").textContent = "Su " + (STROKE_ES[DATA.stroke] || "golpe").toLowerCase();
+document.getElementById("m-title").textContent = `${PL.name || "Jugadora"}: su ${(STROKE_ES[DATA.stroke] || "golpe").toLowerCase()}`;
+document.getElementById("m-n").textContent = `${MODEL.n || 0} golpes analizados (${MODEL.n_near || 0} del lado cercano, con todo el detalle)`;
+document.getElementById("m-sum").innerHTML = (MODEL.summary || []).map(t => `<li>${t}</li>`).join("") || `<li>Todavía no hay golpes suficientes para describir su técnica.</li>`;
+document.getElementById("m-nm").innerHTML = (MODEL.not_measurable || []).map(t => `<li>${t}</li>`).join("");
+(function sitChips() {
+  const byF = {};
+  Object.entries(MODEL.variants || {}).forEach(([k, v]) => { (byF[v.factor] = byF[v.factor] || { name: v.factor_name, items: [] }).items.push([k, v]); });
+  let h = `<button data-k="" aria-pressed="true">Todas</button>`;
+  Object.values(byF).forEach(f => { h += `<span class="note" style="margin-left:6px">${f.name}:</span>` + f.items.map(([k, v]) => `<button data-k="${k}" aria-pressed="false" title="${v.n} golpes${v.usual ? " · su situación habitual" : ""}">${v.level}<small>${Math.round(v.share * 100)} %</small></button>`).join(""); });
+  const el = document.getElementById("m-sit"); el.innerHTML = h;
+  el.addEventListener("click", ev => { const b = ev.target.closest("button[data-k]"); if (!b) return; mSit = b.dataset.k; el.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b)); renderModel(); });
+})();
+function mView() { return mSit && MODEL.variants[mSit] ? MODEL.variants[mSit] : { cards: MODEL.cards, strokes: MODEL.typical_strokes, changes: [] }; }
+function mStrokes() { return (mView().strokes || []).map(id => SID[id]).filter(s => s && s.video); }
+function renderFeet() {
+  const f = MODEL.footwork || {}, L = [];
+  const v = (k, d, u) => f[k] ? `<b>${fmt(f[k].median, d)}${u}</b> <span class="dim3">(${fmt(f[k].p25, d)}–${fmt(f[k].p75, d)}${u}, ${f[k].n} golpes)</span>` : null;
+  const add = (t, x) => { if (x) L.push(`<li>${t}: ${x}</li>`); };
+  add("Pasos hasta la bola", v("steps_to_impact", 0, "")); add("Pasos de ajuste en los últimos 0,8 s", v("adjustment_steps", 0, ""));
+  add("Primer paso tras el split step", v("first_step_s", 2, " s")); add("Último apoyo antes de golpear", v("last_plant_before_impact_s", 2, " s"));
+  add("Recorrido hasta la bola", v("path_m", 1, " m")); add("Velocidad máxima", v("peak_speed_mps", 1, " m/s")); add("Velocidad al golpear", v("speed_at_impact_mps", 1, " m/s"));
+  add("Vuelta hacia el centro en 1 s", v("recovery_to_centre_m", 1, " m"));
+  const c = f.first_step_type; if (c && c.n) L.push(`<li>Tipo de primer paso: ${Object.entries(c.counts).slice(0, 4).map(([k, n]) => `${k} ${Math.round(100 * n / c.n)} %`).join(", ")}</li>`);
+  document.getElementById("m-feet").innerHTML = L.join("") || `<li>Sin datos de pies todavía.</li>`;
+}
+async function drawCard(cvEl, card, s) {
+  const ctx = cvEl.getContext("2d"), W = cvEl.width, Hh = cvEl.height;
+  ctx.fillStyle = "#000"; ctx.fillRect(0, 0, W, Hh);
+  if (!s || !MSRC) return;
+  const t = s.phases[card.phase];
+  if (!isN(t)) { ctx.fillStyle = "#727e8a"; ctx.font = "16px Archivo, sans-serif"; ctx.fillText("Momento no detectado en este golpe", 16, 30); return; }
+  if (MSRC.s !== s) await loadSrc(MSRC, s);
+  await seekSrc(MSRC, t);
+  const f = kF(MSRC, t);
+  drawFrame(ctx, W, Hh, f, { skel: true, trail: false, ball: false, mono: "#e3e8ec" }, MSRC);
+  const sk = card.skeleton, q = kpAt(f, MSRC);
+  if (!sk || !q) return;
+  const mid2 = (a, b) => a && b ? [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2] : null;
+  const hr = mid2(q[11], q[12]), sr = mid2(q[5], q[6]), hm = mid2(sk[11], sk[12]) || [0, 0], sm = mid2(sk[5], sk[6]);
+  if (!hr || !sr || !sm) return;
+  const torsoPx = Math.hypot(sr[0] - hr[0], sr[1] - hr[1]), torsoM = Math.hypot(sm[0] - hm[0], sm[1] - hm[1]);
+  if (!torsoM) return;
+  const k = torsoPx / torsoM, dsg = PL.hand === "left" ? -1 : 1;
+  const [sx, sy, sw] = cropRect(f, W / Hh, MSRC), z = W / sw;
+  const P = p => [((hr[0] + (p[0] - hm[0]) * k * dsg) - sx) * z, ((hr[1] - (p[1] - hm[1]) * k) - sy) * z];
+  const lw = Math.max(2, W / 160);
+  ctx.strokeStyle = "#d4f03a"; ctx.lineWidth = lw; ctx.globalAlpha = .95;
+  const skL = PL.hand === "left" ? sk.map((v, i) => sk[[0, 2, 1, 4, 3, 6, 5, 8, 7, 10, 9, 12, 11, 14, 13, 16, 15][i]]) : sk;
+  for (const [a, b] of BONES) { if (!skL[a] || !skL[b]) continue; const [x1, y1] = P(skL[a]), [x2, y2] = P(skL[b]); ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
+  ctx.globalAlpha = 1;
+}
+let mGen = 0;
+async function renderModel() {
+  const v = mView(), g = ++mGen, ss = mStrokes(), s = ss[0];
+  const ch = document.getElementById("m-changes");
+  ch.hidden = !mSit;
+  if (mSit) { const V = MODEL.variants[mSit]; ch.innerHTML = `<div><b>${V.factor_name}: ${V.level}</b> · ${V.n} golpes (${Math.round(V.share * 100)} %)${V.usual ? " · es su situación habitual: la referencia de las comparaciones" : ""}</div>` + (V.changes.length ? V.changes.map(t => `<div>· ${t}</div>`).join("") : `<div class="dim3">Ningún rasgo cambia de forma clara respecto a lo habitual (con el error de medida y la corrección por comparaciones múltiples).</div>`); }
+  const box = document.getElementById("m-cards");
+  box.innerHTML = (v.cards || []).map((c, i) => `<div class="pcard"><canvas width="400" height="500" data-i="${i}" title="Ver este momento en vídeo"></canvas><h3><span>${i + 1} · ${c.title}</span>${c.changes ? `<span class="ch">${c.changes} cambia${c.changes > 1 ? "n" : ""}</span>` : ""}</h3><ul>${c.lines.map(l => `<li class="${l.change ? "chg" : ""}"><span>${l.text}</span><span>${l.change ? `<span class="dv">${l.change.diff > 0 ? "+" : "−"}${fmt(Math.abs(l.change.diff), ["s", "m", "m/s", ""].includes(l.change.unit) ? 2 : 0)}${l.change.unit === "°" || l.change.unit === "%" ? l.change.unit : " " + l.change.unit}</span>` : relBars(l.rel)}</span></li>`).join("") || `<li class="dim3">Sin datos suficientes en esta fase.</li>`}</ul></div>`).join("");
+  box.querySelectorAll("canvas").forEach(cv => cv.addEventListener("click", () => { const c = v.cards[+cv.dataset.i]; if (!s) return; loadStroke(s).then(() => { const t = s.phases[c.phase]; if (isN(t)) setT(t); }); showTab("golpe"); }));
+  document.getElementById("m-play").disabled = !ss.length;
+  for (let i = 0; i < (v.cards || []).length; i++) { if (g !== mGen) return; await drawCard(box.querySelectorAll("canvas")[i], v.cards[i], s); }
+}
+document.getElementById("m-play").addEventListener("click", () => startPlaylist(mStrokes(), mSit ? `${MODEL.variants[mSit].factor_name}: ${MODEL.variants[mSit].level}` : "Sus golpes típicos"));
+renderFeet();
+
 /* ===== Inicio ===== */
 renderTable(); renderCompare(); renderCourt();
 if (STROKES.filter(s => s.video).length >= 2) { const o = STROKES.filter(s => s.video).sort(byShow); const a = o[0], b = o.find(s => s !== a && s.side === a.side) || o[1]; document.getElementById("k-a").value = a.id; document.getElementById("k-b").value = b.id; Promise.all([loadSrc(KA, a), loadSrc(KB, b)]).then(() => { kLayout(); renderKTl(); renderKTable(); kDraw(); }); }
 if (STROKES.length) loadStroke([...STROKES].sort((a, b) => (b.repr * .7 + b.quality * .3) - (a.repr * .7 + a.quality * .3))[0]);
 showTab((location.hash || "").slice(1));
+renderModel();
 </script>
 </body>
 </html>
