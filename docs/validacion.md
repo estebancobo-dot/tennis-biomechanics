@@ -113,7 +113,7 @@ estadística con el tamaño real de los 4 partidos.
 | Ruido por pares | matriz n×n (≈1 GB con 6.000 golpes) | árbol de vecinos (0,6 s con 8.000) |
 | Memoria del informe | — | 363 MB |
 | Página | — | 6 MB; carga en 2,7 s; cada pestaña < 0,4 s; 24 MB de memoria en el navegador |
-| Vídeo por golpe (exportación, CPU compartida) | 8,5 s por golpe | 6,9 s (busca el golpe en la ventana en lugar de decodificarla entera); después, recorte sin transformación afín (sin medir aún) |
+| Exportación de 24 golpes + montajes + resumen | 203 s (CPU compartida) | 124 s (CPU libre; busca el golpe en la ventana en lugar de decodificarla entera y recorta sin transformación afín): ~4 s por golpe en este servidor de 4 núcleos |
 
 Con datos al azar (sin efectos reales) el modelo no encuentra ninguna diferencia "real" entre
 situaciones: 0 falsos positivos.
