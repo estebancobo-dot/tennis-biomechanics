@@ -440,7 +440,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
       <label class="ctl">Situación<select id="f-sit"><option value="">Todas</option><option value="neutra">Neutra</option><option value="abierta">Bola abierta</option><option value="rapida">Bola rápida</option><option value="baja">Bola baja</option><option value="corta">Bola corta</option></select></label>
       <label class="ctl">Lado<select id="f-side"><option value="">Ambos</option><option value="near">Cercano (detalle completo)</option><option value="far">Lejano (detalle reducido)</option></select></label>
       <label class="ctl">Presión<select id="f-press"><option value="">Todos</option><option value="1">Bajo presión</option><option value="0">Sin presión</option></select></label>
-      <label class="ctl">Resultado<select id="f-out"><option value="">Todos</option><option value="ganador">Ganador</option><option value="error">Error</option><option value="sigue">Sigue</option></select></label>
+      <label class="ctl">Resultado<select id="f-out"><option value="">Todos</option><option value="ganador">No devuelta</option><option value="error">Error</option><option value="sigue">Sigue</option></select></label>
       <label class="ctl">Revisión<select id="f-rev"><option value="">Todos</option><option value="0">Sin dudas</option><option value="1">Con dudas</option></select></label>
       <label class="ctl">Vista rápida<select id="f-preset"><option value="">—</option><option value="best">Mejor capturados</option><option value="typ">Más representativos</option></select></label>
     </div>
@@ -525,7 +525,7 @@ const stCol = s => STANCE[s.stance] || "#8b96a1";
 const pct = (a, f) => a.length ? 100 * a.filter(f).length / a.length : NaN;
 function niceTicks(lo, hi, n = 5) { const span = (hi - lo) || 1, m = 10 ** Math.floor(Math.log10(span / n)); const st = [1, 2, 2.5, 5, 10].map(x => x * m).find(x => span / x <= n) || 10 * m; const t = []; for (let v = Math.ceil(lo / st) * st; v <= hi + 1e-9; v += st) t.push(+v.toFixed(6)); return t; }
 const sitTxt = s => s.sit.neutra ? "neutra" : [s.wide && "abierta", s.fast && "rápida", s.height && s.height !== "media" && s.height, s.short && "corta"].filter(Boolean).join(", ") || "sin clasificar";
-const OUT_ES = { out: "error (fuera)", net: "error (red)", winner: "ganador (probable)", rally: "sigue el punto" };
+const OUT_ES = { out: "error (fuera)", net: "error (red)", winner: "no devuelta (ganador o error forzado)", rally: "sigue el punto" };
 const REVIEW_ES = { half_volley_candidate: "media volea candidata", impact_without_audio: "impacto sin audio ni bola", racket_not_seen_when_loaded: "raqueta no vista en el armado", elbow_implausible: "codo inverosímil" };
 const revTxt = r => r.startsWith("phase:") ? "fase dudosa: " + r.slice(6) : (REVIEW_ES[r] || r);
 
@@ -628,7 +628,7 @@ const PAIRS = [
   { key: "presion", t: "bajo presión", c: "puntos de presión frente al resto", A: s => s.pressure === false, B: s => s.pressure === true, neutral: true },
   // split step is timed from the opponent's hit: with a faster ball it changes by definition
   { key: "rapida", t: "con bola rápida", c: "bola rápida frente a lenta", A: s => isN(s.tAvail) && !s.fast, B: s => s.fast, neutral: false, skip: ["split"] },
-  { key: "resultado", t: "en los errores", c: "errores frente a golpes que siguen el punto o ganan", A: s => s.outcome === "sigue" || s.outcome === "ganador", B: s => s.outcome === "error", neutral: false },
+  { key: "resultado", t: "en los errores", c: "errores frente a golpes que siguen el punto o no son devueltos", A: s => s.outcome === "sigue" || s.outcome === "ganador", B: s => s.outcome === "error", neutral: false },
 ];
 // Findings and conclusions come from Python (tennisbio.findings): adjusted for the ball received
 // and the match, corrected for multiple comparisons. The page only draws them.
@@ -1063,7 +1063,7 @@ function groupsFor(pair, sit) {
   if (pair === "presion") return [{ l: "Sin presión", a: b.filter(s => s.pressure === false) }, { l: "Bajo presión", a: b.filter(s => s.pressure === true) }];
   if (pair === "sets") return [{ l: "Set 1", a: b.filter(s => s.set === 1) }, { l: `Set ${maxSet}`, a: b.filter(s => s.set === maxSet && maxSet > 1) }];
   // the same groups as the findings: the rest (rally + winners) against the errors
-  if (pair === "resultado") return [{ l: "Siguen o ganan", a: b.filter(s => s.outcome === "sigue" || s.outcome === "ganador") }, { l: "Errores", a: b.filter(s => s.outcome === "error") }];
+  if (pair === "resultado") return [{ l: "Siguen o no devueltas", a: b.filter(s => s.outcome === "sigue" || s.outcome === "ganador") }, { l: "Errores", a: b.filter(s => s.outcome === "error") }];
   if (pair === "rapida") return [{ l: "Bola lenta", a: b.filter(s => isN(s.tAvail) && !s.fast) }, { l: "Bola rápida", a: b.filter(s => s.fast) }];
   return MATCHES.map((m, i) => ({ l: m.id, a: b.filter(s => s.match === i) }));
 }
@@ -1144,7 +1144,7 @@ function libRows() {
   return a.sort((x, y) => y[k] - x[k]);
 }
 function card(s) {
-  const m = MATCHES[s.match], oc = s.outcome === "ganador" ? `<span class="g">GANADOR</span>` : s.outcome === "error" ? `<span class="e">${s.outcomeDetail === "net" ? "RED" : "FUERA"}</span>` : "";
+  const m = MATCHES[s.match], oc = s.outcome === "ganador" ? `<span class="g">NO DEVUELTA</span>` : s.outcome === "error" ? `<span class="e">${s.outcomeDetail === "net" ? "RED" : "FUERA"}</span>` : "";
   const mv = EXM.slice(0, 3).filter(k => isN(s.m[k])).map(k => `<div>${fmtM(k, s.m[k])} <span>${MK[k].name.toLowerCase()}</span></div>`).join("");
   return `<div class="card${PICK.includes(s) ? " pick" : ""}" data-id="${s.id}" tabindex="0" role="button" aria-label="Golpe ${s.id}">
     <div class="th" style="${s.thumb ? `background-image:url('${s.thumb}')` : ""}">${s.thumb ? "" : `<div class="noimg">${s.video ? "vídeo" : "sin vídeo"}</div>`}

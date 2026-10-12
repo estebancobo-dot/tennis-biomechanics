@@ -159,7 +159,7 @@ def _pairs(strokes: list) -> list[dict]:
         # split step is timed from the opponent's hit: with a faster ball it changes by definition
         dict(key="rapida", t="con bola rápida", c="bola rápida frente a lenta", neutral=False, skip=["split"], defines=("tAvail",),
              A=lambda s: has_t(s) and not s.get("fast"), B=lambda s: bool(s.get("fast"))),
-        dict(key="resultado", t="en los errores", c="errores frente a golpes que siguen el punto o ganan", neutral=False,
+        dict(key="resultado", t="en los errores", c="errores frente a golpes que siguen el punto o no son devueltos", neutral=False,
              A=lambda s: s.get("outcome") in ("sigue", "ganador"), B=lambda s: s.get("outcome") == "error"),
     ]
 
@@ -303,7 +303,7 @@ def conclusions(data: dict, dist: dict, finds: list[Finding]) -> list[Conclusion
     known = [s for s in st if s.get("outcome")]
     if known:
         w = [s for s in known if s["outcome"] == "ganador"]
-        out.append(Conclusion(f"Resultado conocido en {len(known)} de {n} golpes: {len(w)} ganadores probables, "
+        out.append(Conclusion(f"Resultado conocido en {len(known)} de {n} golpes: {len(w)} que la rival no devolvió (ganadores o errores forzados), "
                               f"{sum(1 for s in known if s.get('outcomeDetail') == 'out')} errores fuera, "
                               f"{sum(1 for s in known if s.get('outcomeDetail') == 'net')} a la red; el resto sigue el punto.",
                               "media" if len(known) >= 20 else "orientativo", "warn", best(w)))

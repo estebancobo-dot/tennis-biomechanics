@@ -6,7 +6,7 @@ the evidence is not clear the outcome stays unknown rather than guessed.
 """
 import numpy as np
 
-OUTCOMES_ES = {"out": "error (fuera)", "net": "error (red)", "winner": "ganador (probable)", "rally": "sigue"}
+OUTCOMES_ES = {"out": "error (fuera)", "net": "error (red)", "winner": "no devuelta (ganador o error forzado)", "rally": "sigue"}
 
 
 def crossed_net(ball: np.ndarray | None, impact: int, fps: float, net_y: float, side="near",

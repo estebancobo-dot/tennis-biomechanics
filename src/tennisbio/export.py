@@ -34,7 +34,7 @@ SKC = {"l": (230, 211, 95), "r": (67, 159, 255), "c": (236, 232, 227)}          
 ACCENT = (212, 240, 58)      # RGB (text drawn with PIL)
 PINK = (255, 95, 210)
 STROKE_ES = {"forehand": "Derecha", "backhand": "Revés", "overhead": "Saque / remate"}
-OUT_ES = {"out": "error (fuera)", "net": "error (red)", "winner": "ganador (probable)", "rally": "sigue el punto"}
+OUT_ES = {"out": "error (fuera)", "net": "error (red)", "winner": "no devuelta (ganador o error forzado)", "rally": "sigue el punto"}
 
 # ---------------------------------------------------------------- fonts
 _FONTS = {
