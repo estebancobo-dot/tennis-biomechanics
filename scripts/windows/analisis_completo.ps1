@@ -8,6 +8,7 @@ Start-Transcript -Path $Log -Append | Out-Null
 try {
     Sin-Suspender
     Comprobar-Instalacion
+    Actualizar-Codigo
     Set-Location $RepoDir
     $inicio = Get-Date
 

@@ -9,6 +9,7 @@ Start-Transcript -Path $Log | Out-Null
 try {
     Sin-Suspender
     Comprobar-Instalacion
+    Actualizar-Codigo
     Set-Location $RepoDir
     $video = Get-ChildItem "$Base\videos" -File -ErrorAction SilentlyContinue |
              Where-Object { $_.Extension -match '^\.(mp4|mkv|ts|mov|avi|m4v|webm)$' } |

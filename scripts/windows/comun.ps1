@@ -90,3 +90,21 @@ function Subir-Registros {
         else { Aviso "No se pudo enviar el registro a Claude (sin red o sin permiso en GitHub)." }
     } catch { Aviso "No se pudo enviar el registro a Claude: $_" }
 }
+
+# Trae la ultima version del codigo (con Git) antes de trabajar: el usuario solo hace doble clic.
+# Las librerias se ajustan si cambiaron (rapido si no hay nada nuevo). Nunca para el script.
+function Actualizar-Codigo {
+    $ErrorActionPreference = "Continue"
+    try {
+        Refrescar-Path
+        if ((Test-Path "$RepoDir\.git") -and (Tiene git)) {
+            git -C $RepoDir pull --ff-only origin $Rama 2>&1 | ForEach-Object { "$_" } | Out-Host
+            if ($LASTEXITCODE -ne 0) { Aviso "No se pudo actualizar el codigo; se usa la version que hay." }
+            if (Tiene uv) {
+                Push-Location $RepoDir
+                uv sync --extra yolo --extra ocr --extra dev --extra validation 2>&1 | ForEach-Object { "$_" } | Out-Host
+                Pop-Location
+            }
+        }
+    } catch { Aviso "No se pudo actualizar el codigo: $_" }
+}
