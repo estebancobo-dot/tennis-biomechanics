@@ -145,3 +145,18 @@ def test_running_towards_the_net_is_not_a_jump():
     img[:, sk["dom_ankle"], 1] = hop
     img[:, sk["non_ankle"], 1] = hop + 5
     assert airborne(img, sk, scale, fps)[29:33].all()
+
+
+def test_a_lifted_foot_is_not_a_sprint():
+    from tennisbio.footwork import footwork
+    from tennisbio.skeleton import Skeleton
+    sk = Skeleton("coco17", "right")
+    T, fps = 60, 50.0
+    img = np.full((T, 17, 2), np.nan)
+    img[:, sk["dom_ankle"]] = [1.0, 0.0]                  # identity homography: image units = metres
+    img[:, sk["non_ankle"]] = [0.0, 0.0]
+    img[26:36, sk["non_ankle"], 1] = -0.3                 # the front foot lifts during the swing
+    scale = np.full(T, 2.0)
+    out = footwork(img, sk, np.eye(3), scale, fps, 30, None, None, None, None)
+    assert out["speed_at_impact_mps"] is not None and out["speed_at_impact_mps"] < 0.5
+    assert out["movement"] == "parada"

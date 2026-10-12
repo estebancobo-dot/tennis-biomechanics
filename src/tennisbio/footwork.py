@@ -131,9 +131,26 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
     feet_g = feet.copy()
     feet_g[air] = np.nan                       # positions only from feet on the ground
     plant = planted(feet_g, air, fps)
+    # body position: the midpoint of the feet only while BOTH are on the ground, interpolated in
+    # between (a lifted foot used to make the "midpoint" jump to the other foot, half a stance
+    # width in one frame, and every stroke looked like a sprint), then smoothed over ~0.3 s
+    mid = (feet_g[:, 0] + feet_g[:, 1]) / 2
+    ok = np.isfinite(mid).all(axis=1)
+    if ok.sum() >= 2:
+        idx = np.arange(T)
+        for d in range(2):
+            mid[:, d] = np.interp(idx, idx[ok], mid[ok, d])
+        gap = np.zeros(T, bool)                                   # no invention over long gaps (> 0.4 s)
+        run = 0
+        for t in range(T):
+            run = 0 if ok[t] else run + 1
+            gap[t] = run > int(0.4 * fps)
+        mid[gap] = np.nan
+        mid[:idx[ok][0]] = np.nan
+        mid[idx[ok][-1] + 1:] = np.nan
     with np.errstate(invalid="ignore"), warnings.catch_warnings():
-        warnings.simplefilter("ignore", RuntimeWarning)        # frames with no foot on the ground
-        pos = smooth(np.nanmean(feet_g, axis=1), fps, 0.25)          # body position: ~0.25 s smoothing
+        warnings.simplefilter("ignore", RuntimeWarning)
+        pos = smooth(mid, fps, 0.3)
     vel = np.gradient(pos, axis=0) * fps
     spd = np.linalg.norm(vel, axis=1)
     spd[spd > MAX_SPEED] = np.nan
