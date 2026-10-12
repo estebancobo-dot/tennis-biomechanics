@@ -132,8 +132,17 @@ def test_tracking_ignores_people_above_the_limit():
 def test_overhead_classification():
     sk, kp, conf = synthetic_forehand()
     kp[IMPACT, sk["right_wrist"]] = [230, 10]            # wrist above the head at contact
+    kp[IMPACT, sk["right_elbow"]] = [225, 50]            # arm raised: elbow above the shoulder
     r = analyze_stroke(kp, conf, sk, FPS, body_height(kp, sk), IMPACT, "audio+swing")
     assert r.stroke == "overhead"
+
+
+def test_high_forehand_is_not_a_serve():
+    sk, kp, conf = synthetic_forehand()
+    kp[IMPACT, sk["right_wrist"]] = [290, 30]            # contact at head height, out to the side
+    kp[IMPACT, sk["right_elbow"]] = [260, 95]            # elbow at shoulder height
+    r = analyze_stroke(kp, conf, sk, FPS, body_height(kp, sk), IMPACT, "audio+swing")
+    assert r.stroke != "overhead"
 
 
 def test_stroke_series_shapes():

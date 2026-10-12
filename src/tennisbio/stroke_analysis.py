@@ -34,7 +34,11 @@ def classify_side(body: np.ndarray, sk: Skeleton, f: int, fps: float = 30.0) -> 
     - direction of the swing across the body around contact (forehand: towards the non-dominant side),
     - side of the dominant wrist at contact (and both hands together → backhand)."""
     dw, nw = body[:, sk["dom_wrist"]], body[:, sk["non_wrist"]]
-    if dw[f, 1] > body[f, sk["nose"], 1] + 0.03:
+    # serve/smash: hand above the head AND the arm raised (elbow above the shoulder); a forehand
+    # taken very high reaches the head height with the elbow at or below the shoulder
+    el, sh = body[f, sk["dom_elbow"], 1], body[f, sk["dom_shoulder"], 1]
+    arm_up = not (np.isfinite(el) and np.isfinite(sh)) or el > sh + 0.04
+    if dw[f, 1] > body[f, sk["nose"], 1] + 0.03 and arm_up:
         return "overhead"
     s = sk.dom_sign
     votes = []
