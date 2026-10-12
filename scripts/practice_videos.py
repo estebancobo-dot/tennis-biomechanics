@@ -38,6 +38,7 @@ QUERIES = ["Rybakina practice", "Rybakina practice court level", "Rybakina train
 EXCLUDE = (" vs ", " vs.", " v ", "highlights", "interview", "press conference", "full match", "match point", "reaction")
 FORMAT = "bv*[height<=720][ext=mp4]+ba[ext=m4a]/b[height<=720][ext=mp4]/b[height<=720]/b"   # as validate_f3set (works on the PC)
 MIN_SHOT_S = 2.5
+VERSION = 3          # of the analysis: a video analysed by an older version is analysed again (pose kept in cache)
 
 
 def log(msg):
@@ -184,7 +185,24 @@ def heads(run, sk: Skeleton, a: int, b: int) -> dict:
     return out
 
 
-def analyse(v: dict, d: Path, seg: Path, clips: Path, hand: str, height_m: float) -> list[dict]:
+def frames_3d(video: Path, run, wb3d, loaded: int | None, impact: int) -> dict:
+    """3D keypoints (RTMW3D) at the end of the backswing, ~70 ms before contact and at contact."""
+    want = {"loaded": loaded, "pre": impact - max(2, int(round(0.07 * run.fps))), "impact": impact}
+    out = {}
+    cap = open_capture(video)
+    for name, f in want.items():
+        if f is None or not 0 <= f < len(run.boxes) or run.boxes[f] is None:
+            continue
+        cap.set(cv2.CAP_PROP_POS_FRAMES, f)
+        ok, img = cap.read()
+        if ok:
+            k3, sc, _ = wb3d(img, np.asarray(run.boxes[f], float))
+            out[name] = (k3, sc)
+    cap.release()
+    return out
+
+
+def analyse(v: dict, d: Path, seg: Path, clips: Path, hand: str, height_m: float, wb3d=None) -> list[dict]:
     from tennisbio.clip_pipeline import run_clip
 
     sk = Skeleton("coco17", hand)
@@ -199,6 +217,11 @@ def analyse(v: dict, d: Path, seg: Path, clips: Path, hand: str, height_m: float
             continue
         if run.tracked_frac < 0.5:
             continue
+        if practice.faces_camera(run.conf, sk):
+            # she faces the camera: left and right are swapped in the image, so the forehand/backhand
+            # vote and the phases are computed on the mirrored image (as for the far player of a match)
+            run = run_clip(shot, d / f"plano_{n:02d}.npz", hand=hand, height_m=height_m, rackets=True,
+                           init_mode="largest", log=lambda m: None, side="far")
         for k, st in enumerate(run.strokes):
             i = st.impact_frame
             ph = {p: x["frame"] for p, x in st.phases.items()}
@@ -214,6 +237,13 @@ def analyse(v: dict, d: Path, seg: Path, clips: Path, hand: str, height_m: float
             bad = practice.implausible(rec["metrics"])
             if bad:                                   # contact frame or arm not trustworthy: nothing measured
                 rec["discarded"], rec["metrics"] = bad, {}
+            elif view in practice.D3_VIEWS and st.stroke == "forehand" and wb3d is not None:
+                m3 = practice.metrics_3d(frames_3d(shot, run, wb3d, ph.get("loaded"), i), hand, height_m)
+                bad3 = practice.implausible(m3)
+                if bad3:                              # the 3D estimate of this stroke is not credible
+                    rec["discarded_3d"] = bad3
+                else:
+                    rec["metrics"].update(m3)
             clip, th = clips / f"{rec['id']}.mp4", clips / f"{rec['id']}.jpg"
             try:
                 write_clip(shot, run, sk, i, clip, th)
@@ -244,6 +274,15 @@ def main():
     from tennisbio.pose.backend import set_device
     set_device(cfg.get("device"))
     pl = load_player(args.player)
+    wb3d = None
+    from tennisbio.config import resolve_path
+    hp = resolve_path((cfg.get("racket_face") or {}).get("hand3d_onnx"))
+    if hp is not None and hp.exists():
+        try:
+            from tennisbio.pose.wholebody3d import WholeBody3D
+            wb3d = WholeBody3D(str(hp), cfg.get("device", "cpu"))
+        except Exception as e:                      # no 3D: the side and front views still work
+            log(f"AVISO: sin pose 3D ({str(e)[:100]})")
     idx = out / "videos.json"
     vids = json.loads(idx.read_text(encoding="utf-8")) if idx.exists() else []
     if args.file and not vids:
@@ -271,7 +310,8 @@ def main():
         d = out / v["id"]
         d.mkdir(exist_ok=True)
         res = d / "golpes.json"
-        if res.exists() and v.get("analysed_s", 0) >= min(args.max_seconds, v.get("duration_s", 1e9)) - 1:
+        if (res.exists() and v.get("analysed_s", 0) >= min(args.max_seconds, v.get("duration_s", 1e9)) - 1
+                and v.get("version") == VERSION):
             done += 1
             continue
         log(f"  {v['title'][:70]} ({v['channel']})")
@@ -284,9 +324,10 @@ def main():
         if before is not None and v.get("seconds_kept") != before:     # a longer segment: the shots change
             for f in d.glob("plano_*"):
                 f.unlink(missing_ok=True)
-        strokes = analyse(v, d, seg, clips, pl.hand, pl.height_m)
+        strokes = analyse(v, d, seg, clips, pl.hand, pl.height_m, wb3d)
         res.write_text(json.dumps(strokes, ensure_ascii=False, indent=1), encoding="utf-8")
         v["analysed_s"] = v["seconds_kept"]
+        v["version"] = VERSION
         v["strokes"] = len(strokes)
         v["lateral_forehands"] = sum(1 for s in strokes if s["view"] == "lateral" and s["stroke"] == "forehand" and not s.get("discarded"))
         v["discarded"] = sum(1 for s in strokes if s.get("discarded"))

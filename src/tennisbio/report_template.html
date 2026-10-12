@@ -1716,6 +1716,7 @@ if (STROKES.length) loadStroke([...STROKES].sort((a, b) => (b.repr * .7 + b.qual
 const PR = DATA.practice || null;
 let prView = "lateral";
 const VIEW_ES = { lateral: "de lado", frontal: "de frente", trasera: "por detrás", diagonal: "en diagonal" };
+const VIEWTXT = v => v === "frontal" ? "de frente" : v === "3d" ? "estimación 3D (de lado, en diagonal o de frente)" : "de lado";
 function renderPractice() {
   const warn = document.getElementById("pr-warn"), sum = document.getElementById("pr-sum"), src = document.getElementById("pr-src"), lib = document.getElementById("pr-lib");
   warn.innerHTML = `<b style="color:var(--warn)">Fuente aparte: vídeos de entrenamiento de YouTube.</b> <span class="dim">No son partidos ni se mezclan con el resto del informe. Cada vídeo tiene su cámara; entrenar no es competir; se supone que la jugadora es la persona más grande de la imagen (la cámara la sigue). Solo se resumen las medidas con ${(PR && PR.min_n) || 12} golpes o más.</span>`;
@@ -1727,8 +1728,8 @@ function renderPractice() {
   sum.innerHTML = Object.entries(PR.summary || {}).map(([k, e]) => {
     const has = isN(e.median), u = e.unit === "°" ? "°" : e.unit === "índice" ? "" : " " + e.unit, dec = e.unit === "índice" ? 2 : 0;
     const val = has ? `<b style="font:600 18px var(--mono)">${fmt(e.median, dec)}${u}</b> <span class="dim">(la mitad de sus golpes entre ${fmt(e.q1, dec)} y ${fmt(e.q3, dec)}${u})</span>`
-                    : `<span class="dim">${e.n ? `pocos golpes ${e.view === "frontal" ? "de frente" : "de lado"} con esta medida (${e.n} de ${PR.min_n} necesarios): se ve en cada vídeo, sin resumen` : "sin golpes de lado con esta medida todavía"}</span>`;
-    return `<div style="display:grid;gap:2px;border-bottom:1px solid var(--line);padding-bottom:8px"><div>${e.label} <span class="dim3" style="font-size:11px">· ${e.view === "frontal" ? "de frente" : "de lado"}</span></div><div>${val}</div><div class="dim3" style="font-size:12px">${e.what} · ${e.n} golpes</div></div>`;
+                    : `<span class="dim">${e.n ? `pocos golpes ${VIEWTXT(e.view)} con esta medida (${e.n} de ${PR.min_n} necesarios): se ve en cada vídeo, sin resumen` : "sin golpes con esta medida todavía"}</span>`;
+    return `<div style="display:grid;gap:2px;border-bottom:1px solid var(--line);padding-bottom:8px"><div>${e.label} <span class="dim3" style="font-size:11px">· ${VIEWTXT(e.view)}</span></div><div>${val}</div><div class="dim3" style="font-size:12px">${e.what} · ${e.n} golpes</div></div>`;
   }).join("");
   const vc = PR.views || {};
   src.innerHTML = `<p style="margin:0 0 8px">${PR.videos.length} vídeos · ${PR.strokes.length} golpes encontrados · <b>${side.length} derechas de lado</b> y ${PR.strokes.filter(s => s.view === "frontal" && s.stroke === "forehand").length} de frente (las únicas que se miden)${PR.strokes.some(s => s.discarded) ? `; ${PR.strokes.filter(s => s.discarded).length} descartadas por valores imposibles` : ""}.</p>`

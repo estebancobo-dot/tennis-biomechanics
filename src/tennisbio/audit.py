@@ -459,7 +459,7 @@ def _combination_items(model: dict, vals: list[dict], min_n: int, factors: dict)
 
 
 def _practice_items(pr: dict | None, report_dir: Path | None) -> list[dict]:
-    from .practice import FRONT_METRICS, MIN_N, SIDE_METRICS
+    from .practice import D3_METRICS, D3_VIEWS, FRONT_METRICS, MIN_N, SIDE_METRICS
 
     area = "Vista lateral (entrenamiento)"
     if not pr or not pr.get("videos"):
@@ -474,12 +474,14 @@ def _practice_items(pr: dict | None, report_dir: Path | None) -> list[dict]:
              _item(6, area, "Derechas filmadas de lado", "ok" if len(side) >= MIN_N else "pocos datos",
                    f"{len(side)} (se resume cada medida con {MIN_N} o más)")]
     front = [s for s in st if s.get("view") == "frontal" and s.get("stroke") == "forehand" and not s.get("discarded")]
-    for k, (lab, _, _) in {**SIDE_METRICS, **FRONT_METRICS}.items():
+    in3d = [s for s in st if s.get("view") in D3_VIEWS and s.get("stroke") == "forehand" and not s.get("discarded")]
+    for k, (lab, _, _) in {**SIDE_METRICS, **FRONT_METRICS, **D3_METRICS}.items():
         e = (pr.get("summary") or {}).get(k) or {}
         n = e.get("n", 0)
-        own = front if k in FRONT_METRICS else side
+        own = front if k in FRONT_METRICS else in3d if k in D3_METRICS else side
         status = "ok" if e.get("median") is not None else "pocos datos" if n or len(own) < MIN_N else "falta"
-        items.append(_item(1, area, lab, status, f"{n} derechas {'de frente' if k in FRONT_METRICS else 'de lado'} con esta medida"
+        where = "de frente" if k in FRONT_METRICS else "con estimación 3D" if k in D3_METRICS else "de lado"
+        items.append(_item(1, area, lab, status, f"{n} derechas {where} con esta medida"
                            + (f"; mediana {e['median']}" if e.get("median") is not None else "")))
     if report_dir and pr.get("base"):
         miss = [s["id"] for s in st if not s.get("clip") or not (report_dir / pr["base"] / s["clip"]).exists()]
@@ -643,6 +645,51 @@ def side_checks(out_root: Path) -> list[dict]:
         n = sum(1 for x in v if x.get("subtitles"))
         items.append(_item(6, "Aprendizaje", "Vídeos de análisis de entrenadores (solo para aprender)", "ok" if n else "aviso",
                            f"{len(v)} vídeos, {n} con texto (docs/aprendido_entrenadores.md); nunca en el informe"))
+    return items
+
+
+def file_tree_items(match_dirs: list[Path], report_dir: Path | None, out_root: Path) -> list[dict]:
+    """Every file a run must leave, checked to exist and not be empty: each stage's outputs per match,
+    a video window and a frame-by-frame series per stroke, the report with its series and thumbnails,
+    the export (PDF and clips) and the practice section (one clip per stroke)."""
+    from . import stages  # noqa: F401  (registers the stages)
+    from .pipeline import STAGES
+
+    items = []
+    ok = lambda f: f.exists() and f.stat().st_size > 0
+    for d in match_dirs:
+        miss = [f"{n}/{o}" for n, st in STAGES.items() for o in st.outputs if not ok(d / o)]
+        st_file = d / "strokes.json"
+        strokes = json.loads(st_file.read_text(encoding="utf-8")) if ok(st_file) else []
+        win = [x for x in strokes if x.get("window") and not ok(d / "windows" / x["window"])]
+        ser = [x for x in strokes if x.get("series") and not ok(d / x["series"])]
+        bad = miss + [f"ventana de {x.get('stroke_id', '?')}" for x in win[:3]] + [f"serie de {x.get('stroke_id', '?')}" for x in ser[:3]]
+        items.append(_item(5, "Ficheros", f"Partido {d.name}: salida de cada etapa, ventanas y series",
+                           "falta" if bad else "ok",
+                           f"{sum(len(st.outputs) for st in STAGES.values())} ficheros de etapa, {len(strokes)} golpes con ventana y serie"
+                           + (f"; faltan o están vacíos: {', '.join(bad[:8])}" if bad else "")))
+    if report_dir is not None:
+        data = report_data(report_dir / "index.html") or {}
+        rs = data.get("strokes", [])
+        js = [r for r in rs if r.get("series") and not ok(report_dir / r["series"])]
+        th = [r for r in rs if r.get("thumb") and not ok(report_dir / r["thumb"])]
+        items.append(_item(5, "Ficheros", "Informe: index.html, series y miniaturas", "falta" if not rs or js or th else "ok",
+                           f"{len(rs)} golpes; series que faltan {len(js)}, miniaturas que faltan {len(th)}"))
+        exp = next((p for p in (report_dir.parent / "exportar", report_dir.parent / "exportar_derecha") if p.exists()), None)
+        if exp is not None:
+            clips = list((exp / "golpes").glob("*.mp4")) if (exp / "golpes").exists() else []
+            empty = [c.name for c in clips if not ok(c)]
+            items.append(_item(5, "Ficheros", "Exportación: resumen PDF y un vídeo por golpe",
+                               "falta" if empty or not ok(exp / "resumen.pdf") else "ok",
+                               f"{len(clips)} vídeos" + (f"; vacíos: {', '.join(empty[:4])}" if empty else "")
+                               + ("" if ok(exp / "resumen.pdf") else "; falta resumen.pdf")))
+    pr = next((b / "entrenamiento" for b in (out_root, out_root.parent) if (b / "entrenamiento" / "entrenamiento.json").exists()), None)
+    if pr is not None:
+        st = json.loads((pr / "entrenamiento.json").read_text(encoding="utf-8")).get("strokes", [])
+        miss = [x["id"] for x in st if not x.get("clip") or not ok(pr / "clips" / x["clip"])]
+        items.append(_item(5, "Ficheros", "Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe",
+                           "falta" if miss else "ok", f"{len(st) - len(miss)} de {len(st)} vídeos"
+                           + (f"; faltan: {', '.join(miss[:4])}" if miss else "")))
     return items
 
 

@@ -106,6 +106,11 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
   por el cambio de anchura de hombros entre espera y armado; golpes con valores imposibles descartados.
 - ✔ Auditoría (12-10): combinaciones medida × situación, cada petición del chat (sección 11), validación
   F3Set, tablas a la vista y examen interno con las afirmaciones de entrenadores.
+- ✔ Prueba rápida del 13-10 00:21: vista lateral bajada y analizada sola (2 vídeos, 31 golpes), pero solo 1
+  derecha medible de lado (los vídeos están más en diagonal) y las derechas de frente salían como revés.
+  Arreglado: análisis reflejado cuando se le ve la cara (`practice.faces_camera`) y estimación 3D en su propio
+  marco del cuerpo (RTMW3D, `practice.metrics_3d`) para lado, diagonal y frente, marcada como estimación.
+  Auditoría: además, el árbol de ficheros de cada ejecución (`audit.file_tree_items`).
 - Pendiente de la auditoría (pedido el 12-10): comprobar cada combinación medida × situación, convertir
   las 63 peticiones del chat (`docs/peticiones_usuario.md`) y las 25 afirmaciones de entrenadores en
   comprobaciones automáticas, y validar la exactitud de más medidas con clips anotados.

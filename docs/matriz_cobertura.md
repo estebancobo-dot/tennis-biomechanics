@@ -180,7 +180,7 @@ de TV detrás del fondo (necesita laboratorio, sensores o varias cámaras) y el 
 | Adaptación a bola rápida, corta, alta, abierta | Matriz del usuario | ✔ | situaciones de «Su derecha» (`ball_speed`, `depth`, `ball_height`, `width`) |
 | Dirección: cruzado, paralelo, dentro-fuera, dentro-dentro | Matriz del usuario | ✔ | clase `shot_type` |
 | Zona de impacto: altura y separación lateral | Matriz del usuario | ✔ | `wrist_dom_vs_hip`, `wrist_dom_lateral` |
-| Zona de impacto: delante de la cadera | Matriz del usuario | ◐ | no desde la tele (eje hacia la cámara); vista lateral de entrenamiento: `practice.side_metrics` (`contact_in_front_pct`) |
+| Zona de impacto: delante de la cadera | Matriz del usuario | ◐ | no desde la tele (eje hacia la cámara); vista lateral de entrenamiento: `practice.side_metrics` (`contact_in_front_pct`); en diagonal, estimación 3D (`contact_in_front_3d_pct`) |
 | Relajación y tensión de la empuñadura | Matriz del usuario | ✘ | no se ve en vídeo |
 | Equilibrio al terminar | Matriz del usuario | ✔ | `finish.head_over_base`, `finish.trunk_tilt` |
 | Propiedades de la raqueta: swingweight, rigidez, encordado, tensión | Matriz del usuario | ✘ | no se ven en vídeo |

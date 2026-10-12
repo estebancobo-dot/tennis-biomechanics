@@ -141,3 +141,40 @@ def test_front_head_towards_contact():
     assert practice.front_metrics(kp, cf, SK, i)["head_to_contact_idx"] == -0.75
     cf[i, SK["left_ear"]] = 0.1
     assert practice.front_metrics(kp, cf, SK, i) == {}
+
+
+def test_faces_camera_by_the_face():
+    kp, cf = body(face_conf=0.9)
+    assert practice.faces_camera(cf, SK)
+    kp, cf = body(face_conf=0.1)                     # from behind: no face
+    assert not practice.faces_camera(cf, SK)
+    cf[:] = 0.0                                      # nobody seen: never decided
+    assert not practice.faces_camera(cf, SK)
+
+
+def _k3(wrist_xyz, ppm=100.0):
+    """133 RTMW3D keypoints of a standing player 1.84 m tall (crop px, y down; z in metres)."""
+    k = np.zeros((133, 3))
+    J = practice._J
+    pts = {"nose": (0, -0.85, 0), "left_shoulder": (-0.2, -0.65, 0), "right_shoulder": (0.2, -0.65, 0),
+           "right_elbow": (0.35, -0.4, 0.2), "left_hip": (-0.15, 0, 0), "right_hip": (0.15, 0, 0),
+           "right_knee": (0.15, 0.45, 0), "left_knee": (-0.15, 0.45, 0),
+           "left_ankle": (-0.15, 0.861, 0), "right_ankle": (0.15, 0.861, 0)}     # nose → ankle = 0.93 × 1.84 m
+    pts["right_wrist"] = wrist_xyz
+    for n, (x, y, z) in pts.items():
+        k[J[n]] = (x * ppm, y * ppm, z)
+    return k, np.full(133, 0.9)
+
+
+def test_metrics_3d_in_her_body_frame():
+    # the hand travels forward along the depth axis (towards the camera's far side) and up, then
+    # meets the ball 0.37 m (20 % of 1.84 m) in front of the hips: a diagonal or frontal camera
+    pre, imp = _k3((0.4, -0.2, -0.1)), _k3((0.4, -0.3, 0.37))
+    m = practice.metrics_3d({"pre": pre, "impact": imp, "loaded": imp}, "right", 1.84)
+    assert abs(m["contact_in_front_3d_pct"] - 20) < 1
+    assert 10 < m["swing_angle_3d_deg"] < 20                 # 0.1 m up over 0.47 m forward
+    assert abs(m["trunk_lean_impact_3d_deg"]) < 1
+    assert "elbow_impact_3d_deg" in m and "back_knee_loaded_3d_deg" in m
+    assert practice.metrics_3d({"pre": imp, "impact": imp}, "right", 1.84) == {}       # hand not moving
+    low = _k3((0.4, -0.3, 0.37)); low[1][practice._J["right_wrist"]] = 0.1
+    assert practice.metrics_3d({"pre": pre, "impact": low}, "right", 1.84) == {}       # wrist not seen

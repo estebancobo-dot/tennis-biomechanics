@@ -42,13 +42,24 @@ FRONT_METRICS = {
     "head_to_contact_idx": ("Cabeza girada hacia el impacto", "índice",
                             "+1 = la cara mira hacia el lado del impacto, 0 = al frente, −1 = al lado contrario"),
 }
+# the same measurements from the 3D pose (RTMW3D), in her own body frame: usable from a diagonal camera
+# too (not from behind, where the depth is exactly the forward axis); estimates, marked as such
+D3_METRICS = {
+    "contact_in_front_3d_pct": ("Impacto delante de la cadera (3D)", "% altura", "estimación 3D: mano por delante del centro de la cadera"),
+    "swing_angle_3d_deg": ("Ángulo del swing (3D)", "°", "estimación 3D: subida de la mano en los ~70 ms previos al impacto"),
+    "elbow_impact_3d_deg": ("Codo en el impacto (3D)", "°", "estimación 3D; 180° = brazo recto"),
+    "back_knee_loaded_3d_deg": ("Rodilla de atrás en el armado (3D)", "°", "estimación 3D; 180° = pierna recta"),
+    "trunk_lean_impact_3d_deg": ("Tronco en el impacto (3D)", "°", "estimación 3D; + hacia delante"),
+}
+D3_VIEWS = ("lateral", "diagonal", "frontal")
 MIN_N = 12
 # a value outside these is a measurement error (wrong contact frame, arm hidden behind the body): the
 # whole stroke is left out, since its contact frame cannot be trusted either
 LIMITS = {"contact_in_front_pct": (-40, 80), "swing_angle_deg": (-30, 80), "elbow_impact_deg": (60, 180),
           "back_knee_loaded_deg": (70, 180), "front_knee_impact_deg": (70, 180), "trunk_lean_impact_deg": (-35, 45),
           "racket_drop_below_contact_cm": (-40, 90), "lag_accel_deg": (40, 180), "lag_pre_impact_deg": (40, 180),
-          "head_to_contact_idx": (-1.5, 1.5)}
+          "head_to_contact_idx": (-1.5, 1.5), "contact_in_front_3d_pct": (-40, 80), "swing_angle_3d_deg": (-30, 80),
+          "elbow_impact_3d_deg": (60, 180), "back_knee_loaded_3d_deg": (70, 180), "trunk_lean_impact_3d_deg": (-35, 45)}
 
 
 def implausible(metrics: dict) -> list[str]:
@@ -94,6 +105,14 @@ def camera_view(img: np.ndarray, conf: np.ndarray, sk: Skeleton, ready: int | No
         face = np.nanmean(conf[a:b][:, [sk["nose"], sk["left_eye"], sk["right_eye"]]])
         return "frontal" if face > 0.5 else "trasera"
     return "diagonal"
+
+
+def faces_camera(conf: np.ndarray, sk: Skeleton, min_share: float = 0.6) -> bool:
+    """Most of the time her face is seen (nose and both eyes detected): the camera is in front of her
+    (or in front and to one side), so the image is a mirror of the view from behind."""
+    face = conf[:, [sk["nose"], sk["left_eye"], sk["right_eye"]]].min(axis=1)
+    seen = conf[:, [sk["left_shoulder"], sk["right_shoulder"]]].min(axis=1) > 0.3
+    return bool(seen.sum() >= 10 and np.mean(face[seen] > 0.6) >= min_share)
 
 
 def forward_sign(img: np.ndarray, sk: Skeleton, impact: int) -> int:
@@ -176,12 +195,69 @@ def front_metrics(img: np.ndarray, conf: np.ndarray, sk: Skeleton, impact: int) 
     return {"head_to_contact_idx": round(float(np.clip((img[i, n, 0] - mid) / half * side, -1.5, 1.5)), 2)}
 
 
+# COCO body indices inside RTMW3D's 133 keypoints
+_J = {"nose": 0, "left_shoulder": 5, "right_shoulder": 6, "left_elbow": 7, "right_elbow": 8, "left_wrist": 9, "right_wrist": 10,
+      "left_hip": 11, "right_hip": 12, "left_knee": 13, "right_knee": 14, "left_ankle": 15, "right_ankle": 16}
+
+
+def to_metres(kp3d: np.ndarray, height_m: float) -> np.ndarray:
+    """RTMW3D keypoints (x, y in crop px, z depth) → metres with y up: the image axes are scaled by her
+    height (nose to the lowest ankle ≈ 0.93 of it), as in racket3d.hand_prior."""
+    k = np.asarray(kp3d, float)
+    ppm = (max(k[15, 1], k[16, 1]) - k[0, 1]) / (0.93 * height_m)
+    if not np.isfinite(ppm) or ppm <= 0:
+        return np.full_like(k, np.nan)
+    return np.stack([k[:, 0] / ppm, -k[:, 1] / ppm, k[:, 2]], axis=1)
+
+
+def metrics_3d(frames: dict, hand: str, height_m: float, min_score: float = 0.4) -> dict:
+    """Measures in her body frame from 3D keypoints. frames: name -> (kp3d (133, 3), scores (133,))
+    for "loaded", "pre" (~70 ms before contact) and "impact". Forward = horizontal direction of the
+    hand in the last ~70 ms; up = vertical."""
+    d, n = ("right", "left") if hand == "right" else ("left", "right")
+    P = {k: (to_metres(v[0], height_m), np.asarray(v[1], float)) for k, v in frames.items() if v is not None}
+    if "impact" not in P or "pre" not in P:
+        return {}
+    (ki, si), (kp, sp) = P["impact"], P["pre"]
+    j = lambda name: _J[name]
+    w = j(f"{d}_wrist")
+    if min(si[w], sp[w]) < min_score:
+        return {}
+    move = ki[w] - kp[w]
+    hor = np.array([move[0], 0.0, move[2]])
+    if np.linalg.norm(hor) < 0.05:                      # the hand barely moved: no direction to measure from
+        return {}
+    fwd = hor / np.linalg.norm(hor)
+    out = {}
+    hip = (ki[j("left_hip")] + ki[j("right_hip")]) / 2
+    if min(si[j("left_hip")], si[j("right_hip")]) >= min_score:
+        out["contact_in_front_3d_pct"] = round(float((ki[w] - hip) @ fwd / height_m * 100), 1)
+        sh = (ki[j("left_shoulder")] + ki[j("right_shoulder")]) / 2
+        v = sh - hip
+        out["trunk_lean_impact_3d_deg"] = round(float(np.degrees(np.arctan2(v @ fwd, v[1]))), 1)
+    out["swing_angle_3d_deg"] = round(float(np.degrees(np.arctan2(move[1], np.linalg.norm(hor)))), 1)
+
+    def ang(k, s, a, b, c):
+        if min(s[j(a)], s[j(b)], s[j(c)]) < min_score:
+            return None
+        u, v = k[j(a)] - k[j(b)], k[j(c)] - k[j(b)]
+        cosv = u @ v / (np.linalg.norm(u) * np.linalg.norm(v) + 1e-9)
+        return round(float(np.degrees(np.arccos(np.clip(cosv, -1, 1)))), 1)
+
+    out["elbow_impact_3d_deg"] = ang(ki, si, f"{d}_shoulder", f"{d}_elbow", f"{d}_wrist")
+    if "loaded" in P:
+        kl, sl = P["loaded"]
+        out["back_knee_loaded_3d_deg"] = ang(kl, sl, f"{d}_hip", f"{d}_knee", f"{d}_ankle")
+    return {k: v for k, v in out.items() if v is not None and np.isfinite(v)}
+
+
 def summarize(strokes: list[dict]) -> dict:
     """Median and spread of each measurement over the forehands filmed from its view (side or front);
     a measurement with fewer than MIN_N strokes only gives its count (nothing is concluded from it)."""
     out = {}
-    for view, table in (("lateral", SIDE_METRICS), ("frontal", FRONT_METRICS)):
-        own = [s for s in strokes if s.get("view") == view and s.get("stroke") == "forehand" and not s.get("discarded")]
+    for view, table in (("lateral", SIDE_METRICS), ("frontal", FRONT_METRICS), ("3d", D3_METRICS)):
+        own = [s for s in strokes if (s.get("view") in D3_VIEWS if view == "3d" else s.get("view") == view)
+               and s.get("stroke") == "forehand" and not s.get("discarded")]
         for k, (lab, unit, what) in table.items():
             v = np.array([s["metrics"][k] for s in own if s.get("metrics", {}).get(k) is not None], float)
             e = {"label": lab, "unit": unit, "what": what, "n": int(len(v)), "view": view}
