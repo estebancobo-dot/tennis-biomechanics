@@ -118,6 +118,32 @@ estadística con el tamaño real de los 4 partidos.
 Con datos al azar (sin efectos reales) el modelo no encuentra ninguna diferencia "real" entre
 situaciones: 0 falsos positivos.
 
+## Casos límite de los vídeos de entrada (12 variantes del clip del US Open)
+Cada variante pasa por las etapas baratas (sonido, planos, jugadores, pista, identidad, candidatos)
+y se corta la ventana que usaría la pasada fina; la ventana se compara fotograma a fotograma con la
+del vídeo original (desfase y diferencia media de píxel, 0-255).
+
+| Vídeo | Qué hace el programa | Golpes candidatos | Ventana |
+|---|---|---|---|
+| Original 1080p 60 fps | — | 3 (2,11 · 5,38 · 7,83 s) | 1920×1080, 60 fps |
+| Sin sonido | aviso; golpes solo con la imagen | 3 (instantes del pico de muñeca) | idéntica |
+| Sonido más corto que el vídeo | usa lo que hay | 3 | idéntica |
+| Dos pistas (comentario + ambiente) | analiza las dos; elige por coincidencia con los golpes (con pocos golpes, la principal) | 4 | desfase 1 fotograma, dif. 0,3 |
+| .ts con un salto de reloj de 1000 s | copia limpia sin recodificar (duración 12,4 s, no 1006 s) | 3 | idéntica |
+| 4K | ventanas a 1920 px; pista escalada | 3 | dif. 0,9 |
+| Entrelazado (1080i 25) | un fotograma por campo | 3 | 50 fps, dif. 1,0 |
+| fps variables | ventanas a fps constante | 3 | 43,6 fps, desfase 0 |
+| 720p 25 fps | — | 3 | dif. 2,3 (menos resolución) |
+| Fichero cortado (MP4 con índice delante) | analiza la parte que hay | 2 | idéntica |
+| Fichero cortado (.ts) | copia limpia de la parte que hay | 3 | idéntica |
+| Ruta con acentos, espacios y apóstrofo | — | 3 | idéntica |
+| MP4 cortado sin índice, vacío, texto, solo audio | mensaje claro ("dañado o incompleto", "no tiene pista de vídeo") | — | — |
+
+Con dos pistas de sonido y solo 12 s no hay golpes suficientes para decidir con seguridad (un pico de
+muñeca falso coincide por azar con el comentario); con menos de 20 golpes se usa la pista principal,
+que también lleva los impactos. En un partido, con cientos de golpes, la elección es clara (prueba
+automática con 80 golpes).
+
 ## Impactos — F3Set-Tennis (TV, contacto exacto por fotograma)
 `uv run python scripts/validate_f3set.py --root <datasets> --player Rybakina --clips 30`
 Se ejecuta solo en el PC del usuario (paso 4 de `2_prueba_rapida.bat`): YouTube bloquea las

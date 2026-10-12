@@ -114,7 +114,7 @@ def st_audio(ctx: Context, chunk_s=300.0, overlap_s=1.0):
 def choose_audio_track(tracks: list[dict], peaks: np.ndarray, tol_s: float, span_s: float) -> int:
     """The audio track whose transients coincide with the near player's swings, beyond what its
     rate of transients would give by chance (commentary also has onsets, at random times)."""
-    best, best_score = 0, -np.inf
+    best, best_score, scores = 0, -np.inf, []
     for k, tr in enumerate(tracks):
         on = np.asarray(tr["t"])
         if not len(peaks) or not len(on):
@@ -128,8 +128,13 @@ def choose_audio_track(tracks: list[dict], peaks: np.ndarray, tol_s: float, span
             recall_0 = 1 - np.exp(-rate * 2 * tol_s)
             precision_0 = min(1.0, len(peaks) * 2 * tol_s / max(span_s, 1.0))
             score = (recall - recall_0) + (precision - precision_0)
+        scores.append(score)
         if score > best_score:
             best, best_score = k, score
+    # with few swings (a short clip) chance decides: keep the first track (the broadcast's main mix,
+    # which carries the impacts too) unless another one is clearly better
+    if len(peaks) < 20 and best != 0 and best_score - scores[0] < 0.3:
+        return 0
     return best
 
 
