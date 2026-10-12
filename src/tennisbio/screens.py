@@ -34,6 +34,7 @@ _JS_SCREEN = """(tab) => {
     // human sense: an opening sentence, no links to outside sources, no visible chart with many lines
     // the per-stroke views and filters asked for (they work from the first stroke)
     ball_moments: sec.querySelectorAll('#bm button').length,
+    feet_cycle: sec.querySelectorAll('#feet-txt li').length,
     heights_layer: !!sec.querySelector('#layers button[data-v="heights"]'),
     lib_filters: sec.querySelectorAll('#lib-chips button').length,
     news: !!sec.querySelector('#news'),

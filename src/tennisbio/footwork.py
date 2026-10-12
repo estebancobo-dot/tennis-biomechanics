@@ -115,6 +115,41 @@ def steps(feet: np.ndarray, plant: np.ndarray, a: int, b: int, fps: float) -> li
     return sorted(out, key=lambda s: s.land)
 
 
+KIND_PLURAL = {"lateral": ("paso lateral", "pasos laterales"), "cruzado": ("paso cruzado", "pasos cruzados"),
+               "carrera": ("paso de carrera", "pasos de carrera"), "hacia delante": ("paso hacia delante", "pasos hacia delante"),
+               "hacia atrás": ("paso hacia atrás", "pasos hacia atrás"), "ajuste": ("paso de ajuste", "pasos de ajuste")}
+
+
+def step_kinds(st: list[Step], impact: int, fps: float) -> list[str]:
+    """Each step as a coach names it (Kovacs 2009; Tennis Australia): crossover, small adjustment
+    step in the last 0.8 s before contact, running step (long and quick, alternating feet), side step
+    (shuffle, the feet do not cross), forwards or backwards."""
+    kinds = []
+    for i, x in enumerate(st):
+        dur = (x.land - x.start) / fps
+        nb = [y for y in (st[i - 1] if i else None, st[i + 1] if i + 1 < len(st) else None) if y is not None and y.foot != x.foot]
+        run = x.length_m >= 0.6 and dur <= 0.35 and any(y.length_m >= 0.6 for y in nb)
+        if x.crossover:
+            k = "cruzado"
+        elif impact - 0.8 * fps <= x.land <= impact and x.length_m < 0.35:
+            k = "ajuste"
+        elif run:
+            k = "carrera"
+        elif abs(x.dx) >= abs(x.dy):
+            k = "lateral"
+        else:
+            k = "hacia delante" if x.dy > 0 else "hacia atrás"
+        kinds.append(k)
+    return kinds
+
+
+def kinds_text(kinds: list[str]) -> str:
+    """'2 pasos laterales, 1 paso cruzado y 2 pasos de ajuste', in the order they first appear."""
+    order = list(dict.fromkeys(kinds))
+    parts = [f"{kinds.count(k)} {KIND_PLURAL[k][kinds.count(k) > 1]}" for k in order]
+    return parts[0] if len(parts) == 1 else ", ".join(parts[:-1]) + " y " + parts[-1] if parts else ""
+
+
 def hip_court(img: np.ndarray, sk: Skeleton, H: np.ndarray, feet: np.ndarray) -> np.ndarray:
     """Her position on the court per frame: the midpoint of both feet (ground truth for the
     homography), NaN when either foot is unseen."""
@@ -294,6 +329,33 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
     back = "dom" if stroke != "backhand" else "non"
     through = [x for x in st if x.foot == back and impact <= x.start <= impact + s(0.5) and x.dy > 0.2]
     out["rear_leg_step_after"] = bool(through)
+    # every step named, on the way to the ball and on the way back (the movement cycle: split step →
+    # first step → steps to the ball → adjustment and braking → stance → contact → recovery)
+    kinds = step_kinds(st, impact, fps)
+    t0 = split if split is not None else opp if opp is not None else a
+    appr = [(x, k) for x, k in zip(st, kinds) if x.start >= t0 and x.land <= impact]
+    out["approach_steps"] = [{**x.to_dict(fps, impact), "kind": k} for x, k in appr]
+    out["approach_pattern"] = kinds_text([k for _, k in appr]) or "ningún paso: golpea desde donde está"
+    if appr:
+        last = appr[-1][0]
+        v0 = spd[last.start] if 0 <= last.start < T else np.nan
+        # braking: a long last step while she was moving, the speed falling a lot by contact
+        out["braking_step"] = bool(last.length_m >= 0.7 and np.isfinite(v0) and v0 > 1.5
+                                   and (v_imp is None or v_imp < 0.6 * v0))
+    rec = [(x, k) for x, k in zip(st, kinds) if x.start >= impact + s(0.1)]
+    out["recovery_steps"] = [{**x.to_dict(fps, impact), "kind": k} for x, k in rec]
+    if rec:
+        out["recovery_pattern"] = kinds_text([k for _, k in rec])
+        out["recovery_first_step"] = rec[0][1]
+        out["recovery_start_s"] = round((rec[0][0].start - impact) / fps, 3)
+    # kick-back (scissor kick): the back foot leaves the ground right after contact while the front
+    # one stays down, for at least 0.08 s
+    bj = 0 if back == "dom" else 1
+    w = air[impact:min(T, impact + s(0.3))]
+    if len(w):
+        lifted = w[:, bj] & ~w[:, 1 - bj]
+        runs_k = np.convolve(lifted.astype(int), np.ones(need, int), "valid") if len(lifted) >= need else np.zeros(0)
+        out["kick_back"] = bool((runs_k >= need).any())
     # recovered when the opponent hits again: distance from the centre of her baseline area
     if next_opp is not None and 0 <= next_opp < T and np.isfinite(pos[next_opp]).all():
         out["off_centre_at_opp_hit_m"] = round(float(abs(pos[next_opp, 0])), 2)
@@ -312,7 +374,9 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
     out["feet_still_share"] = round(still, 2)
     if still < STEPS_MIN_STILL:
         for k in [k for k in out if k.startswith(("steps", "first_step", "last_plant", "last_step", "split_",
-                                                    "adjustment", "rear_leg", "feet_at_impact", "weight_loaded"))]:
+                                                    "adjustment", "rear_leg", "feet_at_impact", "weight_loaded",
+                                                    "approach_steps", "approach_pattern", "braking", "recovery_steps",
+                                                    "recovery_pattern", "recovery_first", "recovery_start", "kick_back"))]:
             del out[k]
         out["steps_reliable"] = False
     else:

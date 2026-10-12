@@ -156,11 +156,33 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
         "ballT": None if far else {k: -v["t_to_contact"] for k, v in ((s.get("technique") or {}).get("phases") or {}).items()
                                    if k.startswith("ball_") and isinstance(v, dict) and v.get("t_to_contact") is not None},
         "ballMoments": None if far else ball_moments(s),
+        "feet": None if far else feet_record(s),
         "shotType": None if far else ((s.get("technique") or {}).get("classes") or {}).get("shot_type"),
         "ballPhase": None if far else ((s.get("technique") or {}).get("classes") or {}).get("ball_phase"),
         "face": {k: (v or {}).get("points_to") for k, v in face.items()},
         "video": None, "vImpact": s.get("window_impact_s"), "series": None,
     }
+
+
+FEET_KEYS = ("steps_reliable", "split_takeoff_vs_opp_s", "split_landing_vs_opp_s", "speed_pre_split_mps", "speed_post_split_mps",
+             "first_step_s", "first_step_type", "first_step_right_way", "first_step_length_m", "approach_steps", "approach_pattern",
+             "path_m", "peak_speed_mps", "direction_changes", "move_direction", "approach_speed_mps", "adjustment_steps",
+             "last_step_length_m", "braking_step", "airborne_at_impact", "one_foot_at_impact", "feet_at_impact", "sliding_at_impact",
+             "weight_loaded_to_non", "rear_leg_step_after", "kick_back", "recovery_steps", "recovery_pattern", "recovery_first_step",
+             "recovery_start_s", "recovery_to_centre_m", "recovery_dx_m", "recovery_dy_m", "off_centre_at_opp_hit_m",
+             "moving_at_opp_hit_mps", "feet_still_share", "movement")
+
+
+def feet_record(s: dict) -> dict:
+    """Her footwork in this stroke, for the stroke screen: from the split step to the recovery."""
+    fw = (s.get("technique") or {}).get("footwork") or {}
+    out = {k: fw.get(k) for k in FEET_KEYS if fw.get(k) is not None}
+    rd = (s.get("phases") or {}).get("ready") or {}
+    out["split"] = rd.get("method") == "split_step_landing"
+    cls = (s.get("technique") or {}).get("classes") or {}
+    out["around_ball"] = bool(cls.get("around_ball"))
+    out["stance_role"] = cls.get("stance_role")
+    return out
 
 
 PHASE_DOING = {"ready": "en la espera", "takeback": "empezando a preparar", "loaded": "con el armado completo",

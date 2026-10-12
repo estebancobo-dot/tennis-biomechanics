@@ -41,7 +41,8 @@ FACTORS = {
 }
 CLASS_KEYS = ["stance_loaded", "stance_impact", "stance_role", "finish", "finish_3x90", "arm", "takeback", "takeback_face",
               "ready_hands", "movement", "move_direction", "play", "shot_type", "swing", "ball_phase",
-              "intent", "ball_speed", "ball_height", "depth", "width", "court_side"]
+              "intent", "ball_speed", "ball_height", "depth", "width", "court_side", "approach_main", "recovery_first_step",
+              "around_ball"]
 FOOTWORK_KEYS = ["steps_to_impact", "adjustment_steps", "first_step_s", "first_step_length_m", "last_step_length_m",
                  "last_plant_before_impact_s", "approach_speed_mps", "path_m", "peak_speed_mps", "direction_changes",
                  "split_takeoff_vs_opp_s", "split_landing_vs_opp_s", "speed_pre_split_mps", "speed_post_split_mps",
@@ -237,6 +238,8 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
     out["footwork"]["last_plant_foot"] = _counts([(s["technique"].get("footwork") or {}).get("last_plant_foot") for s in near])
     out["footwork"]["move_direction"] = _counts([(s["technique"].get("classes") or {}).get("move_direction") for s in near])
     out["footwork"]["rear_leg_step_after"] = _counts([(s["technique"].get("footwork") or {}).get("rear_leg_step_after") for s in near])
+    for k in ("braking_step", "kick_back"):
+        out["footwork"][k] = _counts([(s["technique"].get("footwork") or {}).get(k) for s in near])
     out["footwork"]["first_step_right_way"] = _counts([(s["technique"].get("footwork") or {}).get("first_step_right_way") for s in near])
     out["skeleton"] = _mean_skeleton(near)
     out["strings"] = _strings(near)

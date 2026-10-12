@@ -153,6 +153,14 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .news ul { margin: 8px 0 2px; padding-left: 18px; display: grid; gap: 5px; color: var(--ink-2); }
 .news li b { color: var(--ink); }
 .bmwrap { padding: 0 12px 12px; }
+.feetwrap { padding: 0 12px 14px; }
+.feet { display: grid; grid-template-columns: 240px 1fr; gap: 14px; align-items: start; }
+@media (max-width: 700px) { .feet { grid-template-columns: 1fr; } }
+.feet canvas { width: 100%; background: #10281e; border-radius: 6px; }
+.feet ol { margin: 0; padding-left: 20px; display: grid; gap: 6px; font-size: 13px; line-height: 1.45; }
+.feet li { cursor: pointer; }
+.feet li b { color: var(--ink); }
+.feet li .nm { color: var(--ink-3); }
 .libchips { display: grid; grid-template-columns: max-content 1fr; gap: 6px 12px; padding: 4px 16px 12px; align-items: center; }
 .libchips .fl { color: var(--ink-3); font-size: 11.5px; text-transform: uppercase; letter-spacing: .06em; }
 .libchips .chips { display: flex; flex-wrap: wrap; gap: 5px; }
@@ -324,6 +332,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 <details class="news" id="news" open><summary><b>Novedades de esta versión</b> · dónde mirarlas</summary><ul>
   <li><b>«Su derecha»:</b> cada fase dice sus claves en frases, <i>por qué importan</i> (con su fuente) y <i>qué mirar</i>; incluye cuerdas, apoyos, pies y cadena cinética. Necesita al menos 12 golpes.</li>
   <li><b>«Análisis de golpe» → «La bola y ella»:</b> qué hace la jugadora cuando golpea la rival, cuando la bola cruza la red, cuando bota, cuando llega arriba y cuando golpea. Se ve en cada golpe, sin mínimo.</li>
+  <li><b>«Análisis de golpe» → «Sus pies en este golpe»:</b> el ciclo completo de pies en 8 pasos (split step, primer paso, cada paso hasta la bola con su tipo —lateral, cruzado, de carrera, de ajuste—, frenado, apoyo, impacto, tras golpear y recuperación) y la pista vista desde arriba con su recorrido y cada pisada. Lo que no se ve en un golpe lo dice («no medible en este golpe»).</li>
   <li><b>«Análisis de golpe» → capa «Alturas»:</b> barras horizontales de la cabeza y la cadera sobre el vídeo: discontinua = su altura en la espera, continua = ahora, y cuántos cm ha bajado o subido.</li>
   <li><b>«Videoteca»:</b> filtros combinables (apoyo, dirección, bola, contacto, resultado): por ejemplo «cerrado» + «paralela», o «cerca de la red».</li>
   <li><b>Fases:</b> la preparación empieza cuando giran los hombros y la terminación se busca después del impacto (antes salían demasiado tarde y demasiado pronto).</li>
@@ -413,6 +422,9 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
       </div>
       <div class="timeline" id="timeline"></div>
       <div class="kf" id="kf"></div>
+      <div class="feetwrap" id="feetwrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">Sus pies en este golpe</b> · todo el ciclo: split step, primer paso, pasos hasta la bola, ajuste y frenado, apoyo, impacto y recuperación (pulsa una línea para ir a ese momento)</div>
+        <div class="feet"><canvas id="feet-cv" width="360" height="460"></canvas><ol id="feet-txt"></ol></div>
+        <div class="legend" id="feet-leg" style="margin-top:6px"></div></div>
       <div class="bmwrap" id="bmwrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">La bola y ella</b> · qué está haciendo cuando golpea la rival, cuando la bola cruza la red, cuando bota, cuando llega a lo más alto y cuando ella golpea (pulsa para ir a ese momento)</div><div class="bm" id="bm"></div></div>
       <div style="padding:0 12px 12px"><div class="note" style="margin-bottom:6px">Estroboscópica: esqueletos de las fases sobre el fotograma del impacto (de azul a amarillo) y trayectoria de la muñeca</div><canvas id="strobe" width="1280" height="720" style="width:100%;border-radius:6px;background:#000"></canvas></div>
     </div>
@@ -979,6 +991,74 @@ async function renderKF() {
   await renderStrobe(id); if (cur.id !== id) return;
   await seek(tNow); renderStage();
 }
+const KIND_COL = { "lateral": "#7cc4ff", "cruzado": "#ff9f43", "carrera": "#ff5fd2", "hacia delante": "#9be37b", "hacia atrás": "#c39bff", "ajuste": "#e3e8ec" };
+function renderFeetPanel() {
+  const s = cur, F = s.feet, wrap = document.getElementById("feetwrap");
+  wrap.hidden = !F; if (!F) return;
+  const nm = F.steps_reliable === false ? `<span class="nm">no medible en este golpe: sus tobillos se ven quietos solo en el ${fmt((F.feet_still_share || 0) * 100)} % de los fotogramas (hacen falta 40 %)</span>` : null;
+  const tt = t => isN(t) ? ` <span class="nm">(${t >= 0 ? "+" : "−"}${fmt(Math.abs(t), 2)} s)</span>` : "";
+  const L = [];
+  const add = (title, txt, t) => L.push(`<li data-t="${isN(t) ? t : ""}"><b>${title}:</b> ${txt}${tt(t)}</li>`);
+  const opp = isN(s.tAvail) ? -s.tAvail : null;
+  // 1 split step
+  if (F.split && isN(F.split_landing_vs_opp_s)) add("Split step", `cae ${fmt(Math.abs(F.split_landing_vs_opp_s), 2)} s ${F.split_landing_vs_opp_s >= 0 ? "después" : "antes"} del golpe de la rival${isN(F.split_takeoff_vs_opp_s) ? ` (despega ${fmt(Math.abs(F.split_takeoff_vs_opp_s), 2)} s ${F.split_takeoff_vs_opp_s >= 0 ? "después" : "antes"})` : ""}${isN(F.speed_pre_split_mps) && isN(F.speed_post_split_mps) ? `; velocidad ${fmt(F.speed_pre_split_mps, 1)} → ${fmt(F.speed_post_split_mps, 1)} m/s` : ""}`, isN(opp) ? opp + F.split_landing_vs_opp_s : null);
+  else if (F.split && PH[0] && isN(PH[0].t) && isN(opp)) { const d = PH[0].t - opp; add("Split step", Math.abs(d) <= 0.08 ? "cae justo cuando golpea la rival" : `cae ${fmt(Math.abs(d), 2)} s ${d >= 0 ? "después" : "antes"} del golpe de la rival`, PH[0].t); }
+  else add("Split step", F.split ? "hace un salto antes de salir" : nm || "no se ve un split step", PH[0] && PH[0].t);
+  // 2 first step
+  if (F.first_step_type) add("Primer paso", `${F.first_step_type}${isN(F.first_step_s) ? `, ${fmt(F.first_step_s, 2)} s después del split` : ""}${isN(F.first_step_length_m) ? `, de ${fmt(F.first_step_length_m, 2)} m` : ""}${F.first_step_right_way === true ? "; va hacia la bola" : F.first_step_right_way === false ? "; sale hacia el lado contrario" : ""}`, null);
+  else add("Primer paso", nm || "no hay un primer paso claro (está ya cerca de la bola)", null);
+  // 3 to the ball
+  const dir = F.move_direction ? `${F.move_direction}` : "";
+  const nApp = (F.approach_steps || []).length, partial = F.approach_pattern && isN(F.path_m) && F.path_m > 1.2 * Math.max(1, nApp) ? ` <span class="nm">(solo se distinguen ${nApp} paso${nApp === 1 ? "" : "s"} de un recorrido de ${fmt(F.path_m, 1)} m)</span>` : "";
+  add("Hacia la bola", `${F.approach_pattern ? F.approach_pattern + partial : nm || "pasos no medibles"}${isN(F.path_m) ? `; recorre ${fmt(F.path_m, 1)} m${dir ? " (" + dir + ")" : ""}` : ""}${isN(F.peak_speed_mps) ? `, hasta ${fmt(F.peak_speed_mps, 1)} m/s` : ""}${F.direction_changes ? `, ${F.direction_changes} cambio${F.direction_changes > 1 ? "s" : ""} de dirección` : ""}${F.around_ball ? "; <b>rodea la bola</b> para pegar la derecha desde su lado de revés" : ""}`, null);
+  // 4 adjustment and braking
+  add("Ajuste y frenado", F.steps_reliable === false ? nm : `${F.adjustment_steps ? `${F.adjustment_steps} paso${F.adjustment_steps > 1 ? "s" : ""} de ajuste en los últimos 0,8 s` : "sin pasos de ajuste"}${F.braking_step ? `; frena con un último paso largo (${fmt(F.last_step_length_m, 2)} m)` : isN(F.last_step_length_m) ? `; último paso de ${fmt(F.last_step_length_m, 2)} m` : ""}${isN(F.approach_speed_mps) ? `; llega a ${fmt(F.approach_speed_mps, 1)} m/s antes del swing (${F.movement || ""})` : ""}`, null);
+  // 5 stance
+  add("Apoyo", `${s.stance || "—"}${F.stance_role ? ` (${F.stance_role})` : ""}${isN(s.m.baseM) ? `, base de ${fmt(s.m.baseM, 2)} m` : ""}${isN(F.weight_loaded_to_non) ? `; al armar carga el peso sobre ${F.weight_loaded_to_non < 0.4 ? "la pierna del lado de la derecha (exterior)" : F.weight_loaded_to_non > 0.6 ? "la otra pierna" : "las dos piernas"}` : ""}`, PH[2] && PH[2].t);
+  // 6 contact
+  add("En el impacto", F.airborne_at_impact ? "golpea en el aire (salto)" : F.sliding_at_impact ? "golpea deslizando" : F.feet_at_impact ? F.feet_at_impact : nm || "—", 0);
+  // 7 after contact
+  add("Tras golpear", F.steps_reliable === false ? nm : [F.rear_leg_step_after ? "la pierna de atrás pasa adelante" : "la pierna de atrás no pasa adelante", F.kick_back ? "patada atrás (tijera) con la pierna de atrás" : null].filter(Boolean).join("; "), 0.15);
+  // 8 recovery
+  add("Recuperación", `${F.recovery_pattern ? F.recovery_pattern + (isN(F.recovery_start_s) ? `, empezando ${fmt(F.recovery_start_s, 2)} s después del impacto` : "") : F.steps_reliable === false ? nm : "sin pasos de vuelta dentro del vídeo"}${isN(F.recovery_to_centre_m) ? `; en 1 s se acerca ${fmt(F.recovery_to_centre_m, 1)} m al centro` : ""}`, isN(F.recovery_start_s) ? F.recovery_start_s : null);
+  const ol = document.getElementById("feet-txt"); ol.innerHTML = L.join("");
+  ol.querySelectorAll("li").forEach(li => li.addEventListener("click", () => { if (li.dataset.t !== "") { stopPlay(); setT(snap(clamp(+li.dataset.t, T0, T1))); } }));
+  drawFeetCourt(F);
+}
+function drawFeetCourt(F) {
+  const cv = document.getElementById("feet-cv"), ctx = cv.getContext("2d"), W = cv.width, Hh = cv.height;
+  ctx.fillStyle = "#10281e"; ctx.fillRect(0, 0, W, Hh);
+  const sr = ser; if (!sr || !sr.H) { ctx.fillStyle = "#aab4be"; ctx.font = "14px Archivo, sans-serif"; ctx.fillText("Sin pista detectada en este golpe", 14, 26); return; }
+  const Hi = sr._Hi || (sr._Hi = inv3(sr.H)); if (!Hi) return;
+  const pt0 = g => { const q = kpAt(g); const a = q && mid(q[15], q[16]); return a ? toCourt(Hi, a) : null; };
+  // zoomed on where she moves (at least 5 × 6.5 m), the court lines drawn in the same scale
+  const pts = []; for (let g = 0; g < NF; g++) { const c = pt0(g); if (c && Math.abs(c[0]) < 8 && c[1] > -5 && c[1] < 13) pts.push(c); }
+  let cx0 = 0, cy0 = 3, span = 13;
+  if (pts.length > 3) { const xs = pts.map(p => p[0]), ys = pts.map(p => p[1]); const x0 = Math.min(...xs), x1 = Math.max(...xs), y0 = Math.min(...ys), y1 = Math.max(...ys);
+    cx0 = (x0 + x1) / 2; cy0 = (y0 + y1) / 2; span = Math.max(5, (x1 - x0) + 2, ((y1 - y0) + 2) * W / Hh); }
+  const k = W / span, X = x => W / 2 + (x - cx0) * k, Y = y => Hh / 2 - (y - cy0) * k;
+  ctx.strokeStyle = "rgba(238,243,246,.8)"; ctx.lineWidth = 1.2; ctx.beginPath();
+  [[-5.485, 0, 5.485, 0], [-5.485, 0, -5.485, 11.885], [5.485, 0, 5.485, 11.885], [-4.115, 0, -4.115, 11.885], [4.115, 0, 4.115, 11.885], [-4.115, 5.485, 4.115, 5.485], [0, 5.485, 0, 11.885], [0, 0, 0, .3]].forEach(([a, b, c, d]) => { ctx.moveTo(X(a), Y(b)); ctx.lineTo(X(c), Y(d)); });
+  ctx.stroke(); ctx.lineWidth = 3; ctx.beginPath(); ctx.moveTo(X(-6.4), Y(11.885)); ctx.lineTo(X(6.4), Y(11.885)); ctx.stroke();
+  const pt = (g, j) => { const q = kpAt(g); const a = q && (j === undefined ? mid(q[15], q[16]) : q[j]); return a ? toCourt(Hi, a) : null; };
+  const ok = c => c && Math.abs(c[0]) < 8 && c[1] > -5 && c[1] < 13;
+  const fOf = t => Math.round((t - T0) * FPS), imp = fOf(0), opp = isN(cur.tAvail) ? fOf(-cur.tAvail) : 0;
+  // path of her body: grey before the opponent's hit, yellow to the ball, cyan back
+  const seg = (a, b, col) => { ctx.strokeStyle = col; ctx.lineWidth = 2.5; ctx.beginPath(); let st = false; for (let g = Math.max(0, a); g <= Math.min(NF - 1, b); g++) { const c = pt(g); if (!ok(c)) { st = false; continue; } st ? ctx.lineTo(X(c[0]), Y(c[1])) : ctx.moveTo(X(c[0]), Y(c[1])); st = true; } ctx.stroke(); };
+  seg(0, opp, "rgba(170,180,190,.7)"); seg(opp, imp, "#d4f03a"); seg(imp, NF - 1, "#5fd3e6");
+  // each step where it landed, numbered, coloured by its kind
+  const dj = PL.hand === "left" ? 15 : 16, nj = PL.hand === "left" ? 16 : 15;
+  const steps = [...(F.approach_steps || []), ...(F.recovery_steps || [])];
+  steps.forEach((st, i) => { const g = fOf(st.t_land); if (g < 0 || g >= NF) return; const c = pt(g, st.foot === "dom" ? dj : nj); if (!ok(c)) return;
+    ctx.fillStyle = KIND_COL[st.kind] || "#fff"; ctx.beginPath(); ctx.ellipse(X(c[0]), Y(c[1]), 5, 8, 0, 0, 7); ctx.fill();
+    ctx.fillStyle = "#0c0f13"; ctx.font = "700 9px JetBrains Mono, monospace"; ctx.textAlign = "center"; ctx.fillText(String(i + 1), X(c[0]), Y(c[1]) + 3); ctx.textAlign = "left"; });
+  const c0 = pt(imp); if (ok(c0)) { ctx.strokeStyle = "#ff5fd2"; ctx.lineWidth = 2; ctx.beginPath(); ctx.arc(X(c0[0]), Y(c0[1]), 9, 0, 7); ctx.stroke(); }
+  ctx.fillStyle = "#aab4be"; ctx.font = "11px Archivo, sans-serif"; if (Y(11.885) > 12) ctx.fillText("RED", X(-0.6), Y(11.885) - 5);
+  // scale bar: 1 m
+  ctx.strokeStyle = "#e3e8ec"; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(10, Hh - 12); ctx.lineTo(10 + k, Hh - 12); ctx.stroke(); ctx.fillStyle = "#e3e8ec"; ctx.fillText("1 m", 14 + k, Hh - 8);
+  const used = [...new Set(steps.map(s => s.kind))];
+  document.getElementById("feet-leg").innerHTML = `<span><i style="background:#d4f03a"></i>hacia la bola</span><span><i style="background:#5fd3e6"></i>recuperación</span><span><i class="dot" style="background:transparent;border:2px solid #ff5fd2"></i>impacto</span>` + used.map(k => `<span><i class="dot" style="background:${KIND_COL[k]}"></i>${k === "ajuste" ? "paso de ajuste" : "paso " + k}</span>`).join("");
+}
 async function renderBallMoments(id) {
   const box = document.getElementById("bm"), ms = cur.ballMoments || [];
   document.getElementById("bmwrap").hidden = !ms.length;
@@ -1109,7 +1189,7 @@ async function loadStroke(s, fromList = false) {
   tNow = 0;
   if (s.video && video.getAttribute("src") !== s.video) { video.src = s.video; await new Promise(r => { video.addEventListener("loadeddata", r, { once: true }); video.addEventListener("error", r, { once: true }); }); }
   const vw = video.videoWidth || 16, vh = video.videoHeight || 9; cv.height = Math.round(cv.width * (view === "full" ? vh / vw : 9 / 16));
-  renderCtx(); renderMetricsPanel(); renderRacket(); renderHeights();
+  renderCtx(); renderMetricsPanel(); renderRacket(); renderHeights(); renderFeetPanel();
   const cols = ["var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)"];
   // peaks: the ones the pipeline used to judge the order (between the backswing and contact)
   const PK = { Pelvis: "pelvis", Tronco: "trunk", Brazo: "upper_arm", Antebrazo: "forearm" }, cp = s.chainPeaks || {};
@@ -1500,6 +1580,10 @@ function renderFeet() {
   if (fs && fs.n >= MN) L.push(`<li>El primer paso va hacia donde golpeará en el ${Math.round(100 * (fs.counts.true || 0) / fs.n)} % de los golpes</li>`);
   const md_ = f.move_direction; if (md_ && md_.n >= MN) L.push(`<li>Dirección del desplazamiento: ${Object.entries(md_.counts).slice(0, 4).map(([k, n]) => `${k} ${Math.round(100 * n / md_.n)} %`).join(", ")}</li>`);
   const rl = f.rear_leg_step_after; if (rl && rl.n >= MN) L.push(`<li>La pierna de atrás pasa adelante tras el impacto en ${Math.round(100 * (rl.counts.true || 0) / rl.n)} % de los golpes</li>`);
+  const cls = (MODEL.classes || {}), pat = (k, t) => { const c = cls[k]; if (c && c.n >= MN) L.push(`<li>${t}: ${Object.entries(c.counts).slice(0, 4).map(([k2, n]) => `${k2} ${Math.round(100 * n / c.n)} %`).join(", ")}${why(k)}</li>`); };
+  pat("approach_main", "Pasos con los que va a la bola"); pat("recovery_first_step", "Primer paso de la recuperación");
+  [["braking_step", "Frena con un último paso largo"], ["kick_back", "Patada atrás (tijera) tras golpear"]].forEach(([k, t]) => { const c = f[k]; if (c && c.n >= MN) L.push(`<li>${t} en el ${Math.round(100 * (c.counts.true || 0) / c.n)} % de los golpes${why(k)}</li>`); });
+  const ab = cls.around_ball; if (ab && ab.n >= MN) L.push(`<li>Rodea la bola para pegar la derecha desde su lado de revés en ${ab.n} golpes${why("around_ball")}</li>`);
   const c = f.first_step_type; if (c && c.n >= MN) L.push(`<li>Tipo de primer paso: ${Object.entries(c.counts).slice(0, 4).map(([k, n]) => `${k} ${Math.round(100 * n / c.n)} %`).join(", ")}</li>`);
   document.getElementById("m-feet").innerHTML = L.join("") || `<li>Sin datos de pies todavía.</li>`;
 }

@@ -231,6 +231,11 @@ COACH = {
     "point_won": ("Cuántos puntos gana atacando o defendiendo con su derecha.", "TennisViz (Conversion / Steal)"),
     "class.play": ("Resto, inicio del punto o peloteo: cada momento del punto pide una derecha distinta.", "F3Set"),
     "approach": ("Las subidas a la red empiezan con una derecha de ataque desde dentro de la pista.", "SwingVision; F3Set"),
+    "approach_main": ("Pasos laterales para distancias cortas, cruzados y de carrera para las largas: así se cubre la pista con eficiencia.", "Kovacs 2009; Tennis Australia"),
+    "recovery_first_step": ("La recuperación suele empezar con un paso cruzado o con pasos laterales según lo lejos que quedó del centro.", "Kovacs 2009; Armstrong 2024"),
+    "braking_step": ("En carrera, frenar con un último paso largo permite golpear en equilibrio.", "Giles y Reid 2021"),
+    "kick_back": ("La patada atrás (tijera) compensa el giro del tronco cuando golpea en el aire o en carrera.", "Tennis Australia"),
+    "around_ball": ("Rodear la bola para pegar de derecha desde el lado del revés (derecha invertida) es una decisión táctica de ataque.", "TennisViz; Tennis Australia"),
 }
 # What a coach checks at each moment (critical features: Knudson 2006; Tennis Australia)
 PHASE_FOCUS = {
@@ -478,5 +483,6 @@ def model_view(model: dict, stroke: str) -> dict:
     return {"summary": summary(model, stroke), "cards": phase_cards(model, stroke), "variants": variants,
             "typical_strokes": model.get("typical_strokes", []), "n": model["n_strokes"], "n_near": model["n_near"],
             "footwork": model["footwork"], "not_measurable": nm, "min_n": MIN_N,
-            "coach": {k: v[0] for k, v in COACH.items() if k.startswith("footwork.") or k in ("first_step_right_way", "rear_leg_step_after")}, "curves": model.get("curves"),
+            "coach": {k: v[0] for k, v in COACH.items() if k.startswith("footwork.") or k in (
+                "first_step_right_way", "rear_leg_step_after", "approach_main", "recovery_first_step", "braking_step", "kick_back", "around_ball")}, "curves": model.get("curves"),
             "factors": {fk: FACTORS[fk][0] for fk in model["variants"]}}

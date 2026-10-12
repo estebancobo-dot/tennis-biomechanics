@@ -77,6 +77,12 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | En carrera, en salto, a un pie, deslizando | Giles & Reid 2021; Starbuck | ✔ | clase `movement`; deslizar solo en tierra/hierba |
 | Última zancada más larga en carrera | Giles & Reid 2021 | ✔ | `last_step_length_m` (por situación en el modelo) |
 | Recuperación: distancia, dirección, tiempo | Armstrong 2024; Yandell | ✔ | `recovery_*` a 1 s, `off_centre_at_opp_hit_m`, `moving_at_opp_hit_mps` |
+| Cada paso nombrado: lateral (sin cruzar), cruzado, de carrera, hacia delante, hacia atrás, de ajuste | Kovacs 2009; Tennis Australia | ◐ | `footwork.step_kinds`, `approach_steps`, `approach_pattern`, clase `approach_main` (solo cuando los tobillos se ven quietos ≥ 40 %; si no, «no medible en este golpe») |
+| Rodear la bola para la derecha invertida | TennisViz; Tennis Australia | ✔ | clase `around_ball` (derecha desde su lado de revés) |
+| Frenado: último paso largo con caída de la velocidad | Giles y Reid 2021 | ◐ | `braking_step` |
+| Patada atrás (tijera) tras el impacto | Tennis Australia | ◐ | `kick_back` (pie de atrás en el aire ≥ 0,08 s con el otro apoyado) |
+| Recuperación: tipo de cada paso de vuelta, cuándo empieza | Kovacs 2009; Armstrong 2024 | ◐ | `recovery_steps`, `recovery_pattern`, `recovery_first_step`, `recovery_start_s` (dentro de los 0,8 s de vídeo tras el impacto) |
+| Nuevo split step antes del siguiente golpe de la rival | Uzu 2009 | ✘ | la ventana de vídeo acaba 0,8 s después del impacto |
 | Orientación del pie, apoyo de talón/punta | — | ✘ | COCO-17 sin puntas ni talones |
 | Altura del split step | — | ✘ | eje vertical confundido con la profundidad |
 

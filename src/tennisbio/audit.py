@@ -438,6 +438,7 @@ def _screens(shots_dir: Path) -> list[dict]:
         items.append(_item(2, "Pantallas", "Errores de la página", "falta", "; ".join(meta["errors"][:5])))
     by = {sc.get("tab"): sc for sc in meta.get("screens", [])}
     checks = [("golpe", "ball_moments", "«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella", 2),
+              ("golpe", "feet_cycle", "«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)", 8),
               ("golpe", "heights_layer", "Barras de altura de la cabeza y la cadera sobre el vídeo", 1),
               ("videoteca", "lib_filters", "Filtros combinables de la videoteca (apoyo, dirección, bola, contacto…)", 10),
               ("modelo", "news", "Novedades de la versión en la pantalla de entrada", 1)]

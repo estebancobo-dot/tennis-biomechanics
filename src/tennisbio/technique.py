@@ -540,6 +540,14 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
             c["approach"] = True
         if fw.get("move_direction"):
             c["move_direction"] = fw["move_direction"]
+        # the main kind of step on the way to the ball (adjustment steps aside) and the first step back
+        ks = [x["kind"] for x in fw.get("approach_steps") or [] if x["kind"] != "ajuste"]
+        if ks:
+            c["approach_main"] = max(dict.fromkeys(ks), key=ks.count)
+        elif fw.get("approach_pattern"):
+            c["approach_main"] = "sin pasos"
+        if fw.get("recovery_first_step"):
+            c["recovery_first_step"] = fw["recovery_first_step"]
     if context:
         c.update(situation(out, context.get("court_pos"), context.get("displacement"), context.get("t_avail"),
                            context.get("contact_h"), sk.dom_sign))
@@ -548,6 +556,9 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
                 if context["shot_direction"] == "paralela" else "invertida al centro"
         elif context.get("shot_direction"):
             c["shot_type"] = context["shot_direction"]
+        # going around the ball: a forehand hit from her backhand side (inside-out / inside-in)
+        if stroke == "forehand" and c.get("court_side") == "lado de su revés":
+            c["around_ball"] = True
         if context.get("return") is not None:
             c["play"] = "resto" if context["return"] else "inicio del punto"      # refined later with its shot number
         # role of the stance (Martin et al. 2021): open attacking / open defensive / neutral attacking

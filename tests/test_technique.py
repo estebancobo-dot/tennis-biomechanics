@@ -196,3 +196,18 @@ def test_curves_follow_the_hip_dip_and_see_the_head_from_behind():
     tc = _typical_curves(rows)
     assert tc["hip"]["p50"][k] == c["hip"][k] and tc["events"] == {"loaded": -0.4, "ball_bounce": -0.5}
     assert "hip" not in _typical_curves(rows[:11])                # fewer than 12 strokes: no typical curve
+
+
+def test_every_step_is_named_like_a_coach():
+    from tennisbio.footwork import Step, kinds_text, step_kinds
+
+    fps, impact = 50.0, 100
+    st = [Step("non", 40, 50, 0.5, 0.5, 0.05, False),        # side step (shuffle)
+          Step("dom", 52, 62, 0.9, 0.8, 0.3, True),          # crossover
+          Step("non", 60, 70, 0.9, 0.3, 0.85, False),        # long and quick, alternating: running
+          Step("dom", 68, 78, 0.8, 0.2, 0.75, False),
+          Step("non", 85, 92, 0.2, 0.1, 0.15, False),        # small, just before contact: adjustment
+          Step("dom", 120, 130, 0.6, -0.1, -0.55, False)]    # after contact, backwards (recovery)
+    k = step_kinds(st, impact, fps)
+    assert k == ["lateral", "cruzado", "carrera", "carrera", "ajuste", "hacia atrás"]
+    assert kinds_text(k[:5]) == "1 paso lateral, 1 paso cruzado, 2 pasos de carrera y 1 paso de ajuste"
