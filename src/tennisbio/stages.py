@@ -199,7 +199,7 @@ def near_is_target(identity: dict, frame: int):
     return None
 
 
-@stage("candidates", "4", deps=("players", "audio", "identity"), outputs=("candidates.json",))
+@stage("candidates", "5", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json",))
 def st_candidates(ctx: Context, tol_s=0.35):
     """Near-player stroke candidates: swing peaks of the near player at cheap fps, confirmed by
     an audio transient when one is close. Each candidate records who the near player is
@@ -210,8 +210,28 @@ def st_candidates(ctx: Context, tol_s=0.35):
     sk = Skeleton("coco17", ctx.match.player.hand)
     onsets = np.array(_read(ctx.path("audio_onsets.json"))["t"])
     identity = _read(ctx.path("identity.json"))
-    cands, skipped = [], 0
+    # doubles are out of scope: two people inside the near half in most main-camera frames
+    from .court_metrics import people_in_near_half
+    court = _read(ctx.path("court.json"))
+    counts = []
+    for i in range(0, len(frames), 10):
+        H, _ = court_at(court, frames[i] / fps)
+        if H is not None:
+            counts.append(people_in_near_half(d["boxes"][i], H))
+    if counts and np.mean(np.array(counts) >= 2) >= 0.5:
+        _write(ctx.path("candidates.json"), [])
+        ctx.log("  AVISO: parece un partido de dobles (dos jugadores en la mitad cercana); no se analiza")
+        return {"candidates": 0, "doubles": True}
+    cands, skipped, replays = [], 0, 0
+    score = _read(ctx.path("score.json")) if ctx.path("score.json").exists() else {}
+    no_board = [(x["start"], x["end"]) for x in score.get("shots", [])
+                if x["tried"] >= 2 and x["read"] == 0 and x["end"] - x["start"] < 30]
+    board_works = sum(x["read"] for x in score.get("shots", [])) >= 10
     for run, img, cf, h, _ in near_runs(d, sk):
+        t_mid = frames[run[len(run) // 2]] / fps
+        if board_works and any(a <= t_mid < b for a, b in no_board):
+            replays += 1                  # probably a replay: its strokes were already counted live
+            continue
         who = near_is_target(identity, int(frames[run[0]]))
         skipped += who is False
         v = speed(to_body_frame(img, sk, h)[:, sk["dom_wrist"]], fps)
@@ -237,7 +257,8 @@ def st_candidates(ctx: Context, tol_s=0.35):
     _write(ctx.path("candidates.json"), cands)
     return {"candidates": len(cands), "far": sum(c["side"] == "far" for c in cands),
             "with_audio": sum(c["audio"] for c in cands),
-            "opponent_runs": skipped, "identity_unknown": sum(c["identity"] is None for c in cands)}
+            "opponent_runs": skipped, "identity_unknown": sum(c["identity"] is None for c in cands),
+            "replay_runs_skipped": replays}
 
 
 def grab_frame(video: Path, t: float) -> np.ndarray | None:
@@ -293,7 +314,7 @@ def _surname(name: str) -> str:
     return name.strip().split()[-1] if name and name.strip() else ""
 
 
-@stage("score", "2", deps=("scenes",), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
+@stage("score", "3", deps=("scenes",), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
        outputs=("score.json",), match_fields=lambda m: {"player": m.player.name, "opponent": m.opponent})
 def st_score(ctx: Context):
     """TV scoreboard every few seconds of main camera (sets, games, points, pressure)."""
@@ -314,18 +335,24 @@ def st_score(ctx: Context):
     if not all(names):
         _write(ctx.path("score.json"), {"readings": [], "note": "no se encontró el nombre del rival en el marcador"})
         return {"readings": 0}
-    reader, out = ScoreReader(*names), []
+    reader, out, shots = ScoreReader(*names), [], []
     for s in sc["shots"]:
         if not s["main_camera"]:
             continue
         t = s["start"] / fps + 0.5
+        tried = read = 0
         while t < s["end"] / fps:
             fr = grab_frame(ctx.match.video, t)
             st = reader.read(fr) if fr is not None else None
+            tried += 1
             if st is not None:
+                read += 1
                 out.append({"t": round(t, 2), **st.to_dict()})
             t += every
-    _write(ctx.path("score.json"), {"readings": out, "names": names, "opponent": opponent})
+        # in live play the scoreboard is on screen; a main-camera-looking shot without it is
+        # usually a replay (used later to drop duplicated strokes)
+        shots.append({"start": s["start"] / fps, "end": s["end"] / fps, "tried": tried, "read": read})
+    _write(ctx.path("score.json"), {"readings": out, "names": names, "opponent": opponent, "shots": shots})
     if not out:
         ctx.log(f"  AVISO: no se pudo leer el marcador con «{names[0]}» y «{names[1]}»: sin marcador no se sabe "
                 f"quién está en cada lado; compruebe que el partido es de {ctx.match.player.name}")

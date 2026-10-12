@@ -134,3 +134,14 @@ def player_frame_H(H: np.ndarray, side: str) -> np.ndarray:
         return H
     M = np.array([[-1.0, 0, 0], [0, -1.0, LENGTH], [0, 0, 1.0]])
     return H @ M
+
+
+def people_in_near_half(boxes: np.ndarray, H: np.ndarray) -> int:
+    """People whose feet are inside the near half of the court (with a margin for the alleys).
+    Ball kids and line judges stand outside the lines; in doubles there are two players here."""
+    if boxes is None or not len(boxes):
+        return 0
+    b = np.asarray(boxes, float)
+    feet = to_court(H, np.c_[(b[:, 0] + b[:, 2]) / 2, b[:, 3]])
+    inside = (np.abs(feet[:, 0]) < 6.2) & (feet[:, 1] > -2.5) & (feet[:, 1] < NET - 0.5)
+    return int(inside.sum())
