@@ -3,7 +3,7 @@
  "strokes": 6,
  "near": 6,
  "summary": {
-  "ok": 79,
+  "ok": 83,
   "falta": 1,
   "pocos datos": 61,
   "aviso": 0
@@ -1347,7 +1347,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "4911 caracteres de texto, 1 vídeos, 20 gráficos",
+   "detail": "4602 caracteres de texto, 1 vídeos, 20 gráficos",
    "file": "pantalla_4_golpe.jpg"
   },
   {
@@ -1385,6 +1385,34 @@
   {
    "req": 2,
    "area": "Vídeo",
+   "name": "Reproducir: «Su derecha» → ▶ Ver sus golpes típicos",
+   "status": "ok",
+   "detail": "el vídeo arranca y avanza"
+  },
+  {
+   "req": 2,
+   "area": "Vídeo",
+   "name": "Reproducir: Videoteca → ▶ Reproducir todos",
+   "status": "ok",
+   "detail": "el vídeo arranca y avanza"
+  },
+  {
+   "req": 2,
+   "area": "Vídeo",
+   "name": "Reproducir: Análisis de golpe → ▶",
+   "status": "ok",
+   "detail": "el vídeo arranca y avanza"
+  },
+  {
+   "req": 2,
+   "area": "Vídeo",
+   "name": "Reproducir: Comparar golpes → ▶",
+   "status": "ok",
+   "detail": "el vídeo arranca y avanza"
+  },
+  {
+   "req": 2,
+   "area": "Vídeo",
    "name": "El vídeo del golpe se reproduce al pulsar ▶",
    "status": "ok",
    "detail": "avanza y sigue reproduciéndose"
@@ -1401,7 +1429,7 @@
    "area": "Vistas pedidas",
    "name": "«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)",
    "status": "ok",
-   "detail": "8 en la pantalla"
+   "detail": "9 en la pantalla"
   },
   {
    "req": 2,
@@ -1450,7 +1478,7 @@
    "area": "PDF",
    "name": "Resumen PDF",
    "status": "ok",
-   "detail": "5 páginas, 0.6 MB"
+   "detail": "4 páginas, 0.4 MB"
   }
  ]
 }

@@ -1,6 +1,6 @@
 # Auditoría de requisitos (forehand)
 
-6 golpes del lado cercano. ✔ 79 cumplidos · ✘ 1 no cumplidos · … 61 sin golpes suficientes en esta ejecución · ! 0 avisos
+6 golpes del lado cercano. ✔ 83 cumplidos · ✘ 1 no cumplidos · … 61 sin golpes suficientes en esta ejecución · ! 0 avisos
 
 ## 1. Toda la taxonomía del golpe y todas sus variantes (situaciones)
 
@@ -111,18 +111,22 @@
 - ✔ **Pantalla «Su derecha»**: 5116 caracteres de texto, 0 vídeos, 8 gráficos
 - ✔ **Pantalla «Panel»**: 1389 caracteres de texto, 0 vídeos, 0 gráficos; mensajes de vacío: ['Hacen falta al menos 3 golpes en dos tramos del partido para dibujar la evolución de x-factor (hay 6).']
 - ✔ **Pantalla «Videoteca»**: 2038 caracteres de texto, 0 vídeos, 0 gráficos
-- ✔ **Pantalla «Análisis de golpe»**: 4911 caracteres de texto, 1 vídeos, 20 gráficos
+- ✔ **Pantalla «Análisis de golpe»**: 4602 caracteres de texto, 1 vídeos, 20 gráficos
 - ✔ **Pantalla «Comparar golpes»**: 3226 caracteres de texto, 0 vídeos, 2 gráficos
 - ✔ **Pantalla «Explorador»**: 1730 caracteres de texto, 0 vídeos, 0 gráficos
 - ✔ **Pantalla «Comparativas»**: 2625 caracteres de texto, 0 vídeos, 10 gráficos; mensajes de vacío: ['Sin datos de estabilidad de la cabeza en estos grupos.']
 - ✔ **Pantalla «Pista»**: 481 caracteres de texto, 0 vídeos, 1 gráficos
+- ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
+- ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
+- ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
+- ✔ **Reproducir: Comparar golpes → ▶**: el vídeo arranca y avanza
 - ✔ **El vídeo del golpe se reproduce al pulsar ▶**: avanza y sigue reproduciéndose
 - ✔ **«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella**: 4 en la pantalla
-- ✔ **«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)**: 8 en la pantalla
+- ✔ **«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)**: 9 en la pantalla
 - ✔ **Barras de altura de la cabeza y la cadera sobre el vídeo**: 1 en la pantalla
 - ✔ **Filtros combinables de la videoteca (apoyo, dirección, bola, contacto…)**: 25 en la pantalla
 - ✔ **Novedades de la versión en la pantalla de entrada**: 1 en la pantalla
-- ✔ **Resumen PDF**: 5 páginas, 0.6 MB
+- ✔ **Resumen PDF**: 4 páginas, 0.4 MB
 
 ## 3. Nada inventado: valores posibles, respaldados por sus golpes; lo no medible se dice
 

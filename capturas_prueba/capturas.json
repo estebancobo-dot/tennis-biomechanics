@@ -68,7 +68,7 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 4911,
+   "text_chars": 4602,
    "charts": 20,
    "videos": 1,
    "black_canvases": 0,
@@ -76,7 +76,7 @@
    "empty_msgs": [],
    "dashes": 8,
    "ball_moments": 4,
-   "feet_cycle": 8,
+   "feet_cycle": 9,
    "heights_layer": true,
    "lib_filters": 0,
    "news": false,
@@ -177,5 +177,31 @@
  ],
  "errors": [],
  "h264": true,
- "browser": "chromium 155.0.8059.40"
+ "browser": "chromium 155.0.8059.40",
+ "plays": [
+  {
+   "name": "«Su derecha» → ▶ Ver sus golpes típicos",
+   "present": true,
+   "plays": true
+  },
+  {
+   "name": "Videoteca → ▶ Reproducir todos",
+   "present": true,
+   "plays": true
+  },
+  {
+   "name": "Análisis de golpe → ▶",
+   "present": true,
+   "plays": true
+  },
+  {
+   "name": "Comparar golpes → ▶",
+   "present": true,
+   "plays": true
+  },
+  {
+   "name": "Panel → ▶ vídeos de una conclusión",
+   "present": false
+  }
+ ]
 }
