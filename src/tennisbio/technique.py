@@ -205,7 +205,17 @@ def stroke_curves(img: np.ndarray, sk: Skeleton, scale: np.ndarray, impact: int,
     # the ground under her body: midway between her ankles (seen from behind, the lowest ankle is the
     # one further back and puts the ground too low when the feet are apart along the court), smoothed
     # over a short window; ankles are ~8 cm above the ground (Winter: 0.039 of the height)
-    ground = smooth(mean_y("left_ankle", "right_ankle"), fps, 0.06) + 0.039 * scale
+    raw = mean_y("left_ankle", "right_ankle")
+    # a misdetected ankle makes the ground jump for a few frames: compared with the median of the
+    # surrounding 0.3 s, a jump of more than 8 % of her height is dropped before smoothing
+    k = max(1, int(round(0.15 * fps)))
+    pad = np.r_[np.full(k, np.nan), raw, np.full(k, np.nan)]
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)
+        med = np.nanmedian(np.lib.stride_tricks.sliding_window_view(pad, 2 * k + 1), axis=1)
+    with np.errstate(invalid="ignore"):
+        raw = np.where(np.abs(raw - med) > 0.08 * scale, np.nan, raw)
+    ground = smooth(raw, fps, 0.06) + 0.039 * scale
     ok_g = np.isfinite(ground)
     # the head from behind: the nose is often hidden; ears and eyes are at about the same height
     head = img[:, sk["nose"], 1].copy()
@@ -223,9 +233,18 @@ def stroke_curves(img: np.ndarray, sk: Skeleton, scale: np.ndarray, impact: int,
     # (the camera from the court lines would remove the perspective of the feet, but its focal length
     # is uncertain and it put her head 15 % too low on the US Open clip; her own body in the image is
     # the more reliable ruler)
+    # frames where her body does not fit (a misdetected ankle moves the ground, and every curve with
+    # it): hips at 33-68 % of her height, head at 65-115 %; those frames are dropped, not drawn
+    with np.errstate(invalid="ignore"):
+        hip_h, head_h = (ground - series["hip"]) / scale * 100, (ground - series["head"]) / scale * 100
+        ok_g &= np.isfinite(hip_h) & (hip_h >= 33) & (hip_h <= 68) & ~((head_h < 65) | (head_h > 115))
+    lims = {"hand": (15, 135), "racket": (0, 150)}
     out = {}
     for name, y in series.items():
         h = np.where(ok_g & np.isfinite(y), (ground - y) / scale * 100, np.nan)
+        if name in lims:
+            with np.errstate(invalid="ignore"):
+                h[(h < lims[name][0]) | (h > lims[name][1])] = np.nan
         if name != "racket":                        # the racket is seen in few frames: not smoothed
             with np.errstate(invalid="ignore"):
                 h = smooth(h, fps, 0.06)

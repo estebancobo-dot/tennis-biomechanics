@@ -182,6 +182,12 @@ def test_curves_follow_the_hip_dip_and_see_the_head_from_behind():
     k = int(np.nanargmin(hip))
     assert abs(CURVE_T[k] + 0.3) <= 0.08 and 42 < hip[k] < 47 and abs(hip[0] - 52) < 1
     assert abs(c["head"][0] - 92) < 1                          # the ears stand in for the hidden nose
+    # a frame whose ankles were misdetected (her whole body "jumps" 30 %) is dropped, not drawn
+    bad = img.copy()
+    bad[impact + 10:impact + 16, [SK["left_ankle"], SK["right_ankle"]], 1] += 0.3 * px
+    cb = stroke_curves(bad, SK, np.full(T, px), impact, fps, None)
+    i = int(np.argmin(np.abs(CURVE_T - 13 / fps)))
+    assert cb["hip"][i] is None or abs(cb["hip"][i] - 52) < 3
     # outside the clip there is no value (nothing invented)
     c2 = stroke_curves(img[40:], SK, np.full(T - 40, px), impact - 40, fps, None)
     assert c2["hip"][0] is None
