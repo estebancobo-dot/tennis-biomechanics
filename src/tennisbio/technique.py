@@ -238,7 +238,7 @@ def stroke_curves(img: np.ndarray, sk: Skeleton, scale: np.ndarray, impact: int,
     with np.errstate(invalid="ignore"):
         hip_h, head_h = (ground - series["hip"]) / scale * 100, (ground - series["head"]) / scale * 100
         ok_g &= np.isfinite(hip_h) & (hip_h >= 33) & (hip_h <= 68) & ~((head_h < 65) | (head_h > 115))
-    lims = {"hand": (15, 135), "racket": (0, 150)}
+    lims = {"hand": (15, 135), "racket": (15, 150)}
     out = {}
     for name, y in series.items():
         h = np.where(ok_g & np.isfinite(y), (ground - y) / scale * 100, np.nan)
