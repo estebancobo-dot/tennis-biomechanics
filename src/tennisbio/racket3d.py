@@ -310,7 +310,7 @@ H_WRIST, H_INDEX_MCP, H_PINKY_MCP = 0, 5, 17
 
 
 def hand_prior(kp3d: np.ndarray, scores: np.ndarray, cam: Camera, hand="right", grip_close_deg=15.0,
-               min_score=0.4, px_per_m: float | None = None, hitting_face="palm") -> HandPrior | None:
+               min_score=0.4, px_per_m: float | None = None, hitting_face="palm", height_m: float = 1.8) -> HandPrior | None:
     """Palm normal and forearm direction from RTMW3D keypoints (x, y in crop px; z depth, away = +).
 
     The hitting face of a forehand is on the palm side of the dominant hand, that of a backhand on
@@ -320,8 +320,8 @@ def hand_prior(kp3d: np.ndarray, scores: np.ndarray, cam: Camera, hand="right", 
     r, u, f = cam.basis
     base = RIGHT_HAND if hand == "right" else LEFT_HAND
     elbow, wrist = (8, 10) if hand == "right" else (7, 9)
-    if px_per_m is None:   # nose → lowest ankle ≈ 0.93 of the height
-        px_per_m = (max(kp3d[15, 1], kp3d[16, 1]) - kp3d[0, 1]) / (0.93 * 1.8)
+    if px_per_m is None:   # nose → lowest ankle ≈ 0.93 of her height
+        px_per_m = (max(kp3d[15, 1], kp3d[16, 1]) - kp3d[0, 1]) / (0.93 * height_m)
     to_w = lambda p: (p[0] / px_per_m) * r - (p[1] / px_per_m) * u + p[2] * f
     hk = kp3d[base:base + 21]
     hs = scores[base:base + 21]

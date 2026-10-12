@@ -27,7 +27,7 @@ def face_track(frames: dict, boxes: list, img_kp: np.ndarray, rackets: list, sk,
         pr = None
         if wb3d is not None and boxes[f] is not None and f in frames:
             k3, sc, _ = wb3d(frames[f], boxes[f])
-            pr = hand_prior(k3, sc, cam, sk.hand, grip_close_deg, hitting_face=hitting_face)
+            pr = hand_prior(k3, sc, cam, sk.hand, grip_close_deg, hitting_face=hitting_face, height_m=height_m)
         priors.append(pr)
     i = impact - a
     # the outline is unreliable around contact (motion blur): ignore it within ~80 ms and let the

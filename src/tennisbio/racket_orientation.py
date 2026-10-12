@@ -30,7 +30,7 @@ class _Recorder:
         return res
 
 
-def trunk_rotation_3d(k3: np.ndarray, sc: np.ndarray, cam: Camera, hand="right", min_score=0.4):
+def trunk_rotation_3d(k3: np.ndarray, sc: np.ndarray, cam: Camera, hand="right", min_score=0.4, height_m: float = 1.8):
     """(shoulder turn, hip turn) in degrees about the vertical, from RTMW3D keypoints.
 
     0 = line square to the net; + = dominant shoulder/hip turned back (towards the camera), as in
@@ -38,7 +38,7 @@ def trunk_rotation_3d(k3: np.ndarray, sc: np.ndarray, cam: Camera, hand="right",
     if min(sc[[L_SH, R_SH, L_HIP, R_HIP]]) < min_score:
         return None
     r, u, f = cam.basis
-    px_per_m = (max(k3[15, 1], k3[16, 1]) - k3[0, 1]) / (0.93 * 1.8)
+    px_per_m = (max(k3[15, 1], k3[16, 1]) - k3[0, 1]) / (0.93 * height_m)        # her own height, not a 1.8 m person
     if px_per_m <= 0:
         return None
     to_w = lambda p: (p[0] / px_per_m) * r - (p[1] / px_per_m) * u + p[2] * f
@@ -114,7 +114,7 @@ def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | N
     if rec is not None:
         for f, res in rec.out.items():
             if f is not None and res is not None:
-                rt = trunk_rotation_3d(res[0], res[1], cam, sk.hand)
+                rt = trunk_rotation_3d(res[0], res[1], cam, sk.hand, height_m=height_m)
                 if rt is not None:
                     rot[f] = rt
     by_f = {t["frame"]: t for t in track}
