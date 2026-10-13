@@ -82,6 +82,7 @@ function Subir-Registros {
         if ($LASTEXITCODE -eq 0) { git -C $d checkout -q -B pc-logs FETCH_HEAD 2>$null }
         else { git -C $d checkout -q -B pc-logs 2>$null }
         Copy-Item "$Base\output\*.log" $d -Force -ErrorAction SilentlyContinue
+        Copy-Item "$Base\output\revision_automatica.md" $d -Force -ErrorAction SilentlyContinue
         New-Item -ItemType Directory -Force -Path "$d\partidos" | Out-Null
         # cada partido (y los de la prueba rapida, en output\_smoke): registro, etapas y errores;
         # de la prueba rapida tambien sus golpes (pocos), para revisar la calidad de lo medido
@@ -172,6 +173,7 @@ function Actualizar-Codigo {
         if ((Test-Path "$RepoDir\.git") -and (Tiene git)) {
             git -C $RepoDir pull --ff-only origin $Rama 2>&1 | ForEach-Object { "$_" } | Out-Host
             if ($LASTEXITCODE -ne 0) { Aviso "No se pudo actualizar el codigo; se usa la version que hay." }
+            Registrar-Ciclo
             if (Tiene uv) {
                 Push-Location $RepoDir
                 uv sync --extra yolo --extra ocr --extra dev --extra validation 2>&1 | ForEach-Object { "$_" } | Out-Host
@@ -179,6 +181,26 @@ function Actualizar-Codigo {
             }
         }
     } catch { Aviso "No se pudo actualizar el codigo: $_" }
+}
+
+# El ciclo automatico (ciclo_automatico.ps1) queda programado en Windows cada 10 minutos, en segundo
+# plano y solo con la sesion del usuario abierta: trae el codigo nuevo, ejecuta lo que haga falta,
+# revisa el resultado y sube los registros. Se registra solo al usar cualquier boton; nunca para el script.
+function Registrar-Ciclo {
+    $ErrorActionPreference = "Continue"
+    try {
+        $nombre = "tenis-ciclo-automatico"
+        if (Test-Path "$Base\output\ciclo_desactivado.txt") { return }
+        if (Get-ScheduledTask -TaskName $nombre -ErrorAction SilentlyContinue) { return }
+        $ps1 = Join-Path $RepoDir "scripts\windows\ciclo_automatico.ps1"
+        $accion = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$ps1`""
+        $cuando = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(2) -RepetitionInterval (New-TimeSpan -Minutes 10)
+        $ajustes = New-ScheduledTaskSettingsSet -StartWhenAvailable -MultipleInstances IgnoreNew -AllowStartIfOnBatteries `
+            -DontStopIfGoingOnBatteries -ExecutionTimeLimit (New-TimeSpan -Hours 3)
+        Register-ScheduledTask -TaskName $nombre -Action $accion -Trigger $cuando -Settings $ajustes `
+            -Description "Tenis: trae el codigo nuevo, recalcula lo necesario, revisa y sube los registros" | Out-Null
+        Ok "Ciclo automatico programado: cada 10 minutos, en segundo plano (9_parar_ciclo_automatico.bat lo quita)."
+    } catch { Aviso "No se pudo programar el ciclo automatico: $_" }
 }
 
 # Mientras un script largo trabaja, sube su registro cada 10 minutos: Claude ve el avance sin esperar
