@@ -60,6 +60,9 @@ function Hacer-Peticion {
         } else { Write-Host "La prueba de 4 min no termino bien: no se lanza la de 35 (ver prueba_poc4.log)" -ForegroundColor Red }
     } else { Write-Host "Peticion desconocida: $($p['accion'])" -ForegroundColor Yellow }
 }
+# el equipo no se suspende mientras el ciclo exista (la pantalla si puede apagarse): cada arranque, cada
+# 10 min, reinicia el contador de inactividad de Windows; durante un trabajo largo lo mantiene despierto
+try { Sin-Suspender } catch {}
 # rastro de cada arranque (antes de cualquier cosa que pueda fallar): se sube con la senal de vida
 try { "arranque: $(Get-Date -Format s) (pid $PID)" | Set-Content "$Out\ciclo_arranque.txt" } catch {}
 
