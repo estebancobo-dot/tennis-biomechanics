@@ -806,12 +806,12 @@
    "area": "Taxonomía",
    "name": "4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)",
    "status": "pocos datos",
-   "detail": "se mide (40% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "detail": "se mide (60% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "class.racket_plane",
     "loaded.racket_head_lateral"
    ],
-   "measured": 0.4
+   "measured": 0.6
   },
   {
    "req": 1,
@@ -864,17 +864,18 @@
    "area": "Taxonomía",
    "name": "4. Raqueta, swing y empuñadura · Retraso de la muñeca (lag)",
    "status": "pocos datos",
-   "detail": "se mide (40% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "detail": "se mide (90% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "acceleration.racket_forearm",
     "ball_bounce.racket_forearm",
     "ball_net.racket_forearm",
     "ball_top.racket_forearm",
+    "extension.racket_forearm",
     "finish.racket_forearm",
-    "loaded.racket_forearm",
-    "ready.racket_forearm"
+    "impact.racket_forearm",
+    "loaded.racket_forearm"
    ],
-   "measured": 0.4
+   "measured": 0.9
   },
   {
    "req": 1,
@@ -1223,17 +1224,18 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Retraso de la muñeca (lag) y su liberación",
    "status": "pocos datos",
-   "detail": "se mide (40% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "detail": "se mide (90% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "acceleration.racket_forearm",
     "ball_bounce.racket_forearm",
     "ball_net.racket_forearm",
     "ball_top.racket_forearm",
+    "extension.racket_forearm",
     "finish.racket_forearm",
-    "loaded.racket_forearm",
-    "ready.racket_forearm"
+    "impact.racket_forearm",
+    "loaded.racket_forearm"
    ],
-   "measured": 0.4
+   "measured": 0.9
   },
   {
    "req": 3,
@@ -1387,10 +1389,10 @@
     "ball_bounce.racket_head_vs_wrist",
     "ball_net.racket_head_vs_wrist",
     "ball_top.racket_head_vs_wrist",
+    "extension.racket_head_vs_wrist",
     "finish.racket_head_vs_wrist",
-    "loaded.racket_head_vs_wrist",
-    "ready.racket_head_vs_wrist",
-    "stroke.wrist_drop"
+    "impact.racket_head_vs_wrist",
+    "loaded.racket_head_vs_wrist"
    ],
    "measured": 1.0
   },
@@ -2215,14 +2217,14 @@
    "area": "Valores posibles",
    "name": "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
    "status": "ok",
-   "detail": "56 medidas: 6 dudosa, 23 fiable, 3 no comprobable, 1 ruido, 3 sesgo, 20 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±8.27. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 57.3° / 3D 12.4°, stroke.shoulders_open_first 2D 57.3° / 3D 12.4°, stroke.shoulder_brake 2D 57.3° / 3D 12.4°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
+   "detail": "57 medidas: 6 dudosa, 25 fiable, 3 no comprobable, 2 ruido, 3 sesgo, 18 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±8.27, loaded.racket_head_lateral ±2.9. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 57.3° / 3D 12.4°, stroke.shoulders_open_first 2D 57.3° / 3D 12.4°, stroke.shoulder_brake 2D 57.3° / 3D 12.4°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
   },
   {
    "req": 3,
    "area": "Valores posibles",
    "name": "Punta de la raqueta respecto a la cabeza en el armado",
    "status": "pocos datos",
-   "detail": "medido en 1 de 10 golpes; en «Aprende»; fiabilidad: sin juzgar"
+   "detail": "medido en 2 de 10 golpes; en «Aprende»; fiabilidad: sin juzgar"
   },
   {
    "req": 3,
@@ -2397,7 +2399,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Aprende su derecha»",
    "status": "ok",
-   "detail": "33458 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "33549 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2429,7 +2431,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "6832 caracteres de texto, 6 vídeos, 28 gráficos",
+   "detail": "6863 caracteres de texto, 6 vídeos, 28 gráficos",
    "file": "pantalla_5_golpe.jpg"
   },
   {
@@ -2582,7 +2584,7 @@
    "area": "Aprende su derecha",
    "name": "Puntos de «Aprende» con su valor medido (todas sus derechas)",
    "status": "ok",
-   "detail": "60 de 64; el resto dice por qué falta"
+   "detail": "59 de 64; el resto dice por qué falta"
   },
   {
    "req": 2,
@@ -2701,7 +2703,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "158 min para 35 min de vídeo ≈ 15.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -2848,7 +2850,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (158 min para 35 min de vídeo ≈ 15.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2890,7 +2892,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (158 min para 35 min de vídeo ≈ 15.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2953,7 +2955,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (158 min para 35 min de vídeo ≈ 15.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3002,7 +3004,7 @@
    "area": "Peticiones",
    "name": "#36 Mano y antebrazo, cierre de la muñeca",
    "status": "pocos datos",
-   "detail": "3 comprobaciones: 3 pocos datos; la peor: «4. Raqueta, swing y empuñadura · Retraso de la muñeca (lag)» (se mide (40% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "3 comprobaciones: 3 pocos datos; la peor: «4. Raqueta, swing y empuñadura · Retraso de la muñeca (lag)» (se mide (90% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3163,7 +3165,7 @@
    "area": "Peticiones",
    "name": "#59 Diferencias solo por encima del error y en situaciones equivalentes",
    "status": "pocos datos",
-   "detail": "6 comprobaciones: 2 pocos datos, 4 ok; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 1 de 10 golpes; en «Aprende»; fiabilidad: sin juzgar)"
+   "detail": "6 comprobaciones: 2 pocos datos, 4 ok; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 2 de 10 golpes; en «Aprende»; fiabilidad: sin juzgar)"
   },
   {
    "req": 11,
@@ -3247,7 +3249,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (158 min para 35 min de vídeo ≈ 15.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3422,7 +3424,7 @@
    "area": "Peticiones",
    "name": "#100 Mejora 2: raqueta al lado del cuerpo o detrás de la espalda, y adónde apunta la punta",
    "status": "pocos datos",
-   "detail": "1 comprobaciones: 1 pocos datos; la peor: «4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)» (se mide (40% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)» (se mide (60% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3436,7 +3438,7 @@
    "area": "Peticiones",
    "name": "#102 Mejora 4: punta de la raqueta respecto a la cabeza en el armado",
    "status": "pocos datos",
-   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 1 de 10 golpes; en «Aprende»; fiabilidad: sin juzgar)"
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 2 de 10 golpes; en «Aprende»; fiabilidad: sin juzgar)"
   },
   {
    "req": 11,

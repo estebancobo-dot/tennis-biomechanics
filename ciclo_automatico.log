@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261013120412
+Start time: 20261013122416
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 18176
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 3832
 PSVersion: 5.1.26100.9549
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
@@ -17,152 +17,122 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-13 12:04:12] Codigo nuevo (db65d50 -> 71055db): 15 ficheros
-    CLAUDE.md
-    docs/peticiones_usuario.md
-    scripts/auto_cycle.py
-    src/tennisbio/audit.py
-    src/tennisbio/catalog.py
-    src/tennisbio/learn.py
-    src/tennisbio/reliability.py
-    src/tennisbio/report.py
-    src/tennisbio/report_template.html
-    src/tennisbio/screens.py
-    src/tennisbio/stages.py
+==> [2026-10-13 12:24:16] Codigo nuevo (71055db -> 4977060): 1 ficheros
     src/tennisbio/technique.py
-    tests/test_config.py
-    tests/test_stroke_page.py
-    tests/test_technique.py
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating db65d50..71055db
+Updating 71055db..4977060
 Fast-forward
- CLAUDE.md                          |  10 ++++
- docs/peticiones_usuario.md         |   4 ++
- scripts/auto_cycle.py              |   2 +-
- src/tennisbio/audit.py             |   6 +++
- src/tennisbio/catalog.py           |  25 +++++++++
- src/tennisbio/learn.py             |  30 +++++++++++
- src/tennisbio/reliability.py       |   2 +-
- src/tennisbio/report.py            |  17 +++++++
- src/tennisbio/report_template.html | 102 ++++++++++++++++++++++++++++++++++---
- src/tennisbio/screens.py           |   4 ++
- src/tennisbio/stages.py            |   3 +-
- src/tennisbio/technique.py         |  80 +++++++++++++++++++++++++++++
- tests/test_config.py               |  12 +++++
- tests/test_stroke_page.py          |  69 +++++++++++++++++++++++++
- tests/test_technique.py            |  25 +++++++++
- 15 files changed, 381 insertions(+), 10 deletions(-)
- create mode 100644 tests/test_stroke_page.py
-Ciclo automatico en marcha (cada 10 minutos, en segundo plano; arranca solo al encender).
-Ciclo automatico programado: cada 10 minutos, en segundo plano (9_parar_ciclo_automatico.bat lo quita).
+ src/tennisbio/technique.py | 2 ++
+ 1 file changed, 2 insertions(+)
 Resolved 110 packages in 1ms
 Checked 83 packages in 4ms
     (paso terminado en 1 s)
 
-==> [2026-10-13 12:04:13] Que hace falta: medidas
-Recalcular medidas: empieza 2026-10-13 12:04:14
+==> [2026-10-13 12:24:18] Que hace falta: medidas
+Recalcular medidas: empieza 2026-10-13 12:24:19
 
-[2026-10-13 12:04:14] smoke_tennis-yusipopen-final-sobolenko-rybakin: trozo de vídeo tennis-yusipopen-final-sobolenko-rybakin_7264_35m.mkv, rival Sabalenka
+[2026-10-13 12:24:19] smoke_tennis-yusipopen-final-sobolenko-rybakin: trozo de vídeo tennis-yusipopen-final-sobolenko-rybakin_7264_35m.mkv, rival Sabalenka
   Se usan los resultados que hay de score aunque su código o su vídeo cambiaron (no se rehacen aquí; la próxima prueba completa sí lo hará)
-[2026-10-13 12:04:14] Etapas baratas rehechas: ninguna (al día) (0 s)
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (2026-10-13 12:04:14, etapa 9 de 10)
+[2026-10-13 12:24:19] Etapas baratas rehechas: ninguna (al día) (0 s)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (2026-10-13 12:24:19, etapa 9 de 10)
 load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
   fine:   3 % (6/177 golpes candidatos · 0 confirmados) · 0 s · quedan ≈ 0 s
 C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
   return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  fine:  10 % (17/177 golpes candidatos · 1 confirmados) · 43 s · quedan ≈ 7 min
 C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
   return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
-  fine:  13 % (23/177 golpes candidatos · 1 confirmados) · 53 s · quedan ≈ 6 min
-  fine:  31 % (55/177 golpes candidatos · 3 confirmados) · 2 min · quedan ≈ 4 min
+  fine:  13 % (23/177 golpes candidatos · 1 confirmados) · 74 s · quedan ≈ 8 min
+  fine:  31 % (55/177 golpes candidatos · 3 confirmados) · 2 min · quedan ≈ 5 min
 C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
   return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
-  fine:  42 % (75/177 golpes candidatos · 4 confirmados) · 2 min · quedan ≈ 3 min
-  fine:  53 % (93/177 golpes candidatos · 4 confirmados) · 3 min · quedan ≈ 3 min
+  fine:  42 % (75/177 golpes candidatos · 4 confirmados) · 3 min · quedan ≈ 4 min
+  fine:  53 % (93/177 golpes candidatos · 4 confirmados) · 4 min · quedan ≈ 3 min
 C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
   return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
 C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
   return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
-  fine:  72 % (127/177 golpes candidatos · 7 confirmados) · 4 min · quedan ≈ 86 s
+  fine:  69 % (123/177 golpes candidatos · 7 confirmados) · 4 min · quedan ≈ 2 min
 C:\tenis\tennis-biomech\src\tennisbio\technique.py:148: RuntimeWarning: All-NaN axis encountered
   feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
 C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
   return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
-  fine:  85 % (150/177 golpes candidatos · 12 confirmados) · 5 min · quedan ≈ 49 s
+  fine:  85 % (150/177 golpes candidatos · 12 confirmados) · 6 min · quedan ≈ 61 s
 C:\tenis\tennis-biomech\src\tennisbio\technique.py:148: RuntimeWarning: All-NaN axis encountered
   feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:530: RuntimeWarning: All-NaN slice encountered
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:532: RuntimeWarning: All-NaN slice encountered
   fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
 C:\tenis\tennis-biomech\src\tennisbio\technique.py:148: RuntimeWarning: All-NaN axis encountered
   feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:530: RuntimeWarning: All-NaN slice encountered
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:532: RuntimeWarning: All-NaN slice encountered
   fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
 C:\tenis\tennis-biomech\src\tennisbio\technique.py:148: RuntimeWarning: All-NaN axis encountered
   feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:530: RuntimeWarning: All-NaN slice encountered
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:532: RuntimeWarning: All-NaN slice encountered
   fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
 C:\tenis\tennis-biomech\src\tennisbio\technique.py:148: RuntimeWarning: All-NaN axis encountered
   feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:530: RuntimeWarning: All-NaN slice encountered
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:532: RuntimeWarning: All-NaN slice encountered
   fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
 C:\tenis\tennis-biomech\src\tennisbio\technique.py:148: RuntimeWarning: All-NaN axis encountered
   feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:530: RuntimeWarning: All-NaN slice encountered
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:532: RuntimeWarning: All-NaN slice encountered
   fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
-  fine:  89 % (157/177 golpes candidatos · 16 confirmados) · 5 min · quedan ≈ 41 s
-  fine:  90 % (160/177 golpes candidatos · 19 confirmados) · 6 min · quedan ≈ 38 s
+  fine:  89 % (157/177 golpes candidatos · 16 confirmados) · 7 min · quedan ≈ 51 s
+  fine:  90 % (160/177 golpes candidatos · 19 confirmados) · 7 min · quedan ≈ 46 s
 C:\tenis\tennis-biomech\src\tennisbio\technique.py:148: RuntimeWarning: All-NaN axis encountered
   feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:530: RuntimeWarning: All-NaN slice encountered
-  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:148: RuntimeWarning: All-NaN axis encountered
-  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:530: RuntimeWarning: All-NaN slice encountered
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:532: RuntimeWarning: All-NaN slice encountered
   fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
 C:\tenis\tennis-biomech\src\tennisbio\technique.py:148: RuntimeWarning: All-NaN axis encountered
   feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:530: RuntimeWarning: All-NaN slice encountered
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:532: RuntimeWarning: All-NaN slice encountered
   fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
 C:\tenis\tennis-biomech\src\tennisbio\technique.py:148: RuntimeWarning: All-NaN axis encountered
   feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:530: RuntimeWarning: All-NaN slice encountered
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:532: RuntimeWarning: All-NaN slice encountered
   fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
 C:\tenis\tennis-biomech\src\tennisbio\technique.py:148: RuntimeWarning: All-NaN axis encountered
   feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:530: RuntimeWarning: All-NaN slice encountered
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:532: RuntimeWarning: All-NaN slice encountered
   fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
-  fine:  92 % (163/177 golpes candidatos · 22 confirmados) · 6 min · quedan ≈ 33 s
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:148: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:532: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+  fine:  92 % (162/177 golpes candidatos · 21 confirmados) · 8 min · quedan ≈ 44 s
 C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
   return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
-  fine: 100 % (177/177 golpes candidatos · 27 confirmados) · 7 min · quedan ≈ 0 s
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine terminada a las 12:11:59 en 7.7 min
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (2026-10-13 12:11:59, etapa 10 de 10)
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent terminada a las 12:11:59 en 0 s
-[2026-10-13 12:11:59] Medidas recalculadas en 7.7 min: 27 golpes de 177 candidatos en 59 ventanas
-  Tiempo por parte (s): cuerdas_y_3d 156.4, analisis_ventana 26.7, recorte 2.4, pose 0.3
+  fine: 100 % (177/177 golpes candidatos · 27 confirmados) · 9 min · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine terminada a las 12:33:50 en 9.5 min
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (2026-10-13 12:33:50, etapa 10 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent terminada a las 12:33:50 en 0 s
+[2026-10-13 12:33:50] Medidas recalculadas en 9.5 min: 27 golpes de 177 candidatos en 59 ventanas
+  Tiempo por parte (s): cuerdas_y_3d 175.9, analisis_ventana 33.1, recorte 3.0, pose 0.4
   Cachés de pose, bola y raqueta reutilizadas en todas las ventanas
-[2026-10-13 12:12:07] smoke_tennis-yusipopen-final-sobolenko-rybakin terminado en 7.9 min
+[2026-10-13 12:34:12] smoke_tennis-yusipopen-final-sobolenko-rybakin terminado en 9.9 min
 
-[2026-10-13 12:12:07] Informe, PDF y auditoría…
+[2026-10-13 12:34:12] Informe, PDF y auditoría…
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
-  golpes 10/14 (274 s)
+  golpes 10/14 (336 s)
 Golpes: 14 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
 Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
 Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
 Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
 Auditoría: 184 cumplidos, 0 no cumplidos, 194 sin golpes suficientes, 17 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-Hecho en 597 s, con las medidas nuevas.
-[2026-10-13 12:22:04] Informe, PDF y auditoría en 10.0 min
-Recalcular medidas: termina 2026-10-13 12:22:04 (total 17.8 min)
-    (paso terminado en 17 min 52 s)
+Hecho en 566 s, con las medidas nuevas.
+[2026-10-13 12:43:38] Informe, PDF y auditoría en 9.4 min
+Recalcular medidas: termina 2026-10-13 12:43:38 (total 19.3 min)
+    (paso terminado en 19 min 21 s)
 
-==> [2026-10-13 12:22:05] Revision automatica frente a la ejecucion anterior
+==> [2026-10-13 12:43:39] Revision automatica frente a la ejecucion anterior
 # Revisión automática: OK
 Ciclo automatico terminado (medidas).
     (paso terminado en 0 s)
-Empezado 2026-10-13 12:04:11 - terminado 2026-10-13 12:22:05 - duracion total 17 min 54 s
+Empezado 2026-10-13 12:24:15 - terminado 2026-10-13 12:43:39 - duracion total 19 min 23 s
 **********************
 Windows PowerShell transcript end
-End time: 20261013122205
+End time: 20261013124339
 **********************
