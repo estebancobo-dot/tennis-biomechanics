@@ -513,3 +513,86 @@ Copia los partidos a C:\tenis\videos y ejecuta 2_prueba_rapida.bat
 Windows PowerShell transcript end
 End time: 20261012135635
 **********************
+**********************
+Windows PowerShell transcript start
+Start time: 20261013082422
+Username: esteban\esteb
+RunAs User: esteban\esteb
+Configuration Name: 
+Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\instalar.ps1
+Process ID: 12960
+PSVersion: 5.1.26100.9549
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
+BuildVersion: 10.0.26100.9549
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+==> [2026-10-13 08:24:22] 1/7 Actualizar el codigo
+se actualiza con 1_instalar.bat (con Git si el proyecto esta clonado; si no, zip de GitHub)
+    (paso terminado en 0 s)
+
+==> [2026-10-13 08:24:22] 2/7 ffmpeg (lectura de video y audio)
+ya estaba
+    (paso terminado en 0 s)
+
+==> [2026-10-13 08:24:22] 3/7 uv (gestor de Python)
+ya estaba
+    (paso terminado en 0 s)
+
+==> [2026-10-13 08:24:22] 4/7 Codigo del proyecto
+proyecto en C:\tenis\tennis-biomech
+    (paso terminado en 0 s)
+
+==> [2026-10-13 08:24:23] 5/7 Python 3.11 y librerias (10-15 min la primera vez)
+Python 3.11 is already installed
+Resolved 110 packages in 1ms
+Checked 83 packages in 9ms
+    (paso terminado en 0 s)
+
+==> [2026-10-13 08:24:23] 6/7 Configuracion y modelos (~1 GB la primera vez)
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+rtmw3d-x.onnx      OK 369 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+    (paso terminado en 2 s)
+
+==> [2026-10-13 08:24:25] 7/7 Comprobacion
+Python   3.11.17  (Windows-10-10.0.26200-SP0)
+CPUs     16
+ffmpeg   C:\Users\esteb\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffmpeg.EXE
+ffprobe  C:\Users\esteb\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffprobe.EXE
+git      C:\Program Files\Git\cmd\git.EXE
+uv       C:\Users\esteb\.local\bin\uv.EXE
+numpy        2.4.6
+pandas       3.0.6
+cv2          5.0.0
+librosa      0.11.0
+onnxruntime  1.24.4
+ultralytics  8.4.175
+rapidocr_onnxruntime ?
+ORT providers: ['DmlExecutionProvider', 'CPUExecutionProvider']
+balltrack.onnx     OK
+racketpose.onnx    OK
+rtmw3d-x.onnx      OK
+yolo11m-pose_960.onnx OK
+yolo11m-pose_1280.onnx OK
+...........................s............................................ [ 61%]
+..............................................                           [100%]
+117 passed, 1 skipped in 3.81s
+
+TODO LISTO.
+Copia los partidos a C:\tenis\videos y ejecuta 2_prueba_rapida.bat
+    (paso terminado en 6 s)
+Empezado 2026-10-13 08:24:22 - terminado 2026-10-13 08:24:31 - duracion total 9 s
+**********************
+Windows PowerShell transcript end
+End time: 20261013082431
+**********************
