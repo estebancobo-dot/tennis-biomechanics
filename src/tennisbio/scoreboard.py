@@ -166,25 +166,59 @@ def parse(items: list, surnames: tuple[str, str], image: np.ndarray | None = Non
     return ScoreState(games, pts, banner, server, flags)
 
 
+def crop_changed(a: np.ndarray | None, b: np.ndarray | None, thresh: float = 20.0, k: int = 5) -> bool:
+    """Has the scoreboard region changed between two crops of it? Largest local (k×k) mean of the
+    per-pixel difference (strongest colour channel): a new digit, serve marker or banner changes a
+    few small spots strongly, while compression noise is weak and spread out."""
+    import cv2
+
+    if a is None or b is None or a.shape != b.shape:
+        return True
+    d = cv2.absdiff(a, b)
+    if d.ndim == 3:
+        d = d.max(axis=2)
+    return float(cv2.blur(d, (k, k)).max()) > thresh
+
+
 class ScoreReader:
-    """Reads the scoreboard of one match; finds it on the first frames where both names appear."""
+    """Reads the scoreboard of one match; finds it on the first frames where both names appear.
 
-    def __init__(self, player_surname: str, opponent_surname: str, relocate_after=6):
-        from rapidocr_onnxruntime import RapidOCR
+    Once the region is known, the OCR of the region is only repeated when the region's pixels
+    changed (crop_changed) or after max_reuse reads that reused it: the scoreboard only changes
+    between points, and OCR is the expensive part. The reading is still parsed from each frame
+    (the serve marker is looked for in the new crop)."""
 
-        self.ocr = RapidOCR()
+    def __init__(self, player_surname: str, opponent_surname: str, relocate_after=6, max_reuse=5, ocr=None):
+        if ocr is None:
+            from rapidocr_onnxruntime import RapidOCR
+
+            ocr = RapidOCR()
+        self.ocr = ocr
         self.names = (player_surname, opponent_surname)
         self.roi = None
         self.misses = 0                 # consecutive reads without the names in the region
         self.full_fails = 0             # consecutive full-frame searches without both names
         self.calls = 0
         self.relocate_after = relocate_after
+        self.max_reuse = max_reuse
+        self.last = None                # (crop, OCR items) of the last OCR of the region
+        self.reused = 0                 # reads since that OCR that reused it
+        self.ocr_calls = 0
+        self._cls_kw = True             # rapidocr >= 1.3: the angle classifier can be skipped per call
 
-    def _items(self, img):
+    def _items(self, img, cls=True):
+        self.ocr_calls += 1
+        if not cls and self._cls_kw:
+            try:
+                res, _ = self.ocr(img, use_cls=False)
+                return res or []
+            except TypeError:
+                self._cls_kw = False
         res, _ = self.ocr(img)
         return res or []
 
     def locate(self, frame) -> bool:
+        self.last = None
         rows = find_rows(self._items(frame), self.names)
         if rows is None:
             return False
@@ -199,6 +233,15 @@ class ScoreReader:
         self.roi = roi
         return True
 
+    def _roi_items(self, roi):
+        if self.last is not None and self.reused < self.max_reuse and not crop_changed(roi, self.last[0]):
+            self.reused += 1
+            return self.last[1]
+        # the scoreboard text is horizontal: the 180° angle classifier is not needed in the region
+        items = self._items(roi, cls=False)
+        self.last, self.reused = (roi.copy(), items), 0
+        return items
+
     def read(self, frame) -> ScoreState | None:
         self.calls += 1
         if self.roi is None:
@@ -212,11 +255,11 @@ class ScoreReader:
             self.full_fails = 0
         x0, y0, x1, y1 = self.roi
         roi = frame[y0:y1, x0:x1]
-        st = parse(self._items(roi), self.names, roi)
+        st = parse(self._roi_items(roi), self.names, roi)
         if st is None:
             self.misses += 1
             if self.misses >= self.relocate_after:      # moved, resized or was the wrong box: look again
-                self.roi, self.misses = None, 0
+                self.roi, self.misses, self.last = None, 0, None
         else:
             self.misses = 0
         return st

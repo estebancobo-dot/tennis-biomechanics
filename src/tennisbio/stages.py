@@ -15,7 +15,7 @@ from pathlib import Path
 import numpy as np
 
 from .impacts import audio_onsets, swing_peaks
-from .io.video import probe, read_frames
+from .io.video import frames_at, probe, read_frames
 from .kinematics import body_height, clean, speed, to_body_frame
 from .config import model_state, resolve_path
 from .pipeline import Context, savez_atomic, stage, write_atomic
@@ -560,7 +560,7 @@ def _surname(name: str) -> str:
     return name.strip().split()[-1] if name and name.strip() else ""
 
 
-@stage("score", "4", deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
+@stage("score", "5", deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
        outputs=("score.json",), match_fields=lambda m: {"player": m.player.name, "opponent": m.opponent})
 def st_score(ctx: Context):
     """TV scoreboard every few seconds of main camera (sets, games, points, pressure)."""
@@ -585,24 +585,32 @@ def st_score(ctx: Context):
     if not all(names):
         _write(ctx.path("score.json"), {"readings": [], "note": "no se encontró el nombre del rival en el marcador"})
         return {"readings": 0}
-    reader, out, shots = ScoreReader(*names), [], []
+    # OCR of the scoreboard region is repeated at least every 30 s even when its pixels look unchanged
+    reader = ScoreReader(*names, max_reuse=max(0, int(30.0 / every + 1e-9) - 1))
+    out, shots, samples, by_shot = [], [], [], {}
     for i_s, s in enumerate(sc["shots"]):
-        ctx.progress(i_s + 1, len(sc["shots"]), f"planos · {len(out)} lecturas")
         if not s["main_camera"]:
             continue
         t = s["start"] / fps + 0.5
-        tried = read = 0
         while t < s["end"] / fps:
-            fr = grab_frame(ctx.video, t)
-            st = reader.read(fr) if fr is not None else None
-            tried += 1
-            if st is not None:
-                read += 1
-                out.append({"t": round(t, 2), **st.to_dict()})
+            samples.append((i_s, t))
             t += every
+        by_shot[i_s] = len(shots)
+        shots.append({"start": s["start"] / fps, "end": s["end"] / fps, "tried": 0, "read": 0})
+    # the same frames as one grab_frame per sample (first frame at or after each time), raw (no PNG
+    # in between), fetched ahead in the background while the OCR runs; samples closer than 1.5 s
+    # (every_s < 1.5) are decoded sequentially by one ffmpeg process instead of a seek each
+    stream = frames_at(probe(ctx.video), [t for _, t in samples]) if samples else iter(())
+    for n, ((i_s, t), (_, fr)) in enumerate(zip(samples, stream)):
+        ctx.progress(n + 1, len(samples), f"muestras · {len(out)} lecturas · {reader.ocr_calls} OCR")
+        st = reader.read(fr) if fr is not None else None
         # in live play the scoreboard is on screen; a main-camera-looking shot without it is
         # usually a replay (used later to drop duplicated strokes)
-        shots.append({"start": s["start"] / fps, "end": s["end"] / fps, "tried": tried, "read": read})
+        sh = shots[by_shot[i_s]]
+        sh["tried"] += 1
+        if st is not None:
+            sh["read"] += 1
+            out.append({"t": round(t, 2), **st.to_dict()})
     _write(ctx.path("score.json"), {"readings": out, "names": names, "opponent": opponent, "shots": shots})
     if not out:
         ctx.log(f"  AVISO: no se pudo leer el marcador con «{names[0]}» y «{names[1]}»: sin marcador no se sabe "

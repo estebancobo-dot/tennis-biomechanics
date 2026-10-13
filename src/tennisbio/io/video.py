@@ -1,6 +1,7 @@
 """Video access through ffmpeg: metadata and streaming of decoded frames."""
 import json
 import os
+import re
 import subprocess
 import tempfile
 from dataclasses import dataclass
@@ -183,6 +184,168 @@ def read_frames(
         # decoding warnings of a broadcast recording are normal; fail only when nothing came out
         if n == 0 and msg:
             raise VideoError(f"ffmpeg no pudo leer {Path(info.path).name}: {msg[-300:]}")
+
+
+_SHOWINFO_TB = re.compile(r"config in time_base:\s*(\d+)/(\d+)")
+_SHOWINFO_PTS = re.compile(r"\bn:\s*\d+\s+pts:\s*(-?\d+)")
+
+
+def _frames_at_run(info: VideoInfo, targets: list[str], hwaccel: str | None) -> Iterator[np.ndarray | None]:
+    """One ffmpeg process for a run of sorted target times (strings with 3 decimals, as `-ss` takes
+    them): for each one, the first frame whose timestamp is >= it, or None when the video ends first."""
+    import queue
+    import threading
+
+    t_ms = [round(float(t) * 1000) for t in targets]
+    seek_s = max(0, t_ms[0] // 1000 - 1)        # whole seconds: the timestamp offset stays exact in any time base
+    rel = [Fraction(m, 1000) - seek_s for m in t_ms]
+    # first frame at or after each target, also across a timestamp gap: t >= T and the previous frame < T
+    # (half a microsecond of slack: `-ss` rounds the target to microseconds the same way)
+    expr = "+".join(f"gte(t\\,{float(r) - 5e-7:.7f})*not(gte(prev_t\\,{float(r) - 5e-7:.7f}))" for r in rel)
+    cmd = ["ffmpeg", "-hide_banner", "-nostdin", "-nostats", "-loglevel", "info"]
+    hwaccel = auto_hwaccel() if hwaccel == "auto" else hwaccel
+    if hwaccel:
+        cmd += ["-hwaccel", hwaccel]
+    if seek_s:
+        cmd += ["-ss", str(seek_s)]
+    cmd += ["-i", str(info.path), "-an", "-vf", f"select='{expr}',showinfo", "-fps_mode", "passthrough",
+            "-f", "rawvideo", "-pix_fmt", "bgr24", "pipe:1"]
+    w, h = info.width, info.height
+    frame_bytes = w * h * 3
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, bufsize=frame_bytes)
+    times: queue.Queue = queue.Queue()
+
+    def drain():                                 # showinfo lines carry each selected frame's exact pts
+        tb = None
+        for raw in proc.stderr:
+            line = raw.decode(errors="replace")
+            m = _SHOWINFO_TB.search(line)
+            if m and tb is None:
+                tb = Fraction(int(m.group(1)), int(m.group(2)))
+                continue
+            m = _SHOWINFO_PTS.search(line)
+            if m and tb is not None:
+                times.put(int(m.group(1)) * tb)
+        times.put(None)
+
+    th = threading.Thread(target=drain, daemon=True)
+    th.start()
+    i = 0
+    try:
+        while i < len(rel):
+            buf = proc.stdout.read(frame_bytes)
+            if len(buf) < frame_bytes:
+                break
+            try:
+                ft = times.get(timeout=120)
+            except queue.Empty:
+                ft = None
+            if ft is None:
+                break
+            frame = np.frombuffer(buf, np.uint8).reshape(h, w, 3)
+            # the frame answers every pending target at or before it (more than one only after a gap)
+            while i < len(rel) and rel[i] <= ft + Fraction(1, 2_000_000):
+                yield frame
+                i += 1
+    finally:
+        proc.stdout.close()
+        proc.kill()
+        proc.wait()
+        th.join(timeout=5)
+        proc.stderr.close()
+    # not reached by the stream (the video ended, or ffmpeg failed): one seek each, as before
+    for t in targets[i:]:
+        yield seek_frame(info, t)
+
+
+def seek_frame(info: VideoInfo, t: str | float) -> np.ndarray | None:
+    """The first full-resolution frame at or after time t (`-ss t -frames:v 1`), or None."""
+    t = t if isinstance(t, str) else f"{t:.3f}"
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-nostdin", "-ss", t, "-i", str(info.path), "-frames:v", "1", "-an",
+                          "-f", "rawvideo", "-pix_fmt", "bgr24", "pipe:1"], capture_output=True).stdout
+    n = info.width * info.height * 3
+    return np.frombuffer(raw[:n], np.uint8).reshape(info.height, info.width, 3) if len(raw) >= n else None
+
+
+def _frames_at(info: VideoInfo, times: list[float], hwaccel, dense_s: float, max_run: int):
+    runs, cur = [], []
+    for t in times:
+        if cur and (len(cur) >= max_run or t - cur[-1] > dense_s):
+            runs.append(cur)
+            cur = []
+        cur.append(t)
+    if cur:
+        runs.append(cur)
+    for run in runs:
+        if len(run) == 1:
+            yield run[0], seek_frame(info, run[0])
+            continue
+        for t, fr in zip(run, _frames_at_run(info, [f"{t:.3f}" for t in run], hwaccel)):
+            yield t, fr
+
+
+def frames_at(info: VideoInfo, times: list[float], hwaccel: str | None = None, dense_s: float = 1.5,
+              max_run: int = 60, prefetch: int = 3) -> Iterator[tuple[float, np.ndarray | None]]:
+    """(t, frame) for each of the ascending times: the same frame as `ffmpeg -ss t -frames:v 1` (the
+    first one at or after t to the millisecond, full resolution, not deinterlaced), or None after the
+    end, as raw BGR (no image encoding in between).
+
+    Times closer than dense_s to the previous one are decoded sequentially by one ffmpeg process
+    (up to max_run of them); isolated times get one seek each, which decodes far fewer frames (a
+    seek decodes from the previous keyframe; a sequential read decodes everything in between: at
+    1080p50 one seek costs about as much as decoding 1-1.5 s of video). The frames are fetched in
+    a background thread, up to `prefetch` ahead, so decoding overlaps with whatever the caller does
+    with each frame (OCR)."""
+    import queue
+    import threading
+
+    if any(b < a for a, b in zip(times, times[1:])):
+        raise ValueError("frames_at needs ascending times")
+    if prefetch <= 0:
+        yield from _frames_at(info, times, hwaccel, dense_s, max_run)
+        return
+    q: queue.Queue = queue.Queue(maxsize=prefetch)
+    stop = threading.Event()
+    done = object()
+
+    def produce():
+        gen = _frames_at(info, times, hwaccel, dense_s, max_run)
+        try:
+            for item in gen:
+                while not stop.is_set():
+                    try:
+                        q.put(item, timeout=0.5)
+                        break
+                    except queue.Full:
+                        continue
+                if stop.is_set():
+                    break
+        except BaseException as e:          # handed to the caller
+            item = e
+        else:
+            item = done
+        finally:
+            gen.close()                     # kills a running ffmpeg
+        while not stop.is_set():
+            try:
+                q.put(item, timeout=0.5)
+                break
+            except queue.Full:
+                continue
+
+    th = threading.Thread(target=produce, daemon=True)
+    th.start()
+    try:
+        while True:
+            item = q.get()
+            if item is done:
+                break
+            if isinstance(item, BaseException):
+                raise item
+            yield item
+    finally:
+        stop.set()
+        th.join(timeout=10)
 
 
 def timeline(path: str | Path) -> dict:
