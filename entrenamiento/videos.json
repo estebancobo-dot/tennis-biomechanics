@@ -46,10 +46,10 @@
   "query": "lista elegida",
   "seconds_kept": 66.0,
   "analysed_s": 66.0,
-  "version": 3,
+  "version": 4,
   "strokes": 22,
-  "lateral_forehands": 5,
-  "discarded": 1
+  "lateral_forehands": 6,
+  "discarded": 0
  },
  {
   "id": "QmCVixzz6-Y",
@@ -62,7 +62,7 @@
   "query": "lista elegida",
   "seconds_kept": 56.679909,
   "analysed_s": 56.679909,
-  "version": 3,
+  "version": 4,
   "strokes": 23,
   "lateral_forehands": 7,
   "discarded": 1
@@ -78,7 +78,7 @@
   "query": "lista elegida",
   "seconds_kept": 150.929705,
   "analysed_s": 150.929705,
-  "version": 3,
+  "version": 4,
   "strokes": 15,
   "lateral_forehands": 2,
   "discarded": 0
