@@ -276,7 +276,7 @@ def stroke_curves(img: np.ndarray, sk: Skeleton, scale: np.ndarray, impact: int,
 
 
 def racket_at(kps: dict, img: np.ndarray, sk: Skeleton, f: int, scale: float, feet_img_y: float, faces: dict | None,
-              first_face: int | None) -> dict:
+              first_face: int | None, estimate: bool = False) -> dict:
     """Racket descriptors at clip frame f from its 5 keypoints (0 tip, 1 throat, 2 butt, 3/4 sides)."""
     out = {}
     k = kps.get(str(f)) if kps else None
@@ -301,9 +301,14 @@ def racket_at(kps: dict, img: np.ndarray, sk: Skeleton, f: int, scale: float, fe
     if faces and first_face is not None:
         i = f - first_face
         if 0 <= i < len(faces.get("tilt", [])):
-            if faces["tilt"][i] is not None:
+            # the face is seen on a few frames and filled in between: away from the impact (an estimate by
+            # definition, flagged as such) it counts only with a frame where it was seen within ±2 frames,
+            # not filled in across a long gap
+            obs = faces.get("observed") or []
+            seen = any(obs[j] for j in range(max(0, i - 2), min(len(obs), i + 3))) if obs else True
+            if faces["tilt"][i] is not None and (seen or estimate):
                 out["face_tilt"] = _deg(faces["tilt"][i])
-            if faces["yaw"][i] is not None:
+            if faces["yaw"][i] is not None and (seen or estimate):
                 out["face_yaw"] = _deg(faces["yaw"][i])
             if faces["label"][i]:
                 out["face_points_to"] = faces["label"][i]
@@ -393,9 +398,7 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
     out = {"phases": {}, "stroke": {}, "classes": {}, "footwork": {}}
     sh = line_turn(img, sk, "shoulder", scale=scale)
     hp = line_turn(img, sk, "hip", scale=scale)
-    for p, f in ev.items():
-        if f is None:
-            continue
+    def at(p, f):
         d = posture(body, img, sk, f, float(scale[f]))
         if np.isfinite(sh[f]):
             d["shoulder_turn"] = _deg(sh[f])
@@ -403,9 +406,25 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
             d["hip_turn"] = _deg(hp[f])
         if "shoulder_turn" in d and "hip_turn" in d and p in ("takeback", "loaded", "acceleration"):
             d["x_factor"] = round(d["shoulder_turn"] - d["hip_turn"], 1)     # meaningful only while coiled
-        fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
-        d.update(racket_at(kps, img, sk, f, float(scale[f]), fy, faces, first_face))
+        with np.errstate(all="ignore"):
+            fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1]) if np.isfinite(img[f, [sk["left_ankle"], sk["right_ankle"]], 1]).any() else np.nan
+        d.update(racket_at(kps, img, sk, f, float(scale[f]), fy, faces, first_face, estimate=p == "impact"))
+        return d
+
+    for p, f in ev.items():
+        if f is None:
+            continue
+        d = at(p, f)
         out["phases"][p] = d
+        # repeatability: the same measure 1-2 frames (20-80 ms) either side of the phase instant. The
+        # instant itself is only known to ±1-2 frames, so a measure that jumps more than that between
+        # neighbouring frames than it differs between her strokes is noise, not technique (see reliability)
+        near = [at(p, g) for g in (f - 2, f - 1, f + 1, f + 2) if 0 <= g < T]
+        for k, v in d.items():
+            if isinstance(v, (int, float)) and not isinstance(v, bool):
+                vs = [n[k] for n in near if isinstance(n.get(k), (int, float)) and not isinstance(n.get(k), bool)]
+                if len(vs) >= 2:
+                    out.setdefault("jitter", {})[f"{p}.{k}"] = round(float(np.median(np.abs(np.asarray(vs) - v))), 2)
         # the pose itself, hip-centred, in body heights, dominant side to the right (+x): averaged
         # over strokes it gives the "mean skeleton" of each moment
         q = body[f] * np.array([sk.dom_sign, 1.0])

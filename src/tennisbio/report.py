@@ -498,6 +498,9 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
                    if v.get(k) is not None and not isinstance(v[k], (list, dict))}
         r["cl"] = {k: v.get(f"class.{k}") for k in CONDITIONS if v.get(f"class.{k}") is not None}
     data["learn"] = content()
+    from .reliability import assess
+    units = {c["key"]: c.get("unit") for ph in data["learn"]["phases"] for c in ph["checkpoints"] if not c["key"].startswith("practice.")}
+    data["reliability"] = assess([s for s in raw if s.get("side") != "far"], units)
     data["model"] = model_view(build_model(data.pop("_raw", [])), stroke)
     data["player"] = player or {}
     data["stroke"] = stroke

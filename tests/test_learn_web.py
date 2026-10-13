@@ -36,6 +36,8 @@ def synthetic(n=400, seed=3):
         for c in ("ready_hands", "takeback", "stance_loaded", "ball_phase", "finish", "recovery_first_step", "approach_main"):
             tech["classes"][c] = rnd.choice(["a", "b", "c"])
         tech["footwork"]["steps_reliable"] = rnd.random() > 0.4
+        # one measure that jumps between neighbouring frames far more than between strokes: noise
+        tech["jitter"] = {"loaded.face_tilt": 200.0, "loaded.shoulder_turn": 0.5}
         out.append({"stroke": "forehand", "match_time_s": 10.0 + i, "impact_source": "audio+ball+swing", "review": [],
                     "metrics": {"contact_height_pct": 55.0}, "phases": {"impact": {"t_rel": 0.0}, "ready": {"t_rel": -0.6}},
                     "technique": tech, "court_pos_m": [1.0, -1.0], "stance": tech["classes"]["stance_impact"]})
@@ -65,3 +67,25 @@ def test_every_combination_of_learn_screen(tmp_path):
     assert not errors, errors[:3]
     assert r["combinations"] > 600 and r["with_exact_strokes"] > 400
     assert not r["failures"], r["failures"][:5]
+    assert r["example"]["rows"] > 40 and r["rows_all"] >= r["valued_all"] > 0
+
+
+@pytest.mark.skipif(not CHROMIUM.exists(), reason="sin navegador para la prueba de la web")
+def test_noise_is_not_shown_as_her_value(tmp_path):
+    from playwright.sync_api import sync_playwright
+
+    d = tmp_path / "m1"
+    d.mkdir()
+    (d / "strokes.json").write_text(json.dumps(synthetic(60)), encoding="utf-8")
+    html = build([Match("m1", None, Player("p", "P"))], tmp_path)
+    with sync_playwright() as p:
+        b = p.chromium.launch(executable_path=str(CHROMIUM), args=["--allow-file-access-from-files"])
+        pg = b.new_page()
+        pg.goto(html.resolve().as_uri())
+        pg.wait_for_timeout(500)
+        pg.evaluate("document.querySelector('.nav button[data-tab=\"aprende\"]').click()")
+        txt = lambda k: pg.evaluate(f"document.querySelector('.cpk[data-key=\"{k}\"]').children[1].innerText")
+        noisy, good = txt("loaded.face_tilt"), txt("loaded.shoulder_turn")
+        b.close()
+    assert "no fiable desde la tele" in noisy and "golpes" not in noisy.split("no fiable")[0]
+    assert "no fiable" not in good and "°" in good

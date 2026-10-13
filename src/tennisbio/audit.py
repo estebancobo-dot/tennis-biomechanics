@@ -365,6 +365,20 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
             bad.append(f"curva {k}: {len(out)} de {len(xs)} puntos fuera de {lo}–{hi} %")
     items.append(_item(3, "Valores posibles", "Valores dentro de límites físicos", "falta" if bad else "ok",
                        "; ".join(bad) if bad else f"{len(LIMITS) + len(CURVE_LIMITS)} medidas comprobadas en {len(near)} golpes"))
+    from .learn import content
+    from .reliability import assess, summary
+    units = {c["key"]: c.get("unit") for ph in content()["phases"] for c in ph["checkpoints"] if not c["key"].startswith("practice.")}
+    rel = assess(near, units)
+    if rel:
+        sm = summary(rel)
+        noisy = sorted((k for k, v in rel.items() if v["verdict"] == "ruido"), key=lambda k: -rel[k]["noise"])
+        judged = sum(v for k, v in sm.items() if k != "sin juzgar")
+        noisy_txt = ", ".join(f"{k} ±{rel[k]['noise']}" for k in noisy[:12])
+        items.append(_item(3, "Valores posibles", "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
+                           "ok" if judged else "pocos datos",
+                           f"{len(rel)} medidas: " + ", ".join(f"{v} {k}" for k, v in sorted(sm.items())) +
+                           (f". No se dan como valor suyo (ruido): {noisy_txt}" if noisy else "")
+                           + f". Con menos de 5 golpes no se juzga"))
     if data:
         lines = [ln for c in (model.get("cards") or []) for ln in c.get("lines") or []]
         weak = [ln["key"] for ln in lines if (ln.get("n") or 0) < MIN_N or ln.get("rel") is None]

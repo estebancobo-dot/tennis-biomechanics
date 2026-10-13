@@ -1876,9 +1876,12 @@ function aStat(set, c) {
   }
   const v = aValues(set, c.key);
   if (!v.length) return { n: 0, txt: null };
+  const rel = (DATA.reliability || {})[c.key], ru = c.unit === "°" ? "°" : c.unit ? " " + c.unit : "";
+  if (typeof v[0] === "number" && rel && rel.verdict === "ruido")
+    return { n: 0, txt: null, why: `no fiable desde la tele: en un mismo golpe cambia ±${fmt(rel.noise, c.dec)}${ru} entre fotogramas vecinos, más que entre sus golpes (±${fmt(rel.spread, c.dec)}${ru}); no se da como valor suyo` };
   if (typeof v[0] === "number") {
-    const u = c.unit === "°" ? "°" : c.unit ? " " + c.unit : "";
-    return { n: v.length, med: quant(v, .5), txt: `${fmt(quant(v, .5), c.dec)}${u}` + (v.length >= 4 ? ` <span class="dim3">(${fmt(quant(v, .25), c.dec)}–${fmt(quant(v, .75), c.dec)})</span>` : "") };
+    const warn = rel && rel.verdict === "dudosa" ? ` <span class="badge prov" title="cambia ±${fmt(rel.noise, c.dec)}${ru} entre fotogramas vecinos; entre sus golpes ±${fmt(rel.spread, c.dec)}${ru}">medida ruidosa ±${fmt(rel.noise, c.dec)}${ru}</span>` : "";
+    return { n: v.length, med: quant(v, .5), txt: `${fmt(quant(v, .5), c.dec)}${ru}` + (v.length >= 4 ? ` <span class="dim3">(${fmt(quant(v, .25), c.dec)}–${fmt(quant(v, .75), c.dec)})</span>` : ""), warn };
   }
   const cnt = {}; v.forEach(x => { const k = String(x); cnt[k] = (cnt[k] || 0) + 1; });
   const lab = k => k === "true" ? "sí" : k === "false" ? "no" : k;
@@ -1900,7 +1903,10 @@ function aHerChange(d, l) {
     if (aIsPractice(c.key)) return;
     const a = aValues(own, c.key), b = aValues(all, c.key);
     if (a.length < 2 || b.length < 4 || typeof a[0] !== "number") return;
+    const rel = (DATA.reliability || {})[c.key];
+    if (rel && rel.verdict === "ruido") return;                  // noise is never a difference
     const spread = (quant(b, .75) - quant(b, .25)) || sd(b) || 1, dm = quant(a, .5) - quant(b, .5);
+    if (rel && Math.abs(dm) <= 2 * rel.noise) return;            // only differences beyond the measuring error
     diffs.push({ c, dm, z: Math.abs(dm) / spread, n: a.length, ma: quant(a, .5), mb: quant(b, .5) });
   }));
   const top = diffs.filter(x => x.z >= .5).sort((x, y) => y.z - x.z).slice(0, 3);
@@ -1970,7 +1976,7 @@ function renderLearn() {
     const rows = ph.checkpoints.map(c => {
       const st = aStat(set, c), base = aIsPractice(c.key) ? null : aStat(all, c);
       const badge = !st.n ? "" : aIsPractice(c.key) ? `<span class="badge">entreno, ${st.src || "de lado"} · ${st.n}</span>` : st.n >= A_MIN ? `<span class="badge firm">${st.n} golpes</span>` : `<span class="badge prov">${st.n} golpe${st.n > 1 ? "s" : ""} · provisional</span>`;
-      const val = st.txt ? `<span class="v">${st.txt}</span> ${badge}` : `<span class="dim">— ${st.why || aWhyMissing(set, c)}</span>`;
+      const val = st.txt ? `<span class="v">${st.txt}</span>${st.warn || ""} ${badge}` : `<span class="dim">— ${st.why || aWhyMissing(set, c)}</span>`;
       const cmp = base && base.txt && set.length !== all.length ? `<div class="dim3">en todas sus derechas: ${base.txt}</div>` : "";
       return `<div class="cpk" data-key="${c.key}"><div><b>${c.label}</b><div class="dim3">${c.read}</div></div><div>${val}${cmp}</div>`
         + `<div class="how">${aHer(st, c)}<div><b>Cómo hacerlo tú:</b> ${c.cue}</div><div><b>Error típico:</b> ${c.mistake}</div><div><b>Ejercicio:</b> ${c.drill}</div></div></div>`;
