@@ -56,6 +56,13 @@ button { font: inherit; color: inherit; }
 .nav button:hover { background: var(--panel-2); color: var(--ink); }
 .nav button[aria-current="page"] { background: var(--raise); color: var(--ink); }
 .nav button[aria-current="page"] svg { color: var(--accent); }
+.nav button.main { padding: 11px 10px; font-weight: 650; color: var(--ink); }
+.nav button.main span, .nav button span { display: grid; }
+.nav button small { font-weight: 400; font-size: 11px; color: var(--ink-3); white-space: normal; }
+.nav details.more { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 6px; }
+.nav details.more summary { cursor: pointer; color: var(--ink-2); font-weight: 600; padding: 6px 10px; list-style: none; }
+.nav details.more summary::before { content: "▸ "; } .nav details.more[open] summary::before { content: "▾ "; }
+.nav .ngrp { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); padding: 8px 10px 2px; }
 .side .foot { margin-top: auto; padding-inline: 16px; font-size: 11px; color: var(--ink-3); display: grid; gap: 4px; }
 .side .foot .mono { color: var(--ink-2); }
 
@@ -342,16 +349,20 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
   <aside class="side">
     <div class="brand"><div class="mark">TB</div><div><b>TENNISBIO</b><span>Análisis cinemático</span></div></div>
     <nav class="nav" aria-label="Pantallas">
-      <button data-tab="aprende"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 5l6-3 6 3-6 3z"/><path d="M5 6.5v3.5c0 1 1.5 2 3 2s3-1 3-2V6.5"/></svg>Aprende su derecha</button>
-      <button data-tab="modelo"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="3" r="1.6"/><path d="M8 5v5M8 10l-3 4M8 10l3 4M4 7l4-1 4 1"/></svg><span id="nav-modelo">Su golpe</span></button>
-      <button data-tab="panel"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="1.5" width="5" height="5" rx="1"/><rect x="9.5" y="1.5" width="5" height="5" rx="1"/><rect x="1.5" y="9.5" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></svg>Panel</button>
-      <button data-tab="videoteca"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="2.5" width="5.5" height="4.5" rx="1"/><rect x="9" y="2.5" width="5.5" height="4.5" rx="1"/><rect x="1.5" y="9" width="5.5" height="4.5" rx="1"/><rect x="9" y="9" width="5.5" height="4.5" rx="1"/></svg>Videoteca</button>
-      <button data-tab="golpe"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="3" width="13" height="10" rx="1.5"/><path d="M6.5 6v4l3.5-2z" fill="currentColor"/></svg>Análisis de golpe</button>
-      <button data-tab="comparar"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="3" width="5.5" height="10" rx="1"/><rect x="9" y="3" width="5.5" height="10" rx="1"/></svg>Comparar golpes</button>
-      <button data-tab="explorador"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4h12M2 8h12M2 12h8"/></svg>Explorador</button>
-      <button data-tab="comparativas"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 14V7M8 14V2M13 14V9"/></svg>Comparativas</button>
-      <button data-tab="pista"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="1.5" width="10" height="13"/><path d="M3 8h10M8 4.5v7"/></svg>Pista</button>
-      <button data-tab="lateral"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="3" r="1.5"/><path d="M9 5l-1 5-3 4M8 10l3 4M9 6l3 2M9 6L6 8"/></svg>Vista lateral <small style="opacity:.7">(entreno)</small></button>
+      <button data-tab="aprende" class="main"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 5l6-3 6 3-6 3z"/><path d="M5 6.5v3.5c0 1 1.5 2 3 2s3-1 3-2V6.5"/></svg><span>Cópiala <small>su derecha, fase a fase</small></span></button>
+      <button data-tab="videoteca" class="main" data-also="golpe"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="2.5" width="5.5" height="4.5" rx="1"/><rect x="9" y="2.5" width="5.5" height="4.5" rx="1"/><rect x="1.5" y="9" width="5.5" height="4.5" rx="1"/><rect x="9" y="9" width="5.5" height="4.5" rx="1"/></svg><span>Sus golpes <small>cada golpe en vídeo y medido</small></span></button>
+      <details class="more" id="nav-more"><summary>Más</summary>
+      <div class="ngrp">Para practicar</div>
+      <button data-tab="modelo"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="3" r="1.6"/><path d="M8 5v5M8 10l-3 4M8 10l3 4M4 7l4-1 4 1"/></svg><span id="nav-modelo">Su patrón típico</span></button>
+      <button data-tab="comparar"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="3" width="5.5" height="10" rx="1"/><rect x="9" y="3" width="5.5" height="10" rx="1"/></svg><span>Comparar dos golpes</span></button>
+      <button data-tab="lateral"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="3" r="1.5"/><path d="M9 5l-1 5-3 4M8 10l3 4M9 6l3 2M9 6L6 8"/></svg><span>Vista lateral <small style="opacity:.7">(entreno)</small></span></button>
+      <button data-tab="pista"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="1.5" width="10" height="13"/><path d="M3 8h10M8 4.5v7"/></svg><span>Dónde golpea</span></button>
+      <div class="ngrp">Técnico</div>
+      <button data-tab="panel"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="1.5" width="5" height="5" rx="1"/><rect x="9.5" y="1.5" width="5" height="5" rx="1"/><rect x="1.5" y="9.5" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></svg><span>Resumen y conclusiones</span></button>
+      <button data-tab="comparativas"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 14V7M8 14V2M13 14V9"/></svg><span>¿Cambia según…?</span></button>
+      <button data-tab="explorador"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4h12M2 8h12M2 12h8"/></svg><span>Tabla de golpes</span></button>
+      <button data-tab="fiabilidad"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 1.5l5.5 2v4c0 3.2-2.4 5.6-5.5 7-3.1-1.4-5.5-3.8-5.5-7v-4z"/><path d="M5.5 8l2 2 3-3.5"/></svg><span>Fiabilidad de las medidas</span></button>
+      </details>
     </nav>
     <div class="foot" id="foot"></div>
   </aside>
@@ -365,6 +376,14 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
     <div class="content">
 
 <section class="screen" id="tab-aprende" hidden>
+<details class="news" id="news"><summary><b>Novedades de esta versión</b> · dónde mirarlas</summary><ul>
+  <li><b>Menú:</b> dos vistas principales, «Cópiala» y «Sus golpes»; el resto, en «Más» (para practicar y técnico). No se ha quitado nada.</li>
+  <li><b>«Sus golpes» → un golpe → «La bola y ella»:</b> su cuerpo cuando golpea la rival, la bola cruza la red, cae, bota, sube y ella golpea, con medidas reales en cada fotograma (cadera en cm, pies en m, recorrido).</li>
+  <li><b>«Sus golpes» → un golpe → «Su cuerpo en este golpe»:</b> cuánto baja y sube (barras y cm), la base entre los pies (m) y hacia dónde mira el tronco al terminar.</li>
+  <li><b>Vídeo:</b> pantalla completa (botón ⛶, tecla F o doble clic) y lo que se dibuja, por grupos («Ver: Solo vídeo · Cuerpo · Raqueta y bola · Alturas · Líneas · Pista · Todo») o uno a uno.</li>
+  <li><b>«Cópiala»:</b> su firma (lo que repite en casi todos sus golpes) y su estilo en una frase; cada medida que no es de fiar dice por qué no se da.</li>
+  <li><b>«Más» → «Fiabilidad de las medidas»:</b> qué medidas son de fiar, cuáles son ruido o están sesgadas, y por qué.</li>
+</ul></details>
 <p class="intro"><b>Aprende su derecha.</b> Elige el golpe que quieres copiar (dirección, apoyo, cómo llega, efecto…). Verás sus golpes de ese tipo en vídeo y, fase a fase, lo que hace ella (medido en sus golpes), cómo hacerlo tú, el error típico y un ejercicio.</p>
 <div class="panel"><header><h2>1 · ¿Qué golpe quieres aprender?</h2><button class="btn" id="a-clear">Quitar todo</button></header><div class="body" id="a-cond" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px"><header><h2>2 · Sus golpes de ese tipo</h2></header><div class="body" id="a-res" style="padding:12px 16px"></div></div>
@@ -377,16 +396,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 </section>
 
 <section class="screen" id="tab-modelo" hidden>
-<details class="news" id="news" open><summary><b>Novedades de esta versión</b> · dónde mirarlas</summary><ul>
-  <li><b>«Su derecha»:</b> cada fase dice sus claves en frases, <i>por qué importan</i> (con su fuente) y <i>qué mirar</i>; incluye cuerdas, apoyos, pies y cadena cinética. Necesita al menos 12 golpes.</li>
-  <li><b>«Análisis de golpe» → «La bola y ella»:</b> qué hace la jugadora cuando golpea la rival, cuando la bola cruza la red, cuando bota, cuando llega arriba y cuando golpea. Se ve en cada golpe, sin mínimo.</li>
-  <li><b>«Análisis de golpe» → «Sus pies en este golpe»:</b> el ciclo completo de pies en 8 pasos (split step, primer paso, cada paso hasta la bola con su tipo —lateral, cruzado, de carrera, de ajuste—, frenado, apoyo, impacto, tras golpear y recuperación) y la pista vista desde arriba con su recorrido y cada pisada. Lo que no se ve en un golpe lo dice («no medible en este golpe»).</li>
-  <li><b>Lo aprendido de 16 vídeos de entrenadores:</b> capa «Líneas» en el vídeo (hombros, cadera y plano del hombro); en «Su derecha», «Para copiarla» en cada fase y medidas nuevas (codo al armar, transferencia de peso, empuje de piernas, aceleración respecto al bote, si gira mientras se mueve).</li>
-  <li><b>«Análisis de golpe» → capa «Alturas»:</b> barras horizontales de la cabeza y la cadera sobre el vídeo: discontinua = su altura en la espera, continua = ahora, y cuántos cm ha bajado o subido.</li>
-  <li><b>«Videoteca»:</b> filtros combinables (apoyo, dirección, bola, contacto, resultado): por ejemplo «cerrado» + «paralela», o «cerca de la red».</li>
-  <li><b>Fases:</b> la preparación empieza cuando giran los hombros y la terminación se busca después del impacto (antes salían demasiado tarde y demasiado pronto).</li>
-  <li>Sin enlaces a YouTube; las gráficas técnicas, plegadas al final de «Análisis de golpe».</li>
-</ul></details>
+
 <p class="intro"><b>Cómo pega la derecha.</b> Fase a fase: lo que hace (medido en sus golpes), por qué importa y qué mirar. Elige una bola para ver qué cambia. Pulsa una imagen o una frase para verla en vídeo.</p>
   <div class="panel">
     <header><h2 id="m-title">Su golpe</h2><span class="note" id="m-n"></span></header>
@@ -450,7 +460,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 </section>
 
 <section class="screen" id="tab-golpe" hidden>
-<p class="intro"><b>Un golpe en detalle.</b> Vídeo a cámara lenta con el esqueleto, sus 8 fases y sus medidas comparadas con lo habitual en ella. Las gráficas técnicas están al final, plegadas.</p>
+<p class="intro"><button class="btn" id="g-back" style="margin-right:10px">← Sus golpes</button><b>Un golpe en detalle.</b> Vídeo a cámara lenta con el esqueleto, sus 8 fases y sus medidas comparadas con lo habitual en ella. Las gráficas técnicas están al final, plegadas.</p>
   <div class="cols c-3-1">
     <div class="panel">
       <div class="plbar" id="plbar" hidden></div>
@@ -602,7 +612,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
     <ul class="say" id="c-say"></ul>
     <details class="extra" open><summary>Tabla completa</summary><div class="tw" style="border-top:1px solid var(--line)"><table class="data" id="c-table"></table></div></details>
   </div>
-  <div class="cols c-1-1" id="c-grid"></div>
+  <details class="extra" id="c-gridwrap" open><summary>Gráficas por medida (cada punto es un golpe)</summary><div class="cols c-1-1" id="c-grid"></div></details>
 </section>
 
 <section class="screen" id="tab-lateral" hidden>
@@ -617,6 +627,10 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
   <div class="lib" id="pr-lib"></div></div>
 </section>
 
+<section class="screen" id="tab-fiabilidad" hidden>
+<p class="intro"><b>¿Qué medidas son de fiar?</b> Cada medida se comprueba sola en sus golpes: si cambia más entre fotogramas vecinos de un mismo golpe que entre sus golpes, es ruido de la cámara y no técnica; si dos métodos independientes no coinciden, está sesgada. Las que no son de fiar no se dan como valor suyo en «Cópiala».</p>
+<div class="panel"><div class="body" id="rel-body" style="padding:12px 16px"></div></div>
+</section>
 <section class="screen" id="tab-pista" hidden>
 <p class="intro"><b>Dónde golpea y dónde bota su bola</b>, dibujado sobre la pista.</p>
   <div class="cols c-3-1">
@@ -691,7 +705,7 @@ document.getElementById("scope").innerHTML = `<span class="tag"><b>${MATCHES.len
 document.getElementById("noise-note").textContent = `Diferencia entre grupos en múltiplos del ruido de medida${DATA.noise_validated ? " (medido sobre pares de golpes equivalentes de la jugadora: cota conservadora)" : " (provisional: hacen falta al menos 20 golpes con bola neutra)"}. Solo con al menos 5 golpes por grupo.`;
 
 /* ===== Navegación ===== */
-const TABS = ["aprende", "modelo", "panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista", "lateral"];
+const TABS = ["aprende", "modelo", "panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista", "lateral", "fiabilidad"];
 const EMPTY = !STROKES.length;
 if (EMPTY) {                     // nothing analysed yet: one clear message instead of empty screens
   const m = document.createElement("section");
@@ -699,10 +713,31 @@ if (EMPTY) {                     // nothing analysed yet: one clear message inst
   m.innerHTML = `<div class="panel" style="padding:28px"><h2 style="margin:0 0 8px">Todavía no hay golpes analizados</h2><p class="dim">No se ha encontrado ningún golpe de este tipo en los partidos procesados. Si el análisis acaba de empezar, vuelve a abrir el informe cuando termine; si ya terminó, el registro de cada partido (registro.log) dice qué pasó.</p></div>`;
   document.getElementById("tab-modelo").before(m);
 }
+const REL_ES = { fiable: ["Fiables", "se dan como valor suyo"], dudosa: ["Dudosas", "se dan marcadas como «medida ruidosa»"],
+  ruido: ["Ruido", "no se dan: cambian más entre fotogramas vecinos que entre sus golpes"], sesgo: ["Sesgadas", "no se dan: dos métodos independientes no coinciden"],
+  "no comprobable": ["No comprobables así", "no dependen del instante de las fases; esta prueba no las valida"], "sin juzgar": ["Sin juzgar", "menos de 5 golpes con el dato"] };
+function renderReliability() {
+  const R = DATA.reliability || {}, labels = {};
+  ((LEARN || {}).phases || []).forEach(ph => ph.checkpoints.forEach(c => { labels[c.key] = [c.label, ph.title.replace(/^\d · /, ""), c.unit, c.dec]; }));
+  const by = {}; Object.entries(R).forEach(([k, v]) => (by[v.verdict] = by[v.verdict] || []).push([k, v]));
+  const u = un => un === "°" ? "°" : un ? " " + un : "";
+  const row = ([k, v]) => { const [l, ph, un, dec] = labels[k] || [k, "", "", 1];
+    const d = isN(v.flip) ? `cambia en el ${Math.round(100 * v.flip)} % de los casos al mover las fases`
+      : v.verdict === "sesgo" ? `2D ${fmt(v.med2d)}° · 3D ${fmt(v.med3d)}°${v.from ? " (sale del giro de hombros)" : ""}`
+      : isN(v.noise) ? `±${fmt(v.noise, dec)}${u(un)} entre fotogramas${isN(v.spread) ? ` · ±${fmt(v.spread, dec)}${u(un)} entre golpes` : ""}` : "";
+    return `<li><b>${l}</b> <span class="dim3">${ph}</span> · ${d} <span class="dim3">(${v.n || 0} golpes)</span></li>`; };
+  const order = ["fiable", "dudosa", "ruido", "sesgo", "no comprobable", "sin juzgar"];
+  document.getElementById("rel-body").innerHTML = Object.keys(R).length
+    ? `<p style="margin:0 0 10px">${order.filter(o => by[o]).map(o => `<b>${by[o].length}</b> ${REL_ES[o][0].toLowerCase()}`).join(" · ")}</p>`
+      + order.filter(o => by[o]).map(o => `<details class="extra" ${o === "fiable" ? "" : "open"}><summary><b>${REL_ES[o][0]}</b> (${by[o].length}): ${REL_ES[o][1]}</summary><ul class="say">${by[o].map(row).join("")}</ul></details>`).join("")
+    : `<p class="dim">Todavía no hay golpes suficientes para juzgar ninguna medida.</p>`;
+}
 function showTab(name) {
   if (!TABS.includes(name)) name = "aprende";
   TABS.forEach(t => { document.getElementById("tab-" + t).hidden = (EMPTY && t !== "lateral" && t !== "aprende") || t !== name; });
-  document.querySelectorAll(".nav button").forEach(b => { if (b.dataset.tab === name) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+  document.querySelectorAll(".nav button").forEach(b => { if (b.dataset.tab === name || (b.dataset.also || "").split(" ").includes(name)) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
+  const more = document.getElementById("nav-more"); if (more && more.querySelector(`button[data-tab="${name}"]`)) more.open = true;
+  if (name === "fiabilidad") renderReliability();
   try { history.replaceState(null, "", "#" + name); } catch (e) { }
   if (name !== "golpe") stopPlay();
   if (name !== "comparar") kStop();
@@ -716,6 +751,7 @@ function showTab(name) {
   window.scrollTo({ top: 0 });
 }
 document.querySelectorAll(".nav button").forEach(b => b.addEventListener("click", () => showTab(b.dataset.tab)));
+document.getElementById("g-back").addEventListener("click", () => showTab("videoteca"));
 
 /* ===== PANEL ===== */
 const third = s => !isN(s.frac) ? null : s.frac < 1 / 3 ? 1 : s.frac < 2 / 3 ? 2 : 3;
@@ -1612,6 +1648,7 @@ function renderCompare() {
     });
     lines.sort((x, y) => y.z - x.z);
     const few = groups.some(g => g.a.length < 5);
+    document.getElementById("c-gridwrap").open = !few;      // with too few strokes the cards would only say «sin datos»
     document.getElementById("c-say").innerHTML = few ? `<li class="dim3">Pocos golpes en algún grupo (${groups.map(g => `${g.l}: ${g.a.length}`).join(", ")}): no se puede comparar todavía.</li>`
       : lines.length ? lines.slice(0, 6).map(x => `<li>${x.t}</li>`).join("") + (lines.length > 6 ? `<li class="dim3">Y ${lines.length - 6} diferencias más en la tabla.</li>` : "")
       : `<li>Ninguna medida cambia más que el error de medida entre ${groups.map(g => g.l.toLowerCase()).join(" y ")}: su técnica se mantiene.</li>`;
@@ -1843,7 +1880,7 @@ const MODEL = DATA.model || { cards: [], variants: {}, summary: [], footwork: {}
 const SID = Object.fromEntries(STROKES.map(s => [s.id, s]));
 let mSit = "";
 const MSRC = (typeof mkSrc === "function") ? mkSrc() : null;
-document.getElementById("nav-modelo").textContent = "Su " + (STROKE_ES[DATA.stroke] || "golpe").toLowerCase();
+document.getElementById("nav-modelo").textContent = "Su patrón típico";
 document.getElementById("m-title").textContent = `${PL.name || "Jugadora"}: su ${(STROKE_ES[DATA.stroke] || "golpe").toLowerCase()}`;
 document.getElementById("m-n").textContent = `${MODEL.n || 0} golpes analizados (${MODEL.n_near || 0} del lado cercano, con todo el detalle)`;
 document.getElementById("m-sum").innerHTML = (MODEL.summary || []).map(t => `<li>${t}</li>`).join("") || `<li>Todavía no hay golpes suficientes para describir su técnica.</li>`;

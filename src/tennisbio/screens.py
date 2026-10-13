@@ -12,7 +12,12 @@ import os
 import sys
 from pathlib import Path
 
-TABS = ["aprende", "modelo", "panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista", "lateral"]
+TABS = ["aprende", "modelo", "panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista", "lateral", "fiabilidad"]
+# the name of each screen in the audit (stable, whatever the menu says)
+TITLES = {"aprende": "Cópiala (Aprende su derecha)", "modelo": "Su patrón típico (Su derecha)", "panel": "Resumen y conclusiones (Panel)",
+          "videoteca": "Sus golpes (Videoteca)", "golpe": "Análisis de golpe", "comparar": "Comparar dos golpes",
+          "explorador": "Tabla de golpes (Explorador)", "comparativas": "¿Cambia según…? (Comparativas)", "pista": "Dónde golpea (Pista)",
+          "lateral": "Vista lateral (entreno)", "fiabilidad": "Fiabilidad de las medidas"}
 _JS_SCREEN = """(tab) => {
   const sec = document.getElementById('tab-' + tab);
   if (!sec) return null;
@@ -88,7 +93,7 @@ def _test_plays(pg) -> list[dict]:
     for tab, sel, name in _PLAY_BUTTONS:
         try:
             pg.evaluate("() => { try { stopPlay(); endPlaylist(); } catch (e) {} }")
-            pg.evaluate(f"document.querySelector('.nav button[data-tab=\"{tab}\"]').click()")
+            pg.evaluate(f"showTab('{tab}')")
             pg.wait_for_timeout(800)
             btn = pg.query_selector(sel)
             if not btn or not btn.is_visible():
@@ -135,11 +140,12 @@ def capture(report_html: Path, dest: Path, wait_ms: int = 2500) -> Path:
         meta["browser"] = b.browser_type.name + " " + b.version
         for i, tab in enumerate(TABS):
             errs.clear()
-            if not pg.query_selector(f'.nav button[data-tab="{tab}"]'):
+            if not pg.query_selector(f"#tab-{tab}"):
                 continue
-            pg.evaluate(f"document.querySelector('.nav button[data-tab=\"{tab}\"]').click()")
+            pg.evaluate(f"showTab('{tab}')")             # as the menu does (Análisis de golpe opens from Sus golpes)
             pg.wait_for_timeout(wait_ms)
             info = pg.evaluate(_JS_SCREEN, tab) or {"title": tab}
+            info["title"] = TITLES.get(tab, info.get("title") or tab)
             if tab == "golpe" and pg.query_selector("#play"):
                 # play as the user does, right away: the video must advance and keep playing
                 t0 = pg.evaluate("typeof video !== 'undefined' ? video.currentTime : null")

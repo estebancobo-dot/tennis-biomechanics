@@ -109,3 +109,41 @@ def test_layer_groups_and_full_screen(tmp_path):
     assert not errors, errors[:3]
     assert none is False and body == "ang,skel" and mixed == [True, 0] and kept == "ang,racket,skel"
     assert full == "player" and out == [False, 1280]
+
+
+@pytest.mark.skipif(not CHROMIUM.exists(), reason="sin navegador para la prueba de la web")
+def test_two_main_views_and_more(tmp_path):
+    """Menu: «Cópiala» and «Sus golpes» first, the rest in «Más» (to practise / technical); every screen
+    still reachable, the stroke page counts as «Sus golpes» and goes back to it."""
+    from playwright.sync_api import sync_playwright
+
+    s, ser = stroke_and_series()
+    s["technique"]["jitter"] = {"loaded.base_court_m": 0.01}
+    d = tmp_path / "m1"
+    (d / "series").mkdir(parents=True)
+    (d / "series" / "x.json").write_text(json.dumps(ser), encoding="utf-8")
+    (d / "strokes.json").write_text(json.dumps([s] * 6), encoding="utf-8")
+    html = build([Match("m1", None, Player("p", "P", height_m=1.84))], tmp_path)
+    with sync_playwright() as p:
+        b = p.chromium.launch(executable_path=str(CHROMIUM), args=["--allow-file-access-from-files"])
+        pg = b.new_page()
+        errors = []
+        pg.on("pageerror", lambda e: errors.append(str(e)))
+        pg.goto(html.resolve().as_uri())
+        pg.wait_for_timeout(500)
+        main = pg.evaluate("[...document.querySelectorAll('.nav > button')].map(b => b.dataset.tab)")
+        more = pg.evaluate("[...document.querySelectorAll('#nav-more button')].map(b => b.dataset.tab)")
+        pg.evaluate("(async () => { showTab('golpe'); await loadStroke(STROKES[0]); })()")
+        pg.wait_for_timeout(500)
+        cur_golpe = pg.evaluate("document.querySelector('.nav button[aria-current=page]').dataset.tab")
+        pg.click("#g-back")
+        back = pg.evaluate("document.querySelector('.screen:not([hidden])').id")
+        pg.evaluate("showTab('fiabilidad')")
+        rel = pg.evaluate("document.getElementById('rel-body').textContent")
+        opened = pg.evaluate("document.getElementById('nav-more').open")
+        b.close()
+    assert not errors, errors[:3]
+    assert main == ["aprende", "videoteca"]
+    assert set(more) == {"modelo", "comparar", "lateral", "pista", "panel", "comparativas", "explorador", "fiabilidad"}
+    assert cur_golpe == "videoteca" and back == "tab-videoteca" and opened
+    assert "Base al armar" in rel
