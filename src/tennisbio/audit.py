@@ -646,7 +646,7 @@ def _screens(shots_dir: Path) -> list[dict]:
               ("aprende", "news", "Novedades de la versión en la pantalla de entrada", 1),
               ("golpe", "sentences", "«Análisis de golpe»: la raqueta por fase dicha en frases (la tabla sigue debajo)", 1),
               ("explorador", "sentences", "«Explorador»: resumen en frases de los golpes filtrados (la tabla sigue debajo)", 1),
-              ("comparativas", "sentences", "«Comparativas»: qué cambia, en frases (la tabla sigue debajo)", 1),
+              ("conclusiones", "sentences", "«Conclusiones»: qué cambia, en frases (la tabla sigue debajo)", 1),
               ("comparar", "sentences", "«Comparar golpes»: diferencias en frases (la tabla sigue debajo)", 1)]
     for tab, key, name, need in checks:
         v = (by.get(tab) or {}).get(key)
@@ -671,7 +671,7 @@ PETITIONS = {
     9: r"^Pantallas$|Tablas a la vista", 10: r"Novedades|Reproducir", 11: r"^Taxonomía$|^Combinaciones$|^Vistas pedidas$",
     12: r"Validación con clips anotados", 13: Note("en los tests del código (uv run pytest, pc-logs:pruebas.log), no en las salidas"),
     14: r"^Rendimiento$", 15: r"Vídeos de análisis de entrenadores", 16: r"Botepronto|Volea",
-    17: r"Pantalla «Cópiala|Pantalla «Su patrón típico|Novedades|^Aprende su derecha$", 18: r"golpes analizados", 19: r"Cada golpe tiene su vídeo",
+    17: r"Pantalla «Cópiala|Novedades|^Aprende su derecha$", 18: r"golpes analizados", 19: r"Cada golpe tiene su vídeo",
     20: r"^Rendimiento$", 21: r"golpes analizados", 22: r"golpes analizados", 23: r"golpes analizados",
     24: r"Presión, set, fatiga", 25: r"Separación cadera|Ángulo del codo|Tipo de apoyo|Cadena cinética",
     26: r"Fotograma clave", 27: r"Presión, set, fatiga", 28: r"Cada golpe tiene su esqueleto|Cada golpe tiene su vídeo",

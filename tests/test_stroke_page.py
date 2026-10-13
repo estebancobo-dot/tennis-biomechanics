@@ -144,6 +144,44 @@ def test_two_main_views_and_more(tmp_path):
         b.close()
     assert not errors, errors[:3]
     assert main == ["aprende", "videoteca"]
-    assert set(more) == {"modelo", "comparar", "lateral", "pista", "panel", "comparativas", "explorador", "fiabilidad"}
+    assert set(more) == {"comparar", "lateral", "modelo", "pista", "conclusiones", "explorador", "fiabilidad", "datos"}
     assert cur_golpe == "videoteca" and back == "tab-videoteca" and opened
     assert "Base al armar" in rel
+
+
+@pytest.mark.skipif(not CHROMIUM.exists(), reason="sin navegador para la prueba de la web")
+def test_merged_views_keep_every_piece(tmp_path):
+    """The old screens live inside the new ones: every block still there and filled (the typical curves need
+    12 strokes, as before), and their old names
+    still open them (patrón típico in Cópiala, pista in Sus golpes, panel and comparativas in Conclusiones)."""
+    from playwright.sync_api import sync_playwright
+
+    s, ser = stroke_and_series()
+    d = tmp_path / "m1"
+    (d / "series").mkdir(parents=True)
+    (d / "series" / "x.json").write_text(json.dumps(ser), encoding="utf-8")
+    (d / "strokes.json").write_text(json.dumps([dict(s, match_time_s=30.0 + i, court_pos_m=[0.5 * i - 1, -1.0]) for i in range(6)]), encoding="utf-8")
+    html = build([Match("m1", None, Player("p", "P", height_m=1.84))], tmp_path)
+    with sync_playwright() as p:
+        b = p.chromium.launch(executable_path=str(CHROMIUM), args=["--allow-file-access-from-files"])
+        pg = b.new_page()
+        errors = []
+        pg.on("pageerror", lambda e: errors.append(str(e)))
+        pg.goto(html.resolve().as_uri())
+        pg.wait_for_timeout(600)
+        filled = pg.evaluate("""['kpis', 'concl', 'c-say', 'court', 'p-stats'].map(id => [id, !!document.getElementById(id)
+                                  && document.getElementById(id).innerHTML.trim().length > 20])""")
+        res = {}
+        for old, sel in (("modelo", "#sec-modelo"), ("pista", "#lib-pista"), ("panel", "#sec-resumen"), ("comparativas", "#sec-cambia")):
+            pg.evaluate(f"showTab('{old}')")
+            pg.wait_for_timeout(200)
+            res[old] = pg.evaluate(f"""[document.querySelector('.screen:not([hidden])').id, (() => {{ const e = document.querySelector('{sel}');
+                                        return !!e && !e.hidden && (e.tagName !== 'DETAILS' || e.open) && !!e.offsetParent; }})()]""")
+        pg.evaluate("showTab('datos')")
+        datos = pg.evaluate("document.getElementById('datos-body').innerText")
+        b.close()
+    assert not errors, errors[:3]
+    assert all(ok for _, ok in filled), filled
+    assert res == {"modelo": ["tab-aprende", True], "pista": ["tab-videoteca", True], "panel": ["tab-conclusiones", True],
+                   "comparativas": ["tab-conclusiones", True]}
+    assert "6 del lado cercano" in datos and "Golpes dudosos" in datos

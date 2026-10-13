@@ -192,6 +192,34 @@ PHASE_DOING = {"ready": "en la espera", "takeback": "empezando a preparar", "loa
                "finish": "terminando", "recovery": "recuperando"}
 
 
+def run_info(matches, out_root: Path) -> dict:
+    """Where the strokes of this page come from (screen «Datos del análisis»): analysis and video time from
+    each match's manifest, and the last automatic audit and review when they exist (previous run)."""
+    info, secs, vid = {}, 0.0, 0.0
+    for m in matches:
+        f = out_root / m.id / "manifest.json"
+        if f.exists():
+            man = json.loads(f.read_text(encoding="utf-8"))
+            secs += sum(e.get("seconds", 0) for e in man.values() if isinstance(e, dict))
+            vid += ((man.get("probe") or {}).get("summary") or {}).get("duration_min") or 0
+    if secs:
+        info.update(analysis_min=round(secs / 60, 1), video_min=round(vid, 1))
+    a = out_root / "auditoria" / "auditoria.json"
+    if a.exists():
+        try:
+            items = json.loads(a.read_text(encoding="utf-8")).get("items", [])
+            c = lambda st: sum(i.get("status") == st for i in items)
+            info["audit"] = {"ok": c("ok"), "falta": c("falta"), "pocos": c("pocos datos"), "aviso": c("aviso"),
+                             "date": time.strftime("%Y-%m-%d %H:%M", time.localtime(a.stat().st_mtime))}
+        except (ValueError, OSError):
+            pass
+    for r in (out_root / "revision_automatica.md", out_root.parent / "revision_automatica.md"):
+        if r.exists():
+            info["review"] = r.read_text(encoding="utf-8").splitlines()[0].lstrip("# ").strip()
+            break
+    return info
+
+
 def body_view(s: dict) -> dict:
     """The measures the stroke page draws on its frames: lowering and rising, the base, the trunk at the finish."""
     tech = s.get("technique") or {}
@@ -525,6 +553,7 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
     data["stroke"] = stroke
     data["generated"] = time.strftime("%Y-%m-%d %H:%M")
     data["practice"] = practice_data(out_root, dest)
+    data["run_info"] = run_info(matches, out_root)
     ids = {r["id"] for r in data["strokes"]}
     for sub, ext in (("series", ".js"), ("thumbs", ".jpg")):          # strokes that no longer exist
         for f in (dest / sub).glob(f"*{ext}") if (dest / sub).exists() else []:

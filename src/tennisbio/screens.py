@@ -12,12 +12,12 @@ import os
 import sys
 from pathlib import Path
 
-TABS = ["aprende", "modelo", "panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista", "lateral", "fiabilidad"]
+TABS = ["aprende", "videoteca", "golpe", "comparar", "conclusiones", "explorador", "lateral", "fiabilidad", "datos"]
 # the name of each screen in the audit (stable, whatever the menu says)
-TITLES = {"aprende": "Cópiala (Aprende su derecha)", "modelo": "Su patrón típico (Su derecha)", "panel": "Resumen y conclusiones (Panel)",
-          "videoteca": "Sus golpes (Videoteca)", "golpe": "Análisis de golpe", "comparar": "Comparar dos golpes",
-          "explorador": "Tabla de golpes (Explorador)", "comparativas": "¿Cambia según…? (Comparativas)", "pista": "Dónde golpea (Pista)",
-          "lateral": "Vista lateral (entreno)", "fiabilidad": "Fiabilidad de las medidas"}
+TITLES = {"aprende": "Cópiala (Aprende su derecha, con su patrón típico)", "videoteca": "Sus golpes (Videoteca y pista)",
+          "golpe": "Análisis de golpe", "comparar": "Comparar dos golpes", "conclusiones": "Conclusiones (Panel y Comparativas)",
+          "explorador": "Tabla de golpes (Explorador)", "lateral": "Vista lateral (entreno)", "fiabilidad": "Fiabilidad de las medidas",
+          "datos": "Datos del análisis"}
 _JS_SCREEN = """(tab) => {
   const sec = document.getElementById('tab-' + tab);
   if (!sec) return null;

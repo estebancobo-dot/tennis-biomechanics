@@ -62,6 +62,8 @@ button { font: inherit; color: inherit; }
 .nav details.more { margin-top: 10px; border-top: 1px solid var(--line); padding-top: 6px; }
 .nav details.more summary { cursor: pointer; color: var(--ink-2); font-weight: 600; padding: 6px 10px; list-style: none; }
 .nav details.more summary::before { content: "▸ "; } .nav details.more[open] summary::before { content: "▾ "; }
+.secth { margin: 6px 0 12px; font-size: 18px; }
+details.secx > summary { font-size: 15px; padding: 10px 0; cursor: pointer; }
 .nav .ngrp { font-size: 10.5px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink-3); padding: 8px 10px 2px; }
 .side .foot { margin-top: auto; padding-inline: 16px; font-size: 11px; color: var(--ink-3); display: grid; gap: 4px; }
 .side .foot .mono { color: var(--ink-2); }
@@ -353,15 +355,15 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
       <button data-tab="videoteca" class="main" data-also="golpe"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="2.5" width="5.5" height="4.5" rx="1"/><rect x="9" y="2.5" width="5.5" height="4.5" rx="1"/><rect x="1.5" y="9" width="5.5" height="4.5" rx="1"/><rect x="9" y="9" width="5.5" height="4.5" rx="1"/></svg><span>Sus golpes <small>cada golpe en vídeo y medido</small></span></button>
       <details class="more" id="nav-more"><summary>Más</summary>
       <div class="ngrp">Para practicar</div>
-      <button data-tab="modelo"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="3" r="1.6"/><path d="M8 5v5M8 10l-3 4M8 10l3 4M4 7l4-1 4 1"/></svg><span id="nav-modelo">Su patrón típico</span></button>
       <button data-tab="comparar"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="3" width="5.5" height="10" rx="1"/><rect x="9" y="3" width="5.5" height="10" rx="1"/></svg><span>Comparar dos golpes</span></button>
       <button data-tab="lateral"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="3" r="1.5"/><path d="M9 5l-1 5-3 4M8 10l3 4M9 6l3 2M9 6L6 8"/></svg><span>Vista lateral <small style="opacity:.7">(entreno)</small></span></button>
-      <button data-tab="pista"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="1.5" width="10" height="13"/><path d="M3 8h10M8 4.5v7"/></svg><span>Dónde golpea</span></button>
+      <button data-tab="modelo"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="3" r="1.6"/><path d="M8 5v5M8 10l-3 4M8 10l3 4M4 7l4-1 4 1"/></svg><span id="nav-modelo">Su patrón típico <small>dentro de «Cópiala»</small></span></button>
+      <button data-tab="pista"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="1.5" width="10" height="13"/><path d="M3 8h10M8 4.5v7"/></svg><span>Dónde golpea <small>dentro de «Sus golpes»</small></span></button>
       <div class="ngrp">Técnico</div>
-      <button data-tab="panel"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="1.5" width="5" height="5" rx="1"/><rect x="9.5" y="1.5" width="5" height="5" rx="1"/><rect x="1.5" y="9.5" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></svg><span>Resumen y conclusiones</span></button>
-      <button data-tab="comparativas"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 14V7M8 14V2M13 14V9"/></svg><span>¿Cambia según…?</span></button>
+      <button data-tab="conclusiones"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="1.5" width="5" height="5" rx="1"/><rect x="9.5" y="1.5" width="5" height="5" rx="1"/><rect x="1.5" y="9.5" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></svg><span>Conclusiones <small>lo que hace siempre y lo que cambia</small></span></button>
       <button data-tab="explorador"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 4h12M2 8h12M2 12h8"/></svg><span>Tabla de golpes</span></button>
       <button data-tab="fiabilidad"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M8 1.5l5.5 2v4c0 3.2-2.4 5.6-5.5 7-3.1-1.4-5.5-3.8-5.5-7v-4z"/><path d="M5.5 8l2 2 3-3.5"/></svg><span>Fiabilidad de las medidas</span></button>
+      <button data-tab="datos"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><ellipse cx="8" cy="3.5" rx="5.5" ry="2"/><path d="M2.5 3.5v9c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2v-9M2.5 8c0 1.1 2.5 2 5.5 2s5.5-.9 5.5-2"/></svg><span>Datos del análisis</span></button>
       </details>
     </nav>
     <div class="foot" id="foot"></div>
@@ -383,6 +385,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
   <li><b>Vídeo:</b> pantalla completa (botón ⛶, tecla F o doble clic) y lo que se dibuja, por grupos («Ver: Solo vídeo · Cuerpo · Raqueta y bola · Alturas · Líneas · Pista · Todo») o uno a uno.</li>
   <li><b>«Cópiala»:</b> su firma (lo que repite en casi todos sus golpes) y su estilo en una frase; cada medida que no es de fiar dice por qué no se da.</li>
   <li><b>«Más» → «Fiabilidad de las medidas»:</b> qué medidas son de fiar, cuáles son ruido o están sesgadas, y por qué.</li>
+  <li><b>«Más» reorganizado:</b> «Su patrón típico» está ahora al final de «Cópiala»; «Dónde golpea», en «Sus golpes» → «En la pista»; el Panel y las Comparativas, juntos en «Conclusiones»; nueva «Datos del análisis». Los accesos de «Más» llevan directamente a cada sitio.</li>
 </ul></details>
 <p class="intro"><b>Aprende su derecha.</b> Elige el golpe que quieres copiar (dirección, apoyo, cómo llega, efecto…). Verás sus golpes de ese tipo en vídeo y, fase a fase, lo que hace ella (medido en sus golpes), cómo hacerlo tú, el error típico y un ejercicio.</p>
 <div class="panel"><header><h2>1 · ¿Qué golpe quieres aprender?</h2><button class="btn" id="a-clear">Quitar todo</button></header><div class="body" id="a-cond" style="padding:12px 16px"></div></div>
@@ -393,12 +396,9 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 <div id="a-phases" style="display:grid;gap:14px"></div>
 <div class="panel" style="margin-top:16px"><header><h2>5 · Para copiarla: el plan</h2></header><ol class="say" id="a-plan"></ol></div>
 <div class="panel" style="margin-top:16px"><header><h2>6 · Lo que la tele no permite medir (y qué hacer igualmente)</h2></header><ul class="say" id="a-nottv"></ul></div>
-</section>
-
-<section class="screen" id="tab-modelo" hidden>
-
+<details class="extra secx" id="sec-modelo" style="margin-top:22px"><summary><b>Su patrón típico</b> · esqueleto medio y claves de cada fase sobre todas sus derechas (antes «Su derecha»)</summary>
 <p class="intro"><b>Cómo pega la derecha.</b> Fase a fase: lo que hace (medido en sus golpes), por qué importa y qué mirar. Elige una bola para ver qué cambia. Pulsa una imagen o una frase para verla en vídeo.</p>
-  <div class="panel">
+<div class="panel">
     <header><h2 id="m-title">Su golpe</h2><span class="note" id="m-n"></span></header>
     <div class="body mhead"><ul class="msum" id="m-sum"></ul><button class="btn pri" id="m-play">▶ Ver sus golpes típicos</button></div>
     <div class="sitbar" id="m-sit"></div>
@@ -414,37 +414,13 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
     <div class="panel"><header><h2>Pies</h2><span class="note">Desde el golpe de la rival hasta la recuperación</span></header><div class="body msum" id="m-feet"></div></div>
     <div class="panel"><header><h2>Lo que la tele no permite medir</h2></header><div class="body"><ul class="msum" id="m-nm"></ul></div></div>
   </div>
-</section>
-
-<section class="screen" id="tab-panel" hidden>
-<p class="intro"><b>Resumen.</b> Las conclusiones principales de todos sus golpes, cada una con sus vídeos y con su grado de confianza.</p>
-  <div class="kpis" id="kpis"></div>
-  <div class="panel">
-    <header><h2>Conclusiones</h2><span class="note">Generadas a partir de los datos; cada una con su confianza</span></header>
-    <div class="body" id="concl" style="display:grid;gap:10px"></div>
-  </div>
-  <div class="panel">
-    <header><h2>Hallazgos</h2><span class="note" id="noise-note"></span></header>
-    <div class="forest" id="forest" style="margin-top:8px"></div>
-  </div>
-  <div class="cols c-3-1">
-    <div class="panel">
-      <header><h2>Evolución durante el partido</h2><div class="seg" id="evo-metric"></div></header>
-      <div class="body chart" id="evo"></div>
-    </div>
-    <div class="panel">
-      <header><h2>Proporciones</h2><span class="note">Todas las bolas</span></header>
-      <div class="body" id="props" style="display:grid;gap:14px"></div>
-    </div>
-  </div>
-  <div class="panel">
-    <header><h2>Partidos</h2><span class="note">Pulsa una fila para ver sus golpes</span></header>
-    <div class="body tw" style="padding-inline:0"><table class="data" id="matches"></table></div>
-  </div>
+</details>
 </section>
 
 <section class="screen" id="tab-videoteca" hidden>
 <p class="intro"><b>Todos sus golpes en vídeo.</b> Filtra por situación; pulsa uno para verlo en detalle.</p>
+<div class="seg" id="lib-mode" style="margin:0 0 12px"><button data-v="list" aria-pressed="true">Lista de golpes</button><button data-v="pista" aria-pressed="false">En la pista (dónde golpea y dónde bota)</button></div>
+<div id="lib-list">
   <div class="panel">
     <div id="slot-videoteca"></div>
     <div class="libbar">
@@ -457,6 +433,23 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
     <div class="lib" id="lib"></div>
     <div class="pager"><span></span><button class="btn" id="lib-more">Ver más</button></div>
   </div>
+</div>
+<div id="lib-pista" hidden>
+<p class="intro"><b>Dónde golpea y dónde bota su bola</b>, dibujado sobre la pista.</p>
+<div class="cols c-3-1">
+    <div class="panel">
+      <header><h2>Posición en el impacto</h2><div class="seg" id="p-mode"><button data-v="density" aria-pressed="true">Densidad</button><button data-v="stance" aria-pressed="false">Apoyo</button><button data-v="sit" aria-pressed="false">Bola</button><button data-v="bounce" aria-pressed="false">Botes</button><button data-v="dest" aria-pressed="false">Destino</button></div></header>
+      <div class="body chart" id="court"></div>
+    </div>
+    <div style="display:grid;gap:16px;align-content:start">
+      <div class="panel"><div class="filterbar">
+        <label class="ctl">Partido<select id="p-match"></select></label>
+      </div></div>
+      <div class="panel"><header><h2>Resumen</h2></header><div class="body" id="p-stats" style="display:grid;gap:12px"></div></div>
+      <div class="panel"><header><h2>Leyenda</h2></header><div class="body legend" id="p-legend"></div></div>
+    </div>
+  </div>
+</div>
 </section>
 
 <section class="screen" id="tab-golpe" hidden>
@@ -568,29 +561,35 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
   </div>
 </section>
 
-<section class="screen" id="tab-explorador" hidden>
-<p class="intro"><b>Buscar un golpe.</b> La lista de todos sus golpes con sus datos principales; pulsa uno para verlo.</p>
+<section class="screen" id="tab-conclusiones" hidden>
+<p class="intro"><b>Conclusiones.</b> Primero lo que hace siempre (sobre todos sus golpes, cada conclusión con sus vídeos y su confianza); después, si su técnica cambia según la situación (inicio o final del partido, presión, errores…), comparando bolas equivalentes y solo si la diferencia supera el error de medida.</p>
+<h2 class="secth" id="sec-resumen">Lo que hace siempre</h2>
+<div class="kpis" id="kpis"></div>
   <div class="panel">
-    <div id="slot-explorador"></div>
-    <div class="filterbar" id="filters">
-      <label class="ctl">Partido<select id="f-match"></select></label>
-      <label class="ctl">Apoyo<select id="f-stance"><option value="">Todos</option><option value="abierto">Abierto</option><option value="semiabierto">Semiabierto</option><option value="neutro">Neutro</option><option value="cerrado">Cerrado</option></select></label>
-      <label class="ctl">Situación<select id="f-sit"><option value="">Todas</option><option value="neutra">Neutra</option><option value="abierta">Bola abierta</option><option value="rapida">Bola rápida</option><option value="baja">Bola baja</option><option value="corta">Bola corta</option></select></label>
-      <label class="ctl">Lado<select id="f-side"><option value="">Ambos</option><option value="near">Cercano (detalle completo)</option><option value="far">Lejano (detalle reducido)</option></select></label>
-      <label class="ctl">Presión<select id="f-press"><option value="">Todos</option><option value="1">Bajo presión</option><option value="0">Sin presión</option></select></label>
-      <label class="ctl">Resultado<select id="f-out"><option value="">Todos</option><option value="ganador">No devuelta</option><option value="error">Error</option><option value="sigue">Sigue</option></select></label>
-      <label class="ctl">Revisión<select id="f-rev"><option value="">Todos</option><option value="0">Sin dudas</option><option value="1">Con dudas</option></select></label>
-      <label class="ctl">Vista rápida<select id="f-preset"><option value="">—</option><option value="best">Mejor capturados</option><option value="typ">Más representativos</option></select></label>
-    </div>
-    <ul class="say" id="ex-say"></ul>
-    <details class="extra" open><summary>Tabla completa</summary><div class="tw"><table class="data" id="ex-table"></table></div></details>
-    <div class="pager"><span id="ex-count"></span><span style="display:flex;gap:6px"><button class="btn" id="ex-prev">Anterior</button><button class="btn" id="ex-next">Siguiente</button></span></div>
+    <header><h2>Conclusiones</h2><span class="note">Generadas a partir de los datos; cada una con su confianza</span></header>
+    <div class="body" id="concl" style="display:grid;gap:10px"></div>
   </div>
-</section>
-
-<section class="screen" id="tab-comparativas" hidden>
-<p class="intro"><b>¿Cambia su técnica entre dos grupos de golpes?</b> Inicio y final del partido, presión, errores… comparando bolas equivalentes. Solo se da por buena una diferencia mayor que el error de medida.</p>
   <div class="panel">
+    <header><h2>Hallazgos</h2><span class="note" id="noise-note"></span></header>
+    <div class="forest" id="forest" style="margin-top:8px"></div>
+  </div>
+  <div class="cols c-3-1">
+    <div class="panel">
+      <header><h2>Evolución durante el partido</h2><div class="seg" id="evo-metric"></div></header>
+      <div class="body chart" id="evo"></div>
+    </div>
+    <div class="panel">
+      <header><h2>Proporciones</h2><span class="note">Todas las bolas</span></header>
+      <div class="body" id="props" style="display:grid;gap:14px"></div>
+    </div>
+  </div>
+  <div class="panel">
+    <header><h2>Partidos</h2><span class="note">Pulsa una fila para ver sus golpes</span></header>
+    <div class="body tw" style="padding-inline:0"><table class="data" id="matches"></table></div>
+  </div>
+<h2 class="secth" id="sec-cambia" style="margin-top:28px">Lo que cambia según la situación</h2>
+<p class="note" style="margin:0 0 10px"><b>¿Cambia su técnica entre dos grupos de golpes?</b> Inicio y final del partido, presión, errores… comparando bolas equivalentes. Solo se da por buena una diferencia mayor que el error de medida.</p>
+<div class="panel">
     <div class="filterbar">
       <label class="ctl">Comparar<select id="c-pair">
         <option value="fatiga">Primer tercio / Último tercio del partido</option>
@@ -614,6 +613,29 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
   </div>
   <details class="extra" id="c-gridwrap" open><summary>Gráficas por medida (cada punto es un golpe)</summary><div class="cols c-1-1" id="c-grid"></div></details>
 </section>
+<section class="screen" id="tab-datos" hidden>
+<p class="intro"><b>Datos del análisis.</b> De dónde salen los golpes de esta web: partidos, cuántos golpes hay de cada lado, cuáles son dudosos y por qué, qué medidas faltan, y la última revisión automática.</p>
+<div class="panel"><div class="body" id="datos-body" style="padding:12px 16px"></div></div>
+</section>
+<section class="screen" id="tab-explorador" hidden>
+<p class="intro"><b>Buscar un golpe.</b> La lista de todos sus golpes con sus datos principales; pulsa uno para verlo.</p>
+  <div class="panel">
+    <div id="slot-explorador"></div>
+    <div class="filterbar" id="filters">
+      <label class="ctl">Partido<select id="f-match"></select></label>
+      <label class="ctl">Apoyo<select id="f-stance"><option value="">Todos</option><option value="abierto">Abierto</option><option value="semiabierto">Semiabierto</option><option value="neutro">Neutro</option><option value="cerrado">Cerrado</option></select></label>
+      <label class="ctl">Situación<select id="f-sit"><option value="">Todas</option><option value="neutra">Neutra</option><option value="abierta">Bola abierta</option><option value="rapida">Bola rápida</option><option value="baja">Bola baja</option><option value="corta">Bola corta</option></select></label>
+      <label class="ctl">Lado<select id="f-side"><option value="">Ambos</option><option value="near">Cercano (detalle completo)</option><option value="far">Lejano (detalle reducido)</option></select></label>
+      <label class="ctl">Presión<select id="f-press"><option value="">Todos</option><option value="1">Bajo presión</option><option value="0">Sin presión</option></select></label>
+      <label class="ctl">Resultado<select id="f-out"><option value="">Todos</option><option value="ganador">No devuelta</option><option value="error">Error</option><option value="sigue">Sigue</option></select></label>
+      <label class="ctl">Revisión<select id="f-rev"><option value="">Todos</option><option value="0">Sin dudas</option><option value="1">Con dudas</option></select></label>
+      <label class="ctl">Vista rápida<select id="f-preset"><option value="">—</option><option value="best">Mejor capturados</option><option value="typ">Más representativos</option></select></label>
+    </div>
+    <ul class="say" id="ex-say"></ul>
+    <details class="extra" open><summary>Tabla completa</summary><div class="tw"><table class="data" id="ex-table"></table></div></details>
+    <div class="pager"><span id="ex-count"></span><span style="display:flex;gap:6px"><button class="btn" id="ex-prev">Anterior</button><button class="btn" id="ex-next">Siguiente</button></span></div>
+  </div>
+</section>
 
 <section class="screen" id="tab-lateral" hidden>
 <p class="intro"><b>Su derecha vista de lado (y de frente), en entrenamientos.</b> Lo que la cámara de la tele (detrás del fondo) no deja ver: cuánto por delante del cuerpo golpea, el ángulo real del swing, las rodillas, el tronco, la caída y el retraso de la raqueta y, de frente, hacia dónde mira la cabeza en el impacto.</p>
@@ -631,23 +653,6 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 <p class="intro"><b>¿Qué medidas son de fiar?</b> Cada medida se comprueba sola en sus golpes: si cambia más entre fotogramas vecinos de un mismo golpe que entre sus golpes, es ruido de la cámara y no técnica; si dos métodos independientes no coinciden, está sesgada. Las que no son de fiar no se dan como valor suyo en «Cópiala».</p>
 <div class="panel"><div class="body" id="rel-body" style="padding:12px 16px"></div></div>
 </section>
-<section class="screen" id="tab-pista" hidden>
-<p class="intro"><b>Dónde golpea y dónde bota su bola</b>, dibujado sobre la pista.</p>
-  <div class="cols c-3-1">
-    <div class="panel">
-      <header><h2>Posición en el impacto</h2><div class="seg" id="p-mode"><button data-v="density" aria-pressed="true">Densidad</button><button data-v="stance" aria-pressed="false">Apoyo</button><button data-v="sit" aria-pressed="false">Bola</button><button data-v="bounce" aria-pressed="false">Botes</button><button data-v="dest" aria-pressed="false">Destino</button></div></header>
-      <div class="body chart" id="court"></div>
-    </div>
-    <div style="display:grid;gap:16px;align-content:start">
-      <div class="panel"><div class="filterbar">
-        <label class="ctl">Partido<select id="p-match"></select></label>
-      </div></div>
-      <div class="panel"><header><h2>Resumen</h2></header><div class="body" id="p-stats" style="display:grid;gap:12px"></div></div>
-      <div class="panel"><header><h2>Leyenda</h2></header><div class="body legend" id="p-legend"></div></div>
-    </div>
-  </div>
-</section>
-
     </div>
   </div>
 </div>
@@ -684,8 +689,13 @@ const pct = (a, f) => a.length ? 100 * a.filter(f).length / a.length : NaN;
 function niceTicks(lo, hi, n = 5) { const span = (hi - lo) || 1, m = 10 ** Math.floor(Math.log10(span / n)); const st = [1, 2, 2.5, 5, 10].map(x => x * m).find(x => span / x <= n) || 10 * m; const t = []; for (let v = Math.ceil(lo / st) * st; v <= hi + 1e-9; v += st) t.push(+v.toFixed(6)); return t; }
 const sitTxt = s => s.sit.neutra ? "neutra" : [s.wide && "abierta", s.fast && "rápida", s.height && s.height !== "media" && s.height, s.short && "corta"].filter(Boolean).join(", ") || "sin clasificar";
 const OUT_ES = { out: "error (fuera)", net: "error (red)", winner: "no devuelta (ganador o error forzado)", rally: "sigue el punto" };
-const REVIEW_ES = { half_volley_candidate: "media volea candidata", impact_without_audio: "impacto sin audio ni bola", racket_not_seen_when_loaded: "raqueta no vista en el armado", elbow_implausible: "codo inverosímil" };
-const revTxt = r => r.startsWith("phase:") ? "fase dudosa: " + r.slice(6) : r.startsWith("impossible:") ? "medida imposible descartada: " + r.slice(11) : (REVIEW_ES[r] || r);
+const REVIEW_ES = { half_volley_candidate: "media volea candidata", impact_without_audio: "impacto sin audio ni bola", racket_not_seen_when_loaded: "raqueta no vista en el armado",
+  elbow_implausible: "codo inverosímil", elbow_implausible_at_impact: "codo inverosímil en el impacto (brazos confundidos)" };
+const PHASE_ES = { ready: "espera", takeback: "preparación", loaded: "armado", acceleration: "aceleración", impact: "impacto", extension: "extensión", finish: "terminación", recovery: "recuperación" };
+const IMPOSSIBLE_ES = { base_width_loaded_pct: "anchura de la base en el armado", elbow_impact_deg: "codo en el impacto", non_elbow_impact_deg: "codo del brazo libre en el impacto" };
+const revTxt = r => r.startsWith("phase:") ? "fase no encontrada o dudosa: " + (PHASE_ES[r.slice(6)] || r.slice(6))
+  : r.startsWith("impossible:") ? "medida imposible descartada: " + (IMPOSSIBLE_ES[r.slice(11)] || (typeof MK !== "undefined" && MK[r.slice(11)] ? MK[r.slice(11)].name.toLowerCase() : r.slice(11).replace(/_/g, " ")))
+  : (REVIEW_ES[r] || r.replace(/_/g, " "));
 
 /* ===== Tooltip ===== */
 const tip = document.getElementById("tip");
@@ -705,7 +715,9 @@ document.getElementById("scope").innerHTML = `<span class="tag"><b>${MATCHES.len
 document.getElementById("noise-note").textContent = `Diferencia entre grupos en múltiplos del ruido de medida${DATA.noise_validated ? " (medido sobre pares de golpes equivalentes de la jugadora: cota conservadora)" : " (provisional: hacen falta al menos 20 golpes con bola neutra)"}. Solo con al menos 5 golpes por grupo.`;
 
 /* ===== Navegación ===== */
-const TABS = ["aprende", "modelo", "panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista", "lateral", "fiabilidad"];
+const TABS = ["aprende", "videoteca", "golpe", "comparar", "conclusiones", "explorador", "lateral", "fiabilidad", "datos"];
+// the old screens live inside the new ones: their names still work (menu shortcuts, links, the audit)
+const TAB_ALIAS = { modelo: ["aprende", "sec-modelo"], panel: ["conclusiones", "sec-resumen"], comparativas: ["conclusiones", "sec-cambia"], pista: ["videoteca", "pista"] };
 const EMPTY = !STROKES.length;
 if (EMPTY) {                     // nothing analysed yet: one clear message instead of empty screens
   const m = document.createElement("section");
@@ -732,7 +744,29 @@ function renderReliability() {
       + order.filter(o => by[o]).map(o => `<details class="extra" ${o === "fiable" ? "" : "open"}><summary><b>${REL_ES[o][0]}</b> (${by[o].length}): ${REL_ES[o][1]}</summary><ul class="say">${by[o].map(row).join("")}</ul></details>`).join("")
     : `<p class="dim">Todavía no hay golpes suficientes para juzgar ninguna medida.</p>`;
 }
+function setLibMode(m) {
+  document.getElementById("lib-list").hidden = m !== "list"; document.getElementById("lib-pista").hidden = m !== "pista";
+  document.querySelectorAll("#lib-mode button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === m));
+}
+function renderData() {
+  const near = STROKES.filter(s => s.side !== "far"), far = STROKES.filter(s => s.side === "far"), I = DATA.run_info || {};
+  const cnt = arr => { const c = {}; arr.forEach(x => { c[x] = (c[x] || 0) + 1; }); return Object.entries(c).sort((a, b) => b[1] - a[1]); };
+  const doubts = cnt(near.flatMap(s => s.review || [])), notes = cnt(near.flatMap(s => s.notes || []));
+  const R = DATA.reliability || {}, rc = cnt(Object.values(R).map(v => v.verdict));
+  const li = (a, b) => `<li><b>${a}</b>: ${b}</li>`;
+  document.getElementById("datos-body").innerHTML = `<ul class="say">`
+    + li("Partidos", MATCHES.map(m => `${m.id} contra ${m.rival} · ${m.surf !== "—" ? "pista " + m.surf : "superficie sin determinar"}${m.date !== "—" ? " · " + m.date : ""} · ${m.n} golpes`).join("<br>"))
+    + li("Golpes", `${near.length} del lado cercano (con todo el detalle) y ${far.length} del lado lejano (solo posición, desplazamiento, altura del impacto y destino)`)
+    + li("Golpes dudosos", doubts.length ? `${near.filter(s => (s.review || []).length).length} de ${near.length}: ${doubts.map(([k, n]) => `${revTxt(k)} (${n})`).join(", ")}` : `ninguno de ${near.length}`)
+    + li("Medidas que faltan en algún golpe", notes.length ? notes.map(([k, n]) => `${revTxt(k)} (${n})`).join(", ") + ". Esos golpes son válidos: solo falta esa medida" : "ninguna")
+    + li("Fiabilidad de las medidas", rc.length ? rc.map(([k, n]) => `${n} ${k}`).join(" · ") + ` (detalle en «Fiabilidad de las medidas»)` : "sin juzgar todavía")
+    + (I.analysis_min ? li("Tiempo de análisis", `${fmt(I.analysis_min)} min para ${fmt(I.video_min)} min de vídeo`) : "")
+    + (I.audit ? li("Última auditoría automática", `${I.audit.ok} cumplidas · ${I.audit.falta} no cumplidas · ${I.audit.pocos} sin golpes suficientes · ${I.audit.aviso} avisos${I.audit.date ? ` (${I.audit.date})` : ""}`) : "")
+    + (I.review ? li("Revisión automática frente a la ejecución anterior", I.review) : "")
+    + li("Web generada", DATA.generated || "—") + `</ul>`;
+}
 function showTab(name) {
+  const via = name, al = TAB_ALIAS[name]; if (al) name = al[0];
   if (!TABS.includes(name)) name = "aprende";
   TABS.forEach(t => { document.getElementById("tab-" + t).hidden = (EMPTY && t !== "lateral" && t !== "aprende") || t !== name; });
   document.querySelectorAll(".nav button").forEach(b => { if (b.dataset.tab === name || (b.dataset.also || "").split(" ").includes(name)) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
@@ -747,11 +781,17 @@ function showTab(name) {
   if (name === "lateral") renderPractice();
   if (name === "aprende") renderLearn();
   else document.querySelectorAll("#pr-lib video").forEach(v => v.pause());
+  if (name === "datos") renderData();
   tip.hidden = true;
   window.scrollTo({ top: 0 });
+  document.querySelectorAll(".nav button").forEach(b => { if (al && b.dataset.tab === via) b.setAttribute("aria-current", "page"); });
+  if (al && al[1] === "pista") setLibMode("pista");
+  else if (name === "videoteca") setLibMode("list");
+  if (al && al[1] !== "pista") { const el = document.getElementById(al[1]); if (el) { if (el.tagName === "DETAILS") el.open = true; el.scrollIntoView({ block: "start" }); } }
 }
 document.querySelectorAll(".nav button").forEach(b => b.addEventListener("click", () => showTab(b.dataset.tab)));
 document.getElementById("g-back").addEventListener("click", () => showTab("videoteca"));
+document.querySelectorAll("#lib-mode button").forEach(b => b.addEventListener("click", () => setLibMode(b.dataset.v)));
 
 /* ===== PANEL ===== */
 const third = s => !isN(s.frac) ? null : s.frac < 1 / 3 ? 1 : s.frac < 2 / 3 ? 2 : 3;
@@ -1880,7 +1920,7 @@ const MODEL = DATA.model || { cards: [], variants: {}, summary: [], footwork: {}
 const SID = Object.fromEntries(STROKES.map(s => [s.id, s]));
 let mSit = "";
 const MSRC = (typeof mkSrc === "function") ? mkSrc() : null;
-document.getElementById("nav-modelo").textContent = "Su patrón típico";
+
 document.getElementById("m-title").textContent = `${PL.name || "Jugadora"}: su ${(STROKE_ES[DATA.stroke] || "golpe").toLowerCase()}`;
 document.getElementById("m-n").textContent = `${MODEL.n || 0} golpes analizados (${MODEL.n_near || 0} del lado cercano, con todo el detalle)`;
 document.getElementById("m-sum").innerHTML = (MODEL.summary || []).map(t => `<li>${t}</li>`).join("") || `<li>Todavía no hay golpes suficientes para describir su técnica.</li>`;
