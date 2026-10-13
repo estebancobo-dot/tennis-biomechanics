@@ -64,18 +64,18 @@
   }
  },
  "identity": {
-  "fingerprint": "914c6eb3abaac066",
+  "fingerprint": "daa4ae3de8f7da45",
   "version": "4",
-  "seconds": 3.7,
-  "finished": "2026-10-12 15:50:02",
+  "seconds": 1824.3,
+  "finished": "2026-10-13 03:30:30",
   "summary": {
-   "runs": 10,
-   "votes": 4,
-   "confidence": 1.0,
-   "by_end_changes": 9,
+   "runs": 67,
+   "votes": 41,
+   "confidence": 0.59,
+   "by_end_changes": 66,
    "by_clothes": 0,
-   "conflicts": 1,
-   "decided": 9
+   "conflicts": 0,
+   "decided": 66
   }
  },
  "candidates": {

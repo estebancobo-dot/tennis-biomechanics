@@ -1,14 +1,14 @@
 {
  "fps": 10.0,
- "target_cluster": 1,
- "confidence": 1.0,
- "votes": 4,
+ "target_cluster": null,
+ "confidence": 0.59,
+ "votes": 41,
  "ends_base": true,
  "runs": [
   {
    "start": 0,
    "end": 75,
-   "cluster": 1,
+   "cluster": 0,
    "end_changes": 10,
    "near_is_target": true,
    "method": "cambios de lado"
@@ -16,7 +16,7 @@
   {
    "start": 150,
    "end": 225,
-   "cluster": 1,
+   "cluster": 0,
    "end_changes": 10,
    "near_is_target": true,
    "method": "cambios de lado"
@@ -24,7 +24,7 @@
   {
    "start": 429,
    "end": 507,
-   "cluster": 1,
+   "cluster": 0,
    "end_changes": 10,
    "near_is_target": true,
    "method": "cambios de lado"
@@ -32,7 +32,7 @@
   {
    "start": 742,
    "end": 898,
-   "cluster": 1,
+   "cluster": 0,
    "end_changes": 10,
    "near_is_target": true,
    "method": "cambios de lado"
@@ -42,14 +42,14 @@
    "end": 1240,
    "cluster": 0,
    "end_changes": 10,
-   "near_is_target": null,
-   "method": "conflicto"
+   "near_is_target": true,
+   "method": "cambios de lado"
   },
   {
    "start": 1303,
    "end": 1416,
    "return_vote": true,
-   "cluster": 1,
+   "cluster": 0,
    "end_changes": 10,
    "near_is_target": true,
    "method": "cambios de lado"
@@ -58,7 +58,7 @@
    "start": 1593,
    "end": 1668,
    "return_vote": true,
-   "cluster": 1,
+   "cluster": 0,
    "end_changes": 10,
    "near_is_target": true,
    "method": "cambios de lado"
@@ -67,7 +67,7 @@
    "start": 1742,
    "end": 1816,
    "return_vote": true,
-   "cluster": 1,
+   "cluster": 0,
    "end_changes": 10,
    "near_is_target": true,
    "method": "cambios de lado"
@@ -76,17 +76,510 @@
    "start": 2077,
    "end": 2166,
    "return_vote": true,
-   "cluster": 1,
+   "cluster": 0,
    "end_changes": 10,
    "near_is_target": true,
    "method": "cambios de lado"
   },
   {
    "start": 2367,
-   "end": 2405,
-   "cluster": 1,
+   "end": 2453,
+   "return_vote": true,
+   "cluster": 0,
    "end_changes": 10,
    "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 2540,
+   "end": 2626,
+   "return_vote": true,
+   "cluster": 0,
+   "end_changes": 10,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 2858,
+   "end": 2938,
+   "cluster": 0,
+   "end_changes": 10,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 3177,
+   "end": 3272,
+   "cluster": 0,
+   "end_changes": 10,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 3315,
+   "end": 3382,
+   "return_vote": true,
+   "cluster": 0,
+   "end_changes": 10,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 3775,
+   "end": 3882,
+   "return_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 3970,
+   "end": 4040,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 4110,
+   "end": 4250,
+   "return_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 4413,
+   "end": 4677,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 4879,
+   "end": 5024,
+   "return_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 5343,
+   "end": 5417,
+   "return_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 5639,
+   "end": 5713,
+   "return_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 6014,
+   "end": 6096,
+   "return_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 6340,
+   "end": 6392,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 6452,
+   "end": 6527,
+   "return_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 9114,
+   "end": 9348,
+   "cluster": 1,
+   "end_changes": null,
+   "near_is_target": null,
+   "method": null
+  },
+  {
+   "start": 9464,
+   "end": 9561,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 9609,
+   "end": 9694,
+   "serve_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 10136,
+   "end": 10205,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 10265,
+   "end": 10325,
+   "serve_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 10502,
+   "end": 10616,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 10676,
+   "end": 10736,
+   "serve_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 10941,
+   "end": 11075,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 11292,
+   "end": 11385,
+   "serve_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 11442,
+   "end": 11505,
+   "serve_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 11704,
+   "end": 11809,
+   "serve_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 11981,
+   "end": 12123,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 12297,
+   "end": 12368,
+   "serve_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 12438,
+   "end": 12509,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 12719,
+   "end": 12808,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 12901,
+   "end": 12962,
+   "serve_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 13125,
+   "end": 13213,
+   "serve_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 13305,
+   "end": 13364,
+   "serve_vote": false,
+   "cluster": 0,
+   "end_changes": 11,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 14142,
+   "end": 14207,
+   "serve_vote": true,
+   "cluster": 0,
+   "end_changes": 12,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 14352,
+   "end": 14424,
+   "serve_vote": true,
+   "cluster": 0,
+   "end_changes": 12,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 14594,
+   "end": 14664,
+   "serve_vote": true,
+   "cluster": 0,
+   "end_changes": 12,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 14701,
+   "end": 14775,
+   "serve_vote": true,
+   "cluster": 0,
+   "end_changes": 12,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 14943,
+   "end": 15016,
+   "serve_vote": true,
+   "cluster": 0,
+   "end_changes": 12,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 15247,
+   "end": 15321,
+   "cluster": 0,
+   "end_changes": 12,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 15395,
+   "end": 15469,
+   "return_vote": true,
+   "cluster": 0,
+   "end_changes": 12,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 15654,
+   "end": 15731,
+   "cluster": 0,
+   "end_changes": 12,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 15960,
+   "end": 16037,
+   "return_vote": true,
+   "cluster": 0,
+   "end_changes": 12,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 16089,
+   "end": 16155,
+   "return_vote": true,
+   "cluster": 0,
+   "end_changes": 12,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 16222,
+   "end": 16296,
+   "cluster": 0,
+   "end_changes": 12,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 16370,
+   "end": 16593,
+   "cluster": 0,
+   "end_changes": 12,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 16948,
+   "end": 17100,
+   "return_vote": true,
+   "cluster": 0,
+   "end_changes": 12,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 17328,
+   "end": 17400,
+   "return_vote": true,
+   "cluster": 0,
+   "end_changes": 12,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 17473,
+   "end": 17593,
+   "cluster": 0,
+   "end_changes": 12,
+   "near_is_target": true,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 18716,
+   "end": 18801,
+   "cluster": 0,
+   "end_changes": 13,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 18842,
+   "end": 18924,
+   "return_vote": false,
+   "cluster": 0,
+   "end_changes": 13,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 19089,
+   "end": 19163,
+   "return_vote": false,
+   "cluster": 0,
+   "end_changes": 13,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 19236,
+   "end": 19310,
+   "return_vote": false,
+   "cluster": 0,
+   "end_changes": 13,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 19505,
+   "end": 19678,
+   "return_vote": false,
+   "cluster": 0,
+   "end_changes": 13,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 19772,
+   "end": 19913,
+   "return_vote": false,
+   "cluster": 0,
+   "end_changes": 13,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 19920,
+   "end": 19976,
+   "cluster": 0,
+   "end_changes": 13,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 20115,
+   "end": 20214,
+   "cluster": 0,
+   "end_changes": 13,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 20268,
+   "end": 20367,
+   "return_vote": false,
+   "cluster": 0,
+   "end_changes": 13,
+   "near_is_target": false,
+   "method": "cambios de lado"
+  },
+  {
+   "start": 20679,
+   "end": 20768,
+   "serve_vote": false,
+   "cluster": 0,
+   "end_changes": 13,
+   "near_is_target": false,
    "method": "cambios de lado"
   }
  ]
