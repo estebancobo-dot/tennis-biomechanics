@@ -106,6 +106,16 @@ function Subir-Registros {
                 Copy-Item "$($m.FullName)\series\*.json" "$d\series" -Force -ErrorAction SilentlyContinue
             }
         }
+        # pruebas aparte pedidas por Claude (output\_poc*: velocidad), con otro nombre para no pisar las de _smoke
+        foreach ($p in @(Get-ChildItem "$Base\output" -Directory -Filter "_poc*" -ErrorAction SilentlyContinue)) {
+            foreach ($m in @(Get-ChildItem $p.FullName -Directory -ErrorAction SilentlyContinue)) {
+                foreach ($j in @("registro.log", "manifest.json", "strokes_errores.json", "strokes.json", "court.json", "score.json")) {
+                    $f = Join-Path $m.FullName $j
+                    if (Test-Path $f) { Copy-Item $f "$d\partidos\$($p.Name.TrimStart('_'))_$($m.Name)_$j" -Force }
+                }
+            }
+            if (Test-Path "$($p.FullName)\auditoria\auditoria.md") { Copy-Item "$($p.FullName)\auditoria\auditoria.md" "$d\auditoria_$($p.Name.TrimStart('_')).md" -Force }
+        }
         # imagenes de diagnostico de la prueba rapida (planos con la pista dibujada) y lo que lee el OCR
         if (Test-Path "$Base\output\_smoke\diag") {
             New-Item -ItemType Directory -Force -Path "$d\diag" | Out-Null
@@ -221,7 +231,7 @@ function Registrar-Ciclo {
         # Parallel: si el ciclo anterior sigue trabajando, el nuevo arranca, lo ve y sale sin error
         # (con IgnoreNew Windows lo rechazaba y lo marcaba como fallo, 0x800710E0, cada 10 minutos)
         $ajustes = New-ScheduledTaskSettingsSet -StartWhenAvailable -MultipleInstances Parallel -AllowStartIfOnBatteries `
-            -DontStopIfGoingOnBatteries -ExecutionTimeLimit (New-TimeSpan -Hours 3)
+            -DontStopIfGoingOnBatteries -ExecutionTimeLimit (New-TimeSpan -Hours 12)
         $quien = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType Interactive -RunLevel Limited
         Register-ScheduledTask -TaskName $nombre -Action $accion -Trigger @($diario, $alEntrar) -Settings $ajustes -Principal $quien `
             -Description "Tenis ($version): trae el codigo nuevo, recalcula lo necesario, revisa y sube los registros" -Force | Out-Null

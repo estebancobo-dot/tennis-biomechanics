@@ -7,6 +7,7 @@ cuánto tardaría el partido entero.
 """
 import argparse
 import json
+import shutil
 import subprocess
 import sys
 import time
@@ -29,10 +30,17 @@ def main():
     ap.add_argument("--start", type=float, default=None,
                     help="segundo de inicio del trozo (por defecto: un tramo de juego buscado automáticamente)")
     ap.add_argument("--minutes", type=float, default=4)
+    ap.add_argument("--out-name", default="_smoke",
+                    help="carpeta dentro de la salida (otra que _smoke = prueba aparte, p. ej. de velocidad, sin tocar la habitual)")
     args = ap.parse_args()
 
     cfg = load_config()
-    out_root = Path(cfg.get("paths", {}).get("output", "output")) / "_smoke"
+    out_root = Path(cfg.get("paths", {}).get("output", "output")) / args.out_name
+    if args.out_name != "_smoke":          # the stretch of play already found for this video is reused
+        memo0 = out_root.parent / "_smoke" / "tramo.json"
+        out_root.mkdir(parents=True, exist_ok=True)
+        if memo0.exists() and not (out_root / "tramo.json").exists():
+            shutil.copy(memo0, out_root / "tramo.json")
     out_root.mkdir(parents=True, exist_ok=True)
     src = Path(args.video)
     full = probe(src).duration

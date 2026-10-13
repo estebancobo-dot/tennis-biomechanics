@@ -30,6 +30,36 @@ function Prueba-Modelos {
     Paso "Prueba de modelos (pose y bola, actual frente a alternativas; tramo de 40 min, sigue en el proximo ciclo)"
     & uv run python scripts/model_trials.py --root "$Base\datasets" --device dml --budget-min 40 2>&1 | Out-Host
 }
+# pruebas que pide Claude desde el repositorio (config/peticion_pc.txt: "id: N" y "accion: ..."), una vez cada id
+#   poc = prueba de velocidad en carpetas aparte: 4 min (_poc4) y, si sale bien, 35 min (_poc); nunca toca _smoke
+function Leer-Peticion {
+    $f = Join-Path $RepoDir "config\peticion_pc.txt"
+    if (-not (Test-Path $f)) { return $null }
+    $p = @{}
+    foreach ($l in Get-Content $f) { if ($l -match "^\s*(\w+)\s*:\s*(.+?)\s*$") { $p[$Matches[1]] = $Matches[2] } }
+    return $p
+}
+function Peticion-Pendiente {
+    $p = Leer-Peticion
+    if (-not $p -or -not $p["id"] -or $p["accion"] -eq "ninguna") { return $false }
+    $hecha = "$Out\peticion_hecha.txt"
+    return -not ((Test-Path $hecha) -and ((Get-Content $hecha -Raw).Trim() -eq $p["id"]))
+}
+function Hacer-Peticion {
+    $p = Leer-Peticion
+    $p["id"] | Set-Content "$Out\peticion_hecha.txt"           # una sola vez, salga bien o mal
+    $ps1 = Join-Path $RepoDir "scripts\windows\prueba_rapida.ps1"
+    if ($p["accion"] -eq "poc") {
+        Paso "Peticion $($p['id']): prueba de velocidad, 4 min de partido en output\_poc4"
+        $t0 = Get-Date
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $ps1 -Minutos 4 -Salida "_poc4" | Out-Host
+        $inf = "$Base\output\_poc4\informe\index.html"
+        if ((Test-Path $inf) -and (Get-Item $inf).LastWriteTime -gt $t0) {
+            Paso "Peticion $($p['id']): sin errores; ahora 35 min de partido en output\_poc"
+            & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $ps1 -Minutos 35 -Salida "_poc" | Out-Host
+        } else { Write-Host "La prueba de 4 min no termino bien: no se lanza la de 35 (ver prueba_poc4.log)" -ForegroundColor Red }
+    } else { Write-Host "Peticion desconocida: $($p['accion'])" -ForegroundColor Yellow }
+}
 # rastro de cada arranque (antes de cualquier cosa que pueda fallar): se sube con la senal de vida
 try { "arranque: $(Get-Date -Format s) (pid $PID)" | Set-Content "$Out\ciclo_arranque.txt" } catch {}
 
@@ -82,7 +112,9 @@ try {
         & uv run python scripts/auto_cycle.py review $aud $prev "$Out\revision_automatica.md" $Log 2>&1 | Out-Host
     }
     # prueba de modelos en este PC (scripts/model_trials.py): cuando cambia la prueba o aun no existe
-    if ((Pruebas-Pendientes) -or ($cambios -match "model_trials\.py|pose/variants\.py")) { Prueba-Modelos }
+    # prueba pedida por Claude en config/peticion_pc.txt (id nuevo): primero eso, sin la prueba de modelos a la vez
+    if (Peticion-Pendiente) { Hacer-Peticion }
+    elseif ((Pruebas-Pendientes) -or ($cambios -match "model_trials\.py|pose/variants\.py")) { Prueba-Modelos }
     Ok "Ciclo automatico terminado ($modo)."
 } catch {
     Write-Host "ERROR: $_" -ForegroundColor Red

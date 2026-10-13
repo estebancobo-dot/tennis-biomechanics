@@ -1,0 +1,4 @@
+id: 0
+accion: ninguna
+# Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
+#   poc = prueba de velocidad en carpetas aparte (4 min y despues 35 min), sin tocar output\_smoke

@@ -2,10 +2,10 @@
 # con su informe + validacion automatica con puntos anotados de partidos publicos (F3Set).
 # Usa el primer video de C:\tenis\videos. Con -Minutos 35 es la prueba media (2b_prueba_media.bat):
 # suficientes golpes para que el informe describa su derecha y cada situacion.
-param([int]$Minutos = 4)
+param([int]$Minutos = 4, [string]$Salida = "_smoke")
 $ErrorActionPreference = "Stop"
 . "$PSScriptRoot\comun.ps1"
-$Log = if ($Minutos -gt 4) { "$Base\output\prueba_media.log" } else { "$Base\output\prueba_rapida.log" }
+$Log = if ($Salida -ne "_smoke") { "$Base\output\prueba$Salida.log" } elseif ($Minutos -gt 4) { "$Base\output\prueba_media.log" } else { "$Base\output\prueba_rapida.log" }
 New-Item -ItemType Directory -Force -Path "$Base\output" | Out-Null
 Start-Transcript -Path $Log | Out-Null
 try {
@@ -38,7 +38,7 @@ try {
     catch { Write-Host "No se pudieron bajar o analizar (no impide usar el programa)." -ForegroundColor Yellow }
 
     Paso ("3/4 {0} minutos de partido, todas las etapas e informe ({1})" -f $Minutos, $(if ($Minutos -gt 4) { "unos 60 min" } else { "15-30 min" }))
-    Ejecutar uv @("run", "python", "scripts/smoke_test.py", $video.FullName, "--minutes", "$Minutos")
+    Ejecutar uv @("run", "python", "scripts/smoke_test.py", $video.FullName, "--minutes", "$Minutos", "--out-name", $Salida)
 
     Paso "4/4 Validacion automatica: puntos anotados de partidos de Rybakina (F3Set; 20-40 min, solo la primera vez)"
     if (Test-Path "$Base\datasets\reports\f3set_validation.json") { Ok "ya hecha" }
@@ -59,7 +59,7 @@ try {
         catch { Write-Host "No se pudieron bajar (no impide usar el programa)." -ForegroundColor Yellow }
     }
 
-    $informe = "$Base\output\_smoke\informe\index.html"
+    $informe = "$Base\output\$Salida\informe\index.html"
     if (Test-Path $informe) { Start-Process $informe }
     Write-Host ""
     Ok "PRUEBA TERMINADA. El informe se ha abierto en el navegador."
