@@ -139,7 +139,7 @@ function Subir-Registros {
         }
         if (Test-Path "$Base\output\progreso.json") { Copy-Item "$Base\output\progreso.json" "$d\progreso.json" -Force }
         if (Test-Path "$Base\output\_smoke\progreso.json") { Copy-Item "$Base\output\_smoke\progreso.json" "$d\progreso_prueba.json" -Force }
-        foreach ($f in @("$Base\output\benchmark\results.json", "$Base\datasets\reports\f3set_validation.json")) {
+        foreach ($f in @("$Base\output\benchmark\results.json", "$Base\datasets\reports\f3set_validation.json", "$Base\datasets\reports\model_trials.json", "$Base\datasets\reports\model_trials.md")) {
             if (Test-Path $f) { Copy-Item $f "$d\$(Split-Path $f -Leaf)" -Force }
         }
         # cuanto ocupa cada carpeta de salida (MB), para vigilar el disco

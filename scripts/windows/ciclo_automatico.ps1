@@ -61,6 +61,12 @@ try {
         Paso "Revision automatica frente a la ejecucion anterior"
         & uv run python scripts/auto_cycle.py review $aud $prev "$Out\revision_automatica.md" $Log 2>&1 | Out-Host
     }
+    # prueba de modelos en este PC (scripts/model_trials.py): cuando cambia la prueba o aun no existe
+    $pm = "$Base\datasets\reports\model_trials.json"
+    if (-not (Test-Path $pm) -or ($cambios -match "model_trials\.py|pose/variants\.py")) {
+        Paso "Prueba de modelos (pose y bola, actual frente a alternativas; 30-90 min, sin tocar el analisis)"
+        & uv run python scripts/model_trials.py --root "$Base\datasets" --device dml 2>&1 | Out-Host
+    }
     Ok "Ciclo automatico terminado ($modo)."
 } catch {
     Write-Host "ERROR: $_" -ForegroundColor Red
