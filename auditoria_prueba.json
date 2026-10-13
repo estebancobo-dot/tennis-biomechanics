@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 237,
+  "ok": 250,
   "falta": 0,
   "pocos datos": 126,
-  "aviso": 31
+  "aviso": 26
  },
  "items": [
   {
@@ -2222,7 +2222,7 @@
    "area": "Valores posibles",
    "name": "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
    "status": "ok",
-   "detail": "59 medidas: 6 dudosa, 25 fiable, 4 no comprobable, 2 ruido, 3 sesgo, 19 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±8.27, loaded.racket_head_lateral ±2.9. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 57.3° / 3D 12.4°, stroke.shoulders_open_first 2D 57.3° / 3D 12.4°, stroke.shoulder_brake 2D 57.3° / 3D 12.4°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
+   "detail": "59 medidas: 5 dudosa, 26 fiable, 4 no comprobable, 2 ruido, 3 sesgo, 19 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.45, loaded.racket_head_lateral ±2.9. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 57.3° / 3D 12.4°, stroke.shoulders_open_first 2D 57.3° / 3D 12.4°, stroke.shoulder_brake 2D 57.3° / 3D 12.4°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
   },
   {
    "req": 3,
@@ -2404,7 +2404,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "34797 caracteres de texto, 5 vídeos, 8 gráficos",
+   "detail": "25918 caracteres de texto, 5 vídeos, 8 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2420,7 +2420,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "7004 caracteres de texto, 6 vídeos, 28 gráficos",
+   "detail": "7032 caracteres de texto, 6 vídeos, 28 gráficos",
    "file": "pantalla_3_golpe.jpg"
   },
   {
@@ -2428,7 +2428,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Comparar dos golpes»",
    "status": "ok",
-   "detail": "5220 caracteres de texto, 5 vídeos, 2 gráficos",
+   "detail": "5224 caracteres de texto, 5 vídeos, 2 gráficos",
    "file": "pantalla_4_comparar.jpg"
   },
   {
@@ -2436,7 +2436,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "6518 caracteres de texto, 5 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']",
+   "detail": "6482 caracteres de texto, 5 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2460,7 +2460,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Fiabilidad de las medidas»",
    "status": "ok",
-   "detail": "4094 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "3996 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_8_fiabilidad.jpg"
   },
   {
@@ -2468,7 +2468,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "1276 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "1269 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -2700,7 +2700,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "153 min para 35 min de vídeo ≈ 15.3 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "157 min para 35 min de vídeo ≈ 15.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -2847,7 +2847,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (153 min para 35 min de vídeo ≈ 15.3 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (157 min para 35 min de vídeo ≈ 15.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2889,7 +2889,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (153 min para 35 min de vídeo ≈ 15.3 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (157 min para 35 min de vídeo ≈ 15.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2952,7 +2952,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (153 min para 35 min de vídeo ≈ 15.3 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (157 min para 35 min de vídeo ≈ 15.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3246,14 +3246,14 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (153 min para 35 min de vídeo ≈ 15.3 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (157 min para 35 min de vídeo ≈ 15.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#76 «Un 50 % de golpes dudosos»",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3427,8 +3427,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#101 Mejora 3: altura y separación del codo",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3441,8 +3441,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#103 Mejora 5: transferencia de peso en una frase",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3455,15 +3455,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#105 Mejora 7: ritmo con la bola (caída al subir la bola)",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#106 Mejora 8: frenado de los hombros antes del contacto",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3490,8 +3490,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#110 Mejora 12: «Lo que la distingue» (2-3 rasgos frente a la literatura, con vídeo)",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3504,8 +3504,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#112 Mejora 14: clase descriptiva de estilo (`fh_style`)",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3541,6 +3541,62 @@
    "name": "#117 Hacia dónde mira el tronco al terminar (valla lateral, de frente, girado) según el golpe",
    "status": "ok",
    "detail": "1 comprobaciones: 1 ok"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#118 Validar cada medida de forma automática, no a mano: ¿técnica o ruido?",
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa",
+   "status": "ok",
+   "detail": "no se comprueba en las salidas: ciclo automático del PC: revision_automatica.md en pc-logs (estado: HECHO)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#120 Vídeo a pantalla completa",
+   "status": "ok",
+   "detail": "9 comprobaciones: 9 ok"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#121 Ver lo que se pinta por separado, por grupos o una a una",
+   "status": "ok",
+   "detail": "9 comprobaciones: 9 ok"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#122 Web en 2 vistas principales y el resto en «Más», en dos grupos (funcional y técnico), sin perder datos",
+   "status": "ok",
+   "detail": "9 comprobaciones: 9 ok"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#123 Lo que se aprende en una sesión: plan de 3 prioridades en orden, foco externo por fase, detalle plegado",
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#124 Hacia dónde mira el tronco y las manos en la espera, medidas fiables",
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (157 min para 35 min de vídeo ≈ 15.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   }
  ]
 }

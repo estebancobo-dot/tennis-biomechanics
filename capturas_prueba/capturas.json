@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 34797,
+   "text_chars": 25918,
    "charts": 8,
    "videos": 5,
    "black_canvases": 0,
@@ -57,7 +57,7 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 7004,
+   "text_chars": 7032,
    "charts": 28,
    "videos": 6,
    "black_canvases": 0,
@@ -85,13 +85,13 @@
   },
   {
    "title": "Comparar dos golpes",
-   "text_chars": 5220,
+   "text_chars": 5224,
    "charts": 2,
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 3,
+   "dashes": 4,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -112,7 +112,7 @@
   },
   {
    "title": "Conclusiones (Panel y Comparativas)",
-   "text_chars": 6518,
+   "text_chars": 6482,
    "charts": 11,
    "videos": 5,
    "black_canvases": 0,
@@ -202,7 +202,7 @@
   },
   {
    "title": "Fiabilidad de las medidas",
-   "text_chars": 4094,
+   "text_chars": 3996,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -229,7 +229,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 1276,
+   "text_chars": 1269,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
