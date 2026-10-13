@@ -190,7 +190,10 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .libchips button small { color: var(--ink-3); margin-left: 4px; }
 .libchips button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
 .libchips button[aria-pressed="true"] small { color: var(--accent-ink); }
-.bm { display: grid; grid-template-columns: repeat(5, minmax(150px, 1fr)); gap: 8px; overflow-x: auto; }
+.sub3 { margin: 10px 0 6px; font-size: 13px; } .sub3 b { color: var(--ink); }
+.say1 { margin: 6px 0 0; font-size: 13px; color: var(--ink-2); } .say1 b { color: var(--ink); }
+.bm .mm { display: block; margin-top: 4px; font-family: JetBrains Mono, monospace; font-size: 11.5px; color: var(--ink); }
+.bm { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; overflow-x: auto; }
 .bm button { background: var(--raise); border: 1px solid var(--line); border-radius: 6px; padding: 0; cursor: pointer; overflow: hidden; text-align: left; color: var(--ink); font: inherit; display: grid; align-content: start; }
 .bm button canvas { width: 100%; aspect-ratio: 16/10; display: block; background: #000; }
 .bm button > div { padding: 6px 8px 8px; font-size: 12px; line-height: 1.4; color: var(--ink-2); }
@@ -465,6 +468,10 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
         <div class="feet"><canvas id="feet-cv" width="360" height="460"></canvas><ol id="feet-txt"></ol></div>
         <div class="legend" id="feet-leg" style="margin-top:6px"></div></div>
       <div class="bmwrap" id="bmwrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">La bola y ella</b> · qué está haciendo cuando golpea la rival, cuando la bola cruza la red, cuando bota, cuando llega a lo más alto y cuando ella golpea (pulsa para ir a ese momento)</div><div class="bm" id="bm"></div></div>
+      <div class="bmwrap" id="bodywrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">Su cuerpo en este golpe</b> · fotogramas reales con la medida dibujada encima (pulsa para ir a ese momento)</div>
+        <div class="sub3"><b>Bajar y subir</b> <span class="dim3">la línea discontinua es la altura de su cadera en la espera; la continua, donde está ahora</span></div><div class="bm" id="bd-hip"></div><p class="say1" id="bd-hip-t"></p>
+        <div class="sub3"><b>Base: distancia entre los pies</b> <span class="dim3">medida sobre la pista (homografía), en metros</span></div><div class="bm" id="bd-base"></div><p class="say1" id="bd-base-t"></p>
+        <div class="sub3"><b>Tronco al terminar</b> <span class="dim3">hacia dónde mira el pecho (línea de hombros)</span></div><div class="bm" id="bd-trunk"></div><p class="say1" id="bd-trunk-t"></p></div>
       <div style="padding:0 12px 12px"><div class="note" style="margin-bottom:6px">Estroboscópica: esqueletos de las fases sobre el fotograma del impacto (de azul a amarillo) y trayectoria de la muñeca</div><canvas id="strobe" width="1280" height="720" style="width:100%;border-radius:6px;background:#000"></canvas></div>
     </div>
     <div style="display:grid;gap:16px;align-content:start">
@@ -877,7 +884,7 @@ function loadSeries(s) {
 }
 // A "source" is one stroke being drawn: its window video, its frame series and the view mode.
 // The analysis screen uses MAIN; the comparison screen has two of its own.
-const MAIN = { get video() { return video; }, get ser() { return ser; }, get NF() { return NF; }, get view() { return view; } };
+const MAIN = { get video() { return video; }, get ser() { return ser; }, get NF() { return NF; }, get view() { return view; }, get T0() { return T0; }, get FPS() { return FPS; }, get s() { return cur; } };
 function kpAt(f, S = MAIN) { const sr = S.ser; if (!sr) return null; const k = sr.kp[f]; if (!k) return null; const p = []; for (let i = 0; i < k.length; i += 2) p.push(k[i] === null ? null : [k[i], k[i + 1]]); return p; }
 function cropRect(f, aspect = 16 / 9, S = MAIN) {
   const V = S.video, sr = S.ser, n = S.NF, W = V.videoWidth || 1920, H = V.videoHeight || 1080;
@@ -957,6 +964,14 @@ function drawFrame(ctx, Wc, Hc, f, opts, S = MAIN) {
   }
   if (opts.lines && q) coachLines(ctx, q, P, lw, S);
   if (opts.heights && q) heightBars(ctx, f, P, lw, S);
+  if (opts.base && q && q[15] && q[16]) {      // the base: a bar between the ankles with its length on the court
+    const a = P(q[15]), b = P(q[16]); ctx.save(); ctx.strokeStyle = "#ffd166"; ctx.lineWidth = lw * 1.6;
+    ctx.beginPath(); ctx.moveTo(...a); ctx.lineTo(...b); ctx.stroke();
+    [a, b].forEach(p => { ctx.beginPath(); ctx.moveTo(p[0], p[1] - lw * 5); ctx.lineTo(p[0], p[1] + lw * 5); ctx.stroke(); });
+    if (opts.base !== true) { ctx.font = `600 ${Math.max(11, lw * 7)}px JetBrains Mono, monospace`; const txt = opts.base, w = ctx.measureText(txt).width, x = (a[0] + b[0]) / 2 - w / 2, y = Math.max(a[1], b[1]) + lw * 12;
+      ctx.fillStyle = "rgba(10,13,16,.8)"; ctx.fillRect(x - 4, y - lw * 7, w + 8, lw * 9); ctx.fillStyle = "#ffd166"; ctx.fillText(txt, x, y); }
+    ctx.restore();
+  }
   if (opts.court) miniCourt(ctx, Wc, Hc, f, S);
 }
 // Height of her head and hips above her own feet now, against the same at the start of the stroke
@@ -986,14 +1001,28 @@ function hRef(S) {
   for (let g = f0; g < Math.min(sr.n, f0 + Math.round(FPS * .3)) && !r; g++) { const q = kpAt(g, S); if (!q) continue; const gy = feetY(q), hy = headY(q), hp = mid(q[11], q[12]); if (gy !== null && hy !== null && hp) r = { head: gy - hy, hip: gy - hp[1] }; }
   return (sr._href = r);
 }
+// Height of a body part above the ground from the stroke's curves (technique.stroke_curves: ground from
+// both ankles with the perspective jumps removed), now against the ready position, in cm with her height.
+// The same numbers as the sentences and «Aprende»; null when the curve has no value there.
+function curveAt(name, t, rec = cur) {
+  const v = (rec && rec.curves || {})[name]; if (!v || !isN(t)) return null;
+  const i = Math.round(Math.round((t + 1.2) / .04 * 1e4) / 1e4);       // float-safe: −0.3 is sample 22.5 → 23
+  for (const d of [0, -1, 1, -2, 2]) { const x = v[i + d]; if (x !== null && x !== undefined) return x; }
+  return null;
+}
+function curveDeltaCm(name, t, rec = cur) {
+  const tr = rec && rec.phases ? rec.phases.ready : null, a = curveAt(name, t, rec), b = isN(tr) ? curveAt(name, tr, rec) : null;
+  return a === null || b === null ? null : (a - b) * (PL.height_m || 1.8);
+}
 function heightBars(ctx, f, P, lw, S) {
   const q = kpAt(f, S), r = hRef(S), gy = q && feetY(q), tl = torsoLen(S), H = (PL.height_m || 1.8) * 100;
   if (!r || gy === null || !isN(tl)) return;
   const cx = mid(q[11], q[12]) || q[0]; if (!cx) return;
-  const cm = px => px / tl * 0.288 * H, half = tl * 1.1;
-  [["cabeza", headY(q), r.head, "#7cc4ff"], ["cadera", (mid(q[11], q[12]) || [0, null])[1], r.hip, "#9be37b"]].forEach(([n, y, h0, col]) => {
+  const cm = px => px / tl * 0.288 * H, half = tl * 1.1, tF = S.T0 + f / S.FPS;
+  [["cabeza", headY(q), r.head, "#7cc4ff", "head"], ["cadera", (mid(q[11], q[12]) || [0, null])[1], r.hip, "#9be37b", "hip"]].forEach(([n, y, h0, col, ck]) => {
     if (y === null) return;
-    const yRef = gy - h0, d = cm(yRef - y);           // + = higher than at the ready position
+    // the curve when it has a value (perspective-corrected ground), the frame itself otherwise
+    const dc = curveDeltaCm(ck, tF, S.s || cur), yRef = dc !== null ? y + dc * tl / (0.288 * H) : gy - h0, d = dc !== null ? dc : cm(yRef - y);   // + = higher than at the ready position
     const [x1, y1] = P([cx[0] - half, yRef]), [x2] = P([cx[0] + half, yRef]), [, yc] = P([0, y]);
     ctx.save(); ctx.strokeStyle = col; ctx.lineWidth = lw; ctx.setLineDash([6, 5]); ctx.globalAlpha = .9;
     ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y1); ctx.stroke();
@@ -1062,7 +1091,10 @@ async function renderKF() {
   const box = document.getElementById("kf"), id = cur.id;
   box.innerHTML = PH.map((p, i) => `<button data-t="${isN(p.t) ? p.t : ""}" ${isN(p.t) ? "" : "disabled"} title="${p.long}"><canvas width="320" height="200"></canvas><span><b>${i + 1} ${p.n}</b><span class="mono">${isN(p.t) ? (p.t >= 0 ? "+" : "−") + fmt(Math.abs(p.t), 2) : "no detectado"}</span></span></button>`).join("");
   box.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { if (b.dataset.t !== "") { stopPlay(); setT(+b.dataset.t); } }));
-  if (!cur.video) return;
+  if (!cur.video) {                      // no video: the measures and sentences are still shown
+    await renderBallMoments(id); if (cur.id !== id) return;
+    await renderBody(id); return;
+  }
   // thumbnails come from a copy of the video, so playing the stroke meanwhile is never disturbed
   const TS = await thumbSrc(); if (cur.id !== id) return;
   const cvs = [...box.querySelectorAll("canvas")];
@@ -1072,6 +1104,7 @@ async function renderKF() {
     drawFrame(cvs[i].getContext("2d"), 320, 200, kF(TS, snap(PH[i].t)), { skel: true, trail: false, ball: false, lines: true }, TS);
   }
   await renderBallMoments(id); if (cur.id !== id) return;
+  await renderBody(id); if (cur.id !== id) return;
   await renderStrobe(id);
 }
 const KIND_COL = { "lateral": "#7cc4ff", "cruzado": "#ff9f43", "carrera": "#ff5fd2", "hacia delante": "#9be37b", "hacia atrás": "#c39bff", "ajuste": "#e3e8ec" };
@@ -1147,7 +1180,8 @@ function drawFeetCourt(F) {
 async function renderBallMoments(id) {
   const box = document.getElementById("bm"), ms = cur.ballMoments || [];
   document.getElementById("bmwrap").hidden = !ms.length;
-  box.innerHTML = ms.map(m => `<button data-t="${m.t}"><canvas width="320" height="200"></canvas><div><b>${m.title} · ${m.t === 0 ? "impacto" : (m.t > 0 ? "+" : "−") + fmt(Math.abs(m.t), 2) + " s"}</b>${m.text}</div></button>`).join("");
+  const opp = ms.find(m => m.k === "opp"), fOpp = opp && ser ? fIdx(opp.t) : null;
+  box.innerHTML = ms.map(m => { const mm = ser ? mmTxt(measuresAt(fIdx(m.t), MAIN, fOpp)) : ""; return `<button data-t="${m.t}"><canvas width="320" height="200"></canvas><div><b>${m.title} · ${m.t === 0 ? "impacto" : (m.t > 0 ? "+" : "−") + fmt(Math.abs(m.t), 2) + " s"}</b>${m.text}${mm ? `<span class="mm">${mm}</span>` : ""}</div></button>`; }).join("");
   box.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { stopPlay(); setT(+b.dataset.t); }));
   if (!cur.video) return;
   const TS = await thumbSrc(); if (cur.id !== id) return;
@@ -1157,6 +1191,60 @@ async function renderBallMoments(id) {
     await seekSrc(TS, t); if (cur.id !== id) return;
     drawFrame(cvs[i].getContext("2d"), 320, 200, kF(TS, t), { skel: true, trail: false, ball: true, heights: true }, TS);
   }
+}
+// real measures at one frame of this stroke: hips against the ready position (cm, her torso as the ruler),
+// distance between her feet on the court (m, homography) and how far she has moved since a frame (m)
+function measuresAt(f, S, fFrom) {
+  const q = kpAt(f, S); if (!q) return {};
+  const out = {}, r = hRef(S), gy = feetY(q), tl = torsoLen(S), Hc = (PL.height_m || 1.8) * 100, hp = mid(q[11], q[12]);
+  const dc = curveDeltaCm("hip", S.T0 + f / S.FPS, S.s || cur);
+  if (dc !== null) out.hip = dc;
+  else if (r && gy !== null && hp && isN(tl)) out.hip = (gy - hp[1] - r.hip) / tl * 0.288 * Hc;
+  const sr = S.ser, Hi = sr && sr.H ? (sr._Hi || (sr._Hi = inv3(sr.H))) : null;
+  if (Hi && q[15] && q[16]) { const a = toCourt(Hi, q[15]), b = toCourt(Hi, q[16]), d = Math.hypot(a[0] - b[0], a[1] - b[1]); if (d >= .1 && d <= 2.5) out.base = d; }
+  if (Hi && isN(fFrom)) { const q0 = kpAt(fFrom, S), m0 = q0 && mid(q0[15], q0[16]), m1 = mid(q[15], q[16]);
+    if (m0 && m1) { const a = toCourt(Hi, m0), b = toCourt(Hi, m1), d = Math.hypot(a[0] - b[0], a[1] - b[1]); if (d <= 12) out.moved = d; } }
+  return out;
+}
+const mmTxt = m => [isN(m.hip) ? `cadera ${m.hip >= 0 ? "+" : "−"}${fmt(Math.abs(m.hip))} cm vs espera` : null, isN(m.base) ? `pies a ${fmt(m.base, 2)} m` : null,
+  isN(m.moved) ? `recorrido ${fmt(m.moved, 1)} m desde el golpe rival` : null].filter(Boolean).join(" · ");
+async function frameCards(box, items, id) {
+  // items: {t, title, text, opts}: a real frame of this stroke per item, with the measure drawn on it
+  box.innerHTML = items.map(m => `<button data-t="${m.t}"><canvas width="320" height="200"></canvas><div><b>${m.title} · ${Math.abs(m.t) < 1e-6 ? "impacto" : (m.t > 0 ? "+" : "−") + fmt(Math.abs(m.t), 2) + " s"}</b>${m.text || ""}</div></button>`).join("");
+  box.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { stopPlay(); setT(+b.dataset.t); }));
+  if (!cur.video) return;
+  const TS = await thumbSrc(); if (cur.id !== id) return;
+  const cvs = [...box.querySelectorAll("canvas")];
+  for (let i = 0; i < items.length; i++) {
+    const t = snap(items[i].t); if (t < T0 || t > T1 || cur.id !== id) continue;
+    await seekSrc(TS, t); if (cur.id !== id) return;
+    drawFrame(cvs[i].getContext("2d"), 320, 200, kF(TS, t), { skel: true, trail: false, ...items[i].opts }, TS);
+  }
+}
+async function renderBody(id) {
+  const B = cur.body, wrap = document.getElementById("bodywrap");
+  wrap.hidden = !B || !ser;
+  if (wrap.hidden) return;
+  const ph = k => (PH.find(p => p.k === k) || {}).t, S = MAIN;
+  // 1. lowering and rising: the ready position, the lowest point before contact, the highest after it
+  const hip = [["Espera", ph("ready")], ["Punto más bajo", B.tLow], ["Punto más alto tras golpear", B.tHigh]].filter(([, tt]) => isN(tt))
+    .map(([title, tt]) => { const m = measuresAt(fIdx(tt), S); return { t: tt, title, opts: { heights: true }, text: isN(m.hip) ? `<span class="mm">cadera ${m.hip >= 0 ? "+" : "−"}${fmt(Math.abs(m.hip))} cm respecto a la espera</span>` : "" }; });
+  document.getElementById("bd-hip-t").innerHTML = isN(B.drop) && isN(B.rise)
+    ? `Baja <b>${fmt(B.drop)} cm</b> desde la espera hasta su punto más bajo (${fmt(Math.abs(B.tLow), 2)} s antes del impacto) y sube <b>${fmt(B.rise)} cm</b> desde ahí hasta su punto más alto tras golpear (+${fmt(B.tHigh, 2)} s). Su altura: ${fmt((PL.height_m || 0) * 100)} cm.`
+    : "En este golpe no se ve bien la cadera en la espera o tras golpear: no se mide cuánto baja y sube.";
+  await frameCards(document.getElementById("bd-hip"), hip, id); if (cur.id !== id) return;
+  // 2. the base: loaded, contact, finish, with the bar between the ankles and its length on the court
+  const base = [["Armado", "loaded"], ["Impacto", "impact"], ["Terminación", "finish"]].filter(([, k]) => isN(ph(k)))
+    .map(([title, k]) => { const v = (B.base || {})[k]; return { t: ph(k), title, opts: { base: isN(v) ? `${fmt(v, 2)} m` : true }, text: `<span class="mm">${isN(v) ? `pies a ${fmt(v, 2)} m` : "pies no medibles en la pista"}</span>` }; });
+  const bv = ["loaded", "impact", "finish"].map(k => (B.base || {})[k]).filter(isN);
+  document.getElementById("bd-base-t").innerHTML = bv.length
+    ? `Base de ${bv.map(v => fmt(v, 2) + " m").join(" → ")} (armado → impacto → terminación)` + (isN(B.feetMove) ? `; del armado al impacto un pie se mueve como mucho <b>${fmt(B.feetMove, 2)} m</b> ${B.feetMove < .15 ? "(pies plantados: posición estable)" : "(se mueve al golpear)"}.` : ".")
+    : "Sin la pista en la imagen no se mide la base en metros.";
+  await frameCards(document.getElementById("bd-base"), base, id); if (cur.id !== id) return;
+  // 3. the trunk at the finish: the shoulder line drawn on the frame and where the chest faces
+  const tf = ph("finish");
+  document.getElementById("bd-trunk-t").innerHTML = B.trunk ? `Al terminar, el tronco queda <b>${B.trunk}</b>${isN(B.trunkRatio) ? ` (los hombros se ven al ${fmt(B.trunkRatio * 100)} % de su anchura de frente)` : ""}.` : "No se distingue hacia dónde mira el tronco al terminar en este golpe.";
+  await frameCards(document.getElementById("bd-trunk"), isN(tf) ? [{ t: tf, title: "Terminación", opts: { lines: true }, text: B.trunk ? `<span class="mm">${B.trunk}</span>` : "" }] : [], id);
 }
 function setT(t) { tNow = snap(t); renderStage(); renderTimeline(); document.querySelectorAll("#kf button").forEach(b => b.setAttribute("aria-current", b.dataset.t !== "" && Math.abs(+b.dataset.t - tNow) < .6 / FPS)); }
 // Heights through the stroke on the common grid of technique.stroke_curves (s from contact).

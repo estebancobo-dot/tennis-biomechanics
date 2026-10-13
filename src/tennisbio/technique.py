@@ -64,6 +64,9 @@ DESCRIPTORS = {
     "racket_head_lateral": ("raqueta", "Cabeza de la raqueta respecto al hombro dominante", "%", 2,
                             "lateral, % de altura: + por fuera (al lado del cuerpo), − hacia la espalda"),
     "racket_tip_vs_head": ("raqueta", "Punta de la raqueta respecto a su cabeza", "%", 2, "vertical, % de altura: + la punta por encima de la cabeza"),
+    "base_court_m": ("piernas", "Separación de los pies en la pista", "m", 2, "distancia entre los tobillos sobre la pista (homografía)"),
+    "shoulder_width_ratio": ("tronco", "Hombros vistos desde detrás", "", 2, "anchura de los hombros / la máxima (1 = de frente a la red)"),
+    "dom_shoulder_ahead": ("tronco", "Hombro dominante adelantado", "%", 1, "+ el hombro del brazo que golpea más hacia la red, % de altura"),
     "face_tilt": ("raqueta", "Cierre de la cara", "°", 2, "+ cuerdas hacia el suelo; en el impacto es una estimación"),
     "face_yaw": ("raqueta", "Dirección de la cara", "°", 2, "0 = hacia la red"),
 }
@@ -104,6 +107,11 @@ STROKE_DESCRIPTORS = {
     "t_max_hip_turn": ("ritmo", "Máximo giro de cadera", "s", 2, "antes del impacto (élite ≈ 0,24 s, Landlinger 2010)"),
     "shoulder_brake": ("ritmo", "Frenado de los hombros antes del contacto", "%", 0,
                        "cuánto ha bajado la velocidad de giro de los hombros en el contacto respecto a su pico en el swing (100 = parados)"),
+    "hip_drop_pct": ("piernas", "Cuánto baja la cadera", "%", 1, "de la espera a su punto más bajo antes del impacto, % de altura"),
+    "hip_rise_after_pct": ("piernas", "Cuánto sube la cadera tras golpear", "%", 1, "de su punto más bajo al más alto tras el impacto (hasta +0,8 s), % de altura"),
+    "hip_drop_cm": ("piernas", "Cuánto baja la cadera", "cm", 0, "de la espera a su punto más bajo antes del impacto, con su altura real"),
+    "hip_rise_after_cm": ("piernas", "Cuánto sube la cadera tras golpear", "cm", 0, "del punto más bajo al más alto tras el impacto, con su altura real"),
+    "feet_move_m": ("piernas", "Cuánto se mueven los pies al golpear", "m", 2, "lo que más se mueve un pie del armado al impacto (0 = pies plantados)"),
     "pause_at_loaded": ("ritmo", "Pausa en el armado", "s", 2, "mano casi quieta entre el armado y el swing"),
     "hand_on_handle": ("raqueta", "Mano en el mango", "%", 1, "distancia muñeca–final del mango, % de la longitud de la raqueta"),
     "racket_speed_rel": ("raqueta", "Velocidad de la raqueta (relativa)", "alt/s", 1, "punta antes y después del desenfoque, en alturas por segundo: solo para comparar sus golpes"),
@@ -276,6 +284,77 @@ def stroke_curves(img: np.ndarray, sk: Skeleton, scale: np.ndarray, impact: int,
         v[near > 0.1] = np.nan
         out[name] = [None if not np.isfinite(x) else round(float(x), 1) for x in v]
     return out
+
+
+def body_moves(out: dict, img: np.ndarray, sk: Skeleton, scale: np.ndarray, impact: int, fps: float, ev: dict,
+               H: np.ndarray | None, height_m: float | None) -> None:
+    """What the user asked to see on the frames, as measures of every stroke:
+
+    - lowering and rising: hip height above the ground (stroke_curves) at the ready position, its
+      lowest point before contact and its highest point after contact (to +0.8 s); how much it drops
+      and how much it rises, in % of her height and in cm with her real height;
+    - the base: distance between her feet on the court (homography, metres) when loaded, at contact
+      and at the finish, and how far each foot moves from loaded to contact (planted or moving);
+    - where the trunk faces at the finish: from behind, the shoulder line looks shorter the more it
+      has turned; the hitting shoulder higher in the image is further forward (towards the net)."""
+    s, ph = out["stroke"], out["phases"]
+    hc = out["curves"].get("hip")
+    if hc:
+        hv = np.array([np.nan if x is None else x for x in hc], float)
+        # the hip joint stands at ~50 % of the height, ~42 % in a deep load, a few % more in a jump:
+        # outside 38-58 % it is a misdetected ankle or hip, not her
+        with np.errstate(invalid="ignore"):
+            hv[(hv < 38) | (hv > 58)] = np.nan
+        t0 = (ev["ready"] - impact) / fps if ev.get("ready") is not None else None
+        t_tb = (ev["takeback"] - impact) / fps if ev.get("takeback") is not None else None
+        # up to a little after the finish: later she is running back, not rising from the stroke
+        t_end = min(0.8, (ev["finish"] - impact) / fps + 0.15) if ev.get("finish") is not None else 0.5
+        if t0 is not None and np.isfinite(hv).any():
+            ok = np.isfinite(hv)
+            i0 = int(np.argmin(np.where(ok, np.abs(CURVE_T - t0), np.inf)))
+            if t0 < CURVE_T[0] and (t_tb is None or CURVE_T[i0] < t_tb):   # ready before the curve: its first
+                t0 = CURVE_T[i0]                                            # sample, still before the preparation
+            pre = ok & (CURVE_T >= CURVE_T[i0]) & (CURVE_T <= 0.04)
+            post = ok & (CURVE_T >= 0) & (CURVE_T <= t_end)
+            if abs(CURVE_T[i0] - t0) <= 0.1 and pre.sum() >= 3 and post.sum() >= 2:
+                lo = int(np.flatnonzero(pre)[np.argmin(hv[pre])])
+                hi = int(np.flatnonzero(post)[np.argmax(hv[post])])
+                s["hip_drop_pct"] = round(float(hv[i0] - hv[lo]), 1)
+                s["hip_rise_after_pct"] = round(float(hv[hi] - hv[lo]), 1)
+                s["t_hip_lowest"], s["t_hip_highest"] = float(CURVE_T[lo]), float(CURVE_T[hi])
+                if height_m:
+                    s["hip_drop_cm"] = round(s["hip_drop_pct"] * height_m, 0)
+                    s["hip_rise_after_cm"] = round(s["hip_rise_after_pct"] * height_m, 0)
+    if H is not None:
+        from .court_metrics import feet_on_court
+        feet = {}
+        for p in ("loaded", "impact", "finish"):
+            ff = feet_on_court(img, ev.get(p), sk, H)
+            if ff is not None:
+                d = float(np.linalg.norm(ff[0] - ff[1]))
+                if 0.1 <= d <= 2.5:                    # beyond that a misdetected ankle
+                    feet[p] = ff
+                    ph.setdefault(p, {})["base_court_m"] = round(d, 2)
+        if "loaded" in feet and "impact" in feet:
+            mv = max(float(np.linalg.norm(feet["impact"][i] - feet["loaded"][i])) for i in (0, 1))
+            if mv <= 3:
+                s["feet_move_m"] = round(mv, 2)
+    f = ev.get("finish")
+    if f is not None:
+        w = np.abs(img[:, sk["left_shoulder"], 0] - img[:, sk["right_shoulder"], 0]) / scale
+        if np.isfinite(w).sum() >= 5 and np.isfinite(w[f]):
+            ratio = float(w[f] / np.nanpercentile(w, 95))
+            dy = float((img[f, sk["dom_shoulder"], 1] - img[f, sk["non_shoulder"], 1]) / scale[f] * 100)
+            ph.setdefault("finish", {})["shoulder_width_ratio"] = round(ratio, 2)
+            ph["finish"]["dom_shoulder_ahead"] = round(-dy, 1)          # + = hitting shoulder towards the net
+            c = out["classes"]
+            if ratio >= 0.8:
+                c["finish_trunk"] = "de frente a la red"
+            elif dy < -2:
+                c["finish_trunk"] = ("girado hasta mirar a la valla del lado de su revés" if ratio < 0.45
+                                     else "girado tres cuartos hacia el lado de su revés")
+            elif dy > 2:
+                c["finish_trunk"] = "sin completar el giro (de lado, hacia la valla de su derecha)"
 
 
 def racket_at(kps: dict, img: np.ndarray, sk: Skeleton, f: int, scale: float, feet_img_y: float, faces: dict | None,
@@ -457,6 +536,7 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
     out["curves"] = stroke_curves(img, sk, scale, impact, fps, kps)
     # timing
     s = out["stroke"]
+    body_moves(out, img, sk, scale, impact, fps, ev, H, (context or {}).get("height_m"))
     for p in ("takeback", "loaded", "acceleration"):
         if ev[p] is not None:
             s[f"t_{p}"] = round((impact - ev[p]) / fps, 3)

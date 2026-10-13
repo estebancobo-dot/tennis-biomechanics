@@ -156,6 +156,7 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
         "ballT": None if far else {k: -v["t_to_contact"] for k, v in ((s.get("technique") or {}).get("phases") or {}).items()
                                    if k.startswith("ball_") and isinstance(v, dict) and v.get("t_to_contact") is not None},
         "ballMoments": None if far else ball_moments(s),
+        "body": None if far else body_view(s),
         "feet": None if far else feet_record(s),
         "shotType": None if far else ((s.get("technique") or {}).get("classes") or {}).get("shot_type"),
         "ballPhase": None if far else ((s.get("technique") or {}).get("classes") or {}).get("ball_phase"),
@@ -189,6 +190,17 @@ def feet_record(s: dict) -> dict:
 PHASE_DOING = {"ready": "en la espera", "takeback": "empezando a preparar", "loaded": "con el armado completo",
                "acceleration": "acelerando hacia la bola", "impact": "golpeando", "extension": "extendiendo el brazo",
                "finish": "terminando", "recovery": "recuperando"}
+
+
+def body_view(s: dict) -> dict:
+    """The measures the stroke page draws on its frames: lowering and rising, the base, the trunk at the finish."""
+    tech = s.get("technique") or {}
+    st, ph, cl = tech.get("stroke") or {}, tech.get("phases") or {}, tech.get("classes") or {}
+    return {"tLow": st.get("t_hip_lowest"), "tHigh": st.get("t_hip_highest"), "drop": st.get("hip_drop_cm"),
+            "rise": st.get("hip_rise_after_cm"), "dropPct": st.get("hip_drop_pct"), "risePct": st.get("hip_rise_after_pct"),
+            "base": {p: (ph.get(p) or {}).get("base_court_m") for p in ("loaded", "impact", "finish")},
+            "feetMove": st.get("feet_move_m"), "trunk": cl.get("finish_trunk"),
+            "trunkRatio": (ph.get("finish") or {}).get("shoulder_width_ratio")}
 
 
 def ball_moments(s: dict) -> list[dict]:
@@ -236,6 +248,11 @@ def ball_moments(s: dict) -> list[dict]:
         parts = body(d)
         out.append({"k": k, "t": round(-d["t_to_contact"], 3), "title": title,
                     "text": f"Ella está {doing}" + (": " + ", ".join(parts) if parts else "") + "."})
+    tn, tb = (tp.get("ball_net") or {}).get("t_to_contact"), (tp.get("ball_bounce") or {}).get("t_to_contact")
+    if tn is not None and tb is not None and tn > tb:
+        tf = -(tn + tb) / 2
+        out.append({"k": "ball_fall", "t": round(tf, 3), "title": "La bola cae (entre la red y el bote)",
+                    "text": f"Ella está {doing_at(tf)}."})
     d = tp.get("impact") or {}
     cls = tech.get("classes") or {}
     parts = [x for x in (cls.get("ball_phase"), f"apoyo {s['stance']}" if s.get("stance") else None,

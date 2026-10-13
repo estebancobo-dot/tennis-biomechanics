@@ -1094,7 +1094,8 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
              "split": (r.phases.get("ready") or {}).get("method") == "split_step_landing",
              "surface": ctx.match.surface or "", "next_opp": ret, "return": is_return, "ball": ball_m,
              "head_motion_cm": r.metrics.get("head_motion_impact_cm"),
-             "bounce_to_impact": r.metrics.get("bounce_to_impact_s"), "ball_hit": "ball" in (r.impact_source or "")})
+             "bounce_to_impact": r.metrics.get("bounce_to_impact_s"), "ball_hit": "ball" in (r.impact_source or ""),
+             "height_m": p.height_m})
     d["technique"] = tech(ph_frames)
     if side == "near":
         # repeatability of the whole stroke: its phase instants are known to ±1-2 frames, so the stroke

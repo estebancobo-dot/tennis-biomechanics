@@ -35,6 +35,10 @@ _JS_SCREEN = """(tab) => {
     // the per-stroke views and filters asked for (they work from the first stroke)
     ball_moments: sec.querySelectorAll('#bm button').length,
     feet_cycle: sec.querySelectorAll('#feet-txt li').length,
+    ball_measures: [...sec.querySelectorAll('#bm .mm')].filter(e => /cm|m /.test(e.innerText)).length,
+    body_hip: sec.querySelectorAll('#bd-hip button').length + (/Baja \d/.test((sec.querySelector('#bd-hip-t') || {}).innerText || '') ? 1 : 0),
+    body_base: sec.querySelectorAll('#bd-base button').length + (/Base de /.test((sec.querySelector('#bd-base-t') || {}).innerText || '') ? 1 : 0),
+    body_trunk: sec.querySelectorAll('#bd-trunk button').length + (/tronco queda/.test((sec.querySelector('#bd-trunk-t') || {}).innerText || '') ? 1 : 0),
     heights_layer: !!sec.querySelector('#layers button[data-v="heights"]'),
     lib_filters: sec.querySelectorAll('#lib-chips button').length,
     news: !!sec.querySelector('#news'),

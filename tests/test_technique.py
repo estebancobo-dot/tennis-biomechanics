@@ -309,3 +309,28 @@ def test_ready_hands_from_wrists_and_racket():
     assert run(20) is None                                         # ambiguous and no racket: not given
     assert run(20, throat_near=4) == "dos manos en la raqueta"
     assert run(20, throat_near=18) == "mano libre separada"
+
+
+def test_body_moves_drop_rise_base_and_trunk():
+    """Lowering and rising of the hips, the base on the court and where the trunk faces at the finish."""
+    from tennisbio.technique import CURVE_T, body_moves
+    # hips: 50 % at the ready position (-0.8 s), 44 % at their lowest (-0.3 s), 53 % after contact (+0.2 s)
+    hip = np.interp(CURVE_T, [-1.2, -0.8, -0.3, 0.0, 0.2, 0.8], [50, 50, 44, 48, 53, 52])
+    ev = {"ready": 60, "takeback": 75, "loaded": 85, "impact": 100, "finish": 115}
+    kp = standing(T=130)
+    H = np.array([[100.0, 0, 500], [0, -100.0, 800], [0, 0, 1]])             # court m → image px
+    kp[:, SK["left_ankle"]] = [500 - 45, 800 - 0]                               # feet 0.9 m apart on the court
+    kp[:, SK["right_ankle"]] = [500 + 45, 800 - 0]
+    # at the finish the shoulder line looks short (turned) and the hitting shoulder is higher (forward)
+    kp[115, SK["right_shoulder"]] = kp[115, SK["left_shoulder"]] + [20, -30]
+    out = {"stroke": {}, "phases": {}, "classes": {}, "curves": {"hip": [round(float(v), 1) for v in hip]}}
+    body_moves(out, kp, SK, np.full(130, 400.0), 100, 50.0, ev, H, 1.84)
+    s = out["stroke"]
+    assert abs(s["hip_drop_pct"] - 6) < 0.6 and abs(s["hip_rise_after_pct"] - 9) < 0.6
+    assert abs(s["hip_drop_cm"] - 11) <= 1 and abs(s["t_hip_lowest"] + 0.3) < 0.05 and abs(s["t_hip_highest"] - 0.2) < 0.05
+    assert abs(out["phases"]["impact"]["base_court_m"] - 0.9) < 0.01 and s["feet_move_m"] < 0.01
+    assert out["classes"]["finish_trunk"].startswith("girado")
+    # implausible hip heights (a misdetected ankle) are not measured
+    out = {"stroke": {}, "phases": {}, "classes": {}, "curves": {"hip": [30.0] * len(CURVE_T)}}
+    body_moves(out, kp, SK, np.full(130, 400.0), 100, 50.0, ev, None, 1.84)
+    assert "hip_drop_cm" not in out["stroke"]

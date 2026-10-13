@@ -28,7 +28,7 @@ from __future__ import annotations
 import numpy as np
 
 MIN_STROKES = 5
-FLOOR = {"°": 3.0, "%": 1.5, "s": 0.02, "cm": 3.0}
+FLOOR = {"°": 3.0, "%": 1.5, "s": 0.02, "cm": 3.0, "m": 0.05}
 # measure → the same thing from an independent method (stroke_values key)
 SECOND_METHOD = {"loaded.x_factor": "metrics.x_factor_3d_deg", "loaded.shoulder_turn": "metrics.shoulder_turn_3d_deg",
                  "loaded.hip_turn": "metrics.hip_turn_3d_deg"}

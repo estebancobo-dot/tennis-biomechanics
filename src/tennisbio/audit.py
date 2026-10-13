@@ -637,6 +637,10 @@ def _screens(shots_dir: Path) -> list[dict]:
                                f"{lr['valued_all']} de {lr['rows_all']}; el resto dice por qué falta"))
     checks = [("golpe", "ball_moments", "«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella", 2),
               ("golpe", "feet_cycle", "«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)", 8),
+              ("golpe", "ball_measures", "«La bola y ella»: medidas reales en cada fotograma (cadera en cm, pies en m, recorrido)", 3),
+              ("golpe", "body_hip", "«Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm", 4),
+              ("golpe", "body_base", "«Base»: fotogramas con la barra entre los pies y su distancia en la pista", 3),
+              ("golpe", "body_trunk", "«Tronco al terminar»: fotograma con la línea de hombros y hacia dónde mira", 2),
               ("golpe", "heights_layer", "Barras de altura de la cabeza y la cadera sobre el vídeo", 1),
               ("videoteca", "lib_filters", "Filtros combinables de la videoteca (apoyo, dirección, bola, contacto…)", 10),
               ("modelo", "news", "Novedades de la versión en la pantalla de entrada", 1),
@@ -712,6 +716,8 @@ PETITIONS = {
     108: r"girar mientras se desplaza", 109: r"Brazo libre recogido|Equilibrio al terminar|Terminación sobre",
     110: r"Lo que la distingue", 111: r"responde a cada combinación", 112: r"Estilo de su derecha",
     113: r"^Examen de entrenadores$",
+    114: r"La bola y ella", 115: r"Bajar y subir|Cuánto baja|Cuánto sube", 116: r"«Base»|Base al armar|Base en el impacto|Pies quietos",
+    117: r"Tronco al terminar|Hacia dónde mira el tronco",
 }
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 

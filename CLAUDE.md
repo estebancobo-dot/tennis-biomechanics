@@ -159,6 +159,16 @@ y el informe lo muestra.
 
 Una cámara lateral propia solo tendría sentido con vídeos grabados por el usuario (ampliación futura).
 
+## Vistas por golpe pedidas por el usuario (fotogramas reales y medidas, no gráficas)
+- **La bola y ella**: su cuerpo en cada momento de la bola (golpe rival, cruza la red, cae, bota, sube,
+  su golpe), cada fotograma con medidas reales: cadera en cm respecto a la espera, pies en m, recorrido.
+- **Bajar y subir**: espera → punto más bajo → punto más alto tras golpear, con barras horizontales y cm
+  (misma curva de altura que las frases y «Aprende»; nunca dos cálculos distintos de lo mismo).
+- **Base**: distancia entre los pies en la pista (m) en armado, impacto y terminación; pies plantados o no.
+- **Tronco al terminar**: hacia dónde mira (de frente a la red, girado hacia el lado del revés, mirando
+  a la valla), según el golpe.
+- Todo con su medida en «Aprende» (por condición) y su comprobación en la auditoría.
+
 ## Situación del golpe (para comparar golpes equivalentes)
 Toda comparativa (fatiga, presión, partidos) se hace **dentro de situaciones equivalentes**;
 si no, un cambio de técnica se confunde con un cambio en la bola recibida.
