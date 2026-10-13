@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261013211002
+Start time: 20261013221857
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 12808
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 18008
 PSVersion: 5.1.26100.9549
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
@@ -17,202 +17,56 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-13 21:10:02] Codigo nuevo (d982337 -> 40e6cfa): 8 ficheros
-    .gitignore
+==> [2026-10-13 22:18:57] Codigo nuevo (40e6cfa -> 940f5d2): 20 ficheros
+    config/default.yaml
     config/peticion_pc.txt
-    scripts/smoke_test.py
+    docs/estado_proyecto.md
+    docs/pruebas_velocidad.md
     scripts/windows/ciclo_automatico.ps1
-    scripts/windows/comun.ps1
-    scripts/windows/prueba_rapida.ps1
-    src/tennisbio/pose/variants.py
-    tests/test_model_trials.py
+    scripts/windows/ciclo_bucle.ps1
+    src/tennisbio/ball.py
+    src/tennisbio/clip_pipeline.py
+    src/tennisbio/court.py
+    src/tennisbio/io/video.py
+    src/tennisbio/pose/backend.py
+    src/tennisbio/pose/yolo.py
+    src/tennisbio/racket_orientation.py
+    src/tennisbio/racket_pose.py
+    src/tennisbio/scoreboard.py
+    src/tennisbio/stages.py
+    tests/test_court.py
+    tests/test_fine_speed.py
+    tests/test_scoreboard.py
+    tests/test_video.py
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating d982337..40e6cfa
+Updating 40e6cfa..940f5d2
 Fast-forward
- .gitignore                           |  3 +++
- config/peticion_pc.txt               |  4 ++++
- scripts/smoke_test.py                | 10 +++++++++-
- scripts/windows/ciclo_automatico.ps1 | 34 +++++++++++++++++++++++++++++++++-
- scripts/windows/comun.ps1            | 12 +++++++++++-
- scripts/windows/prueba_rapida.ps1    |  8 ++++----
- src/tennisbio/pose/variants.py       | 36 +++++++++++++++++++++++++++++++++++-
- tests/test_model_trials.py           |  2 +-
- 8 files changed, 100 insertions(+), 9 deletions(-)
- create mode 100644 config/peticion_pc.txt
-Ciclo automatico programado: cada 10 minutos, en segundo plano (9_parar_ciclo_automatico.bat lo quita).
-Resolved 110 packages in 1ms
+ config/default.yaml                  |   3 +
+ config/peticion_pc.txt               |   4 +-
+ docs/estado_proyecto.md              |   5 +
+ docs/pruebas_velocidad.md            |  37 ++++
+ scripts/windows/ciclo_automatico.ps1 |  11 +-
+ scripts/windows/ciclo_bucle.ps1      |   5 +
+ src/tennisbio/ball.py                |  32 +++-
+ src/tennisbio/clip_pipeline.py       |  52 ++++--
+ src/tennisbio/court.py               | 242 ++++++++++++++++++------
+ src/tennisbio/io/video.py            | 212 +++++++++++++++++++++
+ src/tennisbio/pose/backend.py        |  37 +++-
+ src/tennisbio/pose/yolo.py           | 237 +++++++++++++++++++----
+ src/tennisbio/racket_orientation.py  |   8 +-
+ src/tennisbio/racket_pose.py         |  20 +-
+ src/tennisbio/scoreboard.py          |  59 +++++-
+ src/tennisbio/stages.py              | 182 ++++++++++++------
+ tests/test_court.py                  | 194 +++++++++++++++++++
+ tests/test_fine_speed.py             | 351 +++++++++++++++++++++++++++++++++++
+ tests/test_scoreboard.py             | 160 ++++++++++++++++
+ tests/test_video.py                  |  48 +++++
+ 20 files changed, 1700 insertions(+), 199 deletions(-)
+ create mode 100644 docs/pruebas_velocidad.md
+ create mode 100644 tests/test_fine_speed.py
+Resolved 110 packages in 0.93ms
 Checked 83 packages in 3ms
     (paso terminado en 1 s)
 
-==> [2026-10-13 21:10:03] Que hace falta: medidas
-Recalcular medidas: empieza 2026-10-13 21:10:04
-
-[2026-10-13 21:10:04] smoke_tennis-yusipopen-final-sobolenko-rybakin: trozo de vídeo tennis-yusipopen-final-sobolenko-rybakin_7264_35m.mkv, rival Sabalenka
-  Se usan los resultados que hay de score aunque su código o su vídeo cambiaron (no se rehacen aquí; la próxima prueba completa sí lo hará)
-[2026-10-13 21:10:04] Etapas baratas rehechas: ninguna (al día) (0 s)
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (2026-10-13 21:10:04, etapa 9 de 10)
-load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
-  fine:   3 % (6/177 golpes candidatos · 0 confirmados) · 0 s · quedan ≈ 0 s
-C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
-  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
-C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
-  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
-  fine:  10 % (18/177 golpes candidatos · 1 confirmados) · 30 s · quedan ≈ 4 min
-  fine:  27 % (48/177 golpes candidatos · 3 confirmados) · 62 s · quedan ≈ 3 min
-  fine:  31 % (55/177 golpes candidatos · 3 confirmados) · 2 min · quedan ≈ 4 min
-C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
-  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
-  fine:  42 % (75/177 golpes candidatos · 4 confirmados) · 2 min · quedan ≈ 3 min
-  fine:  53 % (93/177 golpes candidatos · 4 confirmados) · 3 min · quedan ≈ 3 min
-C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
-  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
-C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
-  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
-  fine:  72 % (127/177 golpes candidatos · 7 confirmados) · 4 min · quedan ≈ 85 s
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
-  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
-  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
-  fine:  85 % (150/177 golpes candidatos · 12 confirmados) · 5 min · quedan ≈ 49 s
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
-  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
-  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
-  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
-  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
-  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
-  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
-  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
-  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
-  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
-  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
-  fine:  89 % (157/177 golpes candidatos · 16 confirmados) · 5 min · quedan ≈ 40 s
-  fine:  90 % (160/177 golpes candidatos · 19 confirmados) · 6 min · quedan ≈ 37 s
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
-  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
-  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
-  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
-  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
-  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
-  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
-  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
-  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
-  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
-C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
-  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
-  fine:  92 % (163/177 golpes candidatos · 22 confirmados) · 6 min · quedan ≈ 33 s
-C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
-  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
-  fine: 100 % (177/177 golpes candidatos · 27 confirmados) · 7 min · quedan ≈ 0 s
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine terminada a las 21:17:40 en 7.6 min
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (2026-10-13 21:17:40, etapa 10 de 10)
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent terminada a las 21:17:40 en 0 s
-[2026-10-13 21:17:40] Medidas recalculadas en 7.6 min: 27 golpes de 177 candidatos en 59 ventanas
-  Tiempo por parte (s): cuerdas_y_3d 147.1, analisis_ventana 26.3, recorte 2.9, pose 0.4
-  Cachés de pose, bola y raqueta reutilizadas en todas las ventanas
-[2026-10-13 21:17:57] smoke_tennis-yusipopen-final-sobolenko-rybakin terminado en 7.9 min
-
-[2026-10-13 21:17:57] Informe, PDF y auditoría…
-Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
-Informe: C:\tenis\output\_smoke\informe\index.html
-  golpes 10/14 (221 s)
-Golpes: 14 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
-Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
-Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
-Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
-Auditoría: 272 cumplidos, 0 no cumplidos, 117 sin golpes suficientes, 29 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-Hecho en 481 s, con las medidas nuevas.
-[2026-10-13 21:25:58] Informe, PDF y auditoría en 8.0 min
-Recalcular medidas: termina 2026-10-13 21:25:58 (total 15.9 min)
-    (paso terminado en 15 min 55 s)
-
-==> [2026-10-13 21:25:58] Revision automatica frente a la ejecucion anterior
-# Revisión automática: OK
-    (paso terminado en 0 s)
-
-==> [2026-10-13 21:25:58] Prueba de modelos (pose y bola, actual frente a alternativas; tramo de 40 min, sigue en el proximo ciclo)
-== yolo11m-pose@960
-   {'clips': 6, 'ms_per_frame': 279.8, 'gt': 13, 'precision': 0.6, 'recall': 0.692, 'f1': 0.643, 'timing_err_frames': 1.0, 'jerk_pct': 0.734, 'tracked': 0.996, 'feet_seen': 0.0, 'kp_diff_vs_fp32_px': None, 'complete': True}
-== rtmpose-x
-   {'clips': 6, 'ms_per_frame': 719.5, 'gt': 13, 'precision': 0.667, 'recall': 0.615, 'f1': 0.64, 'timing_err_frames': 1.0, 'jerk_pct': 0.281, 'tracked': 1.0, 'feet_seen': 0.887, 'kp_diff_vs_fp32_px': None, 'complete': True}
-== rtmpose-m
-   {'clips': 6, 'ms_per_frame': 327.1, 'gt': 13, 'precision': 0.583, 'recall': 0.538, 'f1': 0.56, 'timing_err_frames': 1.0, 'jerk_pct': 0.302, 'tracked': 1.0, 'feet_seen': 0.964, 'kp_diff_vs_fp32_px': None, 'complete': True}
-== yolo11m-pose@960-fp16
-   {'clips': 6, 'ms_per_frame': 128.2, 'gt': 13, 'precision': 0.6, 'recall': 0.692, 'f1': 0.643, 'timing_err_frames': 1.0, 'jerk_pct': 0.73, 'tracked': 0.996, 'feet_seen': 0.0, 'kp_diff_vs_fp32_px': 0.25, 'complete': True}
-== hybrid-x-fp16
-load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
-  match1_000: pose hecha (3 min)
-load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
-  match104_000: pose hecha (6 min)
-load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
-  match107_000: pose hecha (9 min)
-load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
-  match112_000: pose hecha (10 min)
-load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
-  match115_000: pose hecha (11 min)
-load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
-  match118_000: pose hecha (15 min)
-   {'clips': 6, 'ms_per_frame': 268.4, 'gt': 13, 'precision': 0.643, 'recall': 0.692, 'f1': 0.667, 'timing_err_frames': 1.0, 'jerk_pct': 0.477, 'tracked': 0.996, 'feet_seen': 0.997, 'kp_diff_vs_fp32_px': None, 'complete': True}
-== hybrid-x
-load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
-  match1_000: pose hecha (18 min)
-load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
-  match104_000: pose hecha (21 min)
-load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
-  match107_000: pose hecha (25 min)
-load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
-  match112_000: pose hecha (26 min)
-load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
-  match115_000: pose hecha (28 min)
-load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
-  match118_000: pose hecha (31 min)
-   {'clips': 6, 'ms_per_frame': 305.2, 'gt': 13, 'precision': 0.643, 'recall': 0.692, 'f1': 0.667, 'timing_err_frames': 1.0, 'jerk_pct': 0.482, 'tracked': 0.996, 'feet_seen': 0.997, 'kp_diff_vs_fp32_px': None, 'complete': True}
-== rtmpose-x-fp16
-   {'clips': 6, 'ms_per_frame': 1806.8, 'gt': 13, 'precision': 0.667, 'recall': 0.615, 'f1': 0.64, 'timing_err_frames': 1.0, 'jerk_pct': 0.282, 'tracked': 1.0, 'feet_seen': 0.886, 'kp_diff_vs_fp32_px': 0.14, 'complete': True}
-== yolo11m-pose@640
-   {'clips': 6, 'ms_per_frame': 151.9, 'gt': 13, 'precision': 0.667, 'recall': 0.769, 'f1': 0.714, 'timing_err_frames': 1.0, 'jerk_pct': 0.772, 'tracked': 0.98, 'feet_seen': 0.0, 'kp_diff_vs_fp32_px': None, 'complete': True}
-== balltrack: {'found_10px': 0.86, 'annotated': 272, 'ms_per_frame': 167.5}
-== balltrack-fp16: {'found_10px': 0.86, 'annotated': 272, 'ms_per_frame': 173.4}
-# Prueba de modelos en este PC (2026-10-13 22:14, dml, 48.0 min de este tramo)
-
-| Variante | ms/fotograma | F1 golpes | Precisión | Recall | Error instante | Temblor (% altura) | Seguida | Pies | Dif. FP16 (px) |
-|---|---|---|---|---|---|---|---|---|---|
-| yolo11m-pose@960 | 279.8 | 0.643 | 0.6 | 0.692 | 1.0 | 0.734 | 0.996 | 0.0 | — |
-| rtmpose-x | 719.5 | 0.64 | 0.667 | 0.615 | 1.0 | 0.281 | 1.0 | 0.887 | — |
-| rtmpose-m | 327.1 | 0.56 | 0.583 | 0.538 | 1.0 | 0.302 | 1.0 | 0.964 | — |
-| yolo11m-pose@960-fp16 | 128.2 | 0.643 | 0.6 | 0.692 | 1.0 | 0.73 | 0.996 | 0.0 | 0.25 |
-| hybrid-x-fp16 | 268.4 | 0.667 | 0.643 | 0.692 | 1.0 | 0.477 | 0.996 | 0.997 | — |
-| hybrid-x | 305.2 | 0.667 | 0.643 | 0.692 | 1.0 | 0.482 | 0.996 | 0.997 | — |
-| rtmpose-x-fp16 | 1806.8 | 0.64 | 0.667 | 0.615 | 1.0 | 0.282 | 1.0 | 0.886 | 0.14 |
-| yolo11m-pose@640 | 151.9 | 0.714 | 0.667 | 0.769 | 1.0 | 0.772 | 0.98 | 0.0 | — |
-
-| Bola | Encontradas a ≤10 px | ms/fotograma |
-|---|---|---|
-| balltrack | 0.86 | 167.5 |
-| balltrack-fp16 | 0.86 | 173.4 |
-
-**Recomendadas frente a la actual (yolo11m-pose@960):** rtmpose-x: con pies (F1 0.64 frente a 0.643; 719.5 frente a 279.8 ms/fotograma); yolo11m-pose@960-fp16: más rápida (F1 0.643 frente a 0.643; 128.2 frente a 279.8 ms/fotograma); hybrid-x-fp16: con pies (F1 0.667 frente a 0.643; 268.4 frente a 279.8 ms/fotograma); hybrid-x: con pies (F1 0.667 frente a 0.643; 305.2 frente a 279.8 ms/fotograma); rtmpose-x-fp16: con pies (F1 0.64 frente a 0.643; 1806.8 frente a 279.8 ms/fotograma)
-Ciclo automatico terminado (medidas).
-    (paso terminado en 48 min 02 s)
-Empezado 2026-10-13 21:10:01 - terminado 2026-10-13 22:14:01 - duracion total 1 h 04 min
-**********************
-Windows PowerShell transcript end
-End time: 20261013221401
-**********************
+==> [2026-10-13 22:18:58] Que hace falta: medidas
