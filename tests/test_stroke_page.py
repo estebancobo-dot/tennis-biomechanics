@@ -185,3 +185,33 @@ def test_merged_views_keep_every_piece(tmp_path):
     assert res == {"modelo": ["tab-aprende", True], "pista": ["tab-videoteca", True], "panel": ["tab-conclusiones", True],
                    "comparativas": ["tab-conclusiones", True]}
     assert "6 del lado cercano" in datos and "Golpes dudosos" in datos
+
+
+@pytest.mark.skipif(not CHROMIUM.exists(), reason="sin navegador para la prueba de la web")
+def test_phone_width(tmp_path):
+    """At a phone's width (390 px): no sideways scroll on any main screen and «Más» opens under the two
+    main entries, full width, without squeezing them."""
+    from playwright.sync_api import sync_playwright
+
+    s, ser = stroke_and_series()
+    d = tmp_path / "m1"
+    (d / "series").mkdir(parents=True)
+    (d / "series" / "x.json").write_text(json.dumps(ser), encoding="utf-8")
+    (d / "strokes.json").write_text(json.dumps([s] * 3), encoding="utf-8")
+    html = build([Match("m1", None, Player("p", "P", height_m=1.84))], tmp_path)
+    with sync_playwright() as p:
+        b = p.chromium.launch(executable_path=str(CHROMIUM), args=["--allow-file-access-from-files"])
+        pg = b.new_page(viewport={"width": 390, "height": 844})
+        pg.goto(html.resolve().as_uri())
+        pg.wait_for_timeout(500)
+        widths = {}
+        for tab in ("aprende", "videoteca", "conclusiones", "fiabilidad", "datos"):
+            pg.evaluate(f"showTab('{tab}')")
+            pg.wait_for_timeout(200)
+            widths[tab] = pg.evaluate("document.documentElement.scrollWidth")
+        pg.click("#nav-more summary")
+        more = pg.evaluate("document.getElementById('nav-more').getBoundingClientRect().width")
+        main = pg.evaluate("Math.min(...[...document.querySelectorAll('.nav > button')].map(b => b.getBoundingClientRect().width))")
+        b.close()
+    assert all(w <= 390 for w in widths.values()), widths
+    assert more > 300 and main > 120

@@ -91,7 +91,9 @@ details.secx > summary { font-size: 15px; padding: 10px 0; cursor: pointer; }
   .app { grid-template-columns: minmax(0, 1fr); }
   .side { position: static; height: auto; flex-direction: row; flex-wrap: wrap; align-items: center; padding: 10px 16px; gap: 10px; border-right: 0; border-bottom: 1px solid var(--line); }
   .brand { padding: 0; } .side .foot { display: none; }
-  .nav { grid-auto-flow: column; overflow-x: auto; padding: 0; max-width: 100%; }
+  .nav { grid-template-columns: 1fr 1fr auto; padding: 0; max-width: 100%; }
+  .nav details.more { margin-top: 0; border-top: 0; padding-top: 0; }
+  .nav details.more[open] { grid-column: 1 / -1; grid-row: 2; border-top: 1px solid var(--line); padding-top: 6px; }
   .topbar { position: static; padding: 12px 16px; }
   .content { padding: 16px 16px 40px; }
 }
@@ -1993,7 +1995,14 @@ async function drawCard(cvEl, card, s) {
 }
 function renderModelCurves(C) {
   const p = document.getElementById("m-curves-p"), has = C && CURVE_DEF.some(([k]) => C[k]);
-  p.hidden = !has; if (!has) return;
+  if (!has) {                // say why instead of leaving a gap: the typical curves need MIN_N strokes
+    const n = STROKES.filter(s => s.side !== "far" && s.curves).length, MN = MODEL.min_n || 12;
+    p.hidden = false;
+    document.getElementById("m-curves").innerHTML = `<div class="empty">Sus curvas típicas de altura (cabeza, cadera, mano y raqueta) necesitan ${MN} golpes con la curva medida; hay ${n}. Mientras, cada golpe tiene la suya en «Sus golpes» → el golpe → «Alturas durante el golpe».</div>`;
+    document.getElementById("m-curves-leg").innerHTML = ""; document.getElementById("m-curves-txt").innerHTML = "";
+    return;
+  }
+  p.hidden = false;
   const ev = C.events || {};
   const events = Object.entries(PH_EV).filter(([k]) => isN(ev[k])).map(([k, n]) => ({ t: ev[k], n })).concat(Object.entries(BALL_EV).filter(([k]) => isN(ev[k])).map(([k, n]) => ({ t: ev[k], n, ball: true })));
   const D = CURVE_DEF.filter(([k]) => C[k]);
@@ -2013,7 +2022,7 @@ async function renderModel() {
   if (mSit) { const V = MODEL.variants[mSit]; ch.innerHTML = `<div><b>${V.factor_name}: ${V.level}</b> · ${V.n} golpes (${Math.round(V.share * 100)} %)${V.usual ? " · es su situación habitual: la referencia de las comparaciones" : ""}</div>` + (V.changes.length ? V.changes.map(t => `<div>· ${t}</div>`).join("") : `<div class="dim3">Ningún rasgo cambia de forma clara respecto a lo habitual (con el error de medida y la corrección por comparaciones múltiples).</div>`); }
   renderModelCurves(v.curves || (mSit ? null : MODEL.curves));
   const box = document.getElementById("m-cards");
-  box.innerHTML = (v.cards || []).map((c, i) => `<div class="pcard"><canvas width="400" height="500" data-i="${i}" title="Ver este momento en vídeo"></canvas><h3><span>${i + 1} · ${c.title}</span>${c.changes ? `<span class="ch">${c.changes} cambia${c.changes > 1 ? "n" : ""}</span>` : ""}</h3><ul>${c.lines.filter(l => l.main).map(l => mLine(c, l, true)).join("") || `<li class="dim3">${c.lines.length ? "Sin claves medidas con golpes suficientes en esta fase." : "Sin datos suficientes en esta fase."}</li>`}</ul>${c.lines.some(l => !l.main) ? `<details class="more"><summary>Más medidas de esta fase (${c.lines.filter(l => !l.main).length})</summary><ul>${c.lines.filter(l => !l.main).map(l => mLine(c, l, false)).join("")}</ul></details>` : ""}${c.copy ? `<div class="copy"><b>Para copiarla:</b> ${c.copy}</div>` : ""}${c.focus ? `<div class="focus"><b>Qué mirar:</b> ${c.focus}</div>` : ""}</div>`).join("");
+  box.innerHTML = (v.cards || []).map((c, i) => `<div class="pcard"><canvas width="400" height="500" data-i="${i}" title="Ver este momento en vídeo"></canvas><h3><span>${i + 1} · ${c.title}</span>${c.changes ? `<span class="ch">${c.changes} cambia${c.changes > 1 ? "n" : ""}</span>` : ""}</h3><ul>${c.lines.filter(l => l.main).map(l => mLine(c, l, true)).join("") || `<li class="dim3">${c.lines.length ? "Sin claves medidas con golpes suficientes en esta fase." : `Su patrón típico de esta fase necesita ${MODEL.min_n || 12} golpes de esta situación. Mientras, sus valores (provisionales) están en «Cópiala», fase ${i + 1}.`}</li>`}</ul>${c.lines.some(l => !l.main) ? `<details class="more"><summary>Más medidas de esta fase (${c.lines.filter(l => !l.main).length})</summary><ul>${c.lines.filter(l => !l.main).map(l => mLine(c, l, false)).join("")}</ul></details>` : ""}${c.copy ? `<div class="copy"><b>Para copiarla:</b> ${c.copy}</div>` : ""}${c.focus ? `<div class="focus"><b>Qué mirar:</b> ${c.focus}</div>` : ""}</div>`).join("");
   box.querySelectorAll("canvas").forEach(cv => cv.addEventListener("click", () => { const c = v.cards[+cv.dataset.i]; if (!s) return; loadStroke(s).then(() => { const t = s.phases[c.phase]; if (isN(t)) setT(t); }); showTab("golpe"); }));
   box.querySelectorAll("li[data-ph]").forEach(li => li.addEventListener("click", () => { if (!s) return; const ph = li.dataset.ph; loadStroke(s).then(() => { const t = s.phases[ph]; if (isN(t)) setT(t); }); showTab("golpe"); }));
   document.getElementById("m-play").disabled = !ss.length;
@@ -2149,6 +2158,7 @@ function aWhyMissing(set, c) {
     const rel = set.filter(s => (s.feet || {}).steps_reliable === false).length;
     if (rel) return `sus pasos no se distinguen en ${rel} de ${set.length} golpes (tobillos borrosos en la tele): mira el vídeo`;
   }
+  if (c.key === "class.ready_hands") return "desde detrás, en la espera las dos manos y la raqueta quedan tapadas por el cuerpo: solo se distingue cuando las muñecas están claramente juntas o separadas, o cuando se ve la garganta de la raqueta (±80 ms de la espera)";
   if (c.key.includes("racket") || c.key.includes("face")) return "la raqueta no se ve bien en ese momento en estos golpes";
   return "no medido en estos golpes";
 }
