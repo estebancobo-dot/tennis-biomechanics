@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 173,
+  "ok": 176,
   "falta": 0,
-  "pocos datos": 192,
-  "aviso": 18
+  "pocos datos": 194,
+  "aviso": 17
  },
  "items": [
   {
@@ -2215,7 +2215,21 @@
    "area": "Valores posibles",
    "name": "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
    "status": "ok",
-   "detail": "45 medidas: 6 dudosa, 17 fiable, 3 no comprobable, 1 ruido, 1 sesgo, 17 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±8.27. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 57.3° / 3D 12.4°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
+   "detail": "47 medidas: 6 dudosa, 17 fiable, 4 no comprobable, 1 ruido, 1 sesgo, 18 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±8.27. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 57.3° / 3D 12.4°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
+  },
+  {
+   "req": 3,
+   "area": "Valores posibles",
+   "name": "Punta de la raqueta respecto a la cabeza en el armado",
+   "status": "pocos datos",
+   "detail": "medido en 1 de 10 golpes; en «Aprende»; fiabilidad: sin juzgar"
+  },
+  {
+   "req": 3,
+   "area": "Valores posibles",
+   "name": "Frenado de los hombros antes del contacto",
+   "status": "ok",
+   "detail": "medido en 10 de 10 golpes; en «Aprende»; fiabilidad: no comprobable"
   },
   {
    "req": 3,
@@ -2383,7 +2397,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Aprende su derecha»",
    "status": "ok",
-   "detail": "25242 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "27780 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2540,21 +2554,35 @@
    "area": "Aprende su derecha",
    "name": "La pantalla responde a cada combinación",
    "status": "ok",
-   "detail": "677 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 33850 puntos de control comprobados; 199 con golpes exactos"
+   "detail": "677 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 35204 puntos de control comprobados; 199 con golpes exactos"
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha",
    "status": "pocos datos",
-   "detail": "0 golpes exactos, 9 parecidos; 48 de 50 puntos con su valor medido"
+   "detail": "0 golpes exactos, 9 parecidos; 49 de 52 puntos con su valor medido"
+  },
+  {
+   "req": 1,
+   "area": "Aprende su derecha",
+   "name": "Lo que la distingue: su firma (rasgos que repite) con vídeo",
+   "status": "ok",
+   "detail": "5 rasgos que repite en ≥ 75 % de sus golpes, solo de medidas fiables"
+  },
+  {
+   "req": 1,
+   "area": "Aprende su derecha",
+   "name": "Estilo de su derecha en una frase",
+   "status": "ok",
+   "detail": "Estilo de su derecha: armado amplia (90 %) · apoyo abierto (30 %) · efecto liftado (de abajo arriba) (80 %) · terminación sobre el hombro (40 %) provisional: 10 golpes."
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "Puntos de «Aprende» con su valor medido (todas sus derechas)",
    "status": "ok",
-   "detail": "48 de 50; el resto dice por qué falta"
+   "detail": "50 de 52; el resto dice por qué falta"
   },
   {
    "req": 2,
@@ -2722,14 +2750,14 @@
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b",
    "status": "pocos datos",
-   "detail": "175 comprobaciones: 108 pocos datos, 67 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "177 comprobaciones: 108 pocos datos, 69 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto",
    "status": "pocos datos",
-   "detail": "22 comprobaciones: 19 pocos datos, 3 ok; la peor: «Bola rápida / lenta» (lenta 2, media 3, rápida 3, muy rápida 2 (se muestra con ≥ 12 golpes))"
+   "detail": "24 comprobaciones: 19 pocos datos, 5 ok; la peor: «Bola rápida / lenta» (lenta 2, media 3, rápida 3, muy rápida 2 (se muestra con ≥ 12 golpes))"
   },
   {
    "req": 11,
@@ -2813,7 +2841,7 @@
    "area": "Peticiones",
    "name": "#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»",
    "status": "pocos datos",
-   "detail": "6 comprobaciones: 1 pocos datos, 5 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 48 de 50 puntos con su valor medido)"
+   "detail": "8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 49 de 52 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -3107,7 +3135,7 @@
    "area": "Peticiones",
    "name": "#59 Diferencias solo por encima del error y en situaciones equivalentes",
    "status": "pocos datos",
-   "detail": "4 comprobaciones: 1 pocos datos, 3 ok; la peor: «Cada frase lleva cuántos golpes la respaldan y su fiabilidad» (0 frases)"
+   "detail": "6 comprobaciones: 2 pocos datos, 4 ok; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 1 de 10 golpes; en «Aprende»; fiabilidad: sin juzgar)"
   },
   {
    "req": 11,
@@ -3142,14 +3170,14 @@
    "area": "Peticiones",
    "name": "#68 La meta: mejorar mi derecha tomando la de X como base",
    "status": "pocos datos",
-   "detail": "4 comprobaciones: 1 pocos datos, 3 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 48 de 50 puntos con su valor medido)"
+   "detail": "6 comprobaciones: 1 pocos datos, 5 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 49 de 52 puntos con su valor medido)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica",
    "status": "pocos datos",
-   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 48 de 50 puntos con su valor medido)"
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 49 de 52 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -3379,8 +3407,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#102 Mejora 4: punta de la raqueta respecto a la cabeza en el armado",
-   "status": "aviso",
-   "detail": "ninguna comprobación de esta ejecución la cubre (Punta de la raqueta respecto a la cabeza)"
+   "status": "pocos datos",
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 1 de 10 golpes; en «Aprende»; fiabilidad: sin juzgar)"
   },
   {
    "req": 11,
@@ -3408,7 +3436,7 @@
    "area": "Peticiones",
    "name": "#106 Mejora 8: frenado de los hombros antes del contacto",
    "status": "aviso",
-   "detail": "ninguna comprobación de esta ejecución la cubre (Frenado de los hombros)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3436,7 +3464,7 @@
    "area": "Peticiones",
    "name": "#110 Mejora 12: «Lo que la distingue» (2-3 rasgos frente a la literatura, con vídeo)",
    "status": "aviso",
-   "detail": "ninguna comprobación de esta ejecución la cubre (Lo que la distingue)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3450,7 +3478,7 @@
    "area": "Peticiones",
    "name": "#112 Mejora 14: clase descriptiva de estilo (`fh_style`)",
    "status": "aviso",
-   "detail": "ninguna comprobación de esta ejecución la cubre (Estilo de su derecha)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,

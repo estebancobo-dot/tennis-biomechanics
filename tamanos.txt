@@ -1,9 +1,9 @@
-fecha: 2026-10-13T10:27:56
+fecha: 2026-10-13T10:58:32
        5.7 MB  \output\benchmark
      449.9 MB  \output\entrenamiento
        0.1 MB  \output\investigacion
-    1881.3 MB  \output\_smoke
-       4.3 MB  \output\_smoke\auditoria
+    1881.4 MB  \output\_smoke
+       4.5 MB  \output\_smoke\auditoria
        1.5 MB  \output\_smoke\diag
       90.8 MB  \output\_smoke\exportar
        1.4 MB  \output\_smoke\informe
