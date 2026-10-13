@@ -54,7 +54,7 @@ def feet_seen(cache: Path, run) -> float | None:
     from tennisbio.pipeline import load_npz
 
     d = load_npz(cache)
-    if d is None or "feet_confs" not in d.files:
+    if d is None or "feet_confs" not in d:
         return None
     seen = n = 0
     for t, b in enumerate(run.boxes):
@@ -120,6 +120,8 @@ def ball_trial(onnx: Path, clips, root: Path, device: str) -> dict:
 def recommend(res: dict, base: str) -> list[str]:
     b = res.get(base) or {}
     out = []
+    if (b.get("gt") or 0) < 5:          # too few annotated strokes to compare anything
+        return out
     for v, r in res.items():
         if v == base or r.get("error"):
             continue
@@ -209,7 +211,7 @@ def main():
             s = summarize(pairs_all, fp_all, fn_all)
             num = lambda xs: [x for x in xs if x is not None]
             res[v] = {"clips": len(tracked), "ms_per_frame": round(float(np.median(ms)), 1) if ms else None,
-                      "precision": s["precision"], "recall": s["recall"], "f1": s["f1"],
+                      "gt": s["gt"], "precision": s["precision"], "recall": s["recall"], "f1": s["f1"],
                       "timing_err_frames": s["timing_err_frames_median"],
                       "jerk_pct": round(float(np.median(num(jk))), 3) if num(jk) else None,
                       "tracked": round(float(np.mean(tracked)), 3) if tracked else None,

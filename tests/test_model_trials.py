@@ -8,7 +8,7 @@ from model_trials import recommend  # noqa: E402
 
 
 def test_recommend_only_when_better_in_everything():
-    base = {"f1": 0.80, "jerk_pct": 0.50, "ms_per_frame": 100.0, "feet_seen": None, "kp_diff_vs_fp32_px": None}
+    base = {"gt": 20, "f1": 0.80, "jerk_pct": 0.50, "ms_per_frame": 100.0, "feet_seen": None, "kp_diff_vs_fp32_px": None}
     res = {
         "yolo11m-pose@960": base,
         "faster": {"f1": 0.79, "jerk_pct": 0.50, "ms_per_frame": 60.0, "feet_seen": None, "kp_diff_vs_fp32_px": None},

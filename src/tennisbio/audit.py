@@ -161,6 +161,9 @@ def shown_keys(data: dict) -> set[str]:
     for k, spec in METRICS.items():
         if any((s.get("m") or {}).get(k) is not None for s in data.get("strokes", [])):
             shown.add(f"metrics.{spec[-1]}")
+    # the conditions of «Cópiala»: each stroke's class is counted in its chips and selects it
+    for s in data.get("strokes", []):
+        shown |= {f"class.{k}" for k, v in (s.get("cl") or {}).items() if v is not None}
     # «Sus pies en este golpe» (stroke screen): every footwork value of each stroke
     for s in data.get("strokes", []):
         for k, v in (s.get("feet") or {}).items():
@@ -193,8 +196,9 @@ def planned_keys() -> set[str]:
     keys |= {f"tphase.{p}" for p in ("ball_net", "ball_bounce", "ball_top")}
     keys |= {f"phase.{p}" for p in KEY_MOMENTS}
     keys |= {"chain.proximal_to_distal"} | {f"face.{p}" for p in KEY_MOMENTS}
-    from .learn import learn_keys
+    from .learn import CONDITIONS, learn_keys
     keys |= set(learn_keys())                      # every checkpoint of «Cópiala»
+    keys |= {f"class.{k}" for k in CONDITIONS}     # and every condition the user chooses there
     return keys
 
 

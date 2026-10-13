@@ -148,7 +148,7 @@ da la tele (marcador, sonido, bola, pies en la pista; `returns.py`). En «Cópia
 | Resto: split step respecto al saque | ITF; Kovacs 2009 | ✔ | `split_landing_vs_opp_s` (en un resto, el golpe de la rival es el saque) |
 | Resto: armado corto (bloqueo) o swing completo; terminación | ITF; Tennis Australia | ◐ | `class.takeback`, `class.finish` y su firma con la condición «Saque que resta» (sin medida propia de bloqueo) |
 | Resto: dirección y profundidad de su resto | TennisViz | ✔ | `shot_type`, `shot_depth_m` con la condición «Momento del punto: resto» |
-| Resto: tiempo que tiene desde el saque | Hawk-Eye (velocidad del saque) | ✔ | `time_available_s` (condición «Velocidad de la bola») |
+| Resto: tiempo que tiene desde el saque | Hawk-Eye (velocidad del saque) | ✔ | `class.ball_speed`: condición «Velocidad de la bola», del tiempo entre el saque y su golpe (`time_available_s`) |
 | Velocidad y efecto del saque que resta (km/h, rpm) | Hawk-Eye | ✘ | bola pequeña y borrosa; se ve indirectamente en el tiempo disponible |
 
 ## 6. Matriz del usuario (12-10): análisis integral de la derecha
