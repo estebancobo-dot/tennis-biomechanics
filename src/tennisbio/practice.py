@@ -257,7 +257,7 @@ def summarize(strokes: list[dict]) -> dict:
     out = {}
     for view, table in (("lateral", SIDE_METRICS), ("frontal", FRONT_METRICS), ("3d", D3_METRICS)):
         own = [s for s in strokes if (s.get("view") in D3_VIEWS if view == "3d" else s.get("view") == view)
-               and s.get("stroke") == "forehand" and not s.get("discarded")]
+               and s.get("stroke") == "forehand" and not s.get("discarded") and not s.get("unconfirmed")]
         for k, (lab, unit, what) in table.items():
             v = np.array([s["metrics"][k] for s in own if s.get("metrics", {}).get(k) is not None], float)
             e = {"label": lab, "unit": unit, "what": what, "n": int(len(v)), "view": view}

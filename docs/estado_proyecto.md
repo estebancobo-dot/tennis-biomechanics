@@ -115,6 +115,12 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
   lo nuevo se añade. Las 4 tablas (raqueta por fase, Comparar, Explorador, Comparativas) siguen igual,
   ahora con frases encima que dicen lo importante («Tabla completa» debajo, abierta). La auditoría
   comprueba que haya frases en esas pantallas y solo avisa de tablas sin frases.
+- Prueba media del 13-10 (00:49-05:52, 5 h): 35 min de partido en 251 min (≈ 25 h por partido de 3,5 h:
+  players 48 min, identity 30, candidates 31, court 17, score 19, fine 103 = pose 64 + bola 27). Solo 10,6 min
+  de juego en el tramo (minuto 121) → 27 golpes, 14 derechas (10 cercanas). 4 ventanas sin nadie hacían
+  fallar la pasada fina (arreglado). Vista lateral: 15 derechas de lado y 33 en 3D, pero las detectadas solo
+  por la muñeca caen en el armado (impacto mal situado): ahora solo se miden las confirmadas por el sonido.
+  Siguiente: velocidad (prioridad) y elegir un tramo con más juego.
 - Pendiente de la auditoría (pedido el 12-10): comprobar cada combinación medida × situación, convertir
   las 63 peticiones del chat (`docs/peticiones_usuario.md`) y las 25 afirmaciones de entrenadores en
   comprobaciones automáticas, y validar la exactitud de más medidas con clips anotados.

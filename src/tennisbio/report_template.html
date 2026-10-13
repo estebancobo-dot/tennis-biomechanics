@@ -1785,7 +1785,7 @@ function renderPractice() {
     sum.innerHTML = `<div class="empty">Todavía no hay vídeos de entrenamiento analizados. Se bajan y analizan solos en la prueba rápida y en la media.</div>`;
     src.innerHTML = ""; lib.innerHTML = ""; document.getElementById("pr-count").textContent = ""; return;
   }
-  const side = PR.strokes.filter(s => s.view === "lateral" && s.stroke === "forehand" && !s.discarded);
+  const side = PR.strokes.filter(s => s.view === "lateral" && s.stroke === "forehand" && !s.discarded && !s.unconfirmed);
   sum.innerHTML = Object.entries(PR.summary || {}).map(([k, e]) => {
     const has = isN(e.median), u = e.unit === "°" ? "°" : e.unit === "índice" ? "" : " " + e.unit, dec = e.unit === "índice" ? 2 : 0;
     const val = has ? `<b style="font:600 18px var(--mono)">${fmt(e.median, dec)}${u}</b> <span class="dim">(la mitad de sus golpes entre ${fmt(e.q1, dec)} y ${fmt(e.q3, dec)}${u})</span>`
@@ -1802,7 +1802,7 @@ function renderPractice() {
     const mv = Object.entries(s.metrics || {}).filter(([k]) => PR.summary[k]).slice(0, 4).map(([k, v]) => { const e = PR.summary[k]; return `<span title="${e.label}">${e.label.split(" ")[0]} ${fmt(v, 0)}${e.unit === "°" ? "°" : " " + e.unit}</span>`; }).join("");
     return `<div class="card" style="cursor:default"><div class="th">${s.clip ? `<video controls playsinline preload="none" ${s.thumb ? `poster="${PR.base}/${s.thumb}"` : ""} src="${PR.base}/${s.clip}" style="pointer-events:auto;object-fit:contain"></video>` : `<div class="noimg">sin vídeo</div>`}`
       + `<div class="badge"><span class="a">${VIEW_ES[s.view] || s.view}</span><span>${s.stroke === "forehand" ? "derecha" : s.stroke === "backhand" ? "revés" : "saque/remate"}</span></div></div>`
-      + `<div class="meta"><div class="mv" style="flex-wrap:wrap">${mv || (s.discarded ? '<span class="dim">descartado: valores imposibles (instante del impacto o brazo no fiables)</span>' : '<span class="dim">no se mide (no es una derecha de lado ni de frente)</span>')}</div><div class="dim3">${s.title.slice(0, 60)} · ${clock(s.t)}</div></div></div>`;
+      + `<div class="meta"><div class="mv" style="flex-wrap:wrap">${mv || (s.unconfirmed ? '<span class="dim">impacto sin confirmar por el sonido: se ve, no se mide</span>' : s.discarded ? '<span class="dim">descartado: valores imposibles (instante del impacto o brazo no fiables)</span>' : '<span class="dim">no se mide (no es una derecha de lado ni de frente)</span>')}</div><div class="dim3">${s.title.slice(0, 60)} · ${clock(s.t)}</div></div></div>`;
   }).join("") || `<div class="empty">Ninguna derecha filmada así todavía.</div>`;
 }
 document.getElementById("pr-view").addEventListener("click", ev => {

@@ -38,7 +38,7 @@ QUERIES = ["Rybakina practice", "Rybakina practice court level", "Rybakina train
 EXCLUDE = (" vs ", " vs.", " v ", "highlights", "interview", "press conference", "full match", "match point", "reaction")
 FORMAT = "bv*[height<=720][ext=mp4]+ba[ext=m4a]/b[height<=720][ext=mp4]/b[height<=720]/b"   # as validate_f3set (works on the PC)
 MIN_SHOT_S = 2.5
-VERSION = 3          # of the analysis: a video analysed by an older version is analysed again (pose kept in cache)
+VERSION = 4          # of the analysis: a video analysed by an older version is analysed again (pose kept in cache)
 
 
 def log(msg):
@@ -229,7 +229,11 @@ def analyse(v: dict, d: Path, seg: Path, clips: Path, hand: str, height_m: float
             rec = {"id": f"{v['id']}_{n:02d}_{k:02d}", "video_id": v["id"], "title": v["title"], "channel": v["channel"],
                    "url": v["url"], "t": round((s + i) / fps, 2), "view": view, "stroke": st.stroke,
                    "source": st.impact_source, "metrics": {}}
-            if view == "lateral" and st.stroke == "forehand":
+            if "audio" not in (st.impact_source or ""):
+                # without the impact sound the contact frame is the wrist-speed peak alone, which in practice
+                # videos often falls in the backswing (checked on the PC, 13-10): shown, never measured
+                rec["unconfirmed"] = True
+            elif view == "lateral" and st.stroke == "forehand":
                 rec["metrics"] = practice.side_metrics(run.img, run.conf, sk, run.fps, i, ph, run.height_px, height_m,
                                                        heads(run, sk, i - int(0.8 * run.fps), i + 1))
             elif view == "frontal" and st.stroke == "forehand":
@@ -237,7 +241,7 @@ def analyse(v: dict, d: Path, seg: Path, clips: Path, hand: str, height_m: float
             bad = practice.implausible(rec["metrics"])
             if bad:                                   # contact frame or arm not trustworthy: nothing measured
                 rec["discarded"], rec["metrics"] = bad, {}
-            elif view in practice.D3_VIEWS and st.stroke == "forehand" and wb3d is not None:
+            elif view in practice.D3_VIEWS and st.stroke == "forehand" and wb3d is not None and not rec.get("unconfirmed"):
                 m3 = practice.metrics_3d(frames_3d(shot, run, wb3d, ph.get("loaded"), i), hand, height_m)
                 bad3 = practice.implausible(m3)
                 if bad3:                              # the 3D estimate of this stroke is not credible

@@ -70,7 +70,9 @@ def pick_initial(boxes, mode="largest") -> tuple[int, np.ndarray]:
     person standing lowest in the image among those at least half as tall as the tallest
     (the chair umpire and line judges are higher up or smaller).
     """
-    first = next(t for t in range(len(boxes)) if len(boxes[t]))
+    first = next((t for t in range(len(boxes)) if len(boxes[t])), None)
+    if first is None:                   # nobody in the whole clip (a shot without players)
+        return None, None
     b = boxes[first]
     h = b[:, 3] - b[:, 1]
     if mode == "near":
@@ -117,6 +119,10 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     first, init = pick_initial(boxes, init_mode)
     if init_box is not None:
         init = np.asarray(init_box, float)
+    if init is None:                    # nobody to follow: a run without strokes, not an error
+        log("nadie en la ventana: sin golpes")
+        return ClipRun(fps, sk, np.full((T, len(sk), 2), np.nan), np.zeros((T, len(sk))), [None] * T, 0.0, 0.0,
+                       np.zeros(0), [], rackets=[[] for _ in range(T)])
     min_bottom = None
     if init_mode == "near" and side == "near":
         # the near player's feet stay below the net, roughly the lower half of the frame;

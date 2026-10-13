@@ -466,15 +466,15 @@ def _practice_items(pr: dict | None, report_dir: Path | None) -> list[dict]:
         return [_item(6, area, "Vídeos de entrenamiento analizados", "aviso",
                       "todavía no hay vídeos de entrenamiento (se bajan en el PC con la prueba rápida; ver el registro)")]
     st = pr.get("strokes") or []
-    side = [s for s in st if s.get("view") == "lateral" and s.get("stroke") == "forehand" and not s.get("discarded")]
+    side = [s for s in st if s.get("view") == "lateral" and s.get("stroke") == "forehand" and not s.get("discarded") and not s.get("unconfirmed")]
     disc = [s for s in st if s.get("discarded")]
     items = [_item(6, area, "Vídeos de entrenamiento analizados", "ok",
                    f"{len(pr['videos'])} vídeos, {len(st)} golpes; cámara: {pr.get('views')}; "
                    f"{len(disc)} descartados por valores imposibles"),
              _item(6, area, "Derechas filmadas de lado", "ok" if len(side) >= MIN_N else "pocos datos",
                    f"{len(side)} (se resume cada medida con {MIN_N} o más)")]
-    front = [s for s in st if s.get("view") == "frontal" and s.get("stroke") == "forehand" and not s.get("discarded")]
-    in3d = [s for s in st if s.get("view") in D3_VIEWS and s.get("stroke") == "forehand" and not s.get("discarded")]
+    front = [s for s in st if s.get("view") == "frontal" and s.get("stroke") == "forehand" and not s.get("discarded") and not s.get("unconfirmed")]
+    in3d = [s for s in st if s.get("view") in D3_VIEWS and s.get("stroke") == "forehand" and not s.get("discarded") and not s.get("unconfirmed")]
     for k, (lab, _, _) in {**SIDE_METRICS, **FRONT_METRICS, **D3_METRICS}.items():
         e = (pr.get("summary") or {}).get(k) or {}
         n = e.get("n", 0)

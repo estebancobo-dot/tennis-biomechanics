@@ -178,3 +178,8 @@ def test_metrics_3d_in_her_body_frame():
     assert practice.metrics_3d({"pre": imp, "impact": imp}, "right", 1.84) == {}       # hand not moving
     low = _k3((0.4, -0.3, 0.37)); low[1][practice._J["right_wrist"]] = 0.1
     assert practice.metrics_3d({"pre": pre, "impact": low}, "right", 1.84) == {}       # wrist not seen
+
+
+def test_clip_without_anybody_is_not_an_error():
+    from tennisbio.clip_pipeline import pick_initial
+    assert pick_initial([np.zeros((0, 4))] * 5) == (None, None)
