@@ -708,7 +708,7 @@ const third = s => !isN(s.frac) ? null : s.frac < 1 / 3 ? 1 : s.frac < 2 / 3 ? 2
 const stShare = ["abierto", "semiabierto", "neutro", "cerrado"].map(k => [k, pct(STROKES.filter(s => s.stance), s => s.stance === k)]);
 const withT = STROKES.filter(s => isN(s.tAvail));
 document.getElementById("kpis").innerHTML = [
-  { l: { forehand: "Derechas analizadas", backhand: "Reveses analizados", overhead: "Saques y remates" }[DATA.stroke] || "Golpes analizados", v: STROKES.length, s: MATCHES.map(m => `${m.id} ${m.n}`).join(" · "), extra: `<div class="bar1">${MATCHES.map((m, i) => `<span style="flex:${m.n || .001};background:var(--ink-3);opacity:${.45 + (i % 4) * .15}"></span>`).join("")}</div>` },
+  { l: { forehand: "Derechas analizadas", backhand: "Reveses analizados", overhead: "Saques y remates" }[DATA.stroke] || "Golpes analizados", v: STROKES.filter(s => s.side !== "far").length, s: `del lado cercano (con todo el detalle; los que usa «Aprende»)` + (STROKES.some(s => s.side === "far") ? ` · otros ${STROKES.filter(s => s.side === "far").length} del lado lejano, solo posición y bola` : "") + " · " + MATCHES.map(m => `${m.id} ${m.n}`).join(" · "), extra: `<div class="bar1">${MATCHES.map((m, i) => `<span style="flex:${m.n || .001};background:var(--ink-3);opacity:${.45 + (i % 4) * .15}"></span>`).join("")}</div>` },
   { l: "Sin dudas", v: `${fmt(100 * (1 - REVIEW / (STROKES.length || 1)))}<small>%</small>`, s: `${REVIEW} golpes con alguna duda (se muestran marcados)`, extra: `<div class="bar1"><span style="flex:${STROKES.length - REVIEW || .001};background:var(--good)"></span><span style="flex:${REVIEW || .001};background:var(--raise)"></span></div>` },
   { l: "Tipo de apoyo", v: `${fmt(stShare[0][1])}<small>% abierto</small>`, s: stShare.map(([k, p]) => `${k} ${fmt(p)} %`).join(" · "), extra: `<div class="bar1">${stShare.map(([k, p]) => `<span style="flex:${isN(p) ? p : 0};background:${STANCE[k]}"></span>`).join("")}</div>` },
   { l: "Bola rápida", v: `${fmt(pct(withT, s => s.fast))}<small>%</small>`, s: `tiempo disponible medio ${fmt(mean(withT.map(s => s.tAvail)), 2)} s · ${withT.length} golpes con el golpe del rival localizado`, extra: `<div class="bar1"><span style="flex:${withT.filter(s => s.fast).length || .001};background:var(--crit)"></span><span style="flex:${withT.filter(s => !s.fast).length || .001};background:var(--raise)"></span></div>` },
@@ -1242,7 +1242,7 @@ async function renderBody(id) {
     : "Sin la pista en la imagen no se mide la base en metros.";
   await frameCards(document.getElementById("bd-base"), base, id); if (cur.id !== id) return;
   // 3. the trunk at the finish: the shoulder line drawn on the frame and where the chest faces
-  const tf = ph("finish");
+  const tf = isN(B.tTrunk) ? B.tTrunk : ph("finish");      // its most turned frame after the finish
   document.getElementById("bd-trunk-t").innerHTML = B.trunk ? `Al terminar, el tronco queda <b>${B.trunk}</b>${isN(B.trunkRatio) ? ` (los hombros se ven al ${fmt(B.trunkRatio * 100)} % de su anchura de frente)` : ""}.` : "No se distingue hacia dónde mira el tronco al terminar en este golpe.";
   await frameCards(document.getElementById("bd-trunk"), isN(tf) ? [{ t: tf, title: "Terminación", opts: { lines: true }, text: B.trunk ? `<span class="mm">${B.trunk}</span>` : "" }] : [], id);
 }

@@ -159,6 +159,11 @@ PHASES = [
             "Busca ese mismo ángulo de subida en tus golpes.", "Swing plano por miedo a mandar la bola larga.",
             "Grábate de lado y compara el ángulo de subida de la mano en los últimos 0,1 s.",
             ["Ángulo real del swing de abajo arriba (+10° a +45°)"]),
+         cp("stroke.racket_lag_deg", "Máximo retraso de la raqueta (lag)", "°", 0, "° más pequeño entre antebrazo y raqueta del armado al impacto (menos = más retraso)",
+            "Deja que la raqueta se quede atrás mientras el brazo empieza a ir hacia delante, como ella: la muñeca relajada la retrasa sola.",
+            "Muñeca rígida: la raqueta va a la vez que el brazo y no hay latigazo («casting» cuando se suelta pronto).",
+            "Sombras lentas con la muñeca suelta: nota cómo la cabeza de la raqueta se queda atrás al empezar el swing.",
+            ["Retraso de la muñeca (lag) y su liberación", "Liberación anticipada de la muñeca («casting»)"]),
          cp("acceleration.racket_forearm", "Retraso de la raqueta (lag)", "°", 0, "° entre antebrazo y raqueta (menos = más retraso)",
             "Deja que la raqueta se quede atrás de la mano al acelerar, con la muñeca relajada.",
             "Lanzar la raqueta con la muñeca desde atrás (casting).", "Golpes a media pista con la muñeca relajada, sintiendo que la mano tira de la raqueta.",
@@ -267,6 +272,11 @@ PHASES = [
 
 FEET = {"id": "feet", "title": "Pies: del split step al golpe", "when": "Todo el desplazamiento hacia la bola.",
         "checkpoints": [
+         cp("footwork.crossover_steps", "Pasos cruzados", "", 0, "pasos cruzados en el golpe (hacia la bola y de vuelta)",
+            "Cuando la bola te saca de sitio, cruza como ella: el pie de fuera pasa por delante y cubres más pista en menos pasos.",
+            "Ir siempre con pasos laterales cortos a una bola lejana: llegas tarde.",
+            "Desplazamientos de banda a banda: 2 pasos cruzados, apoyo y golpe en sombra; 3×6.",
+            ["Pasos cruzados", "Pasos de recuperación (laterales o cruzados)"]),
             cp("footwork.first_step_s", "Primer paso tras el split step", "s", 2, "s desde el aterrizaje", "Primer paso explosivo hacia la bola nada más aterrizar.",
                "Dar un paso atrás antes de salir.", "Split step y primer paso a la orden de un compañero que señala un lado; 10 por lado.", ["Split step"]),
             cp("class.approach_main", "Tipo de pasos hacia la bola", "", 0, "cruzados / laterales / de carrera",

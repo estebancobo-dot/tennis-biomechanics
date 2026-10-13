@@ -332,6 +332,8 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
     # every step named, on the way to the ball and on the way back (the movement cycle: split step →
     # first step → steps to the ball → adjustment and braking → stance → contact → recovery)
     kinds = step_kinds(st, impact, fps)
+    out["step_kinds"] = kinds                                      # every step named, in order
+    out["crossover_steps"] = sum(k == "cruzado" for k in kinds)    # to the ball and back
     t0 = split if split is not None else opp if opp is not None else a
     appr = [(x, k) for x, k in zip(st, kinds) if x.start >= t0 and x.land <= impact]
     out["approach_steps"] = [{**x.to_dict(fps, impact), "kind": k} for x, k in appr]
@@ -389,7 +391,7 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
                                                     "adjustment", "rear_leg", "feet_at_impact", "weight_loaded",
                                                     "approach_steps", "approach_pattern", "braking", "recovery_steps",
                                                     "recovery_pattern", "recovery_first", "recovery_start", "kick_back",
-                                                    "step_in", "drag_foot"))]:
+                                                    "step_in", "drag_foot", "crossover_steps"))]:
             del out[k]
         out["steps_reliable"] = False
     else:

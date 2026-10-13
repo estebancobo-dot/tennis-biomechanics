@@ -199,7 +199,7 @@ def body_view(s: dict) -> dict:
     return {"tLow": st.get("t_hip_lowest"), "tHigh": st.get("t_hip_highest"), "drop": st.get("hip_drop_cm"),
             "rise": st.get("hip_rise_after_cm"), "dropPct": st.get("hip_drop_pct"), "risePct": st.get("hip_rise_after_pct"),
             "base": {p: (ph.get(p) or {}).get("base_court_m") for p in ("loaded", "impact", "finish")},
-            "feetMove": st.get("feet_move_m"), "trunk": cl.get("finish_trunk"),
+            "feetMove": st.get("feet_move_m"), "trunk": cl.get("finish_trunk"), "tTrunk": st.get("t_trunk_finish"),
             "trunkRatio": (ph.get("finish") or {}).get("shoulder_width_ratio")}
 
 

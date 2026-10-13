@@ -112,6 +112,7 @@ STROKE_DESCRIPTORS = {
     "hip_drop_cm": ("piernas", "Cuánto baja la cadera", "cm", 0, "de la espera a su punto más bajo antes del impacto, con su altura real"),
     "hip_rise_after_cm": ("piernas", "Cuánto sube la cadera tras golpear", "cm", 0, "del punto más bajo al más alto tras el impacto, con su altura real"),
     "feet_move_m": ("piernas", "Cuánto se mueven los pies al golpear", "m", 2, "lo que más se mueve un pie del armado al impacto (0 = pies plantados)"),
+    "racket_lag_deg": ("raqueta", "Máximo retraso de la raqueta (lag)", "°", 0, "el menor ángulo antebrazo–raqueta del armado al impacto (menos = más retraso), donde la raqueta se ve"),
     "pause_at_loaded": ("ritmo", "Pausa en el armado", "s", 2, "mano casi quieta entre el armado y el swing"),
     "hand_on_handle": ("raqueta", "Mano en el mango", "%", 1, "distancia muñeca–final del mango, % de la longitud de la raqueta"),
     "racket_speed_rel": ("raqueta", "Velocidad de la raqueta (relativa)", "alt/s", 1, "punta antes y después del desenfoque, en alturas por segundo: solo para comparar sus golpes"),
@@ -339,12 +340,19 @@ def body_moves(out: dict, img: np.ndarray, sk: Skeleton, scale: np.ndarray, impa
             mv = max(float(np.linalg.norm(feet["impact"][i] - feet["loaded"][i])) for i in (0, 1))
             if mv <= 3:
                 s["feet_move_m"] = round(mv, 2)
-    f = ev.get("finish")
-    if f is not None:
+    f0 = ev.get("finish")
+    if f0 is not None:
         w = np.abs(img[:, sk["left_shoulder"], 0] - img[:, sk["right_shoulder"], 0]) / scale
-        if np.isfinite(w).sum() >= 5 and np.isfinite(w[f]):
-            ratio = float(w[f] / np.nanpercentile(w, 95))
-            dy = float((img[f, sk["dom_shoulder"], 1] - img[f, sk["non_shoulder"], 1]) / scale[f] * 100)
+        # the hand is highest (the finish instant) before the trunk has finished turning: the trunk is read
+        # at its most turned frame in the 0.3 s after it (hitting shoulder forward, line shortest)
+        w0 = np.nanpercentile(w, 95) if np.isfinite(w).sum() >= 5 else np.nan
+        dyv = (img[:, sk["dom_shoulder"], 1] - img[:, sk["non_shoulder"], 1]) / scale * 100
+        cand = [g for g in range(f0, min(len(img), f0 + int(round(0.3 * fps)) + 1)) if np.isfinite(w[g]) and np.isfinite(dyv[g])]
+        f = min(cand, key=lambda g: (w[g] / w0) if dyv[g] < 0 else 2 + w[g] / w0) if cand and np.isfinite(w0) else None
+        if f is not None:
+            out["stroke"]["t_trunk_finish"] = round((f - impact) / fps, 3)
+            ratio = float(w[f] / w0)
+            dy = float(dyv[f])
             ph.setdefault("finish", {})["shoulder_width_ratio"] = round(ratio, 2)
             ph["finish"]["dom_shoulder_ahead"] = round(-dy, 1)          # + = hitting shoulder towards the net
             c = out["classes"]
@@ -539,6 +547,22 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
     # timing
     s = out["stroke"]
     body_moves(out, img, sk, scale, impact, fps, ev, H, (context or {}).get("height_m"))
+    # lag: the smallest forearm–racket angle from the end of the backswing to just before contact, over
+    # the frames where the racket is seen (the last 2 before contact are blurred and left out)
+    if ev["loaded"] is not None and kps:
+        lag = []
+        for g in range(ev["loaded"], impact - 1):
+            k = kps.get(str(g))
+            e, w = img[g, sk["dom_elbow"]], img[g, sk["dom_wrist"]]
+            if k is None or not (np.isfinite(e).all() and np.isfinite(w).all()):
+                continue
+            k = np.asarray(k, float)
+            d, fa = k[0] - k[2], w - e
+            c = float(fa @ d / (np.linalg.norm(fa) * np.linalg.norm(d) + 1e-9))
+            lag.append((math.degrees(math.acos(np.clip(c, -1, 1))), g))
+        if lag:                     # one sharp reading is enough; the reliability test judges the noise
+            a, g = min(lag)
+            s["racket_lag_deg"], s["t_racket_lag"] = round(a, 1), round((g - impact) / fps, 3)
     for p in ("takeback", "loaded", "acceleration"):
         if ev[p] is not None:
             s[f"t_{p}"] = round((impact - ev[p]) / fps, 3)
@@ -686,16 +710,25 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         # apart (≈ 25-35 cm, 14-19 % of a 1.8 m player). Clear below 15 % / above 25 %; in between, the
         # racket keypoints decide (free wrist next to the throat) or the class is not given.
         ha = rd["hands_apart"]
+        # over the whole waiting position (ready → start of the preparation), not one frame: the median
+        # wrist distance, and the racket throat wherever it is detected in that time
+        fr = ev["ready"]
+        if fr is not None:
+            end = ev["takeback"] if ev["takeback"] is not None and ev["takeback"] > fr else min(T - 1, fr + int(0.3 * fps))
+            win = range(max(0, fr - int(0.1 * fps)), end + 1)
+            d_w = [float(np.linalg.norm(img[g, sk["dom_wrist"]] - img[g, sk["non_wrist"]]) / scale[g] * 100) for g in win
+                   if np.isfinite(img[g, [sk["dom_wrist"], sk["non_wrist"]]]).all()]
+            if len(d_w) >= 3:
+                ha = float(np.median(d_w))
         if ha < 15:
             c["ready_hands"] = "dos manos en la raqueta"
         elif ha > 25:
             c["ready_hands"] = "mano libre separada"
-        elif ev["ready"] is not None:
-            k = kps.get(str(ev["ready"])) if kps else None
-            nw = img[ev["ready"], sk["non_wrist"]]
-            if k is not None and np.isfinite(nw).all():
-                d = float(np.linalg.norm(np.asarray(k[1], float) - nw)) / float(scale[ev["ready"]]) * 100
-                c["ready_hands"] = "dos manos en la raqueta" if d < 10 else "mano libre separada"
+        elif fr is not None and kps:
+            d_t = [float(np.linalg.norm(np.asarray(kps[str(g)][1], float) - img[g, sk["non_wrist"]])) / float(scale[g]) * 100
+                   for g in win if str(g) in kps and kps[str(g)] is not None and np.isfinite(img[g, sk["non_wrist"]]).all()]
+            if d_t:
+                c["ready_hands"] = "dos manos en la raqueta" if float(np.median(d_t)) < 10 else "mano libre separada"
     if H is not None:
         from .footwork import feet_track
         fw = footwork(img, sk, H, scale, fps, impact, opp, ev["ready"] if (context or {}).get("split") else None,

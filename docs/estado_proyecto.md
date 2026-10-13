@@ -19,6 +19,32 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
 - El partido completo (los 4 partidos) se ejecuta **una sola vez, al final**, cuando todo funcione.
 - Móvil y nube: al final, después de que el PC funcione.
 
+## Lo último (13-10, tarde): leer primero
+- **Ciclo automático en el PC** (`scripts/windows/ciclo_automatico.ps1`, bucle `ciclo_bucle.ps1` al iniciar
+  sesión + tarea de Windows de respaldo, cada 10 min): trae el código nuevo de la rama, decide qué recalcular
+  (`scripts/auto_cycle.py decide`: medidas desde la caché ~20 min, informe ~2 min, o nada), revisa contra la
+  ejecución anterior y sube `revision_automatica.md` (OK / REGRESIÓN / ERROR), `ciclo_arranque.txt`
+  (cada arranque y por qué no hizo nada), `ciclo_vivo.txt` (señal horaria) y `ciclo_tarea.txt` a `pc-logs`.
+  **No pedir al usuario que lance 2c/2d.** Tras subir código, programar un aviso (send_later ~30 min) y leer la revisión.
+- **Fiabilidad de cada medida, automática** (`tennisbio.reliability`): repetibilidad con las fases movidas
+  1-2 fotogramas (por fase y del golpe entero), segundo método independiente (2D frente a 3D del tronco:
+  `sesgo`), medidas derivadas heredan el veredicto. Ruido o sesgo → no se da como valor suyo y la web dice por qué.
+  Hoy: giro de hombros 2D (57°) frente a 3D (12°) = sesgo; cuerdas en el impacto = ruido.
+- **Golpes dudosos** solo por dudas del golpe (raqueta no vista, valor descartado, espera/recuperación no
+  encontradas = medidas que faltan): 1 de 10.
+- **Aprende**: firma (lo que repite ≥ 75 %, solo medidas fiables), estilo en una frase (solo ≥ 50 %),
+  ~65 puntos; validado en el navegador en 677 combinaciones (`learn_check`).
+- **Vistas por golpe pedidas** (peticiones 114-117): la bola y ella con «cae» y medidas reales; bajar y subir
+  (barras + cm, una sola curva corregida de perspectiva, cadera 38-58 %); base en la pista (m); tronco al
+  terminar (en su fotograma más girado tras la terminación).
+- Medidas nuevas: punta de la raqueta respecto a la cabeza, frenado de hombros (hereda el sesgo del giro),
+  transferencia de peso, ritmo con la bola, codo en el armado, base al terminar, pasos cruzados
+  (`footwork.crossover_steps`), máximo lag (`stroke.racket_lag_deg`), manos en la espera en toda la espera,
+  raqueta a ±2 fotogramas, superficie del torneo o del nombre del vídeo.
+- **Pendiente:** más golpes (un tramo largo; el usuario decide si el ciclo lo lanza de noche), velocidad
+  (~15 h por partido), validar los giros del tronco con una referencia (vista lateral de entreno o clips
+  anotados), los 4 partidos y móvil/nube al final.
+
 ## Estado (octubre de 2026)
 Hecho y validado en la nube (ver `docs/validacion.md`):
 - Pipeline completo por etapas con caché e idempotente; identidad automática (cambios de lado +
