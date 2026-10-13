@@ -372,13 +372,15 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
     if rel:
         sm = summary(rel)
         noisy = sorted((k for k, v in rel.items() if v["verdict"] == "ruido"), key=lambda k: -rel[k].get("noise", rel[k].get("flip", 0)))
+        biased = [k for k, v in rel.items() if v["verdict"] == "sesgo"]
         judged = sum(v for k, v in sm.items() if k != "sin juzgar")
         noisy_txt = ", ".join(f"{k} ±{rel[k]['noise']}" if "noise" in rel[k] else f"{k} cambia {rel[k]['flip']:.0%}" for k in noisy[:12])
         items.append(_item(3, "Valores posibles", "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
                            "ok" if judged else "pocos datos",
                            f"{len(rel)} medidas: " + ", ".join(f"{v} {k}" for k, v in sorted(sm.items())) +
                            (f". No se dan como valor suyo (ruido): {noisy_txt}" if noisy else "")
-                           + f". Con menos de 5 golpes no se juzga"))
+                           + (". No coinciden con el segundo método (3D), no se dan: " + ", ".join(f"{k} 2D {rel[k]['med2d']}° / 3D {rel[k]['med3d']}°" for k in biased) if biased else "")
+                           + ". «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"))
     if data:
         lines = [ln for c in (model.get("cards") or []) for ln in c.get("lines") or []]
         weak = [ln["key"] for ln in lines if (ln.get("n") or 0) < MIN_N or ln.get("rel") is None]

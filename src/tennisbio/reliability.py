@@ -14,7 +14,13 @@ as her value, and the screen says why.
 
 Timings, steps and classes are judged the same way with the whole stroke described again with its
 phase instants moved (stages: shifted_jitter). For a class or a yes/no the noise is how often it flips:
-fiable ≤ 15 %, dudosa ≤ 35 %, ruido above.
+fiable ≤ 15 %, dudosa ≤ 35 %, ruido above. A measure that never changes when the instants move (it
+does not depend on them, e.g. measured at the impact) is "no comprobable" this way, not reliable.
+
+Repeatable is not right: a measure can be stable and biased. Where a second, independent method
+exists (the 3D estimate of the trunk, RTMW3D) both must agree: if they differ systematically (median
+difference over 8° with the same sign in at least 3 of 4 strokes) the measure is "sesgo" and is not
+given as her value either; the screen gives both readings.
 """
 from __future__ import annotations
 
@@ -22,6 +28,10 @@ import numpy as np
 
 MIN_STROKES = 5
 FLOOR = {"°": 3.0, "%": 1.5, "s": 0.02, "cm": 3.0}
+# measure → the same thing from an independent method (stroke_values key)
+SECOND_METHOD = {"loaded.x_factor": "metrics.x_factor_3d_deg", "loaded.shoulder_turn": "metrics.shoulder_turn_3d_deg",
+                 "loaded.hip_turn": "metrics.hip_turn_3d_deg"}
+AGREE_DEG = 8.0
 
 
 def shifted_jitter(base: dict, shifted: list[dict]) -> dict:
@@ -70,6 +80,9 @@ def assess(raw: list[dict], keys: dict[str, str | None]) -> dict:
                 out[k] = {"n": len(j), "noise": round(float(np.median(j)), 2), "spread": None, "verdict": "sin juzgar"}
             continue
         noise = float(np.median(j))
+        if max(j) == 0:
+            out[k] = {"n": len(j), "noise": 0.0, "spread": None, "verdict": "no comprobable"}
+            continue
         q1, q3 = np.percentile(v, [25, 75])
         spread = float(q3 - q1) / 1.349
         if noise <= max(0.5 * spread, _floor(unit)):
@@ -79,6 +92,16 @@ def assess(raw: list[dict], keys: dict[str, str | None]) -> dict:
         else:
             verdict = "ruido"
         out[k] = {"n": len(j), "noise": round(noise, 2), "spread": round(spread, 2), "verdict": verdict}
+        other = SECOND_METHOD.get(k)
+        pairs = [(x[k], x[other]) for x in vals if other and isinstance(x.get(k), (int, float)) and isinstance(x.get(other), (int, float))]
+        if len(pairs) >= MIN_STROKES and verdict != "ruido":
+            d = np.array([a - b for a, b in pairs])
+            bias = float(np.median(d))
+            same = max(np.mean(d > 0), np.mean(d < 0))
+            out[k].update(n2=len(pairs), med2d=round(float(np.median([a for a, _ in pairs])), 1),
+                          med3d=round(float(np.median([b for _, b in pairs])), 1), bias=round(bias, 1))
+            if abs(bias) > max(AGREE_DEG, 2 * noise) and same >= 0.75:
+                out[k]["verdict"] = "sesgo"
     return out
 
 

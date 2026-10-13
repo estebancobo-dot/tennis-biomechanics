@@ -37,3 +37,17 @@ def test_shifted_jitter_and_classes():
     assert assess(flips, {"class.takeback": None})["class.takeback"]["verdict"] == "ruido"
     steady = [{"technique": {"classes": {"takeback": "bucle"}, "jitter": {"class.takeback": 0.0}}}] * 6
     assert assess(steady, {"class.takeback": None})["class.takeback"]["verdict"] == "fiable"
+
+
+def test_second_method_and_untestable():
+    # stable but the independent 3D reading says something else: bias, not her value
+    rows = [{"technique": {"phases": {"loaded": {"shoulder_turn": 60.0 + i}}, "jitter": {"loaded.shoulder_turn": 1.0}},
+             "metrics": {"shoulder_turn_3d_deg": 15.0 + i}} for i in range(8)]
+    r = assess(rows, {"loaded.shoulder_turn": "°"})["loaded.shoulder_turn"]
+    assert r["verdict"] == "sesgo" and r["med2d"] > r["med3d"]
+    for x in rows:
+        x["metrics"]["shoulder_turn_3d_deg"] = x["technique"]["phases"]["loaded"]["shoulder_turn"] + 2
+    assert assess(rows, {"loaded.shoulder_turn": "°"})["loaded.shoulder_turn"]["verdict"] == "fiable"
+    # a value that never moves with the phase instants is not validated by this test
+    flat = [{"technique": {"stroke": {"swing_low_to_high": 40.0 + i}, "jitter": {"stroke.swing_low_to_high": 0.0}}} for i in range(8)]
+    assert assess(flat, {"stroke.swing_low_to_high": "°"})["stroke.swing_low_to_high"]["verdict"] == "no comprobable"

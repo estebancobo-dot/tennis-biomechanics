@@ -1877,6 +1877,8 @@ function aStat(set, c) {
   const v = aValues(set, c.key);
   if (!v.length) return { n: 0, txt: null };
   const rel = (DATA.reliability || {})[c.key], ru = c.unit === "°" ? "°" : c.unit ? " " + c.unit : "";
+  if (typeof v[0] === "number" && rel && rel.verdict === "sesgo")
+    return { n: 0, txt: null, why: `no fiable desde la tele: dos métodos independientes no coinciden (imagen 2D ${fmt(rel.med2d, c.dec)}${ru}, estimación 3D ${fmt(rel.med3d, c.dec)}${ru}, en ${rel.n2} golpes); no se da como valor suyo` };
   if (typeof v[0] === "number" && rel && rel.verdict === "ruido")
     return { n: 0, txt: null, why: `no fiable desde la tele: en un mismo golpe cambia ±${fmt(rel.noise, c.dec)}${ru} entre fotogramas vecinos, más que entre sus golpes (±${fmt(rel.spread, c.dec)}${ru}); no se da como valor suyo` };
   if (typeof v[0] === "number") {
@@ -1907,7 +1909,7 @@ function aHerChange(d, l) {
     const a = aValues(own, c.key), b = aValues(all, c.key);
     if (a.length < 2 || b.length < 4 || typeof a[0] !== "number") return;
     const rel = (DATA.reliability || {})[c.key];
-    if (rel && rel.verdict === "ruido") return;                  // noise is never a difference
+    if (rel && (rel.verdict === "ruido" || rel.verdict === "sesgo")) return;   // noise or bias is never a difference
     const spread = (quant(b, .75) - quant(b, .25)) || sd(b) || 1, dm = quant(a, .5) - quant(b, .5);
     if (rel && Math.abs(dm) <= 2 * rel.noise) return;            // only differences beyond the measuring error
     diffs.push({ c, dm, z: Math.abs(dm) / spread, n: a.length, ma: quant(a, .5), mb: quant(b, .5) });
