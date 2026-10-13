@@ -409,11 +409,11 @@
    "area": "Taxonomía",
    "name": "2. Cuerpo · Paso adelante de la pierna trasera tras el impacto",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "footwork.rear_leg_step_after"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 1,
@@ -513,23 +513,23 @@
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Velocidad 0,2 s antes y después del split",
    "status": "ok",
-   "detail": "medido en el 100% de los golpes y en el informe",
+   "detail": "medido en el 90% de los golpes y en el informe",
    "keys": [
     "footwork.speed_post_split_mps",
     "footwork.speed_pre_split_mps"
    ],
-   "measured": 1.0
+   "measured": 0.9
   },
   {
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Primer paso: momento (reacción)",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "footwork.first_step_s"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 1,
@@ -545,45 +545,45 @@
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Primer paso: dirección correcta respecto a la bola",
    "status": "ok",
-   "detail": "medido en el 30% de los golpes y en el informe",
+   "detail": "medido en el 40% de los golpes y en el informe",
    "keys": [
     "footwork.first_step_right_way"
    ],
-   "measured": 0.3
+   "measured": 0.4
   },
   {
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Número de pasos hasta la bola",
    "status": "pocos datos",
-   "detail": "se mide (40% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "detail": "se mide (50% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "footwork.steps_to_impact"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Longitud de cada paso; anchura del primero",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "footwork.first_step_length_m",
     "footwork.last_step_length_m"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Pasos de ajuste",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "footwork.adjustment_steps"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 1,
@@ -659,11 +659,11 @@
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Pierna que carga",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "footwork.weight_loaded_to_non"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 1,
@@ -682,11 +682,11 @@
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Última zancada más larga en carrera",
    "status": "ok",
-   "detail": "medido en el 30% de los golpes y en el informe",
+   "detail": "medido en el 40% de los golpes y en el informe",
    "keys": [
     "footwork.last_step_length_m"
    ],
-   "measured": 0.3
+   "measured": 0.4
   },
   {
    "req": 1,
@@ -711,13 +711,13 @@
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Cada paso nombrado: lateral (sin cruzar), cruzado, de carrera, hacia delante, hacia atrás, de ajuste",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe (parcial: ver la matriz)",
+   "detail": "medido en el 50% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "class.approach_main",
     "footwork.approach_pattern",
     "footwork.approach_steps"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 1,
@@ -735,29 +735,29 @@
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Frenado: último paso largo con caída de la velocidad",
    "status": "ok",
-   "detail": "medido en el 30% de los golpes y en el informe (parcial: ver la matriz)",
-   "keys": [
-    "footwork.braking_step"
-   ],
-   "measured": 0.3
-  },
-  {
-   "req": 1,
-   "area": "Taxonomía",
-   "name": "3. Pies y desplazamiento · Patada atrás (tijera) tras el impacto",
-   "status": "ok",
    "detail": "medido en el 40% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
-    "footwork.kick_back"
+    "footwork.braking_step"
    ],
    "measured": 0.4
   },
   {
    "req": 1,
    "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Patada atrás (tijera) tras el impacto",
+   "status": "ok",
+   "detail": "medido en el 50% de los golpes y en el informe (parcial: ver la matriz)",
+   "keys": [
+    "footwork.kick_back"
+   ],
+   "measured": 0.5
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Recuperación: tipo de cada paso de vuelta, cuándo empieza",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe (parcial: ver la matriz)",
+   "detail": "medido en el 50% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "class.recovery_first_step",
     "footwork.recovery_first_step",
@@ -765,7 +765,7 @@
     "footwork.recovery_start_s",
     "footwork.recovery_steps"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 3,
@@ -1479,11 +1479,11 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Pie de arrastre (pie trasero que se arrastra)",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe (parcial: ver la matriz)",
+   "detail": "medido en el 50% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "footwork.drag_foot"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 1,
@@ -1616,11 +1616,11 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Pasos de ajuste",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "footwork.adjustment_steps"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 1,
@@ -1639,24 +1639,24 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Paso de ataque hacia dentro de la pista (step-in)",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "footwork.step_in"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Pasos de recuperación (laterales o cruzados)",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "class.recovery_first_step",
     "footwork.recovery_first_step",
     "footwork.recovery_pattern"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 1,
@@ -1845,12 +1845,12 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Latencia de reacción al golpe de la rival",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe (parcial: ver la matriz)",
+   "detail": "medido en el 50% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "footwork.first_step_s",
     "footwork.split_landing_vs_opp_s"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 3,
@@ -2132,7 +2132,7 @@
    "area": "Examen de entrenadores",
    "name": "R6 Brazo libre casi extendido en el armado (codo 130-170°)",
    "status": "pocos datos",
-   "detail": "pocos datos: 4 golpes con el dato (hacen falta 12)"
+   "detail": "pocos datos: 3 golpes con el dato (hacen falta 12)"
   },
   {
    "req": 3,
@@ -2342,7 +2342,7 @@
    "area": "Valores posibles",
    "name": "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
    "status": "ok",
-   "detail": "59 medidas: 5 dudosa, 26 fiable, 4 no comprobable, 2 ruido, 3 sesgo, 19 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.45, loaded.racket_head_lateral ±2.9. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 57.3° / 3D 12.4°, stroke.shoulders_open_first 2D 57.3° / 3D 12.4°, stroke.shoulder_brake 2D 57.3° / 3D 12.4°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
+   "detail": "59 medidas: 3 dudosa, 34 fiable, 7 no comprobable, 2 ruido, 3 sesgo, 10 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±4.92, loaded.racket_head_lateral ±2.83. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 58.4° / 3D 13.8°, stroke.shoulders_open_first 2D 58.4° / 3D 13.8°, stroke.shoulder_brake 2D 58.4° / 3D 13.8°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
   },
   {
    "req": 3,
@@ -2370,7 +2370,7 @@
    "area": "Valores posibles",
    "name": "Lo no medible se dice",
    "status": "ok",
-   "detail": "18 elementos en «Lo que la tele no permite medir»"
+   "detail": "17 elementos en «Lo que la tele no permite medir»"
   },
   {
    "req": 6,
@@ -2524,7 +2524,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "32794 caracteres de texto, 5 vídeos, 8 gráficos; mensajes de vacío: ['']",
+   "detail": "32573 caracteres de texto, 5 vídeos, 8 gráficos; mensajes de vacío: ['']",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2532,7 +2532,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Sus golpes (Videoteca y pista)»",
    "status": "ok",
-   "detail": "3336 caracteres de texto, 5 vídeos, 1 gráficos",
+   "detail": "3344 caracteres de texto, 5 vídeos, 1 gráficos",
    "file": "pantalla_2_videoteca.jpg"
   },
   {
@@ -2540,7 +2540,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "7032 caracteres de texto, 6 vídeos, 28 gráficos",
+   "detail": "7052 caracteres de texto, 6 vídeos, 28 gráficos",
    "file": "pantalla_3_golpe.jpg"
   },
   {
@@ -2556,7 +2556,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "6482 caracteres de texto, 5 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']",
+   "detail": "6820 caracteres de texto, 5 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2564,7 +2564,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Tabla de golpes (Explorador)»",
    "status": "ok",
-   "detail": "3230 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "3233 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_6_explorador.jpg"
   },
   {
@@ -2580,7 +2580,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Fiabilidad de las medidas»",
    "status": "ok",
-   "detail": "3996 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "3111 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_8_fiabilidad.jpg"
   },
   {
@@ -2588,7 +2588,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "1269 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "1310 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -2687,7 +2687,7 @@
    "area": "Aprende su derecha",
    "name": "Lo que la distingue: su firma (rasgos que repite) con vídeo",
    "status": "ok",
-   "detail": "5 rasgos que repite en ≥ 75 % de sus golpes, solo de medidas fiables"
+   "detail": "4 rasgos que repite en ≥ 75 % de sus golpes, solo de medidas fiables"
   },
   {
    "req": 1,
@@ -2827,7 +2827,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "231 min para 35 min de vídeo ≈ 23.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -2855,7 +2855,7 @@
    "area": "Ficheros",
    "name": "Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series",
    "status": "ok",
-   "detail": "11 ficheros de etapa, 27 golpes con ventana y serie"
+   "detail": "11 ficheros de etapa, 26 golpes con ventana y serie"
   },
   {
    "req": 5,
@@ -2974,7 +2974,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (231 min para 35 min de vídeo ≈ 23.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3016,7 +3016,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (231 min para 35 min de vídeo ≈ 23.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3079,7 +3079,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (231 min para 35 min de vídeo ≈ 23.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3373,7 +3373,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (231 min para 35 min de vídeo ≈ 23.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3723,7 +3723,7 @@
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (231 min para 35 min de vídeo ≈ 23.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,

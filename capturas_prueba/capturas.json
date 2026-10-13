@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 32794,
+   "text_chars": 32573,
    "charts": 8,
    "videos": 5,
    "black_canvases": 0,
@@ -24,7 +24,7 @@
    "intro": true,
    "external_links": 0,
    "tables": 0,
-   "sentences": 17,
+   "sentences": 16,
    "many_lines": 0,
    "tab": "aprende",
    "file": "pantalla_1_aprende.jpg",
@@ -32,7 +32,7 @@
   },
   {
    "title": "Sus golpes (Videoteca y pista)",
-   "text_chars": 3336,
+   "text_chars": 3344,
    "charts": 1,
    "videos": 5,
    "black_canvases": 0,
@@ -59,7 +59,7 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 7032,
+   "text_chars": 7052,
    "charts": 28,
    "videos": 6,
    "black_canvases": 0,
@@ -114,7 +114,7 @@
   },
   {
    "title": "Conclusiones (Panel y Comparativas)",
-   "text_chars": 6482,
+   "text_chars": 6820,
    "charts": 11,
    "videos": 5,
    "black_canvases": 0,
@@ -129,7 +129,7 @@
     "",
     ""
    ],
-   "dashes": 72,
+   "dashes": 74,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -150,13 +150,13 @@
   },
   {
    "title": "Tabla de golpes (Explorador)",
-   "text_chars": 3230,
+   "text_chars": 3233,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 41,
+   "dashes": 42,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -204,7 +204,7 @@
   },
   {
    "title": "Fiabilidad de las medidas",
-   "text_chars": 3996,
+   "text_chars": 3111,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -231,7 +231,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 1269,
+   "text_chars": 1310,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -343,7 +343,7 @@
   "valued_all": 63,
   "targeted_all": 41,
   "glossed_all": 58,
-  "signature": 5,
+  "signature": 4,
   "style": "Estilo de su derecha: preparación amplia (90 %) · apoyo variable (la más frecuente, abierto, en 30 %) · efecto liftado (de abajo arriba) (80 %) · terminación variable (la más frecuente, sobre el hombro, en 40 %) provisional: 10 golpes.",
   "example": {
    "exact": 0,
