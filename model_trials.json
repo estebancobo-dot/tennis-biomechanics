@@ -2,11 +2,11 @@
  "version": 2,
  "complete": true,
  "device": "dml",
- "minutes": 63.7,
+ "minutes": 48.0,
  "pose": {
   "yolo11m-pose@960": {
    "clips": 6,
-   "ms_per_frame": 282.1,
+   "ms_per_frame": 279.8,
    "gt": 13,
    "precision": 0.6,
    "recall": 0.692,
@@ -60,6 +60,34 @@
    "kp_diff_vs_fp32_px": 0.25,
    "complete": true
   },
+  "hybrid-x-fp16": {
+   "clips": 6,
+   "ms_per_frame": 268.4,
+   "gt": 13,
+   "precision": 0.643,
+   "recall": 0.692,
+   "f1": 0.667,
+   "timing_err_frames": 1.0,
+   "jerk_pct": 0.477,
+   "tracked": 0.996,
+   "feet_seen": 0.997,
+   "kp_diff_vs_fp32_px": null,
+   "complete": true
+  },
+  "hybrid-x": {
+   "clips": 6,
+   "ms_per_frame": 305.2,
+   "gt": 13,
+   "precision": 0.643,
+   "recall": 0.692,
+   "f1": 0.667,
+   "timing_err_frames": 1.0,
+   "jerk_pct": 0.482,
+   "tracked": 0.996,
+   "feet_seen": 0.997,
+   "kp_diff_vs_fp32_px": null,
+   "complete": true
+  },
   "rtmpose-x-fp16": {
    "clips": 6,
    "ms_per_frame": 1806.8,
@@ -93,19 +121,21 @@
   "balltrack": {
    "found_10px": 0.86,
    "annotated": 272,
-   "ms_per_frame": 163.3
+   "ms_per_frame": 167.5
   },
   "balltrack-fp16": {
    "found_10px": 0.86,
    "annotated": 272,
-   "ms_per_frame": 137.7
+   "ms_per_frame": 173.4
   }
  },
  "recommended": [
-  "rtmpose-x: con pies (F1 0.64 frente a 0.643; 719.5 frente a 282.1 ms/fotograma)",
-  "yolo11m-pose@960-fp16: más rápida (F1 0.643 frente a 0.643; 128.2 frente a 282.1 ms/fotograma)",
-  "rtmpose-x-fp16: con pies (F1 0.64 frente a 0.643; 1806.8 frente a 282.1 ms/fotograma)"
+  "rtmpose-x: con pies (F1 0.64 frente a 0.643; 719.5 frente a 279.8 ms/fotograma)",
+  "yolo11m-pose@960-fp16: más rápida (F1 0.643 frente a 0.643; 128.2 frente a 279.8 ms/fotograma)",
+  "hybrid-x-fp16: con pies (F1 0.667 frente a 0.643; 268.4 frente a 279.8 ms/fotograma)",
+  "hybrid-x: con pies (F1 0.667 frente a 0.643; 305.2 frente a 279.8 ms/fotograma)",
+  "rtmpose-x-fp16: con pies (F1 0.64 frente a 0.643; 1806.8 frente a 279.8 ms/fotograma)"
  ],
  "baseline": "yolo11m-pose@960",
- "generated": "2026-10-13 21:08"
+ "generated": "2026-10-13 22:14"
 }

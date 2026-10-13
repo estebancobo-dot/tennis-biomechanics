@@ -148,3 +148,71 @@ Recalcular medidas: termina 2026-10-13 21:25:58 (total 15.9 min)
     (paso terminado en 0 s)
 
 ==> [2026-10-13 21:25:58] Prueba de modelos (pose y bola, actual frente a alternativas; tramo de 40 min, sigue en el proximo ciclo)
+== yolo11m-pose@960
+   {'clips': 6, 'ms_per_frame': 279.8, 'gt': 13, 'precision': 0.6, 'recall': 0.692, 'f1': 0.643, 'timing_err_frames': 1.0, 'jerk_pct': 0.734, 'tracked': 0.996, 'feet_seen': 0.0, 'kp_diff_vs_fp32_px': None, 'complete': True}
+== rtmpose-x
+   {'clips': 6, 'ms_per_frame': 719.5, 'gt': 13, 'precision': 0.667, 'recall': 0.615, 'f1': 0.64, 'timing_err_frames': 1.0, 'jerk_pct': 0.281, 'tracked': 1.0, 'feet_seen': 0.887, 'kp_diff_vs_fp32_px': None, 'complete': True}
+== rtmpose-m
+   {'clips': 6, 'ms_per_frame': 327.1, 'gt': 13, 'precision': 0.583, 'recall': 0.538, 'f1': 0.56, 'timing_err_frames': 1.0, 'jerk_pct': 0.302, 'tracked': 1.0, 'feet_seen': 0.964, 'kp_diff_vs_fp32_px': None, 'complete': True}
+== yolo11m-pose@960-fp16
+   {'clips': 6, 'ms_per_frame': 128.2, 'gt': 13, 'precision': 0.6, 'recall': 0.692, 'f1': 0.643, 'timing_err_frames': 1.0, 'jerk_pct': 0.73, 'tracked': 0.996, 'feet_seen': 0.0, 'kp_diff_vs_fp32_px': 0.25, 'complete': True}
+== hybrid-x-fp16
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
+  match1_000: pose hecha (3 min)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
+  match104_000: pose hecha (6 min)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
+  match107_000: pose hecha (9 min)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
+  match112_000: pose hecha (10 min)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
+  match115_000: pose hecha (11 min)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
+  match118_000: pose hecha (15 min)
+   {'clips': 6, 'ms_per_frame': 268.4, 'gt': 13, 'precision': 0.643, 'recall': 0.692, 'f1': 0.667, 'timing_err_frames': 1.0, 'jerk_pct': 0.477, 'tracked': 0.996, 'feet_seen': 0.997, 'kp_diff_vs_fp32_px': None, 'complete': True}
+== hybrid-x
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
+  match1_000: pose hecha (18 min)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
+  match104_000: pose hecha (21 min)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
+  match107_000: pose hecha (25 min)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
+  match112_000: pose hecha (26 min)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
+  match115_000: pose hecha (28 min)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
+  match118_000: pose hecha (31 min)
+   {'clips': 6, 'ms_per_frame': 305.2, 'gt': 13, 'precision': 0.643, 'recall': 0.692, 'f1': 0.667, 'timing_err_frames': 1.0, 'jerk_pct': 0.482, 'tracked': 0.996, 'feet_seen': 0.997, 'kp_diff_vs_fp32_px': None, 'complete': True}
+== rtmpose-x-fp16
+   {'clips': 6, 'ms_per_frame': 1806.8, 'gt': 13, 'precision': 0.667, 'recall': 0.615, 'f1': 0.64, 'timing_err_frames': 1.0, 'jerk_pct': 0.282, 'tracked': 1.0, 'feet_seen': 0.886, 'kp_diff_vs_fp32_px': 0.14, 'complete': True}
+== yolo11m-pose@640
+   {'clips': 6, 'ms_per_frame': 151.9, 'gt': 13, 'precision': 0.667, 'recall': 0.769, 'f1': 0.714, 'timing_err_frames': 1.0, 'jerk_pct': 0.772, 'tracked': 0.98, 'feet_seen': 0.0, 'kp_diff_vs_fp32_px': None, 'complete': True}
+== balltrack: {'found_10px': 0.86, 'annotated': 272, 'ms_per_frame': 167.5}
+== balltrack-fp16: {'found_10px': 0.86, 'annotated': 272, 'ms_per_frame': 173.4}
+# Prueba de modelos en este PC (2026-10-13 22:14, dml, 48.0 min de este tramo)
+
+| Variante | ms/fotograma | F1 golpes | Precisión | Recall | Error instante | Temblor (% altura) | Seguida | Pies | Dif. FP16 (px) |
+|---|---|---|---|---|---|---|---|---|---|
+| yolo11m-pose@960 | 279.8 | 0.643 | 0.6 | 0.692 | 1.0 | 0.734 | 0.996 | 0.0 | — |
+| rtmpose-x | 719.5 | 0.64 | 0.667 | 0.615 | 1.0 | 0.281 | 1.0 | 0.887 | — |
+| rtmpose-m | 327.1 | 0.56 | 0.583 | 0.538 | 1.0 | 0.302 | 1.0 | 0.964 | — |
+| yolo11m-pose@960-fp16 | 128.2 | 0.643 | 0.6 | 0.692 | 1.0 | 0.73 | 0.996 | 0.0 | 0.25 |
+| hybrid-x-fp16 | 268.4 | 0.667 | 0.643 | 0.692 | 1.0 | 0.477 | 0.996 | 0.997 | — |
+| hybrid-x | 305.2 | 0.667 | 0.643 | 0.692 | 1.0 | 0.482 | 0.996 | 0.997 | — |
+| rtmpose-x-fp16 | 1806.8 | 0.64 | 0.667 | 0.615 | 1.0 | 0.282 | 1.0 | 0.886 | 0.14 |
+| yolo11m-pose@640 | 151.9 | 0.714 | 0.667 | 0.769 | 1.0 | 0.772 | 0.98 | 0.0 | — |
+
+| Bola | Encontradas a ≤10 px | ms/fotograma |
+|---|---|---|
+| balltrack | 0.86 | 167.5 |
+| balltrack-fp16 | 0.86 | 173.4 |
+
+**Recomendadas frente a la actual (yolo11m-pose@960):** rtmpose-x: con pies (F1 0.64 frente a 0.643; 719.5 frente a 279.8 ms/fotograma); yolo11m-pose@960-fp16: más rápida (F1 0.643 frente a 0.643; 128.2 frente a 279.8 ms/fotograma); hybrid-x-fp16: con pies (F1 0.667 frente a 0.643; 268.4 frente a 279.8 ms/fotograma); hybrid-x: con pies (F1 0.667 frente a 0.643; 305.2 frente a 279.8 ms/fotograma); rtmpose-x-fp16: con pies (F1 0.64 frente a 0.643; 1806.8 frente a 279.8 ms/fotograma)
+Ciclo automatico terminado (medidas).
+    (paso terminado en 48 min 02 s)
+Empezado 2026-10-13 21:10:01 - terminado 2026-10-13 22:14:01 - duracion total 1 h 04 min
+**********************
+Windows PowerShell transcript end
+End time: 20261013221401
+**********************
