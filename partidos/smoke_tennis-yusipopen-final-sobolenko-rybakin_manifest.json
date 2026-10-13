@@ -43,13 +43,13 @@
   }
  },
  "score": {
-  "fingerprint": "51bb68080fe61069",
+  "fingerprint": "98942f84add6ea6e",
   "version": "4",
-  "seconds": 57.3,
-  "finished": "2026-10-12 15:39:52",
+  "seconds": 1153.1,
+  "finished": "2026-10-13 03:00:06",
   "summary": {
-   "readings": 48,
-   "pressure": 21
+   "readings": 317,
+   "pressure": 122
   }
  },
  "court": {
