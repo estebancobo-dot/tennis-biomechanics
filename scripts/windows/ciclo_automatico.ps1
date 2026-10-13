@@ -69,6 +69,7 @@ $ocupado = Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" -ErrorA
 if ($ocupado) { Senal-Vida "otro analisis en marcha ($(($ocupado | ForEach-Object { $_.ProcessId }) -join ','))" }
 
 Refrescar-Path
+Registrar-Ciclo          # tarea de Windows al dia (limite de 12 h, instancias en paralelo) aunque no haya codigo nuevo
 if (-not (Tiene git) -or -not (Test-Path "$RepoDir\.git")) { Senal-Vida "sin git o sin repositorio en $RepoDir" }
 $ErrorActionPreference = "Continue"
 git -C $RepoDir fetch -q origin $Rama 2>$null
@@ -77,10 +78,13 @@ $antes = (git -C $RepoDir rev-parse HEAD).Trim()
 $nuevo = (git -C $RepoDir rev-parse FETCH_HEAD).Trim()
 $forzar = Test-Path "$Out\forzar_ciclo.txt"
 if ($antes -eq $nuevo -and -not $forzar) {
-    if (Pruebas-Pendientes) {                   # sin codigo nuevo pero con la prueba de modelos a medias: otro tramo
+    # sin codigo nuevo: una prueba pedida por Claude (el codigo que la pide llego en el ciclo anterior)
+    # o la prueba de modelos a medias (otro tramo)
+    $pet = Peticion-Pendiente
+    if ($pet -or (Pruebas-Pendientes)) {
         Set-Location $RepoDir
         Start-Transcript -Path $Log | Out-Null
-        try { Prueba-Modelos } finally { Resumen-Tiempo; Stop-Transcript | Out-Null; Subir-Registros }
+        try { if ($pet) { Hacer-Peticion } else { Prueba-Modelos } } finally { Resumen-Tiempo; Stop-Transcript | Out-Null; Subir-Registros }
         exit 0
     }
     Senal-Vida "sin codigo nuevo ($($antes.Substring(0,7)))"

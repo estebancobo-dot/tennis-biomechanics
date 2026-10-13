@@ -207,6 +207,10 @@ class SegWorker:
         self.log = tempfile.TemporaryFile()           # its stderr: never a pipe nobody reads (deadlock)
         self.proc = subprocess.Popen(cmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=self.log)
 
+    @staticmethod
+    def timeout_s(n_frames: int) -> float:
+        return 120.0 + 2.0 * n_frames
+
     def alive(self) -> bool:
         return self.proc.poll() is None
 
@@ -220,11 +224,23 @@ class SegWorker:
     def run(self, video, frames, out) -> tuple[bool, int | None, str]:
         import json
 
+        import threading
+
         job = {"video": str(video), "frames": sorted(set(int(f) for f in frames)), "out": str(out)}
+        got: list = []
         try:
             self.proc.stdin.write((json.dumps(job) + "\n").encode("ascii"))
             self.proc.stdin.flush()
-            line = self.proc.stdout.readline()
+            # a driver that hangs without crashing must not stop the whole analysis: wait at most
+            # 2 min + 2 s per frame, then kill the worker (the caller falls back as on a crash)
+            rd = threading.Thread(target=lambda: got.append(self.proc.stdout.readline()), daemon=True)
+            rd.start()
+            rd.join(self.timeout_s(len(job["frames"])))
+            if rd.is_alive():
+                self.proc.kill()
+                rd.join(10)
+                return False, None, f"sin respuesta en {self.timeout_s(len(job['frames'])):.0f} s (colgado)\n{self._stderr()}"
+            line = got[0] if got else b""
         except (OSError, ValueError):                 # broken pipe: it had already died
             line = b""
         if not line:                                  # died: crash in the driver, out of memory...

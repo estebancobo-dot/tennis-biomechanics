@@ -333,3 +333,19 @@ def test_set_device_resets_fp16():
         assert not backend.DEFAULT_FP16
     finally:
         backend.set_device("cpu")
+
+
+def test_worker_that_hangs_is_killed_not_waited_forever(tmp_path, monkeypatch):
+    import time
+
+    from tennisbio.pose.yolo import SegWorker
+
+    hang = "import sys,time\nfor l in sys.stdin:\n    time.sleep(60)\n"
+    monkeypatch.setattr(SegWorker, "timeout_s", staticmethod(lambda n: 1.0))
+    w = SegWorker([sys.executable, "-c", hang])
+    try:
+        t0 = time.time()
+        ok, code, err = w.run("x.mp4", [1], tmp_path / "a.json")
+        assert not ok and "colgado" in err and time.time() - t0 < 15 and not w.alive()
+    finally:
+        w.close()
