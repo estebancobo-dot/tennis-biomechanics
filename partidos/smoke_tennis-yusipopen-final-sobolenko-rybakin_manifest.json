@@ -34,12 +34,12 @@
   }
  },
  "players": {
-  "fingerprint": "84ae1879df9927c5",
+  "fingerprint": "f92f9a50cb59fbdd",
   "version": "3",
-  "seconds": 121.1,
-  "finished": "2026-10-12 15:38:54",
+  "seconds": 2894.3,
+  "finished": "2026-10-13 02:40:52",
   "summary": {
-   "frames": 861
+   "frames": 6350
   }
  },
  "score": {
