@@ -600,7 +600,20 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         c["finish_3x90"] = bool(abs(fn["shoulder_abd_dom"] - 90) <= 25 and abs(fn["elbow_dom"] - 90) <= 30)
     rd = out["phases"].get("ready", {})
     if "hands_apart" in rd:
-        c["ready_hands"] = "dos manos en la raqueta" if rd["hands_apart"] < 12 else "mano libre separada"
+        # wrists, not hands: with the free hand on the throat the two wrists are a grip-to-throat length
+        # apart (≈ 25-35 cm, 14-19 % of a 1.8 m player). Clear below 15 % / above 25 %; in between, the
+        # racket keypoints decide (free wrist next to the throat) or the class is not given.
+        ha = rd["hands_apart"]
+        if ha < 15:
+            c["ready_hands"] = "dos manos en la raqueta"
+        elif ha > 25:
+            c["ready_hands"] = "mano libre separada"
+        elif ev["ready"] is not None:
+            k = kps.get(str(ev["ready"])) if kps else None
+            nw = img[ev["ready"], sk["non_wrist"]]
+            if k is not None and np.isfinite(nw).all():
+                d = float(np.linalg.norm(np.asarray(k[1], float) - nw)) / float(scale[ev["ready"]]) * 100
+                c["ready_hands"] = "dos manos en la raqueta" if d < 10 else "mano libre separada"
     if H is not None:
         from .footwork import feet_track
         fw = footwork(img, sk, H, scale, fps, impact, opp, ev["ready"] if (context or {}).get("split") else None,

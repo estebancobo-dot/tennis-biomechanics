@@ -286,3 +286,26 @@ def test_tip_vs_head_and_shoulder_brake():
               "finish": 75, "recovery": 90}
     tech = stroke_technique(kp, np.ones((100, 17)), SK, 50.0, np.full(100, 400.0), 60, phases, "forehand", None)
     assert tech["stroke"]["shoulder_brake"] > 50
+
+
+def test_ready_hands_from_wrists_and_racket():
+    """Two hands on the racket leave the wrists a grip-to-throat apart (14-19 % of height): not "free hand"."""
+    phases = {"ready": 10, "takeback": 20, "loaded": 45, "acceleration": 55, "impact": 60, "extension": 62,
+              "finish": 75, "recovery": 90}
+
+    def run(gap_pct, throat_near=None):
+        kp = standing(T=100)
+        dw, nw = SK["right_wrist"], SK["left_wrist"]
+        kp[:, nw] = kp[:, dw] + np.array([-gap_pct / 100 * 400, 0.0])      # body 400 px tall
+        faces = None
+        if throat_near is not None:
+            thr = kp[10, nw] + np.array([throat_near / 100 * 400, 0.0])
+            faces = {"first": 0, "keypoints": {"10": [list(thr - [0, 40]), list(thr), list(kp[10, dw]), list(thr), list(thr)]}}
+        return stroke_technique(kp, np.ones((100, 17)), SK, 50.0, np.full(100, 400.0), 60, phases, "forehand", None,
+                                faces=faces)["classes"].get("ready_hands")
+
+    assert run(12) == "dos manos en la raqueta"
+    assert run(35) == "mano libre separada"
+    assert run(20) is None                                         # ambiguous and no racket: not given
+    assert run(20, throat_near=4) == "dos manos en la raqueta"
+    assert run(20, throat_near=18) == "mano libre separada"
