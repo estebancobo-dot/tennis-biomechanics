@@ -96,5 +96,36 @@
    "replays_by_path": 1,
    "audio_track": 0
   }
+ },
+ "fine": {
+  "fingerprint": "dde461fc19805e09",
+  "version": "8",
+  "seconds": 617.7,
+  "finished": "2026-10-14 00:07:41",
+  "summary": {
+   "candidates": 12,
+   "confirmed": 9,
+   "errors": 0,
+   "warnings": [],
+   "forehands": 5,
+   "windows": 6,
+   "seconds": {
+    "pose": 266.7,
+    "raqueta": 142.6,
+    "bola": 123.8,
+    "cuerdas_y_3d": 61.7,
+    "recorte": 6.3,
+    "analisis_ventana": 2.5
+   }
+  }
+ },
+ "fine_opponent": {
+  "fingerprint": "82e7b24160f58289",
+  "version": "3",
+  "seconds": 0.0,
+  "finished": "2026-10-14 00:07:41",
+  "summary": {
+   "enabled": false
+  }
  }
 }
