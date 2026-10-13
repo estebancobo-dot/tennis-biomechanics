@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261013155002
+Start time: 20261013161002
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 15852
+Process ID: 9584
 PSVersion: 5.1.26100.9549
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
@@ -17,50 +17,38 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-13 15:50:02] Codigo nuevo (63f402b -> f0a45c1): 8 ficheros
-    docs/estado_del_arte.md
-    docs/estado_proyecto.md
+==> [2026-10-13 16:10:02] Codigo nuevo (f0a45c1 -> 0bc9e51): 11 ficheros
+    docs/matriz_cobertura.md
     docs/peticiones_usuario.md
+    scripts/auto_cycle.py
     src/tennisbio/audit.py
+    src/tennisbio/court_metrics.py
+    src/tennisbio/explain.py
     src/tennisbio/learn.py
-    src/tennisbio/learn_check.py
     src/tennisbio/report_template.html
-    tests/test_learn_web.py
+    src/tennisbio/returns.py
+    src/tennisbio/stages.py
+    tests/test_returns.py
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating 63f402b..f0a45c1
+Updating f0a45c1..0bc9e51
 Fast-forward
- docs/estado_del_arte.md            | 63 ++++++++++++++++++++++++++
- docs/estado_proyecto.md            |  4 ++
- docs/peticiones_usuario.md         | 12 +++--
- src/tennisbio/audit.py             |  7 +++
- src/tennisbio/learn.py             | 93 +++++++++++++++++++++++++++++++++++++-
- src/tennisbio/learn_check.py       | 14 ++++--
- src/tennisbio/report_template.html | 79 +++++++++++++++++++++++++++++---
- tests/test_learn_web.py            | 38 ++++++++++++++++
- 8 files changed, 296 insertions(+), 14 deletions(-)
- create mode 100644 docs/estado_del_arte.md
-Resolved 110 packages in 1ms
-Checked 83 packages in 3ms
+ docs/matriz_cobertura.md           |  20 +++++
+ docs/peticiones_usuario.md         |   7 +-
+ scripts/auto_cycle.py              |   2 +-
+ src/tennisbio/audit.py             |   1 +
+ src/tennisbio/court_metrics.py     |   1 +
+ src/tennisbio/explain.py           |   5 ++
+ src/tennisbio/learn.py             |  40 +++++++++-
+ src/tennisbio/report_template.html |   5 ++
+ src/tennisbio/returns.py           | 149 +++++++++++++++++++++++++++++++++++++
+ src/tennisbio/stages.py            |   9 ++-
+ tests/test_returns.py              |  69 +++++++++++++++++
+ 11 files changed, 301 insertions(+), 7 deletions(-)
+ create mode 100644 src/tennisbio/returns.py
+ create mode 100644 tests/test_returns.py
+Resolved 110 packages in 0.92ms
+Checked 83 packages in 2ms
     (paso terminado en 1 s)
 
-==> [2026-10-13 15:50:03] Que hace falta: informe
-Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
-Informe: C:\tenis\output\_smoke\informe\index.html
-Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
-Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
-Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
-Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
-Auditoría: 254 cumplidos, 0 no cumplidos, 126 sin golpes suficientes, 26 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-Hecho en 132 s, sin volver a analizar vídeo.
-    (paso terminado en 2 min 12 s)
-
-==> [2026-10-13 15:52:15] Revision automatica frente a la ejecucion anterior
-# Revisión automática: OK
-Ciclo automatico terminado (informe).
-    (paso terminado en 0 s)
-Empezado 2026-10-13 15:50:01 - terminado 2026-10-13 15:52:16 - duracion total 2 min 15 s
-**********************
-Windows PowerShell transcript end
-End time: 20261013155216
-**********************
+==> [2026-10-13 16:10:03] Que hace falta: medidas
