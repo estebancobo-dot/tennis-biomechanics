@@ -27,3 +27,11 @@ def test_audit_of_a_tiny_run(tmp_path):
     assert by["Fotograma clave: espera / split step"]["status"] == "falta"
     assert by["Bola rápida / lenta"]["status"] == "pocos datos"
     assert "Auditoría" in to_markdown(res)
+
+
+def test_matrix_ids_are_measures_not_broken_code_refs():
+    """A matrix id written as module.name is read as a code reference: it must exist, or the measure is
+    never matched (it happened with footwork.crossover_steps)."""
+    from tennisbio.audit import _code_ref, parse_matrix
+    bad = [(r["element"], i) for r in parse_matrix() for i in r["ids"] if _code_ref(i) is False]
+    assert not bad, bad

@@ -50,7 +50,7 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Extensión tras el contacto | ITF | ✔ | `extension.arm_extension`, `swing_rise_after` |
 | Terminación sobre el hombro / limpiaparabrisas / alrededor / invertida | TA; Counts | ✔ | clase `finish` (heurística) |
 | "3 × 90°" al final | Reid 2013 | ✔ | clase `finish_3x90` (hombro y codo; la muñeca no se ve) |
-| Paso adelante de la pierna trasera tras el impacto | Landlinger 2010 | ✔ | `footwork.rear_leg_step_after` |
+| Paso adelante de la pierna trasera tras el impacto | Landlinger 2010 | ✔ | `rear_leg_step_after` |
 | Altura y separación del codo (armado e impacto) | Entrenadores WTA/ATP; Tennis Australia | ✔ | `elbow_dom_vs_shoulder`, `elbow_dom_lateral` |
 | Transferencia de peso del armado al impacto | Tennis Australia | ◐ | `stroke.weight_shift` (desde `com_over_feet`) |
 | Empuje de piernas («bajar y subir») | Elliott 2006; Reid 2013 | ◐ | `stroke.hip_rise` |
@@ -168,7 +168,7 @@ de TV detrás del fondo (necesita laboratorio, sensores o varias cámaras) y el 
 | Apoyo abierto extremo defensivo | Matriz del usuario | ✔ | clase `stance_role` |
 | Split step | Matriz del usuario | ✔ | `split_landing_vs_opp_s` |
 | Pasos de ajuste | Matriz del usuario | ✔ | `adjustment_steps` |
-| Pasos cruzados | Matriz del usuario | ✔ | `footwork.crossover_steps` (Cópiala › Pies), `step_kinds` («cruzado») |
+| Pasos cruzados | Matriz del usuario | ✔ | `crossover_steps` (Cópiala › Pies), `step_kinds` («cruzado») |
 | Paso de ataque hacia dentro de la pista (step-in) | Matriz del usuario | ✔ | `step_in` |
 | Pasos de recuperación (laterales o cruzados) | Matriz del usuario | ✔ | `recovery_pattern`, `recovery_first_step` |
 | Golpe plano, liftado o cortado | Matriz del usuario | ◐ | clase `swing` (por la trayectoria de la mano; el efecto en rpm no) |
