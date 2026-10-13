@@ -3,7 +3,7 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 176,
+  "ok": 184,
   "falta": 0,
   "pocos datos": 194,
   "aviso": 17
@@ -2215,7 +2215,7 @@
    "area": "Valores posibles",
    "name": "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
    "status": "ok",
-   "detail": "52 medidas: 6 dudosa, 20 fiable, 2 no comprobable, 1 ruido, 3 sesgo, 20 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±8.27. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 57.3° / 3D 12.4°, stroke.shoulders_open_first 2D 57.3° / 3D 12.4°, stroke.shoulder_brake 2D 57.3° / 3D 12.4°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
+   "detail": "56 medidas: 6 dudosa, 23 fiable, 3 no comprobable, 1 ruido, 3 sesgo, 20 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±8.27. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 57.3° / 3D 12.4°, stroke.shoulders_open_first 2D 57.3° / 3D 12.4°, stroke.shoulder_brake 2D 57.3° / 3D 12.4°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
   },
   {
    "req": 3,
@@ -2397,7 +2397,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Aprende su derecha»",
    "status": "ok",
-   "detail": "30093 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "33458 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2413,7 +2413,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Panel»",
    "status": "ok",
-   "detail": "4393 caracteres de texto, 5 vídeos, 11 gráficos",
+   "detail": "4396 caracteres de texto, 5 vídeos, 11 gráficos",
    "file": "pantalla_3_panel.jpg"
   },
   {
@@ -2429,7 +2429,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "5271 caracteres de texto, 6 vídeos, 20 gráficos",
+   "detail": "6832 caracteres de texto, 6 vídeos, 28 gráficos",
    "file": "pantalla_5_golpe.jpg"
   },
   {
@@ -2554,14 +2554,14 @@
    "area": "Aprende su derecha",
    "name": "La pantalla responde a cada combinación",
    "status": "ok",
-   "detail": "677 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 38589 puntos de control comprobados; 199 con golpes exactos"
+   "detail": "677 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 43328 puntos de control comprobados; 199 con golpes exactos"
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha",
    "status": "pocos datos",
-   "detail": "0 golpes exactos, 9 parecidos; 52 de 57 puntos con su valor medido"
+   "detail": "0 golpes exactos, 9 parecidos; 59 de 64 puntos con su valor medido"
   },
   {
    "req": 1,
@@ -2582,14 +2582,14 @@
    "area": "Aprende su derecha",
    "name": "Puntos de «Aprende» con su valor medido (todas sus derechas)",
    "status": "ok",
-   "detail": "53 de 57; el resto dice por qué falta"
+   "detail": "60 de 64; el resto dice por qué falta"
   },
   {
    "req": 2,
    "area": "Vistas pedidas",
    "name": "«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella",
    "status": "ok",
-   "detail": "4 en la pantalla"
+   "detail": "5 en la pantalla"
   },
   {
    "req": 2,
@@ -2597,6 +2597,34 @@
    "name": "«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)",
    "status": "ok",
    "detail": "9 en la pantalla"
+  },
+  {
+   "req": 2,
+   "area": "Vistas pedidas",
+   "name": "«La bola y ella»: medidas reales en cada fotograma (cadera en cm, pies en m, recorrido)",
+   "status": "ok",
+   "detail": "5 en la pantalla"
+  },
+  {
+   "req": 2,
+   "area": "Vistas pedidas",
+   "name": "«Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm",
+   "status": "ok",
+   "detail": "4 en la pantalla"
+  },
+  {
+   "req": 2,
+   "area": "Vistas pedidas",
+   "name": "«Base»: fotogramas con la barra entre los pies y su distancia en la pista",
+   "status": "ok",
+   "detail": "4 en la pantalla"
+  },
+  {
+   "req": 2,
+   "area": "Vistas pedidas",
+   "name": "«Tronco al terminar»: fotograma con la línea de hombros y hacia dónde mira",
+   "status": "ok",
+   "detail": "2 en la pantalla"
   },
   {
    "req": 2,
@@ -2673,7 +2701,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "157 min para 35 min de vídeo ≈ 15.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -2799,7 +2827,7 @@
    "area": "Peticiones",
    "name": "#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía",
    "status": "pocos datos",
-   "detail": "171 comprobaciones: 98 pocos datos, 73 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "175 comprobaciones: 98 pocos datos, 77 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -2820,7 +2848,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (157 min para 35 min de vídeo ≈ 15.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2841,7 +2869,7 @@
    "area": "Peticiones",
    "name": "#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»",
    "status": "pocos datos",
-   "detail": "8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 52 de 57 puntos con su valor medido)"
+   "detail": "8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 59 de 64 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -2862,7 +2890,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (157 min para 35 min de vídeo ≈ 15.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2925,7 +2953,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (157 min para 35 min de vídeo ≈ 15.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3100,7 +3128,7 @@
    "area": "Peticiones",
    "name": "#54 Qué hace ella cuando la rival golpea, la bola cruza la red, bota y llega arriba",
    "status": "ok",
-   "detail": "1 comprobaciones: 1 ok"
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -3170,14 +3198,14 @@
    "area": "Peticiones",
    "name": "#68 La meta: mejorar mi derecha tomando la de X como base",
    "status": "pocos datos",
-   "detail": "6 comprobaciones: 1 pocos datos, 5 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 52 de 57 puntos con su valor medido)"
+   "detail": "6 comprobaciones: 1 pocos datos, 5 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 59 de 64 puntos con su valor medido)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica",
    "status": "pocos datos",
-   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 52 de 57 puntos con su valor medido)"
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 59 de 64 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -3205,7 +3233,7 @@
    "area": "Peticiones",
    "name": "#73 Revisar la web de arriba abajo para que aporte valor",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 19 comprobaciones: 19 ok"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 23 comprobaciones: 23 ok"
   },
   {
    "req": 11,
@@ -3219,7 +3247,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (157 min para 35 min de vídeo ≈ 15.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3486,6 +3514,34 @@
    "name": "#113 Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25)",
    "status": "pocos datos",
    "detail": "19 comprobaciones: 16 pocos datos, 3 ok; la peor: «R1 Golpe liftado de trayectoria moderada, no extrema» (pocos datos: 10 golpes con el dato (hacen falta 12))"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#114 Cuerpo respecto a la bola en cada momento (golpe rival, cruza la red, cae, bota, sube, golpe): fotogramas y me",
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#115 Cuánto baja y sube el cuerpo, con fotogramas y barras horizontales: de la espera al punto más bajo y del más b",
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#116 Distancia entre las piernas en los golpes: base y estabilidad",
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#117 Hacia dónde mira el tronco al terminar (valla lateral, de frente, girado) según el golpe",
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   }
  ]
 }

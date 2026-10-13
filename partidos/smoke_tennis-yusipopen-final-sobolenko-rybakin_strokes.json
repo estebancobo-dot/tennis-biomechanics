@@ -913,6 +913,7 @@
      "face_yaw": 100.7,
      "face_points_to": "valla derecha",
      "face_observed": true,
+     "base_court_m": 0.78,
      "stance_angle": 30.7,
      "base_m": 0.78
     },
@@ -979,6 +980,7 @@
      "face_yaw": 8.6,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.76,
      "stance_angle": 51.3,
      "base_m": 0.76
     },
@@ -1038,7 +1040,10 @@
      "shoulder_turn": 46.8,
      "hip_turn": 46.6,
      "face_points_to": "valla derecha",
-     "face_observed": false
+     "face_observed": false,
+     "base_court_m": 0.77,
+     "shoulder_width_ratio": 0.68,
+     "dom_shoulder_ahead": -2.2
     },
     "recovery": {
      "body_height": 110.3,
@@ -1072,6 +1077,7 @@
     }
    },
    "stroke": {
+    "feet_move_m": 0.68,
     "t_takeback": 0.84,
     "t_loaded": 0.18,
     "t_acceleration": 0.14,
@@ -1095,6 +1101,7 @@
     "racket_speed_rel": 7.62
    },
    "classes": {
+    "finish_trunk": "sin completar el giro (de lado, hacia la valla de su derecha)",
     "finish": "sobre el hombro",
     "swing": "liftado (de abajo arriba)",
     "takeback": "en bucle alto",
@@ -1341,6 +1348,7 @@
     "recovery.hip_turn": 1.85,
     "recovery.face_tilt": 8.55,
     "recovery.face_yaw": 13.65,
+    "stroke.feet_move_m": 0.13,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -1380,6 +1388,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.0,
     "footwork.steps_reliable": 0.0,
+    "class.finish_trunk": 0.5,
     "class.finish": 0.0,
     "class.swing": 0.0,
     "class.takeback": 0.0,
@@ -3115,6 +3124,7 @@
      "face_yaw": -89.5,
      "face_points_to": "valla izquierda",
      "face_observed": true,
+     "base_court_m": 0.44,
      "stance_angle": 142.0,
      "base_m": 0.44
     },
@@ -3223,7 +3233,10 @@
      "face_tilt": -18.8,
      "face_yaw": 170.1,
      "face_points_to": "valla trasera",
-     "face_observed": true
+     "face_observed": true,
+     "base_court_m": 0.83,
+     "shoulder_width_ratio": 0.75,
+     "dom_shoulder_ahead": 5.5
     },
     "recovery": {
      "body_height": 120.1,
@@ -3279,6 +3292,7 @@
     "racket_speed_rel": 4.53
    },
    "classes": {
+    "finish_trunk": "girado tres cuartos hacia el lado de su revés",
     "finish": "sobre el hombro",
     "swing": "liftado (de abajo arriba)",
     "takeback": "amplia",
@@ -3527,6 +3541,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.0,
     "footwork.steps_reliable": 0.0,
+    "class.finish_trunk": 0.0,
     "class.finish": 0.0,
     "class.swing": 0.0,
     "class.takeback": 0.0,
@@ -5337,6 +5352,7 @@
      "face_yaw": -4.8,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.79,
      "stance_angle": 153.5,
      "base_m": 0.79
     },
@@ -5393,7 +5409,10 @@
      "face_tilt": 12.4,
      "face_yaw": 17.6,
      "face_points_to": "red",
-     "face_observed": false
+     "face_observed": false,
+     "base_court_m": 0.62,
+     "shoulder_width_ratio": 0.52,
+     "dom_shoulder_ahead": -7.4
     },
     "recovery": {
      "body_height": 60.8,
@@ -5462,6 +5481,12 @@
     }
    },
    "stroke": {
+    "hip_drop_pct": 0.5,
+    "hip_rise_after_pct": 4.8,
+    "t_hip_lowest": -0.2,
+    "t_hip_highest": 0.0,
+    "hip_drop_cm": 1.0,
+    "hip_rise_after_cm": 9.0,
     "t_takeback": 0.54,
     "t_loaded": 0.22,
     "t_acceleration": 0.14,
@@ -5494,6 +5519,7 @@
     "racket_speed_rel": 4.25
    },
    "classes": {
+    "finish_trunk": "sin completar el giro (de lado, hacia la valla de su derecha)",
     "finish": "limpiaparabrisas",
     "ball_phase": "bola subiendo",
     "swing": "liftado (de abajo arriba)",
@@ -5708,6 +5734,12 @@
     "recovery.hip_turn": 9.6,
     "recovery.face_tilt": 35.9,
     "recovery.face_yaw": 10.05,
+    "stroke.hip_drop_pct": 0.0,
+    "stroke.hip_rise_after_pct": 0.0,
+    "stroke.t_hip_lowest": 0.0,
+    "stroke.t_hip_highest": 0.0,
+    "stroke.hip_drop_cm": 0.0,
+    "stroke.hip_rise_after_cm": 0.0,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -5758,6 +5790,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.025,
     "footwork.steps_reliable": 0.0,
+    "class.finish_trunk": 0.0,
     "class.finish": 0.0,
     "class.ball_phase": 0.0,
     "class.swing": 0.0,
@@ -7577,6 +7610,7 @@
      "face_yaw": -86.8,
      "face_points_to": "valla izquierda",
      "face_observed": false,
+     "base_court_m": 0.99,
      "stance_angle": 4.3,
      "base_m": 0.99
     },
@@ -7635,6 +7669,7 @@
      "face_yaw": -20.2,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.75,
      "stance_angle": 5.0,
      "base_m": 0.75
     },
@@ -7684,7 +7719,10 @@
      "face_tilt": -30.5,
      "face_yaw": 106.0,
      "face_points_to": "valla derecha",
-     "face_observed": false
+     "face_observed": false,
+     "base_court_m": 1.0,
+     "shoulder_width_ratio": 0.64,
+     "dom_shoulder_ahead": 8.2
     },
     "recovery": {
      "hip_height": 35.1,
@@ -7761,6 +7799,13 @@
     }
    },
    "stroke": {
+    "hip_drop_pct": 14.3,
+    "hip_rise_after_pct": 9.1,
+    "t_hip_lowest": -0.4,
+    "t_hip_highest": 0.0,
+    "hip_drop_cm": 26.0,
+    "hip_rise_after_cm": 17.0,
+    "feet_move_m": 0.6,
     "t_takeback": 0.94,
     "t_loaded": 0.14,
     "t_acceleration": 0.06,
@@ -7794,6 +7839,7 @@
     "takeback_vs_first_step": 0.34
    },
    "classes": {
+    "finish_trunk": "girado tres cuartos hacia el lado de su revés",
     "finish": "sobre el hombro",
     "ball_phase": "bola subiendo",
     "swing": "liftado (de abajo arriba)",
@@ -8174,6 +8220,13 @@
     "recovery.arm_extension": 4.85,
     "recovery.shoulder_turn": 3.6,
     "recovery.hip_turn": 3.55,
+    "stroke.hip_drop_pct": 0.0,
+    "stroke.hip_rise_after_pct": 0.0,
+    "stroke.t_hip_lowest": 0.0,
+    "stroke.t_hip_highest": 0.0,
+    "stroke.hip_drop_cm": 0.0,
+    "stroke.hip_rise_after_cm": 0.0,
+    "stroke.feet_move_m": 0.01,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -8249,6 +8302,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.0,
     "footwork.steps_reliable": 0.0,
+    "class.finish_trunk": 0.0,
     "class.finish": 0.0,
     "class.ball_phase": 0.0,
     "class.swing": 0.0,
@@ -10008,6 +10062,7 @@
      "face_yaw": -89.7,
      "face_points_to": "valla izquierda",
      "face_observed": true,
+     "base_court_m": 0.62,
      "stance_angle": 21.1,
      "base_m": 0.62
     },
@@ -10059,6 +10114,7 @@
      "face_yaw": -8.9,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.92,
      "stance_angle": 51.5,
      "base_m": 0.92
     },
@@ -10113,7 +10169,10 @@
      "face_tilt": 33.9,
      "face_yaw": 35.5,
      "face_points_to": "red",
-     "face_observed": true
+     "face_observed": true,
+     "base_court_m": 1.41,
+     "shoulder_width_ratio": 0.83,
+     "dom_shoulder_ahead": 2.2
     },
     "recovery": {
      "hip_height": 56.2,
@@ -10194,6 +10253,13 @@
     }
    },
    "stroke": {
+    "hip_drop_pct": 4.5,
+    "hip_rise_after_pct": 4.8,
+    "t_hip_lowest": -0.68,
+    "t_hip_highest": 0.0,
+    "hip_drop_cm": 8.0,
+    "hip_rise_after_cm": 9.0,
+    "feet_move_m": 0.34,
     "t_takeback": 0.74,
     "t_loaded": 0.38,
     "t_acceleration": 0.08,
@@ -10226,6 +10292,7 @@
     "racket_speed_rel": 7.55
    },
    "classes": {
+    "finish_trunk": "de frente a la red",
     "finish": "látigo (sobre el mismo hombro)",
     "ball_phase": "bola subiendo",
     "swing": "liftado (de abajo arriba)",
@@ -10445,6 +10512,13 @@
     "recovery.hip_turn": 0.65,
     "recovery.face_tilt": 5.95,
     "recovery.face_yaw": 9.65,
+    "stroke.hip_drop_pct": 0.5,
+    "stroke.hip_rise_after_pct": 0.0,
+    "stroke.t_hip_lowest": 0.0,
+    "stroke.t_hip_highest": 0.0,
+    "stroke.hip_drop_cm": 0.5,
+    "stroke.hip_rise_after_cm": 0.0,
+    "stroke.feet_move_m": 0.1,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -10495,6 +10569,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.03,
     "footwork.steps_reliable": 0.0,
+    "class.finish_trunk": 0.25,
     "class.finish": 0.0,
     "class.ball_phase": 0.0,
     "class.swing": 0.0,
@@ -12193,6 +12268,7 @@
      "x_factor": -9.2,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.46,
      "stance_angle": 47.6,
      "base_m": 0.46
     },
@@ -12252,6 +12328,7 @@
      "face_yaw": 11.0,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.73,
      "stance_angle": 36.9,
      "base_m": 0.73
     },
@@ -12315,7 +12392,10 @@
      "face_tilt": -1.4,
      "face_yaw": -7.3,
      "face_points_to": "red",
-     "face_observed": true
+     "face_observed": true,
+     "base_court_m": 0.71,
+     "shoulder_width_ratio": 0.64,
+     "dom_shoulder_ahead": 11.8
     },
     "recovery": {
      "hip_height": 46.8,
@@ -12337,6 +12417,13 @@
     }
    },
    "stroke": {
+    "hip_drop_pct": 16.8,
+    "hip_rise_after_pct": 4.5,
+    "t_hip_lowest": -0.36,
+    "t_hip_highest": 0.08,
+    "hip_drop_cm": 31.0,
+    "hip_rise_after_cm": 8.0,
+    "feet_move_m": 0.7,
     "t_takeback": 0.82,
     "t_loaded": 0.18,
     "t_acceleration": 0.16,
@@ -12362,6 +12449,7 @@
     "takeback_vs_first_step": -0.06
    },
    "classes": {
+    "finish_trunk": "girado tres cuartos hacia el lado de su revés",
     "finish": "corta (delante)",
     "swing": "cortado (de arriba abajo)",
     "takeback": "amplia",
@@ -12709,6 +12797,13 @@
     "recovery.wrist_non_lateral": 0.3,
     "recovery.shoulder_turn": 1.15,
     "recovery.hip_turn": 1.5,
+    "stroke.hip_drop_pct": 0.8,
+    "stroke.hip_rise_after_pct": 0.0,
+    "stroke.t_hip_lowest": 0.0,
+    "stroke.t_hip_highest": 0.0,
+    "stroke.hip_drop_cm": 1.5,
+    "stroke.hip_rise_after_cm": 0.0,
+    "stroke.feet_move_m": 0.385,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -12773,6 +12868,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.1,
     "footwork.steps_reliable": 0.25,
+    "class.finish_trunk": 0.0,
     "class.finish": 0.0,
     "class.swing": 0.0,
     "class.takeback": 0.0,
@@ -14435,6 +14531,7 @@
      "face_yaw": -70.3,
      "face_points_to": "valla izquierda",
      "face_observed": true,
+     "base_court_m": 1.1,
      "stance_angle": -16.5,
      "base_m": 1.1
     },
@@ -14493,6 +14590,7 @@
      "face_yaw": 21.8,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.68,
      "stance_angle": 0.4,
      "base_m": 0.68
     },
@@ -14548,7 +14646,10 @@
      "face_tilt": -8.3,
      "face_yaw": 73.0,
      "face_points_to": "valla derecha",
-     "face_observed": true
+     "face_observed": true,
+     "base_court_m": 0.47,
+     "shoulder_width_ratio": 0.76,
+     "dom_shoulder_ahead": -3.8
     },
     "recovery": {
      "hip_height": 49.1,
@@ -14630,6 +14731,13 @@
     }
    },
    "stroke": {
+    "hip_drop_pct": 2.6,
+    "hip_rise_after_pct": 13.1,
+    "t_hip_lowest": -0.52,
+    "t_hip_highest": 0.08,
+    "hip_drop_cm": 5.0,
+    "hip_rise_after_cm": 24.0,
+    "feet_move_m": 0.69,
     "t_takeback": 0.48,
     "t_loaded": 0.26,
     "t_acceleration": 0.2,
@@ -14662,6 +14770,7 @@
     "racket_speed_rel": 3.38
    },
    "classes": {
+    "finish_trunk": "sin completar el giro (de lado, hacia la valla de su derecha)",
     "finish": "sobre el hombro",
     "ball_phase": "bola subiendo",
     "swing": "cortado (de arriba abajo)",
@@ -14979,6 +15088,13 @@
     "recovery.racket_head_lateral": 3.35,
     "recovery.face_tilt": 0.4,
     "recovery.face_yaw": 2.9,
+    "stroke.hip_drop_pct": 1.85,
+    "stroke.hip_rise_after_pct": 0.0,
+    "stroke.t_hip_lowest": 0.0,
+    "stroke.t_hip_highest": 0.0,
+    "stroke.hip_drop_cm": 3.5,
+    "stroke.hip_rise_after_cm": 0.0,
+    "stroke.feet_move_m": 0.105,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -15049,6 +15165,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.05,
     "footwork.steps_reliable": 0.0,
+    "class.finish_trunk": 0.0,
     "class.finish": 0.0,
     "class.ball_phase": 0.0,
     "class.swing": 0.0,
@@ -16902,6 +17019,7 @@
      "x_factor": 2.8,
      "face_points_to": "valla izquierda",
      "face_observed": false,
+     "base_court_m": 0.67,
      "stance_angle": 68.6,
      "base_m": 0.67
     },
@@ -16960,6 +17078,7 @@
      "face_yaw": -8.5,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.73,
      "stance_angle": 120.6,
      "base_m": 0.73
     },
@@ -17012,7 +17131,10 @@
      "shoulder_turn": 38.1,
      "hip_turn": 66.7,
      "face_points_to": "suelo",
-     "face_observed": false
+     "face_observed": false,
+     "base_court_m": 0.33,
+     "shoulder_width_ratio": 0.79,
+     "dom_shoulder_ahead": -4.1
     },
     "recovery": {
      "hip_height": 54.2,
@@ -17127,6 +17249,13 @@
     }
    },
    "stroke": {
+    "hip_drop_pct": 4.5,
+    "hip_rise_after_pct": 9.9,
+    "t_hip_lowest": -0.28,
+    "t_hip_highest": 0.16,
+    "hip_drop_cm": 8.0,
+    "hip_rise_after_cm": 18.0,
+    "feet_move_m": 0.85,
     "t_takeback": 0.8,
     "t_loaded": 0.26,
     "t_acceleration": 0.08,
@@ -17161,6 +17290,7 @@
     "racket_speed_rel": 6.84
    },
    "classes": {
+    "finish_trunk": "sin completar el giro (de lado, hacia la valla de su derecha)",
     "finish": "limpiaparabrisas",
     "ball_phase": "bola arriba",
     "swing": "liftado (de abajo arriba)",
@@ -17384,6 +17514,13 @@
     "recovery.arm_extension": 5.75,
     "recovery.shoulder_turn": 3.95,
     "recovery.hip_turn": 0.7,
+    "stroke.hip_drop_pct": 0.0,
+    "stroke.hip_rise_after_pct": 0.0,
+    "stroke.t_hip_lowest": 0.0,
+    "stroke.t_hip_highest": 0.0,
+    "stroke.hip_drop_cm": 0.0,
+    "stroke.hip_rise_after_cm": 0.0,
+    "stroke.feet_move_m": 0.175,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -17435,6 +17572,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.0,
     "footwork.steps_reliable": 0.0,
+    "class.finish_trunk": 0.0,
     "class.finish": 0.0,
     "class.ball_phase": 0.0,
     "class.swing": 0.0,
@@ -19063,6 +19201,7 @@
      "face_yaw": -77.2,
      "face_points_to": "valla izquierda",
      "face_observed": true,
+     "base_court_m": 0.92,
      "stance_angle": -2.6,
      "base_m": 0.92
     },
@@ -19124,6 +19263,7 @@
      "face_yaw": -15.9,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.56,
      "stance_angle": 10.7,
      "base_m": 0.56
     },
@@ -19179,7 +19319,10 @@
      "face_tilt": -38.5,
      "face_yaw": -68.2,
      "face_points_to": "valla izquierda",
-     "face_observed": true
+     "face_observed": true,
+     "base_court_m": 0.88,
+     "shoulder_width_ratio": 0.66,
+     "dom_shoulder_ahead": 7.8
     },
     "recovery": {
      "hip_height": 40.3,
@@ -19269,6 +19412,13 @@
     }
    },
    "stroke": {
+    "hip_drop_pct": 4.0,
+    "hip_rise_after_pct": 11.5,
+    "t_hip_lowest": -0.4,
+    "t_hip_highest": 0.04,
+    "hip_drop_cm": 7.0,
+    "hip_rise_after_cm": 21.0,
+    "feet_move_m": 0.67,
     "t_takeback": 0.56,
     "t_loaded": 0.14,
     "t_acceleration": 0.06,
@@ -19300,6 +19450,7 @@
     "hand_on_handle": 35.5
    },
    "classes": {
+    "finish_trunk": "girado tres cuartos hacia el lado de su revés",
     "finish": "sobre el hombro",
     "ball_phase": "bola subiendo",
     "swing": "liftado (de abajo arriba)",
@@ -19629,6 +19780,13 @@
     "recovery.arm_extension": 5.0,
     "recovery.shoulder_turn": 2.25,
     "recovery.hip_turn": 2.55,
+    "stroke.hip_drop_pct": 0.75,
+    "stroke.hip_rise_after_pct": 0.0,
+    "stroke.t_hip_lowest": 0.0,
+    "stroke.t_hip_highest": 0.0,
+    "stroke.hip_drop_cm": 1.5,
+    "stroke.hip_rise_after_cm": 0.0,
+    "stroke.feet_move_m": 0.05,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -19697,6 +19855,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.05,
     "footwork.steps_reliable": 0.0,
+    "class.finish_trunk": 0.0,
     "class.finish": 0.0,
     "class.ball_phase": 0.0,
     "class.swing": 0.0,
@@ -21401,7 +21560,9 @@
      "face_tilt": 15.9,
      "face_yaw": 139.4,
      "face_points_to": "valla trasera",
-     "face_observed": false
+     "face_observed": false,
+     "shoulder_width_ratio": 0.53,
+     "dom_shoulder_ahead": -5.4
     },
     "recovery": {
      "face_points_to": "valla trasera",
@@ -21450,6 +21611,12 @@
     }
    },
    "stroke": {
+    "hip_drop_pct": 3.3,
+    "hip_rise_after_pct": 12.5,
+    "t_hip_lowest": -0.8,
+    "t_hip_highest": 0.24,
+    "hip_drop_cm": 6.0,
+    "hip_rise_after_cm": 23.0,
     "t_takeback": 0.62,
     "t_loaded": 0.12,
     "t_acceleration": 0.06,
@@ -21481,6 +21648,7 @@
     "racket_speed_rel": 3.19
    },
    "classes": {
+    "finish_trunk": "sin completar el giro (de lado, hacia la valla de su derecha)",
     "finish": "sobre el hombro",
     "ball_phase": "bola arriba",
     "swing": "liftado (de abajo arriba)",
@@ -21605,6 +21773,12 @@
     "finish.hip_turn": 5.9,
     "finish.face_tilt": 2.25,
     "finish.face_yaw": 14.05,
+    "stroke.hip_drop_pct": 1.1,
+    "stroke.hip_rise_after_pct": 0.0,
+    "stroke.t_hip_lowest": 0.0,
+    "stroke.t_hip_highest": 0.0,
+    "stroke.hip_drop_cm": 2.0,
+    "stroke.hip_rise_after_cm": 0.0,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -21642,6 +21816,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.015,
     "footwork.steps_reliable": 0.0,
+    "class.finish_trunk": 0.0,
     "class.finish": 0.0,
     "class.ball_phase": 0.0,
     "class.swing": 0.0,
@@ -23289,6 +23464,7 @@
      "x_factor": 15.9,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 1.06,
      "stance_angle": 31.9,
      "base_m": 1.06
     },
@@ -23350,6 +23526,7 @@
      "face_yaw": -0.5,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.47,
      "stance_angle": 37.9,
      "base_m": 0.47
     },
@@ -23413,7 +23590,10 @@
      "face_tilt": -36.2,
      "face_yaw": 72.7,
      "face_points_to": "valla derecha",
-     "face_observed": true
+     "face_observed": true,
+     "base_court_m": 0.63,
+     "shoulder_width_ratio": 0.67,
+     "dom_shoulder_ahead": 11.7
     },
     "recovery": {
      "body_height": 101.2,
@@ -23507,6 +23687,13 @@
     }
    },
    "stroke": {
+    "hip_drop_pct": 11.4,
+    "hip_rise_after_pct": 6.0,
+    "t_hip_lowest": -0.32,
+    "t_hip_highest": 0.16,
+    "hip_drop_cm": 21.0,
+    "hip_rise_after_cm": 11.0,
+    "feet_move_m": 0.78,
     "t_takeback": 0.82,
     "t_loaded": 0.18,
     "t_acceleration": 0.08,
@@ -23541,6 +23728,7 @@
     "racket_speed_rel": 11.32
    },
    "classes": {
+    "finish_trunk": "girado tres cuartos hacia el lado de su revés",
     "finish": "sobre el hombro",
     "ball_phase": "bola subiendo",
     "swing": "liftado (de abajo arriba)",
@@ -23776,6 +23964,13 @@
     "recovery.hip_turn": 1.25,
     "recovery.face_tilt": 9.6,
     "recovery.face_yaw": 14.5,
+    "stroke.hip_drop_pct": 0.3,
+    "stroke.hip_rise_after_pct": 0.0,
+    "stroke.t_hip_lowest": 0.0,
+    "stroke.t_hip_highest": 0.0,
+    "stroke.hip_drop_cm": 0.5,
+    "stroke.hip_rise_after_cm": 0.0,
+    "stroke.feet_move_m": 0.055,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -23828,6 +24023,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.0,
     "footwork.steps_reliable": 0.0,
+    "class.finish_trunk": 0.0,
     "class.finish": 0.0,
     "class.ball_phase": 0.0,
     "class.swing": 0.0,
@@ -26557,6 +26753,7 @@
      "face_yaw": -117.6,
      "face_points_to": "valla izquierda",
      "face_observed": false,
+     "base_court_m": 0.65,
      "stance_angle": 134.2,
      "base_m": 0.65
     },
@@ -26623,6 +26820,7 @@
      "face_yaw": -3.2,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.27,
      "stance_angle": -18.7,
      "base_m": 0.27
     },
@@ -26681,7 +26879,10 @@
      "shoulder_turn": 38.0,
      "hip_turn": 30.8,
      "face_points_to": "valla izquierda",
-     "face_observed": false
+     "face_observed": false,
+     "base_court_m": 0.6,
+     "shoulder_width_ratio": 0.79,
+     "dom_shoulder_ahead": 11.2
     },
     "recovery": {
      "body_height": 94.4,
@@ -26713,6 +26914,13 @@
     }
    },
    "stroke": {
+    "hip_drop_pct": 0.0,
+    "hip_rise_after_pct": 10.0,
+    "t_hip_lowest": -0.28,
+    "t_hip_highest": 0.04,
+    "hip_drop_cm": 0.0,
+    "hip_rise_after_cm": 18.0,
+    "feet_move_m": 1.36,
     "t_takeback": 0.92,
     "t_loaded": 0.72,
     "t_acceleration": 0.42,
@@ -26738,6 +26946,7 @@
     "racket_speed_rel": 7.13
    },
    "classes": {
+    "finish_trunk": "girado tres cuartos hacia el lado de su revés",
     "finish": "sobre el hombro",
     "swing": "liftado (de abajo arriba)",
     "arm": "brazo recto",
@@ -26995,6 +27204,13 @@
     "recovery.arm_extension": 22.1,
     "recovery.shoulder_turn": 2.85,
     "recovery.hip_turn": 9.85,
+    "stroke.hip_drop_pct": 0.0,
+    "stroke.hip_rise_after_pct": 0.15,
+    "stroke.t_hip_lowest": 0.02,
+    "stroke.t_hip_highest": 0.0,
+    "stroke.hip_drop_cm": 0.0,
+    "stroke.hip_rise_after_cm": 0.0,
+    "stroke.feet_move_m": 0.1,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -27036,6 +27252,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.025,
     "footwork.steps_reliable": 0.0,
+    "class.finish_trunk": 0.25,
     "class.finish": 0.25,
     "class.swing": 0.0,
     "class.arm": 0.5,
@@ -28740,6 +28957,7 @@
      "face_yaw": -91.8,
      "face_points_to": "valla izquierda",
      "face_observed": false,
+     "base_court_m": 1.0,
      "stance_angle": 2.7,
      "base_m": 1.0
     },
@@ -28798,6 +29016,7 @@
      "face_yaw": -14.9,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.81,
      "stance_angle": 8.2,
      "base_m": 0.81
     },
@@ -28848,7 +29067,10 @@
      "face_tilt": -21.5,
      "face_yaw": 73.0,
      "face_points_to": "valla derecha",
-     "face_observed": false
+     "face_observed": false,
+     "base_court_m": 0.94,
+     "shoulder_width_ratio": 0.79,
+     "dom_shoulder_ahead": 10.3
     },
     "recovery": {
      "hip_height": 36.9,
@@ -28931,6 +29153,13 @@
     }
    },
    "stroke": {
+    "hip_drop_pct": 11.5,
+    "hip_rise_after_pct": 10.6,
+    "t_hip_lowest": -0.4,
+    "t_hip_highest": 0.0,
+    "hip_drop_cm": 21.0,
+    "hip_rise_after_cm": 20.0,
+    "feet_move_m": 0.42,
     "t_takeback": 0.5,
     "t_loaded": 0.12,
     "t_acceleration": 0.06,
@@ -28964,6 +29193,7 @@
     "takeback_vs_first_step": 0.34
    },
    "classes": {
+    "finish_trunk": "girado tres cuartos hacia el lado de su revés",
     "finish": "sobre el hombro",
     "ball_phase": "bola subiendo",
     "swing": "liftado (de abajo arriba)",
@@ -29359,6 +29589,13 @@
     "recovery.arm_extension": 6.0,
     "recovery.shoulder_turn": 1.5,
     "recovery.hip_turn": 1.1,
+    "stroke.hip_drop_pct": 0.15,
+    "stroke.hip_rise_after_pct": 0.0,
+    "stroke.t_hip_lowest": 0.0,
+    "stroke.t_hip_highest": 0.0,
+    "stroke.hip_drop_cm": 0.5,
+    "stroke.hip_rise_after_cm": 0.0,
+    "stroke.feet_move_m": 0.04,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -29435,6 +29672,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.075,
     "footwork.steps_reliable": 0.0,
+    "class.finish_trunk": 0.0,
     "class.finish": 0.0,
     "class.ball_phase": 0.0,
     "class.swing": 0.0,
@@ -31061,6 +31299,7 @@
      "x_factor": 18.1,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 1.14,
      "stance_angle": -20.5,
      "base_m": 1.14
     },
@@ -31116,6 +31355,7 @@
      "face_yaw": 13.5,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.71,
      "stance_angle": 3.8,
      "base_m": 0.71
     },
@@ -31168,7 +31408,10 @@
      "face_tilt": -33.3,
      "face_yaw": -76.5,
      "face_points_to": "valla izquierda",
-     "face_observed": false
+     "face_observed": false,
+     "base_court_m": 0.54,
+     "shoulder_width_ratio": 0.71,
+     "dom_shoulder_ahead": -5.1
     },
     "recovery": {
      "hip_height": 42.2,
@@ -31222,6 +31465,13 @@
     }
    },
    "stroke": {
+    "hip_drop_pct": 3.3,
+    "hip_rise_after_pct": 9.4,
+    "t_hip_lowest": -0.36,
+    "t_hip_highest": 0.08,
+    "hip_drop_cm": 6.0,
+    "hip_rise_after_cm": 17.0,
+    "feet_move_m": 0.54,
     "t_takeback": 0.46,
     "t_loaded": 0.12,
     "t_acceleration": 0.06,
@@ -31253,6 +31503,7 @@
     "takeback_vs_first_step": 0.28
    },
    "classes": {
+    "finish_trunk": "sin completar el giro (de lado, hacia la valla de su derecha)",
     "finish": "baja",
     "ball_phase": "bola subiendo",
     "swing": "liftado (de abajo arriba)",
@@ -31596,6 +31847,13 @@
     "recovery.hip_turn": 1.25,
     "recovery.face_tilt": 4.45,
     "recovery.face_yaw": 13.4,
+    "stroke.hip_drop_pct": 0.1,
+    "stroke.hip_rise_after_pct": 0.0,
+    "stroke.t_hip_lowest": 0.0,
+    "stroke.t_hip_highest": 0.0,
+    "stroke.hip_drop_cm": 0.0,
+    "stroke.hip_rise_after_cm": 0.0,
+    "stroke.feet_move_m": 0.005,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -31669,6 +31927,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.05,
     "footwork.steps_reliable": 0.25,
+    "class.finish_trunk": 0.0,
     "class.finish": 0.0,
     "class.ball_phase": 0.0,
     "class.swing": 0.0,
@@ -33363,6 +33622,7 @@
      "face_yaw": 88.9,
      "face_points_to": "valla derecha",
      "face_observed": true,
+     "base_court_m": 0.25,
      "stance_angle": 70.2,
      "base_m": 0.25
     },
@@ -33414,6 +33674,7 @@
      "face_yaw": 4.6,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.32,
      "stance_angle": 96.7,
      "base_m": 0.32
     },
@@ -33466,7 +33727,10 @@
      "face_tilt": -57.5,
      "face_yaw": 7.9,
      "face_points_to": "cielo",
-     "face_observed": false
+     "face_observed": false,
+     "base_court_m": 0.85,
+     "shoulder_width_ratio": 0.86,
+     "dom_shoulder_ahead": 1.3
     },
     "recovery": {
      "hip_height": 61.1,
@@ -33494,6 +33758,7 @@
     }
    },
    "stroke": {
+    "feet_move_m": 1.09,
     "t_takeback": 1.2,
     "t_loaded": 0.5,
     "t_acceleration": 0.04,
@@ -33517,6 +33782,7 @@
     "racket_speed_rel": 2.4
    },
    "classes": {
+    "finish_trunk": "de frente a la red",
     "finish": "látigo (sobre el mismo hombro)",
     "swing": "cortado (de arriba abajo)",
     "arm": "brazo recto",
@@ -33734,6 +34000,7 @@
     "recovery.arm_extension": 5.45,
     "recovery.shoulder_turn": 8.2,
     "recovery.hip_turn": 4.15,
+    "stroke.feet_move_m": 0.055,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -33775,6 +34042,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.01,
     "footwork.steps_reliable": 0.0,
+    "class.finish_trunk": 0.0,
     "class.finish": 0.0,
     "class.swing": 0.0,
     "class.arm": 0.5,
@@ -35510,6 +35778,7 @@
      "x_factor": 13.4,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 1.14,
      "stance_angle": 15.9,
      "base_m": 1.14
     },
@@ -35561,6 +35830,7 @@
      "face_yaw": -14.6,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.52,
      "stance_angle": 30.6,
      "base_m": 0.52
     },
@@ -35614,7 +35884,10 @@
      "face_tilt": 32.8,
      "face_yaw": 99.1,
      "face_points_to": "valla derecha",
-     "face_observed": true
+     "face_observed": true,
+     "base_court_m": 0.82,
+     "shoulder_width_ratio": 0.64,
+     "dom_shoulder_ahead": 6.1
     },
     "recovery": {
      "hip_height": 54.1,
@@ -35693,6 +35966,13 @@
     }
    },
    "stroke": {
+    "hip_drop_pct": 14.0,
+    "hip_rise_after_pct": 8.9,
+    "t_hip_lowest": -0.64,
+    "t_hip_highest": 0.2,
+    "hip_drop_cm": 26.0,
+    "hip_rise_after_cm": 16.0,
+    "feet_move_m": 0.74,
     "t_takeback": 0.82,
     "t_loaded": 0.14,
     "t_acceleration": 0.06,
@@ -35725,6 +36005,7 @@
     "racket_speed_rel": 7.28
    },
    "classes": {
+    "finish_trunk": "girado tres cuartos hacia el lado de su revés",
     "finish": "látigo (sobre el mismo hombro)",
     "ball_phase": "bola arriba",
     "swing": "liftado (de abajo arriba)",
@@ -35928,6 +36209,13 @@
     "recovery.arm_extension": 3.05,
     "recovery.shoulder_turn": 3.7,
     "recovery.hip_turn": 2.15,
+    "stroke.hip_drop_pct": 0.0,
+    "stroke.hip_rise_after_pct": 0.0,
+    "stroke.t_hip_lowest": 0.0,
+    "stroke.t_hip_highest": 0.0,
+    "stroke.hip_drop_cm": 0.0,
+    "stroke.hip_rise_after_cm": 0.0,
+    "stroke.feet_move_m": 0.055,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -35978,6 +36266,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.05,
     "footwork.steps_reliable": 0.25,
+    "class.finish_trunk": 0.0,
     "class.finish": 0.5,
     "class.ball_phase": 0.0,
     "class.swing": 0.0,
@@ -37663,6 +37952,7 @@
      "face_yaw": -68.0,
      "face_points_to": "valla izquierda",
      "face_observed": true,
+     "base_court_m": 0.95,
      "stance_angle": 64.5,
      "base_m": 0.95
     },
@@ -37713,6 +38003,7 @@
      "face_yaw": 6.9,
      "face_points_to": "red",
      "face_observed": false,
+     "base_court_m": 0.87,
      "stance_angle": 74.1,
      "base_m": 0.87
     },
@@ -37763,7 +38054,10 @@
      "face_tilt": -4.5,
      "face_yaw": 177.6,
      "face_points_to": "valla trasera",
-     "face_observed": false
+     "face_observed": false,
+     "base_court_m": 0.56,
+     "shoulder_width_ratio": 0.82,
+     "dom_shoulder_ahead": 1.4
     },
     "recovery": {
      "body_height": 115.6,
@@ -37797,6 +38091,13 @@
     }
    },
    "stroke": {
+    "hip_drop_pct": 7.6,
+    "hip_rise_after_pct": 15.6,
+    "t_hip_lowest": -0.32,
+    "t_hip_highest": 0.12,
+    "hip_drop_cm": 14.0,
+    "hip_rise_after_cm": 29.0,
+    "feet_move_m": 0.34,
     "t_takeback": 0.7,
     "t_loaded": 0.34,
     "t_acceleration": 0.04,
@@ -37821,6 +38122,7 @@
     "takeback_vs_first_step": 0.06
    },
    "classes": {
+    "finish_trunk": "de frente a la red",
     "finish": "látigo (sobre el mismo hombro)",
     "swing": "cortado (de arriba abajo)",
     "arm": "doble flexión",
@@ -38177,6 +38479,13 @@
     "recovery.arm_extension": 2.4,
     "recovery.shoulder_turn": 0.6,
     "recovery.hip_turn": 0.45,
+    "stroke.hip_drop_pct": 1.1,
+    "stroke.hip_rise_after_pct": 0.0,
+    "stroke.t_hip_lowest": 0.0,
+    "stroke.t_hip_highest": 0.0,
+    "stroke.hip_drop_cm": 2.0,
+    "stroke.hip_rise_after_cm": 0.0,
+    "stroke.feet_move_m": 0.075,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
     "stroke.t_acceleration": 0.03,
@@ -38242,6 +38551,7 @@
     "footwork.movement": 0.0,
     "footwork.feet_still_share": 0.035,
     "footwork.steps_reliable": 0.25,
+    "class.finish_trunk": 0.0,
     "class.finish": 0.25,
     "class.swing": 0.0,
     "class.arm": 0.5,
