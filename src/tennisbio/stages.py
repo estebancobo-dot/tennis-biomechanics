@@ -234,6 +234,13 @@ def _on_court(boxes: np.ndarray, H) -> np.ndarray:
     return (np.abs(c[:, 0]) <= 5.5) & (c[:, 1] >= -7.0) & (c[:, 1] <= 11.885)
 
 
+def _players(ctx) -> dict:
+    """players.npz read once into memory: indexing a lazily loaded .npz re-reads and unpickles the whole
+    array on every access (with 6000 frames that made identity and candidates take 30 min each)."""
+    with np.load(ctx.path("players.npz"), allow_pickle=True) as z:
+        return {k: z[k] for k in z.files}
+
+
 def near_runs(d, sk, court: dict | None = None):
     """Each continuous run of main-camera frames with the near player tracked (cuts break tracking).
     court: the court stage's output, to start the tracking on the person standing on the court.
@@ -277,7 +284,7 @@ def st_identity(ctx: Context):
     she is the other one."""
     from .identity import assign, cluster_two, decide_by_ends, end_changes, near_receives, near_serves
 
-    d = np.load(ctx.path("players.npz"), allow_pickle=True)
+    d = _players(ctx)
     fps, frames = float(d["fps"]), d["frames"]
     sk = Skeleton("coco17", ctx.match.player.hand)
     score = _read(ctx.path("score.json"))
@@ -360,7 +367,7 @@ def st_candidates(ctx: Context, tol_s=0.35):
     an audio transient when one is close. Each candidate records who the near player is
     (identity: True target, False opponent, None undecided); the fine passes pick their own.
     Each candidate is checked again in the fine pass."""
-    d = np.load(ctx.path("players.npz"), allow_pickle=True)
+    d = _players(ctx)
     fps, frames = float(d["fps"]), d["frames"]
     sk = Skeleton("coco17", ctx.match.player.hand)
     court = _read(ctx.path("court.json"))
