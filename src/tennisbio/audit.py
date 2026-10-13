@@ -734,6 +734,7 @@ PETITIONS = {
     125: r"^Rendimiento$",
     126: r"Tu objetivo", 127: r"Tu objetivo|responde a cada combinación", 128: r"Tu objetivo|responde a cada combinación",
     129: Note("descartado por el usuario (13-10): sin hoja de sesión"),
+    130: r"Resto de derecha|Resto:|Lado del resto|Dirección del saque|responde a cada combinación",
 }
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 

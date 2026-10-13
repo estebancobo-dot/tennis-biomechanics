@@ -58,6 +58,7 @@ def court_metrics(img_kp: np.ndarray, sk: Skeleton, H: np.ndarray, stroke: str, 
     g = feet_on_court(img_kp, opponent_hit, sk, H)
     if g is not None:
         out["displacement_m"] = round(float(np.linalg.norm(mid - (g[0] + g[1]) / 2)), 2)
+        out["pos_at_opp_m"] = [round(float(v), 2) for v in (g[0] + g[1]) / 2]     # where she waits (the serve, on a return)
     return out
 
 

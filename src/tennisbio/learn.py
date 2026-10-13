@@ -37,6 +37,16 @@ PHASES = [
          cp("ready.base_width", "Anchura de los pies en la espera", "%", 0, "% de su altura entre tobillos",
             "Pies algo más separados que los hombros.", "Pies juntos: no puedes empujar hacia ningún lado.",
             "Marca en el suelo la anchura de tus hombros y espera con los pies un poco por fuera.", []),
+         cp("stroke.return_ready_depth_m", "Dónde espera el saque (resto)", "m", 2, "m respecto a la línea de fondo cuando la rival saca (− = detrás)",
+            "En el resto, colócate a la distancia de la línea a la que se coloca ella (más atrás en el primer saque, más adentro en el segundo).",
+            "Restar siempre desde el mismo sitio, sea primer o segundo saque.",
+            "Marca con un cono su sitio de resto y resta 10 saques desde ahí; luego un paso más adentro en los segundos.",
+            ["Resto: posición de espera"]),
+         cp("stroke.return_step_in_m", "Entra hacia la bola (resto)", "m", 2, "m que avanza hacia la red desde la espera hasta el contacto (− = retrocede)",
+            "En el resto, entra hacia la bola como ella: el split step y el primer paso hacia delante te quitan tiempo de reacción a la rival.",
+            "Retroceder en el resto: la bola te come y devuelves corto.",
+            "Restos con una línea en el suelo 1 m delante: cruza la línea antes de golpear.",
+            ["Resto: entrar hacia la bola"]),
          cp("class.ready_hands", "Manos en la espera", "", 0, "cómo sujeta la raqueta",
             "Coloca las manos como ella (arriba): si sujeta la garganta con la mano libre, gira hombros y raqueta juntos; si la separa, la mano libre ya apunta hacia la bola.",
             "Soltar o mover la mano libre sin intención: el giro se hace solo con el brazo.", "Espera con las manos como ella y gira hombros y raqueta juntos en el split step.",
@@ -359,8 +369,27 @@ CONDITIONS = {
         "media volea": ("Media volea (botepronto): justo al bote, muy baja.", "Flexiona mucho, armado muy corto y cara estable.", "Bolas a los pies golpeando al bote."),
         "volea": ("Volea de derecha: sin bote, junto a la red.", "Armado mínimo, muñeca firme y paso adelante.", "Voleas de derecha con paso adelante."),
     }),
+    # the return of serve and its variants (returns.py): only her returns have these classes
+    "play": ("Momento del punto", {
+        "resto": ("Resto: la bola más rápida y con menos tiempo del punto; prima devolverla profunda y al centro antes que ganar el punto.", "Split step cuando la rival golpea el saque, giro de hombros inmediato y armado corto; usa la velocidad del saque.", "Restos a un compañero que saca desde la línea de servicio (más rápido de lo normal), devolviendo al centro; 3×10."),
+        "inicio del punto": ("Inicio del punto (su 1.º o 2.º golpe, tras su saque o el resto): el primer golpe que abre o neutraliza el punto.", "Colócate pronto tras el saque o el resto y busca un golpe profundo o la primera bola de ataque.", "Saque + derecha: saca y ataca la primera bola con la derecha; 3×8."),
+        "peloteo": ("Peloteo: golpes de fondo dentro del punto, con más tiempo y elección de dirección.", "Recupera, split step y golpe completo; cambia de dirección con margen.", "Peloteo cruzado 10 golpes y cambio a la paralela."),
+    }),
+    "serve_number": ("Saque que resta", {
+        "primer saque": ("Resto de primer saque: bola más rápida y plana; el objetivo es meterla profunda.", "Espera más atrás, armado mínimo (casi un bloqueo) y cara firme hacia el centro.", "Restos de primeros saques fuertes bloqueando al centro, profundo; 3×10."),
+        "segundo saque": ("Resto de segundo saque: bola más lenta y con más efecto; la ocasión de atacar.", "Espera más adentro, entra hacia la bola y haz el swing completo hacia una esquina.", "Segundos saques con efecto: entra y ataca a la esquina; 3×10."),
+    }),
+    "serve_dir": ("Dirección del saque", {
+        "abierto": ("Saque abierto: te saca de la pista; hay que llegar y recuperar.", "Primer paso diagonal hacia la bola (cruzado si va muy abierto), armado corto y recuperación inmediata hacia el centro.", "Saques abiertos: resta cruzado y vuelve al centro en 3 pasos."),
+        "al cuerpo": ("Saque al cuerpo: te quita espacio para el brazo.", "Aparta el cuerpo con un paso lateral hacia el lado contrario a la derecha para dejar sitio al brazo.", "Saques al cuerpo: paso de apertura y resto al centro; 3×8."),
+        "a la T": ("Saque a la T: por el centro; poco ángulo para el resto.", "Paso hacia el centro y giro rápido; resta profundo al centro o cruzado.", "Saques a la T: resto profundo al centro; 3×8."),
+    }),
+    "return_side": ("Lado del resto", {
+        "iguales": ("Resto desde el lado de iguales (derecha del que resta).", "En la derecha, la bola abierta te lleva fuera de la pista: recupera hacia el centro tras restar.", "Restos en iguales alternando saque abierto y a la T."),
+        "ventaja": ("Resto desde el lado de ventaja.", "La derecha recibe sobre todo saques a la T o al cuerpo: prepara el paso de apertura.", "Restos en ventaja con saques a la T y al cuerpo."),
+    }),
 }
-RELAX_ORDER = ["depth", "ball_speed", "ball_height", "court_side", "contact_type", "swing", "movement", "stance_impact", "shot_type"]
+RELAX_ORDER = ["serve_dir", "return_side", "serve_number", "depth", "ball_speed", "ball_height", "court_side", "contact_type", "swing", "movement", "stance_impact", "shot_type", "play"]
 
 # items of the user's matrix that TV cannot measure, with what to do about them anyway
 NOT_FROM_TV = [
@@ -374,6 +403,7 @@ NOT_FROM_TV = [
     ("Velocidad de la cabeza en km/h, velocidad angular en °/s, efecto en rpm, velocidad de salida", "Solo comparaciones entre sus golpes (velocidad relativa de la raqueta)."),
     ("Rangos articulares y cargas del codo", "Si te duele el codo, revisa el agarre y no golpees tarde."),
     ("Aerodinámica, altitud, temperatura, humedad", "En altitud o con calor la bola vuela más: más efecto."),
+    ("Velocidad y efecto del saque que resta (km/h, rpm)", "Se ve indirectamente en el tiempo que tiene desde el saque (velocidad de la bola, condición «Velocidad de la bola») y en si es primer o segundo saque."),
 ]
 
 
@@ -448,11 +478,19 @@ TARGETS = {
     "finish.head_over_base": "Termina con la cabeza a menos de un {h} del centro de los pies, como ella.",
     "finish.base_width": "Termina con los tobillos separados un {h}, como ella.",
     "footwork.recovery_start_s": "Da el primer paso de vuelta {v} después de golpear, como ella.",
+    "stroke.return_ready_depth_m": ("En el resto, espera {v} por delante de la línea de fondo, como ella.", "En el resto, espera {v} detrás de la línea de fondo, como ella."),
+    "stroke.return_step_in_m": ("En el resto, entra {v} hacia la bola desde la espera, como ella.", "En el resto, ella retrocede {v} desde la espera: con saques muy rápidos, gana tiempo así."),
 }
 
 # words of the screen a person may not know, with what they mean (shown as a glossary and as a hint
 # on the word)
 GLOSSARY = [
+    ("resto", "Golpe que devuelve el saque de la rival: su primer golpe del punto cuando saca la otra."),
+    ("lado de iguales", "Mitad derecha de la pista (vista desde quien resta): se resta ahí cuando se han jugado 0, 2, 4… puntos del juego."),
+    ("lado de ventaja", "Mitad izquierda (vista desde quien resta): se resta ahí con 1, 3, 5… puntos jugados."),
+    ("saque a la T", "Saque que bota junto a la línea central, la «T» que forman la línea central y la de saque."),
+    ("saque abierto", "Saque que bota cerca de la línea lateral y saca a quien resta de la pista."),
+    ("saque al cuerpo", "Saque dirigido a quien resta, al centro de su cuadro: le quita espacio para el brazo."),
     ("split step", "Pequeño salto con los dos pies justo cuando golpea la rival; al aterrizar sales hacia la bola."),
     ("armado", "Final de la preparación: hombros girados al máximo y raqueta arriba y atrás, lista para bajar."),
     ("preparación", "Desde que sabes que es derecha hasta el armado: giro de hombros y raqueta atrás."),

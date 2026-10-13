@@ -391,6 +391,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 
 <section class="screen" id="tab-aprende" hidden>
 <details class="news" id="news"><summary><b>Novedades de esta versión</b> · dónde mirarlas</summary><ul>
+  <li><b>Resto de derecha:</b> en «Cópiala», elige «Momento del punto: resto» y sus variantes (primer o segundo saque, saque abierto / al cuerpo / a la T, lado de iguales o ventaja); en la fase 1, dónde espera el saque y cuánto entra hacia la bola.</li>
   <li><b>«Cópiala»:</b> guía «Empieza aquí» arriba; en cada medida, <b>«Tu objetivo»</b> con su número (y en tus centímetros si pones tu altura); palabras técnicas subrayadas con su explicación y un glosario al final.</li>
   <li><b>Menú:</b> dos vistas principales, «Cópiala» y «Sus golpes»; el resto, en «Más» (para practicar y técnico). No se ha quitado nada.</li>
   <li><b>«Sus golpes» → un golpe → «La bola y ella»:</b> su cuerpo cuando golpea la rival, la bola cruza la red, cae, bota, sube y ella golpea, con medidas reales en cada fotograma (cadera en cm, pies en m, recorrido).</li>
@@ -2173,6 +2174,10 @@ function aHerChange(d, l) {
     : "sin cambios claros respecto a sus demás derechas.");
 }
 function aWhyMissing(set, c) {
+  if (c.key.startsWith("stroke.return_")) {
+    const n = set.filter(s => s.cl.play === "resto").length;
+    return n ? `solo se mide en los restos: ${n} resto${n > 1 ? "s" : ""} en estos golpes, sin sus pies en la pista cuando saca la rival` : "solo se mide en los restos (devolver el saque) y no hay ninguno en estos golpes: elige «Momento del punto: resto»";
+  }
   if (c.key.startsWith("footwork.") || c.key.startsWith("class.approach") || c.key.startsWith("class.recovery")) {
     const rel = set.filter(s => (s.feet || {}).steps_reliable === false).length;
     if (rel) return `sus pasos no se distinguen en ${rel} de ${set.length} golpes (tobillos borrosos en la tele): mira el vídeo`;

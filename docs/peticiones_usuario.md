@@ -1,6 +1,6 @@
 # Peticiones del usuario frente al código y a la web
 
-**Revisión:** 13-10-2026 (tarde; filas 76, 98, 101-112 y 118-129 al día), antes commit `a330935` (rama `claude/tennis-biomech-setup-jggqb0`).
+**Revisión:** 13-10-2026 (tarde; filas 76, 98, 101-112 y 118-130 al día), antes commit `a330935` (rama `claude/tennis-biomech-setup-jggqb0`).
 **Fuentes revisadas:** los 147 mensajes del chat (10-10 a 13-10; sin contar los resúmenes de contexto, los
 registros ni los informes de subagentes pegados), `docs/aprendido_entrenadores.md` (las 15 mejoras),
 `docs/matriz_cobertura.md` §6 (la matriz de 15 secciones, 59 filas) y la revisión anterior de este documento.
@@ -18,10 +18,10 @@ la auditoría las marcará «sin comprobación automática asignada».
 | Estado | Nº |
 |---|---|
 | HECHO | 76 |
-| PARCIAL | 42 |
+| PARCIAL | 43 |
 | NO | 6 |
 | NO APLICA | 5 |
-| **Total** | **129** |
+| **Total** | **130** |
 
 **Al día (13-10, tarde).** Web en 2 vistas («Cópiala», «Sus golpes») y «Más»; cada medida validada sola
 (técnica, ruido o sesgo); ciclo automático en el PC con revisión OK/REGRESIÓN/ERROR; golpes dudosos 1 de 10.
@@ -177,6 +177,7 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 127 | Guía de primer uso, «empieza aquí» (13-10 14:00) | HECHO | `renderGuide` | Cópiala, arriba (se oculta y se vuelve a abrir) | `learn_check` («sin guía de primer uso») | |
 | 128 | Glosario de términos (13-10 14:00) | HECHO | `learn.GLOSSARY`, `gloss` | Cópiala: palabras subrayadas con su explicación al tocarlas y «Glosario» al final | `learn_check` («glosario incompleto»), palabras marcadas en la auditoría | |
 | 129 | Hoja de sesión (13-10 14:00) | NO APLICA | Descartada por el usuario | — | — | |
+| 130 | Resto de derecha (devolver el saque) con todas sus variantes, en la matriz y en la aplicación (13-10 14:30) | PARCIAL | `returns.py` (marcador + su primer golpe del punto; primer/segundo saque, dirección del saque, lado, espera, entrada) | Cópiala: condiciones «Momento del punto», «Saque que resta», «Dirección del saque», «Lado del resto»; fase 1: espera y entrada | matriz §5b; `learn_check` en cada combinación; `tests/test_returns.py` | Pocos restos en la prueba corta; primer/segundo saque es probable (un corte entre saques lo confunde); bloqueo sin medida propia. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)
 

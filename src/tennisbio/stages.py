@@ -845,22 +845,27 @@ def _rally_position(strokes: list[dict], cands: list[dict], scenes: dict) -> Non
     """Her shot number within the point and her shots in the whole point, counted from the hits of
     the cheap pass on her side of the same main-camera shot. Only when the shot starts at least
     1.5 s before its first hit (the point is seen from its start). The point's moment class
-    (return / start of the point / rally) is refined with it."""
+    (return / start of the point / rally) is refined with it, and the return's variants (returns.py)."""
+    from . import returns as _returns
     sfps = scenes.get("fps") or 1
     for d in strokes:
         t, side = d["match_time_s"], d.get("side", "near")
         sh = next((x for x in scenes.get("shots", []) if x["main_camera"] and x["start"] / sfps <= t < x["end"] / sfps), None)
         if sh is None:
+            _returns.apply(d, None, None, cands)
             continue
         a, b = sh["start"] / sfps, sh["end"] / sfps
         hits = sorted(c["t"] for c in cands if c.get("side", "near") == side and a <= c["t"] < b)
         if not hits or hits[0] - a < 1.5:
+            _returns.apply(d, None, (a, b), cands)
             continue
         k = sum(h <= t + 0.3 for h in hits)
         d["shot_in_point"], d["shots_in_point"] = k, len(hits)
         cl = (d.get("technique") or {}).get("classes")
         if cl is not None and not d.get("is_return"):
             cl["play"] = "inicio del punto" if k <= 2 else "peloteo"
+        # the return of serve and its variants (scoreboard server + her first hit of the point)
+        _returns.apply(d, k, (a, b), cands)
 
 
 def _window_of(group: list[dict], pre: float, post: float) -> tuple[float, float, str]:
@@ -959,7 +964,7 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
              identity=c.get("identity"), target=c.get("target"), stroke_id=f"{ctx.match.id}-{int(round(t_imp * 100)):07d}")
     sr = score_at(score, t_imp)
     if sr is not None:
-        d["score"] = {k: sr[k] for k in ("games", "points", "banner", "set", "sets_won", "tiebreak", "pressure")}
+        d["score"] = {k: sr.get(k) for k in ("games", "points", "banner", "set", "sets_won", "tiebreak", "pressure", "server")}
     pr = _read(ctx.path("probe.json")) if ctx.path("probe.json").exists() else {}
     H, pitch = court_at(court, t_imp, window_scale(pr.get("width", 0)))
     H, pitch, d["court_check"] = _check_court(clip, r.impact_frame / run.fps, H, pitch)

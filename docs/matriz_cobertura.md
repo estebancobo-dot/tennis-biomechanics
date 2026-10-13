@@ -131,6 +131,26 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Presión, set, fatiga | ATP/WTA | ✔ | marcador (OCR) |
 
 
+## 5b. Resto de derecha (devolver el saque) y sus variantes
+
+Mismo golpe, otra situación: la bola más rápida del punto y sin tiempo. Se reconoce y se mide con lo que
+da la tele (marcador, sonido, bola, pies en la pista; `returns.py`). En «Cópiala» son condiciones
+(«Momento del punto», «Saque que resta», «Dirección del saque», «Lado del resto») y dos puntos de la fase 1.
+
+| Elemento | Quién lo da | Estado | Implementación / acción |
+|---|---|---|---|
+| Resto: reconocerlo (saca la rival y es su primer golpe del punto) | F3Set, TennisViz | ✔ | `class.play` = resto: icono de saque del marcador + sus golpes del plano; sin marcador, el sonido (`returns.return_of_serve`) |
+| Resto de primer o de segundo saque | TennisViz | ◐ | `serve_number`: un saque anterior de la rival en el mismo plano (falta) o el rótulo; un corte entre los dos saques lo confunde (probable) |
+| Dirección del saque recibido: abierto, al cuerpo, a la T | Hawk-Eye | ✔ | `serve_dir`: bote del saque en su cuadro (homografía en el suelo), por tercios del cuadro |
+| Lado del resto: iguales / ventaja | marcador | ✔ | `return_side`: paridad de los puntos del juego, comprobada con el cuadro del bote; si no coinciden, no se da |
+| Resto: posición de espera | Tennis Australia, ITF | ✔ | `return_ready_depth_m` (m respecto a la línea de fondo cuando saca la rival) |
+| Resto: entrar hacia la bola | ITF | ✔ | `return_step_in_m` (m hacia la red de la espera al contacto) |
+| Resto: split step respecto al saque | ITF; Kovacs 2009 | ✔ | `split_landing_vs_opp_s` (en un resto, el golpe de la rival es el saque) |
+| Resto: armado corto (bloqueo) o swing completo; terminación | ITF; Tennis Australia | ◐ | `class.takeback`, `class.finish` y su firma con la condición «Saque que resta» (sin medida propia de bloqueo) |
+| Resto: dirección y profundidad de su resto | TennisViz | ✔ | `shot_type`, `shot_depth_m` con la condición «Momento del punto: resto» |
+| Resto: tiempo que tiene desde el saque | Hawk-Eye (velocidad del saque) | ✔ | `time_available_s` (condición «Velocidad de la bola») |
+| Velocidad y efecto del saque que resta (km/h, rpm) | Hawk-Eye | ✘ | bola pequeña y borrosa; se ve indirectamente en el tiempo disponible |
+
 ## 6. Matriz del usuario (12-10): análisis integral de la derecha
 
 Cada punto de la matriz que pidió el usuario, con su estado. «Vista lateral de entrenamiento» = vídeos de
