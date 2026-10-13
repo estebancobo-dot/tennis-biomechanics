@@ -387,3 +387,52 @@ def open_capture(path: str | Path):
     import cv2
 
     return cv2.VideoCapture(capture_path(path))
+
+
+def capture_frames(path: str | Path, prefetch: int = 4) -> Iterator[np.ndarray]:
+    """Every frame of a video with OpenCV, in order (the same frames as a cap.read() loop), decoded
+    in a background thread up to `prefetch` frames ahead: decoding the next frames overlaps with the
+    model working on the current one (OpenCV and ONNX Runtime release the GIL). Stopping early
+    (break, exception) stops the thread."""
+    import queue
+    import threading
+
+    q: queue.Queue = queue.Queue(maxsize=max(1, prefetch))
+    stop = threading.Event()
+    end = object()
+
+    def put(item) -> bool:
+        while not stop.is_set():
+            try:
+                q.put(item, timeout=0.1)
+                return True
+            except queue.Full:
+                continue
+        return False
+
+    def reader():
+        cap = open_capture(path)
+        try:
+            while not stop.is_set():
+                ok, frame = cap.read()
+                if not ok or not put(frame):
+                    break
+        except BaseException as e:            # handed to the consumer, never lost in the thread
+            put(e)
+        finally:
+            cap.release()
+            put(end)
+
+    th = threading.Thread(target=reader, daemon=True)
+    th.start()
+    try:
+        while True:
+            item = q.get()
+            if item is end:
+                break
+            if isinstance(item, BaseException):
+                raise item
+            yield item
+    finally:
+        stop.set()
+        th.join(timeout=5)
