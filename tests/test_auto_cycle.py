@@ -14,6 +14,7 @@ def test_decide():
     assert decide(["src/tennisbio/report_template.html"]) == "informe"
     assert decide(["src/tennisbio/audit.py", "config/practice_videos.yaml"]) == "informe"
     assert decide(["uv.lock"]) == "informe"
+    assert decide(["docs/matriz_cobertura.md", "tests/test_audit.py"]) == "informe"      # the audit reads it
     assert decide(["docs/estado_proyecto.md", "tests/test_x.py", "CLAUDE.md"]) == "nada"
     assert decide([]) == "nada"
 
