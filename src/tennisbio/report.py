@@ -419,6 +419,13 @@ def practice_data(out_root: Path, dest: Path) -> dict | None:
             except (OSError, ValueError):
                 return None
             pr["base"] = Path(os.path.relpath(d / "clips", dest)).as_posix()
+            # the rule of the analysis applied to older files too: a contact not confirmed by the sound
+            # is shown but never measured (in practice videos the wrist peak alone falls in the backswing)
+            from . import practice
+            for st in pr.get("strokes", []):
+                if "audio" not in (st.get("source") or "") and not st.get("unconfirmed"):
+                    st["unconfirmed"], st["metrics"] = True, {}
+            pr["summary"], pr["views"] = practice.summarize(pr.get("strokes", [])), practice.views_count(pr.get("strokes", []))
             return pr
     return None
 
