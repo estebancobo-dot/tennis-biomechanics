@@ -1,0 +1,111 @@
+{
+ "version": 2,
+ "complete": true,
+ "device": "dml",
+ "minutes": 63.7,
+ "pose": {
+  "yolo11m-pose@960": {
+   "clips": 6,
+   "ms_per_frame": 282.1,
+   "gt": 13,
+   "precision": 0.6,
+   "recall": 0.692,
+   "f1": 0.643,
+   "timing_err_frames": 1.0,
+   "jerk_pct": 0.734,
+   "tracked": 0.996,
+   "feet_seen": 0.0,
+   "kp_diff_vs_fp32_px": null,
+   "complete": true
+  },
+  "rtmpose-x": {
+   "clips": 6,
+   "ms_per_frame": 719.5,
+   "gt": 13,
+   "precision": 0.667,
+   "recall": 0.615,
+   "f1": 0.64,
+   "timing_err_frames": 1.0,
+   "jerk_pct": 0.281,
+   "tracked": 1.0,
+   "feet_seen": 0.887,
+   "kp_diff_vs_fp32_px": null,
+   "complete": true
+  },
+  "rtmpose-m": {
+   "clips": 6,
+   "ms_per_frame": 327.1,
+   "gt": 13,
+   "precision": 0.583,
+   "recall": 0.538,
+   "f1": 0.56,
+   "timing_err_frames": 1.0,
+   "jerk_pct": 0.302,
+   "tracked": 1.0,
+   "feet_seen": 0.964,
+   "kp_diff_vs_fp32_px": null,
+   "complete": true
+  },
+  "yolo11m-pose@960-fp16": {
+   "clips": 6,
+   "ms_per_frame": 128.2,
+   "gt": 13,
+   "precision": 0.6,
+   "recall": 0.692,
+   "f1": 0.643,
+   "timing_err_frames": 1.0,
+   "jerk_pct": 0.73,
+   "tracked": 0.996,
+   "feet_seen": 0.0,
+   "kp_diff_vs_fp32_px": 0.25,
+   "complete": true
+  },
+  "rtmpose-x-fp16": {
+   "clips": 6,
+   "ms_per_frame": 1806.8,
+   "gt": 13,
+   "precision": 0.667,
+   "recall": 0.615,
+   "f1": 0.64,
+   "timing_err_frames": 1.0,
+   "jerk_pct": 0.282,
+   "tracked": 1.0,
+   "feet_seen": 0.886,
+   "kp_diff_vs_fp32_px": 0.14,
+   "complete": true
+  },
+  "yolo11m-pose@640": {
+   "clips": 6,
+   "ms_per_frame": 151.9,
+   "gt": 13,
+   "precision": 0.667,
+   "recall": 0.769,
+   "f1": 0.714,
+   "timing_err_frames": 1.0,
+   "jerk_pct": 0.772,
+   "tracked": 0.98,
+   "feet_seen": 0.0,
+   "kp_diff_vs_fp32_px": null,
+   "complete": true
+  }
+ },
+ "ball": {
+  "balltrack": {
+   "found_10px": 0.86,
+   "annotated": 272,
+   "ms_per_frame": 163.3
+  },
+  "balltrack-fp16": {
+   "found_10px": 0.86,
+   "annotated": 272,
+   "ms_per_frame": 137.7
+  }
+ },
+ "recommended": [
+  "rtmpose-x: con pies (F1 0.64 frente a 0.643; 719.5 frente a 282.1 ms/fotograma)",
+  "yolo11m-pose@960-fp16: más rápida (F1 0.643 frente a 0.643; 128.2 frente a 282.1 ms/fotograma)",
+  "rtmpose-x-fp16: con pies (F1 0.64 frente a 0.643; 1806.8 frente a 282.1 ms/fotograma)"
+ ],
+ "baseline": "yolo11m-pose@960",
+ "generated": "2026-10-13 21:08"
+}
