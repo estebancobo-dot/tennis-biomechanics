@@ -3,13 +3,13 @@
  "screens": [
   {
    "title": "Aprende su derecha",
-   "text_chars": 27780,
+   "text_chars": 27916,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 3,
+   "dashes": 5,
    "ball_moments": 0,
    "feet_cycle": 0,
    "heights_layer": false,
@@ -325,14 +325,14 @@
   "checkpoints_checked": 35204,
   "failures": [],
   "rows_all": 52,
-  "valued_all": 50,
+  "valued_all": 48,
   "signature": 5,
-  "style": "Estilo de su derecha: armado amplia (90 %) · apoyo abierto (30 %) · efecto liftado (de abajo arriba) (80 %) · terminación sobre el hombro (40 %) provisional: 10 golpes.",
+  "style": "Estilo de su derecha: preparación amplia (90 %) · apoyo variable (la más frecuente, abierto, en 30 %) · efecto liftado (de abajo arriba) (80 %) · terminación variable (la más frecuente, sobre el hombro, en 40 %) provisional: 10 golpes.",
   "example": {
    "exact": 0,
    "near": 9,
    "rows": 52,
-   "valued": 49,
+   "valued": 47,
    "bad": []
   }
  }
