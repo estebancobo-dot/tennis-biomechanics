@@ -31,6 +31,31 @@ class Match:
     round: str = ""
     extra: dict = field(default_factory=dict)
 
+    def __post_init__(self):
+        if not self.surface:                    # from the tournament or the file name, when it says which
+            self.surface = surface_of(" ".join(str(x) for x in (self.tournament, self.id, getattr(self.video, "name", self.video) or "")))
+
+
+# the surface of each tournament (public, fixed): the name is read from the tournament field or from
+# the video's file name (also transliterated from Cyrillic, e.g. «ЮС Опен» → yusopen / yusipopen)
+TOURNAMENT_SURFACE = [
+    (r"us ?open|yusi?p?open|flushing", "dura"), (r"australian ?open|avstrali|melbourne", "dura"),
+    (r"wimbledon|uimbldon|vimbldon", "hierba"), (r"roland|garros|french ?open|frantsi", "tierra batida"),
+    (r"indian ?wells|miami|cincinnati|montreal|toronto|canadian|beijing|pekin|wuhan|doha|dubai|abu ?dhabi|brisbane|adelaide|"
+     r"tokyo|tokio|wta ?finals|itogovy|guadalajara|san ?diego|washington|ostrava|linz", "dura"),
+    (r"madrid|roma\b|rome|internazionali|stuttgart|shtutgart|charleston|strasbourg|rabat|parma", "tierra batida"),
+    (r"eastbourne|berlin|bad ?homburg|hertogenbosch|birmingham|nottingham|queen", "hierba"),
+]
+
+
+def surface_of(text: str) -> str:
+    import re
+    t = ascii_id(text).lower().replace("-", " ").replace("_", " ") if text else ""
+    for rx, s in TOURNAMENT_SURFACE:
+        if re.search(rx, t) or re.search(rx, t.replace(" ", "")):
+            return s
+    return ""
+
 
 def load_player(player_id: str, config_dir: Path = CONFIG_DIR) -> Player:
     data = yaml.safe_load((config_dir / "players" / f"{player_id}.yaml").read_text(encoding="utf-8-sig")) or {}

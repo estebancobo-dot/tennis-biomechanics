@@ -23,7 +23,7 @@ from pathlib import Path
 # code that changes what is measured per stroke (the fine pass); the rest of src/ is report/audit
 MEASURE = re.compile(r"^src/tennisbio/(technique|stages|clip_pipeline|stroke_analysis|footwork|kinematics|"
                      r"racket_orientation|racket|racket3d|racket_face|racket_pose|phases|court_metrics|ball3d|ball|limits|"
-                     r"identity|impacts|tracking|skeleton|series|outcome|reliability|replays|pose/|io/)|^scripts/recompute_measures\.py$|^config/(strokes|players)/")
+                     r"identity|impacts|tracking|skeleton|series|outcome|reliability|replays|catalog|pose/|io/)|^scripts/recompute_measures\.py$|^config/(strokes|players)/")
 REPORT = re.compile(r"^src/|^config/|^scripts/(rebuild_report|auto_cycle)\.py$")
 SETUP = re.compile(r"^(pyproject\.toml|uv\.lock)$")
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
