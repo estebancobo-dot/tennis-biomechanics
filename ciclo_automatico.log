@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261013134354
+Start time: 20261013135558
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 14728
+Process ID: 11244
 PSVersion: 5.1.26100.9549
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
@@ -17,32 +17,34 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-13 13:43:54] Codigo nuevo (83662f3 -> b60ba3f): 4 ficheros
+==> [2026-10-13 13:55:58] Codigo nuevo (b60ba3f -> 5cd9128): 5 ficheros
     src/tennisbio/audit.py
+    src/tennisbio/report.py
     src/tennisbio/report_template.html
     src/tennisbio/screens.py
     tests/test_stroke_page.py
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating 83662f3..b60ba3f
+Updating b60ba3f..5cd9128
 Fast-forward
- src/tennisbio/audit.py             |  4 +-
- src/tennisbio/report_template.html | 87 +++++++++++++++++++++++++++-----------
- src/tennisbio/screens.py           | 14 ++++--
- tests/test_stroke_page.py          | 38 +++++++++++++++++
- 4 files changed, 112 insertions(+), 31 deletions(-)
-Resolved 110 packages in 1ms
-Checked 83 packages in 3ms
+ src/tennisbio/audit.py             |   4 +-
+ src/tennisbio/report.py            |  29 ++++++
+ src/tennisbio/report_template.html | 192 ++++++++++++++++++++++---------------
+ src/tennisbio/screens.py           |  10 +-
+ tests/test_stroke_page.py          |  40 +++++++-
+ 5 files changed, 191 insertions(+), 84 deletions(-)
+Resolved 110 packages in 0.87ms
+Checked 83 packages in 2ms
     (paso terminado en 1 s)
 
-==> [2026-10-13 13:43:55] Que hace falta: informe
+==> [2026-10-13 13:55:59] Que hace falta: informe
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
 Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
 Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
 Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
-Auditoría: 185 cumplidos, 8 no cumplidos, 186 sin golpes suficientes, 17 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+Auditoría: 183 cumplidos, 8 no cumplidos, 186 sin golpes suficientes, 17 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
   ✘ 6. Matriz del usuario · Pasos cruzados: se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla
   ✘ #4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b: 177 comprobaciones: 1 falta, 107 pocos datos, 69 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)
   ✘ #6 Juego de pies: split step, primer paso, ajuste, reacción, recuperación: 33 comprobaciones: 1 falta, 5 pocos datos, 27 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)
@@ -51,15 +53,15 @@ Auditoría: 185 cumplidos, 8 no cumplidos, 186 sin golpes suficientes, 17 avisos
   ✘ #64 Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la : 10 comprobaciones: 1 falta, 2 pocos datos, 7 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)
   ✘ #72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos: 154 comprobaciones: 1 falta, 88 pocos datos, 65 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)
   ✘ #88 Matriz §5 Pies (split, ajuste, cruzado, paso de ataque, recuperación): 8 comprobaciones: 1 falta, 1 pocos datos, 6 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)
-Hecho en 112 s, sin volver a analizar vídeo.
-    (paso terminado en 1 min 52 s)
+Hecho en 104 s, sin volver a analizar vídeo.
+    (paso terminado en 1 min 44 s)
 
-==> [2026-10-13 13:45:47] Revision automatica frente a la ejecucion anterior
+==> [2026-10-13 13:57:44] Revision automatica frente a la ejecucion anterior
 # Revisión automática: FALLOS
 Ciclo automatico terminado (informe).
     (paso terminado en 0 s)
-Empezado 2026-10-13 13:43:53 - terminado 2026-10-13 13:45:47 - duracion total 1 min 54 s
+Empezado 2026-10-13 13:55:57 - terminado 2026-10-13 13:57:44 - duracion total 1 min 47 s
 **********************
 Windows PowerShell transcript end
-End time: 20261013134547
+End time: 20261013135744
 **********************

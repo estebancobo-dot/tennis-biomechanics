@@ -1,6 +1,6 @@
 # Revisión automática: FALLOS
 
-185 cumplidos · 8 no cumplidos · 186 sin golpes suficientes · 17 avisos (antes: 184 cumplidos, 8 no cumplidos)
+183 cumplidos · 8 no cumplidos · 186 sin golpes suficientes · 17 avisos (antes: 185 cumplidos, 8 no cumplidos)
 
 ## No cumplidos
 
@@ -15,26 +15,18 @@
 
 ## Comprobaciones nuevas
 
-- Pantalla «Cópiala (Aprende su derecha)»: ok (34694 caracteres de texto, 5 vídeos, 0 gráficos)
-- Pantalla «Su patrón típico (Su derecha)»: ok (4203 caracteres de texto, 5 vídeos, 8 gráficos)
-- Pantalla «Resumen y conclusiones (Panel)»: ok (4508 caracteres de texto, 5 vídeos, 11 gráficos)
-- Pantalla «Sus golpes (Videoteca)»: ok (3280 caracteres de texto, 5 vídeos, 0 gráficos)
-- Pantalla «Comparar dos golpes»: ok (5220 caracteres de texto, 5 vídeos, 2 gráficos)
-- Pantalla «Tabla de golpes (Explorador)»: ok (3230 caracteres de texto, 5 vídeos, 0 gráficos)
-- Pantalla «¿Cambia según…? (Comparativas)»: ok (1773 caracteres de texto, 5 vídeos, 0 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', ''])
-- Pantalla «Dónde golpea (Pista)»: ok (480 caracteres de texto, 5 vídeos, 1 gráficos)
-- Pantalla «Vista lateral (entreno)»: ok (6903 caracteres de texto, 5 vídeos, 0 gráficos)
-- Pantalla «Fiabilidad de las medidas»: ok (4094 caracteres de texto, 5 vídeos, 0 gráficos)
+- Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»: ok (34797 caracteres de texto, 5 vídeos, 8 gráficos)
+- Pantalla «Sus golpes (Videoteca y pista)»: ok (3336 caracteres de texto, 5 vídeos, 1 gráficos)
+- Pantalla «Conclusiones (Panel y Comparativas)»: ok (6518 caracteres de texto, 5 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', ''])
+- Pantalla «Datos del análisis»: ok (1273 caracteres de texto, 5 vídeos, 0 gráficos)
+- «Conclusiones»: qué cambia, en frases (la tabla sigue debajo): ok (1 en la pantalla)
 
 ## Comprobaciones que ya no aparecen
 
-- Pantalla «Aprende su derecha»
-- Pantalla «Su derecha»
-- Pantalla «Panel»
-- Pantalla «Videoteca»
-- Pantalla «Comparar golpes»
-- Pantalla «Explorador»
-- Pantalla «Comparativas»
-- Pantalla «Pista»
-- Pantalla «Vista lateral
-(entreno)»
+- Pantalla «Cópiala (Aprende su derecha)»
+- Pantalla «Su patrón típico (Su derecha)»
+- Pantalla «Resumen y conclusiones (Panel)»
+- Pantalla «Sus golpes (Videoteca)»
+- Pantalla «¿Cambia según…? (Comparativas)»
+- Pantalla «Dónde golpea (Pista)»
+- «Comparativas»: qué cambia, en frases (la tabla sigue debajo)
