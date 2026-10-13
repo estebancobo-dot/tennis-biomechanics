@@ -3,9 +3,9 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 177,
-  "falta": 8,
-  "pocos datos": 131,
+  "ok": 164,
+  "falta": 1,
+  "pocos datos": 154,
   "aviso": 11
  },
  "items": [
@@ -805,8 +805,10 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)",
-   "status": "falta",
-   "detail": "hueco medible sin implementar"
+   "status": "pocos datos",
+   "detail": "no aparece en los datos de ningún golpe de esta ejecución (loaded.racket_head_lateral, class.racket_plane)",
+   "keys": [],
+   "measured": 0.0
   },
   {
    "req": 1,
@@ -1390,8 +1392,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Caída de la raqueta por debajo de la bola",
-   "status": "ok",
-   "detail": "vista lateral de entrenamiento: racket_drop_below_contact_cm en 15 derechas de lado",
+   "status": "pocos datos",
+   "detail": "vista lateral de entrenamiento: racket_drop_below_contact_cm en 3 derechas de lado; se resume con 12 o más",
    "keys": [
     "racket_drop_below_contact_cm"
    ]
@@ -1538,15 +1540,19 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Botepronto (media volea)",
-   "status": "falta",
-   "detail": "hueco medible sin implementar"
+   "status": "pocos datos",
+   "detail": "no aparece en los datos de ningún golpe de esta ejecución (class.contact_type)",
+   "keys": [],
+   "measured": 0.0
   },
   {
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Volea de derecha",
-   "status": "falta",
-   "detail": "hueco medible sin implementar"
+   "status": "pocos datos",
+   "detail": "no aparece en los datos de ningún golpe de esta ejecución (class.contact_type)",
+   "keys": [],
+   "measured": 0.0
   },
   {
    "req": 1,
@@ -1637,8 +1643,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Zona de impacto: delante de la cadera",
-   "status": "ok",
-   "detail": "vista lateral de entrenamiento: contact_in_front_pct en 15 derechas de lado",
+   "status": "pocos datos",
+   "detail": "vista lateral de entrenamiento: contact_in_front_pct en 3 derechas de lado; se resume con 12 o más",
    "keys": [
     "contact_in_front_pct"
    ]
@@ -1738,8 +1744,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Liberación anticipada de la muñeca («casting»)",
-   "status": "ok",
-   "detail": "vista lateral de entrenamiento: lag_accel_deg en 14 derechas de lado, lag_pre_impact_deg en 15 derechas de lado",
+   "status": "pocos datos",
+   "detail": "vista lateral de entrenamiento: lag_accel_deg en 3 derechas de lado, lag_pre_impact_deg en 3 derechas de lado; se resume con 12 o más",
    "keys": [
     "lag_accel_deg",
     "lag_pre_impact_deg"
@@ -1760,8 +1766,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Ángulo real del swing de abajo arriba (+10° a +45°)",
-   "status": "ok",
-   "detail": "vista lateral de entrenamiento: swing_angle_deg en 15 derechas de lado",
+   "status": "pocos datos",
+   "detail": "vista lateral de entrenamiento: swing_angle_deg en 3 derechas de lado; se resume con 12 o más",
    "keys": [
     "swing_angle_deg"
    ]
@@ -1770,8 +1776,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Rodilla de atrás en la carga (110–130°) y de delante en el impacto",
-   "status": "ok",
-   "detail": "vista lateral de entrenamiento: back_knee_loaded_deg en 15 derechas de lado, front_knee_impact_deg en 15 derechas de lado",
+   "status": "pocos datos",
+   "detail": "vista lateral de entrenamiento: back_knee_loaded_deg en 3 derechas de lado, front_knee_impact_deg en 3 derechas de lado; se resume con 12 o más",
    "keys": [
     "back_knee_loaded_deg",
     "front_knee_impact_deg"
@@ -1781,8 +1787,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Inclinación del tronco hacia delante o atrás en el impacto",
-   "status": "ok",
-   "detail": "vista lateral de entrenamiento: trunk_lean_impact_deg en 15 derechas de lado",
+   "status": "pocos datos",
+   "detail": "vista lateral de entrenamiento: trunk_lean_impact_deg en 3 derechas de lado; se resume con 12 o más",
    "keys": [
     "trunk_lean_impact_deg"
    ]
@@ -1802,6 +1808,13 @@
    "name": "6. Matriz del usuario · Aerodinámica, altitud, temperatura, humedad",
    "status": "ok",
    "detail": "no observable desde la tele; el informe lo dice"
+  },
+  {
+   "req": 1,
+   "area": "Aprende su derecha",
+   "name": "Cada punto de la matriz del usuario tiene su sitio en la pantalla",
+   "status": "ok",
+   "detail": "59 de 59"
   },
   {
    "req": 1,
@@ -2212,71 +2225,71 @@
    "req": 6,
    "area": "Vista lateral (entrenamiento)",
    "name": "Derechas filmadas de lado",
-   "status": "ok",
-   "detail": "15 (se resume cada medida con 12 o más)"
+   "status": "pocos datos",
+   "detail": "3 (se resume cada medida con 12 o más)"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Impacto delante de la cadera",
-   "status": "ok",
-   "detail": "15 derechas de lado con esta medida; mediana -2.7"
+   "status": "pocos datos",
+   "detail": "3 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Ángulo del swing (de abajo arriba)",
-   "status": "ok",
-   "detail": "15 derechas de lado con esta medida; mediana -0.9"
+   "status": "pocos datos",
+   "detail": "3 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Codo en el impacto",
-   "status": "ok",
-   "detail": "15 derechas de lado con esta medida; mediana 137.6"
+   "status": "pocos datos",
+   "detail": "3 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Rodilla de atrás en el armado",
-   "status": "ok",
-   "detail": "15 derechas de lado con esta medida; mediana 149.3"
+   "status": "pocos datos",
+   "detail": "3 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Rodilla de delante en el impacto",
-   "status": "ok",
-   "detail": "15 derechas de lado con esta medida; mediana 137.5"
+   "status": "pocos datos",
+   "detail": "3 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Tronco en el impacto",
-   "status": "ok",
-   "detail": "15 derechas de lado con esta medida; mediana 4.5"
+   "status": "pocos datos",
+   "detail": "3 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Caída de la raqueta bajo el impacto",
-   "status": "ok",
-   "detail": "15 derechas de lado con esta medida; mediana 9.0"
+   "status": "pocos datos",
+   "detail": "3 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Ángulo antebrazo–raqueta al acelerar",
-   "status": "ok",
-   "detail": "14 derechas de lado con esta medida; mediana 158.25"
+   "status": "pocos datos",
+   "detail": "3 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Ángulo antebrazo–raqueta antes del impacto",
-   "status": "ok",
-   "detail": "15 derechas de lado con esta medida; mediana 156.2"
+   "status": "pocos datos",
+   "detail": "3 derechas de lado con esta medida"
   },
   {
    "req": 1,
@@ -2290,35 +2303,35 @@
    "area": "Vista lateral (entrenamiento)",
    "name": "Impacto delante de la cadera (3D)",
    "status": "ok",
-   "detail": "33 derechas con estimación 3D con esta medida; mediana -0.4"
+   "detail": "13 derechas con estimación 3D con esta medida; mediana 27.3"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Ángulo del swing (3D)",
    "status": "ok",
-   "detail": "33 derechas con estimación 3D con esta medida; mediana 2.0"
+   "detail": "13 derechas con estimación 3D con esta medida; mediana 37.3"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Codo en el impacto (3D)",
    "status": "ok",
-   "detail": "33 derechas con estimación 3D con esta medida; mediana 112.1"
+   "detail": "13 derechas con estimación 3D con esta medida; mediana 94.6"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Rodilla de atrás en el armado (3D)",
    "status": "ok",
-   "detail": "33 derechas con estimación 3D con esta medida; mediana 146.2"
+   "detail": "13 derechas con estimación 3D con esta medida; mediana 155.3"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Tronco en el impacto (3D)",
    "status": "ok",
-   "detail": "33 derechas con estimación 3D con esta medida; mediana 9.9"
+   "detail": "13 derechas con estimación 3D con esta medida; mediana 10.4"
   },
   {
    "req": 2,
@@ -2351,10 +2364,18 @@
   {
    "req": 2,
    "area": "Pantallas",
+   "name": "Pantalla «Aprende su derecha»",
+   "status": "ok",
+   "detail": "23684 caracteres de texto, 5 vídeos, 0 gráficos",
+   "file": "pantalla_1_aprende.jpg"
+  },
+  {
+   "req": 2,
+   "area": "Pantallas",
    "name": "Pantalla «Su derecha»",
    "status": "ok",
    "detail": "5842 caracteres de texto, 5 vídeos, 8 gráficos",
-   "file": "pantalla_1_modelo.jpg"
+   "file": "pantalla_2_modelo.jpg"
   },
   {
    "req": 2,
@@ -2362,15 +2383,15 @@
    "name": "Pantalla «Panel»",
    "status": "ok",
    "detail": "4376 caracteres de texto, 5 vídeos, 11 gráficos",
-   "file": "pantalla_2_panel.jpg"
+   "file": "pantalla_3_panel.jpg"
   },
   {
    "req": 2,
    "area": "Pantallas",
    "name": "Pantalla «Videoteca»",
    "status": "ok",
-   "detail": "3308 caracteres de texto, 5 vídeos, 0 gráficos",
-   "file": "pantalla_3_videoteca.jpg"
+   "detail": "3328 caracteres de texto, 5 vídeos, 0 gráficos",
+   "file": "pantalla_4_videoteca.jpg"
   },
   {
    "req": 2,
@@ -2378,7 +2399,7 @@
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
    "detail": "5272 caracteres de texto, 6 vídeos, 20 gráficos",
-   "file": "pantalla_4_golpe.jpg"
+   "file": "pantalla_5_golpe.jpg"
   },
   {
    "req": 2,
@@ -2386,7 +2407,7 @@
    "name": "Pantalla «Comparar golpes»",
    "status": "ok",
    "detail": "5257 caracteres de texto, 5 vídeos, 2 gráficos",
-   "file": "pantalla_5_comparar.jpg"
+   "file": "pantalla_6_comparar.jpg"
   },
   {
    "req": 2,
@@ -2394,7 +2415,7 @@
    "name": "Pantalla «Explorador»",
    "status": "ok",
    "detail": "3266 caracteres de texto, 5 vídeos, 0 gráficos",
-   "file": "pantalla_6_explorador.jpg"
+   "file": "pantalla_7_explorador.jpg"
   },
   {
    "req": 2,
@@ -2402,7 +2423,7 @@
    "name": "Pantalla «Comparativas»",
    "status": "ok",
    "detail": "2749 caracteres de texto, 5 vídeos, 0 gráficos; mensajes de vacío: ['Sin datos de x-factor en estos grupos.', 'Sin datos de rotación de hombros en estos grupos.', 'Sin datos de x-factor 3d en estos grupos.', 'Sin datos de rotación de hombros 3d en estos grupos.', 'Sin datos de descenso de cadera en estos grupos.', 'Sin datos de codo en el impacto en estos grupos.', 'Sin datos de brazo no dominante en el armado en estos grupos.', 'Sin datos de impacto lateral en estos grupos.']",
-   "file": "pantalla_7_comparativas.jpg"
+   "file": "pantalla_8_comparativas.jpg"
   },
   {
    "req": 2,
@@ -2410,15 +2431,15 @@
    "name": "Pantalla «Pista»",
    "status": "ok",
    "detail": "480 caracteres de texto, 5 vídeos, 1 gráficos",
-   "file": "pantalla_8_pista.jpg"
+   "file": "pantalla_9_pista.jpg"
   },
   {
    "req": 2,
    "area": "Pantallas",
    "name": "Pantalla «Vista lateral\n(entreno)»",
    "status": "ok",
-   "detail": "6534 caracteres de texto, 5 vídeos, 0 gráficos",
-   "file": "pantalla_9_lateral.jpg"
+   "detail": "6903 caracteres de texto, 5 vídeos, 0 gráficos",
+   "file": "pantalla_10_lateral.jpg"
   },
   {
    "req": 2,
@@ -2498,6 +2519,13 @@
    "detail": "avanza y sigue reproduciéndose"
   },
   {
+   "req": 1,
+   "area": "Aprende su derecha",
+   "name": "La pantalla responde a cada combinación",
+   "status": "ok",
+   "detail": "677 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 31819 puntos de control comprobados; 176 con golpes exactos"
+  },
+  {
    "req": 2,
    "area": "Vistas pedidas",
    "name": "«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella",
@@ -2523,7 +2551,7 @@
    "area": "Vistas pedidas",
    "name": "Filtros combinables de la videoteca (apoyo, dirección, bola, contacto…)",
    "status": "ok",
-   "detail": "25 en la pantalla"
+   "detail": "27 en la pantalla"
   },
   {
    "req": 2,
@@ -2662,15 +2690,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar una derecha como X?», con todas las posibilida",
-   "status": "falta",
-   "detail": "171 comprobaciones: 3 falta, 98 pocos datos, 70 ok; la peor: «4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)» (hueco medible sin implementar)"
+   "status": "pocos datos",
+   "detail": "173 comprobaciones: 107 pocos datos, 66 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#5 La taxonomía completa del golpe con todas sus variantes: bola rápida o lenta, alta o baja, corta o profunda, d",
    "status": "pocos datos",
-   "detail": "18 comprobaciones: 18 pocos datos; la peor: «Bola rápida / lenta» (lenta 2, media 3, rápida 3, muy rápida 2 (se muestra con ≥ 12 golpes))"
+   "detail": "20 comprobaciones: 18 pocos datos, 2 ok; la peor: «Bola rápida / lenta» (lenta 2, media 3, rápida 3, muy rápida 2 (se muestra con ≥ 12 golpes))"
   },
   {
    "req": 11,
@@ -2698,7 +2726,7 @@
    "area": "Peticiones",
    "name": "#9 Información y no tablas: profesional, entendible, «con sentido humano», al nivel de las apps del estado del ar",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok"
   },
   {
    "req": 11,
@@ -2711,8 +2739,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#11 Validar automáticamente que las salidas reales tienen todo lo pedido y todos los casos del modelo técnico y la",
-   "status": "falta",
-   "detail": "171 comprobaciones: 3 falta, 89 pocos datos, 79 ok; la peor: «4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)» (hueco medible sin implementar)"
+   "status": "pocos datos",
+   "detail": "171 comprobaciones: 98 pocos datos, 73 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -2746,15 +2774,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#16 Clasificar el golpe por contexto (derechas junto a la red frente a voleas) y cubrir las medias voleas",
-   "status": "falta",
-   "detail": "2 comprobaciones: 2 falta; la peor: «6. Matriz del usuario · Botepronto (media volea)» (hueco medible sin implementar)"
+   "status": "pocos datos",
+   "detail": "2 comprobaciones: 2 pocos datos; la peor: «6. Matriz del usuario · Botepronto (media volea)» (no aparece en los datos de ningún golpe de esta ejecución (class.contact_type))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#17 Una pantalla de entrada que se entienda sin explicaciones: «no entiendo nada ni cómo usarla; no hay gráficos, ",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 ok"
   },
   {
    "req": 11,
@@ -2880,7 +2908,7 @@
    "area": "Peticiones",
    "name": "#35 Medidas de la raqueta (altura, ángulos) a lo largo de todo el golpe",
    "status": "pocos datos",
-   "detail": "11 comprobaciones: 4 pocos datos, 7 ok; la peor: «4. Raqueta, swing y empuñadura · Cara de la raqueta al final del armado» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "11 comprobaciones: 6 pocos datos, 5 ok; la peor: «4. Raqueta, swing y empuñadura · Cara de la raqueta al final del armado» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -2943,7 +2971,7 @@
    "area": "Peticiones",
    "name": "#44 Nada de vídeos del usuario, de entrenadores ni de otras jugadoras",
    "status": "ok",
-   "detail": "10 comprobaciones: 10 ok"
+   "detail": "11 comprobaciones: 11 ok"
   },
   {
    "req": 11,
@@ -2963,8 +2991,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#47 Modelo técnico con fuentes y forma de saber si está completo",
-   "status": "falta",
-   "detail": "153 comprobaciones: 3 falta, 80 pocos datos, 70 ok; la peor: «4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)» (hueco medible sin implementar)"
+   "status": "pocos datos",
+   "detail": "153 comprobaciones: 89 pocos datos, 64 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -2999,14 +3027,14 @@
    "area": "Peticiones",
    "name": "#52 Usar Brave como navegador, no instalar Edge",
    "status": "ok",
-   "detail": "9 comprobaciones: 9 ok"
+   "detail": "10 comprobaciones: 10 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#53 No pasar de 100 a 0: conservar e integrar lo anterior",
    "status": "ok",
-   "detail": "9 comprobaciones: 9 ok"
+   "detail": "10 comprobaciones: 10 ok"
   },
   {
    "req": 11,
@@ -3034,7 +3062,7 @@
    "area": "Peticiones",
    "name": "#57 Que no haya gráficas con muchas líneas ni tablas sin lenguaje natural en la vista principal",
    "status": "ok",
-   "detail": "9 comprobaciones: 9 ok"
+   "detail": "10 comprobaciones: 10 ok"
   },
   {
    "req": 11,

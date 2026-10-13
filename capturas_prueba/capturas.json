@@ -2,6 +2,29 @@
  "report": "C:\\tenis\\output\\_smoke\\informe\\index.html",
  "screens": [
   {
+   "title": "Aprende su derecha",
+   "text_chars": 23684,
+   "charts": 0,
+   "videos": 5,
+   "black_canvases": 0,
+   "videos_failed": [],
+   "empty_msgs": [],
+   "dashes": 6,
+   "ball_moments": 0,
+   "feet_cycle": 0,
+   "heights_layer": false,
+   "lib_filters": 0,
+   "news": false,
+   "intro": true,
+   "external_links": 0,
+   "tables": 0,
+   "sentences": 11,
+   "many_lines": 0,
+   "tab": "aprende",
+   "file": "pantalla_1_aprende.jpg",
+   "errors": []
+  },
+  {
    "title": "Su derecha",
    "text_chars": 5842,
    "charts": 8,
@@ -21,7 +44,7 @@
    "sentences": 0,
    "many_lines": 0,
    "tab": "modelo",
-   "file": "pantalla_1_modelo.jpg",
+   "file": "pantalla_2_modelo.jpg",
    "errors": []
   },
   {
@@ -44,12 +67,12 @@
    "sentences": 0,
    "many_lines": 0,
    "tab": "panel",
-   "file": "pantalla_2_panel.jpg",
+   "file": "pantalla_3_panel.jpg",
    "errors": []
   },
   {
    "title": "Videoteca",
-   "text_chars": 3308,
+   "text_chars": 3328,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -59,7 +82,7 @@
    "ball_moments": 0,
    "feet_cycle": 0,
    "heights_layer": false,
-   "lib_filters": 25,
+   "lib_filters": 27,
    "news": false,
    "intro": true,
    "external_links": 0,
@@ -67,7 +90,7 @@
    "sentences": 0,
    "many_lines": 0,
    "tab": "videoteca",
-   "file": "pantalla_3_videoteca.jpg",
+   "file": "pantalla_4_videoteca.jpg",
    "errors": []
   },
   {
@@ -91,7 +114,7 @@
    "many_lines": 0,
    "plays": true,
    "tab": "golpe",
-   "file": "pantalla_4_golpe.jpg",
+   "file": "pantalla_5_golpe.jpg",
    "errors": []
   },
   {
@@ -114,7 +137,7 @@
    "sentences": 7,
    "many_lines": 0,
    "tab": "comparar",
-   "file": "pantalla_5_comparar.jpg",
+   "file": "pantalla_6_comparar.jpg",
    "errors": []
   },
   {
@@ -137,7 +160,7 @@
    "sentences": 4,
    "many_lines": 0,
    "tab": "explorador",
-   "file": "pantalla_6_explorador.jpg",
+   "file": "pantalla_7_explorador.jpg",
    "errors": []
   },
   {
@@ -169,7 +192,7 @@
    "sentences": 1,
    "many_lines": 0,
    "tab": "comparativas",
-   "file": "pantalla_7_comparativas.jpg",
+   "file": "pantalla_8_comparativas.jpg",
    "errors": []
   },
   {
@@ -192,12 +215,12 @@
    "sentences": 0,
    "many_lines": 0,
    "tab": "pista",
-   "file": "pantalla_8_pista.jpg",
+   "file": "pantalla_9_pista.jpg",
    "errors": []
   },
   {
    "title": "Vista lateral\n(entreno)",
-   "text_chars": 6534,
+   "text_chars": 6903,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -215,7 +238,7 @@
    "sentences": 0,
    "many_lines": 0,
    "tab": "lateral",
-   "file": "pantalla_9_lateral.jpg",
+   "file": "pantalla_10_lateral.jpg",
    "errors": []
   }
  ],
@@ -295,5 +318,11 @@
    "mode": "video",
    "play_error": null
   }
- ]
+ ],
+ "learn": {
+  "combinations": 677,
+  "with_exact_strokes": 176,
+  "checkpoints_checked": 31819,
+  "failures": []
+ }
 }
