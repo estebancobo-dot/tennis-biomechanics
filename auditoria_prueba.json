@@ -2215,7 +2215,7 @@
    "area": "Valores posibles",
    "name": "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
    "status": "ok",
-   "detail": "45 medidas: 6 dudosa, 21 fiable, 1 ruido, 17 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±8.27. Con menos de 5 golpes no se juzga"
+   "detail": "45 medidas: 6 dudosa, 17 fiable, 3 no comprobable, 1 ruido, 1 sesgo, 17 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±8.27. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 57.3° / 3D 12.4°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
   },
   {
    "req": 3,
@@ -2383,7 +2383,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Aprende su derecha»",
    "status": "ok",
-   "detail": "25170 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "25242 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2547,14 +2547,14 @@
    "area": "Aprende su derecha",
    "name": "Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha",
    "status": "pocos datos",
-   "detail": "0 golpes exactos, 9 parecidos; 49 de 50 puntos con su valor medido"
+   "detail": "0 golpes exactos, 9 parecidos; 48 de 50 puntos con su valor medido"
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "Puntos de «Aprende» con su valor medido (todas sus derechas)",
    "status": "ok",
-   "detail": "49 de 50; el resto dice por qué falta"
+   "detail": "48 de 50; el resto dice por qué falta"
   },
   {
    "req": 2,
@@ -2813,7 +2813,7 @@
    "area": "Peticiones",
    "name": "#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»",
    "status": "pocos datos",
-   "detail": "6 comprobaciones: 1 pocos datos, 5 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 49 de 50 puntos con su valor medido)"
+   "detail": "6 comprobaciones: 1 pocos datos, 5 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 48 de 50 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -3142,14 +3142,14 @@
    "area": "Peticiones",
    "name": "#68 La meta: mejorar mi derecha tomando la de X como base",
    "status": "pocos datos",
-   "detail": "4 comprobaciones: 1 pocos datos, 3 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 49 de 50 puntos con su valor medido)"
+   "detail": "4 comprobaciones: 1 pocos datos, 3 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 48 de 50 puntos con su valor medido)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica",
    "status": "pocos datos",
-   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 49 de 50 puntos con su valor medido)"
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 48 de 50 puntos con su valor medido)"
   },
   {
    "req": 11,

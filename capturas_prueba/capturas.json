@@ -3,13 +3,13 @@
  "screens": [
   {
    "title": "Aprende su derecha",
-   "text_chars": 25170,
+   "text_chars": 25242,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 2,
+   "dashes": 3,
    "ball_moments": 0,
    "feet_cycle": 0,
    "heights_layer": false,
@@ -325,12 +325,12 @@
   "checkpoints_checked": 33850,
   "failures": [],
   "rows_all": 50,
-  "valued_all": 49,
+  "valued_all": 48,
   "example": {
    "exact": 0,
    "near": 9,
    "rows": 50,
-   "valued": 49,
+   "valued": 48,
    "bad": []
   }
  }
