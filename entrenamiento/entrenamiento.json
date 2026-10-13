@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-13 01:33",
+ "generated": "2026-10-13 23:50",
  "player": "Elena Rybakina",
  "videos": [
   {
@@ -17,7 +17,7 @@
    "strokes": 11,
    "lateral_forehands": 1,
    "discarded": 0,
-   "version": 3
+   "version": 4
   },
   {
    "id": "P4kwF30432U",
@@ -32,9 +32,9 @@
    "seconds_kept": 50.99102,
    "analysed_s": 50.99102,
    "strokes": 20,
-   "lateral_forehands": 0,
-   "discarded": 2,
-   "version": 3
+   "lateral_forehands": 1,
+   "discarded": 1,
+   "version": 4
   },
   {
    "id": "BZTdhztMFqc",
@@ -99,6 +99,7 @@
    "stroke": "forehand",
    "source": "swing",
    "metrics": {},
+   "unconfirmed": true,
    "clip": "n5-P-RxsHCM_00_00.mp4",
    "thumb": "n5-P-RxsHCM_00_00.jpg"
   },
@@ -112,17 +113,8 @@
    "view": "lateral",
    "stroke": "forehand",
    "source": "swing",
-   "metrics": {
-    "contact_in_front_pct": 1.3,
-    "swing_angle_deg": -1.6,
-    "elbow_impact_deg": 109.7,
-    "back_knee_loaded_deg": 155.3,
-    "front_knee_impact_deg": 145.0,
-    "trunk_lean_impact_deg": 4.5,
-    "racket_drop_below_contact_cm": 13.2,
-    "lag_accel_deg": 166.1,
-    "lag_pre_impact_deg": 166.1
-   },
+   "metrics": {},
+   "unconfirmed": true,
    "clip": "n5-P-RxsHCM_00_01.mp4",
    "thumb": "n5-P-RxsHCM_00_01.jpg"
   },
@@ -136,13 +128,8 @@
    "view": "diagonal",
    "stroke": "forehand",
    "source": "swing",
-   "metrics": {
-    "contact_in_front_3d_pct": -20.3,
-    "trunk_lean_impact_3d_deg": 4.3,
-    "swing_angle_3d_deg": 1.0,
-    "elbow_impact_3d_deg": 167.4,
-    "back_knee_loaded_3d_deg": 134.0
-   },
+   "metrics": {},
+   "unconfirmed": true,
    "clip": "n5-P-RxsHCM_00_02.mp4",
    "thumb": "n5-P-RxsHCM_00_02.jpg"
   },
@@ -170,13 +157,8 @@
    "view": "diagonal",
    "stroke": "forehand",
    "source": "swing",
-   "metrics": {
-    "contact_in_front_3d_pct": -14.5,
-    "trunk_lean_impact_3d_deg": 9.4,
-    "swing_angle_3d_deg": -15.2,
-    "elbow_impact_3d_deg": 170.8,
-    "back_knee_loaded_3d_deg": 146.2
-   },
+   "metrics": {},
+   "unconfirmed": true,
    "clip": "n5-P-RxsHCM_00_04.mp4",
    "thumb": "n5-P-RxsHCM_00_04.jpg"
   },
@@ -190,13 +172,8 @@
    "view": "diagonal",
    "stroke": "forehand",
    "source": "swing",
-   "metrics": {
-    "contact_in_front_3d_pct": -27.0,
-    "trunk_lean_impact_3d_deg": 6.8,
-    "swing_angle_3d_deg": 15.9,
-    "elbow_impact_3d_deg": 136.1,
-    "back_knee_loaded_3d_deg": 113.6
-   },
+   "metrics": {},
+   "unconfirmed": true,
    "clip": "n5-P-RxsHCM_00_05.mp4",
    "thumb": "n5-P-RxsHCM_00_05.jpg"
   },
@@ -211,6 +188,7 @@
    "stroke": "forehand",
    "source": "swing",
    "metrics": {},
+   "unconfirmed": true,
    "clip": "n5-P-RxsHCM_00_06.mp4",
    "thumb": "n5-P-RxsHCM_00_06.jpg"
   },
@@ -224,13 +202,8 @@
    "view": "diagonal",
    "stroke": "forehand",
    "source": "swing",
-   "metrics": {
-    "contact_in_front_3d_pct": -19.8,
-    "trunk_lean_impact_3d_deg": 7.8,
-    "swing_angle_3d_deg": 3.1,
-    "elbow_impact_3d_deg": 122.5,
-    "back_knee_loaded_3d_deg": 105.0
-   },
+   "metrics": {},
+   "unconfirmed": true,
    "clip": "n5-P-RxsHCM_00_07.mp4",
    "thumb": "n5-P-RxsHCM_00_07.jpg"
   },
@@ -244,13 +217,8 @@
    "view": "diagonal",
    "stroke": "forehand",
    "source": "swing",
-   "metrics": {
-    "contact_in_front_3d_pct": -0.4,
-    "trunk_lean_impact_3d_deg": 10.7,
-    "swing_angle_3d_deg": -12.1,
-    "elbow_impact_3d_deg": 132.6,
-    "back_knee_loaded_3d_deg": 126.9
-   },
+   "metrics": {},
+   "unconfirmed": true,
    "clip": "n5-P-RxsHCM_00_08.mp4",
    "thumb": "n5-P-RxsHCM_00_08.jpg"
   },
@@ -279,6 +247,7 @@
    "stroke": "forehand",
    "source": "swing",
    "metrics": {},
+   "unconfirmed": true,
    "clip": "n5-P-RxsHCM_00_10.mp4",
    "thumb": "n5-P-RxsHCM_00_10.jpg"
   },
@@ -307,6 +276,7 @@
    "stroke": "backhand",
    "source": "swing",
    "metrics": {},
+   "unconfirmed": true,
    "clip": "P4kwF30432U_00_01.mp4",
    "thumb": "P4kwF30432U_00_01.jpg"
   },
@@ -321,6 +291,7 @@
    "stroke": "backhand",
    "source": "swing",
    "metrics": {},
+   "unconfirmed": true,
    "clip": "P4kwF30432U_00_02.mp4",
    "thumb": "P4kwF30432U_00_02.jpg"
   },
@@ -366,10 +337,7 @@
    "stroke": "forehand",
    "source": "swing",
    "metrics": {},
-   "discarded": [
-    "swing_angle_deg",
-    "elbow_impact_deg"
-   ],
+   "unconfirmed": true,
    "clip": "P4kwF30432U_00_05.mp4",
    "thumb": "P4kwF30432U_00_05.jpg"
   },
@@ -398,6 +366,7 @@
    "stroke": "backhand",
    "source": "swing",
    "metrics": {},
+   "unconfirmed": true,
    "clip": "P4kwF30432U_00_07.mp4",
    "thumb": "P4kwF30432U_00_07.jpg"
   },
@@ -412,6 +381,7 @@
    "stroke": "backhand",
    "source": "swing",
    "metrics": {},
+   "unconfirmed": true,
    "clip": "P4kwF30432U_00_08.mp4",
    "thumb": "P4kwF30432U_00_08.jpg"
   },
@@ -426,6 +396,7 @@
    "stroke": "backhand",
    "source": "swing",
    "metrics": {},
+   "unconfirmed": true,
    "clip": "P4kwF30432U_00_09.mp4",
    "thumb": "P4kwF30432U_00_09.jpg"
   },
@@ -440,6 +411,7 @@
    "stroke": "backhand",
    "source": "swing",
    "metrics": {},
+   "unconfirmed": true,
    "clip": "P4kwF30432U_00_10.mp4",
    "thumb": "P4kwF30432U_00_10.jpg"
   },
@@ -468,6 +440,7 @@
    "stroke": "forehand",
    "source": "swing",
    "metrics": {},
+   "unconfirmed": true,
    "clip": "P4kwF30432U_00_12.mp4",
    "thumb": "P4kwF30432U_00_12.jpg"
   },
@@ -482,6 +455,7 @@
    "stroke": "backhand",
    "source": "swing",
    "metrics": {},
+   "unconfirmed": true,
    "clip": "P4kwF30432U_00_13.mp4",
    "thumb": "P4kwF30432U_00_13.jpg"
   },
@@ -524,10 +498,7 @@
    "stroke": "forehand",
    "source": "swing",
    "metrics": {},
-   "discarded_3d": [
-    "swing_angle_3d_deg",
-    "elbow_impact_3d_deg"
-   ],
+   "unconfirmed": true,
    "clip": "P4kwF30432U_00_16.mp4",
    "thumb": "P4kwF30432U_00_16.jpg"
   },
@@ -542,6 +513,7 @@
    "stroke": "backhand",
    "source": "swing",
    "metrics": {},
+   "unconfirmed": true,
    "clip": "P4kwF30432U_00_17.mp4",
    "thumb": "P4kwF30432U_00_17.jpg"
   },
@@ -556,6 +528,7 @@
    "stroke": "backhand",
    "source": "swing",
    "metrics": {},
+   "unconfirmed": true,
    "clip": "P4kwF30432U_00_18.mp4",
    "thumb": "P4kwF30432U_00_18.jpg"
   },
@@ -570,6 +543,7 @@
    "stroke": "backhand",
    "source": "swing",
    "metrics": {},
+   "unconfirmed": true,
    "clip": "P4kwF30432U_00_19.mp4",
    "thumb": "P4kwF30432U_00_19.jpg"
   },
@@ -1732,91 +1706,91 @@
    "label": "Impacto delante de la cadera",
    "unit": "% altura",
    "what": "distancia de la mano por delante del centro de la cadera en el impacto",
-   "n": 15,
+   "n": 14,
    "view": "lateral",
-   "median": -2.7,
-   "q1": -6.3,
-   "q3": 10.3
+   "median": -3.1,
+   "q1": -6.35,
+   "q3": 13.75
   },
   "swing_angle_deg": {
    "label": "Ángulo del swing (de abajo arriba)",
    "unit": "°",
    "what": "inclinación de la trayectoria de la mano en los ~70 ms previos al impacto",
-   "n": 15,
+   "n": 14,
    "view": "lateral",
-   "median": -0.9,
-   "q1": -3.85,
-   "q3": 4.1
+   "median": -0.75,
+   "q1": -3.88,
+   "q3": 5.4
   },
   "elbow_impact_deg": {
    "label": "Codo en el impacto",
    "unit": "°",
    "what": "180° = brazo recto",
-   "n": 15,
+   "n": 14,
    "view": "lateral",
-   "median": 137.6,
-   "q1": 113.15,
-   "q3": 152.95
+   "median": 140.95,
+   "q1": 114.78,
+   "q3": 155.97
   },
   "back_knee_loaded_deg": {
    "label": "Rodilla de atrás en el armado",
    "unit": "°",
    "what": "180° = pierna recta",
-   "n": 15,
+   "n": 14,
    "view": "lateral",
-   "median": 149.3,
-   "q1": 146.3,
-   "q3": 162.35
+   "median": 149.15,
+   "q1": 146.1,
+   "q3": 164.97
   },
   "front_knee_impact_deg": {
    "label": "Rodilla de delante en el impacto",
    "unit": "°",
    "what": "180° = pierna recta",
-   "n": 15,
+   "n": 14,
    "view": "lateral",
    "median": 137.5,
-   "q1": 134.3,
-   "q3": 144.35
+   "q1": 134.25,
+   "q3": 143.15
   },
   "trunk_lean_impact_deg": {
    "label": "Tronco en el impacto",
    "unit": "°",
    "what": "+ inclinado hacia delante, − hacia atrás",
-   "n": 15,
+   "n": 14,
    "view": "lateral",
-   "median": 4.5,
-   "q1": 2.0,
-   "q3": 6.8
+   "median": 4.65,
+   "q1": 1.95,
+   "q3": 6.85
   },
   "racket_drop_below_contact_cm": {
    "label": "Caída de la raqueta bajo el impacto",
    "unit": "cm",
    "what": "cuánto baja la cabeza de la raqueta por debajo de la altura del impacto antes de subir",
-   "n": 15,
+   "n": 14,
    "view": "lateral",
-   "median": 9.0,
-   "q1": 5.95,
-   "q3": 13.7
+   "median": 8.6,
+   "q1": 5.68,
+   "q3": 13.82
   },
   "lag_accel_deg": {
    "label": "Ángulo antebrazo–raqueta al acelerar",
    "unit": "°",
    "what": "retraso de la raqueta respecto al antebrazo al empezar a acelerar (180° = en línea)",
-   "n": 14,
+   "n": 13,
    "view": "lateral",
-   "median": 158.25,
-   "q1": 147.78,
-   "q3": 169.33
+   "median": 156.2,
+   "q1": 145.4,
+   "q3": 170.3
   },
   "lag_pre_impact_deg": {
    "label": "Ángulo antebrazo–raqueta antes del impacto",
    "unit": "°",
    "what": "el mismo ángulo ~50 ms antes del impacto: si ya está en línea mucho antes, suelta la muñeca pronto",
-   "n": 15,
+   "n": 14,
    "view": "lateral",
-   "median": 156.2,
-   "q1": 144.55,
-   "q3": 173.3
+   "median": 155.55,
+   "q1": 144.28,
+   "q3": 174.8
   },
   "head_to_contact_idx": {
    "label": "Cabeza girada hacia el impacto",
@@ -1829,51 +1803,51 @@
    "label": "Impacto delante de la cadera (3D)",
    "unit": "% altura",
    "what": "estimación 3D: mano por delante del centro de la cadera",
-   "n": 33,
+   "n": 28,
    "view": "3d",
-   "median": -0.4,
-   "q1": -14.5,
-   "q3": 24.5
+   "median": 9.35,
+   "q1": -7.42,
+   "q3": 26.7
   },
   "swing_angle_3d_deg": {
    "label": "Ángulo del swing (3D)",
    "unit": "°",
    "what": "estimación 3D: subida de la mano en los ~70 ms previos al impacto",
-   "n": 33,
+   "n": 28,
    "view": "3d",
-   "median": 2.0,
-   "q1": -10.2,
-   "q3": 35.6
+   "median": 3.4,
+   "q1": -8.62,
+   "q3": 36.48
   },
   "elbow_impact_3d_deg": {
    "label": "Codo en el impacto (3D)",
    "unit": "°",
    "what": "estimación 3D; 180° = brazo recto",
-   "n": 33,
+   "n": 28,
    "view": "3d",
-   "median": 112.1,
-   "q1": 99.8,
-   "q3": 136.4
+   "median": 108.25,
+   "q1": 95.65,
+   "q3": 133.85
   },
   "back_knee_loaded_3d_deg": {
    "label": "Rodilla de atrás en el armado (3D)",
    "unit": "°",
    "what": "estimación 3D; 180° = pierna recta",
-   "n": 33,
+   "n": 28,
    "view": "3d",
-   "median": 146.2,
-   "q1": 129.4,
-   "q3": 155.3
+   "median": 147.6,
+   "q1": 130.95,
+   "q3": 155.48
   },
   "trunk_lean_impact_3d_deg": {
    "label": "Tronco en el impacto (3D)",
    "unit": "°",
    "what": "estimación 3D; + hacia delante",
-   "n": 33,
+   "n": 28,
    "view": "3d",
-   "median": 9.9,
-   "q1": 5.0,
-   "q3": 12.8
+   "median": 10.2,
+   "q1": 4.9,
+   "q3": 13.12
   }
  },
  "min_n": 12

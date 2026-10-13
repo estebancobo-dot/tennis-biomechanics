@@ -1,0 +1,100 @@
+{
+ "probe": {
+  "fingerprint": "3f996376425e1d86",
+  "version": "2",
+  "seconds": 0.2,
+  "finished": "2026-10-13 23:50:52",
+  "summary": {
+   "duration_min": 4.0,
+   "fps": 50.0,
+   "size": "1920x1080",
+   "cleaned": false,
+   "vfr": true
+  }
+ },
+ "scenes": {
+  "fingerprint": "8c3b7f61789a7625",
+  "version": "1",
+  "seconds": 18.0,
+  "finished": "2026-10-13 23:51:10",
+  "summary": {
+   "shots": 14,
+   "main_camera_shots": 13,
+   "main_camera_min": 3.9
+  }
+ },
+ "audio": {
+  "fingerprint": "0fe518decaed2d9f",
+  "version": "2",
+  "seconds": 2.0,
+  "finished": "2026-10-13 23:51:12",
+  "summary": {
+   "onsets": 243,
+   "tracks": 1
+  }
+ },
+ "court": {
+  "fingerprint": "cee5384c85bf82e4",
+  "version": "3",
+  "seconds": 11.1,
+  "finished": "2026-10-13 23:51:23",
+  "summary": {
+   "segments": 19,
+   "with_court": 10,
+   "known_court_reused": 8,
+   "searched": 24,
+   "court_presets": 5,
+   "pitch_deg_median": 18.3
+  }
+ },
+ "players": {
+  "fingerprint": "18b3e7fb96d8a38a",
+  "version": "3",
+  "seconds": 291.9,
+  "finished": "2026-10-13 23:56:15",
+  "summary": {
+   "frames": 861
+  }
+ },
+ "score": {
+  "fingerprint": "9228c3724d98e7d6",
+  "version": "5",
+  "seconds": 67.9,
+  "finished": "2026-10-13 23:57:23",
+  "summary": {
+   "readings": 48,
+   "pressure": 21
+  }
+ },
+ "identity": {
+  "fingerprint": "e667524bde5d6ecf",
+  "version": "4",
+  "seconds": 0.1,
+  "finished": "2026-10-13 23:57:23",
+  "summary": {
+   "runs": 10,
+   "votes": 5,
+   "confidence": 1.0,
+   "by_end_changes": 9,
+   "by_clothes": 0,
+   "conflicts": 1,
+   "decided": 9
+  }
+ },
+ "candidates": {
+  "fingerprint": "81d9675b112374f0",
+  "version": "7",
+  "seconds": 0.2,
+  "finished": "2026-10-13 23:57:23",
+  "summary": {
+   "candidates": 45,
+   "far": 33,
+   "with_audio": 44,
+   "opponent_runs": 0,
+   "identity_unknown": 0,
+   "replay_runs_skipped": 1,
+   "replays_by_path": 1,
+   "audio_track": 0
+  }
+ }
+}

@@ -14,7 +14,7 @@
   "strokes": 11,
   "lateral_forehands": 1,
   "discarded": 0,
-  "version": 3
+  "version": 4
  },
  {
   "id": "P4kwF30432U",
@@ -29,9 +29,9 @@
   "seconds_kept": 50.99102,
   "analysed_s": 50.99102,
   "strokes": 20,
-  "lateral_forehands": 0,
-  "discarded": 2,
-  "version": 3
+  "lateral_forehands": 1,
+  "discarded": 1,
+  "version": 4
  },
  {
   "id": "BZTdhztMFqc",
