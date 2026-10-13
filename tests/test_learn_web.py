@@ -115,3 +115,41 @@ def test_signature_shows_what_she_repeats(tmp_path):
         b.close()
     assert "Estilo de su derecha: preparación bucle (100 %)" in sig
     assert "bucle en 40 de 40 golpes" in sig and "Cópialo:" in sig
+
+
+@pytest.mark.skipif(not CHROMIUM.exists(), reason="sin navegador para la prueba de la web")
+def test_target_with_her_number_guide_and_glossary(tmp_path):
+    from playwright.sync_api import sync_playwright
+
+    rows = synthetic(40)
+    for r in rows:                                # she drops 14 cm; the face tilt is noise (jitter 200)
+        r["technique"]["stroke"]["hip_drop_cm"] = 14.0
+        r["technique"]["jitter"]["stroke.hip_drop_cm"] = 0.5
+    d = tmp_path / "m1"
+    d.mkdir()
+    (d / "strokes.json").write_text(json.dumps(rows), encoding="utf-8")
+    html = build([Match("m1", None, Player("p", "P", height_m=1.84))], tmp_path)
+    with sync_playwright() as p:
+        b = p.chromium.launch(executable_path=str(CHROMIUM), args=["--allow-file-access-from-files"])
+        pg = b.new_page()
+        errors = []
+        pg.on("pageerror", lambda e: errors.append(str(e)))
+        pg.goto(html.resolve().as_uri())
+        pg.wait_for_timeout(500)
+        pg.evaluate("document.querySelector('.nav button[data-tab=\"aprende\"]').click()")
+        mine = lambda k: pg.evaluate(f"(document.querySelector('.cpk[data-key=\"{k}\"] .mine') || {{}}).textContent || ''")
+        before, noisy = mine("stroke.hip_drop_cm"), mine("loaded.face_tilt")
+        pg.fill("#a-uh", "1.70")
+        pg.dispatch_event("#a-uh", "change")
+        after = mine("stroke.hip_drop_cm")
+        guide = pg.evaluate("document.getElementById('a-guide').hidden")
+        pg.click("#a-guide-x")
+        hidden = pg.evaluate("[document.getElementById('a-guide').hidden, document.getElementById('a-guide-show').hidden]")
+        terms = pg.evaluate("[document.querySelectorAll('#a-gloss dt').length, document.querySelectorAll('#a-phases abbr.gl').length]")
+        b.close()
+    assert not errors, errors[:3]
+    assert "Baja la cadera unos 14 cm desde la espera" in before and "como ella" in before
+    assert noisy == ""                            # noise never becomes a target
+    assert "unos 13 cm (a tu altura)" in after    # 14 × 1.70 / 1.84
+    assert guide is False and hidden == [True, False]
+    assert terms[0] >= 20 and terms[1] > 0

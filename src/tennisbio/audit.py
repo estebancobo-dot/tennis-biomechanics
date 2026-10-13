@@ -640,6 +640,11 @@ def _screens(shots_dir: Path) -> list[dict]:
             items.append(_item(1, "Aprende su derecha", "Puntos de «Aprende» con su valor medido (todas sus derechas)",
                                "ok" if lr["valued_all"] >= 0.8 * lr["rows_all"] else "pocos datos",
                                f"{lr['valued_all']} de {lr['rows_all']}; el resto dice por qué falta"))
+        if "targeted_all" in lr:
+            items.append(_item(1, "Aprende su derecha", "«Tu objetivo»: la consigna con su número en cada medida suya fiable",
+                               "ok" if lr["targeted_all"] else "pocos datos",
+                               f"{lr['targeted_all']} medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); "
+                               f"{lr.get('glossed_all', 0)} palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados"))
     checks = [("golpe", "ball_moments", "«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella", 2),
               ("golpe", "feet_cycle", "«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)", 8),
               ("golpe", "ball_measures", "«La bola y ella»: medidas reales en cada fotograma (cadera en cm, pies en m, recorrido)", 3),
@@ -727,6 +732,8 @@ PETITIONS = {
     120: r"^Pantallas$", 121: r"^Pantallas$", 122: r"^Pantallas$|Pantalla «",
     123: r"responde a cada combinación", 124: r"Hacia dónde mira el tronco|Manos en la espera|técnica o ruido",
     125: r"^Rendimiento$",
+    126: r"Tu objetivo", 127: r"Tu objetivo|responde a cada combinación", 128: r"Tu objetivo|responde a cada combinación",
+    129: Note("descartado por el usuario (13-10): sin hoja de sesión"),
 }
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 

@@ -132,8 +132,8 @@ select { font: 13px var(--body); color: var(--ink); background: var(--panel-2); 
 .lcard { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: grid; gap: 10px; }
 .lcard h3 { margin: 0; font-size: 16px; } .lcard .when { color: var(--ink-2); font-size: 13px; }
 .cpk { display: grid; grid-template-columns: minmax(180px, 1.1fr) minmax(170px, 1fr) minmax(0, 2.2fr); gap: 4px 16px; border-top: 1px solid var(--line); padding-top: 9px; font-size: 13px; }
-.cpk .v { font: 600 15px var(--mono); } .cpk .badge { font-size: 11px; padding: 1px 6px; border-radius: 3px; border: 1px solid var(--line-2); color: var(--ink-2); }
-.cpk .badge.firm { border-color: var(--good); color: var(--good); } .cpk .badge.prov { border-color: var(--warn); color: var(--warn); }
+.cpk .v { font: 600 15px var(--mono); } .cpk .badge, .guide .badge { font-size: 11px; padding: 1px 6px; border-radius: 3px; border: 1px solid var(--line-2); color: var(--ink-2); }
+.cpk .badge.firm, .guide .badge.firm { border-color: var(--good); color: var(--good); } .cpk .badge.prov, .guide .badge.prov { border-color: var(--warn); color: var(--warn); }
 .cpk .how b { color: var(--accent); font-weight: 600; } .cpk .how div { margin-bottom: 3px; }
 @media (max-width: 900px) { .cpk { grid-template-columns: minmax(0, 1fr); } }
 .achips { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 6px 10px; align-items: start; }
@@ -144,6 +144,13 @@ select { font: 13px var(--body); color: var(--ink); background: var(--panel-2); 
 .achips .chips button[aria-pressed="true"] small { color: var(--accent-ink); }
 .achips .chips button.zero { opacity: .45; }
 .cpk .her { color: var(--ink); } .cpk .her b { color: var(--good); }
+.cpk .mine { color: var(--ink); } .cpk .mine b { color: var(--accent); }
+abbr.gl { text-decoration: underline dotted var(--ink-3, #888); cursor: help; }
+.guide { border: 1px solid var(--accent); border-radius: 8px; padding: 12px 16px; margin: 0 0 16px; background: var(--raise); }
+.guide ol { margin: 6px 0 8px; padding-left: 20px; } .guide li { margin: 3px 0; }
+.uh { display: inline-flex; gap: 6px; align-items: center; margin-left: 8px; } .uh input { width: 70px; }
+dl.gloss { display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; margin: 0; padding: 12px 16px; } dl.gloss dt { font-weight: 600; } dl.gloss dd { margin: 0; }
+@media (max-width: 640px) { dl.gloss { grid-template-columns: 1fr; } dl.gloss dd { margin-bottom: 6px; } }
 .lcard .focus { background: var(--raise); border-left: 3px solid var(--accent); padding: 6px 10px; border-radius: 4px; font-size: 13.5px; }
 .lcard .focus b { color: var(--accent); }
 .cpk details.more1 summary { cursor: pointer; color: var(--ink-3); font-size: 12px; } .cpk details.more1[open] summary { margin-bottom: 4px; }
@@ -384,6 +391,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 
 <section class="screen" id="tab-aprende" hidden>
 <details class="news" id="news"><summary><b>Novedades de esta versión</b> · dónde mirarlas</summary><ul>
+  <li><b>«Cópiala»:</b> guía «Empieza aquí» arriba; en cada medida, <b>«Tu objetivo»</b> con su número (y en tus centímetros si pones tu altura); palabras técnicas subrayadas con su explicación y un glosario al final.</li>
   <li><b>Menú:</b> dos vistas principales, «Cópiala» y «Sus golpes»; el resto, en «Más» (para practicar y técnico). No se ha quitado nada.</li>
   <li><b>«Sus golpes» → un golpe → «La bola y ella»:</b> su cuerpo cuando golpea la rival, la bola cruza la red, cae, bota, sube y ella golpea, con medidas reales en cada fotograma (cadera en cm, pies en m, recorrido).</li>
   <li><b>«Sus golpes» → un golpe → «Su cuerpo en este golpe»:</b> cuánto baja y sube (barras y cm), la base entre los pies (m) y hacia dónde mira el tronco al terminar.</li>
@@ -392,6 +400,16 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
   <li><b>«Más» → «Fiabilidad de las medidas»:</b> qué medidas son de fiar, cuáles son ruido o están sesgadas, y por qué.</li>
   <li><b>«Más» reorganizado:</b> «Su patrón típico» está ahora al final de «Cópiala»; «Dónde golpea», en «Sus golpes» → «En la pista»; el Panel y las Comparativas, juntos en «Conclusiones»; nueva «Datos del análisis». Los accesos de «Más» llevan directamente a cada sitio.</li>
 </ul></details>
+<div class="guide" id="a-guide"><div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><b>Empieza aquí: cómo usar «Cópiala»</b><button class="btn" id="a-guide-x">Entendido, ocultar</button></div>
+<ol>
+  <li><b>Elige el golpe</b> que quieres copiar en el punto 1 (por ejemplo, bola alta + parada). Si no eliges nada, son todas sus derechas.</li>
+  <li><b>Mira su firma</b>: lo que ella repite en casi todos esos golpes. Es lo primero que hay que copiar.</li>
+  <li><b>Practica «Tu plan»</b> (punto 5): una prioridad cada vez, con su foco y su ejercicio; cuando salga sola, la siguiente.</li>
+  <li><b>Pulsa «▶ Ver»</b> en cualquier dato para verlo en su vídeo real, con el esqueleto dibujado.</li>
+  <li>En cada fase, <b>«Tu objetivo»</b> te da su número para copiarlo. Pon tu altura aquí y las distancias saldrán en tus centímetros: <label class="uh">Tu altura <input type="number" id="a-uh" min="1.2" max="2.2" step="0.01" placeholder="1,75"> m</label></li>
+</ol>
+<p class="dim3" style="margin:0">Las etiquetas: <span class="badge firm">N golpes</span> = medido en N golpes suyos · <span class="badge prov">provisional</span> = menos de 5 golpes, orientativo · <span class="badge prov">medida ruidosa</span> = aproximado · «—» = la tele no permite medirlo bien y se dice por qué. Las palabras <abbr class="gl" title="Pasa el ratón o toca la palabra subrayada para ver qué significa">subrayadas así</abbr> se explican al tocarlas y en el <a href="#" id="a-gloss-go">glosario</a>.</p></div>
+<p class="dim3" id="a-guide-show" hidden style="margin:0 0 10px"><a href="#" id="a-guide-open">¿Cómo se usa esta pantalla? Ver la guía</a> · <a href="#" id="a-gloss-go2">Glosario</a></p>
 <p class="intro"><b>Aprende su derecha.</b> Elige el golpe que quieres copiar (dirección, apoyo, cómo llega, efecto…). Verás sus golpes de ese tipo en vídeo y, fase a fase, lo que hace ella (medido en sus golpes), cómo hacerlo tú, el error típico y un ejercicio.</p>
 <div class="panel"><header><h2>1 · ¿Qué golpe quieres aprender?</h2><button class="btn" id="a-clear">Quitar todo</button></header><div class="body" id="a-cond" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px"><header><h2>2 · Sus golpes de ese tipo</h2></header><div class="body" id="a-res" style="padding:12px 16px"></div></div>
@@ -402,6 +420,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 <div class="panel" style="margin-top:16px"><header><h2>5 · Tu plan: 3 prioridades, en orden</h2><span class="note">una cada vez; cuando salga sola, la siguiente</span></header><ol class="say" id="a-plan"></ol>
 <details class="extra" style="margin:0 16px 12px"><summary>Plan completo, fase a fase</summary><ol class="say" id="a-plan-all"></ol></details></div>
 <div class="panel" style="margin-top:16px"><header><h2>6 · Lo que la tele no permite medir (y qué hacer igualmente)</h2></header><ul class="say" id="a-nottv"></ul></div>
+<details class="extra secx" id="a-gloss-d" style="margin-top:22px"><summary><b>Glosario</b> · qué significa cada palabra de esta pantalla</summary><dl class="gloss" id="a-gloss"></dl></details>
 <details class="extra secx" id="sec-modelo" style="margin-top:22px"><summary><b>Su patrón típico</b> · esqueleto medio y claves de cada fase sobre todas sus derechas (antes «Su derecha»)</summary>
 <p class="intro"><b>Cómo pega la derecha.</b> Fase a fase: lo que hace (medido en sus golpes), por qué importa y qué mirar. Elige una bola para ver qué cambia. Pulsa una imagen o una frase para verla en vídeo.</p>
 <div class="panel">
@@ -2201,8 +2220,56 @@ function aSignature(set) {
     `<li><b>${c.label}</b> (${ph.title.replace(/^\d · /, "")}): ${lab(tp.val)} en ${tp.n} de ${tp.of} golpes. <span class="dim">Cópialo:</span> ${c.cue}${vid(c.key, tp.val, ph.id)}</li>`).join("") + `</ul>`
     + `<p class="dim3" style="margin:8px 0 0">Es lo que ella hace casi siempre igual en estos golpes: lo primero que hay que copiar. No se compara con otras jugadoras (sin fuentes externas).</p>`;
 }
+// «Tu objetivo»: the cue with her number (learn.TARGETS), only from a value of hers that can be trusted
+// (noise and bias never reach here: aStat gives no median for them). Lengths in the user's centimetres
+// when they gave their height (stored only in this browser).
+let A_UH = null;
+try { const h = parseFloat(localStorage.getItem("tb-user-h")); if (h >= 1.2 && h <= 2.2) A_UH = h; } catch (e) { }
+function aTarget(st, c) {
+  const tp = ((LEARN || {}).targets || {})[c.key];
+  if (!tp || !isN(st.med)) return "";
+  const t = Array.isArray(tp) ? (st.med >= 0 ? tp[0] : tp[1]) : tp, a = Math.abs(st.med), herH = PL.height_m || 1.8;
+  const k = A_UH ? A_UH / herH : 1, mine = A_UH ? " (a tu altura)" : "";
+  const v = c.unit === "cm" ? `unos ${fmt(a * k, 0)} cm${mine}` : c.unit === "m" ? `unos ${fmt(a * k, 2)} m${mine}`
+    : c.unit === "°" ? `${fmt(a, c.dec)}°` : c.unit === "s" ? `${fmt(a, Math.max(c.dec, 2))} s` : `${fmt(a, c.dec)} %`;
+  const h = `${fmt(a, c.dec)} % de tu altura` + (A_UH ? ` (≈ ${fmt(a / 100 * A_UH * 100, 0)} cm)` : "");
+  const rel = (DATA.reliability || {})[c.key], tags = [];
+  if (st.n < A_MIN) tags.push(`provisional: ${st.n} golpe${st.n > 1 ? "s" : ""}`);
+  if (rel && rel.verdict === "dudosa") tags.push("aproximado: medida ruidosa");
+  return `<div class="mine"><b>Tu objetivo:</b> ${t.replace("{v}", v).replace("{h}", h)}${tags.length ? ` <span class="dim3">(${tags.join("; ")})</span>` : ""}</div>`;
+}
+// glossary: each term of learn.GLOSSARY marked once in a text, with its meaning on hover / tap
+const GL = ((typeof LEARN !== "undefined" && LEARN && LEARN.glossary) || []).slice().sort((a, b) => b[0].length - a[0].length);
+const glEsc = s => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+const GL_RE = GL.length ? new RegExp(`(^|[^\\p{L}])(${GL.map(([w]) => glEsc(w)).join("|")})(?=$|[^\\p{L}])`, "iu") : null;
+function gloss(txt) {
+  if (!GL_RE || !txt) return txt || "";
+  const used = new Set();
+  return txt.replace(new RegExp(GL_RE.source, "giu"), (m, pre, w) => {
+    const e = GL.find(([x]) => x.toLowerCase() === w.toLowerCase());
+    if (!e || used.has(e[0])) return m;
+    used.add(e[0]);
+    return `${pre}<abbr class="gl" tabindex="0" title="${e[1].replace(/"/g, "&quot;")}">${w}</abbr>`;
+  });
+}
+function renderGuide() {
+  let hide = false; try { hide = localStorage.getItem("tb-guide") === "hidden"; } catch (e) { }
+  document.getElementById("a-guide").hidden = hide; document.getElementById("a-guide-show").hidden = !hide;
+  const uh = document.getElementById("a-uh"); if (A_UH && !uh.value) uh.value = A_UH;
+  document.getElementById("a-gloss").innerHTML = ((LEARN || {}).glossary || []).map(([w, d]) => `<dt>${w}</dt><dd>${d}</dd>`).join("");
+}
+const aGuide = h => { try { localStorage.setItem("tb-guide", h ? "hidden" : "shown"); } catch (e) { } renderGuide(); };
+document.getElementById("a-guide-x").addEventListener("click", () => aGuide(true));
+document.getElementById("a-guide-open").addEventListener("click", e => { e.preventDefault(); aGuide(false); });
+["a-gloss-go", "a-gloss-go2"].forEach(id => document.getElementById(id).addEventListener("click", e => { e.preventDefault(); const d = document.getElementById("a-gloss-d"); d.open = true; d.scrollIntoView({ behavior: "smooth" }); }));
+document.getElementById("a-uh").addEventListener("change", e => {
+  const h = parseFloat(String(e.target.value).replace(",", ".")); A_UH = h >= 1.2 && h <= 2.2 ? h : null;
+  try { A_UH ? localStorage.setItem("tb-user-h", String(A_UH)) : localStorage.removeItem("tb-user-h"); } catch (x) { }
+  renderLearn();
+});
 function renderLearn() {
   if (!LEARN) return;
+  renderGuide();
   // 1. conditions with how many of her strokes each would leave
   const box = document.getElementById("a-cond");
   box.innerHTML = `<div class="achips">` + Object.entries(LEARN.conditions).map(([d, c]) => {
@@ -2249,12 +2316,12 @@ function renderLearn() {
       const badge = !st.n ? "" : aIsPractice(c.key) ? `<span class="badge">entreno, ${st.src || "de lado"} · ${st.n}</span>` : st.n >= A_MIN ? `<span class="badge firm">${st.n} golpes</span>` : `<span class="badge prov">${st.n} golpe${st.n > 1 ? "s" : ""} · provisional</span>`;
       const val = st.txt ? `<span class="v">${st.txt}</span>${st.warn || ""} ${badge}` : `<span class="dim">— ${st.why || aWhyMissing(set, c)}</span>`;
       const cmp = base && base.txt && set.length !== all.length ? `<div class="dim3">en todas sus derechas: ${base.txt}</div>` : "";
-      return `<div class="cpk" data-key="${c.key}"><div><b>${c.label}</b><div class="dim3">${c.read}</div></div><div>${val}${cmp}</div>`
-        + `<div class="how">${aHer(st, c)}<div><b>Cómo hacerlo tú:</b> ${c.cue}</div><details class="more1"><summary>Error típico y ejercicio</summary><div><b>Error típico:</b> ${c.mistake}</div><div><b>Ejercicio:</b> ${c.drill}</div></details></div></div>`;
+      return `<div class="cpk" data-key="${c.key}"><div><b>${gloss(c.label)}</b><div class="dim3">${c.read}</div></div><div>${val}${cmp}</div>`
+        + `<div class="how">${aHer(st, c)}${aTarget(st, c)}<div><b>Cómo hacerlo tú:</b> ${gloss(c.cue)}</div><details class="more1"><summary>Error típico y ejercicio</summary><div><b>Error típico:</b> ${c.mistake}</div><div><b>Ejercicio:</b> ${c.drill}</div></details></div></div>`;
     }).join("");
     return `<div class="lcard" data-phase="${ph.id}"><div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><h3>${ph.title}</h3>`
       + (rep ? `<button class="btn" data-open="${rep.id}" data-ph="${ph.id === "feet" ? "ready" : ph.id}">▶ Ver en vídeo</button>` : `<span class="dim3">sin vídeo</span>`)
-      + `</div><div class="when">${ph.when}</div>${ph.focus ? `<div class="focus"><b>Foco:</b> ${ph.focus}</div>` : ""}${rows}</div>`;
+      + `</div><div class="when">${ph.when}</div>${ph.focus ? `<div class="focus"><b>Foco:</b> ${gloss(ph.focus)}</div>` : ""}${rows}</div>`;
   }).join("");
   document.querySelectorAll("#a-phases button[data-open]").forEach(b => b.addEventListener("click", () => aOpen(b.dataset.open, b.dataset.ph)));
   // 5. the plan: one step per position, with its main checkpoint and drill
@@ -2265,7 +2332,7 @@ function renderLearn() {
   (LEARN.plan || []).forEach(pl => { if (themes.has(pl.theme) || plan.length >= 3 || !byKey[pl.key]) return;
     const [c, ph] = byKey[pl.key], st = aStat(set, c); if (!st.txt) return; themes.add(pl.theme); plan.push({ pl, c, ph, st }); });
   document.getElementById("a-plan").innerHTML = plan.length ? plan.map(({ pl, c, ph, st }) => { const rep = aRep(set, ph.id === "feet" ? "ready" : ph.id);
-    return `<li><b>${pl.title}</b> · <span class="dim">${pl.why}</span><br><span class="dim">Ella:</span> ${st.txt.replace(/<[^>]+>/g, "")} (${st.n} golpes) · <span class="dim">Foco:</span> ${ph.focus || c.cue}<br><span class="dim">Ejercicio:</span> ${c.drill}${rep ? ` <button class="btn" data-open="${rep.id}" data-ph="${ph.id === "feet" ? "ready" : ph.id}">▶ Ver</button>` : ""}</li>`; }).join("")
+    return `<li><b>${pl.title}</b> · <span class="dim">${pl.why}</span><br><span class="dim">Ella:</span> ${st.txt.replace(/<[^>]+>/g, "")} (${st.n} golpes) · <span class="dim">Foco:</span> ${gloss(ph.focus || c.cue)}${(t => t ? "<br>" + t.replace(/<\/?div[^>]*>/g, "").replace("<b>Tu objetivo:</b>", '<span class="dim">Tu objetivo:</span>') : "")(aTarget(st, c))}<br><span class="dim">Ejercicio:</span> ${c.drill}${rep ? ` <button class="btn" data-open="${rep.id}" data-ph="${ph.id === "feet" ? "ready" : ph.id}">▶ Ver</button>` : ""}</li>`; }).join("")
     : `<li class="dim">Todavía no hay medidas suyas fiables en estos golpes para ordenar un plan; empieza por el foco de cada fase (arriba).</li>`;
   document.querySelectorAll("#a-plan button[data-open]").forEach(b => b.addEventListener("click", () => aOpen(b.dataset.open, b.dataset.ph)));
   document.getElementById("a-plan-all").innerHTML = LEARN.phases.map(ph => { const c = ph.checkpoints[0]; return `<li><b>${ph.title.replace(/^\d · /, "")}</b>: ${c.cue} <span class="dim">Ejercicio:</span> ${c.drill}</li>`; }).join("");

@@ -1,6 +1,6 @@
 # Peticiones del usuario frente al código y a la web
 
-**Revisión:** 13-10-2026 (tarde; filas 76, 98, 101-112 y 118-125 al día), antes commit `a330935` (rama `claude/tennis-biomech-setup-jggqb0`).
+**Revisión:** 13-10-2026 (tarde; filas 76, 98, 101-112 y 118-129 al día), antes commit `a330935` (rama `claude/tennis-biomech-setup-jggqb0`).
 **Fuentes revisadas:** los 147 mensajes del chat (10-10 a 13-10; sin contar los resúmenes de contexto, los
 registros ni los informes de subagentes pegados), `docs/aprendido_entrenadores.md` (las 15 mejoras),
 `docs/matriz_cobertura.md` §6 (la matriz de 15 secciones, 59 filas) y la revisión anterior de este documento.
@@ -17,11 +17,11 @@ la auditoría las marcará «sin comprobación automática asignada».
 
 | Estado | Nº |
 |---|---|
-| HECHO | 73 |
+| HECHO | 76 |
 | PARCIAL | 42 |
 | NO | 6 |
-| NO APLICA | 4 |
-| **Total** | **125** |
+| NO APLICA | 5 |
+| **Total** | **129** |
 
 **Al día (13-10, tarde).** Web en 2 vistas («Cópiala», «Sus golpes») y «Más»; cada medida validada sola
 (técnica, ruido o sesgo); ciclo automático en el PC con revisión OK/REGRESIÓN/ERROR; golpes dudosos 1 de 10.
@@ -173,6 +173,10 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 123 | Lo que se aprende en una sesión: plan de 3 prioridades en orden, foco externo por fase, detalle plegado (13-10 13:20) | HECHO | `learn.PLAN`, `focus` por fase | Cópiala § «Tu plan» y «Foco» en cada fase | `learn_check` (plan ≤ 3, foco en cada fase) | |
 | 124 | Hacia dónde mira el tronco y las manos en la espera, medidas fiables (13-10 13:00) | PARCIAL | `body_moves` (fotograma más girado, comprobación con la mano), `ready_hands` en toda la espera (±4 fotogramas de raqueta) | Cópiala, Análisis de golpe | fiabilidad por medida | Manos en la espera solo en 3 de 10 golpes (la raqueta casi no se ve en la espera). |
 | 125 | Velocidad, rendimiento y algoritmia antes del tramo largo nocturno (13-10 13:05) | NO | — | — | Auditoría «Tiempo» (≈ 15 h por partido) | Decisión del usuario: primero esto, después más golpes. |
+| 126 | Consignas con su número en «Cómo hacerlo tú» («baja unos 14 cm desde la espera, como ella»), solo si es fiable (13-10 14:00) | HECHO | `learn.TARGETS`, `aTarget` | Cópiala: «Tu objetivo» en cada medida y en «Tu plan»; con tu altura, en tus centímetros | `learn_check` (cada medida con valor lleva su número), auditoría «Tu objetivo» | |
+| 127 | Guía de primer uso, «empieza aquí» (13-10 14:00) | HECHO | `renderGuide` | Cópiala, arriba (se oculta y se vuelve a abrir) | `learn_check` («sin guía de primer uso») | |
+| 128 | Glosario de términos (13-10 14:00) | HECHO | `learn.GLOSSARY`, `gloss` | Cópiala: palabras subrayadas con su explicación al tocarlas y «Glosario» al final | `learn_check` («glosario incompleto»), palabras marcadas en la auditoría | |
+| 129 | Hoja de sesión (13-10 14:00) | NO APLICA | Descartada por el usuario | — | — | |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)
 

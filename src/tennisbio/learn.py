@@ -399,11 +399,102 @@ PLAN = [
 ]
 
 
+# «Cómo hacerlo tú» with her number: the cue written with her median in the chosen strokes, only when
+# her value can be trusted (never noise or bias). {v} = her value without sign (cm and m scaled to the
+# user's height when given); {h} = a share of height said as the user's own («un 12 % de tu altura,
+# ≈ 21 cm»). A pair is (value ≥ 0, value < 0) for measures with a sign.
+TARGETS = {
+    "footwork.split_landing_vs_opp_s": ("Aterriza del split step {v} después del golpe de la rival, como ella.", "Aterriza del split step {v} antes del golpe de la rival, como ella."),
+    "ready.hip_height": "Espera con la cadera a un {h} del suelo, como ella.",
+    "ready.base_width": "Espera con los tobillos separados un {h}, como ella.",
+    "stroke.takeback_vs_bounce": ("Empieza a girar los hombros como mucho {v} después del bote, como ella.", "Empieza a girar los hombros {v} antes de que bote la bola, como ella."),
+    "takeback.shoulder_turn": "Al empezar la preparación, gira los hombros unos {v}, como ella.",
+    "stroke.takeback_vs_first_step": ("Empieza a girar {v} después de tu primer paso, como ella.", "Empieza a girar {v} antes de tu primer paso, como ella."),
+    "loaded.shoulder_turn": "En el armado, gira los hombros unos {v}, como ella.",
+    "loaded.x_factor": ("En el armado, que los hombros giren unos {v} más que la cadera, como ella.", "En el armado, ella gira la cadera unos {v} más que los hombros: copia su giro de cadera."),
+    "loaded.elbow_non": "Brazo libre con el codo a unos {v} (180° = estirado), como ella.",
+    "loaded.racket_head_vs_wrist": ("Arma con la cabeza de la raqueta un {h} por encima de la mano, como ella.", "Arma con la cabeza de la raqueta un {h} por debajo de la mano, como ella."),
+    "loaded.elbow_dom_vs_shoulder": ("Arma con el codo un {h} por encima del hombro, como ella.", "Arma con el codo un {h} por debajo del hombro, como ella."),
+    "loaded.elbow_dom_lateral": "Arma con el codo separado un {h} hacia fuera del hombro, como ella.",
+    "loaded.racket_tip_vs_head": ("Arma con la punta de la raqueta un {h} por encima de tu cabeza, como ella.", "Arma con la punta de la raqueta un {h} por debajo de tu cabeza, como ella."),
+    "loaded.racket_head_lateral": ("Arma con la raqueta al lado del cuerpo, un {h} hacia fuera del hombro, como ella.", "Arma con la raqueta hacia la espalda, un {h} detrás del hombro, como ella."),
+    "loaded.face_tilt": ("Al final del armado, cuerdas cerradas unos {v} hacia el suelo, como ella.", "Al final del armado, cuerdas abiertas unos {v} hacia el cielo, como ella."),
+    "stroke.loaded_vs_bounce": ("Ten el armado completo como mucho {v} después del bote, como ella.", "Ten el armado completo {v} antes de que bote la bola, como ella."),
+    "loaded.base_court_m": "Arma con los pies a {v} el uno del otro, como ella.",
+    "loaded.hip_height": "Arma con la cadera a un {h} del suelo, como ella.",
+    "stroke.wrist_drop": "Antes de acelerar, deja caer la mano un {h}, como ella.",
+    "stroke.shoulders_open_first": ("Ella abre los hombros {v} antes que la cadera: si te pasa, empieza por la cadera.", "Empieza a girar la cadera {v} antes que los hombros, como ella."),
+    "stroke.acceleration_vs_bounce": ("Empieza a acelerar {v} después del bote, como ella.", "Empieza a acelerar {v} antes del bote, como ella."),
+    "stroke.hip_drop_cm": "Baja la cadera {v} desde la espera hasta el punto más bajo, como ella.",
+    "stroke.hip_rise": ("Sube la cadera un {h} hasta el impacto, como ella.", "Ella aún baja un {h} hasta el impacto: no te levantes antes de golpear."),
+    "acceleration.face_tilt": ("En la caída, cuerdas cerradas unos {v} hacia el suelo, como ella.", "En la caída, cuerdas abiertas unos {v} hacia el cielo, como ella."),
+    "stroke.swing_low_to_high": ("Sube la mano unos {v} en el último tramo antes del impacto, como ella.", "Ella baja la mano unos {v} antes del impacto (golpe plano o cortado): es su golpe de esta situación."),
+    "stroke.racket_lag_deg": "Deja que la raqueta se retrase hasta unos {v} con el antebrazo, como ella.",
+    "acceleration.racket_forearm": "Al empezar a acelerar, raqueta a unos {v} del antebrazo, como ella.",
+    "stroke.shoulder_brake": "Frena el giro de los hombros un {v} al llegar al contacto, como ella.",
+    "impact.wrist_dom_vs_hip": ("Golpea con la mano un {h} por encima de la cadera, como ella.", "Golpea con la mano un {h} por debajo de la cadera, como ella."),
+    "impact.wrist_dom_lateral": "Golpea con la mano separada un {h} de la cadera, como ella.",
+    "impact.base_court_m": "Golpea con los pies a {v} el uno del otro, como ella.",
+    "stroke.feet_move_m": "Del armado al impacto, que los pies no se muevan más de {v}, como ella.",
+    "impact.elbow_dom": "Golpea con el codo a unos {v} (180° = recto), como ella.",
+    "stroke.head_motion_cm": "Que la cabeza no se mueva más de {v} al golpear, como ella.",
+    "impact.trunk_tilt": "Tronco inclinado unos {v} respecto a la vertical al golpear, como ella.",
+    "impact.face_tilt": ("En el impacto, cuerdas cerradas unos {v} hacia el suelo (estimación), como ella.", "En el impacto, cuerdas abiertas unos {v} hacia el cielo (estimación), como ella."),
+    "extension.arm_extension": "Tras el impacto, estira el brazo un {v} hacia delante, como ella.",
+    "extension.wrist_non_lateral": ("Recoge la mano libre a un {h} por encima de la cadera, como ella.", "Recoge la mano libre a un {h} por debajo de la cadera, como ella."),
+    "finish.face_tilt": ("Termina con las cuerdas cerradas unos {v} hacia el suelo, como ella.", "Termina con las cuerdas abiertas unos {v} hacia el cielo, como ella."),
+    "stroke.hip_rise_after_cm": "Sube la cadera {v} desde su punto más bajo hasta terminar, como ella.",
+    "finish.base_court_m": "Termina con los pies a {v} el uno del otro, como ella.",
+    "finish.head_over_base": "Termina con la cabeza a menos de un {h} del centro de los pies, como ella.",
+    "finish.base_width": "Termina con los tobillos separados un {h}, como ella.",
+    "footwork.recovery_start_s": "Da el primer paso de vuelta {v} después de golpear, como ella.",
+}
+
+# words of the screen a person may not know, with what they mean (shown as a glossary and as a hint
+# on the word)
+GLOSSARY = [
+    ("split step", "Pequeño salto con los dos pies justo cuando golpea la rival; al aterrizar sales hacia la bola."),
+    ("armado", "Final de la preparación: hombros girados al máximo y raqueta arriba y atrás, lista para bajar."),
+    ("preparación", "Desde que sabes que es derecha hasta el armado: giro de hombros y raqueta atrás."),
+    ("caída de la raqueta", "La raqueta baja por detrás y por debajo de la bola antes de ir hacia delante."),
+    ("aceleración", "Desde la caída hasta el impacto: la raqueta gana velocidad."),
+    ("impacto", "El instante en que la raqueta toca la bola (también «contacto»)."),
+    ("extensión", "Justo después del impacto: el brazo sigue hacia delante, hacia donde va la bola."),
+    ("terminación", "Final del golpe: dónde acaban la raqueta y el brazo (sobre el hombro, limpiaparabrisas…)."),
+    ("recuperación", "Volver a colocarse para el siguiente golpe tras golpear."),
+    ("apoyo abierto", "Pies en paralelo a la red al golpear: se gira sobre la pierna de atrás."),
+    ("apoyo cerrado", "El pie de delante cruza hacia el lado de la derecha: el cuerpo queda de lado."),
+    ("apoyo semiabierto", "Entre abierto y neutro: el pie de delante algo adelantado."),
+    ("apoyo neutro", "El pie de delante adelantado en línea hacia la red: de lado a la red."),
+    ("base", "Distancia entre los pies: más ancha da más estabilidad para girar y empujar."),
+    ("separación hombros–cadera", "Cuánto giran los hombros más que la cadera en el armado (también «X-factor»): el tronco enrollado como un muelle."),
+    ("X-factor", "Lo mismo que la separación hombros–cadera."),
+    ("cadena cinética", "Orden en que se mueve el cuerpo: piernas → cadera → tronco → brazo → raqueta."),
+    ("retraso de la raqueta", "La raqueta se queda atrás respecto al antebrazo al empezar a acelerar (también «lag»): luego sale como un látigo."),
+    ("lag", "Lo mismo que el retraso de la raqueta."),
+    ("cara de la raqueta", "Hacia dónde miran las cuerdas: cerrada = hacia el suelo, abierta = hacia el cielo."),
+    ("brazo libre", "El brazo que no lleva la raqueta (en una diestra, el izquierdo)."),
+    ("catch", "Recoger el brazo libre hacia el pecho tras el impacto: frena ese lado y acelera la raqueta."),
+    ("limpiaparabrisas", "Terminación en la que el antebrazo gira por delante del cuerpo, como un limpiaparabrisas, sin subir al hombro."),
+    ("liftado", "Golpe con efecto hacia delante (de abajo arriba): la bola baja antes y bota alta."),
+    ("cortado", "Golpe de arriba abajo con efecto hacia atrás: la bola va baja y bota poco."),
+    ("plano", "Golpe casi sin efecto: la bola va recta y rápida."),
+    ("bote", "Cuando la bola toca la pista en tu lado antes de golpearla."),
+    ("mediana", "El valor del medio de sus golpes: la mitad están por encima y la mitad por debajo."),
+    ("provisional", "Valor de menos de 5 golpes suyos: orientativo, puede cambiar con más golpes."),
+    ("medida ruidosa", "Medida que cambia bastante entre fotogramas vecinos: el valor es aproximado."),
+    ("no fiable desde la tele", "La cámara de la tele no permite medirlo bien; no se da como valor suyo."),
+    ("foco", "En qué fijarte al practicar: algo de fuera (la bola, la raqueta, una marca), no tu cuerpo; se aprende antes."),
+    ("% de altura", "Distancias en proporción a la altura de la persona: así sirven para ti aunque midas distinto."),
+]
+
+
 def content() -> dict:
     """Everything static the «Aprende su derecha» screen needs."""
     return {"phases": PHASES + [FEET], "conditions": {k: {"name": n, "levels": lv} for k, (n, lv) in CONDITIONS.items()},
             "relax": RELAX_ORDER, "not_tv": NOT_FROM_TV, "source": SOURCE,
-            "plan": [{"theme": th, "key": k, "title": ti, "why": w} for th, k, ti, w in PLAN]}
+            "plan": [{"theme": th, "key": k, "title": ti, "why": w} for th, k, ti, w in PLAN],
+            "targets": TARGETS, "glossary": GLOSSARY}
 
 
 def covered_matrix_items() -> set[str]:

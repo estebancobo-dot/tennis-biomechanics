@@ -24,7 +24,7 @@ _JS_CHECK = r"""([sel, expect]) => {
   const cards = [...document.querySelectorAll('#a-phases .lcard')];
   const ids = cards.map(c => c.dataset.phase);
   if (JSON.stringify(ids) !== JSON.stringify(expect.phases.map(p => p.id))) bad.push(`fichas ${ids.join(',')} en vez de ${expect.phases.map(p => p.id).join(',')}`);
-  let rows = 0, valued = 0;
+  let rows = 0, valued = 0, targeted = 0;
   expect.phases.forEach(ph => {
     const cd = cards.find(c => c.dataset.phase === ph.id); if (!cd) return;
     const keys = [...cd.querySelectorAll('.cpk')].map(r => r.dataset.key);
@@ -41,6 +41,12 @@ _JS_CHECK = r"""([sel, expect]) => {
         if (!m || m.trim().length < 3) bad.push(`${r.dataset.key}: «${lab}» vacío`);
       }
       if (r.querySelector('.v') && !/Ella:/.test(how)) bad.push(`${r.dataset.key}: con valor pero sin su patrón`);
+      if (r.querySelector('.v') && (LEARN.targets || {})[r.dataset.key]) {
+        targeted++;
+        const mine = r.querySelector('.mine');
+        if (!mine) bad.push(`${r.dataset.key}: con valor pero sin «Tu objetivo» con su número`);
+        else if (/[{}]/.test(mine.textContent) || !/\d/.test(mine.textContent)) bad.push(`${r.dataset.key}: «Tu objetivo» sin su número`);
+      }
     });
     if (!cd.querySelector('button[data-open]') && document.querySelectorAll('#a-res .athumbs button').length) bad.push(`${ph.id}: sin «Ver en vídeo»`);
   });
@@ -52,7 +58,9 @@ _JS_CHECK = r"""([sel, expect]) => {
   if (document.querySelectorAll('#a-plan li b').length > 3) bad.push('más de 3 prioridades en el plan');
   cards.forEach(cd => { const ph = expect.phases.find(p => p.id === cd.dataset.phase); if (ph && ph.focus && !cd.querySelector('.focus')) bad.push(`${ph.id}: sin foco`); });
   if (!document.querySelectorAll('#a-nottv li').length) bad.push('sin lo no medible');
-  return {bad, rows, valued, sig, style: document.getElementById('a-sig').querySelector('p').innerText, exact: R.exact.length, wider: R.wider.length, near: document.querySelectorAll('#a-res .athumbs button').length};
+  if (!document.getElementById('a-guide') || !/Empieza aquí/.test(document.getElementById('a-guide').textContent)) bad.push('sin guía de primer uso');
+  if (document.querySelectorAll('#a-gloss dt').length < 20) bad.push('glosario incompleto');
+  return {bad, rows, valued, targeted, gloss: document.querySelectorAll('#a-phases abbr.gl').length, sig, style: document.getElementById('a-sig').querySelector('p').innerText, exact: R.exact.length, wider: R.wider.length, near: document.querySelectorAll('#a-res .athumbs button').length};
 }"""
 
 
@@ -83,7 +91,7 @@ def check_page(pg, pairs: bool = True, extra: list[dict] | None = None) -> dict:
     for sel in todo:
         r = pg.evaluate(_JS_CHECK, [sel, expect])
         if not sel:
-            extra_out.update(rows_all=r["rows"], valued_all=r["valued"], signature=r["sig"], style=r["style"])
+            extra_out.update(rows_all=r["rows"], valued_all=r["valued"], targeted_all=r["targeted"], glossed_all=r["gloss"], signature=r["sig"], style=r["style"])
         if sel == USER_EXAMPLE:
             extra_out["example"] = {"exact": r["exact"], "near": r["near"], "rows": r["rows"], "valued": r["valued"], "bad": r["bad"]}
         rows += r["rows"]
