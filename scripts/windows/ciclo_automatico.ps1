@@ -12,7 +12,9 @@ New-Item -ItemType Directory -Force -Path $Out | Out-Null
 function Senal-Vida($motivo) {
     $vivo = "$Out\ciclo_vivo.txt"
     try { "$(Get-Date -Format s) $motivo" | Add-Content "$Out\ciclo_arranque.txt" } catch {}
-    if (-not (Test-Path $vivo) -or ((Get-Date) - (Get-Item $vivo).LastWriteTime).TotalMinutes -ge 60) {
+    # con un analisis en marcha se sube cada 20 min (Claude ve su registro mientras avanza); sin trabajo, cada hora
+    $cada = if ($motivo -like "otro analisis*") { 20 } else { 60 }
+    if (-not (Test-Path $vivo) -or ((Get-Date) - (Get-Item $vivo).LastWriteTime).TotalMinutes -ge $cada) {
         "ultimo ciclo sin trabajo: $(Get-Date -Format s); $motivo" | Set-Content $vivo
         Subir-Registros | Out-Null
     }
