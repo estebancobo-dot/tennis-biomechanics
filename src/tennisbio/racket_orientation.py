@@ -86,6 +86,9 @@ def read_frames(video: Path, a: int, b: int) -> dict:
     return out
 
 
+from .clip_pipeline import READY_HALF  # noqa: E402  (the racket is searched around the wait the same width)
+
+
 def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | None = None, rpose=None,
                  wb3d=None, hand3d_step: int = 2, grip_close_deg: float = 15.0, window=(1.0, 0.8),
                  hitting_face: str | None = None, shot_dir=None) -> dict:
@@ -97,8 +100,10 @@ def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | N
     # around it (the frames in between keep the continuity of the face, no extra 3D)
     ready = (stroke.phases.get("ready") or {}).get("frame")
     a0 = a
-    if ready is not None and 0 <= ready - 1 < a:
-        a = ready - 1
+    if ready is not None and 0 <= ready - READY_HALF < a:
+        a = ready - READY_HALF
+    elif ready is not None and ready - READY_HALF < 0 <= ready - 1 < a:
+        a = 0
     frames = read_frames(video, a, b)
     sk, wrist_k = run.sk, run.sk["dom_wrist"]
     rkps = {}
@@ -109,7 +114,7 @@ def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | N
             if poly is not None:
                 rkps[f] = rpose(fr, [[*poly.min(0), *poly.max(0)]])[0][0]
     hand_frames = ({f: fr for f, fr in frames.items()
-                    if (f >= a0 and (f - a0) % max(1, hand3d_step) == 0) or (ready is not None and abs(f - ready) <= 1)}
+                    if (f >= a0 and (f - a0) % max(1, hand3d_step) == 0) or (ready is not None and abs(f - ready) <= READY_HALF)}
                    if wb3d is not None else {})
     cam = Camera(pitch_deg if pitch_deg is not None else 20.0)
     rec = _Recorder(wb3d, hand_frames) if wb3d is not None else None

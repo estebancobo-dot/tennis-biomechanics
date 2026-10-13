@@ -362,7 +362,12 @@ def body_moves(out: dict, img: np.ndarray, sk: Skeleton, scale: np.ndarray, impa
                 c["finish_trunk"] = ("girado hasta mirar a la valla del lado de su revés" if ratio < 0.45
                                      else "girado tres cuartos hacia el lado de su revés")
             elif dy > 2:
-                c["finish_trunk"] = "sin completar el giro (de lado, hacia la valla de su derecha)"
+                # the hitting hand tells which is right: if it crossed to the other side of the body the
+                # trunk did turn and the two shoulders are swapped (common when they overlap): no value
+                hip_x = (img[f, sk["left_hip"], 0] + img[f, sk["right_hip"], 0]) / 2
+                across = (img[f, sk["dom_wrist"], 0] - hip_x) * sk.dom_sign / scale[f] * 100
+                if not (np.isfinite(across) and across < -5):
+                    c["finish_trunk"] = "poco girado: el pecho sigue hacia la valla de su derecha (terminación corta o en látigo)"
 
 
 def racket_at(kps: dict, img: np.ndarray, sk: Skeleton, f: int, scale: float, feet_img_y: float, faces: dict | None,

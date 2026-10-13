@@ -231,16 +231,19 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     return run
 
 
+READY_HALF = 4          # frames either side of the wait searched for the racket (±80 ms at 50 fps)
+
+
 def _racket_at_ready(run: ClipRun, video: Path, cache: Path, imgsz: int, height_m: float, timing: dict):
     """The racket outline is segmented from the backswing on; the wait (split step) usually comes
-    earlier. Only the frames around each stroke's wait are added (3 per stroke, a separate cache),
+    earlier. Only the frames around each stroke's wait are added (±READY_HALF, a separate cache),
     so the racket and its face are known there too without segmenting the whole approach."""
     import time
     from .racket import pick_racket, racket_from_polygon
 
     T = len(run.img)
     want = sorted({f for s in run.strokes for r0 in [(s.phases.get("ready") or {}).get("frame")] if r0 is not None
-                   for f in range(r0 - 1, r0 + 2) if 0 <= f < T and not len(run.rackets[f])})
+                   for f in range(r0 - READY_HALF, r0 + READY_HALF + 1) if 0 <= f < T and not len(run.rackets[f])})
     if not want:
         return
     rcache = cache.with_name(cache.stem + "_rackets_ready.npz")
