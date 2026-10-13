@@ -143,6 +143,9 @@ def shown_keys(data: dict) -> set[str]:
     from .report import METRICS
 
     shown = set()
+    # «Cópiala» shows every checkpoint that has a value in at least one stroke (with how many back it)
+    for r in data.get("strokes") or []:
+        shown |= {k for k, v in (r.get("lv") or {}).items() if v is not None}
     model = data.get("model") or {}
     cards = list(model.get("cards") or [])
     for v in (model.get("variants") or {}).values():
@@ -190,6 +193,8 @@ def planned_keys() -> set[str]:
     keys |= {f"tphase.{p}" for p in ("ball_net", "ball_bounce", "ball_top")}
     keys |= {f"phase.{p}" for p in KEY_MOMENTS}
     keys |= {"chain.proximal_to_distal"} | {f"face.{p}" for p in KEY_MOMENTS}
+    from .learn import learn_keys
+    keys |= set(learn_keys())                      # every checkpoint of «Cópiala»
     return keys
 
 

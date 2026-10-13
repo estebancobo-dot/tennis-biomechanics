@@ -168,7 +168,7 @@ de TV detrás del fondo (necesita laboratorio, sensores o varias cámaras) y el 
 | Apoyo abierto extremo defensivo | Matriz del usuario | ✔ | clase `stance_role` |
 | Split step | Matriz del usuario | ✔ | `split_landing_vs_opp_s` |
 | Pasos de ajuste | Matriz del usuario | ✔ | `adjustment_steps` |
-| Pasos cruzados | Matriz del usuario | ✔ | `step_kinds` («cruzado») |
+| Pasos cruzados | Matriz del usuario | ✔ | `footwork.crossover_steps` (Cópiala › Pies), `step_kinds` («cruzado») |
 | Paso de ataque hacia dentro de la pista (step-in) | Matriz del usuario | ✔ | `step_in` |
 | Pasos de recuperación (laterales o cruzados) | Matriz del usuario | ✔ | `recovery_pattern`, `recovery_first_step` |
 | Golpe plano, liftado o cortado | Matriz del usuario | ◐ | clase `swing` (por la trayectoria de la mano; el efecto en rpm no) |
