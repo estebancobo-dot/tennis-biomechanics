@@ -209,6 +209,7 @@ def test_phone_width(tmp_path):
             pg.evaluate(f"showTab('{tab}')")
             pg.wait_for_timeout(200)
             widths[tab] = pg.evaluate("document.documentElement.scrollWidth")
+        pg.evaluate("showTab('aprende'); document.getElementById('nav-more').open = false")   # «datos» had opened it
         pg.click("#nav-more summary")
         more = pg.evaluate("document.getElementById('nav-more').getBoundingClientRect().width")
         main = pg.evaluate("Math.min(...[...document.querySelectorAll('.nav > button')].map(b => b.getBoundingClientRect().width))")
