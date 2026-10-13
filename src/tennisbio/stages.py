@@ -193,7 +193,7 @@ def _fp16_setting(c) -> dict:
     return {"fp16": True} if uses_fp16(c) else {}
 
 
-@stage("players", "3", deps=("scenes", "court"),
+@stage("players", "4", deps=("scenes", "court"),
        settings=lambda c: {"fps": c["cheap_pass"]["fps"], "imgsz": c["cheap_pass"].get("imgsz", 960), **_fp16_setting(c)},
        outputs=("players.npz",))
 def st_players(ctx: Context):
@@ -209,24 +209,37 @@ def st_players(ctx: Context):
     ctx.log(f"  juego con pista: {main.sum() / fps / 60:.1f} min de {total_main / fps / 60:.1f} min de cámara principal")
     detect = _pose_detector(ctx.cfg)
     info = probe(ctx.video)
+    # ffmpeg hands over frames already at the model's size (it letterboxes to imgsz anyway): a quarter
+    # of the pixels to decode, pipe and resize; points and boxes are scaled back to the full frame
+    imgsz = int(ctx.cfg["cheap_pass"].get("imgsz", 960))
+    width = imgsz if info.width > imgsz else None
+    sx = info.width / width if width else 1.0
     boxes, kps, confs, feats, idx = [], [], [], [], []
+    t_read = t_model = 0.0
+    import time as _t
     # only the main-camera stretches are decoded (seeking past replays, close-ups and changeovers:
     # a third of a broadcast or more)
     edges = np.flatnonzero(np.diff(np.r_[0, main.astype(int), 0]))
     for a, b_ in zip(edges[::2], edges[1::2]):
-        for k_, frame in enumerate(read_frames(info, start=a / fps, duration=(b_ - a) / fps, fps=fps,
+        t0 = _t.perf_counter()
+        for k_, frame in enumerate(read_frames(info, start=a / fps, duration=(b_ - a) / fps, fps=fps, width=width,
                                                hwaccel=ctx.cfg.get("hwaccel"))):
+            t1 = _t.perf_counter()
+            t_read += t1 - t0
             i = int(a) + k_
             if i >= b_:
                 break
             b, k, c = detect(frame)
-            boxes.append(b.astype(np.float32)); kps.append(k.astype(np.float32)); confs.append(c.astype(np.float32))
             feats.append(np.array([appearance(frame, bb) for bb in b], np.float32).reshape(len(b), 32))
+            boxes.append((b * sx).astype(np.float32)); kps.append((k * sx).astype(np.float32)); confs.append(c.astype(np.float32))
             idx.append(i)
+            t0 = _t.perf_counter()
+            t_model += t0 - t1
             ctx.progress(len(idx), int(main.sum()), "fotogramas con jugadoras")
     savez_atomic(ctx.path("players.npz"), fps=fps, frames=np.array(idx), height=info.height,
                         boxes=_objects(boxes), kps=_objects(kps), confs=_objects(confs), feats=_objects(feats))
-    return {"frames": len(idx)}
+    ctx.log(f"  tiempo: leer vídeo {t_read / 60:.1f} min, modelo y apariencia {t_model / 60:.1f} min ({len(idx)} fotogramas a {width or info.width} px)")
+    return {"frames": len(idx), "read_min": round(t_read / 60, 1), "model_min": round(t_model / 60, 1)}
 
 
 def _on_court(boxes: np.ndarray, H) -> np.ndarray:
