@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 259,
-  "falta": 10,
-  "pocos datos": 127,
-  "aviso": 22
+  "ok": 270,
+  "falta": 0,
+  "pocos datos": 116,
+  "aviso": 32
  },
  "items": [
   {
@@ -983,8 +983,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "5. Bola, resultado y contexto · Dirección cruzada, paralela, al centro, invertidas",
-   "status": "pocos datos",
-   "detail": "se mide (70% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 70% de los golpes y en el informe",
    "keys": [
     "class.shot_type",
     "shot_direction"
@@ -1096,8 +1096,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "5. Bola, resultado y contexto · Resto, globo, dejada, volea, subida a la red",
-   "status": "pocos datos",
-   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "class.approach",
     "class.play"
@@ -1126,8 +1126,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "5b. Resto de derecha · Resto: reconocerlo (saca la rival y es su primer golpe del punto)",
-   "status": "pocos datos",
-   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
    "keys": [
     "class.play"
    ],
@@ -1137,8 +1137,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "5b. Resto de derecha · Resto de primer o de segundo saque",
-   "status": "falta",
-   "detail": "se mide (10% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "status": "ok",
+   "detail": "medido en el 10% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "class.serve_number"
    ],
@@ -1148,8 +1148,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "5b. Resto de derecha · Dirección del saque recibido: abierto, al cuerpo, a la T",
-   "status": "falta",
-   "detail": "se mide (20% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "status": "ok",
+   "detail": "medido en el 20% de los golpes y en el informe",
    "keys": [
     "class.serve_dir"
    ],
@@ -1159,8 +1159,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "5b. Resto de derecha · Lado del resto: iguales / ventaja",
-   "status": "falta",
-   "detail": "se mide (20% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "status": "ok",
+   "detail": "medido en el 20% de los golpes y en el informe",
    "keys": [
     "class.return_side"
    ],
@@ -1215,8 +1215,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "5b. Resto de derecha · Resto: dirección y profundidad de su resto",
-   "status": "pocos datos",
-   "detail": "se mide (90% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 90% de los golpes y en el informe",
    "keys": [
     "class.shot_type",
     "shot_depth_m"
@@ -1227,9 +1227,10 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "5b. Resto de derecha · Resto: tiempo que tiene desde el saque",
-   "status": "falta",
-   "detail": "se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "status": "aviso",
+   "detail": "medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa)",
    "keys": [
+    "class.ball_speed",
     "metrics.time_available_s"
    ],
    "measured": 1.0
@@ -1661,8 +1662,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Golpe plano, liftado o cortado",
-   "status": "pocos datos",
-   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "class.swing"
    ],
@@ -1672,8 +1673,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Botepronto (media volea)",
-   "status": "pocos datos",
-   "detail": "se mide (80% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 80% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "class.contact_type"
    ],
@@ -1683,8 +1684,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Volea de derecha",
-   "status": "pocos datos",
-   "detail": "se mide (80% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 80% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "class.contact_type"
    ],
@@ -1736,8 +1737,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Adaptación a bola rápida, corta, alta, abierta",
-   "status": "pocos datos",
-   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "aviso",
+   "detail": "medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa)",
    "keys": [
     "class.ball_height",
     "class.ball_speed",
@@ -1750,8 +1751,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Dirección: cruzado, paralelo, dentro-fuera, dentro-dentro",
-   "status": "pocos datos",
-   "detail": "se mide (70% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 70% de los golpes y en el informe",
    "keys": [
     "class.shot_type"
    ],
@@ -2587,7 +2588,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "1277 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "1274 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -2902,8 +2903,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b",
-   "status": "falta",
-   "detail": "189 comprobaciones: 4 falta, 1 aviso, 59 pocos datos, 125 ok; la peor: «5b. Resto de derecha · Resto de primer o de segundo saque» (se mide (10% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 189 comprobaciones: 3 aviso, 50 pocos datos, 136 ok; la peor: «5b. Resto de derecha · Resto: tiempo que tiene desde el saque» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -2951,8 +2952,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía",
-   "status": "falta",
-   "detail": "186 comprobaciones: 4 falta, 1 aviso, 49 pocos datos, 132 ok; la peor: «5b. Resto de derecha · Resto de primer o de segundo saque» (se mide (10% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 186 comprobaciones: 3 aviso, 40 pocos datos, 143 ok; la peor: «5b. Resto de derecha · Resto: tiempo que tiene desde el saque» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -2986,8 +2987,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#16 Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas",
-   "status": "pocos datos",
-   "detail": "2 comprobaciones: 2 pocos datos; la peor: «6. Matriz del usuario · Botepronto (media volea)» (se mide (80% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -3140,8 +3141,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#38 Dirección y profundidad del golpe",
-   "status": "falta",
-   "detail": "6 comprobaciones: 1 falta, 5 pocos datos; la peor: «5b. Resto de derecha · Dirección del saque recibido: abierto, al cuerpo, a la T» (se mide (20% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
+   "status": "pocos datos",
+   "detail": "6 comprobaciones: 3 pocos datos, 3 ok; la peor: «5. Bola, resultado y contexto · Bote: profundidad, anchura, dentro/fuera» (se mide (90% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3203,8 +3204,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#47 Modelo técnico con fuentes; cómo saber si está completo",
-   "status": "falta",
-   "detail": "164 comprobaciones: 4 falta, 1 aviso, 40 pocos datos, 119 ok; la peor: «5b. Resto de derecha · Resto de primer o de segundo saque» (se mide (10% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
+   "status": "aviso",
+   "detail": "164 comprobaciones: 3 aviso, 31 pocos datos, 130 ok; la peor: «5b. Resto de derecha · Resto: tiempo que tiene desde el saque» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -3350,8 +3351,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos",
-   "status": "falta",
-   "detail": "165 comprobaciones: 4 falta, 1 aviso, 40 pocos datos, 120 ok; la peor: «5b. Resto de derecha · Resto de primer o de segundo saque» (se mide (10% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 165 comprobaciones: 3 aviso, 31 pocos datos, 131 ok; la peor: «5b. Resto de derecha · Resto: tiempo que tiene desde el saque» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -3469,22 +3470,22 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#89 Matriz §6 Modalidades (plano, liftado, cortado, botepronto, volea, 3 terminaciones)",
-   "status": "pocos datos",
-   "detail": "7 comprobaciones: 3 pocos datos, 4 ok; la peor: «6. Matriz del usuario · Golpe plano, liftado o cortado» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 7 comprobaciones: 7 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral)",
-   "status": "pocos datos",
-   "detail": "10 comprobaciones: 10 pocos datos; la peor: «6. Matriz del usuario · Adaptación a bola rápida, corta, alta, abierta» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 aviso, 9 pocos datos; la peor: «6. Matriz del usuario · Adaptación a bola rápida, corta, alta, abierta» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#91 Matriz §8 Dirección (cruzado, paralelo, dentro-fuera, dentro-dentro)",
    "status": "pocos datos",
-   "detail": "3 comprobaciones: 3 pocos datos; la peor: «6. Matriz del usuario · Dirección: cruzado, paralelo, dentro-fuera, dentro-dentro» (se mide (70% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "3 comprobaciones: 2 pocos datos, 1 ok; la peor: «Dirección del golpe» (cruzada 1, paralela 0, al centro 4, invertida cruzada 0, invertida paralela 1, invertida al centro 1 (se muestra con ≥ 1)"
   },
   {
    "req": 11,
@@ -3749,8 +3750,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#130 Resto de derecha (devolver el saque) con todas sus variantes, en la matriz y en la aplicación",
-   "status": "falta",
-   "detail": "12 comprobaciones: 4 falta, 2 pocos datos, 6 ok; la peor: «5b. Resto de derecha · Resto de primer o de segundo saque» (se mide (10% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 1 aviso, 11 ok; la peor: «5b. Resto de derecha · Resto: tiempo que tiene desde el saque» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   }
  ]
 }
