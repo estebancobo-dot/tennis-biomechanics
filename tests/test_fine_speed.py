@@ -291,7 +291,9 @@ def test_fp16_only_when_asked_and_on_dml():
     from tennisbio.stages import _fp16_setting
 
     cfg = load_config()
-    assert cfg.get("fp16") is False and not uses_fp16(cfg) and _fp16_setting(cfg) == {}
+    # on by default since the model trials on the PC (same strokes found, points within 0.25 px, 2.2x faster)
+    assert cfg.get("fp16") is True and uses_fp16(cfg) == (cfg.get("device") == "dml")
+    assert not uses_fp16({"fp16": False, "device": "dml"}) and _fp16_setting({"fp16": False, "device": "dml"}) == {}
     assert uses_fp16({"fp16": True, "device": "dml"}) and not uses_fp16({"fp16": True, "device": "cpu"})
     assert _fp16_setting({"fp16": True, "device": "dml"}) == {"fp16": True}
 

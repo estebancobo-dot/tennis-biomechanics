@@ -35,9 +35,9 @@ models:
 
 # Dispositivo de inferencia: dml (iGPU con DirectML), cpu u openvino (CPU).
 device: dml
-# Modelo de pose YOLO en media precisión (solo con device: dml): más rápido en la iGPU, pero cambia
-# un poco los puntos del cuerpo. Apagado hasta validarlo frente al modelo normal.
-fp16: false
+# Modelo de pose YOLO en media precisión (solo con device: dml): 2,2 veces más rápido en la iGPU.
+# Validado en el PC (scripts/model_trials.py, 13-10): mismos golpes encontrados y puntos a 0,25 px.
+fp16: true
 # Decodificador de vídeo en la gráfica: auto (d3d11va en Windows si funciona), d3d11va o null (CPU).
 hwaccel: auto
 
