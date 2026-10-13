@@ -40,20 +40,44 @@ SIDELINES = {"left_doubles": -W_DOUBLES / 2, "left_singles": -W_SINGLES / 2,
 LINE_PARAMS = [(25, 70, 150), (15, 70, 130), (20, 115, 140)]
 
 
-def white_lines(frame: np.ndarray, tophat_min=25, max_sat=70, min_val=150) -> np.ndarray:
-    """Binary mask of thin bright low-saturation structures (court lines)."""
+def _line_features(frame: np.ndarray):
+    """Top-hat contrast, saturation and brightness of a frame (shared by all line-mask settings)."""
     hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
     gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     tophat = cv2.morphologyEx(gray, cv2.MORPH_TOPHAT, cv2.getStructuringElement(cv2.MORPH_RECT, (15, 15)))
-    m = (tophat > tophat_min) & (hsv[..., 1] < max_sat) & (hsv[..., 2] > min_val)
-    return m.astype(np.uint8)
+    return tophat, hsv[..., 1], hsv[..., 2]
 
 
-def _line_params(seg):
-    x0, y0, x1, y1 = seg
-    a, b = y1 - y0, x0 - x1
-    n = np.hypot(a, b)
-    return np.array([a / n, b / n, -(a * x0 + b * y0) / n])     # a x + b y + c = 0
+def _threshold(features, tophat_min, max_sat, min_val) -> np.ndarray:
+    tophat, sat, val = features
+    return ((tophat > tophat_min) & (sat < max_sat) & (val > min_val)).astype(np.uint8)
+
+
+def white_lines(frame: np.ndarray, tophat_min=25, max_sat=70, min_val=150) -> np.ndarray:
+    """Binary mask of thin bright low-saturation structures (court lines)."""
+    return _threshold(_line_features(frame), tophat_min, max_sat, min_val)
+
+
+class LineMasks:
+    """The line masks of one frame for each LINE_PARAMS setting, computed once on demand and
+    shared by the check of known homographies and the full search: (mask, dilated, integral of
+    the dilated mask)."""
+
+    def __init__(self, frame: np.ndarray):
+        self.shape = frame.shape[:2]
+        self._frame, self._features, self._m = frame, None, {}
+
+    def __len__(self):
+        return len(LINE_PARAMS)
+
+    def __getitem__(self, i: int):
+        if i not in self._m:
+            if self._features is None:
+                self._features = _line_features(self._frame)
+            mask = _threshold(self._features, *LINE_PARAMS[i])
+            dil = dilate_lines(mask)
+            self._m[i] = (mask, dil, cv2.integral(dil))
+        return self._m[i]
 
 
 def _intersect(l1, l2):
@@ -63,20 +87,32 @@ def _intersect(l1, l2):
 
 def _merge(segs, kind):
     """Group collinear segments (same angle and offset) into infinite lines, longest first."""
-    groups = []
-    for s in segs:
-        L = _line_params(s)
-        if L[1] < 0 or (abs(L[1]) < 1e-9 and L[0] < 0):
-            L = -L
-        length = np.hypot(s[2] - s[0], s[3] - s[1])
-        for g in groups:
-            if abs(np.arctan2(L[1], L[0]) - np.arctan2(g["L"][1], g["L"][0])) < np.radians(2) and abs(L[2] - g["L"][2]) < 8:
-                g["len"] += length
-                break
-        else:
-            groups.append({"L": L, "len": length})
-    groups.sort(key=lambda g: -g["len"])
-    return [g["L"] for g in groups]
+    segs = np.asarray(segs, float).reshape(-1, 4)
+    if not len(segs):
+        return []
+    x0, y0, x1, y1 = segs.T
+    a, b = y1 - y0, x0 - x1
+    n = np.hypot(a, b)
+    Ls = np.c_[a / n, b / n, -(a * x0 + b * y0) / n]                  # a x + b y + c = 0 per segment
+    flip = (Ls[:, 1] < 0) | ((np.abs(Ls[:, 1]) < 1e-9) & (Ls[:, 0] < 0))
+    Ls[flip] = -Ls[flip]
+    lengths = np.hypot(x1 - x0, y1 - y0)
+    angs = np.arctan2(Ls[:, 1], Ls[:, 0])
+    tol = np.radians(2)
+    # greedy grouping in segment order: a segment joins the first group (by its founding line)
+    # of the same angle and offset; the inner comparison is vectorised over the groups
+    g_idx, g_len = np.empty(len(segs), int), np.empty(len(segs))
+    k = 0
+    for i in range(len(segs)):
+        if k:
+            m = np.flatnonzero((np.abs(angs[i] - angs[g_idx[:k]]) < tol) & (np.abs(Ls[i, 2] - Ls[g_idx[:k], 2]) < 8))
+            if len(m):
+                g_len[m[0]] += lengths[i]
+                continue
+        g_idx[k], g_len[k] = i, lengths[i]
+        k += 1
+    order = sorted(range(k), key=lambda j: -g_len[j])                # stable, as list.sort
+    return [Ls[g_idx[j]] for j in order]
 
 
 def _model_samples(samples=60) -> np.ndarray:
@@ -91,25 +127,46 @@ def dilate_lines(mask: np.ndarray) -> np.ndarray:
     return cv2.dilate(mask, np.ones((5, 5), np.uint8))
 
 
-def score_homography(H_court_to_img: np.ndarray, mask: np.ndarray, dilated: np.ndarray | None = None) -> float:
+def score_homography(H_court_to_img: np.ndarray, mask: np.ndarray, dilated: np.ndarray | None = None,
+                     integral: np.ndarray | None = None) -> float:
     """Fraction of points sampled along all model lines that fall on (dilated) white pixels,
     minus the share of white pixels of the area those points cover (on crowd, logos or a
     textured surface almost any line "hits", which says nothing)."""
     dil = dilate_lines(mask) if dilated is None else dilated
+    return float(score_many(np.asarray(H_court_to_img, float)[None], dil, integral)[0])
+
+
+def score_many(Hs: np.ndarray, dilated: np.ndarray, integral: np.ndarray | None = None) -> np.ndarray:
+    """score_homography of K homographies (K, 3, 3) at once on one dilated line mask. The white
+    share of each bounding box comes from the integral image (one lookup instead of averaging
+    the box), so the result is the same as averaging the pixels."""
+    dil = dilated
     h, w = dil.shape
-    img = MODEL_PTS @ H_court_to_img.T
-    if np.any(img[:, 2] <= 0):
-        return 0.0
-    img = img[:, :2] / img[:, 2:]
-    inside = (img[:, 0] >= 0) & (img[:, 0] < w) & (img[:, 1] >= 0) & (img[:, 1] < h)
-    xy = img[inside].astype(int)
-    hits = int(dil[xy[:, 1], xy[:, 0]].sum()) / len(MODEL_PTS)
-    if len(xy) < 3:
-        return hits
-    x0, y0 = xy.min(0)
-    x1, y1 = xy.max(0) + 1
-    density = float(dil[y0:y1, x0:x1].mean())               # white share of the court's bounding box
-    return hits - density
+    integ = cv2.integral(dil) if integral is None else integral
+    Hs = np.asarray(Hs, float).reshape(-1, 3, 3)
+    out = np.zeros(len(Hs))
+    if not len(Hs):
+        return out
+    img = np.einsum("nj,kij->kni", MODEL_PTS, Hs)                     # (K, N, 3)
+    front = (img[..., 2] > 0).all(1)                                  # any point behind the camera → 0
+    with np.errstate(divide="ignore", invalid="ignore"):
+        xy = img[..., :2] / img[..., 2:]
+    inside = front[:, None] & (xy[..., 0] >= 0) & (xy[..., 0] < w) & (xy[..., 1] >= 0) & (xy[..., 1] < h)
+    xi = np.where(inside, xy[..., 0], 0).astype(int)                 # inside ⇒ ≥ 0: int() truncation = floor
+    yi = np.where(inside, xy[..., 1], 0).astype(int)
+    hits = (dil[yi, xi] * inside).sum(1) / MODEL_PTS.shape[0]
+    n_in = inside.sum(1)
+    big = np.iinfo(np.int64).max
+    x0 = np.where(inside, xi, big).min(1)
+    y0 = np.where(inside, yi, big).min(1)
+    x1 = np.where(inside, xi, -1).max(1) + 1
+    y1 = np.where(inside, yi, -1).max(1) + 1
+    box = n_in >= 3
+    x0, y0, x1, y1 = (np.where(box, v, 0) for v in (x0, y0, x1, y1))
+    s = (integ[y1, x1] - integ[y0, x1] - integ[y1, x0] + integ[y0, x0]).astype(float)
+    area = np.maximum((x1 - x0) * (y1 - y0), 1)
+    density = np.where(box, s / area, 0.0)                            # white share of the court's bounding box
+    return np.where(front, hits - density, 0.0)
 
 
 def plausible(H_court_to_img: np.ndarray, shape, min_area=0.04) -> bool:
@@ -137,6 +194,56 @@ def plausible(H_court_to_img: np.ndarray, shape, min_area=0.04) -> bool:
             and near_w > 0.25 * w and far_y > -0.05 * h and near_y > 0.45 * h)
 
 
+_CORNERS = np.array([[-W_DOUBLES / 2, 0, 1], [W_DOUBLES / 2, 0, 1],
+                     [W_DOUBLES / 2, LENGTH, 1], [-W_DOUBLES / 2, LENGTH, 1]])
+
+
+def _maybe_plausible(Hs: np.ndarray, shape) -> np.ndarray:
+    """Vectorised necessary conditions of `plausible` (all but convexity and area) for (K, 3, 3)
+    homographies: a cheap early reject; the survivors still go through `plausible` itself."""
+    h, w = shape[:2]
+    c = np.einsum("nj,kij->kni", _CORNERS, Hs)
+    ok = (c[..., 2] > 0).all(1)
+    with np.errstate(divide="ignore", invalid="ignore"):
+        q = c[..., :2] / c[..., 2:]
+    x, y = q[..., 0], q[..., 1]
+    ok &= ~((x < -0.3 * w) | (x > 1.3 * w) | (y < -0.2 * h) | (y > 1.25 * h)).any(1)
+    ok &= np.linalg.norm(q - np.roll(q, 1, axis=1), axis=2).min(1) >= 0.08 * min(w, h)
+    near_y, far_y = y[:, :2].mean(1), y[:, 2:].mean(1)
+    near_w, far_w = np.abs(x[:, 1] - x[:, 0]), np.abs(x[:, 2] - x[:, 3])
+    ok &= ((near_y > far_y + 0.1 * h) & (x[:, 1] > x[:, 0]) & (0.15 * near_w < far_w) & (far_w < 0.95 * near_w)
+           & (near_w > 0.25 * w) & (far_y > -0.05 * h) & (near_y > 0.45 * h))
+    return ok & np.isfinite(q).all((1, 2))
+
+
+def _perspective_many(src: np.ndarray, dst: np.ndarray) -> np.ndarray:
+    """cv2.getPerspectiveTransform for many 4-point pairs at once: (K, 4, 2) × (K, 4, 2) → (K, 3, 3)
+    (same 8×8 linear system, h33 = 1)."""
+    K = len(src)
+    A = np.zeros((K, 8, 8))
+    b = np.zeros((K, 8))
+    X, Y = src[..., 0], src[..., 1]
+    u, v = dst[..., 0], dst[..., 1]
+    A[:, :4, 0], A[:, :4, 1], A[:, :4, 2] = X, Y, 1
+    A[:, :4, 6], A[:, :4, 7] = -X * u, -Y * u
+    A[:, 4:, 3], A[:, 4:, 4], A[:, 4:, 5] = X, Y, 1
+    A[:, 4:, 6], A[:, 4:, 7] = -X * v, -Y * v
+    b[:, :4], b[:, 4:] = u, v
+    H = np.ones((K, 9))
+    good = np.abs(np.linalg.det(A)) > 1e-12
+    if good.any():
+        H[good, :8] = np.linalg.solve(A[good], b[good][..., None])[..., 0]
+    H[~good] = np.nan
+    return H.reshape(K, 3, 3)
+
+
+# the court rectangles a pair of image "horizontal" lines × a pair of sidelines may be: 6 × 6, in
+# the order of the original nested search (near line, far line) × (left line, right line)
+_MODEL_QUADS = np.array([[[xl, yn], [xr, yn], [xl, yf], [xr, yf]]
+                         for (_, yn), (_, yf) in combinations(sorted(HORIZONTAL.items(), key=lambda kv: kv[1]), 2)
+                         for (_, xl), (_, xr) in combinations(sorted(SIDELINES.items(), key=lambda kv: kv[1]), 2)], float)
+
+
 @dataclass
 class CourtFit:
     H: np.ndarray            # court (x, y, 1) → image
@@ -155,11 +262,13 @@ class CourtFit:
         return p[:, :2] / p[:, 2:]
 
 
-def fit_court(frame: np.ndarray, max_lines=6, good=0.8, min_score=0.5) -> CourtFit | None:
+def fit_court(frame: np.ndarray, max_lines=6, good=0.8, min_score=0.5, masks: LineMasks | None = None) -> CourtFit | None:
     """Best court homography; tries stricter line masks first, then more permissive ones."""
+    masks = LineMasks(frame) if masks is None else masks
     best = None
-    for params in LINE_PARAMS:
-        fit = _fit_with(frame, white_lines(frame, *params), max_lines)
+    for i in range(len(masks)):
+        mask, dil, integ = masks[i]
+        fit = _fit_with(frame, mask, max_lines, dil, integ)
         if fit is not None and (best is None or fit.score > best.score):
             best = fit
         if best is not None and best.score >= good:
@@ -167,8 +276,29 @@ def fit_court(frame: np.ndarray, max_lines=6, good=0.8, min_score=0.5) -> CourtF
     return best if best is not None and best.score >= min_score else None
 
 
-def _fit_with(frame: np.ndarray, mask: np.ndarray, max_lines=6) -> CourtFit | None:
-    dil = dilate_lines(mask)
+def match_known(frame: np.ndarray, known, min_score=0.5, masks: LineMasks | None = None) -> CourtFit | None:
+    """The best of the homographies already found in this video (a broadcast uses a few camera
+    presets) when it fits this frame as well as a fresh fit must (score ≥ min_score on one of the
+    line masks fit_court tries, in the same order); None when none does and a full search is needed."""
+    Hs = np.array([np.asarray(getattr(k, "H", k), float) for k in known]).reshape(-1, 3, 3)
+    if not len(Hs):
+        return None
+    masks = LineMasks(frame) if masks is None else masks
+    Hs = Hs[[plausible(H, masks.shape) for H in Hs]]
+    if not len(Hs):
+        return None
+    for i in range(len(masks)):
+        _, dil, integ = masks[i]
+        sc = score_many(Hs, dil, integ)
+        j = int(np.argmax(sc))
+        if sc[j] >= min_score:
+            return CourtFit(Hs[j].copy(), float(sc[j]))
+    return None
+
+
+def _fit_with(frame: np.ndarray, mask: np.ndarray, max_lines=6, dil: np.ndarray | None = None,
+              integ: np.ndarray | None = None) -> CourtFit | None:
+    dil = dilate_lines(mask) if dil is None else dil
     h, w = mask.shape
     segs = cv2.HoughLinesP(mask * 255, 1, np.pi / 360, threshold=60, minLineLength=w // 12, maxLineGap=10)
     if segs is None:
@@ -179,7 +309,7 @@ def _fit_with(frame: np.ndarray, mask: np.ndarray, max_lines=6) -> CourtFit | No
     # sidelines may be shallow from a low camera, so everything else is a sideline candidate
     horiz = _merge(segs[(ang < 4) | (ang > 176)], "h")[:max_lines]
     sides = _merge(segs[(ang > 6) & (ang < 174)], "s")[:max_lines]
-    best = None
+    quads = []
     for h2 in combinations(horiz, 2):
         h2 = sorted(h2, key=lambda L: -(-L[2] / L[1]))            # lower line in the image first (nearer)
         for s2 in combinations(sides, 2):
@@ -189,16 +319,22 @@ def _fit_with(frame: np.ndarray, mask: np.ndarray, max_lines=6) -> CourtFit | No
             pts = np.array(pts)
             if pts[0, 0] > pts[1, 0]:                                # left sideline first
                 pts = pts[[1, 0, 3, 2]]
-            for (hn, yn), (hf, yf) in combinations(sorted(HORIZONTAL.items(), key=lambda kv: kv[1]), 2):
-                for (sl, xl), (sr, xr) in combinations(sorted(SIDELINES.items(), key=lambda kv: kv[1]), 2):
-                    court = np.array([[xl, yn], [xr, yn], [xl, yf], [xr, yf]], np.float32)
-                    H = cv2.getPerspectiveTransform(court, pts.astype(np.float32))
-                    if not plausible(H, (h, w)):
-                        continue
-                    sc = score_homography(H, mask, dil)
-                    if best is None or sc > best.score:
-                        best = CourtFit(H, sc)
-    return best
+            quads.append(pts)
+    if not quads:
+        return None
+    # every image quadrilateral × every court rectangle, in the order of the former nested loops
+    # (the first of equal scores wins, as before); solved, pre-filtered and scored in batches
+    n_m = len(_MODEL_QUADS)
+    img_q = np.repeat(np.array(quads, np.float32).astype(float), n_m, axis=0)
+    court_q = np.tile(_MODEL_QUADS.astype(np.float32).astype(float), (len(quads), 1, 1))
+    Hs = _perspective_many(court_q, img_q)
+    cand = np.flatnonzero(_maybe_plausible(Hs, (h, w)))
+    cand = cand[[plausible(Hs[k], (h, w)) for k in cand]] if len(cand) else cand
+    if not len(cand):
+        return None
+    sc = score_many(Hs[cand], dil, integ)
+    j = int(np.argmax(sc))
+    return CourtFit(Hs[cand[j]], float(sc[j]))
 
 
 def focal_and_rotation(fit: CourtFit, frame_shape, f_default=None):

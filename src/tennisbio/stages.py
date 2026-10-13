@@ -451,20 +451,52 @@ def st_candidates(ctx: Context, tol_s=0.35):
 
 
 def grab_frame(video: Path, t: float) -> np.ndarray | None:
-    """One full-resolution BGR frame at time t (fast seek)."""
+    """One full-resolution BGR frame at time t (fast seek). Piped as BMP: the same pixels as PNG
+    without compressing and decompressing every frame."""
     import cv2
 
-    raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{t:.3f}", "-i", str(video), "-frames:v", "1",
-                          "-f", "image2pipe", "-vcodec", "png", "pipe:1"], capture_output=True).stdout
+    raw = subprocess.run(["ffmpeg", "-v", "error", "-nostdin", "-ss", f"{t:.3f}", "-i", str(video), "-frames:v", "1",
+                          "-f", "image2pipe", "-vcodec", "bmp", "pipe:1"], capture_output=True).stdout
     return cv2.imdecode(np.frombuffer(raw, np.uint8), cv2.IMREAD_COLOR) if raw else None
 
 
-@stage("court", "2", deps=("scenes",), outputs=("court.json",))
-def st_court(ctx: Context, n_fit=6, min_score=0.5, every_s=8.0):
-    """Court homography of the main camera: fitted on a few long main-camera shots, the best one
-    is checked on every main-camera shot (the broadcast camera barely moves); shots where it does
-    not fit get their own fit."""
-    from .court import CourtFit, camera_pitch_deg, fit_court, score_homography, white_lines
+def _prefetch(fn, items, ahead=4):
+    """Yield (item, fn(item)) in order while the next `ahead` calls already run in threads (each
+    grab_frame is its own ffmpeg process: the seeks overlap with the court fitting). At most
+    ahead + 1 results are held in memory."""
+    from collections import deque
+    from concurrent.futures import ThreadPoolExecutor
+
+    items = list(items)
+    with ThreadPoolExecutor(max_workers=max(1, ahead)) as ex:
+        q = deque()
+        it = iter(items)
+        for x in it:
+            q.append((x, ex.submit(fn, x)))
+            if len(q) > ahead:
+                break
+        while q:
+            x, f = q.popleft()
+            nxt = next(it, None)
+            if nxt is not None:
+                q.append((nxt, ex.submit(fn, nxt)))
+            yield x, f.result()
+
+
+def _same_court(H1, H2, tol_px=1.0) -> bool:
+    from .court import _CORNERS
+
+    p1, p2 = _CORNERS @ np.asarray(H1).T, _CORNERS @ np.asarray(H2).T
+    return bool(np.abs(p1[:, :2] / p1[:, 2:] - p2[:, :2] / p2[:, 2:]).max() <= tol_px)
+
+
+@stage("court", "3", deps=("scenes",), outputs=("court.json",))
+def st_court(ctx: Context, n_fit=6, min_score=0.5, every_s=8.0, max_known=64):
+    """Court homography of the main camera: fitted on a few long main-camera shots; every stretch
+    of main camera first tries the courts already found in this match (a broadcast uses a few
+    camera presets: the best one that scores ≥ min_score, the same bar as a fresh fit, is kept)
+    and only searches its own fit when none does."""
+    from .court import LineMasks, camera_pitch_deg, fit_court, match_known
 
     sc = _read(ctx.path("scenes.json"))
     fps = sc["fps"]
@@ -472,40 +504,55 @@ def st_court(ctx: Context, n_fit=6, min_score=0.5, every_s=8.0):
     if not main:
         _write(ctx.path("court.json"), {"shots": []})
         return {"main_camera_shots": 0}
+    grab = lambda t: grab_frame(ctx.video, t)
     mid = lambda s: (s["start"] + s["end"]) / 2 / fps
-    best = None
-    for s in sorted(main, key=lambda s: s["start"] - s["end"])[:n_fit]:          # longest first
-        fr = grab_frame(ctx.video, mid(s))
-        fit = fit_court(fr) if fr is not None else None
-        if fit is not None and (best is None or fit.score > best[0].score):
-            best = (fit, fr.shape)
-    out = []
+    known = []                       # courts found in this match, the best of the long shots first
+
+    def remember(fit):
+        if not any(_same_court(fit.H, k.H) for k in known) and len(known) < max_known:
+            known.append(fit)
+
+    first = []
+    for _, fr in _prefetch(grab, [mid(s) for s in sorted(main, key=lambda s: s["start"] - s["end"])[:n_fit]]):  # longest first
+        fit = fit_court(fr, min_score=min_score) if fr is not None else None
+        if fit is not None:
+            first.append(fit)
+    for fit in sorted(first, key=lambda f: -f.score):
+        remember(fit)
+    # checked every ~every_s seconds, not only once: a zoom or a pan inside the shot gets its
+    # own fit (or no court) for that stretch instead of a wrong one
+    segs = []
     for i_s, s in enumerate(main):
-        ctx.progress(i_s + 1, len(main), "planos")
-        # checked every ~every_s seconds, not only once: a zoom or a pan inside the shot gets its
-        # own fit (or no court) for that stretch instead of a wrong one
         n = int(np.clip(round((s["end"] - s["start"]) / fps / every_s), 1, 8))
         edges = np.linspace(s["start"], s["end"], n + 1).round().astype(int)
-        for a, b in zip(edges[:-1], edges[1:]):
-            fr = grab_frame(ctx.video, (a + b) / 2 / fps)
-            if fr is None:
-                continue
-            fit, score = best[0] if best else None, 0.0
+        segs += [(i_s, int(a), int(b)) for a, b in zip(edges[:-1], edges[1:])]
+    out, n_known, n_search = [], 0, 0
+    frames = _prefetch(grab, [(a + b) / 2 / fps for _, a, b in segs])
+    for (i_s, a, b), (_, fr) in zip(segs, frames):
+        ctx.progress(i_s + 1, len(main), "planos")
+        if fr is None:
+            continue
+        masks = LineMasks(fr)
+        fit = match_known(fr, known, min_score, masks)
+        if fit is not None:
+            n_known += 1
+        else:
+            n_search += 1
+            fit = fit_court(fr, min_score=min_score, masks=masks)
             if fit is not None:
-                score = score_homography(fit.H, white_lines(fr))
-            if score < min_score:
-                own = fit_court(fr)
-                fit, score = (own, own.score) if own is not None else (None, 0.0)
-            seg = {"start": int(a), "end": int(b), "score": round(score, 3),
-                   "H": None if fit is None or score < min_score else fit.H.tolist(),
-                   "pitch_deg": None if fit is None or score < min_score else round(camera_pitch_deg(fit, fr.shape), 1)}
-            if out and out[-1]["end"] == seg["start"] and out[-1]["H"] == seg["H"]:
-                out[-1]["end"] = seg["end"]               # same court: one segment
-            else:
-                out.append(seg)
+                remember(fit)
+        score = fit.score if fit is not None else 0.0
+        seg = {"start": a, "end": b, "score": round(score, 3),
+               "H": None if fit is None or score < min_score else fit.H.tolist(),
+               "pitch_deg": None if fit is None or score < min_score else round(camera_pitch_deg(fit, fr.shape), 1)}
+        if out and out[-1]["end"] == seg["start"] and out[-1]["H"] == seg["H"]:
+            out[-1]["end"] = seg["end"]               # same court: one segment
+        else:
+            out.append(seg)
     _write(ctx.path("court.json"), {"fps": fps, "shots": out})
     ok = [o for o in out if o["H"] is not None]
-    return {"segments": len(out), "with_court": len(ok),
+    return {"segments": len(out), "with_court": len(ok), "known_court_reused": n_known, "searched": n_search,
+            "court_presets": len(known),
             "pitch_deg_median": float(np.median([o["pitch_deg"] for o in ok])) if ok else None}
 
 
@@ -622,14 +669,15 @@ def court_at(court: dict, t: float, scale: float = 1.0):
 def _check_court(clip: Path, t: float, H, pitch, min_score=0.5):
     """The court of the shot checked on the window's own impact frame (a zoom or a pan the
     sampled frames missed): kept, refitted on that frame, or dropped."""
-    from .court import camera_pitch_deg, fit_court, score_homography, white_lines
+    from .court import LineMasks, camera_pitch_deg, fit_court, score_homography
 
     fr = grab_frame(clip, t)
     if fr is None:
         return H, pitch, None
-    if H is not None and score_homography(H, white_lines(fr)) >= min_score:
+    masks = LineMasks(fr)                 # computed once, shared with the refit
+    if H is not None and score_homography(H, *masks[0]) >= min_score:
         return H, pitch, "ok"
-    own = fit_court(fr)
+    own = fit_court(fr, masks=masks)
     if own is not None and own.score >= min_score:
         return own.H, round(camera_pitch_deg(own, fr.shape), 1), "refit"
     return None, None, "none"
