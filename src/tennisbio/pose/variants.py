@@ -11,6 +11,8 @@ variants are compared on the same task. RTMPose Halpe26 variants also keep the 6
     rtmpose-x                YOLOX-m detector + RTMPose-x Halpe26 384×288 on each person
     rtmpose-x-fp16           the same in half precision
     rtmpose-m                YOLOX-m + RTMPose-m Halpe26 256×192
+    hybrid-x                 YOLO11m-pose (half precision) finds people; RTMPose-x only on the big ones
+    hybrid-x-fp16            the same with RTMPose-x in half precision too
 """
 from __future__ import annotations
 
@@ -25,7 +27,7 @@ from .yolo import _objects, appearance
 from .yolo_onnx import MODELS_DIR
 
 # in order of importance: the trials run in slices of time and the first ones finish first
-VARIANTS = ["yolo11m-pose@960", "rtmpose-x", "rtmpose-m", "yolo11m-pose@960-fp16", "rtmpose-x-fp16", "yolo11m-pose@640"]
+VARIANTS = ["yolo11m-pose@960", "rtmpose-x", "rtmpose-m", "yolo11m-pose@960-fp16", "hybrid-x-fp16", "hybrid-x", "rtmpose-x-fp16", "yolo11m-pose@640"]
 BASELINE = "yolo11m-pose@960"
 
 
@@ -90,11 +92,43 @@ class _Rtm:
         return b.astype(np.float32), k[:, :17], c[:, :17], k[:, 20:26], c[:, 20:26]
 
 
+class _Hybrid:
+    """The way professional systems cascade models: a fast detector-pose (YOLO, in half precision when
+    asked) finds every person; the accurate top-down RTMPose-x (feet included) runs only on the big
+    ones (the near player and whoever is as tall), on their own box. The rest keep YOLO's points."""
+
+    def __init__(self, fp16: bool, device: str):
+        from ..config import load_config
+        from .estimator import PoseEstimator, _ort_session
+
+        self.yolo = _Yolo(960, True, device)
+        pose = load_config()["models"]["poses"]["performance"]
+        self.pose = PoseEstimator(pose["url"], pose["input_size"], device)
+        if fp16:
+            self.pose.model.session = _ort_session(str(to_fp16(self.pose.model.onnx_model)), device)
+
+    def __call__(self, frame):
+        b, k, c, _, _ = self.yolo(frame)
+        fk, fc = np.zeros((len(b), 6, 2), np.float32), np.zeros((len(b), 6), np.float32)
+        if not len(b):
+            return b, k, c, fk, fc
+        h = b[:, 3] - b[:, 1]
+        big = np.where(h >= 0.6 * h.max())[0]
+        rk, rc = self.pose(frame, b[big])
+        rk, rc = np.asarray(rk, np.float32), np.asarray(rc, np.float32)
+        k, c = k.copy(), c.copy()
+        k[big], c[big] = rk[:, :17], rc[:, :17]
+        fk[big], fc[big] = rk[:, 20:26], rc[:, 20:26]
+        return b, k, c, fk, fc
+
+
 def model(variant: str, device: str):
     fp16 = variant.endswith("-fp16")
     name = variant.removesuffix("-fp16")
     if name.startswith("yolo11m-pose@"):
         return _Yolo(int(name.split("@")[1]), fp16, device)
+    if name == "hybrid-x":
+        return _Hybrid(fp16, device)
     if name.startswith("rtmpose-"):
         return _Rtm(name.split("-")[1], fp16, device)
     raise ValueError(f"variante desconocida: {variant}")

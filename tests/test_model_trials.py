@@ -27,4 +27,4 @@ def test_recommend_only_when_better_in_everything():
 def test_variants_parse():
     from tennisbio.pose.variants import BASELINE, VARIANTS
 
-    assert BASELINE in VARIANTS and all(v.startswith(("yolo11m-pose@", "rtmpose-")) for v in VARIANTS)
+    assert BASELINE in VARIANTS and all(v.startswith(("yolo11m-pose@", "rtmpose-", "hybrid-")) for v in VARIANTS)
