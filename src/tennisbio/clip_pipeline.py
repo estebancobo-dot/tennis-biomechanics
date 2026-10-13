@@ -56,7 +56,9 @@ def load_audio(video: Path, sr=22050):
 
     with tempfile.TemporaryDirectory() as d:
         wav = Path(d) / "a.wav"
-        r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(video), "-vn", "-ac", "1", "-ar", str(sr), str(wav)])
+        # a clip without sound (RacketVision) is normal: no audio, and ffmpeg's complaint is not shown
+        r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(video), "-vn", "-ac", "1", "-ar", str(sr), str(wav)],
+                           capture_output=True)
         if r.returncode or not wav.exists():
             return np.zeros(0), sr
         y, _ = librosa.load(wav, sr=sr)
