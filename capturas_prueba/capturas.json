@@ -8,7 +8,9 @@
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
-   "empty_msgs": [],
+   "empty_msgs": [
+    ""
+   ],
    "dashes": 5,
    "ball_moments": 0,
    "feet_cycle": 0,
