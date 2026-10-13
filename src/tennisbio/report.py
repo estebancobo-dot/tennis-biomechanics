@@ -124,7 +124,7 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
         vals = {k: (v if k in FAR_OK else None) for k, v in vals.items()}
     chain = s.get("chain") or {}
     confs = [p.get("confidence", 0) for p in ph.values()]
-    quality = max(0.05, min(0.99, (sum(confs) / len(confs) if confs else 0.5) - 0.08 * len(s.get("review", []))))
+    quality = max(0.05, min(0.99, (sum(confs) / len(confs) if confs else 0.5) - 0.08 * len(doubts(s.get("review")))))
     sit = {"neutra": not (fast or wide or short) and height == "media" and t_av is not None,
            "abierta": wide, "rapida": fast, "baja": height == "baja", "corta": short}
     t = float(s.get("match_time_s", 0))
@@ -148,7 +148,7 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
         "bounceToImpact": _num(m.get("bounce_to_impact_s")), "disp": disp, "height": height, "x": x, "y": y, "fast": fast, "wide": wide, "short": short,
         "stance": None if far else s.get("stance"), "stanceAngle": None if far else s.get("stance_angle_deg"),
         "chainOK": None if far else chain.get("proximal_to_distal"), "chainPeaks": None if far else chain.get("peaks_s"),
-        "quality": round(quality * (0.6 if far else 1.0), 3), "side": "far" if far else "near", "review": s.get("review", []), "source": s.get("impact_source"),
+        "quality": round(quality * (0.6 if far else 1.0), 3), "side": "far" if far else "near", "review": doubts(s.get("review")), "notes": measure_notes(s.get("review")), "source": s.get("impact_source"),
         "m": vals, "vt": t, "sit": sit,
         "phases": {k: v.get("t_rel") for k, v in ph.items()},
         # heights through the stroke and the ball moments (s from contact): near side only
@@ -310,6 +310,20 @@ def noise_from_pairs(strokes: list[dict], min_strokes=20) -> dict:
         if len(diffs) >= min_strokes // 2:
             out[k] = round(1.4826 * float(np.median(np.abs(diffs))) / np.sqrt(2), 2)
     return out
+
+
+# A doubt is about the stroke itself (instant, phases, stroke type). A racket not seen when loaded or an
+# impossible value thrown away only means that measure is missing: the stroke is fine and its other
+# measures stand, so it is a note on that measure, not a doubtful stroke.
+_MEASURE_NOTES = ("racket_not_seen_when_loaded", "impossible:")
+
+
+def doubts(flags) -> list:
+    return [f for f in (flags or []) if not f.startswith(_MEASURE_NOTES)]
+
+
+def measure_notes(flags) -> list:
+    return [f for f in (flags or []) if f.startswith(_MEASURE_NOTES)]
 
 
 def collect(matches: list[Match], out_root: Path, stroke="forehand", player_id: str | None = None) -> dict:

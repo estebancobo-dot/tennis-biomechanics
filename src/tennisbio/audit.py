@@ -404,7 +404,20 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
     failed = [f"{m}: {st}" for m, man in manifests.items() for st, e in man.items() if (e.get("summary") or {}).get("errors")]
     items.append(_item(5, "Automático", "Golpes que fallaron al procesarse", "aviso" if errors else "ok",
                        f"{errors} golpes con error (guardados en strokes_errores.json)" if errors else "ninguno"))
-    review = sum(bool(s.get("review")) for s in strokes)
+    from .report import doubts, measure_notes
+    review = sum(bool(doubts(s.get("review"))) for s in strokes)
+    notes = sum(bool(measure_notes(s.get("review"))) for s in strokes)
+    if strokes:
+        share = review / len(strokes)
+        kinds = {}
+        for s in strokes:
+            for f in doubts(s.get("review")):
+                kinds[f.split(":")[0]] = kinds.get(f.split(":")[0], 0) + 1
+        items.append(_item(5, "Automático", "Golpes dudosos (duda sobre el golpe, no sobre una medida)",
+                           "ok" if share <= 0.3 else "aviso",
+                           f"{review} de {len(strokes)} ({share:.0%}); motivos: {', '.join(f'{k} {v}' for k, v in sorted(kinds.items(), key=lambda kv: -kv[1])) or 'ninguno'}. "
+                           f"Otros {notes} golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): "
+                           "son válidos y no cuentan como dudosos"))
     items.append(_item(5, "Automático", "Nada pide revisión manual", "ok",
                        f"{review} golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario"))
     for m, man in manifests.items():
@@ -582,6 +595,17 @@ def _screens(shots_dir: Path) -> list[dict]:
                                f"{lr['combinations']} combinaciones (cada condición, cada pareja y el ejemplo del usuario), "
                                f"{lr['checkpoints_checked']} puntos de control comprobados; {lr['with_exact_strokes']} con golpes exactos"
                                + (f"; FALLOS en {len(f)}: " + "; ".join(f"{x['sel']}: {', '.join(x['bad'][:2])}" for x in f[:4]) if f else "")))
+        ex = lr.get("example")
+        if ex:
+            items.append(_item(1, "Aprende su derecha", "Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha",
+                               "falta" if ex.get("bad") else "ok" if ex.get("exact") else "pocos datos",
+                               f"{ex.get('exact', 0)} golpes exactos, {ex.get('near', 0)} parecidos; "
+                               f"{ex.get('valued', 0)} de {ex.get('rows', 0)} puntos con su valor medido"
+                               + (f"; FALLOS: {', '.join(ex['bad'][:3])}" if ex.get("bad") else "")))
+        if lr.get("rows_all"):
+            items.append(_item(1, "Aprende su derecha", "Puntos de «Aprende» con su valor medido (todas sus derechas)",
+                               "ok" if lr["valued_all"] >= 0.8 * lr["rows_all"] else "pocos datos",
+                               f"{lr['valued_all']} de {lr['rows_all']}; el resto dice por qué falta"))
     checks = [("golpe", "ball_moments", "«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella", 2),
               ("golpe", "feet_cycle", "«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)", 8),
               ("golpe", "heights_layer", "Barras de altura de la cabeza y la cadera sobre el vídeo", 1),
@@ -630,6 +654,35 @@ PETITIONS = {
     51: Note("el mismo código (clip_pipeline, stages) en la prueba y en los partidos"), 52: r"Navegador de las capturas|Pantalla «",
     53: r"^Pantallas$", 54: r"La bola y ella", 55: r"Filtros combinables", 56: r"Barras de altura", 57: r"más de 4 líneas|Tablas a la vista|^Pantallas$",
     58: Note("elección de modelos (RTMPose, YOLO11, TrackNetV3, RTMW3D)"), 59: r"^Valores posibles$|Cada frase lleva",
+    64: r"Split step|Pasos de ajuste|Pasos cruzados|Pasos de recuperación|Paso de ataque|Número de pasos|Sus pies en este golpe",
+    65: r"^Reproducir|se reproduce al pulsar", 66: Note("registros con fecha y duración (comun.ps1), no una salida"),
+    67: r"^Pantallas$|la tabla sigue debajo", 68: r"^Aprende su derecha$|Puntos de «Aprende» con su valor",
+    69: r"Tu ejemplo", 70: r"responde a cada combinación|^Combinaciones$",
+    71: r"responde a cada combinación|Vídeos de análisis de entrenadores|^Examen de entrenadores$",
+    72: r"tiene su sitio en la pantalla|^Taxonomía$", 73: r"^Pantallas$|^Vistas pedidas$",
+    74: Note("análisis documental (docs/comparativa_apps.md), no una salida"), 75: r"^Rendimiento$",
+    76: r"Golpes dudosos", 77: Note("lanzadores cortos (2c, 2d) sin repetir el análisis de vídeo"),
+    78: Note("proceso: Claude propone las funciones desde la matriz y los entrenadores"), 79: r"Vista lateral",
+    80: Note("cadena de prueba, auditoría y subida a pc-logs"), 81: Note("tamanos.txt y auditoría en Python sin Claude"),
+    82: Note("salidas en C:\\tenis\\output, registros en pc-logs, caché por etapas"), 83: r"^Ficheros$",
+    84: r"Empuje de piernas|Rotación pélvica|Separación cadera|Giro de hombros|Extensión del codo|Retraso de la muñeca|Cadena cinética",
+    85: r"Cabeza estable|Brazo recto|Brazo libre|Inclinación (lateral|del tronco)|flexión de rodillas|Rodilla de atrás|Pie de arrastre",
+    86: r"Bucle de la preparación|Caída de la raqueta|Cara de la raqueta|Trayectoria vertical",
+    87: r"Apoyos abierto|Apoyo abierto extremo|Apoyo en suspensión|Tipo de apoyo",
+    88: r"Split step|Pasos de ajuste|Pasos cruzados|Paso de ataque|Pasos de recuperación",
+    89: r"Golpe plano, liftado|Botepronto|Volea de derecha|Terminación (baja|en látigo|sobre el hombro)",
+    90: r"Adaptación a bola|^Situaciones$", 91: r"Dirección: cruzado|Dirección del golpe",
+    92: r"Zona de impacto|Equilibrio al terminar|Relajación",
+    93: r"Propiedades de la raqueta", 94: r"Velocidad de la cabeza de la raqueta|Velocidad angular|Tasa de desarrollo|Efecto, ángulo",
+    95: r"Latencia de reacción|Mirada fija|Activación muscular", 96: r"Pronación del antebrazo|Rangos articulares",
+    97: r"Apertura prematura|casting|Fuerza en dirección incorrecta|Estabilidad lumbopélvica",
+    98: r"Superficie de la pista|Aerodinámica", 99: r"Pantalla «Análisis de golpe»",
+    100: r"Raqueta al lado del cuerpo", 101: r"Altura y separación del codo", 102: r"Punta de la raqueta respecto a la cabeza",
+    103: r"Transferencia de peso", 104: r"Empuje de piernas", 105: r"Inicio de la aceleración respecto al bote",
+    106: r"Frenado de los hombros", 107: r"Caída de la raqueta (bajo el impacto|por debajo de la bola)",
+    108: r"girar mientras se desplaza", 109: r"Brazo libre recogido|Equilibrio al terminar|Terminación sobre",
+    110: r"Lo que la distingue", 111: r"responde a cada combinación", 112: r"Estilo de su derecha",
+    113: r"^Examen de entrenadores$",
 }
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 
@@ -726,7 +779,7 @@ def petition_items(items: list[dict]) -> list[dict]:
         if rule is None:
             out.append(_item(11, "Peticiones", name, "aviso", "sin comprobación automática asignada"))
             continue
-        if not rule.startswith(("^", "(")) and not any(ch in rule for ch in "|\\[") and " " in rule and not rule[0].isupper():
+        if isinstance(rule, Note):
             out.append(_item(11, "Peticiones", name, "ok" if state.startswith("HECHO") else "pocos datos",
                              f"no se comprueba en las salidas: {rule} (estado: {state.split(' ')[0]})"))
             continue

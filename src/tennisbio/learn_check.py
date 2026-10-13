@@ -24,13 +24,13 @@ _JS_CHECK = r"""([sel, expect]) => {
   const cards = [...document.querySelectorAll('#a-phases .lcard')];
   const ids = cards.map(c => c.dataset.phase);
   if (JSON.stringify(ids) !== JSON.stringify(expect.phases.map(p => p.id))) bad.push(`fichas ${ids.join(',')} en vez de ${expect.phases.map(p => p.id).join(',')}`);
-  let rows = 0;
+  let rows = 0, valued = 0;
   expect.phases.forEach(ph => {
     const cd = cards.find(c => c.dataset.phase === ph.id); if (!cd) return;
     const keys = [...cd.querySelectorAll('.cpk')].map(r => r.dataset.key);
     ph.keys.forEach(k => { if (!keys.includes(k)) bad.push(`${ph.id}: falta ${k}`); });
     cd.querySelectorAll('.cpk').forEach(r => {
-      rows++;
+      rows++; if (r.querySelector('.v')) valued++;
       const v = r.children[1].innerText.trim(), how = r.querySelector('.how').innerText;
       if (!v || v === '—' || /^—\s*$/.test(v)) bad.push(`${r.dataset.key}: sin valor ni motivo`);
       for (const lab of ['Cómo hacerlo tú:', 'Error típico:', 'Ejercicio:']) {
@@ -45,7 +45,7 @@ _JS_CHECK = r"""([sel, expect]) => {
   Object.values(sel).forEach(l => { const li = sit.find(t => t.startsWith(l + ':')); if (!li || li.length < l.length + 15) bad.push(`qué cambia: falta «${l}»`); });
   if (!document.querySelectorAll('#a-plan li').length) bad.push('sin plan');
   if (!document.querySelectorAll('#a-nottv li').length) bad.push('sin lo no medible');
-  return {bad, rows, exact: R.exact.length, wider: R.wider.length};
+  return {bad, rows, valued, exact: R.exact.length, wider: R.wider.length, near: document.querySelectorAll('#a-res .athumbs button').length};
 }"""
 
 
@@ -72,9 +72,13 @@ def check_page(pg, pairs: bool = True, extra: list[dict] | None = None) -> dict:
     want = {d: list(v["levels"]) for d, v in c["conditions"].items()}
     missing = {d: [l for l in lv if l not in conds.get(d, [])] for d, lv in want.items()}
     todo = combos(want, extra, pairs)
-    fails, rows, with_strokes = [], 0, 0
+    fails, rows, with_strokes, extra_out = [], 0, 0, {}
     for sel in todo:
         r = pg.evaluate(_JS_CHECK, [sel, expect])
+        if not sel:
+            extra_out.update(rows_all=r["rows"], valued_all=r["valued"])
+        if sel == USER_EXAMPLE:
+            extra_out["example"] = {"exact": r["exact"], "near": r["near"], "rows": r["rows"], "valued": r["valued"], "bad": r["bad"]}
         rows += r["rows"]
         with_strokes += bool(r["exact"])
         if r["bad"]:
@@ -83,4 +87,4 @@ def check_page(pg, pairs: bool = True, extra: list[dict] | None = None) -> dict:
     for d, lv in missing.items():
         if lv:
             fails.append({"sel": {d: lv}, "bad": ["condición que el código define y la página no ofrece"]})
-    return {"combinations": len(todo), "with_exact_strokes": with_strokes, "checkpoints_checked": rows, "failures": fails}
+    return {"combinations": len(todo), "with_exact_strokes": with_strokes, "checkpoints_checked": rows, "failures": fails, **extra_out}
