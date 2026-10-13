@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 236,
-  "falta": 8,
-  "pocos datos": 127,
-  "aviso": 23
+  "ok": 237,
+  "falta": 0,
+  "pocos datos": 126,
+  "aviso": 31
  },
  "items": [
   {
@@ -408,10 +408,12 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "2. Cuerpo · Paso adelante de la pierna trasera tras el impacto",
-   "status": "pocos datos",
-   "detail": "no aparece en los datos de ningún golpe de esta ejecución (footwork.rear_leg_step_after)",
-   "keys": [],
-   "measured": 0.0
+   "status": "ok",
+   "detail": "medido en el 40% de los golpes y en el informe",
+   "keys": [
+    "footwork.rear_leg_step_after"
+   ],
+   "measured": 0.4
   },
   {
    "req": 1,
@@ -1504,9 +1506,10 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Pasos cruzados",
-   "status": "falta",
-   "detail": "se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "status": "aviso",
+   "detail": "medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa)",
    "keys": [
+    "footwork.crossover_steps",
     "footwork.step_kinds"
    ],
    "measured": 1.0
@@ -2465,7 +2468,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "1273 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "1276 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -2773,8 +2776,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b",
-   "status": "falta",
-   "detail": "177 comprobaciones: 1 falta, 58 pocos datos, 118 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 177 comprobaciones: 1 aviso, 57 pocos datos, 119 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -2787,8 +2790,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#6 Juego de pies: split step, primer paso, ajuste, reacción, recuperación",
-   "status": "falta",
-   "detail": "33 comprobaciones: 1 falta, 4 pocos datos, 28 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 33 comprobaciones: 1 aviso, 4 pocos datos, 28 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -2822,8 +2825,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía",
-   "status": "falta",
-   "detail": "175 comprobaciones: 1 falta, 48 pocos datos, 126 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 175 comprobaciones: 1 aviso, 47 pocos datos, 127 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -3074,8 +3077,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#47 Modelo técnico con fuentes; cómo saber si está completo",
-   "status": "falta",
-   "detail": "153 comprobaciones: 1 falta, 39 pocos datos, 113 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
+   "status": "aviso",
+   "detail": "153 comprobaciones: 1 aviso, 38 pocos datos, 114 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -3165,8 +3168,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#64 Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la ",
-   "status": "falta",
-   "detail": "10 comprobaciones: 1 falta, 2 pocos datos, 7 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 aviso, 2 pocos datos, 7 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -3221,8 +3224,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos",
-   "status": "falta",
-   "detail": "154 comprobaciones: 1 falta, 39 pocos datos, 114 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 154 comprobaciones: 1 aviso, 38 pocos datos, 115 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -3333,8 +3336,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#88 Matriz §5 Pies (split, ajuste, cruzado, paso de ataque, recuperación)",
-   "status": "falta",
-   "detail": "8 comprobaciones: 1 falta, 1 pocos datos, 6 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 aviso, 1 pocos datos, 6 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,

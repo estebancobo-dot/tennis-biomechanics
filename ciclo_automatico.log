@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261013141800
+Start time: 20261013143810
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 10548
+Process ID: 16220
 PSVersion: 5.1.26100.9549
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
@@ -17,25 +17,37 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-13 14:18:00] Codigo nuevo (c2bcdff -> e2c19a9): 2 ficheros
-    docs/matriz_cobertura.md
-    tests/test_audit.py
+==> [2026-10-13 14:38:10] Codigo nuevo (e2c19a9 -> 0b000c3): 2 ficheros
+    scripts/auto_cycle.py
+    tests/test_auto_cycle.py
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating c2bcdff..e2c19a9
+Updating e2c19a9..0b000c3
 Fast-forward
- docs/matriz_cobertura.md | 4 ++--
- tests/test_audit.py      | 8 ++++++++
- 2 files changed, 10 insertions(+), 2 deletions(-)
-Resolved 110 packages in 0.90ms
-Checked 83 packages in 3ms
+ scripts/auto_cycle.py    | 3 ++-
+ tests/test_auto_cycle.py | 1 +
+ 2 files changed, 3 insertions(+), 1 deletion(-)
+Resolved 110 packages in 1ms
+Checked 83 packages in 2ms
     (paso terminado en 1 s)
 
-==> [2026-10-13 14:18:02] Que hace falta: nada
-Ciclo automatico terminado (nada).
+==> [2026-10-13 14:38:12] Que hace falta: informe
+Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
+Informe: C:\tenis\output\_smoke\informe\index.html
+Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
+Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
+Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
+Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
+Auditoría: 237 cumplidos, 0 no cumplidos, 126 sin golpes suficientes, 31 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+Hecho en 108 s, sin volver a analizar vídeo.
+    (paso terminado en 1 min 47 s)
+
+==> [2026-10-13 14:39:59] Revision automatica frente a la ejecucion anterior
+# Revisión automática: OK
+Ciclo automatico terminado (informe).
     (paso terminado en 0 s)
-Empezado 2026-10-13 14:17:59 - terminado 2026-10-13 14:18:02 - duracion total 2 s
+Empezado 2026-10-13 14:38:10 - terminado 2026-10-13 14:40:00 - duracion total 1 min 50 s
 **********************
 Windows PowerShell transcript end
-End time: 20261013141802
+End time: 20261013144000
 **********************
