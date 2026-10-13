@@ -61,3 +61,21 @@ https://arxiv.org/abs/2503.00147 · TennisCourtDetector https://github.com/yastr
 PnLCalib https://arxiv.org/abs/2404.08401 · RapidOCR https://pypi.org/project/rapidocr/ · TennisExpert
 https://github.com/LZYAndy/TennisExpert · ORT DirectML
 https://onnxruntime.ai/docs/execution-providers/DirectML-ExecutionProvider.html
+
+## Resultado de la prueba de modelos en el PC (13-10, 22:14; 6 clips de RacketVision, 13 golpes)
+| Variante | ms/fotograma | F1 | Temblor | Pies |
+|---|---|---|---|---|
+| YOLO11m 960 (antes) | 280 | 0,64 | 0,73 | — |
+| YOLO11m 960 FP16 (**ahora**) | 128 | 0,64 | 0,73 | — |
+| YOLO11m 640 | 152 | 0,71 | 0,77 | — |
+| RTMPose-x (+ YOLOX-m) | 720 | 0,64 | 0,28 | 89 % |
+| RTMPose-x FP16 | 1807 | 0,64 | 0,28 | 89 % |
+| RTMPose-m | 327 | 0,56 | 0,30 | 96 % |
+| Híbrido YOLO FP16 + RTMPose-x | 305 | 0,67 | 0,48 | 99,7 % |
+| Híbrido YOLO FP16 + RTMPose-x FP16 | 268 | 0,67 | 0,48 | 99,7 % |
+| Bola TrackNetV3 / FP16 | 168 / 173 | 86 % / 86 % a ≤10 px | | |
+
+Decisión: pasada barata (partido entero) con YOLO11m 960 FP16 (ya activo). Pasada fina: el híbrido (pies en
+el 99,7 %, temblor −35 %, mismos golpes, 2× el coste de YOLO FP16 solo en las ventanas), después de medir la
+prueba de velocidad con lo actual. RTMPose en FP16 va más lento en DirectML: no se usa. La bola en FP16 no
+gana nada: sigue en FP32. Con 13 golpes, diferencias de F1 de ±0,07 son ruido.
