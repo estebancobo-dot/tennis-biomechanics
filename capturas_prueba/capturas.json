@@ -3,13 +3,13 @@
  "screens": [
   {
    "title": "Aprende su derecha",
-   "text_chars": 25003,
+   "text_chars": 25133,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 1,
+   "dashes": 2,
    "ball_moments": 0,
    "feet_cycle": 0,
    "heights_layer": false,
@@ -49,7 +49,7 @@
   },
   {
    "title": "Panel",
-   "text_chars": 4395,
+   "text_chars": 4393,
    "charts": 11,
    "videos": 5,
    "black_canvases": 0,
@@ -72,7 +72,7 @@
   },
   {
    "title": "Videoteca",
-   "text_chars": 3328,
+   "text_chars": 3298,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -95,7 +95,7 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 5244,
+   "text_chars": 5271,
    "charts": 20,
    "videos": 6,
    "black_canvases": 0,
@@ -119,7 +119,7 @@
   },
   {
    "title": "Comparar golpes",
-   "text_chars": 5257,
+   "text_chars": 5220,
    "charts": 2,
    "videos": 5,
    "black_canvases": 0,
@@ -142,7 +142,7 @@
   },
   {
    "title": "Explorador",
-   "text_chars": 3266,
+   "text_chars": 3242,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -323,6 +323,15 @@
   "combinations": 677,
   "with_exact_strokes": 199,
   "checkpoints_checked": 33850,
-  "failures": []
+  "failures": [],
+  "rows_all": 50,
+  "valued_all": 49,
+  "example": {
+   "exact": 0,
+   "near": 9,
+   "rows": 50,
+   "valued": 49,
+   "bad": []
+  }
  }
 }

@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 164,
+  "ok": 172,
   "falta": 0,
-  "pocos datos": 154,
-  "aviso": 61
+  "pocos datos": 192,
+  "aviso": 19
  },
  "items": [
   {
@@ -841,11 +841,11 @@
    "area": "Taxonomía",
    "name": "4. Raqueta, swing y empuñadura · Cara de la raqueta al final del armado",
    "status": "pocos datos",
-   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "detail": "se mide (60% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "loaded.face_tilt"
    ],
-   "measured": 1.0
+   "measured": 0.6
   },
   {
    "req": 1,
@@ -1414,11 +1414,11 @@
     "acceleration.face_tilt",
     "ball_bounce.face_tilt",
     "ball_net.face_tilt",
-    "ball_top.face_tilt",
-    "extension.face_tilt",
     "finish.face_tilt",
     "impact.face_tilt",
-    "loaded.face_tilt"
+    "loaded.face_tilt",
+    "ready.face_tilt",
+    "recovery.face_tilt"
    ],
    "measured": 1.0
   },
@@ -2213,6 +2213,13 @@
   {
    "req": 3,
    "area": "Valores posibles",
+   "name": "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
+   "status": "ok",
+   "detail": "20 medidas: 4 dudosa, 10 fiable, 1 ruido, 5 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±8.27. Con menos de 5 golpes no se juzga"
+  },
+  {
+   "req": 3,
+   "area": "Valores posibles",
    "name": "Cada frase lleva cuántos golpes la respaldan y su fiabilidad",
    "status": "pocos datos",
    "detail": "0 frases"
@@ -2376,7 +2383,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Aprende su derecha»",
    "status": "ok",
-   "detail": "25003 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "25133 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2392,7 +2399,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Panel»",
    "status": "ok",
-   "detail": "4395 caracteres de texto, 5 vídeos, 11 gráficos",
+   "detail": "4393 caracteres de texto, 5 vídeos, 11 gráficos",
    "file": "pantalla_3_panel.jpg"
   },
   {
@@ -2400,7 +2407,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Videoteca»",
    "status": "ok",
-   "detail": "3328 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "3298 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_4_videoteca.jpg"
   },
   {
@@ -2408,7 +2415,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "5244 caracteres de texto, 6 vídeos, 20 gráficos",
+   "detail": "5271 caracteres de texto, 6 vídeos, 20 gráficos",
    "file": "pantalla_5_golpe.jpg"
   },
   {
@@ -2416,7 +2423,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Comparar golpes»",
    "status": "ok",
-   "detail": "5257 caracteres de texto, 5 vídeos, 2 gráficos",
+   "detail": "5220 caracteres de texto, 5 vídeos, 2 gráficos",
    "file": "pantalla_6_comparar.jpg"
   },
   {
@@ -2424,7 +2431,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Explorador»",
    "status": "ok",
-   "detail": "3266 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "3242 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_7_explorador.jpg"
   },
   {
@@ -2536,6 +2543,20 @@
    "detail": "677 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 33850 puntos de control comprobados; 199 con golpes exactos"
   },
   {
+   "req": 1,
+   "area": "Aprende su derecha",
+   "name": "Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha",
+   "status": "pocos datos",
+   "detail": "0 golpes exactos, 9 parecidos; 49 de 50 puntos con su valor medido"
+  },
+  {
+   "req": 1,
+   "area": "Aprende su derecha",
+   "name": "Puntos de «Aprende» con su valor medido (todas sus derechas)",
+   "status": "ok",
+   "detail": "49 de 50; el resto dice por qué falta"
+  },
+  {
    "req": 2,
    "area": "Vistas pedidas",
    "name": "«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella",
@@ -2608,16 +2629,23 @@
   {
    "req": 5,
    "area": "Automático",
+   "name": "Golpes dudosos (duda sobre el golpe, no sobre una medida)",
+   "status": "aviso",
+   "detail": "5 de 14 (36%); motivos: phase 5, elbow_implausible_at_impact 2. Otros 8 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos"
+  },
+  {
+   "req": 5,
+   "area": "Automático",
    "name": "Nada pide revisión manual",
    "status": "ok",
-   "detail": "10 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario"
+   "detail": "5 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario"
   },
   {
    "req": 9,
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "152 min para 35 min de vídeo ≈ 15.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "151 min para 35 min de vídeo ≈ 15.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -2694,14 +2722,14 @@
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b",
    "status": "pocos datos",
-   "detail": "173 comprobaciones: 107 pocos datos, 66 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "175 comprobaciones: 108 pocos datos, 67 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto",
    "status": "pocos datos",
-   "detail": "20 comprobaciones: 18 pocos datos, 2 ok; la peor: «Bola rápida / lenta» (lenta 2, media 3, rápida 3, muy rápida 2 (se muestra con ≥ 12 golpes))"
+   "detail": "22 comprobaciones: 19 pocos datos, 3 ok; la peor: «Bola rápida / lenta» (lenta 2, media 3, rápida 3, muy rápida 2 (se muestra con ≥ 12 golpes))"
   },
   {
    "req": 11,
@@ -2722,7 +2750,7 @@
    "area": "Peticiones",
    "name": "#8 Cuerdas y cara (suelo, valla lateral o trasera, ángulos, cierre muñeca–raqueta) en todas las fases. Obligatori",
    "status": "pocos datos",
-   "detail": "7 comprobaciones: 2 pocos datos, 5 ok; la peor: «4. Raqueta, swing y empuñadura · Cara de la raqueta al final del armado» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "7 comprobaciones: 2 pocos datos, 5 ok; la peor: «4. Raqueta, swing y empuñadura · Cara de la raqueta al final del armado» (se mide (60% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -2764,7 +2792,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (152 min para 35 min de vídeo ≈ 15.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (151 min para 35 min de vídeo ≈ 15.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2784,15 +2812,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 ok"
+   "status": "pocos datos",
+   "detail": "6 comprobaciones: 1 pocos datos, 5 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 49 de 50 puntos con su valor medido)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#18 Herramienta Python cinemática 2D, 1 jugador y 1 golpe, parametrizable",
-   "status": "ok",
-   "detail": "no se comprueba en las salidas: golpes analizados (estado: HECHO)"
+   "status": "pocos datos",
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (10 del lado cercano (con todo el detalle), 4 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
   },
   {
    "req": 11,
@@ -2806,28 +2834,28 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (152 min para 35 min de vídeo ≈ 15.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (151 min para 35 min de vídeo ≈ 15.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#21 Dos pasadas, barata y fina de ±1 s",
-   "status": "ok",
-   "detail": "no se comprueba en las salidas: golpes analizados (estado: HECHO)"
+   "status": "pocos datos",
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (10 del lado cercano (con todo el detalle), 4 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#22 Solo la cámara principal, sin repeticiones ni primeros planos",
-   "status": "ok",
-   "detail": "no se comprueba en las salidas: golpes analizados (estado: HECHO)"
+   "status": "pocos datos",
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (10 del lado cercano (con todo el detalle), 4 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#23 Seguir a la jugadora en los cambios de lado",
-   "status": "ok",
-   "detail": "no se comprueba en las salidas: golpes analizados (estado: HECHO)"
+   "status": "pocos datos",
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (10 del lado cercano (con todo el detalle), 4 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
   },
   {
    "req": 11,
@@ -2869,7 +2897,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (152 min para 35 min de vídeo ≈ 15.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (151 min para 35 min de vídeo ≈ 15.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2911,7 +2939,7 @@
    "area": "Peticiones",
    "name": "#35 Medidas de la raqueta (altura, ángulos) en todo el golpe; qué miden los profesionales",
    "status": "pocos datos",
-   "detail": "11 comprobaciones: 6 pocos datos, 5 ok; la peor: «4. Raqueta, swing y empuñadura · Cara de la raqueta al final del armado» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "11 comprobaciones: 6 pocos datos, 5 ok; la peor: «4. Raqueta, swing y empuñadura · Cara de la raqueta al final del armado» (se mide (60% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -2924,8 +2952,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#37 Prueba en local sin procesar 20 GB",
-   "status": "ok",
-   "detail": "no se comprueba en las salidas: golpes analizados (estado: HECHO)"
+   "status": "pocos datos",
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (10 del lado cercano (con todo el detalle), 4 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
   },
   {
    "req": 11,
@@ -2938,8 +2966,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#39 Lado del fondo de la pista",
-   "status": "ok",
-   "detail": "no se comprueba en las salidas: golpes analizados (estado: HECHO)"
+   "status": "pocos datos",
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (10 del lado cercano (con todo el detalle), 4 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
   },
   {
    "req": 11,
@@ -3079,357 +3107,357 @@
    "area": "Peticiones",
    "name": "#59 Diferencias solo por encima del error y en situaciones equivalentes",
    "status": "pocos datos",
-   "detail": "3 comprobaciones: 1 pocos datos, 2 ok; la peor: «Cada frase lleva cuántos golpes la respaldan y su fiabilidad» (0 frases)"
+   "detail": "4 comprobaciones: 1 pocos datos, 3 ok; la peor: «Cada frase lleva cuántos golpes la respaldan y su fiabilidad» (0 frases)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#64 Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la ",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "10 comprobaciones: 3 pocos datos, 7 ok; la peor: «3. Pies y desplazamiento · Split step: aterrizaje respecto al golpe del rival» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#65 El play del vídeo funciona (no solo un fotograma)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "11 comprobaciones: 11 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "no se comprueba en las salidas: registros con fecha y duración (comun.ps1), no una salida (estado: HECHO)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#67 No borrar el trabajo hecho: lo complejo como extra",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "14 comprobaciones: 14 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#68 La meta: mejorar mi derecha tomando la de X como base",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "4 comprobaciones: 1 pocos datos, 3 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 49 de 50 puntos con su valor medido)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 49 de 50 puntos con su valor medido)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#70 Las 2000 y pico combinaciones, usables y validadas",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "10 comprobaciones: 9 pocos datos, 1 ok; la peor: «Bola rápida / lenta: cada medida en cada nivel» (68 medidas × 4 niveles = 272 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: lenta 2, media 3, ráp)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#71 El conocimiento de los vídeos de entrenadores en la web",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "21 comprobaciones: 16 pocos datos, 5 ok; la peor: «R1 Golpe liftado de trayectoria moderada, no extrema» (pocos datos: 10 golpes con el dato (hacen falta 12))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "154 comprobaciones: 89 pocos datos, 65 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#73 Revisar la web de arriba abajo para que aporte valor",
    "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 19 comprobaciones: 19 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#74 ¿El análisis de las apps de pago y libres fue profundo o superficial?",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "no se comprueba en las salidas: análisis documental (docs/comparativa_apps.md), no una salida (estado: PARCIAL)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (151 min para 35 min de vídeo ≈ 15.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#76 «Un 50 % de golpes dudosos»",
    "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (5 de 14 (36%); motivos: phase 5, elbow_implausible_at_impact 2. Otros 8 golpes solo tienen una medida que falta (raqueta)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#77 No lanzar pruebas de 6 h para validar",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "no se comprueba en las salidas: lanzadores cortos (2c, 2d) sin repetir el análisis de vídeo (estado: PARCIAL)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#78 No depender de que al usuario se le ocurran funciones",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "no se comprueba en las salidas: proceso: Claude propone las funciones desde la matriz y los entrenadores (estado: PARCIAL)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#79 Vídeos de entrenamiento con otras cámaras, en un apartado aparte y marcado",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "20 comprobaciones: 11 pocos datos, 9 ok; la peor: «Derechas filmadas de lado» (3 (se resume cada medida con 12 o más))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#80 Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "no se comprueba en las salidas: cadena de prueba, auditoría y subida a pc-logs (estado: HECHO)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#81 Tamaño de la salida; comprobación sin gastar tokens",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "no se comprueba en las salidas: tamanos.txt y auditoría en Python sin Claude (estado: HECHO)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#82 Dónde se graban las salidas, qué va a git, qué se reutiliza",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "no se comprueba en las salidas: salidas en C:\\tenis\\output, registros en pc-logs, caché por etapas (estado: HECHO)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#83 Árbol de ficheros generados y validados",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "4 comprobaciones: 4 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#84 Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "10 comprobaciones: 9 pocos datos, 1 ok; la peor: «2. Cuerpo · Separación cadera–hombros (X-factor)» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#85 Matriz §2 Cuerpo (cabeza, brazos, tronco, piernas, pie de arrastre)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "14 comprobaciones: 11 pocos datos, 3 ok; la peor: «2. Cuerpo · Brazo libre extendido y cruzado» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#86 Matriz §3 Raqueta (bucle, caída, cara, trayectoria)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "13 comprobaciones: 8 pocos datos, 5 ok; la peor: «4. Raqueta, swing y empuñadura · Cara de la raqueta al final del armado» (se mide (60% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#87 Matriz §4 Apoyos (abierto, semiabierto, neutro o cerrado, salto, abierto extremo)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "4 comprobaciones: 3 pocos datos, 1 ok; la peor: «3. Pies y desplazamiento · Tipo de apoyo (abierto, semiabierto, neutro, cerrado)» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#88 Matriz §5 Pies (split, ajuste, cruzado, paso de ataque, recuperación)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "8 comprobaciones: 2 pocos datos, 6 ok; la peor: «3. Pies y desplazamiento · Split step: aterrizaje respecto al golpe del rival» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#89 Matriz §6 Modalidades (plano, liftado, cortado, botepronto, volea, 3 terminaciones)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "7 comprobaciones: 7 pocos datos; la peor: «2. Cuerpo · Terminación sobre el hombro / limpiaparabrisas / alrededor / invertida» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "10 comprobaciones: 10 pocos datos; la peor: «6. Matriz del usuario · Adaptación a bola rápida, corta, alta, abierta» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#91 Matriz §8 Dirección (cruzado, paralelo, dentro-fuera, dentro-dentro)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "3 comprobaciones: 3 pocos datos; la peor: «6. Matriz del usuario · Dirección: cruzado, paralelo, dentro-fuera, dentro-dentro» (se mide (70% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#92 Matriz §9 Control (zona de impacto, relajación, equilibrio)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "4 comprobaciones: 3 pocos datos, 1 ok; la peor: «6. Matriz del usuario · Zona de impacto: altura y separación lateral» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#93 Matriz §10 Propiedades de la raqueta",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#94 Matriz §11 Cinemática cuantitativa (velocidad de raqueta, °/s, fuerza, rpm)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "4 comprobaciones: 4 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#95 Matriz §12 Neuro y visión (latencia, mirada, EMG)",
    "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#96 Matriz §13 Microbiomecánica (muñeca, codo, hombro)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#97 Matriz §14 Fugas de energía (apertura prematura, casting, vector)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "4 comprobaciones: 3 pocos datos, 1 ok; la peor: «6. Matriz del usuario · Apertura prematura de hombros (fuga de energía)» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#98 Matriz §15 Contexto y ambiente (superficie, aerodinámica)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "2 comprobaciones: 1 pocos datos, 1 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (no aparece en los datos de ningún golpe de esta ejecución (surface))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#99 Mejora 1 (entrenadores): líneas dibujadas sobre el fotograma",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#100 Mejora 2: raqueta al lado del cuerpo o detrás de la espalda, y adónde apunta la punta",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)» (se mide (40% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#101 Mejora 3: altura y separación del codo",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «2. Cuerpo · Altura y separación del codo (armado e impacto)» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#102 Mejora 4: punta de la raqueta respecto a la cabeza en el armado",
    "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "detail": "ninguna comprobación de esta ejecución la cubre (Punta de la raqueta respecto a la cabeza)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#103 Mejora 5: transferencia de peso en una frase",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «2. Cuerpo · Transferencia de peso del armado al impacto» (se mide (40% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#104 Mejora 6: empuje de piernas («bajar y subir»)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "2 comprobaciones: 2 pocos datos; la peor: «2. Cuerpo · Empuje de piernas («bajar y subir»)» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#105 Mejora 7: ritmo con la bola (caída al subir la bola)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «4. Raqueta, swing y empuñadura · Inicio de la aceleración respecto al bote; girar mientras se desplaza» (se mide (80% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#106 Mejora 8: frenado de los hombros antes del contacto",
    "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "detail": "ninguna comprobación de esta ejecución la cubre (Frenado de los hombros)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#107 Mejora 9: caída por debajo de la bola",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "2 comprobaciones: 2 pocos datos; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 3 derechas de lado; se resume con 12 o más)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#108 Mejora 10: «gira mientras corre»",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «4. Raqueta, swing y empuñadura · Inicio de la aceleración respecto al bote; girar mientras se desplaza» (se mide (80% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#109 Mejora 11: frases con datos existentes (mano libre, terminación, base al terminar, desplazarse bajo)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "4 comprobaciones: 4 pocos datos; la peor: «2. Cuerpo · Terminación sobre el hombro / limpiaparabrisas / alrededor / invertida» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#110 Mejora 12: «Lo que la distingue» (2-3 rasgos frente a la literatura, con vídeo)",
    "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "detail": "ninguna comprobación de esta ejecución la cubre (Lo que la distingue)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#111 Mejora 13: consigna «para imitarla» y error que evita, por fase",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#112 Mejora 14: clase descriptiva de estilo (`fh_style`)",
    "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "detail": "ninguna comprobación de esta ejecución la cubre (Estilo de su derecha)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#113 Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "19 comprobaciones: 16 pocos datos, 3 ok; la peor: «R1 Golpe liftado de trayectoria moderada, no extrema» (pocos datos: 10 golpes con el dato (hacen falta 12))"
   }
  ]
 }
