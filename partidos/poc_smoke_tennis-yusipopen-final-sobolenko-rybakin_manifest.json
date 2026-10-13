@@ -55,5 +55,46 @@
   "summary": {
    "frames": 6350
   }
+ },
+ "score": {
+  "fingerprint": "7c6034796e01f4f6",
+  "version": "5",
+  "seconds": 1541.9,
+  "finished": "2026-10-14 01:23:05",
+  "summary": {
+   "readings": 317,
+   "pressure": 122
+  }
+ },
+ "identity": {
+  "fingerprint": "4bbef101a5208665",
+  "version": "4",
+  "seconds": 13.3,
+  "finished": "2026-10-14 01:23:18",
+  "summary": {
+   "runs": 67,
+   "votes": 42,
+   "confidence": 0.57,
+   "by_end_changes": 66,
+   "by_clothes": 0,
+   "conflicts": 0,
+   "decided": 66
+  }
+ },
+ "candidates": {
+  "fingerprint": "3b2090fe0af58601",
+  "version": "7",
+  "seconds": 14.0,
+  "finished": "2026-10-14 01:23:32",
+  "summary": {
+   "candidates": 328,
+   "far": 261,
+   "with_audio": 321,
+   "opponent_runs": 33,
+   "identity_unknown": 0,
+   "replay_runs_skipped": 7,
+   "replays_by_path": 5,
+   "audio_track": 0
+  }
  }
 }
