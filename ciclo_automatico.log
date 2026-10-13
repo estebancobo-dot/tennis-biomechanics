@@ -40,3 +40,137 @@ Checked 83 packages in 3ms
     (paso terminado en 1 s)
 
 ==> [2026-10-13 19:51:07] Que hace falta: medidas
+Recalcular medidas: empieza 2026-10-13 19:51:07
+
+[2026-10-13 19:51:08] smoke_tennis-yusipopen-final-sobolenko-rybakin: trozo de vídeo tennis-yusipopen-final-sobolenko-rybakin_7264_35m.mkv, rival Sabalenka
+  Se usan los resultados que hay de score aunque su código o su vídeo cambiaron (no se rehacen aquí; la próxima prueba completa sí lo hará)
+[2026-10-13 19:51:08] Etapas baratas rehechas: ninguna (al día) (0 s)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (2026-10-13 19:51:08, etapa 9 de 10)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+  fine:   3 % (6/177 golpes candidatos · 0 confirmados) · 0 s · quedan ≈ 0 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  fine:  13 % (23/177 golpes candidatos · 1 confirmados) · 35 s · quedan ≈ 4 min
+  fine:  31 % (55/177 golpes candidatos · 3 confirmados) · 71 s · quedan ≈ 3 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  fine:  44 % (77/177 golpes candidatos · 4 confirmados) · 2 min · quedan ≈ 2 min
+  fine:  56 % (100/177 golpes candidatos · 5 confirmados) · 2 min · quedan ≈ 2 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  fine:  72 % (127/177 golpes candidatos · 7 confirmados) · 3 min · quedan ≈ 67 s
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  fine:  85 % (150/177 golpes candidatos · 12 confirmados) · 4 min · quedan ≈ 39 s
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+  fine:  89 % (157/177 golpes candidatos · 16 confirmados) · 4 min · quedan ≈ 33 s
+  fine:  90 % (160/177 golpes candidatos · 19 confirmados) · 5 min · quedan ≈ 31 s
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+  fine:  92 % (163/177 golpes candidatos · 22 confirmados) · 5 min · quedan ≈ 27 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  fine: 100 % (177/177 golpes candidatos · 27 confirmados) · 6 min · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine terminada a las 19:57:37 en 6.5 min
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (2026-10-13 19:57:37, etapa 10 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent terminada a las 19:57:37 en 0 s
+[2026-10-13 19:57:37] Medidas recalculadas en 6.5 min: 27 golpes de 177 candidatos en 59 ventanas
+  Tiempo por parte (s): cuerdas_y_3d 147.7, analisis_ventana 12.9, recorte 2.4, pose 0.3
+  Cachés de pose, bola y raqueta reutilizadas en todas las ventanas
+[2026-10-13 19:57:52] smoke_tennis-yusipopen-final-sobolenko-rybakin terminado en 6.7 min
+
+[2026-10-13 19:57:52] Informe, PDF y auditoría…
+Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
+Informe: C:\tenis\output\_smoke\informe\index.html
+  golpes 10/14 (206 s)
+Golpes: 14 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
+Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
+Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
+Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
+Auditoría: 272 cumplidos, 0 no cumplidos, 117 sin golpes suficientes, 29 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+Hecho en 412 s, con las medidas nuevas.
+[2026-10-13 20:04:44] Informe, PDF y auditoría en 6.9 min
+Recalcular medidas: termina 2026-10-13 20:04:44 (total 13.6 min)
+    (paso terminado en 13 min 38 s)
+
+==> [2026-10-13 20:04:46] Revision automatica frente a la ejecucion anterior
+# Revisión automática: OK
+    (paso terminado en 0 s)
+
+==> [2026-10-13 20:04:46] Prueba de modelos (pose y bola, actual frente a alternativas; 30-90 min, sin tocar el analisis)
+== yolo11m-pose@960
+  match101_000: pose hecha (1 min)
+  match101_000: dobles, se omite
+  match11_000: pose hecha (3 min)
+  match11_000: dobles, se omite
+   {'clips': 6, 'ms_per_frame': 282.1, 'gt': 13, 'precision': 0.6, 'recall': 0.692, 'f1': 0.643, 'timing_err_frames': 1.0, 'jerk_pct': 0.734, 'tracked': 0.996, 'feet_seen': 0.0, 'kp_diff_vs_fp32_px': None, 'complete': True}
+== rtmpose-x
+   {'clips': 6, 'ms_per_frame': 719.5, 'gt': 13, 'precision': 0.667, 'recall': 0.615, 'f1': 0.64, 'timing_err_frames': 1.0, 'jerk_pct': 0.281, 'tracked': 1.0, 'feet_seen': 0.887, 'kp_diff_vs_fp32_px': None, 'complete': True}
+== rtmpose-m
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\yolox_m_8xb8-300e_humanart-c2c7a14a.onnx with onnxruntime backend
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-m_simcc-body7_pt-body7-halpe26_700e-256x192-4d3e73dd_20230605.onnx with onnxruntime backend
+  match1_000: pose hecha (6 min)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\yolox_m_8xb8-300e_humanart-c2c7a14a.onnx with onnxruntime backend
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-m_simcc-body7_pt-body7-halpe26_700e-256x192-4d3e73dd_20230605.onnx with onnxruntime backend
+  match104_000: pose hecha (12 min)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\yolox_m_8xb8-300e_humanart-c2c7a14a.onnx with onnxruntime backend
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-m_simcc-body7_pt-body7-halpe26_700e-256x192-4d3e73dd_20230605.onnx with onnxruntime backend
+  match107_000: pose hecha (17 min)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\yolox_m_8xb8-300e_humanart-c2c7a14a.onnx with onnxruntime backend
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-m_simcc-body7_pt-body7-halpe26_700e-256x192-4d3e73dd_20230605.onnx with onnxruntime backend
+  match112_000: pose hecha (18 min)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\yolox_m_8xb8-300e_humanart-c2c7a14a.onnx with onnxruntime backend
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-m_simcc-body7_pt-body7-halpe26_700e-256x192-4d3e73dd_20230605.onnx with onnxruntime backend
+  match115_000: pose hecha (20 min)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\yolox_m_8xb8-300e_humanart-c2c7a14a.onnx with onnxruntime backend
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-m_simcc-body7_pt-body7-halpe26_700e-256x192-4d3e73dd_20230605.onnx with onnxruntime backend
+  match118_000: pose hecha (22 min)
+   {'clips': 6, 'ms_per_frame': 327.1, 'gt': 13, 'precision': 0.583, 'recall': 0.538, 'f1': 0.56, 'timing_err_frames': 1.0, 'jerk_pct': 0.302, 'tracked': 1.0, 'feet_seen': 0.964, 'kp_diff_vs_fp32_px': None, 'complete': True}
+== yolo11m-pose@960-fp16
+   {'clips': 6, 'ms_per_frame': 128.2, 'gt': 13, 'precision': 0.6, 'recall': 0.692, 'f1': 0.643, 'timing_err_frames': 1.0, 'jerk_pct': 0.73, 'tracked': 0.996, 'feet_seen': 0.0, 'kp_diff_vs_fp32_px': 0.25, 'complete': True}
+== rtmpose-x-fp16
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\yolox_m_8xb8-300e_humanart-c2c7a14a.onnx with onnxruntime backend
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend

@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 270,
+  "ok": 272,
   "falta": 0,
-  "pocos datos": 116,
-  "aviso": 32
+  "pocos datos": 117,
+  "aviso": 29
  },
  "items": [
   {
@@ -1227,8 +1227,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "5b. Resto de derecha · Resto: tiempo que tiene desde el saque",
-   "status": "aviso",
-   "detail": "medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa)",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
    "keys": [
     "class.ball_speed",
     "metrics.time_available_s"
@@ -1737,8 +1737,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Adaptación a bola rápida, corta, alta, abierta",
-   "status": "aviso",
-   "detail": "medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa)",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
    "keys": [
     "class.ball_height",
     "class.ball_speed",
@@ -2588,7 +2588,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "1274 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "1269 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -2827,7 +2827,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -2904,7 +2904,7 @@
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 189 comprobaciones: 3 aviso, 50 pocos datos, 136 ok; la peor: «5b. Resto de derecha · Resto: tiempo que tiene desde el saque» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 189 comprobaciones: 1 aviso, 50 pocos datos, 138 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -2953,7 +2953,7 @@
    "area": "Peticiones",
    "name": "#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 186 comprobaciones: 3 aviso, 40 pocos datos, 143 ok; la peor: «5b. Resto de derecha · Resto: tiempo que tiene desde el saque» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 186 comprobaciones: 1 aviso, 40 pocos datos, 145 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -2974,7 +2974,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3016,7 +3016,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3079,7 +3079,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3205,7 +3205,7 @@
    "area": "Peticiones",
    "name": "#47 Modelo técnico con fuentes; cómo saber si está completo",
    "status": "aviso",
-   "detail": "164 comprobaciones: 3 aviso, 31 pocos datos, 130 ok; la peor: «5b. Resto de derecha · Resto: tiempo que tiene desde el saque» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "detail": "164 comprobaciones: 1 aviso, 31 pocos datos, 132 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -3352,7 +3352,7 @@
    "area": "Peticiones",
    "name": "#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 165 comprobaciones: 3 aviso, 31 pocos datos, 131 ok; la peor: «5b. Resto de derecha · Resto: tiempo que tiene desde el saque» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 165 comprobaciones: 1 aviso, 31 pocos datos, 133 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -3373,7 +3373,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3477,8 +3477,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral)",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 aviso, 9 pocos datos; la peor: «6. Matriz del usuario · Adaptación a bola rápida, corta, alta, abierta» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "status": "pocos datos",
+   "detail": "10 comprobaciones: 9 pocos datos, 1 ok; la peor: «Bola rápida / lenta» (lenta 2, media 3, rápida 3, muy rápida 2 (se muestra con ≥ 12 golpes))"
   },
   {
    "req": 11,
@@ -3723,7 +3723,7 @@
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3751,7 +3751,7 @@
    "area": "Peticiones",
    "name": "#130 Resto de derecha (devolver el saque) con todas sus variantes, en la matriz y en la aplicación",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 1 aviso, 11 ok; la peor: «5b. Resto de derecha · Resto: tiempo que tiene desde el saque» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 12 ok"
   }
  ]
 }

@@ -1,12 +1,10 @@
 # Auditoría de requisitos (forehand)
 
-10 golpes del lado cercano. ✔ 270 cumplidos · ✘ 0 no cumplidos · … 116 sin golpes suficientes en esta ejecución · ! 32 avisos
+10 golpes del lado cercano. ✔ 272 cumplidos · ✘ 0 no cumplidos · … 117 sin golpes suficientes en esta ejecución · ! 29 avisos
 
 ## 1. Toda la taxonomía del golpe y todas sus variantes (situaciones)
 
-- ! **5b. Resto de derecha · Resto: tiempo que tiene desde el saque**: medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa)
 - ! **6. Matriz del usuario · Pasos cruzados**: medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa)
-- ! **6. Matriz del usuario · Adaptación a bola rápida, corta, alta, abierta**: medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa)
 - … **forehand: golpes analizados**: 10 del lado cercano (con todo el detalle), 4 del lejano; con menos de 20 muchas situaciones no se pueden describir
 - … **1. Fases · Golpe del rival → split step**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **1. Fases · Final del armado (máximo giro, raqueta más atrás)**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
@@ -135,6 +133,7 @@
 - ✔ **5b. Resto de derecha · Resto: split step respecto al saque**: medido en el 40% de los golpes y en el informe
 - ✔ **5b. Resto de derecha · Resto: armado corto (bloqueo) o swing completo; terminación**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **5b. Resto de derecha · Resto: dirección y profundidad de su resto**: medido en el 90% de los golpes y en el informe
+- ✔ **5b. Resto de derecha · Resto: tiempo que tiene desde el saque**: medido en el 100% de los golpes y en el informe
 - ✔ **6. Matriz del usuario · Empuje de piernas / extensión triple (tobillo, rodilla, cadera)**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **6. Matriz del usuario · Separación cadera–hombro (torque)**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **6. Matriz del usuario · Giro de hombros (unit turn)**: medido en el 100% de los golpes y en el informe
@@ -163,6 +162,7 @@
 - ✔ **6. Matriz del usuario · Terminación sobre el hombro contrario**: medido en el 100% de los golpes y en el informe
 - ✔ **6. Matriz del usuario · Terminación en látigo sobre el mismo hombro (buggy whip)**: medido en el 100% de los golpes y en el informe
 - ✔ **6. Matriz del usuario · Terminación baja, a la cintura contraria**: medido en el 100% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Adaptación a bola rápida, corta, alta, abierta**: medido en el 100% de los golpes y en el informe
 - ✔ **6. Matriz del usuario · Dirección: cruzado, paralelo, dentro-fuera, dentro-dentro**: medido en el 70% de los golpes y en el informe
 - ✔ **6. Matriz del usuario · Zona de impacto: altura y separación lateral**: medido en el 100% de los golpes y en el informe
 - ✔ **6. Matriz del usuario · Equilibrio al terminar**: medido en el 100% de los golpes y en el informe
@@ -203,7 +203,7 @@
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 3230 caracteres de texto, 5 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 6903 caracteres de texto, 5 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 3996 caracteres de texto, 5 vídeos, 0 gráficos
-- ✔ **Pantalla «Datos del análisis»**: 1274 caracteres de texto, 5 vídeos, 0 gráficos
+- ✔ **Pantalla «Datos del análisis»**: 1269 caracteres de texto, 5 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
@@ -314,38 +314,37 @@
 
 ## 9. Rendimiento: un partido en horas, no días
 
-- ! **Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
+- ! **Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
-- ! **#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 189 comprobaciones: 3 aviso, 50 pocos datos, 136 ok; la peor: «5b. Resto de derecha · Resto: tiempo que tiene desde el saque» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
+- ! **#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 189 comprobaciones: 1 aviso, 50 pocos datos, 138 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
 - ! **#6 Juego de pies: split step, primer paso, ajuste, reacción, recuperación**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 33 comprobaciones: 1 aviso, 4 pocos datos, 28 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
 - ! **#8 Cuerdas y cara (suelo, valla lateral o trasera, ángulos, cierre muñeca–raqueta) en todas las fases. Obligatori**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 7 comprobaciones: 7 ok
 - ! **#9 Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok
 - ! **#10 Ver los cambios en la prueba rápida, sin 1 h**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 11 comprobaciones: 11 ok
-- ! **#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 186 comprobaciones: 3 aviso, 40 pocos datos, 143 ok; la peor: «5b. Resto de derecha · Resto: tiempo que tiene desde el saque» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
+- ! **#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 186 comprobaciones: 1 aviso, 40 pocos datos, 145 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
 - ! **#12 Validar cada medida con clips públicos anotados; el usuario no valida a mano**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
-- ! **#14 Rendimiento: un partido en horas, no días**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
+- ! **#14 Rendimiento: un partido en horas, no días**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
 - ! **#15 Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#16 Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok
-- ! **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
-- ! **#29 Fase 0: entorno y fps reales, con YOLO**: 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
+- ! **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
+- ! **#29 Fase 0: entorno y fps reales, con YOLO**: 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
 - ! **#45 Todo automático y completo: el usuario no revisa nada**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok
-- ! **#47 Modelo técnico con fuentes; cómo saber si está completo**: 164 comprobaciones: 3 aviso, 31 pocos datos, 130 ok; la peor: «5b. Resto de derecha · Resto: tiempo que tiene desde el saque» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
+- ! **#47 Modelo técnico con fuentes; cómo saber si está completo**: 164 comprobaciones: 1 aviso, 31 pocos datos, 132 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
 - ! **#55 Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#64 Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la **: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 aviso, 2 pocos datos, 7 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
-- ! **#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 165 comprobaciones: 3 aviso, 31 pocos datos, 131 ok; la peor: «5b. Resto de derecha · Resto: tiempo que tiene desde el saque» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
+- ! **#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 165 comprobaciones: 1 aviso, 31 pocos datos, 133 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
 - ! **#73 Revisar la web de arriba abajo para que aporte valor**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 22 comprobaciones: 22 ok
-- ! **#75 Velocidad: «10 golpes en 5 horas es absurdo»**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
+- ! **#75 Velocidad: «10 golpes en 5 horas es absurdo»**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
 - ! **#88 Matriz §5 Pies (split, ajuste, cruzado, paso de ataque, recuperación)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 aviso, 1 pocos datos, 6 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
 - ! **#89 Matriz §6 Modalidades (plano, liftado, cortado, botepronto, volea, 3 terminaciones)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 7 comprobaciones: 7 ok
-- ! **#90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 aviso, 9 pocos datos; la peor: «6. Matriz del usuario · Adaptación a bola rápida, corta, alta, abierta» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
 - ! **#95 Matriz §12 Neuro y visión (latencia, mirada, EMG)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#100 Mejora 2: raqueta al lado del cuerpo o detrás de la espalda, y adónde apunta la punta**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#109 Mejora 11: frases con datos existentes (mano libre, terminación, base al terminar, desplazarse bajo)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 ok
 - ! **#124 Hacia dónde mira el tronco y las manos en la espera, medidas fiables**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
-- ! **#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
-- ! **#130 Resto de derecha (devolver el saque) con todas sus variantes, en la matriz y en la aplicación**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 1 aviso, 11 ok; la peor: «5b. Resto de derecha · Resto: tiempo que tiene desde el saque» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
+- ! **#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
+- ! **#130 Resto de derecha (devolver el saque) con todas sus variantes, en la matriz y en la aplicación**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 12 ok
 - … **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: no se comprueba en las salidas: pendiente por diseño: los 4 partidos se analizan una vez, al final (estado: NO)
 - … **#2 Ver informe y salidas en el móvil**: no se comprueba en las salidas: aplazado por el usuario (móvil al final) (estado: NO)
 - … **#3 Nube / OneDrive sin usar el PC como servidor**: no se comprueba en las salidas: aplazado por el usuario (nube al final) (estado: NO)
@@ -375,6 +374,7 @@
 - … **#85 Matriz §2 Cuerpo (cabeza, brazos, tronco, piernas, pie de arrastre)**: 14 comprobaciones: 4 pocos datos, 10 ok; la peor: «6. Matriz del usuario · Rodilla de atrás en la carga (110–130°) y de delante en el impacto» (vista lateral de entrenamiento: back_knee_loaded_deg en 3 derechas de lado, front_knee_impact_deg en 3 derechas de lado;)
 - … **#86 Matriz §3 Raqueta (bucle, caída, cara, trayectoria)**: 13 comprobaciones: 2 pocos datos, 11 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 3 derechas de lado; se resume con 12 o más)
 - … **#87 Matriz §4 Apoyos (abierto, semiabierto, neutro o cerrado, salto, abierto extremo)**: 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Apoyo abierto extremo defensivo» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
+- … **#90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral)**: 10 comprobaciones: 9 pocos datos, 1 ok; la peor: «Bola rápida / lenta» (lenta 2, media 3, rápida 3, muy rápida 2 (se muestra con ≥ 12 golpes))
 - … **#91 Matriz §8 Dirección (cruzado, paralelo, dentro-fuera, dentro-dentro)**: 3 comprobaciones: 2 pocos datos, 1 ok; la peor: «Dirección del golpe» (cruzada 1, paralela 0, al centro 4, invertida cruzada 0, invertida paralela 1, invertida al centro 1 (se muestra con ≥ 1)
 - … **#92 Matriz §9 Control (zona de impacto, relajación, equilibrio)**: 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Zona de impacto: delante de la cadera» (vista lateral de entrenamiento: contact_in_front_pct en 3 derechas de lado; se resume con 12 o más)
 - … **#97 Matriz §14 Fugas de energía (apertura prematura, casting, vector)**: 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Liberación anticipada de la muñeca («casting»)» (vista lateral de entrenamiento: lag_accel_deg en 3 derechas de lado, lag_pre_impact_deg en 3 derechas de lado; se resume)
