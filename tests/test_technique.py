@@ -265,3 +265,24 @@ def test_racket_head_beside_or_behind_the_body():
     a = racket_at(beside, img, sk, 1, 400.0, np.nan, None, None)["racket_head_lateral"]
     b = racket_at(behind, img, sk, 1, 400.0, np.nan, None, None)["racket_head_lateral"]
     assert a > 5 and b < -2
+
+
+def test_tip_vs_head_and_shoulder_brake():
+    from tennisbio.technique import racket_at
+    kp = standing(T=100)
+    nose_y = kp[10, SK["nose"], 1]
+    # tip 40 px above the nose with a 400 px tall body: +10 % of her height
+    k = {"10": [[300.0, nose_y - 40], [300.0, nose_y], [300.0, nose_y + 60], [290.0, nose_y - 20], [310.0, nose_y - 20]]}
+    r = racket_at(k, kp, SK, 10, 400.0, float(kp[10, SK["left_ankle"], 1]), None, None)
+    assert abs(r["racket_tip_vs_head"] - 10.0) < 0.6
+    # the shoulder line turns fast after the backswing and slows down before contact: braking
+    t = np.arange(100)
+    w0 = kp[:, SK["right_shoulder"], 0] - kp[:, SK["left_shoulder"], 0]
+    turn = np.radians(np.interp(t, [0, 45, 52, 58, 60, 100], [80, 80, 40, 8, 5, 5]))
+    mid = (kp[:, SK["right_shoulder"], 0] + kp[:, SK["left_shoulder"], 0]) / 2
+    kp[:, SK["right_shoulder"], 0] = mid + w0 / 2 * np.cos(turn)
+    kp[:, SK["left_shoulder"], 0] = mid - w0 / 2 * np.cos(turn)
+    phases = {"ready": 10, "takeback": 20, "loaded": 45, "acceleration": 55, "impact": 60, "extension": 62,
+              "finish": 75, "recovery": 90}
+    tech = stroke_technique(kp, np.ones((100, 17)), SK, 50.0, np.full(100, 400.0), 60, phases, "forehand", None)
+    assert tech["stroke"]["shoulder_brake"] > 50

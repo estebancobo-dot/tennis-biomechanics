@@ -381,6 +381,12 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
                            (f". No se dan como valor suyo (ruido): {noisy_txt}" if noisy else "")
                            + (". No coinciden con el segundo método (3D), no se dan: " + ", ".join(f"{k} 2D {rel[k]['med2d']}° / 3D {rel[k]['med3d']}°" for k in biased) if biased else "")
                            + ". «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"))
+    vals_n = [stroke_values(s) for s in near]
+    for k, name in (("loaded.racket_tip_vs_head", "Punta de la raqueta respecto a la cabeza en el armado"),
+                    ("stroke.shoulder_brake", "Frenado de los hombros antes del contacto")):
+        n = sum(isinstance(v.get(k), (int, float)) for v in vals_n)
+        items.append(_item(3, "Valores posibles", name, "ok" if near and n >= 0.5 * len(near) else "pocos datos",
+                           f"medido en {n} de {len(near)} golpes; en «Aprende»" + (f"; fiabilidad: {rel[k]['verdict']}" if rel.get(k) else "")))
     if data:
         lines = [ln for c in (model.get("cards") or []) for ln in c.get("lines") or []]
         weak = [ln["key"] for ln in lines if (ln.get("n") or 0) < MIN_N or ln.get("rel") is None]
@@ -619,6 +625,12 @@ def _screens(shots_dir: Path) -> list[dict]:
                                f"{ex.get('exact', 0)} golpes exactos, {ex.get('near', 0)} parecidos; "
                                f"{ex.get('valued', 0)} de {ex.get('rows', 0)} puntos con su valor medido"
                                + (f"; FALLOS: {', '.join(ex['bad'][:3])}" if ex.get("bad") else "")))
+        if "signature" in lr:
+            items.append(_item(1, "Aprende su derecha", "Lo que la distingue: su firma (rasgos que repite) con vídeo",
+                               "ok" if lr["signature"] else "pocos datos",
+                               f"{lr['signature']} rasgos que repite en ≥ 75 % de sus golpes, solo de medidas fiables"))
+            items.append(_item(1, "Aprende su derecha", "Estilo de su derecha en una frase",
+                               "ok" if "faltan" not in (lr.get("style") or "faltan") else "pocos datos", lr.get("style") or "—"))
         if lr.get("rows_all"):
             items.append(_item(1, "Aprende su derecha", "Puntos de «Aprende» con su valor medido (todas sus derechas)",
                                "ok" if lr["valued_all"] >= 0.8 * lr["rows_all"] else "pocos datos",

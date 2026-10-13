@@ -90,3 +90,28 @@ def test_noise_is_not_shown_as_her_value(tmp_path):
     assert "no fiable desde la tele" in noisy and "golpes" not in noisy.split("no fiable")[0]
     assert "no fiable" not in good and "°" in good
     assert "no fiable desde la tele" in flip and "%" in flip
+
+
+@pytest.mark.skipif(not CHROMIUM.exists(), reason="sin navegador para la prueba de la web")
+def test_signature_shows_what_she_repeats(tmp_path):
+    from playwright.sync_api import sync_playwright
+
+    rows = synthetic(40)
+    for i, r in enumerate(rows):                 # she always loops the takeback; the finish varies
+        r["technique"]["classes"]["takeback"] = "bucle"
+        r["technique"]["jitter"] = {}
+        r["video"] = None
+    d = tmp_path / "m1"
+    d.mkdir()
+    (d / "strokes.json").write_text(json.dumps(rows), encoding="utf-8")
+    html = build([Match("m1", None, Player("p", "P"))], tmp_path)
+    with sync_playwright() as p:
+        b = p.chromium.launch(executable_path=str(CHROMIUM), args=["--allow-file-access-from-files"])
+        pg = b.new_page()
+        pg.goto(html.resolve().as_uri())
+        pg.wait_for_timeout(500)
+        pg.evaluate("document.querySelector('.nav button[data-tab=\"aprende\"]').click()")
+        sig = pg.evaluate("document.getElementById('a-sig').innerText")
+        b.close()
+    assert "Estilo de su derecha: armado bucle (100 %)" in sig
+    assert "bucle en 40 de 40 golpes" in sig and "Cópialo:" in sig

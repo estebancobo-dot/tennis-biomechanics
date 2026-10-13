@@ -63,6 +63,7 @@ DESCRIPTORS = {
     "racket_tip_height": ("raqueta", "Altura de la punta de la raqueta", "%", 2, "sobre el pie más bajo"),
     "racket_head_lateral": ("raqueta", "Cabeza de la raqueta respecto al hombro dominante", "%", 2,
                             "lateral, % de altura: + por fuera (al lado del cuerpo), − hacia la espalda"),
+    "racket_tip_vs_head": ("raqueta", "Punta de la raqueta respecto a su cabeza", "%", 2, "vertical, % de altura: + la punta por encima de la cabeza"),
     "face_tilt": ("raqueta", "Cierre de la cara", "°", 2, "+ cuerdas hacia el suelo; en el impacto es una estimación"),
     "face_yaw": ("raqueta", "Dirección de la cara", "°", 2, "0 = hacia la red"),
 }
@@ -101,6 +102,8 @@ STROKE_DESCRIPTORS = {
     "weight_shift": ("equilibrio", "Transferencia de peso", "", 2, "cambio del peso entre los pies del armado al impacto (+ hacia el pie no dominante)"),
     "t_max_shoulder_turn": ("ritmo", "Máximo giro de hombros", "s", 2, "antes del impacto (élite ≈ 0,23 s, Landlinger 2010)"),
     "t_max_hip_turn": ("ritmo", "Máximo giro de cadera", "s", 2, "antes del impacto (élite ≈ 0,24 s, Landlinger 2010)"),
+    "shoulder_brake": ("ritmo", "Frenado de los hombros antes del contacto", "%", 0,
+                       "cuánto ha bajado la velocidad de giro de los hombros en el contacto respecto a su pico en el swing (100 = parados)"),
     "pause_at_loaded": ("ritmo", "Pausa en el armado", "s", 2, "mano casi quieta entre el armado y el swing"),
     "hand_on_handle": ("raqueta", "Mano en el mango", "%", 1, "distancia muñeca–final del mango, % de la longitud de la raqueta"),
     "racket_speed_rel": ("raqueta", "Velocidad de la raqueta (relativa)", "alt/s", 1, "punta antes y después del desenfoque, en alturas por segundo: solo para comparar sus golpes"),
@@ -295,6 +298,9 @@ def racket_at(kps: dict, img: np.ndarray, sk: Skeleton, f: int, scale: float, fe
             out["racket_forearm"] = _deg(math.degrees(math.acos(np.clip(c, -1, 1))))
         if np.isfinite(feet_img_y):
             out["racket_tip_height"] = _pct((feet_img_y - tip[1]) / scale)
+        nose = img[f, sk["nose"]]
+        if np.isfinite(nose).all():          # + the tip above her head (image vertical)
+            out["racket_tip_vs_head"] = _pct((nose[1] - tip[1]) / scale)
         sh = img[f, sk["dom_shoulder"]]
         if np.isfinite(sh).all():         # + outside the hitting shoulder (beside the body), − towards her back
             out["racket_head_lateral"] = _pct((head[0] - sh[0]) * sk.dom_sign / scale)
@@ -510,6 +516,14 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         s["shoulders_open_first"] = round(s["t_max_shoulder_turn"] - s["t_max_hip_turn"], 3)
     if ev["acceleration"] is not None and bounce is not None:
         s["acceleration_vs_bounce"] = round((ev["acceleration"] - bounce) / fps, 3)
+    # shoulder brake: in the kinetic chain the trunk slows down before contact and passes its speed to
+    # the arm. Speed of the shoulder-line turn at contact against its peak in the forward swing.
+    if ev["loaded"] is not None and impact - ev["loaded"] >= 3:
+        from .kinematics import smooth
+        w = np.abs(np.gradient(smooth(sh, fps, 0.06))) * fps
+        seg = w[ev["loaded"]:impact + 1]
+        if np.isfinite(seg).sum() >= 3 and np.isfinite(w[impact]) and np.nanmax(seg) > 30:   # ≥ 30 °/s: it did turn
+            s["shoulder_brake"] = round(100 * (1 - float(w[impact]) / float(np.nanmax(seg))), 0)
     # leg drive ("sit down and come up") and weight transfer, from the postures already measured
     ph_ = out["phases"]
     lows = [ph_.get(p, {}).get("hip_height") for p in ("loaded", "acceleration")]

@@ -43,9 +43,11 @@ _JS_CHECK = r"""([sel, expect]) => {
   });
   const sit = [...document.querySelectorAll('#a-sit li')].map(li => li.innerText);
   Object.values(sel).forEach(l => { const li = sit.find(t => t.startsWith(l + ':')); if (!li || li.length < l.length + 15) bad.push(`qué cambia: falta «${l}»`); });
+  if (!/Estilo de su derecha:/.test(document.getElementById('a-sig').innerText)) bad.push('sin estilo ni firma');
+  const sig = document.querySelectorAll('#a-sig li').length;
   if (!document.querySelectorAll('#a-plan li').length) bad.push('sin plan');
   if (!document.querySelectorAll('#a-nottv li').length) bad.push('sin lo no medible');
-  return {bad, rows, valued, exact: R.exact.length, wider: R.wider.length, near: document.querySelectorAll('#a-res .athumbs button').length};
+  return {bad, rows, valued, sig, style: document.getElementById('a-sig').querySelector('p').innerText, exact: R.exact.length, wider: R.wider.length, near: document.querySelectorAll('#a-res .athumbs button').length};
 }"""
 
 
@@ -76,7 +78,7 @@ def check_page(pg, pairs: bool = True, extra: list[dict] | None = None) -> dict:
     for sel in todo:
         r = pg.evaluate(_JS_CHECK, [sel, expect])
         if not sel:
-            extra_out.update(rows_all=r["rows"], valued_all=r["valued"])
+            extra_out.update(rows_all=r["rows"], valued_all=r["valued"], signature=r["sig"], style=r["style"])
         if sel == USER_EXAMPLE:
             extra_out["example"] = {"exact": r["exact"], "near": r["near"], "rows": r["rows"], "valued": r["valued"], "bad": r["bad"]}
         rows += r["rows"]
