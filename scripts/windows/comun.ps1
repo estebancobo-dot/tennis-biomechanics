@@ -83,7 +83,8 @@ function Subir-Registros {
         else { git -C $d checkout -q -B pc-logs 2>$null }
         Copy-Item "$Base\output\*.log" $d -Force -ErrorAction SilentlyContinue
         Copy-Item "$Base\output\revision_automatica.md" $d -Force -ErrorAction SilentlyContinue
-        Copy-Item "$Base\output\ciclo_vivo.txt" $d -Force -ErrorAction SilentlyContinue
+        Estado-Ciclo
+        Copy-Item "$Base\output\ciclo_vivo.txt", "$Base\output\ciclo_tarea.txt", "$Base\output\ciclo_arranque.txt" $d -Force -ErrorAction SilentlyContinue
         New-Item -ItemType Directory -Force -Path "$d\partidos" | Out-Null
         # cada partido (y los de la prueba rapida, en output\_smoke): registro, etapas y errores;
         # de la prueba rapida tambien sus golpes (pocos), para revisar la calidad de lo medido
@@ -191,17 +192,41 @@ function Registrar-Ciclo {
     $ErrorActionPreference = "Continue"
     try {
         $nombre = "tenis-ciclo-automatico"
+        $version = "ciclo v2"
         if (Test-Path "$Base\output\ciclo_desactivado.txt") { return }
-        if (Get-ScheduledTask -TaskName $nombre -ErrorAction SilentlyContinue) { return }
+        $t = Get-ScheduledTask -TaskName $nombre -ErrorAction SilentlyContinue
+        if ($t -and $t.Description -like "*$version*") { return }
         $ps1 = Join-Path $RepoDir "scripts\windows\ciclo_automatico.ps1"
-        $accion = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$ps1`""
-        $cuando = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(2) -RepetitionInterval (New-TimeSpan -Minutes 10)
+        $accion = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$ps1`"" -WorkingDirectory $RepoDir
+        # cada 10 minutos todo el dia, todos los dias (diario con repeticion de 1 dia: funciona en
+        # cualquier Windows, sin depender de una duracion "indefinida"), y tambien al iniciar sesion
+        $diario = New-ScheduledTaskTrigger -Daily -At "00:00"
+        $diario.Repetition = (New-ScheduledTaskTrigger -Once -At "00:00" -RepetitionInterval (New-TimeSpan -Minutes 10) -RepetitionDuration (New-TimeSpan -Days 1)).Repetition
+        $alEntrar = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
         $ajustes = New-ScheduledTaskSettingsSet -StartWhenAvailable -MultipleInstances IgnoreNew -AllowStartIfOnBatteries `
             -DontStopIfGoingOnBatteries -ExecutionTimeLimit (New-TimeSpan -Hours 3)
-        Register-ScheduledTask -TaskName $nombre -Action $accion -Trigger $cuando -Settings $ajustes `
-            -Description "Tenis: trae el codigo nuevo, recalcula lo necesario, revisa y sube los registros" | Out-Null
+        $quien = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType Interactive -RunLevel Limited
+        Register-ScheduledTask -TaskName $nombre -Action $accion -Trigger @($diario, $alEntrar) -Settings $ajustes -Principal $quien `
+            -Description "Tenis ($version): trae el codigo nuevo, recalcula lo necesario, revisa y sube los registros" -Force | Out-Null
         Ok "Ciclo automatico programado: cada 10 minutos, en segundo plano (9_parar_ciclo_automatico.bat lo quita)."
     } catch { Aviso "No se pudo programar el ciclo automatico: $_" }
+}
+
+# Estado de la tarea del ciclo (ultima ejecucion, resultado, proxima): se sube con los registros para
+# que Claude vea si Windows la lanza y como termina, sin que el usuario mire nada.
+function Estado-Ciclo {
+    $ErrorActionPreference = "Continue"
+    try {
+        $t = Get-ScheduledTask -TaskName "tenis-ciclo-automatico" -ErrorAction SilentlyContinue
+        $f = "$Base\output\ciclo_tarea.txt"
+        if (-not $t) { "tarea: no existe ($(Get-Date -Format s))" | Set-Content $f; return }
+        $i = Get-ScheduledTaskInfo -TaskName "tenis-ciclo-automatico"
+        @("fecha: $(Get-Date -Format s)", "estado: $($t.State)", "descripcion: $($t.Description)",
+          "ultima ejecucion: $($i.LastRunTime)", "resultado (0 = bien, 267009 = en marcha, 267011 = nunca): $($i.LastTaskResult)",
+          "proxima: $($i.NextRunTime)", "perdidas: $($i.NumberOfMissedRuns)",
+          "disparadores: $(($t.Triggers | ForEach-Object { $_.CimClass.CimClassName + ' ' + $_.Repetition.Interval }) -join '; ')",
+          "accion: $($t.Actions[0].Execute) $($t.Actions[0].Arguments)") | Set-Content $f
+    } catch {}
 }
 
 # Mientras un script largo trabaja, sube su registro cada 10 minutos: Claude ve el avance sin esperar

@@ -8,30 +8,33 @@ $ErrorActionPreference = "Stop"
 $Out = "$Base\output"
 $Log = "$Out\ciclo_automatico.log"
 New-Item -ItemType Directory -Force -Path $Out | Out-Null
-
-# otro analisis en marcha (los .bat del usuario o una ejecucion anterior de este ciclo): no molestar
-$ocupado = Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" -ErrorAction SilentlyContinue |
-    Where-Object { $_.ProcessId -ne $PID -and $_.CommandLine -match "prueba_rapida|analisis_completo|recalcular_medidas|solo_informe|ciclo_automatico|instalar" }
-if ($ocupado) { exit 0 }
-
-Refrescar-Path
-if (-not (Tiene git) -or -not (Test-Path "$RepoDir\.git")) { exit 0 }
-$ErrorActionPreference = "Continue"
-git -C $RepoDir fetch -q origin $Rama 2>$null
-if ($LASTEXITCODE -ne 0) { exit 0 }
-$antes = (git -C $RepoDir rev-parse HEAD).Trim()
-$nuevo = (git -C $RepoDir rev-parse FETCH_HEAD).Trim()
-$forzar = Test-Path "$Out\forzar_ciclo.txt"
-if ($antes -eq $nuevo -and -not $forzar) {
-    # sin codigo nuevo: una senal de vida cada hora (ciclo_vivo.txt en pc-logs), para que se vea que la
-    # tarea sigue funcionando aunque no haya trabajo
+# senal de vida (como mucho una por hora): sale sin trabajo pero se ve que la tarea corre y por que no hizo nada
+function Senal-Vida($motivo) {
     $vivo = "$Out\ciclo_vivo.txt"
+    try { "$(Get-Date -Format s) $motivo" | Add-Content "$Out\ciclo_arranque.txt" } catch {}
     if (-not (Test-Path $vivo) -or ((Get-Date) - (Get-Item $vivo).LastWriteTime).TotalMinutes -ge 60) {
-        "ultimo ciclo sin trabajo: $(Get-Date -Format s); codigo $($antes.Substring(0,7))" | Set-Content $vivo
+        "ultimo ciclo sin trabajo: $(Get-Date -Format s); $motivo" | Set-Content $vivo
         Subir-Registros | Out-Null
     }
     exit 0
 }
+# rastro de cada arranque (antes de cualquier cosa que pueda fallar): se sube con la senal de vida
+try { "arranque: $(Get-Date -Format s) (pid $PID)" | Set-Content "$Out\ciclo_arranque.txt" } catch {}
+
+# otro analisis en marcha (los .bat del usuario o una ejecucion anterior de este ciclo): no molestar
+$ocupado = Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" -ErrorAction SilentlyContinue |
+    Where-Object { $_.ProcessId -ne $PID -and $_.CommandLine -match "prueba_rapida|analisis_completo|recalcular_medidas|solo_informe|ciclo_automatico|instalar" }
+if ($ocupado) { Senal-Vida "otro analisis en marcha ($(($ocupado | ForEach-Object { $_.ProcessId }) -join ','))" }
+
+Refrescar-Path
+if (-not (Tiene git) -or -not (Test-Path "$RepoDir\.git")) { Senal-Vida "sin git o sin repositorio en $RepoDir" }
+$ErrorActionPreference = "Continue"
+git -C $RepoDir fetch -q origin $Rama 2>$null
+if ($LASTEXITCODE -ne 0) { Senal-Vida "git fetch fallo (sin red o sin permiso)" }
+$antes = (git -C $RepoDir rev-parse HEAD).Trim()
+$nuevo = (git -C $RepoDir rev-parse FETCH_HEAD).Trim()
+$forzar = Test-Path "$Out\forzar_ciclo.txt"
+if ($antes -eq $nuevo -and -not $forzar) { Senal-Vida "sin codigo nuevo ($($antes.Substring(0,7)))" }
 
 Start-Transcript -Path $Log | Out-Null
 try {
