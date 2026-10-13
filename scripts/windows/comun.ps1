@@ -192,7 +192,7 @@ function Registrar-Ciclo {
     $ErrorActionPreference = "Continue"
     try {
         $nombre = "tenis-ciclo-automatico"
-        $version = "ciclo v2"
+        $version = "ciclo v3"
         if (Test-Path "$Base\output\ciclo_desactivado.txt") { return }
         # 1) bucle en segundo plano que arranca con la sesion (carpeta Inicio): no depende del
         #    Programador de tareas; se pone en marcha ya si no lo esta
@@ -218,7 +218,9 @@ function Registrar-Ciclo {
         $diario = New-ScheduledTaskTrigger -Daily -At "00:00"
         $diario.Repetition = (New-ScheduledTaskTrigger -Once -At "00:00" -RepetitionInterval (New-TimeSpan -Minutes 10) -RepetitionDuration (New-TimeSpan -Days 1)).Repetition
         $alEntrar = New-ScheduledTaskTrigger -AtLogOn -User "$env:USERDOMAIN\$env:USERNAME"
-        $ajustes = New-ScheduledTaskSettingsSet -StartWhenAvailable -MultipleInstances IgnoreNew -AllowStartIfOnBatteries `
+        # Parallel: si el ciclo anterior sigue trabajando, el nuevo arranca, lo ve y sale sin error
+        # (con IgnoreNew Windows lo rechazaba y lo marcaba como fallo, 0x800710E0, cada 10 minutos)
+        $ajustes = New-ScheduledTaskSettingsSet -StartWhenAvailable -MultipleInstances Parallel -AllowStartIfOnBatteries `
             -DontStopIfGoingOnBatteries -ExecutionTimeLimit (New-TimeSpan -Hours 3)
         $quien = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType Interactive -RunLevel Limited
         Register-ScheduledTask -TaskName $nombre -Action $accion -Trigger @($diario, $alEntrar) -Settings $ajustes -Principal $quien `
@@ -237,7 +239,7 @@ function Estado-Ciclo {
         if (-not $t) { "tarea: no existe ($(Get-Date -Format s))" | Set-Content $f; return }
         $i = Get-ScheduledTaskInfo -TaskName "tenis-ciclo-automatico"
         @("fecha: $(Get-Date -Format s)", "estado: $($t.State)", "descripcion: $($t.Description)",
-          "ultima ejecucion: $($i.LastRunTime)", "resultado (0 = bien, 267009 = en marcha, 267011 = nunca): $($i.LastTaskResult)",
+          "ultima ejecucion: $($i.LastRunTime)", "resultado (0 = bien, 267009 = en marcha, 267011 = nunca, 2147946720 = rechazada porque la anterior seguia trabajando): $($i.LastTaskResult)",
           "proxima: $($i.NextRunTime)", "perdidas: $($i.NumberOfMissedRuns)",
           "disparadores: $(($t.Triggers | ForEach-Object { $_.CimClass.CimClassName + ' ' + $_.Repetition.Interval }) -join '; ')",
           "accion: $($t.Actions[0].Execute) $($t.Actions[0].Arguments)") | Set-Content $f
