@@ -162,6 +162,13 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .qb i { display: block; height: 100%; background: var(--ink-2); }
 .pager { display: flex; justify-content: space-between; align-items: center; padding: 10px 16px; font-size: 12px; color: var(--ink-3); gap: 10px; flex-wrap: wrap; }
 
+.player:fullscreen { background: #000; display: flex; flex-direction: column; padding: 8px; overflow: auto; }
+.player:fullscreen .stage { flex: 1 1 auto; aspect-ratio: auto; min-height: 0; border-radius: 0; }
+.player:fullscreen .stage canvas { object-fit: contain; }
+.player:fullscreen .cmpgrid { flex: 1 1 auto; min-height: 0; }
+.player:fullscreen .cmpgrid canvas { width: 100%; height: auto; max-height: calc(100vh - 160px); object-fit: contain; }
+.player:fullscreen .vtools, .player:fullscreen .timeline { background: var(--panel); }
+#lpreset button { font-weight: 600; }
 .stage { position: relative; background: #000; border-radius: 8px 8px 0 0; overflow: hidden; aspect-ratio: 16 / 9; max-width: 100%; }
 .stage svg { width: 100%; height: 100%; display: block; }
 .vtools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; padding: 10px 12px; border-top: 1px solid var(--line); }
@@ -447,22 +454,26 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
   <div class="cols c-3-1">
     <div class="panel">
       <div class="plbar" id="plbar" hidden></div>
-      <div class="stage" id="stage"><canvas id="cv" width="1280" height="720"></canvas></div>
+      <div class="player" id="player">
+      <div class="stage" id="stage" title="Doble clic: pantalla completa"><canvas id="cv" width="1280" height="720"></canvas></div>
       <div class="vtools">
         <div class="grp">
           <button class="ibtn" id="prevf" aria-label="Fotograma anterior"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2h2v10H3zM12 2v10L6 7z"/></svg></button>
           <button class="ibtn" id="play" aria-label="Reproducir"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2v10l9-5z"/></svg></button>
+          <button class="ibtn" id="fs" aria-label="Pantalla completa" title="Pantalla completa (F)"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1.5 5V1.5H5M9 1.5h3.5V5M12.5 9v3.5H9M5 12.5H1.5V9"/></svg></button>
           <button class="ibtn" id="nextf" aria-label="Fotograma siguiente"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M9 2h2v10H9zM2 2v10l6-5z"/></svg></button>
           <div class="seg" id="speed"><button data-v="0.25" aria-pressed="true">0,25×</button><button data-v="0.5" aria-pressed="false">0,5×</button><button data-v="1" aria-pressed="false">1×</button></div>
           <span class="tc" id="tc"></span>
         </div>
         <div class="grp">
           <div class="seg" id="view"><button data-v="crop" aria-pressed="true">Recorte</button><button data-v="full" aria-pressed="false">Plano completo</button></div>
-          <div class="seg" id="layers"><button data-v="skel" aria-pressed="true">Esqueleto</button><button data-v="ang" aria-pressed="true">Ángulos</button><button data-v="trail" aria-pressed="true">Trayectoria</button><button data-v="ball" aria-pressed="true">Bola</button><button data-v="court" aria-pressed="true">Pista</button><button data-v="heights" aria-pressed="true" title="Altura de la cabeza y la cadera respecto a la espera">Alturas</button><button data-v="lines" aria-pressed="true" title="Líneas de hombros y cadera y plano del hombro, como las dibujan los entrenadores">Líneas</button></div>
+          <div class="seg" id="lpreset" title="Qué dibujar encima del vídeo (grupos)"><button data-v="video">Solo vídeo</button><button data-v="body">Cuerpo</button><button data-v="racket">Raqueta y bola</button><button data-v="heights">Alturas</button><button data-v="lines">Líneas</button><button data-v="court">Pista</button><button data-v="all">Todo</button></div>
+          <div class="seg" id="layers"><button data-v="skel" aria-pressed="true">Esqueleto</button><button data-v="ang" aria-pressed="true">Ángulos</button><button data-v="trail" aria-pressed="true">Trayectoria</button><button data-v="ball" aria-pressed="true">Bola</button><button data-v="court" aria-pressed="true">Pista</button><button data-v="heights" aria-pressed="true" title="Altura de la cabeza y la cadera respecto a la espera">Alturas</button><button data-v="lines" aria-pressed="true" title="Líneas de hombros y cadera y plano del hombro, como las dibujan los entrenadores">Líneas</button><button data-v="racket" aria-pressed="true" title="Los 5 puntos de la raqueta">Raqueta</button><button data-v="hud" aria-pressed="true" title="Rótulos de texto: partido, tiempo, cuerdas">Rótulos</button></div>
           <button class="btn" id="g-cmp" title="Abrir este golpe en Comparar">⧉ Comparar</button>
         </div>
       </div>
       <div class="timeline" id="timeline"></div>
+      </div>
       <div class="kf" id="kf"></div>
       <div class="bmwrap" id="bmwrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">La bola y ella</b> · qué está haciendo cuando golpea la rival, cuando la bola cruza la red, cuando bota, cuando llega a lo más alto y cuando ella golpea (pulsa para ir a ese momento)</div><div class="bm" id="bm"></div></div>
       <div class="bmwrap" id="bodywrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">Su cuerpo en este golpe</b> · fotogramas reales con la medida dibujada encima (pulsa para ir a ese momento)</div>
@@ -524,11 +535,13 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
       <div class="seg" id="k-mode"><button data-v="side" aria-pressed="true">Lado a lado</button><button data-v="over" aria-pressed="false">Superpuestos</button></div>
       <button class="btn" id="k-swap">⇄</button>
     </div>
+    <div class="player" id="k-player">
     <div class="cmpgrid" id="k-grid"></div>
     <div class="vtools">
       <div class="grp">
         <button class="ibtn" id="k-prev" aria-label="Fotograma anterior"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2h2v10H3zM12 2v10L6 7z"/></svg></button>
         <button class="ibtn" id="k-play" aria-label="Reproducir"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2v10l9-5z"/></svg></button>
+        <button class="ibtn" id="k-fs" aria-label="Pantalla completa" title="Pantalla completa (F)"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M1.5 5V1.5H5M9 1.5h3.5V5M12.5 9v3.5H9M5 12.5H1.5V9"/></svg></button>
         <button class="ibtn" id="k-next" aria-label="Fotograma siguiente"><svg viewBox="0 0 14 14" fill="currentColor"><path d="M9 2h2v10H9zM2 2v10l6-5z"/></svg></button>
         <div class="seg" id="k-speed"><button data-v="0.25" aria-pressed="true">0,25×</button><button data-v="0.5" aria-pressed="false">0,5×</button><button data-v="1" aria-pressed="false">1×</button></div>
         <span class="tc" id="k-tc"></span>
@@ -536,6 +549,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
       <div class="grp"><span class="note">Sincronizados en el impacto · en "Superpuestos", el esqueleto de B se alinea con la cadera de A y se escala a su tronco</span></div>
     </div>
     <div class="timeline" id="k-tl"></div>
+    </div>
   </div>
   <div class="panel">
     <header><h2>Diferencias</h2><span class="note">B − A; resaltadas las que superan el ruido de medida de la métrica</span></header>
@@ -871,7 +885,7 @@ document.body.appendChild(VHOLD);
 const video = document.createElement("video");
 video.muted = true; video.playsInline = true; video.preload = "auto"; video.style.cssText = "width:4px;height:4px"; VHOLD.appendChild(video);
 const cv = document.getElementById("cv"), cx = cv.getContext("2d");
-let cur = null, ser = null, PH = [], T0 = -1, T1 = .8, FPS = 50, NF = 1, tNow = 0, view = "crop", layers = { skel: true, ang: true, trail: true, ball: true, court: true, heights: true, lines: true }, speed = .25, playing = false;
+let cur = null, ser = null, PH = [], T0 = -1, T1 = .8, FPS = 50, NF = 1, tNow = 0, view = "crop", layers = { skel: true, ang: true, trail: true, ball: true, court: true, heights: true, lines: true, racket: true, hud: true }, speed = .25, playing = false;
 const snap = t => Math.round(clamp(t, T0, T1) * FPS) / FPS;
 const fIdx = t => clamp(Math.round((t - T0) * FPS), 0, NF - 1);
 const domW = () => (PL.hand === "left" ? 9 : 10);
@@ -956,7 +970,7 @@ function drawFrame(ctx, Wc, Hc, f, opts, S = MAIN) {
   if (opts.skel && q) skeleton(ctx, q, P, lw, opts.mono ? () => opts.mono : c => SKC[c]);
   if (opts.ang && q) angleLabels(ctx, q, P, lw, dw);
   const fk = sr && sr.face && sr.face.keypoints && sr.face.keypoints[String(f + sr.first)];
-  if (opts.skel && fk) { const R = fk.map(P); ctx.strokeStyle = "#ff5fd2"; ctx.lineWidth = lw; ctx.beginPath(); [[0, 3], [3, 1], [1, 4], [4, 0], [1, 2]].forEach(([u, v]) => { ctx.moveTo(...R[u]); ctx.lineTo(...R[v]); }); ctx.stroke(); }
+  if ((opts.racket ?? opts.skel) && fk) { const R = fk.map(P); ctx.strokeStyle = "#ff5fd2"; ctx.lineWidth = lw; ctx.beginPath(); [[0, 3], [3, 1], [1, 4], [4, 0], [1, 2]].forEach(([u, v]) => { ctx.moveTo(...R[u]); ctx.lineTo(...R[v]); }); ctx.stroke(); }
   if (opts.ball && sr && sr.ball) {          // the ball and its trail over the last ~0.25 s
     const nt = Math.max(3, Math.round(.25 * (sr.fps || 50)));
     for (let g = Math.max(0, f - nt); g < f; g++) { const b = sr.ball[g]; if (!b || b[0] === null) continue; const [x, y] = P(b); ctx.fillStyle = `rgba(255,95,210,${.15 + .6 * (g - f + nt) / nt})`; ctx.beginPath(); ctx.arc(x, y, lw * 1.6, 0, 7); ctx.fill(); }
@@ -1050,7 +1064,7 @@ async function renderStage() {
   if (!cur) return;
   if (!cur.video) { cx.fillStyle = "#000"; cx.fillRect(0, 0, cv.width, cv.height); cx.fillStyle = "#aab4be"; cx.font = "24px Archivo, sans-serif"; cx.fillText("Vídeo de la ventana no disponible", 40, 80); return; }
   if (!playing) await seek(tNow);
-  drawFrame(cx, cv.width, cv.height, fIdx(tNow), layers); hud(tNow);
+  drawFrame(cx, cv.width, cv.height, fIdx(tNow), layers); if (layers.hud !== false) hud(tNow);
   document.getElementById("tc").innerHTML = `<b>${clock(cur.vt + tNow)}</b> · fot ${fIdx(tNow) + 1}/${NF}`;
   ["g-kin", "g-ang", "g-rh", "g-rf", "g-hts"].forEach(id => { const el = document.getElementById(id), l = el.querySelector(".ph"); if (l && el._X) { l.setAttribute("x1", el._X(tNow)); l.setAttribute("x2", el._X(tNow)); } });
 }
@@ -1458,7 +1472,46 @@ function bindSeg(id, fn) { document.querySelectorAll(`#${id} button`).forEach(b 
 bindSeg("g-group", b => { gGroup = b.dataset.v; document.querySelectorAll("#g-group button").forEach(x => x.setAttribute("aria-pressed", x === b)); renderMetricsPanel(); });
 bindSeg("speed", b => { speed = +b.dataset.v; video.playbackRate = speed; document.querySelectorAll("#speed button").forEach(x => x.setAttribute("aria-pressed", x === b)); });
 bindSeg("view", b => { view = b.dataset.v; document.querySelectorAll("#view button").forEach(x => x.setAttribute("aria-pressed", x === b)); const vw = video.videoWidth || 16, vh = video.videoHeight || 9; cv.height = Math.round(cv.width * (view === "full" ? vh / vw : 9 / 16)); renderStage(); });
-bindSeg("layers", b => { layers[b.dataset.v] = !layers[b.dataset.v]; b.setAttribute("aria-pressed", layers[b.dataset.v]); renderStage(); });
+// what is drawn over the video: one layer at a time (buttons below) or a group in one click; remembered
+const LPRESET = { video: [], body: ["skel", "ang"], racket: ["racket", "trail", "ball", "hud"], heights: ["skel", "heights"],
+  lines: ["skel", "lines"], court: ["court", "ball"], all: ["skel", "ang", "trail", "ball", "court", "heights", "lines", "racket", "hud"] };
+function setLayers(on, preset) {
+  Object.keys(layers).forEach(k => { layers[k] = on.includes(k); });
+  document.querySelectorAll("#layers button").forEach(b => b.setAttribute("aria-pressed", !!layers[b.dataset.v]));
+  document.querySelectorAll("#lpreset button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === preset));
+  try { localStorage.setItem("tb-layers", JSON.stringify({ on, preset })); } catch (e) { }
+  renderStage();
+}
+bindSeg("layers", b => { const on = Object.keys(layers).filter(k => k === b.dataset.v ? !layers[k] : layers[k]); setLayers(on, null); });
+bindSeg("lpreset", b => setLayers(LPRESET[b.dataset.v], b.dataset.v));
+try { const s = JSON.parse(localStorage.getItem("tb-layers") || "null"); if (s && Array.isArray(s.on)) setLayers(s.on, s.preset); else setLayers(LPRESET.all, "all"); } catch (e) { }
+// full screen: the player (video, controls, timeline); the drawing is redone at the screen's resolution
+// so lines and labels stay sharp, and back to normal on leaving
+function toggleFull(el) {
+  if (document.fullscreenElement) { document.exitFullscreen(); return; }
+  (el.requestFullscreen || el.webkitRequestFullscreen || (() => { })).call(el);
+}
+function fitCanvases(el, full) {
+  el.querySelectorAll("canvas").forEach(c => {
+    if (full) { if (!c._w0) { c._w0 = c.width; c._h0 = c.height; } const k = Math.min(3, (screen.width * (window.devicePixelRatio || 1)) / c._w0 / (el.id === "k-player" && kMode !== "over" ? 2 : 1)); if (k > 1) { c.width = Math.round(c._w0 * k); c.height = Math.round(c._h0 * k); } }
+    else if (c._w0) { c.width = c._w0; c.height = c._h0; delete c._w0; delete c._h0; }
+  });
+}
+document.addEventListener("fullscreenchange", () => {
+  const el = document.fullscreenElement;
+  ["player", "k-player"].forEach(id => { const p = document.getElementById(id); fitCanvases(p, el === p); });
+  renderStage(); if (typeof kDraw === "function") kDraw();
+});
+document.getElementById("fs").addEventListener("click", () => toggleFull(document.getElementById("player")));
+document.getElementById("stage").addEventListener("dblclick", () => toggleFull(document.getElementById("player")));
+document.getElementById("k-fs").addEventListener("click", () => toggleFull(document.getElementById("k-player")));
+document.addEventListener("keydown", ev => {
+  if (ev.key !== "f" && ev.key !== "F") return;
+  if (/INPUT|SELECT|TEXTAREA/.test((ev.target || {}).tagName || "")) return;
+  const tab = document.querySelector(".screen:not([hidden])");
+  if (tab && tab.id === "tab-golpe") toggleFull(document.getElementById("player"));
+  else if (tab && tab.id === "tab-comparar") toggleFull(document.getElementById("k-player"));
+});
 const navList = () => { const a = exRows(); return a.length ? a : STROKES; };
 document.getElementById("gprev").addEventListener("click", () => { if (PLAY) return plStep(-1, false); const a = navList(), i = a.indexOf(cur); loadStroke(a[(i - 1 + a.length) % a.length]); });
 document.getElementById("gnext").addEventListener("click", () => { if (PLAY) return plStep(1, false); const a = navList(), i = a.indexOf(cur); loadStroke(a[(i + 1) % a.length]); });

@@ -67,3 +67,45 @@ def test_body_views_on_the_stroke_page(tmp_path):
     assert "Base de 0,92 m → 0,88 m → 0,70 m" in body and "pies plantados" in body
     assert "girado tres cuartos hacia el lado de su revés" in body
     assert "La bola cae" in ball and "pies a 0,90 m" in ball
+
+
+@pytest.mark.skipif(not CHROMIUM.exists(), reason="sin navegador para la prueba de la web")
+def test_layer_groups_and_full_screen(tmp_path):
+    from playwright.sync_api import sync_playwright
+
+    s, ser = stroke_and_series()
+    d = tmp_path / "m1"
+    (d / "series").mkdir(parents=True)
+    (d / "series" / "x.json").write_text(json.dumps(ser), encoding="utf-8")
+    (d / "strokes.json").write_text(json.dumps([s]), encoding="utf-8")
+    html = build([Match("m1", None, Player("p", "P", height_m=1.84))], tmp_path)
+    with sync_playwright() as p:
+        b = p.chromium.launch(executable_path=str(CHROMIUM), args=["--allow-file-access-from-files"])
+        pg = b.new_page()
+        errors = []
+        pg.on("pageerror", lambda e: errors.append(str(e)))
+        pg.goto(html.resolve().as_uri())
+        pg.wait_for_timeout(500)
+        pg.evaluate("(async () => { showTab('golpe'); await loadStroke(STROKES[0]); })()")
+        pg.wait_for_timeout(800)
+        pg.click("#lpreset button[data-v=video]")
+        none = pg.evaluate("Object.values(layers).some(Boolean)")
+        pg.click("#lpreset button[data-v=body]")
+        body = pg.evaluate("Object.keys(layers).filter(k => layers[k]).sort().join(',')")
+        pg.click("#layers button[data-v=racket]")                 # one more layer by hand: no group marked
+        mixed = pg.evaluate("[layers.racket, document.querySelectorAll('#lpreset button[aria-pressed=true]').length]")
+        pg.reload()
+        pg.wait_for_timeout(500)
+        kept = pg.evaluate("Object.keys(layers).filter(k => layers[k]).sort().join(',')")
+        pg.evaluate("(async () => { showTab('golpe'); await loadStroke(STROKES[0]); })()")
+        pg.wait_for_timeout(500)
+        pg.click("#fs")
+        pg.wait_for_timeout(500)
+        full = pg.evaluate("document.fullscreenElement && document.fullscreenElement.id")
+        pg.evaluate("document.exitFullscreen()")
+        pg.wait_for_timeout(500)
+        out = pg.evaluate("[!!document.fullscreenElement, cv.width]")
+        b.close()
+    assert not errors, errors[:3]
+    assert none is False and body == "ang,skel" and mixed == [True, 0] and kept == "ang,racket,skel"
+    assert full == "player" and out == [False, 1280]
