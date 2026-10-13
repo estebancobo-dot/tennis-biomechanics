@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Su derecha",
-   "text_chars": 5839,
+   "text_chars": 5842,
    "charts": 8,
    "videos": 5,
    "black_canvases": 0,
@@ -26,15 +26,13 @@
   },
   {
    "title": "Panel",
-   "text_chars": 1389,
-   "charts": 0,
+   "text_chars": 4376,
+   "charts": 11,
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
-   "empty_msgs": [
-    "Hacen falta al menos 3 golpes en dos tramos del partido para dibujar la evolución de x-factor (hay 5)."
-   ],
-   "dashes": 3,
+   "empty_msgs": [],
+   "dashes": 5,
    "ball_moments": 0,
    "feet_cycle": 0,
    "heights_layer": false,
@@ -51,7 +49,7 @@
   },
   {
    "title": "Videoteca",
-   "text_chars": 1868,
+   "text_chars": 3308,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -74,7 +72,7 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 5236,
+   "text_chars": 5272,
    "charts": 20,
    "videos": 6,
    "black_canvases": 0,
@@ -98,7 +96,7 @@
   },
   {
    "title": "Comparar golpes",
-   "text_chars": 3727,
+   "text_chars": 5257,
    "charts": 2,
    "videos": 5,
    "black_canvases": 0,
@@ -121,13 +119,13 @@
   },
   {
    "title": "Explorador",
-   "text_chars": 1855,
+   "text_chars": 3266,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 8,
+   "dashes": 41,
    "ball_moments": 0,
    "feet_cycle": 0,
    "heights_layer": false,
@@ -176,7 +174,7 @@
   },
   {
    "title": "Pista",
-   "text_chars": 481,
+   "text_chars": 480,
    "charts": 1,
    "videos": 5,
    "black_canvases": 0,
@@ -199,7 +197,7 @@
   },
   {
    "title": "Vista lateral\n(entreno)",
-   "text_chars": 4896,
+   "text_chars": 6534,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -255,7 +253,10 @@
   },
   {
    "name": "Panel → ▶ vídeos de una conclusión",
-   "present": false
+   "present": true,
+   "plays": true,
+   "mode": "video",
+   "play_error": null
   }
  ],
  "plays_reduced_motion": [
@@ -289,7 +290,10 @@
   },
   {
    "name": "Panel → ▶ vídeos de una conclusión",
-   "present": false
+   "present": true,
+   "plays": true,
+   "mode": "video",
+   "play_error": null
   }
  ]
 }
