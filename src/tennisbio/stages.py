@@ -159,9 +159,9 @@ def load_onsets(ctx: Context) -> np.ndarray:
 
 def _pose_detector(cfg: dict):
     """frame → (boxes (N,4), keypoints (N,17,2), conf (N,17)) with the YOLO pose model."""
-    from .pose.backend import pose_model, set_device
+    from .pose.backend import pose_model, set_device, uses_fp16
 
-    set_device(cfg.get("device", "cpu"))
+    set_device(cfg.get("device", "cpu"), uses_fp16(cfg))
     model = pose_model(cfg.get("yolo_pose", "yolo11m-pose.pt"), cfg["cheap_pass"].get("imgsz", 960))
 
     def detect(frame):
@@ -186,7 +186,15 @@ def play_mask(sc: dict, court: dict | None) -> np.ndarray:
     return main & has
 
 
-@stage("players", "3", deps=("scenes", "court"), settings=lambda c: {"fps": c["cheap_pass"]["fps"], "imgsz": c["cheap_pass"].get("imgsz", 960)},
+def _fp16_setting(c) -> dict:
+    """{"fp16": True} only when the half-precision pose model is in use: with the default (off) the
+    fingerprints, and so the results already computed, stay as they were."""
+    from .pose.backend import uses_fp16
+    return {"fp16": True} if uses_fp16(c) else {}
+
+
+@stage("players", "3", deps=("scenes", "court"),
+       settings=lambda c: {"fps": c["cheap_pass"]["fps"], "imgsz": c["cheap_pass"].get("imgsz", 960), **_fp16_setting(c)},
        outputs=("players.npz",))
 def st_players(ctx: Context):
     """Cheap pose on match-play frames only (main camera with the court found; cheap fps, full
@@ -701,7 +709,8 @@ def _fine_settings(c):
             "racket_face": rf, "include_undecided": c.get("include_undecided", False),
             # the models themselves: adding or replacing one re-runs the fine pass
             "models": {"ball": model_state((c.get("ball") or {}).get("onnx")), "racket": model_state(rf.get("pose_onnx")),
-                       "hand3d": model_state(rf.get("hand3d_onnx")), "pose": c.get("yolo_pose", "yolo11m-pose.pt")}}
+                       "hand3d": model_state(rf.get("hand3d_onnx")), "pose": c.get("yolo_pose", "yolo11m-pose.pt")},
+            **_fp16_setting(c)}
 
 
 FINE_CODE = ("stages", "clip_pipeline", "stroke_analysis", "phases", "kinematics", "impacts", "ball", "court_metrics",
@@ -795,7 +804,8 @@ def _fine(ctx: Context, p, keep, out_name: str):
     interlaced = bool(_read(ctx.path("probe.json")).get("interlaced")) if ctx.path("probe.json").exists() else False
     # caches of the pose, ball and racket of each window carry the models and settings that made them
     ph = hashlib.sha1(json.dumps([ctx.cfg.get("yolo_pose", "yolo11m-pose.pt"), ctx.cfg.get("fine_imgsz", 960),
-                                  model_state(bcfg.get("onnx")), "v2"]).encode()).hexdigest()[:8]
+                                  model_state(bcfg.get("onnx")), "v2"]
+                                 + (["fp16"] if _fp16_setting(ctx.cfg) else [])).encode()).hexdigest()[:8]
     strokes, errors = [], []
     kept = sorted((c for c in cands if keep(c)), key=lambda c: (c.get("side", "near"), c["t"]))
     # candidates whose windows overlap (strokes of the same rally) share one window: the pose,
@@ -907,9 +917,9 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
     (pose, ball, rackets), then each candidate gets its phases, metrics, court, outcome, racket and
     technique. Returns the confirmed strokes."""
     from .clip_pipeline import run_clip
-    from .pose.backend import set_device
+    from .pose.backend import set_device, uses_fp16
 
-    set_device(ctx.cfg.get("device", "cpu"))
+    set_device(ctx.cfg.get("device", "cpu"), uses_fp16(ctx.cfg))
 
     c = group[0]
     t0, dur, wid = _window_of(group, pre, post)

@@ -42,13 +42,26 @@ class ClipRun:
 
 
 def _cv2_frames(video: Path):
-    cap = open_capture(video)
-    while True:
-        ok, frame = cap.read()
-        if not ok:
-            break
-        yield frame
-    cap.release()
+    """Every frame with OpenCV (the same decoder as the pose extraction, so frame indices match),
+    decoded ahead in a background thread."""
+    from .io.video import capture_frames
+    return capture_frames(video)
+
+
+def _tee(frames, feed):
+    """The frames, each also handed to `feed` (e.g. a ball.BallFeed) on the way: one decode of the
+    window serves the pose and the ball models."""
+    for f in frames:
+        feed.add(f)
+        yield f
+
+
+def _load_ball_cache(bcache: Path):
+    try:
+        return np.load(bcache) if bcache.exists() else None
+    except Exception:                 # damaged cache
+        bcache.unlink(missing_ok=True)
+        return None
 
 
 def load_audio(video: Path, sr=22050):
@@ -99,14 +112,23 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     video, cache = Path(video), Path(cache)
     cache.parent.mkdir(parents=True, exist_ok=True)
     timing = {}
+    ball_track = feed = None
+    if ball is not None:
+        bcache = cache.with_name(cache.stem.removesuffix("_far") + "_ball.npy")      # same ball for both ends
+        ball_track = _load_ball_cache(bcache)
     t_ = time.time()
     if load_npz(cache) is None:          # missing or damaged (interrupted run): extract again
-        from .pose.yolo import extract
+        from .pose.yolo import _fps, extract
+        frames = None
+        if ball is not None and ball_track is None:      # the ball model reads the same decoded frames
+            from .ball import BallFeed
+            feed = BallFeed(max(1, round(_fps(video) / 25)))
+            frames = _tee(_cv2_frames(video), feed)
         if roi == "follow":            # small far player: crop that follows her, enlarged
             from .pose.yolo import extract_follow
-            extract_follow(video, cache, init_box, max_bottom=max_bottom)
+            extract_follow(video, cache, init_box, max_bottom=max_bottom, frames=frames)
         else:
-            extract(video, cache, imgsz=imgsz, progress=False, roi=roi)
+            extract(video, cache, imgsz=imgsz, progress=False, roi=roi, frames=frames)
     d = load_npz(cache)
     if d is None:
         raise RuntimeError(f"no se pudo extraer la pose de {video.name}")
@@ -150,19 +172,13 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     y, sr = load_audio(video)
     onsets = audio_onsets(y, sr)[0] if len(y) else np.zeros(0)
     impacts = fuse(swings, fps, onsets)
-    ball_track = None
     if ball is not None:
         from .ball import ball_hits, clean_track
 
-        bcache = cache.with_name(cache.stem.removesuffix("_far") + "_ball.npy")      # same ball for both ends
-        try:
-            ball_track = np.load(bcache) if bcache.exists() else None
-        except Exception:                 # damaged cache
-            bcache.unlink(missing_ok=True)
-            ball_track = None
         if ball_track is None:      # same decoder as the pose extraction, so frame indices match
             t_ = time.time()
-            ball_track = ball.track(_cv2_frames(video), step=max(1, round(fps / 25)))
+            ball_track = (ball.track_feed(feed) if feed is not None
+                          else ball.track(_cv2_frames(video), step=max(1, round(fps / 25))))
             save_npy_atomic(bcache, ball_track)
             timing["bola"] = time.time() - t_
         ball_track = clean_track(ball_track, width=fw)

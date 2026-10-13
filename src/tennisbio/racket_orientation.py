@@ -108,11 +108,17 @@ def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | N
     sk, wrist_k = run.sk, run.sk["dom_wrist"]
     rkps = {}
     if rpose is not None:
+        todo = []
         for f, fr in frames.items():
             polys = run.rackets[f] if f < len(run.rackets) else None
             poly = pick_racket(polys, run.img[f, wrist_k], 0.3 * run.height_px) if polys is not None else None
             if poly is not None:
-                rkps[f] = rpose(fr, [[*poly.min(0), *poly.max(0)]])[0][0]
+                todo.append((f, fr, [*poly.min(0), *poly.max(0)]))
+        if hasattr(rpose, "many"):       # all the window's rackets in a few model runs
+            kp_all, _ = rpose.many([(fr, box) for _, fr, box in todo])
+            rkps = {f: k for (f, _, _), k in zip(todo, kp_all)}
+        else:
+            rkps = {f: rpose(fr, [box])[0][0] for f, fr, box in todo}
     hand_frames = ({f: fr for f, fr in frames.items()
                     if (f >= a0 and (f - a0) % max(1, hand3d_step) == 0) or (ready is not None and abs(f - ready) <= READY_HALF)}
                    if wb3d is not None else {})

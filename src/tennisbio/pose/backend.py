@@ -13,10 +13,15 @@ from .yolo_onnx import MODELS_DIR
 
 
 class PoseModel:
-    """predict(img, conf) → boxes (N, 4) xyxy, keypoints (N, 17, 2), keypoint conf (N, 17)."""
+    """predict(img, conf) → boxes (N, 4) xyxy, keypoints (N, 17, 2), keypoint conf (N, 17).
 
-    def __init__(self, name: str = "yolo11m-pose", imgsz: int = 960, device: str = "cpu"):
+    fp16: on the iGPU (dml) only, a half-precision copy of the ONNX model (float32 inputs and
+    outputs; pose.variants.to_fp16). Off by default: it changes the keypoints slightly, so it is
+    used only after it is validated against the full-precision model."""
+
+    def __init__(self, name: str = "yolo11m-pose", imgsz: int = 960, device: str = "cpu", fp16: bool = False):
         self.name, self.imgsz, self.device = Path(name).stem, int(imgsz), device
+        self.fp16 = False
         self.onnx = None
         path = MODELS_DIR / f"{self.name}_{self.imgsz}.onnx"
         if not path.exists() and device != "cpu":
@@ -25,6 +30,12 @@ class PoseModel:
                 path = export_onnx(self.name, self.imgsz)
             except Exception:
                 path = None
+        if path is not None and path.exists() and fp16 and device == "dml":
+            try:
+                from .variants import to_fp16
+                path, self.fp16 = to_fp16(path), True
+            except Exception as e:
+                print(f"AVISO: no se pudo preparar la copia en media precisión de {path.name} ({e}); se usa la normal")
         if path is not None and path.exists():
             try:
                 from .yolo_onnx import YoloOnnx
@@ -38,7 +49,7 @@ class PoseModel:
 
     @property
     def backend(self) -> str:
-        return f"onnx-{self.device}" if self.onnx is not None else "torch-cpu"
+        return (f"onnx-{self.device}" + ("-fp16" if self.fp16 else "")) if self.onnx is not None else "torch-cpu"
 
     def predict(self, img: np.ndarray, conf: float = 0.3):
         if self.onnx is not None:
@@ -52,18 +63,26 @@ class PoseModel:
 
 
 DEFAULT_DEVICE = "cpu"          # set from the config by the stages (device: dml on the Beelink)
+DEFAULT_FP16 = False            # set from the config (fp16: true), used only on dml
 
 
-def set_device(device: str | None):
-    global DEFAULT_DEVICE
+def set_device(device: str | None, fp16: bool = False):
+    global DEFAULT_DEVICE, DEFAULT_FP16
     DEFAULT_DEVICE = device or "cpu"
+    DEFAULT_FP16 = bool(fp16)
+
+
+def uses_fp16(cfg: dict) -> bool:
+    """Whether the config asks for the half-precision pose model where it applies (the iGPU)."""
+    return bool(cfg.get("fp16", False)) and cfg.get("device", "cpu") == "dml"
 
 
 @lru_cache(maxsize=8)
-def _cached(name: str, imgsz: int, device: str) -> PoseModel:
-    return PoseModel(name, imgsz, device)
+def _cached(name: str, imgsz: int, device: str, fp16: bool = False) -> PoseModel:
+    return PoseModel(name, imgsz, device, fp16)
 
 
 def pose_model(name: str = "yolo11m-pose", imgsz: int = 960, device: str | None = None) -> PoseModel:
-    """Loaded once per (model, size, device) and reused (loading takes seconds)."""
-    return _cached(Path(str(name)).stem, int(imgsz), device or DEFAULT_DEVICE)
+    """Loaded once per (model, size, device, precision) and reused (loading takes seconds)."""
+    device = device or DEFAULT_DEVICE
+    return _cached(Path(str(name)).stem, int(imgsz), device, DEFAULT_FP16 and device == "dml")

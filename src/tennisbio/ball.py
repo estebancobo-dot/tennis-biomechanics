@@ -31,13 +31,15 @@ class BallTracker:
         1080p does not have to fit in memory. background: median image of the shot (computed from
         the frames themselves when not given). step: run on every step-th frame (the model was
         trained at 25-30 fps: use step 2 for 50-60 fps broadcasts) and interpolate in between."""
-        small, size, total = [], None, 0
-        for k, f in enumerate(frames):
-            total = k + 1
-            if k % step:
-                continue
-            size = size or f.shape[:2]
-            small.append(cv2.resize(f, (W, H)))          # same interpolation as in training
+        feed = BallFeed(step)
+        for f in frames:
+            feed.add(f)
+        return self.track_feed(feed, background)
+
+    def track_feed(self, feed: "BallFeed", background: np.ndarray | None = None) -> np.ndarray:
+        """track() on frames already shrunk by a BallFeed (filled while another model reads the
+        same decoded frames, so the window is decoded once)."""
+        small, size, total, step = feed.small, feed.size, feed.total, feed.step
         if not small:
             return np.zeros((0, 3))
         h0, w0 = size
@@ -64,6 +66,22 @@ class BallTracker:
                 if not (np.isnan(a).any() or np.isnan(b).any()):
                     full[i] = a + (b - a) * (i % step) / step
         return full
+
+
+class BallFeed:
+    """Every step-th BGR frame shrunk to the ball model's 512x288 as it arrives (a long window at
+    1080p never has to fit in memory), plus the original size and the number of frames seen."""
+
+    def __init__(self, step: int = 1):
+        self.step, self.small, self.size, self.total = max(1, int(step)), [], None, 0
+
+    def add(self, frame: np.ndarray):
+        k = self.total
+        self.total += 1
+        if k % self.step:
+            return
+        self.size = self.size or frame.shape[:2]
+        self.small.append(cv2.resize(frame, (W, H)))          # same interpolation as in training
 
 
 def _peak(heatmap: np.ndarray, threshold: float):
