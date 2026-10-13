@@ -40,7 +40,7 @@ profesionales). Toda medida nueva sale de ella y se marca allí; los huecos medi
 **Estado y contexto para continuar:** `docs/estado_proyecto.md` (leerlo al empezar cualquier sesión).
 **Registros del PC:** los scripts de Windows los suben solos a la rama `pc-logs`
 (`git fetch origin pc-logs && git show origin/pc-logs:instalacion.log`). Nunca pedir al usuario
-que copie registros. **Ciclo automático** (tarea de Windows cada 10 min, `ciclo_automatico.ps1`): trae
+que copie registros. **Ciclo automático** (bucle `ciclo_bucle.ps1` que arranca con la sesión + tarea de Windows de respaldo; cada 10 min `ciclo_automatico.ps1`): trae
 el código nuevo de la rama, ejecuta lo necesario (`scripts/auto_cycle.py decide`: medidas desde la caché,
 solo informe o nada), revisa frente a la ejecución anterior (`revision_automatica.md`: OK / REGRESIÓN /
 ERROR) y lo sube a `pc-logs`. No pedir al usuario que lance 2c/2d tras cada cambio.
