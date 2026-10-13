@@ -2,8 +2,8 @@
  "report": "C:\\tenis\\output\\_smoke\\informe\\index.html",
  "screens": [
   {
-   "title": "Aprende su derecha",
-   "text_chars": 34650,
+   "title": "Cópiala (Aprende su derecha)",
+   "text_chars": 34694,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -18,7 +18,7 @@
    "body_trunk": 0,
    "heights_layer": false,
    "lib_filters": 0,
-   "news": false,
+   "news": true,
    "intro": true,
    "external_links": 0,
    "tables": 0,
@@ -29,14 +29,14 @@
    "errors": []
   },
   {
-   "title": "Su derecha",
-   "text_chars": 5842,
+   "title": "Su patrón típico (Su derecha)",
+   "text_chars": 4203,
    "charts": 8,
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 2,
+   "dashes": 0,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -45,7 +45,7 @@
    "body_trunk": 0,
    "heights_layer": false,
    "lib_filters": 0,
-   "news": true,
+   "news": false,
    "intro": true,
    "external_links": 0,
    "tables": 0,
@@ -56,7 +56,7 @@
    "errors": []
   },
   {
-   "title": "Panel",
+   "title": "Resumen y conclusiones (Panel)",
    "text_chars": 4508,
    "charts": 11,
    "videos": 5,
@@ -83,7 +83,7 @@
    "errors": []
   },
   {
-   "title": "Videoteca",
+   "title": "Sus golpes (Videoteca)",
    "text_chars": 3280,
    "charts": 0,
    "videos": 5,
@@ -111,7 +111,7 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 6992,
+   "text_chars": 7004,
    "charts": 28,
    "videos": 6,
    "black_canvases": 0,
@@ -138,7 +138,7 @@
    "errors": []
   },
   {
-   "title": "Comparar golpes",
+   "title": "Comparar dos golpes",
    "text_chars": 5220,
    "charts": 2,
    "videos": 5,
@@ -165,7 +165,7 @@
    "errors": []
   },
   {
-   "title": "Explorador",
+   "title": "Tabla de golpes (Explorador)",
    "text_chars": 3230,
    "charts": 0,
    "videos": 5,
@@ -192,21 +192,21 @@
    "errors": []
   },
   {
-   "title": "Comparativas",
-   "text_chars": 2749,
+   "title": "¿Cambia según…? (Comparativas)",
+   "text_chars": 1773,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [
-    "Sin datos de x-factor en estos grupos.",
-    "Sin datos de rotación de hombros en estos grupos.",
-    "Sin datos de x-factor 3d en estos grupos.",
-    "Sin datos de rotación de hombros 3d en estos grupos.",
-    "Sin datos de descenso de cadera en estos grupos.",
-    "Sin datos de codo en el impacto en estos grupos.",
-    "Sin datos de brazo no dominante en el armado en estos grupos.",
-    "Sin datos de impacto lateral en estos grupos."
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
    ],
    "dashes": 68,
    "ball_moments": 0,
@@ -228,7 +228,7 @@
    "errors": []
   },
   {
-   "title": "Pista",
+   "title": "Dónde golpea (Pista)",
    "text_chars": 480,
    "charts": 1,
    "videos": 5,
@@ -255,7 +255,7 @@
    "errors": []
   },
   {
-   "title": "Vista lateral\n(entreno)",
+   "title": "Vista lateral (entreno)",
    "text_chars": 6903,
    "charts": 0,
    "videos": 5,
@@ -279,6 +279,33 @@
    "many_lines": 0,
    "tab": "lateral",
    "file": "pantalla_10_lateral.jpg",
+   "errors": []
+  },
+  {
+   "title": "Fiabilidad de las medidas",
+   "text_chars": 4094,
+   "charts": 0,
+   "videos": 5,
+   "black_canvases": 0,
+   "videos_failed": [],
+   "empty_msgs": [],
+   "dashes": 0,
+   "ball_moments": 0,
+   "feet_cycle": 0,
+   "ball_measures": 0,
+   "body_hip": 0,
+   "body_base": 0,
+   "body_trunk": 0,
+   "heights_layer": false,
+   "lib_filters": 0,
+   "news": false,
+   "intro": true,
+   "external_links": 0,
+   "tables": 0,
+   "sentences": 59,
+   "many_lines": 0,
+   "tab": "fiabilidad",
+   "file": "pantalla_11_fiabilidad.jpg",
    "errors": []
   }
  ],

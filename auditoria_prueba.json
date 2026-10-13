@@ -3,7 +3,7 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 184,
+  "ok": 185,
   "falta": 8,
   "pocos datos": 186,
   "aviso": 17
@@ -2399,23 +2399,23 @@
   {
    "req": 2,
    "area": "Pantallas",
-   "name": "Pantalla «Aprende su derecha»",
+   "name": "Pantalla «Cópiala (Aprende su derecha)»",
    "status": "ok",
-   "detail": "34650 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "34694 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
    "req": 2,
    "area": "Pantallas",
-   "name": "Pantalla «Su derecha»",
+   "name": "Pantalla «Su patrón típico (Su derecha)»",
    "status": "ok",
-   "detail": "5842 caracteres de texto, 5 vídeos, 8 gráficos",
+   "detail": "4203 caracteres de texto, 5 vídeos, 8 gráficos",
    "file": "pantalla_2_modelo.jpg"
   },
   {
    "req": 2,
    "area": "Pantallas",
-   "name": "Pantalla «Panel»",
+   "name": "Pantalla «Resumen y conclusiones (Panel)»",
    "status": "ok",
    "detail": "4508 caracteres de texto, 5 vídeos, 11 gráficos",
    "file": "pantalla_3_panel.jpg"
@@ -2423,7 +2423,7 @@
   {
    "req": 2,
    "area": "Pantallas",
-   "name": "Pantalla «Videoteca»",
+   "name": "Pantalla «Sus golpes (Videoteca)»",
    "status": "ok",
    "detail": "3280 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_4_videoteca.jpg"
@@ -2433,13 +2433,13 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "6992 caracteres de texto, 6 vídeos, 28 gráficos",
+   "detail": "7004 caracteres de texto, 6 vídeos, 28 gráficos",
    "file": "pantalla_5_golpe.jpg"
   },
   {
    "req": 2,
    "area": "Pantallas",
-   "name": "Pantalla «Comparar golpes»",
+   "name": "Pantalla «Comparar dos golpes»",
    "status": "ok",
    "detail": "5220 caracteres de texto, 5 vídeos, 2 gráficos",
    "file": "pantalla_6_comparar.jpg"
@@ -2447,7 +2447,7 @@
   {
    "req": 2,
    "area": "Pantallas",
-   "name": "Pantalla «Explorador»",
+   "name": "Pantalla «Tabla de golpes (Explorador)»",
    "status": "ok",
    "detail": "3230 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_7_explorador.jpg"
@@ -2455,15 +2455,15 @@
   {
    "req": 2,
    "area": "Pantallas",
-   "name": "Pantalla «Comparativas»",
+   "name": "Pantalla «¿Cambia según…? (Comparativas)»",
    "status": "ok",
-   "detail": "2749 caracteres de texto, 5 vídeos, 0 gráficos; mensajes de vacío: ['Sin datos de x-factor en estos grupos.', 'Sin datos de rotación de hombros en estos grupos.', 'Sin datos de x-factor 3d en estos grupos.', 'Sin datos de rotación de hombros 3d en estos grupos.', 'Sin datos de descenso de cadera en estos grupos.', 'Sin datos de codo en el impacto en estos grupos.', 'Sin datos de brazo no dominante en el armado en estos grupos.', 'Sin datos de impacto lateral en estos grupos.']",
+   "detail": "1773 caracteres de texto, 5 vídeos, 0 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']",
    "file": "pantalla_8_comparativas.jpg"
   },
   {
    "req": 2,
    "area": "Pantallas",
-   "name": "Pantalla «Pista»",
+   "name": "Pantalla «Dónde golpea (Pista)»",
    "status": "ok",
    "detail": "480 caracteres de texto, 5 vídeos, 1 gráficos",
    "file": "pantalla_9_pista.jpg"
@@ -2471,10 +2471,18 @@
   {
    "req": 2,
    "area": "Pantallas",
-   "name": "Pantalla «Vista lateral\n(entreno)»",
+   "name": "Pantalla «Vista lateral (entreno)»",
    "status": "ok",
    "detail": "6903 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_10_lateral.jpg"
+  },
+  {
+   "req": 2,
+   "area": "Pantallas",
+   "name": "Pantalla «Fiabilidad de las medidas»",
+   "status": "ok",
+   "detail": "4094 caracteres de texto, 5 vídeos, 0 gráficos",
+   "file": "pantalla_11_fiabilidad.jpg"
   },
   {
    "req": 2,
@@ -2817,7 +2825,7 @@
    "area": "Peticiones",
    "name": "#9 Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 11 comprobaciones: 11 ok"
   },
   {
    "req": 11,
@@ -2873,7 +2881,7 @@
    "area": "Peticiones",
    "name": "#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»",
    "status": "pocos datos",
-   "detail": "8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 61 de 66 puntos con su valor medido)"
+   "detail": "9 comprobaciones: 1 pocos datos, 8 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 61 de 66 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -3062,7 +3070,7 @@
    "area": "Peticiones",
    "name": "#44 Sin vídeos del usuario, de entrenadores ni de otras jugadoras",
    "status": "ok",
-   "detail": "11 comprobaciones: 11 ok"
+   "detail": "12 comprobaciones: 12 ok"
   },
   {
    "req": 11,
@@ -3118,14 +3126,14 @@
    "area": "Peticiones",
    "name": "#52 Brave, no instalar Edge",
    "status": "ok",
-   "detail": "10 comprobaciones: 10 ok"
+   "detail": "11 comprobaciones: 11 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#53 No pasar de 100 a 0: conservar lo anterior",
    "status": "ok",
-   "detail": "10 comprobaciones: 10 ok"
+   "detail": "11 comprobaciones: 11 ok"
   },
   {
    "req": 11,
@@ -3153,7 +3161,7 @@
    "area": "Peticiones",
    "name": "#57 Nada de gráficas de muchas líneas ni tablas sin frases",
    "status": "ok",
-   "detail": "10 comprobaciones: 10 ok"
+   "detail": "11 comprobaciones: 11 ok"
   },
   {
    "req": 11,
@@ -3195,7 +3203,7 @@
    "area": "Peticiones",
    "name": "#67 No borrar el trabajo hecho: lo complejo como extra",
    "status": "ok",
-   "detail": "14 comprobaciones: 14 ok"
+   "detail": "15 comprobaciones: 15 ok"
   },
   {
    "req": 11,
@@ -3237,7 +3245,7 @@
    "area": "Peticiones",
    "name": "#73 Revisar la web de arriba abajo para que aporte valor",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 23 comprobaciones: 23 ok"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 24 comprobaciones: 24 ok"
   },
   {
    "req": 11,
