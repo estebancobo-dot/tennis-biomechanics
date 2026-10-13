@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 163,
-  "falta": 1,
+  "ok": 164,
+  "falta": 0,
   "pocos datos": 154,
-  "aviso": 62
+  "aviso": 61
  },
  "items": [
   {
@@ -806,9 +806,12 @@
    "area": "Taxonomía",
    "name": "4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)",
    "status": "pocos datos",
-   "detail": "no aparece en los datos de ningún golpe de esta ejecución (loaded.racket_head_lateral, class.racket_plane)",
-   "keys": [],
-   "measured": 0.0
+   "detail": "se mide (40% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.racket_plane",
+    "loaded.racket_head_lateral"
+   ],
+   "measured": 0.4
   },
   {
    "req": 1,
@@ -868,7 +871,8 @@
     "ball_net.racket_forearm",
     "ball_top.racket_forearm",
     "finish.racket_forearm",
-    "loaded.racket_forearm"
+    "loaded.racket_forearm",
+    "ready.racket_forearm"
    ],
    "measured": 0.4
   },
@@ -1226,7 +1230,8 @@
     "ball_net.racket_forearm",
     "ball_top.racket_forearm",
     "finish.racket_forearm",
-    "loaded.racket_forearm"
+    "loaded.racket_forearm",
+    "ready.racket_forearm"
    ],
    "measured": 0.4
   },
@@ -1384,6 +1389,7 @@
     "ball_top.racket_head_vs_wrist",
     "finish.racket_head_vs_wrist",
     "loaded.racket_head_vs_wrist",
+    "ready.racket_head_vs_wrist",
     "stroke.wrist_drop"
    ],
    "measured": 1.0
@@ -1541,18 +1547,22 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Botepronto (media volea)",
    "status": "pocos datos",
-   "detail": "no aparece en los datos de ningún golpe de esta ejecución (class.contact_type)",
-   "keys": [],
-   "measured": 0.0
+   "detail": "se mide (80% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.contact_type"
+   ],
+   "measured": 0.8
   },
   {
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Volea de derecha",
    "status": "pocos datos",
-   "detail": "no aparece en los datos de ningún golpe de esta ejecución (class.contact_type)",
-   "keys": [],
-   "measured": 0.0
+   "detail": "se mide (80% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "keys": [
+    "class.contact_type"
+   ],
+   "measured": 0.8
   },
   {
    "req": 1,
@@ -2163,14 +2173,14 @@
    "area": "Cuerdas",
    "name": "Cara de la raqueta: espera / split step",
    "status": "ok",
-   "detail": "en el 50% de los golpes"
+   "detail": "en el 100% de los golpes"
   },
   {
    "req": 4,
    "area": "Cuerdas",
    "name": "Cara de la raqueta: inicio de preparación",
    "status": "ok",
-   "detail": "en el 90% de los golpes"
+   "detail": "en el 100% de los golpes"
   },
   {
    "req": 4,
@@ -2366,7 +2376,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Aprende su derecha»",
    "status": "ok",
-   "detail": "24989 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "25003 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2382,7 +2392,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Panel»",
    "status": "ok",
-   "detail": "4376 caracteres de texto, 5 vídeos, 11 gráficos",
+   "detail": "4395 caracteres de texto, 5 vídeos, 11 gráficos",
    "file": "pantalla_3_panel.jpg"
   },
   {
@@ -2398,7 +2408,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "5272 caracteres de texto, 6 vídeos, 20 gráficos",
+   "detail": "5244 caracteres de texto, 6 vídeos, 20 gráficos",
    "file": "pantalla_5_golpe.jpg"
   },
   {
@@ -2523,7 +2533,7 @@
    "area": "Aprende su derecha",
    "name": "La pantalla responde a cada combinación",
    "status": "ok",
-   "detail": "677 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 33850 puntos de control comprobados; 176 con golpes exactos"
+   "detail": "677 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 33850 puntos de control comprobados; 199 con golpes exactos"
   },
   {
    "req": 2,
@@ -2592,8 +2602,8 @@
    "req": 5,
    "area": "Automático",
    "name": "Golpes que fallaron al procesarse",
-   "status": "aviso",
-   "detail": "4 golpes con error (guardados en strokes_errores.json)"
+   "status": "ok",
+   "detail": "ninguno"
   },
   {
    "req": 5,
@@ -2607,14 +2617,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "251 min para 35 min de vídeo ≈ 25.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
-  },
-  {
-   "req": 5,
-   "area": "Automático",
-   "name": "Etapas con errores",
-   "status": "falta",
-   "detail": "smoke_tennis-yusipopen-final-sobolenko-rybakin: fine"
+   "detail": "152 min para 35 min de vídeo ≈ 15.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -2761,7 +2764,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (251 min para 35 min de vídeo ≈ 25.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (152 min para 35 min de vídeo ≈ 15.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2775,7 +2778,7 @@
    "area": "Peticiones",
    "name": "#16 Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas",
    "status": "pocos datos",
-   "detail": "2 comprobaciones: 2 pocos datos; la peor: «6. Matriz del usuario · Botepronto (media volea)» (no aparece en los datos de ningún golpe de esta ejecución (class.contact_type))"
+   "detail": "2 comprobaciones: 2 pocos datos; la peor: «6. Matriz del usuario · Botepronto (media volea)» (se mide (80% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -2803,7 +2806,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (251 min para 35 min de vídeo ≈ 25.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (152 min para 35 min de vídeo ≈ 15.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2866,7 +2869,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (251 min para 35 min de vídeo ≈ 25.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (152 min para 35 min de vídeo ≈ 15.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2978,7 +2981,7 @@
    "area": "Peticiones",
    "name": "#45 Todo automático y completo: el usuario no revisa nada",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Golpes que fallaron al procesarse» (4 golpes con error (guardados en strokes_errores.json))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
   },
   {
    "req": 11,

@@ -3,13 +3,13 @@
  "screens": [
   {
    "title": "Aprende su derecha",
-   "text_chars": 24989,
+   "text_chars": 25003,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 2,
+   "dashes": 1,
    "ball_moments": 0,
    "feet_cycle": 0,
    "heights_layer": false,
@@ -49,7 +49,7 @@
   },
   {
    "title": "Panel",
-   "text_chars": 4376,
+   "text_chars": 4395,
    "charts": 11,
    "videos": 5,
    "black_canvases": 0,
@@ -95,7 +95,7 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 5272,
+   "text_chars": 5244,
    "charts": 20,
    "videos": 6,
    "black_canvases": 0,
@@ -321,7 +321,7 @@
  ],
  "learn": {
   "combinations": 677,
-  "with_exact_strokes": 176,
+  "with_exact_strokes": 199,
   "checkpoints_checked": 33850,
   "failures": []
  }
