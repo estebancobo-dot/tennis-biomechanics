@@ -362,6 +362,8 @@ def racket_at(kps: dict, img: np.ndarray, sk: Skeleton, f: int, scale: float, fe
     """Racket descriptors at clip frame f from its 5 keypoints (0 tip, 1 throat, 2 butt, 3/4 sides)."""
     out = {}
     k = kps.get(str(f)) if kps else None
+    if k is None and kps:          # the racket found 1-2 frames away (≤ 40 ms at 50 fps): the same position
+        k = next((kps[str(g)] for g in (f - 1, f + 1, f - 2, f + 2) if str(g) in kps and kps[str(g)] is not None), None)
     w = img[f, sk["dom_wrist"]]
     if k is not None and np.isfinite(w).all():
         k = np.asarray(k, float)
