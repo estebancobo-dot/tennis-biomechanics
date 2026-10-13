@@ -19,7 +19,7 @@ _JS_CHECK = r"""([sel, expect]) => {
   const res = document.getElementById('a-res').innerText;
   if (!/golpes exactos/.test(res)) bad.push('sin recuento de golpes');
   const R = aResolve();
-  if (R.dropped.length && !/se amplía quitando/.test(res)) bad.push('amplía sin decir qué quita');
+  if (R.dropped.length && !/se amplía quitando|Los más parecidos cumplen|no cumple ninguna/.test(res)) bad.push('amplía sin decir qué quita ni cuáles son los más parecidos');
   // compared with what the code says the screen must have (not with the page itself)
   const cards = [...document.querySelectorAll('#a-phases .lcard')];
   const ids = cards.map(c => c.dataset.phase);

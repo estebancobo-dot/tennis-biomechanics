@@ -1865,9 +1865,14 @@ function aValues(set, k) { return set.map(s => (s.lv || {})[k]).filter(v => v !=
 function aStat(set, c) {
   // her value for a checkpoint over a set of strokes: median and middle half, or the shares of each class
   if (aIsPractice(c.key)) {
-    const e = ((DATA.practice || {}).summary || {})[c.key.slice(9)];
-    if (!e || !e.n) return { n: 0, txt: null, why: "sin derechas de lado con el impacto confirmado por el sonido" };
-    return { n: e.n, txt: isN(e.median) ? `${fmt(e.median, c.dec)}${c.unit === "°" ? "°" : " " + c.unit}` : null, why: isN(e.median) ? "" : "menos de " + A_MIN + " golpes de entreno" };
+    const S = (DATA.practice || {}).summary || {}, k = c.key.slice(9), k3 = k.replace(/_(pct|deg)$/, "_3d_$1");
+    const u = c.unit === "°" ? "°" : " " + c.unit;
+    for (const [kk, how] of [[k, "de lado"], [k3, "estimación 3D"]]) {
+      const e = S[kk];
+      if (e && isN(e.median)) return { n: e.n, src: how, txt: `${fmt(e.median, c.dec)}${u}` };
+    }
+    const n = Math.max((S[k] || {}).n || 0, (S[k3] || {}).n || 0);
+    return { n: 0, txt: null, why: n ? `${n} golpes de entreno con el impacto confirmado por el sonido (hacen falta ${A_MIN} para dar un valor)` : "sin golpes de entreno con el impacto confirmado por el sonido" };
   }
   const v = aValues(set, c.key);
   if (!v.length) return { n: 0, txt: null };
@@ -1884,6 +1889,25 @@ function aHer(st, c) {
   if (!st.txt) return "";
   if (!st.med && st.med !== 0) return `<div class="her"><b>Ella:</b> ${st.txt.split(" · ")[0]} de sus golpes${st.n < A_MIN ? " (provisional)" : ""}.</div>`;
   return `<div class="her"><b>Ella:</b> ${st.txt.replace(/<[^>]+>/g, "")}${st.n < A_MIN ? " (provisional)" : ""}.</div>`;
+}
+function aHerChange(d, l) {
+  // what she does differently in this condition, measured: the checkpoints that move most against
+  // her own spread (only with 2+ strokes of the condition and 4+ in all), provisional below A_MIN
+  const all = aNear(), own = all.filter(s => s.cl[d] === l);
+  if (own.length < 2) return `<br><span class="dim">Ella:</span> ${own.length ? "solo 1 golpe suyo así" : "ningún golpe suyo así"} todavía; lo de arriba es lo que dicen los entrenadores.`;
+  const diffs = [];
+  LEARN.phases.forEach(ph => ph.checkpoints.forEach(c => {
+    if (aIsPractice(c.key)) return;
+    const a = aValues(own, c.key), b = aValues(all, c.key);
+    if (a.length < 2 || b.length < 4 || typeof a[0] !== "number") return;
+    const spread = (quant(b, .75) - quant(b, .25)) || sd(b) || 1, dm = quant(a, .5) - quant(b, .5);
+    diffs.push({ c, dm, z: Math.abs(dm) / spread, n: a.length, ma: quant(a, .5), mb: quant(b, .5) });
+  }));
+  const top = diffs.filter(x => x.z >= .5).sort((x, y) => y.z - x.z).slice(0, 3);
+  const u = c => c.unit === "°" ? "°" : c.unit ? " " + c.unit : "";
+  return `<br><span class="dim">Ella, ${l} (${own.length} golpes${own.length < A_MIN ? ", provisional" : ""}):</span> ` + (top.length
+    ? top.map(x => `${x.c.label.toLowerCase()} ${fmt(x.ma, x.c.dec)}${u(x.c)} (en todas: ${fmt(x.mb, x.c.dec)}${u(x.c)})`).join("; ") + "."
+    : "sin cambios claros respecto a sus demás derechas.");
 }
 function aWhyMissing(set, c) {
   if (c.key.startsWith("footwork.") || c.key.startsWith("class.approach") || c.key.startsWith("class.recovery")) {
@@ -1918,18 +1942,25 @@ function renderLearn() {
   box.querySelectorAll("button[data-d]").forEach(b => b.addEventListener("click", () => { aSel[b.dataset.d] = aSel[b.dataset.d] === b.dataset.l ? undefined : b.dataset.l; renderLearn(); }));
   const R = aResolve(), selTxt = Object.entries(R.sel).map(([d, l]) => l).join(" + ") || "todas sus derechas";
   // 2. her strokes of that kind, honest about how many
-  const set = R.exact.length ? R.exact : R.wider;
+  // no exact stroke: the closest ones (most conditions in common), never silently all of them
+  const nSel = Object.keys(R.sel).length;
+  const closest = nSel && !R.exact.length ? aNear().map(s => [s, Object.entries(R.sel).filter(([d, l]) => s.cl[d] === l).length])
+      .filter(([, k]) => k > 0).sort((a, b) => b[1] - a[1]) : [];
+  const best = closest.length ? closest[0][1] : 0;
+  const set = R.exact.length ? R.exact : closest.length ? closest.filter(([, k]) => k === best).map(([s]) => s) : R.wider;
   let head = `<p style="margin:0 0 8px"><b>${selTxt}</b>: <b>${R.exact.length}</b> golpes exactos.`;
-  if (R.exact.length < A_MIN && Object.keys(R.sel).length)
+  if (R.exact.length < A_MIN && Object.keys(R.sel).length && (R.exact.length || !closest.length))
     head += R.dropped.length ? ` Para tener golpes suficientes se amplía quitando «${R.dropped.map(aCondName).join("», «")}»: <b>${R.wider.length}</b> golpes (${Object.values(R.used).join(" + ") || "todas sus derechas"}).` : "";
   head += R.exact.length && R.exact.length < A_MIN ? ` <span class="badge prov">valores provisionales: menos de ${A_MIN} golpes</span>` : "";
-  if (!R.exact.length && Object.keys(R.sel).length) head += ` Ninguno exacto todavía: los valores de abajo salen de los ${R.wider.length} golpes más parecidos y lo que es propio de este golpe se explica en «Qué cambia».`;
+  if (!R.exact.length && nSel) head += closest.length
+    ? ` Ninguno exacto todavía. Los más parecidos cumplen ${best} de ${nSel} condiciones: <b>${set.length}</b> golpes; de ellos salen los valores de abajo (lo propio de este golpe, en «Qué cambia»).`
+    : ` Ninguno de sus golpes cumple ninguna de estas condiciones todavía: los valores de abajo son de todas sus derechas.`;
   head += `</p>`;
   const vids = [...set].filter(s => s.video).sort((a, b) => (b.repr || 0) - (a.repr || 0)).slice(0, 12);
   document.getElementById("a-res").innerHTML = head + (vids.length ? `<div class="athumbs">${vids.map(s => `<button data-id="${s.id}" style="background-image:url('${s.thumb || ""}')" title="${s.id}"><span>${s.cl.stance_impact || ""} ${s.cl.shot_type || ""}</span></button>`).join("")}</div><p class="dim3" style="margin:6px 0 0">Pulsa un golpe para verlo en vídeo con su esqueleto.</p>` : `<p class="dim">Sin golpes con vídeo en este análisis.</p>`);
   document.querySelectorAll("#a-res .athumbs button").forEach(b => b.addEventListener("click", () => aOpen(b.dataset.id, "impact")));
   // 3. what changes in this kind of stroke (coaching knowledge, marked)
-  const sit = Object.entries(R.sel).map(([d, l]) => { const k = (LEARN.conditions[d] || {}).levels[l]; return k ? `<li><b>${l}</b>: ${k[0]} ${k[1] ? `<br><span class="dim">Cómo:</span> ${k[1]}` : ""}${k[2] ? `<br><span class="dim">Ejercicio:</span> ${k[2]}` : ""}</li>` : ""; }).join("");
+  const sit = Object.entries(R.sel).map(([d, l]) => { const k = (LEARN.conditions[d] || {}).levels[l]; return k ? `<li><b>${l}</b>: ${k[0]}${aHerChange(d, l)} ${k[1] ? `<br><span class="dim">Cómo:</span> ${k[1]}` : ""}${k[2] ? `<br><span class="dim">Ejercicio:</span> ${k[2]}` : ""}</li>` : ""; }).join("");
   document.getElementById("a-sit").innerHTML = sit || `<li class="dim">Elige una o varias condiciones arriba para ver qué cambia en ese golpe.</li>`;
   document.getElementById("a-src1").textContent = LEARN.source;
   // 4. phase cards
@@ -1938,7 +1969,7 @@ function renderLearn() {
     const rep = aRep(set, ph.id === "feet" ? "ready" : ph.id);
     const rows = ph.checkpoints.map(c => {
       const st = aStat(set, c), base = aIsPractice(c.key) ? null : aStat(all, c);
-      const badge = !st.n ? "" : aIsPractice(c.key) ? `<span class="badge">entreno, de lado · ${st.n}</span>` : st.n >= A_MIN ? `<span class="badge firm">${st.n} golpes</span>` : `<span class="badge prov">${st.n} golpe${st.n > 1 ? "s" : ""} · provisional</span>`;
+      const badge = !st.n ? "" : aIsPractice(c.key) ? `<span class="badge">entreno, ${st.src || "de lado"} · ${st.n}</span>` : st.n >= A_MIN ? `<span class="badge firm">${st.n} golpes</span>` : `<span class="badge prov">${st.n} golpe${st.n > 1 ? "s" : ""} · provisional</span>`;
       const val = st.txt ? `<span class="v">${st.txt}</span> ${badge}` : `<span class="dim">— ${st.why || aWhyMissing(set, c)}</span>`;
       const cmp = base && base.txt && set.length !== all.length ? `<div class="dim3">en todas sus derechas: ${base.txt}</div>` : "";
       return `<div class="cpk" data-key="${c.key}"><div><b>${c.label}</b><div class="dim3">${c.read}</div></div><div>${val}${cmp}</div>`
