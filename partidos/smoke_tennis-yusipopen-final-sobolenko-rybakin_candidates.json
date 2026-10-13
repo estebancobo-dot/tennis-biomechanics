@@ -202,6 +202,27 @@
   "target": false
  },
  {
+  "t": 118.6249433106576,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 120.48253968253968,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 122.51428571428572,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
   "t": 132.94585034013605,
   "audio": true,
   "wrist_peak_t": 133.2,
@@ -320,10 +341,2033 @@
   "target": false
  },
  {
-  "t": 239.75764172335602,
+  "t": 240.1233560090703,
   "audio": true,
   "side": "far",
   "identity": true,
   "target": false
+ },
+ {
+  "t": 241.78938775510204,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 243.2754648526077,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 244.27972789115645,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 255.89551020408163,
+  "audio": true,
+  "wrist_peak_t": 256.0,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 261.41024943310657,
+  "audio": true,
+  "wrist_peak_t": 261.2,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 255.3730612244898,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 256.6559637188209,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 257.898231292517,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 259.12308390022673,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 260.33052154195013,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 286.586485260771,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 288.45569160997735,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 290.24943310657596,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 292.32761904761907,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 320.7063945578231,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 322.18666666666667,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 323.51020408163265,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 324.9846712018141,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 326.21532879818596,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 380.09142857142854,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 381.3859410430839,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 382.55854875283444,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 384.0678458049887,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 385.6119727891156,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 386.99356009070294,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 397.6921541950113,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 398.7196371882086,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 400.23473922902497,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 401.3725170068027,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 402.5451247165533,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 415.1419501133787,
+  "audio": true,
+  "wrist_peak_t": 414.8,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 417.84707482993196,
+  "audio": true,
+  "wrist_peak_t": 417.7,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 421.068843537415,
+  "audio": true,
+  "wrist_peak_t": 420.8,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 421.9,
+  "audio": false,
+  "wrist_peak_t": 421.9,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 411.5486621315193,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 412.63419501133785,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 413.742947845805,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 415.9720634920635,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 418.5901133786848,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 419.83238095238096,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 422.72326530612247,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 441.9203628117914,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 444.89251700680273,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 446.27990929705214,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 448.78766439909293,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 450.111201814059,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 452.1313378684807,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 453.3736054421769,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 457.1178231292517,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 458.31945578231296,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 459.5268934240363,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 461.04780045351475,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 462.2784580498866,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 463.3291609977324,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 464.3972789115646,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 467.09079365079367,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 490.3629931972789,
+  "audio": true,
+  "wrist_peak_t": 490.6,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 493.3467573696145,
+  "audio": true,
+  "wrist_peak_t": 493.3,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 496.7426757369615,
+  "audio": true,
+  "wrist_peak_t": 496.8,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 489.707029478458,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 491.51238095238097,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 494.4845351473923,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 497.54956916099775,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 499.54648526077096,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 538.5211791383219,
+  "audio": true,
+  "wrist_peak_t": 538.7,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 537.8303854875284,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 540.1407709750567,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 564.782947845805,
+  "audio": true,
+  "wrist_peak_t": 564.9,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 565.798820861678,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 567.4009977324263,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 569.1018594104308,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 603.5178231292517,
+  "audio": true,
+  "wrist_peak_t": 603.3,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 602.3510204081633,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 604.2898866213152,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 606.0662131519274,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 607.6683900226758,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 608.8874376417234,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 635.091156462585,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 636.1012244897959,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 637.6395464852608,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 649.3772335600906,
+  "audio": true,
+  "wrist_peak_t": 649.2,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 647.7228117913833,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 649.9809523809524,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 651.5366893424036,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 947.3280725623583,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 951.5424943310658,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 952.744126984127,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 954.1547392290249,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 955.4434467120182,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 963.4369160997733,
+  "audio": true,
+  "wrist_peak_t": 963.5,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 965.3873922902494,
+  "audio": true,
+  "wrist_peak_t": 965.6,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 962.0611337868481,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 964.4237641723356,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 966.8096145124716,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 967.8196825396825,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1015.6295691609978,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1017.5336054421768,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1018.555283446712,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1028.8997732426303,
+  "audio": true,
+  "wrist_peak_t": 1029.0,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1030.5832199546485,
+  "audio": true,
+  "wrist_peak_t": 1030.5,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1028.3366893424036,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1029.6253968253968,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1031.7384126984127,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1050.9645351473923,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1052.2474376417233,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1053.4548752834467,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1056.8914285714286,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1058.1104761904762,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1059.5733333333333,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1070.1790476190477,
+  "audio": true,
+  "wrist_peak_t": 1070.0,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1072.4662131519274,
+  "audio": true,
+  "wrist_peak_t": 1072.3,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1069.4302040816326,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1070.7363265306121,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1098.1590929705217,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1099.1749659863945,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1100.4346485260771,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1101.5608163265306,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1103.4938775510204,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1105.1715192743764,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1106.1990022675736,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1146.9209977324263,
+  "audio": true,
+  "wrist_peak_t": 1146.7,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1146.0908843537416,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1147.5711564625851,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1148.9295238095237,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1172.9215419501134,
+  "audio": true,
+  "wrist_peak_t": 1173.2,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1177.2868934240364,
+  "audio": true,
+  "wrist_peak_t": 1177.2,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1174.5295238095239,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1175.5744217687075,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1177.8731972789114,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1179.8062585034013,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1198.7885714285715,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1200.1509297052155,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1203.8951473922903,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1204.9632653061224,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1206.1068480725623,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1207.2794557823129,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1208.562358276644,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1209.7756009070295,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1211.2500680272108,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1245.3834013605442,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1247.2351927437642,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1248.2626757369615,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1250.2595918367347,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1272.9803174603176,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1276.7651700680271,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1278.169977324263,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1279.1974603174604,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1292.6069841269841,
+  "audio": true,
+  "wrist_peak_t": 1292.6,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1295.2,
+  "audio": false,
+  "wrist_peak_t": 1295.2,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1293.5938321995466,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1316.4945124716553,
+  "audio": true,
+  "wrist_peak_t": 1316.6,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1313.4875283446713,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1314.5962811791383,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1315.8385487528344,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1317.1504761904762,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1318.6017233560092,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1319.6814512471656,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1333.421859410431,
+  "audio": true,
+  "wrist_peak_t": 1333.3,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1334.6409070294785,
+  "audio": true,
+  "wrist_peak_t": 1334.6,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1333.9210884353743,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1335.2794557823129,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1417.1936507936507,
+  "audio": true,
+  "wrist_peak_t": 1417.3,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 1416.5551020408163,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1417.8380045351473,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1418.9119274376417,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1436.2165986394557,
+  "audio": true,
+  "wrist_peak_t": 1436.3,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 1438.6198639455783,
+  "audio": true,
+  "wrist_peak_t": 1438.9,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 1437.3892063492062,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1439.5718820861678,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1441.2727437641724,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1462.5538321995464,
+  "audio": true,
+  "wrist_peak_t": 1462.3,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 1463.1343310657596,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1464.9396825396825,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1473.1363265306122,
+  "audio": true,
+  "wrist_peak_t": 1473.2,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 1473.7980952380954,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1474.8720181405895,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1476.1317006802722,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1494.3013151927437,
+  "audio": true,
+  "wrist_peak_t": 1494.6,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 1498.5679818594103,
+  "audio": true,
+  "wrist_peak_t": 1498.3,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 1495.584217687075,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1497.3257142857142,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1499.0556009070294,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1525.3445804988662,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1528.0322902494331,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1529.5996371882086,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1530.6503401360544,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1540.692970521542,
+  "audio": true,
+  "wrist_peak_t": 1540.6,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 1541.3895691609978,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1542.5621768707483,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1544.6868027210885,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1546.1612698412698,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1566.3045804988662,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1567.5352380952381,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1571.894784580499,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1598.382947845805,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1599.7761451247165,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1601.3318820861678,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1602.3941950113378,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1612.0,
+  "audio": false,
+  "wrist_peak_t": 1612.0,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 1610.8926984126983,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1612.5761451247165,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1613.8938775510205,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1640.8058049886622,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1641.8216780045352,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1643.2380952380952,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1644.335238095238,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1646.140589569161,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1647.6266666666666,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1649.054693877551,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1650.2737414965986,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1651.742403628118,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1652.8163265306123,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1654.2965986394559,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1655.6897959183673,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1656.9320634920634,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1658.5690702947845,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1696.7,
+  "audio": false,
+  "wrist_peak_t": 1696.7,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 1709.5078458049886,
+  "audio": true,
+  "wrist_peak_t": 1709.5,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 1698.0836281179138,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1699.2678458049886,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1700.7423129251702,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1703.2384580498865,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1704.7825850340137,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1708.5384126984127,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1736.0366439909296,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1737.6214058956916,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1739.3861224489797,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1751.1760544217686,
+  "audio": true,
+  "wrist_peak_t": 1751.0,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 1753.1729705215419,
+  "audio": true,
+  "wrist_peak_t": 1753.1,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 1756.0580498866213,
+  "audio": true,
+  "wrist_peak_t": 1756.0,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 1758.3568253968253,
+  "audio": true,
+  "wrist_peak_t": 1758.3,
+  "side": "near",
+  "identity": true,
+  "target": true
+ },
+ {
+  "t": 1750.3807709750567,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1751.6926984126985,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1753.6141496598639,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1754.8622222222223,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1756.7720634920634,
+  "audio": true,
+  "side": "far",
+  "identity": true,
+  "target": false
+ },
+ {
+  "t": 1875.075918367347,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1877.281814058957,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1878.5879365079365,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1887.3186394557824,
+  "audio": true,
+  "wrist_peak_t": 1887.2,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1889.2,
+  "audio": false,
+  "wrist_peak_t": 1889.2,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1886.0821768707483,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1887.9978231292516,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1890.8132426303855,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1911.6473469387756,
+  "audio": true,
+  "wrist_peak_t": 1911.9,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1909.9116553287981,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1910.9913832199547,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1912.4252154195012,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1914.706575963719,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1924.3080272108843,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1925.7186394557823,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1927.384671201814,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1929.2306575963719,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1930.3336054421768,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1952.096507936508,
+  "audio": true,
+  "wrist_peak_t": 1952.2,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1954.1514739229024,
+  "audio": true,
+  "wrist_peak_t": 1954.2,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1957.6054421768708,
+  "audio": true,
+  "wrist_peak_t": 1957.9,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1958.9580045351474,
+  "audio": true,
+  "wrist_peak_t": 1959.2,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1961.7,
+  "audio": false,
+  "wrist_peak_t": 1961.7,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1951.608888888889,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1953.379410430839,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1954.9061224489797,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1956.206439909297,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1958.4355555555555,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1964.8790929705215,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1966.3187301587302,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1993.2480725623582,
+  "audio": true,
+  "wrist_peak_t": 1993.0,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 1994.0839909297051,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 1995.575873015873,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 2030.574149659864,
+  "audio": true,
+  "wrist_peak_t": 2030.5,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 2032.6813605442176,
+  "audio": true,
+  "wrist_peak_t": 2033.0,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 2029.2564172335601,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 2031.2010884353742,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 2033.5521088435373,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 2034.8001814058957,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 2069.8390929705215,
+  "audio": true,
+  "wrist_peak_t": 2069.8,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 2072.0449886621313,
+  "audio": true,
+  "wrist_peak_t": 2072.0,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 2074.2160544217686,
+  "audio": true,
+  "wrist_peak_t": 2074.4,
+  "side": "near",
+  "identity": false,
+  "target": false
+ },
+ {
+  "t": 2070.872380952381,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 2072.729977324263,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
+ },
+ {
+  "t": 2075.7950113378683,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true
  }
 ]

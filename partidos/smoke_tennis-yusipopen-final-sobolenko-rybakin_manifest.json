@@ -79,18 +79,18 @@
   }
  },
  "candidates": {
-  "fingerprint": "570816526f1705e7",
+  "fingerprint": "d215deb4f6f00e76",
   "version": "7",
-  "seconds": 4.1,
-  "finished": "2026-10-13 00:19:12",
+  "seconds": 1868.6,
+  "finished": "2026-10-13 04:01:38",
   "summary": {
-   "candidates": 45,
-   "far": 33,
-   "with_audio": 44,
-   "opponent_runs": 0,
+   "candidates": 329,
+   "far": 261,
+   "with_audio": 322,
+   "opponent_runs": 33,
    "identity_unknown": 0,
-   "replay_runs_skipped": 1,
-   "replays_by_path": 1,
+   "replay_runs_skipped": 7,
+   "replays_by_path": 5,
    "audio_track": 0
   }
  },
