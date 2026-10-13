@@ -194,6 +194,21 @@ function Registrar-Ciclo {
         $nombre = "tenis-ciclo-automatico"
         $version = "ciclo v2"
         if (Test-Path "$Base\output\ciclo_desactivado.txt") { return }
+        # 1) bucle en segundo plano que arranca con la sesion (carpeta Inicio): no depende del
+        #    Programador de tareas; se pone en marcha ya si no lo esta
+        $bucle = Join-Path $RepoDir "scripts\windows\ciclo_bucle.ps1"
+        $inicio = [Environment]::GetFolderPath("Startup")
+        if ($inicio) {
+            "@start `"`" /min powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$bucle`"" |
+                Set-Content (Join-Path $inicio "tenis-ciclo.cmd") -Encoding ASCII
+        }
+        $vivo = Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" -ErrorAction SilentlyContinue |
+            Where-Object { $_.CommandLine -match "ciclo_bucle" }
+        if (-not $vivo) {
+            Start-Process powershell.exe -WindowStyle Hidden -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$bucle`"")
+            Ok "Ciclo automatico en marcha (cada 10 minutos, en segundo plano; arranca solo al encender)."
+        }
+        # 2) ademas, la tarea de Windows (por si el bucle se cierra)
         $t = Get-ScheduledTask -TaskName $nombre -ErrorAction SilentlyContinue
         if ($t -and $t.Description -like "*$version*") { return }
         $ps1 = Join-Path $RepoDir "scripts\windows\ciclo_automatico.ps1"
