@@ -22,7 +22,16 @@ if ($LASTEXITCODE -ne 0) { exit 0 }
 $antes = (git -C $RepoDir rev-parse HEAD).Trim()
 $nuevo = (git -C $RepoDir rev-parse FETCH_HEAD).Trim()
 $forzar = Test-Path "$Out\forzar_ciclo.txt"
-if ($antes -eq $nuevo -and -not $forzar) { exit 0 }
+if ($antes -eq $nuevo -and -not $forzar) {
+    # sin codigo nuevo: una senal de vida cada hora (ciclo_vivo.txt en pc-logs), para que se vea que la
+    # tarea sigue funcionando aunque no haya trabajo
+    $vivo = "$Out\ciclo_vivo.txt"
+    if (-not (Test-Path $vivo) -or ((Get-Date) - (Get-Item $vivo).LastWriteTime).TotalMinutes -ge 60) {
+        "ultimo ciclo sin trabajo: $(Get-Date -Format s); codigo $($antes.Substring(0,7))" | Set-Content $vivo
+        Subir-Registros | Out-Null
+    }
+    exit 0
+}
 
 Start-Transcript -Path $Log | Out-Null
 try {

@@ -83,6 +83,7 @@ function Subir-Registros {
         else { git -C $d checkout -q -B pc-logs 2>$null }
         Copy-Item "$Base\output\*.log" $d -Force -ErrorAction SilentlyContinue
         Copy-Item "$Base\output\revision_automatica.md" $d -Force -ErrorAction SilentlyContinue
+        Copy-Item "$Base\output\ciclo_vivo.txt" $d -Force -ErrorAction SilentlyContinue
         New-Item -ItemType Directory -Force -Path "$d\partidos" | Out-Null
         # cada partido (y los de la prueba rapida, en output\_smoke): registro, etapas y errores;
         # de la prueba rapida tambien sus golpes (pocos), para revisar la calidad de lo medido
