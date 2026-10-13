@@ -20,6 +20,16 @@ function Senal-Vida($motivo) {
     }
     exit 0
 }
+# prueba de modelos (scripts/model_trials.py) en tramos de 40 min: sigue donde lo dejo, ciclo a ciclo
+function Pruebas-Pendientes {
+    $pm = "$Base\datasets\reports\model_trials.json"
+    if (-not (Test-Path $pm)) { return $true }
+    try { $j = Get-Content $pm -Raw | ConvertFrom-Json; return (-not $j.complete) -or ($j.version -lt 2) } catch { return $true }
+}
+function Prueba-Modelos {
+    Paso "Prueba de modelos (pose y bola, actual frente a alternativas; tramo de 40 min, sigue en el proximo ciclo)"
+    & uv run python scripts/model_trials.py --root "$Base\datasets" --device dml --budget-min 40 2>&1 | Out-Host
+}
 # rastro de cada arranque (antes de cualquier cosa que pueda fallar): se sube con la senal de vida
 try { "arranque: $(Get-Date -Format s) (pid $PID)" | Set-Content "$Out\ciclo_arranque.txt" } catch {}
 
@@ -36,7 +46,15 @@ if ($LASTEXITCODE -ne 0) { Senal-Vida "git fetch fallo (sin red o sin permiso)" 
 $antes = (git -C $RepoDir rev-parse HEAD).Trim()
 $nuevo = (git -C $RepoDir rev-parse FETCH_HEAD).Trim()
 $forzar = Test-Path "$Out\forzar_ciclo.txt"
-if ($antes -eq $nuevo -and -not $forzar) { Senal-Vida "sin codigo nuevo ($($antes.Substring(0,7)))" }
+if ($antes -eq $nuevo -and -not $forzar) {
+    if (Pruebas-Pendientes) {                   # sin codigo nuevo pero con la prueba de modelos a medias: otro tramo
+        Set-Location $RepoDir
+        Start-Transcript -Path $Log | Out-Null
+        try { Prueba-Modelos } finally { Resumen-Tiempo; Stop-Transcript | Out-Null; Subir-Registros }
+        exit 0
+    }
+    Senal-Vida "sin codigo nuevo ($($antes.Substring(0,7)))"
+}
 
 Start-Transcript -Path $Log | Out-Null
 try {
@@ -64,11 +82,7 @@ try {
         & uv run python scripts/auto_cycle.py review $aud $prev "$Out\revision_automatica.md" $Log 2>&1 | Out-Host
     }
     # prueba de modelos en este PC (scripts/model_trials.py): cuando cambia la prueba o aun no existe
-    $pm = "$Base\datasets\reports\model_trials.json"
-    if (-not (Test-Path $pm) -or ($cambios -match "model_trials\.py|pose/variants\.py")) {
-        Paso "Prueba de modelos (pose y bola, actual frente a alternativas; 30-90 min, sin tocar el analisis)"
-        & uv run python scripts/model_trials.py --root "$Base\datasets" --device dml 2>&1 | Out-Host
-    }
+    if ((Pruebas-Pendientes) -or ($cambios -match "model_trials\.py|pose/variants\.py")) { Prueba-Modelos }
     Ok "Ciclo automatico terminado ($modo)."
 } catch {
     Write-Host "ERROR: $_" -ForegroundColor Red

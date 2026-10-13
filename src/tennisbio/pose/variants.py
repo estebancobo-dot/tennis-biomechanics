@@ -24,7 +24,8 @@ from ..pipeline import savez_atomic
 from .yolo import _objects, appearance
 from .yolo_onnx import MODELS_DIR
 
-VARIANTS = ["yolo11m-pose@960", "yolo11m-pose@960-fp16", "yolo11m-pose@640", "rtmpose-x", "rtmpose-x-fp16", "rtmpose-m"]
+# in order of importance: the trials run in slices of time and the first ones finish first
+VARIANTS = ["yolo11m-pose@960", "rtmpose-x", "rtmpose-m", "yolo11m-pose@960-fp16", "rtmpose-x-fp16", "yolo11m-pose@640"]
 BASELINE = "yolo11m-pose@960"
 
 

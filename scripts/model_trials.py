@@ -19,7 +19,11 @@ A variant is recommended only if it keeps the F1 (at most 0.02 less), is not les
 is faster or adds the feet; half precision only if its keypoints move less than 1.5 px. The script
 reports; the code changes follow from its results.
 
-    uv run python scripts/model_trials.py --root C:\\tenis\\datasets --device dml [--clips 12]
+A slice of time at a time (--budget-min): when it is spent the report is written as incomplete and
+the next run goes on from the saved poses (each clip of each variant is cached), so the automatic
+cycle of the PC is never blocked for hours.
+
+    uv run python scripts/model_trials.py --root C:\\tenis\\datasets --device dml [--clips 8] [--budget-min 40]
 """
 import argparse
 import json
@@ -33,7 +37,7 @@ import numpy as np
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-VERSION = 1
+VERSION = 2
 
 
 def jerk(run) -> float | None:
@@ -139,7 +143,8 @@ def recommend(res: dict, base: str) -> list[str]:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default="datasets")
-    ap.add_argument("--clips", type=int, default=12)
+    ap.add_argument("--clips", type=int, default=8)
+    ap.add_argument("--budget-min", type=float, default=0, help="minutos de trabajo nuevo como máximo (0 = sin límite)")
     ap.add_argument("--device", default="cpu")
     ap.add_argument("--tol", type=int, default=6)
     ap.add_argument("--variants", default=None, help="lista separada por comas (por defecto todas)")
@@ -164,12 +169,16 @@ def main():
     if BASELINE not in variants:
         variants = [BASELINE] + variants
     split = json.loads(fetch(f"{RV_BASE}/info/test.json", root / "rv" / "test.json").read_text())
-    sel = split[:: max(1, len(split) // args.clips)][:args.clips]
+    sel = split[:: max(1, len(split) // 12)][:args.clips]          # always the same clips, the first ones first
     ball = Path(args.ball)
     tracker = BallTracker(str(ball), args.device) if ball.exists() else None
     res, clips = {}, []
     t_start = time.time()
+    over = lambda: args.budget_min and (time.time() - t_start) / 60 > args.budget_min
+    stopped = False
     for v in variants:
+        if stopped:
+            break
         print(f"== {v}", flush=True)
         vdir = work / v.replace("@", "_")
         vdir.mkdir(parents=True, exist_ok=True)
@@ -179,15 +188,22 @@ def main():
                 video = racketvision_video(root, match_id, clip)
                 cache = vdir / f"{match_id}_{clip}.npz"
                 base_cache = work / BASELINE.replace("@", "_") / cache.name
+                dbl = work / f"{match_id}_{clip}_dobles.txt"
+                if dbl.exists():
+                    continue                       # doubles: out of scope (found once, remembered)
                 if v != BASELINE and not base_cache.exists():
-                    continue                       # skipped for the baseline (doubles): skipped here too
+                    continue
                 msf = vdir / (cache.stem + "_ms.json")
                 if not cache.exists():
+                    if over():
+                        stopped = True
+                        break
                     msf.write_text(json.dumps(extract_variant(video, cache, v, args.device)["ms_per_frame"]))
+                    print(f"  {match_id}_{clip}: pose hecha ({(time.time() - t_start) / 60:.0f} min)", flush=True)
                 if msf.exists():
                     ms.append(json.loads(msf.read_text()))
                 if v == BASELINE and is_doubles(cache, video):
-                    cache.unlink()
+                    dbl.write_text("dobles")
                     print(f"  {match_id}_{clip}: dobles, se omite")
                     continue
                 if v == BASELINE:
@@ -216,38 +232,42 @@ def main():
                       "jerk_pct": round(float(np.median(num(jk))), 3) if num(jk) else None,
                       "tracked": round(float(np.mean(tracked)), 3) if tracked else None,
                       "feet_seen": round(float(np.mean(num(ft))), 3) if num(ft) else None,
-                      "kp_diff_vs_fp32_px": round(float(np.median(num(diffs))), 2) if num(diffs) else None}
+                      "kp_diff_vs_fp32_px": round(float(np.median(num(diffs))), 2) if num(diffs) else None,
+                      "complete": not stopped}
         except Exception as e:                      # one variant that does not run never stops the others
             import traceback
             res[v] = {"error": f"{type(e).__name__}: {e}", "trace": traceback.format_exc()[-800:]}
         print(f"   {res[v]}", flush=True)
     balls = {}
-    if ball.exists() and clips:
+    if ball.exists() and clips and not stopped:
         for name, path in (("balltrack", ball), ("balltrack-fp16", None)):
             try:
                 balls[name] = ball_trial(path or to_fp16(ball), clips, root, args.device)
             except Exception as e:
                 balls[name] = {"error": f"{type(e).__name__}: {e}"}
             print(f"== {name}: {balls[name]}", flush=True)
-    rec = recommend(res, BASELINE)
-    report = {"version": VERSION, "device": args.device, "minutes": round((time.time() - t_start) / 60, 1),
+    rec = recommend({v: r for v, r in res.items() if r.get("complete", True)}, BASELINE) if not stopped else []
+    report = {"version": VERSION, "complete": not stopped, "device": args.device, "minutes": round((time.time() - t_start) / 60, 1),
               "pose": res, "ball": balls, "recommended": rec, "baseline": BASELINE,
               "generated": time.strftime("%Y-%m-%d %H:%M")}
     (out_dir / "model_trials.json").write_text(json.dumps(report, indent=1, ensure_ascii=False), encoding="utf-8")
-    lines = [f"# Prueba de modelos en este PC ({report['generated']}, {args.device}, {report['minutes']} min)", "",
+    done = sum(1 for r in res.values() if r.get("complete", True))
+    lines = [f"# Prueba de modelos en este PC ({report['generated']}, {args.device}, {report['minutes']} min de este tramo)"
+             + ("" if not stopped else f" · EN CURSO: {done} de {len(variants)} variantes completas; sigue en el próximo ciclo"), "",
              "| Variante | ms/fotograma | F1 golpes | Precisión | Recall | Error instante | Temblor (% altura) | Seguida | Pies | Dif. FP16 (px) |",
              "|---|---|---|---|---|---|---|---|---|---|"]
     for v, r in res.items():
         if r.get("error"):
             lines.append(f"| {v} | error: {r['error'][:80]} |||||||||")
             continue
-        lines.append("| " + " | ".join(str(x) for x in (v, r["ms_per_frame"], r["f1"], r["precision"], r["recall"], r["timing_err_frames"],
+        lines.append("| " + " | ".join(str(x) for x in (v + ("" if r.get("complete", True) else " (a medias)"), r["ms_per_frame"], r["f1"], r["precision"], r["recall"], r["timing_err_frames"],
                                                         r["jerk_pct"], r["tracked"], r["feet_seen"] if r["feet_seen"] is not None else "—",
                                                         r["kp_diff_vs_fp32_px"] if r["kp_diff_vs_fp32_px"] is not None else "—")) + " |")
     if balls:
         lines += ["", "| Bola | Encontradas a ≤10 px | ms/fotograma |", "|---|---|---|"]
         lines += [f"| {k} | {b.get('found_10px', b.get('error'))} | {b.get('ms_per_frame', '')} |" for k, b in balls.items()]
-    lines += ["", "**Recomendadas frente a la actual (" + BASELINE + "):** " + ("; ".join(rec) if rec else "ninguna mejora en todo a la vez")]
+    lines += ["", "**Recomendadas frente a la actual (" + BASELINE + "):** "
+              + ("se decide al terminar todas las variantes" if stopped else "; ".join(rec) if rec else "ninguna mejora en todo a la vez")]
     (out_dir / "model_trials.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print("\n".join(lines))
 
