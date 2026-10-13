@@ -20,7 +20,8 @@ does not depend on them, e.g. measured at the impact) is "no comprobable" this w
 Repeatable is not right: a measure can be stable and biased. Where a second, independent method
 exists (the 3D estimate of the trunk, RTMW3D) both must agree: if they differ systematically (median
 difference over 8° with the same sign in at least 3 of 4 strokes) the measure is "sesgo" and is not
-given as her value either; the screen gives both readings.
+given as her value either; the screen gives both readings. A measure computed from a biased or noisy
+one (DERIVED_FROM: the shoulder brake comes from the 2D shoulder turn) takes its verdict.
 """
 from __future__ import annotations
 
@@ -32,6 +33,8 @@ FLOOR = {"°": 3.0, "%": 1.5, "s": 0.02, "cm": 3.0}
 SECOND_METHOD = {"loaded.x_factor": "metrics.x_factor_3d_deg", "loaded.shoulder_turn": "metrics.shoulder_turn_3d_deg",
                  "loaded.hip_turn": "metrics.hip_turn_3d_deg"}
 AGREE_DEG = 8.0
+# measures computed from another one: they cannot be better than it (a biased or noisy source makes them so)
+DERIVED_FROM = {"stroke.shoulder_brake": "loaded.shoulder_turn", "stroke.shoulders_open_first": "loaded.shoulder_turn"}
 
 
 def shifted_jitter(base: dict, shifted: list[dict]) -> dict:
@@ -102,6 +105,11 @@ def assess(raw: list[dict], keys: dict[str, str | None]) -> dict:
                           med3d=round(float(np.median([b for _, b in pairs])), 1), bias=round(bias, 1))
             if abs(bias) > max(AGREE_DEG, 2 * noise) and same >= 0.75:
                 out[k]["verdict"] = "sesgo"
+    for k, src in DERIVED_FROM.items():
+        if k in keys and (out.get(src) or {}).get("verdict") in ("sesgo", "ruido"):
+            s = out[src]
+            out[k] = {**out.get(k, {"n": s.get("n")}), "verdict": s["verdict"], "from": src,
+                      **{x: s[x] for x in ("med2d", "med3d", "n2", "noise", "spread") if x in s}}
     return out
 
 

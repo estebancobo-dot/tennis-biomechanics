@@ -51,3 +51,11 @@ def test_second_method_and_untestable():
     # a value that never moves with the phase instants is not validated by this test
     flat = [{"technique": {"stroke": {"swing_low_to_high": 40.0 + i}, "jitter": {"stroke.swing_low_to_high": 0.0}}} for i in range(8)]
     assert assess(flat, {"stroke.swing_low_to_high": "°"})["stroke.swing_low_to_high"]["verdict"] == "no comprobable"
+
+
+def test_derived_measure_takes_the_verdict_of_its_source():
+    rows = [{"technique": {"phases": {"loaded": {"shoulder_turn": 60.0 + i}}, "stroke": {"shoulder_brake": 50.0 + i},
+                           "jitter": {"loaded.shoulder_turn": 1.0, "stroke.shoulder_brake": 0.0}},
+             "metrics": {"shoulder_turn_3d_deg": 15.0 + i}} for i in range(8)]
+    r = assess(rows, {"loaded.shoulder_turn": "°", "stroke.shoulder_brake": "%"})
+    assert r["stroke.shoulder_brake"]["verdict"] == "sesgo" and r["stroke.shoulder_brake"]["from"] == "loaded.shoulder_turn"

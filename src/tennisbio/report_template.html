@@ -1879,7 +1879,8 @@ function aStat(set, c) {
   if (!v.length) return { n: 0, txt: null };
   const rel = (DATA.reliability || {})[c.key], ru = c.unit === "°" ? "°" : c.unit ? " " + c.unit : "";
   if (typeof v[0] === "number" && rel && rel.verdict === "sesgo")
-    return { n: 0, txt: null, why: `no fiable desde la tele: dos métodos independientes no coinciden (imagen 2D ${fmt(rel.med2d, c.dec)}${ru}, estimación 3D ${fmt(rel.med3d, c.dec)}${ru}, en ${rel.n2} golpes); no se da como valor suyo` };
+    return { n: 0, txt: null, why: rel.from ? `no fiable desde la tele: sale del giro de hombros, y ese giro no coincide entre la imagen 2D (${fmt(rel.med2d, 0)}°) y la estimación 3D (${fmt(rel.med3d, 0)}°); no se da como valor suyo`
+      : `no fiable desde la tele: dos métodos independientes no coinciden (imagen 2D ${fmt(rel.med2d, c.dec)}${ru}, estimación 3D ${fmt(rel.med3d, c.dec)}${ru}, en ${rel.n2} golpes); no se da como valor suyo` };
   if (typeof v[0] === "number" && rel && rel.verdict === "ruido")
     return { n: 0, txt: null, why: `no fiable desde la tele: en un mismo golpe cambia ±${fmt(rel.noise, c.dec)}${ru} entre fotogramas vecinos, más que entre sus golpes (±${fmt(rel.spread, c.dec)}${ru}); no se da como valor suyo` };
   if (typeof v[0] === "number") {
@@ -1940,7 +1941,7 @@ async function aOpen(id, phase) {
   const t = s.phases && isN(s.phases[phase]) ? s.phases[phase] : 0;
   stopPlay(); setT(t);
 }
-const A_STYLE = [["class.takeback", "armado"], ["class.stance_impact", "apoyo"], ["class.swing", "efecto"], ["class.finish", "terminación"]];
+const A_STYLE = [["class.takeback", "preparación"], ["class.stance_impact", "apoyo"], ["class.swing", "efecto"], ["class.finish", "terminación"]];
 function aTop(set, k) {
   const v = set.map(s => (s.lv || {})[k] ?? (k.startsWith("class.") ? s.cl[k.slice(6)] : undefined)).filter(x => x !== undefined && x !== null);
   if (!v.length) return null;
@@ -1959,7 +1960,8 @@ function aSignature(set) {
     if (tp.of >= 4 && tp.share >= 0.75) traits.push({ c, ph, tp });
   }));
   traits.sort((a, b) => b.tp.share - a.tp.share || b.tp.of - a.tp.of);
-  const style = A_STYLE.map(([k, name]) => { const tp = ok(k) ? aTop(set, k) : null; return tp ? `${name} ${tp.val} (${Math.round(100 * tp.share)} %)` : null; }).filter(Boolean);
+  // a style is what she does most of the time: below half of the strokes the element is "variable"
+  const style = A_STYLE.map(([k, name]) => { const tp = ok(k) ? aTop(set, k) : null; return !tp ? null : tp.share >= 0.5 ? `${name} ${tp.val} (${Math.round(100 * tp.share)} %)` : `${name} variable (la más frecuente, ${tp.val}, en ${Math.round(100 * tp.share)} %)`; }).filter(Boolean);
   const vid = (k, val, ph) => { const s = [...set].filter(s => s.video && String((s.lv || {})[k] ?? s.cl[k.replace("class.", "")]) === val).sort((a, b) => (b.repr || 0) - (a.repr || 0))[0]; return s ? ` <button class="btn" data-open="${s.id}" data-ph="${ph === "feet" ? "ready" : ph}">▶ Ver</button>` : ""; };
   const head = `<p style="margin:0 0 8px"><b>Estilo de su derecha:</b> ${style.length ? style.join(" · ") : "faltan golpes para describirlo"}${set.length < A_MIN ? ` <span class="badge prov">provisional: ${set.length} golpes</span>` : ""}.</p>`;
   if (!traits.length) return head + `<p class="dim">Todavía no hay un rasgo que repita en al menos 3 de cada 4 golpes con 4 o más golpes medidos (o los que hay no son medidas fiables).</p>`;

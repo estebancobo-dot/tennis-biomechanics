@@ -113,5 +113,5 @@ def test_signature_shows_what_she_repeats(tmp_path):
         pg.evaluate("document.querySelector('.nav button[data-tab=\"aprende\"]').click()")
         sig = pg.evaluate("document.getElementById('a-sig').innerText")
         b.close()
-    assert "Estilo de su derecha: armado bucle (100 %)" in sig
+    assert "Estilo de su derecha: preparación bucle (100 %)" in sig
     assert "bucle en 40 de 40 golpes" in sig and "Cópialo:" in sig
