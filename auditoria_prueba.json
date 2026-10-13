@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 172,
+  "ok": 173,
   "falta": 0,
   "pocos datos": 192,
-  "aviso": 19
+  "aviso": 18
  },
  "items": [
   {
@@ -2215,7 +2215,7 @@
    "area": "Valores posibles",
    "name": "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
    "status": "ok",
-   "detail": "20 medidas: 4 dudosa, 10 fiable, 1 ruido, 5 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±8.27. Con menos de 5 golpes no se juzga"
+   "detail": "45 medidas: 6 dudosa, 21 fiable, 1 ruido, 17 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±8.27. Con menos de 5 golpes no se juzga"
   },
   {
    "req": 3,
@@ -2383,7 +2383,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Aprende su derecha»",
    "status": "ok",
-   "detail": "25133 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "25170 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2407,7 +2407,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Videoteca»",
    "status": "ok",
-   "detail": "3298 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "3280 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_4_videoteca.jpg"
   },
   {
@@ -2431,7 +2431,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Explorador»",
    "status": "ok",
-   "detail": "3242 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "3230 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_7_explorador.jpg"
   },
   {
@@ -2630,22 +2630,22 @@
    "req": 5,
    "area": "Automático",
    "name": "Golpes dudosos (duda sobre el golpe, no sobre una medida)",
-   "status": "aviso",
-   "detail": "5 de 14 (36%); motivos: phase 5, elbow_implausible_at_impact 2. Otros 8 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos"
+   "status": "ok",
+   "detail": "1 de 10 del lado cercano (10%); motivos: elbow_implausible_at_impact 1. Otros 7 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos"
   },
   {
    "req": 5,
    "area": "Automático",
    "name": "Nada pide revisión manual",
    "status": "ok",
-   "detail": "5 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario"
+   "detail": "2 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario"
   },
   {
    "req": 9,
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "151 min para 35 min de vídeo ≈ 15.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "152 min para 35 min de vídeo ≈ 15.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -2792,7 +2792,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (151 min para 35 min de vídeo ≈ 15.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (152 min para 35 min de vídeo ≈ 15.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2834,7 +2834,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (151 min para 35 min de vídeo ≈ 15.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (152 min para 35 min de vídeo ≈ 15.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2897,7 +2897,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (151 min para 35 min de vídeo ≈ 15.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (152 min para 35 min de vídeo ≈ 15.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3191,14 +3191,14 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (151 min para 35 min de vídeo ≈ 15.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (152 min para 35 min de vídeo ≈ 15.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#76 «Un 50 % de golpes dudosos»",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (5 de 14 (36%); motivos: phase 5, elbow_implausible_at_impact 2. Otros 8 golpes solo tienen una medida que falta (raqueta)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,

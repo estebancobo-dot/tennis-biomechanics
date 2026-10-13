@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Aprende su derecha",
-   "text_chars": 25133,
+   "text_chars": 25170,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -72,7 +72,7 @@
   },
   {
    "title": "Videoteca",
-   "text_chars": 3298,
+   "text_chars": 3280,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -142,7 +142,7 @@
   },
   {
    "title": "Explorador",
-   "text_chars": 3242,
+   "text_chars": 3230,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
