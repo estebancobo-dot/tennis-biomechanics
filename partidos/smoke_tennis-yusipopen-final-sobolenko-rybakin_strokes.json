@@ -744,7 +744,8 @@
     0
    ],
    "tiebreak": false,
-   "pressure": false
+   "pressure": false,
+   "server": 1
   },
   "court_check": "refit",
   "side": "near",
@@ -756,6 +757,10 @@
   "stance": "semiabierto",
   "stance_angle_deg": 51.3,
   "displacement_m": 0.29,
+  "pos_at_opp_m": [
+   -4.16,
+   -1.55
+  ],
   "camera_pitch_deg": 10.4,
   "outcome": "rally",
   "face": {
@@ -825,7 +830,7 @@
    }
   },
   "point_won": true,
-  "is_return": false,
+  "is_return": true,
   "technique": {
    "phases": {
     "ready": {
@@ -1113,7 +1118,9 @@
     "hip_rise": 2.2,
     "pause_at_loaded": 0.12,
     "hand_on_handle": 36.8,
-    "racket_speed_rel": 7.62
+    "racket_speed_rel": 7.62,
+    "return_ready_depth_m": -1.55,
+    "return_step_in_m": -0.26
    },
    "classes": {
     "finish_trunk": "poco girado: el pecho sigue hacia la valla de su derecha (terminación corta o en látigo)",
@@ -1133,8 +1140,10 @@
     "court_side": "lado de su revés",
     "width": "centrada",
     "intent": "neutra",
-    "play": "inicio del punto",
-    "stance_role": "semiabierto neutro"
+    "play": "resto",
+    "stance_role": "semiabierto neutro",
+    "serve_number": "segundo saque",
+    "return_side": "ventaja"
    },
    "footwork": {
     "airborne_at_impact": true,
@@ -3002,7 +3011,8 @@
     0
    ],
    "tiebreak": false,
-   "pressure": false
+   "pressure": false,
+   "server": 1
   },
   "court_check": "refit",
   "side": "near",
@@ -3014,6 +3024,10 @@
   "stance": "cerrado",
   "stance_angle_deg": 176.7,
   "displacement_m": 4.17,
+  "pos_at_opp_m": [
+   -0.96,
+   -2.8
+  ],
   "camera_pitch_deg": 10.5,
   "outcome": "rally",
   "face": {
@@ -5232,7 +5246,8 @@
     0
    ],
    "tiebreak": false,
-   "pressure": false
+   "pressure": false,
+   "server": 1
   },
   "court_check": "ok",
   "side": "near",
@@ -5244,6 +5259,10 @@
   "stance": "cerrado",
   "stance_angle_deg": 153.5,
   "displacement_m": 1.69,
+  "pos_at_opp_m": [
+   -3.83,
+   -0.6
+  ],
   "camera_pitch_deg": 18.4,
   "bounce_court_m": [
    -0.33,
@@ -7620,7 +7639,8 @@
     0
    ],
    "tiebreak": false,
-   "pressure": false
+   "pressure": false,
+   "server": 1
   },
   "court_check": "ok",
   "side": "near",
@@ -7632,6 +7652,10 @@
   "stance": "abierto",
   "stance_angle_deg": 5.0,
   "displacement_m": 1.22,
+  "pos_at_opp_m": [
+   3.77,
+   -0.66
+  ],
   "camera_pitch_deg": 18.3,
   "shot_bounce_m": [
    -0.95,
@@ -8058,7 +8082,9 @@
     "pause_at_loaded": 0.08,
     "hand_on_handle": 20.6,
     "racket_speed_rel": 2.47,
-    "takeback_vs_first_step": 0.34
+    "takeback_vs_first_step": 0.34,
+    "return_ready_depth_m": -0.66,
+    "return_step_in_m": 1.13
    },
    "classes": {
     "finish": "sobre el hombro",
@@ -8082,7 +8108,9 @@
     "shot_type": "al centro",
     "contact_type": "tras el bote",
     "stance_role": "abierto de ataque",
-    "play": "inicio del punto"
+    "play": "resto",
+    "serve_dir": "abierto",
+    "return_side": "iguales"
    },
    "footwork": {
     "steps_to_impact": 4,
@@ -9291,7 +9319,8 @@
   "series": "series/w000130746_8134_near_124.json",
   "window_impact_s": 2.48,
   "shot_in_point": 1,
-  "shots_in_point": 3
+  "shots_in_point": 3,
+  "is_return": true
  },
  {
   "impact_frame": 229,
@@ -10121,7 +10150,8 @@
     0
    ],
    "tiebreak": false,
-   "pressure": false
+   "pressure": false,
+   "server": 1
   },
   "court_check": "ok",
   "side": "near",
@@ -10133,6 +10163,10 @@
   "stance": "semiabierto",
   "stance_angle_deg": 51.5,
   "displacement_m": 2.8,
+  "pos_at_opp_m": [
+   3.54,
+   0.6
+  ],
   "camera_pitch_deg": 18.3,
   "shot_bounce_m": [
    -3.11,
@@ -12419,7 +12453,8 @@
     0
    ],
    "tiebreak": false,
-   "pressure": false
+   "pressure": false,
+   "server": 1
   },
   "court_check": "ok",
   "side": "near",
@@ -12431,6 +12466,10 @@
   "stance": "semiabierto",
   "stance_angle_deg": 36.9,
   "displacement_m": 1.6,
+  "pos_at_opp_m": [
+   0.67,
+   -1.35
+  ],
   "camera_pitch_deg": 18.3,
   "shot_bounce_m": [
    0.7,
@@ -14677,7 +14716,8 @@
     0
    ],
    "tiebreak": false,
-   "pressure": true
+   "pressure": true,
+   "server": 1
   },
   "court_check": "ok",
   "side": "near",
@@ -14689,6 +14729,10 @@
   "stance": "abierto",
   "stance_angle_deg": 0.4,
   "displacement_m": 0.66,
+  "pos_at_opp_m": [
+   -3.63,
+   0.03
+  ],
   "camera_pitch_deg": 18.3,
   "shot_bounce_m": [
    3.27,
@@ -14773,7 +14817,7 @@
   "point_won": true,
   "ball_speed_avg_kmh": 98.8,
   "shot_quality_proxy": 76.0,
-  "is_return": false,
+  "is_return": true,
   "ball_flight": {
    "fit_rms_m": 0.02,
    "rise_speed_mps": 6.54,
@@ -15121,7 +15165,9 @@
     "hip_rise": 9.0,
     "pause_at_loaded": 0.14,
     "hand_on_handle": 42.0,
-    "racket_speed_rel": 3.38
+    "racket_speed_rel": 3.38,
+    "return_ready_depth_m": 0.03,
+    "return_step_in_m": 0.66
    },
    "classes": {
     "finish_trunk": "poco girado: el pecho sigue hacia la valla de su derecha (terminación corta o en látigo)",
@@ -15146,9 +15192,12 @@
     "width": "centrada",
     "intent": "defensa",
     "shot_type": "cruzada",
-    "play": "inicio del punto",
+    "play": "resto",
     "contact_type": "tras el bote",
-    "stance_role": "abierto defensivo"
+    "stance_role": "abierto defensivo",
+    "serve_number": "primer saque",
+    "serve_dir": "abierto",
+    "return_side": "ventaja"
    },
    "footwork": {
     "steps_to_impact": 0,
@@ -17204,7 +17253,8 @@
     0
    ],
    "tiebreak": false,
-   "pressure": true
+   "pressure": true,
+   "server": 1
   },
   "court_check": "ok",
   "side": "near",
@@ -17216,6 +17266,10 @@
   "stance": "cerrado",
   "stance_angle_deg": 120.6,
   "displacement_m": 2.49,
+  "pos_at_opp_m": [
+   -2.19,
+   0.34
+  ],
   "camera_pitch_deg": 18.3,
   "shot_bounce_m": [
    -3.49,
@@ -19452,7 +19506,8 @@
     0
    ],
    "tiebreak": false,
-   "pressure": true
+   "pressure": true,
+   "server": 1
   },
   "court_check": "ok",
   "side": "near",
@@ -19464,6 +19519,10 @@
   "stance": "abierto",
   "stance_angle_deg": 10.7,
   "displacement_m": 0.73,
+  "pos_at_opp_m": [
+   3.77,
+   -0.73
+  ],
   "camera_pitch_deg": 18.4,
   "shot_bounce_m": [
    -0.88,
@@ -19547,7 +19606,7 @@
   },
   "point_won": false,
   "ball_speed_avg_kmh": 94.3,
-  "is_return": false,
+  "is_return": true,
   "ball_flight": {
    "fit_rms_m": 0.03,
    "rise_speed_mps": 6.65,
@@ -19901,7 +19960,9 @@
     "shoulder_brake": 77.0,
     "hip_rise": 3.7,
     "pause_at_loaded": 0.08,
-    "hand_on_handle": 35.5
+    "hand_on_handle": 35.5,
+    "return_ready_depth_m": -0.73,
+    "return_step_in_m": 0.47
    },
    "classes": {
     "finish_trunk": "girado tres cuartos hacia el lado de su revés",
@@ -19925,9 +19986,12 @@
     "width": "centrada",
     "intent": "defensa",
     "shot_type": "al centro",
-    "play": "inicio del punto",
+    "play": "resto",
     "contact_type": "tras el bote",
-    "stance_role": "abierto defensivo"
+    "stance_role": "abierto defensivo",
+    "serve_number": "primer saque",
+    "serve_dir": "abierto",
+    "return_side": "iguales"
    },
    "footwork": {
     "steps_to_impact": 0,
@@ -21809,7 +21873,8 @@
     0
    ],
    "tiebreak": false,
-   "pressure": true
+   "pressure": true,
+   "server": 1
   },
   "court_check": "ok",
   "side": "near",
@@ -21895,7 +21960,7 @@
   },
   "point_won": true,
   "shot_quality_proxy": 25.0,
-  "is_return": false,
+  "is_return": true,
   "ball_flight": {
    "fit_rms_m": 0.03,
    "rise_speed_mps": 4.28,
@@ -22160,8 +22225,11 @@
     "ball_speed": "muy rápida",
     "ball_height": "cadera",
     "intent": "defensa",
-    "play": "inicio del punto",
-    "contact_type": "tras el bote"
+    "play": "resto",
+    "contact_type": "tras el bote",
+    "serve_number": "segundo saque",
+    "serve_dir": "al cuerpo",
+    "return_side": "ventaja"
    },
    "footwork": {
     "airborne_at_impact": false,
@@ -23795,7 +23863,8 @@
     0
    ],
    "tiebreak": false,
-   "pressure": true
+   "pressure": true,
+   "server": 1
   },
   "court_check": "ok",
   "side": "near",
@@ -23807,6 +23876,10 @@
   "stance": "semiabierto",
   "stance_angle_deg": 37.9,
   "displacement_m": 3.63,
+  "pos_at_opp_m": [
+   -1.03,
+   -1.69
+  ],
   "camera_pitch_deg": 18.5,
   "shot_bounce_m": [
    -0.01,
@@ -25509,7 +25582,8 @@
     0
    ],
    "tiebreak": false,
-   "pressure": false
+   "pressure": false,
+   "server": 0
   },
   "court_check": "refit",
   "side": "far",
@@ -25518,6 +25592,10 @@
    -5.01
   ],
   "displacement_m": 0.27,
+  "pos_at_opp_m": [
+   -3.96,
+   -4.75
+  ],
   "camera_pitch_deg": 10.4,
   "shot_bounce_m": [
    -2.93,
@@ -25694,7 +25772,8 @@
     0
    ],
    "tiebreak": false,
-   "pressure": false
+   "pressure": false,
+   "server": 0
   },
   "court_check": "ok",
   "side": "far",
@@ -25703,6 +25782,10 @@
    -3.2
   ],
   "displacement_m": 1.09,
+  "pos_at_opp_m": [
+   0.32,
+   -2.95
+  ],
   "camera_pitch_deg": 18.2,
   "shot_bounce_m": [
    -0.13,
@@ -25876,7 +25959,8 @@
     0
    ],
    "tiebreak": false,
-   "pressure": true
+   "pressure": true,
+   "server": 0
   },
   "court_check": "ok",
   "side": "far",
@@ -25885,6 +25969,10 @@
    1.23
   ],
   "displacement_m": 1.8,
+  "pos_at_opp_m": [
+   -1.03,
+   0.51
+  ],
   "camera_pitch_deg": 18.4,
   "shot_bounce_m": [
    2.77,
@@ -26085,7 +26173,8 @@
     1
    ],
    "tiebreak": false,
-   "pressure": false
+   "pressure": false,
+   "server": 1
   },
   "court_check": "ok",
   "side": "far",
@@ -26094,6 +26183,10 @@
    -2.59
   ],
   "displacement_m": 1.63,
+  "pos_at_opp_m": [
+   -3.78,
+   -1.94
+  ],
   "camera_pitch_deg": 18.3,
   "shot_bounce_m": [
    0.8,
@@ -26275,7 +26368,8 @@
     1
    ],
    "tiebreak": false,
-   "pressure": true
+   "pressure": true,
+   "server": 1
   },
   "court_check": "ok",
   "side": "far",
@@ -26284,6 +26378,10 @@
    -1.2
   ],
   "displacement_m": 1.06,
+  "pos_at_opp_m": [
+   3.71,
+   -1.81
+  ],
   "camera_pitch_deg": 18.3,
   "shot_bounce_m": [
    -0.95,
@@ -26454,7 +26552,8 @@
     1
    ],
    "tiebreak": false,
-   "pressure": true
+   "pressure": true,
+   "server": 1
   },
   "court_check": "ok",
   "side": "far",
@@ -26463,6 +26562,10 @@
    -1.42
   ],
   "displacement_m": 1.15,
+  "pos_at_opp_m": [
+   3.65,
+   -0.89
+  ],
   "camera_pitch_deg": 18.2,
   "bounce_court_m": [
    4.08,
@@ -26470,7 +26573,7 @@
   ],
   "outcome": "rally",
   "point_won": false,
-  "is_return": false,
+  "is_return": true,
   "technique": {
    "classes": {
     "ball_speed": "muy rápida",
@@ -26480,10 +26583,16 @@
     "width": "centrada",
     "intent": "defensa",
     "contact_type": "tras el bote",
-    "play": "inicio del punto"
+    "play": "resto",
+    "serve_number": "primer saque",
+    "serve_dir": "abierto",
+    "return_side": "iguales"
    },
    "phases": {},
-   "stroke": {},
+   "stroke": {
+    "return_ready_depth_m": -0.89,
+    "return_step_in_m": -0.53
+   },
    "footwork": {}
   },
   "series": "series/w001291394_3600_far_108.json",
@@ -27144,7 +27253,8 @@
     1
    ],
    "tiebreak": false,
-   "pressure": false
+   "pressure": false,
+   "server": 0
   },
   "court_check": "ok",
   "side": "near",
@@ -27156,6 +27266,10 @@
   "stance": "abierto",
   "stance_angle_deg": -18.7,
   "displacement_m": 0.63,
+  "pos_at_opp_m": [
+   1.25,
+   0.03
+  ],
   "camera_pitch_deg": 18.2,
   "landing_inside_m": 1.3,
   "shot_bounce_m": [
@@ -27237,7 +27351,7 @@
   "point_won": false,
   "ball_speed_avg_kmh": 138.6,
   "shot_quality_proxy": 31.0,
-  "is_return": true,
+  "is_return": false,
   "technique": {
    "phases": {
     "ready": {
@@ -27571,7 +27685,7 @@
     "width": "centrada",
     "intent": "defensa",
     "shot_type": "al centro",
-    "play": "resto",
+    "play": "inicio del punto",
     "stance_role": "abierto defensivo"
    },
    "footwork": {
@@ -29395,7 +29509,8 @@
     1
    ],
    "tiebreak": false,
-   "pressure": false
+   "pressure": false,
+   "server": 1
   },
   "court_check": "ok",
   "side": "near",
@@ -29407,6 +29522,10 @@
   "stance": "abierto",
   "stance_angle_deg": 8.2,
   "displacement_m": 0.94,
+  "pos_at_opp_m": [
+   3.52,
+   -0.42
+  ],
   "camera_pitch_deg": 18.2,
   "shot_bounce_m": [
    0.79,
@@ -31810,7 +31929,8 @@
     1
    ],
    "tiebreak": false,
-   "pressure": true
+   "pressure": true,
+   "server": 1
   },
   "court_check": "ok",
   "side": "near",
@@ -31822,6 +31942,10 @@
   "stance": "abierto",
   "stance_angle_deg": 3.8,
   "displacement_m": 0.94,
+  "pos_at_opp_m": [
+   -3.47,
+   0.33
+  ],
   "camera_pitch_deg": 18.3,
   "shot_bounce_m": [
    1.07,
@@ -32206,7 +32330,9 @@
     "hip_rise": -0.4,
     "pause_at_loaded": 0.02,
     "hand_on_handle": 30.1,
-    "takeback_vs_first_step": 0.28
+    "takeback_vs_first_step": 0.28,
+    "return_ready_depth_m": 0.33,
+    "return_step_in_m": 0.9
    },
    "classes": {
     "finish_trunk": "poco girado: el pecho sigue hacia la valla de su derecha (terminación corta o en látigo)",
@@ -32230,7 +32356,10 @@
     "shot_type": "al centro",
     "play": "resto",
     "contact_type": "tras el bote",
-    "stance_role": "abierto defensivo"
+    "stance_role": "abierto defensivo",
+    "serve_number": "primer saque",
+    "serve_dir": "abierto",
+    "return_side": "ventaja"
    },
    "footwork": {
     "steps_to_impact": 2,
@@ -34171,7 +34300,8 @@
     1
    ],
    "tiebreak": false,
-   "pressure": true
+   "pressure": true,
+   "server": 1
   },
   "court_check": "ok",
   "side": "near",
@@ -34183,6 +34313,10 @@
   "stance": "neutro",
   "stance_angle_deg": 96.7,
   "displacement_m": 2.28,
+  "pos_at_opp_m": [
+   -2.73,
+   2.14
+  ],
   "camera_pitch_deg": 18.3,
   "shot_bounce_m": [
    0.65,
@@ -36374,7 +36508,8 @@
     1
    ],
    "tiebreak": false,
-   "pressure": true
+   "pressure": true,
+   "server": 1
   },
   "court_check": "ok",
   "side": "near",
@@ -36386,6 +36521,10 @@
   "stance": "semiabierto",
   "stance_angle_deg": 30.6,
   "displacement_m": 2.64,
+  "pos_at_opp_m": [
+   -0.47,
+   -2.17
+  ],
   "camera_pitch_deg": 18.2,
   "shot_bounce_m": [
    -2.26,
@@ -38608,7 +38747,8 @@
     1
    ],
    "tiebreak": false,
-   "pressure": true
+   "pressure": true,
+   "server": 1
   },
   "court_check": "ok",
   "side": "near",
@@ -38620,6 +38760,10 @@
   "stance": "neutro",
   "stance_angle_deg": 74.1,
   "displacement_m": 0.96,
+  "pos_at_opp_m": [
+   1.49,
+   -2.01
+  ],
   "camera_pitch_deg": 18.2,
   "shot_bounce_m": [
    3.87,
@@ -40308,7 +40452,8 @@
     1
    ],
    "tiebreak": false,
-   "pressure": false
+   "pressure": false,
+   "server": 0
   },
   "court_check": "ok",
   "side": "far",
@@ -40317,6 +40462,10 @@
    -2.69
   ],
   "displacement_m": 1.75,
+  "pos_at_opp_m": [
+   0.68,
+   -0.95
+  ],
   "camera_pitch_deg": 18.3,
   "shot_bounce_m": [
    -0.5,
@@ -40499,7 +40648,8 @@
     1
    ],
    "tiebreak": false,
-   "pressure": false
+   "pressure": false,
+   "server": 0
   },
   "court_check": "ok",
   "side": "far",
@@ -40508,6 +40658,10 @@
    -2.89
   ],
   "displacement_m": 2.23,
+  "pos_at_opp_m": [
+   -1.32,
+   -0.68
+  ],
   "camera_pitch_deg": 18.2,
   "shot_bounce_m": [
    2.16,
@@ -40682,7 +40836,8 @@
     1
    ],
    "tiebreak": false,
-   "pressure": false
+   "pressure": false,
+   "server": 0
   },
   "court_check": "ok",
   "side": "far",
@@ -40691,6 +40846,10 @@
    -2.37
   ],
   "displacement_m": 1.02,
+  "pos_at_opp_m": [
+   -5.19,
+   -1.98
+  ],
   "camera_pitch_deg": 18.2,
   "bounce_court_m": [
    2.88,
@@ -40857,7 +41016,8 @@
     1
    ],
    "tiebreak": false,
-   "pressure": false
+   "pressure": false,
+   "server": 0
   },
   "court_check": "ok",
   "side": "far",
@@ -40866,6 +41026,10 @@
    -2.6
   ],
   "displacement_m": 3.69,
+  "pos_at_opp_m": [
+   1.28,
+   0.14
+  ],
   "camera_pitch_deg": 18.2,
   "shot_bounce_m": [
    2.45,

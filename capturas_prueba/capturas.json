@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 31531,
+   "text_chars": 32794,
    "charts": 8,
    "videos": 5,
    "black_canvases": 0,
@@ -24,7 +24,7 @@
    "intro": true,
    "external_links": 0,
    "tables": 0,
-   "sentences": 16,
+   "sentences": 17,
    "many_lines": 0,
    "tab": "aprende",
    "file": "pantalla_1_aprende.jpg",
@@ -335,21 +335,21 @@
   }
  ],
  "learn": {
-  "combinations": 677,
-  "with_exact_strokes": 199,
-  "checkpoints_checked": 44682,
+  "combinations": 1104,
+  "with_exact_strokes": 291,
+  "checkpoints_checked": 75072,
   "failures": [],
-  "rows_all": 66,
-  "valued_all": 61,
-  "targeted_all": 39,
-  "glossed_all": 53,
+  "rows_all": 68,
+  "valued_all": 63,
+  "targeted_all": 41,
+  "glossed_all": 58,
   "signature": 5,
   "style": "Estilo de su derecha: preparación amplia (90 %) · apoyo variable (la más frecuente, abierto, en 30 %) · efecto liftado (de abajo arriba) (80 %) · terminación variable (la más frecuente, sobre el hombro, en 40 %) provisional: 10 golpes.",
   "example": {
    "exact": 0,
    "near": 9,
-   "rows": 66,
-   "valued": 61,
+   "rows": 68,
+   "valued": 63,
    "bad": []
   }
  }
