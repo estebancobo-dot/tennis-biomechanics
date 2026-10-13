@@ -4,8 +4,8 @@
  "near": 10,
  "summary": {
   "ok": 184,
-  "falta": 0,
-  "pocos datos": 194,
+  "falta": 8,
+  "pocos datos": 186,
   "aviso": 17
  },
  "items": [
@@ -1504,10 +1504,12 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Pasos cruzados",
-   "status": "pocos datos",
-   "detail": "no aparece en los datos de ningún golpe de esta ejecución (step_kinds)",
-   "keys": [],
-   "measured": 0.0
+   "status": "falta",
+   "detail": "se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla",
+   "keys": [
+    "footwork.step_kinds"
+   ],
+   "measured": 1.0
   },
   {
    "req": 1,
@@ -1993,7 +1995,7 @@
    "area": "Examen de entrenadores",
    "name": "R2 Dos manos en la raqueta en la espera (≥ 80 %)",
    "status": "pocos datos",
-   "detail": "pocos datos: 1 golpes con el dato (hacen falta 12)"
+   "detail": "pocos datos: 3 golpes con el dato (hacen falta 12)"
   },
   {
    "req": 3,
@@ -2217,7 +2219,7 @@
    "area": "Valores posibles",
    "name": "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
    "status": "ok",
-   "detail": "57 medidas: 6 dudosa, 25 fiable, 3 no comprobable, 2 ruido, 3 sesgo, 18 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±8.27, loaded.racket_head_lateral ±2.9. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 57.3° / 3D 12.4°, stroke.shoulders_open_first 2D 57.3° / 3D 12.4°, stroke.shoulder_brake 2D 57.3° / 3D 12.4°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
+   "detail": "59 medidas: 6 dudosa, 25 fiable, 4 no comprobable, 2 ruido, 3 sesgo, 19 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±8.27, loaded.racket_head_lateral ±2.9. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 57.3° / 3D 12.4°, stroke.shoulders_open_first 2D 57.3° / 3D 12.4°, stroke.shoulder_brake 2D 57.3° / 3D 12.4°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
   },
   {
    "req": 3,
@@ -2399,7 +2401,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Aprende su derecha»",
    "status": "ok",
-   "detail": "33549 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "34650 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2415,7 +2417,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Panel»",
    "status": "ok",
-   "detail": "4396 caracteres de texto, 5 vídeos, 11 gráficos",
+   "detail": "4508 caracteres de texto, 5 vídeos, 11 gráficos",
    "file": "pantalla_3_panel.jpg"
   },
   {
@@ -2431,7 +2433,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "6863 caracteres de texto, 6 vídeos, 28 gráficos",
+   "detail": "6917 caracteres de texto, 6 vídeos, 28 gráficos",
    "file": "pantalla_5_golpe.jpg"
   },
   {
@@ -2556,14 +2558,14 @@
    "area": "Aprende su derecha",
    "name": "La pantalla responde a cada combinación",
    "status": "ok",
-   "detail": "677 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 43328 puntos de control comprobados; 199 con golpes exactos"
+   "detail": "677 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 44682 puntos de control comprobados; 199 con golpes exactos"
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha",
    "status": "pocos datos",
-   "detail": "0 golpes exactos, 9 parecidos; 59 de 64 puntos con su valor medido"
+   "detail": "0 golpes exactos, 9 parecidos; 61 de 66 puntos con su valor medido"
   },
   {
    "req": 1,
@@ -2584,7 +2586,7 @@
    "area": "Aprende su derecha",
    "name": "Puntos de «Aprende» con su valor medido (todas sus derechas)",
    "status": "ok",
-   "detail": "59 de 64; el resto dice por qué falta"
+   "detail": "61 de 66; el resto dice por qué falta"
   },
   {
    "req": 2,
@@ -2703,7 +2705,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "158 min para 35 min de vídeo ≈ 15.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "153 min para 35 min de vídeo ≈ 15.3 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -2779,8 +2781,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b",
-   "status": "pocos datos",
-   "detail": "177 comprobaciones: 108 pocos datos, 69 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "falta",
+   "detail": "177 comprobaciones: 1 falta, 107 pocos datos, 69 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
   },
   {
    "req": 11,
@@ -2793,8 +2795,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#6 Juego de pies: split step, primer paso, ajuste, reacción, recuperación",
-   "status": "pocos datos",
-   "detail": "33 comprobaciones: 6 pocos datos, 27 ok; la peor: «3. Pies y desplazamiento · Split step: aterrizaje respecto al golpe del rival» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "falta",
+   "detail": "33 comprobaciones: 1 falta, 5 pocos datos, 27 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
   },
   {
    "req": 11,
@@ -2828,8 +2830,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía",
-   "status": "pocos datos",
-   "detail": "175 comprobaciones: 98 pocos datos, 77 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "falta",
+   "detail": "175 comprobaciones: 1 falta, 97 pocos datos, 77 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
   },
   {
    "req": 11,
@@ -2850,7 +2852,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (158 min para 35 min de vídeo ≈ 15.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (153 min para 35 min de vídeo ≈ 15.3 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2871,7 +2873,7 @@
    "area": "Peticiones",
    "name": "#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»",
    "status": "pocos datos",
-   "detail": "8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 59 de 64 puntos con su valor medido)"
+   "detail": "8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 61 de 66 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -2892,7 +2894,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (158 min para 35 min de vídeo ≈ 15.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (153 min para 35 min de vídeo ≈ 15.3 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2955,7 +2957,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (158 min para 35 min de vídeo ≈ 15.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (153 min para 35 min de vídeo ≈ 15.3 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3080,8 +3082,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#47 Modelo técnico con fuentes; cómo saber si está completo",
-   "status": "pocos datos",
-   "detail": "153 comprobaciones: 89 pocos datos, 64 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "falta",
+   "detail": "153 comprobaciones: 1 falta, 88 pocos datos, 64 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
   },
   {
    "req": 11,
@@ -3171,8 +3173,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#64 Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la ",
-   "status": "pocos datos",
-   "detail": "10 comprobaciones: 3 pocos datos, 7 ok; la peor: «3. Pies y desplazamiento · Split step: aterrizaje respecto al golpe del rival» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "falta",
+   "detail": "10 comprobaciones: 1 falta, 2 pocos datos, 7 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
   },
   {
    "req": 11,
@@ -3200,14 +3202,14 @@
    "area": "Peticiones",
    "name": "#68 La meta: mejorar mi derecha tomando la de X como base",
    "status": "pocos datos",
-   "detail": "6 comprobaciones: 1 pocos datos, 5 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 59 de 64 puntos con su valor medido)"
+   "detail": "6 comprobaciones: 1 pocos datos, 5 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 61 de 66 puntos con su valor medido)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica",
    "status": "pocos datos",
-   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 59 de 64 puntos con su valor medido)"
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 61 de 66 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -3227,8 +3229,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos",
-   "status": "pocos datos",
-   "detail": "154 comprobaciones: 89 pocos datos, 65 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "falta",
+   "detail": "154 comprobaciones: 1 falta, 88 pocos datos, 65 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
   },
   {
    "req": 11,
@@ -3249,7 +3251,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (158 min para 35 min de vídeo ≈ 15.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (153 min para 35 min de vídeo ≈ 15.3 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3339,8 +3341,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#88 Matriz §5 Pies (split, ajuste, cruzado, paso de ataque, recuperación)",
-   "status": "pocos datos",
-   "detail": "8 comprobaciones: 2 pocos datos, 6 ok; la peor: «3. Pies y desplazamiento · Split step: aterrizaje respecto al golpe del rival» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "falta",
+   "detail": "8 comprobaciones: 1 falta, 1 pocos datos, 6 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (se mide (100% de los golpes) pero el informe no lo enseña en ninguna pantalla)"
   },
   {
    "req": 11,

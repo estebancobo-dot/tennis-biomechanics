@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Aprende su derecha",
-   "text_chars": 33549,
+   "text_chars": 34650,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -57,7 +57,7 @@
   },
   {
    "title": "Panel",
-   "text_chars": 4396,
+   "text_chars": 4508,
    "charts": 11,
    "videos": 5,
    "black_canvases": 0,
@@ -111,7 +111,7 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 6863,
+   "text_chars": 6917,
    "charts": 28,
    "videos": 6,
    "black_canvases": 0,
@@ -362,17 +362,17 @@
  "learn": {
   "combinations": 677,
   "with_exact_strokes": 199,
-  "checkpoints_checked": 43328,
+  "checkpoints_checked": 44682,
   "failures": [],
-  "rows_all": 64,
-  "valued_all": 59,
+  "rows_all": 66,
+  "valued_all": 61,
   "signature": 5,
   "style": "Estilo de su derecha: preparación amplia (90 %) · apoyo variable (la más frecuente, abierto, en 30 %) · efecto liftado (de abajo arriba) (80 %) · terminación variable (la más frecuente, sobre el hombro, en 40 %) provisional: 10 golpes.",
   "example": {
    "exact": 0,
    "near": 9,
-   "rows": 64,
-   "valued": 59,
+   "rows": 66,
+   "valued": 61,
    "bad": []
   }
  }
