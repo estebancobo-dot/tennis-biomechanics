@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261013082443
+Start time: 20261013084722
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: powershell -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\solo_informe.ps1
-Process ID: 2996
+Process ID: 14940
 PSVersion: 5.1.26100.9549
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
@@ -22,21 +22,20 @@ Already up to date.
 Resolved 110 packages in 1ms
 Checked 83 packages in 3ms
 
-==> [2026-10-13 08:24:44] Informe, PDF y auditoria con lo ya analizado (sin analizar video)
+==> [2026-10-13 08:47:23] Informe, PDF y auditoria con lo ya analizado (sin analizar video)
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
-  golpes 10/14 (44 s)
-Golpes: 14 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
+Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
 Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
 Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
 Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
-Auditoría: 164 cumplidos, 1 no cumplidos, 154 sin golpes suficientes, 11 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+Auditoría: 163 cumplidos, 1 no cumplidos, 154 sin golpes suficientes, 62 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
   ✘ Etapas con errores: smoke_tennis-yusipopen-final-sobolenko-rybakin: fine
-Hecho en 145 s, sin volver a analizar vídeo.
+Hecho en 84 s, sin volver a analizar vídeo.
 HECHO. El informe se ha abierto en el navegador.
-    (paso terminado en 2 min 25 s)
-Empezado 2026-10-13 08:24:43 - terminado 2026-10-13 08:27:09 - duracion total 2 min 26 s
+    (paso terminado en 1 min 24 s)
+Empezado 2026-10-13 08:47:22 - terminado 2026-10-13 08:48:47 - duracion total 1 min 24 s
 **********************
 Windows PowerShell transcript end
-End time: 20261013082709
+End time: 20261013084847
 **********************
