@@ -723,6 +723,10 @@ PETITIONS = {
     113: r"^Examen de entrenadores$",
     114: r"La bola y ella", 115: r"Bajar y subir|Cuánto baja|Cuánto sube", 116: r"«Base»|Base al armar|Base en el impacto|Pies quietos",
     117: r"Tronco al terminar|Hacia dónde mira el tronco",
+    118: r"técnica o ruido|^Fiabilidad", 119: Note("ciclo automático del PC: revision_automatica.md en pc-logs"),
+    120: r"^Pantallas$", 121: r"^Pantallas$", 122: r"^Pantallas$|Pantalla «",
+    123: r"responde a cada combinación", 124: r"Hacia dónde mira el tronco|Manos en la espera|técnica o ruido",
+    125: r"^Rendimiento$",
 }
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 

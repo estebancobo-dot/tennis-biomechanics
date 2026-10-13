@@ -22,7 +22,7 @@ def cp(key, label, unit, dec, read, cue, mistake, drill, covers=()):
 
 
 PHASES = [
-    {"id": "ready", "title": "1 · Espera y split step", "when": "Cuando la rival golpea: pequeño salto y aterrizaje con los dos pies.",
+    {"id": "ready", "title": "1 · Espera y split step", "focus": "Aterriza del split step justo cuando oigas el golpe de la rival.", "when": "Cuando la rival golpea: pequeño salto y aterrizaje con los dos pies.",
      "checkpoints": [
          cp("footwork.split_landing_vs_opp_s", "Aterrizaje del split step", "s", 2,
             "segundos después del golpe de la rival (≈ 0 = aterriza justo cuando la rival golpea)",
@@ -42,7 +42,7 @@ PHASES = [
             "Soltar o mover la mano libre sin intención: el giro se hace solo con el brazo.", "Espera con las manos como ella y gira hombros y raqueta juntos en el split step.",
             ["Giro de hombros (unit turn)"]),
      ]},
-    {"id": "takeback", "title": "2 · Inicio de la preparación (giro de hombros)", "when": "En cuanto sabe que es derecha: gira hombros y raqueta a la vez.",
+    {"id": "takeback", "title": "2 · Inicio de la preparación (giro de hombros)", "focus": "En cuanto veas que es derecha, manda la cabeza de la raqueta hacia la valla del fondo.", "when": "En cuanto sabe que es derecha: gira hombros y raqueta a la vez.",
      "checkpoints": [
          cp("stroke.takeback_vs_bounce", "Cuándo empieza a girar", "s", 2, "s respecto al bote de la bola (− = antes de que bote)",
             "Empieza a girar los hombros antes de que la bola bote en tu campo.",
@@ -61,7 +61,7 @@ PHASES = [
             "Parar la raqueta atrás (punto muerto): pierdes la aceleración.",
             "Sombras dibujando una «gota» con la cabeza de la raqueta, sin pausas, a cámara lenta.", ["Bucle de la preparación (forma)"]),
      ]},
-    {"id": "loaded", "title": "3 · Armado completo", "when": "Hombros girados al máximo, raqueta arriba y atrás, peso en la pierna de atrás.",
+    {"id": "loaded", "title": "3 · Armado completo", "focus": "«Bote = armado»: cuando la bola bote, la raqueta ya está arriba y atrás.", "when": "Hombros girados al máximo, raqueta arriba y atrás, peso en la pierna de atrás.",
      "checkpoints": [
          cp("loaded.shoulder_turn", "Giro de hombros", "°", 0, "° (más = más de espaldas a la red)",
             "Hombros de lado, la espalda casi mirando a la red rival.", "Girar poco: el golpe sale solo de brazo.",
@@ -118,7 +118,7 @@ PHASES = [
             "Sentadilla de un cuarto en el armado y empuje hacia arriba al golpear; 3×10.",
             ["Carga: flexión de rodillas", "Empuje de piernas / extensión triple (tobillo, rodilla, cadera)"]),
      ]},
-    {"id": "acceleration", "title": "4 · Caída de la raqueta e inicio de la aceleración", "when": "La raqueta cae detrás y por debajo antes de ir hacia delante; empieza a girar la cadera.",
+    {"id": "acceleration", "title": "4 · Caída de la raqueta e inicio de la aceleración", "focus": "Deja caer la cabeza de la raqueta por debajo de la bola antes de ir hacia ella.", "when": "La raqueta cae detrás y por debajo antes de ir hacia delante; empieza a girar la cadera.",
      "checkpoints": [
          cp("stroke.wrist_drop", "Caída de la mano", "%", 0, "% de altura que baja la mano antes de acelerar",
             "Deja caer la raqueta por debajo de la altura a la que vas a golpear.", "Ir directo desde arriba: golpe plano hacia abajo.",
@@ -169,7 +169,7 @@ PHASES = [
             "Lanzar la raqueta con la muñeca desde atrás (casting).", "Golpes a media pista con la muñeca relajada, sintiendo que la mano tira de la raqueta.",
             ["Retraso de la muñeca (lag) y su liberación", "Liberación anticipada de la muñeca («casting»)"]),
      ]},
-    {"id": "impact", "title": "5 · Impacto", "when": "El contacto (sonido y bola).",
+    {"id": "impact", "title": "5 · Impacto", "focus": "Golpea la bola delante y a tu distancia; mira el punto de impacto hasta después de golpear.", "when": "El contacto (sonido y bola).",
      "checkpoints": [
          cp("stroke.shoulder_brake", "Frenado de los hombros antes del contacto", "%", 0, "% que ha bajado la velocidad de giro de los hombros en el contacto (100 = parados)",
             "Gira el tronco fuerte y deja que se frene justo antes del contacto: esa energía pasa al brazo y a la raqueta.",
@@ -216,7 +216,7 @@ PHASES = [
             "Golpes desde la línea de fondo sin retroceder, tomando la bola tras el bote.",
             ["Adaptación a bola rápida, corta, alta, abierta"]),
      ]},
-    {"id": "extension", "title": "6 · Extensión tras el impacto", "when": "≈ 50 ms después del contacto: el brazo sigue hacia el objetivo.",
+    {"id": "extension", "title": "6 · Extensión tras el impacto", "focus": "Lleva las cuerdas hacia tu objetivo, como si la bola siguiera pegada a ellas.", "when": "≈ 50 ms después del contacto: el brazo sigue hacia el objetivo.",
      "checkpoints": [
          cp("extension.arm_extension", "Extensión del brazo", "%", 0, "% del brazo extendido hacia delante",
             "Sigue empujando la raqueta hacia el objetivo después del contacto.", "Cortar el golpe en el impacto.",
@@ -226,7 +226,7 @@ PHASES = [
             "Dejar el brazo libre suelto atrás o abajo.", "Sombras: al golpear, la mano libre «atrapa» la raqueta a la altura del pecho al terminar.",
             ["Brazo libre recogido al pecho tras el contacto («catch»)"]),
      ]},
-    {"id": "finish", "title": "7 · Terminación", "when": "La mano en su punto más alto.",
+    {"id": "finish", "title": "7 · Terminación", "focus": "Termina con la raqueta donde la termina ella (sobre el hombro contrario, o sobre el mismo si es un látigo).", "when": "La mano en su punto más alto.",
      "checkpoints": [
          cp("class.finish", "Tipo de terminación", "", 0, "sobre el hombro / limpiaparabrisas / látigo / alrededor del cuerpo",
             "Termina como ella en esa situación (en paralelos y bolas rápidas suele ser más corta).",
@@ -256,7 +256,7 @@ PHASES = [
             "Juntar los pies al terminar: pierdes el equilibrio y llegas tarde a la siguiente bola.",
             "Golpea y quédate en la terminación con los pies marcados en el suelo; compara con su anchura.", ["Equilibrio al terminar"]),
      ]},
-    {"id": "recovery", "title": "8 · Recuperación", "when": "Primer paso de vuelta tras el golpe.",
+    {"id": "recovery", "title": "8 · Recuperación", "focus": "Vuelve hacia el centro de tu zona antes de que tu bola cruce la red.", "when": "Primer paso de vuelta tras el golpe.",
      "checkpoints": [
          cp("footwork.recovery_start_s", "Cuándo empieza a recuperar", "s", 2, "s desde el impacto hasta el primer paso de vuelta",
             "Empieza a volver en cuanto terminas el golpe.", "Quedarte mirando la bola.",
@@ -270,7 +270,7 @@ PHASES = [
      ]},
 ]
 
-FEET = {"id": "feet", "title": "Pies: del split step al golpe", "when": "Todo el desplazamiento hacia la bola.",
+FEET = {"id": "feet", "title": "Pies: del split step al golpe", "focus": "Llega a la bola con pasos cortos al final, como si frenaras justo encima de una línea.", "when": "Todo el desplazamiento hacia la bola.",
         "checkpoints": [
          cp("footwork.crossover_steps", "Pasos cruzados", "", 0, "pasos cruzados en el golpe (hacia la bola y de vuelta)",
             "Cuando la bola te saca de sitio, cruza como ella: el pie de fuera pasa por delante y cubres más pista en menos pasos.",
@@ -381,10 +381,29 @@ def learn_keys() -> list[str]:
     return [c["key"] for ph in PHASES + [FEET] for c in ph["checkpoints"]]
 
 
+# focus of attention for each phase: the effect on the racket or the ball, not the joint (Wulf: an
+# external focus learns faster), one per phase so that one session works on one thing
+
+# «Tu plan»: what to copy first, in the order coaches build a forehand (ITF, Tennis Australia): time
+# first (without time nothing else comes out), then the contact (distance and base), then the legs,
+# then the swing path, then the finish. The screen takes the first 3 themes that have a reliable value
+# of hers in the chosen strokes.
+PLAN = [
+    ("tiempo", "stroke.loaded_vs_bounce", "Prepárate a tiempo", "Sin tiempo no sale nada de lo demás: es lo primero que corrigen los entrenadores."),
+    ("tiempo", "stroke.takeback_vs_bounce", "Empieza a preparar antes", "Empezar a girar pronto da tiempo a todo lo demás."),
+    ("contacto", "impact.wrist_dom_lateral", "Golpea a su distancia de la bola", "La distancia al impacto decide si puedes soltar el brazo o vas encogido."),
+    ("contacto", "impact.base_court_m", "Golpea con su base", "Una base estable en el impacto da control y potencia."),
+    ("piernas", "stroke.hip_drop_cm", "Baja y sube como ella", "Las piernas empiezan la cadena: sin carga el golpe sale solo de brazo."),
+    ("trayectoria", "stroke.swing_low_to_high", "Swing de abajo arriba", "La trayectoria decide la altura y el efecto de la bola."),
+    ("terminacion", "class.finish", "Termina como ella", "Una terminación completa es la señal de que no has frenado el brazo."),
+]
+
+
 def content() -> dict:
     """Everything static the «Aprende su derecha» screen needs."""
     return {"phases": PHASES + [FEET], "conditions": {k: {"name": n, "levels": lv} for k, (n, lv) in CONDITIONS.items()},
-            "relax": RELAX_ORDER, "not_tv": NOT_FROM_TV, "source": SOURCE}
+            "relax": RELAX_ORDER, "not_tv": NOT_FROM_TV, "source": SOURCE,
+            "plan": [{"theme": th, "key": k, "title": ti, "why": w} for th, k, ti, w in PLAN]}
 
 
 def covered_matrix_items() -> set[str]:

@@ -142,6 +142,9 @@ select { font: 13px var(--body); color: var(--ink); background: var(--panel-2); 
 .achips .chips button[aria-pressed="true"] small { color: var(--accent-ink); }
 .achips .chips button.zero { opacity: .45; }
 .cpk .her { color: var(--ink); } .cpk .her b { color: var(--good); }
+.lcard .focus { background: var(--raise); border-left: 3px solid var(--accent); padding: 6px 10px; border-radius: 4px; font-size: 13.5px; }
+.lcard .focus b { color: var(--accent); }
+.cpk details.more1 summary { cursor: pointer; color: var(--ink-3); font-size: 12px; } .cpk details.more1[open] summary { margin-bottom: 4px; }
 .athumbs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
 .athumbs button { flex: 0 0 auto; width: 170px; padding: 0; border: 1px solid var(--line); border-radius: 6px; background: #000 center / cover no-repeat; aspect-ratio: 16 / 10; cursor: pointer; position: relative; }
 .athumbs button span { position: absolute; left: 4px; bottom: 4px; font: 500 10.5px var(--mono); background: rgba(10,13,16,.82); color: var(--ink); padding: 1px 5px; border-radius: 3px; }
@@ -394,7 +397,8 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 <div class="panel" style="margin-top:16px" id="a-sitp"><header><h2>3 · Qué cambia en este golpe</h2><span class="note" id="a-src1"></span></header><ul class="say" id="a-sit"></ul></div>
 <h2 style="margin:22px 0 10px">4 · Fase a fase: lo que hace ella y cómo hacerlo tú</h2>
 <div id="a-phases" style="display:grid;gap:14px"></div>
-<div class="panel" style="margin-top:16px"><header><h2>5 · Para copiarla: el plan</h2></header><ol class="say" id="a-plan"></ol></div>
+<div class="panel" style="margin-top:16px"><header><h2>5 · Tu plan: 3 prioridades, en orden</h2><span class="note">una cada vez; cuando salga sola, la siguiente</span></header><ol class="say" id="a-plan"></ol>
+<details class="extra" style="margin:0 16px 12px"><summary>Plan completo, fase a fase</summary><ol class="say" id="a-plan-all"></ol></details></div>
 <div class="panel" style="margin-top:16px"><header><h2>6 · Lo que la tele no permite medir (y qué hacer igualmente)</h2></header><ul class="say" id="a-nottv"></ul></div>
 <details class="extra secx" id="sec-modelo" style="margin-top:22px"><summary><b>Su patrón típico</b> · esqueleto medio y claves de cada fase sobre todas sus derechas (antes «Su derecha»)</summary>
 <p class="intro"><b>Cómo pega la derecha.</b> Fase a fase: lo que hace (medido en sus golpes), por qué importa y qué mirar. Elige una bola para ver qué cambia. Pulsa una imagen o una frase para verla en vídeo.</p>
@@ -2236,15 +2240,25 @@ function renderLearn() {
       const val = st.txt ? `<span class="v">${st.txt}</span>${st.warn || ""} ${badge}` : `<span class="dim">— ${st.why || aWhyMissing(set, c)}</span>`;
       const cmp = base && base.txt && set.length !== all.length ? `<div class="dim3">en todas sus derechas: ${base.txt}</div>` : "";
       return `<div class="cpk" data-key="${c.key}"><div><b>${c.label}</b><div class="dim3">${c.read}</div></div><div>${val}${cmp}</div>`
-        + `<div class="how">${aHer(st, c)}<div><b>Cómo hacerlo tú:</b> ${c.cue}</div><div><b>Error típico:</b> ${c.mistake}</div><div><b>Ejercicio:</b> ${c.drill}</div></div></div>`;
+        + `<div class="how">${aHer(st, c)}<div><b>Cómo hacerlo tú:</b> ${c.cue}</div><details class="more1"><summary>Error típico y ejercicio</summary><div><b>Error típico:</b> ${c.mistake}</div><div><b>Ejercicio:</b> ${c.drill}</div></details></div></div>`;
     }).join("");
     return `<div class="lcard" data-phase="${ph.id}"><div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><h3>${ph.title}</h3>`
       + (rep ? `<button class="btn" data-open="${rep.id}" data-ph="${ph.id === "feet" ? "ready" : ph.id}">▶ Ver en vídeo</button>` : `<span class="dim3">sin vídeo</span>`)
-      + `</div><div class="when">${ph.when}</div>${rows}</div>`;
+      + `</div><div class="when">${ph.when}</div>${ph.focus ? `<div class="focus"><b>Foco:</b> ${ph.focus}</div>` : ""}${rows}</div>`;
   }).join("");
   document.querySelectorAll("#a-phases button[data-open]").forEach(b => b.addEventListener("click", () => aOpen(b.dataset.open, b.dataset.ph)));
   // 5. the plan: one step per position, with its main checkpoint and drill
-  document.getElementById("a-plan").innerHTML = LEARN.phases.map(ph => { const c = ph.checkpoints[0]; return `<li><b>${ph.title.replace(/^\d · /, "")}</b>: ${c.cue} <span class="dim">Ejercicio:</span> ${c.drill}</li>`; }).join("");
+  // your plan: the first 3 themes (time → contact → legs → path → finish) with a value of hers that can be
+  // trusted in these strokes; each with why it comes first, her value, the focus of its phase and a drill
+  const byKey = {}; LEARN.phases.forEach(ph => ph.checkpoints.forEach(c => { byKey[c.key] = [c, ph]; }));
+  const themes = new Set(), plan = [];
+  (LEARN.plan || []).forEach(pl => { if (themes.has(pl.theme) || plan.length >= 3 || !byKey[pl.key]) return;
+    const [c, ph] = byKey[pl.key], st = aStat(set, c); if (!st.txt) return; themes.add(pl.theme); plan.push({ pl, c, ph, st }); });
+  document.getElementById("a-plan").innerHTML = plan.length ? plan.map(({ pl, c, ph, st }) => { const rep = aRep(set, ph.id === "feet" ? "ready" : ph.id);
+    return `<li><b>${pl.title}</b> · <span class="dim">${pl.why}</span><br><span class="dim">Ella:</span> ${st.txt.replace(/<[^>]+>/g, "")} (${st.n} golpes) · <span class="dim">Foco:</span> ${ph.focus || c.cue}<br><span class="dim">Ejercicio:</span> ${c.drill}${rep ? ` <button class="btn" data-open="${rep.id}" data-ph="${ph.id === "feet" ? "ready" : ph.id}">▶ Ver</button>` : ""}</li>`; }).join("")
+    : `<li class="dim">Todavía no hay medidas suyas fiables en estos golpes para ordenar un plan; empieza por el foco de cada fase (arriba).</li>`;
+  document.querySelectorAll("#a-plan button[data-open]").forEach(b => b.addEventListener("click", () => aOpen(b.dataset.open, b.dataset.ph)));
+  document.getElementById("a-plan-all").innerHTML = LEARN.phases.map(ph => { const c = ph.checkpoints[0]; return `<li><b>${ph.title.replace(/^\d · /, "")}</b>: ${c.cue} <span class="dim">Ejercicio:</span> ${c.drill}</li>`; }).join("");
   // 6. what TV cannot measure from the user's list, and what to do anyway
   document.getElementById("a-nottv").innerHTML = LEARN.not_tv.map(([w, h]) => `<li><b>${w}</b>: ${h}</li>`).join("");
 }

@@ -31,11 +31,14 @@ _JS_CHECK = r"""([sel, expect]) => {
     ph.keys.forEach(k => { if (!keys.includes(k)) bad.push(`${ph.id}: falta ${k}`); });
     cd.querySelectorAll('.cpk').forEach(r => {
       rows++; if (r.querySelector('.v')) valued++;
-      const v = r.children[1].innerText.trim(), how = r.querySelector('.how').innerText;
+      const v = r.children[1].innerText.trim(), how = r.querySelector('.how').textContent;   // folded parts too
       if (!v || v === '—' || /^—\s*$/.test(v)) bad.push(`${r.dataset.key}: sin valor ni motivo`);
+      const LABS = ['Cómo hacerlo tú:', 'Error típico y ejercicio', 'Error típico:', 'Ejercicio:'];
       for (const lab of ['Cómo hacerlo tú:', 'Error típico:', 'Ejercicio:']) {
-        const m = how.split(lab)[1];
-        if (!m || m.split('\n')[0].trim().length < 3) bad.push(`${r.dataset.key}: «${lab}» vacío`);
+        const i = how.indexOf(lab);
+        let m = i < 0 ? null : how.slice(i + lab.length);
+        if (m !== null) LABS.forEach(o => { const j = m.indexOf(o); if (j >= 0) m = m.slice(0, j); });
+        if (!m || m.trim().length < 3) bad.push(`${r.dataset.key}: «${lab}» vacío`);
       }
       if (r.querySelector('.v') && !/Ella:/.test(how)) bad.push(`${r.dataset.key}: con valor pero sin su patrón`);
     });
@@ -45,7 +48,9 @@ _JS_CHECK = r"""([sel, expect]) => {
   Object.values(sel).forEach(l => { const li = sit.find(t => t.startsWith(l + ':')); if (!li || li.length < l.length + 15) bad.push(`qué cambia: falta «${l}»`); });
   if (!/Estilo de su derecha:/.test(document.getElementById('a-sig').innerText)) bad.push('sin estilo ni firma');
   const sig = document.querySelectorAll('#a-sig li').length;
-  if (!document.querySelectorAll('#a-plan li').length) bad.push('sin plan');
+  if (!document.querySelectorAll('#a-plan li').length || !document.querySelectorAll('#a-plan-all li').length) bad.push('sin plan');
+  if (document.querySelectorAll('#a-plan li b').length > 3) bad.push('más de 3 prioridades en el plan');
+  cards.forEach(cd => { const ph = expect.phases.find(p => p.id === cd.dataset.phase); if (ph && ph.focus && !cd.querySelector('.focus')) bad.push(`${ph.id}: sin foco`); });
   if (!document.querySelectorAll('#a-nottv li').length) bad.push('sin lo no medible');
   return {bad, rows, valued, sig, style: document.getElementById('a-sig').querySelector('p').innerText, exact: R.exact.length, wider: R.wider.length, near: document.querySelectorAll('#a-res .athumbs button').length};
 }"""
@@ -70,7 +75,7 @@ def check_page(pg, pairs: bool = True, extra: list[dict] | None = None) -> dict:
     conds = pg.evaluate("Object.fromEntries(Object.entries(LEARN.conditions).map(([d, c]) => [d, Object.keys(c.levels)]))")
     from .learn import content
     c = content()
-    expect = {"phases": [{"id": ph["id"], "keys": [x["key"] for x in ph["checkpoints"]]} for ph in c["phases"]]}
+    expect = {"phases": [{"id": ph["id"], "focus": ph.get("focus"), "keys": [x["key"] for x in ph["checkpoints"]]} for ph in c["phases"]]}
     want = {d: list(v["levels"]) for d, v in c["conditions"].items()}
     missing = {d: [l for l in lv if l not in conds.get(d, [])] for d, lv in want.items()}
     todo = combos(want, extra, pairs)
