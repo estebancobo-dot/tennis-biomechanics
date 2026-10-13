@@ -29,3 +29,6 @@ config/local.yaml
 
 # Catálogo local de partidos
 config/matches.yaml
+
+# Copias de trabajo temporales de los agentes de Claude Code
+.claude/worktrees/
