@@ -193,7 +193,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .sub3 { margin: 10px 0 6px; font-size: 13px; } .sub3 b { color: var(--ink); }
 .say1 { margin: 6px 0 0; font-size: 13px; color: var(--ink-2); } .say1 b { color: var(--ink); }
 .bm .mm { display: block; margin-top: 4px; font-family: JetBrains Mono, monospace; font-size: 11.5px; color: var(--ink); }
-.bm { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 8px; overflow-x: auto; }
+.bm { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 8px; overflow-x: auto; }
 .bm button { background: var(--raise); border: 1px solid var(--line); border-radius: 6px; padding: 0; cursor: pointer; overflow: hidden; text-align: left; color: var(--ink); font: inherit; display: grid; align-content: start; }
 .bm button canvas { width: 100%; aspect-ratio: 16/10; display: block; background: #000; }
 .bm button > div { padding: 6px 8px 8px; font-size: 12px; line-height: 1.4; color: var(--ink-2); }
@@ -464,14 +464,14 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
       </div>
       <div class="timeline" id="timeline"></div>
       <div class="kf" id="kf"></div>
-      <div class="feetwrap" id="feetwrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">Sus pies en este golpe</b> · todo el ciclo: split step, primer paso, pasos hasta la bola, ajuste y frenado, apoyo, impacto y recuperación (pulsa una línea para ir a ese momento)</div>
-        <div class="feet"><canvas id="feet-cv" width="360" height="460"></canvas><ol id="feet-txt"></ol></div>
-        <div class="legend" id="feet-leg" style="margin-top:6px"></div></div>
       <div class="bmwrap" id="bmwrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">La bola y ella</b> · qué está haciendo cuando golpea la rival, cuando la bola cruza la red, cuando bota, cuando llega a lo más alto y cuando ella golpea (pulsa para ir a ese momento)</div><div class="bm" id="bm"></div></div>
       <div class="bmwrap" id="bodywrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">Su cuerpo en este golpe</b> · fotogramas reales con la medida dibujada encima (pulsa para ir a ese momento)</div>
         <div class="sub3"><b>Bajar y subir</b> <span class="dim3">la línea discontinua es la altura de su cadera en la espera; la continua, donde está ahora</span></div><div class="bm" id="bd-hip"></div><p class="say1" id="bd-hip-t"></p>
         <div class="sub3"><b>Base: distancia entre los pies</b> <span class="dim3">medida sobre la pista (homografía), en metros</span></div><div class="bm" id="bd-base"></div><p class="say1" id="bd-base-t"></p>
         <div class="sub3"><b>Tronco al terminar</b> <span class="dim3">hacia dónde mira el pecho (línea de hombros)</span></div><div class="bm" id="bd-trunk"></div><p class="say1" id="bd-trunk-t"></p></div>
+      <div class="feetwrap" id="feetwrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">Sus pies en este golpe</b> · todo el ciclo: split step, primer paso, pasos hasta la bola, ajuste y frenado, apoyo, impacto y recuperación (pulsa una línea para ir a ese momento)</div>
+        <div class="feet"><canvas id="feet-cv" width="360" height="460"></canvas><ol id="feet-txt"></ol></div>
+        <div class="legend" id="feet-leg" style="margin-top:6px"></div></div>
       <div style="padding:0 12px 12px"><div class="note" style="margin-bottom:6px">Estroboscópica: esqueletos de las fases sobre el fotograma del impacto (de azul a amarillo) y trayectoria de la muñeca</div><canvas id="strobe" width="1280" height="720" style="width:100%;border-radius:6px;background:#000"></canvas></div>
     </div>
     <div style="display:grid;gap:16px;align-content:start">
@@ -1181,7 +1181,7 @@ async function renderBallMoments(id) {
   const box = document.getElementById("bm"), ms = cur.ballMoments || [];
   document.getElementById("bmwrap").hidden = !ms.length;
   const opp = ms.find(m => m.k === "opp"), fOpp = opp && ser ? fIdx(opp.t) : null;
-  box.innerHTML = ms.map(m => { const mm = ser ? mmTxt(measuresAt(fIdx(m.t), MAIN, fOpp)) : ""; return `<button data-t="${m.t}"><canvas width="320" height="200"></canvas><div><b>${m.title} · ${m.t === 0 ? "impacto" : (m.t > 0 ? "+" : "−") + fmt(Math.abs(m.t), 2) + " s"}</b>${m.text}${mm ? `<span class="mm">${mm}</span>` : ""}</div></button>`; }).join("");
+  box.innerHTML = ms.map(m => { const mm = ser ? mmTxt(measuresAt(fIdx(m.t), MAIN, fOpp)) : ""; return `<button data-t="${m.t}"><canvas width="640" height="400"></canvas><div><b>${m.title} · ${m.t === 0 ? "impacto" : (m.t > 0 ? "+" : "−") + fmt(Math.abs(m.t), 2) + " s"}</b>${m.text}${mm ? `<span class="mm">${mm}</span>` : ""}</div></button>`; }).join("");
   box.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { stopPlay(); setT(+b.dataset.t); }));
   if (!cur.video) return;
   const TS = await thumbSrc(); if (cur.id !== id) return;
@@ -1189,7 +1189,7 @@ async function renderBallMoments(id) {
   for (let i = 0; i < ms.length; i++) {
     const t = snap(ms[i].t); if (t < T0 || t > T1 || cur.id !== id) continue;
     await seekSrc(TS, t); if (cur.id !== id) return;
-    drawFrame(cvs[i].getContext("2d"), 320, 200, kF(TS, t), { skel: true, trail: false, ball: true, heights: true }, TS);
+    drawFrame(cvs[i].getContext("2d"), 640, 400, kF(TS, t), { skel: true, trail: false, ball: true, heights: true }, TS);
   }
 }
 // real measures at one frame of this stroke: hips against the ready position (cm, her torso as the ruler),
@@ -1210,7 +1210,7 @@ const mmTxt = m => [isN(m.hip) ? `cadera ${m.hip >= 0 ? "+" : "−"}${fmt(Math.a
   isN(m.moved) ? `recorrido ${fmt(m.moved, 1)} m desde el golpe rival` : null].filter(Boolean).join(" · ");
 async function frameCards(box, items, id) {
   // items: {t, title, text, opts}: a real frame of this stroke per item, with the measure drawn on it
-  box.innerHTML = items.map(m => `<button data-t="${m.t}"><canvas width="320" height="200"></canvas><div><b>${m.title} · ${Math.abs(m.t) < 1e-6 ? "impacto" : (m.t > 0 ? "+" : "−") + fmt(Math.abs(m.t), 2) + " s"}</b>${m.text || ""}</div></button>`).join("");
+  box.innerHTML = items.map(m => `<button data-t="${m.t}"><canvas width="640" height="400"></canvas><div><b>${m.title} · ${Math.abs(m.t) < 1e-6 ? "impacto" : (m.t > 0 ? "+" : "−") + fmt(Math.abs(m.t), 2) + " s"}</b>${m.text || ""}</div></button>`).join("");
   box.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { stopPlay(); setT(+b.dataset.t); }));
   if (!cur.video) return;
   const TS = await thumbSrc(); if (cur.id !== id) return;
@@ -1218,7 +1218,7 @@ async function frameCards(box, items, id) {
   for (let i = 0; i < items.length; i++) {
     const t = snap(items[i].t); if (t < T0 || t > T1 || cur.id !== id) continue;
     await seekSrc(TS, t); if (cur.id !== id) return;
-    drawFrame(cvs[i].getContext("2d"), 320, 200, kF(TS, t), { skel: true, trail: false, ...items[i].opts }, TS);
+    drawFrame(cvs[i].getContext("2d"), 640, 400, kF(TS, t), { skel: true, trail: false, ...items[i].opts }, TS);
   }
 }
 async function renderBody(id) {
