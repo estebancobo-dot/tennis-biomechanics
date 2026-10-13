@@ -1883,9 +1883,12 @@ function aStat(set, c) {
     const warn = rel && rel.verdict === "dudosa" ? ` <span class="badge prov" title="cambia ±${fmt(rel.noise, c.dec)}${ru} entre fotogramas vecinos; entre sus golpes ±${fmt(rel.spread, c.dec)}${ru}">medida ruidosa ±${fmt(rel.noise, c.dec)}${ru}</span>` : "";
     return { n: v.length, med: quant(v, .5), txt: `${fmt(quant(v, .5), c.dec)}${ru}` + (v.length >= 4 ? ` <span class="dim3">(${fmt(quant(v, .25), c.dec)}–${fmt(quant(v, .75), c.dec)})</span>` : ""), warn };
   }
+  if (rel && rel.verdict === "ruido")
+    return { n: 0, txt: null, why: `no fiable desde la tele: cambia en el ${Math.round(100 * rel.flip)} % de los casos al mover el instante de las fases 1-2 fotogramas (lo que se sabe de ellos); no se da como suyo` };
   const cnt = {}; v.forEach(x => { const k = String(x); cnt[k] = (cnt[k] || 0) + 1; });
   const lab = k => k === "true" ? "sí" : k === "false" ? "no" : k;
-  return { n: v.length, txt: Object.entries(cnt).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${lab(k)} ${Math.round(100 * n / v.length)} %`).join(" · ") };
+  const cwarn = rel && rel.verdict === "dudosa" ? ` <span class="badge prov" title="cambia en el ${Math.round(100 * rel.flip)} % de los casos al mover 1-2 fotogramas el instante de las fases">medida ruidosa</span>` : "";
+  return { n: v.length, txt: Object.entries(cnt).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${lab(k)} ${Math.round(100 * n / v.length)} %`).join(" · "), warn: cwarn };
 }
 function aHer(st, c) {
   // copying her means doing what SHE does: her own pattern first, the general cue after

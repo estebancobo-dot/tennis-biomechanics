@@ -371,9 +371,9 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
     rel = assess(near, units)
     if rel:
         sm = summary(rel)
-        noisy = sorted((k for k, v in rel.items() if v["verdict"] == "ruido"), key=lambda k: -rel[k]["noise"])
+        noisy = sorted((k for k, v in rel.items() if v["verdict"] == "ruido"), key=lambda k: -rel[k].get("noise", rel[k].get("flip", 0)))
         judged = sum(v for k, v in sm.items() if k != "sin juzgar")
-        noisy_txt = ", ".join(f"{k} ±{rel[k]['noise']}" for k in noisy[:12])
+        noisy_txt = ", ".join(f"{k} ±{rel[k]['noise']}" if "noise" in rel[k] else f"{k} cambia {rel[k]['flip']:.0%}" for k in noisy[:12])
         items.append(_item(3, "Valores posibles", "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
                            "ok" if judged else "pocos datos",
                            f"{len(rel)} medidas: " + ", ".join(f"{v} {k}" for k, v in sorted(sm.items())) +
@@ -420,16 +420,17 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
                        f"{errors} golpes con error (guardados en strokes_errores.json)" if errors else "ninguno"))
     from .report import doubts, measure_notes
     review = sum(bool(doubts(s.get("review"))) for s in strokes)
-    notes = sum(bool(measure_notes(s.get("review"))) for s in strokes)
-    if strokes:
-        share = review / len(strokes)
+    nr = [s for s in strokes if s.get("side") != "far"]                # the detailed strokes, as on the screen
+    notes = sum(bool(measure_notes(s.get("review"))) and not doubts(s.get("review")) for s in nr)
+    if nr:
+        share = sum(bool(doubts(s.get("review"))) for s in nr) / len(nr)
         kinds = {}
-        for s in strokes:
+        for s in nr:
             for f in doubts(s.get("review")):
                 kinds[f.split(":")[0]] = kinds.get(f.split(":")[0], 0) + 1
         items.append(_item(5, "Automático", "Golpes dudosos (duda sobre el golpe, no sobre una medida)",
                            "ok" if share <= 0.3 else "aviso",
-                           f"{review} de {len(strokes)} ({share:.0%}); motivos: {', '.join(f'{k} {v}' for k, v in sorted(kinds.items(), key=lambda kv: -kv[1])) or 'ninguno'}. "
+                           f"{sum(bool(doubts(s.get('review'))) for s in nr)} de {len(nr)} del lado cercano ({share:.0%}); motivos: {', '.join(f'{k} {v}' for k, v in sorted(kinds.items(), key=lambda kv: -kv[1])) or 'ninguno'}. "
                            f"Otros {notes} golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): "
                            "son válidos y no cuentan como dudosos"))
     items.append(_item(5, "Automático", "Nada pide revisión manual", "ok",

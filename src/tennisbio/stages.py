@@ -1084,16 +1084,27 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
                          (d.get("court_pos_m") or [None, None])[1])
         if ball_m:
             d["ball_flight"] = ball_m
-    d["technique"] = stroke_technique(
-        run.img, run.conf, run.sk, run.fps, run.height_t if run.height_t is not None else np.full(len(run.img), run.height_px),
-        r.impact_frame, ph_frames, r.stroke, H if side == "near" else None, opp_f, (r.ball or {}).get("bounce_frame"),
-        ser.get("face"), None,
-        {"court_pos": d.get("court_pos_m"), "displacement": d.get("displacement_m"), "t_avail": ta,
-         "contact_h": r.metrics.get("contact_height_pct"), "shot_direction": d.get("shot_direction"),
-         "split": (r.phases.get("ready") or {}).get("method") == "split_step_landing",
-         "surface": ctx.match.surface or "", "next_opp": ret, "return": is_return, "ball": ball_m,
-         "head_motion_cm": r.metrics.get("head_motion_impact_cm"),
-         "bounce_to_impact": r.metrics.get("bounce_to_impact_s"), "ball_hit": "ball" in (r.impact_source or "")})
+    def tech(frames):
+        return stroke_technique(
+            run.img, run.conf, run.sk, run.fps, run.height_t if run.height_t is not None else np.full(len(run.img), run.height_px),
+            r.impact_frame, frames, r.stroke, H if side == "near" else None, opp_f, (r.ball or {}).get("bounce_frame"),
+            ser.get("face"), None,
+            {"court_pos": d.get("court_pos_m"), "displacement": d.get("displacement_m"), "t_avail": ta,
+             "contact_h": r.metrics.get("contact_height_pct"), "shot_direction": d.get("shot_direction"),
+             "split": (r.phases.get("ready") or {}).get("method") == "split_step_landing",
+             "surface": ctx.match.surface or "", "next_opp": ret, "return": is_return, "ball": ball_m,
+             "head_motion_cm": r.metrics.get("head_motion_impact_cm"),
+             "bounce_to_impact": r.metrics.get("bounce_to_impact_s"), "ball_hit": "ball" in (r.impact_source or "")})
+    d["technique"] = tech(ph_frames)
+    if side == "near":
+        # repeatability of the whole stroke: its phase instants are known to ±1-2 frames, so the stroke
+        # is described again with them all moved; timings, steps and classes that change with that are
+        # noise (reliability.py). Kept next to the per-phase ones that technique computes itself.
+        from .reliability import shifted_jitter
+        T = len(run.img)
+        shifted = [tech({k: (None if v is None else min(T - 1, max(0, v + s))) for k, v in ph_frames.items()})
+                   for s in (-2, -1, 1, 2)]
+        d["technique"].setdefault("jitter", {}).update(shifted_jitter(d["technique"], shifted))
     if side == "far":                       # 70 px player: only position-level classes are kept
         d["technique"] = {"classes": {k: v for k, v in d["technique"]["classes"].items()
                                       if k in ("ball_speed", "ball_height", "depth", "court_side", "width", "intent", "shot_type",

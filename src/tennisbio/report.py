@@ -312,10 +312,12 @@ def noise_from_pairs(strokes: list[dict], min_strokes=20) -> dict:
     return out
 
 
-# A doubt is about the stroke itself (instant, phases, stroke type). A racket not seen when loaded or an
+# A doubt is about the stroke itself (instant, the phases of the swing, stroke type). A racket not seen when loaded or an
 # impossible value thrown away only means that measure is missing: the stroke is fine and its other
 # measures stand, so it is a note on that measure, not a doubtful stroke.
-_MEASURE_NOTES = ("racket_not_seen_when_loaded", "impossible:")
+# The same for the waiting and the recovery phases: when they are not found only their own measures are
+# missing; the stroke (preparation to finish) is fine.
+_MEASURE_NOTES = ("racket_not_seen_when_loaded", "impossible:", "phase:ready", "phase:recovery")
 
 
 def doubts(flags) -> list:

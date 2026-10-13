@@ -11,6 +11,10 @@ as her value, and the screen says why.
     fiable  noise ≤ ½ spread (or below a floor too small to matter: 3°, 1.5 % of height, 20 ms)
     dudosa  between the two: shown, marked
     ruido   noise > spread: not shown as her value
+
+Timings, steps and classes are judged the same way with the whole stroke described again with its
+phase instants moved (stages: shifted_jitter). For a class or a yes/no the noise is how often it flips:
+fiable ≤ 15 %, dudosa ≤ 35 %, ruido above.
 """
 from __future__ import annotations
 
@@ -18,6 +22,23 @@ import numpy as np
 
 MIN_STROKES = 5
 FLOOR = {"°": 3.0, "%": 1.5, "s": 0.02, "cm": 3.0}
+
+
+def shifted_jitter(base: dict, shifted: list[dict]) -> dict:
+    """Median change of each timing/step value, and share of flips of each class, when the stroke is
+    described again with its phase instants moved (base and shifted: technique.stroke_technique)."""
+    out = {}
+    for grp in ("stroke", "footwork", "classes"):
+        for k, v in (base.get(grp) or {}).items():
+            key = f"class.{k}" if grp == "classes" else f"{grp}.{k}"
+            others = [(s.get(grp) or {}).get(k) for s in shifted]
+            if isinstance(v, bool) or isinstance(v, str):
+                out[key] = round(sum(o != v for o in others) / len(others), 2) if others else None
+            elif isinstance(v, (int, float)):
+                nums = [o for o in others if isinstance(o, (int, float)) and not isinstance(o, bool)]
+                if len(nums) >= 2:
+                    out[key] = round(float(np.median(np.abs(np.asarray(nums, float) - v))), 3)
+    return {k: v for k, v in out.items() if v is not None}
 
 
 def _floor(unit: str | None) -> float:
@@ -33,6 +54,16 @@ def assess(raw: list[dict], keys: dict[str, str | None]) -> dict:
     out = {}
     for k, unit in keys.items():
         j = [x[k] for x in jit if isinstance(x.get(k), (int, float))]
+        cat = [x[k] for x in vals if isinstance(x.get(k), (bool, str))]
+        if cat:                                   # a class or a yes/no: how often it flips
+            if len(j) < MIN_STROKES:
+                if j:
+                    out[k] = {"n": len(j), "flip": round(float(np.mean(j)), 2), "verdict": "sin juzgar"}
+                continue
+            flip = float(np.mean(j))
+            out[k] = {"n": len(j), "flip": round(flip, 2),
+                      "verdict": "fiable" if flip <= 0.15 else "dudosa" if flip <= 0.35 else "ruido"}
+            continue
         v = [x[k] for x in vals if isinstance(x.get(k), (int, float)) and not isinstance(x.get(k), bool)]
         if len(j) < MIN_STROKES or len(v) < MIN_STROKES:
             if j:

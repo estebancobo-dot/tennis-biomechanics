@@ -37,7 +37,7 @@ def synthetic(n=400, seed=3):
             tech["classes"][c] = rnd.choice(["a", "b", "c"])
         tech["footwork"]["steps_reliable"] = rnd.random() > 0.4
         # one measure that jumps between neighbouring frames far more than between strokes: noise
-        tech["jitter"] = {"loaded.face_tilt": 200.0, "loaded.shoulder_turn": 0.5}
+        tech["jitter"] = {"loaded.face_tilt": 200.0, "loaded.shoulder_turn": 0.5, "class.takeback": 0.75}
         out.append({"stroke": "forehand", "match_time_s": 10.0 + i, "impact_source": "audio+ball+swing", "review": [],
                     "metrics": {"contact_height_pct": 55.0}, "phases": {"impact": {"t_rel": 0.0}, "ready": {"t_rel": -0.6}},
                     "technique": tech, "court_pos_m": [1.0, -1.0], "stance": tech["classes"]["stance_impact"]})
@@ -85,7 +85,8 @@ def test_noise_is_not_shown_as_her_value(tmp_path):
         pg.wait_for_timeout(500)
         pg.evaluate("document.querySelector('.nav button[data-tab=\"aprende\"]').click()")
         txt = lambda k: pg.evaluate(f"document.querySelector('.cpk[data-key=\"{k}\"]').children[1].innerText")
-        noisy, good = txt("loaded.face_tilt"), txt("loaded.shoulder_turn")
+        noisy, good, flip = txt("loaded.face_tilt"), txt("loaded.shoulder_turn"), txt("class.takeback")
         b.close()
     assert "no fiable desde la tele" in noisy and "golpes" not in noisy.split("no fiable")[0]
     assert "no fiable" not in good and "°" in good
+    assert "no fiable desde la tele" in flip and "%" in flip

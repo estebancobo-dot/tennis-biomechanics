@@ -291,7 +291,7 @@ def _typical_ids(rows: list, flat: list, typical: dict, k: int = 8) -> list[str]
     # phases, fewer doubts), so that every screen still shows real strokes
     def capture(s):
         c = [p.get("confidence", 0) for p in (s.get("phases") or {}).values() if isinstance(p, dict)]
-        return (sum(c) / len(c) if c else 0) - 0.1 * len([f for f in (s.get("review") or []) if not f.startswith(("racket_not_seen_when_loaded", "impossible:"))])
+        return (sum(c) / len(c) if c else 0) - 0.1 * len([f for f in (s.get("review") or []) if not f.startswith(("racket_not_seen_when_loaded", "impossible:", "phase:ready", "phase:recovery"))])
     return [s.get("stroke_id") for s in sorted(rows, key=capture, reverse=True)[:k] if s.get("stroke_id")]
 
 

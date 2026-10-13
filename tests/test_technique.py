@@ -116,6 +116,16 @@ def test_stroke_technique_end_to_end_on_a_synthetic_swing():
     assert c["stance_impact"] in ("abierto", "semiabierto") and c["movement"] == "parada" and c["intent"] == "neutra"
     flat = flatten(tech)
     assert "loaded.elbow_dom" in flat and "stroke.dur_forward" in flat and "footwork.steps_to_impact" in flat
+    # repeatability, as the fine pass does it: per phase (neighbouring frames) and the whole stroke again
+    # with the phase instants moved 1-2 frames (timings, steps, classes)
+    from tennisbio.reliability import shifted_jitter
+    assert "loaded.elbow_dom" in tech["jitter"] and all(v >= 0 for v in tech["jitter"].values())
+    moved = [stroke_technique(kp, np.ones((100, 17)), SK, fps, np.full(100, 400.0), 60, {k: v + s for k, v in phases.items()},
+                              "forehand", H, opp=5, context={"court_pos": [0.1, -1.0], "displacement": 0.5, "t_avail": 1.3,
+                                                              "contact_h": 55, "shot_direction": "cruzada"})
+             for s in (-2, -1, 1, 2)]
+    j = shifted_jitter(tech, moved)
+    assert abs(j["stroke.dur_preparation"]) < 1e-9 and j["stroke.t_loaded"] > 0 and "class.stance_impact" in j
 
 
 def test_steps_reject_runs_without_ground_contact():
