@@ -188,7 +188,7 @@
 - ✔ **Pantalla «Su derecha»**: 5842 caracteres de texto, 5 vídeos, 8 gráficos
 - ✔ **Pantalla «Panel»**: 4508 caracteres de texto, 5 vídeos, 11 gráficos
 - ✔ **Pantalla «Videoteca»**: 3280 caracteres de texto, 5 vídeos, 0 gráficos
-- ✔ **Pantalla «Análisis de golpe»**: 6917 caracteres de texto, 6 vídeos, 28 gráficos
+- ✔ **Pantalla «Análisis de golpe»**: 6992 caracteres de texto, 6 vídeos, 28 gráficos
 - ✔ **Pantalla «Comparar golpes»**: 5220 caracteres de texto, 5 vídeos, 2 gráficos
 - ✔ **Pantalla «Explorador»**: 3230 caracteres de texto, 5 vídeos, 0 gráficos
 - ✔ **Pantalla «Comparativas»**: 2749 caracteres de texto, 5 vídeos, 0 gráficos; mensajes de vacío: ['Sin datos de x-factor en estos grupos.', 'Sin datos de rotación de hombros en estos grupos.', 'Sin datos de x-factor 3d en estos grupos.', 'Sin datos de rotación de hombros 3d en estos grupos.', 'Sin datos de descenso de cadera en estos grupos.', 'Sin datos de codo en el impacto en estos grupos.', 'Sin datos de brazo no dominante en el armado en estos grupos.', 'Sin datos de impacto lateral en estos grupos.']
