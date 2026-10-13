@@ -1,1 +1,22 @@
-[]
+[
+ {
+  "t": 422.72326530612247,
+  "error": "StopIteration: ",
+  "trace": "Traceback (most recent call last):\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\stages.py\", line 808, in _fine\n    strokes += _fine_one(ctx, p, g, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose, wb3d, fcfg)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\stages.py\", line 920, in _fine_one\n    run = run_clip(clip, cache, p.hand, p.height_m, init_mode=\"near\", rackets=side == \"near\",\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\clip_pipeline.py\", line 117, in run_clip\n    first, init = pick_initial(boxes, init_mode)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\clip_pipeline.py\", line 73, in pick_initial\n    first = next(t for t in range(len(boxes)) if len(boxes[t]))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nStopIteration\n"
+ },
+ {
+  "t": 1146.0908843537416,
+  "error": "StopIteration: ",
+  "trace": "Traceback (most recent call last):\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\stages.py\", line 808, in _fine\n    strokes += _fine_one(ctx, p, g, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose, wb3d, fcfg)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\stages.py\", line 920, in _fine_one\n    run = run_clip(clip, cache, p.hand, p.height_m, init_mode=\"near\", rackets=side == \"near\",\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\clip_pipeline.py\", line 117, in run_clip\n    first, init = pick_initial(boxes, init_mode)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\clip_pipeline.py\", line 73, in pick_initial\n    first = next(t for t in range(len(boxes)) if len(boxes[t]))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nStopIteration\n"
+ },
+ {
+  "t": 1147.5711564625851,
+  "error": "StopIteration: ",
+  "trace": "Traceback (most recent call last):\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\stages.py\", line 808, in _fine\n    strokes += _fine_one(ctx, p, g, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose, wb3d, fcfg)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\stages.py\", line 920, in _fine_one\n    run = run_clip(clip, cache, p.hand, p.height_m, init_mode=\"near\", rackets=side == \"near\",\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\clip_pipeline.py\", line 117, in run_clip\n    first, init = pick_initial(boxes, init_mode)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\clip_pipeline.py\", line 73, in pick_initial\n    first = next(t for t in range(len(boxes)) if len(boxes[t]))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nStopIteration\n"
+ },
+ {
+  "t": 1148.9295238095237,
+  "error": "StopIteration: ",
+  "trace": "Traceback (most recent call last):\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\stages.py\", line 808, in _fine\n    strokes += _fine_one(ctx, p, g, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose, wb3d, fcfg)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\stages.py\", line 920, in _fine_one\n    run = run_clip(clip, cache, p.hand, p.height_m, init_mode=\"near\", rackets=side == \"near\",\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\clip_pipeline.py\", line 117, in run_clip\n    first, init = pick_initial(boxes, init_mode)\n                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\clip_pipeline.py\", line 73, in pick_initial\n    first = next(t for t in range(len(boxes)) if len(boxes[t]))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nStopIteration\n"
+ }
+]
