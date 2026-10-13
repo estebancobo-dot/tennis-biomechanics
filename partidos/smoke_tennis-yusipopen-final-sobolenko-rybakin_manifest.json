@@ -97,8 +97,8 @@
  "fine": {
   "fingerprint": "9d1bd57dd84ff046",
   "version": "8",
-  "seconds": 389.5,
-  "finished": "2026-10-13 19:57:37",
+  "seconds": 455.9,
+  "finished": "2026-10-13 21:17:40",
   "summary": {
    "candidates": 177,
    "confirmed": 27,
@@ -107,10 +107,10 @@
    "forehands": 14,
    "windows": 59,
    "seconds": {
-    "cuerdas_y_3d": 147.7,
-    "analisis_ventana": 12.9,
-    "recorte": 2.4,
-    "pose": 0.3
+    "cuerdas_y_3d": 147.1,
+    "analisis_ventana": 26.3,
+    "recorte": 2.9,
+    "pose": 0.4
    }
   }
  },
@@ -118,7 +118,7 @@
   "fingerprint": "b9743e004c292b6a",
   "version": "3",
   "seconds": 0.0,
-  "finished": "2026-10-13 19:57:37",
+  "finished": "2026-10-13 21:17:40",
   "summary": {
    "enabled": false
   }
