@@ -226,14 +226,20 @@ def status(ctx: Context) -> dict[str, str]:
     return res
 
 
-def run(ctx: Context, names=None, force=False) -> list[str]:
+def run(ctx: Context, names=None, force=False, upstream=True) -> list[str]:
     """Run the requested stages (default: all) that are missing or stale, plus whatever upstream is
-    missing or stale. force re-runs the requested stages only, not their dependencies."""
+    missing or stale. force re-runs the requested stages only, not their dependencies.
+    upstream=False runs the requested stages only, on the outputs already there of their
+    dependencies even when those are stale (scripts/recompute_measures.py: new measurements without
+    repeating the expensive passes); the dependencies keep their own manifest entry, so a later
+    normal run still re-runs them."""
     ctx.dir.mkdir(parents=True, exist_ok=True)
     m = load_manifest(ctx.dir)
     done = []
     requested = set(names or STAGES)
     for n in order(names or list(STAGES)):
+        if not upstream and n not in requested:
+            continue
         fp = fingerprint(n, ctx, m)
         if not (force and n in requested) and m.get(n, {}).get("fingerprint") == fp and outputs_ok(n, ctx):
             continue

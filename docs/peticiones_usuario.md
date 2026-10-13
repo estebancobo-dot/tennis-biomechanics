@@ -1,97 +1,204 @@
-# Peticiones del usuario frente al código actual
+# Peticiones del usuario frente al código y a la web
 
-Revisión de los 151 mensajes del chat (10-10 a 12-10-2026). No se cuentan los informes de los subagentes pegados ni los registros. Se cruzan con el código de la rama `claude/tennis-biomech-setup-jggqb0`, último commit `a70e8f6`.
+**Revisión:** 13-10-2026, commit `a330935` (rama `claude/tennis-biomech-setup-jggqb0`).
+**Fuentes revisadas:** los 147 mensajes del chat (10-10 a 13-10; sin contar los resúmenes de contexto, los
+registros ni los informes de subagentes pegados), `docs/aprendido_entrenadores.md` (las 15 mejoras),
+`docs/matriz_cobertura.md` §6 (la matriz de 15 secciones, 59 filas) y la revisión anterior de este documento.
+**Datos reales usados:** la última ejecución del PC (`origin/pc-logs`, 13-10 08:24, ya con `a330935`):
+27 golpes, de ellos **10 derechas del lado cercano**, 4 golpes con error, 10 de 14 «con dudas».
+También la auditoría (`auditoria_prueba.md`) y las capturas de las 10 pantallas (`capturas_prueba/`).
+Las horas de los mensajes van en UTC.
 
-**Resumen:** 63 peticiones únicas (los duplicados están fusionados).
-
-**Comprobación automática (12-10):** cada fila se comprueba sola en cada ejecución (sección 11 de la
-auditoría, `audit.PETITIONS`): el número de la petición apunta a las comprobaciones de la auditoría que
-la verifican en las salidas reales (o dice por qué no es una salida: proceso, decisión, documento).
-Una petición marcada aquí PARCIAL nunca sale «cumplida», aunque pasen sus comprobaciones.
+**Criterio.** HECHO solo si está en el código, se llega a ello en la web (o es un script o proceso que
+existe) y los datos reales no lo contradicen. PARCIAL si está hecho pero no se ve o no sirve con los datos
+reales, o si está a medias. NO si no está. Se mantiene la numeración 1-63 de la revisión anterior, porque
+`audit.PETITIONS` la usa. Las filas 64-113 son nuevas y todavía **no tienen regla en `audit.PETITIONS`**:
+la auditoría las marcará «sin comprobación automática asignada».
 
 | Estado | Nº |
 |---|---|
-| NO | 3 (las 3 aplazadas o pendientes por decisión del propio usuario) |
-| PARCIAL | 14 |
-| HECHO | 42 |
-| NO APLICA | 4 (sustituidas por decisiones posteriores del usuario) |
+| HECHO | 54 |
+| PARCIAL | 45 |
+| NO | 10 |
+| NO APLICA | 4 |
+| **Total** | **113** |
 
-**Cómo leer «≥ 12 golpes»:** varias pantallas solo se muestran con al menos 12 golpes cercanos (`MIN_N = 12`, `src/tennisbio/model.py:65`). Son «Su golpe» (`explain.summary`, línea 409), las conclusiones del Panel (`findings.conclusions`, línea 275), las variantes por situación y las curvas típicas (`model._typical_curves`). La prueba rápida del PC dio 10 golpes, de los que 6 eran derechas. Por eso esas pantallas salen vacías en la prueba rápida.
+**Resumen honesto.** El conocimiento del chat **sí está en la web**, pero solo en una pantalla: «Aprende su
+derecha» (`learn.py` + `renderLearn`). Es la pestaña de entrada. Tiene 8 fases más los pies; cada punto lleva
+el valor de ella, «Cómo hacerlo tú», el error típico y un ejercicio. Las condiciones se pueden combinar y cada
+punto de la matriz tiene su sitio.
 
-**Lo que se ve desde el primer golpe:** el vídeo con el esqueleto, los 8 fotogramas clave, «La bola y ella», la capa «Alturas», las curvas del golpe y los filtros de la videoteca.
+Con los datos reales, en cambio, **casi todo es provisional**:
+- Hay 10 derechas, y la pantalla necesita 12 golpes para dar un valor firme.
+- Al combinar condiciones, la pantalla relaja todas las condiciones y vuelve a usar las 10 derechas.
+- «Qué cambia» es texto genérico de entrenador, no lo que ella cambia.
+- «Su derecha» sale vacía.
+- 0 de las 2.992 combinaciones de medida y nivel de situación se muestran.
 
-| # | Petición (parafraseada, fecha) | Estado | Evidencia | Qué falta |
-|---|---|---|---|---|
-| 1 | Analizar la derecha de Rybakina en sus 4 partidos completos. Hacerlo una sola vez y al final, cuando la app tenga todas las funciones (10-10 17:27; 11-10 19:37) | NO (pendiente por diseño) | `3_analisis_completo.bat` → `scripts/windows/analisis_completo.ps1`. `docs/estado_proyecto.md`, «Pendiente que solo puede hacerse en el PC», punto 3 | Solo se han ejecutado tramos de 4 min (prueba rápida) en un partido. Ningún partido completo. |
-| 2 | Ver el informe y las salidas en el móvil (11-10 18:21, 18:29, 18:33) | NO (aplazado por el usuario al final) | La plantilla trae `viewport` y `@media` (`report_template.html:5,80-112`). Los MP4 y el PDF de `export.py` se reproducen en cualquier sitio | No hay forma automática de llevar nada al móvil. El usuario lo dejó para después de cerrar la base. |
-| 3 | Almacenamiento en la nube / OneDrive, sin usar el PC como servidor (11-10 18:26-19:01) | NO (aplazado por el usuario) | No hay código de sincronización ni de publicación | Se hará al final. |
-| 4 | Responder de forma profesional a «¿qué hay que hacer para pegar una derecha como X?», con todas las posibilidades y que sirva de base a cualquiera (11-10 19:23) | PARCIAL | Pantalla «Su golpe» (`#tab-modelo`). Los datos salen de `explain.model_view`: 8 tarjetas de fase con fotograma real y esqueleto medio, más las frases de `COACH`, `PRIMARY` y `PHASE_FOCUS` (`#m-cards`). Selector de situación `#m-sit`, cambios `#m-changes`, pies `#m-feet`, lo no medible `#m-nm` | Solo aparece con ≥ 12 golpes, y cada variante necesita ≥ 12 golpes propios. Nunca se ha generado con golpes reales: en la prueba rápida sale «hacen falta al menos 12». |
-| 5 | La taxonomía completa del golpe con todas sus variantes: bola rápida o lenta, alta o baja, corta o profunda, distancia al fondo y a la red, en carrera, parada o en salto, cada apoyo, dirección, ataque o defensa. Que la implemente Claude, no el usuario (10-10 18:05; 11-10 19:23, 19:48; 12-10 06:32) | PARCIAL | `technique.PHASES` (8 fases) × `DESCRIPTORS` (35), más `STROKE_DESCRIPTORS` (28) y `model.FOOTWORK_KEYS` (17). `model.FACTORS`: 12 situaciones. `docs/matriz_cobertura.md`: 59 ✔, 15 ◐, 1 ○, 15 ✘ | Hay piezas que no se miden en su retransmisión: los pies (fila 6), la empuñadura (fila 7) y las voleas y medias voleas (fila 15). Las variantes solo se ven con ≥ 12 golpes por nivel. |
-| 6 | Juego de pies: split step, primer paso, pasos de ajuste, tiempo de reacción, movimiento y recuperación (11-10 08:22, 19:23) | PARCIAL | Implementado en `footwork.py` (pasos, `first_step_s`, split respecto al golpe rival, recuperación) | En la retransmisión del usuario los tobillos tiemblan. `STEPS_MIN_STILL = 0.4` los oculta y `explain.model_view` los declara «no medible». Solo quedan el desplazamiento, la velocidad de llegada y la recuperación. |
-| 7 | La empuñadura en la espera y al golpear (11-10 19:23) | PARCIAL | `explain.grip_compatible` solo dice si es «compatible con semioccidental u occidental». `NOT_MEASURABLE[0]`. La clase `ready_hands`. `racket3d.hand_prior` toma un cierre supuesto (`forehand_grip_close_deg` del YAML de la jugadora) | No se mide: es una suposición o una compatibilidad, y se dice así. |
-| 8 | Cuerdas y cara de la raqueta (abierta o cerrada, si apuntan al suelo, a la valla lateral o a la trasera, ángulos, cierre muñeca–raqueta) en todas las fases. Obligatorio (11-10 07:34, 09:52, 09:56, 09:58) | PARCIAL | `racket3d.FACE_LABELS_ES` (suelo, red, valla trasera, valla izquierda o derecha) y `face_tilt`/`face_yaw` en cada fase (`technique.DESCRIPTORS`). En el informe: `rFaceArm`, `rFaceImp`, `rFaceFin` y `face.points_to`. Conclusiones en `findings.conclusions`. Ángulo antebrazo–raqueta: `racket_forearm` | En el impacto, la cara se ancla a una dirección fija «hacia la red»: `shot_dir=[0,1,0.15]` por defecto en `racket3d.py:141,237`, y ningún llamador le pasa la dirección real del golpe. Es casi la suposición previa, aunque se etiqueta como «estimada». |
-| 9 | Información y no tablas: profesional, entendible, «con sentido humano», al nivel de las apps del estado del arte, sin aspecto de trabajo de colegio (10-10 18:09, 18:47; 11-10 18:06, 18:21, 19:23; 12-10 16:22, 17:10, 17:21) | PARCIAL | Frase de entrada en cada pantalla (`p.intro`). Significado y fuente de cada frase (`explain.COACH`). Gráficas técnicas plegadas. La auditoría comprueba gráficas de más de 4 líneas | Siguen siendo tablas el Explorador (`#ex-table`), Comparar (`#k-table`), Comparativas (`#c-table`) y la ficha del golpe (`#g-rtable`). No hay glosario. Sigue pendiente lo que anota `estado_proyecto.md`: «rehacer la entrada con una sola pantalla que se explique sola». El 12-10 el usuario dijo que no entendía la web. |
-| 10 | Ver los cambios en la prueba rápida, sin esperar 1 h de prueba (12-10 17:32, 17:40) | PARCIAL | Las vistas por golpe no tienen mínimo (commit `534df06`). Existe `2b_prueba_media.bat` (35 min) | «Su golpe», el Panel y las variantes necesitan ≥ 12 golpes, y la prueba de 4 min da unas 6 derechas. Las novedades no se han visto todavía con golpes reales. |
-| 11 | Validar automáticamente que las salidas reales tienen todo lo pedido y todos los casos del modelo técnico y la taxonomía (12-10 13:14, 16:36, 17:10) | PARCIAL | `tennisbio audit` (`audit.py`) comprueba los requisitos 1-6 y 9, la matriz, las situaciones, los 8 momentos, la cara, los límites físicos, los vídeos y las capturas. Se ejecuta en la prueba rápida y en el análisis completo, y se sube a `pc-logs` | No comprueba «La bola y ella», las barras de altura, los filtros combinados, el tamaño del PDF, el móvil ni los requisitos 7, 8 y 10. Cubre la lista de CLAUDE.md, no esta lista de peticiones. |
-| 12 | Validación automática de cada medida con clips públicos anotados; el usuario no puede validar a mano (11-10 09:05, 09:12) | PARCIAL | `scripts/validate_f3set.py`, `validate_rv_strokes.py`, `validate_racket.py`. `docs/validacion.md`: golpes P 0,92 / R 0,65, derecha/revés 0,97, dirección 0,89, raqueta PCK 74-93 % | Sin validar: apoyo, fases, ángulos, pies, identidad, OCR, resultado del punto y homografía. 9 de los 30 clips de F3Set no se descargaron. |
-| 13 | Cubrir los casos nominales, límite, esquina y de error en fuentes, algoritmos, modelos de IA, procesado, rendimiento, velocidad e informe (11-10 19:23) | PARCIAL | `tests/`: 20 ficheros y 97 tests (vídeo, escena, identidad, pista, marcador, informe…). `docs/revision_completa.md`. Casos de vídeo probados según `estado_proyecto.md` (sin audio, 1080i, VFR, 4K, cirílico) | No se ha probado ningún partido real completo. Los modelos no se han probado en otras cadenas ni superficies, y no hay validación por métrica (fila 12). |
-| 14 | Rendimiento: cuatro partidos en horas, no días (12-10 13:09) | PARCIAL | Pose YOLO en ONNX/DirectML a 112 ms por fotograma (`pose/yolo_onnx.py`). La raqueta va en la iGPU, en un proceso aparte. Progreso con estimación del tiempo restante | Solo hay estimación: unas 5 h por partido, unas 20 h los cuatro. No se ha medido en un partido completo. |
-| 15 | Bajar y analizar vídeos de YouTube de análisis de la derecha (entrenadores) para aprender cómo se analiza y encontrar huecos (12-10 16:30, 17:40, 17:51) | PARCIAL | `scripts/youtube_research.py` (commit `a70e8f6`). Se ejecuta una vez desde `prueba_rapida.ps1:45-52` y lo sube a `pc-logs/investigacion` (`comun.ps1:111`) | No se ha ejecutado todavía, y sus conclusiones no están incorporadas a la app. |
-| 16 | Clasificar el golpe por contexto (derechas junto a la red frente a voleas) y cubrir las medias voleas (10-10 18:05; 11-10 09:02) | PARCIAL | Filtro «cerca de la red» (`LIBF`, `y < 8`). Clase `approach` (`technique.py:540`). La media volea solo aparece como aviso `half_volley_candidate` (`clip_pipeline.py:213`, chip «Dudas») | No hay clase volea, cortado ni globo: las voleas entran como derechas. La media volea solo es un aviso, y nadie lo revisa. |
-| 17 | Una pantalla de entrada que se entienda sin explicaciones: «no entiendo nada ni cómo usarla; no hay gráficos, tablas ni vídeos» (12-10 16:22) | PARCIAL | Pestaña inicial «Su golpe» con frase de entrada y el bloque «Novedades» (`#news`) | Con menos de 12 golpes, la primera pantalla solo dice que faltan golpes. Sigue pendiente en `estado_proyecto.md`. |
-| 18 | Herramienta en Python de análisis cinemático 2D, centrada en 1 jugador y 1 golpe y parametrizable (10-10 17:27) | HECHO | `config/players/*.yaml`, `config/strokes/{forehand,backhand,overhead}.yaml`, CLI `--player`/`--stroke` (`cli.py`) | |
-| 19 | Vídeos y salidas fuera del repo, vídeos nunca en git, rutas leídas de la configuración (10-10 17:27) | HECHO | `config/local.yaml`, generado por `instalar.ps1` en el paso 6. `config.py` | |
-| 20 | Windows nativo sin NVIDIA ni WSL, con ONNX Runtime en CPU o DirectML (10-10 17:27) | HECHO | `pose/estimator.py`, `pose/yolo_onnx.py`. El registro del PC muestra `DmlExecutionProvider` | |
-| 21 | Dos pasadas: una barata (cortes, audio, jugadores, lado y quién golpea) y otra fina de ±1 s solo en sus golpes (10-10 17:27) | HECHO | Etapas en `stages.py`: probe → scenes → audio → players → identity → candidates → court → score → fine | |
-| 22 | Quedarse solo con la cámara principal, sin repeticiones ni primeros planos y contando los fundidos (10-10 17:27) | HECHO | `scenes.py` (color de la pista y detección de fundidos) | |
-| 23 | Seguir a la jugadora en los cambios de lado (10-10 17:27) | HECHO | `identity.py` (ropa más votos de saque y resto), `stages.st_identity` | |
-| 24 | OCR del marcador (set, juego, tanteo) y situaciones de presión (10-10 17:27) | HECHO | `scoreboard.py`. `report._score_fields`. Filtro `#f-press` | |
-| 25 | Métricas por derecha: apoyo, base, rodillas, cadera y hombros, X-factor, codo, punto de impacto, cadena cinética, posición en pista (10-10 17:27) | HECHO | `technique.DESCRIPTORS`, `report.METRICS`, `court_metrics.py`, `phases.py` | |
-| 26 | Fases del golpe y cadena completa, desde el salto inicial y la preparación hasta la terminación (10-10 17:27; 11-10 08:22) | HECHO | `technique.PHASES`: ready, takeback, loaded, acceleration, impact, extension, finish, recovery | |
-| 27 | Agregados por partido y set, inicio frente a final (fatiga), ganadores frente a errores, presión (10-10 17:27) | HECHO | `findings._pairs`, que define fatiga, sets, presión, rapida y resultado. `#c-pair` incluye «Partido a partido» | Las conclusiones solo aparecen con ≥ 12 golpes. «Ganador» significa «no devuelta» (`outcome.py`). |
-| 28 | Informe HTML con gráficos y fotogramas con el esqueleto dibujado (10-10 17:27) | HECHO | `report.py` + `report_template.html` (8 pestañas, vídeo real con el esqueleto superpuesto en `#stage`) | |
-| 29 | Fase 0: entorno y fps reales, con YOLO incluido en el benchmark (10-10 17:27; 11-10 08:49) | HECHO | `scripts/check_env.py`, `scripts/benchmark.py` (16 referencias a YOLO). Medido en el PC | |
-| 30 | Estado del arte: en qué somos iguales, mejores o peores que otras apps, con comparación detallada de informe y salidas (10-10 17:40; 11-10 09:05, 18:06, 19:23) | HECHO | `docs/comparativa_apps.md` | |
-| 31 | Procesado incremental al añadir vídeos, sin editar configuración (10-10 18:05) | HECHO | Huellas por etapa en `pipeline.py`. `scripts/auto_catalog.py` (paso 1/5 del análisis completo) | |
-| 32 | Ampliable a otros golpes y jugadores, con todo anotado en CLAUDE.md (10-10 18:07) | HECHO | `config/strokes/*`. Pasada fina del rival (`stages.py:731`). CLAUDE.md, «Ampliación» | |
-| 33 | Capturas de los golpes con más puntuación de cada tipo, y N imágenes de un golpe completo como ejemplo (10-10 18:12) | HECHO | 8 fotogramas clave (`#kf`), imagen estroboscópica (`#strobe`). Videoteca ordenada por «Mejor capturados» y «Más representativos» (`#lib-sort`) | |
-| 34 | Maqueta del informe con datos inventados, incluidos los apoyos (10-10 18:13; 12-10 17:21) | HECHO | `docs/maqueta-informe.html` (abierto, semiabierto y cerrado aparecen) | |
-| 35 | Medidas de la raqueta (altura, ángulos) a lo largo de todo el golpe (11-10 07:34) | HECHO | `racket_head_vs_wrist`, `racket_angle`, `racket_tip_height` en cada fase. Curvas `#g-rh` y `#g-rf` | En el impacto la fiabilidad es baja (la raqueta sale borrosa) y se marca así. |
-| 36 | Mano y antebrazo (11-10 10:19) | HECHO | `racket_forearm` (retraso de la muñeca), `hand_on_handle`, `wrist_drop` | |
-| 37 | Prueba en local sin procesar 20 GB (11-10 09:02) | HECHO | `2_prueba_rapida.bat` (4 min) y `2b_prueba_media.bat` (35 min) | |
-| 38 | Dirección y profundidad del golpe (11-10 17:24) | HECHO | `court_metrics` (`shot_direction`, `shot_depth_m`). Pista en modo «Destino». Invertidas en `technique.py:545` | |
-| 39 | Lado del fondo de la pista (11-10 17:33) | HECHO | `report.FAR_OK` y el recorte que sigue a la jugadora lejana (`clip_pipeline.py`) | Solo métricas fiables a esa distancia, como se decidió. |
-| 40 | Un script de instalación de todo, uno de uso rápido y otro completo, sin tener que leer nada; descarga del proyecto aunque no haya git (11-10 18:06, 18:21) | HECHO | `1_instalar.bat` (con `bootstrap.ps1`, que baja el zip si no hay git), `2_prueba_rapida.bat`, `3_analisis_completo.bat` | |
-| 41 | Cómo se ven y se graban los resultados: exportación (11-10 18:06; 11-10 19:01, «haz el punto 4») | HECHO | `export.py`: un MP4 por golpe, montajes por conclusión y `resumen.pdf`. Es el paso 4/5 de `analisis_completo.ps1` | |
-| 42 | Un golpe no pueden ser solo 8 pantallazos: vídeo y mucho más (11-10 18:21) | HECHO | Vídeo fotograma a fotograma con capas, «La bola y ella», curvas y Comparar lado a lado (`#tab-comparar`) | |
-| 43 | El PC no puede ser servidor (11-10 18:27) | HECHO | Informe offline. No hay código de servidor | |
-| 44 | Nada de vídeos del usuario, de entrenadores ni de otras jugadoras (11-10 19:37) | HECHO | La app no tiene ninguna entrada de vídeos externos. La auditoría avisa de enlaces externos (`audit.py:420`) | CLAUDE.md aún menciona los clips en cámara lenta del usuario como fuente secundaria. Contradice esta decisión. |
-| 45 | Todo automático y completo: el usuario no revisa datos ni anota nada (11-10 09:05, 19:38; 12-10 11:41) | HECHO | Identidad automática. Los golpes con identidad dudosa se excluyen (`stages.py:701`). `auto_catalog.py`. `audit.py:362` comprueba «Nada pide revisión manual» | CLAUDE.md aún dice «modo semiautomático» en «Limitaciones asumidas». |
-| 46 | Sin un PDF enorme, y sin inventar datos (11-10 19:40) | HECHO | `limits.py` y `audit` LIMITS. «—» cuando falta un dato. `MIN_N`. `ESTIMATED` queda fuera de los hallazgos (`report.py:66`). PDF de resumen corto | |
-| 47 | Modelo técnico con fuentes y forma de saber si está completo (12-10 06:32) | HECHO | `docs/matriz_cobertura.md` (ITF, Landlinger, Knudson…), que `audit.parse_matrix` lee y comprueba. Fuente de cada frase en `explain.COACH` | |
-| 48 | Posición de la cabeza y altura del cuerpo al principio y al final (11-10 19:48) | HECHO | `body_height`, `head_over_base`, `head_vs_hips` por fase. `head_motion_cm`. Curvas de alturas (`#g-hts`, `#m-curves`) | Las curvas típicas solo aparecen con ≥ 12 golpes. |
-| 49 | No perder el contexto ni la sesión; registros automáticos sin copiar nada (12-10 11:39-11:45) | HECHO | Subida automática a la rama `pc-logs` (`comun.ps1:54-129`). `docs/estado_proyecto.md` | |
-| 50 | Progreso y monitorización, con registros visibles en la terminal (12-10 14:37, 14:43) | HECHO | `progreso.json` con %, tiempo transcurrido y restante (`pipeline.py:64`). Salida sin búfer (commit `5b714ce`) | |
-| 51 | El código de la prueba es el mismo que el de los casos reales (12-10 14:37) | HECHO | La prueba rápida ejecuta las mismas etapas de `tennisbio` sobre `output/_smoke` | |
-| 52 | Usar Brave como navegador, no instalar Edge (12-10 16:48) | HECHO | `screens.py:43-61`: busca primero Brave y nunca descarga un navegador | Si no hay Brave, recurre a Edge o Chrome ya instalados. |
-| 53 | No pasar de 100 a 0: conservar e integrar lo anterior (12-10 17:21) | HECHO | Se mantienen las 8 pestañas (Panel, Videoteca, Explorador, Comparativas, Pista…) más «Su golpe» | |
-| 54 | Ver qué hace la jugadora cuando la bola sale de la raqueta rival, cruza la red, bota y llega a lo más alto (12-10 17:40) | HECHO | `report.ball_moments`. Bloque «La bola y ella» (`#bm`, `renderBallMoments`). `ball3d.py` | No tiene mínimo de golpes. Falta verlo en su retransmisión, y depende de que se detecte la bola. |
-| 55 | Ver una bola cercana a la red y un apoyo cerrado con golpe paralelo (12-10 17:40) | HECHO | Filtros combinables de la videoteca (`LIBF`): Apoyo «cerrado» + Dirección «paralela», y Bola «cerca de la red» | Los filtros no incluyen «en carrera / parada / salto». |
-| 56 | Imagen con la diferencia de altura de la cabeza en barras horizontales (12-10 17:40) | HECHO | `heightBars()` (`report_template.html:898`), capa «Alturas»: espera frente a ahora, con los cm de diferencia | |
-| 57 | Que no haya gráficas con muchas líneas ni tablas sin lenguaje natural en la vista principal (12-10 17:10) | HECHO | La auditoría comprueba gráficas de más de 4 líneas. Gráficas técnicas plegadas en «Análisis de golpe» | Las tablas de las pantallas secundarias están en la fila 9. |
-| 58 | Usar la IA más moderna posible (11-10 09:05) | HECHO | YOLO11-pose (ONNX), TrackNetV3 y RTMPose de raqueta de RacketVision (`scripts/export_*.py`), RTMW3D | |
-| 59 | Diferencias solo si superan el error de medida y en situaciones equivalentes (10-10 18:05; CLAUDE.md req. 3) | HECHO | `model.py`: OLS robusto + Benjamini-Hochberg + `MIN_DIFF`. Situación neutra en Comparativas (`#c-sit`) | |
-| 60 | Confirmar con un clic quién es Rybakina al principio de cada partido (10-10 17:27) | NO APLICA | Sustituido por «todo automático» (11-10 19:38). La identidad es automática (`identity.py`) | |
-| 61 | Modo semiautomático: el usuario revisa los golpes dudosos (10-10 17:27) | NO APLICA | Sustituido por «no puedo revisar datos» (11-10 19:38) | CLAUDE.md aún lo menciona, junto con una «herramienta de revisión aparte». |
-| 62 | Poner vídeos de YouTube tipo «Rybakina forehand analysis» en el informe (11-10 07:34) | NO APLICA | Sustituido por el requisito 6, sin fuentes externas (11-10 19:37). Los enlaces se quitaron (`#news`: «Sin enlaces a YouTube») | |
-| 63 | Descargar el resumen del partido de YouTube como ejemplo (11-10 09:21) | NO APLICA | El usuario subió los clips al chat. YouTube bloquea la descarga desde la nube | |
+La velocidad (5 h para 10 derechas) y los golpes dudosos (71 %) siguen sin resolver.
 
-## Corregido tras esta revisión (12-10)
-- Cuerdas en el impacto: el ancla usa la dirección real de su golpe (contacto → bote), no siempre «hacia la red».
-- «Cómo llega» (parada, en carrera, en el aire…), bola en el contacto y terminación en la ficha de cada golpe; «Cómo llega» también como filtro de la videoteca; `finishType` relleno.
-- La auditoría comprueba además «La bola y ella», las barras de altura, los filtros combinables, las novedades y el PDF (y lo sube a Claude para revisarlo).
-- CLAUDE.md: quitado el «modo semiautomático», la herramienta de revisión manual y los clips del usuario; YouTube solo para aprender (no como datos).
-- Vídeos de entrenadores de YouTube: `scripts/youtube_research.py`, se ejecuta una vez desde la prueba rápida.
+## Tabla de peticiones
 
-Pendiente de esta lista: Explorador y Comparativas siguen siendo tablas (pasar a frases); clase volea/media volea;
-validar apoyo, fases y pies con datos anotados; los 4 partidos; móvil y nube (al final).
+Abreviaturas: Aprende = «Aprende su derecha» · SuD = «Su derecha» · AG = «Análisis de golpe» · VL = «Vista
+lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_N`, `A_MIN`).
+
+| # | Petición (paráfrasis, fecha del mensaje) | Estado | Dónde está (código) | Dónde se ve en la web | Cómo se valida solo | Qué falta |
+|---|---|---|---|---|---|---|
+| 1 | Derecha de Rybakina en sus 4 partidos completos, una vez y al final (10-10 17:27; 11-10 19:37) | NO (pendiente por diseño) | `3_analisis_completo.bat` → `analisis_completo.ps1` | — | `audit` tras el análisis completo | Ningún partido completo analizado. |
+| 2 | Ver informe y salidas en el móvil (11-10 18:21, 18:29, 18:33) | NO (aplazado por el usuario) | `viewport` y `@media` en `report_template.html` | — | — | Nada lleva el informe al móvil. |
+| 3 | Nube / OneDrive sin usar el PC como servidor (11-10 18:26-19:01) | NO (aplazado por el usuario) | — | — | — | Se hará al final. |
+| 4 | Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como base para cualquiera (11-10 19:23) | PARCIAL | `learn.PHASES`, `FEET`, `CONDITIONS`; `renderLearn`; `explain.copy_cue`/`COACH`/`PHASE_FOCUS` (SuD) | Aprende §1-6 (pantalla de entrada); SuD | `learn_check.check_page`: 677 combinaciones y 31.819 puntos de control; ítem «Aprende su derecha» | Valores de 1 a 10 golpes, todos «provisional». SuD, `copy_cue` y `COACH` no se ven (≥12). |
+| 5 | Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto, apoyo, dirección, ataque/defensa) (10-10 18:05; 11-10 19:23, 19:48; 12-10 06:32) | PARCIAL | `technique.DESCRIPTORS`/`classes`; `model.FACTORS`; `learn.CONDITIONS` (10 condiciones) | Chips de Aprende §1 con recuento por nivel | Auditoría §1: «cada medida en cada nivel» | 0 de 2.992 combinaciones con ≥12. Niveles vacíos: parada 0, paralela 0, rodilla 0, en el aire 0. |
+| 6 | Juego de pies: split step, primer paso, ajuste, reacción, recuperación (11-10 08:22, 19:23) | PARCIAL | `footwork.py`; `learn.FEET` y fase 8 | AG «Sus pies en este golpe» (9 líneas y mapa); tarjeta «Pies» de Aprende | Auditoría §1 «3. Pies…» y «Sus pies en este golpe» | Pasos medidos en el 40 % de los golpes. El golpe capturado dice «no medible» en el primer paso, el ajuste y tras golpear. |
+| 7 | Empuñadura en la espera y al golpear (11-10 19:23) | PARCIAL | `explain.grip_compatible`; `class.ready_hands` | Aprende fase 1 «Manos en la espera»; la «compatibilidad» solo en SuD (≥12) | Auditoría §3 (no medible dicho) | El bisel no se mide. `ready_hands` da «mano libre separada» en el 100 % (7 golpes) y en revés a dos manos, contra R2 de los entrenadores: medida dudosa. La lista no medible de Aprende no nombra la empuñadura. |
+| 8 | Cuerdas y cara (suelo, valla lateral o trasera, ángulos, cierre muñeca–raqueta) en todas las fases. Obligatorio (11-10 07:34-09:58) | PARCIAL | `racket3d.describe_face`, `racket_face.face_track`, `stroke_faces` | AG «Raqueta por fase» y HUD «CUERDAS → RED»; Panel (conclusiones); Aprende solo `impact.face_tilt` | Auditoría §4: cara en el 50-100 % según la fase | En el impacto es interpolada («red» en el 100 %). Aprende no dice adónde apuntan las cuerdas en el armado ni en la caída. |
+| 9 | Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras (10-10 18:09-18:47; 11-10 18:06-19:23; 12-10 16:22-17:21) | PARCIAL | `learn.py`; frases en AG, Comparar, Explorador y Comparativas | Aprende (23.684 caracteres, 11 frases) | `screens.py` (frases, tablas, gráficas de muchas líneas) | SuD vacía. Comparativas: 8 «Sin datos…». Explorador: 41 «—». El 13-10 05:48 el usuario dice que «no vale para nada». |
+| 10 | Ver los cambios en la prueba rápida, sin 1 h (12-10 17:32, 17:40) | PARCIAL | `2c_solo_informe.bat` (2 min 26 s) | Toda la web | `solo_informe.ps1` → auditoría y capturas | Una medida nueva exige volver a analizar el vídeo: la prueba media dura 5 h 02 min. La prueba rápida deja unas 5 derechas. |
+| 11 | Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía (12-10 13:14, 16:36, 17:10; 13-10 05:48 p1-2) | PARCIAL | `audit.py` (11 apartados), `learn_check.py`, `screens.py` | — (sale en `auditoria.md` en `pc-logs`) | 164 ✔ · 1 ✘ · 154 «sin golpes suficientes» | Comprueba que la estructura existe, no que el valor sea correcto. Las peticiones 64-113 no tienen regla. |
+| 12 | Validar cada medida con clips públicos anotados; el usuario no valida a mano (11-10 09:05, 09:12) | PARCIAL | `validate_f3set.py`, `validate_rv_strokes.py`, `validate_racket.py` | — | F3Set: P 0,917 / R 0,647; derecha/revés 0,969; dirección 0,885 | Ninguna medida corporal (codo, rodillas, pasos, apoyo, fases) está validada. |
+| 13 | Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe (11-10 19:23) | PARCIAL | `tests/` (117 pasan y 1 se salta en el PC: la prueba del navegador) | — | `pruebas.log` en `pc-logs` | Ningún partido completo. En la última ejecución, la etapa `fine` falló en 4 golpes. |
+| 14 | Rendimiento: un partido en horas, no días (12-10 13:09) | NO | ONNX/DirectML, `progreso.json` | — | Auditoría §9 (aviso) | Medido: 251 min para 35 min de vídeo, unas **25 h por partido**. |
+| 15 | Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos (12-10 16:30-17:51) | PARCIAL | `scripts/youtube_research.py`; `docs/aprendido_entrenadores.md` | Aprende (consignas, errores, ejercicios); capa «Líneas» en AG | Auditoría §6: 24 vídeos, 16 con texto | 6 de las 15 mejoras siguen en NO o a medias (filas 99-113). |
+| 16 | Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas (10-10 18:05; 11-10 09:02) | PARCIAL | `class.contact_type` (media volea, volea) | Aprende, condición «Contacto» | Auditoría «Botepronto», «Volea» | Ningún caso en los datos (0 y 0). La volea no tiene técnica propia. |
+| 17 | Una entrada que se entienda sola: «no entiendo nada ni cómo usarla» (12-10 16:22) | PARCIAL | `showTab` → `aprende` por defecto | Aprende (pasos 1-6) | Ítem «Pantalla «Aprende su derecha»» | La segunda pestaña (SuD) está vacía. Aprende y SuD se solapan. Las «Novedades» están en SuD. |
+| 18 | Herramienta Python cinemática 2D, 1 jugador y 1 golpe, parametrizable (10-10 17:27) | HECHO | `config/players`, `config/strokes`, `cli.py` | Cabecera «Diestra · revés a 2 manos» | «golpes analizados» | |
+| 19 | Vídeos y salidas fuera del repo, rutas por configuración (10-10 17:27) | HECHO | `config/local.yaml`, `config.py` | — | «Cada golpe tiene su vídeo» | |
+| 20 | Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML (10-10 17:27) | HECHO | `pose/yolo_onnx.py`, `estimator.py` | — | `instalacion.log` (DmlExecutionProvider) | La lentitud está en la fila 14. |
+| 21 | Dos pasadas, barata y fina de ±1 s (10-10 17:27) | HECHO | `stages.py` | — | Ficheros de etapa | |
+| 22 | Solo la cámara principal, sin repeticiones ni primeros planos (10-10 17:27) | HECHO | `scenes.py`, `replays.py` | — | `tests/test_scenes.py`, `test_replays.py` | |
+| 23 | Seguir a la jugadora en los cambios de lado (10-10 17:27) | HECHO | `identity.py`, `st_identity` | — | `test_identity.py` | Sin validar con datos anotados. |
+| 24 | OCR del marcador y presión (10-10 17:27) | HECHO | `scoreboard.py` | Ficha de AG «2 · 5-5 30-30»; filtro de presión | «Presión, set, fatiga» | |
+| 25 | Métricas por derecha: apoyo, base, rodillas, cadera, hombros, X-factor, codo, impacto, cadena, pista (10-10 17:27) | HECHO | `technique.py`, `court_metrics.py`, `phases.py` | AG «Métricas»; Aprende | Auditoría §1 | X-factor 2D: mediana de 1° en Aprende, sospechoso (fila 113). |
+| 26 | Fases y cadena completa, del salto inicial a la terminación (10-10 17:27; 11-10 08:22) | HECHO | `technique.PHASES` (8) | AG, tira de 8 fotogramas; Aprende, 8 fichas | «Fotograma clave» en el 100 % de los golpes | |
+| 27 | Agregados por partido y set, fatiga, ganadores y errores, presión (10-10 17:27) | HECHO | `findings._pairs`, `model.py` | Panel: «Hallazgos», «Evolución durante el partido» | «Presión, set, fatiga» | Con 1 partido y 10 golpes, todo «No concluyente». |
+| 28 | Informe HTML con gráficos y esqueleto (10-10 17:27) | HECHO | `report.py`, plantilla | AG | «Cada golpe tiene su esqueleto» 10/10 | |
+| 29 | Fase 0: entorno y fps reales, con YOLO (10-10 17:27; 11-10 08:49) | HECHO | `check_env.py`, `benchmark.py` | — | `instalacion.log` | |
+| 30 | Estado del arte: igual, mejor o peor que otras apps (10-10 17:40; 11-10 09:05, 18:06) | HECHO | `docs/comparativa_apps.md` | — | (documento) | La profundidad se discute en la fila 74. |
+| 31 | Procesado incremental al añadir vídeos (10-10 18:05) | HECHO | `pipeline.py` (huellas), `auto_catalog.py` | — | `test_pipeline.py` | |
+| 32 | Ampliable a otros golpes y jugadores (10-10 18:07) | HECHO | `config/strokes/*` | — | (configuración) | |
+| 33 | Capturas de los mejores golpes de cada tipo y N imágenes de un golpe (10-10 18:12) | HECHO | 8 fotogramas clave, estroboscópica, orden de la videoteca | AG, Videoteca | «Fotograma clave» | |
+| 34 | Maqueta con datos inventados, con apoyos (10-10 18:13; 12-10 17:21) | HECHO | `docs/maqueta-informe.html` (filtro y mapa de apoyo) | — | (documento) | |
+| 35 | Medidas de la raqueta (altura, ángulos) en todo el golpe; qué miden los profesionales (11-10 07:34) | HECHO | `racket_head_vs_wrist`, `racket_angle`, `racket_track` | AG «Raqueta durante el golpe» y «Raqueta por fase» | Auditoría §4 | Impacto borroso (se marca). |
+| 36 | Mano y antebrazo, cierre de la muñeca (11-10 09:56, 10:19) | PARCIAL | `acceleration.racket_forearm`, `hand_on_handle` | Aprende «Retraso de la raqueta» | «Retraso de la muñeca (lag)» | El lag sale en el 40 % de los golpes y Aprende lo da con **1 golpe**. |
+| 37 | Prueba en local sin procesar 20 GB (11-10 09:02) | HECHO | `2_prueba_rapida.bat`, `2b_prueba_media.bat` | — | Auditoría tras la prueba | |
+| 38 | Dirección y profundidad del golpe (11-10 17:24) | HECHO | `court_metrics.shot_landing` | AG ficha (bote, dirección); Pista «Destino» | «Dirección…» 70 %, «Bote» 90 % | |
+| 39 | Lado del fondo de la pista (11-10 17:32-17:33) | HECHO | `extract_follow`, `report.FAR_OK` | Cabecera «4 desde el fondo» | «golpes analizados» | |
+| 40 | Scripts de instalación, uso rápido y completo, sin leer nada (11-10 18:06, 18:21) | HECHO | `1_instalar.bat`, `2_*.bat`, `2b`, `2c`, `3_*.bat` | — | `instalacion.log` | |
+| 41 | Exportación: cómo se ven y se graban (11-10 18:06; 19:01 «haz el punto 4») | HECHO | `export.py` | — | «Exportación: resumen PDF y un vídeo por golpe» (14 vídeos, 8 montajes) | |
+| 42 | Un golpe no son 8 pantallazos: vídeo y más (11-10 18:21) | HECHO | Vídeo con capas, curvas, «La bola y ella», Comparar | AG, Comparar | «Reproducir…» 5/5 | |
+| 43 | El PC no es servidor (11-10 18:27) | HECHO | HTML sin servidor | — | (arquitectura) | |
+| 44 | Sin vídeos del usuario, de entrenadores ni de otras jugadoras (11-10 19:37), salvo su entrenamiento (12-10) | HECHO | Sin entradas externas; entrenamiento en `practice.py` | VL, aparte y marcada | «Enlaces externos» 0 | |
+| 45 | Todo automático y completo: el usuario no revisa nada (11-10 09:05, 19:38; 12-10 11:41) | PARCIAL | Identidad automática, `auto_catalog.py` | Chip «con dudas» | «Nada pide revisión manual» ✔; **«Etapas con errores: fine» ✘** | 4 golpes fallaron (`strokes_errores.json`) y nadie los recupera. |
+| 46 | Sin PDF enorme y sin inventar datos (11-10 19:40) | HECHO | `limits.py`, «—» si falta el dato | PDF de 6 páginas (0,8 MB) | «Resumen PDF», «Valores dentro de límites» | |
+| 47 | Modelo técnico con fuentes; cómo saber si está completo (12-10 06:32) | HECHO | `docs/matriz_cobertura.md`, `audit.parse_matrix` | — | Auditoría §1 | |
+| 48 | Posición de la cabeza y altura del cuerpo al inicio y al final (11-10 19:48) | HECHO | `head_motion_cm`, `body_height`, curvas | AG «Alturas durante el golpe» y capa «Alturas» | «Curvas de altura», «Cabeza estable» | Cabeza quieta: 2 golpes en Aprende. |
+| 49 | No perder contexto ni sesión; registros automáticos (12-10 11:39-11:45) | HECHO | `comun.ps1` → `pc-logs`; `estado_proyecto.md` | — | (proceso) | |
+| 50 | Progreso y monitorización visibles (12-10 14:37, 14:43) | HECHO | `progreso.json`, salida sin búfer | — | Registros con hora | |
+| 51 | El código de la prueba es el de los casos reales (12-10 14:37) | HECHO | Las mismas etapas sobre `_smoke` | — | (proceso) | |
+| 52 | Brave, no instalar Edge (12-10 16:48) | HECHO | `screens.py:52-71` (Brave primero, nunca descarga) | — | Capturas con el navegador instalado | |
+| 53 | No pasar de 100 a 0: conservar lo anterior (12-10 17:21) | HECHO | 10 pestañas | Todas | «Pantallas» | |
+| 54 | Qué hace ella cuando la rival golpea, la bola cruza la red, bota y llega arriba (12-10 17:40) | HECHO | `report.ball_moments`, `renderBallMoments` | AG «La bola y ella» (4 tarjetas) | Ítem «La bola y ella» | Bola vista en el 80 % de los golpes. |
+| 55 | Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo (12-10 17:40) | PARCIAL | Filtros `LIBF`, chips de Aprende | Videoteca y Aprende | «Filtros combinables» | En sus datos hay 0 paralelas y 1 cerrado más «invertida paralela»: el ejemplo no se puede ver. |
+| 56 | Barras horizontales con la diferencia de altura de la cabeza (12-10 17:40) | HECHO | `heightBars()` | AG, capa «Alturas» («cabeza +2 cm») | «Barras de altura» | |
+| 57 | Nada de gráficas de muchas líneas ni tablas sin frases (12-10 17:10) | HECHO | Frases sobre cada tabla; detalles técnicos plegados | AG, Explorador, Comparativas, Comparar | «más de 4 líneas», «Tablas a la vista» | |
+| 58 | La IA más moderna posible (11-10 09:05) | HECHO | YOLO11-pose, TrackNetV3, RTMPose de raqueta, RTMW3D | — | (elección) | |
+| 59 | Diferencias solo por encima del error y en situaciones equivalentes (10-10 18:05) | HECHO | `model.py` (OLS, Benjamini-Hochberg) | Panel «Hallazgos» con el ruido | «Valores posibles», «Cada frase lleva…» | |
+| 60 | Confirmar con un clic quién es Rybakina (10-10 17:27) | NO APLICA | Sustituido por «todo automático» | — | — | |
+| 61 | Semiautomático: el usuario revisa los dudosos (10-10 17:27) | NO APLICA | Sustituido (11-10 19:38) | — | — | |
+| 62 | Vídeos de YouTube de análisis en el informe (11-10 07:34) | NO APLICA | Sustituido por el requisito 6 | — | — | |
+| 63 | Descargar el resumen de YouTube como ejemplo (11-10 09:21) | NO APLICA | El usuario subió los clips | — | — | |
+| 64 | Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la inversa» (12-10 18:03, 18:06; 13-10 05:48 p4) | PARCIAL | `footwork.steps`, `step_kinds`, `recovery_*` | AG «Sus pies en este golpe»; Aprende «Pies» y fase 8 | Auditoría §1 «3. Pies…» (27 ok) | El paso cruzado no aparece en ningún golpe. El primer paso y el ajuste salen «no medible» si los tobillos se ven quietos menos del 40 % del tiempo. |
+| 65 | El play del vídeo funciona (no solo un fotograma) (12-10 18:14, 21:03, 21:14) | HECHO | `startPlay` y bucle de vídeo | AG, Comparar, Videoteca, SuD, Panel | «Reproducir: …» 5/5, también sin animaciones | |
+| 66 | Fechas y duración en los registros (12-10 18:25) | HECHO | `comun.ps1` | — | «Empezado … duracion total» | |
+| 67 | No borrar el trabajo hecho: lo complejo como extra (12-10 22:35; 13-10 05:48 p6) | HECHO | 10 pestañas; tablas debajo de las frases | Todas | «Pantallas» | |
+| 68 | La meta: mejorar mi derecha tomando la de X como base (12-10 22:25; 13-10 05:48 p5) | PARCIAL | `learn.py` | Aprende (valor de ella, cómo hacerlo, error, ejercicio, plan) | `learn_check` | Valores provisionales de 1-10 golpes. Sin progresión ni prioridad (qué copiar primero según lo que la distingue). |
+| 69 | Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replicarlo) (13-10 05:48 p8) | PARCIAL | `learn_check.USER_EXAMPLE`; `aResolve` | Aprende §1-4 | Combinación comprobada en el navegador | Con sus datos hay 0 golpes exactos: se quitan las 5 condiciones y se ven las 10 derechas. «Qué cambia» es texto general, no lo que hace ella. |
+| 70 | Las 2000 y pico combinaciones, usables y validadas (13-10 05:48 p2; 06:00) | PARCIAL | `learn_check.combos` (ninguna, una y parejas) | Chips de Aprende | 677 combinaciones, 176 con golpes exactos | Combinaciones de medida y nivel: 0 de 2.992 visibles. Solo se prueba un trío o más (el ejemplo del usuario). |
+| 71 | El conocimiento de los vídeos de entrenadores en la web (12-10 21:31; 13-10 05:48 p3) | PARCIAL | `learn.py` (cue/mistake/drill), `explain.COACH`, capa «Líneas» | Aprende; AG «Líneas» | Auditoría §3 (R1-R23) | La fuente es una etiqueta genérica. Falta «Lo que la distingue» (mejora 12). El examen R no sale en la web (decisión de diseño). |
+| 72 | El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos (13-10 06:00, 06:30) | PARCIAL | `learn.PHASES`/`FEET` (47 puntos), `CONDITIONS`, `NOT_FROM_TV` | Aprende | «Cada punto de la matriz tiene su sitio» 59/59 | Está en la web, pero con 10 golpes casi nada se puede afirmar. SuD (fases, `copy_cue`) no se ve. |
+| 73 | Revisar la web de arriba abajo para que aporte valor (13-10 05:48 p6) | PARCIAL | 10 pantallas | Todas | `screens.py` | SuD vacía, Comparativas con 8 «Sin datos», Explorador con 41 «—». Panel dice 14 derechas y Aprende 10 (cuenta las lejanas). |
+| 74 | ¿El análisis de las apps de pago y libres fue profundo o superficial? (13-10 05:48 p7) | PARCIAL | `docs/comparativa_apps.md` (100 líneas) | — | — | Solo documental: sin contrastar pantalla a pantalla. Aprende imita las posiciones P de Sportsbox. |
+| 75 | Velocidad: «10 golpes en 5 horas es absurdo» (13-10 05:48 p10) | NO | — | — | Auditoría §9 | Prueba media: 5 h 02 min para 35 min de vídeo. |
+| 76 | «Un 50 % de golpes dudosos» (13-10 05:48 p10) | NO | Banderas de `review` | Chip «10 con dudas» | «Nada pide revisión manual» | 10 de 14 golpes dudosos (71 %) y 4 con error. |
+| 77 | No lanzar pruebas de 6 h para validar (13-10 06:01) | PARCIAL | `2c_solo_informe.bat` (2 min) | — | La auditoría corre sola | Validar el análisis exige la prueba media (5 h). |
+| 78 | No depender de que al usuario se le ocurran funciones (13-10 06:09) | PARCIAL | Matriz con fuentes, `aprendido_entrenadores.md` | — | — | Quedan sin hacer 4 mejoras propuestas por Claude (filas 102, 106, 110, 112). |
+| 79 | Vídeos de entrenamiento con otras cámaras, en un apartado aparte y marcado (12-10 21:31, 21:32) | PARCIAL | `practice.py`, `scripts/practice_videos.py` | VL (marcada «Fuente aparte») | «Vídeos de entrenamiento analizados»: 5 vídeos, 91 golpes | Solo 3 derechas de lado medidas (de 23 laterales), así que no hay resumen. En Aprende, «— menos de 12» aunque haya 13 estimaciones 3D. |
+| 80 | Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice (12-10 22:43) | HECHO | `prueba_rapida.ps1`, `solo_informe.ps1` → audit, capturas, `pc-logs` | — | (proceso) | |
+| 81 | Tamaño de la salida; comprobación sin gastar tokens (12-10 22:40) | HECHO | `tamanos.txt`, `audit.py` en Python | — | `tamanos.txt` (≈1,9 GB `_smoke`) | |
+| 82 | Dónde se graban las salidas, qué va a git, qué se reutiliza (12-10 22:47) | HECHO | `output/_smoke`, `pc-logs`, caché por etapas | — | (proceso) | |
+| 83 | Árbol de ficheros generados y validados (12-10 22:25) | HECHO | `audit.file_tree_items` | — | «Partido …: salida de cada etapa» (27 ventanas y series) | |
+| 84 | Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca) (12-10 21:14) | PARCIAL | `hip_rise`, `hip_turn`, `x_factor`, `chain`, `racket_forearm` | Aprende fases 3-4; AG «Detalles técnicos» | Auditoría §1 «6. Matriz…» | Fuerza contra el suelo, pronación y snap: solo «no medible». X-factor 1°. Lag con 1 golpe. |
+| 85 | Matriz §2 Cuerpo (cabeza, brazos, tronco, piernas, pie de arrastre) | PARCIAL | `head_motion_cm`, `class.arm`, `elbow_non`, `wrist_non_lateral`, `trunk_tilt`, `drag_foot` | Aprende fases 1-7 y «Pies» | Ídem | Mirada y core: no medibles. Cabeza quieta: 2 golpes. Rodillas desde detrás: escorzo; la rodilla de lado sale «—». |
+| 86 | Matriz §3 Raqueta (bucle, caída, cara, trayectoria) | PARCIAL | `class.takeback`, `wrist_drop`, `face_tilt`, `swing_low_to_high` | Aprende fases 2-5; AG «Raqueta…» | Ídem y §4 | Caída bajo la bola solo de lado («—»). Dentro-fuera: no medible. Cara en el impacto estimada. |
+| 87 | Matriz §4 Apoyos (abierto, semiabierto, neutro o cerrado, salto, abierto extremo) | HECHO | `class.stance_*`, `stance_role`, `movement` | Aprende fases 3 y «Pies»; AG ficha; Videoteca | «Apoyos…», «Apoyo en suspensión» | Salto: 0 casos en sus datos. |
+| 88 | Matriz §5 Pies (split, ajuste, cruzado, paso de ataque, recuperación) | PARCIAL | `footwork.py` | Aprende «Pies» y fase 8; AG «Sus pies» | Ídem | El paso cruzado nunca aparece. Pasos en 4 de 10 golpes. |
+| 89 | Matriz §6 Modalidades (plano, liftado, cortado, botepronto, volea, 3 terminaciones) | PARCIAL | `class.swing` (trayectoria de la mano), `contact_type`, `class.finish` | Aprende §1 «Efecto», «Contacto»; fase 7 | Ídem | «Plano» = trayectoria, no efecto: 0 casos. Botepronto y volea: 0. Terminaciones: sí. |
+| 90 | Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral) | PARCIAL | `CONDITIONS` (velocidad, altura, profundidad, lado) | Aprende §1 y §3 | Auditoría «Bola rápida/lenta…» | Ningún nivel llega a 12 golpes. «Qué cambia» es texto genérico, no su cambio medido. |
+| 91 | Matriz §8 Dirección (cruzado, paralelo, dentro-fuera, dentro-dentro) | PARCIAL | `class.shot_type` | Aprende §1 «Dirección»; Pista «Destino» | «Dirección…» 70 % | Paralela 0, invertida cruzada 0. |
+| 92 | Matriz §9 Control (zona de impacto, relajación, equilibrio) | PARCIAL | `wrist_dom_vs_hip`, `wrist_dom_lateral`, `head_over_base` | Aprende fases 5 y 7 | Ídem | «Delante de la cadera» solo de lado o en 3D: en Aprende «—». Equilibrio: 1 golpe. |
+| 93 | Matriz §10 Propiedades de la raqueta | HECHO (como «no medible») | `learn.NOT_FROM_TV` | Aprende §6 | «no observable … el informe lo dice» | |
+| 94 | Matriz §11 Cinemática cuantitativa (velocidad de raqueta, °/s, fuerza, rpm) | HECHO (como «no medible») | `NOT_FROM_TV`; `racket_speed_rel`, `chain` (orden) | Aprende §6; AG métricas | Ídem | Solo comparación relativa y velocidad media de la bola. |
+| 95 | Matriz §12 Neuro y visión (latencia, mirada, EMG) | PARCIAL | `split_landing_vs_opp_s`, `first_step_s` | Aprende fase 1 y «Pies» | Ídem | Latencia con 4 golpes. Mirada y EMG: no medibles. |
+| 96 | Matriz §13 Microbiomecánica (muñeca, codo, hombro) | HECHO (como «no medible») | `NOT_FROM_TV` | Aprende §6 | Ídem | |
+| 97 | Matriz §14 Fugas de energía (apertura prematura, casting, vector) | PARCIAL | `shoulders_open_first`, `racket_forearm`, `swing_low_to_high` | Aprende fase 4 | Ídem | Casting solo de lado (3 golpes, «—»). |
+| 98 | Matriz §15 Contexto y ambiente (superficie, aerodinámica) | PARCIAL | `catalog.Match.surface` | Aprende §1 «Superficie de sus partidos: —» | «Superficie de la pista»: no está en los datos | `auto_catalog.py` nunca rellena la superficie. |
+| 99 | Mejora 1 (entrenadores): líneas dibujadas sobre el fotograma | HECHO | `coachLines()` | AG, capa «Líneas» y fotogramas clave | Capturas | |
+| 100 | Mejora 2: raqueta al lado del cuerpo o detrás de la espalda, y adónde apunta la punta | PARCIAL | `racket_head_lateral`, `class.racket_plane` | Aprende fase 3 | «no aparece en los datos de ningún golpe» | Sale «—» en sus 10 golpes. `tip_points_to` no existe. |
+| 101 | Mejora 3: altura y separación del codo | PARCIAL | `elbow_dom_vs_shoulder`, `elbow_dom_lateral` | Solo SuD (≥12): no se ve | «Altura y separación del codo» | No está en Aprende ni en las métricas de AG. |
+| 102 | Mejora 4: punta de la raqueta respecto a la cabeza en el armado | NO | — | — | — | Falta `loaded.tip_vs_head` y su frase. |
+| 103 | Mejora 5: transferencia de peso en una frase | PARCIAL | `stroke.weight_shift` | Solo SuD (≥12) | «Transferencia de peso» (40 %) | No está en Aprende. |
+| 104 | Mejora 6: empuje de piernas («bajar y subir») | HECHO | `stroke.hip_rise` | Aprende fase 4 (3,8 %) | «Empuje de piernas» | |
+| 105 | Mejora 7: ritmo con la bola (caída al subir la bola) | PARCIAL | `acceleration_vs_bounce` | Aprende solo `loaded_vs_bounce`; la caída, solo en SuD | «Inicio de la aceleración respecto al bote» | Falta en Aprende. |
+| 106 | Mejora 8: frenado de los hombros antes del contacto | NO | — | — | — | Falta `stroke.shoulder_brake`. |
+| 107 | Mejora 9: caída por debajo de la bola | PARCIAL | `practice.racket_drop_below_contact_cm` | Aprende fase 4 (solo de lado) | VL, 3 golpes | Desde la tele no existe. |
+| 108 | Mejora 10: «gira mientras corre» | HECHO | `takeback_vs_first_step` | Aprende fase 2 (0,34 s, 3 golpes) | — | |
+| 109 | Mejora 11: frases con datos existentes (mano libre, terminación, base al terminar, desplazarse bajo) | PARCIAL | `extension.wrist_non_lateral` (catch) | Aprende fase 6 | — | Faltan la mano libre en el armado, `finish.elbow_non`, la base al terminar y la cadera durante el desplazamiento. |
+| 110 | Mejora 12: «Lo que la distingue» (2-3 rasgos frente a la literatura, con vídeo) | NO | — | — | — | Es el gancho de todos los análisis de entrenador y no existe. |
+| 111 | Mejora 13: consigna «para imitarla» y error que evita, por fase | HECHO | `learn.cp(cue, mistake, drill)`; `explain.copy_cue` | Aprende, cada punto | `learn_check` (las 3 rellenas) | Las consignas son genéricas. «Ella:» solo antepone su valor. |
+| 112 | Mejora 14: clase descriptiva de estilo (`fh_style`) | NO | — | — | — | Falta. |
+| 113 | Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25) | PARCIAL | `audit` §3 | — (nunca en la web, por diseño) | 16 ítems R, todos «pocos datos» | Nada confirmado ni refutado. R2 apunta a un fallo de `ready_hands` (100 % «mano libre separada»). |
+
+## Lo más grave que falta (por impacto en «copiar su derecha»)
+
+1. **No hay golpes suficientes para afirmar nada.** Aprende funciona, pero todo sale de 1-10 golpes
+   «provisional», SuD está vacía y 0 de 2.992 combinaciones son visibles.
+   *Arreglo:* analizar **un partido completo** en cuanto la velocidad lo permita (punto 2). En Aprende, dar
+   también el intervalo con su incertidumbre cuando n < 12, en vez de solo «provisional».
+2. **La velocidad hace inviable lo anterior.** 251 min para 35 min de vídeo, unas 25 h por partido.
+   *Arreglo:* perfilar la etapa `fine` por golpe (pose 1280, raqueta, RTMW3D con `hand3d_step`, TrackNet).
+   Desactivar la mano 3D salvo en el armado y el impacto, y reducir la ventana a lo que piden las fases.
+   Todo en DirectML. Objetivo: ≤ 1 h por partido, medido en `progreso.json`.
+3. **Combinar condiciones no da «cómo lo hace ella».** `aResolve` quita todas las condiciones cuando hay
+   menos de 12 golpes, y «Qué cambia» es texto fijo de entrenador.
+   *Arreglo:* ordenar los golpes por número de condiciones que cumplen y mostrar siempre los exactos y los más
+   cercanos con vídeo. En «Qué cambia», poner primero la diferencia medida de ella en ese nivel frente a su
+   habitual (de `model.py`, con su ruido), y el texto del entrenador después.
+4. **Golpes dudosos y fallidos.** 71 % con dudas, 4 con error en `fine` (✘ en la auditoría).
+   *Arreglo:* corregir las causas de `strokes_errores.json`. Revisar qué banderas de `review` marcan casi todo.
+   Que la auditoría falle si los dudosos pasan del 30 %.
+5. **Medidas sin validar y valores sospechosos.** X-factor de 1°. `ready_hands` da «mano libre separada» en
+   el 100 %, también en revés a dos manos, contra R2. La cara en el impacto es la estimación.
+   *Arreglo:* contrastar cada medida 2D de la tele con la vista lateral y la 3D (los mismos golpes de
+   entrenamiento en las dos vistas). Corregir el umbral de `hands_apart` con un test. Pruebas de coherencia en
+   la auditoría (revés a dos manos ⇒ dos manos).
+6. **Pies del split step a la recuperación.** Pasos medidos en el 40 %, el paso cruzado nunca, y el golpe de
+   ejemplo dice «no medible» en el primer paso y el ajuste.
+   *Arreglo:* para el lado cercano, recorte que siga los pies (como `extract_follow`) a más resolución,
+   confianza por paso en lugar del umbral global `STEPS_MIN_STILL`, y validación con clips anotados.
+7. **Vista lateral y 3D desconectadas de Aprende.** Hay 13 estimaciones 3D y 91 golpes de entrenamiento, pero
+   Aprende pone «— menos de 12». Solo 3 derechas de lado tienen el impacto confirmado por el sonido.
+   *Arreglo:* usar en Aprende las estimaciones 3D (marcadas como estimación) cuando la vista de lado tenga
+   menos de 12. Confirmar el impacto por la pose o la bola cuando no hay sonido.
+8. **Mejoras de entrenador sin hacer o sin llegar a Aprende.** Faltan «Lo que la distingue», la punta frente a
+   la cabeza, el frenado de hombros y `fh_style`. El codo alto, la transferencia de peso y la aceleración
+   respecto al bote solo están en SuD.
+   *Arreglo:* añadir esos puntos a `learn.PHASES` y un bloque «Lo que la distingue» en Aprende (por ejemplo,
+   su % de apoyo cerrado frente al 84 % abierto del circuito), cada uno con su vídeo.
+9. **Las cuerdas, obligatorias, no están en Aprende por fase.** Solo sale la cara en el impacto (estimada).
+   Adónde apuntan en el armado, la caída y la terminación (la parte fiable) solo se ve golpe a golpe en AG.
+   *Arreglo:* un punto de control «Cuerdas hacia…» en las fases 1, 3, 4 y 7 de Aprende, con su % de golpes.
+10. **La validación automática comprueba la forma, no el contenido.** Las peticiones 64-113 no tienen regla
+    en `audit.PETITIONS`. La superficie nunca se rellena (`auto_catalog.py`). Los recuentos no cuadran
+    (14 en el Panel, 10 en Aprende).
+    *Arreglo:* reglas para las filas 64-113. Una comprobación de que «Qué cambia» usa los datos de ella. La
+    superficie a partir del torneo. Una sola cuenta de golpes cercanos en todas las pantallas.

@@ -23,11 +23,19 @@ def main():
     t0 = time.time()
     cfg = load_config()
     out_root = Path(cfg.get("paths", {}).get("output", "output")) / "_smoke"
+    return rebuild(out_root, args.player, t0)
+
+
+def rebuild(out_root: Path, player: str = "rybakina", t0: float | None = None,
+            done: str = "sin volver a analizar vídeo") -> int:
+    """Report, export and audit of every analysed match folder in out_root (also used by
+    scripts/recompute_measures.py after recomputing the measurements)."""
+    t0 = time.time() if t0 is None else t0
     dirs = [d for d in sorted(out_root.iterdir()) if d.is_dir() and (d / "strokes.json").exists()] if out_root.exists() else []
     if not dirs:
         print(f"No hay nada analizado en {out_root}: lanza antes 2_prueba_rapida.bat")
         return 1
-    pl = load_player(args.player)
+    pl = load_player(player)
     matches = []
     for d in dirs:
         sc = d / "score.json"
@@ -42,7 +50,7 @@ def main():
     print(f"Vídeos y resumen PDF: {exp}")
     from tennisbio.cli import run_audit
     run_audit(out_root, report.parent, out_root / "auditoria")
-    print(f"Hecho en {time.time() - t0:.0f} s, sin volver a analizar vídeo.")
+    print(f"Hecho en {time.time() - t0:.0f} s, {done}.")
     return 0
 
 

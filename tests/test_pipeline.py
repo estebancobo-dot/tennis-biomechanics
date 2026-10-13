@@ -60,6 +60,15 @@ def test_force_reruns_only_requested(tmp_path, fake_stages):
     assert pipeline.run(make_ctx(tmp_path), ["b"], force=True) == ["b"]
 
 
+def test_without_upstream_stale_dependencies_are_kept(tmp_path, fake_stages):
+    """recompute_measures.py: b re-runs on a's outputs, a stays stale for the next normal run."""
+    pipeline.run(make_ctx(tmp_path))
+    assert pipeline.run(make_ctx(tmp_path, x=2), ["b"], force=True, upstream=False) == ["b"]
+    assert fake_stages == ["a", "b", "b"]
+    assert pipeline.status(make_ctx(tmp_path, x=2))["a"] == "stale"
+    assert pipeline.run(make_ctx(tmp_path, x=2)) == ["a", "b"]
+
+
 def test_point_won_from_the_next_scoreboard_change():
     from tennisbio.stages import point_won
     sc = {"readings": [
