@@ -121,6 +121,16 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
   fallar la pasada fina (arreglado). Vista lateral: 15 derechas de lado y 33 en 3D, pero las detectadas solo
   por la muñeca caen en el armado (impacto mal situado): ahora solo se miden las confirmadas por el sonido.
   Siguiente: velocidad (prioridad) y elegir un tramo con más juego.
+- ✔ «Aprende su derecha» (13-10), pantalla principal nueva (nada borrado): eliges el golpe combinando
+  condiciones (dirección, apoyo, cómo llega, efecto, lado, altura, velocidad, profundidad, contacto) → sus
+  golpes exactos (o, si son pocos, los más parecidos diciendo qué condición se quita) → 8 fases + pies con
+  47 puntos de control: su valor (con cuántos golpes lo respaldan) y su patrón, cómo hacerlo tú, error típico,
+  ejercicio, «Ver en vídeo» en el instante de la fase; qué cambia en cada condición; plan; lo no medible.
+  Contenido en `learn.py` (conocimiento de entrenadores, marcado). Los 59 puntos de la matriz del usuario
+  tienen sitio (`learn.matrix_places`, auditado). Validación automática en navegador (`learn_check.py`):
+  677 combinaciones (cada condición, cada pareja, el ejemplo del usuario) × 9 fichas; detecta cada rotura
+  probada; en los tests (400 golpes sintéticos) y en la auditoría del PC. `2c_solo_informe.bat` (1-2 min)
+  rehace web + auditoría sin analizar vídeo.
 - Pendiente de la auditoría (pedido el 12-10): comprobar cada combinación medida × situación, convertir
   las 63 peticiones del chat (`docs/peticiones_usuario.md`) y las 25 afirmaciones de entrenadores en
   comprobaciones automáticas, y validar la exactitud de más medidas con clips anotados.

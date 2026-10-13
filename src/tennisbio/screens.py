@@ -12,7 +12,7 @@ import os
 import sys
 from pathlib import Path
 
-TABS = ["modelo", "panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista", "lateral"]
+TABS = ["aprende", "modelo", "panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista", "lateral"]
 _JS_SCREEN = """(tab) => {
   const sec = document.getElementById('tab-' + tab);
   if (!sec) return null;
@@ -153,6 +153,12 @@ def capture(report_html: Path, dest: Path, wait_ms: int = 2500) -> Path:
         # and with Windows animations off ("reduce motion"), as on the user's PC: play must still play
         pg.emulate_media(reduced_motion="reduce")
         meta["plays_reduced_motion"] = _test_plays(pg)
+        # «Aprende su derecha»: every combination of conditions answers with all it must (learn_check)
+        try:
+            from .learn_check import check_page
+            meta["learn"] = check_page(pg)
+        except Exception as e:                    # a broken screen is a finding, never a crash
+            meta["learn"] = {"error": str(e)[:300]}
         b.close()
     out = dest / "capturas.json"
     out.write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")

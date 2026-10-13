@@ -474,6 +474,16 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
                          "pair": next((v for t, v in pair_of.items() if f.title.endswith(t)), "")} for f in finds]
     data["conclusions"] = [{"text": c.text, "conf": c.confidence, "level": c.level, "ids": [s["id"] for s in c.strokes[:40]],
                             "find": finds.index(c.finding) if c.finding in finds else None} for c in concl]
+    raw = data.get("_raw", [])
+    from .audit import stroke_values
+    from .learn import CONDITIONS, content, learn_keys
+    lk = [k for k in learn_keys() if not k.startswith("practice.")]
+    for r, s in zip(data["strokes"], raw):          # what «Aprende su derecha» filters and summarises
+        v = stroke_values(s)
+        r["lv"] = {k: (round(v[k], 3) if isinstance(v[k], float) else v[k]) for k in lk
+                   if v.get(k) is not None and not isinstance(v[k], (list, dict))}
+        r["cl"] = {k: v.get(f"class.{k}") for k in CONDITIONS if v.get(f"class.{k}") is not None}
+    data["learn"] = content()
     data["model"] = model_view(build_model(data.pop("_raw", [])), stroke)
     data["player"] = player or {}
     data["stroke"] = stroke

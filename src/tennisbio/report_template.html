@@ -118,6 +118,24 @@ select { font: 13px var(--body); color: var(--ink); background: var(--panel-2); 
 .bar1 span { height: 100%; }
 
 .tw { overflow-x: auto; }
+.lcard { background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: grid; gap: 10px; }
+.lcard h3 { margin: 0; font-size: 16px; } .lcard .when { color: var(--ink-2); font-size: 13px; }
+.cpk { display: grid; grid-template-columns: minmax(180px, 1.1fr) minmax(170px, 1fr) minmax(0, 2.2fr); gap: 4px 16px; border-top: 1px solid var(--line); padding-top: 9px; font-size: 13px; }
+.cpk .v { font: 600 15px var(--mono); } .cpk .badge { font-size: 11px; padding: 1px 6px; border-radius: 3px; border: 1px solid var(--line-2); color: var(--ink-2); }
+.cpk .badge.firm { border-color: var(--good); color: var(--good); } .cpk .badge.prov { border-color: var(--warn); color: var(--warn); }
+.cpk .how b { color: var(--accent); font-weight: 600; } .cpk .how div { margin-bottom: 3px; }
+@media (max-width: 900px) { .cpk { grid-template-columns: minmax(0, 1fr); } }
+.achips { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 6px 10px; align-items: start; }
+.achips .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.achips .chips button { border: 1px solid var(--line-2); background: var(--panel-2); color: var(--ink); border-radius: 14px; padding: 3px 10px; font-size: 12.5px; cursor: pointer; }
+.achips .chips button small { margin-left: 5px; color: var(--ink-3); }
+.achips .chips button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+.achips .chips button[aria-pressed="true"] small { color: var(--accent-ink); }
+.achips .chips button.zero { opacity: .45; }
+.cpk .her { color: var(--ink); } .cpk .her b { color: var(--good); }
+.athumbs { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+.athumbs button { flex: 0 0 auto; width: 170px; padding: 0; border: 1px solid var(--line); border-radius: 6px; background: #000 center / cover no-repeat; aspect-ratio: 16 / 10; cursor: pointer; position: relative; }
+.athumbs button span { position: absolute; left: 4px; bottom: 4px; font: 500 10.5px var(--mono); background: rgba(10,13,16,.82); color: var(--ink); padding: 1px 5px; border-radius: 3px; }
 .say { margin: 0; padding: 12px 16px 10px 32px; display: grid; gap: 6px; font-size: 13.5px; line-height: 1.45; }
 .say li::marker { color: var(--accent); }
 .say a { color: var(--accent); cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
@@ -314,6 +332,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
   <aside class="side">
     <div class="brand"><div class="mark">TB</div><div><b>TENNISBIO</b><span>Análisis cinemático</span></div></div>
     <nav class="nav" aria-label="Pantallas">
+      <button data-tab="aprende"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 5l6-3 6 3-6 3z"/><path d="M5 6.5v3.5c0 1 1.5 2 3 2s3-1 3-2V6.5"/></svg>Aprende su derecha</button>
       <button data-tab="modelo"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="8" cy="3" r="1.6"/><path d="M8 5v5M8 10l-3 4M8 10l3 4M4 7l4-1 4 1"/></svg><span id="nav-modelo">Su golpe</span></button>
       <button data-tab="panel"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="1.5" width="5" height="5" rx="1"/><rect x="9.5" y="1.5" width="5" height="5" rx="1"/><rect x="1.5" y="9.5" width="5" height="5" rx="1"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/></svg>Panel</button>
       <button data-tab="videoteca"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1.5" y="2.5" width="5.5" height="4.5" rx="1"/><rect x="9" y="2.5" width="5.5" height="4.5" rx="1"/><rect x="1.5" y="9" width="5.5" height="4.5" rx="1"/><rect x="9" y="9" width="5.5" height="4.5" rx="1"/></svg>Videoteca</button>
@@ -334,6 +353,17 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
     </div>
 
     <div class="content">
+
+<section class="screen" id="tab-aprende" hidden>
+<p class="intro"><b>Aprende su derecha.</b> Elige el golpe que quieres copiar (dirección, apoyo, cómo llega, efecto…). Verás sus golpes de ese tipo en vídeo y, fase a fase, lo que hace ella (medido en sus golpes), cómo hacerlo tú, el error típico y un ejercicio.</p>
+<div class="panel"><header><h2>1 · ¿Qué golpe quieres aprender?</h2><button class="btn" id="a-clear">Quitar todo</button></header><div class="body" id="a-cond" style="padding:12px 16px"></div></div>
+<div class="panel" style="margin-top:16px"><header><h2>2 · Sus golpes de ese tipo</h2></header><div class="body" id="a-res" style="padding:12px 16px"></div></div>
+<div class="panel" style="margin-top:16px" id="a-sitp"><header><h2>3 · Qué cambia en este golpe</h2><span class="note" id="a-src1"></span></header><ul class="say" id="a-sit"></ul></div>
+<h2 style="margin:22px 0 10px">4 · Fase a fase: lo que hace ella y cómo hacerlo tú</h2>
+<div id="a-phases" style="display:grid;gap:14px"></div>
+<div class="panel" style="margin-top:16px"><header><h2>5 · Para copiarla: el plan</h2></header><ol class="say" id="a-plan"></ol></div>
+<div class="panel" style="margin-top:16px"><header><h2>6 · Lo que la tele no permite medir (y qué hacer igualmente)</h2></header><ul class="say" id="a-nottv"></ul></div>
+</section>
 
 <section class="screen" id="tab-modelo" hidden>
 <details class="news" id="news" open><summary><b>Novedades de esta versión</b> · dónde mirarlas</summary><ul>
@@ -639,7 +669,7 @@ document.getElementById("scope").innerHTML = `<span class="tag"><b>${MATCHES.len
 document.getElementById("noise-note").textContent = `Diferencia entre grupos en múltiplos del ruido de medida${DATA.noise_validated ? " (medido sobre pares de golpes equivalentes de la jugadora: cota conservadora)" : " (provisional: hacen falta al menos 20 golpes con bola neutra)"}. Solo con al menos 5 golpes por grupo.`;
 
 /* ===== Navegación ===== */
-const TABS = ["modelo", "panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista", "lateral"];
+const TABS = ["aprende", "modelo", "panel", "videoteca", "golpe", "comparar", "explorador", "comparativas", "pista", "lateral"];
 const EMPTY = !STROKES.length;
 if (EMPTY) {                     // nothing analysed yet: one clear message instead of empty screens
   const m = document.createElement("section");
@@ -648,8 +678,8 @@ if (EMPTY) {                     // nothing analysed yet: one clear message inst
   document.getElementById("tab-modelo").before(m);
 }
 function showTab(name) {
-  if (!TABS.includes(name)) name = "modelo";
-  TABS.forEach(t => { document.getElementById("tab-" + t).hidden = (EMPTY && t !== "lateral") || t !== name; });
+  if (!TABS.includes(name)) name = "aprende";
+  TABS.forEach(t => { document.getElementById("tab-" + t).hidden = (EMPTY && t !== "lateral" && t !== "aprende") || t !== name; });
   document.querySelectorAll(".nav button").forEach(b => { if (b.dataset.tab === name) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current"); });
   try { history.replaceState(null, "", "#" + name); } catch (e) { }
   if (name !== "golpe") stopPlay();
@@ -658,6 +688,7 @@ function showTab(name) {
   if (name === "videoteca") { renderLibChips(); renderLibrary(); }
   else renderDock();
   if (name === "lateral") renderPractice();
+  if (name === "aprende") renderLearn();
   else document.querySelectorAll("#pr-lib video").forEach(v => v.pause());
   tip.hidden = true;
   window.scrollTo({ top: 0 });
@@ -1809,6 +1840,121 @@ document.getElementById("pr-view").addEventListener("click", ev => {
   const b = ev.target.closest("button"); if (!b) return; prView = b.dataset.v;
   document.querySelectorAll("#pr-view button").forEach(x => x.setAttribute("aria-pressed", x === b)); renderPractice();
 });
+
+/* ===== APRENDE SU DERECHA: elegir el golpe → sus golpes en vídeo → fase a fase qué hace ella y cómo hacerlo tú ===== */
+const LEARN = DATA.learn || null;
+const A_MIN = (MODEL && MODEL.min_n) || 12;
+let aSel = {};
+const aNear = () => STROKES.filter(s => s.side !== "far" && s.cl);
+const aMatch = sel => aNear().filter(s => Object.entries(sel).every(([d, l]) => s.cl[d] === l));
+function aResolve() {
+  const sel = Object.fromEntries(Object.entries(aSel).filter(([, l]) => l));
+  const exact = aMatch(sel), dropped = [];
+  let used = { ...sel };
+  if (exact.length < A_MIN) {
+    for (const d of LEARN.relax) {
+      if (!(d in used) || aMatch(used).length >= A_MIN) continue;
+      delete used[d]; dropped.push(d);
+    }
+  }
+  return { sel, exact, used, dropped, wider: aMatch(used) };
+}
+const aCondName = d => (LEARN.conditions[d] || {}).name || d;
+const aIsPractice = k => k.startsWith("practice.");
+function aValues(set, k) { return set.map(s => (s.lv || {})[k]).filter(v => v !== undefined && v !== null); }
+function aStat(set, c) {
+  // her value for a checkpoint over a set of strokes: median and middle half, or the shares of each class
+  if (aIsPractice(c.key)) {
+    const e = ((DATA.practice || {}).summary || {})[c.key.slice(9)];
+    if (!e || !e.n) return { n: 0, txt: null, why: "sin derechas de lado con el impacto confirmado por el sonido" };
+    return { n: e.n, txt: isN(e.median) ? `${fmt(e.median, c.dec)}${c.unit === "°" ? "°" : " " + c.unit}` : null, why: isN(e.median) ? "" : "menos de " + A_MIN + " golpes de entreno" };
+  }
+  const v = aValues(set, c.key);
+  if (!v.length) return { n: 0, txt: null };
+  if (typeof v[0] === "number") {
+    const u = c.unit === "°" ? "°" : c.unit ? " " + c.unit : "";
+    return { n: v.length, med: quant(v, .5), txt: `${fmt(quant(v, .5), c.dec)}${u}` + (v.length >= 4 ? ` <span class="dim3">(${fmt(quant(v, .25), c.dec)}–${fmt(quant(v, .75), c.dec)})</span>` : "") };
+  }
+  const cnt = {}; v.forEach(x => { const k = String(x); cnt[k] = (cnt[k] || 0) + 1; });
+  const lab = k => k === "true" ? "sí" : k === "false" ? "no" : k;
+  return { n: v.length, txt: Object.entries(cnt).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${lab(k)} ${Math.round(100 * n / v.length)} %`).join(" · ") };
+}
+function aHer(st, c) {
+  // copying her means doing what SHE does: her own pattern first, the general cue after
+  if (!st.txt) return "";
+  if (!st.med && st.med !== 0) return `<div class="her"><b>Ella:</b> ${st.txt.split(" · ")[0]} de sus golpes${st.n < A_MIN ? " (provisional)" : ""}.</div>`;
+  return `<div class="her"><b>Ella:</b> ${st.txt.replace(/<[^>]+>/g, "")}${st.n < A_MIN ? " (provisional)" : ""}.</div>`;
+}
+function aWhyMissing(set, c) {
+  if (c.key.startsWith("footwork.") || c.key.startsWith("class.approach") || c.key.startsWith("class.recovery")) {
+    const rel = set.filter(s => (s.feet || {}).steps_reliable === false).length;
+    if (rel) return `sus pasos no se distinguen en ${rel} de ${set.length} golpes (tobillos borrosos en la tele): mira el vídeo`;
+  }
+  if (c.key.includes("racket") || c.key.includes("face")) return "la raqueta no se ve bien en ese momento en estos golpes";
+  return "no medido en estos golpes";
+}
+function aRep(set, phase) {
+  // the stroke to watch for a phase: one with video and that phase found, the most representative first
+  return [...set].filter(s => s.video && s.phases && isN(s.phases[phase])).sort((a, b) => (b.repr || 0) - (a.repr || 0))[0]
+      || [...set].filter(s => s.video).sort((a, b) => (b.repr || 0) - (a.repr || 0))[0];
+}
+async function aOpen(id, phase) {
+  const s = STROKES.find(x => x.id === id); if (!s) return;
+  showTab("golpe"); await loadStroke(s);
+  const t = s.phases && isN(s.phases[phase]) ? s.phases[phase] : 0;
+  stopPlay(); setT(t);
+}
+function renderLearn() {
+  if (!LEARN) return;
+  // 1. conditions with how many of her strokes each would leave
+  const box = document.getElementById("a-cond");
+  box.innerHTML = `<div class="achips">` + Object.entries(LEARN.conditions).map(([d, c]) => {
+    const others = Object.fromEntries(Object.entries(aSel).filter(([k, l]) => l && k !== d));
+    return `<span class="fl">${c.name}</span><div class="chips">` + Object.keys(c.levels).map(l => {
+      const n = aMatch({ ...others, [d]: l }).length;
+      return `<button data-d="${d}" data-l="${l}" aria-pressed="${aSel[d] === l}" class="${n ? "" : "zero"}" title="${n} de sus golpes con esta condición${Object.keys(others).length ? " y las ya elegidas" : ""}">${l}<small>${n}</small></button>`;
+    }).join("") + `</div>`;
+  }).join("") + `</div><p class="dim3" style="margin:10px 0 0">Superficie de sus partidos: ${[...new Set(MATCHES.map(m => m.surf))].join(", ")} (influye en el bote y en cómo se desliza).</p>`;
+  box.querySelectorAll("button[data-d]").forEach(b => b.addEventListener("click", () => { aSel[b.dataset.d] = aSel[b.dataset.d] === b.dataset.l ? undefined : b.dataset.l; renderLearn(); }));
+  const R = aResolve(), selTxt = Object.entries(R.sel).map(([d, l]) => l).join(" + ") || "todas sus derechas";
+  // 2. her strokes of that kind, honest about how many
+  const set = R.exact.length ? R.exact : R.wider;
+  let head = `<p style="margin:0 0 8px"><b>${selTxt}</b>: <b>${R.exact.length}</b> golpes exactos.`;
+  if (R.exact.length < A_MIN && Object.keys(R.sel).length)
+    head += R.dropped.length ? ` Para tener golpes suficientes se amplía quitando «${R.dropped.map(aCondName).join("», «")}»: <b>${R.wider.length}</b> golpes (${Object.values(R.used).join(" + ") || "todas sus derechas"}).` : "";
+  head += R.exact.length && R.exact.length < A_MIN ? ` <span class="badge prov">valores provisionales: menos de ${A_MIN} golpes</span>` : "";
+  if (!R.exact.length && Object.keys(R.sel).length) head += ` Ninguno exacto todavía: los valores de abajo salen de los ${R.wider.length} golpes más parecidos y lo que es propio de este golpe se explica en «Qué cambia».`;
+  head += `</p>`;
+  const vids = [...set].filter(s => s.video).sort((a, b) => (b.repr || 0) - (a.repr || 0)).slice(0, 12);
+  document.getElementById("a-res").innerHTML = head + (vids.length ? `<div class="athumbs">${vids.map(s => `<button data-id="${s.id}" style="background-image:url('${s.thumb || ""}')" title="${s.id}"><span>${s.cl.stance_impact || ""} ${s.cl.shot_type || ""}</span></button>`).join("")}</div><p class="dim3" style="margin:6px 0 0">Pulsa un golpe para verlo en vídeo con su esqueleto.</p>` : `<p class="dim">Sin golpes con vídeo en este análisis.</p>`);
+  document.querySelectorAll("#a-res .athumbs button").forEach(b => b.addEventListener("click", () => aOpen(b.dataset.id, "impact")));
+  // 3. what changes in this kind of stroke (coaching knowledge, marked)
+  const sit = Object.entries(R.sel).map(([d, l]) => { const k = (LEARN.conditions[d] || {}).levels[l]; return k ? `<li><b>${l}</b>: ${k[0]} ${k[1] ? `<br><span class="dim">Cómo:</span> ${k[1]}` : ""}${k[2] ? `<br><span class="dim">Ejercicio:</span> ${k[2]}` : ""}</li>` : ""; }).join("");
+  document.getElementById("a-sit").innerHTML = sit || `<li class="dim">Elige una o varias condiciones arriba para ver qué cambia en ese golpe.</li>`;
+  document.getElementById("a-src1").textContent = LEARN.source;
+  // 4. phase cards
+  const all = aNear();
+  document.getElementById("a-phases").innerHTML = LEARN.phases.map(ph => {
+    const rep = aRep(set, ph.id === "feet" ? "ready" : ph.id);
+    const rows = ph.checkpoints.map(c => {
+      const st = aStat(set, c), base = aIsPractice(c.key) ? null : aStat(all, c);
+      const badge = !st.n ? "" : aIsPractice(c.key) ? `<span class="badge">entreno, de lado · ${st.n}</span>` : st.n >= A_MIN ? `<span class="badge firm">${st.n} golpes</span>` : `<span class="badge prov">${st.n} golpe${st.n > 1 ? "s" : ""} · provisional</span>`;
+      const val = st.txt ? `<span class="v">${st.txt}</span> ${badge}` : `<span class="dim">— ${st.why || aWhyMissing(set, c)}</span>`;
+      const cmp = base && base.txt && set.length !== all.length ? `<div class="dim3">en todas sus derechas: ${base.txt}</div>` : "";
+      return `<div class="cpk" data-key="${c.key}"><div><b>${c.label}</b><div class="dim3">${c.read}</div></div><div>${val}${cmp}</div>`
+        + `<div class="how">${aHer(st, c)}<div><b>Cómo hacerlo tú:</b> ${c.cue}</div><div><b>Error típico:</b> ${c.mistake}</div><div><b>Ejercicio:</b> ${c.drill}</div></div></div>`;
+    }).join("");
+    return `<div class="lcard" data-phase="${ph.id}"><div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><h3>${ph.title}</h3>`
+      + (rep ? `<button class="btn" data-open="${rep.id}" data-ph="${ph.id === "feet" ? "ready" : ph.id}">▶ Ver en vídeo</button>` : `<span class="dim3">sin vídeo</span>`)
+      + `</div><div class="when">${ph.when}</div>${rows}</div>`;
+  }).join("");
+  document.querySelectorAll("#a-phases button[data-open]").forEach(b => b.addEventListener("click", () => aOpen(b.dataset.open, b.dataset.ph)));
+  // 5. the plan: one step per position, with its main checkpoint and drill
+  document.getElementById("a-plan").innerHTML = LEARN.phases.map(ph => { const c = ph.checkpoints[0]; return `<li><b>${ph.title.replace(/^\d · /, "")}</b>: ${c.cue} <span class="dim">Ejercicio:</span> ${c.drill}</li>`; }).join("");
+  // 6. what TV cannot measure from the user's list, and what to do anyway
+  document.getElementById("a-nottv").innerHTML = LEARN.not_tv.map(([w, h]) => `<li><b>${w}</b>: ${h}</li>`).join("");
+}
+document.getElementById("a-clear").addEventListener("click", () => { aSel = {}; renderLearn(); });
 showTab((location.hash || "").slice(1));
 renderModel();
 </script>

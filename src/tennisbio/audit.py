@@ -295,6 +295,14 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
             det += " (parcial: ver la matriz)"
         items.append(_item(1, "Taxonomía", name, st, det, keys=sorted(set(found))[:8], measured=round(best, 2)))
 
+    # 1. the user's matrix: every item has its place in «Aprende su derecha» (value, cue, drill or why not)
+    from .learn import matrix_places
+    places = matrix_places([r for r in parse_matrix() if r["section"].startswith("6.")])
+    nowhere = [e for e, w in places.items() if w is None]
+    items.append(_item(1, "Aprende su derecha", "Cada punto de la matriz del usuario tiene su sitio en la pantalla",
+                       "falta" if nowhere else "ok", f"{len(places) - len(nowhere)} de {len(places)}"
+                       + (f"; sin sitio: {', '.join(nowhere[:6])}" if nowhere else "")))
+
     # 1. variants: every situation the user asked for
     model = (data or {}).get("model") or {}
     variants = model.get("variants") or {}
@@ -564,6 +572,16 @@ def _screens(shots_dir: Path) -> list[dict]:
     if "plays" in (by.get("golpe") or {}) and meta.get("h264", True):
         items.append(_item(2, "Vídeo", "El vídeo del golpe se reproduce al pulsar ▶", "ok" if by["golpe"]["plays"] else "falta",
                            "avanza y sigue reproduciéndose" if by["golpe"]["plays"] else "al pulsar ▶ no avanza o se para"))
+    lr = meta.get("learn")
+    if lr is not None:
+        if lr.get("error"):
+            items.append(_item(1, "Aprende su derecha", "La pantalla responde a cada combinación", "falta", f"no se pudo comprobar: {lr['error']}"))
+        else:
+            f = lr.get("failures") or []
+            items.append(_item(1, "Aprende su derecha", "La pantalla responde a cada combinación", "falta" if f else "ok",
+                               f"{lr['combinations']} combinaciones (cada condición, cada pareja y el ejemplo del usuario), "
+                               f"{lr['checkpoints_checked']} puntos de control comprobados; {lr['with_exact_strokes']} con golpes exactos"
+                               + (f"; FALLOS en {len(f)}: " + "; ".join(f"{x['sel']}: {', '.join(x['bad'][:2])}" for x in f[:4]) if f else "")))
     checks = [("golpe", "ball_moments", "«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella", 2),
               ("golpe", "feet_cycle", "«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)", 8),
               ("golpe", "heights_layer", "Barras de altura de la cabeza y la cadera sobre el vídeo", 1),
@@ -591,12 +609,12 @@ class Note(str):
 PETITIONS = {
     1: Note("pendiente por diseño: los 4 partidos se analizan una vez, al final"), 2: Note("aplazado por el usuario (móvil al final)"),
     3: Note("aplazado por el usuario (nube al final)"),
-    4: r"^Taxonomía$|^Situaciones$|^Combinaciones$", 5: r"^Situaciones$|^Combinaciones$",
+    4: r"^Taxonomía$|^Situaciones$|^Combinaciones$|^Aprende su derecha$", 5: r"^Situaciones$|^Combinaciones$|^Aprende su derecha$",
     6: r"Pies y desplazamiento|Sus pies en este golpe|Split step|Pasos", 7: r"· Empuñadura|Posición de la mano en el mango|Mano libre en la garganta", 8: r"^Cuerdas$|Cara de la raqueta",
     9: r"^Pantallas$|Tablas a la vista", 10: r"Novedades|Reproducir", 11: r"^Taxonomía$|^Combinaciones$|^Vistas pedidas$",
     12: r"Validación con clips anotados", 13: Note("en los tests del código (uv run pytest, pc-logs:pruebas.log), no en las salidas"),
     14: r"^Rendimiento$", 15: r"Vídeos de análisis de entrenadores", 16: r"Botepronto|Volea",
-    17: r"Pantalla «Su (derecha|golpe)»|Novedades", 18: r"golpes analizados", 19: r"Cada golpe tiene su vídeo",
+    17: r"Pantalla «Su (derecha|golpe)»|Novedades|^Aprende su derecha$", 18: r"golpes analizados", 19: r"Cada golpe tiene su vídeo",
     20: r"^Rendimiento$", 21: r"golpes analizados", 22: r"golpes analizados", 23: r"golpes analizados",
     24: r"Presión, set, fatiga", 25: r"Separación cadera|Ángulo del codo|Tipo de apoyo|Cadena cinética",
     26: r"Fotograma clave", 27: r"Presión, set, fatiga", 28: r"Cada golpe tiene su esqueleto|Cada golpe tiene su vídeo",
