@@ -24,8 +24,8 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
   62,5) con la bola en la CPU en paralelo; 61 min de etapas para 35 min de vídeo ≈ **6 h por partido** (13-10: ~25 h).
   Lo que queda (pose más ligera, raqueta FP16, menos resolución o sin golpes del lado lejano) pierde calidad:
   **no se toca**. Modelos de partida: TransNetV2 + cámara por líneas, YOLO11m-pose FP16, híbrido con RTMPose-x,
-  TrackNetV3 (iGPU + CPU), raqueta de RacketVision FP32. Petición 8 (`accion: largo`): el vídeo entero en
-  `_poc8_largo` (una noche) para tener golpes suficientes por situación y el tiempo real de un partido.
+  TrackNetV3 (iGPU + CPU), raqueta de RacketVision FP32. Petición 9 (`accion: largo`; la 8 la ignoró el ciclo, que aún corría con su script anterior): el vídeo entero en
+  `_poc9_largo` (una noche) para tener golpes suficientes por situación y el tiempo real de un partido.
 - **Umbrales nuevos con golpes reales (14-10, prueba 6: `_poc6_35` frente a `_poc5_35`/`_poc4`, y `_smoke` recalculado):**
   - *Giro de hombros al empezar la preparación* («ruido» ±3,4° en la revisión): no es un fallo. Cambia por la escala
     de altura por la pista: la anterior seguía el largo del tronco en la imagen (variaba ±9 % dentro de una ventana
