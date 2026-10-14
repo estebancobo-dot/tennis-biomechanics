@@ -38,6 +38,12 @@ fine_pass:
   pose_join_s: 1.0
   pose_full_frac: 0.85
   pose_fill_every: 5
+  # Modelo de pose de la pasada fina: yolo (YOLO11m-pose, el de siempre) o hybrid (YOLO encuentra a
+  # las personas y RTMPose-x Halpe26, en precisión normal, rehace solo a las grandes: pies —talones y
+  # puntas— en el 99,7 % de los fotogramas y −35 % de temblor, al doble de coste; src/tennisbio/pose/hybrid.py).
+  # Preparado pero apagado: sin la clave (o con yolo) nada cambia. Va comentada a propósito: escribirla
+  # cambiaría la huella de la pasada fina y la repetiría entera en el PC sin ningún cambio.
+  # pose_model: yolo
   detector: balanced
   pose: performance
 
