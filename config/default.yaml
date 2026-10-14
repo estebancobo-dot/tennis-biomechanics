@@ -32,7 +32,9 @@ fine_pass:
   #   visible y cambiaría hasta ~1,5 puntos: no se activa (y apenas ahorra: ventanas cortas).
   pose_prefetch: true
   racket_near_candidates: true
-  pose_ranges: far
+  # apagado tras la prueba 5 en el PC (14-10): con el lado lejano por tramos se posaron 13 178 fotogramas
+  # de 12 810 (6 ventanas tuvieron que repetirse enteras) y la pose tardó más (1440 s frente a 1318 s)
+  pose_ranges: false
   pose_pre_s: 2.8
   pose_post_s: 2.0
   pose_join_s: 1.0
@@ -95,7 +97,8 @@ ball:
   threshold: 0.5
   # en la iGPU (device: dml), lote fijo de 8 (el último de cada ventana se rellena y se descarta lo
   # añadido): DirectML compila la red para una sola forma. Mismo mapa de calor por fotograma.
-  static_batch: true
+  # apagado tras la prueba 5 en el PC (14-10): la bola no fue más rápida en DirectML (1394 s frente a 1332 s)
+  static_batch: false
 
 # Orientación de las cuerdas en la pasada fina: 5 puntos de la raqueta (RacketVision,
 # `scripts/export_racketpose.py`) y, si está, la mano/antebrazo en 3D (RTMW3D, más lento:
