@@ -123,3 +123,36 @@ raqueta s (impactos que pueden quedarse de los encontrados)», y en el resumen d
 | Raqueta | Impactos del brazo lejos de todo candidato | nominal | sin segmentar salvo lo que lee un golpe conservable | ✔ `test_racket_only_near_candidates_keeps_the_kept_stroke_identical` |
 | Prefetch | Fallo del modelo a mitad | error | el hilo lector se para y cierra la lectura (`read_ahead`) | ✔ por diseño (`test_read_ahead_stops_when_the_caller_fails`) |
 | Lote fijo | DirectML no acepta la forma fija | error | la sesión cae a la CPU con la misma forma (más lento, correcto); `ball.static_batch: false` lo quita | ◐ prueba del PC |
+
+# Escala de su altura en píxeles (14-10, `fine_pass.height_scale`, etapa `fine` v12)
+
+**Antes:** toda medida en % de altura o en cm se dividía por su altura en píxeles = mediana de nariz → tobillo
+× 1,08 en los fotogramas con cara y pies a la vez. De espaldas casi nunca se le ve la cara (RacketVision:
+4-163 de 250-600 fotogramas) y en juego está agachada: leía el **61-92 %** de su altura real según el clip, y
+cambiaba hasta un 3-42 % según qué fotogramas se posaban (rangos de pose, agrupación de ventanas).
+
+**Ahora (`court`, por defecto):** su altura real (`config/players`, 1,84 m) proyectada con la cámara que da
+la homografía de la pista (focal, inclinación, posición; `ball3d.camera`) en el sitio donde pisa (tobillos en
+el plano a la altura del tobillo, mediana de 1 s), fotograma a fotograma (`src/tennisbio/body_scale.py`). Se
+comprueba con su tronco y sus piernas (proporciones antropométricas): si dicen otra altura (factor fuera de
+0,8-1,25: pista mal ajustada o zoom) se usan ellos (`segments`); sin pista, también. `pose` = como antes.
+Los golpes se siguen encontrando con la escala de antes (umbrales validados): los mismos impactos.
+
+| Comprobación (12 clips RacketVision, lado cercano) | Resultado |
+|---|---|
+| Tronco y piernas medidos con la escala de la pista | 0,955-1,034 de lo esperado en los 12 |
+| Escala de antes / nueva | 0,61-0,92 (mediana 0,81; un clip raro 1,16) |
+| Cambio de la escala junto al golpe al posar solo rangos (relleno 1/5) | 0,00 % (antes 0,1-42 %) |
+| Medidas en % de altura (54 golpes) | ×0,78 de mediana: altura del contacto 69 → 53 %, base 24 → 21 %, separación lateral 15 → 11 % |
+| Fases | algunas «espera»/«recuperación» se mueven (umbrales en alturas/s y % de altura, ahora en su altura real) |
+
+| Área | Escenario | Tipo | Qué pasa | Cobertura |
+|---|---|---|---|---|
+| Escala | Cámara de TV (14-22°) y jugadora en cualquier punto de su mitad o al fondo | nominal | su altura en la imagen a ≤ 2 % | ✔ `test_court_scale_is_her_height_at_every_court_position` |
+| Escala | Agachada / inclinada | límite | igual (≤ 1 %); la de antes la acortaba ~10 % | ✔ `test_court_scale_does_not_change_when_she_crouches_and_the_former_one_does` |
+| Escala | Sin ninguna cara | límite | igual | ✔ `test_court_scale_without_any_face_seen` |
+| Escala | Corre hacia la red / salta en el split step | nominal | sigue el tamaño (≤ 3 %); el salto no cuenta (≤ 1 %) | ✔ `test_court_scale_follows_her_as_she_moves_and_ignores_a_hop` |
+| Escala | Otros fotogramas posados | esquina | idéntica junto al golpe | ✔ `test_court_scale_does_not_depend_on_which_frames_were_posed`, `test_run_clip_measures_with_the_court_scale_and_the_same_with_pose_ranges` |
+| Escala | Pista de antes de un zoom o mal ajustada | error en fuentes | la contradicen tronco y piernas → `segments` (≤ 6 %) | ✔ `test_a_court_the_body_contradicts_is_not_used` |
+| Escala | Sin pista | límite | `segments`; sin tronco ni piernas, la de antes | ✔ `test_without_court_segments_then_pose` |
+| Escala | Rival sin ficha en `config/players` | límite | 1,80 m por defecto: error ±5 % en sus medidas | ◐ añadir su altura |

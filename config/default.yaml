@@ -47,6 +47,13 @@ fine_pass:
   # con YOLO (recorte que la sigue; sus pies, de ~70 px, no se usan). yolo = como antes (sin pies).
   # Activado el 14-10: la pasada fina se repite una vez en el PC (nueva clave de caché de las ventanas).
   pose_model: hybrid
+  # Escala de su altura en píxeles (todas las medidas en % de altura o en cm; src/tennisbio/body_scale.py):
+  # court = la altura real de config/players proyectada con la cámara que da la pista en el sitio donde
+  # está (no depende de su postura ni de qué fotogramas se posan); sin pista o si su tronco y sus piernas
+  # la contradicen, segments = tronco y piernas con sus proporciones; pose = como antes (nariz → tobillo
+  # × 1,08 en los pocos fotogramas en que se le ve la cara: de espaldas leía el 65-95 % de su altura).
+  # Los golpes se siguen encontrando con la escala de antes (umbrales validados).
+  height_scale: court
   detector: balanced
   pose: performance
 
