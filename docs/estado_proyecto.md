@@ -161,6 +161,16 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
   fallar la pasada fina (arreglado). Vista lateral: 15 derechas de lado y 33 en 3D, pero las detectadas solo
   por la muñeca caen en el armado (impacto mal situado): ahora solo se miden las confirmadas por el sonido.
   Siguiente: velocidad (prioridad) y elegir un tramo con más juego.
+- ✔ Pista (14-10, etapa `court` v4): de los 32,7 min de «cámara principal» solo 10,6 tenían pista. Causa
+  (imágenes de `pc-logs:diag/`): la pista se ajustaba bien en todos los planos de juego; los planos sin pista
+  eran primeros planos (jugadora sobre el fondo azul, público) que `scenes` da por cámara principal porque no
+  ve el corte (mismos colores azul/verde): 159 planos en 35 min, 127 «principales». Con un solo fotograma cada
+  ~8 s, un plano que mezcla punto y primer plano perdía el punto si el fotograma caía en el primer plano (y los
+  límites iban ±4 s). Ahora: un fotograma cada 2 s, el cambio pista/sin pista se sitúa por bisección a 0,5 s, un
+  fotograma sin pista pero con la misma vista que su vecino (línea tapada, desenfoque) conserva la pista si aún
+  puntúa ≥ 0,3, y una máscara de líneas en sombra (antes: sombra parcial → homografía 17 px desviada; sombra
+  total → sin pista). Búsqueda completa como mucho cada 8 s de plano (coste parecido). El resumen de la etapa da
+  `court_min` / `court_share` para comprobarlo en el PC.
 - ✔ «Aprende su derecha» (13-10), pantalla principal nueva (nada borrado): eliges el golpe combinando
   condiciones (dirección, apoyo, cómo llega, efecto, lado, altura, velocidad, profundidad, contacto) → sus
   golpes exactos (o, si son pocos, los más parecidos diciendo qué condición se quita) → 8 fases + pies con
