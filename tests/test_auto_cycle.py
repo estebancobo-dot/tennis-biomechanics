@@ -19,6 +19,14 @@ def test_decide():
     assert decide([]) == "nada"
 
 
+def test_decide_covers_every_fine_pass_module():
+    """Any module whose code is in the fine-pass fingerprint must make the PC recompute the measures."""
+    from tennisbio.stages import FINE_CODE
+
+    for mod in FINE_CODE:
+        assert decide([f"src/tennisbio/{mod.replace('.', '/')}.py"]) == "medidas", mod
+
+
 def audit(tmp, name, items):
     p = tmp / name
     p.write_text(json.dumps({"items": [{"name": n, "status": s, "detail": d} for n, s, d in items]}), encoding="utf-8")
