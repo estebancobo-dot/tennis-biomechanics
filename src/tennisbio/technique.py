@@ -64,7 +64,13 @@ DESCRIPTORS = {
     "racket_head_lateral": ("raqueta", "Cabeza de la raqueta respecto al hombro dominante", "%", 2,
                             "lateral, % de altura: + por fuera (al lado del cuerpo), − hacia la espalda"),
     "racket_tip_vs_head": ("raqueta", "Punta de la raqueta respecto a su cabeza", "%", 2, "vertical, % de altura: + la punta por encima de la cabeza"),
-    "base_court_m": ("piernas", "Separación de los pies en la pista", "m", 2, "distancia entre los tobillos sobre la pista (homografía)"),
+    "base_court_m": ("piernas", "Separación de los pies en la pista", "m", 2,
+                     "distancia entre los apoyos sobre la pista (homografía): el punto medio talón–punta de cada pie "
+                     "cuando la pose tiene los pies, si no los tobillos"),
+    "front_foot_angle_deg": ("pies", "Orientación del pie de delante", "°", 2,
+                             "talón → dedo gordo respecto a la línea de fondo: 0 = paralelo hacia el lado en que golpea, "
+                             "90 = hacia la red, 180 = hacia el otro lado, − = la punta hacia atrás (solo con talones y puntas)"),
+    "back_foot_angle_deg": ("pies", "Orientación del pie de atrás", "°", 2, "ídem, el pie de atrás"),
     "shoulder_width_ratio": ("tronco", "Hombros vistos desde detrás", "", 2, "anchura de los hombros / la máxima (1 = de frente a la red)"),
     "dom_shoulder_ahead": ("tronco", "Hombro dominante adelantado", "%", 1, "+ el hombro del brazo que golpea más hacia la red, % de altura"),
     "face_tilt": ("raqueta", "Cierre de la cara", "°", 2, "+ cuerdas hacia el suelo; en el impacto es una estimación"),
@@ -288,14 +294,15 @@ def stroke_curves(img: np.ndarray, sk: Skeleton, scale: np.ndarray, impact: int,
 
 
 def body_moves(out: dict, img: np.ndarray, sk: Skeleton, scale: np.ndarray, impact: int, fps: float, ev: dict,
-               H: np.ndarray | None, height_m: float | None) -> None:
+               H: np.ndarray | None, height_m: float | None, feet: np.ndarray | None = None) -> None:
     """What the user asked to see on the frames, as measures of every stroke:
 
     - lowering and rising: hip height above the ground (stroke_curves) at the ready position, its
       lowest point before contact and its highest point after contact (to +0.8 s); how much it drops
       and how much it rises, in % of her height and in cm with her real height;
     - the base: distance between her feet on the court (homography, metres) when loaded, at contact
-      and at the finish, and how far each foot moves from loaded to contact (planted or moving);
+      and at the finish, and how far each foot moves from loaded to contact (planted or moving); the
+      feet are the ground contacts (heel–toe middles) when `feet` (footpoints.clean_feet) is given;
     - where the trunk faces at the finish: from behind, the shoulder line looks shorter the more it
       has turned; the hitting shoulder higher in the image is further forward (towards the net)."""
     s, ph = out["stroke"], out["phases"]
@@ -328,16 +335,16 @@ def body_moves(out: dict, img: np.ndarray, sk: Skeleton, scale: np.ndarray, impa
                     s["hip_rise_after_cm"] = round(s["hip_rise_after_pct"] * height_m, 0)
     if H is not None:
         from .court_metrics import feet_on_court
-        feet = {}
+        feet_c = {}
         for p in ("loaded", "impact", "finish"):
-            ff = feet_on_court(img, ev.get(p), sk, H)
+            ff = feet_on_court(img, ev.get(p), sk, H, feet)
             if ff is not None:
                 d = float(np.linalg.norm(ff[0] - ff[1]))
                 if 0.1 <= d <= 2.5:                    # beyond that a misdetected ankle
-                    feet[p] = ff
+                    feet_c[p] = ff
                     ph.setdefault(p, {})["base_court_m"] = round(d, 2)
-        if "loaded" in feet and "impact" in feet:
-            mv = max(float(np.linalg.norm(feet["impact"][i] - feet["loaded"][i])) for i in (0, 1))
+        if "loaded" in feet_c and "impact" in feet_c:
+            mv = max(float(np.linalg.norm(feet_c["impact"][i] - feet_c["loaded"][i])) for i in (0, 1))
             if mv <= 3:
                 s["feet_move_m"] = round(mv, 2)
     f0 = ev.get("finish")
@@ -488,8 +495,14 @@ def situation(m: dict, court_pos, displacement, t_avail, contact_h, dom_sign: in
 def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, scale: np.ndarray, impact: int,
                      phases: dict, stroke: str, H: np.ndarray | None = None, opp: int | None = None,
                      bounce: int | None = None, faces: dict | None = None, split_hop: float | None = None,
-                     context: dict | None = None) -> dict:
-    """Everything that describes one stroke. phases: {name: clip frame or None}."""
+                     context: dict | None = None, feet=None, feet_conf=None) -> dict:
+    """Everything that describes one stroke. phases: {name: clip frame or None}. feet / feet_conf:
+    run.feet (T, 6, 2) and run.feet_conf (T, 6) when the pose has heels and toes (hybrid pose); with
+    them stance, base, steps and the feet on the court come from the ground contacts and the foot
+    direction and the pivot of the back foot are measured; without them everything is as before."""
+    from .footpoints import clean_feet, foot_angle_deg
+
+    fk = clean_feet(feet, feet_conf)
     body = to_body_frame(img, sk, scale)
     T = len(img)
     ev = {p: (phases.get(p) if phases.get(p) is not None and 0 <= phases.get(p) < T else None) for p in PHASES}
@@ -510,6 +523,11 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         with np.errstate(all="ignore"):
             fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1]) if np.isfinite(img[f, [sk["left_ankle"], sk["right_ankle"]], 1]).any() else np.nan
         d.update(racket_at(kps, img, sk, f, float(scale[f]), fy, faces, first_face, estimate=p == "impact"))
+        if fk is not None and H is not None and p in ("loaded", "impact"):     # foot direction on the court
+            for which in ("front", "back"):
+                a = foot_angle_deg(fk, f, sk, H, which, stroke)
+                if a is not None:
+                    d[f"{which}_foot_angle_deg"] = round(a, 1)
         return d
 
     for p, f in ev.items():
@@ -552,7 +570,7 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
     out["curves"] = stroke_curves(img, sk, scale, impact, fps, kps)
     # timing
     s = out["stroke"]
-    body_moves(out, img, sk, scale, impact, fps, ev, H, (context or {}).get("height_m"))
+    body_moves(out, img, sk, scale, impact, fps, ev, H, (context or {}).get("height_m"), fk)
     # lag: the smallest forearm–racket angle from the end of the backswing to just before contact, over
     # the frames where the racket is seen (the last 2 before contact are blurred and left out)
     if ev["loaded"] is not None and kps:
@@ -738,7 +756,8 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
     if H is not None:
         from .footwork import feet_track
         fw = footwork(img, sk, H, scale, fps, impact, opp, ev["ready"] if (context or {}).get("split") else None,
-                      ev["finish"], ev["loaded"], (context or {}).get("surface", ""), (context or {}).get("next_opp"), stroke)
+                      ev["finish"], ev["loaded"], (context or {}).get("surface", ""), (context or {}).get("next_opp"), stroke,
+                      foot_points=fk)
         out["footwork"] = fw
         # does she turn while she is still moving? (coaches: "turn while running")
         appr = fw.get("approach_steps") or []
@@ -748,7 +767,7 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
             c["movement"] = fw["movement"]
         # feet_at_impact is kept in the footwork data but not used as a class: at 50 fps the ankle
         # keypoints jitter enough to look like a moving foot (user's PC: 8 of 10 "no foot still")
-        ft = feet_track(img, sk, H)
+        ft = feet_track(img, sk, H, fk)               # ground contacts with heels and toes, else the ankles
         for p in ("loaded", "impact"):
             f = ev[p]
             if f is not None and np.isfinite(ft[f]).all():

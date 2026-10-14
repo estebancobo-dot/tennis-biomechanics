@@ -15,10 +15,16 @@ def to_court(H_court_to_img: np.ndarray, pts_img: np.ndarray) -> np.ndarray:
     return p[:, :2] / p[:, 2:]
 
 
-def feet_on_court(img_kp: np.ndarray, frame: int, sk: Skeleton, H: np.ndarray):
-    """(dominant-side foot, non-dominant-side foot) in court metres, or None."""
+def feet_on_court(img_kp: np.ndarray, frame: int, sk: Skeleton, H: np.ndarray, feet: np.ndarray | None = None):
+    """(dominant-side foot, non-dominant-side foot) in court metres, or None. feet: the cleaned foot
+    points of the stroke (footpoints.clean_feet); with them each foot is its ground contact (heel–toe
+    middle, footpoints.ground_track), without them the ankles as always."""
     if frame is None or not 0 <= frame < len(img_kp):
         return None
+    if feet is not None:
+        from .footpoints import ground_track
+        g = ground_track(img_kp, sk, H, feet)[0][frame]
+        return None if np.isnan(g).any() else (g[0], g[1])
     pts = img_kp[frame, [sk["dom_ankle"], sk["non_ankle"]]]
     if np.isnan(pts).any():
         return None
@@ -44,10 +50,15 @@ def stance(dom_foot: np.ndarray, non_foot: np.ndarray, stroke: str, dom_sign: in
 
 
 def court_metrics(img_kp: np.ndarray, sk: Skeleton, H: np.ndarray, stroke: str, impact: int,
-                  opponent_hit: int | None = None) -> dict:
-    """Position, base width and stance at contact; displacement since the opponent's hit."""
+                  opponent_hit: int | None = None, feet=None, feet_conf=None) -> dict:
+    """Position, base width and stance at contact; displacement since the opponent's hit. feet /
+    feet_conf: run.feet / run.feet_conf (hybrid pose) when there are foot points; the stance is then
+    the line between the two ground contacts (heel–toe middles) instead of the ankles."""
+    from .footpoints import clean_feet
+
     out = {}
-    f = feet_on_court(img_kp, impact, sk, H)
+    fk = clean_feet(feet, feet_conf)
+    f = feet_on_court(img_kp, impact, sk, H, fk)
     if f is None:
         return out
     dom, non = f
@@ -55,7 +66,7 @@ def court_metrics(img_kp: np.ndarray, sk: Skeleton, H: np.ndarray, stroke: str, 
     kind, ang = stance(dom, non, stroke, sk.dom_sign)
     out.update(court_pos_m=[round(float(v), 2) for v in mid], stance_width_m=round(float(np.linalg.norm(dom - non)), 2),
                stance=kind, stance_angle_deg=round(ang, 1))
-    g = feet_on_court(img_kp, opponent_hit, sk, H)
+    g = feet_on_court(img_kp, opponent_hit, sk, H, fk)
     if g is not None:
         out["displacement_m"] = round(float(np.linalg.norm(mid - (g[0] + g[1]) / 2)), 2)
         out["pos_at_opp_m"] = [round(float(v), 2) for v in (g[0] + g[1]) / 2]     # where she waits (the serve, on a return)

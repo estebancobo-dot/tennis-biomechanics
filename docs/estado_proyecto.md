@@ -30,6 +30,12 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
   y pose YOLO en FP16 (validada en el PC con `scripts/model_trials.py`: ×2,2, mismos golpes, 0,25 px). Prueba de
   velocidad pedida al PC con `config/peticion_pc.txt` (id 1, «poc»: 4 min en `_poc4` y 35 min en `_poc`, sin
   tocar `_smoke`). Prueba de modelos: RTMPose-x tiembla 2,6× menos y ve los pies (híbrido YOLO+RTMPose-x en curso).
+- **Pies con talones y puntas (14-10):** cuando el golpe trae `run.feet` / `run.feet_conf` (pose híbrida), el apoyo
+  (abierto…cerrado), la base en la pista, los pasos y la posición salen del apoyo talón–punta (`footpoints.ground_track`;
+  en fotogramas sin pies, el tobillo corregido por su desfase); nuevas medidas: orientación de cada pie en armado e
+  impacto (`front_foot_angle_deg`, `back_foot_angle_deg`) y pivote sobre la punta del pie de atrás
+  (`footwork.back_heel_lift`, `back_heel_lift_s`), en Cópiala (fases 3 y 5), «Su derecha» y el panel de pies. Sin
+  pies todo sale igual que antes (test `tests/test_foot_metrics.py`) y Cópiala dice «sin talones ni puntas».
 - **Cópiala para alguien que empieza** (13-10, 14 h): guía «Empieza aquí» (se oculta y vuelve), «Tu objetivo»
   con su número en cada medida fiable (`learn.TARGETS`; nunca de ruido o sesgo; en cm del usuario si pone su
   altura, guardada solo en su navegador), glosario (`learn.GLOSSARY`, palabras subrayadas y lista al final).
