@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 32570,
+   "text_chars": 35322,
    "charts": 8,
    "videos": 5,
    "black_canvases": 0,
@@ -11,7 +11,7 @@
    "empty_msgs": [
     ""
    ],
-   "dashes": 6,
+   "dashes": 2,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -32,7 +32,7 @@
   },
   {
    "title": "Sus golpes (Videoteca y pista)",
-   "text_chars": 3344,
+   "text_chars": 3336,
    "charts": 1,
    "videos": 5,
    "black_canvases": 0,
@@ -59,7 +59,7 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 7051,
+   "text_chars": 7467,
    "charts": 28,
    "videos": 6,
    "black_canvases": 0,
@@ -87,13 +87,13 @@
   },
   {
    "title": "Comparar dos golpes",
-   "text_chars": 5224,
+   "text_chars": 5290,
    "charts": 2,
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 4,
+   "dashes": 2,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -114,7 +114,7 @@
   },
   {
    "title": "Conclusiones (Panel y Comparativas)",
-   "text_chars": 6832,
+   "text_chars": 6564,
    "charts": 11,
    "videos": 5,
    "black_canvases": 0,
@@ -129,7 +129,7 @@
     "",
     ""
    ],
-   "dashes": 74,
+   "dashes": 72,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -150,13 +150,13 @@
   },
   {
    "title": "Tabla de golpes (Explorador)",
-   "text_chars": 3231,
+   "text_chars": 3232,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 43,
+   "dashes": 42,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -204,7 +204,7 @@
   },
   {
    "title": "Fiabilidad de las medidas",
-   "text_chars": 3108,
+   "text_chars": 2384,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -223,7 +223,7 @@
    "intro": true,
    "external_links": 0,
    "tables": 0,
-   "sentences": 59,
+   "sentences": 64,
    "many_lines": 0,
    "tab": "fiabilidad",
    "file": "pantalla_8_fiabilidad.jpg",
@@ -231,7 +231,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 1310,
+   "text_chars": 1258,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -336,20 +336,20 @@
  ],
  "learn": {
   "combinations": 1104,
-  "with_exact_strokes": 291,
-  "checkpoints_checked": 75072,
+  "with_exact_strokes": 295,
+  "checkpoints_checked": 80592,
   "failures": [],
-  "rows_all": 68,
-  "valued_all": 63,
-  "targeted_all": 41,
-  "glossed_all": 58,
+  "rows_all": 73,
+  "valued_all": 72,
+  "targeted_all": 49,
+  "glossed_all": 60,
   "signature": 4,
-  "style": "Estilo de su derecha: preparación amplia (90 %) · apoyo variable (la más frecuente, abierto, en 30 %) · efecto liftado (de abajo arriba) (80 %) · terminación variable (la más frecuente, sobre el hombro, en 40 %) provisional: 10 golpes.",
+  "style": "Estilo de su derecha: preparación amplia (90 %) · apoyo variable (la más frecuente, abierto, en 30 %) · efecto liftado (de abajo arriba) (80 %) · terminación sobre el hombro (50 %) provisional: 10 golpes.",
   "example": {
    "exact": 0,
    "near": 9,
-   "rows": 68,
-   "valued": 63,
+   "rows": 73,
+   "valued": 72,
    "bad": []
   }
  }

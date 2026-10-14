@@ -95,13 +95,13 @@
   }
  },
  "fine": {
-  "fingerprint": "089a7612be010e23",
-  "version": "10",
-  "seconds": 311.7,
-  "finished": "2026-10-14 11:55:21",
+  "fingerprint": "13edff59d67c43ab",
+  "version": "11",
+  "seconds": 4121.4,
+  "finished": "2026-10-14 14:58:50",
   "summary": {
    "candidates": 177,
-   "confirmed": 26,
+   "confirmed": 27,
    "errors": 0,
    "warnings": [],
    "forehands": 14,
@@ -115,32 +115,38 @@
      "golpe_de_bola": 38,
      "bola_no_vista": 2
     },
-    "seconds_in_gated_windows": 2.8
+    "seconds_in_gated_windows": 406.2
    },
    "seconds": {
-    "jugadora_lejana": 128.6,
-    "cuerdas_y_3d": 126.2,
-    "analisis_ventana": 10.6,
-    "cribado": 4.9,
-    "recorte": 3.0,
-    "pose": 0.4
+    "pose": 1883.4,
+    "bola": 1594.6,
+    "pose_modelo_yolo": 1046.9,
+    "pose_modelo_hybrid": 516.6,
+    "raqueta": 304.6,
+    "cuerdas_y_3d": 128.6,
+    "jugadora_lejana": 116.2,
+    "analisis_ventana": 33.9,
+    "cribado": 9.4,
+    "recorte": 3.6
    },
    "counts": {
     "frames": 14613,
-    "posed_frames": 14613,
-    "impacts": 42,
+    "posed_frames": 15583,
+    "impacts": 41,
     "kept_impacts": 30,
-    "racket_frames": 0,
-    "whole_window_again": 0,
-    "frames_960_far": 0
+    "racket_frames": 588,
+    "whole_window_again": 8,
+    "frames_960_far": 3939,
+    "frames_modelo_yolo": 9453,
+    "frames_modelo_hybrid": 3716
    }
   }
  },
  "fine_opponent": {
-  "fingerprint": "c64205b1eaeb48ec",
+  "fingerprint": "82e6c59e3a6264c4",
   "version": "5",
   "seconds": 0.0,
-  "finished": "2026-10-14 11:55:21",
+  "finished": "2026-10-14 14:58:50",
   "summary": {
    "enabled": false
   }

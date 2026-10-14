@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 272,
+  "ok": 275,
   "falta": 0,
-  "pocos datos": 117,
-  "aviso": 29
+  "pocos datos": 115,
+  "aviso": 30
  },
  "items": [
   {
@@ -255,8 +255,8 @@
     "ball_bounce.com_over_feet",
     "ball_bounce.head_over_base",
     "ball_bounce.trunk_tilt",
-    "ball_net.trunk_tilt",
-    "ball_top.com_over_feet"
+    "ball_net.com_over_feet",
+    "ball_net.head_over_base"
    ],
    "measured": 1.0
   },
@@ -324,23 +324,23 @@
    "area": "Taxonomía",
    "name": "2. Cuerpo · Ángulo del codo en el impacto (brazo recto / doble flexión)",
    "status": "ok",
-   "detail": "medido en el 50% de los golpes y en el informe",
+   "detail": "medido en el 30% de los golpes y en el informe",
    "keys": [
     "class.arm",
     "impact.elbow_dom"
    ],
-   "measured": 0.5
+   "measured": 0.3
   },
   {
    "req": 1,
    "area": "Taxonomía",
    "name": "2. Cuerpo · Cabeza estable en el impacto",
    "status": "ok",
-   "detail": "medido en el 20% de los golpes y en el informe",
+   "detail": "medido en el 100% de los golpes y en el informe",
    "keys": [
     "metrics.head_motion_impact_cm"
    ],
-   "measured": 0.2
+   "measured": 1.0
   },
   {
    "req": 3,
@@ -398,22 +398,22 @@
    "area": "Taxonomía",
    "name": "2. Cuerpo · \"3 × 90°\" al final",
    "status": "pocos datos",
-   "detail": "se mide (20% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "detail": "se mide (40% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "class.finish_3x90"
    ],
-   "measured": 0.2
+   "measured": 0.4
   },
   {
    "req": 1,
    "area": "Taxonomía",
    "name": "2. Cuerpo · Paso adelante de la pierna trasera tras el impacto",
    "status": "ok",
-   "detail": "medido en el 50% de los golpes y en el informe",
+   "detail": "medido en el 60% de los golpes y en el informe",
    "keys": [
     "footwork.rear_leg_step_after"
    ],
-   "measured": 0.5
+   "measured": 0.6
   },
   {
    "req": 1,
@@ -438,18 +438,18 @@
    "area": "Taxonomía",
    "name": "2. Cuerpo · Transferencia de peso del armado al impacto",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe (parcial: ver la matriz)",
+   "detail": "medido en el 100% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "acceleration.com_over_feet",
     "ball_bounce.com_over_feet",
+    "ball_net.com_over_feet",
     "ball_top.com_over_feet",
     "extension.com_over_feet",
     "finish.com_over_feet",
     "impact.com_over_feet",
-    "loaded.com_over_feet",
-    "recovery.com_over_feet"
+    "loaded.com_over_feet"
    ],
-   "measured": 0.4
+   "measured": 1.0
   },
   {
    "req": 1,
@@ -488,12 +488,12 @@
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Split step: despegue y aterrizaje respecto al golpe del rival",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "footwork.split_landing_vs_opp_s",
     "footwork.split_takeoff_vs_opp_s"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 1,
@@ -513,23 +513,23 @@
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Velocidad 0,2 s antes y después del split",
    "status": "ok",
-   "detail": "medido en el 90% de los golpes y en el informe",
+   "detail": "medido en el 100% de los golpes y en el informe",
    "keys": [
     "footwork.speed_post_split_mps",
     "footwork.speed_pre_split_mps"
    ],
-   "measured": 0.9
+   "measured": 1.0
   },
   {
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Primer paso: momento (reacción)",
    "status": "ok",
-   "detail": "medido en el 50% de los golpes y en el informe",
+   "detail": "medido en el 60% de los golpes y en el informe",
    "keys": [
     "footwork.first_step_s"
    ],
-   "measured": 0.5
+   "measured": 0.6
   },
   {
    "req": 1,
@@ -556,34 +556,34 @@
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Número de pasos hasta la bola",
    "status": "pocos datos",
-   "detail": "se mide (50% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "detail": "se mide (60% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "footwork.steps_to_impact"
    ],
-   "measured": 0.5
+   "measured": 0.6
   },
   {
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Longitud de cada paso; anchura del primero",
    "status": "ok",
-   "detail": "medido en el 50% de los golpes y en el informe",
+   "detail": "medido en el 60% de los golpes y en el informe",
    "keys": [
     "footwork.first_step_length_m",
     "footwork.last_step_length_m"
    ],
-   "measured": 0.5
+   "measured": 0.6
   },
   {
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Pasos de ajuste",
    "status": "ok",
-   "detail": "medido en el 50% de los golpes y en el informe",
+   "detail": "medido en el 60% de los golpes y en el informe",
    "keys": [
     "footwork.adjustment_steps"
    ],
-   "measured": 0.5
+   "measured": 0.6
   },
   {
    "req": 1,
@@ -682,11 +682,11 @@
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Última zancada más larga en carrera",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "footwork.last_step_length_m"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 1,
@@ -711,13 +711,13 @@
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Cada paso nombrado: lateral (sin cruzar), cruzado, de carrera, hacia delante, hacia atrás, de ajuste",
    "status": "ok",
-   "detail": "medido en el 50% de los golpes y en el informe (parcial: ver la matriz)",
+   "detail": "medido en el 60% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "class.approach_main",
     "footwork.approach_pattern",
     "footwork.approach_steps"
    ],
-   "measured": 0.5
+   "measured": 0.6
   },
   {
    "req": 1,
@@ -735,29 +735,29 @@
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Frenado: último paso largo con caída de la velocidad",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe (parcial: ver la matriz)",
-   "keys": [
-    "footwork.braking_step"
-   ],
-   "measured": 0.4
-  },
-  {
-   "req": 1,
-   "area": "Taxonomía",
-   "name": "3. Pies y desplazamiento · Patada atrás (tijera) tras el impacto",
-   "status": "ok",
    "detail": "medido en el 50% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
-    "footwork.kick_back"
+    "footwork.braking_step"
    ],
    "measured": 0.5
   },
   {
    "req": 1,
    "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Patada atrás (tijera) tras el impacto",
+   "status": "ok",
+   "detail": "medido en el 60% de los golpes y en el informe (parcial: ver la matriz)",
+   "keys": [
+    "footwork.kick_back"
+   ],
+   "measured": 0.6
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Recuperación: tipo de cada paso de vuelta, cuándo empieza",
    "status": "ok",
-   "detail": "medido en el 50% de los golpes y en el informe (parcial: ver la matriz)",
+   "detail": "medido en el 60% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "class.recovery_first_step",
     "footwork.recovery_first_step",
@@ -765,7 +765,7 @@
     "footwork.recovery_start_s",
     "footwork.recovery_steps"
    ],
-   "measured": 0.5
+   "measured": 0.6
   },
   {
    "req": 3,
@@ -775,11 +775,44 @@
    "detail": "no observable desde la tele; el informe lo dice"
   },
   {
-   "req": 3,
+   "req": 1,
    "area": "Taxonomía",
-   "name": "3. Pies y desplazamiento · Orientación del pie, apoyo de talón/punta",
+   "name": "3. Pies y desplazamiento · Orientación del pie (talón → dedo gordo respecto a la línea de fondo) en el armado y el impacto",
    "status": "ok",
-   "detail": "no observable desde la tele; el informe lo dice"
+   "detail": "medido en el 90% de los golpes y en el informe (parcial: ver la matriz)",
+   "keys": [
+    "impact.back_foot_angle_deg",
+    "impact.front_foot_angle_deg",
+    "loaded.back_foot_angle_deg",
+    "loaded.front_foot_angle_deg"
+   ],
+   "measured": 0.9
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Pivote sobre la punta del pie de atrás (talón arriba, punta apoyada)",
+   "status": "ok",
+   "detail": "medido en el 90% de los golpes y en el informe (parcial: ver la matriz)",
+   "keys": [
+    "footwork.back_heel_lift",
+    "footwork.back_heel_lift_s"
+   ],
+   "measured": 0.9
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "3. Pies y desplazamiento · Base y anchura de la base sobre la pista",
+   "status": "aviso",
+   "detail": "medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa)",
+   "keys": [
+    "finish.base_court_m",
+    "impact.base_court_m",
+    "loaded.base_court_m",
+    "stroke.feet_move_m"
+   ],
+   "measured": 1.0
   },
   {
    "req": 3,
@@ -808,12 +841,12 @@
    "area": "Taxonomía",
    "name": "4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)",
    "status": "ok",
-   "detail": "medido en el 60% de los golpes y en el informe (parcial: ver la matriz)",
+   "detail": "medido en el 70% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "class.racket_plane",
     "loaded.racket_head_lateral"
    ],
-   "measured": 0.6
+   "measured": 0.7
   },
   {
    "req": 1,
@@ -843,11 +876,11 @@
    "area": "Taxonomía",
    "name": "4. Raqueta, swing y empuñadura · Cara de la raqueta al final del armado",
    "status": "ok",
-   "detail": "medido en el 60% de los golpes y en el informe",
+   "detail": "medido en el 70% de los golpes y en el informe",
    "keys": [
     "loaded.face_tilt"
    ],
-   "measured": 0.6
+   "measured": 0.7
   },
   {
    "req": 1,
@@ -1193,11 +1226,11 @@
    "area": "Taxonomía",
    "name": "5b. Resto de derecha · Resto: split step respecto al saque",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "footwork.split_landing_vs_opp_s"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 1,
@@ -1377,10 +1410,10 @@
     "acceleration.trunk_tilt",
     "ball_bounce.head_over_base",
     "ball_bounce.trunk_tilt",
+    "ball_net.head_over_base",
     "ball_net.trunk_tilt",
     "ball_top.head_over_base",
-    "ball_top.trunk_tilt",
-    "extension.head_over_base"
+    "ball_top.trunk_tilt"
    ],
    "measured": 1.0
   },
@@ -1479,11 +1512,11 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Pie de arrastre (pie trasero que se arrastra)",
    "status": "ok",
-   "detail": "medido en el 50% de los golpes y en el informe (parcial: ver la matriz)",
+   "detail": "medido en el 60% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "footwork.drag_foot"
    ],
-   "measured": 0.5
+   "measured": 0.6
   },
   {
    "req": 1,
@@ -1605,22 +1638,22 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Split step",
    "status": "ok",
-   "detail": "medido en el 40% de los golpes y en el informe",
+   "detail": "medido en el 50% de los golpes y en el informe",
    "keys": [
     "footwork.split_landing_vs_opp_s"
    ],
-   "measured": 0.4
+   "measured": 0.5
   },
   {
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Pasos de ajuste",
    "status": "ok",
-   "detail": "medido en el 50% de los golpes y en el informe",
+   "detail": "medido en el 60% de los golpes y en el informe",
    "keys": [
     "footwork.adjustment_steps"
    ],
-   "measured": 0.5
+   "measured": 0.6
   },
   {
    "req": 1,
@@ -1639,24 +1672,24 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Paso de ataque hacia dentro de la pista (step-in)",
    "status": "ok",
-   "detail": "medido en el 50% de los golpes y en el informe",
+   "detail": "medido en el 60% de los golpes y en el informe",
    "keys": [
     "footwork.step_in"
    ],
-   "measured": 0.5
+   "measured": 0.6
   },
   {
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Pasos de recuperación (laterales o cruzados)",
    "status": "ok",
-   "detail": "medido en el 50% de los golpes y en el informe",
+   "detail": "medido en el 60% de los golpes y en el informe",
    "keys": [
     "class.recovery_first_step",
     "footwork.recovery_first_step",
     "footwork.recovery_pattern"
    ],
-   "measured": 0.5
+   "measured": 0.6
   },
   {
    "req": 1,
@@ -1845,12 +1878,12 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Latencia de reacción al golpe de la rival",
    "status": "ok",
-   "detail": "medido en el 50% de los golpes y en el informe (parcial: ver la matriz)",
+   "detail": "medido en el 60% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "footwork.first_step_s",
     "footwork.split_landing_vs_opp_s"
    ],
-   "measured": 0.5
+   "measured": 0.6
   },
   {
    "req": 3,
@@ -1966,7 +1999,7 @@
    "area": "Situaciones",
    "name": "Bola alta / baja",
    "status": "pocos datos",
-   "detail": "rodilla 0, cadera 1, cintura-pecho 6, pecho-hombro 2, por encima del hombro 1 (se muestra con ≥ 12 golpes)",
+   "detail": "rodilla 1, cadera 2, cintura-pecho 3, pecho-hombro 4, por encima del hombro 0 (se muestra con ≥ 12 golpes)",
    "shown": []
   },
   {
@@ -1974,7 +2007,7 @@
    "area": "Situaciones",
    "name": "Bola corta / profunda",
    "status": "pocos datos",
-   "detail": "dentro de la pista 1, sobre la línea 5, 1-2 m detrás 1, 2-4 m detrás 3, muy atrás 0 (se muestra con ≥ 12 golpes)",
+   "detail": "dentro de la pista 1, sobre la línea 4, 1-2 m detrás 2, 2-4 m detrás 3, muy atrás 0 (se muestra con ≥ 12 golpes)",
    "shown": []
   },
   {
@@ -1982,7 +2015,7 @@
    "area": "Situaciones",
    "name": "En carrera / parada / en salto",
    "status": "pocos datos",
-   "detail": "parada 0, en movimiento 6, en carrera 4, deslizando 0, en el aire 0 (se muestra con ≥ 12 golpes)",
+   "detail": "parada 0, en movimiento 5, en carrera 5, deslizando 0, en el aire 0 (se muestra con ≥ 12 golpes)",
    "shown": []
   },
   {
@@ -2006,7 +2039,7 @@
    "area": "Situaciones",
    "name": "Ataque / defensa",
    "status": "pocos datos",
-   "detail": "ataque 2, neutra 5, defensa 3 (se muestra con ≥ 12 golpes)",
+   "detail": "ataque 3, neutra 4, defensa 3 (se muestra con ≥ 12 golpes)",
    "shown": []
   },
   {
@@ -2022,7 +2055,7 @@
    "area": "Situaciones",
    "name": "Bola centrada / abierta",
    "status": "pocos datos",
-   "detail": "centrada 3, abierta 4, muy abierta 3 (se muestra con ≥ 12 golpes)",
+   "detail": "centrada 4, abierta 3, muy abierta 3 (se muestra con ≥ 12 golpes)",
    "shown": []
   },
   {
@@ -2030,8 +2063,8 @@
    "area": "Combinaciones",
    "name": "Bola rápida / lenta: cada medida en cada nivel",
    "status": "pocos datos",
-   "detail": "68 medidas × 4 niveles = 272 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: lenta 2, media 3, rápida 3, muy rápida 2",
-   "combos": 272,
+   "detail": "72 medidas × 4 niveles = 288 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: lenta 2, media 3, rápida 3, muy rápida 2",
+   "combos": 288,
    "shown": 0
   },
   {
@@ -2039,8 +2072,8 @@
    "area": "Combinaciones",
    "name": "Bola alta / baja: cada medida en cada nivel",
    "status": "pocos datos",
-   "detail": "68 medidas × 5 niveles = 340 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: rodilla 0, cadera 1, cintura-pecho 6, pecho-hombro 2, por encima del hombro 1",
-   "combos": 340,
+   "detail": "72 medidas × 5 niveles = 360 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: rodilla 1, cadera 2, cintura-pecho 3, pecho-hombro 4, por encima del hombro 0",
+   "combos": 360,
    "shown": 0
   },
   {
@@ -2048,8 +2081,8 @@
    "area": "Combinaciones",
    "name": "Bola corta / profunda: cada medida en cada nivel",
    "status": "pocos datos",
-   "detail": "68 medidas × 5 niveles = 340 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: dentro de la pista 1, sobre la línea 5, 1-2 m detrás 1, 2-4 m detrás 3, muy atrás 0",
-   "combos": 340,
+   "detail": "72 medidas × 5 niveles = 360 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: dentro de la pista 1, sobre la línea 4, 1-2 m detrás 2, 2-4 m detrás 3, muy atrás 0",
+   "combos": 360,
    "shown": 0
   },
   {
@@ -2057,8 +2090,8 @@
    "area": "Combinaciones",
    "name": "En carrera / parada / en salto: cada medida en cada nivel",
    "status": "pocos datos",
-   "detail": "68 medidas × 5 niveles = 340 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: parada 0, en movimiento 6, en carrera 4, deslizando 0, en el aire 0",
-   "combos": 340,
+   "detail": "72 medidas × 5 niveles = 360 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: parada 0, en movimiento 5, en carrera 5, deslizando 0, en el aire 0",
+   "combos": 360,
    "shown": 0
   },
   {
@@ -2066,8 +2099,8 @@
    "area": "Combinaciones",
    "name": "Cada apoyo: cada medida en cada nivel",
    "status": "pocos datos",
-   "detail": "68 medidas × 4 niveles = 272 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: abierto 3, semiabierto 3, neutro 2, cerrado 2",
-   "combos": 272,
+   "detail": "72 medidas × 4 niveles = 288 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: abierto 3, semiabierto 3, neutro 2, cerrado 2",
+   "combos": 288,
    "shown": 0
   },
   {
@@ -2075,8 +2108,8 @@
    "area": "Combinaciones",
    "name": "Dirección del golpe: cada medida en cada nivel",
    "status": "pocos datos",
-   "detail": "68 medidas × 6 niveles = 408 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: cruzada 1, paralela 0, al centro 4, invertida cruzada 0, invertida paralela 1, invertida al centro 1",
-   "combos": 408,
+   "detail": "72 medidas × 6 niveles = 432 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: cruzada 1, paralela 0, al centro 4, invertida cruzada 0, invertida paralela 1, invertida al centro 1",
+   "combos": 432,
    "shown": 0
   },
   {
@@ -2084,8 +2117,8 @@
    "area": "Combinaciones",
    "name": "Ataque / defensa: cada medida en cada nivel",
    "status": "pocos datos",
-   "detail": "68 medidas × 3 niveles = 204 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: ataque 2, neutra 5, defensa 3",
-   "combos": 204,
+   "detail": "72 medidas × 3 niveles = 216 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: ataque 3, neutra 4, defensa 3",
+   "combos": 216,
    "shown": 0
   },
   {
@@ -2093,8 +2126,8 @@
    "area": "Combinaciones",
    "name": "Bola subiendo / arriba / cayendo: cada medida en cada nivel",
    "status": "pocos datos",
-   "detail": "68 medidas × 3 niveles = 204 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: bola subiendo 6, bola arriba 2, bola cayendo 0",
-   "combos": 204,
+   "detail": "72 medidas × 3 niveles = 216 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: bola subiendo 6, bola arriba 2, bola cayendo 0",
+   "combos": 216,
    "shown": 0
   },
   {
@@ -2102,8 +2135,8 @@
    "area": "Combinaciones",
    "name": "Bola centrada / abierta: cada medida en cada nivel",
    "status": "pocos datos",
-   "detail": "68 medidas × 3 niveles = 204 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: centrada 3, abierta 4, muy abierta 3",
-   "combos": 204,
+   "detail": "72 medidas × 3 niveles = 216 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: centrada 4, abierta 3, muy abierta 3",
+   "combos": 216,
    "shown": 0
   },
   {
@@ -2118,7 +2151,7 @@
    "area": "Examen de entrenadores",
    "name": "R2 Dos manos en la raqueta en la espera (≥ 80 %)",
    "status": "pocos datos",
-   "detail": "pocos datos: 3 golpes con el dato (hacen falta 12)"
+   "detail": "pocos datos: 9 golpes con el dato (hacen falta 12)"
   },
   {
    "req": 3,
@@ -2132,7 +2165,7 @@
    "area": "Examen de entrenadores",
    "name": "R6 Brazo libre casi extendido en el armado (codo 130-170°)",
    "status": "pocos datos",
-   "detail": "pocos datos: 3 golpes con el dato (hacen falta 12)"
+   "detail": "pocos datos: 4 golpes con el dato (hacen falta 12)"
   },
   {
    "req": 3,
@@ -2160,7 +2193,7 @@
    "area": "Examen de entrenadores",
    "name": "R12 Con bola alta se va más hacia atrás",
    "status": "pocos datos",
-   "detail": "pocos datos: 3 golpes con el dato (hacen falta 12)"
+   "detail": "pocos datos: 4 golpes con el dato (hacen falta 12)"
   },
   {
    "req": 3,
@@ -2181,7 +2214,7 @@
    "area": "Examen de entrenadores",
    "name": "R15 Contacto con el codo flexionado (doble flexión mayoritaria)",
    "status": "pocos datos",
-   "detail": "pocos datos: 5 golpes con el dato (hacen falta 12)"
+   "detail": "pocos datos: 3 golpes con el dato (hacen falta 12)"
   },
   {
    "req": 3,
@@ -2209,7 +2242,7 @@
    "area": "Examen de entrenadores",
    "name": "R21 El peso pasa del pie de atrás al de delante",
    "status": "pocos datos",
-   "detail": "pocos datos: 2 golpes con el dato (hacen falta 12)"
+   "detail": "pocos datos: 9 golpes con el dato (hacen falta 12)"
   },
   {
    "req": 3,
@@ -2342,21 +2375,21 @@
    "area": "Valores posibles",
    "name": "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
    "status": "ok",
-   "detail": "59 medidas: 3 dudosa, 34 fiable, 7 no comprobable, 2 ruido, 3 sesgo, 10 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±4.92, loaded.racket_head_lateral ±2.83. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 59.3° / 3D 8.0°, stroke.shoulders_open_first 2D 59.3° / 3D 8.0°, stroke.shoulder_brake 2D 59.3° / 3D 8.0°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
+   "detail": "64 medidas: 6 dudosa, 45 fiable, 8 no comprobable, 1 ruido, 4 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.65. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
   },
   {
    "req": 3,
    "area": "Valores posibles",
    "name": "Punta de la raqueta respecto a la cabeza en el armado",
-   "status": "pocos datos",
-   "detail": "medido en 2 de 10 golpes; en «Aprende»; fiabilidad: sin juzgar"
+   "status": "ok",
+   "detail": "medido en 7 de 10 golpes; en «Aprende»; fiabilidad: fiable"
   },
   {
    "req": 3,
    "area": "Valores posibles",
    "name": "Frenado de los hombros antes del contacto",
    "status": "ok",
-   "detail": "medido en 10 de 10 golpes; en «Aprende»; fiabilidad: sesgo"
+   "detail": "medido en 10 de 10 golpes; en «Aprende»; fiabilidad: no comprobable"
   },
   {
    "req": 3,
@@ -2370,7 +2403,7 @@
    "area": "Valores posibles",
    "name": "Lo no medible se dice",
    "status": "ok",
-   "detail": "17 elementos en «Lo que la tele no permite medir»"
+   "detail": "16 elementos en «Lo que la tele no permite medir»"
   },
   {
    "req": 6,
@@ -2524,7 +2557,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "32570 caracteres de texto, 5 vídeos, 8 gráficos; mensajes de vacío: ['']",
+   "detail": "35322 caracteres de texto, 5 vídeos, 8 gráficos; mensajes de vacío: ['']",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2532,7 +2565,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Sus golpes (Videoteca y pista)»",
    "status": "ok",
-   "detail": "3344 caracteres de texto, 5 vídeos, 1 gráficos",
+   "detail": "3336 caracteres de texto, 5 vídeos, 1 gráficos",
    "file": "pantalla_2_videoteca.jpg"
   },
   {
@@ -2540,7 +2573,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "7051 caracteres de texto, 6 vídeos, 28 gráficos",
+   "detail": "7467 caracteres de texto, 6 vídeos, 28 gráficos",
    "file": "pantalla_3_golpe.jpg"
   },
   {
@@ -2548,7 +2581,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Comparar dos golpes»",
    "status": "ok",
-   "detail": "5224 caracteres de texto, 5 vídeos, 2 gráficos",
+   "detail": "5290 caracteres de texto, 5 vídeos, 2 gráficos",
    "file": "pantalla_4_comparar.jpg"
   },
   {
@@ -2556,7 +2589,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "6832 caracteres de texto, 5 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']",
+   "detail": "6564 caracteres de texto, 5 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2564,7 +2597,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Tabla de golpes (Explorador)»",
    "status": "ok",
-   "detail": "3231 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "3232 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_6_explorador.jpg"
   },
   {
@@ -2580,7 +2613,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Fiabilidad de las medidas»",
    "status": "ok",
-   "detail": "3108 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "2384 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_8_fiabilidad.jpg"
   },
   {
@@ -2588,7 +2621,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "1310 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "1258 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -2673,14 +2706,14 @@
    "area": "Aprende su derecha",
    "name": "La pantalla responde a cada combinación",
    "status": "ok",
-   "detail": "1104 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 75072 puntos de control comprobados; 291 con golpes exactos"
+   "detail": "1104 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 80592 puntos de control comprobados; 295 con golpes exactos"
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha",
    "status": "pocos datos",
-   "detail": "0 golpes exactos, 9 parecidos; 63 de 68 puntos con su valor medido"
+   "detail": "0 golpes exactos, 9 parecidos; 72 de 73 puntos con su valor medido"
   },
   {
    "req": 1,
@@ -2694,21 +2727,21 @@
    "area": "Aprende su derecha",
    "name": "Estilo de su derecha en una frase",
    "status": "ok",
-   "detail": "Estilo de su derecha: preparación amplia (90 %) · apoyo variable (la más frecuente, abierto, en 30 %) · efecto liftado (de abajo arriba) (80 %) · terminación variable (la más frecuente, sobre el hombro, en 40 %) provisional: 10 golpes."
+   "detail": "Estilo de su derecha: preparación amplia (90 %) · apoyo variable (la más frecuente, abierto, en 30 %) · efecto liftado (de abajo arriba) (80 %) · terminación sobre el hombro (50 %) provisional: 10 golpes."
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "Puntos de «Aprende» con su valor medido (todas sus derechas)",
    "status": "ok",
-   "detail": "63 de 68; el resto dice por qué falta"
+   "detail": "72 de 73; el resto dice por qué falta"
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "«Tu objetivo»: la consigna con su número en cada medida suya fiable",
    "status": "ok",
-   "detail": "41 medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); 58 palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados"
+   "detail": "49 medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); 60 palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados"
   },
   {
    "req": 2,
@@ -2813,7 +2846,7 @@
    "area": "Automático",
    "name": "Golpes dudosos (duda sobre el golpe, no sobre una medida)",
    "status": "ok",
-   "detail": "1 de 10 del lado cercano (10%); motivos: elbow_implausible_at_impact 1. Otros 7 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos"
+   "detail": "1 de 10 del lado cercano (10%); motivos: elbow_implausible_at_impact 1. Otros 5 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos"
   },
   {
    "req": 5,
@@ -2827,7 +2860,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "154 min para 35 min de vídeo ≈ 15.4 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "217 min para 35 min de vídeo ≈ 21.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -2855,7 +2888,7 @@
    "area": "Ficheros",
    "name": "Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series",
    "status": "ok",
-   "detail": "11 ficheros de etapa, 26 golpes con ventana y serie"
+   "detail": "11 ficheros de etapa, 27 golpes con ventana y serie"
   },
   {
    "req": 5,
@@ -2904,7 +2937,7 @@
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 189 comprobaciones: 1 aviso, 50 pocos datos, 138 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 191 comprobaciones: 2 aviso, 50 pocos datos, 139 ok; la peor: «3. Pies y desplazamiento · Base y anchura de la base sobre la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -2918,7 +2951,7 @@
    "area": "Peticiones",
    "name": "#6 Juego de pies: split step, primer paso, ajuste, reacción, recuperación",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 33 comprobaciones: 1 aviso, 4 pocos datos, 28 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 35 comprobaciones: 2 aviso, 4 pocos datos, 29 ok; la peor: «3. Pies y desplazamiento · Base y anchura de la base sobre la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -2953,7 +2986,7 @@
    "area": "Peticiones",
    "name": "#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 186 comprobaciones: 1 aviso, 40 pocos datos, 145 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 188 comprobaciones: 2 aviso, 40 pocos datos, 146 ok; la peor: «3. Pies y desplazamiento · Base y anchura de la base sobre la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -2974,7 +3007,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (154 min para 35 min de vídeo ≈ 15.4 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (217 min para 35 min de vídeo ≈ 21.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -2995,7 +3028,7 @@
    "area": "Peticiones",
    "name": "#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»",
    "status": "pocos datos",
-   "detail": "9 comprobaciones: 1 pocos datos, 8 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 63 de 68 puntos con su valor medido)"
+   "detail": "9 comprobaciones: 1 pocos datos, 8 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 72 de 73 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -3016,7 +3049,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (154 min para 35 min de vídeo ≈ 15.4 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (217 min para 35 min de vídeo ≈ 21.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3079,7 +3112,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (154 min para 35 min de vídeo ≈ 15.4 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (217 min para 35 min de vídeo ≈ 21.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3205,7 +3238,7 @@
    "area": "Peticiones",
    "name": "#47 Modelo técnico con fuentes; cómo saber si está completo",
    "status": "aviso",
-   "detail": "164 comprobaciones: 1 aviso, 31 pocos datos, 132 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "detail": "166 comprobaciones: 2 aviso, 31 pocos datos, 133 ok; la peor: «3. Pies y desplazamiento · Base y anchura de la base sobre la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -3289,7 +3322,7 @@
    "area": "Peticiones",
    "name": "#59 Diferencias solo por encima del error y en situaciones equivalentes",
    "status": "pocos datos",
-   "detail": "6 comprobaciones: 2 pocos datos, 4 ok; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 2 de 10 golpes; en «Aprende»; fiabilidad: sin juzgar)"
+   "detail": "6 comprobaciones: 1 pocos datos, 5 ok; la peor: «Cada frase lleva cuántos golpes la respaldan y su fiabilidad» (0 frases)"
   },
   {
    "req": 11,
@@ -3324,21 +3357,21 @@
    "area": "Peticiones",
    "name": "#68 La meta: mejorar mi derecha tomando la de X como base",
    "status": "pocos datos",
-   "detail": "7 comprobaciones: 1 pocos datos, 6 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 63 de 68 puntos con su valor medido)"
+   "detail": "7 comprobaciones: 1 pocos datos, 6 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 72 de 73 puntos con su valor medido)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica",
    "status": "pocos datos",
-   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 63 de 68 puntos con su valor medido)"
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 72 de 73 puntos con su valor medido)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#70 Las 2000 y pico combinaciones, usables y validadas",
    "status": "pocos datos",
-   "detail": "10 comprobaciones: 9 pocos datos, 1 ok; la peor: «Bola rápida / lenta: cada medida en cada nivel» (68 medidas × 4 niveles = 272 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: lenta 2, media 3, ráp)"
+   "detail": "10 comprobaciones: 9 pocos datos, 1 ok; la peor: «Bola rápida / lenta: cada medida en cada nivel» (72 medidas × 4 niveles = 288 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: lenta 2, media 3, ráp)"
   },
   {
    "req": 11,
@@ -3352,7 +3385,7 @@
    "area": "Peticiones",
    "name": "#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 165 comprobaciones: 1 aviso, 31 pocos datos, 133 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 167 comprobaciones: 2 aviso, 31 pocos datos, 134 ok; la peor: «3. Pies y desplazamiento · Base y anchura de la base sobre la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -3373,7 +3406,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (154 min para 35 min de vídeo ≈ 15.4 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (217 min para 35 min de vídeo ≈ 21.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3561,8 +3594,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#102 Mejora 4: punta de la raqueta respecto a la cabeza en el armado",
-   "status": "pocos datos",
-   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 2 de 10 golpes; en «Aprende»; fiabilidad: sin juzgar)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3723,7 +3756,7 @@
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (154 min para 35 min de vídeo ≈ 15.4 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (217 min para 35 min de vídeo ≈ 21.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
