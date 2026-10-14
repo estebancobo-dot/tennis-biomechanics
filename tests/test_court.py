@@ -229,6 +229,93 @@ def test_court_stage_reuses_presets(tmp_path, monkeypatch):
                 assert s["H"] is None
             else:
                 assert s["H"] is not None and _corner_err(np.array(s["H"]), real_fit(grab(None, i * 8 + 4)).H) < 2.0
-    # the 6 longest shots are fitted first; afterwards only the shot without court is searched
+    # the 6 longest shots are fitted first; afterwards only the shot without court is searched (once:
+    # a full search at most every 8 s of a shot); the 4 frames of each other shot reuse a known court
     assert calls["search"] == 6 + 1
-    assert res["known_court_reused"] == 7 and res["with_court"] >= 4
+    assert res["known_court_reused"] == 7 * 4 and res["with_court"] >= 4
+
+
+# --- failure modes seen on the US Open final (PC, 35 min: court on 10.6 of 32.7 min of "main camera")
+
+def _run_court_stage(tmp_path, monkeypatch, fps, shots, frame_at):
+    from tennisbio import stages
+    from tennisbio.catalog import Match, Player
+    from tennisbio.pipeline import Context
+
+    monkeypatch.setattr(stages, "grab_frame", lambda video, t: frame_at(t))
+    out = tmp_path / "out"
+    out.mkdir()
+    (out / "scenes.json").write_text(json.dumps({"fps": fps, "shots": shots}))
+    ctx = Context(Match("m1", tmp_path / "v.mp4", Player("p", "P")), {}, out, log=lambda *_: None)
+    ctx._prog["stage"] = "court"
+    res = stages.st_court(ctx)
+    return res, json.loads((out / "court.json").read_text())["shots"]
+
+
+def _court_frames(segs, n):
+    has = np.zeros(n, bool)
+    for s in segs:
+        if s["H"] is not None:
+            has[s["start"]:s["end"]] = True
+    return has
+
+
+def test_court_stage_finds_a_rally_inside_a_missed_cut(tmp_path, monkeypatch):
+    """The shot classifier missed the cuts: one 24-s "main camera" shot is a close-up, a 7-s rally
+    (6-13 s, with a blurred frame at 9-10 s) and another close-up. One frame per 8 s (the former
+    stage: 4, 12 and 20 s) gave the court to 8-16 s, half of it close-up, and lost 6-8 s. Now the
+    court covers the rally to within half a second and none of the close-ups."""
+    fps, T = 10, 24
+    court = render(broadcast_H(20.0), seed=7)
+    blurred = cv2.blur(court, (25, 1))                              # lines smeared: the known court scores < 0.5
+    cache = {}
+
+    def frame_at(t):
+        if 6 <= t < 13:
+            return blurred if 9 <= t < 10 else court
+        k = int(t)
+        if k not in cache:
+            cache[k] = _clutter(200 + k)                             # close-up: another view every second
+        return cache[k]
+
+    res, segs = _run_court_stage(tmp_path, monkeypatch, fps, [{"start": 0, "end": T * fps, "main_camera": True}], frame_at)
+    has = _court_frames(segs, T * fps)
+    assert has[int(6.5 * fps):int(12.5 * fps)].all()                # the whole rally, blurred frame included
+    assert not has[:int(5.5 * fps)].any() and not has[int(13.5 * fps):].any()   # no close-up
+    assert res["filled_same_view"] >= 1
+    for s in segs:
+        if s["H"] is not None:
+            assert _corner_err(np.array(s["H"]), broadcast_H(20.0)) < 6.0
+
+
+def test_court_stage_does_not_carry_the_court_over_a_cut(tmp_path, monkeypatch):
+    """A neighbour's court is only kept on a frame of the same view: after a cut to a close-up
+    (a frame without court lines that differs from the court frames) nothing is carried over,
+    even when the close-up comes between two frames with the court."""
+    fps, T = 10, 12
+    court = render(broadcast_H(20.0), seed=8)
+    close = _clutter(77)
+    res, segs = _run_court_stage(tmp_path, monkeypatch, fps, [{"start": 0, "end": T * fps, "main_camera": True}],
+                                 lambda t: close if 5 <= t < 7 else court)
+    has = _court_frames(segs, T * fps)
+    assert has[:int(4.5 * fps)].all() and has[int(7.5 * fps):].all()
+    assert not has[int(5.5 * fps):int(6.5 * fps)].any()
+    assert res["filled_same_view"] == 0
+
+
+def test_fit_in_the_shade():
+    """A stand's shadow over part of the court (or the whole court in the shade): the lines are
+    darker than the absolute brightness bars of the first masks. Before the shade mask, the
+    partly shaded court gave a wrong homography (17 px off) and the shaded court none."""
+    H = broadcast_H(20.0)
+    base = render(H, seed=4).astype(float)
+    for right_x, light in ((960, 0.5), (1344, 0.35), (2400, 0.5)):        # a shadow edge across the court
+        shade = np.zeros(base.shape[:2], np.uint8)
+        cv2.fillPoly(shade, [np.array([[0, 0], [right_x, 0], [right_x - 400, 1080], [0, 1080]])], 1)
+        img = base.copy()
+        img[shade > 0] *= light
+        fit = fit_court(img.clip(0, 255).astype(np.uint8))
+        assert fit is not None and fit.score > 0.8
+        assert _corner_err(fit.H, H) < 6.0
+    dark_clutter = (_clutter(9) * 0.45).astype(np.uint8)                   # crowd in the shade: still no court
+    assert fit_court(dark_clutter) is None

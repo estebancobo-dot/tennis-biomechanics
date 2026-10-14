@@ -36,8 +36,10 @@ SIDELINES = {"left_doubles": -W_DOUBLES / 2, "left_singles": -W_SINGLES / 2,
 
 
 # (top-hat contrast, max saturation, min brightness): strict first; then faint thin lines in wide
-# shots; then lines tinted by the surface (clay)
-LINE_PARAMS = [(25, 70, 150), (15, 70, 130), (20, 115, 140)]
+# shots; then lines tinted by the surface (clay); last, lines in the shade (a stand's shadow over
+# part of the court, late afternoon, overcast): a white line at half the light is darker than the
+# absolute bars above but still stands out from its surroundings (top-hat) and stays unsaturated
+LINE_PARAMS = [(25, 70, 150), (15, 70, 130), (20, 115, 140), (20, 70, 60)]
 
 
 def _line_features(frame: np.ndarray):

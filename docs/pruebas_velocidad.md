@@ -12,7 +12,10 @@ cómo está cubierto. ✔ = cubierto por prueba automática o por diseño; ◐ =
 | FP16 | Cachés de pose antiguas (FP32) en `_smoke` | esquina | se reutilizan: el recálculo no cambia las medidas | ✔ huella de la etapa; revisión automática OK/REGRESIÓN |
 | Pista | Plano con una cámara ya vista | nominal | reutiliza la homografía (umbral igual que una búsqueda) | ✔ `tests/test_court.py` (mismo resultado que el código antiguo) |
 | Pista | Plano sin pista (primer plano, público) | límite | búsqueda completa y sin homografía, como antes | ✔ idem |
-| Pista | Zoom lento de la cámara | esquina | revisión cada ~8 s; si la conocida baja de 0,5 se busca de nuevo | ✔ por diseño; ◐ «court_presets» en el PC |
+| Pista | Zoom lento de la cámara | esquina | revisión cada 2 s (búsqueda completa como mucho cada 8 s); si la conocida baja de 0,5 se busca de nuevo | ✔ por diseño; ◐ «court_presets» en el PC |
+| Pista | Corte no detectado (punto + primer plano en un mismo «plano») | error en fuentes | fotograma cada 2 s y bisección a 0,5 s del cambio | ✔ `test_court_stage_finds_a_rally_inside_a_missed_cut` |
+| Pista | Líneas tapadas o borrosas con la cámara quieta | límite | se conserva la pista del vecino de la misma vista si puntúa ≥ 0,3; nunca tras un corte | ✔ idem y `test_court_stage_does_not_carry_the_court_over_a_cut` |
+| Pista | Sombra sobre parte o toda la pista | límite | máscara de líneas en sombra (contraste local, sin brillo mínimo alto) | ✔ `test_fit_in_the_shade` |
 | Pista | 4 ffmpeg a la vez | rendimiento | lectura adelantada en hilos | ◐ no probado en el PC |
 | Marcador | Marcador igual entre muestras | nominal | se reutiliza la lectura (OCR al cambiar o cada 30 s) | ✔ `tests/test_scoreboard.py` |
 | Marcador | Cambia un dígito, el saque o un rótulo | límite | cuenta como cambio → OCR | ✔ idem |

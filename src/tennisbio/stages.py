@@ -511,13 +511,40 @@ def _same_court(H1, H2, tol_px=1.0) -> bool:
     return bool(np.abs(p1[:, :2] / p1[:, 2:] - p2[:, :2] / p2[:, 2:]).max() <= tol_px)
 
 
-@stage("court", "3", deps=("scenes",), outputs=("court.json",))
-def st_court(ctx: Context, n_fit=6, min_score=0.5, every_s=8.0, max_known=64):
-    """Court homography of the main camera: fitted on a few long main-camera shots; every stretch
-    of main camera first tries the courts already found in this match (a broadcast uses a few
-    camera presets: the best one that scores ≥ min_score, the same bar as a fresh fit, is kept)
-    and only searches its own fit when none does."""
-    from .court import LineMasks, camera_pitch_deg, fit_court, match_known
+def _thumb(frame: np.ndarray) -> np.ndarray:
+    """Tiny grey version of a frame (64×36), minus its mean brightness (a cloud or the camera's
+    exposure changes it all), to tell whether the camera kept the same view."""
+    import cv2
+
+    g = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    th = cv2.resize(g, (64, 36), interpolation=cv2.INTER_AREA).astype(np.float32)
+    return th - th.mean()
+
+
+def _same_view(a, b, tol=12.0) -> bool:
+    """Same camera view (no cut, no big pan or zoom): the thumbnails differ little on average
+    (players, ball and graphics are small at 64×36; a cut to a close-up changes most of it)."""
+    return a is not None and b is not None and float(np.abs(a - b).mean()) <= tol
+
+
+@stage("court", "4", deps=("scenes",), outputs=("court.json",))
+def st_court(ctx: Context, n_fit=6, min_score=0.5, every_s=8.0, step_s=2.0, refine_s=0.5, fill_score=0.3,
+             max_known=64):
+    """Court homography of the main camera, decided on frames sampled every `step_s` seconds of
+    every main-camera shot (not one per shot: the shot classifier misses many cuts between the
+    main camera and close-ups with the same colours, so one "shot" often holds a rally AND the
+    close-up that follows; one frame per stretch threw away the rally whenever it fell on the
+    close-up). Each frame first tries the courts already found in this match (a broadcast uses a
+    few camera presets: the best one that scores ≥ min_score, the same bar as a fresh fit); a full
+    search runs at most every `every_s` seconds of a shot (it is the slow part, and on close-ups
+    it finds nothing). Where two neighbouring frames disagree (court / no court / another preset)
+    the change is located by bisection to `refine_s`. A frame where the court is not found but
+    the camera has not moved since a neighbouring frame with the court (same view: a player or a
+    shadow hides lines) keeps that court if it still scores ≥ fill_score there. Every frame of a
+    shot takes the result of its nearest sample."""
+    from bisect import bisect_left, insort
+
+    from .court import CourtFit, LineMasks, camera_pitch_deg, fit_court, match_known, score_many
 
     sc = _read(ctx.path("scenes.json"))
     fps = sc["fps"]
@@ -540,40 +567,111 @@ def st_court(ctx: Context, n_fit=6, min_score=0.5, every_s=8.0, max_known=64):
             first.append(fit)
     for fit in sorted(first, key=lambda f: -f.score):
         remember(fit)
-    # checked every ~every_s seconds, not only once: a zoom or a pan inside the shot gets its
-    # own fit (or no court) for that stretch instead of a wrong one
-    segs = []
-    for i_s, s in enumerate(main):
-        n = int(np.clip(round((s["end"] - s["start"]) / fps / every_s), 1, 8))
-        edges = np.linspace(s["start"], s["end"], n + 1).round().astype(int)
-        segs += [(i_s, int(a), int(b)) for a, b in zip(edges[:-1], edges[1:])]
-    out, n_known, n_search = [], 0, 0
-    frames = _prefetch(grab, [(a + b) / 2 / fps for _, a, b in segs])
-    for (i_s, a, b), (_, fr) in zip(segs, frames):
-        ctx.progress(i_s + 1, len(main), "planos")
-        if fr is None:
-            continue
-        masks = LineMasks(fr)
-        fit = match_known(fr, known, min_score, masks)
-        if fit is not None:
-            n_known += 1
-        else:
-            n_search += 1
-            fit = fit_court(fr, min_score=min_score, masks=masks)
+
+    samples = {}                     # (shot, t) → {"H", "score", "pitch", "thumb", "searched", "n_known", "tried"}
+    times = {i: [] for i in range(len(main))}
+    last_search = {}
+    cnt = {"known": 0, "search": 0, "filled": 0}
+
+    def same(a, b):
+        return (a is None) == (b is None) and (a is None or _same_court(a, b))
+
+    def neighbours(i_s, t):
+        """Times of the evaluated samples just before and just after t in the same shot."""
+        ts = times[i_s]
+        k = bisect_left(ts, t)
+        nxt = k + 1 if k < len(ts) and ts[k] == t else k
+        return [ts[j] for j in (k - 1, nxt) if 0 <= j < len(ts)]
+
+    def evaluate(items, may_search):
+        for (i_s, t), fr in _prefetch(lambda x: grab(x[1]), items):
+            if fr is None:
+                continue
+            masks, th = LineMasks(fr), _thumb(fr)
+            fit, searched = match_known(fr, known, min_score, masks), False
             if fit is not None:
-                remember(fit)
-        score = fit.score if fit is not None else 0.0
-        seg = {"start": a, "end": b, "score": round(score, 3),
-               "H": None if fit is None or score < min_score else fit.H.tolist(),
-               "pitch_deg": None if fit is None or score < min_score else round(camera_pitch_deg(fit, fr.shape), 1)}
-        if out and out[-1]["end"] == seg["start"] and out[-1]["H"] == seg["H"]:
-            out[-1]["end"] = seg["end"]               # same court: one segment
-        else:
-            out.append(seg)
+                cnt["known"] += 1
+            elif may_search and t - last_search.get(i_s, -np.inf) >= every_s - 1e-6:
+                searched, last_search[i_s] = True, t
+                cnt["search"] += 1
+                fit = fit_court(fr, min_score=min_score, masks=masks)
+                if fit is not None:
+                    remember(fit)
+            tried = set()
+            if fit is None:          # the camera has not moved since a neighbour with the court
+                for tn in neighbours(i_s, t):
+                    nb = samples[(i_s, tn)]
+                    if nb["H"] is None or not _same_view(th, nb["thumb"]):
+                        continue
+                    tried.add(tn)
+                    s = max(float(score_many(nb["H"][None], masks[m][1], masks[m][2])[0]) for m in range(len(masks)))
+                    if s >= fill_score and (fit is None or s > fit.score):
+                        fit = CourtFit(nb["H"].copy(), s)
+                if fit is not None:
+                    cnt["filled"] += 1
+            samples[(i_s, t)] = {"H": None if fit is None else np.asarray(fit.H, float), "score": 0.0 if fit is None else fit.score,
+                                 "pitch": None if fit is None else round(camera_pitch_deg(fit, fr.shape), 1),
+                                 "thumb": th, "searched": searched, "n_known": len(known), "tried": tried}
+            k = bisect_left(times[i_s], t)
+            if k == len(times[i_s]) or times[i_s][k] != t:
+                insort(times[i_s], t)
+
+    # 1) every step_s seconds of every main-camera shot
+    grid = []
+    for i_s, s in enumerate(main):
+        n = max(1, int(np.ceil((s["end"] - s["start"]) / fps / step_s - 1e-9)))
+        edges = np.linspace(s["start"], s["end"], n + 1) / fps
+        grid += [(i_s, float((a + b) / 2)) for a, b in zip(edges[:-1], edges[1:])]
+    for k in range(0, len(grid), 64):
+        evaluate(grid[k:k + 64], True)
+        ctx.progress(min(len(grid), k + 64), len(grid), "fotogramas")
+    # 2) a second look at frames without court: a preset found later in the match, or a neighbour
+    # with the court in the same view that was evaluated after them
+    again = []
+    for (i_s, t), d in samples.items():
+        if d["H"] is not None:
+            continue
+        later_preset = not d["searched"] and d["n_known"] < len(known)
+        if later_preset or any(samples[(i_s, tn)]["H"] is not None and tn not in d["tried"]
+                               and _same_view(d["thumb"], samples[(i_s, tn)]["thumb"]) for tn in neighbours(i_s, t)):
+            again.append((i_s, t))
+    evaluate(sorted(again), False)
+    # 3) where neighbouring frames disagree, the change is located by bisection
+    for _ in range(8):
+        new = []
+        for i_s, ts in times.items():
+            for t0, t1 in zip(ts[:-1], ts[1:]):
+                if t1 - t0 > refine_s + 1e-6 and not same(samples[(i_s, t0)]["H"], samples[(i_s, t1)]["H"]):
+                    new.append((i_s, (t0 + t1) / 2))
+        if not new:
+            break
+        evaluate(new, False)
+
+    # every frame of a shot takes its nearest sample; same court in a row → one segment
+    out = []
+    for i_s, s in enumerate(main):
+        ts = times[i_s]
+        if not ts:
+            continue
+        cuts = [s["start"]] + [int(np.clip(round((a + b) / 2 * fps), s["start"], s["end"])) for a, b in zip(ts[:-1], ts[1:])] + [s["end"]]
+        for t, a, b in zip(ts, cuts[:-1], cuts[1:]):
+            if b <= a:
+                continue
+            d = samples[(i_s, t)]
+            seg = {"start": a, "end": b, "score": round(d["score"], 3),
+                   "H": None if d["H"] is None else d["H"].tolist(), "pitch_deg": d["pitch"]}
+            if out and out[-1]["end"] == seg["start"] and out[-1]["H"] == seg["H"]:
+                out[-1]["end"] = seg["end"]           # same court: one segment
+            else:
+                out.append(seg)
     _write(ctx.path("court.json"), {"fps": fps, "shots": out})
     ok = [o for o in out if o["H"] is not None]
-    return {"segments": len(out), "with_court": len(ok), "known_court_reused": n_known, "searched": n_search,
-            "court_presets": len(known),
+    main_f = sum(s["end"] - s["start"] for s in main)
+    court_f = sum(o["end"] - o["start"] for o in ok)
+    return {"segments": len(out), "with_court": len(ok), "known_court_reused": cnt["known"], "searched": cnt["search"],
+            "filled_same_view": cnt["filled"], "samples": len(samples), "court_presets": len(known),
+            "main_camera_min": round(main_f / fps / 60, 1), "court_min": round(court_f / fps / 60, 1),
+            "court_share": round(court_f / max(main_f, 1), 3),
             "pitch_deg_median": float(np.median([o["pitch_deg"] for o in ok])) if ok else None}
 
 
