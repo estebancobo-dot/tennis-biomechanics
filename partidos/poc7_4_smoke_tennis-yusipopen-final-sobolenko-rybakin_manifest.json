@@ -1,0 +1,117 @@
+{
+ "probe": {
+  "fingerprint": "031879ffbaa671ea",
+  "version": "2",
+  "seconds": 0.2,
+  "finished": "2026-10-14 20:17:02",
+  "summary": {
+   "duration_min": 4.0,
+   "fps": 50.0,
+   "size": "1920x1080",
+   "cleaned": false,
+   "vfr": true
+  }
+ },
+ "scenes": {
+  "fingerprint": "8f2aaa7b567f6129",
+  "version": "3",
+  "seconds": 29.9,
+  "finished": "2026-10-14 20:17:32",
+  "summary": {
+   "shots": 41,
+   "main_camera_shots": 11,
+   "detector": "transnetv2",
+   "main_camera_min": 1.4,
+   "main_rule": "lines",
+   "main_camera_min_colour": 3.5,
+   "main_views": 10
+  }
+ },
+ "audio": {
+  "fingerprint": "dcde3fab19a8c681",
+  "version": "2",
+  "seconds": 16.2,
+  "finished": "2026-10-14 20:17:48",
+  "summary": {
+   "onsets": 243,
+   "tracks": 1
+  }
+ },
+ "court": {
+  "fingerprint": "7bd0c84df09ec8f2",
+  "version": "4",
+  "seconds": 19.7,
+  "finished": "2026-10-14 20:18:08",
+  "summary": {
+   "segments": 30,
+   "with_court": 27,
+   "known_court_reused": 69,
+   "searched": 3,
+   "filled_same_view": 3,
+   "samples": 83,
+   "court_presets": 9,
+   "main_camera_min": 1.4,
+   "court_min": 1.3,
+   "court_share": 0.887,
+   "pitch_deg_median": 18.3
+  }
+ },
+ "score": {
+  "fingerprint": "731eba8c1c95f155",
+  "version": "6",
+  "seconds": 53.0,
+  "finished": "2026-10-14 20:19:01",
+  "summary": {
+   "readings": 19,
+   "pressure": 7,
+   "samples": 19,
+   "ocr_calls": 18
+  }
+ },
+ "players": {
+  "fingerprint": "4c2ce989f8f015b3",
+  "version": "4",
+  "seconds": 63.2,
+  "finished": "2026-10-14 20:19:11",
+  "summary": {
+   "frames": 751,
+   "wall_min": 1.0,
+   "model_min": 0.8,
+   "read_min": 1.0,
+   "wait_min": 0.2,
+   "appearance_min": 0.0
+  },
+  "overlap_s": 53.0
+ },
+ "identity": {
+  "fingerprint": "15f3b1f821cb4e7b",
+  "version": "4",
+  "seconds": 1.7,
+  "finished": "2026-10-14 20:19:13",
+  "summary": {
+   "runs": 11,
+   "votes": 8,
+   "confidence": 0.62,
+   "by_end_changes": 11,
+   "by_clothes": 0,
+   "conflicts": 0,
+   "decided": 11
+  }
+ },
+ "candidates": {
+  "fingerprint": "a73a5a6c433e911f",
+  "version": "7",
+  "seconds": 1.9,
+  "finished": "2026-10-14 20:19:15",
+  "summary": {
+   "candidates": 39,
+   "far": 27,
+   "with_audio": 39,
+   "opponent_runs": 0,
+   "identity_unknown": 0,
+   "replay_runs_skipped": 1,
+   "replays_by_path": 1,
+   "audio_track": 0
+  }
+ }
+}

@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 275,
+  "ok": 277,
   "falta": 0,
-  "pocos datos": 115,
-  "aviso": 30
+  "pocos datos": 122,
+  "aviso": 21
  },
  "items": [
   {
@@ -804,8 +804,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Base y anchura de la base sobre la pista",
-   "status": "aviso",
-   "detail": "medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa)",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
    "keys": [
     "finish.base_court_m",
     "impact.base_court_m",
@@ -1556,7 +1556,7 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Caída de la raqueta por debajo de la bola",
    "status": "pocos datos",
-   "detail": "vista lateral de entrenamiento: racket_drop_below_contact_cm en 3 derechas de lado; se resume con 12 o más",
+   "detail": "vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más",
    "keys": [
     "racket_drop_below_contact_cm"
    ]
@@ -1659,8 +1659,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Pasos cruzados",
-   "status": "aviso",
-   "detail": "medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa)",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
    "keys": [
     "footwork.crossover_steps",
     "footwork.step_kinds"
@@ -1814,7 +1814,7 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Zona de impacto: delante de la cadera",
    "status": "pocos datos",
-   "detail": "vista lateral de entrenamiento: contact_in_front_pct en 3 derechas de lado; se resume con 12 o más",
+   "detail": "vista lateral de entrenamiento: contact_in_front_pct en 6 derechas de lado; se resume con 12 o más",
    "keys": [
     "contact_in_front_pct"
    ]
@@ -1915,7 +1915,7 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Liberación anticipada de la muñeca («casting»)",
    "status": "pocos datos",
-   "detail": "vista lateral de entrenamiento: lag_accel_deg en 3 derechas de lado, lag_pre_impact_deg en 3 derechas de lado; se resume con 12 o más",
+   "detail": "vista lateral de entrenamiento: lag_accel_deg en 5 derechas de lado, lag_pre_impact_deg en 6 derechas de lado; se resume con 12 o más",
    "keys": [
     "lag_accel_deg",
     "lag_pre_impact_deg"
@@ -1937,7 +1937,7 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Ángulo real del swing de abajo arriba (+10° a +45°)",
    "status": "pocos datos",
-   "detail": "vista lateral de entrenamiento: swing_angle_deg en 3 derechas de lado; se resume con 12 o más",
+   "detail": "vista lateral de entrenamiento: swing_angle_deg en 6 derechas de lado; se resume con 12 o más",
    "keys": [
     "swing_angle_deg"
    ]
@@ -1947,7 +1947,7 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Rodilla de atrás en la carga (110–130°) y de delante en el impacto",
    "status": "pocos datos",
-   "detail": "vista lateral de entrenamiento: back_knee_loaded_deg en 3 derechas de lado, front_knee_impact_deg en 3 derechas de lado; se resume con 12 o más",
+   "detail": "vista lateral de entrenamiento: back_knee_loaded_deg en 6 derechas de lado, front_knee_impact_deg en 6 derechas de lado; se resume con 12 o más",
    "keys": [
     "back_knee_loaded_deg",
     "front_knee_impact_deg"
@@ -1958,7 +1958,7 @@
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Inclinación del tronco hacia delante o atrás en el impacto",
    "status": "pocos datos",
-   "detail": "vista lateral de entrenamiento: trunk_lean_impact_deg en 3 derechas de lado; se resume con 12 o más",
+   "detail": "vista lateral de entrenamiento: trunk_lean_impact_deg en 6 derechas de lado; se resume con 12 o más",
    "keys": [
     "trunk_lean_impact_deg"
    ]
@@ -2375,7 +2375,7 @@
    "area": "Valores posibles",
    "name": "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
    "status": "ok",
-   "detail": "64 medidas: 7 dudosa, 44 fiable, 8 no comprobable, 2 ruido, 3 sin juzgar. No se dan como valor suyo (ruido): takeback.shoulder_turn ±3.4, impact.face_tilt ±3.2. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
+   "detail": "64 medidas: 7 dudosa, 41 fiable, 8 no comprobable, 2 ruido, 3 sesgo, 3 sin juzgar. No se dan como valor suyo (ruido): takeback.shoulder_turn ±3.4, impact.face_tilt ±3.2. Fuera de lo físicamente posible en demasiados golpes, no se dan: loaded.back_foot_angle_deg 2 de 8, impact.front_foot_angle_deg 2 de 9, impact.back_foot_angle_deg 4 de 9. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
   },
   {
    "req": 3,
@@ -2410,77 +2410,77 @@
    "area": "Vista lateral (entrenamiento)",
    "name": "Vídeos de entrenamiento analizados",
    "status": "ok",
-   "detail": "5 vídeos, 91 golpes; cámara: {'diagonal': 66, 'lateral': 23, 'trasera': 1, 'frontal': 1}; 2 descartados por valores imposibles"
+   "detail": "5 vídeos, 91 golpes; cámara: {'diagonal': 62, 'trasera': 1, 'lateral': 27, 'frontal': 1}; 3 descartados por valores imposibles"
   },
   {
    "req": 6,
    "area": "Vista lateral (entrenamiento)",
    "name": "Derechas filmadas de lado",
    "status": "pocos datos",
-   "detail": "3 (se resume cada medida con 12 o más)"
+   "detail": "6 (se resume cada medida con 12 o más)"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Impacto delante de la cadera",
    "status": "pocos datos",
-   "detail": "3 derechas de lado con esta medida"
+   "detail": "6 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Ángulo del swing (de abajo arriba)",
    "status": "pocos datos",
-   "detail": "3 derechas de lado con esta medida"
+   "detail": "6 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Codo en el impacto",
    "status": "pocos datos",
-   "detail": "3 derechas de lado con esta medida"
+   "detail": "6 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Rodilla de atrás en el armado",
    "status": "pocos datos",
-   "detail": "3 derechas de lado con esta medida"
+   "detail": "6 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Rodilla de delante en el impacto",
    "status": "pocos datos",
-   "detail": "3 derechas de lado con esta medida"
+   "detail": "6 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Tronco en el impacto",
    "status": "pocos datos",
-   "detail": "3 derechas de lado con esta medida"
+   "detail": "6 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Caída de la raqueta bajo el impacto",
    "status": "pocos datos",
-   "detail": "3 derechas de lado con esta medida"
+   "detail": "6 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Ángulo antebrazo–raqueta al acelerar",
    "status": "pocos datos",
-   "detail": "3 derechas de lado con esta medida"
+   "detail": "5 derechas de lado con esta medida"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Ángulo antebrazo–raqueta antes del impacto",
    "status": "pocos datos",
-   "detail": "3 derechas de lado con esta medida"
+   "detail": "6 derechas de lado con esta medida"
   },
   {
    "req": 1,
@@ -2494,35 +2494,35 @@
    "area": "Vista lateral (entrenamiento)",
    "name": "Impacto delante de la cadera (3D)",
    "status": "ok",
-   "detail": "13 derechas con estimación 3D con esta medida; mediana 27.3"
+   "detail": "12 derechas con estimación 3D con esta medida; mediana 26.8"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Ángulo del swing (3D)",
    "status": "ok",
-   "detail": "13 derechas con estimación 3D con esta medida; mediana 37.3"
+   "detail": "12 derechas con estimación 3D con esta medida; mediana 37.6"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Codo en el impacto (3D)",
    "status": "ok",
-   "detail": "13 derechas con estimación 3D con esta medida; mediana 94.6"
+   "detail": "12 derechas con estimación 3D con esta medida; mediana 95.65"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Rodilla de atrás en el armado (3D)",
    "status": "ok",
-   "detail": "13 derechas con estimación 3D con esta medida; mediana 155.3"
+   "detail": "12 derechas con estimación 3D con esta medida; mediana 148.05"
   },
   {
    "req": 1,
    "area": "Vista lateral (entrenamiento)",
    "name": "Tronco en el impacto (3D)",
    "status": "ok",
-   "detail": "13 derechas con estimación 3D con esta medida; mediana 10.4"
+   "detail": "12 derechas con estimación 3D con esta medida; mediana 8.95"
   },
   {
    "req": 2,
@@ -2557,7 +2557,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "35480 caracteres de texto, 5 vídeos, 8 gráficos; mensajes de vacío: ['']",
+   "detail": "35365 caracteres de texto, 5 vídeos, 8 gráficos; mensajes de vacío: ['']",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2605,7 +2605,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Vista lateral (entreno)»",
    "status": "ok",
-   "detail": "6903 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "7620 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_7_lateral.jpg"
   },
   {
@@ -2613,7 +2613,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Fiabilidad de las medidas»",
    "status": "ok",
-   "detail": "2514 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "2932 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_8_fiabilidad.jpg"
   },
   {
@@ -2621,7 +2621,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "1258 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "1268 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -2713,7 +2713,7 @@
    "area": "Aprende su derecha",
    "name": "Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha",
    "status": "pocos datos",
-   "detail": "0 golpes exactos, 9 parecidos; 71 de 73 puntos con su valor medido"
+   "detail": "0 golpes exactos, 9 parecidos; 68 de 73 puntos con su valor medido"
   },
   {
    "req": 1,
@@ -2734,14 +2734,14 @@
    "area": "Aprende su derecha",
    "name": "Puntos de «Aprende» con su valor medido (todas sus derechas)",
    "status": "ok",
-   "detail": "71 de 73; el resto dice por qué falta"
+   "detail": "68 de 73; el resto dice por qué falta"
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "«Tu objetivo»: la consigna con su número en cada medida suya fiable",
    "status": "ok",
-   "detail": "48 medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); 60 palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados"
+   "detail": "45 medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); 60 palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados"
   },
   {
    "req": 2,
@@ -2860,7 +2860,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "162 min para 35 min de vídeo ≈ 16.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -2936,8 +2936,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 191 comprobaciones: 2 aviso, 50 pocos datos, 139 ok; la peor: «3. Pies y desplazamiento · Base y anchura de la base sobre la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "status": "pocos datos",
+   "detail": "191 comprobaciones: 50 pocos datos, 141 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -2950,8 +2950,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#6 Juego de pies: split step, primer paso, ajuste, reacción, recuperación",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 35 comprobaciones: 2 aviso, 4 pocos datos, 29 ok; la peor: «3. Pies y desplazamiento · Base y anchura de la base sobre la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "status": "pocos datos",
+   "detail": "35 comprobaciones: 4 pocos datos, 31 ok; la peor: «3. Pies y desplazamiento · Split step: aterrizaje respecto al golpe del rival» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -2985,8 +2985,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 188 comprobaciones: 2 aviso, 40 pocos datos, 146 ok; la peor: «3. Pies y desplazamiento · Base y anchura de la base sobre la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "status": "pocos datos",
+   "detail": "188 comprobaciones: 40 pocos datos, 148 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3007,7 +3007,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (162 min para 35 min de vídeo ≈ 16.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3028,7 +3028,7 @@
    "area": "Peticiones",
    "name": "#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»",
    "status": "pocos datos",
-   "detail": "9 comprobaciones: 1 pocos datos, 8 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 71 de 73 puntos con su valor medido)"
+   "detail": "9 comprobaciones: 1 pocos datos, 8 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 68 de 73 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -3049,7 +3049,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (162 min para 35 min de vídeo ≈ 16.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3112,7 +3112,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (162 min para 35 min de vídeo ≈ 16.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3154,7 +3154,7 @@
    "area": "Peticiones",
    "name": "#35 Medidas de la raqueta (altura, ángulos) en todo el golpe; qué miden los profesionales",
    "status": "pocos datos",
-   "detail": "11 comprobaciones: 2 pocos datos, 9 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 3 derechas de lado; se resume con 12 o más)"
+   "detail": "11 comprobaciones: 2 pocos datos, 9 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más)"
   },
   {
    "req": 11,
@@ -3237,8 +3237,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#47 Modelo técnico con fuentes; cómo saber si está completo",
-   "status": "aviso",
-   "detail": "166 comprobaciones: 2 aviso, 31 pocos datos, 133 ok; la peor: «3. Pies y desplazamiento · Base y anchura de la base sobre la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "status": "pocos datos",
+   "detail": "166 comprobaciones: 31 pocos datos, 135 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3328,8 +3328,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#64 Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la ",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 aviso, 2 pocos datos, 7 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "status": "pocos datos",
+   "detail": "10 comprobaciones: 2 pocos datos, 8 ok; la peor: «3. Pies y desplazamiento · Split step: aterrizaje respecto al golpe del rival» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3357,14 +3357,14 @@
    "area": "Peticiones",
    "name": "#68 La meta: mejorar mi derecha tomando la de X como base",
    "status": "pocos datos",
-   "detail": "7 comprobaciones: 1 pocos datos, 6 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 71 de 73 puntos con su valor medido)"
+   "detail": "7 comprobaciones: 1 pocos datos, 6 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 68 de 73 puntos con su valor medido)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica",
    "status": "pocos datos",
-   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 71 de 73 puntos con su valor medido)"
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 68 de 73 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -3384,8 +3384,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 167 comprobaciones: 2 aviso, 31 pocos datos, 134 ok; la peor: «3. Pies y desplazamiento · Base y anchura de la base sobre la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "status": "pocos datos",
+   "detail": "167 comprobaciones: 31 pocos datos, 136 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3406,7 +3406,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (162 min para 35 min de vídeo ≈ 16.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3434,7 +3434,7 @@
    "area": "Peticiones",
    "name": "#79 Vídeos de entrenamiento con otras cámaras, en un apartado aparte y marcado",
    "status": "pocos datos",
-   "detail": "20 comprobaciones: 11 pocos datos, 9 ok; la peor: «Derechas filmadas de lado» (3 (se resume cada medida con 12 o más))"
+   "detail": "20 comprobaciones: 11 pocos datos, 9 ok; la peor: «Derechas filmadas de lado» (6 (se resume cada medida con 12 o más))"
   },
   {
    "req": 11,
@@ -3476,14 +3476,14 @@
    "area": "Peticiones",
    "name": "#85 Matriz §2 Cuerpo (cabeza, brazos, tronco, piernas, pie de arrastre)",
    "status": "pocos datos",
-   "detail": "14 comprobaciones: 4 pocos datos, 10 ok; la peor: «6. Matriz del usuario · Rodilla de atrás en la carga (110–130°) y de delante en el impacto» (vista lateral de entrenamiento: back_knee_loaded_deg en 3 derechas de lado, front_knee_impact_deg en 3 derechas de lado;)"
+   "detail": "14 comprobaciones: 4 pocos datos, 10 ok; la peor: «6. Matriz del usuario · Rodilla de atrás en la carga (110–130°) y de delante en el impacto» (vista lateral de entrenamiento: back_knee_loaded_deg en 6 derechas de lado, front_knee_impact_deg en 6 derechas de lado;)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#86 Matriz §3 Raqueta (bucle, caída, cara, trayectoria)",
    "status": "pocos datos",
-   "detail": "13 comprobaciones: 2 pocos datos, 11 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 3 derechas de lado; se resume con 12 o más)"
+   "detail": "13 comprobaciones: 2 pocos datos, 11 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más)"
   },
   {
    "req": 11,
@@ -3496,8 +3496,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#88 Matriz §5 Pies (split, ajuste, cruzado, paso de ataque, recuperación)",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 aviso, 1 pocos datos, 6 ok; la peor: «6. Matriz del usuario · Pasos cruzados» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "status": "pocos datos",
+   "detail": "8 comprobaciones: 1 pocos datos, 7 ok; la peor: «3. Pies y desplazamiento · Split step: aterrizaje respecto al golpe del rival» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3525,7 +3525,7 @@
    "area": "Peticiones",
    "name": "#92 Matriz §9 Control (zona de impacto, relajación, equilibrio)",
    "status": "pocos datos",
-   "detail": "4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Zona de impacto: delante de la cadera» (vista lateral de entrenamiento: contact_in_front_pct en 3 derechas de lado; se resume con 12 o más)"
+   "detail": "4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Zona de impacto: delante de la cadera» (vista lateral de entrenamiento: contact_in_front_pct en 6 derechas de lado; se resume con 12 o más)"
   },
   {
    "req": 11,
@@ -3560,7 +3560,7 @@
    "area": "Peticiones",
    "name": "#97 Matriz §14 Fugas de energía (apertura prematura, casting, vector)",
    "status": "pocos datos",
-   "detail": "4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Liberación anticipada de la muñeca («casting»)» (vista lateral de entrenamiento: lag_accel_deg en 3 derechas de lado, lag_pre_impact_deg en 3 derechas de lado; se resume)"
+   "detail": "4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Liberación anticipada de la muñeca («casting»)» (vista lateral de entrenamiento: lag_accel_deg en 5 derechas de lado, lag_pre_impact_deg en 6 derechas de lado; se resume)"
   },
   {
    "req": 11,
@@ -3630,7 +3630,7 @@
    "area": "Peticiones",
    "name": "#107 Mejora 9: caída por debajo de la bola",
    "status": "pocos datos",
-   "detail": "2 comprobaciones: 2 pocos datos; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 3 derechas de lado; se resume con 12 o más)"
+   "detail": "2 comprobaciones: 2 pocos datos; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más)"
   },
   {
    "req": 11,
@@ -3756,7 +3756,7 @@
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (162 min para 35 min de vídeo ≈ 16.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,

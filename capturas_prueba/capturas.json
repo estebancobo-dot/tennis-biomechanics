@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 35480,
+   "text_chars": 35365,
    "charts": 8,
    "videos": 5,
    "black_canvases": 0,
@@ -11,7 +11,7 @@
    "empty_msgs": [
     ""
    ],
-   "dashes": 3,
+   "dashes": 6,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -177,7 +177,7 @@
   },
   {
    "title": "Vista lateral (entreno)",
-   "text_chars": 6903,
+   "text_chars": 7620,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -204,7 +204,7 @@
   },
   {
    "title": "Fiabilidad de las medidas",
-   "text_chars": 2514,
+   "text_chars": 2932,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -231,7 +231,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 1258,
+   "text_chars": 1268,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -340,8 +340,8 @@
   "checkpoints_checked": 80592,
   "failures": [],
   "rows_all": 73,
-  "valued_all": 71,
-  "targeted_all": 48,
+  "valued_all": 68,
+  "targeted_all": 45,
   "glossed_all": 60,
   "signature": 5,
   "style": "Estilo de su derecha: preparación amplia (80 %) · apoyo variable (la más frecuente, abierto, en 30 %) · efecto liftado (de abajo arriba) (80 %) · terminación sobre el hombro (50 %) provisional: 10 golpes.",
@@ -349,7 +349,7 @@
    "exact": 0,
    "near": 9,
    "rows": 73,
-   "valued": 71,
+   "valued": 68,
    "bad": []
   }
  }
