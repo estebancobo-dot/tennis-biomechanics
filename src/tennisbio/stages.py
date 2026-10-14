@@ -953,7 +953,7 @@ def _fine_settings(c):
 FINE_CODE = ("stages", "clip_pipeline", "stroke_analysis", "phases", "kinematics", "impacts", "ball", "court_metrics",
              "outcome", "series", "racket", "racket3d", "racket_face", "racket_orientation", "tracking", "technique",
              "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend", "ball3d", "limits", "fine_gate", "pose.hybrid",
-             "footpoints", "pose.wholebody3d")
+             "footpoints", "pose.wholebody3d", "body_scale")
 
 
 def _player_fields(p) -> dict:
@@ -961,7 +961,7 @@ def _player_fields(p) -> dict:
             "grip": [getattr(p, "forehand_grip_close_deg", None), getattr(p, "backhand_grip_close_deg", None)]}
 
 
-@stage("fine", "12", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
+@stage("fine", "13", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
        code=FINE_CODE, match_fields=lambda m: _player_fields(m.player))
 def st_fine(ctx: Context):
     """Full-quality analysis of the target player's candidates. Runs whose identity could not be
@@ -989,7 +989,7 @@ def opponent_profile(match):
     return Player(id="opponent", name=match.opponent or "Rival", hand=match.extra.get("opponent_hand", "right"))
 
 
-@stage("fine_opponent", "6", deps=("candidates", "court", "score"),
+@stage("fine_opponent", "7", deps=("candidates", "court", "score"),
        settings=lambda c: {**_fine_settings(c), "enabled": c.get("analyze_opponent", False)},
        outputs=("strokes_opponent.json",), code=FINE_CODE,
        match_fields=lambda m: {**_player_fields(opponent_profile(m)), "opponent": m.opponent})
@@ -1232,11 +1232,22 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
         extra = {**extra, "anchors": [(p_[0], p_[3], p_[4]) for p_ in dec.get("possible", []) if len(p_) >= 5]}
     from .fine_gate import CONFIRM_TOL_S
     from .pose.hybrid import fine_pose_model
+    # her height in px (the scale of every measure in % of height or in cm) from the court and her
+    # real height (body_scale): the court of the shot, checked on the window's first candidate frame
+    hmode = fp.get("height_scale", "court")
+    H_win = None
+    if hmode == "court" and court:
+        t_ = time.time()
+        H_win = H_far if side == "far" else court_at(court, c["t"], ws)[0]
+        if H_win is not None:
+            H_win = _check_court(clip, c["t"] - t0, H_win, None)[0]
+        _took("pista_ventana", t_)
     t_ = time.time()
     run = run_clip(clip, cache, p.hand, p.height_m, init_mode="near", rackets=side == "near",
                    imgsz=ctx.cfg.get("fine_imgsz", 960), log=lambda *_: None, ball=ball,
                    prefetch=fp.get("pose_prefetch", True), targets=targets,
-                   target_tol=CONFIRM_TOL_S, keep=keep, pose_model=fine_pose_model(ctx.cfg), **extra)
+                   target_tol=CONFIRM_TOL_S, keep=keep, pose_model=fine_pose_model(ctx.cfg),
+                   court_H=H_win, height_scale=hmode, **extra)
     for k, v in run.timing.items():
         _TIMES[k] = _TIMES.get(k, 0.0) + v
     _took("analisis_ventana", t_ + sum(run.timing.values()))         # the rest of run_clip
@@ -1253,7 +1264,8 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
             + (f"; pies en {st['feet_frames']}" if pm == "hybrid" and "feet_frames" in st else "")
             + (f", {st['frames_960']} a 960 px por perderla" if st.get("frames_960") else "")
             + f") · bola {dec.get('ball_s', 0):.0f} s · raqueta {run.timing.get('raqueta', 0):.0f} s"
-            f" ({st.get('kept_impacts', 0)} de {st.get('impacts', 0)} impactos) · {len(run.strokes)} golpes posibles")
+            f" ({st.get('kept_impacts', 0)} de {st.get('impacts', 0)} impactos) · {len(run.strokes)} golpes posibles"
+            + (f" · altura {run.height_px:.0f} px ({st['height_scale']})" if st.get("height_scale") else ""))
     if side == "far":                         # far strokes count only when the ball confirms them
         run.strokes = [s for s in run.strokes if "ball" in s.impact_source]
     if not run.strokes:
@@ -1340,6 +1352,10 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
     H, pitch = court_at(court, t_imp, window_scale(pr.get("width", 0)))
     H, pitch, d["court_check"] = _check_court(clip, r.impact_frame / run.fps, H, pitch)
     d["side"] = side
+    # how her height in px was estimated (body_scale): court | segments | pose, and its checks
+    if getattr(run, "height_source", None):
+        d["height_scale"] = {"source": run.height_source, "px": round(float(run.height_px), 1),
+                             **(getattr(run, "height_info", None) or {})}
     H_img = H
     if H is not None:
         from .court_metrics import player_frame_H

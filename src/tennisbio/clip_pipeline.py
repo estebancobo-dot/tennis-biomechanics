@@ -38,7 +38,9 @@ class ClipRun:
     side: str = "near"
     hits: list = field(default_factory=list)     # ball turns of both players (tennisbio.ball.BallHit)
     strokes: list[StrokeResult] = field(default_factory=list)
-    height_t: np.ndarray | None = None          # body height in px per frame (kinematics.scale_track)
+    height_t: np.ndarray | None = None          # body height in px per frame (body_scale.height_scale)
+    height_source: str = "pose"                 # 'court' | 'segments' | 'pose' (body_scale)
+    height_info: dict = field(default_factory=dict)   # its checks (body_scale.height_scale)
     timing: dict = field(default_factory=dict)   # seconds spent in each model (only what was computed now)
     stats: dict = field(default_factory=dict)    # counts of what was computed now (frames posed, rackets...)
     # foot points of the tracked player (hybrid pose, near side), Halpe26 order (skeleton.FOOT_NAMES):
@@ -170,7 +172,8 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
              init_box: np.ndarray | None = None, max_bottom: float | None = None, roi: tuple | str | None = None,
              prefetch: bool = True, targets: list | None = None, target_tol: float | None = None,
              keep: np.ndarray | None = None, inits: dict | None = None, anchors: list | None = None,
-             split: bool = True, pose_model: str = "yolo") -> ClipRun:
+             split: bool = True, pose_model: str = "yolo", court_H: np.ndarray | None = None,
+             height_scale: str = "court") -> ClipRun:
     """Pose, tracking, impacts and stroke analysis of a short clip (cached).
 
     ball: optional tennisbio.ball.BallTracker; its track is cached next to the pose cache and
@@ -194,7 +197,11 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     a frame in every few is posed, enough to follow her and to measure her height as the whole window).
     pose_model: 'yolo' (YOLO11m-pose) or 'hybrid' (pose.hybrid: YOLO + RTMPose-x with the 6 foot points,
     fine_pass.pose_model) for the near side; the far side is always YOLO (extract_follow). The tracked
-    player's foot points are run.feet / run.feet_conf (all NaN / 0 without them)."""
+    player's foot points are run.feet / run.feet_conf (all NaN / 0 without them).
+    court_H: court → image homography of the window (real court frame, window pixels), or None;
+    height_scale: how her height in px is estimated (body_scale.height_scale: 'court' from court_H and
+    height_m, else her body segments; 'pose' as before). run.height_t / run.height_px are that scale;
+    the swings are still found with the former one (their thresholds were tuned with it)."""
     import time
     video, cache = Path(video), Path(cache)
     cache.parent.mkdir(parents=True, exist_ok=True)
@@ -286,13 +293,14 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
             kp[t], cf[t], boxes_t[t] = kps[t][j], confs[t][j], boxes[t][j]
 
     img = clean(kp, cf)
-    height_px = body_height(img, sk)
-    if keep is not None and not np.isfinite(height_px):
+    pose_h = body_height(img, sk)
+    if keep is not None and not np.isfinite(pose_h):
         # her height (the scale of every measure in % of height) comes from the few frames where her
         # face and feet are both seen; none among those posed: the whole window, as without keep
         log("altura no medible en los tramos: ventana entera")
         whole = run_clip(video, cache, hand, height_m, rackets, init_mode, imgsz, log, ball, side,
-                         init_box, max_bottom, roi, prefetch, targets, target_tol, pose_model=pose_model)
+                         init_box, max_bottom, roi, prefetch, targets, target_tol, pose_model=pose_model,
+                         court_H=court_H, height_scale=height_scale)
         whole.timing["pose"] = whole.timing.get("pose", 0.0) + timing.get("pose", 0.0)
         whole.stats["posed_frames"] = whole.stats.get("posed_frames", 0) + int(np.sum(keep[:T]))
         whole.stats["whole_window_again"] = 1
@@ -301,8 +309,13 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     if side == "far":                      # facing the camera: mirror so the analysis sees her from behind
         img_a = img.copy()
         img_a[..., 0] = fw - img_a[..., 0]
-    height_t = scale_track(img, sk, height_px, fps)
-    body = to_body_frame(img_a, sk, height_t)
+    # her height in px per frame, the scale of every measure (body_scale); the swings and the arm's
+    # speed at a ball hit are found with the former scale (nose → ankle), as they were tuned and validated
+    from .body_scale import height_scale as _height_scale
+    height_t, h_src, h_info = _height_scale(img, sk, fps, height_m, court_H, (fh, fw), height_scale)
+    height_px = (pose_h if h_src == "pose" else float(np.nanmedian(height_t)))
+    det_t = scale_track(img, sk, pose_h, fps) if np.isfinite(pose_h) else height_t
+    body = to_body_frame(img_a, sk, det_t)
     swings = swing_peaks(speed(body[:, sk["dom_wrist"]], fps), fps)
     y, sr = load_audio(video)
     onsets = audio_onsets(y, sr)[0] if len(y) else np.zeros(0)
@@ -324,16 +337,18 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         run_hits = hits
         other = "far" if side == "near" else "near"
         far_hits = [h.frame for h in hits if h.side == other]          # the opponent's hits
-    log(f"jugadora seguida en {np.mean(sel >= 0) * 100:.0f} % · altura ≈ {height_px:.0f} px · {len(impacts)} golpes "
+    log(f"jugadora seguida en {np.mean(sel >= 0) * 100:.0f} % · altura ≈ {height_px:.0f} px ({h_src}) · {len(impacts)} golpes "
         f"({sum(i.source == 'audio+swing' for i in impacts)} con audio)")
     run = ClipRun(fps, sk, img, cf, boxes_t, float(np.mean(sel >= 0)), height_px, onsets, impacts)
     run.side = side
     run.hits = run_hits if ball is not None else []
     run.ball = ball_track
     run.height_t = height_t
+    run.height_source, run.height_info = h_src, h_info
 
     run.timing = timing
     run.stats = stats
+    stats["height_scale"] = h_src
     run.feet, run.feet_conf = tracked_feet(d, sel)
     stats["feet_frames"] = int(np.sum((run.feet_conf > 0).any(1)))
     run.rackets = [[] for _ in range(T)]
