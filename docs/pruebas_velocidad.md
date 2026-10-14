@@ -54,3 +54,70 @@ cómo está cubierto. ✔ = cubierto por prueba automática o por diseño; ◐ =
 
 Pendiente de medir (no de diseñar): tiempos reales por etapa en el PC, la bola (26 % de la pasada fina) y
 el híbrido. Lo que no está aquí no cambia con esta versión.
+
+# Pasada fina: pose, bola y raqueta (14-10, tras la prueba 3)
+
+**De dónde sale el tiempo (prueba 3, 35 min, `pc-logs`):** pasada fina 60 min = pose 25,3 + bola 23,7 +
+raqueta 4,8 + cuerdas/3D 2,4. 52 ventanas (345 s de vídeo); 15 descartadas por la bola (87 s, solo bola).
+- **Lado lejano**: 27 ventanas con pose, 202 s (≈ 10 100 fotogramas, ≈ 17-19 min de pose) para 12 golpes;
+  17 de esas 27 no dan ningún golpe. Los 12 golpes leen ≈ 37 s. Al menos 32 s (16 %) quedan antes del
+  primer golpe de bola posible de su ventana (ventanas de peloteo de 6-11 s con un candidato cada ≈ 1,2 s).
+- **Lado cercano**: 10 ventanas, 56 s (2 800 fotogramas), 16 golpes que leen 45 s. Pose a 135 ms/fotograma
+  (prueba 4: 144 s para 1 066) frente a 67 ms del mismo modelo en la etapa de jugadoras, que prepara la
+  entrada en otro hilo: la diferencia es trabajo en serie (letterbox, apariencia), no el modelo.
+- **Raqueta**: 17-18 s por golpe confirmado: se segmentaba alrededor de **todos** los impactos de la ventana.
+  En 12 clips de RacketVision solo 21 de 54 impactos del brazo están junto a un golpe real.
+- **Bola**: ≈ 8 600 pasadas del modelo (134-168 ms en la iGPU; FP16 no gana). Se usa en toda la ventana
+  (golpe de la rival, botes, destino, red): no se puede recortar sin cambiar medidas.
+
+**Probado y descartado:** usar los 4 mapas de calor que TrackNetV3 predice por pasada (4× menos pasadas):
+la red de RacketVision solo entrenó el último; los otros tres ponen la bola a ≈ 300 px (encontrada a ≤ 10 px
+en el 20 % de los fotogramas anotados frente al 88 %; clip match101_000).
+
+**Cambios** (cada uno con su interruptor en `config/default.yaml`; etapa `fine` v10):
+
+| Cambio | Qué hace | Medidas de los golpes confirmados | Prueba |
+|---|---|---|---|
+| `fine_pass.pose_prefetch` | letterbox del fotograma siguiente en un hilo lector y apariencia en otro mientras el modelo trabaja (como la etapa de jugadoras) | idénticas | 90 fotogramas reales (YOLO 960, CPU): bit a bit iguales; tests con modelo falso (con y sin ROI, `every`) |
+| `fine_pass.racket_near_candidates` | la raqueta solo en los fotogramas que puede leer un impacto a ≤ 0,4 s de un candidato (de 2,2 s + espera antes a 0,8 s después) | idénticas (mismas siluetas en todo lo que leen) | clip match115_000: 90 → 41 fotogramas segmentados, golpe conservado igual (20 medidas, fases, raqueta); test sintético |
+| `fine_pass.pose_ranges: far` | lado lejano: la pose solo de 2,8 s antes a 2,0 s después de cada impacto que la bola aún permite (`fine_gate.possible_impacts`) y, fuera, 1 de cada 5 fotogramas (`pose_fill_every`): se la sigue por toda la ventana como antes; si cubre ≥ 85 %, ventana entera; si la pose de la ventana entera ya está en caché, se reutiliza; si en lo posado no se mide su altura, ventana entera | puntos idénticos en todo lo que lee el golpe; medidas en % de altura a ≤ 0,6 puntos (escala de la ventana) | RacketVision (abajo); 400 ventanas al azar: todo impacto que confirma un candidato cae dentro; tests sintéticos |
+| `ball.static_batch` | en la iGPU, la bola con lote fijo de 8 (el último se rellena): DirectML compila la red para una forma | mismo mapa de calor (CPU: ≤ 1e-3 px) | test con el modelo real en CPU; la velocidad solo se ve en el PC |
+
+**Rangos de pose en RacketVision** (CPU; el golpe del candidato, ventana entera frente a rangos con relleno 1/5):
+
+| Clip | Lado | Fotogramas posados | Pose (s) | Puntos en el golpe | Fases | Mayor diferencia |
+|---|---|---|---|---|---|---|
+| match115_000 | lejano | 145 de 239 | 77 → 38 | idénticos | iguales | altura del contacto 45,6 → 45,1 % |
+| match123_000 | lejano | 147 de 249 | 64 → 39 | idénticos | iguales | 0,1 puntos |
+| match104_000 (179) | cercano | 347 de 576 | — | idénticos | iguales | 0,16 puntos |
+| match107_000 (471) | cercano | 351 de 600 | — | idénticos | iguales | altura del contacto 53,0 → 51,6 % |
+| match120_000 (341) | cercano | 363 de 600 | — | — | — | su altura sale de 5 fotogramas (cara de espaldas): sin ellos no se mide → ahora ventana entera |
+
+Sin relleno (cada tramo por separado) el cercano cambiaba hasta 3 puntos (match104) y un tramo empezó
+siguiendo a un recogepelotas (ahora se arranca desde quien golpea la bola). Por eso en el cercano no se
+activa: allí la altura depende de qué fotogramas se posan (también hoy, según cómo se agrupan las
+ventanas: tarea aparte) y el ahorro es casi nulo (ventanas de un candidato).
+
+**Ahorro esperado en la prueba de 35 min** (pasada fina 60 min): prefetch ≈ 2-3 min (cercano: 135 → ~80-90
+ms/fotograma), raqueta ≈ 2-2,5 min (la mitad de fotogramas segmentados), rangos lejanos ≥ 2,5 min (cota: solo
+lo anterior al primer golpe de bola posible de cada ventana; probablemente 4-6), bola con lote fijo: se sabrá
+en el PC (de 0 a la mitad de 23,7 min si DirectML compila la red). Total seguro ≈ 7-11 min; la bola es lo
+que queda: su coste es el modelo (134-168 ms por pasada), no la lectura (≈ 5 ms/fotograma).
+
+Registro nuevo por ventana: «pose en N de M fotogramas (s; modelo s; fotogramas a 960 px por perderla) · bola s ·
+raqueta s (impactos que pueden quedarse de los encontrados)», y en el resumen de `fine` el bloque `counts`.
+
+| Área | Escenario | Tipo | Qué pasa | Cobertura |
+|---|---|---|---|---|
+| Rangos de pose | Lado cercano | nominal | sin rangos (`pose_ranges: far`), como antes | ✔ `test_fine_one_passes_ranges_targets_and_far_starts` |
+| Rangos de pose | Ventana de un solo candidato | nominal | el rango cubre ≥ 85 % → ventana entera, como antes | ✔ `test_pose_keep_ranges_join_and_whole_window` |
+| Rangos de pose | Su altura no se ve en lo posado | error en fuentes | ventana entera | ✔ `test_pose_ranges_fall_back_to_the_whole_window_when_her_height_is_not_seen` |
+| Rangos de pose | Peloteo lejano con candidatos de las dos jugadoras | nominal | solo alrededor de sus golpes de bola | ✔ idem; ◐ registro por ventana |
+| Rangos de pose | Bola no vista junto a un candidato cercano | límite | todo el tramo donde podría haber un golpe sin bola, más los márgenes | ✔ idem |
+| Rangos de pose | Entre tramos (relleno 1/5) | nominal | se la sigue como en la ventana entera; huecos de 4 fotogramas rellenados como siempre | ✔ `test_pose_ranges_with_fill_follow_her_through_the_window` |
+| Rangos de pose | Sin relleno (`pose_fill_every: 0`, no por defecto) | esquina | cada tramo desde su inicio (lejana: se la busca; cercana: desde quien golpea la bola) | ✔ `test_pose_ranges_track_each_stretch_on_its_own`, `..._start_from_the_person_the_ball_leaves` |
+| Rangos de pose | Caché de pose de la ventana entera (`_smoke`) | esquina | se reutiliza, sin recalcular | ✔ `test_pose_ranges_measure_the_stroke_inside_as_the_whole_window` |
+| Rangos de pose | ¿Pierde un golpe que la pasada completa confirmaría? | calidad | no: el impacto está siempre dentro (condición necesaria de `fuse_with_ball`) | ✔ `test_every_impact_the_full_pass_confirms_is_inside_a_possible_range` |
+| Raqueta | Impactos del brazo lejos de todo candidato | nominal | sin segmentar salvo lo que lee un golpe conservable | ✔ `test_racket_only_near_candidates_keeps_the_kept_stroke_identical` |
+| Prefetch | Fallo del modelo a mitad | error | el hilo lector se para y cierra la lectura (`read_ahead`) | ✔ por diseño (`test_read_ahead_stops_when_the_caller_fails`) |
+| Lote fijo | DirectML no acepta la forma fija | error | la sesión cae a la CPU con la misma forma (más lento, correcto); `ball.static_batch: false` lo quita | ◐ prueba del PC |

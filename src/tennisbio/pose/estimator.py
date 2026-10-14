@@ -13,9 +13,11 @@ ORT_PROVIDERS = {
 _warned: set = set()
 
 
-def _ort_session(model_path: str, device: str) -> ort.InferenceSession:
+def _ort_session(model_path: str, device: str, free_dims: dict | None = None) -> ort.InferenceSession:
     """Session on the requested device, falling back to the CPU (with a warning) when that device
-    is not available or fails to load the model: the analysis is slower but never stops."""
+    is not available or fails to load the model: the analysis is slower but never stops.
+    free_dims: {name: size} fixes dynamic input dimensions (e.g. the batch) so that DirectML can
+    compile the whole graph for that shape (ONNX Runtime's free dimension overrides)."""
     available = set(ort.get_available_providers())
     providers = [p for p in ORT_PROVIDERS.get(device, ORT_PROVIDERS["cpu"]) if p in available] or ["CPUExecutionProvider"]
     if device not in ORT_PROVIDERS or providers == ["CPUExecutionProvider"] and device != "cpu":
@@ -23,6 +25,8 @@ def _ort_session(model_path: str, device: str) -> ort.InferenceSession:
             print(f"AVISO: el dispositivo '{device}' no está disponible; se usa la CPU (más lento)")
             _warned.add(device)
     opts = ort.SessionOptions()
+    for name, size in (free_dims or {}).items():
+        opts.add_free_dimension_override_by_name(name, int(size))
     if "DmlExecutionProvider" in providers:
         # Required by the DirectML provider.
         opts.enable_mem_pattern = False
@@ -33,7 +37,10 @@ def _ort_session(model_path: str, device: str) -> ort.InferenceSession:
         if providers == ["CPUExecutionProvider"]:
             raise
         print(f"AVISO: la iGPU falló al cargar {model_path} ({e}); se usa la CPU")
-        return ort.InferenceSession(model_path, providers=["CPUExecutionProvider"])
+        cpu = ort.SessionOptions()
+        for name, size in (free_dims or {}).items():
+            cpu.add_free_dimension_override_by_name(name, int(size))
+        return ort.InferenceSession(model_path, sess_options=cpu, providers=["CPUExecutionProvider"])
 
 
 def _build(cls, model: str, input_size, device: str, **kwargs):

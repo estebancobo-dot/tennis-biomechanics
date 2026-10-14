@@ -39,6 +39,7 @@ class ClipRun:
     strokes: list[StrokeResult] = field(default_factory=list)
     height_t: np.ndarray | None = None          # body height in px per frame (kinematics.scale_track)
     timing: dict = field(default_factory=dict)   # seconds spent in each model (only what was computed now)
+    stats: dict = field(default_factory=dict)    # counts of what was computed now (frames posed, rackets...)
 
 
 def _cv2_frames(video: Path):
@@ -127,9 +128,43 @@ def pick_initial(boxes, mode="largest") -> tuple[int, np.ndarray]:
     return first, b[int(np.argmax(h * (b[:, 2] - b[:, 0])))]
 
 
+def keep_key(keep) -> str:
+    """Short name of a set of frames (pose caches of fine_pass.pose_ranges carry it)."""
+    import hashlib
+    return hashlib.sha1(np.packbits(np.asarray(keep, bool)).tobytes() + str(len(keep)).encode()).hexdigest()[:8]
+
+
+def _anchor(boxes, hits, a: int, b: int, search=5):
+    """(frame, box) of the person the ball leaves from at the first of `hits` [(frame, x, y)] that
+    has one within ±search frames (the box enlarged as in impacts.fuse_with_ball), or None."""
+    for f0, x, y in sorted(hits):
+        for d in sorted(range(-search, search + 1), key=abs):
+            f = int(f0) + d
+            if not a <= f < b or not len(boxes[f]):
+                continue
+            bx = np.asarray(boxes[f], float)
+            bw, bh = bx[:, 2] - bx[:, 0], bx[:, 3] - bx[:, 1]
+            ok = (bx[:, 0] - bw <= x) & (x <= bx[:, 2] + bw) & (bx[:, 1] - 0.3 * bh <= y) & (y <= bx[:, 3])
+            if ok.any():
+                c = np.flatnonzero(ok)
+                d2 = np.hypot((bx[c, 0] + bx[c, 2]) / 2 - x, (bx[c, 1] + bx[c, 3]) / 2 - y)
+                return f, bx[c[int(np.argmin(d2))]]
+    return None
+
+
+def keep_runs(keep) -> list[tuple[int, int]]:
+    """[a, b) stretches of True in a bool mask."""
+    k = np.r_[0, np.asarray(keep, bool).astype(int), 0]
+    e = np.flatnonzero(np.diff(k))
+    return list(zip(e[::2].tolist(), e[1::2].tolist()))
+
+
 def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, rackets=True,
              init_mode="largest", imgsz=960, log=print, ball=None, side="near",
-             init_box: np.ndarray | None = None, max_bottom: float | None = None, roi: tuple | str | None = None) -> ClipRun:
+             init_box: np.ndarray | None = None, max_bottom: float | None = None, roi: tuple | str | None = None,
+             prefetch: bool = True, targets: list | None = None, target_tol: float | None = None,
+             keep: np.ndarray | None = None, inits: dict | None = None, anchors: list | None = None,
+             split: bool = True) -> ClipRun:
     """Pose, tracking, impacts and stroke analysis of a short clip (cached).
 
     ball: optional tennisbio.ball.BallTracker; its track is cached next to the pose cache and
@@ -138,7 +173,19 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     keep her; the keypoints are mirrored left-right for the stroke analysis so that every metric
     reads as for a player seen from behind (run.img keeps the real image coordinates).
     roi: run the pose on that region only, or "follow" (far player: an enlarged crop that follows
-    her from init_box; pose.yolo.extract_follow)."""
+    her from init_box; pose.yolo.extract_follow).
+    prefetch: model inputs and appearance computed in other threads (same result, faster).
+    targets / target_tol: times (s) where a stroke is wanted (the cheap pass's candidates) and the
+    tolerance (s) within which an impact can be matched to one: the racket outline (slow
+    model) is segmented only around impacts that can become one of those strokes (the others are
+    never kept). None: around every impact.
+    keep: optional (T,) bool, the frames to run the pose on (fine_pass.pose_ranges); each stretch
+    is tracked on its own, from its first frame (as a window of its own); the pose cache then
+    carries keep_key(keep). inits: {first frame of a stretch: far player's box there} (far end).
+    anchors: [(frame, x, y)] ball hits of hers (near end, with keep): a stretch holding one starts
+    its tracking from the person the ball leaves from. split=False: the kept frames are tracked as
+    one clip from its first frame, as without keep (fine_pass.pose_fill_every: between the stretches
+    a frame in every few is posed, enough to follow her and to measure her height as the whole window)."""
     import time
     video, cache = Path(video), Path(cache)
     cache.parent.mkdir(parents=True, exist_ok=True)
@@ -148,7 +195,11 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         bcache = ball_cache_path(cache)
         ball_track = _load_ball_cache(bcache)
     t_ = time.time()
-    if load_npz(cache) is None:          # missing or damaged (interrupted run): extract again
+    if keep is not None and cache.exists() and load_npz(cache) is not None:
+        keep = inits = None                 # the whole window is already posed (an earlier run): reused
+    pcache = cache if keep is None else cache.with_name(f"{cache.stem}_r{keep_key(keep)}.npz")
+    pstats: dict = {}
+    if load_npz(pcache) is None:          # missing or damaged (interrupted run): extract again
         from .pose.yolo import _fps, extract
         frames = None
         if ball is not None and ball_track is None:      # the ball model reads the same decoded frames
@@ -157,10 +208,12 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
             frames = _tee(_cv2_frames(video), feed)
         if roi == "follow":            # small far player: crop that follows her, enlarged
             from .pose.yolo import extract_follow
-            extract_follow(video, cache, init_box, max_bottom=max_bottom, frames=frames)
+            extract_follow(video, pcache, init_box, max_bottom=max_bottom, frames=frames, prefetch=prefetch,
+                           keep=keep, inits=inits, stats=pstats)
         else:
-            extract(video, cache, imgsz=imgsz, progress=False, roi=roi, frames=frames)
-    d = load_npz(cache)
+            extract(video, pcache, imgsz=imgsz, progress=False, roi=roi, frames=frames, prefetch=prefetch,
+                    keep=keep, stats=pstats)
+    d = load_npz(pcache)
     if d is None:
         raise RuntimeError(f"no se pudo extraer la pose de {video.name}")
     timing["pose"] = time.time() - t_
@@ -171,19 +224,46 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     cap = open_capture(video)
     fw, fh = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
     cap.release()
-    first, init = pick_initial(boxes, init_mode)
-    if init_box is not None:
-        init = np.asarray(init_box, float)
-    if init is None:                    # nobody to follow: a run without strokes, not an error
+    sel = np.full(T, -1)
+    found = False
+    # each stretch of posed frames is tracked on its own, as a window of its own (the whole clip
+    # when every frame was posed)
+    split = split and keep is not None
+    for a, b in (keep_runs(keep[:T]) if split else [(0, T)]):
+        first, init = pick_initial(boxes[a:b], init_mode)
+        if init_box is not None:
+            init = np.asarray(init_box, float)
+            if split:
+                ib = (inits or {}).get(a)
+                if ib is None:                  # she was not found at the start of this stretch
+                    continue
+                init = np.asarray(ib, float)
+        if init is None:
+            continue
+        found = True
+        # a stretch around a ball hit of hers: she is the person the ball leaves from (the person
+        # lowest in the image at the start of a stretch can be a ball kid), followed both ways from there
+        anc = None if not split or init_box is not None else _anchor(boxes, [h for h in (anchors or [])
+                                                                                if a <= h[0] < b], a, b)
+        if anc is not None:
+            f, init = anc
+        min_bottom = None
+        if init_mode == "near" and side == "near":
+            # the near player's feet stay below the net, roughly the lower half of the frame;
+            # half of the initial feet height keeps her even when she comes to the net
+            min_bottom = float(0.5 * init[3])
+        if anc is None:
+            sel[a:b] = track_target(list(boxes[a:b]), list(feats[a:b]), init, min_bottom=min_bottom, max_bottom=max_bottom)
+        else:
+            sel[f:b] = track_target(list(boxes[f:b]), list(feats[f:b]), init, min_bottom=min_bottom, max_bottom=max_bottom)
+            if f > a:
+                sel[a:f] = track_target(list(boxes[a:f + 1][::-1]), list(feats[a:f + 1][::-1]), init,
+                                        min_bottom=min_bottom, max_bottom=max_bottom)[::-1][:-1]
+    stats = {**pstats, "posed_frames": int(np.sum(keep[:T])) if keep is not None else T, "frames": T}
+    if not found:                       # nobody to follow: a run without strokes, not an error
         log("nadie en la ventana: sin golpes")
         return ClipRun(fps, sk, np.full((T, len(sk), 2), np.nan), np.zeros((T, len(sk))), [None] * T, 0.0, 0.0,
-                       np.zeros(0), [], rackets=[[] for _ in range(T)])
-    min_bottom = None
-    if init_mode == "near" and side == "near":
-        # the near player's feet stay below the net, roughly the lower half of the frame;
-        # half of the initial feet height keeps her even when she comes to the net
-        min_bottom = float(0.5 * init[3])
-    sel = track_target(list(boxes), list(feats), init, min_bottom=min_bottom, max_bottom=max_bottom)
+                       np.zeros(0), [], rackets=[[] for _ in range(T)], timing=timing, stats=stats)
     kp = np.full((T, len(sk), 2), np.nan)
     cf = np.zeros((T, len(sk)))
     boxes_t = [None] * T
@@ -193,6 +273,16 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
 
     img = clean(kp, cf)
     height_px = body_height(img, sk)
+    if keep is not None and not np.isfinite(height_px):
+        # her height (the scale of every measure in % of height) comes from the few frames where her
+        # face and feet are both seen; none among those posed: the whole window, as without keep
+        log("altura no medible en los tramos: ventana entera")
+        whole = run_clip(video, cache, hand, height_m, rackets, init_mode, imgsz, log, ball, side,
+                         init_box, max_bottom, roi, prefetch, targets, target_tol)
+        whole.timing["pose"] = whole.timing.get("pose", 0.0) + timing.get("pose", 0.0)
+        whole.stats["posed_frames"] = whole.stats.get("posed_frames", 0) + int(np.sum(keep[:T]))
+        whole.stats["whole_window_again"] = 1
+        return whole
     img_a = img
     if side == "far":                      # facing the camera: mirror so the analysis sees her from behind
         img_a = img.copy()
@@ -229,14 +319,28 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     run.height_t = height_t
 
     run.timing = timing
+    run.stats = stats
     run.rackets = [[] for _ in range(T)]
-    if rackets and impacts:
+
+    # the strokes that can be kept: impacts within the tolerance of a target (all without targets).
+    # A kept stroke reads the racket from its wait (≤ 2.2 s before contact, minus the ±READY_HALF
+    # frames searched around it) to 0.8 s after (analyze_stroke, racket_orientation.stroke_faces):
+    # every outline the full segmentation has in that reach is still segmented, the others are not
+    kept = [imp.frame for imp in impacts
+            if targets is None or any(abs(imp.frame - c * fps) <= (target_tol or 0.0) * fps for c in targets)]
+    lo, hi = int(round(2.2 * fps)) + READY_HALF + 1, int(round(0.8 * fps)) + 1
+
+    def in_reach(f) -> bool:
+        return targets is None or any(i - lo <= f <= i + hi for i in kept)
+    run.stats["impacts"], run.stats["kept_impacts"] = len(impacts), len(kept)
+    if rackets and impacts and kept:
         rcache = cache.with_name(cache.stem + "_rackets.npz")
         # the racket outline (slow model) from the backswing to the finish, one frame in two at
         # 50-60 fps: the racket keypoints and the face need it there, not all over the window
         step = 2 if fps >= 40 else 1
         need = sorted({f for imp in impacts
-                       for f in range(max(0, imp.frame - int(0.7 * fps)), min(T, imp.frame + int(0.5 * fps) + 1), step)})
+                       for f in range(max(0, imp.frame - int(0.7 * fps)), min(T, imp.frame + int(0.5 * fps) + 1), step)
+                       if in_reach(f)})
         rd = load_npz(rcache)
         if rd is None or not set(need) <= set(rd["frames"].tolist()):
             from .pose.yolo import extract_rackets
@@ -244,6 +348,7 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
             t_ = time.time()
             extract_rackets(video, need, rcache, imgsz=imgsz)
             timing["raqueta"] = time.time() - t_
+            run.stats["racket_frames"] = len(need)
             rd = load_npz(rcache)
         for f, p in zip(rd["frames"], rd["polys"]):
             run.rackets[int(f)] = p
@@ -276,23 +381,27 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
             r.metrics["opponent_hit_source"] = "ball" if prev_ball else "audio"
         run.strokes.append(r)
     if rackets and run.strokes:
-        _racket_at_ready(run, video, cache, imgsz, height_m, timing)
+        _racket_at_ready(run, video, cache, imgsz, height_m, timing, in_reach)
     return run
 
 
 READY_HALF = 4          # frames either side of the wait searched for the racket (±80 ms at 50 fps)
 
 
-def _racket_at_ready(run: ClipRun, video: Path, cache: Path, imgsz: int, height_m: float, timing: dict):
+def _racket_at_ready(run: ClipRun, video: Path, cache: Path, imgsz: int, height_m: float, timing: dict,
+                     in_reach=lambda f: True):
     """The racket outline is segmented from the backswing on; the wait (split step) usually comes
     earlier. Only the frames around each stroke's wait are added (±READY_HALF, a separate cache),
-    so the racket and its face are known there too without segmenting the whole approach."""
+    so the racket and its face are known there too without segmenting the whole approach.
+    in_reach(frame): frames a stroke that can be kept may read (run_clip's targets)."""
     import time
     from .racket import pick_racket, racket_from_polygon
 
     T = len(run.img)
-    want = sorted({f for s in run.strokes for r0 in [(s.phases.get("ready") or {}).get("frame")] if r0 is not None
-                   for f in range(r0 - READY_HALF, r0 + READY_HALF + 1) if 0 <= f < T and not len(run.rackets[f])})
+    strokes = run.strokes
+    want = sorted({f for s in strokes for r0 in [(s.phases.get("ready") or {}).get("frame")] if r0 is not None
+                   for f in range(r0 - READY_HALF, r0 + READY_HALF + 1) if 0 <= f < T and not len(run.rackets[f])
+                   and in_reach(f)})
     if not want:
         return
     rcache = cache.with_name(cache.stem + "_rackets_ready.npz")
@@ -310,7 +419,7 @@ def _racket_at_ready(run: ClipRun, video: Path, cache: Path, imgsz: int, height_
         if 0 <= int(f) < T and not len(run.rackets[int(f)]):
             run.rackets[int(f)] = p
     dw = run.sk["dom_wrist"]
-    for s in run.strokes:
+    for s in strokes:
         f = (s.phases.get("ready") or {}).get("frame")
         if f is None or (s.racket.get("ready") or {}).get("detected"):
             continue

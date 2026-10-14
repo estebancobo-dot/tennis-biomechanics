@@ -42,38 +42,69 @@ def _fps(video) -> float:
 
 
 def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", imgsz=960, every=1, progress=True,
-            roi: tuple | None = None, frames=None) -> Path:
+            roi: tuple | None = None, frames=None, prefetch: bool = True, keep=None, stats: dict | None = None) -> Path:
     """Run pose on every `every`-th frame and save all people (boxes, keypoints, appearance) to .npz.
 
     roi: (x0, y0, x1, y1) — run only on that region (e.g. the far half of the court, where the far
     player is too small for the full frame); coordinates are returned in the full frame.
     frames: the video's decoded frames when the caller already reads them (one decode shared with
-    the ball model); by default they are read here, decoded ahead in a background thread."""
-    from ..io.video import capture_frames
+    the ball model); by default they are read here, decoded ahead in a background thread.
+    prefetch: the model's input (letterbox) of the next frames is prepared in a reader thread and the
+    appearance histograms in another, while the model runs on the current frame (the same inputs,
+    so the same output as one frame at a time; as the cheap pass does).
+    keep: optional (T,) bool, the frames to run the model on; the others are saved with nobody
+    (fine_pass.pose_ranges: frames no possible stroke uses).
+    stats: when given, "frames" (model runs) and "model_s" (seconds in the model) are added to it."""
+    from concurrent.futures import ThreadPoolExecutor
+    from time import perf_counter
+
+    from ..io.video import capture_frames, read_ahead
     from .backend import pose_model as _pm
 
     pose = _pm(pose_model, imgsz)
     fps = _fps(video) / every
     boxes, kps, confs, feats = [], [], [], []
-    i = 0
-    for frame in (capture_frames(video) if frames is None else frames):
-        if i % every:
-            i += 1
-            continue
-        ox = oy = 0
-        src = frame
-        if roi is not None:
-            x0, y0, x1, y1 = (int(v) for v in roi)
-            src, ox, oy = frame[y0:y1, x0:x1], x0, y0
-        b, k, c = pose.predict(src, conf=0.3)
-        b = b + [ox, oy, ox, oy] if len(b) else np.zeros((0, 4))
-        boxes.append(b.astype(np.float32))
-        kps.append(k.astype(np.float32) + [ox, oy] if len(b) else np.zeros((0, 17, 2), np.float32))
-        confs.append(c.astype(np.float32) if len(b) else np.zeros((0, 17), np.float32))
-        feats.append(np.array([appearance(frame, bb) for bb in b], np.float32).reshape(len(b), 32))
-        i += 1
-        if progress and len(boxes) % 100 == 0:
-            print(f"{len(boxes)} frames", flush=True)
+    x0 = y0 = 0
+    if roi is not None:
+        x0, y0, x1, y1 = (int(v) for v in roi)
+
+    def items():
+        """(frame, region the model sees, its prepared input or None) of every frame to keep; None for
+        the frames skipped (every / keep)."""
+        for i, frame in enumerate(capture_frames(video) if frames is None else frames):
+            if i % every:
+                continue
+            if keep is not None and not (i < len(keep) and keep[i]):
+                yield None
+                continue
+            src = frame if roi is None else frame[y0:y1, x0:x1]
+            yield frame, src, (pose.prepare(src) if prefetch else None)
+
+    empty = (np.zeros((0, 4), np.float32), np.zeros((0, 17, 2), np.float32), np.zeros((0, 17), np.float32),
+             np.zeros((0, 32), np.float32))
+    n_model, t_model = 0, 0.0
+    with ThreadPoolExecutor(max_workers=1) as pool:
+        for it in (read_ahead(items, prefetch=4) if prefetch else items()):
+            if it is None:
+                boxes.append(empty[0]); kps.append(empty[1]); confs.append(empty[2]); feats.append(empty[3])
+                continue
+            frame, src, prep = it
+            t_ = perf_counter()
+            b, k, c = pose.predict(src, conf=0.3, prepared=prep) if prep is not None else pose.predict(src, conf=0.3)
+            t_model += perf_counter() - t_
+            n_model += 1
+            b = b + [x0, y0, x0, y0] if len(b) else np.zeros((0, 4))
+            boxes.append(b.astype(np.float32))
+            kps.append(k.astype(np.float32) + [x0, y0] if len(b) else np.zeros((0, 17, 2), np.float32))
+            confs.append(c.astype(np.float32) if len(b) else np.zeros((0, 17), np.float32))
+            app = lambda fr=frame, bb=b: np.array([appearance(fr, x) for x in bb], np.float32).reshape(len(bb), 32)
+            feats.append(pool.submit(app) if prefetch else app())
+            if progress and len(boxes) % 100 == 0:
+                print(f"{len(boxes)} frames", flush=True)
+        feats = [f.result() if hasattr(f, "result") else f for f in feats]
+    if stats is not None:
+        stats["frames"] = stats.get("frames", 0) + n_model
+        stats["model_s"] = stats.get("model_s", 0.0) + t_model
     out = Path(out)
     savez_atomic(out, fps=fps, n=len(boxes),
                         boxes=_objects(boxes), kps=_objects(kps), confs=_objects(confs),
@@ -306,12 +337,19 @@ def close_seg_worker():
 
 
 def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yolo11m-pose.pt", imgsz=640,
-                   context=4.0, min_side=256, progress=False, max_bottom: float | None = None, frames=None) -> Path:
+                   context=4.0, min_side=256, progress=False, max_bottom: float | None = None, frames=None,
+                   prefetch: bool = True, keep=None, inits: dict | None = None, stats: dict | None = None) -> Path:
     """Pose of a small, distant player: every frame, a square crop centred on her last position
     (side = context × her height) is enlarged to `imgsz` for the model, so she is seen 2-3× bigger
     than in the full frame. Same output format as `extract` (full-frame coordinates; only the
     people inside the crop). The followed box is the detection nearest to the last one.
-    frames: as in extract."""
+    frames: as in extract. prefetch: appearance histograms in another thread (same output).
+    keep: optional (T,) bool, the frames to run the model on (others saved with nobody); inits:
+    {frame: box} where the follow starts again (the first frame of each stretch of `keep`, where
+    she was searched for: fine_pass.pose_ranges)."""
+    from concurrent.futures import ThreadPoolExecutor
+    from time import perf_counter
+
     from ..io.video import capture_frames
     from .backend import pose_model as _pm
 
@@ -319,37 +357,59 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
     last = np.asarray(init_box, float)
     misses = 0                      # frames in a row without her: the crop grows to find her again
     boxes, kps, confs, feats = [], [], [], []
-    for frame in (capture_frames(video) if frames is None else frames):
-        H, W = frame.shape[:2]
-        cx, cy = (last[0] + last[2]) / 2, (last[1] + last[3]) / 2
-        side = min(max(H, W), max(min_side, context * (last[3] - last[1])) * (1 + 0.5 * min(misses, 6)))
-        x0, y0 = int(np.clip(cx - side / 2, 0, max(0, W - side))), int(np.clip(cy - side / 2, 0, max(0, H - side)))
-        crop = frame[y0:y0 + int(side), x0:x0 + int(side)]
-        b, k, c = _pm(pose_model, imgsz if misses < 2 else max(imgsz, 960)).predict(crop, conf=0.25)
-        if len(b):
-            b = b + [x0, y0, x0, y0]
-            k = k + [x0, y0]
-            if max_bottom is not None:
-                keep = b[:, 3] <= max_bottom
-                b, k, c = b[keep], k[keep], c[keep]
-        else:
-            b, k, c = np.zeros((0, 4)), np.zeros((0, 17, 2)), np.zeros((0, 17))
-        if len(b):
-            d = np.hypot((b[:, 0] + b[:, 2]) / 2 - cx, (b[:, 1] + b[:, 3]) / 2 - cy)
-            j = int(np.argmin(d))
-            if d[j] < (1.5 + 0.5 * min(misses, 6)) * (last[3] - last[1]):
-                last = b[j].astype(float)
-                misses = 0
+    n_model, n_big, t_model = 0, 0, 0.0
+    pool = ThreadPoolExecutor(max_workers=1) if prefetch else None
+    try:
+        for i, frame in enumerate(capture_frames(video) if frames is None else frames):
+            if keep is not None and not (i < len(keep) and keep[i]):
+                boxes.append(np.zeros((0, 4), np.float32)); kps.append(np.zeros((0, 17, 2), np.float32))
+                confs.append(np.zeros((0, 17), np.float32)); feats.append(np.zeros((0, 32), np.float32))
+                continue
+            if inits and i in inits:
+                last, misses = np.asarray(inits[i], float), 0
+            H, W = frame.shape[:2]
+            cx, cy = (last[0] + last[2]) / 2, (last[1] + last[3]) / 2
+            side = min(max(H, W), max(min_side, context * (last[3] - last[1])) * (1 + 0.5 * min(misses, 6)))
+            x0, y0 = int(np.clip(cx - side / 2, 0, max(0, W - side))), int(np.clip(cy - side / 2, 0, max(0, H - side)))
+            crop = frame[y0:y0 + int(side), x0:x0 + int(side)]
+            t_ = perf_counter()
+            b, k, c = _pm(pose_model, imgsz if misses < 2 else max(imgsz, 960)).predict(crop, conf=0.25)
+            t_model += perf_counter() - t_
+            n_model += 1
+            n_big += misses >= 2
+            if len(b):
+                b = b + [x0, y0, x0, y0]
+                k = k + [x0, y0]
+                if max_bottom is not None:
+                    keep_b = b[:, 3] <= max_bottom
+                    b, k, c = b[keep_b], k[keep_b], c[keep_b]
+            else:
+                b, k, c = np.zeros((0, 4)), np.zeros((0, 17, 2)), np.zeros((0, 17))
+            if len(b):
+                d = np.hypot((b[:, 0] + b[:, 2]) / 2 - cx, (b[:, 1] + b[:, 3]) / 2 - cy)
+                j = int(np.argmin(d))
+                if d[j] < (1.5 + 0.5 * min(misses, 6)) * (last[3] - last[1]):
+                    last = b[j].astype(float)
+                    misses = 0
+                else:
+                    misses += 1
             else:
                 misses += 1
-        else:
-            misses += 1
-        boxes.append(b.astype(np.float32))
-        kps.append(k.astype(np.float32))
-        confs.append(c.astype(np.float32))
-        feats.append(np.array([appearance(frame, bb) for bb in b], np.float32).reshape(len(b), 32))
-        if progress and len(boxes) % 100 == 0:
-            print(f"{len(boxes)} frames", flush=True)
+            boxes.append(b.astype(np.float32))
+            kps.append(k.astype(np.float32))
+            confs.append(c.astype(np.float32))
+            app = lambda fr=frame, bb=b: np.array([appearance(fr, x) for x in bb], np.float32).reshape(len(bb), 32)
+            feats.append(pool.submit(app) if pool is not None else app())
+            if progress and len(boxes) % 100 == 0:
+                print(f"{len(boxes)} frames", flush=True)
+        feats = [f.result() if hasattr(f, "result") else f for f in feats]
+    finally:
+        if pool is not None:
+            pool.shutdown(wait=True)
+    if stats is not None:
+        stats["frames"] = stats.get("frames", 0) + n_model
+        stats["model_s"] = stats.get("model_s", 0.0) + t_model
+        stats["frames_960"] = stats.get("frames_960", 0) + n_big      # she was lost: bigger crop at 960 px
     out = Path(out)
     savez_atomic(out, fps=fps, n=len(boxes), boxes=_objects(boxes), kps=_objects(kps), confs=_objects(confs),
                         feats=_objects(feats))
@@ -373,22 +433,40 @@ def find_far_player(video: str | Path, H: np.ndarray, search_s=2.0, step=5):
     """First box of the far player within the first `search_s` of a video (every `step` frames);
     the box is returned for the first frame of the video (the follow crop starts there and
     re-centres on her within a few frames). None when she is not found."""
+    return find_far_players(video, H, [0], search_s, step)[0]
+
+
+def find_far_players(video: str | Path, H: np.ndarray, starts, search_s=2.0, step=5) -> dict:
+    """find_far_player from each of several start frames, in one reading of the video:
+    {start: box or None}. The search from a start never looks past `search_s` after it."""
     from ..court_metrics import far_roi, pick_far_player
 
+    starts = sorted({int(s) for s in starts})
+    found = {s: None for s in starts}
+    if not starts:
+        return found
     cap = open_capture(video)
     fps = cap.get(cv2.CAP_PROP_FPS) or 25
-    i, box = 0, None
-    while i <= search_s * fps:
-        ok, frame = cap.read()
-        if not ok:
-            break
-        if i % step == 0:
-            box = pick_far_player(detect_people(frame, far_roi(H, frame.shape)), H)
-            if box is not None:
+    last = max(starts) + int(search_s * fps)
+    i = 0
+    try:
+        while i <= last:
+            todo = [s for s in starts if found[s] is None and s <= i <= s + search_s * fps and (i - s) % step == 0]
+            done = all(found[s] is not None or i > s + search_s * fps for s in starts)
+            if done:
                 break
-        i += 1
-    cap.release()
-    return box
+            ok, frame = cap.read()
+            if not ok:
+                break
+            if todo:
+                box = pick_far_player(detect_people(frame, far_roi(H, frame.shape)), H)
+                if box is not None:
+                    for s in todo:
+                        found[s] = box
+            i += 1
+    finally:
+        cap.release()
+    return found
 
 
 if __name__ == "__main__":            # worker of extract_rackets: --serve model imgsz device

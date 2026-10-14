@@ -18,6 +18,26 @@ fine_pass:
   # (src/tennisbio/fine_gate.py). gate_margin_s: margen extra sobre la tolerancia de 0,4 s.
   gate: true
   gate_margin_s: 0.1
+  # velocidad sin cambiar las medidas (14-10, docs/pruebas_velocidad.md):
+  # - pose_prefetch: la entrada del modelo de pose se prepara en otro hilo y la apariencia en otro,
+  #   mientras el modelo trabaja (mismo resultado, comprobado fotograma a fotograma).
+  # - racket_near_candidates: la silueta de la raqueta (modelo lento) solo donde la lee un golpe que
+  #   puede confirmarse (impacto a ≤ 0,4 s de un candidato); esos golpes ven exactamente lo mismo.
+  # - pose_ranges: la pose solo en los fotogramas que usa un golpe posible (de 2,8 s antes a 2,0 s
+  #   después de cada impacto que la bola aún permite; fine_gate.pose_keep) y, fuera, uno de cada
+  #   pose_fill_every (la jugadora se sigue por toda la ventana y su altura sale como con la ventana
+  #   entera). Si cubre ≥ 85 % de la ventana, la ventana entera. «far»: solo en el lado lejano (de
+  #   frente, su altura se mide bien; puntos idénticos y medidas en % de altura a ≤ 0,6 puntos en
+  #   RacketVision). En el cercano (de espaldas) su altura sale de pocos fotogramas con la cara
+  #   visible y cambiaría hasta ~1,5 puntos: no se activa (y apenas ahorra: ventanas cortas).
+  pose_prefetch: true
+  racket_near_candidates: true
+  pose_ranges: far
+  pose_pre_s: 2.8
+  pose_post_s: 2.0
+  pose_join_s: 1.0
+  pose_full_frac: 0.85
+  pose_fill_every: 5
   detector: balanced
   pose: performance
 
@@ -64,6 +84,9 @@ scenes:
 ball:
   onnx: models/balltrack.onnx
   threshold: 0.5
+  # en la iGPU (device: dml), lote fijo de 8 (el último de cada ventana se rellena y se descarta lo
+  # añadido): DirectML compila la red para una sola forma. Mismo mapa de calor por fotograma.
+  static_batch: true
 
 # Orientación de las cuerdas en la pasada fina: 5 puntos de la raqueta (RacketVision,
 # `scripts/export_racketpose.py`) y, si está, la mano/antebrazo en 3D (RTMW3D, más lento:
