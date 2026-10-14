@@ -27,7 +27,7 @@ Fuentes: búsquedas web del 13-10 (artículos y repositorios citados abajo) y le
 | Golpe (instante) | giro de la bola + muñeca + audio | E2E-Spot / F3ED entrenados en F3Set (tenis de tele) | Mantener; luego un clasificador aprendido con F3Set |
 | Bote | heurística | GBDT/CatBoost sobre la trayectoria (≈ 0,95 precisión) | Cambiar (barato) |
 | Pista | líneas + homografía propias (82 de 162 tramos) | TennisCourtDetector (14 puntos, ≈ 2 px) + refinado por líneas | Cambiar a puntos + nuestro refinado; reutilizar homografías |
-| Cortes de plano | detector propio de cortes y fundidos | TransNetV2 (ONNX, muy barato) | Añadir junto al propio |
+| Cortes de plano | detector propio de cortes y fundidos | TransNetV2 (ONNX, muy barato) | **Hecho (14-10)**: TransNetV2 (MIT, `scripts/export_transnetv2.py`) da los cortes; los histogramas siguen dando los fundidos y son el respaldo si falta el modelo (etapa `scenes` v2) |
 | Marcador | rapidocr-onnxruntime 1.x | rapidocr 3.x con PP-OCRv5 | Cambiar; OCR solo cuando cambia el recorte |
 | Audio | onsets de librosa | detectores entrenados (TennisExpert 2026) | Mantener como señal secundaria |
 | Ejecución | ORT DirectML, lote 1, FP32 | lotes 4-8, FP16, sesiones persistentes, grafo optimizado guardado | Cambiar |

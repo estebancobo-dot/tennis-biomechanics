@@ -50,6 +50,15 @@ pipeline:
 # Decodificador de vídeo en la gráfica: auto (d3d11va en Windows si funciona), d3d11va o null (CPU).
 hwaccel: auto
 
+# Cortes de plano: TransNetV2 (licencia MIT; `scripts/export_transnetv2.py`, lo hace setup_models.py)
+# sobre fotogramas de 48×27 a 25 fps; los fundidos también con los histogramas de color. Sin el
+# modelo (o si falla) se usan solo los histogramas (detecta peor los cortes entre planos de colores
+# parecidos: pista azul y primeros planos azules/verdes).
+scenes:
+  onnx: models/transnetv2.onnx
+  threshold: 0.5
+  fps: 25
+
 # Seguimiento de bola: TrackNetV3 de RacketVision (licencia MIT), entrenado en tenis de TV.
 # Se genera con `uv run python scripts/export_balltrack.py` (descarga los pesos de Hugging Face).
 ball:
