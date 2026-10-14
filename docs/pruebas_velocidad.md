@@ -30,6 +30,13 @@ cómo está cubierto. ✔ = cubierto por prueba automática o por diseño; ◐ =
 | Ciclo | Prueba de 4 min falla | error | no se lanza la de 35 min; registro en `prueba_poc4.log` | ✔ por diseño |
 | Ciclo | Reinicio del PC a mitad | error | la petición no se repite sola (se pide con otro id) | ✔ por diseño |
 | Datos | La prueba toca `_smoke` | error | nunca: carpetas `_poc4` y `_poc`; registros `poc_*` | ✔ `--out-name` |
+| Cascada | Ventana sin golpe de bola en su lado y bola bien vista junto a los candidatos | nominal | solo bola (que ya hacía falta); sin pose, raqueta ni 3D | ✔ `tests/test_fine_gate.py` |
+| Cascada | Ventana con golpe | nominal | pasa; la pose completa y todo lo demás como antes (mismos resultados: la bola se lee de la caché) | ✔ idem |
+| Cascada | Bola no vista junto a un candidato (cercano) | límite | pasa: un golpe sin bola visible se confirma solo con el brazo | ✔ idem |
+| Cascada | Lado lejano sin golpe de bola lejano | límite | descartada: allí solo cuentan los golpes que confirma la bola | ✔ idem |
+| Cascada | Sin modelo de bola o `fine_pass.gate: false` | error | pasan todas, como antes | ✔ idem |
+| Cascada | ¿Descarta algo que la pasada completa confirmaría? | calidad | no por construcción (condición necesaria de `fuse_with_ball` + tolerancia de 0,4 s); 400 ventanas al azar con la lógica real, sin margen | ✔ `test_gate_never_drops_what_the_full_pass_confirms`; ◐ `gate_misses` en `validate_rv_strokes.py --ball` |
+| Cascada | Cuánto ahorra | rendimiento | registro por ventana («descartada sin pose» / «pasa») y en el resumen de `fine`: `gate` (descartadas, pasan, motivos, segundos) | ◐ prueba del PC |
 | Modelos | Híbrido YOLO + RTMPose-x | nominal | RTMPose-x solo en las personas grandes | ◐ prueba de modelos (en curso) |
 | Escala | Partido de 3,5 h | escalabilidad | tiempo lineal estimado desde 35 min | ◐ la prueba de 35 min lo da |
 

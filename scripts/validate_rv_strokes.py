@@ -68,6 +68,28 @@ def far_init(video: Path, cache: Path, imgsz: int):
     return dict(roi="follow", max_bottom=net_row(fit.H), init_box=box)
 
 
+def gate_misses(run, video: Path, cache: Path, side: str) -> int:
+    """Strokes the full pass found that the cascade gate of the fine pass (fine_gate) would have
+    thrown away with a cheap-pass candidate anywhere within its confirmation tolerance: must be 0."""
+    import cv2
+    import numpy as np
+
+    from tennisbio.clip_pipeline import ball_cache_path
+    from tennisbio.fine_gate import CONFIRM_TOL_S, gate_window
+
+    raw = np.load(ball_cache_path(cache))
+    cap = cv2.VideoCapture(str(video))
+    fw, fh = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    cap.release()
+    misses = 0
+    for r in run.strokes:
+        if side == "far" and "ball" not in r.impact_source:       # the fine pass drops these at the far end
+            continue
+        for off in np.linspace(-CONFIRM_TOL_S, CONFIRM_TOL_S, 5):
+            misses += not gate_window(raw, fw, fh, run.fps, [r.impact_frame + off * run.fps], side, 0.0)["passed"]
+    return misses
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default="datasets")
@@ -85,7 +107,7 @@ def main():
     if args.ball:
         from tennisbio.ball import BallTracker
         tracker = BallTracker(args.ball, args.device)
-    pairs_all, fp_all, fn_all, rows = [], [], [], []
+    pairs_all, fp_all, fn_all, rows, misses = [], [], [], [], 0
     for match_id, clip in sel:
         video = racketvision_video(root, match_id, clip)
         ball = read_ball_csv(fetch(f"{RV_BASE}/all/{match_id}/csv/{clip}_ball.csv", root / "rv" / "ball" / f"{match_id}_{clip}.csv"))
@@ -107,18 +129,23 @@ def main():
         if not extra and is_doubles(cache, video):     # cache just created: check now
             print(f"  {match_id}_{clip}: dobles, se omite")
             continue
+        if tracker is not None:
+            misses += gate_misses(run, video, cache, args.side)
         preds = [Pred(r.impact_frame, "fh" if r.stroke == "forehand" else "bh") for r in run.strokes]
         pairs, fp, fn = match(preds, [GTEvent(g, "near", "stroke", "-", "-") for g in gt], args.tol)
         pairs_all += pairs; fp_all += fp; fn_all += fn
         rows.append(dict(clip=f"{match_id}_{clip}", gt=gt, pred=[p.frame for p in preds], tracked=round(run.tracked_frac, 2)))
         print(f"  {match_id}_{clip}: referencia {gt}  detectados {[p.frame for p in preds]}  seguida {run.tracked_frac:.0%}", flush=True)
     s = summarize(pairs_all, fp_all, fn_all)
+    if tracker is not None:
+        s["gate_misses"] = misses        # strokes the cascade gate of the fine pass would lose (must be 0)
     out = root / "reports"
     out.mkdir(parents=True, exist_ok=True)
     (out / f"rv_strokes_validation_{args.side}.json").write_text(json.dumps({"summary": s, "clips": rows}, indent=1))
     print(f"\nRESUMEN (jugador {'cercano' if args.side == 'near' else 'lejano'}, sin audio)")
-    for k in ("gt", "detected", "true_positives", "precision", "recall", "f1", "timing_err_frames_median", "timing_bias_frames"):
-        print(f"  {k:28} {s[k]}")
+    for k in ("gt", "detected", "true_positives", "precision", "recall", "f1", "timing_err_frames_median", "timing_bias_frames", "gate_misses"):
+        if k in s:
+            print(f"  {k:28} {s[k]}")
 
 
 if __name__ == "__main__":

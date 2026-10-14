@@ -13,6 +13,11 @@ fine_pass:
   ball_lead_s: 2.2
   # con bola: y termina más tarde para ver dónde bota su golpe en el campo rival
   ball_tail_s: 1.4
+  # cascada: con bola, una ventana sin ningún golpe de bola en su lado (y, en el lado cercano, con la
+  # bola bien vista junto a cada candidato) no puede dar un golpe confirmado: no se le pasa la pose
+  # (src/tennisbio/fine_gate.py). gate_margin_s: margen extra sobre la tolerancia de 0,4 s.
+  gate: true
+  gate_margin_s: 0.1
   detector: balanced
   pose: performance
 

@@ -20,6 +20,11 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
 - Móvil y nube: al final, después de que el PC funcione.
 
 ## Lo último (13-10, tarde): leer primero
+- **Pasada fina en cascada (14-10):** antes de la pose, la bola de la ventana (que ya hacía falta y queda en
+  caché) decide si puede haber un golpe confirmado de la jugadora (`tennisbio.fine_gate`): sin golpe de bola en
+  su lado a ±0,4 s de algún candidato y, en el lado cercano, con la bola bien vista ahí, la ventana se descarta
+  sin pose, raqueta ni 3D. Es condición necesaria de la confirmación actual (`fuse_with_ball`): los golpes
+  confirmados son los mismos. Registro por ventana y `gate` en el resumen de `fine` (etapa versión 9).
 - **Velocidad (13-10, noche):** pista (homografías reutilizadas, búsqueda vectorizada; ×3,7 en la búsqueda),
   marcador (OCR solo cuando cambia; ×3), pasada fina (proceso de raqueta persistente, lotes, una decodificación)
   y pose YOLO en FP16 (validada en el PC con `scripts/model_trials.py`: ×2,2, mismos golpes, 0,25 px). Prueba de

@@ -784,7 +784,7 @@ def _fine_settings(c):
 
 FINE_CODE = ("stages", "clip_pipeline", "stroke_analysis", "phases", "kinematics", "impacts", "ball", "court_metrics",
              "outcome", "series", "racket", "racket3d", "racket_face", "racket_orientation", "tracking", "technique",
-             "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend", "ball3d", "limits")
+             "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend", "ball3d", "limits", "fine_gate")
 
 
 def _player_fields(p) -> dict:
@@ -792,7 +792,7 @@ def _player_fields(p) -> dict:
             "grip": [getattr(p, "forehand_grip_close_deg", None), getattr(p, "backhand_grip_close_deg", None)]}
 
 
-@stage("fine", "8", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
+@stage("fine", "9", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
        code=FINE_CODE, match_fields=lambda m: _player_fields(m.player))
 def st_fine(ctx: Context):
     """Full-quality analysis of the target player's candidates. Runs whose identity could not be
@@ -820,7 +820,7 @@ def opponent_profile(match):
     return Player(id="opponent", name=match.opponent or "Rival", hand=match.extra.get("opponent_hand", "right"))
 
 
-@stage("fine_opponent", "3", deps=("candidates", "court", "score"),
+@stage("fine_opponent", "4", deps=("candidates", "court", "score"),
        settings=lambda c: {**_fine_settings(c), "enabled": c.get("analyze_opponent", False)},
        outputs=("strokes_opponent.json",), code=FINE_CODE,
        match_fields=lambda m: {**_player_fields(opponent_profile(m)), "opponent": m.opponent})
@@ -889,6 +889,8 @@ def _fine(ctx: Context, p, keep, out_name: str):
             groups.append([c])
     done = 0
     _TIMES.clear()
+    _GATE.clear()
+    _GATE.update(passed=0, gated=0, off=0, reasons={}, seconds_gated=0.0)
     for g in groups:
         try:
             strokes += _fine_one(ctx, p, g, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose, wb3d, fcfg)
@@ -896,7 +898,8 @@ def _fine(ctx: Context, p, keep, out_name: str):
             for c in g:
                 errors.append({"t": c["t"], "error": f"{type(e).__name__}: {e}", "trace": traceback.format_exc()[-1500:]})
         done += len(g)
-        ctx.progress(done, len(kept), f"golpes candidatos · {len(strokes)} confirmados")
+        ctx.progress(done, len(kept), f"golpes candidatos · {len(strokes)} confirmados · "
+                                      f"{_GATE['gated']} ventanas descartadas sin pose")
     strokes.sort(key=lambda d: d["match_time_s"])
     _rally_position(strokes, cands, scenes)
     _write(ctx.path(out_name), strokes)
@@ -908,11 +911,15 @@ def _fine(ctx: Context, p, keep, out_name: str):
         ctx.log(f"  {len(errors)} golpes no se pudieron analizar (detalle en {out_name.replace('.json', '_errores.json')})")
     return {"candidates": len(kept), "confirmed": len(strokes), "errors": len(errors), "warnings": warnings,
             "forehands": sum(s["stroke"] == "forehand" for s in strokes), "windows": len(groups),
+            # the cascade: windows the ball alone ruled out (no pose run) and windows analysed in full
+            "gate": {"windows_gated": _GATE["gated"], "windows_passed": _GATE["passed"], "windows_ungated": _GATE["off"],
+                     "reasons": dict(_GATE["reasons"]), "seconds_in_gated_windows": round(_GATE["seconds_gated"], 1)},
             # where the time goes (seconds; only what was computed now, not read from the caches)
             "seconds": {k: round(v, 1) for k, v in sorted(_TIMES.items(), key=lambda kv: -kv[1])}}
 
 
 _TIMES: dict = {}
+_GATE: dict = {}
 
 
 def _took(key: str, t0: float):
@@ -1002,11 +1009,15 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
     ws = window_scale(pr.get("width", 0))
     side = c.get("side", "near")
     extra, cache = {}, clip.with_name(f"{clip.stem}_{ph}.npz")
+    cut_s = time.time() - t_
     if side == "far":
         fi = far_start(clip, court_at(court, c["t"], ws)[0])
         if fi is None:
             return []                         # no court or no far player found: nothing reliable
         extra, cache = dict(side="far", **fi), clip.with_name(f"{clip.stem}_{ph}_far.npz")
+    # cascade: the ball alone rules out windows without a possible stroke before any pose is run
+    if not _gate_passes(ctx, group, t0, wid, clip, cache, side, ball, cut_s):
+        return []
     t_ = time.time()
     run = run_clip(clip, cache, p.hand, p.height_m, init_mode="near", rackets=side == "near",
                    imgsz=ctx.cfg.get("fine_imgsz", 960), log=lambda *_: None, ball=ball, **extra)
@@ -1025,6 +1036,40 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
     return out
 
 
+def _gate_passes(ctx, group, t0, wid, clip, cache, side, ball, cut_s: float) -> bool:
+    """Stage A of the cascade (fine_gate): the ball track of the window alone (cached for the full
+    pass) says whether it can hold a confirmed stroke of the target; if not, no pose is run.
+    Without the ball model, or with `fine_pass.gate: false`, every window passes."""
+    import time
+    fp = ctx.cfg.get("fine_pass") or {}
+    if ball is None or not fp.get("gate", True):
+        _GATE["off"] = _GATE.get("off", 0) + 1
+        return True
+    from .clip_pipeline import window_ball
+    from .fine_gate import CONFIRM_TOL_S, gate_window
+
+    t_ = time.time()
+    track, took, fw, fh, fps = window_ball(clip, cache, ball)
+    if took:
+        _TIMES["bola"] = _TIMES.get("bola", 0.0) + took
+    dec = gate_window(track, fw, fh, fps, [(c["t"] - t0) * fps for c in group], side, fp.get("gate_margin_s", 0.1))
+    _took("cribado", t_ + took)
+    _GATE["reasons"][dec["reason"]] = _GATE["reasons"].get(dec["reason"], 0) + 1
+    what = {"golpe_de_bola": f"golpe de bola en su lado a {dec.get('hit_s')} s",
+            "bola_no_vista": f"bola no vista cerca de un candidato ({dec.get('at_s')} s): puede haber golpe",
+            "sin_datos_de_bola": "sin datos de bola",
+            "sin_golpe": f"ningún golpe de bola en su lado a ±{CONFIRM_TOL_S} s de los candidatos"
+                         + (" y la bola bien vista ahí" if side == "near" else "")}[dec["reason"]]
+    if dec["passed"]:
+        _GATE["passed"] += 1
+        ctx.log(f"  ventana {wid} ({side}, {len(group)} candidatos): pasa · {what}")
+        return True
+    _GATE["gated"] += 1
+    _GATE["seconds_gated"] += cut_s + time.time() - t_
+    ctx.log(f"  ventana {wid} ({side}, {len(group)} candidatos): descartada sin pose · {what}")
+    return False
+
+
 def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets, scenes, rpose, wb3d, fcfg):
     """One confirmed stroke of an analysed window, or None."""
     target = (c["t"] - t0) * run.fps
@@ -1032,7 +1077,8 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
     if not free:
         return None
     r = min(free, key=lambda s: abs(s.impact_frame - target))
-    if abs(r.impact_frame - target) > 0.4 * run.fps:
+    from .fine_gate import CONFIRM_TOL_S
+    if abs(r.impact_frame - target) > CONFIRM_TOL_S * run.fps:
         return None                           # the fine pass did not confirm this candidate
     used.add(r.impact_frame)
     from .limits import sanitize

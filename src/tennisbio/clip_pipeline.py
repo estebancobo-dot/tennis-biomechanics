@@ -64,6 +64,37 @@ def _load_ball_cache(bcache: Path):
         return None
 
 
+def ball_cache_path(cache: str | Path) -> Path:
+    """Ball track cache next to a pose cache (the same ball for both ends of a window)."""
+    cache = Path(cache)
+    return cache.with_name(cache.stem.removesuffix("_far") + "_ball.npy")
+
+
+def window_ball(video: str | Path, cache: str | Path, ball) -> tuple[np.ndarray, float, int, int, float]:
+    """The raw ball track of a clip, computed exactly as run_clip does when the pose is cached (all
+    frames decoded, the model on every round(fps/25)-th) and saved where run_clip reads it, so the
+    full pass reuses it. Returns (track, seconds spent computing it now, frame width, frame height,
+    fps), for the gate of the fine pass (fine_gate) before any pose is run."""
+    import time
+    from .pose.yolo import _fps
+
+    video = Path(video)
+    bcache = ball_cache_path(cache)
+    fps = float(_fps(video))
+    cap = open_capture(video)
+    fw, fh = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    cap.release()
+    track = _load_ball_cache(bcache)
+    took = 0.0
+    if track is None:
+        t_ = time.time()
+        track = ball.track(_cv2_frames(video), step=max(1, round(fps / 25)))
+        bcache.parent.mkdir(parents=True, exist_ok=True)
+        save_npy_atomic(bcache, track)
+        took = time.time() - t_
+    return track, took, fw, fh, fps
+
+
 def load_audio(video: Path, sr=22050):
     import librosa
 
@@ -114,7 +145,7 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     timing = {}
     ball_track = feed = None
     if ball is not None:
-        bcache = cache.with_name(cache.stem.removesuffix("_far") + "_ball.npy")      # same ball for both ends
+        bcache = ball_cache_path(cache)
         ball_track = _load_ball_cache(bcache)
     t_ = time.time()
     if load_npz(cache) is None:          # missing or damaged (interrupted run): extract again
