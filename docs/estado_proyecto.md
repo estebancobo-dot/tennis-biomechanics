@@ -20,6 +20,28 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
 - Móvil y nube: al final, después de que el PC funcione.
 
 ## Lo último (13-10, tarde): leer primero
+- **Umbrales nuevos con golpes reales (14-10, prueba 6: `_poc6_35` frente a `_poc5_35`/`_poc4`, y `_smoke` recalculado):**
+  - *Giro de hombros al empezar la preparación* («ruido» ±3,4° en la revisión): no es un fallo. Cambia por la escala
+    de altura por la pista: la anterior seguía el largo del tronco en la imagen (variaba ±9 % dentro de una ventana
+    con la postura) y repartía los golpes (26-67°, ±10,5° entre golpes); con la pista (±2 %) 7 de 10 derechas leen
+    19-23° (±1,8°) y mover el instante 1-2 fotogramas lo cambia ±3,4° (en ese instante el giro empieza). Sus golpes
+    no difieren más que el instante: «ruido» es honesto (con los 13 golpes de la prueba 6 sale «fiable»; lo
+    decidirán más golpes). El giro en el armado sigue fiable (prueba 6: ±2,4° entre fotogramas frente a ±7° entre golpes). Umbral sin cambios.
+  - *Pies:* el pivote (talón de atrás) tomaba la referencia en el armado; las 6 derechas con armado 0,36-0,6 s antes
+    del impacto (en carrera, pasos de ajuste después) daban «no» y 5 de las 6 con armado a 0,14 s daban «sí».
+    Ahora la referencia es como mucho 0,2 s antes del impacto (`footpoints.PIVOT_REF_S`; los pivotes medidos van de
+    −0,06 a +0,02 s). La orientación del pie apunta hacia su propia valla (< −45°, imposible con el pie apoyado) en
+    el 20-44 % de las lecturas (armado y impacto) y en 7 de 8 pies de delante del revés: la fiabilidad la daba
+    «fiable» porque la dispersión es enorme (±41-52°). Ahora una medida con más del 15 % de lecturas imposibles es
+    «sesgo» (`reliability.PLAUSIBLE`) y no se da ni en «Aprende» ni en «Su derecha» (que tampoco daba como suyas
+    las medidas de ruido o sesgo: ahora dice «no fiable desde la tele»). Pasada fina v14.
+  - *Cámara principal por líneas:* 11,4 min (antes 30,3) pero la pista pasa de 9,5 a 9,2 min: lo perdido son 14 s
+    en 8 planos cortos con un ajuste de pista flojo (0,47-0,59; el juego da ~0,8); los 29 golpes de antes siguen
+    (31 ahora), mismos candidatos cercanos (73). Sin cambios.
+  - *Escala de altura:* las medidas en % bajan un 10-15 % (la anterior daba su altura en el 80-87 %); el tronco y
+    las piernas confirman la de la pista (0,94-1,08). Impacto al 53 % de su altura (≈ 0,97 m, cintura; IQR
+    49-64 %), cadera en la espera 44 % y en el armado 42 %. Las clases de altura de bola (rodilla < 35 %, cadera
+    < 50 %…) se pensaron para la altura real: ahora encajan. Los objetivos de «Cópiala» siguen teniendo sentido.
 - **Bola en paralelo (14-10, tras la prueba 5):** la bola de las ventanas se calcula en la CPU en un hilo aparte
   (desde la última ventana hacia atrás) mientras la pose usa la iGPU (`fine_speed.ball_ahead`, `fine_ahead.py`);
   esperado 10-20 min menos en la prueba de 35 min. Solapes de ventanas: 0 s en la prueba 5 (no se implementa).

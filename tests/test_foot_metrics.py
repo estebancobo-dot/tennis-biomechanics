@@ -186,3 +186,35 @@ def test_steps_from_ground_contacts_ignore_ankle_jitter():
     assert with_f["steps_reliable"] is True and with_f["feet_still_share"] > 0.8
     ank = footwork(kp, SK, H, np.full(T, 400.0), fps, 80, None, None, None, None)
     assert ank["feet_still_share"] < with_f["feet_still_share"]
+
+
+def test_back_heel_lift_reference_close_to_contact():
+    """The flat-foot reference is at most PIVOT_REF_S before contact: a back foot that steps after the
+    end of the backswing and then pivots is a pivot (on the PC every forehand with an early backswing
+    read «no pivot»); a foot unseen at that reference is not measured."""
+    from tennisbio.footpoints import PIVOT_REF_S
+
+    assert PIVOT_REF_S == pytest.approx(0.2)
+    kp = standing()
+    f, c = neutral_feet()
+    put_foot(f, "right", (0.0, -0.4), 0.0, t=slice(45, 50))        # adjustment step after loaded (45): 0.55 m away
+    r = FI["right_heel"]
+    f[58:72, r, 1] -= 25                                            # then planted from 50 and pivots at 58
+    out = heel_lift(clean_feet(f, c), SK, H, np.full(100, 400.0), 50.0, 60, 45, 75)
+    assert out["back_heel_lift"] is True and out["back_heel_lift_s"] == pytest.approx(-0.04)
+    # same step without the pivot: no
+    f2, c2 = neutral_feet()
+    put_foot(f2, "right", (0.0, -0.4), 0.0, t=slice(45, 50))
+    assert heel_lift(clean_feet(f2, c2), SK, H, np.full(100, 400.0), 50.0, 60, 45, 75)["back_heel_lift"] is False
+    # a late backswing end (after the reference instant) is the reference itself, as before
+    assert heel_lift(clean_feet(f, c), SK, H, np.full(100, 400.0), 50.0, 60, 55, 75)["back_heel_lift"] is True
+    # a heel lift that starts before the reference is the foot's state at the reference: not a lift
+    f3, c3 = neutral_feet()
+    f3[40:72, r, 1] -= 25
+    assert heel_lift(clean_feet(f3, c3), SK, H, np.full(100, 400.0), 50.0, 60, 30, 75)["back_heel_lift"] is False
+    # the foot unseen at the reference (seen at loaded): not measured
+    c4 = c.copy()
+    c4[48:56, [r, FI["right_big_toe"], FI["right_small_toe"]]] = 0.0
+    assert heel_lift(clean_feet(f, c4), SK, H, np.full(100, 400.0), 50.0, 60, 45, 75) == {}
+    # a finish before the reference instant leaves nothing to measure
+    assert heel_lift(clean_feet(f, c), SK, H, np.full(100, 400.0), 50.0, 60, 45, 48) == {}

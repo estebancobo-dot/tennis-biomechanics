@@ -22,6 +22,13 @@ exists (the 3D estimate of the trunk, RTMW3D, only where its depth passes the ri
 difference over 8° with the same sign in at least 3 of 4 strokes) the measure is "sesgo" and is not
 given as her value either; the screen gives both readings. A measure computed from a biased or noisy
 one (DERIVED_FROM: the shoulder brake comes from the 2D shoulder turn) takes its verdict.
+
+Repeatable is not possible either: where the body sets a physical range (PLAUSIBLE), a measure with
+more than IMPLAUSIBLE_SHARE of its readings outside it is "sesgo" too (the method fails often enough
+that the readings inside the range cannot be trusted either). First case, the PC on 14-10: the foot
+direction from heels and toes read 20-44 % of the planted forehand feet with the toes turned back
+towards her own fence, which no groundstroke does (perspective: a point a few cm above the court,
+mapped on it, moves away from the camera; or heel and toes confused from behind).
 """
 from __future__ import annotations
 
@@ -48,6 +55,17 @@ AGREE_DEG = 8.0
 RIGID_KEY = "metrics.trunk3d_rigid"
 # measures computed from another one: they cannot be better than it (a biased or noisy source makes them so)
 DERIVED_FROM = {"stroke.shoulder_brake": "loaded.shoulder_turn", "stroke.shoulders_open_first": "loaded.shoulder_turn"}
+# physical range of a measure (key → (low, high)). Foot direction against the baseline (footpoints.foot_angle_deg:
+# 0° = toes along the baseline towards the side she hits on, 90° = at the net, < 0 = turned back towards her
+# own fence): a foot on the ground at the end of the backswing or at contact points from somewhat behind the
+# baseline (a closed stance's back foot, ~-20°) through the net to the other side; toes turned back more than
+# 45° would leave her hips facing her own fence.
+FOOT_RANGE = (-45.0, 180.0)
+PLAUSIBLE = {f"{p}.{w}_foot_angle_deg": FOOT_RANGE for p in ("loaded", "impact") for w in ("front", "back")}
+# more than this share of impossible readings: the method is failing, not the player (one in ten strokes
+# can be a single misdetected frame; above 15 % the error is systematic and also shifts the readings that
+# still look possible)
+IMPLAUSIBLE_SHARE = 0.15
 
 
 def shifted_jitter(base: dict, shifted: list[dict]) -> dict:
@@ -110,6 +128,14 @@ def assess(raw: list[dict], keys: dict[str, str | None], second: dict | None = N
         else:
             verdict = "ruido"
         out[k] = {"n": len(j), "noise": round(noise, 2), "spread": round(spread, 2), "verdict": verdict}
+        if k in PLAUSIBLE and verdict != "ruido":
+            lo, hi = PLAUSIBLE[k]
+            bad = sum(not lo <= x <= hi for x in v)
+            if bad:
+                out[k].update(implausible=bad, n_values=len(v), range=[lo, hi])
+            if bad / len(v) > IMPLAUSIBLE_SHARE:
+                out[k]["verdict"] = "sesgo"
+                continue
         other = second.get(k)
         pairs = [(x[k], x[other]) for x in vals if other and isinstance(x.get(k), (int, float)) and isinstance(x.get(other), (int, float))
                  and x.get(RIGID_KEY)]

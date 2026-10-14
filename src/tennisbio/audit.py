@@ -382,7 +382,8 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
     if rel:
         sm = summary(rel)
         noisy = sorted((k for k, v in rel.items() if v["verdict"] == "ruido"), key=lambda k: -rel[k].get("noise", rel[k].get("flip", 0)))
-        biased = [k for k, v in rel.items() if v["verdict"] == "sesgo"]
+        biased = [k for k, v in rel.items() if v["verdict"] == "sesgo" and "med2d" in v]
+        impossible = [k for k, v in rel.items() if v["verdict"] == "sesgo" and "implausible" in v]
         judged = sum(v for k, v in sm.items() if k != "sin juzgar")
         noisy_txt = ", ".join(f"{k} ±{rel[k]['noise']}" if "noise" in rel[k] else f"{k} cambia {rel[k]['flip']:.0%}" for k in noisy[:12])
         items.append(_item(3, "Valores posibles", "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
@@ -390,6 +391,8 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
                            f"{len(rel)} medidas: " + ", ".join(f"{v} {k}" for k, v in sorted(sm.items())) +
                            (f". No se dan como valor suyo (ruido): {noisy_txt}" if noisy else "")
                            + (". No coinciden con el segundo método (3D), no se dan: " + ", ".join(f"{k} 2D {rel[k]['med2d']}° / 3D {rel[k]['med3d']}°" for k in biased) if biased else "")
+                           + (". Fuera de lo físicamente posible en demasiados golpes, no se dan: " + ", ".join(
+                               f"{k} {rel[k]['implausible']} de {rel[k]['n_values']}" for k in impossible) if impossible else "")
                            + ". «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"))
     vals_n = [stroke_values(s) for s in near]
     for k, name in (("loaded.racket_tip_vs_head", "Punta de la raqueta respecto a la cabeza en el armado"),

@@ -961,7 +961,7 @@ def _player_fields(p) -> dict:
             "grip": [getattr(p, "forehand_grip_close_deg", None), getattr(p, "backhand_grip_close_deg", None)]}
 
 
-@stage("fine", "13", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
+@stage("fine", "14", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
        code=FINE_CODE, match_fields=lambda m: _player_fields(m.player))
 def st_fine(ctx: Context):
     """Full-quality analysis of the target player's candidates. Runs whose identity could not be
@@ -989,7 +989,7 @@ def opponent_profile(match):
     return Player(id="opponent", name=match.opponent or "Rival", hand=match.extra.get("opponent_hand", "right"))
 
 
-@stage("fine_opponent", "7", deps=("candidates", "court", "score"),
+@stage("fine_opponent", "8", deps=("candidates", "court", "score"),
        settings=lambda c: {**_fine_settings(c), "enabled": c.get("analyze_opponent", False)},
        outputs=("strokes_opponent.json",), code=FINE_CODE,
        match_fields=lambda m: {**_player_fields(opponent_profile(m)), "opponent": m.opponent})

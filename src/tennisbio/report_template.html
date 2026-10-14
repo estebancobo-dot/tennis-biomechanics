@@ -752,7 +752,7 @@ if (EMPTY) {                     // nothing analysed yet: one clear message inst
   document.getElementById("tab-modelo").before(m);
 }
 const REL_ES = { fiable: ["Fiables", "se dan como valor suyo"], dudosa: ["Dudosas", "se dan marcadas como «medida ruidosa»"],
-  ruido: ["Ruido", "no se dan: cambian más entre fotogramas vecinos que entre sus golpes"], sesgo: ["Sesgadas", "no se dan: dos métodos independientes no coinciden"],
+  ruido: ["Ruido", "no se dan: cambian más entre fotogramas vecinos que entre sus golpes"], sesgo: ["Sesgadas", "no se dan: dos métodos independientes no coinciden, o demasiadas lecturas son físicamente imposibles"],
   "no comprobable": ["No comprobables así", "no dependen del instante de las fases; esta prueba no las valida"], "sin juzgar": ["Sin juzgar", "menos de 5 golpes con el dato"] };
 function renderReliability() {
   const R = DATA.reliability || {}, labels = {};
@@ -761,6 +761,7 @@ function renderReliability() {
   const u = un => un === "°" ? "°" : un ? " " + un : "";
   const row = ([k, v]) => { const [l, ph, un, dec] = labels[k] || [k, "", "", 1];
     const d = isN(v.flip) ? `cambia en el ${Math.round(100 * v.flip)} % de los casos al mover las fases`
+      : v.verdict === "sesgo" && isN(v.implausible) ? `imposible en ${v.implausible} de ${v.n_values} golpes (fuera de ${fmt(v.range[0])}…${fmt(v.range[1])}${u(un)})`
       : v.verdict === "sesgo" ? `2D ${fmt(v.med2d)}° · 3D ${fmt(v.med3d)}°${v.from ? " (sale del giro de hombros)" : ""}`
       : isN(v.noise) ? `±${fmt(v.noise, dec)}${u(un)} entre fotogramas${isN(v.spread) ? ` · ±${fmt(v.spread, dec)}${u(un)} entre golpes` : ""}` : "";
     return `<li><b>${l}</b> <span class="dim3">${ph}</span> · ${d} <span class="dim3">(${v.n || 0} golpes)</span></li>`; };
@@ -2033,7 +2034,20 @@ function renderModelCurves(C) {
   document.getElementById("m-curves-leg").innerHTML = D.map(([, n, col]) => `<span><i style="background:${col}"></i>${n}</span>`).join("") + (Object.keys(BALL_EV).some(k => isN(ev[k])) ? `<span><i style="background:var(--accent)"></i>momentos de la bola (mediana)</span>` : "");
   document.getElementById("m-curves-txt").innerHTML = curveSentences(C).map(t => `<li>${t}</li>`).join("");
 }
+// a measure that is noise or biased from the TV camera (DATA.reliability) is never said as hers here either
+function mHidden(l) {
+  const r = (DATA.reliability || {})[l.key];
+  if (!r || (r.verdict !== "ruido" && r.verdict !== "sesgo")) return null;
+  let lab = l.key;
+  ((DATA.learn || {}).phases || []).forEach(ph => ph.checkpoints.forEach(cp => { if (cp.key === l.key) lab = cp.label; }));
+  const why = r.verdict === "ruido" ? "cambia más entre fotogramas vecinos que entre sus golpes"
+    : isN(r.implausible) ? `en ${r.implausible} de ${r.n_values} golpes la lectura es físicamente imposible`
+    : "dos métodos independientes no coinciden";
+  return `${lab}: no fiable desde la tele (${why}); no se da como valor suyo.`;
+}
 function mLine(c, l, why) {
+  const hid = mHidden(l);
+  if (hid) return `<li class="dim3" data-ph="${c.phase}" title="Ver este momento en vídeo"><span>${hid}</span><span></span></li>`;
   const dv = l.change ? `<span class="dv">${l.change.diff > 0 ? "+" : "−"}${fmt(Math.abs(l.change.diff), ["s", "m", "m/s", ""].includes(l.change.unit) ? 2 : 0)}${l.change.unit === "°" || l.change.unit === "%" ? l.change.unit : " " + l.change.unit}</span>` : relBars(l.rel);
   return `<li class="${l.change ? "chg" : ""}" data-ph="${c.phase}" title="Ver este momento en vídeo"><span>${l.text}${why && l.why ? `<span class="why">${l.why}${l.src && l.src !== "—" ? ` <i>· ${l.src}</i>` : ""}</span>` : ""}</span><span>${dv}</span></li>`;
 }
@@ -2132,6 +2146,8 @@ function aStat(set, c) {
   const v = aValues(set, c.key);
   if (!v.length) return { n: 0, txt: null };
   const rel = (DATA.reliability || {})[c.key], ru = c.unit === "°" ? "°" : c.unit ? " " + c.unit : "";
+  if (typeof v[0] === "number" && rel && rel.verdict === "sesgo" && isN(rel.implausible))
+    return { n: 0, txt: null, why: `no fiable desde la tele: en ${rel.implausible} de ${rel.n_values} golpes la lectura es físicamente imposible (fuera de ${fmt(rel.range[0])}…${fmt(rel.range[1])}${ru}); el método falla también en las demás; no se da como valor suyo` };
   if (typeof v[0] === "number" && rel && rel.verdict === "sesgo")
     return { n: 0, txt: null, why: rel.from ? `no fiable desde la tele: sale del giro de hombros, y ese giro no coincide entre la imagen 2D (${fmt(rel.med2d, 0)}°) y la estimación 3D (${fmt(rel.med3d, 0)}°); no se da como valor suyo`
       : `no fiable desde la tele: dos métodos independientes no coinciden (imagen 2D ${fmt(rel.med2d, c.dec)}${ru}, estimación 3D ${fmt(rel.med3d, c.dec)}${ru}, en ${rel.n2} golpes); no se da como valor suyo` };

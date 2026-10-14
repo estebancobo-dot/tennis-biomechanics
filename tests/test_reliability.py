@@ -63,3 +63,52 @@ def test_derived_measure_takes_the_verdict_of_its_source():
     from tennisbio.reliability import TRUNK_3D
     r = assess(rows, {"loaded.shoulder_turn": "°", "stroke.shoulder_brake": "%"}, TRUNK_3D)
     assert r["stroke.shoulder_brake"]["verdict"] == "sesgo" and r["stroke.shoulder_brake"]["from"] == "loaded.shoulder_turn"
+
+
+def _feet(values, key="impact.back_foot_angle_deg", noise=2.0):
+    p, m = key.split(".")
+    return [{"technique": {"phases": {p: {m: v}}, "jitter": {key: noise}}} for v in values]
+
+
+def test_physically_impossible_readings_make_a_measure_biased():
+    """Foot direction: toes turned back towards her own fence (< -45°) on a planted groundstroke foot is
+    the method failing (PC, 14-10: 20-44 % of the forehand readings), not her technique."""
+    from tennisbio.reliability import FOOT_RANGE, IMPLAUSIBLE_SHARE, PLAUSIBLE
+
+    assert FOOT_RANGE == (-45.0, 180.0) and IMPLAUSIBLE_SHARE == 0.15
+    assert set(PLAUSIBLE) == {f"{p}.{w}_foot_angle_deg" for p in ("loaded", "impact") for w in ("front", "back")}
+    k = "impact.back_foot_angle_deg"
+    # the real distribution of the PC's near forehands (poc6_35): 5 of 12 below -45°
+    real = [-98.5, -82.8, -64.0, -63.9, -48.5, -42.2, -24.2, -7.7, -1.5, 3.3, 35.8, 39.6]
+    r = assess(_feet(real), {k: "°"})[k]
+    assert r["verdict"] == "sesgo" and r["implausible"] == 5 and r["n_values"] == 12 and r["range"] == [-45.0, 180.0]
+    # nominal: all possible, a real spread → reliable, nothing flagged
+    ok = assess(_feet([0, 10, 20, 30, 45, 60, 75, 90, 100, 110]), {k: "°"})[k]
+    assert ok["verdict"] == "fiable" and "implausible" not in ok
+    # edge: the limit itself is possible; 3 of 20 (15 %) impossible is not yet systematic, but is reported
+    edge = [-45.0] + [float(x) for x in range(0, 95, 5)]
+    assert assess(_feet(edge), {k: "°"})[k]["verdict"] == "fiable"
+    some = [-60.0, -70.0, -80.0] + [float(x) for x in range(0, 85, 5)]
+    rs = assess(_feet(some), {k: "°"})[k]
+    assert rs["verdict"] == "fiable" and rs["implausible"] == 3 and rs["n_values"] == 20
+    # 4 of 21 (19 %): systematic
+    assert assess(_feet([-90.0] + some), {k: "°"})[k]["verdict"] == "sesgo"
+    # error cases: noise stays noise; other measures are not judged by the foot range; too few: not judged
+    noisy = assess(_feet([-90, -80, -70, 0, 1, 2, 3, 4], noise=60.0), {k: "°"})[k]
+    assert noisy["verdict"] == "ruido"
+    other = assess(_feet(real, key="loaded.shoulder_turn"), {"loaded.shoulder_turn": "°"})["loaded.shoulder_turn"]
+    assert other["verdict"] != "sesgo" and "implausible" not in other
+    assert assess(_feet([-90, -80, 10]), {k: "°"})[k]["verdict"] == "sin juzgar"
+
+
+def test_consistent_strokes_with_a_moving_instant_are_noise():
+    """PC, 14-10 (10 near forehands): the shoulder turn where the backswing starts reads 19-23° in 7 of 10
+    strokes, and moving that instant 1-2 frames moves it ±3.4° (the turn is starting there). The strokes
+    do not differ more than the instant itself: not given as her value (it was «fiable» only while the
+    former height scale, which followed the trunk's image length, spread the strokes apart)."""
+    vals = [20.7, 20.2, 20.7, 62.2, 22.9, 22.1, 18.9, 54.5, 22.4, 3.0]
+    jit = [4.25, 3.95, 2.15, 1.15, 3.75, 3.95, 1.2, 3.05, 10.5, 0.35]
+    rows = [{"technique": {"phases": {"takeback": {"shoulder_turn": v}}, "jitter": {"takeback.shoulder_turn": j}}}
+            for v, j in zip(vals, jit)]
+    r = assess(rows, {"takeback.shoulder_turn": "°"})["takeback.shoulder_turn"]
+    assert r["verdict"] == "ruido" and r["noise"] == 3.4 and r["spread"] < r["noise"]

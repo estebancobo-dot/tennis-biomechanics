@@ -116,9 +116,15 @@ def foot_angle_deg(feet: np.ndarray | None, frame: int | None, sk: Skeleton, H: 
 
 
 HEEL_LIFT_PCT = 0.03       # heel up against the toes by > 3 % of her height (≈ 5 cm) = heel off the ground
-TOE_PLANTED_M = 0.12       # the toes stay within 12 cm of where they were when loaded
+TOE_PLANTED_M = 0.12       # the toes stay within 12 cm of where they were at the reference (PIVOT_REF_S)
 TOE_LIFT_PCT = 0.02        # and do not rise more than 2 % of her height in the image
 HEEL_SEEN_SHARE = 0.6      # heel and toes seen in at least 60 % of the frames loaded → finish
+# the flat-foot reference is taken at most this long before contact: the pivot comes with the hips
+# turning forward, in the forward swing (on the PC, 14-10: lifts from -0.06 to +0.02 s). Taken at the
+# end of the backswing instead, a stroke whose backswing ends 0.4-0.6 s before contact (running in,
+# adjustment steps after it) never had its back toes "planted" where they were then: 0 of 6 such
+# forehands pivoted, against 5 of 6 of those whose backswing ends ~0.14 s before contact
+PIVOT_REF_S = 0.2
 
 
 def heel_lift(feet: np.ndarray | None, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fps: float, impact: int,
@@ -130,19 +136,22 @@ def heel_lift(feet: np.ndarray | None, sk: Skeleton, H: np.ndarray, scale: np.nd
     From behind and above, a heel that lifts rises in the image against its own toes (heel above toes
     by more than when it was loaded, in % of her height, so moving towards the net, which raises both,
     does not count). The toes must stay on their spot on the court and not rise: a foot that leaves
-    the ground whole is a step or a kick back, not a pivot. It must last ≥ 0.04 s (2 frames)."""
+    the ground whole is a step or a kick back, not a pivot. It must last ≥ 0.04 s (2 frames).
+    The foot is compared with itself from loaded, or from PIVOT_REF_S before contact when the
+    backswing ends earlier (her feet may still be moving then)."""
     if feet is None or loaded is None or not 0 <= loaded < len(feet):
         return {}
     T = len(feet)
     end = finish if finish is not None and loaded < finish < T else min(T - 1, impact + int(round(0.4 * fps)))
-    if end <= loaded:
+    start = max(loaded, impact - int(round(PIVOT_REF_S * fps)))
+    if end <= start:
         return {}
     back = "dom" if stroke != "backhand" else "non"
     heel, toe = heel_toe(feet, sk, back)
-    w = np.arange(loaded, end + 1)
+    w = np.arange(start, end + 1)
     ok = np.isfinite(heel[w]).all(axis=1) & np.isfinite(toe[w]).all(axis=1) & np.isfinite(scale[w])
     if ok.mean() < HEEL_SEEN_SHARE or ok[:max(1, int(round(0.06 * fps)))].sum() == 0:
-        return {}                                 # needs the foot at loaded (flat) as the reference
+        return {}                                 # needs the foot at the start (flat) as the reference
     first = w[ok][:3]
     rel = toe[:, 1] - heel[:, 1]                  # + = heel above the toes in the image (y grows down)
     ref_rel, ref_toe_y = float(np.median(rel[first])), float(np.median(toe[first, 1]))
