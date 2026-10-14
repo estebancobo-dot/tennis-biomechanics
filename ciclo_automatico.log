@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261014102004
+Start time: 20261014115005
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 15760
+Process ID: 6824
 PSVersion: 5.1.26100.9549
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
@@ -17,16 +17,63 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-14 10:20:04] Codigo nuevo (4799a22 -> 1d3ffaf): 1 ficheros
-    scripts/windows/ciclo_automatico.ps1
+==> [2026-10-14 11:50:05] Codigo nuevo (1d3ffaf -> 42ac69c): 22 ficheros
+    config/default.yaml
+    config/peticion_pc.txt
+    docs/estado_del_arte.md
+    docs/pruebas_velocidad.md
+    src/tennisbio/ball.py
+    src/tennisbio/clip_pipeline.py
+    src/tennisbio/fine_gate.py
+    src/tennisbio/footpoints.py
+    src/tennisbio/kinematics.py
+    src/tennisbio/pose/estimator.py
+    src/tennisbio/pose/hybrid.py
+    src/tennisbio/pose/yolo.py
+    src/tennisbio/racket_orientation.py
+    src/tennisbio/reliability.py
+    src/tennisbio/skeleton.py
+    src/tennisbio/stages.py
+    src/tennisbio/technique.py
+    tests/test_fine_ranges.py
+    tests/test_hybrid_pose.py
+    tests/test_racket3d.py
+    tests/test_reliability.py
+    tests/test_trunk_turn.py
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating 4799a22..1d3ffaf
+Updating 1d3ffaf..42ac69c
 Fast-forward
- scripts/windows/ciclo_automatico.ps1 | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-Resolved 110 packages in 0.91ms
-Checked 83 packages in 5ms
+ config/default.yaml                 |  29 ++
+ config/peticion_pc.txt              |   2 +-
+ docs/estado_del_arte.md             |  14 +
+ docs/pruebas_velocidad.md           |  67 ++++
+ src/tennisbio/ball.py               |  12 +-
+ src/tennisbio/clip_pipeline.py      | 159 ++++++++--
+ src/tennisbio/fine_gate.py          |  99 ++++--
+ src/tennisbio/footpoints.py         |  90 ++++++
+ src/tennisbio/kinematics.py         |  79 ++++-
+ src/tennisbio/pose/estimator.py     |  13 +-
+ src/tennisbio/pose/hybrid.py        | 202 ++++++++++++
+ src/tennisbio/pose/yolo.py          | 206 ++++++++----
+ src/tennisbio/racket_orientation.py |  80 ++++-
+ src/tennisbio/reliability.py        |  10 +-
+ src/tennisbio/skeleton.py           |  20 +-
+ src/tennisbio/stages.py             |  85 ++++-
+ src/tennisbio/technique.py          |   7 +-
+ tests/test_fine_ranges.py           | 612 ++++++++++++++++++++++++++++++++++++
+ tests/test_hybrid_pose.py           | 203 ++++++++++++
+ tests/test_racket3d.py              |   4 +-
+ tests/test_reliability.py           |   4 +-
+ tests/test_trunk_turn.py            | 142 +++++++++
+ 22 files changed, 1975 insertions(+), 164 deletions(-)
+ create mode 100644 src/tennisbio/footpoints.py
+ create mode 100644 src/tennisbio/pose/hybrid.py
+ create mode 100644 tests/test_fine_ranges.py
+ create mode 100644 tests/test_hybrid_pose.py
+ create mode 100644 tests/test_trunk_turn.py
+Resolved 110 packages in 0.87ms
+Checked 83 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -35,13 +82,6 @@ yolo11m-pose_640.onnx OK 84 MB
 yolo11m-pose_960.onnx OK 84 MB
 yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
-    (paso terminado en 4 s)
+    (paso terminado en 3 s)
 
-==> [2026-10-14 10:20:07] Que hace falta: nada
-Ciclo automatico terminado (nada).
-    (paso terminado en 0 s)
-Empezado 2026-10-14 10:20:02 - terminado 2026-10-14 10:20:08 - duracion total 5 s
-**********************
-Windows PowerShell transcript end
-End time: 20261014102008
-**********************
+==> [2026-10-14 11:50:08] Que hace falta: medidas
