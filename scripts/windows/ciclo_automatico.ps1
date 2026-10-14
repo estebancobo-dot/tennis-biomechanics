@@ -32,6 +32,7 @@ function Prueba-Modelos {
 }
 # pruebas que pide Claude desde el repositorio (config/peticion_pc.txt: "id: N" y "accion: ..."), una vez cada id
 #   poc = prueba de velocidad en carpetas aparte: 4 min (_poc4) y, si sale bien, 35 min (_poc); nunca toca _smoke
+#   largo = el video entero en output\_pocN_largo (una noche); nunca toca _smoke
 function Leer-Peticion {
     $f = Join-Path $RepoDir "config\peticion_pc.txt"
     if (-not (Test-Path $f)) { return $null }
@@ -61,6 +62,12 @@ function Hacer-Peticion {
             Paso "Peticion $($p['id']): sin errores; ahora 35 min de partido en output\$s35"
             & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $ps1 -Minutos 35 -Salida $s35 | Out-Host
         } else { Write-Host "La prueba de 4 min no termino bien: no se lanza la de 35 (ver prueba$s4.log)" -ForegroundColor Red }
+    } elseif ($p["accion"] -eq "largo") {
+        # el video entero (tramo largo) en su propia carpeta _pocN_largo: muchos golpes por situacion
+        # y el tiempo real de un partido; nunca toca _smoke
+        $s = "_poc$($p['id'])_largo"
+        Paso "Peticion $($p['id']): el video entero en output\$s (unas 6-7 h)"
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $ps1 -Minutos 600 -Salida $s | Out-Host
     } else { Write-Host "Peticion desconocida: $($p['accion'])" -ForegroundColor Yellow }
 }
 # el equipo no se suspende mientras el ciclo exista (la pantalla si puede apagarse): cada arranque, cada

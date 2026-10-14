@@ -44,6 +44,8 @@ def main():
     out_root.mkdir(parents=True, exist_ok=True)
     src = Path(args.video)
     full = probe(src).duration
+    if args.start is None and args.minutes * 60 >= full:     # the whole video: nothing to search
+        args.start = 0.0
     if args.start is None:            # searched once per video; remembered in _smoke/tramo.json
         memo = out_root / "tramo.json"
         key = f"{src.name}|{src.stat().st_size}"
@@ -81,8 +83,8 @@ def main():
     from tennisbio.export import export
     exp = export([match], out_root, out_root / "exportar", strokes_all=True)
     if "players" in done and "fine" in done:        # a partial re-run (caches) says nothing about the time
-        print(f"\nTotal {total / 60:.1f} min para {args.minutes:g} min de vídeo → partido de {full / 60:.0f} min "
-              f"≈ {total * full / (args.minutes * 60) / 3600:.1f} h (estimación lineal)")
+        print(f"\nTotal {total / 60:.1f} min para {min(args.minutes, full / 60):g} min de vídeo → partido de {full / 60:.0f} min "
+              f"≈ {total * full / min(args.minutes * 60, full) / 3600:.1f} h (estimación lineal)")
     elif done:
         print("\n(Solo se rehicieron algunas etapas: el tiempo no sirve para estimar un partido)")
     print(f"Informe: {report}")
