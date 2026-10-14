@@ -52,7 +52,7 @@ function Hacer-Peticion {
     if ($p["accion"] -eq "poc") {
         # carpetas nuevas por peticion: sin caches de otra prueba, el tiempo medido es el real
         $s4 = "_poc4"; $s35 = "_poc"
-        if ($p["id"] -ne "1") { $s4 = "_poc$($p['id'])_4"; $s35 = "_poc$($p['id'])" }
+        if ($p["id"] -ne "1") { $s4 = "_poc$($p['id'])_4"; $s35 = "_poc$($p['id'])_35" }
         Paso "Peticion $($p['id']): prueba de velocidad, 4 min de partido en output\$s4"
         $t0 = Get-Date
         & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $ps1 -Minutos 4 -Salida $s4 | Out-Host
