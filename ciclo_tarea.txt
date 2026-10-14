@@ -1,9 +1,9 @@
-fecha: 2026-10-14T02:31:21
-estado: Ready
+fecha: 2026-10-14T02:40:04
+estado: Running
 descripcion: Tenis (ciclo v3): trae el codigo nuevo, recalcula lo necesario, revisa y sube los registros
-ultima ejecucion: 10/14/2026 02:30:02
-resultado (0 = bien, 267009 = en marcha, 267011 = nunca, 2147946720 = rechazada porque la anterior seguia trabajando): 0
-proxima: 10/14/2026 02:40:00
+ultima ejecucion: 10/14/2026 02:40:02
+resultado (0 = bien, 267009 = en marcha, 267011 = nunca, 2147946720 = rechazada porque la anterior seguia trabajando): 267009
+proxima: 10/14/2026 02:50:00
 perdidas: 0
 disparadores: MSFT_TaskDailyTrigger PT10M; MSFT_TaskLogonTrigger 
 accion: powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File "C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1"
