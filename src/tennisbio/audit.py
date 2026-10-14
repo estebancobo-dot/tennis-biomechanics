@@ -46,6 +46,7 @@ KEY_MOMENTS = {"ready": "espera / split step", "takeback": "inicio de preparaci�
                "finish": "terminación", "recovery": "recuperación"}
 # physical limits of what is shown (a value outside them is a measurement error that got through)
 from .limits import METRIC_LIMITS
+from .pipeline import total_seconds
 
 LIMITS = {
     **{f"metrics.{k}": v for k, v in METRIC_LIMITS.items()},
@@ -454,7 +455,7 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
                        f"{review} golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario"))
     for m, man in manifests.items():
         dur = ((man.get("probe") or {}).get("summary") or {}).get("duration_min")
-        secs = sum(e.get("seconds", 0) for e in man.values())
+        secs = total_seconds(man)          # stages run at the same time count once
         if dur:
             per_h = secs / 3600 / (dur / 60) if dur else None        # hours of processing per hour of video
             st = "ok" if per_h is not None and per_h * 3.5 <= 12 else "aviso"

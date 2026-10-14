@@ -9,9 +9,11 @@ metric formula reruns only the metrics, and manual review files are never touche
 import hashlib
 import json
 import os
+import queue
 import shutil
+import threading
 import time
-from dataclasses import dataclass, field
+from dataclasses import dataclass, field, replace
 from pathlib import Path
 from typing import Callable
 
@@ -28,6 +30,11 @@ class Stage:
     outputs: tuple[str, ...] = ()             # files that must exist for the stage to be up to date
     code: tuple[str, ...] = ()                # modules whose source is part of the fingerprint
     match_fields: Callable | None = None      # the part of the match/player profile it depends on
+    # what the stage mostly keeps busy ("gpu", "cpu"): with `pipeline.parallel`, two ready stages with
+    # different resources run at the same time (players on the iGPU while score does OCR on the CPU).
+    # None: the stage runs alone, as always. A function of the config can decide it (the pose model
+    # is on the CPU too when there is no iGPU: then it is not run beside the OCR).
+    resource: str | Callable[[dict], str | None] | None = None
 
 
 @dataclass
@@ -60,10 +67,11 @@ class Context:
         msg = f"  {p.get('stage', '')}: {frac * 100:3.0f} % ({done}/{total}{' ' + what if what else ''}) · {fmt(el)} · quedan ≈ {fmt(left)}"
         self.log(msg)
         try:
-            write_atomic(self.dir.parent / "progreso.json", json.dumps({
-                "partido": self.match.id, "etapa": p.get("stage"), "hecho": done, "total": total,
-                "porcentaje": round(frac * 100, 1), "segundos": round(el), "quedan_s": None if left is None else round(left),
-                "hora": time.strftime("%Y-%m-%d %H:%M:%S")}, ensure_ascii=False))
+            with _PROGRESS_LOCK:            # two stages at once write the same file
+                write_atomic(self.dir.parent / "progreso.json", json.dumps({
+                    "partido": self.match.id, "etapa": p.get("stage"), "hecho": done, "total": total,
+                    "porcentaje": round(frac * 100, 1), "segundos": round(el), "quedan_s": None if left is None else round(left),
+                    "hora": time.strftime("%Y-%m-%d %H:%M:%S")}, ensure_ascii=False))
         except OSError:
             pass
 
@@ -75,12 +83,14 @@ class Context:
         return src if src.exists() and (self.dir / "source.json").exists() else self.match.video
 
 
+_PROGRESS_LOCK = threading.Lock()
+
 STAGES: dict[str, Stage] = {}
 
 
-def stage(name, version, deps=(), settings=lambda cfg: {}, outputs=(), code=(), match_fields=None):
+def stage(name, version, deps=(), settings=lambda cfg: {}, outputs=(), code=(), match_fields=None, resource=None):
     def register(fn):
-        STAGES[name] = Stage(name, version, tuple(deps), settings, fn, tuple(outputs), tuple(code), match_fields)
+        STAGES[name] = Stage(name, version, tuple(deps), settings, fn, tuple(outputs), tuple(code), match_fields, resource)
         return fn
     return register
 
@@ -226,38 +236,157 @@ def status(ctx: Context) -> dict[str, str]:
     return res
 
 
-def run(ctx: Context, names=None, force=False, upstream=True) -> list[str]:
+def parallel_enabled(cfg: dict) -> bool:
+    """`pipeline.parallel` in the config (default on): stages with different resources at once."""
+    return bool((cfg.get("pipeline") or {}).get("parallel", True))
+
+
+def resource(name: str, cfg: dict) -> str | None:
+    r = STAGES[name].resource
+    return r(cfg) if callable(r) else r
+
+
+def total_seconds(manifest: dict) -> float:
+    """Wall time of the stages in a manifest: the sum of their seconds minus what ran at the same time
+    as another stage (`overlap_s`, recorded once per overlapping pair)."""
+    return sum(e.get("seconds", 0) - e.get("overlap_s", 0) for e in manifest.values() if isinstance(e, dict))
+
+
+def _overlap(a: tuple[float, float], spans: list[tuple[float, float]]) -> float:
+    """Seconds of the interval a covered by the union of spans."""
+    cut = sorted((max(a[0], s0), min(a[1], s1)) for s0, s1 in spans if min(a[1], s1) > max(a[0], s0))
+    tot, end = 0.0, -float("inf")
+    for s0, s1 in cut:
+        s0 = max(s0, end)
+        if s1 > s0:
+            tot += s1 - s0
+        end = max(end, s1)
+    return tot
+
+
+def _fmt_dt(dt: float) -> str:
+    return f"{dt / 60:.1f} min" if dt >= 60 else f"{dt:.0f} s"
+
+
+def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | None = None) -> list[str]:
     """Run the requested stages (default: all) that are missing or stale, plus whatever upstream is
     missing or stale. force re-runs the requested stages only, not their dependencies.
     upstream=False runs the requested stages only, on the outputs already there of their
     dependencies even when those are stale (scripts/recompute_measures.py: new measurements without
     repeating the expensive passes); the dependencies keep their own manifest entry, so a later
-    normal run still re-runs them."""
+    normal run still re-runs them.
+
+    parallel (default: `pipeline.parallel` in the config, on): a stage with a `resource` runs in a
+    thread while another ready stage with a different resource runs too (players on the iGPU, score
+    with OCR on the CPU: both only need scenes and court). Stages without a resource always run alone,
+    in the calling thread, in the same order as before; with parallel off every stage does. The
+    decisions (what is up to date) and the manifest stay in the calling thread; the lines of a stage
+    running in a thread carry its name. If a stage fails, no other one starts, the ones running finish
+    (and are recorded) and the first error is raised."""
     ctx.dir.mkdir(parents=True, exist_ok=True)
+    if parallel is None:
+        parallel = parallel_enabled(ctx.cfg)
     m = load_manifest(ctx.dir)
-    done = []
+    done: list[str] = []
     requested = set(names or STAGES)
-    for n in order(names or list(STAGES)):
-        if not upstream and n not in requested:
-            continue
-        fp = fingerprint(n, ctx, m)
-        if not (force and n in requested) and m.get(n, {}).get("fingerprint") == fp and outputs_ok(n, ctx):
-            continue
+    full = order(names or list(STAGES))
+    plan = [n for n in full if upstream or n in requested]
+    in_plan = set(plan)
+    lock = threading.Lock()
+    base_log = ctx.log
+
+    def log(msg: str):
+        with lock:
+            base_log(msg)
+
+    pending = list(plan)
+    running: dict[str, float] = {}               # stage → start time
+    spans: list[tuple[float, float]] = []        # (start, end) of the stages finished in this run
+    events: queue.Queue = queue.Queue()
+    errors: list[BaseException] = []
+
+    def check_disk():
         free = shutil.disk_usage(ctx.dir).free
         if free < MIN_FREE_BYTES:
             raise DiskFull(f"Queda muy poco espacio en el disco ({free / 1e9:.1f} GB libres en {ctx.dir.anchor or ctx.dir}). "
                            "Libera al menos 5 GB (por ejemplo, borra vídeos ya analizados) y vuelve a ejecutar: "
                            "se sigue donde se quedó.")
-        t0 = time.time()
-        k = order(names or list(STAGES)).index(n) + 1
-        ctx.log(f"[{ctx.match.id}] {n}… ({time.strftime('%Y-%m-%d %H:%M:%S')}, etapa {k} de {len(STAGES)})")
-        ctx._prog["stage"] = n
-        summary = STAGES[n].run(ctx) or {}
-        dt = time.time() - t0
-        ctx.log(f"[{ctx.match.id}] {n} terminada a las {time.strftime('%H:%M:%S')} en "
-                + (f"{dt / 60:.1f} min" if dt >= 60 else f"{dt:.0f} s"))
-        m[n] = {"fingerprint": fp, "version": STAGES[n].version, "seconds": round(time.time() - t0, 1),
+
+    def finish(n: str, fp: str, summary: dict, t0: float, t1: float):
+        dt = t1 - t0
+        ov = _overlap((t0, t1), spans)
+        spans.append((t0, t1))
+        log(f"[{ctx.match.id}] {n} terminada a las {time.strftime('%H:%M:%S')} en {_fmt_dt(dt)}"
+            + (f" ({_fmt_dt(ov)} a la vez que otra etapa)" if ov >= 1 else ""))
+        m[n] = {"fingerprint": fp, "version": STAGES[n].version, "seconds": round(dt, 1),
                 "finished": time.strftime("%Y-%m-%d %H:%M:%S"), "summary": summary}
+        if ov > 0:
+            m[n]["overlap_s"] = round(ov, 1)
         save_manifest(ctx.dir, m)          # after every stage, so an interruption loses little
         done.append(n)
+
+    def worker(n: str, sub: Context):
+        t0 = time.time()
+        try:
+            res, err = STAGES[n].run(sub) or {}, None
+        except BaseException as e:          # handed to the calling thread
+            res, err = None, e
+        events.put((n, res, err, t0, time.time()))
+
+    fps: dict[str, str] = {}
+    while pending or running:
+        started = False
+        for n in list(pending) if not errors else []:
+            st = STAGES[n]
+            if any(d in in_plan and (d in pending or d in running) for d in st.deps):
+                continue                                     # a dependency is not finished yet
+            fp = fingerprint(n, ctx, m)
+            if not (force and n in requested) and m.get(n, {}).get("fingerprint") == fp and outputs_ok(n, ctx):
+                pending.remove(n)
+                continue
+            res_n = resource(n, ctx.cfg) if parallel else None
+            threaded = res_n is not None
+            if running and not (threaded and all(resource(r, ctx.cfg) not in (None, res_n) for r in running)):
+                continue                                     # waits for the running stages
+            try:
+                check_disk()
+            except DiskFull as e:
+                if not running:
+                    raise
+                errors.append(e)
+                break
+            pending.remove(n)
+            k = full.index(n) + 1
+            others = f", a la vez que {', '.join(running)}" if running else ""
+            log(f"[{ctx.match.id}] {n}… ({time.strftime('%Y-%m-%d %H:%M:%S')}, etapa {k} de {len(STAGES)}{others})")
+            if not threaded:                                 # alone, in this thread, as always
+                ctx._prog["stage"] = n
+                t0 = time.time()
+                summary = st.run(ctx) or {}
+                finish(n, fp, summary, t0, time.time())
+                started = True
+                break                                        # rescan: what depends on it may be ready
+            fps[n] = fp
+            pre = f"[{n}] "
+            sub = replace(ctx, log=lambda msg, pre=pre: log(pre + msg if not msg.startswith("  ") else "  " + pre + msg[2:]),
+                          _prog={"stage": n})
+            running[n] = time.time()
+            threading.Thread(target=worker, args=(n, sub), name=f"etapa-{n}", daemon=True).start()
+            started = True
+        if started:
+            continue
+        if not running:
+            break                                            # nothing left that can start (after an error)
+        try:
+            n, res, err, t0, t1 = events.get(timeout=0.5)    # a timeout keeps Ctrl+C working on Windows
+        except queue.Empty:
+            continue
+        running.pop(n, None)
+        if err is not None:
+            log(f"[{ctx.match.id}] {n} falló: {type(err).__name__}: {err}")
+            errors.append(err)
+        else:
+            finish(n, fps[n], res, t0, t1)
+    if errors:
+        raise errors[0]
     return done

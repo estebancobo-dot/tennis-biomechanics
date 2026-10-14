@@ -15,7 +15,7 @@ from pathlib import Path
 import numpy as np
 
 from .impacts import audio_onsets, swing_peaks
-from .io.video import frames_at, probe, read_frames
+from .io.video import frames_at, probe, read_ahead, read_frames
 from .kinematics import body_height, clean, speed, to_body_frame
 from .config import model_state, resolve_path
 from .pipeline import Context, savez_atomic, stage, write_atomic
@@ -158,15 +158,18 @@ def load_onsets(ctx: Context) -> np.ndarray:
 
 
 def _pose_detector(cfg: dict):
-    """frame → (boxes (N,4), keypoints (N,17,2), conf (N,17)) with the YOLO pose model."""
+    """The YOLO pose model of the cheap pass: predict(frame, conf, prepared) → (boxes (N,4),
+    keypoints (N,17,2), conf (N,17)); prepare(frame) its input, computable ahead in another thread."""
     from .pose.backend import pose_model, set_device, uses_fp16
 
     set_device(cfg.get("device", "cpu"), uses_fp16(cfg))
-    model = pose_model(cfg.get("yolo_pose", "yolo11m-pose.pt"), cfg["cheap_pass"].get("imgsz", 960))
+    return pose_model(cfg.get("yolo_pose", "yolo11m-pose.pt"), cfg["cheap_pass"].get("imgsz", 960))
 
-    def detect(frame):
-        return model.predict(frame, conf=0.3)
-    return detect
+
+def _appearances(frame: np.ndarray, boxes: np.ndarray) -> np.ndarray:
+    from .pose.yolo import appearance
+
+    return np.array([appearance(frame, bb) for bb in boxes], np.float32).reshape(len(boxes), 32)
 
 
 def play_mask(sc: dict, court: dict | None) -> np.ndarray:
@@ -195,11 +198,11 @@ def _fp16_setting(c) -> dict:
 
 @stage("players", "4", deps=("scenes", "court"),
        settings=lambda c: {"fps": c["cheap_pass"]["fps"], "imgsz": c["cheap_pass"].get("imgsz", 960), **_fp16_setting(c)},
-       outputs=("players.npz",))
+       outputs=("players.npz",), resource=lambda c: "gpu" if c.get("device", "cpu") == "dml" else "cpu")
 def st_players(ctx: Context):
     """Cheap pose on match-play frames only (main camera with the court found; cheap fps, full
     width for small players)."""
-    from .pose.yolo import _objects, appearance
+    from .pose.yolo import _objects
 
     sc = _read(ctx.path("scenes.json"))
     fps = sc["fps"]
@@ -207,39 +210,64 @@ def st_players(ctx: Context):
     main = play_mask(sc, court)
     total_main = sum(s["end"] - s["start"] for s in sc["shots"] if s["main_camera"])
     ctx.log(f"  juego con pista: {main.sum() / fps / 60:.1f} min de {total_main / fps / 60:.1f} min de cámara principal")
-    detect = _pose_detector(ctx.cfg)
+    model = _pose_detector(ctx.cfg)
     info = probe(ctx.video)
     # ffmpeg hands over frames already at the model's size (it letterboxes to imgsz anyway): a quarter
     # of the pixels to decode, pipe and resize; points and boxes are scaled back to the full frame
     imgsz = int(ctx.cfg["cheap_pass"].get("imgsz", 960))
     width = imgsz if info.width > imgsz else None
     sx = info.width / width if width else 1.0
-    boxes, kps, confs, feats, idx = [], [], [], [], []
-    t_read = t_model = 0.0
-    import time as _t
     # only the main-camera stretches are decoded (seeking past replays, close-ups and changeovers:
     # a third of a broadcast or more)
     edges = np.flatnonzero(np.diff(np.r_[0, main.astype(int), 0]))
-    for a, b_ in zip(edges[::2], edges[1::2]):
-        t0 = _t.perf_counter()
-        for k_, frame in enumerate(read_frames(info, start=a / fps, duration=(b_ - a) / fps, fps=fps, width=width,
-                                               hwaccel=ctx.cfg.get("hwaccel"))):
-            t1 = _t.perf_counter()
-            t_read += t1 - t0
-            i = int(a) + k_
-            if i >= b_:
-                break
-            b, k, c = detect(frame)
-            feats.append(np.array([appearance(frame, bb) for bb in b], np.float32).reshape(len(b), 32))
+
+    def frames():
+        """(frame index, frame, model input) of every play frame. Runs in a reader thread (read_ahead):
+        decoding and the letterbox of the next frames overlap with the model on the current one."""
+        for a, b_ in zip(edges[::2], edges[1::2]):
+            for k_, frame in enumerate(read_frames(info, start=a / fps, duration=(b_ - a) / fps, fps=fps, width=width,
+                                                   hwaccel=ctx.cfg.get("hwaccel"))):
+                i = int(a) + k_
+                if i >= b_:
+                    break
+                yield i, frame, model.prepare(frame)
+
+    from concurrent.futures import ThreadPoolExecutor
+    from time import perf_counter
+
+    boxes, kps, confs, feats, idx = [], [], [], [], []
+    reader: dict = {}
+    t_wait = t_model = 0.0
+    t_app = [0.0]
+
+    def app(frame, b):              # appearance histograms in a second thread, while the model runs
+        t = perf_counter()
+        f = _appearances(frame, b)
+        t_app[0] += perf_counter() - t
+        return f
+
+    t_start = t0 = perf_counter()
+    with ThreadPoolExecutor(max_workers=1) as pool:
+        for i, frame, prep in read_ahead(frames, prefetch=4, stats=reader):
+            t1 = perf_counter()
+            t_wait += t1 - t0
+            b, k, c = model.predict(frame, conf=0.3, prepared=prep)
+            feats.append(pool.submit(app, frame, b))
             boxes.append((b * sx).astype(np.float32)); kps.append((k * sx).astype(np.float32)); confs.append(c.astype(np.float32))
             idx.append(i)
-            t0 = _t.perf_counter()
+            t0 = perf_counter()
             t_model += t0 - t1
             ctx.progress(len(idx), int(main.sum()), "fotogramas con jugadoras")
+        feats = [f.result() for f in feats]
+    wall = perf_counter() - t_start
     savez_atomic(ctx.path("players.npz"), fps=fps, frames=np.array(idx), height=info.height,
                         boxes=_objects(boxes), kps=_objects(kps), confs=_objects(confs), feats=_objects(feats))
-    ctx.log(f"  tiempo: leer vídeo {t_read / 60:.1f} min, modelo y apariencia {t_model / 60:.1f} min ({len(idx)} fotogramas a {width or info.width} px)")
-    return {"frames": len(idx), "read_min": round(t_read / 60, 1), "model_min": round(t_model / 60, 1)}
+    t_read = reader.get("busy_s", 0.0)
+    ctx.log(f"  tiempo: {wall / 60:.1f} min para {len(idx)} fotogramas a {width or info.width} px · modelo {t_model / 60:.1f} min · "
+            f"leer vídeo y preparar la entrada {t_read / 60:.1f} min en otro hilo (espera real {t_wait / 60:.1f} min) · "
+            f"apariencia {t_app[0] / 60:.1f} min en otro hilo")
+    return {"frames": len(idx), "wall_min": round(wall / 60, 1), "model_min": round(t_model / 60, 1),
+            "read_min": round(t_read / 60, 1), "wait_min": round(t_wait / 60, 1), "appearance_min": round(t_app[0] / 60, 1)}
 
 
 def _on_court(boxes: np.ndarray, H) -> np.ndarray:
@@ -680,7 +708,7 @@ def _surname(name: str) -> str:
 
 
 @stage("score", "6", deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
-       outputs=("score.json",), match_fields=lambda m: {"player": m.player.name, "opponent": m.opponent})
+       outputs=("score.json",), match_fields=lambda m: {"player": m.player.name, "opponent": m.opponent}, resource="cpu")
 def st_score(ctx: Context):
     """TV scoreboard every few seconds of main camera (sets, games, points, pressure)."""
     sc = _read(ctx.path("scenes.json"))

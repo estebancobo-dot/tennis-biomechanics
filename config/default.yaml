@@ -43,6 +43,10 @@ device: dml
 # Modelo de pose YOLO en media precisión (solo con device: dml): 2,2 veces más rápido en la iGPU.
 # Validado en el PC (scripts/model_trials.py, 13-10): mismos golpes encontrados y puntos a 0,25 px.
 fp16: true
+# Etapas a la vez: las que usan recursos distintos y ya tienen sus datos se ejecutan juntas
+# (jugadoras en la iGPU mientras el marcador hace OCR en la CPU). false: una tras otra, como antes.
+pipeline:
+  parallel: true
 # Decodificador de vídeo en la gráfica: auto (d3d11va en Windows si funciona), d3d11va o null (CPU).
 hwaccel: auto
 

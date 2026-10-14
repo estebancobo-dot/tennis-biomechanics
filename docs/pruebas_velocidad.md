@@ -42,6 +42,15 @@ cómo está cubierto. ✔ = cubierto por prueba automática o por diseño; ◐ =
 | Cascada | Cuánto ahorra | rendimiento | registro por ventana («descartada sin pose» / «pasa») y en el resumen de `fine`: `gate` (descartadas, pasan, motivos, segundos) | ◐ prueba del PC |
 | Modelos | Híbrido YOLO + RTMPose-x | nominal | RTMPose-x solo en las personas grandes | ◐ prueba de modelos (en curso) |
 | Escala | Partido de 3,5 h | escalabilidad | tiempo lineal estimado desde 35 min | ◐ la prueba de 35 min lo da |
+| Etapas a la vez | Jugadoras (iGPU) y marcador (OCR en la CPU) tras la pista | nominal | se ejecutan juntas (las dos solo necesitan planos y pista); el resto, una tras otra como antes | ✔ `tests/test_parallel.py` |
+| Etapas a la vez | Sin iGPU (`device: cpu`/`openvino`) | límite | la pose también es CPU: una tras otra (no compiten por los mismos núcleos) | ✔ `test_real_stages_players_and_score_are_paired_only_on_the_igpu` |
+| Etapas a la vez | `pipeline.parallel: false` | límite | todo una tras otra, en el orden de siempre | ✔ `test_disabled_runs_one_after_the_other_in_the_old_order` |
+| Etapas a la vez | Falla una de las dos | error | no empieza ninguna etapa más; la otra termina y queda guardada; el error sale como antes | ✔ `test_an_error_stops_new_stages_but_the_running_one_finishes` |
+| Etapas a la vez | Registro y `progreso.json` | concurrencia | cada línea de la etapa en paralelo lleva `[players]`/`[score]`; el progreso se escribe con cerrojo; el tiempo total del informe y de la auditoría cuenta una vez lo simultáneo (`overlap_s`) | ✔ idem |
+| Etapas a la vez | El OCR quita CPU a la lectura de vídeo de jugadoras | rendimiento | se ve en el resumen de `players` («espera real») | ◐ prueba del PC |
+| Jugadoras | Lectura de vídeo y preparación de la entrada en otro hilo | nominal | mismo resultado fotograma a fotograma; la apariencia (ropa) en un segundo hilo | ✔ `test_players_stage_output_is_the_same_as_one_frame_at_a_time` |
+| Jugadoras | Se corta a mitad (error del modelo) | error | el hilo lector para y cierra ffmpeg | ✔ `test_read_ahead_stops_when_the_caller_fails` |
+| Jugadoras | Lotes de 4 en la iGPU | rendimiento | no se hace: el modelo exportado es de lote 1 fijo y la pasada fina y la búsqueda lejana usan el mismo fichero | — |
 
 Pendiente de medir (no de diseñar): tiempos reales por etapa en el PC, la bola (26 % de la pasada fina) y
 el híbrido. Lo que no está aquí no cambia con esta versión.

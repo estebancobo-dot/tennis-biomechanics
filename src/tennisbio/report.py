@@ -17,6 +17,7 @@ from dataclasses import asdict
 from pathlib import Path
 
 from .catalog import Match
+from .pipeline import total_seconds
 
 
 def opponent_profile(match):
@@ -200,7 +201,7 @@ def run_info(matches, out_root: Path) -> dict:
         f = out_root / m.id / "manifest.json"
         if f.exists():
             man = json.loads(f.read_text(encoding="utf-8"))
-            secs += sum(e.get("seconds", 0) for e in man.values() if isinstance(e, dict))
+            secs += total_seconds(man)          # stages run at the same time count once
             vid += ((man.get("probe") or {}).get("summary") or {}).get("duration_min") or 0
     if secs:
         info.update(analysis_min=round(secs / 60, 1), video_min=round(vid, 1))

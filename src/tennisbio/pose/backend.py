@@ -51,9 +51,14 @@ class PoseModel:
     def backend(self) -> str:
         return (f"onnx-{self.device}" + ("-fp16" if self.fp16 else "")) if self.onnx is not None else "torch-cpu"
 
-    def predict(self, img: np.ndarray, conf: float = 0.3):
+    def prepare(self, img: np.ndarray):
+        """predict's input for img (letterbox), to compute ahead in a reader thread while the model runs
+        on the previous frame; None on the PyTorch path (it prepares its own input)."""
+        return self.onnx.prepare(img) if self.onnx is not None else None
+
+    def predict(self, img: np.ndarray, conf: float = 0.3, prepared=None):
         if self.onnx is not None:
-            b, _, k, c = self.onnx.pose(img, conf=conf)
+            b, _, k, c = self.onnx.pose(img, conf=conf, prepared=prepared)
             return b.astype(np.float32), k.astype(np.float32), c.astype(np.float32)
         r = self.torch.predict(img, imgsz=self.imgsz, conf=conf, verbose=False)[0]
         if not len(r.boxes):

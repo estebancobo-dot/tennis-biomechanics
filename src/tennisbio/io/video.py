@@ -436,3 +436,67 @@ def capture_frames(path: str | Path, prefetch: int = 4) -> Iterator[np.ndarray]:
     finally:
         stop.set()
         th.join(timeout=5)
+
+
+def read_ahead(source, prefetch: int = 4, stats: dict | None = None) -> Iterator:
+    """The items of the iterator `source()` makes, produced in a background thread up to `prefetch`
+    ahead, in order: decoding (ffmpeg pipe) and any per-item preparation done inside `source` overlap
+    with what the caller does with each item (the pose model on the iGPU; numpy, OpenCV and ONNX Runtime
+    release the GIL). An error in the thread is raised in the caller; stopping early (break, exception)
+    stops the thread and closes `source`'s iterator (which kills its ffmpeg).
+    stats: when given, stats["busy_s"] adds up the thread's time producing the items."""
+    import queue
+    import threading
+    import time
+
+    q: queue.Queue = queue.Queue(maxsize=max(1, prefetch))
+    stop = threading.Event()
+    end = object()
+    if stats is not None:
+        stats.setdefault("busy_s", 0.0)
+
+    def put(item) -> bool:
+        while not stop.is_set():
+            try:
+                q.put(item, timeout=0.1)
+                return True
+            except queue.Full:
+                continue
+        return False
+
+    def produce():
+        it = None
+        try:
+            it = iter(source())
+            while not stop.is_set():
+                t0 = time.perf_counter()
+                try:
+                    item = next(it)
+                except StopIteration:
+                    break
+                finally:
+                    if stats is not None:
+                        stats["busy_s"] += time.perf_counter() - t0
+                if not put(item):
+                    break
+        except BaseException as e:            # handed to the consumer, never lost in the thread
+            put(e)
+        finally:
+            close = getattr(it, "close", None)
+            if close is not None:
+                close()
+            put(end)
+
+    th = threading.Thread(target=produce, name="read_ahead", daemon=True)
+    th.start()
+    try:
+        while True:
+            item = q.get()
+            if item is end:
+                break
+            if isinstance(item, BaseException):
+                raise item
+            yield item
+    finally:
+        stop.set()
+        th.join(timeout=10)

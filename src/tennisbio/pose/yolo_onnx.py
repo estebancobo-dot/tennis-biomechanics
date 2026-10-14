@@ -59,9 +59,14 @@ class YoloOnnx:
             return [res[o] for o in self.compiled.outputs]
         return self.session.run(None, {self.session.get_inputs()[0].name: x})
 
-    def pose(self, img: np.ndarray, conf=0.3, iou=0.5):
-        """People in the frame: boxes (N, 4) xyxy, scores (N,), keypoints (N, 17, 2), kp conf (N, 17)."""
-        x, s, (dx, dy) = letterbox(img, self.size)
+    def prepare(self, img: np.ndarray):
+        """The model's input for img (letterbox): can be computed ahead, in another thread."""
+        return letterbox(img, self.size)
+
+    def pose(self, img: np.ndarray, conf=0.3, iou=0.5, prepared=None):
+        """People in the frame: boxes (N, 4) xyxy, scores (N,), keypoints (N, 17, 2), kp conf (N, 17).
+        prepared: prepare(img) when already computed (the same input, so the same result)."""
+        x, s, (dx, dy) = prepared if prepared is not None else letterbox(img, self.size)
         p = self.infer(x)[0][0].T                         # (anchors, 56): cx cy w h score + 17×(x, y, v)
         p = p[p[:, 4] >= conf]
         if not len(p):
