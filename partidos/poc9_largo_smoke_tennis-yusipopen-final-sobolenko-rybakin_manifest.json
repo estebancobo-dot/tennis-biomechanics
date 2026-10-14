@@ -36,5 +36,24 @@
    "onsets": 14736,
    "tracks": 1
   }
+ },
+ "court": {
+  "fingerprint": "b6492e9bc58b5f18",
+  "version": "4",
+  "seconds": 578.2,
+  "finished": "2026-10-14 23:13:46",
+  "summary": {
+   "segments": 516,
+   "with_court": 431,
+   "known_court_reused": 1359,
+   "searched": 181,
+   "filled_same_view": 119,
+   "samples": 2077,
+   "court_presets": 64,
+   "main_camera_min": 54.9,
+   "court_min": 41.9,
+   "court_share": 0.764,
+   "pitch_deg_median": 18.4
+  }
  }
 }
