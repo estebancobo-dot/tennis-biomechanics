@@ -18,10 +18,14 @@ def median_background(frames: list[np.ndarray], max_frames=60) -> np.ndarray:
 
 
 class BallTracker:
-    def __init__(self, onnx_path: str | Path, device="cpu", threshold=0.5, batch=8):
+    def __init__(self, onnx_path: str | Path, device="cpu", threshold=0.5, batch=8, static_batch: bool = False):
+        """static_batch: the model's batch is fixed to `batch` (the last, shorter batch of a window is
+        padded and the padding's heatmaps dropped): on the iGPU, DirectML then compiles the whole
+        network for one shape instead of running it as a dynamic graph. Same heatmap for each frame."""
         from .pose.estimator import _ort_session
 
-        self.sess = _ort_session(str(onnx_path), device)
+        self.static = bool(static_batch)
+        self.sess = _ort_session(str(onnx_path), device, {"n": batch} if self.static else None)
         self.threshold, self.batch = threshold, batch
 
     def track(self, frames, background: np.ndarray | None = None, step: int = 1) -> np.ndarray:
@@ -51,7 +55,9 @@ class BallTracker:
             idx = range(s, min(len(small), s + self.batch))
             x = np.stack([np.concatenate([bg] + [norm[max(0, i - k)] for k in range(SEQ - 1, -1, -1)])
                           for i in idx]).astype(np.float32)
-            hm = self.sess.run(None, {self.sess.get_inputs()[0].name: x})[0][:, 0]
+            if getattr(self, "static", False) and len(x) < self.batch:      # fixed batch: pad, drop after
+                x = np.concatenate([x, np.repeat(x[-1:], self.batch - len(x), axis=0)])
+            hm = self.sess.run(None, {self.sess.get_inputs()[0].name: x})[0][:len(idx), 0]
             for i, m in zip(idx, hm):
                 p = _peak(m, self.threshold)
                 if p is not None:

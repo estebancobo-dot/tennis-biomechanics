@@ -952,7 +952,7 @@ def _player_fields(p) -> dict:
             "grip": [getattr(p, "forehand_grip_close_deg", None), getattr(p, "backhand_grip_close_deg", None)]}
 
 
-@stage("fine", "9", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
+@stage("fine", "10", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
        code=FINE_CODE, match_fields=lambda m: _player_fields(m.player))
 def st_fine(ctx: Context):
     """Full-quality analysis of the target player's candidates. Runs whose identity could not be
@@ -980,7 +980,7 @@ def opponent_profile(match):
     return Player(id="opponent", name=match.opponent or "Rival", hand=match.extra.get("opponent_hand", "right"))
 
 
-@stage("fine_opponent", "4", deps=("candidates", "court", "score"),
+@stage("fine_opponent", "5", deps=("candidates", "court", "score"),
        settings=lambda c: {**_fine_settings(c), "enabled": c.get("analyze_opponent", False)},
        outputs=("strokes_opponent.json",), code=FINE_CODE,
        match_fields=lambda m: {**_player_fields(opponent_profile(m)), "opponent": m.opponent})
@@ -1006,7 +1006,9 @@ def _fine(ctx: Context, p, keep, out_name: str):
     bpath = resolve_path(bcfg.get("onnx"))
     if bpath is not None and bpath.exists():
         from .ball import BallTracker
-        ball = BallTracker(str(bpath), ctx.cfg.get("device", "cpu"), bcfg.get("threshold", 0.5))
+        # on the iGPU the ball model runs with a fixed batch (ball.static_batch): DirectML compiles it once
+        ball = BallTracker(str(bpath), ctx.cfg.get("device", "cpu"), bcfg.get("threshold", 0.5),
+                           static_batch=bool(bcfg.get("static_batch", True)) and ctx.cfg.get("device", "cpu") == "dml")
     else:
         warnings.append("falta el modelo de bola (models/balltrack.onnx): la detección de golpes será mucho peor; "
                         "ejecuta 1_instalar.bat")
@@ -1049,6 +1051,7 @@ def _fine(ctx: Context, p, keep, out_name: str):
             groups.append([c])
     done = 0
     _TIMES.clear()
+    _COUNTS.clear()
     _GATE.clear()
     _GATE.update(passed=0, gated=0, off=0, reasons={}, seconds_gated=0.0)
     for g in groups:
@@ -1075,11 +1078,15 @@ def _fine(ctx: Context, p, keep, out_name: str):
             "gate": {"windows_gated": _GATE["gated"], "windows_passed": _GATE["passed"], "windows_ungated": _GATE["off"],
                      "reasons": dict(_GATE["reasons"]), "seconds_in_gated_windows": round(_GATE["seconds_gated"], 1)},
             # where the time goes (seconds; only what was computed now, not read from the caches)
-            "seconds": {k: round(v, 1) for k, v in sorted(_TIMES.items(), key=lambda kv: -kv[1])}}
+            "seconds": {k: round(v, 1) for k, v in sorted(_TIMES.items(), key=lambda kv: -kv[1])},
+            # how much of it: frames of the analysed windows and those posed (pose_ranges), impacts found and
+            # those that can become a stroke (the racket only around these), frames segmented for the racket
+            "counts": dict(_COUNTS)}
 
 
 _TIMES: dict = {}
 _GATE: dict = {}
+_COUNTS: dict = {}       # frames posed / in the windows, impacts and racket frames of the fine pass
 
 
 def _took(key: str, t0: float):
@@ -1170,20 +1177,58 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
     side = c.get("side", "near")
     extra, cache = {}, clip.with_name(f"{clip.stem}_{ph}.npz")
     cut_s = time.time() - t_
+    fp = ctx.cfg.get("fine_pass") or {}
+    H_far = None
     if side == "far":
-        fi = far_start(clip, court_at(court, c["t"], ws)[0])
+        t_ = time.time()
+        H_far = court_at(court, c["t"], ws)[0]
+        fi = far_start(clip, H_far)
+        _took("jugadora_lejana", t_)
         if fi is None:
             return []                         # no court or no far player found: nothing reliable
         extra, cache = dict(side="far", **fi), clip.with_name(f"{clip.stem}_{ph}_far.npz")
     # cascade: the ball alone rules out windows without a possible stroke before any pose is run
-    if not _gate_passes(ctx, group, t0, wid, clip, cache, side, ball, cut_s):
+    dec = _gate_passes(ctx, group, t0, wid, clip, cache, side, ball, cut_s)
+    if not dec:
         return []
+    # the pose only where a possible stroke can use it (fine_pass.pose_ranges): frames around the
+    # impacts the gate still allows, each stretch tracked on its own as a window of its own
+    keep = _pose_keep(ctx, dec, side)
+    fill = int(fp.get("pose_fill_every", 5) or 0) > 1
+    if keep is not None and fill:
+        extra = {**extra, "split": False}     # followed through the whole window, as before
+    if keep is not None and side == "far" and not fill:
+        from .clip_pipeline import keep_runs
+        from .pose.yolo import find_far_players
+        t_ = time.time()
+        inits = find_far_players(clip, H_far, [a for a, _ in keep_runs(keep)])
+        _took("jugadora_lejana", t_)
+        if any(v is None for v in inits.values()):
+            keep = None                      # not found at the start of a stretch: the whole window, as before
+        else:
+            extra = {**extra, "inits": inits}
+    # the racket outline only where a stroke of these candidates can be (fine_pass.racket_near_candidates)
+    targets = [x["t"] - t0 for x in group] if fp.get("racket_near_candidates", True) else None
+    if keep is not None and side == "near" and not fill:     # each stretch starts from the person the ball leaves
+        extra = {**extra, "anchors": [(p_[0], p_[3], p_[4]) for p_ in dec.get("possible", []) if len(p_) >= 5]}
+    from .fine_gate import CONFIRM_TOL_S
     t_ = time.time()
     run = run_clip(clip, cache, p.hand, p.height_m, init_mode="near", rackets=side == "near",
-                   imgsz=ctx.cfg.get("fine_imgsz", 960), log=lambda *_: None, ball=ball, **extra)
+                   imgsz=ctx.cfg.get("fine_imgsz", 960), log=lambda *_: None, ball=ball,
+                   prefetch=fp.get("pose_prefetch", True), targets=targets,
+                   target_tol=CONFIRM_TOL_S, keep=keep, **extra)
     for k, v in run.timing.items():
         _TIMES[k] = _TIMES.get(k, 0.0) + v
     _took("analisis_ventana", t_ + sum(run.timing.values()))         # the rest of run_clip
+    st = getattr(run, "stats", None) or {}
+    for k in ("frames", "posed_frames", "impacts", "kept_impacts", "racket_frames", "whole_window_again"):
+        _COUNTS[k] = _COUNTS.get(k, 0) + int(st.get(k) or 0)
+    _COUNTS["frames_960_far"] = _COUNTS.get("frames_960_far", 0) + int(st.get("frames_960") or 0)
+    ctx.log(f"  ventana {wid}: pose en {st.get('posed_frames', '?')} de {st.get('frames', '?')} fotogramas"
+            f" ({run.timing.get('pose', 0):.0f} s; modelo {st.get('model_s', 0):.0f} s"
+            + (f", {st['frames_960']} a 960 px por perderla" if st.get("frames_960") else "")
+            + f") · bola {dec.get('ball_s', 0):.0f} s · raqueta {run.timing.get('raqueta', 0):.0f} s"
+            f" ({st.get('kept_impacts', 0)} de {st.get('impacts', 0)} impactos) · {len(run.strokes)} golpes posibles")
     if side == "far":                         # far strokes count only when the ball confirms them
         run.strokes = [s for s in run.strokes if "ball" in s.impact_source]
     if not run.strokes:
@@ -1196,15 +1241,30 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
     return out
 
 
-def _gate_passes(ctx, group, t0, wid, clip, cache, side, ball, cut_s: float) -> bool:
+def _pose_keep(ctx, dec: dict, side: str):
+    """Frames to run the pose on (fine_gate.pose_keep) when fine_pass.pose_ranges is on for this end
+    (true: both, "far": the far end only) and the gate says where the possible impacts are; None:
+    the whole window."""
+    fp = ctx.cfg.get("fine_pass") or {}
+    on = fp.get("pose_ranges", False)
+    if not (on is True or on == side) or not dec.get("possible") or not dec.get("n_frames"):
+        return None
+    from .fine_gate import pose_keep
+    return pose_keep(dec["n_frames"], dec["possible"], dec["fps"], fp.get("pose_pre_s", 2.8), fp.get("pose_post_s", 2.0),
+                     fp.get("pose_join_s", 1.0), fp.get("pose_full_frac", 0.85), int(fp.get("pose_fill_every", 5) or 0))
+
+
+def _gate_passes(ctx, group, t0, wid, clip, cache, side, ball, cut_s: float) -> dict:
     """Stage A of the cascade (fine_gate): the ball track of the window alone (cached for the full
     pass) says whether it can hold a confirmed stroke of the target; if not, no pose is run.
-    Without the ball model, or with `fine_pass.gate: false`, every window passes."""
+    Without the ball model, or with `fine_pass.gate: false`, every window passes.
+    Returns the gate's decision when it passes (with "possible", "fps", "n_frames", "ball_s"), or {}
+    when the window is ruled out."""
     import time
     fp = ctx.cfg.get("fine_pass") or {}
     if ball is None or not fp.get("gate", True):
         _GATE["off"] = _GATE.get("off", 0) + 1
-        return True
+        return {"passed": True, "reason": "sin_cribado"}
     from .clip_pipeline import window_ball
     from .fine_gate import CONFIRM_TOL_S, gate_window
 
@@ -1213,6 +1273,7 @@ def _gate_passes(ctx, group, t0, wid, clip, cache, side, ball, cut_s: float) -> 
     if took:
         _TIMES["bola"] = _TIMES.get("bola", 0.0) + took
     dec = gate_window(track, fw, fh, fps, [(c["t"] - t0) * fps for c in group], side, fp.get("gate_margin_s", 0.1))
+    dec.update(fps=fps, n_frames=len(track) if track is not None else 0, ball_s=took)
     _took("cribado", t_ + took)
     _GATE["reasons"][dec["reason"]] = _GATE["reasons"].get(dec["reason"], 0) + 1
     what = {"golpe_de_bola": f"golpe de bola en su lado a {dec.get('hit_s')} s",
@@ -1223,11 +1284,11 @@ def _gate_passes(ctx, group, t0, wid, clip, cache, side, ball, cut_s: float) -> 
     if dec["passed"]:
         _GATE["passed"] += 1
         ctx.log(f"  ventana {wid} ({side}, {len(group)} candidatos): pasa · {what}")
-        return True
+        return dec
     _GATE["gated"] += 1
     _GATE["seconds_gated"] += cut_s + time.time() - t_
     ctx.log(f"  ventana {wid} ({side}, {len(group)} candidatos): descartada sin pose · {what}")
-    return False
+    return {}
 
 
 def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets, scenes, rpose, wb3d, fcfg):

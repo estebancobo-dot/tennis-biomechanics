@@ -104,3 +104,12 @@ Escenas 2,1 min (histogramas: faltaba transnetv2.onnx en el PC) · pista 5,5 · 
 que el marcador 3,5) · pasada fina 60,2 (pose 25,3, bola 23,7, raqueta 4,8, cuerdas y 3D 2,4; 15 de 52 ventanas
 descartadas; 28 golpes) · total 75,9 min ≈ 7,6 h por partido (25 h el 13-10). La pasada fina es el 80 %:
 siguiente, la pose y la bola de la pasada fina. Petición 4: la misma prueba con TransNetV2 activo.
+
+## Pasada fina tras la prueba 3 (14-10; detalle en `docs/pruebas_velocidad.md`)
+De los 60 min, el lado lejano se lleva ≈ 19 min de pose y ≈ 19 de bola para 12 golpes (17 de sus 27 ventanas
+con pose no dan ninguno). Cambios sin tocar medidas: entrada de la pose preparada en otro hilo
+(`pose_prefetch`), raqueta solo donde la lee un golpe conservable (`racket_near_candidates`), pose del lado
+lejano solo alrededor de los golpes de bola posibles (`pose_ranges: far`) y bola con lote fijo en la iGPU
+(`ball.static_batch`). Descartado: los 4 mapas de calor de TrackNetV3 (RacketVision solo entrenó el último).
+Siguiente si hace falta más: averiguar con el registro por ventana por qué esas 17 ventanas lejanas no dan golpe
+(¿la pierde el recorte? ¿fotogramas a 960 px?) y cribarlas antes de la pose.
