@@ -30,8 +30,16 @@ import numpy as np
 MIN_STROKES = 5
 FLOOR = {"°": 3.0, "%": 1.5, "s": 0.02, "cm": 3.0, "m": 0.05}
 # measure → the same thing from an independent method (stroke_values key)
-SECOND_METHOD = {"loaded.x_factor": "metrics.x_factor_3d_deg", "loaded.shoulder_turn": "metrics.shoulder_turn_3d_deg",
-                 "loaded.hip_turn": "metrics.hip_turn_3d_deg"}
+TRUNK_3D = {"loaded.x_factor": "metrics.x_factor_3d_deg", "loaded.shoulder_turn": "metrics.shoulder_turn_3d_deg",
+            "loaded.hip_turn": "metrics.hip_turn_3d_deg"}
+# No second method is used today. The 3D trunk (RTMW3D) was one, but from the broadcast camera behind
+# and above it is not a valid reference even when its segments keep their length: on the PC (14-10) the
+# 5 loaded forehands that passed that check read 2-22° of shoulder turn, physically impossible for a
+# loaded forehand (90-120° in the literature; the 2D signed turn reads 54-82°). A wrong reference
+# would hide a sound measure, so the 2D trunk turn is judged by its own noise like every measure.
+# The 3D values stay in the strokes for information. TRUNK_3D is kept for a future valid reference
+# (e.g. the side view of the practice videos).
+SECOND_METHOD: dict = {}
 AGREE_DEG = 8.0
 # the 3D trunk reading is a second method only where its depth is real: its shoulder and hip segments
 # keep their length (racket_orientation.trunk_at). From the broadcast camera behind and above, RTMW3D
@@ -63,8 +71,10 @@ def _floor(unit: str | None) -> float:
     return FLOOR.get((unit or "").strip(), 0.0)
 
 
-def assess(raw: list[dict], keys: dict[str, str | None]) -> dict:
-    """raw: strokes as in strokes.json; keys: measure key ('phase.name') → unit."""
+def assess(raw: list[dict], keys: dict[str, str | None], second: dict | None = None) -> dict:
+    """raw: strokes as in strokes.json; keys: measure key ('phase.name') → unit; second: measure → the
+    same thing from an independent method (default SECOND_METHOD)."""
+    second = SECOND_METHOD if second is None else second
     from .audit import stroke_values
 
     vals = [stroke_values(s) for s in raw]
@@ -100,7 +110,7 @@ def assess(raw: list[dict], keys: dict[str, str | None]) -> dict:
         else:
             verdict = "ruido"
         out[k] = {"n": len(j), "noise": round(noise, 2), "spread": round(spread, 2), "verdict": verdict}
-        other = SECOND_METHOD.get(k)
+        other = second.get(k)
         pairs = [(x[k], x[other]) for x in vals if other and isinstance(x.get(k), (int, float)) and isinstance(x.get(other), (int, float))
                  and x.get(RIGID_KEY)]
         if len(pairs) >= MIN_STROKES and verdict != "ruido":

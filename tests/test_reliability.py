@@ -43,11 +43,14 @@ def test_second_method_and_untestable():
     # stable but the independent 3D reading says something else: bias, not her value
     rows = [{"technique": {"phases": {"loaded": {"shoulder_turn": 60.0 + i}}, "jitter": {"loaded.shoulder_turn": 1.0}},
              "metrics": {"shoulder_turn_3d_deg": 15.0 + i, "trunk3d_rigid": True}} for i in range(8)]
-    r = assess(rows, {"loaded.shoulder_turn": "°"})["loaded.shoulder_turn"]
+    from tennisbio.reliability import TRUNK_3D
+    r = assess(rows, {"loaded.shoulder_turn": "°"}, TRUNK_3D)["loaded.shoulder_turn"]
     assert r["verdict"] == "sesgo" and r["med2d"] > r["med3d"]
+    # by default no second method judges the trunk (the 3D from behind is not a valid reference)
+    assert assess(rows, {"loaded.shoulder_turn": "°"})["loaded.shoulder_turn"]["verdict"] == "fiable"
     for x in rows:
         x["metrics"]["shoulder_turn_3d_deg"] = x["technique"]["phases"]["loaded"]["shoulder_turn"] + 2
-    assert assess(rows, {"loaded.shoulder_turn": "°"})["loaded.shoulder_turn"]["verdict"] == "fiable"
+    assert assess(rows, {"loaded.shoulder_turn": "°"}, TRUNK_3D)["loaded.shoulder_turn"]["verdict"] == "fiable"
     # a value that never moves with the phase instants is not validated by this test
     flat = [{"technique": {"stroke": {"swing_low_to_high": 40.0 + i}, "jitter": {"stroke.swing_low_to_high": 0.0}}} for i in range(8)]
     assert assess(flat, {"stroke.swing_low_to_high": "°"})["stroke.swing_low_to_high"]["verdict"] == "no comprobable"
@@ -57,5 +60,6 @@ def test_derived_measure_takes_the_verdict_of_its_source():
     rows = [{"technique": {"phases": {"loaded": {"shoulder_turn": 60.0 + i}}, "stroke": {"shoulder_brake": 50.0 + i},
                            "jitter": {"loaded.shoulder_turn": 1.0, "stroke.shoulder_brake": 0.0}},
              "metrics": {"shoulder_turn_3d_deg": 15.0 + i, "trunk3d_rigid": True}} for i in range(8)]
-    r = assess(rows, {"loaded.shoulder_turn": "°", "stroke.shoulder_brake": "%"})
+    from tennisbio.reliability import TRUNK_3D
+    r = assess(rows, {"loaded.shoulder_turn": "°", "stroke.shoulder_brake": "%"}, TRUNK_3D)
     assert r["stroke.shoulder_brake"]["verdict"] == "sesgo" and r["stroke.shoulder_brake"]["from"] == "loaded.shoulder_turn"
