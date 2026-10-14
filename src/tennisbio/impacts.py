@@ -30,6 +30,10 @@ def swing_peaks(wrist_speed: np.ndarray, fps: float, min_gap=0.6, height=2.0, pr
     return pk
 
 
+SEEN_NEEDED = 0.5      # a swing with the ball seen in at least this fraction of the frames around it...
+SEEN_HALF_S = 0.3      # ...within ± this many seconds, and no ball hit, is not a stroke (fuse_with_ball)
+
+
 @dataclass
 class Impact:
     frame: int
@@ -58,7 +62,7 @@ def fuse(swing_frames: np.ndarray, fps: float, onset_times: np.ndarray, tol=0.12
 
 
 def fuse_with_ball(impacts: list[Impact], fps: float, hits: list, ball_seen: np.ndarray, boxes: list,
-                   tol=0.2, seen_needed=0.5, wrist_speed: np.ndarray | None = None, min_arm_speed=1.2,
+                   tol=0.2, seen_needed=SEEN_NEEDED, wrist_speed: np.ndarray | None = None, min_arm_speed=1.2,
                    min_gap=0.4, side="near") -> list[Impact]:
     """Refine and filter swing/audio impacts with the ball (tennisbio.ball.ball_hits, near side).
 
@@ -74,7 +78,7 @@ def fuse_with_ball(impacts: list[Impact], fps: float, hits: list, ball_seen: np.
     """
     near = [h for h in hits if h.side == side]          # hits of the tracked player's end
     used, out = set(), []
-    w = max(1, round(0.3 * fps))
+    w = max(1, round(SEEN_HALF_S * fps))
     for imp in impacts:
         best = min(near, key=lambda h: abs(h.frame - imp.frame), default=None)
         if best is not None and abs(best.frame - imp.frame) <= tol * fps:
