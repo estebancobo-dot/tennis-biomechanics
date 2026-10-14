@@ -379,3 +379,372 @@ Registro enviado a Claude (no hace falta copiar nada).
     (paso terminado en 20 min 33 s)
 
 ==> [2026-10-14 00:10:14] Peticion 1: sin errores; ahora 35 min de partido en output\_poc
+From https://github.com/estebancobo-dot/tennis-biomechanics
+ * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
+Already up to date.
+Resolved 110 packages in 0.96ms
+Checked 83 packages in 2ms
+Video: C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv
+
+==> [2026-10-14 00:10:16] 1/4 Comprobacion del entorno
+Python   3.11.17  (Windows-10-10.0.26200-SP0)
+CPUs     16
+ffmpeg   C:\Users\esteb\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffmpeg.EXE
+ffprobe  C:\Users\esteb\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffprobe.EXE
+git      C:\Program Files\Git\cmd\git.EXE
+uv       C:\Users\esteb\.local\bin\uv.EXE
+numpy        2.4.6
+pandas       3.0.6
+cv2          5.0.0
+librosa      0.11.0
+onnxruntime  1.24.4
+ultralytics  8.4.175
+rapidocr_onnxruntime ?
+ORT providers: ['DmlExecutionProvider', 'CPUExecutionProvider']
+balltrack.onnx     OK
+racketpose.onnx    OK
+rtmw3d-x.onnx      OK
+yolo11m-pose_960.onnx OK
+yolo11m-pose_1280.onnx OK
+
+C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv
+  contenedor matroska,webm  duración 210.4 min  tamaño 5.53 GB  bitrate 3.5 Mb/s
+  vídeo  h264 1920x1080  r_frame_rate=50/1 avg_frame_rate=50/1  field_order=progressive  pix_fmt=yuv420p
+  audio  aac 48000 Hz  2 canales
+  audio  aac 48000 Hz  2 canales
+    (paso terminado en 2 s)
+
+==> [2026-10-14 00:10:18] 2/4 Velocidad de este equipo (5 min, solo la primera vez)
+ya medida
+    (paso terminado en 0 s)
+
+==> [2026-10-14 00:10:18] Vista lateral: videos de entrenamiento de la jugadora (YouTube; solo lo que falte)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+[00:10:20] 5 vídeos candidatos; se analizan 5 (300 s de cada uno)
+[00:10:20]   Elena RYBAKINA Groundstrokes + Slow Motion | Australian Open 2026 (NEBTA OFFICIAL)
+[00:11:04]     22 golpes, 6 derechas de lado medidas, 0 descartadas por valores imposibles (45 s)
+[00:11:04]   See How Clean Rybakina Hits at Court Level (Courtside Tennis Highlights)
+[00:12:15]     23 golpes, 7 derechas de lado medidas, 1 descartadas por valores imposibles (71 s)
+[00:12:15]   Elena Rybakina- Camila Osorio practicing at Wimbledon 2021 (TOP TENNIS MATCH)
+[00:13:20]     15 golpes, 2 derechas de lado medidas, 0 descartadas por valores imposibles (64 s)
+[00:13:20] Hecho: 5 vídeos, 91 golpes, 17 derechas de lado → C:\tenis\output\entrenamiento
+    (paso terminado en 3 min 02 s)
+
+==> [2026-10-14 00:13:20] 3/4 35 minutos de partido, todas las etapas e informe (unos 60 min)
+Tramo de juego (ya buscado): minuto 121
+Análisis del tramo: empieza 2026-10-14 00:13:26
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] probe… (2026-10-14 00:13:26, etapa 1 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] probe terminada a las 00:13:27 en 1 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] scenes… (2026-10-14 00:13:27, etapa 2 de 10)
+  scenes:   0 % (1/21004 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  21 % (4451/21004 fotogramas) · 30 s · quedan ≈ 2 min
+  scenes:  45 % (9392/21004 fotogramas) · 60 s · quedan ≈ 74 s
+  scenes:  69 % (14400/21004 fotogramas) · 2 min · quedan ≈ 41 s
+  scenes:  92 % (19423/21004 fotogramas) · 2 min · quedan ≈ 10 s
+  scenes: 100 % (21004/21004 fotogramas) · 2 min · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] scenes terminada a las 00:15:37 en 2.2 min
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] audio… (2026-10-14 00:15:37, etapa 3 de 10)
+  audio:  14 % (300/2100 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (2100/2100 s de sonido) · 5 s · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] audio terminada a las 00:15:50 en 12 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] court… (2026-10-14 00:15:50, etapa 4 de 10)
+  court:   1 % (1/127 planos) · 0 s · quedan ≈ 0 s
+  court:  20 % (25/127 planos) · 32 s · quedan ≈ 2 min
+  court:  35 % (45/127 planos) · 63 s · quedan ≈ 2 min
+  court:  55 % (70/127 planos) · 2 min · quedan ≈ 77 s
+  court:  81 % (103/127 planos) · 2 min · quedan ≈ 29 s
+  court: 100 % (127/127 planos) · 2 min · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] court terminada a las 00:18:20 en 2.5 min
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] players… (2026-10-14 00:18:20, etapa 5 de 10)
+  juego con pista: 10.6 min de 32.7 min de cámara principal
+  players:   0 % (1/6350 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  players:   1 % (92/6350 fotogramas con jugadoras) · 30 s · quedan ≈ 34 min
+  players:   2 % (154/6350 fotogramas con jugadoras) · 60 s · quedan ≈ 40 min
+  players:   4 % (241/6350 fotogramas con jugadoras) · 2 min · quedan ≈ 38 min
+  players:   5 % (336/6350 fotogramas con jugadoras) · 2 min · quedan ≈ 36 min
+  players:   6 % (397/6350 fotogramas con jugadoras) · 3 min · quedan ≈ 38 min
+  players:   8 % (487/6350 fotogramas con jugadoras) · 3 min · quedan ≈ 36 min
+  players:   9 % (570/6350 fotogramas con jugadoras) · 4 min · quedan ≈ 36 min
+  players:  10 % (631/6350 fotogramas con jugadoras) · 4 min · quedan ≈ 36 min
+  players:  11 % (728/6350 fotogramas con jugadoras) · 5 min · quedan ≈ 35 min
+  players:  13 % (825/6350 fotogramas con jugadoras) · 5 min · quedan ≈ 34 min
+  players:  14 % (888/6350 fotogramas con jugadoras) · 6 min · quedan ≈ 34 min
+  players:  15 % (977/6350 fotogramas con jugadoras) · 6 min · quedan ≈ 33 min
+  players:  17 % (1050/6350 fotogramas con jugadoras) · 7 min · quedan ≈ 33 min
+  players:  18 % (1129/6350 fotogramas con jugadoras) · 7 min · quedan ≈ 33 min
+  players:  19 % (1225/6350 fotogramas con jugadoras) · 8 min · quedan ≈ 32 min
+  players:  20 % (1299/6350 fotogramas con jugadoras) · 8 min · quedan ≈ 31 min
+  players:  22 % (1377/6350 fotogramas con jugadoras) · 9 min · quedan ≈ 31 min
+  players:  23 % (1467/6350 fotogramas con jugadoras) · 9 min · quedan ≈ 30 min
+  players:  24 % (1527/6350 fotogramas con jugadoras) · 10 min · quedan ≈ 30 min
+  players:  26 % (1622/6350 fotogramas con jugadoras) · 10 min · quedan ≈ 29 min
+  players:  27 % (1720/6350 fotogramas con jugadoras) · 11 min · quedan ≈ 28 min
+  players:  28 % (1809/6350 fotogramas con jugadoras) · 11 min · quedan ≈ 28 min
+  players:  30 % (1881/6350 fotogramas con jugadoras) · 12 min · quedan ≈ 28 min
+  players:  31 % (1976/6350 fotogramas con jugadoras) · 12 min · quedan ≈ 27 min
+  players:  33 % (2070/6350 fotogramas con jugadoras) · 13 min · quedan ≈ 26 min
+  players:  34 % (2130/6350 fotogramas con jugadoras) · 13 min · quedan ≈ 26 min
+  players:  35 % (2217/6350 fotogramas con jugadoras) · 14 min · quedan ≈ 25 min
+  players:  36 % (2287/6350 fotogramas con jugadoras) · 14 min · quedan ≈ 25 min
+  players:  37 % (2373/6350 fotogramas con jugadoras) · 15 min · quedan ≈ 24 min
+  players:  39 % (2465/6350 fotogramas con jugadoras) · 15 min · quedan ≈ 24 min
+  players:  40 % (2527/6350 fotogramas con jugadoras) · 16 min · quedan ≈ 24 min
+  players:  41 % (2627/6350 fotogramas con jugadoras) · 16 min · quedan ≈ 23 min
+  players:  43 % (2721/6350 fotogramas con jugadoras) · 17 min · quedan ≈ 22 min
+  players:  44 % (2800/6350 fotogramas con jugadoras) · 17 min · quedan ≈ 22 min
+  players:  45 % (2872/6350 fotogramas con jugadoras) · 18 min · quedan ≈ 21 min
+  players:  47 % (2963/6350 fotogramas con jugadoras) · 18 min · quedan ≈ 21 min
+  players:  48 % (3025/6350 fotogramas con jugadoras) · 19 min · quedan ≈ 20 min
+  players:  49 % (3114/6350 fotogramas con jugadoras) · 19 min · quedan ≈ 20 min
+  players:  50 % (3205/6350 fotogramas con jugadoras) · 20 min · quedan ≈ 19 min
+  players:  51 % (3268/6350 fotogramas con jugadoras) · 20 min · quedan ≈ 19 min
+  players:  53 % (3362/6350 fotogramas con jugadoras) · 21 min · quedan ≈ 18 min
+  players:  54 % (3460/6350 fotogramas con jugadoras) · 21 min · quedan ≈ 18 min
+  players:  55 % (3522/6350 fotogramas con jugadoras) · 22 min · quedan ≈ 17 min
+  players:  57 % (3616/6350 fotogramas con jugadoras) · 22 min · quedan ≈ 17 min
+  players:  58 % (3711/6350 fotogramas con jugadoras) · 23 min · quedan ≈ 16 min
+  players:  60 % (3784/6350 fotogramas con jugadoras) · 23 min · quedan ≈ 16 min
+  players:  61 % (3867/6350 fotogramas con jugadoras) · 24 min · quedan ≈ 15 min
+  players:  62 % (3959/6350 fotogramas con jugadoras) · 24 min · quedan ≈ 15 min
+  players:  63 % (4020/6350 fotogramas con jugadoras) · 25 min · quedan ≈ 14 min
+  players:  65 % (4112/6350 fotogramas con jugadoras) · 25 min · quedan ≈ 14 min
+  players:  66 % (4207/6350 fotogramas con jugadoras) · 26 min · quedan ≈ 13 min
+  players:  67 % (4266/6350 fotogramas con jugadoras) · 26 min · quedan ≈ 13 min
+  players:  69 % (4356/6350 fotogramas con jugadoras) · 27 min · quedan ≈ 12 min
+  players:  70 % (4448/6350 fotogramas con jugadoras) · 27 min · quedan ≈ 12 min
+  players:  71 % (4513/6350 fotogramas con jugadoras) · 28 min · quedan ≈ 11 min
+  players:  73 % (4608/6350 fotogramas con jugadoras) · 28 min · quedan ≈ 11 min
+  players:  74 % (4700/6350 fotogramas con jugadoras) · 29 min · quedan ≈ 10 min
+  players:  75 % (4756/6350 fotogramas con jugadoras) · 29 min · quedan ≈ 10 min
+  players:  76 % (4836/6350 fotogramas con jugadoras) · 30 min · quedan ≈ 9 min
+  players:  77 % (4900/6350 fotogramas con jugadoras) · 30 min · quedan ≈ 9 min
+  players:  79 % (4992/6350 fotogramas con jugadoras) · 31 min · quedan ≈ 8 min
+  players:  80 % (5079/6350 fotogramas con jugadoras) · 31 min · quedan ≈ 8 min
+  players:  81 % (5153/6350 fotogramas con jugadoras) · 32 min · quedan ≈ 7 min
+  players:  83 % (5240/6350 fotogramas con jugadoras) · 32 min · quedan ≈ 7 min
+  players:  84 % (5332/6350 fotogramas con jugadoras) · 33 min · quedan ≈ 6 min
+  players:  85 % (5404/6350 fotogramas con jugadoras) · 33 min · quedan ≈ 6 min
+  players:  86 % (5488/6350 fotogramas con jugadoras) · 34 min · quedan ≈ 5 min
+  players:  88 % (5581/6350 fotogramas con jugadoras) · 34 min · quedan ≈ 5 min
+  players:  89 % (5641/6350 fotogramas con jugadoras) · 35 min · quedan ≈ 4 min
+  players:  90 % (5734/6350 fotogramas con jugadoras) · 35 min · quedan ≈ 4 min
+  players:  92 % (5827/6350 fotogramas con jugadoras) · 36 min · quedan ≈ 3 min
+  players:  93 % (5929/6350 fotogramas con jugadoras) · 36 min · quedan ≈ 3 min
+  players:  94 % (5990/6350 fotogramas con jugadoras) · 37 min · quedan ≈ 2 min
+  players:  96 % (6076/6350 fotogramas con jugadoras) · 37 min · quedan ≈ 2 min
+  players:  97 % (6167/6350 fotogramas con jugadoras) · 38 min · quedan ≈ 67 s
+  players:  98 % (6230/6350 fotogramas con jugadoras) · 38 min · quedan ≈ 44 s
+  players: 100 % (6324/6350 fotogramas con jugadoras) · 39 min · quedan ≈ 10 s
+  players: 100 % (6350/6350 fotogramas con jugadoras) · 39 min · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] players terminada a las 00:57:23 en 39.1 min
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] score… (2026-10-14 00:57:23, etapa 6 de 10)
+  score:   0 % (1/444 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+  score:   4 % (19/444 muestras · 14 lecturas · 19 OCR) · 30 s · quedan ≈ 11 min
+  score:   6 % (27/444 muestras · 22 lecturas · 27 OCR) · 2 min · quedan ≈ 26 min
+  score:   7 % (29/444 muestras · 24 lecturas · 29 OCR) · 3 min · quedan ≈ 40 min
+  score:  11 % (51/444 muestras · 46 lecturas · 50 OCR) · 3 min · quedan ≈ 26 min
+  score:  15 % (67/444 muestras · 59 lecturas · 66 OCR) · 4 min · quedan ≈ 22 min
+  score:  18 % (81/444 muestras · 67 lecturas · 80 OCR) · 5 min · quedan ≈ 23 min
+  score:  19 % (86/444 muestras · 71 lecturas · 86 OCR) · 6 min · quedan ≈ 26 min
+  score:  22 % (96/444 muestras · 81 lecturas · 96 OCR) · 7 min · quedan ≈ 26 min
+  score:  25 % (113/444 muestras · 94 lecturas · 112 OCR) · 8 min · quedan ≈ 23 min
+  score:  26 % (117/444 muestras · 95 lecturas · 116 OCR) · 9 min · quedan ≈ 24 min
+  score:  30 % (131/444 muestras · 107 lecturas · 130 OCR) · 9 min · quedan ≈ 22 min
+  score:  32 % (144/444 muestras · 118 lecturas · 143 OCR) · 10 min · quedan ≈ 21 min
+  score:  35 % (157/444 muestras · 121 lecturas · 156 OCR) · 11 min · quedan ≈ 20 min
+  score:  37 % (163/444 muestras · 121 lecturas · 162 OCR) · 12 min · quedan ≈ 20 min
+  score:  41 % (181/444 muestras · 121 lecturas · 175 OCR) · 13 min · quedan ≈ 18 min
+  score:  49 % (216/444 muestras · 133 lecturas · 193 OCR) · 13 min · quedan ≈ 14 min
+  score:  49 % (219/444 muestras · 136 lecturas · 196 OCR) · 14 min · quedan ≈ 14 min
+  score:  50 % (224/444 muestras · 141 lecturas · 201 OCR) · 14 min · quedan ≈ 14 min
+  score:  51 % (226/444 muestras · 143 lecturas · 203 OCR) · 15 min · quedan ≈ 14 min
+  score:  52 % (230/444 muestras · 147 lecturas · 207 OCR) · 16 min · quedan ≈ 14 min
+  score:  53 % (235/444 muestras · 150 lecturas · 211 OCR) · 16 min · quedan ≈ 14 min
+  score:  53 % (237/444 muestras · 152 lecturas · 213 OCR) · 17 min · quedan ≈ 15 min
+  score:  57 % (254/444 muestras · 165 lecturas · 228 OCR) · 18 min · quedan ≈ 13 min
+  score:  58 % (256/444 muestras · 167 lecturas · 230 OCR) · 18 min · quedan ≈ 13 min
+  score:  61 % (273/444 muestras · 184 lecturas · 247 OCR) · 19 min · quedan ≈ 12 min
+  score:  65 % (288/444 muestras · 199 lecturas · 261 OCR) · 19 min · quedan ≈ 11 min
+  score:  66 % (294/444 muestras · 202 lecturas · 267 OCR) · 20 min · quedan ≈ 10 min
+  score:  68 % (302/444 muestras · 210 lecturas · 275 OCR) · 21 min · quedan ≈ 10 min
+  score:  70 % (312/444 muestras · 220 lecturas · 284 OCR) · 21 min · quedan ≈ 9 min
+  score:  73 % (324/444 muestras · 227 lecturas · 296 OCR) · 22 min · quedan ≈ 8 min
+  score:  75 % (334/444 muestras · 235 lecturas · 307 OCR) · 22 min · quedan ≈ 7 min
+  score:  79 % (352/444 muestras · 249 lecturas · 324 OCR) · 23 min · quedan ≈ 6 min
+  score:  84 % (371/444 muestras · 267 lecturas · 343 OCR) · 23 min · quedan ≈ 5 min
+  score:  87 % (385/444 muestras · 273 lecturas · 357 OCR) · 24 min · quedan ≈ 4 min
+  score:  90 % (398/444 muestras · 275 lecturas · 371 OCR) · 24 min · quedan ≈ 3 min
+  score:  93 % (412/444 muestras · 288 lecturas · 385 OCR) · 25 min · quedan ≈ 2 min
+  score:  98 % (435/444 muestras · 307 lecturas · 403 OCR) · 25 min · quedan ≈ 31 s
+  score: 100 % (444/444 muestras · 316 lecturas · 411 OCR) · 25 min · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] score terminada a las 01:23:05 en 25.7 min
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] identity… (2026-10-14 01:23:05, etapa 7 de 10)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] identity terminada a las 01:23:18 en 13 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] candidates… (2026-10-14 01:23:18, etapa 8 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] candidates terminada a las 01:23:32 en 14 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (2026-10-14 01:23:32, etapa 9 de 10)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+  fine:   3 % (6/177 golpes candidatos · 0 confirmados) · 0 s · quedan ≈ 0 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  fine:   6 % (11/177 golpes candidatos · 0 confirmados) · 89 s · quedan ≈ 22 min
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  fine:  10 % (17/177 golpes candidatos · 1 confirmados) · 3 min · quedan ≈ 30 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  fine:  10 % (18/177 golpes candidatos · 1 confirmados) · 4 min · quedan ≈ 37 min
+  fine:  14 % (25/177 golpes candidatos · 1 confirmados) · 6 min · quedan ≈ 34 min
+  fine:  19 % (33/177 golpes candidatos · 2 confirmados) · 8 min · quedan ≈ 33 min
+  fine:  21 % (38/177 golpes candidatos · 2 confirmados) · 10 min · quedan ≈ 36 min
+  fine:  23 % (40/177 golpes candidatos · 2 confirmados) · 11 min · quedan ≈ 37 min
+  fine:  24 % (43/177 golpes candidatos · 3 confirmados) · 12 min · quedan ≈ 37 min
+  fine:  27 % (48/177 golpes candidatos · 3 confirmados) · 13 min · quedan ≈ 36 min
+  fine:  29 % (51/177 golpes candidatos · 3 confirmados) · 15 min · quedan ≈ 36 min
+  fine:  31 % (54/177 golpes candidatos · 3 confirmados) · 16 min · quedan ≈ 36 min
+  fine:  33 % (59/177 golpes candidatos · 4 confirmados) · 17 min · quedan ≈ 35 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  fine:  36 % (63/177 golpes candidatos · 4 confirmados) · 20 min · quedan ≈ 35 min
+  fine:  37 % (66/177 golpes candidatos · 4 confirmados) · 21 min · quedan ≈ 35 min
+  fine:  39 % (69/177 golpes candidatos · 4 confirmados) · 22 min · quedan ≈ 35 min
+  fine:  42 % (75/177 golpes candidatos · 4 confirmados) · 24 min · quedan ≈ 32 min
+  fine:  44 % (77/177 golpes candidatos · 4 confirmados) · 25 min · quedan ≈ 32 min
+  fine:  47 % (84/177 golpes candidatos · 4 confirmados) · 27 min · quedan ≈ 29 min
+  fine:  49 % (87/177 golpes candidatos · 4 confirmados) · 28 min · quedan ≈ 28 min
+  fine:  51 % (91/177 golpes candidatos · 4 confirmados) · 29 min · quedan ≈ 27 min
+  fine:  56 % (100/177 golpes candidatos · 5 confirmados) · 31 min · quedan ≈ 24 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  fine:  59 % (104/177 golpes candidatos · 5 confirmados) · 32 min · quedan ≈ 23 min
+  fine:  59 % (105/177 golpes candidatos · 5 confirmados) · 33 min · quedan ≈ 23 min
+  fine:  61 % (108/177 golpes candidatos · 5 confirmados) · 34 min · quedan ≈ 22 min
+  fine:  62 % (109/177 golpes candidatos · 6 confirmados) · 35 min · quedan ≈ 22 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  fine:  65 % (115/177 golpes candidatos · 6 confirmados) · 36 min · quedan ≈ 20 min
+  fine:  66 % (117/177 golpes candidatos · 7 confirmados) · 37 min · quedan ≈ 19 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  fine:  68 % (120/177 golpes candidatos · 7 confirmados) · 39 min · quedan ≈ 18 min
+  fine:  69 % (123/177 golpes candidatos · 8 confirmados) · 40 min · quedan ≈ 18 min
+  fine:  72 % (127/177 golpes candidatos · 8 confirmados) · 42 min · quedan ≈ 17 min
+  fine:  75 % (132/177 golpes candidatos · 9 confirmados) · 44 min · quedan ≈ 15 min
+  fine:  77 % (137/177 golpes candidatos · 10 confirmados) · 46 min · quedan ≈ 13 min
+  fine:  79 % (139/177 golpes candidatos · 10 confirmados) · 47 min · quedan ≈ 13 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  fine:  80 % (141/177 golpes candidatos · 10 confirmados) · 47 min · quedan ≈ 12 min
+  fine:  82 % (145/177 golpes candidatos · 10 confirmados) · 49 min · quedan ≈ 11 min
+  fine:  84 % (148/177 golpes candidatos · 11 confirmados) · 50 min · quedan ≈ 10 min
+  fine:  85 % (150/177 golpes candidatos · 13 confirmados) · 53 min · quedan ≈ 9 min
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+  fine:  86 % (152/177 golpes candidatos · 14 confirmados) · 54 min · quedan ≈ 9 min
+  fine:  87 % (154/177 golpes candidatos · 14 confirmados) · 56 min · quedan ≈ 8 min
+  fine:  89 % (157/177 golpes candidatos · 17 confirmados) · 59 min · quedan ≈ 8 min
+  fine:  90 % (159/177 golpes candidatos · 19 confirmados) · 62 min · quedan ≈ 7 min
+  fine:  90 % (160/177 golpes candidatos · 20 confirmados) · 63 min · quedan ≈ 7 min
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:149: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:545: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+  fine:  91 % (161/177 golpes candidatos · 21 confirmados) · 64 min · quedan ≈ 6 min
+  fine:  92 % (162/177 golpes candidatos · 22 confirmados) · 65 min · quedan ≈ 6 min
+  fine:  92 % (163/177 golpes candidatos · 23 confirmados) · 67 min · quedan ≈ 6 min
+  fine:  93 % (165/177 golpes candidatos · 23 confirmados) · 68 min · quedan ≈ 5 min
+  fine:  94 % (166/177 golpes candidatos · 23 confirmados) · 69 min · quedan ≈ 5 min
+  fine:  94 % (167/177 golpes candidatos · 23 confirmados) · 70 min · quedan ≈ 4 min
+  fine:  95 % (168/177 golpes candidatos · 23 confirmados) · 71 min · quedan ≈ 4 min
+  fine:  95 % (169/177 golpes candidatos · 23 confirmados) · 72 min · quedan ≈ 3 min
+  fine:  96 % (170/177 golpes candidatos · 23 confirmados) · 73 min · quedan ≈ 3 min
+  fine:  97 % (171/177 golpes candidatos · 23 confirmados) · 74 min · quedan ≈ 3 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:49: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  fine:  97 % (172/177 golpes candidatos · 23 confirmados) · 75 min · quedan ≈ 2 min
+  fine:  98 % (173/177 golpes candidatos · 24 confirmados) · 77 min · quedan ≈ 2 min
+  fine: 100 % (177/177 golpes candidatos · 28 confirmados) · 81 min · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine terminada a las 02:46:08 en 82.6 min
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (2026-10-14 02:46:08, etapa 10 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent terminada a las 02:46:08 en 0 s
+Análisis del tramo: termina 2026-10-14 02:46:08 (152.7 min)
+
+Etapas ejecutadas: probe, scenes, audio, court, players, score, identity, candidates, fine, fine_opponent
+  probe           1.0 s  {'duration_min': 35.0, 'fps': 50.0, 'size': '1920x1080', 'cleaned': False, 'vfr': True}
+  scenes        130.1 s  {'shots': 159, 'main_camera_shots': 127, 'main_camera_min': 32.7}
+  audio          12.3 s  {'onsets': 2205, 'tracks': 1}
+  court         150.0 s  {'segments': 151, 'with_court': 71, 'known_court_reused': 65, 'searched': 201, 'court_presets': 17, 'pitch_deg_median': 18.3}
+  players      2343.0 s  {'frames': 6350}
+  score        1541.9 s  {'readings': 317, 'pressure': 122}
+  identity       13.3 s  {'runs': 67, 'votes': 42, 'confidence': 0.57, 'by_end_changes': 66, 'by_clothes': 0, 'conflicts': 0, 'decided': 66}
+  candidates     14.0 s  {'candidates': 328, 'far': 261, 'with_audio': 321, 'opponent_runs': 33, 'identity_unknown': 0, 'replay_runs_skipped': 7, 'replays_by_path': 5, 'audio_track': 0}
+  fine         4955.7 s  {'candidates': 177, 'confirmed': 28, 'errors': 0, 'warnings': [], 'forehands': 14, 'windows': 59, 'seconds': {'pose': 2543.0, 'bola': 1612.8, 'raqueta': 336.9, 'cuerdas_y_3d': 174.7, 'recorte': 72.6, 'analisis_ventana': 29.0}}
+  fine_opponent     0.0 s  {'enabled': False}
+  golpes 10/14 (207 s)
+Golpes: 14 nuevos, 14 en C:\tenis\output\_poc\exportar\golpes
+Montajes: 7 en C:\tenis\output\_poc\exportar\montajes
+Resumen: C:\tenis\output\_poc\exportar\resumen.pdf
+
+Total 152.7 min para 35 min de vídeo → partido de 210 min ≈ 15.3 h (estimación lineal)
+Informe: C:\tenis\output\_poc\informe\index.html
+Vídeos, montajes y resumen PDF: C:\tenis\output\_poc\exportar
+Auditoría: 272 cumplidos, 0 no cumplidos, 117 sin golpes suficientes, 29 avisos → C:\tenis\output\_poc\auditoria\auditoria.md
+    (paso terminado en 2 h 39 min)
+
+==> [2026-10-14 02:53:19] 4/4 Validacion automatica: puntos anotados de partidos de Rybakina (F3Set; 20-40 min, solo la primera vez)
+ya hecha
+    (paso terminado en 0 s)
+
+==> [2026-10-14 02:53:19] Extra: videos de analisis de entrenadores en YouTube (10-20 min, solo la primera vez)
+ya hecho
+
+PRUEBA TERMINADA. El informe se ha abierto en el navegador.
+El registro se envia a Claude automaticamente.
+    (paso terminado en 0 s)
+Empezado 2026-10-14 00:10:14 - terminado 2026-10-14 02:53:19 - duracion total 2 h 43 min
+Registro enviado a Claude (no hace falta copiar nada).
+Ciclo automatico terminado (medidas).
+    (paso terminado en 2 h 43 min)
+Empezado 2026-10-13 22:18:55 - terminado 2026-10-14 02:53:24 - duracion total 4 h 34 min
+**********************
+Windows PowerShell transcript end
+End time: 20261014025324
+**********************
