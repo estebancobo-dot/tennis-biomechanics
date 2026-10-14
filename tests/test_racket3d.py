@@ -77,10 +77,10 @@ def test_trunk_rotation_3d_square_and_turned():
     k3[15], k3[16] = [0, 300, 0], [0, 300, 0]
     k3[5], k3[6], k3[11], k3[12] = [-40, 60, 0], [40, 60, 0], [-30, 160, 0], [30, 160, 0]
     sc = np.ones(133)
-    sh, hp = trunk_rotation_3d(k3, sc, cam)
+    sh, hp, *_ = trunk_rotation_3d(k3, sc, cam)
     assert abs(sh) < 1e-6 and abs(hp) < 1e-6
     k3[6, 2], k3[5, 2] = -0.2, 0.2        # right shoulder back (towards the camera), left forward
-    sh, hp = trunk_rotation_3d(k3, sc, cam)
+    sh, hp, *_ = trunk_rotation_3d(k3, sc, cam)
     assert 30 < sh < 70 and abs(hp) < 1e-6
 
 
