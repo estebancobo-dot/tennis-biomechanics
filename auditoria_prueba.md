@@ -195,14 +195,14 @@
 - ✔ **Cada golpe tiene su vídeo**: 10 de 10 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 10 de 10
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 32573 caracteres de texto, 5 vídeos, 8 gráficos; mensajes de vacío: ['']
+- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 32570 caracteres de texto, 5 vídeos, 8 gráficos; mensajes de vacío: ['']
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 3344 caracteres de texto, 5 vídeos, 1 gráficos
-- ✔ **Pantalla «Análisis de golpe»**: 7052 caracteres de texto, 6 vídeos, 28 gráficos
+- ✔ **Pantalla «Análisis de golpe»**: 7051 caracteres de texto, 6 vídeos, 28 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 5224 caracteres de texto, 5 vídeos, 2 gráficos
 - ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 6832 caracteres de texto, 5 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']
-- ✔ **Pantalla «Tabla de golpes (Explorador)»**: 3233 caracteres de texto, 5 vídeos, 0 gráficos
+- ✔ **Pantalla «Tabla de golpes (Explorador)»**: 3231 caracteres de texto, 5 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 6903 caracteres de texto, 5 vídeos, 0 gráficos
-- ✔ **Pantalla «Fiabilidad de las medidas»**: 3111 caracteres de texto, 5 vídeos, 0 gráficos
+- ✔ **Pantalla «Fiabilidad de las medidas»**: 3108 caracteres de texto, 5 vídeos, 0 gráficos
 - ✔ **Pantalla «Datos del análisis»**: 1310 caracteres de texto, 5 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
@@ -283,7 +283,7 @@
 - ✔ **R16 Cuerdas casi hacia el suelo en el contacto**: no decidible: no se ve desde la tele: la app no lo afirma
 - ✔ **R3 Empuñadura semioccidental exacta**: no decidible: no se ve desde la tele: la app no lo afirma
 - ✔ **Valores dentro de límites físicos**: 23 medidas comprobadas en 10 golpes
-- ✔ **Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)**: 59 medidas: 3 dudosa, 34 fiable, 7 no comprobable, 2 ruido, 3 sesgo, 10 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±4.92, loaded.racket_head_lateral ±2.83. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 58.4° / 3D 13.8°, stroke.shoulders_open_first 2D 58.4° / 3D 13.8°, stroke.shoulder_brake 2D 58.4° / 3D 13.8°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
+- ✔ **Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)**: 59 medidas: 3 dudosa, 34 fiable, 7 no comprobable, 2 ruido, 3 sesgo, 10 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±4.92, loaded.racket_head_lateral ±2.83. No coinciden con el segundo método (3D), no se dan: loaded.shoulder_turn 2D 59.3° / 3D 8.0°, stroke.shoulders_open_first 2D 59.3° / 3D 8.0°, stroke.shoulder_brake 2D 59.3° / 3D 8.0°. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
 - ✔ **Frenado de los hombros antes del contacto**: medido en 10 de 10 golpes; en «Aprende»; fiabilidad: sesgo
 - ✔ **Lo no medible se dice**: 17 elementos en «Lo que la tele no permite medir»
 - ✔ **Validación con clips anotados (F3Set)**: golpes: precisión 0.917, recall 0.647; derecha/revés 0.969; dirección 0.885. Solo detección y clases: el valor de cada medida (codo, rodillas, pasos…) aún no tiene clips anotados con los que compararse

@@ -1,0 +1,114 @@
+{
+ "probe": {
+  "fingerprint": "7b30d463ffb32f49",
+  "version": "2",
+  "seconds": 0.2,
+  "finished": "2026-10-14 12:04:45",
+  "summary": {
+   "duration_min": 4.0,
+   "fps": 50.0,
+   "size": "1920x1080",
+   "cleaned": false,
+   "vfr": true
+  }
+ },
+ "scenes": {
+  "fingerprint": "2e8af228f7a460d4",
+  "version": "2",
+  "seconds": 29.2,
+  "finished": "2026-10-14 12:05:14",
+  "summary": {
+   "shots": 41,
+   "main_camera_shots": 35,
+   "detector": "transnetv2",
+   "main_camera_min": 3.5
+  }
+ },
+ "audio": {
+  "fingerprint": "70af5d255875e2d2",
+  "version": "2",
+  "seconds": 17.0,
+  "finished": "2026-10-14 12:05:31",
+  "summary": {
+   "onsets": 243,
+   "tracks": 1
+  }
+ },
+ "court": {
+  "fingerprint": "b7c369890ab2be8e",
+  "version": "4",
+  "seconds": 46.5,
+  "finished": "2026-10-14 12:06:17",
+  "summary": {
+   "segments": 38,
+   "with_court": 24,
+   "known_court_reused": 64,
+   "searched": 29,
+   "filled_same_view": 3,
+   "samples": 152,
+   "court_presets": 7,
+   "main_camera_min": 3.5,
+   "court_min": 1.3,
+   "court_share": 0.355,
+   "pitch_deg_median": 18.3
+  }
+ },
+ "score": {
+  "fingerprint": "a0f455472c063888",
+  "version": "6",
+  "seconds": 53.1,
+  "finished": "2026-10-14 12:07:10",
+  "summary": {
+   "readings": 19,
+   "pressure": 7,
+   "samples": 19,
+   "ocr_calls": 18
+  }
+ },
+ "players": {
+  "fingerprint": "48b7a4fb8e2fbff0",
+  "version": "4",
+  "seconds": 57.7,
+  "finished": "2026-10-14 12:07:15",
+  "summary": {
+   "frames": 751,
+   "wall_min": 0.9,
+   "model_min": 0.8,
+   "read_min": 0.8,
+   "wait_min": 0.1,
+   "appearance_min": 0.0
+  },
+  "overlap_s": 53.1
+ },
+ "identity": {
+  "fingerprint": "543307d83affba98",
+  "version": "4",
+  "seconds": 0.2,
+  "finished": "2026-10-14 12:07:15",
+  "summary": {
+   "runs": 11,
+   "votes": 8,
+   "confidence": 0.62,
+   "by_end_changes": 11,
+   "by_clothes": 0,
+   "conflicts": 0,
+   "decided": 11
+  }
+ },
+ "candidates": {
+  "fingerprint": "70562d986fda0c9a",
+  "version": "7",
+  "seconds": 0.2,
+  "finished": "2026-10-14 12:07:15",
+  "summary": {
+   "candidates": 39,
+   "far": 27,
+   "with_audio": 39,
+   "opponent_runs": 0,
+   "identity_unknown": 0,
+   "replay_runs_skipped": 1,
+   "replays_by_path": 1,
+   "audio_track": 0
+  }
+ }
+}

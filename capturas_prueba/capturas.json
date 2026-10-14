@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 32573,
+   "text_chars": 32570,
    "charts": 8,
    "videos": 5,
    "black_canvases": 0,
@@ -59,7 +59,7 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 7052,
+   "text_chars": 7051,
    "charts": 28,
    "videos": 6,
    "black_canvases": 0,
@@ -150,13 +150,13 @@
   },
   {
    "title": "Tabla de golpes (Explorador)",
-   "text_chars": 3233,
+   "text_chars": 3231,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 42,
+   "dashes": 43,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -204,7 +204,7 @@
   },
   {
    "title": "Fiabilidad de las medidas",
-   "text_chars": 3111,
+   "text_chars": 3108,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
