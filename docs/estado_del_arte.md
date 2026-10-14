@@ -92,3 +92,9 @@ gana nada: sigue en FP32. Con 13 golpes, diferencias de F1 de ±0,07 son ruido.
 
 Siguiente (en curso): jugadores con fotogramas a 960 px desde ffmpeg; marcador solo en juego; pasada fina en
 cascada (puerta barata antes de la pose completa); cobertura de la pista (2/3 del juego se pierde: precisión).
+
+## Prueba de velocidad 2 (14-10, 04:30-05:32; 35 min; la pasada fina reutilizó parte de las poses)
+Pista 5,6 min (muestreo cada 2 s; 9,2 min de juego con pista) · jugadores 17,3 (lectura 1,8 + modelo 15,4) ·
+marcador 3,5 (127 muestras, 114 OCR) · pasada fina 34,8 (bola 15,1, pose 12,4; 15 de 52 ventanas descartadas
+sin pose; 28 golpes, los mismos) · total 61,6 min ≈ 6,2 h por partido (antes 25 h). Siguiente: cortes con
+TransNetV2, marcador en paralelo con jugadores, lectura adelantada (prueba 3, carpetas nuevas); después la bola.
