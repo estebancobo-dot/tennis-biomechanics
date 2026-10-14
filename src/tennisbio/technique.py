@@ -500,7 +500,7 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
     run.feet (T, 6, 2) and run.feet_conf (T, 6) when the pose has heels and toes (hybrid pose); with
     them stance, base, steps and the feet on the court come from the ground contacts and the foot
     direction and the pivot of the back foot are measured; without them everything is as before."""
-    from .footpoints import clean_feet, foot_angle_deg
+    from .footpoints import clean_feet, foot_reading
 
     fk = clean_feet(feet, feet_conf)
     body = to_body_frame(img, sk, scale)
@@ -512,7 +512,10 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
     # turns from the baseline (the court gives the camera's oblique view of her); 0-180°, see line_turn
     sh = line_turn(img, sk, "shoulder", scale=scale, H=H, coil=-1 if stroke == "backhand" else 1)
     hp = line_turn(img, sk, "hip", scale=scale, H=H, coil=-1 if stroke == "backhand" else 1)
-    def at(p, f):
+    height_m = (context or {}).get("height_m")
+    feet_check = {}
+
+    def at(p, f, main=False):
         d = posture(body, img, sk, f, float(scale[f]))
         if np.isfinite(sh[f]):
             d["shoulder_turn"] = _deg(sh[f])
@@ -525,15 +528,17 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         d.update(racket_at(kps, img, sk, f, float(scale[f]), fy, faces, first_face, estimate=p == "impact"))
         if fk is not None and H is not None and p in ("loaded", "impact"):     # foot direction on the court
             for which in ("front", "back"):
-                a = foot_angle_deg(fk, f, sk, H, which, stroke)
+                a, why = foot_reading(fk, f, sk, H, which, stroke, scale, height_m, fps)
                 if a is not None:
                     d[f"{which}_foot_angle_deg"] = round(a, 1)
+                if main:            # why a foot direction is missing (reliability: share of hidden toes)
+                    feet_check[f"{p}.{which}"] = why
         return d
 
     for p, f in ev.items():
         if f is None:
             continue
-        d = at(p, f)
+        d = at(p, f, main=True)
         out["phases"][p] = d
         # repeatability: the same measure 1-2 frames (20-80 ms) either side of the phase instant. The
         # instant itself is only known to ±1-2 frames, so a measure that jumps more than that between
@@ -811,6 +816,8 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
             c["stance_role"] = (f"{st_} defensivo" if st_ in ("abierto", "semiabierto") and fast_run else
                                 f"{st_} de ataque" if c.get("intent") == "ataque" or st_ in ("neutro", "cerrado") else
                                 f"{st_} neutro")
+    if feet_check:
+        out["feet_check"] = feet_check
     return out
 
 

@@ -27,8 +27,10 @@ Repeatable is not possible either: where the body sets a physical range (PLAUSIB
 more than IMPLAUSIBLE_SHARE of its readings outside it is "sesgo" too (the method fails often enough
 that the readings inside the range cannot be trusted either). First case, the PC on 14-10: the foot
 direction from heels and toes read 20-44 % of the planted forehand feet with the toes turned back
-towards her own fence, which no groundstroke does (perspective: a point a few cm above the court,
-mapped on it, moves away from the camera; or heel and toes confused from behind).
+towards her own fence, which no groundstroke does. The cause (footpoints, FOOT_BACK_DEG) is the toes
+hidden from behind and drawn on the camera side of the heel; the perspective of the raised heel point
+is too small to do it. Since then those readings are refused by the fine pass, and a refused reading
+(technique "feet_check") counts here as an impossible one.
 """
 from __future__ import annotations
 
@@ -62,6 +64,9 @@ DERIVED_FROM = {"stroke.shoulder_brake": "loaded.shoulder_turn", "stroke.shoulde
 # 45° would leave her hips facing her own fence.
 FOOT_RANGE = (-45.0, 180.0)
 PLAUSIBLE = {f"{p}.{w}_foot_angle_deg": FOOT_RANGE for p in ("loaded", "impact") for w in ("front", "back")}
+# since 14-10 the fine pass no longer gives those readings (footpoints.foot_reading refuses them and says
+# why in technique "feet_check"): a refused reading counts as an impossible one here
+REFUSED = ("punta_oculta", "incoherente")
 # more than this share of impossible readings: the method is failing, not the player (one in ten strokes
 # can be a single misdetected frame; above 15 % the error is systematic and also shifts the readings that
 # still look possible)
@@ -133,7 +138,13 @@ def assess(raw: list[dict], keys: dict[str, str | None], second: dict | None = N
             bad = sum(not lo <= x <= hi for x in v)
             if bad:
                 out[k].update(implausible=bad, n_values=len(v), range=[lo, hi])
-            if bad / len(v) > IMPLAUSIBLE_SHARE:
+            # readings the method refused (the toes hidden behind the heel, technique "feet_check"): the
+            # values left are only the feet it could see, a biased selection when they are many
+            chk = k.rsplit("_foot_angle_deg", 1)[0]
+            refused = sum(((s.get("technique") or {}).get("feet_check") or {}).get(chk) in REFUSED for s in raw)
+            if refused:
+                out[k].update(refused=refused)
+            if (bad + refused) / (len(v) + refused) > IMPLAUSIBLE_SHARE:
                 out[k]["verdict"] = "sesgo"
                 continue
         other = second.get(k)

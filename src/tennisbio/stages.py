@@ -961,7 +961,7 @@ def _player_fields(p) -> dict:
             "grip": [getattr(p, "forehand_grip_close_deg", None), getattr(p, "backhand_grip_close_deg", None)]}
 
 
-@stage("fine", "14", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
+@stage("fine", "15", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
        code=FINE_CODE, match_fields=lambda m: _player_fields(m.player))
 def st_fine(ctx: Context):
     """Full-quality analysis of the target player's candidates. Runs whose identity could not be
@@ -1481,6 +1481,8 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
     ser = stroke_series(run.img, run.conf, run.boxes, run.sk, run.fps, run.height_px, r.impact_frame,
                         r.racket_track, run.ball, scale=run.height_t)
     ser["side"] = side
+    from .footpoints import series_feet
+    ser.update(series_feet(getattr(run, "feet", None), getattr(run, "feet_conf", None), ser["first"], ser["n"]))
     if H is not None:          # player-frame court → image, for the court minimap of the report
         ser["H"] = np.round(H, 8).tolist()
     ser["shot_bounce_m"] = d.get("shot_bounce_m")

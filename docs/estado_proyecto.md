@@ -20,6 +20,7 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
 - Móvil y nube: al final, después de que el PC funcione.
 
 ## Lo último (13-10, tarde): leer primero
+- **Orientación del pie: causa y método nuevo (14-10, noche; pasada fina v15):** las lecturas imposibles (20-44 %) se agrupan en −90° (8 de 13 pies de delante en el armado): la punta, tapada por el talón y la pierna al verla por detrás, la dibuja el modelo del lado de la cámara. La homografía con el talón unos cm sobre la pista solo resta 8-25° (haría falta un talón 11-17 cm más alto que la punta). Ahora (`footpoints.foot_reading`): talón bajado a la pista antes de la homografía, longitud del pie según su altura, mediana de ±0,04 s y rechazo de la punta detrás del talón («punta_oculta»; `technique.feet_check` dice por qué falta cada una). La fiabilidad cuenta los rechazos como lecturas imposibles (si pasan del 15 % sigue «sesgo», es decir, «no fiable desde la tele»). Las series guardan los puntos de los pies (`feet`, `feet_conf`): con la próxima ejecución se ve cuántos golpes quedan medidos.
 - **Umbrales nuevos con golpes reales (14-10, prueba 6: `_poc6_35` frente a `_poc5_35`/`_poc4`, y `_smoke` recalculado):**
   - *Giro de hombros al empezar la preparación* («ruido» ±3,4° en la revisión): no es un fallo. Cambia por la escala
     de altura por la pista: la anterior seguía el largo del tronco en la imagen (variaba ±9 % dentro de una ventana
