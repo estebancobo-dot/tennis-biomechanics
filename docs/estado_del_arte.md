@@ -80,6 +80,11 @@ el 99,7 %, temblor −35 %, mismos golpes, 2× el coste de YOLO FP16 solo en las
 prueba de velocidad con lo actual. RTMPose en FP16 va más lento en DirectML: no se usa. La bola en FP16 no
 gana nada: sigue en FP32. Con 13 golpes, diferencias de F1 de ±0,07 son ruido.
 
+Híbrido preparado para la pasada fina (14-10), **apagado**: `src/tennisbio/pose/hybrid.py` (mismo contrato que
+YOLO + 6 puntos de los pies; RTMPose-x en FP32 solo en las personas grandes o en la caja que se le pase),
+`fine_pass.pose_model: yolo | hybrid` (comentada en `config/default.yaml` para no cambiar la huella) y
+`src/tennisbio/footpoints.py` (talón-punta → apoyo y base cuando se active; ninguna medida actual lo usa aún).
+
 ## Prueba de velocidad en el PC (petición 1, 14-10 de madrugada; 35 min de vídeo)
 | Etapa | Antes (13-10) | Ahora | Nota |
 |---|---|---|---|

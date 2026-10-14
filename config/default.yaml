@@ -18,6 +18,12 @@ fine_pass:
   # (src/tennisbio/fine_gate.py). gate_margin_s: margen extra sobre la tolerancia de 0,4 s.
   gate: true
   gate_margin_s: 0.1
+  # Modelo de pose de la pasada fina: yolo (YOLO11m-pose, el de siempre) o hybrid (YOLO encuentra a
+  # las personas y RTMPose-x Halpe26, en precisión normal, rehace solo a las grandes: pies —talones y
+  # puntas— en el 99,7 % de los fotogramas y −35 % de temblor, al doble de coste; src/tennisbio/pose/hybrid.py).
+  # Preparado pero apagado: sin la clave (o con yolo) nada cambia. Va comentada a propósito: escribirla
+  # cambiaría la huella de la pasada fina y la repetiría entera en el PC sin ningún cambio.
+  # pose_model: yolo
   detector: balanced
   pose: performance
 
