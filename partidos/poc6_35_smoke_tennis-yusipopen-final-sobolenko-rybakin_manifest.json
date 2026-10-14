@@ -55,5 +55,63 @@
    "court_share": 0.81,
    "pitch_deg_median": 18.3
   }
+ },
+ "score": {
+  "fingerprint": "d7ea3af6138b5b4d",
+  "version": "6",
+  "seconds": 274.5,
+  "finished": "2026-10-14 17:50:10",
+  "summary": {
+   "readings": 139,
+   "pressure": 53,
+   "samples": 143,
+   "ocr_calls": 124
+  }
+ },
+ "players": {
+  "fingerprint": "4ce3c4e5551691ad",
+  "version": "4",
+  "seconds": 400.6,
+  "finished": "2026-10-14 17:52:16",
+  "summary": {
+   "frames": 5532,
+   "wall_min": 6.6,
+   "model_min": 6.1,
+   "read_min": 5.7,
+   "wait_min": 0.6,
+   "appearance_min": 0.1
+  },
+  "overlap_s": 274.5
+ },
+ "identity": {
+  "fingerprint": "e5acec3d6e0ad391",
+  "version": "4",
+  "seconds": 1.6,
+  "finished": "2026-10-14 17:52:18",
+  "summary": {
+   "runs": 73,
+   "votes": 53,
+   "confidence": 0.98,
+   "by_end_changes": 72,
+   "by_clothes": 1,
+   "conflicts": 0,
+   "decided": 73
+  }
+ },
+ "candidates": {
+  "fingerprint": "d20b4533009fcbff",
+  "version": "7",
+  "seconds": 1.2,
+  "finished": "2026-10-14 17:52:19",
+  "summary": {
+   "candidates": 277,
+   "far": 204,
+   "with_audio": 274,
+   "opponent_runs": 33,
+   "identity_unknown": 0,
+   "replay_runs_skipped": 12,
+   "replays_by_path": 10,
+   "audio_track": 0
+  }
  }
 }
