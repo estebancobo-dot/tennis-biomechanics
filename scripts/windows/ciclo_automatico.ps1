@@ -50,14 +50,17 @@ function Hacer-Peticion {
     $p["id"] | Set-Content "$Out\peticion_hecha.txt"           # una sola vez, salga bien o mal
     $ps1 = Join-Path $RepoDir "scripts\windows\prueba_rapida.ps1"
     if ($p["accion"] -eq "poc") {
-        Paso "Peticion $($p['id']): prueba de velocidad, 4 min de partido en output\_poc4"
+        # carpetas nuevas por peticion: sin caches de otra prueba, el tiempo medido es el real
+        $s4 = "_poc4"; $s35 = "_poc"
+        if ($p["id"] -ne "1") { $s4 = "_poc$($p['id'])_4"; $s35 = "_poc$($p['id'])" }
+        Paso "Peticion $($p['id']): prueba de velocidad, 4 min de partido en output\$s4"
         $t0 = Get-Date
-        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $ps1 -Minutos 4 -Salida "_poc4" | Out-Host
-        $inf = "$Base\output\_poc4\informe\index.html"
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $ps1 -Minutos 4 -Salida $s4 | Out-Host
+        $inf = "$Base\output\$s4\informe\index.html"
         if ((Test-Path $inf) -and (Get-Item $inf).LastWriteTime -gt $t0) {
-            Paso "Peticion $($p['id']): sin errores; ahora 35 min de partido en output\_poc"
-            & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $ps1 -Minutos 35 -Salida "_poc" | Out-Host
-        } else { Write-Host "La prueba de 4 min no termino bien: no se lanza la de 35 (ver prueba_poc4.log)" -ForegroundColor Red }
+            Paso "Peticion $($p['id']): sin errores; ahora 35 min de partido en output\$s35"
+            & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $ps1 -Minutos 35 -Salida $s35 | Out-Host
+        } else { Write-Host "La prueba de 4 min no termino bien: no se lanza la de 35 (ver prueba$s4.log)" -ForegroundColor Red }
     } else { Write-Host "Peticion desconocida: $($p['accion'])" -ForegroundColor Yellow }
 }
 # el equipo no se suspende mientras el ciclo exista (la pantalla si puede apagarse): cada arranque, cada
