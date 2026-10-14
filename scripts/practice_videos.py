@@ -38,7 +38,8 @@ QUERIES = ["Rybakina practice", "Rybakina practice court level", "Rybakina train
 EXCLUDE = (" vs ", " vs.", " v ", "highlights", "interview", "press conference", "full match", "match point", "reaction")
 FORMAT = "bv*[height<=720][ext=mp4]+ba[ext=m4a]/b[height<=720][ext=mp4]/b[height<=720]/b"   # as validate_f3set (works on the PC)
 MIN_SHOT_S = 2.5
-VERSION = 4          # of the analysis: a video analysed by an older version is analysed again (pose kept in cache)
+VERSION = 5          # of the analysis: a video analysed by an older version is analysed again (pose kept in cache)
+                     # 5: RTMW3D depth decoded with its own bins (pose.wholebody3d): the *_3d_* measures change
 
 
 def log(msg):

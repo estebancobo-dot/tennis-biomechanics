@@ -6,7 +6,7 @@ import pytest
 
 from tennisbio.kinematics import line_turn
 from tennisbio.racket3d import Camera
-from tennisbio.racket_orientation import RTMLIB_Z_SCALE, trunk_at, trunk_rotation_3d
+from tennisbio.racket_orientation import trunk_at, trunk_rotation_3d
 from tennisbio.skeleton import COCO17, Skeleton
 
 PITCH = 18.0
@@ -99,14 +99,14 @@ def test_2d_label_swap_is_no_value():
 
 
 def rtmw3d(P, depth=True, ppm=100.0):
-    """What RTMW3D returns through rtmlib for a correct 3D pose: x, y in crop px, depth in metres
-    compressed by rtmlib's decoding (× 288/384) and shifted; depth=False: the flat depth seen on the
+    """What WholeBody3D returns for a correct 3D pose: x, y in crop px, depth in metres (decoded
+    with the depth axis's own bins, pose.wholebody3d), shifted; depth=False: the flat depth seen on the
     broadcast view from behind."""
     r, u, f = Camera(PITCH).basis
     k3 = np.zeros((133, 3))
     k3[:17, 0] = P @ r * ppm
     k3[:17, 1] = -(P @ u) * ppm
-    k3[:17, 2] = (P @ f / RTMLIB_Z_SCALE - 0.5) if depth else -0.5
+    k3[:17, 2] = (P @ f - 0.5) if depth else -0.5
     return k3
 
 

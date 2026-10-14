@@ -30,10 +30,6 @@ class _Recorder:
         return res
 
 
-# rtmlib decodes RTMW3D's depth with the image height of the model input (384 px), but the model's
-# depth axis has the width's bins (288 px: its simcc_z output has 576 = 2 × 288 bins, as in mmpose's
-# SimCC3DLabel with input_size (288, 384, 288)); depth differences come out × 288/384.
-RTMLIB_Z_SCALE = 384 / 288
 # a 3D shoulder/hip segment shorter than this share of its own length in the stroke has lost its
 # depth (see trunk_rotation_3d): the reading is not a 3D measurement
 RIGID_MIN = 0.8
@@ -49,8 +45,8 @@ def trunk_rotation_3d(k3: np.ndarray, sc: np.ndarray, cam: Camera, hand="right",
     direction, which is pitched down by cam.pitch_deg.
 
     Scale: image px per metre from her height — nose to the lowest ankle is ≈ 0.93 of it in the
-    world vertical, which the pitched camera sees × cos(pitch). Depth: RTMW3D's, in metres, with
-    rtmlib's decoding undone (RTMLIB_Z_SCALE).
+    world vertical, which the pitched camera sees × cos(pitch). Depth: RTMW3D's, in metres, as decoded by
+    pose.wholebody3d (rtmlib's ×0.75 depth decoding corrected there, for every user).
 
     The segment lengths are returned because they test the depth: a rigid shoulder (hip) segment
     keeps its length whatever the turn. On the broadcast view from behind and above, RTMW3D's
@@ -66,7 +62,7 @@ def trunk_rotation_3d(k3: np.ndarray, sc: np.ndarray, cam: Camera, hand="right",
     px_per_m = (max(k3[15, 1], k3[16, 1]) - k3[0, 1]) / (0.93 * height_m * cos_p)   # her own height
     if px_per_m <= 0:
         return None
-    to_w = lambda p: (p[0] / px_per_m) * r - (p[1] / px_per_m) * u + p[2] * RTMLIB_Z_SCALE * f
+    to_w = lambda p: (p[0] / px_per_m) * r - (p[1] / px_per_m) * u + p[2] * f
     dom = 1 if hand == "right" else -1
     out, lens = [], []
     for a, b in ((L_SH, R_SH), (L_HIP, R_HIP)):
