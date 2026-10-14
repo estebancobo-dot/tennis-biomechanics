@@ -12,6 +12,12 @@ cómo está cubierto. ✔ = cubierto por prueba automática o por diseño; ◐ =
 | FP16 | Cachés de pose antiguas (FP32) en `_smoke` | esquina | se reutilizan: el recálculo no cambia las medidas | ✔ huella de la etapa; revisión automática OK/REGRESIÓN |
 | Pista | Plano con una cámara ya vista | nominal | reutiliza la homografía (umbral igual que una búsqueda) | ✔ `tests/test_court.py` (mismo resultado que el código antiguo) |
 | Pista | Plano sin pista (primer plano, público) | límite | búsqueda completa y sin homografía, como antes | ✔ idem |
+| Escenas (v3) | Cámara principal con líneas visibles | nominal | dos laterales que convergen + una línea que las cruza → plano principal | ✔ `test_scenes_main_camera.py`; 41 retransmisiones de RacketVision, ninguna perdida |
+| Escenas (v3) | Primer plano / vista lateral ante una pared del color de la pista, público | error en fuentes | sin líneas de pista → no es plano principal | ✔ idem (sintéticos) y 26 imágenes de `pc-logs:diag/` |
+| Escenas (v3) | Misma vista sin líneas (sombra, líneas tenues) | esquina | se parece (miniatura 16×9) a una vista confirmada → se queda | ✔ `test_shots_main_camera_by_lines_and_by_the_same_view` |
+| Escenas (v3) | Corte no detectado (punto + primer plano en un plano) | límite | el plano entero se queda; la pista decide por bisección | ✔ idem |
+| Escenas (v3) | Retransmisión cuyas líneas no se ven nunca (cámara baja) | límite | si las líneas dan < 10 % de lo que da el color, decide el color (como v2) y avisa | ✔ `test_without_visible_lines_the_colour_rule_stays` |
+| Escenas (v3) | Coste | rendimiento | ~1 ms por fotograma a 160 px (≈ 20 s en 35 min a 10 fps) | ◐ `seconds` de la etapa en el PC |
 | Pista | Zoom lento de la cámara | esquina | revisión cada 2 s (búsqueda completa como mucho cada 8 s); si la conocida baja de 0,5 se busca de nuevo | ✔ por diseño; ◐ «court_presets» en el PC |
 | Pista | Corte no detectado (punto + primer plano en un mismo «plano») | error en fuentes | fotograma cada 2 s y bisección a 0,5 s del cambio | ✔ `test_court_stage_finds_a_rally_inside_a_missed_cut` |
 | Pista | Líneas tapadas o borrosas con la cámara quieta | límite | se conserva la pista del vecino de la misma vista si puntúa ≥ 0,3; nunca tras un corte | ✔ idem y `test_court_stage_does_not_carry_the_court_over_a_cut` |

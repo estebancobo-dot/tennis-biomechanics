@@ -77,11 +77,12 @@ def _scenes_settings(c: dict) -> dict:
             "threshold": sc.get("threshold", 0.5), "tn_fps": sc.get("fps", 25)}
 
 
-@stage("scenes", "2", deps=("probe",), settings=_scenes_settings, outputs=("scenes.json",))
+@stage("scenes", "3", deps=("probe",), settings=_scenes_settings, outputs=("scenes.json",))
 def st_scenes(ctx: Context):
     """Shots and main camera. One decoding at 160 px: at ~25 fps for TransNetV2 (cuts), of which the
-    frames nearest to the cheap-pass fps give the colour histograms (dissolves, main camera).
-    Without the model, or if it fails, the histograms alone at the cheap-pass fps (as in v1)."""
+    frames nearest to the cheap-pass fps give the colour histograms (dissolves) and the court's lines
+    (main camera, v3: colour alone took close-ups in front of a wall of the court's colour for the
+    main camera). Without the model, or if it fails, the histograms alone give the cuts (as in v1)."""
     from .scenes import CutModel
 
     fps = ctx.cfg["cheap_pass"]["fps"]
@@ -110,10 +111,17 @@ def st_scenes(ctx: Context):
         why = f"TransNetV2 falló ({res['error']})"
     if why:
         ctx.log(f"  AVISO: cortes de plano solo con histogramas de color: {why}")
-    _write(ctx.path("scenes.json"), {"fps": fps, "shots": [vars(s) for s in shots], "detector": res.get("detector")})
+    if res.get("main_rule") == "colour" and shots:
+        ctx.log("  AVISO: no se ven las líneas de la pista desde el fondo; cámara principal solo por el color")
+    _write(ctx.path("scenes.json"), {"fps": fps, "shots": [vars(s) for s in shots], "detector": res.get("detector"),
+                                     "main_rule": res.get("main_rule")})
     main = [s for s in shots if s.main_camera]
-    return {"shots": len(shots), "main_camera_shots": len(main), "detector": res.get("detector"),
-            "main_camera_min": round(sum(s.end - s.start for s in main) / fps / 60, 1)}
+    out = {"shots": len(shots), "main_camera_shots": len(main), "detector": res.get("detector"),
+           "main_camera_min": round(sum(s.end - s.start for s in main) / fps / 60, 1), "main_rule": res.get("main_rule")}
+    if "main_frames_colour" in res:
+        out["main_camera_min_colour"] = round(res["main_frames_colour"] / fps / 60, 1)    # what v2 gave
+        out["main_views"] = res.get("views", 0)
+    return out
 
 
 @stage("audio", "2", deps=("probe",), outputs=("audio_onsets.json",))

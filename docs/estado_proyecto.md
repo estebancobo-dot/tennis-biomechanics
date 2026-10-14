@@ -171,6 +171,14 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
   fallar la pasada fina (arreglado). Vista lateral: 15 derechas de lado y 33 en 3D, pero las detectadas solo
   por la muñeca caen en el armado (impacto mal situado): ahora solo se miden las confirmadas por el sonido.
   Siguiente: velocidad (prioridad) y elegir un tramo con más juego.
+- ✔ Cámara principal por las líneas (14-10, etapa `scenes` v3): con TransNetV2 salían 303 planos pero 248
+  «principales» (30,3 min de 35; pista solo en 9,5). El color no basta: la pared azul de fondo tiene el color de
+  la pista. Ahora un plano es principal si en suficientes fotogramas (1/10 del plano, como mucho 1 s) se ven dos
+  laterales que convergen hacia arriba y una línea que las cruza, sobre una superficie limpia (no público), o si
+  se parece a una vista ya confirmada así. Si una retransmisión no deja ver las líneas, decide el color como
+  antes. Calibrado: las 26 imágenes de `pc-logs:diag/` separadas sin error; 41 retransmisiones de
+  RacketVision y el resumen de la final, todo conservado. Esperado en el tramo de 35 min: ~10-14 min de cámara
+  principal (pista en 9,5). En el PC: `main_camera_min` frente a `main_camera_min_colour` y `main_rule`.
 - ✔ Pista (14-10, etapa `court` v4): de los 32,7 min de «cámara principal» solo 10,6 tenían pista. Causa
   (imágenes de `pc-logs:diag/`): la pista se ajustaba bien en todos los planos de juego; los planos sin pista
   eran primeros planos (jugadora sobre el fondo azul, público) que `scenes` da por cámara principal porque no
