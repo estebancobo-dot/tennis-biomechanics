@@ -189,6 +189,8 @@ function Actualizar-Codigo {
             if (Tiene uv) {
                 Push-Location $RepoDir
                 uv sync --extra yolo --extra ocr --extra dev --extra validation 2>&1 | ForEach-Object { "$_" } | Out-Host
+                # modelos nuevos que pida el codigo (p. ej. transnetv2.onnx): solo crea los que falten
+                uv run python scripts/setup_models.py 2>&1 | ForEach-Object { "$_" } | Out-Host
                 Pop-Location
             }
         }

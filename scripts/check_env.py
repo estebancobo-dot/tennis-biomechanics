@@ -12,7 +12,7 @@ import subprocess
 import sys
 
 PACKAGES = ["numpy", "pandas", "cv2", "librosa", "onnxruntime", "ultralytics", "rapidocr_onnxruntime"]
-MODELS = ["balltrack.onnx", "racketpose.onnx", "rtmw3d-x.onnx", "yolo11m-pose_960.onnx", "yolo11m-pose_1280.onnx"]
+MODELS = ["balltrack.onnx", "racketpose.onnx", "transnetv2.onnx", "rtmw3d-x.onnx", "yolo11m-pose_960.onnx", "yolo11m-pose_1280.onnx"]
 
 
 def check_tools():

@@ -71,20 +71,48 @@ def st_probe(ctx: Context):
             "cleaned": d["cleaned"], "vfr": d["vfr"]}
 
 
-@stage("scenes", "1", deps=("probe",), settings=lambda c: {"fps": c["cheap_pass"]["fps"]}, outputs=("scenes.json",))
+def _scenes_settings(c: dict) -> dict:
+    sc = c.get("scenes") or {}
+    return {"fps": c["cheap_pass"]["fps"], "model": model_state(sc.get("onnx")),
+            "threshold": sc.get("threshold", 0.5), "tn_fps": sc.get("fps", 25)}
+
+
+@stage("scenes", "2", deps=("probe",), settings=_scenes_settings, outputs=("scenes.json",))
 def st_scenes(ctx: Context):
+    """Shots and main camera. One decoding at 160 px: at ~25 fps for TransNetV2 (cuts), of which the
+    frames nearest to the cheap-pass fps give the colour histograms (dissolves, main camera).
+    Without the model, or if it fails, the histograms alone at the cheap-pass fps (as in v1)."""
+    from .scenes import CutModel
+
     fps = ctx.cfg["cheap_pass"]["fps"]
+    sc = ctx.cfg.get("scenes") or {}
     info = probe(ctx.video)
-    total = int(info.duration * fps)
+    model, why = None, None
+    onnx = resolve_path(sc.get("onnx"))
+    if onnx is None or not onnx.exists():
+        why = f"falta {sc.get('onnx') or 'models/transnetv2.onnx'}"
+    else:
+        try:
+            model = CutModel(onnx, ctx.cfg.get("device", "cpu"))
+        except Exception as e:                    # noqa: BLE001 — broken model file: histograms
+            why = f"no se pudo cargar TransNetV2 ({str(e)[:150]})"
+    read_fps = max(fps, float(sc.get("fps", 25))) if model else fps
+    total = int(info.duration * read_fps)
 
     def frames_with_progress():
-        for i, fr in enumerate(read_frames(info, width=160, fps=fps, hwaccel=ctx.cfg.get("hwaccel"))):
+        for i, fr in enumerate(read_frames(info, width=160, fps=read_fps, hwaccel=ctx.cfg.get("hwaccel"))):
             ctx.progress(i + 1, total, "fotogramas")
             yield fr
-    shots, mask = analyse_video(frames_with_progress())
-    _write(ctx.path("scenes.json"), {"fps": fps, "shots": [vars(s) for s in shots]})
+    res: dict = {}
+    shots, mask = analyse_video(frames_with_progress(), cut_model=model, fps=fps, fast_fps=read_fps,
+                                threshold=float(sc.get("threshold", 0.5)), info=res)
+    if res.get("error"):
+        why = f"TransNetV2 falló ({res['error']})"
+    if why:
+        ctx.log(f"  AVISO: cortes de plano solo con histogramas de color: {why}")
+    _write(ctx.path("scenes.json"), {"fps": fps, "shots": [vars(s) for s in shots], "detector": res.get("detector")})
     main = [s for s in shots if s.main_camera]
-    return {"shots": len(shots), "main_camera_shots": len(main),
+    return {"shots": len(shots), "main_camera_shots": len(main), "detector": res.get("detector"),
             "main_camera_min": round(sum(s.end - s.start for s in main) / fps / 60, 1)}
 
 
