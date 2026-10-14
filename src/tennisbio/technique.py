@@ -32,7 +32,7 @@ DESCRIPTORS = {
     "trunk_tilt": ("cuerpo", "Inclinación lateral del tronco", "°", 3, "eje cadera–hombros respecto a la vertical (+ hacia su lado dominante)"),
     "shoulder_tilt": ("cuerpo", "Inclinación de los hombros", "°", 3, "+ hombro dominante más bajo"),
     "hip_tilt": ("cuerpo", "Inclinación de la cadera", "°", 2, "+ cadera dominante más baja"),
-    "shoulder_turn": ("cuerpo", "Giro de hombros", "°", 2, "0 = de espaldas a la cámara (paralelos a la red); 2D, solo magnitud"),
+    "shoulder_turn": ("cuerpo", "Giro de hombros", "°", 2, "0 = paralelos a la línea de fondo, 90 = de perfil, más de 90 = pasados de perfil; 2D (anchura con signo, corregida la oblicuidad de la cámara)"),
     "hip_turn": ("cuerpo", "Giro de cadera", "°", 2, "ídem"),
     "x_factor": ("cuerpo", "Separación hombros–cadera", "°", 2, "giro de hombros − giro de cadera"),
     "com_over_feet": ("equilibrio", "Peso entre los pies", "", 2, "centro de masas entre el pie dominante (0) y el otro (1)"),
@@ -496,8 +496,9 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
     kps = (faces or {}).get("keypoints") or {}
     first_face = (faces or {}).get("first")
     out = {"phases": {}, "stroke": {}, "classes": {}, "footwork": {}}
-    sh = line_turn(img, sk, "shoulder", scale=scale)
-    hp = line_turn(img, sk, "hip", scale=scale)
+    # turns from the baseline (the court gives the camera's oblique view of her); 0-180°, see line_turn
+    sh = line_turn(img, sk, "shoulder", scale=scale, H=H, coil=-1 if stroke == "backhand" else 1)
+    hp = line_turn(img, sk, "hip", scale=scale, H=H, coil=-1 if stroke == "backhand" else 1)
     def at(p, f):
         d = posture(body, img, sk, f, float(scale[f]))
         if np.isfinite(sh[f]):

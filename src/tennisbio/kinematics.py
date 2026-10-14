@@ -4,6 +4,8 @@ Conventions: input keypoints are image pixels (x right, y down), shape (T, K, 2)
 missing. The body frame is centred on the hip midpoint of each frame, x right, y up, in units
 of body height, so camera pans and zooms cancel out.
 """
+import warnings
+
 import numpy as np
 from scipy.signal import savgol_filter
 
@@ -102,19 +104,80 @@ def segment_angle(a: np.ndarray, b: np.ndarray) -> np.ndarray:
     return np.degrees(ang)
 
 
-def line_turn(kp: np.ndarray, sk: Skeleton, joint: str, ref_width: float | None = None, scale=None) -> np.ndarray:
-    """Rotation proxy of the shoulder or hip line, in degrees (0 = square to the camera).
+# a signed width below this share of the square-on width would be a turn past ~140°, which no
+# groundstroke trunk reaches: it is the pose model swapping the left/right labels, not a rotation
+LABEL_SWAP_RATIO = -0.75
 
-    From behind, a line that turns away from the camera plane looks shorter: turn ≈ arccos(w / w0),
-    with w0 the square-on width. The sign is ambiguous in 2D, so this is a magnitude.
+
+def camera_yaw(kp: np.ndarray, sk: Skeleton, joint: str, H: np.ndarray) -> np.ndarray:
+    """Per frame, the angle β (degrees) between the court's net direction (+y of the court frame
+    of H) and the ground direction that the camera sees edge-on at her position.
+
+    Geometry: the image column through the joint line is the trace of one plane through the camera
+    centre. A horizontal segment lying in that plane has no image width, whatever its height (the
+    plane cuts every horizontal plane, the court and the one 1.4 m up at her shoulders, along
+    parallel lines), so its ground trace — the same image column mapped to the court with H —
+    gives that direction. Straight behind the camera β = 0; a player standing 4 m to the side of
+    a broadcast camera ~20 m behind her is seen ~8-10° obliquely. + = the line of sight points to
+    court +x (her right on the near side). H: court (x, y, 1) → image, her own court frame."""
+    Hi = np.linalg.inv(np.asarray(H, float))
+    x = (kp[:, sk[f"right_{joint}"], 0] + kp[:, sk[f"left_{joint}"], 0]) / 2
+    with np.errstate(all="ignore"), warnings.catch_warnings():
+        warnings.simplefilter("ignore", RuntimeWarning)          # frames without feet: filled below
+        y = np.nanmax(kp[:, [sk["left_ankle"], sk["right_ankle"]], 1], axis=1)
+        step = np.maximum(5.0, 0.05 * np.abs(y - kp[:, sk[f"left_{joint}"], 1]))
+
+    def court(px, py):
+        p = np.c_[px, py, np.ones(len(px))] @ Hi.T
+        return p[:, :2] / p[:, 2:]
+
+    d = court(x, y - step) - court(x, y)        # up the image column = away from the camera
+    beta = np.degrees(np.arctan2(d[:, 0], d[:, 1]))
+    ok = np.isfinite(beta)
+    if not ok.any():
+        return np.zeros(len(kp))
+    idx = np.arange(len(kp))
+    return np.interp(idx, idx[ok], beta[ok])      # frames without feet: her position barely changes
+
+
+def line_turn(kp: np.ndarray, sk: Skeleton, joint: str, ref_width: float | None = None, scale=None,
+              H: np.ndarray | None = None, coil: int = 1) -> np.ndarray:
+    """Turn of the shoulder or hip line about the vertical, in degrees, from the 2D keypoints.
+
+    0 = line square to the camera (with H: parallel to the baseline); 90 = side-on (the line points
+    at the camera / at the net); > 90 = turned past side-on, as in a full forehand or serve coil.
+
+    Geometry. The broadcast camera has no roll, so image x is horizontal: a horizontal segment of
+    length L at angle φ from the camera's edge-on plane shows an image width L·cos φ whatever the
+    camera pitch (the pitch only foreshortens the depth into image y, which is mixed with the
+    lateral tilt of the trunk and is not used). The width is *signed*: from behind (and after the
+    far player's image is mirrored) the right joint is to the right of the left one while the line
+    is less than 90° turned, and the two swap sides when it turns past side-on. So
+        φ = arccos(w / w0),  w = x_right − x_left (per body height),  w0 = square-on width,
+    which covers 0-180°. The former |w| folded every turn at 90°: a shoulder line turned 120° read
+    60°, and the peak of the coil (and its timing) was lost.
+
+    H (court → image, her own court frame) refers the angle to the baseline instead of the line of
+    sight: the camera sees her at the yaw β of camera_yaw, so the turn from the baseline is
+    θ = φ + dom_sign·β. The direction of the turn (back, as in the backswing, or forward) is not
+    observable in the width; the turn is read as backwards (dominant joint towards the camera),
+    the direction of a forehand coil (coil=-1: the other way, a backhand coil). Near square-on (φ < |β|) this leaves an error of up to 2|β|.
+
     scale: body height per frame (scale_track); the width is divided by it, so moving towards or
-    away from the camera is not read as a rotation.
+    away from the camera is not read as a rotation. A reading past ~140° (LABEL_SWAP_RATIO) is a
+    left/right label swap of the pose model: no value.
     """
-    w = np.abs(kp[:, sk[f"right_{joint}"], 0] - kp[:, sk[f"left_{joint}"], 0])
+    w = kp[:, sk[f"right_{joint}"], 0] - kp[:, sk[f"left_{joint}"], 0]
     if scale is not None:
         w = w / np.asarray(scale, float)
-    w0 = ref_width if ref_width else np.nanpercentile(w, 95)
-    return np.degrees(np.arccos(np.clip(w / w0, 0, 1)))
+    w0 = ref_width if ref_width else np.nanpercentile(np.abs(w), 95)
+    r = w / w0
+    with np.errstate(invalid="ignore"):
+        turn = np.degrees(np.arccos(np.clip(r, -1, 1)))
+        turn[r < LABEL_SWAP_RATIO] = np.nan
+    if H is not None:
+        turn = turn + coil * sk.dom_sign * camera_yaw(kp, sk, joint, H)
+    return turn
 
 
 def smooth(x: np.ndarray, fps: float, seconds=0.05) -> np.ndarray:

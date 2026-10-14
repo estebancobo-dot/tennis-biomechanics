@@ -42,7 +42,7 @@ def test_shifted_jitter_and_classes():
 def test_second_method_and_untestable():
     # stable but the independent 3D reading says something else: bias, not her value
     rows = [{"technique": {"phases": {"loaded": {"shoulder_turn": 60.0 + i}}, "jitter": {"loaded.shoulder_turn": 1.0}},
-             "metrics": {"shoulder_turn_3d_deg": 15.0 + i}} for i in range(8)]
+             "metrics": {"shoulder_turn_3d_deg": 15.0 + i, "trunk3d_rigid": True}} for i in range(8)]
     r = assess(rows, {"loaded.shoulder_turn": "°"})["loaded.shoulder_turn"]
     assert r["verdict"] == "sesgo" and r["med2d"] > r["med3d"]
     for x in rows:
@@ -56,6 +56,6 @@ def test_second_method_and_untestable():
 def test_derived_measure_takes_the_verdict_of_its_source():
     rows = [{"technique": {"phases": {"loaded": {"shoulder_turn": 60.0 + i}}, "stroke": {"shoulder_brake": 50.0 + i},
                            "jitter": {"loaded.shoulder_turn": 1.0, "stroke.shoulder_brake": 0.0}},
-             "metrics": {"shoulder_turn_3d_deg": 15.0 + i}} for i in range(8)]
+             "metrics": {"shoulder_turn_3d_deg": 15.0 + i, "trunk3d_rigid": True}} for i in range(8)]
     r = assess(rows, {"loaded.shoulder_turn": "°", "stroke.shoulder_brake": "%"})
     assert r["stroke.shoulder_brake"]["verdict"] == "sesgo" and r["stroke.shoulder_brake"]["from"] == "loaded.shoulder_turn"

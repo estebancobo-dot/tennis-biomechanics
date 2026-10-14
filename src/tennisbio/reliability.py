@@ -18,7 +18,7 @@ fiable ≤ 15 %, dudosa ≤ 35 %, ruido above. A measure that never changes when
 does not depend on them, e.g. measured at the impact) is "no comprobable" this way, not reliable.
 
 Repeatable is not right: a measure can be stable and biased. Where a second, independent method
-exists (the 3D estimate of the trunk, RTMW3D) both must agree: if they differ systematically (median
+exists (the 3D estimate of the trunk, RTMW3D, only where its depth passes the rigid-length check) both must agree: if they differ systematically (median
 difference over 8° with the same sign in at least 3 of 4 strokes) the measure is "sesgo" and is not
 given as her value either; the screen gives both readings. A measure computed from a biased or noisy
 one (DERIVED_FROM: the shoulder brake comes from the 2D shoulder turn) takes its verdict.
@@ -33,6 +33,11 @@ FLOOR = {"°": 3.0, "%": 1.5, "s": 0.02, "cm": 3.0, "m": 0.05}
 SECOND_METHOD = {"loaded.x_factor": "metrics.x_factor_3d_deg", "loaded.shoulder_turn": "metrics.shoulder_turn_3d_deg",
                  "loaded.hip_turn": "metrics.hip_turn_3d_deg"}
 AGREE_DEG = 8.0
+# the 3D trunk reading is a second method only where its depth is real: its shoulder and hip segments
+# keep their length (racket_orientation.trunk_at). From the broadcast camera behind and above, RTMW3D
+# flattens the depth, and an unchecked reading (strokes measured before that check) only repeats the
+# 2D width through the camera pitch (~15° for a side-on line): it must not overrule the 2D turn.
+RIGID_KEY = "metrics.trunk3d_rigid"
 # measures computed from another one: they cannot be better than it (a biased or noisy source makes them so)
 DERIVED_FROM = {"stroke.shoulder_brake": "loaded.shoulder_turn", "stroke.shoulders_open_first": "loaded.shoulder_turn"}
 
@@ -96,7 +101,8 @@ def assess(raw: list[dict], keys: dict[str, str | None]) -> dict:
             verdict = "ruido"
         out[k] = {"n": len(j), "noise": round(noise, 2), "spread": round(spread, 2), "verdict": verdict}
         other = SECOND_METHOD.get(k)
-        pairs = [(x[k], x[other]) for x in vals if other and isinstance(x.get(k), (int, float)) and isinstance(x.get(other), (int, float))]
+        pairs = [(x[k], x[other]) for x in vals if other and isinstance(x.get(k), (int, float)) and isinstance(x.get(other), (int, float))
+                 and x.get(RIGID_KEY)]
         if len(pairs) >= MIN_STROKES and verdict != "ruido":
             d = np.array([a - b for a, b in pairs])
             bias = float(np.median(d))
