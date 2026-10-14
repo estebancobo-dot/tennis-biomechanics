@@ -1,0 +1,68 @@
+{
+ "probe": {
+  "fingerprint": "ea8e35f047efe8ab",
+  "version": "2",
+  "seconds": 0.2,
+  "finished": "2026-10-14 08:37:26",
+  "summary": {
+   "duration_min": 4.0,
+   "fps": 50.0,
+   "size": "1920x1080",
+   "cleaned": false,
+   "vfr": true
+  }
+ },
+ "scenes": {
+  "fingerprint": "92c20e006d05368e",
+  "version": "2",
+  "seconds": 30.6,
+  "finished": "2026-10-14 08:37:56",
+  "summary": {
+   "shots": 41,
+   "main_camera_shots": 35,
+   "detector": "transnetv2",
+   "main_camera_min": 3.5
+  }
+ },
+ "audio": {
+  "fingerprint": "110d8d980c3f9c08",
+  "version": "2",
+  "seconds": 17.3,
+  "finished": "2026-10-14 08:38:13",
+  "summary": {
+   "onsets": 243,
+   "tracks": 1
+  }
+ },
+ "court": {
+  "fingerprint": "514b756f7812f068",
+  "version": "4",
+  "seconds": 53.9,
+  "finished": "2026-10-14 08:39:07",
+  "summary": {
+   "segments": 38,
+   "with_court": 24,
+   "known_court_reused": 64,
+   "searched": 29,
+   "filled_same_view": 3,
+   "samples": 152,
+   "court_presets": 7,
+   "main_camera_min": 3.5,
+   "court_min": 1.3,
+   "court_share": 0.355,
+   "pitch_deg_median": 18.3
+  }
+ },
+ "score": {
+  "fingerprint": "90cdd95616b602d2",
+  "version": "6",
+  "seconds": 54.2,
+  "finished": "2026-10-14 08:40:02",
+  "summary": {
+   "readings": 19,
+   "pressure": 7,
+   "samples": 19,
+   "ocr_calls": 18
+  }
+ }
+}
