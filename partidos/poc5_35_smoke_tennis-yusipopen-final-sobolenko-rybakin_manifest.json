@@ -1,0 +1,37 @@
+{
+ "probe": {
+  "fingerprint": "705a57e9be03e216",
+  "version": "2",
+  "seconds": 0.8,
+  "finished": "2026-10-14 12:22:55",
+  "summary": {
+   "duration_min": 35.0,
+   "fps": 50.0,
+   "size": "1920x1080",
+   "cleaned": false,
+   "vfr": true
+  }
+ },
+ "scenes": {
+  "fingerprint": "895c2bd515e26253",
+  "version": "2",
+  "seconds": 253.0,
+  "finished": "2026-10-14 12:27:08",
+  "summary": {
+   "shots": 303,
+   "main_camera_shots": 248,
+   "detector": "transnetv2",
+   "main_camera_min": 30.3
+  }
+ },
+ "audio": {
+  "fingerprint": "48be05c0dbfb5742",
+  "version": "2",
+  "seconds": 28.3,
+  "finished": "2026-10-14 12:27:36",
+  "summary": {
+   "onsets": 2205,
+   "tracks": 1
+  }
+ }
+}
