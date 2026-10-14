@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-14 17:14",
+ "generated": "2026-10-14 17:38",
  "player": "Elena Rybakina",
  "videos": [
   {
@@ -49,10 +49,10 @@
    "query": "lista elegida",
    "seconds_kept": 66.0,
    "analysed_s": 66.0,
-   "version": 4,
+   "version": 5,
    "strokes": 22,
-   "lateral_forehands": 6,
-   "discarded": 0
+   "lateral_forehands": 10,
+   "discarded": 1
   },
   {
    "id": "QmCVixzz6-Y",
@@ -65,7 +65,7 @@
    "query": "lista elegida",
    "seconds_kept": 56.679909,
    "analysed_s": 56.679909,
-   "version": 4,
+   "version": 5,
    "strokes": 23,
    "lateral_forehands": 7,
    "discarded": 1
@@ -81,9 +81,9 @@
    "query": "lista elegida",
    "seconds_kept": 150.929705,
    "analysed_s": 150.929705,
-   "version": 4,
+   "version": 5,
    "strokes": 15,
-   "lateral_forehands": 2,
+   "lateral_forehands": 1,
    "discarded": 0
   }
  ],
@@ -584,16 +584,13 @@
    "channel": "NEBTA OFFICIAL",
    "url": "https://www.youtube.com/watch?v=BZTdhztMFqc",
    "t": 6.37,
-   "view": "diagonal",
+   "view": "lateral",
    "stroke": "forehand",
    "source": "audio+swing",
-   "metrics": {
-    "contact_in_front_3d_pct": 27.8,
-    "trunk_lean_impact_3d_deg": 13.0,
-    "swing_angle_3d_deg": -7.4,
-    "elbow_impact_3d_deg": 65.6,
-    "back_knee_loaded_3d_deg": 145.7
-   },
+   "metrics": {},
+   "discarded": [
+    "elbow_impact_deg"
+   ],
    "clip": "BZTdhztMFqc_00_02.mp4",
    "thumb": "BZTdhztMFqc_00_02.jpg"
   },
@@ -604,15 +601,24 @@
    "channel": "NEBTA OFFICIAL",
    "url": "https://www.youtube.com/watch?v=BZTdhztMFqc",
    "t": 9.23,
-   "view": "diagonal",
+   "view": "lateral",
    "stroke": "forehand",
    "source": "audio+swing",
    "metrics": {
-    "contact_in_front_3d_pct": 28.3,
-    "trunk_lean_impact_3d_deg": 10.4,
-    "swing_angle_3d_deg": 37.3,
-    "elbow_impact_3d_deg": 99.8,
-    "back_knee_loaded_3d_deg": 147.3
+    "contact_in_front_pct": 24.5,
+    "swing_angle_deg": 32.4,
+    "elbow_impact_deg": 111.4,
+    "back_knee_loaded_deg": 172.7,
+    "front_knee_impact_deg": 147.5,
+    "trunk_lean_impact_deg": 11.3,
+    "racket_drop_below_contact_cm": 68.0,
+    "lag_accel_deg": 178.6,
+    "lag_pre_impact_deg": 154.6,
+    "contact_in_front_3d_pct": 27.2,
+    "trunk_lean_impact_3d_deg": 8.7,
+    "swing_angle_3d_deg": 35.2,
+    "elbow_impact_3d_deg": 93.7,
+    "back_knee_loaded_3d_deg": 140.8
    },
    "clip": "BZTdhztMFqc_00_03.mp4",
    "thumb": "BZTdhztMFqc_00_03.jpg"
@@ -657,11 +663,11 @@
    "stroke": "forehand",
    "source": "audio+swing",
    "metrics": {
-    "contact_in_front_3d_pct": 22.8,
-    "trunk_lean_impact_3d_deg": 7.4,
-    "swing_angle_3d_deg": 40.9,
-    "elbow_impact_3d_deg": 112.1,
-    "back_knee_loaded_3d_deg": 147.9
+    "contact_in_front_3d_pct": 18.6,
+    "trunk_lean_impact_3d_deg": 7.8,
+    "swing_angle_3d_deg": 39.5,
+    "elbow_impact_3d_deg": 110.5,
+    "back_knee_loaded_3d_deg": 143.6
    },
    "clip": "BZTdhztMFqc_00_06.mp4",
    "thumb": "BZTdhztMFqc_00_06.jpg"
@@ -677,20 +683,20 @@
    "stroke": "forehand",
    "source": "audio+swing",
    "metrics": {
-    "contact_in_front_pct": 22.1,
+    "contact_in_front_pct": 19.0,
     "swing_angle_deg": 31.3,
     "elbow_impact_deg": 114.4,
     "back_knee_loaded_deg": 173.2,
     "front_knee_impact_deg": 132.5,
     "trunk_lean_impact_deg": 4.5,
-    "racket_drop_below_contact_cm": 73.8,
+    "racket_drop_below_contact_cm": 63.4,
     "lag_accel_deg": 156.1,
     "lag_pre_impact_deg": 177.5,
-    "contact_in_front_3d_pct": 24.5,
-    "trunk_lean_impact_3d_deg": 6.0,
+    "contact_in_front_3d_pct": 24.2,
+    "trunk_lean_impact_3d_deg": 6.2,
     "swing_angle_3d_deg": 39.0,
-    "elbow_impact_3d_deg": 103.9,
-    "back_knee_loaded_3d_deg": 155.3
+    "elbow_impact_3d_deg": 99.7,
+    "back_knee_loaded_3d_deg": 147.5
    },
    "clip": "BZTdhztMFqc_00_07.mp4",
    "thumb": "BZTdhztMFqc_00_07.jpg"
@@ -732,15 +738,23 @@
    "channel": "NEBTA OFFICIAL",
    "url": "https://www.youtube.com/watch?v=BZTdhztMFqc",
    "t": 24.37,
-   "view": "diagonal",
+   "view": "lateral",
    "stroke": "forehand",
    "source": "audio+swing",
    "metrics": {
-    "contact_in_front_3d_pct": 26.5,
-    "trunk_lean_impact_3d_deg": 11.3,
+    "contact_in_front_pct": 22.0,
+    "swing_angle_deg": 33.9,
+    "elbow_impact_deg": 76.2,
+    "back_knee_loaded_deg": 177.7,
+    "front_knee_impact_deg": 150.5,
+    "trunk_lean_impact_deg": 9.5,
+    "racket_drop_below_contact_cm": 72.3,
+    "lag_pre_impact_deg": 175.4,
+    "contact_in_front_3d_pct": 26.4,
+    "trunk_lean_impact_3d_deg": 11.5,
     "swing_angle_3d_deg": 33.8,
-    "elbow_impact_3d_deg": 76.6,
-    "back_knee_loaded_3d_deg": 168.1
+    "elbow_impact_3d_deg": 70.4,
+    "back_knee_loaded_3d_deg": 167.3
    },
    "clip": "BZTdhztMFqc_00_10.mp4",
    "thumb": "BZTdhztMFqc_00_10.jpg"
@@ -766,7 +780,7 @@
    "channel": "NEBTA OFFICIAL",
    "url": "https://www.youtube.com/watch?v=BZTdhztMFqc",
    "t": 27.1,
-   "view": "diagonal",
+   "view": "lateral",
    "stroke": "forehand",
    "source": "swing",
    "metrics": {},
@@ -785,20 +799,20 @@
    "stroke": "forehand",
    "source": "audio+swing",
    "metrics": {
-    "contact_in_front_pct": 25.5,
+    "contact_in_front_pct": 21.9,
     "swing_angle_deg": 37.8,
     "elbow_impact_deg": 110.1,
     "back_knee_loaded_deg": 173.4,
     "front_knee_impact_deg": 147.8,
     "trunk_lean_impact_deg": 10.7,
-    "racket_drop_below_contact_cm": 66.6,
+    "racket_drop_below_contact_cm": 57.2,
     "lag_accel_deg": 166.4,
     "lag_pre_impact_deg": 144.0,
-    "contact_in_front_3d_pct": 28.9,
-    "trunk_lean_impact_3d_deg": 12.8,
-    "swing_angle_3d_deg": 47.4,
-    "elbow_impact_3d_deg": 94.6,
-    "back_knee_loaded_3d_deg": 158.7
+    "contact_in_front_3d_pct": 27.7,
+    "trunk_lean_impact_3d_deg": 13.3,
+    "swing_angle_3d_deg": 46.6,
+    "elbow_impact_3d_deg": 86.6,
+    "back_knee_loaded_3d_deg": 158.2
    },
    "clip": "BZTdhztMFqc_00_13.mp4",
    "thumb": "BZTdhztMFqc_00_13.jpg"
@@ -840,15 +854,24 @@
    "channel": "NEBTA OFFICIAL",
    "url": "https://www.youtube.com/watch?v=BZTdhztMFqc",
    "t": 39.13,
-   "view": "diagonal",
+   "view": "lateral",
    "stroke": "forehand",
    "source": "audio+swing",
    "metrics": {
+    "contact_in_front_pct": 18.8,
+    "swing_angle_deg": 34.3,
+    "elbow_impact_deg": 98.0,
+    "back_knee_loaded_deg": 175.0,
+    "front_knee_impact_deg": 152.0,
+    "trunk_lean_impact_deg": 8.5,
+    "racket_drop_below_contact_cm": 52.8,
+    "lag_accel_deg": 175.3,
+    "lag_pre_impact_deg": 151.5,
     "contact_in_front_3d_pct": 27.3,
     "trunk_lean_impact_3d_deg": 9.2,
     "swing_angle_3d_deg": 34.7,
-    "elbow_impact_3d_deg": 92.2,
-    "back_knee_loaded_3d_deg": 171.6
+    "elbow_impact_3d_deg": 85.7,
+    "back_knee_loaded_3d_deg": 170.5
    },
    "clip": "BZTdhztMFqc_00_16.mp4",
    "thumb": "BZTdhztMFqc_00_16.jpg"
@@ -864,11 +887,11 @@
    "stroke": "forehand",
    "source": "audio+swing",
    "metrics": {
-    "contact_in_front_3d_pct": 31.2,
-    "trunk_lean_impact_3d_deg": 16.8,
+    "contact_in_front_3d_pct": 31.3,
+    "trunk_lean_impact_3d_deg": 16.7,
     "swing_angle_3d_deg": 36.2,
-    "elbow_impact_3d_deg": 83.7,
-    "back_knee_loaded_3d_deg": 146.3
+    "elbow_impact_3d_deg": 76.4,
+    "back_knee_loaded_3d_deg": 138.5
    },
    "clip": "BZTdhztMFqc_00_17.mp4",
    "thumb": "BZTdhztMFqc_00_17.jpg"
@@ -1019,11 +1042,11 @@
    "stroke": "forehand",
    "source": "audio+swing",
    "metrics": {
-    "contact_in_front_3d_pct": 29.8,
-    "trunk_lean_impact_3d_deg": 10.7,
-    "swing_angle_3d_deg": 72.6,
-    "elbow_impact_3d_deg": 101.4,
-    "back_knee_loaded_3d_deg": 156.0
+    "contact_in_front_3d_pct": 27.4,
+    "trunk_lean_impact_3d_deg": 9.3,
+    "swing_angle_3d_deg": 70.0,
+    "elbow_impact_3d_deg": 101.3,
+    "back_knee_loaded_3d_deg": 148.6
    },
    "clip": "QmCVixzz6-Y_00_05.mp4",
    "thumb": "QmCVixzz6-Y_00_05.jpg"
@@ -1317,8 +1340,8 @@
    "channel": "TOP TENNIS MATCH",
    "url": "https://www.youtube.com/watch?v=Q6YTDYr_bRM",
    "t": 15.5,
-   "view": "lateral",
-   "stroke": "forehand",
+   "view": "diagonal",
+   "stroke": "backhand",
    "source": "swing",
    "metrics": {},
    "unconfirmed": true,
@@ -1395,11 +1418,11 @@
    "stroke": "forehand",
    "source": "audio+swing",
    "metrics": {
-    "contact_in_front_3d_pct": -6.0,
-    "trunk_lean_impact_3d_deg": -20.4,
-    "swing_angle_3d_deg": 51.9,
-    "elbow_impact_3d_deg": 103.4,
-    "back_knee_loaded_3d_deg": 172.9
+    "contact_in_front_3d_pct": -6.4,
+    "trunk_lean_impact_3d_deg": -20.3,
+    "swing_angle_3d_deg": 51.8,
+    "elbow_impact_3d_deg": 106.8,
+    "back_knee_loaded_3d_deg": 171.4
    },
    "clip": "Q6YTDYr_bRM_00_07.mp4",
    "thumb": "Q6YTDYr_bRM_00_07.jpg"
@@ -1415,11 +1438,11 @@
    "stroke": "forehand",
    "source": "audio+swing",
    "metrics": {
-    "contact_in_front_3d_pct": -2.1,
-    "trunk_lean_impact_3d_deg": -18.6,
-    "swing_angle_3d_deg": 60.2,
-    "elbow_impact_3d_deg": 85.2,
-    "back_knee_loaded_3d_deg": 129.4
+    "contact_in_front_3d_pct": 5.8,
+    "trunk_lean_impact_3d_deg": -15.6,
+    "swing_angle_3d_deg": 55.7,
+    "elbow_impact_3d_deg": 97.6,
+    "back_knee_loaded_3d_deg": 116.2
    },
    "clip": "Q6YTDYr_bRM_00_08.mp4",
    "thumb": "Q6YTDYr_bRM_00_08.jpg"
@@ -1435,11 +1458,11 @@
    "stroke": "forehand",
    "source": "audio+swing",
    "metrics": {
-    "contact_in_front_3d_pct": -7.0,
-    "trunk_lean_impact_3d_deg": -16.4,
-    "swing_angle_3d_deg": 35.6,
-    "elbow_impact_3d_deg": 76.6,
-    "back_knee_loaded_3d_deg": 154.3
+    "contact_in_front_3d_pct": -7.4,
+    "trunk_lean_impact_3d_deg": -16.0,
+    "swing_angle_3d_deg": 35.5,
+    "elbow_impact_3d_deg": 80.0,
+    "back_knee_loaded_3d_deg": 147.4
    },
    "clip": "Q6YTDYr_bRM_00_09.mp4",
    "thumb": "Q6YTDYr_bRM_00_09.jpg"
@@ -1455,20 +1478,20 @@
    "stroke": "forehand",
    "source": "audio+swing",
    "metrics": {
-    "contact_in_front_pct": 59.5,
+    "contact_in_front_pct": 47.7,
     "swing_angle_deg": 23.6,
     "elbow_impact_deg": 146.9,
     "back_knee_loaded_deg": 167.6,
     "front_knee_impact_deg": 171.2,
     "trunk_lean_impact_deg": 18.9,
-    "racket_drop_below_contact_cm": -2.3,
+    "racket_drop_below_contact_cm": -1.8,
     "lag_accel_deg": 132.1,
     "lag_pre_impact_deg": 124.4,
-    "contact_in_front_3d_pct": 35.1,
-    "trunk_lean_impact_3d_deg": 15.8,
-    "swing_angle_3d_deg": -11.0,
-    "elbow_impact_3d_deg": 132.9,
-    "back_knee_loaded_3d_deg": 155.3
+    "contact_in_front_3d_pct": 32.2,
+    "trunk_lean_impact_3d_deg": 16.1,
+    "swing_angle_3d_deg": -9.2,
+    "elbow_impact_3d_deg": 132.1,
+    "back_knee_loaded_3d_deg": 151.2
    },
    "clip": "Q6YTDYr_bRM_00_10.mp4",
    "thumb": "Q6YTDYr_bRM_00_10.jpg"
@@ -1534,9 +1557,9 @@
   }
  ],
  "views": {
-  "diagonal": 66,
+  "diagonal": 62,
   "trasera": 1,
-  "lateral": 23,
+  "lateral": 27,
   "frontal": 1
  },
  "summary": {
@@ -1544,63 +1567,63 @@
    "label": "Impacto delante de la cadera",
    "unit": "% altura",
    "what": "distancia de la mano por delante del centro de la cadera en el impacto",
-   "n": 3,
+   "n": 6,
    "view": "lateral"
   },
   "swing_angle_deg": {
    "label": "Ángulo del swing (de abajo arriba)",
    "unit": "°",
    "what": "inclinación de la trayectoria de la mano en los ~70 ms previos al impacto",
-   "n": 3,
+   "n": 6,
    "view": "lateral"
   },
   "elbow_impact_deg": {
    "label": "Codo en el impacto",
    "unit": "°",
    "what": "180° = brazo recto",
-   "n": 3,
+   "n": 6,
    "view": "lateral"
   },
   "back_knee_loaded_deg": {
    "label": "Rodilla de atrás en el armado",
    "unit": "°",
    "what": "180° = pierna recta",
-   "n": 3,
+   "n": 6,
    "view": "lateral"
   },
   "front_knee_impact_deg": {
    "label": "Rodilla de delante en el impacto",
    "unit": "°",
    "what": "180° = pierna recta",
-   "n": 3,
+   "n": 6,
    "view": "lateral"
   },
   "trunk_lean_impact_deg": {
    "label": "Tronco en el impacto",
    "unit": "°",
    "what": "+ inclinado hacia delante, − hacia atrás",
-   "n": 3,
+   "n": 6,
    "view": "lateral"
   },
   "racket_drop_below_contact_cm": {
    "label": "Caída de la raqueta bajo el impacto",
    "unit": "cm",
    "what": "cuánto baja la cabeza de la raqueta por debajo de la altura del impacto antes de subir",
-   "n": 3,
+   "n": 6,
    "view": "lateral"
   },
   "lag_accel_deg": {
    "label": "Ángulo antebrazo–raqueta al acelerar",
    "unit": "°",
    "what": "retraso de la raqueta respecto al antebrazo al empezar a acelerar (180° = en línea)",
-   "n": 3,
+   "n": 5,
    "view": "lateral"
   },
   "lag_pre_impact_deg": {
    "label": "Ángulo antebrazo–raqueta antes del impacto",
    "unit": "°",
    "what": "el mismo ángulo ~50 ms antes del impacto: si ya está en línea mucho antes, suelta la muñeca pronto",
-   "n": 3,
+   "n": 6,
    "view": "lateral"
   },
   "head_to_contact_idx": {
@@ -1614,51 +1637,51 @@
    "label": "Impacto delante de la cadera (3D)",
    "unit": "% altura",
    "what": "estimación 3D: mano por delante del centro de la cadera",
-   "n": 13,
+   "n": 12,
    "view": "3d",
-   "median": 27.3,
-   "q1": 22.8,
-   "q3": 28.9
+   "median": 26.8,
+   "q1": 15.4,
+   "q3": 27.47
   },
   "swing_angle_3d_deg": {
    "label": "Ángulo del swing (3D)",
    "unit": "°",
    "what": "estimación 3D: subida de la mano en los ~70 ms previos al impacto",
-   "n": 13,
+   "n": 12,
    "view": "3d",
-   "median": 37.3,
-   "q1": 34.7,
-   "q3": 47.4
+   "median": 37.6,
+   "q1": 35.08,
+   "q3": 47.9
   },
   "elbow_impact_3d_deg": {
    "label": "Codo en el impacto (3D)",
    "unit": "°",
    "what": "estimación 3D; 180° = brazo recto",
-   "n": 13,
+   "n": 12,
    "view": "3d",
-   "median": 94.6,
-   "q1": 83.7,
-   "q3": 103.4
+   "median": 95.65,
+   "q1": 84.28,
+   "q3": 102.67
   },
   "back_knee_loaded_3d_deg": {
    "label": "Rodilla de atrás en el armado (3D)",
    "unit": "°",
    "what": "estimación 3D; 180° = pierna recta",
-   "n": 13,
+   "n": 12,
    "view": "3d",
-   "median": 155.3,
-   "q1": 147.3,
-   "q3": 158.7
+   "median": 148.05,
+   "q1": 142.9,
+   "q3": 160.47
   },
   "trunk_lean_impact_3d_deg": {
    "label": "Tronco en el impacto (3D)",
    "unit": "°",
    "what": "estimación 3D; + hacia delante",
-   "n": 13,
+   "n": 12,
    "view": "3d",
-   "median": 10.4,
-   "q1": 6.0,
-   "q3": 12.8
+   "median": 8.95,
+   "q1": 0.75,
+   "q3": 11.95
   }
  },
  "min_n": 12
