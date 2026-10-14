@@ -161,6 +161,11 @@ Hecho y validado en la nube (ver `docs/validacion.md`):
   Arreglado: análisis reflejado cuando se le ve la cara (`practice.faces_camera`) y estimación 3D en su propio
   marco del cuerpo (RTMW3D, `practice.metrics_3d`) para lado, diagonal y frente, marcada como estimación.
   Auditoría: además, el árbol de ficheros de cada ejecución (`audit.file_tree_items`).
+- ✔ Profundidad de RTMW3D (14-10): rtmlib la decodificaba con los 384 px de alto en vez de los 288 del eje de
+  profundidad (salida de 576 = 2 × 288), así que las diferencias de profundidad salían × 0,75. Ahora se
+  decodifica en un solo sitio (`pose.wholebody3d.decode_simcc3d`) para todo: giro 3D del tronco, mano/antebrazo
+  de las cuerdas y medidas 3D de la vista lateral. Se vuelven a calcular la pasada fina (versión 12) y los
+  vídeos de entreno (versión 5).
 - ✔ Regla del usuario (13-10): **nunca borrar trabajo hecho**; las vistas complejas se quedan como extra y
   lo nuevo se añade. Las 4 tablas (raqueta por fase, Comparar, Explorador, Comparativas) siguen igual,
   ahora con frases encima que dicen lo importante («Tabla completa» debajo, abierta). La auditoría
