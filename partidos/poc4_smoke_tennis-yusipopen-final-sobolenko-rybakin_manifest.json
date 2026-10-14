@@ -1,11 +1,11 @@
 {
  "probe": {
-  "fingerprint": "3f996376425e1d86",
+  "fingerprint": "0f4eea88fb2fb817",
   "version": "2",
-  "seconds": 0.2,
-  "finished": "2026-10-13 23:50:52",
+  "seconds": 0.9,
+  "finished": "2026-10-14 08:59:22",
   "summary": {
-   "duration_min": 4.0,
+   "duration_min": 35.0,
    "fps": 50.0,
    "size": "1920x1080",
    "cleaned": false,
@@ -13,23 +13,24 @@
   }
  },
  "scenes": {
-  "fingerprint": "8c3b7f61789a7625",
-  "version": "1",
-  "seconds": 18.0,
-  "finished": "2026-10-13 23:51:10",
+  "fingerprint": "96a601bde3b642e7",
+  "version": "2",
+  "seconds": 254.2,
+  "finished": "2026-10-14 09:03:36",
   "summary": {
-   "shots": 14,
-   "main_camera_shots": 13,
-   "main_camera_min": 3.9
+   "shots": 303,
+   "main_camera_shots": 248,
+   "detector": "transnetv2",
+   "main_camera_min": 30.3
   }
  },
  "audio": {
-  "fingerprint": "0fe518decaed2d9f",
+  "fingerprint": "73bad197b0427481",
   "version": "2",
-  "seconds": 2.0,
-  "finished": "2026-10-13 23:51:12",
+  "seconds": 9.1,
+  "finished": "2026-10-14 09:03:46",
   "summary": {
-   "onsets": 243,
+   "onsets": 2205,
    "tracks": 1
   }
  },
