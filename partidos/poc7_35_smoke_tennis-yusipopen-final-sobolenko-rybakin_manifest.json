@@ -55,5 +55,17 @@
    "court_share": 0.81,
    "pitch_deg_median": 18.3
   }
+ },
+ "score": {
+  "fingerprint": "64f99bcff3d98095",
+  "version": "6",
+  "seconds": 265.0,
+  "finished": "2026-10-14 20:47:28",
+  "summary": {
+   "readings": 139,
+   "pressure": 53,
+   "samples": 143,
+   "ocr_calls": 124
+  }
  }
 }
