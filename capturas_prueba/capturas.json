@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 35322,
+   "text_chars": 35480,
    "charts": 8,
    "videos": 5,
    "black_canvases": 0,
@@ -11,7 +11,7 @@
    "empty_msgs": [
     ""
    ],
-   "dashes": 2,
+   "dashes": 3,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -24,7 +24,7 @@
    "intro": true,
    "external_links": 0,
    "tables": 0,
-   "sentences": 16,
+   "sentences": 17,
    "many_lines": 0,
    "tab": "aprende",
    "file": "pantalla_1_aprende.jpg",
@@ -32,7 +32,7 @@
   },
   {
    "title": "Sus golpes (Videoteca y pista)",
-   "text_chars": 3336,
+   "text_chars": 3323,
    "charts": 1,
    "videos": 5,
    "black_canvases": 0,
@@ -59,13 +59,13 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 7467,
+   "text_chars": 7490,
    "charts": 28,
    "videos": 6,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 8,
+   "dashes": 7,
    "ball_moments": 5,
    "feet_cycle": 9,
    "ball_measures": 5,
@@ -87,13 +87,13 @@
   },
   {
    "title": "Comparar dos golpes",
-   "text_chars": 5290,
+   "text_chars": 5273,
    "charts": 2,
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 2,
+   "dashes": 3,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -114,7 +114,7 @@
   },
   {
    "title": "Conclusiones (Panel y Comparativas)",
-   "text_chars": 6564,
+   "text_chars": 6575,
    "charts": 11,
    "videos": 5,
    "black_canvases": 0,
@@ -150,7 +150,7 @@
   },
   {
    "title": "Tabla de golpes (Explorador)",
-   "text_chars": 3232,
+   "text_chars": 3223,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -204,7 +204,7 @@
   },
   {
    "title": "Fiabilidad de las medidas",
-   "text_chars": 2384,
+   "text_chars": 2514,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -336,20 +336,20 @@
  ],
  "learn": {
   "combinations": 1104,
-  "with_exact_strokes": 295,
+  "with_exact_strokes": 299,
   "checkpoints_checked": 80592,
   "failures": [],
   "rows_all": 73,
-  "valued_all": 72,
-  "targeted_all": 49,
+  "valued_all": 71,
+  "targeted_all": 48,
   "glossed_all": 60,
-  "signature": 4,
-  "style": "Estilo de su derecha: preparación amplia (90 %) · apoyo variable (la más frecuente, abierto, en 30 %) · efecto liftado (de abajo arriba) (80 %) · terminación sobre el hombro (50 %) provisional: 10 golpes.",
+  "signature": 5,
+  "style": "Estilo de su derecha: preparación amplia (80 %) · apoyo variable (la más frecuente, abierto, en 30 %) · efecto liftado (de abajo arriba) (80 %) · terminación sobre el hombro (50 %) provisional: 10 golpes.",
   "example": {
    "exact": 0,
    "near": 9,
    "rows": 73,
-   "valued": 72,
+   "valued": 71,
    "bad": []
   }
  }

@@ -1,5 +1,5 @@
 {
- "generated": "2026-10-14 12:22",
+ "generated": "2026-10-14 17:14",
  "player": "Elena Rybakina",
  "videos": [
   {
@@ -15,9 +15,9 @@
    "seconds_kept": 77.833288,
    "analysed_s": 77.833288,
    "strokes": 11,
-   "lateral_forehands": 1,
+   "lateral_forehands": 2,
    "discarded": 0,
-   "version": 4
+   "version": 5
   },
   {
    "id": "P4kwF30432U",
@@ -34,7 +34,7 @@
    "strokes": 20,
    "lateral_forehands": 1,
    "discarded": 1,
-   "version": 4
+   "version": 5
   },
   {
    "id": "BZTdhztMFqc",
@@ -110,7 +110,7 @@
    "channel": "Courtside Tennis Highlights",
    "url": "https://www.youtube.com/watch?v=n5-P-RxsHCM",
    "t": 3.03,
-   "view": "lateral",
+   "view": "diagonal",
    "stroke": "forehand",
    "source": "swing",
    "metrics": {},
@@ -169,7 +169,7 @@
    "channel": "Courtside Tennis Highlights",
    "url": "https://www.youtube.com/watch?v=n5-P-RxsHCM",
    "t": 18.13,
-   "view": "diagonal",
+   "view": "lateral",
    "stroke": "forehand",
    "source": "swing",
    "metrics": {},
@@ -199,7 +199,7 @@
    "channel": "Courtside Tennis Highlights",
    "url": "https://www.youtube.com/watch?v=n5-P-RxsHCM",
    "t": 25.9,
-   "view": "diagonal",
+   "view": "lateral",
    "stroke": "forehand",
    "source": "swing",
    "metrics": {},
@@ -407,7 +407,7 @@
    "channel": "Tennis Workshop",
    "url": "https://www.youtube.com/watch?v=P4kwF30432U",
    "t": 24.67,
-   "view": "lateral",
+   "view": "diagonal",
    "stroke": "backhand",
    "source": "swing",
    "metrics": {},
@@ -1535,8 +1535,8 @@
  ],
  "views": {
   "diagonal": 66,
-  "lateral": 23,
   "trasera": 1,
+  "lateral": 23,
   "frontal": 1
  },
  "summary": {

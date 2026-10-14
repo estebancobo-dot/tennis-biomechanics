@@ -398,11 +398,11 @@
    "area": "Taxonomía",
    "name": "2. Cuerpo · \"3 × 90°\" al final",
    "status": "pocos datos",
-   "detail": "se mide (40% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "detail": "se mide (60% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
    "keys": [
     "class.finish_3x90"
    ],
-   "measured": 0.4
+   "measured": 0.6
   },
   {
    "req": 1,
@@ -1363,7 +1363,7 @@
     "ball_net.arm_extension",
     "ball_net.elbow_dom",
     "ball_top.arm_extension",
-    "extension.arm_extension"
+    "ball_top.elbow_dom"
    ],
    "measured": 1.0
   },
@@ -1427,11 +1427,11 @@
     "acceleration.elbow_dom",
     "ball_bounce.elbow_dom",
     "ball_net.elbow_dom",
+    "ball_top.elbow_dom",
     "class.arm",
     "extension.elbow_dom",
     "finish.elbow_dom",
-    "impact.elbow_dom",
-    "loaded.elbow_dom"
+    "impact.elbow_dom"
    ],
    "measured": 1.0
   },
@@ -1999,7 +1999,7 @@
    "area": "Situaciones",
    "name": "Bola alta / baja",
    "status": "pocos datos",
-   "detail": "rodilla 1, cadera 2, cintura-pecho 3, pecho-hombro 4, por encima del hombro 0 (se muestra con ≥ 12 golpes)",
+   "detail": "rodilla 1, cadera 2, cintura-pecho 5, pecho-hombro 2, por encima del hombro 0 (se muestra con ≥ 12 golpes)",
    "shown": []
   },
   {
@@ -2039,7 +2039,7 @@
    "area": "Situaciones",
    "name": "Ataque / defensa",
    "status": "pocos datos",
-   "detail": "ataque 3, neutra 4, defensa 3 (se muestra con ≥ 12 golpes)",
+   "detail": "ataque 2, neutra 5, defensa 3 (se muestra con ≥ 12 golpes)",
    "shown": []
   },
   {
@@ -2072,7 +2072,7 @@
    "area": "Combinaciones",
    "name": "Bola alta / baja: cada medida en cada nivel",
    "status": "pocos datos",
-   "detail": "72 medidas × 5 niveles = 360 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: rodilla 1, cadera 2, cintura-pecho 3, pecho-hombro 4, por encima del hombro 0",
+   "detail": "72 medidas × 5 niveles = 360 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: rodilla 1, cadera 2, cintura-pecho 5, pecho-hombro 2, por encima del hombro 0",
    "combos": 360,
    "shown": 0
   },
@@ -2117,7 +2117,7 @@
    "area": "Combinaciones",
    "name": "Ataque / defensa: cada medida en cada nivel",
    "status": "pocos datos",
-   "detail": "72 medidas × 3 niveles = 216 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: ataque 3, neutra 4, defensa 3",
+   "detail": "72 medidas × 3 niveles = 216 combinaciones; 0 mostradas con ≥ 12 golpes; niveles con pocos golpes: ataque 2, neutra 5, defensa 3",
    "combos": 216,
    "shown": 0
   },
@@ -2151,7 +2151,7 @@
    "area": "Examen de entrenadores",
    "name": "R2 Dos manos en la raqueta en la espera (≥ 80 %)",
    "status": "pocos datos",
-   "detail": "pocos datos: 9 golpes con el dato (hacen falta 12)"
+   "detail": "pocos datos: 10 golpes con el dato (hacen falta 12)"
   },
   {
    "req": 3,
@@ -2165,7 +2165,7 @@
    "area": "Examen de entrenadores",
    "name": "R6 Brazo libre casi extendido en el armado (codo 130-170°)",
    "status": "pocos datos",
-   "detail": "pocos datos: 4 golpes con el dato (hacen falta 12)"
+   "detail": "pocos datos: 5 golpes con el dato (hacen falta 12)"
   },
   {
    "req": 3,
@@ -2193,7 +2193,7 @@
    "area": "Examen de entrenadores",
    "name": "R12 Con bola alta se va más hacia atrás",
    "status": "pocos datos",
-   "detail": "pocos datos: 4 golpes con el dato (hacen falta 12)"
+   "detail": "pocos datos: 2 golpes con el dato (hacen falta 12)"
   },
   {
    "req": 3,
@@ -2375,7 +2375,7 @@
    "area": "Valores posibles",
    "name": "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
    "status": "ok",
-   "detail": "64 medidas: 6 dudosa, 45 fiable, 8 no comprobable, 1 ruido, 4 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.65. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
+   "detail": "64 medidas: 7 dudosa, 44 fiable, 8 no comprobable, 2 ruido, 3 sin juzgar. No se dan como valor suyo (ruido): takeback.shoulder_turn ±3.4, impact.face_tilt ±3.2. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
   },
   {
    "req": 3,
@@ -2557,7 +2557,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "35322 caracteres de texto, 5 vídeos, 8 gráficos; mensajes de vacío: ['']",
+   "detail": "35480 caracteres de texto, 5 vídeos, 8 gráficos; mensajes de vacío: ['']",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2565,7 +2565,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Sus golpes (Videoteca y pista)»",
    "status": "ok",
-   "detail": "3336 caracteres de texto, 5 vídeos, 1 gráficos",
+   "detail": "3323 caracteres de texto, 5 vídeos, 1 gráficos",
    "file": "pantalla_2_videoteca.jpg"
   },
   {
@@ -2573,7 +2573,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "7467 caracteres de texto, 6 vídeos, 28 gráficos",
+   "detail": "7490 caracteres de texto, 6 vídeos, 28 gráficos",
    "file": "pantalla_3_golpe.jpg"
   },
   {
@@ -2581,7 +2581,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Comparar dos golpes»",
    "status": "ok",
-   "detail": "5290 caracteres de texto, 5 vídeos, 2 gráficos",
+   "detail": "5273 caracteres de texto, 5 vídeos, 2 gráficos",
    "file": "pantalla_4_comparar.jpg"
   },
   {
@@ -2589,7 +2589,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "6564 caracteres de texto, 5 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']",
+   "detail": "6575 caracteres de texto, 5 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2597,7 +2597,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Tabla de golpes (Explorador)»",
    "status": "ok",
-   "detail": "3232 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "3223 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_6_explorador.jpg"
   },
   {
@@ -2613,7 +2613,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Fiabilidad de las medidas»",
    "status": "ok",
-   "detail": "2384 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "2514 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_8_fiabilidad.jpg"
   },
   {
@@ -2706,42 +2706,42 @@
    "area": "Aprende su derecha",
    "name": "La pantalla responde a cada combinación",
    "status": "ok",
-   "detail": "1104 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 80592 puntos de control comprobados; 295 con golpes exactos"
+   "detail": "1104 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 80592 puntos de control comprobados; 299 con golpes exactos"
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha",
    "status": "pocos datos",
-   "detail": "0 golpes exactos, 9 parecidos; 72 de 73 puntos con su valor medido"
+   "detail": "0 golpes exactos, 9 parecidos; 71 de 73 puntos con su valor medido"
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "Lo que la distingue: su firma (rasgos que repite) con vídeo",
    "status": "ok",
-   "detail": "4 rasgos que repite en ≥ 75 % de sus golpes, solo de medidas fiables"
+   "detail": "5 rasgos que repite en ≥ 75 % de sus golpes, solo de medidas fiables"
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "Estilo de su derecha en una frase",
    "status": "ok",
-   "detail": "Estilo de su derecha: preparación amplia (90 %) · apoyo variable (la más frecuente, abierto, en 30 %) · efecto liftado (de abajo arriba) (80 %) · terminación sobre el hombro (50 %) provisional: 10 golpes."
+   "detail": "Estilo de su derecha: preparación amplia (80 %) · apoyo variable (la más frecuente, abierto, en 30 %) · efecto liftado (de abajo arriba) (80 %) · terminación sobre el hombro (50 %) provisional: 10 golpes."
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "Puntos de «Aprende» con su valor medido (todas sus derechas)",
    "status": "ok",
-   "detail": "72 de 73; el resto dice por qué falta"
+   "detail": "71 de 73; el resto dice por qué falta"
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "«Tu objetivo»: la consigna con su número en cada medida suya fiable",
    "status": "ok",
-   "detail": "49 medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); 60 palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados"
+   "detail": "48 medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); 60 palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados"
   },
   {
    "req": 2,
@@ -2846,7 +2846,7 @@
    "area": "Automático",
    "name": "Golpes dudosos (duda sobre el golpe, no sobre una medida)",
    "status": "ok",
-   "detail": "1 de 10 del lado cercano (10%); motivos: elbow_implausible_at_impact 1. Otros 5 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos"
+   "detail": "1 de 10 del lado cercano (10%); motivos: elbow_implausible_at_impact 1. Otros 6 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos"
   },
   {
    "req": 5,
@@ -2860,7 +2860,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "217 min para 35 min de vídeo ≈ 21.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "162 min para 35 min de vídeo ≈ 16.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -3007,7 +3007,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (217 min para 35 min de vídeo ≈ 21.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (162 min para 35 min de vídeo ≈ 16.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3028,7 +3028,7 @@
    "area": "Peticiones",
    "name": "#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»",
    "status": "pocos datos",
-   "detail": "9 comprobaciones: 1 pocos datos, 8 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 72 de 73 puntos con su valor medido)"
+   "detail": "9 comprobaciones: 1 pocos datos, 8 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 71 de 73 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -3049,7 +3049,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (217 min para 35 min de vídeo ≈ 21.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (162 min para 35 min de vídeo ≈ 16.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3112,7 +3112,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (217 min para 35 min de vídeo ≈ 21.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (162 min para 35 min de vídeo ≈ 16.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3357,14 +3357,14 @@
    "area": "Peticiones",
    "name": "#68 La meta: mejorar mi derecha tomando la de X como base",
    "status": "pocos datos",
-   "detail": "7 comprobaciones: 1 pocos datos, 6 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 72 de 73 puntos con su valor medido)"
+   "detail": "7 comprobaciones: 1 pocos datos, 6 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 71 de 73 puntos con su valor medido)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica",
    "status": "pocos datos",
-   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 72 de 73 puntos con su valor medido)"
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 71 de 73 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -3406,7 +3406,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (217 min para 35 min de vídeo ≈ 21.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (162 min para 35 min de vídeo ≈ 16.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3756,7 +3756,7 @@
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (217 min para 35 min de vídeo ≈ 21.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (162 min para 35 min de vídeo ≈ 16.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
