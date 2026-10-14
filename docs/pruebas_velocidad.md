@@ -162,3 +162,63 @@ Los golpes se siguen encontrando con la escala de antes (umbrales validados): lo
 | Escala | Pista de antes de un zoom o mal ajustada | error en fuentes | la contradicen tronco y piernas → `segments` (≤ 6 %) | ✔ `test_a_court_the_body_contradicts_is_not_used` |
 | Escala | Sin pista | límite | `segments`; sin tronco ni piernas, la de antes | ✔ `test_without_court_segments_then_pose` |
 | Escala | Rival sin ficha en `config/players` | límite | 1,80 m por defecto: error ±5 % en sus medidas | ◐ añadir su altura |
+
+# Pasada fina: bola en la CPU mientras la pose usa la iGPU (14-10, tras la prueba 5)
+
+**De dónde sale el tiempo (prueba 5, 35 min, `pc-logs:prueba_poc5_35.log`):** pasada fina 59,6 min = pose 24,0 +
+bola 23,2 + raqueta 5,7 + cuerdas/3D 2,7 + recorte 0,9 + lejana 1,8. La bola y la pose van una tras otra en la
+iGPU; la CPU (8 núcleos) espera casi todo el rato.
+
+**Palancas estudiadas:**
+
+| Palanca | Resultado | Decisión |
+|---|---|---|
+| 1. No repetir bola/pose/raqueta en fotogramas de ventanas que se solapan | En la prueba 5: 54 ventanas, **0 s de solape** (las candidatas a < 3,6 s ya comparten ventana; cercano y lejano nunca coinciden en el tiempo). Solo se solaparían peloteos de más de 10 s (la ventana se corta en dos). Además la bola de cada ventana usa el fondo mediano de **esa** ventana: reutilizar fotogramas cambiaría la bola, no sería idéntico. | No se implementa. Se cuenta: `counts.overlap_s` en el resumen de `fine` dirá en el partido completo si merece la pena. |
+| 2. Bola solo en una región (alrededor de la jugadora) | TrackNetV3 ve la imagen entera reducida a 512×288; un recorte cambia la escala con la que se entrenó. Además la bola de la ventana entera se usa (golpe de la rival, botes, destino, red). | No: cambiaría las medidas. |
+| 3. Bola en la CPU a la vez que la pose en la iGPU | Ver abajo. | **Sí** (`fine_speed.ball_ahead`). |
+| 4. ¿Por qué la raqueta tardó el doble en la prueba 5 que en la 4? | No es del código. La prueba 4 de 35 min escribió en `_poc4`, la carpeta de la prueba de 4 min de la petición 1 (de ahí el cambio de nombres del 14-10, `1d3ffaf`): las 7 ventanas cercanas de los 4 primeros minutos (las mismas, `w000015163`…`w000209601`) ya tenían raqueta en caché. Esas 7 costaron 200 s en `_poc4_4` (sin caché) y 201 s en la prueba 5; 176 s (prueba 4) + 200 s ≈ 376 s ≈ 341 s de la prueba 5. La prueba 3 (sin cachés) gastó 291 s. Por golpe confirmado: 10-12 s en las tres. | Nada que arreglar. La raqueta va a ≈ 0,5 s por fotograma segmentado (YOLO-seg a 960 px en FP32); bajar ese tiempo (FP16 del modelo de silueta) cambiaría las siluetas y habría que validarlo en el PC como se hizo con la pose: queda propuesto, no activado. |
+
+**Bola en paralelo (`fine_speed.ball_ahead`, por defecto activado):** un hilo aparte recorta las ventanas y
+calcula su bola en la CPU con su propia sesión de ONNX Runtime (`ball_ahead_threads`: 4 núcleos; un fotograma por pasada, `ball_ahead_batch: 1`, ≈ 0,5 GB), empezando por
+la **última** ventana y hacia atrás, mientras el hilo principal hace la pose desde la primera (`src/tennisbio/fine_ahead.py`).
+Cada ventana la hace quien llega antes: nada se calcula dos veces, se encuentran una vez hacia la mitad y lo que
+el hilo aparte no alcance lo hace la iGPU como siempre. El hilo aparte nunca toma la ventana siguiente a la del
+principal (`ball_ahead_gap: 1`): en la iGPU va más rápida. Escribe la caché de bola donde la lee la pasada fina
+(`clip_pipeline.window_ball`), así que la cascada, la pose y los golpes salen igual. Solo con la pose en la iGPU
+(`device: dml`): en la CPU los dos modelos se quitarían los mismos núcleos (misma regla que `pipeline.parallel`).
+Además la entrada del modelo de bola se prepara por lotes (antes, toda la ventana en coma flotante: ≈ 1,8 MB por
+fotograma, ≈ 0,5 GB en una ventana de 11 s); mismos valores, comprobado.
+
+**Ganancia esperada** (prueba de 35 min, pasada fina 60 min): la bola en la iGPU son 167 ms por pasada
+(`model_trials`); en la CPU de 8 núcleos con 4 hilos se espera de 2 a 5 veces más. Con el resto de la pasada fina
+(≈ 36 min de pose, raqueta, 3D…) en el hilo principal, el hilo aparte cubre del 85 % (CPU 2× más lenta) al 43 %
+(5×) de la bola: **de 10 a 20 min menos** (de 60 a 40-50 min; ≈ 1-2 h menos por partido de 3,5 h), menos lo que
+la CPU ocupada frene la lectura de vídeo y la preparación de la pose (se verá en el PC). Si la CPU resultara más
+lenta de lo esperado, el reparto se ajusta solo (el hilo aparte simplemente llega a menos ventanas).
+
+**Calidad:** misma red, misma entrada; solo cambia el dispositivo (redondeo de coma flotante entre CPU y
+DirectML, del orden de 1e-5 en el mapa de calor, frente a un umbral de 0,5). Mismo criterio que el lote fijo de
+la bola: equivalente, no idéntico bit a bit. La revisión automática (OK / REGRESIÓN) lo compara en el PC. No
+cambia la clave de las cachés de ventana (`window_cache_key`) ni la versión de la etapa `fine` (13): las cachés de
+bola ya hechas se reutilizan. `fine_speed` no entra en la huella de la etapa.
+
+**Registro nuevo:** por ventana, «bola N s en paralelo (CPU)» cuando la hizo el hilo aparte; en el resumen de
+`fine`, `seconds.bola_en_paralelo_cpu` (simultáneo, no suma al tiempo total), `seconds.espera_bola_en_paralelo`
+(lo que el principal esperó al hilo aparte), `counts.windows_ball_ahead` y `counts.overlap_s`.
+
+| Área | Escenario | Tipo | Qué pasa | Cobertura |
+|---|---|---|---|---|
+| Bola en paralelo | Muchas ventanas | nominal | el principal desde el principio, el hilo aparte desde el final; cada bola una vez, se encuentran una vez | ✔ `test_each_window_once_worker_from_the_end_main_from_the_start`, `test_fine_with_the_worker_computes_each_ball_once_and_the_same` |
+| Bola en paralelo | Ventana que el hilo aparte está terminando cuando llega el principal | límite | el principal espera a que acabe y la lee de la caché (nunca dos veces) | ✔ `test_claim_waits_for_the_window_the_worker_is_finishing` |
+| Bola en paralelo | La ventana siguiente a la del principal | límite | se la deja al principal (iGPU más rápida) | ✔ `test_the_worker_leaves_the_next_window_to_the_main_thread` |
+| Bola en paralelo | Ningún golpe / un solo golpe (una ventana) | límite | no arranca el hilo; todo como antes | ✔ `test_no_or_single_window_the_worker_does_nothing`, `test_fine_without_the_worker_is_as_before` |
+| Bola en paralelo | Ventanas al principio del vídeo (t0 = 0) y al final | esquina | el recorte y la caché son los mismos que haría el principal (`_cut_args`, `_window_of`) | ✔ `test_window_overlap_seconds`; por diseño |
+| Bola en paralelo | Pose en la CPU (`device: cpu`/`openvino`), sin modelo de bola o `ball_ahead: false` | límite | sin hilo aparte: como antes | ✔ `test_enabled_only_on_the_igpu_with_the_ball_and_two_windows`, `test_fine_without_the_worker_is_as_before` |
+| Bola en paralelo | Falla una ventana en el hilo aparte (o no se puede crear su sesión) | error | esa ventana la hace el principal en la iGPU; tras 3 fallos el hilo aparte se para; aviso en el resumen | ✔ `test_a_failed_window_is_left_to_the_main_thread_and_the_worker_stops_after_three`, `test_fine_worker_failure_falls_back_to_the_igpu` |
+| Bola en paralelo | Falla la pasada fina a mitad | error | el hilo aparte termina la ventana en curso (ficheros completos, escritura atómica) y para | ✔ `test_close_finishes_the_window_being_done` |
+| Bola en paralelo | Dos modelos de bola a la vez (CPU + iGPU) en hilos | concurrencia | sesiones distintas; mismo resultado que de uno en uno | ✔ comprobado con el modelo real en CPU (2 clips de RacketVision en dos hilos = de uno en uno, bit a bit) |
+| Bola en paralelo | Memoria | rendimiento | en la CPU, un fotograma por pasada (`ball_ahead_batch: 1`): ≈ 0,5 GB frente a ≈ 3 GB con lotes de 8 (medido), igual de rápido o más (70 s frente a 89 s en 2 clips) y la misma pista (diferencia 0,0 px) | ✔ medido con el modelo real; `test_fine_with_the_worker_computes_each_ball_once_and_the_same` |
+| Bola en paralelo | Hilos de la CPU | rendimiento | `ball_ahead_threads` llega a ONNX Runtime | ✔ `test_ball_session_threads_reach_onnxruntime` |
+| Bola en paralelo | Cuánto ahorra | rendimiento | `bola_en_paralelo_cpu`, `espera_bola_en_paralelo`, `windows_ball_ahead` | ◐ prueba del PC |
+| Entrada de la bola por lotes | Ventana larga | rendimiento / memoria | misma entrada del modelo que antes, sin toda la ventana en coma flotante | ✔ `test_ball_track_feed_lazy_input_is_identical`; modelo real: mismas pistas |
+| Solapes | Peloteo de más de 10 s cortado en dos ventanas | medida | `counts.overlap_s` | ✔ `test_window_overlap_seconds`; ◐ partido completo |

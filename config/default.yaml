@@ -59,6 +59,24 @@ fine_pass:
   detector: balanced
   pose: performance
 
+# Velocidad de la pasada fina sin cambiar lo que calcula (docs/pruebas_velocidad.md, 14-10). No forma parte
+# de la huella de la etapa: cambiar estos valores no repite la pasada fina.
+# - ball_ahead: con la pose en la iGPU (device: dml), un hilo aparte recorta las ventanas y calcula su bola
+#   (TrackNetV3) en la CPU, empezando por la última ventana y hacia atrás, mientras el hilo principal hace la
+#   pose desde la primera: cada ventana la hace quien llega antes (nada se calcula dos veces) y lo que el hilo
+#   aparte no alcance se hace en la iGPU como siempre. La bola es el mismo modelo con la misma entrada; solo
+#   cambia el dispositivo (redondeo de coma flotante). false: todo en el hilo principal, como antes.
+# - ball_ahead_threads: núcleos de la CPU para esa bola (el resto queda para leer vídeo y preparar la pose).
+# - ball_ahead_gap: ventanas por delante del hilo principal que el hilo aparte deja para él (en la iGPU es
+#   más rápida: así el principal no espera a la CPU en la ventana siguiente).
+# - ball_ahead_batch: fotogramas por pasada en la CPU (1: allí un lote no va más rápido y uno de 8 ocupa ≈ 3 GB
+#   de memoria; con 1, ≈ 0,5 GB).
+fine_speed:
+  ball_ahead: true
+  ball_ahead_threads: 4
+  ball_ahead_gap: 1
+  ball_ahead_batch: 1
+
 # Modelos de rtmlib (ONNX). Halpe26 = 17 puntos COCO + pies (necesarios para el tipo de apoyo).
 models:
   detectors:
