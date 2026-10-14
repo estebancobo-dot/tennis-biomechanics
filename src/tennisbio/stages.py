@@ -944,7 +944,8 @@ def _fine_settings(c):
 
 FINE_CODE = ("stages", "clip_pipeline", "stroke_analysis", "phases", "kinematics", "impacts", "ball", "court_metrics",
              "outcome", "series", "racket", "racket3d", "racket_face", "racket_orientation", "tracking", "technique",
-             "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend", "ball3d", "limits", "fine_gate")
+             "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend", "ball3d", "limits", "fine_gate", "pose.hybrid",
+             "footpoints")
 
 
 def _player_fields(p) -> dict:
@@ -952,7 +953,7 @@ def _player_fields(p) -> dict:
             "grip": [getattr(p, "forehand_grip_close_deg", None), getattr(p, "backhand_grip_close_deg", None)]}
 
 
-@stage("fine", "10", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
+@stage("fine", "11", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
        code=FINE_CODE, match_fields=lambda m: _player_fields(m.player))
 def st_fine(ctx: Context):
     """Full-quality analysis of the target player's candidates. Runs whose identity could not be
@@ -994,6 +995,19 @@ def st_fine_opponent(ctx: Context):
                  "strokes_opponent.json")
 
 
+def window_cache_key(cfg: dict) -> str:
+    """Key of the caches of the pose, ball and racket of each window (`ph`): the models and settings that
+    made them. The hybrid pose adds its tag (pose.hybrid.pose_cache_tag): a YOLO-only cache has no feet
+    and is not reused for it; with YOLO the key is the one it always was."""
+    from .pose.hybrid import pose_cache_tag
+
+    bcfg = cfg.get("ball") or {}
+    return hashlib.sha1(json.dumps([cfg.get("yolo_pose", "yolo11m-pose.pt"), cfg.get("fine_imgsz", 960),
+                                    model_state(bcfg.get("onnx")), "v2"]
+                                   + (["fp16"] if _fp16_setting(cfg) else [])
+                                   + pose_cache_tag(cfg)).encode()).hexdigest()[:8]
+
+
 def _fine(ctx: Context, p, keep, out_name: str):
     """Full-quality analysis of the kept candidates, one window per stretch of play."""
     cands = _read(ctx.path("candidates.json"))
@@ -1033,10 +1047,7 @@ def _fine(ctx: Context, p, keep, out_name: str):
     for w in warnings:
         ctx.log(f"  AVISO: {w}")
     interlaced = bool(_read(ctx.path("probe.json")).get("interlaced")) if ctx.path("probe.json").exists() else False
-    # caches of the pose, ball and racket of each window carry the models and settings that made them
-    ph = hashlib.sha1(json.dumps([ctx.cfg.get("yolo_pose", "yolo11m-pose.pt"), ctx.cfg.get("fine_imgsz", 960),
-                                  model_state(bcfg.get("onnx")), "v2"]
-                                 + (["fp16"] if _fp16_setting(ctx.cfg) else [])).encode()).hexdigest()[:8]
+    ph = window_cache_key(ctx.cfg)
     strokes, errors = [], []
     kept = sorted((c for c in cands if keep(c)), key=lambda c: (c.get("side", "near"), c["t"]))
     # candidates whose windows overlap (strokes of the same rally) share one window: the pose,
@@ -1212,11 +1223,12 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
     if keep is not None and side == "near" and not fill:     # each stretch starts from the person the ball leaves
         extra = {**extra, "anchors": [(p_[0], p_[3], p_[4]) for p_ in dec.get("possible", []) if len(p_) >= 5]}
     from .fine_gate import CONFIRM_TOL_S
+    from .pose.hybrid import fine_pose_model
     t_ = time.time()
     run = run_clip(clip, cache, p.hand, p.height_m, init_mode="near", rackets=side == "near",
                    imgsz=ctx.cfg.get("fine_imgsz", 960), log=lambda *_: None, ball=ball,
                    prefetch=fp.get("pose_prefetch", True), targets=targets,
-                   target_tol=CONFIRM_TOL_S, keep=keep, **extra)
+                   target_tol=CONFIRM_TOL_S, keep=keep, pose_model=fine_pose_model(ctx.cfg), **extra)
     for k, v in run.timing.items():
         _TIMES[k] = _TIMES.get(k, 0.0) + v
     _took("analisis_ventana", t_ + sum(run.timing.values()))         # the rest of run_clip
@@ -1224,8 +1236,13 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
     for k in ("frames", "posed_frames", "impacts", "kept_impacts", "racket_frames", "whole_window_again"):
         _COUNTS[k] = _COUNTS.get(k, 0) + int(st.get(k) or 0)
     _COUNTS["frames_960_far"] = _COUNTS.get("frames_960_far", 0) + int(st.get("frames_960") or 0)
-    ctx.log(f"  ventana {wid}: pose en {st.get('posed_frames', '?')} de {st.get('frames', '?')} fotogramas"
+    pm = st.get("pose_model", "yolo")
+    if st.get("model_s"):        # seconds inside the pose model (part of "pose"), per model: yolo / hybrid
+        _TIMES[f"pose_modelo_{pm}"] = _TIMES.get(f"pose_modelo_{pm}", 0.0) + float(st["model_s"])
+        _COUNTS[f"frames_modelo_{pm}"] = _COUNTS.get(f"frames_modelo_{pm}", 0) + int(st.get("frames_model") or 0)
+    ctx.log(f"  ventana {wid}: pose {pm} en {st.get('posed_frames', '?')} de {st.get('frames', '?')} fotogramas"
             f" ({run.timing.get('pose', 0):.0f} s; modelo {st.get('model_s', 0):.0f} s"
+            + (f"; pies en {st['feet_frames']}" if pm == "hybrid" and "feet_frames" in st else "")
             + (f", {st['frames_960']} a 960 px por perderla" if st.get("frames_960") else "")
             + f") · bola {dec.get('ball_s', 0):.0f} s · raqueta {run.timing.get('raqueta', 0):.0f} s"
             f" ({st.get('kept_impacts', 0)} de {st.get('impacts', 0)} impactos) · {len(run.strokes)} golpes posibles")

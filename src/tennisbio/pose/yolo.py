@@ -42,7 +42,8 @@ def _fps(video) -> float:
 
 
 def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", imgsz=960, every=1, progress=True,
-            roi: tuple | None = None, frames=None, prefetch: bool = True, keep=None, stats: dict | None = None) -> Path:
+            roi: tuple | None = None, frames=None, prefetch: bool = True, keep=None, stats: dict | None = None,
+            model=None) -> Path:
     """Run pose on every `every`-th frame and save all people (boxes, keypoints, appearance) to .npz.
 
     roi: (x0, y0, x1, y1) — run only on that region (e.g. the far half of the court, where the far
@@ -54,16 +55,21 @@ def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", im
     so the same output as one frame at a time; as the cheap pass does).
     keep: optional (T,) bool, the frames to run the model on; the others are saved with nobody
     (fine_pass.pose_ranges: frames no possible stroke uses).
-    stats: when given, "frames" (model runs) and "model_s" (seconds in the model) are added to it."""
+    stats: when given, "frames" (model runs) and "model_s" (seconds in the model) are added to it.
+    model: the pose model to use instead of backend.pose_model(pose_model, imgsz) (same contract:
+    predict(img, conf, prepared=...) and optionally prepare(img)). A model with predict_feet (the hybrid
+    one, pose.hybrid.HybridPose) also fills `feet` (per frame (N, 6, 2)) and `feet_confs` ((N, 6)) in
+    the cache: the 6 Halpe26 foot points, in full-frame coordinates."""
     from concurrent.futures import ThreadPoolExecutor
     from time import perf_counter
 
     from ..io.video import capture_frames, read_ahead
     from .backend import pose_model as _pm
 
-    pose = _pm(pose_model, imgsz)
+    pose = model if model is not None else _pm(pose_model, imgsz)
+    with_feet = hasattr(pose, "predict_feet")
     fps = _fps(video) / every
-    boxes, kps, confs, feats = [], [], [], []
+    boxes, kps, confs, feats, feet, feet_c = [], [], [], [], [], []
     x0 = y0 = 0
     if roi is not None:
         x0, y0, x1, y1 = (int(v) for v in roi)
@@ -78,7 +84,8 @@ def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", im
                 yield None
                 continue
             src = frame if roi is None else frame[y0:y1, x0:x1]
-            yield frame, src, (pose.prepare(src) if prefetch else None)
+            prep = getattr(pose, "prepare", None) if prefetch else None
+            yield frame, src, (prep(src) if prep is not None else None)
 
     empty = (np.zeros((0, 4), np.float32), np.zeros((0, 17, 2), np.float32), np.zeros((0, 17), np.float32),
              np.zeros((0, 32), np.float32))
@@ -87,12 +94,21 @@ def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", im
         for it in (read_ahead(items, prefetch=4) if prefetch else items()):
             if it is None:
                 boxes.append(empty[0]); kps.append(empty[1]); confs.append(empty[2]); feats.append(empty[3])
+                if with_feet:
+                    feet.append(np.zeros((0, 6, 2), np.float32)); feet_c.append(np.zeros((0, 6), np.float32))
                 continue
             frame, src, prep = it
             t_ = perf_counter()
-            b, k, c = pose.predict(src, conf=0.3, prepared=prep) if prep is not None else pose.predict(src, conf=0.3)
+            fn = pose.predict_feet if with_feet else pose.predict
+            out_ = fn(src, conf=0.3, prepared=prep) if prep is not None else fn(src, conf=0.3)
             t_model += perf_counter() - t_
             n_model += 1
+            b, k, c = out_[:3]
+            if with_feet:
+                fk, fc = out_[3], out_[4]
+                feet.append(np.asarray(fk, np.float32).reshape(-1, 6, 2) + np.float32([x0, y0]) if len(b)
+                            else np.zeros((0, 6, 2), np.float32))
+                feet_c.append(np.asarray(fc, np.float32).reshape(-1, 6) if len(b) else np.zeros((0, 6), np.float32))
             b = b + [x0, y0, x0, y0] if len(b) else np.zeros((0, 4))
             boxes.append(b.astype(np.float32))
             kps.append(k.astype(np.float32) + [x0, y0] if len(b) else np.zeros((0, 17, 2), np.float32))
@@ -106,9 +122,10 @@ def extract(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", im
         stats["frames"] = stats.get("frames", 0) + n_model
         stats["model_s"] = stats.get("model_s", 0.0) + t_model
     out = Path(out)
+    extra = dict(feet=_objects(feet), feet_confs=_objects(feet_c)) if with_feet else {}
     savez_atomic(out, fps=fps, n=len(boxes),
                         boxes=_objects(boxes), kps=_objects(kps), confs=_objects(confs),
-                        feats=_objects(feats))
+                        feats=_objects(feats), **extra)
     return out
 
 

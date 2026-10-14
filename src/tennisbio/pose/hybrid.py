@@ -6,9 +6,11 @@ feet seen in 99.7 % of the frames, ~2× the cost of YOLO in half precision. YOLO
 precision (fp16 on the iGPU); RTMPose stays in full precision (in half precision it is slower on
 DirectML).
 
-Off by default: `fine_pass.pose_model: yolo` (config/default.yaml). With `hybrid`, `extract_fine` writes
-the same window cache as pose.yolo.extract plus `feet` / `feet_confs` (the 6 Halpe26 foot points:
-big toes, small toes, heels, in skeleton.FOOT_NAMES order), so the stroke pipeline reads it unchanged.
+On in the fine pass (near side) since 14-10: `fine_pass.pose_model: hybrid` (config/default.yaml; `yolo`
+or no key = YOLO alone, as before). With `hybrid`, `extract_fine` writes the same window cache as
+pose.yolo.extract (the same loop: keep, prefetch, stats) plus `feet` / `feet_confs` (the 6 Halpe26 foot
+points: big toes, small toes, heels, in skeleton.FOOT_NAMES order), so the stroke pipeline reads it
+unchanged; clip_pipeline.run_clip carries the tracked player's ones as run.feet / run.feet_conf.
 """
 from __future__ import annotations
 
@@ -17,8 +19,7 @@ from pathlib import Path
 
 import numpy as np
 
-from ..pipeline import savez_atomic
-from .yolo import _fps, _objects, appearance  # noqa: F401  (_fps: re-exported for the fine pass)
+from .yolo import _fps, _objects, appearance  # noqa: F401  (re-exported for the fine pass)
 
 POSE_MODELS = ("yolo", "hybrid")
 FOOT_SLICE = slice(20, 26)          # Halpe26: left/right big toe, left/right small toe, left/right heel
@@ -154,49 +155,31 @@ def pose_cache_tag(cfg: dict) -> list:
 
 
 def extract_hybrid(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", imgsz=960, every=1,
-                   progress=True, roi: tuple | None = None, frames=None, model: HybridPose | None = None,
-                   cfg: dict | None = None) -> Path:
-    """pose.yolo.extract with the hybrid model: the same .npz (fps, n, boxes, kps, confs, feats) plus
-    feet (per frame (N, 6, 2)) and feet_confs (per frame (N, 6)), all in full-frame coordinates."""
-    from ..io.video import capture_frames
+                   progress=True, roi: tuple | None = None, frames=None, prefetch: bool = True, keep=None,
+                   stats: dict | None = None, model: HybridPose | None = None, cfg: dict | None = None) -> Path:
+    """pose.yolo.extract with the hybrid model (its own loop: frames, every, roi, prefetch, keep and stats
+    behave exactly the same): the same .npz (fps, n, boxes, kps, confs, feats) plus feet (per frame
+    (N, 6, 2)) and feet_confs (per frame (N, 6)), all in full-frame coordinates."""
+    from . import yolo
 
     pose = model or hybrid_model(pose_model, imgsz, cfg=cfg)
-    fps = _fps(video) / every
-    boxes, kps, confs, feats, feet, feet_c = [], [], [], [], [], []
-    i = 0
-    for frame in (capture_frames(video) if frames is None else frames):
-        if i % every:
-            i += 1
-            continue
-        ox = oy = 0
-        src = frame
-        if roi is not None:
-            x0, y0, x1, y1 = (int(v) for v in roi)
-            src, ox, oy = frame[y0:y1, x0:x1], x0, y0
-        b, k, c, fk, fc = pose.predict_feet(src, conf=0.3)
-        if len(b):
-            b, k, fk = b + [ox, oy, ox, oy], k + [ox, oy], fk + [ox, oy]
-        boxes.append(b.astype(np.float32))
-        kps.append(k.astype(np.float32))
-        confs.append(c.astype(np.float32))
-        feet.append(fk.astype(np.float32))
-        feet_c.append(fc.astype(np.float32))
-        feats.append(np.array([appearance(frame, bb) for bb in b], np.float32).reshape(len(b), 32))
-        i += 1
-        if progress and len(boxes) % 100 == 0:
-            print(f"{len(boxes)} frames", flush=True)
-    out = Path(out)
-    savez_atomic(out, fps=fps, n=len(boxes), boxes=_objects(boxes), kps=_objects(kps), confs=_objects(confs),
-                 feats=_objects(feats), feet=_objects(feet), feet_confs=_objects(feet_c))
-    return out
+    return yolo.extract(video, out, pose_model, imgsz, every, progress, roi, frames, prefetch=prefetch, keep=keep,
+                        stats=stats, model=pose)
 
 
 def extract_fine(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", imgsz=960, every=1,
-                 progress=True, roi: tuple | None = None, frames=None, cfg: dict | None = None) -> Path:
-    """The fine pass's pose extraction, chosen by `fine_pass.pose_model`: pose.yolo.extract (default,
-    exactly as before) or extract_hybrid. Same signature as pose.yolo.extract."""
-    if fine_pose_model(cfg) == "hybrid":
-        return extract_hybrid(video, out, pose_model, imgsz, every, progress, roi, frames, cfg=cfg)
-    from .yolo import extract
+                 progress=True, roi: tuple | None = None, frames=None, prefetch: bool = True, keep=None,
+                 stats: dict | None = None, cfg: dict | None = None, model_name: str | None = None) -> Path:
+    """The fine pass's pose extraction, chosen by model_name or else `fine_pass.pose_model`:
+    pose.yolo.extract (exactly as before) or extract_hybrid. Same arguments as pose.yolo.extract.
+    stats also gets "pose_model" (the model used)."""
+    from . import yolo
 
-    return extract(video, out, pose_model, imgsz, every, progress, roi, frames)
+    name = model_name if model_name in POSE_MODELS else fine_pose_model(cfg)
+    if stats is not None:
+        stats["pose_model"] = name
+    if name == "hybrid":
+        return extract_hybrid(video, out, pose_model, imgsz, every, progress, roi, frames, prefetch=prefetch,
+                              keep=keep, stats=stats, cfg=cfg)
+    return yolo.extract(video, out, pose_model, imgsz, every, progress, roi, frames, prefetch=prefetch, keep=keep,
+                        stats=stats)

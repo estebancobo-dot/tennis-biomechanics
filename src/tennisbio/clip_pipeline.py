@@ -16,6 +16,7 @@ from .io.video import open_capture
 from .impacts import Impact, audio_onsets, fuse, fuse_with_ball, swing_peaks
 from .pipeline import load_npz, save_npy_atomic
 from .kinematics import body_height, clean, scale_track, speed, to_body_frame
+from .footpoints import tracked_feet
 from .skeleton import Skeleton
 from .stroke_analysis import StrokeResult, analyze_stroke
 from .tracking import track_target
@@ -40,6 +41,11 @@ class ClipRun:
     height_t: np.ndarray | None = None          # body height in px per frame (kinematics.scale_track)
     timing: dict = field(default_factory=dict)   # seconds spent in each model (only what was computed now)
     stats: dict = field(default_factory=dict)    # counts of what was computed now (frames posed, rackets...)
+    # foot points of the tracked player (hybrid pose, near side), Halpe26 order (skeleton.FOOT_NAMES):
+    # left/right big toe, left/right small toe, left/right heel. (T, 6, 2) image px, NaN when unseen;
+    # feet_conf (T, 6), 0 when unseen. All NaN / 0 with the YOLO pose (far side, or pose_model: yolo).
+    feet: np.ndarray | None = None
+    feet_conf: np.ndarray | None = None
 
 
 def _cv2_frames(video: Path):
@@ -164,7 +170,7 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
              init_box: np.ndarray | None = None, max_bottom: float | None = None, roi: tuple | str | None = None,
              prefetch: bool = True, targets: list | None = None, target_tol: float | None = None,
              keep: np.ndarray | None = None, inits: dict | None = None, anchors: list | None = None,
-             split: bool = True) -> ClipRun:
+             split: bool = True, pose_model: str = "yolo") -> ClipRun:
     """Pose, tracking, impacts and stroke analysis of a short clip (cached).
 
     ball: optional tennisbio.ball.BallTracker; its track is cached next to the pose cache and
@@ -185,7 +191,10 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     anchors: [(frame, x, y)] ball hits of hers (near end, with keep): a stretch holding one starts
     its tracking from the person the ball leaves from. split=False: the kept frames are tracked as
     one clip from its first frame, as without keep (fine_pass.pose_fill_every: between the stretches
-    a frame in every few is posed, enough to follow her and to measure her height as the whole window)."""
+    a frame in every few is posed, enough to follow her and to measure her height as the whole window).
+    pose_model: 'yolo' (YOLO11m-pose) or 'hybrid' (pose.hybrid: YOLO + RTMPose-x with the 6 foot points,
+    fine_pass.pose_model) for the near side; the far side is always YOLO (extract_follow). The tracked
+    player's foot points are run.feet / run.feet_conf (all NaN / 0 without them)."""
     import time
     video, cache = Path(video), Path(cache)
     cache.parent.mkdir(parents=True, exist_ok=True)
@@ -198,9 +207,11 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     if keep is not None and cache.exists() and load_npz(cache) is not None:
         keep = inits = None                 # the whole window is already posed (an earlier run): reused
     pcache = cache if keep is None else cache.with_name(f"{cache.stem}_r{keep_key(keep)}.npz")
-    pstats: dict = {}
+    use_model = "hybrid" if pose_model == "hybrid" and side == "near" and roi != "follow" else "yolo"
+    pstats: dict = {"pose_model": use_model}
     if load_npz(pcache) is None:          # missing or damaged (interrupted run): extract again
-        from .pose.yolo import _fps, extract
+        from .pose.hybrid import extract_fine
+        from .pose.yolo import _fps
         frames = None
         if ball is not None and ball_track is None:      # the ball model reads the same decoded frames
             from .ball import BallFeed
@@ -211,13 +222,15 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
             extract_follow(video, pcache, init_box, max_bottom=max_bottom, frames=frames, prefetch=prefetch,
                            keep=keep, inits=inits, stats=pstats)
         else:
-            extract(video, pcache, imgsz=imgsz, progress=False, roi=roi, frames=frames, prefetch=prefetch,
-                    keep=keep, stats=pstats)
+            extract_fine(video, pcache, imgsz=imgsz, progress=False, roi=roi, frames=frames, prefetch=prefetch,
+                         keep=keep, stats=pstats, model_name=use_model)
     d = load_npz(pcache)
     if d is None:
         raise RuntimeError(f"no se pudo extraer la pose de {video.name}")
     timing["pose"] = time.time() - t_
     fps, boxes, kps, confs, feats = float(d["fps"]), d["boxes"], d["kps"], d["confs"], d["feats"]
+    if use_model != "hybrid":           # the far side's feet are never used (too small): none, by contract
+        d = {k: v for k, v in d.items() if k not in ("feet", "feet_confs")}
     sk = Skeleton("coco17", hand)
     T = len(boxes)
 
@@ -259,11 +272,12 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
             if f > a:
                 sel[a:f] = track_target(list(boxes[a:f + 1][::-1]), list(feats[a:f + 1][::-1]), init,
                                         min_bottom=min_bottom, max_bottom=max_bottom)[::-1][:-1]
-    stats = {**pstats, "posed_frames": int(np.sum(keep[:T])) if keep is not None else T, "frames": T}
+    stats = {**pstats, "frames_model": int(pstats.get("frames", 0)), "posed_frames": int(np.sum(keep[:T])) if keep is not None else T, "frames": T}
     if not found:                       # nobody to follow: a run without strokes, not an error
         log("nadie en la ventana: sin golpes")
+        fk, fc = tracked_feet(d, sel)
         return ClipRun(fps, sk, np.full((T, len(sk), 2), np.nan), np.zeros((T, len(sk))), [None] * T, 0.0, 0.0,
-                       np.zeros(0), [], rackets=[[] for _ in range(T)], timing=timing, stats=stats)
+                       np.zeros(0), [], rackets=[[] for _ in range(T)], timing=timing, stats=stats, feet=fk, feet_conf=fc)
     kp = np.full((T, len(sk), 2), np.nan)
     cf = np.zeros((T, len(sk)))
     boxes_t = [None] * T
@@ -278,7 +292,7 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         # face and feet are both seen; none among those posed: the whole window, as without keep
         log("altura no medible en los tramos: ventana entera")
         whole = run_clip(video, cache, hand, height_m, rackets, init_mode, imgsz, log, ball, side,
-                         init_box, max_bottom, roi, prefetch, targets, target_tol)
+                         init_box, max_bottom, roi, prefetch, targets, target_tol, pose_model=pose_model)
         whole.timing["pose"] = whole.timing.get("pose", 0.0) + timing.get("pose", 0.0)
         whole.stats["posed_frames"] = whole.stats.get("posed_frames", 0) + int(np.sum(keep[:T]))
         whole.stats["whole_window_again"] = 1
@@ -320,6 +334,8 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
 
     run.timing = timing
     run.stats = stats
+    run.feet, run.feet_conf = tracked_feet(d, sel)
+    stats["feet_frames"] = int(np.sum((run.feet_conf > 0).any(1)))
     run.rackets = [[] for _ in range(T)]
 
     # the strokes that can be kept: impacts within the tolerance of a target (all without targets).

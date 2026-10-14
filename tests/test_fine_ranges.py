@@ -543,7 +543,8 @@ def test_fine_one_passes_ranges_targets_and_far_starts(tmp_path, monkeypatch, ra
             assert set(k["inits"]) == {a for a, _ in clip_pipeline.keep_runs(k["keep"])} and "anchors" not in k
         else:
             assert k["anchors"] and abs(k["anchors"][0][0] - 300) <= 3       # the ball hit, with its position
-    assert any("pose en" in m for m in logs)
+    assert any("pose yolo en" in m for m in logs)          # the pose model of the window (yolo by default)
+    assert k["pose_model"] == "yolo"
     assert stages._COUNTS["frames"] == 600
 
 
@@ -610,3 +611,162 @@ def test_ball_static_batch_on_the_real_model_cpu():
     a = BallTracker(path, "cpu").track(iter(frames))
     b = BallTracker(path, "cpu", static_batch=True).track(iter(frames))
     assert np.allclose(a, b, equal_nan=True, atol=1e-3)
+
+
+# ---- hybrid pose in the fine pass: the tracked player's feet (run.feet / run.feet_conf) -------------
+
+def _with_feet(pose, unseen=()):
+    """A hybrid cache: the synthetic pose plus 6 foot points under each person (conf 0 at `unseen`)."""
+    from tennisbio.pose.yolo import _objects
+    feet, fc = [], []
+    for t, k in enumerate(pose["kps"]):
+        f = np.zeros((len(k), 6, 2), np.float32)
+        if len(k):
+            f[:] = k[:, [15, 16, 15, 16, 15, 16]] + np.float32([[0, 12], [0, 12], [4, 14], [-4, 14], [0, 4], [0, 4]])
+            f[:, :, 0] += t * 0.01                       # a different value in every frame
+        feet.append(f)
+        fc.append(np.full((len(k), 6), 0.0 if t in unseen else 0.8, np.float32))
+    return {**pose, "feet": _objects(feet), "feet_confs": _objects(fc)}
+
+
+def test_run_clip_feet_contract(synth_clip):
+    """run.feet (T, 6, 2) image px of the tracked player's foot points in Halpe26 order, NaN unseen;
+    run.feet_conf (T, 6), 0 unseen. YOLO cache or far side: all NaN / 0. No metric changes."""
+    from tennisbio.clip_pipeline import keep_key, run_clip
+    from tennisbio.pipeline import savez_atomic
+
+    sc = synth_clip
+    d = sc.dir / "feet"
+    d.mkdir()
+    pose = _with_feet(_synth_pose(sc.n, sc.swings), unseen={7})
+    savez_atomic(d / "w.npz", **pose)
+    run = run_clip(sc.video, d / "w.npz", rackets=False, init_mode="near", log=lambda *_: None, pose_model="hybrid")
+    assert run.feet.shape == (sc.n, 6, 2) and run.feet_conf.shape == (sc.n, 6)
+    for t in (0, 150, 299):
+        assert run.boxes[t] is not None and np.array_equal(run.feet[t], pose["feet"][t][0])
+    assert (run.feet_conf[7] == 0).all() and np.allclose(run.feet_conf[8], 0.8)
+    assert run.stats["pose_model"] == "hybrid" and run.stats["feet_frames"] == sc.n - 1
+    # the same strokes and measures as without feet (YOLO cache): only run.feet is new
+    d2 = sc.dir / "nofeet"
+    d2.mkdir()
+    savez_atomic(d2 / "w.npz", **_synth_pose(sc.n, sc.swings))
+    plain = run_clip(sc.video, d2 / "w.npz", rackets=False, init_mode="near", log=lambda *_: None, pose_model="hybrid")
+    assert np.isnan(plain.feet).all() and (plain.feet_conf == 0).all() and plain.feet.shape == (sc.n, 6, 2)
+    assert [s.metrics for s in plain.strokes] == [s.metrics for s in run.strokes]
+    assert [s.phases for s in plain.strokes] == [s.phases for s in run.strokes]
+    # frames not tracked (pose ranges): NaN / 0 there
+    keep = np.zeros(sc.n, bool)
+    keep[20:280] = True
+    d3 = sc.dir / "ranges"
+    d3.mkdir()
+    savez_atomic(d3 / f"w_r{keep_key(keep)}.npz", **_with_feet(_synth_pose(sc.n, sc.swings, keep)))
+    part = run_clip(sc.video, d3 / "w.npz", rackets=False, init_mode="near", log=lambda *_: None, keep=keep,
+                    pose_model="hybrid")
+    assert np.isnan(part.feet[~keep]).all() and (part.feet_conf[~keep] == 0).all()
+    assert np.isfinite(part.feet[keep]).all()
+    # far side: always YOLO, never feet (even if a cache had them)
+    far = run_clip(sc.video, d / "w.npz", rackets=False, init_mode="near", log=lambda *_: None, side="far",
+                   init_box=np.array([255, 135, 345, 355], float), pose_model="hybrid")
+    assert far.feet.shape == (sc.n, 6, 2) and np.isnan(far.feet).all() and (far.feet_conf == 0).all()
+    assert far.stats["pose_model"] == "yolo"
+
+
+def test_run_clip_nobody_has_empty_feet(synth_clip):
+    from tennisbio.clip_pipeline import run_clip
+    from tennisbio.pipeline import savez_atomic
+    from tennisbio.pose.yolo import _objects
+
+    sc = synth_clip
+    d = sc.dir / "nobody"
+    d.mkdir()
+
+    def e(shape):
+        return _objects([np.zeros(shape, np.float32)] * sc.n)
+    savez_atomic(d / "w.npz", fps=FPS, n=sc.n, boxes=e((0, 4)), kps=e((0, 17, 2)), confs=e((0, 17)), feats=e((0, 32)),
+                 feet=e((0, 6, 2)), feet_confs=e((0, 6)))
+    run = run_clip(sc.video, d / "w.npz", rackets=False, init_mode="near", log=lambda *_: None, pose_model="hybrid")
+    assert run.feet.shape == (sc.n, 6, 2) and np.isnan(run.feet).all() and (run.feet_conf == 0).all()
+
+
+def test_run_clip_poses_the_near_side_with_the_hybrid_model(synth_clip, monkeypatch):
+    """No cache: run_clip extracts with the hybrid model (near side) through pose.yolo.extract's loop;
+    the foot points reach run.feet."""
+    from tennisbio.clip_pipeline import run_clip
+    from tennisbio.pose import hybrid, yolo
+
+    sc = synth_clip
+    pose = _synth_pose(sc.n, sc.swings)
+    i = {"t": 0}
+
+    class Yolo:
+        def predict(self, img, conf=0.3, prepared=None):
+            t = i["t"]
+            i["t"] += 1
+            return pose["boxes"][t].copy(), pose["kps"][t].copy(), pose["confs"][t].copy()
+
+    class Rtm:
+        calls = 0
+
+        def __call__(self, img, boxes):
+            Rtm.calls += 1
+            body = pose["kps"][i["t"] - 1][0]
+            # Halpe26: the 17 COCO points, head, neck, hip, then the 6 foot points
+            k = np.concatenate([body, body[[0, 0, 0]], body[[15, 16, 15, 16, 15, 16]] + np.float32([0, 10])])[None]
+            return k, np.full((1, 26), 0.7, np.float32)
+    used = []
+    monkeypatch.setattr(hybrid, "hybrid_model", lambda *a, **k: used.append(a) or hybrid.HybridPose(Yolo(), Rtm()))
+    monkeypatch.setattr(yolo, "_fps", lambda v: FPS)
+    d = sc.dir / "x"
+    d.mkdir()
+    run = run_clip(sc.video, d / "w.npz", rackets=False, init_mode="near", log=lambda *_: None, pose_model="hybrid",
+                   prefetch=False)
+    assert used and Rtm.calls == sc.n and run.stats["pose_model"] == "hybrid" and run.stats["frames_model"] == sc.n
+    assert np.allclose(run.feet[100, 4], pose["kps"][100][0][15] + [0, 10])
+    assert np.allclose(run.feet_conf, 0.7)
+    assert len(run.impacts) == 3
+
+
+def test_fine_one_passes_the_pose_model_and_logs_it(tmp_path, monkeypatch):
+    from tennisbio import clip_pipeline, stages
+
+    for pm, want in ((None, "yolo"), ("hybrid", "hybrid")):
+        ctx, logs = _ctx(tmp_path, **({"pose_model": pm} if pm else {}))
+        clip = tmp_path / "windows" / "w000010000_12000.mp4"
+        monkeypatch.setattr(stages, "cut_window", lambda *a, **k: clip)
+        monkeypatch.setattr(clip_pipeline, "window_ball", lambda v, c, b: (_rally(), 0.5, FW, FH, FPS))
+        calls = []
+
+        def fake_run_clip(*a, **k):
+            calls.append(k)
+            return SimpleNamespace(timing={"pose": 3.0}, strokes=[], fps=FPS,
+                                   stats={"frames": 600, "posed_frames": 600, "pose_model": k["pose_model"],
+                                          "model_s": 2.5, "frames_model": 600, "feet_frames": 590})
+        monkeypatch.setattr(clip_pipeline, "run_clip", fake_run_clip)
+        monkeypatch.setattr("tennisbio.pose.backend.set_device", lambda *a: None)
+        stages._TIMES.clear(); stages._COUNTS.clear(); stages._GATE.clear()
+        stages._GATE.update(passed=0, gated=0, off=0, reasons={}, seconds_gated=0.0)
+        stages._fine_one(ctx, SimpleNamespace(hand="right", height_m=1.84), [{"t": 10.0 + 296 / FPS, "side": "near"}],
+                         296 / FPS, 3.2, False, "abc", [], [], np.zeros(0), {"fps": 1, "shots": []}, object(), None, None, {})
+        assert calls[0]["pose_model"] == want
+        line = next(m for m in logs if "ventana" in m and "pose " in m and "fotogramas" in m)
+        assert f"pose {want} en 600 de 600" in line
+        assert ("pies en 590" in line) == (want == "hybrid")
+        assert stages._TIMES[f"pose_modelo_{want}"] == pytest.approx(2.5)
+        assert stages._COUNTS[f"frames_modelo_{want}"] == 600
+
+
+def test_window_cache_key_changes_only_with_hybrid():
+    import hashlib
+    import json
+
+    from tennisbio.stages import window_cache_key
+
+    base = {"fine_pass": {"window_s": 1.0}, "device": "cpu"}
+    old = hashlib.sha1(json.dumps(["yolo11m-pose.pt", 960, None, "v2"]).encode()).hexdigest()[:8]
+    assert window_cache_key(base) == old                                    # YOLO: the key it always was
+    assert window_cache_key({**base, "fine_pass": {"window_s": 1.0, "pose_model": "yolo"}}) == old
+    assert window_cache_key({**base, "fine_pass": {"window_s": 1.0, "pose_model": "nope"}}) == old
+    hyb = window_cache_key({**base, "fine_pass": {"window_s": 1.0, "pose_model": "hybrid"}})
+    assert hyb != old and len(hyb) == 8
+    # other fine_pass settings never change it (they do not change the pose)
+    assert window_cache_key({**base, "fine_pass": {"window_s": 2.0, "pose_model": "hybrid", "gate": False}}) == hyb

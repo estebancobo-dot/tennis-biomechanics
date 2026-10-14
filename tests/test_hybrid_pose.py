@@ -85,7 +85,8 @@ def test_nobody_in_the_frame():
 
 
 def test_hybrid_cache_is_the_yolo_cache_plus_feet(tmp_path, monkeypatch):
-    monkeypatch.setattr(hybrid, "_fps", lambda v: 50.0)
+    import tennisbio.pose.yolo as yolo
+    monkeypatch.setattr(yolo, "_fps", lambda v: 50.0)
     frames = [np.zeros((360, 640, 3), np.uint8)] * 3
     out = extract_hybrid("x.mp4", tmp_path / "w.npz", frames=frames, model=HybridPose(FakeYolo(), FakeRtm()),
                          progress=False, roi=(10, 20, 640, 360))
@@ -98,15 +99,15 @@ def test_hybrid_cache_is_the_yolo_cache_plus_feet(tmp_path, monkeypatch):
     assert d["boxes"][0][0, 0] == 110 and d["kps"][0][2, 0, 1] == 25 and d["feet"][0][0, 0, 1] == 20 + 100 + 20
 
 
-def test_config_switch_off_by_default(tmp_path, monkeypatch):
+def test_config_switch_on_by_default(tmp_path, monkeypatch):
     from tennisbio.config import load_config
 
     cfg = load_config()
-    # the key is documented but not written: the fine pass's fingerprint (it hashes fine_pass) stays as it was
-    assert "pose_model" not in cfg["fine_pass"]
-    assert fine_pose_model(cfg) == "yolo" and pose_cache_tag(cfg) == []
+    # on since 14-10 (measured on the PC): the window caches get the hybrid tag
+    assert cfg["fine_pass"]["pose_model"] == "hybrid"
+    assert fine_pose_model(cfg) == "hybrid" and pose_cache_tag(cfg) == ["hybrid"]
     assert fine_pose_model({"fine_pass": {"pose_model": "Hybrid"}}) == "hybrid"
-    assert pose_cache_tag({"fine_pass": {"pose_model": "hybrid"}}) == ["hybrid"]
+    assert pose_cache_tag({"fine_pass": {"pose_model": "yolo"}}) == [] and pose_cache_tag({}) == []
     assert fine_pose_model({"fine_pass": {"pose_model": "rtmpose"}}) == "yolo"      # typo: never stops
     assert fine_pose_model({}) == "yolo"
 
@@ -114,10 +115,74 @@ def test_config_switch_off_by_default(tmp_path, monkeypatch):
     import tennisbio.pose.yolo as yolo
     monkeypatch.setattr(yolo, "extract", lambda *a, **k: called.append(("yolo", a, k)) or "y")
     monkeypatch.setattr(hybrid, "extract_hybrid", lambda *a, **k: called.append(("hybrid", a, k)) or "h")
-    assert extract_fine("v.mp4", "c.npz", imgsz=960, progress=False, roi=None, frames=None, cfg={}) == "y"
-    # off: exactly pose.yolo.extract's call (positional arguments in its own order)
+    keep, stats = np.ones(4, bool), {}
+    assert extract_fine("v.mp4", "c.npz", imgsz=960, progress=False, roi=None, frames=None, cfg={},
+                        prefetch=False, keep=keep, stats=stats) == "y"
+    # yolo: exactly pose.yolo.extract's call (positional arguments in its own order, the rest passed on)
     assert called[-1][1] == ("v.mp4", "c.npz", "yolo11m-pose.pt", 960, 1, False, None, None)
-    assert extract_fine("v.mp4", "c.npz", cfg={"fine_pass": {"pose_model": "hybrid"}}) == "h"
+    assert called[-1][2]["prefetch"] is False and called[-1][2]["keep"] is keep and called[-1][2]["stats"] is stats
+    assert "model" not in called[-1][2] and stats["pose_model"] == "yolo"
+    assert extract_fine("v.mp4", "c.npz", cfg={"fine_pass": {"pose_model": "hybrid"}}, keep=keep) == "h"
+    assert called[-1][0] == "hybrid" and called[-1][2]["keep"] is keep and called[-1][2]["prefetch"] is True
+    # the caller's choice (run_clip: the far side is always yolo) wins over the config
+    assert extract_fine("v.mp4", "c.npz", cfg={"fine_pass": {"pose_model": "hybrid"}}, model_name="yolo") == "y"
+
+
+class _ImgYolo:
+    """Fake YOLO whose people depend only on the image (as test_fine_ranges._Model), with prepare."""
+
+    def __init__(self):
+        self.calls, self.prepared = 0, []
+
+    def prepare(self, img):
+        return ("prep", float(img.mean()), img.shape)
+
+    def predict(self, img, conf=0.3, prepared=None):
+        self.calls += 1
+        v = float(img.mean())
+        assert prepared is None or prepared == ("prep", v, img.shape)
+        self.prepared.append(prepared is not None)
+        k = int(v) % 3 + 1
+        b = np.array([[5 + i * 20, 5, 20 + i * 20, 40] for i in range(k)], np.float32).reshape(k, 4)
+        return b, np.full((k, 17, 2), v, np.float32), np.full((k, 17), 0.5, np.float32)
+
+
+def test_hybrid_extract_honours_keep_prefetch_and_frames(tmp_path, monkeypatch):
+    """The hybrid model runs in pose.yolo.extract's own loop: the frames handed by the caller (tee'd with
+    the ball: read once, never decoded again), only the kept ones posed, the input prepared ahead with
+    prefetch (same output as without), the model's frames and time in stats."""
+    import tennisbio.io.video as vio
+    import tennisbio.pose.yolo as yolo
+
+    def no_decode(*a, **k):
+        raise AssertionError("decoded again")
+    monkeypatch.setattr(yolo, "_fps", lambda v: 50.0)
+    monkeypatch.setattr(vio, "capture_frames", no_decode)
+    rng = np.random.default_rng(1)
+    frames = [rng.integers(0, 255, (48, 64, 3), np.uint8) for _ in range(30)]
+    keep = np.zeros(30, bool)
+    keep[4:11] = keep[20:24] = True
+    outs = {}
+    for prefetch in (False, True):
+        y, rtm, stats, seen = _ImgYolo(), FakeRtm(), {}, []
+        gen = (seen.append(i) or f for i, f in enumerate(frames))          # a generator, read once
+        out = extract_hybrid("x.mp4", tmp_path / f"h{prefetch}.npz", frames=gen, prefetch=prefetch, keep=keep,
+                             stats=stats, progress=False, model=HybridPose(y, rtm))
+        assert seen == list(range(30))
+        assert y.calls == keep.sum() == stats["frames"] and stats["model_s"] >= 0
+        assert y.prepared == [prefetch] * int(keep.sum())
+        outs[prefetch] = d = load_npz(out)
+        assert int(d["n"]) == 30 and has_feet(d)
+        for i in range(30):
+            assert len(d["feet"][i]) == len(d["boxes"][i]) == len(d["feet_confs"][i]) == len(d["feats"][i])
+            if not keep[i]:
+                assert d["boxes"][i].shape == (0, 4) and d["feet"][i].shape == (0, 6, 2)
+                assert d["feet_confs"][i].shape == (0, 6)
+            else:
+                assert len(d["boxes"][i]) and (d["feet_confs"][i] > 0).all()   # all the same size: all refined
+        assert len(rtm.calls) == keep.sum()
+    for key in ("boxes", "kps", "confs", "feats", "feet", "feet_confs"):
+        assert all(np.array_equal(a, b) for a, b in zip(outs[False][key], outs[True][key])), key
 
 
 def test_model_loaded_once(monkeypatch):

@@ -29,7 +29,10 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
   marcador (OCR solo cuando cambia; ×3), pasada fina (proceso de raqueta persistente, lotes, una decodificación)
   y pose YOLO en FP16 (validada en el PC con `scripts/model_trials.py`: ×2,2, mismos golpes, 0,25 px). Prueba de
   velocidad pedida al PC con `config/peticion_pc.txt` (id 1, «poc»: 4 min en `_poc4` y 35 min en `_poc`, sin
-  tocar `_smoke`). Prueba de modelos: RTMPose-x tiembla 2,6× menos y ve los pies (híbrido YOLO+RTMPose-x en curso).
+  tocar `_smoke`). Prueba de modelos: RTMPose-x tiembla 2,6× menos y ve los pies. **Híbrido YOLO+RTMPose-x activado en la pasada fina (14-10)**, lado cercano
+  (`fine_pass.pose_model: hybrid`, etapa `fine` v11): mismos golpes, −35 % de temblor, pies en el 99,7 %, ≈ 2× el
+  tiempo de pose en esas ventanas. Los pies de la jugadora seguida llegan al análisis como `run.feet` /
+  `run.feet_conf` (aún sin medidas que los usen); el lado lejano sigue con YOLO.
 - **Cópiala para alguien que empieza** (13-10, 14 h): guía «Empieza aquí» (se oculta y vuelve), «Tu objetivo»
   con su número en cada medida fiable (`learn.TARGETS`; nunca de ruido o sesgo; en cm del usuario si pone su
   altura, guardada solo en su navegador), glosario (`learn.GLOSSARY`, palabras subrayadas y lista al final).
