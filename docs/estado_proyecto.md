@@ -20,6 +20,11 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
 - Móvil y nube: al final, después de que el PC funcione.
 
 ## Lo último (13-10, tarde): leer primero
+- **Bola en paralelo (14-10, tras la prueba 5):** la bola de las ventanas se calcula en la CPU en un hilo aparte
+  (desde la última ventana hacia atrás) mientras la pose usa la iGPU (`fine_speed.ball_ahead`, `fine_ahead.py`);
+  esperado 10-20 min menos en la prueba de 35 min. Solapes de ventanas: 0 s en la prueba 5 (no se implementa).
+  La raqueta «el doble» en la prueba 5 no es del código: la 4 reutilizó cachés de `_poc4`. Detalle en
+  `docs/pruebas_velocidad.md`.
 - **Pasada fina en cascada (14-10):** antes de la pose, la bola de la ventana (que ya hacía falta y queda en
   caché) decide si puede haber un golpe confirmado de la jugadora (`tennisbio.fine_gate`): sin golpe de bola en
   su lado a ±0,4 s de algún candidato y, en el lado cercano, con la bola bien vista ahí, la ventana se descarta

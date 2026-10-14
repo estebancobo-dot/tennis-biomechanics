@@ -18,14 +18,16 @@ def median_background(frames: list[np.ndarray], max_frames=60) -> np.ndarray:
 
 
 class BallTracker:
-    def __init__(self, onnx_path: str | Path, device="cpu", threshold=0.5, batch=8, static_batch: bool = False):
+    def __init__(self, onnx_path: str | Path, device="cpu", threshold=0.5, batch=8, static_batch: bool = False,
+                 threads: int | None = None):
         """static_batch: the model's batch is fixed to `batch` (the last, shorter batch of a window is
         padded and the padding's heatmaps dropped): on the iGPU, DirectML then compiles the whole
-        network for one shape instead of running it as a dynamic graph. Same heatmap for each frame."""
+        network for one shape instead of running it as a dynamic graph. Same heatmap for each frame.
+        threads: CPU threads of the model (None: all cores; fine_speed.ball_ahead_threads)."""
         from .pose.estimator import _ort_session
 
         self.static = bool(static_batch)
-        self.sess = _ort_session(str(onnx_path), device, {"n": batch} if self.static else None)
+        self.sess = _ort_session(str(onnx_path), device, {"n": batch} if self.static else None, threads=threads)
         self.threshold, self.batch = threshold, batch
 
     def track(self, frames, background: np.ndarray | None = None, step: int = 1) -> np.ndarray:
@@ -49,11 +51,21 @@ class BallTracker:
         h0, w0 = size
         bg = cv2.resize(background, (W, H)) if background is not None else median_background(small)
         bg = np.moveaxis(bg.astype(np.float32) / 255.0, -1, 0)
-        norm = [np.moveaxis(f.astype(np.float32) / 255.0, -1, 0) for f in small]
+        # each frame as the model's float input, made when a batch needs it and kept only while a later
+        # batch can still use it (the SEQ - 1 frames before it): the same values as converting all
+        # frames at once, without holding a long window in float (≈ 1.8 MB per frame)
+        held: dict = {}
+
+        def norm_at(i: int) -> np.ndarray:
+            if i not in held:
+                held[i] = np.moveaxis(small[i].astype(np.float32) / 255.0, -1, 0)
+            return held[i]
         out = np.full((len(small), 3), np.nan)
         for s in range(0, len(small), self.batch):
+            for i in [i for i in held if i < s - SEQ]:
+                del held[i]
             idx = range(s, min(len(small), s + self.batch))
-            x = np.stack([np.concatenate([bg] + [norm[max(0, i - k)] for k in range(SEQ - 1, -1, -1)])
+            x = np.stack([np.concatenate([bg] + [norm_at(max(0, i - k)) for k in range(SEQ - 1, -1, -1)])
                           for i in idx]).astype(np.float32)
             if getattr(self, "static", False) and len(x) < self.batch:      # fixed batch: pad, drop after
                 x = np.concatenate([x, np.repeat(x[-1:], self.batch - len(x), axis=0)])

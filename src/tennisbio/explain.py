@@ -243,6 +243,16 @@ COACH = {
     "stroke.head_motion_cm": ("Las mejores jugadoras mantienen la cabeza quieta en el impacto.", "Lafont 2008"),
     "impact.body_height": ("Lo que baja el cuerpo en el impacto dice cuánto usa las piernas.", "Tennis Australia"),
     "impact.base_m": ("Una base ancha da estabilidad en el impacto.", "Tennis Australia"),
+    "loaded.base_court_m": ("La distancia real entre los pies al armar decide cuánto puede cargar la pierna exterior y "
+                            "girar la cadera sin perder el equilibrio.", "Tennis Australia"),
+    "impact.base_court_m": ("Una base algo más ancha que los hombros en el impacto da estabilidad para soltar el swing; "
+                            "demasiado estrecha o demasiado ancha frena la rotación.", "Tennis Australia"),
+    "finish.base_court_m": ("Mantener la base al terminar indica que golpeó en equilibrio y puede recuperar enseguida.",
+                            "Tennis Australia"),
+    "stroke.feet_move_m": ("Los pies plantados del armado al impacto dan una base fija para girar; si se mueven, "
+                           "está ajustando o golpeando en carrera.", "Tennis Australia; Giles y Reid 2021"),
+    "footwork.crossover_steps": ("El paso cruzado cubre más distancia que el lateral: aparece al ir a bolas lejanas y "
+                                 "al recuperar hacia el centro.", "Kovacs 2009; Tennis Australia"),
     "class.stance_impact": ("El apoyo abierto es el más usado en el circuito (84 % de las derechas en un estudio de 2025); el cerrado aparece más al atacar bolas cortas.", "IJSSC 2025; Martin 2021"),
     "class.stance_role": ("El mismo apoyo puede ser de ataque o de defensa según cómo llega a la bola.", "Martin 2021"),
     "class.movement": ("Cómo llega a la bola (parada o en carrera) cambia el apoyo y la terminación.", "Giles y Reid 2021"),

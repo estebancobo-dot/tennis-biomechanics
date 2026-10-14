@@ -953,7 +953,7 @@ def _fine_settings(c):
 FINE_CODE = ("stages", "clip_pipeline", "stroke_analysis", "phases", "kinematics", "impacts", "ball", "court_metrics",
              "outcome", "series", "racket", "racket3d", "racket_face", "racket_orientation", "tracking", "technique",
              "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend", "ball3d", "limits", "fine_gate", "pose.hybrid",
-             "footpoints", "pose.wholebody3d", "body_scale")
+             "footpoints", "pose.wholebody3d", "body_scale", "fine_ahead")
 
 
 def _player_fields(p) -> dict:
@@ -1073,15 +1073,41 @@ def _fine(ctx: Context, p, keep, out_name: str):
     _COUNTS.clear()
     _GATE.clear()
     _GATE.update(passed=0, gated=0, off=0, reasons={}, seconds_gated=0.0)
-    for g in groups:
-        try:
-            strokes += _fine_one(ctx, p, g, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose, wb3d, fcfg)
-        except Exception as e:                    # one bad window never stops the match
-            for c in g:
-                errors.append({"t": c["t"], "error": f"{type(e).__name__}: {e}", "trace": traceback.format_exc()[-1500:]})
-        done += len(g)
-        ctx.progress(done, len(kept), f"golpes candidatos · {len(strokes)} confirmados · "
-                                      f"{_GATE['gated']} ventanas descartadas sin pose")
+    _BALL_AHEAD.clear()
+    # seconds of video in more than one window of the same end (a rally longer than a window's 10 s is
+    # cut in two): their frames are posed and tracked twice (docs/pruebas_velocidad.md)
+    _COUNTS["overlap_s"] = round(window_overlap_s([_window_of(g, pre, post)[:2] + (g[0].get("side", "near"),)
+                                                   for g in groups]), 1)
+    # the ball of the windows from the last one backwards on the CPU while the pose runs on the iGPU
+    from .fine_ahead import BallAhead, ahead_enabled
+    ahead = None
+    if ahead_enabled(ctx.cfg, len(groups), ball is not None):
+        ahead = BallAhead(len(groups), _ahead_job(ctx, groups, pre, post, interlaced, ph, bpath),
+                          gap=int((ctx.cfg.get("fine_speed") or {}).get("ball_ahead_gap", 1))).start()
+    try:
+        for i, g in enumerate(groups):
+            if ahead is not None:
+                ahead.claim(i)
+            try:
+                strokes += _fine_one(ctx, p, g, pre, post, interlaced, ph, court, score, onsets, scenes, ball, rpose,
+                                     wb3d, fcfg)
+            except Exception as e:                    # one bad window never stops the match
+                for c in g:
+                    errors.append({"t": c["t"], "error": f"{type(e).__name__}: {e}", "trace": traceback.format_exc()[-1500:]})
+            done += len(g)
+            ctx.progress(done, len(kept), f"golpes candidatos · {len(strokes)} confirmados · "
+                                          f"{_GATE['gated']} ventanas descartadas sin pose")
+    finally:
+        if ahead is not None:
+            ahead.close()
+            # at the same time as the rest (not part of the wall time): the worker's ball, and the main
+            # thread's waits for it
+            _TIMES["bola_en_paralelo_cpu"] = sum(_BALL_AHEAD.values())
+            _TIMES["espera_bola_en_paralelo"] = ahead.waited
+            _COUNTS["windows_ball_ahead"] = len(ahead.done)
+            if ahead.errors:
+                warnings.append(f"bola en paralelo: falló en {len(ahead.errors)} ventanas (hechas en la iGPU): "
+                                + next(iter(ahead.errors.values()))[:200])
     strokes.sort(key=lambda d: d["match_time_s"])
     _rally_position(strokes, cands, scenes)
     _write(ctx.path(out_name), strokes)
@@ -1106,6 +1132,51 @@ def _fine(ctx: Context, p, keep, out_name: str):
 _TIMES: dict = {}
 _GATE: dict = {}
 _COUNTS: dict = {}       # frames posed / in the windows, impacts and racket frames of the fine pass
+_BALL_AHEAD: dict = {}   # window id → seconds of its ball computed in the background (fine_ahead)
+
+
+def window_overlap_s(windows) -> float:
+    """Seconds of video covered by more than one window of the same end: [(t0, dur, side)]."""
+    total = 0.0
+    for side in {w[2] for w in windows}:
+        end = None
+        for a, b in sorted((a, a + d) for a, d, s in windows if s == side):
+            if end is not None and a < end:
+                total += min(b, end) - a
+            end = b if end is None else max(end, b)
+    return total
+
+
+def _cut_args(ctx: Context) -> dict:
+    """How the windows of this match are cut (cut_window's arguments besides the times)."""
+    pr = _read(ctx.path("probe.json")) if ctx.path("probe.json").exists() else {}
+    track = _read(ctx.path("audio_track.json"))["track"] if ctx.path("audio_track.json").exists() else 0
+    return {"audio_track": track, "width": pr.get("width", 0), "cfr_fps": pr.get("fps") if pr.get("vfr") else None}
+
+
+def _ahead_job(ctx: Context, groups: list, pre: float, post: float, interlaced: bool, ph: str, bpath):
+    """job(i) of fine_ahead.BallAhead: cut window i and cache its ball track, with the ball model on the
+    CPU (its own session, `fine_speed.ball_ahead_threads` threads), exactly where the fine pass reads it."""
+    from .ball import BallTracker
+    from .clip_pipeline import window_ball
+
+    fs = ctx.cfg.get("fine_speed") or {}
+    bcfg = ctx.cfg.get("ball") or {}
+    args = _cut_args(ctx)
+    model: list = []
+
+    def job(i: int):
+        if not model:                        # created in the worker thread, the first time it is needed
+            # batch 1: on the CPU a batch is not faster, and a batch of 8 holds ≈ 3 GB (1: ≈ 0.5 GB)
+            model.append(BallTracker(str(bpath), "cpu", bcfg.get("threshold", 0.5),
+                                     batch=max(1, int(fs.get("ball_ahead_batch", 1) or 1)),
+                                     threads=int(fs.get("ball_ahead_threads", 4) or 0) or None))
+        t0, dur, wid = _window_of(groups[i], pre, post)
+        clip = cut_window(ctx.video, t0, dur, ctx.path("windows") / f"{wid}.mp4", interlaced, **args)
+        took = window_ball(clip, clip.with_name(f"{clip.stem}_{ph}.npz"), model[0])[1]
+        if took:
+            _BALL_AHEAD[wid] = took
+    return job
 
 
 def _took(key: str, t0: float):
@@ -1185,14 +1256,12 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
 
     c = group[0]
     t0, dur, wid = _window_of(group, pre, post)
-    pr = _read(ctx.path("probe.json")) if ctx.path("probe.json").exists() else {}
-    track = _read(ctx.path("audio_track.json"))["track"] if ctx.path("audio_track.json").exists() else 0
+    args = _cut_args(ctx)
     import time
     t_ = time.time()
-    clip = cut_window(ctx.video, t0, dur, ctx.path("windows") / f"{wid}.mp4", interlaced, track,
-                      pr.get("width", 0), pr.get("fps") if pr.get("vfr") else None)
+    clip = cut_window(ctx.video, t0, dur, ctx.path("windows") / f"{wid}.mp4", interlaced, **args)
     _took("recorte", t_)
-    ws = window_scale(pr.get("width", 0))
+    ws = window_scale(args["width"])
     side = c.get("side", "near")
     extra, cache = {}, clip.with_name(f"{clip.stem}_{ph}.npz")
     cut_s = time.time() - t_
@@ -1263,7 +1332,7 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
             f" ({run.timing.get('pose', 0):.0f} s; modelo {st.get('model_s', 0):.0f} s"
             + (f"; pies en {st['feet_frames']}" if pm == "hybrid" and "feet_frames" in st else "")
             + (f", {st['frames_960']} a 960 px por perderla" if st.get("frames_960") else "")
-            + f") · bola {dec.get('ball_s', 0):.0f} s · raqueta {run.timing.get('raqueta', 0):.0f} s"
+            + f") · bola {_ball_said(dec, wid)} · raqueta {run.timing.get('raqueta', 0):.0f} s"
             f" ({st.get('kept_impacts', 0)} de {st.get('impacts', 0)} impactos) · {len(run.strokes)} golpes posibles"
             + (f" · altura {run.height_px:.0f} px ({st['height_scale']})" if st.get("height_scale") else ""))
     if side == "far":                         # far strokes count only when the ball confirms them
@@ -1276,6 +1345,13 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
         if d is not None:
             out.append(d)
     return out
+
+
+def _ball_said(dec: dict, wid: str) -> str:
+    """The ball's time in a window's log line: computed now on the iGPU, or ahead on the CPU."""
+    if not dec.get("ball_s") and wid in _BALL_AHEAD:
+        return f"{_BALL_AHEAD[wid]:.0f} s en paralelo (CPU)"
+    return f"{dec.get('ball_s', 0):.0f} s"
 
 
 def _pose_keep(ctx, dec: dict, side: str):
