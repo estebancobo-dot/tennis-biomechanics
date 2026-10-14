@@ -11,5 +11,20 @@
    "cleaned": false,
    "vfr": false
   }
+ },
+ "scenes": {
+  "fingerprint": "dd83bac2433d46de",
+  "version": "3",
+  "seconds": 1664.6,
+  "finished": "2026-10-14 23:02:05",
+  "summary": {
+   "shots": 1932,
+   "main_camera_shots": 365,
+   "detector": "transnetv2",
+   "main_camera_min": 54.9,
+   "main_rule": "lines",
+   "main_camera_min_colour": 177.7,
+   "main_views": 256
+  }
  }
 }
