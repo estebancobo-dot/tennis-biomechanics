@@ -34,17 +34,22 @@
   }
  },
  "court": {
-  "fingerprint": "7bc724fb491632cd",
-  "version": "3",
-  "seconds": 150.0,
-  "finished": "2026-10-14 00:18:20",
+  "fingerprint": "546fc3d00cad64d2",
+  "version": "4",
+  "seconds": 338.8,
+  "finished": "2026-10-14 04:36:20",
   "summary": {
-   "segments": 151,
-   "with_court": 71,
-   "known_court_reused": 65,
-   "searched": 201,
-   "court_presets": 17,
-   "pitch_deg_median": 18.3
+   "segments": 170,
+   "with_court": 75,
+   "known_court_reused": 342,
+   "searched": 221,
+   "filled_same_view": 24,
+   "samples": 1211,
+   "court_presets": 16,
+   "main_camera_min": 32.7,
+   "court_min": 9.2,
+   "court_share": 0.283,
+   "pitch_deg_median": 18.2
   }
  },
  "players": {
