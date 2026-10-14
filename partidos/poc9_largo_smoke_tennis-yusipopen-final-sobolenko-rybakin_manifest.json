@@ -26,5 +26,15 @@
    "main_camera_min_colour": 177.7,
    "main_views": 256
   }
+ },
+ "audio": {
+  "fingerprint": "5e1ebc31b2db2347",
+  "version": "2",
+  "seconds": 122.8,
+  "finished": "2026-10-14 23:04:08",
+  "summary": {
+   "onsets": 14736,
+   "tracks": 1
+  }
  }
 }
