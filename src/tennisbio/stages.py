@@ -581,7 +581,7 @@ def _surname(name: str) -> str:
     return name.strip().split()[-1] if name and name.strip() else ""
 
 
-@stage("score", "5", deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
+@stage("score", "6", deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
        outputs=("score.json",), match_fields=lambda m: {"player": m.player.name, "opponent": m.opponent})
 def st_score(ctx: Context):
     """TV scoreboard every few seconds of main camera (sets, games, points, pressure)."""
@@ -609,12 +609,17 @@ def st_score(ctx: Context):
     # OCR of the scoreboard region is repeated at least every 30 s even when its pixels look unchanged
     reader = ScoreReader(*names, max_reuse=max(0, int(30.0 / every + 1e-9) - 1))
     out, shots, samples, by_shot = [], [], [], {}
+    # only match play is sampled (main camera with the court found, as the players stage): in the rest
+    # of the "main camera" (close-ups, crowd, graphics) there is often no scoreboard, and every miss
+    # there is an OCR of the whole frame (~2.5 s): it was two thirds of the stage for nothing
+    play_m = play_mask(sc, court or None)
     for i_s, s in enumerate(sc["shots"]):
         if not s["main_camera"]:
             continue
         t = s["start"] / fps + 0.5
         while t < s["end"] / fps:
-            samples.append((i_s, t))
+            if int(t * fps) < len(play_m) and play_m[int(t * fps)]:
+                samples.append((i_s, t))
             t += every
         by_shot[i_s] = len(shots)
         shots.append({"start": s["start"] / fps, "end": s["end"] / fps, "tried": 0, "read": 0})
@@ -636,7 +641,8 @@ def st_score(ctx: Context):
     if not out:
         ctx.log(f"  AVISO: no se pudo leer el marcador con «{names[0]}» y «{names[1]}»: sin marcador no se sabe "
                 f"quién está en cada lado; compruebe que el partido es de {ctx.match.player.name}")
-    return {"readings": len(out), "pressure": sum(r["pressure"] for r in out)}
+    ctx.log(f"  marcador: {len(samples)} muestras en juego, {reader.ocr_calls} OCR ({len(out)} lecturas)")
+    return {"readings": len(out), "pressure": sum(r["pressure"] for r in out), "samples": len(samples), "ocr_calls": reader.ocr_calls}
 
 
 def score_at(score: dict, t: float, max_age_s=40.0):

@@ -79,3 +79,16 @@ Decisión: pasada barata (partido entero) con YOLO11m 960 FP16 (ya activo). Pasa
 el 99,7 %, temblor −35 %, mismos golpes, 2× el coste de YOLO FP16 solo en las ventanas), después de medir la
 prueba de velocidad con lo actual. RTMPose en FP16 va más lento en DirectML: no se usa. La bola en FP16 no
 gana nada: sigue en FP32. Con 13 golpes, diferencias de F1 de ±0,07 son ruido.
+
+## Prueba de velocidad en el PC (petición 1, 14-10 de madrugada; 35 min de vídeo)
+| Etapa | Antes (13-10) | Ahora | Nota |
+|---|---|---|---|
+| Pista | 16,6 min | 2,5 | homografías reutilizadas |
+| Identidad + candidatos | 61,5 | 0,5 | lectura única de players.npz |
+| Jugadores | 48,2 | 39,1 | solo 10,6 min de juego con pista (de 32,7 de cámara principal): 0,37 s/fotograma → lectura de vídeo, no modelo |
+| Marcador | 19,2 | 25,7 | muestreaba toda la cámara principal: OCR de imagen entera donde no hay marcador |
+| Pasada fina | 103 | 82,6 | pose 42 min, bola 27, raqueta 6, cuerdas y 3D 3; 177 candidatos → 28 golpes |
+| Total | 251 | 153 (−39 %) | ≈ 15 h por partido |
+
+Siguiente (en curso): jugadores con fotogramas a 960 px desde ffmpeg; marcador solo en juego; pasada fina en
+cascada (puerta barata antes de la pose completa); cobertura de la pista (2/3 del juego se pierde: precisión).
