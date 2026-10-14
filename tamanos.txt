@@ -1,4 +1,4 @@
-fecha: 2026-10-14T20:50:04
+fecha: 2026-10-14T20:56:28
        5.7 MB  \output\benchmark
      450.2 MB  \output\entrenamiento
        0.1 MB  \output\investigacion
@@ -11,7 +11,7 @@ fecha: 2026-10-14T20:50:04
      183.1 MB  \output\_poc5_4
     1550.1 MB  \output\_poc6_35
      183.7 MB  \output\_poc6_4
-     850.4 MB  \output\_poc7_35
+     988.7 MB  \output\_poc7_35
      183.8 MB  \output\_poc7_4
     1906.1 MB  \output\_smoke
        4.9 MB  \output\_smoke\auditoria
