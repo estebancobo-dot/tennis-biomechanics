@@ -238,6 +238,10 @@ class SegWorker:
             rd.join(self.timeout_s(len(job["frames"])))
             if rd.is_alive():
                 self.proc.kill()
+                try:
+                    self.proc.wait(timeout=10)            # reaped: alive() is False from here on
+                except Exception:
+                    pass
                 rd.join(10)
                 return False, None, f"sin respuesta en {self.timeout_s(len(job['frames'])):.0f} s (colgado)\n{self._stderr()}"
             line = got[0] if got else b""
