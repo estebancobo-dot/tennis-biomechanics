@@ -33,5 +33,36 @@
    "onsets": 2205,
    "tracks": 1
   }
+ },
+ "court": {
+  "fingerprint": "19f365cbc931b9fd",
+  "version": "4",
+  "seconds": 351.7,
+  "finished": "2026-10-14 12:33:28",
+  "summary": {
+   "segments": 194,
+   "with_court": 85,
+   "known_court_reused": 308,
+   "searched": 245,
+   "filled_same_view": 12,
+   "samples": 1079,
+   "court_presets": 20,
+   "main_camera_min": 30.3,
+   "court_min": 9.5,
+   "court_share": 0.312,
+   "pitch_deg_median": 18.3
+  }
+ },
+ "score": {
+  "fingerprint": "1571c2740f905667",
+  "version": "6",
+  "seconds": 246.1,
+  "finished": "2026-10-14 12:37:34",
+  "summary": {
+   "readings": 140,
+   "pressure": 54,
+   "samples": 147,
+   "ocr_calls": 128
+  }
  }
 }
