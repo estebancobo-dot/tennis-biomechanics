@@ -47,7 +47,7 @@ CLASS_KEYS = ["stance_loaded", "stance_impact", "stance_role", "finish", "finish
 FOOTWORK_KEYS = ["steps_to_impact", "adjustment_steps", "first_step_s", "first_step_length_m", "last_step_length_m",
                  "last_plant_before_impact_s", "approach_speed_mps", "path_m", "peak_speed_mps", "direction_changes",
                  "split_takeoff_vs_opp_s", "split_landing_vs_opp_s", "speed_pre_split_mps", "speed_post_split_mps",
-                 "recovery_to_centre_m", "off_centre_at_opp_hit_m", "weight_loaded_to_non"]
+                 "recovery_to_centre_m", "off_centre_at_opp_hit_m", "weight_loaded_to_non", "back_heel_lift_s"]
 FOOTWORK_NAMES = {
     "steps_to_impact": ("Pasos hasta el impacto", "", 3), "adjustment_steps": ("Pasos de ajuste (últimos 0,8 s)", "", 2),
     "first_step_s": ("Primer paso tras el split step", "s", 2), "last_plant_before_impact_s": ("Último apoyo antes del impacto", "s", 2),
@@ -61,6 +61,7 @@ FOOTWORK_NAMES = {
     "split_landing_vs_opp_s": ("Aterrizaje del split step respecto al golpe rival", "s", 2),
     "speed_pre_split_mps": ("Velocidad antes del split step", "m/s", 2), "speed_post_split_mps": ("Velocidad después del split step", "m/s", 2),
     "off_centre_at_opp_hit_m": ("Distancia al centro cuando la rival vuelve a golpear", "m", 3),
+    "back_heel_lift_s": ("Talón de atrás arriba (pivote sobre la punta)", "s", 2),
 }
 # minimum difference worth telling, by unit (below it, even a solid difference is not technique)
 MIN_DIFF = {"°": 4.0, "%": 2.5, "s": 0.04, "": 0.12, "m": 0.2, "m/s": 0.3, "cm": 3.0}
@@ -239,7 +240,7 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
     out["footwork"]["last_plant_foot"] = _counts([(s["technique"].get("footwork") or {}).get("last_plant_foot") for s in near])
     out["footwork"]["move_direction"] = _counts([(s["technique"].get("classes") or {}).get("move_direction") for s in near])
     out["footwork"]["rear_leg_step_after"] = _counts([(s["technique"].get("footwork") or {}).get("rear_leg_step_after") for s in near])
-    for k in ("braking_step", "kick_back", "step_in", "drag_foot"):
+    for k in ("braking_step", "kick_back", "step_in", "drag_foot", "back_heel_lift"):
         out["footwork"][k] = _counts([(s["technique"].get("footwork") or {}).get(k) for s in near])
     out["footwork"]["first_step_right_way"] = _counts([(s["technique"].get("footwork") or {}).get("first_step_right_way") for s in near])
     out["skeleton"] = _mean_skeleton(near)

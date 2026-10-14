@@ -1340,7 +1340,8 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
         from .court_metrics import court_metrics
         ta = r.metrics.get("time_available_s")
         opp = None if ta is None else r.impact_frame - int(round(ta * run.fps))
-        cm = court_metrics(run.img, run.sk, H, r.stroke, r.impact_frame, opp)
+        cm = court_metrics(run.img, run.sk, H, r.stroke, r.impact_frame, opp,
+                           feet=getattr(run, "feet", None), feet_conf=getattr(run, "feet_conf", None))
         if side == "far":       # ankles of a ~70 px player are too rough for stance and base width
             for k in ("stance", "stance_angle_deg", "stance_width_m"):
                 cm.pop(k, None)
@@ -1463,7 +1464,8 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
              "surface": ctx.match.surface or "", "next_opp": ret, "return": is_return, "ball": ball_m,
              "head_motion_cm": r.metrics.get("head_motion_impact_cm"),
              "bounce_to_impact": r.metrics.get("bounce_to_impact_s"), "ball_hit": "ball" in (r.impact_source or ""),
-             "height_m": p.height_m})
+             "height_m": p.height_m},
+            feet=getattr(run, "feet", None), feet_conf=getattr(run, "feet_conf", None))
     d["technique"] = tech(ph_frames)
     if side == "near":
         # repeatability of the whole stroke: its phase instants are known to ±1-2 frames, so the stroke

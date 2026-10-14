@@ -1,5 +1,7 @@
-"""Footwork from the ankles on the court: steps, first step, adjustment steps, loading foot,
-airborne / sliding detection, movement speed and recovery.
+"""Footwork from the feet on the court: steps, first step, adjustment steps, loading foot,
+airborne / sliding detection, movement speed, recovery and (with heels and toes) the pivot of
+the back foot. Each foot is its ankle, or its ground contact (heel–toe middle) when the pose has
+foot points (footpoints.ground_track); airborne frames are always judged on the ankles.
 
 Everything is in her own court frame (court_metrics.player_frame_H: her baseline at y = 0,
 x + = her right, the net at y = 11.885), in metres. A foot is "planted" while it barely moves on
@@ -40,8 +42,13 @@ class Step:
                 "length_m": round(self.length_m, 2), "dx": round(self.dx, 2), "dy": round(self.dy, 2), "crossover": self.crossover}
 
 
-def feet_track(img: np.ndarray, sk: Skeleton, H: np.ndarray):
-    """Court positions (T, 2, 2) of the dominant and non-dominant ankle, NaN when unseen."""
+def feet_track(img: np.ndarray, sk: Skeleton, H: np.ndarray, feet: np.ndarray | None = None):
+    """Court positions (T, 2, 2) of the dominant and non-dominant foot, NaN when unseen: the ankles,
+    or with foot points (footpoints.clean_feet) the ground contacts (heel–toe middle, less jitter
+    than the ankle and exactly on the court plane), see footpoints.ground_track."""
+    if feet is not None:
+        from .footpoints import ground_track
+        return ground_track(img, sk, H, feet)[0]
     T = len(img)
     out = np.full((T, 2, 2), np.nan)
     for j, name in enumerate(("dom_ankle", "non_ankle")):
@@ -158,11 +165,13 @@ def hip_court(img: np.ndarray, sk: Skeleton, H: np.ndarray, feet: np.ndarray) ->
 
 def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fps: float, impact: int,
              opp: int | None, split: int | None, finish: int | None, loaded: int | None, surface: str = "",
-             next_opp: int | None = None, stroke: str = "forehand") -> dict:
+             next_opp: int | None = None, stroke: str = "forehand", foot_points: np.ndarray | None = None) -> dict:
     """All footwork descriptors of one stroke (frame indices are clip frames). next_opp: the
-    opponent's next hit (to know whether she had recovered by then)."""
+    opponent's next hit (to know whether she had recovered by then). foot_points: the cleaned
+    heels and toes (footpoints.clean_feet) or None: with them the feet on the court are the ground
+    contacts and the pivot of the back foot is measured; without them, the ankles as always."""
     T = len(img)
-    feet = feet_track(img, sk, H)
+    feet = feet_track(img, sk, H, foot_points)
     air = airborne(img, sk, scale, fps)
     feet_g = feet.copy()
     feet_g[air] = np.nan                       # positions only from feet on the ground
@@ -370,6 +379,11 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
         lifted = w[:, bj] & ~w[:, 1 - bj]
         runs_k = np.convolve(lifted.astype(int), np.ones(need, int), "valid") if len(lifted) >= need else np.zeros(0)
         out["kick_back"] = bool((runs_k >= need).any())
+    # pivot on the ball of the back foot (heel up, toes planted) between loaded and finish: only with
+    # heels and toes; not a step, so it does not depend on the steps being measurable
+    if foot_points is not None:
+        from .footpoints import heel_lift
+        out.update(heel_lift(foot_points, sk, H, scale, fps, impact, loaded, finish, stroke))
     # recovered when the opponent hits again: distance from the centre of her baseline area
     if next_opp is not None and 0 <= next_opp < T and np.isfinite(pos[next_opp]).all():
         out["off_centre_at_opp_hit_m"] = round(float(abs(pos[next_opp, 0])), 2)

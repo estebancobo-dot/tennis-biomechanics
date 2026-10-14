@@ -83,7 +83,7 @@ gana nada: sigue en FP32. Con 13 golpes, diferencias de F1 de ±0,07 son ruido.
 Híbrido preparado para la pasada fina (14-10), **apagado**: `src/tennisbio/pose/hybrid.py` (mismo contrato que
 YOLO + 6 puntos de los pies; RTMPose-x en FP32 solo en las personas grandes o en la caja que se le pase),
 `fine_pass.pose_model: yolo | hybrid` (comentada en `config/default.yaml` para no cambiar la huella) y
-`src/tennisbio/footpoints.py` (talón-punta → apoyo y base cuando se active; ninguna medida actual lo usa aún).
+`src/tennisbio/footpoints.py` (talón-punta → apoyo y base). Las medidas ya lo usan cuando el golpe trae `run.feet` / `run.feet_conf`: apoyo, base, pasos y pies en la pista desde el apoyo talón–punta; orientación de cada pie (`front_foot_angle_deg`, `back_foot_angle_deg`) y pivote del pie de atrás (`back_heel_lift`). Sin pies, todo sale de los tobillos exactamente como antes.
 
 ## Prueba de velocidad en el PC (petición 1, 14-10 de madrugada; 35 min de vídeo)
 | Etapa | Antes (13-10) | Ahora | Nota |

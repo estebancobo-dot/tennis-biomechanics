@@ -74,19 +74,21 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Cambios de dirección | Giles 2023 | ✔ | `direction_changes` |
 | Velocidad media y máxima de carrera | Martínez-Gallego; TA | ✔ | `peak_speed_mps` (p90, suavizado), `speed_at_impact_mps` |
 | Recorrido hasta la bola | Reid 2013 (70 % tras 3-4 m) | ✔ | `path_m` |
-| Tipo de apoyo (abierto, semiabierto, neutro, cerrado) | IJSSC 2025 (abierto 83,6 %) | ✔ | `stance_loaded`, `stance_impact` |
+| Tipo de apoyo (abierto, semiabierto, neutro, cerrado) | IJSSC 2025 (abierto 83,6 %) | ✔ | `stance_loaded`, `stance_impact` (línea entre los dos apoyos: punto medio talón–punta de cada pie cuando la pose tiene los pies; si no, los tobillos) |
 | Subtipos: abierto de ataque, abierto defensivo, neutro de ataque | Martin 2021 | ✔ | clase `stance_role` |
 | Pierna que carga | Sandamas 2013 | ✔ | `weight_loaded_to_non` (proxy) |
 | En carrera, en salto, a un pie, deslizando | Giles & Reid 2021; Starbuck | ✔ | clase `movement`; deslizar solo en tierra/hierba |
 | Última zancada más larga en carrera | Giles & Reid 2021 | ✔ | `last_step_length_m` (por situación en el modelo) |
 | Recuperación: distancia, dirección, tiempo | Armstrong 2024; Yandell | ✔ | `recovery_*` a 1 s, `off_centre_at_opp_hit_m`, `moving_at_opp_hit_mps` |
-| Cada paso nombrado: lateral (sin cruzar), cruzado, de carrera, hacia delante, hacia atrás, de ajuste | Kovacs 2009; Tennis Australia | ◐ | `footwork.step_kinds`, `approach_steps`, `approach_pattern`, clase `approach_main` (solo cuando los tobillos se ven quietos ≥ 40 %; si no, «no medible en este golpe») |
+| Cada paso nombrado: lateral (sin cruzar), cruzado, de carrera, hacia delante, hacia atrás, de ajuste | Kovacs 2009; Tennis Australia | ◐ | `footwork.step_kinds`, `approach_steps`, `approach_pattern`, clase `approach_main` (pies en la pista: apoyo talón–punta cuando la pose tiene los pies, que tiembla menos que el tobillo; si no, tobillos; solo cuando los pies se ven quietos ≥ 40 %; si no, «no medible en este golpe») |
 | Rodear la bola para la derecha invertida | TennisViz; Tennis Australia | ✔ | clase `around_ball` (derecha desde su lado de revés) |
 | Frenado: último paso largo con caída de la velocidad | Giles y Reid 2021 | ◐ | `braking_step` |
 | Patada atrás (tijera) tras el impacto | Tennis Australia | ◐ | `kick_back` (pie de atrás en el aire ≥ 0,08 s con el otro apoyado) |
 | Recuperación: tipo de cada paso de vuelta, cuándo empieza | Kovacs 2009; Armstrong 2024 | ◐ | `recovery_steps`, `recovery_pattern`, `recovery_first_step`, `recovery_start_s` (dentro de los 0,8 s de vídeo tras el impacto) |
 | Nuevo split step antes del siguiente golpe de la rival | Uzu 2009 | ✘ | la ventana de vídeo acaba 0,8 s después del impacto |
-| Orientación del pie, apoyo de talón/punta | — | ✘ | COCO-17 sin puntas ni talones |
+| Orientación del pie (talón → dedo gordo respecto a la línea de fondo) en el armado y el impacto | Tennis Australia | ◐ | `front_foot_angle_deg`, `back_foot_angle_deg` (en el armado y el impacto; 0° = paralelo hacia el lado en que golpea, 90° = hacia la red; solo con talones y puntas: pose híbrida; con COCO-17 se dice «sin talones ni puntas») |
+| Pivote sobre la punta del pie de atrás (talón arriba, punta apoyada) | Tennis Australia; ITF | ◐ | `back_heel_lift` (sí/no del armado a la terminación) y `back_heel_lift_s` (cuándo, respecto al impacto); solo con talones y puntas |
+| Base y anchura de la base sobre la pista | Tennis Australia | ✔ | `base_court_m` (armado, impacto, terminación), `feet_move_m`: entre los apoyos talón–punta con los pies, si no entre los tobillos |
 | Altura del split step | — | ✘ | eje vertical confundido con la profundidad |
 
 ## 4. Raqueta, swing y empuñadura

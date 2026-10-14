@@ -158,6 +158,23 @@ LINES["takeback"].append(("footwork.steps_to_impact", lambda t: f"Llega a la bol
 LINES["impact"].append(("stroke.head_motion_cm", lambda t: ("Su cabeza se queda quieta en el impacto" if t["median"] <= 3 else
                                                          "Su cabeza se mueve en el impacto") +
                         f" ({fmt(t['median'], 1)} cm en ±50 ms)."))
+
+
+def _foot_dir(a: float) -> str:
+    """How a coach says where the toes point (foot angle against the baseline, technique.DESCRIPTORS)."""
+    return ("hacia atrás" if a < -10 else "paralelo a la línea de fondo, hacia el lado en que golpea" if a < 25 else
+            "en diagonal hacia la red" if a < 65 else "hacia la red" if a < 115 else "cruzado hacia el otro lado")
+
+
+LINES["loaded"].append(("loaded.back_foot_angle_deg", lambda t: f"Al armar, el pie de atrás apunta {_foot_dir(t['median'])} "
+                                                                f"({fmt(t['median'])}° respecto a la línea de fondo; {_rng(t)}°)."))
+LINES["impact"].append(("impact.front_foot_angle_deg", lambda t: f"En el impacto, el pie de delante apunta {_foot_dir(t['median'])} "
+                                                                 f"({fmt(t['median'])}°; {_rng(t)}°)."))
+LINES["impact"].append(("impact.back_foot_angle_deg", lambda t: f"En el impacto, el pie de atrás apunta {_foot_dir(t['median'])} "
+                                                                f"({fmt(t['median'])}°; {_rng(t)}°)."))
+LINES["impact"].append(("footwork.back_heel_lift_s", lambda t: (
+    f"Levanta el talón de atrás y pivota sobre la punta {fmt(abs(t['median']), 2)} s "
+    f"{'después' if t['median'] >= 0 else 'antes'} del impacto ({_rng(t, 2)} s).")))
 LINES["recovery"].append(("footwork.off_centre_at_opp_hit_m", lambda t: f"Cuando la rival vuelve a golpear está a {fmt(t['median'], 1)} m del centro."))
 
 # What each measurement means for the stroke, as a coach would say it, with where it comes from
@@ -293,6 +310,19 @@ COACH = {
     "footwork.drag_foot": ("Arrastrar el pie de atrás tras golpear mantiene el equilibrio en carrera.", "Tennis Australia"),
     "step_in": ("El paso de ataque (step-in) lleva el peso hacia delante, dentro de la pista.", "Tennis Australia; Kovacs 2009"),
     "drag_foot": ("Arrastrar el pie de atrás tras golpear mantiene el equilibrio en carrera.", "Tennis Australia"),
+    "loaded.back_foot_angle_deg": ("El pie de atrás colocado de lado (paralelo a la línea de fondo o algo hacia la red) es el apoyo "
+                                   "sobre el que carga y gira la cadera.", "Tennis Australia"),
+    "loaded.front_foot_angle_deg": ("Hacia dónde apunta el pie de delante al armar decide cuánto podrá girar la cadera.", "Tennis Australia"),
+    "impact.front_foot_angle_deg": ("El pie de delante abierto hacia la red deja girar la cadera; muy cerrado la bloquea.",
+                                    "Tennis Australia; Elliott 2006"),
+    "impact.back_foot_angle_deg": ("El pie de atrás gira hacia la red con la cadera: si se queda clavado de lado, la rotación se frena.",
+                                   "Tennis Australia; Landlinger 2010"),
+    "footwork.back_heel_lift": ("Pivotar sobre la punta del pie de atrás (el talón se levanta) deja que la cadera gire del todo "
+                                "hacia la bola: es una comprobación clásica de los entrenadores.", "Tennis Australia; ITF (Crespo, Reid)"),
+    "back_heel_lift": ("Pivotar sobre la punta del pie de atrás (el talón se levanta) deja que la cadera gire del todo "
+                       "hacia la bola: es una comprobación clásica de los entrenadores.", "Tennis Australia; ITF (Crespo, Reid)"),
+    "footwork.back_heel_lift_s": ("El talón de atrás se levanta cuando la cadera empieza a girar hacia la bola, alrededor del impacto.",
+                                  "Tennis Australia; Elliott 2006"),
 }
 # What a coach checks at each moment (critical features: Knudson 2006; Tennis Australia)
 PHASE_FOCUS = {
@@ -594,6 +624,8 @@ def grip_compatible(model: dict) -> str | None:
             "El tipo exacto no se ve en la retransmisión.")
 
 
+FEET_NOT_MEASURABLE = ("Orientación del pie y apoyo de talón o de punta (pivote del pie de atrás): el esqueleto de estos golpes "
+                       "no tiene puntos en los pies (talones y puntas); se miden cuando la pose los da.")
 NOT_MEASURABLE = [
     "Empuñadura exacta (el bisel), en la espera y al golpear, y el cambio de empuñadura: la mano mide pocos píxeles "
     "en la retransmisión. Solo se dice si sus golpes son compatibles con una empuñadura semioccidental u occidental.",
@@ -609,7 +641,7 @@ NOT_MEASURABLE = [
     "Momento exacto (en milisegundos) de cada pico de la cadena cinética: está por debajo de un fotograma; se da el orden.",
     "Mirada: se la ve de espaldas.",
     "Fuerzas y cargas en las articulaciones: solo se mide el movimiento.",
-    "Orientación del pie y apoyo de talón o de punta: el esqueleto no tiene puntos en los pies.",
+    FEET_NOT_MEASURABLE,
     "Altura del salto del split step: desde detrás, subir se confunde con alejarse.",
     "Nuevo split step antes del siguiente golpe de la rival: el vídeo de cada golpe acaba 0,8 s después del impacto.",
     "Punto del cordaje donde golpea, presión de agarre y contribución de cada segmento a la velocidad: necesitan "
@@ -634,6 +666,11 @@ def model_view(model: dict, stroke: str) -> dict:
                 "curves": v.get("curves"),
             }
     nm = list(NOT_MEASURABLE)
+    # with heels and toes in her strokes the foot direction and the pivot are measured: not «no medible»
+    feet_seen = ((model.get("footwork") or {}).get("back_heel_lift") or {}).get("n") or any(
+        k.endswith("_foot_angle_deg") for k in model.get("typical", {}))
+    if feet_seen:
+        nm.remove(FEET_NOT_MEASURABLE)
     if model.get("steps_reliable_share") is not None and model["steps_reliable_share"] < 0.5:
         nm.append("Pasos uno a uno, primer paso y split step: en estas imágenes sus tobillos tiemblan demasiado "
                   f"(medibles solo en el {round(100 * model['steps_reliable_share'])} % de los golpes); sí se miden "
@@ -643,5 +680,5 @@ def model_view(model: dict, stroke: str) -> dict:
             "footwork": model["footwork"], "not_measurable": nm, "min_n": MIN_N,
             "coach": {k: v[0] for k, v in COACH.items() if k.startswith("footwork.") or k in (
                 "first_step_right_way", "rear_leg_step_after", "approach_main", "recovery_first_step", "braking_step", "kick_back", "around_ball",
-                "step_in", "drag_foot")}, "curves": model.get("curves"),
+                "step_in", "drag_foot", "back_heel_lift")}, "curves": model.get("curves"),
             "factors": {fk: FACTORS[fk][0] for fk in model["variants"]}}

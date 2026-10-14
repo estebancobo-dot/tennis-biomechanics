@@ -1252,6 +1252,9 @@ function renderFeetPanel() {
   add("En el impacto", F.airborne_at_impact ? "golpea en el aire (salto)" : F.sliding_at_impact ? "golpea deslizando" : F.feet_at_impact ? F.feet_at_impact : nm || "—", 0);
   // 7 after contact
   add("Tras golpear", F.steps_reliable === false ? nm : [F.rear_leg_step_after ? "la pierna de atrás pasa adelante" : "la pierna de atrás no pasa adelante", F.kick_back ? "patada atrás (tijera) con la pierna de atrás" : null, F.drag_foot ? "arrastra el pie de atrás" : null].filter(Boolean).join("; "), 0.15);
+  // 7b pivot of the back foot (only with heels and toes in the pose; independent of the steps)
+  if (F.back_heel_lift === true) add("Pie de atrás", `pivota sobre la punta: el talón se levanta ${fmt(Math.abs(F.back_heel_lift_s), 2)} s ${F.back_heel_lift_s >= 0 ? "después" : "antes"} del impacto`, isN(F.back_heel_lift_s) ? F.back_heel_lift_s : null);
+  else if (F.back_heel_lift === false) add("Pie de atrás", "el talón de atrás no se levanta con la punta apoyada (sin pivote) del armado a la terminación", null);
   // 8 recovery
   add("Recuperación", `${F.recovery_pattern ? F.recovery_pattern + (isN(F.recovery_start_s) ? `, empezando ${fmt(F.recovery_start_s, 2)} s después del impacto` : "") : F.steps_reliable === false ? nm : "sin pasos de vuelta dentro del vídeo"}${isN(F.recovery_to_centre_m) ? `; en 1 s se acerca ${fmt(F.recovery_to_centre_m, 1)} m al centro` : ""}`, isN(F.recovery_start_s) ? F.recovery_start_s : null);
   const ol = document.getElementById("feet-txt");
@@ -1982,7 +1985,7 @@ function renderFeet() {
   const rl = f.rear_leg_step_after; if (rl && rl.n >= MN) L.push(`<li>La pierna de atrás pasa adelante tras el impacto en ${Math.round(100 * (rl.counts.true || 0) / rl.n)} % de los golpes</li>`);
   const cls = (MODEL.classes || {}), pat = (k, t) => { const c = cls[k]; if (c && c.n >= MN) L.push(`<li>${t}: ${Object.entries(c.counts).slice(0, 4).map(([k2, n]) => `${k2} ${Math.round(100 * n / c.n)} %`).join(", ")}${why(k)}</li>`); };
   pat("approach_main", "Pasos con los que va a la bola"); pat("recovery_first_step", "Primer paso de la recuperación");
-  [["braking_step", "Frena con un último paso largo"], ["kick_back", "Patada atrás (tijera) tras golpear"], ["step_in", "Paso de ataque hacia delante (step-in)"], ["drag_foot", "Arrastra el pie de atrás tras golpear"]].forEach(([k, t]) => { const c = f[k]; if (c && c.n >= MN) L.push(`<li>${t} en el ${Math.round(100 * (c.counts.true || 0) / c.n)} % de los golpes${why(k)}</li>`); });
+  [["braking_step", "Frena con un último paso largo"], ["kick_back", "Patada atrás (tijera) tras golpear"], ["step_in", "Paso de ataque hacia delante (step-in)"], ["drag_foot", "Arrastra el pie de atrás tras golpear"], ["back_heel_lift", "Pivota sobre la punta del pie de atrás (talón arriba)"]].forEach(([k, t]) => { const c = f[k]; if (c && c.n >= MN) L.push(`<li>${t} en el ${Math.round(100 * (c.counts.true || 0) / c.n)} % de los golpes${why(k)}</li>`); });
   const ab = cls.around_ball; if (ab && ab.n >= MN) L.push(`<li>Rodea la bola para pegar la derecha desde su lado de revés en ${ab.n} golpes${why("around_ball")}</li>`);
   const c = f.first_step_type; if (c && c.n >= MN) L.push(`<li>Tipo de primer paso: ${Object.entries(c.counts).slice(0, 4).map(([k, n]) => `${k} ${Math.round(100 * n / c.n)} %`).join(", ")}</li>`);
   document.getElementById("m-feet").innerHTML = L.join("") || `<li>Sin datos de pies todavía.</li>`;
@@ -2173,7 +2176,15 @@ function aHerChange(d, l) {
     ? top.map(x => `${x.c.label.toLowerCase()} ${fmt(x.ma, x.c.dec)}${u(x.c)} (en todas: ${fmt(x.mb, x.c.dec)}${u(x.c)})`).join("; ") + "."
     : "sin cambios claros respecto a sus demás derechas.");
 }
+const A_FEET_KEYS = ["footwork.back_heel_lift", "footwork.back_heel_lift_s"];
 function aWhyMissing(set, c) {
+  // measured only from the heels and toes: absent when the pose of these strokes has no foot points
+  if (c.key === "footwork.back_heel_lift_s") {
+    const n = set.filter(s => (s.lv || {})["footwork.back_heel_lift"] === false).length;
+    if (n) return `no levanta el talón de atrás en ninguno de estos golpes (${n} con el pie de atrás bien visto)`;
+  }
+  if (c.key.endsWith("_foot_angle_deg") || A_FEET_KEYS.includes(c.key))
+    return "sin talones ni puntas en estos golpes: la pose no da los puntos de los pies (o salen tapados o borrosos); con los tobillos solo se miden el apoyo y la base";
   if (c.key.startsWith("stroke.return_")) {
     const n = set.filter(s => s.cl.play === "resto").length;
     return n ? `solo se mide en los restos: ${n} resto${n > 1 ? "s" : ""} en estos golpes, sin sus pies en la pista cuando saca la rival` : "solo se mide en los restos (devolver el saque) y no hay ninguno en estos golpes: elige «Momento del punto: resto»";

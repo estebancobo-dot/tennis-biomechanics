@@ -24,7 +24,7 @@ def synthetic(n=400, seed=3):
             grp, name = k.split(".", 1)
             if grp == "class":
                 continue
-            v = rnd.choice([True, False]) if name in ("step_in", "braking_step", "drag_foot", "rear_leg_step_after") else round(rnd.uniform(-1, 1) * 40, 2)
+            v = rnd.choice([True, False]) if name in ("step_in", "braking_step", "drag_foot", "rear_leg_step_after", "back_heel_lift") else round(rnd.uniform(-1, 1) * 40, 2)
             if rnd.random() < 0.15:                 # missing values happen: the screen must say why
                 continue
             if grp in ("stroke", "footwork"):

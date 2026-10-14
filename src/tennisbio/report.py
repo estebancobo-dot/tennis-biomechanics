@@ -171,7 +171,7 @@ FEET_KEYS = ("steps_reliable", "split_takeoff_vs_opp_s", "split_landing_vs_opp_s
              "first_step_s", "first_step_type", "first_step_right_way", "first_step_length_m", "approach_steps", "approach_pattern",
              "path_m", "peak_speed_mps", "direction_changes", "move_direction", "approach_speed_mps", "adjustment_steps",
              "last_step_length_m", "braking_step", "airborne_at_impact", "one_foot_at_impact", "feet_at_impact", "sliding_at_impact",
-             "weight_loaded_to_non", "rear_leg_step_after", "kick_back", "step_in", "drag_foot", "recovery_steps", "recovery_pattern", "recovery_first_step",
+             "weight_loaded_to_non", "rear_leg_step_after", "kick_back", "step_in", "drag_foot", "back_heel_lift", "back_heel_lift_s", "recovery_steps", "recovery_pattern", "recovery_first_step",
              "recovery_start_s", "recovery_to_centre_m", "recovery_dx_m", "recovery_dy_m", "off_centre_at_opp_hit_m",
              "moving_at_opp_hit_mps", "feet_still_share", "movement")
 
