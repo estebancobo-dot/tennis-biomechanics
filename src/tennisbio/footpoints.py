@@ -92,27 +92,98 @@ def ground_track(img: np.ndarray, sk: Skeleton, H: np.ndarray, feet: np.ndarray 
     return out, used
 
 
+# Foot direction (heel → big toe) from the broadcast camera, behind and ~20° above the near player.
+# On the PC (14-10) 20-44 % of the single-frame readings pointed the toes back towards her own fence
+# (< -45°), clustered around -90° (toes drawn straight below the heel in the image): 8 of 13 front
+# feet at the end of the backswing. The court homography cannot do that: to turn a foot pointing at
+# the net (heel → toe 23-35 px up the image at her distance) into one pointing at the fence, the heel
+# point would have to sit 11-17 cm above the toe point. From behind the toes are hidden behind the heel
+# and the shank, and the pose model (trained on people mostly facing the camera) draws them on the
+# camera side of the heel. So a reading with the toes behind the heel is a hidden toe, not her foot;
+# it is refused (FOOT_BACK_DEG), never folded or guessed, and the share of such strokes decides in
+# reliability whether the remaining readings can be given (a selection of only the visible feet
+# would be biased). The heel point also sits a little above the court (back of the heel counter, the
+# big-toe point at the tip of the sole): mapped on the court through the homography it moves away from
+# the camera, and near the sidelines (court-y lines slanted ~35° in the image) also sideways; it is
+# lowered by HEEL_RISE_M before mapping. Each reading is the median over ±FOOT_WIN_S around the instant
+# (a planted foot does not turn in 40 ms; single-frame flips of the toe are outvoted).
+FOOT_BACK_DEG = -45.0      # toes turned back more than this: hidden toe (a planted groundstroke foot never does)
+HEEL_RISE_M = 0.015        # heel keypoint above the big-toe keypoint (shod foot; estimate, ≤ ±8° on a sideways foot)
+FOOT_FRAC = 0.152          # foot length / standing height (Drillis & Contini; Winter 2009)
+FOOT_LEN_TOL = (0.6, 1.4)  # heel → big toe on the court within this × her foot length, or misdetected
+FOOT_WIN_S = 0.04          # readings around the instant (±2 frames at 50 fps)
+FOOT_SPREAD_DEG = 45.0     # the readings of the window disagree more than this: not a planted foot reading
+FOOT_STATUSES = ("medido", "punta_oculta", "incoherente", "sin_pie")
+
+
+def _foot_frame(feet: np.ndarray, t: int, sk: Skeleton, H: np.ndarray, side: str, hit_side: int,
+                drop_px: float, lim: tuple[float, float]) -> tuple[float | None, str]:
+    """One frame: (angle or None, status). drop_px: how far the heel point is lowered in the image
+    (world vertical ≈ image vertical for the near player: within 7° on the PC's camera)."""
+    heel, toe = heel_toe(feet[t:t + 1], sk, side, big_toe_only=True)
+    if not (np.isfinite(heel).all() and np.isfinite(toe).all()):
+        return None, "sin_pie"
+    h = heel[0] + np.array([0.0, drop_px if np.isfinite(drop_px) else 0.0])
+    q = to_court(H, np.array([h, toe[0]]))
+    d = q[1] - q[0]
+    L = float(np.hypot(*d))
+    if not np.isfinite(L) or not lim[0] <= L <= lim[1]:
+        return None, "incoherente"
+    a = float(np.degrees(np.arctan2(d[1], d[0] * hit_side)))
+    if a < FOOT_BACK_DEG:
+        return None, "punta_oculta"
+    return a, "medido"
+
+
+def foot_reading(feet: np.ndarray | None, frame: int | None, sk: Skeleton, H: np.ndarray, which: str,
+                 stroke: str = "forehand", scale: np.ndarray | None = None, height_m: float | None = None,
+                 fps: float | None = None) -> tuple[float | None, str]:
+    """foot_angle_deg with why it is missing: (angle or None, status), status in FOOT_STATUSES:
+    'medido'; 'punta_oculta' (most readings of the window put the toes behind the heel: from behind
+    the toes were not seen); 'incoherente' (impossible foot lengths, or the readings of the window
+    disagree); 'sin_pie' (heel or big toe not seen)."""
+    if feet is None or frame is None or not 0 <= frame < len(feet):
+        return None, "sin_pie"
+    side = ("non" if which == "front" else "dom") if stroke != "backhand" else ("dom" if which == "front" else "non")
+    hit_side = sk.dom_sign if stroke != "backhand" else -sk.dom_sign       # court x of the side she hits on
+    if height_m:
+        L = FOOT_FRAC * float(height_m)
+        lim = (FOOT_LEN_TOL[0] * L, FOOT_LEN_TOL[1] * L)
+    else:
+        lim = FOOT_LEN_M
+    k = max(1, int(round(FOOT_WIN_S * fps))) if fps else 2
+    vals, stats = [], []
+    for t in range(max(0, frame - k), min(len(feet), frame + k + 1)):
+        drop = (HEEL_RISE_M / float(height_m) * float(scale[t])) if (height_m and scale is not None and t < len(scale)) else 0.0
+        a, s = _foot_frame(feet, t, sk, H, side, hit_side, drop, lim)
+        stats.append(s)
+        if a is not None:
+            vals.append(a)
+    seen = [s for s in stats if s != "sin_pie"]
+    if not seen:
+        return None, "sin_pie"
+    if len(vals) * 2 <= len(seen):              # not a majority of the frames where the foot was seen
+        hidden = sum(s == "punta_oculta" for s in seen)
+        return None, "punta_oculta" if hidden >= sum(s == "incoherente" for s in seen) else "incoherente"
+    if max(vals) - min(vals) > FOOT_SPREAD_DEG:
+        return None, "incoherente"
+    return float(np.median(vals)), "medido"
+
+
 def foot_angle_deg(feet: np.ndarray | None, frame: int | None, sk: Skeleton, H: np.ndarray, which: str,
-                   stroke: str = "forehand") -> float | None:
+                   stroke: str = "forehand", scale: np.ndarray | None = None, height_m: float | None = None,
+                   fps: float | None = None) -> float | None:
     """Direction of one foot on the court at a frame, heel → big toe, against the baseline, in degrees:
     0° = toes along the baseline towards the side she hits on (her dominant side on a forehand, the
     other on a backhand), 90° = toes straight at the net, 180° = along the baseline towards the other
-    side, negative = toes turned back towards her own fence. Mirrored for a left-hander, so every
-    player reads the same. which: 'front' / 'back' (forehand: the non-dominant foot is in front).
-    None without that foot's heel and big toe, or when they give an impossible foot length."""
-    if feet is None or frame is None or not 0 <= frame < len(feet):
-        return None
-    side = ("non" if which == "front" else "dom") if stroke != "backhand" else ("dom" if which == "front" else "non")
-    heel, toe = heel_toe(feet[frame:frame + 1], sk, side, big_toe_only=True)
-    if not (np.isfinite(heel).all() and np.isfinite(toe).all()):
-        return None
-    q = to_court(H, np.array([heel[0], toe[0]]))
-    d = q[1] - q[0]
-    L = float(np.hypot(*d))
-    if not FOOT_LEN_M[0] <= L <= FOOT_LEN_M[1]:
-        return None
-    hit_side = sk.dom_sign if stroke != "backhand" else -sk.dom_sign       # court x of the side she hits on
-    return float(np.degrees(np.arctan2(d[1], d[0] * hit_side)))
+    side, negative = toes turned back towards her own fence (down to FOOT_BACK_DEG). Mirrored for a
+    left-hander, so every player reads the same. which: 'front' / 'back' (forehand: the non-dominant
+    foot is in front). The median of the readings at ±FOOT_WIN_S (fps; ±2 frames without it).
+    scale (her height in px per frame) and height_m: the heel is lowered to the court (HEEL_RISE_M) and
+    the foot length checked against hers; without them, no lowering and FOOT_LEN_M.
+    None without that foot's heel and big toe, with impossible foot lengths, or with the toes hidden
+    (see foot_reading for the reason)."""
+    return foot_reading(feet, frame, sk, H, which, stroke, scale, height_m, fps)[0]
 
 
 HEEL_LIFT_PCT = 0.03       # heel up against the toes by > 3 % of her height (≈ 5 cm) = heel off the ground
@@ -170,6 +241,20 @@ def heel_lift(feet: np.ndarray | None, sk: Skeleton, H: np.ndarray, scale: np.nd
         if run >= need:
             return {"back_heel_lift": True, "back_heel_lift_s": round((int(w[i - need + 1]) - impact) / fps, 3)}
     return {"back_heel_lift": False}
+
+
+def series_feet(feet, feet_conf, first: int, n: int) -> dict:
+    """The raw foot points of a stroke's series window (series.stroke_series: frames first..first+n-1),
+    so the foot measures can be checked and re-derived from the PC's outputs: {"feet": n × 6 × [x, y]
+    image px (None unseen), "feet_conf": n × 6}, FOOT_NAMES order; {} without any foot point."""
+    if feet is None or feet_conf is None:
+        return {}
+    f = np.asarray(feet, float)[first:first + n]
+    c = np.asarray(feet_conf, float)[first:first + n]
+    if f.ndim != 3 or f.shape[1:] != (len(FOOT_NAMES), 2) or c.shape != f.shape[:2] or not np.isfinite(f).any():
+        return {}
+    pts = [[[round(float(p[0]), 1), round(float(p[1]), 1)] if np.isfinite(p).all() else None for p in fr] for fr in f]
+    return {"feet": pts, "feet_conf": np.round(np.nan_to_num(c), 2).tolist()}
 
 
 def has_feet(d: dict | None) -> bool:

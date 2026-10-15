@@ -218,3 +218,162 @@ def test_back_heel_lift_reference_close_to_contact():
     assert heel_lift(clean_feet(f, c4), SK, H, np.full(100, 400.0), 50.0, 60, 45, 75) == {}
     # a finish before the reference instant leaves nothing to measure
     assert heel_lift(clean_feet(f, c), SK, H, np.full(100, 400.0), 50.0, 60, 45, 48) == {}
+
+
+# --- foot direction from behind and above (PC, 14-10: 20-44 % of the readings had the toes towards her fence) ---
+
+def broadcast_camera(cam=(0.0, -9.6, 3.2), look=(0.0, 2.0, 0.0), f=1940.0, size=(1920, 1080)):
+    """A TV camera behind the near baseline and above (the PC's homography gives ~(0, -9.6, 3.2) m,
+    f ≈ 1940 px, ~20° down to her feet): 3 × 4 projection court metres (x, y, z up) → image px."""
+    C, L = np.asarray(cam, float), np.asarray(look, float)
+    z = (L - C) / np.linalg.norm(L - C)                   # camera forward
+    x = np.cross(z, [0, 0, 1.0])
+    x /= np.linalg.norm(x)                                # image right = court +x
+    y = np.cross(z, x)                                    # image down
+    R = np.array([x, y, z])
+    K = np.array([[f, 0, size[0] / 2], [0, f, size[1] / 2], [0, 0, 1.0]])
+    return K @ np.c_[R, -R @ C]
+
+
+def proj(P, X):
+    p = P @ np.r_[np.asarray(X, float), 1.0]
+    return p[:2] / p[2]
+
+
+def foot_3d(P, contact, angle_deg, length, heel_up, T=5, side="right"):
+    """One foot on the court through the camera P, heel point heel_up m above the court, toe on it."""
+    feet = np.full((T, 6, 2), np.nan)
+    a = np.radians(angle_deg)
+    u = np.array([np.cos(a), np.sin(a)]) * length / 2
+    c = np.asarray(contact, float)
+    feet[:, FI[f"{side}_heel"]] = proj(P, [*(c - u), heel_up])
+    feet[:, FI[f"{side}_big_toe"]] = proj(P, [*(c + u), 0.0])
+    feet[:, FI[f"{side}_small_toe"]] = proj(P, [*(c + u), 0.0])
+    return feet
+
+
+def _scale(P, contact, height_m, T=5):
+    """Her height in image px standing at contact (as body_scale gives it)."""
+    c = np.asarray(contact, float)
+    return np.full(T, float(np.linalg.norm(proj(P, [*c, height_m]) - proj(P, [*c, 0.0]))))
+
+
+@pytest.mark.parametrize("contact", [(0.0, -1.0), (-4.0, -1.5), (4.0, -1.5)])
+@pytest.mark.parametrize("angle", [-30.0, 0.0, 45.0, 90.0, 135.0])
+def test_foot_angle_with_a_raised_heel_from_the_broadcast_camera(contact, angle):
+    """Nominal: the heel point sits HEEL_RISE_M above the court; lowered before mapping it on the court,
+    the direction comes back within 1° in the middle and near both sidelines (court-y lines slanted
+    ~35° in the image there, so the raised heel also moved sideways)."""
+    from tennisbio.footpoints import HEEL_RISE_M, foot_reading
+
+    P = broadcast_camera()
+    Hc = P[:, [0, 1, 3]]
+    L = 0.152 * 1.84
+    f = foot_3d(P, contact, angle, L, HEEL_RISE_M)
+    s = _scale(P, contact, 1.84)
+    a, why = foot_reading(f, 2, SK, Hc, "back", "forehand", s, 1.84, 50.0)
+    assert why == "medido" and a == pytest.approx(angle, abs=1.0)
+    # without lowering the heel (no height): the error the old method had, larger near the sidelines
+    raw = foot_angle_deg(f, 2, SK, Hc, "back")
+    assert raw is None or abs(raw - angle) >= abs(a - angle)
+
+
+def test_a_raised_heel_cannot_turn_a_foot_back_towards_the_fence():
+    """The cause found: to read a foot that points at the net as pointing at her fence through the
+    homography, the heel point would have to be > 10 cm above the toe point. A planted heel never is,
+    so the readings clustered at -90° on the PC are hidden toes, not perspective."""
+    P = broadcast_camera()
+    Hc = P[:, [0, 1, 3]]
+    for up in (0.0, 0.03, 0.06):
+        assert foot_angle_deg(foot_3d(P, (0.0, -1.0), 90.0, 0.28, up), 2, SK, Hc, "back") == pytest.approx(90, abs=1)
+    assert foot_angle_deg(foot_3d(P, (0.0, -1.0), 90.0, 0.28, 0.15), 2, SK, Hc, "back") is None
+
+
+def test_hidden_toes_are_refused_not_folded_and_single_flips_are_outvoted():
+    """Toes drawn on the camera side of the heel (from behind, hidden) in most frames of the instant's
+    window: no reading ('punta_oculta'); in one frame of five: the median of the others."""
+    from tennisbio.footpoints import foot_reading
+
+    f = np.full((5, 6, 2), np.nan)
+    put_foot(f, "right", (0.3, 0.0), 60.0)
+    hidden = f.copy()
+    put_foot(hidden, "right", (0.3, 0.0), -90.0, t=slice(0, 4))               # 4 of 5 frames: toe below the heel
+    a, why = foot_reading(hidden, 2, SK, H, "back")
+    assert a is None and why == "punta_oculta"
+    one = f.copy()
+    put_foot(one, "right", (0.3, 0.0), -90.0, t=slice(2, 3))                   # only at the instant itself
+    a, why = foot_reading(one, 2, SK, H, "back")
+    assert why == "medido" and a == pytest.approx(60, abs=0.5)
+    # corner: the limit itself is possible (a closed stance's back foot slightly back)
+    lim = np.full((5, 6, 2), np.nan)
+    put_foot(lim, "right", (0.3, 0.0), -44.0)
+    assert foot_angle_deg(lim, 2, SK, H, "back") == pytest.approx(-44, abs=0.5)
+    put_foot(lim, "right", (0.3, 0.0), -46.0)
+    assert foot_reading(lim, 2, SK, H, "back") == (None, "punta_oculta")
+
+
+def test_foot_reading_window_edges_and_errors():
+    """Edge, corner and error cases: the window is clipped at the ends of the stroke; readings that
+    disagree, an impossible length for her height, a missing heel or a short scale never crash."""
+    from tennisbio.footpoints import FOOT_STATUSES, foot_reading
+
+    f = np.full((5, 6, 2), np.nan)
+    put_foot(f, "right", (0.3, 0.0), 30.0, length=0.28)
+    assert foot_reading(f, 0, SK, H, "back")[1] == "medido" and foot_reading(f, 4, SK, H, "back")[1] == "medido"
+    assert foot_reading(f, 5, SK, H, "back") == (None, "sin_pie") and foot_reading(None, 0, SK, H, "back") == (None, "sin_pie")
+    assert foot_reading(f, 2, SK, H, "front") == (None, "sin_pie")             # the other foot never seen
+    # disagreeing readings (a foot turning 80° in 80 ms is a detection jumping, not a planted foot)
+    jump = f.copy()
+    put_foot(jump, "right", (0.3, 0.0), 110.0, t=slice(3, 5))
+    assert foot_reading(jump, 2, SK, H, "back") == (None, "incoherente")
+    # her foot length: 0.28 m fits a 1.84 m player and a 1.40 m one (≤ 1.4 × 0.21 m), not a 0.9 m one
+    assert foot_reading(f, 2, SK, H, "back", height_m=1.84)[1] == "medido"
+    assert foot_reading(f, 2, SK, H, "back", height_m=1.40)[1] == "medido"
+    assert foot_reading(f, 2, SK, H, "back", height_m=0.9) == (None, "incoherente")
+    # a scale shorter than the feet, or NaN: the heel is not lowered there, no crash
+    assert foot_reading(f, 2, SK, H, "back", "forehand", np.full(2, 400.0), 1.84)[1] == "medido"
+    assert foot_reading(f, 2, SK, H, "back", "forehand", np.full(5, np.nan), 1.84)[1] == "medido"
+    # fps sets the window: at 25 fps ±1 frame
+    one = f.copy()
+    put_foot(one, "right", (0.3, 0.0), -90.0, t=slice(0, 1))
+    assert foot_reading(one, 2, SK, H, "back", fps=25.0)[1] == "medido"
+    assert set(FOOT_STATUSES) == {"medido", "punta_oculta", "incoherente", "sin_pie"}
+
+
+def test_technique_says_why_a_foot_direction_is_missing_and_reliability_counts_it():
+    """technique "feet_check" (loaded / impact × front / back); the refused readings count as impossible
+    ones in reliability, so the visible feet alone (a biased selection) are not given as hers."""
+    from tennisbio.reliability import assess
+
+    kp = standing()
+    f, c = neutral_feet()
+    put_foot(f, "left", (0.35, 0.8), -90.0, t=slice(40, 50))                  # front toes hidden at loaded (45)
+    t = tech(kp, feet=f, feet_conf=c)
+    assert t["feet_check"] == {"loaded.front": "punta_oculta", "loaded.back": "medido",
+                               "impact.front": "medido", "impact.back": "medido"}
+    assert "front_foot_angle_deg" not in t["phases"]["loaded"]
+    assert t["phases"]["impact"]["front_foot_angle_deg"] == pytest.approx(90, abs=0.5)
+    assert "feet_check" not in tech(kp)                                         # no feet: as before
+    k = "loaded.front_foot_angle_deg"
+    rows = [{"technique": {"phases": {"loaded": {"front_foot_angle_deg": float(v)}}, "jitter": {k: 2.0},
+                           "feet_check": {"loaded.front": "medido"}}} for v in range(0, 100, 10)]
+    assert assess(rows, {k: "°"})[k]["verdict"] == "fiable"
+    refused = [{"technique": {"phases": {"loaded": {}}, "jitter": {}, "feet_check": {"loaded.front": "punta_oculta"}}}] * 2
+    r = assess(rows + refused, {k: "°"})[k]
+    assert r["verdict"] == "sesgo" and r["refused"] == 2                         # 2 of 12 > 15 %
+    one = assess(rows + refused[:1], {k: "°"})[k]
+    assert one["verdict"] == "fiable" and one["refused"] == 1                    # 1 of 11: not systematic
+
+
+def test_series_keep_the_raw_foot_points_of_the_window():
+    from tennisbio.footpoints import series_feet
+
+    f, c = neutral_feet(10)
+    f[3, FI["left_heel"]] = np.nan
+    s = series_feet(f, c, 2, 5)
+    assert len(s["feet"]) == 5 and len(s["feet"][0]) == 6 and s["feet"][1][FI["left_heel"]] is None
+    assert s["feet"][0][FI["right_heel"]] == [round(float(v), 1) for v in f[2, FI["right_heel"]]]
+    assert s["feet_conf"][0] == [0.9] * 6
+    json.dumps(s)
+    assert series_feet(None, None, 0, 5) == {} and series_feet(f, None, 0, 5) == {}
+    assert series_feet(np.full_like(f, np.nan), c, 0, 5) == {} and series_feet(f[:, :4], c[:, :4], 0, 5) == {}
