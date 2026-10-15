@@ -5,8 +5,8 @@
  "summary": {
   "ok": 277,
   "falta": 0,
-  "pocos datos": 122,
-  "aviso": 21
+  "pocos datos": 116,
+  "aviso": 27
  },
  "items": [
   {
@@ -779,14 +779,14 @@
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Orientación del pie (talón → dedo gordo respecto a la línea de fondo) en el armado y el impacto",
    "status": "ok",
-   "detail": "medido en el 90% de los golpes y en el informe (parcial: ver la matriz)",
+   "detail": "medido en el 60% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "impact.back_foot_angle_deg",
     "impact.front_foot_angle_deg",
     "loaded.back_foot_angle_deg",
     "loaded.front_foot_angle_deg"
    ],
-   "measured": 0.9
+   "measured": 0.6
   },
   {
    "req": 1,
@@ -1967,10 +1967,12 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Superficie de la pista",
-   "status": "pocos datos",
-   "detail": "no aparece en los datos de ningún golpe de esta ejecución (surface)",
-   "keys": [],
-   "measured": 0.0
+   "status": "aviso",
+   "detail": "medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa)",
+   "keys": [
+    "surface"
+   ],
+   "measured": 1.0
   },
   {
    "req": 3,
@@ -2375,7 +2377,7 @@
    "area": "Valores posibles",
    "name": "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
    "status": "ok",
-   "detail": "64 medidas: 7 dudosa, 41 fiable, 8 no comprobable, 2 ruido, 3 sesgo, 3 sin juzgar. No se dan como valor suyo (ruido): takeback.shoulder_turn ±3.4, impact.face_tilt ±3.2. Fuera de lo físicamente posible en demasiados golpes, no se dan: loaded.back_foot_angle_deg 2 de 8, impact.front_foot_angle_deg 2 de 9, impact.back_foot_angle_deg 4 de 9. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
+   "detail": "64 medidas: 7 dudosa, 41 fiable, 8 no comprobable, 2 ruido, 3 sesgo, 3 sin juzgar. No se dan como valor suyo (ruido): takeback.shoulder_turn ±3.4, impact.face_tilt ±3.2. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
   },
   {
    "req": 3,
@@ -2557,7 +2559,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "35365 caracteres de texto, 5 vídeos, 8 gráficos; mensajes de vacío: ['']",
+   "detail": "35314 caracteres de texto, 5 vídeos, 8 gráficos; mensajes de vacío: ['']",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2573,7 +2575,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "7490 caracteres de texto, 6 vídeos, 28 gráficos",
+   "detail": "7086 caracteres de texto, 6 vídeos, 26 gráficos",
    "file": "pantalla_3_golpe.jpg"
   },
   {
@@ -2613,7 +2615,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Fiabilidad de las medidas»",
    "status": "ok",
-   "detail": "2932 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "2833 caracteres de texto, 5 vídeos, 0 gráficos",
    "file": "pantalla_8_fiabilidad.jpg"
   },
   {
@@ -2748,7 +2750,7 @@
    "area": "Vistas pedidas",
    "name": "«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella",
    "status": "ok",
-   "detail": "5 en la pantalla"
+   "detail": "3 en la pantalla"
   },
   {
    "req": 2,
@@ -2762,7 +2764,7 @@
    "area": "Vistas pedidas",
    "name": "«La bola y ella»: medidas reales en cada fotograma (cadera en cm, pies en m, recorrido)",
    "status": "ok",
-   "detail": "5 en la pantalla"
+   "detail": "3 en la pantalla"
   },
   {
    "req": 2,
@@ -2860,7 +2862,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "159 min para 35 min de vídeo ≈ 15.9 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -2936,8 +2938,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b",
-   "status": "pocos datos",
-   "detail": "191 comprobaciones: 50 pocos datos, 141 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 191 comprobaciones: 1 aviso, 49 pocos datos, 141 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -2985,8 +2987,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía",
-   "status": "pocos datos",
-   "detail": "188 comprobaciones: 40 pocos datos, 148 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 188 comprobaciones: 1 aviso, 39 pocos datos, 148 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -3007,7 +3009,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (159 min para 35 min de vídeo ≈ 15.9 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3049,7 +3051,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (159 min para 35 min de vídeo ≈ 15.9 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3112,7 +3114,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (159 min para 35 min de vídeo ≈ 15.9 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3237,8 +3239,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#47 Modelo técnico con fuentes; cómo saber si está completo",
-   "status": "pocos datos",
-   "detail": "166 comprobaciones: 31 pocos datos, 135 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "aviso",
+   "detail": "166 comprobaciones: 1 aviso, 30 pocos datos, 135 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -3384,8 +3386,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos",
-   "status": "pocos datos",
-   "detail": "167 comprobaciones: 31 pocos datos, 136 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 167 comprobaciones: 1 aviso, 30 pocos datos, 136 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -3406,7 +3408,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (159 min para 35 min de vídeo ≈ 15.9 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3566,8 +3568,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#98 Matriz §15 Contexto y ambiente (superficie, aerodinámica)",
-   "status": "pocos datos",
-   "detail": "2 comprobaciones: 1 pocos datos, 1 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (no aparece en los datos de ningún golpe de esta ejecución (surface))"
+   "status": "aviso",
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
   },
   {
    "req": 11,
@@ -3756,7 +3758,7 @@
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (156 min para 35 min de vídeo ≈ 15.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (159 min para 35 min de vídeo ≈ 15.9 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,

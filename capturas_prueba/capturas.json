@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 35365,
+   "text_chars": 35314,
    "charts": 8,
    "videos": 5,
    "black_canvases": 0,
@@ -11,7 +11,7 @@
    "empty_msgs": [
     ""
    ],
-   "dashes": 6,
+   "dashes": 12,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -59,16 +59,16 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 7490,
-   "charts": 28,
+   "text_chars": 7086,
+   "charts": 26,
    "videos": 6,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
    "dashes": 7,
-   "ball_moments": 5,
+   "ball_moments": 3,
    "feet_cycle": 9,
-   "ball_measures": 5,
+   "ball_measures": 3,
    "body_hip": 4,
    "body_base": 4,
    "body_trunk": 2,
@@ -204,13 +204,13 @@
   },
   {
    "title": "Fiabilidad de las medidas",
-   "text_chars": 2932,
+   "text_chars": 2833,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 0,
+   "dashes": 6,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -259,7 +259,7 @@
  ],
  "errors": [],
  "h264": true,
- "browser": "chromium 155.0.8059.40",
+ "browser": "chromium 155.0.8059.80",
  "plays": [
   {
    "name": "«Su derecha» → ▶ Ver sus golpes típicos",
