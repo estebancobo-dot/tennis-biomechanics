@@ -1,0 +1,8 @@
+﻿Peticion 10: medidas desde las caches, informe y auditoria de output\_poc9_largo (2026-10-15T05:14:25)
+Recalcular medidas: empieza 2026-10-15 05:14:26
+
+[2026-10-15 05:14:26] smoke_tennis-yusipopen-final-sobolenko-rybakin: trozo de vídeo tennis-yusipopen-final-sobolenko-rybakin_0_600m.mkv, rival Sabalenka
+  Se usan los resultados que hay de score aunque su código o su vídeo cambiaron (no se rehacen aquí; la próxima prueba completa sí lo hará)
+[2026-10-15 05:14:26] Etapas baratas rehechas: ninguna (al día) (0 s)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (2026-10-15 05:14:26, etapa 9 de 10)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
