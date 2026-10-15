@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 277,
+  "ok": 279,
   "falta": 0,
-  "pocos datos": 116,
-  "aviso": 27
+  "pocos datos": 120,
+  "aviso": 21
  },
  "items": [
   {
@@ -1967,8 +1967,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "6. Matriz del usuario · Superficie de la pista",
-   "status": "aviso",
-   "detail": "medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa)",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
    "keys": [
     "surface"
    ],
@@ -2938,8 +2938,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 191 comprobaciones: 1 aviso, 49 pocos datos, 141 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "status": "pocos datos",
+   "detail": "191 comprobaciones: 49 pocos datos, 142 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -2987,8 +2987,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 188 comprobaciones: 1 aviso, 39 pocos datos, 148 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "status": "pocos datos",
+   "detail": "188 comprobaciones: 39 pocos datos, 149 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3239,8 +3239,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#47 Modelo técnico con fuentes; cómo saber si está completo",
-   "status": "aviso",
-   "detail": "166 comprobaciones: 1 aviso, 30 pocos datos, 135 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "status": "pocos datos",
+   "detail": "166 comprobaciones: 30 pocos datos, 136 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3386,8 +3386,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 167 comprobaciones: 1 aviso, 30 pocos datos, 136 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "status": "pocos datos",
+   "detail": "167 comprobaciones: 30 pocos datos, 137 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3568,8 +3568,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#98 Matriz §15 Contexto y ambiente (superficie, aerodinámica)",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
