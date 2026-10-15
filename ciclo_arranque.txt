@@ -1,3 +1,2 @@
-arranque: 2026-10-15T12:12:20 (pid 9348)
-2026-10-15T12:12:20 otro analisis en marcha (10388)
-2026-10-15T12:12:21 sin codigo nuevo (cccd607)
+arranque: 2026-10-15T13:12:42 (pid 8204)
+2026-10-15T13:12:44 sin codigo nuevo (cccd607)
