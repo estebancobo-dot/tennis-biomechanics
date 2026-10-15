@@ -251,6 +251,8 @@ COACH = {
                             "Tennis Australia"),
     "stroke.feet_move_m": ("Los pies plantados del armado al impacto dan una base fija para girar; si se mueven, "
                            "está ajustando o golpeando en carrera.", "Tennis Australia; Giles y Reid 2021"),
+    "surface": ("La superficie cambia el bote y el apoyo: en tierra se desliza al golpear y la bola sube más; "
+                "en hierba bota bajo y rápido. Solo se comparan golpes de la misma superficie.", "ITF (Crespo, Reid); Tennis Australia"),
     "footwork.crossover_steps": ("El paso cruzado cubre más distancia que el lateral: aparece al ir a bolas lejanas y "
                                  "al recuperar hacia el centro.", "Kovacs 2009; Tennis Australia"),
     "class.stance_impact": ("El apoyo abierto es el más usado en el circuito (84 % de las derechas en un estudio de 2025); el cerrado aparece más al atacar bolas cortas.", "IJSSC 2025; Martin 2021"),
