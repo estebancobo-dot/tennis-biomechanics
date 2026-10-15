@@ -109,6 +109,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0104574",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -1032,6 +1033,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0267149",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -1164,9 +1166,7 @@
    "apex_height_m": 1.68,
    "bounce_to_apex_s": 0.585,
    "contact_height_m": 1.44,
-   "contact_phase": "subiendo",
-   "net_frame": 92,
-   "incoming_speed_kmh": 131
+   "contact_phase": "subiendo"
   },
   "technique": {
    "phases": {
@@ -1272,8 +1272,7 @@
      "face_yaw": 77.9,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "front_foot_angle_deg": -79.7,
-     "back_foot_angle_deg": 31.8,
+     "back_foot_angle_deg": 43.0,
      "base_court_m": 0.92,
      "stance_angle": 13.5,
      "base_m": 0.92
@@ -1346,8 +1345,6 @@
      "face_yaw": 19.6,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 22.7,
-     "back_foot_angle_deg": -41.0,
      "base_court_m": 0.58,
      "stance_angle": -20.7,
      "base_m": 0.58
@@ -1453,33 +1450,6 @@
      "face_points_to": "valla derecha",
      "face_observed": false
     },
-    "ball_net": {
-     "body_height": 83.4,
-     "hip_height": 38.6,
-     "head_over_base": -0.9,
-     "head_vs_hips": -2.5,
-     "trunk_tilt": -0.5,
-     "shoulder_tilt": -1.3,
-     "hip_tilt": -1.2,
-     "com_over_feet": 0.47,
-     "knee_dom": 173.1,
-     "base_width": 60.0,
-     "shoulder_abd_dom": 7.2,
-     "wrist_dom_height": 54.6,
-     "wrist_dom_vs_hip": 16.0,
-     "wrist_dom_lateral": 4.8,
-     "wrist_dom_vs_shoulder": -11.0,
-     "elbow_dom_vs_shoulder": -14.1,
-     "elbow_dom_lateral": 1.9,
-     "wrist_non_height": 57.2,
-     "wrist_non_lateral": -1.9,
-     "hands_apart": 7.2,
-     "arm_extension": 55.2,
-     "shoulder_turn": 18.9,
-     "face_points_to": "valla derecha",
-     "face_observed": false,
-     "t_to_contact": 0.48
-    },
     "ball_bounce": {
      "body_height": 83.4,
      "hip_height": 37.1,
@@ -1539,7 +1509,6 @@
     "head_motion_cm": 6.2,
     "takeback_after_opp": 0.96,
     "takeback_vs_bounce": -0.08,
-    "takeback_vs_net": 0.04,
     "contact_vs_top": -0.22,
     "loaded_vs_top": -0.34,
     "contact_height_m": 1.44,
@@ -1893,8 +1862,7 @@
     "loaded.racket_head_lateral": 1.1,
     "loaded.face_tilt": 22.3,
     "loaded.face_yaw": 4.2,
-    "loaded.front_foot_angle_deg": 12.35,
-    "loaded.back_foot_angle_deg": 6.85,
+    "loaded.back_foot_angle_deg": 0.6,
     "acceleration.body_height": 1.55,
     "acceleration.hip_height": 1.7,
     "acceleration.head_over_base": 2.6,
@@ -1956,8 +1924,6 @@
     "impact.hip_turn": 3.45,
     "impact.face_tilt": 3.4,
     "impact.face_yaw": 7.75,
-    "impact.front_foot_angle_deg": 7.6,
-    "impact.back_foot_angle_deg": 19.05,
     "extension.body_height": 2.8,
     "extension.hip_height": 2.7,
     "extension.head_over_base": 1.5,
@@ -2064,7 +2030,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -2722,7 +2687,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "ready",
     "ball_bounce": "takeback"
    },
    "curves": {
@@ -2938,6 +2902,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w002669172_5528_near_116.json",
@@ -3684,6 +3654,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0267361",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -3919,8 +3890,6 @@
      "face_yaw": -82.0,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": 13.1,
-     "back_foot_angle_deg": -50.1,
      "base_court_m": 0.79,
      "stance_angle": 174.1,
      "base_m": 0.79
@@ -3993,7 +3962,6 @@
      "face_yaw": -0.6,
      "face_points_to": "red",
      "face_observed": false,
-     "back_foot_angle_deg": 1.6,
      "base_court_m": 1.33,
      "stance_angle": 45.3,
      "base_m": 1.33
@@ -4285,8 +4253,6 @@
     "loaded.racket_head_lateral": 3.2,
     "loaded.face_tilt": 6.55,
     "loaded.face_yaw": 3.2,
-    "loaded.front_foot_angle_deg": 30.2,
-    "loaded.back_foot_angle_deg": 4.0,
     "acceleration.body_height": 0.7,
     "acceleration.hip_height": 0.95,
     "acceleration.head_over_base": 0.3,
@@ -4346,7 +4312,6 @@
     "impact.racket_head_lateral": 5.2,
     "impact.face_tilt": 9.35,
     "impact.face_yaw": 7.9,
-    "impact.back_foot_angle_deg": 11.7,
     "extension.body_height": 3.05,
     "extension.hip_height": 1.85,
     "extension.head_over_base": 1.5,
@@ -5278,6 +5243,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "punta_oculta",
+    "impact.front": "punta_oculta",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w002669172_5528_near_222.json",
@@ -5393,6 +5364,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0308938",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -6087,6 +6059,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0330164",
+  "surface": "dura",
   "court_check": "ok",
   "side": "near",
   "height_scale": {
@@ -6291,8 +6264,8 @@
      "face_yaw": -32.9,
      "face_points_to": "red",
      "face_observed": true,
-     "front_foot_angle_deg": 34.3,
-     "back_foot_angle_deg": -6.2,
+     "front_foot_angle_deg": 40.4,
+     "back_foot_angle_deg": 5.3,
      "base_court_m": 0.78,
      "stance_angle": 127.1,
      "base_m": 0.78
@@ -6647,8 +6620,8 @@
     "loaded.racket_head_lateral": 0.85,
     "loaded.face_tilt": 0.9,
     "loaded.face_yaw": 3.75,
-    "loaded.front_foot_angle_deg": 4.5,
-    "loaded.back_foot_angle_deg": 5.15,
+    "loaded.front_foot_angle_deg": 3.8,
+    "loaded.back_foot_angle_deg": 0.95,
     "acceleration.body_height": 0.0,
     "acceleration.hip_height": 0.25,
     "acceleration.head_over_base": 0.35,
@@ -7643,6 +7616,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w003299600_3600_near_102.json",
@@ -8267,6 +8246,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0331245",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -8486,8 +8466,8 @@
      "x_factor": 0.7,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": 43.6,
-     "back_foot_angle_deg": 2.0,
+     "front_foot_angle_deg": 47.9,
+     "back_foot_angle_deg": 8.9,
      "base_court_m": 0.8,
      "stance_angle": 131.0,
      "base_m": 0.8
@@ -8844,8 +8824,8 @@
     "loaded.shoulder_turn": 0.1,
     "loaded.hip_turn": 4.75,
     "loaded.x_factor": 4.75,
-    "loaded.front_foot_angle_deg": 3.6,
-    "loaded.back_foot_angle_deg": 1.0,
+    "loaded.front_foot_angle_deg": 3.2,
+    "loaded.back_foot_angle_deg": 0.85,
     "acceleration.body_height": 0.1,
     "acceleration.hip_height": 0.15,
     "acceleration.head_over_base": 0.35,
@@ -9851,6 +9831,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w003310327_5371_near_106.json",
@@ -10598,6 +10584,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0331427",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -10835,8 +10822,7 @@
      "face_yaw": 118.3,
      "face_points_to": "valla derecha",
      "face_observed": true,
-     "front_foot_angle_deg": 11.3,
-     "back_foot_angle_deg": -74.9,
+     "front_foot_angle_deg": 19.7,
      "base_court_m": 1.06,
      "stance_angle": 162.3,
      "base_m": 1.06
@@ -10912,8 +10898,7 @@
      "face_yaw": -6.1,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -99.8,
-     "back_foot_angle_deg": -8.7,
+     "back_foot_angle_deg": 2.3,
      "base_court_m": 0.99,
      "stance_angle": 9.4,
      "base_m": 0.99
@@ -11274,8 +11259,7 @@
     "loaded.racket_head_lateral": 2.0,
     "loaded.face_tilt": 8.15,
     "loaded.face_yaw": 19.35,
-    "loaded.front_foot_angle_deg": 7.1,
-    "loaded.back_foot_angle_deg": 10.25,
+    "loaded.front_foot_angle_deg": 2.0,
     "acceleration.body_height": 4.45,
     "acceleration.hip_height": 1.15,
     "acceleration.head_over_base": 3.85,
@@ -11340,8 +11324,7 @@
     "impact.racket_head_lateral": 4.9,
     "impact.face_tilt": 4.7,
     "impact.face_yaw": 16.05,
-    "impact.front_foot_angle_deg": 1.9,
-    "impact.back_foot_angle_deg": 7.6,
+    "impact.back_foot_angle_deg": 8.2,
     "extension.body_height": 4.9,
     "extension.hip_height": 0.95,
     "extension.head_over_base": 1.5,
@@ -12279,6 +12262,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "punta_oculta",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w003310327_5371_near_197.json",
@@ -13170,6 +13159,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0336896",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -13396,7 +13386,6 @@
      "x_factor": 9.5,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -77.4,
      "base_court_m": 0.97,
      "stance_angle": -12.3,
      "base_m": 0.97
@@ -13476,8 +13465,7 @@
      "face_yaw": -16.6,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -62.3,
-     "back_foot_angle_deg": 29.1,
+     "back_foot_angle_deg": 33.9,
      "base_court_m": 0.6,
      "stance_angle": 24.6,
      "base_m": 0.6
@@ -13838,7 +13826,6 @@
     "loaded.shoulder_turn": 2.0,
     "loaded.hip_turn": 1.25,
     "loaded.x_factor": 0.25,
-    "loaded.front_foot_angle_deg": 10.5,
     "acceleration.body_height": 0.4,
     "acceleration.hip_height": 0.25,
     "acceleration.head_over_base": 1.05,
@@ -13907,8 +13894,7 @@
     "impact.racket_head_lateral": 7.6,
     "impact.face_tilt": 4.95,
     "impact.face_yaw": 1.4,
-    "impact.front_foot_angle_deg": 7.15,
-    "impact.back_foot_angle_deg": 4.6,
+    "impact.back_foot_angle_deg": 2.5,
     "extension.body_height": 0.45,
     "extension.hip_height": 0.35,
     "extension.head_over_base": 2.15,
@@ -14859,6 +14845,12 @@
      40.2,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "incoherente",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w003366800_4800_near_108.json",
@@ -15479,6 +15471,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0345507",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -15714,8 +15707,7 @@
      "face_yaw": 90.1,
      "face_points_to": "valla derecha",
      "face_observed": true,
-     "front_foot_angle_deg": -56.2,
-     "back_foot_angle_deg": -40.8,
+     "back_foot_angle_deg": -35.3,
      "base_court_m": 0.13,
      "stance_angle": 55.8,
      "base_m": 0.13
@@ -15790,7 +15782,6 @@
      "face_yaw": 9.7,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -13.2,
      "base_court_m": 0.67,
      "stance_angle": 79.3,
      "base_m": 0.67
@@ -16095,8 +16086,7 @@
     "loaded.racket_head_lateral": 2.45,
     "loaded.face_tilt": 5.55,
     "loaded.face_yaw": 0.6,
-    "loaded.front_foot_angle_deg": 2.9,
-    "loaded.back_foot_angle_deg": 1.05,
+    "loaded.back_foot_angle_deg": 0.9,
     "acceleration.body_height": 1.5,
     "acceleration.hip_height": 2.9,
     "acceleration.head_over_base": 3.05,
@@ -16160,7 +16150,6 @@
     "impact.racket_head_lateral": 8.0,
     "impact.face_tilt": 7.6,
     "impact.face_yaw": 13.05,
-    "impact.front_foot_angle_deg": 7.2,
     "extension.body_height": 3.45,
     "extension.hip_height": 1.0,
     "extension.head_over_base": 2.8,
@@ -17107,6 +17096,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w003452747_5237_near_116.json",
@@ -17828,6 +17823,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0345681",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -18036,8 +18032,8 @@
      "x_factor": 20.3,
      "face_points_to": "suelo",
      "face_observed": false,
-     "front_foot_angle_deg": -13.5,
-     "back_foot_angle_deg": 7.9,
+     "front_foot_angle_deg": -2.9,
+     "back_foot_angle_deg": 16.0,
      "base_court_m": 0.93,
      "stance_angle": 75.9,
      "base_m": 0.93
@@ -18108,8 +18104,8 @@
      "face_yaw": 10.5,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 0.0,
-     "back_foot_angle_deg": 6.5,
+     "front_foot_angle_deg": 9.1,
+     "back_foot_angle_deg": 15.2,
      "base_court_m": 0.91,
      "stance_angle": 74.7,
      "base_m": 0.91
@@ -18379,8 +18375,8 @@
     "loaded.shoulder_turn": 1.5,
     "loaded.hip_turn": 1.35,
     "loaded.x_factor": 2.85,
-    "loaded.front_foot_angle_deg": 2.6,
-    "loaded.back_foot_angle_deg": 0.75,
+    "loaded.front_foot_angle_deg": 1.75,
+    "loaded.back_foot_angle_deg": 0.85,
     "acceleration.body_height": 0.2,
     "acceleration.hip_height": 0.25,
     "acceleration.head_over_base": 0.15,
@@ -18440,8 +18436,8 @@
     "impact.racket_head_lateral": 0.6,
     "impact.face_tilt": 7.55,
     "impact.face_yaw": 5.35,
-    "impact.front_foot_angle_deg": 4.25,
-    "impact.back_foot_angle_deg": 6.2,
+    "impact.front_foot_angle_deg": 1.6,
+    "impact.back_foot_angle_deg": 5.0,
     "extension.body_height": 0.9,
     "extension.hip_height": 1.95,
     "extension.head_over_base": 1.5,
@@ -19378,6 +19374,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "medido",
+    "impact.back": "medido"
    }
   },
   "series": "series/w003452747_5237_near_203.json",
@@ -20294,6 +20296,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0350510",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -20524,8 +20527,7 @@
      "face_yaw": -70.3,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": -76.6,
-     "back_foot_angle_deg": 13.6,
+     "back_foot_angle_deg": 15.2,
      "base_court_m": 1.07,
      "stance_angle": 25.3,
      "base_m": 1.07
@@ -20602,8 +20604,7 @@
      "face_yaw": -2.6,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -90.3,
-     "back_foot_angle_deg": 30.9,
+     "back_foot_angle_deg": 49.5,
      "base_court_m": 1.54,
      "stance_angle": 14.5,
      "base_m": 1.54
@@ -21090,8 +21091,7 @@
     "loaded.racket_head_lateral": 6.1,
     "loaded.face_tilt": 17.6,
     "loaded.face_yaw": 6.3,
-    "loaded.front_foot_angle_deg": 13.65,
-    "loaded.back_foot_angle_deg": 11.35,
+    "loaded.back_foot_angle_deg": 1.8,
     "acceleration.body_height": 0.65,
     "acceleration.hip_height": 0.85,
     "acceleration.head_over_base": 2.1,
@@ -21157,8 +21157,7 @@
     "impact.racket_head_lateral": 14.05,
     "impact.face_tilt": 2.45,
     "impact.face_yaw": 6.35,
-    "impact.front_foot_angle_deg": 11.05,
-    "impact.back_foot_angle_deg": 16.7,
+    "impact.back_foot_angle_deg": 6.8,
     "extension.body_height": 8.1,
     "extension.hip_height": 6.0,
     "extension.head_over_base": 0.9,
@@ -22027,6 +22026,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w003499300_7306_near_290.json",
@@ -22764,6 +22769,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0352918",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -22896,9 +22902,7 @@
    "apex_height_m": 1.9,
    "bounce_to_apex_s": 0.622,
    "contact_height_m": 1.32,
-   "contact_phase": "subiendo",
-   "net_frame": 86,
-   "incoming_speed_kmh": 207
+   "contact_phase": "subiendo"
   },
   "technique": {
    "phases": {
@@ -23011,7 +23015,7 @@
      "face_yaw": 98.7,
      "face_points_to": "valla derecha",
      "face_observed": true,
-     "back_foot_angle_deg": 33.0,
+     "back_foot_angle_deg": 37.7,
      "base_court_m": 0.93,
      "stance_angle": 17.2,
      "base_m": 0.93
@@ -23087,8 +23091,7 @@
      "face_yaw": 8.0,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -52.7,
-     "back_foot_angle_deg": 12.2,
+     "back_foot_angle_deg": 20.1,
      "base_court_m": 0.64,
      "stance_angle": 60.6,
      "base_m": 0.64
@@ -23200,44 +23203,6 @@
      "face_points_to": "suelo",
      "face_observed": true
     },
-    "ball_net": {
-     "body_height": 87.1,
-     "hip_height": 44.5,
-     "head_over_base": 7.3,
-     "head_vs_hips": 15.8,
-     "trunk_tilt": 16.4,
-     "hip_tilt": 9.8,
-     "com_over_feet": 0.52,
-     "knee_dom": 133.3,
-     "knee_non": 169.0,
-     "base_width": 49.1,
-     "elbow_dom": 93.5,
-     "shoulder_abd_dom": 29.6,
-     "elbow_non": 128.6,
-     "shoulder_abd_non": 54.3,
-     "wrist_dom_height": 53.1,
-     "wrist_dom_vs_hip": 8.6,
-     "wrist_dom_lateral": 27.2,
-     "wrist_dom_vs_shoulder": -15.7,
-     "elbow_dom_vs_shoulder": -17.4,
-     "elbow_dom_lateral": 4.1,
-     "wrist_non_height": 62.5,
-     "wrist_non_lateral": 25.7,
-     "hands_apart": 9.4,
-     "arm_extension": 75.3,
-     "shoulder_turn": 49.1,
-     "racket_head_vs_wrist": 28.9,
-     "racket_angle": 66.7,
-     "racket_forearm": 57.0,
-     "racket_tip_height": 90.5,
-     "racket_tip_vs_head": 9.9,
-     "racket_head_lateral": 26.2,
-     "face_tilt": 17.9,
-     "face_yaw": 140.7,
-     "face_points_to": "valla trasera",
-     "face_observed": false,
-     "t_to_contact": 0.4
-    },
     "ball_bounce": {
      "body_height": 83.1,
      "hip_height": 42.1,
@@ -23290,7 +23255,6 @@
     "head_motion_cm": 2.8,
     "takeback_after_opp": 0.34,
     "takeback_vs_bounce": -0.28,
-    "takeback_vs_net": -0.16,
     "contact_vs_top": -0.34,
     "loaded_vs_top": -0.68,
     "contact_height_m": 1.32,
@@ -23472,7 +23436,7 @@
     "loaded.racket_head_lateral": 1.45,
     "loaded.face_tilt": 3.65,
     "loaded.face_yaw": 11.0,
-    "loaded.back_foot_angle_deg": 1.95,
+    "loaded.back_foot_angle_deg": 0.8,
     "acceleration.body_height": 2.8,
     "acceleration.hip_height": 1.75,
     "acceleration.head_over_base": 0.5,
@@ -23537,8 +23501,7 @@
     "impact.racket_head_lateral": 2.6,
     "impact.face_tilt": 8.8,
     "impact.face_yaw": 4.35,
-    "impact.front_foot_angle_deg": 12.25,
-    "impact.back_foot_angle_deg": 8.7,
+    "impact.back_foot_angle_deg": 2.9,
     "extension.body_height": 0.75,
     "extension.hip_height": 0.55,
     "extension.head_over_base": 2.25,
@@ -23645,7 +23608,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -24274,7 +24236,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "takeback",
     "ball_bounce": "loaded"
    },
    "curves": {
@@ -24490,6 +24451,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "sin_pie",
+    "loaded.back": "medido",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w003527062_3600_near_106.json",
@@ -25187,6 +25154,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0354327",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -25420,8 +25388,7 @@
      "x_factor": 46.3,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -95.2,
-     "back_foot_angle_deg": 42.8,
+     "back_foot_angle_deg": 45.6,
      "base_court_m": 1.09,
      "stance_angle": 2.9,
      "base_m": 1.09
@@ -25492,7 +25459,6 @@
      "face_yaw": 19.9,
      "face_points_to": "red",
      "face_observed": false,
-     "back_foot_angle_deg": 10.8,
      "base_court_m": 0.63,
      "stance_angle": -33.8,
      "base_m": 0.63
@@ -25960,8 +25926,7 @@
     "loaded.shoulder_turn": 2.3,
     "loaded.hip_turn": 2.55,
     "loaded.x_factor": 2.4,
-    "loaded.front_foot_angle_deg": 13.35,
-    "loaded.back_foot_angle_deg": 3.35,
+    "loaded.back_foot_angle_deg": 1.2,
     "acceleration.body_height": 2.7,
     "acceleration.hip_height": 2.6,
     "acceleration.head_over_base": 2.25,
@@ -26021,7 +25986,6 @@
     "impact.hip_turn": 3.45,
     "impact.face_tilt": 2.65,
     "impact.face_yaw": 10.8,
-    "impact.back_foot_angle_deg": 17.2,
     "extension.body_height": 0.85,
     "extension.hip_height": 0.75,
     "extension.head_over_base": 2.1,
@@ -26991,6 +26955,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w003541151_3600_near_106.json",
@@ -27648,6 +27618,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0356878",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -27897,8 +27868,7 @@
      "face_yaw": -100.5,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": -70.1,
-     "back_foot_angle_deg": 35.0,
+     "back_foot_angle_deg": 41.9,
      "base_court_m": 1.18,
      "stance_angle": 18.5,
      "base_m": 1.18
@@ -27969,8 +27939,7 @@
      "face_yaw": -20.5,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -54.1,
-     "back_foot_angle_deg": 14.0,
+     "back_foot_angle_deg": 28.1,
      "base_court_m": 0.91,
      "stance_angle": 35.0,
      "base_m": 0.91
@@ -28447,8 +28416,7 @@
     "loaded.racket_head_lateral": 10.45,
     "loaded.face_tilt": 14.3,
     "loaded.face_yaw": 5.45,
-    "loaded.front_foot_angle_deg": 6.95,
-    "loaded.back_foot_angle_deg": 3.25,
+    "loaded.back_foot_angle_deg": 2.75,
     "acceleration.body_height": 1.7,
     "acceleration.hip_height": 2.0,
     "acceleration.head_over_base": 0.95,
@@ -28508,8 +28476,7 @@
     "impact.hip_turn": 4.9,
     "impact.face_tilt": 13.15,
     "impact.face_yaw": 15.3,
-    "impact.front_foot_angle_deg": 11.4,
-    "impact.back_foot_angle_deg": 14.65,
+    "impact.back_foot_angle_deg": 4.8,
     "extension.body_height": 1.4,
     "extension.hip_height": 1.75,
     "extension.head_over_base": 2.8,
@@ -29476,6 +29443,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w003566699_5266_near_104.json",
@@ -30259,6 +30232,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0357096",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -30476,8 +30450,7 @@
      "face_yaw": 83.9,
      "face_points_to": "valla derecha",
      "face_observed": true,
-     "front_foot_angle_deg": -55.2,
-     "back_foot_angle_deg": -39.7,
+     "back_foot_angle_deg": -25.1,
      "base_court_m": 0.21,
      "stance_angle": 93.1,
      "base_m": 0.21
@@ -30547,8 +30520,7 @@
      "face_yaw": 7.0,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -76.6,
-     "back_foot_angle_deg": -12.0,
+     "back_foot_angle_deg": -4.2,
      "base_court_m": 0.87,
      "stance_angle": 35.7,
      "base_m": 0.87
@@ -30814,8 +30786,7 @@
     "loaded.racket_head_lateral": 2.75,
     "loaded.face_tilt": 0.45,
     "loaded.face_yaw": 2.2,
-    "loaded.front_foot_angle_deg": 7.95,
-    "loaded.back_foot_angle_deg": 15.75,
+    "loaded.back_foot_angle_deg": 5.8,
     "acceleration.body_height": 1.0,
     "acceleration.hip_height": 1.05,
     "acceleration.head_over_base": 0.25,
@@ -30874,8 +30845,7 @@
     "impact.racket_head_lateral": 2.0,
     "impact.face_tilt": 3.7,
     "impact.face_yaw": 12.2,
-    "impact.front_foot_angle_deg": 2.05,
-    "impact.back_foot_angle_deg": 0.85,
+    "impact.back_foot_angle_deg": 0.55,
     "extension.body_height": 0.5,
     "extension.hip_height": 0.15,
     "extension.head_over_base": 0.0,
@@ -31801,6 +31771,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w003566699_5266_near_213.json",
@@ -32502,6 +32478,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0363406",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -32736,7 +32713,7 @@
      "face_yaw": -88.5,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "back_foot_angle_deg": 26.9,
+     "back_foot_angle_deg": 33.3,
      "base_court_m": 1.22,
      "stance_angle": 8.1,
      "base_m": 1.22
@@ -32813,7 +32790,6 @@
      "face_yaw": -20.2,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 116.1,
      "base_court_m": 1.01,
      "stance_angle": 14.3,
      "base_m": 1.01
@@ -33320,7 +33296,7 @@
     "loaded.racket_head_lateral": 1.4,
     "loaded.face_tilt": 5.25,
     "loaded.face_yaw": 1.5,
-    "loaded.back_foot_angle_deg": 0.45,
+    "loaded.back_foot_angle_deg": 0.2,
     "acceleration.body_height": 2.85,
     "acceleration.hip_height": 1.95,
     "acceleration.head_over_base": 0.1,
@@ -33386,7 +33362,6 @@
     "impact.racket_head_lateral": 0.8,
     "impact.face_tilt": 1.2,
     "impact.face_yaw": 10.8,
-    "impact.front_foot_angle_deg": 12.6,
     "extension.body_height": 0.8,
     "extension.hip_height": 0.15,
     "extension.head_over_base": 3.6,
@@ -34367,6 +34342,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w003631899_8627_near_108.json",
@@ -35189,6 +35170,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0363650",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -35429,8 +35411,7 @@
      "face_yaw": 80.9,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "front_foot_angle_deg": -11.3,
-     "back_foot_angle_deg": 0.0,
+     "back_foot_angle_deg": 8.1,
      "base_court_m": 0.73,
      "stance_angle": 46.8,
      "base_m": 0.73
@@ -35508,8 +35489,7 @@
      "face_yaw": -0.7,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -50.2,
-     "back_foot_angle_deg": -3.6,
+     "back_foot_angle_deg": 4.7,
      "base_court_m": 0.98,
      "stance_angle": 60.7,
      "base_m": 0.98
@@ -35877,8 +35857,7 @@
     "loaded.racket_head_lateral": 1.4,
     "loaded.face_tilt": 0.95,
     "loaded.face_yaw": 2.05,
-    "loaded.front_foot_angle_deg": 5.6,
-    "loaded.back_foot_angle_deg": 5.1,
+    "loaded.back_foot_angle_deg": 2.2,
     "acceleration.body_height": 3.35,
     "acceleration.hip_height": 2.5,
     "acceleration.head_over_base": 2.85,
@@ -35944,8 +35923,7 @@
     "impact.racket_head_lateral": 4.95,
     "impact.face_tilt": 4.25,
     "impact.face_yaw": 3.2,
-    "impact.front_foot_angle_deg": 4.75,
-    "impact.back_foot_angle_deg": 3.3,
+    "impact.back_foot_angle_deg": 1.4,
     "extension.body_height": 0.55,
     "extension.hip_height": 0.5,
     "extension.head_over_base": 2.1,
@@ -36900,6 +36878,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w003631899_8627_near_230.json",
@@ -37722,6 +37706,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0363898",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -37949,8 +37934,7 @@
      "x_factor": -1.4,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -65.0,
-     "back_foot_angle_deg": -28.2,
+     "back_foot_angle_deg": -19.0,
      "base_court_m": 0.33,
      "stance_angle": 101.8,
      "base_m": 0.33
@@ -38027,8 +38011,7 @@
      "face_yaw": 9.9,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -69.2,
-     "back_foot_angle_deg": -1.6,
+     "back_foot_angle_deg": 8.5,
      "base_court_m": 0.89,
      "stance_angle": 24.2,
      "base_m": 0.89
@@ -38369,8 +38352,7 @@
     "loaded.shoulder_turn": 0.7,
     "loaded.hip_turn": 4.15,
     "loaded.x_factor": 3.5,
-    "loaded.front_foot_angle_deg": 48.55,
-    "loaded.back_foot_angle_deg": 0.55,
+    "loaded.back_foot_angle_deg": 0.3,
     "acceleration.body_height": 1.85,
     "acceleration.hip_height": 1.55,
     "acceleration.head_over_base": 0.25,
@@ -38436,8 +38418,7 @@
     "impact.racket_head_lateral": 5.25,
     "impact.face_tilt": 3.8,
     "impact.face_yaw": 5.8,
-    "impact.front_foot_angle_deg": 4.85,
-    "impact.back_foot_angle_deg": 3.6,
+    "impact.back_foot_angle_deg": 3.25,
     "extension.body_height": 1.05,
     "extension.hip_height": 0.85,
     "extension.head_over_base": 0.45,
@@ -39372,6 +39353,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w003631899_8627_near_354.json",
@@ -39500,6 +39487,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0377588",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -39682,6 +39670,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0388022",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -39883,6 +39872,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0393297",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -40087,6 +40077,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0393505",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -40283,6 +40274,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0397518",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -40484,6 +40476,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0405445",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -40693,6 +40686,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0405693",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -40895,6 +40889,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0407934",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -41086,6 +41081,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0420593",
+  "surface": "dura",
   "court_check": "ok",
   "side": "far",
   "height_scale": {
@@ -41267,6 +41263,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0421097",
+  "surface": "dura",
   "court_check": "ok",
   "side": "far",
   "height_scale": {
@@ -41947,6 +41944,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0423760",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -42167,8 +42165,7 @@
      "face_yaw": -83.5,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "front_foot_angle_deg": -59.0,
-     "back_foot_angle_deg": -38.4,
+     "back_foot_angle_deg": -32.6,
      "base_court_m": 0.16,
      "stance_angle": 58.1,
      "base_m": 0.16
@@ -42245,7 +42242,6 @@
      "face_yaw": 10.0,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -17.5,
      "base_court_m": 0.24,
      "stance_angle": 18.4,
      "base_m": 0.24
@@ -42537,8 +42533,7 @@
     "loaded.racket_head_lateral": 3.7,
     "loaded.face_tilt": 6.05,
     "loaded.face_yaw": 0.5,
-    "loaded.front_foot_angle_deg": 1.65,
-    "loaded.back_foot_angle_deg": 3.95,
+    "loaded.back_foot_angle_deg": 4.35,
     "acceleration.body_height": 0.8,
     "acceleration.hip_height": 2.0,
     "acceleration.head_over_base": 2.05,
@@ -42603,7 +42598,6 @@
     "impact.racket_head_lateral": 8.5,
     "impact.face_tilt": 8.05,
     "impact.face_yaw": 9.95,
-    "impact.front_foot_angle_deg": 8.3,
     "extension.body_height": 1.65,
     "extension.hip_height": 0.75,
     "extension.head_over_base": 1.1,
@@ -43543,6 +43537,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w004235196_3600_near_120.json",
@@ -44177,6 +44177,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0425275",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -44388,8 +44389,8 @@
      "x_factor": -11.8,
      "face_points_to": "suelo",
      "face_observed": false,
-     "front_foot_angle_deg": -7.4,
-     "back_foot_angle_deg": -13.3,
+     "front_foot_angle_deg": 4.2,
+     "back_foot_angle_deg": -5.4,
      "base_court_m": 0.74,
      "stance_angle": 147.1,
      "base_m": 0.74
@@ -44466,8 +44467,7 @@
      "face_yaw": 11.4,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -28.5,
-     "back_foot_angle_deg": 40.5,
+     "front_foot_angle_deg": -19.0,
      "base_court_m": 0.65,
      "stance_angle": 59.5,
      "base_m": 0.65
@@ -44741,8 +44741,8 @@
     "loaded.shoulder_turn": 1.7,
     "loaded.hip_turn": 1.6,
     "loaded.x_factor": 2.35,
-    "loaded.front_foot_angle_deg": 4.95,
-    "loaded.back_foot_angle_deg": 0.4,
+    "loaded.front_foot_angle_deg": 0.1,
+    "loaded.back_foot_angle_deg": 0.25,
     "acceleration.body_height": 0.8,
     "acceleration.hip_height": 1.9,
     "acceleration.head_over_base": 2.7,
@@ -44808,8 +44808,7 @@
     "impact.racket_head_lateral": 0.6,
     "impact.face_tilt": 4.4,
     "impact.face_yaw": 6.05,
-    "impact.front_foot_angle_deg": 7.05,
-    "impact.back_foot_angle_deg": 53.4,
+    "impact.front_foot_angle_deg": 0.0,
     "extension.body_height": 2.85,
     "extension.hip_height": 1.45,
     "extension.head_over_base": 1.8,
@@ -45739,6 +45738,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "medido",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w004250869_3600_near_94.json",
@@ -46369,6 +46374,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0428904",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -46589,8 +46595,8 @@
      "x_factor": -1.2,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 37.3,
-     "back_foot_angle_deg": -2.0,
+     "front_foot_angle_deg": 42.5,
+     "back_foot_angle_deg": 5.1,
      "base_court_m": 0.77,
      "stance_angle": 133.8,
      "base_m": 0.77
@@ -46941,8 +46947,8 @@
     "loaded.shoulder_turn": 0.2,
     "loaded.hip_turn": 2.7,
     "loaded.x_factor": 2.6,
-    "loaded.front_foot_angle_deg": 4.35,
-    "loaded.back_foot_angle_deg": 1.0,
+    "loaded.front_foot_angle_deg": 3.85,
+    "loaded.back_foot_angle_deg": 0.0,
     "acceleration.body_height": 0.35,
     "acceleration.hip_height": 0.35,
     "acceleration.head_over_base": 0.5,
@@ -47941,6 +47947,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w004286918_4958_near_106.json",
@@ -48857,6 +48869,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0429429",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -49098,8 +49111,7 @@
      "face_yaw": -76.6,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": -116.8,
-     "back_foot_angle_deg": 20.7,
+     "back_foot_angle_deg": 29.7,
      "base_court_m": 0.91,
      "stance_angle": 13.0,
      "base_m": 0.91
@@ -49171,7 +49183,6 @@
      "face_yaw": -20.0,
      "face_points_to": "red",
      "face_observed": false,
-     "back_foot_angle_deg": -113.1,
      "base_court_m": 1.08,
      "stance_angle": 74.7,
      "base_m": 1.08
@@ -49694,8 +49705,7 @@
     "loaded.racket_head_lateral": 4.8,
     "loaded.face_tilt": 7.6,
     "loaded.face_yaw": 4.05,
-    "loaded.front_foot_angle_deg": 6.95,
-    "loaded.back_foot_angle_deg": 3.75,
+    "loaded.back_foot_angle_deg": 0.5,
     "acceleration.body_height": 3.1,
     "acceleration.hip_height": 2.8,
     "acceleration.head_over_base": 0.9,
@@ -49756,7 +49766,6 @@
     "impact.hip_turn": 2.3,
     "impact.face_tilt": 2.3,
     "impact.face_yaw": 3.3,
-    "impact.back_foot_angle_deg": 6.3,
     "extension.body_height": 4.7,
     "extension.hip_height": 4.05,
     "extension.head_over_base": 0.8,
@@ -50715,6 +50724,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w004292166_3600_near_106.json",
@@ -51349,6 +51364,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0435993",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -51561,8 +51577,8 @@
      "x_factor": 0.6,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 25.4,
-     "back_foot_angle_deg": 0.0,
+     "front_foot_angle_deg": 32.7,
+     "back_foot_angle_deg": 7.2,
      "base_court_m": 0.77,
      "stance_angle": 132.7,
      "base_m": 0.77
@@ -51909,8 +51925,8 @@
     "loaded.shoulder_turn": 0.35,
     "loaded.hip_turn": 1.05,
     "loaded.x_factor": 1.15,
-    "loaded.front_foot_angle_deg": 9.45,
-    "loaded.back_foot_angle_deg": 0.0,
+    "loaded.front_foot_angle_deg": 8.15,
+    "loaded.back_foot_angle_deg": 0.05,
     "acceleration.body_height": 2.0,
     "acceleration.hip_height": 1.55,
     "acceleration.head_over_base": 5.4,
@@ -52905,6 +52921,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w004357809_10949_near_106.json",
@@ -53706,6 +53728,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0436213",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -53925,8 +53948,8 @@
      "face_yaw": -94.7,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": 3.8,
-     "back_foot_angle_deg": 13.5,
+     "front_foot_angle_deg": 13.4,
+     "back_foot_angle_deg": 22.9,
      "base_court_m": 1.14,
      "stance_angle": 61.2,
      "base_m": 1.14
@@ -54002,7 +54025,7 @@
      "face_yaw": -6.9,
      "face_points_to": "red",
      "face_observed": false,
-     "back_foot_angle_deg": 19.1,
+     "back_foot_angle_deg": 27.3,
      "base_court_m": 1.02,
      "stance_angle": 23.0,
      "base_m": 1.02
@@ -54294,8 +54317,8 @@
     "loaded.racket_head_lateral": 1.2,
     "loaded.face_tilt": 0.65,
     "loaded.face_yaw": 1.35,
-    "loaded.front_foot_angle_deg": 12.45,
-    "loaded.back_foot_angle_deg": 1.6,
+    "loaded.front_foot_angle_deg": 11.9,
+    "loaded.back_foot_angle_deg": 0.7,
     "acceleration.body_height": 1.35,
     "acceleration.hip_height": 0.55,
     "acceleration.head_over_base": 2.9,
@@ -54360,7 +54383,7 @@
     "impact.racket_head_lateral": 0.9,
     "impact.face_tilt": 6.15,
     "impact.face_yaw": 2.85,
-    "impact.back_foot_angle_deg": 8.0,
+    "impact.back_foot_angle_deg": 0.7,
     "extension.body_height": 1.45,
     "extension.hip_height": 0.4,
     "extension.head_over_base": 0.45,
@@ -55304,6 +55327,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w004357809_10949_near_216.json",
@@ -56103,6 +56132,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0436473",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -56327,8 +56357,7 @@
      "x_factor": 37.6,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -83.0,
-     "back_foot_angle_deg": 26.5,
+     "back_foot_angle_deg": 32.2,
      "base_court_m": 1.05,
      "stance_angle": 14.1,
      "base_m": 1.05
@@ -56398,7 +56427,6 @@
      "face_yaw": -20.0,
      "face_points_to": "red",
      "face_observed": false,
-     "back_foot_angle_deg": -80.1,
      "base_court_m": 0.63,
      "stance_angle": 26.2,
      "base_m": 0.63
@@ -56741,8 +56769,7 @@
     "loaded.shoulder_turn": 0.2,
     "loaded.hip_turn": 3.0,
     "loaded.x_factor": 4.75,
-    "loaded.front_foot_angle_deg": 7.1,
-    "loaded.back_foot_angle_deg": 7.55,
+    "loaded.back_foot_angle_deg": 5.85,
     "acceleration.body_height": 1.5,
     "acceleration.hip_height": 1.05,
     "acceleration.head_over_base": 0.55,
@@ -56801,7 +56828,6 @@
     "impact.hip_turn": 3.85,
     "impact.face_tilt": 4.1,
     "impact.face_yaw": 1.85,
-    "impact.back_foot_angle_deg": 35.35,
     "extension.body_height": 0.25,
     "extension.hip_height": 0.5,
     "extension.head_over_base": 2.05,
@@ -57742,6 +57768,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "punta_oculta"
    }
   },
   "series": "series/w004357809_10949_near_346.json",
@@ -58547,6 +58579,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0436729",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -58780,8 +58813,6 @@
      "face_yaw": -82.4,
      "face_points_to": "suelo",
      "face_observed": true,
-     "front_foot_angle_deg": -61.0,
-     "back_foot_angle_deg": 23.0,
      "base_court_m": 0.93,
      "stance_angle": 11.8,
      "base_m": 0.93
@@ -58860,8 +58891,7 @@
      "face_yaw": -6.6,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -75.8,
-     "back_foot_angle_deg": 1.7,
+     "back_foot_angle_deg": 5.9,
      "base_court_m": 0.88,
      "stance_angle": 10.1,
      "base_m": 0.88
@@ -59260,8 +59290,6 @@
     "loaded.racket_head_lateral": 2.9,
     "loaded.face_tilt": 8.5,
     "loaded.face_yaw": 23.25,
-    "loaded.front_foot_angle_deg": 13.3,
-    "loaded.back_foot_angle_deg": 24.8,
     "acceleration.body_height": 0.3,
     "acceleration.hip_height": 0.5,
     "acceleration.head_over_base": 0.95,
@@ -59329,8 +59357,7 @@
     "impact.racket_head_lateral": 16.25,
     "impact.face_tilt": 1.5,
     "impact.face_yaw": 6.45,
-    "impact.front_foot_angle_deg": 9.55,
-    "impact.back_foot_angle_deg": 4.05,
+    "impact.back_foot_angle_deg": 1.7,
     "extension.body_height": 0.05,
     "extension.hip_height": 0.1,
     "extension.head_over_base": 2.75,
@@ -60293,6 +60320,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "incoherente",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w004357809_10949_near_474.json",
@@ -60923,6 +60956,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0441400",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -61172,8 +61206,7 @@
      "face_yaw": -85.7,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "front_foot_angle_deg": -58.9,
-     "back_foot_angle_deg": -38.2,
+     "back_foot_angle_deg": -32.6,
      "base_court_m": 0.14,
      "stance_angle": 58.6,
      "base_m": 0.14
@@ -61250,8 +61283,7 @@
      "face_yaw": 4.2,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -13.0,
-     "back_foot_angle_deg": 23.6,
+     "back_foot_angle_deg": 35.8,
      "base_court_m": 0.33,
      "stance_angle": -3.6,
      "base_m": 0.33
@@ -61605,8 +61637,7 @@
     "loaded.racket_head_lateral": 0.9,
     "loaded.face_tilt": 1.8,
     "loaded.face_yaw": 1.8,
-    "loaded.front_foot_angle_deg": 2.15,
-    "loaded.back_foot_angle_deg": 7.95,
+    "loaded.back_foot_angle_deg": 9.15,
     "acceleration.body_height": 1.05,
     "acceleration.hip_height": 1.3,
     "acceleration.head_over_base": 2.1,
@@ -61672,8 +61703,7 @@
     "impact.racket_head_lateral": 6.1,
     "impact.face_tilt": 2.8,
     "impact.face_yaw": 5.3,
-    "impact.front_foot_angle_deg": 14.75,
-    "impact.back_foot_angle_deg": 15.35,
+    "impact.back_foot_angle_deg": 2.4,
     "extension.body_height": 3.55,
     "extension.hip_height": 0.65,
     "extension.head_over_base": 2.4,
@@ -62629,6 +62659,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w004411876_3600_near_106.json",
@@ -63263,6 +63299,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0444147",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -63496,8 +63533,7 @@
      "face_yaw": -98.4,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "front_foot_angle_deg": -39.8,
-     "back_foot_angle_deg": -16.6,
+     "back_foot_angle_deg": -6.0,
      "base_court_m": 0.13,
      "stance_angle": 53.6,
      "base_m": 0.13
@@ -63867,8 +63903,7 @@
     "loaded.racket_head_lateral": 4.65,
     "loaded.face_tilt": 27.0,
     "loaded.face_yaw": 29.05,
-    "loaded.front_foot_angle_deg": 15.0,
-    "loaded.back_foot_angle_deg": 12.55,
+    "loaded.back_foot_angle_deg": 10.0,
     "acceleration.body_height": 0.4,
     "acceleration.hip_height": 1.75,
     "acceleration.head_over_base": 4.3,
@@ -64874,6 +64909,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w004439555_3600_near_96.json",
@@ -65566,6 +65607,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0452383",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -65809,8 +65851,7 @@
      "face_yaw": -75.9,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": -112.3,
-     "back_foot_angle_deg": -25.7,
+     "back_foot_angle_deg": -16.5,
      "base_court_m": 0.68,
      "stance_angle": 33.0,
      "base_m": 0.68
@@ -65891,8 +65932,6 @@
      "face_yaw": -10.3,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -67.9,
-     "back_foot_angle_deg": -95.1,
      "base_court_m": 0.58,
      "stance_angle": 98.5,
      "base_m": 0.58
@@ -66258,8 +66297,7 @@
     "loaded.racket_head_lateral": 2.9,
     "loaded.face_tilt": 2.65,
     "loaded.face_yaw": 2.55,
-    "loaded.front_foot_angle_deg": 6.35,
-    "loaded.back_foot_angle_deg": 7.85,
+    "loaded.back_foot_angle_deg": 4.8,
     "acceleration.body_height": 0.8,
     "acceleration.hip_height": 0.6,
     "acceleration.head_over_base": 1.55,
@@ -66329,8 +66367,6 @@
     "impact.racket_head_lateral": 2.5,
     "impact.face_tilt": 11.2,
     "impact.face_yaw": 4.8,
-    "impact.front_foot_angle_deg": 25.35,
-    "impact.back_foot_angle_deg": 14.35,
     "extension.body_height": 1.65,
     "extension.hip_height": 1.95,
     "extension.head_over_base": 3.85,
@@ -67284,6 +67320,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "punta_oculta"
    }
   },
   "series": "series/w004521786_3600_near_102.json",
@@ -67972,6 +68014,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0460992",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -68209,8 +68252,7 @@
      "face_yaw": -69.3,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": -108.1,
-     "back_foot_angle_deg": -29.0,
+     "back_foot_angle_deg": -19.7,
      "base_court_m": 0.69,
      "stance_angle": 27.3,
      "base_m": 0.69
@@ -68286,7 +68328,6 @@
      "face_yaw": -18.4,
      "face_points_to": "red",
      "face_observed": false,
-     "back_foot_angle_deg": -97.4,
      "base_court_m": 0.63,
      "stance_angle": 82.8,
      "base_m": 0.63
@@ -68643,8 +68684,7 @@
     "loaded.racket_head_lateral": 3.5,
     "loaded.face_tilt": 6.55,
     "loaded.face_yaw": 12.7,
-    "loaded.front_foot_angle_deg": 9.25,
-    "loaded.back_foot_angle_deg": 13.8,
+    "loaded.back_foot_angle_deg": 9.85,
     "acceleration.body_height": 0.9,
     "acceleration.hip_height": 1.45,
     "acceleration.head_over_base": 1.75,
@@ -68709,7 +68749,6 @@
     "impact.hip_turn": 4.45,
     "impact.face_tilt": 10.5,
     "impact.face_yaw": 15.15,
-    "impact.back_foot_angle_deg": 18.25,
     "extension.body_height": 2.05,
     "extension.hip_height": 2.65,
     "extension.head_over_base": 5.5,
@@ -69659,6 +69698,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "punta_oculta"
    }
   },
   "series": "series/w004607799_3600_near_106.json",
@@ -70311,6 +70356,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0464966",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -70517,7 +70563,6 @@
      "face_yaw": 76.9,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "back_foot_angle_deg": -75.3,
      "base_court_m": 0.95,
      "stance_angle": 6.5,
      "base_m": 0.95
@@ -70588,8 +70633,7 @@
      "face_yaw": -28.2,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -57.2,
-     "back_foot_angle_deg": 0.0,
+     "back_foot_angle_deg": 9.6,
      "base_court_m": 1.24,
      "stance_angle": 38.0,
      "base_m": 1.24
@@ -70975,8 +71019,7 @@
     "impact.hip_turn": 2.3,
     "impact.face_tilt": 6.05,
     "impact.face_yaw": 2.6,
-    "impact.front_foot_angle_deg": 12.95,
-    "impact.back_foot_angle_deg": 2.1,
+    "impact.back_foot_angle_deg": 0.5,
     "extension.body_height": 0.4,
     "extension.hip_height": 0.15,
     "extension.head_over_base": 0.45,
@@ -71842,6 +71885,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "incoherente",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w004647400_3600_near_113.json",
@@ -71966,6 +72015,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0476295",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -72162,6 +72212,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0494120",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -72355,6 +72406,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0499019",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -72533,6 +72585,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0536569",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -73231,6 +73284,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0543075",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -73455,8 +73509,8 @@
      "x_factor": 9.4,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": 29.6,
-     "back_foot_angle_deg": -3.9,
+     "front_foot_angle_deg": 35.7,
+     "back_foot_angle_deg": 3.2,
      "base_court_m": 0.79,
      "stance_angle": 136.4,
      "base_m": 0.79
@@ -73808,8 +73862,8 @@
     "loaded.shoulder_turn": 0.15,
     "loaded.hip_turn": 2.8,
     "loaded.x_factor": 2.65,
-    "loaded.front_foot_angle_deg": 4.65,
-    "loaded.back_foot_angle_deg": 0.95,
+    "loaded.front_foot_angle_deg": 3.95,
+    "loaded.back_foot_angle_deg": 0.0,
     "acceleration.body_height": 0.1,
     "acceleration.hip_height": 0.2,
     "acceleration.head_over_base": 0.55,
@@ -74809,6 +74863,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w005428630_5504_near_106.json",
@@ -75583,6 +75643,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0543287",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -75815,8 +75876,7 @@
      "face_yaw": 66.9,
      "face_points_to": "valla derecha",
      "face_observed": true,
-     "front_foot_angle_deg": 3.1,
-     "back_foot_angle_deg": -52.4,
+     "front_foot_angle_deg": 7.0,
      "base_court_m": 0.38,
      "stance_angle": 159.5,
      "base_m": 0.38
@@ -75885,7 +75945,7 @@
      "face_yaw": -11.0,
      "face_points_to": "red",
      "face_observed": false,
-     "back_foot_angle_deg": 5.1,
+     "back_foot_angle_deg": 13.2,
      "base_court_m": 0.88,
      "stance_angle": 46.3,
      "base_m": 0.88
@@ -76175,8 +76235,7 @@
     "loaded.racket_head_lateral": 2.8,
     "loaded.face_tilt": 3.0,
     "loaded.face_yaw": 5.8,
-    "loaded.front_foot_angle_deg": 5.25,
-    "loaded.back_foot_angle_deg": 9.0,
+    "loaded.front_foot_angle_deg": 1.5,
     "acceleration.body_height": 0.1,
     "acceleration.hip_height": 0.35,
     "acceleration.head_over_base": 0.6,
@@ -76234,7 +76293,7 @@
     "impact.racket_head_lateral": 2.6,
     "impact.face_tilt": 10.45,
     "impact.face_yaw": 7.25,
-    "impact.back_foot_angle_deg": 2.3,
+    "impact.back_foot_angle_deg": 2.15,
     "extension.body_height": 0.75,
     "extension.hip_height": 0.5,
     "extension.head_over_base": 0.6,
@@ -77170,6 +77229,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "punta_oculta",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w005428630_5504_near_212.json",
@@ -77789,6 +77854,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0552800",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -78013,8 +78079,8 @@
      "x_factor": -0.3,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 28.0,
-     "back_foot_angle_deg": 6.2,
+     "front_foot_angle_deg": 34.8,
+     "back_foot_angle_deg": 11.5,
      "base_court_m": 0.8,
      "stance_angle": 128.2,
      "base_m": 0.8
@@ -78092,7 +78158,6 @@
      "face_yaw": -11.4,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 97.1,
      "base_court_m": 0.66,
      "stance_angle": 73.6,
      "base_m": 0.66
@@ -78373,8 +78438,8 @@
     "loaded.shoulder_turn": 1.05,
     "loaded.hip_turn": 1.35,
     "loaded.x_factor": 2.45,
-    "loaded.front_foot_angle_deg": 5.55,
-    "loaded.back_foot_angle_deg": 2.05,
+    "loaded.front_foot_angle_deg": 4.85,
+    "loaded.back_foot_angle_deg": 0.05,
     "acceleration.body_height": 0.55,
     "acceleration.hip_height": 2.4,
     "acceleration.head_over_base": 5.4,
@@ -78441,7 +78506,6 @@
     "impact.racket_head_lateral": 0.6,
     "impact.face_tilt": 2.4,
     "impact.face_yaw": 8.95,
-    "impact.front_foot_angle_deg": 0.7,
     "extension.body_height": 3.45,
     "extension.hip_height": 1.15,
     "extension.head_over_base": 2.7,
@@ -79380,6 +79444,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w005525603_6044_near_120.json",
@@ -80266,6 +80336,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0553020",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -80487,8 +80558,7 @@
      "x_factor": 36.9,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "front_foot_angle_deg": -59.3,
-     "back_foot_angle_deg": 50.2,
+     "back_foot_angle_deg": 47.9,
      "base_court_m": 1.37,
      "stance_angle": 35.7,
      "base_m": 1.37
@@ -80549,8 +80619,7 @@
      "face_yaw": 2.6,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -62.0,
-     "back_foot_angle_deg": -5.1,
+     "back_foot_angle_deg": 4.0,
      "base_court_m": 0.74,
      "stance_angle": 24.1,
      "base_m": 0.74
@@ -80820,8 +80889,7 @@
     "loaded.shoulder_turn": 2.6,
     "loaded.hip_turn": 2.6,
     "loaded.x_factor": 1.9,
-    "loaded.front_foot_angle_deg": 7.95,
-    "loaded.back_foot_angle_deg": 14.05,
+    "loaded.back_foot_angle_deg": 7.2,
     "acceleration.body_height": 0.25,
     "acceleration.hip_height": 0.3,
     "acceleration.head_over_base": 0.6,
@@ -80871,8 +80939,7 @@
     "impact.hip_turn": 4.2,
     "impact.face_tilt": 5.05,
     "impact.face_yaw": 6.35,
-    "impact.front_foot_angle_deg": 11.4,
-    "impact.back_foot_angle_deg": 7.05,
+    "impact.back_foot_angle_deg": 0.1,
     "extension.body_height": 0.5,
     "extension.hip_height": 0.6,
     "extension.head_over_base": 3.55,
@@ -81797,6 +81864,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w005525603_6044_near_230.json",
@@ -82435,6 +82508,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0556775",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -82668,8 +82742,7 @@
      "face_yaw": -33.9,
      "face_points_to": "red",
      "face_observed": true,
-     "front_foot_angle_deg": -4.8,
-     "back_foot_angle_deg": -55.6,
+     "front_foot_angle_deg": 3.9,
      "base_court_m": 0.71,
      "stance_angle": 155.2,
      "base_m": 0.71
@@ -82745,7 +82818,6 @@
      "face_yaw": 9.5,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -21.9,
      "base_court_m": 0.7,
      "stance_angle": 68.0,
      "base_m": 0.7
@@ -83081,8 +83153,7 @@
     "loaded.racket_head_lateral": 2.15,
     "loaded.face_tilt": 4.0,
     "loaded.face_yaw": 2.0,
-    "loaded.front_foot_angle_deg": 5.75,
-    "loaded.back_foot_angle_deg": 6.5,
+    "loaded.front_foot_angle_deg": 5.1,
     "acceleration.body_height": 1.25,
     "acceleration.hip_height": 2.6,
     "acceleration.head_over_base": 2.6,
@@ -83146,7 +83217,6 @@
     "impact.racket_head_lateral": 2.25,
     "impact.face_tilt": 7.7,
     "impact.face_yaw": 11.45,
-    "impact.front_foot_angle_deg": 9.7,
     "extension.body_height": 2.35,
     "extension.hip_height": 0.95,
     "extension.head_over_base": 2.35,
@@ -84097,6 +84167,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "punta_oculta",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w005565634_3600_near_106.json",
@@ -84870,6 +84946,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0557483",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -85106,8 +85183,8 @@
      "face_yaw": -104.9,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "front_foot_angle_deg": 16.2,
-     "back_foot_angle_deg": 1.5,
+     "front_foot_angle_deg": 23.5,
+     "back_foot_angle_deg": 13.1,
      "base_court_m": 0.62,
      "stance_angle": 51.0,
      "base_m": 0.62
@@ -85177,8 +85254,7 @@
      "face_yaw": -13.2,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 8.7,
-     "back_foot_angle_deg": 11.3,
+     "back_foot_angle_deg": 19.9,
      "base_court_m": 0.94,
      "stance_angle": 45.5,
      "base_m": 0.94
@@ -85520,8 +85596,8 @@
     "loaded.racket_head_lateral": 2.6,
     "loaded.face_tilt": 9.1,
     "loaded.face_yaw": 8.05,
-    "loaded.front_foot_angle_deg": 1.55,
-    "loaded.back_foot_angle_deg": 7.85,
+    "loaded.front_foot_angle_deg": 1.05,
+    "loaded.back_foot_angle_deg": 3.5,
     "acceleration.body_height": 1.65,
     "acceleration.hip_height": 1.1,
     "acceleration.head_over_base": 0.3,
@@ -85580,8 +85656,7 @@
     "impact.racket_head_lateral": 2.6,
     "impact.face_tilt": 5.9,
     "impact.face_yaw": 6.75,
-    "impact.front_foot_angle_deg": 40.45,
-    "impact.back_foot_angle_deg": 1.6,
+    "impact.back_foot_angle_deg": 0.3,
     "extension.body_height": 1.35,
     "extension.hip_height": 1.0,
     "extension.head_over_base": 1.3,
@@ -86524,6 +86599,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w005572669_3600_near_108.json",
@@ -87396,6 +87477,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0561411",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -87533,9 +87615,7 @@
    "apex_height_m": 1.68,
    "bounce_to_apex_s": 0.586,
    "contact_height_m": 1.5,
-   "contact_phase": "subiendo",
-   "net_frame": 95,
-   "incoming_speed_kmh": 126
+   "contact_phase": "subiendo"
   },
   "technique": {
    "phases": {
@@ -87643,7 +87723,7 @@
      "face_yaw": -73.4,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "back_foot_angle_deg": -20.5,
+     "back_foot_angle_deg": -12.5,
      "base_court_m": 0.8,
      "stance_angle": 31.8,
      "base_m": 0.8
@@ -87722,7 +87802,6 @@
      "face_yaw": -20.1,
      "face_points_to": "red",
      "face_observed": false,
-     "back_foot_angle_deg": -116.6,
      "base_court_m": 0.63,
      "stance_angle": 62.5,
      "base_m": 0.63
@@ -87830,42 +87909,6 @@
      "face_points_to": "valla trasera",
      "face_observed": false
     },
-    "ball_net": {
-     "body_height": 83.8,
-     "hip_height": 37.9,
-     "head_over_base": 0.6,
-     "head_vs_hips": 5.9,
-     "trunk_tilt": 6.3,
-     "shoulder_tilt": 8.1,
-     "hip_tilt": 0.8,
-     "com_over_feet": 0.53,
-     "knee_dom": 159.1,
-     "knee_non": 162.0,
-     "base_width": 73.4,
-     "shoulder_abd_dom": 40.2,
-     "wrist_dom_height": 59.4,
-     "wrist_dom_vs_hip": 21.5,
-     "wrist_dom_lateral": 19.5,
-     "wrist_dom_vs_shoulder": -4.1,
-     "elbow_dom_vs_shoulder": -11.8,
-     "elbow_dom_lateral": 7.9,
-     "wrist_non_height": 62.7,
-     "wrist_non_lateral": 3.6,
-     "hands_apart": 16.2,
-     "arm_extension": 38.9,
-     "shoulder_turn": 41.4,
-     "racket_head_vs_wrist": 29.1,
-     "racket_angle": 77.6,
-     "racket_forearm": 8.8,
-     "racket_tip_height": 98.8,
-     "racket_tip_vs_head": 21.1,
-     "racket_head_lateral": 15.7,
-     "face_tilt": 26.5,
-     "face_yaw": 3.3,
-     "face_points_to": "red",
-     "face_observed": false,
-     "t_to_contact": 0.5
-    },
     "ball_bounce": {
      "body_height": 85.1,
      "hip_height": 40.7,
@@ -87924,7 +87967,6 @@
     "head_motion_cm": 11.0,
     "takeback_after_opp": 0.84,
     "takeback_vs_bounce": -0.24,
-    "takeback_vs_net": -0.1,
     "contact_vs_top": -0.22,
     "loaded_vs_top": -0.34,
     "contact_height_m": 1.5,
@@ -88223,7 +88265,7 @@
     "loaded.racket_head_lateral": 3.05,
     "loaded.face_tilt": 2.55,
     "loaded.face_yaw": 6.65,
-    "loaded.back_foot_angle_deg": 9.15,
+    "loaded.back_foot_angle_deg": 1.85,
     "acceleration.body_height": 0.6,
     "acceleration.hip_height": 1.65,
     "acceleration.head_over_base": 2.65,
@@ -88291,7 +88333,6 @@
     "impact.racket_head_lateral": 1.2,
     "impact.face_tilt": 3.2,
     "impact.face_yaw": 5.8,
-    "impact.back_foot_angle_deg": 9.45,
     "extension.body_height": 4.55,
     "extension.hip_height": 4.9,
     "extension.head_over_base": 4.9,
@@ -88400,7 +88441,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -89056,7 +89096,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "takeback",
     "ball_bounce": "takeback"
    },
    "curves": {
@@ -89272,6 +89311,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "punta_oculta"
    }
   },
   "series": "series/w005611708_3600_near_120.json",
@@ -90174,6 +90219,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0564737",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -90310,9 +90356,7 @@
    "apex_height_m": 1.94,
    "bounce_to_apex_s": 0.629,
    "contact_height_m": 1.56,
-   "contact_phase": "subiendo",
-   "net_frame": 93,
-   "incoming_speed_kmh": 108
+   "contact_phase": "subiendo"
   },
   "technique": {
    "phases": {
@@ -90418,8 +90462,7 @@
      "face_yaw": -85.1,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": -100.8,
-     "back_foot_angle_deg": 4.1,
+     "back_foot_angle_deg": 13.1,
      "base_court_m": 0.83,
      "stance_angle": 15.0,
      "base_m": 0.83
@@ -90497,8 +90540,6 @@
      "face_yaw": -5.0,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -49.7,
-     "back_foot_angle_deg": -64.6,
      "base_court_m": 0.45,
      "stance_angle": 52.0,
      "base_m": 0.45
@@ -90609,33 +90650,6 @@
      "face_points_to": "valla izquierda",
      "face_observed": false
     },
-    "ball_net": {
-     "body_height": 81.3,
-     "hip_height": 35.7,
-     "head_over_base": -5.3,
-     "head_vs_hips": -3.6,
-     "trunk_tilt": 1.4,
-     "shoulder_tilt": -0.7,
-     "hip_tilt": -0.5,
-     "com_over_feet": 0.52,
-     "knee_dom": 153.7,
-     "base_width": 62.7,
-     "shoulder_abd_dom": 4.2,
-     "wrist_dom_height": 52.3,
-     "wrist_dom_vs_hip": 16.6,
-     "wrist_dom_lateral": 4.6,
-     "wrist_dom_vs_shoulder": -12.1,
-     "elbow_dom_vs_shoulder": -14.2,
-     "elbow_dom_lateral": 0.7,
-     "wrist_non_height": 54.0,
-     "wrist_non_lateral": 0.6,
-     "hands_apart": 4.4,
-     "arm_extension": 63.8,
-     "shoulder_turn": 25.3,
-     "face_points_to": "valla trasera",
-     "face_observed": false,
-     "t_to_contact": 0.5
-    },
     "ball_bounce": {
      "body_height": 84.9,
      "hip_height": 40.1,
@@ -90694,7 +90708,6 @@
     "head_motion_cm": 6.7,
     "takeback_after_opp": 1.16,
     "takeback_vs_bounce": -0.08,
-    "takeback_vs_net": 0.06,
     "contact_vs_top": -0.26,
     "loaded_vs_top": -0.42,
     "contact_height_m": 1.56,
@@ -90872,8 +90885,7 @@
     "loaded.racket_head_lateral": 1.75,
     "loaded.face_tilt": 4.4,
     "loaded.face_yaw": 5.9,
-    "loaded.front_foot_angle_deg": 1.1,
-    "loaded.back_foot_angle_deg": 5.8,
+    "loaded.back_foot_angle_deg": 2.1,
     "acceleration.body_height": 3.05,
     "acceleration.hip_height": 2.8,
     "acceleration.head_over_base": 0.5,
@@ -90940,8 +90952,6 @@
     "impact.racket_head_lateral": 1.6,
     "impact.face_tilt": 4.15,
     "impact.face_yaw": 5.25,
-    "impact.front_foot_angle_deg": 19.0,
-    "impact.back_foot_angle_deg": 0.85,
     "extension.body_height": 1.6,
     "extension.hip_height": 1.3,
     "extension.head_over_base": 0.8,
@@ -91053,7 +91063,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -91683,7 +91692,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "ready",
     "ball_bounce": "takeback"
    },
    "curves": {
@@ -91899,6 +91907,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "punta_oculta"
    }
   },
   "series": "series/w005645005_3600_near_118.json",
@@ -92537,6 +92551,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0568623",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -92866,7 +92881,7 @@
      "face_yaw": -3.7,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 77.2,
+     "front_foot_angle_deg": 81.2,
      "base_court_m": 1.02,
      "stance_angle": 56.0,
      "base_m": 1.02
@@ -93312,7 +93327,7 @@
     "impact.racket_head_lateral": 0.4,
     "impact.face_tilt": 4.35,
     "impact.face_yaw": 10.9,
-    "impact.front_foot_angle_deg": 11.1,
+    "impact.front_foot_angle_deg": 4.2,
     "extension.body_height": 0.5,
     "extension.hip_height": 1.65,
     "extension.head_over_base": 1.5,
@@ -94262,6 +94277,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "incoherente",
+    "impact.front": "medido",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w005684073_3600_near_108.json",
@@ -94949,6 +94970,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0571888",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -95179,7 +95201,6 @@
      "x_factor": 53.9,
      "face_points_to": "suelo",
      "face_observed": false,
-     "front_foot_angle_deg": -49.7,
      "base_court_m": 1.06,
      "stance_angle": 29.0,
      "base_m": 1.06
@@ -95247,8 +95268,8 @@
      "face_yaw": 2.7,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -29.1,
-     "back_foot_angle_deg": -34.4,
+     "front_foot_angle_deg": -16.3,
+     "back_foot_angle_deg": -35.8,
      "base_court_m": 0.58,
      "stance_angle": 134.0,
      "base_m": 0.58
@@ -95583,7 +95604,6 @@
     "loaded.shoulder_turn": 2.8,
     "loaded.hip_turn": 4.65,
     "loaded.x_factor": 4.45,
-    "loaded.front_foot_angle_deg": 1.05,
     "acceleration.body_height": 1.55,
     "acceleration.hip_height": 0.15,
     "acceleration.head_over_base": 0.35,
@@ -95640,8 +95660,8 @@
     "impact.racket_head_lateral": 4.7,
     "impact.face_tilt": 20.1,
     "impact.face_yaw": 5.65,
-    "impact.front_foot_angle_deg": 14.45,
-    "impact.back_foot_angle_deg": 6.5,
+    "impact.front_foot_angle_deg": 4.9,
+    "impact.back_foot_angle_deg": 1.25,
     "extension.body_height": 1.3,
     "extension.hip_height": 0.6,
     "extension.head_over_base": 1.05,
@@ -96593,6 +96613,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "sin_pie",
+    "impact.front": "medido",
+    "impact.back": "medido"
    }
   },
   "series": "series/w005716718_6235_near_108.json",
@@ -97260,6 +97286,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0572144",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -97491,8 +97518,6 @@
      "face_yaw": 32.9,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -84.3,
-     "back_foot_angle_deg": -39.9,
      "base_court_m": 0.9,
      "stance_angle": 44.6,
      "base_m": 0.9
@@ -97565,8 +97590,6 @@
      "face_yaw": 0.5,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -77.4,
-     "back_foot_angle_deg": 26.0,
      "base_court_m": 0.96,
      "stance_angle": 46.6,
      "base_m": 0.96
@@ -97845,8 +97868,6 @@
     "loaded.racket_head_lateral": 2.1,
     "loaded.face_tilt": 2.85,
     "loaded.face_yaw": 10.55,
-    "loaded.front_foot_angle_deg": 2.2,
-    "loaded.back_foot_angle_deg": 23.4,
     "acceleration.body_height": 0.65,
     "acceleration.hip_height": 0.55,
     "acceleration.head_over_base": 1.7,
@@ -97908,8 +97929,6 @@
     "impact.hip_turn": 10.05,
     "impact.face_tilt": 6.5,
     "impact.face_yaw": 16.25,
-    "impact.front_foot_angle_deg": 2.2,
-    "impact.back_foot_angle_deg": 2.5,
     "extension.body_height": 0.2,
     "extension.hip_height": 0.4,
     "extension.head_over_base": 0.9,
@@ -98838,6 +98857,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "incoherente",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w005716718_6235_near_236.json",
@@ -99479,6 +99504,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0580260",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -99591,10 +99617,6 @@
   },
   "point_won": false,
   "is_return": true,
-  "ball_flight": {
-   "net_frame": 92,
-   "incoming_speed_kmh": 763
-  },
   "technique": {
    "phases": {
     "ready": {
@@ -99669,8 +99691,7 @@
      "face_yaw": -39.8,
      "face_points_to": "red",
      "face_observed": true,
-     "front_foot_angle_deg": 31.1,
-     "back_foot_angle_deg": 42.7,
+     "back_foot_angle_deg": 56.7,
      "base_court_m": 1.1,
      "stance_angle": 19.4,
      "base_m": 1.1
@@ -99750,8 +99771,6 @@
      "face_yaw": -7.1,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -139.2,
-     "back_foot_angle_deg": -74.4,
      "base_court_m": 0.79,
      "stance_angle": -19.6,
      "base_m": 0.79
@@ -99858,36 +99877,6 @@
      "hip_turn": 0.5,
      "face_points_to": "valla izquierda",
      "face_observed": false
-    },
-    "ball_net": {
-     "body_height": 80.7,
-     "hip_height": 41.0,
-     "head_over_base": -4.8,
-     "head_vs_hips": -6.5,
-     "trunk_tilt": -12.0,
-     "shoulder_tilt": -5.6,
-     "hip_tilt": -2.6,
-     "com_over_feet": 0.53,
-     "knee_dom": 167.5,
-     "knee_non": 158.8,
-     "base_width": 39.4,
-     "elbow_dom": 134.6,
-     "shoulder_abd_dom": 28.5,
-     "shoulder_abd_non": 12.8,
-     "wrist_dom_height": 48.6,
-     "wrist_dom_vs_hip": 7.6,
-     "wrist_dom_lateral": -10.1,
-     "wrist_dom_vs_shoulder": -17.0,
-     "elbow_dom_vs_shoulder": -11.7,
-     "elbow_dom_lateral": -3.5,
-     "wrist_non_height": 47.4,
-     "wrist_non_lateral": -13.6,
-     "hands_apart": 3.7,
-     "arm_extension": 92.2,
-     "shoulder_turn": 11.9,
-     "face_points_to": "red",
-     "face_observed": false,
-     "t_to_contact": 0.08
     },
     "ball_bounce": {
      "body_height": 80.8,
@@ -100193,8 +100182,6 @@
     "loaded.racket_head_lateral": 0.5,
     "loaded.face_tilt": 6.55,
     "loaded.face_yaw": 8.05,
-    "loaded.front_foot_angle_deg": 39.6,
-    "loaded.back_foot_angle_deg": 9.55,
     "acceleration.body_height": 0.8,
     "acceleration.hip_height": 0.35,
     "acceleration.head_over_base": 2.65,
@@ -100263,8 +100250,6 @@
     "impact.racket_head_lateral": 0.75,
     "impact.face_tilt": 9.85,
     "impact.face_yaw": 3.1,
-    "impact.front_foot_angle_deg": 58.1,
-    "impact.back_foot_angle_deg": 5.6,
     "extension.body_height": 1.45,
     "extension.hip_height": 1.5,
     "extension.head_over_base": 0.6,
@@ -100941,7 +100926,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "loaded",
     "ball_bounce": "loaded"
    },
    "curves": {
@@ -101157,6 +101141,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "punta_oculta"
    }
   },
   "series": "series/w005800682_3600_near_96.json",
@@ -101823,6 +101813,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0582713",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -101949,9 +101940,7 @@
    "apex_height_m": 2.05,
    "bounce_to_apex_s": 0.646,
    "contact_height_m": 1.2,
-   "contact_phase": "subiendo",
-   "net_frame": 91,
-   "incoming_speed_kmh": 712
+   "contact_phase": "subiendo"
   },
   "technique": {
    "phases": {
@@ -102067,8 +102056,7 @@
      "face_yaw": 60.7,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "front_foot_angle_deg": -15.3,
-     "back_foot_angle_deg": 47.6,
+     "back_foot_angle_deg": 56.6,
      "base_court_m": 1.23,
      "stance_angle": 12.4,
      "base_m": 1.23
@@ -102146,8 +102134,7 @@
      "face_yaw": 10.5,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -44.6,
-     "back_foot_angle_deg": -46.0,
+     "back_foot_angle_deg": -39.8,
      "base_court_m": 0.68,
      "stance_angle": 60.5,
      "base_m": 0.68
@@ -102248,42 +102235,6 @@
      "face_points_to": "valla derecha",
      "face_observed": false
     },
-    "ball_net": {
-     "body_height": 75.0,
-     "hip_height": 33.5,
-     "head_over_base": -21.5,
-     "head_vs_hips": -17.2,
-     "trunk_tilt": -20.7,
-     "com_over_feet": 0.73,
-     "knee_non": 95.4,
-     "base_width": 55.9,
-     "elbow_dom": 165.6,
-     "shoulder_abd_dom": 34.9,
-     "elbow_non": 128.9,
-     "shoulder_abd_non": 35.3,
-     "wrist_dom_height": 40.2,
-     "wrist_dom_vs_hip": 6.7,
-     "wrist_dom_lateral": -17.6,
-     "wrist_dom_vs_shoulder": -21.2,
-     "elbow_dom_vs_shoulder": -12.5,
-     "elbow_dom_lateral": -3.2,
-     "wrist_non_height": 38.2,
-     "wrist_non_lateral": -26.4,
-     "hands_apart": 9.0,
-     "arm_extension": 99.2,
-     "shoulder_turn": 71.2,
-     "racket_head_vs_wrist": 4.2,
-     "racket_angle": 32.3,
-     "racket_forearm": 93.6,
-     "racket_tip_height": 49.2,
-     "racket_tip_vs_head": -20.3,
-     "racket_head_lateral": -37.2,
-     "face_tilt": -49.7,
-     "face_yaw": 72.1,
-     "face_points_to": "cielo",
-     "face_observed": true,
-     "t_to_contact": 0.26
-    },
     "ball_bounce": {
      "body_height": 76.0,
      "hip_height": 35.0,
@@ -102343,7 +102294,6 @@
     "head_motion_cm": 3.5,
     "takeback_after_opp": 0.22,
     "takeback_vs_bounce": -0.2,
-    "takeback_vs_net": -0.18,
     "contact_vs_top": -0.4,
     "loaded_vs_top": -0.72,
     "contact_height_m": 1.2,
@@ -102601,8 +102551,7 @@
     "loaded.racket_head_lateral": 3.0,
     "loaded.face_tilt": 8.3,
     "loaded.face_yaw": 2.5,
-    "loaded.front_foot_angle_deg": 19.35,
-    "loaded.back_foot_angle_deg": 5.55,
+    "loaded.back_foot_angle_deg": 5.45,
     "acceleration.body_height": 1.3,
     "acceleration.hip_height": 1.85,
     "acceleration.head_over_base": 1.45,
@@ -102669,8 +102618,7 @@
     "impact.racket_head_lateral": 0.55,
     "impact.face_tilt": 5.15,
     "impact.face_yaw": 10.1,
-    "impact.front_foot_angle_deg": 17.6,
-    "impact.back_foot_angle_deg": 2.0,
+    "impact.back_foot_angle_deg": 0.0,
     "extension.body_height": 0.3,
     "extension.hip_height": 0.7,
     "extension.head_over_base": 1.6,
@@ -102772,7 +102720,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -103425,7 +103372,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "loaded",
     "ball_bounce": "loaded"
    },
    "curves": {
@@ -103641,6 +103587,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w005825045_3600_near_104.json",
@@ -104328,6 +104280,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0589591",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -104573,7 +104526,7 @@
      "face_yaw": 83.2,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "back_foot_angle_deg": 2.2,
+     "back_foot_angle_deg": 11.6,
      "base_court_m": 0.85,
      "stance_angle": 13.0,
      "base_m": 0.85
@@ -104651,7 +104604,6 @@
      "face_yaw": -6.5,
      "face_points_to": "red",
      "face_observed": false,
-     "back_foot_angle_deg": -89.2,
      "base_court_m": 0.47,
      "stance_angle": 42.1,
      "base_m": 0.47
@@ -105118,7 +105070,7 @@
     "loaded.racket_head_lateral": 2.0,
     "loaded.face_tilt": 0.95,
     "loaded.face_yaw": 2.1,
-    "loaded.back_foot_angle_deg": 9.45,
+    "loaded.back_foot_angle_deg": 8.0,
     "acceleration.body_height": 0.7,
     "acceleration.hip_height": 1.15,
     "acceleration.head_over_base": 1.0,
@@ -105185,7 +105137,6 @@
     "impact.racket_head_lateral": 1.7,
     "impact.face_tilt": 11.3,
     "impact.face_yaw": 16.8,
-    "impact.back_foot_angle_deg": 18.0,
     "extension.body_height": 1.2,
     "extension.hip_height": 0.9,
     "extension.head_over_base": 5.4,
@@ -106170,6 +106121,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "punta_oculta"
    }
   },
   "series": "series/w005893747_7182_near_108.json",
@@ -107097,6 +107054,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0589941",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -107340,8 +107298,7 @@
      "face_yaw": 79.3,
      "face_points_to": "valla derecha",
      "face_observed": true,
-     "front_foot_angle_deg": -64.7,
-     "back_foot_angle_deg": -10.3,
+     "back_foot_angle_deg": -2.3,
      "base_court_m": 0.99,
      "stance_angle": 66.8,
      "base_m": 0.99
@@ -107418,8 +107375,7 @@
      "face_yaw": -7.9,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 3.6,
-     "back_foot_angle_deg": -36.5,
+     "back_foot_angle_deg": -4.0,
      "base_court_m": 1.04,
      "stance_angle": 55.6,
      "base_m": 1.04
@@ -107810,8 +107766,7 @@
     "loaded.racket_head_lateral": 0.3,
     "loaded.face_tilt": 1.35,
     "loaded.face_yaw": 1.95,
-    "loaded.front_foot_angle_deg": 5.0,
-    "loaded.back_foot_angle_deg": 5.9,
+    "loaded.back_foot_angle_deg": 5.25,
     "acceleration.body_height": 1.65,
     "acceleration.hip_height": 1.75,
     "acceleration.head_over_base": 1.6,
@@ -107877,8 +107832,6 @@
     "impact.racket_head_lateral": 9.3,
     "impact.face_tilt": 7.4,
     "impact.face_yaw": 8.7,
-    "impact.front_foot_angle_deg": 40.05,
-    "impact.back_foot_angle_deg": 31.0,
     "extension.body_height": 0.7,
     "extension.hip_height": 0.2,
     "extension.head_over_base": 1.95,
@@ -108832,6 +108785,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w005893747_7182_near_283.json",
@@ -108956,6 +108915,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0613167",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -109164,6 +109124,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0621909",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -109865,6 +109826,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0629600",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -110079,8 +110041,8 @@
      "x_factor": -0.6,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 35.2,
-     "back_foot_angle_deg": 2.0,
+     "front_foot_angle_deg": 40.8,
+     "back_foot_angle_deg": 9.4,
      "base_court_m": 0.78,
      "stance_angle": 127.3,
      "base_m": 0.78
@@ -110419,8 +110381,8 @@
     "loaded.shoulder_turn": 0.15,
     "loaded.hip_turn": 0.2,
     "loaded.x_factor": 0.05,
-    "loaded.front_foot_angle_deg": 4.8,
-    "loaded.back_foot_angle_deg": 2.05,
+    "loaded.front_foot_angle_deg": 4.2,
+    "loaded.back_foot_angle_deg": 0.2,
     "acceleration.body_height": 0.15,
     "acceleration.hip_height": 0.25,
     "acceleration.head_over_base": 0.35,
@@ -111409,6 +111371,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w006294000_8400_near_100.json",
@@ -112313,6 +112281,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0629832",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -112543,8 +112512,8 @@
      "face_yaw": -84.6,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "front_foot_angle_deg": -48.4,
-     "back_foot_angle_deg": -3.3,
+     "front_foot_angle_deg": -31.1,
+     "back_foot_angle_deg": 5.6,
      "base_court_m": 0.57,
      "stance_angle": 54.0,
      "base_m": 0.57
@@ -112607,8 +112576,8 @@
      "face_yaw": -2.0,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 18.6,
-     "back_foot_angle_deg": 8.7,
+     "front_foot_angle_deg": 27.5,
+     "back_foot_angle_deg": 15.6,
      "base_court_m": 1.01,
      "stance_angle": 74.8,
      "base_m": 1.01
@@ -112890,8 +112859,7 @@
     "loaded.racket_head_lateral": 1.5,
     "loaded.face_tilt": 3.05,
     "loaded.face_yaw": 1.1,
-    "loaded.front_foot_angle_deg": 10.6,
-    "loaded.back_foot_angle_deg": 11.25,
+    "loaded.back_foot_angle_deg": 5.6,
     "acceleration.body_height": 2.25,
     "acceleration.hip_height": 1.05,
     "acceleration.head_over_base": 2.25,
@@ -112942,8 +112910,8 @@
     "impact.hip_turn": 9.85,
     "impact.face_tilt": 20.85,
     "impact.face_yaw": 3.4,
-    "impact.front_foot_angle_deg": 11.45,
-    "impact.back_foot_angle_deg": 6.1,
+    "impact.front_foot_angle_deg": 10.8,
+    "impact.back_foot_angle_deg": 4.3,
     "extension.body_height": 1.1,
     "extension.hip_height": 0.55,
     "extension.head_over_base": 1.7,
@@ -113871,6 +113839,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "medido",
+    "impact.back": "medido"
    }
   },
   "series": "series/w006294000_8400_near_216.json",
@@ -114648,6 +114622,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0630092",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -114877,8 +114852,7 @@
      "x_factor": 59.8,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": -60.8,
-     "back_foot_angle_deg": 41.9,
+     "back_foot_angle_deg": 45.8,
      "base_court_m": 1.49,
      "stance_angle": 18.8,
      "base_m": 1.49
@@ -114952,8 +114926,7 @@
      "face_yaw": -9.3,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -68.0,
-     "back_foot_angle_deg": -3.5,
+     "back_foot_angle_deg": -0.9,
      "base_court_m": 0.73,
      "stance_angle": 32.7,
      "base_m": 0.73
@@ -115297,8 +115270,7 @@
     "loaded.shoulder_turn": 3.15,
     "loaded.hip_turn": 2.55,
     "loaded.x_factor": 2.5,
-    "loaded.front_foot_angle_deg": 11.65,
-    "loaded.back_foot_angle_deg": 12.25,
+    "loaded.back_foot_angle_deg": 9.55,
     "acceleration.body_height": 0.9,
     "acceleration.hip_height": 0.65,
     "acceleration.head_over_base": 1.65,
@@ -115361,8 +115333,7 @@
     "impact.hip_turn": 4.0,
     "impact.face_tilt": 2.9,
     "impact.face_yaw": 8.1,
-    "impact.front_foot_angle_deg": 8.95,
-    "impact.back_foot_angle_deg": 6.5,
+    "impact.back_foot_angle_deg": 2.85,
     "extension.body_height": 0.3,
     "extension.hip_height": 0.5,
     "extension.head_over_base": 1.65,
@@ -116313,6 +116284,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w006294000_8400_near_346.json",
@@ -116959,6 +116936,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0632484",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -117202,8 +117180,7 @@
      "face_yaw": -101.9,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "front_foot_angle_deg": -55.8,
-     "back_foot_angle_deg": -29.6,
+     "back_foot_angle_deg": -22.6,
      "base_court_m": 0.18,
      "stance_angle": 56.3,
      "base_m": 0.18
@@ -117613,8 +117590,7 @@
     "loaded.racket_head_lateral": 4.15,
     "loaded.face_tilt": 10.55,
     "loaded.face_yaw": 13.7,
-    "loaded.front_foot_angle_deg": 5.1,
-    "loaded.back_foot_angle_deg": 5.85,
+    "loaded.back_foot_angle_deg": 6.45,
     "acceleration.body_height": 1.2,
     "acceleration.hip_height": 2.15,
     "acceleration.head_over_base": 2.65,
@@ -118628,6 +118604,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w006322800_3600_near_102.json",
@@ -119257,6 +119239,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0633643",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -119499,8 +119482,7 @@
      "face_yaw": -86.9,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "front_foot_angle_deg": -53.5,
-     "back_foot_angle_deg": -40.9,
+     "back_foot_angle_deg": -35.6,
      "base_court_m": 0.12,
      "stance_angle": 70.7,
      "base_m": 0.12
@@ -119577,7 +119559,6 @@
      "face_yaw": 11.9,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -16.4,
      "base_court_m": 0.32,
      "stance_angle": 5.7,
      "base_m": 0.32
@@ -119884,8 +119865,7 @@
     "loaded.racket_head_lateral": 1.9,
     "loaded.face_tilt": 5.35,
     "loaded.face_yaw": 2.2,
-    "loaded.front_foot_angle_deg": 2.9,
-    "loaded.back_foot_angle_deg": 5.25,
+    "loaded.back_foot_angle_deg": 4.6,
     "acceleration.body_height": 1.95,
     "acceleration.hip_height": 2.85,
     "acceleration.head_over_base": 3.0,
@@ -119951,7 +119931,6 @@
     "impact.racket_head_lateral": 7.75,
     "impact.face_tilt": 6.55,
     "impact.face_yaw": 4.85,
-    "impact.front_foot_angle_deg": 16.3,
     "extension.body_height": 3.6,
     "extension.hip_height": 0.8,
     "extension.head_over_base": 3.3,
@@ -120898,6 +120877,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w006334273_3600_near_108.json",
@@ -121623,6 +121608,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0637899",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -121855,8 +121841,7 @@
      "face_yaw": -84.6,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": 18.6,
-     "back_foot_angle_deg": 23.7,
+     "back_foot_angle_deg": 47.4,
      "base_court_m": 0.74,
      "stance_angle": 36.2,
      "base_m": 0.74
@@ -121930,8 +121915,7 @@
      "face_yaw": 1.8,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -38.0,
-     "back_foot_angle_deg": 45.9,
+     "back_foot_angle_deg": 51.2,
      "base_court_m": 0.99,
      "stance_angle": 17.0,
      "base_m": 0.99
@@ -122224,8 +122208,7 @@
     "loaded.racket_head_lateral": 2.55,
     "loaded.face_tilt": 3.05,
     "loaded.face_yaw": 3.5,
-    "loaded.front_foot_angle_deg": 1.05,
-    "loaded.back_foot_angle_deg": 31.2,
+    "loaded.back_foot_angle_deg": 4.8,
     "acceleration.body_height": 0.1,
     "acceleration.hip_height": 0.45,
     "acceleration.head_over_base": 1.95,
@@ -122288,8 +122271,7 @@
     "impact.racket_head_lateral": 2.3,
     "impact.face_tilt": 1.25,
     "impact.face_yaw": 2.6,
-    "impact.front_foot_angle_deg": 16.8,
-    "impact.back_foot_angle_deg": 12.0,
+    "impact.back_foot_angle_deg": 10.45,
     "extension.body_height": 0.5,
     "extension.hip_height": 0.45,
     "extension.head_over_base": 1.5,
@@ -123228,6 +123210,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w006375546_4953_near_172.json",
@@ -123867,6 +123855,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0644253",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -124081,8 +124070,8 @@
      "x_factor": 0.9,
      "face_points_to": "suelo",
      "face_observed": false,
-     "front_foot_angle_deg": 2.8,
-     "back_foot_angle_deg": -4.1,
+     "front_foot_angle_deg": 15.6,
+     "back_foot_angle_deg": 3.2,
      "base_court_m": 0.76,
      "stance_angle": 131.5,
      "base_m": 0.76
@@ -124504,8 +124493,8 @@
     "loaded.shoulder_turn": 0.45,
     "loaded.hip_turn": 1.05,
     "loaded.x_factor": 0.65,
-    "loaded.front_foot_angle_deg": 3.0,
-    "loaded.back_foot_angle_deg": 4.1,
+    "loaded.front_foot_angle_deg": 0.0,
+    "loaded.back_foot_angle_deg": 3.95,
     "acceleration.body_height": 1.05,
     "acceleration.hip_height": 2.45,
     "acceleration.head_over_base": 4.8,
@@ -125525,6 +125514,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w006440649_3600_near_94.json",
@@ -126414,6 +126409,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0649312",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -126551,9 +126547,7 @@
    "apex_height_m": 1.47,
    "bounce_to_apex_s": 0.547,
    "contact_height_m": 1.36,
-   "contact_phase": "subiendo",
-   "net_frame": 92,
-   "incoming_speed_kmh": 117
+   "contact_phase": "subiendo"
   },
   "technique": {
    "phases": {
@@ -126662,8 +126656,7 @@
      "face_yaw": 82.7,
      "face_points_to": "suelo",
      "face_observed": true,
-     "front_foot_angle_deg": -109.9,
-     "back_foot_angle_deg": -36.1,
+     "back_foot_angle_deg": -27.7,
      "base_court_m": 0.68,
      "stance_angle": 14.5,
      "base_m": 0.68
@@ -126742,8 +126735,6 @@
      "face_yaw": -14.2,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 34.2,
-     "back_foot_angle_deg": -90.7,
      "base_court_m": 0.77,
      "stance_angle": 134.8,
      "base_m": 0.77
@@ -126852,34 +126843,6 @@
      "face_points_to": "cielo",
      "face_observed": false
     },
-    "ball_net": {
-     "body_height": 87.4,
-     "hip_height": 42.9,
-     "head_over_base": 0.4,
-     "head_vs_hips": -2.2,
-     "trunk_tilt": -4.0,
-     "shoulder_tilt": 2.5,
-     "hip_tilt": -3.2,
-     "com_over_feet": 0.49,
-     "knee_dom": 172.0,
-     "knee_non": 156.1,
-     "base_width": 62.2,
-     "shoulder_abd_dom": 13.3,
-     "wrist_dom_height": 53.2,
-     "wrist_dom_vs_hip": 10.3,
-     "wrist_dom_lateral": 4.1,
-     "wrist_dom_vs_shoulder": -12.5,
-     "elbow_dom_vs_shoulder": -15.4,
-     "elbow_dom_lateral": 4.8,
-     "wrist_non_height": 55.0,
-     "wrist_non_lateral": -4.0,
-     "hands_apart": 8.4,
-     "arm_extension": 51.8,
-     "shoulder_turn": 29.1,
-     "face_points_to": "suelo",
-     "face_observed": false,
-     "t_to_contact": 0.5
-    },
     "ball_bounce": {
      "body_height": 82.4,
      "hip_height": 38.6,
@@ -126930,7 +126893,6 @@
     "head_motion_cm": 4.9,
     "takeback_after_opp": 0.94,
     "takeback_vs_bounce": -0.24,
-    "takeback_vs_net": -0.06,
     "contact_vs_top": -0.22,
     "loaded_vs_top": -0.4,
     "contact_height_m": 1.36,
@@ -127220,8 +127182,7 @@
     "loaded.racket_head_lateral": 4.3,
     "loaded.face_tilt": 10.2,
     "loaded.face_yaw": 9.8,
-    "loaded.front_foot_angle_deg": 5.1,
-    "loaded.back_foot_angle_deg": 8.45,
+    "loaded.back_foot_angle_deg": 9.7,
     "acceleration.body_height": 1.05,
     "acceleration.hip_height": 1.2,
     "acceleration.head_over_base": 2.2,
@@ -127289,8 +127250,6 @@
     "impact.racket_head_lateral": 2.6,
     "impact.face_tilt": 16.25,
     "impact.face_yaw": 6.8,
-    "impact.front_foot_angle_deg": 21.2,
-    "impact.back_foot_angle_deg": 13.7,
     "extension.body_height": 0.8,
     "extension.hip_height": 0.9,
     "extension.head_over_base": 4.05,
@@ -127400,7 +127359,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -128051,7 +128009,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "takeback",
     "ball_bounce": "takeback"
    },
    "curves": {
@@ -128267,6 +128224,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "punta_oculta"
    }
   },
   "series": "series/w006490775_3600_near_117.json",
@@ -129143,6 +129106,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0652316",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -129280,9 +129244,7 @@
    "apex_height_m": 1.6,
    "bounce_to_apex_s": 0.571,
    "contact_height_m": 1.22,
-   "contact_phase": "subiendo",
-   "net_frame": 82,
-   "incoming_speed_kmh": 108
+   "contact_phase": "subiendo"
   },
   "technique": {
    "phases": {
@@ -129376,8 +129338,7 @@
      "face_yaw": 62.7,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "front_foot_angle_deg": -62.3,
-     "back_foot_angle_deg": 27.2,
+     "back_foot_angle_deg": 34.3,
      "base_court_m": 1.01,
      "stance_angle": -5.6,
      "base_m": 1.01
@@ -129448,7 +129409,6 @@
      "face_yaw": 19.1,
      "face_points_to": "red",
      "face_observed": false,
-     "back_foot_angle_deg": -14.4,
      "base_court_m": 0.77,
      "stance_angle": -1.0,
      "base_m": 0.77
@@ -129543,30 +129503,6 @@
      "face_points_to": "valla derecha",
      "face_observed": false
     },
-    "ball_net": {
-     "body_height": 81.1,
-     "hip_height": 34.4,
-     "head_over_base": -1.3,
-     "head_vs_hips": 5.1,
-     "trunk_tilt": 8.6,
-     "com_over_feet": 0.53,
-     "knee_dom": 145.2,
-     "base_width": 59.7,
-     "wrist_dom_height": 46.5,
-     "wrist_dom_vs_hip": 12.1,
-     "wrist_dom_lateral": 11.6,
-     "wrist_dom_vs_shoulder": -14.1,
-     "elbow_dom_vs_shoulder": -15.7,
-     "elbow_dom_lateral": 4.7,
-     "wrist_non_height": 49.6,
-     "wrist_non_lateral": 4.4,
-     "hands_apart": 7.8,
-     "arm_extension": 61.7,
-     "shoulder_turn": 76.1,
-     "face_points_to": "red",
-     "face_observed": false,
-     "t_to_contact": 0.44
-    },
     "ball_bounce": {
      "body_height": 79.7,
      "hip_height": 35.0,
@@ -129614,7 +129550,6 @@
     "head_motion_cm": 7.0,
     "takeback_after_opp": 1.14,
     "takeback_vs_bounce": -0.06,
-    "takeback_vs_net": 0.1,
     "contact_vs_top": -0.3,
     "loaded_vs_top": -0.42,
     "contact_height_m": 1.22,
@@ -129778,8 +129713,7 @@
     "loaded.racket_head_lateral": 0.7,
     "loaded.face_tilt": 5.0,
     "loaded.face_yaw": 3.4,
-    "loaded.front_foot_angle_deg": 2.1,
-    "loaded.back_foot_angle_deg": 3.0,
+    "loaded.back_foot_angle_deg": 1.4,
     "acceleration.body_height": 1.65,
     "acceleration.hip_height": 0.9,
     "acceleration.head_over_base": 1.25,
@@ -129839,7 +129773,6 @@
     "impact.racket_head_lateral": 7.65,
     "impact.face_tilt": 5.1,
     "impact.face_yaw": 8.1,
-    "impact.back_foot_angle_deg": 24.3,
     "extension.body_height": 1.65,
     "extension.hip_height": 0.2,
     "extension.head_over_base": 4.2,
@@ -129935,7 +129868,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -130563,7 +130495,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "ready",
     "ball_bounce": "takeback"
    },
    "curves": {
@@ -130779,6 +130710,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w006521077_3600_near_104.json",
@@ -131620,6 +131557,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0654100",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -131757,9 +131695,7 @@
    "apex_height_m": 5.09,
    "bounce_to_apex_s": 1.019,
    "contact_height_m": 0.88,
-   "contact_phase": "subiendo",
-   "net_frame": 109,
-   "incoming_speed_kmh": 106
+   "contact_phase": "subiendo"
   },
   "technique": {
    "phases": {
@@ -131855,8 +131791,7 @@
      "x_factor": 21.1,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 6.7,
-     "back_foot_angle_deg": 50.3,
+     "back_foot_angle_deg": 55.6,
      "base_court_m": 1.22,
      "stance_angle": 4.7,
      "base_m": 1.22
@@ -131928,8 +131863,7 @@
      "face_yaw": -13.8,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -54.8,
-     "back_foot_angle_deg": -40.4,
+     "back_foot_angle_deg": -35.2,
      "base_court_m": 0.74,
      "stance_angle": 33.9,
      "base_m": 0.74
@@ -132039,34 +131973,6 @@
      "face_points_to": "red",
      "face_observed": false
     },
-    "ball_net": {
-     "body_height": 77.0,
-     "hip_height": 28.1,
-     "head_over_base": -6.9,
-     "head_vs_hips": -9.2,
-     "trunk_tilt": -9.6,
-     "shoulder_tilt": -9.6,
-     "hip_tilt": -0.4,
-     "com_over_feet": 0.54,
-     "knee_non": 108.6,
-     "base_width": 66.8,
-     "shoulder_abd_dom": 8.0,
-     "shoulder_abd_non": 10.6,
-     "wrist_dom_height": 46.7,
-     "wrist_dom_vs_hip": 18.6,
-     "wrist_dom_lateral": -3.1,
-     "wrist_dom_vs_shoulder": -12.5,
-     "elbow_dom_vs_shoulder": -12.6,
-     "elbow_dom_lateral": 0.4,
-     "wrist_non_height": 43.9,
-     "wrist_non_lateral": -17.3,
-     "hands_apart": 14.5,
-     "arm_extension": 72.3,
-     "shoulder_turn": 30.3,
-     "face_points_to": "valla izquierda",
-     "face_observed": false,
-     "t_to_contact": 0.32
-    },
     "ball_bounce": {
      "body_height": 70.4,
      "hip_height": 33.7,
@@ -132120,7 +132026,6 @@
     "head_motion_cm": 9.6,
     "takeback_after_opp": 0.94,
     "takeback_vs_bounce": -0.34,
-    "takeback_vs_net": -0.1,
     "contact_vs_top": -0.94,
     "loaded_vs_top": -1.22,
     "contact_height_m": 0.88,
@@ -132424,8 +132329,7 @@
     "loaded.shoulder_turn": 8.75,
     "loaded.hip_turn": 4.3,
     "loaded.x_factor": 2.9,
-    "loaded.front_foot_angle_deg": 10.2,
-    "loaded.back_foot_angle_deg": 7.15,
+    "loaded.back_foot_angle_deg": 6.8,
     "acceleration.body_height": 0.25,
     "acceleration.hip_height": 1.15,
     "acceleration.head_over_base": 3.45,
@@ -132486,8 +132390,7 @@
     "impact.hip_turn": 2.05,
     "impact.face_tilt": 3.35,
     "impact.face_yaw": 11.85,
-    "impact.front_foot_angle_deg": 2.75,
-    "impact.back_foot_angle_deg": 4.2,
+    "impact.back_foot_angle_deg": 3.85,
     "extension.body_height": 1.0,
     "extension.hip_height": 0.65,
     "extension.head_over_base": 0.15,
@@ -132591,7 +132494,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -133250,7 +133152,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "takeback",
     "ball_bounce": "acceleration"
    },
    "curves": {
@@ -133466,6 +133367,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w006538500_6309_near_125.json",
@@ -134264,6 +134171,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0654334",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -134490,8 +134398,7 @@
      "x_factor": 23.9,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": -76.3,
-     "back_foot_angle_deg": 54.5,
+     "back_foot_angle_deg": 52.1,
      "base_court_m": 1.32,
      "stance_angle": 12.4,
      "base_m": 1.32
@@ -134561,8 +134468,7 @@
      "face_yaw": -9.4,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -60.1,
-     "back_foot_angle_deg": 1.7,
+     "back_foot_angle_deg": 8.7,
      "base_court_m": 0.81,
      "stance_angle": 27.1,
      "base_m": 0.81
@@ -134908,8 +134814,7 @@
     "loaded.shoulder_turn": 1.15,
     "loaded.hip_turn": 0.5,
     "loaded.x_factor": 1.6,
-    "loaded.front_foot_angle_deg": 9.35,
-    "loaded.back_foot_angle_deg": 9.45,
+    "loaded.back_foot_angle_deg": 3.3,
     "acceleration.body_height": 1.15,
     "acceleration.hip_height": 0.5,
     "acceleration.head_over_base": 1.3,
@@ -134968,8 +134873,7 @@
     "impact.racket_head_lateral": 4.0,
     "impact.face_tilt": 3.85,
     "impact.face_yaw": 15.65,
-    "impact.front_foot_angle_deg": 10.1,
-    "impact.back_foot_angle_deg": 6.75,
+    "impact.back_foot_angle_deg": 2.8,
     "extension.body_height": 0.65,
     "extension.hip_height": 1.1,
     "extension.head_over_base": 2.75,
@@ -135922,6 +135826,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w006538500_6309_near_242.json",
@@ -136044,6 +135954,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0687183",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -136242,6 +136153,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0689182",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -136934,6 +136846,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0698707",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -137152,8 +137065,8 @@
      "x_factor": -0.5,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": -7.0,
-     "back_foot_angle_deg": -23.9,
+     "front_foot_angle_deg": 1.7,
+     "back_foot_angle_deg": -17.3,
      "base_court_m": 0.77,
      "stance_angle": 153.5,
      "base_m": 0.77
@@ -137229,8 +137142,6 @@
      "face_yaw": 8.5,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 0.0,
-     "back_foot_angle_deg": 41.8,
      "base_court_m": 0.81,
      "stance_angle": 58.5,
      "base_m": 0.81
@@ -137523,8 +137434,8 @@
     "loaded.shoulder_turn": 0.3,
     "loaded.hip_turn": 3.4,
     "loaded.x_factor": 3.7,
-    "loaded.front_foot_angle_deg": 1.35,
-    "loaded.back_foot_angle_deg": 6.05,
+    "loaded.front_foot_angle_deg": 0.0,
+    "loaded.back_foot_angle_deg": 6.65,
     "acceleration.body_height": 1.65,
     "acceleration.hip_height": 1.95,
     "acceleration.head_over_base": 3.1,
@@ -137589,8 +137500,6 @@
     "impact.racket_head_lateral": 9.9,
     "impact.face_tilt": 6.3,
     "impact.face_yaw": 5.9,
-    "impact.front_foot_angle_deg": 21.65,
-    "impact.back_foot_angle_deg": 11.1,
     "extension.body_height": 3.6,
     "extension.hip_height": 1.25,
     "extension.head_over_base": 2.8,
@@ -138536,6 +138445,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w006984910_5527_near_108.json",
@@ -139158,6 +139073,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0701155",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -139397,8 +139313,7 @@
      "face_yaw": -65.9,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "front_foot_angle_deg": -22.2,
-     "back_foot_angle_deg": -10.3,
+     "back_foot_angle_deg": -2.8,
      "base_court_m": 0.16,
      "stance_angle": 62.7,
      "base_m": 0.16
@@ -139768,8 +139683,7 @@
     "loaded.racket_head_lateral": 6.25,
     "loaded.face_tilt": 3.0,
     "loaded.face_yaw": 16.85,
-    "loaded.front_foot_angle_deg": 19.95,
-    "loaded.back_foot_angle_deg": 6.35,
+    "loaded.back_foot_angle_deg": 4.6,
     "acceleration.body_height": 1.4,
     "acceleration.hip_height": 1.85,
     "acceleration.head_over_base": 4.8,
@@ -140774,6 +140688,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w007009627_3600_near_96.json",
@@ -141393,6 +141313,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0704595",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -141632,8 +141553,7 @@
      "face_yaw": -88.6,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "front_foot_angle_deg": -54.5,
-     "back_foot_angle_deg": -37.3,
+     "back_foot_angle_deg": -31.4,
      "base_court_m": 0.14,
      "stance_angle": 66.9,
      "base_m": 0.14
@@ -142010,8 +141930,7 @@
     "loaded.racket_head_lateral": 3.25,
     "loaded.face_tilt": 5.85,
     "loaded.face_yaw": 2.45,
-    "loaded.front_foot_angle_deg": 0.95,
-    "loaded.back_foot_angle_deg": 3.85,
+    "loaded.back_foot_angle_deg": 3.0,
     "acceleration.body_height": 1.0,
     "acceleration.hip_height": 2.1,
     "acceleration.head_over_base": 2.2,
@@ -143023,6 +142942,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w007043592_5626_near_118.json",
@@ -143652,6 +143577,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0712812",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -143869,8 +143795,8 @@
      "x_factor": 28.2,
      "face_points_to": "suelo",
      "face_observed": false,
-     "front_foot_angle_deg": -4.7,
-     "back_foot_angle_deg": -31.9,
+     "front_foot_angle_deg": 11.0,
+     "back_foot_angle_deg": -26.2,
      "base_court_m": 0.75,
      "stance_angle": 157.4,
      "base_m": 0.75
@@ -143947,8 +143873,7 @@
      "face_yaw": 22.4,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -10.9,
-     "back_foot_angle_deg": 22.1,
+     "back_foot_angle_deg": 41.4,
      "base_court_m": 0.64,
      "stance_angle": 69.6,
      "base_m": 0.64
@@ -144241,8 +144166,8 @@
     "loaded.shoulder_turn": 0.9,
     "loaded.hip_turn": 7.65,
     "loaded.x_factor": 7.35,
-    "loaded.front_foot_angle_deg": 7.1,
-    "loaded.back_foot_angle_deg": 6.2,
+    "loaded.front_foot_angle_deg": 0.1,
+    "loaded.back_foot_angle_deg": 7.0,
     "acceleration.body_height": 0.7,
     "acceleration.hip_height": 1.4,
     "acceleration.head_over_base": 2.05,
@@ -144308,8 +144233,7 @@
     "impact.racket_head_lateral": 0.65,
     "impact.face_tilt": 8.6,
     "impact.face_yaw": 7.35,
-    "impact.front_foot_angle_deg": 7.6,
-    "impact.back_foot_angle_deg": 18.9,
+    "impact.back_foot_angle_deg": 8.8,
     "extension.body_height": 3.0,
     "extension.hip_height": 1.1,
     "extension.head_over_base": 2.8,
@@ -145257,6 +145181,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w007125959_3600_near_108.json",
@@ -145881,6 +145811,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0720618",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -146121,8 +146052,7 @@
      "face_yaw": -88.3,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "front_foot_angle_deg": -57.4,
-     "back_foot_angle_deg": -27.9,
+     "back_foot_angle_deg": -20.6,
      "base_court_m": 0.17,
      "stance_angle": 59.1,
      "base_m": 0.17
@@ -146199,7 +146129,6 @@
      "face_yaw": 21.0,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -12.9,
      "base_court_m": 0.21,
      "stance_angle": 5.6,
      "base_m": 0.21
@@ -146495,8 +146424,7 @@
     "loaded.racket_head_lateral": 3.6,
     "loaded.face_tilt": 7.95,
     "loaded.face_yaw": 1.35,
-    "loaded.front_foot_angle_deg": 2.95,
-    "loaded.back_foot_angle_deg": 8.25,
+    "loaded.back_foot_angle_deg": 6.8,
     "acceleration.body_height": 1.25,
     "acceleration.hip_height": 2.3,
     "acceleration.head_over_base": 1.8,
@@ -146562,7 +146490,6 @@
     "impact.racket_head_lateral": 5.5,
     "impact.face_tilt": 1.25,
     "impact.face_yaw": 13.6,
-    "impact.front_foot_angle_deg": 4.7,
     "extension.body_height": 1.6,
     "extension.hip_height": 0.25,
     "extension.head_over_base": 1.25,
@@ -147501,6 +147428,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w007204058_5142_near_106.json",
@@ -148301,6 +148234,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0720810",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -148540,8 +148474,8 @@
      "face_yaw": -83.4,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "front_foot_angle_deg": -34.3,
-     "back_foot_angle_deg": -36.6,
+     "front_foot_angle_deg": -24.3,
+     "back_foot_angle_deg": -31.3,
      "base_court_m": 0.37,
      "stance_angle": 45.8,
      "base_m": 0.37
@@ -148616,8 +148550,7 @@
      "face_yaw": 3.2,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 54.1,
-     "back_foot_angle_deg": -56.0,
+     "front_foot_angle_deg": 54.9,
      "base_court_m": 0.71,
      "stance_angle": 100.5,
      "base_m": 0.71
@@ -148981,8 +148914,8 @@
     "loaded.racket_head_lateral": 1.25,
     "loaded.face_tilt": 1.4,
     "loaded.face_yaw": 3.15,
-    "loaded.front_foot_angle_deg": 8.65,
-    "loaded.back_foot_angle_deg": 9.05,
+    "loaded.front_foot_angle_deg": 2.0,
+    "loaded.back_foot_angle_deg": 10.55,
     "acceleration.body_height": 1.05,
     "acceleration.hip_height": 0.75,
     "acceleration.head_over_base": 2.45,
@@ -149046,8 +148979,7 @@
     "impact.racket_head_lateral": 7.9,
     "impact.face_tilt": 8.05,
     "impact.face_yaw": 7.0,
-    "impact.front_foot_angle_deg": 10.1,
-    "impact.back_foot_angle_deg": 8.75,
+    "impact.front_foot_angle_deg": 3.35,
     "extension.body_height": 1.0,
     "extension.hip_height": 0.6,
     "extension.head_over_base": 0.4,
@@ -149996,6 +149928,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "medido",
+    "impact.back": "punta_oculta"
    }
   },
   "series": "series/w007204058_5142_near_202.json",
@@ -150717,6 +150655,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0728129",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -150843,9 +150782,7 @@
    "apex_height_m": 1.57,
    "bounce_to_apex_s": 0.566,
    "contact_height_m": 1.42,
-   "contact_phase": "arriba",
-   "net_frame": 73,
-   "incoming_speed_kmh": 250
+   "contact_phase": "arriba"
   },
   "technique": {
    "phases": {
@@ -150961,8 +150898,7 @@
      "face_yaw": 83.3,
      "face_points_to": "valla derecha",
      "face_observed": true,
-     "front_foot_angle_deg": -88.5,
-     "back_foot_angle_deg": 3.1,
+     "back_foot_angle_deg": 14.3,
      "base_court_m": 1.15,
      "stance_angle": 70.0,
      "base_m": 1.15
@@ -151042,7 +150978,6 @@
      "face_yaw": -51.1,
      "face_points_to": "cielo",
      "face_observed": false,
-     "back_foot_angle_deg": -7.7,
      "base_court_m": 0.92,
      "stance_angle": 49.7,
      "base_m": 0.92
@@ -151153,34 +151088,6 @@
      "face_points_to": "valla derecha",
      "face_observed": true
     },
-    "ball_net": {
-     "body_height": 80.0,
-     "hip_height": 42.9,
-     "head_over_base": -1.6,
-     "head_vs_hips": -3.5,
-     "trunk_tilt": -9.3,
-     "shoulder_tilt": -2.5,
-     "hip_tilt": -3.2,
-     "com_over_feet": 0.5,
-     "knee_dom": 163.7,
-     "knee_non": 179.6,
-     "base_width": 59.8,
-     "shoulder_abd_dom": 11.3,
-     "wrist_dom_height": 55.2,
-     "wrist_dom_vs_hip": 12.2,
-     "wrist_dom_lateral": -0.6,
-     "wrist_dom_vs_shoulder": -8.3,
-     "elbow_dom_vs_shoulder": -12.0,
-     "elbow_dom_lateral": -0.4,
-     "wrist_non_height": 57.9,
-     "wrist_non_lateral": -2.7,
-     "hands_apart": 3.5,
-     "arm_extension": 55.7,
-     "shoulder_turn": 28.1,
-     "face_points_to": "cielo",
-     "face_observed": false,
-     "t_to_contact": 0.7
-    },
     "ball_bounce": {
      "body_height": 80.1,
      "hip_height": 41.9,
@@ -151268,7 +151175,6 @@
     "head_motion_cm": 4.3,
     "takeback_after_opp": 0.32,
     "takeback_vs_bounce": 0.04,
-    "takeback_vs_net": 0.1,
     "contact_vs_top": 0.08,
     "loaded_vs_top": -0.04,
     "contact_height_m": 1.42,
@@ -151450,8 +151356,7 @@
     "loaded.racket_head_lateral": 3.6,
     "loaded.face_tilt": 17.35,
     "loaded.face_yaw": 3.95,
-    "loaded.front_foot_angle_deg": 14.2,
-    "loaded.back_foot_angle_deg": 3.6,
+    "loaded.back_foot_angle_deg": 0.7,
     "acceleration.body_height": 1.25,
     "acceleration.hip_height": 1.05,
     "acceleration.head_over_base": 2.7,
@@ -151631,7 +151536,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -152256,7 +152160,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "ready",
     "ball_bounce": "ready",
     "ball_top": "loaded"
    },
@@ -152473,6 +152376,12 @@
      63.1,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w007279128_3600_near_108.json",
@@ -153160,6 +153069,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0735113",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -153394,8 +153304,7 @@
      "face_yaw": 94.3,
      "face_points_to": "valla derecha",
      "face_observed": true,
-     "front_foot_angle_deg": -103.0,
-     "back_foot_angle_deg": 11.0,
+     "back_foot_angle_deg": 19.6,
      "base_court_m": 1.07,
      "stance_angle": 6.6,
      "base_m": 1.07
@@ -153467,8 +153376,6 @@
      "face_yaw": 19.9,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -71.1,
-     "back_foot_angle_deg": -44.6,
      "base_court_m": 0.63,
      "stance_angle": 29.7,
      "base_m": 0.63
@@ -153901,8 +153808,7 @@
     "loaded.racket_head_lateral": 3.3,
     "loaded.face_tilt": 4.9,
     "loaded.face_yaw": 5.75,
-    "loaded.front_foot_angle_deg": 4.8,
-    "loaded.back_foot_angle_deg": 2.85,
+    "loaded.back_foot_angle_deg": 2.55,
     "acceleration.body_height": 1.6,
     "acceleration.hip_height": 1.65,
     "acceleration.head_over_base": 0.7,
@@ -153963,8 +153869,6 @@
     "impact.hip_turn": 1.95,
     "impact.face_tilt": 2.4,
     "impact.face_yaw": 8.6,
-    "impact.front_foot_angle_deg": 21.4,
-    "impact.back_foot_angle_deg": 30.5,
     "extension.body_height": 0.5,
     "extension.hip_height": 0.45,
     "extension.head_over_base": 2.7,
@@ -154936,6 +154840,12 @@
      76.7,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "punta_oculta"
    }
   },
   "series": "series/w007349008_8407_near_106.json",
@@ -155596,6 +155506,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0735261",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -155827,8 +155738,7 @@
      "x_factor": -6.3,
      "face_points_to": "suelo",
      "face_observed": false,
-     "front_foot_angle_deg": 14.1,
-     "back_foot_angle_deg": -58.3,
+     "front_foot_angle_deg": 28.6,
      "base_court_m": 0.66,
      "stance_angle": 165.4,
      "base_m": 0.66
@@ -155900,8 +155810,7 @@
      "face_yaw": -8.0,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 2.1,
-     "back_foot_angle_deg": -49.8,
+     "front_foot_angle_deg": 0.7,
      "base_court_m": 0.35,
      "stance_angle": 120.1,
      "base_m": 0.35
@@ -156210,8 +156119,7 @@
     "loaded.shoulder_turn": 2.1,
     "loaded.hip_turn": 3.7,
     "loaded.x_factor": 1.6,
-    "loaded.front_foot_angle_deg": 10.4,
-    "loaded.back_foot_angle_deg": 16.0,
+    "loaded.front_foot_angle_deg": 4.3,
     "acceleration.body_height": 0.3,
     "acceleration.hip_height": 0.55,
     "acceleration.head_over_base": 0.45,
@@ -156272,8 +156180,7 @@
     "impact.racket_head_lateral": 3.7,
     "impact.face_tilt": 4.25,
     "impact.face_yaw": 6.95,
-    "impact.front_foot_angle_deg": 10.5,
-    "impact.back_foot_angle_deg": 18.15,
+    "impact.front_foot_angle_deg": 3.35,
     "extension.body_height": 0.4,
     "extension.hip_height": 1.05,
     "extension.head_over_base": 0.95,
@@ -157217,6 +157124,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "punta_oculta",
+    "impact.front": "medido",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w007349008_8407_near_180.json",
@@ -157855,6 +157768,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0735589",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -158099,7 +158013,7 @@
      "face_yaw": -125.9,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": 30.4,
+     "front_foot_angle_deg": 32.4,
      "base_court_m": 1.03,
      "stance_angle": 175.6,
      "base_m": 1.03
@@ -158166,8 +158080,7 @@
      "face_yaw": -5.8,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -72.5,
-     "back_foot_angle_deg": -7.7,
+     "back_foot_angle_deg": 0.0,
      "base_court_m": 0.97,
      "stance_angle": 45.6,
      "base_m": 0.97
@@ -158518,7 +158431,7 @@
     "loaded.racket_head_lateral": 4.65,
     "loaded.face_tilt": 5.65,
     "loaded.face_yaw": 2.35,
-    "loaded.front_foot_angle_deg": 6.4,
+    "loaded.front_foot_angle_deg": 2.1,
     "acceleration.body_height": 0.9,
     "acceleration.hip_height": 0.85,
     "acceleration.head_over_base": 0.5,
@@ -158574,7 +158487,6 @@
     "impact.hip_turn": 1.6,
     "impact.face_tilt": 2.5,
     "impact.face_yaw": 7.7,
-    "impact.front_foot_angle_deg": 7.2,
     "impact.back_foot_angle_deg": 5.25,
     "extension.body_height": 0.75,
     "extension.hip_height": 1.1,
@@ -159517,6 +159429,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "punta_oculta",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w007349008_8407_near_344.json",
@@ -160186,6 +160104,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0738330",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -160312,9 +160231,7 @@
    "apex_height_m": 3.84,
    "bounce_to_apex_s": 0.885,
    "contact_height_m": 0.81,
-   "contact_phase": "subiendo",
-   "net_frame": 89,
-   "incoming_speed_kmh": 215
+   "contact_phase": "subiendo"
   },
   "technique": {
    "phases": {
@@ -160429,8 +160346,7 @@
      "face_yaw": 84.6,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "front_foot_angle_deg": 115.5,
-     "back_foot_angle_deg": 119.9,
+     "back_foot_angle_deg": 121.0,
      "base_court_m": 1.13,
      "stance_angle": -8.4,
      "base_m": 1.13
@@ -160506,8 +160422,7 @@
      "face_yaw": 9.4,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 180.0,
-     "back_foot_angle_deg": -115.2,
+     "front_foot_angle_deg": 170.1,
      "base_court_m": 0.96,
      "stance_angle": -23.9,
      "base_m": 0.96
@@ -160616,33 +160531,6 @@
      "face_points_to": "red",
      "face_observed": true
     },
-    "ball_net": {
-     "body_height": 74.7,
-     "hip_height": 28.2,
-     "head_over_base": -7.9,
-     "head_vs_hips": -8.8,
-     "trunk_tilt": -8.4,
-     "shoulder_tilt": -6.2,
-     "hip_tilt": -1.0,
-     "com_over_feet": 0.56,
-     "knee_non": 101.4,
-     "base_width": 62.8,
-     "shoulder_abd_non": 5.9,
-     "wrist_dom_height": 45.5,
-     "wrist_dom_vs_hip": 17.4,
-     "wrist_dom_lateral": -3.0,
-     "wrist_dom_vs_shoulder": -12.5,
-     "elbow_dom_vs_shoulder": -12.7,
-     "elbow_dom_lateral": -0.1,
-     "wrist_non_height": 43.5,
-     "wrist_non_lateral": -11.8,
-     "hands_apart": 9.1,
-     "arm_extension": 72.4,
-     "shoulder_turn": 41.0,
-     "face_points_to": "valla derecha",
-     "face_observed": false,
-     "t_to_contact": 0.26
-    },
     "ball_bounce": {
      "body_height": 74.1,
      "hip_height": 31.7,
@@ -160701,7 +160589,6 @@
     "head_motion_cm": 11.6,
     "takeback_after_opp": 0.16,
     "takeback_vs_bounce": -0.44,
-    "takeback_vs_net": -0.28,
     "contact_vs_top": -0.78,
     "loaded_vs_top": -1.18,
     "contact_height_m": 0.81,
@@ -161062,8 +160949,7 @@
     "loaded.racket_head_lateral": 0.7,
     "loaded.face_tilt": 3.8,
     "loaded.face_yaw": 1.2,
-    "loaded.front_foot_angle_deg": 11.6,
-    "loaded.back_foot_angle_deg": 11.05,
+    "loaded.back_foot_angle_deg": 0.9,
     "acceleration.body_height": 0.45,
     "acceleration.hip_height": 1.3,
     "acceleration.head_over_base": 2.45,
@@ -161128,8 +161014,7 @@
     "impact.racket_head_lateral": 2.7,
     "impact.face_tilt": 2.05,
     "impact.face_yaw": 4.85,
-    "impact.front_foot_angle_deg": 6.6,
-    "impact.back_foot_angle_deg": 5.85,
+    "impact.front_foot_angle_deg": 3.0,
     "extension.body_height": 0.5,
     "extension.hip_height": 0.95,
     "extension.head_over_base": 0.55,
@@ -161239,7 +161124,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -161896,7 +161780,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "loaded",
     "ball_bounce": "loaded"
    },
    "curves": {
@@ -162112,6 +161995,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "medido",
+    "impact.back": "punta_oculta"
    }
   },
   "series": "series/w007381255_3600_near_102.json",
@@ -162980,6 +162869,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0739687",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -163117,9 +163007,7 @@
    "apex_height_m": 1.48,
    "bounce_to_apex_s": 0.55,
    "contact_height_m": 1.31,
-   "contact_phase": "subiendo",
-   "net_frame": 85,
-   "incoming_speed_kmh": 115
+   "contact_phase": "subiendo"
   },
   "technique": {
    "phases": {
@@ -163232,8 +163120,7 @@
      "face_yaw": 12.5,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -121.5,
-     "back_foot_angle_deg": 27.2,
+     "back_foot_angle_deg": 34.2,
      "base_court_m": 1.1,
      "stance_angle": 6.9,
      "base_m": 1.1
@@ -163304,7 +163191,7 @@
      "face_yaw": -20.4,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 118.4,
+     "front_foot_angle_deg": 115.6,
      "base_court_m": 0.82,
      "stance_angle": 8.2,
      "base_m": 0.82
@@ -163406,33 +163293,6 @@
      "face_points_to": "cielo",
      "face_observed": false
     },
-    "ball_net": {
-     "body_height": 77.4,
-     "hip_height": 33.3,
-     "head_over_base": 8.4,
-     "head_vs_hips": 5.9,
-     "trunk_tilt": 4.7,
-     "shoulder_tilt": 8.8,
-     "hip_tilt": 1.1,
-     "com_over_feet": 0.44,
-     "knee_non": 165.5,
-     "base_width": 64.6,
-     "shoulder_abd_dom": 28.6,
-     "wrist_dom_height": 49.7,
-     "wrist_dom_vs_hip": 16.4,
-     "wrist_dom_lateral": 13.5,
-     "wrist_dom_vs_shoulder": -10.0,
-     "elbow_dom_vs_shoulder": -14.6,
-     "elbow_dom_lateral": 6.5,
-     "wrist_non_height": 51.6,
-     "wrist_non_lateral": 0.6,
-     "hands_apart": 13.0,
-     "arm_extension": 45.8,
-     "shoulder_turn": 37.5,
-     "face_points_to": "suelo",
-     "face_observed": false,
-     "t_to_contact": 0.46
-    },
     "ball_bounce": {
      "body_height": 76.7,
      "hip_height": 34.9,
@@ -163491,7 +163351,6 @@
     "head_motion_cm": 7.9,
     "takeback_after_opp": 0.88,
     "takeback_vs_bounce": -0.28,
-    "takeback_vs_net": -0.1,
     "contact_vs_top": -0.26,
     "loaded_vs_top": -0.4,
     "contact_height_m": 1.31,
@@ -163862,8 +163721,7 @@
     "loaded.racket_head_lateral": 4.5,
     "loaded.face_tilt": 3.9,
     "loaded.face_yaw": 36.45,
-    "loaded.front_foot_angle_deg": 7.0,
-    "loaded.back_foot_angle_deg": 8.35,
+    "loaded.back_foot_angle_deg": 5.3,
     "acceleration.body_height": 0.95,
     "acceleration.hip_height": 0.55,
     "acceleration.head_over_base": 2.4,
@@ -163923,7 +163781,7 @@
     "impact.hip_turn": 2.65,
     "impact.face_tilt": 1.05,
     "impact.face_yaw": 10.75,
-    "impact.front_foot_angle_deg": 7.75,
+    "impact.front_foot_angle_deg": 0.0,
     "extension.body_height": 1.8,
     "extension.hip_height": 1.45,
     "extension.head_over_base": 2.85,
@@ -164025,7 +163883,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -164683,7 +164540,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "takeback",
     "ball_bounce": "takeback"
    },
    "curves": {
@@ -164899,6 +164755,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "medido",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w007394705_8134_near_108.json",
@@ -165711,6 +165573,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0739895",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -165955,8 +165818,6 @@
      "face_yaw": 75.3,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "front_foot_angle_deg": -78.9,
-     "back_foot_angle_deg": -53.8,
      "base_court_m": 0.69,
      "stance_angle": 23.8,
      "base_m": 0.69
@@ -166027,8 +165888,7 @@
      "face_yaw": -9.7,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 51.5,
-     "back_foot_angle_deg": 39.5,
+     "back_foot_angle_deg": 44.5,
      "base_court_m": 1.04,
      "stance_angle": 55.1,
      "base_m": 1.04
@@ -166411,8 +166271,6 @@
     "loaded.racket_head_lateral": 1.25,
     "loaded.face_tilt": 4.35,
     "loaded.face_yaw": 5.3,
-    "loaded.front_foot_angle_deg": 37.2,
-    "loaded.back_foot_angle_deg": 20.7,
     "acceleration.body_height": 2.15,
     "acceleration.hip_height": 0.25,
     "acceleration.head_over_base": 1.5,
@@ -166472,8 +166330,7 @@
     "impact.racket_head_lateral": 0.1,
     "impact.face_tilt": 2.4,
     "impact.face_yaw": 5.3,
-    "impact.front_foot_angle_deg": 28.8,
-    "impact.back_foot_angle_deg": 4.0,
+    "impact.back_foot_angle_deg": 1.5,
     "extension.body_height": 0.9,
     "extension.hip_height": 0.65,
     "extension.head_over_base": 2.1,
@@ -167435,6 +167292,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "incoherente",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w007394705_8134_near_212.json",
@@ -168206,6 +168069,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0740131",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -168437,8 +168301,7 @@
      "face_yaw": 115.6,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "front_foot_angle_deg": -53.8,
-     "back_foot_angle_deg": 51.2,
+     "back_foot_angle_deg": 52.9,
      "base_court_m": 1.39,
      "stance_angle": 25.1,
      "base_m": 1.39
@@ -168510,8 +168373,7 @@
      "face_yaw": 11.3,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -66.4,
-     "back_foot_angle_deg": -5.7,
+     "back_foot_angle_deg": 2.3,
      "base_court_m": 0.79,
      "stance_angle": 39.4,
      "base_m": 0.79
@@ -168952,8 +168814,7 @@
     "loaded.racket_head_lateral": 5.4,
     "loaded.face_tilt": 15.45,
     "loaded.face_yaw": 13.25,
-    "loaded.front_foot_angle_deg": 7.65,
-    "loaded.back_foot_angle_deg": 3.45,
+    "loaded.back_foot_angle_deg": 1.2,
     "acceleration.body_height": 0.6,
     "acceleration.hip_height": 0.65,
     "acceleration.head_over_base": 1.0,
@@ -169014,8 +168875,7 @@
     "impact.hip_turn": 3.5,
     "impact.face_tilt": 11.95,
     "impact.face_yaw": 4.25,
-    "impact.front_foot_angle_deg": 3.35,
-    "impact.back_foot_angle_deg": 4.9,
+    "impact.back_foot_angle_deg": 2.7,
     "extension.body_height": 1.6,
     "extension.hip_height": 1.35,
     "extension.head_over_base": 2.35,
@@ -169975,6 +169835,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w007394705_8134_near_330.json",
@@ -170837,6 +170703,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0744051",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -170974,9 +170841,7 @@
    "apex_height_m": 1.87,
    "bounce_to_apex_s": 0.617,
    "contact_height_m": 1.41,
-   "contact_phase": "subiendo",
-   "net_frame": 91,
-   "incoming_speed_kmh": 118
+   "contact_phase": "subiendo"
   },
   "technique": {
    "phases": {
@@ -171073,8 +170938,7 @@
      "x_factor": 51.5,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "front_foot_angle_deg": -88.0,
-     "back_foot_angle_deg": 29.3,
+     "back_foot_angle_deg": 38.1,
      "base_court_m": 1.01,
      "stance_angle": 2.1,
      "base_m": 1.01
@@ -171139,7 +171003,6 @@
      "face_yaw": 22.3,
      "face_points_to": "red",
      "face_observed": false,
-     "back_foot_angle_deg": 11.9,
      "base_court_m": 0.75,
      "stance_angle": 7.4,
      "base_m": 0.75
@@ -171247,33 +171110,6 @@
      "face_points_to": "valla derecha",
      "face_observed": false
     },
-    "ball_net": {
-     "body_height": 81.7,
-     "hip_height": 36.5,
-     "head_over_base": -3.0,
-     "head_vs_hips": -4.1,
-     "trunk_tilt": -1.2,
-     "shoulder_tilt": -2.9,
-     "hip_tilt": -3.4,
-     "com_over_feet": 0.49,
-     "knee_dom": 170.1,
-     "base_width": 58.6,
-     "shoulder_abd_dom": 5.4,
-     "wrist_dom_height": 54.0,
-     "wrist_dom_vs_hip": 17.5,
-     "wrist_dom_lateral": 4.6,
-     "wrist_dom_vs_shoulder": -11.2,
-     "elbow_dom_vs_shoulder": -14.9,
-     "elbow_dom_lateral": 1.7,
-     "wrist_non_height": 59.0,
-     "wrist_non_lateral": -3.3,
-     "hands_apart": 9.4,
-     "arm_extension": 54.8,
-     "shoulder_turn": 23.7,
-     "face_points_to": "valla trasera",
-     "face_observed": false,
-     "t_to_contact": 0.46
-    },
     "ball_bounce": {
      "body_height": 83.0,
      "hip_height": 37.9,
@@ -171330,7 +171166,6 @@
     "head_motion_cm": 9.8,
     "takeback_after_opp": 1.02,
     "takeback_vs_bounce": -0.1,
-    "takeback_vs_net": 0.04,
     "contact_vs_top": -0.3,
     "loaded_vs_top": -0.42,
     "contact_height_m": 1.41,
@@ -171663,8 +171498,7 @@
     "loaded.shoulder_turn": 3.45,
     "loaded.hip_turn": 6.05,
     "loaded.x_factor": 3.45,
-    "loaded.front_foot_angle_deg": 6.55,
-    "loaded.back_foot_angle_deg": 2.75,
+    "loaded.back_foot_angle_deg": 0.95,
     "acceleration.body_height": 2.0,
     "acceleration.hip_height": 2.3,
     "acceleration.head_over_base": 1.9,
@@ -171718,7 +171552,6 @@
     "impact.hip_turn": 5.65,
     "impact.face_tilt": 2.65,
     "impact.face_yaw": 3.7,
-    "impact.back_foot_angle_deg": 26.95,
     "extension.body_height": 0.8,
     "extension.hip_height": 1.0,
     "extension.head_over_base": 1.6,
@@ -171825,7 +171658,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -172481,7 +172313,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "ready",
     "ball_bounce": "takeback"
    },
    "curves": {
@@ -172697,6 +172528,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w007438225_6439_near_114.json",
@@ -173610,6 +173447,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0744319",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -173854,8 +173692,7 @@
      "x_factor": 7.6,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": 39.5,
-     "back_foot_angle_deg": -21.3,
+     "front_foot_angle_deg": 47.1,
      "base_court_m": 1.29,
      "stance_angle": 89.0,
      "base_m": 1.29
@@ -173929,8 +173766,7 @@
      "face_yaw": 1.8,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 22.0,
-     "back_foot_angle_deg": -62.8,
+     "front_foot_angle_deg": 35.5,
      "base_court_m": 0.61,
      "stance_angle": 133.8,
      "base_m": 0.61
@@ -174319,8 +174155,7 @@
     "loaded.shoulder_turn": 3.1,
     "loaded.hip_turn": 11.15,
     "loaded.x_factor": 8.3,
-    "loaded.front_foot_angle_deg": 19.6,
-    "loaded.back_foot_angle_deg": 19.65,
+    "loaded.front_foot_angle_deg": 5.9,
     "acceleration.body_height": 0.65,
     "acceleration.hip_height": 1.5,
     "acceleration.head_over_base": 1.35,
@@ -174383,8 +174218,7 @@
     "impact.racket_head_lateral": 0.5,
     "impact.face_tilt": 3.35,
     "impact.face_yaw": 7.25,
-    "impact.front_foot_angle_deg": 8.0,
-    "impact.back_foot_angle_deg": 0.7,
+    "impact.front_foot_angle_deg": 2.3,
     "extension.body_height": 0.5,
     "extension.hip_height": 1.25,
     "extension.head_over_base": 0.95,
@@ -175326,6 +175160,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "incoherente",
+    "impact.front": "medido",
+    "impact.back": "punta_oculta"
    }
   },
   "series": "series/w007438225_6439_near_248.json",
@@ -176007,6 +175847,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0747519",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -176243,7 +176084,7 @@
      "face_yaw": -90.5,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "back_foot_angle_deg": 14.4,
+     "back_foot_angle_deg": 22.9,
      "base_court_m": 1.01,
      "stance_angle": 2.0,
      "base_m": 1.01
@@ -176318,7 +176159,6 @@
      "face_yaw": -20.5,
      "face_points_to": "red",
      "face_observed": false,
-     "back_foot_angle_deg": -78.2,
      "base_court_m": 0.65,
      "stance_angle": 17.5,
      "base_m": 0.65
@@ -176778,7 +176618,7 @@
     "loaded.racket_head_lateral": 1.95,
     "loaded.face_tilt": 1.55,
     "loaded.face_yaw": 2.05,
-    "loaded.back_foot_angle_deg": 4.9,
+    "loaded.back_foot_angle_deg": 4.2,
     "acceleration.body_height": 0.7,
     "acceleration.hip_height": 0.55,
     "acceleration.head_over_base": 2.1,
@@ -176842,7 +176682,6 @@
     "impact.hip_turn": 1.35,
     "impact.face_tilt": 1.45,
     "impact.face_yaw": 6.1,
-    "impact.back_foot_angle_deg": 24.7,
     "extension.body_height": 1.25,
     "extension.hip_height": 0.55,
     "extension.head_over_base": 4.4,
@@ -177808,6 +177647,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "punta_oculta"
    }
   },
   "series": "series/w007473067_3600_near_106.json",
@@ -178543,6 +178388,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0751978",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -180100,6 +179946,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "sin_pie",
+    "loaded.back": "sin_pie",
+    "impact.front": "sin_pie",
+    "impact.back": "sin_pie"
    }
   },
   "series": "series/w007517659_3600_near_106.json",
@@ -180877,6 +180729,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0752474",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -181115,7 +180968,7 @@
      "face_yaw": -93.0,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": 46.1,
+     "front_foot_angle_deg": 47.1,
      "base_court_m": 0.42,
      "stance_angle": 171.8,
      "base_m": 0.42
@@ -181184,8 +181037,7 @@
      "face_yaw": -14.1,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -78.4,
-     "back_foot_angle_deg": -7.4,
+     "back_foot_angle_deg": 0.2,
      "base_court_m": 0.86,
      "stance_angle": 37.1,
      "base_m": 0.86
@@ -181543,7 +181395,7 @@
     "loaded.racket_head_lateral": 5.4,
     "loaded.face_tilt": 2.5,
     "loaded.face_yaw": 3.85,
-    "loaded.front_foot_angle_deg": 9.0,
+    "loaded.front_foot_angle_deg": 5.35,
     "acceleration.body_height": 0.55,
     "acceleration.hip_height": 0.4,
     "acceleration.head_over_base": 0.7,
@@ -181601,8 +181453,7 @@
     "impact.racket_head_lateral": 4.3,
     "impact.face_tilt": 6.45,
     "impact.face_yaw": 6.1,
-    "impact.front_foot_angle_deg": 8.7,
-    "impact.back_foot_angle_deg": 6.6,
+    "impact.back_foot_angle_deg": 5.2,
     "extension.body_height": 0.55,
     "extension.hip_height": 1.1,
     "extension.head_over_base": 1.05,
@@ -182561,6 +182412,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "punta_oculta",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w007522738_3600_near_100.json",
@@ -183234,6 +183091,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0760035",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -183425,8 +183283,6 @@
      "x_factor": 24.9,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "front_foot_angle_deg": -22.7,
-     "back_foot_angle_deg": 0.0,
      "base_court_m": 0.84,
      "stance_angle": 2.4,
      "base_m": 0.84
@@ -184338,6 +184194,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "incoherente",
+    "impact.front": "sin_pie",
+    "impact.back": "sin_pie"
    }
   },
   "series": "series/w007596392_5108_near_198.json",
@@ -184463,6 +184325,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0772631",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -184656,6 +184519,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0846851",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -184860,6 +184724,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0847105",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -185048,6 +184913,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0855718",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -185755,6 +185621,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0868074",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -185997,8 +185864,7 @@
      "face_yaw": 49.6,
      "face_points_to": "valla derecha",
      "face_observed": true,
-     "front_foot_angle_deg": -23.5,
-     "back_foot_angle_deg": -20.1,
+     "back_foot_angle_deg": -10.4,
      "base_court_m": 0.13,
      "stance_angle": 65.1,
      "base_m": 0.13
@@ -186367,8 +186233,7 @@
     "loaded.racket_head_lateral": 6.8,
     "loaded.face_tilt": 7.25,
     "loaded.face_yaw": 36.05,
-    "loaded.front_foot_angle_deg": 15.05,
-    "loaded.back_foot_angle_deg": 3.7,
+    "loaded.back_foot_angle_deg": 2.9,
     "acceleration.body_height": 1.15,
     "acceleration.hip_height": 2.15,
     "acceleration.head_over_base": 5.6,
@@ -187372,6 +187237,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w008678622_3600_near_106.json",
@@ -188089,6 +187960,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0880420",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -188306,8 +188178,7 @@
      "x_factor": 44.3,
      "face_points_to": "cielo",
      "face_observed": false,
-     "front_foot_angle_deg": -76.9,
-     "back_foot_angle_deg": -30.3,
+     "back_foot_angle_deg": -24.3,
      "base_court_m": 0.92,
      "stance_angle": 19.6,
      "base_m": 0.92
@@ -188371,8 +188242,7 @@
      "face_yaw": 5.4,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -38.2,
-     "back_foot_angle_deg": -49.7,
+     "front_foot_angle_deg": -29.2,
      "base_court_m": 0.69,
      "stance_angle": 177.0,
      "base_m": 0.69
@@ -188750,8 +188620,7 @@
     "loaded.shoulder_turn": 3.3,
     "loaded.hip_turn": 3.5,
     "loaded.x_factor": 1.45,
-    "loaded.front_foot_angle_deg": 7.25,
-    "loaded.back_foot_angle_deg": 8.05,
+    "loaded.back_foot_angle_deg": 9.1,
     "acceleration.body_height": 0.65,
     "acceleration.hip_height": 0.3,
     "acceleration.head_over_base": 0.35,
@@ -188804,8 +188673,7 @@
     "impact.hip_turn": 2.6,
     "impact.face_tilt": 5.05,
     "impact.face_yaw": 6.2,
-    "impact.front_foot_angle_deg": 2.55,
-    "impact.back_foot_angle_deg": 5.1,
+    "impact.front_foot_angle_deg": 0.2,
     "extension.body_height": 1.45,
     "extension.hip_height": 1.55,
     "extension.head_over_base": 1.55,
@@ -189756,6 +189624,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "medido",
+    "impact.back": "punta_oculta"
    }
   },
   "series": "series/w008802121_3600_near_104.json",
@@ -190605,6 +190479,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0883642",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -190745,9 +190620,7 @@
    "apex_height_m": 1.31,
    "bounce_to_apex_s": 0.516,
    "contact_height_m": 1.3,
-   "contact_phase": "subiendo",
-   "net_frame": 80,
-   "incoming_speed_kmh": 134
+   "contact_phase": "subiendo"
   },
   "technique": {
    "phases": {
@@ -190913,7 +190786,7 @@
      "face_yaw": 7.1,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 6.1,
+     "front_foot_angle_deg": 15.1,
      "base_court_m": 0.54,
      "stance_angle": 151.6,
      "base_m": 0.54
@@ -191030,42 +190903,6 @@
      "face_points_to": "cielo",
      "face_observed": true
     },
-    "ball_net": {
-     "body_height": 56.6,
-     "hip_height": 16.2,
-     "head_over_base": 5.7,
-     "head_vs_hips": 12.3,
-     "trunk_tilt": 16.8,
-     "shoulder_tilt": 9.1,
-     "hip_tilt": 5.8,
-     "com_over_feet": 0.61,
-     "base_width": 8.4,
-     "shoulder_abd_dom": 23.9,
-     "elbow_non": 88.1,
-     "shoulder_abd_non": 6.1,
-     "wrist_dom_height": 22.7,
-     "wrist_dom_vs_hip": 6.5,
-     "wrist_dom_lateral": 25.1,
-     "wrist_dom_vs_shoulder": -17.4,
-     "elbow_dom_vs_shoulder": -18.2,
-     "elbow_dom_lateral": 2.3,
-     "wrist_non_height": 28.6,
-     "wrist_non_lateral": 9.2,
-     "hands_apart": 17.0,
-     "arm_extension": 77.0,
-     "shoulder_turn": 36.2,
-     "racket_head_vs_wrist": 26.9,
-     "racket_angle": 57.1,
-     "racket_forearm": 51.5,
-     "racket_tip_height": 58.2,
-     "racket_tip_vs_head": 5.7,
-     "racket_head_lateral": 19.4,
-     "face_tilt": 21.4,
-     "face_yaw": -35.3,
-     "face_points_to": "red",
-     "face_observed": false,
-     "t_to_contact": 0.48
-    },
     "ball_bounce": {
      "body_height": 78.0,
      "hip_height": 37.3,
@@ -191116,7 +190953,6 @@
     "head_motion_cm": 3.1,
     "takeback_after_opp": 0.8,
     "takeback_vs_bounce": -0.26,
-    "takeback_vs_net": -0.12,
     "contact_vs_top": -0.18,
     "loaded_vs_top": -0.36,
     "contact_height_m": 1.3,
@@ -191446,7 +191282,7 @@
     "impact.racket_head_lateral": 11.0,
     "impact.face_tilt": 7.65,
     "impact.face_yaw": 25.15,
-    "impact.front_foot_angle_deg": 7.8,
+    "impact.front_foot_angle_deg": 3.2,
     "extension.body_height": 1.95,
     "extension.hip_height": 2.3,
     "extension.head_over_base": 1.05,
@@ -191557,7 +191393,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -192206,7 +192041,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "takeback",
     "ball_bounce": "takeback"
    },
    "curves": {
@@ -192422,6 +192256,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "sin_pie",
+    "loaded.back": "sin_pie",
+    "impact.front": "medido",
+    "impact.back": "sin_pie"
    }
   },
   "series": "series/w008834345_3600_near_104.json",
@@ -193273,6 +193113,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0891386",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -193403,9 +193244,7 @@
    "apex_height_m": 1.43,
    "bounce_to_apex_s": 0.539,
    "contact_height_m": 1.43,
-   "contact_phase": "arriba",
-   "net_frame": 91,
-   "incoming_speed_kmh": 117
+   "contact_phase": "arriba"
   },
   "technique": {
    "phases": {
@@ -193503,8 +193342,7 @@
      "x_factor": 25.8,
      "face_points_to": "cielo",
      "face_observed": false,
-     "front_foot_angle_deg": -77.1,
-     "back_foot_angle_deg": 19.0,
+     "back_foot_angle_deg": 24.3,
      "base_court_m": 1.36,
      "stance_angle": 24.7,
      "base_m": 1.36
@@ -193583,8 +193421,8 @@
      "face_yaw": -6.8,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -31.8,
-     "back_foot_angle_deg": -65.6,
+     "front_foot_angle_deg": -23.8,
+     "back_foot_angle_deg": -24.6,
      "base_court_m": 0.14,
      "stance_angle": 69.5,
      "base_m": 0.14
@@ -193694,44 +193532,6 @@
      "face_points_to": "valla derecha",
      "face_observed": false
     },
-    "ball_net": {
-     "body_height": 87.1,
-     "hip_height": 41.0,
-     "head_over_base": 36.4,
-     "head_vs_hips": 20.0,
-     "trunk_tilt": 30.3,
-     "shoulder_tilt": 21.3,
-     "hip_tilt": 18.4,
-     "com_over_feet": -0.43,
-     "knee_dom": 108.6,
-     "knee_non": 126.6,
-     "base_width": 27.1,
-     "shoulder_abd_dom": 58.1,
-     "elbow_non": 109.3,
-     "shoulder_abd_non": 15.2,
-     "wrist_dom_height": 51.9,
-     "wrist_dom_vs_hip": 10.9,
-     "wrist_dom_lateral": 36.9,
-     "wrist_dom_vs_shoulder": -14.0,
-     "elbow_dom_vs_shoulder": -17.8,
-     "elbow_dom_lateral": 9.4,
-     "wrist_non_height": 49.8,
-     "wrist_non_lateral": 16.0,
-     "hands_apart": 21.0,
-     "arm_extension": 75.7,
-     "shoulder_turn": 56.7,
-     "racket_head_vs_wrist": 7.9,
-     "racket_angle": 71.1,
-     "racket_forearm": 31.0,
-     "racket_tip_height": 63.1,
-     "racket_tip_vs_head": -17.5,
-     "racket_head_lateral": 27.7,
-     "face_tilt": -1.6,
-     "face_yaw": -87.6,
-     "face_points_to": "valla izquierda",
-     "face_observed": false,
-     "t_to_contact": 0.74
-    },
     "ball_bounce": {
      "body_height": 82.7,
      "hip_height": 36.4,
@@ -193789,7 +193589,6 @@
     "head_motion_cm": 9.1,
     "takeback_after_opp": 0.42,
     "takeback_vs_bounce": -0.5,
-    "takeback_vs_net": -0.24,
     "contact_vs_top": -0.06,
     "loaded_vs_top": -0.24,
     "contact_height_m": 1.43,
@@ -193953,8 +193752,7 @@
     "loaded.shoulder_turn": 1.05,
     "loaded.hip_turn": 2.15,
     "loaded.x_factor": 3.65,
-    "loaded.front_foot_angle_deg": 2.9,
-    "loaded.back_foot_angle_deg": 19.8,
+    "loaded.back_foot_angle_deg": 17.85,
     "acceleration.body_height": 0.65,
     "acceleration.hip_height": 0.5,
     "acceleration.head_over_base": 0.6,
@@ -194021,8 +193819,7 @@
     "impact.racket_head_lateral": 13.95,
     "impact.face_tilt": 4.75,
     "impact.face_yaw": 20.35,
-    "impact.front_foot_angle_deg": 8.5,
-    "impact.back_foot_angle_deg": 24.85,
+    "impact.back_foot_angle_deg": 4.8,
     "extension.body_height": 0.75,
     "extension.hip_height": 0.45,
     "extension.head_over_base": 5.05,
@@ -194133,7 +193930,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -194760,7 +194556,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "takeback",
     "ball_bounce": "takeback"
    },
    "curves": {
@@ -194976,6 +194771,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "medido",
+    "impact.back": "medido"
    }
   },
   "series": "series/w008911300_3600_near_128.json",
@@ -195702,6 +195503,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0897306",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -195843,9 +195645,7 @@
    "apex_height_m": 1.76,
    "bounce_to_apex_s": 0.599,
    "contact_height_m": 1.34,
-   "contact_phase": "subiendo",
-   "net_frame": 86,
-   "incoming_speed_kmh": 199
+   "contact_phase": "subiendo"
   },
   "technique": {
    "phases": {
@@ -195952,7 +195752,7 @@
      "face_yaw": 86.4,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "back_foot_angle_deg": 26.6,
+     "back_foot_angle_deg": 31.6,
      "base_court_m": 1.12,
      "stance_angle": 5.6,
      "base_m": 1.12
@@ -196025,8 +195825,7 @@
      "face_yaw": -2.9,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 117.7,
-     "back_foot_angle_deg": -64.0,
+     "front_foot_angle_deg": 113.0,
      "base_court_m": 0.92,
      "stance_angle": 15.1,
      "base_m": 0.92
@@ -196131,42 +195930,6 @@
      "face_points_to": "suelo",
      "face_observed": false
     },
-    "ball_net": {
-     "body_height": 79.5,
-     "hip_height": 33.2,
-     "head_over_base": 8.7,
-     "head_vs_hips": 9.4,
-     "trunk_tilt": 10.1,
-     "shoulder_tilt": 16.5,
-     "hip_tilt": 3.3,
-     "com_over_feet": 0.45,
-     "knee_dom": 121.1,
-     "knee_non": 171.0,
-     "base_width": 69.2,
-     "shoulder_abd_dom": 50.3,
-     "wrist_dom_height": 56.6,
-     "wrist_dom_vs_hip": 23.4,
-     "wrist_dom_lateral": 25.1,
-     "wrist_dom_vs_shoulder": -3.2,
-     "elbow_dom_vs_shoulder": -11.7,
-     "elbow_dom_lateral": 9.9,
-     "wrist_non_height": 61.7,
-     "wrist_non_lateral": 13.1,
-     "hands_apart": 13.0,
-     "arm_extension": 50.3,
-     "shoulder_turn": 47.1,
-     "racket_head_vs_wrist": 26.6,
-     "racket_angle": 88.9,
-     "racket_forearm": 10.5,
-     "racket_tip_height": 92.6,
-     "racket_tip_vs_head": 19.0,
-     "racket_head_lateral": 6.9,
-     "face_tilt": 38.8,
-     "face_yaw": 10.6,
-     "face_points_to": "red",
-     "face_observed": false,
-     "t_to_contact": 0.4
-    },
     "ball_bounce": {
      "body_height": 78.7,
      "hip_height": 34.4,
@@ -196225,7 +195988,6 @@
     "head_motion_cm": 8.6,
     "takeback_after_opp": 0.34,
     "takeback_vs_bounce": -0.22,
-    "takeback_vs_net": -0.14,
     "contact_vs_top": -0.28,
     "loaded_vs_top": -0.4,
     "contact_height_m": 1.34,
@@ -196592,7 +196354,7 @@
     "loaded.racket_head_lateral": 5.45,
     "loaded.face_tilt": 4.6,
     "loaded.face_yaw": 4.15,
-    "loaded.back_foot_angle_deg": 3.85,
+    "loaded.back_foot_angle_deg": 2.45,
     "acceleration.body_height": 1.15,
     "acceleration.hip_height": 0.6,
     "acceleration.head_over_base": 1.15,
@@ -196654,8 +196416,7 @@
     "impact.hip_turn": 1.3,
     "impact.face_tilt": 3.95,
     "impact.face_yaw": 12.35,
-    "impact.front_foot_angle_deg": 5.35,
-    "impact.back_foot_angle_deg": 58.0,
+    "impact.front_foot_angle_deg": 1.2,
     "extension.body_height": 1.65,
     "extension.hip_height": 1.15,
     "extension.head_over_base": 4.1,
@@ -196761,7 +196522,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -197421,7 +197181,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "takeback",
     "ball_bounce": "takeback"
    },
    "curves": {
@@ -197637,6 +197396,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "medido",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w008970936_3600_near_106.json",
@@ -198318,6 +198083,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0901472",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -198555,7 +198321,6 @@
      "x_factor": 21.9,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "back_foot_angle_deg": 69.3,
      "base_court_m": 1.34,
      "stance_angle": -23.9,
      "base_m": 1.34
@@ -198620,8 +198385,7 @@
      "face_yaw": 12.6,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -106.6,
-     "back_foot_angle_deg": 49.3,
+     "back_foot_angle_deg": 53.1,
      "base_court_m": 0.77,
      "stance_angle": 10.7,
      "base_m": 0.77
@@ -199074,7 +198838,6 @@
     "loaded.shoulder_turn": 8.7,
     "loaded.hip_turn": 1.2,
     "loaded.x_factor": 6.7,
-    "loaded.back_foot_angle_deg": 2.95,
     "acceleration.body_height": 0.4,
     "acceleration.hip_height": 0.65,
     "acceleration.head_over_base": 0.75,
@@ -199128,8 +198891,7 @@
     "impact.hip_turn": 0.6,
     "impact.face_tilt": 4.9,
     "impact.face_yaw": 13.25,
-    "impact.front_foot_angle_deg": 2.05,
-    "impact.back_foot_angle_deg": 0.5,
+    "impact.back_foot_angle_deg": 0.2,
     "extension.body_height": 1.65,
     "extension.hip_height": 0.8,
     "extension.head_over_base": 3.1,
@@ -200105,6 +199867,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "incoherente",
+    "impact.front": "punta_oculta",
+    "impact.back": "medido"
    }
   },
   "series": "series/w009012603_10787_near_106.json",
@@ -200877,6 +200645,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0901670",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -201108,7 +200877,7 @@
      "x_factor": -28.5,
      "face_points_to": "cielo",
      "face_observed": false,
-     "back_foot_angle_deg": -14.9,
+     "back_foot_angle_deg": -7.1,
      "base_court_m": 1.14,
      "stance_angle": 92.2,
      "base_m": 1.14
@@ -201177,8 +200946,8 @@
      "face_yaw": 4.9,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -5.1,
-     "back_foot_angle_deg": -1.5,
+     "front_foot_angle_deg": -19.0,
+     "back_foot_angle_deg": 8.4,
      "base_court_m": 0.94,
      "stance_angle": 96.1,
      "base_m": 0.94
@@ -201467,7 +201236,7 @@
     "loaded.shoulder_turn": 2.35,
     "loaded.hip_turn": 4.25,
     "loaded.x_factor": 4.3,
-    "loaded.back_foot_angle_deg": 10.75,
+    "loaded.back_foot_angle_deg": 11.6,
     "acceleration.body_height": 0.1,
     "acceleration.hip_height": 0.8,
     "acceleration.head_over_base": 1.1,
@@ -201525,8 +201294,8 @@
     "impact.racket_head_lateral": 0.5,
     "impact.face_tilt": 1.1,
     "impact.face_yaw": 0.75,
-    "impact.front_foot_angle_deg": 27.3,
-    "impact.back_foot_angle_deg": 3.1,
+    "impact.front_foot_angle_deg": 0.0,
+    "impact.back_foot_angle_deg": 1.1,
     "extension.body_height": 0.95,
     "extension.hip_height": 0.25,
     "extension.head_over_base": 0.95,
@@ -202467,6 +202236,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "medido",
+    "impact.back": "medido"
    }
   },
   "series": "series/w009012603_10787_near_205.json",
@@ -203270,6 +203045,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0901960",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -203501,8 +203277,7 @@
      "x_factor": 27.1,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": -60.1,
-     "back_foot_angle_deg": 25.5,
+     "back_foot_angle_deg": 31.1,
      "base_court_m": 1.28,
      "stance_angle": 20.4,
      "base_m": 1.28
@@ -203571,8 +203346,7 @@
      "face_yaw": -14.5,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -69.4,
-     "back_foot_angle_deg": -24.1,
+     "back_foot_angle_deg": 0.3,
      "base_court_m": 0.56,
      "stance_angle": 26.0,
      "base_m": 0.56
@@ -204072,8 +203846,7 @@
     "loaded.shoulder_turn": 1.2,
     "loaded.hip_turn": 2.75,
     "loaded.x_factor": 1.6,
-    "loaded.front_foot_angle_deg": 11.1,
-    "loaded.back_foot_angle_deg": 19.1,
+    "loaded.back_foot_angle_deg": 15.3,
     "acceleration.body_height": 0.75,
     "acceleration.hip_height": 0.45,
     "acceleration.head_over_base": 0.9,
@@ -204131,8 +203904,7 @@
     "impact.racket_head_lateral": 4.85,
     "impact.face_tilt": 6.75,
     "impact.face_yaw": 2.65,
-    "impact.front_foot_angle_deg": 14.55,
-    "impact.back_foot_angle_deg": 26.45,
+    "impact.back_foot_angle_deg": 4.4,
     "extension.body_height": 0.55,
     "extension.hip_height": 0.6,
     "extension.head_over_base": 4.1,
@@ -205108,6 +204880,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w009012603_10787_near_350.json",
@@ -205864,6 +205642,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0902188",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -206104,8 +205883,7 @@
      "face_yaw": -83.4,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "front_foot_angle_deg": 0.0,
-     "back_foot_angle_deg": -22.6,
+     "front_foot_angle_deg": 9.8,
      "base_court_m": 1.03,
      "stance_angle": 60.2,
      "base_m": 1.03
@@ -206176,8 +205954,7 @@
      "face_yaw": 8.6,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -16.9,
-     "back_foot_angle_deg": 3.3,
+     "back_foot_angle_deg": 10.4,
      "base_court_m": 0.94,
      "stance_angle": 71.8,
      "base_m": 0.94
@@ -206571,8 +206348,7 @@
     "loaded.racket_head_lateral": 2.05,
     "loaded.face_tilt": 0.8,
     "loaded.face_yaw": 7.25,
-    "loaded.front_foot_angle_deg": 4.9,
-    "loaded.back_foot_angle_deg": 18.6,
+    "loaded.front_foot_angle_deg": 1.7,
     "acceleration.body_height": 0.95,
     "acceleration.hip_height": 0.25,
     "acceleration.head_over_base": 1.1,
@@ -206632,8 +206408,7 @@
     "impact.racket_head_lateral": 1.2,
     "impact.face_tilt": 1.7,
     "impact.face_yaw": 1.65,
-    "impact.front_foot_angle_deg": 6.25,
-    "impact.back_foot_angle_deg": 1.7,
+    "impact.back_foot_angle_deg": 0.8,
     "extension.body_height": 1.65,
     "extension.hip_height": 0.5,
     "extension.head_over_base": 2.25,
@@ -207599,6 +207374,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "incoherente",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w009012603_10787_near_464.json",
@@ -207725,6 +207506,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0915201",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -207922,6 +207704,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0921840",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -208125,6 +207908,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0922114",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -208315,6 +208099,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0925000",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -208505,6 +208290,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0933438",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -209214,6 +209000,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0959726",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -209457,8 +209244,8 @@
      "face_yaw": -93.2,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "front_foot_angle_deg": -46.4,
-     "back_foot_angle_deg": -38.5,
+     "front_foot_angle_deg": -24.0,
+     "back_foot_angle_deg": -30.4,
      "base_court_m": 0.14,
      "stance_angle": 61.8,
      "base_m": 0.14
@@ -209824,8 +209611,8 @@
     "loaded.racket_head_lateral": 6.5,
     "loaded.face_tilt": 12.5,
     "loaded.face_yaw": 16.8,
-    "loaded.front_foot_angle_deg": 11.7,
-    "loaded.back_foot_angle_deg": 8.0,
+    "loaded.front_foot_angle_deg": 13.65,
+    "loaded.back_foot_angle_deg": 7.75,
     "acceleration.body_height": 1.15,
     "acceleration.hip_height": 2.1,
     "acceleration.head_over_base": 4.35,
@@ -210823,6 +210610,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w009595200_10400_near_103.json",
@@ -211610,6 +211403,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0959912",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -211850,8 +211644,7 @@
      "face_yaw": 82.3,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "front_foot_angle_deg": -58.0,
-     "back_foot_angle_deg": 0.0,
+     "back_foot_angle_deg": 12.5,
      "base_court_m": 0.85,
      "stance_angle": 47.5,
      "base_m": 0.85
@@ -211924,8 +211717,8 @@
      "face_yaw": -4.3,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 53.5,
-     "back_foot_angle_deg": 18.7,
+     "front_foot_angle_deg": 57.6,
+     "back_foot_angle_deg": 27.7,
      "base_court_m": 1.06,
      "stance_angle": 72.8,
      "base_m": 1.06
@@ -212304,8 +212097,7 @@
     "loaded.racket_head_lateral": 2.8,
     "loaded.face_tilt": 2.05,
     "loaded.face_yaw": 1.7,
-    "loaded.front_foot_angle_deg": 3.3,
-    "loaded.back_foot_angle_deg": 9.0,
+    "loaded.back_foot_angle_deg": 5.3,
     "acceleration.body_height": 1.3,
     "acceleration.hip_height": 0.45,
     "acceleration.head_over_base": 1.1,
@@ -212367,8 +212159,8 @@
     "impact.racket_head_lateral": 4.75,
     "impact.face_tilt": 7.25,
     "impact.face_yaw": 14.55,
-    "impact.front_foot_angle_deg": 6.95,
-    "impact.back_foot_angle_deg": 1.5,
+    "impact.front_foot_angle_deg": 7.2,
+    "impact.back_foot_angle_deg": 0.0,
     "extension.body_height": 1.05,
     "extension.hip_height": 0.4,
     "extension.head_over_base": 0.3,
@@ -213333,6 +213125,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "medido",
+    "impact.back": "medido"
    }
   },
   "series": "series/w009595200_10400_near_196.json",
@@ -214129,6 +213927,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0960140",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -214360,8 +214159,7 @@
      "x_factor": 25.2,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": -51.7,
-     "back_foot_angle_deg": 44.4,
+     "back_foot_angle_deg": 47.7,
      "base_court_m": 1.13,
      "stance_angle": 27.6,
      "base_m": 1.13
@@ -214430,8 +214228,7 @@
      "face_yaw": -13.5,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -54.0,
-     "back_foot_angle_deg": -49.0,
+     "back_foot_angle_deg": -10.6,
      "base_court_m": 0.52,
      "stance_angle": 32.3,
      "base_m": 0.52
@@ -214780,8 +214577,7 @@
     "loaded.shoulder_turn": 2.4,
     "loaded.hip_turn": 1.7,
     "loaded.x_factor": 3.25,
-    "loaded.front_foot_angle_deg": 6.2,
-    "loaded.back_foot_angle_deg": 14.65,
+    "loaded.back_foot_angle_deg": 11.6,
     "acceleration.body_height": 0.5,
     "acceleration.hip_height": 0.55,
     "acceleration.head_over_base": 0.4,
@@ -214839,8 +214635,6 @@
     "impact.hip_turn": 1.55,
     "impact.face_tilt": 7.25,
     "impact.face_yaw": 3.3,
-    "impact.front_foot_angle_deg": 14.5,
-    "impact.back_foot_angle_deg": 36.2,
     "extension.body_height": 0.75,
     "extension.hip_height": 1.1,
     "extension.head_over_base": 3.05,
@@ -215787,6 +215581,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w009595200_10400_near_310.json",
@@ -216684,6 +216484,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0960412",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -216925,8 +216726,7 @@
      "face_yaw": -89.2,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": -46.6,
-     "back_foot_angle_deg": -56.2,
+     "front_foot_angle_deg": -40.3,
      "base_court_m": 0.41,
      "stance_angle": 78.9,
      "base_m": 0.41
@@ -217002,7 +216802,6 @@
      "face_yaw": -0.2,
      "face_points_to": "red",
      "face_observed": false,
-     "back_foot_angle_deg": -56.6,
      "base_court_m": 0.97,
      "stance_angle": 43.6,
      "base_m": 0.97
@@ -217400,8 +217199,7 @@
     "loaded.racket_head_lateral": 1.9,
     "loaded.face_tilt": 1.75,
     "loaded.face_yaw": 1.15,
-    "loaded.front_foot_angle_deg": 10.15,
-    "loaded.back_foot_angle_deg": 15.25,
+    "loaded.front_foot_angle_deg": 8.6,
     "acceleration.body_height": 2.3,
     "acceleration.hip_height": 2.0,
     "acceleration.head_over_base": 0.9,
@@ -217466,7 +217264,6 @@
     "impact.racket_head_lateral": 1.9,
     "impact.face_tilt": 3.0,
     "impact.face_yaw": 16.3,
-    "impact.back_foot_angle_deg": 48.1,
     "extension.body_height": 1.0,
     "extension.hip_height": 1.3,
     "extension.head_over_base": 1.1,
@@ -218424,6 +218221,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "punta_oculta",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w009595200_10400_near_446.json",
@@ -219058,6 +218861,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0962849",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -219303,8 +219107,7 @@
      "face_yaw": 91.2,
      "face_points_to": "valla derecha",
      "face_observed": true,
-     "front_foot_angle_deg": -52.2,
-     "back_foot_angle_deg": -35.2,
+     "back_foot_angle_deg": -28.4,
      "base_court_m": 0.16,
      "stance_angle": 54.8,
      "base_m": 0.16
@@ -219380,7 +219183,6 @@
      "face_yaw": 6.0,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -30.0,
      "base_court_m": 0.21,
      "stance_angle": -3.3,
      "base_m": 0.21
@@ -219670,8 +219472,7 @@
     "loaded.racket_head_lateral": 2.95,
     "loaded.face_tilt": 6.1,
     "loaded.face_yaw": 1.65,
-    "loaded.front_foot_angle_deg": 1.35,
-    "loaded.back_foot_angle_deg": 2.1,
+    "loaded.back_foot_angle_deg": 1.8,
     "acceleration.body_height": 1.15,
     "acceleration.hip_height": 2.6,
     "acceleration.head_over_base": 1.7,
@@ -219736,7 +219537,6 @@
     "impact.racket_head_lateral": 7.25,
     "impact.face_tilt": 12.35,
     "impact.face_yaw": 7.65,
-    "impact.front_foot_angle_deg": 16.4,
     "extension.body_height": 2.0,
     "extension.hip_height": 0.9,
     "extension.head_over_base": 1.05,
@@ -220668,6 +220468,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w009626094_6613_near_120.json",
@@ -221303,6 +221109,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0969393",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -221542,8 +221349,7 @@
      "face_yaw": -90.2,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "front_foot_angle_deg": -57.2,
-     "back_foot_angle_deg": -40.3,
+     "back_foot_angle_deg": -31.6,
      "base_court_m": 0.17,
      "stance_angle": 46.4,
      "base_m": 0.17
@@ -221952,8 +221758,7 @@
     "loaded.racket_head_lateral": 3.1,
     "loaded.face_tilt": 5.9,
     "loaded.face_yaw": 0.8,
-    "loaded.front_foot_angle_deg": 3.75,
-    "loaded.back_foot_angle_deg": 4.55,
+    "loaded.back_foot_angle_deg": 3.7,
     "acceleration.body_height": 0.75,
     "acceleration.hip_height": 2.85,
     "acceleration.head_over_base": 2.8,
@@ -222963,6 +222768,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w009692015_3600_near_96.json",
@@ -223827,6 +223638,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0972799",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -223968,9 +223780,7 @@
    "apex_height_m": 1.77,
    "bounce_to_apex_s": 0.6,
    "contact_height_m": 1.34,
-   "contact_phase": "subiendo",
-   "net_frame": 101,
-   "incoming_speed_kmh": 120
+   "contact_phase": "subiendo"
   },
   "technique": {
    "phases": {
@@ -224076,8 +223886,7 @@
      "face_yaw": 80.1,
      "face_points_to": "valla derecha",
      "face_observed": true,
-     "front_foot_angle_deg": -65.8,
-     "back_foot_angle_deg": 52.5,
+     "back_foot_angle_deg": 56.0,
      "base_court_m": 1.08,
      "stance_angle": 13.7,
      "base_m": 1.08
@@ -224233,33 +224042,6 @@
      "face_points_to": "cielo",
      "face_observed": false
     },
-    "ball_net": {
-     "body_height": 75.6,
-     "hip_height": 30.3,
-     "head_over_base": 2.4,
-     "head_vs_hips": 5.1,
-     "trunk_tilt": 3.7,
-     "shoulder_tilt": 13.4,
-     "hip_tilt": 3.8,
-     "com_over_feet": 0.52,
-     "knee_dom": 166.7,
-     "base_width": 66.5,
-     "shoulder_abd_dom": 16.8,
-     "wrist_dom_height": 49.4,
-     "wrist_dom_vs_hip": 19.0,
-     "wrist_dom_lateral": 15.7,
-     "wrist_dom_vs_shoulder": -8.1,
-     "elbow_dom_vs_shoulder": -16.6,
-     "elbow_dom_lateral": 3.9,
-     "wrist_non_height": 55.5,
-     "wrist_non_lateral": 6.0,
-     "hands_apart": 11.5,
-     "arm_extension": 37.9,
-     "shoulder_turn": 45.8,
-     "face_points_to": "valla trasera",
-     "face_observed": false,
-     "t_to_contact": 0.46
-    },
     "ball_bounce": {
      "body_height": 73.9,
      "hip_height": 31.1,
@@ -224317,7 +224099,6 @@
     "head_motion_cm": 13.9,
     "takeback_after_opp": 0.9,
     "takeback_vs_bounce": -0.22,
-    "takeback_vs_net": -0.08,
     "contact_vs_top": -0.28,
     "loaded_vs_top": -0.46,
     "contact_height_m": 1.34,
@@ -224629,8 +224410,7 @@
     "loaded.racket_head_lateral": 1.1,
     "loaded.face_tilt": 12.5,
     "loaded.face_yaw": 5.1,
-    "loaded.front_foot_angle_deg": 3.4,
-    "loaded.back_foot_angle_deg": 0.8,
+    "loaded.back_foot_angle_deg": 0.1,
     "acceleration.body_height": 0.65,
     "acceleration.hip_height": 1.6,
     "acceleration.head_over_base": 1.9,
@@ -224776,7 +224556,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -225428,7 +225207,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "takeback",
     "ball_bounce": "takeback"
    },
    "curves": {
@@ -225644,6 +225422,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w009725510_3600_near_124.json",
@@ -226369,6 +226153,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0984390",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -226509,9 +226294,7 @@
    "apex_height_m": 1.85,
    "bounce_to_apex_s": 0.614,
    "contact_height_m": 1.27,
-   "contact_phase": "subiendo",
-   "net_frame": 94,
-   "incoming_speed_kmh": 194
+   "contact_phase": "subiendo"
   },
   "technique": {
    "phases": {
@@ -226620,7 +226403,7 @@
      "face_yaw": -90.3,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "back_foot_angle_deg": 16.9,
+     "back_foot_angle_deg": 25.6,
      "base_court_m": 0.7,
      "stance_angle": 9.5,
      "base_m": 0.7
@@ -226701,8 +226484,7 @@
      "face_yaw": -15.6,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -49.0,
-     "back_foot_angle_deg": -30.3,
+     "back_foot_angle_deg": -13.6,
      "base_court_m": 0.52,
      "stance_angle": 92.1,
      "base_m": 0.52
@@ -226820,41 +226602,6 @@
      "face_points_to": "valla trasera",
      "face_observed": false
     },
-    "ball_net": {
-     "body_height": 80.5,
-     "hip_height": 35.7,
-     "head_over_base": 14.7,
-     "head_vs_hips": 5.1,
-     "trunk_tilt": 5.3,
-     "shoulder_tilt": 10.4,
-     "hip_tilt": 1.5,
-     "com_over_feet": 0.34,
-     "knee_non": 157.2,
-     "base_width": 56.4,
-     "shoulder_abd_dom": 22.2,
-     "wrist_dom_height": 50.0,
-     "wrist_dom_vs_hip": 14.3,
-     "wrist_dom_lateral": 23.0,
-     "wrist_dom_vs_shoulder": -11.9,
-     "elbow_dom_vs_shoulder": -16.3,
-     "elbow_dom_lateral": 5.0,
-     "wrist_non_height": 57.0,
-     "wrist_non_lateral": 0.8,
-     "hands_apart": 23.3,
-     "arm_extension": 66.8,
-     "shoulder_turn": 42.4,
-     "racket_head_vs_wrist": 4.4,
-     "racket_angle": 52.0,
-     "racket_forearm": 19.4,
-     "racket_tip_height": 57.6,
-     "racket_tip_vs_head": -16.9,
-     "racket_head_lateral": 19.5,
-     "face_tilt": -33.5,
-     "face_yaw": -76.7,
-     "face_points_to": "valla izquierda",
-     "face_observed": false,
-     "t_to_contact": 0.36
-    },
     "ball_bounce": {
      "body_height": 80.8,
      "hip_height": 37.8,
@@ -226912,7 +226659,6 @@
     "head_motion_cm": 2.6,
     "takeback_after_opp": 0.34,
     "takeback_vs_bounce": -0.28,
-    "takeback_vs_net": -0.18,
     "contact_vs_top": -0.36,
     "loaded_vs_top": -0.5,
     "contact_height_m": 1.27,
@@ -227197,7 +226943,7 @@
     "loaded.racket_head_lateral": 2.4,
     "loaded.face_tilt": 9.3,
     "loaded.face_yaw": 6.15,
-    "loaded.back_foot_angle_deg": 13.85,
+    "loaded.back_foot_angle_deg": 6.15,
     "acceleration.body_height": 1.8,
     "acceleration.hip_height": 2.15,
     "acceleration.head_over_base": 1.2,
@@ -227267,8 +227013,7 @@
     "impact.racket_head_lateral": 9.7,
     "impact.face_tilt": 4.8,
     "impact.face_yaw": 3.55,
-    "impact.front_foot_angle_deg": 24.55,
-    "impact.back_foot_angle_deg": 14.4,
+    "impact.back_foot_angle_deg": 6.75,
     "extension.body_height": 0.55,
     "extension.hip_height": 0.8,
     "extension.head_over_base": 2.4,
@@ -227387,7 +227132,6 @@
     "stroke.head_motion_cm": 0.0,
     "stroke.takeback_after_opp": 0.03,
     "stroke.takeback_vs_bounce": 0.03,
-    "stroke.takeback_vs_net": 0.03,
     "stroke.contact_vs_top": 0.0,
     "stroke.loaded_vs_top": 0.03,
     "stroke.contact_height_m": 0.0,
@@ -228043,7 +227787,6 @@
     ]
    },
    "ball_phase_of_stroke": {
-    "ball_net": "takeback",
     "ball_bounce": "takeback"
    },
    "curves": {
@@ -228259,6 +228002,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w009841662_3600_near_112.json",
@@ -228924,6 +228673,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0990196",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -229163,8 +228913,7 @@
      "face_yaw": -102.8,
      "face_points_to": "valla izquierda",
      "face_observed": true,
-     "front_foot_angle_deg": -65.2,
-     "back_foot_angle_deg": 49.9,
+     "back_foot_angle_deg": 54.8,
      "base_court_m": 1.3,
      "stance_angle": 14.1,
      "base_m": 1.3
@@ -229233,8 +228982,7 @@
      "face_yaw": 4.9,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -58.2,
-     "back_foot_angle_deg": -35.6,
+     "back_foot_angle_deg": -30.7,
      "base_court_m": 0.59,
      "stance_angle": 101.2,
      "base_m": 0.59
@@ -229534,8 +229282,7 @@
     "loaded.racket_head_lateral": 2.25,
     "loaded.face_tilt": 13.0,
     "loaded.face_yaw": 13.85,
-    "loaded.front_foot_angle_deg": 11.15,
-    "loaded.back_foot_angle_deg": 9.2,
+    "loaded.back_foot_angle_deg": 8.05,
     "acceleration.body_height": 1.2,
     "acceleration.hip_height": 0.55,
     "acceleration.head_over_base": 0.25,
@@ -229593,8 +229340,7 @@
     "impact.racket_head_lateral": 3.25,
     "impact.face_tilt": 6.6,
     "impact.face_yaw": 6.65,
-    "impact.front_foot_angle_deg": 49.3,
-    "impact.back_foot_angle_deg": 5.0,
+    "impact.back_foot_angle_deg": 4.35,
     "extension.body_height": 0.55,
     "extension.hip_height": 0.85,
     "extension.head_over_base": 1.75,
@@ -230540,6 +230286,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "medido"
    }
   },
   "series": "series/w009899803_3600_near_108.json",
@@ -231237,6 +230989,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0991855",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -231485,8 +231238,7 @@
      "face_yaw": 71.7,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "front_foot_angle_deg": -73.3,
-     "back_foot_angle_deg": 46.3,
+     "back_foot_angle_deg": 50.5,
      "base_court_m": 0.98,
      "stance_angle": 3.1,
      "base_m": 0.98
@@ -232034,8 +231786,7 @@
     "loaded.racket_head_lateral": 0.65,
     "loaded.face_tilt": 6.5,
     "loaded.face_yaw": 20.55,
-    "loaded.front_foot_angle_deg": 29.1,
-    "loaded.back_foot_angle_deg": 4.2,
+    "loaded.back_foot_angle_deg": 2.75,
     "acceleration.body_height": 2.75,
     "acceleration.hip_height": 2.9,
     "acceleration.head_over_base": 2.4,
@@ -233066,6 +232817,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w009916434_5580_near_106.json",
@@ -233878,6 +233635,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0992071",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -234121,8 +233879,6 @@
      "face_yaw": -98.4,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": -70.3,
-     "back_foot_angle_deg": 46.9,
      "base_court_m": 1.39,
      "stance_angle": 40.4,
      "base_m": 1.39
@@ -234196,8 +233952,8 @@
      "face_yaw": -8.7,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -3.9,
-     "back_foot_angle_deg": -34.8,
+     "front_foot_angle_deg": 10.5,
+     "back_foot_angle_deg": -22.9,
      "base_court_m": 0.17,
      "stance_angle": 131.4,
      "base_m": 0.17
@@ -234593,8 +234349,6 @@
     "loaded.racket_head_lateral": 4.9,
     "loaded.face_tilt": 2.7,
     "loaded.face_yaw": 3.1,
-    "loaded.front_foot_angle_deg": 8.4,
-    "loaded.back_foot_angle_deg": 16.75,
     "acceleration.body_height": 2.45,
     "acceleration.hip_height": 2.65,
     "acceleration.head_over_base": 1.25,
@@ -234657,8 +234411,8 @@
     "impact.racket_head_lateral": 5.45,
     "impact.face_tilt": 6.8,
     "impact.face_yaw": 5.0,
-    "impact.front_foot_angle_deg": 7.1,
-    "impact.back_foot_angle_deg": 14.25,
+    "impact.front_foot_angle_deg": 6.45,
+    "impact.back_foot_angle_deg": 5.8,
     "extension.body_height": 1.55,
     "extension.hip_height": 1.2,
     "extension.head_over_base": 2.5,
@@ -235619,6 +235373,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "incoherente",
+    "impact.front": "medido",
+    "impact.back": "medido"
    }
   },
   "series": "series/w009916434_5580_near_214.json",
@@ -236311,6 +236071,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0996587",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -236540,7 +236301,7 @@
      "face_yaw": 133.0,
      "face_points_to": "suelo",
      "face_observed": true,
-     "back_foot_angle_deg": 25.2,
+     "back_foot_angle_deg": 31.9,
      "base_court_m": 0.99,
      "stance_angle": 6.4,
      "base_m": 0.99
@@ -236619,8 +236380,7 @@
      "face_yaw": -4.3,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 129.1,
-     "back_foot_angle_deg": -110.3,
+     "front_foot_angle_deg": 121.8,
      "base_court_m": 0.86,
      "stance_angle": 8.0,
      "base_m": 0.86
@@ -237098,7 +236858,7 @@
     "loaded.racket_head_lateral": 2.3,
     "loaded.face_tilt": 22.0,
     "loaded.face_yaw": 153.6,
-    "loaded.back_foot_angle_deg": 3.1,
+    "loaded.back_foot_angle_deg": 1.2,
     "acceleration.body_height": 1.05,
     "acceleration.hip_height": 0.8,
     "acceleration.head_over_base": 1.9,
@@ -237166,8 +236926,7 @@
     "impact.racket_head_lateral": 0.7,
     "impact.face_tilt": 1.7,
     "impact.face_yaw": 5.0,
-    "impact.front_foot_angle_deg": 3.3,
-    "impact.back_foot_angle_deg": 6.2,
+    "impact.front_foot_angle_deg": 0.8,
     "extension.body_height": 0.3,
     "extension.hip_height": 0.7,
     "extension.head_over_base": 3.5,
@@ -238140,6 +237899,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "medido",
+    "impact.front": "medido",
+    "impact.back": "punta_oculta"
    }
   },
   "series": "series/w009963785_3600_near_104.json",
@@ -238818,6 +238583,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0999905",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -239061,7 +238827,6 @@
      "x_factor": 50.2,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "front_foot_angle_deg": -74.5,
      "base_court_m": 0.89,
      "stance_angle": 34.1,
      "base_m": 0.89
@@ -239137,7 +238902,6 @@
      "face_yaw": 15.4,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -23.7,
      "base_court_m": 0.73,
      "stance_angle": 113.2,
      "base_m": 0.73
@@ -239502,7 +239266,6 @@
     "loaded.shoulder_turn": 3.4,
     "loaded.hip_turn": 0.6,
     "loaded.x_factor": 2.8,
-    "loaded.front_foot_angle_deg": 3.65,
     "acceleration.body_height": 2.1,
     "acceleration.hip_height": 1.1,
     "acceleration.head_over_base": 0.65,
@@ -239567,7 +239330,6 @@
     "impact.racket_head_lateral": 4.35,
     "impact.face_tilt": 3.1,
     "impact.face_yaw": 5.45,
-    "impact.front_foot_angle_deg": 31.1,
     "extension.body_height": 0.25,
     "extension.hip_height": 0.95,
     "extension.head_over_base": 3.65,
@@ -240514,6 +240276,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "punta_oculta",
+    "loaded.back": "incoherente",
+    "impact.front": "incoherente",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w009996967_9318_near_104.json",
@@ -241447,6 +241215,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-1000235",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -241688,8 +241457,8 @@
      "face_yaw": 73.1,
      "face_points_to": "valla derecha",
      "face_observed": false,
-     "front_foot_angle_deg": -30.6,
-     "back_foot_angle_deg": -41.7,
+     "front_foot_angle_deg": -20.6,
+     "back_foot_angle_deg": -22.1,
      "base_court_m": 0.16,
      "stance_angle": 120.9,
      "base_m": 0.16
@@ -241768,7 +241537,7 @@
      "face_yaw": -16.0,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": 81.4,
+     "front_foot_angle_deg": 82.9,
      "base_court_m": 0.9,
      "stance_angle": 57.9,
      "base_m": 0.9
@@ -242155,8 +241924,8 @@
     "loaded.racket_head_lateral": 2.25,
     "loaded.face_tilt": 0.7,
     "loaded.face_yaw": 3.8,
-    "loaded.front_foot_angle_deg": 18.55,
-    "loaded.back_foot_angle_deg": 14.9,
+    "loaded.front_foot_angle_deg": 7.75,
+    "loaded.back_foot_angle_deg": 9.25,
     "acceleration.body_height": 2.05,
     "acceleration.hip_height": 1.6,
     "acceleration.head_over_base": 1.35,
@@ -242222,7 +241991,7 @@
     "impact.racket_head_lateral": 2.4,
     "impact.face_tilt": 12.35,
     "impact.face_yaw": 7.85,
-    "impact.front_foot_angle_deg": 3.2,
+    "impact.front_foot_angle_deg": 1.5,
     "extension.body_height": 0.9,
     "extension.hip_height": 1.2,
     "extension.head_over_base": 1.45,
@@ -243169,6 +242938,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "medido",
+    "loaded.back": "medido",
+    "impact.front": "medido",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w009996967_9318_near_269.json",
@@ -243837,6 +243612,7 @@
   "identity": true,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-1000477",
+  "surface": "dura",
   "score": {
    "games": [
     [
@@ -244074,8 +243850,6 @@
      "face_yaw": -87.2,
      "face_points_to": "valla izquierda",
      "face_observed": false,
-     "front_foot_angle_deg": -53.1,
-     "back_foot_angle_deg": 15.4,
      "base_court_m": 0.63,
      "stance_angle": -17.6,
      "base_m": 0.63
@@ -244151,8 +243925,6 @@
      "face_yaw": 11.5,
      "face_points_to": "red",
      "face_observed": false,
-     "front_foot_angle_deg": -99.0,
-     "back_foot_angle_deg": 31.3,
      "base_court_m": 0.69,
      "stance_angle": 24.3,
      "base_m": 0.69
@@ -244573,8 +244345,6 @@
     "loaded.racket_head_lateral": 3.65,
     "loaded.face_tilt": 0.6,
     "loaded.face_yaw": 6.2,
-    "loaded.front_foot_angle_deg": 4.5,
-    "loaded.back_foot_angle_deg": 44.9,
     "acceleration.body_height": 2.85,
     "acceleration.hip_height": 1.9,
     "acceleration.head_over_base": 0.15,
@@ -244639,8 +244409,6 @@
     "impact.racket_head_lateral": 3.7,
     "impact.face_tilt": 0.25,
     "impact.face_yaw": 13.5,
-    "impact.front_foot_angle_deg": 3.0,
-    "impact.back_foot_angle_deg": 12.0,
     "extension.body_height": 0.75,
     "extension.hip_height": 0.95,
     "extension.head_over_base": 2.65,
@@ -245627,6 +245395,12 @@
      null,
      null
     ]
+   },
+   "feet_check": {
+    "loaded.front": "incoherente",
+    "loaded.back": "incoherente",
+    "impact.front": "punta_oculta",
+    "impact.back": "incoherente"
    }
   },
   "series": "series/w009996967_9318_near_390.json",
@@ -245759,6 +245533,7 @@
   "identity": false,
   "target": true,
   "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-1016458",
+  "surface": "dura",
   "score": {
    "games": [
     [
