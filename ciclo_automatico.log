@@ -593,3 +593,15 @@ Informe: C:\tenis\output\_poc9_largo\informe\index.html
 Golpes: 69 nuevos, 69 en C:\tenis\output\_poc9_largo\exportar\golpes
 Montajes: 12 en C:\tenis\output\_poc9_largo\exportar\montajes
 Resumen: C:\tenis\output\_poc9_largo\exportar\resumen.pdf
+Vídeos y resumen PDF: C:\tenis\output\_poc9_largo\exportar
+Auditoría: 332 cumplidos, 0 no cumplidos, 48 sin golpes suficientes, 40 avisos → C:\tenis\output\_poc9_largo\auditoria\auditoria.md
+Hecho en 2274 s, con las medidas nuevas.
+[2026-10-15 06:18:30] Informe, PDF y auditoría en 37.9 min
+Recalcular medidas: termina 2026-10-15 06:18:30 (total 64.1 min)
+Ciclo automatico terminado (informe).
+    (paso terminado en 1 h 04 min)
+Empezado 2026-10-15 05:10:01 - terminado 2026-10-15 06:18:32 - duracion total 1 h 08 min
+**********************
+Windows PowerShell transcript end
+End time: 20261015061832
+**********************
