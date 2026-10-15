@@ -33,6 +33,7 @@ function Prueba-Modelos {
 # pruebas que pide Claude desde el repositorio (config/peticion_pc.txt: "id: N" y "accion: ..."), una vez cada id
 #   poc = prueba de velocidad en carpetas aparte: 4 min (_poc4) y, si sale bien, 35 min (_poc); nunca toca _smoke
 #   largo = el video entero en output\_pocN_largo (una noche); nunca toca _smoke
+#   informe (con "carpeta: _pocN_largo") = medidas desde las caches + informe + auditoria de esa carpeta (minutos)
 function Leer-Peticion {
     $f = Join-Path $RepoDir "config\peticion_pc.txt"
     if (-not (Test-Path $f)) { return $null }
@@ -68,6 +69,22 @@ function Hacer-Peticion {
         $s = "_poc$($p['id'])_largo"
         Paso "Peticion $($p['id']): el video entero en output\$s (unas 6-7 h)"
         & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $ps1 -Minutos 600 -Salida $s | Out-Host
+    } elseif ($p["accion"] -eq "informe") {
+        # medidas de nuevo desde las caches de una prueba ya hecha (sin pose ni video nuevos) + informe
+        # y auditoria de esa carpeta; registro en output\prueba<carpeta>_informe.log (se sube solo)
+        $c = "$($p['carpeta'])"
+        if ($c -notmatch '^_[A-Za-z0-9_-]+$' -or -not (Test-Path "$Base\output\$c")) {
+            Write-Host "Peticion $($p['id']): carpeta no valida o inexistente: '$c' (p. ej. carpeta: _poc9_largo)" -ForegroundColor Red
+            return
+        }
+        $lg = "$Base\output\prueba$($c)_informe.log"
+        "Peticion $($p['id']): medidas desde las caches, informe y auditoria de output\$c ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        Paso "Peticion $($p['id']): medidas desde las caches, informe y auditoria de output\$c (registro: $lg)"
+        $env:UV_NO_PROGRESS = "1"
+        # linea a linea en UTF-8 (Tee-Object de PowerShell 5.1 escribiria UTF-16)
+        & uv run python scripts/recompute_measures.py --out-name $c 2>&1 |
+            ForEach-Object { $l = "$_"; Add-Content $lg $l -Encoding UTF8; $l } | Out-Host
+        "codigo de salida: $LASTEXITCODE; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } else { Write-Host "Peticion desconocida: $($p['accion'])" -ForegroundColor Yellow }
 }
 # el equipo no se suspende mientras el ciclo exista (la pantalla si puede apagarse): cada arranque, cada

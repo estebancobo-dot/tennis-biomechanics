@@ -58,3 +58,35 @@ def test_inseparable_situations_claim_nothing():
             "classes": {"ball_speed": "muy rápida" if fast else "media", "intent": "defensa" if fast else "neutra"}}})
     m = build_model(rows)
     assert not [e for e in m["effects"] if e["key"] == "stroke.takeback_path"]
+
+
+def test_a_single_level_with_enough_strokes_is_described_not_compared():
+    """Long run: «al centro» had 15 strokes, the other directions fewer than 12; it must be shown
+    (described) although there is nothing with enough strokes to compare it with."""
+    rows = _strokes(n=60)
+    for i, s in enumerate(rows):
+        c = s["technique"]["classes"]
+        c["shot_type"] = "al centro" if i < 15 else ("cruzada" if i % 2 else "paralela") if i < 35 else None
+        c["ball_phase"] = "bola subiendo" if i < 27 else "bola arriba" if i < 37 else None
+    m = build_model(rows)
+    st = m["variants"]["shot_type"]
+    assert set(st) == {"al centro"}                    # cruzada 10 and paralela 10: below 12
+    assert st["al centro"]["n"] == 15 and st["al centro"]["compared"] is False and not st["al centro"]["usual"]
+    assert st["al centro"]["effects"] == [] and st["al centro"]["strokes"]
+    assert set(m["variants"]["ball_phase"]) == {"bola subiendo"}
+    assert not [e for e in m["effects"] if e["factor"] in ("shot_type", "ball_phase")]   # nothing compared
+    # factors with two levels or more are still compared, with their usual level as the reference
+    assert m["variants"]["ball_speed"]["media"]["compared"] is True
+
+
+def test_single_level_edge_and_view():
+    from tennisbio.explain import model_view
+
+    rows = _strokes(n=60)
+    for i, s in enumerate(rows):
+        s["technique"]["classes"]["shot_type"] = "al centro" if i < 11 else None       # 11: one short of 12
+    assert "shot_type" not in build_model(rows)["variants"]
+    for i, s in enumerate(rows):
+        s["technique"]["classes"]["shot_type"] = "al centro" if i < 12 else None       # exactly 12: shown
+    v = model_view(build_model(rows), "forehand")["variants"]["shot_type|al centro"]
+    assert v["n"] == 12 and v["compared"] is False and len(v["cards"]) == 8 and v["changes"] == []

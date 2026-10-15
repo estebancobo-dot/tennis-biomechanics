@@ -59,3 +59,39 @@ def test_garbage_track_is_not_shown():
     fps = 50.0
     P, H, track, zc, _ = _rally(np.array([0.4, -9.0, 4.0]), 40, 60, noise=60.0, seed=3)
     assert "contact_phase" not in flights(track, fps, H, (1080, 1920), 40, 60, 5, zc)
+
+
+def test_incoming_speed_nominal_and_edge_of_the_limit():
+    fps = 50.0
+    v_out = np.array([0.4, -9.0, 4.0])
+    _, H, track, zc, _ = _rally(v_out, 40, 60, opp=5, noise=0.0)       # 19.6 m in 0.70 s ≈ 101 km/h
+    out = flights(track, fps, H, (1080, 1920), 40, 60, 5, zc, player_y_m=0.0)
+    assert 95 <= out["incoming_speed_kmh"] <= 105
+    _, H, track, zc, _ = _rally(v_out, 40, 60, opp=25, noise=0.0)      # 0.30 s ≈ 235 km/h: just inside
+    out = flights(track, fps, H, (1080, 1920), 40, 60, 25, zc)
+    assert 225 <= out["incoming_speed_kmh"] <= 240 and "net_frame" in out
+
+
+def test_impossible_incoming_speed_is_not_measured():
+    """Long run: one stroke had 763 km/h. A speed over the physical limit, or an opponent's contact
+    placed far behind the court (a ball high in the image cut at 1 m), is not measured; the rest of
+    the flight stays."""
+    fps = 50.0
+    v_out = np.array([0.4, -9.0, 4.0])
+    _, H, track, zc, _ = _rally(v_out, 40, 60, opp=26, noise=0.0)      # 0.28 s for 19.6 m ≈ 252 km/h
+    out = flights(track, fps, H, (1080, 1920), 40, 60, 26, zc)
+    assert "incoming_speed_kmh" not in out and "net_frame" not in out and out["contact_phase"] == "arriba"
+    P, H, track, zc, _ = _rally(v_out, 40, 60, opp=5, noise=0.0)
+    track[5, :2] = project(P, np.array([[-1.0, 60.0, 1.0]]))[0]       # 60 m away: nobody plays from there
+    out = flights(track, fps, H, (1080, 1920), 40, 60, 5, zc)
+    assert "incoming_speed_kmh" not in out and "contact_phase" in out
+
+
+def test_a_bounce_too_far_for_the_time_left_measures_nothing():
+    """The 763 km/h stroke: a bounce 8.7 m in front of her 3 frames before the contact is not the
+    bounce of the incoming ball; nothing is measured from it."""
+    fps = 50.0
+    P, H, track, zc, _ = _rally(np.array([0.4, -9.0, 4.0]), 40, 60, noise=0.0)
+    track[57, :2] = project(P, np.array([[-2.5, 8.7, 0.0]]))[0]
+    assert flights(track, fps, H, (1080, 1920), 57, 60, 5, zc, player_y_m=0.7) == {}
+    assert flights(track, fps, H, (1080, 1920), 40, 60, 5, zc, player_y_m=0.7)     # the true bounce still measures

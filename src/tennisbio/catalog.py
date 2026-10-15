@@ -78,6 +78,63 @@ def load_matches(cfg: dict, config_dir: Path = CONFIG_DIR) -> list[Match]:
     return out
 
 
+CATALOG_FIELDS = ("opponent", "tournament", "date", "surface", "round")
+TEST_INFO = "partido.json"             # what a test run knew of its match (catalogue entry or command line)
+
+
+def catalog_entry(cfg: dict, source_name: str | None = None, match_id: str | None = None,
+                  config_dir: Path = CONFIG_DIR) -> Match | None:
+    """The entry of config/matches.yaml for a video: by its file name (also compared as an ASCII id,
+    so a transliterated copy matches) or by the id of a test run (smoke_<ascii name>). None when there
+    is no catalogue, it cannot be read or no entry matches (a test run must still run)."""
+    try:
+        entries = load_matches(cfg, config_dir)
+    except Exception:                     # no catalogue, a broken one or a missing player profile
+        return None
+    for m in entries:
+        vname = Path(str(m.video)).name
+        if source_name and (vname == Path(source_name).name
+                            or ascii_id(Path(vname).stem) == ascii_id(Path(source_name).stem)):
+            return m
+        if match_id and match_id in (m.id, f"smoke_{ascii_id(Path(vname).stem, 40)}"):
+            return m
+    return None
+
+
+def trial_match(match_id: str, video: Path, player: Player, cfg: dict, source: Path | None = None,
+               match_dir: Path | None = None, config_dir: Path = CONFIG_DIR, **given) -> Match:
+    """The Match of a test run (scripts/smoke_test.py, recompute_measures.py, rebuild_report.py).
+    Its data (rival, tournament, date, surface, round) come, in this order, from what the command line
+    gives (non-empty values of `given`), the catalogue entry of its video, and what the run saved in
+    <match_dir>/partido.json (the command line of the run that cut the clip); what is still missing
+    is inferred from the names (Match)."""
+    import json
+
+    fields, extra = {}, {}
+    info = (match_dir / TEST_INFO) if match_dir else None
+    if info is not None and info.exists():
+        try:
+            saved = json.loads(info.read_text(encoding="utf-8"))
+            fields.update({k: str(v) for k, v in saved.items() if k in CATALOG_FIELDS and v})
+        except (OSError, ValueError, AttributeError):
+            pass
+    entry = catalog_entry(cfg, source.name if source else None, match_id, config_dir)
+    if entry is not None:
+        fields.update({k: getattr(entry, k) for k in CATALOG_FIELDS if getattr(entry, k)})
+        extra = dict(entry.extra)
+    fields.update({k: str(v) for k, v in given.items() if k in CATALOG_FIELDS and v})
+    return Match(match_id, video, player, extra=extra, **fields)
+
+
+def save_test_info(match: Match, match_dir: Path) -> None:
+    """Remembers the data of a test run's match next to its outputs (for later recomputations)."""
+    import json
+
+    match_dir.mkdir(parents=True, exist_ok=True)
+    (match_dir / TEST_INFO).write_text(json.dumps({k: getattr(match, k) for k in CATALOG_FIELDS}, ensure_ascii=False, indent=1),
+                                       encoding="utf-8")
+
+
 _CYR = dict(zip("абвгдеёжзийклмнопрстуфхцчшщъыьэюяіїєґ",
                 ["a", "b", "v", "g", "d", "e", "e", "zh", "z", "i", "y", "k", "l", "m", "n", "o", "p", "r", "s", "t",
                  "u", "f", "kh", "ts", "ch", "sh", "shch", "", "y", "", "e", "yu", "ya", "i", "yi", "ye", "g"]))

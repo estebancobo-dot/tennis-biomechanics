@@ -17,6 +17,9 @@ METRIC_LIMITS = {
     "contact_lateral_pct": (0, 120),
     "finish_wrist_height_pct": (-40, 120),
 }
+# the incoming ball, average speed over the court from the opponent's contact to the bounce (km/h):
+# the fastest groundstrokes and serves stay under 240; under 15 it would not reach her
+BALL_INCOMING_KMH = (15, 240)
 
 
 def sanitize(metrics: dict) -> list[str]:

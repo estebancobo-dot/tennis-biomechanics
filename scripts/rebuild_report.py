@@ -2,7 +2,7 @@
 analysing any video again (1-2 min): every change of the web can be seen without re-running the
 pipeline. Uses the test folder (<output>/_smoke) and the practice videos (<output>/entrenamiento).
 
-    uv run python scripts/rebuild_report.py [--player rybakina]
+    uv run python scripts/rebuild_report.py [--player rybakina] [--out-name _smoke]
 """
 import argparse
 import json
@@ -12,17 +12,18 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
-from tennisbio.catalog import Match, load_player  # noqa: E402
+from tennisbio.catalog import load_player, trial_match  # noqa: E402
 from tennisbio.config import load_config  # noqa: E402
 
 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--player", default="rybakina")
+    ap.add_argument("--out-name", default="_smoke", help="carpeta de la salida (p. ej. _poc9_largo)")
     args = ap.parse_args()
     t0 = time.time()
     cfg = load_config()
-    out_root = Path(cfg.get("paths", {}).get("output", "output")) / "_smoke"
+    out_root = Path(cfg.get("paths", {}).get("output", "output")) / args.out_name
     return rebuild(out_root, args.player, t0)
 
 
@@ -36,11 +37,13 @@ def rebuild(out_root: Path, player: str = "rybakina", t0: float | None = None,
         print(f"No hay nada analizado en {out_root}: lanza antes 2_prueba_rapida.bat")
         return 1
     pl = load_player(player)
+    from tennisbio.config import load_config
+    cfg = load_config()
     matches = []
     for d in dirs:
         sc = d / "score.json"
         opp = (json.loads(sc.read_text(encoding="utf-8")).get("opponent") or "") if sc.exists() else ""
-        matches.append(Match(d.name, Path(""), pl, opponent=opp))
+        matches.append(trial_match(d.name, Path(""), pl, cfg, match_dir=d, opponent=opp))
         print(f"Partido analizado: {d.name} ({len(json.loads((d / 'strokes.json').read_text(encoding='utf-8')))} golpes)")
     from tennisbio.report import build
     report = build(matches, out_root, out_root / "informe")

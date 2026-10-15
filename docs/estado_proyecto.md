@@ -20,6 +20,22 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
 - Móvil y nube: al final, después de que el PC funcione.
 
 ## Lo último (13-10, tarde): leer primero
+- **Vídeo entero (`_poc9_largo`, 15-10; pasada fina v16):** 210 min, 129 golpes confirmados, 69 derechas (55 cercanas).
+  La auditoría daba 18 «no cumplidos» por 4 causas, corregidas en origen:
+  1. *Superficie*: el partido la sabía («dura» por el nombre del vídeo) pero no se guardaba en los golpes. Ahora cada
+     golpe lleva `surface` (pantalla del golpe: «Pista»); las pruebas toman rival/torneo/superficie de la entrada de
+     `config/matches.yaml` de su vídeo (`catalog.trial_match`; se recuerda en `<partido>/partido.json`) o de
+     `--surface` (`prueba_rapida.ps1 -Superficie`).
+  2. *Dirección del golpe / bola subiendo*: «Su derecha» solo enseñaba un factor con **dos** niveles de ≥ 12 golpes
+     (hacía falta algo con qué comparar). «al centro» (15) y «bola subiendo» (27) eran los únicos: ahora un nivel con
+     ≥ 12 golpes se describe siempre; si es el único, se marca «no comparado» (`compared: false`) y no se buscan efectos.
+  3. *763 km/h*: el bote de una derecha estaba 8,7 m delante de ella 3 fotogramas antes del impacto (no era el bote de
+     la bola que recibe) y el golpe de la rival, cortado a 1 m, caía muy detrás de la pista. `ball3d.flights` ya no mide
+     nada de un bote imposible de alcanzar a tiempo, exige el golpe rival dentro de su zona y deja sin medir la velocidad
+     fuera de 15–240 km/h (`limits.BALL_INCOMING_KMH`, el mismo límite que la auditoría).
+  4. Petición nueva `accion: informe` + `carpeta: _poc9_largo` (`ciclo_automatico.ps1`): medidas desde las cachés,
+     informe y auditoría de esa carpeta (`recompute_measures.py --out-name`), registro en
+     `output\prueba_poc9_largo_informe.log`.
 - **Velocidad cerrada (decisión del usuario, 14-10 noche):** prueba 7 (`_poc7_35`): pasada fina 46,3 min (antes
   62,5) con la bola en la CPU en paralelo; 61 min de etapas para 35 min de vídeo ≈ **6 h por partido** (13-10: ~25 h).
   Lo que queda (pose más ligera, raqueta FP16, menos resolución o sin golpes del lado lejano) pierde calidad:

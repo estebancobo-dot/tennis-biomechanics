@@ -47,3 +47,37 @@ def test_review(tmp_path):
     assert v == "ERROR" and "x.log" in md
     v, md = review(tmp_path / "none.json", old, [])
     assert v == "ERROR"
+
+
+def test_decide_for_the_long_run_fixes():
+    """Surface on each stroke, ball speed limits, catalogue of test runs: measures again; the single-level
+    situations of «Su derecha»: only the report."""
+    for f in ("src/tennisbio/ball3d.py", "src/tennisbio/limits.py", "src/tennisbio/catalog.py", "scripts/recompute_measures.py"):
+        assert decide([f]) == "medidas", f
+    for f in ("src/tennisbio/model.py", "src/tennisbio/explain.py", "scripts/rebuild_report.py"):
+        assert decide([f]) == "informe", f
+
+
+def test_request_informe_recomputes_a_given_folder():
+    """config/peticion_pc.txt «accion: informe» + «carpeta: _pocN_largo»: measures from the caches,
+    report and audit of that folder, logged where comun.ps1 uploads it."""
+    ps1 = (Path(__file__).resolve().parents[1] / "scripts" / "windows" / "ciclo_automatico.ps1").read_text(encoding="utf-8")
+    assert ps1.isascii()                                   # Windows PowerShell 5.1 reads it as ANSI
+    block = ps1[ps1.index('$p["accion"] -eq "informe"'):]
+    block = block[:block.index("} else {")]
+    assert 'recompute_measures.py --out-name $c' in block
+    assert '$lg = "$Base\\output\\prueba$($c)_informe.log"' in block
+    assert "$p['carpeta']" in block and "^_[A-Za-z0-9_-]+$" in block          # only a folder inside output
+
+
+def test_recompute_and_rebuild_take_the_output_folder(tmp_path, monkeypatch, capsys):
+    import importlib.util
+
+    for name in ("recompute_measures", "rebuild_report"):
+        spec = importlib.util.spec_from_file_location(name, Path(__file__).resolve().parents[1] / "scripts" / f"{name}.py")
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        monkeypatch.setattr(mod, "load_config", lambda: {"paths": {"output": str(tmp_path)}})
+        monkeypatch.setattr(sys, "argv", [name, "--out-name", "_poc9_largo"])
+        assert mod.main() == 1                              # nothing analysed there: says so, no crash
+        assert str(tmp_path / "_poc9_largo") in capsys.readouterr().out

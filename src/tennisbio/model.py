@@ -155,13 +155,15 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
         if vals:
             out["classes"][ck] = {"n": len(vals), "counts": {v: vals.count(v) for v in sorted(set(vals), key=vals.count, reverse=True)}}
     # 3. adjusted effects of each situation
-    levels = {}
+    levels, shown = {}, {}
     for fk, (_, order) in FACTORS.items():
         vals = [c.get(fk) for c in cls]
         ok = [lv for lv in order if vals.count(lv) >= min_n]
-        if len(ok) >= 2:
+        if ok:                                                # described as soon as one level has enough strokes
             ref = max(ok, key=vals.count)                     # her usual situation is the reference
-            levels[fk] = (ref, [lv for lv in ok if lv != ref])
+            shown[fk] = (ref, [lv for lv in ok if lv != ref])
+        if len(ok) >= 2:                                      # compared only with a second level to compare with
+            levels[fk] = shown[fk]
     matches = sorted(set(match))
     tests, r2_cache = [], {}
     for k, t in out["typical"].items():
@@ -218,13 +220,15 @@ def build_model(strokes: list[dict], min_n: int = MIN_N) -> dict:
     changed = {t["key"] for t in out["effects"]}
     tested = {t["key"] for t in tests}
     out["constants"] = [k for k in out["typical"] if k in tested and k not in changed]
-    # 4. variants: each situation level with enough strokes
-    for fk, (ref, lvs) in levels.items():
+    # 4. variants: each situation level with enough strokes, also when it is the only level of its
+    # factor with enough (then it is described, not compared: "compared" False)
+    for fk, (ref, lvs) in shown.items():
         for lv in [ref] + lvs:
             idx = [i for i, c in enumerate(cls) if c.get(fk) == lv]
             eff = [t for t in out["effects"] if t["factor"] == fk and t["level"] == lv]
             out["variants"].setdefault(fk, {})[lv] = {
-                "n": len(idx), "share": round(len(idx) / max(1, len(near)), 3), "usual": lv == ref,
+                "n": len(idx), "share": round(len(idx) / max(1, len(near)), 3), "usual": lv == ref and fk in levels,
+                "compared": fk in levels,
                 "effects": eff, "strokes": _typical_ids([near[i] for i in idx], [flat[i] for i in idx], out["typical"]),
                 "classes": {ck: _counts([cls[i].get(ck) for i in idx]) for ck in CLASS_KEYS},
                 "strings": _strings([near[i] for i in idx]), "chain": _chain([near[i] for i in idx]),

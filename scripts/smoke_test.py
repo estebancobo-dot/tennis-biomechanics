@@ -16,7 +16,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from tennisbio import pipeline, stages  # noqa: E402,F401  (registers the stages)
-from tennisbio.catalog import Match, load_player  # noqa: E402
+from tennisbio.catalog import load_player, save_test_info, trial_match  # noqa: E402
 from tennisbio.config import load_config  # noqa: E402
 from tennisbio.io.video import probe  # noqa: E402
 from tennisbio.report import build  # noqa: E402
@@ -30,6 +30,9 @@ def main():
     ap.add_argument("--start", type=float, default=None,
                     help="segundo de inicio del trozo (por defecto: un tramo de juego buscado automáticamente)")
     ap.add_argument("--minutes", type=float, default=4)
+    ap.add_argument("--surface", default="",
+                    help="superficie de la pista (dura, tierra batida, hierba) cuando el catálogo no tiene este vídeo "
+                         "y su nombre no dice el torneo")
     ap.add_argument("--out-name", default="_smoke",
                     help="carpeta dentro de la salida (otra que _smoke = prueba aparte, p. ej. de velocidad, sin tocar la habitual)")
     args = ap.parse_args()
@@ -67,7 +70,12 @@ def main():
     if not clip.exists():
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", str(args.start), "-i", str(src), "-t", str(args.minutes * 60),
                         "-c", "copy", str(clip)], check=True)
-    match = Match(f"smoke_{ascii_id(src.stem, 40)}", clip, load_player(args.player), opponent=args.opponent)
+    # rival, tournament, surface…: the command line, then config/matches.yaml (entry of this video)
+    mid = f"smoke_{ascii_id(src.stem, 40)}"
+    match = trial_match(mid, clip, load_player(args.player), cfg, source=src, opponent=args.opponent, surface=args.surface)
+    save_test_info(match, out_root / mid)
+    print(f"Partido: rival {match.opponent or 'sin determinar (lo lee el marcador)'}, "
+          f"superficie {match.surface or 'sin determinar'}", flush=True)
     ctx = pipeline.Context(match, cfg, out_root / match.id)
     t0 = time.time()
     print(f"Análisis del tramo: empieza {time.strftime('%Y-%m-%d %H:%M:%S')}", flush=True)

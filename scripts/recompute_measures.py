@@ -6,7 +6,9 @@ players, score) is read from its outputs even if its code changed since, and the
 the pose, ball and racket caches of every window (<match>/windows/*.npz, *.npy). Only the fine
 passes are forced; identity and candidates are re-run only when stale (seconds).
 
-    uv run python scripts/recompute_measures.py [--player rybakina]
+    uv run python scripts/recompute_measures.py [--player rybakina] [--out-name _smoke]
+
+--out-name: the folder of <output> to recompute (another test run, e.g. _poc9_largo; default _smoke).
 """
 import argparse
 import json
@@ -19,7 +21,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 from tennisbio import pipeline, stages  # noqa: E402,F401  (registers the stages)
-from tennisbio.catalog import Match, load_player  # noqa: E402
+from tennisbio.catalog import load_player, trial_match  # noqa: E402
 from tennisbio.config import load_config  # noqa: E402
 
 EXPENSIVE = ("probe", "scenes", "audio", "court", "players", "score")    # never re-run here
@@ -90,7 +92,8 @@ def recompute(d: Path, out_root: Path, cfg: dict, player) -> dict:
     clip = find_clip(d, out_root)
     sc = d / "score.json"
     opp = (json.loads(sc.read_text(encoding="utf-8")).get("opponent") or "") if sc.exists() else ""
-    match = Match(d.name, clip, player, opponent=opp)       # as smoke_test.py builds it
+    # as smoke_test.py builds it: the rival read by the scoreboard, the rest from partido.json / the catalogue
+    match = trial_match(d.name, clip, player, cfg, match_dir=d, opponent=opp)
     ctx = pipeline.Context(match, cfg, d)
     print(f"\n[{now()}] {d.name}: trozo de vídeo {clip.name}" + (f", rival {opp}" if opp else ""), flush=True)
     m = pipeline.load_manifest(d)
@@ -143,11 +146,12 @@ def recompute(d: Path, out_root: Path, cfg: dict, player) -> dict:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--player", default="rybakina")
+    ap.add_argument("--out-name", default="_smoke", help="carpeta de la salida que se recalcula (p. ej. _poc9_largo)")
     args = ap.parse_args()
     t_start = time.time()
     print(f"Recalcular medidas: empieza {now()}", flush=True)
     cfg = load_config()
-    out_root = Path(cfg.get("paths", {}).get("output", "output")) / "_smoke"
+    out_root = Path(cfg.get("paths", {}).get("output", "output")) / args.out_name
     dirs = match_dirs(out_root)
     if not dirs:
         print(f"No hay nada analizado en {out_root}: lanza antes 2_prueba_rapida.bat o 2b_prueba_media.bat")

@@ -45,12 +45,12 @@ KEY_MOMENTS = {"ready": "espera / split step", "takeback": "inicio de preparaci�
                "acceleration": "inicio de aceleración", "impact": "impacto", "extension": "extensión",
                "finish": "terminación", "recovery": "recuperación"}
 # physical limits of what is shown (a value outside them is a measurement error that got through)
-from .limits import METRIC_LIMITS
+from .limits import BALL_INCOMING_KMH, METRIC_LIMITS
 from .pipeline import total_seconds
 
 LIMITS = {
     **{f"metrics.{k}": v for k, v in METRIC_LIMITS.items()},
-    "ball_flight.incoming_speed_kmh": (15, 240), "ball_flight.apex_height_m": (0.2, 4.0),
+    "ball_flight.incoming_speed_kmh": BALL_INCOMING_KMH, "ball_flight.apex_height_m": (0.2, 4.0),
     "ball_flight.contact_height_m": (0.05, 3.0), "footwork.peak_speed_mps": (0, 9.5), "footwork.path_m": (0, 20),
     "footwork.approach_speed_mps": (0, 9.5), "displacement_m": (0, 20), "stance_width_m": (0.1, 2.5),
 }
@@ -165,6 +165,9 @@ def shown_keys(data: dict) -> set[str]:
     # the conditions of «Cópiala»: each stroke's class is counted in its chips and selects it
     for s in data.get("strokes", []):
         shown |= {f"class.{k}" for k, v in (s.get("cl") or {}).items() if v is not None}
+    # the court of each stroke's match (stroke screen, «Pista»)
+    if any(s.get("surface") for s in data.get("strokes", [])):
+        shown.add("surface")
     # «Sus pies en este golpe» (stroke screen): every footwork value of each stroke
     for s in data.get("strokes", []):
         for k, v in (s.get("feet") or {}).items():

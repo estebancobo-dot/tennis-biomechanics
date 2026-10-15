@@ -961,8 +961,8 @@ def _player_fields(p) -> dict:
             "grip": [getattr(p, "forehand_grip_close_deg", None), getattr(p, "backhand_grip_close_deg", None)]}
 
 
-@stage("fine", "15", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
-       code=FINE_CODE, match_fields=lambda m: _player_fields(m.player))
+@stage("fine", "16", deps=("candidates", "court", "score"), settings=_fine_settings, outputs=("strokes.json",),
+       code=FINE_CODE, match_fields=lambda m: {**_player_fields(m.player), "surface": m.surface})
 def st_fine(ctx: Context):
     """Full-quality analysis of the target player's candidates. Runs whose identity could not be
     decided are left out (they could be the opponent), unless `include_undecided: true`."""
@@ -989,10 +989,10 @@ def opponent_profile(match):
     return Player(id="opponent", name=match.opponent or "Rival", hand=match.extra.get("opponent_hand", "right"))
 
 
-@stage("fine_opponent", "8", deps=("candidates", "court", "score"),
+@stage("fine_opponent", "9", deps=("candidates", "court", "score"),
        settings=lambda c: {**_fine_settings(c), "enabled": c.get("analyze_opponent", False)},
        outputs=("strokes_opponent.json",), code=FINE_CODE,
-       match_fields=lambda m: {**_player_fields(opponent_profile(m)), "opponent": m.opponent})
+       match_fields=lambda m: {**_player_fields(opponent_profile(m)), "opponent": m.opponent, "surface": m.surface})
 def st_fine_opponent(ctx: Context):
     """The opponent's strokes from the same video (runs where the near player is the opponent).
     Off unless `analyze_opponent: true` in the config."""
@@ -1421,6 +1421,8 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
     t_imp = t0 + r.impact_frame / run.fps
     d.update(window=str(clip.name), window_start_s=t0, match_time_s=t_imp, candidate_audio=c.get("audio"),
              identity=c.get("identity"), target=c.get("target"), stroke_id=f"{ctx.match.id}-{int(round(t_imp * 100)):07d}")
+    if ctx.match.surface:                     # the court of the match (catalogue, tournament or file name)
+        d["surface"] = ctx.match.surface
     sr = score_at(score, t_imp)
     if sr is not None:
         d["score"] = {k: sr.get(k) for k in ("games", "points", "banner", "set", "sets_won", "tiebreak", "pressure", "server")}

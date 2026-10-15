@@ -162,6 +162,7 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
         "shotType": None if far else ((s.get("technique") or {}).get("classes") or {}).get("shot_type"),
         "ballPhase": None if far else ((s.get("technique") or {}).get("classes") or {}).get("ball_phase"),
         "contactType": ((s.get("technique") or {}).get("classes") or {}).get("contact_type"),
+        "surface": s.get("surface"),
         "face": {k: (v or {}).get("points_to") for k, v in face.items()},
         "video": None, "vImpact": s.get("window_impact_s"), "series": None,
     }
@@ -396,7 +397,7 @@ def collect(matches: list[Match], out_root: Path, stroke="forehand", player_id: 
             raw.append({**s, "match_id": match.id, "stroke_id": r["id"]})
         found = json.loads((d / "score.json").read_text(encoding="utf-8")).get("opponent") if (d / "score.json").exists() else None
         rival = match.player.name if is_opp else (match.opponent or found or "—")
-        ms.append({"id": match.id, "rival": rival, "surf": match.surface or "—",
+        ms.append({"id": match.id, "rival": rival, "surf": match.surface or next((s["surface"] for s in rows if s.get("surface")), "—"),
                    "round": match.round or "—", "date": match.date or "—", "sets": None, "n": len(rows), "res": "—"})
     keep = stroke_metrics(stroke)
     return {"matches": ms, "strokes": strokes, "review": review, "_raw": raw,

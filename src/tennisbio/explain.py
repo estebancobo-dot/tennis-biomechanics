@@ -671,6 +671,7 @@ def model_view(model: dict, stroke: str) -> dict:
         for lv, v in lvls.items():
             variants[f"{fk}|{lv}"] = {
                 "factor": fk, "factor_name": FACTORS[fk][0], "level": lv, "n": v["n"], "share": v["share"], "usual": v["usual"],
+                "compared": v.get("compared", True),
                 "cards": phase_cards(model, stroke, fk, lv), "strokes": v["strokes"],
                 "changes": [change_text(model, e) for e in v["effects"]],
                 "curves": v.get("curves"),

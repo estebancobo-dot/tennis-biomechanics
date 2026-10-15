@@ -24,6 +24,11 @@ import numpy as np
 
 G = 9.81
 NET_Y = 11.885
+COURT_LEN = 23.77
+# where the opponent can hit from, in her court frame (her baseline at y = 0): beyond the net and at
+# most a few metres behind the far baseline or outside the doubles sidelines
+OPP_Y_MAX = COURT_LEN + 8.0
+OPP_X_MAX = 9.0
 
 
 def camera(H_court_to_img: np.ndarray, frame_shape) -> np.ndarray | None:
@@ -111,6 +116,12 @@ def flights(track: np.ndarray, fps: float, H_img: np.ndarray, frame_shape, bounc
     B = _at_z(P, b_uv, 0.0)
     if B is None:
         return out
+    from .limits import BALL_INCOMING_KMH
+    v_max = BALL_INCOMING_KMH[1] / 3.6
+    # a bounce the ball cannot cover to her in the time left is a wrong bounce frame (the bounce of
+    # her own shot or a misdetection): nothing measured from it (2.5 m: her reach to the contact)
+    if player_y_m is not None and abs(B[1] - player_y_m) - 2.5 > v_max * (impact_frame - bounce_frame) / fps:
+        return out
     # after the bounce: the contact point from her hand height, then heights frame by frame
     if contact_z_m is not None and 0.1 < contact_z_m < 3.0:
         seen = [k for k in range(impact_frame, max(bounce_frame, impact_frame - 4), -1) if np.isfinite(track[k, :2]).all()]
@@ -150,8 +161,13 @@ def flights(track: np.ndarray, fps: float, H_img: np.ndarray, frame_shape, bounc
         if so:
             S = _at_z(P, track[so[0], :2], 1.0)
             ts_ = (so[0] - bounce_frame) / fps
-            if S is not None and S[1] > NET_Y + 2.0 and ts_ < -0.2:
-                tn = ts_ * (NET_Y - B[1]) / (S[1] - B[1])           # Y(t) linear from S (t = ts_) to B (t = 0)
-                out["net_frame"] = int(round(bounce_frame + tn * fps))
-                out["incoming_speed_kmh"] = round(float(np.linalg.norm((B - S)[:2]) / -ts_ * 3.6))
+            # the opponent's contact must be where she can stand (a ball seen high in the image cut at
+            # 1 m lands far behind the court), and the speed physically possible: else not measured
+            if (S is not None and NET_Y + 2.0 < S[1] < OPP_Y_MAX and abs(S[0]) < OPP_X_MAX and ts_ < -0.2
+                    and B[1] < NET_Y):
+                kmh = float(np.linalg.norm((B - S)[:2]) / -ts_ * 3.6)
+                if BALL_INCOMING_KMH[0] <= kmh <= BALL_INCOMING_KMH[1]:
+                    tn = ts_ * (NET_Y - B[1]) / (S[1] - B[1])       # Y(t) linear from S (t = ts_) to B (t = 0)
+                    out["net_frame"] = int(round(bounce_frame + tn * fps))
+                    out["incoming_speed_kmh"] = round(kmh)
     return out
