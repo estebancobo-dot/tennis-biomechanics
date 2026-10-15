@@ -1,34 +1,79 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261014223004
+Start time: 20261015045003
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 12372
-PSVersion: 5.1.26100.9549
+Process ID: 2400
+PSVersion: 5.1.26100.9711
 PSEdition: Desktop
-PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9549
-BuildVersion: 10.0.26100.9549
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
 CLRVersion: 4.0.30319.42000
 WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-14 22:30:04] Codigo nuevo (ad7e6d5 -> c7dfe33): 2 ficheros
-    config/peticion_pc.txt
+==> [2026-10-15 04:50:04] Codigo nuevo (c7dfe33 -> 661b5bb): 24 ficheros
     docs/estado_proyecto.md
+    docs/matriz_cobertura.md
+    scripts/rebuild_report.py
+    scripts/recompute_measures.py
+    scripts/smoke_test.py
+    scripts/windows/ciclo_automatico.ps1
+    scripts/windows/prueba_rapida.ps1
+    src/tennisbio/audit.py
+    src/tennisbio/ball3d.py
+    src/tennisbio/catalog.py
+    src/tennisbio/explain.py
+    src/tennisbio/footpoints.py
+    src/tennisbio/limits.py
+    src/tennisbio/model.py
+    src/tennisbio/reliability.py
+    src/tennisbio/report.py
+    src/tennisbio/report_template.html
+    src/tennisbio/stages.py
+    src/tennisbio/technique.py
+    tests/test_auto_cycle.py
+    tests/test_ball3d.py
+    tests/test_foot_metrics.py
+    tests/test_model.py
+    tests/test_surface.py
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating ad7e6d5..c7dfe33
+Updating c7dfe33..661b5bb
 Fast-forward
- config/peticion_pc.txt  | 2 +-
- docs/estado_proyecto.md | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
-Resolved 110 packages in 0.88ms
-Checked 83 packages in 2ms
+ docs/estado_proyecto.md              |  17 ++++
+ docs/matriz_cobertura.md             |   4 +-
+ scripts/rebuild_report.py            |  11 ++-
+ scripts/recompute_measures.py        |  12 ++-
+ scripts/smoke_test.py                |  12 ++-
+ scripts/windows/ciclo_automatico.ps1 |  17 ++++
+ scripts/windows/prueba_rapida.ps1    |   7 +-
+ src/tennisbio/audit.py               |   7 +-
+ src/tennisbio/ball3d.py              |  24 +++++-
+ src/tennisbio/catalog.py             |  57 +++++++++++++
+ src/tennisbio/explain.py             |   1 +
+ src/tennisbio/footpoints.py          | 119 ++++++++++++++++++++++----
+ src/tennisbio/limits.py              |   3 +
+ src/tennisbio/model.py               |  16 ++--
+ src/tennisbio/reliability.py         |  17 +++-
+ src/tennisbio/report.py              |   3 +-
+ src/tennisbio/report_template.html   |   4 +-
+ src/tennisbio/stages.py              |  12 ++-
+ src/tennisbio/technique.py           |  15 +++-
+ tests/test_auto_cycle.py             |  34 ++++++++
+ tests/test_ball3d.py                 |  36 ++++++++
+ tests/test_foot_metrics.py           | 159 +++++++++++++++++++++++++++++++++++
+ tests/test_model.py                  |  32 +++++++
+ tests/test_surface.py                |  96 +++++++++++++++++++++
+ 24 files changed, 658 insertions(+), 57 deletions(-)
+ create mode 100644 tests/test_surface.py
+Resolved 110 packages in 12ms
+Checked 83 packages in 7ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -37,21 +82,6 @@ yolo11m-pose_640.onnx OK 84 MB
 yolo11m-pose_960.onnx OK 84 MB
 yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
-    (paso terminado en 3 s)
+    (paso terminado en 4 s)
 
-==> [2026-10-14 22:30:07] Que hace falta: informe
-Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
-Informe: C:\tenis\output\_smoke\informe\index.html
-Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
-Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
-Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
-Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
-Auditoría: 277 cumplidos, 0 no cumplidos, 122 sin golpes suficientes, 21 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-Hecho en 204 s, sin volver a analizar vídeo.
-    (paso terminado en 3 min 23 s)
-
-==> [2026-10-14 22:33:31] Revision automatica frente a la ejecucion anterior
-# Revisión automática: OK
-    (paso terminado en 0 s)
-
-==> [2026-10-14 22:33:31] Peticion 9: el video entero en output\_poc9_largo (unas 6-7 h)
+==> [2026-10-15 04:50:08] Que hace falta: medidas
