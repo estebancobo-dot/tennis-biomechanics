@@ -59,3 +59,419 @@ Recalcular medidas: empieza 2026-10-15 05:14:26
   Se usan los resultados que hay de score aunque su código o su vídeo cambiaron (no se rehacen aquí; la próxima prueba completa sí lo hará)
 [2026-10-15 05:14:26] Etapas baratas rehechas: ninguna (al día) (0 s)
 [smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (2026-10-15 05:14:26, etapa 9 de 10)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+  ventana w001027652_5133 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  fine:   0 % (2/562 golpes candidatos · 0 confirmados · 1 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+  ventana w001042304_7994 (far, 3 candidatos): pasa · golpe de bola en su lado a 3.44 s
+  ventana w001042304_7994: pose yolo en 399 de 399 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (3 de 4 impactos) · 4 golpes posibles · altura 126 px (court)
+  ventana w002771988_10160 (far, 6 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w002783035_4900 (far, 2 candidatos): pasa · golpe de bola en su lado a 3.64 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w002783035_4900: pose yolo en 245 de 245 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w002797524_11913 (far, 7 candidatos): pasa · golpe de bola en su lado a 6.42 s
+  ventana w002797524_11913: pose yolo en 595 de 595 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 91 px (court)
+  ventana w002833817_8749 (far, 4 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  fine:   4 % (24/562 golpes candidatos · 1 confirmados · 3 ventanas descartadas sin pose) · 32 s · quedan ≈ 12 min
+  ventana w002843035_7751 (far, 4 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w002867021_4842 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w002901166_8569 (far, 4 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w002921704_6920 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  fine:   7 % (42/562 golpes candidatos · 1 confirmados · 7 ventanas descartadas sin pose) · 68 s · quedan ≈ 14 min
+  ventana w003044234_6874 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w003087023_5696 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.36 s
+  ventana w003087023_5696: pose yolo en 284 de 284 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 103 px (court)
+  ventana w003153194_12209 (far, 7 candidatos): pasa · golpe de bola en su lado a 4.72 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w003153194_12209: pose yolo en 611 de 611 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w003164287_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w003190949_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  fine:  10 % (56/562 golpes candidatos · 2 confirmados · 10 ventanas descartadas sin pose) · 2 min · quedan ≈ 15 min
+  ventana w003194885_6386 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.48 s
+  ventana w003194885_6386: pose yolo en 319 de 319 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 104 px (court)
+  ventana w003741857_5208 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w003762476_5086 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w003773558_5011 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.32 s
+  ventana w003773558_5011: pose yolo en 251 de 251 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 104 px (court)
+  ventana w003793016_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w003825176_5051 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w003855518_8041 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w003878018_6862 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w003878018_6862: pose yolo en 344 de 344 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 105 px (court)
+  ventana w003888723_8540 (far, 3 candidatos): pasa · golpe de bola en su lado a 4.92 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w003888723_8540: pose yolo en 426 de 426 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  fine:  14 % (76/562 golpes candidatos · 4 confirmados · 15 ventanas descartadas sin pose) · 2 min · quedan ≈ 14 min
+  ventana w003930412_9092 (far, 5 candidatos): pasa · golpe de bola en su lado a 2.56 s
+  ventana w003930412_9092: pose yolo en 455 de 455 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (2 de 3 impactos) · 3 golpes posibles · altura 103 px (court)
+  ventana w003972864_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.32 s
+  ventana w003972864_3600: pose yolo en 179 de 179 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 105 px (court)
+  ventana w004024883_4703 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.64 s
+  ventana w004024883_4703: pose yolo en 235 de 235 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 104 px (court)
+  ventana w004050889_8511 (far, 5 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w004050889_8511: pose yolo en 425 de 425 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 102 px (court)
+  ventana w004077203_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.14 s
+  ventana w004077203_3600: pose yolo en 179 de 179 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 103 px (court)
+  ventana w004203408_11146 (far, 5 candidatos): pasa · golpe de bola en su lado a 2.52 s
+  ventana w004203408_11146: pose yolo en 557 de 557 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (2 de 3 impactos) · 3 golpes posibles · altura 100 px (court)
+  ventana w004701085_7658 (far, 4 candidatos): pasa · golpe de bola en su lado a 4.54 s
+  ventana w004701085_7658: pose yolo en 383 de 383 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 2 impactos) · 2 golpes posibles · altura 104 px (court)
+  ventana w004725884_9434 (far, 5 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w004735903_7083 (far, 4 candidatos): pasa · golpe de bola en su lado a 3.14 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w004735903_7083: pose yolo en 355 de 355 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 205 px (segments)
+  ventana w004758351_7484 (far, 4 candidatos): pasa · golpe de bola en su lado a 4.6 s
+  ventana w004758351_7484: pose yolo en 374 de 374 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 104 px (court)
+  ventana w004781432_9295 (far, 4 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w004792966_4703 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w004827347_7379 (far, 4 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w004837982_5922 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w004869033_7286 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w004881508_4883 (far, 2 candidatos): pasa · golpe de bola en su lado a 3.4 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w004881508_4883: pose yolo en 245 de 245 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w004886698_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w004919444_4761 (far, 2 candidatos): pasa · golpe de bola en su lado a 3.42 s
+  ventana w004919444_4761: pose yolo en 239 de 239 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 111 px (court)
+  ventana w004928639_12737 (far, 6 candidatos): pasa · golpe de bola en su lado a 4.96 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w004928639_12737: pose yolo en 636 de 636 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w004939041_4674 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w004939041_4674: pose yolo en 234 de 234 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 108 px (court)
+  ventana w004973250_6862 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w004983432_13509 (far, 7 candidatos): pasa · golpe de bola en su lado a 6.76 s
+  ventana w004983432_13509: pose yolo en 675 de 675 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 105 px (court)
+  fine:  27 % (150/562 golpes candidatos · 15 confirmados · 23 ventanas descartadas sin pose) · 3 min · quedan ≈ 8 min
+  ventana w004994647_6102 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w005226973_9393 (far, 4 candidatos): pasa · golpe de bola en su lado a 4.14 s
+  ventana w005226973_9393: pose yolo en 469 de 469 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 94 px (court)
+  ventana w005255260_10700 (far, 4 candidatos): pasa · golpe de bola en su lado a 9.72 s
+  ventana w005255260_10700: pose yolo en 535 de 535 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 104 px (court)
+  ventana w005298751_9922 (far, 5 candidatos): pasa · golpe de bola en su lado a 2.72 s
+  ventana w005298751_9922: pose yolo en 496 de 496 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 94 px (court)
+  ventana w005340373_4778 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.6 s
+  ventana w005340373_4778: pose yolo en 238 de 238 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 107 px (court)
+  ventana w005363326_5492 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.36 s
+  ventana w005363326_5492: pose yolo en 275 de 275 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 110 px (court)
+  ventana w005962299_12534 (far, 6 candidatos): pasa · golpe de bola en su lado a 5.18 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w005962299_12534: pose yolo en 626 de 626 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 253 px (segments)
+  ventana w006005509_6433 (far, 3 candidatos): pasa · golpe de bola en su lado a 4.24 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w006005509_6433: pose yolo en 322 de 322 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 245 px (segments)
+  ventana w006035945_7269 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w006055211_9579 (far, 4 candidatos): pasa · golpe de bola en su lado a 5.4 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w006055211_9579: pose yolo en 478 de 478 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w006129266_7129 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.4 s
+  ventana w006129266_7129: pose yolo en 357 de 357 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 106 px (court)
+  fine:  36 % (200/562 golpes candidatos · 17 confirmados · 25 ventanas descartadas sin pose) · 3 min · quedan ≈ 6 min
+  ventana w006216886_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w006216886_3600: pose yolo en 180 de 180 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 102 px (court)
+  ventana w006251913_7158 (far, 4 candidatos): pasa · golpe de bola en su lado a 2.5 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w006251913_7158: pose yolo en 357 de 357 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w006650213_8598 (far, 5 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w006663843_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w006683749_4924 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  fine:  38 % (213/562 golpes candidatos · 18 confirmados · 28 ventanas descartadas sin pose) · 4 min · quedan ≈ 6 min
+  ventana w006709964_7855 (far, 4 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w006720163_7141 (far, 4 candidatos): pasa · golpe de bola en su lado a 3.56 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w006720163_7141: pose yolo en 358 de 358 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w006744184_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w006754958_4848 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w006762708_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w006788564_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w006823341_8494 (far, 4 candidatos): pasa · golpe de bola en su lado a 2.44 s
+  ventana w006823341_8494: pose yolo en 425 de 425 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 95 px (court)
+  ventana w006848674_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w006869706_5133 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w006869706_5133: pose yolo en 257 de 257 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 108 px (court)
+  ventana w006886296_8302 (far, 4 candidatos): pasa · golpe de bola en su lado a 5.52 s
+  ventana w006886296_8302: pose yolo en 415 de 415 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 107 px (court)
+  ventana w006907378_8093 (far, 5 candidatos): pasa · golpe de bola en su lado a 2.04 s
+  ventana w006907378_8093: pose yolo en 404 de 404 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 106 px (court)
+  fine:  43 % (242/562 golpes candidatos · 20 confirmados · 34 ventanas descartadas sin pose) · 4 min · quedan ≈ 6 min
+  ventana w006954973_5278 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w007659121_4622 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w007672977_5794 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w007706315_12087 (far, 6 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w007718546_10879 (far, 7 candidatos): pasa · golpe de bola en su lado a 7.76 s
+  ventana w007718546_10879: pose yolo en 544 de 544 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 4 impactos) · 4 golpes posibles · altura 105 px (court)
+  ventana w007751136_11443 (far, 5 candidatos): pasa · golpe de bola en su lado a 4.6 s
+  ventana w007751136_11443: pose yolo en 572 de 572 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 90 px (pose)
+  ventana w007799274_5980 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w007823911_8534 (far, 4 candidatos): pasa · golpe de bola en su lado a 5.84 s
+  ventana w007823911_8534: pose yolo en 426 de 426 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 107 px (court)
+  fine:  49 % (273/562 golpes candidatos · 21 confirmados · 39 ventanas descartadas sin pose) · 5 min · quedan ≈ 5 min
+  ventana w007862868_6915 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w007896520_6148 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.66 s
+  ventana w007896520_6148: pose yolo en 308 de 308 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 107 px (court)
+  ventana w007909151_7414 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w008182094_7338 (far, 4 candidatos): pasa · golpe de bola en su lado a 2.32 s
+  ventana w008182094_7338: pose yolo en 366 de 366 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 103 px (court)
+  ventana w008190610_7756 (far, 4 candidatos): pasa · golpe de bola en su lado a 2.68 s
+  ventana w008190610_7756: pose yolo en 387 de 387 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 105 px (court)
+  ventana w008213708_6125 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.42 s
+  ventana w008213708_6125: pose yolo en 307 de 307 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 93 px (court)
+  ventana w008223490_10061 (far, 5 candidatos): pasa · golpe de bola en su lado a 4.24 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w008223490_10061: pose yolo en 503 de 503 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w008248852_9184 (far, 3 candidatos): pasa · golpe de bola en su lado a 5.92 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w008248852_9184: pose yolo en 459 de 459 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  fine:  54 % (301/562 golpes candidatos · 21 confirmados · 41 ventanas descartadas sin pose) · 5 min · quedan ≈ 5 min
+  ventana w008289765_7002 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w008289765_7002: pose yolo en 351 de 351 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 108 px (court)
+  ventana w008319533_6264 (far, 3 candidatos): pasa · golpe de bola en su lado a 1.92 s
+  ventana w008319533_6264: pose yolo en 313 de 313 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 93 px (court)
+  ventana w008360598_7925 (far, 4 candidatos): pasa · golpe de bola en su lado a 2.48 s
+  ventana w008360598_7925: pose yolo en 396 de 396 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 93 px (court)
+  ventana w008407523_6433 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.46 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w008407523_6433: pose yolo en 322 de 322 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w008435956_8877 (far, 4 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w008466392_5922 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w008466392_5922: pose yolo en 296 de 296 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 104 px (court)
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:155: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w008506812_8476 (far, 3 candidatos): pasa · golpe de bola en su lado a 5.2 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w008506812_8476: pose yolo en 423 de 423 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w008555022_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w008555022_3600: pose yolo en 180 de 180 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 105 px (court)
+  ventana w008574916_9794 (far, 5 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w008595350_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.42 s
+  ventana w008595350_3600: pose yolo en 179 de 179 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 91 px (court)
+  ventana w009136504_7112 (far, 3 candidatos): pasa · golpe de bola en su lado a 5.6 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w009136504_7112: pose yolo en 356 de 356 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w009147511_8012 (far, 3 candidatos): pasa · golpe de bola en su lado a 4.5 s
+  ventana w009147511_8012: pose yolo en 400 de 400 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 102 px (court)
+  fine:  60 % (336/562 golpes candidatos · 25 confirmados · 43 ventanas descartadas sin pose) · 6 min · quedan ≈ 4 min
+  ventana w009171340_8395 (far, 4 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w009183385_10386 (far, 5 candidatos): pasa · golpe de bola en su lado a 4.52 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w009183385_10386: pose yolo en 520 de 520 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 270 px (segments)
+  ventana w009213037_9597 (far, 5 candidatos): pasa · golpe de bola en su lado a 5.36 s
+  ventana w009213037_9597: pose yolo en 479 de 479 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (2 de 3 impactos) · 3 golpes posibles · altura 105 px (court)
+  ventana w009245719_5481 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.0 s
+  ventana w009245719_5481: pose yolo en 274 de 274 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 159 px (segments)
+  ventana w009290685_6468 (far, 3 candidatos): pasa · golpe de bola en su lado a 4.6 s
+  ventana w009290685_6468: pose yolo en 324 de 324 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 2 impactos) · 2 golpes posibles · altura 104 px (court)
+  ventana w009332305_11292 (far, 5 candidatos): pasa · golpe de bola en su lado a 2.08 s
+  ventana w009332305_11292: pose yolo en 565 de 565 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 103 px (court)
+  ventana w009368185_8505 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  fine:  65 % (363/562 golpes candidatos · 29 confirmados · 45 ventanas descartadas sin pose) · 7 min · quedan ≈ 4 min
+  ventana w009439175_4900 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w009460775_5382 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.0 s
+  ventana w009460775_5382: pose yolo en 269 de 269 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 103 px (court)
+  ventana w010146294_9678 (far, 5 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  fine:  66 % (372/562 golpes candidatos · 29 confirmados · 47 ventanas descartadas sin pose) · 7 min · quedan ≈ 4 min
+  ventana w010158740_7472 (far, 3 candidatos): pasa · golpe de bola en su lado a 4.56 s
+  ventana w010158740_7472: pose yolo en 374 de 374 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 108 px (court)
+  ventana w010191846_6108 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w010203222_4941 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w010241732_7722 (far, 4 candidatos): pasa · golpe de bola en su lado a 4.4 s
+  ventana w010241732_7722: pose yolo en 386 de 386 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 107 px (court)
+  ventana w010273863_5748 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  fine:  69 % (385/562 golpes candidatos · 30 confirmados · 50 ventanas descartadas sin pose) · 8 min · quedan ≈ 4 min
+  ventana w010285531_5080 (far, 2 candidatos): pasa · golpe de bola en su lado a 3.84 s
+  ventana w010285531_5080: pose yolo en 253 de 253 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 106 px (court)
+  ventana w010314300_4831 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w011556328_13201 (far, 9 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w011573093_5742 (far, 3 candidatos): pasa · golpe de bola en su lado a 3.48 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w011573093_5742: pose yolo en 287 de 287 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w011584831_6688 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w011626749_11019 (far, 6 candidatos): pasa · golpe de bola en su lado a 8.74 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w011626749_11019: pose yolo en 551 de 551 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w011649626_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  fine:  73 % (411/562 golpes candidatos · 30 confirmados · 54 ventanas descartadas sin pose) · 8 min · quedan ≈ 3 min
+  ventana w012109383_5353 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w012195379_6381 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w001051237_7809 (near, 3 candidatos): pasa · golpe de bola en su lado a 3.84 s
+  ventana w001051237_7809: pose hybrid en 391 de 391 fotogramas (0 s; modelo 0 s; pies en 46) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 258 px (court)
+  ventana w002669172_5528 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.32 s
+  ventana w002669172_5528: pose hybrid en 277 de 277 fotogramas (0 s; modelo 0 s; pies en 277) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 202 px (court)
+  fine:  75 % (421/562 golpes candidatos · 32 confirmados · 56 ventanas descartadas sin pose) · 9 min · quedan ≈ 3 min
+  ventana w003299600_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.04 s
+  ventana w003299600_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 194 px (court)
+  ventana w003310327_5371 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w003310327_5371: pose hybrid en 268 de 268 fotogramas (0 s; modelo 0 s; pies en 268) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 197 px (court)
+  fine:  75 % (424/562 golpes candidatos · 35 confirmados · 56 ventanas descartadas sin pose) · 9 min · quedan ≈ 3 min
+  ventana w003336397_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.4 s
+  ventana w003336397_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 51) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 702 px (segments)
+  ventana w003351572_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.4 s
+  ventana w003351572_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 41) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 777 px (segments)
+  ventana w003361568_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.52 s
+  ventana w003361568_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 24) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 771 px (segments)
+  ventana w003366800_4800 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w003366800_4800: pose hybrid en 240 de 240 fotogramas (0 s; modelo 0 s; pies en 224) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 188 px (court)
+  ventana w003397988_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.12 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w003397988_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 9) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 1324 px (segments)
+  ventana w003441752_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.48 s
+  ventana w003441752_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 39) · bola 0 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 1858 px (segments)
+  ventana w003452747_5237 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.32 s
+  ventana w003452747_5237: pose hybrid en 261 de 261 fotogramas (0 s; modelo 0 s; pies en 261) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 196 px (court)
+  fine:  77 % (433/562 golpes candidatos · 38 confirmados · 56 ventanas descartadas sin pose) · 10 min · quedan ≈ 3 min
+  ventana w003499300_7306 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.68 s
+  ventana w003499300_7306: pose hybrid en 366 de 366 fotogramas (0 s; modelo 0 s; pies en 319) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 208 px (court)
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:155: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:155: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:155: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:155: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:155: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w003527062_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w003527062_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 179) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 207 px (court)
+  ventana w003541151_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w003541151_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 195 px (court)
+  ventana w003566699_5266 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.08 s
+  ventana w003566699_5266: pose hybrid en 264 de 264 fotogramas (0 s; modelo 0 s; pies en 264) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 204 px (court)
+  fine:  78 % (440/562 golpes candidatos · 43 confirmados · 56 ventanas descartadas sin pose) · 11 min · quedan ≈ 3 min
+  ventana w003631899_8627 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w003631899_8627: pose hybrid en 432 de 432 fotogramas (0 s; modelo 0 s; pies en 430) · bola 0 s · raqueta 0 s (3 de 3 impactos) · 3 golpes posibles · altura 206 px (court)
+  ventana w004235196_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.4 s
+  ventana w004235196_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 194 px (court)
+  fine:  79 % (444/562 golpes candidatos · 47 confirmados · 56 ventanas descartadas sin pose) · 11 min · quedan ≈ 3 min
+  ventana w004250869_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 1.88 s
+  ventana w004250869_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 179) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 195 px (court)
+  ventana w004275581_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 1.76 s
+  ventana w004275581_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 179) · bola 0 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 189 px (court)
+  ventana w004286918_4958 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w004286918_4958: pose hybrid en 248 de 248 fotogramas (0 s; modelo 0 s; pies en 248) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 196 px (court)
+  ventana w004292166_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w004292166_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 179) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 198 px (court)
+  fine:  80 % (449/562 golpes candidatos · 50 confirmados · 56 ventanas descartadas sin pose) · 12 min · quedan ≈ 3 min
+  ventana w004318600_7961 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.08 s
+  ventana w004318600_7961: pose hybrid en 399 de 399 fotogramas (0 s; modelo 0 s; pies en 55) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 794 px (segments)
+  ventana w004357809_10949 (near, 4 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w004357809_10949: pose hybrid en 547 de 547 fotogramas (0 s; modelo 0 s; pies en 547) · bola 0 s · raqueta 0 s (4 de 4 impactos) · 4 golpes posibles · altura 208 px (court)
+  fine:  81 % (456/562 golpes candidatos · 54 confirmados · 56 ventanas descartadas sin pose) · 12 min · quedan ≈ 3 min
+  ventana w004411876_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w004411876_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 194 px (court)
+  ventana w004439555_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 1.92 s
+  ventana w004439555_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 193 px (court)
+  ventana w004486813_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.52 s
+  ventana w004486813_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 28) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 773 px (segments)
+  ventana w004521786_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.04 s
+  ventana w004521786_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 179) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 205 px (court)
+  ventana w004537889_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.7 s): puede haber golpe
+  ventana w004537889_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 179) · bola 0 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 203 px (court)
+  ventana w004545500_3600 (near, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos y la bola bien vista ahí
+  ventana w004607799_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w004607799_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 205 px (court)
+  fine:  82 % (463/562 golpes candidatos · 58 confirmados · 57 ventanas descartadas sin pose) · 13 min · quedan ≈ 3 min
+  ventana w004647400_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.26 s
+  ventana w004647400_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 195 px (court)
+  ventana w005418170_3600 (near, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos y la bola bien vista ahí
+  ventana w005428630_5504 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w005428630_5504: pose hybrid en 275 de 275 fotogramas (0 s; modelo 0 s; pies en 275) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 201 px (court)
+  ventana w005454335_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.44 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w005454335_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 27) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 1614 px (segments)
+  ventana w005474699_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.44 s
+  ventana w005474699_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 19) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 733 px (segments)
+  ventana w005493971_3600 (near, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos y la bola bien vista ahí
+  ventana w005503892_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.12 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w005503892_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 6) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 1661 px (segments)
+  fine:  84 % (471/562 golpes candidatos · 61 confirmados · 59 ventanas descartadas sin pose) · 14 min · quedan ≈ 3 min
+  ventana w005525603_6044 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.4 s
+  ventana w005525603_6044: pose hybrid en 303 de 303 fotogramas (0 s; modelo 0 s; pies en 303) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 201 px (court)
+  ventana w005565634_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w005565634_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 179) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 198 px (court)
+  fine:  84 % (474/562 golpes candidatos · 64 confirmados · 59 ventanas descartadas sin pose) · 14 min · quedan ≈ 3 min
+  ventana w005572669_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w005572669_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 214 px (court)
+  ventana w005611708_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.4 s
+  ventana w005611708_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 208 px (court)
+  ventana w005645005_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.36 s
+  ventana w005645005_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 198 px (court)
+  fine:  85 % (477/562 golpes candidatos · 67 confirmados · 59 ventanas descartadas sin pose) · 15 min · quedan ≈ 3 min
+  ventana w005684073_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w005684073_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 179) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 487 px (court)
+  ventana w005716718_6235 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w005716718_6235: pose hybrid en 311 de 311 fotogramas (0 s; modelo 0 s; pies en 311) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 427 px (court)
+  ventana w005800682_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 1.92 s
+  ventana w005800682_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 329 px (court)
+  fine:  86 % (481/562 golpes candidatos · 71 confirmados · 59 ventanas descartadas sin pose) · 15 min · quedan ≈ 3 min
+  ventana w005825045_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.08 s
+  ventana w005825045_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 358 px (court)
+  ventana w005893747_7182 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w005893747_7182: pose hybrid en 360 de 360 fotogramas (0 s; modelo 0 s; pies en 360) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 207 px (court)
+  fine:  86 % (484/562 golpes candidatos · 74 confirmados · 59 ventanas descartadas sin pose) · 16 min · quedan ≈ 3 min
+  ventana w005925268_3600 (near, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos y la bola bien vista ahí
+  ventana w006294000_8400 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.0 s
+  ventana w006294000_8400: pose hybrid en 420 de 420 fotogramas (0 s; modelo 0 s; pies en 420) · bola 0 s · raqueta 0 s (3 de 3 impactos) · 3 golpes posibles · altura 207 px (court)
+  ventana w006322800_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.04 s
+  ventana w006322800_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 198 px (court)
+  ventana w006334273_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w006334273_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 179) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 199 px (court)
+  fine:  87 % (490/562 golpes candidatos · 79 confirmados · 60 ventanas descartadas sin pose) · 17 min · quedan ≈ 2 min
+  ventana w006375546_4953 (near, 2 candidatos): pasa · golpe de bola en su lado a 3.44 s
+  ventana w006375546_4953: pose hybrid en 248 de 248 fotogramas (0 s; modelo 0 s; pies en 248) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 201 px (court)
+  ventana w006409587_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w006409587_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 35) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 661 px (segments)
+  ventana w006440649_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 1.88 s
+  ventana w006440649_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 197 px (court)
+  ventana w006490775_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.34 s
+  ventana w006490775_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 179) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 209 px (court)
+  ventana w006521077_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.08 s
+  ventana w006521077_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 163) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 204 px (court)
+  fine:  88 % (496/562 golpes candidatos · 83 confirmados · 60 ventanas descartadas sin pose) · 17 min · quedan ≈ 2 min
+  ventana w006538500_6309 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.5 s
+  ventana w006538500_6309: pose hybrid en 316 de 316 fotogramas (0 s; modelo 0 s; pies en 308) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 210 px (court)
+  ventana w006984910_5527 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w006984910_5527: pose hybrid en 276 de 276 fotogramas (0 s; modelo 0 s; pies en 276) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 200 px (court)
+  ventana w007009627_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 1.92 s
+  ventana w007009627_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 198 px (court)
+  fine:  89 % (501/562 golpes candidatos · 87 confirmados · 60 ventanas descartadas sin pose) · 18 min · quedan ≈ 2 min
+  ventana w007020738_5330 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w007020738_5330: pose hybrid en 266 de 266 fotogramas (0 s; modelo 0 s; pies en 18) · bola 0 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 1882 px (segments)
+  ventana w007043592_5626 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.36 s
+  ventana w007043592_5626: pose hybrid en 281 de 281 fotogramas (0 s; modelo 0 s; pies en 242) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 200 px (court)
+  ventana w007077853_5550 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.4 s
+  ventana w007077853_5550: pose hybrid en 277 de 277 fotogramas (0 s; modelo 0 s; pies en 28) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 800 px (segments)
+  ventana w007125959_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w007125959_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 179) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 199 px (court)
+  ventana w007204058_5142 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w007204058_5142: pose hybrid en 257 de 257 fotogramas (0 s; modelo 0 s; pies en 257) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 195 px (court)
+  fine:  91 % (510/562 golpes candidatos · 91 confirmados · 60 ventanas descartadas sin pose) · 19 min · quedan ≈ 2 min
+  ventana w007279128_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w007279128_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 414 px (court)
+  ventana w007349008_8407 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w007349008_8407: pose hybrid en 421 de 421 fotogramas (0 s; modelo 0 s; pies en 406) · bola 0 s · raqueta 0 s (3 de 5 impactos) · 5 golpes posibles · altura 198 px (court)
+  fine:  91 % (514/562 golpes candidatos · 95 confirmados · 60 ventanas descartadas sin pose) · 20 min · quedan ≈ 2 min
+  ventana w007381255_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.04 s
+  ventana w007381255_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 179) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 203 px (court)
+  ventana w007394705_8134 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.16 s
