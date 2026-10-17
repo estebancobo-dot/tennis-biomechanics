@@ -3,9 +3,9 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 1890,
+   "text_chars": 2038,
    "charts": 9,
-   "videos": 6,
+   "videos": 5,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -22,7 +22,7 @@
    "intro": true,
    "external_links": 0,
    "tables": 0,
-   "sentences": 26,
+   "sentences": 30,
    "many_lines": 0,
    "tab": "aprende",
    "file": "pantalla_1_aprende.jpg",
@@ -220,7 +220,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 1382,
+   "text_chars": 1378,
    "charts": 0,
    "videos": 6,
    "black_canvases": 0,
@@ -341,7 +341,7 @@
    "vid_top": 247,
    "vid_bottom": 602,
    "h2": 1,
-   "words": 357,
+   "words": 387,
    "buttons": 23,
    "height": 900
   },
@@ -357,7 +357,7 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 87,
+    "words": 90,
     "focus_words": 12,
     "focus_body": false,
     "practice": true,
@@ -366,7 +366,7 @@
     "reason": "",
     "reps": 10,
     "video": true,
-    "height": 814
+    "height": 944
    },
    {
     "phase": "takeback",
@@ -383,7 +383,7 @@
     "reason": "",
     "reps": 10,
     "video": true,
-    "height": 855
+    "height": 914
    },
    {
     "phase": "loaded",
@@ -391,7 +391,7 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 63,
+    "words": 66,
     "focus_words": 14,
     "focus_body": false,
     "practice": true,
@@ -400,7 +400,7 @@
     "reason": "",
     "reps": 10,
     "video": true,
-    "height": 793
+    "height": 924
    },
    {
     "phase": "acceleration",
@@ -408,7 +408,7 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 81,
+    "words": 87,
     "focus_words": 17,
     "focus_body": false,
     "practice": true,
@@ -417,7 +417,7 @@
     "reason": "",
     "reps": 10,
     "video": true,
-    "height": 815
+    "height": 1017
    },
    {
     "phase": "impact",
@@ -425,7 +425,7 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 99,
+    "words": 102,
     "focus_words": 17,
     "focus_body": false,
     "practice": true,
@@ -434,7 +434,7 @@
     "reason": "",
     "reps": 10,
     "video": true,
-    "height": 813
+    "height": 944
    },
    {
     "phase": "extension",
@@ -442,7 +442,7 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 101,
+    "words": 104,
     "focus_words": 14,
     "focus_body": false,
     "practice": true,
@@ -451,7 +451,7 @@
     "reason": "",
     "reps": 10,
     "video": true,
-    "height": 833
+    "height": 964
    },
    {
     "phase": "finish",
@@ -459,7 +459,7 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 101,
+    "words": 107,
     "focus_words": 20,
     "focus_body": false,
     "practice": true,
@@ -468,7 +468,7 @@
     "reason": "",
     "reps": 10,
     "video": true,
-    "height": 854
+    "height": 1056
    },
    {
     "phase": "recovery",
@@ -476,7 +476,7 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 100,
+    "words": 103,
     "focus_words": 15,
     "focus_body": false,
     "practice": true,
@@ -485,7 +485,7 @@
     "reason": "",
     "reps": 10,
     "video": true,
-    "height": 854
+    "height": 985
    },
    {
     "phase": "feet",
@@ -502,7 +502,7 @@
     "reason": "",
     "reps": 10,
     "video": true,
-    "height": 804
+    "height": 863
    }
   ],
   "failures": [],
