@@ -1,4 +1,4 @@
-id: 13
+id: 14
 accion: informe
 carpeta: _poc9_largo
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):

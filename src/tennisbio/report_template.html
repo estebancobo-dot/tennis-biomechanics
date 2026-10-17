@@ -289,7 +289,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .seqbadge > span:not(.st) { padding: 2px 6px; border-radius: 3px; background: var(--raise); }
 
 .forest { display: grid; }
-.frow { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 150px) 56px; gap: 12px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--line); }
+.frow { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 150px) auto; gap: 12px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--line); }
 .frow:last-child { border-bottom: 0; }
 .frow.head { padding-block: 8px; font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-3); font-weight: 600; }
 .frow .t b { display: block; font-weight: 600; font-size: 13.5px; }
@@ -344,7 +344,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .cmpgrid .lbl { font: 600 12px var(--mono); padding: 4px 2px; color: var(--ink-2); display: flex; gap: 8px; align-items: center; }
 .cmpgrid .lbl i { width: 10px; height: 10px; border-radius: 2px; display: inline-block; }
 @media (max-width: 860px) { .cmpgrid { grid-template-columns: 1fr; } }
-.evid { display: inline-flex; gap: 6px; margin-left: 8px; }
+.evid { display: inline-flex; flex-wrap: wrap; gap: 6px; margin-left: 8px; }
 /* Su golpe: modelo técnico */
 .mhead { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 16px; align-items: start; }
 .msum { display: grid; gap: 6px; font-size: 14px; line-height: 1.45; }
@@ -969,7 +969,7 @@ document.getElementById("forest").innerHTML = `<div class="frow head"><span>Hall
   (fr => fr.filter(x => x[0] !== "crit").map(x => x[1]).join("") + (fr.some(x => x[0] === "crit") ? `<details class="extra" style="margin:0 16px 10px"><summary>No concluyentes o dentro del ruido (${fr.filter(x => x[0] === "crit").length})</summary>${fr.filter(x => x[0] === "crit").map(x => x[1]).join("")}</details>` : ""))(FIND.map((f, i) => {
     const e = f.e, v = { cls: f.v[0], icon: f.v[0] === "good" ? "✓" : f.v[0] === "warn" ? "!" : "–", txt: f.v[1] }, m = MK[f.k];
     const tipTxt = `<b>${m.name}</b><div class='mono'>${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}${isN(e.d) ? ` (${sign(e.d)}${fmt(Math.abs(e.d), m.dec)})<br>IC 95 %: ${fmt(e.lo, 1)} … ${fmt(e.hi, 1)}` : ""}<br>ruido ±${fmt(m.noise, 1)} · n=${e.na}/${e.nb} · q=${fmt(f.q, 3)}</div>`;
-    return [v.cls, `<div class="frow"><div class="t"><b>${f.t}: ${isN(e.d) ? sign(e.d) + fmt(Math.abs(e.d), m.dec) + unitStr(m) : "—"}</b><span>${f.c} · <span class="mono">n=${e.na}/${e.nb} · ${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}</span> ${relBars(m.rel)}</span>${isN(e.d) && v.cls !== "crit" ? `<span style="color:var(--ink-2)">→ ${meaning(f.k, e.d)}</span>` : ""}</div><div data-tip="${tipTxt}">${forestSVG(e, m.noise)}</div><span class="st ${v.cls}"><i>${v.icon}</i>${v.txt}</span><span style="display:flex;gap:6px">${findEvidence(f)}<button class="btn" data-go="${i}">Datos</button></span></div>`];
+    return [v.cls, `<div class="frow"><div class="t"><b>${f.t}: ${isN(e.d) ? sign(e.d) + fmt(Math.abs(e.d), m.dec) + unitStr(m) : "—"}</b><span>${f.c} · <span class="mono">n=${e.na}/${e.nb} · ${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}</span> ${relBars(m.rel)}</span>${isN(e.d) && v.cls !== "crit" ? `<span style="color:var(--ink-2)">→ ${meaning(f.k, e.d)}</span>` : ""}</div><div data-tip="${tipTxt}">${forestSVG(e, m.noise)}</div><span class="st ${v.cls}"><i>${v.icon}</i>${v.txt}</span><span style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end">${findEvidence(f)}<button class="btn" data-go="${i}">Datos</button></span></div>`];
   }));
 document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { const g = FIND[+b.dataset.go].go; document.getElementById("c-pair").value = g.pair; document.getElementById("c-sit").value = g.sit; document.getElementById("c-group").value = g.g || MK[FIND[+b.dataset.go].k].g; renderCompare(); showTab("comparativas"); }));
 
