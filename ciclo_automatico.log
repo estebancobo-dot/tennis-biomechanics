@@ -44,3 +44,22 @@ yolo11m-pose_1920.onnx OK 86 MB
     (paso terminado en 3 s)
 
 ==> [2026-10-17 12:10:05] Que hace falta: informe
+Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
+Informe: C:\tenis\output\_smoke\informe\index.html
+Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
+Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
+Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
+Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
+Auditoría: 279 cumplidos, 0 no cumplidos, 120 sin golpes suficientes, 21 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+Hecho en 176 s, sin volver a analizar vídeo.
+    (paso terminado en 2 min 56 s)
+
+==> [2026-10-17 12:13:02] Revision automatica frente a la ejecucion anterior
+# Revisión automática: OK
+Ciclo automatico terminado (informe).
+    (paso terminado en 0 s)
+Empezado 2026-10-17 12:10:00 - terminado 2026-10-17 12:13:02 - duracion total 3 min 01 s
+**********************
+Windows PowerShell transcript end
+End time: 20261017121302
+**********************
