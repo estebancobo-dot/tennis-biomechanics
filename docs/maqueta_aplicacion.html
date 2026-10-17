@@ -567,12 +567,14 @@ body.web .webview { display: flex; }
             <li><a href="#cola" data-case>Trabajo en error <span>Cola</span></a></li>
             <li><a href="#partidos" data-case>Partido sin audio <span>Partidos</span></a></li>
             <li><a href="#partidos" data-case>Dobles excluido <span>Partidos</span></a></li>
+            <li><a href="#partidos" data-case>La jugadora no sale <span>Partidos</span></a></li>
             <li><a href="#partidos" data-case>Identidad dudosa <span>Partidos</span></a></li>
             <li><a href="#partidos" data-case>Misma final, otra cadena <span>Partidos</span></a></li>
             <li><a href="#partidos" data-case>¿Es un resumen? <span>Partidos</span></a></li>
             <li><a href="#add" data-case>Vídeo duplicado <span>Añadir partido</span></a></li>
             <li><a href="#analisis" data-case>Análisis provisional <span>Análisis</span></a></li>
             <li><a href="#calidad" data-case>Regresión <span>Calidad</span></a></li>
+            <li><a href="#calidad" data-case>Índice dañado, reconstruido <span>Calidad</span></a></li>
             <li><a href="#jugadoras" data-case>Jugadora sin altura, zurda <span>Jugadoras</span></a></li>
           </ol>
           <p class="note">Cada caso tiene su respuesta automática; ninguno deja la aplicación colgada ni borra trabajo.</p>
@@ -785,6 +787,12 @@ body.web .webview { display: flex; }
       <span><span class="t">Eastbourne 2023 · dobles</span><br><span class="s">Rybakina / Kasatkina · hierba · 1 h 22 min</span></span>
       <span class="size">3,2 GB</span><span class="go"></span>
       <span class="stat"><span class="dots"><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot skip"></i><i class="dot skip"></i><i class="dot skip"></i><i class="dot skip"></i><i class="dot skip"></i><i class="dot skip"></i><i class="dot skip"></i></span><span class="st off"><i></i>Excluido: dobles</span><span class="dim3 sm">dos personas en la mitad cercana</span></span>
+    </div>
+    <div class="match excl c-on">
+      <span class="mini"><svg viewBox="0 0 160 82" preserveAspectRatio="xMidYMid slice"><use href="#t-doubles"/></svg></span>
+      <span><span class="t">Madrid 2023 · Sabalenka – Badosa</span><br><span class="s">catalogado como Rybakina · tierra · 2 h 05 min</span></span>
+      <span class="size">5,1 GB</span><span class="go"></span>
+      <span class="stat"><span class="dots"><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot skip"></i><i class="dot skip"></i><i class="dot skip"></i><i class="dot skip"></i><i class="dot skip"></i><i class="dot skip"></i><i class="dot skip"></i></span><span class="st off"><i></i>Sin la jugadora</span><span class="dim3 sm">el marcador no la nombra y ninguna de las dos se parece a su ficha; no se analiza a otra persona</span></span>
     </div>
   </div>
 </section>
@@ -1004,6 +1012,7 @@ body.web .webview { display: flex; }
 
   <div class="alert good c-off"><svg><use href="#i-ok"/></svg><b>Nada empeoró respecto a la vez anterior</b><p>Pruebas del código: 381 ✔ antes de la versión 0.41.</p></div>
   <div class="alert crit c-on"><svg><use href="#i-x"/></svg><b>Revés de Rybakina empeoró con la versión 0.42</b><p>Se sigue mostrando la versión 0.41 hasta que la nueva sea correcta. La nueva queda «pendiente de revisar».</p></div>
+  <div class="alert info c-on"><svg><use href="#i-ok"/></svg><b>El índice de la aplicación estaba dañado y se ha reconstruido</b><p>Se leyó de nuevo desde las carpetas de cada partido: 6 partidos, 3 análisis, nada perdido.</p></div>
 
   <div class="panel">
     <header><h3>Auditoría por análisis</h3><span class="legend"><span><span class="sw-key" style="background:var(--good)"></span>cumplidos</span><span><span class="sw-key" style="background:var(--crit)"></span>faltas</span><span><span class="sw-key" style="background:var(--ink-3)"></span>pocos datos</span></span></header>
