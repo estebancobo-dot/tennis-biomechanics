@@ -109,7 +109,7 @@ PHASES = [
             "Raqueta baja desde el principio: el swing sale plano y sin aceleración.", "Sombras parando en el armado: comprueba en un espejo que la cabeza esté por encima de la mano.",
             ["Bucle de la preparación (forma)", "Cara de la raqueta en la caída y en el impacto"]),
          cp("loaded.elbow_dom_vs_shoulder", "Altura del codo en el armado", "%", 0, "% de altura respecto al hombro (+ por encima del hombro)",
-            "Lleva el codo a la altura a la que lo lleva ella al armar.", "Codo muy alto (por encima del hombro): el armado se alarga y tensa el hombro.",
+            "Lleva el codo a la altura a la que lo lleva ella al armar.", "Cambiar la altura del codo de un golpe a otro (codo alto y codo bajo son dos estilos válidos: copia el suyo).",
             "Sombras parando en el armado frente a un espejo: el codo a su altura respecto al hombro.", []),
          cp("loaded.wrist_dom_vs_shoulder", "Mano en el armado", "%", 0, "% de altura respecto al hombro (+ por encima)",
             "Arriba, en el armado, lleva la mano a la altura del hombro a la que la lleva ella (no por encima de la cabeza).",
@@ -122,7 +122,7 @@ PHASES = [
             "Sombras parando en el armado: comprueba el ángulo del codo en un espejo.", []),
          cp("stroke.pause_at_loaded", "Sin pausa arriba", "s", 2, "s con la mano casi quieta entre el armado y el swing (0 = sin pausa)",
             "Del armado al swing sin pararte arriba: la raqueta baja en cuanto llega atrás. Si tienes que esperar a la bola, espera en el giro, no arriba.",
-            "Parar la raqueta arriba («loop falso»): se pierde la energía elástica del estiramiento y el golpe sale de brazo.",
+            "Parar la raqueta arriba mucho rato («loop falso»): una pausa larga resta la energía elástica del estiramiento y el golpe sale de brazo.",
             "Sombras dibujando una «gota» con la cabeza de la raqueta sin detenerte; luego peloteo diciendo «gira, atrás, golpe» sin silencio entre «atrás» y «golpe».",
             ["Bucle de la preparación (forma)"]),
          cp("class.takeback_loop", "Forma del armado", "", 0, "bucle continuo / loop falso (para arriba) / recto atrás",
@@ -210,7 +210,7 @@ PHASES = [
             "En la caída, cuerdas algo cerradas hacia el suelo, como ella.", "Abrir la cara al bajar la raqueta: la bola sale alta y sin efecto.",
             "Sombras lentas: para en la caída y mira las cuerdas.", ["Cara de la raqueta en la caída y en el impacto"]),
          cp("stroke.swing_low_to_high", "Trayectoria de abajo arriba", "°", 0, "° de subida de la mano en los 100 ms previos al impacto (2D desde detrás)",
-            "Sube la raqueta de abajo arriba a través de la bola (de +10° a +45° según el efecto).",
+            "Sube la raqueta de abajo arriba a través de la bola, más cuanto más efecto quieras.",
             "Swing horizontal o descendente: la bola se va a la red o sin efecto.",
             "Golpes por encima de una cuerda colocada 1 m sobre la red.",
             ["Trayectoria vertical del swing (de abajo arriba)", "Golpe plano, liftado o cortado", "Fuerza en dirección incorrecta (horizontal o descendente)"]),
@@ -239,7 +239,7 @@ PHASES = [
             "Peloteo marcando con conos dónde tienes que estar para que la bola llegue a la cintura.",
             ["Zona de impacto: altura y separación lateral"]),
          cp("impact.wrist_dom_lateral", "Separación lateral del cuerpo", "%", 0, "% de altura de la mano a la cadera",
-            "Deja un brazo y medio de distancia entre el cuerpo y la bola.", "Golpear pegado al cuerpo: el brazo se encoge.",
+            "Deja entre el cuerpo y la bola la distancia que deja ella (su número, arriba).", "Golpear pegado al cuerpo: el brazo se encoge.",
             "Pon una raqueta en el suelo marcando la distancia y golpea sin pisarla.", ["Zona de impacto: altura y separación lateral"]),
          cp("impact.base_court_m", "Base en el impacto", "m", 2, "m entre los pies sobre la pista al golpear",
             "Golpea con los pies a la distancia a la que los tiene ella: base estable, ni junta ni exagerada.",
@@ -248,7 +248,7 @@ PHASES = [
          cp("impact.front_foot_angle_deg", "Pie de delante en el impacto", "°", 0,
             "° del pie de delante (talón → dedo gordo) respecto a la línea de fondo: 0 = paralelo hacia el lado de la derecha, 90 = hacia la red, > 90 = cruzado",
             "Apoya el pie de delante apuntando hacia donde lo apunta ella: abierto hacia la red deja girar la cadera.",
-            "Pie de delante cruzado y clavado de lado: bloquea el giro de la cadera y el golpe sale de brazo.",
+            "Clavar el pie de delante de forma que la cadera no pueda girar (el apoyo cerrado es válido si la cadera gira).",
             "Peloteo con una marca en el suelo con su ángulo: pisa la marca con el pie de delante al golpear; 3×8.",
             ["Apoyos abierto, semiabierto, neutro, cerrado"]),
          cp("impact.back_foot_angle_deg", "Pie de atrás en el impacto", "°", 0,
@@ -319,7 +319,7 @@ PHASES = [
             "Frenar en el impacto: la bola sale sin efecto y corta.",
             "Golpea con un compañero que sujeta una raqueta 1 m delante de ti: tu raqueta pasa por encima de la suya; 3×8.", []),
          cp("extension.wrist_non_lateral", "Brazo libre recogido (catch)", "%", 0, "% de altura de la mano libre respecto a la cadera",
-            "Recoge el brazo libre hacia el pecho mientras giras: frena el lado izquierdo y acelera la raqueta.",
+            "Recoge el brazo libre hacia el pecho mientras giras: frena el lado del brazo libre y acelera la raqueta.",
             "Dejar el brazo libre suelto atrás o abajo.", "Sombras: al golpear, la mano libre «atrapa» la raqueta a la altura del pecho al terminar.",
             ["Brazo libre recogido al pecho tras el contacto («catch»)"]),
      ]},
@@ -424,7 +424,7 @@ FEET = {"id": "feet", "title": "Pies: del split step al golpe", "focus": "Llega 
 CONDITIONS = {
     "shot_type": ("Dirección", {
         "cruzada": ("Cruzada: la más segura (más pista y la red más baja en el centro).", "Golpea la bola un poco antes del lado de tu cuerpo y termina hacia la esquina cruzada.", "Peloteo cruzado a una zona marcada; 20 seguidas."),
-        "paralela": ("Paralela: menos pista y la red más alta; exige adelantar el punto de impacto y cerrar antes la cara.", "Golpea un poco más tarde que en la cruzada respecto a tu cuerpo, con la cara hacia la línea y el apoyo más cerrado.", "Desde la esquina, 10 paralelas a un cono en la línea; luego alternando cruzada y paralela."),
+        "paralela": ("Paralela: menos pista y la red más alta; el contacto va algo más retrasado que en la cruzada y la cara, hacia la línea.", "Golpea un poco más tarde que en la cruzada respecto a tu cuerpo, con la cara hacia la línea y el apoyo más cerrado.", "Desde la esquina, 10 paralelas a un cono en la línea; luego alternando cruzada y paralela."),
         "al centro": ("Al centro: margen y profundidad para neutralizar.", "Golpe largo con margen sobre la red.", "Peloteo apuntando a la zona entre las líneas de servicio y fondo."),
         "invertida cruzada": ("Dentro-fuera: rodea la bola desde el lado del revés hacia la esquina cruzada de la rival.", "Rodea la bola con pasos laterales y abre la cadera hacia la esquina.", "Bolas al revés: rodea y golpea dentro-fuera; 3×8."),
         "invertida paralela": ("Dentro-dentro: desde el lado del revés hacia la línea paralela.", "Rodea la bola y golpea más tarde, con la cara hacia la línea.", "Bolas al revés alternando dentro-fuera y dentro-dentro."),
@@ -445,7 +445,7 @@ CONDITIONS = {
     }),
     "swing": ("Efecto", {
         "plano": ("Plano: trayectoria recta, poco efecto; potencia.", "Swing más horizontal, contacto más adelantado.", "Golpes planos a una diana baja junto a la red."),
-        "liftado (de abajo arriba)": ("Liftado: de abajo arriba; margen sobre la red y bote alto.", "Raqueta por debajo de la bola y subida marcada (+20° a +45°).", "Golpes por encima de una cuerda a 1 m sobre la red."),
+        "liftado (de abajo arriba)": ("Liftado: de abajo arriba; margen sobre la red y bote alto.", "Raqueta por debajo de la bola y subida marcada.", "Golpes por encima de una cuerda a 1 m sobre la red."),
         "cortado (de arriba abajo)": ("Cortado / defensivo: ganar tiempo o neutralizar.", "Cara algo abierta, swing de arriba abajo, corto.", "Bolas abiertas en carrera respondiendo con cortado profundo."),
     }),
     "court_side": ("Lado de la pista", {
@@ -551,7 +551,8 @@ PLAN = [
 ]
 
 
-# «Cómo hacerlo tú» with her number: the cue written with her median in the chosen strokes, only when
+# «Cómo hacerlo tú» with her number (none for the face while accelerating and at contact: the racket is
+# blurred there, an estimate is never a number to copy): the cue written with her median in the chosen strokes, only when
 # her value can be trusted (never noise or bias). {v} = her value without sign (cm and m scaled to the
 # user's height when given); {h} = a share of height said as the user's own («un 12 % de tu altura,
 # ≈ 21 cm»). A pair is (value ≥ 0, value < 0) for measures with a sign.
@@ -572,7 +573,7 @@ TARGETS = {
     "takeback.shoulder_turn": "Al empezar la preparación, gira los hombros unos {v}, como ella.",
     "stroke.takeback_vs_first_step": ("Empieza a girar {v} después de tu primer paso, como ella.", "Empieza a girar {v} antes de tu primer paso, como ella."),
     "loaded.shoulder_turn": "En el armado, gira los hombros unos {v}, como ella.",
-    "loaded.x_factor": ("En el armado, que los hombros giren unos {v} más que la cadera, como ella.", "En el armado, ella gira la cadera unos {v} más que los hombros: copia su giro de cadera."),
+    "loaded.x_factor": ("En el armado, que los hombros giren unos {v} más que la cadera, como ella.", "Desde detrás, en 2D, su cadera parece girar más que los hombros: no es fiable; copia el giro de hombros."),
     "loaded.elbow_non": "Brazo libre con el codo a unos {v} (180° = estirado), como ella.",
     "loaded.racket_head_vs_wrist": ("Arma con la cabeza de la raqueta un {h} por encima de la mano, como ella.", "Arma con la cabeza de la raqueta un {h} por debajo de la mano, como ella."),
     "loaded.elbow_dom_vs_shoulder": ("Arma con el codo un {h} por encima del hombro, como ella.", "Arma con el codo un {h} por debajo del hombro, como ella."),
@@ -588,7 +589,6 @@ TARGETS = {
     "stroke.acceleration_vs_bounce": ("Empieza a acelerar {v} después del bote, como ella.", "Empieza a acelerar {v} antes del bote, como ella."),
     "stroke.hip_drop_cm": "Baja la cadera {v} desde la espera hasta el punto más bajo, como ella.",
     "stroke.hip_rise": ("Sube la cadera un {h} hasta el impacto, como ella.", "Ella aún baja un {h} hasta el impacto: no te levantes antes de golpear."),
-    "acceleration.face_tilt": ("En la caída, cuerdas cerradas unos {v} hacia el suelo, como ella.", "En la caída, cuerdas abiertas unos {v} hacia el cielo, como ella."),
     "stroke.swing_low_to_high": ("Sube la mano unos {v} en el último tramo antes del impacto, como ella.", "Ella baja la mano unos {v} antes del impacto (golpe plano o cortado): es su golpe de esta situación."),
     "stroke.racket_lag_deg": "Deja que la raqueta se retrase hasta unos {v} con el antebrazo, como ella.",
     "acceleration.racket_forearm": "Al empezar a acelerar, raqueta a unos {v} del antebrazo, como ella.",
@@ -608,7 +608,6 @@ TARGETS = {
     "impact.elbow_dom": "Golpea con el codo a unos {v} (180° = recto), como ella.",
     "stroke.head_motion_cm": "Que la cabeza no se mueva más de {v} al golpear, como ella.",
     "impact.trunk_tilt": "Tronco inclinado unos {v} respecto a la vertical al golpear, como ella.",
-    "impact.face_tilt": ("En el impacto, cuerdas cerradas unos {v} hacia el suelo (estimación), como ella.", "En el impacto, cuerdas abiertas unos {v} hacia el cielo (estimación), como ella."),
     "extension.arm_extension": "Tras el impacto, estira el brazo un {v} hacia delante, como ella.",
     "extension.wrist_non_lateral": ("Recoge la mano libre a un {h} por encima de la cadera, como ella.", "Recoge la mano libre a un {h} por debajo de la cadera, como ella."),
     "finish.face_tilt": ("Termina con las cuerdas cerradas unos {v} hacia el suelo, como ella.", "Termina con las cuerdas abiertas unos {v} hacia el cielo, como ella."),
@@ -639,7 +638,7 @@ GLOSSARY = [
     ("extensión", "Justo después del impacto: el brazo sigue hacia delante, hacia donde va la bola."),
     ("terminación", "Final del golpe: dónde acaban la raqueta y el brazo (sobre el hombro, limpiaparabrisas…)."),
     ("recuperación", "Volver a colocarse para el siguiente golpe tras golpear."),
-    ("apoyo abierto", "Pies en paralelo a la red al golpear: se gira sobre la pierna de atrás."),
+    ("apoyo abierto", "Pies en paralelo a la red al golpear: se carga y gira sobre la pierna exterior (la del brazo de la raqueta)."),
     ("apoyo cerrado", "El pie de delante cruza hacia el lado de la derecha: el cuerpo queda de lado."),
     ("apoyo semiabierto", "Entre abierto y neutro: el pie de delante algo adelantado."),
     ("apoyo neutro", "El pie de delante adelantado en línea hacia la red: de lado a la red."),

@@ -60,6 +60,11 @@ METRICS = {
     "disp": ("feet", "Desplazamiento", "m desde el golpe del rival", "m", 1, 0.3, 3, None),
     "recov": ("feet", "Recuperación", "s del impacto al primer paso", "s", 2, 0.15, 2, None),
 }
+# report metric → the measure whose reliability judges it (tennisbio.reliability, «Fiabilidad»): a metric
+# whose measure is noise or bias is never a value, a difference or a finding on any screen (requirement 3)
+REL_KEY = {"xf": "loaded.x_factor", "sh": "loaded.shoulder_turn", "elbow": "impact.elbow_dom", "offArm": "loaded.elbow_non",
+           "lat": "impact.wrist_dom_lateral", "head": "stroke.head_motion_cm", "rFaceArm": "loaded.face_tilt",
+           "rFaceImp": "impact.face_tilt", "rFaceFin": "finish.face_tilt", "knee": "stroke.hip_drop_cm"}
 NET_Y = 11.885
 # metrics that stay reliable when she is at the far end (small, facing the camera)
 FAR_OK = {"contactH", "disp", "shotDepth", "landing", "ballKmh", "shotQ"}
@@ -524,19 +529,6 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
                 r["thumb"] = f"thumbs/{r['id']}.jpg"
         elif win:
             r["video"] = Path(os.path.relpath(d / "windows" / win, dest)).as_posix()
-    from . import findings as F
-    from .explain import model_view
-    from .model import build_model
-    dist = F.distributions(data)
-    F.representativeness(data, dist)
-    finds = F.discover(data)
-    concl = F.conclusions(data, dist, finds)
-    pair_of = {p["t"]: p["key"] for p in F._pairs(data["strokes"])}
-    data["findings"] = [{"k": f.k, "t": f.title, "c": f.context, "A": [s["id"] for s in f.A], "B": [s["id"] for s in f.B],
-                         "e": vars(f.effect), "v": list(f.verdict), "q": getattr(f, "q", None),
-                         "pair": next((v for t, v in pair_of.items() if f.title.endswith(t)), "")} for f in finds]
-    data["conclusions"] = [{"text": c.text, "conf": c.confidence, "level": c.level, "ids": [s["id"] for s in c.strokes[:40]],
-                            "find": finds.index(c.finding) if c.finding in finds else None} for c in concl]
     raw = data.get("_raw", [])
     from .audit import stroke_values
     from .learn import CONDITIONS, content, learn_keys
@@ -550,6 +542,20 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
     from .reliability import assess
     units = {c["key"]: c.get("unit") for ph in data["learn"]["phases"] for c in ph["checkpoints"] if not c["key"].startswith("practice.")}
     data["reliability"] = assess([s for s in raw if s.get("side") != "far"], units)
+    data["metric_rel"] = REL_KEY
+    from . import findings as F
+    from .explain import model_view
+    from .model import build_model
+    dist = F.distributions(data)
+    F.representativeness(data, dist)
+    finds = F.discover(data)
+    concl = F.conclusions(data, dist, finds)
+    pair_of = {p["t"]: p["key"] for p in F._pairs(data["strokes"])}
+    data["findings"] = [{"k": f.k, "t": f.title, "c": f.context, "A": [s["id"] for s in f.A], "B": [s["id"] for s in f.B],
+                         "e": vars(f.effect), "v": list(f.verdict), "q": getattr(f, "q", None),
+                         "pair": next((v for t, v in pair_of.items() if f.title.endswith(t)), "")} for f in finds]
+    data["conclusions"] = [{"text": c.text, "conf": c.confidence, "level": c.level, "ids": [s["id"] for s in c.strokes[:40]],
+                            "find": finds.index(c.finding) if c.finding in finds else None} for c in concl]
     data["model"] = model_view(build_model(data.pop("_raw", [])), stroke)
     data["player"] = player or {}
     data["stroke"] = stroke

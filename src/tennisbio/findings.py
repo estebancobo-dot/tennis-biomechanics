@@ -207,11 +207,16 @@ def discover(data: dict, top=10) -> list[Finding]:
     needs q < 0.05 and a size above the measurement noise; "Probable" q < 0.2."""
     from .model import _bh, _norm_p, _ols
 
+    from .model import MIN_N
     strokes = data["strokes"]
+    rel, rk = data.get("reliability") or {}, data.get("metric_rel") or {}
+    unreliable = {k for k, key in rk.items() if (rel.get(key) or {}).get("verdict") in ("ruido", "sesgo")}
     tests = []
     for p in _pairs(strokes):
         for m in data["metrics"]:
             if m["k"] in p.get("skip", []) or m.get("est"):     # estimates are never findings
+                continue
+            if m["k"] in unreliable:          # noise or bias is never a finding (requirement 3)
                 continue
             rows = [s for s in strokes if (p["A"](s) or p["B"](s)) and s["m"].get(m["k"]) is not None]
             A = [s for s in rows if p["A"](s)]
@@ -248,6 +253,8 @@ def discover(data: dict, top=10) -> list[Finding]:
         big = abs(e.d) > m["noise"]
         v = ("good", "Diferencia real") if qq < 0.05 and big else ("warn", "Probable") if qq < 0.2 and big else \
             ("crit", "Dentro del ruido" if not big else "No concluyente")
+        if v[1] == "Diferencia real" and min(len(A), len(B)) < MIN_N:     # too few strokes in a group to call it real
+            v = ("warn", "Probable")
         score = (abs(e.d) / m["noise"]) * (1 - min(qq, 1)) * m["rel"] / 3
         f = Finding(m["k"], f"{m['name']} {p['t']}", f"{p['c']} · ajustado por la bola recibida y el partido", A, B, e, v, score)
         f.q = float(qq)
@@ -266,7 +273,9 @@ class Conclusion:
 
 
 def conclusions(data: dict, dist: dict, finds: list[Finding]) -> list[Conclusion]:
-    st, n = data["strokes"], len(data["strokes"])
+    # her near strokes only: the far ones carry a reduced set of measures and do not count for the minimum
+    st = [s for s in data["strokes"] if s.get("side") != "far"]
+    n = len(st)
     MK = {m["k"]: m for m in data["metrics"]}
     best = lambda a: sorted(a, key=lambda s: -show_score(s))
     pct = lambda a, f: 100 * sum(1 for s in a if f(s)) / len(a) if a else math.nan

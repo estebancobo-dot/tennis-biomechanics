@@ -286,7 +286,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .seqbadge > span:not(.st) { padding: 2px 6px; border-radius: 3px; background: var(--raise); }
 
 .forest { display: grid; }
-.frow { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(220px, 1fr) 150px 56px; gap: 12px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--line); }
+.frow { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 150px) 56px; gap: 12px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--line); }
 .frow:last-child { border-bottom: 0; }
 .frow.head { padding-block: 8px; font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-3); font-weight: 600; }
 .frow .t b { display: block; font-weight: 600; font-size: 13.5px; }
@@ -783,7 +783,7 @@ document.getElementById("h-player").textContent = PL.name || "Jugador";
 document.getElementById("h-stroke").textContent = STROKE_ES[DATA.stroke] || DATA.stroke;
 document.getElementById("foot").innerHTML = `<span>Generado <span class="mono">${DATA.generated || ""}</span></span><span>Ruido de medida <span class="mono">${DATA.noise_validated ? "medido en golpes equivalentes" : "provisional"}</span></span>`;
 const handTxt = PL.hand ? `${PL.hand === "left" ? "Zurda" : "Diestra"}${PL.backhand ? " · revés a " + (PL.backhand === "one_handed" ? "1 mano" : "2 manos") : ""}` : "";
-document.getElementById("scope").innerHTML = `<span class="tag"><b>${MATCHES.length}</b> partidos</span><span class="tag"><b>${STROKES.length}</b> golpes · ${STROKES.filter(s => s.side === "far").length} desde el fondo</span><span class="tag"><b>${REVIEW}</b> con dudas</span>${handTxt ? `<span class="tag">${handTxt}</span>` : ""}`;
+document.getElementById("scope").innerHTML = `<span class="tag"><b>${MATCHES.length}</b> partidos</span><span class="tag"><b>${STROKES.length}</b> golpes · ${STROKES.filter(s => s.side === "far").length} desde el fondo</span><span class="tag"><b>${STROKES.filter(s => s.side !== "far" && (s.review || []).length).length}</b> con dudas</span>${handTxt ? `<span class="tag">${handTxt}</span>` : ""}`;
 document.getElementById("noise-note").textContent = `Diferencia entre grupos en múltiplos del ruido de medida${DATA.noise_validated ? " (medido sobre pares de golpes equivalentes de la jugadora: cota conservadora)" : " (provisional: hacen falta al menos 20 golpes con bola neutra)"}. Solo con al menos 5 golpes por grupo.`;
 
 /* ===== Navegación ===== */
@@ -795,7 +795,7 @@ if (EMPTY) {                     // nothing analysed yet: one clear message inst
   const m = document.createElement("section");
   m.className = "screen"; m.id = "empty-note";
   m.innerHTML = `<div class="panel" style="padding:28px"><h2 style="margin:0 0 8px">Todavía no hay golpes analizados</h2><p class="dim">No se ha encontrado ningún golpe de este tipo en los partidos procesados. Si el análisis acaba de empezar, vuelve a abrir el informe cuando termine; si ya terminó, el registro de cada partido (registro.log) dice qué pasó.</p></div>`;
-  document.getElementById("tab-modelo").before(m);
+  document.getElementById("tab-aprende").before(m);
 }
 const REL_ES = { fiable: ["Fiables", "se dan como valor suyo"], dudosa: ["Dudosas", "se dan marcadas como «medida ruidosa»"],
   ruido: ["Ruido", "no se dan: cambian más entre fotogramas vecinos que entre sus golpes"], sesgo: ["Sesgadas", "no se dan: dos métodos independientes no coinciden, o demasiadas lecturas son físicamente imposibles"],
@@ -1547,6 +1547,7 @@ let gGroup = "body";
 function renderMetricsPanel() {
   document.getElementById("g-metrics").innerHTML = METRICS.filter(m => m.g === gGroup).map(m => {
     const d = DIST[m.k], v = cur.m[m.k];
+    if (mUnrel(m.k)) return `<div class="mrow"><span class="n">${m.name} ${relBars(m.rel)}</span><span class="v">—</span><div class="meta"><span>${m.sub}</span>${UNREL}</div></div>`;
     if (!d || !isN(v)) return `<div class="mrow"><span class="n">${m.name} ${relBars(m.rel)}</span><span class="v">—</span><div class="meta"><span>${m.sub}</span><span class="mono">${d ? "no medido en este golpe" : "aún sin datos"}</span></div></div>`;
     const W = 300, span = (d.hi - d.lo) || 1, X = x => 6 + (x - d.lo) / span * (W - 12), z = (v - d.p50) / m.noise;
     const svg = `<svg viewBox="0 0 ${W} 18" preserveAspectRatio="none"><rect x="6" y="8" width="${W - 12}" height="2" fill="var(--raise)"/><rect x="${X(d.p10)}" y="5" width="${Math.max(1, X(d.p90) - X(d.p10))}" height="8" rx="2" fill="var(--line-2)"/><line x1="${X(d.p50)}" x2="${X(d.p50)}" y1="2" y2="16" stroke="var(--ink-2)" stroke-width="2"/><circle cx="${X(v)}" cy="9" r="5" fill="var(--accent)" stroke="var(--panel)" stroke-width="2"/></svg>`;
@@ -1763,7 +1764,10 @@ function exRows() {
   const k = exSort.k, val = s => MK[k] ? (isN(s.m[k]) ? s.m[k] : -Infinity) : k === "id" ? s.idx : k === "chainOK" ? +!!s.chainOK : k === "sit" ? +s.sit.neutra : k === "review" ? s.review.length : (s[k] ?? "");
   return a.sort((x, y) => { const vx = val(x), vy = val(y); return (vx > vy ? 1 : vx < vy ? -1 : 0) * exSort.dir; });
 }
-function devCell(k, v) { const d = DIST[k]; if (!d || !isN(v)) return `<span class="dim3">—</span>`; const z = clamp((v - d.p50) / (d.sd * 2), -1, 1); return `<span class="dev"><span class="num">${fmtM(k, v)}</span><span class="t"><i style="left:calc(${50 + z * 50}% - 1.5px)"></i></span></span>`; }
+// a metric whose measure is noise or bias (Fiabilidad) is never shown as a value on any screen
+function mUnrel(k) { const rk = (DATA.metric_rel || {})[k], r = rk && (DATA.reliability || {})[rk]; return !!(r && (r.verdict === "ruido" || r.verdict === "sesgo")); }
+const UNREL = `<span class="dim3" title="Más › Fiabilidad de las medidas">no fiable desde la tele</span>`;
+function devCell(k, v) { if (mUnrel(k)) return UNREL; const d = DIST[k]; if (!d || !isN(v)) return `<span class="dim3">—</span>`; const z = clamp((v - d.p50) / (d.sd * 2), -1, 1); return `<span class="dev"><span class="num">${fmtM(k, v)}</span><span class="t"><i style="left:calc(${50 + z * 50}% - 1.5px)"></i></span></span>`; }
 function renderTable() {
   const a = exRows(), pages = Math.max(1, Math.ceil(a.length / PAGE)); exPage = clamp(exPage, 0, pages - 1);
   const rows = a.slice(exPage * PAGE, exPage * PAGE + PAGE);
@@ -2029,7 +2033,8 @@ function renderKTl() {
 function renderKTable() {
   const a = KA.s, b = KB.s, rows = METRICS.filter(m => isN(a.m[m.k]) || isN(b.m[m.k]));
   {
-    const big = rows.map(m => ({ m, d: b.m[m.k] - a.m[m.k] })).filter(x => isN(x.d) && Math.abs(x.d) > x.m.noise)
+    // a missing value is not 0, and a measure that is noise or bias is never a difference
+    const big = rows.filter(m => isN(a.m[m.k]) && isN(b.m[m.k]) && !mUnrel(m.k)).map(m => ({ m, d: b.m[m.k] - a.m[m.k] })).filter(x => isN(x.d) && Math.abs(x.d) > x.m.noise)
       .sort((x, y) => Math.abs(y.d / y.m.noise) - Math.abs(x.d / x.m.noise));
     const ctx = [sitTxt(a) !== sitTxt(b) ? `bola distinta (A: ${sitTxt(a)}; B: ${sitTxt(b)})` : null,
                  a.stance !== b.stance ? `apoyo distinto (A ${a.stance || "—"}, B ${b.stance || "—"})` : null].filter(Boolean);
@@ -2040,7 +2045,8 @@ function renderKTable() {
   const ctxRows = [["Situación de la bola", sitTxt(a), sitTxt(b)], ["Apoyo", a.stance || "—", b.stance || "—"], ["Resultado", a.outcomeDetail ? OUT_ES[a.outcomeDetail] : "—", b.outcomeDetail ? OUT_ES[b.outcomeDetail] : "—"], ["Marcador", a.score ? `${a.set}º set · ${a.score}` : "—", b.score ? `${b.set}º set · ${b.score}` : "—"], ["Cadena cinética", a.chainOK === true ? "en orden" : a.chainOK === false ? "desordenada" : "—", b.chainOK === true ? "en orden" : b.chainOK === false ? "desordenada" : "—"]];
   document.getElementById("k-table").innerHTML = `<thead><tr><th>Métrica</th><th class="r" style="color:${KCOL[0]}">A · ${a.id}</th><th class="r" style="color:${KCOL[1]}">B · ${b.id}</th><th class="r">B − A</th><th>¿Supera el ruido?</th><th>Fiab.</th></tr></thead><tbody>` +
     ctxRows.map(([n, x, y]) => `<tr><td>${n}</td><td class="r">${x}</td><td class="r">${y}</td><td></td><td></td><td></td></tr>`).join("") +
-    rows.map(m => { const va = a.m[m.k], vb = b.m[m.k], d = vb - va, big = isN(d) && Math.abs(d) > m.noise; return `<tr><td>${m.name}</td><td class="r num">${fmtM(m.k, va)}</td><td class="r num">${fmtM(m.k, vb)}</td><td class="r num" style="${big ? "color:var(--accent);font-weight:600" : ""}">${isN(d) ? sign(d) + fmt(Math.abs(d), m.dec) : "—"}</td><td>${isN(d) ? (big ? `<span class="st good"><i>✓</i>sí (ruido ±${fmt(m.noise, m.dec)})</span>` : `<span class="dim3">no (ruido ±${fmt(m.noise, m.dec)})</span>`) : ""}</td><td>${relBars(m.rel)}</td></tr>`; }).join("") + "</tbody>";
+    rows.map(m => { const va = a.m[m.k], vb = b.m[m.k], un = mUnrel(m.k), d = isN(va) && isN(vb) && !un ? vb - va : NaN, big = isN(d) && Math.abs(d) > m.noise;
+      if (un) return `<tr><td>${m.name}</td><td class="r" colspan="3">${UNREL}</td><td></td><td>${relBars(m.rel)}</td></tr>`; return `<tr><td>${m.name}</td><td class="r num">${fmtM(m.k, va)}</td><td class="r num">${fmtM(m.k, vb)}</td><td class="r num" style="${big ? "color:var(--accent);font-weight:600" : ""}">${isN(d) ? sign(d) + fmt(Math.abs(d), m.dec) : "—"}</td><td>${isN(d) ? (big ? `<span class="st good"><i>✓</i>sí (ruido ±${fmt(m.noise, m.dec)})</span>` : `<span class="dim3">no (ruido ±${fmt(m.noise, m.dec)})</span>`) : ""}</td><td>${relBars(m.rel)}</td></tr>`; }).join("") + "</tbody>";
 }
 function kStop() { kPlaying = false; KA.video.pause(); KB.video.pause(); const b = document.getElementById("k-play"); if (b) b.innerHTML = `<svg viewBox="0 0 14 14" fill="currentColor"><path d="M3 2v10l9-5z"/></svg>`; }
 async function kPlay() {

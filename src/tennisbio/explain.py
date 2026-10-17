@@ -207,13 +207,13 @@ COACH = {
     "loaded.wrist_dom_vs_shoulder": ("La mano no debe subir por encima de la cabeza al armar.", "Tennis Australia"),
     "loaded.shoulder_abd_non": ("El brazo libre señalando la bola ayuda a girar el tronco y a medir la distancia.", "Elliott 2006; Tennis Australia"),
     "loaded.elbow_non": ("El brazo libre extendido equilibra el giro y luego tira del tronco hacia delante.", "Elliott 2006; Tennis Australia"),
-    "loaded.hip_height": ("Cargar el peso en la pierna exterior es la fuente de la rotación.", "Tennis Australia; Nesbit 2008"),
+    "loaded.hip_height": ("Bajar la cadera al armar carga las piernas: es la fuente del empuje y de la rotación.", "Tennis Australia; Nesbit 2008"),
     "loaded.com_over_feet": ("Dónde está el peso entre los pies al armar dice qué pierna empuja la rotación.", "Tennis Australia"),
     "loaded.face_tilt": ("La cara de la raqueta al final del armado define el bucle: cerrada (hacia el suelo) o abierta.", "Elliott y Marsh 1989"),
     "class.takeback_face": ("La cara de la raqueta al final del armado define el bucle: cerrada (hacia el suelo) o abierta.", "Elliott y Marsh 1989"),
     "class.stance_loaded": ("El apoyo con el que arma decide cuánto puede girar la cadera.", "Martin 2021; Tennis Australia"),
-    "stroke.pause_at_loaded": ("Del armado al swing sin pararse arriba: una pausa pierde la energía elástica del estiramiento-acortamiento; "
-                                "si hace falta esperar a la bola, se espera en el giro, no en lo alto del armado.", "Elliott 2006"),
+    "stroke.pause_at_loaded": ("El bucle debe ser continuo: una pausa larga arriba reduce lo que aporta el estiramiento de los músculos; "
+                                "si hay que esperar a la bola, se espera en el giro, no en lo alto del armado.", "Elliott 2006; Wilson, Elliott y Wood 1991"),
     "loaded.racket_forearm": ("La muñeca echada hacia atrás al armar se suelta al final del swing y aporta velocidad.", "Landlinger 2010; Pedro 2022"),
     "acceleration.racket_forearm": ("La muñeca echada hacia atrás se suelta al final del swing y aporta velocidad.", "Landlinger 2010; Pedro 2022"),
     "stroke.t_acceleration": ("En las profesionales el swing hacia delante es corto y muy rápido.", "Landlinger 2010"),
@@ -226,8 +226,8 @@ COACH = {
     "impact.wrist_dom_height": ("La altura del contacto marca qué bolas le resultan cómodas.", "Reid, Elliott y Crespo 2013"),
     "impact.wrist_dom_vs_hip": ("Golpear entre la cintura y el pecho es la zona de contacto más habitual del circuito.", "Elliott 1989; Reid 2013"),
     "impact.wrist_dom_lateral": ("Golpear separada del cuerpo deja espacio para extender el brazo.", "Knudson 2006"),
-    "impact.elbow_dom": ("Brazo recto o doble flexión son dos modelos válidos; el recto suele ir con empuñaduras más cerradas.", "Elliott 1989, 1997"),
-    "class.arm": ("Brazo recto o doble flexión son dos modelos válidos; el recto suele ir con empuñaduras más cerradas.", "Elliott 1989, 1997"),
+    "impact.elbow_dom": ("Brazo recto o doble flexión son dos modelos válidos: lo importante es repetir el mismo en todos los golpes.", "Elliott 1989, 1997"),
+    "class.arm": ("Brazo recto o doble flexión son dos modelos válidos: lo importante es repetir el mismo en todos los golpes.", "Elliott 1989, 1997"),
     "class.ball_phase": ("Tomar la bola subiendo quita tiempo a la rival; tomarla cayendo da más tiempo propio.", "ITF (Crespo, Reid)"),
     "class.racket_plane": ("Con la raqueta al lado del cuerpo el armado es más corto y estable; por detrás de la espalda "
                            "el recorrido es más largo (más aceleración, más difícil de sincronizar). Es un debate abierto "
@@ -279,7 +279,7 @@ COACH = {
     "footwork.first_step_length_m": ("Un primer paso largo y rápido es el que más distancia gana.", "Tanabe"),
     "footwork.last_step_length_m": ("En carrera, la última zancada más larga sirve para frenar y golpear.", "Giles y Reid 2021"),
     "footwork.adjustment_steps": ("Los pasos cortos de ajuste al final colocan el cuerpo a la distancia justa de la bola.", "Cardiff Met; Giles"),
-    "footwork.direction_changes": ("Muchos cambios de dirección indican que leyó tarde la bola.", "Giles 2023"),
+    "footwork.direction_changes": ("Muchos cambios de dirección pueden indicar que leyó tarde la bola (también pueden ser pasos de ajuste).", "Giles 2023"),
     "footwork.peak_speed_mps": ("La velocidad máxima dice cuánto tuvo que correr para llegar.", "Martínez-Gallego 2013"),
     "footwork.approach_speed_mps": ("Llegar frenada a la bola permite golpear en equilibrio.", "Giles y Reid 2021"),
     "footwork.path_m": ("La mayoría de golpes del circuito llegan tras correr 3-4 m o menos.", "Reid 2013"),
@@ -315,7 +315,7 @@ COACH = {
     "stroke.acceleration_vs_bounce": ("Esperar al bote para empezar a acelerar sincroniza el swing con la bola.", "ITF (Crespo, Reid)"),
     "stroke.hip_rise": ("Subir con las piernas al golpear inicia la cadena cinética desde el suelo y ayuda al efecto liftado.", "Elliott 2006; Reid 2013"),
     "stroke.weight_shift": ("Pasar el peso hacia delante (o de la pierna exterior a la otra en apoyo abierto) lleva la energía del suelo a la bola.", "Tennis Australia"),
-    "extension.wrist_non_lateral": ("Recoger el brazo libre contra el pecho («catch») frena el lado izquierdo y acelera el giro del tronco.", "Tennis Australia; ITF"),
+    "extension.wrist_non_lateral": ("Recoger el brazo libre contra el pecho («catch») frena el lado del brazo libre y acelera el giro del tronco.", "Tennis Australia; ITF"),
     "finish.head_over_base": ("Terminar con la cabeza sobre los pies indica que no perdió el equilibrio al frenar el giro.", "Tennis Australia"),
     "finish.trunk_tilt": ("Un tronco estable al terminar indica que no hubo «desplome» tras el golpe.", "Tennis Australia"),
     "stroke.shoulders_open_first": ("Si los hombros abren antes que la cadera se pierde la separación (fuga de energía, «apertura prematura»).", "Landlinger 2010; Elliott 2006"),
@@ -341,7 +341,7 @@ COACH = {
 PHASE_FOCUS = {
     "ready": "que caiga del split step justo cuando golpea la rival, con una base estable.",
     "takeback": "que empiece girando los hombros, no solo el brazo, en cuanto sabe a qué lado va la bola.",
-    "loaded": "armado completo antes del bote: hombros girados, raqueta arriba y brazo libre señalando la bola.",
+    "loaded": "armado completo cuando bota la bola: hombros girados, raqueta arriba y brazo libre señalando la bola.",
     "acceleration": "que la raqueta caiga por debajo de la mano y que la cadera arranque antes que el brazo.",
     "impact": "contacto delante y al lado del cuerpo, con la cabeza quieta.",
     "extension": "que el brazo siga hacia la bola antes de cruzar el cuerpo.",
@@ -621,14 +621,13 @@ def summary(model: dict, stroke: str) -> list[str]:
 def grip_compatible(model: dict) -> str | None:
     """The grip cannot be seen (a 20-40 px hand); it can only be called *compatible* with a family,
     from three signs reported in the literature (Elliott et al. 1989, 1997): contact above the hip,
-    a bent elbow at contact and a closed face at the end of the backswing go with semi-western /
-    western grips; contact below the hip, a straighter arm and a vertical face with eastern."""
-    h, e, f = (_t(model, k) for k in ("impact.wrist_dom_vs_hip", "impact.elbow_dom", "loaded.face_tilt"))
+    and a closed face at the end of the backswing go with semi-western / western grips; contact below
+    the hip and a vertical face with eastern. (The elbow is left out: the sources do not agree on its
+    direction.)"""
+    h, f = (_t(model, k) for k in ("impact.wrist_dom_vs_hip", "loaded.face_tilt"))
     votes = []
     if h:
         votes.append(1 if h["median"] > 3 else -1 if h["median"] < -2 else 0)
-    if e:
-        votes.append(1 if e["median"] < 115 else -1 if e["median"] > 135 else 0)
     if f:
         votes.append(1 if f["median"] > 10 else -1 if f["median"] < 0 else 0)
     if len(votes) < 2:
@@ -637,7 +636,7 @@ def grip_compatible(model: dict) -> str | None:
     fam = ("semioccidental u occidental" if sc >= 2 else "este" if sc <= -2 else None)
     if fam is None:
         return "Empuñadura: no concluyente desde la tele (los indicios no coinciden)."
-    return (f"Empuñadura: compatible con {fam} (altura del contacto, codo y cara en el armado). "
+    return (f"Empuñadura: compatible con {fam} (altura del contacto y cara en el armado). "
             "El tipo exacto no se ve en la retransmisión.")
 
 
