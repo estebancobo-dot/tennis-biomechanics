@@ -92,3 +92,19 @@ def test_cycle_starts_without_any_window():
     comun = (win / "comun.ps1").read_text(encoding="utf-8")
     assert '-Execute "wscript.exe"' in comun and '"ciclo v4"' in comun and "tenis-ciclo.vbs" in comun
     assert "oculto.vbs" in (win / "ciclo_bucle.ps1").read_text(encoding="utf-8")
+
+
+def test_request_borrar_only_old_speed_test_folders():
+    """«accion: borrar» removes only folders named _poc, _pocN or _pocN_M: never the long run or _smoke."""
+    import re
+
+    ps1 = (Path(__file__).resolve().parents[1] / "scripts" / "windows" / "ciclo_automatico.ps1").read_text(encoding="utf-8")
+    assert ps1.isascii()
+    block = ps1[ps1.index('$p["accion"] -eq "borrar"'):]
+    block = block[:block.index("} else {")]
+    rx = re.search(r"-notmatch '([^']+)'", block).group(1)
+    for ok in ("_poc", "_poc3", "_poc3_4", "_poc5_35", "_poc7_4"):
+        assert re.match(rx, ok), ok
+    for no in ("_poc9_largo", "_smoke", "_poc_x", "..", "_poc3\\..", "videos", ""):
+        assert not re.match(rx, no), no
+    assert 'prueba_borrado.log' in block

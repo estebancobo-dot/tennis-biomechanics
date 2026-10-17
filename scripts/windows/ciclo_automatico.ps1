@@ -85,6 +85,22 @@ function Hacer-Peticion {
         & uv run python scripts/recompute_measures.py --out-name $c 2>&1 |
             ForEach-Object { $l = "$_"; Add-Content $lg $l -Encoding UTF8; $l } | Out-Host
         "codigo de salida: $LASTEXITCODE; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "borrar") {
+        # borra carpetas de pruebas de velocidad ya documentadas (lo pide el usuario); solo nombres
+        # _poc, _pocN o _pocN_M: nunca _poc9_largo, _smoke ni nada mas
+        $lg = "$Base\output\prueba_borrado.log"
+        "Peticion $($p['id']): borrar carpetas de pruebas ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        foreach ($c in ("$($p['carpetas'])" -split ",")) {
+            $c = $c.Trim()
+            if ($c -notmatch '^_poc\d*(_\d+)?$') { "  no se toca (nombre no permitido): '$c'" | Add-Content $lg -Encoding UTF8; continue }
+            $d = "$Base\output\$c"
+            if (-not (Test-Path $d)) { "  no existe: $c" | Add-Content $lg -Encoding UTF8; continue }
+            $mb = [math]::Round(((Get-ChildItem $d -Recurse -File -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum) / 1MB, 1)
+            try { Remove-Item $d -Recurse -Force -ErrorAction Stop; "  borrada: $c ($mb MB)" | Add-Content $lg -Encoding UTF8 }
+            catch { "  ERROR al borrar ${c}: $_" | Add-Content $lg -Encoding UTF8 }
+        }
+        "libre en C: $([math]::Round((Get-PSDrive C).Free / 1GB)) GB; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+        Get-Content $lg | Out-Host
     } else { Write-Host "Peticion desconocida: $($p['accion'])" -ForegroundColor Yellow }
 }
 # el equipo no se suspende mientras el ciclo exista (la pantalla si puede apagarse): cada arranque, cada
