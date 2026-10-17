@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261017185002
+Start time: 20261017185452
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 4076
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 11884
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,20 +17,18 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-17 18:50:02] Codigo nuevo (6725097 -> 5251f64): 3 ficheros
-    src/tennisbio/learn_check.py
+==> [2026-10-17 18:54:52] Codigo nuevo (5251f64 -> 3924ec0): 2 ficheros
+    config/peticion_pc.txt
     src/tennisbio/report_template.html
-    src/tennisbio/screens.py
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating 6725097..5251f64
+Updating 5251f64..3924ec0
 Fast-forward
- src/tennisbio/learn_check.py       | 16 ++++++++++++----
- src/tennisbio/report_template.html |  5 ++++-
- src/tennisbio/screens.py           | 11 ++++++-----
- 3 files changed, 22 insertions(+), 10 deletions(-)
-Resolved 110 packages in 0.89ms
-Checked 83 packages in 3ms
+ config/peticion_pc.txt             | 2 +-
+ src/tennisbio/report_template.html | 6 +++---
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+Resolved 110 packages in 1ms
+Checked 83 packages in 2ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -41,24 +39,60 @@ yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
     (paso terminado en 3 s)
 
-==> [2026-10-17 18:50:05] Que hace falta: informe
+==> [2026-10-17 18:54:55] Que hace falta: informe
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
 Montajes: 2 en C:\tenis\output\_smoke\exportar\montajes
 Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
 Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
-Auditoría: 283 cumplidos, 1 no cumplidos, 116 sin golpes suficientes, 21 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-  ✘ Primera pantalla, anchura y nombres (diseño definitivo): vídeo de la lección en y=247–602 de 900; al abrir 1 títulos, 357 palabras, 23 botones; FALLOS: se sale por la derecha: conclusiones (1556 px: span.evid 152px, button.btn 55px)
+Auditoría: 284 cumplidos, 0 no cumplidos, 116 sin golpes suficientes, 21 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
 Hecho en 137 s, sin volver a analizar vídeo.
     (paso terminado en 2 min 17 s)
 
-==> [2026-10-17 18:52:23] Revision automatica frente a la ejecucion anterior
-# Revisión automática: FALLOS
-Ciclo automatico terminado (informe).
+==> [2026-10-17 18:57:12] Revision automatica frente a la ejecucion anterior
+# Revisión automática: OK
     (paso terminado en 0 s)
-Empezado 2026-10-17 18:50:00 - terminado 2026-10-17 18:52:23 - duracion total 2 min 22 s
-**********************
-Windows PowerShell transcript end
-End time: 20261017185223
-**********************
+
+==> [2026-10-17 18:57:12] Peticion 14: medidas desde las caches, informe y auditoria de output\_poc9_largo (registro: C:\tenis\output\prueba_poc9_largo_informe.log)
+Recalcular medidas: empieza 2026-10-17 18:57:13
+
+[2026-10-17 18:57:13] smoke_tennis-yusipopen-final-sobolenko-rybakin: trozo de vídeo tennis-yusipopen-final-sobolenko-rybakin_0_600m.mkv, rival Sabalenka
+  Se usan los resultados que hay de score aunque su código o su vídeo cambiaron (no se rehacen aquí; la próxima prueba completa sí lo hará)
+[2026-10-17 18:57:13] Etapas baratas rehechas: ninguna (al día) (0 s)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (2026-10-17 18:57:13, etapa 9 de 10)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+  ventana w001027652_5133 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  fine:   0 % (2/562 golpes candidatos · 0 confirmados · 1 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+  ventana w001042304_7994 (far, 3 candidatos): pasa · golpe de bola en su lado a 3.44 s
+  ventana w001042304_7994: pose yolo en 399 de 399 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (3 de 4 impactos) · 4 golpes posibles · altura 126 px (court)
+  fine:   1 % (5/562 golpes candidatos · 1 confirmados · 1 ventanas descartadas sin pose) · 33 s · quedan ≈ 61 min
+  ventana w002771988_10160 (far, 6 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w002783035_4900 (far, 2 candidatos): pasa · golpe de bola en su lado a 3.64 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w002783035_4900: pose yolo en 245 de 245 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w002797524_11913 (far, 7 candidatos): pasa · golpe de bola en su lado a 6.42 s
+  ventana w002797524_11913: pose yolo en 595 de 595 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 91 px (court)
+  ventana w002833817_8749 (far, 4 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w002843035_7751 (far, 4 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  fine:   5 % (28/562 golpes candidatos · 1 confirmados · 4 ventanas descartadas sin pose) · 67 s · quedan ≈ 21 min
+  ventana w002867021_4842 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w002901166_8569 (far, 4 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w002921704_6920 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  fine:   7 % (42/562 golpes candidatos · 1 confirmados · 7 ventanas descartadas sin pose) · 2 min · quedan ≈ 21 min
+  ventana w003044234_6874 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w003087023_5696 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.36 s
+  ventana w003087023_5696: pose yolo en 284 de 284 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 103 px (court)
+  ventana w003153194_12209 (far, 7 candidatos): pasa · golpe de bola en su lado a 4.72 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w003153194_12209: pose yolo en 611 de 611 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  fine:  10 % (54/562 golpes candidatos · 2 confirmados · 8 ventanas descartadas sin pose) · 2 min · quedan ≈ 21 min
+  ventana w003164287_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w003190949_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w003194885_6386 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.48 s
+  ventana w003194885_6386: pose yolo en 319 de 319 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 104 px (court)
+  ventana w003741857_5208 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w003762476_5086 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w003773558_5011 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.32 s

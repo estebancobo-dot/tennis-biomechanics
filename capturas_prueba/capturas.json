@@ -220,7 +220,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 1383,
+   "text_chars": 1382,
    "charts": 0,
    "videos": 6,
    "black_canvases": 0,
@@ -345,13 +345,9 @@
    "buttons": 23,
    "height": 900
   },
-  "wide": {
-   "conclusiones": "1556 px: span.evid 152px, button.btn 55px"
-  },
+  "wide": {},
   "file_names": {},
-  "failures": [
-   "se sale por la derecha: conclusiones (1556 px: span.evid 152px, button.btn 55px)"
-  ]
+  "failures": []
  },
  "lesson": {
   "phases": [

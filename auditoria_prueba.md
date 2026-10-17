@@ -1,6 +1,6 @@
 # Auditoría de requisitos (forehand)
 
-10 golpes del lado cercano. ✔ 283 cumplidos · ✘ 1 no cumplidos · … 116 sin golpes suficientes en esta ejecución · ! 21 avisos
+10 golpes del lado cercano. ✔ 284 cumplidos · ✘ 0 no cumplidos · … 116 sin golpes suficientes en esta ejecución · ! 21 avisos
 
 ## 1. Toda la taxonomía del golpe y todas sus variantes (situaciones)
 
@@ -195,7 +195,6 @@
 
 ## 2. Información, no tablas: vídeo real como prueba en cada pantalla
 
-- ✘ **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=247–602 de 900; al abrir 1 títulos, 357 palabras, 23 botones; FALLOS: se sale por la derecha: conclusiones (1556 px: span.evid 152px, button.btn 55px)
 - ✔ **Cada golpe de entrenamiento tiene su vídeo con el esqueleto**: 91 de 91
 - ✔ **Cada golpe tiene su vídeo**: 10 de 10 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 10 de 10
@@ -208,7 +207,7 @@
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 3261 caracteres de texto, 6 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 6 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 3307 caracteres de texto, 6 vídeos, 0 gráficos
-- ✔ **Pantalla «Datos del análisis»**: 1383 caracteres de texto, 6 vídeos, 0 gráficos
+- ✔ **Pantalla «Datos del análisis»**: 1382 caracteres de texto, 6 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
@@ -218,6 +217,7 @@
 - ✔ **Reproducir: Análisis de golpe → ▶ (con las animaciones de Windows desactivadas)**: el vídeo arranca y avanza
 - ✔ **Reproducir: Comparar golpes → ▶ (con las animaciones de Windows desactivadas)**: el vídeo arranca y avanza
 - ✔ **El vídeo del golpe se reproduce al pulsar ▶**: avanza y sigue reproduciéndose
+- ✔ **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=247–602 de 900; al abrir 1 títulos, 357 palabras, 23 botones
 - ✔ **La lección enseña su vídeo de cada fase, en bucle**: 9 de 9 fases con su vídeo cargado
 - ✔ **«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella**: 3 en la pantalla
 - ✔ **«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)**: 9 en la pantalla
