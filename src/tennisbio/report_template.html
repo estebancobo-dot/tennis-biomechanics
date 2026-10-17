@@ -234,6 +234,8 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .lkey .lhow { font-size: 13.5px; margin-top: 6px; display: grid; gap: 3px; } .lkey .lhow span.l { color: var(--ink-3); }
 .lnav { display: flex; justify-content: space-between; gap: 8px; margin-top: 12px; }
 .lstr { margin-top: 10px; font-size: 13.5px; } .lprac { border: 1px solid var(--accent); border-radius: 8px; padding: 10px 12px; margin-top: 10px; font-size: 13.5px; }
+.lstages { display: flex; flex-wrap: wrap; gap: 6px; margin: 8px 0; } .lstages span { border: 1px solid var(--line); border-radius: 999px; padding: 2px 9px; font-size: 12px; color: var(--ink-3); }
+.lstages span.ok { border-color: var(--accent); color: var(--accent); } .lstages span.ok::before { content: "✓ "; } .lstages span.now { border-color: var(--ink-2); color: var(--ink); font-weight: 600; }
 .lprac .done { background: var(--accent); color: #111; border-color: var(--accent); } .lsteps button.ok::after { content: " ✓"; }
 .lkey .lmore { font-size: 13px; } .lkey .lmore summary { cursor: pointer; color: var(--ink-3); }
 .lbars { display: grid; grid-template-columns: 120px 1fr 64px; gap: 3px 8px; align-items: center; font-size: 12.5px; margin-top: 6px; }
@@ -448,6 +450,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 <div class="panel" style="margin-top:16px"><header><h2>2 · Sus golpes de ese tipo</h2></header><div class="body" id="a-res" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px"><header><h2>Su firma: lo que repite en casi todos estos golpes</h2><span class="note">medido; solo rasgos fiables</span></header><div class="body" id="a-sig" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px"><header><h2>Su ritmo, distancia y peso</h2><span class="note">medido; cada línea lleva a su fase</span></header><div class="body" id="a-rhythm" style="padding:12px 16px"></div></div>
+<div class="panel" style="margin-top:16px"><header><h2>Cómo usa su derecha</h2><span class="note">medido en estos golpes: dirección, profundidad, cambios de dirección y bajo presión</span></header><div class="body" id="a-tac" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px" id="a-sitp"><header><h2>3 · Qué cambia en este golpe</h2><span class="note" id="a-src1"></span></header><ul class="say" id="a-sit"></ul></div>
 <details class="extra secx" id="a-phases-d" style="margin-top:22px"><summary><b>4 · Todas las medidas, fase a fase</b> · la lista completa (lo de la lección y todo lo demás)</summary>
 <div id="a-phases" style="display:grid;gap:14px;margin-top:10px"></div></details>
@@ -2449,6 +2452,28 @@ document.getElementById("a-uh").addEventListener("change", e => {
 const A_QUICK = [["ball_speed", "rápida", "bola rápida"], ["ball_speed", "lenta", "bola lenta"], ["ball_height", "pecho-hombro", "bola alta"], ["ball_height", "rodilla", "bola baja"], ["movement", "en carrera", "en carrera"], ["width", "muy abierta", "muy abierta"]];
 // open every folded block around an element (the extras live inside «Más sobre su derecha»)
 function openUp(el) { for (let e = el; e; e = e.parentElement) if (e.tagName === "DETAILS") e.open = true; }
+// how she uses her forehand, measured: where it goes, how deep, how often she changes direction from
+// one forehand to the next in the same rally, and the same under pressure (only with enough strokes)
+function aTactics(set) {
+  const n = set.length, pc = (a, f) => a.length ? Math.round(100 * a.filter(f).length / a.length) : null;
+  const dirs = set.filter(s => s.shotDir), deep = set.filter(s => isN(s.shotY) && s.shotY > NET_Y_C);
+  const depthOf = s => 23.77 - s.shotY, isDeep = s => depthOf(s) <= 2;
+  const L = [];
+  if (dirs.length) { const c = {}; dirs.forEach(s => { c[s.shotDir] = (c[s.shotDir] || 0) + 1; });
+    L.push(`<li><b>Dirección:</b> ${Object.entries(c).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k} ${Math.round(100 * v / dirs.length)} %`).join(" · ")} <span class="dim3">(${dirs.length} golpes)</span></li>`); }
+  if (deep.length) L.push(`<li><b>Profundidad:</b> ${pc(deep, isDeep)} % botan en los últimos 2 m de la pista rival <span class="dim3">(mediana a ${fmt(quant(deep.map(depthOf), .5), 1)} m del fondo; ${deep.length} golpes)</span></li>`);
+  // consecutive forehands of hers in the same rally (same match, less than 8 s apart)
+  const seq = [...set].filter(s => s.shotDir).sort((a, b) => a.match - b.match || a.vt - b.vt), pairs = [];
+  for (let i = 1; i < seq.length; i++) if (seq[i].match === seq[i - 1].match && seq[i].vt - seq[i - 1].vt < 8) pairs.push([seq[i - 1], seq[i]]);
+  if (pairs.length) L.push(`<li><b>Cambio de dirección</b> entre dos derechas seguidas del mismo punto: ${pc(pairs, ([a, b]) => a.shotDir !== b.shotDir)} % <span class="dim3">(${pairs.length} parejas${pairs.length < A_MIN ? "; pocos casos" : ""})</span></li>`);
+  const P = set.filter(s => s.pressure), N = set.filter(s => s.score && !s.pressure);
+  if (P.length >= A_MIN && N.length >= A_MIN) {
+    const d1 = P.filter(s => s.shotDir), d0 = N.filter(s => s.shotDir), e1 = P.filter(s => isN(s.shotY) && s.shotY > NET_Y_C), e0 = N.filter(s => isN(s.shotY) && s.shotY > NET_Y_C);
+    L.push(`<li><b>Bajo presión</b> (${P.length} golpes) frente al resto (${N.length}): al centro ${pc(d1, s => s.shotDir === "al centro")} % frente a ${pc(d0, s => s.shotDir === "al centro")} %; profundas ${pc(e1, isDeep)} % frente a ${pc(e0, isDeep)} % <span class="dim3">(descriptivo: no ajustado por la bola)</span></li>`);
+  } else L.push(`<li class="dim">Bajo presión: hacen falta ${A_MIN} golpes con presión y ${A_MIN} sin ella (hay ${P.length} y ${N.length}).</li>`);
+  return n && L.length ? `<ul class="say" style="margin:0">${L.join("")}</ul>` : `<p class="dim" style="margin:0">Sin dirección ni bote de su golpe medidos en estos golpes.</p>`;
+}
+const NET_Y_C = 11.885;
 function renderLearn() {
   if (!LEARN) return;
   renderGuide();
@@ -2493,6 +2518,7 @@ function renderLearn() {
   const byKey0 = {}; LEARN.phases.forEach(ph => ph.checkpoints.forEach(c => { byKey0[c.key] = [c, ph]; }));
   const rh = (LEARN.rhythm || []).map(([k, name]) => { const e = byKey0[k]; if (!e) return null; const st = aStat(set, e[0]); return st.txt ? `<li data-go="${k}" style="cursor:pointer"><b>${name}:</b> ${st.txt.replace(/<[^>]+>/g, "")} <span class="dim3">· ${e[0].read} · ${st.n} golpes</span></li>` : null; }).filter(Boolean);
   document.getElementById("a-rhythm").innerHTML = rh.length ? `<ol class="say" style="margin:0">${rh.join("")}</ol>` : `<p class="dim" style="margin:0">Todavía no hay valores suyos fiables de ritmo en estos golpes.</p>`;
+  document.getElementById("a-tac").innerHTML = aTactics(set);
   // 3. what changes in this kind of stroke (coaching knowledge, marked)
   const sit = Object.entries(R.sel).map(([d, l]) => { const k = (LEARN.conditions[d] || {}).levels[l]; return k ? `<li><b>${l}</b>: ${k[0]}${aHerChange(d, l)} ${k[1] ? `<br><span class="dim">Cómo:</span> ${k[1]}` : ""}${k[2] ? `<br><span class="dim">Ejercicio:</span> ${k[2]}` : ""}</li>` : ""; }).join("");
   document.getElementById("a-sit").innerHTML = sit || `<li class="dim">Elige una o varias condiciones arriba para ver qué cambia en ese golpe.</li>`;
@@ -2552,18 +2578,32 @@ function lTimeOf(s, id) {
 const lVal = (st, c) => isN(st.med) ? `${fmt(st.med, c.dec)}${c.unit === "°" ? "°" : c.unit ? " " + c.unit : ""}` : st.txt.replace(/<[^>]+>/g, "").split(" · ").slice(0, 2).join(" · ");
 // the first sentence of a cue (the rest stays one click away): few words per key (cognitive load)
 const lShort = t => { const m = String(t).match(/^.*?[.:](?=\s|$)/); return m && m[0].length > 25 ? m[0].replace(/:$/, ".") : t; };
+const lStage = v => v === true ? 4 : Number.isInteger(v) ? Math.max(0, Math.min(4, v)) : 0;
 function lDone() { try { return JSON.parse(localStorage.getItem("tb-done") || "{}") || {}; } catch (e) { return {}; } }
 // her value of a key by ball speed, shown only when the levels differ beyond her spread and the measuring error
+// her value of a key in the situation that changes it most: speed of the ball, how far she runs to it
+// (width), its height or how she arrives. Only one (few words), and only when the levels differ beyond
+// her spread and the measuring error; never for a situation the user already chose.
+const L_BY = [["ball_speed", "Cambia con la velocidad de la bola", l => `bola ${l}`], ["width", "Cambia con lo que corre hasta la bola", l => `bola ${l}`],
+              ["ball_height", "Cambia con la altura de la bola", l => `a la ${l}`], ["movement", "Cambia con cómo llega", l => l]];
 function lBySpeed(set, c) {
-  const lv = Object.keys(((LEARN.conditions || {}).ball_speed || {}).levels || {}), all = aValues(set, c.key);
+  const all = aValues(set, c.key);
   if (all.length < 8 || typeof all[0] !== "number") return "";
-  const rel = (DATA.reliability || {})[c.key], spread = quant(all, .75) - quant(all, .25);
-  const g = lv.map(l => [l, aValues(set.filter(s => s.cl.ball_speed === l), c.key)]).filter(([, v]) => v.length >= 4).map(([l, v]) => [l, quant(v, .5), v.length]);
-  if (g.length < 2) return "";
-  const ms = g.map(x => x[1]), d = Math.max(...ms) - Math.min(...ms);
-  if (d < Math.max(.5 * spread, rel && isN(rel.noise) ? 2 * rel.noise : 0) || !d) return "";
-  const mx = Math.max(...ms.map(Math.abs)) || 1, u = c.unit === "°" ? "°" : c.unit ? " " + c.unit : "";
-  return `<div class="dim3" style="margin-top:6px">Cambia con la bola:</div><div class="lbars">` + g.map(([l, m, n]) => `<span>bola ${l} <span class="dim3">(${n})</span></span><i style="width:${Math.max(3, 100 * Math.abs(m) / mx)}%"></i><span>${fmt(m, c.dec)}${u}</span>`).join("") + `</div>`;
+  const rel = (DATA.reliability || {})[c.key], spread = quant(all, .75) - quant(all, .25), err = rel && isN(rel.noise) ? 2 * rel.noise : 0;
+  let best = null;
+  L_BY.forEach(([d, title, name]) => {
+    if (aSel[d]) return;
+    const lv = Object.keys(((LEARN.conditions || {})[d] || {}).levels || {});
+    const g = lv.map(l => [l, aValues(set.filter(s => s.cl[d] === l), c.key)]).filter(([, v]) => v.length >= 4).map(([l, v]) => [l, quant(v, .5), v.length]);
+    if (g.length < 2) return;
+    const ms = g.map(x => x[1]), diff = Math.max(...ms) - Math.min(...ms);
+    if (!diff || diff < Math.max(.5 * spread, err)) return;
+    const z = diff / (spread || 1);
+    if (!best || z > best.z) best = { z, g, title, name };
+  });
+  if (!best) return "";
+  const mx = Math.max(...best.g.map(x => Math.abs(x[1]))) || 1, u = c.unit === "°" ? "°" : c.unit ? " " + c.unit : "";
+  return `<div class="dim3" style="margin-top:6px">${best.title}:</div><div class="lbars">` + best.g.map(([l, m, n]) => `<span>${best.name(l)} <span class="dim3">(${n})</span></span><i style="width:${Math.max(3, 100 * Math.abs(m) / mx)}%"></i><span>${fmt(m, c.dec)}${u}</span>`).join("") + `</div>`;
 }
 function renderLesson(set) {
   if (!LEARN.lesson) return;
@@ -2599,11 +2639,16 @@ function renderLesson(set) {
     : `<div class="lstr dim3"><b>Cuerdas:</b> la raqueta no se ve bien en esta fase en estos golpes.</div>`;
   // one drill to practise, with its success criterion and «Conseguido» (kept only in this browser)
   const pk = keys[0], done = lDone();
+  // the drill in four stages, as coaches progress it (shadow swings → fed ball → rally → points): each
+  // «Conseguido» moves to the next stage; the phase is done after the fourth (kept only in this browser)
   if (pk) { const chk = (LEARN.checks || {})[pk.c.key] || ""; const crit = /\d+ de \d+/.test(chk) ? chk : `${chk} Objetivo: 8 de 10.`.trim();
-    document.getElementById("a-l-practice").innerHTML = `<div class="lprac"><b>Practica:</b> ${pk.c.drill}<br><span class="dim">Lo consigues cuando:</span> ${crit} <button class="btn${done[lPh] ? " done" : ""}" id="a-l-done">${done[lPh] ? "✓ Conseguido" : "Conseguido"}</button></div>`;
-    document.getElementById("a-l-done").addEventListener("click", () => { const d = lDone(); d[lPh] = !d[lPh]; try { localStorage.setItem("tb-done", JSON.stringify(d)); } catch (e) { } renderLesson(lSet); });
+    const stg = lStage(done[lPh]), ST = ["Sombras (sin bola)", "Bola lanzada", "Peloteo", "En puntos"];
+    document.getElementById("a-l-practice").innerHTML = `<div class="lprac"><b>Practica:</b> ${pk.c.drill}<br><span class="dim">Lo consigues cuando:</span> ${crit}`
+      + `<div class="lstages">${ST.map((n, i) => `<span class="${i < stg ? "ok" : i === stg ? "now" : ""}">${i + 1} ${n}</span>`).join("")}</div>`
+      + (stg < 4 ? `<button class="btn" id="a-l-done">Conseguido en «${ST[stg]}»</button>` : `<span class="dim">✓ Fase conseguida en las cuatro etapas.</span> <button class="btn" id="a-l-done">Empezar de nuevo</button>`) + `</div>`;
+    document.getElementById("a-l-done").addEventListener("click", () => { const d = lDone(); d[lPh] = stg < 4 ? stg + 1 : 0; try { localStorage.setItem("tb-done", JSON.stringify(d)); } catch (e) { } renderLesson(lSet); });
   } else document.getElementById("a-l-practice").innerHTML = "";
-  steps.querySelectorAll("button").forEach(b => b.classList.toggle("ok", !!done[b.dataset.ph]));
+  steps.querySelectorAll("button").forEach(b => b.classList.toggle("ok", lStage(done[b.dataset.ph]) >= 4));
   lReps = [...set].filter(s => s.video && isN(lTimeOf(s, lPh))).sort((a, b) => (b.repr || 0) - (a.repr || 0)); lRepI = 0;
   lLoad();
 }
