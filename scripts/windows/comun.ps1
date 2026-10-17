@@ -138,6 +138,11 @@ function Subir-Registros {
             New-Item -ItemType Directory -Force -Path "$d\investigacion" | Out-Null
             Copy-Item "$Base\output\investigacion\*" "$d\investigacion" -Recurse -Force -ErrorAction SilentlyContinue
         }
+        # videos de analisis elegidos por el usuario (peticiones "youtube"): cada carpeta, entera
+        Get-ChildItem "$Base\output" -Directory -Filter "investigacion_*" -ErrorAction SilentlyContinue | ForEach-Object {
+            New-Item -ItemType Directory -Force -Path "$d\$($_.Name)" | Out-Null
+            Copy-Item "$($_.FullName)\*" "$d\$($_.Name)" -Recurse -Force -ErrorAction SilentlyContinue
+        }
         # vista lateral de entrenamiento: el resumen y las imagenes del impacto (los videos no)
         if (Test-Path "$Base\output\entrenamiento\entrenamiento.json") {
             $e = "$d\entrenamiento"

@@ -108,3 +108,19 @@ def test_request_borrar_only_old_speed_test_folders():
     for no in ("_poc9_largo", "_smoke", "_poc_x", "..", "_poc3\\..", "videos", ""):
         assert not re.match(rx, no), no
     assert 'prueba_borrado.log' in block
+
+
+def test_request_youtube_runs_the_chosen_videos():
+    """«accion: youtube» + «urls: …»: only the videos the user chose, into output\\investigacion_<id>,
+    logged where comun.ps1 uploads it; each investigacion_* folder is uploaded to pc-logs."""
+    win = Path(__file__).resolve().parents[1] / "scripts" / "windows"
+    ps1 = (win / "ciclo_automatico.ps1").read_text(encoding="utf-8")
+    block = ps1[ps1.index('$p["accion"] -eq "youtube"'):]
+    block = block[:block.index("} elseif")]
+    assert '--urls "$($p[\'urls\'])"' in block and "investigacion_$($p['id'])" in block and "prueba_youtube.log" in block
+    comun = (win / "comun.ps1").read_text(encoding="utf-8")
+    assert comun.isascii() and '-Filter "investigacion_*"' in comun
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+    from youtube_research import video_id
+    assert [video_id(u) for u in ("https://youtu.be/A5jgd_CPohM", "https://www.youtube.com/watch?v=rcZUuIpp-y0&t=3", "cFFPGpGmkKE")] == \
+        ["A5jgd_CPohM", "rcZUuIpp-y0", "cFFPGpGmkKE"]

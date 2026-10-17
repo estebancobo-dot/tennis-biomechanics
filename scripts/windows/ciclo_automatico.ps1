@@ -85,6 +85,16 @@ function Hacer-Peticion {
         & uv run python scripts/recompute_measures.py --out-name $c 2>&1 |
             ForEach-Object { $l = "$_"; Add-Content $lg $l -Encoding UTF8; $l } | Out-Host
         "codigo de salida: $LASTEXITCODE; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "youtube") {
+        # videos de analisis que eligio el usuario (urls: ...): texto e imagenes pequenas en output\investigacion_<id>
+        $s = "$Base\output\investigacion_$($p['id'])"
+        $lg = "$Base\output\prueba_youtube.log"
+        "Peticion $($p['id']): videos de analisis elegidos por el usuario ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        Paso "Peticion $($p['id']): videos de YouTube elegidos por el usuario en output\investigacion_$($p['id'])"
+        $env:UV_NO_PROGRESS = "1"
+        & uv run python scripts/youtube_research.py --out $s --urls "$($p['urls'])" 2>&1 |
+            ForEach-Object { $l = "$_"; Add-Content $lg $l -Encoding UTF8; $l } | Out-Host
+        "codigo de salida: $LASTEXITCODE; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "borrar") {
         # borra carpetas de pruebas de velocidad ya documentadas (lo pide el usuario); solo nombres
         # _poc, _pocN o _pocN_M: nunca _poc9_largo, _smoke ni nada mas

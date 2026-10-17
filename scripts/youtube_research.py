@@ -8,6 +8,8 @@ each video: its title, channel and length, what is said (automatic subtitles as 
 few small frames (one every few seconds) to see the graphics. The video itself is deleted.
 
     python scripts/youtube_research.py --out C:/tenis/output/investigacion [--max 24]
+    python scripts/youtube_research.py --out C:/tenis/output/investigacion_14 --urls "https://youtu.be/A5jgd_CPohM ..."
+        (videos the user chose: those only, no search)
 """
 import argparse
 import json
@@ -66,6 +68,26 @@ def vtt_to_text(vtt: str) -> str:
     return "\n".join(out)
 
 
+def video_id(s: str) -> str | None:
+    m = re.search(r"(?:youtu\.be/|v=|shorts/)([\w-]{11})", s) or re.fullmatch(r"([\w-]{11})", s.strip())
+    return m.group(1) if m else None
+
+
+def chosen(urls: str) -> list[dict]:
+    """The videos the user chose, with their title, channel and length (no length limit: they asked for them)."""
+    out = []
+    for u in re.split(r"[\s,]+", urls.strip()):
+        vid = video_id(u)
+        if not vid or any(v["id"] == vid for v in out):
+            continue
+        r = ytdlp("--print", "%(id)s\t%(title)s\t%(channel)s\t%(duration)s", "--skip-download", f"https://www.youtube.com/watch?v={vid}")
+        parts = (r.stdout.strip().splitlines() or [""])[0].split("\t")
+        dur = float(parts[3]) if len(parts) >= 4 and parts[3].replace(".", "", 1).isdigit() else 0.0
+        out.append({"id": vid, "title": parts[1] if len(parts) > 1 else vid, "channel": parts[2] if len(parts) > 2 else "",
+                    "duration_s": dur, "chosen_by_user": True})
+    return out
+
+
 def one(v: dict, dest: Path, tmp: Path) -> dict:
     d = dest / v["id"]
     d.mkdir(parents=True, exist_ok=True)
@@ -80,7 +102,8 @@ def one(v: dict, dest: Path, tmp: Path) -> dict:
     vids = sorted(tmp.glob(f"{v['id']}.video.*"))
     n = 0
     if vids:
-        every = max(6.0, v["duration_s"] / 36)          # about 36 frames per video at most
+        # about 36 frames per video at most; the ones the user chose, about 90 (their graphics matter)
+        every = max(3.0, v["duration_s"] / 90) if v.get("chosen_by_user") else max(6.0, v["duration_s"] / 36)
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(vids[0]), "-vf", f"fps=1/{every:.1f},scale=480:-2", "-q:v", "6",
                         str(d / "f_%03d.jpg")], timeout=900)
         n = len(list(d.glob("f_*.jpg")))
@@ -99,14 +122,18 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--max", type=int, default=24)
     ap.add_argument("--per-query", type=int, default=6)
+    ap.add_argument("--urls", default="", help="videos chosen by the user (YouTube links or ids, separated by spaces or commas)")
     args = ap.parse_args()
     dest = Path(args.out)
     dest.mkdir(parents=True, exist_ok=True)
     if not shutil.which("ffmpeg"):
         print("Falta ffmpeg en el PATH")
         return 1
-    print("Buscando vídeos de análisis de la derecha…", flush=True)
-    vids = search(args.per_query)[: args.max]
+    if args.urls.strip():
+        vids = chosen(args.urls)
+    else:
+        print("Buscando vídeos de análisis de la derecha…", flush=True)
+        vids = search(args.per_query)[: args.max]
     print(f"{len(vids)} vídeos encontrados", flush=True)
     done = []
     with tempfile.TemporaryDirectory() as t:
