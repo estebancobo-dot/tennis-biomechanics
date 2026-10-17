@@ -268,6 +268,9 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
         v_imp = float(np.linalg.norm(pos_c[i1c] - pos_c[i0c]) / ((i1c - i0c) / fps))
         v_imp = None if v_imp > MAX_SPEED else v_imp
     out["speed_at_impact_mps"] = None if v_imp is None else round(v_imp, 2)
+    # its component towards the net (+) or towards her own baseline (−): hitting while moving back
+    if v_imp is not None:
+        out["forward_speed_at_impact_mps"] = round(float((pos_c[i1c][1] - pos_c[i0c][1]) / ((i1c - i0c) / fps)), 2)
     # how she arrives: mean speed from 0.8 to 0.3 s before contact, BEFORE the forward swing. Around
     # contact the body moves 2-3 m/s with the weight transfer of the stroke itself (hips and feet,
     # measured on the user's PC with both feet set), which is not running to the ball.

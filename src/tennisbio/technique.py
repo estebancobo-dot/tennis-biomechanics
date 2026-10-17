@@ -23,6 +23,9 @@ from .skeleton import Skeleton
 PHASES = ["ready", "takeback", "loaded", "acceleration", "impact", "extension", "finish", "recovery"]
 # a stop of the hand at the top of the backswing this long or longer is a «false loop» (≥ 4 frames at 25 fps)
 LOOP_PAUSE_S = 0.15
+# moving towards her own baseline faster than this at contact is «hitting while moving back» (a walking
+# pace; the weight transfer of a stroke hit set moves the feet midpoint well under it)
+BACK_AT_IMPACT_MPS = 0.8
 
 # descriptor → (group, Spanish name, unit, reliability 1-3, description)
 DESCRIPTORS = {
@@ -122,6 +125,8 @@ STROKE_DESCRIPTORS = {
     "feet_move_m": ("piernas", "Cuánto se mueven los pies al golpear", "m", 2, "lo que más se mueve un pie del armado al impacto (0 = pies plantados)"),
     "racket_lag_deg": ("raqueta", "Máximo retraso de la raqueta (lag)", "°", 0, "el menor ángulo antebrazo–raqueta del armado al impacto (menos = más retraso), donde la raqueta se ve"),
     "pause_at_loaded": ("ritmo", "Pausa en el armado", "s", 2, "mano casi quieta entre el armado y el swing"),
+    "last_plant_vs_bounce": ("ritmo", "Último apoyo respecto al bote", "s", 2, "− = el último pie llega al suelo antes de que bote la bola"),
+    "loaded_vs_last_plant": ("ritmo", "Armado completo respecto al último apoyo", "s", 2, "+ = termina de armar después de apoyar el último pie (corre girada y arma al final)"),
     "hand_on_handle": ("raqueta", "Mano en el mango", "%", 1, "distancia muñeca–final del mango, % de la longitud de la raqueta"),
     "racket_speed_rel": ("raqueta", "Velocidad de la raqueta (relativa)", "alt/s", 1, "punta antes y después del desenfoque, en alturas por segundo: solo para comparar sus golpes"),
 }
@@ -740,6 +745,10 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         v = ld["racket_head_lateral"]
         c["racket_plane"] = "al lado del cuerpo" if v > 5 else "por detrás de la espalda" if v < -2 else "a la altura del hombro"
     fn = out["phases"].get("finish", {})
+    if fn.get("hands_apart") is not None:      # the free hand catches the racket at the finish (wrists close)
+        c["catch_racket"] = True if fn["hands_apart"] < 15 else False if fn["hands_apart"] > 25 else None
+        if c["catch_racket"] is None:
+            del c["catch_racket"]
     if fn.get("shoulder_abd_dom") is not None and fn.get("elbow_dom") is not None:
         c["finish_3x90"] = bool(abs(fn["shoulder_abd_dom"] - 90) <= 25 and abs(fn["elbow_dom"] - 90) <= 30)
     rd = out["phases"].get("ready", {})
@@ -777,6 +786,16 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
         appr = fw.get("approach_steps") or []
         if appr and out["stroke"].get("t_takeback") is not None:
             out["stroke"]["takeback_vs_first_step"] = round(-out["stroke"]["t_takeback"] - appr[0]["t_start"], 3)
+        # the last support against the bounce, and the end of the backswing against that support
+        # (coaches: "last support firm near the bounce", "run turned, loop in the last steps")
+        lp = fw.get("last_plant_before_impact_s")
+        if lp is not None and bounce is not None:
+            out["stroke"]["last_plant_vs_bounce"] = round(-lp - (bounce - impact) / fps, 3)
+        if lp is not None and out["stroke"].get("t_loaded") is not None:
+            out["stroke"]["loaded_vs_last_plant"] = round(lp - out["stroke"]["t_loaded"], 3)
+        fv = fw.get("forward_speed_at_impact_mps")
+        if fv is not None:                   # hitting while moving back (towards her baseline) or not
+            c["back_at_impact"] = fv < -BACK_AT_IMPACT_MPS
         if fw.get("movement"):
             c["movement"] = fw["movement"]
         # feet_at_impact is kept in the footwork data but not used as a class: at 50 fps the ankle
