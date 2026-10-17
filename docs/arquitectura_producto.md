@@ -1,6 +1,34 @@
 # Arquitectura de producto: de prototipo a aplicación profesional
 
-> Documento de diseño. Está pensado para guardarse en `docs/arquitectura_producto.md`. No cambia nada del plan vigente de `CLAUDE.md`: lo ordena y le da forma de producto. La parte de móvil y nube sigue al final.
+> Documento de diseño. No cambia nada del plan vigente de `CLAUDE.md`: lo ordena y le da forma de producto.
+
+## Decisión del usuario (17-10): todo en el PC, nada en la nube y nada de pago
+
+Esta decisión manda sobre el resto del documento. Lo que habla de nube, Cloudflare, Backblaze, GPU alquilada, ntfy, healthchecks u «opciones B/C» queda **descartado**. Se conserva solo como registro de lo que se estudió.
+
+Lo que queda es la versión «local y gratis». Todo funciona en el PC, sin cuentas, suscripciones ni servicios externos.
+
+| Pieza | Cómo es |
+|---|---|
+| **Aplicación** | Un acceso directo «Tennisbio» abre una ventana propia. Por dentro es una página servida solo para el propio PC (`127.0.0.1`), sin puertos abiertos: el PC no hace de servidor para nadie. Python, que ya está instalado, más una ventana del navegador del sistema, todo gratuito. |
+| **Partidos** | Se dejan en `C:\tenis\videos\entrada\` o se arrastran a la ventana. El vídeo se reconoce por su contenido (huella SHA-256), así que moverlo o copiarlo no relanza 4,5 h. Torneo, superficie y jugadoras se proponen solos (nombre del fichero y marcador por OCR); el usuario solo confirma con un clic. Ningún YAML a mano. |
+| **Jugadores y golpes** | Ficha con nombre, mano, revés y altura. Un interruptor «analizar también a esta jugadora». El revés y el saque salen de los mismos datos (ya están en `strokes.json`). La rival reutiliza la pasada barata del vídeo. |
+| **Cola de trabajos** | Lista en el PC (SQLite, un fichero): pendiente, en curso, hecho o error. Una tarea pesada a la vez en la iGPU. Se reanuda sola tras apagar o suspender (las cachés por ventana ya lo permiten). Franja horaria opcional, por ejemplo solo de noche. |
+| **Progreso y monitorización** | Panel en la ventana con estado por partido y etapa, hora estimada de fin (con los ritmos medidos en este PC), errores con su explicación y reintento automático de los errores de la iGPU. Al terminar, al fallar o con poco disco, aviso de Windows (notificación del sistema). Ficha de calidad por partido (la auditoría como semáforo). |
+| **Almacenamiento** | Disco del PC. Por partido: ≈ 8–10 GB mientras se trabaja con él y ≈ 1,5–2 GB archivado (sin vídeo ni recortes regenerables). Guardián de espacio: avisa por debajo de 40 GB y libera solo lo regenerable. Se recuperan ya ≈ 20 GB de carpetas de prueba. |
+| **Copias** | Solo si el usuario quiere, a un disco USB propio con la copia integrada de Windows o un `robocopy` programado. Se copia solo lo que no se puede regenerar (≈ 0,1–0,5 GB por partido). Sin nube. |
+| **Móvil** | Sin nube y sin que el PC sea servidor, el móvil recibe **una copia del informe**: la carpeta del informe ya es HTML que funciona sin conexión, y existe la exportación a vídeo MP4 y PDF. Se copia por cable o a una memoria y se abre en el navegador del móvil. Para eso el informe debe ser autocontenido (llevar sus clips dentro, en 720p) y verse bien en pantalla estrecha. |
+| **Actualizaciones** | Como ahora: el ciclo trae el código y aplica lo necesario. En «producto» se separa una rama estable (lo que usa el PC) de la de desarrollo. |
+| **Calidad de software** | Tests en GitHub Actions, gratuito para este uso, en Linux y Windows. Versiones con etiqueta. Esquema versionado en los JSON. Reproducibilidad (versión, modelos y controlador en cada manifiesto). |
+
+**Orden (sin lanzar los 4 partidos hasta que el usuario lo diga):**
+
+1. **Higiene (3–5 días).** Huella del vídeo por contenido, sin recalcular nada de lo hecho. Huella de código en todas las etapas. Tests en GitHub Actions. Liberar `_poc*`.
+2. **Aplicación local mínima (2–3 semanas).** Ventana, partidos y jugadoras sin YAML, cola, panel con hora de fin y avisos de Windows.
+3. **Los 4 partidos**, desde la aplicación, cuando el usuario lo decida.
+4. **Más jugadoras y golpes.** Identidad A/B, análisis por jugadora, ventanas compartidas, rival, revés y saque.
+5. **Almacenamiento y copias.** Clases de retención, guardián de espacio, copia a USB opcional.
+6. **Móvil.** Informe autocontenido y adaptado a pantalla estrecha, que se copia al teléfono.
 
 ---
 

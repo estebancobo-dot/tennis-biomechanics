@@ -19,6 +19,16 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
 - El partido completo (los 4 partidos) se ejecuta **una sola vez, al final**, cuando todo funcione.
 - Móvil y nube: al final, después de que el PC funcione.
 
+## 17-10: decisiones y orden de trabajo (leer primero)
+
+- **Nada en la nube y nada de pago** (decisión del usuario). La aplicación profesional es local: `docs/arquitectura_producto.md`, sección «Decisión del usuario». El móvil recibe una copia del informe autocontenido, sin servidor.
+- **No lanzar los 4 partidos** hasta que el usuario lo pida.
+- **Orden pedido:**
+  1. Rehacer «Sus pies en este golpe» (fotogramas reales) y la estroboscópica («El recorrido del brazo», plegada como extra). Hecho el 17-10.
+  2. Huecos 1-6 de la guía de Ivanovic que aplican: `docs/comparacion_guia_ivanovic.md`, sección 3.
+  3. Higiene de la aplicación: huella del vídeo por contenido, huella de código en todas las etapas, CI, liberar `_poc*`.
+- **El ciclo del PC se lanza sin ventanas** (`oculto.vbs`, ciclo v4): antes aparecía un terminal cada 10 min.
+
 ## Lo último (13-10, tarde): leer primero
 - **Vídeo entero (`_poc9_largo`, 15-10; pasada fina v16):** 210 min, 129 golpes confirmados, 69 derechas (55 cercanas).
   La auditoría daba 18 «no cumplidos» por 4 causas, corregidas en origen:

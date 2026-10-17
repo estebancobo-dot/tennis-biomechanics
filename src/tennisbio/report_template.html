@@ -509,10 +509,12 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
         <div class="sub3"><b>Bajar y subir</b> <span class="dim3">la línea discontinua es la altura de su cadera en la espera; la continua, donde está ahora</span></div><div class="bm" id="bd-hip"></div><p class="say1" id="bd-hip-t"></p>
         <div class="sub3"><b>Base: distancia entre los pies</b> <span class="dim3">medida sobre la pista (homografía), en metros</span></div><div class="bm" id="bd-base"></div><p class="say1" id="bd-base-t"></p>
         <div class="sub3"><b>Tronco al terminar</b> <span class="dim3">hacia dónde mira el pecho (línea de hombros)</span></div><div class="bm" id="bd-trunk"></div><p class="say1" id="bd-trunk-t"></p></div>
-      <div class="feetwrap" id="feetwrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">Sus pies en este golpe</b> · todo el ciclo: split step, primer paso, pasos hasta la bola, ajuste y frenado, apoyo, impacto y recuperación (pulsa una línea para ir a ese momento)</div>
+      <div class="feetwrap" id="feetwrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">Sus pies en este golpe</b> · fotogramas reales de cada momento de sus pies, con la distancia entre ellos medida en la pista (pulsa para ir a ese momento)</div>
+        <p class="say1" id="feet-say"></p><div class="bm" id="feet-fr"></div>
+        <details class="secx"><summary>Extra: todos los pasos, uno a uno, y su recorrido visto desde arriba</summary>
         <div class="feet"><canvas id="feet-cv" width="360" height="460"></canvas><ol id="feet-txt"></ol></div>
-        <div class="legend" id="feet-leg" style="margin-top:6px"></div></div>
-      <div style="padding:0 12px 12px"><div class="note" style="margin-bottom:6px">Estroboscópica: esqueletos de las fases sobre el fotograma del impacto (de azul a amarillo) y trayectoria de la muñeca</div><canvas id="strobe" width="1280" height="720" style="width:100%;border-radius:6px;background:#000"></canvas></div>
+        <div class="legend" id="feet-leg" style="margin-top:6px"></div></details></div>
+      <details class="secx" style="padding:0 12px 12px"><summary>Extra: el recorrido del brazo (armado → terminación, sobre el fotograma del impacto)</summary><div class="note" style="margin-bottom:6px">Cuatro siluetas reales del mismo golpe (armado, inicio de la aceleración, impacto y terminación) y el camino de la mano solo en ese tramo</div><canvas id="strobe" width="1280" height="720" style="width:100%;border-radius:6px;background:#000"></canvas></details>
     </div>
     <div style="display:grid;gap:16px;align-content:start">
       <div class="panel">
@@ -1197,12 +1199,25 @@ async function renderStrobe(id) {
   drawFrame(ctx, c.width, c.height, f0, { skel: false, trail: false, ball: false }, TS);
   ctx.fillStyle = "rgba(0,0,0,.35)"; ctx.fillRect(0, 0, c.width, c.height);
   const [sx, sy, sw] = cropRect(f0, c.width / c.height, TS), k = c.width / sw, P = p => [(p[0] - sx) * k, (p[1] - sy) * k];
-  const ph = PH.filter(p => isN(p.t)), col = i => `hsl(${200 - 150 * i / Math.max(1, ph.length - 1)}, 90%, 60%)`;
-  ctx.lineWidth = 3; ctx.strokeStyle = "#d4f03a"; ctx.beginPath(); let st = false;
-  for (let g = 0; g < NF; g++) { const q = kpAt(g), w = q && q[domW()]; if (!w) { st = false; continue; } const [x, y] = P(w); if (st) ctx.lineTo(x, y); else ctx.moveTo(x, y); st = true; } ctx.stroke();
-  ph.forEach((p, i) => { const q = kpAt(fIdx(p.t)); if (!q) return; ctx.strokeStyle = col(i); ctx.lineWidth = 3;
+  // only the swing (loaded → finish) and only four silhouettes: all eight phases and the hand over the
+  // whole clip drew a tangle of lines that said nothing
+  const KEYS = [["loaded", "armado", "#5fd3e6"], ["acceleration", "aceleración", "#9be37b"], ["impact", "impacto", "#ffd166"], ["finish", "terminación", "#ff9f43"]];
+  const tOf = key => (PH.find(p => p.k === key) || {}).t;
+  const ta = tOf("loaded"), tb = tOf("finish"), tl = torsoLen(MAIN);
+  if (isN(ta) && isN(tb) && tb > ta) {
+    // the hand: smoothed over 5 frames, broken where it jumps (a lost or swapped keypoint)
+    const raw = []; for (let g = fIdx(ta); g <= fIdx(tb); g++) { const q = kpAt(g); raw.push(q && q[domW()]); }
+    const sm = raw.map((w, i) => { if (!w) return null; const nb = raw.slice(Math.max(0, i - 2), i + 3).filter(Boolean); return [nb.reduce((a, p) => a + p[0], 0) / nb.length, nb.reduce((a, p) => a + p[1], 0) / nb.length]; });
+    ctx.lineWidth = 4; ctx.strokeStyle = "rgba(212,240,58,.9)"; ctx.lineJoin = "round"; ctx.beginPath(); let prev = null;
+    sm.forEach(w => { if (!w) { prev = null; return; } const jump = prev && isN(tl) && Math.hypot(w[0] - prev[0], w[1] - prev[1]) > tl * .8; const [x, y] = P(w); prev && !jump ? ctx.lineTo(x, y) : ctx.moveTo(x, y); prev = w; });
+    ctx.stroke();
+  }
+  ctx.font = "600 22px Archivo, sans-serif";
+  KEYS.forEach(([key, name, col]) => { const t = tOf(key); if (!isN(t)) return; const q = kpAt(fIdx(t)); if (!q) return;
+    ctx.globalAlpha = key === "impact" ? 1 : .8; ctx.strokeStyle = col; ctx.lineWidth = key === "impact" ? 4 : 2.5;
     for (const [a, b] of BONES) { if (!q[a] || !q[b]) continue; const [x1, y1] = P(q[a]), [x2, y2] = P(q[b]); ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke(); }
-    const w = q[domW()]; if (w) { const [x, y] = P(w); ctx.fillStyle = col(i); ctx.font = "600 20px JetBrains Mono, monospace"; ctx.fillText(String(PHASE_DEF.findIndex(d => d.k === p.k) + 1), x + 8, y - 8); } });
+    ctx.globalAlpha = 1; const w = q[domW()]; if (w) { const [x, y] = P(w); ctx.fillStyle = col; ctx.beginPath(); ctx.arc(x, y, 7, 0, 7); ctx.fill();
+      const tw = ctx.measureText(name).width; ctx.fillStyle = "rgba(10,13,16,.8)"; ctx.fillRect(x + 10, y - 22, tw + 10, 28); ctx.fillStyle = col; ctx.fillText(name, x + 15, y); } });
 }
 async function renderKF() {
   const box = document.getElementById("kf"), id = cur.id;
@@ -1210,7 +1225,8 @@ async function renderKF() {
   box.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { if (b.dataset.t !== "") { stopPlay(); setT(+b.dataset.t); } }));
   if (!cur.video) {                      // no video: the measures and sentences are still shown
     await renderBallMoments(id); if (cur.id !== id) return;
-    await renderBody(id); return;
+    await renderBody(id); if (cur.id !== id) return;
+    await renderFeetFrames(id); return;
   }
   // thumbnails come from a copy of the video, so playing the stroke meanwhile is never disturbed
   const TS = await thumbSrc(); if (cur.id !== id) return;
@@ -1222,7 +1238,45 @@ async function renderKF() {
   }
   await renderBallMoments(id); if (cur.id !== id) return;
   await renderBody(id); if (cur.id !== id) return;
+  await renderFeetFrames(id); if (cur.id !== id) return;
   await renderStrobe(id);
+}
+// «Sus pies en este golpe»: a real frame at each moment of her feet (split step, first step, last
+// support before the ball, contact, start of the recovery), the bar between the ankles with its length
+// on the court, and one plain sentence each. The same values as the step list (the extra below).
+async function renderFeetFrames(id) {
+  const F = cur.feet, box = document.getElementById("feet-fr"), say = document.getElementById("feet-say");
+  if (!F) { box.innerHTML = ""; say.innerHTML = ""; return; }
+  const opp = isN(cur.tAvail) ? -cur.tAvail : null, tReady = (PH[0] || {}).t, items = [];
+  const inWin = t => isN(t) && t >= T0 && t <= T1;
+  const add = (t, title, text) => { if (!inWin(t)) return; const m = ser ? measuresAt(fIdx(snap(t)), MAIN) : {};
+    items.push({ t: snap(t), title, text: `<span class="mm">${text}</span>`, opts: { base: isN(m.base) ? `${fmt(m.base, 2)} m` : true } }); };
+  const when = (d, ref) => Math.abs(d) <= .08 ? `justo cuando ${ref}` : `${fmt(Math.abs(d), 2)} s ${d > 0 ? "después" : "antes"} de que ${ref}`;
+  // 1 split step
+  if (F.split && isN(opp) && isN(F.split_landing_vs_opp_s)) add(opp + F.split_landing_vs_opp_s, "Cae del split step", `Cae ${when(F.split_landing_vs_opp_s, "golpee la rival")}.`);
+  else if (F.split && isN(tReady)) add(tReady, "Split step", isN(opp) ? `Cae ${when(tReady - opp, "golpee la rival")}.` : "Hace un salto pequeño antes de salir.");
+  else if (isN(opp)) add(opp, "Golpe de la rival", "No se ve un split step: está así cuando golpea la rival.");
+  // 2 first step and 3 last support before the ball (the steps the ankles let us count)
+  const app = (F.steps_reliable === false ? [] : (F.approach_steps || [])).filter(s => isN(s.t_land) && s.t_land < 0);
+  if (app.length) {
+    const s0 = app[0], dirTxt = F.first_step_right_way === true ? "hacia la bola" : F.first_step_right_way === false ? "<b>hacia el lado contrario</b>" : "";
+    add(s0.t_land, "Primer paso", `Primer paso ${s0.kind ? s0.kind : ""} ${dirTxt}`.replace(/\s+/g, " ").trim() + (isN(F.first_step_length_m) ? `, de ${fmt(F.first_step_length_m, 2)} m.` : "."));
+    const sl = app[app.length - 1];
+    if (app.length > 1) add(sl.t_land, "Último apoyo antes de golpear", `Apoya ${fmt(Math.abs(sl.t_land), 2)} s antes del impacto${F.braking_step ? `: frena con un paso largo (${fmt(F.last_step_length_m, 2)} m)` : ""}${F.adjustment_steps ? `; ${F.adjustment_steps} paso${F.adjustment_steps > 1 ? "s" : ""} pequeño${F.adjustment_steps > 1 ? "s" : ""} de ajuste al final` : ""}.`);
+  }
+  // 4 contact
+  const base0 = ((cur.body || {}).base || {}).impact;
+  add(0, "Impacto", `${F.airborne_at_impact ? "Golpea en el aire (salto)" : F.sliding_at_impact ? "Golpea deslizando" : `Golpea con apoyo ${cur.stance || "—"}`}${isN(base0) ? `, los pies a ${fmt(base0, 2)} m` : ""}.`);
+  // 5 recovery
+  const rec = isN(F.recovery_start_s) ? F.recovery_start_s : ((F.recovery_steps || [])[0] || {}).t_land;
+  if (isN(rec)) add(rec, "Empieza a volver", `${F.recovery_pattern ? F.recovery_pattern[0].toUpperCase() + F.recovery_pattern.slice(1) : "Empieza a recuperar"}${isN(F.recovery_to_centre_m) ? `; en 1 s se acerca ${fmt(F.recovery_to_centre_m, 1)} m al centro` : ""}.`);
+  // one sentence for the whole stroke
+  const nSteps = app.length;
+  say.innerHTML = [isN(F.path_m) ? `Recorre <b>${fmt(F.path_m, 1)} m</b>${F.move_direction ? ` (${F.move_direction})` : ""}` : null,
+    nSteps ? `con ${nSteps} paso${nSteps > 1 ? "s" : ""} que se distinguen${F.approach_pattern ? ` (${F.approach_pattern})` : ""}` : F.steps_reliable === false ? "(en este golpe los tobillos no se ven lo bastante nítidos para contar los pasos)" : null,
+    cur.stance ? `y golpea con apoyo <b>${cur.stance}</b>` : null].filter(Boolean).join(" ").replace(/^(.)/, c => c.toUpperCase()) + ".";
+  if (say.innerHTML === ".") say.innerHTML = "";
+  await frameCards(box, items, id);
 }
 const KIND_COL = { "lateral": "#7cc4ff", "cruzado": "#ff9f43", "carrera": "#ff5fd2", "hacia delante": "#9be37b", "hacia atrás": "#c39bff", "ajuste": "#e3e8ec" };
 function renderFeetPanel() {
