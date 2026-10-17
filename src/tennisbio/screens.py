@@ -169,6 +169,12 @@ def capture(report_html: Path, dest: Path, wait_ms: int = 2500) -> Path:
             meta["learn"] = check_page(pg)
         except Exception as e:                    # a broken screen is a finding, never a crash
             meta["learn"] = {"error": str(e)[:300]}
+        # the entry screen and every screen against the definitive design (first screen, width, names)
+        try:
+            from .learn_check import check_entry
+            meta["entry"] = check_entry(pg)
+        except Exception as e:
+            meta["entry"] = {"error": str(e)[:300]}
         # «La lección»: each phase, video first and at most 3 keys with value, drill and check
         try:
             from .learn_check import check_lesson

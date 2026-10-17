@@ -168,3 +168,44 @@ def check_lesson(pg) -> dict:
             bad.append({"phase": r["phase"], "why": why})
     return {"phases": rows, "failures": bad, "with_video": sum(1 for r in rows if r["video"]),
             "with_keys": sum(1 for r in rows if r["keys"])}
+
+
+_JS_ENTRY = """() => {
+  showTab('aprende');
+  const sec = document.getElementById('tab-aprende'), v = document.querySelector('#a-lesson .lvid').getBoundingClientRect();
+  const vis = el => el.checkVisibility();
+  const words = [...sec.children].filter(vis).map(e => e.tagName === 'DETAILS' ? e.querySelector('summary').innerText : e.innerText).join(' ').split(/\\s+/).filter(Boolean).length;
+  return { vid_top: Math.round(v.top + scrollY), vid_bottom: Math.round(v.bottom + scrollY), h2: [...sec.querySelectorAll('h2')].filter(vis).length,
+           words, buttons: [...sec.querySelectorAll('button')].filter(vis).length, height: innerHeight };
+}"""
+_FILE_NAME = r"[a-z]+_[\w-]+-\d{7}"
+
+
+def check_entry(pg) -> dict:
+    """The entry screen and every screen against the definitive design (docs/diseno_definitivo.md §5):
+    the lesson video in the first screen, few headings/words/buttons when it opens, no sideways scroll
+    on any screen, no file name as the title of a stroke."""
+    out = {"entry": pg.evaluate(_JS_ENTRY), "wide": {}, "file_names": {}}
+    for t in ("aprende", "videoteca", "golpe", "comparar", "conclusiones", "explorador", "lateral", "fiabilidad", "datos"):
+        pg.evaluate(f"showTab('{t}')")
+        pg.wait_for_timeout(250)
+        w, iw = pg.evaluate("[document.documentElement.scrollWidth, innerWidth]")
+        if w > iw + 1:
+            out["wide"][t] = w
+        n = pg.evaluate(f"""(() => {{ const re = /{_FILE_NAME}/; return [...document.querySelectorAll('#tab-{t} b, #tab-{t} h2, #tab-{t} option')]
+                           .filter(e => e.checkVisibility() && re.test(e.textContent)).length; }})()""")
+        if n:
+            out["file_names"][t] = n
+    e = out["entry"]
+    bad = []
+    if e["vid_bottom"] > e["height"]:
+        bad.append(f"el vídeo de la lección acaba en y={e['vid_bottom']} (más abajo que la primera pantalla, {e['height']})")
+    if e["h2"] > 3 or e["buttons"] > 30:
+        bad.append(f"al abrir: {e['h2']} títulos y {e['buttons']} botones (máximo 3 y 30)")
+    if out["wide"]:
+        bad.append("se sale por la derecha: " + ", ".join(f"{k} ({v} px)" for k, v in out["wide"].items()))
+    if out["file_names"]:
+        bad.append("nombres de fichero como título de un golpe en: " + ", ".join(out["file_names"]))
+    out["failures"] = bad
+    pg.evaluate("showTab('aprende')")
+    return out

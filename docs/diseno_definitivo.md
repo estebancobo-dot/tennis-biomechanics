@@ -125,13 +125,15 @@ LECCIÓN (entrada)      SUS GOLPES (la prueba)      MÁS (extra técnico)
 
 ## 5. Criterios de aceptación
 
+Dónde se comprueban: `learn_check.check_lesson` (lección, fase a fase) y `learn_check.check_entry` (primera pantalla, anchura de todas las pantallas, nombres de golpe). Se ejecutan en `tests/test_learn_web.py` con datos sintéticos, y en el PC con datos reales y vídeo (`screens.py` → auditoría: «La lección…», «La lección enseña su vídeo de cada fase», «Primera pantalla, anchura y nombres»).
+
 Son automáticos: `learn_check`, `tests/test_learn_web.py` y `screens.py` en el PC. Se miden a 1280×900, 390×844 y 1440.
 
 **Primera pantalla**
 
-1. El vídeo de la lección cabe entero en la primera pantalla a 1280×900. En el móvil empieza en la primera mitad.
+1. El vídeo de la lección cabe entero en la primera pantalla a 1280×900 y a 1440. En el móvil empieza antes del 55 % de la altura.
 2. El vídeo avanza solo en ≤ 2 s. A su vídeo de cualquier fase se llega con ≤ 1 clic, y el golpe entero está a 1 clic.
-3. Por encima de la lección hay ≤ 120 px. En la primera pantalla hay ≤ 12 controles.
+3. Por encima de la lección, solo la línea de contexto. Al abrir, ≤ 30 botones visibles en toda la pantalla (hoy 19).
 
 **Lección, por fase**
 

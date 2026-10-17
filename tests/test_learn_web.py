@@ -204,3 +204,52 @@ def test_lesson_meets_the_requirements(tmp_path):
     assert r["with_keys"] == 9 and all(1 <= x["keys"] <= 3 for x in r["phases"])
     assert n_cards == len([k for k in learn_keys()])          # nothing removed: every measure still listed
     assert wide <= 400
+
+
+@pytest.mark.skipif(not CHROMIUM.exists(), reason="sin navegador para la prueba de la web")
+@pytest.mark.parametrize("w,h", [(1280, 900), (1440, 900), (390, 844)])
+def test_entry_and_every_screen_meet_the_design(tmp_path, w, h):
+    """docs/diseno_definitivo.md §5: the lesson video in the first screen, few headings and buttons
+    when it opens, no sideways scroll on any screen, no file name as the title of a stroke."""
+    from playwright.sync_api import sync_playwright
+
+    from tennisbio.learn_check import check_entry
+
+    d = tmp_path / "m1"
+    d.mkdir()
+    (d / "strokes.json").write_text(json.dumps(synthetic(120)), encoding="utf-8")
+    (d / "probe.json").write_text(json.dumps({"duration": 3600}))
+    html = build([Match("m1", None, Player("p", "P"))], tmp_path)
+    with sync_playwright() as p:
+        b = p.chromium.launch(executable_path=str(CHROMIUM), args=["--allow-file-access-from-files"])
+        pg = b.new_page(viewport={"width": w, "height": h})
+        errors = []
+        pg.on("pageerror", lambda e: errors.append(str(e)))
+        pg.goto(html.resolve().as_uri())
+        pg.wait_for_timeout(600)
+        r = check_entry(pg)
+        b.close()
+    assert not errors, errors[:3]
+    assert not r["failures"], r["failures"]
+    assert r["entry"]["vid_top"] < (0.55 * h if w < 600 else h)
+
+
+@pytest.mark.skipif(not CHROMIUM.exists(), reason="sin navegador para la prueba de la web")
+def test_report_with_no_strokes_opens_without_errors(tmp_path):
+    from playwright.sync_api import sync_playwright
+
+    d = tmp_path / "m1"
+    d.mkdir()
+    (d / "strokes.json").write_text("[]", encoding="utf-8")
+    html = build([Match("m1", None, Player("p", "P"))], tmp_path)
+    with sync_playwright() as p:
+        b = p.chromium.launch(executable_path=str(CHROMIUM), args=["--allow-file-access-from-files"])
+        pg = b.new_page()
+        errors = []
+        pg.on("pageerror", lambda e: errors.append(str(e)))
+        pg.goto(html.resolve().as_uri())
+        pg.wait_for_timeout(500)
+        note = pg.evaluate("(document.getElementById('empty-note') || {}).innerText || ''")
+        b.close()
+    assert not errors, errors[:3]
+    assert "Todavía no hay golpes analizados" in note

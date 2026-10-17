@@ -656,6 +656,15 @@ def _screens(shots_dir: Path) -> list[dict]:
                                "ok" if lr["targeted_all"] else "pocos datos",
                                f"{lr['targeted_all']} medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); "
                                f"{lr.get('glossed_all', 0)} palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados"))
+    en = meta.get("entry")
+    if en is not None:
+        if en.get("error"):
+            items.append(_item(2, "Diseño", "Primera pantalla, anchura y nombres (diseño definitivo)", "falta", f"no se pudo comprobar: {en['error']}"))
+        else:
+            e = en.get("entry") or {}
+            items.append(_item(2, "Diseño", "Primera pantalla, anchura y nombres (diseño definitivo)", "falta" if en.get("failures") else "ok",
+                               f"vídeo de la lección en y={e.get('vid_top')}–{e.get('vid_bottom')} de {e.get('height')}; al abrir {e.get('h2')} títulos, "
+                               f"{e.get('words')} palabras, {e.get('buttons')} botones" + (f"; FALLOS: {'; '.join(en['failures'])}" if en.get("failures") else "")))
     ls = meta.get("lesson")
     if ls is not None:
         if ls.get("error"):
