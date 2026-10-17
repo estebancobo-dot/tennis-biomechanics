@@ -1,6 +1,6 @@
-id: 11
-accion: borrar
-carpetas: _poc,_poc3,_poc3_4,_poc4,_poc4_4,_poc5_35,_poc5_4,_poc6_35,_poc6_4,_poc7_35,_poc7_4
+id: 12
+accion: informe
+carpeta: _poc9_largo
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
 #   poc = prueba de velocidad en carpetas aparte (4 min y despues 35 min), sin tocar output\_smoke
 #   largo = el video entero en output\_pocN_largo (una noche), sin tocar output\_smoke
