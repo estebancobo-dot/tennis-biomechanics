@@ -212,7 +212,8 @@ COACH = {
     "loaded.face_tilt": ("La cara de la raqueta al final del armado define el bucle: cerrada (hacia el suelo) o abierta.", "Elliott y Marsh 1989"),
     "class.takeback_face": ("La cara de la raqueta al final del armado define el bucle: cerrada (hacia el suelo) o abierta.", "Elliott y Marsh 1989"),
     "class.stance_loaded": ("El apoyo con el que arma decide cuánto puede girar la cadera.", "Martin 2021; Tennis Australia"),
-    "stroke.pause_at_loaded": ("Una pausa breve al final del armado sincroniza el swing con la bola.", "Elliott 2006"),
+    "stroke.pause_at_loaded": ("Del armado al swing sin pararse arriba: una pausa pierde la energía elástica del estiramiento-acortamiento; "
+                                "si hace falta esperar a la bola, se espera en el giro, no en lo alto del armado.", "Elliott 2006"),
     "loaded.racket_forearm": ("La muñeca echada hacia atrás al armar se suelta al final del swing y aporta velocidad.", "Landlinger 2010; Pedro 2022"),
     "acceleration.racket_forearm": ("La muñeca echada hacia atrás se suelta al final del swing y aporta velocidad.", "Landlinger 2010; Pedro 2022"),
     "stroke.t_acceleration": ("En las profesionales el swing hacia delante es corto y muy rápido.", "Landlinger 2010"),
