@@ -1,8 +1,9 @@
-id: 14
-accion: informe
-carpeta: _poc9_largo
+id: 15
+accion: youtube
+urls: https://youtu.be/A5jgd_CPohM https://youtu.be/rcZUuIpp-y0 https://youtu.be/cFFPGpGmkKE
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
 #   poc = prueba de velocidad en carpetas aparte (4 min y despues 35 min), sin tocar output\_smoke
 #   largo = el video entero en output\_pocN_largo (una noche), sin tocar output\_smoke
 #   informe = medidas desde las caches, informe y auditoria de output\<carpeta> (carpeta: _pocN_...)
 #   borrar = borra carpetas de pruebas de velocidad (carpetas: _poc,_pocN,_pocN_M); nunca _poc9_largo ni _smoke
+#   youtube = videos de analisis elegidos por el usuario (urls: ...) -> output\investigacion_<id>, texto y fotogramas a pc-logs
