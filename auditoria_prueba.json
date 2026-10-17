@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 270,
-  "falta": 18,
-  "pocos datos": 114,
-  "aviso": 19
+  "ok": 283,
+  "falta": 1,
+  "pocos datos": 116,
+  "aviso": 21
  },
  "items": [
   {
@@ -2559,8 +2559,8 @@
    "req": 2,
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
-   "status": "falta",
-   "detail": "1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada)",
+   "status": "ok",
+   "detail": "1890 caracteres de texto, 6 vídeos, 9 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2592,7 +2592,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "2779 caracteres de texto, 6 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']",
+   "detail": "2779 caracteres de texto, 6 vídeos, 11 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2624,7 +2624,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "1386 caracteres de texto, 6 vídeos, 0 gráficos",
+   "detail": "1383 caracteres de texto, 6 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -2737,7 +2737,7 @@
    "area": "Diseño",
    "name": "Primera pantalla, anchura y nombres (diseño definitivo)",
    "status": "falta",
-   "detail": "vídeo de la lección en y=247–809 de 900; al abrir 12 títulos, 351 palabras, 74 botones; FALLOS: al abrir: 12 títulos y 74 botones (máximo 3 y 30); se sale por la derecha: aprende (2054 px), conclusiones (1556 px)"
+   "detail": "vídeo de la lección en y=247–602 de 900; al abrir 1 títulos, 357 palabras, 23 botones; FALLOS: se sale por la derecha: conclusiones (1556 px: span.evid 152px, button.btn 55px)"
   },
   {
    "req": 1,
@@ -2778,22 +2778,22 @@
    "req": 2,
    "area": "Vistas pedidas",
    "name": "«Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm",
-   "status": "falta",
-   "detail": "3 en la pantalla"
+   "status": "ok",
+   "detail": "4 en la pantalla"
   },
   {
    "req": 2,
    "area": "Vistas pedidas",
    "name": "«Base»: fotogramas con la barra entre los pies y su distancia en la pista",
    "status": "ok",
-   "detail": "3 en la pantalla"
+   "detail": "4 en la pantalla"
   },
   {
    "req": 2,
    "area": "Vistas pedidas",
    "name": "«Tronco al terminar»: fotograma con la línea de hombros y hacia dónde mira",
-   "status": "falta",
-   "detail": "1 en la pantalla"
+   "status": "ok",
+   "detail": "2 en la pantalla"
   },
   {
    "req": 2,
@@ -2981,8 +2981,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#9 Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras",
-   "status": "falta",
-   "detail": "9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok"
   },
   {
    "req": 11,
@@ -2995,8 +2995,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía",
-   "status": "falta",
-   "detail": "188 comprobaciones: 2 falta, 35 pocos datos, 151 ok; la peor: ««Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm» (3 en la pantalla)"
+   "status": "pocos datos",
+   "detail": "188 comprobaciones: 35 pocos datos, 153 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3037,8 +3037,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»",
-   "status": "falta",
-   "detail": "10 comprobaciones: 1 falta, 1 pocos datos, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
+   "status": "pocos datos",
+   "detail": "10 comprobaciones: 1 pocos datos, 9 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 85 de 90 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -3226,8 +3226,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#44 Sin vídeos del usuario, de entrenadores ni de otras jugadoras",
-   "status": "falta",
-   "detail": "10 comprobaciones: 1 falta, 9 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
+   "status": "ok",
+   "detail": "10 comprobaciones: 10 ok"
   },
   {
    "req": 11,
@@ -3282,15 +3282,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#52 Brave, no instalar Edge",
-   "status": "falta",
-   "detail": "9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
+   "status": "ok",
+   "detail": "9 comprobaciones: 9 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#53 No pasar de 100 a 0: conservar lo anterior",
-   "status": "falta",
-   "detail": "9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
+   "status": "ok",
+   "detail": "9 comprobaciones: 9 ok"
   },
   {
    "req": 11,
@@ -3317,8 +3317,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#57 Nada de gráficas de muchas líneas ni tablas sin frases",
-   "status": "falta",
-   "detail": "9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
+   "status": "ok",
+   "detail": "9 comprobaciones: 9 ok"
   },
   {
    "req": 11,
@@ -3359,8 +3359,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#67 No borrar el trabajo hecho: lo complejo como extra",
-   "status": "falta",
-   "detail": "13 comprobaciones: 1 falta, 12 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
+   "status": "ok",
+   "detail": "13 comprobaciones: 13 ok"
   },
   {
    "req": 11,
@@ -3401,8 +3401,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#73 Revisar la web de arriba abajo para que aporte valor",
-   "status": "falta",
-   "detail": "22 comprobaciones: 3 falta, 19 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 22 comprobaciones: 22 ok"
   },
   {
    "req": 11,
@@ -3695,8 +3695,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#115 Cuánto baja y sube el cuerpo, con fotogramas y barras horizontales: de la espera al punto más bajo y del más b",
-   "status": "falta",
-   "detail": "1 comprobaciones: 1 falta; la peor: ««Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm» (3 en la pantalla)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3709,8 +3709,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#117 Hacia dónde mira el tronco al terminar (valla lateral, de frente, girado) según el golpe",
-   "status": "falta",
-   "detail": "1 comprobaciones: 1 falta; la peor: ««Tronco al terminar»: fotograma con la línea de hombros y hacia dónde mira» (1 en la pantalla)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3730,22 +3730,22 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#120 Vídeo a pantalla completa",
-   "status": "falta",
-   "detail": "9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
+   "status": "ok",
+   "detail": "9 comprobaciones: 9 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#121 Ver lo que se pinta por separado, por grupos o una a una",
-   "status": "falta",
-   "detail": "9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
+   "status": "ok",
+   "detail": "9 comprobaciones: 9 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#122 Web en 2 vistas principales y el resto en «Más», en dos grupos (funcional y técnico), sin perder datos",
-   "status": "falta",
-   "detail": "9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
+   "status": "ok",
+   "detail": "9 comprobaciones: 9 ok"
   },
   {
    "req": 11,
