@@ -199,7 +199,7 @@
 - ✔ **Cada golpe tiene su vídeo**: 10 de 10 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 10 de 10
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 2038 caracteres de texto, 6 vídeos, 9 gráficos
+- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 2038 caracteres de texto, 5 vídeos, 9 gráficos
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 3124 caracteres de texto, 6 vídeos, 1 gráficos
 - ✔ **Pantalla «Análisis de golpe»**: 4904 caracteres de texto, 7 vídeos, 31 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 3142 caracteres de texto, 6 vídeos, 2 gráficos
