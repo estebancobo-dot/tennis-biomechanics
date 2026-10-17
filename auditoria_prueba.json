@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 284,
-  "falta": 0,
-  "pocos datos": 117,
-  "aviso": 21
+  "ok": 270,
+  "falta": 17,
+  "pocos datos": 114,
+  "aviso": 19
  },
  "items": [
   {
@@ -1084,8 +1084,8 @@
    "req": 1,
    "area": "Taxonomía",
    "name": "5. Bola, resultado y contexto · Fase ataque / neutra / defensa",
-   "status": "pocos datos",
-   "detail": "se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe",
    "keys": [
     "class.intent"
    ],
@@ -2378,7 +2378,7 @@
    "area": "Valores posibles",
    "name": "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
    "status": "ok",
-   "detail": "76 medidas: 7 dudosa, 50 fiable, 10 no comprobable, 2 ruido, 3 sesgo, 4 sin juzgar. No se dan como valor suyo (ruido): takeback.shoulder_turn ±3.4, impact.face_tilt ±3.2. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
+   "detail": "80 medidas: 7 dudosa, 52 fiable, 12 no comprobable, 2 ruido, 3 sesgo, 4 sin juzgar. No se dan como valor suyo (ruido): takeback.shoulder_turn ±3.4, impact.face_tilt ±3.2. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
   },
   {
    "req": 3,
@@ -2559,8 +2559,8 @@
    "req": 2,
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
-   "status": "ok",
-   "detail": "12178 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']",
+   "status": "falta",
+   "detail": "1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada)",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2568,7 +2568,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Sus golpes (Videoteca y pista)»",
    "status": "ok",
-   "detail": "3323 caracteres de texto, 6 vídeos, 1 gráficos",
+   "detail": "3124 caracteres de texto, 6 vídeos, 1 gráficos",
    "file": "pantalla_2_videoteca.jpg"
   },
   {
@@ -2576,7 +2576,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "6693 caracteres de texto, 7 vídeos, 31 gráficos",
+   "detail": "4904 caracteres de texto, 7 vídeos, 31 gráficos",
    "file": "pantalla_3_golpe.jpg"
   },
   {
@@ -2584,7 +2584,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Comparar dos golpes»",
    "status": "ok",
-   "detail": "5273 caracteres de texto, 6 vídeos, 2 gráficos",
+   "detail": "3142 caracteres de texto, 6 vídeos, 2 gráficos",
    "file": "pantalla_4_comparar.jpg"
   },
   {
@@ -2592,7 +2592,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "6575 caracteres de texto, 6 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']",
+   "detail": "2779 caracteres de texto, 6 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2600,7 +2600,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Tabla de golpes (Explorador)»",
    "status": "ok",
-   "detail": "3223 caracteres de texto, 6 vídeos, 0 gráficos",
+   "detail": "3261 caracteres de texto, 6 vídeos, 0 gráficos",
    "file": "pantalla_6_explorador.jpg"
   },
   {
@@ -2616,7 +2616,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Fiabilidad de las medidas»",
    "status": "ok",
-   "detail": "3129 caracteres de texto, 6 vídeos, 0 gráficos",
+   "detail": "3307 caracteres de texto, 6 vídeos, 0 gráficos",
    "file": "pantalla_8_fiabilidad.jpg"
   },
   {
@@ -2624,7 +2624,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "1269 caracteres de texto, 6 vídeos, 0 gráficos",
+   "detail": "1709 caracteres de texto, 6 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -2652,13 +2652,6 @@
    "req": 2,
    "area": "Vídeo",
    "name": "Reproducir: Comparar golpes → ▶",
-   "status": "ok",
-   "detail": "el vídeo arranca y avanza"
-  },
-  {
-   "req": 2,
-   "area": "Vídeo",
-   "name": "Reproducir: Panel → ▶ vídeos de una conclusión",
    "status": "ok",
    "detail": "el vídeo arranca y avanza"
   },
@@ -2693,13 +2686,6 @@
   {
    "req": 2,
    "area": "Vídeo",
-   "name": "Reproducir: Panel → ▶ vídeos de una conclusión (con las animaciones de Windows desactivadas)",
-   "status": "ok",
-   "detail": "el vídeo arranca y avanza"
-  },
-  {
-   "req": 2,
-   "area": "Vídeo",
    "name": "El vídeo del golpe se reproduce al pulsar ▶",
    "status": "ok",
    "detail": "avanza y sigue reproduciéndose"
@@ -2709,21 +2695,21 @@
    "area": "Aprende su derecha",
    "name": "La pantalla responde a cada combinación",
    "status": "ok",
-   "detail": "1104 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 93840 puntos de control comprobados; 299 con golpes exactos"
+   "detail": "1407 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 126630 puntos de control comprobados; 429 con golpes exactos"
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha",
    "status": "pocos datos",
-   "detail": "0 golpes exactos, 9 parecidos; 80 de 85 puntos con su valor medido"
+   "detail": "0 golpes exactos, 9 parecidos; 85 de 90 puntos con su valor medido"
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "Lo que la distingue: su firma (rasgos que repite) con vídeo",
    "status": "ok",
-   "detail": "5 rasgos que repite en ≥ 75 % de sus golpes, solo de medidas fiables"
+   "detail": "4 rasgos que repite en ≥ 75 % de sus golpes, solo de medidas fiables"
   },
   {
    "req": 1,
@@ -2737,14 +2723,14 @@
    "area": "Aprende su derecha",
    "name": "Puntos de «Aprende» con su valor medido (todas sus derechas)",
    "status": "ok",
-   "detail": "80 de 85; el resto dice por qué falta"
+   "detail": "85 de 90; el resto dice por qué falta"
   },
   {
    "req": 1,
    "area": "Aprende su derecha",
    "name": "«Tu objetivo»: la consigna con su número en cada medida suya fiable",
    "status": "ok",
-   "detail": "54 medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); 72 palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados"
+   "detail": "53 medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); 76 palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados"
   },
   {
    "req": 1,
@@ -2785,22 +2771,22 @@
    "req": 2,
    "area": "Vistas pedidas",
    "name": "«Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm",
-   "status": "ok",
-   "detail": "4 en la pantalla"
+   "status": "falta",
+   "detail": "3 en la pantalla"
   },
   {
    "req": 2,
    "area": "Vistas pedidas",
    "name": "«Base»: fotogramas con la barra entre los pies y su distancia en la pista",
    "status": "ok",
-   "detail": "4 en la pantalla"
+   "detail": "3 en la pantalla"
   },
   {
    "req": 2,
    "area": "Vistas pedidas",
    "name": "«Tronco al terminar»: fotograma con la línea de hombros y hacia dónde mira",
-   "status": "ok",
-   "detail": "2 en la pantalla"
+   "status": "falta",
+   "detail": "1 en la pantalla"
   },
   {
    "req": 2,
@@ -2819,7 +2805,7 @@
   {
    "req": 2,
    "area": "Vistas pedidas",
-   "name": "Novedades de la versión en la pantalla de entrada",
+   "name": "Novedades de la versión (en «Datos del análisis»)",
    "status": "ok",
    "detail": "1 en la pantalla"
   },
@@ -2884,7 +2870,7 @@
    "area": "PDF",
    "name": "Resumen PDF",
    "status": "ok",
-   "detail": "6 páginas, 0.8 MB"
+   "detail": "5 páginas, 0.6 MB"
   },
   {
    "req": 3,
@@ -2954,7 +2940,7 @@
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b",
    "status": "pocos datos",
-   "detail": "192 comprobaciones: 46 pocos datos, 146 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "192 comprobaciones: 45 pocos datos, 147 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -2988,22 +2974,22 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#9 Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok"
+   "status": "falta",
+   "detail": "9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#10 Ver los cambios en la prueba rápida, sin 1 h",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 11 comprobaciones: 11 ok"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía",
-   "status": "pocos datos",
-   "detail": "188 comprobaciones: 36 pocos datos, 152 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "falta",
+   "detail": "188 comprobaciones: 2 falta, 35 pocos datos, 151 ok; la peor: ««Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm» (3 en la pantalla)"
   },
   {
    "req": 11,
@@ -3044,8 +3030,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»",
-   "status": "pocos datos",
-   "detail": "10 comprobaciones: 1 pocos datos, 9 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 80 de 85 puntos con su valor medido)"
+   "status": "falta",
+   "detail": "10 comprobaciones: 1 falta, 1 pocos datos, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
   },
   {
    "req": 11,
@@ -3220,7 +3206,7 @@
    "area": "Peticiones",
    "name": "#42 Un golpe no son 8 pantallazos: vídeo y más",
    "status": "ok",
-   "detail": "11 comprobaciones: 11 ok"
+   "detail": "9 comprobaciones: 9 ok"
   },
   {
    "req": 11,
@@ -3233,8 +3219,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#44 Sin vídeos del usuario, de entrenadores ni de otras jugadoras",
-   "status": "ok",
-   "detail": "10 comprobaciones: 10 ok"
+   "status": "falta",
+   "detail": "10 comprobaciones: 1 falta, 9 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
   },
   {
    "req": 11,
@@ -3255,7 +3241,7 @@
    "area": "Peticiones",
    "name": "#47 Modelo técnico con fuentes; cómo saber si está completo",
    "status": "pocos datos",
-   "detail": "166 comprobaciones: 27 pocos datos, 139 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "166 comprobaciones: 26 pocos datos, 140 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3289,15 +3275,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#52 Brave, no instalar Edge",
-   "status": "ok",
-   "detail": "9 comprobaciones: 9 ok"
+   "status": "falta",
+   "detail": "9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#53 No pasar de 100 a 0: conservar lo anterior",
-   "status": "ok",
-   "detail": "9 comprobaciones: 9 ok"
+   "status": "falta",
+   "detail": "9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
   },
   {
    "req": 11,
@@ -3324,8 +3310,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#57 Nada de gráficas de muchas líneas ni tablas sin frases",
-   "status": "ok",
-   "detail": "9 comprobaciones: 9 ok"
+   "status": "falta",
+   "detail": "9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
   },
   {
    "req": 11,
@@ -3353,7 +3339,7 @@
    "area": "Peticiones",
    "name": "#65 El play del vídeo funciona (no solo un fotograma)",
    "status": "ok",
-   "detail": "11 comprobaciones: 11 ok"
+   "detail": "9 comprobaciones: 9 ok"
   },
   {
    "req": 11,
@@ -3366,22 +3352,22 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#67 No borrar el trabajo hecho: lo complejo como extra",
-   "status": "ok",
-   "detail": "13 comprobaciones: 13 ok"
+   "status": "falta",
+   "detail": "13 comprobaciones: 1 falta, 12 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#68 La meta: mejorar mi derecha tomando la de X como base",
    "status": "pocos datos",
-   "detail": "8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 80 de 85 puntos con su valor medido)"
+   "detail": "8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 85 de 90 puntos con su valor medido)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica",
    "status": "pocos datos",
-   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 80 de 85 puntos con su valor medido)"
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 85 de 90 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -3402,14 +3388,14 @@
    "area": "Peticiones",
    "name": "#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos",
    "status": "pocos datos",
-   "detail": "167 comprobaciones: 27 pocos datos, 140 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "167 comprobaciones: 26 pocos datos, 141 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#73 Revisar la web de arriba abajo para que aporte valor",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 22 comprobaciones: 22 ok"
+   "status": "falta",
+   "detail": "22 comprobaciones: 3 falta, 19 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
   },
   {
    "req": 11,
@@ -3702,8 +3688,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#115 Cuánto baja y sube el cuerpo, con fotogramas y barras horizontales: de la espera al punto más bajo y del más b",
-   "status": "ok",
-   "detail": "1 comprobaciones: 1 ok"
+   "status": "falta",
+   "detail": "1 comprobaciones: 1 falta; la peor: ««Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm» (3 en la pantalla)"
   },
   {
    "req": 11,
@@ -3716,8 +3702,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#117 Hacia dónde mira el tronco al terminar (valla lateral, de frente, girado) según el golpe",
-   "status": "ok",
-   "detail": "1 comprobaciones: 1 ok"
+   "status": "falta",
+   "detail": "1 comprobaciones: 1 falta; la peor: ««Tronco al terminar»: fotograma con la línea de hombros y hacia dónde mira» (1 en la pantalla)"
   },
   {
    "req": 11,
@@ -3737,22 +3723,22 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#120 Vídeo a pantalla completa",
-   "status": "ok",
-   "detail": "9 comprobaciones: 9 ok"
+   "status": "falta",
+   "detail": "9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#121 Ver lo que se pinta por separado, por grupos o una a una",
-   "status": "ok",
-   "detail": "9 comprobaciones: 9 ok"
+   "status": "falta",
+   "detail": "9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#122 Web en 2 vistas principales y el resto en «Más», en dos grupos (funcional y técnico), sin perder datos",
-   "status": "ok",
-   "detail": "9 comprobaciones: 9 ok"
+   "status": "falta",
+   "detail": "9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada))"
   },
   {
    "req": 11,
