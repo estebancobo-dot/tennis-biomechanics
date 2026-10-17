@@ -115,7 +115,9 @@ def one(v: dict, dest: Path, tmp: Path) -> dict:
     if subs:
         (d / "dicho.txt").write_text(vtt_to_text(subs[0].read_text(encoding="utf-8", errors="replace")), encoding="utf-8")
     v["subtitles"] = bool(subs)
-    vid_args = ("-f", "worst[height>=240][ext=mp4]/worst[height>=240]/worst", "-o", str(tmp / "%(id)s.video.%(ext)s"), url)
+    # sort instead of filter: the smallest stream near 360p of whatever YouTube offers (video only is enough for
+    # frames); a filter such as «worst[ext=mp4]» fails outright when YouTube offers only other containers
+    vid_args = ("-f", "bv*/b", "-S", "res:360,+size", "-o", str(tmp / "%(id)s.video.%(ext)s"), url)
     errors = []
     for cmd in [None, *FALLBACKS]:
         r = ytdlp(*vid_args, timeout=900, cmd=cmd)
