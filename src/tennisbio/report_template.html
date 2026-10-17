@@ -205,6 +205,22 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .bmwrap { padding: 0 12px 12px; }
 .feetwrap { padding: 0 12px 14px; }
 .cpk.flash { outline: 2px solid var(--accent); outline-offset: 2px; }
+.lsteps { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
+.lsteps button { border: 1px solid var(--line); background: transparent; color: var(--ink-2); border-radius: 999px; padding: 5px 11px; font: inherit; font-size: 13px; cursor: pointer; }
+.lsteps button[aria-pressed="true"] { background: var(--accent); color: #111; border-color: var(--accent); font-weight: 700; }
+.lgrid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 18px; }
+@media (max-width: 900px) { .lgrid { grid-template-columns: 1fr; } }
+.lvid { position: relative; border-radius: 8px; overflow: hidden; background: #000; }
+.lvid canvas { width: 100%; display: block; } .lnovid { padding: 30px 16px; color: var(--ink-2); }
+.lctrl { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 8px; }
+.ltitle { margin: 0; font-size: 20px; }
+.lkey { border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; margin-top: 10px; }
+.lkey h4 { margin: 0 0 4px; font-size: 15px; display: flex; gap: 8px; align-items: center; }
+.lkey .ln { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: #111; font-weight: 800; font-size: 12px; flex: none; }
+.lkey .lh { font-size: 14.5px; } .lkey .lh b { color: var(--accent); }
+.lkey .lhow { font-size: 13.5px; margin-top: 6px; display: grid; gap: 3px; } .lkey .lhow span.l { color: var(--ink-3); }
+.lbars { display: grid; grid-template-columns: 120px 1fr 64px; gap: 3px 8px; align-items: center; font-size: 12.5px; margin-top: 6px; }
+.lbars i { display: block; height: 10px; border-radius: 3px; background: var(--s1, #5fd3e6); }
 .feet { display: grid; grid-template-columns: 240px 1fr; gap: 14px; align-items: start; }
 @media (max-width: 700px) { .feet { grid-template-columns: 1fr; } }
 .feet canvas { width: 100%; background: #10281e; border-radius: 6px; }
@@ -414,12 +430,18 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 <p class="dim3" id="a-guide-show" hidden style="margin:0 0 10px"><a href="#" id="a-guide-open">¿Cómo se usa esta pantalla? Ver la guía</a> · <a href="#" id="a-gloss-go2">Glosario</a></p>
 <p class="intro"><b>Aprende su derecha.</b> Elige el golpe que quieres copiar (dirección, apoyo, cómo llega, efecto…). Verás sus golpes de ese tipo en vídeo y, fase a fase, lo que hace ella (medido en sus golpes), cómo hacerlo tú, el error típico y un ejercicio.</p>
 <div class="panel"><header><h2>1 · ¿Qué golpe quieres aprender?</h2><button class="btn" id="a-clear">Quitar todo</button></header><div class="body" id="a-cond" style="padding:12px 16px"></div></div>
+<div class="panel lesson" style="margin-top:16px" id="a-lesson"><header><h2>La lección: su derecha, fase a fase</h2><span class="note" id="a-l-src"></span></header>
+<div class="body" style="padding:12px 16px"><div class="lsteps" id="a-l-steps"></div>
+<div class="lgrid"><div><div class="lvid"><canvas id="a-l-cv" width="960" height="600"></canvas><div class="lnovid" id="a-l-nov" hidden></div></div>
+<div class="lctrl"><button class="btn" id="a-l-play">❚❚ Pausa</button><button class="btn" id="a-l-next">Otro golpe suyo</button><button class="btn" id="a-l-open">Ver el golpe entero</button><span class="dim3" id="a-l-cap"></span></div></div>
+<div><h3 class="ltitle" id="a-l-title"></h3><p class="dim" id="a-l-when" style="margin:2px 0 8px"></p><div class="focus" id="a-l-focus"></div><div id="a-l-keys"></div>
+<p class="dim3" style="margin:10px 0 0"><a href="#" id="a-l-all">Todas las medidas de esta fase</a> · lo de «Cómo», «Ejercicio» y «Cómo comprobarlo» es conocimiento de entrenadores; los números son suyos.</p></div></div></div></div>
 <div class="panel" style="margin-top:16px"><header><h2>2 · Sus golpes de ese tipo</h2></header><div class="body" id="a-res" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px"><header><h2>Su firma: lo que repite en casi todos estos golpes</h2><span class="note">medido; solo rasgos fiables</span></header><div class="body" id="a-sig" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px"><header><h2>Su ritmo, distancia y peso</h2><span class="note">medido; cada línea lleva a su fase</span></header><div class="body" id="a-rhythm" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px" id="a-sitp"><header><h2>3 · Qué cambia en este golpe</h2><span class="note" id="a-src1"></span></header><ul class="say" id="a-sit"></ul></div>
-<h2 style="margin:22px 0 10px">4 · Fase a fase: lo que hace ella y cómo hacerlo tú</h2>
-<div id="a-phases" style="display:grid;gap:14px"></div>
+<details class="extra secx" id="a-phases-d" style="margin-top:22px"><summary><b>4 · Todas las medidas, fase a fase</b> · la lista completa (lo de la lección y todo lo demás)</summary>
+<div id="a-phases" style="display:grid;gap:14px;margin-top:10px"></div></details>
 <div class="panel" style="margin-top:16px"><header><h2>5 · Tu plan: 3 prioridades, en orden</h2><span class="note">una cada vez; cuando salga sola, la siguiente</span></header><ol class="say" id="a-plan"></ol>
 <details class="extra" style="margin:0 16px 12px"><summary>Plan completo, fase a fase</summary><ol class="say" id="a-plan-all"></ol></details></div>
 <div class="panel" style="margin-top:16px"><header><h2>Si te pasa…</h2><span class="note" id="a-sym-src"></span></header><ul class="say" id="a-sym"></ul></div>
@@ -1092,6 +1114,14 @@ function drawFrame(ctx, Wc, Hc, f, opts, S = MAIN) {
     [a, b].forEach(p => { ctx.beginPath(); ctx.moveTo(p[0], p[1] - lw * 5); ctx.lineTo(p[0], p[1] + lw * 5); ctx.stroke(); });
     if (opts.base !== true) { ctx.font = `600 ${Math.max(11, lw * 7)}px JetBrains Mono, monospace`; const txt = opts.base, w = ctx.measureText(txt).width, x = (a[0] + b[0]) / 2 - w / 2, y = Math.max(a[1], b[1]) + lw * 12;
       ctx.fillStyle = "rgba(10,13,16,.8)"; ctx.fillRect(x - 4, y - lw * 7, w + 8, lw * 9); ctx.fillStyle = "#ffd166"; ctx.fillText(txt, x, y); }
+    ctx.restore();
+  }
+  if (opts.hand && q) {
+    const sh = q[PL.hand === "left" ? 5 : 6], w = q[dw], R = fk ? fk.map(P) : null;
+    ctx.save(); ctx.font = `700 ${Math.max(12, lw * 7)}px Archivo, sans-serif`;
+    if (sh) { const [, y] = P(sh); ctx.strokeStyle = "rgba(233,238,242,.9)"; ctx.lineWidth = lw; ctx.setLineDash([lw * 4, lw * 3]); ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(Wc, y); ctx.stroke(); ctx.setLineDash([]); ctx.fillStyle = "#e9eef2"; ctx.fillText("altura del hombro", 10, y - lw * 3); }
+    if (w) { const [x, y] = P(w); ctx.strokeStyle = "#d4f03a"; ctx.lineWidth = lw * 1.6; ctx.beginPath(); ctx.arc(x, y, lw * 6, 0, 7); ctx.stroke(); }
+    if (R) { const c = [(R[0][0] + R[1][0]) / 2, (R[0][1] + R[1][1]) / 2]; ctx.strokeStyle = "#5fd3e6"; ctx.lineWidth = lw * 1.6; ctx.beginPath(); ctx.arc(c[0], c[1], lw * 7, 0, 7); ctx.stroke(); }
     ctx.restore();
   }
   if (opts.court) miniCourt(ctx, Wc, Hc, f, S);
@@ -2459,11 +2489,93 @@ function renderLearn() {
     return `<li><b>${sy.s}</b> · <span class="dim">${sy.why}</span><br><span class="dim">Compárate con ella:</span> ${chips}</li>`; }).join("");
   // a line of the rhythm or a symptom chip goes to its checkpoint card
   document.querySelectorAll("#a-rhythm [data-go], #a-sym [data-go]").forEach(b => b.addEventListener("click", ev => { ev.preventDefault();
+    document.getElementById("a-phases-d").open = true;
     const el = document.querySelector(`#a-phases .cpk[data-key="${b.dataset.go}"]`); if (el) { el.scrollIntoView({ behavior: "smooth", block: "center" }); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1600); } }));
+  renderLesson(set);
   // 6. what TV cannot measure from the user's list, and what to do anyway
   document.getElementById("a-nottv").innerHTML = LEARN.not_tv.map(([w, h]) => `<li><b>${w}</b>: ${h}</li>`).join("");
 }
 document.getElementById("a-clear").addEventListener("click", () => { aSel = {}; renderLearn(); });
+/* ===== LA LECCIÓN: video first, at most 3 keys per phase (learn.LESSON), as the pro apps teach ===== */
+const LS = mkSrc(), L_ORDER = ["ready", "takeback", "loaded", "acceleration", "impact", "extension", "finish", "recovery", "feet"];
+let lPh = "ready", lSet = [], lReps = [], lRepI = 0, lPlay = true, lGen = 0, lWin = [0, 0], lTimer = 0;
+const lPhase = id => LEARN.phases.find(p => p.id === id);
+const lName = id => id === "feet" ? "Pies" : (PHASE_DEF.find(d => d.k === id) || {}).n || id;
+function lTimeOf(s, id) {
+  if (id === "feet") { const st = ((s.feet || {}).approach_steps || []).filter(x => isN(x.t_land) && x.t_land < 0); if (st.length) return st[st.length - 1].t_land; id = "loaded"; }
+  return s.phases && isN(s.phases[id]) ? s.phases[id] : null;
+}
+// her value of a key by ball speed, shown only when the levels differ beyond her spread and the measuring error
+function lBySpeed(set, c) {
+  const lv = Object.keys(((LEARN.conditions || {}).ball_speed || {}).levels || {}), all = aValues(set, c.key);
+  if (all.length < 8 || typeof all[0] !== "number") return "";
+  const rel = (DATA.reliability || {})[c.key], spread = quant(all, .75) - quant(all, .25);
+  const g = lv.map(l => [l, aValues(set.filter(s => s.cl.ball_speed === l), c.key)]).filter(([, v]) => v.length >= 4).map(([l, v]) => [l, quant(v, .5), v.length]);
+  if (g.length < 2) return "";
+  const ms = g.map(x => x[1]), d = Math.max(...ms) - Math.min(...ms);
+  if (d < Math.max(.5 * spread, rel && isN(rel.noise) ? 2 * rel.noise : 0) || !d) return "";
+  const mx = Math.max(...ms.map(Math.abs)) || 1, u = c.unit === "°" ? "°" : c.unit ? " " + c.unit : "";
+  return `<div class="dim3" style="margin-top:6px">Cambia con la bola:</div><div class="lbars">` + g.map(([l, m, n]) => `<span>bola ${l} <span class="dim3">(${n})</span></span><i style="width:${Math.max(3, 100 * Math.abs(m) / mx)}%"></i><span>${fmt(m, c.dec)}${u}</span>`).join("") + `</div>`;
+}
+function renderLesson(set) {
+  if (!LEARN.lesson) return;
+  lSet = set;
+  document.getElementById("a-l-src").textContent = `${set.length} golpes suyos · los de arriba`;
+  const steps = document.getElementById("a-l-steps");
+  steps.innerHTML = L_ORDER.filter(id => lPhase(id)).map((id, i) => `<button data-ph="${id}" aria-pressed="${id === lPh}">${id === "feet" ? "" : i + 1 + " "}${lName(id)}</button>`).join("");
+  steps.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { lPh = b.dataset.ph; renderLesson(lSet); }));
+  const ph = lPhase(lPh), L = LEARN.lesson[lPh] || { keys: [], mark: "skel" }, byKey = {};
+  LEARN.phases.forEach(p => p.checkpoints.forEach(c => { byKey[c.key] = c; }));
+  document.getElementById("a-l-title").textContent = lPh === "feet" ? "Pies: del split step a la bola" : ph.title;
+  document.getElementById("a-l-when").textContent = ph.when;
+  document.getElementById("a-l-focus").innerHTML = ph.focus ? `<b>Foco:</b> ${gloss(ph.focus)}` : "";
+  // the first 3 keys of this phase with a value of hers that can be trusted in these strokes
+  const keys = [], missing = [];
+  L.keys.forEach(k => { const c = byKey[k]; if (!c || keys.length >= 3) return; const st = aStat(set, c); if (st.txt) keys.push({ c, st }); else missing.push({ c, st }); });
+  document.getElementById("a-l-keys").innerHTML = keys.length ? keys.map(({ c, st }, i) =>
+    `<div class="lkey" data-key="${c.key}"><h4><span class="ln">${i + 1}</span><span>${gloss(c.label)}</span></h4>`
+    + `<div class="lh">Ella: <b>${st.txt.replace(/<[^>]+>/g, "")}</b> <span class="dim3">· ${c.read}</span> ${st.n >= A_MIN ? `<span class="badge firm">${st.n} golpes</span>` : `<span class="badge prov">${st.n} golpe${st.n > 1 ? "s" : ""} · provisional</span>`}${st.warn || ""}</div>`
+    + aTarget(st, c) + lBySpeed(set, c)
+    + `<div class="lhow"><div><span class="l">Cómo:</span> ${gloss(c.cue)}</div><div><span class="l">Ejercicio:</span> ${c.drill}</div>${(LEARN.checks || {})[c.key] ? `<div><span class="l">Cómo comprobarlo:</span> ${LEARN.checks[c.key]}</div>` : ""}</div></div>`).join("")
+    : `<p class="dim">Todavía no hay valores suyos fiables de esta fase en estos golpes: ${missing.slice(0, 3).map(({ c, st }) => `${c.label.toLowerCase()} (${st.why || aWhyMissing(set, c)})`).join("; ")}.</p>`;
+  lReps = [...set].filter(s => s.video && isN(lTimeOf(s, lPh))).sort((a, b) => (b.repr || 0) - (a.repr || 0)); lRepI = 0;
+  lLoad();
+}
+async function lLoad() {
+  const g = ++lGen, s = lReps[lRepI], cv = document.getElementById("a-l-cv"), nov = document.getElementById("a-l-nov");
+  clearTimeout(lTimer); try { LS.video.pause(); } catch (e) { }
+  cv.hidden = !s; nov.hidden = !!s;
+  if (!s) { nov.textContent = "Sin vídeo de esta fase en estos golpes."; document.getElementById("a-l-cap").textContent = ""; return; }
+  await loadSrc(LS, s); if (g !== lGen) return;
+  const t = lTimeOf(s, lPh); lWin = [Math.max(LS.T0, t - .3), Math.min(LS.T1, t + .3)];
+  document.getElementById("a-l-cap").textContent = `golpe ${lRepI + 1} de ${lReps.length} · ${sitTxt(s)} · en bucle a 0,25×`;
+  try { LS.video.playbackRate = .25; LS.video.currentTime = s.vImpact + lWin[0]; if (lPlay) await LS.video.play(); } catch (e) { }
+  lLoop(g);
+}
+function lOpts(f) {
+  const m = (LEARN.lesson[lPh] || {}).mark || "skel", o = { skel: true, trail: false, ball: false };
+  if (m === "hand") o.hand = true; else if (m === "lines") o.lines = true; else if (m === "heights") o.heights = true;
+  else if (m === "base") { const b = measuresAt(f, LS).base; o.base = isN(b) ? `${fmt(b, 2)} m` : true; }
+  return o;
+}
+function lLoop(g) {
+  if (g !== lGen) return;
+  const s = lReps[lRepI], cv = document.getElementById("a-l-cv"), vis = !document.getElementById("tab-aprende").hidden && !document.hidden;
+  if (s && vis && LS.ser) {
+    let t = LS.video.currentTime - s.vImpact;
+    if (t > lWin[1] || t < lWin[0] - .05) { try { LS.video.currentTime = s.vImpact + lWin[0]; } catch (e) { } t = lWin[0]; }
+    const f = kF(LS, t), ctx = cv.getContext("2d");
+    drawFrame(ctx, cv.width, cv.height, f, lOpts(f), LS);
+    const lab = `${lName(lPh)} · ${t >= 0 ? "+" : "−"}${fmt(Math.abs(t), 2)} s`; ctx.font = "600 22px JetBrains Mono, monospace";
+    const w = ctx.measureText(lab).width; ctx.fillStyle = "rgba(10,13,16,.8)"; ctx.fillRect(12, 12, w + 24, 38); ctx.fillStyle = "#d4f03a"; ctx.fillText(lab, 24, 39);
+  }
+  if (vis && lPlay) requestAnimationFrame(() => lLoop(g)); else lTimer = setTimeout(() => lLoop(g), 400);
+}
+document.getElementById("a-l-play").addEventListener("click", ev => { lPlay = !lPlay; ev.target.textContent = lPlay ? "❚❚ Pausa" : "▶ Seguir"; try { lPlay ? LS.video.play() : LS.video.pause(); } catch (e) { } });
+document.getElementById("a-l-next").addEventListener("click", () => { if (lReps.length) { lRepI = (lRepI + 1) % lReps.length; lLoad(); } });
+document.getElementById("a-l-open").addEventListener("click", () => { const s = lReps[lRepI]; if (s) { lPlay = false; LS.video.pause(); aOpen(s.id, lPh === "feet" ? "loaded" : lPh); } });
+document.getElementById("a-l-all").addEventListener("click", ev => { ev.preventDefault(); const d = document.getElementById("a-phases-d"); d.open = true;
+  const el = document.querySelector(`#a-phases .lcard[data-phase="${lPh}"]`); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); });
 showTab((location.hash || "").slice(1));
 renderModel();
 </script>

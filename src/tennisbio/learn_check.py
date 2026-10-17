@@ -79,6 +79,8 @@ def combos(conditions: dict, extra: list[dict] | None = None, pairs: bool = True
 def check_page(pg, pairs: bool = True, extra: list[dict] | None = None) -> dict:
     """Runs every combination on an open report page (Playwright). Returns the summary and failures."""
     pg.evaluate("document.querySelector('.nav button[data-tab=\"aprende\"]').click()")
+    # the full list of measures is folded under the lesson: unfolded to read it as the user would
+    pg.evaluate("(d => { if (d) d.open = true; })(document.getElementById('a-phases-d'))")
     pg.wait_for_timeout(300)
     conds = pg.evaluate("Object.fromEntries(Object.entries(LEARN.conditions).map(([d, c]) => [d, Object.keys(c.levels)]))")
     from .learn import content
@@ -103,3 +105,47 @@ def check_page(pg, pairs: bool = True, extra: list[dict] | None = None) -> dict:
         if lv:
             fails.append({"sel": {d: lv}, "bad": ["condición que el código define y la página no ofrece"]})
     return {"combinations": len(todo), "with_exact_strokes": with_strokes, "checkpoints_checked": rows, "failures": fails, **extra_out}
+
+
+_JS_LESSON = """async () => {
+  const out = [], steps = [...document.querySelectorAll('#a-l-steps button')].map(b => b.dataset.ph);
+  for (const ph of steps) {
+    document.querySelector(`#a-l-steps button[data-ph="${ph}"]`).click();
+    await new Promise(r => setTimeout(r, 700));
+    const keys = [...document.querySelectorAll('#a-l-keys .lkey')];
+    const panel = document.getElementById('a-lesson').getBoundingClientRect();
+    out.push({ phase: ph, keys: keys.length,
+      valued: keys.filter(k => /Ella:\\s*\\S/.test(k.innerText) && !/—/.test(k.querySelector('.lh b')?.innerText || '—')).length,
+      checked: keys.filter(k => k.innerText.includes('Cómo comprobarlo')).length,
+      drilled: keys.filter(k => k.innerText.includes('Ejercicio')).length,
+      reason: keys.length ? '' : (document.getElementById('a-l-keys').innerText || '').slice(0, 160),
+      reps: typeof lReps !== 'undefined' ? lReps.length : 0,
+      video: typeof LS !== 'undefined' && LS.video.readyState >= 2 && !document.getElementById('a-l-cv').hidden,
+      height: Math.round(panel.height) });
+  }
+  return out;
+}"""
+
+
+def check_lesson(pg) -> dict:
+    """«La lección» against the user's requirements: per phase at most 3 keys, each with her value, a
+    drill and how to check it (or the reason none is given); her video of the phase; the lesson fits in
+    about one screen and a half (1280 × 900)."""
+    pg.evaluate("showTab('aprende')")
+    pg.wait_for_timeout(300)
+    rows = pg.evaluate(_JS_LESSON)
+    bad = []
+    for r in rows:
+        why = []
+        if r["keys"] > 3:
+            why.append(f"{r['keys']} claves (máximo 3)")
+        if not r["keys"] and not r["reason"]:
+            why.append("sin claves y sin decir por qué")
+        if r["valued"] < r["keys"] or r["checked"] < r["keys"] or r["drilled"] < r["keys"]:
+            why.append("una clave sin su valor, su ejercicio o cómo comprobarlo")
+        if r["height"] > 1400:
+            why.append(f"la lección mide {r['height']} px (más de pantalla y media)")
+        if why:
+            bad.append({"phase": r["phase"], "why": why})
+    return {"phases": rows, "failures": bad, "with_video": sum(1 for r in rows if r["video"]),
+            "with_keys": sum(1 for r in rows if r["keys"])}

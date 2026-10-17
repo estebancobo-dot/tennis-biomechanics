@@ -169,6 +169,13 @@ def capture(report_html: Path, dest: Path, wait_ms: int = 2500) -> Path:
             meta["learn"] = check_page(pg)
         except Exception as e:                    # a broken screen is a finding, never a crash
             meta["learn"] = {"error": str(e)[:300]}
+        # «La lección»: each phase, video first and at most 3 keys with value, drill and check
+        try:
+            from .learn_check import check_lesson
+            pg.emulate_media(reduced_motion="no-preference")
+            meta["lesson"] = check_lesson(pg)
+        except Exception as e:
+            meta["lesson"] = {"error": str(e)[:300]}
         b.close()
     out = dest / "capturas.json"
     out.write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")

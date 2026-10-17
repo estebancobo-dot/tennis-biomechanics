@@ -27,6 +27,8 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
   1. Rehacer «Sus pies en este golpe» (fotogramas reales) y la estroboscópica («El recorrido del brazo», plegada como extra). Hecho el 17-10.
   2. Huecos 1-6 de la guía de Ivanovic que aplican: `docs/comparacion_guia_ivanovic.md`, sección 3.
   3. Higiene de la aplicación: huella del vídeo por contenido, huella de código en todas las etapas, CI, liberar `_poc*`.
+- **«Cópiala» como lección** (17-10, aprobado por el usuario sobre `docs/maqueta_leccion_armado.html`): pasos de 8 fases + pies; su vídeo en bucle de la fase con las marcas (`learn.LESSON`: hand / lines / heights / base); como mucho 3 claves fiables por fase con su valor, «Tu objetivo», cambio por velocidad de bola (solo si supera dispersión y error), cómo, ejercicio y «Cómo comprobarlo» (`learn.CHECKS`). La lista completa de medidas sigue, plegada («4 · Todas las medidas»).
+  **Lista de comprobación (la valida Claude, no el usuario):** vídeo primero; ≤ 3 claves por fase, cada una con valor suyo y nº de golpes (nunca ruido/sesgo); cómo + ejercicio + comprobación; diferencias solo sobre el error; la lección ≤ 1400 px a 1280×900 y sin scroll lateral a 390 px; nada borrado; sin errores de página. Automático en `tests/test_learn_web.py::test_lesson_meets_the_requirements` y en el PC (`learn_check.check_lesson` → auditoría: «La lección…» y «La lección enseña su vídeo de cada fase»). Después, revisar la captura real `capturas_prueba/pantalla_1_aprende.jpg`.
 - **El ciclo del PC se lanza sin ventanas** (`oculto.vbs`, ciclo v4): antes aparecía un terminal cada 10 min.
 
 ## Lo último (13-10, tarde): leer primero

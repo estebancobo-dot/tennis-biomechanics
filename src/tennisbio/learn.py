@@ -612,6 +612,67 @@ GLOSSARY = [
 ]
 
 
+# «La lección»: each phase taught as the pro apps do (video first, few keys): her stroke looping around
+# the phase with what matters drawn on it, and at most 3 keys, the first ones of this list that have a
+# value of hers that can be trusted in the chosen strokes. mark = what is drawn on the video:
+# hand (shoulder line, hand and racket head), lines (shoulder and hip lines), heights (head and hips
+# against the ready position), base (feet distance on the court), skel (the skeleton only).
+LESSON = {
+    "ready": ("base", ["footwork.split_landing_vs_opp_s", "class.ready_hands", "ready.hip_height", "ready.base_width"]),
+    "takeback": ("lines", ["stroke.takeback_vs_net", "stroke.takeback_vs_bounce", "takeback.shoulder_turn", "class.takeback", "stroke.takeback_vs_first_step"]),
+    "loaded": ("hand", ["stroke.loaded_vs_bounce", "loaded.wrist_dom_vs_shoulder", "stroke.pause_at_loaded", "loaded.racket_head_vs_wrist", "loaded.elbow_non", "loaded.shoulder_turn"]),
+    "acceleration": ("heights", ["stroke.wrist_drop", "stroke.shoulders_open_first", "stroke.hip_drop_cm", "stroke.swing_low_to_high", "stroke.racket_lag_deg"]),
+    "impact": ("base", ["impact.wrist_dom_lateral", "impact.wrist_dom_vs_hip", "stroke.contact_vs_top", "impact.base_court_m", "stroke.head_motion_cm", "impact.elbow_dom"]),
+    "extension": ("skel", ["extension.arm_extension", "extension.wrist_non_lateral", "stroke.hip_rise"]),
+    "finish": ("hand", ["class.finish", "finish.wrist_dom_vs_shoulder", "finish.head_over_base", "class.finish_trunk"]),
+    "recovery": ("base", ["footwork.recovery_start_s", "class.recovery_first_step", "footwork.rear_leg_step_after"]),
+    "feet": ("base", ["footwork.adjustment_steps", "class.approach_main", "footwork.first_step_s", "footwork.crossover_steps", "class.stance_impact"]),
+}
+# «Cómo comprobarlo»: how the user checks the key on court, without a lab (a partner, a mark, a phone)
+CHECKS = {
+    "footwork.split_landing_vs_opp_s": "Que un compañero diga «ya» cuando golpea: ¿estás cayendo del salto en ese instante? 8 de 10 = conseguido.",
+    "class.ready_hands": "Grábate de espaldas en la espera: compara la posición de tus manos con la suya en el vídeo.",
+    "ready.hip_height": "Frente a un espejo, marca la altura de tu cadera en la espera y compárala con la suya a tu escala.",
+    "ready.base_width": "Mira tus pies en la espera: algo más separados que los hombros.",
+    "stroke.takeback_vs_net": "Di «giro» cuando la bola cruce la red: si ya estás de lado al decirlo, está bien. 8 de 10.",
+    "stroke.takeback_vs_bounce": "Al botar la bola en tu campo, ¿ya has empezado a girar? Que alguien lo mire 10 bolas.",
+    "takeback.shoulder_turn": "Grábate desde detrás: en la preparación tu espalda debe empezar a verse, como la suya.",
+    "class.takeback": "Grábate de lado a cámara lenta y compara la forma que dibuja la cabeza de la raqueta con la suya.",
+    "stroke.takeback_vs_first_step": "En bolas abiertas, ¿giras ya en el primer paso? Grábate desde detrás.",
+    "stroke.loaded_vs_bounce": "Que alguien mire o grábate de lado: al botar la bola, ¿estás ya armado? 8 de 10 = conseguido.",
+    "loaded.wrist_dom_vs_shoulder": "Para en el armado frente a un espejo: la mano por debajo de la línea del hombro, a su distancia.",
+    "stroke.pause_at_loaded": "Di «gira, atrás, golpe» sin silencio entre «atrás» y «golpe».",
+    "loaded.racket_head_vs_wrist": "Para en el armado: la cabeza de la raqueta tiene que quedar por encima de tu mano.",
+    "loaded.elbow_non": "Para en el armado: el brazo libre casi estirado señalando la bola.",
+    "loaded.shoulder_turn": "Grábate desde detrás en el armado: tu espalda debe verse como la suya.",
+    "stroke.wrist_drop": "Grábate de lado: antes de ir hacia la bola la mano tiene que bajar por debajo de la altura del golpe.",
+    "stroke.shoulders_open_first": "Grábate desde detrás a cámara lenta: la cadera empieza a girar antes que los hombros.",
+    "stroke.hip_drop_cm": "Marca en un espejo la altura de tu cadera en la espera: baja lo que baja ella antes de golpear.",
+    "stroke.swing_low_to_high": "Golpea por encima de una cuerda a 1 m sobre la red: si la bola pasa y entra, la subida es buena.",
+    "stroke.racket_lag_deg": "Grábate de lado a cámara lenta: al empezar el swing, la raqueta va por detrás de la mano.",
+    "impact.wrist_dom_lateral": "Pon una raqueta en el suelo marcando su distancia: golpea sin pisarla y sin encogerte.",
+    "impact.wrist_dom_vs_hip": "Que alguien mire a qué altura golpeas: entre la cintura y el pecho, como ella.",
+    "stroke.contact_vs_top": "Di «arriba» cuando la bola llegue a lo más alto tras botar: golpea en ese instante o justo antes.",
+    "impact.base_court_m": "Marca su distancia entre los pies con dos conos: golpea con un pie junto a cada uno.",
+    "stroke.head_motion_cm": "Golpea y sigue mirando el punto de impacto hasta oír el bote en el otro campo.",
+    "impact.elbow_dom": "Para en el impacto frente a un espejo: el codo como el suyo.",
+    "extension.arm_extension": "Tras golpear, deja la raqueta apuntando al objetivo un instante antes de terminar.",
+    "extension.wrist_non_lateral": "Al terminar, la mano libre tiene que estar recogida delante del pecho.",
+    "stroke.hip_rise": "Termina el golpe de puntillas: si subes, has empujado con las piernas.",
+    "class.finish": "Quédate quieto en la terminación 2 s y compara dónde acaba tu raqueta con la suya.",
+    "finish.wrist_dom_vs_shoulder": "Quédate 2 s en la terminación: la mano a la altura de tu hombro o más.",
+    "finish.head_over_base": "Quédate 2 s en la terminación sin moverte: si te caes hacia atrás, el peso no ha pasado.",
+    "class.finish_trunk": "Al terminar, mira hacia dónde apunta tu pecho y compáralo con el suyo.",
+    "footwork.recovery_start_s": "Golpea y vuelve al centro antes de que el compañero golpee: si llegas, está bien.",
+    "class.recovery_first_step": "Desde la esquina, cuenta tus pasos de vuelta: primero cruzado si estás lejos.",
+    "footwork.rear_leg_step_after": "Tras golpear, ¿la pierna de atrás pasa adelante como en ella?",
+    "footwork.adjustment_steps": "Cuenta tus pasos cortos justo antes de golpear: los suyos son la referencia.",
+    "class.approach_main": "En bolas lejanas, ¿cruzas o corres? En cercanas, ¿pasos laterales?",
+    "footwork.first_step_s": "A la señal del compañero, ¿sale el primer paso nada más caer del split?",
+    "footwork.crossover_steps": "De banda a banda, cuenta tus pasos cruzados: los suyos son la referencia.",
+    "class.stance_impact": "Mira tus pies al golpear: ¿usas el apoyo que usa ella en esa situación?",
+}
+
 # «Su ritmo, distancia y peso»: the four moments of her timing with the ball and where the ball is
 # against her body, in one place (her medians in the chosen strokes; same values as the phase cards)
 RHYTHM = [("stroke.takeback_vs_net", "Empieza a girar"), ("stroke.loaded_vs_bounce", "Armado completo"),
@@ -646,7 +707,8 @@ def content() -> dict:
             "relax": RELAX_ORDER, "not_tv": NOT_FROM_TV, "source": SOURCE,
             "plan": [{"theme": th, "key": k, "title": ti, "why": w} for th, k, ti, w in PLAN],
             "targets": TARGETS, "glossary": GLOSSARY, "rhythm": RHYTHM,
-            "symptoms": [{"s": sy, "why": w, "keys": k} for sy, w, k in SYMPTOMS], "symptoms_source": SYMPTOMS_SOURCE}
+            "symptoms": [{"s": sy, "why": w, "keys": k} for sy, w, k in SYMPTOMS], "symptoms_source": SYMPTOMS_SOURCE,
+            "lesson": {k: {"mark": m, "keys": ks} for k, (m, ks) in LESSON.items()}, "checks": CHECKS}
 
 
 def covered_matrix_items() -> set[str]:

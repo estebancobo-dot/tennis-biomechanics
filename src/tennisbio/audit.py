@@ -656,6 +656,19 @@ def _screens(shots_dir: Path) -> list[dict]:
                                "ok" if lr["targeted_all"] else "pocos datos",
                                f"{lr['targeted_all']} medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); "
                                f"{lr.get('glossed_all', 0)} palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados"))
+    ls = meta.get("lesson")
+    if ls is not None:
+        if ls.get("error"):
+            items.append(_item(1, "Aprende su derecha", "La lección: vídeo primero y como mucho 3 claves por fase", "falta", f"no se pudo comprobar: {ls['error']}"))
+        else:
+            n, f = len(ls.get("phases") or []), ls.get("failures") or []
+            items.append(_item(1, "Aprende su derecha", "La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo",
+                               "falta" if f or not n else "ok" if ls.get("with_keys") == n else "pocos datos",
+                               f"{ls.get('with_keys', 0)} de {n} fases con claves suyas fiables"
+                               + (f"; FALLOS: " + "; ".join(f"{x['phase']}: {', '.join(x['why'])}" for x in f[:4]) if f else "")))
+            items.append(_item(2, "Vídeo", "La lección enseña su vídeo de cada fase, en bucle",
+                               "ok" if n and ls.get("with_video") == n else "aviso" if ls.get("with_video") else "falta",
+                               f"{ls.get('with_video', 0)} de {n} fases con su vídeo cargado"))
     checks = [("golpe", "ball_moments", "«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella", 2),
               ("golpe", "feet_cycle", "«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)", 8),
               ("golpe", "ball_measures", "«La bola y ella»: medidas reales en cada fotograma (cadera en cm, pies en m, recorrido)", 3),

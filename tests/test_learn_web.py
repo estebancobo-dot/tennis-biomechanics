@@ -84,6 +84,7 @@ def test_noise_is_not_shown_as_her_value(tmp_path):
         pg.goto(html.resolve().as_uri())
         pg.wait_for_timeout(500)
         pg.evaluate("document.querySelector('.nav button[data-tab=\"aprende\"]').click()")
+        pg.evaluate("document.getElementById('a-phases-d').open = true")     # the full list, unfolded
         txt = lambda k: pg.evaluate(f"document.querySelector('.cpk[data-key=\"{k}\"]').children[1].innerText")
         noisy, good, flip = txt("loaded.face_tilt"), txt("loaded.shoulder_turn"), txt("class.takeback")
         b.close()
@@ -167,3 +168,37 @@ def test_guide_keys_are_checkpoints_with_targets():
               "stroke.pause_at_loaded", "stroke.contact_vs_top", "finish.wrist_dom_vs_shoulder"):
         assert k in keys and k in TARGETS, k
     assert "class.takeback_loop" in keys and CLASS_PHASE["takeback_loop"] == "loaded"
+
+
+@pytest.mark.skipif(not CHROMIUM.exists(), reason="sin navegador para la prueba de la web")
+def test_lesson_meets_the_requirements(tmp_path):
+    """«La lección», checked as the user's requirements say: every phase with at most 3 keys, each with
+    her value, a drill and how to check it; one screen and a half at most; no sideways scroll on a phone;
+    the full list of measures still there (folded); no page errors."""
+    from playwright.sync_api import sync_playwright
+
+    from tennisbio.learn_check import check_lesson
+
+    d = tmp_path / "m1"
+    d.mkdir()
+    (d / "strokes.json").write_text(json.dumps(synthetic(200)), encoding="utf-8")
+    (d / "probe.json").write_text(json.dumps({"duration": 3600}))
+    html = build([Match("m1", None, Player("p", "P"))], tmp_path)
+    with sync_playwright() as p:
+        b = p.chromium.launch(executable_path=str(CHROMIUM), args=["--allow-file-access-from-files"])
+        pg = b.new_page(viewport={"width": 1280, "height": 900})
+        errors = []
+        pg.on("pageerror", lambda e: errors.append(str(e)))
+        pg.goto(html.resolve().as_uri())
+        pg.wait_for_timeout(500)
+        r = check_lesson(pg)
+        n_cards = pg.evaluate("document.querySelectorAll('#a-phases .cpk').length")
+        pg.set_viewport_size({"width": 390, "height": 844})
+        pg.wait_for_timeout(300)
+        wide = pg.evaluate("document.documentElement.scrollWidth")
+        b.close()
+    assert not errors, errors[:3]
+    assert len(r["phases"]) == 9 and not r["failures"], r["failures"]
+    assert r["with_keys"] == 9 and all(1 <= x["keys"] <= 3 for x in r["phases"])
+    assert n_cards == len([k for k in learn_keys()])          # nothing removed: every measure still listed
+    assert wide <= 400
