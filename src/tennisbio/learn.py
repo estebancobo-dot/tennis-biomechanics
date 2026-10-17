@@ -52,7 +52,7 @@ PHASES = [
             "Soltar o mover la mano libre sin intención: el giro se hace solo con el brazo.", "Espera con las manos como ella y gira hombros y raqueta juntos en el split step.",
             ["Giro de hombros (unit turn)"]),
      ]},
-    {"id": "takeback", "title": "2 · Inicio de la preparación (giro de hombros)", "focus": "En cuanto veas que es derecha, manda la cabeza de la raqueta hacia la valla del fondo.", "when": "En cuanto sabe que es derecha: gira hombros y raqueta a la vez.",
+    {"id": "takeback", "title": "2 · Inicio de la preparación (giro de hombros)", "focus": "En cuanto veas que es derecha, gira hasta que la punta de la raqueta señale la valla lateral.", "when": "En cuanto sabe que es derecha: gira hombros y raqueta a la vez.",
      "checkpoints": [
          cp("stroke.takeback_vs_bounce", "Cuándo empieza a girar", "s", 2, "s respecto al bote de la bola (− = antes de que bote)",
             "Empieza a girar los hombros antes de que la bola bote en tu campo.",
@@ -68,6 +68,11 @@ PHASES = [
             "Prepara con su ritmo: ni a trompicones ni tan lento que llegues tarde.",
             "Preparar de golpe en el último momento.",
             "Sombras con metrónomo: el giro y el armado en el tiempo de ella; luego peloteo.", []),
+         cp("takeback.hands_apart", "Gira con la mano libre en la raqueta", "%", 0, "% de su altura entre las muñecas al empezar a girar (poco = la mano libre acompaña la raqueta)",
+            "Empieza el giro con la mano libre en el cuello de la raqueta: hombros y raqueta giran juntos, como un bloque.",
+            "Llevar la raqueta atrás solo con el brazo de la raqueta, con la mano libre suelta.",
+            "Sombras: giro con las dos manos hasta que la punta señale la valla lateral; suelta la mano libre solo entonces; 3×10.",
+            ["Giro de hombros (unit turn)"]),
          cp("takeback.shoulder_turn", "Giro de hombros al empezar", "°", 0, "° de giro (2D, desde detrás)",
             "Gira hombros y tronco como un bloque, con la raqueta delante del cuerpo.",
             "Llevar la raqueta atrás solo con el brazo.", "Sombras con la raqueta sujeta con las dos manos hasta que los hombros estén de lado.",
@@ -94,6 +99,11 @@ PHASES = [
             "Brazo libre pegado al cuerpo: el giro se queda corto y pierdes la referencia de la bola.",
             "Lanza la bola con la mano libre y señálala con ese brazo hasta el bote; luego golpea.",
             ["Brazo libre paralelo a la línea de fondo en el giro; distancia a la bola"]),
+         cp("loaded.com_over_feet", "Peso en la pierna de la raqueta al armar", "", 2, "dónde está su peso entre los pies (0 = sobre el pie del brazo de la raqueta, 1 = sobre el otro; menos de 0 = más allá)",
+            "Al armar, carga el peso sobre la pierna del lado de la raqueta, como ella: es el muelle que empuja después.",
+            "Armar con el peso en el otro pie o en los talones: no hay nada que empujar.",
+            "Sombras: arma y nota el peso en la pierna del lado de la raqueta 1 s; luego golpea pasándolo al otro pie; 3×8.",
+            ["Carga: flexión de rodillas"]),
          cp("loaded.racket_head_vs_wrist", "Cabeza de la raqueta respecto a la mano", "%", 0, "% de altura (+ por encima de la mano)",
             "La cabeza de la raqueta arriba, por encima de la mano, con la cara mirando al suelo.",
             "Raqueta baja desde el principio: el swing sale plano y sin aceleración.", "Sombras parando en el armado: comprueba en un espejo que la cabeza esté por encima de la mano.",
@@ -172,6 +182,11 @@ PHASES = [
             "Empieza a girar la cadera y deja que los hombros la sigan.", "Abrir los hombros primero: pierdes la torsión (fuga de energía).",
             "Sombras: gira solo la cadera hacia la red manteniendo los hombros de lado 0,5 s; luego suelta.",
             ["Apertura prematura de hombros (fuga de energía)", "Separación cadera–hombro (torque)", "Rotación pélvica"]),
+         cp("chain.proximal_to_distal", "Orden de la cadena: cadera → tronco → brazo", "", 0, "en qué % de golpes los picos de giro van en ese orden (se mide el orden, no los milisegundos)",
+            "Empieza el golpe desde abajo: piernas y cadera, después el tronco, y el brazo el último, como un látigo.",
+            "Empezar con el brazo: el golpe sale sin cuerpo y cansa el hombro.",
+            "Sombras a cámara lenta en tres tiempos («cadera, pecho, brazo»); luego seguido; 3×8.",
+            ["Separación cadera–hombro (torque)", "Rotación pélvica"]),
          cp("stroke.weight_shift", "Transferencia de peso", "", 2, "cambio del peso entre los pies del armado al impacto (+ hacia el pie no dominante, el de delante en la derecha)",
             "Pasa el peso del pie de atrás al de delante mientras golpeas, como ella.",
             "Golpear con el peso atrás (cayendo hacia atrás): la bola sale sin peso.",
@@ -299,6 +314,10 @@ PHASES = [
          cp("extension.arm_extension", "Extensión del brazo", "%", 0, "% del brazo extendido hacia delante",
             "Sigue empujando la raqueta hacia el objetivo después del contacto.", "Cortar el golpe en el impacto.",
             "Golpea y deja la raqueta apuntando al objetivo un segundo antes de terminar.", ["Extensión del codo"]),
+         cp("stroke.swing_rise_after", "La raqueta sigue subiendo tras el impacto", "%", 0, "% de su altura que sube la mano en los 150 ms tras el impacto",
+            "Atraviesa la bola: tras golpear, la raqueta sigue subiendo y hacia delante, como si la bola siguiera en las cuerdas.",
+            "Frenar en el impacto: la bola sale sin efecto y corta.",
+            "Golpea con un compañero que sujeta una raqueta 1 m delante de ti: tu raqueta pasa por encima de la suya; 3×8.", []),
          cp("extension.wrist_non_lateral", "Brazo libre recogido (catch)", "%", 0, "% de altura de la mano libre respecto a la cadera",
             "Recoge el brazo libre hacia el pecho mientras giras: frena el lado izquierdo y acelera la raqueta.",
             "Dejar el brazo libre suelto atrás o abajo.", "Sombras: al golpear, la mano libre «atrapa» la raqueta a la altura del pecho al terminar.",
@@ -348,6 +367,11 @@ PHASES = [
          cp("footwork.recovery_start_s", "Cuándo empieza a recuperar", "s", 2, "s desde el impacto hasta el primer paso de vuelta",
             "Empieza a volver en cuanto terminas el golpe.", "Quedarte mirando la bola.",
             "Golpe + recuperación al centro con pasos laterales antes de que el compañero golpee.", ["Pasos de recuperación (laterales o cruzados)"]),
+         cp("footwork.recovery_to_centre_m", "Vuelve hacia el centro", "m", 1, "m que se acerca al centro de la pista en el primer segundo tras golpear",
+            "Tras golpear, vuelve hacia el centro de tu zona antes de que la bola llegue a la rival.",
+            "Quedarte donde golpeaste mirando la bola.",
+            "Golpe y vuelta: toca un cono en el centro antes de que el compañero golpee; 10 seguidas.",
+            ["Pasos de recuperación (laterales o cruzados)"]),
          cp("class.recovery_first_step", "Primer paso de vuelta", "", 0, "lateral / cruzado / hacia delante…",
             "Si estás lejos del centro, primer paso cruzado; si estás cerca, pasos laterales.", "Volver de espaldas o andando.",
             "Desde una esquina: un cruce y dos laterales hasta el centro; 10 repeticiones.", ["Pasos de recuperación (laterales o cruzados)"]),
@@ -651,14 +675,14 @@ GLOSSARY = [
 # against the ready position), base (feet distance on the court), skel (the skeleton only).
 LESSON = {
     "ready": ("base", ["footwork.split_landing_vs_opp_s", "class.ready_hands", "ready.hip_height", "ready.base_width"]),
-    "takeback": ("lines", ["stroke.takeback_vs_net", "stroke.takeback_vs_bounce", "takeback.shoulder_turn", "class.takeback", "stroke.takeback_vs_first_step"]),
-    "loaded": ("hand", ["stroke.loaded_vs_bounce", "loaded.wrist_dom_vs_shoulder", "stroke.pause_at_loaded", "loaded.racket_head_vs_wrist", "loaded.elbow_non", "loaded.shoulder_turn"]),
-    "acceleration": ("heights", ["stroke.wrist_drop", "stroke.shoulders_open_first", "stroke.hip_drop_cm", "stroke.swing_low_to_high", "stroke.racket_lag_deg"]),
-    "impact": ("base", ["impact.wrist_dom_lateral", "impact.wrist_dom_vs_hip", "stroke.contact_vs_top", "impact.base_court_m", "stroke.head_motion_cm", "impact.elbow_dom"]),
-    "extension": ("skel", ["extension.arm_extension", "extension.wrist_non_lateral", "stroke.hip_rise"]),
-    "finish": ("hand", ["class.finish", "finish.wrist_dom_vs_shoulder", "finish.head_over_base", "class.catch_racket", "class.finish_trunk"]),
-    "recovery": ("base", ["footwork.recovery_start_s", "class.recovery_first_step", "footwork.rear_leg_step_after"]),
-    "feet": ("base", ["stroke.last_plant_vs_bounce", "footwork.adjustment_steps", "class.approach_main", "footwork.first_step_s", "footwork.crossover_steps", "class.stance_impact"]),
+    "takeback": ("lines", ["stroke.takeback_vs_net", "takeback.hands_apart", "stroke.takeback_vs_first_step", "takeback.shoulder_turn", "class.takeback", "stroke.takeback_vs_bounce"]),
+    "loaded": ("hand", ["stroke.loaded_vs_bounce", "loaded.shoulder_turn", "loaded.elbow_non", "loaded.racket_tip_vs_head", "loaded.com_over_feet", "loaded.x_factor", "loaded.wrist_dom_vs_shoulder", "stroke.pause_at_loaded"]),
+    "acceleration": ("heights", ["stroke.wrist_drop", "stroke.shoulders_open_first", "stroke.hip_rise", "chain.proximal_to_distal", "stroke.acceleration_vs_bounce", "stroke.swing_low_to_high", "stroke.racket_lag_deg"]),
+    "impact": ("base", ["impact.wrist_dom_lateral", "impact.wrist_dom_vs_hip", "impact.elbow_dom", "stroke.weight_shift", "stroke.head_motion_cm", "stroke.contact_vs_top", "impact.base_court_m"]),
+    "extension": ("skel", ["extension.arm_extension", "stroke.swing_rise_after", "extension.wrist_non_lateral"]),
+    "finish": ("hand", ["class.finish", "finish.wrist_dom_vs_shoulder", "finish.head_over_base", "class.finish_trunk", "class.catch_racket"]),
+    "recovery": ("base", ["footwork.recovery_start_s", "footwork.recovery_to_centre_m", "class.recovery_first_step", "footwork.rear_leg_step_after"]),
+    "feet": ("base", ["footwork.first_step_s", "class.stance_impact", "footwork.adjustment_steps", "stroke.last_plant_vs_bounce", "class.approach_main", "footwork.crossover_steps"]),
 }
 # «Cómo comprobarlo»: how the user checks the key on court, without a lab (a partner, a mark, a phone)
 CHECKS = {
@@ -706,8 +730,22 @@ CHECKS = {
     "stroke.loaded_vs_last_plant": "Grábate en bolas abiertas: al apoyar el último pie, ¿estás ya armada?",
     "class.back_at_impact": "Grábate desde atrás: en el impacto, ¿vas hacia la valla del fondo? Debería verse parada o avanzando.",
     "class.catch_racket": "Al terminar, ¿tu mano libre agarra el cuello de la raqueta?",
+    "takeback.hands_apart": "Grábate desde detrás: al empezar a girar, ¿tu mano libre sigue en el cuello de la raqueta? 8 de 10.",
+    "loaded.com_over_feet": "Para en el armado: ¿puedes levantar el pie del otro lado sin caerte? Entonces el peso está atrás.",
+    "chain.proximal_to_distal": "Grábate de lado a cámara lenta: la cadera se mueve antes que el pecho y el pecho antes que el brazo.",
+    "stroke.swing_rise_after": "Tras golpear, la raqueta pasa por encima de una raqueta que sujeta un compañero 1 m delante. 8 de 10.",
+    "footwork.recovery_to_centre_m": "Golpe y vuelta: ¿tocas el cono del centro antes de que golpee el compañero? 8 de 10.",
+    "stroke.weight_shift": "Golpea y quédate 2 s en la terminación: el peso tiene que estar sobre el pie de delante.",
+    "stroke.acceleration_vs_bounce": "Di «bote» y «ya» en voz alta: «ya» cuando empiezas a acelerar, con el ritmo de ella.",
+    "loaded.racket_tip_vs_head": "Para en el armado frente a un espejo lateral: la punta de la raqueta a la altura de tu cabeza que marca su valor.",
+    "loaded.x_factor": "Grábate desde detrás en el armado: tus hombros más girados que tu cadera, como ella.",
     "class.stance_impact": "Mira tus pies al golpear: ¿usas el apoyo que usa ella en esa situación?",
 }
+
+# the focus of a phase is coaching knowledge; when what SHE does is outside it, the screen says so
+# (key, low, high): her median outside [low, high] → «regla general; ella: …»
+FOCUS_CHECK = {"ready": ("footwork.split_landing_vs_opp_s", -0.1, 0.1), "loaded": ("stroke.loaded_vs_bounce", -0.1, 0.1),
+               "takeback": ("stroke.takeback_vs_net", -9.0, 0.05)}
 
 # «Su ritmo, distancia y peso»: the four moments of her timing with the ball and where the ball is
 # against her body, in one place (her medians in the chosen strokes; same values as the phase cards)
@@ -744,7 +782,8 @@ def content() -> dict:
             "plan": [{"theme": th, "key": k, "title": ti, "why": w} for th, k, ti, w in PLAN],
             "targets": TARGETS, "glossary": GLOSSARY, "rhythm": RHYTHM,
             "symptoms": [{"s": sy, "why": w, "keys": k} for sy, w, k in SYMPTOMS], "symptoms_source": SYMPTOMS_SOURCE,
-            "lesson": {k: {"mark": m, "keys": ks} for k, (m, ks) in LESSON.items()}, "checks": CHECKS}
+            "lesson": {k: {"mark": m, "keys": ks} for k, (m, ks) in LESSON.items()}, "checks": CHECKS,
+            "focus_check": FOCUS_CHECK}
 
 
 def covered_matrix_items() -> set[str]:

@@ -109,6 +109,7 @@ def check_page(pg, pairs: bool = True, extra: list[dict] | None = None) -> dict:
 
 _JS_LESSON = """async () => {
   const out = [], steps = [...document.querySelectorAll('#a-l-steps button')].map(b => b.dataset.ph);
+  const words = el => (el && el.innerText || '').split(/\\s+/).filter(Boolean).length;
   for (const ph of steps) {
     document.querySelector(`#a-l-steps button[data-ph="${ph}"]`).click();
     await new Promise(r => setTimeout(r, 700));
@@ -116,10 +117,16 @@ _JS_LESSON = """async () => {
     for (let w = 0; w < 20 && typeof LS !== 'undefined' && lReps.length && LS.video.readyState < 2; w++) await new Promise(r => setTimeout(r, 200));
     const keys = [...document.querySelectorAll('#a-l-keys .lkey')];
     const panel = document.getElementById('a-lesson').getBoundingClientRect();
+    const focus = (document.getElementById('a-l-focus').innerText || '').replace(/\\(regla general[\\s\\S]*$/, '');
+    const prac = document.getElementById('a-l-practice').innerText || '';
     out.push({ phase: ph, keys: keys.length,
       valued: keys.filter(k => /Ella:\\s*\\S/.test(k.innerText) && !/—/.test(k.querySelector('.lh b')?.innerText || '—')).length,
-      checked: keys.filter(k => k.innerText.includes('Cómo comprobarlo')).length,
-      drilled: keys.filter(k => k.innerText.includes('Ejercicio')).length,
+      checked: keys.filter(k => k.textContent.includes('Cómo comprobarlo')).length,
+      drilled: keys.filter(k => k.textContent.includes('Ejercicio')).length,
+      words: words(document.getElementById('a-l-keys')),
+      focus_words: words({ innerText: focus.replace(/^Foco:/, '') }), focus_body: /\\d\\s*(%|°|cm)/.test(focus),
+      practice: /\\d+ de \\d+/.test(prac), strings: /Cuerdas/.test(document.getElementById('a-l-strings').innerText || ''),
+      repeats: keys.filter(k => { const m = k.querySelector('.mine'); const v = k.querySelector('.lh b'); return m && v && m.innerText.includes(v.innerText.split(' (')[0]); }).length,
       reason: keys.length ? '' : (document.getElementById('a-l-keys').innerText || '').slice(0, 160),
       reps: typeof lReps !== 'undefined' ? lReps.length : 0,
       video: typeof LS !== 'undefined' && LS.video.readyState >= 2 && !document.getElementById('a-l-cv').hidden,
@@ -147,6 +154,16 @@ def check_lesson(pg) -> dict:
             why.append("una clave sin su valor, su ejercicio o cómo comprobarlo")
         if r["height"] > 1400:
             why.append(f"la lección mide {r['height']} px (más de pantalla y media)")
+        if r["words"] > 120:
+            why.append(f"{r['words']} palabras en las claves (máximo 120)")
+        if r["focus_words"] > 25 or r["focus_body"]:
+            why.append("el foco es largo o lleva cifras del cuerpo")
+        if r["keys"] and not r["practice"]:
+            why.append("sin ejercicio con criterio «N de M»")
+        if r["phase"] != "feet" and not r["strings"]:
+            why.append("sin la línea de las cuerdas")
+        if r["repeats"]:
+            why.append("«Tu objetivo» repite su valor")
         if why:
             bad.append({"phase": r["phase"], "why": why})
     return {"phases": rows, "failures": bad, "with_video": sum(1 for r in rows if r["video"]),

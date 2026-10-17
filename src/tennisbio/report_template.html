@@ -229,6 +229,10 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .lkey .ln { display: inline-grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: #111; font-weight: 800; font-size: 12px; flex: none; }
 .lkey .lh { font-size: 14.5px; } .lkey .lh b { color: var(--accent); }
 .lkey .lhow { font-size: 13.5px; margin-top: 6px; display: grid; gap: 3px; } .lkey .lhow span.l { color: var(--ink-3); }
+.lnav { display: flex; justify-content: space-between; gap: 8px; margin-top: 12px; }
+.lstr { margin-top: 10px; font-size: 13.5px; } .lprac { border: 1px solid var(--accent); border-radius: 8px; padding: 10px 12px; margin-top: 10px; font-size: 13.5px; }
+.lprac .done { background: var(--accent); color: #111; border-color: var(--accent); } .lsteps button.ok::after { content: " ✓"; }
+.lkey .lmore { font-size: 13px; } .lkey .lmore summary { cursor: pointer; color: var(--ink-3); }
 .lbars { display: grid; grid-template-columns: 120px 1fr 64px; gap: 3px 8px; align-items: center; font-size: 12.5px; margin-top: 6px; }
 .lbars i { display: block; height: 10px; border-radius: 3px; background: var(--s1, #5fd3e6); }
 .feet { display: grid; grid-template-columns: 240px 1fr; gap: 14px; align-items: start; }
@@ -422,8 +426,8 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 <div class="panel lesson" style="margin-top:16px" id="a-lesson"><header><h2>La lección: su derecha, fase a fase</h2><span class="note" id="a-l-src"></span></header>
 <div class="body" style="padding:12px 16px"><div class="lsteps" id="a-l-steps"></div>
 <div class="lgrid"><div><div class="lvid"><canvas id="a-l-cv" width="960" height="600"></canvas><div class="lnovid" id="a-l-nov" hidden></div></div>
-<div class="lctrl"><button class="btn" id="a-l-play">❚❚ Pausa</button><button class="btn" id="a-l-next">Otro golpe suyo</button><button class="btn" id="a-l-open">Ver el golpe entero</button><span class="dim3" id="a-l-cap"></span></div></div>
-<div><h3 class="ltitle" id="a-l-title"></h3><p class="dim" id="a-l-when" style="margin:2px 0 8px"></p><div class="focus" id="a-l-focus"></div><div id="a-l-keys"></div>
+<div class="lctrl"><button class="btn" id="a-l-play">❚❚ Pausa</button><button class="btn" id="a-l-speed">Velocidad real</button><button class="btn" id="a-l-next">Otro golpe suyo</button><button class="btn" id="a-l-open">Ver el golpe entero</button><span class="dim3" id="a-l-cap"></span></div></div>
+<div><h3 class="ltitle" id="a-l-title"></h3><p class="dim" id="a-l-when" style="margin:2px 0 8px"></p><div class="focus" id="a-l-focus"></div><div id="a-l-keys"></div><div id="a-l-strings"></div><div id="a-l-practice"></div><div class="lnav"><button class="btn" id="a-l-prev">‹ Fase anterior</button><button class="btn" id="a-l-nextph">Fase siguiente ›</button></div>
 <p class="dim3" style="margin:10px 0 0"><a href="#" id="a-l-all">Todas las medidas de esta fase</a> · lo de «Cómo», «Ejercicio» y «Cómo comprobarlo» es conocimiento de entrenadores; los números son suyos.</p></div></div></div></div>
 <p class="dim3" style="margin:10px 0 0">Elige una fase, mírala en su vídeo y practica su ejercicio. <a href="#" id="a-guide-open">Cómo se usa esta pantalla</a> · <a href="#" id="a-gloss-go2">Glosario</a> · <a href="#" id="a-more-go">Más sobre su derecha</a></p>
 <details class="extra secx" id="a-more" style="margin-top:18px"><summary><b>Más sobre su derecha</b> · sus golpes de ese tipo, su firma, su ritmo, qué cambia, su plan, «Si te pasa…», lo que la tele no mide, todas las medidas, glosario y guía</summary>
@@ -2528,6 +2532,11 @@ function lTimeOf(s, id) {
   if (id === "feet") { const st = ((s.feet || {}).approach_steps || []).filter(x => isN(x.t_land) && x.t_land < 0); if (st.length) return st[st.length - 1].t_land; id = "loaded"; }
   return s.phases && isN(s.phases[id]) ? s.phases[id] : null;
 }
+// her value said simply: the median with its unit (the middle half stays in the tooltip)
+const lVal = (st, c) => isN(st.med) ? `${fmt(st.med, c.dec)}${c.unit === "°" ? "°" : c.unit ? " " + c.unit : ""}` : st.txt.replace(/<[^>]+>/g, "").split(" · ").slice(0, 2).join(" · ");
+// the first sentence of a cue (the rest stays one click away): few words per key (cognitive load)
+const lShort = t => { const m = String(t).match(/^.*?[.:](?=\s|$)/); return m && m[0].length > 25 ? m[0].replace(/:$/, ".") : t; };
+function lDone() { try { return JSON.parse(localStorage.getItem("tb-done") || "{}") || {}; } catch (e) { return {}; } }
 // her value of a key by ball speed, shown only when the levels differ beyond her spread and the measuring error
 function lBySpeed(set, c) {
   const lv = Object.keys(((LEARN.conditions || {}).ball_speed || {}).levels || {}), all = aValues(set, c.key);
@@ -2551,16 +2560,34 @@ function renderLesson(set) {
   LEARN.phases.forEach(p => p.checkpoints.forEach(c => { byKey[c.key] = c; }));
   document.getElementById("a-l-title").textContent = lPh === "feet" ? "Pies: del split step a la bola" : ph.title;
   document.getElementById("a-l-when").textContent = ph.when;
-  document.getElementById("a-l-focus").innerHTML = ph.focus ? `<b>Foco:</b> ${gloss(ph.focus)}` : "";
+  // the focus is coaching knowledge: when what she does is outside it, the screen says so
+  const fc = (LEARN.focus_check || {})[lPh]; let fnote = "";
+  if (fc && byKey[fc[0]]) { const st = aStat(set, byKey[fc[0]]); if (isN(st.med) && (st.med < fc[1] || st.med > fc[2])) fnote = ` <span class="dim3" title="${byKey[fc[0]].read}">(regla general de los entrenadores; ella: ${lVal(st, byKey[fc[0]])})</span>`; }
+  document.getElementById("a-l-focus").innerHTML = ph.focus ? `<b>Foco:</b> ${gloss(ph.focus)}${fnote}` : "";
   // the first 3 keys of this phase with a value of hers that can be trusted in these strokes
   const keys = [], missing = [];
   L.keys.forEach(k => { const c = byKey[k]; if (!c || keys.length >= 3) return; const st = aStat(set, c); if (st.txt) keys.push({ c, st }); else missing.push({ c, st }); });
+  // «Tu objetivo» only when it converts to the user's own units (their height given); else it repeats «Ella»
+  const conv = c => A_UH && ["cm", "m", "%"].includes(c.unit);
   document.getElementById("a-l-keys").innerHTML = keys.length ? keys.map(({ c, st }, i) =>
     `<div class="lkey" data-key="${c.key}"><h4><span class="ln">${i + 1}</span><span>${gloss(c.label)}</span></h4>`
-    + `<div class="lh">Ella: <b>${st.txt.replace(/<[^>]+>/g, "")}</b> <span class="dim3">· ${c.read}</span> ${st.n >= A_MIN ? `<span class="badge firm">${st.n} golpes</span>` : `<span class="badge prov">${st.n} golpe${st.n > 1 ? "s" : ""} · provisional</span>`}${st.warn || ""}</div>`
-    + aTarget(st, c) + lBySpeed(set, c)
-    + `<div class="lhow"><div><span class="l">Cómo:</span> ${gloss(c.cue)}</div><div><span class="l">Ejercicio:</span> ${c.drill}</div>${(LEARN.checks || {})[c.key] ? `<div><span class="l">Cómo comprobarlo:</span> ${LEARN.checks[c.key]}</div>` : ""}</div></div>`).join("")
+    + `<div class="lh" title="${c.read} · ${st.txt.replace(/<[^>]+>/g, "").replace(/"/g, "")}">Ella: <b>${lVal(st, c)}</b> <span class="dim3">${c.read.split(" (")[0]}</span> ${st.n >= A_MIN ? `<span class="badge firm">${st.n} golpes</span>` : `<span class="badge prov">${st.n} golpe${st.n > 1 ? "s" : ""}</span>`}${st.warn || ""}</div>`
+    + (conv(c) ? aTarget(st, c) : "") + lBySpeed(set, c)
+    + `<div class="lhow"><div><span class="l">Cómo:</span> ${gloss(lShort(c.cue))}</div></div>`
+    + `<details class="lmore"><summary title="el porqué, el error típico, el ejercicio y cómo comprobarlo">Más</summary><div class="lhow">${lShort(c.cue) !== c.cue ? `<div><span class="l">Cómo, entero:</span> ${gloss(c.cue)}</div>` : ""}<div><span class="l">Error típico:</span> ${c.mistake}</div><div><span class="l">Ejercicio:</span> ${c.drill}</div>${(LEARN.checks || {})[c.key] ? `<div><span class="l">Cómo comprobarlo:</span> ${LEARN.checks[c.key]}</div>` : ""}</div></details></div>`).join("")
     : `<p class="dim">Todavía no hay valores suyos fiables de esta fase en estos golpes: ${missing.slice(0, 3).map(({ c, st }) => `${c.label.toLowerCase()} (${st.why || aWhyMissing(set, c)})`).join("; ")}.</p>`;
+  // the strings in every phase (requirement 4): where they face in her strokes, honest where it is an estimate
+  const fk = lPh === "feet" ? null : lPh, fv = fk ? set.map(s => (s.face || {})[fk]).filter(Boolean) : [];
+  const relS = { ready: 3, takeback: 3, loaded: 3, acceleration: 1, impact: 1, extension: 1, finish: 3, recovery: 2 }[fk];
+  document.getElementById("a-l-strings").innerHTML = !fk ? "" : fv.length ? `<div class="lstr"><b>Cuerdas:</b> ${Object.entries(fv.reduce((a, v) => (a[v] = (a[v] || 0) + 1, a), {})).sort((a, b) => b[1] - a[1]).slice(0, 2).map(([v, n]) => `hacia ${v} (${Math.round(100 * n / fv.length)} %)`).join(" · ")} <span class="dim3">· ${fv.length} golpes${relS === 1 ? " · estimación: en esta fase la raqueta sale borrosa" : ""}</span></div>`
+    : `<div class="lstr dim3"><b>Cuerdas:</b> la raqueta no se ve bien en esta fase en estos golpes.</div>`;
+  // one drill to practise, with its success criterion and «Conseguido» (kept only in this browser)
+  const pk = keys[0], done = lDone();
+  if (pk) { const chk = (LEARN.checks || {})[pk.c.key] || ""; const crit = /\d+ de \d+/.test(chk) ? chk : `${chk} Objetivo: 8 de 10.`.trim();
+    document.getElementById("a-l-practice").innerHTML = `<div class="lprac"><b>Practica:</b> ${pk.c.drill}<br><span class="dim">Lo consigues cuando:</span> ${crit} <button class="btn${done[lPh] ? " done" : ""}" id="a-l-done">${done[lPh] ? "✓ Conseguido" : "Conseguido"}</button></div>`;
+    document.getElementById("a-l-done").addEventListener("click", () => { const d = lDone(); d[lPh] = !d[lPh]; try { localStorage.setItem("tb-done", JSON.stringify(d)); } catch (e) { } renderLesson(lSet); });
+  } else document.getElementById("a-l-practice").innerHTML = "";
+  steps.querySelectorAll("button").forEach(b => b.classList.toggle("ok", !!done[b.dataset.ph]));
   lReps = [...set].filter(s => s.video && isN(lTimeOf(s, lPh))).sort((a, b) => (b.repr || 0) - (a.repr || 0)); lRepI = 0;
   lLoad();
 }
@@ -2571,8 +2598,8 @@ async function lLoad() {
   if (!s) { nov.textContent = "Sin vídeo de esta fase en estos golpes."; document.getElementById("a-l-cap").textContent = ""; return; }
   await loadSrc(LS, s); if (g !== lGen) return;
   const t = lTimeOf(s, lPh); lWin = [Math.max(LS.T0, t - .3), Math.min(LS.T1, t + .3)];
-  document.getElementById("a-l-cap").textContent = `golpe ${lRepI + 1} de ${lReps.length} · ${sitTxt(s)} · en bucle a 0,25×`;
-  try { LS.video.playbackRate = .25; LS.video.currentTime = s.vImpact + lWin[0]; if (lPlay) await LS.video.play(); } catch (e) { }
+  document.getElementById("a-l-cap").textContent = `golpe ${lRepI + 1} de ${lReps.length} · ${sitTxt(s)} · en bucle`;
+  try { LS.video.playbackRate = document.getElementById("a-l-speed").textContent === "A cámara lenta" ? 1 : .25; LS.video.currentTime = s.vImpact + lWin[0]; if (lPlay) await LS.video.play(); } catch (e) { }
   lLoop(g);
 }
 function lOpts(f) {
@@ -2595,6 +2622,10 @@ function lLoop(g) {
   if (vis && lPlay) requestAnimationFrame(() => lLoop(g)); else lTimer = setTimeout(() => lLoop(g), 400);
 }
 document.getElementById("a-l-play").addEventListener("click", ev => { lPlay = !lPlay; ev.target.textContent = lPlay ? "❚❚ Pausa" : "▶ Seguir"; try { lPlay ? LS.video.play() : LS.video.pause(); } catch (e) { } });
+document.getElementById("a-l-speed").addEventListener("click", ev => { const real = LS.video.playbackRate < 1; LS.video.playbackRate = real ? 1 : .25; ev.target.textContent = real ? "A cámara lenta" : "Velocidad real"; });
+const lGo = d => { const ids = L_ORDER.filter(id => lPhase(id)), i = ids.indexOf(lPh); lPh = ids[(i + d + ids.length) % ids.length]; renderLesson(lSet); document.getElementById("a-lesson").scrollIntoView({ block: "start", behavior: "smooth" }); };
+document.getElementById("a-l-prev").addEventListener("click", () => lGo(-1));
+document.getElementById("a-l-nextph").addEventListener("click", () => lGo(1));
 document.getElementById("a-l-next").addEventListener("click", () => { if (lReps.length) { lRepI = (lRepI + 1) % lReps.length; lLoad(); } });
 document.getElementById("a-l-open").addEventListener("click", () => { const s = lReps[lRepI]; if (s) { lPlay = false; LS.video.pause(); aOpen(s.id, lPh === "feet" ? "loaded" : lPh); } });
 document.getElementById("a-l-all").addEventListener("click", ev => { ev.preventDefault(); const d = document.getElementById("a-phases-d"); openUp(d);
