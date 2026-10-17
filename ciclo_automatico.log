@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261017122002
+Start time: 20261017124002
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 11196
+Process ID: 11104
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,19 +17,25 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-17 12:20:02] Codigo nuevo (a52fdbc -> d8bc228): 3 ficheros
-    docs/arquitectura_producto.md
-    docs/estado_proyecto.md
+==> [2026-10-17 12:40:02] Codigo nuevo (d8bc228 -> fb7cd11): 6 ficheros
+    docs/matriz_cobertura.md
+    src/tennisbio/explain.py
+    src/tennisbio/learn.py
     src/tennisbio/report_template.html
+    src/tennisbio/technique.py
+    tests/test_learn_web.py
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating a52fdbc..d8bc228
+Updating d8bc228..fb7cd11
 Fast-forward
- docs/arquitectura_producto.md      | 30 +++++++++++++++-
- docs/estado_proyecto.md            | 10 ++++++
- src/tennisbio/report_template.html | 72 +++++++++++++++++++++++++++++++++-----
- 3 files changed, 102 insertions(+), 10 deletions(-)
-Resolved 110 packages in 0.96ms
+ docs/matriz_cobertura.md           |  2 +-
+ src/tennisbio/explain.py           |  3 +-
+ src/tennisbio/learn.py             | 76 +++++++++++++++++++++++++++++++++++++-
+ src/tennisbio/report_template.html | 39 ++++++++++++++++++-
+ src/tennisbio/technique.py         |  9 +++++
+ tests/test_learn_web.py            | 14 +++++++
+ 6 files changed, 139 insertions(+), 4 deletions(-)
+Resolved 110 packages in 0.88ms
 Checked 83 packages in 2ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
@@ -41,23 +47,4 @@ yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
     (paso terminado en 3 s)
 
-==> [2026-10-17 12:20:05] Que hace falta: informe
-Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
-Informe: C:\tenis\output\_smoke\informe\index.html
-Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
-Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
-Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
-Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
-Auditoría: 279 cumplidos, 0 no cumplidos, 120 sin golpes suficientes, 21 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-Hecho en 179 s, sin volver a analizar vídeo.
-    (paso terminado en 2 min 58 s)
-
-==> [2026-10-17 12:23:04] Revision automatica frente a la ejecucion anterior
-# Revisión automática: OK
-Ciclo automatico terminado (informe).
-    (paso terminado en 0 s)
-Empezado 2026-10-17 12:20:00 - terminado 2026-10-17 12:23:04 - duracion total 3 min 03 s
-**********************
-Windows PowerShell transcript end
-End time: 20261017122304
-**********************
+==> [2026-10-17 12:40:05] Que hace falta: medidas
