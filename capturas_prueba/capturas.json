@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 35314,
+   "text_chars": 41437,
    "charts": 8,
    "videos": 5,
    "black_canvases": 0,
@@ -24,7 +24,7 @@
    "intro": true,
    "external_links": 0,
    "tables": 0,
-   "sentences": 17,
+   "sentences": 24,
    "many_lines": 0,
    "tab": "aprende",
    "file": "pantalla_1_aprende.jpg",
@@ -59,7 +59,7 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 6636,
+   "text_chars": 6693,
    "charts": 31,
    "videos": 6,
    "black_canvases": 0,
@@ -204,7 +204,7 @@
   },
   {
    "title": "Fiabilidad de las medidas",
-   "text_chars": 2833,
+   "text_chars": 3031,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -223,7 +223,7 @@
    "intro": true,
    "external_links": 0,
    "tables": 0,
-   "sentences": 64,
+   "sentences": 72,
    "many_lines": 0,
    "tab": "fiabilidad",
    "file": "pantalla_8_fiabilidad.jpg",
@@ -231,7 +231,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 1268,
+   "text_chars": 1269,
    "charts": 0,
    "videos": 5,
    "black_canvases": 0,
@@ -337,19 +337,19 @@
  "learn": {
   "combinations": 1104,
   "with_exact_strokes": 299,
-  "checkpoints_checked": 80592,
+  "checkpoints_checked": 89424,
   "failures": [],
-  "rows_all": 73,
-  "valued_all": 68,
-  "targeted_all": 45,
-  "glossed_all": 60,
+  "rows_all": 81,
+  "valued_all": 76,
+  "targeted_all": 52,
+  "glossed_all": 69,
   "signature": 5,
   "style": "Estilo de su derecha: preparación amplia (80 %) · apoyo variable (la más frecuente, abierto, en 30 %) · efecto liftado (de abajo arriba) (80 %) · terminación sobre el hombro (50 %) provisional: 10 golpes.",
   "example": {
    "exact": 0,
    "near": 9,
-   "rows": 73,
-   "valued": 68,
+   "rows": 81,
+   "valued": 76,
    "bad": []
   }
  }
