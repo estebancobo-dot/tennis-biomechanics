@@ -200,7 +200,7 @@
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
 - ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 35314 caracteres de texto, 5 vídeos, 8 gráficos; mensajes de vacío: ['']
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 3323 caracteres de texto, 5 vídeos, 1 gráficos
-- ✔ **Pantalla «Análisis de golpe»**: 7086 caracteres de texto, 6 vídeos, 26 gráficos
+- ✔ **Pantalla «Análisis de golpe»**: 6636 caracteres de texto, 6 vídeos, 31 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 5273 caracteres de texto, 5 vídeos, 2 gráficos
 - ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 6575 caracteres de texto, 5 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 3223 caracteres de texto, 5 vídeos, 0 gráficos
