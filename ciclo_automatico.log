@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261017115204
+Start time: 20261017121002
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 3816
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 8232
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,25 +17,22 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-17 11:52:04] Codigo nuevo (cccd607 -> ab2decd): 5 ficheros
-    9_parar_ciclo_automatico.bat
-    scripts/windows/ciclo_bucle.ps1
-    scripts/windows/comun.ps1
-    scripts/windows/oculto.vbs
-    tests/test_auto_cycle.py
+==> [2026-10-17 12:10:02] Codigo nuevo (ab2decd -> a52fdbc): 3 ficheros
+    docs/arquitectura_producto.md
+    docs/comparacion_guia_ivanovic.md
+    src/tennisbio/explain.py
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating cccd607..ab2decd
+Updating ab2decd..a52fdbc
 Fast-forward
- 9_parar_ciclo_automatico.bat    |  2 +-
- scripts/windows/ciclo_bucle.ps1 |  5 ++++-
- scripts/windows/comun.ps1       | 13 ++++++++-----
- scripts/windows/oculto.vbs      |  5 +++++
- tests/test_auto_cycle.py        | 11 +++++++++++
- 5 files changed, 29 insertions(+), 7 deletions(-)
- create mode 100644 scripts/windows/oculto.vbs
-Resolved 110 packages in 13ms
-Checked 83 packages in 14ms
+ docs/arquitectura_producto.md     | 619 ++++++++++++++++++++++++++++++++++++++
+ docs/comparacion_guia_ivanovic.md | 283 +++++++++++++++++
+ src/tennisbio/explain.py          |   3 +-
+ 3 files changed, 904 insertions(+), 1 deletion(-)
+ create mode 100644 docs/arquitectura_producto.md
+ create mode 100644 docs/comparacion_guia_ivanovic.md
+Resolved 110 packages in 0.93ms
+Checked 83 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -44,13 +41,6 @@ yolo11m-pose_640.onnx OK 84 MB
 yolo11m-pose_960.onnx OK 84 MB
 yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
-    (paso terminado en 4 s)
+    (paso terminado en 3 s)
 
-==> [2026-10-17 11:52:08] Que hace falta: nada
-Ciclo automatico terminado (nada).
-    (paso terminado en 0 s)
-Empezado 2026-10-17 11:52:02 - terminado 2026-10-17 11:52:08 - duracion total 6 s
-**********************
-Windows PowerShell transcript end
-End time: 20261017115208
-**********************
+==> [2026-10-17 12:10:05] Que hace falta: informe
