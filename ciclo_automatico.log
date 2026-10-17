@@ -581,3 +581,41 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
   ventana w009663559_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 10) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 1729 px (segments)
   ventana w009692015_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 1.92 s
+  ventana w009692015_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 179) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 193 px (court)
+  ventana w009725510_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.48 s
+  ventana w009725510_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 179) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 197 px (court)
+  fine:  98 % (549/562 golpes candidatos · 121 confirmados · 64 ventanas descartadas sin pose) · 42 min · quedan ≈ 60 s
+  ventana w009748544_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
+  ventana w009748544_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 199 px (court)
+  ventana w009765802_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
+  ventana w009765802_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 202 px (court)
+  ventana w009777819_3600 (near, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos y la bola bien vista ahí
+  ventana w009800620_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
+  ventana w009800620_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 200 px (court)
+  ventana w009841662_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w009841662_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 194 px (court)
+  ventana w009899803_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w009899803_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 195 px (court)
+  ventana w009916434_5580 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w009916434_5580: pose hybrid en 278 de 278 fotogramas (0 s; modelo 0 s; pies en 278) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 194 px (court)
+  fine:  99 % (557/562 golpes candidatos · 125 confirmados · 65 ventanas descartadas sin pose) · 43 min · quedan ≈ 23 s
+  ventana w009963785_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.08 s
+  ventana w009963785_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 193 px (court)
+  ventana w009996967_9318 (near, 4 candidatos): pasa · golpe de bola en su lado a 2.08 s
+  ventana w009996967_9318: pose hybrid en 466 de 466 fotogramas (0 s; modelo 0 s; pies en 466) · bola 0 s · raqueta 0 s (3 de 3 impactos) · 3 golpes posibles · altura 203 px (court)
+  fine: 100 % (562/562 golpes candidatos · 129 confirmados · 65 ventanas descartadas sin pose) · 44 min · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine terminada a las 18:16:20 en 44.0 min
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (2026-10-17 18:16:20, etapa 10 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent terminada a las 18:16:20 en 0 s
+[2026-10-17 18:16:20] Medidas recalculadas en 44.0 min: 129 golpes de 562 candidatos en 226 ventanas
+  Tiempo por parte (s): bola_en_paralelo_cpu 897.8, cuerdas_y_3d 871.0, espera_bola_en_paralelo 853.3, jugadora_lejana 570.3, analisis_ventana 63.4, pista_ventana 41.8, cribado 26.1, recorte 10.9, pose 2.8
+  AVISO: 1 ficheros de ventana nuevos (no estaban en caché): w003028148_9022_47a56e4a_ball.npy
+[2026-10-17 18:16:47] smoke_tennis-yusipopen-final-sobolenko-rybakin terminado en 44.4 min
+
+[2026-10-17 18:16:47] Informe, PDF y auditoría…
+Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (129 golpes)
+Informe: C:\tenis\output\_poc9_largo\informe\index.html
+  golpes 10/69 (197 s)
+  golpes 20/69 (406 s)
+  golpes 30/69 (613 s)
+  golpes 40/69 (808 s)
