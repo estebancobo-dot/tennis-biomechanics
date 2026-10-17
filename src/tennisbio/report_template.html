@@ -1067,7 +1067,7 @@ function cropRect(f, aspect = 16 / 9, S = MAIN) {
   if (S.view === "full" || !sr) return [0, 0, W, H];
   let b = null; for (let d = 0; d < n && !b; d++) b = sr.box[clamp(f + d, 0, n - 1)] || sr.box[clamp(f - d, 0, n - 1)];
   if (!b) return [0, 0, W, H];
-  const h = (b[3] - b[1]) * 2.1, w = h * aspect, cxm = (b[0] + b[2]) / 2, cym = (b[1] + b[3]) / 2;
+  const h = (b[3] - b[1]) * (S.zoom || 2.1), w = h * aspect, cxm = (b[0] + b[2]) / 2, cym = (b[1] + b[3]) / 2;
   return [clamp(cxm - w / 2, 0, Math.max(0, W - w)), clamp(cym - h / 2, 0, Math.max(0, H - h)), Math.min(w, W), Math.min(h, H)];
 }
 const mid = (a, b) => a && b ? [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2] : null;
@@ -2618,7 +2618,7 @@ async function lThumbs(set) {
   const paint = () => cvs.forEach((c, i) => { const im = lThImgs[i]; if (im) { c.getContext("2d").drawImage(im, 0, 0, c.width, c.height); c.dataset.ok = "1"; } });
   if (key === lThKey) { paint(); return; }
   const g = ++lThGen; lThKey = key; lThImgs = [];
-  if (!LTH) LTH = mkSrc();
+  if (!LTH) { LTH = mkSrc(); LTH.zoom = 1.25; }      // a photo of her, not of the court: framed tight on her body
   try { await loadSrc(LTH, s); } catch (e) { return; }
   for (let i = 0; i < ids.length; i++) {
     if (g !== lThGen) return;
