@@ -1,6 +1,6 @@
 # Auditoría de requisitos (forehand)
 
-10 golpes del lado cercano. ✔ 270 cumplidos · ✘ 17 no cumplidos · … 114 sin golpes suficientes en esta ejecución · ! 19 avisos
+10 golpes del lado cercano. ✔ 270 cumplidos · ✘ 18 no cumplidos · … 114 sin golpes suficientes en esta ejecución · ! 19 avisos
 
 ## 1. Toda la taxonomía del golpe y todas sus variantes (situaciones)
 
@@ -196,6 +196,7 @@
 ## 2. Información, no tablas: vídeo real como prueba en cada pantalla
 
 - ✘ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 1857 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']; no dice para qué sirve (sin frase de entrada)
+- ✘ **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=247–809 de 900; al abrir 12 títulos, 351 palabras, 74 botones; FALLOS: al abrir: 12 títulos y 74 botones (máximo 3 y 30); se sale por la derecha: aprende (2054 px), conclusiones (1556 px)
 - ✘ **«Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm**: 3 en la pantalla
 - ✘ **«Tronco al terminar»: fotograma con la línea de hombros y hacia dónde mira**: 1 en la pantalla
 - ✔ **Cada golpe de entrenamiento tiene su vídeo con el esqueleto**: 91 de 91
@@ -209,7 +210,7 @@
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 3261 caracteres de texto, 6 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 6 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 3307 caracteres de texto, 6 vídeos, 0 gráficos
-- ✔ **Pantalla «Datos del análisis»**: 1709 caracteres de texto, 6 vídeos, 0 gráficos
+- ✔ **Pantalla «Datos del análisis»**: 1386 caracteres de texto, 6 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza

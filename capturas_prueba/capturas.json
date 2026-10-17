@@ -231,7 +231,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 1709,
+   "text_chars": 1386,
    "charts": 0,
    "videos": 6,
    "black_canvases": 0,
@@ -346,6 +346,25 @@
    "valued": 85,
    "bad": []
   }
+ },
+ "entry": {
+  "entry": {
+   "vid_top": 247,
+   "vid_bottom": 809,
+   "h2": 12,
+   "words": 351,
+   "buttons": 74,
+   "height": 900
+  },
+  "wide": {
+   "aprende": 2054,
+   "conclusiones": 1556
+  },
+  "file_names": {},
+  "failures": [
+   "al abrir: 12 títulos y 74 botones (máximo 3 y 30)",
+   "se sale por la derecha: aprende (2054 px), conclusiones (1556 px)"
+  ]
  },
  "lesson": {
   "phases": [
