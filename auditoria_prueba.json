@@ -3,7 +3,7 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 282,
+  "ok": 284,
   "falta": 0,
   "pocos datos": 117,
   "aviso": 21
@@ -2560,7 +2560,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "41437 caracteres de texto, 5 vídeos, 8 gráficos; mensajes de vacío: ['']",
+   "detail": "12206 caracteres de texto, 6 vídeos, 9 gráficos; mensajes de vacío: ['']",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2568,7 +2568,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Sus golpes (Videoteca y pista)»",
    "status": "ok",
-   "detail": "3323 caracteres de texto, 5 vídeos, 1 gráficos",
+   "detail": "3323 caracteres de texto, 6 vídeos, 1 gráficos",
    "file": "pantalla_2_videoteca.jpg"
   },
   {
@@ -2576,7 +2576,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "6693 caracteres de texto, 6 vídeos, 31 gráficos",
+   "detail": "6693 caracteres de texto, 7 vídeos, 31 gráficos",
    "file": "pantalla_3_golpe.jpg"
   },
   {
@@ -2584,7 +2584,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Comparar dos golpes»",
    "status": "ok",
-   "detail": "5273 caracteres de texto, 5 vídeos, 2 gráficos",
+   "detail": "5273 caracteres de texto, 6 vídeos, 2 gráficos",
    "file": "pantalla_4_comparar.jpg"
   },
   {
@@ -2592,7 +2592,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "6575 caracteres de texto, 5 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']",
+   "detail": "6575 caracteres de texto, 6 vídeos, 11 gráficos; mensajes de vacío: ['', '', '', '', '', '', '', '']",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2600,7 +2600,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Tabla de golpes (Explorador)»",
    "status": "ok",
-   "detail": "3223 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "3223 caracteres de texto, 6 vídeos, 0 gráficos",
    "file": "pantalla_6_explorador.jpg"
   },
   {
@@ -2608,7 +2608,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Vista lateral (entreno)»",
    "status": "ok",
-   "detail": "7620 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "7620 caracteres de texto, 6 vídeos, 0 gráficos",
    "file": "pantalla_7_lateral.jpg"
   },
   {
@@ -2616,7 +2616,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Fiabilidad de las medidas»",
    "status": "ok",
-   "detail": "3031 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "3031 caracteres de texto, 6 vídeos, 0 gráficos",
    "file": "pantalla_8_fiabilidad.jpg"
   },
   {
@@ -2624,7 +2624,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "1269 caracteres de texto, 5 vídeos, 0 gráficos",
+   "detail": "1269 caracteres de texto, 6 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -2745,6 +2745,20 @@
    "name": "«Tu objetivo»: la consigna con su número en cada medida suya fiable",
    "status": "ok",
    "detail": "52 medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); 69 palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados"
+  },
+  {
+   "req": 1,
+   "area": "Aprende su derecha",
+   "name": "La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo",
+   "status": "ok",
+   "detail": "9 de 9 fases con claves suyas fiables"
+  },
+  {
+   "req": 2,
+   "area": "Vídeo",
+   "name": "La lección enseña su vídeo de cada fase, en bucle",
+   "status": "ok",
+   "detail": "9 de 9 fases con su vídeo cargado"
   },
   {
    "req": 2,
@@ -2940,14 +2954,14 @@
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b",
    "status": "pocos datos",
-   "detail": "191 comprobaciones: 46 pocos datos, 145 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "192 comprobaciones: 46 pocos datos, 146 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto",
    "status": "pocos datos",
-   "detail": "25 comprobaciones: 19 pocos datos, 6 ok; la peor: «Bola rápida / lenta» (lenta 2, media 3, rápida 3, muy rápida 2 (se muestra con ≥ 12 golpes))"
+   "detail": "26 comprobaciones: 19 pocos datos, 7 ok; la peor: «Bola rápida / lenta» (lenta 2, media 3, rápida 3, muy rápida 2 (se muestra con ≥ 12 golpes))"
   },
   {
    "req": 11,
@@ -3031,7 +3045,7 @@
    "area": "Peticiones",
    "name": "#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»",
    "status": "pocos datos",
-   "detail": "9 comprobaciones: 1 pocos datos, 8 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 76 de 81 puntos con su valor medido)"
+   "detail": "10 comprobaciones: 1 pocos datos, 9 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 76 de 81 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -3360,7 +3374,7 @@
    "area": "Peticiones",
    "name": "#68 La meta: mejorar mi derecha tomando la de X como base",
    "status": "pocos datos",
-   "detail": "7 comprobaciones: 1 pocos datos, 6 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 76 de 81 puntos con su valor medido)"
+   "detail": "8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 9 parecidos; 76 de 81 puntos con su valor medido)"
   },
   {
    "req": 11,

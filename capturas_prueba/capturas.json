@@ -3,15 +3,15 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 41437,
-   "charts": 8,
-   "videos": 5,
+   "text_chars": 12206,
+   "charts": 9,
+   "videos": 6,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [
     ""
    ],
-   "dashes": 12,
+   "dashes": 1,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -34,7 +34,7 @@
    "title": "Sus golpes (Videoteca y pista)",
    "text_chars": 3323,
    "charts": 1,
-   "videos": 5,
+   "videos": 6,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -61,7 +61,7 @@
    "title": "Análisis de golpe",
    "text_chars": 6693,
    "charts": 31,
-   "videos": 6,
+   "videos": 7,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -89,7 +89,7 @@
    "title": "Comparar dos golpes",
    "text_chars": 5273,
    "charts": 2,
-   "videos": 5,
+   "videos": 6,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -116,7 +116,7 @@
    "title": "Conclusiones (Panel y Comparativas)",
    "text_chars": 6575,
    "charts": 11,
-   "videos": 5,
+   "videos": 6,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [
@@ -152,7 +152,7 @@
    "title": "Tabla de golpes (Explorador)",
    "text_chars": 3223,
    "charts": 0,
-   "videos": 5,
+   "videos": 6,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -179,7 +179,7 @@
    "title": "Vista lateral (entreno)",
    "text_chars": 7620,
    "charts": 0,
-   "videos": 5,
+   "videos": 6,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -206,7 +206,7 @@
    "title": "Fiabilidad de las medidas",
    "text_chars": 3031,
    "charts": 0,
-   "videos": 5,
+   "videos": 6,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -233,7 +233,7 @@
    "title": "Datos del análisis",
    "text_chars": 1269,
    "charts": 0,
-   "videos": 5,
+   "videos": 6,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -352,5 +352,111 @@
    "valued": 76,
    "bad": []
   }
+ },
+ "lesson": {
+  "phases": [
+   {
+    "phase": "ready",
+    "keys": 3,
+    "valued": 3,
+    "checked": 3,
+    "drilled": 3,
+    "reason": "",
+    "reps": 10,
+    "video": true,
+    "height": 958
+   },
+   {
+    "phase": "takeback",
+    "keys": 3,
+    "valued": 3,
+    "checked": 3,
+    "drilled": 3,
+    "reason": "",
+    "reps": 10,
+    "video": true,
+    "height": 1020
+   },
+   {
+    "phase": "loaded",
+    "keys": 3,
+    "valued": 3,
+    "checked": 3,
+    "drilled": 3,
+    "reason": "",
+    "reps": 10,
+    "video": true,
+    "height": 958
+   },
+   {
+    "phase": "acceleration",
+    "keys": 3,
+    "valued": 3,
+    "checked": 3,
+    "drilled": 3,
+    "reason": "",
+    "reps": 10,
+    "video": true,
+    "height": 1001
+   },
+   {
+    "phase": "impact",
+    "keys": 3,
+    "valued": 3,
+    "checked": 3,
+    "drilled": 3,
+    "reason": "",
+    "reps": 10,
+    "video": true,
+    "height": 999
+   },
+   {
+    "phase": "extension",
+    "keys": 3,
+    "valued": 3,
+    "checked": 3,
+    "drilled": 3,
+    "reason": "",
+    "reps": 10,
+    "video": true,
+    "height": 979
+   },
+   {
+    "phase": "finish",
+    "keys": 3,
+    "valued": 3,
+    "checked": 3,
+    "drilled": 3,
+    "reason": "",
+    "reps": 10,
+    "video": true,
+    "height": 999
+   },
+   {
+    "phase": "recovery",
+    "keys": 3,
+    "valued": 3,
+    "checked": 3,
+    "drilled": 3,
+    "reason": "",
+    "reps": 10,
+    "video": true,
+    "height": 837
+   },
+   {
+    "phase": "feet",
+    "keys": 3,
+    "valued": 3,
+    "checked": 3,
+    "drilled": 3,
+    "reason": "",
+    "reps": 10,
+    "video": true,
+    "height": 816
+   }
+  ],
+  "failures": [],
+  "with_video": 9,
+  "with_keys": 9
  }
 }
