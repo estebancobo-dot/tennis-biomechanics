@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261017133002
+Start time: 20261017151002
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 10908
+Process ID: 13676
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,16 +17,17 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-17 13:30:02] Codigo nuevo (853ebd8 -> 4440320): 1 ficheros
-    config/peticion_pc.txt
+==> [2026-10-17 15:10:02] Codigo nuevo (4440320 -> 1831b6a): 1 ficheros
+    docs/maqueta_leccion_armado.html
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating 853ebd8..4440320
+Updating 4440320..1831b6a
 Fast-forward
- config/peticion_pc.txt | 7 ++++---
- 1 file changed, 4 insertions(+), 3 deletions(-)
-Resolved 110 packages in 0.86ms
-Checked 83 packages in 2ms
+ docs/maqueta_leccion_armado.html | 97 ++++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 97 insertions(+)
+ create mode 100644 docs/maqueta_leccion_armado.html
+Resolved 110 packages in 0.98ms
+Checked 83 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -37,36 +38,11 @@ yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
     (paso terminado en 3 s)
 
-==> [2026-10-17 13:30:05] Que hace falta: informe
-Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
-Informe: C:\tenis\output\_smoke\informe\index.html
-Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
-Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
-Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
-Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
-Auditoría: 282 cumplidos, 0 no cumplidos, 117 sin golpes suficientes, 21 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-Hecho en 174 s, sin volver a analizar vídeo.
-    (paso terminado en 2 min 54 s)
-
-==> [2026-10-17 13:32:59] Revision automatica frente a la ejecucion anterior
-# Revisión automática: OK
-Peticion 11: borrar carpetas de pruebas (2026-10-17T13:32:59)
-  borrada: _poc (1810.9 MB)
-  borrada: _poc3 (1538.9 MB)
-  borrada: _poc3_4 (152.5 MB)
-  borrada: _poc4 (1666.6 MB)
-  borrada: _poc4_4 (183.1 MB)
-  borrada: _poc5_35 (1534.8 MB)
-  borrada: _poc5_4 (183.1 MB)
-  borrada: _poc6_35 (1550.1 MB)
-  borrada: _poc6_4 (183.7 MB)
-  borrada: _poc7_35 (1550.2 MB)
-  borrada: _poc7_4 (183.8 MB)
-libre en C: 275 GB; termina 2026-10-17T13:33:00
-Ciclo automatico terminado (informe).
-    (paso terminado en 1 s)
-Empezado 2026-10-17 13:30:00 - terminado 2026-10-17 13:33:00 - duracion total 2 min 59 s
+==> [2026-10-17 15:10:05] Que hace falta: nada
+Ciclo automatico terminado (nada).
+    (paso terminado en 0 s)
+Empezado 2026-10-17 15:10:00 - terminado 2026-10-17 15:10:05 - duracion total 5 s
 **********************
 Windows PowerShell transcript end
-End time: 20261017133300
+End time: 20261017151005
 **********************
