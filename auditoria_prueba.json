@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 283,
+  "ok": 284,
   "falta": 0,
   "pocos datos": 117,
-  "aviso": 22
+  "aviso": 21
  },
  "items": [
   {
@@ -2757,8 +2757,8 @@
    "req": 2,
    "area": "Vídeo",
    "name": "La lección enseña su vídeo de cada fase, en bucle",
-   "status": "aviso",
-   "detail": "8 de 9 fases con su vídeo cargado"
+   "status": "ok",
+   "detail": "9 de 9 fases con su vídeo cargado"
   },
   {
    "req": 2,

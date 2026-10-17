@@ -363,7 +363,7 @@
     "drilled": 3,
     "reason": "",
     "reps": 10,
-    "video": false,
+    "video": true,
     "height": 958
    },
    {
@@ -456,7 +456,7 @@
    }
   ],
   "failures": [],
-  "with_video": 8,
+  "with_video": 9,
   "with_keys": 9
  }
 }
