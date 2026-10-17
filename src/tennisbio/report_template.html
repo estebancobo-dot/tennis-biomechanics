@@ -537,6 +537,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
       </div>
       <div class="kf" id="kf"></div>
       <div class="bmwrap" id="bmwrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">La bola y ella</b> · qué está haciendo cuando golpea la rival, cuando la bola cruza la red, cuando bota, cuando llega a lo más alto y cuando ella golpea (pulsa para ir a ese momento)</div><div class="bm" id="bm"></div></div>
+      <details class="extra secx" id="g-more" style="margin:0 12px 12px"><summary><b>Su cuerpo y sus pies en este golpe</b> · bajar y subir, base, tronco al terminar, cada paso (fotogramas reales con medidas)</summary>
       <div class="bmwrap" id="bodywrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">Su cuerpo en este golpe</b> · fotogramas reales con la medida dibujada encima (pulsa para ir a ese momento)</div>
         <div class="sub3"><b>Bajar y subir</b> <span class="dim3">la línea discontinua es la altura de su cadera en la espera; la continua, donde está ahora</span></div><div class="bm" id="bd-hip"></div><p class="say1" id="bd-hip-t"></p>
         <div class="sub3"><b>Base: distancia entre los pies</b> <span class="dim3">medida sobre la pista (homografía), en metros</span></div><div class="bm" id="bd-base"></div><p class="say1" id="bd-base-t"></p>
@@ -545,12 +546,12 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
         <p class="say1" id="feet-say"></p><div class="bm" id="feet-fr"></div>
         <details class="secx"><summary>Extra: todos los pasos, uno a uno, y su recorrido visto desde arriba</summary>
         <div class="feet"><canvas id="feet-cv" width="360" height="460"></canvas><ol id="feet-txt"></ol></div>
-        <div class="legend" id="feet-leg" style="margin-top:6px"></div></details></div>
+        <div class="legend" id="feet-leg" style="margin-top:6px"></div></details></div></details>
       <details class="secx" style="padding:0 12px 12px"><summary>Extra: el recorrido del brazo (armado → terminación, sobre el fotograma del impacto)</summary><div class="note" style="margin-bottom:6px">Cuatro siluetas reales del mismo golpe (armado, inicio de la aceleración, impacto y terminación) y el camino de la mano solo en ese tramo</div><canvas id="strobe" width="1280" height="720" style="width:100%;border-radius:6px;background:#000"></canvas></details>
     </div>
     <div style="display:grid;gap:16px;align-content:start">
       <div class="panel">
-        <header><h2 id="g-title" class="mono"></h2><div style="display:flex;gap:6px"><button class="ibtn" id="gprev" aria-label="Golpe anterior"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2 4 7l5 5"/></svg></button><button class="ibtn" id="gnext" aria-label="Golpe siguiente"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 2 5 5-5 5"/></svg></button></div></header>
+        <header><h2 id="g-title"></h2><div style="display:flex;gap:6px"><button class="ibtn" id="gprev" aria-label="Golpe anterior"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 2 4 7l5 5"/></svg></button><button class="ibtn" id="gnext" aria-label="Golpe siguiente"><svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2"><path d="m5 2 5 5-5 5"/></svg></button></div></header>
         <div class="body"><div class="ctx" id="g-ctx"></div></div>
       </div>
       <div class="panel">
@@ -617,7 +618,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
   <div class="panel">
     <header><h2>Diferencias</h2><span class="note">B − A; resaltadas las que superan el ruido de medida de la métrica</span></header>
     <ul class="say" id="k-say"></ul>
-    <details class="extra" open><summary>Tabla completa</summary><div class="tw"><table class="data" id="k-table"></table></div></details>
+    <details class="extra"><summary>Tabla completa</summary><div class="tw"><table class="data" id="k-table"></table></div></details>
   </div>
 </section>
 
@@ -669,7 +670,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
       <span class="note" style="margin-left:auto;max-width:46ch">Con "Todas" se mezclan golpes con distinta bola: una diferencia puede deberse a la bola recibida y no a la técnica.</span>
     </div>
     <ul class="say" id="c-say"></ul>
-    <details class="extra" open><summary>Tabla completa</summary><div class="tw" style="border-top:1px solid var(--line)"><table class="data" id="c-table"></table></div></details>
+    <details class="extra"><summary>Tabla completa</summary><div class="tw" style="border-top:1px solid var(--line)"><table class="data" id="c-table"></table></div></details>
   </div>
   <details class="extra" id="c-gridwrap" open><summary>Gráficas por medida (cada punto es un golpe)</summary><div class="cols c-1-1" id="c-grid"></div></details>
 </section>
@@ -687,6 +688,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
   <li><b>«Más» reorganizado:</b> «Su patrón típico» está ahora al final de «Cópiala»; «Dónde golpea», en «Sus golpes» → «En la pista»; el Panel y las Comparativas, juntos en «Conclusiones»; nueva «Datos del análisis». Los accesos de «Más» llevan directamente a cada sitio.</li>
 </ul></details>
 
+<p id="datos-export" style="margin:0 0 10px"></p>
 <div class="panel"><div class="body" id="datos-body" style="padding:12px 16px"></div></div>
 </section>
 <section class="screen" id="tab-explorador" hidden>
@@ -822,6 +824,8 @@ function setLibMode(m) {
   document.querySelectorAll("#lib-mode button").forEach(b => b.setAttribute("aria-pressed", b.dataset.v === m));
 }
 function renderData() {
+  const ex = DATA.exports || [];
+  document.getElementById("datos-export").innerHTML = ex.length ? `<b>Exportar:</b> ${ex.map(f => `<a href="${f}" target="_blank" rel="noopener">${f.split("/").pop()}</a>`).join(" · ")}` : `<span class="dim3">Exportar: todavía no hay PDF ni montajes de vídeo (se hacen con la exportación).</span>`;
   const near = STROKES.filter(s => s.side !== "far"), far = STROKES.filter(s => s.side === "far"), I = DATA.run_info || {};
   const cnt = arr => { const c = {}; arr.forEach(x => { c[x] = (c[x] || 0) + 1; }); return Object.entries(c).sort((a, b) => b[1] - a[1]); };
   const doubts = cnt(near.flatMap(s => s.review || [])), notes = cnt(near.flatMap(s => s.notes || []));
@@ -959,11 +963,11 @@ function forestSVG(e, noise) {
   return `<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Efecto">${g}</svg>`;
 }
 document.getElementById("forest").innerHTML = `<div class="frow head"><span>Hallazgo</span><span style="display:flex;justify-content:space-between"><span>−3</span><span>ruido ±1</span><span>+3</span></span><span>Veredicto</span><span></span></div>` +
-  FIND.map((f, i) => {
+  (fr => fr.filter(x => x[0] !== "crit").map(x => x[1]).join("") + (fr.some(x => x[0] === "crit") ? `<details class="extra" style="margin:0 16px 10px"><summary>No concluyentes o dentro del ruido (${fr.filter(x => x[0] === "crit").length})</summary>${fr.filter(x => x[0] === "crit").map(x => x[1]).join("")}</details>` : ""))(FIND.map((f, i) => {
     const e = f.e, v = { cls: f.v[0], icon: f.v[0] === "good" ? "✓" : f.v[0] === "warn" ? "!" : "–", txt: f.v[1] }, m = MK[f.k];
     const tipTxt = `<b>${m.name}</b><div class='mono'>${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}${isN(e.d) ? ` (${sign(e.d)}${fmt(Math.abs(e.d), m.dec)})<br>IC 95 %: ${fmt(e.lo, 1)} … ${fmt(e.hi, 1)}` : ""}<br>ruido ±${fmt(m.noise, 1)} · n=${e.na}/${e.nb} · q=${fmt(f.q, 3)}</div>`;
-    return `<div class="frow"><div class="t"><b>${f.t}: ${isN(e.d) ? sign(e.d) + fmt(Math.abs(e.d), m.dec) + unitStr(m) : "—"}</b><span>${f.c} · <span class="mono">n=${e.na}/${e.nb} · ${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}</span> ${relBars(m.rel)}</span>${isN(e.d) && v.cls !== "crit" ? `<span style="color:var(--ink-2)">→ ${meaning(f.k, e.d)}</span>` : ""}</div><div data-tip="${tipTxt}">${forestSVG(e, m.noise)}</div><span class="st ${v.cls}"><i>${v.icon}</i>${v.txt}</span><span style="display:flex;gap:6px">${findEvidence(f)}<button class="btn" data-go="${i}">Datos</button></span></div>`;
-  }).join("");
+    return [v.cls, `<div class="frow"><div class="t"><b>${f.t}: ${isN(e.d) ? sign(e.d) + fmt(Math.abs(e.d), m.dec) + unitStr(m) : "—"}</b><span>${f.c} · <span class="mono">n=${e.na}/${e.nb} · ${fmt(e.ma, m.dec)} → ${fmt(e.mb, m.dec)}</span> ${relBars(m.rel)}</span>${isN(e.d) && v.cls !== "crit" ? `<span style="color:var(--ink-2)">→ ${meaning(f.k, e.d)}</span>` : ""}</div><div data-tip="${tipTxt}">${forestSVG(e, m.noise)}</div><span class="st ${v.cls}"><i>${v.icon}</i>${v.txt}</span><span style="display:flex;gap:6px">${findEvidence(f)}<button class="btn" data-go="${i}">Datos</button></span></div>`];
+  }));
 document.querySelectorAll("[data-go]").forEach(b => b.addEventListener("click", () => { const g = FIND[+b.dataset.go].go; document.getElementById("c-pair").value = g.pair; document.getElementById("c-sit").value = g.sit; document.getElementById("c-group").value = g.g || MK[FIND[+b.dataset.go].k].g; renderCompare(); showTab("comparativas"); }));
 
 const EVO_LABEL = Object.fromEntries(Object.entries({ xf: "X-factor", sh: "Hombros", knee: "Cadera", baseM: "Base", elbow: "Codo" }).filter(([k]) => MK[k]).slice(0, 4));
@@ -1578,7 +1582,7 @@ function techAlarms(s) {
 }
 function renderCtx() {
   const s = cur, m = MATCHES[s.match];
-  document.getElementById("g-title").textContent = s.id;
+  document.getElementById("g-title").textContent = sName(s); document.getElementById("g-title").title = s.id;
   document.getElementById("g-ctx").innerHTML = [["Partido", `${m.id} vs ${m.rival}`], ["Pista", s.surface || (m.surf && m.surf !== "—" ? m.surf : "superficie sin determinar")], ["Lado", s.side === "far" ? "<b style='color:var(--accent)'>lejano · detalle reducido</b>" : "cercano"], ["Vídeo", clock(s.vt)], ["Bola", sitTxt(s)], ["Tiempo disponible", isN(s.tAvail) ? `${fmt(s.tAvail, 2)} s` : "—"], ["Desplazamiento", isN(s.disp) ? `${fmt(s.disp, 1)} m` : "—"], ["Su golpe", isN(s.shotY) ? `${s.shotDir || "—"} · bota a ${fmt(s.shotY - 11.885 > 0 ? 23.77 - s.shotY : NaN, 1)} m del fondo rival · ${s.shotIn === true ? "dentro" : s.shotIn === false ? "<b style='color:var(--crit)'>fuera</b>" : "dentro/fuera sin determinar"}` : "—"], ["Bote", isN(s.bounceDepth) ? `${fmt(s.bounceDepth, 1)} m dentro de la pista${isN(s.bounceToImpact) ? ` · ${fmt(s.bounceToImpact, 2)} s antes` : ""}` : "—"], ["Apoyo", s.stance ? `${s.stance}${isN(s.stanceAngle) ? ` (${fmt(s.stanceAngle)}°)` : ""}` : "—"], ["Cómo llega", s.movement || "—"], ["Bola en el contacto", [s.ballPhase, s.contactType && s.contactType !== "tras el bote" ? `<b style='color:var(--accent)'>${s.contactType}</b>` : null].filter(Boolean).join(" · ") || "—"], ["Terminación", s.finishType || "—"], ["Impacto", s.source || "—"], ["Captura", `${fmt(s.quality * 100)} %`], ["Resultado", s.outcomeDetail ? (s.outcome === "error" ? `<b style='color:var(--crit)'>${OUT_ES[s.outcomeDetail]}</b>` : s.outcome === "ganador" ? `<b style='color:var(--good)'>${OUT_ES[s.outcomeDetail]}</b>` : OUT_ES[s.outcomeDetail]) : "sin determinar"], ["Set · marcador", s.score ? `${s.set} · ${s.score}${s.pressure ? " · <b style='color:var(--accent)'>presión</b>" : ""}` : "sin lectura del marcador"], ["Dudas", s.review.length ? `<span class="flags">${s.review.map(r => `<span class="chip">${revTxt(r)}</span>`).join("")}</span>` : "ninguna"], ["Avisos de técnica", (al => al.length ? `<span class="flags">${al.map(a => `<span class="chip">${a}</span>`).join("")}</span> <span class="dim3">(fuera de lo que ella hace en casi todos sus golpes)</span>` : "ninguno: dentro de lo que hace siempre")(techAlarms(s))], ["Medidas que faltan", (s.notes || []).length ? `<span class="flags">${s.notes.map(r => `<span class="chip">${revTxt(r)}</span>`).join("")}</span> <span class="dim3">(el golpe es válido; solo falta esa medida)</span>` : "ninguna"]].map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join("");
 }
 function renderRacket() {
@@ -1720,7 +1724,7 @@ function setLayers(on, preset) {
 }
 bindSeg("layers", b => { const on = Object.keys(layers).filter(k => k === b.dataset.v ? !layers[k] : layers[k]); setLayers(on, null); });
 bindSeg("lpreset", b => setLayers(LPRESET[b.dataset.v], b.dataset.v));
-try { const s = JSON.parse(localStorage.getItem("tb-layers") || "null"); if (s && Array.isArray(s.on)) setLayers(s.on, s.preset); else setLayers(LPRESET.all, "all"); } catch (e) { }
+try { const s = JSON.parse(localStorage.getItem("tb-layers") || "null"); if (s && Array.isArray(s.on)) setLayers(s.on, s.preset); else setLayers(LPRESET.body, "body"); } catch (e) { setLayers(LPRESET.body, "body"); }
 // full screen: the player (video, controls, timeline); the drawing is redone at the screen's resolution
 // so lines and labels stay sharp, and back to normal on leaving
 function toggleFull(el) {
@@ -1764,6 +1768,9 @@ function exRows() {
   const k = exSort.k, val = s => MK[k] ? (isN(s.m[k]) ? s.m[k] : -Infinity) : k === "id" ? s.idx : k === "chainOK" ? +!!s.chainOK : k === "sit" ? +s.sit.neutra : k === "review" ? s.review.length : (s[k] ?? "");
   return a.sort((x, y) => { const vx = val(x), vy = val(y); return (vx > vy ? 1 : vx < vy ? -1 : 0) * exSort.dir; });
 }
+// a stroke said as a person says it (the file name stays in the tooltip): set and score, the ball, the stance
+function sName(s) { if (!s) return "—"; const sc = s.score ? `${s.set}.º set ${String(s.score).split(" · ")[0]}` : `min ${clock(s.vt)}`;
+  return [sc, sitTxt(s), s.stance].filter(x => x && x !== "—").join(" · "); }
 // a metric whose measure is noise or bias (Fiabilidad) is never shown as a value on any screen
 function mUnrel(k) { const rk = (DATA.metric_rel || {})[k], r = rk && (DATA.reliability || {})[rk]; return !!(r && (r.verdict === "ruido" || r.verdict === "sesgo")); }
 const UNREL = `<span class="dim3" title="Más › Fiabilidad de las medidas">no fiable desde la tele</span>`;
@@ -1772,14 +1779,14 @@ function renderTable() {
   const a = exRows(), pages = Math.max(1, Math.ceil(a.length / PAGE)); exPage = clamp(exPage, 0, pages - 1);
   const rows = a.slice(exPage * PAGE, exPage * PAGE + PAGE);
   document.getElementById("ex-table").innerHTML = `<thead><tr>${COLS.map(c => `<th data-sort="${c.k}" class="${c.metric || c.r ? "r" : ""}">${c.h}${exSort.k === c.k ? ` <span class="arr">${exSort.dir > 0 ? "▲" : "▼"}</span>` : ""}</th>`).join("")}</tr></thead><tbody>` +
-    rows.map(s => `<tr data-id="${s.id}" class="${s === cur ? "sel" : ""}"><td><b class="mono" style="font-weight:500">${s.id}</b>${s.side === "far" ? ` <span class="chip">lejos</span>` : ""}<div class="dim3" style="font-size:11px">${MATCHES[s.match].rival}</div></td><td class="num">${clock(s.vt)}</td><td class="num">${s.score ? s.set + " · " + s.score.split(" · ")[0] : "—"}${s.pressure ? ` <span class="chip">P</span>` : ""}</td><td>${s.sit.neutra ? `<span class="chip">neutra</span>` : [s.wide && "abierta", s.fast && "rápida", s.height === "baja" && "baja", s.height === "alta" && "alta", s.short && "corta"].filter(Boolean).map(x => `<span class="chip">${x}</span>`).join("")}</td><td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${stCol(s)};margin-right:6px"></span>${s.stance || "—"}</td>${EXM.map(k => `<td class="r">${devCell(k, s.m[k])}</td>`).join("")}<td>${s.chainOK === true ? `<span class="st good"><i>✓</i></span>` : s.chainOK === false ? `<span class="st crit"><i>!</i></span>` : "—"}</td><td>${s.outcome === "ganador" ? `<span class="st good"><i>✓</i>Ganador</span>` : s.outcome === "error" ? `<span class="st crit"><i>✕</i>${s.outcomeDetail === "net" ? "Red" : "Fuera"}</span>` : s.outcome === "sigue" ? `<span class="dim3">sigue</span>` : "—"}</td><td>${s.review.length ? `<span class="st warn" data-tip="${s.review.map(revTxt).join("<br>")}"><i>!</i>${s.review.length}</span>` : ""}</td><td class="r"><span class="qb"><i style="width:${s.quality * 100}%"></i></span> <span class="num">${fmt(s.quality * 100)}</span></td><td class="r num">${fmt(s.repr * 100)}</td></tr>`).join("") + "</tbody>";
+    rows.map(s => `<tr data-id="${s.id}" class="${s === cur ? "sel" : ""}"><td><b style="font-weight:500" title="${s.id}">${sName(s)}</b>${s.side === "far" ? ` <span class="chip">lejos</span>` : ""}<div class="dim3" style="font-size:11px">${MATCHES[s.match].rival}</div></td><td class="num">${clock(s.vt)}</td><td class="num">${s.score ? s.set + " · " + s.score.split(" · ")[0] : "—"}${s.pressure ? ` <span class="chip">P</span>` : ""}</td><td>${s.sit.neutra ? `<span class="chip">neutra</span>` : [s.wide && "abierta", s.fast && "rápida", s.height === "baja" && "baja", s.height === "alta" && "alta", s.short && "corta"].filter(Boolean).map(x => `<span class="chip">${x}</span>`).join("")}</td><td><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:${stCol(s)};margin-right:6px"></span>${s.stance || "—"}</td>${EXM.map(k => `<td class="r">${devCell(k, s.m[k])}</td>`).join("")}<td>${s.chainOK === true ? `<span class="st good"><i>✓</i></span>` : s.chainOK === false ? `<span class="st crit"><i>!</i></span>` : "—"}</td><td>${s.outcome === "ganador" ? `<span class="st good"><i>✓</i>Ganador</span>` : s.outcome === "error" ? `<span class="st crit"><i>✕</i>${s.outcomeDetail === "net" ? "Red" : "Fuera"}</span>` : s.outcome === "sigue" ? `<span class="dim3">sigue</span>` : "—"}</td><td>${s.review.length ? `<span class="st warn" data-tip="${s.review.map(revTxt).join("<br>")}"><i>!</i>${s.review.length}</span>` : ""}</td><td class="r"><span class="qb"><i style="width:${s.quality * 100}%"></i></span> <span class="num">${fmt(s.quality * 100)}</span></td><td class="r num">${fmt(s.repr * 100)}</td></tr>`).join("") + "</tbody>";
   {
     const near = a.filter(s => s.side !== "far"), st = {};
     near.forEach(s => { if (s.stance) st[s.stance] = (st[s.stance] || 0) + 1; });
     const top = Object.entries(st).sort((x, y) => y[1] - x[1])[0];
     const typ = [...a].sort((x, y) => y.repr - x.repr)[0], best = [...a].sort((x, y) => y.quality - x.quality)[0];
     const won = a.filter(s => s.outcome === "ganador").length, err = a.filter(s => s.outcome === "error").length;
-    const lk = s => s ? `<a data-id="${s.id}">${s.id}</a>` : "—";
+    const lk = s => s ? `<a data-id="${s.id}" title="${s.id}">${sName(s)}</a>` : "—";
     document.getElementById("ex-say").innerHTML = !a.length ? `<li class="dim3">Ningún golpe con estos filtros.</li>` :
       `<li><b>${a.length} golpes</b> con estos filtros${near.length < a.length ? ` (${a.length - near.length} del lado lejano, con menos detalle)` : ""}.</li>`
       + `<li>El más representativo de ella: ${lk(typ)}; el mejor captado: ${lk(best)}.</li>`
@@ -1927,7 +1934,7 @@ function card(s) {
     <div class="th" style="${s.thumb ? `background-image:url('${s.thumb}')` : ""}">${s.thumb ? "" : `<div class="noimg">${s.video ? "vídeo" : "sin vídeo"}</div>`}
       <div class="badge">${oc}${s.pressure ? `<span class="a">PRESIÓN</span>` : ""}${s.side === "far" ? "<span>FONDO</span>" : ""}${s.review.length ? "<span>DUDAS</span>" : ""}</div>
       <button class="cmpb" data-pick="${s.id}" title="Elegir para comparar">⧉</button><span class="dur">${clock(s.vt)}</span></div>
-    <div class="meta"><div><b>${s.id}</b> · vs ${m.rival}</div>
+    <div class="meta"><div><b title="${s.id}">${sName(s)}</b> · vs ${m.rival}</div>
       <div>${s.score ? `${s.set}º set · ${s.score.split(" · ")[0]} · ` : ""}${sitTxt(s)}${s.stance ? " · " + s.stance : ""}</div>
       <div class="mv">${mv || `<span>sin métricas</span>`}</div></div></div>`;
 }
@@ -1982,7 +1989,7 @@ async function loadSrc(S, s) {
 const kF = (S, t) => clamp(Math.round((t - S.T0) * S.FPS), 0, S.NF - 1);
 const kRange = () => [Math.max(KA.T0, KB.T0), Math.min(KA.T1, KB.T1)];
 function seekSrc(S, t) { return !S.s || !S.s.video ? Promise.resolve() : seekVideo(S.video, S.s.vImpact + t); }
-const kOpt = s => `<option value="${s.id}">${s.id} · ${MATCHES[s.match].rival} · ${clock(s.vt)}${s.outcome ? " · " + s.outcome : ""}</option>`;
+const kOpt = s => `<option value="${s.id}">${sName(s)} · ${MATCHES[s.match].rival} · ${clock(s.vt)}${s.outcome ? " · " + s.outcome : ""}</option>`;
 ["k-a", "k-b"].forEach(id => { document.getElementById(id).innerHTML = STROKES.filter(s => s.video).map(kOpt).join(""); });
 async function openCompare(a, b) {
   if (!a || !b) return;
@@ -1997,7 +2004,7 @@ function kLayout() {
   document.getElementById("k-grid").className = "cmpgrid" + (one ? " one" : "");
   document.getElementById("k-grid").innerHTML = one
     ? `<div><div class="lbl"><i style="background:${KCOL[0]}"></i>A ${KA.s.id}<i style="background:${KCOL[1]};margin-left:10px"></i>B ${KB.s.id} (alineado en la cadera)</div><canvas id="k-c0" width="1280" height="720"></canvas></div>`
-    : [KA, KB].map((S, i) => `<div><div class="lbl"><i style="background:${KCOL[i]}"></i>${"AB"[i]} · ${S.s.id} · ${sitTxt(S.s)}${S.s.outcome ? " · " + S.s.outcome : ""}</div><canvas id="k-c${i}" width="960" height="540"></canvas></div>`).join("");
+    : [KA, KB].map((S, i) => `<div><div class="lbl"><i style="background:${KCOL[i]}"></i>${"AB"[i]} · ${sName(S.s)}${S.s.outcome ? " · " + S.s.outcome : ""}</div><canvas id="k-c${i}" width="960" height="540"></canvas></div>`).join("");
 }
 function kLabel(ctx, W, S, t, col) {
   ctx.font = "600 20px JetBrains Mono, monospace"; const txt = `${t >= 0 ? "+" : "−"}${fmt(Math.abs(t), 2)} s · fot ${kF(S, t) + 1}/${S.NF}`, w = ctx.measureText(txt).width;
@@ -2043,7 +2050,7 @@ function renderKTable() {
                     : `<li>Ninguna medida difiere más que el error de medida: los dos golpes son técnicamente iguales.</li>`);
   }
   const ctxRows = [["Situación de la bola", sitTxt(a), sitTxt(b)], ["Apoyo", a.stance || "—", b.stance || "—"], ["Resultado", a.outcomeDetail ? OUT_ES[a.outcomeDetail] : "—", b.outcomeDetail ? OUT_ES[b.outcomeDetail] : "—"], ["Marcador", a.score ? `${a.set}º set · ${a.score}` : "—", b.score ? `${b.set}º set · ${b.score}` : "—"], ["Cadena cinética", a.chainOK === true ? "en orden" : a.chainOK === false ? "desordenada" : "—", b.chainOK === true ? "en orden" : b.chainOK === false ? "desordenada" : "—"]];
-  document.getElementById("k-table").innerHTML = `<thead><tr><th>Métrica</th><th class="r" style="color:${KCOL[0]}">A · ${a.id}</th><th class="r" style="color:${KCOL[1]}">B · ${b.id}</th><th class="r">B − A</th><th>¿Supera el ruido?</th><th>Fiab.</th></tr></thead><tbody>` +
+  document.getElementById("k-table").innerHTML = `<thead><tr><th>Métrica</th><th class="r" style="color:${KCOL[0]}" title="${a.id}">A · ${sName(a)}</th><th class="r" style="color:${KCOL[1]}" title="${b.id}">B · ${sName(b)}</th><th class="r">B − A</th><th>¿Supera el ruido?</th><th>Fiab.</th></tr></thead><tbody>` +
     ctxRows.map(([n, x, y]) => `<tr><td>${n}</td><td class="r">${x}</td><td class="r">${y}</td><td></td><td></td><td></td></tr>`).join("") +
     rows.map(m => { const va = a.m[m.k], vb = b.m[m.k], un = mUnrel(m.k), d = isN(va) && isN(vb) && !un ? vb - va : NaN, big = isN(d) && Math.abs(d) > m.noise;
       if (un) return `<tr><td>${m.name}</td><td class="r" colspan="3">${UNREL}</td><td></td><td>${relBars(m.rel)}</td></tr>`; return `<tr><td>${m.name}</td><td class="r num">${fmtM(m.k, va)}</td><td class="r num">${fmtM(m.k, vb)}</td><td class="r num" style="${big ? "color:var(--accent);font-weight:600" : ""}">${isN(d) ? sign(d) + fmt(Math.abs(d), m.dec) : "—"}</td><td>${isN(d) ? (big ? `<span class="st good"><i>✓</i>sí (ruido ±${fmt(m.noise, m.dec)})</span>` : `<span class="dim3">no (ruido ±${fmt(m.noise, m.dec)})</span>`) : ""}</td><td>${relBars(m.rel)}</td></tr>`; }).join("") + "</tbody>";
@@ -2375,7 +2382,7 @@ function aSignature(set) {
     if (aIsPractice(c.key) || !ok(c.key)) return;
     const tp = aTop(set, c.key);
     if (!tp || typeof [...set].map(s => (s.lv || {})[c.key]).find(x => x !== undefined) === "number") return;
-    if (tp.of >= 4 && tp.share >= 0.75) traits.push({ c, ph, tp });
+    if (tp.of >= 4 && tp.share >= 0.75 && tp.val !== "false") traits.push({ c, ph, tp });   // «no» to a rare event is not a trait
   }));
   traits.sort((a, b) => b.tp.share - a.tp.share || b.tp.of - a.tp.of);
   // a style is what she does most of the time: below half of the strokes the element is "variable"
@@ -2580,7 +2587,7 @@ function renderLesson(set) {
     + `<div class="lh" title="${c.read} · ${st.txt.replace(/<[^>]+>/g, "").replace(/"/g, "")}">Ella: <b>${lVal(st, c)}</b> <span class="dim3">${c.read.split(" (")[0]}</span> ${st.n >= A_MIN ? `<span class="badge firm">${st.n} golpes</span>` : `<span class="badge prov">${st.n} golpe${st.n > 1 ? "s" : ""}</span>`}${st.warn || ""}</div>`
     + (conv(c) ? aTarget(st, c) : "") + lBySpeed(set, c)
     + `<div class="lhow"><div><span class="l">Cómo:</span> ${gloss(lShort(c.cue))}</div></div>`
-    + `<details class="lmore"><summary title="el porqué, el error típico, el ejercicio y cómo comprobarlo">Más</summary><div class="lhow">${lShort(c.cue) !== c.cue ? `<div><span class="l">Cómo, entero:</span> ${gloss(c.cue)}</div>` : ""}<div><span class="l">Error típico:</span> ${c.mistake}</div><div><span class="l">Ejercicio:</span> ${c.drill}</div>${(LEARN.checks || {})[c.key] ? `<div><span class="l">Cómo comprobarlo:</span> ${LEARN.checks[c.key]}</div>` : ""}</div></details></div>`).join("")
+    + `<details class="lmore"><summary title="el porqué, el error típico, el ejercicio y cómo comprobarlo">Más</summary><div class="lhow">${(LEARN.why || {})[c.key] ? `<div><span class="l">Por qué:</span> ${LEARN.why[c.key][0]} <span class="dim3">(${LEARN.why[c.key][1]})</span></div>` : ""}${lShort(c.cue) !== c.cue ? `<div><span class="l">Cómo, entero:</span> ${gloss(c.cue)}</div>` : ""}<div><span class="l">Error típico:</span> ${c.mistake}</div><div><span class="l">Ejercicio:</span> ${c.drill}</div>${(LEARN.checks || {})[c.key] ? `<div><span class="l">Cómo comprobarlo:</span> ${LEARN.checks[c.key]}</div>` : ""}</div></details></div>`).join("")
     : `<p class="dim">Todavía no hay valores suyos fiables de esta fase en estos golpes: ${missing.slice(0, 3).map(({ c, st }) => `${c.label.toLowerCase()} (${st.why || aWhyMissing(set, c)})`).join("; ")}.</p>`;
   // the strings in every phase (requirement 4): where they face in her strokes, honest where it is an estimate
   const fk = lPh === "feet" ? null : lPh, fv = fk ? set.map(s => (s.face || {})[fk]).filter(Boolean) : [];

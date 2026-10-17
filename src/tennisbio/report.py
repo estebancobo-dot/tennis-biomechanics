@@ -106,6 +106,15 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
     # short ball: bounce more than 4.5 m inside the court when known (else: hit from inside the court)
     short_ball = (bounce_depth > 4.5) if bounce_depth is not None else (y is not None and y < 10.6)
     fast, wide, short = (t_av is not None and t_av < 1.15), (disp is not None and disp > 2.6), short_ball
+    # one calculation per concept: the stroke's classes (the ones «Cópiala» filters by) decide fast, high
+    # and wide whenever they exist; the thresholds above only when the class is missing
+    cls = (s.get("technique") or {}).get("classes") or {}
+    if cls.get("ball_speed"):
+        fast = cls["ball_speed"] in ("rápida", "muy rápida")
+    if cls.get("ball_height"):
+        height = "baja" if cls["ball_height"] == "rodilla" else "alta" if cls["ball_height"] in ("pecho-hombro", "por encima del hombro") else "media"
+    if cls.get("width"):
+        wide = cls["width"] == "muy abierta"
     vals = {k: (_num(m.get(src)) if src else None) for k, (*_, src) in METRICS.items()}
     vals["rHead"] = _num((rk.get("loaded") or {}).get("head_above_wrist_cm"))
     acc = _num((rk.get("acceleration") or {}).get("head_above_wrist_cm"))
@@ -562,6 +571,9 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
     data["generated"] = time.strftime("%Y-%m-%d %H:%M")
     data["practice"] = practice_data(out_root, dest)
     data["run_info"] = run_info(matches, out_root)
+    # the exports made with `tennisbio export` (PDF summary, video montages), linked from «Datos»
+    data["exports"] = [Path(os.path.relpath(f, dest)).as_posix() for f in sorted(dest.parent.glob("exportar*/resumen.pdf"))
+                       + sorted(dest.parent.glob("exportar*/montajes/*.mp4"))[:12]]
     ids = {r["id"] for r in data["strokes"]}
     for sub, ext in (("series", ".js"), ("thumbs", ".jpg")):          # strokes that no longer exist
         for f in (dest / sub).glob(f"*{ext}") if (dest / sub).exists() else []:

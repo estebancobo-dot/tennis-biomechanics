@@ -58,6 +58,7 @@ def test_body_views_on_the_stroke_page(tmp_path):
         pg.wait_for_timeout(500)
         pg.evaluate("(async () => { showTab('golpe'); await loadStroke(STROKES[0]); })()")
         pg.wait_for_timeout(1500)
+        pg.evaluate("document.getElementById('g-more').open = true")         # the body and feet views, unfolded
         body = pg.evaluate("document.getElementById('bodywrap').innerText")
         ball = pg.evaluate("document.getElementById('bm').innerText")
         b.close()

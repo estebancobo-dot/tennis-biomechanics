@@ -663,6 +663,20 @@ GLOSSARY = [
     ("medida ruidosa", "Medida que cambia bastante entre fotogramas vecinos: el valor es aproximado."),
     ("no fiable desde la tele", "La cámara de la tele no permite medirlo bien; no se da como valor suyo."),
     ("foco", "En qué fijarte al practicar: algo de fuera (la bola, la raqueta, una marca), no tu cuerpo; se aprende antes."),
+    ("bucle", "Camino de la cabeza de la raqueta en la preparación: sube, va atrás y cae por debajo de la bola sin pararse (también «loop»)."),
+    ("loop falso", "Bucle en el que la raqueta sube y se queda parada arriba antes del swing."),
+    ("recto atrás", "Preparación en la que la raqueta va atrás sin subir (sin bucle)."),
+    ("giro de bloque", "Hombros, tronco y raqueta giran juntos al empezar la preparación (también «unit turn»)."),
+    ("doble flexión", "Impacto con el codo doblado (menos de 135°), frente al brazo recto."),
+    ("pico del bote", "El punto más alto de la bola después de botar."),
+    ("paso cruzado", "Paso en el que el pie de fuera pasa por delante del otro: cubre más pista en menos pasos."),
+    ("estiramiento-acortamiento", "Un músculo que se estira justo antes de contraerse da más fuerza; una pausa larga entre las dos cosas lo pierde."),
+    ("pat the dog", "Al final del armado, cuerdas mirando al suelo, como si se acariciara a un perro con la raqueta."),
+    ("gira, atrás, golpe", "Ritmo en tres palabras: girar al ver la bola, raqueta atrás y golpe, sin silencios."),
+    ("sombras", "Hacer el golpe sin bola (también «shadow swing»), para fijar el movimiento."),
+    ("dentro-fuera", "Derecha desde el lado del revés hacia la esquina cruzada de la rival (invertida cruzada)."),
+    ("dentro-dentro", "Derecha desde el lado del revés hacia la línea paralela (invertida paralela)."),
+    ("empuñadura", "Cómo se coge la raqueta (este, semioccidental, occidental…): en la tele la mano mide 20-40 px y no se ve."),
     ("% de altura", "Distancias en proporción a la altura de la persona: así sirven para ti aunque midas distinto."),
 ]
 
@@ -782,7 +796,13 @@ def content() -> dict:
             "targets": TARGETS, "glossary": GLOSSARY, "rhythm": RHYTHM,
             "symptoms": [{"s": sy, "why": w, "keys": k} for sy, w, k in SYMPTOMS], "symptoms_source": SYMPTOMS_SOURCE,
             "lesson": {k: {"mark": m, "keys": ks} for k, (m, ks) in LESSON.items()}, "checks": CHECKS,
-            "focus_check": FOCUS_CHECK}
+            "focus_check": FOCUS_CHECK, "why": _why()}
+
+
+def _why() -> dict:
+    """The «por qué» of each checkpoint with its source (explain.COACH), for the lesson."""
+    from .explain import COACH
+    return {c["key"]: list(COACH[c["key"]]) for ph in PHASES + [FEET] for c in ph["checkpoints"] if c["key"] in COACH}
 
 
 def covered_matrix_items() -> set[str]:
