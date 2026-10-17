@@ -1,8 +1,8 @@
-fecha: 2026-10-17T18:34:45
+fecha: 2026-10-17T18:45:08
        5.7 MB  \output\benchmark
      450.2 MB  \output\entrenamiento
        0.1 MB  \output\investigacion
-    7845.1 MB  \output\_poc9_largo
+    7818.9 MB  \output\_poc9_largo
     1843.4 MB  \output\_smoke
        2.7 MB  \output\_smoke\auditoria
        1.5 MB  \output\_smoke\diag

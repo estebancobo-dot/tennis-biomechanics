@@ -619,3 +619,42 @@ Informe: C:\tenis\output\_poc9_largo\informe\index.html
   golpes 20/69 (406 s)
   golpes 30/69 (613 s)
   golpes 40/69 (808 s)
+  golpes 50/69 (1014 s)
+  golpes 60/69 (1224 s)
+Golpes: 69 nuevos, 69 en C:\tenis\output\_poc9_largo\exportar\golpes
+Montajes: 10 en C:\tenis\output\_poc9_largo\exportar\montajes
+Resumen: C:\tenis\output\_poc9_largo\exportar\resumen.pdf
+Vídeos y resumen PDF: C:\tenis\output\_poc9_largo\exportar
+Auditoría: 322 cumplidos, 22 no cumplidos, 47 sin golpes suficientes, 32 avisos → C:\tenis\output\_poc9_largo\auditoria\auditoria.md
+  ✘ Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»: 2033 caracteres de texto, 6 vídeos, 10 gráficos; no dice para qué sirve (sin frase de entrada)
+  ✘ Primera pantalla, anchura y nombres (diseño definitivo): vídeo de la lección en y=247–922 de 900; al abrir 12 títulos, 392 palabras, 101 botones; FALLOS: el vídeo de la lección acaba en y=922 (más abajo que la primera pantalla, 900); al abrir: 12 títulos y 101 botones (máximo 3 y 30); se sale por la derecha: aprende (2410 px), conclusiones (1562 px)
+  ✘ La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo: 9 de 9 fases con claves suyas fiables; FALLOS: ready: 139 palabras en las claves (máximo 120); takeback: 183 palabras en las claves (máximo 120); loaded: 139 palabras en las claves (máximo 120); acceleration: 143 palabras en las claves (máximo 120)
+  ✘ «Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm: 3 en la pantalla
+  ✘ «Tronco al terminar»: fotograma con la línea de hombros y hacia dónde mira: 1 en la pantalla
+  ✘ #4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b: 192 comprobaciones: 1 falta, 17 pocos datos, 174 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: ready: 139 palabras en las claves (máximo 120); takeback: 183 palabras en)
+  ✘ #5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto: 26 comprobaciones: 1 falta, 1 pocos datos, 24 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: ready: 139 palabras en las claves (máximo 120); takeback: 183 palabras en)
+  ✘ #9 Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras: 9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (2033 caracteres de texto, 6 vídeos, 10 gráficos; no dice para qué sirve (sin frase de entrada))
+  ✘ #11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía: 188 comprobaciones: 2 falta, 16 pocos datos, 170 ok; la peor: ««Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm» (3 en la pantalla)
+  ✘ #17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»: 10 comprobaciones: 2 falta, 1 pocos datos, 7 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (2033 caracteres de texto, 6 vídeos, 10 gráficos; no dice para qué sirve (sin frase de entrada))
+  ✘ #44 Sin vídeos del usuario, de entrenadores ni de otras jugadoras: 10 comprobaciones: 1 falta, 9 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (2033 caracteres de texto, 6 vídeos, 10 gráficos; no dice para qué sirve (sin frase de entrada))
+  ✘ #52 Brave, no instalar Edge: 9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (2033 caracteres de texto, 6 vídeos, 10 gráficos; no dice para qué sirve (sin frase de entrada))
+  ✘ #53 No pasar de 100 a 0: conservar lo anterior: 9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (2033 caracteres de texto, 6 vídeos, 10 gráficos; no dice para qué sirve (sin frase de entrada))
+  ✘ #57 Nada de gráficas de muchas líneas ni tablas sin frases: 9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (2033 caracteres de texto, 6 vídeos, 10 gráficos; no dice para qué sirve (sin frase de entrada))
+  ✘ #67 No borrar el trabajo hecho: lo complejo como extra: 13 comprobaciones: 1 falta, 12 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (2033 caracteres de texto, 6 vídeos, 10 gráficos; no dice para qué sirve (sin frase de entrada))
+  ✘ #68 La meta: mejorar mi derecha tomando la de X como base: 8 comprobaciones: 1 falta, 1 pocos datos, 6 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: ready: 139 palabras en las claves (máximo 120); takeback: 183 palabras en)
+  ✘ #73 Revisar la web de arriba abajo para que aporte valor: 22 comprobaciones: 3 falta, 19 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (2033 caracteres de texto, 6 vídeos, 10 gráficos; no dice para qué sirve (sin frase de entrada))
+  ✘ #115 Cuánto baja y sube el cuerpo, con fotogramas y barras horizontales: de la espera al punto más bajo y del más b: 1 comprobaciones: 1 falta; la peor: ««Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm» (3 en la pantalla)
+  ✘ #117 Hacia dónde mira el tronco al terminar (valla lateral, de frente, girado) según el golpe: 1 comprobaciones: 1 falta; la peor: ««Tronco al terminar»: fotograma con la línea de hombros y hacia dónde mira» (1 en la pantalla)
+  ✘ #120 Vídeo a pantalla completa: 9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (2033 caracteres de texto, 6 vídeos, 10 gráficos; no dice para qué sirve (sin frase de entrada))
+  ✘ #121 Ver lo que se pinta por separado, por grupos o una a una: 9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (2033 caracteres de texto, 6 vídeos, 10 gráficos; no dice para qué sirve (sin frase de entrada))
+  ✘ #122 Web en 2 vistas principales y el resto en «Más», en dos grupos (funcional y técnico), sin perder datos: 9 comprobaciones: 1 falta, 8 ok; la peor: «Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»» (2033 caracteres de texto, 6 vídeos, 10 gráficos; no dice para qué sirve (sin frase de entrada))
+Hecho en 1697 s, con las medidas nuevas.
+[2026-10-17 18:45:04] Informe, PDF y auditoría en 28.3 min
+Recalcular medidas: termina 2026-10-17 18:45:04 (total 72.7 min)
+Ciclo automatico terminado (informe).
+    (paso terminado en 1 h 12 min)
+Empezado 2026-10-17 17:30:00 - terminado 2026-10-17 18:45:07 - duracion total 1 h 15 min
+**********************
+Windows PowerShell transcript end
+End time: 20261017184507
+**********************
