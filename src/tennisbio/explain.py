@@ -369,12 +369,13 @@ CLASS_TEXT = {
     "swing": "Trayectoria", "ball_phase": "Bola en el contacto", "finish_3x90": "Termina con hombro y codo a unos 90° («3 × 90°»)",
     "contact_type": "Contacto (tras el bote, media volea o volea)",
     "racket_plane": "Raqueta al final del armado",
+    "takeback_loop": "Forma del armado (bucle, loop falso o recto atrás)",
 }
 CLASS_PHASE = {"ready_hands": "ready", "takeback": "takeback", "stance_loaded": "loaded", "takeback_face": "loaded",
                "ball_phase": "impact",
                "stance_impact": "impact", "stance_role": "impact",
                "arm": "impact", "finish": "finish", "finish_3x90": "finish", "movement": "impact", "feet_at_impact": "impact", "swing": "acceleration",
-               "contact_type": "impact", "racket_plane": "loaded"}
+               "contact_type": "impact", "racket_plane": "loaded", "takeback_loop": "loaded"}
 
 
 def _class_line(c: dict) -> str | None:

@@ -59,6 +59,15 @@ PHASES = [
             "Esperar al bote para preparar: llegas tarde y acortas el golpe.",
             "Peloteo suave: di «giro» cuando la bola cruce la red; tienes que estar de lado antes del bote.",
             ["Giro de hombros (unit turn)", "Adaptación a bola rápida, corta, alta, abierta"]),
+         cp("stroke.takeback_vs_net", "Gira antes de que la bola cruce la red", "s", 2, "s respecto a cuando la bola cruza la red (− = antes de que la cruce)",
+            "Empieza el giro de hombros en cuanto sepas que es derecha, con la bola aún en el campo de la rival o cruzando la red.",
+            "Esperar a que la bola esté en tu campo para girar: todo lo demás llega tarde.",
+            "Peloteo: di «giro» en voz alta cuando la bola cruce la red y comprueba que ya estás de lado; 3×10.",
+            ["Giro de hombros (unit turn)"]),
+         cp("stroke.dur_preparation", "Duración de la preparación", "s", 2, "s desde que empieza a girar hasta el armado completo",
+            "Prepara con su ritmo: ni a trompicones ni tan lento que llegues tarde.",
+            "Preparar de golpe en el último momento.",
+            "Sombras con metrónomo: el giro y el armado en el tiempo de ella; luego peloteo.", []),
          cp("takeback.shoulder_turn", "Giro de hombros al empezar", "°", 0, "° de giro (2D, desde detrás)",
             "Gira hombros y tronco como un bloque, con la raqueta delante del cuerpo.",
             "Llevar la raqueta atrás solo con el brazo.", "Sombras con la raqueta sujeta con las dos manos hasta que los hombros estén de lado.",
@@ -92,6 +101,25 @@ PHASES = [
          cp("loaded.elbow_dom_vs_shoulder", "Altura del codo en el armado", "%", 0, "% de altura respecto al hombro (+ por encima del hombro)",
             "Lleva el codo a la altura a la que lo lleva ella al armar.", "Codo muy alto (por encima del hombro): el armado se alarga y tensa el hombro.",
             "Sombras parando en el armado frente a un espejo: el codo a su altura respecto al hombro.", []),
+         cp("loaded.wrist_dom_vs_shoulder", "Mano en el armado", "%", 0, "% de altura respecto al hombro (+ por encima)",
+            "Arriba, en el armado, lleva la mano a la altura del hombro a la que la lleva ella (no por encima de la cabeza).",
+            "Mano muy alta (por encima de la cabeza): el armado se alarga y llegas tarde; muy baja: no hay bucle.",
+            "Sombras parando en el armado frente a un espejo: la mano a la altura del hombro que marca su valor.",
+            ["Bucle de la preparación (forma)"]),
+         cp("loaded.elbow_dom", "Codo del brazo de la raqueta en el armado", "°", 0, "° del codo (180 = estirado)",
+            "Arma con el codo doblado como ella y separado del cuerpo.",
+            "Brazo estirado y rígido atrás, o el codo pegado al costado.",
+            "Sombras parando en el armado: comprueba el ángulo del codo en un espejo.", []),
+         cp("stroke.pause_at_loaded", "Sin pausa arriba", "s", 2, "s con la mano casi quieta entre el armado y el swing (0 = sin pausa)",
+            "Del armado al swing sin pararte arriba: la raqueta baja en cuanto llega atrás. Si tienes que esperar a la bola, espera en el giro, no arriba.",
+            "Parar la raqueta arriba («loop falso»): se pierde la energía elástica del estiramiento y el golpe sale de brazo.",
+            "Sombras dibujando una «gota» con la cabeza de la raqueta sin detenerte; luego peloteo diciendo «gira, atrás, golpe» sin silencio entre «atrás» y «golpe».",
+            ["Bucle de la preparación (forma)"]),
+         cp("class.takeback_loop", "Forma del armado", "", 0, "bucle continuo / loop falso (para arriba) / recto atrás",
+            "Copia la forma de ella: si hace un bucle continuo, que la raqueta suba y baje sin pararse arriba.",
+            "Loop falso (subir y parar) o llevar la raqueta recta atrás y baja: sin bucle no hay aceleración.",
+            "Sombras a cámara lenta dibujando su forma; después a velocidad normal sin pausas.",
+            ["Bucle de la preparación (forma)"]),
          cp("loaded.elbow_dom_lateral", "Separación del codo en el armado", "%", 0, "% de altura hacia fuera del hombro",
             "Separa el codo del cuerpo como ella al armar.", "Codo pegado al costado: el brazo no tiene espacio para acelerar.",
             "Sombras con una pelota entre el codo y el costado sin apretarla.", []),
@@ -255,6 +283,11 @@ PHASES = [
             "Si ella la toma subiendo, adelántate: no esperes a que la bola caiga.", "Retroceder siempre para esperar la bola.",
             "Golpes desde la línea de fondo sin retroceder, tomando la bola tras el bote.",
             ["Adaptación a bola rápida, corta, alta, abierta"]),
+         cp("stroke.contact_vs_top", "Contacto respecto a lo más alto del bote", "s", 2, "s respecto al punto más alto de la bola tras botar (− = la toma subiendo)",
+            "Golpea la bola en el momento del bote en que la golpea ella: si la toma en lo alto o subiendo, avanza hacia ella, no esperes a que baje.",
+            "Retroceder siempre y golpear la bola cayendo: das tiempo a la rival y golpeas más bajo.",
+            "Peloteo diciendo «arriba» cuando la bola llega a lo más alto tras botar: golpea en ese instante o justo antes; 3×10.",
+            ["Adaptación a bola rápida, corta, alta, abierta"]),
      ]},
     {"id": "extension", "title": "6 · Extensión tras el impacto", "focus": "Lleva las cuerdas hacia tu objetivo, como si la bola siguiera pegada a ellas.", "when": "≈ 50 ms después del contacto: el brazo sigue hacia el objetivo.",
      "checkpoints": [
@@ -272,6 +305,11 @@ PHASES = [
             "Termina como ella en esa situación (en paralelos y bolas rápidas suele ser más corta).",
             "Terminar siempre igual sea cual sea la bola.", "Sombras de las tres terminaciones; luego peloteo cambiándolas a la voz del compañero.",
             ["Terminación sobre el hombro contrario", "Terminación en látigo sobre el mismo hombro (buggy whip)", "Terminación baja, a la cintura contraria"]),
+         cp("finish.wrist_dom_vs_shoulder", "Terminación alta", "%", 0, "% de altura de la mano respecto al hombro al terminar (+ por encima)",
+            "Termina con la mano a la altura a la que la termina ella: alta, a la altura del hombro o más.",
+            "Terminar con la mano por debajo del pecho: el swing ha sido plano o se ha frenado.",
+            "Golpea y quédate 2 s en la terminación: la mano a la altura de tu hombro o más, como ella.",
+            ["Terminación sobre el hombro contrario"]),
          cp("finish.face_tilt", "Cuerdas al terminar", "°", 0, "° de cierre al final (+ hacia el suelo)",
             "Termina con la cara de la raqueta como ella (la cara gira y se cierra tras el contacto).",
             "Bloquear la muñeca y terminar con la cara abierta.", "Sombras: al terminar, mira dónde quedan las cuerdas.", []),
@@ -468,6 +506,13 @@ TARGETS = {
     "ready.hip_height": "Espera con la cadera a un {h} del suelo, como ella.",
     "ready.base_width": "Espera con los tobillos separados un {h}, como ella.",
     "stroke.takeback_vs_bounce": ("Empieza a girar los hombros como mucho {v} después del bote, como ella.", "Empieza a girar los hombros {v} antes de que bote la bola, como ella."),
+    "stroke.takeback_vs_net": ("Empieza a girar como mucho {v} después de que la bola cruce la red, como ella.", "Empieza a girar {v} antes de que la bola cruce la red, como ella."),
+    "stroke.dur_preparation": "Del inicio del giro al armado completo, unos {v}, como ella.",
+    "loaded.wrist_dom_vs_shoulder": ("Arma con la mano un {h} por encima del hombro, como ella.", "Arma con la mano un {h} por debajo del hombro, como ella."),
+    "loaded.elbow_dom": "Arma con el codo a unos {v} (180° = estirado), como ella.",
+    "stroke.pause_at_loaded": "Arriba no te pares más de {v}, como ella.",
+    "stroke.contact_vs_top": ("Golpea {v} después de que la bola llegue a lo más alto, como ella.", "Golpea {v} antes de que la bola llegue a lo más alto (subiendo), como ella."),
+    "finish.wrist_dom_vs_shoulder": ("Termina con la mano un {h} por encima del hombro, como ella.", "Termina con la mano un {h} por debajo del hombro, como ella."),
     "takeback.shoulder_turn": "Al empezar la preparación, gira los hombros unos {v}, como ella.",
     "stroke.takeback_vs_first_step": ("Empieza a girar {v} después de tu primer paso, como ella.", "Empieza a girar {v} antes de tu primer paso, como ella."),
     "loaded.shoulder_turn": "En el armado, gira los hombros unos {v}, como ella.",
@@ -567,12 +612,41 @@ GLOSSARY = [
 ]
 
 
+# «Su ritmo, distancia y peso»: the four moments of her timing with the ball and where the ball is
+# against her body, in one place (her medians in the chosen strokes; same values as the phase cards)
+RHYTHM = [("stroke.takeback_vs_net", "Empieza a girar"), ("stroke.loaded_vs_bounce", "Armado completo"),
+          ("stroke.acceleration_vs_bounce", "Empieza a acelerar"), ("stroke.contact_vs_top", "Golpea"),
+          ("impact.wrist_dom_lateral", "Distancia a la bola"), ("impact.base_court_m", "Base al golpear"),
+          ("stroke.weight_shift", "Peso del armado al impacto")]
+
+# «Si te pasa…»: a symptom of the user's own forehand → the usual causes (coaching knowledge: ITF,
+# Crespo-Reid, Tennis Australia) → the checkpoints of hers to compare with, each linked to its card
+SYMPTOMS = [
+    ("Llegas tarde: golpeas con la bola a tu lado", "Casi siempre es preparar tarde: el giro empieza cuando la bola ya ha botado.",
+     ["stroke.takeback_vs_net", "stroke.loaded_vs_bounce", "footwork.split_landing_vs_opp_s"]),
+    ("La bola se va a la red", "Swing plano o hacia abajo, raqueta que no baja por debajo de la bola, o golpear la bola cayendo y baja.",
+     ["stroke.swing_low_to_high", "stroke.wrist_drop", "stroke.contact_vs_top"]),
+    ("La bola se va larga", "Cara abierta en el contacto, peso hacia atrás o terminación que no sube.",
+     ["impact.face_tilt", "stroke.weight_shift", "finish.wrist_dom_vs_shoulder"]),
+    ("El golpe sale sin peso, solo de brazo", "Sin carga de piernas, giro corto, pausa arriba o los hombros se abren antes que la cadera.",
+     ["stroke.hip_drop_cm", "loaded.shoulder_turn", "stroke.pause_at_loaded", "stroke.shoulders_open_first"]),
+    ("Te caes hacia atrás al terminar", "El peso no pasa al pie de delante o se golpea retrocediendo.",
+     ["stroke.weight_shift", "finish.head_over_base", "stroke.feet_move_m"]),
+    ("Golpeas encogido, pegado al cuerpo", "Distancia mal calculada: faltan los pasos cortos de ajuste al final.",
+     ["impact.wrist_dom_lateral", "footwork.adjustment_steps", "impact.elbow_dom"]),
+    ("Cada golpe sale distinto (sin control)", "Cabeza que se mueve en el impacto, pies que siguen moviéndose al golpear o base inestable.",
+     ["stroke.head_motion_cm", "stroke.feet_move_m", "impact.base_court_m"]),
+]
+SYMPTOMS_SOURCE = "Conocimiento de entrenadores (ITF: Crespo y Reid; Tennis Australia), no datos suyos; sus valores, al lado"
+
+
 def content() -> dict:
     """Everything static the «Aprende su derecha» screen needs."""
     return {"phases": PHASES + [FEET], "conditions": {k: {"name": n, "levels": lv} for k, (n, lv) in CONDITIONS.items()},
             "relax": RELAX_ORDER, "not_tv": NOT_FROM_TV, "source": SOURCE,
             "plan": [{"theme": th, "key": k, "title": ti, "why": w} for th, k, ti, w in PLAN],
-            "targets": TARGETS, "glossary": GLOSSARY}
+            "targets": TARGETS, "glossary": GLOSSARY, "rhythm": RHYTHM,
+            "symptoms": [{"s": sy, "why": w, "keys": k} for sy, w, k in SYMPTOMS], "symptoms_source": SYMPTOMS_SOURCE}
 
 
 def covered_matrix_items() -> set[str]:

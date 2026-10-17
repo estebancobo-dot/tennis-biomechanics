@@ -179,7 +179,7 @@ de TV detrás del fondo (necesita laboratorio, sensores o varias cámaras) y el 
 | Estabilidad lumbopélvica, activación de oblicuos (fugas de energía musculares) | Matriz del usuario | ✘ | necesita electromiografía |
 | Carga: flexión de rodillas | Matriz del usuario | ◐ | `knee_*` (2D, escorzo), `hip_height` |
 | Pie de arrastre (pie trasero que se arrastra) | Matriz del usuario | ◐ | `drag_foot` (cuando los tobillos se ven) |
-| Bucle de la preparación (forma) | Matriz del usuario | ✔ | clase `takeback`, `takeback_path` |
+| Bucle de la preparación (forma) | Matriz del usuario | ✔ | clase `takeback`, `takeback_path`, clase `takeback_loop` (bucle continuo, loop falso o recto atrás; 17-10) |
 | Caída de la raqueta por debajo de la mano | Matriz del usuario | ✔ | `racket_head_vs_wrist`, `wrist_drop` |
 | Caída de la raqueta por debajo de la bola | Matriz del usuario | ◐ | desde la tele, borroso; vista lateral de entrenamiento: `practice.side_metrics` (`racket_drop_below_contact_cm`) |
 | Cara de la raqueta en la caída y en el impacto | Matriz del usuario | ◐ | `face_tilt` por fase; en el impacto solo estimación |

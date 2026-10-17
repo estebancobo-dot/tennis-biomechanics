@@ -153,3 +153,17 @@ def test_target_with_her_number_guide_and_glossary(tmp_path):
     assert "unos 13 cm (a tu altura)" in after    # 14 × 1.70 / 1.84
     assert guide is False and hidden == [True, False]
     assert terms[0] >= 20 and terms[1] > 0
+
+
+def test_guide_keys_are_checkpoints_with_targets():
+    """The keys of a forehand guide that we already measured are taught in «Cópiala», each with her
+    number as a target (turn before the net, no pause at the top, hand and elbow at the loaded
+    position, contact against the top of the bounce, high finish) and the backswing form."""
+    from tennisbio.explain import CLASS_PHASE
+    from tennisbio.learn import TARGETS, learn_keys
+
+    keys = set(learn_keys())
+    for k in ("stroke.takeback_vs_net", "stroke.dur_preparation", "loaded.wrist_dom_vs_shoulder", "loaded.elbow_dom",
+              "stroke.pause_at_loaded", "stroke.contact_vs_top", "finish.wrist_dom_vs_shoulder"):
+        assert k in keys and k in TARGETS, k
+    assert "class.takeback_loop" in keys and CLASS_PHASE["takeback_loop"] == "loaded"

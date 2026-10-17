@@ -204,6 +204,7 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .news li b { color: var(--ink); }
 .bmwrap { padding: 0 12px 12px; }
 .feetwrap { padding: 0 12px 14px; }
+.cpk.flash { outline: 2px solid var(--accent); outline-offset: 2px; }
 .feet { display: grid; grid-template-columns: 240px 1fr; gap: 14px; align-items: start; }
 @media (max-width: 700px) { .feet { grid-template-columns: 1fr; } }
 .feet canvas { width: 100%; background: #10281e; border-radius: 6px; }
@@ -415,11 +416,13 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 <div class="panel"><header><h2>1 · ¿Qué golpe quieres aprender?</h2><button class="btn" id="a-clear">Quitar todo</button></header><div class="body" id="a-cond" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px"><header><h2>2 · Sus golpes de ese tipo</h2></header><div class="body" id="a-res" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px"><header><h2>Su firma: lo que repite en casi todos estos golpes</h2><span class="note">medido; solo rasgos fiables</span></header><div class="body" id="a-sig" style="padding:12px 16px"></div></div>
+<div class="panel" style="margin-top:16px"><header><h2>Su ritmo, distancia y peso</h2><span class="note">medido; cada línea lleva a su fase</span></header><div class="body" id="a-rhythm" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px" id="a-sitp"><header><h2>3 · Qué cambia en este golpe</h2><span class="note" id="a-src1"></span></header><ul class="say" id="a-sit"></ul></div>
 <h2 style="margin:22px 0 10px">4 · Fase a fase: lo que hace ella y cómo hacerlo tú</h2>
 <div id="a-phases" style="display:grid;gap:14px"></div>
 <div class="panel" style="margin-top:16px"><header><h2>5 · Tu plan: 3 prioridades, en orden</h2><span class="note">una cada vez; cuando salga sola, la siguiente</span></header><ol class="say" id="a-plan"></ol>
 <details class="extra" style="margin:0 16px 12px"><summary>Plan completo, fase a fase</summary><ol class="say" id="a-plan-all"></ol></details></div>
+<div class="panel" style="margin-top:16px"><header><h2>Si te pasa…</h2><span class="note" id="a-sym-src"></span></header><ul class="say" id="a-sym"></ul></div>
 <div class="panel" style="margin-top:16px"><header><h2>6 · Lo que la tele no permite medir (y qué hacer igualmente)</h2></header><ul class="say" id="a-nottv"></ul></div>
 <details class="extra secx" id="a-gloss-d" style="margin-top:22px"><summary><b>Glosario</b> · qué significa cada palabra de esta pantalla</summary><dl class="gloss" id="a-gloss"></dl></details>
 <details class="extra secx" id="sec-modelo" style="margin-top:22px"><summary><b>Su patrón típico</b> · esqueleto medio y claves de cada fase sobre todas sus derechas (antes «Su derecha»)</summary>
@@ -1500,10 +1503,32 @@ function renderMetricsPanel() {
     return `<div class="mrow"><span class="n">${m.name} ${relBars(m.rel)}</span><span class="v">${fmtM(m.k, v)}<small>${sign(v - d.p50)}${fmt(Math.abs(v - d.p50), m.dec)}</small></span>${svg}<div class="meta"><span>${m.sub}</span><span class="mono">${Math.abs(z) <= 1 ? "en su rango" : (z > 0 ? "por encima" : "por debajo") + " · " + fmt(Math.abs(z), 1) + "× ruido"}</span></div></div>`;
   }).join("");
 }
+// Technique warnings of one stroke: a value on the wrong side of what she does in (almost) all her
+// strokes of the same side (beyond her 10th / 90th percentile and past a minimum margin), only for
+// measures that are not noise or bias. What coaches call the usual faults; never a norm from outside.
+const ALARMS = [
+  ["stroke.pause_at_loaded", 1, .05, v => `se para arriba en el armado ${fmt(v, 2)} s (loop falso)`],
+  ["loaded.face_tilt", -1, 10, v => `cuerdas más hacia el cielo de lo habitual al final del armado (${fmt(v)}°)`],
+  ["stroke.takeback_vs_net", 1, .05, v => `empieza a girar más tarde de lo habitual (${fmt(v, 2)} s respecto a la red)`],
+  ["stroke.contact_vs_top", 1, .04, v => `toma la bola más cayendo de lo habitual (${fmt(v, 2)} s tras lo más alto)`],
+  ["stroke.weight_shift", -1, .05, v => `el peso pasa menos al pie de delante que de costumbre (${fmt(v, 2)})`],
+  ["stroke.shoulders_open_first", 1, .03, v => `abre los hombros antes que la cadera (${fmt(v, 2)} s)`],
+  ["stroke.head_motion_cm", 1, 1.5, v => `la cabeza se mueve más de lo habitual en el impacto (${fmt(v, 1)} cm)`],
+  ["finish.wrist_dom_vs_shoulder", -1, 3, v => `termina más bajo de lo habitual (mano a ${fmt(v)} % del hombro)`],
+];
+const _alarmRef = {};
+function techAlarms(s) {
+  if (!s || !s.lv || s.side === "far") return [];
+  const ok = k => { const r = (DATA.reliability || {})[k]; return !r || !["ruido", "sesgo"].includes(r.verdict); };
+  return ALARMS.filter(([k]) => ok(k) && isN(s.lv[k])).map(([k, dir, margin, txt]) => {
+    const ref = _alarmRef[k] || (_alarmRef[k] = (vs => vs.length >= 8 ? { lo: quant(vs, .1), hi: quant(vs, .9) } : null)(STROKES.filter(x => x.side !== "far" && x.lv && isN(x.lv[k])).map(x => x.lv[k])));
+    if (!ref) return null; const v = s.lv[k];
+    return (dir > 0 ? v > ref.hi + margin : v < ref.lo - margin) ? txt(v) : null; }).filter(Boolean);
+}
 function renderCtx() {
   const s = cur, m = MATCHES[s.match];
   document.getElementById("g-title").textContent = s.id;
-  document.getElementById("g-ctx").innerHTML = [["Partido", `${m.id} vs ${m.rival}`], ["Pista", s.surface || (m.surf && m.surf !== "—" ? m.surf : "superficie sin determinar")], ["Lado", s.side === "far" ? "<b style='color:var(--accent)'>lejano · detalle reducido</b>" : "cercano"], ["Vídeo", clock(s.vt)], ["Bola", sitTxt(s)], ["Tiempo disponible", isN(s.tAvail) ? `${fmt(s.tAvail, 2)} s` : "—"], ["Desplazamiento", isN(s.disp) ? `${fmt(s.disp, 1)} m` : "—"], ["Su golpe", isN(s.shotY) ? `${s.shotDir || "—"} · bota a ${fmt(s.shotY - 11.885 > 0 ? 23.77 - s.shotY : NaN, 1)} m del fondo rival · ${s.shotIn === true ? "dentro" : s.shotIn === false ? "<b style='color:var(--crit)'>fuera</b>" : "dentro/fuera sin determinar"}` : "—"], ["Bote", isN(s.bounceDepth) ? `${fmt(s.bounceDepth, 1)} m dentro de la pista${isN(s.bounceToImpact) ? ` · ${fmt(s.bounceToImpact, 2)} s antes` : ""}` : "—"], ["Apoyo", s.stance ? `${s.stance}${isN(s.stanceAngle) ? ` (${fmt(s.stanceAngle)}°)` : ""}` : "—"], ["Cómo llega", s.movement || "—"], ["Bola en el contacto", [s.ballPhase, s.contactType && s.contactType !== "tras el bote" ? `<b style='color:var(--accent)'>${s.contactType}</b>` : null].filter(Boolean).join(" · ") || "—"], ["Terminación", s.finishType || "—"], ["Impacto", s.source || "—"], ["Captura", `${fmt(s.quality * 100)} %`], ["Resultado", s.outcomeDetail ? (s.outcome === "error" ? `<b style='color:var(--crit)'>${OUT_ES[s.outcomeDetail]}</b>` : s.outcome === "ganador" ? `<b style='color:var(--good)'>${OUT_ES[s.outcomeDetail]}</b>` : OUT_ES[s.outcomeDetail]) : "sin determinar"], ["Set · marcador", s.score ? `${s.set} · ${s.score}${s.pressure ? " · <b style='color:var(--accent)'>presión</b>" : ""}` : "sin lectura del marcador"], ["Dudas", s.review.length ? `<span class="flags">${s.review.map(r => `<span class="chip">${revTxt(r)}</span>`).join("")}</span>` : "ninguna"], ["Medidas que faltan", (s.notes || []).length ? `<span class="flags">${s.notes.map(r => `<span class="chip">${revTxt(r)}</span>`).join("")}</span> <span class="dim3">(el golpe es válido; solo falta esa medida)</span>` : "ninguna"]].map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join("");
+  document.getElementById("g-ctx").innerHTML = [["Partido", `${m.id} vs ${m.rival}`], ["Pista", s.surface || (m.surf && m.surf !== "—" ? m.surf : "superficie sin determinar")], ["Lado", s.side === "far" ? "<b style='color:var(--accent)'>lejano · detalle reducido</b>" : "cercano"], ["Vídeo", clock(s.vt)], ["Bola", sitTxt(s)], ["Tiempo disponible", isN(s.tAvail) ? `${fmt(s.tAvail, 2)} s` : "—"], ["Desplazamiento", isN(s.disp) ? `${fmt(s.disp, 1)} m` : "—"], ["Su golpe", isN(s.shotY) ? `${s.shotDir || "—"} · bota a ${fmt(s.shotY - 11.885 > 0 ? 23.77 - s.shotY : NaN, 1)} m del fondo rival · ${s.shotIn === true ? "dentro" : s.shotIn === false ? "<b style='color:var(--crit)'>fuera</b>" : "dentro/fuera sin determinar"}` : "—"], ["Bote", isN(s.bounceDepth) ? `${fmt(s.bounceDepth, 1)} m dentro de la pista${isN(s.bounceToImpact) ? ` · ${fmt(s.bounceToImpact, 2)} s antes` : ""}` : "—"], ["Apoyo", s.stance ? `${s.stance}${isN(s.stanceAngle) ? ` (${fmt(s.stanceAngle)}°)` : ""}` : "—"], ["Cómo llega", s.movement || "—"], ["Bola en el contacto", [s.ballPhase, s.contactType && s.contactType !== "tras el bote" ? `<b style='color:var(--accent)'>${s.contactType}</b>` : null].filter(Boolean).join(" · ") || "—"], ["Terminación", s.finishType || "—"], ["Impacto", s.source || "—"], ["Captura", `${fmt(s.quality * 100)} %`], ["Resultado", s.outcomeDetail ? (s.outcome === "error" ? `<b style='color:var(--crit)'>${OUT_ES[s.outcomeDetail]}</b>` : s.outcome === "ganador" ? `<b style='color:var(--good)'>${OUT_ES[s.outcomeDetail]}</b>` : OUT_ES[s.outcomeDetail]) : "sin determinar"], ["Set · marcador", s.score ? `${s.set} · ${s.score}${s.pressure ? " · <b style='color:var(--accent)'>presión</b>" : ""}` : "sin lectura del marcador"], ["Dudas", s.review.length ? `<span class="flags">${s.review.map(r => `<span class="chip">${revTxt(r)}</span>`).join("")}</span>` : "ninguna"], ["Avisos de técnica", (al => al.length ? `<span class="flags">${al.map(a => `<span class="chip">${a}</span>`).join("")}</span> <span class="dim3">(fuera de lo que ella hace en casi todos sus golpes)</span>` : "ninguno: dentro de lo que hace siempre")(techAlarms(s))], ["Medidas que faltan", (s.notes || []).length ? `<span class="flags">${s.notes.map(r => `<span class="chip">${revTxt(r)}</span>`).join("")}</span> <span class="dim3">(el golpe es válido; solo falta esa medida)</span>` : "ninguna"]].map(([a, b]) => `<div><span>${a}</span><b>${b}</b></div>`).join("");
 }
 function renderRacket() {
   const rk = ser && ser.racket;
@@ -2389,6 +2414,10 @@ function renderLearn() {
   // not noise or bias; first what to copy. And the style of the stroke in one sentence.
   document.getElementById("a-sig").innerHTML = aSignature(set);
   document.querySelectorAll("#a-sig button[data-open]").forEach(b => b.addEventListener("click", () => aOpen(b.dataset.open, b.dataset.ph)));
+  // 2c. her rhythm with the ball, the distance and the weight: one line each, from the same checkpoints
+  const byKey0 = {}; LEARN.phases.forEach(ph => ph.checkpoints.forEach(c => { byKey0[c.key] = [c, ph]; }));
+  const rh = (LEARN.rhythm || []).map(([k, name]) => { const e = byKey0[k]; if (!e) return null; const st = aStat(set, e[0]); return st.txt ? `<li data-go="${k}" style="cursor:pointer"><b>${name}:</b> ${st.txt.replace(/<[^>]+>/g, "")} <span class="dim3">· ${e[0].read} · ${st.n} golpes</span></li>` : null; }).filter(Boolean);
+  document.getElementById("a-rhythm").innerHTML = rh.length ? `<ol class="say" style="margin:0">${rh.join("")}</ol>` : `<p class="dim" style="margin:0">Todavía no hay valores suyos fiables de ritmo en estos golpes.</p>`;
   // 3. what changes in this kind of stroke (coaching knowledge, marked)
   const sit = Object.entries(R.sel).map(([d, l]) => { const k = (LEARN.conditions[d] || {}).levels[l]; return k ? `<li><b>${l}</b>: ${k[0]}${aHerChange(d, l)} ${k[1] ? `<br><span class="dim">Cómo:</span> ${k[1]}` : ""}${k[2] ? `<br><span class="dim">Ejercicio:</span> ${k[2]}` : ""}</li>` : ""; }).join("");
   document.getElementById("a-sit").innerHTML = sit || `<li class="dim">Elige una o varias condiciones arriba para ver qué cambia en ese golpe.</li>`;
@@ -2422,6 +2451,14 @@ function renderLearn() {
     : `<li class="dim">Todavía no hay medidas suyas fiables en estos golpes para ordenar un plan; empieza por el foco de cada fase (arriba).</li>`;
   document.querySelectorAll("#a-plan button[data-open]").forEach(b => b.addEventListener("click", () => aOpen(b.dataset.open, b.dataset.ph)));
   document.getElementById("a-plan-all").innerHTML = LEARN.phases.map(ph => { const c = ph.checkpoints[0]; return `<li><b>${ph.title.replace(/^\d · /, "")}</b>: ${c.cue} <span class="dim">Ejercicio:</span> ${c.drill}</li>`; }).join("");
+  // «Si te pasa…»: a symptom of the user's forehand → usual causes (coaching knowledge) → her values to compare
+  document.getElementById("a-sym-src").textContent = LEARN.symptoms_source || "";
+  document.getElementById("a-sym").innerHTML = (LEARN.symptoms || []).map(sy => {
+    const chips = sy.keys.map(k => { const e = byKey[k]; if (!e) return ""; const st = aStat(set, e[0]); return `<button class="chip" data-go="${k}" title="Ir a su punto de control">${e[0].label}${st.txt ? `: <b>${st.txt.replace(/<[^>]+>/g, "")}</b>` : ""}</button>`; }).join(" ");
+    return `<li><b>${sy.s}</b> · <span class="dim">${sy.why}</span><br><span class="dim">Compárate con ella:</span> ${chips}</li>`; }).join("");
+  // a line of the rhythm or a symptom chip goes to its checkpoint card
+  document.querySelectorAll("#a-rhythm [data-go], #a-sym [data-go]").forEach(b => b.addEventListener("click", ev => { ev.preventDefault();
+    const el = document.querySelector(`#a-phases .cpk[data-key="${b.dataset.go}"]`); if (el) { el.scrollIntoView({ behavior: "smooth", block: "center" }); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1600); } }));
   // 6. what TV cannot measure from the user's list, and what to do anyway
   document.getElementById("a-nottv").innerHTML = LEARN.not_tv.map(([w, h]) => `<li><b>${w}</b>: ${h}</li>`).join("");
 }

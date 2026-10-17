@@ -21,6 +21,8 @@ from .kinematics import joint_angle, line_turn, to_body_frame
 from .skeleton import Skeleton
 
 PHASES = ["ready", "takeback", "loaded", "acceleration", "impact", "extension", "finish", "recovery"]
+# a stop of the hand at the top of the backswing this long or longer is a «false loop» (≥ 4 frames at 25 fps)
+LOOP_PAUSE_S = 0.15
 
 # descriptor → (group, Spanish name, unit, reliability 1-3, description)
 DESCRIPTORS = {
@@ -723,6 +725,13 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
     if tp is not None:
         hi = s.get("takeback_peak_vs_shoulder", -99)
         c["takeback"] = ("compacta" if tp < 35 else "en bucle alto" if hi > 5 else "amplia")
+        # the three ways coaches name the backswing: a continuous loop, a «false loop» (the racket goes
+        # up and stops there before the swing) or straight back (the hand never rises near the shoulder)
+        pz = s.get("pause_at_loaded")
+        if hi < -5:
+            c["takeback_loop"] = "recto atrás"
+        elif pz is not None:
+            c["takeback_loop"] = "loop falso (para arriba)" if pz >= LOOP_PAUSE_S else "bucle continuo"
     if ld.get("face_tilt") is not None and ld["face_tilt"] > 45 and ld.get("racket_head_vs_wrist", 0) > 0:
         c["takeback_face"] = "cara al suelo (pat the dog)"
     elif ld.get("face_tilt") is not None:
