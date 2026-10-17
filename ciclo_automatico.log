@@ -38,3 +38,30 @@ yolo11m-pose_1920.onnx OK 86 MB
     (paso terminado en 3 s)
 
 ==> [2026-10-17 20:08:33] Que hace falta: informe
+Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
+Informe: C:\tenis\output\_smoke\informe\index.html
+Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
+Montajes: 2 en C:\tenis\output\_smoke\exportar\montajes
+Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
+Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
+Auditoría: 284 cumplidos, 0 no cumplidos, 116 sin golpes suficientes, 21 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+Hecho en 133 s, sin volver a analizar vídeo.
+    (paso terminado en 2 min 13 s)
+
+==> [2026-10-17 20:10:47] Revision automatica frente a la ejecucion anterior
+# Revisión automática: OK
+    (paso terminado en 0 s)
+
+==> [2026-10-17 20:10:47] Peticion 15: videos de YouTube elegidos por el usuario en output\investigacion_15
+3 vídeos encontrados
+  1/3 Ash Barty Tennis Forehand - Australian Open 2022 Champion
+  2/3 Arthur Fils Heavy Topspin Forehand Analysis
+  3/3 The Origins of Jannik Sinner's Forehand Technique: Complete Analysis
+Hecho: 2 de 3 vídeos con texto o imágenes → C:\tenis\output\investigacion_15
+Ciclo automatico terminado (informe).
+    (paso terminado en 20 s)
+Empezado 2026-10-17 20:08:29 - terminado 2026-10-17 20:11:06 - duracion total 2 min 37 s
+**********************
+Windows PowerShell transcript end
+End time: 20261017201106
+**********************
