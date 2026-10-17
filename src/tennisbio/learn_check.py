@@ -123,7 +123,8 @@ _JS_LESSON = """async () => {
       valued: keys.filter(k => /Ella:\\s*\\S/.test(k.innerText) && !/—/.test(k.querySelector('.lh b')?.innerText || '—')).length,
       checked: keys.filter(k => k.textContent.includes('Cómo comprobarlo')).length,
       drilled: keys.filter(k => k.textContent.includes('Ejercicio')).length,
-      words: words(document.getElementById('a-l-keys')),
+      // words to read in the keys (the bars of «cambia con la bola» are a picture, not text to read)
+      words: words({ innerText: [...document.querySelectorAll('#a-l-keys .lkey')].map(k => { const c = k.cloneNode(true); c.querySelectorAll('.lbars, details').forEach(x => x.remove()); return c.innerText || c.textContent; }).join(' ') }),
       focus_words: words({ innerText: focus.replace(/^Foco:/, '') }), focus_body: /\\d\\s*(%|°|cm)/.test(focus),
       practice: /\\d+ de \\d+/.test(prac), strings: /Cuerdas/.test(document.getElementById('a-l-strings').innerText || ''),
       repeats: keys.filter(k => { const m = k.querySelector('.mine'); const v = k.querySelector('.lh b'); return m && v && m.innerText.includes(v.innerText.split(' (')[0]); }).length,
@@ -171,7 +172,10 @@ def check_lesson(pg) -> dict:
 
 
 _JS_ENTRY = """() => {
-  showTab('aprende');
+  // as it opens: the extras folded and the situation picker closed (other checks may have opened them)
+  ['a-more', 'a-phases-d', 'a-gloss-d', 'sec-modelo'].forEach(id => { const d = document.getElementById(id); if (d) d.open = false; });
+  const cp = document.getElementById('a-cond-p'); if (cp) cp.hidden = true;
+  scrollTo(0, 0); showTab('aprende');
   const sec = document.getElementById('tab-aprende'), v = document.querySelector('#a-lesson .lvid').getBoundingClientRect();
   const vis = el => el.checkVisibility();
   const words = [...sec.children].filter(vis).map(e => e.tagName === 'DETAILS' ? e.querySelector('summary').innerText : e.innerText).join(' ').split(/\\s+/).filter(Boolean).length;

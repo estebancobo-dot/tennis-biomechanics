@@ -34,16 +34,17 @@ _JS_SCREEN = """(tab) => {
             for (let i = 0; i < d.length; i += 4 * 97) m = Math.max(m, d[i] + d[i + 1] + d[i + 2]); return m < 30; }
       catch (e) { return false; } }).length,
     videos_failed: vids.filter(v => v.error).map(v => v.getAttribute('src')).slice(0, 5),
-    empty_msgs: [...sec.querySelectorAll('.empty')].filter(e => e.offsetParent).map(e => e.innerText.trim()).slice(0, 8),
+    empty_msgs: [...sec.querySelectorAll('.empty')].filter(e => e.checkVisibility()).map(e => e.innerText.trim()).filter(Boolean).slice(0, 8),
     dashes: ((sec.innerText || '').match(/—/g) || []).length,
     // human sense: an opening sentence, no links to outside sources, no visible chart with many lines
-    // the per-stroke views and filters asked for (they work from the first stroke)
+    // the per-stroke views and filters asked for (they work from the first stroke; some are folded, one
+    // click away: their text is read whether open or not)
     ball_moments: sec.querySelectorAll('#bm button').length,
     feet_cycle: sec.querySelectorAll('#feet-txt li').length,
     ball_measures: [...sec.querySelectorAll('#bm .mm')].filter(e => /cm|m /.test(e.innerText)).length,
-    body_hip: sec.querySelectorAll('#bd-hip button').length + (/Baja \d/.test((sec.querySelector('#bd-hip-t') || {}).innerText || '') ? 1 : 0),
-    body_base: sec.querySelectorAll('#bd-base button').length + (/Base de /.test((sec.querySelector('#bd-base-t') || {}).innerText || '') ? 1 : 0),
-    body_trunk: sec.querySelectorAll('#bd-trunk button').length + (/tronco queda/.test((sec.querySelector('#bd-trunk-t') || {}).innerText || '') ? 1 : 0),
+    body_hip: sec.querySelectorAll('#bd-hip button').length + (/Baja \d/.test((sec.querySelector('#bd-hip-t') || {}).textContent || '') ? 1 : 0),
+    body_base: sec.querySelectorAll('#bd-base button').length + (/Base de /.test((sec.querySelector('#bd-base-t') || {}).textContent || '') ? 1 : 0),
+    body_trunk: sec.querySelectorAll('#bd-trunk button').length + (/tronco queda/.test((sec.querySelector('#bd-trunk-t') || {}).textContent || '') ? 1 : 0),
     heights_layer: !!sec.querySelector('#layers button[data-v="heights"]'),
     lib_filters: sec.querySelectorAll('#lib-chips button').length,
     news: !!sec.querySelector('#news'),
