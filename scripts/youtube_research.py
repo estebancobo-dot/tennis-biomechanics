@@ -28,9 +28,21 @@ QUERIES = [
 MAX_MIN = 25          # longer videos are interviews or whole matches
 
 
-def ytdlp(*args, timeout=600) -> subprocess.CompletedProcess:
-    return subprocess.run([sys.executable, "-m", "yt_dlp", "--no-warnings", *args], capture_output=True, text=True,
-                          encoding="utf-8", errors="replace", timeout=timeout)
+YTDLP = [sys.executable, "-m", "yt_dlp"]
+# When YouTube changes and the installed yt-dlp gets no formats at all, try other YouTube clients, then the
+# newest yt-dlp with its JavaScript runtime (deno, from PyPI), without touching the project's environment.
+FALLBACKS = [
+    [*YTDLP, "--extractor-args", "youtube:player_client=tv,mweb,android_vr,web_safari"],
+    ["uvx", "--from", "yt-dlp[default]@latest", "--with", "deno", "yt-dlp"],
+]
+
+
+def ytdlp(*args, timeout=600, cmd=None) -> subprocess.CompletedProcess:
+    try:
+        return subprocess.run([*(cmd or YTDLP), "--no-warnings", *args], capture_output=True, text=True,
+                              encoding="utf-8", errors="replace", timeout=timeout)
+    except (OSError, subprocess.TimeoutExpired) as e:   # uvx missing or a download that hangs
+        return subprocess.CompletedProcess(args, 1, "", f"ERROR: {e}")
 
 
 def search(per_query: int) -> list[dict]:
@@ -92,14 +104,25 @@ def one(v: dict, dest: Path, tmp: Path) -> dict:
     d = dest / v["id"]
     d.mkdir(parents=True, exist_ok=True)
     url = f"https://www.youtube.com/watch?v={v['id']}"
-    r = ytdlp("--skip-download", "--write-auto-subs", "--write-subs", "--sub-langs", "en.*,en,es.*,es", "--sub-format", "vtt",
-              "-o", str(tmp / "%(id)s.%(ext)s"), url)
+    sub_args = ("--skip-download", "--write-auto-subs", "--write-subs", "--sub-langs", "en.*,en,es.*,es", "--sub-format", "vtt",
+                "-o", str(tmp / "%(id)s.%(ext)s"), url)
+    ytdlp(*sub_args)
+    for cmd in FALLBACKS:
+        if sorted(tmp.glob(f"{v['id']}*.vtt")):
+            break
+        ytdlp(*sub_args, cmd=cmd)
     subs = sorted(tmp.glob(f"{v['id']}*.vtt"))
     if subs:
         (d / "dicho.txt").write_text(vtt_to_text(subs[0].read_text(encoding="utf-8", errors="replace")), encoding="utf-8")
     v["subtitles"] = bool(subs)
-    r = ytdlp("-f", "worst[height>=240][ext=mp4]/worst[ext=mp4]/worst", "-o", str(tmp / "%(id)s.video.%(ext)s"), url, timeout=900)
-    vids = sorted(tmp.glob(f"{v['id']}.video.*"))
+    vid_args = ("-f", "worst[height>=240][ext=mp4]/worst[height>=240]/worst", "-o", str(tmp / "%(id)s.video.%(ext)s"), url)
+    errors = []
+    for cmd in [None, *FALLBACKS]:
+        r = ytdlp(*vid_args, timeout=900, cmd=cmd)
+        vids = sorted(f for f in tmp.glob(f"{v['id']}.video.*") if not f.name.endswith(".part"))
+        if vids:
+            break
+        errors.append((r.stderr or "").strip()[-200:])
     n = 0
     if vids:
         # about 36 frames per video at most; the ones the user chose, about 90 (their graphics matter)
@@ -109,7 +132,7 @@ def one(v: dict, dest: Path, tmp: Path) -> dict:
         n = len(list(d.glob("f_*.jpg")))
         v["frame_every_s"] = round(every, 1)
     else:
-        v["video_error"] = (r.stderr or "")[-300:]
+        v["video_error"] = " | ".join(errors)[-700:]
     v["frames"] = n
     for f in tmp.glob(f"{v['id']}*"):
         f.unlink(missing_ok=True)

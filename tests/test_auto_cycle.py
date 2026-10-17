@@ -124,3 +124,29 @@ def test_request_youtube_runs_the_chosen_videos():
     from youtube_research import video_id
     assert [video_id(u) for u in ("https://youtu.be/A5jgd_CPohM", "https://www.youtube.com/watch?v=rcZUuIpp-y0&t=3", "cFFPGpGmkKE")] == \
         ["A5jgd_CPohM", "rcZUuIpp-y0", "cFFPGpGmkKE"]
+
+
+def test_youtube_falls_back_when_the_installed_ytdlp_gets_no_formats(tmp_path, monkeypatch):
+    """YouTube changes: the installed yt-dlp says «Requested format is not available». The script tries other
+    clients, then the newest yt-dlp; the video that one downloads is used and the errors are kept."""
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+    import subprocess
+    import youtube_research as yr
+    calls = []
+
+    def fake(*args, timeout=600, cmd=None):
+        calls.append(cmd)
+        if "-f" in args and cmd is yr.FALLBACKS[-1]:
+            (tmp_path / "t" / "abcdefghijk.video.mp4").write_bytes(b"x")
+            return subprocess.CompletedProcess(args, 0, "", "")
+        return subprocess.CompletedProcess(args, 1, "", "ERROR: Requested format is not available")
+
+    def fake_ffmpeg(cmd, timeout=None):
+        (tmp_path / "out" / "abcdefghijk" / "f_001.jpg").write_bytes(b"j")
+    monkeypatch.setattr(yr, "ytdlp", fake)
+    monkeypatch.setattr(yr.subprocess, "run", fake_ffmpeg)
+    (tmp_path / "t").mkdir()
+    v = yr.one({"id": "abcdefghijk", "title": "x", "duration_s": 300.0, "chosen_by_user": True}, tmp_path / "out", tmp_path / "t")
+    assert v["frames"] == 1 and "video_error" not in v
+    assert calls.count(None) == 2 and yr.FALLBACKS[-1] in calls      # subtitles + video with the installed one first
+    assert not list((tmp_path / "t").iterdir())                        # the video is deleted
