@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261017205002
+Start time: 20261017214002
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 2856
+Process ID: 6656
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,18 +17,23 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-17 20:50:02] Codigo nuevo (a5bdddd -> 3a78a76): 2 ficheros
-    config/peticion_pc.txt
-    scripts/youtube_research.py
+==> [2026-10-17 21:40:02] Codigo nuevo (3a78a76 -> 08d60f5): 4 ficheros
+    docs/investigacion_youtube_usuario.md
+    src/tennisbio/audit.py
+    src/tennisbio/learn_check.py
+    src/tennisbio/report_template.html
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating a5bdddd..3a78a76
+Updating 3a78a76..08d60f5
 Fast-forward
- config/peticion_pc.txt      | 2 +-
- scripts/youtube_research.py | 4 +++-
- 2 files changed, 4 insertions(+), 2 deletions(-)
-Resolved 110 packages in 0.86ms
-Checked 83 packages in 2ms
+ docs/investigacion_youtube_usuario.md | 69 +++++++++++++++++++++++++++++++++++
+ src/tennisbio/audit.py                |  4 ++
+ src/tennisbio/learn_check.py          | 10 +++--
+ src/tennisbio/report_template.html    | 35 +++++++++++++++++-
+ 4 files changed, 113 insertions(+), 5 deletions(-)
+ create mode 100644 docs/investigacion_youtube_usuario.md
+Resolved 110 packages in 0.89ms
+Checked 83 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -39,31 +44,4 @@ yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
     (paso terminado en 3 s)
 
-==> [2026-10-17 20:50:05] Que hace falta: informe
-Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
-Informe: C:\tenis\output\_smoke\informe\index.html
-Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
-Montajes: 2 en C:\tenis\output\_smoke\exportar\montajes
-Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
-Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
-Auditoría: 284 cumplidos, 0 no cumplidos, 116 sin golpes suficientes, 21 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-Hecho en 136 s, sin volver a analizar vídeo.
-    (paso terminado en 2 min 16 s)
-
-==> [2026-10-17 20:52:21] Revision automatica frente a la ejecucion anterior
-# Revisión automática: OK
-    (paso terminado en 0 s)
-
-==> [2026-10-17 20:52:21] Peticion 17: videos de YouTube elegidos por el usuario en output\investigacion_17
-3 vídeos encontrados
-  1/3 Ash Barty Tennis Forehand - Australian Open 2022 Champion
-  2/3 Arthur Fils Heavy Topspin Forehand Analysis
-  3/3 The Origins of Jannik Sinner's Forehand Technique: Complete Analysis
-Hecho: 3 de 3 vídeos con texto o imágenes → C:\tenis\output\investigacion_17
-Ciclo automatico terminado (informe).
-    (paso terminado en 1 min 10 s)
-Empezado 2026-10-17 20:50:00 - terminado 2026-10-17 20:53:31 - duracion total 3 min 31 s
-**********************
-Windows PowerShell transcript end
-End time: 20261017205331
-**********************
+==> [2026-10-17 21:40:05] Que hace falta: informe
