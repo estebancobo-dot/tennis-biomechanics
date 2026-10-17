@@ -133,7 +133,10 @@ _JS_LESSON = """async () => {
       video: typeof LS !== 'undefined' && LS.video.readyState >= 2 && !document.getElementById('a-l-cv').hidden,
       height: Math.round(panel.height) });
   }
-  return out;
+  // the phase strip shows her stroke in real photos (as the coaches' 3-4 photo sequences): give it 3 s
+  for (let w = 0; w < 15 && document.querySelectorAll('#a-l-steps canvas[data-ok]').length < out.length - 1; w++) await new Promise(r => setTimeout(r, 200));
+  out.thumbs = document.querySelectorAll('#a-l-steps canvas[data-ok]').length;
+  return { rows: out, thumbs: out.thumbs };
 }"""
 
 
@@ -143,7 +146,8 @@ def check_lesson(pg) -> dict:
     about one screen and a half (1280 × 900)."""
     pg.evaluate("showTab('aprende')")
     pg.wait_for_timeout(300)
-    rows = pg.evaluate(_JS_LESSON)
+    res = pg.evaluate(_JS_LESSON)
+    rows = res["rows"]
     bad = []
     for r in rows:
         why = []
@@ -168,7 +172,7 @@ def check_lesson(pg) -> dict:
         if why:
             bad.append({"phase": r["phase"], "why": why})
     return {"phases": rows, "failures": bad, "with_video": sum(1 for r in rows if r["video"]),
-            "with_keys": sum(1 for r in rows if r["keys"])}
+            "with_keys": sum(1 for r in rows if r["keys"]), "thumbs": res["thumbs"]}
 
 
 _JS_ENTRY = """() => {

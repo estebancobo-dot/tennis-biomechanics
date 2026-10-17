@@ -221,6 +221,9 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .lsteps { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
 .lsteps button { border: 1px solid var(--line); background: transparent; color: var(--ink-2); border-radius: 999px; padding: 5px 11px; font: inherit; font-size: 13px; cursor: pointer; }
 .lsteps button[aria-pressed="true"] { background: var(--accent); color: #111; border-color: var(--accent); font-weight: 700; }
+.lsteps button canvas { display: block; width: 92px; height: 58px; border-radius: 5px; margin: 0 0 3px; background: #000; }
+.lsteps.thumbs button { border-radius: 8px; padding: 3px 3px 4px; font-size: 12px; }
+@media (max-width: 600px) { .lsteps button canvas { display: none; } .lsteps.thumbs button { border-radius: 999px; padding: 5px 11px; } }
 .lgrid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 18px; }
 @media (max-width: 900px) { .lgrid { grid-template-columns: 1fr; } }
 .lvid { position: relative; border-radius: 8px; overflow: hidden; background: #000; }
@@ -431,7 +434,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 <div class="panel lesson" style="margin-top:16px" id="a-lesson"><header><h2>La lección: su derecha, fase a fase</h2><span class="note" id="a-l-src"></span></header>
 <div class="body" style="padding:12px 16px"><div class="lsteps" id="a-l-steps"></div>
 <div class="lgrid"><div><div class="lvid"><canvas id="a-l-cv" width="960" height="600"></canvas><div class="lnovid" id="a-l-nov" hidden></div></div>
-<div class="lctrl"><button class="btn" id="a-l-play">❚❚ Pausa</button><button class="btn" id="a-l-speed">Velocidad real</button><button class="btn" id="a-l-next">Otro golpe suyo</button><button class="btn" id="a-l-open">Ver el golpe entero</button><span class="dim3" id="a-l-cap"></span></div></div>
+<div class="lctrl"><button class="btn" id="a-l-play">❚❚ Pausa</button><button class="btn" id="a-l-fb" aria-label="Fotograma anterior" title="Fotograma anterior">‹</button><button class="btn" id="a-l-ff" aria-label="Fotograma siguiente" title="Fotograma siguiente">›</button><button class="btn" id="a-l-speed">Velocidad real</button><button class="btn" id="a-l-next">Otro golpe suyo</button><button class="btn" id="a-l-open">Ver el golpe entero</button><span class="dim3" id="a-l-cap"></span></div></div>
 <div><h3 class="ltitle" id="a-l-title"></h3><p class="dim" id="a-l-when" style="margin:2px 0 8px"></p><div class="focus" id="a-l-focus"></div><div id="a-l-keys"></div><div id="a-l-strings"></div><div id="a-l-practice"></div><div class="lnav"><button class="btn" id="a-l-prev">‹ Fase anterior</button><button class="btn" id="a-l-nextph">Fase siguiente ›</button></div>
 <p class="dim3" style="margin:10px 0 0"><a href="#" id="a-l-all">Todas las medidas de esta fase</a> · lo de «Cómo», «Ejercicio» y «Cómo comprobarlo» es conocimiento de entrenadores; los números son suyos.</p></div></div></div></div>
 <p class="intro dim3" style="margin:10px 0 0"><b>Aprende su derecha, fase a fase:</b> elige una fase, mírala en su vídeo y practica su ejercicio. <a href="#" id="a-guide-open">Cómo se usa esta pantalla</a> · <a href="#" id="a-gloss-go2">Glosario</a> · <a href="#" id="a-more-go">Más sobre su derecha</a></p>
@@ -2605,13 +2608,36 @@ function lBySpeed(set, c) {
   const mx = Math.max(...best.g.map(x => Math.abs(x[1]))) || 1, u = c.unit === "°" ? "°" : c.unit ? " " + c.unit : "";
   return `<div class="dim3" style="margin-top:6px">${best.title}:</div><div class="lbars">` + best.g.map(([l, m, n]) => `<span>${best.name(l)} <span class="dim3">(${n})</span></span><i style="width:${Math.max(3, 100 * Math.abs(m) / mx)}%"></i><span>${fmt(m, c.dec)}${u}</span>`).join("") + `</div>`;
 }
+let LTH = null, lThKey = "", lThImgs = [], lThGen = 0;
+async function lThumbs(set) {
+  const steps = document.getElementById("a-l-steps"), cvs = [...steps.querySelectorAll("button canvas")], ids = [...steps.querySelectorAll("button")].map(b => b.dataset.ph);
+  const s = [...set].filter(x => x.video).sort((a, b) => (b.repr || 0) - (a.repr || 0))[0];
+  steps.classList.toggle("thumbs", !!s);
+  if (!s) { cvs.forEach(c => c.remove()); return; }
+  const key = s.id + "|" + ids.join(",");
+  const paint = () => cvs.forEach((c, i) => { const im = lThImgs[i]; if (im) { c.getContext("2d").drawImage(im, 0, 0, c.width, c.height); c.dataset.ok = "1"; } });
+  if (key === lThKey) { paint(); return; }
+  const g = ++lThGen; lThKey = key; lThImgs = [];
+  if (!LTH) LTH = mkSrc();
+  try { await loadSrc(LTH, s); } catch (e) { return; }
+  for (let i = 0; i < ids.length; i++) {
+    if (g !== lThGen) return;
+    const t = lTimeOf(s, ids[i]); if (!isN(t)) continue;
+    await seekSrc(LTH, t); if (g !== lThGen) return;
+    const off = document.createElement("canvas"); off.width = 184; off.height = 116;
+    drawFrame(off.getContext("2d"), off.width, off.height, kF(LTH, t), { skel: false, trail: false, ball: false }, LTH);
+    lThImgs[i] = off;
+    const c = document.querySelectorAll("#a-l-steps button canvas")[i]; if (c && lThKey === key) { c.getContext("2d").drawImage(off, 0, 0, c.width, c.height); c.dataset.ok = "1"; }
+  }
+}
 function renderLesson(set) {
   if (!LEARN.lesson) return;
   lSet = set;
   document.getElementById("a-l-src").textContent = `${set.length} golpes suyos · los de arriba`;
   const steps = document.getElementById("a-l-steps");
-  steps.innerHTML = L_ORDER.filter(id => lPhase(id)).map((id, i) => `<button data-ph="${id}" aria-pressed="${id === lPh}">${id === "feet" ? "" : i + 1 + " "}${lName(id)}</button>`).join("");
+  steps.innerHTML = L_ORDER.filter(id => lPhase(id)).map((id, i) => `<button data-ph="${id}" aria-pressed="${id === lPh}"><canvas width="184" height="116"></canvas>${id === "feet" ? "" : i + 1 + " "}${lName(id)}</button>`).join("");
   steps.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { lPh = b.dataset.ph; renderLesson(lSet); }));
+  lThumbs(set);
   const ph = lPhase(lPh), L = LEARN.lesson[lPh] || { keys: [], mark: "skel" }, byKey = {};
   LEARN.phases.forEach(p => p.checkpoints.forEach(c => { byKey[c.key] = c; }));
   document.getElementById("a-l-title").textContent = lPh === "feet" ? "Pies: del split step a la bola" : ph.title;
@@ -2683,6 +2709,11 @@ function lLoop(g) {
   if (vis && lPlay) requestAnimationFrame(() => lLoop(g)); else lTimer = setTimeout(() => lLoop(g), 400);
 }
 document.getElementById("a-l-play").addEventListener("click", ev => { lPlay = !lPlay; ev.target.textContent = lPlay ? "❚❚ Pausa" : "▶ Seguir"; try { lPlay ? LS.video.play() : LS.video.pause(); } catch (e) { } });
+// like the coaches' videos: stop and go frame by frame through the phase (stays inside its loop window)
+const lStep = d => { const s = lReps[lRepI]; if (!s || !LS.ser) return; lPlay = false; document.getElementById("a-l-play").textContent = "▶ Seguir";
+  try { LS.video.pause(); const t = LS.video.currentTime - s.vImpact + d / (LS.FPS || 25); LS.video.currentTime = s.vImpact + Math.min(lWin[1], Math.max(lWin[0], t)); } catch (e) { } };
+document.getElementById("a-l-fb").addEventListener("click", () => lStep(-1));
+document.getElementById("a-l-ff").addEventListener("click", () => lStep(1));
 document.getElementById("a-l-speed").addEventListener("click", ev => { const real = LS.video.playbackRate < 1; LS.video.playbackRate = real ? 1 : .25; ev.target.textContent = real ? "A cámara lenta" : "Velocidad real"; });
 const lGo = d => { const ids = L_ORDER.filter(id => lPhase(id)), i = ids.indexOf(lPh); lPh = ids[(i + d + ids.length) % ids.length]; renderLesson(lSet); document.getElementById("a-lesson").scrollIntoView({ block: "start", behavior: "smooth" }); };
 document.getElementById("a-l-prev").addEventListener("click", () => lGo(-1));

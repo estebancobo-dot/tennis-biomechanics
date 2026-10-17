@@ -678,6 +678,10 @@ def _screens(shots_dir: Path) -> list[dict]:
             items.append(_item(2, "Vídeo", "La lección enseña su vídeo de cada fase, en bucle",
                                "ok" if n and ls.get("with_video") == n else "aviso" if ls.get("with_video") else "falta",
                                f"{ls.get('with_video', 0)} de {n} fases con su vídeo cargado"))
+            th = ls.get("thumbs", 0)
+            items.append(_item(2, "Vídeo", "La tira de fases enseña su golpe en fotos reales, como las secuencias de los entrenadores",
+                               "pocos datos" if not ls.get("with_video") else "ok" if n and th >= n - 1 else "aviso" if th else "falta",
+                               f"{th} de {n} fases con su foto en la tira" if ls.get("with_video") else "sin vídeo en esta ejecución"))
     checks = [("golpe", "ball_moments", "«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella", 2),
               ("golpe", "feet_cycle", "«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)", 8),
               ("golpe", "ball_measures", "«La bola y ella»: medidas reales en cada fotograma (cadera en cm, pies en m, recorrido)", 3),
