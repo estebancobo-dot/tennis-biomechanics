@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 12206,
+   "text_chars": 12178,
    "charts": 9,
    "videos": 6,
    "black_canvases": 0,
@@ -204,7 +204,7 @@
   },
   {
    "title": "Fiabilidad de las medidas",
-   "text_chars": 3031,
+   "text_chars": 3129,
    "charts": 0,
    "videos": 6,
    "black_canvases": 0,
@@ -223,7 +223,7 @@
    "intro": true,
    "external_links": 0,
    "tables": 0,
-   "sentences": 72,
+   "sentences": 76,
    "many_lines": 0,
    "tab": "fiabilidad",
    "file": "pantalla_8_fiabilidad.jpg",
@@ -337,19 +337,19 @@
  "learn": {
   "combinations": 1104,
   "with_exact_strokes": 299,
-  "checkpoints_checked": 89424,
+  "checkpoints_checked": 93840,
   "failures": [],
-  "rows_all": 81,
-  "valued_all": 76,
-  "targeted_all": 52,
-  "glossed_all": 69,
+  "rows_all": 85,
+  "valued_all": 80,
+  "targeted_all": 54,
+  "glossed_all": 72,
   "signature": 5,
   "style": "Estilo de su derecha: preparación amplia (80 %) · apoyo variable (la más frecuente, abierto, en 30 %) · efecto liftado (de abajo arriba) (80 %) · terminación sobre el hombro (50 %) provisional: 10 golpes.",
   "example": {
    "exact": 0,
    "near": 9,
-   "rows": 81,
-   "valued": 76,
+   "rows": 85,
+   "valued": 80,
    "bad": []
   }
  },
@@ -363,7 +363,7 @@
     "drilled": 3,
     "reason": "",
     "reps": 10,
-    "video": true,
+    "video": false,
     "height": 958
    },
    {
@@ -452,11 +452,11 @@
     "reason": "",
     "reps": 10,
     "video": true,
-    "height": 816
+    "height": 897
    }
   ],
   "failures": [],
-  "with_video": 9,
+  "with_video": 8,
   "with_keys": 9
  }
 }
