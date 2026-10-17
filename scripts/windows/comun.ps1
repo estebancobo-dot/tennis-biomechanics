@@ -204,27 +204,30 @@ function Registrar-Ciclo {
     $ErrorActionPreference = "Continue"
     try {
         $nombre = "tenis-ciclo-automatico"
-        $version = "ciclo v3"
+        # v4: todo se lanza con oculto.vbs (wscript): sin el terminal que aparecia y se cerraba solo
+        $version = "ciclo v4"
         if (Test-Path "$Base\output\ciclo_desactivado.txt") { return }
+        $vbs = Join-Path $RepoDir "scripts\windows\oculto.vbs"
         # 1) bucle en segundo plano que arranca con la sesion (carpeta Inicio): no depende del
         #    Programador de tareas; se pone en marcha ya si no lo esta
         $bucle = Join-Path $RepoDir "scripts\windows\ciclo_bucle.ps1"
         $inicio = [Environment]::GetFolderPath("Startup")
         if ($inicio) {
-            "@start `"`" /min powershell.exe -NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$bucle`"" |
-                Set-Content (Join-Path $inicio "tenis-ciclo.cmd") -Encoding ASCII
+            "CreateObject(`"WScript.Shell`").Run `"wscript.exe //B `"`"$vbs`"`" `"`"$bucle`"`"`", 0, False" |
+                Set-Content (Join-Path $inicio "tenis-ciclo.vbs") -Encoding ASCII
+            Remove-Item (Join-Path $inicio "tenis-ciclo.cmd") -Force -ErrorAction SilentlyContinue
         }
         $vivo = Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" -ErrorAction SilentlyContinue |
             Where-Object { $_.CommandLine -match "ciclo_bucle" }
         if (-not $vivo) {
-            Start-Process powershell.exe -WindowStyle Hidden -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$bucle`"")
+            Start-Process wscript.exe -ArgumentList @("//B", "`"$vbs`"", "`"$bucle`"")
             Ok "Ciclo automatico en marcha (cada 10 minutos, en segundo plano; arranca solo al encender)."
         }
         # 2) ademas, la tarea de Windows (por si el bucle se cierra)
         $t = Get-ScheduledTask -TaskName $nombre -ErrorAction SilentlyContinue
         if ($t -and $t.Description -like "*$version*") { return }
         $ps1 = Join-Path $RepoDir "scripts\windows\ciclo_automatico.ps1"
-        $accion = New-ScheduledTaskAction -Execute "powershell.exe" -Argument "-NoProfile -WindowStyle Hidden -ExecutionPolicy Bypass -File `"$ps1`"" -WorkingDirectory $RepoDir
+        $accion = New-ScheduledTaskAction -Execute "wscript.exe" -Argument "//B `"$vbs`" `"$ps1`"" -WorkingDirectory $RepoDir
         # cada 10 minutos todo el dia, todos los dias (diario con repeticion de 1 dia: funciona en
         # cualquier Windows, sin depender de una duracion "indefinida"), y tambien al iniciar sesion
         $diario = New-ScheduledTaskTrigger -Daily -At "00:00"

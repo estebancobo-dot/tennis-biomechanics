@@ -81,3 +81,14 @@ def test_recompute_and_rebuild_take_the_output_folder(tmp_path, monkeypatch, cap
         monkeypatch.setattr(sys, "argv", [name, "--out-name", "_poc9_largo"])
         assert mod.main() == 1                              # nothing analysed there: says so, no crash
         assert str(tmp_path / "_poc9_largo") in capsys.readouterr().out
+
+
+def test_cycle_starts_without_any_window():
+    """The task, the loop and the start-up entry go through oculto.vbs (wscript, window 0): with
+    powershell -WindowStyle Hidden Windows showed a terminal for a moment every 10 minutes."""
+    win = Path(__file__).resolve().parents[1] / "scripts" / "windows"
+    vbs = (win / "oculto.vbs").read_text(encoding="utf-8")
+    assert vbs.isascii() and ", 0, True" in vbs
+    comun = (win / "comun.ps1").read_text(encoding="utf-8")
+    assert '-Execute "wscript.exe"' in comun and '"ciclo v4"' in comun and "tenis-ciclo.vbs" in comun
+    assert "oculto.vbs" in (win / "ciclo_bucle.ps1").read_text(encoding="utf-8")

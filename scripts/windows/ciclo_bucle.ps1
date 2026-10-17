@@ -4,6 +4,7 @@
 $m = New-Object System.Threading.Mutex($false, "Global\tenis-ciclo-bucle")
 if (-not $m.WaitOne(0)) { exit 0 }
 $ps1 = Join-Path $PSScriptRoot "ciclo_automatico.ps1"
+$vbs = Join-Path $PSScriptRoot "oculto.vbs"
 # el equipo no se suspende mientras el bucle vive (la pantalla si puede apagarse)
 try {
     Add-Type -Namespace Win32 -Name Power -MemberDefinition '[DllImport("kernel32.dll")] public static extern uint SetThreadExecutionState(uint esFlags);' -ErrorAction SilentlyContinue
@@ -11,7 +12,9 @@ try {
 } catch {}
 while ($true) {
     try {
-        Start-Process powershell.exe -WindowStyle Hidden -Wait -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$ps1`"")
+        # sin ventana ni parpadeo (oculto.vbs); si faltara, como antes
+        if (Test-Path $vbs) { Start-Process wscript.exe -Wait -ArgumentList @("//B", "`"$vbs`"", "`"$ps1`"") }
+        else { Start-Process powershell.exe -WindowStyle Hidden -Wait -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$ps1`"") }
     } catch {}
     Start-Sleep -Seconds 600
 }
