@@ -80,7 +80,7 @@ def check_page(pg, pairs: bool = True, extra: list[dict] | None = None) -> dict:
     """Runs every combination on an open report page (Playwright). Returns the summary and failures."""
     pg.evaluate("document.querySelector('.nav button[data-tab=\"aprende\"]').click()")
     # the full list of measures is folded under the lesson: unfolded to read it as the user would
-    pg.evaluate("(d => { if (d) d.open = true; })(document.getElementById('a-phases-d'))")
+    pg.evaluate("['a-more', 'a-phases-d'].forEach(id => { const d = document.getElementById(id); if (d) d.open = true; })")
     pg.wait_for_timeout(300)
     conds = pg.evaluate("Object.fromEntries(Object.entries(LEARN.conditions).map(([d, c]) => [d, Object.keys(c.levels)]))")
     from .learn import content
@@ -112,6 +112,8 @@ _JS_LESSON = """async () => {
   for (const ph of steps) {
     document.querySelector(`#a-l-steps button[data-ph="${ph}"]`).click();
     await new Promise(r => setTimeout(r, 700));
+    // the first video of the page takes longer to load: wait for it (up to 4 s) before judging
+    for (let w = 0; w < 20 && typeof LS !== 'undefined' && lReps.length && LS.video.readyState < 2; w++) await new Promise(r => setTimeout(r, 200));
     const keys = [...document.querySelectorAll('#a-l-keys .lkey')];
     const panel = document.getElementById('a-lesson').getBoundingClientRect();
     out.push({ phase: ph, keys: keys.length,

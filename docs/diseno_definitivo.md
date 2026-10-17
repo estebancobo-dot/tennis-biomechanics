@@ -144,7 +144,7 @@ Son automáticos: `learn_check`, `tests/test_learn_web.py` y `screens.py` en el 
 **Toda la web**
 
 9. Al abrir la Lección se ven ≤ 3 títulos de sección, ≤ 400 palabras y ≤ 25 botones.
-10. Menú con ≤ 3 entradas principales, sin alias duplicados.
+10. Menú con ≤ 3 entradas principales. En «Más» se mantienen los accesos directos que pidió el usuario («Su patrón típico» y «Dónde golpea» llevan a su sitio).
 11. Sin desplazamiento lateral en ninguna pantalla (390, 1280, 1440). Ningún nombre de fichero visible como título de un golpe.
 12. Ninguna medida de ruido o sesgo se da como valor ni como hallazgo en ninguna pantalla.
 13. Informe con 0 golpes sin errores. 0 errores de página.

@@ -436,6 +436,16 @@ CONDITIONS = {
         "pecho-hombro": ("Alta (pecho-hombro).", "Adelántate y tómala subiendo o retrocede para que baje.", "Bolas con mucho efecto alto."),
         "por encima del hombro": ("Muy alta.", "Tómala subiendo o salta; terminación alta.", "Bolas altas con salto."),
     }),
+    "intent": ("Ataque o defensa", {
+        "ataque": ("Ataque: bola cómoda (corta, lenta o media altura) para hacer daño.", "Entra en la pista, prepara completo y golpea hacia delante, a una esquina.", "Bolas cortas y lentas: entra y ataca a la esquina; 3×8."),
+        "neutra": ("Neutra: mantener el peloteo con profundidad y margen.", "Golpe completo y profundo, con margen sobre la red.", "Peloteo profundo cruzado; 20 seguidas en los últimos 2 m."),
+        "defensa": ("Defensa: llegar y devolver para recuperar la posición.", "Prioridad a llegar: armado corto, bola alta y profunda o cortada, y recuperar enseguida.", "Bolas muy abiertas o profundas: devuelve alto y al centro y vuelve; 3×8."),
+    }),
+    "width": ("Bola centrada o abierta", {
+        "centrada": ("Bola centrada: le llega cerca, sin desplazamiento largo.", "Pasos de ajuste y golpe completo.", "Bolas a 1 m: dos pasos de ajuste y golpe."),
+        "abierta": ("Bola abierta: tiene que desplazarse (1,2–2,6 m).", "Primer paso hacia la bola y gira mientras corres; último apoyo firme.", "Bolas a 2 m alternas: gira en el primer paso y golpea apoyada; 3×8."),
+        "muy abierta": ("Bola muy abierta: carrera larga (más de 2,6 m).", "Paso cruzado, frena con el último apoyo y recupera enseguida.", "Bolas a banda: cruzado, frenado y golpe; recupera al centro; 3×6."),
+    }),
     "ball_speed": ("Velocidad de la bola", {
         "lenta": ("Bola lenta: tienes que generar tú la potencia.", "Preparación completa, paso adelante y empuje de piernas.", "Bolas lentas atacando hacia dentro."),
         "media": ("Bola media.", "Golpe completo.", "Peloteo a ritmo medio."),
@@ -474,7 +484,7 @@ CONDITIONS = {
         "ventaja": ("Resto desde el lado de ventaja.", "La derecha recibe sobre todo saques a la T o al cuerpo: prepara el paso de apertura.", "Restos en ventaja con saques a la T y al cuerpo."),
     }),
 }
-RELAX_ORDER = ["serve_dir", "return_side", "serve_number", "depth", "ball_speed", "ball_height", "court_side", "contact_type", "swing", "movement", "stance_impact", "shot_type", "play"]
+RELAX_ORDER = ["intent", "width", "serve_dir", "return_side", "serve_number", "depth", "ball_speed", "ball_height", "court_side", "contact_type", "swing", "movement", "stance_impact", "shot_type", "play"]
 
 # items of the user's matrix that TV cannot measure, with what to do about them anyway
 NOT_FROM_TV = [
@@ -488,6 +498,9 @@ NOT_FROM_TV = [
     ("Velocidad de la cabeza en km/h, velocidad angular en °/s, efecto en rpm, velocidad de salida", "Solo comparaciones entre sus golpes (velocidad relativa de la raqueta)."),
     ("Rangos articulares y cargas del codo", "Si te duele el codo, revisa el agarre y no golpees tarde."),
     ("Aerodinámica, altitud, temperatura, humedad", "En altitud o con calor la bola vuela más: más efecto."),
+    ("Empuñadura exacta (bisel) en la espera y al golpear, y el cambio de empuñadura", "La mano ocupa 20-40 px en la tele: no se ve. En «Su patrón típico» se dice con qué empuñaduras son compatibles sus medidas (estimación); usa la que te deje golpear a su altura y distancia."),
+    ("Altura del split step", "Se mide cuándo cae (fase 1), no cuánto salta: basta un salto pequeño, de unos centímetros."),
+    ("Momento de los picos de la cadena cinética en milisegundos", "Se mide el orden (cadera → tronco → brazo), no los ms: a 25-50 fps el error es de un fotograma."),
     ("Velocidad y efecto del saque que resta (km/h, rpm)", "Se ve indirectamente en el tiempo que tiene desde el saque (velocidad de la bola, condición «Velocidad de la bola») y en si es primer o segundo saque."),
 ]
 
@@ -623,7 +636,7 @@ GLOSSARY = [
     ("plano", "Golpe casi sin efecto: la bola va recta y rápida."),
     ("bote", "Cuando la bola toca la pista en tu lado antes de golpearla."),
     ("mediana", "El valor del medio de sus golpes: la mitad están por encima y la mitad por debajo."),
-    ("provisional", "Valor de menos de 5 golpes suyos: orientativo, puede cambiar con más golpes."),
+    ("provisional", "Valor de menos de 12 golpes suyos: orientativo, puede cambiar con más golpes."),
     ("medida ruidosa", "Medida que cambia bastante entre fotogramas vecinos: el valor es aproximado."),
     ("no fiable desde la tele", "La cámara de la tele no permite medirlo bien; no se da como valor suyo."),
     ("foco", "En qué fijarte al practicar: algo de fuera (la bola, la raqueta, una marca), no tu cuerpo; se aprende antes."),

@@ -204,6 +204,16 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .news li b { color: var(--ink); }
 .bmwrap { padding: 0 12px 12px; }
 .feetwrap { padding: 0 12px 14px; }
+.lctx { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin: 0 0 10px; font-size: 14px; }
+.lquick { display: flex; gap: 6px; flex-wrap: wrap; } .lquick button { border: 1px solid var(--line); background: transparent; color: var(--ink-2); border-radius: 999px; padding: 4px 10px; font: inherit; font-size: 12.5px; cursor: pointer; }
+.lquick button[aria-pressed="true"] { background: var(--accent); color: #111; border-color: var(--accent); }
+@media (max-width: 600px) {
+  .lctx .lquick, .lesson .lsteps, .topbar .scope { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+  .lctx .lquick button, .lesson .lsteps button { flex: none; }
+  #a-lesson { margin-top: 8px !important; }
+  .lesson > header { display: none; }
+  .lesson > .body { padding: 8px 10px !important; } .lsteps { margin-bottom: 8px; }
+}
 .cpk.flash { outline: 2px solid var(--accent); outline-offset: 2px; }
 .lsteps { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
 .lsteps button { border: 1px solid var(--line); background: transparent; color: var(--ink-2); border-radius: 999px; padding: 5px 11px; font: inherit; font-size: 13px; cursor: pointer; }
@@ -407,35 +417,27 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
     <div class="content">
 
 <section class="screen" id="tab-aprende" hidden>
-<details class="news" id="news"><summary><b>Novedades de esta versión</b> · dónde mirarlas</summary><ul>
-  <li><b>Resto de derecha:</b> en «Cópiala», elige «Momento del punto: resto» y sus variantes (primer o segundo saque, saque abierto / al cuerpo / a la T, lado de iguales o ventaja); en la fase 1, dónde espera el saque y cuánto entra hacia la bola.</li>
-  <li><b>«Cópiala»:</b> guía «Empieza aquí» arriba; en cada medida, <b>«Tu objetivo»</b> con su número (y en tus centímetros si pones tu altura); palabras técnicas subrayadas con su explicación y un glosario al final.</li>
-  <li><b>Menú:</b> dos vistas principales, «Cópiala» y «Sus golpes»; el resto, en «Más» (para practicar y técnico). No se ha quitado nada.</li>
-  <li><b>«Sus golpes» → un golpe → «La bola y ella»:</b> su cuerpo cuando golpea la rival, la bola cruza la red, cae, bota, sube y ella golpea, con medidas reales en cada fotograma (cadera en cm, pies en m, recorrido).</li>
-  <li><b>«Sus golpes» → un golpe → «Su cuerpo en este golpe»:</b> cuánto baja y sube (barras y cm), la base entre los pies (m) y hacia dónde mira el tronco al terminar.</li>
-  <li><b>Vídeo:</b> pantalla completa (botón ⛶, tecla F o doble clic) y lo que se dibuja, por grupos («Ver: Solo vídeo · Cuerpo · Raqueta y bola · Alturas · Líneas · Pista · Todo») o uno a uno.</li>
-  <li><b>«Cópiala»:</b> su firma (lo que repite en casi todos sus golpes) y su estilo en una frase; cada medida que no es de fiar dice por qué no se da.</li>
-  <li><b>«Más» → «Fiabilidad de las medidas»:</b> qué medidas son de fiar, cuáles son ruido o están sesgadas, y por qué.</li>
-  <li><b>«Más» reorganizado:</b> «Su patrón típico» está ahora al final de «Cópiala»; «Dónde golpea», en «Sus golpes» → «En la pista»; el Panel y las Comparativas, juntos en «Conclusiones»; nueva «Datos del análisis». Los accesos de «Más» llevan directamente a cada sitio.</li>
-</ul></details>
-<div class="guide" id="a-guide"><div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><b>Empieza aquí: cómo usar «Cópiala»</b><button class="btn" id="a-guide-x">Entendido, ocultar</button></div>
-<ol>
-  <li><b>Elige el golpe</b> que quieres copiar en el punto 1 (por ejemplo, bola alta + parada). Si no eliges nada, son todas sus derechas.</li>
-  <li><b>Mira su firma</b>: lo que ella repite en casi todos esos golpes. Es lo primero que hay que copiar.</li>
-  <li><b>Practica «Tu plan»</b> (punto 5): una prioridad cada vez, con su foco y su ejercicio; cuando salga sola, la siguiente.</li>
-  <li><b>Pulsa «▶ Ver»</b> en cualquier dato para verlo en su vídeo real, con el esqueleto dibujado.</li>
-  <li>En cada fase, <b>«Tu objetivo»</b> te da su número para copiarlo. Pon tu altura aquí y las distancias saldrán en tus centímetros: <label class="uh">Tu altura <input type="number" id="a-uh" min="1.2" max="2.2" step="0.01" placeholder="1,75"> m</label></li>
-</ol>
-<p class="dim3" style="margin:0">Las etiquetas: <span class="badge firm">N golpes</span> = medido en N golpes suyos · <span class="badge prov">provisional</span> = menos de 5 golpes, orientativo · <span class="badge prov">medida ruidosa</span> = aproximado · «—» = la tele no permite medirlo bien y se dice por qué. Las palabras <abbr class="gl" title="Pasa el ratón o toca la palabra subrayada para ver qué significa">subrayadas así</abbr> se explican al tocarlas y en el <a href="#" id="a-gloss-go">glosario</a>.</p></div>
-<p class="dim3" id="a-guide-show" hidden style="margin:0 0 10px"><a href="#" id="a-guide-open">¿Cómo se usa esta pantalla? Ver la guía</a> · <a href="#" id="a-gloss-go2">Glosario</a></p>
-<p class="intro"><b>Aprende su derecha.</b> Elige el golpe que quieres copiar (dirección, apoyo, cómo llega, efecto…). Verás sus golpes de ese tipo en vídeo y, fase a fase, lo que hace ella (medido en sus golpes), cómo hacerlo tú, el error típico y un ejercicio.</p>
-<div class="panel"><header><h2>1 · ¿Qué golpe quieres aprender?</h2><button class="btn" id="a-clear">Quitar todo</button></header><div class="body" id="a-cond" style="padding:12px 16px"></div></div>
+<div class="lctx"><span><b>Su derecha</b> · <span id="a-ctx"></span></span><span class="lquick" id="a-quick"></span><button class="btn" id="a-cond-toggle" aria-expanded="false">Cambiar ▾</button><label class="uh">Tu altura <input type="number" id="a-uh" min="1.2" max="2.2" step="0.01" placeholder="1,75"> m</label></div>
+<div class="panel" id="a-cond-p" hidden style="margin-bottom:12px"><header><h2>¿Qué golpe quieres aprender?</h2><button class="btn" id="a-clear">Quitar todo</button></header><div class="body" id="a-cond" style="padding:12px 16px"></div></div>
 <div class="panel lesson" style="margin-top:16px" id="a-lesson"><header><h2>La lección: su derecha, fase a fase</h2><span class="note" id="a-l-src"></span></header>
 <div class="body" style="padding:12px 16px"><div class="lsteps" id="a-l-steps"></div>
 <div class="lgrid"><div><div class="lvid"><canvas id="a-l-cv" width="960" height="600"></canvas><div class="lnovid" id="a-l-nov" hidden></div></div>
 <div class="lctrl"><button class="btn" id="a-l-play">❚❚ Pausa</button><button class="btn" id="a-l-next">Otro golpe suyo</button><button class="btn" id="a-l-open">Ver el golpe entero</button><span class="dim3" id="a-l-cap"></span></div></div>
 <div><h3 class="ltitle" id="a-l-title"></h3><p class="dim" id="a-l-when" style="margin:2px 0 8px"></p><div class="focus" id="a-l-focus"></div><div id="a-l-keys"></div>
 <p class="dim3" style="margin:10px 0 0"><a href="#" id="a-l-all">Todas las medidas de esta fase</a> · lo de «Cómo», «Ejercicio» y «Cómo comprobarlo» es conocimiento de entrenadores; los números son suyos.</p></div></div></div></div>
+<p class="dim3" style="margin:10px 0 0">Elige una fase, mírala en su vídeo y practica su ejercicio. <a href="#" id="a-guide-open">Cómo se usa esta pantalla</a> · <a href="#" id="a-gloss-go2">Glosario</a> · <a href="#" id="a-more-go">Más sobre su derecha</a></p>
+<details class="extra secx" id="a-more" style="margin-top:18px"><summary><b>Más sobre su derecha</b> · sus golpes de ese tipo, su firma, su ritmo, qué cambia, su plan, «Si te pasa…», lo que la tele no mide, todas las medidas, glosario y guía</summary>
+<div class="guide" id="a-guide"><div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><b>Empieza aquí: cómo usar «Cópiala»</b><button class="btn" id="a-guide-x">Entendido, ocultar</button></div>
+<ol>
+  <li><b>Elige el golpe</b> con «Cambiar» o un atajo (por ejemplo, bola lenta). Si no eliges nada, son todas sus derechas.</li><li><b>Pulsa una fase</b>: su vídeo en bucle y como mucho 3 claves; practica su ejercicio hasta conseguirlo y pasa a la siguiente.</li>
+  <li><b>Mira su firma</b>: lo que ella repite en casi todos esos golpes. Es lo primero que hay que copiar.</li>
+  <li><b>Practica «Tu plan»</b> (punto 5): una prioridad cada vez, con su foco y su ejercicio; cuando salga sola, la siguiente.</li>
+  <li><b>Pulsa «▶ Ver»</b> en cualquier dato para verlo en su vídeo real, con el esqueleto dibujado.</li>
+  <li>En cada fase, <b>«Tu objetivo»</b> te da su número para copiarlo. Pon tu altura arriba («Tu altura») y las distancias saldrán en tus centímetros.</li>
+</ol>
+<p class="dim3" style="margin:0">Las etiquetas: <span class="badge firm">N golpes</span> = medido en N golpes suyos · <span class="badge prov">provisional</span> = menos de 12 golpes, orientativo · <span class="badge prov">medida ruidosa</span> = aproximado · «—» = la tele no permite medirlo bien y se dice por qué. Las palabras <abbr class="gl" title="Pasa el ratón o toca la palabra subrayada para ver qué significa">subrayadas así</abbr> se explican al tocarlas y en el <a href="#" id="a-gloss-go">glosario</a>.</p></div>
+<p class="dim3" id="a-guide-show" hidden style="margin:0 0 10px"></p>
+<p class="intro"><b>Aprende su derecha.</b> Elige el golpe que quieres copiar (dirección, apoyo, cómo llega, efecto…). Verás sus golpes de ese tipo en vídeo y, fase a fase, lo que hace ella (medido en sus golpes), cómo hacerlo tú, el error típico y un ejercicio.</p>
 <div class="panel" style="margin-top:16px"><header><h2>2 · Sus golpes de ese tipo</h2></header><div class="body" id="a-res" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px"><header><h2>Su firma: lo que repite en casi todos estos golpes</h2><span class="note">medido; solo rasgos fiables</span></header><div class="body" id="a-sig" style="padding:12px 16px"></div></div>
 <div class="panel" style="margin-top:16px"><header><h2>Su ritmo, distancia y peso</h2><span class="note">medido; cada línea lleva a su fase</span></header><div class="body" id="a-rhythm" style="padding:12px 16px"></div></div>
@@ -465,6 +467,7 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
     <div class="panel"><header><h2>Pies</h2><span class="note">Desde el golpe de la rival hasta la recuperación</span></header><div class="body msum" id="m-feet"></div></div>
     <div class="panel"><header><h2>Lo que la tele no permite medir</h2></header><div class="body"><ul class="msum" id="m-nm"></ul></div></div>
   </div>
+</details>
 </details>
 </section>
 
@@ -668,6 +671,18 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
 </section>
 <section class="screen" id="tab-datos" hidden>
 <p class="intro"><b>Datos del análisis.</b> De dónde salen los golpes de esta web: partidos, cuántos golpes hay de cada lado, cuáles son dudosos y por qué, qué medidas faltan, y la última revisión automática.</p>
+<details class="news" id="news"><summary><b>Novedades de esta versión</b> · dónde mirarlas</summary><ul>
+  <li><b>Resto de derecha:</b> en «Cópiala», elige «Momento del punto: resto» y sus variantes (primer o segundo saque, saque abierto / al cuerpo / a la T, lado de iguales o ventaja); en la fase 1, dónde espera el saque y cuánto entra hacia la bola.</li>
+  <li><b>«Cópiala»:</b> guía «Empieza aquí» arriba; en cada medida, <b>«Tu objetivo»</b> con su número (y en tus centímetros si pones tu altura); palabras técnicas subrayadas con su explicación y un glosario al final.</li>
+  <li><b>Menú:</b> dos vistas principales, «Cópiala» y «Sus golpes»; el resto, en «Más» (para practicar y técnico). No se ha quitado nada.</li>
+  <li><b>«Sus golpes» → un golpe → «La bola y ella»:</b> su cuerpo cuando golpea la rival, la bola cruza la red, cae, bota, sube y ella golpea, con medidas reales en cada fotograma (cadera en cm, pies en m, recorrido).</li>
+  <li><b>«Sus golpes» → un golpe → «Su cuerpo en este golpe»:</b> cuánto baja y sube (barras y cm), la base entre los pies (m) y hacia dónde mira el tronco al terminar.</li>
+  <li><b>Vídeo:</b> pantalla completa (botón ⛶, tecla F o doble clic) y lo que se dibuja, por grupos («Ver: Solo vídeo · Cuerpo · Raqueta y bola · Alturas · Líneas · Pista · Todo») o uno a uno.</li>
+  <li><b>«Cópiala»:</b> su firma (lo que repite en casi todos sus golpes) y su estilo en una frase; cada medida que no es de fiar dice por qué no se da.</li>
+  <li><b>«Más» → «Fiabilidad de las medidas»:</b> qué medidas son de fiar, cuáles son ruido o están sesgadas, y por qué.</li>
+  <li><b>«Más» reorganizado:</b> «Su patrón típico» está ahora al final de «Cópiala»; «Dónde golpea», en «Sus golpes» → «En la pista»; el Panel y las Comparativas, juntos en «Conclusiones»; nueva «Datos del análisis». Los accesos de «Más» llevan directamente a cada sitio.</li>
+</ul></details>
+
 <div class="panel"><div class="body" id="datos-body" style="padding:12px 16px"></div></div>
 </section>
 <section class="screen" id="tab-explorador" hidden>
@@ -841,7 +856,7 @@ function showTab(name) {
   document.querySelectorAll(".nav button").forEach(b => { if (al && b.dataset.tab === via) b.setAttribute("aria-current", "page"); });
   if (al && al[1] === "pista") setLibMode("pista");
   else if (name === "videoteca") setLibMode("list");
-  if (al && al[1] !== "pista") { const el = document.getElementById(al[1]); if (el) { if (el.tagName === "DETAILS") el.open = true; el.scrollIntoView({ block: "start" }); } }
+  if (al && al[1] !== "pista") { const el = document.getElementById(al[1]); if (el) { openUp(el); el.scrollIntoView({ block: "start" }); } }
 }
 document.querySelectorAll(".nav button").forEach(b => b.addEventListener("click", () => showTab(b.dataset.tab)));
 document.getElementById("g-back").addEventListener("click", () => showTab("videoteca"));
@@ -2402,13 +2417,18 @@ function renderGuide() {
 }
 const aGuide = h => { try { localStorage.setItem("tb-guide", h ? "hidden" : "shown"); } catch (e) { } renderGuide(); };
 document.getElementById("a-guide-x").addEventListener("click", () => aGuide(true));
-document.getElementById("a-guide-open").addEventListener("click", e => { e.preventDefault(); aGuide(false); });
-["a-gloss-go", "a-gloss-go2"].forEach(id => document.getElementById(id).addEventListener("click", e => { e.preventDefault(); const d = document.getElementById("a-gloss-d"); d.open = true; d.scrollIntoView({ behavior: "smooth" }); }));
+document.getElementById("a-guide-open").addEventListener("click", e => { e.preventDefault(); aGuide(false); const g = document.getElementById("a-guide"); openUp(g); g.scrollIntoView({ behavior: "smooth" }); });
+document.getElementById("a-more-go").addEventListener("click", e => { e.preventDefault(); const m = document.getElementById("a-more"); m.open = true; m.scrollIntoView({ behavior: "smooth" }); });
+document.getElementById("a-cond-toggle").addEventListener("click", e => { const p = document.getElementById("a-cond-p"); p.hidden = !p.hidden; e.target.setAttribute("aria-expanded", String(!p.hidden)); e.target.textContent = p.hidden ? "Cambiar ▾" : "Cerrar ▴"; });
+["a-gloss-go", "a-gloss-go2"].forEach(id => document.getElementById(id).addEventListener("click", e => { e.preventDefault(); const d = document.getElementById("a-gloss-d"); openUp(d); d.scrollIntoView({ behavior: "smooth" }); }));
 document.getElementById("a-uh").addEventListener("change", e => {
   const h = parseFloat(String(e.target.value).replace(",", ".")); A_UH = h >= 1.2 && h <= 2.2 ? h : null;
   try { A_UH ? localStorage.setItem("tb-user-h", String(A_UH)) : localStorage.removeItem("tb-user-h"); } catch (x) { }
   renderLearn();
 });
+const A_QUICK = [["ball_speed", "rápida", "bola rápida"], ["ball_speed", "lenta", "bola lenta"], ["ball_height", "pecho-hombro", "bola alta"], ["ball_height", "rodilla", "bola baja"], ["movement", "en carrera", "en carrera"], ["width", "muy abierta", "muy abierta"]];
+// open every folded block around an element (the extras live inside «Más sobre su derecha»)
+function openUp(el) { for (let e = el; e; e = e.parentElement) if (e.tagName === "DETAILS") e.open = true; }
 function renderLearn() {
   if (!LEARN) return;
   renderGuide();
@@ -2423,6 +2443,10 @@ function renderLearn() {
   }).join("") + `</div><p class="dim3" style="margin:10px 0 0">Superficie de sus partidos: ${[...new Set(MATCHES.map(m => m.surf))].join(", ")} (influye en el bote y en cómo se desliza).</p>`;
   box.querySelectorAll("button[data-d]").forEach(b => b.addEventListener("click", () => { aSel[b.dataset.d] = aSel[b.dataset.d] === b.dataset.l ? undefined : b.dataset.l; renderLearn(); }));
   const R = aResolve(), selTxt = Object.entries(R.sel).map(([d, l]) => l).join(" + ") || "todas sus derechas";
+  // the context in one line: which strokes are being copied, six shortcuts and «Cambiar» for the rest
+  document.getElementById("a-ctx").textContent = `${R.exact.length || R.wider.length} golpes · ${Object.keys(R.sel).length ? selTxt : "todas las situaciones"}`;
+  document.getElementById("a-quick").innerHTML = A_QUICK.filter(([d, l]) => LEARN.conditions[d] && LEARN.conditions[d].levels[l]).map(([d, l, n]) => `<button data-d="${d}" data-l="${l}" aria-pressed="${aSel[d] === l}">${n}</button>`).join("");
+  document.querySelectorAll("#a-quick button").forEach(b => b.addEventListener("click", () => { aSel[b.dataset.d] = aSel[b.dataset.d] === b.dataset.l ? undefined : b.dataset.l; renderLearn(); }));
   // 2. her strokes of that kind, honest about how many
   // no exact stroke: the closest ones (most conditions in common), never silently all of them
   const nSel = Object.keys(R.sel).length;
@@ -2489,8 +2513,7 @@ function renderLearn() {
     return `<li><b>${sy.s}</b> · <span class="dim">${sy.why}</span><br><span class="dim">Compárate con ella:</span> ${chips}</li>`; }).join("");
   // a line of the rhythm or a symptom chip goes to its checkpoint card
   document.querySelectorAll("#a-rhythm [data-go], #a-sym [data-go]").forEach(b => b.addEventListener("click", ev => { ev.preventDefault();
-    document.getElementById("a-phases-d").open = true;
-    const el = document.querySelector(`#a-phases .cpk[data-key="${b.dataset.go}"]`); if (el) { el.scrollIntoView({ behavior: "smooth", block: "center" }); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1600); } }));
+    const el = document.querySelector(`#a-phases .cpk[data-key="${b.dataset.go}"]`); if (el) { openUp(el); el.scrollIntoView({ behavior: "smooth", block: "center" }); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1600); } }));
   renderLesson(set);
   // 6. what TV cannot measure from the user's list, and what to do anyway
   document.getElementById("a-nottv").innerHTML = LEARN.not_tv.map(([w, h]) => `<li><b>${w}</b>: ${h}</li>`).join("");
@@ -2574,7 +2597,7 @@ function lLoop(g) {
 document.getElementById("a-l-play").addEventListener("click", ev => { lPlay = !lPlay; ev.target.textContent = lPlay ? "❚❚ Pausa" : "▶ Seguir"; try { lPlay ? LS.video.play() : LS.video.pause(); } catch (e) { } });
 document.getElementById("a-l-next").addEventListener("click", () => { if (lReps.length) { lRepI = (lRepI + 1) % lReps.length; lLoad(); } });
 document.getElementById("a-l-open").addEventListener("click", () => { const s = lReps[lRepI]; if (s) { lPlay = false; LS.video.pause(); aOpen(s.id, lPh === "feet" ? "loaded" : lPh); } });
-document.getElementById("a-l-all").addEventListener("click", ev => { ev.preventDefault(); const d = document.getElementById("a-phases-d"); d.open = true;
+document.getElementById("a-l-all").addEventListener("click", ev => { ev.preventDefault(); const d = document.getElementById("a-phases-d"); openUp(d);
   const el = document.querySelector(`#a-phases .lcard[data-phase="${lPh}"]`); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); });
 showTab((location.hash || "").slice(1));
 renderModel();

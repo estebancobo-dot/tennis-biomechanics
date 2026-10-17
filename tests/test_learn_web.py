@@ -84,7 +84,7 @@ def test_noise_is_not_shown_as_her_value(tmp_path):
         pg.goto(html.resolve().as_uri())
         pg.wait_for_timeout(500)
         pg.evaluate("document.querySelector('.nav button[data-tab=\"aprende\"]').click()")
-        pg.evaluate("document.getElementById('a-phases-d').open = true")     # the full list, unfolded
+        pg.evaluate("document.getElementById('a-more').open = true; document.getElementById('a-phases-d').open = true")   # the extras, unfolded
         txt = lambda k: pg.evaluate(f"document.querySelector('.cpk[data-key=\"{k}\"]').children[1].innerText")
         noisy, good, flip = txt("loaded.face_tilt"), txt("loaded.shoulder_turn"), txt("class.takeback")
         b.close()
@@ -112,6 +112,7 @@ def test_signature_shows_what_she_repeats(tmp_path):
         pg.goto(html.resolve().as_uri())
         pg.wait_for_timeout(500)
         pg.evaluate("document.querySelector('.nav button[data-tab=\"aprende\"]').click()")
+        pg.evaluate("document.getElementById('a-more').open = true")          # «Su firma» lives in the extras
         sig = pg.evaluate("document.getElementById('a-sig').innerText")
         b.close()
     assert "Estilo de su derecha: preparación bucle (100 %)" in sig
@@ -144,6 +145,7 @@ def test_target_with_her_number_guide_and_glossary(tmp_path):
         pg.dispatch_event("#a-uh", "change")
         after = mine("stroke.hip_drop_cm")
         guide = pg.evaluate("document.getElementById('a-guide').hidden")
+        pg.evaluate("document.getElementById('a-more').open = true")          # the guide lives in the extras
         pg.click("#a-guide-x")
         hidden = pg.evaluate("[document.getElementById('a-guide').hidden, document.getElementById('a-guide-show').hidden]")
         terms = pg.evaluate("[document.querySelectorAll('#a-gloss dt').length, document.querySelectorAll('#a-phases abbr.gl').length]")

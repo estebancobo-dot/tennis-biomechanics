@@ -677,7 +677,7 @@ def _screens(shots_dir: Path) -> list[dict]:
               ("golpe", "body_trunk", "«Tronco al terminar»: fotograma con la línea de hombros y hacia dónde mira", 2),
               ("golpe", "heights_layer", "Barras de altura de la cabeza y la cadera sobre el vídeo", 1),
               ("videoteca", "lib_filters", "Filtros combinables de la videoteca (apoyo, dirección, bola, contacto…)", 10),
-              ("aprende", "news", "Novedades de la versión en la pantalla de entrada", 1),
+              ("datos", "news", "Novedades de la versión (en «Datos del análisis»)", 1),
               ("golpe", "sentences", "«Análisis de golpe»: la raqueta por fase dicha en frases (la tabla sigue debajo)", 1),
               ("explorador", "sentences", "«Explorador»: resumen en frases de los golpes filtrados (la tabla sigue debajo)", 1),
               ("conclusiones", "sentences", "«Conclusiones»: qué cambia, en frases (la tabla sigue debajo)", 1),
