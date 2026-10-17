@@ -1252,12 +1252,13 @@ async function renderFeetFrames(id) {
   if (!F) { box.innerHTML = ""; say.innerHTML = ""; return; }
   const opp = isN(cur.tAvail) ? -cur.tAvail : null, tReady = (PH[0] || {}).t, items = [];
   const inWin = t => isN(t) && t >= T0 && t <= T1;
-  const add = (t, title, text) => { if (!inWin(t)) return; const m = ser ? measuresAt(fIdx(snap(t)), MAIN) : {};
-    items.push({ t: snap(t), title, text: `<span class="mm">${text}</span>`, opts: { base: isN(m.base) ? `${fmt(m.base, 2)} m` : true } }); };
-  const when = (d, ref) => Math.abs(d) <= .08 ? `justo cuando ${ref}` : `${fmt(Math.abs(d), 2)} s ${d > 0 ? "después" : "antes"} de que ${ref}`;
+  // the bar between the ankles: at contact the same value as «Base» (one measure, one number)
+  const add = (t, title, text, base) => { if (!inWin(t)) return; const m = ser ? measuresAt(fIdx(snap(t)), MAIN) : {}, b = isN(base) ? base : m.base;
+    items.push({ t: snap(t), title, text: `<span class="mm">${text}</span>`, opts: { base: isN(b) ? `${fmt(b, 2)} m` : true } }); };
+  const when = d => Math.abs(d) <= .08 ? "justo cuando golpea la rival" : `${fmt(Math.abs(d), 2)} s ${d > 0 ? "después" : "antes"} de que golpee la rival`;
   // 1 split step
-  if (F.split && isN(opp) && isN(F.split_landing_vs_opp_s)) add(opp + F.split_landing_vs_opp_s, "Cae del split step", `Cae ${when(F.split_landing_vs_opp_s, "golpee la rival")}.`);
-  else if (F.split && isN(tReady)) add(tReady, "Split step", isN(opp) ? `Cae ${when(tReady - opp, "golpee la rival")}.` : "Hace un salto pequeño antes de salir.");
+  if (F.split && isN(opp) && isN(F.split_landing_vs_opp_s)) add(opp + F.split_landing_vs_opp_s, "Cae del split step", `Cae ${when(F.split_landing_vs_opp_s)}.`);
+  else if (F.split && isN(tReady)) add(tReady, "Split step", isN(opp) ? `Cae ${when(tReady - opp)}.` : "Hace un salto pequeño antes de salir.");
   else if (isN(opp)) add(opp, "Golpe de la rival", "No se ve un split step: está así cuando golpea la rival.");
   // 2 first step and 3 last support before the ball (the steps the ankles let us count)
   const app = (F.steps_reliable === false ? [] : (F.approach_steps || [])).filter(s => isN(s.t_land) && s.t_land < 0);
@@ -1269,7 +1270,7 @@ async function renderFeetFrames(id) {
   }
   // 4 contact
   const base0 = ((cur.body || {}).base || {}).impact;
-  add(0, "Impacto", `${F.airborne_at_impact ? "Golpea en el aire (salto)" : F.sliding_at_impact ? "Golpea deslizando" : `Golpea con apoyo ${cur.stance || "—"}`}${isN(base0) ? `, los pies a ${fmt(base0, 2)} m` : ""}.`);
+  add(0, "Impacto", `${F.airborne_at_impact ? "Golpea en el aire (salto)" : F.sliding_at_impact ? "Golpea deslizando" : `Golpea con apoyo ${cur.stance || "—"}`}${isN(base0) ? `, los pies a ${fmt(base0, 2)} m` : ""}.`, base0);
   // 5 recovery
   const rec = isN(F.recovery_start_s) ? F.recovery_start_s : ((F.recovery_steps || [])[0] || {}).t_land;
   if (isN(rec)) add(rec, "Empieza a volver", `${F.recovery_pattern ? F.recovery_pattern[0].toUpperCase() + F.recovery_pattern.slice(1) : "Empieza a recuperar"}${isN(F.recovery_to_centre_m) ? `; en 1 s se acerca ${fmt(F.recovery_to_centre_m, 1)} m al centro` : ""}.`);
