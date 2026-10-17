@@ -1,10 +1,9 @@
 # Auditoría de requisitos (forehand)
 
-55 golpes del lado cercano. ✔ 332 cumplidos · ✘ 0 no cumplidos · … 48 sin golpes suficientes en esta ejecución · ! 40 avisos
+55 golpes del lado cercano. ✔ 336 cumplidos · ✘ 0 no cumplidos · … 52 sin golpes suficientes en esta ejecución · ! 34 avisos
 
 ## 1. Toda la taxonomía del golpe y todas sus variantes (situaciones)
 
-- ! **6. Matriz del usuario · Superficie de la pista**: medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa)
 - … **1. Fases · Golpe del rival → split step**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **1. Fases · Final del armado (máximo giro, raqueta más atrás)**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **1. Fases · Inicio del swing hacia delante**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
@@ -31,7 +30,7 @@
 - … **Ángulo antebrazo–raqueta al acelerar**: 5 derechas de lado con esta medida
 - … **Ángulo antebrazo–raqueta antes del impacto**: 6 derechas de lado con esta medida
 - … **Cabeza girada hacia el impacto**: 0 derechas de frente con esta medida
-- … **Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha**: 0 golpes exactos, 1 parecidos; 46 de 73 puntos con su valor medido
+- … **Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha**: 0 golpes exactos, 1 parecidos; 53 de 85 puntos con su valor medido
 - ✔ **forehand: golpes analizados**: 55 del lado cercano (con todo el detalle), 14 del lejano
 - ✔ **1. Fases · Inicio del giro de bloque (preparación)**: medido en el 98% de los golpes y en el informe
 - ✔ **1. Fases · Impacto**: implementado (sin nombre de dato en la matriz)
@@ -154,6 +153,7 @@
 - ✔ **6. Matriz del usuario · Latencia de reacción al golpe de la rival**: medido en el 33% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **6. Matriz del usuario · Apertura prematura de hombros (fuga de energía)**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **6. Matriz del usuario · Fuerza en dirección incorrecta (horizontal o descendente)**: medido en el 100% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Superficie de la pista**: medido en el 100% de los golpes y en el informe
 - ✔ **Cada punto de la matriz del usuario tiene su sitio en la pantalla**: 59 de 59
 - ✔ **Bola rápida / lenta**: lenta 10, media 13, rápida 13, muy rápida 19 (se muestra con ≥ 12 golpes)
 - ✔ **Bola alta / baja**: rodilla 7, cadera 13, cintura-pecho 16, pecho-hombro 17, por encima del hombro 1 (se muestra con ≥ 12 golpes)
@@ -186,11 +186,12 @@
 - ✔ **Codo en el impacto (3D)**: 12 derechas con estimación 3D con esta medida; mediana 95.65
 - ✔ **Rodilla de atrás en el armado (3D)**: 12 derechas con estimación 3D con esta medida; mediana 148.05
 - ✔ **Tronco en el impacto (3D)**: 12 derechas con estimación 3D con esta medida; mediana 8.95
-- ✔ **La pantalla responde a cada combinación**: 1104 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 80592 puntos de control comprobados; 652 con golpes exactos
-- ✔ **Lo que la distingue: su firma (rasgos que repite) con vídeo**: 4 rasgos que repite en ≥ 75 % de sus golpes, solo de medidas fiables
+- ✔ **La pantalla responde a cada combinación**: 1104 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 93840 puntos de control comprobados; 652 con golpes exactos
+- ✔ **Lo que la distingue: su firma (rasgos que repite) con vídeo**: 5 rasgos que repite en ≥ 75 % de sus golpes, solo de medidas fiables
 - ✔ **Estilo de su derecha en una frase**: Estilo de su derecha: preparación amplia (83 %) · apoyo variable (la más frecuente, semiabierto, en 35 %) · efecto liftado (de abajo arriba) (67 %).
-- ✔ **Puntos de «Aprende» con su valor medido (todas sus derechas)**: 69 de 73; el resto dice por qué falta
-- ✔ **«Tu objetivo»: la consigna con su número en cada medida suya fiable**: 46 medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); 60 palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados
+- ✔ **Puntos de «Aprende» con su valor medido (todas sus derechas)**: 81 de 85; el resto dice por qué falta
+- ✔ **«Tu objetivo»: la consigna con su número en cada medida suya fiable**: 55 medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); 72 palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados
+- ✔ **La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo**: 9 de 9 fases con claves suyas fiables
 
 ## 2. Información, no tablas: vídeo real como prueba en cada pantalla
 
@@ -198,15 +199,15 @@
 - ✔ **Cada golpe tiene su vídeo**: 55 de 55 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 55 de 55
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 32186 caracteres de texto, 5 vídeos, 9 gráficos
-- ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 9152 caracteres de texto, 5 vídeos, 1 gráficos
-- ✔ **Pantalla «Análisis de golpe»**: 7357 caracteres de texto, 6 vídeos, 28 gráficos
-- ✔ **Pantalla «Comparar dos golpes»**: 14522 caracteres de texto, 5 vídeos, 2 gráficos
-- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 7775 caracteres de texto, 5 vídeos, 20 gráficos; mensajes de vacío: ['', '']
-- ✔ **Pantalla «Tabla de golpes (Explorador)»**: 4968 caracteres de texto, 5 vídeos, 0 gráficos
-- ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 5 vídeos, 0 gráficos
-- ✔ **Pantalla «Fiabilidad de las medidas»**: 1859 caracteres de texto, 5 vídeos, 0 gráficos
-- ✔ **Pantalla «Datos del análisis»**: 1458 caracteres de texto, 5 vídeos, 0 gráficos
+- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 12228 caracteres de texto, 6 vídeos, 10 gráficos
+- ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 9152 caracteres de texto, 6 vídeos, 1 gráficos
+- ✔ **Pantalla «Análisis de golpe»**: 6904 caracteres de texto, 7 vídeos, 30 gráficos
+- ✔ **Pantalla «Comparar dos golpes»**: 14522 caracteres de texto, 6 vídeos, 2 gráficos
+- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 7775 caracteres de texto, 6 vídeos, 20 gráficos; mensajes de vacío: ['', '']
+- ✔ **Pantalla «Tabla de golpes (Explorador)»**: 4968 caracteres de texto, 6 vídeos, 0 gráficos
+- ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 6 vídeos, 0 gráficos
+- ✔ **Pantalla «Fiabilidad de las medidas»**: 2155 caracteres de texto, 6 vídeos, 0 gráficos
+- ✔ **Pantalla «Datos del análisis»**: 1457 caracteres de texto, 6 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
@@ -218,6 +219,7 @@
 - ✔ **Reproducir: Comparar golpes → ▶ (con las animaciones de Windows desactivadas)**: el vídeo arranca y avanza
 - ✔ **Reproducir: Panel → ▶ vídeos de una conclusión (con las animaciones de Windows desactivadas)**: el vídeo arranca y avanza
 - ✔ **El vídeo del golpe se reproduce al pulsar ▶**: avanza y sigue reproduciéndose
+- ✔ **La lección enseña su vídeo de cada fase, en bucle**: 9 de 9 fases con su vídeo cargado
 - ✔ **«La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella**: 5 en la pantalla
 - ✔ **«Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)**: 10 en la pantalla
 - ✔ **«La bola y ella»: medidas reales en cada fotograma (cadera en cm, pies en m, recorrido)**: 5 en la pantalla
@@ -283,7 +285,7 @@
 - ✔ **R16 Cuerdas casi hacia el suelo en el contacto**: no decidible: no se ve desde la tele: la app no lo afirma
 - ✔ **R3 Empuñadura semioccidental exacta**: no decidible: no se ve desde la tele: la app no lo afirma
 - ✔ **Valores dentro de límites físicos**: 23 medidas comprobadas en 55 golpes
-- ✔ **Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)**: 64 medidas: 3 dudosa, 51 fiable, 6 no comprobable, 1 ruido, 3 sesgo. No se dan como valor suyo (ruido): impact.face_tilt ±4.7. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
+- ✔ **Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)**: 76 medidas: 3 dudosa, 60 fiable, 9 no comprobable, 1 ruido, 3 sesgo. No se dan como valor suyo (ruido): impact.face_tilt ±4.7. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
 - ✔ **Punta de la raqueta respecto a la cabeza en el armado**: medido en 40 de 55 golpes; en «Aprende»; fiabilidad: fiable
 - ✔ **Frenado de los hombros antes del contacto**: medido en 55 de 55 golpes; en «Aprende»; fiabilidad: fiable
 - ✔ **Cada frase lleva cuántos golpes la respaldan y su fiabilidad**: 97 frases
@@ -316,28 +318,24 @@
 
 ## 9. Rendimiento: un partido en horas, no días
 
-- ✔ **Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 100 min para 210 min de vídeo ≈ 1.7 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
+- ✔ **Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 107 min para 210 min de vídeo ≈ 1.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
-- ! **#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 191 comprobaciones: 1 aviso, 17 pocos datos, 173 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
 - ! **#7 Empuñadura en la espera y al golpear**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
 - ! **#8 Cuerdas y cara (suelo, valla lateral o trasera, ángulos, cierre muñeca–raqueta) en todas las fases. Obligatori**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 7 comprobaciones: 7 ok
 - ! **#9 Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok
 - ! **#10 Ver los cambios en la prueba rápida, sin 1 h**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 11 comprobaciones: 11 ok
-- ! **#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 188 comprobaciones: 1 aviso, 16 pocos datos, 171 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
 - ! **#12 Validar cada medida con clips públicos anotados; el usuario no valida a mano**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#14 Rendimiento: un partido en horas, no días**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#15 Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#16 Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok
 - ! **#36 Mano y antebrazo, cierre de la muñeca**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#45 Todo automático y completo: el usuario no revisa nada**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok
-- ! **#47 Modelo técnico con fuentes; cómo saber si está completo**: 166 comprobaciones: 1 aviso, 16 pocos datos, 149 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
 - ! **#55 Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#64 Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la **: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok
 - ! **#70 Las 2000 y pico combinaciones, usables y validadas**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok
 - ! **#71 El conocimiento de los vídeos de entrenadores en la web**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 21 comprobaciones: 6 aviso, 15 ok; la peor: «R2 Dos manos en la raqueta en la espera (≥ 80 %)» (refuta: dos manos 73%)
-- ! **#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 167 comprobaciones: 1 aviso, 16 pocos datos, 150 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
 - ! **#73 Revisar la web de arriba abajo para que aporte valor**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 22 comprobaciones: 22 ok
 - ! **#75 Velocidad: «10 golpes en 5 horas es absurdo»**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#84 Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok
@@ -346,7 +344,6 @@
 - ! **#90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok
 - ! **#91 Matriz §8 Dirección (cruzado, paralelo, dentro-fuera, dentro-dentro)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#95 Matriz §12 Neuro y visión (latencia, mirada, EMG)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
-- ! **#98 Matriz §15 Contexto y ambiente (superficie, aerodinámica)**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «6. Matriz del usuario · Superficie de la pista» (medido en el 100% de los golpes y en el informe, pero sin explicación de qué significa (por qué importa))
 - ! **#100 Mejora 2: raqueta al lado del cuerpo o detrás de la espalda, y adónde apunta la punta**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#109 Mejora 11: frases con datos existentes (mano libre, terminación, base al terminar, desplazarse bajo)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 ok
 - ! **#113 Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 19 comprobaciones: 6 aviso, 13 ok; la peor: «R2 Dos manos en la raqueta en la espera (≥ 80 %)» (refuta: dos manos 73%)
@@ -356,14 +353,18 @@
 - … **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: no se comprueba en las salidas: pendiente por diseño: los 4 partidos se analizan una vez, al final (estado: NO)
 - … **#2 Ver informe y salidas en el móvil**: no se comprueba en las salidas: aplazado por el usuario (móvil al final) (estado: NO)
 - … **#3 Nube / OneDrive sin usar el PC como servidor**: no se comprueba en las salidas: aplazado por el usuario (nube al final) (estado: NO)
-- … **#5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto**: 25 comprobaciones: 1 pocos datos, 24 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 1 parecidos; 46 de 73 puntos con su valor medido)
+- … **#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b**: 192 comprobaciones: 17 pocos datos, 175 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
+- … **#5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto**: 26 comprobaciones: 1 pocos datos, 25 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 1 parecidos; 53 de 85 puntos con su valor medido)
 - … **#6 Juego de pies: split step, primer paso, ajuste, reacción, recuperación**: 35 comprobaciones: 1 pocos datos, 34 ok; la peor: «3. Pies y desplazamiento · Presencia del split» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
+- … **#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía**: 188 comprobaciones: 16 pocos datos, 172 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
 - … **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: no se comprueba en las salidas: en los tests del código (uv run pytest, pc-logs:pruebas.log), no en las salidas (estado: PARCIAL)
-- … **#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»**: 9 comprobaciones: 1 pocos datos, 8 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 1 parecidos; 46 de 73 puntos con su valor medido)
+- … **#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»**: 10 comprobaciones: 1 pocos datos, 9 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 1 parecidos; 53 de 85 puntos con su valor medido)
 - … **#35 Medidas de la raqueta (altura, ángulos) en todo el golpe; qué miden los profesionales**: 11 comprobaciones: 2 pocos datos, 9 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más)
 - … **#38 Dirección y profundidad del golpe**: 6 comprobaciones: 1 pocos datos, 5 ok; la peor: «5. Bola, resultado y contexto · Bote: profundidad, anchura, dentro/fuera» (se mide (87% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
-- … **#68 La meta: mejorar mi derecha tomando la de X como base**: 7 comprobaciones: 1 pocos datos, 6 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 1 parecidos; 46 de 73 puntos con su valor medido)
-- … **#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica**: 1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 1 parecidos; 46 de 73 puntos con su valor medido)
+- … **#47 Modelo técnico con fuentes; cómo saber si está completo**: 166 comprobaciones: 16 pocos datos, 150 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
+- … **#68 La meta: mejorar mi derecha tomando la de X como base**: 8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 1 parecidos; 53 de 85 puntos con su valor medido)
+- … **#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica**: 1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 1 parecidos; 53 de 85 puntos con su valor medido)
+- … **#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos**: 167 comprobaciones: 16 pocos datos, 151 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
 - … **#74 ¿El análisis de las apps de pago y libres fue profundo o superficial?**: no se comprueba en las salidas: análisis documental (docs/comparativa_apps.md), no una salida (estado: PARCIAL)
 - … **#77 No lanzar pruebas de 6 h para validar**: no se comprueba en las salidas: lanzadores cortos (2c, 2d) sin repetir el análisis de vídeo (estado: PARCIAL)
 - … **#78 No depender de que al usuario se le ocurran funciones**: no se comprueba en las salidas: proceso: Claude propone las funciones desde la matriz y los entrenadores (estado: PARCIAL)
@@ -421,6 +422,7 @@
 - ✔ **#93 Matriz §10 Propiedades de la raqueta**: 1 comprobaciones: 1 ok
 - ✔ **#94 Matriz §11 Cinemática cuantitativa (velocidad de raqueta, °/s, fuerza, rpm)**: 4 comprobaciones: 4 ok
 - ✔ **#96 Matriz §13 Microbiomecánica (muñeca, codo, hombro)**: 2 comprobaciones: 2 ok
+- ✔ **#98 Matriz §15 Contexto y ambiente (superficie, aerodinámica)**: 2 comprobaciones: 2 ok
 - ✔ **#99 Mejora 1 (entrenadores): líneas dibujadas sobre el fotograma**: 1 comprobaciones: 1 ok
 - ✔ **#101 Mejora 3: altura y separación del codo**: 1 comprobaciones: 1 ok
 - ✔ **#102 Mejora 4: punta de la raqueta respecto a la cabeza en el armado**: 1 comprobaciones: 1 ok
