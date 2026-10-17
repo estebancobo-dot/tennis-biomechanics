@@ -195,7 +195,11 @@ def check_entry(pg) -> dict:
         pg.wait_for_timeout(250)
         w, iw = pg.evaluate("[document.documentElement.scrollWidth, innerWidth]")
         if w > iw + 1:
-            out["wide"][t] = w
+            # which elements stick out (id or class, width), so the fix can go straight to them
+            culprits = pg.evaluate(f"""(() => {{ const iw = innerWidth; return [...document.querySelectorAll('#tab-{t} *')]
+                .filter(e => e.checkVisibility() && e.getBoundingClientRect().right > iw + 1 && !(e.parentElement && e.parentElement.getBoundingClientRect().right > iw + 1))
+                .slice(0, 4).map(e => (e.id ? '#' + e.id : e.tagName.toLowerCase() + '.' + String(e.className || '').split(' ')[0]) + ' ' + Math.round(e.getBoundingClientRect().width) + 'px'); }})()""")
+            out["wide"][t] = f"{w} px: " + ", ".join(culprits)
         n = pg.evaluate(f"""(() => {{ const re = /{_FILE_NAME}/; return [...document.querySelectorAll('#tab-{t} b, #tab-{t} h2, #tab-{t} option')]
                            .filter(e => e.checkVisibility() && re.test(e.textContent)).length; }})()""")
         if n:
@@ -207,7 +211,7 @@ def check_entry(pg) -> dict:
     if e["h2"] > 3 or e["buttons"] > 30:
         bad.append(f"al abrir: {e['h2']} títulos y {e['buttons']} botones (máximo 3 y 30)")
     if out["wide"]:
-        bad.append("se sale por la derecha: " + ", ".join(f"{k} ({v} px)" for k, v in out["wide"].items()))
+        bad.append("se sale por la derecha: " + "; ".join(f"{k} ({v})" for k, v in out["wide"].items()))
     if out["file_names"]:
         bad.append("nombres de fichero como título de un golpe en: " + ", ".join(out["file_names"]))
     out["failures"] = bad

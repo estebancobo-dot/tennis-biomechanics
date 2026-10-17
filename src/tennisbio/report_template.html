@@ -214,6 +214,9 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
   .lesson > header { display: none; }
   .lesson > .body { padding: 8px 10px !important; } .lsteps { margin-bottom: 8px; }
 }
+/* nothing sticks out sideways: grid and flex children may shrink; wide tables and charts scroll inside their box */
+.screen, .screen .panel, .screen .body, .screen details { min-width: 0; max-width: 100%; }
+.screen .tw { overflow-x: auto; } .screen svg { max-width: 100%; }
 .cpk.flash { outline: 2px solid var(--accent); outline-offset: 2px; }
 .lsteps { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
 .lsteps button { border: 1px solid var(--line); background: transparent; color: var(--ink-2); border-radius: 999px; padding: 5px 11px; font: inherit; font-size: 13px; cursor: pointer; }
