@@ -19,11 +19,11 @@ Lo que queda es la versión «local y gratis». Todo funciona en el PC, sin cuen
 | **Copias** | Solo si el usuario quiere, a un disco USB propio con la copia integrada de Windows o un `robocopy` programado. Se copia solo lo que no se puede regenerar (≈ 0,1–0,5 GB por partido). Sin nube. |
 | **Móvil** | Sin nube y sin que el PC sea servidor, el móvil recibe **una copia del informe**: la carpeta del informe ya es HTML que funciona sin conexión, y existe la exportación a vídeo MP4 y PDF. Se copia por cable o a una memoria y se abre en el navegador del móvil. Para eso el informe debe ser autocontenido (llevar sus clips dentro, en 720p) y verse bien en pantalla estrecha. |
 | **Actualizaciones** | Como ahora: el ciclo trae el código y aplica lo necesario. En «producto» se separa una rama estable (lo que usa el PC) de la de desarrollo. |
-| **Calidad de software** | Tests en GitHub Actions, gratuito para este uso, en Linux y Windows. Versiones con etiqueta. Esquema versionado en los JSON. Reproducibilidad (versión, modelos y controlador en cada manifiesto). |
+| **Calidad de software** | Las pruebas (≈ 370) se pasan antes de cada subida. Sin GitHub Actions: con el repositorio privado gastaría la cuota gratuita (unos 7 min por subida en Linux, el doble en Windows). Hecho el 17-10: el vídeo se reconoce por su contenido (`pipeline.video_fingerprint` + `video.json`; moverlo o copiarlo no recalcula nada) y una prueba impide cambiar el código de una etapa sin subir su versión (`tennisbio.stage_code`, `config/stage_code.json`). Pendiente: versiones con etiqueta, esquema versionado en los JSON y reproducibilidad (versión, modelos y controlador en cada manifiesto). |
 
 **Orden (sin lanzar los 4 partidos hasta que el usuario lo diga):**
 
-1. **Higiene (3–5 días).** Huella del vídeo por contenido, sin recalcular nada de lo hecho. Huella de código en todas las etapas. Tests en GitHub Actions. Liberar `_poc*`.
+1. **Higiene.** Hecho (17-10): huella del vídeo por contenido, sin recalcular nada de lo hecho, y control de versión del código de cada etapa. Pendiente de decisión del usuario: borrar las carpetas de las pruebas de velocidad `_poc` … `_poc7_*` (≈ 12 GB; sus tiempos ya están en `docs/pruebas_velocidad.md`).
 2. **Aplicación local mínima (2–3 semanas).** Ventana, partidos y jugadoras sin YAML, cola, panel con hora de fin y avisos de Windows.
 3. **Los 4 partidos**, desde la aplicación, cuando el usuario lo decida.
 4. **Más jugadoras y golpes.** Identidad A/B, análisis por jugadora, ventanas compartidas, rival, revés y saque.

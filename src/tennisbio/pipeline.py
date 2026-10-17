@@ -106,12 +106,46 @@ class MissingVideo(FileNotFoundError):
     """The match video is gone (deleted to free disk): its results are kept, nothing is re-run."""
 
 
-def video_fingerprint(path: Path) -> str:
+def video_sample(path: Path, chunks: int = 8, size: int = 1 << 20) -> str:
+    """Hash of 8 pieces of 1 MB spread over the file (the first and the last included): tells two
+    videos apart in a fraction of a second, without reading 5 GB."""
+    n = path.stat().st_size
+    h = hashlib.sha1(str(n).encode())
+    with open(path, "rb") as f:
+        for i in range(chunks):
+            f.seek(max(0, (n - size) * i // max(1, chunks - 1)))
+            h.update(f.read(size))
+    return h.hexdigest()[:16]
+
+
+def video_fingerprint(path: Path, d: Path | None = None) -> str:
+    """Identity of a match's video. Size and modification date, pinned in <match>/video.json the first
+    time: moving or copying the same video (new date) keeps the identity when its content (size and
+    sampled pieces) is the same, so nothing is recomputed; a different video gets a new identity. The
+    identity of folders analysed before stays the same as before (no recomputation on adoption)."""
     try:
         st = path.stat()
     except (FileNotFoundError, TypeError):
         raise MissingVideo(str(path)) from None
-    return f"{st.st_size}-{int(st.st_mtime)}"
+    legacy = f"{st.st_size}-{int(st.st_mtime)}"
+    if d is None:
+        return legacy
+    p = Path(d) / "video.json"
+    try:
+        rec = json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
+    except (json.JSONDecodeError, UnicodeDecodeError, OSError):
+        rec = None
+    if rec and rec.get("size") == st.st_size:
+        if rec.get("mtime") == int(st.st_mtime):
+            return rec["fp"]
+        if rec.get("sample") == video_sample(path):          # the same video, moved or copied
+            rec["mtime"] = int(st.st_mtime)
+            write_atomic(p, json.dumps(rec))
+            return rec["fp"]
+    rec = {"fp": legacy, "size": st.st_size, "mtime": int(st.st_mtime), "sample": video_sample(path)}
+    Path(d).mkdir(parents=True, exist_ok=True)
+    write_atomic(p, json.dumps(rec))
+    return legacy
 
 
 _code_cache: dict = {}
@@ -196,7 +230,7 @@ def save_manifest(d: Path, m: dict):
 
 def fingerprint(name: str, ctx: Context, manifest: dict) -> str:
     st = STAGES[name]
-    return _hash({"stage": name, "version": st.version, "video": video_fingerprint(ctx.match.video),
+    return _hash({"stage": name, "version": st.version, "video": video_fingerprint(ctx.match.video, ctx.dir),
                   "settings": st.settings(ctx.cfg), "code": code_fingerprint(st.code) if st.code else None,
                   "match": st.match_fields(ctx.match) if st.match_fields else None,
                   "deps": {d: manifest.get(d, {}).get("fingerprint") for d in st.deps}})

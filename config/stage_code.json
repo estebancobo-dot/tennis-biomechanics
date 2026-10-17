@@ -1,0 +1,57 @@
+{
+ "probe": {
+  "version": "2",
+  "hash": "e55b983e6efbffc3",
+  "modules": [
+   "io.video"
+  ]
+ },
+ "scenes": {
+  "version": "3",
+  "hash": "12200d0d8de3d68c",
+  "modules": [
+   "scenes"
+  ]
+ },
+ "audio": {
+  "version": "2",
+  "hash": "7ee46d590a7a11fe",
+  "modules": []
+ },
+ "players": {
+  "version": "4",
+  "hash": "96281bc539175782",
+  "modules": [
+   "pose.yolo"
+  ]
+ },
+ "identity": {
+  "version": "4",
+  "hash": "7feb0538b88a2a73",
+  "modules": [
+   "identity"
+  ]
+ },
+ "candidates": {
+  "version": "7",
+  "hash": "20820ae94f5b1e9a",
+  "modules": [
+   "court_metrics",
+   "replays"
+  ]
+ },
+ "court": {
+  "version": "4",
+  "hash": "5c73ca54ea7342ee",
+  "modules": [
+   "court"
+  ]
+ },
+ "score": {
+  "version": "6",
+  "hash": "ab7f986fa4a46c95",
+  "modules": [
+   "scoreboard"
+  ]
+ }
+}
