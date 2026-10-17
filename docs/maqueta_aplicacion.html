@@ -1,0 +1,1444 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tennisbio · maqueta</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #0c0f13; --panel: #14181d; --panel-2: #1a2027; --raise: #222a33;
+  --line: #262e38; --line-2: #323c48;
+  --ink: #e7ebee; --ink-2: #aab4be; --ink-3: #727e8a;
+  --accent: #d4f03a; --accent-ink: #11140a;
+  --good: #22b14c; --warn: #fab219; --crit: #e0524f; --info: #5fd3e6;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70;
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --body: "Archivo", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { background: var(--bg); color: var(--ink); margin: 0; }
+body { font-family: var(--body); font-size: 14px; line-height: 1.45; }
+h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 700; line-height: 1.15; text-wrap: balance; }
+h1 { font-size: 1.6rem; font-variation-settings: "wdth" 84; }
+h2 { font-size: 1.08rem; font-variation-settings: "wdth" 90; }
+h3 { font-size: .74rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); }
+p { margin: 0; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mono, .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.dim { color: var(--ink-2); } .dim3 { color: var(--ink-3); } .sm { font-size: 12.5px; }
+
+/* Casos: alternar estado normal / estados de la sección 5 */
+body:not(.cases) .c-on { display: none !important; }
+body.cases .c-off { display: none !important; }
+
+/* Estructura */
+.app { display: grid; grid-template-columns: 228px minmax(0, 1fr); min-height: 100vh; background: linear-gradient(90deg, var(--panel) 227px, var(--line) 227px 228px, var(--bg) 228px); }
+.side { background: var(--panel); border-right: 1px solid var(--line); padding: 16px 0; display: flex; flex-direction: column; gap: 18px; position: sticky; top: 0; height: 100vh; }
+.brand { display: flex; gap: 10px; align-items: center; padding-inline: 16px; text-decoration: none; }
+.brand .mark { width: 30px; height: 30px; border-radius: 7px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font: 800 14px var(--display); }
+.brand b { font: 700 16px var(--display); font-variation-settings: "wdth" 82; letter-spacing: .02em; display: block; }
+.brand span { display: block; font-size: 11px; color: var(--ink-3); }
+.nav { display: grid; gap: 2px; padding-inline: 8px; }
+.nav a { display: flex; align-items: center; gap: 10px; text-decoration: none; border-radius: 6px; padding: 9px 10px; color: var(--ink-2); font-weight: 500; position: relative; }
+.nav a svg { width: 17px; height: 17px; flex: none; }
+.nav a:hover { background: var(--panel-2); color: var(--ink); }
+.nav a[aria-current="page"] { background: var(--raise); color: var(--ink); }
+.nav a[aria-current="page"] svg { color: var(--accent); }
+.nav .lbl-s { display: none; }
+.nav .badge { margin-left: auto; font: 600 10.5px var(--mono); background: var(--panel-2); border: 1px solid var(--line-2); border-radius: 999px; padding: 0 6px; color: var(--ink-2); }
+.nav .badge.warn { background: rgba(250,178,25,.15); border-color: rgba(250,178,25,.4); color: var(--warn); }
+.nav .badge.crit { background: rgba(224,82,79,.15); border-color: rgba(224,82,79,.45); color: var(--crit); }
+.side .foot { margin-top: auto; padding-inline: 16px; font-size: 11.5px; color: var(--ink-3); display: grid; gap: 6px; }
+.mini-run { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px; display: grid; gap: 6px; color: var(--ink-2); }
+.mini-run b { color: var(--ink); font-weight: 600; }
+
+.main { min-width: 0; display: flex; flex-direction: column; }
+.topbar { display: flex; gap: 10px 14px; align-items: center; justify-content: flex-end; padding: 10px 28px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(12,15,19,.92); backdrop-filter: blur(6px); z-index: 20; flex-wrap: wrap; }
+.topbar .mbrand { display: none; margin-right: auto; }
+.tag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 3px 8px; border-radius: 4px; background: var(--panel-2); border: 1px solid var(--line); color: var(--ink-2); white-space: nowrap; }
+.tag.sample { background: rgba(250,178,25,.12); border-color: rgba(250,178,25,.35); color: var(--warn); font-weight: 600; letter-spacing: .03em; }
+.content { padding: 24px 28px 56px; max-width: 1180px; width: 100%; }
+.screen { display: none; gap: 18px; }
+.screen.on { display: grid; }
+
+/* Selector de casos */
+.cases-pick { position: relative; }
+.cases-pick > summary { list-style: none; cursor: pointer; font-size: 12px; color: var(--ink-3); padding: 4px 9px; border: 1px dashed var(--line-2); border-radius: 6px; user-select: none; white-space: nowrap; }
+.cases-pick > summary::-webkit-details-marker { display: none; }
+.cases-pick > summary:hover { color: var(--ink-2); }
+body.cases .cases-pick > summary { color: var(--warn); border-color: rgba(250,178,25,.5); border-style: solid; }
+.cases-pop { position: absolute; right: 0; top: calc(100% + 6px); width: 320px; max-width: calc(100vw - 32px); background: var(--panel); border: 1px solid var(--line-2); border-radius: 10px; box-shadow: 0 16px 40px rgba(0,0,0,.5); padding: 12px; display: grid; gap: 10px; z-index: 40; }
+.cases-pop ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 1px; max-height: 52vh; overflow: auto; }
+.cases-pop li a { display: flex; justify-content: space-between; gap: 10px; text-decoration: none; padding: 6px 8px; border-radius: 5px; font-size: 13px; color: var(--ink-2); }
+.cases-pop li a:hover { background: var(--panel-2); color: var(--ink); }
+.cases-pop li a span { color: var(--ink-3); font-size: 11.5px; white-space: nowrap; }
+
+.seg { display: inline-flex; background: var(--panel-2); border: 1px solid var(--line); border-radius: 7px; padding: 2px; gap: 2px; }
+.seg button { background: none; border: 0; border-radius: 5px; padding: 5px 11px; font-size: 12.5px; color: var(--ink-2); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--raise); color: var(--ink); font-weight: 600; }
+
+/* Piezas */
+.head { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: flex-end; justify-content: space-between; }
+.head .sub { color: var(--ink-2); margin-top: 4px; }
+.back { display: inline-flex; gap: 4px; align-items: center; color: var(--ink-2); text-decoration: none; font-size: 13px; margin-bottom: 8px; }
+.back:hover { color: var(--ink); }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; min-width: 0; }
+.panel > header { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; justify-content: space-between; padding: 14px 18px 0; }
+.panel .body { padding: 12px 18px 18px; }
+.grid2 { display: grid; gap: 18px; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+.grid3 { display: grid; gap: 14px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 8px 13px; border-radius: 7px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--ink); cursor: pointer; white-space: nowrap; text-decoration: none; }
+.btn:hover { border-color: var(--ink-3); }
+.btn.pri { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.pri:hover { filter: brightness(1.06); }
+.btn.ghost { background: none; }
+.btn.sm { font-size: 12px; padding: 5px 9px; }
+.btn.danger { color: var(--crit); }
+.btn svg { width: 15px; height: 15px; }
+.row-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.st { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; white-space: nowrap; }
+.st i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex: none; }
+.st.good { color: var(--good); } .st.good i { background: var(--good); }
+.st.warn { color: var(--warn); } .st.warn i { background: var(--warn); }
+.st.crit { color: var(--crit); } .st.crit i { background: var(--crit); }
+.st.run { color: var(--accent); } .st.run i { background: var(--accent); animation: pulse 1.4s infinite; }
+.st.idle { color: var(--ink-3); } .st.idle i { background: var(--line-2); }
+.st.off { color: var(--ink-3); } .st.off i { background: none; border: 1.5px solid var(--ink-3); }
+@keyframes pulse { 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .st.run i, .dot.run { animation: none; } }
+
+.alert { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; padding: 13px 16px; border-radius: 10px; border: 1px solid; align-items: start; }
+.alert > svg { width: 20px; height: 20px; margin-top: 1px; grid-row: span 3; }
+.alert b { font-weight: 650; }
+.alert p { color: var(--ink-2); font-size: 13px; }
+.alert .row-btns { margin-top: 6px; }
+.alert.warn { background: rgba(250,178,25,.08); border-color: rgba(250,178,25,.35); } .alert.warn > svg { color: var(--warn); }
+.alert.crit { background: rgba(224,82,79,.08); border-color: rgba(224,82,79,.4); } .alert.crit > svg { color: var(--crit); }
+.alert.info { background: rgba(212,240,58,.06); border-color: rgba(212,240,58,.3); } .alert.info > svg { color: var(--accent); }
+.alert.good { background: rgba(34,177,76,.06); border-color: rgba(34,177,76,.3); } .alert.good > svg { color: var(--good); }
+
+.progress { height: 8px; border-radius: 99px; background: var(--raise); overflow: hidden; }
+.progress > b { display: block; height: 100%; background: var(--accent); border-radius: 99px; }
+.progress.thin { height: 5px; }
+
+/* Línea de etapas */
+.dots { display: inline-flex; gap: 4px; align-items: center; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line-2); flex: none; }
+.dot.done { background: var(--good); } .dot.run { background: var(--accent); animation: pulse 1.4s infinite; }
+.dot.warn { background: var(--warn); } .dot.err { background: var(--crit); }
+.dot.skip { background: none; border: 1.5px solid var(--ink-3); }
+.dots .gap { width: 6px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--ink-3); }
+.legend span { display: inline-flex; gap: 6px; align-items: center; }
+
+.stages { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); position: relative; }
+.stages::before { content: ""; position: absolute; left: 4.5%; right: 4.5%; top: 9px; height: 2px; background: var(--line-2); }
+.stage { display: grid; align-content: start; justify-items: center; gap: 6px; text-align: center; position: relative; padding: 0 2px; }
+.stage .dot { width: 20px; height: 20px; border: 3px solid var(--panel); box-sizing: content-box; margin-top: -3px; }
+.stage .dot.skip { border: 2px solid var(--ink-3); width: 16px; height: 16px; }
+.stage b { font-size: 12px; font-weight: 600; line-height: 1.2; }
+.stage span { font: 11px var(--mono); color: var(--ink-3); }
+.stage em { font-style: normal; font-size: 11px; color: var(--warn); line-height: 1.2; }
+.stage.grp b::before { content: ""; }
+
+/* Tarjetas de análisis */
+.acards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.acard { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; text-decoration: none; display: grid; grid-template-rows: auto 1fr; transition: border-color .15s, transform .15s; cursor: pointer; }
+.acard:hover { border-color: var(--ink-3); transform: translateY(-2px); }
+.acard .thumb { aspect-ratio: 16 / 8.2; display: block; position: relative; background: #0e1a24; }
+.acard .thumb svg { width: 100%; height: 100%; display: block; }
+.acard .thumb .pill { position: absolute; left: 10px; top: 10px; }
+.acard .info { padding: 14px 16px 16px; display: grid; gap: 8px; align-content: start; }
+.acard h2 { font-size: 1.2rem; }
+.acard .meta { display: flex; flex-wrap: wrap; gap: 4px 12px; color: var(--ink-2); font-size: 13px; }
+.acard .meta b { color: var(--ink); font-family: var(--mono); font-weight: 600; }
+.acard .foot { display: flex; justify-content: space-between; gap: 8px; align-items: center; border-top: 1px solid var(--line); padding-top: 10px; margin-top: 2px; flex-wrap: wrap; }
+.acard.big .thumb { aspect-ratio: 16 / 7; }
+.acard.prov { border-style: dashed; }
+.acard.reg { border-color: rgba(224,82,79,.55); }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; padding: 3px 8px; border-radius: 99px; background: rgba(12,15,19,.82); border: 1px solid var(--line-2); color: var(--ink); white-space: nowrap; }
+.pill.warn { color: var(--warn); border-color: rgba(250,178,25,.5); }
+.pill.crit { color: var(--crit); border-color: rgba(224,82,79,.55); }
+.pill.acc { color: var(--accent); border-color: rgba(212,240,58,.45); }
+.addcard { border: 1.5px dashed var(--line-2); border-radius: 12px; display: grid; place-items: center; text-align: center; padding: 26px; color: var(--ink-2); cursor: pointer; background: none; min-height: 200px; }
+.addcard:hover { border-color: var(--accent); color: var(--ink); }
+.addcard .plus { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--panel-2); color: var(--accent); font-size: 26px; margin: 0 auto 10px; }
+
+/* Listas */
+.list { display: grid; }
+.li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 16px; padding: 12px 0; border-top: 1px solid var(--line); align-items: center; }
+.li:first-child { border-top: 0; }
+.li .t { font-weight: 600; }
+.li .s { color: var(--ink-2); font-size: 12.5px; }
+.li .r { display: grid; justify-items: end; gap: 4px; text-align: right; }
+.why { display: inline-block; font-size: 11.5px; color: var(--ink-2); background: var(--panel-2); border: 1px solid var(--line); border-radius: 4px; padding: 1px 7px; margin-top: 3px; }
+.li.crit { background: linear-gradient(90deg, rgba(224,82,79,.08), transparent 70%); margin-inline: -18px; padding-inline: 18px; }
+.li.warn { background: linear-gradient(90deg, rgba(250,178,25,.07), transparent 70%); margin-inline: -18px; padding-inline: 18px; }
+.explain { grid-column: 1 / -1; font-size: 12.5px; color: var(--ink-2); border-left: 2px solid var(--line-2); padding-left: 10px; }
+.li.crit .explain { border-color: var(--crit); } .li.warn .explain { border-color: var(--warn); }
+
+/* Partidos */
+.match { display: grid; grid-template-columns: 74px minmax(0, 1fr) auto auto; gap: 8px 18px; align-items: center; padding: 14px 18px; border-top: 1px solid var(--line); text-decoration: none; }
+.match:first-child { border-top: 0; }
+a.match:hover { background: var(--panel-2); }
+.match .mini { width: 74px; height: 44px; border-radius: 6px; overflow: hidden; background: #0e1a24; }
+.match .mini svg { width: 100%; height: 100%; display: block; }
+.match .t { font-weight: 650; }
+.match .s { color: var(--ink-2); font-size: 12.5px; }
+.match .size { font: 12px var(--mono); color: var(--ink-2); text-align: right; min-width: 64px; }
+.match .stat { grid-column: 2 / -1; display: flex; gap: 6px 14px; flex-wrap: wrap; align-items: center; }
+.match.excl { opacity: .75; }
+.match.excl .mini { filter: grayscale(1); }
+
+.drop { border: 1.5px dashed var(--line-2); border-radius: 10px; padding: 16px; display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; color: var(--ink-2); background: var(--panel); }
+.drop svg { width: 22px; height: 22px; color: var(--accent); flex: none; }
+.drop > div { display: flex; gap: 12px; align-items: center; }
+
+/* Datos clave */
+.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 7px 16px; font-size: 13.5px; }
+.kv dt { color: var(--ink-3); }
+.kv dd { margin: 0; }
+.stats { display: flex; flex-wrap: wrap; gap: 10px 28px; }
+.stat-n { display: grid; gap: 2px; }
+.stat-n b { font: 600 1.6rem var(--mono); line-height: 1.1; }
+.stat-n span { color: var(--ink-3); font-size: 12px; }
+.bars { display: grid; grid-template-columns: max-content minmax(0, 1fr) max-content; gap: 8px 12px; align-items: center; font-size: 13px; }
+.bars .b { height: 10px; border-radius: 3px; background: var(--raise); overflow: hidden; }
+.bars .b > i { display: block; height: 100%; background: var(--accent); }
+.bars .b > i.mute { background: var(--ink-3); }
+.bars .n { font-family: var(--mono); color: var(--ink-2); }
+
+/* Jugadoras */
+.pcards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.pcard { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; text-decoration: none; display: grid; }
+.pcard:hover { border-color: var(--ink-3); }
+.photo { aspect-ratio: 4 / 3; position: relative; overflow: hidden; }
+.photo svg { width: 100%; height: 100%; display: block; }
+.photo .cap { position: absolute; left: 8px; bottom: 8px; font-size: 10.5px; color: var(--ink-2); background: rgba(12,15,19,.75); padding: 2px 6px; border-radius: 4px; }
+.pcard .info { padding: 12px 14px 14px; display: grid; gap: 6px; }
+.pcard h2 { font-size: 1.15rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 12px; padding: 2px 8px; border-radius: 4px; background: var(--panel-2); border: 1px solid var(--line); color: var(--ink-2); white-space: nowrap; }
+.chip b { color: var(--ink); font-weight: 600; }
+.chip.warn { color: var(--warn); border-color: rgba(250,178,25,.4); }
+.ficha { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 18px; }
+.ficha .photo { border-radius: 10px; border: 1px solid var(--line); }
+
+/* Cola */
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.prio { display: inline-flex; flex-direction: column; gap: 1px; }
+.prio button { width: 24px; height: 17px; border: 1px solid var(--line-2); background: var(--panel-2); border-radius: 4px; cursor: pointer; display: grid; place-items: center; padding: 0; color: var(--ink-2); font-size: 9px; line-height: 1; }
+.job { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 6px 14px; padding: 12px 0; border-top: 1px solid var(--line); align-items: center; }
+.job:first-child { border-top: 0; }
+.job .n { font: 600 12px var(--mono); color: var(--ink-3); width: 24px; text-align: center; }
+.job .t { font-weight: 600; }
+.job .s { color: var(--ink-2); font-size: 12.5px; }
+.job .r { text-align: right; display: grid; justify-items: end; gap: 3px; font-size: 12.5px; }
+.job.crit, .job.warn { margin-inline: -18px; padding-inline: 18px; }
+.job.crit { background: linear-gradient(90deg, rgba(224,82,79,.09), transparent 75%); }
+.job.warn { background: linear-gradient(90deg, rgba(250,178,25,.07), transparent 75%); }
+.job .explain { grid-column: 2 / -1; }
+.job.crit .explain { border-color: var(--crit); } .job.warn .explain { border-color: var(--warn); }
+.dev { font-size: 11px; font-family: var(--mono); padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line-2); color: var(--ink-2); }
+.window { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 13px; color: var(--ink-2); }
+
+/* Interruptor */
+.sw { position: relative; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13.5px; }
+.sw input { position: absolute; opacity: 0; pointer-events: none; }
+.sw .k { width: 36px; height: 20px; border-radius: 99px; background: var(--line-2); position: relative; transition: background .15s; flex: none; }
+.sw .k::after { content: ""; position: absolute; left: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--ink); transition: transform .15s; }
+.sw input:checked + .k { background: var(--accent); }
+.sw input:checked + .k::after { transform: translateX(16px); background: var(--accent-ink); }
+.sw input:focus-visible + .k { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Calidad */
+.qrow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 16px; padding: 14px 0; border-top: 1px solid var(--line); align-items: center; }
+.qrow:first-child { border-top: 0; }
+.qnums { display: flex; gap: 16px; font: 600 14px var(--mono); }
+.qnums .ok { color: var(--good); } .qnums .ko { color: var(--ink-3); } .qnums .ko.bad { color: var(--crit); } .qnums .few { color: var(--ink-2); font-weight: 500; }
+.qbar { grid-column: 1 / -1; display: flex; height: 6px; border-radius: 99px; overflow: hidden; background: var(--raise); }
+.qbar i { display: block; height: 100%; }
+.qrow.reg { margin-inline: -18px; padding-inline: 18px; background: rgba(224,82,79,.06); border-left: 3px solid var(--crit); }
+.regbox { grid-column: 1 / -1; display: grid; gap: 6px; font-size: 13px; }
+.regbox ul { margin: 0; padding-left: 18px; color: var(--ink-2); display: grid; gap: 3px; }
+.regbox ul b { color: var(--crit); font-weight: 600; }
+.vers { display: grid; }
+.ver { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 4px 14px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 13px; align-items: baseline; }
+.ver:first-child { border-top: 0; }
+.ver .v { font: 600 13px var(--mono); }
+
+/* Almacenamiento */
+.disk { display: grid; gap: 10px; }
+.diskbar { display: flex; height: 18px; border-radius: 6px; overflow: hidden; background: var(--raise); }
+.diskbar i { display: block; height: 100%; }
+.k-imp { background: var(--s1); } .k-reg { background: var(--s3); } .k-tmp { background: var(--ink-3); } .k-oth { background: #3a4552; } .k-free { background: transparent; }
+.sw-key { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: -1px; margin-right: 6px; }
+.mrow { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr) 70px; gap: 6px 14px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); font-size: 13px; }
+.mrow:first-child { border-top: 0; }
+.mrow .diskbar { height: 12px; }
+.mrow .num { text-align: right; color: var(--ink-2); }
+
+/* Ajustes */
+.set { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 8px 24px; padding: 16px 0; border-top: 1px solid var(--line); }
+.set:first-child { border-top: 0; }
+.set > div:first-child b { display: block; font-weight: 600; }
+.set > div:first-child span { font-size: 12.5px; color: var(--ink-3); }
+.set .ctl { display: grid; gap: 10px; align-content: start; }
+.path { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.path code { font: 12.5px var(--mono); background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; min-width: 0; overflow-wrap: anywhere; }
+.timein { font: 13px var(--mono); color: var(--ink); background: var(--panel-2); border: 1px solid var(--line-2); border-radius: 6px; padding: 5px 8px; width: 82px; }
+
+/* Diálogos */
+.modal { position: fixed; inset: 0; background: rgba(5,7,9,.72); display: none; place-items: center; z-index: 60; padding: 16px; overflow-y: auto; }
+.modal.on { display: grid; }
+.dlg { background: var(--panel); border: 1px solid var(--line-2); border-radius: 14px; width: min(640px, 100%); box-shadow: 0 30px 80px rgba(0,0,0,.6); display: grid; max-height: calc(100vh - 32px); overflow: auto; }
+.dlg > header { padding: 18px 20px 6px; display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.dlg .x { background: none; border: 0; color: var(--ink-3); font-size: 22px; line-height: 1; cursor: pointer; padding: 2px 6px; }
+.dlg .x:hover { color: var(--ink); }
+.dlg .db { padding: 10px 20px 20px; display: grid; gap: 16px; }
+.dlg footer { padding: 14px 20px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: center; }
+.steps { display: flex; gap: 6px; flex-wrap: wrap; }
+.steps span { font-size: 12px; padding: 3px 10px; border-radius: 99px; border: 1px solid var(--line); color: var(--ink-3); }
+.steps span.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 700; }
+.steps span.done { color: var(--ink-2); border-color: var(--line-2); }
+.bigdrop { border: 2px dashed var(--line-2); border-radius: 12px; padding: 34px 20px; display: grid; place-items: center; gap: 10px; text-align: center; color: var(--ink-2); cursor: pointer; transition: border-color .15s, background .15s; }
+.bigdrop:hover, .bigdrop.over { border-color: var(--accent); background: rgba(212,240,58,.04); }
+.bigdrop svg { width: 38px; height: 38px; color: var(--accent); }
+.bigdrop b { color: var(--ink); font-size: 15px; }
+.file { display: flex; gap: 12px; align-items: center; background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.file svg { width: 22px; height: 22px; color: var(--ink-2); flex: none; }
+.file .mono { font-size: 12.5px; overflow-wrap: anywhere; }
+.facts { display: flex; flex-wrap: wrap; gap: 6px; }
+.form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.fld { display: grid; gap: 4px; font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .07em; font-weight: 600; }
+.fld input, .fld select { font: 14px var(--body); text-transform: none; letter-spacing: 0; color: var(--ink); background: var(--panel-2); border: 1px solid var(--line-2); border-radius: 7px; padding: 8px 10px; width: 100%; min-width: 0; }
+.fld small { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--ink-3); font-size: 11.5px; }
+.fld.full { grid-column: 1 / -1; }
+.matrix { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch; }
+.matrix .hd { font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .07em; font-weight: 600; text-align: center; padding-bottom: 2px; align-self: end; }
+.matrix .pl { display: grid; min-width: 0; overflow-wrap: anywhere; hyphens: manual; align-content: center; font-weight: 600; font-size: 13.5px; }
+.matrix .pl small { font-weight: 400; color: var(--ink-3); font-size: 11.5px; }
+.cell { border: 1px solid var(--line-2); background: var(--panel-2); border-radius: 7px; min-height: 46px; display: grid; place-items: center; font-size: 12px; cursor: pointer; color: var(--ink-3); padding: 4px; text-align: center; }
+.cell:hover { border-color: var(--ink-3); }
+.cell.has { cursor: default; background: none; border-style: dashed; color: var(--good); }
+.cell.sel { background: rgba(212,240,58,.12); border-color: var(--accent); color: var(--accent); font-weight: 700; }
+.cell.na { cursor: not-allowed; background: none; border-style: dotted; color: var(--ink-3); font-size: 10.5px; }
+.cost { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 4px; font-size: 13px; }
+.cost b { font-size: 14px; }
+
+/* Web del análisis */
+.webview { display: none; min-height: 100vh; flex-direction: column; }
+body.web .app { display: none; }
+body.web .webview { display: flex; }
+.webbar { display: flex; align-items: center; gap: 14px; padding: 10px 20px; background: var(--panel); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.webbar .ttl { font: 700 15px var(--display); }
+.webbar .tag { margin-left: auto; }
+.webframe { flex: 1; margin: 18px 20px 20px; border: 2px dashed var(--line-2); border-radius: 14px; display: grid; grid-template-rows: auto 1fr; overflow: hidden; background: radial-gradient(1200px 400px at 50% 0%, rgba(212,240,58,.05), transparent); }
+.webtabs { display: flex; gap: 4px; padding: 10px 14px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.webtabs span { font-size: 12.5px; padding: 5px 11px; border-radius: 6px; color: var(--ink-3); border: 1px solid transparent; }
+.webtabs span.on { color: var(--ink); background: var(--raise); }
+.webmsg { display: grid; place-items: center; text-align: center; padding: 40px 20px; gap: 14px; align-content: center; }
+.webmsg svg.big { width: min(420px, 100%); height: auto; opacity: .9; }
+.webmsg p { color: var(--ink-2); max-width: 520px; }
+.webmsg h2 { font-size: 1.4rem; }
+
+.toast { position: fixed; right: 20px; bottom: 20px; background: var(--raise); border: 1px solid var(--line-2); border-radius: 10px; padding: 11px 14px; font-size: 13px; box-shadow: 0 12px 30px rgba(0,0,0,.5); z-index: 80; max-width: calc(100vw - 40px); opacity: 0; transform: translateY(8px); transition: opacity .2s, transform .2s; pointer-events: none; }
+.toast.on { opacity: 1; transform: none; }
+.wtoast { display: flex; gap: 12px; align-items: flex-start; background: #1d232b; border: 1px solid var(--line-2); border-radius: 8px; padding: 10px 12px; font-size: 13px; }
+.wtoast .ic { width: 26px; height: 26px; border-radius: 6px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font: 800 12px var(--display); flex: none; }
+.wtoast small { color: var(--ink-3); display: block; font-size: 11px; }
+
+.now { display: grid; gap: 12px; }
+.now .big { display: flex; gap: 10px 22px; flex-wrap: wrap; align-items: baseline; justify-content: space-between; }
+.now .eta b { font: 600 1.5rem var(--mono); }
+.note { font-size: 12.5px; color: var(--ink-3); }
+.hr { height: 1px; background: var(--line); margin: 2px 0; }
+
+/* Móvil */
+@media (max-width: 1000px) {
+  .grid2 { grid-template-columns: minmax(0, 1fr); }
+  .grid3 { grid-template-columns: minmax(0, 1fr); }
+  .stages { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .stages::before { left: 11px; right: auto; top: 10px; bottom: 10px; width: 2px; height: auto; }
+  .stage { grid-template-columns: 24px minmax(0, 1fr) auto; justify-items: start; text-align: left; align-items: center; gap: 2px 12px; padding: 5px 0; }
+  .stage .dot { margin-top: 0; }
+  .stage em { grid-column: 2 / -1; }
+}
+@media (max-width: 860px) {
+  .app { grid-template-columns: minmax(0, 1fr); background: var(--bg); }
+  .topbar .mbrand b { display: none; }
+  .topbar .tag.sample { font-size: 11px; letter-spacing: .01em; }
+  .side { position: sticky; top: 0; z-index: 30; height: auto; padding: 8px 10px 8px; gap: 8px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .side .brand, .side .foot { display: none; }
+  .nav { grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 0; gap: 2px; }
+  .nav a { flex-direction: column; gap: 3px; padding: 6px 2px; font-size: 11px; text-align: center; line-height: 1.15; }
+  .nav a svg { width: 18px; height: 18px; }
+  .nav a .lbl-l { display: none; }
+  .nav a .lbl-s { display: inline; }
+  .nav .badge { position: absolute; top: 2px; right: 6px; margin: 0; font-size: 9.5px; padding: 0 4px; }
+  .topbar { position: static; padding: 10px 16px; justify-content: flex-end; }
+  .topbar .mbrand { display: flex; padding: 0; }
+  .topbar { flex-wrap: nowrap; }
+  .content { padding: 18px 16px 48px; }
+  h1 { font-size: 1.4rem; }
+  .ficha { grid-template-columns: minmax(0, 1fr); }
+  .ficha .photo { max-height: 220px; aspect-ratio: auto; height: 200px; }
+  .match { grid-template-columns: 56px minmax(0, 1fr) auto; padding: 12px 14px; gap: 6px 12px; }
+  .match .mini { width: 56px; height: 36px; }
+  .match .size { grid-column: 3; grid-row: 1; }
+  .match .go { display: none; }
+  .match .stat { grid-column: 1 / -1; }
+  .mrow { grid-template-columns: minmax(0, 1fr) 64px; }
+  .mrow .diskbar { grid-column: 1 / -1; grid-row: 2; }
+  .set { grid-template-columns: minmax(0, 1fr); }
+  .form { grid-template-columns: minmax(0, 1fr); }
+  .matrix { grid-template-columns: minmax(0, 1.15fr) repeat(4, minmax(0, 1fr)); gap: 4px; }
+  .matrix .hd { font-size: 9.5px; letter-spacing: .02em; }
+  .cell { min-height: 40px; font-size: 11px; }
+  .panel > header { padding: 12px 14px 0; }
+  .panel .body { padding: 10px 14px 14px; }
+  .li.crit, .li.warn, .job.crit, .job.warn, .qrow.reg { margin-inline: -14px; padding-inline: 14px; }
+  .webframe { margin: 12px; }
+  .webbar { padding: 10px 14px; }
+  .webbar .tag { margin-left: 0; }
+  .acards { grid-template-columns: minmax(0, 1fr); }
+  .pcards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .pcard .info { padding: 10px; }
+  .pcard h2 { font-size: 1rem; }
+  .li { grid-template-columns: minmax(0, 1fr); }
+  .li .r { justify-items: start; text-align: left; grid-auto-flow: column; justify-content: start; gap: 10px; }
+  .job { grid-template-columns: auto minmax(0, 1fr); }
+  .job .r { grid-column: 2; justify-items: start; text-align: left; grid-auto-flow: column; justify-content: start; gap: 10px; }
+  .qrow { grid-template-columns: minmax(0, 1fr); }
+  .stats { gap: 10px 20px; }
+  .stat-n b { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- Iconos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-court" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16314a"/><stop offset="1" stop-color="#1d4467"/></linearGradient>
+    <linearGradient id="g-grass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f3d22"/><stop offset="1" stop-color="#2c5a2c"/></linearGradient>
+    <linearGradient id="g-clay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a2a1b"/><stop offset="1" stop-color="#7a4129"/></linearGradient>
+    <linearGradient id="g-photo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2a38"/><stop offset="1" stop-color="#0f161d"/></linearGradient>
+  </defs>
+  <symbol id="i-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m10 9 5 3-5 3z"/></g></symbol>
+  <symbol id="i-film" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/></g></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></g></symbol>
+  <symbol id="i-queue" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1.2" fill="currentColor"/><circle cx="4" cy="12" r="1.2" fill="currentColor"/><circle cx="4" cy="18" r="1.2" fill="currentColor"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></g></symbol>
+  <symbol id="i-disk" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></g></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></g></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17.2v.1"/></g></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/></g></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></g></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16V8M8.5 11.5 12 8l3.5 3.5"/></g></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></g></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M10 11l4 2.5-4 2.5z"/></g></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5v14M15 5v14"/></g></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></g></symbol>
+  <symbol id="i-usb" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="7" y="9" width="10" height="12" rx="1.5"/><path d="M9 9V3h6v6M10.5 5.5h.01M13.5 5.5h.01"/></g></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+
+  <!-- Miniaturas: pista vista desde la cámara de fondo + jugadora -->
+  <symbol id="t-court" viewBox="0 0 160 82">
+    <rect width="160" height="82" fill="#0e1a24"/>
+    <path d="M40 10h80l26 72H14z" fill="url(#g-court)"/>
+    <g fill="none" stroke="#e7ebee" stroke-opacity=".75" stroke-width=".9">
+      <path d="M40 10h80l26 72H14z"/><path d="M47 10 25 82M113 10l22 72"/>
+      <path d="M33 30h94M21 63h118M80 30v33"/>
+    </g>
+    <path d="M30 37h100" stroke="#e7ebee" stroke-opacity=".9" stroke-width="1.6"/>
+  </symbol>
+  <symbol id="t-fh" viewBox="0 0 160 82">
+    <use href="#t-court"/>
+    <g stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-width="2.4">
+      <path d="M86 46v13" stroke="#7bd88f"/>
+      <path d="M86 49l-8 4-4 6" stroke="#4fb0ff"/><path d="M86 49l8 2 7-5" stroke="#ff9f43"/>
+      <path d="M86 59l-5 9-3 8" stroke="#4fb0ff"/><path d="M86 59l7 8 3 9" stroke="#ff9f43"/>
+      <path d="M101 46l9-12" stroke="#d4f03a" stroke-width="2"/>
+    </g>
+    <circle cx="86" cy="42" r="3.6" fill="#e7ebee"/>
+    <ellipse cx="111.5" cy="31" rx="3.8" ry="5.2" transform="rotate(35 111.5 31)" fill="none" stroke="#d4f03a" stroke-width="1.6"/>
+  </symbol>
+  <symbol id="t-bh" viewBox="0 0 160 82">
+    <use href="#t-court"/>
+    <g stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-width="2.4">
+      <path d="M76 46v13" stroke="#7bd88f"/>
+      <path d="M76 49l-7 4-6-2" stroke="#4fb0ff"/><path d="M76 49l-3 6-10-4" stroke="#ff9f43"/>
+      <path d="M76 59l-5 9-4 8" stroke="#4fb0ff"/><path d="M76 59l6 9 2 8" stroke="#ff9f43"/>
+      <path d="M63 51l-12-12" stroke="#d4f03a" stroke-width="2"/>
+    </g>
+    <circle cx="76" cy="42" r="3.6" fill="#e7ebee"/>
+    <ellipse cx="48" cy="36" rx="3.8" ry="5.2" transform="rotate(-45 48 36)" fill="none" stroke="#d4f03a" stroke-width="1.6"/>
+  </symbol>
+  <symbol id="t-sv" viewBox="0 0 160 82">
+    <use href="#t-court"/>
+    <g stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-width="2.4">
+      <path d="M92 50v12" stroke="#7bd88f"/>
+      <path d="M92 52l-6-8-2-8" stroke="#4fb0ff"/><path d="M92 52l4-8 1-10" stroke="#ff9f43"/>
+      <path d="M92 62l-4 8-1 6" stroke="#4fb0ff"/><path d="M92 62l4 8 1 6" stroke="#ff9f43"/>
+      <path d="M97 34l3-14" stroke="#d4f03a" stroke-width="2"/>
+    </g>
+    <circle cx="92" cy="46" r="3.6" fill="#e7ebee"/>
+    <ellipse cx="100.6" cy="16" rx="3.6" ry="5" transform="rotate(10 100.6 16)" fill="none" stroke="#d4f03a" stroke-width="1.6"/>
+    <circle cx="86" cy="12" r="2" fill="#e8f56a"/>
+  </symbol>
+  <symbol id="t-grass" viewBox="0 0 160 82">
+    <rect width="160" height="82" fill="#0e1a14"/>
+    <path d="M40 10h80l26 72H14z" fill="url(#g-grass)"/>
+    <g fill="none" stroke="#e7ebee" stroke-opacity=".75" stroke-width=".9"><path d="M40 10h80l26 72H14z"/><path d="M47 10 25 82M113 10l22 72"/><path d="M33 30h94M21 63h118M80 30v33"/></g>
+    <path d="M30 37h100" stroke="#e7ebee" stroke-width="1.6"/>
+  </symbol>
+  <symbol id="t-clay" viewBox="0 0 160 82">
+    <rect width="160" height="82" fill="#1d130e"/>
+    <path d="M40 10h80l26 72H14z" fill="url(#g-clay)"/>
+    <g fill="none" stroke="#f1e6dd" stroke-opacity=".8" stroke-width=".9"><path d="M40 10h80l26 72H14z"/><path d="M47 10 25 82M113 10l22 72"/><path d="M33 30h94M21 63h118M80 30v33"/></g>
+    <path d="M30 37h100" stroke="#f1e6dd" stroke-width="1.6"/>
+  </symbol>
+  <symbol id="t-doubles" viewBox="0 0 160 82">
+    <use href="#t-court"/>
+    <g fill="#e7ebee"><circle cx="58" cy="56" r="3.4"/><circle cx="104" cy="50" r="3.4"/></g>
+    <g stroke="#aab4be" stroke-width="2.4" stroke-linecap="round"><path d="M58 60v12M104 54v12"/></g>
+  </symbol>
+  <symbol id="p-photo" viewBox="0 0 120 90">
+    <rect width="120" height="90" fill="url(#g-photo)"/>
+    <path d="M0 70h120v20H0z" fill="#1d4467" opacity=".6"/>
+    <circle cx="60" cy="32" r="13" fill="#3a4a5a"/>
+    <path d="M30 90c2-20 14-32 30-32s28 12 30 32z" fill="#3a4a5a"/>
+    <path d="M86 40l14-22" stroke="#d4f03a" stroke-width="2.2" stroke-linecap="round" opacity=".8"/>
+    <ellipse cx="102" cy="14" rx="5" ry="7" transform="rotate(32 102 14)" fill="none" stroke="#d4f03a" stroke-width="1.8" opacity=".8"/>
+  </symbol>
+</svg>
+
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="#inicio"><span class="mark">TB</span><span><b>Tennisbio</b><span>análisis en este PC</span></span></a>
+    <nav class="nav" aria-label="Pantallas">
+      <a href="#inicio" data-nav="inicio"><svg><use href="#i-home"/></svg>Inicio<span class="badge warn c-on">3</span></a>
+      <a href="#analisis" data-nav="analisis"><svg><use href="#i-play"/></svg>Análisis</a>
+      <a href="#partidos" data-nav="partidos"><svg><use href="#i-film"/></svg>Partidos</a>
+      <a href="#jugadoras" data-nav="jugadoras"><svg><use href="#i-user"/></svg>Jugadoras</a>
+      <a href="#cola" data-nav="cola"><svg><use href="#i-queue"/></svg>Cola<span class="badge c-off">3</span><span class="badge crit c-on">1</span></a>
+      <a href="#calidad" data-nav="calidad"><svg><use href="#i-check"/></svg>Calidad<span class="badge crit c-on">!</span></a>
+      <a href="#almacenamiento" data-nav="almacenamiento"><svg><use href="#i-disk"/></svg><span class="lbl-l">Almacenamiento</span><span class="lbl-s">Disco</span><span class="badge warn c-on">!</span></a>
+      <a href="#ajustes" data-nav="ajustes"><svg><use href="#i-gear"/></svg>Ajustes</a>
+    </nav>
+    <div class="foot">
+      <div class="mini-run">
+        <span class="st run"><i></i>Analizando</span>
+        <b>AO 2023 · final</b>
+        <div class="progress thin"><b style="width:62%"></b></div>
+        <span>Termina a las <span class="mono">21:40</span></span>
+      </div>
+      <span>Versión <span class="mono">0.41</span> · canal estable</span>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <a class="brand mbrand" href="#inicio"><span class="mark">TB</span><span><b>Tennisbio</b></span></a>
+      <span class="tag sample">MAQUETA<span class="tl">· datos de ejemplo</span></span>
+      <details class="cases-pick" id="casesPick">
+        <summary>Ver casos</summary>
+        <div class="cases-pop">
+          <div class="seg" role="group" aria-label="Estado">
+            <button type="button" data-mode="normal" aria-pressed="true">Estado normal</button>
+            <button type="button" data-mode="cases" aria-pressed="false">Casos (sección 5)</button>
+          </div>
+          <ol>
+            <li><a href="#inicio" data-case>Poco disco <span>Inicio · Almacen.</span></a></li>
+            <li><a href="#inicio" data-case>Nueva versión: plan y coste <span>Inicio · Cola</span></a></li>
+            <li><a href="#cola" data-case>Fallo de la iGPU → CPU <span>Cola</span></a></li>
+            <li><a href="#cola" data-case>Trabajo en error <span>Cola</span></a></li>
+            <li><a href="#partidos" data-case>Partido sin audio <span>Partidos</span></a></li>
+            <li><a href="#partidos" data-case>Dobles excluido <span>Partidos</span></a></li>
+            <li><a href="#partidos" data-case>Identidad dudosa <span>Partidos</span></a></li>
+            <li><a href="#partidos" data-case>Misma final, otra cadena <span>Partidos</span></a></li>
+            <li><a href="#partidos" data-case>¿Es un resumen? <span>Partidos</span></a></li>
+            <li><a href="#add" data-case>Vídeo duplicado <span>Añadir partido</span></a></li>
+            <li><a href="#analisis" data-case>Análisis provisional <span>Análisis</span></a></li>
+            <li><a href="#calidad" data-case>Regresión <span>Calidad</span></a></li>
+            <li><a href="#jugadoras" data-case>Jugadora sin altura, zurda <span>Jugadoras</span></a></li>
+          </ol>
+          <p class="note">Cada caso tiene su respuesta automática; ninguno deja la aplicación colgada ni borra trabajo.</p>
+        </div>
+      </details>
+    </div>
+
+    <main class="content">
+
+<!-- ============ INICIO ============ -->
+<section class="screen" data-screen="inicio">
+  <div class="head">
+    <div><h1>Inicio</h1><p class="sub c-off">Todo funciona solo. No hay nada que hacer.</p><p class="sub c-on">Hay 3 avisos. Ninguno necesita que vigiles nada.</p></div>
+  </div>
+
+  <div class="alert info c-on">
+    <svg><use href="#i-up"/></svg>
+    <b>Nueva versión 0.42: mejora la cara de la raqueta en el impacto</b>
+    <p>Recalcula 4 partidos ≈ 1 h 40 min esta noche, desde las cachés (sin repetir la pasada barata). La versión actual se conserva si la nueva empeora.</p>
+    <div class="row-btns"><button class="btn pri sm" data-toast="Programado para esta noche (23:00)">Esta noche</button><button class="btn sm" data-toast="Empieza ahora, después del trabajo en curso">Ahora</button><a class="btn ghost sm" href="#cola">Ver el plan</a></div>
+  </div>
+  <div class="alert warn c-on">
+    <svg><use href="#i-warn"/></svg>
+    <b>Poco disco: quedan 32 GB</b>
+    <p>Por debajo de 40 GB aviso. No empiezo un partido que no quepa. Puedo liberar 9,6 GB regenerables sin perder nada.</p>
+    <div class="row-btns"><a class="btn sm" href="#almacenamiento">Ver almacenamiento</a></div>
+  </div>
+  <div class="alert crit c-on">
+    <svg><use href="#i-x"/></svg>
+    <b>1 trabajo en error: Indian Wells 2023, marcador</b>
+    <p>Excepción del código al leer el marcador. Los demás trabajos siguen. Lo arregla una actualización.</p>
+    <div class="row-btns"><a class="btn sm" href="#cola">Ver en la cola</a></div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <header><h3>Ahora</h3><span class="st run"><i></i>en curso</span></header>
+      <div class="body now">
+        <div class="big">
+          <div><h2>AO 2023 · final · Rybakina</h2><p class="dim sm">Pasada fina: pose, bola y raqueta en 214 de 345 ventanas</p></div>
+          <div class="eta"><span class="dim3 sm">termina a las</span> <b>21:40</b></div>
+        </div>
+        <div class="progress"><b style="width:62%"></b></div>
+        <div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">
+          <span class="dots" title="Etapas">
+            <i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot run"></i><i class="dot"></i><i class="dot"></i>
+          </span>
+          <span class="dim3 sm">etapa 9 de 11 · <span class="dev">iGPU</span></span>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <header><h3>Último aviso</h3></header>
+      <div class="body">
+        <div class="wtoast"><span class="ic">TB</span><div><b>Derecha de Rybakina actualizada: 336 ✔, 0 ✘</b><small>Aviso de Windows · hoy 14:05</small></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <header><h3>Lo último terminado</h3><a class="dim sm" href="#calidad">Calidad ›</a></header>
+    <div class="body list">
+      <div class="li"><div><div class="t">Derecha de Rybakina</div><div class="s">US Open · final · informe y auditoría</div></div><div class="r"><span class="st good"><i></i>336 ✔ · 0 ✘</span><span class="dim3 sm">hoy 14:05</span></div></div>
+      <div class="li c-off"><div><div class="t">Revés de Rybakina</div><div class="s">US Open · final · informe nuevo en 6 min</div></div><div class="r"><span class="st good"><i></i>214 ✔ · 0 ✘</span><span class="dim3 sm">hoy 14:11</span></div></div>
+      <div class="li c-on"><div><div class="t">Revés de Rybakina</div><div class="s">Empeoró: se sigue mostrando la versión anterior</div></div><div class="r"><span class="st crit"><i></i>212 ✔ · 2 ✘</span><span class="dim3 sm">hoy 14:11</span></div></div>
+      <div class="li"><div><div class="t">Saque de Rybakina</div><div class="s">US Open · final</div></div><div class="r"><span class="st good"><i></i>198 ✔ · 0 ✘</span><span class="dim3 sm">hoy 14:16</span></div></div>
+    </div>
+  </div>
+
+  <div>
+    <div class="head" style="margin-bottom:12px"><h3>Tus análisis</h3><a class="dim sm" href="#analisis">Todos ›</a></div>
+    <div class="acards">
+      <a class="acard big" href="#web/derecha"><span class="thumb"><svg viewBox="0 0 160 70" preserveAspectRatio="xMidYMid slice"><use href="#t-fh"/></svg></span><span class="info"><h2>Derecha de Rybakina</h2><span class="meta"><span><b>69</b> golpes</span><span>1 partido</span></span></span></a>
+      <a class="acard big" href="#web/reves"><span class="thumb"><svg viewBox="0 0 160 70" preserveAspectRatio="xMidYMid slice"><use href="#t-bh"/></svg></span><span class="info"><h2>Revés de Rybakina</h2><span class="meta"><span><b>35</b> golpes</span><span>1 partido</span></span></span></a>
+      <a class="acard big" href="#web/saque"><span class="thumb"><svg viewBox="0 0 160 70" preserveAspectRatio="xMidYMid slice"><use href="#t-sv"/></svg></span><span class="info"><h2>Saque de Rybakina</h2><span class="meta"><span><b>25</b> golpes</span><span>1 partido</span></span></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ANÁLISIS ============ -->
+<section class="screen" data-screen="analisis">
+  <div class="head">
+    <div><h1>Análisis</h1><p class="sub">Una tarjeta por jugadora y golpe. Púlsala para abrir su web.</p></div>
+    <button class="btn pri" data-open="also"><svg><use href="#i-plus"/></svg>Analizar también…</button>
+  </div>
+  <div class="acards">
+    <a class="acard" href="#web/derecha">
+      <span class="thumb"><svg viewBox="0 0 160 82"><use href="#t-fh"/></svg><span class="pill acc">Lección lista</span></span>
+      <span class="info">
+        <h2>Derecha de Rybakina</h2>
+        <span class="meta"><span><b>69</b> golpes</span><span><b>55</b> cercanos · <b>14</b> lejanos</span></span>
+        <span class="meta"><span>1 partido</span><span>US Open · final</span></span>
+        <span class="foot"><span class="st good"><i></i>Auditoría 336 ✔ · 0 ✘</span><span class="dim3 sm">hoy 14:05</span></span>
+      </span>
+    </a>
+    <a class="acard c-off" href="#web/reves">
+      <span class="thumb"><svg viewBox="0 0 160 82"><use href="#t-bh"/></svg></span>
+      <span class="info">
+        <h2>Revés de Rybakina</h2>
+        <span class="meta"><span><b>35</b> golpes</span><span>a dos manos</span></span>
+        <span class="meta"><span>1 partido</span><span>US Open · final</span></span>
+        <span class="foot"><span class="st good"><i></i>Auditoría 214 ✔ · 0 ✘</span><span class="dim3 sm">hoy 14:11</span></span>
+      </span>
+    </a>
+    <a class="acard reg c-on" href="#calidad">
+      <span class="thumb"><svg viewBox="0 0 160 82"><use href="#t-bh"/></svg><span class="pill crit">Versión anterior</span></span>
+      <span class="info">
+        <h2>Revés de Rybakina</h2>
+        <span class="meta"><span><b>35</b> golpes</span><span>a dos manos</span></span>
+        <span class="meta"><span>La nueva versión empeoró: se muestra la 0.41</span></span>
+        <span class="foot"><span class="st crit"><i></i>Regresión 212 ✔ · 2 ✘</span><span class="dim3 sm">ver en Calidad ›</span></span>
+      </span>
+    </a>
+    <a class="acard" href="#web/saque">
+      <span class="thumb"><svg viewBox="0 0 160 82"><use href="#t-sv"/></svg></span>
+      <span class="info">
+        <h2>Saque de Rybakina</h2>
+        <span class="meta"><span><b>25</b> golpes</span><span>1.º y 2.º saque</span></span>
+        <span class="meta"><span>1 partido</span><span>US Open · final</span></span>
+        <span class="foot"><span class="st good"><i></i>Auditoría 198 ✔ · 0 ✘</span><span class="dim3 sm">hoy 14:16</span></span>
+      </span>
+    </a>
+    <a class="acard prov c-on" href="#web/saque-sabalenka">
+      <span class="thumb"><svg viewBox="0 0 160 82"><use href="#t-sv"/></svg><span class="pill warn">Provisional: faltan 12 golpes</span></span>
+      <span class="info">
+        <h2>Saque de Sabalenka</h2>
+        <span class="meta"><span><b>18</b> golpes de 30 necesarios</span></span>
+        <span class="meta"><span>1 partido</span><span>Nada inventado: se completa con más partidos</span></span>
+        <span class="foot"><span class="st warn"><i></i>Pocos datos</span><span class="dim3 sm">ayer 23:52</span></span>
+      </span>
+    </a>
+    <button class="addcard" data-open="also"><span><span class="plus">+</span><b>Analizar también…</b><br><span class="dim3 sm">otra jugadora u otro golpe</span></span></button>
+  </div>
+  <p class="note">Volea y media volea salen como filtro dentro de derecha y revés (hoy 4 casos); con suficientes tendrán su propio análisis.</p>
+</section>
+
+<!-- ============ PARTIDOS ============ -->
+<section class="screen" data-screen="partidos">
+  <div class="head">
+    <div><h1>Partidos</h1><p class="sub">4 partidos · <span class="mono">28,2 GB</span> en total</p></div>
+    <button class="btn pri" data-open="add"><svg><use href="#i-plus"/></svg>Añadir partido</button>
+  </div>
+  <div class="drop" data-open="add" role="button" tabindex="0">
+    <div><svg><use href="#i-upload"/></svg><span>Arrastra aquí el vídeo de un partido completo</span></div>
+    <span class="btn sm">Elegir vídeo</span>
+  </div>
+
+  <div class="panel c-on" style="padding:0">
+    <div class="list" style="padding:4px 18px">
+      <div class="li warn">
+        <div><div class="t">¿La misma final, de otra cadena?</div><div class="s"><span class="mono">AO23_final_Eurosport_DE.mkv</span>: mismo torneo, fecha y jugadoras que «AO 2023 · final».</div></div>
+        <div class="r"><div class="row-btns"><button class="btn sm" data-toast="Se queda la que ya tenías">Usar la que tengo</button><button class="btn sm" data-toast="Se usará la nueva; la otra se conserva archivada">Usar la nueva</button></div></div>
+      </div>
+      <div class="li warn">
+        <div><div class="t">¿Es un resumen?</div><div class="s"><span class="mono">Brisbane24_highlights.mp4</span> dura 12 min: puede no ser la cámara principal.</div></div>
+        <div class="r"><div class="row-btns"><button class="btn sm" data-toast="Se analiza como partido">Es un partido</button><button class="btn sm" data-toast="Se archiva sin analizar">Es un resumen</button></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><i class="dot done"></i>hecho</span><span><i class="dot run"></i>en curso</span><span><i class="dot"></i>pendiente</span><span><i class="dot warn"></i>con aviso</span><span><i class="dot err"></i>error</span><span><i class="dot skip"></i>excluido</span>
+  </div>
+
+  <div class="panel" style="padding:0">
+    <a class="match" href="#partido/usopen">
+      <span class="mini"><svg viewBox="0 0 160 82" preserveAspectRatio="xMidYMid slice"><use href="#t-fh"/></svg></span>
+      <span><span class="t">US Open · final</span><br><span class="s">Rybakina – Sabalenka · dura · 3 h 30 min</span></span>
+      <span class="size">8,1 GB</span><span class="go dim3">›</span>
+      <span class="stat"><span class="dots"><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i></span><span class="st good"><i></i>Analizado</span></span>
+    </a>
+    <div class="match">
+      <span class="mini"><svg viewBox="0 0 160 82" preserveAspectRatio="xMidYMid slice"><use href="#t-court"/></svg></span>
+      <span><span class="t">AO 2023 · final</span><br><span class="s">Sabalenka – Rybakina · dura · 2 h 41 min</span></span>
+      <span class="size">7,4 GB</span><span class="go"></span>
+      <span class="stat"><span class="dots"><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot run"></i><i class="dot"></i><i class="dot"></i></span><span class="st run"><i></i>Pasada fina 62 % · 21:40</span></span>
+    </div>
+    <div class="match c-off">
+      <span class="mini"><svg viewBox="0 0 160 82" preserveAspectRatio="xMidYMid slice"><use href="#t-grass"/></svg></span>
+      <span><span class="t">Wimbledon 2022 · final</span><br><span class="s">Rybakina – Jabeur · hierba · 2 h 05 min</span></span>
+      <span class="size">5,3 GB</span><span class="go"></span>
+      <span class="stat"><span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span><span class="st idle"><i></i>En cola · mañana 03:15</span></span>
+    </div>
+    <div class="match c-on">
+      <span class="mini"><svg viewBox="0 0 160 82" preserveAspectRatio="xMidYMid slice"><use href="#t-grass"/></svg></span>
+      <span><span class="t">Wimbledon 2022 · final</span><br><span class="s">Rybakina – Jabeur · hierba · 2 h 05 min</span></span>
+      <span class="size">7,0 GB</span><span class="go"></span>
+      <span class="stat"><span class="dots"><i class="dot done"></i><i class="dot done"></i><i class="dot warn"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i></span><span class="st warn"><i></i>Con aviso: sin audio</span><span class="dim3 sm">los impactos salen solo de la bola y la pose</span></span>
+    </div>
+    <div class="match c-off">
+      <span class="mini"><svg viewBox="0 0 160 82" preserveAspectRatio="xMidYMid slice"><use href="#t-clay"/></svg></span>
+      <span><span class="t">Roland Garros 2021 · cuartos</span><br><span class="s">Rybakina – Pavlyuchenkova · tierra · 2 h 18 min</span></span>
+      <span class="size">5,6 GB</span><span class="go"></span>
+      <span class="stat"><span class="dots"><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span><span class="st idle"><i></i>En cola · mañana 07:50</span></span>
+    </div>
+    <div class="match c-on">
+      <span class="mini"><svg viewBox="0 0 160 82" preserveAspectRatio="xMidYMid slice"><use href="#t-clay"/></svg></span>
+      <span><span class="t">Roland Garros 2021 · cuartos</span><br><span class="s">Rybakina – Pavlyuchenkova · tierra · 2 h 18 min</span></span>
+      <span class="size">7,7 GB</span><span class="go"></span>
+      <span class="stat"><span class="dots"><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot warn"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i></span><span class="st warn"><i></i>Identidad dudosa · 0,52</span><span class="dim3 sm">analizado; fuera de las comparativas (umbral 0,70)</span></span>
+    </div>
+    <div class="match c-on">
+      <span class="mini"><svg viewBox="0 0 160 82" preserveAspectRatio="xMidYMid slice"><use href="#t-court"/></svg></span>
+      <span><span class="t">Indian Wells 2023 · final</span><br><span class="s">Rybakina – Sabalenka · dura · 1 h 54 min</span></span>
+      <span class="size">4,9 GB</span><span class="go"></span>
+      <span class="stat"><span class="dots"><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot err"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i><i class="dot"></i></span><span class="st crit"><i></i>Error en «Marcador»</span><span class="dim3 sm">lo arregla una actualización</span></span>
+    </div>
+    <div class="match excl c-on">
+      <span class="mini"><svg viewBox="0 0 160 82" preserveAspectRatio="xMidYMid slice"><use href="#t-doubles"/></svg></span>
+      <span><span class="t">Eastbourne 2023 · dobles</span><br><span class="s">Rybakina / Kasatkina · hierba · 1 h 22 min</span></span>
+      <span class="size">3,2 GB</span><span class="go"></span>
+      <span class="stat"><span class="dots"><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot done"></i><i class="dot skip"></i><i class="dot skip"></i><i class="dot skip"></i><i class="dot skip"></i><i class="dot skip"></i><i class="dot skip"></i><i class="dot skip"></i></span><span class="st off"><i></i>Excluido: dobles</span><span class="dim3 sm">dos personas en la mitad cercana</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PARTIDO (detalle) ============ -->
+<section class="screen" data-screen="partido">
+  <div>
+    <a class="back" href="#partidos">‹ Partidos</a>
+    <div class="head">
+      <div><h1>US Open · final</h1><p class="sub">Rybakina – Sabalenka · pista dura · 3 h 30 min de vídeo · 4 h 55 min de análisis</p></div>
+      <div class="row-btns"><button class="btn" data-toast="Se reanaliza desde las cachés: nada se borra">Reanalizar</button><button class="btn ghost" data-toast="Archivado: sale de las listas, no se borra">Archivar</button></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <header><h3>Etapas</h3><span class="st good"><i></i>Todo hecho · 17-10 14:16</span></header>
+    <div class="body">
+      <div class="stages">
+        <div class="stage"><i class="dot done"></i><b>Lectura</b><span>0:01</span></div>
+        <div class="stage"><i class="dot done"></i><b>Planos</b><span>0:18</span></div>
+        <div class="stage"><i class="dot done"></i><b>Audio</b><span>0:06</span></div>
+        <div class="stage"><i class="dot done"></i><b>Jugadoras</b><span>0:41</span></div>
+        <div class="stage"><i class="dot done"></i><b>Candidatos</b><span>0:09</span></div>
+        <div class="stage"><i class="dot done"></i><b>Pista</b><span>0:12</span></div>
+        <div class="stage"><i class="dot done"></i><b>Marcador</b><span>0:22</span></div>
+        <div class="stage"><i class="dot done"></i><b>Identidad</b><span>0:04</span></div>
+        <div class="stage"><i class="dot done c-off"></i><i class="dot warn c-on"></i><b>Pasada fina</b><span>2:48</span><em class="c-on">iGPU falló: terminada en CPU</em></div>
+        <div class="stage"><i class="dot done"></i><b>Informe</b><span>0:08</span></div>
+        <div class="stage"><i class="dot done"></i><b>Auditoría</b><span>0:06</span></div>
+      </div>
+      <p class="note" style="margin-top:12px">Las 8 primeras son la pasada barata del vídeo (una vez). La pasada fina es por jugadora.</p>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <header><h3>Jugadoras</h3></header>
+      <div class="body list">
+        <div class="li"><div><a class="t" href="#jugadora/rybakina">Elena Rybakina</a><div class="s">lado cercano en 2 de 3 sets · identidad 0,97</div></div><div class="r"><span class="st good"><i></i>Analizada</span></div></div>
+        <div class="li"><div><a class="t" href="#jugadora/sabalenka">Aryna Sabalenka</a><div class="s">pasada barata hecha; falta su pasada fina</div></div><div class="r"><button class="btn sm" data-open="also" data-preset="sabalenka">Analizar también · ≈ 3 h</button></div></div>
+      </div>
+    </div>
+    <div class="panel">
+      <header><h3>Datos</h3></header>
+      <div class="body">
+        <dl class="kv">
+          <dt>Torneo</dt><dd>US Open · final</dd>
+          <dt>Superficie</dt><dd>dura</dd>
+          <dt>Vídeo</dt><dd><span class="mono">50 fps</span>, entrelazado (desentrelazado)</dd>
+          <dt>Planos útiles</dt><dd>cámara principal · 61 % del vídeo</dd>
+          <dt>Espacio</dt><dd><span class="mono">8,1 GB</span> · <a href="#almacenamiento" class="dim">detalle</a></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <header><h3>Golpes de Rybakina por tipo</h3><span class="dim3 sm">qué falta: nada</span></header>
+    <div class="body">
+      <div class="bars">
+        <span>Derecha</span><span class="b"><i style="width:100%"></i></span><span class="n">69 · 55 cerc. + 14 lej.</span>
+        <span>Revés</span><span class="b"><i style="width:51%"></i></span><span class="n">35</span>
+        <span>Saque</span><span class="b"><i style="width:36%"></i></span><span class="n">25</span>
+        <span>Volea</span><span class="b"><i class="mute" style="width:6%"></i></span><span class="n">4 · filtro</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JUGADORAS ============ -->
+<section class="screen" data-screen="jugadoras">
+  <div class="head"><div><h1>Jugadoras</h1><p class="sub">Salen solas de los partidos. La foto es su fotograma más nítido.</p></div></div>
+  <div class="pcards">
+    <a class="pcard" href="#jugadora/rybakina">
+      <span class="photo"><svg style="filter:hue-rotate(0deg)" viewBox="0 0 120 90" preserveAspectRatio="xMidYMid slice"><use href="#p-photo"/></svg></span>
+      <span class="info"><h2>Elena Rybakina</h2><span class="chips"><span class="chip">diestra</span><span class="chip">revés 2 manos</span><span class="chip"><b>1,84 m</b></span></span><span class="dim sm">4 partidos · 3 análisis</span></span>
+    </a>
+    <a class="pcard" href="#jugadora/sabalenka">
+      <span class="photo"><svg style="filter:hue-rotate(150deg)" viewBox="0 0 120 90" preserveAspectRatio="xMidYMid slice"><use href="#p-photo"/></svg></span>
+      <span class="info"><h2>Aryna Sabalenka</h2><span class="chips"><span class="chip">diestra</span><span class="chip">revés 2 manos</span><span class="chip"><b>1,82 m</b></span></span><span class="dim sm c-off">2 partidos · sin analizar</span><span class="dim sm c-on">3 partidos · 1 análisis provisional</span></span>
+    </a>
+    <a class="pcard" href="#jugadora/jabeur">
+      <span class="photo"><svg style="filter:hue-rotate(250deg)" viewBox="0 0 120 90" preserveAspectRatio="xMidYMid slice"><use href="#p-photo"/></svg></span>
+      <span class="info"><h2>Ons Jabeur</h2><span class="chips"><span class="chip">diestra</span><span class="chip">revés 2 manos</span><span class="chip c-off"><b>1,67 m</b></span><span class="chip warn c-on">sin altura: 1,80 m ±5 %</span></span><span class="dim sm">1 partido · sin analizar</span></span>
+    </a>
+    <a class="pcard" href="#jugadora/pavlyuchenkova">
+      <span class="photo"><svg style="filter:hue-rotate(40deg)" viewBox="0 0 120 90" preserveAspectRatio="xMidYMid slice"><use href="#p-photo"/></svg></span>
+      <span class="info"><h2>A. Pavlyuchenkova</h2><span class="chips"><span class="chip">diestra</span><span class="chip">revés 2 manos</span><span class="chip"><b>1,77 m</b></span></span><span class="dim sm">1 partido · sin analizar</span></span>
+    </a>
+    <a class="pcard c-on" href="#jugadora/haddad">
+      <span class="photo"><svg viewBox="0 0 120 90" preserveAspectRatio="xMidYMid slice" style="transform:scaleX(-1);filter:hue-rotate(300deg)"><use href="#p-photo"/></svg></span>
+      <span class="info"><h2>B. Haddad Maia</h2><span class="chips"><span class="chip warn">zurda: medidas reflejadas</span><span class="chip"><b>1,85 m</b></span></span><span class="dim sm">1 partido · sin analizar</span></span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ FICHA ============ -->
+<section class="screen" data-screen="jugadora">
+  <div>
+    <a class="back" href="#jugadoras">‹ Jugadoras</a>
+    <div class="head">
+      <div><h1 id="pName">Elena Rybakina</h1><p class="sub" id="pSub">Diestra · revés a dos manos · 1,84 m</p></div>
+      <button class="btn pri" data-open="also" id="pAnalyze">Analizar sus golpes</button>
+    </div>
+  </div>
+  <div class="alert warn" id="pHeightWarn" hidden>
+    <svg><use href="#i-warn"/></svg>
+    <b>Falta su altura</b>
+    <p>Mientras tanto se usa 1,80 m (±5 %) y las medidas en cm lo indican.</p>
+    <div class="row-btns"><span class="fld" style="grid-auto-flow:column;align-items:center;gap:8px"><input class="timein" value="" placeholder="1,67" aria-label="Altura en metros"></span><button class="btn sm" data-toast="Altura guardada: se recalculan solo los informes">Guardar altura</button></div>
+  </div>
+  <div class="ficha">
+    <div class="photo"><svg viewBox="0 0 120 90" preserveAspectRatio="xMidYMid slice"><use href="#p-photo"/></svg><span class="cap" id="pCap">fotograma más nítido · US Open, 2.º set</span></div>
+    <div class="panel">
+      <header><h3>Ficha</h3></header>
+      <div class="body">
+        <dl class="kv">
+          <dt>Mano</dt><dd id="pHand">diestra</dd>
+          <dt>Revés</dt><dd>a dos manos</dd>
+          <dt>Altura</dt><dd id="pHeight"><span class="mono">1,84 m</span></dd>
+          <dt>Alias del marcador</dt><dd id="pAlias"><span class="chip">RYBAKINA</span> <span class="chip">E. RYBAKINA</span></dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <div class="grid2">
+    <div class="panel">
+      <header><h3>Golpes analizados</h3></header>
+      <div class="body" id="pStrokes"></div>
+    </div>
+    <div class="panel">
+      <header><h3>Partidos en los que sale</h3></header>
+      <div class="body list" id="pMatches"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COLA ============ -->
+<section class="screen" data-screen="cola">
+  <div class="head">
+    <div><h1>Cola</h1><p class="sub">Un trabajo pesado cada vez en la iGPU; informes y auditoría en paralelo en la CPU.</p></div>
+    <div class="row-btns"><button class="btn" id="pauseAll"><svg><use href="#i-pause"/></svg><span>Pausar</span></button></div>
+  </div>
+
+  <div class="panel">
+    <div class="body" style="padding-top:14px">
+      <div class="toolbar">
+        <label class="sw"><input type="checkbox" id="nightOnly"><span class="k"></span><span><svg style="width:15px;height:15px;vertical-align:-3px;color:var(--ink-2)"><use href="#i-moon"/></svg> Solo de noche</span></label>
+        <span class="window"><span class="mono">23:00 – 08:00</span><a class="dim sm" href="#ajustes">cambiar</a></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <header><h3>En curso</h3></header>
+    <div class="body">
+      <div class="job c-off">
+        <span class="n"><span class="st run"><i></i></span></span>
+        <div><div class="t">AO 2023 · final · pasada fina de Rybakina</div><div class="s">214 de 345 ventanas · <span class="dev">iGPU</span></div><span class="why">partido nuevo</span></div>
+        <div class="r"><span class="mono">62 %</span><span class="dim3">fin 21:40</span></div>
+      </div>
+      <div class="job warn c-on">
+        <span class="n"><span class="st warn"><i></i></span></span>
+        <div><div class="t">AO 2023 · final · pasada fina de Rybakina</div><div class="s">214 de 345 ventanas · <span class="dev">CPU</span></div><span class="why">partido nuevo</span></div>
+        <div class="r"><span class="mono">62 %</span><span class="dim3">fin 23:55</span></div>
+        <div class="explain">Fallo de la iGPU (DirectML): reintentado 2 veces y pasado a la CPU. Más lento, mismo resultado validado.</div>
+      </div>
+      <div class="job">
+        <span class="n"><span class="st run"><i></i></span></span>
+        <div><div class="t">Informe · Saque de Rybakina</div><div class="s">en paralelo · <span class="dev">CPU</span></div><span class="why">cambió el texto de la lección</span></div>
+        <div class="r"><span class="mono">80 %</span><span class="dim3">fin 19:12</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <header><h3>Pendientes</h3><span class="dim3 sm c-off">2 · terminan mañana 11:30</span><span class="dim3 sm c-on">2 · uno en error</span></header>
+    <div class="body">
+      <div class="job crit c-on">
+        <span class="n"><span class="st crit"><i></i></span></span>
+        <div><div class="t">Indian Wells 2023 · final · marcador</div><div class="s">en error · los demás trabajos siguen</div><span class="why">partido nuevo</span></div>
+        <div class="r"><button class="btn sm" data-toast="Diagnóstico: C:\tenis\datos\diagnostico\IW23_score.txt">Diagnóstico</button></div>
+        <div class="explain">Excepción del código al leer el marcador (OCR). Guardado el fichero de diagnóstico. Lo arregla una actualización; no se reintenta sin ella.</div>
+      </div>
+      <div class="job c-off">
+        <span class="prio"><button aria-label="Subir">▲</button><button aria-label="Bajar">▼</button></span>
+        <div><div class="t">Wimbledon 2022 · final · todo</div><div class="s">pasada barata + pasada fina de Rybakina · ≈ 4 h 35 min</div><span class="why">partido nuevo</span></div>
+        <div class="r"><span class="dim3">empieza 23:55</span></div>
+      </div>
+      <div class="job c-off">
+        <span class="prio"><button aria-label="Subir">▲</button><button aria-label="Bajar">▼</button></span>
+        <div><div class="t">Roland Garros 2021 · cuartos · todo</div><div class="s">≈ 4 h 40 min</div><span class="why">partido nuevo</span></div>
+        <div class="r"><span class="dim3">empieza 04:30</span></div>
+      </div>
+      <div class="job c-on">
+        <span class="prio"><button aria-label="Subir">▲</button><button aria-label="Bajar">▼</button></span>
+        <div><div class="t">Recalcular medidas · 4 partidos</div><div class="s">desde las cachés de pose · ≈ 1 h 40 min · esta noche</div><span class="why">nueva versión 0.42: cara de la raqueta en el impacto</span></div>
+        <div class="r"><span class="dim3">empieza 23:00</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <header><h3>Hechos</h3><span class="dim3 sm">últimos 7 días</span></header>
+    <div class="body">
+      <div class="job"><span class="n"><span class="st good"><i></i></span></span><div><div class="t">US Open · final · todo</div><div class="s">4 h 55 min · auditoría 336 ✔ 0 ✘</div><span class="why">partido nuevo</span></div><div class="r"><span class="dim3">hoy 14:05</span></div></div>
+      <div class="job"><span class="n"><span class="st good"><i></i></span></span><div><div class="t">Informe · Revés de Rybakina</div><div class="s">6 min · desde los mismos golpes</div><span class="why">analizar su revés</span></div><div class="r"><span class="dim3">hoy 14:11</span></div></div>
+      <div class="job"><span class="n"><span class="st good"><i></i></span></span><div><div class="t">AO 2023 · final · pasada barata</div><div class="s">1 h 49 min</div><span class="why">partido nuevo</span></div><div class="r"><span class="dim3">hoy 16:20</span></div></div>
+      <div class="job c-on"><span class="n"><span class="st good"><i></i></span></span><div><div class="t">US Open · final · pasada fina</div><div class="s">PC suspendido a mitad: reanudado en la ventana 212 · falta de memoria: lotes 16 → 8</div><span class="why">partido nuevo</span></div><div class="r"><span class="dim3">ayer</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CALIDAD ============ -->
+<section class="screen" data-screen="calidad">
+  <div class="head"><div><h1>Calidad</h1><p class="sub">La auditoría se pasa sola al terminar cada trabajo y se compara con la vez anterior.</p></div></div>
+
+  <div class="alert good c-off"><svg><use href="#i-ok"/></svg><b>Nada empeoró respecto a la vez anterior</b><p>Pruebas del código: 381 ✔ antes de la versión 0.41.</p></div>
+  <div class="alert crit c-on"><svg><use href="#i-x"/></svg><b>Revés de Rybakina empeoró con la versión 0.42</b><p>Se sigue mostrando la versión 0.41 hasta que la nueva sea correcta. La nueva queda «pendiente de revisar».</p></div>
+
+  <div class="panel">
+    <header><h3>Auditoría por análisis</h3><span class="legend"><span><span class="sw-key" style="background:var(--good)"></span>cumplidos</span><span><span class="sw-key" style="background:var(--crit)"></span>faltas</span><span><span class="sw-key" style="background:var(--ink-3)"></span>pocos datos</span></span></header>
+    <div class="body">
+      <div class="qrow">
+        <div><div style="font-weight:650">Derecha de Rybakina</div><div class="dim3 sm">69 golpes · hoy 14:05 · igual que antes</div></div>
+        <div class="qnums"><span class="ok">336 ✔</span><span class="ko">0 ✘</span><span class="few">12 pocos datos</span></div>
+        <div class="qbar"><i style="width:96.5%;background:var(--good)"></i><i style="width:3.5%;background:var(--ink-3)"></i></div>
+      </div>
+      <div class="qrow c-off">
+        <div><div style="font-weight:650">Revés de Rybakina</div><div class="dim3 sm">35 golpes · hoy 14:11 · igual que antes</div></div>
+        <div class="qnums"><span class="ok">214 ✔</span><span class="ko">0 ✘</span><span class="few">19 pocos datos</span></div>
+        <div class="qbar"><i style="width:91.8%;background:var(--good)"></i><i style="width:8.2%;background:var(--ink-3)"></i></div>
+      </div>
+      <div class="qrow reg c-on">
+        <div><div style="font-weight:650">Revés de Rybakina <span class="pill crit" style="margin-left:6px">regresión</span></div><div class="dim3 sm">v0.42 · hoy 14:11 · antes 214 ✔ 0 ✘</div></div>
+        <div class="qnums"><span class="ok">212 ✔</span><span class="ko bad">2 ✘</span><span class="few">19 pocos datos</span></div>
+        <div class="qbar"><i style="width:91%;background:var(--good)"></i><i style="width:.9%;background:var(--crit)"></i><i style="width:8.1%;background:var(--ink-3)"></i></div>
+        <div class="regbox">
+          <b>Qué empeoró</b>
+          <ul>
+            <li><b>Altura del impacto</b>: fuera de rango en 3 golpes (antes 0). Cambió el punto de la cadera usado como referencia.</li>
+            <li><b>Vídeo del armado</b>: no carga en 1 golpe (falta su recorte).</li>
+          </ul>
+        </div>
+      </div>
+      <div class="qrow">
+        <div><div style="font-weight:650">Saque de Rybakina</div><div class="dim3 sm">25 golpes · hoy 14:16 · +6 ✔ respecto a antes</div></div>
+        <div class="qnums"><span class="ok">198 ✔</span><span class="ko">0 ✘</span><span class="few">31 pocos datos</span></div>
+        <div class="qbar"><i style="width:86.5%;background:var(--good)"></i><i style="width:13.5%;background:var(--ink-3)"></i></div>
+      </div>
+      <div class="qrow c-on">
+        <div><div style="font-weight:650">Saque de Sabalenka <span class="pill warn" style="margin-left:6px">provisional</span></div><div class="dim3 sm">18 golpes · faltan 12 para el mínimo</div></div>
+        <div class="qnums"><span class="ok">121 ✔</span><span class="ko">0 ✘</span><span class="few">88 pocos datos</span></div>
+        <div class="qbar"><i style="width:58%;background:var(--good)"></i><i style="width:42%;background:var(--ink-3)"></i></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <header><h3>Historial de versiones</h3></header>
+    <div class="body vers">
+      <div class="ver c-on"><span class="v" style="color:var(--crit)">0.42</span><span>Cara de la raqueta en el impacto · <span style="color:var(--crit)">pendiente de revisar</span> (revés empeoró)</span><span class="dim3 sm">hoy</span></div>
+      <div class="ver"><span class="v">0.41</span><span>Vista lateral (entreno) · base en el armado · <span style="color:var(--good)">en uso</span></span><span class="dim3 sm">13-10</span></div>
+      <div class="ver"><span class="v">0.40</span><span>Repeticiones descartadas por recorrido y sonido</span><span class="dim3 sm">12-10</span></div>
+      <div class="ver"><span class="v">0.39</span><span>Lado lejano con recorte que la sigue</span><span class="dim3 sm">09-10</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ALMACENAMIENTO ============ -->
+<section class="screen" data-screen="almacenamiento">
+  <div class="head"><div><h1>Almacenamiento</h1><p class="sub">Unos 8 GB por partido activo. Nada imprescindible se borra nunca.</p></div></div>
+
+  <div class="alert warn c-on"><svg><use href="#i-warn"/></svg><b>Quedan 32 GB libres</b><p>Por debajo de 40 GB aviso; por debajo de 20 GB libero solo lo regenerable si el vídeo existe. Un partido nuevo necesita vídeo × 1,1 + 6 GB.</p></div>
+
+  <div class="panel">
+    <header><h3>Disco C:</h3><span class="mono sm c-off">275 GB libres de 500</span><span class="mono sm c-on" style="color:var(--warn)">32 GB libres de 500</span></header>
+    <div class="body disk">
+      <div class="diskbar c-off"><i class="k-oth" style="width:39.4%"></i><i class="k-imp" style="width:4.6%"></i><i class="k-reg" style="width:1%"></i><i class="k-tmp" style="width:.4%"></i></div>
+      <div class="diskbar c-on"><i class="k-oth" style="width:86.6%"></i><i class="k-imp" style="width:5.3%"></i><i class="k-reg" style="width:1.6%"></i><i class="k-tmp" style="width:.4%"></i></div>
+      <div class="legend"><span><i class="sw-key k-imp"></i>imprescindible</span><span><i class="sw-key k-reg"></i>regenerable</span><span><i class="sw-key k-tmp"></i>temporal</span><span><i class="sw-key k-oth"></i>otros programas</span></div>
+    </div>
+  </div>
+
+  <div class="panel">
+    <header><h3>Por partido</h3></header>
+    <div class="body">
+      <div class="mrow"><span>US Open · final</span><span class="diskbar"><i class="k-imp" style="width:76%"></i><i class="k-reg" style="width:18%"></i><i class="k-tmp" style="width:6%"></i></span><span class="num">8,1 GB</span></div>
+      <div class="mrow"><span>AO 2023 · final</span><span class="diskbar"><i class="k-imp" style="width:58%"></i><i class="k-reg" style="width:9%"></i><i class="k-tmp" style="width:24%"></i></span><span class="num">7,4 GB</span></div>
+      <div class="mrow"><span>Wimbledon 2022 · final</span><span class="diskbar"><i class="k-imp" style="width:66%"></i></span><span class="num">5,3 GB</span></div>
+      <div class="mrow"><span>Roland Garros 2021 · cuartos</span><span class="diskbar"><i class="k-imp" style="width:70%"></i></span><span class="num">5,6 GB</span></div>
+      <div class="mrow"><span>Análisis y copias al móvil</span><span class="diskbar"><i class="k-imp" style="width:10%"></i><i class="k-reg" style="width:12%"></i></span><span class="num">1,8 GB</span></div>
+      <p class="note" style="margin-top:8px">Imprescindible: vídeo y golpes medidos. Regenerable: recortes y ventanas, se rehacen desde el vídeo. Temporal: lo del trabajo en curso.</p>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="panel">
+      <header><h3>Liberar sin perder nada</h3></header>
+      <div class="body" style="display:grid;gap:12px">
+        <div class="stats"><div class="stat-n"><b class="c-off">3,4 GB</b><b class="c-on">9,6 GB</b><span>recortes y temporales</span></div></div>
+        <p class="dim sm">Se regeneran solos desde el vídeo si hacen falta. Los vídeos y las medidas no se tocan.</p>
+        <div><button class="btn pri" data-toast="Liberados: nada imprescindible se ha tocado"><span class="c-off">Liberar 3,4 GB</span><span class="c-on">Liberar 9,6 GB</span></button></div>
+      </div>
+    </div>
+    <div class="panel">
+      <header><h3>Copia de seguridad</h3></header>
+      <div class="body" style="display:grid;gap:12px">
+        <div class="li" style="padding:0"><div><div class="t">USB no conectado</div><div class="s">Última copia: 12-10 · 21,4 GB</div></div></div>
+        <div><button class="btn" data-toast="Conecta un USB: la copia empieza sola"><svg><use href="#i-usb"/></svg>Copiar a USB</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ AJUSTES ============ -->
+<section class="screen" data-screen="ajustes">
+  <div class="head"><div><h1>Ajustes</h1><p class="sub">Pocos, y ninguno obligatorio.</p></div></div>
+  <div class="panel">
+    <div class="body">
+      <div class="set"><div><b>Carpetas</b><span>Todo bajo una carpeta</span></div>
+        <div class="ctl"><div class="path"><code>C:\tenis\</code><button class="btn sm" data-toast="Elegir carpeta (maqueta)">Cambiar</button></div><span class="dim3 sm">vídeos, partidos, análisis, copias y móvil</span></div></div>
+      <div class="set"><div><b>Franja horaria</b><span>Cuándo trabaja la iGPU</span></div>
+        <div class="ctl"><label class="sw"><input type="checkbox" id="nightOnly2"><span class="k"></span>Solo de noche</label><div class="window"><input class="timein" value="23:00" aria-label="Desde"> a <input class="timein" value="08:00" aria-label="Hasta"></div></div></div>
+      <div class="set"><div><b>Avisos de Windows</b></div>
+        <div class="ctl"><label class="sw"><input type="checkbox" checked><span class="k"></span>Al terminar un trabajo</label><label class="sw"><input type="checkbox" checked><span class="k"></span>Al fallar</label><label class="sw"><input type="checkbox" checked><span class="k"></span>Con poco disco</label></div></div>
+      <div class="set"><div><b>Copia al móvil</b><span>Funciona sin conexión</span></div>
+        <div class="ctl"><div class="path"><button class="btn" data-toast="Hecha: C:\tenis\movil\rybakina_derecha (clips a 720p)"><svg><use href="#i-phone"/></svg>Copiar al móvil</button></div><span class="dim3 sm">clips a 720p · <span class="mono">C:\tenis\movil\</span></span></div></div>
+      <div class="set"><div><b>Actualizaciones</b></div>
+        <div class="ctl"><span>Canal estable · versión <span class="mono">0.41</span></span><span class="c-on" style="color:var(--accent)">0.42 disponible: recalcula 4 partidos ≈ 1 h 40 min esta noche</span></div></div>
+      <div class="set"><div><b>Modo desarrollo</b><span>Para Claude</span></div>
+        <div class="ctl"><label class="sw"><input type="checkbox"><span class="k"></span>Seguir usando el ciclo con Claude</label><span class="dim3 sm">sube registros a la rama <span class="mono">pc-logs</span></span></div></div>
+    </div>
+  </div>
+</section>
+
+    </main>
+  </div>
+</div>
+
+<!-- ============ WEB DEL ANÁLISIS ============ -->
+<div class="webview">
+  <div class="webbar">
+    <a class="btn" href="#analisis">‹ Volver a Tennisbio</a>
+    <span class="ttl" id="webTitle">Derecha de Rybakina</span>
+    <span class="tag sample">MAQUETA</span>
+  </div>
+  <div class="webframe">
+    <div class="webtabs"><span class="on">Lección</span><span>Sus golpes</span><span>Comparar</span><span>Conclusiones</span><span>Vista lateral (entreno)</span><span>Fiabilidad</span></div>
+    <div class="webmsg">
+      <svg class="big" viewBox="0 0 160 82"><use href="#t-fh" id="webThumb"/></svg>
+      <h2>Aquí se abre la web actual</h2>
+      <p>La lección, sus golpes, comparar, conclusiones, la vista lateral y la fiabilidad: la misma web de siempre, dentro de esta ventana.</p>
+      <p class="note" id="webNote">Se abre en la lección. Si falta el motor de la ventana, se abre en el navegador del sistema.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ DIÁLOGO: AÑADIR PARTIDO ============ -->
+<div class="modal" id="dlg-add" role="dialog" aria-modal="true" aria-labelledby="addTitle">
+  <div class="dlg">
+    <header><div><h2 id="addTitle">Añadir partido</h2><div class="steps" style="margin-top:10px"><span data-s="1">1 · Vídeo</span><span data-s="2">2 · Datos</span><span data-s="3">3 · Listo</span></div></div><button class="x" data-close aria-label="Cerrar">×</button></header>
+
+    <div class="db" data-step="1">
+      <div class="bigdrop" id="dropZone" tabindex="0">
+        <svg><use href="#i-upload"/></svg>
+        <b>Arrastra aquí el vídeo</b>
+        <span class="sm">o pulsa para elegirlo · partido completo, cámara de TV</span>
+      </div>
+      <p class="note">El vídeo se reconoce por su contenido: si ya lo tienes, aunque tenga otro nombre, no se duplica.</p>
+    </div>
+
+    <div class="db" data-step="2" hidden>
+      <div class="file"><svg><use href="#i-file"/></svg><div><div class="mono" id="fileName">2024_Brisbane_F_Rybakina_Sabalenka.mp4</div><div class="dim3 sm" id="fileSize">5,6 GB</div></div></div>
+      <div class="c-off" style="display:grid;gap:16px">
+        <div class="facts"><span class="chip">Duración <b>1 h 12 min</b></span><span class="chip"><b>50 fps</b></span><span class="chip">entrelazado: <b>se desentrelaza</b></span><span class="chip">audio <b>sí</b></span></div>
+        <div>
+          <h3 style="margin-bottom:10px">Datos propuestos</h3>
+          <div class="form">
+            <label class="fld">Torneo<input value="Brisbane"><small>del nombre del fichero</small></label>
+            <label class="fld">Ronda<input value="Final"><small>del nombre del fichero</small></label>
+            <label class="fld">Fecha<input value="07-01-2024"></label>
+            <label class="fld">Superficie<select><option>dura</option><option>tierra</option><option>hierba</option></select></label>
+            <label class="fld full">Jugadoras<input value="Rybakina – Sabalenka"><small>leídas del marcador (OCR)</small></label>
+          </div>
+        </div>
+        <div class="cost"><b>Termina hoy a las 23:50</b><span class="dim">≈ 2 h 30 min, después de lo que hay en la cola · necesita 12,2 GB, hay 275 GB</span></div>
+      </div>
+      <div class="c-on">
+        <div class="alert info"><svg><use href="#i-ok"/></svg><b>Este vídeo ya lo tienes: US Open · final</b><p>Lo reconozco por su contenido, aunque tenga otro nombre o esté en otra carpeta. No se duplica ni se recalcula nada.</p><div class="row-btns"><a class="btn sm" href="#partido/usopen" data-close>Ir al partido</a></div></div>
+      </div>
+    </div>
+
+    <div class="db" data-step="3" hidden>
+      <div class="alert good"><svg><use href="#i-ok"/></svg><b>Encolado: Brisbane 2024 · final</b><p>Termina hoy a las 23:50. Te aviso al terminar, con su auditoría.</p></div>
+    </div>
+
+    <footer>
+      <span class="note" id="addHint">Nada más que hacer: el resto es automático.</span>
+      <div class="row-btns">
+        <button class="btn ghost" data-close>Cancelar</button>
+        <button class="btn" id="addBack" hidden>Atrás</button>
+        <button class="btn pri" id="addNext">Elegir vídeo</button>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<!-- ============ DIÁLOGO: ANALIZAR TAMBIÉN ============ -->
+<div class="modal" id="dlg-also" role="dialog" aria-modal="true" aria-labelledby="alsoTitle">
+  <div class="dlg">
+    <header><div><h2 id="alsoTitle">Analizar también…</h2><p class="dim sm" style="margin-top:4px">Elige jugadora y golpe. Lo ya hecho no se repite.</p></div><button class="x" data-close aria-label="Cerrar">×</button></header>
+    <div class="db">
+      <div class="matrix" id="matrix"></div>
+      <div class="cost" id="alsoCost"><b>Elige al menos una casilla</b><span class="dim">Verás el coste antes de confirmar.</span></div>
+    </div>
+    <footer>
+      <span class="legend"><span><span class="cell has" style="min-height:0;width:14px;height:14px;display:inline-block;padding:0"></span>ya hecho</span><span><span class="cell na" style="min-height:0;width:14px;height:14px;display:inline-block;padding:0"></span>pocos casos</span></span>
+      <div class="row-btns"><button class="btn ghost" data-close>Cancelar</button><button class="btn pri" id="alsoGo" disabled>Encolar</button></div>
+    </footer>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function () {
+  "use strict";
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  /* ---------- Toast ---------- */
+  var toastT;
+  function toast(msg) {
+    var t = $("#toast"); t.textContent = msg; t.classList.add("on");
+    clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove("on"); }, 2600);
+  }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-toast]"); if (b) { e.preventDefault(); toast(b.getAttribute("data-toast")); }
+  });
+
+  /* ---------- Modo casos ---------- */
+  function setCases(on) {
+    document.body.classList.toggle("cases", on);
+    $$(".cases-pick [data-mode]").forEach(function (b) {
+      b.setAttribute("aria-pressed", String((b.dataset.mode === "cases") === on));
+    });
+    try { localStorage.setItem("tb-cases", on ? "1" : "0"); } catch (err) {}
+  }
+  $$(".cases-pick [data-mode]").forEach(function (b) {
+    b.addEventListener("click", function () { setCases(b.dataset.mode === "cases"); });
+  });
+  $$(".cases-pick [data-case]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      setCases(true); $("#casesPick").open = false;
+      if (a.getAttribute("href") === "#add") { e.preventDefault(); openDlg("add"); }
+    });
+  });
+  document.addEventListener("click", function (e) {
+    var d = $("#casesPick"); if (d.open && !d.contains(e.target)) d.open = false;
+  });
+  var startCases = /[?&]casos=1/.test(location.search);
+  try { if (localStorage.getItem("tb-cases") === "1") startCases = true; } catch (err) {}
+  if (/[?&]casos=0/.test(location.search)) startCases = false;
+  setCases(startCases);
+
+  /* ---------- Fichas ---------- */
+  var players = {
+    rybakina: { name: "Elena Rybakina", hand: "diestra", h: "1,84 m", alias: ["RYBAKINA", "E. RYBAKINA"], cap: "fotograma más nítido · US Open, 2.º set",
+      strokes: [["Derecha", 69, "55 cerc. + 14 lej."], ["Revés", 35, ""], ["Saque", 25, ""]],
+      matches: [["US Open · final", "analizado", "good"], ["AO 2023 · final", "en curso · 62 %", "run"], ["Wimbledon 2022 · final", "en cola", "idle"], ["Roland Garros 2021 · cuartos", "en cola", "idle"]] },
+    sabalenka: { name: "Aryna Sabalenka", hand: "diestra", h: "1,82 m", alias: ["SABALENKA", "A. SABALENKA"], cap: "fotograma más nítido · US Open, 1.er set",
+      strokes: [], matches: [["US Open · final", "pasada barata hecha", "good"], ["AO 2023 · final", "pasada barata hecha", "good"]] },
+    jabeur: { name: "Ons Jabeur", hand: "diestra", h: "1,67 m", noh: true, alias: ["JABEUR"], cap: "fotograma más nítido · Wimbledon, 3.er set",
+      strokes: [], matches: [["Wimbledon 2022 · final", "en cola", "idle"]] },
+    pavlyuchenkova: { name: "Anastasia Pavlyuchenkova", hand: "diestra", h: "1,77 m", alias: ["PAVLYUCHENKOVA"], cap: "fotograma más nítido · Roland Garros",
+      strokes: [], matches: [["Roland Garros 2021 · cuartos", "en cola", "idle"]] },
+    haddad: { name: "Beatriz Haddad Maia", hand: "zurda", h: "1,85 m", alias: ["HADDAD MAIA", "B. HADDAD MAIA"], cap: "fotograma más nítido",
+      strokes: [], matches: [["Toronto 2023 · semifinal", "en cola", "idle"]] }
+  };
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function fillPlayer(id) {
+    var p = players[id] || players.rybakina;
+    var cases = document.body.classList.contains("cases");
+    var noH = p.noh && cases;
+    $("#pName").textContent = p.name;
+    $("#pSub").textContent = (p.hand === "zurda" ? "Zurda (medidas reflejadas para comparar)" : "Diestra") + " · revés a dos manos · " + (noH ? "altura pendiente" : p.h);
+    $("#pHand").textContent = p.hand + (p.hand === "zurda" ? " · las medidas se reflejan" : "");
+    $("#pHeight").innerHTML = noH ? '<span class="chip warn">sin altura: se usa 1,80 m ±5 %</span>' : '<span class="mono">' + esc(p.h) + "</span>";
+    $("#pHeightWarn").hidden = !noH;
+    $("#pAlias").innerHTML = p.alias.map(function (a) { return '<span class="chip">' + esc(a) + "</span>"; }).join(" ");
+    $("#pCap").textContent = p.cap;
+    $("#pAnalyze").dataset.preset = id;
+    var st = $("#pStrokes");
+    if (p.strokes.length) {
+      var max = Math.max.apply(null, p.strokes.map(function (s) { return s[1]; }));
+      st.innerHTML = '<div class="bars">' + p.strokes.map(function (s) {
+        return "<span>" + esc(s[0]) + '</span><span class="b"><i style="width:' + Math.round(100 * s[1] / max) + '%"></i></span><span class="n">' + s[1] + (s[2] ? " · " + esc(s[2]) : "") + "</span>";
+      }).join("") + "</div>";
+    } else {
+      st.innerHTML = '<p class="dim">Todavía no se han analizado sus golpes. Su pasada barata ya está hecha: analizarla reutiliza ese trabajo (≈ 3 h por partido).</p><div style="margin-top:12px"><button class="btn pri sm" data-open="also" data-preset="' + id + '">Analizar sus golpes</button></div>';
+    }
+    $("#pMatches").innerHTML = p.matches.map(function (m) {
+      return '<div class="li"><div><div class="t">' + esc(m[0]) + '</div></div><div class="r"><span class="st ' + m[2] + '"><i></i>' + esc(m[1]) + "</span></div></div>";
+    }).join("");
+  }
+
+  /* ---------- Rutas ---------- */
+  var webTitles = { derecha: ["Derecha de Rybakina", "t-fh"], reves: ["Revés de Rybakina", "t-bh"], saque: ["Saque de Rybakina", "t-sv"], "saque-sabalenka": ["Saque de Sabalenka · provisional", "t-sv"] };
+  var lastScreen = "inicio";
+  function route() {
+    var h = (location.hash || "#inicio").slice(1);
+    var parts = h.split("/"), id = parts[0], arg = parts[1];
+    if (id === "web") {
+      var w = webTitles[arg] || webTitles.derecha;
+      $("#webTitle").textContent = w[0];
+      $("#webThumb").setAttribute("href", "#" + w[1]);
+      $("#webNote").textContent = arg === "saque-sabalenka"
+        ? "Provisional: faltan 12 golpes. La web lo dice en cada pantalla; nada inventado."
+        : "Se abre en la lección. Si falta el motor de la ventana, se abre en el navegador del sistema.";
+      document.body.classList.add("web"); window.scrollTo(0, 0); return;
+    }
+    document.body.classList.remove("web");
+    if (id === "add" || id === "also") { openDlg(id); id = lastScreen; }
+    if (!$('[data-screen="' + id + '"]')) id = "inicio";
+    if (id === "jugadora") fillPlayer(arg || "rybakina");
+    lastScreen = id;
+    $$(".screen").forEach(function (s) { s.classList.toggle("on", s.dataset.screen === id); });
+    var navId = { partido: "partidos", jugadora: "jugadoras" }[id] || id;
+    $$(".nav a").forEach(function (a) {
+      if (a.dataset.nav === navId) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", route);
+
+  /* ---------- Diálogos ---------- */
+  function openDlg(name, preset) {
+    var m = $("#dlg-" + name); if (!m) return;
+    if (name === "add") addStep(1);
+    if (name === "also") buildMatrix(preset);
+    m.classList.add("on");
+    var f = $("button.pri, .bigdrop", m); if (f) f.focus();
+  }
+  function closeDlg() { $$(".modal.on").forEach(function (m) { m.classList.remove("on"); }); }
+  window.tbOpen = openDlg; window.tbAddStep = function (n) { addStep(n); };
+  document.addEventListener("click", function (e) {
+    var o = e.target.closest("[data-open]");
+    if (o) { e.preventDefault(); openDlg(o.dataset.open, o.dataset.preset); return; }
+    if (e.target.closest("[data-close]")) { closeDlg(); return; }
+    if (e.target.classList.contains("modal")) closeDlg();
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") { closeDlg(); $("#casesPick").open = false; }
+    if ((e.key === "Enter" || e.key === " ") && e.target.matches(".drop[data-open], .bigdrop")) { e.preventDefault(); e.target.click(); }
+  });
+
+  /* Añadir partido */
+  var step = 1;
+  function addStep(n) {
+    step = n;
+    var dup = document.body.classList.contains("cases");
+    $$("#dlg-add [data-step]").forEach(function (s) { s.hidden = Number(s.dataset.step) !== n; });
+    $$("#dlg-add .steps span").forEach(function (s) {
+      var k = Number(s.dataset.s); s.className = k === n ? "on" : (k < n ? "done" : "");
+    });
+    $("#fileSize").textContent = dup ? "5,1 GB" : "5,6 GB";
+    $("#fileName").textContent = dup ? "Final_USO_copia_de_seguridad.mp4" : "2024_Brisbane_F_Rybakina_Sabalenka.mp4";
+    var next = $("#addNext"), back = $("#addBack");
+    back.hidden = n !== 2;
+    next.hidden = n === 2 && dup;
+    next.textContent = n === 1 ? "Elegir vídeo" : n === 2 ? "Confirmar y encolar" : "Hecho";
+    $("#addHint").textContent = n === 2 ? (dup ? "Reconocido por su contenido." : "Revisa los datos propuestos; con un clic basta.") : "Nada más que hacer: el resto es automático.";
+  }
+  $("#addNext").addEventListener("click", function () { if (step < 3) addStep(step + 1); else closeDlg(); });
+  $("#addBack").addEventListener("click", function () { addStep(1); });
+  var dz = $("#dropZone");
+  dz.addEventListener("click", function () { addStep(2); });
+  ["dragenter", "dragover"].forEach(function (ev) { dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.add("over"); }); });
+  ["dragleave", "drop"].forEach(function (ev) { dz.addEventListener(ev, function (e) { e.preventDefault(); dz.classList.remove("over"); if (ev === "drop") addStep(2); }); });
+
+  /* Analizar también */
+  var mPlayers = [
+    ["rybakina", "Rybakina", "4 partidos", true, 4],
+    ["sabalenka", "Sabalenka", "2 partidos", false, 2],
+    ["jabeur", "Jabeur", "1 partido", false, 1],
+    ["pavlyuchenkova", "Pavlyu\u00adchenkova", "1 partido", false, 1]
+  ];
+  var mStrokes = ["Derecha", "Revés", "Saque", "Volea"];
+  var sel = {};
+  function buildMatrix(preset) {
+    sel = {};
+    var cases = document.body.classList.contains("cases");
+    var html = '<span class="hd"></span>' + mStrokes.map(function (s) { return '<span class="hd">' + s + "</span>"; }).join("");
+    mPlayers.forEach(function (p) {
+      html += '<span class="pl">' + p[1] + "<small>" + p[2] + "</small></span>";
+      mStrokes.forEach(function (s, j) {
+        var key = p[0] + ":" + j;
+        var has = p[3] && j < 3 || (cases && p[0] === "sabalenka" && j === 2);
+        if (j === 3) html += '<span class="cell na" title="Pocos casos: sale como filtro dentro de derecha y revés">pocos casos</span>';
+        else if (has) html += '<span class="cell has">✓ hecho</span>';
+        else html += '<button type="button" class="cell" data-k="' + key + '" aria-pressed="false">+</button>';
+      });
+    });
+    $("#matrix").innerHTML = html;
+    if (preset && preset !== "rybakina") {
+      $$('#matrix .cell[data-k^="' + preset + ':"]').forEach(function (c) { toggleCell(c, true); });
+    }
+    updateCost();
+  }
+  function toggleCell(c, force) {
+    var on = force === undefined ? !sel[c.dataset.k] : force;
+    if (on) sel[c.dataset.k] = 1; else delete sel[c.dataset.k];
+    c.classList.toggle("sel", on); c.setAttribute("aria-pressed", String(on)); c.textContent = on ? "✓" : "+";
+  }
+  $("#matrix").addEventListener("click", function (e) {
+    var c = e.target.closest("button.cell"); if (!c) return; toggleCell(c); updateCost();
+  });
+  function updateCost() {
+    var keys = Object.keys(sel), byP = {};
+    keys.forEach(function (k) { var p = k.split(":")[0]; (byP[p] = byP[p] || []).push(Number(k.split(":")[1])); });
+    var hours = 0, mins = 0, names = [], lines = [];
+    mPlayers.forEach(function (p) {
+      var cs = byP[p[0]]; if (!cs) return;
+      var what = cs.map(function (j) { return mStrokes[j].toLowerCase(); }).join(", ");
+      names.push(p[1]);
+      if (p[3]) { mins += 5 * cs.length; lines.push(p[1] + " (" + what + "): solo otro informe, minutos"); }
+      else {
+        var hasDone = document.body.classList.contains("cases") && p[0] === "sabalenka";
+        if (hasDone) { mins += 5 * cs.length; lines.push(p[1] + " (" + what + "): su pasada fina ya está; solo informes"); }
+        else { hours += 3 * p[4]; mins += 5 * (cs.length - 1); lines.push(p[1] + " (" + what + "): pasada fina en " + p[2] + ", reutiliza la pasada barata"); }
+      }
+    });
+    var go = $("#alsoGo");
+    if (!keys.length) { $("#alsoCost").innerHTML = '<b>Elige al menos una casilla</b><span class="dim">Verás el coste antes de confirmar.</span>'; go.disabled = true; return; }
+    var tot = hours ? "≈ " + hours + " h" + (mins ? " " + mins + " min" : "") : "≈ " + mins + " min";
+    $("#alsoCost").innerHTML = "<b>" + keys.length + (keys.length === 1 ? " análisis nuevo" : " análisis nuevos") + " · " + tot + "</b>" +
+      lines.map(function (l) { return '<span class="dim">' + esc(l) + "</span>"; }).join("") +
+      (hours ? '<span class="dim3 sm">El golpe sale de la misma pasada fina: añadir más golpes de la misma jugadora casi no cuesta.</span>' : "");
+    go.disabled = false;
+  }
+  $("#alsoGo").addEventListener("click", function () { closeDlg(); toast("Encolado. Lo verás en la Cola con su porqué."); });
+
+  /* Cola */
+  $("#pauseAll").addEventListener("click", function () {
+    var s = $("#pauseAll span"), p = s.textContent === "Pausar";
+    s.textContent = p ? "Reanudar" : "Pausar"; toast(p ? "Cola en pausa: el trabajo en curso guarda su ventana" : "Cola reanudada donde se quedó");
+  });
+  ["#nightOnly", "#nightOnly2"].forEach(function (id, i, all) {
+    $(id).addEventListener("change", function () { $(all[1 - i]).checked = this.checked; });
+  });
+
+  route();
+})();
+</script>
+</body>
+</html>
