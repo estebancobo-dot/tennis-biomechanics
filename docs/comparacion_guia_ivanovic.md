@@ -185,7 +185,7 @@ En «¿Aplica?»:
 | Errores de decisión | No | Juicio, no se mide | — |
 | Drills de dirección D1-D4 | Parcial: ejercicios de condición | Texto | — |
 | Resto: preparación corta, apoyo, contacto, split | Sí: `returns.py`, condiciones, `return_ready_depth_m`, `return_step_in_m` | — | — |
-| Tres restos (bloqueo, agresivo, cortado) | Parcial: sin medida de bloqueo | Sí | Clase «bloqueo» (preparación compacta + terminación corta) |
+| Tres restos (bloqueo, agresivo, cortado) | Sí (18-10): `class.return_type` (bloqueo, armado corto, swing completo, cortado), condición «Tipo de resto» | Sí | — |
 | Dónde colocarse; 1.er y 2.º saque; según tipo y dirección del saque | Sí: `serve_number`, `serve_dir`, `return_side` | — | — |
 | Drills y errores del resto | Parcial | Texto | — |
 
@@ -267,7 +267,7 @@ En «¿Aplica?»:
 | 13 | «Sus principios» (5-6 frases desde su firma) y «Lo que la distingue» (mejora 12) | M | Cópiala, arriba |
 | 14 | Táctica medida: proporción de cambios de dirección, secuencias de 2-3 golpes, % de botes en los últimos 2 m, «Cómo usa su derecha» | M-L | Sus golpes → En la pista; Conclusiones |
 | 15 | Bajo presión y en rachas: también dirección y profundidad, no solo técnica | M | Conclusiones (`c-group` «Táctica») |
-| 16 | Resto: clase «bloqueo» | S | `returns.py` / clases, condición «Saque que resta» |
+| 16 | Resto: clase «bloqueo» — **hecho (18-10)**: `returns.return_type`, condición «Tipo de resto» | S | `returns.py` / clases, condición «Saque que resta» |
 | 17 | Fuentes que faltan en COACH: Iino y Kojima 2001, Bahamonde y Knudson 2003, Kawamoto 2019, LTA, Wulf, metaanálisis de autoinstrucciones | S | `explain.COACH`, `learn.py` |
 | 18 | Medidas de lado (Vista lateral): codo por delante de la cadera, inclinación del tronco en la espera | M | `practice.side_metrics`, Vista lateral y Cópiala |
 | 19 | Progresión por etapas sin calendario (criterio de paso) y paso a pista. Antes, confirmar con el usuario: descartó la hoja de sesión | S | «Tu plan» |

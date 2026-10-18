@@ -138,7 +138,7 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 
 Mismo golpe, otra situación: la bola más rápida del punto y sin tiempo. Se reconoce y se mide con lo que
 da la tele (marcador, sonido, bola, pies en la pista; `returns.py`). En «Cópiala» son condiciones
-(«Momento del punto», «Saque que resta», «Dirección del saque», «Lado del resto») y dos puntos de la fase 1.
+(«Momento del punto», «Saque que resta», «Tipo de resto», «Dirección del saque», «Lado del resto») y dos puntos de la fase 1.
 
 | Elemento | Quién lo da | Estado | Implementación / acción |
 |---|---|---|---|
@@ -149,7 +149,7 @@ da la tele (marcador, sonido, bola, pies en la pista; `returns.py`). En «Cópia
 | Resto: posición de espera | Tennis Australia, ITF | ✔ | `return_ready_depth_m` (m respecto a la línea de fondo cuando saca la rival) |
 | Resto: entrar hacia la bola | ITF | ✔ | `return_step_in_m` (m hacia la red de la espera al contacto) |
 | Resto: split step respecto al saque | ITF; Kovacs 2009 | ✔ | `split_landing_vs_opp_s` (en un resto, el golpe de la rival es el saque) |
-| Resto: armado corto (bloqueo) o swing completo; terminación | ITF; Tennis Australia | ◐ | `class.takeback`, `class.finish` y su firma con la condición «Saque que resta» (sin medida propia de bloqueo) |
+| Resto: armado corto (bloqueo) o swing completo; terminación | ITF; Tennis Australia; guía Ivanovic | ✔ | `class.return_type` (`returns.return_type`, condición «Tipo de resto»): **bloqueo** = preparación compacta (`class.takeback` «compacta», recorrido de la mano < 35 % de su altura) + terminación corta (la mano acaba delante, sin cruzar el cuerpo, y por debajo del hombro: el −3 % de altura de `finish_class`); **armado corto** = compacta + terminación completa; **swing completo** = preparación amplia + terminación completa; **cortado** = mano de arriba abajo antes del contacto (`class.swing`, trayectoria, no el efecto). Solo sus restos de derecha del lado cercano; amplia + terminación corta no se clasifica. Fiabilidad: los cambios de sus partes al mover las fases; si es ruido, no se ofrece |
 | Resto: dirección y profundidad de su resto | TennisViz | ✔ | `shot_type`, `shot_depth_m` con la condición «Momento del punto: resto» |
 | Resto: tiempo que tiene desde el saque | Hawk-Eye (velocidad del saque) | ✔ | `class.ball_speed`: condición «Velocidad de la bola», del tiempo entre el saque y su golpe (`time_available_s`) |
 | Velocidad y efecto del saque que resta (km/h, rpm) | Hawk-Eye | ✘ | bola pequeña y borrosa; se ve indirectamente en el tiempo disponible |

@@ -814,6 +814,7 @@ const REL_ES = { fiable: ["Fiables", "se dan como valor suyo"], dudosa: ["Dudosa
 function renderReliability() {
   const R = DATA.reliability || {}, labels = {};
   ((LEARN || {}).phases || []).forEach(ph => ph.checkpoints.forEach(c => { labels[c.key] = [c.label, ph.title.replace(/^\d · /, ""), c.unit, c.dec]; }));
+  Object.entries((LEARN || {}).conditions || {}).forEach(([d, c]) => { labels["class." + d] = labels["class." + d] || [c.name, "Condición de «Cópiala»", "", 0]; });
   const by = {}; Object.entries(R).forEach(([k, v]) => (by[v.verdict] = by[v.verdict] || []).push([k, v]));
   const u = un => un === "°" ? "°" : un ? " " + un : "";
   const row = ([k, v]) => { const [l, ph, un, dec] = labels[k] || [k, "", "", 1];

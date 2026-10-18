@@ -504,6 +504,14 @@ CONDITIONS = {
         "primer saque": ("Resto de primer saque: bola más rápida y plana; el objetivo es meterla profunda.", "Espera más atrás, armado mínimo (casi un bloqueo) y cara firme hacia el centro.", "Restos de primeros saques fuertes bloqueando al centro, profundo; 3×10."),
         "segundo saque": ("Resto de segundo saque: bola más lenta y con más efecto; la ocasión de atacar.", "Espera más adentro, entra hacia la bola y haz el swing completo hacia una esquina.", "Segundos saques con efecto: entra y ataca a la esquina; 3×10."),
     }),
+    # the kind of return (returns.return_type): from her preparation, finish and swing path, with the
+    # boundaries those classes already have; only her near-side forehand returns carry it
+    "return_type": ("Tipo de resto", {
+        "bloqueo": ("Resto bloqueado: preparación compacta y terminación corta, delante del cuerpo; aprovecha la velocidad del saque.", "Gira los hombros con la raqueta delante, cara firme y empuja hacia el centro con una terminación corta hacia el objetivo.", "Primeros saques fuertes desde la línea de servicio: bloquea al centro, profundo, sin swing; 3×10."),
+        "armado corto": ("Armado corto y terminación completa: prepara poco por falta de tiempo, pero no frena el brazo.", "Armado compacto y swing hasta el final: termina sobre el hombro o alrededor del cuerpo.", "Restos de saques medios: armado de media raqueta y terminación completa; 3×10."),
+        "swing completo": ("Resto con swing completo: el resto agresivo, cuando el saque deja tiempo (más lento o de segundo saque).", "Entra hacia la bola, prepara completo y golpea hacia una esquina.", "Segundos saques con efecto: entra y ataca con swing completo a una esquina; 3×10."),
+        "cortado": ("Resto cortado: la mano va de arriba abajo antes del contacto (trayectoria medida, no el efecto); para ganar tiempo con saques muy rápidos, abiertos o bajos.", "Cara algo abierta y swing corto de arriba abajo; busca profundidad y recupera.", "Saques abiertos y rápidos: resta cortado y profundo al centro; 3×8."),
+    }),
     "serve_dir": ("Dirección del saque", {
         "abierto": ("Saque abierto: te saca de la pista; hay que llegar y recuperar.", "Primer paso diagonal hacia la bola (cruzado si va muy abierto), armado corto y recuperación inmediata hacia el centro.", "Saques abiertos: resta cruzado y vuelve al centro en 3 pasos."),
         "al cuerpo": ("Saque al cuerpo: te quita espacio para el brazo.", "Aparta el cuerpo con un paso lateral hacia el lado contrario a la derecha para dejar sitio al brazo.", "Saques al cuerpo: paso de apertura y resto al centro; 3×8."),
@@ -514,7 +522,7 @@ CONDITIONS = {
         "ventaja": ("Resto desde el lado de ventaja.", "La derecha recibe sobre todo saques a la T o al cuerpo: prepara el paso de apertura.", "Restos en ventaja con saques a la T y al cuerpo."),
     }),
 }
-RELAX_ORDER = ["intent", "width", "serve_dir", "return_side", "serve_number", "depth", "ball_speed", "ball_height", "court_side", "contact_type", "swing", "movement", "stance_impact", "shot_type", "play"]
+RELAX_ORDER = ["intent", "width", "serve_dir", "return_side", "serve_number", "return_type", "depth", "ball_speed", "ball_height", "court_side", "contact_type", "swing", "movement", "stance_impact", "shot_type", "play"]
 
 # items of the user's matrix that TV cannot measure, with what to do about them anyway
 NOT_FROM_TV = [
@@ -636,6 +644,7 @@ GLOSSARY = [
     ("saque a la T", "Saque que bota junto a la línea central, la «T» que forman la línea central y la de saque."),
     ("saque abierto", "Saque que bota cerca de la línea lateral y saca a quien resta de la pista."),
     ("saque al cuerpo", "Saque dirigido a quien resta, al centro de su cuadro: le quita espacio para el brazo."),
+    ("resto bloqueado", "Resto con preparación compacta y terminación corta, delante del cuerpo: se usa la velocidad del saque (también «bloqueo»)."),
     ("split step", "Pequeño salto con los dos pies justo cuando golpea la rival; al aterrizar sales hacia la bola."),
     ("armado", "Final de la preparación: hombros girados al máximo y raqueta arriba y atrás, lista para bajar."),
     ("preparación", "Desde que sabes que es derecha hasta el armado: giro de hombros y raqueta atrás."),

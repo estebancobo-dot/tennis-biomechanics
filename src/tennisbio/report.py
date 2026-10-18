@@ -550,7 +550,14 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
     data["learn"] = content()
     from .reliability import assess
     units = {c["key"]: c.get("unit") for ph in data["learn"]["phases"] for c in ph["checkpoints"] if not c["key"].startswith("practice.")}
-    data["reliability"] = assess([s for s in raw if s.get("side") != "far"], units)
+    # the conditions built from technique (the kind of return) pass the same gate: a class that flips
+    # with the phase instants (noise) is not offered as hers
+    gated = ("class.return_type",)
+    data["reliability"] = assess([s for s in raw if s.get("side") != "far"], {**units, **{k: "" for k in gated}})
+    for k in gated:
+        if (data["reliability"].get(k) or {}).get("verdict") in ("ruido", "sesgo"):
+            for r in data["strokes"]:
+                (r.get("cl") or {}).pop(k.split(".", 1)[1], None)
     data["metric_rel"] = REL_KEY
     from . import findings as F
     from .explain import model_view

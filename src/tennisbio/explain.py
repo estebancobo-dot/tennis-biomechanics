@@ -303,6 +303,7 @@ COACH = {
     "class.depth": ("Dentro de la pista se ataca; muy atrás se defiende con más altura: la técnica cambia con el sitio.", "TennisViz; ITF"),
     "class.court_side": ("Desde el lado del revés la derecha se rodea (invertida): otro apoyo y otra dirección.", "ITF; F3Set"),
     "class.serve_number": ("El resto de primer saque es casi un bloqueo; el de segundo saque, la ocasión de atacar.", "Tennis Australia; ITF"),
+    "class.return_type": ("Hay tres restos: el bloqueo (preparación compacta y terminación corta, con saques rápidos), el agresivo con swing completo (saques lentos o segundos) y el cortado para ganar tiempo.", "ITF; Tennis Australia; guía de la derecha de Ivanovic"),
     "class.serve_dir": ("Abierto, al cuerpo o a la T: cada saque pide un primer paso distinto (diagonal, de apertura o hacia el centro).", "ITF; Kovacs 2009"),
     "class.return_side": ("En iguales y en ventaja la derecha recibe saques distintos: abiertos en iguales, a la T o al cuerpo en ventaja.", "Tennis Australia"),
     "return_ready_depth_m": ("Dónde espera el saque: más atrás gana tiempo, más adentro quita tiempo a la rival.", "ITF; Tennis Australia"),

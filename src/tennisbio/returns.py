@@ -16,12 +16,30 @@ stands (the opponent's hit was the first sound of the shot). Its variants:
   disagree the side is not given.
 - return_ready_depth_m: where she waits for the serve (m from the baseline, − behind it), from her feet
   when the opponent hits; return_step_in_m: how far she moves forwards from there to the contact.
+- return_type (forehand, near side only): the kind of return coaches name (ITF, Tennis Australia, the
+  Ivanovic guide: block, aggressive, sliced), built only from classes and measures her stroke already has,
+  with their own boundaries (no new number):
+    cortado        the hand path just before contact goes from high to low (class swing «cortado»,
+                   swing_low_to_high < −5°): a path, not spin (rpm is not measurable from TV);
+    bloqueo        compact preparation (class takeback «compacta»: hand path < 35 % of her height) and a
+                   short finish: the hand ends in front of her (it does not cross to the other side of
+                   the body, class finish) and below the shoulder (finish.wrist_dom_vs_shoulder under the
+                   −3 % of height that finish_class uses for «over the shoulder»);
+    armado corto   compact preparation and a full finish (over the shoulder, around the body or reverse);
+    swing completo a non-compact preparation (amplia / en bucle alto) and a full finish.
+  A wide preparation with a short finish is none of them: not given. Its repeatability (reliability.py)
+  is that of its parts: the share of flips of the takeback and finish classes when the phase instants
+  move, plus 1 when the finish height is within its own neighbouring-frame change of the boundary.
 """
 from __future__ import annotations
 
 NET_Y = 11.885          # her frame: her baseline at y = 0, the net at 11.885 m
 SERVICE_Y = NET_Y - 6.40
 BOX_W = 4.115
+# boundaries reused from technique.py (classes «takeback» and finish_class), never new numbers
+FINISH_SHOULDER_PCT = -3.0           # finish_class: the hand at or above the shoulder within 3 % of height
+SHORT_FINISH = ("limpiaparabrisas",)  # finish classes with the hand staying in front of her (not crossing)
+RETURN_TYPES = ("bloqueo", "armado corto", "swing completo", "cortado")
 RANK = {"0": 0, "15": 1, "30": 2, "40": 3, "AD": 4, "A": 4, "AV": 4, "V": 4}
 
 
@@ -127,6 +145,28 @@ def return_of_serve(d: dict, k: int | None, shot: tuple[float, float] | None, ca
     return out
 
 
+def return_type(tech: dict) -> tuple[str | None, float | None]:
+    """(kind of return, its flip estimate) from the classes and measures of one forehand (technique)."""
+    cl = tech.get("classes") or {}
+    jit = tech.get("jitter") or {}
+    tb, fin, sw = cl.get("takeback"), cl.get("finish"), cl.get("swing")
+    fh = ((tech.get("phases") or {}).get("finish") or {}).get("wrist_dom_vs_shoulder")
+    if isinstance(sw, str) and sw.startswith("cortado"):
+        js = jit.get("class.swing")
+        return "cortado", (js if isinstance(js, (int, float)) else None)
+    flips = [jit[k] for k in ("class.takeback", "class.finish", "class.swing") if isinstance(jit.get(k), (int, float))]
+    jf = jit.get("finish.wrist_dom_vs_shoulder")
+    if isinstance(fh, (int, float)) and isinstance(jf, (int, float)):
+        flips.append(1.0 if abs(fh - FINISH_SHOULDER_PCT) <= jf else 0.0)
+    flip = round(min(1.0, sum(flips)), 2) if isinstance(jit.get("class.takeback"), (int, float)) else None
+    if tb is None or fin is None or not isinstance(fh, (int, float)):
+        return None, None
+    short = fin in SHORT_FINISH and fh < FINISH_SHOULDER_PCT
+    if tb == "compacta":
+        return ("bloqueo" if short else "armado corto"), flip
+    return (None if short else "swing completo"), (None if short else flip)
+
+
 def apply(d: dict, k: int | None, shot: tuple[float, float] | None, cands: list[dict]) -> None:
     """Writes the return into the stroke: is_return, its classes and its values (technique.stroke)."""
     r = return_of_serve(d, k, shot, cands)
@@ -138,12 +178,20 @@ def apply(d: dict, k: int | None, shot: tuple[float, float] | None, cands: list[
         return
     cl = tech.setdefault("classes", {})
     st = tech.setdefault("stroke", {})
-    for key in ("serve_number", "serve_dir", "return_side"):
+    for key in ("serve_number", "serve_dir", "return_side", "return_type"):
         cl.pop(key, None)
     for key in ("return_ready_depth_m", "return_step_in_m"):
         st.pop(key, None)
+    (tech.get("jitter") or {}).pop("class.return_type", None)
     if r["is_return"]:
         cl.update(r["classes"])
         st.update(r["values"])
+        # the kind of return: only her forehands seen near (far side: no takeback, finish or swing)
+        if d.get("side", "near") != "far" and d.get("stroke", "forehand") == "forehand":
+            kind, flip = return_type(tech)
+            if kind:
+                cl["return_type"] = kind
+                if flip is not None:
+                    tech.setdefault("jitter", {})["class.return_type"] = flip
     elif cl.get("play") == "resto":
         cl["play"] = "inicio del punto" if (k or 0) <= 2 else "peloteo"
