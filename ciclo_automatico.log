@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261017222002
+Start time: 20261018073429
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 13648
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 4412
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,16 +17,55 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-17 22:20:02] Codigo nuevo (08d60f5 -> 4d9f71c): 1 ficheros
-    src/tennisbio/report_template.html
+==> [2026-10-18 07:34:29] Codigo nuevo (4d9f71c -> 2c0c4eb): 15 ficheros
+    docs/aplicacion_local.md
+    scripts/windows/ciclo_automatico.ps1
+    src/tennisbio/app/__init__.py
+    src/tennisbio/app/cli.py
+    src/tennisbio/app/core.py
+    src/tennisbio/app/db.py
+    src/tennisbio/app/engine.py
+    src/tennisbio/app/index.py
+    src/tennisbio/app/jobs.py
+    src/tennisbio/app/quality.py
+    src/tennisbio/app/storage.py
+    src/tennisbio/app/videos.py
+    src/tennisbio/cli.py
+    tests/test_app_core.py
+    tests/test_auto_cycle.py
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating 08d60f5..4d9f71c
+Updating 4d9f71c..2c0c4eb
 Fast-forward
- src/tennisbio/report_template.html | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-Resolved 110 packages in 1ms
-Checked 83 packages in 2ms
+ docs/aplicacion_local.md             |  34 +++
+ scripts/windows/ciclo_automatico.ps1 |  13 +
+ src/tennisbio/app/__init__.py        |  12 +
+ src/tennisbio/app/cli.py             |  90 +++++++
+ src/tennisbio/app/core.py            | 136 ++++++++++
+ src/tennisbio/app/db.py              | 155 ++++++++++++
+ src/tennisbio/app/engine.py          |  98 ++++++++
+ src/tennisbio/app/index.py           | 174 +++++++++++++
+ src/tennisbio/app/jobs.py            | 302 ++++++++++++++++++++++
+ src/tennisbio/app/quality.py         | 102 ++++++++
+ src/tennisbio/app/storage.py         | 105 ++++++++
+ src/tennisbio/app/videos.py          | 186 ++++++++++++++
+ src/tennisbio/cli.py                 |  12 +-
+ tests/test_app_core.py               | 470 +++++++++++++++++++++++++++++++++++
+ tests/test_auto_cycle.py             |  12 +
+ 15 files changed, 1898 insertions(+), 3 deletions(-)
+ create mode 100644 src/tennisbio/app/__init__.py
+ create mode 100644 src/tennisbio/app/cli.py
+ create mode 100644 src/tennisbio/app/core.py
+ create mode 100644 src/tennisbio/app/db.py
+ create mode 100644 src/tennisbio/app/engine.py
+ create mode 100644 src/tennisbio/app/index.py
+ create mode 100644 src/tennisbio/app/jobs.py
+ create mode 100644 src/tennisbio/app/quality.py
+ create mode 100644 src/tennisbio/app/storage.py
+ create mode 100644 src/tennisbio/app/videos.py
+ create mode 100644 tests/test_app_core.py
+Resolved 110 packages in 0.90ms
+Checked 83 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -37,7 +76,7 @@ yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
     (paso terminado en 3 s)
 
-==> [2026-10-17 22:20:05] Que hace falta: informe
+==> [2026-10-18 07:34:32] Que hace falta: informe
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
@@ -45,15 +84,15 @@ Montajes: 2 en C:\tenis\output\_smoke\exportar\montajes
 Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
 Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
 Auditoría: 285 cumplidos, 0 no cumplidos, 116 sin golpes suficientes, 21 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-Hecho en 139 s, sin volver a analizar vídeo.
-    (paso terminado en 2 min 19 s)
+Hecho en 137 s, sin volver a analizar vídeo.
+    (paso terminado en 2 min 17 s)
 
-==> [2026-10-17 22:22:24] Revision automatica frente a la ejecucion anterior
+==> [2026-10-18 07:36:50] Revision automatica frente a la ejecucion anterior
 # Revisión automática: OK
 Ciclo automatico terminado (informe).
     (paso terminado en 0 s)
-Empezado 2026-10-17 22:20:00 - terminado 2026-10-17 22:22:24 - duracion total 2 min 23 s
+Empezado 2026-10-18 07:34:27 - terminado 2026-10-18 07:36:50 - duracion total 2 min 22 s
 **********************
 Windows PowerShell transcript end
-End time: 20261017222224
+End time: 20261018073650
 **********************
