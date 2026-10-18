@@ -10,7 +10,7 @@ import time
 from pathlib import Path
 
 from .. import pipeline
-from . import jobs, storage
+from . import jobs, notify, storage
 from .db import STROKE_ES
 from .engine import MAIN_STAGES, USABLE
 
@@ -210,7 +210,8 @@ def snapshot(app, with_storage: bool = False) -> dict:
         "now": None, "eta": {"seconds": e["seconds"], "ends": e["ends"], "text": jobs.fmt_duration(e["seconds"]) if e["seconds"] else ""},
         "notices": notices, "analyses": analyses, "matches": matches, "players": _players(app),
         "queue": _queue(app, labels), "last": last,
-        "settings": {"franja": db.setting("franja"), "pausa": bool(db.setting("pausa", False))},
+        "settings": {"franja": db.setting("franja"), "pausa": bool(db.setting("pausa", False)),
+                     "avisos": notify.settings(db), "copia": db.setting("copia")},
         "rebuilt": bool(getattr(app, "rebuilt", False)),
     }
     if running:

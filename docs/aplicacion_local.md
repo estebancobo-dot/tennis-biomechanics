@@ -264,3 +264,55 @@ Cada parte se valida sola: pruebas con datos sintéticos de cada caso de la secc
   - la copia al móvil;
   - el acceso directo en el escritorio.
 - **Hasta entonces,** esas pantallas lo dicen en lugar de enseñar botones que no hacen nada.
+
+## 11. Estado (18-10): parte 3, avisos, icono, disco y copia
+
+**Avisos de Windows** (`app/notify.py`):
+- Los hace el propio Windows (WinRT a través de su PowerShell), sin instalar nada y sin abrir consola.
+- Cada aviso del índice sale una sola vez, y otra solo si cambia su texto.
+- En Ajustes se eligen: al terminar, al fallar y con poco disco.
+
+**Icono junto al reloj** (`pystray`, gratis):
+- Su menú: abrir la ventana, pausar o reanudar la cola, salir.
+- Su etiqueta dice qué hace y a qué hora termina.
+- Cerrar la ventana la esconde y la cola sigue trabajando. Solo «Salir» la para; el trabajo en curso sigue al volver.
+- Un segundo doble clic no arranca otra cola: avisa de que ya está abierto.
+
+**Disco:** el guardián corre antes de cada trabajo en el bucle de la cola (aviso por debajo de 40 GB, liberación de lo regenerable por debajo de 20 GB). Sus avisos llegan también como avisos de Windows.
+
+**Copia a USB** (`app/backup.py`, pantalla Almacenamiento):
+- **Qué copia:** a `<USB>\tennisbio_copia\` van el índice, las fichas, el catálogo, cada partido (resultados, cachés y recortes) y los análisis en uso.
+- **Los vídeos:** solo si se marca la casilla.
+- **Cómo:** es incremental, comprueba que cabe antes de empezar y nunca borra nada, ni en el PC ni en el USB.
+
+**Pruebas:** `tests/test_app_extras.py`.
+
+**En el PC:** la petición «ventana» comprueba, sin enseñar nada, que Windows puede crear el aviso, que el icono se puede crear y qué copiaría la copia.
+
+## 12. Carpetas: qué va dónde
+
+```
+C:\tenis\
+  videos\                     los vídeos de entrada, como quieras (subcarpetas incluidas)
+  output\
+    <partido>\                un partido: etapas, golpes, cachés, recortes (lo escribe el análisis)
+    analisis\<jugadora>_<golpe>\
+        actual\               la web en uso (index.html) y su auditoría
+        v1, v2…\              versiones anteriores (las dos últimas se guardan)
+        pendiente\            una versión que empeoró, a la espera
+    _smoke\, _poc9_largo\     pruebas del ciclo automático (las mantiene el ciclo)
+  datos\
+    tennisbio.db              el índice (se reconstruye solo desde las carpetas)
+    diagnostico\              ficheros de los errores
+  tennis-biomech\             el programa
+    config\players\*.yaml     las fichas de las jugadoras
+```
+
+**Los vídeos no se ordenan por jugadora.** Un partido tiene dos jugadoras: la final Sabalenka – Rybakina sirve para el análisis de las dos. Si el vídeo estuviera en `elena_rybakina\`, el de Sabalenka no estaría en su carpeta, y copiarlo duplicaría 5 GB. La relación vídeo → partido → jugadoras la guarda el índice.
+
+**Si quieres orden, ordénalos por torneo o por año.** Por ejemplo `videos\2023\AO_final_Sabalenka_Rybakina.mkv`. La aplicación los encuentra en subcarpetas y los reconoce por su contenido: moverlos o renombrarlos no recalcula nada.
+
+**Las salidas y las fichas no se tocan a mano:**
+- cada partido tiene su carpeta y cada análisis la suya;
+- la ficha de una jugadora la crea y la edita la aplicación (pantalla Jugadoras);
+- la base de datos es solo un índice: si se pierde, se rehace.

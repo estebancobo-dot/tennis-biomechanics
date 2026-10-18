@@ -14,8 +14,9 @@ import webbrowser
 from dataclasses import asdict
 from pathlib import Path
 
-from . import jobs, quality, state, storage, videos
+from . import backup, jobs, notify, state, storage, videos
 from .core import App
+from .db import STROKE_ES
 
 UI = Path(__file__).with_name("ui.html")
 VIDEO_TYPES = ("Vídeos (*.mp4;*.mkv;*.ts;*.mov;*.avi;*.webm)", "Todos los ficheros (*.*)")
@@ -149,21 +150,166 @@ class Api:
         open_path(p)
         return True
 
+    # part 3: notifications and backup
+    def notices_settings(self, d: dict) -> dict:
+        cur = notify.settings(self.app.db)
+        cur.update({k: bool(v) for k, v in (d or {}).items() if k in notify.DEFAULT})
+        self.app.db.set_setting("avisos", cur)
+        return cur
 
-def worker(cfg: dict, stop: threading.Event, idle_s: float = 30.0):
-    """The queue, in the background while the window is open (its own connection to the index)."""
+    def drives(self) -> list:
+        return [{**d, "plan": None} for d in backup.removable_drives()]
+
+    def backup_plan(self, root: str, videos: bool = False) -> dict:
+        with self.lock:
+            p = backup.plan(self.app, Path(root), bool(videos))
+        return {k: v for k, v in p.items() if k != "todo"}
+
+    def backup(self, root: str, videos: bool = False) -> str:
+        """Starts the copy in the background; its progress and result are in the state («copia»)."""
+        if getattr(self, "_bk", None) and self._bk.is_alive():
+            return "Ya hay una copia en marcha"
+        self.backup_progress = {"done": 0, "total": 0, "bytes": 0, "dest": root}
+
+        def go():
+            try:
+                with self.lock:
+                    res = backup.run(self.app, Path(root), bool(videos),
+                                     lambda i, n, b: self.backup_progress.update(done=i, total=n, bytes=b))
+                self.app.db.notice("backup", "ok" if not res["errors"] else "aviso",
+                                   f"Copia de seguridad hecha en {root}: {res['copied']} ficheros nuevos o cambiados"
+                                   f" ({storage._gb(res['bytes'])} GB). " + ("Nada se ha borrado." if not res["errors"]
+                                                                             else f"{len(res['errors'])} ficheros no se pudieron copiar."))
+            except Exception as e:               # noqa: BLE001 — it does not fit, the drive was pulled out…
+                self.app.db.notice("backup", "aviso", f"La copia de seguridad no se hizo: {e}")
+            finally:
+                self.backup_progress = None
+        self._bk = threading.Thread(target=go, name="copia", daemon=True)
+        self._bk.start()
+        return "Copia en marcha: solo lo nuevo o cambiado; no se borra nada"
+
+    def backup_state(self) -> dict | None:
+        return getattr(self, "backup_progress", None)
+
+
+def worker(cfg: dict, stop: threading.Event, idle_s: float = 30.0, tray=None):
+    """The queue, in the background while the program runs (its own connection to the index): one job at a
+    time, the disk guard before each, the Windows notifications after, the tray label kept current."""
     app = App(cfg)
     try:
         while not stop.is_set():
-            ran = jobs.work(app.db, app.paths, app.engine, cfg, once=True, stop=stop.is_set)
+            ran = jobs.work(app.db, app.paths, app.engine, cfg, once=True, max_jobs=1, stop=stop.is_set)
+            notify.send_pending(app.db)
+            if tray is not None:
+                tray.update(tray_text(app))
             if not ran:
                 stop.wait(idle_s)
     finally:
         app.close()
 
 
+def tray_text(app) -> str:
+    """The label of the icon next to the clock: what it is doing and when it ends (≤ 127 characters)."""
+    db = app.db
+    run_ = db.one("SELECT * FROM jobs WHERE state='en curso' ORDER BY id LIMIT 1")
+    if db.setting("pausa", False):
+        txt = "Tennisbio · cola en pausa"
+    elif run_:
+        what = (f"informe {STROKE_ES.get(run_['stroke'], run_['stroke'])} de {run_['player']}" if run_["kind"] == "informe"
+                else f"{run_['match']}")
+        e = jobs.eta(db)
+        txt = f"Tennisbio · analizando {what}" + (f" · termina {e['ends']}" if e["ends"] else "")
+    else:
+        n = len(db.q("SELECT id FROM jobs WHERE state IN ('pendiente', 'esperando espacio', 'por confirmar')"))
+        txt = "Tennisbio · " + (f"{n} trabajo(s) esperando" if n else "todo al día")
+    crit = db.one("SELECT count(*) AS n FROM notices WHERE level='crit'")["n"]
+    return (txt + (f" · {crit} aviso(s)" if crit else ""))[:127]
+
+
+def tray_image(size: int = 64):
+    """The «TB» mark of the window, drawn (no image file to ship)."""
+    from PIL import Image, ImageDraw, ImageFont
+    im = Image.new("RGBA", (size, size), (0, 0, 0, 0))
+    d = ImageDraw.Draw(im)
+    d.rounded_rectangle([2, 2, size - 3, size - 3], radius=size // 5, fill=(212, 240, 58, 255))
+    try:
+        f = ImageFont.truetype("arialbd.ttf", size // 2 - 4)
+    except OSError:
+        f = ImageFont.load_default()
+    d.text((size / 2, size / 2), "TB", fill=(17, 17, 17, 255), font=f, anchor="mm")
+    return im
+
+
+class Tray:
+    """The icon next to the clock (pystray, free): open the window, pause or resume the queue, quit. Closing
+    the window only hides it: the queue keeps working; «Salir» stops it (the job in course resumes later)."""
+
+    def __init__(self, app: App, window_ref, stop: threading.Event):
+        import pystray
+        self.app, self.win, self.stop = app, window_ref, stop
+        self.quitting = False
+        m = pystray.Menu
+        it = pystray.MenuItem
+        self.icon = pystray.Icon("tennisbio", tray_image(), "Tennisbio", menu=m(
+            it("Abrir Tennisbio", self.open, default=True),
+            it(lambda i: "Reanudar la cola" if self.app.db.setting("pausa", False) else "Pausar la cola", self.toggle),
+            it("Salir (la cola se para y sigue al volver)", self.quit)))
+
+    def start(self):
+        threading.Thread(target=self.icon.run, name="bandeja", daemon=True).start()
+
+    def update(self, text: str):
+        try:
+            self.icon.title = text
+        except Exception:                         # noqa: BLE001 — the icon is cosmetic: never stop the queue
+            pass
+
+    def open(self, *_):
+        self.win.show()
+        self.win.restore()
+
+    def toggle(self, *_):
+        self.app.db.set_setting("pausa", not self.app.db.setting("pausa", False))
+
+    def quit(self, *_):
+        self.quitting = True
+        self.stop.set()
+        self.icon.stop()
+        self.win.destroy()
+
+    def on_closing(self) -> bool:
+        """The window's ✕: hide it and keep working (only once, a notification says where it went)."""
+        if self.quitting:
+            return True
+        self.win.hide()
+        if not self.app.db.setting("bandeja_avisada", False):
+            notify.show("Tennisbio sigue trabajando", "La cola sigue junto al reloj. Ábrela con el icono TB; «Salir» la para.")
+            self.app.db.set_setting("bandeja_avisada", True)
+        return False
+
+
+def already_open(app) -> bool:
+    """Only one Tennisbio at a time (two queues would do the same work twice): <data>/ventana.pid holds the
+    running one; a second double click only says where it is."""
+    f = app.paths.data / "ventana.pid"
+    try:
+        pid = int(f.read_text().strip())
+    except (OSError, ValueError):
+        pid = 0
+    if pid and pid != os.getpid() and jobs._alive(pid):
+        return True
+    f.parent.mkdir(parents=True, exist_ok=True)
+    f.write_text(str(os.getpid()))
+    return False
+
+
 def run(cfg: dict, with_queue: bool = True) -> int:
     app = App(cfg)
+    if already_open(app):
+        notify.show("Tennisbio ya está abierto", "Está junto al reloj: pulsa el icono TB para abrir la ventana.")
+        print("Tennisbio ya está abierto (icono junto al reloj).")
+        app.close()
+        return 0
     page = write_page(app, with_storage=False)
     try:
         import webview
@@ -172,18 +318,28 @@ def run(cfg: dict, with_queue: bool = True) -> int:
     if webview is None:
         return fallback(app, page, "falta el motor de la ventana (pywebview)")
     stop = threading.Event()
-    th = threading.Thread(target=worker, args=(cfg, stop), name="cola", daemon=True) if with_queue else None
     api = Api(app)
     try:
         api.window = webview.create_window("Tennisbio", url=str(page), js_api=api, width=1360, height=900, min_size=(900, 600))
-        if th:
-            th.start()
+        tray = None
+        try:
+            tray = Tray(app, api.window, stop)
+            api.window.events.closing += tray.on_closing
+            tray.start()
+        except Exception as e:                   # noqa: BLE001 — without the icon, closing the window stops the queue
+            print(f"Sin icono junto al reloj: {e}")
+        if with_queue:
+            threading.Thread(target=worker, args=(cfg, stop), kwargs={"tray": tray}, name="cola", daemon=True).start()
         webview.start()
     except Exception as e:                       # noqa: BLE001 — no WebView2 runtime, no display…
         stop.set()
         return fallback(app, page, f"la ventana no arrancó ({type(e).__name__}: {e})")
     finally:
         stop.set()
+        try:
+            (app.paths.data / "ventana.pid").unlink()
+        except OSError:
+            pass
     app.close()
     return 0
 

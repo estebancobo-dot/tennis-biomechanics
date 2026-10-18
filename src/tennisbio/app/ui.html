@@ -838,15 +838,35 @@ body.web .webview { height: 100vh; }
       return '<div class="mrow"><span>' + esc(r.label) + '</span><span class="diskbar"><i class="k-imp" style="width:' + (100 * r.imp / mx) + '%"></i><i class="k-reg" style="width:' + (100 * r.reg / mx) + '%"></i><i class="k-tmp" style="width:' + (100 * r.tmp / mx) + '%"></i></span><span class="num">' + gb(r.total) + "</span></div>";
     }).join("") : '<p class="dim">Sin carpetas todavía.</p>') + '<p class="note" style="margin-top:8px">Imprescindible: resultados, cachés y los recortes que reproduce la web. Regenerable: versiones antiguas de los análisis, exportaciones y capturas. Temporal: ficheros a medio escribir.</p></div></div>';
     h += '<div class="grid2"><div class="panel"><header><h3>Liberar sin perder nada</h3></header><div class="body" style="display:grid;gap:12px"><div class="stats"><div class="stat-n"><b>' + gb(D.regenerable) + '</b><span>regenerables y temporales</span></div></div><p class="dim sm">Los vídeos y las medidas no se tocan.</p><div><button class="btn pri" data-act="free"' + (D.regenerable ? "" : " disabled") + ">Liberar " + gb(D.regenerable) + "</button></div></div></div>" +
-      '<div class="panel"><header><h3>Copia de seguridad</h3></header><div class="body" style="display:grid;gap:12px"><p class="dim sm">La copia a un USB llega en la parte 3 de la aplicación.</p></div></div></div>';
+      '<div class="panel"><header><h3>Copia de seguridad</h3></header><div class="body" style="display:grid;gap:12px" id="bkBody">' + backupPanel() + "</div></div></div>";
     return h;
   };
+  var DRIVES = null, BK = null;
+  function backupPanel() {
+    var c = S.settings.copia, h = '<div class="li" style="padding:0"><div><div class="t">' + (c ? "Última copia: " + esc(when(c.when)) : "Todavía no hay ninguna copia") + '</div><div class="s">' +
+      (c ? esc(c.dest) + " · " + c.copied + " ficheros nuevos o cambiados · " + gb(c.bytes) + (c.videos ? " · con vídeos" : "") : "Copia lo que costó horas: resultados, cachés, análisis e índice.") + "</div></div></div>";
+    if (BK) return h + '<div class="progress"><b style="width:' + (BK.total ? 100 * BK.done / BK.total : 0) + '%"></b></div><span class="dim3 sm">Copiando ' + BK.done + " de " + BK.total + " · " + gb(BK.bytes) + "</span>";
+    if (DRIVES === null) return h + '<span class="dim3 sm">Buscando USB…</span>';
+    if (!DRIVES.length) return h + '<p class="dim sm">Conecta un USB o una tarjeta: aparecerá aquí.</p><div><button class="btn sm" data-act="drives"><svg><use href="#i-usb"/></svg>Buscar de nuevo</button></div>';
+    return h + '<label class="sw"><input type="checkbox" id="bkVid"><span class="k"></span>Incluir también los vídeos (grandes)</label><div class="row-btns">' +
+      DRIVES.map(function (d) { return '<button class="btn" data-act="backup" data-arg="' + esc(d.root) + '"><svg><use href="#i-usb"/></svg>Copiar a ' + esc(d.root) + " · " + gb(d.free) + " libres</button>"; }).join("") +
+      '</div><p class="note">Solo copia lo nuevo o cambiado. Nunca borra nada, ni en el PC ni en el USB.</p>';
+  }
+  function backupPoll() {
+    call("backup_state").then(function (p) {
+      BK = p; var el = $("#bkBody"); if (el) el.innerHTML = backupPanel();
+      if (p) setTimeout(backupPoll, 1000); else refresh(true);
+    }).catch(function () {});
+  }
   R.ajustes = function () {
     var set = S.settings, P = S.paths, f = set.franja || ["23:00", "08:00"];
     return '<div class="head"><div><h1>Ajustes</h1><p class="sub">Pocos, y ninguno obligatorio.</p></div></div><div class="panel"><div class="body">' +
       '<div class="set"><div><b>Carpetas</b><span>De config/local.yaml</span></div><div class="ctl"><div class="path"><code>' + esc(P.output) + '</code></div><span class="dim3 sm">vídeos: ' + esc(P.videos) + " · índice: " + esc(P.data) + "</span></div></div>" +
       '<div class="set"><div><b>Franja horaria</b><span>Cuándo trabaja la iGPU</span></div><div class="ctl"><label class="sw"><input type="checkbox" id="nightOnly2"' + (set.franja ? " checked" : "") + '><span class="k"></span>Solo de noche</label><div class="window"><input class="timein" id="fFrom" value="' + esc(f[0]) + '" aria-label="Desde"> a <input class="timein" id="fTo" value="' + esc(f[1]) + '" aria-label="Hasta"></div></div></div>' +
-      '<div class="set"><div><b>Avisos de Windows</b></div><div class="ctl"><span class="dim3 sm">Llegan con la parte 3; hoy los avisos están en Inicio.</span></div></div>' +
+      '<div class="set"><div><b>Avisos de Windows</b><span>Además de en Inicio</span></div><div class="ctl">' +
+      [["fin", "Al terminar un trabajo"], ["fallo", "Al fallar"], ["disco", "Con poco disco"]].map(function (k) {
+        return '<label class="sw"><input type="checkbox" data-aviso="' + k[0] + '"' + ((set.avisos || {})[k[0]] !== false ? " checked" : "") + '><span class="k"></span>' + k[1] + "</label>";
+      }).join("") + "</div></div>" +
       '<div class="set"><div><b>Copia al móvil</b><span>Funciona sin conexión</span></div><div class="ctl"><span class="dim3 sm">Llega con la parte 4.</span></div></div>' +
       '<div class="set"><div><b>Actualizaciones</b></div><div class="ctl"><span>Versión <span class="mono">' + esc(S.version) + '</span></span><button class="btn sm" data-act="plan">Comprobar qué recalcular</button></div></div>' +
       '<div class="set"><div><b>Modo desarrollo</b><span>Para Claude</span></div><div class="ctl"><span class="dim3 sm">El ciclo automático sigue funcionando igual y sube los registros a la rama <span class="mono">pc-logs</span>.</span></div></div>' +
@@ -871,6 +891,7 @@ body.web .webview { height: 100vh; }
     if (!R[id]) id = "inicio";
     cur = id; curArg = arg;
     if (id === "almacenamiento" && !S.storage) call("storage").then(function (d) { S.storage = d; if (cur === "almacenamiento") paint(); }).catch(function () {});
+    if (id === "almacenamiento") call("drives").then(function (d) { DRIVES = d; var el = $("#bkBody"); if (el) el.innerHTML = backupPanel(); }).catch(function () { DRIVES = []; var el = $("#bkBody"); if (el) el.innerHTML = backupPanel(); });
     paint();
     var navId = { partido: "partidos", jugadora: "jugadoras" }[id] || id;
     $$(".nav a").forEach(function (a) { if (a.dataset.nav === navId) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
@@ -920,6 +941,15 @@ body.web .webview { height: 100vh; }
       else if (act === "archive") call("archive", arg).then(done("Archivado: sale de las listas, no se borra")).catch(fail);
       else if (act === "free") call("free").then(function (r) { S.storage = null; done("Liberados " + gb(r) + ": nada imprescindible se ha tocado")(); route(); }).catch(fail);
       else if (act === "open_path") call("open_path", arg).catch(fail);
+      else if (act === "drives") { DRIVES = null; $("#bkBody").innerHTML = backupPanel(); call("drives").then(function (d) { DRIVES = d; $("#bkBody").innerHTML = backupPanel(); }).catch(fail); }
+      else if (act === "backup") {
+        var vid = !!($("#bkVid") || {}).checked;
+        call("backup_plan", arg, vid).then(function (p) {
+          if (!p.fits) { toast("No cabe en " + arg + ": hacen falta " + gb(p.bytes) + " y hay " + gb(p.free)); return; }
+          if (!p.files) { toast("La copia ya está al día: nada nuevo que copiar"); return; }
+          return call("backup", arg, vid).then(function (m) { toast(m); backupPoll(); });
+        }).catch(fail);
+      }
       else if (act === "height") { var v = parseFloat(($("#hIn").value || "").replace(",", ".")); if (!(v > 1.2 && v < 2.3)) { toast("Escribe la altura en metros, por ejemplo 1,75"); return; } call("set_height", arg, v).then(done("Altura guardada: se recalculan solo los informes")).catch(fail); }
       return;
     }
@@ -929,6 +959,11 @@ body.web .webview { height: 100vh; }
     if (e.target.classList.contains("modal")) closeDlg();
   });
   document.addEventListener("change", function (e) {
+    if (e.target.dataset && e.target.dataset.aviso) {
+      var d = {}; d[e.target.dataset.aviso] = e.target.checked;
+      call("notices_settings", d).then(done(e.target.checked ? "Aviso activado" : "Aviso desactivado")).catch(fail);
+      return;
+    }
     if (e.target.id === "nightOnly" || e.target.id === "nightOnly2" || e.target.id === "fFrom" || e.target.id === "fTo") {
       var on = e.target.id.indexOf("night") === 0 ? e.target.checked : (($("#nightOnly2") || {}).checked);
       var f = [($("#fFrom") || { value: "23:00" }).value, ($("#fTo") || { value: "08:00" }).value];

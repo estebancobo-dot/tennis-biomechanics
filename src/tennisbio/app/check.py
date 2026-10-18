@@ -19,7 +19,15 @@ def window_engine() -> dict:
         out["pywebview"] = True
     except Exception as e:                       # noqa: BLE001
         out["pywebview_error"] = f"{type(e).__name__}: {e}"[:200]
+    try:
+        import pystray
+        pystray.Icon("tennisbio-comprobacion", window.tray_image(), "Tennisbio")      # built, never shown
+        out["bandeja"] = True
+    except Exception as e:                       # noqa: BLE001
+        out["bandeja"] = f"{type(e).__name__}: {e}"[:200]
     if sys.platform == "win32":
+        from . import notify
+        out["avisos"] = notify.can_show()
         import winreg
         key = r"SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}"
         for root in (winreg.HKEY_LOCAL_MACHINE, winreg.HKEY_CURRENT_USER):
@@ -106,9 +114,19 @@ def check(app, dest: Path, shots: bool = True, real: bool = False) -> dict:
                     pg.screenshot(path=str(dest / f"app_{t}.png"), full_page=True)
         b.close()
     live = live_window(app, dest) if real else None
+    if real:
+        from . import backup
+        try:
+            bk = backup.plan(app, dest / "copia_prueba")
+            res_backup = {"ficheros": bk["files"], "bytes": bk["bytes"]}
+        except Exception as e:                   # noqa: BLE001
+            res_backup = {"error": f"{type(e).__name__}: {e}"[:200]}
+            problems.append(f"la copia a USB no sabe qué copiar: {res_backup['error']}")
+    else:
+        res_backup = None
     if live is not None and not (live.get("ready") and live.get("bridge")):
         problems.append(f"la ventana real no funcionó: {live}")
-    res = {"problems": problems, "screens": seen, "engine": window_engine(), "live": live,
+    res = {"problems": problems, "screens": seen, "engine": window_engine(), "live": live, "backup": res_backup,
            "index": {"matches": len(st["matches"]), "players": len(st["players"]), "analyses": len(st["analyses"]),
                      "jobs_pending": len(st["queue"]["pending"]), "notices": len(st["notices"])}}
     (dest / "ventana.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
@@ -118,7 +136,9 @@ def check(app, dest: Path, shots: bool = True, real: bool = False) -> dict:
           f"- Índice: {res['index']}",
           f"- Motor de la ventana: pywebview {'sí' if eng['pywebview'] else 'NO (' + eng.get('pywebview_error', '') + ')'}"
           + (f" · WebView2 {eng['webview2'] or 'NO encontrado'}" if sys.platform == "win32" else ""),
-          f"- Ventana real (oculta): {live}" if live is not None else "- Ventana real: no probada aquí", ""]
+          f"- Ventana real (oculta): {live}" if live is not None else "- Ventana real: no probada aquí",
+          f"- Icono junto al reloj: {eng.get('bandeja')} · avisos de Windows: {eng.get('avisos', 'no es Windows')}",
+          f"- Copia a USB (lo que copiaría ahora): {res_backup}" if res_backup is not None else "", ""]
     md += [f"- ✘ {x}" for x in problems]
     (dest / "ventana.md").write_text("\n".join(md) + "\n", encoding="utf-8")
     return res

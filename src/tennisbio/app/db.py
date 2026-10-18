@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS runs (
   result TEXT, detail TEXT, finished TEXT);
 CREATE TABLE IF NOT EXISTS notices (
   id INTEGER PRIMARY KEY AUTOINCREMENT, key TEXT UNIQUE, level TEXT, text TEXT, created TEXT,
-  seen INTEGER DEFAULT 0);
+  seen INTEGER DEFAULT 0, toasted INTEGER DEFAULT 0);
 CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT);
 """
 
@@ -89,6 +89,8 @@ class DB:
         cols = {r[1] for r in self.con.execute("PRAGMA table_info(matches)")}
         if "dir" not in cols:                       # an index from before the match folder was kept
             self.con.execute("ALTER TABLE matches ADD COLUMN dir TEXT DEFAULT ''")
+        if "toasted" not in {r[1] for r in self.con.execute("PRAGMA table_info(notices)")}:   # before part 3
+            self.con.execute("ALTER TABLE notices ADD COLUMN toasted INTEGER DEFAULT 1")
         self.con.commit()
 
     def close(self):
@@ -123,9 +125,11 @@ class DB:
         self.upsert("settings", {"key": key, "value": json.dumps(value)}, "key")
 
     def notice(self, key: str, level: str, text: str):
-        """One notice per key (a repeated problem updates its text instead of piling up)."""
-        self.x("INSERT INTO notices (key, level, text, created, seen) VALUES (?, ?, ?, ?, 0) "
-               "ON CONFLICT(key) DO UPDATE SET level=excluded.level, text=excluded.text, created=excluded.created, seen=0",
+        """One notice per key (a repeated problem updates its text instead of piling up). It is shown again
+        as a Windows notification only when its text changes."""
+        self.x("INSERT INTO notices (key, level, text, created, seen, toasted) VALUES (?, ?, ?, ?, 0, 0) "
+               "ON CONFLICT(key) DO UPDATE SET level=excluded.level, created=excluded.created, seen=0, "
+               "toasted=CASE WHEN notices.text = excluded.text THEN notices.toasted ELSE 0 END, text=excluded.text",
                key, level, text, now())
 
     def clear_notice(self, key: str):
