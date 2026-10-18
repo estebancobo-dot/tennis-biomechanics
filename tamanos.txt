@@ -1,4 +1,4 @@
-fecha: 2026-10-18T09:02:31
+fecha: 2026-10-18T09:32:29
        5.7 MB  \output\benchmark
      450.2 MB  \output\entrenamiento
        0.1 MB  \output\investigacion

@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261018090004
+Start time: 20261018093003
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 8404
+Process ID: 12460
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,23 +17,19 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-18 09:00:04] Codigo nuevo (c728b7f -> 6a88562): 5 ficheros
+==> [2026-10-18 09:30:03] Codigo nuevo (6a88562 -> 074966a): 3 ficheros
     config/peticion_pc.txt
-    src/tennisbio/app/cli.py
-    src/tennisbio/app/core.py
     src/tennisbio/app/index.py
     tests/test_app_core.py
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating c728b7f..6a88562
+Updating 6a88562..074966a
 Fast-forward
  config/peticion_pc.txt     |  2 +-
- src/tennisbio/app/cli.py   |  1 +
- src/tennisbio/app/core.py  |  7 ++++---
- src/tennisbio/app/index.py | 45 +++++++++++++++++++++++++++++++++++++--------
- tests/test_app_core.py     | 31 +++++++++++++++++++++++++++++--
- 5 files changed, 72 insertions(+), 14 deletions(-)
-Resolved 110 packages in 0.85ms
+ src/tennisbio/app/index.py | 25 ++++++++++++++++---------
+ tests/test_app_core.py     | 22 ++++++++++++++++++++++
+ 3 files changed, 39 insertions(+), 10 deletions(-)
+Resolved 110 packages in 0.86ms
 Checked 83 packages in 2ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
@@ -45,7 +41,7 @@ yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
     (paso terminado en 3 s)
 
-==> [2026-10-18 09:00:07] Que hace falta: informe
+==> [2026-10-18 09:30:06] Que hace falta: informe
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
@@ -53,14 +49,14 @@ Montajes: 2 en C:\tenis\output\_smoke\exportar\montajes
 Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
 Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
 Auditoría: 285 cumplidos, 0 no cumplidos, 116 sin golpes suficientes, 21 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-Hecho en 140 s, sin volver a analizar vídeo.
-    (paso terminado en 2 min 20 s)
+Hecho en 138 s, sin volver a analizar vídeo.
+    (paso terminado en 2 min 18 s)
 
-==> [2026-10-18 09:02:27] Revision automatica frente a la ejecucion anterior
+==> [2026-10-18 09:32:25] Revision automatica frente a la ejecucion anterior
 # Revisión automática: OK
     (paso terminado en 0 s)
 
-==> [2026-10-18 09:02:28] Peticion 20: indice de la aplicacion local (registro: C:\tenis\output\prueba_app.log)
+==> [2026-10-18 09:32:25] Peticion 21: indice de la aplicacion local (registro: C:\tenis\output\prueba_app.log)
 Ahora: nada en curso
 Jugadoras: 2 · partidos: 2
 
@@ -69,19 +65,24 @@ Partidos:
   poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
   smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
 Cola (0):
-0 partido(s) a recalcular, 0 informe(s); 2 partido(s) sin su vídeo localizado (no se pueden comprobar)
+2 partido(s) a recalcular, 0 informe(s)
 Ahora: nada en curso
+En cola: ≈ 3 h 05 min, termina hacia las 12:38
 Jugadoras: 2 · partidos: 2
 
 Análisis:
 Partidos:
   poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
   smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-Cola (0):
+Cola (2):
+  #1 partido poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin rybakina  · pendiente · nueva versión: cambió fine
+  #2 partido smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin rybakina  · pendiente · nueva versión: cambió scenes, court, players, score, identity, candidates, fine
+Avisos:
+  [info] Nueva versión: recalcula 2 partido(s) ≈ 3 h 05 min, desde las cachés.
 Ciclo automatico terminado (informe).
-    (paso terminado en 2 s)
-Empezado 2026-10-18 09:00:02 - terminado 2026-10-18 09:02:30 - duracion total 2 min 28 s
+    (paso terminado en 3 s)
+Empezado 2026-10-18 09:30:02 - terminado 2026-10-18 09:32:28 - duracion total 2 min 25 s
 **********************
 Windows PowerShell transcript end
-End time: 20261018090230
+End time: 20261018093228
 **********************
