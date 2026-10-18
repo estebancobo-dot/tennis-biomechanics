@@ -111,3 +111,29 @@
 2026-10-19 00:49:59   [players] players:  62 % (12179/19526 fotogramas con jugadoras) · 15 min · quedan ≈ 9 min
 2026-10-19 00:50:29   [players] players:  65 % (12618/19526 fotogramas con jugadoras) · 16 min · quedan ≈ 8 min
 2026-10-19 00:50:59   [players] players:  67 % (13034/19526 fotogramas con jugadoras) · 16 min · quedan ≈ 8 min
+2026-10-19 00:51:29   [players] players:  69 % (13455/19526 fotogramas con jugadoras) · 17 min · quedan ≈ 7 min
+2026-10-19 00:51:59   [players] players:  71 % (13886/19526 fotogramas con jugadoras) · 17 min · quedan ≈ 7 min
+2026-10-19 00:52:29   [players] players:  73 % (14249/19526 fotogramas con jugadoras) · 18 min · quedan ≈ 6 min
+2026-10-19 00:52:59   [players] players:  75 % (14659/19526 fotogramas con jugadoras) · 18 min · quedan ≈ 6 min
+2026-10-19 00:53:29   [players] players:  77 % (15113/19526 fotogramas con jugadoras) · 19 min · quedan ≈ 5 min
+2026-10-19 00:53:59   [players] players:  80 % (15549/19526 fotogramas con jugadoras) · 19 min · quedan ≈ 5 min
+2026-10-19 00:54:29   [players] players:  82 % (15928/19526 fotogramas con jugadoras) · 20 min · quedan ≈ 4 min
+2026-10-19 00:54:59   [players] players:  84 % (16337/19526 fotogramas con jugadoras) · 20 min · quedan ≈ 4 min
+2026-10-19 00:55:29   [players] players:  86 % (16781/19526 fotogramas con jugadoras) · 21 min · quedan ≈ 3 min
+2026-10-19 00:55:59   [players] players:  88 % (17178/19526 fotogramas con jugadoras) · 21 min · quedan ≈ 3 min
+2026-10-19 00:56:29   [players] players:  90 % (17583/19526 fotogramas con jugadoras) · 22 min · quedan ≈ 2 min
+2026-10-19 00:56:59   [players] players:  92 % (17968/19526 fotogramas con jugadoras) · 22 min · quedan ≈ 2 min
+2026-10-19 00:57:29   [players] players:  94 % (18419/19526 fotogramas con jugadoras) · 23 min · quedan ≈ 81 s
+2026-10-19 00:58:00   [players] players:  97 % (18858/19526 fotogramas con jugadoras) · 23 min · quedan ≈ 49 s
+2026-10-19 00:58:30   [players] players:  99 % (19285/19526 fotogramas con jugadoras) · 24 min · quedan ≈ 18 s
+2026-10-19 00:58:47   [players] players: 100 % (19526/19526 fotogramas con jugadoras) · 24 min · quedan ≈ 0 s
+2026-10-19 00:58:48   [players] tiempo: 23.8 min para 19526 fotogramas a 960 px · modelo 21.3 min · leer vídeo y preparar la entrada 20.6 min en otro hilo (espera real 2.5 min) · apariencia 0.4 min en otro hilo
+2026-10-19 00:58:48 [zheng-qinwen-elena-rybakina] players terminada a las 00:58:48 en 23.9 min (14.4 min a la vez que otra etapa)
+2026-10-19 00:58:48 [zheng-qinwen-elena-rybakina] identity… (2026-10-19 00:58:48, etapa 7 de 10)
+2026-10-19 00:58:52 [zheng-qinwen-elena-rybakina] identity terminada a las 00:58:52 en 4 s
+2026-10-19 00:58:52 [zheng-qinwen-elena-rybakina] candidates… (2026-10-19 00:58:52, etapa 8 de 10)
+2026-10-19 00:59:31 [zheng-qinwen-elena-rybakina] candidates terminada a las 00:59:31 en 39 s
+2026-10-19 00:59:31 [zheng-qinwen-elena-rybakina] fine… (2026-10-19 00:59:31, etapa 9 de 10)
+2026-10-19 00:59:49   ventana w000413801_4941 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 00:59:49   fine:   0 % (2/504 golpes candidatos · 0 confirmados · 1 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-10-19 01:00:34   ventana w000434507_10189 (far, 4 candidatos): pasa · golpe de bola en su lado a 2.44 s

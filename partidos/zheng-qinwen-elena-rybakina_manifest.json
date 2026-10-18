@@ -67,5 +67,51 @@
    "samples": 484,
    "ocr_calls": 388
   }
+ },
+ "players": {
+  "fingerprint": "e97d5acc8b45282f",
+  "version": "4",
+  "seconds": 1431.1,
+  "finished": "2026-10-19 00:58:48",
+  "summary": {
+   "frames": 19526,
+   "wall_min": 23.8,
+   "model_min": 21.3,
+   "read_min": 20.6,
+   "wait_min": 2.5,
+   "appearance_min": 0.4
+  },
+  "overlap_s": 861.4
+ },
+ "identity": {
+  "fingerprint": "3c35fc0aba8da02a",
+  "version": "4",
+  "seconds": 4.1,
+  "finished": "2026-10-19 00:58:52",
+  "summary": {
+   "runs": 276,
+   "votes": 186,
+   "confidence": 0.64,
+   "by_end_changes": 267,
+   "by_clothes": 0,
+   "conflicts": 0,
+   "decided": 267
+  }
+ },
+ "candidates": {
+  "fingerprint": "10d2c0eb0959b7e7",
+  "version": "7",
+  "seconds": 39.0,
+  "finished": "2026-10-19 00:59:31",
+  "summary": {
+   "candidates": 1069,
+   "far": 804,
+   "with_audio": 1048,
+   "opponent_runs": 112,
+   "identity_unknown": 1,
+   "replay_runs_skipped": 32,
+   "replays_by_path": 23,
+   "audio_track": 0
+  }
  }
 }
