@@ -77,6 +77,17 @@ function Hacer-Peticion {
         Paso "Peticion $($p['id']): analisis completo de todos los partidos (horas; registro: analisis_completo.log)"
         & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $RepoDir "scripts\windows\analisis_completo.ps1") | Out-Host
         "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "rehacer") {
+        # un partido entero de nuevo (todas sus etapas, p. ej. tras arreglar la lectura de su video) y despues
+        # el analisis completo (lo que haya cambiado en los demas, informes, exportacion y auditoria)
+        $m = "$($p['partido'])"
+        $lg = "$Base\output\prueba_rehacer.log"
+        "Peticion $($p['id']): rehacer el partido $m ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        if ($m -notmatch '^[a-z0-9][a-z0-9-]+$') { "  nombre de partido no valido: '$m'" | Add-Content $lg -Encoding UTF8; return }
+        Paso "Peticion $($p['id']): el partido $m entero de nuevo y despues el analisis completo"
+        & uv run tennisbio run --match $m --force 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $RepoDir "scripts\windows\analisis_completo.ps1") | Out-Host
+        "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "diag") {
         # por que un partido da pocos minutos de camara principal: hojas de fotogramas de los planos que el
         # color toma por juego y las lineas no confirman (scripts/diag_scenes.py), a pc-logs/capturas_diag

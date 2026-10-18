@@ -11,3 +11,4 @@ accion: completo
 #   movil = copia al movil de cada analisis (720p) comprobada en el navegador del PC, y acceso directo del escritorio
 #   completo = los partidos completos de C:\tenis\videos (lista de videos primero; despues 3_analisis_completo)
 #   diag = hojas de fotogramas de los planos de cada partido (por que hay pocos minutos de camara principal)
+#   rehacer = un partido entero de nuevo (partido: <id>) y despues el analisis completo
