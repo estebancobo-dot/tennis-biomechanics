@@ -1,18 +1,7 @@
-﻿Peticion 21: indice de la aplicacion local (2026-10-18T09:32:25)
+﻿Peticion 22: indice de la aplicacion local (2026-10-18T09:56:22)
 == tennisbio app status
 Ahora: nada en curso
-Jugadoras: 2 · partidos: 2
-
-Análisis:
-Partidos:
-  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-Cola (0):
-== tennisbio app plan
-2 partido(s) a recalcular, 0 informe(s)
-== tennisbio app status
-Ahora: nada en curso
-En cola: ≈ 3 h 05 min, termina hacia las 12:38
+En cola: ≈ 3 h 05 min, termina hacia las 13:01
 Jugadoras: 2 · partidos: 2
 
 Análisis:
@@ -24,4 +13,15 @@ Cola (2):
   #2 partido smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin rybakina  · pendiente · nueva versión: cambió scenes, court, players, score, identity, candidates, fine
 Avisos:
   [info] Nueva versión: recalcula 2 partido(s) ≈ 3 h 05 min, desde las cachés.
-codigo de salida: 0; termina 2026-10-18T09:32:28
+== tennisbio app plan
+0 partido(s) a recalcular, 0 informe(s); 2 prueba(s) del ciclo automático: las mantiene el ciclo
+== tennisbio app status
+Ahora: nada en curso
+Jugadoras: 2 · partidos: 2
+
+Análisis:
+Partidos:
+  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+Cola (0):
+codigo de salida: 0; termina 2026-10-18T09:56:24
