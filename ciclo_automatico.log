@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261018135002
+Start time: 20261018140002
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 412
+Process ID: 14152
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,45 +17,16 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-18 13:50:02] Codigo nuevo (eb577eb -> 27fff69): 14 ficheros
-    config/peticion_pc.txt
-    docs/aplicacion_local.md
-    scripts/windows/ciclo_automatico.ps1
-    scripts/windows/comun.ps1
-    scripts/windows/instalar.ps1
-    src/tennisbio/app/check.py
-    src/tennisbio/app/cli.py
+==> [2026-10-18 14:00:02] Codigo nuevo (27fff69 -> 6ccd279): 1 ficheros
     src/tennisbio/app/mobile.py
-    src/tennisbio/app/shortcut.py
-    src/tennisbio/app/state.py
-    src/tennisbio/app/ui.html
-    src/tennisbio/app/window.py
-    src/tennisbio/report_template.html
-    tests/test_app_mobile.py
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating eb577eb..27fff69
+Updating 27fff69..6ccd279
 Fast-forward
- config/peticion_pc.txt               |   6 +-
- docs/aplicacion_local.md             |  36 +++-
- scripts/windows/ciclo_automatico.ps1 |  17 ++
- scripts/windows/comun.ps1            |   6 +-
- scripts/windows/instalar.ps1         |   4 +-
- src/tennisbio/app/check.py           | 115 ++++++++++++-
- src/tennisbio/app/cli.py             |  30 ++++
- src/tennisbio/app/mobile.py          | 203 +++++++++++++++++++++++
- src/tennisbio/app/shortcut.py        |  65 ++++++++
- src/tennisbio/app/state.py           |   6 +-
- src/tennisbio/app/ui.html            |  26 ++-
- src/tennisbio/app/window.py          |  38 ++++-
- src/tennisbio/report_template.html   |   7 +-
- tests/test_app_mobile.py             | 312 +++++++++++++++++++++++++++++++++++
- 14 files changed, 855 insertions(+), 16 deletions(-)
- create mode 100644 src/tennisbio/app/mobile.py
- create mode 100644 src/tennisbio/app/shortcut.py
- create mode 100644 tests/test_app_mobile.py
-Resolved 124 packages in 1ms
-Checked 89 packages in 2ms
+ src/tennisbio/app/mobile.py | 8 ++++++--
+ 1 file changed, 6 insertions(+), 2 deletions(-)
+Resolved 124 packages in 0.90ms
+Checked 89 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -64,9 +35,10 @@ yolo11m-pose_640.onnx OK 84 MB
 yolo11m-pose_960.onnx OK 84 MB
 yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
-    (paso terminado en 3 s)
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (hecho)
+    (paso terminado en 4 s)
 
-==> [2026-10-18 13:50:05] Que hace falta: informe
+==> [2026-10-18 14:00:06] Que hace falta: informe
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
@@ -74,22 +46,15 @@ Montajes: 2 en C:\tenis\output\_smoke\exportar\montajes
 Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
 Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
 Auditoría: 285 cumplidos, 0 no cumplidos, 116 sin golpes suficientes, 21 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-Hecho en 141 s, sin volver a analizar vídeo.
-    (paso terminado en 2 min 21 s)
+Hecho en 143 s, sin volver a analizar vídeo.
+    (paso terminado en 2 min 22 s)
 
-==> [2026-10-18 13:52:26] Revision automatica frente a la ejecucion anterior
+==> [2026-10-18 14:02:29] Revision automatica frente a la ejecucion anterior
 # Revisión automática: OK
-    (paso terminado en 0 s)
-
-==> [2026-10-18 13:52:26] Peticion 25: videos de YouTube elegidos por el usuario en output\investigacion_25
-2 vídeos encontrados
-  1/2 3 Universal Tennis Fundamentals Every Pro Uses  - Steal Them
-  2/2 Give me 10 Minutes. I'll Make You a Pro Tennis Player...
-Hecho: 2 de 2 vídeos con texto o imágenes → C:\tenis\output\investigacion_25
 Ciclo automatico terminado (informe).
-    (paso terminado en 36 s)
-Empezado 2026-10-18 13:50:00 - terminado 2026-10-18 13:53:03 - duracion total 3 min 02 s
+    (paso terminado en 0 s)
+Empezado 2026-10-18 14:00:00 - terminado 2026-10-18 14:02:29 - duracion total 2 min 29 s
 **********************
 Windows PowerShell transcript end
-End time: 20261018135303
+End time: 20261018140229
 **********************
