@@ -1,6 +1,5 @@
-id: 25
-accion: youtube
-urls: https://youtu.be/jeHMwLeUdgY https://youtu.be/svfPm693UP0
+id: 26
+accion: ventana
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
 #   poc = prueba de velocidad en carpetas aparte (4 min y despues 35 min), sin tocar output\_smoke
 #   largo = el video entero en output\_pocN_largo (una noche), sin tocar output\_smoke
