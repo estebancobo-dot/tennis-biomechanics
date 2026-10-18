@@ -54,3 +54,158 @@ Hecho en 142 s, sin volver a analizar vídeo.
     (paso terminado en 0 s)
 
 ==> [2026-10-18 16:52:28] Peticion 31: prueba de velocidad, 4 min de partido en output\_poc31_4
+From https://github.com/estebancobo-dot/tennis-biomechanics
+ * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
+Already up to date.
+Resolved 124 packages in 0.99ms
+Checked 89 packages in 2ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+Video: C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv
+
+==> [2026-10-18 16:52:32] 1/4 Comprobacion del entorno
+Python   3.11.17  (Windows-10-10.0.26200-SP0)
+CPUs     16
+ffmpeg   C:\Users\esteb\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffmpeg.EXE
+ffprobe  C:\Users\esteb\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-9.0.2-full_build\bin\ffprobe.EXE
+git      C:\Program Files\Git\cmd\git.EXE
+uv       C:\Users\esteb\.local\bin\uv.EXE
+numpy        2.4.6
+pandas       3.0.6
+cv2          5.0.0
+librosa      0.11.0
+onnxruntime  1.24.4
+ultralytics  8.4.175
+rapidocr_onnxruntime ?
+ORT providers: ['DmlExecutionProvider', 'CPUExecutionProvider']
+balltrack.onnx     OK
+racketpose.onnx    OK
+transnetv2.onnx    OK
+rtmw3d-x.onnx      OK
+yolo11m-pose_960.onnx OK
+yolo11m-pose_1280.onnx OK
+
+C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv
+  contenedor matroska,webm  duración 210.4 min  tamaño 5.53 GB  bitrate 3.5 Mb/s
+  vídeo  h264 1920x1080  r_frame_rate=50/1 avg_frame_rate=50/1  field_order=progressive  pix_fmt=yuv420p
+  audio  aac 48000 Hz  2 canales
+  audio  aac 48000 Hz  2 canales
+    (paso terminado en 2 s)
+
+==> [2026-10-18 16:52:34] 2/4 Velocidad de este equipo (5 min, solo la primera vez)
+ya medida
+    (paso terminado en 0 s)
+
+==> [2026-10-18 16:52:34] Vista lateral: videos de entrenamiento de la jugadora (YouTube; solo lo que falte)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+[16:52:36] 5 vídeos candidatos; se analizan 2 (90 s de cada uno)
+[16:52:36] Hecho: 5 vídeos, 91 golpes, 21 derechas de lado → C:\tenis\output\entrenamiento
+    (paso terminado en 2 s)
+
+==> [2026-10-18 16:52:36] 3/4 4 minutos de partido, todas las etapas e informe (15-30 min)
+Tramo de juego (ya buscado): minuto 121
+Partido: rival sin determinar (lo lee el marcador), superficie dura
+Análisis del tramo: empieza 2026-10-18 16:52:38
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] probe… (2026-10-18 16:52:38, etapa 1 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] probe terminada a las 16:52:38 en 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] scenes… (2026-10-18 16:52:38, etapa 2 de 10)
+  scenes:   0 % (1/6012 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes: 100 % (6012/6012 fotogramas) · 30 s · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] scenes terminada a las 16:53:10 en 32 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] audio… (2026-10-18 16:53:10, etapa 3 de 10)
+  audio: 100 % (240/240 s de sonido) · 0 s · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] audio terminada a las 16:53:27 en 18 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] court… (2026-10-18 16:53:27, etapa 4 de 10)
+  court: 100 % (48/48 fotogramas) · 0 s · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] court terminada a las 16:53:54 en 27 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] players… (2026-10-18 16:53:54, etapa 5 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] score… (2026-10-18 16:53:54, etapa 6 de 10, a la vez que players)
+  [players] juego con pista: 1.3 min de 1.4 min de cámara principal
+  [players] players:   0 % (1/751 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [score] score:   5 % (1/19 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+  [players] players:  54 % (409/751 fotogramas con jugadoras) · 30 s · quedan ≈ 25 s
+  [score] score:  63 % (12/19 muestras · 11 lecturas · 11 OCR) · 32 s · quedan ≈ 18 s
+  [players] players: 100 % (751/751 fotogramas con jugadoras) · 55 s · quedan ≈ 0 s
+  [players] tiempo: 1.0 min para 751 fotogramas a 960 px · modelo 0.8 min · leer vídeo y preparar la entrada 0.9 min en otro hilo (espera real 0.1 min) · apariencia 0.0 min en otro hilo
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] players terminada a las 16:54:53 en 59 s
+  [score] score: 100 % (19/19 muestras · 18 lecturas · 17 OCR) · 45 s · quedan ≈ 0 s
+  [score] marcador: 19 muestras en juego, 18 OCR (19 lecturas)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] score terminada a las 16:54:57 en 1.0 min (59 s a la vez que otra etapa)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] identity… (2026-10-18 16:54:57, etapa 7 de 10)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] identity terminada a las 16:54:59 en 2 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] candidates… (2026-10-18 16:54:59, etapa 8 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] candidates terminada a las 16:55:01 en 2 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (2026-10-18 16:55:01, etapa 9 de 10)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+  ventana w000015163_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.48 s
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
+  ventana w000015163_3600: pose hybrid en 179 de 179 fotogramas (20 s; modelo 19 s; pies en 179) · bola 8 s · raqueta 19 s (1 de 2 impactos) · 2 golpes posibles · altura 401 px (court)
+  fine:   8 % (1/12 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+  ventana w000073915_4784 (near, 2 candidatos): pasa · golpe de bola en su lado a 1.84 s
+  ventana w000073915_4784: pose hybrid en 239 de 239 fotogramas (35 s; modelo 34 s; pies en 239) · bola 10 s · raqueta 17 s (1 de 1 impactos) · 1 golpes posibles · altura 215 px (court)
+  fine:  25 % (3/12 golpes candidatos · 2 confirmados · 0 ventanas descartadas sin pose) · 68 s · quedan ≈ 3 min
+  ventana w000085049_8401 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.44 s
+  ventana w000085049_8401: pose hybrid en 420 de 420 fotogramas (65 s; modelo 62 s; pies en 420) · bola 21 s · raqueta 59 s (3 de 5 impactos) · 5 golpes posibles · altura 198 px (court)
+  fine:  50 % (6/12 golpes candidatos · 5 confirmados · 0 ventanas descartadas sin pose) · 4 min · quedan ≈ 4 min
+  ventana w000117290_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.42 s
+  ventana w000117290_3600: pose hybrid en 179 de 179 fotogramas (26 s; modelo 24 s; pies en 179) · bola 7 s · raqueta 16 s (1 de 1 impactos) · 1 golpes posibles · altura 206 px (court)
+  fine:  58 % (7/12 golpes candidatos · 6 confirmados · 0 ventanas descartadas sin pose) · 5 min · quedan ≈ 3 min
+  ventana w000130746_5719 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.48 s
+  ventana w000130746_5719: pose hybrid en 285 de 285 fotogramas (40 s; modelo 39 s; pies en 285) · bola 176 s en paralelo (CPU) · raqueta 35 s (2 de 2 impactos) · 2 golpes posibles · altura 203 px (court)
+  fine:  75 % (9/12 golpes candidatos · 8 confirmados · 0 ventanas descartadas sin pose) · 7 min · quedan ≈ 2 min
+  ventana w000174887_5812 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.0 s
+  ventana w000174887_5812: pose hybrid en 290 de 290 fotogramas (42 s; modelo 41 s; pies en 290) · bola 121 s en paralelo (CPU) · raqueta 30 s (2 de 2 impactos) · 2 golpes posibles · altura 196 px (court)
+  fine:  92 % (11/12 golpes candidatos · 10 confirmados · 0 ventanas descartadas sin pose) · 9 min · quedan ≈ 47 s
+  ventana w000209601_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 1.96 s
+  ventana w000209601_3600: pose hybrid en 179 de 179 fotogramas (23 s; modelo 23 s; pies en 179) · bola 85 s en paralelo (CPU) · raqueta 15 s (1 de 1 impactos) · 1 golpes posibles · altura 204 px (court)
+  fine: 100 % (12/12 golpes candidatos · 11 confirmados · 0 ventanas descartadas sin pose) · 10 min · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine terminada a las 17:05:39 en 10.6 min
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (2026-10-18 17:05:39, etapa 10 de 10)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent terminada a las 17:05:39 en 0 s
+Análisis del tramo: termina 2026-10-18 17:05:39 (13.0 min)
+
+Etapas ejecutadas: probe, scenes, audio, court, players, score, identity, candidates, fine, fine_opponent
+  probe           0.2 s  {'duration_min': 4.0, 'fps': 50.0, 'size': '1920x1080', 'cleaned': False, 'vfr': True}
+  scenes         31.9 s  {'shots': 41, 'main_camera_shots': 11, 'detector': 'transnetv2', 'main_camera_min': 1.4, 'main_rule': 'lines', 'main_camera_min_colour': 3.5, 'main_views': 10}
+  audio          17.6 s  {'onsets': 243, 'tracks': 1}
+  court          26.9 s  {'segments': 30, 'with_court': 27, 'known_court_reused': 69, 'searched': 3, 'filled_same_view': 3, 'samples': 83, 'court_presets': 9, 'main_camera_min': 1.4, 'court_min': 1.3, 'court_share': 0.887, 'pitch_deg_median': 18.3}
+  players        58.5 s  {'frames': 751, 'wall_min': 1.0, 'model_min': 0.8, 'read_min': 0.9, 'wait_min': 0.1, 'appearance_min': 0.0}
+  score          62.7 s  {'readings': 19, 'pressure': 7, 'samples': 19, 'ocr_calls': 18}
+  identity        1.8 s  {'runs': 11, 'votes': 8, 'confidence': 0.62, 'by_end_changes': 11, 'by_clothes': 0, 'conflicts': 0, 'decided': 11}
+  candidates      2.0 s  {'candidates': 39, 'far': 27, 'with_audio': 39, 'opponent_runs': 0, 'identity_unknown': 0, 'replay_runs_skipped': 1, 'replays_by_path': 1, 'audio_track': 0}
+  fine          637.6 s  {'candidates': 12, 'confirmed': 11, 'errors': 0, 'warnings': [], 'forehands': 7, 'windows': 7, 'gate': {'windows_gated': 0, 'windows_passed': 7, 'windows_ungated': 0, 'reasons': {'golpe_de_bola': 7}, 'seconds_in_gated_windows': 0.0}, 'seconds': {'bola_en_paralelo_cpu': 382.3, 'pose': 251.3, 'pose_modelo_hybrid': 241.2, 'raqueta': 191.2, 'cuerdas_y_3d': 69.6, 'espera_bola_en_paralelo': 47.5, 'bola': 45.8, 'recorte': 4.5, 'analisis_ventana': 1.8, 'pista_ventana': 1.6, 'cribado': 0.6}, 'counts': {'overlap_s': 0.0, 'frames': 1771, 'posed_frames': 1771, 'impacts': 14, 'kept_impacts': 11, 'racket_frames': 387, 'whole_window_again': 0, 'frames_960_far': 0, 'frames_modelo_hybrid': 1771, 'windows_ball_ahead': 3}}
+  fine_opponent     0.0 s  {'enabled': False}
+Golpes: 7 nuevos, 7 en C:\tenis\output\_poc31_4\exportar\golpes
+Montajes: 2 en C:\tenis\output\_poc31_4\exportar\montajes
+Resumen: C:\tenis\output\_poc31_4\exportar\resumen.pdf
+
+Total 13.0 min para 4 min de vídeo → partido de 210 min ≈ 11.4 h (estimación lineal)
+Informe: C:\tenis\output\_poc31_4\informe\index.html
+Vídeos, montajes y resumen PDF: C:\tenis\output\_poc31_4\exportar
+Auditoría: 289 cumplidos, 0 no cumplidos, 116 sin golpes suficientes, 18 avisos → C:\tenis\output\_poc31_4\auditoria\auditoria.md
+    (paso terminado en 18 min 57 s)
+
+==> [2026-10-18 17:11:34] 4/4 Validacion automatica: puntos anotados de partidos de Rybakina (F3Set; 20-40 min, solo la primera vez)
+ya hecha
+    (paso terminado en 0 s)
+
+==> [2026-10-18 17:11:34] Extra: videos de analisis de entrenadores en YouTube (10-20 min, solo la primera vez)
+ya hecho
+
+PRUEBA TERMINADA. El informe se ha abierto en el navegador.
+El registro se envia a Claude automaticamente.
+    (paso terminado en 0 s)
+Empezado 2026-10-18 16:52:28 - terminado 2026-10-18 17:11:34 - duracion total 19 min 06 s
+Registro enviado a Claude (no hace falta copiar nada).
+    (paso terminado en 19 min 13 s)
+
+==> [2026-10-18 17:11:41] Peticion 31: sin errores; ahora 35 min de partido en output\_poc31_35
