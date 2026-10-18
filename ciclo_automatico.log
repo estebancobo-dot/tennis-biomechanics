@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261018144002
+Start time: 20261018150002
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 13808
+Process ID: 12928
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,16 +17,44 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-18 14:40:02] Codigo nuevo (37bc4e3 -> 4bddc23): 1 ficheros
+==> [2026-10-18 15:00:02] Codigo nuevo (4bddc23 -> 12ceca0): 15 ficheros
+    config/peticion_pc.txt
     docs/investigacion_youtube_usuario.md
+    docs/matriz_cobertura.md
+    src/tennisbio/app/check.py
+    src/tennisbio/explain.py
+    src/tennisbio/learn.py
+    src/tennisbio/learn_check.py
+    src/tennisbio/reliability.py
+    src/tennisbio/report_template.html
+    src/tennisbio/stages.py
+    src/tennisbio/technique.py
+    tests/test_audit.py
+    tests/test_learn_web.py
+    tests/test_reliability.py
+    tests/test_technique.py
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating 37bc4e3..4bddc23
+Updating 4bddc23..12ceca0
 Fast-forward
- docs/investigacion_youtube_usuario.md | 67 +++++++++++++++++++++++++++++++++++
- 1 file changed, 67 insertions(+)
-Resolved 124 packages in 0.88ms
-Checked 89 packages in 2ms
+ config/peticion_pc.txt                |  4 +-
+ docs/investigacion_youtube_usuario.md |  5 +++
+ docs/matriz_cobertura.md              |  3 +-
+ src/tennisbio/app/check.py            |  9 ++++-
+ src/tennisbio/explain.py              |  5 +++
+ src/tennisbio/learn.py                | 36 +++++++++++++++---
+ src/tennisbio/learn_check.py          |  8 ++++
+ src/tennisbio/reliability.py          | 11 ++++++
+ src/tennisbio/report_template.html    | 39 ++++++++++++++++++-
+ src/tennisbio/stages.py               |  4 +-
+ src/tennisbio/technique.py            | 34 +++++++++++++++++
+ tests/test_audit.py                   | 22 +++++++++++
+ tests/test_learn_web.py               | 70 +++++++++++++++++++++++++++++++++++
+ tests/test_reliability.py             | 14 +++++++
+ tests/test_technique.py               | 31 ++++++++++++++++
+ 15 files changed, 283 insertions(+), 12 deletions(-)
+Resolved 124 packages in 0.95ms
+Checked 89 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -38,11 +66,4 @@ yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
     (paso terminado en 4 s)
 
-==> [2026-10-18 14:40:06] Que hace falta: nada
-Ciclo automatico terminado (nada).
-    (paso terminado en 0 s)
-Empezado 2026-10-18 14:40:00 - terminado 2026-10-18 14:40:06 - duracion total 5 s
-**********************
-Windows PowerShell transcript end
-End time: 20261018144006
-**********************
+==> [2026-10-18 15:00:06] Que hace falta: medidas
