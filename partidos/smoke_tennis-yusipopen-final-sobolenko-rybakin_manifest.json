@@ -97,8 +97,8 @@
  "fine": {
   "fingerprint": "95f3814dc44be795",
   "version": "16",
-  "seconds": 377.8,
-  "finished": "2026-10-18 15:06:25",
+  "seconds": 455.7,
+  "finished": "2026-10-18 18:35:09",
   "summary": {
    "candidates": 177,
    "confirmed": 27,
@@ -115,16 +115,16 @@
      "golpe_de_bola": 38,
      "bola_no_vista": 2
     },
-    "seconds_in_gated_windows": 5.0
+    "seconds_in_gated_windows": 2.2
    },
    "seconds": {
-    "cuerdas_y_3d": 152.5,
-    "jugadora_lejana": 128.7,
-    "analisis_ventana": 16.1,
-    "pista_ventana": 12.4,
-    "cribado": 10.8,
-    "recorte": 2.7,
-    "pose": 0.3,
+    "cuerdas_y_3d": 178.5,
+    "jugadora_lejana": 172.4,
+    "analisis_ventana": 26.8,
+    "pista_ventana": 17.3,
+    "cribado": 5.0,
+    "recorte": 3.4,
+    "pose": 0.5,
     "bola_en_paralelo_cpu": 0,
     "espera_bola_en_paralelo": 0.0
    },
@@ -145,7 +145,7 @@
   "fingerprint": "04ce2dcff60cf59e",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-10-18 15:06:25",
+  "finished": "2026-10-18 18:35:09",
   "summary": {
    "enabled": false
   }

@@ -8789,7 +8789,8 @@
     "stance_role": "abierto de ataque",
     "play": "resto",
     "serve_dir": "abierto",
-    "return_side": "iguales"
+    "return_side": "iguales",
+    "return_type": "swing completo"
    },
    "footwork": {
     "steps_to_impact": 4,
@@ -9367,7 +9368,8 @@
     "class.intent": 0.0,
     "class.shot_type": 0.0,
     "class.contact_type": 0.0,
-    "class.stance_role": 0.0
+    "class.stance_role": 0.0,
+    "class.return_type": 0.0
    },
    "pose": {
     "ready": [
@@ -21709,7 +21711,8 @@
     "stance_role": "abierto defensivo",
     "serve_number": "primer saque",
     "serve_dir": "abierto",
-    "return_side": "iguales"
+    "return_side": "iguales",
+    "return_type": "swing completo"
    },
    "footwork": {
     "steps_to_impact": 0,
@@ -22174,7 +22177,8 @@
     "class.shot_type": 0.0,
     "class.play": 0.0,
     "class.contact_type": 0.0,
-    "class.stance_role": 0.0
+    "class.stance_role": 0.0,
+    "class.return_type": 0.25
    },
    "pose": {
     "ready": [
