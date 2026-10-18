@@ -1,0 +1,15 @@
+{
+ "probe": {
+  "fingerprint": "27651832d2960f36",
+  "version": "2",
+  "seconds": 7.1,
+  "finished": "2026-10-19 00:16:47",
+  "summary": {
+   "duration_min": 116.7,
+   "fps": 50.0,
+   "size": "1920x1080",
+   "cleaned": false,
+   "vfr": false
+  }
+ }
+}
