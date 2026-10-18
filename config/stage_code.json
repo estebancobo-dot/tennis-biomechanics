@@ -1,7 +1,7 @@
 {
  "probe": {
   "version": "2",
-  "hash": "e55b983e6efbffc3",
+  "hash": "b736b3643e55d076",
   "modules": [
    "io.video"
   ]
@@ -33,8 +33,8 @@
   ]
  },
  "candidates": {
-  "version": "7",
-  "hash": "20820ae94f5b1e9a",
+  "version": "8",
+  "hash": "823a2ec78c3b41d4",
   "modules": [
    "court_metrics",
    "replays"
