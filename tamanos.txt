@@ -1,4 +1,4 @@
-fecha: 2026-10-18T16:30:07
+fecha: 2026-10-18T16:56:40
        5.7 MB  \output\benchmark
          1 MB  \output\capturas_app
      450.2 MB  \output\entrenamiento
@@ -8,6 +8,7 @@ fecha: 2026-10-18T16:30:07
        3.4 MB  \output\investigacion_17
        3.3 MB  \output\investigacion_25
      145.5 MB  \output\movil_prueba
+       123 MB  \output\_poc31_4
     7818.9 MB  \output\_poc9_largo
     1843.4 MB  \output\_smoke
        2.7 MB  \output\_smoke\auditoria
