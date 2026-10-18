@@ -170,7 +170,7 @@ def make(paths, player: str, stroke: str, zip_it: bool = True, progress=None, en
         for f in (dest / sub).glob("*") if (dest / sub).exists() else []:
             if f.name not in names:
                 f.unlink(missing_ok=True)
-    html = page_html(web / "index.html", data)
+    html = current_page(data)
     (dest / "index.html").write_text(html, encoding="utf-8")
     (dest / "LEEME.txt").write_text(README, encoding="utf-8")
     if zip_it:
@@ -186,6 +186,13 @@ def make(paths, player: str, stroke: str, zip_it: bool = True, progress=None, en
     res["strokes"] = len(data["strokes"])
     res["with_video"] = sum(1 for r in data["strokes"] if r.get("video"))
     return res
+
+
+def current_page(data: dict) -> str:
+    """The copy's page with today's template, never the analysis' own: a web built by an older version would
+    lack what the copy needs (on the PC, 18-10, the cycle's report predated the 720p scale `vk`)."""
+    from ..report import TEMPLATE
+    return TEMPLATE.read_text(encoding="utf-8").replace("/*__DATA__*/null", json.dumps(data, ensure_ascii=False))
 
 
 def page_html(page: Path, data: dict) -> str:

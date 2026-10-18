@@ -368,3 +368,16 @@ def test_copy_button_passes_it_to_the_connected_phone(env, monkeypatch):
     api._mb.join(60)
     n = a.db.one("SELECT level, text FROM notices WHERE key='movil_rybakina_forehand'")
     assert n["level"] == "aviso" and "No se pudo pasar al Pixel 8" in n["text"] and ".zip" in n["text"]
+
+
+def test_a_web_built_by_an_older_version_gets_todays_page(tmp_path):
+    """18-10 on the PC: the cycle's report predated the 720p scale, and the copy kept its old page."""
+    A = _analysis(tmp_path, n=1)
+    page = A.web / "index.html"
+    old = page.read_text(encoding="utf-8").replace("function vkOf(S)", "function oldVk(S)")
+    page.write_text(old, encoding="utf-8")
+    r = mobile.make(A.paths, "p", "forehand", zip_it=False)
+    html = (Path(r["dest"]) / "index.html").read_text(encoding="utf-8")
+    assert "function vkOf(S)" in html and "function oldVk" not in html
+    data, _, _ = mobile.read_data(html)
+    assert data["strokes"][0]["vk"] and data["strokes"][0]["video"].startswith("v/")
