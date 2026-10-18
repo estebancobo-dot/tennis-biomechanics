@@ -131,8 +131,9 @@ def save_test_info(match: Match, match_dir: Path) -> None:
     import json
 
     match_dir.mkdir(parents=True, exist_ok=True)
-    (match_dir / TEST_INFO).write_text(json.dumps({k: getattr(match, k) for k in CATALOG_FIELDS}, ensure_ascii=False, indent=1),
-                                       encoding="utf-8")
+    info = {k: getattr(match, k) for k in CATALOG_FIELDS}
+    info["player"] = match.player.id                # who was analysed (the application's index reads it)
+    (match_dir / TEST_INFO).write_text(json.dumps(info, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
 _CYR = dict(zip("абвгдеёжзийклмнопрстуфхцчшщъыьэюяіїєґ",

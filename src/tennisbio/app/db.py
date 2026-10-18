@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS videos (
 CREATE TABLE IF NOT EXISTS matches (
   id TEXT PRIMARY KEY, video TEXT, tournament TEXT, date TEXT, round TEXT, surface TEXT,
   player TEXT, opponent TEXT, opponent_id TEXT, state TEXT DEFAULT 'nuevo', note TEXT DEFAULT '',
-  created TEXT);
+  created TEXT, dir TEXT DEFAULT '');
 CREATE TABLE IF NOT EXISTS players (
   id TEXT PRIMARY KEY, name TEXT, hand TEXT DEFAULT 'right', backhand TEXT DEFAULT 'two_handed',
   height_m REAL, height_known INTEGER DEFAULT 1, aliases TEXT DEFAULT '[]');
@@ -83,6 +83,9 @@ class DB:
         self.con = sqlite3.connect(str(self.path), timeout=30)
         self.con.row_factory = sqlite3.Row
         self.con.executescript(SCHEMA)
+        cols = {r[1] for r in self.con.execute("PRAGMA table_info(matches)")}
+        if "dir" not in cols:                       # an index from before the match folder was kept
+            self.con.execute("ALTER TABLE matches ADD COLUMN dir TEXT DEFAULT ''")
         self.con.commit()
 
     def close(self):

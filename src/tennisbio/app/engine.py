@@ -29,12 +29,14 @@ class Engine:
     def match(self, match_id: str) -> Match:
         r = self._row(match_id)
         extra = {"opponent_id": r["opponent_id"]} if r.get("opponent_id") else {}
-        return Match(id=r["id"], video=Path(r["vpath"] or ""), player=index.player(self.db, r["player"]),
+        return Match(id=self.dir(match_id).name, video=Path(r["vpath"] or ""), player=index.player(self.db, r["player"]),
                      opponent=r.get("opponent") or "", tournament=r.get("tournament") or "", date=r.get("date") or "",
                      surface=r.get("surface") or "", round=r.get("round") or "", extra=extra)
 
     def dir(self, match_id: str) -> Path:
-        return self.paths.output / match_id
+        """The match folder: where the index says (test runs live one level down), else <output>/<id>."""
+        r = self.db.one("SELECT dir FROM matches WHERE id=?", match_id)
+        return self.paths.output / (r["dir"] if r and r.get("dir") else match_id)
 
     def video_size(self, match_id: str) -> int:
         return int(self._row(match_id).get("vsize") or 0)
@@ -71,7 +73,7 @@ class Engine:
 
     def count_strokes(self, player: str, stroke: str) -> int:
         n = 0
-        for m, d in self.matches_of(player):
+        for m, d in self._group(player)[1]:
             f = d / ("strokes.json" if m.player.id == player else "strokes_opponent.json")
             try:
                 n += sum(s.get("stroke") == stroke for s in json.loads(f.read_text(encoding="utf-8")))
@@ -79,14 +81,28 @@ class Engine:
                 continue
         return n
 
+    def _group(self, player: str) -> tuple[Path, list[tuple[Match, Path]]]:
+        """The report reads <root>/<match id>: its matches must share one root. Matches added by the
+        application all live in <output>; test runs live one level down, each run its own root: the
+        root with most of her matches is used."""
+        by: dict[Path, list] = {}
+        for m, d in self.matches_of(player):
+            by.setdefault(d.parent, []).append((m, d))
+        if not by:
+            return self.paths.output, []
+        root = max(by, key=lambda r: (len(by[r]), r == self.paths.output))
+        return root, by[root]
+
     def build_report(self, player: str, stroke: str, dest: Path, cfg: dict) -> int:
         from ..report import build
-        build([m for m, _ in self.matches_of(player)], self.paths.output, dest, stroke, player_id=player)
+        root, mine = self._group(player)
+        build([m for m, _ in mine], root, dest, stroke, player_id=player)
         return self.count_strokes(player, stroke)
 
     def audit(self, player: str, stroke: str, report: Path, dest: Path, cfg: dict):
         from ..cli import run_audit
-        run_audit(self.paths.output, report, dest, stroke, dirs=[d for _, d in self.matches_of(player)])
+        root, mine = self._group(player)
+        run_audit(root, report, dest, stroke, dirs=[d for _, d in mine])
 
     def stale(self, match_id: str, cfg: dict) -> list[str]:
         """Stages of the match whose code, settings or inputs changed since they ran (a new version)."""

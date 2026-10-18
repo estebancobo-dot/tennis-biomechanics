@@ -468,3 +468,40 @@ def test_status_is_readable(env):
     a.work()
     s = a.status()
     assert "Análisis:" in s and "rybakina · derecha: v1 · al día · OK · 30 golpes" in s
+
+
+def test_test_runs_one_level_down_are_indexed_and_reported_from_their_folder(env):
+    """The PC's real analyses so far are test runs (<output>/_smoke/<match>, <output>/_poc9_largo/<match>):
+    the index sees them (the same video in two runs stays two matches), keeps their folder, deduces the
+    player from the folder name when the run did not save it, and picks them up at the next start."""
+    from tennisbio.app.engine import Engine
+    a = env.app()
+    out = a.paths.output
+    for grp in ("_smoke", "_poc9_largo"):
+        d = out / grp / "smoke_tennis-yusipopen-final-sobolenko-rybakin"
+        d.mkdir(parents=True)
+        (d / "manifest.json").write_text(json.dumps({"candidates": {"summary": {"candidates": 9}},
+                                                     "fine": {"summary": {"confirmed": 9}}}), encoding="utf-8")
+    a.close()
+    b = env.app()                                               # next start: picks them up
+    rows = {r["id"]: r for r in b.db.q("SELECT * FROM matches")}
+    assert set(rows) == {"smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+                         "poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin"}
+    r = rows["poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin"]
+    assert r["dir"] == "_poc9_largo/smoke_tennis-yusipopen-final-sobolenko-rybakin" and r["player"] == "rybakina"
+    assert r["state"] == "analizado" and "deducida del nombre" in r["note"]
+    e = Engine(b.db, b.paths)
+    assert e.dir(r["id"]) == out / r["dir"] and e.match(r["id"]).id == "smoke_tennis-yusipopen-final-sobolenko-rybakin"
+    root, mine = e._group("rybakina")
+    assert root.name in ("_smoke", "_poc9_largo") and len(mine) == 1
+    assert "Jugadoras: 2 · partidos: 2" in b.status()
+
+
+def test_restart_keeps_what_the_application_decided(env):
+    a = env.app()
+    _, first = _added(env, a)
+    a.work()
+    a.db.x("UPDATE matches SET state='archivado' WHERE id=?", first)
+    a.close()
+    b = env.app()
+    assert b.db.one("SELECT state FROM matches WHERE id=?", first)["state"] == "archivado"

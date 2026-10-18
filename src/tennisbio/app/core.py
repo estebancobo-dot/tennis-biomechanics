@@ -26,8 +26,8 @@ class App:
         self.cfg, self.config_dir = cfg, config_dir
         self.paths = Paths.from_config(cfg)
         self.db, self.rebuilt = open_db(self.paths, lambda db: index.rebuild(db, self.paths, cfg, config_dir))
-        if not self.rebuilt:
-            index.import_catalog(self.db, cfg, config_dir)          # entries added to matches.yaml meanwhile
+        if not self.rebuilt:                                         # what appeared meanwhile (catalogue, folders)
+            index.rebuild(self.db, self.paths, cfg, config_dir, fresh=False)
         self.engine = engine_factory(self.db, self.paths)
 
     def close(self):
@@ -116,6 +116,8 @@ class App:
         out.append(f"Ahora: {run['kind']} {run.get('match') or ''} {run.get('player') or ''}".rstrip() if run else "Ahora: nada en curso")
         if e["seconds"]:
             out.append(f"En cola: ≈ {jobs.fmt_duration(e['seconds'])}, termina hacia las {e['ends']}")
+        np_ = self.db.one("SELECT count(*) AS n FROM players")["n"]
+        out.append(f"Jugadoras: {np_} · partidos: {self.db.one('SELECT count(*) AS n FROM matches')['n']}")
         out.append("")
         out.append("Análisis:")
         for a in db.q("SELECT * FROM analyses ORDER BY player, stroke"):

@@ -83,13 +83,13 @@ def state_from_manifest(man: dict) -> tuple[str, str]:
     return "analizado", ""
 
 
-def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR):
-    """The whole index from the folders (and the catalogue, for what the folders do not say)."""
+def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR, fresh: bool = True):
+    """The whole index from the folders (and the catalogue, for what the folders do not say).
+    fresh=False (every start of the application): adds the matches that appeared meanwhile (a test run of
+    the cycle, a folder copied in) and updates the ones still «nuevo» or «en curso»; what the application
+    decided about the others (archived, notices) is kept."""
     import_catalog(db, cfg, config_dir)
-    out = paths.output
-    for d in sorted(out.iterdir()) if out.exists() else []:
-        if not d.is_dir() or d.name in SKIP_DIRS or not (d / "manifest.json").exists():
-            continue
+    for mid, d in match_dirs(paths.output):
         man = load_manifest(d)
         info = {}
         if (d / "partido.json").exists():
@@ -107,14 +107,23 @@ def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR):
         except (OSError, ValueError):
             pass
         state, note = state_from_manifest(man)
-        row = db.one("SELECT * FROM matches WHERE id=?", d.name)
-        if row:
-            db.x("UPDATE matches SET state=?, note=?, video=COALESCE(NULLIF(video, ''), ?) WHERE id=?", state, note, sample, d.name)
+        rel = d.relative_to(paths.output).as_posix()
+        row = db.one("SELECT * FROM matches WHERE id=?", mid)
+        if row and (fresh or row["state"] in ("nuevo", "en curso")):
+            db.x("UPDATE matches SET state=?, note=?, dir=?, video=COALESCE(NULLIF(video, ''), ?) WHERE id=?",
+                 state, note, rel, sample, mid)
+        elif row:
+            db.x("UPDATE matches SET dir=? WHERE id=? AND IFNULL(dir, '')=''", rel, mid)
         else:
-            db.upsert("matches", {"id": d.name, "video": sample, "tournament": info.get("tournament", ""),
+            from .videos import find_players
+            who = info.get("player") or next(iter(find_players(db, d.name)), "")
+            if who and not info.get("player"):
+                note = (note + " " if note else "") + "Jugadora deducida del nombre de la carpeta."
+            db.upsert("matches", {"id": mid, "video": sample, "tournament": info.get("tournament", ""),
                                   "date": info.get("date", ""), "round": info.get("round", ""), "surface": info.get("surface", ""),
-                                  "player": info.get("player", ""), "opponent": info.get("opponent", ""), "opponent_id": "",
-                                  "state": state, "note": note, "created": now()})
+                                  "player": who, "opponent": info.get("opponent", ""),
+                                  "opponent_id": info.get("opponent_id", ""), "state": state, "note": note, "created": now(),
+                                  "dir": rel})
     for f in sorted(paths.analyses.glob("*/analisis.json")) if paths.analyses.exists() else []:
         try:
             a = json.loads(f.read_text(encoding="utf-8"))
@@ -122,6 +131,23 @@ def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR):
                                                       "n_strokes", "updated") if k in a})
         except (OSError, ValueError, KeyError):
             continue
+
+
+def match_dirs(out: Path) -> list[tuple[str, Path]]:
+    """Every match folder (with a manifest) under the output: <output>/<match> and, one level down, the
+    test runs (<output>/_smoke/<match>, <output>/_poc9_largo/<match>). The id of a nested one carries its
+    group («smoke:…», «poc9_largo:…»): the same video in two runs stays two matches."""
+    res = []
+    for d in sorted(out.iterdir()) if out.exists() else []:
+        if not d.is_dir() or d.name in SKIP_DIRS:
+            continue
+        if (d / "manifest.json").exists():
+            res.append((d.name, d))
+            continue
+        for sub in sorted(d.iterdir()):
+            if sub.is_dir() and (sub / "manifest.json").exists():
+                res.append((f"{d.name.lstrip('_')}:{sub.name}", sub))
+    return res
 
 
 def _find_video(videos: Path, rec: dict) -> str:
