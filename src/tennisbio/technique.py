@@ -23,6 +23,9 @@ from .skeleton import Skeleton
 PHASES = ["ready", "takeback", "loaded", "acceleration", "impact", "extension", "finish", "recovery"]
 # a stop of the hand at the top of the backswing this long or longer is a «false loop» (≥ 4 frames at 25 fps)
 LOOP_PAUSE_S = 0.15
+# the hand is «still» under this speed, body heights / s (≈ 0.7 m/s for a 1.84 m player): above the
+# pose noise of a still wrist on TV (0.1-0.3, docs/validacion.md) and well under a backswing (1-5)
+PAUSE_STILL_HPS = 0.4
 # moving towards her own baseline faster than this at contact is «hitting while moving back» (a walking
 # pace; the weight transfer of a stroke hit set moves the feet midpoint well under it)
 BACK_AT_IMPACT_MPS = 0.8
@@ -126,7 +129,8 @@ STROKE_DESCRIPTORS = {
     "hip_rise_after_cm": ("piernas", "Cuánto sube la cadera tras golpear", "cm", 0, "del punto más bajo al más alto tras el impacto, con su altura real"),
     "feet_move_m": ("piernas", "Cuánto se mueven los pies al golpear", "m", 2, "lo que más se mueve un pie del armado al impacto (0 = pies plantados)"),
     "racket_lag_deg": ("raqueta", "Máximo retraso de la raqueta (lag)", "°", 0, "el menor ángulo antebrazo–raqueta del armado al impacto (menos = más retraso), donde la raqueta se ve"),
-    "pause_at_loaded": ("ritmo", "Pausa en el armado", "s", 2, "mano casi quieta entre el armado y el swing"),
+    "pause_at_loaded": ("ritmo", "Pausa en el armado", "s", 1,
+                        "mano quieta (< 0,7 m/s) al final del armado; no dice si la raqueta se para"),
     "last_plant_vs_bounce": ("ritmo", "Último apoyo respecto al bote", "s", 2, "− = el último pie llega al suelo antes de que bote la bola"),
     "loaded_vs_last_plant": ("ritmo", "Armado completo respecto al último apoyo", "s", 2, "+ = termina de armar después de apoyar el último pie (corre girada y arma al final)"),
     "hand_on_handle": ("raqueta", "Mano en el mango", "%", 1, "distancia muñeca–final del mango, % de la longitud de la raqueta"),
@@ -523,6 +527,38 @@ def situation(m: dict, court_pos, displacement, t_avail, contact_h, dom_sign: in
     return out
 
 
+def loaded_pause(dw: np.ndarray, fps: float, loaded: int, takeback: int | None, impact: int) -> float | None:
+    """Seconds the dominant hand stays still at the end of the backswing (0 = no pause). dw: (T, 2)
+    dominant wrist in the body frame (body heights). None when not measurable.
+
+    Still = wrist speed under PAUSE_STILL_HPS (an absolute speed, smoothed over 0.1 s so the pose
+    noise is the same at 25 and 50 fps). The stretch must reach within 0.1 s of the end of the
+    backswing and lies in [max(takeback, loaded − 0.4 s), impact − 0.1 s]: the ready position and
+    the forward swing are never counted. Validated in docs/validacion.md («Pausa arriba»): the former
+    threshold, 30 % of the swing peak, took the slow end of the backswing for a pause."""
+    from .kinematics import smooth, speed
+    s = lambda t: int(round(t * fps))
+    wv = smooth(speed(dw, fps), fps, 0.1)
+    lo = max(0, loaded - s(0.4)) if takeback is None else max(takeback, loaded - s(0.4))
+    hi = impact - max(2, s(0.1))
+    if hi < lo or np.isfinite(wv[lo:hi + 1]).mean() < 0.6:
+        return None
+    near, best, i = max(1, s(0.1)), 0, lo
+    while i <= hi:
+        if np.isfinite(wv[i]) and wv[i] < PAUSE_STILL_HPS:
+            j = i
+            while j + 1 <= hi and np.isfinite(wv[j + 1]) and wv[j + 1] < PAUSE_STILL_HPS:
+                j += 1
+            if i - near <= loaded <= j + near:
+                if i == lo and takeback is None:     # unbounded: it may be the ready position
+                    return None
+                best = max(best, j - i)
+            i = j + 1
+        else:
+            i += 1
+    return round(best / fps, 3)
+
+
 def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, scale: np.ndarray, impact: int,
                      phases: dict, stroke: str, H: np.ndarray | None = None, opp: int | None = None,
                      bounce: int | None = None, faces: dict | None = None, split_hop: float | None = None,
@@ -709,18 +745,9 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
     if ph_.get("loaded", {}).get("com_over_feet") is not None and ph_.get("impact", {}).get("com_over_feet") is not None:
         s["weight_shift"] = round(ph_["impact"]["com_over_feet"] - ph_["loaded"]["com_over_feet"], 2)
     if ev["loaded"] is not None:                 # how long the hand stays (almost) still at the end of the backswing
-        from .kinematics import smooth, speed
-        wv = smooth(speed(dw, fps), fps, 0.06)
-        if np.isfinite(wv[ev["loaded"]:impact + 1]).any():
-            thr = 0.3 * np.nanmax(wv[ev["loaded"]:impact + 1])
-            a = b = ev["loaded"]
-            lo_p = ev["takeback"] if ev["takeback"] is not None else max(0, ev["loaded"] - int(0.4 * fps))
-            while a - 1 >= lo_p and np.isfinite(wv[a - 1]) and wv[a - 1] < thr:
-                a -= 1
-            while b + 1 < impact and np.isfinite(wv[b + 1]) and wv[b + 1] < thr:
-                b += 1
-            if a > lo_p or ev["takeback"] is not None:     # otherwise the stillness is the ready position
-                s["pause_at_loaded"] = round((b - a + 1) / fps, 3)
+        pz = loaded_pause(dw, fps, ev["loaded"], ev["takeback"], impact)
+        if pz is not None:
+            s["pause_at_loaded"] = pz
     # racket: hand position on the handle and relative speed of the tip around the blur
     if kps:
         ratios, tips = [], {}

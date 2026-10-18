@@ -185,3 +185,36 @@ evidencia ponderada en la búsqueda. Validación sintética con ruido de silueta
 
 Pendiente: medir el error real de la palma de RTMW3D en TV (no hay datos públicos con la
 orientación 3D de la mano en tenis; primera comprobación por coherencia en clips reales).
+
+## «Pausa arriba» (`stroke.pause_at_loaded`) — 48 golpes de RacketVision + casos sintéticos (18-10)
+`uv run python scripts/validate_pause.py --root <datasets> --clips 43 --ball models/balltrack.onnx`
+(`tennisbio.validation.pause_eval`, pruebas en `tests/test_pause.py`). Golpes del jugador cercano
+hallados por el programa (pose + bola) en 17 clips de TV a 25-60 fps. Referencia independiente de
+la pose del cuerpo: la **cabeza de la raqueta** (silueta YOLO-seg, relativa a la cadera) quieta
+dentro de un círculo de 0,07 alturas (≈13 cm) junto al final del armado. Las raquetas anotadas a mano
+de RacketVision no sirven de referencia fina: hay una cada ~0,2 s y solo en ~35 % de los fotogramas.
+
+| | Antes (30 % del pico del swing) | Ahora (mano < 0,4 alturas/s ≈ 0,7 m/s) |
+|---|---|---|
+| Sintético, pausa conocida 0,08-0,4 s (25 y 50 fps, ruido de pose real) | +5 fot. (25 fps), +13-21 fot. (50 fps) | 100 % a ±40 ms (±1 fot. a 25 fps) |
+| Sintético, sin pausa | 0,20-0,42 s | 0 |
+| Sintético, bucle continuo lento (1,1-2,8 m/s) | 80-100 % «pausa» | 0 % |
+| Pausa de 0,2 s inyectada en los 48 golpes reales | 96 % a ±40 ms | 95 % a ±40 ms |
+| Misma pose a la mitad de fps (60 → 30) | difer. máx. 0,30 s | difer. máx. 0,03 s |
+| Golpes con «pausa» (≥ 0,15 s) | 46 % | 16 % |
+| Frente a la raqueta: pausa sí/no (30 golpes, 5-6 con la raqueta parada) | sens. 0,67 · espec. 0,56 | sens. 0 · espec. 0,88 |
+| Frente a la raqueta: orden de los golpes (Spearman) | 0,14 | 0,18 |
+
+Conclusión:
+- La medida anterior era un error de definición: el umbral relativo (30 % del pico del swing, que
+  además sale infravalorado por el desenfoque) caía dentro del propio armado y contaba como «pausa»
+  el final lento del armado, hasta 0,64 s; cambiaba hasta 0,30 s con los fps. **Corregida** en
+  `technique.loaded_pause`: velocidad absoluta suavizada 0,1 s (mismo ruido a 25 y 50 fps; mano
+  quieta en TV: 0,1-0,3 alturas/s), ventana del armado (máx. 0,4 s antes) hasta 0,1 s antes del
+  impacto, y 0 = sin pausa.
+- Aun corregida, **la mano quieta no dice si la raqueta se para**: con el «loop» la cabeza sigue
+  girando alrededor de una mano casi quieta, y una raqueta sostenida arriba se ve con la muñeca
+  moviéndose (escorzo). No acierta ninguna de las 5 paradas de la raqueta y no ordena los golpes
+  como ella (ρ ≈ 0,2). **«Sin pausa arriba» no es medible desde la tele** como objetivo de la
+  lección; la medida de la mano queda como dato del golpe (fiabilidad baja) y la clase «loop falso»
+  no está validada. Para enseñarlo haría falta medir la parada con la raqueta (5 puntos, cada fotograma).
