@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261018095359
+Start time: 20261018120704
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 5712
+Process ID: 10164
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,24 +17,57 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-18 09:53:59] Codigo nuevo (074966a -> 5651f9e): 5 ficheros
-    config/peticion_pc.txt
+==> [2026-10-18 12:07:04] Codigo nuevo (5651f9e -> 67d23db): 16 ficheros
+    Tennisbio.vbs
+    docs/aplicacion_local.md
+    pyproject.toml
+    scripts/windows/ciclo_automatico.ps1
+    scripts/windows/comun.ps1
+    scripts/windows/instalar.ps1
+    src/tennisbio/app/check.py
     src/tennisbio/app/cli.py
-    src/tennisbio/app/core.py
-    src/tennisbio/app/engine.py
-    tests/test_app_core.py
+    src/tennisbio/app/db.py
+    src/tennisbio/app/quality.py
+    src/tennisbio/app/state.py
+    src/tennisbio/app/ui.html
+    src/tennisbio/app/window.py
+    tests/test_app_window.py
+    tests/test_auto_cycle.py
+    uv.lock
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating 074966a..5651f9e
+Updating 5651f9e..67d23db
 Fast-forward
- config/peticion_pc.txt      |  2 +-
- src/tennisbio/app/cli.py    |  1 +
- src/tennisbio/app/core.py   | 14 +++++++++++---
- src/tennisbio/app/engine.py | 22 ++++++++++++++++++----
- tests/test_app_core.py      | 34 ++++++++++++++++++++++++++++++++++
- 5 files changed, 65 insertions(+), 8 deletions(-)
-Resolved 110 packages in 0.89ms
-Checked 83 packages in 3ms
+ Tennisbio.vbs                        |    5 +
+ docs/aplicacion_local.md             |   35 ++
+ pyproject.toml                       |    2 +
+ scripts/windows/ciclo_automatico.ps1 |   11 +
+ scripts/windows/comun.ps1            |    9 +-
+ scripts/windows/instalar.ps1         |    2 +-
+ src/tennisbio/app/check.py           |  124 ++++
+ src/tennisbio/app/cli.py             |   24 +
+ src/tennisbio/app/db.py              |   20 +-
+ src/tennisbio/app/quality.py         |    2 +-
+ src/tennisbio/app/state.py           |  221 +++++++
+ src/tennisbio/app/ui.html            | 1049 ++++++++++++++++++++++++++++++++++
+ src/tennisbio/app/window.py          |  204 +++++++
+ tests/test_app_window.py             |  212 +++++++
+ tests/test_auto_cycle.py             |   16 +
+ uv.lock                              |  157 ++++-
+ 16 files changed, 2082 insertions(+), 11 deletions(-)
+ create mode 100644 Tennisbio.vbs
+ create mode 100644 src/tennisbio/app/check.py
+ create mode 100644 src/tennisbio/app/state.py
+ create mode 100644 src/tennisbio/app/ui.html
+ create mode 100644 src/tennisbio/app/window.py
+ create mode 100644 tests/test_app_window.py
+Resolved 122 packages in 1ms
+   Building tennisbio @ file:///C:/tenis/tennis-biomech
+      Built tennisbio @ file:///C:/tenis/tennis-biomech
+Prepared 1 package in 453ms
+Uninstalled 1 package in 1ms
+Installed 1 package in 3ms
+ ~ tennisbio==0.0.1 (from file:///C:/tenis/tennis-biomech)
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -43,9 +76,9 @@ yolo11m-pose_640.onnx OK 84 MB
 yolo11m-pose_960.onnx OK 84 MB
 yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
-    (paso terminado en 3 s)
+    (paso terminado en 4 s)
 
-==> [2026-10-18 09:54:02] Que hace falta: informe
+==> [2026-10-18 12:07:08] Que hace falta: informe
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
@@ -53,40 +86,15 @@ Montajes: 2 en C:\tenis\output\_smoke\exportar\montajes
 Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
 Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
 Auditoría: 285 cumplidos, 0 no cumplidos, 116 sin golpes suficientes, 21 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-Hecho en 139 s, sin volver a analizar vídeo.
-    (paso terminado en 2 min 19 s)
+Hecho en 140 s, sin volver a analizar vídeo.
+    (paso terminado en 2 min 20 s)
 
-==> [2026-10-18 09:56:22] Revision automatica frente a la ejecucion anterior
+==> [2026-10-18 12:09:28] Revision automatica frente a la ejecucion anterior
 # Revisión automática: OK
-    (paso terminado en 0 s)
-
-==> [2026-10-18 09:56:22] Peticion 22: indice de la aplicacion local (registro: C:\tenis\output\prueba_app.log)
-Ahora: nada en curso
-En cola: ≈ 3 h 05 min, termina hacia las 13:01
-Jugadoras: 2 · partidos: 2
-
-Análisis:
-Partidos:
-  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-Cola (2):
-  #1 partido poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin rybakina  · pendiente · nueva versión: cambió fine
-  #2 partido smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin rybakina  · pendiente · nueva versión: cambió scenes, court, players, score, identity, candidates, fine
-Avisos:
-  [info] Nueva versión: recalcula 2 partido(s) ≈ 3 h 05 min, desde las cachés.
-0 partido(s) a recalcular, 0 informe(s); 2 prueba(s) del ciclo automático: las mantiene el ciclo
-Ahora: nada en curso
-Jugadoras: 2 · partidos: 2
-
-Análisis:
-Partidos:
-  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-Cola (0):
 Ciclo automatico terminado (informe).
-    (paso terminado en 3 s)
-Empezado 2026-10-18 09:53:57 - terminado 2026-10-18 09:56:24 - duracion total 2 min 27 s
+    (paso terminado en 0 s)
+Empezado 2026-10-18 12:07:03 - terminado 2026-10-18 12:09:29 - duracion total 2 min 25 s
 **********************
 Windows PowerShell transcript end
-End time: 20261018095624
+End time: 20261018120929
 **********************
