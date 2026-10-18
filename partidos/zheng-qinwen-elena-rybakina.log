@@ -30,3 +30,44 @@
 2026-10-19 00:29:49   scenes:  91 % (159626/175039 fotogramas) · 13 min · quedan ≈ 75 s
 2026-10-19 00:30:19   scenes:  95 % (165679/175039 fotogramas) · 14 min · quedan ≈ 46 s
 2026-10-19 00:30:49   scenes:  98 % (171782/175039 fotogramas) · 14 min · quedan ≈ 16 s
+2026-10-19 00:31:05   scenes: 100 % (175039/175039 fotogramas) · 14 min · quedan ≈ 0 s
+2026-10-19 00:31:14 [zheng-qinwen-elena-rybakina] scenes terminada a las 00:31:14 en 14.5 min
+2026-10-19 00:31:14 [zheng-qinwen-elena-rybakina] audio… (2026-10-19 00:31:14, etapa 3 de 10)
+2026-10-19 00:31:15   audio:   4 % (300/7001 s de sonido) · 0 s · quedan ≈ 0 s
+2026-10-19 00:31:27   audio: 100 % (7001/7001 s de sonido) · 13 s · quedan ≈ 0 s
+2026-10-19 00:31:27 [zheng-qinwen-elena-rybakina] audio terminada a las 00:31:27 en 13 s
+2026-10-19 00:31:27 [zheng-qinwen-elena-rybakina] court… (2026-10-19 00:31:27, etapa 4 de 10)
+2026-10-19 00:31:36   court:   5 % (64/1229 fotogramas) · 0 s · quedan ≈ 0 s
+2026-10-19 00:32:11   court:  31 % (384/1229 fotogramas) · 35 s · quedan ≈ 78 s
+2026-10-19 00:32:57   court:  52 % (640/1229 fotogramas) · 81 s · quedan ≈ 75 s
+2026-10-19 00:33:41   court:  73 % (896/1229 fotogramas) · 2 min · quedan ≈ 46 s
+2026-10-19 00:34:22   court:  94 % (1152/1229 fotogramas) · 3 min · quedan ≈ 11 s
+2026-10-19 00:34:30   court: 100 % (1229/1229 fotogramas) · 3 min · quedan ≈ 0 s
+2026-10-19 00:34:57 [zheng-qinwen-elena-rybakina] court terminada a las 00:34:57 en 3.5 min
+2026-10-19 00:34:57 [zheng-qinwen-elena-rybakina] players… (2026-10-19 00:34:57, etapa 5 de 10)
+2026-10-19 00:34:57 [zheng-qinwen-elena-rybakina] score… (2026-10-19 00:34:57, etapa 6 de 10, a la vez que players)
+2026-10-19 00:34:57   [players] juego con pista: 32.5 min de 36.6 min de cámara principal
+2026-10-19 00:34:58   [players] players:   0 % (1/19526 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+2026-10-19 00:35:10   [score] score:   0 % (1/484 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+2026-10-19 00:35:28   [players] players:   2 % (420/19526 fotogramas con jugadoras) · 30 s · quedan ≈ 23 min
+2026-10-19 00:35:41   [score] score:   3 % (14/484 muestras · 0 lecturas · 13 OCR) · 31 s · quedan ≈ 17 min
+2026-10-19 00:35:58   [players] players:   4 % (831/19526 fotogramas con jugadoras) · 60 s · quedan ≈ 23 min
+2026-10-19 00:36:12   [score] score:   5 % (25/484 muestras · 4 lecturas · 25 OCR) · 62 s · quedan ≈ 19 min
+2026-10-19 00:36:28   [players] players:   6 % (1256/19526 fotogramas con jugadoras) · 2 min · quedan ≈ 22 min
+2026-10-19 00:36:43   [score] score:   9 % (43/484 muestras · 22 lecturas · 39 OCR) · 2 min · quedan ≈ 16 min
+2026-10-19 00:36:58   [players] players:   8 % (1635/19526 fotogramas con jugadoras) · 2 min · quedan ≈ 22 min
+2026-10-19 00:37:13   [score] score:  15 % (71/484 muestras · 50 lecturas · 56 OCR) · 2 min · quedan ≈ 12 min
+2026-10-19 00:37:28   [players] players:  10 % (2019/19526 fotogramas con jugadoras) · 3 min · quedan ≈ 22 min
+2026-10-19 00:37:45   [score] score:  19 % (93/484 muestras · 72 lecturas · 71 OCR) · 3 min · quedan ≈ 11 min
+2026-10-19 00:37:58   [players] players:  12 % (2429/19526 fotogramas con jugadoras) · 3 min · quedan ≈ 21 min
+2026-10-19 00:38:15   [score] score:  23 % (110/484 muestras · 89 lecturas · 84 OCR) · 3 min · quedan ≈ 10 min
+2026-10-19 00:38:28   [players] players:  15 % (2837/19526 fotogramas con jugadoras) · 4 min · quedan ≈ 21 min
+2026-10-19 00:38:46   [score] score:  26 % (126/484 muestras · 105 lecturas · 97 OCR) · 4 min · quedan ≈ 10 min
+2026-10-19 00:38:58   [players] players:  17 % (3248/19526 fotogramas con jugadoras) · 4 min · quedan ≈ 20 min
+2026-10-19 00:39:16   [score] score:  29 % (142/484 muestras · 121 lecturas · 110 OCR) · 4 min · quedan ≈ 10 min
+2026-10-19 00:39:28   [players] players:  19 % (3663/19526 fotogramas con jugadoras) · 5 min · quedan ≈ 20 min
+2026-10-19 00:39:46   [score] score:  34 % (163/484 muestras · 142 lecturas · 125 OCR) · 5 min · quedan ≈ 9 min
+2026-10-19 00:39:58   [players] players:  21 % (4055/19526 fotogramas con jugadoras) · 5 min · quedan ≈ 19 min
+2026-10-19 00:40:17   [score] score:  38 % (184/484 muestras · 163 lecturas · 139 OCR) · 5 min · quedan ≈ 8 min
+2026-10-19 00:40:28   [players] players:  23 % (4472/19526 fotogramas con jugadoras) · 6 min · quedan ≈ 19 min
+2026-10-19 00:40:49   [score] score:  41 % (200/484 muestras · 178 lecturas · 153 OCR) · 6 min · quedan ≈ 8 min
