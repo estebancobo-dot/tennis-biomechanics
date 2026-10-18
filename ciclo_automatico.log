@@ -51,3 +51,7 @@ Hecho en 153 s, sin volver a analizar vídeo.
 
 ==> [2026-10-18 23:30:09] Revision automatica frente a la ejecucion anterior
 # Revisión automática: OK
+Registro enviado a Claude (no hace falta copiar nada).
+    (paso terminado en 5 s)
+
+==> [2026-10-18 23:30:14] Peticion 32: analisis completo de todos los partidos (horas; registro: analisis_completo.log)

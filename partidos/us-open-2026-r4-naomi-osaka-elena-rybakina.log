@@ -1,0 +1,32 @@
+2026-10-18 23:30:20 [us-open-2026-r4-naomi-osaka-elena-rybakina] probe… (2026-10-18 23:30:20, etapa 1 de 10)
+2026-10-18 23:30:27   el vídeo tiene saltos de tiempo o es .ts: se copia una vez a un fichero limpio (sin recodificar)
+2026-10-18 23:30:27   AVISO: no se pudo limpiar el vídeo (t)
+[matroska @ 0000024f17be2880] Can't write packet with unknown timestamp
+[out#0/matroska @ 0000024f152883c0] Error writing trailer: Invalid argument); se usa tal cual
+2026-10-18 23:30:27 [us-open-2026-r4-naomi-osaka-elena-rybakina] probe terminada a las 23:30:27 en 7 s
+2026-10-18 23:30:27 [us-open-2026-r4-naomi-osaka-elena-rybakina] scenes… (2026-10-18 23:30:27, etapa 2 de 10)
+2026-10-18 23:30:29   scenes:   0 % (1/107055 fotogramas) · 0 s · quedan ≈ 0 s
+2026-10-18 23:30:59   scenes:   7 % (7997/107055 fotogramas) · 30 s · quedan ≈ 6 min
+2026-10-18 23:31:29   scenes:  15 % (16026/107055 fotogramas) · 60 s · quedan ≈ 6 min
+2026-10-18 23:31:59   scenes:  23 % (24226/107055 fotogramas) · 2 min · quedan ≈ 5 min
+2026-10-18 23:32:29   scenes:  30 % (32267/107055 fotogramas) · 2 min · quedan ≈ 5 min
+2026-10-18 23:32:59   scenes:  38 % (40307/107055 fotogramas) · 3 min · quedan ≈ 4 min
+2026-10-18 23:33:30   scenes:  45 % (48426/107055 fotogramas) · 3 min · quedan ≈ 4 min
+2026-10-18 23:34:00   scenes:  53 % (56602/107055 fotogramas) · 4 min · quedan ≈ 3 min
+2026-10-18 23:34:30   scenes:  60 % (64626/107055 fotogramas) · 4 min · quedan ≈ 3 min
+2026-10-18 23:35:00   scenes:  68 % (72826/107055 fotogramas) · 5 min · quedan ≈ 2 min
+2026-10-18 23:35:30   scenes:  76 % (81026/107055 fotogramas) · 5 min · quedan ≈ 2 min
+2026-10-18 23:36:00   scenes:  83 % (89226/107055 fotogramas) · 6 min · quedan ≈ 66 s
+2026-10-18 23:36:31   scenes:  91 % (97426/107055 fotogramas) · 6 min · quedan ≈ 36 s
+2026-10-18 23:37:01   scenes:  98 % (105426/107055 fotogramas) · 7 min · quedan ≈ 6 s
+2026-10-18 23:37:07   scenes: 100 % (107055/107055 fotogramas) · 7 min · quedan ≈ 0 s
+2026-10-18 23:37:28 [us-open-2026-r4-naomi-osaka-elena-rybakina] scenes terminada a las 23:37:28 en 7.0 min
+2026-10-18 23:37:28 [us-open-2026-r4-naomi-osaka-elena-rybakina] audio… (2026-10-18 23:37:28, etapa 3 de 10)
+2026-10-18 23:37:34   audio:   2 % (300/17128 s de sonido) · 0 s · quedan ≈ 0 s
+2026-10-18 23:38:05   audio:  29 % (4882/17128 s de sonido) · 31 s · quedan ≈ 77 s
+2026-10-18 23:38:36   audio:  57 % (9764/17128 s de sonido) · 62 s · quedan ≈ 47 s
+2026-10-18 23:39:11   audio:  69 % (11864/17128 s de sonido) · 2 min · quedan ≈ 43 s
+2026-10-18 23:39:42   audio:  96 % (16446/17128 s de sonido) · 2 min · quedan ≈ 5 s
+2026-10-18 23:39:53   audio: 100 % (17128/17128 s de sonido) · 2 min · quedan ≈ 0 s
+2026-10-18 23:39:53 [us-open-2026-r4-naomi-osaka-elena-rybakina] audio terminada a las 23:39:53 en 2.4 min
+2026-10-18 23:39:53 [us-open-2026-r4-naomi-osaka-elena-rybakina] court… (2026-10-18 23:39:53, etapa 4 de 10)
