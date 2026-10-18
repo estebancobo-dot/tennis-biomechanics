@@ -124,8 +124,10 @@ def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR, fres
         try:
             v = json.loads((d / "video.json").read_text(encoding="utf-8"))
             sample = v.get("sample", "")
-            if sample and not db.one("SELECT sample FROM videos WHERE sample=?", sample):
-                db.upsert("videos", {"sample": sample, "size": v.get("size", 0), "path": _find_video(paths.videos, v),
+            known = db.one("SELECT path FROM videos WHERE sample=?", sample) if sample else None
+            if sample and (not known or not known["path"] or not Path(known["path"]).exists()):
+                # the videos folder, and the run's own folder (test runs cut their clip next to their matches)
+                db.upsert("videos", {"sample": sample, "size": v.get("size", 0), "path": _find_video([paths.videos, d.parent], v),
                                      "added": now()}, "sample")
         except (OSError, ValueError):
             pass
@@ -179,13 +181,18 @@ def match_dirs(out: Path) -> list[tuple[str, Path]]:
     return res
 
 
-def _find_video(videos: Path, rec: dict) -> str:
-    """Where the video of a pinned identity is now: a file of the same size whose sampled pieces match."""
-    if not videos.exists():
-        return ""
-    for f in videos.rglob("*"):
-        if f.is_file() and f.stat().st_size == rec.get("size") and video_sample(f) == rec.get("sample"):
-            return str(f)
+def _find_video(places: list[Path], rec: dict) -> str:
+    """Where the video of a pinned identity is now: a file of the same size whose sampled pieces match,
+    in the videos folder (and its subfolders) or directly in one of the other places."""
+    for i, place in enumerate(places):
+        if not place.exists():
+            continue
+        for f in (place.rglob("*") if i == 0 else place.glob("*")):
+            try:
+                if f.is_file() and f.stat().st_size == rec.get("size") and video_sample(f) == rec.get("sample"):
+                    return str(f)
+            except OSError:
+                continue
     return ""
 
 

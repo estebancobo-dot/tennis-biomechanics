@@ -532,3 +532,25 @@ def test_restart_rereads_what_the_folders_say(env):
     b = env.app()
     assert b.db.one("SELECT state FROM matches WHERE id=?", first)["state"] == "analizado"
     assert b.db.one("SELECT state FROM matches WHERE id=?", second)["state"] == "con aviso"
+
+
+def test_test_run_clip_is_found_next_to_its_matches(env):
+    """Test runs cut their clip into the run's folder (output/_smoke/<name>_1800_4m.mkv), not the videos
+    folder; a video not found once is looked for again at the next start."""
+    from tennisbio.pipeline import video_fingerprint
+    a = env.app()
+    run = a.paths.output / "_smoke"
+    d = run / "smoke_x-rybakina"
+    d.mkdir(parents=True)
+    (d / "manifest.json").write_text(json.dumps({"fine": {"summary": {"confirmed": 3}}}), encoding="utf-8")
+    clip = run / "x_1800_4m.mkv"
+    clip.write_bytes(b"v" * 5000)
+    video_fingerprint(clip, d)                                   # what the pipeline pins in video.json
+    clip.rename(env.tmp / "aparte.bin")                          # not there at the first look
+    a.close()
+    b = env.app()
+    assert b.db.one("SELECT path FROM videos")["path"] == ""
+    (env.tmp / "aparte.bin").rename(clip)
+    b.close()
+    c = env.app()
+    assert c.db.one("SELECT path FROM videos")["path"] == str(clip)
