@@ -195,3 +195,37 @@ Cada parte se valida sola: pruebas con datos sintéticos de cada caso de la secc
 - **No arregla su propio código:** detecta y explica; el arreglo llega con una actualización.
 - **No mide lo que la tele no permite:** empuñadura, rpm, velocidad de bola, fuerzas.
 - **No usa vídeos externos como datos de la jugadora** (requisito 6).
+
+## 9. Estado (18-10): parte 1, núcleo, hecha
+
+**Código:** `src/tennisbio/app/`.
+
+| Módulo | Qué hace |
+|---|---|
+| `db` | El índice: SQLite en `C:\tenis\datos\tennisbio.db`. |
+| `index` | Reconstrucción desde las carpetas, importación de `matches.yaml` y de las fichas, alta de jugadoras y alias. |
+| `videos` | Añadir vídeo con sus preguntas. |
+| `storage` | Disco: aviso, liberar lo regenerable y no empezar si no cabe. |
+| `quality` | Versiones, auditoría y comparación, con la misma revisión que el ciclo automático. |
+| `jobs` | Cola, reanudación y respuesta a cada error. |
+| `engine` | Llama a las etapas, al informe y a la auditoría de siempre. |
+| `core` | Lo que llaman la ventana y la línea de órdenes. |
+
+**Órdenes:** `tennisbio app status | add | also | plan | work | pausa | seguir | franja | rebuild`.
+
+**Pruebas:** `tests/test_app_core.py`, con 31 casos de la sección 5. Todos pasan, con un motor falso que falla a voluntad.
+
+**Motor real:** probado con datos sintéticos. Hace el informe, la auditoría con capturas (≈ 5 min) y publica la versión 1 con su revisión.
+
+**En el PC:** la petición «app» crea el índice con sus datos reales y dice qué recalcularía. No ejecuta la cola.
+
+**Diferencias con el diseño (decididas al construir):**
+- **Carpetas:** se quedan donde las escribe hoy el análisis (`output\<partido>`). La base de datos es un índice y no hace falta mover nada. Solo es nueva `output\analisis\<jugadora>_<golpe>\` (`actual`, `v1…`, `pendiente`).
+- **Informes y auditorías:** van antes que los trabajos pesados por prioridad, pero no a la vez. Es un solo proceso; el trabajo en paralelo en la CPU llega con la ventana (parte 2).
+- **Pendiente para las partes 2-4:**
+  - la ventana;
+  - los avisos de Windows (hoy son avisos en el índice);
+  - la copia a USB;
+  - la copia al móvil;
+  - el instalador;
+  - el caso «navegador ausente», que es de la ventana.

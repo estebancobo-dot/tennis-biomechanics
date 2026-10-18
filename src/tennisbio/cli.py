@@ -55,7 +55,12 @@ def _main(argv=None):
     au.add_argument("--stroke", default="forehand", choices=["forehand", "backhand", "overhead"])
     au.add_argument("--root", help="carpeta con las carpetas de los partidos (por defecto <output>)")
     au.add_argument("--out", help="carpeta de la auditoría (por defecto <output>/auditoria)")
+    apl = sub.add_parser("app", help="la aplicación local: tennisbio app status|add|also|plan|work|… (ver app/cli.py)")
+    apl.add_argument("rest", nargs=argparse.REMAINDER)
     args = ap.parse_args(argv)
+    if args.cmd == "app":                       # its own catalogue (the index): no matches.yaml needed
+        from .app.cli import main as app_main
+        return app_main(args.rest)
 
     cfg = load_config()
     out_root = Path(cfg.get("paths", {}).get("output", "output"))
@@ -112,9 +117,9 @@ def _main(argv=None):
         return 1
 
 
-def run_audit(root: Path, report: Path, dest: Path, stroke: str = "forehand") -> int:
+def run_audit(root: Path, report: Path, dest: Path, stroke: str = "forehand", dirs: list[Path] | None = None) -> int:
     """Screenshots of the report (if the browser can be driven) and the audit of every match folder
-    under root; prints the summary and what is not met."""
+    under root (or only `dirs`: the matches of one analysis); prints the summary and what is not met."""
     from .audit import audit, write
 
     shots = dest / "capturas"
@@ -124,7 +129,8 @@ def run_audit(root: Path, report: Path, dest: Path, stroke: str = "forehand") ->
     except Exception as e:                    # no browser: the audit goes on without the screens
         print(f"AVISO: no se pudieron hacer las capturas del informe ({e})")
         shots = None
-    dirs = [d for d in sorted(root.iterdir()) if d.is_dir() and (d / "manifest.json").exists()] if root.exists() else []
+    if dirs is None:
+        dirs = [d for d in sorted(root.iterdir()) if d.is_dir() and (d / "manifest.json").exists()] if root.exists() else []
     res = audit(dirs, report, stroke, shots)
     # the PDF summary: exists, how many pages, and a copy for Claude to read (uploaded with the logs)
     es = {"forehand": "derecha", "backhand": "reves", "overhead": "saque"}[stroke]

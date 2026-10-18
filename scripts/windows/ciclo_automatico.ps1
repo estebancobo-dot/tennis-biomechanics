@@ -95,6 +95,19 @@ function Hacer-Peticion {
         & uv run python scripts/youtube_research.py --out $s --urls "$($p['urls'])" 2>&1 |
             ForEach-Object { $l = "$_"; Add-Content $lg $l -Encoding UTF8; $l } | Out-Host
         "codigo de salida: $LASTEXITCODE; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "app") {
+        # la aplicacion local (nucleo): crea o lee su indice en C:\tenis\datos con los datos reales y
+        # dice que recalcularia; no ejecuta ningun trabajo de la cola
+        $lg = "$Base\output\prueba_app.log"
+        "Peticion $($p['id']): indice de la aplicacion local ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        Paso "Peticion $($p['id']): indice de la aplicacion local (registro: $lg)"
+        $env:UV_NO_PROGRESS = "1"
+        foreach ($orden in @("status", "plan", "status")) {
+            "== tennisbio app $orden" | Add-Content $lg -Encoding UTF8
+            & uv run tennisbio app $orden 2>&1 |
+                ForEach-Object { $l = "$_"; Add-Content $lg $l -Encoding UTF8; $l } | Out-Host
+        }
+        "codigo de salida: $LASTEXITCODE; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "borrar") {
         # borra carpetas de pruebas de velocidad ya documentadas (lo pide el usuario); solo nombres
         # _poc, _pocN o _pocN_M: nunca _poc9_largo, _smoke ni nada mas

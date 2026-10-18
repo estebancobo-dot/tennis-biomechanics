@@ -150,3 +150,15 @@ def test_youtube_falls_back_when_the_installed_ytdlp_gets_no_formats(tmp_path, m
     assert v["frames"] == 1 and "video_error" not in v
     assert calls.count(None) == 2 and yr.FALLBACKS[-1] in calls      # subtitles + video with the installed one first
     assert not list((tmp_path / "t").iterdir())                        # the video is deleted
+
+
+def test_request_app_builds_the_local_index_without_running_jobs():
+    """«accion: app»: the application's index on the PC with its real data (status, plan, status), logged
+    in output\\prueba_app.log (uploaded with the other logs); it never runs the queue («work»)."""
+    win = Path(__file__).resolve().parents[1] / "scripts" / "windows"
+    ps1 = (win / "ciclo_automatico.ps1").read_text(encoding="utf-8")
+    assert ps1.isascii()
+    block = ps1[ps1.index('$p["accion"] -eq "app"'):]
+    block = block[:block.index("} elseif")]
+    assert '@("status", "plan", "status")' in block and "uv run tennisbio app $orden" in block and "prueba_app.log" in block
+    assert "work" not in block
