@@ -188,12 +188,25 @@ def check(app, dest: Path, shots: bool = True, real: bool = False) -> dict:
 
 
 TEST_RUNS = ["_poc9_largo", "_smoke"]          # the automatic cycle's runs with a real report, the longest first
-FRAME_JS = """async (sid) => { showTab('golpe'); const s = STROKES.find(x => x.id === sid); await loadStroke(s);
+FRAME_JS = """async ([sid, vk]) => { showTab('golpe'); const s = STROKES.find(x => x.id === sid); if (vk !== null) s.vk = vk;
+  await loadStroke(s);
   await new Promise(r => setTimeout(r, 800)); const t = (s.vImpact || 0); MAIN.video.currentTime = t;
   await new Promise(r => { MAIN.video.addEventListener('seeked', r, {once: true}); setTimeout(r, 3000); });
-  const c = document.createElement('canvas'); c.width = 160; c.height = 90; const ctx = c.getContext('2d');
-  drawFrame(ctx, 160, 90, Math.max(0, Math.min(NF - 1, Math.round((t - T0) * FPS))), {skel: false, trail: false, ball: false});
-  return {px: Array.from(ctx.getImageData(0, 0, 160, 90).data), h: MAIN.video.videoHeight, vk: s.vk || 1}; }"""
+  const c = document.createElement('canvas'); c.width = 320; c.height = 180; const ctx = c.getContext('2d');
+  drawFrame(ctx, 320, 180, Math.max(0, Math.min(NF - 1, Math.round((t - T0) * FPS))), {skel: false, trail: false, ball: false});
+  const g = document.createElement('canvas'); g.width = 32; g.height = 18; g.getContext('2d').drawImage(c, 0, 0, 32, 18);
+  return {px: Array.from(g.getContext('2d').getImageData(0, 0, 32, 18).data), png: c.toDataURL('image/png'),
+          h: MAIN.video.videoHeight, vk: s.vk || 1}; }"""
+
+
+def _diff(a: dict, b: dict) -> float:
+    """Mean difference of the two pictures reduced to 32 × 18 (framing, not sharpness: the copy is 720p)."""
+    return sum(abs(x - y) for i, (x, y) in enumerate(zip(a["px"], b["px"])) if i % 4 != 3) / max(1, len(a["px"]) * 3 / 4)
+
+
+def _save_png(data_url: str, f: Path):
+    import base64
+    f.write_bytes(base64.b64decode(data_url.split(",", 1)[1]))
 
 
 def check_mobile(app, dest: Path) -> dict:
@@ -234,7 +247,9 @@ def check_mobile(app, dest: Path) -> dict:
         if r["failed"]:
             problems.append(f"{a['id']}: {len(r['failed'])} clips no se pudieron convertir")
         data, _, _ = mobile.read_data((Path(r["dest"]) / "index.html").read_text(encoding="utf-8"))
-        sid = next((s["id"] for s in data["strokes"] if s.get("video") and s.get("series") and s.get("vImpact") is not None), None)
+        ok = [s for s in data["strokes"] if s.get("video") and s.get("series") and s.get("vImpact") is not None]
+        # near side first: a 70 px far player zoomed 2× is mostly the copy's lower sharpness (PC, 18-10)
+        sid = next((s["id"] for s in ok if s.get("side") != "far"), ok[0]["id"] if ok else None)
         with sync_playwright() as p:
             b = _browser(p)
             pics = {}
@@ -252,26 +267,29 @@ def check_mobile(app, dest: Path) -> dict:
                     pg.screenshot(path=str(dest / f"movil_{a['id']}.png"))
                 if sid:
                     try:
-                        pics[name] = pg.evaluate(FRAME_JS, sid)
+                        pics[name] = pg.evaluate(FRAME_JS, [sid, None])
+                        _save_png(pics[name]["png"], dest / f"movil_{a['id']}_imagen_{name}.png")
+                        if name == "movil":       # the control: the same copy drawn without its scale
+                            pg.screenshot(path=str(dest / f"movil_{a['id']}_golpe.png"))
+                            pics["sin_escala"] = pg.evaluate(FRAME_JS, [sid, 1])
                     except Exception as e:       # noqa: BLE001
                         problems.append(f"{a['id']} ({name}): no se pudo dibujar su golpe: {e}"[:300])
-                    if name == "movil":
-                        pg.screenshot(path=str(dest / f"movil_{a['id']}_golpe.png"))
             b.close()
         if not sid and r["with_video"]:
             problems.append(f"{a['id']}: ningún golpe con vídeo, serie e instante de impacto para comparar la imagen")
-        if sid and len(pics) == 2:
+        if sid and len(pics) == 3:
             pc, mv = pics["pc"], pics["movil"]
-            diff = sum(abs(x - y) for x, y in zip(pc["px"], mv["px"])) / max(1, len(pc["px"]))
+            diff, bad = _diff(pc, mv), _diff(pc, pics["sin_escala"])
             light = sum(pc["px"]) / max(1, len(pc["px"]))
             row["imagen"] = {"stroke": sid, "alto_pc": pc["h"], "alto_movil": mv["h"], "vk": mv["vk"],
-                             "diferencia_media": round(diff, 1), "brillo": round(light, 1)}
+                             "diferencia_media": round(diff, 1), "sin_escala": round(bad, 1), "brillo": round(light, 1)}
             if not mv["h"] or mv["h"] > 720:
                 problems.append(f"{a['id']}: el vídeo de la copia no carga o no está a 720p ({mv['h']})")
             elif light < 5:
                 problems.append(f"{a['id']}: el fotograma del PC sale negro (el navegador no lee el vídeo)")
-            elif diff > 18:
-                problems.append(f"{a['id']}: el golpe dibujado desde la copia no coincide con el del PC (diferencia {diff:.0f})")
+            elif diff > 18 or (mv["vk"] != 1 and diff > 0.5 * bad):
+                problems.append(f"{a['id']}: el golpe dibujado desde la copia no coincide con el del PC "
+                                f"(diferencia {diff:.0f}; sin la escala, {bad:.0f})")
         rows.append(row)
     from . import phone                          # the phone by cable, if it is connected now: straight to it
     devs = phone.devices()
