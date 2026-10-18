@@ -68,8 +68,13 @@ class App:
     def plan_updates(self) -> dict:
         """After an update: which matches have stages whose code or settings changed, the cost, and the
         jobs (waiting for one click when it is long). A changed web rebuilds every analysis (minutes)."""
-        plan, total, no_video = [], 0.0, 0
-        for r in self.db.q("SELECT id, player FROM matches WHERE state IN (%s)" % ",".join("?" * len(USABLE)), *USABLE):
+        plan, total, no_video, test_runs = [], 0.0, 0, 0
+        for r in self.db.q("SELECT id, player, dir FROM matches WHERE state IN (%s)" % ",".join("?" * len(USABLE)), *USABLE):
+            if "/" in (r.get("dir") or ""):
+                test_runs += 1                             # a test run of the automatic cycle: the cycle keeps it
+                self.db.x("UPDATE jobs SET state='cancelado', message='prueba del ciclo automático: la mantiene el ciclo' "
+                          "WHERE match=? AND kind='partido' AND state IN ('pendiente', 'por confirmar')", r["id"])
+                continue
             try:
                 stale = self.engine.stale(r["id"], self.cfg)
             except (MissingVideo, KeyError, OSError):
@@ -91,12 +96,15 @@ class App:
                 jobs.enqueue(self.db, "informe", player=a["player"], stroke=a["stroke"], reason="nueva versión del informe")
                 rebuilt_reports += 1
             self.db.set_setting("report_code", code)
+        if not plan:
+            self.db.clear_notice("plan")
         if plan:
             nights = max(1, round(total / (8 * 3600) + .49))
             text = (f"Nueva versión: recalcula {len(plan)} partido(s) ≈ {jobs.fmt_duration(total)}"
                     + (f", {nights} noche(s). Confirma con un clic para empezar." if long_plan else ", desde las cachés."))
             self.db.notice("plan", "aviso" if long_plan else "info", text)
-        return {"matches": len(plan), "seconds": total, "confirm": long_plan, "reports": rebuilt_reports, "no_video": no_video}
+        return {"matches": len(plan), "seconds": total, "confirm": long_plan, "reports": rebuilt_reports, "no_video": no_video,
+                "test_runs": test_runs}
 
     def confirm_plan(self) -> int:
         n = len(self.db.q("SELECT id FROM jobs WHERE state='por confirmar'"))

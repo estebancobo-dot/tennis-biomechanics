@@ -27,11 +27,25 @@ class Engine:
         return r
 
     def match(self, match_id: str) -> Match:
+        """The stages' Match, built exactly as the runs build it (catalog.trial_match: what the folder's
+        partido.json says, then the index; the rival read by the scoreboard when nobody gave it). A field
+        built differently would change the stages' fingerprints and ask for hours of recomputation that
+        nothing really needs (seen on the PC, 18-10)."""
+        from ..catalog import trial_match
         r = self._row(match_id)
-        extra = {"opponent_id": r["opponent_id"]} if r.get("opponent_id") else {}
-        return Match(id=self.dir(match_id).name, video=Path(r["vpath"] or ""), player=index.player(self.db, r["player"]),
-                     opponent=r.get("opponent") or "", tournament=r.get("tournament") or "", date=r.get("date") or "",
-                     surface=r.get("surface") or "", round=r.get("round") or "", extra=extra)
+        d = self.dir(match_id)
+        opp = r.get("opponent") or ""
+        if not opp and (d / "score.json").exists():
+            try:
+                opp = json.loads((d / "score.json").read_text(encoding="utf-8")).get("opponent") or ""
+            except (OSError, ValueError):
+                opp = ""
+        m = trial_match(d.name, Path(r["vpath"] or ""), index.player(self.db, r["player"]), {}, match_dir=d,
+                        opponent=opp, tournament=r.get("tournament") or "", date=r.get("date") or "",
+                        surface=r.get("surface") or "", round=r.get("round") or "")
+        if r.get("opponent_id"):
+            m.extra["opponent_id"] = r["opponent_id"]
+        return m
 
     def dir(self, match_id: str) -> Path:
         """The match folder: where the index says (test runs live one level down), else <output>/<id>."""

@@ -554,3 +554,37 @@ def test_test_run_clip_is_found_next_to_its_matches(env):
     b.close()
     c = env.app()
     assert c.db.one("SELECT path FROM videos")["path"] == str(clip)
+
+
+def test_plan_leaves_the_cycles_test_runs_to_the_cycle(env):
+    """On the PC (18-10) the plan wanted 3 h for the test runs: their cheap stages are stale on purpose (the
+    cycle recomputes the measures from the caches only). They belong to the automatic cycle."""
+    a = env.app()
+    d = a.paths.output / "_smoke" / "smoke_x-rybakina"
+    d.mkdir(parents=True)
+    (d / "manifest.json").write_text(json.dumps({"fine": {"summary": {"confirmed": 3}}}), encoding="utf-8")
+    a.close()
+    b = env.app()
+    b.engine.stale_stages = {"smoke:smoke_x-rybakina": ["scenes", "fine"]}
+    jobs.enqueue(b.db, "partido", match="smoke:smoke_x-rybakina", player="rybakina", reason="nueva versión (plan anterior)")
+    b.db.notice("plan", "info", "Nueva versión: recalcula 1 partido(s)")
+    r = b.plan_updates()
+    assert r["matches"] == 0 and r["test_runs"] == 1
+    assert b.db.one("SELECT state FROM jobs WHERE kind='partido'")["state"] == "cancelado"
+    assert not b.db.one("SELECT id FROM notices WHERE key='plan'")
+
+
+def test_match_is_built_as_the_runs_build_it(env):
+    """The rival read by the scoreboard (score.json) and what partido.json says: the same Match as the
+    run, so the fingerprints agree and nothing is recomputed for nothing."""
+    from tennisbio.app.engine import Engine
+    a = env.app()
+    d = a.paths.output / "_poc9_largo" / "smoke_x-rybakina"
+    d.mkdir(parents=True)
+    (d / "manifest.json").write_text(json.dumps({"fine": {"summary": {"confirmed": 3}}}), encoding="utf-8")
+    (d / "partido.json").write_text(json.dumps({"tournament": "US Open", "surface": "dura", "round": "F"}), encoding="utf-8")
+    (d / "score.json").write_text(json.dumps({"opponent": "SABALENKA"}), encoding="utf-8")
+    a.close()
+    b = env.app()
+    m = Engine(b.db, b.paths).match("poc9_largo:smoke_x-rybakina")
+    assert (m.id, m.opponent, m.surface, m.round, m.tournament) == ("smoke_x-rybakina", "SABALENKA", "dura", "F", "US Open")
