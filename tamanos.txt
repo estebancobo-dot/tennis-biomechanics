@@ -1,4 +1,4 @@
-fecha: 2026-10-19T01:01:08
+fecha: 2026-10-19T01:11:13
        5.7 MB  \output\benchmark
          1 MB  \output\capturas_app
      450.2 MB  \output\entrenamiento
@@ -9,7 +9,7 @@ fecha: 2026-10-19T01:01:08
        3.3 MB  \output\investigacion_25
      145.5 MB  \output\movil_prueba
      331.3 MB  \output\us-open-2026-r4-naomi-osaka-elena-rybakina
-      31.7 MB  \output\zheng-qinwen-elena-rybakina
+       148 MB  \output\zheng-qinwen-elena-rybakina
     1528.9 MB  \output\_poc31_35
      182.6 MB  \output\_poc31_4
     7818.9 MB  \output\_poc9_largo
