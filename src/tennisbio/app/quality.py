@@ -84,7 +84,7 @@ def publish(db: DB, analyses_root: Path, player: str, stroke: str, build, audit)
         _move(new, held)
         state = "pendiente de revisar"
         db.notice(f"regression_{aid}", "crit", f"{name} empeoró con la versión nueva: se sigue mostrando la versión {version}. "
-                  f"La nueva queda «pendiente de revisar» ({held / 'revision.md'}).")
+                  f"La nueva queda «pendiente de revisar»; en Calidad se ve qué empeoró.")
     else:
         if cur.exists():
             _move(cur, base / f"v{version}")

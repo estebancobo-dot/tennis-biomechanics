@@ -6,6 +6,7 @@ manifest, video.json and partido.json; each analysis its versions and audits), s
 is set aside (never deleted) and rebuilt (docs/aplicacion_local.md §5.4, «Base de datos dañada»)."""
 import json
 import sqlite3
+import threading
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -80,7 +81,9 @@ class DB:
     def __init__(self, path: Path):
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        self.con = sqlite3.connect(str(self.path), timeout=30)
+        # the window answers each click in its own thread: one connection, used under a lock
+        self.con = sqlite3.connect(str(self.path), timeout=30, check_same_thread=False)
+        self.lock = threading.RLock()
         self.con.row_factory = sqlite3.Row
         self.con.executescript(SCHEMA)
         cols = {r[1] for r in self.con.execute("PRAGMA table_info(matches)")}
@@ -92,16 +95,19 @@ class DB:
         self.con.close()
 
     def q(self, sql: str, *args) -> list[dict]:
-        return [dict(r) for r in self.con.execute(sql, args).fetchall()]
+        with self.lock:
+            return [dict(r) for r in self.con.execute(sql, args).fetchall()]
 
     def one(self, sql: str, *args) -> dict | None:
-        r = self.con.execute(sql, args).fetchone()
-        return dict(r) if r else None
+        with self.lock:
+            r = self.con.execute(sql, args).fetchone()
+            return dict(r) if r else None
 
     def x(self, sql: str, *args) -> int:
-        cur = self.con.execute(sql, args)
-        self.con.commit()
-        return cur.lastrowid
+        with self.lock:
+            cur = self.con.execute(sql, args)
+            self.con.commit()
+            return cur.lastrowid
 
     def upsert(self, table: str, row: dict, key: str = "id"):
         cols = list(row)

@@ -33,6 +33,8 @@ ocr = ["rapidocr-onnxruntime>=1.3"]
 # of the report for the audit (playwright drives the installed Brave; no browser download).
 validation = ["yt-dlp>=2025.1", "playwright>=1.44"]
 dev = ["pytest>=8", "onnx>=1.16"]
+# The application's window: WebView2 (already in Windows 11) through pywebview (BSD, free).
+app = ["pywebview>=5.0"]
 
 [tool.uv]
 # rtmlib pide `onnxruntime`, que choca con `onnxruntime-directml` (mismo módulo).

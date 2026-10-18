@@ -162,3 +162,19 @@ def test_request_app_builds_the_local_index_without_running_jobs():
     block = block[:block.index("} elseif")]
     assert '@("status", "plan", "status")' in block and "uv run tennisbio app $orden" in block and "prueba_app.log" in block
     assert "work" not in block
+
+
+def test_request_ventana_paints_the_app_screens_with_the_real_index():
+    """«accion: ventana»: every screen of the application painted with the real index (read-only, no window
+    opened to the user), its check and screenshots uploaded to pc-logs; the app's extra is installed by the
+    cycle and the installer (otherwise each cycle's sync would remove pywebview)."""
+    win = Path(__file__).resolve().parents[1] / "scripts" / "windows"
+    ps1 = (win / "ciclo_automatico.ps1").read_text(encoding="utf-8")
+    block = ps1[ps1.index('$p["accion"] -eq "ventana"'):]
+    block = block[:block.index("} elseif")]
+    assert "uv run --extra app tennisbio app comprobar $s --real" in block and "prueba_ventana.log" in block
+    comun = (win / "comun.ps1").read_text(encoding="utf-8")
+    assert comun.isascii() and "--extra app" in comun and "capturas_app" in comun
+    assert '"--extra", "app"' in (win / "instalar.ps1").read_text(encoding="utf-8")
+    vbs = (Path(__file__).resolve().parents[1] / "Tennisbio.vbs").read_text(encoding="utf-8")
+    assert vbs.isascii() and "tennisbio app ventana" in vbs and ", 0, False" in vbs

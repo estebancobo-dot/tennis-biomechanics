@@ -1,0 +1,1049 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tennisbio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #0c0f13; --panel: #14181d; --panel-2: #1a2027; --raise: #222a33;
+  --line: #262e38; --line-2: #323c48;
+  --ink: #e7ebee; --ink-2: #aab4be; --ink-3: #727e8a;
+  --accent: #d4f03a; --accent-ink: #11140a;
+  --good: #22b14c; --warn: #fab219; --crit: #e0524f; --info: #5fd3e6;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70;
+  --display: "Archivo", "Arial Narrow", system-ui, sans-serif;
+  --body: "Archivo", "Segoe UI", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html, body { background: var(--bg); color: var(--ink); margin: 0; }
+body { font-family: var(--body); font-size: 14px; line-height: 1.45; }
+h1, h2, h3 { margin: 0; font-family: var(--display); font-weight: 700; line-height: 1.15; text-wrap: balance; }
+h1 { font-size: 1.6rem; font-variation-settings: "wdth" 84; }
+h2 { font-size: 1.08rem; font-variation-settings: "wdth" 90; }
+h3 { font-size: .74rem; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); }
+p { margin: 0; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.mono, .num { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.dim { color: var(--ink-2); } .dim3 { color: var(--ink-3); } .sm { font-size: 12.5px; }
+
+/* Casos: alternar estado normal / estados de la sección 5 */
+body:not(.cases) .c-on { display: none !important; }
+body.cases .c-off { display: none !important; }
+
+/* Estructura */
+.app { display: grid; grid-template-columns: 228px minmax(0, 1fr); min-height: 100vh; background: linear-gradient(90deg, var(--panel) 227px, var(--line) 227px 228px, var(--bg) 228px); }
+.side { background: var(--panel); border-right: 1px solid var(--line); padding: 16px 0; display: flex; flex-direction: column; gap: 18px; position: sticky; top: 0; height: 100vh; }
+.brand { display: flex; gap: 10px; align-items: center; padding-inline: 16px; text-decoration: none; }
+.brand .mark { width: 30px; height: 30px; border-radius: 7px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font: 800 14px var(--display); }
+.brand b { font: 700 16px var(--display); font-variation-settings: "wdth" 82; letter-spacing: .02em; display: block; }
+.brand span { display: block; font-size: 11px; color: var(--ink-3); }
+.nav { display: grid; gap: 2px; padding-inline: 8px; }
+.nav a { display: flex; align-items: center; gap: 10px; text-decoration: none; border-radius: 6px; padding: 9px 10px; color: var(--ink-2); font-weight: 500; position: relative; }
+.nav a svg { width: 17px; height: 17px; flex: none; }
+.nav a:hover { background: var(--panel-2); color: var(--ink); }
+.nav a[aria-current="page"] { background: var(--raise); color: var(--ink); }
+.nav a[aria-current="page"] svg { color: var(--accent); }
+.nav .lbl-s { display: none; }
+.nav .badge { margin-left: auto; font: 600 10.5px var(--mono); background: var(--panel-2); border: 1px solid var(--line-2); border-radius: 999px; padding: 0 6px; color: var(--ink-2); }
+.nav .badge.warn { background: rgba(250,178,25,.15); border-color: rgba(250,178,25,.4); color: var(--warn); }
+.nav .badge.crit { background: rgba(224,82,79,.15); border-color: rgba(224,82,79,.45); color: var(--crit); }
+.side .foot { margin-top: auto; padding-inline: 16px; font-size: 11.5px; color: var(--ink-3); display: grid; gap: 6px; }
+.mini-run { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px; display: grid; gap: 6px; color: var(--ink-2); }
+.mini-run b { color: var(--ink); font-weight: 600; }
+
+.main { min-width: 0; display: flex; flex-direction: column; }
+.topbar { display: flex; gap: 10px 14px; align-items: center; justify-content: flex-end; padding: 10px 28px; border-bottom: 1px solid var(--line); position: sticky; top: 0; background: rgba(12,15,19,.92); backdrop-filter: blur(6px); z-index: 20; flex-wrap: wrap; }
+.topbar .mbrand { display: none; margin-right: auto; }
+.tag { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; padding: 3px 8px; border-radius: 4px; background: var(--panel-2); border: 1px solid var(--line); color: var(--ink-2); white-space: nowrap; }
+.tag.sample { background: rgba(250,178,25,.12); border-color: rgba(250,178,25,.35); color: var(--warn); font-weight: 600; letter-spacing: .03em; }
+.content { padding: 24px 28px 56px; max-width: 1180px; width: 100%; }
+.screen { display: none; gap: 18px; }
+.screen.on { display: grid; }
+
+/* Selector de casos */
+.cases-pick { position: relative; }
+.cases-pick > summary { list-style: none; cursor: pointer; font-size: 12px; color: var(--ink-3); padding: 4px 9px; border: 1px dashed var(--line-2); border-radius: 6px; user-select: none; white-space: nowrap; }
+.cases-pick > summary::-webkit-details-marker { display: none; }
+.cases-pick > summary:hover { color: var(--ink-2); }
+body.cases .cases-pick > summary { color: var(--warn); border-color: rgba(250,178,25,.5); border-style: solid; }
+.cases-pop { position: absolute; right: 0; top: calc(100% + 6px); width: 320px; max-width: calc(100vw - 32px); background: var(--panel); border: 1px solid var(--line-2); border-radius: 10px; box-shadow: 0 16px 40px rgba(0,0,0,.5); padding: 12px; display: grid; gap: 10px; z-index: 40; }
+.cases-pop ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 1px; max-height: 52vh; overflow: auto; }
+.cases-pop li a { display: flex; justify-content: space-between; gap: 10px; text-decoration: none; padding: 6px 8px; border-radius: 5px; font-size: 13px; color: var(--ink-2); }
+.cases-pop li a:hover { background: var(--panel-2); color: var(--ink); }
+.cases-pop li a span { color: var(--ink-3); font-size: 11.5px; white-space: nowrap; }
+
+.seg { display: inline-flex; background: var(--panel-2); border: 1px solid var(--line); border-radius: 7px; padding: 2px; gap: 2px; }
+.seg button { background: none; border: 0; border-radius: 5px; padding: 5px 11px; font-size: 12.5px; color: var(--ink-2); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--raise); color: var(--ink); font-weight: 600; }
+
+/* Piezas */
+.head { display: flex; flex-wrap: wrap; gap: 12px 16px; align-items: flex-end; justify-content: space-between; }
+.head .sub { color: var(--ink-2); margin-top: 4px; }
+.back { display: inline-flex; gap: 4px; align-items: center; color: var(--ink-2); text-decoration: none; font-size: 13px; margin-bottom: 8px; }
+.back:hover { color: var(--ink); }
+.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; min-width: 0; }
+.panel > header { display: flex; flex-wrap: wrap; gap: 6px 12px; align-items: baseline; justify-content: space-between; padding: 14px 18px 0; }
+.panel .body { padding: 12px 18px 18px; }
+.grid2 { display: grid; gap: 18px; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); }
+.grid3 { display: grid; gap: 14px; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.btn { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 600; padding: 8px 13px; border-radius: 7px; border: 1px solid var(--line-2); background: var(--panel-2); color: var(--ink); cursor: pointer; white-space: nowrap; text-decoration: none; }
+.btn:hover { border-color: var(--ink-3); }
+.btn.pri { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn.pri:hover { filter: brightness(1.06); }
+.btn.ghost { background: none; }
+.btn.sm { font-size: 12px; padding: 5px 9px; }
+.btn.danger { color: var(--crit); }
+.btn svg { width: 15px; height: 15px; }
+.row-btns { display: flex; flex-wrap: wrap; gap: 8px; }
+
+.st { display: inline-flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 600; white-space: nowrap; }
+.st i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; flex: none; }
+.st.good { color: var(--good); } .st.good i { background: var(--good); }
+.st.warn { color: var(--warn); } .st.warn i { background: var(--warn); }
+.st.crit { color: var(--crit); } .st.crit i { background: var(--crit); }
+.st.run { color: var(--accent); } .st.run i { background: var(--accent); animation: pulse 1.4s infinite; }
+.st.idle { color: var(--ink-3); } .st.idle i { background: var(--line-2); }
+.st.off { color: var(--ink-3); } .st.off i { background: none; border: 1.5px solid var(--ink-3); }
+@keyframes pulse { 50% { opacity: .35; } }
+@media (prefers-reduced-motion: reduce) { .st.run i, .dot.run { animation: none; } }
+
+.alert { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; padding: 13px 16px; border-radius: 10px; border: 1px solid; align-items: start; }
+.alert > svg { width: 20px; height: 20px; margin-top: 1px; grid-row: span 3; }
+.alert b { font-weight: 650; }
+.alert p { color: var(--ink-2); font-size: 13px; }
+.alert .row-btns { margin-top: 6px; }
+.alert.warn { background: rgba(250,178,25,.08); border-color: rgba(250,178,25,.35); } .alert.warn > svg { color: var(--warn); }
+.alert.crit { background: rgba(224,82,79,.08); border-color: rgba(224,82,79,.4); } .alert.crit > svg { color: var(--crit); }
+.alert.info { background: rgba(212,240,58,.06); border-color: rgba(212,240,58,.3); } .alert.info > svg { color: var(--accent); }
+.alert.good { background: rgba(34,177,76,.06); border-color: rgba(34,177,76,.3); } .alert.good > svg { color: var(--good); }
+
+.progress { height: 8px; border-radius: 99px; background: var(--raise); overflow: hidden; }
+.progress > b { display: block; height: 100%; background: var(--accent); border-radius: 99px; }
+.progress.thin { height: 5px; }
+
+/* Línea de etapas */
+.dots { display: inline-flex; gap: 4px; align-items: center; }
+.dot { width: 10px; height: 10px; border-radius: 50%; background: var(--line-2); flex: none; }
+.dot.done { background: var(--good); } .dot.run { background: var(--accent); animation: pulse 1.4s infinite; }
+.dot.warn { background: var(--warn); } .dot.err { background: var(--crit); }
+.dot.skip { background: none; border: 1.5px solid var(--ink-3); }
+.dots .gap { width: 6px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--ink-3); }
+.legend span { display: inline-flex; gap: 6px; align-items: center; }
+
+.stages { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); position: relative; }
+.stages::before { content: ""; position: absolute; left: 4.5%; right: 4.5%; top: 9px; height: 2px; background: var(--line-2); }
+.stage { display: grid; align-content: start; justify-items: center; gap: 6px; text-align: center; position: relative; padding: 0 2px; }
+.stage .dot { width: 20px; height: 20px; border: 3px solid var(--panel); box-sizing: content-box; margin-top: -3px; }
+.stage .dot.skip { border: 2px solid var(--ink-3); width: 16px; height: 16px; }
+.stage b { font-size: 12px; font-weight: 600; line-height: 1.2; }
+.stage span { font: 11px var(--mono); color: var(--ink-3); }
+.stage em { font-style: normal; font-size: 11px; color: var(--warn); line-height: 1.2; }
+.stage.grp b::before { content: ""; }
+
+/* Tarjetas de análisis */
+.acards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); }
+.acard { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; text-decoration: none; display: grid; grid-template-rows: auto 1fr; transition: border-color .15s, transform .15s; cursor: pointer; }
+.acard:hover { border-color: var(--ink-3); transform: translateY(-2px); }
+.acard .thumb { aspect-ratio: 16 / 8.2; display: block; position: relative; background: #0e1a24; }
+.acard .thumb svg { width: 100%; height: 100%; display: block; }
+.acard .thumb .pill { position: absolute; left: 10px; top: 10px; }
+.acard .info { padding: 14px 16px 16px; display: grid; gap: 8px; align-content: start; }
+.acard h2 { font-size: 1.2rem; }
+.acard .meta { display: flex; flex-wrap: wrap; gap: 4px 12px; color: var(--ink-2); font-size: 13px; }
+.acard .meta b { color: var(--ink); font-family: var(--mono); font-weight: 600; }
+.acard .foot { display: flex; justify-content: space-between; gap: 8px; align-items: center; border-top: 1px solid var(--line); padding-top: 10px; margin-top: 2px; flex-wrap: wrap; }
+.acard.big .thumb { aspect-ratio: 16 / 7; }
+.acard.prov { border-style: dashed; }
+.acard.reg { border-color: rgba(224,82,79,.55); }
+.pill { display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 600; padding: 3px 8px; border-radius: 99px; background: rgba(12,15,19,.82); border: 1px solid var(--line-2); color: var(--ink); white-space: nowrap; }
+.pill.warn { color: var(--warn); border-color: rgba(250,178,25,.5); }
+.pill.crit { color: var(--crit); border-color: rgba(224,82,79,.55); }
+.pill.acc { color: var(--accent); border-color: rgba(212,240,58,.45); }
+.addcard { border: 1.5px dashed var(--line-2); border-radius: 12px; display: grid; place-items: center; text-align: center; padding: 26px; color: var(--ink-2); cursor: pointer; background: none; min-height: 200px; }
+.addcard:hover { border-color: var(--accent); color: var(--ink); }
+.addcard .plus { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; background: var(--panel-2); color: var(--accent); font-size: 26px; margin: 0 auto 10px; }
+
+/* Listas */
+.list { display: grid; }
+.li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 6px 16px; padding: 12px 0; border-top: 1px solid var(--line); align-items: center; }
+.li:first-child { border-top: 0; }
+.li .t { font-weight: 600; }
+.li .s { color: var(--ink-2); font-size: 12.5px; }
+.li .r { display: grid; justify-items: end; gap: 4px; text-align: right; }
+.why { display: inline-block; font-size: 11.5px; color: var(--ink-2); background: var(--panel-2); border: 1px solid var(--line); border-radius: 4px; padding: 1px 7px; margin-top: 3px; }
+.li.crit { background: linear-gradient(90deg, rgba(224,82,79,.08), transparent 70%); margin-inline: -18px; padding-inline: 18px; }
+.li.warn { background: linear-gradient(90deg, rgba(250,178,25,.07), transparent 70%); margin-inline: -18px; padding-inline: 18px; }
+.explain { grid-column: 1 / -1; font-size: 12.5px; color: var(--ink-2); border-left: 2px solid var(--line-2); padding-left: 10px; }
+.li.crit .explain { border-color: var(--crit); } .li.warn .explain { border-color: var(--warn); }
+
+/* Partidos */
+.match { display: grid; grid-template-columns: 74px minmax(0, 1fr) auto auto; gap: 8px 18px; align-items: center; padding: 14px 18px; border-top: 1px solid var(--line); text-decoration: none; }
+.match:first-child { border-top: 0; }
+a.match:hover { background: var(--panel-2); }
+.match .mini { width: 74px; height: 44px; border-radius: 6px; overflow: hidden; background: #0e1a24; }
+.match .mini svg { width: 100%; height: 100%; display: block; }
+.match .t { font-weight: 650; }
+.match .s { color: var(--ink-2); font-size: 12.5px; }
+.match .size { font: 12px var(--mono); color: var(--ink-2); text-align: right; min-width: 64px; }
+.match .stat { grid-column: 2 / -1; display: flex; gap: 6px 14px; flex-wrap: wrap; align-items: center; }
+.match.excl { opacity: .75; }
+.match.excl .mini { filter: grayscale(1); }
+
+.drop { border: 1.5px dashed var(--line-2); border-radius: 10px; padding: 16px; display: flex; gap: 14px; align-items: center; justify-content: space-between; flex-wrap: wrap; color: var(--ink-2); background: var(--panel); }
+.drop svg { width: 22px; height: 22px; color: var(--accent); flex: none; }
+.drop > div { display: flex; gap: 12px; align-items: center; }
+
+/* Datos clave */
+.kv { display: grid; grid-template-columns: max-content minmax(0, 1fr); gap: 7px 16px; font-size: 13.5px; }
+.kv dt { color: var(--ink-3); }
+.kv dd { margin: 0; }
+.stats { display: flex; flex-wrap: wrap; gap: 10px 28px; }
+.stat-n { display: grid; gap: 2px; }
+.stat-n b { font: 600 1.6rem var(--mono); line-height: 1.1; }
+.stat-n span { color: var(--ink-3); font-size: 12px; }
+.bars { display: grid; grid-template-columns: max-content minmax(0, 1fr) max-content; gap: 8px 12px; align-items: center; font-size: 13px; }
+.bars .b { height: 10px; border-radius: 3px; background: var(--raise); overflow: hidden; }
+.bars .b > i { display: block; height: 100%; background: var(--accent); }
+.bars .b > i.mute { background: var(--ink-3); }
+.bars .n { font-family: var(--mono); color: var(--ink-2); }
+
+/* Jugadoras */
+.pcards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); }
+.pcard { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; text-decoration: none; display: grid; }
+.pcard:hover { border-color: var(--ink-3); }
+.photo { aspect-ratio: 4 / 3; position: relative; overflow: hidden; }
+.photo svg { width: 100%; height: 100%; display: block; }
+.photo .cap { position: absolute; left: 8px; bottom: 8px; font-size: 10.5px; color: var(--ink-2); background: rgba(12,15,19,.75); padding: 2px 6px; border-radius: 4px; }
+.pcard .info { padding: 12px 14px 14px; display: grid; gap: 6px; }
+.pcard h2 { font-size: 1.15rem; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-size: 12px; padding: 2px 8px; border-radius: 4px; background: var(--panel-2); border: 1px solid var(--line); color: var(--ink-2); white-space: nowrap; }
+.chip b { color: var(--ink); font-weight: 600; }
+.chip.warn { color: var(--warn); border-color: rgba(250,178,25,.4); }
+.ficha { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 18px; }
+.ficha .photo { border-radius: 10px; border: 1px solid var(--line); }
+
+/* Cola */
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+.prio { display: inline-flex; flex-direction: column; gap: 1px; }
+.prio button { width: 24px; height: 17px; border: 1px solid var(--line-2); background: var(--panel-2); border-radius: 4px; cursor: pointer; display: grid; place-items: center; padding: 0; color: var(--ink-2); font-size: 9px; line-height: 1; }
+.job { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 6px 14px; padding: 12px 0; border-top: 1px solid var(--line); align-items: center; }
+.job:first-child { border-top: 0; }
+.job .n { font: 600 12px var(--mono); color: var(--ink-3); width: 24px; text-align: center; }
+.job .t { font-weight: 600; }
+.job .s { color: var(--ink-2); font-size: 12.5px; }
+.job .r { text-align: right; display: grid; justify-items: end; gap: 3px; font-size: 12.5px; }
+.job.crit, .job.warn { margin-inline: -18px; padding-inline: 18px; }
+.job.crit { background: linear-gradient(90deg, rgba(224,82,79,.09), transparent 75%); }
+.job.warn { background: linear-gradient(90deg, rgba(250,178,25,.07), transparent 75%); }
+.job .explain { grid-column: 2 / -1; }
+.job.crit .explain { border-color: var(--crit); } .job.warn .explain { border-color: var(--warn); }
+.dev { font-size: 11px; font-family: var(--mono); padding: 1px 6px; border-radius: 4px; border: 1px solid var(--line-2); color: var(--ink-2); }
+.window { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; font-size: 13px; color: var(--ink-2); }
+
+/* Interruptor */
+.sw { position: relative; display: inline-flex; align-items: center; gap: 10px; cursor: pointer; font-size: 13.5px; }
+.sw input { position: absolute; opacity: 0; pointer-events: none; }
+.sw .k { width: 36px; height: 20px; border-radius: 99px; background: var(--line-2); position: relative; transition: background .15s; flex: none; }
+.sw .k::after { content: ""; position: absolute; left: 3px; top: 3px; width: 14px; height: 14px; border-radius: 50%; background: var(--ink); transition: transform .15s; }
+.sw input:checked + .k { background: var(--accent); }
+.sw input:checked + .k::after { transform: translateX(16px); background: var(--accent-ink); }
+.sw input:focus-visible + .k { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Calidad */
+.qrow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 16px; padding: 14px 0; border-top: 1px solid var(--line); align-items: center; }
+.qrow:first-child { border-top: 0; }
+.qnums { display: flex; gap: 16px; font: 600 14px var(--mono); }
+.qnums .ok { color: var(--good); } .qnums .ko { color: var(--ink-3); } .qnums .ko.bad { color: var(--crit); } .qnums .few { color: var(--ink-2); font-weight: 500; }
+.qbar { grid-column: 1 / -1; display: flex; height: 6px; border-radius: 99px; overflow: hidden; background: var(--raise); }
+.qbar i { display: block; height: 100%; }
+.qrow.reg { margin-inline: -18px; padding-inline: 18px; background: rgba(224,82,79,.06); border-left: 3px solid var(--crit); }
+.regbox { grid-column: 1 / -1; display: grid; gap: 6px; font-size: 13px; }
+.regbox ul { margin: 0; padding-left: 18px; color: var(--ink-2); display: grid; gap: 3px; }
+.regbox ul b { color: var(--crit); font-weight: 600; }
+.vers { display: grid; }
+.ver { display: grid; grid-template-columns: 64px minmax(0, 1fr) auto; gap: 4px 14px; padding: 10px 0; border-top: 1px solid var(--line); font-size: 13px; align-items: baseline; }
+.ver:first-child { border-top: 0; }
+.ver .v { font: 600 13px var(--mono); }
+
+/* Almacenamiento */
+.disk { display: grid; gap: 10px; }
+.diskbar { display: flex; height: 18px; border-radius: 6px; overflow: hidden; background: var(--raise); }
+.diskbar i { display: block; height: 100%; }
+.k-imp { background: var(--s1); } .k-reg { background: var(--s3); } .k-tmp { background: var(--ink-3); } .k-oth { background: #3a4552; } .k-free { background: transparent; }
+.sw-key { display: inline-block; width: 10px; height: 10px; border-radius: 2px; vertical-align: -1px; margin-right: 6px; }
+.mrow { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr) 70px; gap: 6px 14px; align-items: center; padding: 10px 0; border-top: 1px solid var(--line); font-size: 13px; }
+.mrow:first-child { border-top: 0; }
+.mrow .diskbar { height: 12px; }
+.mrow .num { text-align: right; color: var(--ink-2); }
+
+/* Ajustes */
+.set { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 8px 24px; padding: 16px 0; border-top: 1px solid var(--line); }
+.set:first-child { border-top: 0; }
+.set > div:first-child b { display: block; font-weight: 600; }
+.set > div:first-child span { font-size: 12.5px; color: var(--ink-3); }
+.set .ctl { display: grid; gap: 10px; align-content: start; }
+.path { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.path code { font: 12.5px var(--mono); background: var(--panel-2); border: 1px solid var(--line); border-radius: 6px; padding: 6px 10px; min-width: 0; overflow-wrap: anywhere; }
+.timein { font: 13px var(--mono); color: var(--ink); background: var(--panel-2); border: 1px solid var(--line-2); border-radius: 6px; padding: 5px 8px; width: 82px; }
+
+/* Diálogos */
+.modal { position: fixed; inset: 0; background: rgba(5,7,9,.72); display: none; place-items: center; z-index: 60; padding: 16px; overflow-y: auto; }
+.modal.on { display: grid; }
+.dlg { background: var(--panel); border: 1px solid var(--line-2); border-radius: 14px; width: min(640px, 100%); box-shadow: 0 30px 80px rgba(0,0,0,.6); display: grid; max-height: calc(100vh - 32px); overflow: auto; }
+.dlg > header { padding: 18px 20px 6px; display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; }
+.dlg .x { background: none; border: 0; color: var(--ink-3); font-size: 22px; line-height: 1; cursor: pointer; padding: 2px 6px; }
+.dlg .x:hover { color: var(--ink); }
+.dlg .db { padding: 10px 20px 20px; display: grid; gap: 16px; }
+.dlg footer { padding: 14px 20px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; align-items: center; }
+.steps { display: flex; gap: 6px; flex-wrap: wrap; }
+.steps span { font-size: 12px; padding: 3px 10px; border-radius: 99px; border: 1px solid var(--line); color: var(--ink-3); }
+.steps span.on { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 700; }
+.steps span.done { color: var(--ink-2); border-color: var(--line-2); }
+.bigdrop { border: 2px dashed var(--line-2); border-radius: 12px; padding: 34px 20px; display: grid; place-items: center; gap: 10px; text-align: center; color: var(--ink-2); cursor: pointer; transition: border-color .15s, background .15s; }
+.bigdrop:hover, .bigdrop.over { border-color: var(--accent); background: rgba(212,240,58,.04); }
+.bigdrop svg { width: 38px; height: 38px; color: var(--accent); }
+.bigdrop b { color: var(--ink); font-size: 15px; }
+.file { display: flex; gap: 12px; align-items: center; background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.file svg { width: 22px; height: 22px; color: var(--ink-2); flex: none; }
+.file .mono { font-size: 12.5px; overflow-wrap: anywhere; }
+.facts { display: flex; flex-wrap: wrap; gap: 6px; }
+.form { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.fld { display: grid; gap: 4px; font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .07em; font-weight: 600; }
+.fld input, .fld select { font: 14px var(--body); text-transform: none; letter-spacing: 0; color: var(--ink); background: var(--panel-2); border: 1px solid var(--line-2); border-radius: 7px; padding: 8px 10px; width: 100%; min-width: 0; }
+.fld small { text-transform: none; letter-spacing: 0; font-weight: 400; color: var(--ink-3); font-size: 11.5px; }
+.fld.full { grid-column: 1 / -1; }
+.matrix { display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(4, minmax(0, 1fr)); gap: 6px; align-items: stretch; }
+.matrix .hd { font-size: 11px; color: var(--ink-3); text-transform: uppercase; letter-spacing: .07em; font-weight: 600; text-align: center; padding-bottom: 2px; align-self: end; }
+.matrix .pl { display: grid; min-width: 0; overflow-wrap: anywhere; hyphens: manual; align-content: center; font-weight: 600; font-size: 13.5px; }
+.matrix .pl small { font-weight: 400; color: var(--ink-3); font-size: 11.5px; }
+.cell { border: 1px solid var(--line-2); background: var(--panel-2); border-radius: 7px; min-height: 46px; display: grid; place-items: center; font-size: 12px; cursor: pointer; color: var(--ink-3); padding: 4px; text-align: center; }
+.cell:hover { border-color: var(--ink-3); }
+.cell.has { cursor: default; background: none; border-style: dashed; color: var(--good); }
+.cell.sel { background: rgba(212,240,58,.12); border-color: var(--accent); color: var(--accent); font-weight: 700; }
+.cell.na { cursor: not-allowed; background: none; border-style: dotted; color: var(--ink-3); font-size: 10.5px; }
+.cost { background: var(--panel-2); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; display: grid; gap: 4px; font-size: 13px; }
+.cost b { font-size: 14px; }
+
+/* Web del análisis */
+.webview { display: none; min-height: 100vh; flex-direction: column; }
+body.web .app { display: none; }
+body.web .webview { display: flex; }
+.webbar { display: flex; align-items: center; gap: 14px; padding: 10px 20px; background: var(--panel); border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.webbar .ttl { font: 700 15px var(--display); }
+.webbar .tag { margin-left: auto; }
+.webframe { flex: 1; margin: 18px 20px 20px; border: 2px dashed var(--line-2); border-radius: 14px; display: grid; grid-template-rows: auto 1fr; overflow: hidden; background: radial-gradient(1200px 400px at 50% 0%, rgba(212,240,58,.05), transparent); }
+.webtabs { display: flex; gap: 4px; padding: 10px 14px; border-bottom: 1px solid var(--line); flex-wrap: wrap; }
+.webtabs span { font-size: 12.5px; padding: 5px 11px; border-radius: 6px; color: var(--ink-3); border: 1px solid transparent; }
+.webtabs span.on { color: var(--ink); background: var(--raise); }
+.webmsg { display: grid; place-items: center; text-align: center; padding: 40px 20px; gap: 14px; align-content: center; }
+.webmsg svg.big { width: min(420px, 100%); height: auto; opacity: .9; }
+.webmsg p { color: var(--ink-2); max-width: 520px; }
+.webmsg h2 { font-size: 1.4rem; }
+
+.toast { position: fixed; right: 20px; bottom: 20px; background: var(--raise); border: 1px solid var(--line-2); border-radius: 10px; padding: 11px 14px; font-size: 13px; box-shadow: 0 12px 30px rgba(0,0,0,.5); z-index: 80; max-width: calc(100vw - 40px); opacity: 0; transform: translateY(8px); transition: opacity .2s, transform .2s; pointer-events: none; }
+.toast.on { opacity: 1; transform: none; }
+.wtoast { display: flex; gap: 12px; align-items: flex-start; background: #1d232b; border: 1px solid var(--line-2); border-radius: 8px; padding: 10px 12px; font-size: 13px; }
+.wtoast .ic { width: 26px; height: 26px; border-radius: 6px; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; font: 800 12px var(--display); flex: none; }
+.wtoast small { color: var(--ink-3); display: block; font-size: 11px; }
+
+.now { display: grid; gap: 12px; }
+.now .big { display: flex; gap: 10px 22px; flex-wrap: wrap; align-items: baseline; justify-content: space-between; }
+.now .eta b { font: 600 1.5rem var(--mono); }
+.note { font-size: 12.5px; color: var(--ink-3); }
+.hr { height: 1px; background: var(--line); margin: 2px 0; }
+
+/* Móvil */
+@media (max-width: 1000px) {
+  .grid2 { grid-template-columns: minmax(0, 1fr); }
+  .grid3 { grid-template-columns: minmax(0, 1fr); }
+  .stages { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .stages::before { left: 11px; right: auto; top: 10px; bottom: 10px; width: 2px; height: auto; }
+  .stage { grid-template-columns: 24px minmax(0, 1fr) auto; justify-items: start; text-align: left; align-items: center; gap: 2px 12px; padding: 5px 0; }
+  .stage .dot { margin-top: 0; }
+  .stage em { grid-column: 2 / -1; }
+}
+@media (max-width: 860px) {
+  .app { grid-template-columns: minmax(0, 1fr); background: var(--bg); }
+  .topbar .mbrand b { display: none; }
+  .topbar .tag.sample { font-size: 11px; letter-spacing: .01em; }
+  .side { position: sticky; top: 0; z-index: 30; height: auto; padding: 8px 10px 8px; gap: 8px; border-right: 0; border-bottom: 1px solid var(--line); }
+  .side .brand, .side .foot { display: none; }
+  .nav { grid-template-columns: repeat(4, minmax(0, 1fr)); padding: 0; gap: 2px; }
+  .nav a { flex-direction: column; gap: 3px; padding: 6px 2px; font-size: 11px; text-align: center; line-height: 1.15; }
+  .nav a svg { width: 18px; height: 18px; }
+  .nav a .lbl-l { display: none; }
+  .nav a .lbl-s { display: inline; }
+  .nav .badge { position: absolute; top: 2px; right: 6px; margin: 0; font-size: 9.5px; padding: 0 4px; }
+  .topbar { position: static; padding: 10px 16px; justify-content: flex-end; }
+  .topbar .mbrand { display: flex; padding: 0; }
+  .topbar { flex-wrap: nowrap; }
+  .content { padding: 18px 16px 48px; }
+  h1 { font-size: 1.4rem; }
+  .ficha { grid-template-columns: minmax(0, 1fr); }
+  .ficha .photo { max-height: 220px; aspect-ratio: auto; height: 200px; }
+  .match { grid-template-columns: 56px minmax(0, 1fr) auto; padding: 12px 14px; gap: 6px 12px; }
+  .match .mini { width: 56px; height: 36px; }
+  .match .size { grid-column: 3; grid-row: 1; }
+  .match .go { display: none; }
+  .match .stat { grid-column: 1 / -1; }
+  .mrow { grid-template-columns: minmax(0, 1fr) 64px; }
+  .mrow .diskbar { grid-column: 1 / -1; grid-row: 2; }
+  .set { grid-template-columns: minmax(0, 1fr); }
+  .form { grid-template-columns: minmax(0, 1fr); }
+  .matrix { grid-template-columns: minmax(0, 1.15fr) repeat(4, minmax(0, 1fr)); gap: 4px; }
+  .matrix .hd { font-size: 9.5px; letter-spacing: .02em; }
+  .cell { min-height: 40px; font-size: 11px; }
+  .panel > header { padding: 12px 14px 0; }
+  .panel .body { padding: 10px 14px 14px; }
+  .li.crit, .li.warn, .job.crit, .job.warn, .qrow.reg { margin-inline: -14px; padding-inline: 14px; }
+  .webframe { margin: 12px; }
+  .webbar { padding: 10px 14px; }
+  .webbar .tag { margin-left: 0; }
+  .acards { grid-template-columns: minmax(0, 1fr); }
+  .pcards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .pcard .info { padding: 10px; }
+  .pcard h2 { font-size: 1rem; }
+  .li { grid-template-columns: minmax(0, 1fr); }
+  .li .r { justify-items: start; text-align: left; grid-auto-flow: column; justify-content: start; gap: 10px; }
+  .job { grid-template-columns: auto minmax(0, 1fr); }
+  .job .r { grid-column: 2; justify-items: start; text-align: left; grid-auto-flow: column; justify-content: start; gap: 10px; }
+  .qrow { grid-template-columns: minmax(0, 1fr); }
+  .stats { gap: 10px 20px; }
+  .stat-n b { font-size: 1.3rem; }
+}
+
+/* ---- la aplicación real (sobre el diseño de la maqueta validada) ---- */
+.webframe { border: 1px solid var(--line); border-style: solid; background: #000; margin: 0; border-radius: 0; }
+.webframe iframe { width: 100%; height: 100%; border: 0; background: var(--bg); }
+body.web .webview { height: 100vh; }
+.empty { padding: 28px; text-align: center; color: var(--ink-2); }
+.empty b { display: block; color: var(--ink); margin-bottom: 6px; font-size: 16px; }
+.mini-run[hidden] { display: none; }
+.readonly-note { font-size: 12px; color: var(--warn); }
+.li.test .t::after { content: " · prueba del ciclo"; color: var(--ink-3); font-weight: 400; font-size: 12px; }
+.match .tagline { font-size: 11.5px; color: var(--ink-3); }
+.pmini { display: grid; gap: 4px; }
+.kv dd, .alert p, .explain, .job .s, .li .s { overflow-wrap: anywhere; }
+.kv dd .mono { word-break: break-all; }
+</style>
+</head>
+<body>
+
+<!-- Iconos -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="g-court" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16314a"/><stop offset="1" stop-color="#1d4467"/></linearGradient>
+    <linearGradient id="g-grass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1f3d22"/><stop offset="1" stop-color="#2c5a2c"/></linearGradient>
+    <linearGradient id="g-clay" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a2a1b"/><stop offset="1" stop-color="#7a4129"/></linearGradient>
+    <linearGradient id="g-photo" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1b2a38"/><stop offset="1" stop-color="#0f161d"/></linearGradient>
+  </defs>
+  <symbol id="i-home" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" d="M3 11 12 4l9 7v9a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m10 9 5 3-5 3z"/></g></symbol>
+  <symbol id="i-film" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 9h4M3 15h4M17 9h4M17 15h4"/></g></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></g></symbol>
+  <symbol id="i-queue" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1.2" fill="currentColor"/><circle cx="4" cy="12" r="1.2" fill="currentColor"/><circle cx="4" cy="18" r="1.2" fill="currentColor"/></g></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 4.5 3.4 8 8 9 4.6-1 8-4.5 8-9V6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/></g></symbol>
+  <symbol id="i-disk" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></g></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9 7 7M17 17l2.1 2.1M4.9 19.1 7 17M17 7l2.1-2.1"/></g></symbol>
+  <symbol id="i-warn" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 2 20h20z"/><path d="M12 10v4M12 17.2v.1"/></g></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="m9 9 6 6M15 9l-6 6"/></g></symbol>
+  <symbol id="i-ok" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/></g></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 16V8M8.5 11.5 12 8l3.5 3.5"/></g></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V4M7.5 8.5 12 4l4.5 4.5"/><path d="M4 15v4a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-4"/></g></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M10 11l4 2.5-4 2.5z"/></g></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5v14M15 5v14"/></g></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></g></symbol>
+  <symbol id="i-usb" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="7" y="9" width="10" height="12" rx="1.5"/><path d="M9 9V3h6v6M10.5 5.5h.01M13.5 5.5h.01"/></g></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M12 5v14M5 12h14"/></symbol>
+
+  <!-- Miniaturas: pista vista desde la cámara de fondo + jugadora -->
+  <symbol id="t-court" viewBox="0 0 160 82">
+    <rect width="160" height="82" fill="#0e1a24"/>
+    <path d="M40 10h80l26 72H14z" fill="url(#g-court)"/>
+    <g fill="none" stroke="#e7ebee" stroke-opacity=".75" stroke-width=".9">
+      <path d="M40 10h80l26 72H14z"/><path d="M47 10 25 82M113 10l22 72"/>
+      <path d="M33 30h94M21 63h118M80 30v33"/>
+    </g>
+    <path d="M30 37h100" stroke="#e7ebee" stroke-opacity=".9" stroke-width="1.6"/>
+  </symbol>
+  <symbol id="t-fh" viewBox="0 0 160 82">
+    <use href="#t-court"/>
+    <g stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-width="2.4">
+      <path d="M86 46v13" stroke="#7bd88f"/>
+      <path d="M86 49l-8 4-4 6" stroke="#4fb0ff"/><path d="M86 49l8 2 7-5" stroke="#ff9f43"/>
+      <path d="M86 59l-5 9-3 8" stroke="#4fb0ff"/><path d="M86 59l7 8 3 9" stroke="#ff9f43"/>
+      <path d="M101 46l9-12" stroke="#d4f03a" stroke-width="2"/>
+    </g>
+    <circle cx="86" cy="42" r="3.6" fill="#e7ebee"/>
+    <ellipse cx="111.5" cy="31" rx="3.8" ry="5.2" transform="rotate(35 111.5 31)" fill="none" stroke="#d4f03a" stroke-width="1.6"/>
+  </symbol>
+  <symbol id="t-bh" viewBox="0 0 160 82">
+    <use href="#t-court"/>
+    <g stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-width="2.4">
+      <path d="M76 46v13" stroke="#7bd88f"/>
+      <path d="M76 49l-7 4-6-2" stroke="#4fb0ff"/><path d="M76 49l-3 6-10-4" stroke="#ff9f43"/>
+      <path d="M76 59l-5 9-4 8" stroke="#4fb0ff"/><path d="M76 59l6 9 2 8" stroke="#ff9f43"/>
+      <path d="M63 51l-12-12" stroke="#d4f03a" stroke-width="2"/>
+    </g>
+    <circle cx="76" cy="42" r="3.6" fill="#e7ebee"/>
+    <ellipse cx="48" cy="36" rx="3.8" ry="5.2" transform="rotate(-45 48 36)" fill="none" stroke="#d4f03a" stroke-width="1.6"/>
+  </symbol>
+  <symbol id="t-sv" viewBox="0 0 160 82">
+    <use href="#t-court"/>
+    <g stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-width="2.4">
+      <path d="M92 50v12" stroke="#7bd88f"/>
+      <path d="M92 52l-6-8-2-8" stroke="#4fb0ff"/><path d="M92 52l4-8 1-10" stroke="#ff9f43"/>
+      <path d="M92 62l-4 8-1 6" stroke="#4fb0ff"/><path d="M92 62l4 8 1 6" stroke="#ff9f43"/>
+      <path d="M97 34l3-14" stroke="#d4f03a" stroke-width="2"/>
+    </g>
+    <circle cx="92" cy="46" r="3.6" fill="#e7ebee"/>
+    <ellipse cx="100.6" cy="16" rx="3.6" ry="5" transform="rotate(10 100.6 16)" fill="none" stroke="#d4f03a" stroke-width="1.6"/>
+    <circle cx="86" cy="12" r="2" fill="#e8f56a"/>
+  </symbol>
+  <symbol id="t-grass" viewBox="0 0 160 82">
+    <rect width="160" height="82" fill="#0e1a14"/>
+    <path d="M40 10h80l26 72H14z" fill="url(#g-grass)"/>
+    <g fill="none" stroke="#e7ebee" stroke-opacity=".75" stroke-width=".9"><path d="M40 10h80l26 72H14z"/><path d="M47 10 25 82M113 10l22 72"/><path d="M33 30h94M21 63h118M80 30v33"/></g>
+    <path d="M30 37h100" stroke="#e7ebee" stroke-width="1.6"/>
+  </symbol>
+  <symbol id="t-clay" viewBox="0 0 160 82">
+    <rect width="160" height="82" fill="#1d130e"/>
+    <path d="M40 10h80l26 72H14z" fill="url(#g-clay)"/>
+    <g fill="none" stroke="#f1e6dd" stroke-opacity=".8" stroke-width=".9"><path d="M40 10h80l26 72H14z"/><path d="M47 10 25 82M113 10l22 72"/><path d="M33 30h94M21 63h118M80 30v33"/></g>
+    <path d="M30 37h100" stroke="#f1e6dd" stroke-width="1.6"/>
+  </symbol>
+  <symbol id="t-doubles" viewBox="0 0 160 82">
+    <use href="#t-court"/>
+    <g fill="#e7ebee"><circle cx="58" cy="56" r="3.4"/><circle cx="104" cy="50" r="3.4"/></g>
+    <g stroke="#aab4be" stroke-width="2.4" stroke-linecap="round"><path d="M58 60v12M104 54v12"/></g>
+  </symbol>
+  <symbol id="p-photo" viewBox="0 0 120 90">
+    <rect width="120" height="90" fill="url(#g-photo)"/>
+    <path d="M0 70h120v20H0z" fill="#1d4467" opacity=".6"/>
+    <circle cx="60" cy="32" r="13" fill="#3a4a5a"/>
+    <path d="M30 90c2-20 14-32 30-32s28 12 30 32z" fill="#3a4a5a"/>
+    <path d="M86 40l14-22" stroke="#d4f03a" stroke-width="2.2" stroke-linecap="round" opacity=".8"/>
+    <ellipse cx="102" cy="14" rx="5" ry="7" transform="rotate(32 102 14)" fill="none" stroke="#d4f03a" stroke-width="1.8" opacity=".8"/>
+  </symbol>
+</svg>
+<div class="app">
+  <aside class="side">
+    <a class="brand" href="#inicio"><span class="mark">TB</span><span><b>Tennisbio</b><span>análisis en este PC</span></span></a>
+    <nav class="nav" aria-label="Pantallas">
+      <a href="#inicio" data-nav="inicio"><svg><use href="#i-home"/></svg>Inicio<span class="badge warn" id="bInicio" hidden></span></a>
+      <a href="#analisis" data-nav="analisis"><svg><use href="#i-play"/></svg>Análisis</a>
+      <a href="#partidos" data-nav="partidos"><svg><use href="#i-film"/></svg>Partidos</a>
+      <a href="#jugadoras" data-nav="jugadoras"><svg><use href="#i-user"/></svg>Jugadoras</a>
+      <a href="#cola" data-nav="cola"><svg><use href="#i-queue"/></svg>Cola<span class="badge" id="bCola" hidden></span></a>
+      <a href="#calidad" data-nav="calidad"><svg><use href="#i-check"/></svg>Calidad<span class="badge crit" id="bCalidad" hidden>!</span></a>
+      <a href="#almacenamiento" data-nav="almacenamiento"><svg><use href="#i-disk"/></svg><span class="lbl-l">Almacenamiento</span><span class="lbl-s">Disco</span><span class="badge warn" id="bDisco" hidden>!</span></a>
+      <a href="#ajustes" data-nav="ajustes"><svg><use href="#i-gear"/></svg>Ajustes</a>
+    </nav>
+    <div class="foot">
+      <div class="mini-run" id="miniRun" hidden>
+        <span class="st run"><i></i>Analizando</span>
+        <b id="miniWhat"></b>
+        <div class="progress thin"><b id="miniBar" style="width:0%"></b></div>
+        <span id="miniEta"></span>
+      </div>
+      <span>Versión <span class="mono" id="ver"></span></span>
+      <span class="readonly-note" id="roNote" hidden>Vista de solo lectura (sin la ventana)</span>
+    </div>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <a class="brand mbrand" href="#inicio"><span class="mark">TB</span><span><b>Tennisbio</b></span></a>
+      <span class="dim3 sm" id="updated"></span>
+    </div>
+    <main class="content" id="screens">
+      <section class="screen" data-screen="inicio"></section>
+      <section class="screen" data-screen="analisis"></section>
+      <section class="screen" data-screen="partidos"></section>
+      <section class="screen" data-screen="partido"></section>
+      <section class="screen" data-screen="jugadoras"></section>
+      <section class="screen" data-screen="jugadora"></section>
+      <section class="screen" data-screen="cola"></section>
+      <section class="screen" data-screen="calidad"></section>
+      <section class="screen" data-screen="almacenamiento"></section>
+      <section class="screen" data-screen="ajustes"></section>
+    </main>
+  </div>
+</div>
+
+<div class="webview">
+  <div class="webbar">
+    <a class="btn" href="#analisis" id="webBack">‹ Volver a Tennisbio</a>
+    <span class="ttl" id="webTitle"></span>
+    <button class="btn ghost sm" id="webExt" type="button">Abrir en el navegador</button>
+  </div>
+  <div class="webframe"><iframe id="webFrame" title="Web del análisis"></iframe></div>
+</div>
+
+<div class="modal" id="dlg-add" role="dialog" aria-modal="true" aria-labelledby="addTitle">
+  <div class="dlg">
+    <header><div><h2 id="addTitle">Añadir partido</h2><div class="steps" style="margin-top:10px"><span data-s="1">1 · Vídeo</span><span data-s="2">2 · Datos</span><span data-s="3">3 · Listo</span></div></div><button class="x" data-close aria-label="Cerrar">×</button></header>
+    <div class="db" data-step="1">
+      <div class="bigdrop" id="dropZone" tabindex="0" role="button">
+        <svg><use href="#i-upload"/></svg>
+        <b>Elegir el vídeo</b>
+        <span class="sm">partido completo, cámara de TV</span>
+      </div>
+      <p class="note">El vídeo se reconoce por su contenido: si ya lo tienes, aunque tenga otro nombre, no se duplica.</p>
+    </div>
+    <div class="db" data-step="2" hidden id="addData"></div>
+    <div class="db" data-step="3" hidden id="addDone"></div>
+    <footer>
+      <span class="note" id="addHint">Nada más que hacer: el resto es automático.</span>
+      <div class="row-btns">
+        <button class="btn ghost" data-close>Cancelar</button>
+        <button class="btn" id="addBack" hidden>Atrás</button>
+        <button class="btn pri" id="addNext">Elegir vídeo</button>
+      </div>
+    </footer>
+  </div>
+</div>
+
+<div class="modal" id="dlg-also" role="dialog" aria-modal="true" aria-labelledby="alsoTitle">
+  <div class="dlg">
+    <header><div><h2 id="alsoTitle">Analizar también…</h2><p class="dim sm" style="margin-top:4px">Elige jugadora y golpe. Lo ya hecho no se repite.</p></div><button class="x" data-close aria-label="Cerrar">×</button></header>
+    <div class="db">
+      <div class="matrix" id="matrix"></div>
+      <div class="cost" id="alsoCost"><b>Elige al menos una casilla</b><span class="dim">Verás el coste antes de confirmar.</span></div>
+    </div>
+    <footer>
+      <span class="legend"><span><span class="cell has" style="min-height:0;width:14px;height:14px;display:inline-block;padding:0"></span>ya hecho</span></span>
+      <div class="row-btns"><button class="btn ghost" data-close>Cancelar</button><button class="btn pri" id="alsoGo" disabled>Encolar</button></div>
+    </footer>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script id="tb-state" type="application/json">/*STATE*/</script>
+<script>
+(function () {
+  "use strict";
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function n1(x) { return String(Math.round(x * 10) / 10).replace(".", ","); }
+  function gb(b) { b = b || 0; return b && b < 1e9 ? Math.max(1, Math.round(b / 1e6)) + " MB" : n1(b / 1e9) + " GB"; }
+  function dur(min) { if (!min) return ""; var h = Math.floor(min / 60), m = Math.round(min % 60); return h ? h + " h " + (m < 10 ? "0" : "") + m + " min" : m + " min"; }
+  function when(s) { if (!s) return ""; var d = s.slice(0, 10), t = s.slice(11, 16), today = new Date().toISOString().slice(0, 10); return d === today ? "hoy " + t : d.slice(8, 10) + "-" + d.slice(5, 7) + " " + t; }
+  var STROKES = [["forehand", "Derecha"], ["backhand", "Revés"], ["overhead", "Saque"]];
+  var ST = { "analizado": "good", "al día": "good", "en curso": "run", "nuevo": "idle", "identidad dudosa": "warn", "con aviso": "warn",
+    "excluido": "off", "sin la jugadora": "off", "archivado": "off", "pendiente de revisar": "crit" };
+  var THUMB = { forehand: "t-fh", backhand: "t-bh", overhead: "t-sv" };
+
+  /* ---------- the bridge to the core: the window (pywebview) or a read-only page ---------- */
+  var S = JSON.parse($("#tb-state").textContent || "{}");
+  var LIVE = false;
+  function api() { return window.pywebview && window.pywebview.api; }
+  function call(name) {
+    var args = Array.prototype.slice.call(arguments, 1), a = api();
+    if (!a || !a[name]) {
+      if (name === "state") return Promise.resolve(S);
+      toast("Vista de solo lectura: esto se hace desde la ventana de Tennisbio.");
+      return Promise.reject(new Error("solo lectura"));
+    }
+    return a[name].apply(a, args);
+  }
+  window.addEventListener("pywebviewready", function () { LIVE = true; $("#roNote").hidden = true; refresh(true); });
+
+  var toastT;
+  function toast(msg) { var t = $("#toast"); t.textContent = msg; t.classList.add("on"); clearTimeout(toastT); toastT = setTimeout(function () { t.classList.remove("on"); }, 3200); }
+
+  function st(state, text) { return '<span class="st ' + (ST[state] || "idle") + '"><i></i>' + esc(text || state) + "</span>"; }
+  function dots(m) { return '<span class="dots" title="Etapas">' + m.stages.map(function (s) { return '<i class="dot ' + s.st + '" title="' + esc(s.n) + '"></i>'; }).join("") + "</span>"; }
+  function alertBox(n) {
+    var cls = { crit: "crit", aviso: "warn", info: "info", ok: "good" }[n.level] || "info", ic = { crit: "i-x", aviso: "i-warn", info: "i-up", ok: "i-ok" }[n.level] || "i-ok";
+    var go = { disk_low: "#almacenamiento", disk_wait: "#almacenamiento", plan: "#cola" }[n.key] || (/^error_|^gpu_/.test(n.key) ? "#cola" : /^regression_/.test(n.key) ? "#calidad" : "");
+    var btns = n.key === "plan" ? '<div class="row-btns"><button class="btn pri sm" data-act="confirm_plan">Confirmar y empezar</button><a class="btn ghost sm" href="#cola">Ver el plan</a></div>'
+      : go ? '<div class="row-btns"><a class="btn sm" href="' + go + '">Ver</a></div>' : "";
+    return '<div class="alert ' + cls + '"><svg><use href="#' + ic + '"/></svg><b>' + esc(n.text.split(". ")[0]) + "</b><p>" + esc(n.text.split(". ").slice(1).join(". ")) + "</p>" + btns + "</div>";
+  }
+  function acard(a, big) {
+    var c = a.counts || {}, pill = a.state === "pendiente de revisar" ? '<span class="pill crit">Versión anterior</span>' : a.provisional ? '<span class="pill warn">Provisional</span>' : a.web ? '<span class="pill acc">Lección lista</span>' : "";
+    var foot = a.state === "pendiente de revisar" ? st("pendiente de revisar", "La nueva versión empeoró: se muestra la v" + a.version)
+      : st(a.verdict === "OK" ? "al día" : "con aviso", "Auditoría " + (c.ok || 0) + " ✔ · " + (c.falta || 0) + " ✘");
+    return '<a class="acard' + (big ? " big" : "") + (a.state === "pendiente de revisar" ? " reg" : a.provisional ? " prov" : "") + '" href="#web/' + esc(a.id) + '">' +
+      '<span class="thumb"><svg viewBox="0 0 160 82" preserveAspectRatio="xMidYMid slice"><use href="#' + (THUMB[a.stroke] || "t-court") + '"/></svg>' + (big ? "" : pill) + "</span>" +
+      '<span class="info"><h2>' + esc(a.title) + '</h2><span class="meta"><span><b>' + (a.n_strokes || 0) + "</b> golpes</span><span>" + a.matches + (a.matches === 1 ? " partido" : " partidos") + "</span></span>" +
+      (big ? "" : '<span class="foot">' + foot + '<span class="dim3 sm">' + esc(when(a.updated)) + "</span></span>") + "</span></a>";
+  }
+
+  /* ---------- screens ---------- */
+  var R = {};
+  R.inicio = function () {
+    var n = S.notices || [], now = S.now;
+    var h = '<div class="head"><div><h1>Inicio</h1><p class="sub">' + (n.filter(function (x) { return x.level !== "ok"; }).length ? "Hay avisos. Ninguno necesita que vigiles nada." : "Todo funciona solo. No hay nada que hacer.") + "</p></div></div>";
+    h += n.filter(function (x) { return x.level !== "ok"; }).map(alertBox).join("");
+    h += '<div class="grid2"><div class="panel"><header><h3>Ahora</h3>' + (now ? st("en curso", "en curso") : st("idle", "nada en curso")) + '</header><div class="body now">';
+    if (now) {
+      var p = now.progress || {}, pct = p.porcentaje || 0, m = (S.matches || []).filter(function (x) { return x.id === now.match; })[0];
+      h += '<div class="big"><div><h2>' + esc(now.what) + '</h2><p class="dim sm">' + esc(p.etapa ? "Etapa " + p.etapa + " · " + (p.hecho || 0) + " de " + (p.total || 0) : now.reason) + '</p></div><div class="eta"><span class="dim3 sm">termina a las</span> <b>' + esc(S.eta.ends || "—") + '</b></div></div><div class="progress"><b style="width:' + pct + '%"></b></div>' +
+        (m ? '<div style="display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap">' + dots(m) + '<span class="dim3 sm"><span class="dev">' + (now.device === "cpu" ? "CPU" : "iGPU") + "</span></span></div>" : "");
+    } else {
+      h += '<p class="dim">' + ((S.queue.pending || []).length ? (S.queue.pending.length + " trabajo(s) esperando" + (S.settings.pausa ? " · cola en pausa" : S.settings.franja ? " · franja " + S.settings.franja.join("–") : "")) : "La cola está vacía.") + "</p>" +
+        '<div class="row-btns" style="margin-top:10px"><button class="btn pri sm" data-open="add"><svg><use href="#i-plus"/></svg>Añadir partido</button></div>';
+    }
+    h += '</div></div><div class="panel"><header><h3>Último aviso</h3></header><div class="body">';
+    var ok = n.filter(function (x) { return x.level === "ok"; })[0];
+    h += ok ? '<div class="wtoast"><span class="ic">TB</span><div><b>' + esc(ok.text) + "</b><small>" + esc(when(ok.created)) + "</small></div></div>" : '<p class="dim">Ninguno todavía.</p>';
+    h += "</div></div></div>";
+    h += '<div class="panel"><header><h3>Lo último terminado</h3><a class="dim sm" href="#calidad">Calidad ›</a></header><div class="body list">' +
+      ((S.last || []).length ? S.last.map(function (r) {
+        var good = r.result === "hecho";
+        return '<div class="li"><div><div class="t">' + esc(r.label) + '</div><div class="s">' + esc(r.detail || r.kind) + '</div></div><div class="r">' + st(good ? "al día" : r.result === "aviso" ? "con aviso" : "pendiente de revisar", r.result) + '<span class="dim3 sm">' + esc(when(r.finished)) + "</span></div></div>";
+      }).join("") : '<p class="dim">Todavía no ha terminado ningún trabajo de la aplicación.</p>') + "</div></div>";
+    h += '<div><div class="head" style="margin-bottom:12px"><h3>Tus análisis</h3><a class="dim sm" href="#analisis">Todos ›</a></div>' +
+      ((S.analyses || []).length ? '<div class="acards">' + S.analyses.slice(0, 3).map(function (a) { return acard(a, true); }).join("") + "</div>"
+        : '<div class="panel"><div class="empty"><b>Aún no hay análisis de la aplicación</b>Añade un partido o pulsa «Analizar también…» en Análisis.</div></div>') + "</div>";
+    return h;
+  };
+  R.analisis = function () {
+    var A = S.analyses || [];
+    return '<div class="head"><div><h1>Análisis</h1><p class="sub">Una tarjeta por jugadora y golpe. Púlsala para abrir su web.</p></div><button class="btn pri" data-open="also"><svg><use href="#i-plus"/></svg>Analizar también…</button></div>' +
+      '<div class="acards">' + A.map(function (a) { return acard(a, false); }).join("") +
+      '<button class="addcard" data-open="also"><span><span class="plus">+</span><b>Analizar también…</b><br><span class="dim3 sm">otra jugadora u otro golpe</span></span></button></div>' +
+      '<p class="note">Volea y media volea salen como filtro dentro de derecha y revés; con suficientes casos tendrán su propio análisis.</p>';
+  };
+  R.partidos = function () {
+    var M = S.matches || [], tot = M.reduce(function (s, m) { return s + (m.video_gb || 0); }, 0);
+    var h = '<div class="head"><div><h1>Partidos</h1><p class="sub">' + M.length + (M.length === 1 ? " partido" : " partidos") + ' · <span class="mono">' + n1(tot) + ' GB</span> de vídeo</p></div><button class="btn pri" data-open="add"><svg><use href="#i-plus"/></svg>Añadir partido</button></div>';
+    h += '<div class="drop" data-open="add" role="button" tabindex="0"><div><svg><use href="#i-upload"/></svg><span>Añade el vídeo de un partido completo</span></div><span class="btn sm">Elegir vídeo</span></div>';
+    h += '<div class="legend"><span><i class="dot done"></i>hecho</span><span><i class="dot run"></i>en curso</span><span><i class="dot"></i>pendiente</span><span><i class="dot warn"></i>con aviso</span><span><i class="dot err"></i>error</span><span><i class="dot skip"></i>excluido</span></div>';
+    h += '<div class="panel" style="padding:0">' + (M.length ? M.map(function (m) {
+      var stx = m.running ? "En curso" + (m.progress ? " · " + Math.round(m.progress.porcentaje || 0) + " %" : "") : m.error ? "Error: " + m.error.slice(0, 60) : m.state.charAt(0).toUpperCase() + m.state.slice(1);
+      return '<a class="match' + (m.state === "excluido" || m.state === "sin la jugadora" || m.state === "archivado" ? " excl" : "") + '" href="#partido/' + encodeURIComponent(m.id) + '">' +
+        '<span class="mini"><svg viewBox="0 0 160 82" preserveAspectRatio="xMidYMid slice"><use href="#' + ({ hierba: "t-grass", "tierra batida": "t-clay" }[m.surface] || "t-court") + '"/></svg></span>' +
+        '<span><span class="t">' + esc(m.label) + '</span><br><span class="s">' + esc([m.players, m.surface, dur(m.duration_min)].filter(Boolean).join(" · ")) + "</span>" + (m.test_run ? '<br><span class="tagline">prueba del ciclo automático</span>' : "") + "</span>" +
+        '<span class="size">' + (m.video_gb ? n1(m.video_gb) + " GB" : "") + '</span><span class="go dim3">›</span>' +
+        '<span class="stat">' + dots(m) + st(m.running ? "en curso" : m.error ? "pendiente de revisar" : m.state, stx) + (m.note ? '<span class="dim3 sm">' + esc(m.note) + "</span>" : "") + "</span></a>";
+    }).join("") : '<div class="empty"><b>Todavía no hay partidos</b>Pulsa «Añadir partido» y elige el vídeo de una retransmisión completa.</div>') + "</div>";
+    return h;
+  };
+  R.partido = function (arg) {
+    var m = (S.matches || []).filter(function (x) { return x.id === arg; })[0];
+    if (!m) return '<a class="back" href="#partidos">‹ Partidos</a><div class="panel"><div class="empty"><b>Ese partido ya no está</b></div></div>';
+    var all = m.stages.every(function (s) { return s.st === "done"; });
+    var h = '<div><a class="back" href="#partidos">‹ Partidos</a><div class="head"><div><h1>' + esc(m.label) + '</h1><p class="sub">' + esc([m.players, m.surface, m.duration_min ? dur(m.duration_min) + " de vídeo" : ""].filter(Boolean).join(" · ")) + "</p></div>" +
+      (m.test_run ? "" : '<div class="row-btns"><button class="btn" data-act="reanalyze" data-arg="' + esc(m.id) + '">Reanalizar</button><button class="btn ghost" data-act="archive" data-arg="' + esc(m.id) + '">Archivar</button></div>') + "</div></div>";
+    if (m.note) h += '<div class="alert ' + (ST[m.state] === "off" ? "info" : "warn") + '"><svg><use href="#i-warn"/></svg><b>' + esc(m.state.charAt(0).toUpperCase() + m.state.slice(1)) + "</b><p>" + esc(m.note) + "</p></div>";
+    h += '<div class="panel"><header><h3>Etapas</h3>' + st(all ? "analizado" : m.state, all ? "Todo hecho" : m.state) + '</header><div class="body"><div class="stages">' +
+      m.stages.map(function (s) { return '<div class="stage"><i class="dot ' + s.st + '"></i><b>' + esc(s.n) + "</b><span>" + (s.min != null ? dur(s.min) || "<1 min" : "") + "</span></div>"; }).join("") +
+      '</div><p class="note" style="margin-top:12px">' + (m.test_run ? "Es una prueba del ciclo automático: la mantiene el ciclo, la aplicación solo la lee." : "Las primeras etapas son la pasada barata del vídeo (una vez). La pasada fina es por jugadora.") + "</p></div></div>";
+    var opp = m.opponent_id ? (S.players || []).filter(function (p) { return p.id === m.opponent_id; })[0] : null;
+    h += '<div class="grid2"><div class="panel"><header><h3>Jugadoras</h3></header><div class="body list">' +
+      '<div class="li"><div><a class="t" href="#jugadora/' + esc(m.player) + '">' + esc(m.player_name) + '</a><div class="s">analizada en este partido</div></div><div class="r">' + st(m.state) + "</div></div>" +
+      (m.opponent_id ? '<div class="li"><div><a class="t" href="#jugadora/' + esc(m.opponent_id) + '">' + esc(opp ? opp.name : m.opponent) + '</a><div class="s">' + (m.rival_done ? "sus golpes también están analizados" : "pasada barata hecha; falta su pasada fina") + '</div></div><div class="r">' + (m.rival_done ? st("analizado") : '<button class="btn sm" data-open="also" data-preset="' + esc(m.opponent_id) + '">Analizar también · ≈ 3 h</button>') + "</div></div>"
+        : m.opponent ? '<div class="li"><div><div class="t">' + esc(m.opponent) + '</div><div class="s">sin ficha: añádela para analizar sus golpes</div></div></div>' : "") +
+      '</div></div><div class="panel"><header><h3>Datos</h3></header><div class="body"><dl class="kv">' +
+      "<dt>Torneo</dt><dd>" + esc([m.tournament, m.date, m.round].filter(Boolean).join(" · ") || "—") + "</dd>" +
+      "<dt>Superficie</dt><dd>" + esc(m.surface || "—") + "</dd>" +
+      "<dt>Vídeo</dt><dd>" + (m.fps ? '<span class="mono">' + Math.round(m.fps) + " fps</span>" + (m.interlaced ? ", entrelazado (desentrelazado)" : "") : "") + (m.video ? '<br><span class="mono sm">' + esc(m.video) + "</span>" : " no localizado") + "</dd>" +
+      '<dt>Carpeta</dt><dd><span class="mono sm">' + esc(m.dir) + "</span></dd></dl></div></div></div>";
+    return h;
+  };
+  R.jugadoras = function () {
+    var P = S.players || [];
+    return '<div class="head"><div><h1>Jugadoras</h1><p class="sub">Salen de los partidos y de sus fichas.</p></div></div><div class="pcards">' +
+      P.map(function (p) {
+        return '<a class="pcard" href="#jugadora/' + esc(p.id) + '"><span class="photo"><svg viewBox="0 0 120 90" preserveAspectRatio="xMidYMid slice"' + (p.hand === "left" ? ' style="transform:scaleX(-1)"' : "") + '><use href="#p-photo"/></svg></span>' +
+          '<span class="info"><h2>' + esc(p.name) + '</h2><span class="chips">' + (p.hand === "left" ? '<span class="chip warn">zurda: medidas reflejadas</span>' : '<span class="chip">diestra</span>') +
+          '<span class="chip">revés ' + (p.backhand === "one_handed" ? "a una mano" : "2 manos") + "</span>" +
+          (p.height_known ? '<span class="chip"><b>' + n1(p.height_m) + " m</b></span>" : '<span class="chip warn">sin altura: 1,80 m ±5 %</span>') + "</span>" +
+          '<span class="dim sm">' + p.matches.length + (p.matches.length === 1 ? " partido" : " partidos") + " · " + (p.analyses.length ? p.analyses.length + " análisis" : "sin analizar") + "</span></span></a>";
+      }).join("") + "</div>";
+  };
+  R.jugadora = function (arg) {
+    var p = (S.players || []).filter(function (x) { return x.id === arg; })[0];
+    if (!p) return '<a class="back" href="#jugadoras">‹ Jugadoras</a><div class="panel"><div class="empty"><b>Esa ficha no está</b></div></div>';
+    var h = '<div><a class="back" href="#jugadoras">‹ Jugadoras</a><div class="head"><div><h1>' + esc(p.name) + '</h1><p class="sub">' + (p.hand === "left" ? "Zurda (medidas reflejadas para comparar)" : "Diestra") + " · revés " + (p.backhand === "one_handed" ? "a una mano" : "a dos manos") + " · " + (p.height_known ? n1(p.height_m) + " m" : "altura pendiente") + '</p></div><button class="btn pri" data-open="also" data-preset="' + esc(p.id) + '">Analizar sus golpes</button></div></div>';
+    if (!p.height_known) h += '<div class="alert warn"><svg><use href="#i-warn"/></svg><b>Falta su altura</b><p>Mientras tanto se usa 1,80 m (±5 %) y las medidas en cm lo indican.</p><div class="row-btns"><span class="fld" style="grid-auto-flow:column;align-items:center;gap:8px"><input class="timein" id="hIn" placeholder="1,75" aria-label="Altura en metros"></span><button class="btn sm" data-act="height" data-arg="' + esc(p.id) + '">Guardar altura</button></div></div>';
+    h += '<div class="grid2"><div class="panel"><header><h3>Ficha</h3></header><div class="body"><dl class="kv"><dt>Mano</dt><dd>' + (p.hand === "left" ? "zurda · las medidas se reflejan" : "diestra") + "</dd><dt>Revés</dt><dd>" + (p.backhand === "one_handed" ? "a una mano" : "a dos manos") +
+      "</dd><dt>Altura</dt><dd>" + (p.height_known ? '<span class="mono">' + n1(p.height_m) + " m</span>" : '<span class="chip warn">sin altura: se usa 1,80 m ±5 %</span>') + "</dd><dt>Alias del marcador</dt><dd>" + (p.aliases.length ? p.aliases.map(function (a) { return '<span class="chip">' + esc(a) + "</span>"; }).join(" ") : '<span class="dim3">ninguno todavía</span>') + "</dd></dl></div></div>";
+    var A = p.analyses, mx = Math.max.apply(null, [1].concat(A.map(function (a) { return a.n || 0; })));
+    h += '<div class="panel"><header><h3>Golpes analizados</h3></header><div class="body">' + (A.length ? '<div class="bars">' + A.map(function (a) { return "<span>" + esc(a.stroke_es) + '</span><span class="b"><i style="width:' + Math.round(100 * (a.n || 0) / mx) + '%"></i></span><span class="n">' + (a.n || 0) + "</span>"; }).join("") + "</div>"
+      : '<p class="dim">Todavía no se han analizado sus golpes.</p><div style="margin-top:12px"><button class="btn pri sm" data-open="also" data-preset="' + esc(p.id) + '">Analizar sus golpes</button></div>') + "</div></div></div>";
+    h += '<div class="panel"><header><h3>Partidos en los que sale</h3></header><div class="body list">' + (p.matches.length ? p.matches.map(function (id) {
+      var m = (S.matches || []).filter(function (x) { return x.id === id; })[0] || { label: id, state: "" };
+      return '<div class="li' + (m.test_run ? " test" : "") + '"><div><a class="t" href="#partido/' + encodeURIComponent(id) + '">' + esc(m.label) + '</a></div><div class="r">' + st(m.state) + "</div></div>";
+    }).join("") : '<p class="dim">Ninguno todavía.</p>') + "</div></div>";
+    return h;
+  };
+  function job(j, done) {
+    var cls = j.state === "error" ? "crit" : j.state === "esperando espacio" || j.state === "por confirmar" || j.device === "cpu" ? "warn" : "";
+    var right = j.state === "error" ? '<button class="btn sm" data-act="retry" data-arg="' + j.id + '">Reintentar</button>' + (j.diag ? '<button class="btn ghost sm" data-act="open_path" data-arg="' + esc(j.diag) + '">Diagnóstico</button>' : "")
+      : done ? '<span class="dim3">' + esc(when(j.finished)) + "</span>"
+      : j.state === "en curso" ? '<span class="dim3">desde ' + esc(when(j.started)) + "</span>"
+      : j.state === "por confirmar" ? '<button class="btn pri sm" data-act="confirm_plan">Confirmar</button>'
+      : '<span class="prio"><button aria-label="Subir" data-act="prio" data-arg="' + j.id + '|-1">▲</button><button aria-label="Bajar" data-act="prio" data-arg="' + j.id + '|1">▼</button></span>';
+    var dotc = ST[j.state === "hecho" ? "al día" : j.state === "en curso" ? "en curso" : j.state === "error" ? "pendiente de revisar" : j.state === "aviso" || j.state === "esperando espacio" || j.state === "por confirmar" ? "con aviso" : "nuevo"];
+    return '<div class="job ' + cls + '"><span class="n"><span class="st ' + dotc + '" title="' + esc(j.state) + '"><i></i></span></span>' +
+      '<div><div class="t">' + esc(j.what) + '</div><div class="s">' + esc(j.state + (j.device ? " · " + (j.device === "cpu" ? "CPU" : "iGPU") : "") + (j.estimate_s && !done ? " · ≈ " + dur(j.estimate_s / 60) : "")) + '</div><span class="why">' + esc(j.reason) + "</span></div>" +
+      '<div class="r">' + right + "</div>" + (j.message ? '<div class="explain">' + esc(j.message) + "</div>" : "") + "</div>";
+  }
+  R.cola = function () {
+    var Q = S.queue, set = S.settings;
+    var h = '<div class="head"><div><h1>Cola</h1><p class="sub">Un trabajo pesado cada vez en la iGPU; los informes van primero.</p></div><div class="row-btns"><button class="btn" data-act="pause" data-arg="' + (set.pausa ? "0" : "1") + '"><svg><use href="#i-pause"/></svg><span>' + (set.pausa ? "Reanudar" : "Pausar") + "</span></button></div></div>";
+    h += '<div class="panel"><div class="body" style="padding-top:14px"><div class="toolbar"><label class="sw"><input type="checkbox" id="nightOnly"' + (set.franja ? " checked" : "") + '><span class="k"></span><span><svg style="width:15px;height:15px;vertical-align:-3px;color:var(--ink-2)"><use href="#i-moon"/></svg> Solo de noche</span></label><span class="window"><span class="mono">' + esc(set.franja ? set.franja.join(" – ") : "23:00 – 08:00") + '</span><a class="dim sm" href="#ajustes">cambiar</a></span></div></div></div>';
+    h += '<div class="panel"><header><h3>En curso</h3></header><div class="body">' + (Q.running.length ? Q.running.map(function (j) { return job(j); }).join("") : '<p class="dim">Nada en curso.</p>') + "</div></div>";
+    h += '<div class="panel"><header><h3>Pendientes</h3><span class="dim3 sm">' + Q.pending.length + (S.eta.ends ? " · terminan hacia las " + esc(S.eta.ends) : "") + "</span></header><div class=\"body\">" + (Q.pending.length ? Q.pending.map(function (j) { return job(j); }).join("") : '<p class="dim">Nada pendiente.</p>') + "</div></div>";
+    h += '<div class="panel"><header><h3>Hechos</h3><span class="dim3 sm">últimos 7 días</span></header><div class="body">' + (Q.done.length ? Q.done.map(function (j) { return job(j, true); }).join("") : '<p class="dim">Nada todavía.</p>') + "</div></div>";
+    return h;
+  };
+  R.calidad = function () {
+    var A = S.analyses || [], reg = A.filter(function (a) { return a.state === "pendiente de revisar"; });
+    var h = '<div class="head"><div><h1>Calidad</h1><p class="sub">La auditoría se pasa sola al terminar cada trabajo y se compara con la vez anterior.</p></div></div>';
+    h += reg.length ? reg.map(function (a) { return '<div class="alert crit"><svg><use href="#i-x"/></svg><b>' + esc(a.title) + " empeoró con la versión nueva</b><p>Se sigue mostrando la versión " + a.version + ". La nueva queda «pendiente de revisar».</p></div>"; }).join("")
+      : '<div class="alert good"><svg><use href="#i-ok"/></svg><b>Nada empeoró respecto a la vez anterior</b><p>' + (A.length ? A.length + " análisis al día." : "Todavía no hay análisis de la aplicación.") + "</p></div>";
+    if (S.rebuilt) h += '<div class="alert info"><svg><use href="#i-ok"/></svg><b>El índice de la aplicación estaba dañado y se ha reconstruido</b><p>Se leyó de nuevo desde las carpetas de cada partido. Nada perdido.</p></div>';
+    h += '<div class="panel"><header><h3>Auditoría por análisis</h3><span class="legend"><span><span class="sw-key" style="background:var(--good)"></span>cumplidos</span><span><span class="sw-key" style="background:var(--crit)"></span>faltas</span><span><span class="sw-key" style="background:var(--ink-3)"></span>pocos datos</span></span></header><div class="body">' +
+      (A.length ? A.map(function (a) {
+        var c = a.counts || {}, t = (c.ok || 0) + (c.falta || 0) + (c["pocos datos"] || 0) || 1;
+        return '<div class="qrow' + (a.state === "pendiente de revisar" ? " reg" : "") + '"><div><div style="font-weight:650">' + esc(a.title) + (a.state === "pendiente de revisar" ? ' <span class="pill crit" style="margin-left:6px">regresión</span>' : a.provisional ? ' <span class="pill warn" style="margin-left:6px">provisional</span>' : "") + '</div><div class="dim3 sm">' + (a.n_strokes || 0) + " golpes · v" + a.version + " · " + esc(when(a.updated)) + " · " + esc(a.verdict) + "</div></div>" +
+          '<div class="qnums"><span class="ok">' + (c.ok || 0) + ' ✔</span><span class="ko' + (c.falta ? " bad" : "") + '">' + (c.falta || 0) + ' ✘</span><span class="few">' + (c["pocos datos"] || 0) + " pocos datos</span></div>" +
+          '<div class="qbar"><i style="width:' + (100 * (c.ok || 0) / t) + '%;background:var(--good)"></i><i style="width:' + (100 * (c.falta || 0) / t) + '%;background:var(--crit)"></i><i style="width:' + (100 * (c["pocos datos"] || 0) / t) + '%;background:var(--ink-3)"></i></div>' +
+          (a.worse.length ? '<div class="regbox"><b>Qué empeoró</b><ul>' + a.worse.map(function (w) { return "<li>" + esc(w) + "</li>"; }).join("") + "</ul></div>" : "") + "</div>";
+      }).join("") : '<p class="dim">Cuando termine el primer análisis, su auditoría aparece aquí.</p>') + "</div></div>";
+    h += '<div class="panel"><header><h3>Historial de versiones</h3></header><div class="body vers">' +
+      (A.length ? A.map(function (a) { return '<div class="ver"><span class="v">v' + a.version + "</span><span>" + esc(a.title) + " · " + esc(a.state) + (a.old_versions.length ? " · anteriores guardadas: " + a.old_versions.map(function (v) { return "v" + v; }).join(", ") : "") + '</span><span class="dim3 sm">' + esc(when(a.updated)) + "</span></div>"; }).join("") : '<p class="dim">Sin versiones todavía.</p>') + "</div></div>";
+    return h;
+  };
+  R.almacenamiento = function () {
+    var D = S.storage;
+    var h = '<div class="head"><div><h1>Almacenamiento</h1><p class="sub">Nada imprescindible se borra nunca.</p></div></div>';
+    if (!D) return h + '<div class="panel"><div class="empty"><b>Calculando…</b>Se recorren las carpetas de los partidos.</div></div>';
+    var low = D.free < D.warn_below;
+    if (low) h += '<div class="alert warn"><svg><use href="#i-warn"/></svg><b>Quedan ' + gb(D.free) + ' libres</b><p>Por debajo de 40 GB aviso; por debajo de 20 GB libero solo lo regenerable. Un partido nuevo necesita vídeo × 1,1 + 6 GB.</p></div>';
+    var T = D.total || 1, used = T - D.free, oth = Math.max(0, used - D.ours);
+    h += '<div class="panel"><header><h3>Disco</h3><span class="mono sm"' + (low ? ' style="color:var(--warn)"' : "") + ">" + gb(D.free) + " libres de " + gb(D.total) + '</span></header><div class="body disk"><div class="diskbar"><i class="k-oth" style="width:' + (100 * oth / T) + '%"></i><i class="k-imp" style="width:' + (100 * (D.ours - D.regenerable) / T) + '%"></i><i class="k-reg" style="width:' + (100 * D.regenerable / T) + '%"></i></div>' +
+      '<div class="legend"><span><i class="sw-key k-imp"></i>imprescindible</span><span><i class="sw-key k-reg"></i>regenerable</span><span><i class="sw-key k-tmp"></i>temporal</span><span><i class="sw-key k-oth"></i>otros programas</span></div></div></div>';
+    var mx = Math.max.apply(null, [1].concat(D.rows.map(function (r) { return r.total; })));
+    h += '<div class="panel"><header><h3>Por partido</h3></header><div class="body">' + (D.rows.length ? D.rows.map(function (r) {
+      return '<div class="mrow"><span>' + esc(r.label) + '</span><span class="diskbar"><i class="k-imp" style="width:' + (100 * r.imp / mx) + '%"></i><i class="k-reg" style="width:' + (100 * r.reg / mx) + '%"></i><i class="k-tmp" style="width:' + (100 * r.tmp / mx) + '%"></i></span><span class="num">' + gb(r.total) + "</span></div>";
+    }).join("") : '<p class="dim">Sin carpetas todavía.</p>') + '<p class="note" style="margin-top:8px">Imprescindible: resultados, cachés y los recortes que reproduce la web. Regenerable: versiones antiguas de los análisis, exportaciones y capturas. Temporal: ficheros a medio escribir.</p></div></div>';
+    h += '<div class="grid2"><div class="panel"><header><h3>Liberar sin perder nada</h3></header><div class="body" style="display:grid;gap:12px"><div class="stats"><div class="stat-n"><b>' + gb(D.regenerable) + '</b><span>regenerables y temporales</span></div></div><p class="dim sm">Los vídeos y las medidas no se tocan.</p><div><button class="btn pri" data-act="free"' + (D.regenerable ? "" : " disabled") + ">Liberar " + gb(D.regenerable) + "</button></div></div></div>" +
+      '<div class="panel"><header><h3>Copia de seguridad</h3></header><div class="body" style="display:grid;gap:12px"><p class="dim sm">La copia a un USB llega en la parte 3 de la aplicación.</p></div></div></div>';
+    return h;
+  };
+  R.ajustes = function () {
+    var set = S.settings, P = S.paths, f = set.franja || ["23:00", "08:00"];
+    return '<div class="head"><div><h1>Ajustes</h1><p class="sub">Pocos, y ninguno obligatorio.</p></div></div><div class="panel"><div class="body">' +
+      '<div class="set"><div><b>Carpetas</b><span>De config/local.yaml</span></div><div class="ctl"><div class="path"><code>' + esc(P.output) + '</code></div><span class="dim3 sm">vídeos: ' + esc(P.videos) + " · índice: " + esc(P.data) + "</span></div></div>" +
+      '<div class="set"><div><b>Franja horaria</b><span>Cuándo trabaja la iGPU</span></div><div class="ctl"><label class="sw"><input type="checkbox" id="nightOnly2"' + (set.franja ? " checked" : "") + '><span class="k"></span>Solo de noche</label><div class="window"><input class="timein" id="fFrom" value="' + esc(f[0]) + '" aria-label="Desde"> a <input class="timein" id="fTo" value="' + esc(f[1]) + '" aria-label="Hasta"></div></div></div>' +
+      '<div class="set"><div><b>Avisos de Windows</b></div><div class="ctl"><span class="dim3 sm">Llegan con la parte 3; hoy los avisos están en Inicio.</span></div></div>' +
+      '<div class="set"><div><b>Copia al móvil</b><span>Funciona sin conexión</span></div><div class="ctl"><span class="dim3 sm">Llega con la parte 4.</span></div></div>' +
+      '<div class="set"><div><b>Actualizaciones</b></div><div class="ctl"><span>Versión <span class="mono">' + esc(S.version) + '</span></span><button class="btn sm" data-act="plan">Comprobar qué recalcular</button></div></div>' +
+      '<div class="set"><div><b>Modo desarrollo</b><span>Para Claude</span></div><div class="ctl"><span class="dim3 sm">El ciclo automático sigue funcionando igual y sube los registros a la rama <span class="mono">pc-logs</span>.</span></div></div>' +
+      "</div></div>";
+  };
+
+  /* ---------- routing ---------- */
+  var cur = "inicio", curArg = "";
+  function route() {
+    var h = decodeURIComponent((location.hash || "#inicio").slice(1)), i = h.indexOf("/"), id = i < 0 ? h : h.slice(0, i), arg = i < 0 ? "" : h.slice(i + 1);
+    if (id === "web") {
+      var a = (S.analyses || []).filter(function (x) { return x.id === arg; })[0];
+      if (!a || !a.web) { toast("Ese análisis todavía no tiene web."); location.hash = "#analisis"; return; }
+      $("#webTitle").textContent = a.title + " · v" + a.version;
+      var url = "file:///" + a.web.replace(/\\/g, "/").replace(/^\/+/, "");
+      if ($("#webFrame").getAttribute("src") !== url) $("#webFrame").setAttribute("src", url);
+      $("#webExt").dataset.arg = a.web;
+      document.body.classList.add("web"); return;
+    }
+    document.body.classList.remove("web");
+    if (id === "add" || id === "also") { openDlg(id); id = cur; }
+    if (!R[id]) id = "inicio";
+    cur = id; curArg = arg;
+    if (id === "almacenamiento" && !S.storage) call("storage").then(function (d) { S.storage = d; if (cur === "almacenamiento") paint(); }).catch(function () {});
+    paint();
+    var navId = { partido: "partidos", jugadora: "jugadoras" }[id] || id;
+    $$(".nav a").forEach(function (a) { if (a.dataset.nav === navId) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current"); });
+    window.scrollTo(0, 0);
+  }
+  function paint() {
+    // only the visible screen has content: no stale copy (and no repeated id) in the hidden ones
+    $$(".screen").forEach(function (s) { var on = s.dataset.screen === cur; s.classList.toggle("on", on); if (!on) s.innerHTML = ""; });
+    var el = $('.screen[data-screen="' + cur + '"]');
+    el.innerHTML = R[cur](curArg);
+    var nn = (S.notices || []).filter(function (n) { return n.level === "crit" || n.level === "aviso"; }).length;
+    $("#bInicio").hidden = !nn; $("#bInicio").textContent = nn;
+    var nq = (S.queue.pending || []).length + (S.queue.running || []).length;
+    $("#bCola").hidden = !nq; $("#bCola").textContent = nq; $("#bCola").className = "badge" + ((S.queue.pending || []).some(function (j) { return j.state === "error"; }) ? " crit" : "");
+    $("#bCalidad").hidden = !(S.analyses || []).some(function (a) { return a.state === "pendiente de revisar"; });
+    $("#bDisco").hidden = !(S.notices || []).some(function (n) { return n.key === "disk_low"; });
+    var now = S.now;
+    $("#miniRun").hidden = !now;
+    if (now) { $("#miniWhat").textContent = now.what; $("#miniBar").style.width = ((now.progress || {}).porcentaje || 0) + "%"; $("#miniEta").textContent = S.eta.ends ? "Termina a las " + S.eta.ends : ""; }
+    $("#ver").textContent = S.version || "";
+    $("#updated").textContent = "actualizado " + (S.generated || "").slice(11, 16);
+  }
+  window.addEventListener("hashchange", route);
+  function refresh(force) {
+    if (!LIVE) return;
+    call("state").then(function (d) {
+      var stor = S.storage; S = d; if (stor && !S.storage) S.storage = stor;
+      if (force || !document.querySelector(".modal.on")) paint();
+    }).catch(function () {});
+  }
+  setInterval(function () { refresh(false); }, 4000);
+
+  /* ---------- actions ---------- */
+  function done(msg) { return function (r) { toast(typeof r === "string" && r ? r : msg); refresh(true); }; }
+  function fail(e) { if (e && e.message !== "solo lectura") toast("No se pudo: " + (e.message || e)); }
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("[data-act]");
+    if (b) {
+      e.preventDefault();
+      var act = b.dataset.act, arg = b.dataset.arg;
+      if (act === "confirm_plan") call("confirm_plan").then(done("Plan confirmado: empieza en la cola")).catch(fail);
+      else if (act === "plan") call("plan").then(done("Comprobado")).catch(fail);
+      else if (act === "pause") call("pause", arg === "1").then(done(arg === "1" ? "Cola en pausa: el trabajo en curso guarda lo hecho" : "Cola reanudada donde se quedó")).catch(fail);
+      else if (act === "retry") call("retry", Number(arg)).then(done("Vuelve a la cola")).catch(fail);
+      else if (act === "prio") call("priority", Number(arg.split("|")[0]), Number(arg.split("|")[1])).then(done("Prioridad cambiada")).catch(fail);
+      else if (act === "reanalyze") call("reanalyze", arg).then(done("Encolado: se reanaliza desde las cachés, nada se borra")).catch(fail);
+      else if (act === "archive") call("archive", arg).then(done("Archivado: sale de las listas, no se borra")).catch(fail);
+      else if (act === "free") call("free").then(function (r) { S.storage = null; done("Liberados " + gb(r) + ": nada imprescindible se ha tocado")(); route(); }).catch(fail);
+      else if (act === "open_path") call("open_path", arg).catch(fail);
+      else if (act === "height") { var v = parseFloat(($("#hIn").value || "").replace(",", ".")); if (!(v > 1.2 && v < 2.3)) { toast("Escribe la altura en metros, por ejemplo 1,75"); return; } call("set_height", arg, v).then(done("Altura guardada: se recalculan solo los informes")).catch(fail); }
+      return;
+    }
+    var o = e.target.closest("[data-open]");
+    if (o) { e.preventDefault(); openDlg(o.dataset.open, o.dataset.preset); return; }
+    if (e.target.closest("[data-close]")) { closeDlg(); return; }
+    if (e.target.classList.contains("modal")) closeDlg();
+  });
+  document.addEventListener("change", function (e) {
+    if (e.target.id === "nightOnly" || e.target.id === "nightOnly2" || e.target.id === "fFrom" || e.target.id === "fTo") {
+      var on = e.target.id.indexOf("night") === 0 ? e.target.checked : (($("#nightOnly2") || {}).checked);
+      var f = [($("#fFrom") || { value: "23:00" }).value, ($("#fTo") || { value: "08:00" }).value];
+      call("band", on ? f : null).then(done(on ? "Trabajos pesados solo de " + f[0] + " a " + f[1] : "Sin franja: trabaja siempre")).catch(fail);
+    }
+  });
+  $("#webExt").addEventListener("click", function () { call("open_path", this.dataset.arg).catch(fail); });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") closeDlg();
+    if ((e.key === "Enter" || e.key === " ") && e.target.matches(".drop[data-open], .bigdrop")) { e.preventDefault(); e.target.click(); }
+  });
+
+  /* ---------- dialogs ---------- */
+  function openDlg(name, preset) {
+    var m = $("#dlg-" + name); if (!m) return;
+    if (name === "add") addStep(1);
+    if (name === "also") buildMatrix(preset);
+    m.classList.add("on");
+  }
+  function closeDlg() { $$(".modal.on").forEach(function (m) { m.classList.remove("on"); }); }
+
+  var step = 1, prop = null;
+  function addStep(n) {
+    step = n;
+    $$("#dlg-add [data-step]").forEach(function (s) { s.hidden = Number(s.dataset.step) !== n; });
+    $$("#dlg-add .steps span").forEach(function (s) { var k = Number(s.dataset.s); s.className = k === n ? "on" : (k < n ? "done" : ""); });
+    var dup = prop && prop.duplicate_of, dmg = prop && prop.flags && prop.flags.danado;
+    $("#addBack").hidden = n !== 2;
+    $("#addNext").hidden = n === 2 && !!dup;
+    $("#addNext").textContent = n === 1 ? "Elegir vídeo" : n === 2 ? (dmg ? "Registrar con aviso" : "Confirmar y encolar") : "Hecho";
+    $("#addHint").textContent = n === 2 ? (dup ? "Reconocido por su contenido." : "Revisa los datos propuestos; con un clic basta.") : "Nada más que hacer: el resto es automático.";
+  }
+  function pick() {
+    call("choose_video").then(function (path) {
+      if (!path) return;
+      $("#addData").innerHTML = '<p class="dim">Leyendo el vídeo…</p>'; addStep(2);
+      return call("propose", path).then(function (p) { prop = p; renderProp(); addStep(2); });
+    }).catch(fail);
+  }
+  function renderProp() {
+    var p = prop, F = p.flags || {}, P = (S.players || []);
+    var h = '<div class="file"><svg><use href="#i-file"/></svg><div><div class="mono">' + esc(p.name) + '</div><div class="dim3 sm">' + gb(p.size) + "</div></div></div>";
+    if (p.duplicate_of || F.duplicado) return $("#addData").innerHTML = h + '<div class="alert info"><svg><use href="#i-ok"/></svg><b>Este vídeo ya lo tienes' + (p.duplicate_of ? ": " + esc(p.duplicate_of) : "") + "</b><p>" + esc(F.duplicado || "") + "</p>" + (p.duplicate_of ? '<div class="row-btns"><a class="btn sm" href="#partido/' + encodeURIComponent(p.duplicate_of) + '" data-close>Ir al partido</a></div>' : "") + "</div>";
+    h += '<div class="facts">' + (p.duration ? '<span class="chip">Duración <b>' + dur(p.duration / 60) + "</b></span>" : "") + (p.fps ? '<span class="chip"><b>' + Math.round(p.fps) + " fps</b></span>" : "") + (p.interlaced ? '<span class="chip">entrelazado: <b>se desentrelaza</b></span>' : "") + '<span class="chip">audio <b>' + (p.audio ? "sí" : "no") + "</b></span></div>";
+    Object.keys(F).forEach(function (k) { if (k !== "duplicado") h += '<div class="alert ' + (k === "danado" ? "crit" : "warn") + '"><svg><use href="#i-warn"/></svg><b>' + esc(F[k].split(". ")[0]) + "</b><p>" + esc(F[k].split(". ").slice(1).join(". ")) + "</p></div>"; });
+    var opts = function (sel) { return '<option value="">—</option>' + P.map(function (x) { return '<option value="' + esc(x.id) + '"' + (x.id === sel ? " selected" : "") + ">" + esc(x.name) + "</option>"; }).join(""); };
+    h += '<div><h3 style="margin-bottom:10px">Datos propuestos</h3><div class="form">' +
+      '<label class="fld">Torneo<input id="fT" value="' + esc(p.tournament) + '"><small>del nombre del fichero</small></label>' +
+      '<label class="fld">Año o fecha<input id="fD" value="' + esc(p.year) + '"></label>' +
+      '<label class="fld">Ronda<input id="fR" value=""></label>' +
+      '<label class="fld">Superficie<select id="fS">' + ["", "dura", "tierra batida", "hierba"].map(function (s) { return '<option value="' + s + '"' + (s === p.surface ? " selected" : "") + ">" + (s || "—") + "</option>"; }).join("") + "</select></label>" +
+      '<label class="fld">Jugadora a analizar<select id="fP">' + opts(p.players[0]) + "</select><small>la del lado que te interesa</small></label>" +
+      '<label class="fld">Rival<select id="fO">' + opts(p.players[1]) + "</select></label></div></div>";
+    if (p.same_match && p.same_match.length) h += '<div class="row-btns" style="margin-top:8px"><label class="sw"><input type="radio" name="use" value="existente"><span class="k"></span>Usar la que tengo</label><label class="sw"><input type="radio" name="use" value="nuevo" checked><span class="k"></span>Usar la nueva (la otra se archiva, no se borra)</label></div>';
+    $("#addData").innerHTML = h;
+  }
+  function confirmAdd() {
+    var use = $('input[name="use"]:checked');
+    var f = { player: $("#fP").value, opponent_id: $("#fO").value, tournament: $("#fT").value, date: $("#fD").value, round: $("#fR").value, surface: $("#fS").value, choose: use ? use.value : "nuevo" };
+    if (!f.player && !(prop.flags || {}).danado) { toast("Elige la jugadora a analizar"); return; }
+    call("confirm", prop.path, f).then(function (r) {
+      $("#addDone").innerHTML = r && r.match_id ? '<div class="alert good"><svg><use href="#i-ok"/></svg><b>' + ((prop.flags || {}).danado ? "Registrado con aviso: " : "Encolado: ") + esc(r.match_id) + "</b><p>" + esc(r.text || "") + "</p></div>" : '<div class="alert info"><svg><use href="#i-ok"/></svg><b>No se añade nada</b><p>Te quedas con el que tenías.</p></div>';
+      addStep(3); refresh(true);
+    }).catch(fail);
+  }
+  $("#addNext").addEventListener("click", function () { if (step === 1) pick(); else if (step === 2) confirmAdd(); else closeDlg(); });
+  $("#addBack").addEventListener("click", function () { prop = null; addStep(1); });
+  $("#dropZone").addEventListener("click", pick);
+
+  var sel = {};
+  function buildMatrix(preset) {
+    sel = {};
+    var P = S.players || [], A = S.analyses || [];
+    var html = '<span class="hd"></span>' + STROKES.map(function (s) { return '<span class="hd">' + s[1] + "</span>"; }).join("");
+    P.forEach(function (p) {
+      html += '<span class="pl">' + esc(p.name) + "<small>" + p.matches.length + (p.matches.length === 1 ? " partido" : " partidos") + "</small></span>";
+      STROKES.forEach(function (s) {
+        var has = A.some(function (a) { return a.player === p.id && a.stroke === s[0]; });
+        html += has ? '<span class="cell has">✓ hecho</span>' : p.matches.length ? '<button type="button" class="cell" data-k="' + esc(p.id) + ":" + s[0] + '" aria-pressed="false">+</button>' : '<span class="cell na">sin partidos</span>';
+      });
+    });
+    $("#matrix").innerHTML = html;
+    if (preset) $$('#matrix .cell[data-k^="' + preset + ':"]').forEach(function (c) { toggleCell(c, true); });
+    updateCost();
+  }
+  function toggleCell(c, force) {
+    var on = force === undefined ? !sel[c.dataset.k] : force;
+    if (on) sel[c.dataset.k] = 1; else delete sel[c.dataset.k];
+    c.classList.toggle("sel", on); c.setAttribute("aria-pressed", String(on)); c.textContent = on ? "✓" : "+";
+  }
+  $("#matrix").addEventListener("click", function (e) { var c = e.target.closest("button.cell"); if (!c) return; toggleCell(c); updateCost(); });
+  function updateCost() {
+    var keys = Object.keys(sel), go = $("#alsoGo");
+    if (!keys.length) { $("#alsoCost").innerHTML = '<b>Elige al menos una casilla</b><span class="dim">Verás el coste antes de confirmar.</span>'; go.disabled = true; return; }
+    var lines = [], hours = 0;
+    var byP = {}; keys.forEach(function (k) { var p = k.split(":")[0]; (byP[p] = byP[p] || []).push(k.split(":")[1]); });
+    Object.keys(byP).forEach(function (pid) {
+      var p = (S.players || []).filter(function (x) { return x.id === pid; })[0] || { name: pid, matches: [], as_main: 0 };
+      var needFine = (S.matches || []).filter(function (m) { return m.opponent_id === pid && !m.rival_done && (m.state === "analizado" || m.state === "identidad dudosa" || m.state === "con aviso"); }).length;
+      hours += 3 * needFine;
+      lines.push(p.name + " (" + byP[pid].map(function (s) { return STROKES.filter(function (x) { return x[0] === s; })[0][1].toLowerCase(); }).join(", ") + "): " + (needFine ? "su pasada fina en " + needFine + " partido(s), reutiliza la pasada barata" : "solo informes, minutos"));
+    });
+    $("#alsoCost").innerHTML = "<b>" + keys.length + (keys.length === 1 ? " análisis nuevo" : " análisis nuevos") + " · " + (hours ? "≈ " + hours + " h" : "minutos") + "</b>" + lines.map(function (l) { return '<span class="dim">' + esc(l) + "</span>"; }).join("");
+    go.disabled = false;
+  }
+  $("#alsoGo").addEventListener("click", function () {
+    var keys = Object.keys(sel);
+    Promise.all(keys.map(function (k) { return call("also", k.split(":")[0], k.split(":")[1]); })).then(function (r) { closeDlg(); toast(r[r.length - 1] || "Encolado"); refresh(true); }).catch(fail);
+  });
+
+  if (window.pywebview && window.pywebview.api) { LIVE = true; }
+  else { $("#roNote").hidden = false; }
+  route();
+  window.__tbReady = true;
+})();
+</script>
+</body>
+</html>

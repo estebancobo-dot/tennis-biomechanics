@@ -108,6 +108,17 @@ function Hacer-Peticion {
                 ForEach-Object { $l = "$_"; Add-Content $lg $l -Encoding UTF8; $l } | Out-Host
         }
         "codigo de salida: $LASTEXITCODE; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "ventana") {
+        # la ventana de la aplicacion: todas sus pantallas pintadas con el indice real en el navegador
+        # (solo lectura, sin abrir ninguna ventana al usuario) y si este PC puede abrirla (pywebview, WebView2)
+        $s = "$Base\output\capturas_app"
+        $lg = "$Base\output\prueba_ventana.log"
+        "Peticion $($p['id']): pantallas de la aplicacion ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        Paso "Peticion $($p['id']): pantallas de la aplicacion en output\capturas_app (registro: $lg)"
+        $env:UV_NO_PROGRESS = "1"
+        & uv run --extra app tennisbio app comprobar $s --real 2>&1 |
+            ForEach-Object { $l = "$_"; Add-Content $lg $l -Encoding UTF8; $l } | Out-Host
+        "codigo de salida: $LASTEXITCODE; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "borrar") {
         # borra carpetas de pruebas de velocidad ya documentadas (lo pide el usuario); solo nombres
         # _poc, _pocN o _pocN_M: nunca _poc9_largo, _smoke ni nada mas

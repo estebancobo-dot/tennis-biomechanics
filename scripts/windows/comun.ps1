@@ -133,6 +133,13 @@ function Subir-Registros {
                 Copy-Item "$($a[0])\capturas\*" $c -Force -ErrorAction SilentlyContinue
             }
         }
+        # pantallas de la aplicacion (peticion "ventana"): su comprobacion y sus capturas
+        if (Test-Path "$Base\output\capturas_app\ventana.md") {
+            $c = "$d\capturas_app"
+            New-Item -ItemType Directory -Force -Path $c | Out-Null
+            Remove-Item "$c\*" -Force -ErrorAction SilentlyContinue
+            Copy-Item "$Base\output\capturas_app\*.png", "$Base\output\capturas_app\ventana.*" $c -Force -ErrorAction SilentlyContinue
+        }
         # videos de analisis de entrenadores (texto e imagenes pequenas), una sola vez
         if ((Test-Path "$Base\output\investigacion\indice.json") -and -not (Test-Path "$d\investigacion\indice.json")) {
             New-Item -ItemType Directory -Force -Path "$d\investigacion" | Out-Null
@@ -193,7 +200,7 @@ function Actualizar-Codigo {
             Registrar-Ciclo
             if (Tiene uv) {
                 Push-Location $RepoDir
-                uv sync --extra yolo --extra ocr --extra dev --extra validation 2>&1 | ForEach-Object { "$_" } | Out-Host
+                uv sync --extra yolo --extra ocr --extra dev --extra validation --extra app 2>&1 | ForEach-Object { "$_" } | Out-Host
                 # modelos nuevos que pida el codigo (p. ej. transnetv2.onnx): solo crea los que falten
                 uv run python scripts/setup_models.py 2>&1 | ForEach-Object { "$_" } | Out-Host
                 Pop-Location

@@ -229,3 +229,38 @@ Cada parte se valida sola: pruebas con datos sintéticos de cada caso de la secc
   - la copia al móvil;
   - el instalador;
   - el caso «navegador ausente», que es de la ventana.
+
+## 10. Estado (18-10): parte 2, la ventana
+
+**Código:**
+
+| Fichero | Qué hace |
+|---|---|
+| `src/tennisbio/app/ui.html` | El diseño de la maqueta validada: estilos, iconos y menú. Las pantallas las genera el código con el índice real. |
+| `state.py` | Lo que pinta cada pantalla, en una sola lectura. |
+| `window.py` | La ventana WebView2 con `pywebview`, la cola en un hilo y el navegador si falta el motor. |
+| `check.py` | La comprobación de todas las pantallas. |
+
+**Abrirla:** doble clic en `Tennisbio.vbs` (sin consola) o `tennisbio app ventana`.
+
+**Instalación:** el extra `app` (`pywebview`) se instala con el instalador y en cada ciclo del PC.
+
+**Pruebas** (`tests/test_app_window.py`):
+- todas las pantallas con los casos de la sección 5 (dobles, error, regresión, plan pendiente, poco disco, zurda sin altura), a 1280 y en el móvil, sin errores ni desplazamiento lateral;
+- los botones conectados al `Api` real cambian el índice: pausar, reintentar, confirmar el plan, analizar también, añadir partido y archivar;
+- la web del análisis se abre dentro, con «Volver»;
+- la vista de solo lectura no cambia nada;
+- sin el motor de la ventana, se abre en el navegador.
+
+**En el PC:** la petición «ventana» pinta las pantallas con el índice real y sube las capturas a `pc-logs:capturas_app`. También abre la ventana real oculta, sin que el usuario la vea, y prueba su puente con el núcleo.
+
+**Diferencias con la maqueta:**
+- **Añadir partido:** se elige el vídeo con el diálogo de Windows; WebView2 no da la ruta de un fichero arrastrado.
+- **Pendiente para la parte 3:**
+  - los avisos de Windows;
+  - el icono junto al reloj;
+  - la copia a USB.
+- **Pendiente para la parte 4:**
+  - la copia al móvil;
+  - el acceso directo en el escritorio.
+- **Hasta entonces,** esas pantallas lo dicen en lugar de enseñar botones que no hacen nada.

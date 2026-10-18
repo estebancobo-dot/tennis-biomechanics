@@ -9,6 +9,10 @@
     tennisbio app pausa | seguir             pause or resume the queue
     tennisbio app franja 22:00 08:00 | franja no   heavy jobs only in that band
     tennisbio app rebuild                    rebuilds the index from the folders (the old one is kept aside)
+    tennisbio app ventana [--sin-cola]       the window (the queue runs inside while it is open)
+    tennisbio app pagina [DEST]              the screens as a read-only page (for screenshots and checks)
+    tennisbio app comprobar DEST             every screen painted in a browser with the real index: problems,
+                                             screenshots, and whether this PC can open the window
 """
 import argparse
 import time
@@ -40,6 +44,13 @@ def main(argv=None) -> int:
     fr.add_argument("desde")
     fr.add_argument("hasta", nargs="?")
     sub.add_parser("rebuild")
+    ve = sub.add_parser("ventana")
+    ve.add_argument("--sin-cola", action="store_true")
+    pg = sub.add_parser("pagina")
+    pg.add_argument("dest", nargs="?")
+    co = sub.add_parser("comprobar")
+    co.add_argument("dest")
+    co.add_argument("--real", action="store_true", help="abrir también la ventana real, oculta, y probar su puente")
     args = ap.parse_args(argv)
 
     cfg = load_config()
@@ -48,6 +59,9 @@ def main(argv=None) -> int:
         p = Paths.from_config(cfg).db
         if p.exists():
             p.rename(p.with_name(f"tennisbio.anterior-{time.strftime('%Y%m%d-%H%M%S')}.db"))
+    if args.cmd == "ventana":
+        from .window import run
+        return run(cfg, with_queue=not args.sin_cola)
     app = App(cfg)
     try:
         if args.cmd == "status" or args.cmd == "rebuild":
@@ -84,6 +98,16 @@ def main(argv=None) -> int:
         elif args.cmd in ("pausa", "seguir"):
             app.db.set_setting("pausa", args.cmd == "pausa")
             print("cola en pausa" if args.cmd == "pausa" else "cola en marcha")
+        elif args.cmd == "comprobar":
+            from pathlib import Path
+            from .check import check
+            r = check(app, Path(args.dest), real=args.real)
+            print((Path(args.dest) / "ventana.md").read_text(encoding="utf-8"))
+            return 1 if r["problems"] else 0
+        elif args.cmd == "pagina":
+            from pathlib import Path
+            from .window import write_page
+            print(write_page(app, Path(args.dest) if args.dest else None))
         elif args.cmd == "franja":
             app.db.set_setting("franja", None if args.desde == "no" else [args.desde, args.hasta])
             print("sin franja" if args.desde == "no" else f"trabajos pesados de {args.desde} a {args.hasta}")

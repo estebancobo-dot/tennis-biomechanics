@@ -36,7 +36,7 @@ try {
 
     Paso "5/7 Python 3.11 y librerias (10-15 min la primera vez)"
     Ejecutar uv @("python", "install", "3.11")
-    Ejecutar uv @("sync", "--extra", "yolo", "--extra", "ocr", "--extra", "dev", "--extra", "validation")
+    Ejecutar uv @("sync", "--extra", "yolo", "--extra", "ocr", "--extra", "dev", "--extra", "validation", "--extra", "app")
 
     Paso "6/7 Configuracion y modelos (~1 GB la primera vez)"
     $local = Join-Path $RepoDir "config\local.yaml"
