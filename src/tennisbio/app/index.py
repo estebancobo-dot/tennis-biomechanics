@@ -15,7 +15,30 @@ from ..pipeline import load_manifest, video_sample
 from .db import DB, Paths, now
 
 DEFAULT_HEIGHT = 1.80
-IDENTITY_MIN = 0.6         # below this the identity is doubtful: analysed, kept out of comparisons
+IDENTITY_MIN = 0.8         # share of the near player's shots whose identity was decided (end changes of the
+                           # scoreboard first, clothes otherwise): below it, doubtful: analysed, kept out of comparisons
+IDENTITY_MAX_CONFLICTS = 0.1
+
+
+def identity_doubt(summary: dict) -> str:
+    """Why the identity of a match is doubtful, or '' when it is not. The identity stage decides each
+    shot by the end changes (scoreboard) and, failing that, by the clothes; its «confidence» is only the
+    clothes' vote (0.52 in a match decided 100 % by the end changes is not doubtful)."""
+    runs = summary.get("runs") or 0
+    if not runs:
+        return ""
+    if "decided" in summary:
+        share = summary["decided"] / runs
+        conflicts = (summary.get("conflicts") or 0) / runs
+        if share < IDENTITY_MIN or conflicts > IDENTITY_MAX_CONFLICTS:
+            return (f"Identidad dudosa: decidida en el {share * 100:.0f} % de los planos"
+                    + (f", {conflicts * 100:.0f} % en conflicto" if conflicts > IDENTITY_MAX_CONFLICTS else "")
+                    + ": se analiza, pero no entra en las comparativas.")
+        return ""
+    conf = summary.get("confidence")          # an older identity summary: only the clothes' vote
+    if isinstance(conf, (int, float)) and conf < IDENTITY_MIN:
+        return f"Identidad dudosa (confianza {conf:.2f}): se analiza, pero no entra en las comparativas.".replace("0.", "0,")
+    return ""
 SKIP_DIRS = {"analisis", "_app", "datos"}
 
 
@@ -71,23 +94,23 @@ def state_from_manifest(man: dict) -> tuple[str, str]:
     if not s("fine").get("confirmed") and not s("candidates").get("candidates"):
         return "sin la jugadora", "La identidad no la encuentra en el vídeo; no se analiza a otra persona."
     notes = []
-    conf = s("identity").get("confidence")
-    if isinstance(conf, (int, float)) and conf < IDENTITY_MIN:
-        notes.append(f"Identidad dudosa (confianza {conf:.2f}): se analiza, pero no entra en las comparativas.".replace("0.", "0,"))
+    doubt = identity_doubt(s("identity"))
+    if doubt:
+        notes.append(doubt)
     if "audio" in man and not s("audio").get("onsets"):
         notes.append("Sin sonido: los golpes salen solo de la bola y la pose.")
     if "court" in man and s("court").get("with_court") == 0:
         notes.append("No se ve la pista: sin posiciones en metros.")
     if notes:
-        return ("identidad dudosa" if conf is not None and conf < IDENTITY_MIN else "con aviso"), " ".join(notes)
+        return ("identidad dudosa" if doubt else "con aviso"), " ".join(notes)
     return "analizado", ""
 
 
 def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR, fresh: bool = True):
     """The whole index from the folders (and the catalogue, for what the folders do not say).
     fresh=False (every start of the application): adds the matches that appeared meanwhile (a test run of
-    the cycle, a folder copied in) and updates the ones still «nuevo» or «en curso»; what the application
-    decided about the others (archived, notices) is kept."""
+    the cycle, a folder copied in) and reads again what the folders say about the others; what only the
+    application knows (archived, a notice about the video) is kept."""
     import_catalog(db, cfg, config_dir)
     for mid, d in match_dirs(paths.output):
         man = load_manifest(d)
@@ -109,7 +132,7 @@ def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR, fres
         state, note = state_from_manifest(man)
         rel = d.relative_to(paths.output).as_posix()
         row = db.one("SELECT * FROM matches WHERE id=?", mid)
-        if row and (fresh or row["state"] in ("nuevo", "en curso")):
+        if row and (fresh or not app_decided(row)):
             db.x("UPDATE matches SET state=?, note=?, dir=?, video=COALESCE(NULLIF(video, ''), ?) WHERE id=?",
                  state, note, rel, sample, mid)
         elif row:
@@ -131,6 +154,12 @@ def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR, fres
                                                       "n_strokes", "updated") if k in a})
         except (OSError, ValueError, KeyError):
             continue
+
+
+def app_decided(row: dict) -> bool:
+    """States the folders cannot know (kept when the folders are read again): archived by the user's choice,
+    or a notice about the video itself (gone, damaged, unusable)."""
+    return row["state"] == "archivado" or (row["state"] == "con aviso" and (row["note"] or "").startswith("El vídeo"))
 
 
 def match_dirs(out: Path) -> list[tuple[str, Path]]:

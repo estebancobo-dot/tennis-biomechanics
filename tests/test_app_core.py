@@ -304,11 +304,13 @@ def test_player_not_in_the_video_is_never_replaced_by_someone_else(env):
 def test_doubtful_identity_is_analysed_and_marked(env):
     a = env.app()
     _, mid = _added(env, a)
-    a.engine.manifests[mid] = {"candidates": {"summary": {"candidates": 30}}, "identity": {"summary": {"confidence": 0.52}},
+    a.engine.manifests[mid] = {"candidates": {"summary": {"candidates": 30}},
+                               "identity": {"summary": {"runs": 40, "decided": 20, "conflicts": 1, "confidence": 0.9}},
                                "fine": {"summary": {"confirmed": 20}}}
     a.work()
     m = a.db.one("SELECT * FROM matches WHERE id=?", mid)
-    assert m["state"] == "identidad dudosa" and "0,52" in m["note"] and "no entra en las comparativas" in m["note"]
+    assert m["state"] == "identidad dudosa" and "decidida en el 50 % de los planos" in m["note"]
+    assert "no entra en las comparativas" in m["note"]
     assert a.db.one("SELECT version FROM analyses WHERE id='rybakina_forehand'")["version"] == 1
 
 
@@ -505,3 +507,28 @@ def test_restart_keeps_what_the_application_decided(env):
     a.close()
     b = env.app()
     assert b.db.one("SELECT state FROM matches WHERE id=?", first)["state"] == "archivado"
+
+
+def test_identity_decided_by_the_end_changes_is_not_doubtful():
+    """Real case (PC, 18-10): the clothes' vote was 0.52-0.62 but every shot was decided by the scoreboard's
+    end changes: not doubtful. Doubtful: few shots decided, or many in conflict."""
+    assert index.identity_doubt({"runs": 11, "votes": 8, "confidence": 0.62, "by_end_changes": 11, "decided": 11, "conflicts": 0}) == ""
+    assert index.identity_doubt({"runs": 76, "decided": 74, "conflicts": 2, "confidence": 0.98}) == ""
+    assert "en conflicto" in index.identity_doubt({"runs": 20, "decided": 19, "conflicts": 5})
+    assert "0,52" in index.identity_doubt({"confidence": 0.52, "runs": 3})          # an old summary without «decided»
+
+
+def test_restart_rereads_what_the_folders_say(env):
+    """A state derived with an older rule (e.g. «identidad dudosa» from the clothes' vote) is read again
+    from the folder at the next start; a notice about the video itself is kept."""
+    a = env.app()
+    _, first = _added(env, a)
+    a.work()
+    a.db.x("UPDATE matches SET state='identidad dudosa', note='vieja regla' WHERE id=?", first)
+    _, second = _added(env, a, "2024_Madrid_Rybakina.mp4", b"m")
+    a.work()
+    a.db.x("UPDATE matches SET state='con aviso', note='El vídeo ya no está: se conservan sus resultados.' WHERE id=?", second)
+    a.close()
+    b = env.app()
+    assert b.db.one("SELECT state FROM matches WHERE id=?", first)["state"] == "analizado"
+    assert b.db.one("SELECT state FROM matches WHERE id=?", second)["state"] == "con aviso"

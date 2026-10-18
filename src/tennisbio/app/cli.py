@@ -74,6 +74,7 @@ def main(argv=None) -> int:
             else:
                 r = app.plan_updates()
                 print(f"{r['matches']} partido(s) a recalcular, {r['reports']} informe(s)"
+                      + (f"; {r['no_video']} partido(s) sin su vídeo localizado (no se pueden comprobar)" if r["no_video"] else "")
                       + (" — espera confirmación (tennisbio app plan --confirmar)" if r["confirm"] else ""))
         elif args.cmd == "work":
             for jid, st in app.work(once=not args.siempre):
