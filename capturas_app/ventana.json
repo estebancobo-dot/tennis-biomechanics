@@ -1,6 +1,6 @@
 {
  "problems": [
-  "la ventana real no funcionó: {'opened': True, 'ready': True, 'bridge': {}, 'step': 'hecho'}"
+  "la ventana real no funcionó: {'opened': True, 'ready': False, 'bridge': None, 'step': 'hecho'}"
  ],
  "screens": 24,
  "engine": {
@@ -14,8 +14,8 @@
  },
  "live": {
   "opened": true,
-  "ready": true,
-  "bridge": {},
+  "ready": false,
+  "bridge": null,
   "step": "hecho"
  },
  "backup": {
