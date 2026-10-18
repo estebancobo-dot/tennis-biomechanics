@@ -219,6 +219,28 @@ bola ya hechas se reutilizan. `fine_speed` no entra en la huella de la etapa.
 | Bola en paralelo | Dos modelos de bola a la vez (CPU + iGPU) en hilos | concurrencia | sesiones distintas; mismo resultado que de uno en uno | ✔ comprobado con el modelo real en CPU (2 clips de RacketVision en dos hilos = de uno en uno, bit a bit) |
 | Bola en paralelo | Memoria | rendimiento | en la CPU, un fotograma por pasada (`ball_ahead_batch: 1`): ≈ 0,5 GB frente a ≈ 3 GB con lotes de 8 (medido), igual de rápido o más (70 s frente a 89 s en 2 clips) y la misma pista (diferencia 0,0 px) | ✔ medido con el modelo real; `test_fine_with_the_worker_computes_each_ball_once_and_the_same` |
 | Bola en paralelo | Hilos de la CPU | rendimiento | `ball_ahead_threads` llega a ONNX Runtime | ✔ `test_ball_session_threads_reach_onnxruntime` |
-| Bola en paralelo | Cuánto ahorra | rendimiento | `bola_en_paralelo_cpu`, `espera_bola_en_paralelo`, `windows_ball_ahead` | ◐ prueba del PC |
+| Bola en paralelo | Cuánto ahorra | rendimiento | `bola_en_paralelo_cpu`, `espera_bola_en_paralelo`, `windows_ball_ahead` | ✔ prueba del PC (petición 31, 18-10): ≈ 4,4 min de 47 en la pasada fina; ver abajo |
 | Entrada de la bola por lotes | Ventana larga | rendimiento / memoria | misma entrada del modelo que antes, sin toda la ventana en coma flotante | ✔ `test_ball_track_feed_lazy_input_is_identical`; modelo real: mismas pistas |
 | Solapes | Peloteo de más de 10 s cortado en dos ventanas | medida | `counts.overlap_s` | ✔ `test_window_overlap_seconds`; ◐ partido completo |
+
+## Medida en el PC (18-10, petición 31: `_poc31_35`, 35 min de partido)
+
+Se repitió la prueba de 35 min con el código de hoy y se comparó con la prueba 7 (`_poc7_35`, 14-10), que ya llevaba la
+bola en paralelo. Mismos 12.839 fotogramas y 54 ventanas.
+
+| Etapa | Prueba 7 (14-10) | Petición 31 (18-10) |
+|---|---|---|
+| Planos | 254 s | 295 s |
+| Audio | 19 s | 36 s |
+| Pista | 124 s | 132 s |
+| Marcador | 265 s | 306 s |
+| Jugadoras | 430 s | 416 s |
+| Pasada fina | 2.779 s (46,3 min) | 2.829 s (47,2 min) |
+| **Total** | **65 min** | **67 min** |
+
+- **Bola en paralelo en la CPU:** hizo 16 de las 54 ventanas. Tardó unos 115 s por ventana; la iGPU tarda unos 16 s. El hilo principal no esperó nunca (`espera_bola_en_paralelo` = 0).
+  - **Ahorro:** unas 16 × 16 s ≈ **4,4 min de 47** en la pasada fina, alrededor del 9 %.
+  - Con 7 veces menos velocidad, la CPU no puede hacer más ventanas. Se queda como está.
+- **Pose, raqueta, cuerdas y 3D:** los mismos tiempos que el 14-10 (±2 %). Las medidas nuevas desde entonces no cuestan tiempo apreciable.
+- **Las demás etapas:** +2 min en total, del orden de lo que varía de una ejecución a otra en el mismo PC.
+- **Por partido:** unas 6 h para un partido de 3,5 h, como se decidió el 14-10. Lo que queda por ganar quitaría calidad: pose más ligera, raqueta FP16, menos resolución o sin el lado lejano. Por eso no se toca.
