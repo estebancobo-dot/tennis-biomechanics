@@ -90,7 +90,14 @@ def _live_child(page: str, res_f: str, wait_s: float = 60.0):
             if loaded.wait(wait_s):
                 out["step"] = "esperar al puente"
                 save()
-                out["ready"] = bool(w.evaluate_js("window.__tbReady === true && !!(window.pywebview && window.pywebview.api)"))
+                # pywebview injects its bridge a moment after the page loads (on the PC, 18-10, one look found it
+                # once and missed it the next time): wait for it
+                for _ in range(int(wait_s * 4)):
+                    out["ready"] = bool(w.evaluate_js("window.__tbReady === true && !!(window.pywebview && window.pywebview.api"
+                                                      " && window.pywebview.api.state)"))
+                    if out["ready"]:
+                        break
+                    time.sleep(0.25)
                 if out["ready"]:
                     out["step"] = "llamar al núcleo"
                     save()
