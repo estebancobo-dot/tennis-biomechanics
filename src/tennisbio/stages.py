@@ -54,9 +54,14 @@ def st_probe(ctx: Context):
         else:
             ctx.log("  el vídeo tiene saltos de tiempo o es .ts: se copia una vez a un fichero limpio (sin recodificar)")
             tmp = src.with_name("source.part.mkv")
-            r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(ctx.match.video), "-map", "0:v:0", "-map", "0:a?",
-                                "-dn", "-sn", "-c", "copy", str(tmp)], capture_output=True, text=True,
-                               encoding="utf-8", errors="replace")
+            # recorded .ts broadcasts carry packets without a timestamp (18-10: «Can't write packet with unknown
+            # timestamp» on the Osaka – Rybakina R4): the second try makes them up from the stream's clock
+            for flags in ([], ["-fflags", "+genpts+igndts", "-avoid_negative_ts", "make_zero"]):
+                r = subprocess.run(["ffmpeg", "-v", "error", "-y", *flags[:2], "-i", str(ctx.match.video), *flags[2:],
+                                    "-map", "0:v:0", "-map", "0:a?", "-dn", "-sn", "-c", "copy", str(tmp)],
+                                   capture_output=True, text=True, encoding="utf-8", errors="replace")
+                if r.returncode == 0 and _valid_video(tmp):
+                    break
             if r.returncode == 0 and _valid_video(tmp):
                 os.replace(tmp, src)
                 _write(meta, {"from": str(ctx.match.video), "jumps": tl["jumps"], "ts": ts})

@@ -145,3 +145,29 @@ def test_superseded_windows_are_deleted_but_not_the_other_pass(tmp_path):
     cands = [{"t": 2.0}, {"t": 5.0}, {"t": 21.0}]
     _drop_orphans(ctx, cands, [], [], {"w000000000_9225"}, cands[:2])
     assert sorted(f.name for f in (ctx.dir / "windows").iterdir()) == ["w000000000_9225.mp4", "w000020000_3600.mp4"]
+
+
+def test_a_ts_without_timestamps_is_cleaned_on_the_second_try(tmp_path, monkeypatch):
+    """18-10 on the PC: a recorded .ts (Osaka – Rybakina) failed «Can't write packet with unknown timestamp»
+    and was used as it was (imprecise seeking). The second try makes the timestamps up."""
+    import subprocess
+    from tennisbio import stages
+    video = tmp_path / "partido.ts"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "testsrc=duration=2:size=320x180:rate=25",
+                    "-f", "lavfi", "-i", "sine=d=2", "-shortest", "-c:v", "libx264", "-c:a", "aac", str(video)], check=True)
+    real = subprocess.run
+    calls = []
+
+    def flaky(cmd, **kw):
+        if cmd and cmd[0] == "ffmpeg" and "-c" in cmd and "copy" in cmd:
+            calls.append("-fflags" in cmd)
+            if "-fflags" not in cmd:                     # the plain copy fails as on the PC
+                return subprocess.CompletedProcess(cmd, 1, "", "Can't write packet with unknown timestamp")
+        return real(cmd, **kw)
+    monkeypatch.setattr(stages.subprocess, "run", flaky)
+    logs = []
+    ctx = pipeline.Context(Match("m1", video, Player("p", "P")), {}, tmp_path / "out", log=logs.append)
+    ctx.dir.mkdir(parents=True)
+    out = stages.st_probe.__wrapped__(ctx) if hasattr(stages.st_probe, "__wrapped__") else stages.st_probe(ctx)
+    assert calls == [False, True] and out["cleaned"] is True
+    assert (ctx.dir / "source.mkv").exists() and not any("no se pudo limpiar" in l for l in logs)

@@ -140,6 +140,11 @@ function Subir-Registros {
             Remove-Item "$c\*" -Force -ErrorAction SilentlyContinue
             Copy-Item "$Base\output\capturas_app\*.png", "$Base\output\capturas_app\ventana.*", "$Base\output\capturas_app\movil.*" $c -Force -ErrorAction SilentlyContinue
         }
+        # diagnostico de planos de los partidos (peticion "diag")
+        if (Test-Path "$Base\output\capturas_diag\diag_scenes.json") {
+            New-Item -ItemType Directory -Force -Path "$d\capturas_diag" | Out-Null
+            Copy-Item "$Base\output\capturas_diag\*" "$d\capturas_diag" -Force -ErrorAction SilentlyContinue
+        }
         # videos de analisis de entrenadores (texto e imagenes pequenas), una sola vez
         if ((Test-Path "$Base\output\investigacion\indice.json") -and -not (Test-Path "$d\investigacion\indice.json")) {
             New-Item -ItemType Directory -Force -Path "$d\investigacion" | Out-Null
