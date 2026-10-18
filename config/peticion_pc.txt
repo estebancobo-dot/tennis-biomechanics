@@ -1,5 +1,5 @@
-id: 22
-accion: app
+id: 23
+accion: ventana
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
 #   poc = prueba de velocidad en carpetas aparte (4 min y despues 35 min), sin tocar output\_smoke
 #   largo = el video entero en output\_pocN_largo (una noche), sin tocar output\_smoke
@@ -7,3 +7,4 @@ accion: app
 #   borrar = borra carpetas de pruebas de velocidad (carpetas: _poc,_pocN,_pocN_M); nunca _poc9_largo ni _smoke
 #   youtube = videos de analisis elegidos por el usuario (urls: ...) -> output\investigacion_<id>, texto y fotogramas a pc-logs
 #   app = la aplicacion local: crea o lee su indice con los datos reales y dice que recalcularia (no ejecuta la cola)
+#   ventana = pantallas de la aplicacion con el indice real, ventana real oculta, avisos/icono/copia (sin ensenar nada)
