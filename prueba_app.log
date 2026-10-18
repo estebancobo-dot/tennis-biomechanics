@@ -1,22 +1,22 @@
-﻿Peticion 19: indice de la aplicacion local (2026-10-18T08:53:37)
+﻿Peticion 20: indice de la aplicacion local (2026-10-18T09:02:28)
 == tennisbio app status
 Ahora: nada en curso
 Jugadoras: 2 · partidos: 2
 
 Análisis:
 Partidos:
-  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa (confianza 0,52): se analiza, pero no entra en las comparativas. Jugadora deducida del nombre de la carpeta.
-  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa (confianza 0,59): se analiza, pero no entra en las comparativas. Jugadora deducida del nombre de la carpeta.
+  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
 Cola (0):
 == tennisbio app plan
-0 partido(s) a recalcular, 0 informe(s)
+0 partido(s) a recalcular, 0 informe(s); 2 partido(s) sin su vídeo localizado (no se pueden comprobar)
 == tennisbio app status
 Ahora: nada en curso
 Jugadoras: 2 · partidos: 2
 
 Análisis:
 Partidos:
-  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa (confianza 0,52): se analiza, pero no entra en las comparativas. Jugadora deducida del nombre de la carpeta.
-  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa (confianza 0,59): se analiza, pero no entra en las comparativas. Jugadora deducida del nombre de la carpeta.
+  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
 Cola (0):
-codigo de salida: 0; termina 2026-10-18T08:53:40
+codigo de salida: 0; termina 2026-10-18T09:02:30
