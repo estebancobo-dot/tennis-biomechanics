@@ -171,3 +171,15 @@ def test_a_ts_without_timestamps_is_cleaned_on_the_second_try(tmp_path, monkeypa
     out = stages.st_probe.__wrapped__(ctx) if hasattr(stages.st_probe, "__wrapped__") else stages.st_probe(ctx)
     assert calls == [False, True] and out["cleaned"] is True
     assert (ctx.dir / "source.mkv").exists() and not any("no se pudo limpiar" in l for l in logs)
+
+
+def test_scoreboard_absence_marks_replays_only_where_the_scoreboard_is_read():
+    """18-10 on the PC: Osaka – Rybakina's scoreboard was read in 9 % of the shots; taking every unread shot
+    for a replay dropped 69 of her 148 runs (3 strokes left)."""
+    from tennisbio.stages import replay_spans_without_board
+    shot = lambda a, tried, read: {"start": a, "end": a + 10, "tried": tried, "read": read}
+    works = {"shots": [shot(i * 20, 3, 3) for i in range(9)] + [shot(500, 3, 0), shot(600, 2, 0), shot(700, 1, 0)]}
+    assert replay_spans_without_board(works) == [(500, 510), (600, 610)]          # a lone sample says nothing
+    rarely = {"shots": [shot(i * 20, 3, 3) for i in range(4)] + [shot(500 + i * 20, 3, 0) for i in range(30)]}
+    assert replay_spans_without_board(rarely) == []
+    assert replay_spans_without_board({}) == [] and replay_spans_without_board({"shots": [shot(0, 3, 0)]}) == []

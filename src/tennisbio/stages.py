@@ -451,7 +451,19 @@ def near_is_target(identity: dict, frame: int):
     return None
 
 
-@stage("candidates", "7", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"))
+def replay_spans_without_board(score: dict) -> list[tuple[float, float]]:
+    """Short main-camera shots where the scoreboard was looked for and never read: replays, in a broadcast
+    whose scoreboard is read in most shots. When it is read in few (18-10, Osaka – Rybakina: 21 readings in
+    234 samples, a scoreboard the OCR hardly reads), its absence says nothing and no shot is a replay for
+    that reason (69 of 148 runs of her were dropped, leaving 3 strokes)."""
+    shots = score.get("shots", [])
+    tried = [x for x in shots if x["tried"] >= 2]
+    if sum(x["read"] for x in shots) < 10 or not tried or sum(x["read"] > 0 for x in tried) < 0.5 * len(tried):
+        return []
+    return [(x["start"], x["end"]) for x in tried if x["read"] == 0 and x["end"] - x["start"] < 30]
+
+
+@stage("candidates", "8", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"))
 def st_candidates(ctx: Context, tol_s=0.35):
     """Near-player stroke candidates: swing peaks of the near player at cheap fps, confirmed by
     an audio transient when one is close. Each candidate records who the near player is
@@ -487,9 +499,8 @@ def st_candidates(ctx: Context, tol_s=0.35):
         return {"candidates": 0, "doubles": True}
     cands, skipped, replays = [], 0, 0
     score = _read(ctx.path("score.json")) if ctx.path("score.json").exists() else {}
-    no_board = [(x["start"], x["end"]) for x in score.get("shots", [])
-                if x["tried"] >= 2 and x["read"] == 0 and x["end"] - x["start"] < 30]
-    board_works = sum(x["read"] for x in score.get("shots", [])) >= 10
+    no_board = replay_spans_without_board(score)
+    board_works = bool(no_board)
     # replays from the main camera with the scoreboard still on: her feet retrace a path of the last
     # seconds, slower (slow motion) or without impact sounds (tennisbio.replays)
     from .court_metrics import to_court
