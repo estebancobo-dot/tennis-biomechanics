@@ -330,6 +330,14 @@ Cada parte se valida sola: pruebas con datos sintéticos de cada caso de la secc
 - compara el golpe dibujado desde la copia con el de la web del PC;
 - crea el acceso directo.
 
+**Validado en el PC (18-10):**
+- **Petición 29, la copia al móvil:**
+  - copia del informe real a 720p: 69 golpes en 70 s la primera vez y 10 s después;
+  - el golpe dibujado desde la copia coincide con el del PC: diferencia 1,3, frente a 20,2 sin el ajuste de escala;
+  - el acceso directo está en el escritorio.
+- **Petición 30, la ventana:** 24 pantallas sin problemas; la ventana real se abre y la página habla con el programa («0.0.1 · 63f0e32 · 2 partidos»); el icono, los avisos y la copia a USB funcionan.
+- **Pendiente:** el paso directo al Pixel se comprueba la primera vez que esté conectado por cable.
+
 ## 13. Carpetas: qué va dónde
 
 ```
