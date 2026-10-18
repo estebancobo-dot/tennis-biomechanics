@@ -154,3 +154,32 @@
 2026-10-19 01:10:58   ventana w000580056_13399: pose yolo en 670 de 670 fotogramas (75 s; modelo 74 s, 409 a 960 px por perderla) · bola 30 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 102 px (court)
 2026-10-19 01:10:58   fine:   6 % (30/504 golpes candidatos · 1 confirmados · 3 ventanas descartadas sin pose) · 11 min · quedan ≈ 176 min
 2026-10-19 01:11:07   ventana w000592931_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 01:11:16   ventana w000622999_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 01:11:28   ventana w000626958_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+2026-10-19 01:11:42   ventana w000626958_3600: pose yolo en 180 de 180 fotogramas (14 s; modelo 13 s) · bola 8 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 101 px (court)
+2026-10-19 01:11:42   fine:   7 % (33/504 golpes candidatos · 1 confirmados · 5 ventanas descartadas sin pose) · 12 min · quedan ≈ 170 min
+2026-10-19 01:12:03   ventana w000651490_4976 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 01:12:28   ventana w001082021_9399 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 01:12:28   fine:   8 % (38/504 golpes candidatos · 1 confirmados · 7 ventanas descartadas sin pose) · 13 min · quedan ≈ 155 min
+2026-10-19 01:12:41   ventana w001104423_6270 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 01:12:59   ventana w001115702_5074 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.04 s
+2026-10-19 01:13:21   ventana w001115702_5074: pose yolo en 253 de 253 fotogramas (22 s; modelo 21 s) · bola 11 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 109 px (segments)
+2026-10-19 01:13:21   fine:   9 % (43/504 golpes candidatos · 1 confirmados · 8 ventanas descartadas sin pose) · 14 min · quedan ≈ 145 min
+2026-10-19 01:13:38   ventana w001146259_5684 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.24 s
+2026-10-19 01:14:18   ventana w001146259_5684: pose yolo en 285 de 285 fotogramas (40 s; modelo 39 s, 247 a 960 px por perderla) · bola 15 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 173 px (segments)
+2026-10-19 01:14:18   fine:   9 % (45/504 golpes candidatos · 1 confirmados · 8 ventanas descartadas sin pose) · 14 min · quedan ≈ 148 min
+2026-10-19 01:14:52   ventana w001158206_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 01:14:52   fine:   9 % (46/504 golpes candidatos · 1 confirmados · 9 ventanas descartadas sin pose) · 15 min · quedan ≈ 150 min
+2026-10-19 01:15:13   ventana w001191027_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.56 s
+2026-10-19 01:15:32   ventana w001191027_3600: pose yolo en 179 de 179 fotogramas (19 s; modelo 18 s, 177 a 960 px por perderla) · bola 7 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+2026-10-19 01:15:32   fine:   9 % (47/504 golpes candidatos · 1 confirmados · 9 ventanas descartadas sin pose) · 16 min · quedan ≈ 153 min
+2026-10-19 01:15:57   ventana w001195619_11487 (far, 6 candidatos): pasa · golpe de bola en su lado a 8.5 s
+2026-10-19 01:16:41   ventana w001195619_11487: pose yolo en 575 de 575 fotogramas (44 s; modelo 43 s) · bola 22 s · raqueta 0 s (1 de 5 impactos) · 5 golpes posibles · altura 107 px (court)
+2026-10-19 01:16:41   fine:  11 % (53/504 golpes candidatos · 2 confirmados · 9 ventanas descartadas sin pose) · 17 min · quedan ≈ 144 min
+2026-10-19 01:17:23   ventana w001247659_12418 (far, 6 candidatos): pasa · golpe de bola en su lado a 5.1 s
+2026-10-19 01:18:15   ventana w001247659_12418: pose yolo en 621 de 621 fotogramas (52 s; modelo 51 s, 618 a 960 px por perderla) · bola 27 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+2026-10-19 01:18:15   fine:  12 % (59/504 golpes candidatos · 2 confirmados · 9 ventanas descartadas sin pose) · 18 min · quedan ≈ 139 min
+2026-10-19 01:18:41   ventana w001257812_9747 (far, 5 candidatos): pasa · golpe de bola en su lado a 2.56 s
+2026-10-19 01:19:07   fine:  13 % (64/504 golpes candidatos · 2 confirmados · 9 ventanas descartadas sin pose) · 19 min · quedan ≈ 133 min
+2026-10-19 01:19:48   ventana w001327646_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 01:19:48   fine:  13 % (68/504 golpes candidatos · 2 confirmados · 10 ventanas descartadas sin pose) · 20 min · quedan ≈ 128 min
