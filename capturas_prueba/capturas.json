@@ -193,7 +193,7 @@
   },
   {
    "title": "Fiabilidad de las medidas",
-   "text_chars": 3307,
+   "text_chars": 3407,
    "charts": 0,
    "videos": 7,
    "black_canvases": 0,
@@ -212,7 +212,7 @@
    "intro": true,
    "external_links": 0,
    "tables": 0,
-   "sentences": 81,
+   "sentences": 82,
    "many_lines": 0,
    "tab": "fiabilidad",
    "file": "pantalla_8_fiabilidad.jpg",
@@ -318,9 +318,9 @@
   }
  ],
  "learn": {
-  "combinations": 1407,
-  "with_exact_strokes": 429,
-  "checkpoints_checked": 128037,
+  "combinations": 1627,
+  "with_exact_strokes": 448,
+  "checkpoints_checked": 148057,
   "failures": [],
   "rows_all": 91,
   "valued_all": 86,
