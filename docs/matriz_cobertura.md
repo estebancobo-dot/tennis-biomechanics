@@ -45,6 +45,7 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Contacto delante/detrás del cuerpo | TA; ITF | ✘ | eje de profundidad (solo 3D estimado) |
 | Ángulo del codo en el impacto (brazo recto / doble flexión) | Elliott 1989/1997; Gordon | ✔ | `impact.elbow_dom` (2D, media) + clase `arm` |
 | Cabeza estable en el impacto | Lafont 2008; TA | ✔ | `head_motion_impact_cm` (relativa a la cadera, ±50 ms) |
+| Cabeza quieta tras el impacto | Lafont 2008; entrenadores (Olivari) | ◐ | `stroke.head_still_after_cm`: lo que más se mueve el centro de las orejas (no la nariz, que desde detrás no se ve) respecto al centro de los hombros en los 150 ms tras el impacto; solo lado cercano; su ruido se mide moviendo el contacto ±1-2 fotogramas (fiabilidad). Parcial: falta validarla con clips anotados |
 | Mirada | Lafont 2008 | ✘ | se ve de espaldas |
 | Hombros más girados que la cadera en el impacto | Reid; Landlinger | ◐ | `impact.shoulder_turn`, `hip_turn` (2D) |
 | Extensión tras el contacto | ITF | ✔ | `extension.arm_extension`, `swing_rise_after` |
@@ -171,7 +172,7 @@ de TV detrás del fondo (necesita laboratorio, sensores o varias cámaras) y el 
 | Pronación del antebrazo, flexión palmar y desviación de la muñeca | Matriz del usuario | ✘ | rotaciones sobre el eje del brazo, invisibles en 2D |
 | Retraso de la muñeca (lag) y su liberación | Matriz del usuario | ◐ | `racket_forearm` (ángulo 2D; en el impacto, borroso) |
 | Mirada fija en el punto de impacto («quiet eye») | Matriz del usuario | ✘ | la mirada no se ve; indicio: cabeza girada hacia el impacto, vista frontal de entrenamiento: `practice.front_metrics` (`head_to_contact_idx`) |
-| Cabeza estable y eje vertical | Matriz del usuario | ✔ | `head_motion_cm`, `head_over_base`, `trunk_tilt` |
+| Cabeza estable y eje vertical | Matriz del usuario | ✔ | `head_motion_cm`, `head_still_after_cm`, `head_over_base`, `trunk_tilt` |
 | Brazo recto o doble flexión | Matriz del usuario | ✔ | clase `arm`, `elbow_dom` |
 | Brazo libre paralelo a la línea de fondo en el giro; distancia a la bola | Matriz del usuario | ✔ | `shoulder_abd_non`, `elbow_non`, `wrist_dom_lateral` |
 | Brazo libre recogido al pecho tras el contacto («catch») | Matriz del usuario | ✔ | `extension.wrist_non_lateral` |

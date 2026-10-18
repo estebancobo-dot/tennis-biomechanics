@@ -57,6 +57,14 @@ _JS_CHECK = r"""([sel, expect]) => {
   if (!document.querySelectorAll('#a-plan li').length || !document.querySelectorAll('#a-plan-all li').length) bad.push('sin plan');
   if (document.querySelectorAll('#a-plan li b').length > 3) bad.push('más de 3 prioridades en el plan');
   cards.forEach(cd => { const ph = expect.phases.find(p => p.id === cd.dataset.phase); if (ph && ph.focus && !cd.querySelector('.focus')) bad.push(`${ph.id}: sin foco`); });
+  // «Si te pasa…»: every sign of hitting late says her share (or why not), the net says where her errors go
+  const syms = [...document.querySelectorAll('#a-sym li')];
+  (LEARN.symptoms || []).forEach((sy, i) => {
+    const t = (syms[i] || {}).innerText || '';
+    if (!t) { bad.push(`síntoma «${sy.s}»: falta`); return; }
+    (sy.shares || []).forEach(([k, , w]) => { if (!new RegExp(`Ella, ${w}: (\\d+ %|en ninguno|sin medir|no fiable)`).test(t)) bad.push(`síntoma «${sy.s}»: sin «${w}»`); });
+    if (sy.errors && !/Sus errores \(probable[^)]*\): (pocos datos|\d)/.test(t)) bad.push(`síntoma «${sy.s}»: sin sus errores (probable / pocos datos)`);
+  });
   if (!document.querySelectorAll('#a-nottv li').length) bad.push('sin lo no medible');
   if (!document.getElementById('a-guide') || !/Empieza aquí/.test(document.getElementById('a-guide').textContent)) bad.push('sin guía de primer uso');
   if (document.querySelectorAll('#a-gloss dt').length < 20) bad.push('glosario incompleto');

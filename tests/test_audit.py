@@ -35,3 +35,25 @@ def test_matrix_ids_are_measures_not_broken_code_refs():
     from tennisbio.audit import _code_ref, parse_matrix
     bad = [(r["element"], i) for r in parse_matrix() for i in r["ids"] if _code_ref(i) is False]
     assert not bad, bad
+
+
+def test_head_after_impact_is_in_the_matrix_and_the_audit_checks_it(tmp_path):
+    """«Cabeza quieta tras el impacto» (propuesta 3 de Olivari) is marked in the matrix with its key, the
+    report knows how to show it («Aprende», with its why) and the audit finds it in the strokes."""
+    from tennisbio.audit import planned_keys
+    from tennisbio.explain import COACH
+
+    row = next(r for r in parse_matrix() if r["element"] == "Cabeza quieta tras el impacto")
+    assert row["status"] in ("✔", "◐") and "stroke.head_still_after_cm" in row["ids"]
+    assert "stroke.head_still_after_cm" in planned_keys() and "stroke.head_still_after_cm" in COACH
+    d = tmp_path / "m1"
+    d.mkdir()
+    s = {"stroke": "forehand", "side": "near", "phases": {"impact": {"frame": 50}},
+         "technique": {"classes": {}, "phases": {}, "stroke": {"head_still_after_cm": 3.1}}}
+    (d / "strokes.json").write_text(json.dumps([s]), encoding="utf-8")
+    item = next(i for i in audit([d], None)["items"] if i["name"].endswith("Cabeza quieta tras el impacto"))
+    assert "stroke.head_still_after_cm" in item["keys"] and item["measured"] == 1.0
+    s["technique"]["stroke"] = {}
+    (d / "strokes.json").write_text(json.dumps([s]), encoding="utf-8")
+    item = next(i for i in audit([d], None)["items"] if i["name"].endswith("Cabeza quieta tras el impacto"))
+    assert item["status"] != "ok"                          # missing from the data: the audit says so

@@ -158,6 +158,9 @@ LINES["takeback"].append(("footwork.steps_to_impact", lambda t: f"Llega a la bol
 LINES["impact"].append(("stroke.head_motion_cm", lambda t: ("Su cabeza se queda quieta en el impacto" if t["median"] <= 3 else
                                                          "Su cabeza se mueve en el impacto") +
                         f" ({fmt(t['median'], 1)} cm en ±50 ms)."))
+LINES["impact"].append(("stroke.head_still_after_cm", lambda t: ("Tras golpear, su cabeza sigue quieta sobre los hombros" if t["median"] <= 3 else
+                                                               "Tras golpear, su cabeza se mueve sobre los hombros") +
+                        f" ({fmt(t['median'], 1)} cm en 150 ms)."))
 
 
 def _foot_dir(a: float) -> str:
@@ -242,6 +245,8 @@ COACH = {
     "impact.trunk_tilt": ("Un tronco estable en el impacto da precisión.", "Tennis Australia"),
     "impact.head_over_base": ("La cabeza centrada sobre los pies indica equilibrio en el impacto.", "Tennis Australia"),
     "stroke.head_motion_cm": ("Las mejores jugadoras mantienen la cabeza quieta en el impacto.", "Lafont 2008"),
+    "stroke.head_still_after_cm": ("Las expertas mantienen la cabeza orientada al punto de contacto también después de golpear; "
+                                   "levantarla pronto para ver la bola arrastra los hombros.", "Lafont 2008"),
     "impact.body_height": ("Lo que baja el cuerpo en el impacto dice cuánto usa las piernas.", "Tennis Australia"),
     "impact.base_m": ("Una base ancha da estabilidad en el impacto.", "Tennis Australia"),
     "loaded.base_court_m": ("La distancia real entre los pies al armar decide cuánto puede cargar la pierna exterior y "

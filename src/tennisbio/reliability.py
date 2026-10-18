@@ -90,6 +90,17 @@ def shifted_jitter(base: dict, shifted: list[dict]) -> dict:
     return {k: v for k, v in out.items() if v is not None}
 
 
+def merge_jitter(tech: dict, shifted: dict) -> dict:
+    """Adds the shifted-instants jitter (shifted_jitter) to the stroke's own one (technique "jitter").
+    A value technique already judged by itself keeps that reading: the head after contact is measured
+    again with the contact moved 1-2 frames, and moving only the phase instants would not move it (it
+    would read as «no comprobable»)."""
+    jit = tech.setdefault("jitter", {})
+    for k, v in shifted.items():
+        jit.setdefault(k, v)
+    return jit
+
+
 def _floor(unit: str | None) -> float:
     return FLOOR.get((unit or "").strip(), 0.0)
 

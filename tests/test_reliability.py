@@ -112,3 +112,17 @@ def test_consistent_strokes_with_a_moving_instant_are_noise():
             for v, j in zip(vals, jit)]
     r = assess(rows, {"takeback.shoulder_turn": "°"})["takeback.shoulder_turn"]
     assert r["verdict"] == "ruido" and r["noise"] == 3.4 and r["spread"] < r["noise"]
+
+
+def test_head_after_impact_keeps_its_own_jitter_and_is_gated():
+    """The head after contact is judged with the contact moved (technique), not with the phase instants
+    (that would always read 0 → «no comprobable»); then the usual gate decides if it is shown."""
+    from tennisbio.reliability import merge_jitter
+
+    tech = {"stroke": {"head_still_after_cm": 4.0, "t_loaded": 0.3}, "jitter": {"stroke.head_still_after_cm": 1.2}}
+    j = merge_jitter(tech, {"stroke.head_still_after_cm": 0.0, "stroke.t_loaded": 0.02})
+    assert j == {"stroke.head_still_after_cm": 1.2, "stroke.t_loaded": 0.02} and tech["jitter"] is j
+    k = "stroke.head_still_after_cm"
+    rows = lambda noise: [{"technique": {"stroke": {"head_still_after_cm": 2.0 + 2 * i}, "jitter": {k: noise}}} for i in range(10)]
+    assert assess(rows(0.5), {k: "cm"})[k]["verdict"] == "fiable"
+    assert assess(rows(12.0), {k: "cm"})[k]["verdict"] == "ruido"           # never shown as her value

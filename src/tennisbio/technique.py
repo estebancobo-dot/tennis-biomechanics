@@ -84,6 +84,8 @@ DESCRIPTORS = {
 # per-stroke (not per phase)
 STROKE_DESCRIPTORS = {
     "head_motion_cm": ("equilibrio", "Movimiento de la cabeza en el impacto", "cm", 2, "±50 ms del impacto, relativo a la cadera"),
+    "head_still_after_cm": ("equilibrio", "Cabeza quieta tras el impacto", "cm", 2,
+                            "lo que más se mueve el centro de las orejas respecto al de los hombros en los 150 ms tras el impacto"),
     "t_takeback": ("ritmo", "Inicio de la preparación", "s", 2, "antes del impacto"),
     "t_loaded": ("ritmo", "Armado completo", "s", 2, "antes del impacto"),
     "t_acceleration": ("ritmo", "Inicio de la aceleración", "s", 2, "antes del impacto"),
@@ -298,6 +300,28 @@ def stroke_curves(img: np.ndarray, sk: Skeleton, scale: np.ndarray, impact: int,
         v[near > 0.1] = np.nan
         out[name] = [None if not np.isfinite(x) else round(float(x), 1) for x in v]
     return out
+
+
+HEAD_AFTER_S = 0.15
+
+
+def head_after_impact(body: np.ndarray, sk: Skeleton, impact: int, fps: float, window_s: float = HEAD_AFTER_S) -> float | None:
+    """How still the head stays after contact (Lafont 2008: experts keep it on the contact point after
+    hitting): the largest move, in body heights, of the middle of the ears relative to the middle of the
+    shoulders from the contact to `window_s` after it. The ears, not the nose: from behind the nose is
+    hidden and the model guesses it. Relative to the shoulders, so that running, the camera and the trunk
+    turning of the finish cancel out; what is left is the head moving on the trunk (lifting or turning
+    to look at the ball). body: to_body_frame. None when the contact or too many frames lack both ears."""
+    k = max(1, int(round(window_s * fps)))
+    if impact < 0 or impact + k >= len(body):
+        return None
+    ears = (body[:, sk["left_ear"]] + body[:, sk["right_ear"]]) / 2
+    shoulders = (body[:, sk["left_shoulder"]] + body[:, sk["right_shoulder"]]) / 2
+    seg = (ears - shoulders)[impact:impact + k + 1]
+    ok = np.isfinite(seg).all(axis=1)
+    if not ok[0] or ok.sum() < max(2, (2 * len(seg) + 2) // 3):
+        return None
+    return float(np.max(np.linalg.norm(seg[ok] - seg[0], axis=1)))
 
 
 def body_moves(out: dict, img: np.ndarray, sk: Skeleton, scale: np.ndarray, impact: int, fps: float, ev: dict,
@@ -612,6 +636,16 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
             s["tempo_ratio"] = round(s["dur_preparation"] / max(s["dur_forward"], 1e-3), 2)
     if (context or {}).get("head_motion_cm") is not None:
         s["head_motion_cm"] = round(float(context["head_motion_cm"]), 1)
+    if height_m:
+        ha = head_after_impact(body, sk, impact, fps)
+        if ha is not None:
+            s["head_still_after_cm"] = round(ha * height_m * 100, 1)
+            # repeatability: the same with the contact 1-2 frames either side (it is known to ±1 frame)
+            near = [head_after_impact(body, sk, g, fps) for g in (impact - 2, impact - 1, impact + 1, impact + 2)]
+            near = [x * height_m * 100 for x in near if x is not None]
+            if len(near) >= 2:
+                out.setdefault("jitter", {})["stroke.head_still_after_cm"] = round(
+                    float(np.median(np.abs(np.asarray(near) - s["head_still_after_cm"]))), 2)
     if ev["takeback"] is not None and opp is not None:
         s["takeback_after_opp"] = round((ev["takeback"] - opp) / fps, 3)
     if ev["takeback"] is not None and bounce is not None:

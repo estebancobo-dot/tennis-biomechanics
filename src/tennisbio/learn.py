@@ -286,6 +286,12 @@ PHASES = [
             "Mantén la cabeza quieta y mira el punto de impacto un instante después de golpear.",
             "Levantar la cabeza para ver adónde va la bola.", "Golpea y sigue mirando el punto de contacto hasta oír el bote en el otro campo.",
             ["Cabeza estable y eje vertical", "Mirada fija en el punto de impacto («quiet eye»)"]),
+         cp("stroke.head_still_after_cm", "Cabeza quieta tras el impacto", "cm", 1,
+            "cm que más se mueve la cabeza (centro de las orejas) respecto a los hombros en los 150 ms tras el contacto",
+            "Después de golpear, deja la cabeza donde estaba un instante: el tronco gira y la cabeza lo acompaña sin levantarse a buscar la bola.",
+            "Levantar o girar la cabeza en cuanto sale la bola: arrastra los hombros y el golpe se abre antes de tiempo.",
+            "Golpea y di «uno» en voz alta mirando todavía el punto de impacto; solo entonces levanta la cabeza; 3×10.",
+            ["Cabeza estable y eje vertical", "Mirada fija en el punto de impacto («quiet eye»)"]),
          cp("practice.contact_in_front_pct", "Impacto delante de la cadera (vista lateral, entreno)", "%", 0, "% de su altura por delante del centro de la cadera",
             "Golpea delante de la cadera de delante, nunca a la altura del cuerpo.", "Golpear tarde, con la bola a tu lado.",
             "Pon un cono delante del pie de delante y golpea la bola cuando pase a su altura.",
@@ -607,6 +613,7 @@ TARGETS = {
     "stroke.feet_move_m": "Del armado al impacto, que los pies no se muevan más de {v}, como ella.",
     "impact.elbow_dom": "Golpea con el codo a unos {v} (180° = recto), como ella.",
     "stroke.head_motion_cm": "Que la cabeza no se mueva más de {v} al golpear, como ella.",
+    "stroke.head_still_after_cm": "Tras golpear, que la cabeza no se mueva más de {v} respecto a los hombros, como ella.",
     "impact.trunk_tilt": "Tronco inclinado unos {v} respecto a la vertical al golpear, como ella.",
     "extension.arm_extension": "Tras el impacto, estira el brazo un {v} hacia delante, como ella.",
     "extension.wrist_non_lateral": ("Recoge la mano libre a un {h} por encima de la cadera, como ella.", "Recoge la mano libre a un {h} por debajo de la cadera, como ella."),
@@ -724,6 +731,7 @@ CHECKS = {
     "stroke.contact_vs_top": "Di «arriba» cuando la bola llegue a lo más alto tras botar: golpea en ese instante o justo antes.",
     "impact.base_court_m": "Marca su distancia entre los pies con dos conos: golpea con un pie junto a cada uno.",
     "stroke.head_motion_cm": "Golpea y sigue mirando el punto de impacto hasta oír el bote en el otro campo.",
+    "stroke.head_still_after_cm": "Grábate desde detrás: tras el contacto, la cabeza sigue en su sitio mientras el brazo termina; di «uno» antes de levantarla. 8 de 10.",
     "impact.elbow_dom": "Para en el impacto frente a un espejo: el codo como el suyo.",
     "extension.arm_extension": "Tras golpear, deja la raqueta apuntando al objetivo un instante antes de terminar.",
     "extension.wrist_non_lateral": "Al terminar, la mano libre tiene que estar recogida delante del pecho.",
@@ -770,12 +778,16 @@ RHYTHM = [("stroke.takeback_vs_net", "Empieza a girar"), ("stroke.loaded_vs_boun
 # «Si te pasa…»: a symptom of the user's own forehand → the usual causes (coaching knowledge: ITF,
 # Crespo-Reid, Tennis Australia) → the checkpoints of hers to compare with, each linked to its card
 SYMPTOMS = [
-    ("Llegas tarde: golpeas con la bola a tu lado", "Casi siempre es preparar tarde: el giro empieza cuando la bola ya ha botado.",
-     ["stroke.takeback_vs_net", "stroke.loaded_vs_bounce", "footwork.split_landing_vs_opp_s"]),
+    ("Llegas tarde: golpeas con la bola a tu lado", "Casi siempre es preparar tarde: el giro empieza cuando la bola ya ha botado. "
+     "Golpear tarde también se ve después: la bola ya cayendo y el golpe que te empuja hacia atrás.",
+     ["stroke.takeback_vs_net", "stroke.loaded_vs_bounce", "footwork.split_landing_vs_opp_s", "class.back_at_impact",
+      "class.ball_phase", "stroke.contact_vs_top"]),
     ("La bola se va a la red", "Swing plano o hacia abajo, raqueta que no baja por debajo de la bola, o golpear la bola cayendo y baja.",
      ["stroke.swing_low_to_high", "stroke.wrist_drop", "stroke.contact_vs_top"]),
-    ("La bola se va larga", "Cara abierta en el contacto, peso hacia atrás o terminación que no sube.",
-     ["impact.face_tilt", "stroke.weight_shift", "finish.wrist_dom_vs_shoulder"]),
+    ("La bola se va larga", "Cara abierta en el contacto, peso hacia atrás o terminación que no sube. Golpear tarde lleva a lo mismo: "
+     "si la bola ya cae o vas retrocediendo, sale hacia arriba y larga.",
+     ["impact.face_tilt", "stroke.weight_shift", "finish.wrist_dom_vs_shoulder", "class.back_at_impact", "class.ball_phase",
+      "stroke.contact_vs_top"]),
     ("El golpe sale sin peso, solo de brazo", "Sin carga de piernas, giro corto, pausa arriba o los hombros se abren antes que la cadera.",
      ["stroke.hip_drop_cm", "loaded.shoulder_turn", "stroke.pause_at_loaded", "stroke.shoulders_open_first"]),
     ("Te caes hacia atrás al terminar", "El peso no pasa al pie de delante o se golpea retrocediendo.",
@@ -786,6 +798,18 @@ SYMPTOMS = [
      ["stroke.head_motion_cm", "stroke.feet_move_m", "impact.base_court_m"]),
 ]
 SYMPTOMS_SOURCE = "Conocimiento de entrenadores (ITF: Crespo y Reid; Tennis Australia), no datos suyos; sus valores, al lado"
+# signs of hitting late measured in her strokes (coaches: hitting late makes the ball rise and go long, and
+# the stroke pushes you back; Olivari, «3 fundamentos», 8:09-11:10): the share of her strokes of the
+# chosen situation with that value of an existing measure, with one of them to watch. (key, value, words)
+LATE_SIGNS = [("class.back_at_impact", True, "golpea retrocediendo"),
+              ("class.ball_phase", "bola cayendo", "toma la bola cayendo")]
+# per symptom: «shares» = those signs; «errors» = where her own errors go (net / long / wide), from the
+# ball after her stroke (outcome.shot_outcome, court_metrics.shot_landing): probable, as everywhere
+SYMPTOM_EXTRAS = {"Llegas tarde: golpeas con la bola a tu lado": {"shares": LATE_SIGNS},
+                  "La bola se va larga": {"shares": LATE_SIGNS},
+                  "La bola se va a la red": {"errors": True}}
+# fewer errors with a known outcome than this in the chosen strokes: «pocos datos», no split given
+ERRORS_MIN = 5
 
 
 def content() -> dict:
@@ -794,7 +818,9 @@ def content() -> dict:
             "relax": RELAX_ORDER, "not_tv": NOT_FROM_TV, "source": SOURCE,
             "plan": [{"theme": th, "key": k, "title": ti, "why": w} for th, k, ti, w in PLAN],
             "targets": TARGETS, "glossary": GLOSSARY, "rhythm": RHYTHM,
-            "symptoms": [{"s": sy, "why": w, "keys": k} for sy, w, k in SYMPTOMS], "symptoms_source": SYMPTOMS_SOURCE,
+            "symptoms": [{"s": sy, "why": w, "keys": k, **{x: [list(t) for t in v] if isinstance(v, list) else v
+                                                          for x, v in SYMPTOM_EXTRAS.get(sy, {}).items()}}
+                         for sy, w, k in SYMPTOMS], "symptoms_source": SYMPTOMS_SOURCE, "errors_min": ERRORS_MIN,
             "lesson": {k: {"mark": m, "keys": ks} for k, (m, ks) in LESSON.items()}, "checks": CHECKS,
             "focus_check": FOCUS_CHECK, "why": _why()}
 

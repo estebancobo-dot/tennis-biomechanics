@@ -334,3 +334,34 @@ def test_body_moves_drop_rise_base_and_trunk():
     out = {"stroke": {}, "phases": {}, "classes": {}, "curves": {"hip": [30.0] * len(CURVE_T)}}
     body_moves(out, kp, SK, np.full(130, 400.0), 100, 50.0, ev, None, 1.84)
     assert "hip_drop_cm" not in out["stroke"]
+
+
+def test_head_still_after_impact_uses_the_ears_not_the_nose():
+    """«Cabeza quieta tras el impacto» (Lafont 2008; docs/investigacion_youtube_usuario.md, propuesta 3):
+    the middle of the ears against the middle of the shoulders over 150 ms after contact. The nose, hidden
+    from behind, does not count; running and the camera cancel out; the jitter moves the contact."""
+    from tennisbio.technique import head_after_impact
+
+    fps, T, impact, h = 50.0, 100, 60, 400.0
+    kp = standing(T=T)
+    kp[:, SK["nose"]] = np.nan                                   # hidden from behind
+    kp[:, :, 0] += np.arange(T)[:, None] * 6.0                   # she runs sideways: everything moves
+    lift = np.clip((np.arange(T) - impact) / 5, 0, 1) * 20.0     # the head lifts 20 px (5 %) in 100 ms after contact
+    for n in ("left_ear", "right_ear"):
+        kp[:, SK[n], 1] -= lift
+    phases = {"ready": 10, "takeback": 20, "loaded": 45, "acceleration": 55, "impact": impact, "finish": 75}
+    ctx = {"height_m": 1.84}
+    tech = stroke_technique(kp, np.ones((T, 17)), SK, fps, np.full(T, h), impact, phases, "forehand", context=ctx)
+    v = tech["stroke"]["head_still_after_cm"]
+    assert abs(v - 5.0 * 1.84) < 0.2                            # 5 % of her height = 9.2 cm
+    assert "stroke.head_still_after_cm" in tech["jitter"] and tech["jitter"]["stroke.head_still_after_cm"] > 0
+    assert "stroke.head_still_after_cm" in flatten(tech)
+    # still head: ~0; without the ears at contact (or her height) nothing is given
+    still = stroke_technique(standing(T=T), np.ones((T, 17)), SK, fps, np.full(T, h), impact, phases, "forehand", context=ctx)
+    assert still["stroke"]["head_still_after_cm"] < 0.1
+    body = to_body_frame(kp, SK, np.full(T, h))
+    body[impact, SK["left_ear"]] = np.nan
+    assert head_after_impact(body, SK, impact, fps) is None
+    assert head_after_impact(body, SK, T - 3, fps) is None       # the window runs past the clip
+    nh = stroke_technique(kp, np.ones((T, 17)), SK, fps, np.full(T, h), impact, phases, "forehand")
+    assert "head_still_after_cm" not in nh["stroke"]

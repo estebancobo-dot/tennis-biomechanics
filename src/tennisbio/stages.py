@@ -1575,11 +1575,11 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
         # repeatability of the whole stroke: its phase instants are known to ±1-2 frames, so the stroke
         # is described again with them all moved; timings, steps and classes that change with that are
         # noise (reliability.py). Kept next to the per-phase ones that technique computes itself.
-        from .reliability import shifted_jitter
+        from .reliability import merge_jitter, shifted_jitter
         T = len(run.img)
         shifted = [tech({k: (None if v is None else min(T - 1, max(0, v + s))) for k, v in ph_frames.items()})
                    for s in (-2, -1, 1, 2)]
-        d["technique"].setdefault("jitter", {}).update(shifted_jitter(d["technique"], shifted))
+        merge_jitter(d["technique"], shifted_jitter(d["technique"], shifted))
     if side == "far":                       # 70 px player: only position-level classes are kept
         d["technique"] = {"classes": {k: v for k, v in d["technique"]["classes"].items()
                                       if k in ("ball_speed", "ball_height", "depth", "court_side", "width", "intent", "shot_type",

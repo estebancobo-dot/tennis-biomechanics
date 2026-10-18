@@ -253,3 +253,73 @@ def test_report_with_no_strokes_opens_without_errors(tmp_path):
         b.close()
     assert not errors, errors[:3]
     assert "Todavía no hay golpes analizados" in note
+
+
+def test_symptoms_link_late_signs_and_errors():
+    """Olivari (docs/investigacion_youtube_usuario.md, propuestas 1-2): «Llegas tarde» and «La bola se va
+    larga» compare with hitting while moving back and with the ball falling; «La bola se va a la red» says
+    where her errors go."""
+    from tennisbio.learn import content
+
+    sy = {s["s"]: s for s in content()["symptoms"]}
+    for t in ("Llegas tarde: golpeas con la bola a tu lado", "La bola se va larga"):
+        assert {"class.back_at_impact", "class.ball_phase", "stroke.contact_vs_top"} <= set(sy[t]["keys"])
+        assert [k for k, _, _ in sy[t]["shares"]] == ["class.back_at_impact", "class.ball_phase"]
+    assert sy["La bola se va a la red"]["errors"] is True and content()["errors_min"] >= 5
+    keys = set(learn_keys())
+    assert all(k in keys for s in sy.values() for k in s["keys"])          # every chip has its card
+
+
+def _symptom_rows(n_err):
+    rows = synthetic(40)
+    for i, r in enumerate(rows):
+        r["technique"]["classes"]["back_at_impact"] = i % 4 == 0              # 10 of 40 moving back
+        r["technique"]["classes"]["ball_phase"] = "bola cayendo" if i % 5 == 0 else "bola subiendo"   # 8 of 40
+        r["technique"]["jitter"] = {}
+        r.pop("outcome", None)
+        if i < n_err:                         # errors: half to the net, then long and wide from the bounce
+            if i % 2 == 0:
+                r["outcome"] = "net"
+            else:
+                r["outcome"], r["shot_in"] = "out", False
+                r["shot_bounce_m"] = [1.0, 25.0] if i % 4 == 1 else [5.0, 20.0]
+        elif i < 30:
+            r["outcome"] = "rally"
+    return rows
+
+
+@pytest.mark.skipif(not CHROMIUM.exists(), reason="sin navegador para la prueba de la web")
+@pytest.mark.parametrize("n_err", [8, 3])
+def test_symptoms_show_her_late_signs_and_errors(tmp_path, n_err):
+    from playwright.sync_api import sync_playwright
+
+    d = tmp_path / "m1"
+    d.mkdir()
+    (d / "strokes.json").write_text(json.dumps(_symptom_rows(n_err)), encoding="utf-8")
+    html = build([Match("m1", None, Player("p", "P"))], tmp_path)
+    with sync_playwright() as p:
+        b = p.chromium.launch(executable_path=str(CHROMIUM), args=["--allow-file-access-from-files"])
+        pg = b.new_page()
+        errors = []
+        pg.on("pageerror", lambda e: errors.append(str(e)))
+        pg.goto(html.resolve().as_uri())
+        pg.wait_for_timeout(500)
+        pg.evaluate("document.querySelector('.nav button[data-tab=\"aprende\"]').click()")
+        pg.evaluate("['a-more', 'a-phases-d'].forEach(id => { const d = document.getElementById(id); if (d) d.open = true; })")
+        items = pg.evaluate("[...document.querySelectorAll('#a-sym li')].map(li => li.innerText)")
+        b.close()
+    assert not errors, errors[:3]
+    late = next(t for t in items if t.startswith("Llegas tarde"))
+    long_ = next(t for t in items if t.startswith("La bola se va larga"))
+    net = next(t for t in items if t.startswith("La bola se va a la red"))
+    for t in (late, long_):
+        assert "Ella, golpea retrocediendo: 25 % de sus golpes (10 de 40)" in t
+        assert "Ella, toma la bola cayendo: 20 % de sus golpes (8 de 40)" in t
+        assert "Golpea retrocediendo" in t and "Bola subiendo, arriba o cayendo" in t
+    assert "Ella, golpea retrocediendo" not in net
+    if n_err >= 5:     # 8 errors: 4 net, 2 long (y > 23.77), 2 wide (|x| > 4.115)
+        assert "Sus errores (probable" in net
+        assert "4 a la red (50 %)" in net and "2 largos (25 %)" in net and "2 anchos (25 %)" in net
+        assert "de 8 errores; resultado conocido en 30 de 40 golpes" in net
+    else:
+        assert "pocos datos: solo 3 errores" in net and "a la red (" not in net

@@ -133,4 +133,9 @@ Dos vídeos del mismo entrenador, elegidos por el usuario y analizados en el PC 
 3. **Medida nueva «Cabeza quieta tras el impacto»** (○ en la matriz): ms tras el impacto en que la cabeza sigue dentro de pocos cm respecto a los hombros, medida con el centro de las orejas. Se validaría con los clips públicos y con `head_to_contact_idx` del entreno, y solo se enseña si supera el ruido de medida. Antes, revisar si `head_motion_cm` debe dejar la nariz.
 4. **«Cómo» de la fase 1:** añadir «mirando la raqueta de la rival» como consejo de entrenador (no es un dato suyo).
 
+**Hecho (18-10), propuestas 1-3:**
+1. «Llegas tarde» y «La bola se va larga» enlazan `class.back_at_impact`, `class.ball_phase` y `stroke.contact_vs_top`, y dicen en qué % de sus golpes (de la situación elegida) golpea retrocediendo y toma la bola cayendo, con un golpe así para verlo (`learn.LATE_SIGNS`). Si la medida es ruido, no se da.
+2. «La bola se va a la red» dice cuántos de sus errores van a la red, largos o anchos (largo/ancho sale del bote de su bola en la pista), marcado «probable», con un golpe de cada; con menos de 5 errores de resultado conocido dice «pocos datos».
+3. `stroke.head_still_after_cm`: lo que más se mueve el centro de las orejas respecto al de los hombros en los 150 ms tras el impacto (solo lado cercano), con su ruido medido moviendo el contacto ±1-2 fotogramas. `head_motion_cm` no se toca (sigue con la nariz). Queda pendiente validarla con clips anotados y con `head_to_contact_idx` del entreno.
+
 No se cambia: el foco de la fase 4 ni la frase de la fase 6. La volea, el smash y el saque quedan para cuando se analicen esos golpes (requisito 10).

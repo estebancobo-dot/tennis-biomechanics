@@ -1581,6 +1581,7 @@ const ALARMS = [
   ["stroke.weight_shift", -1, .05, v => `el peso pasa menos al pie de delante que de costumbre (${fmt(v, 2)})`],
   ["stroke.shoulders_open_first", 1, .03, v => `abre los hombros antes que la cadera (${fmt(v, 2)} s)`],
   ["stroke.head_motion_cm", 1, 1.5, v => `la cabeza se mueve más de lo habitual en el impacto (${fmt(v, 1)} cm)`],
+  ["stroke.head_still_after_cm", 1, 3, v => `la cabeza se mueve más de lo habitual tras el impacto (${fmt(v, 1)} cm)`],
   ["finish.wrist_dom_vs_shoulder", -1, 3, v => `termina más bajo de lo habitual (mano a ${fmt(v)} % del hombro)`],
 ];
 const _alarmRef = {};
@@ -2318,6 +2319,39 @@ function aStat(set, c) {
   const cwarn = rel && rel.verdict === "dudosa" ? ` <span class="badge prov" title="cambia en el ${Math.round(100 * rel.flip)} % de los casos al mover 1-2 fotogramas el instante de las fases">medida ruidosa</span>` : "";
   return { n: v.length, txt: Object.entries(cnt).sort((a, b) => b[1] - a[1]).map(([k, n]) => `${lab(k)} ${Math.round(100 * n / v.length)} %`).join(" · "), warn: cwarn };
 }
+// «Si te pasa…»: a sign of hitting late (learn.LATE_SIGNS) as the share of her strokes with that value of a
+// measure, with one of them to watch; the reliability gate of aStat applies (noise or bias: no share)
+const aRepOf = (xs, ph) => { const s = [...xs].filter(x => x.video).sort((a, b) => (b.repr || 0) - (a.repr || 0))[0];
+  return s ? ` <button class="btn" data-open="${s.id}" data-ph="${ph}">▶ Ver</button>` : ""; };
+function aShareTxt(set, k, val, words) {
+  const rel = (DATA.reliability || {})[k];
+  if (rel && (rel.verdict === "ruido" || rel.verdict === "sesgo"))
+    return `<br><span class="dim">Ella, ${words}:</span> no fiable desde la tele (cambia al mover 1-2 fotogramas el instante de las fases); no se da como suyo.`;
+  const had = set.filter(s => { const v = (s.lv || {})[k]; return v !== undefined && v !== null; });
+  if (!had.length) return `<br><span class="dim">Ella, ${words}:</span> sin medir en estos golpes.`;
+  const hit = had.filter(s => s.lv[k] === val);
+  const tags = [had.length < A_MIN ? "provisional" : "", rel && rel.verdict === "dudosa" ? "medida ruidosa" : ""].filter(Boolean);
+  return `<br><span class="dim">Ella, ${words}:</span> ${hit.length ? `<b>${Math.round(100 * hit.length / had.length)} %</b> de sus golpes (${hit.length} de ${had.length})` : `en ninguno de ${had.length} golpes`}`
+    + (tags.length ? ` <span class="dim3">(${tags.join("; ")})</span>` : "") + "." + (hit.length ? aRepOf(hit, "impact") : "");
+}
+// where her errors go, from the ball after her stroke (outcome: net = it did not cross the net and the point
+// ended; out = it bounced outside, long past the baseline or wide past the sideline, from its bounce on the
+// court): probable, as on the stroke screen. Below LEARN.errors_min errors with a known outcome: «pocos datos»
+const A_LEN = 23.77, A_HALF = 4.115, A_TOL = 0.03;
+function aErrors(set) {
+  const err = set.filter(s => s.outcome === "error"), net = err.filter(s => s.outcomeDetail === "net"), out = err.filter(s => s.outcomeDetail === "out");
+  const long = out.filter(s => isN(s.shotY) && s.shotY > A_LEN + A_TOL);
+  const wide = out.filter(s => !long.includes(s) && isN(s.shotX) && Math.abs(s.shotX) > A_HALF + A_TOL);
+  return { err, net, long, wide, other: out.filter(s => !long.includes(s) && !wide.includes(s)), known: set.filter(s => s.outcome).length };
+}
+function aErrorsTxt(set) {
+  const e = aErrors(set), min = LEARN.errors_min || 5, lab = "<span class=\"dim\">Sus errores (probable, desde la bola en la tele):</span>";
+  if (e.err.length < min) return `<br>${lab} pocos datos: ${e.err.length ? `solo ${e.err.length} error${e.err.length > 1 ? "es" : ""}` : "ningún error"} con el resultado conocido en estos golpes (hacen falta ${min}).`;
+  const pc = xs => Math.round(100 * xs.length / e.err.length);
+  const part = (xs, w) => xs.length ? `<b>${xs.length}</b> ${w} (${pc(xs)} %)${aRepOf(xs, "finish")}` : "";
+  return `<br>${lab} ` + [part(e.net, "a la red"), part(e.long, "largos"), part(e.wide, "anchos"), part(e.other, "fuera sin saber por dónde")].filter(Boolean).join(" · ")
+    + ` <span class="dim3">de ${e.err.length} errores; resultado conocido en ${e.known} de ${set.length} golpes</span>.`;
+}
 function aHer(st, c) {
   // copying her means doing what SHE does: her own pattern first, the general cue after
   if (!st.txt) return "";
@@ -2562,7 +2596,10 @@ function renderLearn() {
   document.getElementById("a-sym-src").textContent = LEARN.symptoms_source || "";
   document.getElementById("a-sym").innerHTML = (LEARN.symptoms || []).map(sy => {
     const chips = sy.keys.map(k => { const e = byKey[k]; if (!e) return ""; const st = aStat(set, e[0]); return `<button class="chip" data-go="${k}" title="Ir a su punto de control">${e[0].label}${st.txt ? `: <b>${st.txt.replace(/<[^>]+>/g, "")}</b>` : ""}</button>`; }).join(" ");
-    return `<li><b>${sy.s}</b> · <span class="dim">${sy.why}</span><br><span class="dim">Compárate con ella:</span> ${chips}</li>`; }).join("");
+    const shares = (sy.shares || []).map(([k, val, words]) => aShareTxt(set, k, val, words)).join("");
+    const errs = sy.errors ? aErrorsTxt(set) : "";
+    return `<li><b>${sy.s}</b> · <span class="dim">${sy.why}</span><br><span class="dim">Compárate con ella:</span> ${chips}${shares}${errs}</li>`; }).join("");
+  document.querySelectorAll("#a-sym button[data-open]").forEach(b => b.addEventListener("click", () => aOpen(b.dataset.open, b.dataset.ph)));
   // a line of the rhythm or a symptom chip goes to its checkpoint card
   document.querySelectorAll("#a-rhythm [data-go], #a-sym [data-go]").forEach(b => b.addEventListener("click", ev => { ev.preventDefault();
     const el = document.querySelector(`#a-phases .cpk[data-key="${b.dataset.go}"]`); if (el) { openUp(el); el.scrollIntoView({ behavior: "smooth", block: "center" }); el.classList.add("flash"); setTimeout(() => el.classList.remove("flash"), 1600); } }));
