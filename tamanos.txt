@@ -1,4 +1,4 @@
-fecha: 2026-10-18T16:06:23
+fecha: 2026-10-18T16:13:21
        5.7 MB  \output\benchmark
          1 MB  \output\capturas_app
      450.2 MB  \output\entrenamiento

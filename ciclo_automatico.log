@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261018155002
+Start time: 20261018161002
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 1268
+Process ID: 4648
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,20 +17,16 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-18 15:50:02] Codigo nuevo (516c615 -> c0a9efb): 3 ficheros
+==> [2026-10-18 16:10:02] Codigo nuevo (c0a9efb -> 63f0e32): 1 ficheros
     config/peticion_pc.txt
-    src/tennisbio/app/mobile.py
-    tests/test_app_mobile.py
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating 516c615..c0a9efb
+Updating c0a9efb..63f0e32
 Fast-forward
- config/peticion_pc.txt      |  2 +-
- src/tennisbio/app/mobile.py |  9 ++++++++-
- tests/test_app_mobile.py    | 13 +++++++++++++
- 3 files changed, 22 insertions(+), 2 deletions(-)
-Resolved 124 packages in 1ms
-Checked 89 packages in 2ms
+ config/peticion_pc.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+Resolved 124 packages in 0.87ms
+Checked 89 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -42,7 +38,7 @@ yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
     (paso terminado en 4 s)
 
-==> [2026-10-18 15:50:06] Que hace falta: informe
+==> [2026-10-18 16:10:06] Que hace falta: informe
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
@@ -50,18 +46,18 @@ Montajes: 2 en C:\tenis\output\_smoke\exportar\montajes
 Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
 Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
 Auditoría: 286 cumplidos, 0 no cumplidos, 116 sin golpes suficientes, 21 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-Hecho en 143 s, sin volver a analizar vídeo.
-    (paso terminado en 2 min 22 s)
+Hecho en 141 s, sin volver a analizar vídeo.
+    (paso terminado en 2 min 21 s)
 
-==> [2026-10-18 15:52:29] Revision automatica frente a la ejecucion anterior
+==> [2026-10-18 16:12:27] Revision automatica frente a la ejecucion anterior
 # Revisión automática: OK
     (paso terminado en 0 s)
 
-==> [2026-10-18 15:52:29] Peticion 29: copia al movil (registro: C:\tenis\output\prueba_movil.log)
+==> [2026-10-18 16:12:27] Peticion 30: pantallas de la aplicacion en output\capturas_app (registro: C:\tenis\output\prueba_ventana.log)
 Ciclo automatico terminado (informe).
-    (paso terminado en 22 s)
-Empezado 2026-10-18 15:50:00 - terminado 2026-10-18 15:52:51 - duracion total 2 min 50 s
+    (paso terminado en 52 s)
+Empezado 2026-10-18 16:10:00 - terminado 2026-10-18 16:13:19 - duracion total 3 min 19 s
 **********************
 Windows PowerShell transcript end
-End time: 20261018155251
+End time: 20261018161319
 **********************

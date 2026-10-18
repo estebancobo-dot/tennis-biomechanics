@@ -1,7 +1,5 @@
 {
- "problems": [
-  "la ventana real no funcionó: {'opened': True, 'ready': False, 'bridge': None, 'step': 'hecho'}"
- ],
+ "problems": [],
  "screens": 24,
  "engine": {
   "pywebview": true,
@@ -14,13 +12,13 @@
  },
  "live": {
   "opened": true,
-  "ready": false,
-  "bridge": null,
+  "ready": true,
+  "bridge": "0.0.1 · 63f0e32 · 2 partidos",
   "step": "hecho"
  },
  "backup": {
   "ficheros": 1423,
-  "bytes": 3266291478
+  "bytes": 3266292809
  },
  "index": {
   "matches": 2,
