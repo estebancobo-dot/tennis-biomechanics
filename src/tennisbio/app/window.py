@@ -14,7 +14,7 @@ import webbrowser
 from dataclasses import asdict
 from pathlib import Path
 
-from . import backup, jobs, notify, state, storage, videos
+from . import backup, jobs, mobile, notify, state, storage, videos
 from .core import App
 from .db import STROKE_ES
 
@@ -190,6 +190,42 @@ class Api:
 
     def backup_state(self) -> dict | None:
         return getattr(self, "backup_progress", None)
+
+    # part 4: the copy for the phone
+    def mobile(self, aid: str) -> str:
+        """Starts the phone copy of one analysis in the background (encoding takes minutes; the index is not
+        held meanwhile); its progress is in mobile_state() and its result in the settings («movil»)."""
+        if getattr(self, "_mb", None) and self._mb.is_alive():
+            return "Ya se está haciendo una copia para el móvil"
+        with self.lock:
+            a = self.app.db.one("SELECT player, stroke FROM analyses WHERE id=?", aid)
+        if not a:
+            raise ValueError(f"no hay análisis {aid}")
+        self.mobile_progress = {"id": aid, "done": 0, "total": 0}
+
+        def go():
+            try:
+                res = mobile.make(self.app.paths, a["player"], a["stroke"],
+                                  progress=lambda i, n: self.mobile_progress.update(done=i, total=n))
+                cur = self.app.db.setting("movil") or {}
+                cur[aid] = {"when": time.strftime("%Y-%m-%dT%H:%M:%S"), **{k: res[k] for k in
+                            ("dest", "bytes", "strokes", "with_video", "encoded", "failed", "missing") if k in res},
+                            "zip": res.get("zip")}
+                self.app.db.set_setting("movil", cur)
+                bad = len(res["failed"]) + res["missing"]
+                self.app.db.notice(f"movil_{aid}", "ok" if not bad else "aviso",
+                                   f"Copia para el móvil lista: {res['with_video']} golpes con vídeo, {storage._gb(res['bytes'])} GB. "
+                                   f"Está en {res.get('zip') or res['dest']}" + (f"; {bad} golpes sin vídeo (su clip no está o no se pudo convertir)." if bad else "."))
+            except Exception as e:               # noqa: BLE001 — no space, no analysis yet, ffmpeg missing…
+                self.app.db.notice(f"movil_{aid}", "aviso", f"La copia para el móvil no se hizo. {e}")
+            finally:
+                self.mobile_progress = None
+        self._mb = threading.Thread(target=go, name="movil", daemon=True)
+        self._mb.start()
+        return "Copia para el móvil en marcha: convierte los vídeos a 720p; te aviso al terminar"
+
+    def mobile_state(self) -> dict | None:
+        return getattr(self, "mobile_progress", None)
 
 
 def worker(cfg: dict, stop: threading.Event, idle_s: float = 30.0, tray=None):

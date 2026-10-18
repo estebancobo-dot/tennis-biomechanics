@@ -13,6 +13,9 @@
     tennisbio app pagina [DEST]              the screens as a read-only page (for screenshots and checks)
     tennisbio app comprobar DEST             every screen painted in a browser with the real index: problems,
                                              screenshots, and whether this PC can open the window
+    tennisbio app movil JUGADORA [--golpe G] the copy for the phone (movil\\<jugadora>_<golpe>\\ and its .zip)
+    tennisbio app comprobar-movil DEST       the phone copy of every analysis, checked in the PC's browser, and the shortcut
+    tennisbio app acceso [--si-falta]        the desktop shortcut «Tennisbio» (the installer and the cycle make it)
 """
 import argparse
 import time
@@ -51,6 +54,14 @@ def main(argv=None) -> int:
     co = sub.add_parser("comprobar")
     co.add_argument("dest")
     co.add_argument("--real", action="store_true", help="abrir también la ventana real, oculta, y probar su puente")
+    cm = sub.add_parser("comprobar-movil")
+    cm.add_argument("dest")
+    mv = sub.add_parser("movil")
+    mv.add_argument("jugadora")
+    mv.add_argument("--golpe", default="forehand", choices=["forehand", "backhand", "overhead"])
+    mv.add_argument("--sin-zip", action="store_true")
+    ac = sub.add_parser("acceso")
+    ac.add_argument("--si-falta", action="store_true")
     args = ap.parse_args(argv)
 
     cfg = load_config()
@@ -59,6 +70,12 @@ def main(argv=None) -> int:
         p = Paths.from_config(cfg).db
         if p.exists():
             p.rename(p.with_name(f"tennisbio.anterior-{time.strftime('%Y%m%d-%H%M%S')}.db"))
+    if args.cmd == "acceso":
+        from .db import Paths
+        from .shortcut import create
+        r = create(Paths.from_config(cfg).data, only_if_missing=args.si_falta)
+        print(f"Acceso directo: {r.get('link')} ({'hecho' if r['made'] else 'ya estaba' if not r.get('error') else r['error']})")
+        return 0 if not r.get("error") or r["error"] == "no es Windows" else 1
     if args.cmd == "ventana":
         from .window import run
         return run(cfg, with_queue=not args.sin_cola)
@@ -104,10 +121,23 @@ def main(argv=None) -> int:
             r = check(app, Path(args.dest), real=args.real)
             print((Path(args.dest) / "ventana.md").read_text(encoding="utf-8"))
             return 1 if r["problems"] else 0
+        elif args.cmd == "comprobar-movil":
+            from pathlib import Path
+            from .check import check_mobile
+            r = check_mobile(app, Path(args.dest))
+            print((Path(args.dest) / "movil.md").read_text(encoding="utf-8"))
+            return 1 if r["problems"] else 0
         elif args.cmd == "pagina":
             from pathlib import Path
             from .window import write_page
             print(write_page(app, Path(args.dest) if args.dest else None))
+        elif args.cmd == "movil":
+            from .mobile import make
+            r = make(app.paths, args.jugadora, args.golpe, zip_it=not args.sin_zip,
+                     progress=lambda i, n: print(f"\r  vídeos {i}/{n}", end="", flush=True))
+            print(f"\nCopia para el móvil: {r.get('zip') or r['dest']} · {r['with_video']}/{r['strokes']} golpes con vídeo · "
+                  f"{r['bytes'] / 1e9:.2f} GB · {r['encoded']} convertidos, {r['kept']} ya estaban"
+                  + (f" · {len(r['failed'])} fallaron" if r["failed"] else "") + (f" · {r['missing']} sin clip" if r["missing"] else ""))
         elif args.cmd == "franja":
             app.db.set_setting("franja", None if args.desde == "no" else [args.desde, args.hasta])
             print("sin franja" if args.desde == "no" else f"trabajos pesados de {args.desde} a {args.hasta}")

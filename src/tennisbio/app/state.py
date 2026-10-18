@@ -206,12 +206,14 @@ def snapshot(app, with_storage: bool = False) -> dict:
                       if r["kind"] == "informe" else labels.get(r["target"], r["target"]))
     st = {
         "generated": time.strftime("%Y-%m-%d %H:%M:%S"), "version": _version(),
-        "paths": {"output": str(app.paths.output), "videos": str(app.paths.videos), "data": str(app.paths.data)},
+        "paths": {"output": str(app.paths.output), "videos": str(app.paths.videos), "data": str(app.paths.data),
+                  "movil": str(app.paths.data.parent / "movil")},
         "now": None, "eta": {"seconds": e["seconds"], "ends": e["ends"], "text": jobs.fmt_duration(e["seconds"]) if e["seconds"] else ""},
         "notices": notices, "analyses": analyses, "matches": matches, "players": _players(app),
         "queue": _queue(app, labels), "last": last,
         "settings": {"franja": db.setting("franja"), "pausa": bool(db.setting("pausa", False)),
-                     "avisos": notify.settings(db), "copia": db.setting("copia")},
+                     "avisos": notify.settings(db), "copia": db.setting("copia"),
+                     "movil": db.setting("movil") or {}},
         "rebuilt": bool(getattr(app, "rebuilt", False)),
     }
     if running:

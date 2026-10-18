@@ -1062,8 +1062,11 @@ function loadSeries(s) {
 // The analysis screen uses MAIN; the comparison screen has two of its own.
 const MAIN = { get video() { return video; }, get ser() { return ser; }, get NF() { return NF; }, get view() { return view; }, get T0() { return T0; }, get FPS() { return FPS; }, get s() { return cur; } };
 function kpAt(f, S = MAIN) { const sr = S.ser; if (!sr) return null; const k = sr.kp[f]; if (!k) return null; const p = []; for (let i = 0; i < k.length; i += 2) p.push(k[i] === null ? null : [k[i], k[i + 1]]); return p; }
+// the phone copy (app/mobile.py) re-encodes the clips at 720p: vk = pixels of that video per pixel of the original,
+// the space of the skeleton, the boxes and the ball. Everything is drawn in the original's space; only the picture is scaled.
+function vkOf(S) { return (S.s && S.s.vk) || 1; }
 function cropRect(f, aspect = 16 / 9, S = MAIN) {
-  const V = S.video, sr = S.ser, n = S.NF, W = V.videoWidth || 1920, H = V.videoHeight || 1080;
+  const V = S.video, sr = S.ser, n = S.NF, vk = vkOf(S), W = (V.videoWidth || 1920 * vk) / vk, H = (V.videoHeight || 1080 * vk) / vk;
   if (S.view === "full" || !sr) return [0, 0, W, H];
   let b = null; for (let d = 0; d < n && !b; d++) b = sr.box[clamp(f + d, 0, n - 1)] || sr.box[clamp(f - d, 0, n - 1)];
   if (!b) return [0, 0, W, H];
@@ -1122,7 +1125,7 @@ function miniCourt(ctx, Wc, Hc, f, S) {      // her own court frame: her baselin
 function drawFrame(ctx, Wc, Hc, f, opts, S = MAIN) {
   const V = S.video, sr = S.ser, [sx, sy, sw, sh] = cropRect(f, Wc / Hc, S), k = Wc / sw, P = p => [(p[0] - sx) * k, (p[1] - sy) * k];
   ctx.fillStyle = "#000"; ctx.fillRect(0, 0, Wc, Hc);
-  try { ctx.drawImage(V, sx, sy, sw, sh, 0, 0, Wc, sh * k); } catch (e) { }
+  const vk = vkOf(S); try { ctx.drawImage(V, sx * vk, sy * vk, sw * vk, sh * vk, 0, 0, Wc, sh * k); } catch (e) { }
   const q = kpAt(f, S), lw = Math.max(1.5, Wc / 400), dw = domW();
   if (opts.trail && sr) { ctx.strokeStyle = "#d4f03a"; ctx.lineWidth = lw; ctx.beginPath(); let st = false; for (let g = 0; g <= f; g++) { const p = kpAt(g, S); const w = p && p[dw]; if (!w) { st = false; continue; } const [x, y] = P(w); if (st) ctx.lineTo(x, y); else ctx.moveTo(x, y); st = true; } ctx.stroke(); }
   if (opts.ghost && q) {          // the other stroke, aligned on the hips and scaled to this torso

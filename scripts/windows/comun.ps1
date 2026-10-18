@@ -134,11 +134,11 @@ function Subir-Registros {
             }
         }
         # pantallas de la aplicacion (peticion "ventana"): su comprobacion y sus capturas
-        if (Test-Path "$Base\output\capturas_app\ventana.md") {
+        if ((Test-Path "$Base\output\capturas_app\ventana.md") -or (Test-Path "$Base\output\capturas_app\movil.md")) {
             $c = "$d\capturas_app"
             New-Item -ItemType Directory -Force -Path $c | Out-Null
             Remove-Item "$c\*" -Force -ErrorAction SilentlyContinue
-            Copy-Item "$Base\output\capturas_app\*.png", "$Base\output\capturas_app\ventana.*" $c -Force -ErrorAction SilentlyContinue
+            Copy-Item "$Base\output\capturas_app\*.png", "$Base\output\capturas_app\ventana.*", "$Base\output\capturas_app\movil.*" $c -Force -ErrorAction SilentlyContinue
         }
         # videos de analisis de entrenadores (texto e imagenes pequenas), una sola vez
         if ((Test-Path "$Base\output\investigacion\indice.json") -and -not (Test-Path "$d\investigacion\indice.json")) {
@@ -203,6 +203,8 @@ function Actualizar-Codigo {
                 uv sync --extra yolo --extra ocr --extra dev --extra validation --extra app 2>&1 | ForEach-Object { "$_" } | Out-Host
                 # modelos nuevos que pida el codigo (p. ej. transnetv2.onnx): solo crea los que falten
                 uv run python scripts/setup_models.py 2>&1 | ForEach-Object { "$_" } | Out-Host
+                # el acceso directo "Tennisbio" del escritorio, si falta (nunca hay que reinstalar)
+                uv run --extra app tennisbio app acceso --si-falta 2>&1 | ForEach-Object { "$_" } | Out-Host
                 Pop-Location
             }
         }

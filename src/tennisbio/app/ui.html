@@ -719,8 +719,29 @@ body.web .webview { height: 100vh; }
     return '<div class="head"><div><h1>Análisis</h1><p class="sub">Una tarjeta por jugadora y golpe. Púlsala para abrir su web.</p></div><button class="btn pri" data-open="also"><svg><use href="#i-plus"/></svg>Analizar también…</button></div>' +
       '<div class="acards">' + A.map(function (a) { return acard(a, false); }).join("") +
       '<button class="addcard" data-open="also"><span><span class="plus">+</span><b>Analizar también…</b><br><span class="dim3 sm">otra jugadora u otro golpe</span></span></button></div>' +
-      '<p class="note">Volea y media volea salen como filtro dentro de derecha y revés; con suficientes casos tendrán su propio análisis.</p>';
+      '<p class="note">Volea y media volea salen como filtro dentro de derecha y revés; con suficientes casos tendrán su propio análisis.</p>' +
+      '<div class="panel"><header><h3>Copia al móvil</h3><span class="dim3 sm">sin conexión</span></header><div class="body list" id="mbBody">' + mobilePanel() + "</div></div>";
   };
+  var MB = null;
+  function mobilePanel() {
+    var A = (S.analyses || []).filter(function (a) { return a.web; }), M = S.settings.movil || {};
+    if (!A.length) return '<p class="dim">Cuando haya un análisis terminado, aquí se copia para el móvil.</p>';
+    return A.map(function (a) {
+      var c = M[a.id], run = MB && MB.id === a.id;
+      var s = run ? "Convirtiendo los vídeos a 720p: " + MB.done + " de " + (MB.total || "…")
+        : c ? "Última copia " + when(c.when) + " · " + c.with_video + " golpes con vídeo · " + gb(c.bytes) : "Todavía sin copia: la página y los vídeos de cada golpe a 720p, en una carpeta y un .zip.";
+      return '<div class="li"><div><div class="t">' + esc(a.title) + '</div><div class="s">' + esc(s) + "</div>" +
+        (run ? '<div class="progress"><b style="width:' + (MB.total ? 100 * MB.done / MB.total : 0) + '%"></b></div>' : "") + '</div><div class="r">' +
+        (c && !run ? '<button class="btn ghost sm" data-act="open_path" data-arg="' + esc(c.dest) + '">Abrir carpeta</button>' : "") +
+        '<button class="btn sm" data-act="mobile" data-arg="' + esc(a.id) + '"' + (MB ? " disabled" : "") + ">" + (c ? "Actualizar copia" : "Copiar al móvil") + "</button></div></div>";
+    }).join("") + '<p class="note">Lleva el .zip al teléfono (cable, USB o tarjeta), descomprímelo y abre index.html. Nada sale del PC por sí solo.</p>';
+  }
+  function mobilePoll() {
+    call("mobile_state").then(function (p) {
+      MB = p; var el = $("#mbBody"); if (el) el.innerHTML = mobilePanel();
+      if (p) setTimeout(mobilePoll, 1000); else refresh(true);
+    }).catch(function () {});
+  }
   R.partidos = function () {
     var M = S.matches || [], tot = M.reduce(function (s, m) { return s + (m.video_gb || 0); }, 0);
     var h = '<div class="head"><div><h1>Partidos</h1><p class="sub">' + M.length + (M.length === 1 ? " partido" : " partidos") + ' · <span class="mono">' + n1(tot) + ' GB</span> de vídeo</p></div><button class="btn pri" data-open="add"><svg><use href="#i-plus"/></svg>Añadir partido</button></div>';
@@ -867,7 +888,7 @@ body.web .webview { height: 100vh; }
       [["fin", "Al terminar un trabajo"], ["fallo", "Al fallar"], ["disco", "Con poco disco"]].map(function (k) {
         return '<label class="sw"><input type="checkbox" data-aviso="' + k[0] + '"' + ((set.avisos || {})[k[0]] !== false ? " checked" : "") + '><span class="k"></span>' + k[1] + "</label>";
       }).join("") + "</div></div>" +
-      '<div class="set"><div><b>Copia al móvil</b><span>Funciona sin conexión</span></div><div class="ctl"><span class="dim3 sm">Llega con la parte 4.</span></div></div>' +
+      '<div class="set"><div><b>Copia al móvil</b><span>Funciona sin conexión</span></div><div class="ctl"><span class="dim3 sm">Se hace desde <a href="#analisis">Análisis</a>, en <code>' + esc(P.movil || "movil") + '</code></span></div></div>' +
       '<div class="set"><div><b>Actualizaciones</b></div><div class="ctl"><span>Versión <span class="mono">' + esc(S.version) + '</span></span><button class="btn sm" data-act="plan">Comprobar qué recalcular</button></div></div>' +
       '<div class="set"><div><b>Modo desarrollo</b><span>Para Claude</span></div><div class="ctl"><span class="dim3 sm">El ciclo automático sigue funcionando igual y sube los registros a la rama <span class="mono">pc-logs</span>.</span></div></div>' +
       "</div></div>";
@@ -950,6 +971,7 @@ body.web .webview { height: 100vh; }
           return call("backup", arg, vid).then(function (m) { toast(m); backupPoll(); });
         }).catch(fail);
       }
+      else if (act === "mobile") call("mobile", arg).then(function (m) { toast(m); MB = { id: arg, done: 0, total: 0 }; var el = $("#mbBody"); if (el) el.innerHTML = mobilePanel(); mobilePoll(); }).catch(fail);
       else if (act === "height") { var v = parseFloat(($("#hIn").value || "").replace(",", ".")); if (!(v > 1.2 && v < 2.3)) { toast("Escribe la altura en metros, por ejemplo 1,75"); return; } call("set_height", arg, v).then(done("Altura guardada: se recalculan solo los informes")).catch(fail); }
       return;
     }

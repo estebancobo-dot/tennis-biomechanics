@@ -289,7 +289,40 @@ Cada parte se valida sola: pruebas con datos sintéticos de cada caso de la secc
 
 **En el PC:** la petición «ventana» comprueba, sin enseñar nada, que Windows puede crear el aviso, que el icono se puede crear y qué copiaría la copia.
 
-## 12. Carpetas: qué va dónde
+## 12. Estado (18-10): parte 4, copia al móvil y acceso directo
+
+**Copia al móvil** (`app/mobile.py`; en la ventana, pantalla Análisis, «Copiar al móvil»):
+- **Dónde:** `C:\tenis\movil\<jugadora>_<golpe>\` y el mismo contenido en un `.zip` al lado, para llevarlo al teléfono por cable, USB o tarjeta. Nada sale del PC por sí solo.
+- **Qué lleva:**
+  - la web en uso (`actual`), la misma página;
+  - el vídeo de cada golpe convertido a 720p (H.264 y AAC, se reproduce mientras carga);
+  - las series del esqueleto, las fotos, la vista lateral de entrenamiento y el resumen PDF.
+  - Todas las rutas son relativas a la carpeta.
+- **El esqueleto sigue cuadrando:** la página dibuja en los píxeles del vídeo original y solo escala la imagen (`vk` por golpe en `report_template.html`). Las medidas no cambian.
+- **Una segunda vez:** solo convierte lo que cambió y quita de la copia lo que ya no está en el análisis. Un golpe cuyo clip falta sale «sin vídeo», nunca con un enlace roto.
+- **Sin espacio, o sin análisis publicado:** no empieza y lo dice.
+- **Al terminar:** avisa de dónde está la copia y de cuántos golpes llevan vídeo.
+
+**Acceso directo «Tennisbio» en el escritorio** (`app/shortcut.py`):
+- **Qué abre:** `Tennisbio.vbs` a través de wscript, sin consola, con el icono «TB».
+- **Quién lo crea:**
+  - el instalador (`1_instalar.bat`);
+  - el ciclo del PC, si falta. No hay que reinstalar nada.
+
+**Pruebas:** `tests/test_app_mobile.py`.
+- La copia completa, a 720p y con su `.zip`.
+- Una segunda copia, cuando falta un clip y cuando una conversión falla.
+- Sin espacio.
+- La prueba en un navegador real a tamaño de móvil: el punto de la muñeca cae sobre la jugadora en el clip a 720p y, sin el factor de escala, no cae.
+- El botón de la ventana.
+- El icono y el guion del acceso directo.
+
+**En el PC:** la petición «movil» (`tennisbio app comprobar-movil`):
+- hace la copia de cada análisis real y la abre en el navegador del PC a tamaño de móvil;
+- compara el golpe dibujado desde la copia con el de la web del PC;
+- crea el acceso directo.
+
+## 13. Carpetas: qué va dónde
 
 ```
 C:\tenis\
@@ -301,6 +334,7 @@ C:\tenis\
         v1, v2…\              versiones anteriores (las dos últimas se guardan)
         pendiente\            una versión que empeoró, a la espera
     _smoke\, _poc9_largo\     pruebas del ciclo automático (las mantiene el ciclo)
+  movil\<jugadora>_<golpe>\    la copia para el teléfono (y su .zip al lado)
   datos\
     tennisbio.db              el índice (se reconstruye solo desde las carpetas)
     diagnostico\              ficheros de los errores

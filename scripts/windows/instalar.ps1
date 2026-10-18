@@ -44,6 +44,8 @@ try {
         "paths:`r`n  videos: '$Base\videos'`r`n  output: '$Base\output'`r`n" | Set-Content -Encoding UTF8 $local
     }
     Ejecutar uv @("run", "python", "scripts/setup_models.py")
+    # el acceso directo "Tennisbio" en el escritorio: doble clic abre la ventana y la cola arranca sola
+    Ejecutar uv @("run", "--extra", "app", "tennisbio", "app", "acceso")
 
     Paso "7/7 Comprobacion"
     Ejecutar uv @("run", "python", "scripts/check_env.py")
@@ -59,7 +61,7 @@ try {
 
     Write-Host ""
     Ok "TODO LISTO."
-    Ok "Copia los partidos a $Base\videos y ejecuta 2_prueba_rapida.bat"
+    Ok "Abre Tennisbio con el acceso directo del escritorio y anade los partidos desde la ventana."
 } catch {
     Write-Host ""
     Write-Host "ERROR: $_" -ForegroundColor Red

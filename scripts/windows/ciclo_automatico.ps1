@@ -127,6 +127,23 @@ function Hacer-Peticion {
         }
         foreach ($f in @($o, "$o.err")) { if (Test-Path $f) { Get-Content $f -Encoding UTF8 | Add-Content $lg -Encoding UTF8 } }
         "codigo de salida: $($pr.ExitCode); termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "movil") {
+        # la copia al movil de cada analisis (videos a 720p) abierta en el navegador del PC a tamano movil,
+        # y el acceso directo del escritorio; tope de 40 min
+        $s = "$Base\output\capturas_app"
+        $lg = "$Base\output\prueba_movil.log"
+        "Peticion $($p['id']): copia al movil y acceso directo ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        Paso "Peticion $($p['id']): copia al movil (registro: $lg)"
+        $env:UV_NO_PROGRESS = "1"
+        $o = "$Base\output\prueba_movil.out"
+        $pr = Start-Process uv -ArgumentList @("run", "--extra", "app", "tennisbio", "app", "comprobar-movil", $s) `
+            -NoNewWindow -PassThru -RedirectStandardOutput $o -RedirectStandardError "$o.err"
+        if (-not $pr.WaitForExit(2400000)) {
+            & taskkill.exe /T /F /PID $pr.Id 2>&1 | Out-Null
+            "TOPE: sin terminar en 40 min; se ha parado (proceso $($pr.Id) y sus hijos)" | Add-Content $lg -Encoding UTF8
+        }
+        foreach ($f in @($o, "$o.err")) { if (Test-Path $f) { Get-Content $f -Encoding UTF8 | Add-Content $lg -Encoding UTF8 } }
+        "codigo de salida: $($pr.ExitCode); termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "borrar") {
         # borra carpetas de pruebas de velocidad ya documentadas (lo pide el usuario); solo nombres
         # _poc, _pocN o _pocN_M: nunca _poc9_largo, _smoke ni nada mas
