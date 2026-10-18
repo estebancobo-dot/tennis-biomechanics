@@ -266,15 +266,21 @@ def check_mobile(app, dest: Path) -> dict:
             elif diff > 18:
                 problems.append(f"{a['id']}: el golpe dibujado desde la copia no coincide con el del PC (diferencia {diff:.0f})")
         rows.append(row)
+    from . import phone                          # the phone by cable, if it is connected now: straight to it
+    devs = phone.devices()
+    sent = phone.send(Path(rows[0]["dest"]), devs[0]) if devs and rows else None
+    if sent and not sent["ok"]:
+        problems.append(f"no pasó al {sent['device']}: {sent['why']}")
     sc = shortcut.create(app.paths.data, only_if_missing=False) if sys.platform == "win32" else {"error": "no es Windows"}
     if sys.platform == "win32" and not sc.get("made"):
         problems.append(f"acceso directo: {sc.get('error')}")
-    res = {"problems": problems, "copias": rows, "acceso": sc}
+    res = {"problems": problems, "copias": rows, "acceso": sc, "moviles": devs, "al_movil": sent}
     (dest / "movil.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
     md = [f"# Copia al móvil y acceso directo: {'OK' if not problems else 'FALLOS'}", ""]
     md += [f"- {r['id']}: {r.get('with_video')}/{r.get('strokes')} golpes con vídeo · {((r.get('bytes') or 0) / 1e9):.2f} GB · "
            f"{r.get('encoded')} convertidos en {r.get('seconds')} s · {r.get('zip')} · imagen {r.get('imagen')}" for r in rows]
-    md += [f"- Acceso directo: {sc}", ""] + [f"- ✘ {x}" for x in problems]
+    md += [f"- Móviles conectados: {devs or 'ninguno ahora'} · paso directo: {sent}", f"- Acceso directo: {sc}", ""]
+    md += [f"- ✘ {x}" for x in problems]
     (dest / "movil.md").write_text("\n".join(md) + "\n", encoding="utf-8")
     return res
 

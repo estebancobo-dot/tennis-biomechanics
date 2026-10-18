@@ -303,6 +303,14 @@ Cada parte se valida sola: pruebas con datos sintéticos de cada caso de la secc
 - **Sin espacio, o sin análisis publicado:** no empieza y lo dice.
 - **Al terminar:** avisa de dónde está la copia y de cuántos golpes llevan vídeo.
 
+**Directa al Pixel** (`app/phone.py`, pedido el 18-10; el móvil del usuario es un Google Pixel 8):
+- Si el móvil está conectado por cable en «Transferencia de archivos», «Copiar al móvil» deja la copia ya descomprimida en su carpeta Download. Lo hace la Shell de Windows (Android no es una unidad de disco, es MTP), sin instalar nada y sin ventanas.
+- **Cómo sabe que terminó:** cada copia va a una carpeta nueva, `<id>_<fecha>`, y espera a que estén todos sus ficheros.
+- **Un solo marcador:** `Download/<id>.html` lleva siempre a la última copia (`file:///sdcard/Download/<id>.html` en Chrome).
+- **Las copias anteriores** se sacan del teléfono pasándolas al PC y se borran allí, sin ninguna pregunta en el teléfono.
+- **Teléfono bloqueado o sin «Transferencia de archivos»:** lo dice, y la copia queda en el PC (carpeta y `.zip`).
+- La pantalla Análisis dice si hay un móvil conectado.
+
 **Acceso directo «Tennisbio» en el escritorio** (`app/shortcut.py`):
 - **Qué abre:** `Tennisbio.vbs` a través de wscript, sin consola, con el icono «TB».
 - **Quién lo crea:**

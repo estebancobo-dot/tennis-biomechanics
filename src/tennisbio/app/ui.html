@@ -722,19 +722,25 @@ body.web .webview { height: 100vh; }
       '<p class="note">Volea y media volea salen como filtro dentro de derecha y revés; con suficientes casos tendrán su propio análisis.</p>' +
       '<div class="panel"><header><h3>Copia al móvil</h3><span class="dim3 sm">sin conexión</span></header><div class="body list" id="mbBody">' + mobilePanel() + "</div></div>";
   };
-  var MB = null;
+  var MB = null, PHONES = null;
   function mobilePanel() {
     var A = (S.analyses || []).filter(function (a) { return a.web; }), M = S.settings.movil || {};
     if (!A.length) return '<p class="dim">Cuando haya un análisis terminado, aquí se copia para el móvil.</p>';
-    return A.map(function (a) {
+    var ph = PHONES && PHONES[0], phTxt = ph ? (ph.storages.length ? '<b>' + esc(ph.name) + "</b> conectado: la copia irá directa a su carpeta Download."
+        : '<b>' + esc(ph.name) + "</b> conectado pero bloqueado: desbloquéalo y elige «Transferencia de archivos» en su aviso USB.")
+      : PHONES ? "Conecta el móvil por cable y la copia irá directa a él; si no, queda en el PC (carpeta y .zip)." : "Buscando el móvil…";
+    var head = '<div class="li" style="padding-top:0;border-top:0"><div><div class="s">' + phTxt + '</div></div><div class="r"><button class="btn ghost sm" data-act="phones">Buscar de nuevo</button></div></div>';
+    return head + A.map(function (a) {
       var c = M[a.id], run = MB && MB.id === a.id;
-      var s = run ? "Convirtiendo los vídeos a 720p: " + MB.done + " de " + (MB.total || "…")
-        : c ? "Última copia " + when(c.when) + " · " + c.with_video + " golpes con vídeo · " + gb(c.bytes) : "Todavía sin copia: la página y los vídeos de cada golpe a 720p, en una carpeta y un .zip.";
+      var s = run ? (MB.phone ? "Pasándola a tu " + MB.phone + "…" : "Convirtiendo los vídeos a 720p: " + MB.done + " de " + (MB.total || "…"))
+        : c ? "Última copia " + when(c.when) + " · " + c.with_video + " golpes con vídeo · " + gb(c.bytes) +
+          (c.phone ? (c.phone.ok ? " · en tu " + c.phone.device + ": " + c.phone.url : " · no pasó al " + c.phone.device + ": " + c.phone.why) : "")
+        : "Todavía sin copia: la página y los vídeos de cada golpe a 720p.";
       return '<div class="li"><div><div class="t">' + esc(a.title) + '</div><div class="s">' + esc(s) + "</div>" +
         (run ? '<div class="progress"><b style="width:' + (MB.total ? 100 * MB.done / MB.total : 0) + '%"></b></div>' : "") + '</div><div class="r">' +
         (c && !run ? '<button class="btn ghost sm" data-act="open_path" data-arg="' + esc(c.dest) + '">Abrir carpeta</button>' : "") +
         '<button class="btn sm" data-act="mobile" data-arg="' + esc(a.id) + '"' + (MB ? " disabled" : "") + ">" + (c ? "Actualizar copia" : "Copiar al móvil") + "</button></div></div>";
-    }).join("") + '<p class="note">Lleva el .zip al teléfono (cable, USB o tarjeta), descomprímelo y abre index.html. Nada sale del PC por sí solo.</p>';
+    }).join("") + '<p class="note">Con el móvil conectado por cable se copia directa a él; en Chrome se abre siempre desde el mismo marcador. Nada sale del PC por internet.</p>';
   }
   function mobilePoll() {
     call("mobile_state").then(function (p) {
@@ -912,6 +918,7 @@ body.web .webview { height: 100vh; }
     if (!R[id]) id = "inicio";
     cur = id; curArg = arg;
     if (id === "almacenamiento" && !S.storage) call("storage").then(function (d) { S.storage = d; if (cur === "almacenamiento") paint(); }).catch(function () {});
+    if (id === "analisis") { PHONES = null; call("phones").then(function (d) { PHONES = d; var el = $("#mbBody"); if (el) el.innerHTML = mobilePanel(); }).catch(function () { PHONES = []; var el = $("#mbBody"); if (el) el.innerHTML = mobilePanel(); }); }
     if (id === "almacenamiento") call("drives").then(function (d) { DRIVES = d; var el = $("#bkBody"); if (el) el.innerHTML = backupPanel(); }).catch(function () { DRIVES = []; var el = $("#bkBody"); if (el) el.innerHTML = backupPanel(); });
     paint();
     var navId = { partido: "partidos", jugadora: "jugadoras" }[id] || id;
@@ -971,6 +978,7 @@ body.web .webview { height: 100vh; }
           return call("backup", arg, vid).then(function (m) { toast(m); backupPoll(); });
         }).catch(fail);
       }
+      else if (act === "phones") { PHONES = null; $("#mbBody").innerHTML = mobilePanel(); call("phones").then(function (d) { PHONES = d; $("#mbBody").innerHTML = mobilePanel(); }).catch(fail); }
       else if (act === "mobile") call("mobile", arg).then(function (m) { toast(m); MB = { id: arg, done: 0, total: 0 }; var el = $("#mbBody"); if (el) el.innerHTML = mobilePanel(); mobilePoll(); }).catch(fail);
       else if (act === "height") { var v = parseFloat(($("#hIn").value || "").replace(",", ".")); if (!(v > 1.2 && v < 2.3)) { toast("Escribe la altura en metros, por ejemplo 1,75"); return; } call("set_height", arg, v).then(done("Altura guardada: se recalculan solo los informes")).catch(fail); }
       return;

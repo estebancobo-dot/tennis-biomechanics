@@ -310,3 +310,61 @@ def test_the_pc_check_uses_the_cycles_report_while_the_app_has_none(env, monkeyp
     a.close()
     b = env.app()                                              # the index rebuilt from the folders: no match from it
     assert not b.db.q("SELECT id FROM matches WHERE id LIKE '%movil%'")
+
+
+# ---------------------------------------------------------------- straight to the phone (MTP) -------
+
+from tennisbio.app import phone  # noqa: E402
+
+PIXEL = {"name": "Pixel 8", "path": "::{20D04FE0}\\\\?\\usb#vid_18d1&pid_4ee1#3A1B#{6ac27878}", "storages": ["Almacenamiento interno compartido"]}
+
+
+def test_phones_by_cable_are_listed_and_a_locked_one_says_so(tmp_path):
+    one = json.dumps({"name": "Pixel 8", "path": PIXEL["path"], "storages": []})        # PowerShell: a single object
+    assert phone.devices(run=lambda s, t: one) == [{"name": "Pixel 8", "path": PIXEL["path"], "storages": []}]
+    assert phone.devices(run=lambda s, t: "") == [] and phone.devices(run=lambda s, t: "no json") == []
+    (tmp_path / "rybakina_forehand").mkdir()
+    (tmp_path / "rybakina_forehand" / "index.html").write_text("x")
+    r = phone.send(tmp_path / "rybakina_forehand", {**PIXEL, "storages": []}, run=lambda s, t: 1 / 0)
+    assert not r["ok"] and "desbloquéalo" in r["why"]
+
+
+def test_send_goes_to_a_new_folder_and_the_bookmark_follows_it(tmp_path):
+    A = _analysis(tmp_path, n=1)
+    res = mobile.make(A.paths, "p", "forehand", zip_it=False)
+    dest = Path(res["dest"])
+    seen = {}
+
+    def run(script, timeout):
+        seen["s"] = script
+        return json.dumps({"ok": True, "files": 9, "old": 1})
+    r = phone.send(dest, PIXEL, run=run, stamp="20261018-1300")
+    s = seen["s"]
+    n = sum(1 for f in dest.rglob("*") if f.is_file())
+    assert r == {"ok": True, "files": 9, "expected": n, "device": "Pixel 8", "folder": "p_forehand_20261018-1300", "old": 1,
+                 "url": "file:///sdcard/Download/p_forehand.html"}
+    assert "NewFolder('p_forehand_20261018-1300')" in s and f"Wait $nf.GetFolder {n} " in s
+    assert "-like 'p_forehand_2*'" in s and "MoveHere" in s and str(dest) in s and PIXEL["path"] in s
+    page = (dest.parent / "p_forehand.html").read_text(encoding="utf-8")
+    assert 'location.replace("p_forehand_20261018-1300/index.html")' in page
+    # a copy that did not finish: said, never claimed
+    r = phone.send(dest, PIXEL, run=lambda s, t: json.dumps({"ok": False, "why": "tiempo", "files": 3}))
+    assert not r["ok"] and r["files"] == 3 and r["why"] == "la copia no terminó a tiempo" and "url" not in r
+
+
+def test_copy_button_passes_it_to_the_connected_phone(env, monkeypatch):
+    a = _app_with_web(env)
+    monkeypatch.setattr(phone, "devices", lambda: [PIXEL])
+    monkeypatch.setattr(phone, "send", lambda folder, dev: {"ok": True, "device": dev["name"], "files": 5, "expected": 5,
+                                                           "url": f"file:///sdcard/Download/{folder.name}.html"})
+    api = window.Api(a)
+    api.mobile("rybakina_forehand")
+    api._mb.join(60)
+    n = a.db.one("SELECT level, text FROM notices WHERE key='movil_rybakina_forehand'")
+    assert n["level"] == "ok" and "Ya está en tu Pixel 8: ábrela en Chrome con file:///sdcard/Download/rybakina_forehand.html" in n["text"]
+    assert a.db.setting("movil")["rybakina_forehand"]["phone"]["ok"]
+    monkeypatch.setattr(phone, "send", lambda folder, dev: {"ok": False, "device": dev["name"], "why": phone.WHY["bloqueado"]})
+    api.mobile("rybakina_forehand")
+    api._mb.join(60)
+    n = a.db.one("SELECT level, text FROM notices WHERE key='movil_rybakina_forehand'")
+    assert n["level"] == "aviso" and "No se pudo pasar al Pixel 8" in n["text"] and ".zip" in n["text"]
