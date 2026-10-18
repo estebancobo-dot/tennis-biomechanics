@@ -160,15 +160,23 @@ def test_target_with_her_number_guide_and_glossary(tmp_path):
 
 def test_guide_keys_are_checkpoints_with_targets():
     """The keys of a forehand guide that we already measured are taught in «Cópiala», each with her
-    number as a target (turn before the net, no pause at the top, hand and elbow at the loaded
-    position, contact against the top of the bounce, high finish) and the backswing form."""
+    number as a target (turn before the net, hand and elbow at the loaded position, contact against the
+    top of the bounce, high finish) and the backswing form. «No pause at the top» is not: the still hand
+    does not say whether the racket stops (docs/validacion.md); it is told as not measurable from TV."""
+    from tennisbio.explain import NOT_MEASURABLE
+    from tennisbio.learn import LESSON, NOT_FROM_TV, SYMPTOMS
     from tennisbio.explain import CLASS_PHASE
     from tennisbio.learn import TARGETS, learn_keys
 
     keys = set(learn_keys())
     for k in ("stroke.takeback_vs_net", "stroke.dur_preparation", "loaded.wrist_dom_vs_shoulder", "loaded.elbow_dom",
-              "stroke.pause_at_loaded", "stroke.contact_vs_top", "finish.wrist_dom_vs_shoulder"):
+              "stroke.contact_vs_top", "finish.wrist_dom_vs_shoulder"):
         assert k in keys and k in TARGETS, k
+    k = "stroke.pause_at_loaded"
+    assert k not in keys and k not in TARGETS and all(k not in ks for _, ks in LESSON.values())
+    assert all(k not in ks for _, _, ks in SYMPTOMS)
+    assert any(w.startswith("Pausa arriba") and "no medible desde la tele" in h.lower() for w, h in NOT_FROM_TV)
+    assert any(t.startswith("Pausa arriba") for t in NOT_MEASURABLE)
     assert "class.takeback_loop" in keys and CLASS_PHASE["takeback_loop"] == "loaded"
 
 

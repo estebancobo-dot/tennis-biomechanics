@@ -33,7 +33,7 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Momento del armado respecto al bote ("armado completo al botar") | TA 2013 | ✔ | `stroke.loaded_vs_bounce` |
 | Giro de cadera y de hombros al final del armado | Takahashi; Landlinger | ◐ | `loaded.shoulder_turn`, `hip_turn` (2D, magnitud; 3D experimental) |
 | Separación cadera–hombros (X-factor) | Takahashi; Landlinger; TA | ◐ | `loaded.x_factor` (2D, media) |
-| Pausa entre armado y swing | Elliott 2006 | ✔ | `stroke.pause_at_loaded` |
+| Pausa entre armado y swing | Elliott 2006 | ✘ | si la **raqueta** se para no es medible desde la tele: la mano quieta (`stroke.pause_at_loaded`, corregida y validada en sintéticos) no detecta ninguna de las 5 paradas de la raqueta en 48 golpes de TV (`docs/validacion.md`, 18-10). Queda como dato de la mano en «Su patrón típico»; no es punto de control de «Cópiala» |
 | Brazo libre extendido y cruzado | Elliott; TA | ✔ | `loaded.elbow_non`, `shoulder_abd_non`, `wrist_non_*` |
 | Carga de la pierna exterior / descenso de cadera | TA; Nesbit 2008 | ✔ | `hip_height`, `knee_*` (2D, baja), `weight_loaded_to_non` |
 | Peso entre los pies / equilibrio | iTPA; TA | ✔ | `com_over_feet`, `head_over_base`, `trunk_tilt` |

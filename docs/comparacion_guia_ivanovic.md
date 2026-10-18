@@ -75,7 +75,7 @@ En «¿Aplica?»:
 | Loop: codo 110-120° y separado | Parcial: `elbow_dom_lateral` sí; el ángulo `loaded.elbow_dom` no está en Cópiala | Sí | Punto de control «codo en el armado» |
 | Brazo libre estirado delante, paralelo a la línea de fondo | Sí: `loaded.elbow_non`, `shoulder_abd_non` | — | — |
 | Cabeza quieta en el loop | Parcial: curva de la cabeza (Golpe); `head_motion_cm` solo ±50 ms del impacto | Sí | Movimiento de la cabeza del armado al impacto |
-| Sin pausa arriba | Medido (`stroke.pause_at_loaded`), no en Cópiala; el COACH dice lo contrario | Sí | Punto de control «sin pausa arriba» y corregir el COACH |
+| Sin pausa arriba | ~~Medido (`stroke.pause_at_loaded`), no en Cópiala~~ **No medible desde la tele (18-10):** la mano quieta no dice si la raqueta se para (`docs/validacion.md`) | No | Se dice en «Lo que la tele no mide»; la quietud de la mano queda como dato |
 | Tres formas de llevar la raqueta atrás: loop verdadero, loop falso, straight-back | Parcial: `class.takeback` = compacta / amplia / en bucle alto | Sí | Etiquetar «loop falso» (bucle + pausa) y «recto atrás» (mano sin subir) |
 | Drop: el brazo entero baja, sin romper la muñeca | Parcial: `wrist_drop`, `racket_lag_deg`, `racket_forearm` | Sí | — |
 | Drop: 15-25 cm por debajo de la bola | Solo Vista lateral (`racket_drop_below_contact_cm`) | No-TV | — |
@@ -253,7 +253,7 @@ En «¿Aplica?»:
 | # | Hueco | Esfuerzo | Dónde iría |
 |---|---|---|---|
 | 1 | Corregir `COACH["stroke.pause_at_loaded"]`: sin pausa entre armado y swing (estiramiento-acortamiento, Elliott 2006) | S | `explain.py` |
-| 2 | Llevar a Cópiala las medidas que ya existen y son clave en la guía: `takeback_vs_net`, `pause_at_loaded` («sin pausa arriba»), `loaded.wrist_dom_vs_shoulder`, `loaded.elbow_dom`, `finish.wrist_dom_vs_shoulder` (terminación alta), `contact_vs_top`, `dur_preparation`. Cada una con objetivo (`TARGETS`) y consigna | S | `learn.PHASES`, fases 2, 3, 5 y 7 |
+| 2 | Llevar a Cópiala las medidas que ya existen y son clave en la guía: `takeback_vs_net`, ~~`pause_at_loaded` («sin pausa arriba»)~~ (18-10: no medible desde la tele, ver `docs/validacion.md`), `loaded.wrist_dom_vs_shoulder`, `loaded.elbow_dom`, `finish.wrist_dom_vs_shoulder` (terminación alta), `contact_vs_top`, `dur_preparation`. Cada una con objetivo (`TARGETS`) y consigna | S | `learn.PHASES`, fases 2, 3, 5 y 7 |
 | 3 | Clase de forma del armado como la de la guía: bucle verdadero, loop falso, recto atrás, y la tendencia «punta arriba / codo alto» | S-M | `technique.py` (clases), Cópiala fase 2-3, Golpe |
 | 4 | «Su ritmo con la bola» y panel «Timing, distancia y peso»: giro al cruzar la red → armado en el bote → contacto en el pico, más distancia, peso y hombros, con sus medianas | S | Cópiala (tras «Su firma») y PDF |
 | 5 | Índice «Si te pasa…» (síntoma → causa → punto de control → su vídeo), texto con fuente | M | Cópiala, sección nueva junto a «Tu plan» |

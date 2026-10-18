@@ -84,7 +84,7 @@ LECCIÓN (entrada)      SUS GOLPES (la prueba)      MÁS (extra técnico)
 
 **Medidas**
 
-14. **«Pausa arriba» y «loop falso».** El umbral es relativo al pico del swing y la ventana es muy larga. Hay que validarlo con clips antes de enseñarlo como objetivo. Mientras tanto, va al final de la lista del armado.
+14. **«Pausa arriba» y «loop falso».** ~~El umbral es relativo al pico del swing y la ventana es muy larga. Hay que validarlo con clips antes de enseñarlo como objetivo. Mientras tanto, va al final de la lista del armado.~~ **Hecho (18-10):** validado con 48 golpes de TV frente a la cabeza de la raqueta (`docs/validacion.md`). La medida de la mano se corrigió (umbral absoluto, ventana del armado, 0 = sin pausa), pero la mano quieta no dice si la raqueta se para: «Sin pausa arriba» deja de ser punto de control, objetivo y clave de la lección y se dice como «no medible desde la tele» (en «Lo que la tele no mide» y en el síntoma «El golpe sale sin peso…»). La medida sigue calculada, como dato, en «Su patrón típico». «Loop falso» (clase `takeback_loop`) sigue sin validar.
 15. **Grados poco fiables enseñados como objetivo:** cara en el impacto y en la caída, y X-factor negativo. Deben salir sin grados o como «estimación».
 
 ## 4. Lo que falta, en orden de trabajo

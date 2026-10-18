@@ -120,11 +120,8 @@ PHASES = [
             "Arma con el codo doblado como ella y separado del cuerpo.",
             "Brazo estirado y rígido atrás, o el codo pegado al costado.",
             "Sombras parando en el armado: comprueba el ángulo del codo en un espejo.", []),
-         cp("stroke.pause_at_loaded", "Sin pausa arriba", "s", 2, "s con la mano casi quieta entre el armado y el swing (0 = sin pausa)",
-            "Del armado al swing sin pararte arriba: la raqueta baja en cuanto llega atrás. Si tienes que esperar a la bola, espera en el giro, no arriba.",
-            "Parar la raqueta arriba mucho rato («loop falso»): una pausa larga resta la energía elástica del estiramiento y el golpe sale de brazo.",
-            "Sombras dibujando una «gota» con la cabeza de la raqueta sin detenerte; luego peloteo diciendo «gira, atrás, golpe» sin silencio entre «atrás» y «golpe».",
-            ["Bucle de la preparación (forma)"]),
+         # «Sin pausa arriba» (stroke.pause_at_loaded) is not a checkpoint: the still hand does not say whether the
+         # racket stops (docs/validacion.md, 48 TV strokes); it is told in NOT_FROM_TV, the measure stays in the model
          cp("class.takeback_loop", "Forma del armado", "", 0, "bucle continuo / loop falso (para arriba) / recto atrás",
             "Copia la forma de ella: si hace un bucle continuo, que la raqueta suba y baje sin pararse arriba.",
             "Loop falso (subir y parar) o llevar la raqueta recta atrás y baja: sin bucle no hay aceleración.",
@@ -539,6 +536,10 @@ NOT_FROM_TV = [
     ("Empuñadura exacta (bisel) en la espera y al golpear, y el cambio de empuñadura", "La mano ocupa 20-40 px en la tele: no se ve. En «Su patrón típico» se dice con qué empuñaduras son compatibles sus medidas (estimación); usa la que te deje golpear a su altura y distancia."),
     ("Altura del split step", "Se mide cuándo cae (fase 1), no cuánto salta: basta un salto pequeño, de unos centímetros."),
     ("Momento de los picos de la cadena cinética en milisegundos", "Se mide el orden (cadera → tronco → brazo), no los ms: a 25-50 fps el error es de un fotograma."),
+    ("Pausa arriba: si la raqueta se para al final del armado", "No medible desde la tele (validación con 48 golpes de TV: "
+     "la mano quieta no dice si la raqueta se para; con el bucle la cabeza sigue girando alrededor de una mano casi quieta). "
+     "Del armado al swing sin pararte arriba: di «gira, atrás, golpe» sin silencio entre «atrás» y «golpe». "
+     "Lo quieta que está su mano sigue en «Su patrón típico», solo como dato."),
     ("Velocidad y efecto del saque que resta (km/h, rpm)", "Se ve indirectamente en el tiempo que tiene desde el saque (velocidad de la bola, condición «Velocidad de la bola») y en si es primer o segundo saque."),
 ]
 
@@ -581,7 +582,6 @@ TARGETS = {
     "stroke.dur_preparation": "Del inicio del giro al armado completo, unos {v}, como ella.",
     "loaded.wrist_dom_vs_shoulder": ("Arma con la mano un {h} por encima del hombro, como ella.", "Arma con la mano un {h} por debajo del hombro, como ella."),
     "loaded.elbow_dom": "Arma con el codo a unos {v} (180° = estirado), como ella.",
-    "stroke.pause_at_loaded": "Arriba no te pares más de {v}, como ella.",
     "stroke.contact_vs_top": ("Golpea {v} después de que la bola llegue a lo más alto, como ella.", "Golpea {v} antes de que la bola llegue a lo más alto (subiendo), como ella."),
     "finish.wrist_dom_vs_shoulder": ("Termina con la mano un {h} por encima del hombro, como ella.", "Termina con la mano un {h} por debajo del hombro, como ella."),
     "takeback.shoulder_turn": "Al empezar la preparación, gira los hombros unos {v}, como ella.",
@@ -705,7 +705,7 @@ GLOSSARY = [
 LESSON = {
     "ready": ("base", ["footwork.split_landing_vs_opp_s", "class.ready_hands", "ready.hip_height", "ready.base_width"]),
     "takeback": ("lines", ["stroke.takeback_vs_net", "takeback.hands_apart", "stroke.takeback_vs_first_step", "takeback.shoulder_turn", "class.takeback", "stroke.takeback_vs_bounce"]),
-    "loaded": ("hand", ["stroke.loaded_vs_bounce", "loaded.shoulder_turn", "loaded.elbow_non", "loaded.racket_tip_vs_head", "loaded.com_over_feet", "loaded.x_factor", "loaded.wrist_dom_vs_shoulder", "stroke.pause_at_loaded"]),
+    "loaded": ("hand", ["stroke.loaded_vs_bounce", "loaded.shoulder_turn", "loaded.elbow_non", "loaded.racket_tip_vs_head", "loaded.com_over_feet", "loaded.x_factor", "loaded.wrist_dom_vs_shoulder"]),
     "acceleration": ("heights", ["stroke.wrist_drop", "stroke.shoulders_open_first", "stroke.hip_rise", "chain.proximal_to_distal", "stroke.acceleration_vs_bounce", "stroke.swing_low_to_high", "stroke.racket_lag_deg"]),
     "impact": ("base", ["impact.wrist_dom_lateral", "impact.wrist_dom_vs_hip", "impact.elbow_dom", "stroke.weight_shift", "stroke.head_motion_cm", "stroke.contact_vs_top", "impact.base_court_m"]),
     "extension": ("skel", ["extension.arm_extension", "stroke.swing_rise_after", "extension.wrist_non_lateral"]),
@@ -726,7 +726,6 @@ CHECKS = {
     "stroke.takeback_vs_first_step": "En bolas abiertas, ¿giras ya en el primer paso? Grábate desde detrás.",
     "stroke.loaded_vs_bounce": "Que alguien mire o grábate de lado: al botar la bola, ¿estás ya armado? 8 de 10 = conseguido.",
     "loaded.wrist_dom_vs_shoulder": "Para en el armado frente a un espejo: la mano por debajo de la línea del hombro, a su distancia.",
-    "stroke.pause_at_loaded": "Di «gira, atrás, golpe» sin silencio entre «atrás» y «golpe».",
     "loaded.racket_head_vs_wrist": "Para en el armado: la cabeza de la raqueta tiene que quedar por encima de tu mano.",
     "loaded.elbow_non": "Para en el armado: el brazo libre casi estirado señalando la bola.",
     "loaded.shoulder_turn": "Grábate desde detrás en el armado: tu espalda debe verse como la suya.",
@@ -797,8 +796,9 @@ SYMPTOMS = [
      "si la bola ya cae o vas retrocediendo, sale hacia arriba y larga.",
      ["impact.face_tilt", "stroke.weight_shift", "finish.wrist_dom_vs_shoulder", "class.back_at_impact", "class.ball_phase",
       "stroke.contact_vs_top"]),
-    ("El golpe sale sin peso, solo de brazo", "Sin carga de piernas, giro corto, pausa arriba o los hombros se abren antes que la cadera.",
-     ["stroke.hip_drop_cm", "loaded.shoulder_turn", "stroke.pause_at_loaded", "stroke.shoulders_open_first"]),
+    ("El golpe sale sin peso, solo de brazo", "Sin carga de piernas, giro corto, pausa arriba o los hombros se abren antes que la cadera. "
+     "La pausa arriba no es medible desde la tele (validación: la mano quieta no dice si la raqueta se para).",
+     ["stroke.hip_drop_cm", "loaded.shoulder_turn", "stroke.shoulders_open_first"]),
     ("Te caes hacia atrás al terminar", "El peso no pasa al pie de delante o se golpea retrocediendo.",
      ["stroke.weight_shift", "finish.head_over_base", "stroke.feet_move_m"]),
     ("Golpeas encogido, pegado al cuerpo", "Distancia mal calculada: faltan los pasos cortos de ajuste al final.",

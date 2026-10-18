@@ -675,6 +675,8 @@ NOT_MEASURABLE = [
     "brazo, invisibles en la imagen.",
     "Momento exacto (en milisegundos) de cada pico de la cadena cinética: está por debajo de un fotograma; se da el orden.",
     "Mirada: se la ve de espaldas.",
+    "Pausa arriba (si la raqueta se para al final del armado): la mano quieta no dice si la raqueta se para "
+    "(validación con 48 golpes de TV); la quietud de su mano se da solo como dato.",
     "Fuerzas y cargas en las articulaciones: solo se mide el movimiento.",
     FEET_NOT_MEASURABLE,
     "Altura del salto del split step: desde detrás, subir se confunde con alejarse.",
