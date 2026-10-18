@@ -9,3 +9,4 @@ accion: poc
 #   app = la aplicacion local: crea o lee su indice con los datos reales y dice que recalcularia (no ejecuta la cola)
 #   ventana = pantallas de la aplicacion con el indice real, ventana real oculta, avisos/icono/copia (sin ensenar nada)
 #   movil = copia al movil de cada analisis (720p) comprobada en el navegador del PC, y acceso directo del escritorio
+#   completo = los partidos completos de C:\tenis\videos (lista de videos primero; despues 3_analisis_completo)

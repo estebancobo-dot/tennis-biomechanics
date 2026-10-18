@@ -63,6 +63,20 @@ function Hacer-Peticion {
             Paso "Peticion $($p['id']): sin errores; ahora 35 min de partido en output\$s35"
             & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $ps1 -Minutos 35 -Salida $s35 | Out-Host
         } else { Write-Host "La prueba de 4 min no termino bien: no se lanza la de 35 (ver prueba$s4.log)" -ForegroundColor Red }
+    } elseif ($p["accion"] -eq "completo") {
+        # los partidos completos (lo pidio el usuario el 18-10): primero la lista de videos, subida ya,
+        # y despues el analisis completo de todos (3_analisis_completo: partidos, informes, exportacion,
+        # auditoria); se puede cortar y relanzar, continua donde lo dejo
+        $lg = "$Base\output\prueba_completo.log"
+        "Peticion $($p['id']): analisis completo de los partidos ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        Get-ChildItem "$Base\videos" -Recurse -File -ErrorAction SilentlyContinue |
+            Where-Object { $_.Extension -match '^\.(mp4|mkv|ts|mov|avi|webm|m2ts)$' } |
+            ForEach-Object { "  video: {0} ({1:N2} GB)" -f $_.FullName, ($_.Length / 1GB) } | Add-Content $lg -Encoding UTF8
+        "libre C: $([math]::Round((Get-PSDrive C).Free / 1GB)) GB" | Add-Content $lg -Encoding UTF8
+        Subir-Registros | Out-Null
+        Paso "Peticion $($p['id']): analisis completo de todos los partidos (horas; registro: analisis_completo.log)"
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $RepoDir "scripts\windows\analisis_completo.ps1") | Out-Host
+        "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "largo") {
         # el video entero (tramo largo) en su propia carpeta _pocN_largo: muchos golpes por situacion
         # y el tiempo real de un partido; nunca toca _smoke
