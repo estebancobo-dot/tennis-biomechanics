@@ -196,8 +196,12 @@ def page_html(page: Path, data: dict) -> str:
 
 README = """Tennisbio: copia para el móvil, sin conexión.
 
-Cómo llevarla al teléfono: copia el fichero .zip (o esta carpeta) al móvil con el cable, una memoria USB
-o la tarjeta, descomprímelo allí y abre index.html con el navegador del teléfono.
+En un Android (p. ej. Google Pixel 8):
+1. Conecta el teléfono al PC con el cable USB-C y, en el aviso del teléfono, elige «Transferencia de archivos».
+2. En el Explorador de Windows aparece «Pixel 8»: arrastra el .zip a su carpeta Download.
+3. En el teléfono, abre la app Archivos, toca el .zip y «Extraer».
+4. Abre Chrome y escribe en la barra: file:///sdcard/Download/<nombre de esta carpeta>/index.html
+   (guárdala en marcadores o «Añadir a pantalla de inicio» para la próxima vez).
 Todo está dentro: la página, los vídeos de cada golpe (720p), las series del esqueleto y las fotos.
 Es una copia: los análisis nuevos llegan cuando vuelvas a pulsar «Copiar al móvil» en el PC.
 """
