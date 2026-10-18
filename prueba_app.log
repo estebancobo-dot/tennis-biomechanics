@@ -1,16 +1,22 @@
-﻿Peticion 18: indice de la aplicacion local (2026-10-18T07:59:26)
+﻿Peticion 19: indice de la aplicacion local (2026-10-18T08:53:37)
 == tennisbio app status
 Ahora: nada en curso
+Jugadoras: 2 · partidos: 2
 
 Análisis:
 Partidos:
+  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa (confianza 0,52): se analiza, pero no entra en las comparativas. Jugadora deducida del nombre de la carpeta.
+  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa (confianza 0,59): se analiza, pero no entra en las comparativas. Jugadora deducida del nombre de la carpeta.
 Cola (0):
 == tennisbio app plan
 0 partido(s) a recalcular, 0 informe(s)
 == tennisbio app status
 Ahora: nada en curso
+Jugadoras: 2 · partidos: 2
 
 Análisis:
 Partidos:
+  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa (confianza 0,52): se analiza, pero no entra en las comparativas. Jugadora deducida del nombre de la carpeta.
+  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa (confianza 0,59): se analiza, pero no entra en las comparativas. Jugadora deducida del nombre de la carpeta.
 Cola (0):
-codigo de salida: 0; termina 2026-10-18T07:59:28
+codigo de salida: 0; termina 2026-10-18T08:53:40
