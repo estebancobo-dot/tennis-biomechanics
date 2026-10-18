@@ -116,9 +116,17 @@ function Hacer-Peticion {
         "Peticion $($p['id']): pantallas de la aplicacion ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
         Paso "Peticion $($p['id']): pantallas de la aplicacion en output\capturas_app (registro: $lg)"
         $env:UV_NO_PROGRESS = "1"
-        & uv run --extra app tennisbio app comprobar $s --real 2>&1 |
-            ForEach-Object { $l = "$_"; Add-Content $lg $l -Encoding UTF8; $l } | Out-Host
-        "codigo de salida: $LASTEXITCODE; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+        # con tope de 15 min: si algo no responde se mata con todo lo que lanzo (el 18-10 una ventana oculta
+        # que no cargaba dejo el ciclo parado; nunca mas)
+        $o = "$Base\output\prueba_ventana.out"
+        $pr = Start-Process uv -ArgumentList @("run", "--extra", "app", "tennisbio", "app", "comprobar", $s, "--real") `
+            -NoNewWindow -PassThru -RedirectStandardOutput $o -RedirectStandardError "$o.err"
+        if (-not $pr.WaitForExit(900000)) {
+            & taskkill.exe /T /F /PID $pr.Id 2>&1 | Out-Null
+            "TOPE: sin terminar en 15 min; se ha parado (proceso $($pr.Id) y sus hijos)" | Add-Content $lg -Encoding UTF8
+        }
+        foreach ($f in @($o, "$o.err")) { if (Test-Path $f) { Get-Content $f -Encoding UTF8 | Add-Content $lg -Encoding UTF8 } }
+        "codigo de salida: $($pr.ExitCode); termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "borrar") {
         # borra carpetas de pruebas de velocidad ya documentadas (lo pide el usuario); solo nombres
         # _poc, _pocN o _pocN_M: nunca _poc9_largo, _smoke ni nada mas

@@ -210,3 +210,19 @@ def test_the_pc_check_finds_nothing_wrong_in_the_cases(scene, tmp_path):
     assert not r["problems"], r["problems"]
     assert r["screens"] >= 2 * (8 + 4 + 3) and (tmp_path / "capturas_app" / "app_cola.png").exists()
     assert "Ventana de Tennisbio: OK" in (tmp_path / "capturas_app" / "ventana.md").read_text(encoding="utf-8")
+
+
+def test_a_window_engine_that_never_answers_cannot_hang_the_check(scene, tmp_path, monkeypatch):
+    """18-10 on the PC: the hidden WebView2 window never loaded and the check waited forever, stopping the
+    automatic cycle. The real window now runs in a process killed after its limit."""
+    from tennisbio.app import check as C
+    import subprocess
+    real_run = subprocess.run
+
+    def slow(cmd, **kw):                                     # a child that never ends
+        return real_run([sys.executable, "-c", "import time; time.sleep(60)"], **kw)
+    monkeypatch.setattr(subprocess, "run", slow)
+    import time
+    t0 = time.time()
+    out = C.live_window(scene.app, tmp_path, timeout_s=2)
+    assert time.time() - t0 < 10 and "sin respuesta en 2 s" in out["error"] and not out["ready"]

@@ -40,44 +40,70 @@ def window_engine() -> dict:
     return out
 
 
-def live_window(app, dest: Path, timeout_s: float = 60.0) -> dict:
-    """The real window, hidden (the user sees nothing): WebView2 opens the page, the page finds the bridge, and
-    a call through it comes back with the index (the version and the number of matches). Then it closes."""
-    import threading
-    import time
-    out: dict = {"opened": False, "ready": False, "bridge": None}
-    try:
-        import webview
-    except Exception as e:                       # noqa: BLE001
-        return {**out, "error": f"pywebview: {type(e).__name__}: {e}"[:200]}
+def live_window(app, dest: Path, timeout_s: float = 120.0) -> dict:
+    """The real window, minimized and without focus (a few seconds in the taskbar at most): WebView2 opens the
+    page, the page finds the bridge, and a call through it comes back with the index. It runs in a separate
+    process killed after `timeout_s`: a window engine that never answers can never hang the PC's cycle (it did
+    on 18-10: a hidden WebView2 window never loaded and pywebview waits for JavaScript without a limit)."""
+    import subprocess
     page = window.write_page(app, dest / "tennisbio_viva.html", with_storage=False)
+    res_f = dest / "ventana_viva.json"
+    res_f.unlink(missing_ok=True)
+    try:
+        subprocess.run([sys.executable, "-m", "tennisbio.app.check", "--viva", str(page), str(res_f)], timeout=timeout_s,
+                       capture_output=True, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
+        timed_out = False
+    except subprocess.TimeoutExpired:
+        timed_out = True
+    try:
+        out = json.loads(res_f.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        out = {"opened": False, "ready": False, "bridge": None}
+    if timed_out:
+        out["error"] = f"sin respuesta en {timeout_s:.0f} s: se cerró a la fuerza (lo último: {out.get('step', 'arrancando')})"
+    return out
+
+
+def _live_child(page: str, res_f: str, wait_s: float = 60.0):
+    """In its own process (see live_window): writes how far it got after each step."""
+    import threading
+    out: dict = {"opened": False, "ready": False, "bridge": None, "step": "importar pywebview"}
+    save = lambda: Path(res_f).write_text(json.dumps(out, ensure_ascii=False), encoding="utf-8")
+    save()
+    import webview
+
+    from ..config import load_config
+    from .core import App
+    app = App(load_config())
     api = window.Api(app)
-    w = webview.create_window("Tennisbio (comprobación)", url=str(page), js_api=api, hidden=True)
+    loaded = threading.Event()
+    w = webview.create_window("Tennisbio (comprobación)", url=str(page), js_api=api, width=480, height=320,
+                              minimized=True, focus=False)
     api.window = w
+    w.events.loaded += lambda *a: loaded.set()
 
     def probe():
-        t0 = time.time()
+        out.update(opened=True, step="cargar la página")
+        save()
         try:
-            out["opened"] = True
-            while time.time() - t0 < timeout_s and not out["ready"]:
+            if loaded.wait(wait_s):
+                out["step"] = "esperar al puente"
+                save()
                 out["ready"] = bool(w.evaluate_js("window.__tbReady === true && !!(window.pywebview && window.pywebview.api)"))
-                time.sleep(0.5)
-            if out["ready"]:
-                out["bridge"] = w.evaluate_js("window.pywebview.api.state().then(function (s) { return s.version + ' · ' + s.matches.length + ' partidos'; })")
+                if out["ready"]:
+                    out["step"] = "llamar al núcleo"
+                    save()
+                    out["bridge"] = w.evaluate_js(
+                        "window.pywebview.api.state().then(function (s) { return s.version + ' · ' + s.matches.length + ' partidos'; })")
+            out["step"] = "hecho"
         except Exception as e:                   # noqa: BLE001
             out["error"] = f"{type(e).__name__}: {e}"[:300]
-        finally:
-            out["seconds"] = round(time.time() - t0, 1)
-            w.destroy()
-    guard = threading.Timer(timeout_s + 30, lambda: w.destroy())
-    guard.daemon = True
-    guard.start()
-    try:
-        webview.start(probe)
-    except Exception as e:                       # noqa: BLE001 — no WebView2, no desktop session…
-        out["error"] = f"{type(e).__name__}: {e}"[:300]
-    guard.cancel()
-    return out
+        save()
+        w.destroy()
+    out["step"] = "abrir la ventana"
+    save()
+    webview.start(probe)
+    save()
 
 
 def check(app, dest: Path, shots: bool = True, real: bool = False) -> dict:
@@ -142,3 +168,7 @@ def check(app, dest: Path, shots: bool = True, real: bool = False) -> dict:
     md += [f"- ✘ {x}" for x in problems]
     (dest / "ventana.md").write_text("\n".join(md) + "\n", encoding="utf-8")
     return res
+
+
+if __name__ == "__main__" and len(sys.argv) == 4 and sys.argv[1] == "--viva":
+    _live_child(sys.argv[2], sys.argv[3])
