@@ -1,0 +1,32 @@
+{
+ "problems": [
+  "la ventana real no funcionó: {'opened': True, 'ready': True, 'bridge': {}, 'step': 'hecho'}"
+ ],
+ "screens": 24,
+ "engine": {
+  "pywebview": true,
+  "webview2": "155.0.4283.60",
+  "bandeja": true,
+  "avisos": {
+   "ok": true,
+   "why": ".Object</T></TN><MS><I64 N=\"SourceId\">1</I64><PR N=\"Record\"><AV>Preparing modules for first use.</AV><AI>0</AI><Nil /><PI>-1</PI><PC>-1</PC><T>Completed</T><SR>-1</SR><SD> </SD></PR></MS></Obj></Objs>"
+  }
+ },
+ "live": {
+  "opened": true,
+  "ready": true,
+  "bridge": {},
+  "step": "hecho"
+ },
+ "backup": {
+  "ficheros": 1423,
+  "bytes": 3266291478
+ },
+ "index": {
+  "matches": 2,
+  "players": 2,
+  "analyses": 0,
+  "jobs_pending": 0,
+  "notices": 0
+ }
+}
