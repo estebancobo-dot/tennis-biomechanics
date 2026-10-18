@@ -1,6 +1,6 @@
 {
  "problems": [
-  "prueba_poc9_largo: el golpe dibujado desde la copia no coincide con el del PC (diferencia 28)"
+  "prueba_poc9_largo: el golpe dibujado desde la copia no coincide con el del PC (diferencia 20; sin la escala, 20)"
  ],
  "copias": [
   {
@@ -9,19 +9,20 @@
    "zip": "C:\\tenis\\output\\movil_prueba\\poc9_largo.zip",
    "strokes": 69,
    "with_video": 69,
-   "encoded": 69,
-   "kept": 0,
+   "encoded": 0,
+   "kept": 69,
    "failed": [],
    "missing": 0,
    "bytes": 76247292,
-   "seconds": 69.5,
+   "seconds": 9.9,
    "imagen": {
-    "stroke": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0104574",
+    "stroke": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0267361",
     "alto_pc": 1080,
     "alto_movil": 720,
     "vk": 0.66667,
-    "diferencia_media": 28.2,
-    "brillo": 141.4
+    "diferencia_media": 20.2,
+    "sin_escala": 20.2,
+    "brillo": 152.5
    }
   }
  ],
