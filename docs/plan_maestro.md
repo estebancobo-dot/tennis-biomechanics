@@ -8,20 +8,28 @@ Regla del usuario (19-10): **nada nuevo hasta que la base (golpes que no se pier
 | | Qué | Estado | Siguiente |
 |---|---|---|---|
 | E1 | Análisis completo de los 4 partidos (petición 32) | Terminado 19-10 13:46 (14 h 15 min). Final: 129 golpes confirmados (muy pocos) | Hecho |
-| E2 | Línea base de golpes perdidos e identidad contra F3Set (petición 34, `validate_recall.py`; la 33 la ignoró el ciclo viejo) | En cola desde 19-10 14:28 | Claude lee `recall_validation.md` (lectura programada) |
-| E3 | Vigilancia horaria del PC desde la nube | Activa | Se quita al cerrar el bloque 1 (ahorro de tokens) |
+| E2 | Línea base F3Set con el código viejo (petición 34) | 0 de 613 golpes (0 %); 420 perdidos por «identidad sin decidir» | Hecho |
+| E3 | F3Set con identidad por ropa y golpes dudosos (petición 35) | En marcha; Dubái 10/137 (51 por identidad equivocada, 31 no confirmados, 26 sin candidato) | Al terminar: base para medir el bloque 1 |
+| E4 | Vigilancia horaria del PC desde la nube | Activa | Se quita al cerrar el bloque 1 (ahorro de tokens) |
 
-## 1. Base: no perder golpes e identidad (PRIMERO)
+## 1. Base: no perder golpes e identidad (PRIMERO) — cambio de enfoque del 19-10
+Decisión del usuario (19-10): hacerlo **como las aplicaciones profesionales**: modelos **entrenados con golpes
+anotados**, no reglas escritas a mano; y **un clic por partido** para la identidad (excepción al «100 % automático»).
+
 Criterio de cierre: `recall_validation.md` en el PC con **lado cercano > 90 % (saques incluidos)**, **lado lejano
-contado** (todos detectados; medido lo que la distancia permite) e **identidad > 95 %**; y en cada partido real el
-número de golpes cuadra con el esperado por el marcador (`point_count.py`; si no, la auditoría lo marca en rojo).
+contado** e **identidad > 95 %**, medido en partidos de F3Set que **no** se usaron para entrenar; y en cada partido
+real el número de golpes cuadra con el esperado por el marcador (`point_count.py`).
 
-1. Medir la línea base (E2): pérdida por lado, por tipo y por paso donde se pierde.
-2. Identidad por ropa (hecho en rama local `fix-identity-clothes`, 13 pruebas): subir y medir contra la línea base.
-3. Saques (antes 1 de 15 en F3Set): detección propia del saque (bola lanzada + brazo arriba + silencio previo).
-4. Lado lejano: seguimiento continuo de la jugadora lejana; contar cada golpe aunque solo se mida posición/altura.
-5. Cámara principal: planos perdidos (Osaka: marcador no leído → arreglado en candidates v8; `diag_scenes.py` para el resto).
-6. Atacar las pérdidas en el orden que diga la línea base, volver a medir tras cada arreglo.
+1. **Identidad con un clic:** al añadir un partido, la aplicación enseña una foto de cada jugadora (los dos grupos
+   de ropa del partido) y el usuario toca la suya. Se guarda en el catálogo (`config/matches.yaml`) y la etapa
+   `identity` la usa como ancla; la ropa decide cada plano. En el banco de F3Set el clic se simula con un punto anotado.
+2. **Detector de golpes entrenado (petición #204):** un modelo pequeño de detección de eventos sobre la secuencia del
+   esqueleto de cada jugadora y la trayectoria de la bola (lo que el proceso ya calcula), entrenado en el procesador
+   del PC con los golpes anotados de F3Set (instante, jugadora, tipo: saque / derecha / revés / volea). Separación
+   por partidos: unos para entrenar y otros solo para medir. Sustituye a «candidatos + confirmación» (las reglas a mano).
+3. **Saques, lado lejano y repeticiones** dentro del mismo detector (el saque y el golpe lejano son clases y lados
+   del modelo); repeticiones y cámara principal se miden aparte con el mismo banco.
+4. Medir tras cada paso contra F3Set y contra el marcador de los 4 partidos; nada se da por bueno sin ese número.
 
 ## 2. La fuente son los partidos (#218, #219)
 Criterio: en los 4 partidos, % de golpes con repetición enlazada y % con otra cámara enlazada, contado por script.
@@ -54,5 +62,5 @@ Hoy 67 min por 35 min de vídeo. Pose en la iGPU y menos trabajo repetido. Crite
 la auditoría del PC los enseña siempre primero («Peticiones del usuario SIN TERMINAR»).
 
 ## Lo que el usuario tiene que hacer
-Nada, salvo conectar el móvil el día que quiera probar la copia. No decide detalles de implementación: Claude
+Un clic por partido para decir cuál es ella (19-10) y conectar el móvil el día que quiera probar la copia. No decide detalles de implementación: Claude
 elige la solución que cubre los requisitos y los escenarios, y la valida con números.

@@ -21,6 +21,9 @@ Después: revés, saque, volea y otros jugadores.
 4. **Cuerdas / orientación de la cara de la raqueta**: obligatorio (honesto donde es estimación).
 5. **100 % automático:** el usuario no revisa datos, no lee documentos, no anota, no edita
    configuración. Instalación, prueba y análisis completo con scripts de doble clic.
+   **Excepción (19-10):** un clic por partido para señalar cuál de las dos jugadoras es ella (identidad).
+   **Enfoque (19-10):** como las apps profesionales: detección de golpes con modelos entrenados con golpes
+   anotados (F3Set), no con reglas a mano (`docs/plan_maestro.md`, bloque 1).
 6. **Sin fuentes externas:** nada de vídeos del usuario, de entrenadores ni de otras jugadoras.
    **Excepción (12-10):** vídeos de entrenamiento de la propia jugadora en YouTube, filmados de lado,
    en un apartado aparte y marcado del informe («Vista lateral (entreno)», `scripts/practice_videos.py`,
