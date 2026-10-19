@@ -97,5 +97,21 @@
    "conflicts": 0,
    "decided": 308
   }
+ },
+ "candidates": {
+  "fingerprint": "44ff85cc8a1bd31e",
+  "version": "7",
+  "seconds": 49.8,
+  "finished": "2026-10-19 08:55:46",
+  "summary": {
+   "candidates": 1128,
+   "far": 843,
+   "with_audio": 1098,
+   "opponent_runs": 130,
+   "identity_unknown": 6,
+   "replay_runs_skipped": 74,
+   "replays_by_path": 41,
+   "audio_track": 0
+  }
  }
 }
