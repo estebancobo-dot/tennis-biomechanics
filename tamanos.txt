@@ -1,8 +1,8 @@
-fecha: 2026-10-19T12:27:45
+fecha: 2026-10-19T12:30:03
        5.7 MB  \output\benchmark
          1 MB  \output\capturas_app
      450.2 MB  \output\entrenamiento
-      98.1 MB  \output\exportar_derecha
+     107.1 MB  \output\exportar_derecha
       19.7 MB  \output\informe_derecha
        8.8 MB  \output\informe_reves
        6.7 MB  \output\informe_saque
