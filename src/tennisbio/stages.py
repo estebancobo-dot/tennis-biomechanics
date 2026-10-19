@@ -5,6 +5,7 @@ frames) → candidates (near-player strokes) → fine (full-quality analysis in 
 """
 import hashlib
 import json
+import time
 import warnings
 import os
 import shutil
@@ -429,10 +430,17 @@ def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run
     codes = np.full((len(tracks), CLOTHES_DIM), np.nan, np.float32)
     near_c: dict[int, list] = {}
     far_c: dict[int, list] = {}
-    stream = frames_at(info, [w[0] for w in want], hwaccel=ctx.cfg.get("hwaccel")) if want else iter(())
+    # software decoding, as the scoreboard's frames: on the PC (19-10) the iGPU decoder took ~15 s per frame
+    # here (98 min for 396 frames of a 35-min test), against ~3.6 s per frame with OCR for the scoreboard
+    stream = frames_at(info, [w[0] for w in want]) if want else iter(())
+    t_dec = t_feat = 0.0
+    t_last = time.perf_counter()
     for k, ((t_s, i, t), (_, frame)) in enumerate(zip(want, stream)):
+        t_now = time.perf_counter()
+        t_dec += t_now - t_last
         ctx.progress(k + 1, len(want), "fotogramas (ropa)")
         if frame is None:
+            t_last = time.perf_counter()
             continue
         run, sel, _ = tracks[i]
         fi, j = run[t], int(sel[t])
@@ -443,6 +451,10 @@ def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run
         f = _far_player(bx, H, j)
         if f is not None and (bx[f, 3] - bx[f, 1]) * sx >= min_far_px:
             far_c.setdefault(i, []).append(clothing_feature(frame, kp[f] * sx, cf[f], bx[f] * sx))
+        t_last = time.perf_counter()
+        t_feat += t_last - t_now
+    if want:
+        ctx.log(f"  ropa: {len(want)} fotogramas · leerlos {t_dec:.0f} s, medir la ropa {t_feat:.0f} s")
     for i, c in near_c.items():
         codes[i] = aggregate(c)
     far = [(i, aggregate(c)) for i, c in sorted(far_c.items()) if len(c) >= 2]
