@@ -22,6 +22,24 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
 ## 19-10: el plan vigente está en `docs/plan_maestro.md` (leer primero)
 Todo lo pendiente, en orden, con su criterio de cierre medido en el PC. Almacenamiento definitivo: `docs/almacenamiento.md`.
 
+## 19-10: la ropa vuelve a contar en la identidad (etapa `identity` v5)
+- Problema (partidos completos): la ropa no decidía nunca (`by_clothes` = 0 en los 4; confianzas 0,50-0,64).
+  La apariencia era el histograma de la caja entera (casi todo pista) y el k-means se sembraba con los dos
+  planos más raros.
+- Ahora (`tennisbio.clothes`): la etapa vuelve a leer del vídeo hasta 6 fotogramas por plano (los más quietos,
+  con el torso visto) y mide solo la **camiseta** (hombros-caderas) y el **pantalón/falda** (caderas-muslos),
+  quitando los colores de la pista que la rodea; tono para lo que tiene color y claridad relativa a la pista
+  para blanco/gris/negro (robusto a sol/sombra). Por plano, mediana de los fotogramas. Reparto en dos personas
+  con 2-medoides exhaustivo (sin semillas atípicas) y margen por plano; la jugadora lejana, cuando el detector
+  la ve en los mismos fotogramas, entra como pareja «no puede ser la misma».
+- Fusión con los cambios de lado: de acuerdo → «ropa y cambios de lado»; en desacuerdo gana el saque visto en
+  ese plano, si no la ropa con margen claro («ropa (corrige el marcador)»: un juego mal leído), si no «dudoso»
+  (fuera de comparativas, no se borra). Resumen: `agree`, `ends_only`, `clothes_only`, `ends_won`,
+  `clothes_won`, `doubtful`, comprobaciones (`clothes.same_game_same`, `clothes.far_opposite`, `separation`).
+  Sin vídeo, vuelve a la apariencia antigua de la caja entera.
+- Comprobado en 20 clips reales de RacketVision: misma persona (dos mitades del clip) mediana 0,11 frente a
+  0,53 con la jugadora del otro lado. Pendiente: ver los números en los 4 partidos (`identity` se recalcula sola).
+
 ## 17-10: decisiones y orden de trabajo (leer primero)
 
 - **Nada en la nube y nada de pago** (decisión del usuario). La aplicación profesional es local: `docs/arquitectura_producto.md`, sección «Decisión del usuario». El móvil recibe una copia del informe autocontenido, sin servidor.

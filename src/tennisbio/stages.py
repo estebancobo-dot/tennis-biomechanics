@@ -331,11 +331,12 @@ def _players(ctx) -> dict:
         return {k: z[k] for k in z.files}
 
 
-def near_runs(d, sk, court: dict | None = None):
+def near_runs(d, sk, court: dict | None = None, with_sel: bool = False):
     """Each continuous run of main-camera frames with the near player tracked (cuts break tracking).
     court: the court stage's output, to start the tracking on the person standing on the court.
 
-    Yields (run indices, cleaned keypoints, confidences, body height px, mean appearance)."""
+    Yields (run indices, cleaned keypoints, confidences, body height px, mean appearance), and with
+    with_sel also the index of her detection in each frame of the run (-1 where she was not found)."""
     fps, frames = float(d["fps"]), d["frames"]
     runs = np.split(np.arange(len(frames)), np.flatnonzero(np.diff(frames) > 1) + 1)
     for run in runs:
@@ -364,15 +365,101 @@ def near_runs(d, sk, court: dict | None = None):
         img = clean(kp, cf, max_gap=2, window=5)
         if np.isnan(img).all() or not app:
             continue
-        yield run, img, cf, body_height(img, sk), np.mean(app, axis=0)
+        if with_sel:
+            yield run, img, cf, body_height(img, sk), np.mean(app, axis=0), np.asarray(sel)
+        else:
+            yield run, img, cf, body_height(img, sk), np.mean(app, axis=0)
 
 
-@stage("identity", "4", deps=("players", "score", "court", "audio"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
+def _far_player(boxes: np.ndarray, H, near: int) -> int | None:
+    """Index of the far player among a frame's detections (feet on the far half of the court, the
+    tallest such box), or None. H: court→image homography of the shot."""
+    from .court_metrics import to_court
+
+    if H is None or len(boxes) < 2:
+        return None
+    feet = np.c_[(boxes[:, 0] + boxes[:, 2]) / 2, boxes[:, 3]]
+    c = to_court(H, feet)
+    ok = (np.abs(c[:, 0]) <= 6.5) & (c[:, 1] >= 13.0) & (c[:, 1] <= 31.0)
+    ok[near] = False
+    if not ok.any():
+        return None
+    hh = np.where(ok, boxes[:, 3] - boxes[:, 1], -1)
+    return int(np.argmax(hh))
+
+
+def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run=6, min_far_px=40.0):
+    """Clothing code of the near player in each run (and of the far player when the players stage
+    saw her in the same frames), from up to `per_run` frames per run spread over it, each the
+    stillest one of its stretch with the torso visible (the frame is re-read by its time; a moving
+    player would be off her keypoints by the frame's offset).
+
+    tracks: per run (run indices, her detection index per frame, cleaned keypoints).
+    Returns (codes (R, CLOTHES_DIM), [(run, far code)]) or (None, []) when the video cannot be read."""
+    from .clothes import CLOTHES_DIM, aggregate, clothing_feature
+
+    try:
+        video = ctx.video
+        if not Path(video).is_file():
+            raise FileNotFoundError(str(video))
+        info = probe(video)
+    except Exception as e:  # noqa: BLE001  (no video: the players stage's whole-box histograms instead)
+        ctx.log(f"  ropa: no se puede leer el vídeo ({type(e).__name__}); se usa la apariencia de la caja entera")
+        return None, []
+    fps, frames = float(d["fps"]), d["frames"]
+    want = []                                                    # (time, run, frame index in run)
+    for i, (run, sel, img) in enumerate(tracks):
+        good = np.array([j >= 0 and bool(np.all(d["confs"][run[t]][j][[5, 6, 11, 12]] > 0.3)) for t, j in enumerate(sel)])
+        if not good.any():
+            good = sel >= 0
+        if not good.any():
+            continue
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", RuntimeWarning)          # frames without the torso
+            ctr = np.nanmean(img[:, [5, 6, 11, 12]], axis=1)
+        sp = np.full(len(run), np.inf)
+        if len(run) > 2:
+            sp[1:-1] = np.linalg.norm(ctr[2:] - ctr[:-2], axis=1)
+        sp = np.where(np.isfinite(sp), sp, 1e6)
+        cand = np.flatnonzero(good)
+        for part in np.array_split(cand, min(per_run, len(cand))):
+            t = int(part[np.argmin(sp[part])])
+            want.append((frames[run[t]] / fps, i, t))
+    want.sort()
+    codes = np.full((len(tracks), CLOTHES_DIM), np.nan, np.float32)
+    near_c: dict[int, list] = {}
+    far_c: dict[int, list] = {}
+    stream = frames_at(info, [w[0] for w in want], hwaccel=ctx.cfg.get("hwaccel")) if want else iter(())
+    for k, ((t_s, i, t), (_, frame)) in enumerate(zip(want, stream)):
+        ctx.progress(k + 1, len(want), "fotogramas (ropa)")
+        if frame is None:
+            continue
+        run, sel, _ = tracks[i]
+        fi, j = run[t], int(sel[t])
+        bx, kp, cf = d["boxes"][fi], d["kps"][fi], d["confs"][fi]
+        sx = frame.shape[1] / float(info.width)                   # 1 unless the decoder resized it
+        near_c.setdefault(i, []).append(clothing_feature(frame, kp[j] * sx, cf[j], bx[j] * sx))
+        H = court_at(court, t_s)[0] if court else None
+        f = _far_player(bx, H, j)
+        if f is not None and (bx[f, 3] - bx[f, 1]) * sx >= min_far_px:
+            far_c.setdefault(i, []).append(clothing_feature(frame, kp[f] * sx, cf[f], bx[f] * sx))
+    for i, c in near_c.items():
+        codes[i] = aggregate(c)
+    far = [(i, aggregate(c)) for i, c in sorted(far_c.items()) if len(c) >= 2]
+    return codes, far
+
+
+@stage("identity", "5", deps=("players", "score", "court", "audio"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
 def st_identity(ctx: Context):
-    """Is the near player the target in each run? Clothing clusters + serves + scoreboard marker:
-    when the near player serves she is the scoreboard's server; when she waits to return a serve
-    she is the other one."""
-    from .identity import assign, cluster_two, decide_by_ends, end_changes, near_receives, near_serves
+    """Is the near player the target in each run? Two independent cues, fused:
+    - the end-change chain: serves + the scoreboard's serve marker name who is near in some runs
+      (when the near player serves she is the scoreboard's server; when she waits to return a serve
+      she is the other one), and the games read on the scoreboard carry it to every run;
+    - her clothes (shirt and shorts/skirt, without the court colours) split the runs into two people.
+    Agreement decides with high confidence; a disagreement is won by the stronger evidence or left
+    «dudoso» (clothes.fuse)."""
+    from .clothes import identity_from_cues
+    from .identity import decide_by_ends, end_changes, near_receives, near_serves
 
     d = _players(ctx)
     fps, frames = float(d["fps"]), d["frames"]
@@ -380,11 +467,12 @@ def st_identity(ctx: Context):
     score = _read(ctx.path("score.json"))
     court = _read(ctx.path("court.json"))
     onsets = load_onsets(ctx)
-    runs, feats, votes = [], [], []
-    for run, img, cf, h, app in near_runs(d, sk, court):
+    runs, feats, votes, tracks = [], [], [], []
+    for run, img, cf, h, app, sel in near_runs(d, sk, court, with_sel=True):
         i = len(runs)
         runs.append({"start": int(frames[run[0]]), "end": int(frames[run[-1]]) + 1})
         feats.append(app)
+        tracks.append((run, sel, img))
         H = court_at(court, frames[run[0]] / fps)[0]
         fy = _feet_court_y(img, H)
         f = near_serves(img, cf, fps, h, feet_y=fy)
@@ -400,33 +488,33 @@ def st_identity(ctx: Context):
                 vote = (sr["server"] == 0) == serving
                 votes.append((i, vote))
                 runs[i]["serve_vote" if serving else "return_vote"] = vote
-    labels = cluster_two(np.array(feats)) if feats else np.zeros(0, int)
-    res = assign(labels, votes)
-    # end changes from the scoreboard at the middle of each run
-    parities = []
+    # end changes from the scoreboard at the middle of each run (and the games read, for the check
+    # that the clothes do not change inside a game)
+    parities, games = [], []
     for r in runs:
         sr = score_at(score, (r["start"] + r["end"]) / 2 / fps, max_age_s=150.0)
         parities.append(None if sr is None else end_changes(sr.get("games"), sr.get("points"), sr.get("tiebreak", False)))
+        games.append(None if sr is None or not sr.get("games") else json.dumps(sr["games"]))
     base = decide_by_ends(parities, votes)
-    by_ends = by_clothes = conflicts = 0
-    for r, lab, par in zip(runs, labels, parities):
-        r["cluster"] = int(lab)
+    ends = [None if base is None or p is None else bool(base ^ bool(p % 2)) for p in parities]
+    direct = [r.get("serve_vote", r.get("return_vote")) for r in runs]
+    codes, far = run_clothes(ctx, d, tracks, court) if runs else (None, [])
+    per, summ = identity_from_cues(codes, far, np.array(feats) if feats else None, ends, direct, votes, games)
+    for r, p, par, e in zip(runs, per, parities, ends):
         r["end_changes"] = par
-        a_cl = None if res["target_cluster"] is None else bool(lab == res["target_cluster"])
-        a_end = None if base is None or par is None else bool(base ^ bool(par % 2))
-        if a_cl is not None and a_end is not None and a_cl != a_end:
-            r["near_is_target"], r["method"] = None, "conflicto"
-            conflicts += 1
-        elif a_end is not None:
-            r["near_is_target"], r["method"] = a_end, "cambios de lado"
-            by_ends += 1
-        else:
-            r["near_is_target"], r["method"] = a_cl, None if a_cl is None else "ropa"
-            by_clothes += a_cl is not None
-    _write(ctx.path("identity.json"), {"fps": fps, **res, "ends_base": base, "runs": runs})
-    return {"runs": len(runs), "votes": res["votes"], "confidence": res["confidence"],
-            "by_end_changes": by_ends, "by_clothes": by_clothes, "conflicts": conflicts,
-            "decided": sum(r["near_is_target"] is not None for r in runs)}
+        r["cluster"] = p["clothes"]["group"] if p["clothes"] else -1
+        r["near_is_target"], r["method"] = p["near_is_target"], p["method"]
+        if p["clothes"]:
+            r["clothes_margin"], r["clothes_says"] = p["clothes"]["margin"], p["clothes"]["says"]
+        if e is not None and e != r["near_is_target"]:
+            r["ends_said"] = e                         # what the end-change chain said, overruled or doubtful
+    _write(ctx.path("identity.json"), {"fps": fps, "target_cluster": summ["target_cluster"], "confidence": summ["confidence"],
+                                       "votes": summ["votes"], "ends_base": base, "clothes": summ["clothes"], "runs": runs})
+    ctx.log(f"  identidad: {summ['decided']}/{len(runs)} planos · ropa y cambios de lado de acuerdo en {summ['agree']}, "
+            f"solo cambios de lado {summ['ends_only']}, solo ropa {summ['clothes_only']}, la ropa corrige el marcador en "
+            f"{summ['clothes_won']}, el saque visto en {summ['ends_won']}, dudosos {summ['doubtful']} · "
+            f"ropa: {summ['clothes']['source']}, separación {summ['clothes']['separation']}")
+    return {"runs": len(runs), **{k: v for k, v in summ.items() if k != "target_cluster"}}
 
 
 def _feet_court_y(img: np.ndarray, H) -> np.ndarray | None:

@@ -94,7 +94,13 @@ function Hacer-Peticion {
         $lg = "$Base\output\prueba_recall.log"
         "Peticion $($p['id']): medida de golpes encontrados frente a anotados ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
         $extra = @(); if ($p["puntos"]) { $extra = @("--max-points", "$($p['puntos'])") }
-        & uv run python scripts/validate_recall.py --root "$Base\datasets" @extra 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        Subir-Registros | Out-Null
+        # horas de trabajo: el registro sube cada 20 min para que se vea por donde va (si no, parece el PC apagado)
+        $script:subido = Get-Date
+        & uv run python scripts/validate_recall.py --root "$Base\datasets" @extra 2>&1 | ForEach-Object {
+            "$_" | Add-Content $lg -Encoding UTF8
+            if (((Get-Date) - $script:subido).TotalMinutes -ge 20) { $script:subido = Get-Date; Subir-Registros | Out-Null }
+        }
         foreach ($f in @("recall_validation.md", "recall_validation.json")) {
             if (Test-Path "$Base\datasets\reports\$f") { Copy-Item "$Base\datasets\reports\$f" "$Base\output\$f" -Force }
         }

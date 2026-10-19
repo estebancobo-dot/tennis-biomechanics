@@ -26,9 +26,10 @@
   ]
  },
  "identity": {
-  "version": "4",
-  "hash": "7feb0538b88a2a73",
+  "version": "5",
+  "hash": "4e781fa36aa038ba",
   "modules": [
+   "clothes",
    "identity"
   ]
  },
