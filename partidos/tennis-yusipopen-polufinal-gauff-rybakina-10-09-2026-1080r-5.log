@@ -506,3 +506,17 @@
 2026-10-19 07:04:05   ventana w004793889_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.18 s
 2026-10-19 07:04:32   ventana w004793889_3600: pose hybrid en 180 de 180 fotogramas (27 s; modelo 26 s; pies en 32) · bola 97 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 777 px (segments)
 2026-10-19 07:04:32   ventana w004813764_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+2026-10-19 07:04:56   ventana w004813764_3600: pose hybrid en 180 de 180 fotogramas (23 s; modelo 22 s; pies en 24) · bola 95 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 815 px (segments)
+2026-10-19 07:04:56   fine:  88 % (467/532 golpes candidatos · 47 confirmados · 48 ventanas descartadas sin pose) · 134 min · quedan ≈ 19 min
+2026-10-19 07:04:56   ventana w004825252_5910 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+2026-10-19 07:06:15   ventana w004825252_5910: pose hybrid en 295 de 295 fotogramas (45 s; modelo 43 s; pies en 295) · bola 176 s en paralelo (CPU) · raqueta 34 s (2 de 2 impactos) · 2 golpes posibles · altura 199 px (court)
+2026-10-19 07:06:30   fine:  88 % (469/532 golpes candidatos · 49 confirmados · 48 ventanas descartadas sin pose) · 135 min · quedan ≈ 18 min
+2026-10-19 07:06:30   ventana w004849267_6212 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+2026-10-19 07:07:15   ventana w004849267_6212: pose hybrid en 311 de 311 fotogramas (44 s; modelo 43 s; pies en 30) · bola 166 s en paralelo (CPU) · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 1505 px (segments)
+2026-10-19 07:07:15   fine:  89 % (471/532 golpes candidatos · 49 confirmados · 48 ventanas descartadas sin pose) · 136 min · quedan ≈ 18 min
+2026-10-19 07:07:15   ventana w005524006_6003 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.28 s
+2026-10-19 07:08:27   ventana w005524006_6003: pose hybrid en 300 de 300 fotogramas (41 s; modelo 40 s; pies en 300) · bola 134 s en paralelo (CPU) · raqueta 30 s (2 de 2 impactos) · 2 golpes posibles · altura 203 px (court)
+2026-10-19 07:08:41   fine:  89 % (473/532 golpes candidatos · 51 confirmados · 48 ventanas descartadas sin pose) · 137 min · quedan ≈ 17 min
+2026-10-19 07:08:42   ventana w005530119_3600 (near, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos y la bola bien vista ahí
+2026-10-19 07:08:42   ventana w005556282_5974 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.24 s
+2026-10-19 07:09:57   ventana w005556282_5974: pose hybrid en 299 de 299 fotogramas (43 s; modelo 41 s; pies en 299) · bola 157 s en paralelo (CPU) · raqueta 31 s (2 de 2 impactos) · 2 golpes posibles · altura 199 px (court)
