@@ -2595,3 +2595,13 @@ informe: C:\tenis\output\informe_saque\index.html
 Golpes: 167 nuevos, 167 en C:\tenis\output\exportar_derecha\golpes
 Montajes: 11 en C:\tenis\output\exportar_derecha\montajes
 Resumen: C:\tenis\output\exportar_derecha\resumen.pdf
+  golpes 10/78 (181 s)
+  golpes 20/78 (305 s)
+  golpes 30/78 (480 s)
+  golpes 40/78 (684 s)
+  golpes 50/78 (885 s)
+  golpes 60/78 (1089 s)
+  golpes 70/78 (1292 s)
+Golpes: 78 nuevos, 78 en C:\tenis\output\exportar_reves\golpes
+Montajes: 8 en C:\tenis\output\exportar_reves\montajes
+Resumen: C:\tenis\output\exportar_reves\resumen.pdf
