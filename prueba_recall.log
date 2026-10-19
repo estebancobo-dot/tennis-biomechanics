@@ -584,3 +584,95 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   scenes:  31 % (10026/32107 fotogramas) · 30 s · quedan ≈ 67 s
   scenes:  62 % (19992/32107 fotogramas) · 60 s · quedan ≈ 37 s
   scenes:  93 % (29826/32107 fotogramas) · 2 min · quedan ≈ 7 s
+  scenes: 100 % (32107/32107 fotogramas) · 2 min · quedan ≈ 0 s
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] scenes terminada a las 21:52:22 en 1.7 min
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] audio… (2026-10-19 21:52:22, etapa 3 de 11)
+  audio:  23 % (300/1284 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1284/1284 s de sonido) · 6 s · quedan ≈ 0 s
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] audio terminada a las 21:52:33 en 11 s
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] court… (2026-10-19 21:52:33, etapa 4 de 11)
+  court:  15 % (64/421 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  76 % (320/421 fotogramas) · 33 s · quedan ≈ 10 s
+  court: 100 % (421/421 fotogramas) · 42 s · quedan ≈ 0 s
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] court terminada a las 21:53:24 en 51 s
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] players… (2026-10-19 21:53:24, etapa 5 de 11)
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] score… (2026-10-19 21:53:24, etapa 6 de 11, a la vez que players)
+  [players] juego con pista: 12.2 min de 12.4 min de cámara principal
+  [score] score:   1 % (1/179 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+  [players] players:   0 % (1/7319 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   6 % (414/7319 fotogramas con jugadoras) · 30 s · quedan ≈ 8 min
+  [score] score:   9 % (16/179 muestras · 14 lecturas · 16 OCR) · 31 s · quedan ≈ 5 min
+  [players] players:  11 % (797/7319 fotogramas con jugadoras) · 60 s · quedan ≈ 8 min
+  [score] score:  16 % (29/179 muestras · 27 lecturas · 29 OCR) · 61 s · quedan ≈ 5 min
+  [players] players:  16 % (1207/7319 fotogramas con jugadoras) · 2 min · quedan ≈ 8 min
+  [score] score:  27 % (49/179 muestras · 47 lecturas · 49 OCR) · 2 min · quedan ≈ 4 min
+  [players] players:  22 % (1620/7319 fotogramas con jugadoras) · 2 min · quedan ≈ 7 min
+  [score] score:  39 % (69/179 muestras · 66 lecturas · 69 OCR) · 2 min · quedan ≈ 3 min
+  [players] players:  28 % (2024/7319 fotogramas con jugadoras) · 3 min · quedan ≈ 7 min
+  [score] score:  50 % (90/179 muestras · 87 lecturas · 90 OCR) · 3 min · quedan ≈ 3 min
+  [players] players:  33 % (2427/7319 fotogramas con jugadoras) · 3 min · quedan ≈ 6 min
+  [score] score:  61 % (109/179 muestras · 106 lecturas · 109 OCR) · 3 min · quedan ≈ 2 min
+  [players] players:  38 % (2815/7319 fotogramas con jugadoras) · 4 min · quedan ≈ 6 min
+  [score] score:  72 % (129/179 muestras · 126 lecturas · 129 OCR) · 4 min · quedan ≈ 84 s
+  [players] players:  44 % (3229/7319 fotogramas con jugadoras) · 4 min · quedan ≈ 5 min
+  [score] score:  82 % (146/179 muestras · 143 lecturas · 146 OCR) · 4 min · quedan ≈ 56 s
+  [players] players:  50 % (3635/7319 fotogramas con jugadoras) · 5 min · quedan ≈ 5 min
+  [score] score:  93 % (167/179 muestras · 164 lecturas · 167 OCR) · 5 min · quedan ≈ 20 s
+  [score] score: 100 % (179/179 muestras · 176 lecturas · 179 OCR) · 5 min · quedan ≈ 0 s
+  [score] marcador: 179 muestras en juego, 180 OCR (177 lecturas)
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] score terminada a las 21:58:23 en 5.0 min
+  [players] players:  55 % (4046/7319 fotogramas con jugadoras) · 5 min · quedan ≈ 4 min
+  [players] players:  61 % (4453/7319 fotogramas con jugadoras) · 6 min · quedan ≈ 4 min
+  [players] players:  66 % (4867/7319 fotogramas con jugadoras) · 6 min · quedan ≈ 3 min
+  [players] players:  71 % (5229/7319 fotogramas con jugadoras) · 7 min · quedan ≈ 3 min
+  [players] players:  77 % (5625/7319 fotogramas con jugadoras) · 7 min · quedan ≈ 2 min
+  [players] players:  82 % (6024/7319 fotogramas con jugadoras) · 8 min · quedan ≈ 2 min
+  [players] players:  87 % (6400/7319 fotogramas con jugadoras) · 8 min · quedan ≈ 69 s
+  [players] players:  93 % (6791/7319 fotogramas con jugadoras) · 9 min · quedan ≈ 40 s
+  [players] players:  99 % (7221/7319 fotogramas con jugadoras) · 9 min · quedan ≈ 7 s
+  [players] players: 100 % (7319/7319 fotogramas con jugadoras) · 9 min · quedan ≈ 0 s
+  [players] tiempo: 9.1 min para 7319 fotogramas a 960 px · modelo 8.0 min · leer vídeo y preparar la entrada 6.8 min en otro hilo (espera real 1.1 min) · apariencia 0.2 min en otro hilo
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] players terminada a las 22:02:32 en 9.1 min (5.0 min a la vez que otra etapa)
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] identity… (2026-10-19 22:02:32, etapa 7 de 11)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+  identity:   0 % (1/477 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+  identity:   4 % (19/477 fotogramas (ropa)) · 36 s · quedan ≈ 14 min
+  identity:   9 % (43/477 fotogramas (ropa)) · 71 s · quedan ≈ 12 min
+  identity:  13 % (61/477 fotogramas (ropa)) · 2 min · quedan ≈ 12 min
+  identity:  17 % (83/477 fotogramas (ropa)) · 2 min · quedan ≈ 11 min
+  identity:  21 % (101/477 fotogramas (ropa)) · 3 min · quedan ≈ 11 min
+  identity:  27 % (128/477 fotogramas (ropa)) · 3 min · quedan ≈ 9 min
+  identity:  31 % (148/477 fotogramas (ropa)) · 4 min · quedan ≈ 9 min
+  identity:  36 % (172/477 fotogramas (ropa)) · 5 min · quedan ≈ 8 min
+  identity:  43 % (205/477 fotogramas (ropa)) · 5 min · quedan ≈ 7 min
+  identity:  50 % (238/477 fotogramas (ropa)) · 6 min · quedan ≈ 6 min
+  identity:  61 % (293/477 fotogramas (ropa)) · 6 min · quedan ≈ 4 min
+  identity:  72 % (343/477 fotogramas (ropa)) · 7 min · quedan ≈ 3 min
+  identity:  90 % (429/477 fotogramas (ropa)) · 7 min · quedan ≈ 48 s
+  identity: 100 % (477/477 fotogramas (ropa)) · 7 min · quedan ≈ 0 s
+  ropa: 477 fotogramas · leerlos 434 s, medir la ropa 3 s
+  identidad: 0/83 planos · ropa y cambios de lado de acuerdo en 0, solo cambios de lado 0, solo ropa 0, la ropa corrige el marcador en 0, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 3.04
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] identity terminada a las 22:09:51 en 7.3 min
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] candidates… (2026-10-19 22:09:51, etapa 8 de 11)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] candidates terminada a las 22:10:00 en 9 s
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] fine… (2026-10-19 22:10:00, etapa 9 de 11)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] fine terminada a las 22:10:02 en 1 s
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] fine_opponent… (2026-10-19 22:10:02, etapa 10 de 11)
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] fine_opponent terminada a las 22:10:02 en 0 s
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] fine_doubtful… (2026-10-19 22:10:02, etapa 11 de 11)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+  ventana w000005184_5957 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  fine_doubtful:   1 % (3/389 golpes candidatos · 0 confirmados · 1 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+  ventana w000018895_6421 (far, 2 candidatos): pasa · golpe de bola en su lado a 5.36 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w000018895_6421: pose yolo en 161 de 161 fotogramas (21 s; modelo 21 s, 147 a 960 px por perderla) · bola 13 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  fine_doubtful:   1 % (5/389 golpes candidatos · 0 confirmados · 1 ventanas descartadas sin pose) · 39 s · quedan ≈ 50 min
+  ventana w000033460_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w000046701_10630 (far, 5 candidatos): pasa · golpe de bola en su lado a 4.0 s
