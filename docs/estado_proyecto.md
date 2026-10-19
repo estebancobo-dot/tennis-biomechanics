@@ -19,6 +19,9 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
 - El partido completo (los 4 partidos) se ejecuta **una sola vez, al final**, cuando todo funcione.
 - Móvil y nube: al final, después de que el PC funcione.
 
+## 19-10: el plan vigente está en `docs/plan_maestro.md` (leer primero)
+Todo lo pendiente, en orden, con su criterio de cierre medido en el PC. Almacenamiento definitivo: `docs/almacenamiento.md`.
+
 ## 17-10: decisiones y orden de trabajo (leer primero)
 
 - **Nada en la nube y nada de pago** (decisión del usuario). La aplicación profesional es local: `docs/arquitectura_producto.md`, sección «Decisión del usuario». El móvil recibe una copia del informe autocontenido, sin servidor.
