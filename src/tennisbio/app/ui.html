@@ -773,6 +773,7 @@ body.web .webview { height: 100vh; }
     h += '<div class="panel"><header><h3>Etapas</h3>' + st(all ? "analizado" : m.state, all ? "Todo hecho" : m.state) + '</header><div class="body"><div class="stages">' +
       m.stages.map(function (s) { return '<div class="stage"><i class="dot ' + s.st + '"></i><b>' + esc(s.n) + "</b><span>" + (s.min != null ? dur(s.min) || "<1 min" : "") + "</span></div>"; }).join("") +
       '</div><p class="note" style="margin-top:12px">' + (m.test_run ? "Es una prueba del ciclo automático: la mantiene el ciclo, la aplicación solo la lee." : "Las primeras etapas son la pasada barata del vídeo (una vez). La pasada fina es por jugadora.") + "</p></div></div>";
+    if (!m.test_run) h += '<div class="panel"><header><h3>¿Cuál es ' + esc(m.player_name) + '?</h3></header><div class="body" id="whoBody">' + whoPanel(m) + "</div></div>";
     var opp = m.opponent_id ? (S.players || []).filter(function (p) { return p.id === m.opponent_id; })[0] : null;
     h += '<div class="grid2"><div class="panel"><header><h3>Jugadoras</h3></header><div class="body list">' +
       '<div class="li"><div><a class="t" href="#jugadora/' + esc(m.player) + '">' + esc(m.player_name) + '</a><div class="s">analizada en este partido</div></div><div class="r">' + st(m.state) + "</div></div>" +
@@ -785,6 +786,26 @@ body.web .webview { height: 100vh; }
       '<dt>Carpeta</dt><dd><span class="mono sm">' + esc(m.dir) + "</span></dd></dl></div></div></div>";
     return h;
   };
+  /* «¿Cuál es ella?»: one click per match on the photo of her (19-10); the only manual step */
+  var WHO = {};
+  function whoPanel(m) {
+    var w = WHO[m.id];
+    if (!w) return '<p class="dim sm">Cargando las fotos…</p>';
+    if (!w.possible) return '<p class="dim sm">Las fotos salen cuando el análisis haya separado a las dos jugadoras por su ropa.</p>';
+    if (w.error) return '<p class="dim sm">No se pudieron sacar las fotos: ' + esc(w.error) + "</p>";
+    var txt = w.done ? "Elegida por ti. Si te equivocaste, toca la otra." : "Toca la foto de " + esc(m.player_name) + ": con eso se sabe quién es en todo el partido (un clic, una vez).";
+    return '<p class="sm" style="margin-bottom:10px">' + txt + '</p><div class="row-btns">' + (w.photos || []).map(function (p) {
+      var on = w.pick && Math.abs(w.pick.t - p.t) < 0.01;
+      return '<button class="btn' + (on ? " pri" : " ghost") + '" style="padding:4px" data-act="who" data-arg="' + esc(m.id) + "|" + p.t + '"><img alt="Jugadora ' + (p.cluster + 1) + '" src="' + p.src + '" style="height:180px;display:block;border-radius:6px"></button>';
+    }).join("") + "</div>";
+  }
+  function loadWho(id) {
+    call("identity_photos", id).then(function (w) {
+      WHO[id] = w;
+      var el = $("#whoBody"), m = (S.matches || []).filter(function (x) { return x.id === id; })[0];
+      if (el && m) el.innerHTML = whoPanel(m);
+    }).catch(function () {});
+  }
   R.jugadoras = function () {
     var P = S.players || [];
     return '<div class="head"><div><h1>Jugadoras</h1><p class="sub">Salen de los partidos y de sus fichas.</p></div></div><div class="pcards">' +
@@ -919,6 +940,7 @@ body.web .webview { height: 100vh; }
     cur = id; curArg = arg;
     if (id === "almacenamiento" && !S.storage) call("storage").then(function (d) { S.storage = d; if (cur === "almacenamiento") paint(); }).catch(function () {});
     if (id === "analisis") { PHONES = null; call("phones").then(function (d) { PHONES = d; var el = $("#mbBody"); if (el) el.innerHTML = mobilePanel(); }).catch(function () { PHONES = []; var el = $("#mbBody"); if (el) el.innerHTML = mobilePanel(); }); }
+    if (id === "partido" && arg && !WHO[arg]) loadWho(arg);
     if (id === "almacenamiento") call("drives").then(function (d) { DRIVES = d; var el = $("#bkBody"); if (el) el.innerHTML = backupPanel(); }).catch(function () { DRIVES = []; var el = $("#bkBody"); if (el) el.innerHTML = backupPanel(); });
     paint();
     var navId = { partido: "partidos", jugadora: "jugadoras" }[id] || id;
@@ -966,6 +988,7 @@ body.web .webview { height: 100vh; }
       else if (act === "retry") call("retry", Number(arg)).then(done("Vuelve a la cola")).catch(fail);
       else if (act === "prio") call("priority", Number(arg.split("|")[0]), Number(arg.split("|")[1])).then(done("Prioridad cambiada")).catch(fail);
       else if (act === "reanalyze") call("reanalyze", arg).then(done("Encolado: se reanaliza desde las cachés, nada se borra")).catch(fail);
+      else if (act === "who") { var ix = arg.lastIndexOf("|"), wid = arg.slice(0, ix); call("identity_pick", wid, Number(arg.slice(ix + 1))).then(function (r) { toast(r); delete WHO[wid]; loadWho(wid); }).catch(fail); }
       else if (act === "archive") call("archive", arg).then(done("Archivado: sale de las listas, no se borra")).catch(fail);
       else if (act === "free") call("free").then(function (r) { S.storage = null; done("Liberados " + gb(r) + ": nada imprescindible se ha tocado")(); route(); }).catch(fail);
       else if (act === "open_path") call("open_path", arg).catch(fail);

@@ -121,6 +121,31 @@ class Api:
             jobs.enqueue(self.app.db, "partido", match=match_id, player=(m or {}).get("player"), reason="reanalizar (pedido)")
         return "Encolado: rehace solo lo que haya cambiado, desde las cachés; nada se borra"
 
+    # «¿Cuál es ella?»: the one click per match (19-10)
+    def identity_photos(self, match_id: str) -> dict:
+        import base64
+        from . import identity_click as ic
+        with self.lock:
+            d = self.app.engine.dir(match_id)
+            video = self.app.engine.match(match_id).video
+        st = ic.state(d)
+        if not st["possible"]:
+            return {**st, "photos": []}
+        try:
+            ph = ic.photos(d, Path(video))
+        except Exception as e:  # noqa: BLE001 — the screen says why instead of failing
+            return {**st, "photos": [], "error": f"{type(e).__name__}: {e}"[:200]}
+        return {**st, "photos": [{"cluster": p["cluster"], "t": p["t"], "src": "data:image/jpeg;base64,"
+                                  + base64.b64encode(Path(p["path"]).read_bytes()).decode()} for p in ph]}
+
+    def identity_pick(self, match_id: str, t: float) -> str:
+        from . import identity_click as ic
+        with self.lock:
+            ic.save_pick(self.app.engine.dir(match_id), t, True)
+            m = self.app.db.one("SELECT player FROM matches WHERE id=?", match_id)
+            jobs.enqueue(self.app.db, "partido", match=match_id, player=(m or {}).get("player"), reason="identidad elegida por ti")
+        return "Guardado. Se rehacen solo los golpes de este partido con ella bien identificada (el resto está en caché)."
+
     def archive(self, match_id: str) -> str:
         self.app.db.x("UPDATE matches SET state='archivado', note='Archivado por ti: sale de las listas, no se borra nada.' WHERE id=?",
                       match_id)
