@@ -602,3 +602,20 @@
 2026-10-19 07:33:33   fine:  98 % (519/532 golpes candidatos · 72 confirmados · 51 ventanas descartadas sin pose) · 162 min · quedan ≈ 4 min
 2026-10-19 07:33:33   ventana w007418064_6114 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.28 s
 2026-10-19 07:34:44   ventana w007418064_6114: pose hybrid en 305 de 305 fotogramas (41 s; modelo 39 s; pies en 305) · bola 170 s en paralelo (CPU) · raqueta 29 s (2 de 2 impactos) · 2 golpes posibles · altura 196 px (court)
+2026-10-19 07:34:58   fine:  98 % (521/532 golpes candidatos · 74 confirmados · 51 ventanas descartadas sin pose) · 164 min · quedan ≈ 3 min
+2026-10-19 07:34:59   ventana w007449847_5553 (near, 3 candidatos): pasa · golpe de bola en su lado a 1.8 s
+2026-10-19 07:35:51   ventana w007449847_5553: pose hybrid en 277 de 277 fotogramas (35 s; modelo 34 s; pies en 277) · bola 146 s en paralelo (CPU) · raqueta 17 s (1 de 1 impactos) · 1 golpes posibles · altura 185 px (court)
+2026-10-19 07:35:55   fine:  98 % (524/532 golpes candidatos · 75 confirmados · 51 ventanas descartadas sin pose) · 165 min · quedan ≈ 3 min
+2026-10-19 07:35:56   ventana w007479394_7100 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.34 s
+2026-10-19 07:37:20   ventana w007479394_7100: pose hybrid en 355 de 355 fotogramas (55 s; modelo 53 s; pies en 355) · bola 155 s en paralelo (CPU) · raqueta 29 s (2 de 2 impactos) · 2 golpes posibles · altura 197 px (court)
+2026-10-19 07:37:41   fine:  99 % (526/532 golpes candidatos · 77 confirmados · 51 ventanas descartadas sin pose) · 166 min · quedan ≈ 2 min
+2026-10-19 07:37:41   ventana w007515081_11675 (near, 5 candidatos): pasa · golpe de bola en su lado a 4.92 s
+2026-10-19 07:39:06   ventana w007515081_11675: pose hybrid en 584 de 584 fotogramas (83 s; modelo 81 s; pies en 11) · bola 302 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 1251 px (segments)
+2026-10-19 07:39:06   fine: 100 % (531/532 golpes candidatos · 77 confirmados · 51 ventanas descartadas sin pose) · 168 min · quedan ≈ 19 s
+2026-10-19 07:39:06   ventana w007525350_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+2026-10-19 07:39:31   ventana w007525350_3600: pose hybrid en 179 de 179 fotogramas (25 s; modelo 24 s; pies en 179) · bola 118 s en paralelo (CPU) · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 204 px (court)
+2026-10-19 07:39:31   fine: 100 % (532/532 golpes candidatos · 77 confirmados · 51 ventanas descartadas sin pose) · 168 min · quedan ≈ 0 s
+2026-10-19 07:39:31   16 golpes no se pudieron analizar (detalle en strokes_errores.json)
+2026-10-19 07:39:32 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine terminada a las 07:39:32 en 168.5 min
+2026-10-19 07:39:32 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine_opponent… (2026-10-19 07:39:32, etapa 10 de 10)
+2026-10-19 07:39:32 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine_opponent terminada a las 07:39:32 en 0 s
