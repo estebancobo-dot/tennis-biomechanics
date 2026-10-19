@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 286,
-  "falta": 0,
-  "pocos datos": 116,
-  "aviso": 21
+  "ok": 283,
+  "falta": 31,
+  "pocos datos": 106,
+  "aviso": 91
  },
  "items": [
   {
@@ -16,6 +16,29 @@
    "status": "pocos datos",
    "detail": "10 del lado cercano (con todo el detalle), 4 del lejano; con menos de 20 muchas situaciones no se pueden describir",
    "n": 10
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin",
+   "status": "falta",
+   "detail": "marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto de saque) y 72-133 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 27 golpes, 1 saques/remates → como mucho 38% de sus golpes y 6% de sus saques. Faltan muchos golpes (ver scripts/validate_recall.py para saber en qué etapa se pierden) (18 cerca, 9 lejos)",
+   "found": 27,
+   "serves": 1,
+   "counts": {
+    "points": 45,
+    "points_high": 51,
+    "her_service_points": 17.0,
+    "her_service_points_high": 19.0,
+    "unknown_server": 0,
+    "games_seen": 7,
+    "games_unread": 0,
+    "states": 46,
+    "span_s": [
+     0.5,
+     2083.4
+    ]
+   }
   },
   {
    "req": 1,
@@ -2000,6 +2023,27 @@
   {
    "req": 1,
    "area": "Situaciones",
+   "name": "Golpe angulado (10-10 18:05, 19-10 08:11)",
+   "status": "falta",
+   "detail": "no hay clase «angulado»: la dirección solo es cruzada, paralela o al centro (court_metrics.shot_landing), aunque el bote ya se mide (registro #132)"
+  },
+  {
+   "req": 1,
+   "area": "Situaciones",
+   "name": "Bola corta baja / alta cerca de la red (19-10 08:11)",
+   "status": "falta",
+   "detail": "no hay nivel «cerca de la red» en «Dónde golpea» y en la videoteca «cerca de la red» no se combina con «baja» ni «alta» (registro #157, #158)"
+  },
+  {
+   "req": 1,
+   "area": "Situaciones",
+   "name": "Volea a media pista con golpe de fondo (19-10 08:11)",
+   "status": "falta",
+   "detail": "«volea» solo dentro de la línea de saque (technique.contact_type); sin bote entre la línea de saque y el fondo no hay clase (registro #159)"
+  },
+  {
+   "req": 1,
+   "area": "Situaciones",
    "name": "Bola rápida / lenta",
    "status": "pocos datos",
    "detail": "lenta 2, media 3, rápida 3, muy rápida 2 (se muestra con ≥ 12 golpes)",
@@ -2885,7 +2929,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "122 min para 35 min de vídeo ≈ 12.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -2940,36 +2984,29 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final",
-   "status": "pocos datos",
-   "detail": "no se comprueba en las salidas: pendiente por diseño: los 4 partidos se analizan una vez, al final (estado: NO)"
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#1, docs/peticiones_usuario.md)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#2 Ver informe y salidas en el móvil",
-   "status": "pocos datos",
-   "detail": "no se comprueba en las salidas: aplazado por el usuario (móvil al final) (estado: NO)"
-  },
-  {
-   "req": 11,
-   "area": "Peticiones",
-   "name": "#3 Nube / OneDrive sin usar el PC como servidor",
-   "status": "pocos datos",
-   "detail": "no se comprueba en las salidas: aplazado por el usuario (nube al final) (estado: NO)"
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#2); no se comprueba en las salidas: aplazado por el usuario (móvil al final)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b",
-   "status": "pocos datos",
-   "detail": "193 comprobaciones: 45 pocos datos, 148 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "status": "falta",
+   "detail": "196 comprobaciones: 3 falta, 45 pocos datos, 148 ok; la peor: «Golpe angulado (10-10 18:05, 19-10 08:11)» (no hay clase «angulado»: la dirección solo es cruzada, paralela o al centro (court_metrics.shot_landing), aunque el bote)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto",
-   "status": "pocos datos",
-   "detail": "26 comprobaciones: 19 pocos datos, 7 ok; la peor: «Bola rápida / lenta» (lenta 2, media 3, rápida 3, muy rápida 2 (se muestra con ≥ 12 golpes))"
+   "status": "falta",
+   "detail": "29 comprobaciones: 3 falta, 19 pocos datos, 7 ok; la peor: «Golpe angulado (10-10 18:05, 19-10 08:11)» (no hay clase «angulado»: la dirección solo es cruzada, paralela o al centro (court_metrics.shot_landing), aunque el bote)"
   },
   {
    "req": 11,
@@ -2989,8 +3026,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#8 Cuerdas y cara (suelo, valla lateral o trasera, ángulos, cierre muñeca–raqueta) en todas las fases. Obligatori",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 7 comprobaciones: 7 ok"
+   "status": "ok",
+   "detail": "7 comprobaciones: 7 ok"
   },
   {
    "req": 11,
@@ -3024,15 +3061,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe",
-   "status": "pocos datos",
-   "detail": "no se comprueba en las salidas: en los tests del código (uv run pytest, pc-logs:pruebas.log), no en las salidas (estado: PARCIAL)"
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#13); no se comprueba en las salidas: en los tests del código (uv run pytest, pc-logs:pruebas.log), no en las salidas"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (122 min para 35 min de vídeo ≈ 12.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3045,8 +3082,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#16 Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
+   "status": "falta",
+   "detail": "3 comprobaciones: 1 falta, 2 ok; la peor: «Volea a media pista con golpe de fondo (19-10 08:11)» («volea» solo dentro de la línea de saque (technique.contact_type); sin bote entre la línea de saque y el fondo no hay cl)"
   },
   {
    "req": 11,
@@ -3074,7 +3111,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (122 min para 35 min de vídeo ≈ 12.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3108,8 +3145,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#25 Métricas por derecha: apoyo, base, rodillas, cadera, hombros, X-factor, codo, impacto, cadena, pista",
-   "status": "ok",
-   "detail": "5 comprobaciones: 5 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok"
   },
   {
    "req": 11,
@@ -3137,28 +3174,28 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (122 min para 35 min de vídeo ≈ 12.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#30 Estado del arte: igual, mejor o peor que otras apps",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: documento de estado del arte (docs), no una salida (estado: HECHO)"
+   "detail": "no se comprueba en las salidas: documento de estado del arte (docs), no una salida"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#31 Procesado incremental al añadir vídeos",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: proceso (caché por etapas), no una salida (estado: HECHO)"
+   "detail": "no se comprueba en las salidas: proceso (caché por etapas), no una salida"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#32 Ampliable a otros golpes y jugadores",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: configuración (config/players, config/strokes), no una salida (estado: HECHO)"
+   "detail": "no se comprueba en las salidas: configuración (config/players, config/strokes), no una salida"
   },
   {
    "req": 11,
@@ -3172,7 +3209,7 @@
    "area": "Peticiones",
    "name": "#34 Maqueta con datos inventados, con apoyos",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: maqueta (docs/maqueta-informe.html), no una salida (estado: HECHO)"
+   "detail": "no se comprueba en las salidas: maqueta (docs/maqueta-informe.html), no una salida"
   },
   {
    "req": 11,
@@ -3214,7 +3251,7 @@
    "area": "Peticiones",
    "name": "#40 Scripts de instalación, uso rápido y completo, sin leer nada",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: scripts de doble clic (instalar, prueba, análisis) (estado: HECHO)"
+   "detail": "no se comprueba en las salidas: scripts de doble clic (instalar, prueba, análisis)"
   },
   {
    "req": 11,
@@ -3235,7 +3272,7 @@
    "area": "Peticiones",
    "name": "#43 El PC no es servidor",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: decisión de arquitectura (sin servidor) (estado: HECHO)"
+   "detail": "no se comprueba en las salidas: decisión de arquitectura (sin servidor)"
   },
   {
    "req": 11,
@@ -3277,21 +3314,21 @@
    "area": "Peticiones",
    "name": "#49 No perder contexto ni sesión; registros automáticos",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: registros subidos solos a pc-logs (estado: HECHO)"
+   "detail": "no se comprueba en las salidas: registros subidos solos a pc-logs"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#50 Progreso y monitorización visibles",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: registros con fecha y duración en la terminal (estado: HECHO)"
+   "detail": "no se comprueba en las salidas: registros con fecha y duración en la terminal"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#51 El código de la prueba es el de los casos reales",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: el mismo código (clip_pipeline, stages) en la prueba y en los partidos (estado: HECHO)"
+   "detail": "no se comprueba en las salidas: el mismo código (clip_pipeline, stages) en la prueba y en los partidos"
   },
   {
    "req": 11,
@@ -3340,7 +3377,7 @@
    "area": "Peticiones",
    "name": "#58 La IA más moderna posible",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: elección de modelos (RTMPose, YOLO11, TrackNetV3, RTMW3D) (estado: HECHO)"
+   "detail": "no se comprueba en las salidas: elección de modelos (RTMPose, YOLO11, TrackNetV3, RTMW3D)"
   },
   {
    "req": 11,
@@ -3368,7 +3405,7 @@
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: registros con fecha y duración (comun.ps1), no una salida (estado: HECHO)"
+   "detail": "no se comprueba en las salidas: registros con fecha y duración (comun.ps1), no una salida"
   },
   {
    "req": 11,
@@ -3423,15 +3460,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#74 ¿El análisis de las apps de pago y libres fue profundo o superficial?",
-   "status": "pocos datos",
-   "detail": "no se comprueba en las salidas: análisis documental (docs/comparativa_apps.md), no una salida (estado: PARCIAL)"
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#74); no se comprueba en las salidas: análisis documental (docs/comparativa_apps.md), no una salida"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (122 min para 35 min de vídeo ≈ 12.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3444,15 +3481,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#77 No lanzar pruebas de 6 h para validar",
-   "status": "pocos datos",
-   "detail": "no se comprueba en las salidas: lanzadores cortos (2c, 2d) sin repetir el análisis de vídeo (estado: PARCIAL)"
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#77); no se comprueba en las salidas: lanzadores cortos (2c, 2d) sin repetir el análisis de vídeo"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#78 No depender de que al usuario se le ocurran funciones",
-   "status": "pocos datos",
-   "detail": "no se comprueba en las salidas: proceso: Claude propone las funciones desde la matriz y los entrenadores (estado: PARCIAL)"
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#78); no se comprueba en las salidas: proceso: Claude propone las funciones desde la matriz y los entrenadores"
   },
   {
    "req": 11,
@@ -3466,21 +3503,21 @@
    "area": "Peticiones",
    "name": "#80 Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: cadena de prueba, auditoría y subida a pc-logs (estado: HECHO)"
+   "detail": "no se comprueba en las salidas: cadena de prueba, auditoría y subida a pc-logs"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#81 Tamaño de la salida; comprobación sin gastar tokens",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: tamanos.txt y auditoría en Python sin Claude (estado: HECHO)"
+   "detail": "no se comprueba en las salidas: tamanos.txt y auditoría en Python sin Claude"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#82 Dónde se graban las salidas, qué va a git, qué se reutiliza",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: salidas en C:\\tenis\\output, registros en pc-logs, caché por etapas (estado: HECHO)"
+   "detail": "no se comprueba en las salidas: salidas en C:\\tenis\\output, registros en pc-logs, caché por etapas"
   },
   {
    "req": 11,
@@ -3535,8 +3572,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral)",
-   "status": "pocos datos",
-   "detail": "10 comprobaciones: 9 pocos datos, 1 ok; la peor: «Bola rápida / lenta» (lenta 2, media 3, rápida 3, muy rápida 2 (se muestra con ≥ 12 golpes))"
+   "status": "falta",
+   "detail": "13 comprobaciones: 3 falta, 9 pocos datos, 1 ok; la peor: «Golpe angulado (10-10 18:05, 19-10 08:11)» (no hay clase «angulado»: la dirección solo es cruzada, paralela o al centro (court_metrics.shot_landing), aunque el bote)"
   },
   {
    "req": 11,
@@ -3555,30 +3592,9 @@
   {
    "req": 11,
    "area": "Peticiones",
-   "name": "#93 Matriz §10 Propiedades de la raqueta",
-   "status": "ok",
-   "detail": "1 comprobaciones: 1 ok"
-  },
-  {
-   "req": 11,
-   "area": "Peticiones",
-   "name": "#94 Matriz §11 Cinemática cuantitativa (velocidad de raqueta, °/s, fuerza, rpm)",
-   "status": "ok",
-   "detail": "4 comprobaciones: 4 ok"
-  },
-  {
-   "req": 11,
-   "area": "Peticiones",
    "name": "#95 Matriz §12 Neuro y visión (latencia, mirada, EMG)",
    "status": "aviso",
    "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
-  },
-  {
-   "req": 11,
-   "area": "Peticiones",
-   "name": "#96 Matriz §13 Microbiomecánica (muñeca, codo, hombro)",
-   "status": "ok",
-   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -3739,7 +3755,7 @@
    "area": "Peticiones",
    "name": "#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: ciclo automático del PC: revision_automatica.md en pc-logs (estado: HECHO)"
+   "detail": "no se comprueba en las salidas: ciclo automático del PC: revision_automatica.md en pc-logs"
   },
   {
    "req": 11,
@@ -3781,7 +3797,7 @@
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (155 min para 35 min de vídeo ≈ 15.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (122 min para 35 min de vídeo ≈ 12.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3810,6 +3826,622 @@
    "name": "#130 Resto de derecha (devolver el saque) con todas sus variantes, en la matriz y en la aplicación",
    "status": "aviso",
    "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 12 ok"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#131 detectar impactos de bola por AUDIO (Chat, 10-10 17:27)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#132 ángulos (golpe angulado) — repetido el 19-10 08:11: «golpe angulado ... te lo he dicho muchas veces» (Chat, 10",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#132, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#135 distancia al fondo, red (Chat, 11-10 19:23)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#135); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#136 lo puedes añadir al contexto o fichero base? (Chat, 13-10 09:47)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#137 hay algo que se pueda paralelizar ... threading (Chat, 13-10 18:31)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#138 se puede hacer modelos hibridos de alguna manera? (Chat, 13-10 18:34)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#139 si se pierde calidad no tocamos nada (Chat, 14-10 20:08)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#140 de la jugadora de fondo se sacan imagenes para la captura de datos en vista frontal? (Chat, 14-10 20:08)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#140); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#141 (punto 0) la imagen ... Estroboscópica ... no vale para nada; ... Sus pies en este golpe tampoco (Chat, 17-10 ",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#142 (punto 2) como se puede hacer una aplicacion profesional ... mas jugadores, mas golpes ... como se lanza, alma",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#142); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#143 (punto 3) esta es una guia para la derecha de otra jugadora ... revisar si aplica todo (Chat, 17-10 09:49)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#143); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#144 (punto 4) hay tareas o schedulers ... salen terminales y se apagan solos (Chat, 17-10 09:49)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#145 no quiero nada en la nube ni pagar ni nada (Chat, 17-10 10:09)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#146 borra las carpetas de pruebas antiguas (Chat, 17-10 10:49)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#147 la guia de ivanovic esta aplicada al 100 por 100? sobre todo los puntos 1 2 3 5 6 y 10 (Chat, 17-10 10:52)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#147); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#148 empieza por la maqueta de una fase (Chat, 17-10 13:05)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#149 no se como validar eso lo tienes que hacer tu (Chat, 17-10 13:11)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#150 estos son mas videos de youtube para analizar (3 enlaces) (Chat, 17-10 17:21)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#152 como queda la estructura de directorios ... carpeta normalizada de los jugadores (Chat, 18-10 10:12)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#153 y analizo estos videos (2 enlaces de Olivari) (Chat, 18-10 11:19)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#154 mi movil es android google pixel 8 ... que copie directo al pixel (Chat, 18-10 12:11)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#154); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#155, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#156 como sabes la identidad de la jugadora y porque hay fallos? porque no buscas en la web de la wta la imagen y a",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#156); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#157 bola corta baja cerca de la red (Chat, 19-10 08:11)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#157); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#158 bola corta alta cerca de la red (Chat, 19-10 08:11)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#158); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#159 volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (Chat, 19-10 08:11)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#159, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#160); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#161 como se enlazan los partidos de una jugadora ... tienen que estar el analisis junto (Chat, 19-10 08:11)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#162 Galerías ordenadas por calidad de captura, representatividad y resultado del punto (CLAUDE.md, Informe)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#162); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#163 Final del armado (máximo giro, raqueta más atrás) (Matriz (literatura), §1)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#163); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#164 Final de la extensión (Matriz (literatura), §1)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#164); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#165 Giro de cadera y de hombros al final del armado (Matriz (literatura), §2)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#165); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#166 Separación cadera–hombros (X-factor) (Matriz (literatura), §2)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#166); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#167 Cabeza quieta tras el impacto (Matriz (literatura), §2)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#167); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#168 Hombros más girados que la cadera en el impacto (Matriz (literatura), §2)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#168); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#169 Transferencia de peso del armado al impacto (Matriz (literatura), §2)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#169); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#170 Empuje de piernas («bajar y subir») (Matriz (literatura), §2)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#170); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#171 Primer paso: tipo (gravity, jab, pivot, counter, cruzado, lateral) (Matriz (literatura), §3)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#171); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#172 Cada paso nombrado: lateral (sin cruzar), cruzado, de carrera, hacia delante, hacia atrás, de ajuste (Matriz (",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#172); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#173 Frenado: último paso largo con caída de la velocidad (Matriz (literatura), §3)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#173); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#174 Patada atrás (tijera) tras el impacto (Matriz (literatura), §3)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#174); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#175 Recuperación: tipo de cada paso de vuelta, cuándo empieza (Matriz (literatura), §3)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#175); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#176, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#177 Orientación del pie (talón → dedo gordo respecto a la línea de fondo) en el armado y el impacto (Matriz (liter",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#177); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#178 Pivote sobre la punta del pie de atrás (talón arriba, punta apoyada) (Matriz (literatura), §3)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#178); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#179 Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP) (Matriz (literatura), §4)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#179); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#180 Retraso de la muñeca (lag) (Matriz (literatura), §4)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#180); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#181 Cara en el impacto (Matriz (literatura), §4)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#181); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#182 Velocidad de la raqueta relativa entre golpes (Matriz (literatura), §4)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#182); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#183 Posición de la mano en el mango (Matriz (literatura), §4)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#183); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#184 Altura de la bola en su vuelo, bote, punto más alto; contacto subiendo / arriba / cayendo (Matriz (literatura)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#184); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#185 Longitud del peloteo (Matriz (literatura), §5)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#185); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#186 Resto, globo, dejada, volea, subida a la red (Matriz (literatura), §5)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#186); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#187 Ganador / error (forzado o no) (Matriz (literatura), §5)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#187); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#188 Resto de primer o de segundo saque (Matriz (literatura), §5b)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#188); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#189, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#190 Clase de forma del armado: bucle verdadero, loop falso, recto atrás; tendencia «punta arriba / codo alto» (Guí",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#190); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#191 Alarmas por golpe: cara al cielo, punta hacia la red tras el giro, pausa arriba, caída bajo la rodilla, cabeza",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#191); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#192 Terminación «hacia adelante», «la mano libre recoge la raqueta», codo al terminar (Guía Ivanovic, hueco 9)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#192); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#193, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#194 «Sus principios» (5-6 frases) y «Lo que la distingue» (Guía Ivanovic, hueco 13)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#194); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#195 Fuentes en COACH: Iino y Kojima 2001, Bahamonde y Knudson 2003, Kawamoto 2019, LTA, Wulf, autoinstrucciones (G",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#195); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#196 Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#196, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#197 Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#197, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#198 Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#198, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#199 Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#199, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#200 Pista: TennisCourtDetector (14 puntos) + refinado (Estado del arte, 13-10)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#200, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#201 Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#201, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#202 Bola: probar WASB (Estado del arte, 13-10)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#202, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#203 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#203, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#204 Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#204, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#205, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#206 Validación de cuerdas y 3D con referencia real (Comparativa apps, §4.4)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#206); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#207 Golpes: sin volea, remate ni cortado (Comparativa apps, §3 Peor)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#207); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#208 Lógica duplicada JS/Python: calcular una vez en Python (Revisión completa, §2 fallo 17)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#208); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#209 Passing y globo (Revisión completa, §3 B)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#209, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#210 Dejada (bote muy corto en campo rival) (Revisión completa, §3 B)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#210, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#211, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#212 Grados de estimaciones poco fiables como objetivo (cara en el impacto) (Auditorías 17-10, técnica #15)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#212); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#213 Textos COACH (el porqué con fuente) en todas las claves de la lección (Auditorías 17-10, técnica #17)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#213); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#214 Fuentes de Ivanovic §3 #17 (Auditorías 17-10, técnica #18)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#214); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#215 Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#215); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#216 Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnic",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#216, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#217 Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#217, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#218, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#219); sin comprobación automática asignada"
   }
  ]
 }
