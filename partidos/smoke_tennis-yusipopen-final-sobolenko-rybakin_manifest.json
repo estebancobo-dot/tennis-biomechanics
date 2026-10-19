@@ -79,10 +79,10 @@
   }
  },
  "candidates": {
-  "fingerprint": "d215deb4f6f00e76",
-  "version": "7",
-  "seconds": 1868.6,
-  "finished": "2026-10-13 04:01:38",
+  "fingerprint": "41e98f5496b22670",
+  "version": "8",
+  "seconds": 1.0,
+  "finished": "2026-10-19 13:50:13",
   "summary": {
    "candidates": 329,
    "far": 261,
@@ -95,10 +95,10 @@
   }
  },
  "fine": {
-  "fingerprint": "f72d084f3d5cb79a",
+  "fingerprint": "afc13c94027c311c",
   "version": "16",
-  "seconds": 414.2,
-  "finished": "2026-10-18 18:57:03",
+  "seconds": 307.3,
+  "finished": "2026-10-19 13:55:20",
   "summary": {
    "candidates": 177,
    "confirmed": 27,
@@ -115,16 +115,16 @@
      "golpe_de_bola": 38,
      "bola_no_vista": 2
     },
-    "seconds_in_gated_windows": 2.6
+    "seconds_in_gated_windows": 2.0
    },
    "seconds": {
-    "cuerdas_y_3d": 190.0,
-    "jugadora_lejana": 115.1,
-    "analisis_ventana": 30.9,
-    "pista_ventana": 7.9,
-    "cribado": 4.8,
-    "recorte": 3.2,
-    "pose": 1.2,
+    "jugadora_lejana": 142.1,
+    "cuerdas_y_3d": 77.8,
+    "analisis_ventana": 20.9,
+    "pista_ventana": 20.3,
+    "cribado": 4.4,
+    "recorte": 3.8,
+    "pose": 0.4,
     "bola_en_paralelo_cpu": 0,
     "espera_bola_en_paralelo": 0.0
    },
@@ -142,10 +142,10 @@
   }
  },
  "fine_opponent": {
-  "fingerprint": "9fb3751744cd4b12",
+  "fingerprint": "06ad820cd364c59b",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-10-18 18:57:03",
+  "finished": "2026-10-19 13:55:20",
   "summary": {
    "enabled": false
   }
