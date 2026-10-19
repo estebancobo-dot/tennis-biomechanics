@@ -5,3 +5,77 @@
   20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 10/76 tramos descargados
   20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 20/76 tramos descargados
   20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 30/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 40/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 50/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 60/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 70/76 tramos descargados
+  no se pudo descargar r7mXCzipgBM 7522-7544 s: ERROR: ffmpeg exited with code 3436169992
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] probe… (2026-10-19 19:52:12, etapa 1 de 11)
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] probe terminada a las 19:52:13 en 0 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] scenes… (2026-10-19 19:52:13, etapa 2 de 11)
+  scenes:   0 % (1/32942 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  31 % (10226/32942 fotogramas) · 30 s · quedan ≈ 67 s
+  scenes:  61 % (20227/32942 fotogramas) · 60 s · quedan ≈ 38 s
+  scenes:  92 % (30252/32942 fotogramas) · 2 min · quedan ≈ 8 s
+  scenes: 100 % (32942/32942 fotogramas) · 2 min · quedan ≈ 0 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] scenes terminada a las 19:53:58 en 1.8 min
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] audio… (2026-10-19 19:53:58, etapa 3 de 11)
+  audio:  23 % (300/1317 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1317/1317 s de sonido) · 2 s · quedan ≈ 0 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] audio terminada a las 19:54:04 en 6 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] court… (2026-10-19 19:54:04, etapa 4 de 11)
+  court:  15 % (64/435 fotogramas) · 0 s · quedan ≈ 0 s
+  court: 100 % (435/435 fotogramas) · 28 s · quedan ≈ 0 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] court terminada a las 19:54:51 en 47 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] players… (2026-10-19 19:54:51, etapa 5 de 11)
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] score… (2026-10-19 19:54:51, etapa 6 de 11, a la vez que players)
+  [players] juego con pista: 12.1 min de 12.9 min de cámara principal
+  [score] score:   1 % (1/187 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+  [players] players:   0 % (1/7278 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   6 % (415/7278 fotogramas con jugadoras) · 30 s · quedan ≈ 8 min
+  [score] score:  17 % (31/187 muestras · 30 lecturas · 19 OCR) · 32 s · quedan ≈ 3 min
+  [players] players:  11 % (830/7278 fotogramas con jugadoras) · 60 s · quedan ≈ 8 min
+  [score] score:  29 % (54/187 muestras · 50 lecturas · 39 OCR) · 63 s · quedan ≈ 3 min
+  [players] players:  17 % (1258/7278 fotogramas con jugadoras) · 2 min · quedan ≈ 7 min
+  [score] score:  40 % (74/187 muestras · 66 lecturas · 58 OCR) · 2 min · quedan ≈ 2 min
+  [players] players:  23 % (1671/7278 fotogramas con jugadoras) · 2 min · quedan ≈ 7 min
+  [score] score:  52 % (97/187 muestras · 89 lecturas · 77 OCR) · 2 min · quedan ≈ 2 min
+  [players] players:  29 % (2099/7278 fotogramas con jugadoras) · 3 min · quedan ≈ 6 min
+  [score] score:  64 % (119/187 muestras · 110 lecturas · 95 OCR) · 3 min · quedan ≈ 90 s
+  [players] players:  35 % (2515/7278 fotogramas con jugadoras) · 3 min · quedan ≈ 6 min
+  [score] score:  75 % (141/187 muestras · 132 lecturas · 113 OCR) · 3 min · quedan ≈ 61 s
+  [players] players:  40 % (2925/7278 fotogramas con jugadoras) · 4 min · quedan ≈ 5 min
+  [score] score:  90 % (168/187 muestras · 159 lecturas · 133 OCR) · 4 min · quedan ≈ 25 s
+  [players] players:  46 % (3344/7278 fotogramas con jugadoras) · 4 min · quedan ≈ 5 min
+  [score] score: 100 % (187/187 muestras · 178 lecturas · 150 OCR) · 4 min · quedan ≈ 0 s
+  [score] marcador: 187 muestras en juego, 151 OCR (179 lecturas)
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] score terminada a las 19:59:01 en 4.2 min
+  [players] players:  52 % (3750/7278 fotogramas con jugadoras) · 5 min · quedan ≈ 4 min
+  [players] players:  57 % (4124/7278 fotogramas con jugadoras) · 5 min · quedan ≈ 4 min
+  [players] players:  62 % (4535/7278 fotogramas con jugadoras) · 6 min · quedan ≈ 3 min
+  [players] players:  67 % (4886/7278 fotogramas con jugadoras) · 6 min · quedan ≈ 3 min
+  [players] players:  73 % (5341/7278 fotogramas con jugadoras) · 7 min · quedan ≈ 2 min
+  [players] players:  81 % (5861/7278 fotogramas con jugadoras) · 7 min · quedan ≈ 2 min
+  [players] players:  88 % (6391/7278 fotogramas con jugadoras) · 8 min · quedan ≈ 63 s
+  [players] players:  95 % (6888/7278 fotogramas con jugadoras) · 8 min · quedan ≈ 27 s
+  [players] players: 100 % (7253/7278 fotogramas con jugadoras) · 9 min · quedan ≈ 2 s
+  [players] players: 100 % (7278/7278 fotogramas con jugadoras) · 9 min · quedan ≈ 0 s
+  [players] tiempo: 8.6 min para 7278 fotogramas a 960 px · modelo 7.5 min · leer vídeo y preparar la entrada 6.5 min en otro hilo (espera real 1.1 min) · apariencia 0.1 min en otro hilo
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] players terminada a las 20:03:26 en 8.6 min (4.2 min a la vez que otra etapa)
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] identity… (2026-10-19 20:03:26, etapa 7 de 11)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  identity:   0 % (1/588 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+  identity:   3 % (16/588 fotogramas (ropa)) · 36 s · quedan ≈ 21 min
+  identity:   5 % (30/588 fotogramas (ropa)) · 72 s · quedan ≈ 22 min
+  identity:   9 % (51/588 fotogramas (ropa)) · 2 min · quedan ≈ 19 min
+  identity:  11 % (64/588 fotogramas (ropa)) · 2 min · quedan ≈ 19 min
+  identity:  12 % (72/588 fotogramas (ropa)) · 3 min · quedan ≈ 20 min
+  identity:  15 % (86/588 fotogramas (ropa)) · 3 min · quedan ≈ 20 min
+  identity:  17 % (102/588 fotogramas (ropa)) · 4 min · quedan ≈ 19 min
+  identity:  20 % (120/588 fotogramas (ropa)) · 5 min · quedan ≈ 18 min
+  identity:  23 % (138/588 fotogramas (ropa)) · 5 min · quedan ≈ 17 min
+  identity:  26 % (154/588 fotogramas (ropa)) · 6 min · quedan ≈ 16 min
+  identity:  30 % (174/588 fotogramas (ropa)) · 6 min · quedan ≈ 15 min
+  identity:  32 % (188/588 fotogramas (ropa)) · 7 min · quedan ≈ 15 min
+  identity:  36 % (212/588 fotogramas (ropa)) · 7 min · quedan ≈ 13 min
