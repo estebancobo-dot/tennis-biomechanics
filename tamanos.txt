@@ -1,4 +1,4 @@
-fecha: 2026-10-19T03:52:46
+fecha: 2026-10-19T04:00:04
        5.7 MB  \output\benchmark
          1 MB  \output\capturas_app
      450.2 MB  \output\entrenamiento
@@ -8,8 +8,9 @@ fecha: 2026-10-19T03:52:46
        3.4 MB  \output\investigacion_17
        3.3 MB  \output\investigacion_25
      145.5 MB  \output\movil_prueba
+    3280.8 MB  \output\tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5
      331.3 MB  \output\us-open-2026-r4-naomi-osaka-elena-rybakina
-    1747.9 MB  \output\zheng-qinwen-elena-rybakina
+    1751.8 MB  \output\zheng-qinwen-elena-rybakina
     1528.9 MB  \output\_poc31_35
      182.6 MB  \output\_poc31_4
     7818.9 MB  \output\_poc9_largo
