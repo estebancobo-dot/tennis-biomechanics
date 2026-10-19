@@ -583,3 +583,4 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   scenes:   0 % (1/32107 fotogramas) · 0 s · quedan ≈ 0 s
   scenes:  31 % (10026/32107 fotogramas) · 30 s · quedan ≈ 67 s
   scenes:  62 % (19992/32107 fotogramas) · 60 s · quedan ≈ 37 s
+  scenes:  93 % (29826/32107 fotogramas) · 2 min · quedan ≈ 7 s
