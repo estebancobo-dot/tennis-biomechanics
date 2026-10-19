@@ -7,8 +7,8 @@ Regla del usuario (19-10): **nada nuevo hasta que la base (golpes que no se pier
 ## 0. En ejecución ahora
 | | Qué | Estado | Siguiente |
 |---|---|---|---|
-| E1 | Análisis completo de los 4 partidos (petición 32) | Final: pasada fina al 99 % (12:00 del PC); faltan rival e informes | Termina solo |
-| E2 | Línea base de golpes perdidos e identidad contra F3Set (petición 33, `validate_recall.py`) | En cola: arranca al terminar E1 | Claude lee `recall_validation.md` (lectura programada) |
+| E1 | Análisis completo de los 4 partidos (petición 32) | Terminado 19-10 13:46 (14 h 15 min). Final: 129 golpes confirmados (muy pocos) | Hecho |
+| E2 | Línea base de golpes perdidos e identidad contra F3Set (petición 34, `validate_recall.py`; la 33 la ignoró el ciclo viejo) | En cola desde 19-10 14:28 | Claude lee `recall_validation.md` (lectura programada) |
 | E3 | Vigilancia horaria del PC desde la nube | Activa | Se quita al cerrar el bloque 1 (ahorro de tokens) |
 
 ## 1. Base: no perder golpes e identidad (PRIMERO)
