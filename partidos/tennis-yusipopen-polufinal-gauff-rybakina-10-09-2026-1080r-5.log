@@ -421,3 +421,14 @@
 2026-10-19 06:33:49   ventana w002168522_3600: pose hybrid en 179 de 179 fotogramas (20 s; modelo 20 s; pies en 145) · bola 7 s · raqueta 16 s (1 de 1 impactos) · 1 golpes posibles · altura 449 px (court)
 2026-10-19 06:33:53   fine:  78 % (413/532 golpes candidatos · 18 confirmados · 42 ventanas descartadas sin pose) · 103 min · quedan ≈ 30 min
 2026-10-19 06:34:08   ventana w002218341_7106 (near, 2 candidatos): pasa · golpe de bola en su lado a 5.64 s
+2026-10-19 06:35:04   ventana w002218341_7106: pose hybrid en 355 de 355 fotogramas (42 s; modelo 41 s; pies en 355) · bola 14 s · raqueta 14 s (1 de 1 impactos) · 1 golpes posibles · altura 339 px (court)
+2026-10-19 06:35:14   fine:  78 % (415/532 golpes candidatos · 19 confirmados · 42 ventanas descartadas sin pose) · 104 min · quedan ≈ 29 min
+2026-10-19 06:35:29   ventana w002227333_5881 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+2026-10-19 06:36:40   ventana w002227333_5881: pose hybrid en 294 de 294 fotogramas (36 s; modelo 36 s; pies en 294) · bola 14 s · raqueta 34 s (2 de 2 impactos) · 2 golpes posibles · altura 375 px (court)
+2026-10-19 06:36:49   fine:  78 % (417/532 golpes candidatos · 21 confirmados · 42 ventanas descartadas sin pose) · 106 min · quedan ≈ 29 min
+2026-10-19 06:37:13   ventana w002269274_11443 (near, 4 candidatos): pasa · golpe de bola en su lado a 2.16 s
+2026-10-19 06:38:25   ventana w002269274_11443: pose hybrid en 572 de 572 fotogramas (71 s; modelo 70 s; pies en 60) · bola 23 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 1697 px (segments)
+2026-10-19 06:38:25   fine:  79 % (421/532 golpes candidatos · 21 confirmados · 42 ventanas descartadas sin pose) · 107 min · quedan ≈ 28 min
+2026-10-19 06:38:39   ventana w002279810_6288 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.0 s
+2026-10-19 06:39:50   ventana w002279810_6288: pose hybrid en 314 de 314 fotogramas (37 s; modelo 36 s; pies en 314) · bola 13 s · raqueta 33 s (2 de 2 impactos) · 2 golpes posibles · altura 210 px (court)
+2026-10-19 06:39:57   fine:  80 % (423/532 golpes candidatos · 23 confirmados · 42 ventanas descartadas sin pose) · 109 min · quedan ≈ 28 min
