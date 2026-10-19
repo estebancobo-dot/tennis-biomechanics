@@ -1137,3 +1137,58 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  28 % (3228/11428 fotogramas con jugadoras) · 4 min · quedan ≈ 10 min
   [score] score:  44 % (120/274 muestras · 114 lecturas · 120 OCR) · 4 min · quedan ≈ 5 min
   [players] players:  32 % (3627/11428 fotogramas con jugadoras) · 5 min · quedan ≈ 10 min
+  [score] score:  50 % (138/274 muestras · 132 lecturas · 138 OCR) · 5 min · quedan ≈ 5 min
+  [players] players:  35 % (4032/11428 fotogramas con jugadoras) · 5 min · quedan ≈ 9 min
+  [score] score:  57 % (155/274 muestras · 149 lecturas · 155 OCR) · 5 min · quedan ≈ 4 min
+  [players] players:  39 % (4405/11428 fotogramas con jugadoras) · 6 min · quedan ≈ 9 min
+  [score] score:  62 % (171/274 muestras · 165 lecturas · 170 OCR) · 6 min · quedan ≈ 3 min
+  [players] players:  42 % (4800/11428 fotogramas con jugadoras) · 6 min · quedan ≈ 8 min
+  [score] score:  69 % (188/274 muestras · 182 lecturas · 187 OCR) · 6 min · quedan ≈ 3 min
+  [players] players:  46 % (5207/11428 fotogramas con jugadoras) · 7 min · quedan ≈ 8 min
+  [score] score:  74 % (204/274 muestras · 198 lecturas · 203 OCR) · 7 min · quedan ≈ 2 min
+  [players] players:  49 % (5606/11428 fotogramas con jugadoras) · 7 min · quedan ≈ 7 min
+  [score] score:  80 % (220/274 muestras · 214 lecturas · 219 OCR) · 7 min · quedan ≈ 2 min
+  [players] players:  53 % (6003/11428 fotogramas con jugadoras) · 8 min · quedan ≈ 7 min
+  [score] score:  86 % (236/274 muestras · 230 lecturas · 235 OCR) · 8 min · quedan ≈ 75 s
+  [players] players:  56 % (6420/11428 fotogramas con jugadoras) · 8 min · quedan ≈ 6 min
+  [score] score:  92 % (253/274 muestras · 245 lecturas · 252 OCR) · 8 min · quedan ≈ 41 s
+  [players] players:  60 % (6818/11428 fotogramas con jugadoras) · 9 min · quedan ≈ 6 min
+  [score] score:  99 % (271/274 muestras · 263 lecturas · 270 OCR) · 9 min · quedan ≈ 6 s
+  [score] score: 100 % (274/274 muestras · 266 lecturas · 273 OCR) · 9 min · quedan ≈ 0 s
+  [score] marcador: 274 muestras en juego, 273 OCR (267 lecturas)
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] score terminada a las 23:57:34 en 8.9 min
+  [players] players:  63 % (7199/11428 fotogramas con jugadoras) · 9 min · quedan ≈ 5 min
+  [players] players:  67 % (7636/11428 fotogramas con jugadoras) · 10 min · quedan ≈ 5 min
+  [players] players:  71 % (8089/11428 fotogramas con jugadoras) · 10 min · quedan ≈ 4 min
+  [players] players:  75 % (8585/11428 fotogramas con jugadoras) · 11 min · quedan ≈ 3 min
+  [players] players:  79 % (9055/11428 fotogramas con jugadoras) · 11 min · quedan ≈ 3 min
+  [players] players:  83 % (9531/11428 fotogramas con jugadoras) · 12 min · quedan ≈ 2 min
+  [players] players:  88 % (10006/11428 fotogramas con jugadoras) · 12 min · quedan ≈ 2 min
+  [players] players:  91 % (10408/11428 fotogramas con jugadoras) · 13 min · quedan ≈ 74 s
+  [players] players:  95 % (10825/11428 fotogramas con jugadoras) · 13 min · quedan ≈ 44 s
+  [players] players:  98 % (11220/11428 fotogramas con jugadoras) · 14 min · quedan ≈ 15 s
+  [players] players: 100 % (11428/11428 fotogramas con jugadoras) · 14 min · quedan ≈ 0 s
+  [players] tiempo: 13.8 min para 11428 fotogramas a 960 px · modelo 12.8 min · leer vídeo y preparar la entrada 9.4 min en otro hilo (espera real 1.0 min) · apariencia 0.3 min en otro hilo
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] players terminada a las 00:02:32 en 13.9 min (8.9 min a la vez que otra etapa)
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] identity… (2026-10-20 00:02:32, etapa 7 de 11)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+  identity:   0 % (1/742 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+  identity:   1 % (11/742 fotogramas (ropa)) · 41 s · quedan ≈ 46 min
+  identity:   4 % (32/742 fotogramas (ropa)) · 82 s · quedan ≈ 31 min
+  identity:   6 % (48/742 fotogramas (ropa)) · 2 min · quedan ≈ 30 min
+  identity:   8 % (63/742 fotogramas (ropa)) · 3 min · quedan ≈ 29 min
+  identity:  10 % (74/742 fotogramas (ropa)) · 3 min · quedan ≈ 30 min
+  identity:  11 % (84/742 fotogramas (ropa)) · 4 min · quedan ≈ 31 min
+  identity:  13 % (96/742 fotogramas (ropa)) · 5 min · quedan ≈ 31 min
+  identity:  15 % (110/742 fotogramas (ropa)) · 5 min · quedan ≈ 30 min
+  identity:  17 % (129/742 fotogramas (ropa)) · 6 min · quedan ≈ 28 min
+  identity:  19 % (144/742 fotogramas (ropa)) · 6 min · quedan ≈ 27 min
+  identity:  21 % (153/742 fotogramas (ropa)) · 7 min · quedan ≈ 27 min
+  identity:  23 % (168/742 fotogramas (ropa)) · 8 min · quedan ≈ 26 min
+  identity:  25 % (183/742 fotogramas (ropa)) · 8 min · quedan ≈ 25 min
+  identity:  28 % (211/742 fotogramas (ropa)) · 9 min · quedan ≈ 22 min
+  identity:  31 % (228/742 fotogramas (ropa)) · 9 min · quedan ≈ 21 min
+  identity:  33 % (248/742 fotogramas (ropa)) · 10 min · quedan ≈ 19 min
