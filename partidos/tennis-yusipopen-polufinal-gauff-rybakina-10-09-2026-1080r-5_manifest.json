@@ -11,5 +11,30 @@
    "cleaned": true,
    "vfr": true
   }
+ },
+ "scenes": {
+  "fingerprint": "0346bdda91a48a71",
+  "version": "3",
+  "seconds": 1032.3,
+  "finished": "2026-10-19 04:14:28",
+  "summary": {
+   "shots": 1288,
+   "main_camera_shots": 284,
+   "detector": "transnetv2",
+   "main_camera_min": 43.0,
+   "main_rule": "lines",
+   "main_camera_min_colour": 121.8,
+   "main_views": 186
+  }
+ },
+ "audio": {
+  "fingerprint": "d669da70cd875310",
+  "version": "2",
+  "seconds": 147.0,
+  "finished": "2026-10-19 04:16:55",
+  "summary": {
+   "onsets": 8725,
+   "tracks": 2
+  }
  }
 }
