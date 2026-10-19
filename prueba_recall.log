@@ -371,3 +371,10 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   scenes:  31 % (10026/32166 fotogramas) · 30 s · quedan ≈ 66 s
   scenes:  62 % (20026/32166 fotogramas) · 60 s · quedan ≈ 37 s
   scenes:  93 % (30026/32166 fotogramas) · 2 min · quedan ≈ 6 s
+  scenes: 100 % (32166/32166 fotogramas) · 2 min · quedan ≈ 0 s
+[recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin] scenes terminada a las 21:11:34 en 1.6 min
+[recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin] audio… (2026-10-19 21:11:34, etapa 3 de 11)
+  audio:  23 % (300/1286 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1286/1286 s de sonido) · 2 s · quedan ≈ 0 s
+[recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin] audio terminada a las 21:11:37 en 3 s
+[recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin] court… (2026-10-19 21:11:37, etapa 4 de 11)
