@@ -267,3 +267,5 @@ load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7
   fine:  82 % (190/233 golpes candidatos · 3 confirmados · 21 ventanas descartadas sin pose) · 33 min · quedan ≈ 8 min
   ventana w000050057_6172 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.28 s
   ventana w000050057_6172: pose hybrid en 155 de 155 fotogramas (21 s; modelo 19 s; pies en 155) · bola 12 s · raqueta 23 s (2 de 2 impactos) · 2 golpes posibles · altura 144 px (court)
+  fine:  82 % (192/233 golpes candidatos · 5 confirmados · 21 ventanas descartadas sin pose) · 35 min · quedan ≈ 7 min
+  ventana w000069004_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
