@@ -2605,3 +2605,34 @@ Resumen: C:\tenis\output\exportar_derecha\resumen.pdf
 Golpes: 78 nuevos, 78 en C:\tenis\output\exportar_reves\golpes
 Montajes: 8 en C:\tenis\output\exportar_reves\montajes
 Resumen: C:\tenis\output\exportar_reves\resumen.pdf
+  golpes 10/50 (187 s)
+  golpes 20/50 (400 s)
+  golpes 30/50 (608 s)
+  golpes 40/50 (809 s)
+  golpes 50/50 (1001 s)
+Golpes: 50 nuevos, 50 en C:\tenis\output\exportar_saque\golpes
+Montajes: 9 en C:\tenis\output\exportar_saque\montajes
+Resumen: C:\tenis\output\exportar_saque\resumen.pdf
+    (paso terminado en 1 h 38 min)
+
+==> [2026-10-19 13:43:18] 5/5 Comprobacion automatica de requisitos (capturas del informe incluidas; se envia a Claude)
+Auditoría: 332 cumplidos, 11 no cumplidos, 47 sin golpes suficientes, 43 avisos → C:\tenis\output\auditoria\auditoria.md
+  ✘ La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo: 9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); acceleration: la lección mide 1401 px (más de pantalla y media); impact: la lección mide 1457 px (más de pantalla y media); extension: la lección mide 1536 px (más de pantalla y media)
+  ✘ «La bola y ella»: medidas reales en cada fotograma (cadera en cm, pies en m, recorrido): 2 en la pantalla
+  ✘ Etapas con errores: tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: fine; zheng-qinwen-elena-rybakina: fine
+  ✘ #4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b: 193 comprobaciones: 1 falta, 17 pocos datos, 175 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); acceleration: la lecci)
+  ✘ #5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto: 26 comprobaciones: 1 falta, 1 pocos datos, 24 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); acceleration: la lecci)
+  ✘ #11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía: 189 comprobaciones: 1 falta, 16 pocos datos, 172 ok; la peor: ««La bola y ella»: medidas reales en cada fotograma (cadera en cm, pies en m, recorrido)» (2 en la pantalla)
+  ✘ #17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»: 10 comprobaciones: 1 falta, 1 pocos datos, 8 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); acceleration: la lecci)
+  ✘ #54 Qué hace ella cuando la rival golpea, la bola cruza la red, bota y llega arriba: 2 comprobaciones: 1 falta, 1 ok; la peor: ««La bola y ella»: medidas reales en cada fotograma (cadera en cm, pies en m, recorrido)» (2 en la pantalla)
+  ✘ #68 La meta: mejorar mi derecha tomando la de X como base: 8 comprobaciones: 1 falta, 1 pocos datos, 6 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); acceleration: la lecci)
+  ✘ #73 Revisar la web de arriba abajo para que aporte valor: 23 comprobaciones: 1 falta, 1 aviso, 21 ok; la peor: ««La bola y ella»: medidas reales en cada fotograma (cadera en cm, pies en m, recorrido)» (2 en la pantalla)
+  ✘ #114 Cuerpo respecto a la bola en cada momento (golpe rival, cruza la red, cae, bota, sube, golpe): fotogramas y me: 2 comprobaciones: 1 falta, 1 ok; la peor: ««La bola y ella»: medidas reales en cada fotograma (cadera en cm, pies en m, recorrido)» (2 en la pantalla)
+
+TERMINADO en 14:15. Informes en C:\tenis\output\informe_*; videos, montajes y resumen.pdf en C:\tenis\output\exportar_*
+    (paso terminado en 2 min 51 s)
+Empezado 2026-10-18 23:30:15 - terminado 2026-10-19 13:46:09 - duracion total 14 h 15 min
+**********************
+Windows PowerShell transcript end
+End time: 20261019134609
+**********************
