@@ -563,7 +563,8 @@ def replay_spans_without_board(score: dict) -> list[tuple[float, float]]:
     return [(x["start"], x["end"]) for x in tried if x["read"] == 0 and x["end"] - x["start"] < 30]
 
 
-@stage("candidates", "9", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"))
+@stage("candidates", "9", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
+       reviews=("identidad_clic.json",))
 def st_candidates(ctx: Context, tol_s=0.35):
     """Near-player stroke candidates: swing peaks of the near player at cheap fps, confirmed by
     an audio transient when one is close. Each candidate records who the near player is
@@ -586,6 +587,10 @@ def st_candidates(ctx: Context, tol_s=0.35):
     _write(ctx.path("audio_track.json"), {"track": track, "tracks": len(tracks)})
     onsets = np.array(tracks[track]["t"]) if tracks else np.zeros(0)
     identity = _read(ctx.path("identity.json"))
+    from .identity import PICK_FILE, apply_pick
+    if ctx.path(PICK_FILE).exists():          # the user's click: which of the two is her (19-10)
+        identity, why = apply_pick(identity, _read(ctx.path(PICK_FILE)))
+        ctx.log(f"  identidad con el clic: {why}")
     # doubles are out of scope: two people inside the near half in most main-camera frames
     from .court_metrics import people_in_near_half
     counts = []

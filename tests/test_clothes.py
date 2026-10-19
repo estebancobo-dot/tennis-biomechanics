@@ -256,3 +256,22 @@ def test_run_clothes_reads_the_frames_of_each_run(tmp_path):
     assert clothes_distances(codes)[0, 1] > 0.4
     ctx.video = tmp_path / "missing.mp4"
     assert run_clothes(ctx, d, tracks, None) == (None, [])
+
+
+def test_identity_click_names_her_clothes():
+    """19-10: one click per match. The run at the click is hers (near) or not; every run with clear clothes
+    follows its group, whatever the end-change chain said; runs without clear clothes keep their answer."""
+    from tennisbio.identity import apply_pick
+
+    ident = {"fps": 10.0, "runs": [
+        {"start": 0, "end": 100, "cluster": 0, "clothes_margin": 0.5, "near_is_target": None},
+        {"start": 100, "end": 200, "cluster": 1, "clothes_margin": 0.4, "near_is_target": True},     # chain wrong
+        {"start": 200, "end": 300, "cluster": 0, "clothes_margin": 0.02, "near_is_target": False},   # unclear: kept
+        {"start": 300, "end": 400, "cluster": -1, "near_is_target": None}]}
+    out, why = apply_pick(ident, {"t": 5.0, "near_is_her": True})
+    assert [r["near_is_target"] for r in out["runs"]] == [True, False, False, None]
+    assert why["pick"] == "aplicado" and why["by_click"] == 2 and ident["runs"][1]["near_is_target"] is True
+    out, _ = apply_pick(ident, {"t": 15.0, "near_is_her": False})      # the opponent near at the click
+    assert [r["near_is_target"] for r in out["runs"]][:2] == [True, False]
+    out, why = apply_pick(ident, {"t": 35.0, "near_is_her": True})     # no clothes there: nothing changes
+    assert why["pick"] == "sin grupo de ropa en ese momento" and out["runs"][1]["near_is_target"] is True

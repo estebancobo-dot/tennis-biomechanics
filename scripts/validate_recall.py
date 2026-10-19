@@ -129,6 +129,8 @@ def main():
     ap.add_argument("--tol", type=float, default=0.2, help="tolerancia (s) para casar un golpe con el anotado")
     ap.add_argument("--skip-run", action="store_true", help="no ejecutar el pipeline: evaluar lo que ya hay")
     ap.add_argument("--force-fine", action="store_true")
+    ap.add_argument("--no-click", dest="click", action="store_false",
+                    help="sin el clic de identidad simulado (19-10: por defecto se simula, como en la aplicación)")
     args = ap.parse_args()
     root = Path(args.root)
     t_start = time.time()
@@ -170,6 +172,12 @@ def main():
             if vid is None:
                 notes.append(f"{name}: no se pudo descargar ningún tramo")
                 continue
+            if args.click:                # the user's one click per match, simulated from the annotations
+                pick = R.simulated_pick(ps, done_segs)
+                if pick:
+                    from tennisbio.identity import PICK_FILE
+                    (out_dir / mid).mkdir(parents=True, exist_ok=True)
+                    (out_dir / mid / PICK_FILE).write_text(json.dumps(pick), encoding="utf-8")
             run_pipeline(vid, mid, args.player_id, ps[0]["opponent"], out_dir, args.force_fine)
         got = {pid for s in done_segs for pid in s["points"]}
         ps = [p for p in ps if p["id"] in got]

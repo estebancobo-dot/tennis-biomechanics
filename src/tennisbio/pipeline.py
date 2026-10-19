@@ -35,6 +35,9 @@ class Stage:
     # None: the stage runs alone, as always. A function of the config can decide it (the pose model
     # is on the CPU too when there is no iGPU: then it is not run beside the OCR).
     resource: str | Callable[[dict], str | None] | None = None
+    # the user's own decisions in the match folder (never overwritten): their content is part of the
+    # fingerprint, so a new decision re-runs this stage and what follows (19-10: the identity click)
+    reviews: tuple[str, ...] = ()
 
 
 @dataclass
@@ -88,9 +91,11 @@ _PROGRESS_LOCK = threading.Lock()
 STAGES: dict[str, Stage] = {}
 
 
-def stage(name, version, deps=(), settings=lambda cfg: {}, outputs=(), code=(), match_fields=None, resource=None):
+def stage(name, version, deps=(), settings=lambda cfg: {}, outputs=(), code=(), match_fields=None, resource=None,
+          reviews=()):
     def register(fn):
-        STAGES[name] = Stage(name, version, tuple(deps), settings, fn, tuple(outputs), tuple(code), match_fields, resource)
+        STAGES[name] = Stage(name, version, tuple(deps), settings, fn, tuple(outputs), tuple(code), match_fields, resource,
+                             tuple(reviews))
         return fn
     return register
 
@@ -230,10 +235,14 @@ def save_manifest(d: Path, m: dict):
 
 def fingerprint(name: str, ctx: Context, manifest: dict) -> str:
     st = STAGES[name]
-    return _hash({"stage": name, "version": st.version, "video": video_fingerprint(ctx.match.video, ctx.dir),
-                  "settings": st.settings(ctx.cfg), "code": code_fingerprint(st.code) if st.code else None,
-                  "match": st.match_fields(ctx.match) if st.match_fields else None,
-                  "deps": {d: manifest.get(d, {}).get("fingerprint") for d in st.deps}})
+    key = {"stage": name, "version": st.version, "video": video_fingerprint(ctx.match.video, ctx.dir),
+           "settings": st.settings(ctx.cfg), "code": code_fingerprint(st.code) if st.code else None,
+           "match": st.match_fields(ctx.match) if st.match_fields else None,
+           "deps": {d: manifest.get(d, {}).get("fingerprint") for d in st.deps}}
+    if st.reviews:                    # only stages that have them: the others keep their fingerprints
+        key["reviews"] = {f: (hashlib.sha1(ctx.path(f).read_bytes()).hexdigest()[:16] if ctx.path(f).exists() else None)
+                          for f in st.reviews}
+    return _hash(key)
 
 
 def outputs_ok(name: str, ctx: Context) -> bool:

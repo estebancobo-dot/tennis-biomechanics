@@ -124,6 +124,20 @@ def plan_segments(points: list[dict], pre_s: float = 6.0, post_s: float = 3.0, j
     return segs
 
 
+def simulated_pick(points: list[dict], segs: list[dict], min_s: float = 3.0) -> dict | None:
+    """The user's identity click (19-10), simulated for the benchmark from the annotations: the middle of
+    the first point of at least min_s seconds and who is near there. {"t", "near_is_her", "simulated"}."""
+    by_id = {p["id"]: p for p in points}
+    for s in segs:
+        for pid in s["points"]:
+            p = by_id.get(pid)
+            if p and (p["b"] - p["a"]) / p["fps"] >= min_s:
+                mid = (p["a"] + p["b"]) / 2 / p["fps"]
+                return {"t": round(s["offset"] + mid - s["src_t0"], 3), "near_is_her": bool(p["near_is_target"]),
+                        "simulated": True}
+    return None
+
+
 def place_events(points: list[dict], segs: list[dict]) -> tuple[list[dict], list[tuple[float, float]]]:
     """Annotated strokes in compilation time (segments with their `offset`: start in the compilation),
     and the annotated spans (first to last frame of each point) in compilation time."""
@@ -373,6 +387,9 @@ def load_outputs(mdir: Path, hand: str = "right", window_log: Path | None = None
     sf = sc.get("fps") or 1
     o.main_shots = [(s["start"] / sf, s["end"] / sf) for s in sc.get("shots", []) if s.get("main_camera")]
     ident = rd("identity.json") or {}
+    from ..identity import PICK_FILE, apply_pick
+    if ident and (mdir / PICK_FILE).exists():     # the same runs the candidates stage used
+        ident, _ = apply_pick(ident, rd(PICK_FILE))
     ifps = ident.get("fps") or 1
     runs = [{**r, "t0": r["start"] / ifps, "t1": r["end"] / ifps} for r in ident.get("runs", [])]
     if (mdir / "players.npz").exists() and runs:

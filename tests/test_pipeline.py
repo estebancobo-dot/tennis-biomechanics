@@ -183,3 +183,29 @@ def test_scoreboard_absence_marks_replays_only_where_the_scoreboard_is_read():
     rarely = {"shots": [shot(i * 20, 3, 3) for i in range(4)] + [shot(500 + i * 20, 3, 0) for i in range(30)]}
     assert replay_spans_without_board(rarely) == []
     assert replay_spans_without_board({}) == [] and replay_spans_without_board({"shots": [shot(0, 3, 0)]}) == []
+
+
+def test_user_review_file_reruns_its_stage(tmp_path):
+    """A stage with `reviews` (the identity click) is stale when that file appears or changes."""
+    from tennisbio import pipeline as P
+
+    calls = []
+
+    @P.stage("_t_review", "1", reviews=("clic.json",), outputs=("o.json",))
+    def _st(ctx):
+        calls.append(1)
+        (ctx.dir / "o.json").write_text("{}")
+        return {}
+    try:
+        from tennisbio.catalog import Match, Player
+        v = tmp_path / "v.mp4"
+        v.write_bytes(b"x" * 100)
+        ctx = P.Context(Match("m", v, Player(id="p", name="P")), {}, tmp_path / "m")
+        P.run(ctx, ["_t_review"], parallel=False)
+        P.run(ctx, ["_t_review"], parallel=False)
+        assert len(calls) == 1
+        (ctx.dir / "clic.json").write_text('{"t": 1}')
+        P.run(ctx, ["_t_review"], parallel=False)
+        assert len(calls) == 2
+    finally:
+        P.STAGES.pop("_t_review", None)

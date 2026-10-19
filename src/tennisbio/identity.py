@@ -138,3 +138,32 @@ def near_receives(kps: np.ndarray, conf: np.ndarray, fps: float, height_px: floa
             return k
         return None
     return None
+
+
+PICK_FILE = "identidad_clic.json"
+
+
+def apply_pick(identity: dict, pick: dict | None, weak: float = 0.08) -> tuple[dict, dict]:
+    """The user's one click per match (19-10): pick = {"t": seconds, "near_is_her": bool} says who is the near
+    player at that moment. Her clothes group is the group of the run there; every run whose clothes are
+    clear (margin ≥ weak) is then decided by its group alone («ropa + clic»); the others keep their answer.
+    Returns (identity with the runs updated, summary). Without a usable pick nothing changes."""
+    runs = [dict(r) for r in identity.get("runs", [])]
+    out = {**identity, "runs": runs}
+    if not pick or "t" not in pick:
+        return out, {"pick": None}
+    fps = identity.get("fps") or 1.0
+    f = float(pick["t"]) * fps
+    at = next((r for r in runs if r["start"] <= f < r["end"]), None)
+    if at is None or at.get("cluster", -1) < 0:
+        return out, {"pick": "sin grupo de ropa en ese momento"}
+    hers = at["cluster"] if pick.get("near_is_her", True) else 1 - at["cluster"]
+    changed = 0
+    for r in runs:
+        if r.get("cluster", -1) >= 0 and (r.get("clothes_margin") or 0) >= weak or r is at:
+            v = r["cluster"] == hers
+            changed += r.get("near_is_target") != v
+            r["near_is_target"], r["method"] = v, "ropa + clic"
+    out["target_cluster"] = hers
+    return out, {"pick": "aplicado", "her_cluster": hers, "changed": changed,
+                 "by_click": sum(r.get("method") == "ropa + clic" for r in runs)}
