@@ -144,6 +144,11 @@ function Subir-Registros {
         foreach ($f in @("recall_validation.md", "recall_validation.json")) {
             if (Test-Path "$Base\output\$f") { Copy-Item "$Base\output\$f" "$d\$f" -Force -ErrorAction SilentlyContinue }
         }
+        # datos de entrenamiento del detector de golpes (peticion "entreno"): solo numeros, unos MB por partido
+        if (Test-Path "$Base\datasets\spotting") {
+            New-Item -ItemType Directory -Force -Path "$d\entreno_golpes" | Out-Null
+            Copy-Item "$Base\datasets\spotting\*.npz", "$Base\datasets\spotting\indice.json" "$d\entreno_golpes" -Force -ErrorAction SilentlyContinue
+        }
         # diagnostico de planos de los partidos (peticion "diag")
         if (Test-Path "$Base\output\capturas_diag\diag_scenes.json") {
             New-Item -ItemType Directory -Force -Path "$d\capturas_diag" | Out-Null

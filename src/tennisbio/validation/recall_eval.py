@@ -93,6 +93,22 @@ def player_points(clips: list[dict], player: str) -> list[dict]:
     return sorted(out, key=lambda p: (p["video"], p["a"]))
 
 
+def all_points(clips: list[dict]) -> list[dict]:
+    """Every annotated point of every match (training data of tennisbio.spotting): one dict per point with
+    its strokes (source frames, end, kind) and the two players' names."""
+    out = []
+    for c in clips:
+        name, a, b = clip_bounds(c["video"])
+        evs = []
+        for e in c["events"]:
+            g = parse_label(e["frame"], e["label"])
+            evs.append({"frame": a + g.frame, "side": g.side, "who": "opponent",
+                        "kind": stroke_kind(g.shot, g.hand, g.technique), "shot": g.shot, "label": e["label"]})
+        out.append({"id": c["video"], "video": name, "a": a, "b": b, "fps": float(c["fps"]), "near_is_target": False,
+                    "near_name": c["near_name"], "far_name": c["far_name"], "events": evs})
+    return sorted(out, key=lambda p: (p["video"], p["a"]))
+
+
 def plan_segments(points: list[dict], pre_s: float = 6.0, post_s: float = 3.0, join_gap_s: float = 2.0) -> list[dict]:
     """Seconds of the source video to take for a set of points of ONE video: each point from pre_s
     before its first annotated frame (serve preparation: identity and the split step need it) to post_s

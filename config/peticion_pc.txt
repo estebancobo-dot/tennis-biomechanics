@@ -1,5 +1,7 @@
-id: 35
-accion: recall
+id: 36
+accion: entreno
+partidos: 16
+horas: 12
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
 #   poc = prueba de velocidad en carpetas aparte (4 min y despues 35 min), sin tocar output\_smoke
 #   largo = el video entero en output\_pocN_largo (una noche), sin tocar output\_smoke
@@ -13,3 +15,4 @@ accion: recall
 #   diag = hojas de fotogramas de los planos de cada partido (por que hay pocos minutos de camara principal)
 #   rehacer = un partido entero de nuevo (partido: <id>) y despues el analisis completo
 #   recall = golpes encontrados frente a los anotados por personas (F3Set), por lado, tipo y etapa (puntos: N para una prueba corta)
+#   entreno = datos para entrenar el detector de golpes: partidos de F3Set (pasada barata) exportados como numeros a pc-logs/entreno_golpes (partidos: N, horas: H)

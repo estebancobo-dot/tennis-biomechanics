@@ -32,3 +32,6 @@ config/matches.yaml
 
 # Copias de trabajo temporales de los agentes de Claude Code
 .claude/worktrees/
+
+# Detector de golpes entrenado en la nube (scripts/train_spotting.py): pequeño, va en el repositorio
+!models/spotting.onnx

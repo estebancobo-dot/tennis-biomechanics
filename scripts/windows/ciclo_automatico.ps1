@@ -105,6 +105,21 @@ function Hacer-Peticion {
             if (Test-Path "$Base\datasets\reports\$f") { Copy-Item "$Base\datasets\reports\$f" "$Base\output\$f" -Force }
         }
         "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "entreno") {
+        # datos para entrenar el detector de golpes (19-10, plan hibrido): partidos de F3Set pasados por la pasada
+        # barata y exportados como numeros (nunca imagenes) a datasets\spotting; suben a pc-logs/entreno_golpes
+        $lg = "$Base\output\prueba_entreno.log"
+        "Peticion $($p['id']): datos de entrenamiento del detector de golpes ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        $extra = @()
+        if ($p["partidos"]) { $extra += @("--matches", "$($p['partidos'])") }
+        if ($p["horas"]) { $extra += @("--hours", "$($p['horas'])") }
+        Subir-Registros | Out-Null
+        $script:subido = Get-Date
+        & uv run python scripts/spotting_data.py --root "$Base\datasets" @extra 2>&1 | ForEach-Object {
+            "$_" | Add-Content $lg -Encoding UTF8
+            if (((Get-Date) - $script:subido).TotalMinutes -ge 20) { $script:subido = Get-Date; Subir-Registros | Out-Null }
+        }
+        "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "diag") {
         # por que un partido da pocos minutos de camara principal: hojas de fotogramas de los planos que el
         # color toma por juego y las lineas no confirman (scripts/diag_scenes.py), a pc-logs/capturas_diag
