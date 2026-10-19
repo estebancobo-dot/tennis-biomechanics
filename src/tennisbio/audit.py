@@ -242,6 +242,7 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
                        f"{len(near)} del lado cercano (con todo el detalle), {len(strokes) - len(near)} del lejano"
                        + (f"; con menos de {min_strokes} muchas situaciones no se pueden describir" if few else ""),
                        n=len(near)))
+    items += recall_items(match_dirs)
 
     # 1. taxonomy: each row of the coverage matrix
     for row in parse_matrix():
@@ -473,6 +474,32 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
 
     summary = {st: sum(i["status"] == st for i in items) for st in ("ok", "falta", "pocos datos", "aviso")}
     return {"stroke": stroke, "strokes": len(strokes), "near": len(near), "summary": summary, "items": items}
+
+
+def recall_items(match_dirs: list[Path]) -> list[dict]:
+    """No stroke lost: per match, her strokes found (all kinds, both ends) against what its scoreboard says
+    was played (tennisbio.point_count): points and her service points read from score.json, serves
+    expected in [service points, 2 × service points], all her strokes in a typical range per point (a
+    range, never an exact count). Red ("falta") when clearly too few: under half of the lower end."""
+    from .point_count import count_points, recall_verdict
+
+    out = []
+    for d in match_dirs:
+        sc, st = d / "score.json", d / "strokes.json"
+        if not sc.exists():
+            continue
+        try:
+            readings = json.loads(sc.read_text(encoding="utf-8")).get("readings") or []
+            strokes = json.loads(st.read_text(encoding="utf-8")) if st.exists() else []
+        except (OSError, ValueError):
+            continue
+        counts = count_points(readings)
+        serves = sum(s.get("stroke") == "overhead" for s in strokes)
+        status, detail = recall_verdict(len(strokes), serves, counts)
+        sides = f" ({sum(s.get('side') != 'far' for s in strokes)} cerca, {sum(s.get('side') == 'far' for s in strokes)} lejos)"
+        out.append(_item(1, "Golpes", f"Golpes encontrados frente al marcador: {d.name}", status, detail + sides,
+                         found=len(strokes), serves=serves, counts=counts))
+    return out
 
 
 def _combination_items(model: dict, vals: list[dict], min_n: int, factors: dict) -> list[dict]:

@@ -12,3 +12,4 @@ accion: completo
 #   completo = los partidos completos de C:\tenis\videos (lista de videos primero; despues 3_analisis_completo)
 #   diag = hojas de fotogramas de los planos de cada partido (por que hay pocos minutos de camara principal)
 #   rehacer = un partido entero de nuevo (partido: <id>) y despues el analisis completo
+#   recall = golpes encontrados frente a los anotados por personas (F3Set), por lado, tipo y etapa (puntos: N para una prueba corta)

@@ -140,6 +140,10 @@ function Subir-Registros {
             Remove-Item "$c\*" -Force -ErrorAction SilentlyContinue
             Copy-Item "$Base\output\capturas_app\*.png", "$Base\output\capturas_app\ventana.*", "$Base\output\capturas_app\movil.*" $c -Force -ErrorAction SilentlyContinue
         }
+        # medida de golpes encontrados frente a anotados (peticion "recall")
+        foreach ($f in @("recall_validation.md", "recall_validation.json")) {
+            if (Test-Path "$Base\output\$f") { Copy-Item "$Base\output\$f" "$d\$f" -Force -ErrorAction SilentlyContinue }
+        }
         # diagnostico de planos de los partidos (peticion "diag")
         if (Test-Path "$Base\output\capturas_diag\diag_scenes.json") {
             New-Item -ItemType Directory -Force -Path "$d\capturas_diag" | Out-Null

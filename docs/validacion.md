@@ -218,3 +218,23 @@ Conclusión:
   como ella (ρ ≈ 0,2). **«Sin pausa arriba» no es medible desde la tele** como objetivo de la
   lección; la medida de la mano queda como dato del golpe (fiabilidad baja) y la clase «loop falso»
   no está validada. Para enseñarlo haría falta medir la parada con la raqueta (5 puntos, cada fotograma).
+
+## Golpes perdidos (recall) — F3Set completo, por etapa (19-10)
+`uv run python scripts/validate_recall.py --root <datasets>` (en el PC; `--max-points 25` para una prueba corta,
+`--skip-run` para reevaluar sin repetir el análisis). Es la **prueba de aceptación** de cada arreglo de detección.
+
+- Referencia: **todos** los golpes anotados de Rybakina en F3Set (train + val + test): 4 partidos, 370 puntos,
+  **650 golpes suyos** (cerca: 84 saques, 108 derechas, 95 reveses, 3 voleas; lejos: 96 saques, 145 derechas,
+  115 reveses, 4 voleas). Antes solo se usaban 51 golpes del jugador cercano (fuera quien fuera) de 21 clips.
+- Los puntos (6 s antes, 3 s después) se descargan y se unen en un vídeo por partido (~100 min en total) que pasa por
+  **todas las etapas de un partido** (cámara principal, identidad con el marcador, repeticiones, candidatos, criba,
+  bola, confirmación). Cada golpe anotado se sitúa en la primera etapa que lo pierde
+  (`tennisbio.validation.recall_eval`): fuera de cámara · sin seguimiento · repetición · identidad (sin decidir /
+  equivocada) · no candidato · error / lejana no encontrada · criba «sin golpe» · bola no vista · no confirmado.
+- Salida: `<datasets>/reports/recall_validation.json` y `.md`: recall y precisión por lado y tipo, etapas de pérdida,
+  identidad de cada tramo frente a la verdad (y qué señal la decidió).
+- En los partidos reales (sin anotación), la auditoría compara los golpes encontrados con lo que dice el marcador
+  (`tennisbio.point_count`: puntos jugados y puntos de su saque leídos de `score.json`; saques esperados entre 1 y 2
+  por punto de saque; golpes totales en un rango típico de 1,6-2,6 por punto, nunca como cifra exacta). Final del
+  US Open (3,5 h, ejecución larga del PC): 187-207 puntos, 86 de su saque → esperados 86-188 saques y 299-538 golpes;
+  encontrados 129 y 25 saques/remates (como mucho 43 % y 29 %): **✘**.

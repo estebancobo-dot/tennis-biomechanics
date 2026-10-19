@@ -88,6 +88,17 @@ function Hacer-Peticion {
         & uv run tennisbio run --match $m --force 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
         & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $RepoDir "scripts\windows\analisis_completo.ps1") | Out-Host
         "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "recall") {
+        # cuantos golpes suyos encuentra el analisis frente a los anotados por personas (F3Set, 650 golpes),
+        # por lado, tipo y etapa donde se pierde cada uno, e identidad (scripts/validate_recall.py)
+        $lg = "$Base\output\prueba_recall.log"
+        "Peticion $($p['id']): medida de golpes encontrados frente a anotados ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        $extra = @(); if ($p["puntos"]) { $extra = @("--max-points", "$($p['puntos'])") }
+        & uv run python scripts/validate_recall.py --root "$Base\datasets" @extra 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        foreach ($f in @("recall_validation.md", "recall_validation.json")) {
+            if (Test-Path "$Base\datasets\reports\$f") { Copy-Item "$Base\datasets\reports\$f" "$Base\output\$f" -Force }
+        }
+        "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "diag") {
         # por que un partido da pocos minutos de camara principal: hojas de fotogramas de los planos que el
         # color toma por juego y las lineas no confirman (scripts/diag_scenes.py), a pc-logs/capturas_diag
