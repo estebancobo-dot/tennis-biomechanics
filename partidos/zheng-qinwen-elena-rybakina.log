@@ -586,3 +586,13 @@
 2026-10-19 03:39:21   ventana w004777763_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.95 s): puede haber golpe
 2026-10-19 03:39:48   ventana w004777763_3600: pose hybrid en 176 de 176 fotogramas (27 s; modelo 26 s; pies en 27) · bola 93 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 658 px (segments)
 2026-10-19 03:39:48   ventana w004799861_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.86 s): puede haber golpe
+2026-10-19 03:40:32   ventana w004799861_3600: pose hybrid en 179 de 179 fotogramas (30 s; modelo 29 s; pies en 179) · bola 110 s en paralelo (CPU) · raqueta 13 s (1 de 1 impactos) · 1 golpes posibles · altura 193 px (court)
+2026-10-19 03:40:50   fine:  95 % (477/504 golpes candidatos · 70 confirmados · 55 ventanas descartadas sin pose) · 161 min · quedan ≈ 9 min
+2026-10-19 03:40:50   ventana w004842464_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.04 s
+2026-10-19 03:41:13   ventana w004842464_3600: pose hybrid en 179 de 179 fotogramas (23 s; modelo 22 s; pies en 14) · bola 92 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+2026-10-19 03:41:13   ventana w005014941_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 1.96 s
+2026-10-19 03:41:39   ventana w005014941_3600: pose hybrid en 179 de 179 fotogramas (26 s; modelo 25 s; pies en 4) · bola 86 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 203 px (court)
+2026-10-19 03:41:39   fine:  95 % (479/504 golpes candidatos · 70 confirmados · 55 ventanas descartadas sin pose) · 162 min · quedan ≈ 8 min
+2026-10-19 03:41:39   ventana w005723185_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.0 s
+2026-10-19 03:42:05   ventana w005723185_3600: pose hybrid en 179 de 179 fotogramas (26 s; modelo 25 s; pies en 10) · bola 80 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 1546 px (segments)
+2026-10-19 03:42:05   ventana w005756326_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
