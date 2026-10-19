@@ -26,7 +26,7 @@ from tennisbio.config import load_config  # noqa: E402
 
 EXPENSIVE = ("probe", "scenes", "audio", "court", "players", "score")    # never re-run here
 CHEAP = ("identity", "candidates")                                       # re-run only when stale
-FINE = ("fine", "fine_opponent")                                         # always re-run
+FINE = ("fine", "fine_opponent", "fine_doubtful")                                         # always re-run
 VIDEO_EXT = {".mp4", ".mkv", ".ts", ".mov", ".avi", ".m4v", ".webm"}
 CLIP_NAME = re.compile(r"_\d+_\d+m$")          # smoke_test.py: <ascii>_<start>_<minutes>m.<ext>
 

@@ -34,8 +34,8 @@
   ]
  },
  "candidates": {
-  "version": "8",
-  "hash": "823a2ec78c3b41d4",
+  "version": "9",
+  "hash": "7e630a7a2e915e29",
   "modules": [
    "court_metrics",
    "replays"

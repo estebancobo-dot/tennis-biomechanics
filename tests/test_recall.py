@@ -179,7 +179,7 @@ def test_summary_precision_and_identity():
     attr = R.attribute(evs, out)
     s = R.summarize(attr, evs, out.strokes, [(0, 10)], 0.2, runs,
                     [{"t0": 0, "t1": 7, "near_is_target": True}, {"t0": 8.5, "t1": 10, "near_is_target": False}])
-    assert s["total"] == {"gt": 3, "found": 1, "recall": 0.333}
+    assert s["total"] == {"gt": 3, "found": 1, "recall": 0.333, "found_doubtful": 0, "recall_any": 0.333}
     assert s["by_side"]["far"]["gt"] == 1 and s["by_kind"]["serve"]["found"] == 0
     assert s["precision"]["predicted_in_points"] == 2 and s["precision"]["opponent_strokes"] == 1
     assert s["steps"]["identidad_equivocada"] == 1
@@ -189,3 +189,16 @@ def test_summary_precision_and_identity():
                                                        "serve_vote": 1, "return_vote": 0}
     md = R.to_markdown({"player": "Rybakina", "tol_s": 0.2, "points": 2, "matches": ["M"], "summary": s})
     assert "identidad equivocada" in md and "Recall por lado y tipo" in md
+
+
+def test_doubtful_strokes_are_found_but_kept_apart():
+    """19-10: a stroke of a run whose identity is undecided is analysed (strokes_doubtful.json): it counts
+    as found-but-doubtful, never as hers and never as lost."""
+    evs = [_ev(1.0), _ev(5.0)]
+    runs = [{"t0": 0, "t1": 8, "near_is_target": None, "method": None}]
+    out = R.Outputs(main_shots=[(0, 8)], runs=runs, doubtful=[{"t": 5.02, "side": "near", "stroke": "forehand"}])
+    attr = R.attribute(evs, out)
+    assert [a["step"] for a in attr] == ["identidad_sin_decidir", "encontrado_dudoso"]
+    s = R.summarize(attr, evs, out.strokes, [(0, 8)], 0.2, runs, [])
+    assert s["total"]["found"] == 0 and s["total"]["found_doubtful"] == 1 and s["total"]["recall_any"] == 0.5
+    assert "encontrado_dudoso" not in R.LOST

@@ -551,7 +551,7 @@ def replay_spans_without_board(score: dict) -> list[tuple[float, float]]:
     return [(x["start"], x["end"]) for x in tried if x["read"] == 0 and x["end"] - x["start"] < 30]
 
 
-@stage("candidates", "8", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"))
+@stage("candidates", "9", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"))
 def st_candidates(ctx: Context, tol_s=0.35):
     """Near-player stroke candidates: swing peaks of the near player at cheap fps, confirmed by
     an audio transient when one is close. Each candidate records who the near player is
@@ -621,17 +621,19 @@ def st_candidates(ctx: Context, tol_s=0.35):
             cands.append({"t": float(near[np.argmin(np.abs(near - t))]) if len(near) else float(t),
                           "audio": bool(len(near)), "wrist_peak_t": float(t), "side": "near",
                           "identity": who, "target": who})
-        if who is None or not len(onsets):
+        if not len(onsets):
             continue
         # the far player's hits: impact sounds of this run that are not the near player's; the
-        # fine pass keeps only those confirmed by the ball turning at the far player
+        # fine pass keeps only those confirmed by the ball turning at the far player. In a run whose
+        # identity is undecided they are kept too, with target None (fine_doubtful): never lost
         t0, t1 = frames[run[0]] / fps, frames[run[-1]] / fps
         last = -9.0
         for t in onsets[(onsets >= t0 + 0.5) & (onsets <= t1 - 0.5)]:
             if any(abs(t - x) <= 0.5 for x in near_t) or t - last < 1.0:
                 continue
             last = t
-            cands.append({"t": float(t), "audio": True, "side": "far", "identity": who, "target": not who})
+            cands.append({"t": float(t), "audio": True, "side": "far", "identity": who,
+                          "target": None if who is None else not who})
     _write(ctx.path("candidates.json"), cands)
     return {"candidates": len(cands), "far": sum(c["side"] == "far" for c in cands),
             "with_audio": sum(c["audio"] for c in cands),
@@ -1105,6 +1107,20 @@ def st_fine_opponent(ctx: Context):
         return {"enabled": False}
     return _fine(ctx, opponent_profile(ctx.match), lambda c: c.get("target", c.get("identity")) is False,
                  "strokes_opponent.json")
+
+
+@stage("fine_doubtful", "1", deps=("candidates", "court", "score"), settings=_fine_settings,
+       outputs=("strokes_doubtful.json",), code=FINE_CODE,
+       match_fields=lambda m: {**_player_fields(m.player), "surface": m.surface})
+def st_fine_doubtful(ctx: Context):
+    """The strokes of runs whose identity is undecided (19-10: a stroke is never lost for not knowing whose
+    it is). Analysed in full with the target's profile and kept apart, in strokes_doubtful.json: they count
+    as found strokes, but stay out of her measures and comparisons until the identity is decided. Already
+    in strokes.json when `include_undecided: true` (then nothing here)."""
+    if ctx.cfg.get("include_undecided", False):
+        _write(ctx.path("strokes_doubtful.json"), [])
+        return {"enabled": False}
+    return _fine(ctx, ctx.match.player, lambda c: c.get("target", c.get("identity")) is None, "strokes_doubtful.json")
 
 
 def window_cache_key(cfg: dict) -> str:

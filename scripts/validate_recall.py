@@ -194,7 +194,7 @@ def main():
         sm = R.summarize(attr, events, o.strokes, spans, args.tol, o.runs, pspans)
         per_match.append({"match": name, "points": len(ps), "summary": sm})
         print(f"[{name}] recall {sm['total']['found']}/{sm['total']['gt']}; pérdidas: "
-              + ", ".join(f"{R.STEPS[s]} {n}" for s, n in sm["steps"].items() if n and s != "encontrado"))
+              + ", ".join(f"{R.STEPS[s]} {n}" for s, n in sm["steps"].items() if n and s not in R.FOUND))
         # all matches in one timeline (each match shifted 1e6 s)
         sh = 1e6 * k
         all_attr += [{**a, "t": a["t"] + sh, "match": name} for a in attr]

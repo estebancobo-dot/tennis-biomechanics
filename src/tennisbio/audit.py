@@ -509,8 +509,14 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
         serves = sum(s.get("stroke") == "overhead" for s in strokes)
         status, detail = recall_verdict(len(strokes), serves, counts)
         sides = f" ({sum(s.get('side') != 'far' for s in strokes)} cerca, {sum(s.get('side') == 'far' for s in strokes)} lejos)"
+        try:                                      # strokes of undecided identity: analysed, kept apart, not hers yet
+            doubt = json.loads((d / "strokes_doubtful.json").read_text(encoding="utf-8")) if (d / "strokes_doubtful.json").exists() else []
+        except (OSError, ValueError):
+            doubt = []
+        if doubt:
+            sides += f"; además {len(doubt)} de identidad dudosa, apartados (no cuentan como suyos)"
         out.append(_item(1, "Golpes", f"Golpes encontrados frente al marcador: {d.name}", status, detail + sides,
-                         found=len(strokes), serves=serves, counts=counts))
+                         found=len(strokes), serves=serves, counts=counts, doubtful=len(doubt)))
     return out
 
 

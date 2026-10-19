@@ -22,6 +22,8 @@ outputs of each stage, in this order (the first that fails is where it was lost)
                         fewer than SEEN_NEEDED of the frames around it
 9. no_confirmado        analysed, ball seen, not confirmed (pose / fusion)
 10. encontrado          a stroke of hers in strokes.json within `tol` of the annotated contact
+    encontrado_dudoso    not in strokes.json but in strokes_doubtful.json (a run of undecided identity,
+                         analysed in full and kept apart): not lost, not yet counted as hers
 
 Nothing here changes what the pipeline detects: the replay rule is recomputed from the stage outputs with
 the same helpers, and the windows are read from the fine stage's own log lines.
@@ -53,9 +55,11 @@ STEPS = {
     "criba_sin_golpe": "criba «sin golpe» (sin pose)",
     "bola_no_vista": "bola no vista y no confirmado",
     "no_confirmado": "no confirmado (bola vista)",
+    "encontrado_dudoso": "encontrado, de identidad dudosa (apartado)",
     "encontrado": "encontrado",
 }
-LOST = [k for k in STEPS if k != "encontrado"]
+FOUND = ("encontrado", "encontrado_dudoso")
+LOST = [k for k in STEPS if k not in FOUND]
 
 
 def stroke_kind(shot: str, hand: str, technique: str) -> str:
@@ -128,6 +132,7 @@ class Outputs:
     windows: list = field(default_factory=list)           # [{t0, dur, side, passed, reason}]
     errors: list = field(default_factory=list)            # [t] candidates whose window failed
     strokes: list = field(default_factory=list)           # [{t, side, stroke}] her confirmed strokes
+    doubtful: list = field(default_factory=list)          # [{t, side, stroke}] strokes of undecided identity
     ball_seen: object = None                              # f(window, t) → fraction of frames with the ball, or None
     notes: list = field(default_factory=list)
 
@@ -162,6 +167,8 @@ def attribute(events: list[dict], out: Outputs, tol: float = 0.2, cand_tol: floa
 
     hers = [e for e in events if e["who"] == "target"]
     matched = match_strokes(out.strokes, hers, tol)
+    rest = [i for i in range(len(hers)) if i not in matched]
+    doubt = {rest[i]: j for i, j in match_strokes(out.doubtful, [hers[k] for k in rest], tol).items()}
     res = []
     for i, e in enumerate(hers):
         t, side = e["t"], e["side"]
@@ -174,6 +181,10 @@ def attribute(events: list[dict], out: Outputs, tol: float = 0.2, cand_tol: floa
         if i in matched:
             s = out.strokes[matched[i]]
             res.append({**info, "step": "encontrado", "pred_stroke": s.get("stroke"), "dt": round(s["t"] - t, 3)})
+            continue
+        if i in doubt:
+            s = out.doubtful[doubt[i]]
+            res.append({**info, "step": "encontrado_dudoso", "pred_stroke": s.get("stroke"), "dt": round(s["t"] - t, 3)})
             continue
         if out.main_shots and not _inside(t, out.main_shots):
             step = "fuera_de_camara"
@@ -218,7 +229,9 @@ def summarize(attr: list[dict], events: list[dict], out_strokes: list[dict], spa
     inside the annotated points; identity of the strokes and of the runs."""
     def rec(rows):
         f = sum(r["step"] == "encontrado" for r in rows)
-        return {"gt": len(rows), "found": f, "recall": _rate(f, len(rows))}
+        d = sum(r["step"] == "encontrado_dudoso" for r in rows)
+        return {"gt": len(rows), "found": f, "recall": _rate(f, len(rows)), "found_doubtful": d,
+                "recall_any": _rate(f + d, len(rows))}
     s = {"total": rec(attr)}
     s["by_side"] = {k: rec([r for r in attr if r["side"] == k]) for k in SIDES}
     s["by_kind"] = {k: rec([r for r in attr if r["kind"] == k]) for k in KINDS}
@@ -363,6 +376,8 @@ def load_outputs(mdir: Path, hand: str = "right", window_log: Path | None = None
     o.cands = rd("candidates.json") or []
     o.strokes = [{"t": s["match_time_s"], "side": s.get("side", "near"), "stroke": s.get("stroke")}
                  for s in rd("strokes.json") or []]
+    o.doubtful = [{"t": s["match_time_s"], "side": s.get("side", "near"), "stroke": s.get("stroke")}
+                  for s in rd("strokes_doubtful.json") or []]
     o.errors = [e["t"] for e in rd("strokes_errores.json") or []]
     log = window_log or mdir / "ventanas_fine.log"
     if log.exists():
@@ -402,7 +417,9 @@ def to_markdown(res: dict) -> str:
     s = res["summary"]
     L = ["# Golpes perdidos: recall frente a F3Set", "",
          f"{s['total']['gt']} golpes anotados de {res['player']} en {res['points']} puntos de {len(res['matches'])} partidos "
-         f"(tolerancia ±{res['tol_s']} s). **Encontrados {s['total']['found']} ({_pct(s['total']['recall'])})**; "
+         f"(tolerancia ±{res['tol_s']} s). **Encontrados {s['total']['found']} ({_pct(s['total']['recall'])})**"
+         + (f" y {s['total']['found_doubtful']} más apartados como de identidad dudosa (con ellos "
+            f"{_pct(s['total']['recall_any'])})" if s['total'].get('found_doubtful') else "") + "; "
          f"precisión {_pct(s['precision']['precision'])} ({s['precision']['true']} de {s['precision']['predicted_in_points']} "
          f"golpes suyos dentro de los puntos; {s['precision']['opponent_strokes']} eran golpes de la rival).", "",
          "## Recall por lado y tipo", "", "| | " + " | ".join(KINDS.values()) + " | total |", "|---|" + "---|" * (len(KINDS) + 1)]
