@@ -10,7 +10,8 @@ Regla del usuario (19-10): **nada nuevo hasta que la base (golpes que no se pier
 | E1 | Análisis completo de los 4 partidos (petición 32) | Terminado 19-10 13:46 (14 h 15 min). Final: 129 golpes confirmados (muy pocos) | Hecho |
 | E2 | Línea base F3Set con el código viejo (petición 34) | 0 de 613 golpes (0 %); 420 perdidos por «identidad sin decidir» | Hecho |
 | E3 | F3Set con identidad por ropa y golpes dudosos (petición 35) | En marcha; Dubái 10/137 (51 por identidad equivocada, 31 no confirmados, 26 sin candidato) | Al terminar: base para medir el bloque 1 |
-| E4 | Vigilancia horaria del PC desde la nube | Activa | Se quita al cerrar el bloque 1 (ahorro de tokens) |
+| E4 | Datos para entrenar el detector (petición 36, `entreno`): 4 partidos de prueba + 16 de entrenamiento de F3Set, solo números | En cola tras la 35 | La revisión horaria entrena en la nube en cuanto lleguen (`scripts/train_spotting.py`) |
+| E5 | Vigilancia horaria del PC y del plan desde la nube | Activa; entrena y pide al PC lo siguiente sola | Se quita al cerrar el bloque 1 |
 
 ## 1. Base: no perder golpes e identidad (PRIMERO) — cambio de enfoque del 19-10
 Decisión del usuario (19-10): hacerlo **como las aplicaciones profesionales**: modelos **entrenados con golpes
@@ -30,6 +31,12 @@ real el número de golpes cuadra con el esperado por el marcador (`point_count.p
 3. **Saques, lado lejano y repeticiones** dentro del mismo detector (el saque y el golpe lejano son clases y lados
    del modelo); repeticiones y cámara principal se miden aparte con el mismo banco.
 4. Medir tras cada paso contra F3Set y contra el marcador de los 4 partidos; nada se da por bueno sin ese número.
+
+Hecho (19-10): el clic (`identidad_clic.json`, `identity.apply_pick`, panel «¿Cuál es ella?» en cada partido de la
+aplicación; el banco lo simula); la recogida de datos en el PC (`scripts/spotting_data.py`, acción `entreno`) y el
+entrenamiento en la nube (`tennisbio.spotting`, `scripts/train_spotting.py` → `models/spotting.onnx`).
+Pendiente: entrenar con los datos reales; si supera a las reglas en los partidos de prueba, etapa `spotting` en el
+proceso (sustituye candidatos y confirmación) y nueva medida con `validate_recall.py`.
 
 ## 2. La fuente son los partidos (#218, #219)
 Criterio: en los 4 partidos, % de golpes con repetición enlazada y % con otra cámara enlazada, contado por script.
