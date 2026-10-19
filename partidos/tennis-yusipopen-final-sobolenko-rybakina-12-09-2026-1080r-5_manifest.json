@@ -67,5 +67,35 @@
    "samples": 648,
    "ocr_calls": 567
   }
+ },
+ "players": {
+  "fingerprint": "c26e9ee271acc53e",
+  "version": "4",
+  "seconds": 1904.5,
+  "finished": "2026-10-19 08:53:58",
+  "summary": {
+   "frames": 25165,
+   "wall_min": 31.5,
+   "model_min": 27.5,
+   "read_min": 29.0,
+   "wait_min": 4.0,
+   "appearance_min": 0.5
+  },
+  "overlap_s": 1328.7
+ },
+ "identity": {
+  "fingerprint": "f4f3fb281121e2a3",
+  "version": "4",
+  "seconds": 58.3,
+  "finished": "2026-10-19 08:54:56",
+  "summary": {
+   "runs": 342,
+   "votes": 195,
+   "confidence": 0.52,
+   "by_end_changes": 308,
+   "by_clothes": 0,
+   "conflicts": 0,
+   "decided": 308
+  }
  }
 }
