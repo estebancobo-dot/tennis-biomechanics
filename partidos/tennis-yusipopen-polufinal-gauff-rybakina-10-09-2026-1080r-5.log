@@ -149,3 +149,17 @@
 2026-10-19 04:49:47   [players] tiempo: 26.4 min para 21415 fotogramas a 960 px · modelo 23.0 min · leer vídeo y preparar la entrada 24.1 min en otro hilo (espera real 3.5 min) · apariencia 0.4 min en otro hilo
 2026-10-19 04:49:47 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] players terminada a las 04:49:47 en 26.4 min (16.4 min a la vez que otra etapa)
 2026-10-19 04:49:47 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] identity… (2026-10-19 04:49:47, etapa 7 de 10)
+2026-10-19 04:50:06 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] identity terminada a las 04:50:06 en 19 s
+2026-10-19 04:50:06 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] candidates… (2026-10-19 04:50:06, etapa 8 de 10)
+2026-10-19 04:50:30   sonido: pista 2 de 2 (la que coincide con los golpes)
+2026-10-19 04:51:01 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] candidates terminada a las 04:51:01 en 55 s
+2026-10-19 04:51:01 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine… (2026-10-19 04:51:01, etapa 9 de 10)
+2026-10-19 04:51:18   ventana w002547226_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 04:51:18   fine:   0 % (1/532 golpes candidatos · 0 confirmados · 1 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-10-19 04:51:38   ventana w002555388_9057 (far, 5 candidatos): pasa · golpe de bola en su lado a 7.32 s
+2026-10-19 04:52:12   ventana w002555388_9057: pose yolo en 452 de 452 fotogramas (34 s; modelo 33 s) · bola 18 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 107 px (court)
+2026-10-19 04:52:12   fine:   1 % (6/532 golpes candidatos · 0 confirmados · 1 ventanas descartadas sin pose) · 54 s · quedan ≈ 79 min
+2026-10-19 04:52:20   ventana w002577081_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 04:52:42   ventana w002588697_10026 (far, 5 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 04:53:09   ventana w002619324_6764 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 04:53:09   fine:   3 % (15/532 golpes candidatos · 0 confirmados · 4 ventanas descartadas sin pose) · 2 min · quedan ≈ 64 min

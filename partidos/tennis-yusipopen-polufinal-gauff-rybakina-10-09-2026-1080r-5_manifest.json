@@ -82,5 +82,36 @@
    "appearance_min": 0.4
   },
   "overlap_s": 982.1
+ },
+ "identity": {
+  "fingerprint": "5d4e5a20c8361f11",
+  "version": "4",
+  "seconds": 18.8,
+  "finished": "2026-10-19 04:50:06",
+  "summary": {
+   "runs": 280,
+   "votes": 161,
+   "confidence": 0.53,
+   "by_end_changes": 216,
+   "by_clothes": 0,
+   "conflicts": 0,
+   "decided": 216
+  }
+ },
+ "candidates": {
+  "fingerprint": "fc19024b59ccf4d2",
+  "version": "7",
+  "seconds": 55.1,
+  "finished": "2026-10-19 04:51:01",
+  "summary": {
+   "candidates": 1072,
+   "far": 767,
+   "with_audio": 1049,
+   "opponent_runs": 106,
+   "identity_unknown": 13,
+   "replay_runs_skipped": 67,
+   "replays_by_path": 30,
+   "audio_track": 1
+  }
  }
 }
