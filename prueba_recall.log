@@ -1382,3 +1382,4 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   ventana w000771642_6143: pose yolo en 154 de 154 fotogramas (19 s; modelo 19 s, 128 a 960 px por perderla) · bola 12 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 86 px (court)
   fine_doubtful:  31 % (181/592 golpes candidatos · 12 confirmados · 23 ventanas descartadas sin pose) · 30 min · quedan ≈ 69 min
   ventana w000786166_12673 (far, 5 candidatos): pasa · golpe de bola en su lado a 2.56 s
+  ventana w000786166_12673: pose yolo en 317 de 317 fotogramas (36 s; modelo 35 s, 304 a 960 px por perderla) · bola 23 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 99 px (court)
