@@ -457,3 +457,14 @@
 2026-10-19 10:15:28   ventana w009460775_5382 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.0 s
 2026-10-19 10:16:01   ventana w009460775_5382: pose yolo en 269 de 269 fotogramas (32 s; modelo 31 s, 115 a 960 px por perderla) · bola 11 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 103 px (court)
 2026-10-19 10:16:01   fine:  65 % (367/562 golpes candidatos · 29 confirmados · 46 ventanas descartadas sin pose) · 80 min · quedan ≈ 42 min
+2026-10-19 10:16:42   ventana w010146294_9678 (far, 5 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 10:16:42   fine:  66 % (372/562 golpes candidatos · 29 confirmados · 47 ventanas descartadas sin pose) · 81 min · quedan ≈ 41 min
+2026-10-19 10:17:18   ventana w010158740_7472 (far, 3 candidatos): pasa · golpe de bola en su lado a 4.56 s
+2026-10-19 10:17:54   ventana w010158740_7472: pose yolo en 374 de 374 fotogramas (36 s; modelo 35 s, 156 a 960 px por perderla) · bola 18 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 108 px (court)
+2026-10-19 10:17:54   fine:  67 % (375/562 golpes candidatos · 30 confirmados · 47 ventanas descartadas sin pose) · 82 min · quedan ≈ 41 min
+2026-10-19 10:18:16   ventana w010191846_6108 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 10:18:40   ventana w010203222_4941 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 10:18:40   fine:  67 % (379/562 golpes candidatos · 30 confirmados · 49 ventanas descartadas sin pose) · 82 min · quedan ≈ 40 min
+2026-10-19 10:19:01   ventana w010241732_7722 (far, 4 candidatos): pasa · golpe de bola en su lado a 4.4 s
+2026-10-19 10:19:50   ventana w010241732_7722: pose yolo en 386 de 386 fotogramas (49 s; modelo 48 s, 338 a 960 px por perderla) · bola 15 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 107 px (court)
+2026-10-19 10:19:50   fine:  68 % (383/562 golpes candidatos · 30 confirmados · 49 ventanas descartadas sin pose) · 84 min · quedan ≈ 39 min
