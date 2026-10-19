@@ -752,3 +752,11 @@
 2026-10-19 11:59:19   ventana w009916434_5580: pose hybrid en 278 de 278 fotogramas (38 s; modelo 37 s; pies en 278) · bola 143 s en paralelo (CPU) · raqueta 30 s (2 de 2 impactos) · 2 golpes posibles · altura 194 px (court)
 2026-10-19 11:59:52   fine:  99 % (557/562 golpes candidatos · 125 confirmados · 65 ventanas descartadas sin pose) · 184 min · quedan ≈ 2 min
 2026-10-19 11:59:52   ventana w009963785_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.08 s
+2026-10-19 12:00:31   ventana w009963785_3600: pose hybrid en 180 de 180 fotogramas (22 s; modelo 21 s; pies en 180) · bola 87 s en paralelo (CPU) · raqueta 16 s (1 de 1 impactos) · 1 golpes posibles · altura 193 px (court)
+2026-10-19 12:00:45   fine:  99 % (558/562 golpes candidatos · 126 confirmados · 65 ventanas descartadas sin pose) · 185 min · quedan ≈ 79 s
+2026-10-19 12:00:45   ventana w009996967_9318 (near, 4 candidatos): pasa · golpe de bola en su lado a 2.08 s
+2026-10-19 12:02:45   ventana w009996967_9318: pose hybrid en 466 de 466 fotogramas (65 s; modelo 63 s; pies en 466) · bola 252 s en paralelo (CPU) · raqueta 53 s (3 de 3 impactos) · 3 golpes posibles · altura 203 px (court)
+2026-10-19 12:03:15   fine: 100 % (562/562 golpes candidatos · 129 confirmados · 65 ventanas descartadas sin pose) · 187 min · quedan ≈ 0 s
+2026-10-19 12:03:17 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine terminada a las 12:03:17 en 187.5 min
+2026-10-19 12:03:17 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine_opponent… (2026-10-19 12:03:17, etapa 10 de 10)
+2026-10-19 12:03:17 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine_opponent terminada a las 12:03:17 en 0 s
