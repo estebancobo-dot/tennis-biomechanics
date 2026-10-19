@@ -41,6 +41,16 @@ VARIANTS_ASKED = {
     "En carrera / parada / en salto": "movement", "Cada apoyo": "stance_impact", "Dirección del golpe": "shot_type",
     "Ataque / defensa": "intent", "Bola subiendo / arriba / cayendo": "ball_phase", "Bola centrada / abierta": "width",
 }
+# variants the user named in the chat that have no class yet (docs/revision_peticiones_19-10.md): always
+# «falta» until a factor exists and they move to VARIANTS_ASKED
+VARIANTS_NOT_BUILT = {
+    "Golpe angulado (10-10 18:05, 19-10 08:11)": "no hay clase «angulado»: la dirección solo es cruzada, paralela o al centro "
+                                                 "(court_metrics.shot_landing), aunque el bote ya se mide (registro #132)",
+    "Bola corta baja / alta cerca de la red (19-10 08:11)": "no hay nivel «cerca de la red» en «Dónde golpea» y en la videoteca "
+                                                           "«cerca de la red» no se combina con «baja» ni «alta» (registro #157, #158)",
+    "Volea a media pista con golpe de fondo (19-10 08:11)": "«volea» solo dentro de la línea de saque (technique.contact_type); "
+                                                           "sin bote entre la línea de saque y el fondo no hay clase (registro #159)",
+}
 KEY_MOMENTS = {"ready": "espera / split step", "takeback": "inicio de preparación", "loaded": "armado",
                "acceleration": "inicio de aceleración", "impact": "impacto", "extension": "extensión",
                "finish": "terminación", "recovery": "recuperación"}
@@ -320,6 +330,8 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
     # 1. variants: every situation the user asked for
     model = (data or {}).get("model") or {}
     variants = model.get("variants") or {}
+    for label, why in VARIANTS_NOT_BUILT.items():
+        items.append(_item(1, "Situaciones", label, "falta", why))
     for label, fk in VARIANTS_ASKED.items():
         if not fk:
             items.append(_item(1, "Situaciones", label, "falta",
@@ -885,19 +897,28 @@ def file_tree_items(match_dirs: list[Path], report_dir: Path | None, out_root: P
 
 
 def petition_items(items: list[dict]) -> list[dict]:
-    """One item per user request: the worst status of the audit items that check it on the outputs."""
+    """One item per user request: the worst status of the audit items that check it on the outputs,
+    never better than what the register says (a FALTA request is «falta», a PARCIAL one at best «aviso")."""
+    from .requests_check import canonical
     out = []
     for n, text, state in parse_petitions():
         name = f"#{n} {re.sub(r' [(][0-9]{2}-10 .*$', '', text)[:110]}"
         rule = PETITIONS.get(n)
-        if state.startswith("NO APLICA"):
+        st_reg = canonical(state)
+        if st_reg in ("NO APLICA", "NO MEDIBLE"):
             continue
-        if rule is None:
-            out.append(_item(11, "Peticiones", name, "aviso", "sin comprobación automática asignada"))
+        # a request the register says is not done is never «ok» nor «pocos datos», whatever its checks say
+        if st_reg == "FALTA":
+            out.append(_item(11, "Peticiones", name, "falta", f"SIN HACER según el registro (#{n}, docs/peticiones_usuario.md)"))
             continue
-        if isinstance(rule, Note):
-            out.append(_item(11, "Peticiones", name, "ok" if state.startswith("HECHO") else "pocos datos",
-                             f"no se comprueba en las salidas: {rule} (estado: {state.split(' ')[0]})"))
+        if st_reg is None:
+            out.append(_item(11, "Peticiones", name, "falta", f"sin estado válido en el registro («{state}»)"))
+            continue
+        if rule is None or isinstance(rule, Note):
+            done = st_reg == "HECHO"
+            why = "sin comprobación automática asignada" if rule is None else f"no se comprueba en las salidas: {rule}"
+            out.append(_item(11, "Peticiones", name, "ok" if done and rule is not None else "aviso",
+                             ("" if done else f"A MEDIAS según el registro (#{n}); ") + why))
             continue
         rx = re.compile(rule)
         hit = [i for i in items if i.get("req") != 11 and (rx.search(i["name"]) or rx.search(i.get("area", "")))]
@@ -924,6 +945,12 @@ def to_markdown(res: dict) -> str:
     out = [f"# Auditoría de requisitos ({res['stroke']})", "",
            f"{res['near']} golpes del lado cercano. ✔ {s['ok']} cumplidos · ✘ {s['falta']} no cumplidos · "
            f"… {s['pocos datos']} sin golpes suficientes en esta ejecución · ! {s['aviso']} avisos", ""]
+    # first, and never folded: what the user asked for and is not done (docs/peticiones_usuario.md)
+    try:
+        from .requests_check import pending_markdown
+        out += [pending_markdown(), ""]
+    except Exception as e:                       # the audit must still be written
+        out += [f"## Peticiones del usuario SIN TERMINAR: no se pudo leer el registro ({e})", ""]
     for req, title in REQUIREMENTS.items():
         its = [i for i in res["items"] if i["req"] == req]
         if not its:

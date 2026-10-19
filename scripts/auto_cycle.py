@@ -54,6 +54,16 @@ def _reliability(items: dict) -> dict:
     return {"detail": it["detail"]} if it else {}
 
 
+def _pending() -> str:
+    """The unfinished user requests of docs/peticiones_usuario.md (tennisbio.requests_check)."""
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
+        from tennisbio.requests_check import pending_markdown
+        return pending_markdown()
+    except Exception as e:                     # the review must still be written
+        return f"## Peticiones del usuario SIN TERMINAR: no se pudo leer el registro ({e})"
+
+
 def review(new: Path, old: Path, logs: list[Path]) -> tuple[str, str]:
     a, b = _items(new), _items(old)
     errors = []
@@ -77,6 +87,8 @@ def review(new: Path, old: Path, logs: list[Path]) -> tuple[str, str]:
     out = [f"# Revisión automática: {verdict}", "",
            f"{cnt['ok']} cumplidos · {cnt['falta']} no cumplidos · {cnt['pocos datos']} sin golpes suficientes · {cnt['aviso']} avisos"
            + (f" (antes: {sum(i['status'] == 'ok' for i in b.values())} cumplidos, {sum(i['status'] == 'falta' for i in b.values())} no cumplidos)" if b else " (primera revisión)"), ""]
+    # what the user asked for and is not done, right under the verdict: «OK» only means «no regression»
+    out += [_pending(), ""]
     if errors:
         out += ["## Errores en los registros", ""] + [f"- {e}" for e in errors] + [""]
     if fails:
