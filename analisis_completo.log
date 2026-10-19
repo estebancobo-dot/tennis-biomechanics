@@ -2576,3 +2576,22 @@ informe: C:\tenis\output\informe_saque\index.html
     (paso terminado en 1 min 10 s)
 
 ==> [2026-10-19 12:04:30] 4/5 Videos por golpe, montajes por conclusion y resumen PDF
+  golpes 10/167 (154 s)
+  golpes 20/167 (312 s)
+  golpes 30/167 (497 s)
+  golpes 40/167 (703 s)
+  golpes 50/167 (903 s)
+  golpes 60/167 (1092 s)
+  golpes 70/167 (1295 s)
+  golpes 80/167 (1499 s)
+  golpes 90/167 (1697 s)
+  golpes 100/167 (1897 s)
+  golpes 110/167 (2104 s)
+  golpes 120/167 (2304 s)
+  golpes 130/167 (2497 s)
+  golpes 140/167 (2709 s)
+  golpes 150/167 (2934 s)
+  golpes 160/167 (3140 s)
+Golpes: 167 nuevos, 167 en C:\tenis\output\exportar_derecha\golpes
+Montajes: 11 en C:\tenis\output\exportar_derecha\montajes
+Resumen: C:\tenis\output\exportar_derecha\resumen.pdf
