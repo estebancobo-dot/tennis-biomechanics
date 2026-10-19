@@ -114,57 +114,63 @@
   }
  },
  "fine": {
-  "fingerprint": "afc13c94027c311c",
+  "fingerprint": "7e14aa3e285fb0d9",
   "version": "16",
-  "seconds": 307.3,
-  "finished": "2026-10-19 13:55:20",
+  "seconds": 474.6,
+  "finished": "2026-10-19 19:13:13",
   "summary": {
-   "candidates": 177,
+   "candidates": 154,
    "confirmed": 27,
    "errors": 0,
    "warnings": [],
    "forehands": 14,
-   "windows": 59,
+   "windows": 53,
    "gate": {
-    "windows_gated": 16,
-    "windows_passed": 40,
+    "windows_gated": 14,
+    "windows_passed": 37,
     "windows_ungated": 0,
     "reasons": {
-     "sin_golpe": 16,
-     "golpe_de_bola": 38,
-     "bola_no_vista": 2
+     "golpe_de_bola": 34,
+     "sin_golpe": 14,
+     "bola_no_vista": 3
     },
-    "seconds_in_gated_windows": 2.0
+    "seconds_in_gated_windows": 22.8
    },
    "seconds": {
-    "jugadora_lejana": 142.1,
-    "cuerdas_y_3d": 77.8,
-    "analisis_ventana": 20.9,
-    "pista_ventana": 20.3,
-    "cribado": 4.4,
-    "recorte": 3.8,
-    "pose": 0.4,
-    "bola_en_paralelo_cpu": 0,
+    "cuerdas_y_3d": 136.1,
+    "jugadora_lejana": 98.3,
+    "bola_en_paralelo_cpu": 83.6,
+    "pose": 60.0,
+    "bola": 37.9,
+    "raqueta": 36.3,
+    "pose_modelo_hybrid": 29.4,
+    "pose_modelo_yolo": 26.8,
+    "analisis_ventana": 19.1,
+    "pista_ventana": 12.2,
+    "recorte": 5.6,
+    "cribado": 4.9,
     "espera_bola_en_paralelo": 0.0
    },
    "counts": {
-    "overlap_s": 2.3,
-    "frames": 14613,
-    "posed_frames": 14613,
-    "impacts": 43,
+    "overlap_s": 0.7,
+    "frames": 13081,
+    "posed_frames": 13081,
+    "impacts": 42,
     "kept_impacts": 31,
-    "racket_frames": 0,
+    "racket_frames": 76,
     "whole_window_again": 0,
-    "frames_960_far": 0,
-    "windows_ball_ahead": 56
+    "frames_960_far": 289,
+    "frames_modelo_yolo": 374,
+    "frames_modelo_hybrid": 179,
+    "windows_ball_ahead": 45
    }
   }
  },
  "fine_opponent": {
-  "fingerprint": "06ad820cd364c59b",
+  "fingerprint": "71f379a93c243df7",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-10-19 13:55:20",
+  "finished": "2026-10-19 19:13:13",
   "summary": {
    "enabled": false
   }
