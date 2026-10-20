@@ -529,3 +529,26 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
 [spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez_25fps] audio terminada a las 13:19:30 en 4 s
 [spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez_25fps] court… (2026-10-20 13:19:30, etapa 4 de 14)
   court:  15 % (64/432 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  74 % (320/432 fotogramas) · 33 s · quedan ≈ 11 s
+  court: 100 % (432/432 fotogramas) · 54 s · quedan ≈ 0 s
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez_25fps] court terminada a las 13:21:06 en 1.6 min
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez_25fps] players… (2026-10-20 13:21:06, etapa 5 de 14)
+  [players] juego con pista: 11.7 min de 13.0 min de cámara principal
+  [players] players:   0 % (1/17478 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   3 % (447/17478 fotogramas con jugadoras) · 30 s · quedan ≈ 19 min
+  [players] players:   5 % (916/17478 fotogramas con jugadoras) · 60 s · quedan ≈ 18 min
+  [players] players:   8 % (1417/17478 fotogramas con jugadoras) · 2 min · quedan ≈ 17 min
+  [players] players:  11 % (1851/17478 fotogramas con jugadoras) · 2 min · quedan ≈ 17 min
+  [players] players:  13 % (2336/17478 fotogramas con jugadoras) · 3 min · quedan ≈ 16 min
+  [players] players:  16 % (2771/17478 fotogramas con jugadoras) · 3 min · quedan ≈ 16 min
+  [players] players:  19 % (3250/17478 fotogramas con jugadoras) · 4 min · quedan ≈ 15 min
+  [players] players:  21 % (3674/17478 fotogramas con jugadoras) · 4 min · quedan ≈ 15 min
+  [players] players:  24 % (4132/17478 fotogramas con jugadoras) · 5 min · quedan ≈ 15 min
+  [players] players:  26 % (4584/17478 fotogramas con jugadoras) · 5 min · quedan ≈ 14 min
+  [players] players:  29 % (5009/17478 fotogramas con jugadoras) · 6 min · quedan ≈ 14 min
+  [players] players:  31 % (5488/17478 fotogramas con jugadoras) · 6 min · quedan ≈ 13 min
+  [players] players:  34 % (5913/17478 fotogramas con jugadoras) · 7 min · quedan ≈ 13 min
+  [players] players:  36 % (6370/17478 fotogramas con jugadoras) · 7 min · quedan ≈ 12 min
+  [players] players:  39 % (6856/17478 fotogramas con jugadoras) · 8 min · quedan ≈ 12 min
+  [players] players:  42 % (7302/17478 fotogramas con jugadoras) · 8 min · quedan ≈ 11 min
+  [players] players:  44 % (7719/17478 fotogramas con jugadoras) · 9 min · quedan ≈ 11 min
