@@ -629,3 +629,61 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  58 % (10807/18650 fotogramas con jugadoras) · 12 min · quedan ≈ 9 min
   [players] players:  60 % (11244/18650 fotogramas con jugadoras) · 13 min · quedan ≈ 8 min
   [players] players:  63 % (11674/18650 fotogramas con jugadoras) · 13 min · quedan ≈ 8 min
+  [players] players:  65 % (12132/18650 fotogramas con jugadoras) · 14 min · quedan ≈ 7 min
+  [players] players:  67 % (12548/18650 fotogramas con jugadoras) · 14 min · quedan ≈ 7 min
+  [players] players:  70 % (12999/18650 fotogramas con jugadoras) · 15 min · quedan ≈ 6 min
+  [players] players:  72 % (13410/18650 fotogramas con jugadoras) · 15 min · quedan ≈ 6 min
+  [players] players:  74 % (13878/18650 fotogramas con jugadoras) · 16 min · quedan ≈ 5 min
+  [players] players:  77 % (14344/18650 fotogramas con jugadoras) · 16 min · quedan ≈ 5 min
+  [players] players:  79 % (14748/18650 fotogramas con jugadoras) · 17 min · quedan ≈ 4 min
+  [players] players:  82 % (15216/18650 fotogramas con jugadoras) · 17 min · quedan ≈ 4 min
+  [players] players:  84 % (15666/18650 fotogramas con jugadoras) · 18 min · quedan ≈ 3 min
+  [players] players:  86 % (16113/18650 fotogramas con jugadoras) · 18 min · quedan ≈ 3 min
+  [players] players:  89 % (16546/18650 fotogramas con jugadoras) · 19 min · quedan ≈ 2 min
+  [players] players:  91 % (16994/18650 fotogramas con jugadoras) · 19 min · quedan ≈ 2 min
+  [players] players:  94 % (17454/18650 fotogramas con jugadoras) · 20 min · quedan ≈ 80 s
+  [players] players:  96 % (17870/18650 fotogramas con jugadoras) · 20 min · quedan ≈ 52 s
+  [players] players:  98 % (18340/18650 fotogramas con jugadoras) · 21 min · quedan ≈ 21 s
+  [players] players: 100 % (18650/18650 fotogramas con jugadoras) · 21 min · quedan ≈ 0 s
+  [players] tiempo: 20.9 min para 18650 fotogramas a 960 px · modelo 18.4 min · leer vídeo y preparar la entrada 14.6 min en otro hilo (espera real 2.5 min) · apariencia 0.2 min en otro hilo
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi_25fps] players terminada a las 14:08:04 en 20.9 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20220126-W-Australian_Open-QF-Iga_Swiatek-Kaia_Kanepi] 279 golpes anotados, 35357 fotogramas → 20220126-W-Australian_Open-QF-Iga_Swiatek-Kaia_Kanepi.npz
+
+[20220906-M-US_Open-QF-Casper_Ruud-Matteo_Berrettini] (train) 90 puntos en 74 tramos
+  G7T5Z3WwE1M: vídeo descargado (436 MB)
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini_25fps] probe… (2026-10-20 14:10:59, etapa 1 de 14)
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini_25fps] probe terminada a las 14:10:59 en 0 s
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini_25fps] scenes… (2026-10-20 14:10:59, etapa 2 de 14)
+  scenes:   0 % (1/38700 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  24 % (9395/38700 fotogramas) · 30 s · quedan ≈ 2 min
+  scenes:  48 % (18626/38700 fotogramas) · 60 s · quedan ≈ 65 s
+  scenes:  73 % (28226/38700 fotogramas) · 2 min · quedan ≈ 34 s
+  scenes:  97 % (37649/38700 fotogramas) · 2 min · quedan ≈ 3 s
+  scenes: 100 % (38700/38700 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini_25fps] scenes terminada a las 14:13:05 en 2.1 min
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini_25fps] audio… (2026-10-20 14:13:05, etapa 3 de 14)
+  audio:  19 % (300/1548 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1548/1548 s de sonido) · 3 s · quedan ≈ 0 s
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini_25fps] audio terminada a las 14:13:09 en 3 s
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini_25fps] court… (2026-10-20 14:13:09, etapa 4 de 14)
+  court:  23 % (64/283 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  68 % (192/283 fotogramas) · 34 s · quedan ≈ 16 s
+  court: 100 % (283/283 fotogramas) · 41 s · quedan ≈ 0 s
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini_25fps] court terminada a las 14:14:28 en 1.3 min
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini_25fps] players… (2026-10-20 14:14:28, etapa 5 de 14)
+  [players] juego con pista: 7.7 min de 8.1 min de cámara principal
+  [players] players:   0 % (1/11611 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   4 % (476/11611 fotogramas con jugadoras) · 30 s · quedan ≈ 12 min
+  [players] players:   8 % (933/11611 fotogramas con jugadoras) · 60 s · quedan ≈ 11 min
+  [players] players:  12 % (1388/11611 fotogramas con jugadoras) · 2 min · quedan ≈ 11 min
+  [players] players:  16 % (1831/11611 fotogramas con jugadoras) · 2 min · quedan ≈ 11 min
+  [players] players:  20 % (2269/11611 fotogramas con jugadoras) · 3 min · quedan ≈ 10 min
+  [players] players:  23 % (2694/11611 fotogramas con jugadoras) · 3 min · quedan ≈ 10 min
+  [players] players:  27 % (3142/11611 fotogramas con jugadoras) · 4 min · quedan ≈ 9 min
+  [players] players:  31 % (3583/11611 fotogramas con jugadoras) · 4 min · quedan ≈ 9 min
+  [players] players:  35 % (4038/11611 fotogramas con jugadoras) · 5 min · quedan ≈ 8 min
+  [players] players:  39 % (4489/11611 fotogramas con jugadoras) · 5 min · quedan ≈ 8 min
+  [players] players:  42 % (4933/11611 fotogramas con jugadoras) · 6 min · quedan ≈ 7 min
+  [players] players:  46 % (5369/11611 fotogramas con jugadoras) · 6 min · quedan ≈ 7 min
