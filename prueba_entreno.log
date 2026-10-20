@@ -192,3 +192,53 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   audio: 100 % (1414/1414 s de sonido) · 2 s · quedan ≈ 0 s
 [spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi] audio terminada a las 06:37:09 en 3 s
 [spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi] court… (2026-10-20 06:37:09, etapa 4 de 11)
+  court:  15 % (64/427 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  90 % (384/427 fotogramas) · 39 s · quedan ≈ 4 s
+  court: 100 % (427/427 fotogramas) · 47 s · quedan ≈ 0 s
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi] court terminada a las 06:38:49 en 1.7 min
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi] players… (2026-10-20 06:38:49, etapa 5 de 11)
+  [players] juego con pista: 12.3 min de 12.8 min de cámara principal
+  [players] players:   0 % (1/7390 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   6 % (417/7390 fotogramas con jugadoras) · 30 s · quedan ≈ 8 min
+  [players] players:  12 % (855/7390 fotogramas con jugadoras) · 60 s · quedan ≈ 8 min
+  [players] players:  17 % (1258/7390 fotogramas con jugadoras) · 2 min · quedan ≈ 7 min
+  [players] players:  23 % (1692/7390 fotogramas con jugadoras) · 2 min · quedan ≈ 7 min
+  [players] players:  29 % (2165/7390 fotogramas con jugadoras) · 3 min · quedan ≈ 6 min
+  [players] players:  35 % (2571/7390 fotogramas con jugadoras) · 3 min · quedan ≈ 6 min
+  [players] players:  40 % (2979/7390 fotogramas con jugadoras) · 4 min · quedan ≈ 5 min
+  [players] players:  46 % (3396/7390 fotogramas con jugadoras) · 4 min · quedan ≈ 5 min
+  [players] players:  52 % (3822/7390 fotogramas con jugadoras) · 5 min · quedan ≈ 4 min
+  [players] players:  57 % (4240/7390 fotogramas con jugadoras) · 5 min · quedan ≈ 4 min
+  [players] players:  63 % (4686/7390 fotogramas con jugadoras) · 6 min · quedan ≈ 3 min
+  [players] players:  68 % (5049/7390 fotogramas con jugadoras) · 6 min · quedan ≈ 3 min
+  [players] players:  74 % (5434/7390 fotogramas con jugadoras) · 7 min · quedan ≈ 2 min
+  [players] players:  80 % (5923/7390 fotogramas con jugadoras) · 7 min · quedan ≈ 2 min
+  [players] players:  87 % (6448/7390 fotogramas con jugadoras) · 8 min · quedan ≈ 66 s
+  [players] players:  94 % (6934/7390 fotogramas con jugadoras) · 8 min · quedan ≈ 32 s
+  [players] players: 100 % (7361/7390 fotogramas con jugadoras) · 9 min · quedan ≈ 2 s
+  [players] players: 100 % (7390/7390 fotogramas con jugadoras) · 9 min · quedan ≈ 0 s
+  [players] tiempo: 8.6 min para 7390 fotogramas a 960 px · modelo 6.9 min · leer vídeo y preparar la entrada 7.2 min en otro hilo (espera real 1.7 min) · apariencia 0.1 min en otro hilo
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi] players terminada a las 06:47:24 en 8.6 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20220126-W-Australian_Open-QF-Iga_Swiatek-Kaia_Kanepi] 279 golpes anotados, 14143 fotogramas → 20220126-W-Australian_Open-QF-Iga_Swiatek-Kaia_Kanepi.npz
+
+[20220906-M-US_Open-QF-Casper_Ruud-Matteo_Berrettini] (train) 90 puntos en 74 tramos
+  G7T5Z3WwE1M: vídeo descargado (436 MB)
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini] probe… (2026-10-20 06:51:10, etapa 1 de 11)
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini] probe terminada a las 06:51:11 en 0 s
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini] scenes… (2026-10-20 06:51:11, etapa 2 de 11)
+  scenes:   0 % (1/38700 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  25 % (9826/38700 fotogramas) · 30 s · quedan ≈ 89 s
+  scenes:  51 % (19626/38700 fotogramas) · 61 s · quedan ≈ 59 s
+  scenes:  76 % (29426/38700 fotogramas) · 2 min · quedan ≈ 29 s
+  scenes: 100 % (38700/38700 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini] scenes terminada a las 06:53:12 en 2.0 min
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini] audio… (2026-10-20 06:53:12, etapa 3 de 11)
+  audio:  19 % (300/1548 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1548/1548 s de sonido) · 3 s · quedan ≈ 0 s
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini] audio terminada a las 06:53:15 en 3 s
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini] court… (2026-10-20 06:53:15, etapa 4 de 11)
+  court:  23 % (64/281 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  68 % (192/281 fotogramas) · 37 s · quedan ≈ 17 s
+  court: 100 % (281/281 fotogramas) · 50 s · quedan ≈ 0 s
