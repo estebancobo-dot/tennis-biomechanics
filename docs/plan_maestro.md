@@ -38,6 +38,32 @@ entrenamiento en la nube (`tennisbio.spotting`, `scripts/train_spotting.py` → 
 Pendiente: entrenar con los datos reales; si supera a las reglas en los partidos de prueba, etapa `spotting` en el
 proceso (sustituye candidatos y confirmación) y nueva medida con `validate_recall.py`.
 
+## Plan en paralelo (20-10, «base completa acelerada»)
+
+Tres carriles a la vez. El PC hace un trabajo pesado cada vez; la nube desarrolla y entrena mientras tanto.
+
+| Id | Tarea | Carril | Depende de | Estado |
+|---|---|---|---|---|
+| P1 | Datos de entrenamiento a 10 fps (petición 38) | PC | — | en marcha |
+| P2 | Datos a 25 fps + sonido completo (petición 39) | PC | P1 (compilaciones ya bajadas) | en cola |
+| P3 | Diagnóstico de la cámara principal (cuartos AO 2023) | PC | C2 (cola) | pendiente |
+| P4 | Medida de golpes F3Set de principio a fin con detector + clic simulado | PC | C1, C2, modelo ≥ 90 % (o el mejor) | pendiente |
+| P5 | Pasada definitiva de los 4 partidos | PC | C1-C5 integrados, P4 en verde | pendiente |
+| N1 | Reentrenar y medir cada vez que llegan datos (revisión horaria) | Nube | P1/P2 | activo (cercano 60 %) |
+| N2 | Bola como señal del detector (si P2 no basta) | Nube + PC | N1 con P2 | preparado si hace falta |
+| C1 | Detector dentro del proceso (etapa `spotting`, apagado hasta pasar la medida) | Nube (agente) | — | en marcha |
+| C2 | Cola de peticiones del PC | Nube (agente) | — | en marcha |
+| C3 | Situaciones que faltan (bloque 3) | Nube (agente) | — (se validan con P5) | en marcha |
+| C4 | Repeticiones y otras cámaras enlazadas (bloque 2) | Nube (agente) | — (se validan con P4/P5) | en marcha |
+| C5 | Estructura de carpetas definitiva (bloque 4) | Nube (agente) | — | en marcha |
+| I1 | Juntar C1-C5, pruebas completas, subir | Nube (Claude) | cada C al terminar | — |
+| I2 | Cambio a la estructura nueva + migración | Nube → PC | C5, antes de P5 | — |
+| A1 | Aplicación y móvil con los 4 partidos reales (bloque 6) | Nube + PC | P5 | — |
+| V1 | Velocidad (bloque 7) | Nube | — (tras P5 para medir) | — |
+| R1 | Resto de peticiones (bloque 8), por tandas | Nube | según la petición | — |
+
+Camino crítico: P1 → P2 → N1 (≥ 90 % cercano) → P4 → P5 → A1. Lo demás va en paralelo y se integra antes de P5.
+
 ## 2. La fuente son los partidos (#218, #219)
 Criterio: en los 4 partidos, % de golpes con repetición enlazada y % con otra cámara enlazada, contado por script.
 1. Repeticiones a velocidad normal y en cámara lenta: enlazarlas a su golpe en directo, estimar el factor de cámara lenta, usar sus fotogramas extra (impacto menos borroso).
