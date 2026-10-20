@@ -30,7 +30,7 @@
   },
   {
    "title": "Sus golpes (Videoteca y pista)",
-   "text_chars": 3124,
+   "text_chars": 3248,
    "charts": 1,
    "videos": 7,
    "black_canvases": 0,
@@ -44,7 +44,7 @@
    "body_base": 0,
    "body_trunk": 0,
    "heights_layer": false,
-   "lib_filters": 27,
+   "lib_filters": 33,
    "news": false,
    "intro": true,
    "external_links": 0,
@@ -57,7 +57,7 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 4904,
+   "text_chars": 4903,
    "charts": 31,
    "videos": 8,
    "black_canvases": 0,
@@ -318,9 +318,9 @@
   }
  ],
  "learn": {
-  "combinations": 1627,
-  "with_exact_strokes": 448,
-  "checkpoints_checked": 146430,
+  "combinations": 2050,
+  "with_exact_strokes": 480,
+  "checkpoints_checked": 184500,
   "failures": [],
   "rows_all": 90,
   "valued_all": 85,

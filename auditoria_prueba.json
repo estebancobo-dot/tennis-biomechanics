@@ -3,10 +3,10 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 283,
-  "falta": 31,
-  "pocos datos": 106,
-  "aviso": 91
+  "ok": 284,
+  "falta": 23,
+  "pocos datos": 121,
+  "aviso": 89
  },
  "items": [
   {
@@ -40,6 +40,19 @@
     ]
    },
    "doubtful": 1
+  },
+  {
+   "req": 1,
+   "area": "Repeticiones y otras cámaras",
+   "name": "Repeticiones y otras cámaras enlazadas: smoke_tennis-yusipopen-final-sobolenko-rybakin",
+   "status": "ok",
+   "detail": "48% de sus golpes con repetición enlazada (13 de 27, 0 a cámara lenta) · 82% con otra cámara (22) · tomas: 22 repeticiones, 2 laterales, 1 frontales, 96 primeros planos, 2 otras",
+   "strokes": 27,
+   "with_replay": 13,
+   "with_other_camera": 22,
+   "with_slowmo": 0,
+   "replay_share": 0.481,
+   "other_share": 0.815
   },
   {
    "req": 1,
@@ -1058,6 +1071,28 @@
   {
    "req": 1,
    "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Golpe angulado (cruzado, corto y junto al lateral)",
+   "status": "ok",
+   "detail": "medido en el 60% de los golpes y en el informe",
+   "keys": [
+    "class.shot_angle"
+   ],
+   "measured": 0.6
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
+   "name": "5. Bola, resultado y contexto · Bola corta cerca de la red: baja, media, alta",
+   "status": "ok",
+   "detail": "medido en el 100% de los golpes y en el informe (parcial: ver la matriz)",
+   "keys": [
+    "class.ball_height"
+   ],
+   "measured": 1.0
+  },
+  {
+   "req": 1,
+   "area": "Taxonomía",
    "name": "5. Bola, resultado y contexto · Velocidad media de la bola en pista",
    "status": "pocos datos",
    "detail": "se mide (90% de los golpes); el informe lo enseñará con más golpes o más fiabilidad",
@@ -1164,6 +1199,7 @@
    "detail": "medido en el 100% de los golpes y en el informe (parcial: ver la matriz)",
    "keys": [
     "class.approach",
+    "class.contact_type",
     "class.play"
    ],
    "measured": 1.0
@@ -2024,23 +2060,56 @@
   {
    "req": 1,
    "area": "Situaciones",
-   "name": "Golpe angulado (10-10 18:05, 19-10 08:11)",
-   "status": "falta",
-   "detail": "no hay clase «angulado»: la dirección solo es cruzada, paralela o al centro (court_metrics.shot_landing), aunque el bote ya se mide (registro #132)"
+   "name": "Golpe angulado (#132)",
+   "status": "pocos datos",
+   "detail": "0 golpes de 10 (la clase «Golpe angulado» se pudo decidir en 6; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)",
+   "n": 0,
+   "measured": 6
   },
   {
    "req": 1,
    "area": "Situaciones",
-   "name": "Bola corta baja / alta cerca de la red (19-10 08:11)",
-   "status": "falta",
-   "detail": "no hay nivel «cerca de la red» en «Dónde golpea» y en la videoteca «cerca de la red» no se combina con «baja» ni «alta» (registro #157, #158)"
+   "name": "Bola corta baja cerca de la red (#157)",
+   "status": "pocos datos",
+   "detail": "0 golpes de 10 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)",
+   "n": 0,
+   "measured": 0
   },
   {
    "req": 1,
    "area": "Situaciones",
-   "name": "Volea a media pista con golpe de fondo (19-10 08:11)",
-   "status": "falta",
-   "detail": "«volea» solo dentro de la línea de saque (technique.contact_type); sin bote entre la línea de saque y el fondo no hay clase (registro #159)"
+   "name": "Bola corta alta cerca de la red (#158)",
+   "status": "pocos datos",
+   "detail": "0 golpes de 10 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)",
+   "n": 0,
+   "measured": 0
+  },
+  {
+   "req": 1,
+   "area": "Situaciones",
+   "name": "Volea a media pista con golpe de fondo (#159)",
+   "status": "pocos datos",
+   "detail": "0 golpes de 10 (la clase «Contacto» se pudo decidir en 8; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)",
+   "n": 0,
+   "measured": 8
+  },
+  {
+   "req": 1,
+   "area": "Situaciones",
+   "name": "Volea fuera de la línea de saque",
+   "status": "pocos datos",
+   "detail": "0 golpes de 10 (la clase «Contacto» se pudo decidir en 8; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)",
+   "n": 0,
+   "measured": 8
+  },
+  {
+   "req": 1,
+   "area": "Situaciones",
+   "name": "Botepronto / media volea: casos (#16)",
+   "status": "pocos datos",
+   "detail": "0 golpes de 10 (la clase «Contacto» se pudo decidir en 8; sin señal, ninguna clase: nunca se inventa); candidatos marcados por la misma regla: 0; golpes sin bote visto: 2 (la bola no deja ver un bote a menos de 0,06 s del impacto a 50 fps, 0,08 s a 25: ball.min_bounce_to_impact_s); sin golpes suficientes (se enseña con ≥ 12)",
+   "n": 0,
+   "measured": 8
   },
   {
    "req": 1,
@@ -2621,7 +2690,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Sus golpes (Videoteca y pista)»",
    "status": "ok",
-   "detail": "3124 caracteres de texto, 7 vídeos, 1 gráficos",
+   "detail": "3248 caracteres de texto, 7 vídeos, 1 gráficos",
    "file": "pantalla_2_videoteca.jpg"
   },
   {
@@ -2629,7 +2698,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "4904 caracteres de texto, 8 vídeos, 31 gráficos",
+   "detail": "4903 caracteres de texto, 8 vídeos, 31 gráficos",
    "file": "pantalla_3_golpe.jpg"
   },
   {
@@ -2748,7 +2817,7 @@
    "area": "Aprende su derecha",
    "name": "La pantalla responde a cada combinación",
    "status": "ok",
-   "detail": "1627 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 146430 puntos de control comprobados; 448 con golpes exactos"
+   "detail": "2050 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 184500 puntos de control comprobados; 480 con golpes exactos"
   },
   {
    "req": 1,
@@ -2867,7 +2936,7 @@
    "area": "Vistas pedidas",
    "name": "Filtros combinables de la videoteca (apoyo, dirección, bola, contacto…)",
    "status": "ok",
-   "detail": "27 en la pantalla"
+   "detail": "33 en la pantalla"
   },
   {
    "req": 2,
@@ -2930,7 +2999,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "190 min para 35 min de vídeo ≈ 19.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "205 min para 35 min de vídeo ≈ 20.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -2957,8 +3026,8 @@
    "req": 5,
    "area": "Ficheros",
    "name": "Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series",
-   "status": "ok",
-   "detail": "12 ficheros de etapa, 27 golpes con ventana y serie"
+   "status": "falta",
+   "detail": "15 ficheros de etapa, 27 golpes con ventana y serie; faltan o están vacíos: spotting/spotting.json"
   },
   {
    "req": 5,
@@ -2999,15 +3068,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b",
-   "status": "falta",
-   "detail": "196 comprobaciones: 3 falta, 45 pocos datos, 148 ok; la peor: «Golpe angulado (10-10 18:05, 19-10 08:11)» (no hay clase «angulado»: la dirección solo es cruzada, paralela o al centro (court_metrics.shot_landing), aunque el bote)"
+   "status": "pocos datos",
+   "detail": "201 comprobaciones: 51 pocos datos, 150 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto",
-   "status": "falta",
-   "detail": "29 comprobaciones: 3 falta, 19 pocos datos, 7 ok; la peor: «Golpe angulado (10-10 18:05, 19-10 08:11)» (no hay clase «angulado»: la dirección solo es cruzada, paralela o al centro (court_metrics.shot_landing), aunque el bote)"
+   "status": "pocos datos",
+   "detail": "32 comprobaciones: 25 pocos datos, 7 ok; la peor: «Golpe angulado (#132)» (0 golpes de 10 (la clase «Golpe angulado» se pudo decidir en 6; sin señal, ninguna clase: nunca se inventa); sin golpes )"
   },
   {
    "req": 11,
@@ -3049,7 +3118,7 @@
    "area": "Peticiones",
    "name": "#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía",
    "status": "pocos datos",
-   "detail": "189 comprobaciones: 35 pocos datos, 154 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "191 comprobaciones: 35 pocos datos, 156 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3070,7 +3139,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (190 min para 35 min de vídeo ≈ 19.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (205 min para 35 min de vídeo ≈ 20.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3083,8 +3152,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#16 Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas",
-   "status": "falta",
-   "detail": "3 comprobaciones: 1 falta, 2 ok; la peor: «Volea a media pista con golpe de fondo (19-10 08:11)» («volea» solo dentro de la línea de saque (technique.contact_type); sin bote entre la línea de saque y el fondo no hay cl)"
+   "status": "pocos datos",
+   "detail": "5 comprobaciones: 3 pocos datos, 2 ok; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 10 (la clase «Contacto» se pudo decidir en 8; sin señal, ninguna clase: nunca se inventa); sin golpes sufici)"
   },
   {
    "req": 11,
@@ -3112,7 +3181,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (190 min para 35 min de vídeo ≈ 19.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (205 min para 35 min de vídeo ≈ 20.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3175,7 +3244,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (190 min para 35 min de vídeo ≈ 19.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (205 min para 35 min de vídeo ≈ 20.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3301,7 +3370,7 @@
    "area": "Peticiones",
    "name": "#47 Modelo técnico con fuentes; cómo saber si está completo",
    "status": "pocos datos",
-   "detail": "167 comprobaciones: 26 pocos datos, 141 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "169 comprobaciones: 26 pocos datos, 143 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3448,7 +3517,7 @@
    "area": "Peticiones",
    "name": "#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos",
    "status": "pocos datos",
-   "detail": "168 comprobaciones: 26 pocos datos, 142 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "170 comprobaciones: 26 pocos datos, 144 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -3469,7 +3538,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (190 min para 35 min de vídeo ≈ 19.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (205 min para 35 min de vídeo ≈ 20.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3524,8 +3593,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#83 Árbol de ficheros generados y validados",
-   "status": "ok",
-   "detail": "4 comprobaciones: 4 ok"
+   "status": "falta",
+   "detail": "4 comprobaciones: 1 falta, 3 ok; la peor: «Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series» (15 ficheros de etapa, 27 golpes con ventana y serie; faltan o están vacíos: spotting/spotting.json)"
   },
   {
    "req": 11,
@@ -3566,15 +3635,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#89 Matriz §6 Modalidades (plano, liftado, cortado, botepronto, volea, 3 terminaciones)",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 7 comprobaciones: 7 ok"
+   "status": "pocos datos",
+   "detail": "8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Botepronto / media volea: casos (#16)» (0 golpes de 10 (la clase «Contacto» se pudo decidir en 8; sin señal, ninguna clase: nunca se inventa); candidatos marcad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral)",
-   "status": "falta",
-   "detail": "13 comprobaciones: 3 falta, 9 pocos datos, 1 ok; la peor: «Golpe angulado (10-10 18:05, 19-10 08:11)» (no hay clase «angulado»: la dirección solo es cruzada, paralela o al centro (court_metrics.shot_landing), aunque el bote)"
+   "status": "pocos datos",
+   "detail": "16 comprobaciones: 15 pocos datos, 1 ok; la peor: «Golpe angulado (#132)» (0 golpes de 10 (la clase «Golpe angulado» se pudo decidir en 6; sin señal, ninguna clase: nunca se inventa); sin golpes )"
   },
   {
    "req": 11,
@@ -3798,7 +3867,7 @@
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (190 min para 35 min de vídeo ≈ 19.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (205 min para 35 min de vídeo ≈ 20.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3839,8 +3908,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#132 ángulos (golpe angulado) — repetido el 19-10 08:11: «golpe angulado ... te lo he dicho muchas veces» (Chat, 10",
-   "status": "falta",
-   "detail": "SIN HACER según el registro (#132, docs/peticiones_usuario.md)"
+   "status": "pocos datos",
+   "detail": "2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Golpe angulado (#132)» (0 golpes de 10 (la clase «Golpe angulado» se pudo decidir en 6; sin señal, ninguna clase: nunca se inventa); sin golpes )"
   },
   {
    "req": 11,
@@ -4007,22 +4076,22 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#157 bola corta baja cerca de la red (Chat, 19-10 08:11)",
-   "status": "aviso",
-   "detail": "A MEDIAS según el registro (#157); sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Bola corta baja cerca de la red (#157)» (0 golpes de 10 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa);)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#158 bola corta alta cerca de la red (Chat, 19-10 08:11)",
-   "status": "aviso",
-   "detail": "A MEDIAS según el registro (#158); sin comprobación automática asignada"
+   "status": "pocos datos",
+   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Bola corta alta cerca de la red (#158)» (0 golpes de 10 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa);)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#159 volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (Chat, 19-10 08:11)",
-   "status": "falta",
-   "detail": "SIN HACER según el registro (#159, docs/peticiones_usuario.md)"
+   "status": "pocos datos",
+   "detail": "2 comprobaciones: 2 pocos datos; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 10 (la clase «Contacto» se pudo decidir en 8; sin señal, ninguna clase: nunca se inventa); sin golpes sufici)"
   },
   {
    "req": 11,
@@ -4434,8 +4503,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v",
-   "status": "falta",
-   "detail": "SIN HACER según el registro (#218, docs/peticiones_usuario.md)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,

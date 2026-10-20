@@ -2347,7 +2347,31 @@
   "series": "series/w000015163_7199_near_127.json",
   "window_impact_s": 2.54,
   "shot_in_point": 1,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 30.0,
+    "t1": 42.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 42.9,
+    "t1": 97.6,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 285,
@@ -4732,7 +4756,31 @@
   "series": "series/w000015163_7199_near_285.json",
   "window_impact_s": 5.7,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 30.0,
+    "t1": 42.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 42.9,
+    "t1": 97.6,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 92,
@@ -4806,6 +4854,8 @@
    "time_loaded_to_impact_s": 0.22,
    "time_acceleration_to_impact_s": 0.14,
    "time_impact_to_finish_s": 0.12,
+   "ball_seen_pre_share": 0.648,
+   "ball_gap_pre_s": 0.3,
    "bounce_to_impact_s": 0.32,
    "time_available_s": 1.52,
    "opponent_hit_source": "ball",
@@ -7389,7 +7439,31 @@
   "series": "series/w000073915_4784_near_92.json",
   "window_impact_s": 1.84,
   "shot_in_point": 0,
-  "shots_in_point": 4
+  "shots_in_point": 4,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 97.6,
+    "t1": 124.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 159.3,
+    "t1": 166.7,
+    "slowmo": 0.87,
+    "speed": "normal",
+    "impact_t": 161.466,
+    "method": "recorrido",
+    "confidence": 0.7
+   }
+  ]
  },
  {
   "impact_frame": 124,
@@ -7463,6 +7537,8 @@
    "time_loaded_to_impact_s": 0.14,
    "time_acceleration_to_impact_s": 0.06,
    "time_impact_to_finish_s": 0.14,
+   "ball_seen_pre_share": 0.791,
+   "ball_gap_pre_s": 0.26,
    "bounce_to_impact_s": 0.28,
    "time_available_s": 1.44,
    "opponent_hit_source": "ball",
@@ -8787,6 +8863,7 @@
     "shot_type": "al centro",
     "contact_type": "tras el bote",
     "stance_role": "abierto de ataque",
+    "shot_angle": "no angulado",
     "play": "resto",
     "serve_dir": "abierto",
     "return_side": "iguales",
@@ -10161,7 +10238,42 @@
   "window_impact_s": 2.48,
   "shot_in_point": 1,
   "shots_in_point": 3,
-  "is_return": true
+  "is_return": true,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 141.6,
+    "t1": 146.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 146.7,
+    "t1": 159.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 159.3,
+    "t1": 204.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 229,
@@ -10235,6 +10347,8 @@
    "time_loaded_to_impact_s": 0.38,
    "time_acceleration_to_impact_s": 0.08,
    "time_impact_to_finish_s": 0.2,
+   "ball_seen_pre_share": 0.946,
+   "ball_gap_pre_s": 0.06,
    "bounce_to_impact_s": 0.36,
    "time_available_s": 1.22,
    "opponent_hit_source": "ball",
@@ -11552,7 +11666,8 @@
     "intent": "neutra",
     "play": "inicio del punto",
     "contact_type": "tras el bote",
-    "stance_role": "semiabierto defensivo"
+    "stance_role": "semiabierto defensivo",
+    "shot_angle": "no angulado"
    },
    "footwork": {
     "airborne_at_impact": false,
@@ -12724,7 +12839,42 @@
   "series": "series/w000130746_8134_near_229.json",
   "window_impact_s": 4.58,
   "shot_in_point": 2,
-  "shots_in_point": 3
+  "shots_in_point": 3,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 141.6,
+    "t1": 146.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 146.7,
+    "t1": 159.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 159.3,
+    "t1": 204.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 346,
@@ -12798,6 +12948,8 @@
    "time_loaded_to_impact_s": 0.18,
    "time_acceleration_to_impact_s": 0.14,
    "time_impact_to_finish_s": 0.26,
+   "ball_seen_pre_share": 0.882,
+   "ball_gap_pre_s": 0.06,
    "time_available_s": 1.12,
    "opponent_hit_source": "ball",
    "trunk3d_unobservable": true
@@ -13961,7 +14113,8 @@
     "intent": "neutra",
     "shot_type": "al centro",
     "play": "peloteo",
-    "stance_role": "semiabierto neutro"
+    "stance_role": "semiabierto neutro",
+    "shot_angle": "no angulado"
    },
    "footwork": {
     "steps_to_impact": 4,
@@ -15277,7 +15430,42 @@
   "series": "series/w000130746_8134_near_346.json",
   "window_impact_s": 6.92,
   "shot_in_point": 3,
-  "shots_in_point": 3
+  "shots_in_point": 3,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 141.6,
+    "t1": 146.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 146.7,
+    "t1": 159.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 159.3,
+    "t1": 204.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 100,
@@ -15351,6 +15539,8 @@
    "time_loaded_to_impact_s": 0.14,
    "time_acceleration_to_impact_s": 0.1,
    "time_impact_to_finish_s": 0.18,
+   "ball_seen_pre_share": 0.671,
+   "ball_gap_pre_s": 0.38,
    "bounce_to_impact_s": 0.36,
    "time_available_s": 0.78,
    "opponent_hit_source": "audio",
@@ -16535,6 +16725,7 @@
     "play": "resto",
     "contact_type": "tras el bote",
     "stance_role": "abierto defensivo",
+    "shot_angle": "no angulado",
     "serve_number": "primer saque",
     "serve_dir": "abierto",
     "return_side": "ventaja"
@@ -17889,6 +18080,8 @@
    "time_loaded_to_impact_s": 0.6,
    "time_acceleration_to_impact_s": 0.08,
    "time_impact_to_finish_s": 0.14,
+   "ball_seen_pre_share": 0.851,
+   "ball_gap_pre_s": 0.22,
    "bounce_to_impact_s": 0.52,
    "time_available_s": 1.58,
    "opponent_hit_source": "ball",
@@ -20485,7 +20678,20 @@
   "series": "series/w000174887_5812_near_232.json",
   "window_impact_s": 4.64,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 204.0,
+    "t1": 207.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 98,
@@ -20559,6 +20765,8 @@
    "time_loaded_to_impact_s": 0.14,
    "time_acceleration_to_impact_s": 0.06,
    "time_impact_to_finish_s": 0.18,
+   "ball_seen_pre_share": 0.712,
+   "ball_gap_pre_s": 0.42,
    "bounce_to_impact_s": 0.3,
    "time_available_s": 0.66,
    "opponent_hit_source": "audio",
@@ -22970,7 +23178,31 @@
   "series": "series/w000209601_3600_near_98.json",
   "window_impact_s": 1.96,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 228.8,
+    "t1": 236.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 236.7,
+    "t1": 271.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 122,
@@ -23044,6 +23276,8 @@
    "time_loaded_to_impact_s": 0.12,
    "time_acceleration_to_impact_s": 0.08,
    "time_impact_to_finish_s": 0.24,
+   "ball_seen_pre_share": 1.0,
+   "ball_gap_pre_s": 0.0,
    "bounce_to_impact_s": 0.5,
    "time_available_s": 0.88,
    "opponent_hit_source": "ball",
@@ -25104,7 +25338,31 @@
   "series": "series/w000253696_3600_near_122.json",
   "window_impact_s": 2.44,
   "shot_in_point": 1,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 271.2,
+    "t1": 277.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 277.8,
+    "t1": 317.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 98,
@@ -25178,6 +25436,8 @@
    "time_loaded_to_impact_s": 0.46,
    "time_acceleration_to_impact_s": 0.1,
    "time_impact_to_finish_s": 0.44,
+   "ball_seen_pre_share": 1.0,
+   "ball_gap_pre_s": 0.0,
    "bounce_to_impact_s": 0.24,
    "time_available_s": 1.12,
    "opponent_hit_source": "ball",
@@ -26446,7 +26706,8 @@
     "shot_type": "al centro",
     "play": "inicio del punto",
     "contact_type": "tras el bote",
-    "stance_role": "semiabierto defensivo"
+    "stance_role": "semiabierto defensivo",
+    "shot_angle": "no angulado"
    },
    "footwork": {
     "airborne_at_impact": false,
@@ -27606,7 +27867,31 @@
   "series": "series/w000259210_3600_near_98.json",
   "window_impact_s": 1.96,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 271.2,
+    "t1": 277.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 277.8,
+    "t1": 317.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 530,
@@ -27679,6 +27964,8 @@
    "time_takeback_to_impact_s": 1.06,
    "time_loaded_to_impact_s": 0.34,
    "time_acceleration_to_impact_s": 0.18,
+   "ball_seen_pre_share": 0.685,
+   "ball_gap_pre_s": 0.18,
    "bounce_to_impact_s": 0.64,
    "time_available_s": 0.68,
    "opponent_hit_source": "audio"
@@ -27794,7 +28081,20 @@
    "footwork": {}
   },
   "series": "series/w000409349_11884_far_530.json",
-  "window_impact_s": 10.6
+  "window_impact_s": 10.6,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 429.7,
+    "t1": 441.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   }
+  ]
  },
  {
   "impact_frame": 126,
@@ -27868,6 +28168,8 @@
    "time_loaded_to_impact_s": 0.34,
    "time_acceleration_to_impact_s": 0.04,
    "time_impact_to_finish_s": 0.2,
+   "ball_seen_pre_share": 1.0,
+   "ball_gap_pre_s": 0.0,
    "bounce_to_impact_s": 0.32,
    "time_available_s": 1.16,
    "opponent_hit_source": "ball"
@@ -27983,6 +28285,7 @@
     "intent": "ataque",
     "shot_type": "invertida cruzada",
     "contact_type": "tras el bote",
+    "shot_angle": "no angulado",
     "play": "peloteo"
    },
    "phases": {},
@@ -27992,7 +28295,42 @@
   "series": "series/w000563599_6903_far_126.json",
   "window_impact_s": 2.52,
   "shot_in_point": 3,
-  "shots_in_point": 5
+  "shots_in_point": 5,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 579.4,
+    "t1": 583.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "lateral",
+    "label": "Cámara lateral",
+    "t0": 583.2,
+    "t1": 585.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.4
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 585.1,
+    "t1": 634.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 157,
@@ -28066,6 +28404,8 @@
    "time_loaded_to_impact_s": 0.24,
    "time_acceleration_to_impact_s": 0.2,
    "time_impact_to_finish_s": 0.4,
+   "ball_seen_pre_share": 1.0,
+   "ball_gap_pre_s": 0.0,
    "bounce_to_impact_s": 0.62,
    "time_available_s": 1.02,
    "opponent_hit_source": "ball"
@@ -28203,6 +28543,7 @@
     "intent": "neutra",
     "shot_type": "invertida al centro",
     "contact_type": "tras el bote",
+    "shot_angle": "no angulado",
     "play": "peloteo"
    },
    "phases": {},
@@ -28212,7 +28553,42 @@
   "series": "series/w000949342_7501_far_157.json",
   "window_impact_s": 3.14,
   "shot_in_point": 3,
-  "shots_in_point": 5
+  "shots_in_point": 5,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 956.1,
+    "t1": 960.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 973.5,
+    "t1": 999.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 999.9,
+    "t1": 1020.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 160,
@@ -28286,6 +28662,8 @@
    "time_loaded_to_impact_s": 0.2,
    "time_acceleration_to_impact_s": 0.08,
    "time_impact_to_finish_s": 0.2,
+   "ball_seen_pre_share": 0.909,
+   "ball_gap_pre_s": 0.06,
    "bounce_to_impact_s": 0.06,
    "time_available_s": 0.76,
    "opponent_hit_source": "ball"
@@ -28401,6 +28779,7 @@
     "intent": "defensa",
     "shot_type": "al centro",
     "contact_type": "tras el bote",
+    "shot_angle": "no angulado",
     "play": "peloteo"
    },
    "phases": {},
@@ -28410,7 +28789,20 @@
   "series": "series/w001201695_10955_far_160.json",
   "window_impact_s": 3.2,
   "shot_in_point": 4,
-  "shots_in_point": 9
+  "shots_in_point": 9,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1217.3,
+    "t1": 1229.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 108,
@@ -28484,6 +28876,8 @@
    "time_loaded_to_impact_s": 0.26,
    "time_acceleration_to_impact_s": 0.08,
    "time_impact_to_finish_s": 0.12,
+   "ball_seen_pre_share": 1.0,
+   "ball_gap_pre_s": 0.0,
    "bounce_to_impact_s": 0.32,
    "time_available_s": 0.48,
    "opponent_hit_source": "ball"
@@ -28599,7 +28993,20 @@
   "series": "series/w001291394_3600_far_108.json",
   "window_impact_s": 2.16,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1302.9,
+    "t1": 1311.8,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   }
+  ]
  },
  {
   "impact_frame": 106,
@@ -28676,6 +29083,8 @@
    "time_loaded_to_impact_s": 0.22,
    "time_acceleration_to_impact_s": 0.12,
    "time_impact_to_finish_s": 0.12,
+   "ball_seen_pre_share": 1.0,
+   "ball_gap_pre_s": 0.0,
    "time_available_s": 0.48,
    "opponent_hit_source": "ball",
    "trunk3d_unobservable": true
@@ -29717,7 +30126,9 @@
     "intent": "defensa",
     "shot_type": "al centro",
     "play": "inicio del punto",
-    "stance_role": "neutro de ataque"
+    "contact_type": "volea fuera de la línea de saque",
+    "stance_role": "neutro de ataque",
+    "shot_angle": "no angulado"
    },
    "footwork": {
     "airborne_at_impact": false,
@@ -30077,6 +30488,7 @@
     "class.intent": 0.0,
     "class.shot_type": 0.0,
     "class.play": 0.0,
+    "class.contact_type": 0.0,
     "class.stance_role": 0.25
    },
    "pose": {
@@ -30865,7 +31277,20 @@
   "series": "series/w001414994_3600_near_106.json",
   "window_impact_s": 2.12,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1420.7,
+    "t1": 1442.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 104,
@@ -30939,6 +31364,8 @@
    "time_loaded_to_impact_s": 0.26,
    "time_acceleration_to_impact_s": 0.2,
    "time_impact_to_finish_s": 0.68,
+   "ball_seen_pre_share": 0.685,
+   "ball_gap_pre_s": 0.34,
    "bounce_to_impact_s": 0.28,
    "time_available_s": 0.82,
    "opponent_hit_source": "audio",
@@ -33260,7 +33687,31 @@
   "series": "series/w001538493_3600_near_104.json",
   "window_impact_s": 2.08,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1555.0,
+    "t1": 1565.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1565.4,
+    "t1": 1603.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 106,
@@ -33334,6 +33785,8 @@
    "time_loaded_to_impact_s": 0.12,
    "time_acceleration_to_impact_s": 0.06,
    "time_impact_to_finish_s": 0.28,
+   "ball_seen_pre_share": 0.767,
+   "ball_gap_pre_s": 0.34,
    "bounce_to_impact_s": 0.32,
    "time_available_s": 0.88,
    "opponent_hit_source": "audio",
@@ -34520,7 +34973,8 @@
     "shot_type": "al centro",
     "play": "inicio del punto",
     "contact_type": "tras el bote",
-    "stance_role": "abierto defensivo"
+    "stance_role": "abierto defensivo",
+    "shot_angle": "no angulado"
    },
    "footwork": {
     "steps_to_impact": 3,
@@ -35894,7 +36348,20 @@
   "series": "series/w001707308_3600_near_106.json",
   "window_impact_s": 2.12,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1732.8,
+    "t1": 1747.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 106,
@@ -35968,6 +36435,8 @@
    "time_loaded_to_impact_s": 0.3,
    "time_acceleration_to_impact_s": 0.12,
    "time_impact_to_finish_s": 0.16,
+   "ball_seen_pre_share": 0.699,
+   "ball_gap_pre_s": 0.34,
    "bounce_to_impact_s": 0.22,
    "time_available_s": 0.72,
    "opponent_hit_source": "audio",
@@ -37085,6 +37554,7 @@
     "play": "resto",
     "contact_type": "tras el bote",
     "stance_role": "abierto defensivo",
+    "shot_angle": "no angulado",
     "serve_number": "primer saque",
     "serve_dir": "abierto",
     "return_side": "ventaja"
@@ -38362,7 +38832,53 @@
   "series": "series/w001748976_10781_near_106.json",
   "window_impact_s": 2.12,
   "shot_in_point": 1,
-  "shots_in_point": 4
+  "shots_in_point": 4,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1767.1,
+    "t1": 1782.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1782.4,
+    "t1": 1805.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.6
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1809.7,
+    "t1": 1818.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1818.5,
+    "t1": 1858.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 205,
@@ -38436,6 +38952,8 @@
    "time_loaded_to_impact_s": 0.16,
    "time_acceleration_to_impact_s": 0.04,
    "time_impact_to_finish_s": 0.36,
+   "ball_seen_pre_share": 0.875,
+   "ball_gap_pre_s": 0.06,
    "time_available_s": 1.06,
    "opponent_hit_source": "ball",
    "trunk3d_unobservable": true
@@ -40741,7 +41259,64 @@
   "series": "series/w001748976_10781_near_205.json",
   "window_impact_s": 4.1,
   "shot_in_point": 2,
-  "shots_in_point": 4
+  "shots_in_point": 4,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1767.1,
+    "t1": 1782.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1782.4,
+    "t1": 1805.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.6
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1805.0,
+    "t1": 1809.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1809.7,
+    "t1": 1818.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1818.5,
+    "t1": 1858.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 350,
@@ -40815,6 +41390,8 @@
    "time_loaded_to_impact_s": 0.14,
    "time_acceleration_to_impact_s": 0.08,
    "time_impact_to_finish_s": 0.18,
+   "ball_seen_pre_share": 1.0,
+   "ball_gap_pre_s": 0.0,
    "bounce_to_impact_s": 0.44,
    "time_available_s": 1.16,
    "opponent_hit_source": "ball",
@@ -42128,7 +42705,8 @@
     "shot_type": "cruzada",
     "play": "peloteo",
     "contact_type": "tras el bote",
-    "stance_role": "semiabierto defensivo"
+    "stance_role": "semiabierto defensivo",
+    "shot_angle": "no angulado"
    },
    "footwork": {
     "steps_to_impact": 2,
@@ -43434,7 +44012,86 @@
   "series": "series/w001748976_10781_near_350.json",
   "window_impact_s": 7.0,
   "shot_in_point": 3,
-  "shots_in_point": 4
+  "shots_in_point": 4,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1759.3,
+    "t1": 1763.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1763.5,
+    "t1": 1767.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1767.1,
+    "t1": 1782.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1782.4,
+    "t1": 1805.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.6
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1805.0,
+    "t1": 1809.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1809.7,
+    "t1": 1818.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1818.5,
+    "t1": 1858.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 464,
@@ -43508,6 +44165,8 @@
    "time_loaded_to_impact_s": 0.38,
    "time_acceleration_to_impact_s": 0.04,
    "time_impact_to_finish_s": 0.3,
+   "ball_seen_pre_share": 0.83,
+   "ball_gap_pre_s": 0.1,
    "time_available_s": 1.04,
    "opponent_hit_source": "ball",
    "trunk3d_unobservable": true
@@ -44668,7 +45327,8 @@
     "width": "centrada",
     "intent": "neutra",
     "play": "peloteo",
-    "stance_role": "neutro de ataque"
+    "stance_role": "neutro de ataque",
+    "shot_angle": "no angulado"
    },
    "footwork": {
     "steps_to_impact": 2,
@@ -45938,7 +46598,86 @@
   "series": "series/w001748976_10781_near_464.json",
   "window_impact_s": 9.28,
   "shot_in_point": 4,
-  "shots_in_point": 4
+  "shots_in_point": 4,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1759.3,
+    "t1": 1763.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1763.5,
+    "t1": 1767.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1767.1,
+    "t1": 1782.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1782.4,
+    "t1": 1805.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.6
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1805.0,
+    "t1": 1809.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1809.7,
+    "t1": 1818.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1818.5,
+    "t1": 1858.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 225,
@@ -46012,6 +46751,8 @@
    "time_loaded_to_impact_s": 0.22,
    "time_acceleration_to_impact_s": 0.1,
    "time_impact_to_finish_s": 0.18,
+   "ball_seen_pre_share": 1.0,
+   "ball_gap_pre_s": 0.0,
    "bounce_to_impact_s": 0.06,
    "time_available_s": 1.14,
    "opponent_hit_source": "ball"
@@ -46131,6 +46872,7 @@
     "intent": "neutra",
     "shot_type": "al centro",
     "contact_type": "tras el bote",
+    "shot_angle": "no angulado",
     "play": "inicio del punto"
    },
    "phases": {},
@@ -46214,6 +46956,8 @@
    "time_loaded_to_impact_s": 0.18,
    "time_acceleration_to_impact_s": 0.04,
    "time_impact_to_finish_s": 0.28,
+   "ball_seen_pre_share": 0.918,
+   "ball_gap_pre_s": 0.1,
    "bounce_to_impact_s": 0.32,
    "time_available_s": 1.32,
    "opponent_hit_source": "ball"
@@ -46337,14 +47081,28 @@
     "width": "abierta",
     "intent": "neutra",
     "shot_type": "cruzada",
-    "contact_type": "tras el bote"
+    "contact_type": "tras el bote",
+    "shot_angle": "no angulado"
    },
    "phases": {},
    "stroke": {},
    "footwork": {}
   },
   "series": "series/w001922108_9626_far_108.json",
-  "window_impact_s": 2.16
+  "window_impact_s": 2.16,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1933.1,
+    "t1": 1976.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 268,
@@ -46418,6 +47176,8 @@
    "time_loaded_to_impact_s": 0.48,
    "time_acceleration_to_impact_s": 0.08,
    "time_impact_to_finish_s": 0.32,
+   "ball_seen_pre_share": 1.0,
+   "ball_gap_pre_s": 0.0,
    "bounce_to_impact_s": 0.56,
    "time_available_s": 2.16,
    "opponent_hit_source": "ball"
@@ -46537,6 +47297,7 @@
     "intent": "defensa",
     "shot_type": "cruzada",
     "contact_type": "tras el bote",
+    "shot_angle": "no angulado",
     "play": "peloteo"
    },
    "phases": {},
@@ -46546,7 +47307,20 @@
   "series": "series/w001949409_10427_far_268.json",
   "window_impact_s": 5.36,
   "shot_in_point": 3,
-  "shots_in_point": 7
+  "shots_in_point": 7,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1977.2,
+    "t1": 1991.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   }
+  ]
  },
  {
   "impact_frame": 96,
@@ -48390,6 +49164,30 @@
    "curves": {}
   },
   "series": "series/w001991048_3600_near_96.json",
-  "window_impact_s": 1.92
+  "window_impact_s": 1.92,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1997.6,
+    "t1": 2001.6,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 2021.4,
+    "t1": 2026.8,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  }
 ]

@@ -114,10 +114,10 @@
   }
  },
  "fine": {
-  "fingerprint": "125e521832bdf06d",
+  "fingerprint": "6f4325622ccdb34a",
   "version": "16",
-  "seconds": 251.6,
-  "finished": "2026-10-20 02:48:18",
+  "seconds": 341.0,
+  "finished": "2026-10-20 10:09:00",
   "summary": {
    "candidates": 154,
    "confirmed": 27,
@@ -134,16 +134,16 @@
      "sin_golpe": 14,
      "bola_no_vista": 3
     },
-    "seconds_in_gated_windows": 1.7
+    "seconds_in_gated_windows": 1.6
    },
    "seconds": {
-    "jugadora_lejana": 102.5,
-    "cuerdas_y_3d": 78.0,
-    "analisis_ventana": 14.6,
-    "pista_ventana": 13.9,
-    "cribado": 3.4,
-    "recorte": 2.3,
-    "pose": 0.3,
+    "cuerdas_y_3d": 129.0,
+    "jugadora_lejana": 122.1,
+    "analisis_ventana": 20.3,
+    "pista_ventana": 6.9,
+    "cribado": 3.9,
+    "recorte": 2.5,
+    "pose": 0.8,
     "bola_en_paralelo_cpu": 0,
     "espera_bola_en_paralelo": 0.0
    },
@@ -156,24 +156,24 @@
     "racket_frames": 0,
     "whole_window_again": 0,
     "frames_960_far": 0,
-    "windows_ball_ahead": 48
+    "windows_ball_ahead": 51
    }
   }
  },
  "fine_opponent": {
-  "fingerprint": "fb04f15b624891f3",
+  "fingerprint": "c38a3abbe7f1b194",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-10-20 02:48:18",
+  "finished": "2026-10-20 10:09:00",
   "summary": {
    "enabled": false
   }
  },
  "fine_doubtful": {
-  "fingerprint": "2254e292844358b2",
+  "fingerprint": "3e83424c293ea21d",
   "version": "1",
-  "seconds": 37.4,
-  "finished": "2026-10-20 02:48:56",
+  "seconds": 36.1,
+  "finished": "2026-10-20 10:09:36",
   "summary": {
    "candidates": 43,
    "confirmed": 1,
@@ -192,12 +192,12 @@
     "seconds_in_gated_windows": 0.2
    },
    "seconds": {
-    "jugadora_lejana": 24.1,
-    "analisis_ventana": 1.9,
-    "pista_ventana": 1.8,
-    "cribado": 0.4,
-    "recorte": 0.4,
-    "pose": 0.0,
+    "jugadora_lejana": 19.4,
+    "pista_ventana": 10.9,
+    "analisis_ventana": 2.4,
+    "cribado": 0.6,
+    "recorte": 0.3,
+    "pose": 0.2,
     "bola_en_paralelo_cpu": 0,
     "espera_bola_en_paralelo": 0.0
    },
@@ -212,6 +212,37 @@
     "frames_960_far": 0,
     "windows_ball_ahead": 6
    }
+  }
+ },
+ "views": {
+  "fingerprint": "a91485b0be313fe0",
+  "version": "1",
+  "seconds": 834.3,
+  "finished": "2026-10-20 10:03:19",
+  "summary": {
+   "views": 123,
+   "repeticion_principal": 22,
+   "lateral": 2,
+   "frontal": 1,
+   "primer_plano": 96,
+   "otra": 2,
+   "links": 555,
+   "linked_views": 115,
+   "slowmo_links": 7
+  }
+ },
+ "views_link": {
+  "fingerprint": "1678c5daf0d15a03",
+  "version": "1",
+  "seconds": 0.1,
+  "finished": "2026-10-20 10:09:36",
+  "summary": {
+   "strokes": 27,
+   "with_replay": 13,
+   "with_other_camera": 22,
+   "with_slowmo": 0,
+   "replay_share": 0.481,
+   "other_share": 0.815
   }
  }
 }
