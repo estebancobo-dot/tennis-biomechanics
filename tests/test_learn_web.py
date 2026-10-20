@@ -15,6 +15,9 @@ CHROMIUM = Path("/opt/pw-browsers/chromium")
 
 def synthetic(n=400, seed=3):
     rnd = random.Random(seed)
+    # the conditions draw from their own generator: adding a condition (20-10: golpe angulado, bola corta
+    # cerca de la red) must not reshuffle the measures of every stroke
+    rnd_c = random.Random(seed + 1000)
     out = []
     for i in range(n):
         tech = {"phases": {}, "stroke": {}, "classes": {}, "footwork": {}}
@@ -32,7 +35,7 @@ def synthetic(n=400, seed=3):
             else:
                 tech["phases"].setdefault(grp, {})[name] = v
         for d, (_, levels) in CONDITIONS.items():
-            tech["classes"][d] = rnd.choice(list(levels))
+            tech["classes"][d] = rnd_c.choice(list(levels))
         for c in ("ready_hands", "takeback", "stance_loaded", "ball_phase", "finish", "recovery_first_step", "approach_main"):
             tech["classes"][c] = rnd.choice(["a", "b", "c"])
         tech["footwork"]["steps_reliable"] = rnd.random() > 0.4

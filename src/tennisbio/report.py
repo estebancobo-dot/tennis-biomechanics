@@ -91,6 +91,7 @@ def _score_fields(sc: dict | None) -> dict:
 def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx: int, hand: str | None = None) -> dict:
     """One stroke in the report's schema (see the mockup's STROKES). hand: of the analysed player
     (the opponent's when the rows are hers)."""
+    from .situations import near_net
     hand = hand or match.player.hand
     m, ph, rk = s.get("metrics", {}), s.get("phases", {}), s.get("racket", {})
     t_av = _num(m.get("time_available_s"))
@@ -176,6 +177,10 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
         "shotType": None if far else ((s.get("technique") or {}).get("classes") or {}).get("shot_type"),
         "ballPhase": None if far else ((s.get("technique") or {}).get("classes") or {}).get("ball_phase"),
         "contactType": ((s.get("technique") or {}).get("classes") or {}).get("contact_type"),
+        # the situations the user named (situations.py): angled shot, short ball near the net
+        "shotAngle": ((s.get("technique") or {}).get("classes") or {}).get("shot_angle"),
+        "netBall": ((s.get("technique") or {}).get("classes") or {}).get("net_ball"),
+        "nearNet": near_net(pos),
         "surface": s.get("surface"),
         "face": {k: (v or {}).get("points_to") for k, v in face.items()},
         "video": None, "vImpact": s.get("window_impact_s"), "series": None,
@@ -401,6 +406,9 @@ def collect(matches: list[Match], out_root: Path, stroke="forehand", player_id: 
             continue
         dur = json.loads((d / "probe.json").read_text(encoding="utf-8")).get("duration", 0) if (d / "probe.json").exists() else 0
         rows = [s for s in json.loads(f.read_text(encoding="utf-8")) if s.get("stroke") == stroke]
+        from .situations import apply as _situations
+        for s in rows:                    # strokes analysed before the situations existed: added, never overwritten
+            _situations(s, overwrite=False)
         for k, s in enumerate(rows):
             r = stroke_record(s, len(ms), match, dur, k, opponent_profile(match).hand if is_opp else match.player.hand)
             r["idx"] = len(strokes)

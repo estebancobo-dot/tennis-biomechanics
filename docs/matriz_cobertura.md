@@ -120,6 +120,8 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 |---|---|---|---|
 | Bote: profundidad, anchura, dentro/fuera | Hawk-Eye, SwingVision | ✔ | `shot_bounce_m`, `shot_in`, `shot_depth_m` |
 | Dirección cruzada, paralela, al centro, invertidas | F3Set, TennisViz | ✔ | `shot_direction`, `shot_type` |
+| Golpe angulado (cruzado, corto y junto al lateral) | Petición del usuario (#132) | ✔ | clase `class.shot_angle` (`situations.angled_shot`, 20-10): bola dentro que bota antes de la línea de saque rival (y ≤ 18,285 m), a 1,37 m del lateral o menos (tercio exterior de media pista: 2,74 m o más del centro) y cruzada (o golpeada desde 1 m o menos del centro). Condición «Golpe angulado» de «Aprende», filtro «Dirección › angulado», auditoría «Golpe angulado (#132)» |
+| Bola corta cerca de la red: baja, media, alta | Petición del usuario (#157, #158) | ◐ | clase `class.net_ball` (`situations.net_ball`, 20-10): botó en su lado y sus pies a 1 m o menos detrás de la línea de saque (≥ 4,485 m de su fondo, ≤ 7,4 m de la red); altura con los límites de `ball_height` (rodilla < 35 % = baja; ≥ 65 % = alta). Condición y filtro «Corta cerca de la red»; auditoría #157 y #158. Parcial: sin casos reales todavía |
 | Velocidad media de la bola en pista | Hawk-Eye, sensores | ✔ | `ball_speed_avg_kmh` (horizontal, media; no la de salida) |
 | Altura de la bola en su vuelo, bote, punto más alto; contacto subiendo / arriba / cayendo | Hawk-Eye, TennisViz | ◐ | `ball3d.flights`: cámara a partir de la homografía, anclada en el bote y en la altura de su mano en el contacto (error ±0,15 m en la mano → ±0,3 m en el punto más alto). Clase `ball_phase`, `contact_vs_top`, `apex_height_m` |
 | Qué hace ella en cada momento de la bola (cruza la red, bota, punto más alto) | Sportsbox (por fases) | ✔ | fases `ball_net`, `ball_bounce`, `ball_top`: postura, giro de hombros y raqueta; `takeback_vs_net`, `loaded_vs_top` |
@@ -129,7 +131,7 @@ Cámara: detrás del fondo y elevada; jugadora cercana de 300-400 px, 25-60 fps;
 | Calidad del golpe (sustituto: profundidad, anchura, velocidad media) | TennisViz (Shot Quality) | ✔ | `shot_quality_proxy` (indicador propio, no el de TennisViz) |
 | Puntos ganados en ataque / en defensa | TennisViz (Conversion / Steal) | ✔ | `point_won` (cambio del marcador) × intención del último golpe del punto |
 | Longitud del peloteo | todos | ◐ | sus golpes del punto contados con los impactos de la pasada barata (`shot_in_point`, `shots_in_point`); clase "resto / inicio del punto / peloteo". Solo si el plano empieza antes del punto |
-| Resto, globo, dejada, volea, subida a la red | F3Set, SwingVision | ◐ | subida ✔ (`approach`), resto ✔ (`play`); globo, dejada y volea: otros golpes, después |
+| Resto, globo, dejada, volea, subida a la red | F3Set, SwingVision | ◐ | subida ✔ (`approach`), resto ✔ (`play`); volea como contacto ✔ (`contact_type`: junto a la red, fuera de la línea de saque, de fondo a media pista); globo y dejada: otros golpes, después |
 | Ganador / error (forzado o no) | F3Set, SwingVision | ◐ | fuera ✔, red y ganador probables; forzado/no forzado ✘ (subjetivo) |
 | Presión, set, fatiga | ATP/WTA | ✔ | marcador (OCR) |
 
@@ -195,8 +197,8 @@ de TV detrás del fondo (necesita laboratorio, sensores o varias cámaras) y el 
 | Paso de ataque hacia dentro de la pista (step-in) | Matriz del usuario | ✔ | `step_in` |
 | Pasos de recuperación (laterales o cruzados) | Matriz del usuario | ✔ | `recovery_pattern`, `recovery_first_step` |
 | Golpe plano, liftado o cortado | Matriz del usuario | ◐ | clase `swing` (por la trayectoria de la mano; el efecto en rpm no) |
-| Botepronto (media volea) | Matriz del usuario | ◐ | `class.contact_type` («media volea»: impacto bajo < 0,15 s tras el bote, con la bola) |
-| Volea de derecha | Matriz del usuario | ◐ | `class.contact_type` («volea»: sin bote en su lado con la bola seguida, dentro de la línea de saque); su técnica propia (golpe corto) es otra ampliación |
+| Botepronto (media volea) | Matriz del usuario | ◐ | `class.contact_type` («media volea»: impacto bajo < 0,15 s tras el bote, con la bola; una sola regla para la clase y la marca de revisión, `technique.half_volley`, 20-10). Parcial: 0 casos reales y la bola no deja ver un bote a menos de 0,06 s del impacto a 50 fps (0,08 s a 25, `ball.min_bounce_to_impact_s`); la auditoría da casos, candidatos y golpes sin bote visto |
+| Volea de derecha | Matriz del usuario | ◐ | `class.contact_type` («volea»: sin bote en su lado con la bola seguida, dentro de la línea de saque; desde el 20-10 la línea de saque está bien a 5,485 m de su fondo, antes 6,40). Detrás de la línea de saque (20-10, `technique.contact_type`), con la bola seguida (`ball.seen_before`: vista ≥ 70 %, sin huecos > 0,12 s) y la mano ≥ 45 %: «volea de fondo a media pista» (preparación no compacta y terminación completa, `situations.groundstroke_swing`; la empuñadura no se ve) o «volea fuera de la línea de saque». Su técnica propia (golpe corto) es otra ampliación |
 | Terminación sobre el hombro contrario | Matriz del usuario | ✔ | clase `finish` |
 | Terminación en látigo sobre el mismo hombro (buggy whip) | Matriz del usuario | ✔ | clase `finish` («látigo») |
 | Terminación baja, a la cintura contraria | Matriz del usuario | ✔ | clase `finish` («alrededor del cuerpo») |

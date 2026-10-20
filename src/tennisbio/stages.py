@@ -1337,7 +1337,7 @@ def _fine_settings(c):
 FINE_CODE = ("stages", "clip_pipeline", "stroke_analysis", "phases", "kinematics", "impacts", "ball", "court_metrics",
              "outcome", "series", "racket", "racket3d", "racket_face", "racket_orientation", "tracking", "technique",
              "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend", "ball3d", "limits", "fine_gate", "pose.hybrid",
-             "footpoints", "pose.wholebody3d", "body_scale", "fine_ahead")
+             "footpoints", "pose.wholebody3d", "body_scale", "fine_ahead", "situations", "returns")
 
 
 def _player_fields(p) -> dict:
@@ -1966,6 +1966,7 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
              "surface": ctx.match.surface or "", "next_opp": ret, "return": is_return, "ball": ball_m,
              "head_motion_cm": r.metrics.get("head_motion_impact_cm"),
              "bounce_to_impact": r.metrics.get("bounce_to_impact_s"), "ball_hit": "ball" in (r.impact_source or ""),
+             "ball_gap_pre": r.metrics.get("ball_gap_pre_s"), "ball_seen_pre": r.metrics.get("ball_seen_pre_share"),
              "height_m": p.height_m},
             feet=getattr(run, "feet", None), feet_conf=getattr(run, "feet_conf", None))
     d["technique"] = tech(ph_frames)
@@ -1983,6 +1984,10 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
                                       if k in ("ball_speed", "ball_height", "depth", "court_side", "width", "intent", "shot_type",
                                                "contact_type")},
                           "phases": {}, "stroke": {}, "footwork": {}}
+    # the situations the user named (angled shot, short ball near the net): from position, bounce and height,
+    # which the far side also has (situations.py)
+    from .situations import apply as _situations
+    _situations(d)
     sdir = ctx.path("series")
     sdir.mkdir(exist_ok=True)
     sname = f"{wid}_{side}_{r.impact_frame}.json"

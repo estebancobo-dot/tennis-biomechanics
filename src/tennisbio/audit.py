@@ -42,15 +42,9 @@ VARIANTS_ASKED = {
     "Ataque / defensa": "intent", "Bola subiendo / arriba / cayendo": "ball_phase", "Bola centrada / abierta": "width",
 }
 # variants the user named in the chat that have no class yet (docs/revision_peticiones_19-10.md): always
-# «falta» until a factor exists and they move to VARIANTS_ASKED
-VARIANTS_NOT_BUILT = {
-    "Golpe angulado (10-10 18:05, 19-10 08:11)": "no hay clase «angulado»: la dirección solo es cruzada, paralela o al centro "
-                                                 "(court_metrics.shot_landing), aunque el bote ya se mide (registro #132)",
-    "Bola corta baja / alta cerca de la red (19-10 08:11)": "no hay nivel «cerca de la red» en «Dónde golpea» y en la videoteca "
-                                                           "«cerca de la red» no se combina con «baja» ni «alta» (registro #157, #158)",
-    "Volea a media pista con golpe de fondo (19-10 08:11)": "«volea» solo dentro de la línea de saque (technique.contact_type); "
-                                                           "sin bote entre la línea de saque y el fondo no hay clase (registro #159)",
-}
+# «falta» until a class exists. The three of 19-10 (angled shot, short ball near the net, mid-court volley)
+# are built since 20-10 (situations.py) and counted by situation_items.
+VARIANTS_NOT_BUILT: dict[str, str] = {}
 KEY_MOMENTS = {"ready": "espera / split step", "takeback": "inicio de preparación", "loaded": "armado",
                "acceleration": "inicio de aceleración", "impact": "impacto", "extension": "extensión",
                "finish": "terminación", "recovery": "recuperación"}
@@ -238,6 +232,9 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
             manifests[d.name] = json.loads((d / "manifest.json").read_text(encoding="utf-8"))
         if (d / "strokes_errores.json").exists():
             errors += len(json.loads((d / "strokes_errores.json").read_text(encoding="utf-8")) or [])
+    from .situations import apply as _situations
+    for s in strokes:                 # outputs written before the situations existed: added, never overwritten
+        _situations(s, overwrite=False)
     near = [s for s in strokes if s.get("side") != "far"]
     vals = [stroke_values(s) for s in near]
     all_keys = sorted({k for v in vals for k in v})
@@ -333,6 +330,7 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
     variants = model.get("variants") or {}
     for label, why in VARIANTS_NOT_BUILT.items():
         items.append(_item(1, "Situaciones", label, "falta", why))
+    items += situation_items(near, MIN_N)
     for label, fk in VARIANTS_ASKED.items():
         if not fk:
             items.append(_item(1, "Situaciones", label, "falta",
@@ -548,6 +546,38 @@ def views_items(match_dirs: list[Path], min_strokes: int = 20) -> list[dict]:
                f"{vs.get('frontal', 0)} frontales, {vs.get('primer_plano', 0)} primeros planos, {vs.get('otra', 0)} otras")
         status = "pocos datos" if c["strokes"] < min_strokes else ("ok" if c["with_replay"] or c["with_other_camera"] else "aviso")
         out.append(_item(1, "Repeticiones y otras cámaras", name, status, det, **{k: v for k, v in c.items()}))
+    return out
+
+
+def situation_items(strokes: list[dict], min_n: int) -> list[dict]:
+    """Each situation the user named (plan block 3, situations.ASKED): her strokes in it, the strokes where
+    its signals were measured, and whether «Aprende» offers it as a condition. «pocos datos» = «sin golpes
+    suficientes» (fewer than min_n: the lesson cannot be shown with her strokes of that kind)."""
+    from .learn import CONDITIONS
+    from .situations import ASKED, apply
+
+    out = []
+    for s in strokes:                          # outputs written before the situations existed
+        apply(s, overwrite=False)
+    cls = [((s.get("technique") or {}).get("classes") or {}) for s in strokes]
+    for label, (key, levels) in ASKED.items():
+        offered = key in CONDITIONS and all(lv in CONDITIONS[key][1] for lv in levels)
+        n = sum(c.get(key) in levels for c in cls)
+        measured = sum(c.get(key) is not None for c in cls)
+        det = (f"{n} golpes de {len(strokes)} (la clase «{CONDITIONS.get(key, (key,))[0]}» se pudo decidir en {measured}; "
+               f"sin señal, ninguna clase: nunca se inventa)")
+        if key == "contact_type" and "media volea" in levels:
+            cand = sum("half_volley_candidate" in (s.get("review") or []) for s in strokes)
+            no_b = sum(1 for s in strokes if (s.get("metrics") or {}).get("bounce_to_impact_s") is None)
+            det += (f"; candidatos marcados por la misma regla: {cand}; golpes sin bote visto: {no_b} (la bola no deja ver un "
+                    "bote a menos de 0,06 s del impacto a 50 fps, 0,08 s a 25: ball.min_bounce_to_impact_s)")
+        if not offered:
+            st, det = "falta", det + "; no es una condición de «Aprende» (learn.CONDITIONS)"
+        elif n >= min_n:
+            st = "ok"
+        else:
+            st, det = "pocos datos", det + f"; sin golpes suficientes (se enseña con ≥ {min_n})"
+        out.append(_item(1, "Situaciones", label, st, det, n=n, measured=measured))
     return out
 
 
@@ -849,6 +879,8 @@ PETITIONS = {
     129: Note("descartado por el usuario (13-10): sin hoja de sesión"),
     130: r"Resto de derecha|Resto:|Lado del resto|Dirección del saque|responde a cada combinación",
     218: r"^Repeticiones y otras cámaras$",
+    132: r"Golpe angulado", 157: r"Bola corta baja cerca de la red", 158: r"Bola corta alta cerca de la red",
+    159: r"Volea a media pista con golpe de fondo|Volea fuera de la línea de saque",
 }
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 

@@ -238,7 +238,8 @@ COACH = {
     "loaded.racket_head_lateral": ("Dónde queda la cabeza de la raqueta respecto al hombro al final del armado: al lado del "
                                    "cuerpo o hacia la espalda.", "Entrenadores WTA/ATP"),
     "class.contact_type": ("La media volea (justo tras el bote, muy baja) y la volea (sin bote, junto a la red) piden un swing "
-                           "más corto y la cara más estable que la derecha normal: se separan para no mezclarlas.", "ITF (Crespo, Reid)"),
+                           "más corto y la cara más estable que la derecha normal: se separan para no mezclarlas. A media pista, "
+                           "sin bote, la volea con el golpe de fondo (swing completo) se separa de la volea corta.", "ITF (Crespo, Reid)"),
     "stroke.contact_vs_top": ("Tomar la bola subiendo quita tiempo a la rival; tomarla cayendo da más tiempo propio.", "ITF (Crespo, Reid)"),
     "stroke.contact_height_m": ("La altura de la bola en el contacto dice qué bolas le llegan y cuáles elige.", "Reid, Elliott y Crespo 2013"),
     "stroke.swing_low_to_high": ("La mano sube hacia la bola en el contacto: golpe con efecto liftado.", "Takahashi; Elliott y Marsh 1989"),
@@ -293,6 +294,10 @@ COACH = {
     "class.move_direction": ("Hacia dónde se mueve (lateral, delante, atrás) cambia el apoyo que puede usar.", "Weber; Kovacs"),
     "footwork.first_step_type": ("El tipo de primer paso (cruzado, lateral, pivote) depende de hacia dónde y cuánto tiene que ir.", "Bragg 2001; Vuong 2022"),
     "metrics.head_motion_impact_cm": ("Las mejores jugadoras mantienen la cabeza quieta en el impacto.", "Lafont 2008"),
+    "class.shot_angle": ("El golpe angulado (cruzado, corto y junto al lateral) abre la pista: pide tomar la bola antes y más "
+                         "por delante, con más subida de la raqueta, que la cruzada profunda.", "ITF (Crespo, Reid)"),
+    "class.net_ball": ("Una bola corta cerca de la red cambia el golpe según su altura: baja, hay que levantarla con las "
+                       "piernas y armado corto; alta, se ataca plana hacia abajo.", "ITF; Tennis Australia"),
     "class.shot_type": ("La dirección de su golpe (cruzada, paralela, invertida) cambia la preparación y el apoyo.", "F3Set; TennisViz"),
     "shot_direction": ("La dirección de su golpe (cruzada, paralela, invertida) cambia la preparación y el apoyo.", "F3Set; TennisViz"),
     "class.intent": ("Atacar, mantener o defender cambia la técnica: compararla en cada caso evita confundir técnica con situación.", "TennisViz"),
@@ -386,7 +391,8 @@ CLASS_TEXT = {
     "takeback_face": "Cara al final del armado", "finish": "Terminación", "arm": "Brazo",
     "takeback": "Preparación", "ready_hands": "Manos en la espera", "movement": "Cómo llega a la bola", "feet_at_impact": "Pies en el impacto",
     "swing": "Trayectoria", "ball_phase": "Bola en el contacto", "finish_3x90": "Termina con hombro y codo a unos 90° («3 × 90°»)",
-    "contact_type": "Contacto (tras el bote, media volea o volea)",
+    "contact_type": "Contacto (tras el bote, media volea, volea junto a la red o a media pista)",
+    "shot_angle": "Golpe angulado", "net_ball": "Bola corta cerca de la red",
     "racket_plane": "Raqueta al final del armado",
     "takeback_loop": "Forma del armado (bucle, loop falso o recto atrás)",
     "back_at_impact": "Golpea retrocediendo (moviéndose hacia su línea de fondo)",

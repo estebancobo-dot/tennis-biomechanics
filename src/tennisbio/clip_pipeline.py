@@ -397,10 +397,17 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
             mine = dict(min_y=0.4 * fh) if side == "near" else dict(max_y=0.55 * fh)
             theirs = dict(max_y=0.55 * fh) if side == "near" else dict(min_y=0.4 * fh)
             b = bounce_before(ball_track[:n], imp.frame, fps, prev_ball[-1] if prev_ball else None, **mine)
+            # how well the ball was followed where its bounce is looked for: with no bounce found, it says
+            # whether there was none (a volley) or the tracker lost it (situations.py)
+            from .ball import seen_before
+            share, gap = seen_before(ball_track[:n], imp.frame, fps, prev_ball[-1] if prev_ball else None)
+            if share is not None:
+                r.metrics["ball_seen_pre_share"], r.metrics["ball_gap_pre_s"] = share, gap
             if b is not None:
                 r.ball = {"bounce_px": [round(b.x, 1), round(b.y, 1)], "bounce_frame": b.frame}
                 r.metrics["bounce_to_impact_s"] = round((imp.frame - b.frame) / fps, 3)
-                if r.metrics["bounce_to_impact_s"] < 0.12 and (r.metrics.get("contact_height_pct") or 100) < 35:
+                from .technique import half_volley       # the same rule as the class «media volea»
+                if half_volley(r.metrics["bounce_to_impact_s"], r.metrics.get("contact_height_pct")):
                     r.review.append("half_volley_candidate")
             from .ball import bounce_after
             nxt = [f for f in far_hits if f > imp.frame + 0.2 * fps]
