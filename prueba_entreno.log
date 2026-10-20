@@ -1125,3 +1125,35 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   scenes:  27 % (9626/35476 fotogramas) · 30 s · quedan ≈ 81 s
   scenes:  55 % (19426/35476 fotogramas) · 60 s · quedan ≈ 50 s
   scenes:  82 % (29226/35476 fotogramas) · 2 min · quedan ≈ 19 s
+  scenes: 100 % (35476/35476 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20200111_w_brisbane_sf_naomi_osaka_karolina_pliskova_25fps] scenes terminada a las 17:10:22 en 1.9 min
+[spot_20200111_w_brisbane_sf_naomi_osaka_karolina_pliskova_25fps] audio… (2026-10-20 17:10:22, etapa 3 de 14)
+  audio:  21 % (300/1419 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1419/1419 s de sonido) · 2 s · quedan ≈ 0 s
+[spot_20200111_w_brisbane_sf_naomi_osaka_karolina_pliskova_25fps] audio terminada a las 17:10:28 en 7 s
+[spot_20200111_w_brisbane_sf_naomi_osaka_karolina_pliskova_25fps] court… (2026-10-20 17:10:28, etapa 4 de 14)
+  court:  17 % (64/376 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  51 % (192/376 fotogramas) · 43 s · quedan ≈ 41 s
+  court:  85 % (320/376 fotogramas) · 76 s · quedan ≈ 13 s
+  court: 100 % (376/376 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20200111_w_brisbane_sf_naomi_osaka_karolina_pliskova_25fps] court terminada a las 17:13:32 en 3.1 min
+[spot_20200111_w_brisbane_sf_naomi_osaka_karolina_pliskova_25fps] players… (2026-10-20 17:13:32, etapa 5 de 14)
+  [players] juego con pista: 10.2 min de 11.2 min de cámara principal
+  [players] players:   0 % (1/15228 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   3 % (470/15228 fotogramas con jugadoras) · 30 s · quedan ≈ 16 min
+  [players] players:   6 % (914/15228 fotogramas con jugadoras) · 60 s · quedan ≈ 16 min
+  [players] players:   9 % (1366/15228 fotogramas con jugadoras) · 2 min · quedan ≈ 15 min
+  [players] players:  12 % (1824/15228 fotogramas con jugadoras) · 2 min · quedan ≈ 15 min
+  [players] players:  15 % (2267/15228 fotogramas con jugadoras) · 3 min · quedan ≈ 14 min
+  [players] players:  18 % (2680/15228 fotogramas con jugadoras) · 3 min · quedan ≈ 14 min
+  [players] players:  21 % (3150/15228 fotogramas con jugadoras) · 4 min · quedan ≈ 13 min
+  [players] players:  23 % (3567/15228 fotogramas con jugadoras) · 4 min · quedan ≈ 13 min
+  [players] players:  26 % (4005/15228 fotogramas con jugadoras) · 5 min · quedan ≈ 13 min
+  [players] players:  29 % (4423/15228 fotogramas con jugadoras) · 5 min · quedan ≈ 12 min
+  [players] players:  32 % (4835/15228 fotogramas con jugadoras) · 6 min · quedan ≈ 12 min
+  [players] players:  35 % (5293/15228 fotogramas con jugadoras) · 6 min · quedan ≈ 11 min
+  [players] players:  38 % (5724/15228 fotogramas con jugadoras) · 7 min · quedan ≈ 11 min
+  [players] players:  41 % (6194/15228 fotogramas con jugadoras) · 7 min · quedan ≈ 10 min
+  [players] players:  43 % (6573/15228 fotogramas con jugadoras) · 8 min · quedan ≈ 10 min
+  [players] players:  46 % (7028/15228 fotogramas con jugadoras) · 8 min · quedan ≈ 9 min
+  [players] players:  49 % (7449/15228 fotogramas con jugadoras) · 9 min · quedan ≈ 9 min
