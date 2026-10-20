@@ -600,3 +600,11 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   court:  91 % (448/492 fotogramas) · 4 min · quedan ≈ 21 s
   court: 100 % (492/492 fotogramas) · 4 min · quedan ≈ 0 s
 [spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem] court terminada a las 08:55:53 en 5.6 min
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem] players… (2026-10-20 08:55:53, etapa 5 de 11)
+  [players] juego con pista: 12.4 min de 14.8 min de cámara principal
+  [players] players:   0 % (1/7419 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   6 % (431/7419 fotogramas con jugadoras) · 30 s · quedan ≈ 8 min
+  [players] players:  11 % (783/7419 fotogramas con jugadoras) · 60 s · quedan ≈ 8 min
+  [players] players:  16 % (1205/7419 fotogramas con jugadoras) · 2 min · quedan ≈ 8 min
+  [players] players:  22 % (1617/7419 fotogramas con jugadoras) · 2 min · quedan ≈ 7 min
+  [players] players:  27 % (2040/7419 fotogramas con jugadoras) · 3 min · quedan ≈ 7 min
