@@ -224,7 +224,13 @@ function Hacer-Peticion {
         }
         "libre en C: $([math]::Round((Get-PSDrive C).Free / 1GB)) GB; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
         Get-Content $lg | Out-Host
-    } else { Write-Host "Peticion desconocida: $($p['accion'])" -ForegroundColor Yellow }
+    } else {
+        # una accion nueva llega en el mismo git pull que su peticion, y este proceso sigue con la version vieja de
+        # este script (19-10 y 20-10, peticiones 33 y 36 perdidas): no se da por hecha; el siguiente ciclo, ya con
+        # el script nuevo, la hace
+        Write-Host "Peticion $($p['id']) con accion '$($p['accion'])' que este ciclo aun no conoce: se hara en el siguiente" -ForegroundColor Yellow
+        Remove-Item "$Out\peticion_hecha.txt" -Force -ErrorAction SilentlyContinue
+    }
 }
 # el equipo no se suspende mientras el ciclo exista (la pantalla si puede apagarse): cada arranque, cada
 # 10 min, reinicia el contador de inactividad de Windows; durante un trabajo largo lo mantiene despierto
