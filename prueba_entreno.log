@@ -314,3 +314,53 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
 [recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina_25fps] players terminada a las 11:59:29 en 32.4 min
 C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
   return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina] 451 golpes anotados, 51004 fotogramas → 20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina.npz
+
+[20190818-W-Cincinnati-F-Madison_Keys-Svetlana_Kuznetsova] (train) 90 puntos en 79 tramos
+  Ph-pB_KrPsU: vídeo descargado (726 MB)
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova_25fps] probe… (2026-10-20 12:02:58, etapa 1 de 14)
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova_25fps] probe terminada a las 12:02:58 en 0 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova_25fps] scenes… (2026-10-20 12:02:58, etapa 2 de 14)
+  scenes:   0 % (1/33165 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  28 % (9426/33165 fotogramas) · 30 s · quedan ≈ 76 s
+  scenes:  56 % (18429/33165 fotogramas) · 60 s · quedan ≈ 48 s
+  scenes:  83 % (27426/33165 fotogramas) · 2 min · quedan ≈ 19 s
+  scenes: 100 % (33165/33165 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova_25fps] scenes terminada a las 12:05:07 en 2.2 min
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova_25fps] audio… (2026-10-20 12:05:07, etapa 3 de 14)
+  audio:  23 % (300/1326 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1326/1326 s de sonido) · 2 s · quedan ≈ 0 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova_25fps] audio terminada a las 12:05:10 en 3 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova_25fps] court… (2026-10-20 12:05:10, etapa 4 de 14)
+  court:  19 % (64/334 fotogramas) · 0 s · quedan ≈ 0 s
+  court: 100 % (334/334 fotogramas) · 20 s · quedan ≈ 0 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova_25fps] court terminada a las 12:05:56 en 46 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova_25fps] players… (2026-10-20 12:05:56, etapa 5 de 14)
+  [players] juego con pista: 9.2 min de 9.4 min de cámara principal
+  [players] players:   0 % (1/13812 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   3 % (454/13812 fotogramas con jugadoras) · 30 s · quedan ≈ 15 min
+  [players] players:   6 % (893/13812 fotogramas con jugadoras) · 60 s · quedan ≈ 14 min
+  [players] players:  10 % (1324/13812 fotogramas con jugadoras) · 2 min · quedan ≈ 14 min
+  [players] players:  13 % (1757/13812 fotogramas con jugadoras) · 2 min · quedan ≈ 14 min
+  [players] players:  16 % (2173/13812 fotogramas con jugadoras) · 3 min · quedan ≈ 13 min
+  [players] players:  19 % (2620/13812 fotogramas con jugadoras) · 3 min · quedan ≈ 13 min
+  [players] players:  22 % (3090/13812 fotogramas con jugadoras) · 4 min · quedan ≈ 12 min
+  [players] players:  26 % (3541/13812 fotogramas con jugadoras) · 4 min · quedan ≈ 12 min
+  [players] players:  29 % (3987/13812 fotogramas con jugadoras) · 5 min · quedan ≈ 11 min
+  [players] players:  32 % (4351/13812 fotogramas con jugadoras) · 5 min · quedan ≈ 11 min
+  [players] players:  35 % (4792/13812 fotogramas con jugadoras) · 6 min · quedan ≈ 10 min
+  [players] players:  38 % (5225/13812 fotogramas con jugadoras) · 6 min · quedan ≈ 10 min
+  [players] players:  41 % (5692/13812 fotogramas con jugadoras) · 7 min · quedan ≈ 9 min
+  [players] players:  44 % (6118/13812 fotogramas con jugadoras) · 7 min · quedan ≈ 9 min
+  [players] players:  48 % (6563/13812 fotogramas con jugadoras) · 8 min · quedan ≈ 8 min
+  [players] players:  51 % (6991/13812 fotogramas con jugadoras) · 8 min · quedan ≈ 8 min
+  [players] players:  54 % (7447/13812 fotogramas con jugadoras) · 9 min · quedan ≈ 7 min
+  [players] players:  57 % (7895/13812 fotogramas con jugadoras) · 9 min · quedan ≈ 7 min
+  [players] players:  60 % (8316/13812 fotogramas con jugadoras) · 10 min · quedan ≈ 6 min
+  [players] players:  63 % (8756/13812 fotogramas con jugadoras) · 10 min · quedan ≈ 6 min
+  [players] players:  67 % (9199/13812 fotogramas con jugadoras) · 11 min · quedan ≈ 5 min
+  [players] players:  70 % (9610/13812 fotogramas con jugadoras) · 11 min · quedan ≈ 5 min
+  [players] players:  73 % (10044/13812 fotogramas con jugadoras) · 12 min · quedan ≈ 4 min
+  [players] players:  76 % (10491/13812 fotogramas con jugadoras) · 12 min · quedan ≈ 4 min
+  [players] players:  79 % (10959/13812 fotogramas con jugadoras) · 13 min · quedan ≈ 3 min
+  [players] players:  83 % (11425/13812 fotogramas con jugadoras) · 13 min · quedan ≈ 3 min
