@@ -948,3 +948,55 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  49 % (8441/17358 fotogramas con jugadoras) · 10 min · quedan ≈ 10 min
   [players] players:  51 % (8910/17358 fotogramas con jugadoras) · 10 min · quedan ≈ 9 min
   [players] players:  54 % (9319/17358 fotogramas con jugadoras) · 11 min · quedan ≈ 9 min
+  [players] players:  56 % (9760/17358 fotogramas con jugadoras) · 11 min · quedan ≈ 9 min
+  [players] players:  59 % (10214/17358 fotogramas con jugadoras) · 12 min · quedan ≈ 8 min
+  [players] players:  61 % (10642/17358 fotogramas con jugadoras) · 12 min · quedan ≈ 8 min
+  [players] players:  64 % (11098/17358 fotogramas con jugadoras) · 13 min · quedan ≈ 7 min
+  [players] players:  66 % (11520/17358 fotogramas con jugadoras) · 13 min · quedan ≈ 7 min
+  [players] players:  69 % (11956/17358 fotogramas con jugadoras) · 14 min · quedan ≈ 6 min
+  [players] players:  71 % (12377/17358 fotogramas con jugadoras) · 14 min · quedan ≈ 6 min
+  [players] players:  74 % (12834/17358 fotogramas con jugadoras) · 15 min · quedan ≈ 5 min
+  [players] players:  76 % (13243/17358 fotogramas con jugadoras) · 15 min · quedan ≈ 5 min
+  [players] players:  79 % (13680/17358 fotogramas con jugadoras) · 16 min · quedan ≈ 4 min
+  [players] players:  82 % (14149/17358 fotogramas con jugadoras) · 16 min · quedan ≈ 4 min
+  [players] players:  84 % (14548/17358 fotogramas con jugadoras) · 17 min · quedan ≈ 3 min
+  [players] players:  86 % (14986/17358 fotogramas con jugadoras) · 17 min · quedan ≈ 3 min
+  [players] players:  89 % (15409/17358 fotogramas con jugadoras) · 18 min · quedan ≈ 2 min
+  [players] players:  91 % (15835/17358 fotogramas con jugadoras) · 18 min · quedan ≈ 2 min
+  [players] players:  94 % (16252/17358 fotogramas con jugadoras) · 19 min · quedan ≈ 76 s
+  [players] players:  96 % (16704/17358 fotogramas con jugadoras) · 19 min · quedan ≈ 45 s
+  [players] players:  99 % (17101/17358 fotogramas con jugadoras) · 20 min · quedan ≈ 18 s
+  [players] players: 100 % (17358/17358 fotogramas con jugadoras) · 20 min · quedan ≈ 0 s
+  [players] tiempo: 19.9 min para 17358 fotogramas a 960 px · modelo 17.1 min · leer vídeo y preparar la entrada 14.5 min en otro hilo (espera real 2.7 min) · apariencia 0.2 min en otro hilo
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz_25fps] players terminada a las 16:10:43 en 19.9 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20220907-M-US_Open-QF-Jannik_Sinner-Carlos_Alcaraz] 385 golpes anotados, 42669 fotogramas → 20220907-M-US_Open-QF-Jannik_Sinner-Carlos_Alcaraz.npz
+
+[20160706-M-Wimbledon-QF-Marin_Cilic-Roger_Federer] (train) 90 puntos en 69 tramos
+  Ipg7FIDrHqo: vídeo descargado (883 MB)
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer_25fps] probe… (2026-10-20 16:13:20, etapa 1 de 14)
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer_25fps] probe terminada a las 16:13:20 en 0 s
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer_25fps] scenes… (2026-10-20 16:13:20, etapa 2 de 14)
+  scenes:   0 % (1/36863 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  26 % (9626/36863 fotogramas) · 30 s · quedan ≈ 86 s
+  scenes:  52 % (19026/36863 fotogramas) · 61 s · quedan ≈ 57 s
+  scenes:  78 % (28626/36863 fotogramas) · 2 min · quedan ≈ 26 s
+  scenes: 100 % (36863/36863 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer_25fps] scenes terminada a las 16:15:19 en 2.0 min
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer_25fps] audio… (2026-10-20 16:15:19, etapa 3 de 14)
+  audio:  20 % (300/1474 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1474/1474 s de sonido) · 11 s · quedan ≈ 0 s
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer_25fps] audio terminada a las 16:15:34 en 15 s
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer_25fps] court… (2026-10-20 16:15:34, etapa 4 de 14)
+  court:  13 % (64/487 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  39 % (192/487 fotogramas) · 35 s · quedan ≈ 53 s
+  court:  66 % (320/487 fotogramas) · 84 s · quedan ≈ 44 s
+  court: 100 % (487/487 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer_25fps] court terminada a las 16:18:08 en 2.6 min
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer_25fps] players… (2026-10-20 16:18:08, etapa 5 de 14)
+  [players] juego con pista: 14.3 min de 14.5 min de cámara principal
+  [players] players:   0 % (1/21426 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   2 % (478/21426 fotogramas con jugadoras) · 30 s · quedan ≈ 22 min
+  [players] players:   4 % (910/21426 fotogramas con jugadoras) · 60 s · quedan ≈ 23 min
+  [players] players:   6 % (1383/21426 fotogramas con jugadoras) · 2 min · quedan ≈ 22 min
