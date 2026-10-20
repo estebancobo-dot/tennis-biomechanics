@@ -1,0 +1,62 @@
+[
+ {
+  "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+  "main_rule": "lines",
+  "fps": 10.0,
+  "shots": 1932,
+  "main_min": 54.9,
+  "colour_not_main_min": 77.6,
+  "probe": {
+   "width": 1920,
+   "height": 1080,
+   "fps": 50.0,
+   "interlaced": false,
+   "duration": 12626.729
+  }
+ },
+ {
+  "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "main_rule": "lines",
+  "fps": 10.0,
+  "shots": 1288,
+  "main_min": 43.0,
+  "colour_not_main_min": 54.6,
+  "probe": {
+   "width": 1920,
+   "height": 1080,
+   "fps": 50.0,
+   "interlaced": false,
+   "duration": 8005.423
+  }
+ },
+ {
+  "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+  "main_rule": "lines",
+  "fps": 10.0,
+  "shots": 601,
+  "main_min": 18.9,
+  "colour_not_main_min": 31.8,
+  "probe": {
+   "width": 1920,
+   "height": 1080,
+   "fps": 25.0,
+   "interlaced": true,
+   "duration": 4282.2
+  }
+ },
+ {
+  "match": "zheng-qinwen-elena-rybakina",
+  "main_rule": "lines",
+  "fps": 10.0,
+  "shots": 1051,
+  "main_min": 36.6,
+  "colour_not_main_min": 53.2,
+  "probe": {
+   "width": 1920,
+   "height": 1080,
+   "fps": 50.0,
+   "interlaced": false,
+   "duration": 7001.56
+  }
+ }
+]

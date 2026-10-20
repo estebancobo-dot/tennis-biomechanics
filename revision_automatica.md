@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-284 cumplidos · 23 no cumplidos · 121 sin golpes suficientes · 89 avisos (antes: 283 cumplidos, 31 no cumplidos)
+284 cumplidos · 23 no cumplidos · 121 sin golpes suficientes · 89 avisos (antes: 284 cumplidos, 23 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 114 de 219
 
@@ -147,39 +147,3 @@ Registro `docs/peticiones_usuario.md`: 95 hechas · 94 a medias · 20 sin hacer 
 - **#211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5)**: SIN HACER según el registro (#211, docs/peticiones_usuario.md)
 - **#216 Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnic**: SIN HACER según el registro (#216, docs/peticiones_usuario.md)
 - **#217 Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26)**: SIN HACER según el registro (#217, docs/peticiones_usuario.md)
-
-## Empeora respecto a la ejecución anterior
-
-- **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: ok → falta: 15 ficheros de etapa, 27 golpes con ventana y serie; faltan o están vacíos: spotting/spotting.json
-- **#83 Árbol de ficheros generados y validados**: ok → falta: 4 comprobaciones: 1 falta, 3 ok; la peor: «Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series» (15 ficheros de etapa, 27 golpes con ventana y serie; faltan
-
-## Mejora
-
-- #4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b: falta → pocos datos
-- #5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto: falta → pocos datos
-- #16 Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas: falta → pocos datos
-- #89 Matriz §6 Modalidades (plano, liftado, cortado, botepronto, volea, 3 terminaciones): aviso → pocos datos
-- #90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral): falta → pocos datos
-- #132 ángulos (golpe angulado) — repetido el 19-10 08:11: «golpe angulado ... te lo he dicho muchas veces» (Chat, 10: falta → pocos datos
-- #157 bola corta baja cerca de la red (Chat, 19-10 08:11): aviso → pocos datos
-- #158 bola corta alta cerca de la red (Chat, 19-10 08:11): aviso → pocos datos
-- #159 volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (Chat, 19-10 08:11): falta → pocos datos
-- #218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v: falta → aviso
-
-## Comprobaciones nuevas
-
-- Repeticiones y otras cámaras enlazadas: smoke_tennis-yusipopen-final-sobolenko-rybakin: ok (48% de sus golpes con repetición enlazada (13 de 27, 0 a cámara lenta) · 82% con otra cámara (22) · tomas: 22 repeticiones, 2 laterales, 1 frontales, 96 primero)
-- 5. Bola, resultado y contexto · Golpe angulado (cruzado, corto y junto al lateral): ok (medido en el 60% de los golpes y en el informe)
-- 5. Bola, resultado y contexto · Bola corta cerca de la red: baja, media, alta: ok (medido en el 100% de los golpes y en el informe (parcial: ver la matriz))
-- Golpe angulado (#132): pocos datos (0 golpes de 10 (la clase «Golpe angulado» se pudo decidir en 6; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12))
-- Bola corta baja cerca de la red (#157): pocos datos (0 golpes de 10 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥)
-- Bola corta alta cerca de la red (#158): pocos datos (0 golpes de 10 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥)
-- Volea a media pista con golpe de fondo (#159): pocos datos (0 golpes de 10 (la clase «Contacto» se pudo decidir en 8; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12))
-- Volea fuera de la línea de saque: pocos datos (0 golpes de 10 (la clase «Contacto» se pudo decidir en 8; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12))
-- Botepronto / media volea: casos (#16): pocos datos (0 golpes de 10 (la clase «Contacto» se pudo decidir en 8; sin señal, ninguna clase: nunca se inventa); candidatos marcados por la misma regla: 0; golpes sin bot)
-
-## Comprobaciones que ya no aparecen
-
-- Golpe angulado (10-10 18:05, 19-10 08:11)
-- Bola corta baja / alta cerca de la red (19-10 08:11)
-- Volea a media pista con golpe de fondo (19-10 08:11)
