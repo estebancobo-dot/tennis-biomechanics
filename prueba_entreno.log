@@ -661,3 +661,49 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  41 % (2643/6467 fotogramas con jugadoras) · 3 min · quedan ≈ 4 min
   [players] players:  48 % (3113/6467 fotogramas con jugadoras) · 4 min · quedan ≈ 4 min
   [players] players:  55 % (3565/6467 fotogramas con jugadoras) · 4 min · quedan ≈ 3 min
+  [players] players:  62 % (3991/6467 fotogramas con jugadoras) · 5 min · quedan ≈ 3 min
+  [players] players:  68 % (4429/6467 fotogramas con jugadoras) · 5 min · quedan ≈ 2 min
+  [players] players:  75 % (4827/6467 fotogramas con jugadoras) · 6 min · quedan ≈ 2 min
+  [players] players:  82 % (5281/6467 fotogramas con jugadoras) · 6 min · quedan ≈ 81 s
+  [players] players:  89 % (5742/6467 fotogramas con jugadoras) · 7 min · quedan ≈ 49 s
+  [players] players:  96 % (6176/6467 fotogramas con jugadoras) · 7 min · quedan ≈ 20 s
+  [players] players: 100 % (6467/6467 fotogramas con jugadoras) · 7 min · quedan ≈ 0 s
+  [players] tiempo: 7.3 min para 6467 fotogramas a 960 px · modelo 6.4 min · leer vídeo y preparar la entrada 4.9 min en otro hilo (espera real 0.9 min) · apariencia 0.1 min en otro hilo
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev] players terminada a las 09:22:04 en 7.4 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20200911-M-US_Open-SF-Dominic_Thiem-Daniil_Medvedev] 324 golpes anotados, 15630 fotogramas → 20200911-M-US_Open-SF-Dominic_Thiem-Daniil_Medvedev.npz
+
+[20210216-M-Australian_Open-QF-Novak_Djokovic-Alexander_Zverev] (train) 90 puntos en 83 tramos
+  QVw6bS-GwgU: vídeo descargado (691 MB)
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere] probe… (2026-10-20 09:26:02, etapa 1 de 11)
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere] probe terminada a las 09:26:02 en 0 s
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere] scenes… (2026-10-20 09:26:02, etapa 2 de 11)
+  scenes:   0 % (1/36136 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  28 % (10026/36136 fotogramas) · 30 s · quedan ≈ 79 s
+  scenes:  55 % (20026/36136 fotogramas) · 60 s · quedan ≈ 49 s
+  scenes:  83 % (30026/36136 fotogramas) · 2 min · quedan ≈ 18 s
+  scenes: 100 % (36136/36136 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere] scenes terminada a las 09:27:56 en 1.9 min
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere] audio… (2026-10-20 09:27:56, etapa 3 de 11)
+  audio:  21 % (300/1445 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1445/1445 s de sonido) · 14 s · quedan ≈ 0 s
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere] audio terminada a las 09:28:13 en 17 s
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere] court… (2026-10-20 09:28:13, etapa 4 de 11)
+  court:  15 % (64/430 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  30 % (128/430 fotogramas) · 39 s · quedan ≈ 2 min
+  court:  60 % (256/430 fotogramas) · 2 min · quedan ≈ 70 s
+  court: 100 % (430/430 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere] court terminada a las 09:31:44 en 3.5 min
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere] players… (2026-10-20 09:31:44, etapa 5 de 11)
+  [players] juego con pista: 12.0 min de 12.6 min de cámara principal
+  [players] players:   0 % (1/7226 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   6 % (444/7226 fotogramas con jugadoras) · 30 s · quedan ≈ 8 min
+  [players] players:  11 % (810/7226 fotogramas con jugadoras) · 60 s · quedan ≈ 8 min
+  [players] players:  17 % (1208/7226 fotogramas con jugadoras) · 2 min · quedan ≈ 7 min
+  [players] players:  22 % (1619/7226 fotogramas con jugadoras) · 2 min · quedan ≈ 7 min
+  [players] players:  28 % (2004/7226 fotogramas con jugadoras) · 3 min · quedan ≈ 7 min
+  [players] players:  34 % (2433/7226 fotogramas con jugadoras) · 3 min · quedan ≈ 6 min
+  [players] players:  40 % (2866/7226 fotogramas con jugadoras) · 4 min · quedan ≈ 5 min
+  [players] players:  45 % (3259/7226 fotogramas con jugadoras) · 4 min · quedan ≈ 5 min
+  [players] players:  51 % (3655/7226 fotogramas con jugadoras) · 5 min · quedan ≈ 4 min
