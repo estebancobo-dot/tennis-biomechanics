@@ -439,3 +439,45 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
 [20220907-M-US_Open-QF-Jannik_Sinner-Carlos_Alcaraz] 385 golpes anotados, 17068 fotogramas → 20220907-M-US_Open-QF-Jannik_Sinner-Carlos_Alcaraz.npz
 
 [20160706-M-Wimbledon-QF-Marin_Cilic-Roger_Federer] (train) 90 puntos en 69 tramos
+  Ipg7FIDrHqo: vídeo descargado (883 MB)
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer] probe… (2026-10-20 08:00:44, etapa 1 de 11)
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer] probe terminada a las 08:00:44 en 0 s
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer] scenes… (2026-10-20 08:00:44, etapa 2 de 11)
+  scenes:   0 % (1/36863 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  27 % (10026/36863 fotogramas) · 30 s · quedan ≈ 81 s
+  scenes:  55 % (20226/36863 fotogramas) · 60 s · quedan ≈ 50 s
+  scenes:  83 % (30426/36863 fotogramas) · 2 min · quedan ≈ 19 s
+  scenes: 100 % (36863/36863 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer] scenes terminada a las 08:02:42 en 2.0 min
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer] audio… (2026-10-20 08:02:42, etapa 3 de 11)
+  audio:  20 % (300/1474 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1474/1474 s de sonido) · 19 s · quedan ≈ 0 s
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer] audio terminada a las 08:03:06 en 24 s
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer] court… (2026-10-20 08:03:06, etapa 4 de 11)
+  court:  13 % (64/485 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  40 % (192/485 fotogramas) · 46 s · quedan ≈ 70 s
+  court:  79 % (384/485 fotogramas) · 86 s · quedan ≈ 23 s
+  court: 100 % (485/485 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer] court terminada a las 08:05:40 en 2.6 min
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer] players… (2026-10-20 08:05:40, etapa 5 de 11)
+  [players] juego con pista: 14.2 min de 14.5 min de cámara principal
+  [players] players:   0 % (1/8547 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   5 % (432/8547 fotogramas con jugadoras) · 30 s · quedan ≈ 9 min
+  [players] players:   9 % (798/8547 fotogramas con jugadoras) · 60 s · quedan ≈ 10 min
+  [players] players:  14 % (1201/8547 fotogramas con jugadoras) · 2 min · quedan ≈ 9 min
+  [players] players:  19 % (1643/8547 fotogramas con jugadoras) · 2 min · quedan ≈ 8 min
+  [players] players:  24 % (2073/8547 fotogramas con jugadoras) · 3 min · quedan ≈ 8 min
+  [players] players:  29 % (2481/8547 fotogramas con jugadoras) · 3 min · quedan ≈ 7 min
+  [players] players:  34 % (2926/8547 fotogramas con jugadoras) · 4 min · quedan ≈ 7 min
+  [players] players:  39 % (3316/8547 fotogramas con jugadoras) · 4 min · quedan ≈ 6 min
+  [players] players:  44 % (3791/8547 fotogramas con jugadoras) · 5 min · quedan ≈ 6 min
+  [players] players:  49 % (4205/8547 fotogramas con jugadoras) · 5 min · quedan ≈ 5 min
+  [players] players:  55 % (4694/8547 fotogramas con jugadoras) · 6 min · quedan ≈ 5 min
+  [players] players:  61 % (5190/8547 fotogramas con jugadoras) · 6 min · quedan ≈ 4 min
+  [players] players:  66 % (5624/8547 fotogramas con jugadoras) · 7 min · quedan ≈ 3 min
+  [players] players:  71 % (6064/8547 fotogramas con jugadoras) · 7 min · quedan ≈ 3 min
+  [players] players:  76 % (6498/8547 fotogramas con jugadoras) · 8 min · quedan ≈ 2 min
+  [players] players:  81 % (6940/8547 fotogramas con jugadoras) · 8 min · quedan ≈ 2 min
+  [players] players:  86 % (7346/8547 fotogramas con jugadoras) · 9 min · quedan ≈ 84 s
+  [players] players:  90 % (7733/8547 fotogramas con jugadoras) · 9 min · quedan ≈ 57 s
+  [players] players:  96 % (8166/8547 fotogramas con jugadoras) · 10 min · quedan ≈ 27 s
