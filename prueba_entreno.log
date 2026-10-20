@@ -560,3 +560,43 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  22 % (1368/6166 fotogramas con jugadoras) · 2 min · quedan ≈ 5 min
   [players] players:  29 % (1797/6166 fotogramas con jugadoras) · 2 min · quedan ≈ 5 min
   [players] players:  36 % (2193/6166 fotogramas con jugadoras) · 3 min · quedan ≈ 5 min
+  [players] players:  42 % (2575/6166 fotogramas con jugadoras) · 3 min · quedan ≈ 4 min
+  [players] players:  49 % (2991/6166 fotogramas con jugadoras) · 4 min · quedan ≈ 4 min
+  [players] players:  55 % (3381/6166 fotogramas con jugadoras) · 4 min · quedan ≈ 3 min
+  [players] players:  62 % (3815/6166 fotogramas con jugadoras) · 5 min · quedan ≈ 3 min
+  [players] players:  69 % (4244/6166 fotogramas con jugadoras) · 5 min · quedan ≈ 2 min
+  [players] players:  76 % (4678/6166 fotogramas con jugadoras) · 6 min · quedan ≈ 2 min
+  [players] players:  83 % (5095/6166 fotogramas con jugadoras) · 6 min · quedan ≈ 76 s
+  [players] players:  89 % (5508/6166 fotogramas con jugadoras) · 7 min · quedan ≈ 47 s
+  [players] players:  97 % (5978/6166 fotogramas con jugadoras) · 7 min · quedan ≈ 13 s
+  [players] players: 100 % (6166/6166 fotogramas con jugadoras) · 7 min · quedan ≈ 0 s
+  [players] tiempo: 7.2 min para 6166 fotogramas a 960 px · modelo 5.8 min · leer vídeo y preparar la entrada 6.2 min en otro hilo (espera real 1.5 min) · apariencia 0.1 min en otro hilo
+[spot_20200111_w_brisbane_sf_naomi_osaka_karolina_pliskova] players terminada a las 08:43:09 en 7.2 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20200111-W-Brisbane-SF-Naomi_Osaka-Karolina_Pliskova] 252 golpes anotados, 14191 fotogramas → 20200111-W-Brisbane-SF-Naomi_Osaka-Karolina_Pliskova.npz
+
+[20200129-M-Australian_Open-QF-Rafael_Nadal-Dominic_Thiem] (train) 90 puntos en 86 tramos
+  wQBlMkVI8F8: vídeo descargado (910 MB)
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem] probe… (2026-10-20 08:48:14, etapa 1 de 11)
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem] probe terminada a las 08:48:14 en 0 s
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem] scenes… (2026-10-20 08:48:14, etapa 2 de 11)
+  scenes:   0 % (1/38510 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  26 % (10026/38510 fotogramas) · 30 s · quedan ≈ 86 s
+  scenes:  52 % (20026/38510 fotogramas) · 60 s · quedan ≈ 56 s
+  scenes:  78 % (30104/38510 fotogramas) · 2 min · quedan ≈ 25 s
+  scenes: 100 % (38510/38510 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem] scenes terminada a las 08:50:14 en 2.0 min
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem] audio… (2026-10-20 08:50:14, etapa 3 de 11)
+  audio:  19 % (300/1540 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1540/1540 s de sonido) · 3 s · quedan ≈ 0 s
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem] audio terminada a las 08:50:18 en 3 s
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem] court… (2026-10-20 08:50:18, etapa 4 de 11)
+  court:  13 % (64/492 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  26 % (128/492 fotogramas) · 57 s · quedan ≈ 3 min
+  court:  39 % (192/492 fotogramas) · 2 min · quedan ≈ 2 min
+  court:  52 % (256/492 fotogramas) · 2 min · quedan ≈ 2 min
+  court:  65 % (320/492 fotogramas) · 3 min · quedan ≈ 2 min
+  court:  91 % (448/492 fotogramas) · 4 min · quedan ≈ 21 s
+  court: 100 % (492/492 fotogramas) · 4 min · quedan ≈ 0 s
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem] court terminada a las 08:55:53 en 5.6 min
