@@ -1321,3 +1321,41 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
 [spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev_25fps] players terminada a las 18:29:21 en 17.9 min
 C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
   return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20200911-M-US_Open-SF-Dominic_Thiem-Daniil_Medvedev] 324 golpes anotados, 39075 fotogramas → 20200911-M-US_Open-SF-Dominic_Thiem-Daniil_Medvedev.npz
+
+[20210216-M-Australian_Open-QF-Novak_Djokovic-Alexander_Zverev] (train) 90 puntos en 83 tramos
+  QVw6bS-GwgU: vídeo descargado (691 MB)
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere_25fps] probe… (2026-10-20 18:32:14, etapa 1 de 14)
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere_25fps] probe terminada a las 18:32:15 en 0 s
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere_25fps] scenes… (2026-10-20 18:32:15, etapa 2 de 14)
+  scenes:   0 % (1/36136 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  27 % (9826/36136 fotogramas) · 30 s · quedan ≈ 81 s
+  scenes:  54 % (19659/36136 fotogramas) · 60 s · quedan ≈ 51 s
+  scenes:  81 % (29226/36136 fotogramas) · 2 min · quedan ≈ 21 s
+  scenes: 100 % (36136/36136 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere_25fps] scenes terminada a las 18:34:08 en 1.9 min
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere_25fps] audio… (2026-10-20 18:34:08, etapa 3 de 14)
+  audio:  21 % (300/1445 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1445/1445 s de sonido) · 17 s · quedan ≈ 0 s
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere_25fps] audio terminada a las 18:34:29 en 21 s
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere_25fps] court… (2026-10-20 18:34:29, etapa 4 de 14)
+  court:  15 % (64/432 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  30 % (128/432 fotogramas) · 33 s · quedan ≈ 78 s
+  court:  44 % (192/432 fotogramas) · 68 s · quedan ≈ 85 s
+  court:  89 % (384/432 fotogramas) · 2 min · quedan ≈ 14 s
+  court: 100 % (432/432 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere_25fps] court terminada a las 18:37:53 en 3.4 min
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere_25fps] players… (2026-10-20 18:37:53, etapa 5 de 14)
+  [players] juego con pista: 12.1 min de 12.6 min de cámara principal
+  [players] players:   0 % (1/18105 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   3 % (465/18105 fotogramas con jugadoras) · 30 s · quedan ≈ 19 min
+  [players] players:   5 % (940/18105 fotogramas con jugadoras) · 60 s · quedan ≈ 18 min
+  [players] players:   8 % (1405/18105 fotogramas con jugadoras) · 2 min · quedan ≈ 18 min
+  [players] players:  10 % (1844/18105 fotogramas con jugadoras) · 2 min · quedan ≈ 18 min
+  [players] players:  13 % (2306/18105 fotogramas con jugadoras) · 3 min · quedan ≈ 17 min
+  [players] players:  15 % (2758/18105 fotogramas con jugadoras) · 3 min · quedan ≈ 17 min
+  [players] players:  18 % (3216/18105 fotogramas con jugadoras) · 4 min · quedan ≈ 16 min
+  [players] players:  20 % (3669/18105 fotogramas con jugadoras) · 4 min · quedan ≈ 16 min
+  [players] players:  23 % (4133/18105 fotogramas con jugadoras) · 5 min · quedan ≈ 15 min
+  [players] players:  25 % (4560/18105 fotogramas con jugadoras) · 5 min · quedan ≈ 15 min
+  [players] players:  28 % (5009/18105 fotogramas con jugadoras) · 6 min · quedan ≈ 14 min
