@@ -366,3 +366,59 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  83 % (11425/13812 fotogramas con jugadoras) · 13 min · quedan ≈ 3 min
   [players] players:  86 % (11878/13812 fotogramas con jugadoras) · 14 min · quedan ≈ 2 min
   [players] players:  89 % (12283/13812 fotogramas con jugadoras) · 14 min · quedan ≈ 2 min
+  [players] players:  92 % (12716/13812 fotogramas con jugadoras) · 15 min · quedan ≈ 75 s
+  [players] players:  95 % (13162/13812 fotogramas con jugadoras) · 15 min · quedan ≈ 44 s
+  [players] players:  98 % (13602/13812 fotogramas con jugadoras) · 16 min · quedan ≈ 14 s
+  [players] players: 100 % (13812/13812 fotogramas con jugadoras) · 16 min · quedan ≈ 0 s
+  [players] tiempo: 15.8 min para 13812 fotogramas a 960 px · modelo 13.7 min · leer vídeo y preparar la entrada 11.1 min en otro hilo (espera real 2.1 min) · apariencia 0.2 min en otro hilo
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova_25fps] players terminada a las 12:21:44 en 15.8 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20190818-W-Cincinnati-F-Madison_Keys-Svetlana_Kuznetsova] 268 golpes anotados, 33166 fotogramas → 20190818-W-Cincinnati-F-Madison_Keys-Svetlana_Kuznetsova.npz
+
+[20210815-W-Montreal-F-Karolina_Pliskova-Camila_Giorgi] (train) 90 puntos en 71 tramos
+  Y4aQrXhbknU: vídeo descargado (570 MB)
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi_25fps] probe… (2026-10-20 12:24:17, etapa 1 de 14)
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi_25fps] probe terminada a las 12:24:17 en 0 s
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi_25fps] scenes… (2026-10-20 12:24:17, etapa 2 de 14)
+  scenes:   0 % (1/39062 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  23 % (8963/39062 fotogramas) · 30 s · quedan ≈ 2 min
+  scenes:  47 % (18226/39062 fotogramas) · 60 s · quedan ≈ 69 s
+  scenes:  70 % (27486/39062 fotogramas) · 2 min · quedan ≈ 38 s
+  scenes:  94 % (36826/39062 fotogramas) · 2 min · quedan ≈ 7 s
+  scenes: 100 % (39062/39062 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi_25fps] scenes terminada a las 12:26:39 en 2.4 min
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi_25fps] audio… (2026-10-20 12:26:39, etapa 3 de 14)
+  audio:  19 % (300/1562 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1562/1562 s de sonido) · 19 s · quedan ≈ 0 s
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi_25fps] audio terminada a las 12:26:59 en 20 s
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi_25fps] court… (2026-10-20 12:26:59, etapa 4 de 14)
+  court:  21 % (64/309 fotogramas) · 0 s · quedan ≈ 0 s
+  court: 100 % (309/309 fotogramas) · 28 s · quedan ≈ 0 s
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi_25fps] court terminada a las 12:27:55 en 56 s
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi_25fps] players… (2026-10-20 12:27:55, etapa 5 de 14)
+  [players] juego con pista: 8.1 min de 8.9 min de cámara principal
+  [players] players:   0 % (1/12139 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   4 % (429/12139 fotogramas con jugadoras) · 30 s · quedan ≈ 14 min
+  [players] players:   7 % (851/12139 fotogramas con jugadoras) · 60 s · quedan ≈ 13 min
+  [players] players:  11 % (1282/12139 fotogramas con jugadoras) · 2 min · quedan ≈ 13 min
+  [players] players:  14 % (1710/12139 fotogramas con jugadoras) · 2 min · quedan ≈ 12 min
+  [players] players:  18 % (2148/12139 fotogramas con jugadoras) · 3 min · quedan ≈ 12 min
+  [players] players:  21 % (2596/12139 fotogramas con jugadoras) · 3 min · quedan ≈ 11 min
+  [players] players:  25 % (3036/12139 fotogramas con jugadoras) · 4 min · quedan ≈ 11 min
+  [players] players:  29 % (3470/12139 fotogramas con jugadoras) · 4 min · quedan ≈ 10 min
+  [players] players:  32 % (3892/12139 fotogramas con jugadoras) · 5 min · quedan ≈ 10 min
+  [players] players:  36 % (4330/12139 fotogramas con jugadoras) · 5 min · quedan ≈ 9 min
+  [players] players:  39 % (4733/12139 fotogramas con jugadoras) · 6 min · quedan ≈ 9 min
+  [players] players:  43 % (5180/12139 fotogramas con jugadoras) · 6 min · quedan ≈ 8 min
+  [players] players:  46 % (5610/12139 fotogramas con jugadoras) · 7 min · quedan ≈ 8 min
+  [players] players:  50 % (6016/12139 fotogramas con jugadoras) · 7 min · quedan ≈ 7 min
+  [players] players:  53 % (6470/12139 fotogramas con jugadoras) · 8 min · quedan ≈ 7 min
+  [players] players:  57 % (6920/12139 fotogramas con jugadoras) · 8 min · quedan ≈ 6 min
+  [players] players:  60 % (7341/12139 fotogramas con jugadoras) · 9 min · quedan ≈ 6 min
+  [players] players:  64 % (7737/12139 fotogramas con jugadoras) · 9 min · quedan ≈ 5 min
+  [players] players:  67 % (8174/12139 fotogramas con jugadoras) · 10 min · quedan ≈ 5 min
+  [players] players:  71 % (8607/12139 fotogramas con jugadoras) · 10 min · quedan ≈ 4 min
+  [players] players:  75 % (9055/12139 fotogramas con jugadoras) · 11 min · quedan ≈ 4 min
+  [players] players:  78 % (9481/12139 fotogramas con jugadoras) · 11 min · quedan ≈ 3 min
+  [players] players:  81 % (9883/12139 fotogramas con jugadoras) · 12 min · quedan ≈ 3 min
