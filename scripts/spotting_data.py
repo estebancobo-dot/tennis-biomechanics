@@ -126,6 +126,8 @@ def export(dest: Path, mdir: Path, events: list[dict], spans: list, name: str, s
                         ev_t=np.array([e["t"] for e in ev], np.float32),
                         ev_side=np.array([S.SIDES.index(e["side"]) for e in ev], np.int8),
                         ev_kind=np.array([S.KINDS.index(S.KIND_OF.get(e["kind"], "other")) for e in ev], np.int8),
+                        # F3Set's technique of each stroke (e.g. slice): to check the slice class measured from the hand path
+                        ev_tech=np.array([str(e.get("technique", "")) for e in ev]),
                         spans=np.array(spans, np.float32).reshape(-1, 2))
     return len(ev), len(f["X"])
 

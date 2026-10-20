@@ -86,7 +86,8 @@ def player_points(clips: list[dict], player: str) -> list[dict]:
             g = parse_label(e["frame"], e["label"])
             her = (g.side == "near") == near_is_her
             evs.append({"frame": a + g.frame, "side": g.side, "who": "target" if her else "opponent",
-                        "kind": stroke_kind(g.shot, g.hand, g.technique), "shot": g.shot, "label": e["label"]})
+                        "kind": stroke_kind(g.shot, g.hand, g.technique), "shot": g.shot, "technique": g.technique,
+                        "label": e["label"]})
         out.append({"id": c["video"], "video": name, "a": a, "b": b, "fps": float(c["fps"]),
                     "near_is_target": near_is_her, "opponent": c["far_name"] if near_is_her else c["near_name"],
                     "events": evs})
@@ -103,7 +104,8 @@ def all_points(clips: list[dict]) -> list[dict]:
         for e in c["events"]:
             g = parse_label(e["frame"], e["label"])
             evs.append({"frame": a + g.frame, "side": g.side, "who": "opponent",
-                        "kind": stroke_kind(g.shot, g.hand, g.technique), "shot": g.shot, "label": e["label"]})
+                        "kind": stroke_kind(g.shot, g.hand, g.technique), "shot": g.shot, "technique": g.technique,
+                        "label": e["label"]})
         out.append({"id": c["video"], "video": name, "a": a, "b": b, "fps": float(c["fps"]), "near_is_target": False,
                     "near_name": c["near_name"], "far_name": c["far_name"], "events": evs})
     return sorted(out, key=lambda p: (p["video"], p["a"]))
