@@ -148,3 +148,13 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
 [recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren_25fps] scenes… (2026-10-20 10:57:30, etapa 2 de 14)
   scenes:   0 % (1/32107 fotogramas) · 0 s · quedan ≈ 0 s
   scenes:  30 % (9626/32107 fotogramas) · 30 s · quedan ≈ 71 s
+  scenes:  60 % (19226/32107 fotogramas) · 61 s · quedan ≈ 41 s
+  scenes:  89 % (28715/32107 fotogramas) · 2 min · quedan ≈ 11 s
+  scenes: 100 % (32107/32107 fotogramas) · 2 min · quedan ≈ 0 s
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren_25fps] scenes terminada a las 10:59:14 en 1.7 min
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren_25fps] audio… (2026-10-20 10:59:14, etapa 3 de 14)
+  audio:  23 % (300/1284 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1284/1284 s de sonido) · 14 s · quedan ≈ 0 s
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren_25fps] audio terminada a las 10:59:28 en 14 s
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren_25fps] court… (2026-10-20 10:59:28, etapa 4 de 14)
+  court:  15 % (64/422 fotogramas) · 0 s · quedan ≈ 0 s
