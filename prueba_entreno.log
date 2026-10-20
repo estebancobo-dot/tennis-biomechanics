@@ -497,3 +497,35 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  79 % (15202/19339 fotogramas con jugadoras) · 18 min · quedan ≈ 5 min
   [players] players:  81 % (15647/19339 fotogramas con jugadoras) · 18 min · quedan ≈ 4 min
   [players] players:  83 % (16077/19339 fotogramas con jugadoras) · 19 min · quedan ≈ 4 min
+  [players] players:  85 % (16507/19339 fotogramas con jugadoras) · 19 min · quedan ≈ 3 min
+  [players] players:  88 % (16962/19339 fotogramas con jugadoras) · 20 min · quedan ≈ 3 min
+  [players] players:  90 % (17420/19339 fotogramas con jugadoras) · 20 min · quedan ≈ 2 min
+  [players] players:  92 % (17843/19339 fotogramas con jugadoras) · 21 min · quedan ≈ 2 min
+  [players] players:  95 % (18281/19339 fotogramas con jugadoras) · 21 min · quedan ≈ 73 s
+  [players] players:  97 % (18682/19339 fotogramas con jugadoras) · 22 min · quedan ≈ 45 s
+  [players] players:  99 % (19119/19339 fotogramas con jugadoras) · 22 min · quedan ≈ 15 s
+  [players] players: 100 % (19339/19339 fotogramas con jugadoras) · 22 min · quedan ≈ 0 s
+  [players] tiempo: 22.3 min para 19339 fotogramas a 960 px · modelo 20.0 min · leer vídeo y preparar la entrada 13.8 min en otro hilo (espera real 2.3 min) · apariencia 0.3 min en otro hilo
+[spot_20210908_m_us_open_qf_novak_djokovic_matteo_berrettini_25fps] players terminada a las 13:13:58 en 22.5 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20210908-M-US_Open-QF-Novak_Djokovic-Matteo_Berrettini] 317 golpes anotados, 40644 fotogramas → 20210908-M-US_Open-QF-Novak_Djokovic-Matteo_Berrettini.npz
+
+[20210909-W-US_Open-SF-Aryna_Sabalenka-Leylah_Fernandez] (train) 90 puntos en 87 tramos
+  l-q5_tmOkqg: vídeo descargado (409 MB)
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez_25fps] probe… (2026-10-20 13:16:57, etapa 1 de 14)
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez_25fps] probe terminada a las 13:16:57 en 0 s
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez_25fps] scenes… (2026-10-20 13:16:57, etapa 2 de 14)
+  scenes:   0 % (1/41708 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  23 % (9568/41708 fotogramas) · 30 s · quedan ≈ 2 min
+  scenes:  46 % (18987/41708 fotogramas) · 60 s · quedan ≈ 72 s
+  scenes:  68 % (28426/41708 fotogramas) · 2 min · quedan ≈ 42 s
+  scenes:  91 % (37833/41708 fotogramas) · 2 min · quedan ≈ 12 s
+  scenes: 100 % (41708/41708 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez_25fps] scenes terminada a las 13:19:27 en 2.5 min
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez_25fps] audio… (2026-10-20 13:19:27, etapa 3 de 14)
+  audio:  18 % (300/1668 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1668/1668 s de sonido) · 3 s · quedan ≈ 0 s
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez_25fps] audio terminada a las 13:19:30 en 4 s
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez_25fps] court… (2026-10-20 13:19:30, etapa 4 de 14)
+  court:  15 % (64/432 fotogramas) · 0 s · quedan ≈ 0 s
