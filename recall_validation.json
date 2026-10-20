@@ -1,7 +1,7 @@
 {
  "player": "Rybakina",
  "tol_s": 0.2,
- "points": 349,
+ "points": 366,
  "matches": [
   "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
   "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
@@ -10,178 +10,214 @@
  ],
  "summary": {
   "total": {
-   "gt": 613,
-   "found": 0,
-   "recall": 0.0
+   "gt": 642,
+   "found": 10,
+   "recall": 0.016,
+   "found_doubtful": 74,
+   "recall_any": 0.131
   },
   "by_side": {
    "near": {
-    "gt": 275,
-    "found": 0,
-    "recall": 0.0
+    "gt": 288,
+    "found": 10,
+    "recall": 0.035,
+    "found_doubtful": 54,
+    "recall_any": 0.222
    },
    "far": {
-    "gt": 338,
+    "gt": 354,
     "found": 0,
-    "recall": 0.0
+    "recall": 0.0,
+    "found_doubtful": 20,
+    "recall_any": 0.056
    }
   },
   "by_kind": {
    "serve": {
-    "gt": 168,
-    "found": 0,
-    "recall": 0.0
+    "gt": 177,
+    "found": 3,
+    "recall": 0.017,
+    "found_doubtful": 8,
+    "recall_any": 0.062
    },
    "forehand": {
-    "gt": 239,
-    "found": 0,
-    "recall": 0.0
+    "gt": 249,
+    "found": 5,
+    "recall": 0.02,
+    "found_doubtful": 42,
+    "recall_any": 0.189
    },
    "backhand": {
-    "gt": 199,
-    "found": 0,
-    "recall": 0.0
+    "gt": 209,
+    "found": 2,
+    "recall": 0.01,
+    "found_doubtful": 24,
+    "recall_any": 0.124
    },
    "volley_other": {
     "gt": 7,
     "found": 0,
-    "recall": 0.0
+    "recall": 0.0,
+    "found_doubtful": 0,
+    "recall_any": 0.0
    }
   },
   "by_side_kind": {
    "near/serve": {
-    "gt": 77,
-    "found": 0,
-    "recall": 0.0
+    "gt": 82,
+    "found": 3,
+    "recall": 0.037,
+    "found_doubtful": 8,
+    "recall_any": 0.134
    },
    "near/forehand": {
-    "gt": 105,
-    "found": 0,
-    "recall": 0.0
+    "gt": 108,
+    "found": 5,
+    "recall": 0.046,
+    "found_doubtful": 29,
+    "recall_any": 0.315
    },
    "near/backhand": {
-    "gt": 90,
-    "found": 0,
-    "recall": 0.0
+    "gt": 95,
+    "found": 2,
+    "recall": 0.021,
+    "found_doubtful": 17,
+    "recall_any": 0.2
    },
    "near/volley_other": {
     "gt": 3,
     "found": 0,
-    "recall": 0.0
+    "recall": 0.0,
+    "found_doubtful": 0,
+    "recall_any": 0.0
    },
    "far/serve": {
-    "gt": 91,
+    "gt": 95,
     "found": 0,
-    "recall": 0.0
+    "recall": 0.0,
+    "found_doubtful": 0,
+    "recall_any": 0.0
    },
    "far/forehand": {
-    "gt": 134,
+    "gt": 141,
     "found": 0,
-    "recall": 0.0
+    "recall": 0.0,
+    "found_doubtful": 13,
+    "recall_any": 0.092
    },
    "far/backhand": {
-    "gt": 109,
+    "gt": 114,
     "found": 0,
-    "recall": 0.0
+    "recall": 0.0,
+    "found_doubtful": 7,
+    "recall_any": 0.061
    },
    "far/volley_other": {
     "gt": 4,
     "found": 0,
-    "recall": 0.0
+    "recall": 0.0,
+    "found_doubtful": 0,
+    "recall_any": 0.0
    }
   },
   "steps": {
-   "fuera_de_camara": 87,
-   "sin_seguimiento": 12,
-   "repeticion": 57,
-   "identidad_sin_decidir": 420,
-   "identidad_equivocada": 7,
-   "no_candidato": 25,
+   "fuera_de_camara": 89,
+   "sin_seguimiento": 17,
+   "repeticion": 56,
+   "identidad_sin_decidir": 241,
+   "identidad_equivocada": 58,
+   "no_candidato": 55,
    "error": 0,
-   "lejana_no_encontrada": 0,
+   "lejana_no_encontrada": 1,
    "sin_ventana": 0,
-   "criba_sin_golpe": 2,
+   "criba_sin_golpe": 7,
    "bola_no_vista": 0,
-   "no_confirmado": 3,
-   "encontrado": 0
+   "no_confirmado": 34,
+   "encontrado_dudoso": 74,
+   "encontrado": 10
   },
   "steps_by_side": {
    "near": {
     "fuera_de_camara": 39,
-    "sin_seguimiento": 6,
-    "repeticion": 26,
-    "identidad_sin_decidir": 185,
-    "identidad_equivocada": 2,
-    "no_candidato": 15,
-    "error": 0,
-    "lejana_no_encontrada": 0,
-    "sin_ventana": 0,
-    "criba_sin_golpe": 2,
-    "bola_no_vista": 0,
-    "no_confirmado": 0,
-    "encontrado": 0
-   },
-   "far": {
-    "fuera_de_camara": 48,
-    "sin_seguimiento": 6,
-    "repeticion": 31,
-    "identidad_sin_decidir": 235,
-    "identidad_equivocada": 5,
-    "no_candidato": 10,
+    "sin_seguimiento": 8,
+    "repeticion": 30,
+    "identidad_sin_decidir": 91,
+    "identidad_equivocada": 26,
+    "no_candidato": 22,
     "error": 0,
     "lejana_no_encontrada": 0,
     "sin_ventana": 0,
     "criba_sin_golpe": 0,
     "bola_no_vista": 0,
-    "no_confirmado": 3,
+    "no_confirmado": 8,
+    "encontrado_dudoso": 54,
+    "encontrado": 10
+   },
+   "far": {
+    "fuera_de_camara": 50,
+    "sin_seguimiento": 9,
+    "repeticion": 26,
+    "identidad_sin_decidir": 150,
+    "identidad_equivocada": 32,
+    "no_candidato": 33,
+    "error": 0,
+    "lejana_no_encontrada": 1,
+    "sin_ventana": 0,
+    "criba_sin_golpe": 7,
+    "bola_no_vista": 0,
+    "no_confirmado": 26,
+    "encontrado_dudoso": 20,
     "encontrado": 0
    }
   },
   "steps_by_kind": {
    "serve": {
     "fuera_de_camara": 31,
-    "sin_seguimiento": 3,
-    "repeticion": 18,
-    "identidad_sin_decidir": 107,
-    "identidad_equivocada": 0,
-    "no_candidato": 7,
+    "sin_seguimiento": 4,
+    "repeticion": 20,
+    "identidad_sin_decidir": 65,
+    "identidad_equivocada": 12,
+    "no_candidato": 20,
+    "error": 0,
+    "lejana_no_encontrada": 1,
+    "sin_ventana": 0,
+    "criba_sin_golpe": 3,
+    "bola_no_vista": 0,
+    "no_confirmado": 10,
+    "encontrado_dudoso": 8,
+    "encontrado": 3
+   },
+   "forehand": {
+    "fuera_de_camara": 28,
+    "sin_seguimiento": 8,
+    "repeticion": 22,
+    "identidad_sin_decidir": 96,
+    "identidad_equivocada": 24,
+    "no_candidato": 12,
     "error": 0,
     "lejana_no_encontrada": 0,
     "sin_ventana": 0,
     "criba_sin_golpe": 2,
     "bola_no_vista": 0,
-    "no_confirmado": 0,
-    "encontrado": 0
-   },
-   "forehand": {
-    "fuera_de_camara": 28,
-    "sin_seguimiento": 5,
-    "repeticion": 23,
-    "identidad_sin_decidir": 171,
-    "identidad_equivocada": 5,
-    "no_candidato": 7,
-    "error": 0,
-    "lejana_no_encontrada": 0,
-    "sin_ventana": 0,
-    "criba_sin_golpe": 0,
-    "bola_no_vista": 0,
-    "no_confirmado": 0,
-    "encontrado": 0
+    "no_confirmado": 10,
+    "encontrado_dudoso": 42,
+    "encontrado": 5
    },
    "backhand": {
-    "fuera_de_camara": 27,
-    "sin_seguimiento": 4,
-    "repeticion": 16,
-    "identidad_sin_decidir": 140,
-    "identidad_equivocada": 2,
-    "no_candidato": 7,
+    "fuera_de_camara": 29,
+    "sin_seguimiento": 5,
+    "repeticion": 14,
+    "identidad_sin_decidir": 78,
+    "identidad_equivocada": 22,
+    "no_candidato": 19,
     "error": 0,
     "lejana_no_encontrada": 0,
     "sin_ventana": 0,
-    "criba_sin_golpe": 0,
+    "criba_sin_golpe": 2,
     "bola_no_vista": 0,
-    "no_confirmado": 3,
-    "encontrado": 0
+    "no_confirmado": 14,
+    "encontrado_dudoso": 24,
+    "encontrado": 2
    },
    "volley_other": {
     "fuera_de_camara": 1,
@@ -196,34 +232,39 @@
     "criba_sin_golpe": 0,
     "bola_no_vista": 0,
     "no_confirmado": 0,
+    "encontrado_dudoso": 0,
     "encontrado": 0
    }
   },
   "precision": {
-   "predicted_in_points": 3,
-   "true": 0,
-   "opponent_strokes": 0,
-   "other": 3,
-   "precision": 0.0
+   "predicted_in_points": 28,
+   "true": 10,
+   "opponent_strokes": 14,
+   "other": 4,
+   "precision": 0.357
   },
-  "kind_confusion": {},
+  "kind_confusion": {
+   "backhand->backhand": 2,
+   "forehand->forehand": 5,
+   "serve->overhead": 3
+  },
   "identity": {
    "strokes": {
-    "right": 33,
-    "wrong": 7,
-    "undecided": 474,
-    "no_run": 99,
-    "lost_by_identity": 427
+    "right": 114,
+    "wrong": 60,
+    "undecided": 362,
+    "no_run": 106,
+    "lost_by_identity": 299
    },
-   "runs_checked": 314,
+   "runs_checked": 328,
    "runs_by_cue": {
-    "sin decidir": {
-     "runs": 274,
-     "right": 0,
-     "wrong": 0,
-     "undecided": 274,
-     "serve_vote": 73,
-     "return_vote": 73
+    "cambios de lado": {
+     "runs": 88,
+     "right": 61,
+     "wrong": 27,
+     "undecided": 0,
+     "serve_vote": 21,
+     "return_vote": 18
     },
     "ropa": {
      "runs": 3,
@@ -233,21 +274,21 @@
      "serve_vote": 0,
      "return_vote": 0
     },
-    "conflicto": {
-     "runs": 5,
-     "right": 0,
-     "wrong": 0,
-     "undecided": 5,
-     "serve_vote": 0,
-     "return_vote": 0
-    },
-    "cambios de lado": {
-     "runs": 32,
-     "right": 23,
+    "ropa y cambios de lado": {
+     "runs": 35,
+     "right": 26,
      "wrong": 9,
      "undecided": 0,
      "serve_vote": 2,
      "return_vote": 0
+    },
+    "sin decidir": {
+     "runs": 202,
+     "right": 0,
+     "wrong": 0,
+     "undecided": 202,
+     "serve_vote": 57,
+     "return_vote": 48
     }
    }
   }
@@ -255,133 +296,166 @@
  "per_match": [
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
-   "points": 78,
+   "points": 83,
    "summary": {
     "total": {
-     "gt": 127,
-     "found": 0,
-     "recall": 0.0
+     "gt": 137,
+     "found": 10,
+     "recall": 0.073,
+     "found_doubtful": 0,
+     "recall_any": 0.073
     },
     "by_side": {
      "near": {
-      "gt": 49,
-      "found": 0,
-      "recall": 0.0
+      "gt": 52,
+      "found": 10,
+      "recall": 0.192,
+      "found_doubtful": 0,
+      "recall_any": 0.192
      },
      "far": {
-      "gt": 78,
+      "gt": 85,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      }
     },
     "by_kind": {
      "serve": {
-      "gt": 37,
-      "found": 0,
-      "recall": 0.0
+      "gt": 41,
+      "found": 3,
+      "recall": 0.073,
+      "found_doubtful": 0,
+      "recall_any": 0.073
      },
      "forehand": {
-      "gt": 43,
-      "found": 0,
-      "recall": 0.0
+      "gt": 46,
+      "found": 5,
+      "recall": 0.109,
+      "found_doubtful": 0,
+      "recall_any": 0.109
      },
      "backhand": {
-      "gt": 47,
-      "found": 0,
-      "recall": 0.0
+      "gt": 50,
+      "found": 2,
+      "recall": 0.04,
+      "found_doubtful": 0,
+      "recall_any": 0.04
      },
      "volley_other": {
       "gt": 0,
       "found": 0,
-      "recall": null
+      "recall": null,
+      "found_doubtful": 0,
+      "recall_any": null
      }
     },
     "by_side_kind": {
      "near/serve": {
-      "gt": 11,
-      "found": 0,
-      "recall": 0.0
+      "gt": 13,
+      "found": 3,
+      "recall": 0.231,
+      "found_doubtful": 0,
+      "recall_any": 0.231
      },
      "near/forehand": {
       "gt": 18,
-      "found": 0,
-      "recall": 0.0
+      "found": 5,
+      "recall": 0.278,
+      "found_doubtful": 0,
+      "recall_any": 0.278
      },
      "near/backhand": {
-      "gt": 20,
-      "found": 0,
-      "recall": 0.0
+      "gt": 21,
+      "found": 2,
+      "recall": 0.095,
+      "found_doubtful": 0,
+      "recall_any": 0.095
      },
      "near/volley_other": {
       "gt": 0,
       "found": 0,
-      "recall": null
+      "recall": null,
+      "found_doubtful": 0,
+      "recall_any": null
      },
      "far/serve": {
-      "gt": 26,
+      "gt": 28,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "far/forehand": {
-      "gt": 25,
+      "gt": 28,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "far/backhand": {
-      "gt": 27,
+      "gt": 29,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "far/volley_other": {
       "gt": 0,
       "found": 0,
-      "recall": null
+      "recall": null,
+      "found_doubtful": 0,
+      "recall_any": null
      }
     },
     "steps": {
      "fuera_de_camara": 0,
-     "sin_seguimiento": 5,
-     "repeticion": 4,
-     "identidad_sin_decidir": 118,
-     "identidad_equivocada": 0,
-     "no_candidato": 0,
+     "sin_seguimiento": 6,
+     "repeticion": 5,
+     "identidad_sin_decidir": 0,
+     "identidad_equivocada": 51,
+     "no_candidato": 26,
      "error": 0,
-     "lejana_no_encontrada": 0,
+     "lejana_no_encontrada": 1,
      "sin_ventana": 0,
-     "criba_sin_golpe": 0,
+     "criba_sin_golpe": 7,
      "bola_no_vista": 0,
-     "no_confirmado": 0,
-     "encontrado": 0
+     "no_confirmado": 31,
+     "encontrado_dudoso": 0,
+     "encontrado": 10
     },
     "steps_by_side": {
      "near": {
       "fuera_de_camara": 0,
       "sin_seguimiento": 3,
-      "repeticion": 1,
-      "identidad_sin_decidir": 45,
-      "identidad_equivocada": 0,
-      "no_candidato": 0,
+      "repeticion": 2,
+      "identidad_sin_decidir": 0,
+      "identidad_equivocada": 24,
+      "no_candidato": 6,
       "error": 0,
       "lejana_no_encontrada": 0,
       "sin_ventana": 0,
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
-      "no_confirmado": 0,
-      "encontrado": 0
+      "no_confirmado": 7,
+      "encontrado_dudoso": 0,
+      "encontrado": 10
      },
      "far": {
       "fuera_de_camara": 0,
-      "sin_seguimiento": 2,
+      "sin_seguimiento": 3,
       "repeticion": 3,
-      "identidad_sin_decidir": 73,
-      "identidad_equivocada": 0,
-      "no_candidato": 0,
+      "identidad_sin_decidir": 0,
+      "identidad_equivocada": 27,
+      "no_candidato": 20,
       "error": 0,
-      "lejana_no_encontrada": 0,
+      "lejana_no_encontrada": 1,
       "sin_ventana": 0,
-      "criba_sin_golpe": 0,
+      "criba_sin_golpe": 7,
       "bola_no_vista": 0,
-      "no_confirmado": 0,
+      "no_confirmado": 24,
+      "encontrado_dudoso": 0,
       "encontrado": 0
      }
     },
@@ -389,47 +463,50 @@
      "serve": {
       "fuera_de_camara": 0,
       "sin_seguimiento": 1,
-      "repeticion": 1,
-      "identidad_sin_decidir": 35,
-      "identidad_equivocada": 0,
-      "no_candidato": 0,
+      "repeticion": 2,
+      "identidad_sin_decidir": 0,
+      "identidad_equivocada": 12,
+      "no_candidato": 9,
       "error": 0,
-      "lejana_no_encontrada": 0,
+      "lejana_no_encontrada": 1,
       "sin_ventana": 0,
-      "criba_sin_golpe": 0,
+      "criba_sin_golpe": 3,
       "bola_no_vista": 0,
-      "no_confirmado": 0,
-      "encontrado": 0
+      "no_confirmado": 10,
+      "encontrado_dudoso": 0,
+      "encontrado": 3
      },
      "forehand": {
       "fuera_de_camara": 0,
       "sin_seguimiento": 4,
       "repeticion": 0,
-      "identidad_sin_decidir": 39,
-      "identidad_equivocada": 0,
-      "no_candidato": 0,
+      "identidad_sin_decidir": 0,
+      "identidad_equivocada": 19,
+      "no_candidato": 7,
       "error": 0,
       "lejana_no_encontrada": 0,
       "sin_ventana": 0,
-      "criba_sin_golpe": 0,
+      "criba_sin_golpe": 2,
       "bola_no_vista": 0,
-      "no_confirmado": 0,
-      "encontrado": 0
+      "no_confirmado": 9,
+      "encontrado_dudoso": 0,
+      "encontrado": 5
      },
      "backhand": {
       "fuera_de_camara": 0,
-      "sin_seguimiento": 0,
+      "sin_seguimiento": 1,
       "repeticion": 3,
-      "identidad_sin_decidir": 44,
-      "identidad_equivocada": 0,
-      "no_candidato": 0,
+      "identidad_sin_decidir": 0,
+      "identidad_equivocada": 20,
+      "no_candidato": 10,
       "error": 0,
       "lejana_no_encontrada": 0,
       "sin_ventana": 0,
-      "criba_sin_golpe": 0,
+      "criba_sin_golpe": 2,
       "bola_no_vista": 0,
-      "no_confirmado": 0,
-      "encontrado": 0
+      "no_confirmado": 12,
+      "encontrado_dudoso": 0,
+      "encontrado": 2
      },
      "volley_other": {
       "fuera_de_camara": 0,
@@ -444,34 +521,39 @@
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
       "no_confirmado": 0,
+      "encontrado_dudoso": 0,
       "encontrado": 0
      }
     },
     "precision": {
-     "predicted_in_points": 0,
-     "true": 0,
-     "opponent_strokes": 0,
-     "other": 0,
-     "precision": null
+     "predicted_in_points": 26,
+     "true": 10,
+     "opponent_strokes": 14,
+     "other": 2,
+     "precision": 0.385
     },
-    "kind_confusion": {},
+    "kind_confusion": {
+     "backhand->backhand": 2,
+     "forehand->forehand": 5,
+     "serve->overhead": 3
+    },
     "identity": {
      "strokes": {
-      "right": 0,
-      "wrong": 0,
-      "undecided": 122,
-      "no_run": 5,
-      "lost_by_identity": 118
+      "right": 78,
+      "wrong": 53,
+      "undecided": 0,
+      "no_run": 6,
+      "lost_by_identity": 51
      },
-     "runs_checked": 82,
+     "runs_checked": 86,
      "runs_by_cue": {
-      "sin decidir": {
-       "runs": 82,
-       "right": 0,
-       "wrong": 0,
-       "undecided": 82,
-       "serve_vote": 19,
-       "return_vote": 19
+      "cambios de lado": {
+       "runs": 86,
+       "right": 59,
+       "wrong": 27,
+       "undecided": 0,
+       "serve_vote": 21,
+       "return_vote": 18
       }
      }
     }
@@ -479,180 +561,216 @@
   },
   {
    "match": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
-   "points": 81,
+   "points": 83,
    "summary": {
     "total": {
-     "gt": 127,
+     "gt": 131,
      "found": 0,
-     "recall": 0.0
+     "recall": 0.0,
+     "found_doubtful": 0,
+     "recall_any": 0.0
     },
     "by_side": {
      "near": {
       "gt": 59,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "far": {
-      "gt": 68,
+      "gt": 72,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      }
     },
     "by_kind": {
      "serve": {
       "gt": 38,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "forehand": {
-      "gt": 42,
+      "gt": 43,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "backhand": {
-      "gt": 42,
+      "gt": 45,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "volley_other": {
       "gt": 5,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      }
     },
     "by_side_kind": {
      "near/serve": {
       "gt": 19,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "near/forehand": {
       "gt": 18,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "near/backhand": {
       "gt": 19,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "near/volley_other": {
       "gt": 3,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "far/serve": {
       "gt": 19,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "far/forehand": {
-      "gt": 24,
+      "gt": 25,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "far/backhand": {
-      "gt": 23,
+      "gt": 26,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "far/volley_other": {
       "gt": 2,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      }
     },
     "steps": {
-     "fuera_de_camara": 80,
-     "sin_seguimiento": 3,
-     "repeticion": 3,
-     "identidad_sin_decidir": 4,
+     "fuera_de_camara": 82,
+     "sin_seguimiento": 6,
+     "repeticion": 4,
+     "identidad_sin_decidir": 0,
      "identidad_equivocada": 7,
-     "no_candidato": 25,
+     "no_candidato": 29,
      "error": 0,
      "lejana_no_encontrada": 0,
      "sin_ventana": 0,
-     "criba_sin_golpe": 2,
+     "criba_sin_golpe": 0,
      "bola_no_vista": 0,
      "no_confirmado": 3,
+     "encontrado_dudoso": 0,
      "encontrado": 0
     },
     "steps_by_side": {
      "near": {
       "fuera_de_camara": 35,
-      "sin_seguimiento": 0,
-      "repeticion": 2,
-      "identidad_sin_decidir": 3,
+      "sin_seguimiento": 1,
+      "repeticion": 4,
+      "identidad_sin_decidir": 0,
       "identidad_equivocada": 2,
-      "no_candidato": 15,
-      "error": 0,
-      "lejana_no_encontrada": 0,
-      "sin_ventana": 0,
-      "criba_sin_golpe": 2,
-      "bola_no_vista": 0,
-      "no_confirmado": 0,
-      "encontrado": 0
-     },
-     "far": {
-      "fuera_de_camara": 45,
-      "sin_seguimiento": 3,
-      "repeticion": 1,
-      "identidad_sin_decidir": 1,
-      "identidad_equivocada": 5,
-      "no_candidato": 10,
+      "no_candidato": 16,
       "error": 0,
       "lejana_no_encontrada": 0,
       "sin_ventana": 0,
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
-      "no_confirmado": 3,
+      "no_confirmado": 1,
+      "encontrado_dudoso": 0,
+      "encontrado": 0
+     },
+     "far": {
+      "fuera_de_camara": 47,
+      "sin_seguimiento": 5,
+      "repeticion": 0,
+      "identidad_sin_decidir": 0,
+      "identidad_equivocada": 5,
+      "no_candidato": 13,
+      "error": 0,
+      "lejana_no_encontrada": 0,
+      "sin_ventana": 0,
+      "criba_sin_golpe": 0,
+      "bola_no_vista": 0,
+      "no_confirmado": 2,
+      "encontrado_dudoso": 0,
       "encontrado": 0
      }
     },
     "steps_by_kind": {
      "serve": {
       "fuera_de_camara": 24,
-      "sin_seguimiento": 1,
+      "sin_seguimiento": 2,
       "repeticion": 1,
-      "identidad_sin_decidir": 3,
+      "identidad_sin_decidir": 0,
       "identidad_equivocada": 0,
-      "no_candidato": 7,
+      "no_candidato": 11,
       "error": 0,
       "lejana_no_encontrada": 0,
       "sin_ventana": 0,
-      "criba_sin_golpe": 2,
+      "criba_sin_golpe": 0,
       "bola_no_vista": 0,
       "no_confirmado": 0,
+      "encontrado_dudoso": 0,
       "encontrado": 0
      },
      "forehand": {
       "fuera_de_camara": 28,
-      "sin_seguimiento": 1,
-      "repeticion": 1,
+      "sin_seguimiento": 2,
+      "repeticion": 2,
       "identidad_sin_decidir": 0,
       "identidad_equivocada": 5,
-      "no_candidato": 7,
+      "no_candidato": 5,
       "error": 0,
       "lejana_no_encontrada": 0,
       "sin_ventana": 0,
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
-      "no_confirmado": 0,
+      "no_confirmado": 1,
+      "encontrado_dudoso": 0,
       "encontrado": 0
      },
      "backhand": {
-      "fuera_de_camara": 27,
-      "sin_seguimiento": 1,
+      "fuera_de_camara": 29,
+      "sin_seguimiento": 2,
       "repeticion": 1,
-      "identidad_sin_decidir": 1,
+      "identidad_sin_decidir": 0,
       "identidad_equivocada": 2,
-      "no_candidato": 7,
+      "no_candidato": 9,
       "error": 0,
       "lejana_no_encontrada": 0,
       "sin_ventana": 0,
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
-      "no_confirmado": 3,
+      "no_confirmado": 2,
+      "encontrado_dudoso": 0,
       "encontrado": 0
      },
      "volley_other": {
@@ -668,24 +786,25 @@
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
       "no_confirmado": 0,
+      "encontrado_dudoso": 0,
       "encontrado": 0
      }
     },
     "precision": {
-     "predicted_in_points": 3,
+     "predicted_in_points": 2,
      "true": 0,
      "opponent_strokes": 0,
-     "other": 3,
+     "other": 2,
      "precision": 0.0
     },
     "kind_confusion": {},
     "identity": {
      "strokes": {
-      "right": 33,
+      "right": 36,
       "wrong": 7,
-      "undecided": 4,
-      "no_run": 83,
-      "lost_by_identity": 11
+      "undecided": 0,
+      "no_run": 88,
+      "lost_by_identity": 7
      },
      "runs_checked": 40,
      "runs_by_cue": {
@@ -697,20 +816,20 @@
        "serve_vote": 0,
        "return_vote": 0
       },
-      "conflicto": {
-       "runs": 5,
-       "right": 0,
-       "wrong": 0,
-       "undecided": 5,
-       "serve_vote": 0,
-       "return_vote": 0
-      },
-      "cambios de lado": {
-       "runs": 32,
-       "right": 23,
+      "ropa y cambios de lado": {
+       "runs": 35,
+       "right": 26,
        "wrong": 9,
        "undecided": 0,
        "serve_vote": 2,
+       "return_vote": 0
+      },
+      "cambios de lado": {
+       "runs": 2,
+       "right": 2,
+       "wrong": 0,
+       "undecided": 0,
+       "serve_vote": 0,
        "return_vote": 0
       }
      }
@@ -719,94 +838,124 @@
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
-   "points": 76,
+   "points": 78,
    "summary": {
     "total": {
-     "gt": 151,
+     "gt": 154,
      "found": 0,
-     "recall": 0.0
+     "recall": 0.0,
+     "found_doubtful": 25,
+     "recall_any": 0.162
     },
     "by_side": {
      "near": {
-      "gt": 58,
+      "gt": 61,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 14,
+      "recall_any": 0.23
      },
      "far": {
       "gt": 93,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 11,
+      "recall_any": 0.118
      }
     },
     "by_kind": {
      "serve": {
-      "gt": 37,
+      "gt": 39,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "forehand": {
-      "gt": 61,
+      "gt": 62,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 18,
+      "recall_any": 0.29
      },
      "backhand": {
       "gt": 51,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 7,
+      "recall_any": 0.137
      },
      "volley_other": {
       "gt": 2,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      }
     },
     "by_side_kind": {
      "near/serve": {
-      "gt": 20,
+      "gt": 22,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "near/forehand": {
-      "gt": 20,
+      "gt": 21,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 10,
+      "recall_any": 0.476
      },
      "near/backhand": {
       "gt": 18,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 4,
+      "recall_any": 0.222
      },
      "near/volley_other": {
       "gt": 0,
       "found": 0,
-      "recall": null
+      "recall": null,
+      "found_doubtful": 0,
+      "recall_any": null
      },
      "far/serve": {
       "gt": 17,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "far/forehand": {
       "gt": 41,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 8,
+      "recall_any": 0.195
      },
      "far/backhand": {
       "gt": 33,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 3,
+      "recall_any": 0.091
      },
      "far/volley_other": {
       "gt": 2,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      }
     },
     "steps": {
      "fuera_de_camara": 5,
      "sin_seguimiento": 0,
-     "repeticion": 19,
-     "identidad_sin_decidir": 127,
+     "repeticion": 20,
+     "identidad_sin_decidir": 104,
      "identidad_equivocada": 0,
      "no_candidato": 0,
      "error": 0,
@@ -815,14 +964,15 @@
      "criba_sin_golpe": 0,
      "bola_no_vista": 0,
      "no_confirmado": 0,
+     "encontrado_dudoso": 25,
      "encontrado": 0
     },
     "steps_by_side": {
      "near": {
       "fuera_de_camara": 4,
       "sin_seguimiento": 0,
-      "repeticion": 8,
-      "identidad_sin_decidir": 46,
+      "repeticion": 9,
+      "identidad_sin_decidir": 34,
       "identidad_equivocada": 0,
       "no_candidato": 0,
       "error": 0,
@@ -831,13 +981,14 @@
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
       "no_confirmado": 0,
+      "encontrado_dudoso": 14,
       "encontrado": 0
      },
      "far": {
       "fuera_de_camara": 1,
       "sin_seguimiento": 0,
       "repeticion": 11,
-      "identidad_sin_decidir": 81,
+      "identidad_sin_decidir": 70,
       "identidad_equivocada": 0,
       "no_candidato": 0,
       "error": 0,
@@ -846,6 +997,7 @@
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
       "no_confirmado": 0,
+      "encontrado_dudoso": 11,
       "encontrado": 0
      }
     },
@@ -853,8 +1005,8 @@
      "serve": {
       "fuera_de_camara": 5,
       "sin_seguimiento": 0,
-      "repeticion": 7,
-      "identidad_sin_decidir": 25,
+      "repeticion": 8,
+      "identidad_sin_decidir": 26,
       "identidad_equivocada": 0,
       "no_candidato": 0,
       "error": 0,
@@ -863,13 +1015,14 @@
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
       "no_confirmado": 0,
+      "encontrado_dudoso": 0,
       "encontrado": 0
      },
      "forehand": {
       "fuera_de_camara": 0,
       "sin_seguimiento": 0,
       "repeticion": 8,
-      "identidad_sin_decidir": 53,
+      "identidad_sin_decidir": 36,
       "identidad_equivocada": 0,
       "no_candidato": 0,
       "error": 0,
@@ -878,13 +1031,14 @@
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
       "no_confirmado": 0,
+      "encontrado_dudoso": 18,
       "encontrado": 0
      },
      "backhand": {
       "fuera_de_camara": 0,
       "sin_seguimiento": 0,
       "repeticion": 4,
-      "identidad_sin_decidir": 47,
+      "identidad_sin_decidir": 40,
       "identidad_equivocada": 0,
       "no_candidato": 0,
       "error": 0,
@@ -893,6 +1047,7 @@
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
       "no_confirmado": 0,
+      "encontrado_dudoso": 7,
       "encontrado": 0
      },
      "volley_other": {
@@ -908,6 +1063,7 @@
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
       "no_confirmado": 0,
+      "encontrado_dudoso": 0,
       "encontrado": 0
      }
     },
@@ -923,19 +1079,19 @@
      "strokes": {
       "right": 0,
       "wrong": 0,
-      "undecided": 146,
+      "undecided": 149,
       "no_run": 5,
-      "lost_by_identity": 127
+      "lost_by_identity": 104
      },
-     "runs_checked": 76,
+     "runs_checked": 78,
      "runs_by_cue": {
       "sin decidir": {
-       "runs": 76,
+       "runs": 78,
        "right": 0,
        "wrong": 0,
-       "undecided": 76,
-       "serve_vote": 27,
-       "return_vote": 19
+       "undecided": 78,
+       "serve_vote": 28,
+       "return_vote": 17
       }
      }
     }
@@ -943,94 +1099,124 @@
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
-   "points": 114,
+   "points": 122,
    "summary": {
     "total": {
-     "gt": 208,
+     "gt": 220,
      "found": 0,
-     "recall": 0.0
+     "recall": 0.0,
+     "found_doubtful": 49,
+     "recall_any": 0.223
     },
     "by_side": {
      "near": {
-      "gt": 109,
+      "gt": 116,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 40,
+      "recall_any": 0.345
      },
      "far": {
-      "gt": 99,
+      "gt": 104,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 9,
+      "recall_any": 0.087
      }
     },
     "by_kind": {
      "serve": {
-      "gt": 56,
-      "found": 0,
-      "recall": 0.0
-     },
-     "forehand": {
-      "gt": 93,
-      "found": 0,
-      "recall": 0.0
-     },
-     "backhand": {
       "gt": 59,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 8,
+      "recall_any": 0.136
+     },
+     "forehand": {
+      "gt": 98,
+      "found": 0,
+      "recall": 0.0,
+      "found_doubtful": 24,
+      "recall_any": 0.245
+     },
+     "backhand": {
+      "gt": 63,
+      "found": 0,
+      "recall": 0.0,
+      "found_doubtful": 17,
+      "recall_any": 0.27
      },
      "volley_other": {
       "gt": 0,
       "found": 0,
-      "recall": null
+      "recall": null,
+      "found_doubtful": 0,
+      "recall_any": null
      }
     },
     "by_side_kind": {
      "near/serve": {
-      "gt": 27,
+      "gt": 28,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 8,
+      "recall_any": 0.286
      },
      "near/forehand": {
-      "gt": 49,
+      "gt": 51,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 19,
+      "recall_any": 0.373
      },
      "near/backhand": {
-      "gt": 33,
+      "gt": 37,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 13,
+      "recall_any": 0.351
      },
      "near/volley_other": {
       "gt": 0,
       "found": 0,
-      "recall": null
+      "recall": null,
+      "found_doubtful": 0,
+      "recall_any": null
      },
      "far/serve": {
-      "gt": 29,
+      "gt": 31,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 0,
+      "recall_any": 0.0
      },
      "far/forehand": {
-      "gt": 44,
+      "gt": 47,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 5,
+      "recall_any": 0.106
      },
      "far/backhand": {
       "gt": 26,
       "found": 0,
-      "recall": 0.0
+      "recall": 0.0,
+      "found_doubtful": 4,
+      "recall_any": 0.154
      },
      "far/volley_other": {
       "gt": 0,
       "found": 0,
-      "recall": null
+      "recall": null,
+      "found_doubtful": 0,
+      "recall_any": null
      }
     },
     "steps": {
      "fuera_de_camara": 2,
-     "sin_seguimiento": 4,
-     "repeticion": 31,
-     "identidad_sin_decidir": 171,
+     "sin_seguimiento": 5,
+     "repeticion": 27,
+     "identidad_sin_decidir": 137,
      "identidad_equivocada": 0,
      "no_candidato": 0,
      "error": 0,
@@ -1039,14 +1225,15 @@
      "criba_sin_golpe": 0,
      "bola_no_vista": 0,
      "no_confirmado": 0,
+     "encontrado_dudoso": 49,
      "encontrado": 0
     },
     "steps_by_side": {
      "near": {
       "fuera_de_camara": 0,
-      "sin_seguimiento": 3,
+      "sin_seguimiento": 4,
       "repeticion": 15,
-      "identidad_sin_decidir": 91,
+      "identidad_sin_decidir": 57,
       "identidad_equivocada": 0,
       "no_candidato": 0,
       "error": 0,
@@ -1055,12 +1242,13 @@
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
       "no_confirmado": 0,
+      "encontrado_dudoso": 40,
       "encontrado": 0
      },
      "far": {
       "fuera_de_camara": 2,
       "sin_seguimiento": 1,
-      "repeticion": 16,
+      "repeticion": 12,
       "identidad_sin_decidir": 80,
       "identidad_equivocada": 0,
       "no_candidato": 0,
@@ -1070,6 +1258,7 @@
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
       "no_confirmado": 0,
+      "encontrado_dudoso": 9,
       "encontrado": 0
      }
     },
@@ -1078,7 +1267,7 @@
       "fuera_de_camara": 2,
       "sin_seguimiento": 1,
       "repeticion": 9,
-      "identidad_sin_decidir": 44,
+      "identidad_sin_decidir": 39,
       "identidad_equivocada": 0,
       "no_candidato": 0,
       "error": 0,
@@ -1087,13 +1276,14 @@
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
       "no_confirmado": 0,
+      "encontrado_dudoso": 8,
       "encontrado": 0
      },
      "forehand": {
       "fuera_de_camara": 0,
-      "sin_seguimiento": 0,
-      "repeticion": 14,
-      "identidad_sin_decidir": 79,
+      "sin_seguimiento": 2,
+      "repeticion": 12,
+      "identidad_sin_decidir": 60,
       "identidad_equivocada": 0,
       "no_candidato": 0,
       "error": 0,
@@ -1102,13 +1292,14 @@
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
       "no_confirmado": 0,
+      "encontrado_dudoso": 24,
       "encontrado": 0
      },
      "backhand": {
       "fuera_de_camara": 0,
-      "sin_seguimiento": 3,
-      "repeticion": 8,
-      "identidad_sin_decidir": 48,
+      "sin_seguimiento": 2,
+      "repeticion": 6,
+      "identidad_sin_decidir": 38,
       "identidad_equivocada": 0,
       "no_candidato": 0,
       "error": 0,
@@ -1117,6 +1308,7 @@
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
       "no_confirmado": 0,
+      "encontrado_dudoso": 17,
       "encontrado": 0
      },
      "volley_other": {
@@ -1132,6 +1324,7 @@
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
       "no_confirmado": 0,
+      "encontrado_dudoso": 0,
       "encontrado": 0
      }
     },
@@ -1147,19 +1340,19 @@
      "strokes": {
       "right": 0,
       "wrong": 0,
-      "undecided": 202,
-      "no_run": 6,
-      "lost_by_identity": 171
+      "undecided": 213,
+      "no_run": 7,
+      "lost_by_identity": 137
      },
-     "runs_checked": 116,
+     "runs_checked": 124,
      "runs_by_cue": {
       "sin decidir": {
-       "runs": 116,
+       "runs": 124,
        "right": 0,
        "wrong": 0,
-       "undecided": 116,
-       "serve_vote": 27,
-       "return_vote": 35
+       "undecided": 124,
+       "serve_vote": 29,
+       "return_vote": 31
       }
      }
     }
@@ -1167,10 +1360,9 @@
   }
  ],
  "notes": [
-  "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 78 de 84 puntos descargados",
-  "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 81 de 85 puntos descargados",
-  "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka: 76 de 78 puntos descargados",
-  "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 114 de 123 puntos descargados"
+  "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 83 de 84 puntos descargados",
+  "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 83 de 85 puntos descargados",
+  "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 122 de 123 puntos descargados"
  ],
  "strokes": [
   {
@@ -1179,9 +1371,9 @@
    "label": "far_ad_return_bh_gs_DM_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1192,9 +1384,9 @@
    "label": "far_ad_return_bh_gs_DM_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1205,9 +1397,9 @@
    "label": "far_middle_stroke_fh_gs_DM_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1218,9 +1410,9 @@
    "label": "far_middle_stroke_fh_gs_CC_-_unforced-err",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1231,9 +1423,9 @@
    "label": "far_deuce_serve_-_-_T_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1244,9 +1436,9 @@
    "label": "far_ad_stroke_bh_slice_DM_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1257,9 +1449,9 @@
    "label": "far_deuce_stroke_fh_slice_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1270,9 +1462,9 @@
    "label": "far_deuce_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1283,9 +1475,9 @@
    "label": "far_deuce_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1296,9 +1488,9 @@
    "label": "far_middle_stroke_bh_drop_IO_-_winner",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1309,9 +1501,9 @@
    "label": "far_deuce_serve_-_-_W_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1322,9 +1514,9 @@
    "label": "near_ad_serve_-_-_T_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1335,9 +1527,9 @@
    "label": "far_deuce_return_fh_gs_DM_-_unforced-err",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1348,9 +1540,9 @@
    "label": "far_ad_serve_-_-_T_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1362,8 +1554,8 @@
    "side": "far",
    "kind": "serve",
    "step": "repeticion",
-   "run_method": null,
-   "identity_ok": null,
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1374,9 +1566,9 @@
    "label": "far_deuce_serve_-_-_T_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1387,9 +1579,9 @@
    "label": "far_ad_stroke_bh_gs_DM_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1400,9 +1592,9 @@
    "label": "near_deuce_return_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1413,9 +1605,9 @@
    "label": "near_ad_stroke_bh_gs_DL_-_unforced-err",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1426,9 +1618,9 @@
    "label": "near_middle_return_fh_gs_DM_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1439,9 +1631,9 @@
    "label": "near_middle_stroke_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1452,9 +1644,9 @@
    "label": "near_deuce_stroke_fh_gs_DM_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1465,9 +1657,22 @@
    "label": "near_middle_stroke_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+   "point": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin_57825_57945",
+   "label": "near_deuce_serve_-_-_W_-_winner",
+   "side": "near",
+   "kind": "serve",
+   "step": "repeticion",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1479,8 +1684,8 @@
    "side": "far",
    "kind": "backhand",
    "step": "repeticion",
-   "run_method": null,
-   "identity_ok": null,
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1491,9 +1696,9 @@
    "label": "far_deuce_return_fh_gs_DM_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1504,9 +1709,9 @@
    "label": "far_middle_stroke_bh_gs_DM_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1517,9 +1722,9 @@
    "label": "far_deuce_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1530,9 +1735,9 @@
    "label": "far_deuce_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1543,9 +1748,9 @@
    "label": "far_ad_return_bh_gs_DM_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1556,9 +1761,9 @@
    "label": "far_ad_serve_-_-_T_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1569,9 +1774,9 @@
    "label": "far_deuce_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1582,9 +1787,9 @@
    "label": "far_ad_serve_-_-_T_-_winner",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1596,8 +1801,8 @@
    "side": "near",
    "kind": "backhand",
    "step": "repeticion",
-   "run_method": null,
-   "identity_ok": null,
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1608,9 +1813,9 @@
    "label": "near_deuce_serve_-_-_B_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1621,9 +1826,9 @@
    "label": "near_ad_stroke_bh_gs_CC_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1634,9 +1839,9 @@
    "label": "near_middle_stroke_fh_gs_CC_approach_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1647,12 +1852,12 @@
    "label": "near_middle_return_fh_gs_DM_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "encontrado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.049
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -1660,9 +1865,9 @@
    "label": "near_middle_stroke_fh_gs_DM_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1673,12 +1878,12 @@
    "label": "near_deuce_stroke_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "encontrado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.009
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -1686,9 +1891,9 @@
    "label": "near_middle_stroke_bh_gs_CC_-_unforced-err",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1712,10 +1917,10 @@
    "label": "far_ad_serve_-_-_T_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.76,
    "pred_stroke": null,
    "dt": null
   },
@@ -1725,10 +1930,10 @@
    "label": "far_ad_stroke_bh_gs_CC_-_winner",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.94,
    "pred_stroke": null,
    "dt": null
   },
@@ -1738,10 +1943,10 @@
    "label": "far_deuce_serve_-_-_T_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 1.0,
    "pred_stroke": null,
    "dt": null
   },
@@ -1751,10 +1956,10 @@
    "label": "far_middle_stroke_bh_gs_DM_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 1.0,
    "pred_stroke": null,
    "dt": null
   },
@@ -1764,10 +1969,10 @@
    "label": "far_deuce_stroke_fh_gs_DM_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.87,
    "pred_stroke": null,
    "dt": null
   },
@@ -1777,10 +1982,10 @@
    "label": "far_deuce_stroke_fh_gs_DL_-_unforced-err",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 1.0,
    "pred_stroke": null,
    "dt": null
   },
@@ -1790,10 +1995,10 @@
    "label": "far_deuce_serve_-_-_T_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.73,
    "pred_stroke": null,
    "dt": null
   },
@@ -1803,9 +2008,9 @@
    "label": "far_middle_return_bh_gs_DM_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1816,9 +2021,9 @@
    "label": "far_middle_stroke_bh_gs_CC_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1829,10 +2034,10 @@
    "label": "far_ad_stroke_bh_gs_DL_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 1.0,
    "pred_stroke": null,
    "dt": null
   },
@@ -1842,10 +2047,10 @@
    "label": "far_ad_stroke_bh_gs_DL_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 1.0,
    "pred_stroke": null,
    "dt": null
   },
@@ -1855,10 +2060,10 @@
    "label": "far_middle_stroke_bh_drop_IO_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 1.0,
    "pred_stroke": null,
    "dt": null
   },
@@ -1868,9 +2073,9 @@
    "label": "far_ad_return_bh_gs_CC_-_forced-err",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1881,9 +2086,9 @@
    "label": "far_middle_return_fh_slice_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "criba_sin_golpe",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1894,10 +2099,10 @@
    "label": "far_ad_return_bh_gs_CC_-_forced-err",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.82,
    "pred_stroke": null,
    "dt": null
   },
@@ -1907,10 +2112,10 @@
    "label": "near_deuce_serve_-_-_B_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 1.0,
    "pred_stroke": null,
    "dt": null
   },
@@ -1920,9 +2125,61 @@
    "label": "near_deuce_return_fh_gs_DM_-_unforced-err",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": null,
+   "pred_stroke": "forehand",
+   "dt": -0.028
+  },
+  {
+   "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+   "point": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin_119606_119811",
+   "label": "far_ad_serve_-_-_B_-_in",
+   "side": "far",
+   "kind": "serve",
+   "step": "criba_sin_golpe",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+   "point": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin_119606_119811",
+   "label": "far_ad_stroke_bh_gs_DM_-_in",
+   "side": "far",
+   "kind": "backhand",
+   "step": "sin_seguimiento",
    "run_method": null,
    "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+   "point": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin_121110_121299",
+   "label": "far_ad_serve_-_-_B_-_in",
+   "side": "far",
+   "kind": "serve",
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.82,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+   "point": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin_121110_121299",
+   "label": "far_ad_stroke_bh_gs_CC_-_in",
+   "side": "far",
+   "kind": "backhand",
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1933,9 +2190,9 @@
    "label": "far_deuce_serve_-_-_B_-_unforced-err",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1946,9 +2203,9 @@
    "label": "far_deuce_serve_-_-_B_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "criba_sin_golpe",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1959,9 +2216,9 @@
    "label": "far_ad_serve_-_-_T_-_unforced-err",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -1972,10 +2229,10 @@
    "label": "far_middle_return_bh_gs_IO_-_unforced-err",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.94,
    "pred_stroke": null,
    "dt": null
   },
@@ -1985,10 +2242,10 @@
    "label": "far_middle_return_fh_gs_IO_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.93,
    "pred_stroke": null,
    "dt": null
   },
@@ -1998,10 +2255,10 @@
    "label": "far_deuce_return_fh_gs_DL_-_winner",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.93,
    "pred_stroke": null,
    "dt": null
   },
@@ -2011,10 +2268,10 @@
    "label": "far_middle_return_bh_gs_IO_-_winner",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.93,
    "pred_stroke": null,
    "dt": null
   },
@@ -2024,12 +2281,12 @@
    "label": "near_deuce_serve_-_-_T_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "encontrado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "overhead",
+   "dt": -0.006
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2037,9 +2294,9 @@
    "label": "near_middle_stroke_bh_gs_CC_-_winner",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2050,12 +2307,12 @@
    "label": "near_ad_serve_-_-_B_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "encontrado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "overhead",
+   "dt": 0.02
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2063,10 +2320,36 @@
    "label": "near_ad_stroke_bh_gs_DM_-_unforced-err",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+   "point": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin_131374_131522",
+   "label": "near_ad_serve_-_-_B_-_in",
+   "side": "near",
+   "kind": "serve",
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.93,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+   "point": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin_131374_131522",
+   "label": "near_ad_stroke_bh_gs_CC_-_winner",
+   "side": "near",
+   "kind": "backhand",
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.93,
    "pred_stroke": null,
    "dt": null
   },
@@ -2076,12 +2359,12 @@
    "label": "near_ad_return_bh_gs_CC_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "encontrado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": 0.0
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2089,9 +2372,9 @@
    "label": "near_ad_stroke_bh_gs_CC_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2102,12 +2385,12 @@
    "label": "near_middle_stroke_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "encontrado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.028
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2115,12 +2398,12 @@
    "label": "near_middle_return_bh_gs_DM_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "encontrado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.054
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2128,12 +2411,12 @@
    "label": "near_deuce_stroke_fh_gs_DL_-_winner",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "encontrado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.014
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2141,10 +2424,10 @@
    "label": "near_ad_return_bh_gs_CC_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 1.0,
    "pred_stroke": null,
    "dt": null
   },
@@ -2154,9 +2437,9 @@
    "label": "far_deuce_serve_-_-_T_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2167,9 +2450,9 @@
    "label": "far_ad_stroke_bh_gs_CC_-_unforced-err",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "criba_sin_golpe",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2180,9 +2463,9 @@
    "label": "far_ad_serve_-_-_B_-_winner",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2193,9 +2476,9 @@
    "label": "far_deuce_serve_-_-_B_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2206,9 +2489,9 @@
    "label": "near_middle_return_bh_gs_DM_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2219,9 +2502,9 @@
    "label": "near_deuce_serve_-_-_T_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2232,9 +2515,9 @@
    "label": "near_ad_stroke_bh_gs_CC_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2245,9 +2528,9 @@
    "label": "near_ad_stroke_bh_gs_CC_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2258,9 +2541,9 @@
    "label": "near_ad_stroke_bh_gs_DM_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2271,9 +2554,9 @@
    "label": "near_ad_stroke_bh_slice_DM_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2284,9 +2567,9 @@
    "label": "near_ad_stroke_bh_gs_CC_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2297,9 +2580,9 @@
    "label": "near_ad_stroke_bh_gs_CC_-_forced-err",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2310,9 +2593,9 @@
    "label": "near_ad_serve_-_-_B_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2323,9 +2606,9 @@
    "label": "near_deuce_serve_-_-_T_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2336,9 +2619,9 @@
    "label": "near_ad_stroke_bh_gs_CC_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2349,9 +2632,9 @@
    "label": "near_deuce_serve_-_-_T_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2362,9 +2645,9 @@
    "label": "near_middle_stroke_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2375,9 +2658,9 @@
    "label": "near_middle_stroke_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2389,8 +2672,8 @@
    "side": "far",
    "kind": "backhand",
    "step": "repeticion",
-   "run_method": null,
-   "identity_ok": null,
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2401,9 +2684,9 @@
    "label": "far_middle_return_bh_gs_IO_-_forced-err",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2414,9 +2697,9 @@
    "label": "far_ad_return_bh_gs_CC_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2427,9 +2710,9 @@
    "label": "far_middle_stroke_fh_gs_IO_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2440,9 +2723,9 @@
    "label": "far_ad_stroke_bh_gs_DM_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "identidad_equivocada",
+   "run_method": "cambios de lado",
+   "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2453,10 +2736,49 @@
    "label": "far_ad_return_bh_gs_CC_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "criba_sin_golpe",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+   "point": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin_164955_165226",
+   "label": "far_middle_return_fh_gs_DM_-_in",
+   "side": "far",
+   "kind": "forehand",
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.76,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+   "point": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin_164955_165226",
+   "label": "far_middle_stroke_fh_gs_CC_-_in",
+   "side": "far",
+   "kind": "forehand",
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 1.0,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+   "point": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin_164955_165226",
+   "label": "far_deuce_stroke_fh_gs_DM_-_in",
+   "side": "far",
+   "kind": "forehand",
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.82,
    "pred_stroke": null,
    "dt": null
   },
@@ -2466,10 +2788,10 @@
    "label": "far_deuce_serve_-_-_T_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.93,
    "pred_stroke": null,
    "dt": null
   },
@@ -2479,9 +2801,9 @@
    "label": "far_ad_stroke_bh_gs_CC_-_winner",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2492,10 +2814,10 @@
    "label": "far_ad_serve_-_-_W_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.82,
    "pred_stroke": null,
    "dt": null
   },
@@ -2505,9 +2827,9 @@
    "label": "far_ad_serve_-_-_T_-_unforced-err",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2518,9 +2840,9 @@
    "label": "far_ad_serve_-_-_W_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2531,9 +2853,9 @@
    "label": "near_middle_return_bh_gs_DM_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2570,10 +2892,10 @@
    "label": "near_ad_return_bh_gs_CC_-_forced-err",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.93,
    "pred_stroke": null,
    "dt": null
   },
@@ -2583,10 +2905,10 @@
    "label": "near_ad_serve_-_-_W_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 1.0,
    "pred_stroke": null,
    "dt": null
   },
@@ -2596,10 +2918,10 @@
    "label": "near_ad_stroke_fh_gs_II_-_winner",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 1.0,
    "pred_stroke": null,
    "dt": null
   },
@@ -2609,12 +2931,12 @@
    "label": "near_ad_serve_-_-_T_-_winner",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "encontrado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "overhead",
+   "dt": 0.012
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2622,9 +2944,9 @@
    "label": "far_deuce_return_fh_gs_DM_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2635,9 +2957,9 @@
    "label": "far_deuce_stroke_fh_gs_DM_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2648,9 +2970,9 @@
    "label": "far_deuce_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2661,9 +2983,9 @@
    "label": "far_middle_return_fh_gs_DM_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2674,9 +2996,9 @@
    "label": "far_middle_stroke_fh_gs_DM_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2687,10 +3009,10 @@
    "label": "far_deuce_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.82,
    "pred_stroke": null,
    "dt": null
   },
@@ -2700,10 +3022,10 @@
    "label": "far_deuce_serve_-_-_T_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 0.67,
    "pred_stroke": null,
    "dt": null
   },
@@ -2713,10 +3035,10 @@
    "label": "far_middle_stroke_bh_gs_DM_-_unforced-err",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
-   "ball_seen": null,
+   "step": "no_confirmado",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
+   "ball_seen": 1.0,
    "pred_stroke": null,
    "dt": null
   },
@@ -2726,9 +3048,9 @@
    "label": "far_ad_serve_-_-_B_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "lejana_no_encontrada",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2739,9 +3061,9 @@
    "label": "far_deuce_serve_-_-_W_-_unforced-err",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "criba_sin_golpe",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2765,9 +3087,9 @@
    "label": "far_deuce_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "criba_sin_golpe",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2791,9 +3113,9 @@
    "label": "far_ad_serve_-_-_T_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2804,9 +3126,9 @@
    "label": "far_deuce_stroke_fh_gs_CC_-_winner",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2817,9 +3139,9 @@
    "label": "far_ad_serve_-_-_W_-_winner",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": null,
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -2999,8 +3321,8 @@
    "label": "far_ad_serve_-_-_T_-_winner",
    "side": "far",
    "kind": "serve",
-   "step": "repeticion",
-   "run_method": "cambios de lado",
+   "step": "no_candidato",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3138,14 +3460,27 @@
   },
   {
    "match": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
+   "point": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina_19670_19817",
+   "label": "far_deuce_return_fh_gs_CC_-_in",
+   "side": "far",
+   "kind": "forehand",
+   "step": "sin_seguimiento",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
    "point": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina_20736_20943",
    "label": "far_ad_return_bh_gs_CC_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "no_confirmado",
-   "run_method": "cambios de lado",
+   "step": "no_candidato",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
-   "ball_seen": 0.71,
+   "ball_seen": null,
    "pred_stroke": null,
    "dt": null
   },
@@ -3155,10 +3490,49 @@
    "label": "far_ad_stroke_bh_gs_DM_-_forced-err",
    "side": "far",
    "kind": "backhand",
-   "step": "no_confirmado",
-   "run_method": "cambios de lado",
+   "step": "no_candidato",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
-   "ball_seen": 1.0,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
+   "point": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina_21523_21809",
+   "label": "far_deuce_return_bh_gs_II_-_in",
+   "side": "far",
+   "kind": "backhand",
+   "step": "fuera_de_camara",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
+   "point": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina_21523_21809",
+   "label": "far_middle_stroke_bh_gs_CC_-_in",
+   "side": "far",
+   "kind": "backhand",
+   "step": "fuera_de_camara",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
+   "point": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina_21523_21809",
+   "label": "far_middle_stroke_bh_gs_DM_-_in",
+   "side": "far",
+   "kind": "backhand",
+   "step": "sin_seguimiento",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
    "pred_stroke": null,
    "dt": null
   },
@@ -3168,8 +3542,8 @@
    "label": "near_deuce_serve_-_-_W_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "criba_sin_golpe",
-   "run_method": "cambios de lado",
+   "step": "repeticion",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3181,8 +3555,8 @@
    "label": "near_deuce_stroke_fh_gs_DM_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "step": "repeticion",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3259,8 +3633,8 @@
    "label": "near_deuce_serve_-_-_T_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": "conflicto",
+   "step": "sin_seguimiento",
+   "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3272,8 +3646,8 @@
    "label": "near_ad_serve_-_-_W_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "criba_sin_golpe",
-   "run_method": "cambios de lado",
+   "step": "no_candidato",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3286,7 +3660,7 @@
    "side": "near",
    "kind": "volley_other",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3312,7 +3686,7 @@
    "side": "near",
    "kind": "volley_other",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3325,7 +3699,7 @@
    "side": "near",
    "kind": "volley_other",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3338,7 +3712,7 @@
    "side": "near",
    "kind": "backhand",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3351,7 +3725,7 @@
    "side": "near",
    "kind": "backhand",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3364,7 +3738,7 @@
    "side": "near",
    "kind": "forehand",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3377,7 +3751,7 @@
    "side": "near",
    "kind": "backhand",
    "step": "repeticion",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3390,7 +3764,7 @@
    "side": "near",
    "kind": "forehand",
    "step": "repeticion",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3442,7 +3816,7 @@
    "side": "far",
    "kind": "serve",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3455,7 +3829,7 @@
    "side": "far",
    "kind": "backhand",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3481,7 +3855,7 @@
    "side": "far",
    "kind": "volley_other",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3506,9 +3880,9 @@
    "label": "far_deuce_serve_-_-_B_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": "conflicto",
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -3559,7 +3933,7 @@
    "side": "far",
    "kind": "backhand",
    "step": "identidad_equivocada",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3598,7 +3972,7 @@
    "side": "near",
    "kind": "serve",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3611,7 +3985,7 @@
    "side": "near",
    "kind": "forehand",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3624,7 +3998,7 @@
    "side": "near",
    "kind": "forehand",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3636,9 +4010,9 @@
    "label": "near_deuce_serve_-_-_T_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
-   "run_method": "conflicto",
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "ropa y cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -3649,9 +4023,9 @@
    "label": "near_middle_stroke_bh_gs_IO_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
-   "run_method": "conflicto",
-   "identity_ok": null,
+   "step": "no_candidato",
+   "run_method": "ropa y cambios de lado",
+   "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
@@ -3793,7 +4167,7 @@
    "side": "far",
    "kind": "serve",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3936,7 +4310,7 @@
    "side": "far",
    "kind": "serve",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3961,10 +4335,10 @@
    "label": "far_ad_stroke_bh_gs_CC_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "step": "no_confirmado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
-   "ball_seen": null,
+   "ball_seen": 1.0,
    "pred_stroke": null,
    "dt": null
   },
@@ -3975,7 +4349,7 @@
    "side": "far",
    "kind": "forehand",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -3987,10 +4361,10 @@
    "label": "far_deuce_stroke_fh_slice_DM_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "step": "no_confirmado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
-   "ball_seen": null,
+   "ball_seen": 1.0,
    "pred_stroke": null,
    "dt": null
   },
@@ -4000,10 +4374,10 @@
    "label": "far_ad_stroke_bh_gs_DM_-_forced-err",
    "side": "far",
    "kind": "backhand",
-   "step": "no_confirmado",
-   "run_method": "cambios de lado",
+   "step": "no_candidato",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
-   "ball_seen": 0.94,
+   "ball_seen": null,
    "pred_stroke": null,
    "dt": null
   },
@@ -4014,7 +4388,7 @@
    "side": "far",
    "kind": "backhand",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -4079,7 +4453,7 @@
    "side": "far",
    "kind": "forehand",
    "step": "identidad_equivocada",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
@@ -4092,7 +4466,7 @@
    "side": "near",
    "kind": "serve",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -4105,7 +4479,7 @@
    "side": "near",
    "kind": "serve",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -4118,7 +4492,7 @@
    "side": "near",
    "kind": "forehand",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -4130,10 +4504,10 @@
    "label": "near_deuce_return_bh_gs_DM_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "step": "no_confirmado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
-   "ball_seen": null,
+   "ball_seen": 1.0,
    "pred_stroke": null,
    "dt": null
   },
@@ -4144,7 +4518,7 @@
    "side": "near",
    "kind": "backhand",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -4170,7 +4544,7 @@
    "side": "near",
    "kind": "forehand",
    "step": "identidad_equivocada",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
@@ -4183,7 +4557,7 @@
    "side": "near",
    "kind": "forehand",
    "step": "identidad_equivocada",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
@@ -4248,7 +4622,7 @@
    "side": "far",
    "kind": "serve",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -4339,7 +4713,7 @@
    "side": "far",
    "kind": "backhand",
    "step": "identidad_equivocada",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
@@ -4352,7 +4726,7 @@
    "side": "far",
    "kind": "forehand",
    "step": "identidad_equivocada",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
@@ -4378,7 +4752,7 @@
    "side": "far",
    "kind": "forehand",
    "step": "identidad_equivocada",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": false,
    "ball_seen": null,
    "pred_stroke": null,
@@ -4507,12 +4881,12 @@
    "label": "near_ad_return_bh_gs_DM_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.036
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -4520,12 +4894,12 @@
    "label": "near_deuce_stroke_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.036
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -4533,12 +4907,12 @@
    "label": "near_deuce_stroke_fh_gs_CC_-_unforced-err",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.004
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -4594,6 +4968,32 @@
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
+   "point": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_13761_14001",
+   "label": "near_deuce_serve_-_-_B_-_in",
+   "side": "near",
+   "kind": "serve",
+   "step": "identidad_sin_decidir",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
+   "point": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_13761_14001",
+   "label": "near_deuce_stroke_fh_gs_CC_-_in",
+   "side": "near",
+   "kind": "forehand",
+   "step": "encontrado_dudoso",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": "forehand",
+   "dt": -0.04
+  },
+  {
+   "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
    "point": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_14424_14528",
    "label": "near_ad_serve_-_-_W_-_in",
    "side": "near",
@@ -4611,12 +5011,12 @@
    "label": "near_middle_stroke_fh_gs_CC_-_winner",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.049
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -4637,12 +5037,12 @@
    "label": "far_deuce_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.002
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -4988,12 +5388,12 @@
    "label": "far_deuce_return_bh_gs_DM_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": 0.009
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5053,12 +5453,12 @@
    "label": "far_deuce_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.041
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5183,12 +5583,12 @@
    "label": "near_ad_return_bh_gs_DM_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.032
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5196,12 +5596,12 @@
    "label": "near_middle_stroke_bh_gs_DM_-_unforced-err",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.032
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5235,12 +5635,12 @@
    "label": "near_ad_stroke_bh_gs_CC_-_forced-err",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.037
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5300,12 +5700,12 @@
    "label": "near_deuce_stroke_fh_gs_DM_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.035
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5313,12 +5713,12 @@
    "label": "near_deuce_stroke_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.035
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5495,12 +5895,12 @@
    "label": "far_middle_stroke_bh_gs_IO_-_unforced-err",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.005
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5521,12 +5921,12 @@
    "label": "far_middle_return_fh_gs_IO_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.012
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5573,12 +5973,12 @@
    "label": "far_middle_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.012
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5677,12 +6077,12 @@
    "label": "near_middle_stroke_fh_gs_DM_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.024
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5690,12 +6090,12 @@
    "label": "near_deuce_stroke_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.016
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5729,12 +6129,12 @@
    "label": "near_deuce_return_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.008
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5794,12 +6194,12 @@
    "label": "far_middle_return_bh_gs_DM_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.002
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5933,6 +6333,19 @@
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
+   "point": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_90852_90961",
+   "label": "near_ad_serve_-_-_W_-_winner",
+   "side": "near",
+   "kind": "serve",
+   "step": "repeticion",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
    "point": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka_91370_91490",
    "label": "near_deuce_serve_-_-_T_-_winner",
    "side": "near",
@@ -6054,12 +6467,12 @@
    "label": "far_deuce_return_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.007
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6093,12 +6506,12 @@
    "label": "far_middle_return_fh_gs_IO_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.01
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6106,12 +6519,12 @@
    "label": "far_deuce_stroke_fh_gs_DL_-_unforced-err",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.01
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6197,12 +6610,12 @@
    "label": "near_deuce_stroke_fh_gs_DL_-_forced-err",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.02
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6379,12 +6792,12 @@
    "label": "far_ad_return_fh_gs_II_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.013
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6483,12 +6896,12 @@
    "label": "near_deuce_serve_-_-_B_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "overhead",
+   "dt": -0.015
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -6496,12 +6909,12 @@
    "label": "near_middle_stroke_bh_gs_CC_approach_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.055
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -6596,8 +7009,8 @@
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
-   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_9699_10009",
-   "label": "near_middle_return_bh_gs_DM_-_in",
+   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_9109_9267",
+   "label": "near_ad_return_bh_gs_DM_-_winner",
    "side": "near",
    "kind": "backhand",
    "step": "identidad_sin_decidir",
@@ -6606,6 +7019,19 @@
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
+  },
+  {
+   "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_9699_10009",
+   "label": "near_middle_return_bh_gs_DM_-_in",
+   "side": "near",
+   "kind": "backhand",
+   "step": "encontrado_dudoso",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": "backhand",
+   "dt": 0.004
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -6613,12 +7039,12 @@
    "label": "near_ad_stroke_bh_gs_DM_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.036
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -6626,12 +7052,12 @@
    "label": "near_deuce_stroke_fh_gs_CC_-_winner",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.004
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -6652,6 +7078,19 @@
    "label": "near_middle_return_fh_gs_DM_-_in",
    "side": "near",
    "kind": "forehand",
+   "step": "identidad_sin_decidir",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_13439_13643",
+   "label": "far_deuce_serve_-_-_T_-_in",
+   "side": "far",
+   "kind": "serve",
    "step": "identidad_sin_decidir",
    "run_method": null,
    "identity_ok": null,
@@ -6691,12 +7130,12 @@
    "label": "far_middle_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.018
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -6717,7 +7156,7 @@
    "label": "far_ad_serve_-_-_W_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "repeticion",
+   "step": "identidad_sin_decidir",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -6730,7 +7169,7 @@
    "label": "far_ad_stroke_bh_gs_CC_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "repeticion",
+   "step": "identidad_sin_decidir",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -6743,7 +7182,7 @@
    "label": "far_middle_stroke_fh_gs_DM_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "repeticion",
+   "step": "identidad_sin_decidir",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -6756,12 +7195,12 @@
    "label": "far_ad_stroke_bh_gs_DM_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "repeticion",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.088
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -6769,7 +7208,7 @@
    "label": "far_deuce_stroke_fh_gs_CC_-_forced-err",
    "side": "far",
    "kind": "forehand",
-   "step": "repeticion",
+   "step": "identidad_sin_decidir",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -6795,6 +7234,19 @@
    "label": "far_middle_stroke_bh_gs_DM_-_in",
    "side": "far",
    "kind": "backhand",
+   "step": "identidad_sin_decidir",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_18140_18285",
+   "label": "far_middle_return_fh_gs_IO_-_in",
+   "side": "far",
+   "kind": "forehand",
    "step": "identidad_sin_decidir",
    "run_method": null,
    "identity_ok": null,
@@ -6834,12 +7286,12 @@
    "label": "far_ad_return_fh_gs_DM_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.016
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -6847,12 +7299,12 @@
    "label": "far_ad_stroke_bh_gs_CC_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": 0.016
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -6886,12 +7338,12 @@
    "label": "near_deuce_serve_-_-_B_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "overhead",
+   "dt": 0.0
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -6912,7 +7364,7 @@
    "label": "near_ad_serve_-_-_T_-_winner",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
+   "step": "repeticion",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -6990,12 +7442,12 @@
    "label": "near_middle_stroke_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.022
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7016,7 +7468,7 @@
    "label": "near_middle_return_fh_gs_IO_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "repeticion",
+   "step": "identidad_sin_decidir",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -7159,12 +7611,12 @@
    "label": "far_middle_stroke_fh_gs_CC_approach_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.053
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7224,12 +7676,12 @@
    "label": "near_deuce_serve_-_-_T_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.005
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7237,12 +7689,12 @@
    "label": "near_middle_stroke_fh_gs_DM_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.045
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7276,12 +7728,12 @@
    "label": "near_middle_stroke_bh_gs_DM_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": 0.007
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7302,12 +7754,12 @@
    "label": "near_ad_stroke_bh_gs_CC_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.021
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7315,12 +7767,12 @@
    "label": "near_deuce_serve_-_-_B_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "overhead",
+   "dt": -0.038
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7328,12 +7780,12 @@
    "label": "near_middle_stroke_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.038
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7393,12 +7845,12 @@
    "label": "near_middle_stroke_fh_gs_DM_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7445,12 +7897,12 @@
    "label": "near_ad_return_bh_gs_CC_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": 0.001
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7458,12 +7910,12 @@
    "label": "near_ad_stroke_bh_gs_DM_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.039
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7471,12 +7923,12 @@
    "label": "near_middle_stroke_fh_gs_DM_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.001
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7549,7 +8001,7 @@
    "label": "far_ad_serve_-_-_W_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "repeticion",
+   "step": "identidad_sin_decidir",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -7562,7 +8014,7 @@
    "label": "far_middle_stroke_fh_gs_DM_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "repeticion",
+   "step": "identidad_sin_decidir",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -7575,7 +8027,7 @@
    "label": "far_deuce_serve_-_-_T_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
+   "step": "repeticion",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -7588,7 +8040,7 @@
    "label": "far_middle_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "repeticion",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -7601,7 +8053,7 @@
    "label": "far_middle_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "repeticion",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -7614,7 +8066,7 @@
    "label": "far_ad_stroke_bh_gs_CC_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "sin_seguimiento",
+   "step": "identidad_sin_decidir",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -7731,12 +8183,12 @@
    "label": "far_middle_return_fh_gs_DM_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.06
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7744,12 +8196,12 @@
    "label": "far_deuce_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7809,12 +8261,12 @@
    "label": "near_middle_stroke_fh_gs_DM_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.045
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7822,12 +8274,12 @@
    "label": "near_ad_stroke_bh_gs_DM_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.005
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7835,12 +8287,12 @@
    "label": "near_middle_stroke_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.045
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7848,7 +8300,7 @@
    "label": "near_deuce_stroke_fh_gs_DL_-_forced-err",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "sin_seguimiento",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -7952,12 +8404,12 @@
    "label": "near_middle_stroke_fh_gs_CC_-_unforced-err",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.04
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8004,12 +8456,12 @@
    "label": "near_ad_return_fh_gs_DM_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.057
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8017,12 +8469,12 @@
    "label": "near_middle_stroke_fh_slice_IO_approach_forced-err",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.017
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8030,7 +8482,7 @@
    "label": "near_deuce_return_fh_slice_DM_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "repeticion",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -8290,12 +8742,12 @@
    "label": "near_ad_serve_-_-_T_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "overhead",
+   "dt": 0.021
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8303,12 +8755,12 @@
    "label": "near_deuce_stroke_fh_gs_DL_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.019
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8316,7 +8768,7 @@
    "label": "near_deuce_serve_-_-_T_-_winner",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
+   "step": "repeticion",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -8329,12 +8781,12 @@
    "label": "near_ad_serve_-_-_W_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "overhead",
+   "dt": -0.019
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8342,12 +8794,12 @@
    "label": "near_ad_stroke_bh_gs_DL_-_winner",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": 0.021
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8355,12 +8807,12 @@
    "label": "near_deuce_return_fh_gs_DM_-_forced-err",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8381,6 +8833,19 @@
    "label": "far_middle_stroke_fh_gs_CC_approach_winner",
    "side": "far",
    "kind": "forehand",
+   "step": "identidad_sin_decidir",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_116110_116228",
+   "label": "far_ad_serve_-_-_T_-_in",
+   "side": "far",
+   "kind": "serve",
    "step": "identidad_sin_decidir",
    "run_method": null,
    "identity_ok": null,
@@ -8446,12 +8911,12 @@
    "label": "far_middle_stroke_bh_gs_DM_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": 0.043
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8537,12 +9002,12 @@
    "label": "near_deuce_stroke_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": -0.04
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8576,12 +9041,12 @@
    "label": "near_deuce_serve_-_-_W_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "overhead",
+   "dt": 0.001
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8615,12 +9080,12 @@
    "label": "near_middle_stroke_bh_gs_DM_-_unforced-err",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.12
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8650,9 +9115,22 @@
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
-   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_132468_132661",
-   "label": "far_ad_return_bh_gs_DM_-_in",
-   "side": "far",
+   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_128174_128558",
+   "label": "near_ad_serve_-_-_B_-_in",
+   "side": "near",
+   "kind": "serve",
+   "step": "identidad_sin_decidir",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_128174_128558",
+   "label": "near_middle_stroke_bh_gs_DM_-_in",
+   "side": "near",
    "kind": "backhand",
    "step": "identidad_sin_decidir",
    "run_method": null,
@@ -8660,6 +9138,97 @@
    "ball_seen": null,
    "pred_stroke": null,
    "dt": null
+  },
+  {
+   "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_128174_128558",
+   "label": "near_middle_stroke_bh_gs_DM_-_in",
+   "side": "near",
+   "kind": "backhand",
+   "step": "identidad_sin_decidir",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_128174_128558",
+   "label": "near_deuce_stroke_fh_gs_DM_-_in",
+   "side": "near",
+   "kind": "forehand",
+   "step": "encontrado_dudoso",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": "forehand",
+   "dt": -0.076
+  },
+  {
+   "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_128174_128558",
+   "label": "near_ad_stroke_bh_gs_CC_-_in",
+   "side": "near",
+   "kind": "backhand",
+   "step": "identidad_sin_decidir",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_128174_128558",
+   "label": "near_deuce_stroke_fh_gs_CC_-_in",
+   "side": "near",
+   "kind": "forehand",
+   "step": "encontrado_dudoso",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": "forehand",
+   "dt": -0.036
+  },
+  {
+   "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_129186_129403",
+   "label": "far_deuce_return_fh_gs_DL_-_in",
+   "side": "far",
+   "kind": "forehand",
+   "step": "identidad_sin_decidir",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_129186_129403",
+   "label": "far_middle_stroke_fh_gs_IO_-_winner",
+   "side": "far",
+   "kind": "forehand",
+   "step": "sin_seguimiento",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": null,
+   "dt": null
+  },
+  {
+   "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+   "point": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina_132468_132661",
+   "label": "far_ad_return_bh_gs_DM_-_in",
+   "side": "far",
+   "kind": "backhand",
+   "step": "encontrado_dudoso",
+   "run_method": null,
+   "identity_ok": null,
+   "ball_seen": null,
+   "pred_stroke": "backhand",
+   "dt": -0.048
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8758,12 +9327,12 @@
    "label": "near_deuce_return_bh_gs_DM_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": 0.007
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8771,12 +9340,12 @@
    "label": "near_ad_stroke_bh_slice_DM_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": 0.007
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8784,12 +9353,12 @@
    "label": "near_deuce_stroke_fh_gs_DM_-_unforced-err",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.007
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8823,7 +9392,7 @@
    "label": "near_deuce_serve_-_-_W_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "repeticion",
+   "step": "identidad_sin_decidir",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -8836,7 +9405,7 @@
    "label": "near_middle_stroke_fh_gs_IO_-_unforced-err",
    "side": "near",
    "kind": "forehand",
-   "step": "repeticion",
+   "step": "identidad_sin_decidir",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
@@ -8849,12 +9418,12 @@
    "label": "near_deuce_serve_-_-_B_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "overhead",
+   "dt": 0.004
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8862,12 +9431,12 @@
    "label": "near_middle_stroke_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.004
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9083,12 +9652,12 @@
    "label": "near_ad_return_bh_gs_DM_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": 0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9096,12 +9665,12 @@
    "label": "near_deuce_stroke_fh_gs_CC_-_in",
    "side": "near",
    "kind": "forehand",
-   "step": "identidad_sin_decidir",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "forehand",
+   "dt": 0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9143,5 +9712,5 @@
    "dt": null
   }
  ],
- "minutes": 170.9
+ "minutes": 413.0
 }

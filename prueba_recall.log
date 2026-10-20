@@ -1820,3 +1820,98 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   fine_doubtful:  96 % (571/592 golpes candidatos · 78 confirmados · 65 ventanas descartadas sin pose) · 133 min · quedan ≈ 5 min
   ventana w001805648_5440 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.08 s
 C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w001805648_5440: pose hybrid en 136 de 136 fotogramas (17 s; modelo 16 s; pies en 2) · bola 174 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w001821804_5980 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.36 s
+  ventana w001821804_5980: pose hybrid en 150 de 150 fotogramas (20 s; modelo 20 s; pies en 150) · bola 192 s en paralelo (CPU) · raqueta 25 s (2 de 2 impactos) · 2 golpes posibles · altura 147 px (court)
+  fine_doubtful:  97 % (575/592 golpes candidatos · 80 confirmados · 65 ventanas descartadas sin pose) · 134 min · quedan ≈ 4 min
+  ventana w001854900_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.68 s
+  ventana w001854900_3600: pose hybrid en 90 de 90 fotogramas (13 s; modelo 12 s; pies en 28) · bola 93 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 838 px (segments)
+  ventana w001868818_5591 (near, 2 candidatos): pasa · golpe de bola en su lado a 3.92 s
+  ventana w001868818_5591: pose hybrid en 140 de 140 fotogramas (21 s; modelo 21 s; pies en 140) · bola 184 s en paralelo (CPU) · raqueta 9 s (1 de 1 impactos) · 1 golpes posibles · altura 227 px (segments)
+  fine_doubtful:  98 % (578/592 golpes candidatos · 81 confirmados · 65 ventanas descartadas sin pose) · 135 min · quedan ≈ 3 min
+  ventana w001899649_11054 (near, 4 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w001899649_11054: pose hybrid en 277 de 277 fotogramas (38 s; modelo 37 s; pies en 277) · bola 294 s en paralelo (CPU) · raqueta 44 s (4 de 4 impactos) · 4 golpes posibles · altura 159 px (court)
+  fine_doubtful:  98 % (582/592 golpes candidatos · 85 confirmados · 65 ventanas descartadas sin pose) · 137 min · quedan ≈ 2 min
+  ventana w001912803_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 1.84 s
+  ventana w001912803_3600: pose hybrid en 90 de 90 fotogramas (12 s; modelo 12 s; pies en 90) · bola 102 s en paralelo (CPU) · raqueta 11 s (1 de 1 impactos) · 1 golpes posibles · altura 140 px (court)
+  fine_doubtful:  98 % (583/592 golpes candidatos · 86 confirmados · 65 ventanas descartadas sin pose) · 138 min · quedan ≈ 2 min
+  ventana w001927541_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 1.88 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w001927541_3600: pose hybrid en 90 de 90 fotogramas (13 s; modelo 13 s; pies en 2) · bola 102 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w001945502_6098 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w001945502_6098: pose hybrid en 152 de 152 fotogramas (25 s; modelo 24 s; pies en 152) · bola 173 s en paralelo (CPU) · raqueta 22 s (2 de 2 impactos) · 2 golpes posibles · altura 156 px (court)
+  fine_doubtful:  99 % (586/592 golpes candidatos · 88 confirmados · 65 ventanas descartadas sin pose) · 139 min · quedan ≈ 86 s
+  ventana w001963900_6228 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w001963900_6228: pose hybrid en 156 de 156 fotogramas (26 s; modelo 25 s; pies en 156) · bola 175 s en paralelo (CPU) · raqueta 24 s (2 de 2 impactos) · 2 golpes posibles · altura 149 px (court)
+  fine_doubtful:  99 % (588/592 golpes candidatos · 90 confirmados · 65 ventanas descartadas sin pose) · 140 min · quedan ≈ 57 s
+  ventana w001979833_9295 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.48 s
+  ventana w001979833_9295: pose hybrid en 232 de 232 fotogramas (39 s; modelo 38 s; pies en 12) · bola 285 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 158 px (court)
+  fine_doubtful: 100 % (591/592 golpes candidatos · 90 confirmados · 65 ventanas descartadas sin pose) · 141 min · quedan ≈ 14 s
+  ventana w001999523_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (2.04 s): puede haber golpe
+  ventana w001999523_3600: pose hybrid en 90 de 90 fotogramas (12 s; modelo 12 s; pies en 72) · bola 110 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 148 px (court)
+  fine_doubtful: 100 % (592/592 golpes candidatos · 90 confirmados · 65 ventanas descartadas sin pose) · 141 min · quedan ≈ 0 s
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] fine_doubtful terminada a las 02:43:40 en 141.8 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina] recall 0/220; pérdidas: fuera de la cámara principal 2, jugadora cercana no seguida (sin tramo) 5, descartado como repetición 27, identidad sin decidir 137
+
+# Golpes perdidos: recall frente a F3Set
+
+642 golpes anotados de Rybakina en 366 puntos de 4 partidos (tolerancia ±0.2 s). **Encontrados 10 (2 %)** y 74 más apartados como de identidad dudosa (con ellos 13 %); precisión 36 % (10 de 28 golpes suyos dentro de los puntos; 14 eran golpes de la rival).
+
+## Recall por lado y tipo
+
+| | saque | derecha | revés | volea / remate / otro | total |
+|---|---|---|---|---|---|
+| cercana | 3/82 | 5/108 | 2/95 | 0/3 | **10/288** (4 %) |
+| lejana | 0/95 | 0/141 | 0/114 | 0/4 | **0/354** (0 %) |
+
+## Dónde se pierden (primera etapa que falla)
+
+| Etapa | cercana | lejana | total |
+|---|---|---|---|
+| fuera de la cámara principal | 39 | 50 | **89** |
+| jugadora cercana no seguida (sin tramo) | 8 | 9 | **17** |
+| descartado como repetición | 30 | 26 | **56** |
+| identidad sin decidir | 91 | 150 | **241** |
+| identidad equivocada | 26 | 32 | **58** |
+| no es candidato | 22 | 33 | **55** |
+| jugadora lejana no encontrada en la ventana | 0 | 1 | **1** |
+| criba «sin golpe» (sin pose) | 0 | 7 | **7** |
+| no confirmado (bola vista) | 8 | 26 | **34** |
+
+Lo que más importa arreglar: **identidad sin decidir** (241 golpes perdidos de 632).
+
+## Por tipo de golpe
+
+| Tipo | recall | etapa principal de pérdida |
+|---|---|---|
+| saque | 3/177 (2 %) | identidad sin decidir (65) |
+| derecha | 5/249 (2 %) | identidad sin decidir (96) |
+| revés | 2/209 (1 %) | identidad sin decidir (78) |
+| volea / remate / otro | 0/7 (0 %) | no es candidato (4) |
+
+## Identidad
+
+Golpes suyos en un tramo con la identidad bien puesta: 114; mal puesta: 60; sin decidir: 362; sin tramo: 106. Perdidos por identidad: 299.
+
+Tramos de la jugadora cercana dentro de puntos anotados: 328.
+
+| Señal que decidió el tramo | tramos | bien | mal | sin decidir | con voto de saque | con voto de resto |
+|---|---|---|---|---|---|---|
+| cambios de lado | 88 | 61 | 27 | 0 | 21 | 18 |
+| ropa | 3 | 3 | 0 | 0 | 0 | 0 |
+| ropa y cambios de lado | 35 | 26 | 9 | 0 | 2 | 0 |
+| sin decidir | 202 | 0 | 0 | 202 | 57 | 48 |
+
+> Nota: 20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 83 de 84 puntos descargados
+
+> Nota: 20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 83 de 85 puntos descargados
+
+> Nota: 20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 122 de 123 puntos descargados
+
+Cómo repetirlo: `uv run python scripts/validate_recall.py --root <datasets>` (en el PC: YouTube no deja descargar desde servidores). Cada arreglo de detección debe subir el recall sin bajar la precisión.
+
+termina 2026-10-20T02:43:43
