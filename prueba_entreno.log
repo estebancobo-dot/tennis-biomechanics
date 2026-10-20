@@ -158,3 +158,44 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
 [recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren_25fps] audio terminada a las 10:59:28 en 14 s
 [recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren_25fps] court… (2026-10-20 10:59:28, etapa 4 de 14)
   court:  15 % (64/422 fotogramas) · 0 s · quedan ≈ 0 s
+  court: 100 % (422/422 fotogramas) · 24 s · quedan ≈ 0 s
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren_25fps] court terminada a las 11:00:24 en 56 s
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren_25fps] players… (2026-10-20 11:00:24, etapa 5 de 14)
+  [players] juego con pista: 12.2 min de 12.4 min de cámara principal
+  [players] players:   0 % (1/18238 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   3 % (532/18238 fotogramas con jugadoras) · 30 s · quedan ≈ 17 min
+  [players] players:   6 % (1059/18238 fotogramas con jugadoras) · 60 s · quedan ≈ 16 min
+  [players] players:   9 % (1580/18238 fotogramas con jugadoras) · 2 min · quedan ≈ 16 min
+  [players] players:  11 % (2026/18238 fotogramas con jugadoras) · 2 min · quedan ≈ 16 min
+  [players] players:  14 % (2484/18238 fotogramas con jugadoras) · 3 min · quedan ≈ 16 min
+  [players] players:  16 % (2930/18238 fotogramas con jugadoras) · 3 min · quedan ≈ 16 min
+  [players] players:  19 % (3384/18238 fotogramas con jugadoras) · 4 min · quedan ≈ 15 min
+  [players] players:  21 % (3830/18238 fotogramas con jugadoras) · 4 min · quedan ≈ 15 min
+  [players] players:  23 % (4272/18238 fotogramas con jugadoras) · 5 min · quedan ≈ 15 min
+  [players] players:  26 % (4727/18238 fotogramas con jugadoras) · 5 min · quedan ≈ 14 min
+  [players] players:  28 % (5197/18238 fotogramas con jugadoras) · 6 min · quedan ≈ 14 min
+  [players] players:  31 % (5664/18238 fotogramas con jugadoras) · 6 min · quedan ≈ 13 min
+  [players] players:  33 % (6105/18238 fotogramas con jugadoras) · 7 min · quedan ≈ 13 min
+  [players] players:  36 % (6557/18238 fotogramas con jugadoras) · 7 min · quedan ≈ 13 min
+  [players] players:  38 % (7015/18238 fotogramas con jugadoras) · 8 min · quedan ≈ 12 min
+  [players] players:  41 % (7442/18238 fotogramas con jugadoras) · 8 min · quedan ≈ 12 min
+  [players] players:  43 % (7916/18238 fotogramas con jugadoras) · 9 min · quedan ≈ 11 min
+  [players] players:  46 % (8351/18238 fotogramas con jugadoras) · 9 min · quedan ≈ 11 min
+  [players] players:  48 % (8818/18238 fotogramas con jugadoras) · 10 min · quedan ≈ 10 min
+  [players] players:  51 % (9261/18238 fotogramas con jugadoras) · 10 min · quedan ≈ 10 min
+  [players] players:  53 % (9716/18238 fotogramas con jugadoras) · 11 min · quedan ≈ 9 min
+  [players] players:  56 % (10145/18238 fotogramas con jugadoras) · 11 min · quedan ≈ 9 min
+  [players] players:  58 % (10580/18238 fotogramas con jugadoras) · 12 min · quedan ≈ 8 min
+  [players] players:  61 % (11054/18238 fotogramas con jugadoras) · 12 min · quedan ≈ 8 min
+  [players] players:  63 % (11546/18238 fotogramas con jugadoras) · 13 min · quedan ≈ 7 min
+  [players] players:  66 % (12020/18238 fotogramas con jugadoras) · 13 min · quedan ≈ 7 min
+  [players] players:  69 % (12494/18238 fotogramas con jugadoras) · 14 min · quedan ≈ 6 min
+  [players] players:  71 % (12883/18238 fotogramas con jugadoras) · 14 min · quedan ≈ 6 min
+  [players] players:  73 % (13312/18238 fotogramas con jugadoras) · 15 min · quedan ≈ 5 min
+  [players] players:  76 % (13802/18238 fotogramas con jugadoras) · 15 min · quedan ≈ 5 min
+  [players] players:  79 % (14323/18238 fotogramas con jugadoras) · 16 min · quedan ≈ 4 min
+  [players] players:  81 % (14824/18238 fotogramas con jugadoras) · 16 min · quedan ≈ 4 min
+  [players] players:  84 % (15340/18238 fotogramas con jugadoras) · 17 min · quedan ≈ 3 min
+  [players] players:  87 % (15843/18238 fotogramas con jugadoras) · 17 min · quedan ≈ 3 min
+  [players] players:  90 % (16355/18238 fotogramas con jugadoras) · 18 min · quedan ≈ 2 min
+  [players] players:  93 % (16881/18238 fotogramas con jugadoras) · 18 min · quedan ≈ 87 s
