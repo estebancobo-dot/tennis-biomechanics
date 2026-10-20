@@ -253,3 +253,56 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  50 % (2328/4689 fotogramas con jugadoras) · 3 min · quedan ≈ 3 min
   [players] players:  60 % (2817/4689 fotogramas con jugadoras) · 3 min · quedan ≈ 2 min
   [players] players:  70 % (3301/4689 fotogramas con jugadoras) · 4 min · quedan ≈ 88 s
+  [players] players:  80 % (3773/4689 fotogramas con jugadoras) · 4 min · quedan ≈ 58 s
+  [players] players:  89 % (4188/4689 fotogramas con jugadoras) · 5 min · quedan ≈ 32 s
+  [players] players:  99 % (4664/4689 fotogramas con jugadoras) · 5 min · quedan ≈ 2 s
+  [players] players: 100 % (4689/4689 fotogramas con jugadoras) · 5 min · quedan ≈ 0 s
+  [players] tiempo: 5.0 min para 4689 fotogramas a 960 px · modelo 4.6 min · leer vídeo y preparar la entrada 3.3 min en otro hilo (espera real 0.4 min) · apariencia 0.1 min en otro hilo
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini] players terminada a las 06:59:22 en 5.0 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20220906-M-US_Open-QF-Casper_Ruud-Matteo_Berrettini] 320 golpes anotados, 15481 fotogramas → 20220906-M-US_Open-QF-Casper_Ruud-Matteo_Berrettini.npz
+
+[20220907-M-US_Open-QF-Andrey_Rublev-Frances_Tiafoe] (train) 90 puntos en 63 tramos
+  OsQzOCVrSzk: vídeo descargado (435 MB)
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe] probe… (2026-10-20 07:03:55, etapa 1 de 11)
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe] probe terminada a las 07:03:55 en 0 s
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe] scenes… (2026-10-20 07:03:55, etapa 2 de 11)
+  scenes:   0 % (1/34448 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  28 % (9626/34448 fotogramas) · 30 s · quedan ≈ 78 s
+  scenes:  56 % (19347/34448 fotogramas) · 60 s · quedan ≈ 47 s
+  scenes:  84 % (29026/34448 fotogramas) · 2 min · quedan ≈ 17 s
+  scenes: 100 % (34448/34448 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe] scenes terminada a las 07:05:44 en 1.8 min
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe] audio… (2026-10-20 07:05:44, etapa 3 de 11)
+  audio:  22 % (300/1377 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1377/1377 s de sonido) · 2 s · quedan ≈ 0 s
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe] audio terminada a las 07:05:47 en 3 s
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe] court… (2026-10-20 07:05:47, etapa 4 de 11)
+  court:  20 % (64/320 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  40 % (128/320 fotogramas) · 33 s · quedan ≈ 49 s
+  court: 100 % (320/320 fotogramas) · 53 s · quedan ≈ 0 s
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe] court terminada a las 07:07:11 en 1.4 min
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe] players… (2026-10-20 07:07:11, etapa 5 de 11)
+  [players] juego con pista: 8.4 min de 9.4 min de cámara principal
+  [players] players:   0 % (1/5019 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:  11 % (536/5019 fotogramas con jugadoras) · 30 s · quedan ≈ 4 min
+  [players] players:  18 % (916/5019 fotogramas con jugadoras) · 60 s · quedan ≈ 4 min
+  [players] players:  27 % (1336/5019 fotogramas con jugadoras) · 2 min · quedan ≈ 4 min
+  [players] players:  35 % (1738/5019 fotogramas con jugadoras) · 2 min · quedan ≈ 4 min
+  [players] players:  43 % (2139/5019 fotogramas con jugadoras) · 3 min · quedan ≈ 3 min
+  [players] players:  51 % (2541/5019 fotogramas con jugadoras) · 3 min · quedan ≈ 3 min
+  [players] players:  61 % (3058/5019 fotogramas con jugadoras) · 4 min · quedan ≈ 2 min
+  [players] players:  68 % (3404/5019 fotogramas con jugadoras) · 4 min · quedan ≈ 2 min
+  [players] players:  76 % (3804/5019 fotogramas con jugadoras) · 5 min · quedan ≈ 86 s
+  [players] players:  85 % (4258/5019 fotogramas con jugadoras) · 5 min · quedan ≈ 54 s
+  [players] players:  94 % (4707/5019 fotogramas con jugadoras) · 6 min · quedan ≈ 22 s
+  [players] players: 100 % (5019/5019 fotogramas con jugadoras) · 6 min · quedan ≈ 0 s
+  [players] tiempo: 5.9 min para 5019 fotogramas a 960 px · modelo 5.0 min · leer vídeo y preparar la entrada 4.1 min en otro hilo (espera real 0.9 min) · apariencia 0.1 min en otro hilo
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe] players terminada a las 07:13:06 en 5.9 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20220907-M-US_Open-QF-Andrey_Rublev-Frances_Tiafoe] 296 golpes anotados, 13779 fotogramas → 20220907-M-US_Open-QF-Andrey_Rublev-Frances_Tiafoe.npz
+
+[20220907-W-US_Open-QF-Karolina_Pliskova-Aryna_Sabalenka] (train) 90 puntos en 74 tramos
+  EOMFFpJxNR0: vídeo descargado (210 MB)
