@@ -4,6 +4,17 @@ partidos: 16
 horas: 14
 fps: 25
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
+# Cola: se pueden poner varias peticiones seguidas, separadas por una linea con solo "---"; cada bloque
+#   lleva su "id:", su "accion:" y sus parametros. El PC las hace en orden, una detras de otra en el mismo
+#   ciclo (sin esperar 10 min), y para si llega codigo nuevo (el siguiente ciclo sigue con el script nuevo)
+#   o si una accion aun no la conoce (se queda pendiente, y las de detras tambien). Un solo bloque sin "---"
+#   funciona como siempre. Ids hechos en el PC: output\peticiones_hechas.txt (y el antiguo peticion_hecha.txt).
+#   Lectura igual en Python: scripts/pc_requests.py. Ejemplo:
+#     id: 40
+#     accion: recall
+#     ---
+#     id: 41
+#     accion: diag
 #   poc = prueba de velocidad en carpetas aparte (4 min y despues 35 min), sin tocar output\_smoke
 #   largo = el video entero en output\_pocN_largo (una noche), sin tocar output\_smoke
 #   informe = medidas desde las caches, informe y auditoria de output\<carpeta> (carpeta: _pocN_...)

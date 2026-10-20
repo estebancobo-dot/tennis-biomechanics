@@ -133,6 +133,14 @@ Todo lo pendiente, en orden, con su criterio de cierre medido en el PC. Almacena
   ejecución anterior y sube `revision_automatica.md` (OK / REGRESIÓN / ERROR), `ciclo_arranque.txt`
   (cada arranque y por qué no hizo nada), `ciclo_vivo.txt` (señal horaria) y `ciclo_tarea.txt` a `pc-logs`.
   **No pedir al usuario que lance 2c/2d.** Tras subir código, programar un aviso (send_later ~30 min) y leer la revisión.
+- **Cola de peticiones al PC (20-10)** (`config/peticion_pc.txt`): varios bloques separados por una línea `---`,
+  cada uno con su `id:`, `accion:` y parámetros; un solo bloque sin `---` sigue valiendo. El ciclo hace en orden
+  todos los pendientes seguidos (sin esperar 10 min entre ellos) y para si llega código nuevo (el ciclo siguiente
+  sigue con el script nuevo) o si una acción aún no la conoce (no se da por hecha y la cola espera). Ids hechos en
+  `output\peticiones_hechas.txt` (más el antiguo `peticion_hecha.txt`). Lectura igual en Python:
+  `scripts/pc_requests.py` (`python scripts/pc_requests.py` dice cuál es la siguiente). Una acción nueva conviene
+  subirla en un push anterior al de su petición. No mezclar el primer fichero con varios bloques en el mismo push
+  que este cambio del script (el ciclo viejo juntaría los bloques en uno: haría solo el último).
 - **Fiabilidad de cada medida, automática** (`tennisbio.reliability`): repetibilidad con las fases movidas
   1-2 fotogramas (por fase y del golpe entero), segundo método independiente (2D frente a 3D del tronco:
   `sesgo`), medidas derivadas heredan el veredicto. Ruido o sesgo → no se da como valor suyo y la web dice por qué.

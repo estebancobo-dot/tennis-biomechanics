@@ -34,22 +34,63 @@ function Prueba-Modelos {
 #   poc = prueba de velocidad en carpetas aparte: 4 min (_poc4) y, si sale bien, 35 min (_poc); nunca toca _smoke
 #   largo = el video entero en output\_pocN_largo (una noche); nunca toca _smoke
 #   informe (con "carpeta: _pocN_largo") = medidas desde las caches + informe + auditoria de esa carpeta (minutos)
-function Leer-Peticion {
+# Cola (20-10): el fichero puede tener varios bloques separados por una linea "---", cada uno con su id, su
+# accion y sus parametros; se hacen en orden, uno detras de otro en el mismo ciclo. Un solo bloque (sin "---")
+# funciona igual que antes. Ids hechos: output\peticiones_hechas.txt (uno por linea) y el antiguo
+# output\peticion_hecha.txt (un id). La misma lectura en Python: scripts/pc_requests.py
+function Leer-Peticiones {
     $f = Join-Path $RepoDir "config\peticion_pc.txt"
-    if (-not (Test-Path $f)) { return $null }
+    $bloques = New-Object System.Collections.ArrayList
+    if (-not (Test-Path $f)) { return ,$bloques }
     $p = @{}
-    foreach ($l in Get-Content $f) { if ($l -match "^\s*(\w+)\s*:\s*(.+?)\s*$") { $p[$Matches[1]] = $Matches[2] } }
-    return $p
+    foreach ($l in Get-Content $f) {
+        if ($l -match "^\s*---\s*$") { if ($p.Count) { [void]$bloques.Add($p) }; $p = @{}; continue }
+        if ($l -match "^\s*(\w+)\s*:\s*(.+?)\s*$") { $p[$Matches[1]] = $Matches[2] }
+    }
+    if ($p.Count) { [void]$bloques.Add($p) }
+    return ,$bloques
 }
+function Peticiones-Hechas {
+    $h = @()
+    foreach ($f in @("$Out\peticiones_hechas.txt", "$Out\peticion_hecha.txt")) {
+        if (Test-Path $f) { $h += @(Get-Content $f | ForEach-Object { "$_".Trim() } | Where-Object { $_ }) }
+    }
+    return ,$h
+}
+# el primer bloque con id y accion que aun no se ha hecho ("accion: ninguna" no cuenta), o $null
 function Peticion-Pendiente {
-    $p = Leer-Peticion
-    if (-not $p -or -not $p["id"] -or $p["accion"] -eq "ninguna") { return $false }
-    $hecha = "$Out\peticion_hecha.txt"
-    return -not ((Test-Path $hecha) -and ((Get-Content $hecha -Raw).Trim() -eq $p["id"]))
+    $hechas = Peticiones-Hechas
+    foreach ($p in (Leer-Peticiones)) {
+        if (-not $p["id"] -or -not $p["accion"] -or $p["accion"] -eq "ninguna") { continue }
+        if ($hechas -notcontains $p["id"]) { return $p }
+    }
+    return $null
 }
-function Hacer-Peticion {
-    $p = Leer-Peticion
-    $p["id"] | Set-Content "$Out\peticion_hecha.txt"           # una sola vez, salga bien o mal
+# todas las pendientes seguidas en este ciclo; para si una accion es desconocida (llega con codigo nuevo)
+# o si hay codigo nuevo en GitHub: el siguiente ciclo sigue con el script nuevo
+function Hacer-Peticiones {
+    $ErrorActionPreference = "Continue"
+    $n = 0
+    while ($true) {
+        $p = Peticion-Pendiente
+        if (-not $p) { break }
+        Hacer-Peticion $p
+        $n++
+        if ($script:PeticionDesconocida) { break }
+        if ($n -ge 20) { Write-Host "20 peticiones seguidas en este ciclo: el resto, en el siguiente" -ForegroundColor Yellow; break }
+        if (-not (Peticion-Pendiente)) { break }
+        Subir-Registros | Out-Null                                  # el registro de la que acaba, ya
+        git -C $RepoDir fetch -q origin $Rama 2>$null
+        if ($LASTEXITCODE -eq 0) {
+            $h = (git -C $RepoDir rev-parse HEAD).Trim()
+            $f = (git -C $RepoDir rev-parse FETCH_HEAD).Trim()
+            if ($h -ne $f) { Write-Host "Codigo nuevo en GitHub: la siguiente peticion de la cola, en el proximo ciclo" -ForegroundColor Yellow; break }
+        }
+    }
+}
+function Hacer-Peticion($p) {
+    $script:PeticionDesconocida = $false
+    $p["id"] | Add-Content "$Out\peticiones_hechas.txt"        # una sola vez, salga bien o mal
     $ps1 = Join-Path $RepoDir "scripts\windows\prueba_rapida.ps1"
     if ($p["accion"] -eq "poc") {
         # carpetas nuevas por peticion: sin caches de otra prueba, el tiempo medido es el real
@@ -230,7 +271,11 @@ function Hacer-Peticion {
         # este script (19-10 y 20-10, peticiones 33 y 36 perdidas): no se da por hecha; el siguiente ciclo, ya con
         # el script nuevo, la hace
         Write-Host "Peticion $($p['id']) con accion '$($p['accion'])' que este ciclo aun no conoce: se hara en el siguiente" -ForegroundColor Yellow
-        Remove-Item "$Out\peticion_hecha.txt" -Force -ErrorAction SilentlyContinue
+        # (y la cola para aqui: el orden de las peticiones se respeta)
+        $script:PeticionDesconocida = $true
+        $hf = "$Out\peticiones_hechas.txt"
+        $resto = @(Get-Content $hf -ErrorAction SilentlyContinue | Where-Object { "$_".Trim() -ne $p["id"] })
+        if ($resto.Count) { $resto | Set-Content $hf } else { Remove-Item $hf -Force -ErrorAction SilentlyContinue }
     }
 }
 # el equipo no se suspende mientras el ciclo exista (la pantalla si puede apagarse): cada arranque, cada
@@ -260,7 +305,7 @@ if ($antes -eq $nuevo -and -not $forzar) {
     if ($pet -or (Pruebas-Pendientes)) {
         Set-Location $RepoDir
         Start-Transcript -Path $Log | Out-Null
-        try { if ($pet) { Hacer-Peticion } else { Prueba-Modelos } } finally { Resumen-Tiempo; Stop-Transcript | Out-Null; Subir-Registros }
+        try { if ($pet) { Hacer-Peticiones } else { Prueba-Modelos } } finally { Resumen-Tiempo; Stop-Transcript | Out-Null; Subir-Registros }
         exit 0
     }
     Senal-Vida "sin codigo nuevo ($($antes.Substring(0,7)))"
@@ -292,8 +337,8 @@ try {
         & uv run python scripts/auto_cycle.py review $aud $prev "$Out\revision_automatica.md" $Log 2>&1 | Out-Host
     }
     # prueba de modelos en este PC (scripts/model_trials.py): cuando cambia la prueba o aun no existe
-    # prueba pedida por Claude en config/peticion_pc.txt (id nuevo): primero eso, sin la prueba de modelos a la vez
-    if (Peticion-Pendiente) { Hacer-Peticion }
+    # pruebas pedidas por Claude en config/peticion_pc.txt (ids nuevos, en cola): primero eso, sin la prueba de modelos a la vez
+    if (Peticion-Pendiente) { Hacer-Peticiones }
     elseif ((Pruebas-Pendientes) -or ($cambios -match "model_trials\.py|pose/variants\.py")) { Prueba-Modelos }
     Ok "Ciclo automatico terminado ($modo)."
 } catch {
