@@ -132,3 +132,49 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
 [20210908-M-US_Open-QF-Novak_Djokovic-Matteo_Berrettini] 317 golpes anotados, 16258 fotogramas → 20210908-M-US_Open-QF-Novak_Djokovic-Matteo_Berrettini.npz
 
 [20210909-W-US_Open-SF-Aryna_Sabalenka-Leylah_Fernandez] (train) 90 puntos en 87 tramos
+  l-q5_tmOkqg: vídeo descargado (409 MB)
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez] probe… (2026-10-20 06:20:37, etapa 1 de 11)
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez] probe terminada a las 06:20:38 en 0 s
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez] scenes… (2026-10-20 06:20:38, etapa 2 de 11)
+  scenes:   0 % (1/41708 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  23 % (9626/41708 fotogramas) · 30 s · quedan ≈ 2 min
+  scenes:  46 % (19226/41708 fotogramas) · 60 s · quedan ≈ 71 s
+  scenes:  70 % (29026/41708 fotogramas) · 2 min · quedan ≈ 40 s
+  scenes:  93 % (38745/41708 fotogramas) · 2 min · quedan ≈ 9 s
+  scenes: 100 % (41708/41708 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez] scenes terminada a las 06:23:00 en 2.4 min
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez] audio… (2026-10-20 06:23:00, etapa 3 de 11)
+  audio:  18 % (300/1668 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1668/1668 s de sonido) · 3 s · quedan ≈ 0 s
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez] audio terminada a las 06:23:03 en 4 s
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez] court… (2026-10-20 06:23:03, etapa 4 de 11)
+  court:  15 % (64/436 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  59 % (256/436 fotogramas) · 37 s · quedan ≈ 26 s
+  court: 100 % (436/436 fotogramas) · 54 s · quedan ≈ 0 s
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez] court terminada a las 06:24:29 en 1.4 min
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez] players… (2026-10-20 06:24:29, etapa 5 de 11)
+  [players] juego con pista: 11.7 min de 13.2 min de cámara principal
+  [players] players:   0 % (1/6991 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   7 % (478/6991 fotogramas con jugadoras) · 30 s · quedan ≈ 7 min
+  [players] players:  13 % (887/6991 fotogramas con jugadoras) · 60 s · quedan ≈ 7 min
+  [players] players:  19 % (1312/6991 fotogramas con jugadoras) · 2 min · quedan ≈ 6 min
+  [players] players:  25 % (1770/6991 fotogramas con jugadoras) · 2 min · quedan ≈ 6 min
+  [players] players:  32 % (2232/6991 fotogramas con jugadoras) · 3 min · quedan ≈ 5 min
+  [players] players:  37 % (2611/6991 fotogramas con jugadoras) · 3 min · quedan ≈ 5 min
+  [players] players:  44 % (3064/6991 fotogramas con jugadoras) · 4 min · quedan ≈ 4 min
+  [players] players:  51 % (3533/6991 fotogramas con jugadoras) · 4 min · quedan ≈ 4 min
+  [players] players:  57 % (3989/6991 fotogramas con jugadoras) · 5 min · quedan ≈ 3 min
+  [players] players:  64 % (4490/6991 fotogramas con jugadoras) · 5 min · quedan ≈ 3 min
+  [players] players:  71 % (4954/6991 fotogramas con jugadoras) · 6 min · quedan ≈ 2 min
+  [players] players:  77 % (5378/6991 fotogramas con jugadoras) · 6 min · quedan ≈ 2 min
+  [players] players:  83 % (5779/6991 fotogramas con jugadoras) · 7 min · quedan ≈ 82 s
+  [players] players:  89 % (6212/6991 fotogramas con jugadoras) · 7 min · quedan ≈ 53 s
+  [players] players:  96 % (6742/6991 fotogramas con jugadoras) · 8 min · quedan ≈ 17 s
+  [players] tiempo: 7.8 min para 6990 fotogramas a 960 px · modelo 7.0 min · leer vídeo y preparar la entrada 4.8 min en otro hilo (espera real 0.8 min) · apariencia 0.1 min en otro hilo
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez] players terminada a las 06:32:18 en 7.8 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20210909-W-US_Open-SF-Aryna_Sabalenka-Leylah_Fernandez] 348 golpes anotados, 16684 fotogramas → 20210909-W-US_Open-SF-Aryna_Sabalenka-Leylah_Fernandez.npz
+
+[20220126-W-Australian_Open-QF-Iga_Swiatek-Kaia_Kanepi] (train) 90 puntos en 78 tramos
+  tf5Jwx_4MaE: vídeo descargado (713 MB)
