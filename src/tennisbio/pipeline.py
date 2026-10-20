@@ -38,6 +38,14 @@ class Stage:
     # the user's own decisions in the match folder (never overwritten): their content is part of the
     # fingerprint, so a new decision re-runs this stage and what follows (19-10: the identity click)
     reviews: tuple[str, ...] = ()
+    # dependencies that only apply with some settings (20-10: candidates reads spotting.json only with
+    # `spotter.enabled`). Empty: the fingerprint is the one it always was (no new key in its deps).
+    cfg_deps: Callable[[dict], tuple] | None = None
+
+    def all_deps(self, cfg: dict | None) -> tuple[str, ...]:
+        """deps plus the ones the config adds (cfg None: deps only)."""
+        extra = tuple(self.cfg_deps(cfg)) if self.cfg_deps is not None and cfg is not None else ()
+        return self.deps + tuple(d for d in extra if d not in self.deps)
 
 
 @dataclass
@@ -92,10 +100,10 @@ STAGES: dict[str, Stage] = {}
 
 
 def stage(name, version, deps=(), settings=lambda cfg: {}, outputs=(), code=(), match_fields=None, resource=None,
-          reviews=()):
+          reviews=(), cfg_deps=None):
     def register(fn):
         STAGES[name] = Stage(name, version, tuple(deps), settings, fn, tuple(outputs), tuple(code), match_fields, resource,
-                             tuple(reviews))
+                             tuple(reviews), cfg_deps)
         return fn
     return register
 
@@ -238,7 +246,7 @@ def fingerprint(name: str, ctx: Context, manifest: dict) -> str:
     key = {"stage": name, "version": st.version, "video": video_fingerprint(ctx.match.video, ctx.dir),
            "settings": st.settings(ctx.cfg), "code": code_fingerprint(st.code) if st.code else None,
            "match": st.match_fields(ctx.match) if st.match_fields else None,
-           "deps": {d: manifest.get(d, {}).get("fingerprint") for d in st.deps}}
+           "deps": {d: manifest.get(d, {}).get("fingerprint") for d in st.all_deps(ctx.cfg)}}
     if st.reviews:                    # only stages that have them: the others keep their fingerprints
         key["reviews"] = {f: (hashlib.sha1(ctx.path(f).read_bytes()).hexdigest()[:16] if ctx.path(f).exists() else None)
                           for f in st.reviews}
@@ -249,14 +257,14 @@ def outputs_ok(name: str, ctx: Context) -> bool:
     return all(ctx.path(o).exists() for o in STAGES[name].outputs)
 
 
-def order(names) -> list[str]:
-    """Stages in dependency order (dependencies included)."""
+def order(names, cfg: dict | None = None) -> list[str]:
+    """Stages in dependency order (dependencies included; with cfg, also those the config adds)."""
     out, seen = [], set()
 
     def visit(n):
         if n in seen:
             return
-        for d in STAGES[n].deps:
+        for d in STAGES[n].all_deps(cfg):
             visit(d)
         seen.add(n)
         out.append(n)
@@ -270,7 +278,7 @@ def status(ctx: Context) -> dict[str, str]:
     m = load_manifest(ctx.dir)
     expected = {}                      # what each fingerprint would be after re-running upstream
     res = {}
-    for n in order(STAGES):
+    for n in order(STAGES, ctx.cfg):
         expected[n] = {"fingerprint": fingerprint(n, ctx, expected)}
         if n not in m:
             res[n] = "missing"
@@ -332,7 +340,7 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
     m = load_manifest(ctx.dir)
     done: list[str] = []
     requested = set(names or STAGES)
-    full = order(names or list(STAGES))
+    full = order(names or list(STAGES), ctx.cfg)
     plan = [n for n in full if upstream or n in requested]
     in_plan = set(plan)
     lock = threading.Lock()
@@ -381,7 +389,7 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
         started = False
         for n in list(pending) if not errors else []:
             st = STAGES[n]
-            if any(d in in_plan and (d in pending or d in running) for d in st.deps):
+            if any(d in in_plan and (d in pending or d in running) for d in st.all_deps(ctx.cfg)):
                 continue                                     # a dependency is not finished yet
             fp = fingerprint(n, ctx, m)
             if not (force and n in requested) and m.get(n, {}).get("fingerprint") == fp and outputs_ok(n, ctx):

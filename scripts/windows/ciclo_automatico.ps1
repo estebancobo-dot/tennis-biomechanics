@@ -94,6 +94,8 @@ function Hacer-Peticion {
         $lg = "$Base\output\prueba_recall.log"
         "Peticion $($p['id']): medida de golpes encontrados frente a anotados ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
         $extra = @(); if ($p["puntos"]) { $extra = @("--max-points", "$($p['puntos'])") }
+        # detector=si: candidatos del detector entrenado (spotter.enabled); informe recall_validation_detector.*
+        if ("$($p['detector'])" -match '^(si|true|1)$') { $extra += @("--spotter") }
         Subir-Registros | Out-Null
         # horas de trabajo: el registro sube cada 20 min para que se vea por donde va (si no, parece el PC apagado)
         $script:subido = Get-Date
@@ -101,7 +103,7 @@ function Hacer-Peticion {
             "$_" | Add-Content $lg -Encoding UTF8
             if (((Get-Date) - $script:subido).TotalMinutes -ge 20) { $script:subido = Get-Date; Subir-Registros | Out-Null }
         }
-        foreach ($f in @("recall_validation.md", "recall_validation.json")) {
+        foreach ($f in @("recall_validation.md", "recall_validation.json", "recall_validation_detector.md", "recall_validation_detector.json")) {
             if (Test-Path "$Base\datasets\reports\$f") { Copy-Item "$Base\datasets\reports\$f" "$Base\output\$f" -Force }
         }
         "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8

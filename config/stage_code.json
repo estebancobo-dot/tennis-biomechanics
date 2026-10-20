@@ -33,9 +33,16 @@
    "identity"
   ]
  },
+ "spotting": {
+  "version": "1",
+  "hash": "52203390291b319a",
+  "modules": [
+   "spotting"
+  ]
+ },
  "candidates": {
   "version": "9",
-  "hash": "cd89d79b2dbd8db4",
+  "hash": "1963ac36a713413e",
   "modules": [
    "court_metrics",
    "identity",

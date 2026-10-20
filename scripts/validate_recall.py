@@ -10,6 +10,8 @@ of hers in the stage outputs. Writes <root>/reports/recall_validation.json and .
     uv run python scripts/validate_recall.py --root C:\\tenis\\datasets
     uv run python scripts/validate_recall.py --root C:\\tenis\\datasets --max-points 25     (quick: 25 points per match)
     uv run python scripts/validate_recall.py --root C:\\tenis\\datasets --skip-run          (only re-evaluate)
+    uv run python scripts/validate_recall.py --root C:\\tenis\\datasets --spotter           (candidates from the learned
+                                                                                         spotter; report *_detector)
 
 Runs on the user's PC: YouTube refuses downloads from data centres. The compilations and stage outputs
 are cached under <root>/f3set/recall/: re-running after a code change re-runs only what changed.
@@ -93,14 +95,23 @@ def build_compilation(root: Path, name: str, yt_id: str, fps: float, segs: list[
     return out, done
 
 
-def run_pipeline(video: Path, mid: str, player_id: str, opponent: str, out_dir: Path, force_fine: bool) -> list[str]:
+def spotter_cfg(cfg: dict, on: bool) -> dict:
+    """The config with the learned spotter switched on (`spotter.enabled`) when asked; untouched otherwise."""
+    if not on:
+        return cfg
+    return {**cfg, "spotter": {**(cfg.get("spotter") or {}), "enabled": True}}
+
+
+def run_pipeline(video: Path, mid: str, player_id: str, opponent: str, out_dir: Path, force_fine: bool,
+                 spotter: bool = False) -> list[str]:
     """All stages on the compilation, as for a full match; the fine pass's window lines are kept in
-    ventanas_fine.log (the benchmark reads where each window went)."""
+    ventanas_fine.log (the benchmark reads where each window went). spotter: candidates from the learned
+    spotter (stage spotting) instead of the rules."""
     from tennisbio import pipeline, stages  # noqa: F401  (registers the stages)
     from tennisbio.catalog import Match, load_player, surface_of
     from tennisbio.config import load_config
 
-    cfg = load_config()
+    cfg = spotter_cfg(load_config(), spotter)
     match = Match(mid, video, load_player(player_id), opponent=opponent, surface=surface_of(mid.replace("_", " ")) or "dura")
     lines = []
 
@@ -131,6 +142,9 @@ def main():
     ap.add_argument("--force-fine", action="store_true")
     ap.add_argument("--no-click", dest="click", action="store_false",
                     help="sin el clic de identidad simulado (19-10: por defecto se simula, como en la aplicación)")
+    ap.add_argument("--spotter", action="store_true",
+                    help="candidatos del detector entrenado (spotter.enabled) en vez de las reglas; el informe va a "
+                         "recall_validation_detector.json/.md (no pisa el de las reglas)")
     args = ap.parse_args()
     root = Path(args.root)
     t_start = time.time()
@@ -178,7 +192,7 @@ def main():
                     from tennisbio.identity import PICK_FILE
                     (out_dir / mid).mkdir(parents=True, exist_ok=True)
                     (out_dir / mid / PICK_FILE).write_text(json.dumps(pick), encoding="utf-8")
-            run_pipeline(vid, mid, args.player_id, ps[0]["opponent"], out_dir, args.force_fine)
+            run_pipeline(vid, mid, args.player_id, ps[0]["opponent"], out_dir, args.force_fine, args.spotter)
         got = {pid for s in done_segs for pid in s["points"]}
         ps = [p for p in ps if p["id"] in got]
         if len(got) < sum(len(s["points"]) for s in segs):
@@ -213,19 +227,22 @@ def main():
         all_pspans += [{**p, "t0": p["t0"] + sh, "t1": p["t1"] + sh} for p in pspans]
 
     total = R.summarize(all_attr, all_ev, all_strokes, all_spans, args.tol, all_runs, all_pspans) if all_attr else None
-    res = {"player": args.player, "tol_s": args.tol, "points": sum(m["points"] for m in per_match),
+    if args.spotter:
+        notes.append("candidatos del detector entrenado (spotter.enabled), no de las reglas")
+    res = {"player": args.player, "tol_s": args.tol, "spotter": args.spotter, "points": sum(m["points"] for m in per_match),
            "matches": [m["match"] for m in per_match], "summary": total, "per_match": per_match, "notes": notes,
            "strokes": [{k: a.get(k) for k in ("match", "point", "label", "side", "kind", "step", "run_method", "identity_ok",
                                                "ball_seen", "pred_stroke", "dt")} for a in all_attr],
            "minutes": round((time.time() - t_start) / 60, 1)}
     rep = root / "reports"
     rep.mkdir(parents=True, exist_ok=True)
-    (rep / "recall_validation.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
+    name = "recall_validation_detector" if args.spotter else "recall_validation"
+    (rep / f"{name}.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
     if total is None:
         print("Sin resultados: " + "; ".join(notes))
         return 1
     md = R.to_markdown(res)
-    (rep / "recall_validation.md").write_text(md, encoding="utf-8")
+    (rep / f"{name}.md").write_text(md, encoding="utf-8")
     print("\n" + md)
     return 0
 

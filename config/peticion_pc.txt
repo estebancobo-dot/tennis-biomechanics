@@ -15,5 +15,6 @@ fps: 25
 #   completo = los partidos completos de C:\tenis\videos (lista de videos primero; despues 3_analisis_completo)
 #   diag = hojas de fotogramas de los planos de cada partido (por que hay pocos minutos de camara principal)
 #   rehacer = un partido entero de nuevo (partido: <id>) y despues el analisis completo
-#   recall = golpes encontrados frente a los anotados por personas (F3Set), por lado, tipo y etapa (puntos: N para una prueba corta)
+#   recall = golpes encontrados frente a los anotados por personas (F3Set), por lado, tipo y etapa (puntos: N para una prueba corta;
+#            detector: si = candidatos del detector entrenado, informe recall_validation_detector.*)
 #   entreno = datos para entrenar el detector de golpes: partidos de F3Set (pasada barata) exportados como numeros a pc-logs/entreno_golpes (partidos: N, horas: H)

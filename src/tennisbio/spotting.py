@@ -54,9 +54,12 @@ def _person(kp: np.ndarray, cf: np.ndarray, frame_h: float, feet_court) -> np.nd
     return out
 
 
-def build_features(mdir: Path, hand: str = "right", video: Path | None = None) -> dict:
+def build_features(mdir: Path, hand: str = "right", video: Path | None = None, onsets: np.ndarray | None = None,
+                   flux=None) -> dict:
     """Features of one analysed video (its stage outputs in mdir: players.npz, court.json, scenes.json,
-    audio_onsets.json; the video itself for the sound flux): {"t": (N,) seconds, "X": (N, FEATURE_DIM), "fps"}."""
+    audio_onsets.json; the video itself for the sound flux): {"t": (N,) seconds, "X": (N, FEATURE_DIM), "fps"}.
+    onsets: the audio transients to use (default: those of the chosen track in mdir). flux: a function
+    (video, fps, n) → (n,) for the sound flux (default sound_flux; the pipeline passes sound_flux_stream)."""
     from .court_metrics import to_court
     from .skeleton import Skeleton
     from .stages import _far_player, court_at, near_runs, play_mask
@@ -100,7 +103,7 @@ def build_features(mdir: Path, hand: str = "right", video: Path | None = None) -
                 feet = np.array([feet[0], 23.77 - feet[1]])          # in her own frame: her baseline at 0
                 X[f, PERSON_DIM:2 * PERSON_DIM] = _person(d["kps"][i][jf].astype(np.float64), d["confs"][i][jf],
                                                           frame_h, feet)
-    onsets = _onsets(mdir)
+    onsets = _onsets(mdir) if onsets is None else np.sort(np.asarray(onsets, float))
     if len(onsets):
         idx = np.clip(np.round(onsets * fps).astype(int), 0, n - 1)
         np.add.at(X[:, 2 * PERSON_DIM], idx, 1.0)
@@ -112,7 +115,7 @@ def build_features(mdir: Path, hand: str = "right", video: Path | None = None) -
     else:
         X[:, 2 * PERSON_DIM + 1] = 1.0
     if video is not None:
-        X[:, 2 * PERSON_DIM + 2] = sound_flux(Path(video), fps, n)
+        X[:, 2 * PERSON_DIM + 2] = (flux or sound_flux)(Path(video), fps, n)
     return {"t": np.arange(n) / fps, "X": X, "fps": fps}
 
 
@@ -136,6 +139,115 @@ def sound_flux(video: Path, fps: float, n: int, sr: int = 22050, band=(1000, 600
     frame = np.minimum(((np.arange(len(flux)) + 1) * hop / sr * fps).astype(int), n - 1)
     np.maximum.at(out, frame, np.clip(flux, 0, 5).astype(np.float32))
     return out
+
+
+def sound_flux_stream(video: Path, fps: float, n: int, sr: int = 22050, band=(1000, 6000), hop: int = 128,
+                      block_s: float = 60.0) -> np.ndarray:
+    """sound_flux with bounded memory, for whole matches (20-10): the sound is read from ffmpeg and
+    transformed one block of ~block_s at a time (the same frames of the same zero-padded signal as
+    librosa.stft(center=True)); only the flux itself (one number per 128 samples) is kept whole, for its
+    normalisation. sound_flux on a 3 h match would hold ~8 GB of spectrogram."""
+    import subprocess
+
+    import librosa
+
+    n_fft = 1024
+    win = librosa.filters.get_window("hann", n_fft, fftbins=True).astype(np.float32)
+    f = librosa.fft_frequencies(sr=sr, n_fft=n_fft)
+    rows = (f > band[0]) & (f < band[1])
+    fluxes, prev, total = [], None, 0
+    buf = np.zeros(n_fft // 2, np.float32)                    # the left padding of center=True
+    step = max(1, int(block_s * sr / hop)) * hop
+
+    def frames_of(b: np.ndarray, last: bool) -> tuple[np.ndarray, np.ndarray]:
+        """Band log-magnitudes of the complete frames in b, and what is left of b for the next block."""
+        m = 1 + (len(b) - n_fft) // hop if len(b) >= n_fft else 0
+        if not last:
+            m = min(m, step // hop)
+        if m <= 0:
+            return np.zeros((rows.sum(), 0), np.float32), b
+        idx = np.arange(n_fft)[None, :] + hop * np.arange(m)[:, None]
+        spec = np.abs(np.fft.rfft(b[idx] * win, axis=1)).T.astype(np.float32)
+        return np.log1p(spec[rows] * 50), b[m * hop:]
+
+    proc = subprocess.Popen(["ffmpeg", "-v", "error", "-i", str(video), "-vn", "-ac", "1", "-ar", str(sr), "-f", "f32le",
+                             "pipe:1"], stdout=subprocess.PIPE, stderr=subprocess.DEVNULL)
+    try:
+        while True:
+            raw = proc.stdout.read(step * 4)
+            if raw:
+                y = np.frombuffer(raw[:len(raw) // 4 * 4], np.float32)
+                total += len(y)
+                buf = np.concatenate([buf, y])
+            last = not raw
+            if last:
+                buf = np.concatenate([buf, np.zeros(n_fft // 2, np.float32)])      # the right padding
+            while True:
+                L, buf = frames_of(buf, last)
+                if L.shape[1] == 0:
+                    break
+                if prev is not None:
+                    L = np.concatenate([prev, L], axis=1)
+                fluxes.append(np.maximum(0, np.diff(L, axis=1)).sum(0))
+                prev = L[:, -1:]
+                if last or len(buf) < step + n_fft:
+                    break
+            if last:
+                break
+    finally:
+        proc.stdout.close()
+        proc.wait()
+    out = np.zeros(n, np.float32)
+    if total < sr or not fluxes:
+        return out
+    flux = np.concatenate(fluxes)
+    flux = (flux - np.median(flux)) / (np.percentile(flux, 99) - np.median(flux) + 1e-9)
+    frame = np.minimum(((np.arange(len(flux)) + 1) * hop / sr * fps).astype(int), n - 1)
+    np.maximum.at(out, frame, np.clip(flux, 0, 5).astype(np.float32))
+    return out
+
+
+def model_meta(onnx_path: Path) -> dict:
+    """The model's description (its .json next to the .onnx: classes, feature_dim, fps, threshold)."""
+    meta = Path(onnx_path).with_suffix(".json")
+    if not meta.exists():
+        raise FileNotFoundError(f"falta la descripción del detector entrenado ({meta})")
+    return json.loads(meta.read_text(encoding="utf-8"))
+
+
+def fit_features(X: np.ndarray, feature_dim: int) -> np.ndarray:
+    """The features in the layout the model was trained with: the current one (FEATURE_DIM), or the one
+    before the sound flux (FEATURE_DIM - 1, models trained before 20-10: without that column)."""
+    if feature_dim == X.shape[1]:
+        return X
+    if feature_dim == FEATURE_DIM - 1 and X.shape[1] == FEATURE_DIM:
+        return np.delete(X, 2 * PERSON_DIM + 2, axis=1)
+    raise ValueError(f"el detector entrenado espera {feature_dim} medidas por fotograma y el proceso da {X.shape[1]}: "
+                     "hay que volver a entrenarlo (scripts/train_spotting.py)")
+
+
+def predict_onnx(onnx_path: Path, X: np.ndarray, chunk: int = 4096, overlap: int = 64) -> np.ndarray:
+    """(N, len(CLASSES)) class probabilities of the ONNX spotter (input "features" (1, frames, F)), on the CPU,
+    in pieces of `chunk` frames with `overlap` frames of context on each side (the model sees ±24 frames:
+    the same result as the whole video at once, with bounded memory)."""
+    import onnxruntime as ort
+
+    so = ort.SessionOptions()
+    so.log_severity_level = 3
+    sess = ort.InferenceSession(str(onnx_path), so, providers=["CPUExecutionProvider"])
+    name = sess.get_inputs()[0].name
+    n = len(X)
+    out = None
+    for a in range(0, max(n, 1), chunk):
+        b = min(n, a + chunk)
+        lo, hi = max(0, a - overlap), min(n, b + overlap)
+        if hi <= lo:
+            break
+        p = sess.run(None, {name: np.ascontiguousarray(X[None, lo:hi], np.float32)})[0][0]
+        if out is None:
+            out = np.zeros((n, p.shape[1]), np.float32)
+        out[a:b] = p[a - lo:b - lo]
+    return out if out is not None else np.zeros((0, len(CLASSES)), np.float32)
 
 
 def _onsets(mdir: Path) -> np.ndarray:
