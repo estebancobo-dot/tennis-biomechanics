@@ -66,3 +66,85 @@
   [players] players:  88 % (16470/18673 fotogramas con jugadoras) · 18 min · quedan ≈ 2 min
   [players] players:  90 % (16892/18673 fotogramas con jugadoras) · 19 min · quedan ≈ 2 min
   [players] players:  93 % (17320/18673 fotogramas con jugadoras) · 19 min · quedan ≈ 89 s
+  [players] players:  95 % (17777/18673 fotogramas con jugadoras) · 20 min · quedan ≈ 59 s
+  [players] players:  98 % (18269/18673 fotogramas con jugadoras) · 20 min · quedan ≈ 27 s
+  [players] players: 100 % (18673/18673 fotogramas con jugadoras) · 20 min · quedan ≈ 0 s
+  [players] tiempo: 20.4 min para 18673 fotogramas a 960 px · modelo 18.2 min · leer vídeo y preparar la entrada 14.4 min en otro hilo (espera real 2.3 min) · apariencia 0.3 min en otro hilo
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin_25fps] players terminada a las 10:41:19 en 20.5 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin] 287 golpes anotados, 33479 fotogramas → 20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin.npz
+
+[20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina] (test) 85 puntos en 79 tramos
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 10/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 20/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 30/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 40/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 50/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 60/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 70/79 tramos descargados
+  no se pudo descargar qCB2kFtHd3c 4094-4111 s: ERROR: ffmpeg exited with code 4294967274
+  no se pudo descargar qCB2kFtHd3c 4166-4180 s: ERROR: ffmpeg exited with code 4294967274
+[recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin_25fps] probe… (2026-10-20 10:41:49, etapa 1 de 14)
+[recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin_25fps] probe terminada a las 10:41:49 en 0 s
+[recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin_25fps] scenes… (2026-10-20 10:41:49, etapa 2 de 14)
+  scenes:   0 % (1/32166 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  30 % (9626/32166 fotogramas) · 30 s · quedan ≈ 71 s
+  scenes:  60 % (19238/32166 fotogramas) · 60 s · quedan ≈ 41 s
+  scenes:  90 % (28826/32166 fotogramas) · 2 min · quedan ≈ 10 s
+  scenes: 100 % (32166/32166 fotogramas) · 2 min · quedan ≈ 0 s
+[recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin_25fps] scenes terminada a las 10:43:34 en 1.7 min
+[recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin_25fps] audio… (2026-10-20 10:43:34, etapa 3 de 14)
+  audio:  23 % (300/1286 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1286/1286 s de sonido) · 2 s · quedan ≈ 0 s
+[recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin_25fps] audio terminada a las 10:43:36 en 3 s
+[recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin_25fps] court… (2026-10-20 10:43:36, etapa 4 de 14)
+  court:  21 % (64/309 fotogramas) · 0 s · quedan ≈ 0 s
+  court: 100 % (309/309 fotogramas) · 38 s · quedan ≈ 0 s
+[recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin_25fps] court terminada a las 10:45:01 en 1.4 min
+[recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin_25fps] players… (2026-10-20 10:45:01, etapa 5 de 14)
+  [players] juego con pista: 7.3 min de 8.7 min de cámara principal
+  [players] players:   0 % (1/10885 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   4 % (472/10885 fotogramas con jugadoras) · 30 s · quedan ≈ 11 min
+  [players] players:   8 % (880/10885 fotogramas con jugadoras) · 60 s · quedan ≈ 11 min
+  [players] players:  12 % (1317/10885 fotogramas con jugadoras) · 2 min · quedan ≈ 11 min
+  [players] players:  17 % (1821/10885 fotogramas con jugadoras) · 2 min · quedan ≈ 10 min
+  [players] players:  21 % (2301/10885 fotogramas con jugadoras) · 3 min · quedan ≈ 9 min
+  [players] players:  26 % (2796/10885 fotogramas con jugadoras) · 3 min · quedan ≈ 9 min
+  [players] players:  30 % (3261/10885 fotogramas con jugadoras) · 4 min · quedan ≈ 8 min
+  [players] players:  34 % (3677/10885 fotogramas con jugadoras) · 4 min · quedan ≈ 8 min
+  [players] players:  38 % (4121/10885 fotogramas con jugadoras) · 5 min · quedan ≈ 7 min
+  [players] players:  42 % (4606/10885 fotogramas con jugadoras) · 5 min · quedan ≈ 7 min
+  [players] players:  47 % (5087/10885 fotogramas con jugadoras) · 6 min · quedan ≈ 6 min
+  [players] players:  51 % (5578/10885 fotogramas con jugadoras) · 6 min · quedan ≈ 6 min
+  [players] players:  56 % (6068/10885 fotogramas con jugadoras) · 7 min · quedan ≈ 5 min
+  [players] players:  60 % (6552/10885 fotogramas con jugadoras) · 7 min · quedan ≈ 5 min
+  [players] players:  65 % (7037/10885 fotogramas con jugadoras) · 8 min · quedan ≈ 4 min
+  [players] players:  69 % (7511/10885 fotogramas con jugadoras) · 8 min · quedan ≈ 4 min
+  [players] players:  73 % (7997/10885 fotogramas con jugadoras) · 9 min · quedan ≈ 3 min
+  [players] players:  78 % (8436/10885 fotogramas con jugadoras) · 9 min · quedan ≈ 3 min
+  [players] players:  81 % (8837/10885 fotogramas con jugadoras) · 10 min · quedan ≈ 2 min
+  [players] players:  86 % (9308/10885 fotogramas con jugadoras) · 10 min · quedan ≈ 2 min
+  [players] players:  90 % (9744/10885 fotogramas con jugadoras) · 11 min · quedan ≈ 74 s
+  [players] players:  93 % (10164/10885 fotogramas con jugadoras) · 11 min · quedan ≈ 47 s
+  [players] players:  97 % (10605/10885 fotogramas con jugadoras) · 12 min · quedan ≈ 18 s
+  [players] players: 100 % (10885/10885 fotogramas con jugadoras) · 12 min · quedan ≈ 0 s
+  [players] tiempo: 11.9 min para 10885 fotogramas a 960 px · modelo 10.7 min · leer vídeo y preparar la entrada 8.0 min en otro hilo (espera real 1.2 min) · apariencia 0.1 min en otro hilo
+[recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin_25fps] players terminada a las 10:56:58 en 11.9 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina] 268 golpes anotados, 32167 fotogramas → 20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina.npz
+
+[20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka] (test) 78 puntos en 75 tramos
+  20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka: 10/75 tramos descargados
+  20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka: 20/75 tramos descargados
+  20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka: 30/75 tramos descargados
+  20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka: 40/75 tramos descargados
+  20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka: 50/75 tramos descargados
+  20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka: 60/75 tramos descargados
+  20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka: 70/75 tramos descargados
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren_25fps] probe… (2026-10-20 10:57:30, etapa 1 de 14)
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren_25fps] probe terminada a las 10:57:30 en 0 s
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren_25fps] scenes… (2026-10-20 10:57:30, etapa 2 de 14)
+  scenes:   0 % (1/32107 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  30 % (9626/32107 fotogramas) · 30 s · quedan ≈ 71 s
