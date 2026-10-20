@@ -710,3 +710,35 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
 
 [20220907-M-US_Open-QF-Andrey_Rublev-Frances_Tiafoe] (train) 90 puntos en 63 tramos
   OsQzOCVrSzk: vídeo descargado (435 MB)
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe_25fps] probe… (2026-10-20 14:30:58, etapa 1 de 14)
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe_25fps] probe terminada a las 14:30:58 en 0 s
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe_25fps] scenes… (2026-10-20 14:30:58, etapa 2 de 14)
+  scenes:   0 % (1/34448 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  27 % (9473/34448 fotogramas) · 30 s · quedan ≈ 79 s
+  scenes:  54 % (18683/34448 fotogramas) · 60 s · quedan ≈ 51 s
+  scenes:  81 % (27826/34448 fotogramas) · 2 min · quedan ≈ 21 s
+  scenes: 100 % (34448/34448 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe_25fps] scenes terminada a las 14:33:08 en 2.2 min
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe_25fps] audio… (2026-10-20 14:33:08, etapa 3 de 14)
+  audio:  22 % (300/1377 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1377/1377 s de sonido) · 6 s · quedan ≈ 0 s
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe_25fps] audio terminada a las 14:33:18 en 11 s
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe_25fps] court… (2026-10-20 14:33:18, etapa 4 de 14)
+  court:  20 % (64/319 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  40 % (128/319 fotogramas) · 34 s · quedan ≈ 51 s
+  court: 100 % (319/319 fotogramas) · 65 s · quedan ≈ 0 s
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe_25fps] court terminada a las 14:35:07 en 1.8 min
+[spot_20220907_m_us_open_qf_andrey_rublev_frances_tiafoe_25fps] players… (2026-10-20 14:35:07, etapa 5 de 14)
+  [players] juego con pista: 8.4 min de 9.3 min de cámara principal
+  [players] players:   0 % (1/12609 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   4 % (496/12609 fotogramas con jugadoras) · 30 s · quedan ≈ 12 min
+  [players] players:   7 % (899/12609 fotogramas con jugadoras) · 60 s · quedan ≈ 13 min
+  [players] players:  11 % (1359/12609 fotogramas con jugadoras) · 2 min · quedan ≈ 12 min
+  [players] players:  14 % (1803/12609 fotogramas con jugadoras) · 2 min · quedan ≈ 12 min
+  [players] players:  18 % (2227/12609 fotogramas con jugadoras) · 3 min · quedan ≈ 12 min
+  [players] players:  21 % (2677/12609 fotogramas con jugadoras) · 3 min · quedan ≈ 11 min
+  [players] players:  25 % (3102/12609 fotogramas con jugadoras) · 4 min · quedan ≈ 11 min
+  [players] players:  28 % (3550/12609 fotogramas con jugadoras) · 4 min · quedan ≈ 10 min
+  [players] players:  32 % (3995/12609 fotogramas con jugadoras) · 5 min · quedan ≈ 10 min
+  [players] players:  35 % (4439/12609 fotogramas con jugadoras) · 5 min · quedan ≈ 9 min
+  [players] players:  38 % (4845/12609 fotogramas con jugadoras) · 6 min · quedan ≈ 9 min
