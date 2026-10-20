@@ -1255,3 +1255,23 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
 C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
   return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
 [20200129-M-Australian_Open-QF-Rafael_Nadal-Dominic_Thiem] 353 golpes anotados, 38511 fotogramas → 20200129-M-Australian_Open-QF-Rafael_Nadal-Dominic_Thiem.npz
+
+[20200911-M-US_Open-SF-Dominic_Thiem-Daniil_Medvedev] (train) 90 puntos en 65 tramos
+  vf5edF2BUpg: vídeo descargado (462 MB)
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev_25fps] probe… (2026-10-20 18:05:36, etapa 1 de 14)
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev_25fps] probe terminada a las 18:05:36 en 0 s
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev_25fps] scenes… (2026-10-20 18:05:36, etapa 2 de 14)
+  scenes:   0 % (1/39074 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  25 % (9618/39074 fotogramas) · 30 s · quedan ≈ 2 min
+  scenes:  49 % (19026/39074 fotogramas) · 60 s · quedan ≈ 63 s
+  scenes:  73 % (28626/39074 fotogramas) · 2 min · quedan ≈ 33 s
+  scenes:  98 % (38226/39074 fotogramas) · 2 min · quedan ≈ 3 s
+  scenes: 100 % (39074/39074 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev_25fps] scenes terminada a las 18:07:43 en 2.1 min
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev_25fps] audio… (2026-10-20 18:07:43, etapa 3 de 14)
+  audio:  19 % (300/1562 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1562/1562 s de sonido) · 18 s · quedan ≈ 0 s
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev_25fps] audio terminada a las 18:08:02 en 19 s
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev_25fps] court… (2026-10-20 18:08:02, etapa 4 de 14)
+  court:  16 % (64/412 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  47 % (192/412 fotogramas) · 45 s · quedan ≈ 52 s
