@@ -551,3 +551,12 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   court:  17 % (64/372 fotogramas) · 0 s · quedan ≈ 0 s
   court:  52 % (192/372 fotogramas) · 44 s · quedan ≈ 41 s
   court: 100 % (372/372 fotogramas) · 77 s · quedan ≈ 0 s
+[spot_20200111_w_brisbane_sf_naomi_osaka_karolina_pliskova] court terminada a las 08:35:55 en 2.9 min
+[spot_20200111_w_brisbane_sf_naomi_osaka_karolina_pliskova] players… (2026-10-20 08:35:55, etapa 5 de 11)
+  [players] juego con pista: 10.3 min de 11.1 min de cámara principal
+  [players] players:   0 % (1/6166 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   6 % (394/6166 fotogramas con jugadoras) · 30 s · quedan ≈ 7 min
+  [players] players:  15 % (902/6166 fotogramas con jugadoras) · 60 s · quedan ≈ 6 min
+  [players] players:  22 % (1368/6166 fotogramas con jugadoras) · 2 min · quedan ≈ 5 min
+  [players] players:  29 % (1797/6166 fotogramas con jugadoras) · 2 min · quedan ≈ 5 min
+  [players] players:  36 % (2193/6166 fotogramas con jugadoras) · 3 min · quedan ≈ 5 min
