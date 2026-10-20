@@ -9,7 +9,7 @@ Regla del usuario (19-10): **nada nuevo hasta que la base (golpes que no se pier
 |---|---|---|---|
 | E1 | Análisis completo de los 4 partidos (petición 32) | Terminado 19-10 13:46 (14 h 15 min). Final: 129 golpes confirmados (muy pocos) | Hecho |
 | E2 | Línea base F3Set con el código viejo (petición 34) | 0 de 613 golpes (0 %); 420 perdidos por «identidad sin decidir» | Hecho |
-| E3 | F3Set con identidad por ropa y golpes dudosos (petición 35) | En marcha; Dubái 10/137 (51 por identidad equivocada, 31 no confirmados, 26 sin candidato) | Al terminar: base para medir el bloque 1 |
+| E3 | F3Set con identidad por ropa y golpes dudosos (petición 35, sin el clic) | Terminado 20-10 02:43: 10 de 642 suyos (2 %) + 74 dudosos (13 % con ellos); pérdidas: identidad 299 (241 sin decidir, 58 equivocada), cámara principal 89, repetición 56, sin candidato 55, sin confirmar 34 | Base para medir el clic y el detector entrenado |
 | E4 | Datos para entrenar el detector (petición 36, `entreno`): 4 partidos de prueba + 16 de entrenamiento de F3Set, solo números | En cola tras la 35 | La revisión horaria entrena en la nube en cuanto lleguen (`scripts/train_spotting.py`) |
 | E5 | Vigilancia horaria del PC y del plan desde la nube | Activa; entrena y pide al PC lo siguiente sola | Se quita al cerrar el bloque 1 |
 
