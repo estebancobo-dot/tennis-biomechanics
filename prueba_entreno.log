@@ -178,3 +178,17 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
 
 [20220126-W-Australian_Open-QF-Iga_Swiatek-Kaia_Kanepi] (train) 90 puntos en 78 tramos
   tf5Jwx_4MaE: vídeo descargado (713 MB)
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi] probe… (2026-10-20 06:35:18, etapa 1 de 11)
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi] probe terminada a las 06:35:19 en 0 s
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi] scenes… (2026-10-20 06:35:19, etapa 2 de 11)
+  scenes:   0 % (1/35356 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  28 % (10026/35356 fotogramas) · 30 s · quedan ≈ 76 s
+  scenes:  57 % (20102/35356 fotogramas) · 60 s · quedan ≈ 46 s
+  scenes:  85 % (30226/35356 fotogramas) · 2 min · quedan ≈ 15 s
+  scenes: 100 % (35356/35356 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi] scenes terminada a las 06:37:06 en 1.8 min
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi] audio… (2026-10-20 06:37:06, etapa 3 de 11)
+  audio:  21 % (300/1414 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1414/1414 s de sonido) · 2 s · quedan ≈ 0 s
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi] audio terminada a las 06:37:09 en 3 s
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi] court… (2026-10-20 06:37:09, etapa 4 de 11)
