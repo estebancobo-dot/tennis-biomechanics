@@ -2,6 +2,7 @@
 
 probe → scenes (cuts, main camera) → audio (impact transients) → players (cheap pose on main-camera
 frames) → candidates (near-player strokes) → fine (full-quality analysis in ±1 s windows).
+views (replays and other cameras linked to the live strokes) → views_link (their links in strokes.json).
 """
 import hashlib
 import json
@@ -656,6 +657,130 @@ def st_candidates(ctx: Context, tol_s=0.35):
             "with_audio": sum(c["audio"] for c in cands),
             "opponent_runs": skipped, "identity_unknown": sum(c["identity"] is None for c in cands),
             "replay_runs_skipped": replays, "replays_by_path": len(slow_replays), "audio_track": track}
+
+
+def _near_paths(d: dict, sk: Skeleton, court: dict, onsets: np.ndarray) -> list:
+    """Her runs on the main camera with her feet path on the court (replays.Run), built as in the
+    candidates stage (which keeps its own copy: its output must not change)."""
+    from .court_metrics import to_court
+    from .replays import Run
+
+    fps, frames = float(d["fps"]), d["frames"]
+    out = []
+    for run, img, cf, h, _ in near_runs(d, sk, court):
+        t0, t1 = frames[run[0]] / fps, frames[run[-1]] / fps
+        H = court_at(court, t0)[0]
+        with warnings.catch_warnings():          # an ankle unseen in a frame stays NaN
+            warnings.simplefilter("ignore", RuntimeWarning)
+            feet = np.nanmean(img[:, [sk["left_ankle"], sk["right_ankle"]]], axis=1) if H is not None else None
+        path = to_court(H, np.nan_to_num(feet, nan=-1e6)) if feet is not None else np.full((len(run), 2), np.nan)
+        if feet is not None:
+            path[~np.isfinite(feet).all(1)] = np.nan
+        out.append(Run(t0, t1, path, fps, int(np.sum((onsets >= t0) & (onsets <= t1))) if len(onsets) else 0))
+    return out
+
+
+def _views_settings(c: dict) -> dict:
+    v = c.get("views") or {}
+    return {"people": bool(v.get("people", True)), "max_fits": int(v.get("max_fits", 80)),
+            "samples": int(v.get("samples", 3))}
+
+
+def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> dict[int, dict]:
+    """Evidence of the non-live shots from 1-3 frames each (one ffmpeg pass over the sampled times):
+    lines, the tallest person (the cheap pass's pose model, when it loads) and, where the court is seen
+    from an end, the camera tilt of a fitted court (at most `views.max_fits` fits per match)."""
+    from .court import camera_pitch_deg, fit_court
+    from .views import frame_evidence, merge_evidence, sample_times
+
+    if not shots:
+        return {}
+    st = _views_settings(ctx.cfg)
+    model = None
+    if st["people"]:
+        try:
+            model = _pose_detector(ctx.cfg)
+        except Exception as e:                   # noqa: BLE001 — without it: no people size, lower confidence
+            ctx.log(f"  AVISO: tomas sin tamaño de las personas (no se pudo cargar el modelo: {str(e)[:150]})")
+    items = sorted((t, i) for i in shots for t in sample_times(scenes, i, st["samples"]))
+    per: dict[int, list] = {}
+    fits = 0
+    info = probe(ctx.video)
+    for n, ((t, i), (_, fr)) in enumerate(zip(items, frames_at(info, [t for t, _ in items], hwaccel=ctx.cfg.get("hwaccel")))):
+        ctx.progress(n + 1, len(items), "fotogramas de otras tomas")
+        if fr is None:
+            continue
+        ph = None
+        if model is not None:
+            try:
+                b, _, _ = model.predict(fr, conf=0.3)
+                ph = float(((b[:, 3] - b[:, 1]).max() / fr.shape[0])) if len(b) else 0.0
+            except Exception:                    # noqa: BLE001 — one frame without people size
+                ph = None
+        ev = frame_evidence(fr, ph)
+        if ev["lines_behind"] >= 1 and fits < st["max_fits"]:
+            fits += 1
+            try:
+                fit = fit_court(fr)
+                if fit is not None:
+                    ev["pitch_deg"] = round(camera_pitch_deg(fit, fr.shape), 1)
+            except Exception:                    # noqa: BLE001 — no tilt for this frame
+                pass
+        per.setdefault(i, []).append(ev)
+    return {i: merge_evidence(v) for i, v in per.items()}
+
+
+@stage("views", "1", deps=("scenes", "court", "players", "score", "audio", "candidates"), settings=_views_settings,
+       outputs=("views.json",))
+def st_views(ctx: Context):
+    """Replays and the other cameras, used and linked to the live stroke they show (tennisbio.views,
+    #218): every non-live stretch classified (main-camera replay, side, front, close-up, other) with its
+    evidence, and linked by her feet path (main-camera replays, with the slow-motion factor) or by time
+    order and the impacts heard. Only a few frames of the non-live shots are decoded."""
+    from .views import build_views, main_pitch_of, views_to_sample
+
+    sc = _read(ctx.path("scenes.json"))
+    court = _read(ctx.path("court.json")) if ctx.path("court.json").exists() else None
+    if court is not None and not any(o.get("H") is not None for o in court.get("shots", [])):
+        court = None
+    score = _read(ctx.path("score.json")) if ctx.path("score.json").exists() else {}
+    onsets = load_onsets(ctx)
+    cands = _read(ctx.path("candidates.json")) if ctx.path("candidates.json").exists() else []
+    runs = []
+    if court is not None and ctx.path("players.npz").exists():
+        d = _players(ctx)
+        if len(d.get("frames", [])):
+            runs = _near_paths(d, Skeleton("coco17", ctx.match.player.hand), court, onsets)
+    if court is None:
+        ctx.log("  AVISO: sin pista en ningún plano: no se distingue el juego de las repeticiones; todas las tomas se clasifican por su aspecto")
+    no_board = replay_spans_without_board(score)
+    replay_spans = list(no_board)
+    from .replays import find_replays
+    replay_spans += [(runs[i].t0, runs[i].t1) for i in find_replays(runs)] if runs else []
+    shots = views_to_sample(sc, court, replay_spans)
+    evidence = _sample_views(ctx, sc, shots, main_pitch_of(court))
+    doc = build_views(sc, court, runs, no_board, onsets, [c for c in cands if c.get("t") is not None], evidence)
+    _write(ctx.path("views.json"), doc)
+    return doc["summary"]
+
+
+@stage("views_link", "1", deps=("views", "fine"), outputs=("views_link.json",))
+def st_views_link(ctx: Context):
+    """Her strokes (strokes.json) get an optional `views` list: the replays and other cameras that show
+    each one, and `slowmo_view` when one is a main-camera slow-motion replay. Only those two keys are
+    added (tennisbio.views.attach); every other field of the fine pass stays as it was. Re-runs when the
+    fine pass or the views change."""
+    from .views import attach, coverage
+
+    f = ctx.path("strokes.json")
+    strokes = _read(f) if f.exists() else []
+    doc = _read(ctx.path("views.json")) if ctx.path("views.json").exists() else None
+    if strokes:
+        strokes = attach(strokes, doc)
+        _write(f, strokes)
+    cov = coverage(strokes)
+    _write(ctx.path("views_link.json"), cov)
+    return cov
 
 
 def grab_frame(video: Path, t: float) -> np.ndarray | None:

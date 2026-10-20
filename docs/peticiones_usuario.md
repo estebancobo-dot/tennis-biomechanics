@@ -30,8 +30,8 @@ la auditoría las marcará «sin comprobación automática asignada».
 | Estado | Nº |
 |---|---|
 | HECHO | 92 |
-| PARCIAL | 94 |
-| FALTA | 23 |
+| PARCIAL | 95 |
+| FALTA | 22 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 7 |
 | **Total** | **219** |
@@ -278,7 +278,7 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 215 | Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22) | PARCIAL | `explain.COACH` (`stroke.t_takeback`: «antes del bote») | — | `scripts/check_requests.py` (registro) | Unificar en «armado completo cuando bota». |
 | 216 | Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnica #25) | FALTA | — | — | `scripts/check_requests.py` (registro) | Ver huecos 3 y 9 de Ivanovic. |
 | 217 | Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26) | FALTA | — | — | `scripts/check_requests.py` (registro) | Sin prueba de que se actualizaran. |
-| 218 | La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (velocidad normal o cámara lenta) y las otras tomas (laterales, frontales, primeros planos), enlazadas a su golpe en directo; el usuario no tiene que buscar vídeos de YouTube (19-10) | FALTA | — | — | `scripts/check_requests.py` (registro) | Hoy las repeticiones y las tomas de otras cámaras se descartan (`tennisbio.replays`, `scenes` cámara principal); el lado del fondo casi no se confirma. |
+| 218 | La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (velocidad normal o cámara lenta) y las otras tomas (laterales, frontales, primeros planos), enlazadas a su golpe en directo; el usuario no tiene que buscar vídeos de YouTube (19-10) | PARCIAL | `tennisbio.views`, etapas `views` y `views_link` (`stages.st_views`): cada toma que no es juego en directo se clasifica (repetición de la cámara principal, lateral, frontal, primer plano, otra) y se enlaza a su golpe en directo (por el recorrido de sus pies, con el factor de cámara lenta, o por orden y golpes oídos); `strokes.json` lleva `views` y `slowmo_view` | — | `tests/test_views.py`; auditoría «Repeticiones y otras cámaras enlazadas» | Falta validarlo con los partidos reales (umbrales de clasificación), medir sobre esas tomas (pasada fina en la cámara lenta: `views.fine_on_slowmo`, pendiente) y enseñarlas en el informe; el lado del fondo casi no se confirma. |
 | 219 | Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa distancia, no descartados (19-10) | PARCIAL | `stages.st_fine` (lado lejano) | Pista, golpes del fondo | `scripts/validate_recall.py` | Se confirman ~20 % de los golpes del fondo (Zheng: 36 de ~175). |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)

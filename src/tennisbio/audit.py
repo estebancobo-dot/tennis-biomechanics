@@ -253,6 +253,7 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
                        + (f"; con menos de {min_strokes} muchas situaciones no se pueden describir" if few else ""),
                        n=len(near)))
     items += recall_items(match_dirs)
+    items += views_items(match_dirs)
 
     # 1. taxonomy: each row of the coverage matrix
     for row in parse_matrix():
@@ -517,6 +518,36 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
             sides += f"; además {len(doubt)} de identidad dudosa, apartados (no cuentan como suyos)"
         out.append(_item(1, "Golpes", f"Golpes encontrados frente al marcador: {d.name}", status, detail + sides,
                          found=len(strokes), serves=serves, counts=counts, doubtful=len(doubt)))
+    return out
+
+
+def views_items(match_dirs: list[Path], min_strokes: int = 20) -> list[dict]:
+    """#218: per match, the share of her strokes with a linked replay of the main camera and with another
+    camera of the broadcast (side, front, close-up), from strokes.json (`views`, tennisbio.views)."""
+    from .views import coverage
+
+    out = []
+    for d in match_dirs:
+        st = d / "strokes.json"
+        if not st.exists():
+            continue
+        name = f"Repeticiones y otras cámaras enlazadas: {d.name}"
+        if not (d / "views.json").exists():
+            out.append(_item(1, "Repeticiones y otras cámaras", name, "aviso",
+                             "la etapa «views» no se ha ejecutado en este partido (sin views.json)"))
+            continue
+        try:
+            strokes = json.loads(st.read_text(encoding="utf-8"))
+            vs = json.loads((d / "views.json").read_text(encoding="utf-8")).get("summary") or {}
+        except (OSError, ValueError):
+            continue
+        c = coverage(strokes)
+        det = (f"{c['replay_share']:.0%} de sus golpes con repetición enlazada ({c['with_replay']} de {c['strokes']}, "
+               f"{c['with_slowmo']} a cámara lenta) · {c['other_share']:.0%} con otra cámara ({c['with_other_camera']}) · "
+               f"tomas: {vs.get('repeticion_principal', 0)} repeticiones, {vs.get('lateral', 0)} laterales, "
+               f"{vs.get('frontal', 0)} frontales, {vs.get('primer_plano', 0)} primeros planos, {vs.get('otra', 0)} otras")
+        status = "pocos datos" if c["strokes"] < min_strokes else ("ok" if c["with_replay"] or c["with_other_camera"] else "aviso")
+        out.append(_item(1, "Repeticiones y otras cámaras", name, status, det, **{k: v for k, v in c.items()}))
     return out
 
 
@@ -817,6 +848,7 @@ PETITIONS = {
     126: r"Tu objetivo", 127: r"Tu objetivo|responde a cada combinación", 128: r"Tu objetivo|responde a cada combinación",
     129: Note("descartado por el usuario (13-10): sin hoja de sesión"),
     130: r"Resto de derecha|Resto:|Lado del resto|Dirección del saque|responde a cada combinación",
+    218: r"^Repeticiones y otras cámaras$",
 }
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 
