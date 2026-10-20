@@ -379,3 +379,51 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  47 % (3538/7527 fotogramas con jugadoras) · 4 min · quedan ≈ 5 min
   [players] players:  53 % (4025/7527 fotogramas con jugadoras) · 5 min · quedan ≈ 4 min
   [players] players:  59 % (4458/7527 fotogramas con jugadoras) · 5 min · quedan ≈ 3 min
+  [players] players:  65 % (4885/7527 fotogramas con jugadoras) · 6 min · quedan ≈ 3 min
+  [players] players:  71 % (5349/7527 fotogramas con jugadoras) · 6 min · quedan ≈ 2 min
+  [players] players:  77 % (5790/7527 fotogramas con jugadoras) · 7 min · quedan ≈ 2 min
+  [players] players:  83 % (6238/7527 fotogramas con jugadoras) · 7 min · quedan ≈ 87 s
+  [players] players:  89 % (6696/7527 fotogramas con jugadoras) · 8 min · quedan ≈ 56 s
+  [players] players:  95 % (7171/7527 fotogramas con jugadoras) · 8 min · quedan ≈ 24 s
+  [players] players: 100 % (7527/7527 fotogramas con jugadoras) · 8 min · quedan ≈ 0 s
+  [players] tiempo: 8.5 min para 7527 fotogramas a 960 px · modelo 7.4 min · leer vídeo y preparar la entrada 5.7 min en otro hilo (espera real 1.1 min) · apariencia 0.1 min en otro hilo
+[spot_20220906_m_us_open_qf_karen_khachanov_nick_kyrgios] players terminada a las 07:41:42 en 8.5 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20220906-M-US_Open-QF-Karen_Khachanov-Nick_Kyrgios] 255 golpes anotados, 15283 fotogramas → 20220906-M-US_Open-QF-Karen_Khachanov-Nick_Kyrgios.npz
+
+[20220907-M-US_Open-QF-Jannik_Sinner-Carlos_Alcaraz] (train) 90 puntos en 83 tramos
+  XNYhoYjRs3Y: vídeo descargado (1097 MB)
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz] probe… (2026-10-20 07:45:57, etapa 1 de 11)
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz] probe terminada a las 07:45:57 en 0 s
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz] scenes… (2026-10-20 07:45:57, etapa 2 de 11)
+  scenes:   0 % (1/42669 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  23 % (9626/42669 fotogramas) · 30 s · quedan ≈ 2 min
+  scenes:  45 % (19364/42669 fotogramas) · 60 s · quedan ≈ 72 s
+  scenes:  68 % (28832/42669 fotogramas) · 2 min · quedan ≈ 43 s
+  scenes:  90 % (38561/42669 fotogramas) · 2 min · quedan ≈ 13 s
+  scenes: 100 % (42669/42669 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz] scenes terminada a las 07:48:24 en 2.4 min
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz] audio… (2026-10-20 07:48:24, etapa 3 de 11)
+  audio:  18 % (300/1706 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1706/1706 s de sonido) · 3 s · quedan ≈ 0 s
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz] audio terminada a las 07:48:29 en 5 s
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz] court… (2026-10-20 07:48:29, etapa 4 de 11)
+  court:  15 % (64/437 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  88 % (384/437 fotogramas) · 41 s · quedan ≈ 6 s
+  court: 100 % (437/437 fotogramas) · 48 s · quedan ≈ 0 s
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz] court terminada a las 07:49:38 en 1.1 min
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz] players… (2026-10-20 07:49:38, etapa 5 de 11)
+  [players] juego con pista: 11.5 min de 13.4 min de cámara principal
+  [players] players:   0 % (1/6915 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   7 % (461/6915 fotogramas con jugadoras) · 30 s · quedan ≈ 7 min
+  [players] players:  13 % (877/6915 fotogramas con jugadoras) · 60 s · quedan ≈ 7 min
+  [players] players:  18 % (1279/6915 fotogramas con jugadoras) · 2 min · quedan ≈ 7 min
+  [players] players:  26 % (1771/6915 fotogramas con jugadoras) · 2 min · quedan ≈ 6 min
+  [players] players:  32 % (2231/6915 fotogramas con jugadoras) · 3 min · quedan ≈ 5 min
+  [players] players:  39 % (2688/6915 fotogramas con jugadoras) · 3 min · quedan ≈ 5 min
+  [players] players:  45 % (3126/6915 fotogramas con jugadoras) · 4 min · quedan ≈ 4 min
+  [players] players:  52 % (3571/6915 fotogramas con jugadoras) · 4 min · quedan ≈ 4 min
+  [players] players:  58 % (4027/6915 fotogramas con jugadoras) · 5 min · quedan ≈ 3 min
+  [players] players:  65 % (4466/6915 fotogramas con jugadoras) · 5 min · quedan ≈ 3 min
+  [players] players:  70 % (4861/6915 fotogramas con jugadoras) · 6 min · quedan ≈ 2 min
