@@ -106,18 +106,21 @@ def local_compilation(root: Path, name: str, src: Path, fps: float, segs: list[d
     return out, done
 
 
-def cheap_pass(video: Path, mid: str, out_dir: Path) -> Path:
+def cheap_pass(video: Path, mid: str, out_dir: Path, fps: float | None = None) -> Path:
     from tennisbio import pipeline, stages  # noqa: F401  (registers the stages)
     from tennisbio.catalog import Match, load_player
     from tennisbio.config import load_config
 
-    ctx = pipeline.Context(Match(mid, video, load_player("rybakina")), load_config(), out_dir / mid, log=lambda m: print(m, flush=True))
+    cfg = load_config()
+    if fps:                               # the spotter's own frame rate (a swing lasts 2-3 frames at 10 fps)
+        cfg = {**cfg, "cheap_pass": {**cfg["cheap_pass"], "fps": fps}}
+    ctx = pipeline.Context(Match(mid, video, load_player("rybakina")), cfg, out_dir / mid, log=lambda m: print(m, flush=True))
     pipeline.run(ctx, names=CHEAP)
     return out_dir / mid
 
 
-def export(dest: Path, mdir: Path, events: list[dict], spans: list, name: str, split: str):
-    f = S.build_features(mdir)
+def export(dest: Path, mdir: Path, events: list[dict], spans: list, name: str, split: str, video: Path | None = None):
+    f = S.build_features(mdir, video=video)
     ev = [e for e in events if e.get("side") in S.SIDES]
     np.savez_compressed(dest, X=f["X"].astype(np.float16), fps=f["fps"], name=name, split=split,
                         ev_t=np.array([e["t"] for e in ev], np.float32),
@@ -134,6 +137,8 @@ def main():
     ap.add_argument("--matches", type=int, default=16, help="partidos de entrenamiento (sin la jugadora de prueba)")
     ap.add_argument("--points", type=int, default=90, help="puntos por partido de entrenamiento, repartidos")
     ap.add_argument("--hours", type=float, default=10.0)
+    ap.add_argument("--fps", type=float, default=0, help="fps de la pasada barata para el detector (0 = la de la configuración); "
+                                                            "con otro valor, carpetas y ficheros aparte (sufijo _<fps>fps)")
     args = ap.parse_args()
     root = Path(args.root)
     t_end = time.time() + args.hours * 3600
@@ -148,7 +153,8 @@ def main():
     pl = args.test_player.lower()
     test = sorted(v for v, ps in by_video.items() if pl in (ps[0]["near_name"] + ps[0]["far_name"]).lower())
     train = sorted((v for v in by_video if v not in test and v in yt), key=lambda v: -len(by_video[v]))[:args.matches]
-    dest = root / "spotting"
+    tag = f"_{int(args.fps)}fps" if args.fps else ""
+    dest = root / f"spotting{tag}"
     dest.mkdir(parents=True, exist_ok=True)
     done = []
     for name in test + train:
@@ -180,14 +186,14 @@ def main():
                 print(f"[{name}] sin vídeo", flush=True)
                 continue
             if split == "test":
-                mid = "recall_" + name.lower().replace("-", "_")[:60]
-                mdir = cheap_pass(vid, mid, root / "f3set" / "recall" / "salidas")
+                mid = "recall_" + name.lower().replace("-", "_")[:60] + tag
+                mdir = cheap_pass(vid, mid, root / "f3set" / "recall" / "salidas", args.fps or None)
             else:
-                mid = "spot_" + name.lower().replace("-", "_")[:60]
-                mdir = cheap_pass(vid, mid, root / "f3set" / "spotting" / "salidas")
+                mid = "spot_" + name.lower().replace("-", "_")[:60] + tag
+                mdir = cheap_pass(vid, mid, root / "f3set" / "spotting" / "salidas", args.fps or None)
             got = {pid for s in segs_done for pid in s["points"]}
             events, spans = R.place_events([p for p in ps if p["id"] in got], segs_done)
-            n_ev, n_fr = export(out, mdir, events, spans, name, split)
+            n_ev, n_fr = export(out, mdir, events, spans, name, split, vid)
             print(f"[{name}] {n_ev} golpes anotados, {n_fr} fotogramas → {out.name}", flush=True)
             if split == "train":          # the whole video is not needed any more (disk)
                 (root / "f3set" / "spotting" / "full" / f"{yt[name]['yt_id']}.mp4").unlink(missing_ok=True)

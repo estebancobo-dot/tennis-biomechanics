@@ -11,7 +11,9 @@ Features, one row per frame of the cheap pass (10 fps; frames out of play are ro
 - near player (the tracked person on the near half): 17 keypoints relative to the hip centre in body heights,
   their confidences, the body height over the frame height, the feet on the court (m), present flag;
 - far player (tallest person on the far half, when the detector sees it): the same;
-- audio: impact transients in the frame and the time to the nearest one;
+- audio: impact transients in the frame and the time to the nearest one; with the video, also the
+  impact-band sound flux in the frame (the whole envelope, not only the transients picked as onsets: 20-10,
+  only a third of the annotated strokes had an onset within 0.15 s);
 - play flag.
 """
 from __future__ import annotations
@@ -26,7 +28,7 @@ KINDS = ("serve", "forehand", "backhand", "other")
 SIDES = ("near", "far")
 CLASSES = ("none",) + tuple(f"{s}_{k}" for s in SIDES for k in KINDS)
 PERSON_DIM = 17 * 2 + 17 + 1 + 2 + 1
-FEATURE_DIM = 2 * PERSON_DIM + 2 + 1
+FEATURE_DIM = 2 * PERSON_DIM + 3 + 1
 KIND_OF = {"serve": "serve", "forehand": "forehand", "backhand": "backhand", "volley_other": "other"}
 
 
@@ -52,9 +54,9 @@ def _person(kp: np.ndarray, cf: np.ndarray, frame_h: float, feet_court) -> np.nd
     return out
 
 
-def build_features(mdir: Path, hand: str = "right") -> dict:
+def build_features(mdir: Path, hand: str = "right", video: Path | None = None) -> dict:
     """Features of one analysed video (its stage outputs in mdir: players.npz, court.json, scenes.json,
-    audio_onsets.json): {"t": (N,) seconds, "X": (N, FEATURE_DIM) float32, "fps": fps}."""
+    audio_onsets.json; the video itself for the sound flux): {"t": (N,) seconds, "X": (N, FEATURE_DIM), "fps"}."""
     from .court_metrics import to_court
     from .skeleton import Skeleton
     from .stages import _far_player, court_at, near_runs, play_mask
@@ -109,7 +111,31 @@ def build_features(mdir: Path, hand: str = "right") -> dict:
         X[:, 2 * PERSON_DIM + 1] = np.clip(np.minimum(prev, nxt), 0, 1.0)
     else:
         X[:, 2 * PERSON_DIM + 1] = 1.0
+    if video is not None:
+        X[:, 2 * PERSON_DIM + 2] = sound_flux(Path(video), fps, n)
     return {"t": np.arange(n) / fps, "X": X, "fps": fps}
+
+
+def sound_flux(video: Path, fps: float, n: int, sr: int = 22050, band=(1000, 6000), hop: int = 128) -> np.ndarray:
+    """(n,) the strongest impact-band spectral flux in each frame (the same flux as impacts.audio_onsets,
+    normalised by the video's own median and 99th percentile); zeros without sound."""
+    import subprocess
+
+    import librosa
+
+    r = subprocess.run(["ffmpeg", "-v", "error", "-i", str(video), "-vn", "-ac", "1", "-ar", str(sr), "-f", "f32le", "pipe:1"],
+                       capture_output=True)
+    y = np.frombuffer(r.stdout, np.float32)
+    out = np.zeros(n, np.float32)
+    if len(y) < sr:
+        return out
+    S = np.abs(librosa.stft(y, n_fft=1024, hop_length=hop))
+    f = librosa.fft_frequencies(sr=sr, n_fft=1024)
+    flux = np.maximum(0, np.diff(np.log1p(S[(f > band[0]) & (f < band[1])] * 50), axis=1)).sum(0)
+    flux = (flux - np.median(flux)) / (np.percentile(flux, 99) - np.median(flux) + 1e-9)
+    frame = np.minimum(((np.arange(len(flux)) + 1) * hop / sr * fps).astype(int), n - 1)
+    np.maximum.at(out, frame, np.clip(flux, 0, 5).astype(np.float32))
+    return out
 
 
 def _onsets(mdir: Path) -> np.ndarray:

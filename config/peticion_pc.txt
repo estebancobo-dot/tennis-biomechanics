@@ -1,7 +1,8 @@
-id: 38
+id: 39
 accion: entreno
 partidos: 16
-horas: 12
+horas: 14
+fps: 25
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
 #   poc = prueba de velocidad en carpetas aparte (4 min y despues 35 min), sin tocar output\_smoke
 #   largo = el video entero en output\_pocN_largo (una noche), sin tocar output\_smoke

@@ -113,6 +113,7 @@ function Hacer-Peticion {
         $extra = @()
         if ($p["partidos"]) { $extra += @("--matches", "$($p['partidos'])") }
         if ($p["horas"]) { $extra += @("--hours", "$($p['horas'])") }
+        if ($p["fps"]) { $extra += @("--fps", "$($p['fps'])") }
         Subir-Registros | Out-Null
         $script:subido = Get-Date
         & uv run python scripts/spotting_data.py --root "$Base\datasets" @extra 2>&1 | ForEach-Object {

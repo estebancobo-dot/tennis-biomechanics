@@ -145,9 +145,10 @@ function Subir-Registros {
             if (Test-Path "$Base\output\$f") { Copy-Item "$Base\output\$f" "$d\$f" -Force -ErrorAction SilentlyContinue }
         }
         # datos de entrenamiento del detector de golpes (peticion "entreno"): solo numeros, unos MB por partido
-        if (Test-Path "$Base\datasets\spotting") {
-            New-Item -ItemType Directory -Force -Path "$d\entreno_golpes" | Out-Null
-            Copy-Item "$Base\datasets\spotting\*.npz", "$Base\datasets\spotting\indice.json" "$d\entreno_golpes" -Force -ErrorAction SilentlyContinue
+        foreach ($sp in @(Get-ChildItem "$Base\datasets" -Directory -Filter "spotting*" -ErrorAction SilentlyContinue)) {
+            $to = "$d\entreno_golpes" + $sp.Name.Substring(8)          # spotting_25fps -> entreno_golpes_25fps
+            New-Item -ItemType Directory -Force -Path $to | Out-Null
+            Copy-Item "$($sp.FullName)\*.npz", "$($sp.FullName)\indice.json" $to -Force -ErrorAction SilentlyContinue
         }
         # diagnostico de planos de los partidos (peticion "diag")
         if (Test-Path "$Base\output\capturas_diag\diag_scenes.json") {
