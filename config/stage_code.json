@@ -49,6 +49,21 @@
    "replays"
   ]
  },
+ "views": {
+  "version": "1",
+  "hash": "fef02b5b13ddf64e",
+  "modules": [
+   "replays",
+   "views"
+  ]
+ },
+ "views_link": {
+  "version": "1",
+  "hash": "dc9dabd94c0d4819",
+  "modules": [
+   "views"
+  ]
+ },
  "court": {
   "version": "4",
   "hash": "5c73ca54ea7342ee",

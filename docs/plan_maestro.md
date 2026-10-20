@@ -69,6 +69,7 @@ Camino crítico: P1 → P2 → N1 (≥ 90 % cercano) → P4 → P5 → A1. Lo de
 
 ## 2. La fuente son los partidos (#218, #219)
 Criterio: en los 4 partidos, % de golpes con repetición enlazada y % con otra cámara enlazada, contado por script.
+Hecho (20-10): etapas `views` (clasifica y enlaza cada toma que no es juego; `views.json`) y `views_link` (`views` y `slowmo_view` en `strokes.json`); la auditoría da el % por partido («Repeticiones y otras cámaras enlazadas»). Falta: validar los umbrales con los partidos reales, la pasada fina en la cámara lenta (`views.fine_on_slowmo`) y medir en las otras cámaras.
 1. Repeticiones a velocidad normal y en cámara lenta: enlazarlas a su golpe en directo, estimar el factor de cámara lenta, usar sus fotogramas extra (impacto menos borroso).
 2. Otras cámaras de la emisión (lateral, frontal, primeros planos): clasificar la vista, enlazar a su golpe y medir lo que esa vista permite (empuñadura, cara de la raqueta, impacto delante/detrás).
 

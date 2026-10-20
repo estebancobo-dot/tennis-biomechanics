@@ -121,7 +121,8 @@ def run_pipeline(video: Path, mid: str, player_id: str, opponent: str, out_dir: 
     ctx = pipeline.Context(match, cfg, out_dir / mid, log=log)
     done = pipeline.run(ctx)
     if "fine" not in done and (force_fine or not (ctx.dir / "ventanas_fine.log").exists()):
-        done += pipeline.run(ctx, names=["fine"], force=True)
+        # views_link again after it: a forced fine pass rewrites strokes.json without the linked views
+        done += pipeline.run(ctx, names=["fine", "views_link"], force=True)
     if "fine" in done:
         (ctx.dir / "ventanas_fine.log").write_text("\n".join(lines), encoding="utf-8")
     return done
