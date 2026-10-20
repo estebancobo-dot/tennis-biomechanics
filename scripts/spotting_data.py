@@ -141,10 +141,9 @@ def main():
                                                             "con otro valor, carpetas y ficheros aparte (sufijo _<fps>fps)")
     args = ap.parse_args()
     if not args.fps:     # the cycle script that launched this may predate its `fps:` line (it is read once per run)
-        req = Path(__file__).resolve().parents[1] / "config" / "peticion_pc.txt"
-        for ln in req.read_text(encoding="utf-8").splitlines() if req.exists() else []:
-            if ln.strip().startswith("fps:"):
-                args.fps = float(ln.split(":", 1)[1].strip() or 0)
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from pc_requests import param             # the request file may hold a queue of blocks («---»)
+        args.fps = float(param("fps", "entreno") or 0)
     root = Path(args.root)
     t_end = time.time() + args.hours * 3600
     clips, videos = [], []
