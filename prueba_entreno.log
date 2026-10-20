@@ -687,3 +687,26 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  39 % (4489/11611 fotogramas con jugadoras) · 5 min · quedan ≈ 8 min
   [players] players:  42 % (4933/11611 fotogramas con jugadoras) · 6 min · quedan ≈ 7 min
   [players] players:  46 % (5369/11611 fotogramas con jugadoras) · 6 min · quedan ≈ 7 min
+  [players] players:  50 % (5786/11611 fotogramas con jugadoras) · 7 min · quedan ≈ 7 min
+  [players] players:  54 % (6254/11611 fotogramas con jugadoras) · 7 min · quedan ≈ 6 min
+  [players] players:  58 % (6702/11611 fotogramas con jugadoras) · 8 min · quedan ≈ 6 min
+  [players] players:  61 % (7111/11611 fotogramas con jugadoras) · 8 min · quedan ≈ 5 min
+  [players] players:  65 % (7524/11611 fotogramas con jugadoras) · 9 min · quedan ≈ 5 min
+  [players] players:  69 % (7969/11611 fotogramas con jugadoras) · 9 min · quedan ≈ 4 min
+  [players] players:  72 % (8406/11611 fotogramas con jugadoras) · 10 min · quedan ≈ 4 min
+  [players] players:  76 % (8860/11611 fotogramas con jugadoras) · 10 min · quedan ≈ 3 min
+  [players] players:  80 % (9267/11611 fotogramas con jugadoras) · 11 min · quedan ≈ 3 min
+  [players] players:  83 % (9682/11611 fotogramas con jugadoras) · 11 min · quedan ≈ 2 min
+  [players] players:  87 % (10097/11611 fotogramas con jugadoras) · 12 min · quedan ≈ 2 min
+  [players] players:  90 % (10505/11611 fotogramas con jugadoras) · 12 min · quedan ≈ 76 s
+  [players] players:  94 % (10943/11611 fotogramas con jugadoras) · 13 min · quedan ≈ 46 s
+  [players] players:  98 % (11394/11611 fotogramas con jugadoras) · 13 min · quedan ≈ 15 s
+  [players] players: 100 % (11611/11611 fotogramas con jugadoras) · 13 min · quedan ≈ 0 s
+  [players] tiempo: 13.3 min para 11611 fotogramas a 960 px · modelo 11.4 min · leer vídeo y preparar la entrada 9.7 min en otro hilo (espera real 1.9 min) · apariencia 0.1 min en otro hilo
+[spot_20220906_m_us_open_qf_casper_ruud_matteo_berrettini_25fps] players terminada a las 14:27:45 en 13.3 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20220906-M-US_Open-QF-Casper_Ruud-Matteo_Berrettini] 320 golpes anotados, 38701 fotogramas → 20220906-M-US_Open-QF-Casper_Ruud-Matteo_Berrettini.npz
+
+[20220907-M-US_Open-QF-Andrey_Rublev-Frances_Tiafoe] (train) 90 puntos en 63 tramos
+  OsQzOCVrSzk: vídeo descargado (435 MB)
