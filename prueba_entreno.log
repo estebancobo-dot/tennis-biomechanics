@@ -1044,3 +1044,38 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  94 % (20197/21426 fotogramas con jugadoras) · 23 min · quedan ≈ 82 s
   [players] players:  96 % (20650/21426 fotogramas con jugadoras) · 23 min · quedan ≈ 52 s
   [players] players:  98 % (21071/21426 fotogramas con jugadoras) · 24 min · quedan ≈ 24 s
+  [players] players: 100 % (21426/21426 fotogramas con jugadoras) · 24 min · quedan ≈ 0 s
+  [players] tiempo: 23.9 min para 21426 fotogramas a 960 px · modelo 21.1 min · leer vídeo y preparar la entrada 16.7 min en otro hilo (espera real 2.9 min) · apariencia 0.3 min en otro hilo
+[spot_20160706_m_wimbledon_qf_marin_cilic_roger_federer_25fps] players terminada a las 16:42:09 en 24.0 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20160706-M-Wimbledon-QF-Marin_Cilic-Roger_Federer] 271 golpes anotados, 36864 fotogramas → 20160706-M-Wimbledon-QF-Marin_Cilic-Roger_Federer.npz
+
+[20180318-M-Indian_Wells_Masters-F-Roger_Federer-Juan_Martin_Del_Potro] (train) 90 puntos en 32 tramos
+  LKn2F_j7FY0: vídeo descargado (225 MB)
+[spot_20180318_m_indian_wells_masters_f_roger_federer_juan_martin__25fps] probe… (2026-10-20 16:44:04, etapa 1 de 14)
+[spot_20180318_m_indian_wells_masters_f_roger_federer_juan_martin__25fps] probe terminada a las 16:44:04 en 0 s
+[spot_20180318_m_indian_wells_masters_f_roger_federer_juan_martin__25fps] scenes… (2026-10-20 16:44:04, etapa 2 de 14)
+  scenes:   0 % (1/25564 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  38 % (9626/25564 fotogramas) · 30 s · quedan ≈ 50 s
+  scenes:  74 % (19039/25564 fotogramas) · 60 s · quedan ≈ 21 s
+  scenes: 100 % (25564/25564 fotogramas) · 81 s · quedan ≈ 0 s
+[spot_20180318_m_indian_wells_masters_f_roger_federer_juan_martin__25fps] scenes terminada a las 16:45:37 en 1.5 min
+[spot_20180318_m_indian_wells_masters_f_roger_federer_juan_martin__25fps] audio… (2026-10-20 16:45:37, etapa 3 de 14)
+  audio:  29 % (300/1022 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1022/1022 s de sonido) · 2 s · quedan ≈ 0 s
+[spot_20180318_m_indian_wells_masters_f_roger_federer_juan_martin__25fps] audio terminada a las 16:45:43 en 6 s
+[spot_20180318_m_indian_wells_masters_f_roger_federer_juan_martin__25fps] court… (2026-10-20 16:45:43, etapa 4 de 14)
+  court:  15 % (64/413 fotogramas) · 0 s · quedan ≈ 0 s
+  court: 100 % (413/413 fotogramas) · 31 s · quedan ≈ 0 s
+[spot_20180318_m_indian_wells_masters_f_roger_federer_juan_martin__25fps] court terminada a las 16:46:27 en 45 s
+[spot_20180318_m_indian_wells_masters_f_roger_federer_juan_martin__25fps] players… (2026-10-20 16:46:27, etapa 5 de 14)
+  [players] juego con pista: 11.0 min de 11.8 min de cámara principal
+  [players] players:   0 % (1/16484 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   3 % (421/16484 fotogramas con jugadoras) · 30 s · quedan ≈ 19 min
+  [players] players:   5 % (859/16484 fotogramas con jugadoras) · 60 s · quedan ≈ 18 min
+  [players] players:   8 % (1303/16484 fotogramas con jugadoras) · 2 min · quedan ≈ 17 min
+  [players] players:  10 % (1716/16484 fotogramas con jugadoras) · 2 min · quedan ≈ 17 min
+  [players] players:  13 % (2131/16484 fotogramas con jugadoras) · 3 min · quedan ≈ 17 min
+  [players] players:  16 % (2570/16484 fotogramas con jugadoras) · 3 min · quedan ≈ 16 min
+  [players] players:  18 % (3011/16484 fotogramas con jugadoras) · 4 min · quedan ≈ 16 min
