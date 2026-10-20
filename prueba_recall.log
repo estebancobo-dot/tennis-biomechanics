@@ -1729,3 +1729,4 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   ventana w001084300_7904 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.04 s
   ventana w001084300_7904: pose hybrid en 198 de 198 fotogramas (19 s; modelo 19 s; pies en 24) · bola 15 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 604 px (segments)
   fine_doubtful:  87 % (516/592 golpes candidatos · 54 confirmados · 64 ventanas descartadas sin pose) · 111 min · quedan ≈ 16 min
+  ventana w001096600_5100 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.04 s
