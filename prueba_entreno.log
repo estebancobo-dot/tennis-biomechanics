@@ -893,3 +893,31 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  87 % (16485/18981 fotogramas con jugadoras) · 19 min · quedan ≈ 3 min
   [players] players:  89 % (16931/18981 fotogramas con jugadoras) · 20 min · quedan ≈ 2 min
   [players] players:  92 % (17387/18981 fotogramas con jugadoras) · 20 min · quedan ≈ 2 min
+  [players] players:  94 % (17816/18981 fotogramas con jugadoras) · 21 min · quedan ≈ 81 s
+  [players] players:  96 % (18245/18981 fotogramas con jugadoras) · 21 min · quedan ≈ 51 s
+  [players] players:  98 % (18676/18981 fotogramas con jugadoras) · 22 min · quedan ≈ 21 s
+  [players] players: 100 % (18981/18981 fotogramas con jugadoras) · 22 min · quedan ≈ 0 s
+  [players] tiempo: 21.9 min para 18981 fotogramas a 960 px · modelo 18.7 min · leer vídeo y preparar la entrada 16.0 min en otro hilo (espera real 3.2 min) · apariencia 0.2 min en otro hilo
+[spot_20220906_m_us_open_qf_karen_khachanov_nick_kyrgios_25fps] players terminada a las 15:43:12 en 22.0 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20220906-M-US_Open-QF-Karen_Khachanov-Nick_Kyrgios] 255 golpes anotados, 38207 fotogramas → 20220906-M-US_Open-QF-Karen_Khachanov-Nick_Kyrgios.npz
+
+[20220907-M-US_Open-QF-Jannik_Sinner-Carlos_Alcaraz] (train) 90 puntos en 83 tramos
+  XNYhoYjRs3Y: vídeo descargado (1097 MB)
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz_25fps] probe… (2026-10-20 15:46:35, etapa 1 de 14)
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz_25fps] probe terminada a las 15:46:36 en 0 s
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz_25fps] scenes… (2026-10-20 15:46:36, etapa 2 de 14)
+  scenes:   0 % (1/42669 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  22 % (9494/42669 fotogramas) · 30 s · quedan ≈ 2 min
+  scenes:  45 % (19026/42669 fotogramas) · 60 s · quedan ≈ 75 s
+  scenes:  67 % (28626/42669 fotogramas) · 2 min · quedan ≈ 45 s
+  scenes:  90 % (38226/42669 fotogramas) · 2 min · quedan ≈ 14 s
+  scenes: 100 % (42669/42669 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz_25fps] scenes terminada a las 15:49:27 en 2.9 min
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz_25fps] audio… (2026-10-20 15:49:27, etapa 3 de 14)
+  audio:  18 % (300/1706 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1706/1706 s de sonido) · 3 s · quedan ≈ 0 s
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz_25fps] audio terminada a las 15:49:31 en 4 s
+[spot_20220907_m_us_open_qf_jannik_sinner_carlos_alcaraz_25fps] court… (2026-10-20 15:49:31, etapa 4 de 14)
+  court:  15 % (64/438 fotogramas) · 0 s · quedan ≈ 0 s
