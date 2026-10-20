@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261020033003
+Start time: 20261020043003
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 9540
+Process ID: 9640
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,16 +17,18 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-20 03:30:03] Codigo nuevo (cda1a43 -> 3b0b6d7): 1 ficheros
-    docs/plan_maestro.md
+==> [2026-10-20 04:30:03] Codigo nuevo (3b0b6d7 -> 7855695): 2 ficheros
+    config/peticion_pc.txt
+    scripts/windows/ciclo_automatico.ps1
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating cda1a43..3b0b6d7
+Updating 3b0b6d7..7855695
 Fast-forward
- docs/plan_maestro.md | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-Resolved 124 packages in 0.94ms
-Checked 89 packages in 2ms
+ config/peticion_pc.txt               | 2 +-
+ scripts/windows/ciclo_automatico.ps1 | 8 +++++++-
+ 2 files changed, 8 insertions(+), 2 deletions(-)
+Resolved 124 packages in 1ms
+Checked 89 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -38,11 +40,47 @@ yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
     (paso terminado en 4 s)
 
-==> [2026-10-20 03:30:07] Que hace falta: nada
-Ciclo automatico terminado (nada).
-    (paso terminado en 0 s)
-Empezado 2026-10-20 03:30:02 - terminado 2026-10-20 03:30:07 - duracion total 5 s
-**********************
-Windows PowerShell transcript end
-End time: 20261020033007
-**********************
+==> [2026-10-20 04:30:07] Que hace falta: informe
+Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
+Informe: C:\tenis\output\_smoke\informe\index.html
+Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
+Montajes: 2 en C:\tenis\output\_smoke\exportar\montajes
+Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
+Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
+Auditoría: 283 cumplidos, 31 no cumplidos, 106 sin golpes suficientes, 91 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+  ✘ Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin: marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto de saque) y 72-133 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 27 golpes, 1 saques/remates → como mucho 38% de sus golpes y 6% de sus saques. Faltan muchos golpes (ver scripts/validate_recall.py para saber en qué etapa se pierden) (19 cerca, 8 lejos); además 1 de identidad dudosa, apartados (no cuentan como suyos)
+  ✘ Golpe angulado (10-10 18:05, 19-10 08:11): no hay clase «angulado»: la dirección solo es cruzada, paralela o al centro (court_metrics.shot_landing), aunque el bote ya se mide (registro #132)
+  ✘ Bola corta baja / alta cerca de la red (19-10 08:11): no hay nivel «cerca de la red» en «Dónde golpea» y en la videoteca «cerca de la red» no se combina con «baja» ni «alta» (registro #157, #158)
+  ✘ Volea a media pista con golpe de fondo (19-10 08:11): «volea» solo dentro de la línea de saque (technique.contact_type); sin bote entre la línea de saque y el fondo no hay clase (registro #159)
+  ✘ #1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
+  ✘ #4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b: 196 comprobaciones: 3 falta, 45 pocos datos, 148 ok; la peor: «Golpe angulado (10-10 18:05, 19-10 08:11)» (no hay clase «angulado»: la dirección solo es cruzada, paralela o al centro (court_metrics.shot_landing), aunque el bote)
+  ✘ #5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto: 29 comprobaciones: 3 falta, 19 pocos datos, 7 ok; la peor: «Golpe angulado (10-10 18:05, 19-10 08:11)» (no hay clase «angulado»: la dirección solo es cruzada, paralela o al centro (court_metrics.shot_landing), aunque el bote)
+  ✘ #16 Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas: 3 comprobaciones: 1 falta, 2 ok; la peor: «Volea a media pista con golpe de fondo (19-10 08:11)» («volea» solo dentro de la línea de saque (technique.contact_type); sin bote entre la línea de saque y el fondo no hay cl)
+  ✘ #90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral): 13 comprobaciones: 3 falta, 9 pocos datos, 1 ok; la peor: «Golpe angulado (10-10 18:05, 19-10 08:11)» (no hay clase «angulado»: la dirección solo es cruzada, paralela o al centro (court_metrics.shot_landing), aunque el bote)
+  ✘ #132 ángulos (golpe angulado) — repetido el 19-10 08:11: «golpe angulado ... te lo he dicho muchas veces» (Chat, 10: SIN HACER según el registro (#132, docs/peticiones_usuario.md)
+  ✘ #155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
+  ✘ #159 volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (Chat, 19-10 08:11): SIN HACER según el registro (#159, docs/peticiones_usuario.md)
+  ✘ #176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3): SIN HACER según el registro (#176, docs/peticiones_usuario.md)
+  ✘ #189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4): SIN HACER según el registro (#189, docs/peticiones_usuario.md)
+  ✘ #193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10): SIN HACER según el registro (#193, docs/peticiones_usuario.md)
+  ✘ #196 Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18): SIN HACER según el registro (#196, docs/peticiones_usuario.md)
+  ✘ #197 Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19): SIN HACER según el registro (#197, docs/peticiones_usuario.md)
+  ✘ #198 Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20): SIN HACER según el registro (#198, docs/peticiones_usuario.md)
+  ✘ #199 Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10): SIN HACER según el registro (#199, docs/peticiones_usuario.md)
+  ✘ #200 Pista: TennisCourtDetector (14 puntos) + refinado (Estado del arte, 13-10): SIN HACER según el registro (#200, docs/peticiones_usuario.md)
+  ✘ #201 Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10): SIN HACER según el registro (#201, docs/peticiones_usuario.md)
+  ✘ #202 Bola: probar WASB (Estado del arte, 13-10): SIN HACER según el registro (#202, docs/peticiones_usuario.md)
+  ✘ #203 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10): SIN HACER según el registro (#203, docs/peticiones_usuario.md)
+  ✘ #204 Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10): SIN HACER según el registro (#204, docs/peticiones_usuario.md)
+  ✘ #205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3): SIN HACER según el registro (#205, docs/peticiones_usuario.md)
+  ✘ #209 Passing y globo (Revisión completa, §3 B): SIN HACER según el registro (#209, docs/peticiones_usuario.md)
+  ✘ #210 Dejada (bote muy corto en campo rival) (Revisión completa, §3 B): SIN HACER según el registro (#210, docs/peticiones_usuario.md)
+  ✘ #211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5): SIN HACER según el registro (#211, docs/peticiones_usuario.md)
+  ✘ #216 Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnic: SIN HACER según el registro (#216, docs/peticiones_usuario.md)
+  ✘ #217 Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26): SIN HACER según el registro (#217, docs/peticiones_usuario.md)
+  ✘ #218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v: SIN HACER según el registro (#218, docs/peticiones_usuario.md)
+Hecho en 150 s, sin volver a analizar vídeo.
+    (paso terminado en 2 min 30 s)
+
+==> [2026-10-20 04:32:37] Revision automatica frente a la ejecucion anterior
+# Revisión automática: FALLOS
