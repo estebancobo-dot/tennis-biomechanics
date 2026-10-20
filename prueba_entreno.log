@@ -1304,3 +1304,20 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  59 % (9227/15760 fotogramas con jugadoras) · 11 min · quedan ≈ 7 min
   [players] players:  61 % (9678/15760 fotogramas con jugadoras) · 11 min · quedan ≈ 7 min
   [players] players:  64 % (10076/15760 fotogramas con jugadoras) · 12 min · quedan ≈ 6 min
+  [players] players:  67 % (10486/15760 fotogramas con jugadoras) · 12 min · quedan ≈ 6 min
+  [players] players:  69 % (10947/15760 fotogramas con jugadoras) · 13 min · quedan ≈ 6 min
+  [players] players:  72 % (11368/15760 fotogramas con jugadoras) · 13 min · quedan ≈ 5 min
+  [players] players:  75 % (11828/15760 fotogramas con jugadoras) · 14 min · quedan ≈ 4 min
+  [players] players:  78 % (12291/15760 fotogramas con jugadoras) · 14 min · quedan ≈ 4 min
+  [players] players:  81 % (12726/15760 fotogramas con jugadoras) · 15 min · quedan ≈ 3 min
+  [players] players:  84 % (13183/15760 fotogramas con jugadoras) · 15 min · quedan ≈ 3 min
+  [players] players:  87 % (13640/15760 fotogramas con jugadoras) · 16 min · quedan ≈ 2 min
+  [players] players:  89 % (14073/15760 fotogramas con jugadoras) · 16 min · quedan ≈ 2 min
+  [players] players:  92 % (14528/15760 fotogramas con jugadoras) · 17 min · quedan ≈ 84 s
+  [players] players:  95 % (14976/15760 fotogramas con jugadoras) · 17 min · quedan ≈ 53 s
+  [players] players:  98 % (15413/15760 fotogramas con jugadoras) · 18 min · quedan ≈ 24 s
+  [players] players: 100 % (15760/15760 fotogramas con jugadoras) · 18 min · quedan ≈ 0 s
+  [players] tiempo: 17.9 min para 15760 fotogramas a 960 px · modelo 15.5 min · leer vídeo y preparar la entrada 13.0 min en otro hilo (espera real 2.4 min) · apariencia 0.2 min en otro hilo
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev_25fps] players terminada a las 18:29:21 en 17.9 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
