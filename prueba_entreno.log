@@ -1,3 +1,52 @@
 ﻿Peticion 38: datos de entrenamiento del detector de golpes (2026-10-20T05:32:39)
 
 [20190818-W-Cincinnati-F-Madison_Keys-Svetlana_Kuznetsova] (train) 90 puntos en 79 tramos
+  Ph-pB_KrPsU: vídeo descargado (726 MB)
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] probe… (2026-10-20 05:39:47, etapa 1 de 11)
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] probe terminada a las 05:39:47 en 0 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] scenes… (2026-10-20 05:39:47, etapa 2 de 11)
+  scenes:   0 % (1/33165 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  30 % (10026/33165 fotogramas) · 30 s · quedan ≈ 70 s
+  scenes:  60 % (20026/33165 fotogramas) · 61 s · quedan ≈ 40 s
+  scenes:  91 % (30026/33165 fotogramas) · 2 min · quedan ≈ 9 s
+  scenes: 100 % (33165/33165 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] scenes terminada a las 05:41:43 en 1.9 min
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] audio… (2026-10-20 05:41:43, etapa 3 de 11)
+  audio:  23 % (300/1326 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1326/1326 s de sonido) · 2 s · quedan ≈ 0 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] audio terminada a las 05:41:47 en 4 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] court… (2026-10-20 05:41:47, etapa 4 de 11)
+  court:  19 % (64/333 fotogramas) · 0 s · quedan ≈ 0 s
+  court: 100 % (333/333 fotogramas) · 23 s · quedan ≈ 0 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] court terminada a las 05:42:36 en 49 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] players… (2026-10-20 05:42:36, etapa 5 de 11)
+  [players] juego con pista: 9.0 min de 9.5 min de cámara principal
+  [players] players:   0 % (1/5418 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   7 % (399/5418 fotogramas con jugadoras) · 30 s · quedan ≈ 6 min
+  [players] players:  15 % (800/5418 fotogramas con jugadoras) · 60 s · quedan ≈ 6 min
+  [players] players:  23 % (1262/5418 fotogramas con jugadoras) · 2 min · quedan ≈ 5 min
+  [players] players:  32 % (1725/5418 fotogramas con jugadoras) · 2 min · quedan ≈ 4 min
+  [players] players:  41 % (2212/5418 fotogramas con jugadoras) · 3 min · quedan ≈ 4 min
+  [players] players:  50 % (2715/5418 fotogramas con jugadoras) · 3 min · quedan ≈ 3 min
+  [players] players:  59 % (3203/5418 fotogramas con jugadoras) · 4 min · quedan ≈ 2 min
+  [players] players:  68 % (3700/5418 fotogramas con jugadoras) · 4 min · quedan ≈ 2 min
+  [players] players:  77 % (4172/5418 fotogramas con jugadoras) · 5 min · quedan ≈ 81 s
+  [players] players:  86 % (4663/5418 fotogramas con jugadoras) · 5 min · quedan ≈ 49 s
+  [players] players:  95 % (5125/5418 fotogramas con jugadoras) · 6 min · quedan ≈ 19 s
+  [players] players: 100 % (5418/5418 fotogramas con jugadoras) · 6 min · quedan ≈ 0 s
+  [players] tiempo: 5.9 min para 5418 fotogramas a 960 px · modelo 5.3 min · leer vídeo y preparar la entrada 4.2 min en otro hilo (espera real 0.7 min) · apariencia 0.1 min en otro hilo
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] players terminada a las 05:48:32 en 5.9 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20190818-W-Cincinnati-F-Madison_Keys-Svetlana_Kuznetsova] 268 golpes anotados, 13267 fotogramas → 20190818-W-Cincinnati-F-Madison_Keys-Svetlana_Kuznetsova.npz
+
+[20210815-W-Montreal-F-Karolina_Pliskova-Camila_Giorgi] (train) 90 puntos en 71 tramos
+  Y4aQrXhbknU: vídeo descargado (570 MB)
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi] probe… (2026-10-20 05:51:08, etapa 1 de 11)
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi] probe terminada a las 05:51:09 en 0 s
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi] scenes… (2026-10-20 05:51:09, etapa 2 de 11)
+  scenes:   0 % (1/39062 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  26 % (9967/39062 fotogramas) · 30 s · quedan ≈ 88 s
+  scenes:  51 % (20026/39062 fotogramas) · 60 s · quedan ≈ 57 s
+  scenes:  77 % (30226/39062 fotogramas) · 2 min · quedan ≈ 27 s
+  scenes: 100 % (39062/39062 fotogramas) · 2 min · quedan ≈ 0 s
