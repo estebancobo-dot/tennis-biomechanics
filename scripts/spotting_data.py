@@ -28,6 +28,84 @@ from tennisbio.validation.datasets import f3set_tennis  # noqa: E402
 CHEAP = ["probe", "scenes", "audio", "court", "players"]
 
 
+BOT = ("confirm you", "cookies", "Sign in", "429", "Too Many Requests")
+
+
+def full_video(root: Path, yt_id: str, t_end: float) -> Path | None:
+    """The whole match once (480p, a few hundred MB), not one download per point: YouTube blocked the PC after
+    ~1200 short downloads (20-10, «Sign in to confirm you're not a bot»). Pauses between requests; on that block,
+    the browser's own YouTube session is tried (cookies of Firefox, Edge or Chrome, read by yt-dlp) and then it
+    waits 30 min and tries again, while time is left."""
+    import subprocess
+
+    dest = root / "f3set" / "spotting" / "full" / f"{yt_id}.mp4"
+    if dest.exists() and dest.stat().st_size > 0:
+        return dest
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    base = [sys.executable, "-m", "yt_dlp", "-q", "--no-warnings", "-f", "bv*[height<=480][ext=mp4]+ba[ext=m4a]/b[height<=480]",
+            "--merge-output-format", "mp4", "--sleep-requests", "2", "--retries", "5", "-o", str(dest),
+            f"https://www.youtube.com/watch?v={yt_id}"]
+    while time.time() < t_end:
+        for extra in ([], ["--cookies-from-browser", "firefox"], ["--cookies-from-browser", "edge"],
+                      ["--cookies-from-browser", "chrome"]):
+            try:
+                r = subprocess.run(base[:4] + extra + base[4:], capture_output=True, text=True, encoding="utf-8",
+                                   errors="replace", timeout=3600)
+            except subprocess.TimeoutExpired:
+                print(f"  {yt_id}: la descarga no termina en 1 h", flush=True)
+                return None
+            if r.returncode == 0 and dest.exists():
+                print(f"  {yt_id}: vídeo descargado ({dest.stat().st_size / 1e6:.0f} MB)" + (f" con {extra[-1]}" if extra else ""), flush=True)
+                return dest
+            err = (r.stderr or "").strip()[-300:]
+            if not any(b in err for b in BOT):
+                print(f"  {yt_id}: no se pudo descargar: {err}", flush=True)
+                return None
+        print(f"  {yt_id}: YouTube bloquea las descargas; espero 30 min y lo intento otra vez", flush=True)
+        time.sleep(1800)
+    return None
+
+
+def local_compilation(root: Path, name: str, src: Path, fps: float, segs: list[dict]):
+    """The same compilation as validate_recall.build_compilation, cut from the local whole video."""
+    import subprocess
+
+    from tennisbio.io.video import probe
+
+    base = root / "f3set" / "spotting"
+    out, plan_f = base / "videos" / f"{name}.mp4", base / "videos" / f"{name}.json"
+    key = [(s["src_t0"], s["src_t1"]) for s in segs]
+    if out.exists() and plan_f.exists() and json.loads(plan_f.read_text(encoding="utf-8")).get("key") == key:
+        return out, json.loads(plan_f.read_text(encoding="utf-8"))["segments"]
+    parts, done = [], []
+    for s in segs:
+        n = base / "norm" / f"{name}_{s['src_t0']:.0f}_{s['src_t1']:.0f}.mp4"
+        n.parent.mkdir(parents=True, exist_ok=True)
+        if not (n.exists() and n.stat().st_size > 0):
+            r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{s['src_t0']:.3f}", "-i", str(src),
+                                "-t", f"{s['src_t1'] - s['src_t0']:.3f}", "-r", f"{fps:.6f}", "-vf", "scale=1280:720,setsar=1",
+                                "-c:v", "libx264", "-crf", "20", "-preset", "veryfast", "-pix_fmt", "yuv420p", "-c:a", "aac",
+                                "-ar", "48000", "-ac", "2", str(n)], capture_output=True)
+            if r.returncode or not n.exists():
+                continue
+        parts.append(n)
+        done.append(dict(s))
+    if not parts:
+        return None, []
+    off = 0.0
+    for s, n in zip(done, parts):
+        s["offset"] = round(off, 4)
+        off += probe(n).duration
+    lst = base / "videos" / f"{name}.txt"
+    lst.parent.mkdir(parents=True, exist_ok=True)
+    lst.write_text("".join(f"file '{n.resolve().as_posix()}'\n" for n in parts), encoding="utf-8")
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(lst), "-c", "copy", str(out)], check=True)
+    plan_f.write_text(json.dumps({"key": key, "segments": done}, indent=1), encoding="utf-8")
+    for n in parts:                          # the pieces are in the compilation now
+        n.unlink(missing_ok=True)
+    return out, done
+
+
 def cheap_pass(video: Path, mid: str, out_dir: Path) -> Path:
     from tennisbio import pipeline, stages  # noqa: F401  (registers the stages)
     from tennisbio.catalog import Match, load_player
@@ -80,8 +158,12 @@ def main():
         split = "test" if name in test else "train"
         out = dest / f"{name}.npz"
         if out.exists():
-            done.append(name)
-            continue
+            with np.load(out) as z:
+                ok = len(z["ev_t"]) >= 20
+            if ok:
+                done.append(name)
+                continue
+            out.unlink()                  # a failed download left an almost empty match: again
         ps = by_video[name]
         if split == "train" and len(ps) > args.points:
             ps = ps[:: max(1, len(ps) // args.points)][:args.points]
@@ -89,7 +171,11 @@ def main():
         segs = R.plan_segments(ps, 6.0, 3.0)
         print(f"\n[{name}] ({split}) {len(ps)} puntos en {len(segs)} tramos", flush=True)
         try:
-            vid, segs_done = V.build_compilation(root, name, yt[name]["yt_id"], fps, segs)
+            if split == "test":           # Rybakina's: already compiled by the recall benchmark (cached)
+                vid, segs_done = V.build_compilation(root, name, yt[name]["yt_id"], fps, segs)
+            else:
+                src = full_video(root, yt[name]["yt_id"], t_end)
+                vid, segs_done = local_compilation(root, name, src, fps, segs) if src else (None, [])
             if vid is None:
                 print(f"[{name}] sin vídeo", flush=True)
                 continue
@@ -103,6 +189,8 @@ def main():
             events, spans = R.place_events([p for p in ps if p["id"] in got], segs_done)
             n_ev, n_fr = export(out, mdir, events, spans, name, split)
             print(f"[{name}] {n_ev} golpes anotados, {n_fr} fotogramas → {out.name}", flush=True)
+            if split == "train":          # the whole video is not needed any more (disk)
+                (root / "f3set" / "spotting" / "full" / f"{yt[name]['yt_id']}.mp4").unlink(missing_ok=True)
             done.append(name)
         except Exception as e:  # noqa: BLE001 — one broken match never stops the others
             print(f"[{name}] error: {type(e).__name__}: {e}"[:400], flush=True)

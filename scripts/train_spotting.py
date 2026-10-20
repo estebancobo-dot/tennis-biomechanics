@@ -102,23 +102,12 @@ def measure(net, ms: list[dict], thr: float) -> dict:
     return {"total": S.evaluate(preds, gts), "per_match": per}
 
 
-def main():
+def fit(train: list[dict], val: list[dict], epochs: int, seed: int):
+    """Trains on `train`, chooses the threshold (best F1) on `val`; returns (net, threshold, val measure)."""
     import torch
 
-    ap = argparse.ArgumentParser()
-    ap.add_argument("data")
-    ap.add_argument("--epochs", type=int, default=40)
-    ap.add_argument("--seed", type=int, default=0)
-    args = ap.parse_args()
-    torch.manual_seed(args.seed)
-    rng = np.random.default_rng(args.seed)
-    ms = load(Path(args.data))
-    test = [m for m in ms if m["split"] == "test"]
-    train_all = [m for m in ms if m["split"] != "test"]
-    if len(train_all) < 3 or not test:
-        sys.exit(f"Pocos datos: {len(train_all)} partidos de entrenamiento y {len(test)} de prueba")
-    val = train_all[-2:]
-    train = train_all[:-2]
+    torch.manual_seed(seed)
+    rng = np.random.default_rng(seed)
     Xcat = np.concatenate([m["X"] for m in train])
     mean, std = Xcat.mean(0), Xcat.std(0) + 1e-3
     C = len(S.CLASSES)
@@ -127,10 +116,10 @@ def main():
     w = torch.tensor(np.where(counts > 0, (counts.sum() / np.maximum(counts, 1)) ** 0.5, 1.0), dtype=torch.float32)
     w = w / w[0]
     opt = torch.optim.AdamW(net.parameters(), lr=2e-3, weight_decay=1e-4)
-    sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, args.epochs)
+    sched = torch.optim.lr_scheduler.CosineAnnealingLR(opt, epochs)
     data = [wnd for m in train for wnd in windows(m)]
     t0 = time.time()
-    for ep in range(args.epochs):
+    for ep in range(epochs):
         net.train()
         rng.shuffle(data)
         tot = 0.0
@@ -144,23 +133,80 @@ def main():
             opt.step()
             tot += float(loss)
         sched.step()
-        if ep % 5 == 4 or ep == args.epochs - 1:
-            print(f"época {ep + 1}: pérdida {tot / max(1, len(data) // 16):.3f} ({time.time() - t0:.0f} s)", flush=True)
+        if ep % 10 == 9 or ep == epochs - 1:
+            print(f"  época {ep + 1}: pérdida {tot / max(1, len(data) // 16):.3f} ({time.time() - t0:.0f} s)", flush=True)
     net.eval()
-    best = max(((measure(net, val, t)["total"], t) for t in np.arange(0.2, 0.85, 0.05)),
-               key=lambda rt: (2 * (rt[0]["recall"] or 0) * (rt[0]["precision"] or 0)
-                               / max(1e-9, (rt[0]["recall"] or 0) + (rt[0]["precision"] or 0))))
-    thr = round(float(best[1]), 2)
-    res = measure(net, test, thr)
+    f1 = lambda r: 2 * (r["recall"] or 0) * (r["precision"] or 0) / max(1e-9, (r["recall"] or 0) + (r["precision"] or 0))
+    best = max(((measure(net, val, t)["total"], t) for t in np.arange(0.2, 0.85, 0.05)), key=lambda rt: f1(rt[0]))
+    return net, round(float(best[1]), 2), best[0]
+
+
+def merge(results: list[dict]) -> dict:
+    """One measure from several (folds): the per-match rows and the totals re-evaluated together."""
+    per = [p for r in results for p in r["per_match"]]
+    return {"per_match": per, "total": {**_sum([r["total"] for r in results])}}
+
+
+def _sum(ts: list[dict]) -> dict:
+    out = {"gt": sum(t["gt"] for t in ts), "pred": sum(t["pred"] for t in ts), "found": sum(t["found"] for t in ts)}
+    rate = lambda a, b: None if not b else round(a / b, 3)
+    out["recall"], out["precision"] = rate(out["found"], out["gt"]), rate(out["found"], out["pred"])
+    ok = sum((t["kind_accuracy"] or 0) * t["found"] for t in ts)
+    out["kind_accuracy"] = rate(ok, out["found"])
+    for side in S.SIDES:
+        g = sum(t[side]["gt"] for t in ts)
+        f = sum(t[side]["found"] for t in ts)
+        out[side] = {"gt": g, "found": f, "recall": rate(f, g)}
+        for k in S.KINDS:
+            gk, fk = sum(t[side][k]["gt"] for t in ts), sum(t[side][k]["found"] for t in ts)
+            out[side][k] = {"gt": gk, "found": fk, "recall": rate(fk, gk)}
+    return out
+
+
+def main():
+    import torch
+
+    ap = argparse.ArgumentParser()
+    ap.add_argument("data")
+    ap.add_argument("--epochs", type=int, default=40)
+    ap.add_argument("--seed", type=int, default=0)
+    ap.add_argument("--cv", action="store_true",
+                    help="validación cruzada por partido: cada partido de prueba se mide con un modelo entrenado sin él "
+                         "(los otros de prueba entran a entrenar); el modelo guardado se entrena con todos")
+    args = ap.parse_args()
+    ms = load(Path(args.data))
+    ms = [m for m in ms if len(m["events"]) >= 20]              # a match whose download failed brings nothing
+    test = [m for m in ms if m["split"] == "test"]
+    train_all = [m for m in ms if m["split"] != "test"]
+    if args.cv:
+        if len(test) < 3:
+            sys.exit(f"Pocos partidos de prueba para validación cruzada: {len(test)}")
+        folds = []
+        for i, m in enumerate(test):
+            others = [x for j, x in enumerate(test) if j != i]
+            tr, va = train_all + others[:-1], others[-1:]
+            print(f"pliegue {i + 1}/{len(test)}: mide {m['name']}", flush=True)
+            net, thr, _ = fit(tr, va, args.epochs, args.seed)
+            folds.append(measure(net, [m], thr))
+        res = merge(folds)
+        net, thr, vbest = fit(train_all + test[:-1], test[-1:], args.epochs, args.seed)
+        train, val = train_all + test[:-1], test[-1:]
+    else:
+        if len(train_all) < 3 or not test:
+            sys.exit(f"Pocos datos: {len(train_all)} partidos de entrenamiento y {len(test)} de prueba")
+        train, val = train_all[:-2], train_all[-2:]
+        net, thr, vbest = fit(train, val, args.epochs, args.seed)
+        res = measure(net, test, thr)
+    F = train[0]["X"].shape[1]
     out = ROOT / "models"
     out.mkdir(exist_ok=True)
-    torch.onnx.export(net, torch.zeros(1, 64, Xcat.shape[1]), out / "spotting.onnx", input_names=["features"],
+    torch.onnx.export(net, torch.zeros(1, 64, F), out / "spotting.onnx", input_names=["features"],
                       output_names=["prob"], dynamic_axes={"features": {1: "frames"}, "prob": {1: "frames"}}, opset_version=17,
                       dynamo=False)
-    meta = {"classes": list(S.CLASSES), "feature_dim": int(Xcat.shape[1]), "fps": train[0]["fps"], "threshold": thr,
+    meta = {"classes": list(S.CLASSES), "feature_dim": int(F), "fps": train[0]["fps"], "threshold": thr,
             "train_matches": [m["name"] for m in train], "val_matches": [m["name"] for m in val],
-            "test_matches": [m["name"] for m in test], "epochs": args.epochs, "seed": args.seed,
-            "val": best[0], "test": res}
+            "test_matches": [m["name"] for m in test], "cv": args.cv, "epochs": args.epochs, "seed": args.seed,
+            "val": vbest, "test": res}
     (out / "spotting.json").write_text(json.dumps(meta, indent=1, ensure_ascii=False), encoding="utf-8")
     (ROOT / "docs" / "validacion_detector.md").write_text(report(meta), encoding="utf-8")
     print(report(meta))
@@ -170,9 +216,12 @@ def report(meta: dict) -> str:
     t = meta["test"]["total"]
     pct = lambda x: "—" if x is None else f"{x * 100:.0f} %"
     L = ["# Detector de golpes entrenado: medida", "",
-         f"Entrenado con {len(meta['train_matches'])} partidos de F3Set; umbral elegido con {len(meta['val_matches'])} "
-         f"partidos aparte; medido en {len(meta['test_matches'])} partidos de Rybakina que **no** vio al entrenar "
-         f"(±0,2 s, mismo lado). Lo genera `scripts/train_spotting.py`.", "",
+         (f"Validación cruzada por partido: cada uno de los {len(meta['test_matches'])} partidos de Rybakina se mide con un "
+          f"modelo entrenado **sin él** (con los otros y {len(meta['train_matches']) - len(meta['test_matches']) + 1} de F3Set)"
+          if meta.get("cv") else
+          f"Entrenado con {len(meta['train_matches'])} partidos de F3Set; umbral elegido con {len(meta['val_matches'])} "
+          f"partidos aparte; medido en {len(meta['test_matches'])} partidos de Rybakina que **no** vio al entrenar")
+         + " (±0,2 s, mismo lado). Lo genera `scripts/train_spotting.py`.", "",
          f"**Golpes encontrados: {t['found']} de {t['gt']} ({pct(t['recall'])})**, precisión {pct(t['precision'])}, "
          f"tipo de golpe acertado en el {pct(t['kind_accuracy'])} de los encontrados.", "",
          "| | saque | derecha | revés | otro | total |", "|---|---|---|---|---|---|"]
