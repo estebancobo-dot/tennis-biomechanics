@@ -1157,3 +1157,48 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  43 % (6573/15228 fotogramas con jugadoras) · 8 min · quedan ≈ 10 min
   [players] players:  46 % (7028/15228 fotogramas con jugadoras) · 8 min · quedan ≈ 9 min
   [players] players:  49 % (7449/15228 fotogramas con jugadoras) · 9 min · quedan ≈ 9 min
+  [players] players:  52 % (7900/15228 fotogramas con jugadoras) · 9 min · quedan ≈ 8 min
+  [players] players:  55 % (8327/15228 fotogramas con jugadoras) · 10 min · quedan ≈ 8 min
+  [players] players:  58 % (8768/15228 fotogramas con jugadoras) · 10 min · quedan ≈ 7 min
+  [players] players:  61 % (9230/15228 fotogramas con jugadoras) · 11 min · quedan ≈ 7 min
+  [players] players:  64 % (9672/15228 fotogramas con jugadoras) · 11 min · quedan ≈ 6 min
+  [players] players:  66 % (10107/15228 fotogramas con jugadoras) · 12 min · quedan ≈ 6 min
+  [players] players:  69 % (10571/15228 fotogramas con jugadoras) · 12 min · quedan ≈ 5 min
+  [players] players:  72 % (11030/15228 fotogramas con jugadoras) · 13 min · quedan ≈ 5 min
+  [players] players:  75 % (11473/15228 fotogramas con jugadoras) · 13 min · quedan ≈ 4 min
+  [players] players:  78 % (11907/15228 fotogramas con jugadoras) · 14 min · quedan ≈ 4 min
+  [players] players:  81 % (12321/15228 fotogramas con jugadoras) · 14 min · quedan ≈ 3 min
+  [players] players:  84 % (12789/15228 fotogramas con jugadoras) · 15 min · quedan ≈ 3 min
+  [players] players:  87 % (13204/15228 fotogramas con jugadoras) · 15 min · quedan ≈ 2 min
+  [players] players:  90 % (13646/15228 fotogramas con jugadoras) · 16 min · quedan ≈ 2 min
+  [players] players:  93 % (14106/15228 fotogramas con jugadoras) · 16 min · quedan ≈ 76 s
+  [players] players:  96 % (14555/15228 fotogramas con jugadoras) · 17 min · quedan ≈ 46 s
+  [players] players:  99 % (15016/15228 fotogramas con jugadoras) · 17 min · quedan ≈ 14 s
+  [players] players: 100 % (15228/15228 fotogramas con jugadoras) · 17 min · quedan ≈ 0 s
+  [players] tiempo: 17.3 min para 15228 fotogramas a 960 px · modelo 15.0 min · leer vídeo y preparar la entrada 12.4 min en otro hilo (espera real 2.2 min) · apariencia 0.2 min en otro hilo
+[spot_20200111_w_brisbane_sf_naomi_osaka_karolina_pliskova_25fps] players terminada a las 17:30:49 en 17.3 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20200111-W-Brisbane-SF-Naomi_Osaka-Karolina_Pliskova] 252 golpes anotados, 35477 fotogramas → 20200111-W-Brisbane-SF-Naomi_Osaka-Karolina_Pliskova.npz
+
+[20200129-M-Australian_Open-QF-Rafael_Nadal-Dominic_Thiem] (train) 90 puntos en 86 tramos
+  wQBlMkVI8F8: vídeo descargado (910 MB)
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem_25fps] probe… (2026-10-20 17:33:30, etapa 1 de 14)
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem_25fps] probe terminada a las 17:33:30 en 0 s
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem_25fps] scenes… (2026-10-20 17:33:30, etapa 2 de 14)
+  scenes:   0 % (1/38510 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  25 % (9626/38510 fotogramas) · 30 s · quedan ≈ 2 min
+  scenes:  50 % (19226/38510 fotogramas) · 61 s · quedan ≈ 61 s
+  scenes:  74 % (28626/38510 fotogramas) · 2 min · quedan ≈ 31 s
+  scenes:  99 % (38126/38510 fotogramas) · 2 min · quedan ≈ 1 s
+  scenes: 100 % (38510/38510 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem_25fps] scenes terminada a las 17:36:02 en 2.5 min
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem_25fps] audio… (2026-10-20 17:36:02, etapa 3 de 14)
+  audio:  19 % (300/1540 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1540/1540 s de sonido) · 16 s · quedan ≈ 0 s
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem_25fps] audio terminada a las 17:36:20 en 17 s
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem_25fps] court… (2026-10-20 17:36:20, etapa 4 de 14)
+  court:  13 % (64/487 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  26 % (128/487 fotogramas) · 36 s · quedan ≈ 2 min
+  court:  53 % (256/487 fotogramas) · 2 min · quedan ≈ 87 s
+  court:  66 % (320/487 fotogramas) · 2 min · quedan ≈ 69 s
