@@ -848,3 +848,25 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   court:  15 % (64/432 fotogramas) · 0 s · quedan ≈ 0 s
   court:  44 % (192/432 fotogramas) · 47 s · quedan ≈ 59 s
   court:  89 % (384/432 fotogramas) · 80 s · quedan ≈ 10 s
+  court: 100 % (432/432 fotogramas) · 89 s · quedan ≈ 0 s
+[spot_20220906_m_us_open_qf_karen_khachanov_nick_kyrgios_25fps] court terminada a las 15:21:11 en 2.2 min
+[spot_20220906_m_us_open_qf_karen_khachanov_nick_kyrgios_25fps] players… (2026-10-20 15:21:11, etapa 5 de 14)
+  [players] juego con pista: 12.7 min de 13.1 min de cámara principal
+  [players] players:   0 % (1/18981 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   3 % (475/18981 fotogramas con jugadoras) · 30 s · quedan ≈ 20 min
+  [players] players:   5 % (861/18981 fotogramas con jugadoras) · 60 s · quedan ≈ 21 min
+  [players] players:   7 % (1303/18981 fotogramas con jugadoras) · 2 min · quedan ≈ 20 min
+  [players] players:   9 % (1731/18981 fotogramas con jugadoras) · 2 min · quedan ≈ 20 min
+  [players] players:  12 % (2195/18981 fotogramas con jugadoras) · 3 min · quedan ≈ 19 min
+  [players] players:  14 % (2578/18981 fotogramas con jugadoras) · 3 min · quedan ≈ 19 min
+  [players] players:  16 % (3013/18981 fotogramas con jugadoras) · 4 min · quedan ≈ 19 min
+  [players] players:  18 % (3455/18981 fotogramas con jugadoras) · 4 min · quedan ≈ 18 min
+  [players] players:  20 % (3885/18981 fotogramas con jugadoras) · 5 min · quedan ≈ 18 min
+  [players] players:  23 % (4340/18981 fotogramas con jugadoras) · 5 min · quedan ≈ 17 min
+  [players] players:  25 % (4736/18981 fotogramas con jugadoras) · 6 min · quedan ≈ 17 min
+  [players] players:  27 % (5181/18981 fotogramas con jugadoras) · 6 min · quedan ≈ 16 min
+  [players] players:  29 % (5552/18981 fotogramas con jugadoras) · 7 min · quedan ≈ 16 min
+  [players] players:  31 % (5977/18981 fotogramas con jugadoras) · 7 min · quedan ≈ 15 min
+  [players] players:  34 % (6382/18981 fotogramas con jugadoras) · 8 min · quedan ≈ 15 min
+  [players] players:  36 % (6810/18981 fotogramas con jugadoras) · 8 min · quedan ≈ 14 min
+  [players] players:  38 % (7222/18981 fotogramas con jugadoras) · 9 min · quedan ≈ 14 min
