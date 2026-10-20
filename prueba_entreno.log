@@ -1,1 +1,18 @@
 ﻿Peticion 39: datos de entrenamiento del detector de golpes (2026-10-20T10:17:36)
+
+[20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin] (test) 84 puntos en 76 tramos
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 10/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 20/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 30/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 40/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 50/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 60/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 70/76 tramos descargados
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin_25fps] probe… (2026-10-20 10:18:08, etapa 1 de 14)
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin_25fps] probe terminada a las 10:18:09 en 0 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin_25fps] scenes… (2026-10-20 10:18:09, etapa 2 de 14)
+  scenes:   0 % (1/33478 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  28 % (9229/33478 fotogramas) · 30 s · quedan ≈ 79 s
+  scenes:  55 % (18426/33478 fotogramas) · 60 s · quedan ≈ 49 s
+  scenes:  82 % (27350/33478 fotogramas) · 2 min · quedan ≈ 20 s
+  scenes: 100 % (33478/33478 fotogramas) · 2 min · quedan ≈ 0 s
