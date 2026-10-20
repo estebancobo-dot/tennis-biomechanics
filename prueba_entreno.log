@@ -573,3 +573,58 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  93 % (16202/17478 fotogramas con jugadoras) · 18 min · quedan ≈ 85 s
   [players] players:  95 % (16647/17478 fotogramas con jugadoras) · 19 min · quedan ≈ 55 s
   [players] players:  98 % (17108/17478 fotogramas con jugadoras) · 19 min · quedan ≈ 25 s
+  [players] players: 100 % (17478/17478 fotogramas con jugadoras) · 19 min · quedan ≈ 0 s
+  [players] tiempo: 19.5 min para 17478 fotogramas a 960 px · modelo 16.1 min · leer vídeo y preparar la entrada 16.9 min en otro hilo (espera real 3.4 min) · apariencia 0.2 min en otro hilo
+[spot_20210909_w_us_open_sf_aryna_sabalenka_leylah_fernandez_25fps] players terminada a las 13:40:36 en 19.5 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20210909-W-US_Open-SF-Aryna_Sabalenka-Leylah_Fernandez] 348 golpes anotados, 41709 fotogramas → 20210909-W-US_Open-SF-Aryna_Sabalenka-Leylah_Fernandez.npz
+
+[20220126-W-Australian_Open-QF-Iga_Swiatek-Kaia_Kanepi] (train) 90 puntos en 78 tramos
+  tf5Jwx_4MaE: vídeo descargado (713 MB)
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi_25fps] probe… (2026-10-20 13:42:56, etapa 1 de 14)
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi_25fps] probe terminada a las 13:42:56 en 0 s
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi_25fps] scenes… (2026-10-20 13:42:56, etapa 2 de 14)
+  scenes:   0 % (1/35356 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  28 % (9826/35356 fotogramas) · 30 s · quedan ≈ 79 s
+  scenes:  55 % (19381/35356 fotogramas) · 60 s · quedan ≈ 50 s
+  scenes:  82 % (28881/35356 fotogramas) · 2 min · quedan ≈ 20 s
+  scenes: 100 % (35356/35356 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi_25fps] scenes terminada a las 13:45:20 en 2.4 min
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi_25fps] audio… (2026-10-20 13:45:20, etapa 3 de 14)
+  audio:  21 % (300/1414 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1414/1414 s de sonido) · 2 s · quedan ≈ 0 s
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi_25fps] audio terminada a las 13:45:27 en 7 s
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi_25fps] court… (2026-10-20 13:45:27, etapa 4 de 14)
+  court:  15 % (64/424 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  60 % (256/424 fotogramas) · 34 s · quedan ≈ 23 s
+  court: 100 % (424/424 fotogramas) · 53 s · quedan ≈ 0 s
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi_25fps] court terminada a las 13:47:09 en 1.7 min
+[spot_20220126_w_australian_open_qf_iga_swiatek_kaia_kanepi_25fps] players… (2026-10-20 13:47:09, etapa 5 de 14)
+  [players] juego con pista: 12.4 min de 12.7 min de cámara principal
+  [players] players:   0 % (1/18650 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   2 % (462/18650 fotogramas con jugadoras) · 30 s · quedan ≈ 20 min
+  [players] players:   5 % (925/18650 fotogramas con jugadoras) · 60 s · quedan ≈ 19 min
+  [players] players:   7 % (1383/18650 fotogramas con jugadoras) · 2 min · quedan ≈ 19 min
+  [players] players:  10 % (1859/18650 fotogramas con jugadoras) · 2 min · quedan ≈ 18 min
+  [players] players:  12 % (2299/18650 fotogramas con jugadoras) · 3 min · quedan ≈ 18 min
+  [players] players:  15 % (2758/18650 fotogramas con jugadoras) · 3 min · quedan ≈ 17 min
+  [players] players:  17 % (3226/18650 fotogramas con jugadoras) · 4 min · quedan ≈ 17 min
+  [players] players:  20 % (3693/18650 fotogramas con jugadoras) · 4 min · quedan ≈ 16 min
+  [players] players:  22 % (4111/18650 fotogramas con jugadoras) · 5 min · quedan ≈ 16 min
+  [players] players:  24 % (4552/18650 fotogramas con jugadoras) · 5 min · quedan ≈ 15 min
+  [players] players:  27 % (5025/18650 fotogramas con jugadoras) · 6 min · quedan ≈ 15 min
+  [players] players:  29 % (5495/18650 fotogramas con jugadoras) · 6 min · quedan ≈ 14 min
+  [players] players:  32 % (5930/18650 fotogramas con jugadoras) · 7 min · quedan ≈ 14 min
+  [players] players:  34 % (6397/18650 fotogramas con jugadoras) · 7 min · quedan ≈ 13 min
+  [players] players:  37 % (6858/18650 fotogramas con jugadoras) · 8 min · quedan ≈ 13 min
+  [players] players:  39 % (7287/18650 fotogramas con jugadoras) · 8 min · quedan ≈ 12 min
+  [players] players:  41 % (7713/18650 fotogramas con jugadoras) · 9 min · quedan ≈ 12 min
+  [players] players:  44 % (8147/18650 fotogramas con jugadoras) · 9 min · quedan ≈ 12 min
+  [players] players:  46 % (8580/18650 fotogramas con jugadoras) · 10 min · quedan ≈ 11 min
+  [players] players:  48 % (9033/18650 fotogramas con jugadoras) · 10 min · quedan ≈ 11 min
+  [players] players:  51 % (9447/18650 fotogramas con jugadoras) · 11 min · quedan ≈ 10 min
+  [players] players:  53 % (9919/18650 fotogramas con jugadoras) · 11 min · quedan ≈ 10 min
+  [players] players:  56 % (10361/18650 fotogramas con jugadoras) · 12 min · quedan ≈ 9 min
+  [players] players:  58 % (10807/18650 fotogramas con jugadoras) · 12 min · quedan ≈ 9 min
+  [players] players:  60 % (11244/18650 fotogramas con jugadoras) · 13 min · quedan ≈ 8 min
