@@ -169,7 +169,9 @@ function Hacer-Peticion($p) {
         # color toma por juego y las lineas no confirman (scripts/diag_scenes.py), a pc-logs/capturas_diag
         $lg = "$Base\output\prueba_diag.log"
         "Peticion $($p['id']): diagnostico de planos ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
-        & uv run python scripts/diag_scenes.py "$Base\output\capturas_diag" 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        # carpetas: rutas relativas a C:\tenis separadas por coma (p. ej. una compilacion de F3Set); sin ellas, los partidos
+        $dirs = @(); if ($p["carpetas"]) { $dirs = @($p["carpetas"].Split(",") | ForEach-Object { Join-Path $Base $_.Trim() }) }
+        & uv run python scripts/diag_scenes.py "$Base\output\capturas_diag" @dirs 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
         "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "largo") {
         # el video entero (tramo largo) en su propia carpeta _pocN_largo: muchos golpes por situacion
