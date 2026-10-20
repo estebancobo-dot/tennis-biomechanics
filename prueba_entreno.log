@@ -199,3 +199,54 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  87 % (15843/18238 fotogramas con jugadoras) · 17 min · quedan ≈ 3 min
   [players] players:  90 % (16355/18238 fotogramas con jugadoras) · 18 min · quedan ≈ 2 min
   [players] players:  93 % (16881/18238 fotogramas con jugadoras) · 18 min · quedan ≈ 87 s
+  [players] players:  95 % (17387/18238 fotogramas con jugadoras) · 19 min · quedan ≈ 54 s
+  [players] players:  98 % (17904/18238 fotogramas con jugadoras) · 19 min · quedan ≈ 21 s
+  [players] players: 100 % (18238/18238 fotogramas con jugadoras) · 19 min · quedan ≈ 0 s
+  [players] tiempo: 19.4 min para 18238 fotogramas a 960 px · modelo 16.6 min · leer vídeo y preparar la entrada 16.3 min en otro hilo (espera real 2.8 min) · apariencia 0.3 min en otro hilo
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren_25fps] players terminada a las 11:19:47 en 19.4 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka] 308 golpes anotados, 32108 fotogramas → 20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka.npz
+
+[20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina] (test) 123 puntos en 117 tramos
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 10/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 20/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 30/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 40/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 50/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 60/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 70/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 80/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 90/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 100/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 110/117 tramos descargados
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina_25fps] probe… (2026-10-20 11:20:24, etapa 1 de 14)
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina_25fps] probe terminada a las 11:20:25 en 0 s
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina_25fps] scenes… (2026-10-20 11:20:25, etapa 2 de 14)
+  scenes:   0 % (1/51003 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  19 % (9626/51003 fotogramas) · 30 s · quedan ≈ 2 min
+  scenes:  38 % (19242/51003 fotogramas) · 60 s · quedan ≈ 2 min
+  scenes:  57 % (28956/51003 fotogramas) · 2 min · quedan ≈ 69 s
+  scenes:  75 % (38433/51003 fotogramas) · 2 min · quedan ≈ 39 s
+  scenes:  95 % (48226/51003 fotogramas) · 3 min · quedan ≈ 9 s
+  scenes: 100 % (51003/51003 fotogramas) · 3 min · quedan ≈ 0 s
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina_25fps] scenes terminada a las 11:23:55 en 3.5 min
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina_25fps] audio… (2026-10-20 11:23:55, etapa 3 de 14)
+  audio:  15 % (300/2040 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (2040/2040 s de sonido) · 4 s · quedan ≈ 0 s
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina_25fps] audio terminada a las 11:23:59 en 5 s
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina_25fps] court… (2026-10-20 11:23:59, etapa 4 de 14)
+  court:   9 % (64/676 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  28 % (192/676 fotogramas) · 41 s · quedan ≈ 2 min
+  court:  66 % (448/676 fotogramas) · 72 s · quedan ≈ 37 s
+  court:  95 % (640/676 fotogramas) · 2 min · quedan ≈ 7 s
+  court: 100 % (676/676 fotogramas) · 2 min · quedan ≈ 0 s
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina_25fps] court terminada a las 11:27:03 en 3.1 min
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina_25fps] players… (2026-10-20 11:27:03, etapa 5 de 14)
+  [players] juego con pista: 19.1 min de 20.0 min de cámara principal
+  [players] players:   0 % (1/28713 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   2 % (472/28713 fotogramas con jugadoras) · 30 s · quedan ≈ 30 min
+  [players] players:   3 % (949/28713 fotogramas con jugadoras) · 60 s · quedan ≈ 29 min
+  [players] players:   5 % (1333/28713 fotogramas con jugadoras) · 2 min · quedan ≈ 31 min
+  [players] players:   6 % (1790/28713 fotogramas con jugadoras) · 2 min · quedan ≈ 30 min
+  [players] players:   8 % (2221/28713 fotogramas con jugadoras) · 3 min · quedan ≈ 30 min
