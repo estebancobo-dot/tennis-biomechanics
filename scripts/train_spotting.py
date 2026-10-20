@@ -217,7 +217,7 @@ def report(meta: dict) -> str:
     pct = lambda x: "—" if x is None else f"{x * 100:.0f} %"
     L = ["# Detector de golpes entrenado: medida", "",
          (f"Validación cruzada por partido: cada uno de los {len(meta['test_matches'])} partidos de Rybakina se mide con un "
-          f"modelo entrenado **sin él** (con los otros y {len(meta['train_matches']) - len(meta['test_matches']) + 1} de F3Set)"
+          f"modelo entrenado **sin él** (con los otros y {len(set(meta['train_matches']) - set(meta['test_matches']))} de otras jugadoras de F3Set)"
           if meta.get("cv") else
           f"Entrenado con {len(meta['train_matches'])} partidos de F3Set; umbral elegido con {len(meta['val_matches'])} "
           f"partidos aparte; medido en {len(meta['test_matches'])} partidos de Rybakina que **no** vio al entrenar")

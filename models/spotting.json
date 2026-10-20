@@ -1,0 +1,189 @@
+{
+ "classes": [
+  "none",
+  "near_serve",
+  "near_forehand",
+  "near_backhand",
+  "near_other",
+  "far_serve",
+  "far_forehand",
+  "far_backhand",
+  "far_other"
+ ],
+ "feature_dim": 113,
+ "fps": 10.0,
+ "threshold": 0.6,
+ "train_matches": [
+  "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+  "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
+  "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka"
+ ],
+ "val_matches": [
+  "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina"
+ ],
+ "test_matches": [
+  "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+  "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
+  "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
+  "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina"
+ ],
+ "cv": true,
+ "epochs": 30,
+ "seed": 0,
+ "val": {
+  "gt": 446,
+  "pred": 379,
+  "found": 333,
+  "recall": 0.747,
+  "precision": 0.879,
+  "near": {
+   "gt": 222,
+   "found": 179,
+   "recall": 0.806,
+   "serve": {
+    "gt": 55,
+    "found": 50,
+    "recall": 0.909
+   },
+   "forehand": {
+    "gt": 91,
+    "found": 77,
+    "recall": 0.846
+   },
+   "backhand": {
+    "gt": 76,
+    "found": 52,
+    "recall": 0.684
+   },
+   "other": {
+    "gt": 0,
+    "found": 0,
+    "recall": null
+   }
+  },
+  "far": {
+   "gt": 224,
+   "found": 154,
+   "recall": 0.688,
+   "serve": {
+    "gt": 67,
+    "found": 36,
+    "recall": 0.537
+   },
+   "forehand": {
+    "gt": 87,
+    "found": 66,
+    "recall": 0.759
+   },
+   "backhand": {
+    "gt": 70,
+    "found": 52,
+    "recall": 0.743
+   },
+   "other": {
+    "gt": 0,
+    "found": 0,
+    "recall": null
+   }
+  },
+  "kind_accuracy": 0.892
+ },
+ "test": {
+  "per_match": [
+   {
+    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+    "gt": 279,
+    "found": 195,
+    "recall": 0.699,
+    "precision": 0.709,
+    "near": 0.784,
+    "far": 0.614
+   },
+   {
+    "match": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
+    "gt": 268,
+    "found": 7,
+    "recall": 0.026,
+    "precision": 0.074,
+    "near": 0.043,
+    "far": 0.008
+   },
+   {
+    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
+    "gt": 308,
+    "found": 159,
+    "recall": 0.516,
+    "precision": 0.671,
+    "near": 0.537,
+    "far": 0.493
+   },
+   {
+    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
+    "gt": 446,
+    "found": 257,
+    "recall": 0.576,
+    "precision": 0.635,
+    "near": 0.64,
+    "far": 0.513
+   }
+  ],
+  "total": {
+   "gt": 1301,
+   "pred": 1011,
+   "found": 618,
+   "recall": 0.475,
+   "precision": 0.611,
+   "kind_accuracy": 0.856,
+   "near": {
+    "gt": 659,
+    "found": 343,
+    "recall": 0.52,
+    "serve": {
+     "gt": 186,
+     "found": 88,
+     "recall": 0.473
+    },
+    "forehand": {
+     "gt": 243,
+     "found": 146,
+     "recall": 0.601
+    },
+    "backhand": {
+     "gt": 224,
+     "found": 108,
+     "recall": 0.482
+    },
+    "other": {
+     "gt": 6,
+     "found": 1,
+     "recall": 0.167
+    }
+   },
+   "far": {
+    "gt": 642,
+    "found": 275,
+    "recall": 0.428,
+    "serve": {
+     "gt": 180,
+     "found": 56,
+     "recall": 0.311
+    },
+    "forehand": {
+     "gt": 232,
+     "found": 123,
+     "recall": 0.53
+    },
+    "backhand": {
+     "gt": 226,
+     "found": 96,
+     "recall": 0.425
+    },
+    "other": {
+     "gt": 4,
+     "found": 0,
+     "recall": 0.0
+    }
+   }
+  }
+ }
+}
