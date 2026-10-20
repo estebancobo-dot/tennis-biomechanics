@@ -608,3 +608,51 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  16 % (1205/7419 fotogramas con jugadoras) · 2 min · quedan ≈ 8 min
   [players] players:  22 % (1617/7419 fotogramas con jugadoras) · 2 min · quedan ≈ 7 min
   [players] players:  27 % (2040/7419 fotogramas con jugadoras) · 3 min · quedan ≈ 7 min
+  [players] players:  33 % (2447/7419 fotogramas con jugadoras) · 3 min · quedan ≈ 6 min
+  [players] players:  39 % (2871/7419 fotogramas con jugadoras) · 4 min · quedan ≈ 6 min
+  [players] players:  44 % (3296/7419 fotogramas con jugadoras) · 4 min · quedan ≈ 5 min
+  [players] players:  51 % (3775/7419 fotogramas con jugadoras) · 5 min · quedan ≈ 4 min
+  [players] players:  56 % (4184/7419 fotogramas con jugadoras) · 5 min · quedan ≈ 4 min
+  [players] players:  62 % (4593/7419 fotogramas con jugadoras) · 6 min · quedan ≈ 3 min
+  [players] players:  68 % (5011/7419 fotogramas con jugadoras) · 6 min · quedan ≈ 3 min
+  [players] players:  74 % (5485/7419 fotogramas con jugadoras) · 7 min · quedan ≈ 2 min
+  [players] players:  80 % (5947/7419 fotogramas con jugadoras) · 7 min · quedan ≈ 2 min
+  [players] players:  86 % (6367/7419 fotogramas con jugadoras) · 8 min · quedan ≈ 74 s
+  [players] players:  91 % (6768/7419 fotogramas con jugadoras) · 8 min · quedan ≈ 46 s
+  [players] players:  97 % (7180/7419 fotogramas con jugadoras) · 9 min · quedan ≈ 17 s
+  [players] players: 100 % (7419/7419 fotogramas con jugadoras) · 9 min · quedan ≈ 0 s
+  [players] tiempo: 8.8 min para 7419 fotogramas a 960 px · modelo 7.3 min · leer vídeo y preparar la entrada 6.6 min en otro hilo (espera real 1.5 min) · apariencia 0.1 min en otro hilo
+[spot_20200129_m_australian_open_qf_rafael_nadal_dominic_thiem] players terminada a las 09:04:41 en 8.8 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20200129-M-Australian_Open-QF-Rafael_Nadal-Dominic_Thiem] 353 golpes anotados, 15405 fotogramas → 20200129-M-Australian_Open-QF-Rafael_Nadal-Dominic_Thiem.npz
+
+[20200911-M-US_Open-SF-Dominic_Thiem-Daniil_Medvedev] (train) 90 puntos en 65 tramos
+  vf5edF2BUpg: vídeo descargado (462 MB)
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev] probe… (2026-10-20 09:09:13, etapa 1 de 11)
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev] probe terminada a las 09:09:14 en 0 s
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev] scenes… (2026-10-20 09:09:14, etapa 2 de 11)
+  scenes:   0 % (1/39074 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  25 % (9626/39074 fotogramas) · 30 s · quedan ≈ 2 min
+  scenes:  49 % (19226/39074 fotogramas) · 60 s · quedan ≈ 62 s
+  scenes:  74 % (28826/39074 fotogramas) · 2 min · quedan ≈ 32 s
+  scenes:  98 % (38426/39074 fotogramas) · 2 min · quedan ≈ 2 s
+  scenes: 100 % (39074/39074 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev] scenes terminada a las 09:11:21 en 2.1 min
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev] audio… (2026-10-20 09:11:21, etapa 3 de 11)
+  audio:  19 % (300/1562 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1562/1562 s de sonido) · 14 s · quedan ≈ 0 s
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev] audio terminada a las 09:11:35 en 14 s
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev] court… (2026-10-20 09:11:35, etapa 4 de 11)
+  court:  16 % (64/411 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  31 % (128/411 fotogramas) · 31 s · quedan ≈ 68 s
+  court:  47 % (192/411 fotogramas) · 64 s · quedan ≈ 73 s
+  court:  78 % (320/411 fotogramas) · 2 min · quedan ≈ 30 s
+  court: 100 % (411/411 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev] court terminada a las 09:14:42 en 3.1 min
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev] players… (2026-10-20 09:14:42, etapa 5 de 11)
+  [players] juego con pista: 10.8 min de 12.3 min de cámara principal
+  [players] players:   0 % (1/6467 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   7 % (471/6467 fotogramas con jugadoras) · 30 s · quedan ≈ 6 min
+  [players] players:  14 % (905/6467 fotogramas con jugadoras) · 60 s · quedan ≈ 6 min
+  [players] players:  22 % (1395/6467 fotogramas con jugadoras) · 2 min · quedan ≈ 5 min
