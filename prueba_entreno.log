@@ -423,3 +423,56 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  78 % (9481/12139 fotogramas con jugadoras) · 11 min · quedan ≈ 3 min
   [players] players:  81 % (9883/12139 fotogramas con jugadoras) · 12 min · quedan ≈ 3 min
   [players] players:  85 % (10309/12139 fotogramas con jugadoras) · 12 min · quedan ≈ 2 min
+  [players] players:  88 % (10726/12139 fotogramas con jugadoras) · 13 min · quedan ≈ 2 min
+  [players] players:  92 % (11146/12139 fotogramas con jugadoras) · 13 min · quedan ≈ 70 s
+  [players] players:  95 % (11575/12139 fotogramas con jugadoras) · 14 min · quedan ≈ 40 s
+  [players] players:  99 % (12031/12139 fotogramas con jugadoras) · 14 min · quedan ≈ 8 s
+  [players] players: 100 % (12139/12139 fotogramas con jugadoras) · 14 min · quedan ≈ 0 s
+  [players] tiempo: 14.2 min para 12139 fotogramas a 960 px · modelo 12.0 min · leer vídeo y preparar la entrada 10.5 min en otro hilo (espera real 2.2 min) · apariencia 0.1 min en otro hilo
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi_25fps] players terminada a las 12:42:06 en 14.2 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20210815-W-Montreal-F-Karolina_Pliskova-Camila_Giorgi] 278 golpes anotados, 39062 fotogramas → 20210815-W-Montreal-F-Karolina_Pliskova-Camila_Giorgi.npz
+
+[20210908-M-US_Open-QF-Novak_Djokovic-Matteo_Berrettini] (train) 90 puntos en 81 tramos
+  LWBMqafBEoE: vídeo descargado (518 MB)
+[spot_20210908_m_us_open_qf_novak_djokovic_matteo_berrettini_25fps] probe… (2026-10-20 12:45:32, etapa 1 de 14)
+[spot_20210908_m_us_open_qf_novak_djokovic_matteo_berrettini_25fps] probe terminada a las 12:45:32 en 0 s
+[spot_20210908_m_us_open_qf_novak_djokovic_matteo_berrettini_25fps] scenes… (2026-10-20 12:45:32, etapa 2 de 14)
+  scenes:   0 % (1/40644 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  23 % (9478/40644 fotogramas) · 30 s · quedan ≈ 2 min
+  scenes:  47 % (19026/40644 fotogramas) · 60 s · quedan ≈ 69 s
+  scenes:  70 % (28426/40644 fotogramas) · 2 min · quedan ≈ 39 s
+  scenes:  94 % (38026/40644 fotogramas) · 2 min · quedan ≈ 8 s
+  scenes: 100 % (40644/40644 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20210908_m_us_open_qf_novak_djokovic_matteo_berrettini_25fps] scenes terminada a las 12:48:02 en 2.5 min
+[spot_20210908_m_us_open_qf_novak_djokovic_matteo_berrettini_25fps] audio… (2026-10-20 12:48:02, etapa 3 de 14)
+  audio:  18 % (300/1625 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1625/1625 s de sonido) · 20 s · quedan ≈ 0 s
+[spot_20210908_m_us_open_qf_novak_djokovic_matteo_berrettini_25fps] audio terminada a las 12:48:27 en 25 s
+[spot_20210908_m_us_open_qf_novak_djokovic_matteo_berrettini_25fps] court… (2026-10-20 12:48:27, etapa 4 de 14)
+  court:  14 % (64/454 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  42 % (192/454 fotogramas) · 47 s · quedan ≈ 64 s
+  court:  70 % (320/454 fotogramas) · 86 s · quedan ≈ 36 s
+  court:  99 % (448/454 fotogramas) · 2 min · quedan ≈ 2 s
+  court: 100 % (454/454 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20210908_m_us_open_qf_novak_djokovic_matteo_berrettini_25fps] court terminada a las 12:51:31 en 3.1 min
+[spot_20210908_m_us_open_qf_novak_djokovic_matteo_berrettini_25fps] players… (2026-10-20 12:51:31, etapa 5 de 14)
+  [players] juego con pista: 12.9 min de 13.9 min de cámara principal
+  [players] players:   0 % (1/19339 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   2 % (456/19339 fotogramas con jugadoras) · 30 s · quedan ≈ 21 min
+  [players] players:   4 % (860/19339 fotogramas con jugadoras) · 60 s · quedan ≈ 22 min
+  [players] players:   7 % (1313/19339 fotogramas con jugadoras) · 2 min · quedan ≈ 21 min
+  [players] players:   9 % (1754/19339 fotogramas con jugadoras) · 2 min · quedan ≈ 20 min
+  [players] players:  11 % (2192/19339 fotogramas con jugadoras) · 3 min · quedan ≈ 20 min
+  [players] players:  14 % (2616/19339 fotogramas con jugadoras) · 3 min · quedan ≈ 19 min
+  [players] players:  16 % (3037/19339 fotogramas con jugadoras) · 4 min · quedan ≈ 19 min
+  [players] players:  18 % (3457/19339 fotogramas con jugadoras) · 4 min · quedan ≈ 18 min
+  [players] players:  20 % (3859/19339 fotogramas con jugadoras) · 5 min · quedan ≈ 18 min
+  [players] players:  22 % (4311/19339 fotogramas con jugadoras) · 5 min · quedan ≈ 17 min
+  [players] players:  24 % (4733/19339 fotogramas con jugadoras) · 6 min · quedan ≈ 17 min
+  [players] players:  27 % (5189/19339 fotogramas con jugadoras) · 6 min · quedan ≈ 16 min
+  [players] players:  29 % (5606/19339 fotogramas con jugadoras) · 7 min · quedan ≈ 16 min
+  [players] players:  31 % (6028/19339 fotogramas con jugadoras) · 7 min · quedan ≈ 15 min
+  [players] players:  33 % (6476/19339 fotogramas con jugadoras) · 8 min · quedan ≈ 15 min
+  [players] players:  36 % (6917/19339 fotogramas con jugadoras) · 8 min · quedan ≈ 14 min
