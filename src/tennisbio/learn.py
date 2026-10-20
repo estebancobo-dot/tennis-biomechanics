@@ -490,6 +490,33 @@ CONDITIONS = {
         "tras el bote": ("Tras el bote: la derecha normal.", "", ""),
         "media volea": ("Media volea (botepronto): justo al bote, muy baja.", "Flexiona mucho, armado muy corto y cara estable.", "Bolas a los pies golpeando al bote."),
         "volea": ("Volea de derecha: sin bote, junto a la red.", "Armado mínimo, muñeca firme y paso adelante.", "Voleas de derecha con paso adelante."),
+        # no bounce behind the service line (situations.py): the ball followed, the hand not low
+        "volea fuera de la línea de saque": ("Volea entre la línea de saque y el fondo: la bola no bota en su lado (la bola se siguió entera) y la toma de aire, lejos de la red.",
+                                             "Paso adelante, armado corto y cara firme; la bola llega más baja y más lejos que junto a la red: empuja más largo.",
+                                             "Desde detrás de la línea de saque, voleas de derecha profundas a la zona de fondo; 3×10."),
+        "volea de fondo a media pista": ("Volea a media pista con el golpe de fondo: sin bote, entre la línea de saque y el fondo, con la preparación amplia y la terminación completa de su derecha (la empuñadura no se ve en la tele: se reconoce por el swing).",
+                                         "Entra hacia la bola alta y lenta, prepara como en la derecha de fondo y tómala de aire antes de que baje; termina completa.",
+                                         "Bolas altas y lentas a media pista: entra y golpéalas sin bote con la derecha completa a una esquina; 3×8."),
+    }),
+    # the situations the user named (situations.py): her ball crossing short near the sideline, and a short
+    # ball taken near the net by its height
+    "shot_angle": ("Golpe angulado", {
+        "angulado": ("Angulado: bola cruzada que bota corta (antes de la línea de saque de la rival) y a menos de 1,4 m de su lateral; saca a la rival de la pista.",
+                     "Golpea la bola un poco antes y más por delante que en la cruzada profunda, con más subida de abajo arriba; la cara mira hacia el lateral.",
+                     "Desde una esquina o el centro, cruzadas cortas a un cono junto al lateral, delante de la línea de saque; 3×8."),
+        "no angulado": ("Sin ángulo: el resto de sus golpes con el bote medido (profundos, al centro o paralelos).",
+                        "Golpe completo hacia la profundidad.", "Peloteo cruzado profundo; 20 seguidas detrás de la línea de saque."),
+    }),
+    "net_ball": ("Bola corta cerca de la red", {
+        "corta baja cerca de la red": ("Bola corta y baja: la toma tras el bote con los pies a menos de 1 m detrás de la línea de saque (o más cerca de la red) y la mano a la altura de la rodilla.",
+                                       "Corre pronto, baja con las piernas (no con la espalda), armado corto y golpe de abajo arriba para pasar la red; recupera hacia la red o hacia atrás.",
+                                       "Bolas cortas y bajas (dejadas): corre, flexiona y levanta la bola con armado corto a una esquina; 3×8."),
+        "corta a media altura cerca de la red": ("Bola corta a media altura cerca de la red: la ocasión de atacar.",
+                                                 "Llega antes de que baje, paso adelante y golpe hacia una esquina; sigue hacia la red.",
+                                                 "Bolas cortas a la cadera: entra, ataca a la esquina y sube a la red; 3×8."),
+        "corta alta cerca de la red": ("Bola corta y alta cerca de la red: para cerrar el punto.",
+                                       "Llega pronto, armado alto y golpe plano hacia abajo y adelante, al hueco o en ángulo.",
+                                       "Bolas cortas y altas: entra y golpea plano a la esquina abierta; 3×8."),
     }),
     # the return of serve and its variants (returns.py): only her returns have these classes
     "play": ("Momento del punto", {
@@ -519,7 +546,7 @@ CONDITIONS = {
         "ventaja": ("Resto desde el lado de ventaja.", "La derecha recibe sobre todo saques a la T o al cuerpo: prepara el paso de apertura.", "Restos en ventaja con saques a la T y al cuerpo."),
     }),
 }
-RELAX_ORDER = ["intent", "width", "serve_dir", "return_side", "serve_number", "return_type", "depth", "ball_speed", "ball_height", "court_side", "contact_type", "swing", "movement", "stance_impact", "shot_type", "play"]
+RELAX_ORDER = ["intent", "width", "serve_dir", "return_side", "serve_number", "return_type", "depth", "ball_speed", "ball_height", "court_side", "net_ball", "contact_type", "swing", "movement", "stance_impact", "shot_angle", "shot_type", "play"]
 
 # items of the user's matrix that TV cannot measure, with what to do about them anyway
 NOT_FROM_TV = [

@@ -34,7 +34,13 @@ def test_requests_the_user_repeated_are_in_the_register_and_not_done():
         assert all(rows[n].status in ("PARCIAL", "FALTA", "HECHO") for n in hit)
         assert any(rows[n].status != "HECHO" for n in hit) or all(rows[n].code not in R.EMPTY for n in hit)
     pend = R.pending_markdown()
-    assert "SIN TERMINAR" in pend and "angulado" in pend and "volea a media pista" in pend
+    assert "SIN TERMINAR" in pend
+    # 20-10: the angled shot and the short balls near the net are built (HECHO with evidence, checked
+    # above); the mid-court volley is still pending (no real cases, needs the fine pass again)
+    for words in ("golpe angulado", "volea a media pista"):
+        hit = [n for n, t in text.items() if words in t]
+        assert all(rows[n].status == "HECHO" for n in hit) or words.split()[-1] in pend
+    assert "volea a media pista" in pend
 
 
 def test_canonical_statuses():

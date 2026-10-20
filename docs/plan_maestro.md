@@ -49,6 +49,14 @@ Criterio: cada situación aparece en «Aprende» y en la auditoría con su núme
 4. Volea a media pista con el swing de fondo (derecha o revés). 5. Volea fuera de la línea de saque.
 6. Media volea / bote pronto: validarla con casos reales (hoy 0).
 
+**Estado (20-10):** 1-5 construidos en `src/tennisbio/situations.py` y `technique.contact_type` (clases `shot_angle`,
+`net_ball` y dos niveles nuevos de `contact_type`), cada uno condición de «Aprende», filtro de la videoteca y
+ítem de la auditoría con su número de golpes (`audit.situation_items`); umbrales y por qué en el docstring de
+`situations.py`; pruebas en `tests/test_situations.py`. Se corrigió la línea de saque (`technique.SERVICE_LINE_M`:
+5,485 m desde su fondo, no 6,40). Falta: casos reales (pasada definitiva; la volea a media pista necesita rehacer
+la pasada fina para tener la medida «bola seguida») y, para la media volea, clips reales anotados: la regla es
+una sola y está probada con trayectorias sintéticas, pero la bola no deja ver un bote a menos de 0,06 s del impacto.
+
 ## 4. Almacenamiento definitivo
 Especificación: `docs/almacenamiento.md` (árbol, nombres, colisiones, casos nominales/límite/esquina/error).
 Criterio: pruebas automáticas de cada caso de la tabla + migración de lo existente sin recalcular.

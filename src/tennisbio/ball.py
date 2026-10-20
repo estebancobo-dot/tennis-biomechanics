@@ -223,10 +223,38 @@ def bounce_before(track: np.ndarray, hit_frame: int, fps: float, prev_hit: int |
     """Bounce of the incoming ball before a near-player hit: the sharpest turn of the ball path
     between the previous hit (or 1.5 s before) and just before the hit. min_y: only below this
     image row (the near half of the court; the opponent's hit is also a sharp turn, further up)."""
+    lo, hi = _bounce_search(hit_frame, fps, prev_hit, span_s, guard_s)
+    return sharpest_turn(track, lo, hi, fps, min_turn, span_s, min_y=min_y, max_y=max_y)
+
+
+def _bounce_search(hit_frame: int, fps: float, prev_hit: int | None, span_s=0.06, guard_s=0.05) -> tuple[int, int]:
     k = max(2, round(span_s * fps))
     lo = (prev_hit + k) if prev_hit is not None else hit_frame - round(1.5 * fps)
-    hi = hit_frame - max(1, round(guard_s * fps))
-    return sharpest_turn(track, lo, hi, fps, min_turn, span_s, min_y=min_y, max_y=max_y)
+    return lo, hit_frame - max(1, round(guard_s * fps))
+
+
+def min_bounce_to_impact_s(fps: float, span_s=0.06, guard_s=0.05) -> float:
+    """The shortest bounce-to-impact time bounce_before can find: a turn is looked for up to guard_s
+    before the hit (0.06 s at 50 fps, 0.08 s at 25). A half volley hit sooner after its bounce shows
+    no bounce."""
+    return (max(1, round(guard_s * fps)) + 1) / fps
+
+
+def seen_before(track: np.ndarray, hit_frame: int, fps: float, prev_hit: int | None = None,
+                span_s=0.06, guard_s=0.05) -> tuple[float | None, float | None]:
+    """(share of frames with the ball seen, longest stretch without it in s) over the frames where
+    bounce_before looks for the bounce: says whether «no bounce found» means no bounce. (None, None)
+    when that stretch is too short to tell."""
+    lo, hi = _bounce_search(hit_frame, fps, prev_hit, span_s, guard_s)
+    lo, hi = max(0, lo), min(len(track), hi)
+    if hi - lo < 2:
+        return None, None
+    ok = ~np.isnan(track[lo:hi, :2]).any(1)
+    run = best = 0
+    for v in ok:
+        run = 0 if v else run + 1
+        best = max(best, run)
+    return round(float(ok.mean()), 3), round(best / fps, 3)
 
 
 def bounce_after(track: np.ndarray, hit_frame: int, fps: float, next_hit: int | None = None,

@@ -488,19 +488,65 @@ def finish_class(body: np.ndarray, sk: Skeleton, f: int, racket: dict, stroke: s
     return "alrededor del cuerpo (cintura contraria)"
 
 
-SERVICE_LINE_M = 18.285 - 11.885         # from her baseline: 6.4 m (court y grows into the court)
+SERVICE_FROM_NET_M = 6.40                # the service line, from the net
+# from her baseline (court y grows into the court): 11.885 − 6.40 = 5.485 m. Until 20-10 it was 6.40 m (the
+# distance from the net taken as from the baseline): «volea» began 0.9 m inside the service line.
+SERVICE_LINE_M = 11.885 - SERVICE_FROM_NET_M
 
 
-def contact_type(bounce_to_impact_s, contact_h, ball_hit: bool | None, court_pos) -> str | None:
+# half volley: hit less than HALF_VOLLEY_S after the bounce with the hand below HALF_VOLLEY_PCT % of her
+# height (one rule for the class and for the review flag of clip_pipeline)
+HALF_VOLLEY_S = 0.15
+HALF_VOLLEY_PCT = 45.0
+# no bounce seen behind the service line (situations.py): the ball followed before the impact (seen in at
+# least BALL_SEEN_MIN of the frames where the bounce is looked for, never lost more than BALL_GAP_MAX_S),
+# her feet from MIDCOURT_BACK_M (behind her baseline) to the service line
+BALL_SEEN_MIN = 0.7
+BALL_GAP_MAX_S = 0.12
+MIDCOURT_BACK_M = -0.5
+MIDCOURT_VOLLEYS = ("volea fuera de la línea de saque", "volea de fondo a media pista")
+
+
+def half_volley(bounce_to_impact_s, contact_h) -> bool | None:
+    """Hit just after the bounce and low (None without a bounce: nothing to say)."""
+    if bounce_to_impact_s is None:
+        return None
+    return bounce_to_impact_s < HALF_VOLLEY_S and (contact_h if contact_h is not None else 100) < HALF_VOLLEY_PCT
+
+
+def ball_followed(gap_s, seen_share) -> bool | None:
+    """The ball was followed before the impact well enough that a missing bounce means no bounce."""
+    if gap_s is None or seen_share is None:
+        return None
+    return seen_share >= BALL_SEEN_MIN - 1e-9 and gap_s <= BALL_GAP_MAX_S + 1e-9
+
+
+def contact_type(bounce_to_impact_s, contact_h, ball_hit: bool | None, court_pos, ball_gap_s=None,
+                 ball_seen=None, full_swing: bool | None = None) -> str | None:
     """After the bounce, half volley (hit just after the bounce, low) or volley (no bounce on her side
-    while the ball was followed, inside the service line). None when the ball tells nothing."""
+    while the ball was followed, inside the service line). Behind the service line with no bounce
+    (situations.py): «volea de fondo a media pista» with a groundstroke swing (full_swing), else «volea
+    fuera de la línea de saque», only when the ball was followed (ball_gap_s, ball_seen) and the hand was
+    not low (a low one may be a half volley whose bounce was too close to see). None when the ball tells
+    nothing."""
     if bounce_to_impact_s is not None:
-        if bounce_to_impact_s < 0.15 and (contact_h if contact_h is not None else 100) < 45:
+        if half_volley(bounce_to_impact_s, contact_h):
             return "media volea"
         return "tras el bote"
     if ball_hit and court_pos is not None and court_pos[1] > SERVICE_LINE_M:
         return "volea"
+    if (ball_hit and court_pos is not None and MIDCOURT_BACK_M - 1e-9 <= court_pos[1] <= SERVICE_LINE_M
+            and ball_followed(ball_gap_s, ball_seen) and contact_h is not None and contact_h >= HALF_VOLLEY_PCT):
+        return MIDCOURT_VOLLEYS[1] if full_swing else MIDCOURT_VOLLEYS[0]
     return None
+
+
+def height_class(contact_h) -> str | None:
+    """Height of the contact (class ball_height) from the hand height, % of her height."""
+    if contact_h is None:
+        return None
+    return ("rodilla" if contact_h < 35 else "cadera" if contact_h < 50 else "cintura-pecho" if contact_h < 65
+            else "pecho-hombro" if contact_h < 80 else "por encima del hombro")
 
 
 def situation(m: dict, court_pos, displacement, t_avail, contact_h, dom_sign: int) -> dict:
@@ -509,8 +555,7 @@ def situation(m: dict, court_pos, displacement, t_avail, contact_h, dom_sign: in
     if t_avail is not None:
         out["ball_speed"] = "muy rápida" if t_avail < 0.9 else "rápida" if t_avail < 1.15 else "media" if t_avail < 1.5 else "lenta"
     if contact_h is not None:
-        out["ball_height"] = ("rodilla" if contact_h < 35 else "cadera" if contact_h < 50 else "cintura-pecho" if contact_h < 65
-                              else "pecho-hombro" if contact_h < 80 else "por encima del hombro")
+        out["ball_height"] = height_class(contact_h)
     if court_pos is not None:
         x, y = court_pos
         out["depth"] = ("dentro de la pista" if y > 0.5 else "sobre la línea" if y > -0.5 else "1-2 m detrás" if y > -2
@@ -894,8 +939,10 @@ def stroke_technique(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float
             c["around_ball"] = True
         if context.get("return") is not None:
             c["play"] = "resto" if context["return"] else "inicio del punto"      # refined later with its shot number
+        from .situations import groundstroke_swing
         ct = contact_type(context.get("bounce_to_impact"), context.get("contact_h"), context.get("ball_hit"),
-                          context.get("court_pos"))
+                          context.get("court_pos"), context.get("ball_gap_pre"), context.get("ball_seen_pre"),
+                          groundstroke_swing(c, out["phases"].get("finish", {}).get("wrist_dom_vs_shoulder")))
         if ct:
             c["contact_type"] = ct
         # role of the stance (Martin et al. 2021): open attacking / open defensive / neutral attacking
