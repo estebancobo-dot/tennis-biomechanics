@@ -1275,3 +1275,32 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
 [spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev_25fps] court… (2026-10-20 18:08:02, etapa 4 de 14)
   court:  16 % (64/412 fotogramas) · 0 s · quedan ≈ 0 s
   court:  47 % (192/412 fotogramas) · 45 s · quedan ≈ 52 s
+  court:  78 % (320/412 fotogramas) · 2 min · quedan ≈ 28 s
+  court: 100 % (412/412 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev_25fps] court terminada a las 18:11:26 en 3.4 min
+[spot_20200911_m_us_open_sf_dominic_thiem_daniil_medvedev_25fps] players… (2026-10-20 18:11:26, etapa 5 de 14)
+  [players] juego con pista: 10.5 min de 12.3 min de cámara principal
+  [players] players:   0 % (1/15760 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   3 % (479/15760 fotogramas con jugadoras) · 30 s · quedan ≈ 16 min
+  [players] players:   6 % (935/15760 fotogramas con jugadoras) · 60 s · quedan ≈ 16 min
+  [players] players:   9 % (1349/15760 fotogramas con jugadoras) · 2 min · quedan ≈ 16 min
+  [players] players:  11 % (1791/15760 fotogramas con jugadoras) · 2 min · quedan ≈ 16 min
+  [players] players:  14 % (2229/15760 fotogramas con jugadoras) · 3 min · quedan ≈ 15 min
+  [players] players:  17 % (2700/15760 fotogramas con jugadoras) · 3 min · quedan ≈ 15 min
+  [players] players:  20 % (3123/15760 fotogramas con jugadoras) · 4 min · quedan ≈ 14 min
+  [players] players:  23 % (3584/15760 fotogramas con jugadoras) · 4 min · quedan ≈ 14 min
+  [players] players:  26 % (4031/15760 fotogramas con jugadoras) · 5 min · quedan ≈ 13 min
+  [players] players:  28 % (4447/15760 fotogramas con jugadoras) · 5 min · quedan ≈ 13 min
+  [players] players:  31 % (4870/15760 fotogramas con jugadoras) · 6 min · quedan ≈ 12 min
+  [players] players:  34 % (5326/15760 fotogramas con jugadoras) · 6 min · quedan ≈ 12 min
+  [players] players:  37 % (5765/15760 fotogramas con jugadoras) · 7 min · quedan ≈ 11 min
+  [players] players:  39 % (6179/15760 fotogramas con jugadoras) · 7 min · quedan ≈ 11 min
+  [players] players:  42 % (6621/15760 fotogramas con jugadoras) · 8 min · quedan ≈ 10 min
+  [players] players:  45 % (7070/15760 fotogramas con jugadoras) · 8 min · quedan ≈ 10 min
+  [players] players:  48 % (7508/15760 fotogramas con jugadoras) · 9 min · quedan ≈ 9 min
+  [players] players:  50 % (7949/15760 fotogramas con jugadoras) · 9 min · quedan ≈ 9 min
+  [players] players:  53 % (8395/15760 fotogramas con jugadoras) · 10 min · quedan ≈ 8 min
+  [players] players:  56 % (8808/15760 fotogramas con jugadoras) · 10 min · quedan ≈ 8 min
+  [players] players:  59 % (9227/15760 fotogramas con jugadoras) · 11 min · quedan ≈ 7 min
+  [players] players:  61 % (9678/15760 fotogramas con jugadoras) · 11 min · quedan ≈ 7 min
+  [players] players:  64 % (10076/15760 fotogramas con jugadoras) · 12 min · quedan ≈ 6 min
