@@ -320,3 +320,55 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   audio: 100 % (1486/1486 s de sonido) · 2 s · quedan ≈ 0 s
 [spot_20220907_w_us_open_qf_karolina_pliskova_aryna_sabalenka] audio terminada a las 07:18:12 en 5 s
 [spot_20220907_w_us_open_qf_karolina_pliskova_aryna_sabalenka] court… (2026-10-20 07:18:12, etapa 4 de 11)
+  court:  19 % (64/337 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  95 % (320/337 fotogramas) · 31 s · quedan ≈ 2 s
+  court: 100 % (337/337 fotogramas) · 32 s · quedan ≈ 0 s
+[spot_20220907_w_us_open_qf_karolina_pliskova_aryna_sabalenka] court terminada a las 07:18:57 en 45 s
+[spot_20220907_w_us_open_qf_karolina_pliskova_aryna_sabalenka] players… (2026-10-20 07:18:57, etapa 5 de 11)
+  [players] juego con pista: 9.4 min de 9.6 min de cámara principal
+  [players] players:   0 % (1/5612 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   8 % (459/5612 fotogramas con jugadoras) · 30 s · quedan ≈ 6 min
+  [players] players:  17 % (979/5612 fotogramas con jugadoras) · 60 s · quedan ≈ 5 min
+  [players] players:  26 % (1434/5612 fotogramas con jugadoras) · 2 min · quedan ≈ 4 min
+  [players] players:  34 % (1883/5612 fotogramas con jugadoras) · 2 min · quedan ≈ 4 min
+  [players] players:  41 % (2317/5612 fotogramas con jugadoras) · 3 min · quedan ≈ 4 min
+  [players] players:  48 % (2709/5612 fotogramas con jugadoras) · 3 min · quedan ≈ 3 min
+  [players] players:  56 % (3132/5612 fotogramas con jugadoras) · 4 min · quedan ≈ 3 min
+  [players] players:  63 % (3509/5612 fotogramas con jugadoras) · 4 min · quedan ≈ 2 min
+  [players] players:  71 % (3997/5612 fotogramas con jugadoras) · 5 min · quedan ≈ 2 min
+  [players] players:  79 % (4445/5612 fotogramas con jugadoras) · 5 min · quedan ≈ 79 s
+  [players] players:  87 % (4868/5612 fotogramas con jugadoras) · 6 min · quedan ≈ 51 s
+  [players] players:  94 % (5269/5612 fotogramas con jugadoras) · 6 min · quedan ≈ 23 s
+  [players] players: 100 % (5612/5612 fotogramas con jugadoras) · 6 min · quedan ≈ 0 s
+  [players] tiempo: 6.4 min para 5612 fotogramas a 960 px · modelo 5.5 min · leer vídeo y preparar la entrada 4.4 min en otro hilo (espera real 0.9 min) · apariencia 0.1 min en otro hilo
+[spot_20220907_w_us_open_qf_karolina_pliskova_aryna_sabalenka] players terminada a las 07:25:25 en 6.5 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20220907-W-US_Open-QF-Karolina_Pliskova-Aryna_Sabalenka] 264 golpes anotados, 14861 fotogramas → 20220907-W-US_Open-QF-Karolina_Pliskova-Aryna_Sabalenka.npz
+
+[20220906-M-US_Open-QF-Karen_Khachanov-Nick_Kyrgios] (train) 90 puntos en 70 tramos
+  mvbdH85TLV4: vídeo descargado (549 MB)
+[spot_20220906_m_us_open_qf_karen_khachanov_nick_kyrgios] probe… (2026-10-20 07:29:22, etapa 1 de 11)
+[spot_20220906_m_us_open_qf_karen_khachanov_nick_kyrgios] probe terminada a las 07:29:23 en 0 s
+[spot_20220906_m_us_open_qf_karen_khachanov_nick_kyrgios] scenes… (2026-10-20 07:29:23, etapa 2 de 11)
+  scenes:   0 % (1/38207 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  26 % (9826/38207 fotogramas) · 30 s · quedan ≈ 88 s
+  scenes:  51 % (19584/38207 fotogramas) · 60 s · quedan ≈ 57 s
+  scenes:  76 % (29226/38207 fotogramas) · 2 min · quedan ≈ 28 s
+  scenes: 100 % (38207/38207 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20220906_m_us_open_qf_karen_khachanov_nick_kyrgios] scenes terminada a las 07:31:22 en 2.0 min
+[spot_20220906_m_us_open_qf_karen_khachanov_nick_kyrgios] audio… (2026-10-20 07:31:22, etapa 3 de 11)
+  audio:  20 % (300/1528 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1528/1528 s de sonido) · 2 s · quedan ≈ 0 s
+[spot_20220906_m_us_open_qf_karen_khachanov_nick_kyrgios] audio terminada a las 07:31:25 en 3 s
+[spot_20220906_m_us_open_qf_karen_khachanov_nick_kyrgios] court… (2026-10-20 07:31:25, etapa 4 de 11)
+  court:  15 % (64/427 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  60 % (256/427 fotogramas) · 32 s · quedan ≈ 22 s
+  court: 100 % (427/427 fotogramas) · 68 s · quedan ≈ 0 s
+[spot_20220906_m_us_open_qf_karen_khachanov_nick_kyrgios] court terminada a las 07:33:11 en 1.8 min
+[spot_20220906_m_us_open_qf_karen_khachanov_nick_kyrgios] players… (2026-10-20 07:33:11, etapa 5 de 11)
+  [players] juego con pista: 12.5 min de 13.0 min de cámara principal
+  [players] players:   0 % (1/7527 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   5 % (400/7527 fotogramas con jugadoras) · 30 s · quedan ≈ 9 min
+  [players] players:  12 % (883/7527 fotogramas con jugadoras) · 60 s · quedan ≈ 8 min
+  [players] players:  17 % (1280/7527 fotogramas con jugadoras) · 2 min · quedan ≈ 7 min
