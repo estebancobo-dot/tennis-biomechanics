@@ -50,3 +50,22 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   scenes:  51 % (20026/39062 fotogramas) · 60 s · quedan ≈ 57 s
   scenes:  77 % (30226/39062 fotogramas) · 2 min · quedan ≈ 27 s
   scenes: 100 % (39062/39062 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi] scenes terminada a las 05:53:09 en 2.0 min
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi] audio… (2026-10-20 05:53:09, etapa 3 de 11)
+  audio:  19 % (300/1562 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1562/1562 s de sonido) · 3 s · quedan ≈ 0 s
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi] audio terminada a las 05:53:12 en 3 s
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi] court… (2026-10-20 05:53:12, etapa 4 de 11)
+  court:  21 % (64/306 fotogramas) · 0 s · quedan ≈ 0 s
+  court: 100 % (306/306 fotogramas) · 27 s · quedan ≈ 0 s
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi] court terminada a las 05:53:45 en 33 s
+[spot_20210815_w_montreal_f_karolina_pliskova_camila_giorgi] players… (2026-10-20 05:53:45, etapa 5 de 11)
+  [players] juego con pista: 8.1 min de 8.9 min de cámara principal
+  [players] players:   0 % (1/4849 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   9 % (445/4849 fotogramas con jugadoras) · 30 s · quedan ≈ 5 min
+  [players] players:  18 % (858/4849 fotogramas con jugadoras) · 60 s · quedan ≈ 5 min
+  [players] players:  26 % (1250/4849 fotogramas con jugadoras) · 2 min · quedan ≈ 4 min
+  [players] players:  34 % (1641/4849 fotogramas con jugadoras) · 2 min · quedan ≈ 4 min
+  [players] players:  42 % (2039/4849 fotogramas con jugadoras) · 3 min · quedan ≈ 3 min
+  [players] players:  50 % (2436/4849 fotogramas con jugadoras) · 3 min · quedan ≈ 3 min
+  [players] players:  59 % (2847/4849 fotogramas con jugadoras) · 4 min · quedan ≈ 2 min
