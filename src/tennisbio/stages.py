@@ -563,26 +563,146 @@ def replay_spans_without_board(score: dict) -> list[tuple[float, float]]:
     return [(x["start"], x["end"]) for x in tried if x["read"] == 0 and x["end"] - x["start"] < 30]
 
 
-@stage("candidates", "9", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
-       reviews=("identidad_clic.json",))
-def st_candidates(ctx: Context, tol_s=0.35):
-    """Near-player stroke candidates: swing peaks of the near player at cheap fps, confirmed by
-    an audio transient when one is close. Each candidate records who the near player is
-    (identity: True target, False opponent, None undecided); the fine passes pick their own.
-    Each candidate is checked again in the fine pass."""
-    d = _players(ctx)
+def _audio_tracks(ctx: Context, d: dict, sk, court: dict, tol_s=0.35) -> tuple[list, int]:
+    """The audio transients' tracks and the one to use: with several (commentary vs ambient), the one
+    that sounds with the near player's swings."""
     fps, frames = float(d["fps"]), d["frames"]
-    sk = Skeleton("coco17", ctx.match.player.hand)
-    court = _read(ctx.path("court.json"))
     audio = _read(ctx.path("audio_onsets.json"))
     tracks = audio.get("tracks") or [audio]
     track = 0
-    if len(tracks) > 1:                    # commentary vs ambient: the one that sounds with her swings
+    if len(tracks) > 1:
         peaks = [frames[run[p]] / fps for run, img, cf, h, _ in near_runs(d, sk, court)
                  for p in swing_peaks(speed(to_body_frame(img, sk, h)[:, sk["dom_wrist"]], fps), fps,
                                       min_gap=1.0, height=1.5, prominence=1.0)]
         span = float(frames[-1] - frames[0]) / fps if len(frames) else 0.0
         track = choose_audio_track(tracks, np.array(peaks), tol_s, span)
+    return tracks, track
+
+
+def _spotter(c: dict) -> dict:
+    return c.get("spotter") or {}
+
+
+def spotter_on(c: dict) -> bool:
+    """`spotter.enabled` (default off): the candidates come from the learned spotter (spotting.json)."""
+    return bool(_spotter(c).get("enabled", False))
+
+
+def _spotter_path(c: dict) -> Path | None:
+    return resolve_path(_spotter(c).get("onnx") or "models/spotting.onnx")
+
+
+def _spotting_settings(c: dict) -> dict:
+    if not spotter_on(c):
+        return {"enabled": False}
+    p = _spotter_path(c)
+    sp = _spotter(c)
+    return {"enabled": True, "onnx": str(sp.get("onnx") or "models/spotting.onnx"), "threshold": sp.get("threshold"),
+            # the model itself: retraining it re-runs the spotting and what follows
+            "model": model_state(p), "meta": model_state(p.with_suffix(".json")) if p is not None else None}
+
+
+@stage("spotting", "1", deps=("players", "audio", "court", "scenes", "identity"), settings=_spotting_settings,
+       outputs=("spotting.json",))
+def st_spotting(ctx: Context):
+    """The strokes of both players found by the learned spotter (tennisbio.spotting, docs/plan_maestro.md
+    block 1): features of the cheap pass → the ONNX model (CPU, in pieces) → decoded strokes, written to
+    spotting.json as [{t, side, kind, score}]. Off unless `spotter.enabled: true` (then nothing is
+    computed and the list is empty)."""
+    if not spotter_on(ctx.cfg):
+        _write(ctx.path("spotting.json"), [])
+        return {"enabled": False}
+    from .spotting import (CLASSES, FEATURE_DIM, build_features, decode, fit_features, model_meta, predict_onnx,
+                           sound_flux_stream)
+
+    onnx = _spotter_path(ctx.cfg)
+    if onnx is None or not onnx.exists():
+        raise FileNotFoundError(f"falta el detector de golpes entrenado ({onnx}); vuelve a instalar o apaga "
+                                "`spotter.enabled` en config/local.yaml")
+    meta = model_meta(onnx)
+    if list(meta.get("classes") or []) != list(CLASSES):
+        raise ValueError(f"el detector entrenado tiene otras clases ({meta.get('classes')}) que el proceso "
+                         f"({list(CLASSES)}): hay que volver a entrenarlo")
+    F = int(meta.get("feature_dim", FEATURE_DIM))
+    d = _players(ctx)
+    sk = Skeleton("coco17", ctx.match.player.hand)
+    court = _read(ctx.path("court.json")) if ctx.path("court.json").exists() else {}
+    tracks, track = _audio_tracks(ctx, d, sk, court)
+    onsets = np.array(tracks[track].get("t", [])) if tracks else np.zeros(0)
+    del d
+    t0 = time.time()
+    # the sound flux only for a model trained with it (it reads the whole soundtrack)
+    feats = build_features(ctx.dir, ctx.match.player.hand, video=ctx.video if F == FEATURE_DIM else None,
+                           onsets=onsets, flux=sound_flux_stream)
+    fps = float(feats["fps"])
+    mfps = float(meta.get("fps") or fps)
+    if abs(fps - mfps) > 1e-6:
+        ctx.log(f"  AVISO: el detector se entrenó a {mfps:g} fps y la pasada barata de este partido va a {fps:g} fps "
+                f"(cheap_pass.fps): se usa igual, pero encontrará peor los golpes. Pon cheap_pass.fps: {mfps:g} y repite.")
+    X = fit_features(feats["X"], F)
+    sp = _spotter(ctx.cfg)
+    prob = predict_onnx(onnx, X, chunk=int(sp.get("chunk", 4096)), overlap=int(sp.get("overlap", 64)))
+    thr = float(sp.get("threshold") or meta.get("threshold", 0.5))
+    found = decode(prob, fps, thr)
+    # nothing to see outside play (rows of zeros): a stroke there is noise of the model
+    play = feats["X"][:, -1] > 0
+    pad = int(round(0.5 * fps))
+
+    def in_play(t: float) -> bool:
+        f = int(round(t * fps))
+        return bool(play[max(0, f - pad):f + pad + 1].any())
+    strokes = [e for e in found if in_play(e["t"])]
+    _write(ctx.path("spotting.json"), strokes)
+    n_near = sum(e["side"] == "near" for e in strokes)
+    ctx.log(f"  detector entrenado: {len(strokes)} golpes ({n_near} cercanos, {len(strokes) - n_near} lejanos) en "
+            f"{len(X) / fps / 60:.0f} min de vídeo · umbral {thr:g} · {time.time() - t0:.0f} s")
+    return {"enabled": True, "strokes": len(strokes), "near": n_near, "far": len(strokes) - n_near,
+            "out_of_play": len(found) - len(strokes), "threshold": thr, "fps": fps, "model_fps": mfps,
+            "feature_dim": F, "audio_track": track}
+
+
+def spotter_candidates(spotted: list[dict], identity: dict, fps: float, runs: list[tuple], no_board: list,
+                       onsets: np.ndarray, tol_s: float = 0.35) -> tuple[list[dict], dict]:
+    """Candidates from the learned spotter's strokes (spotting.json), with the same fields the fine passes
+    read from the rules' ones: t, side, audio (an impact sound within tol_s), identity (is the near player
+    the target there: True / False / None) and target (whose stroke it is: near → identity, far → its
+    opposite, None when undecided, so fine_doubtful keeps it). runs: (t0, t1, replay) of the near player's
+    runs; a stroke in a replay run, or outside the runs inside a stretch without the scoreboard (no_board),
+    is left out (already counted live). Also the spotter's kind and score, and source "spotter"."""
+    ifps = float(identity.get("fps") or fps)
+    onsets = np.asarray(onsets, float)
+    out, info = [], {"replays": 0}
+    for e in spotted:
+        t = float(e["t"])
+        run = next((r for r in runs if r[0] - 0.5 / fps <= t <= r[1] + 0.5 / fps), None)
+        if (run is not None and run[2]) or (run is None and any(a <= t < b for a, b in no_board)):
+            info["replays"] += 1
+            continue
+        who = near_is_target(identity, int(round(t * ifps)))
+        near = e["side"] == "near"
+        out.append({"t": t, "audio": bool(len(onsets) and np.min(np.abs(onsets - t)) <= tol_s), "side": e["side"],
+                    "identity": who, "target": who if near or who is None else not who,
+                    "kind": e.get("kind"), "score": e.get("score"), "source": "spotter"})
+    return out, info
+
+
+@stage("candidates", "9", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
+       reviews=("identidad_clic.json",),
+       # with the learned spotter (off by default) it reads spotting.json; off, its fingerprint is the one it always was
+       settings=lambda c: {"spotter": True} if spotter_on(c) else {},
+       cfg_deps=lambda c: ("spotting",) if spotter_on(c) else ())
+def st_candidates(ctx: Context, tol_s=0.35):
+    """Near-player stroke candidates: swing peaks of the near player at cheap fps, confirmed by
+    an audio transient when one is close. Each candidate records who the near player is
+    (identity: True target, False opponent, None undecided); the fine passes pick their own.
+    Each candidate is checked again in the fine pass. With `spotter.enabled`, the candidates of both
+    ends are the learned spotter's strokes instead (spotter_candidates), with the same identity."""
+    d = _players(ctx)
+    fps, frames = float(d["fps"]), d["frames"]
+    sk = Skeleton("coco17", ctx.match.player.hand)
+    court = _read(ctx.path("court.json"))
+    tracks, track = _audio_tracks(ctx, d, sk, court, tol_s)
+    if len(tracks) > 1:                    # commentary vs ambient: the one that sounds with her swings
         ctx.log(f"  sonido: pista {track + 1} de {len(tracks)} (la que coincide con los golpes)")
     _write(ctx.path("audio_track.json"), {"track": track, "tracks": len(tracks)})
     onsets = np.array(tracks[track]["t"]) if tracks else np.zeros(0)
@@ -622,6 +742,22 @@ def st_candidates(ctx: Context, tol_s=0.35):
             path[~np.isfinite(feet).all(1)] = np.nan
         paths.append(Run(t0, t1, path, fps, int(np.sum((onsets >= t0) & (onsets <= t1))) if len(onsets) else 0))
     slow_replays = set(find_replays(paths))
+    if spotter_on(ctx.cfg):
+        spans = []
+        for k, (run, img, cf, h, _) in enumerate(runs_all):
+            t_mid = frames[run[len(run) // 2]] / fps
+            spans.append((frames[run[0]] / fps, frames[run[-1]] / fps,
+                          bool((board_works and any(a <= t_mid < b for a, b in no_board)) or k in slow_replays)))
+        cands, info = spotter_candidates(_read(ctx.path("spotting.json")), identity, fps, spans,
+                                         no_board if board_works else [], onsets, tol_s)
+        _write(ctx.path("candidates.json"), cands)
+        ctx.log(f"  candidatos del detector entrenado: {len(cands)} ({sum(c['side'] == 'far' for c in cands)} lejanos; "
+                f"{info['replays']} en repeticiones, fuera)")
+        return {"candidates": len(cands), "far": sum(c["side"] == "far" for c in cands),
+                "with_audio": sum(c["audio"] for c in cands), "source": "spotter",
+                "opponent_strokes": sum(c["target"] is False for c in cands),
+                "identity_unknown": sum(c["identity"] is None for c in cands),
+                "replay_strokes_skipped": info["replays"], "replay_runs": sum(r[2] for r in spans), "audio_track": track}
     for k, (run, img, cf, h, _) in enumerate(runs_all):
         t_mid = frames[run[len(run) // 2]] / fps
         if (board_works and any(a <= t_mid < b for a, b in no_board)) or k in slow_replays:

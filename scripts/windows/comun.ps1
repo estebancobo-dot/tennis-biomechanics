@@ -141,7 +141,7 @@ function Subir-Registros {
             Copy-Item "$Base\output\capturas_app\*.png", "$Base\output\capturas_app\ventana.*", "$Base\output\capturas_app\movil.*" $c -Force -ErrorAction SilentlyContinue
         }
         # medida de golpes encontrados frente a anotados (peticion "recall")
-        foreach ($f in @("recall_validation.md", "recall_validation.json")) {
+        foreach ($f in @("recall_validation.md", "recall_validation.json", "recall_validation_detector.md", "recall_validation_detector.json")) {
             if (Test-Path "$Base\output\$f") { Copy-Item "$Base\output\$f" "$d\$f" -Force -ErrorAction SilentlyContinue }
         }
         # datos de entrenamiento del detector de golpes (peticion "entreno"): solo numeros, unos MB por partido

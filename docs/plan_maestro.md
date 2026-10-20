@@ -35,8 +35,11 @@ real el número de golpes cuadra con el esperado por el marcador (`point_count.p
 Hecho (19-10): el clic (`identidad_clic.json`, `identity.apply_pick`, panel «¿Cuál es ella?» en cada partido de la
 aplicación; el banco lo simula); la recogida de datos en el PC (`scripts/spotting_data.py`, acción `entreno`) y el
 entrenamiento en la nube (`tennisbio.spotting`, `scripts/train_spotting.py` → `models/spotting.onnx`).
-Pendiente: entrenar con los datos reales; si supera a las reglas en los partidos de prueba, etapa `spotting` en el
-proceso (sustituye candidatos y confirmación) y nueva medida con `validate_recall.py`.
+Hecho (20-10): etapa `spotting` en el proceso, **apagada por defecto** (`spotter.enabled: false` en
+`config/default.yaml`): con ella encendida, los candidatos de los dos lados salen del modelo (`spotting.json`) en vez
+de las reglas, con la identidad de siempre (planos + clic); apagada, nada cambia (mismas huellas).
+Pendiente: medirla de punta a punta en el PC (`validate_recall.py --spotter`, petición `recall` con `detector: si` →
+`recall_validation_detector.md`) y, si supera a las reglas, encenderla por defecto.
 
 ## Plan en paralelo (20-10, «base completa acelerada»)
 

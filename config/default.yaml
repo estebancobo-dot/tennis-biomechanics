@@ -6,6 +6,18 @@ cheap_pass:
   fps: 10
   detector: lightweight
 
+# Detector de golpes entrenado (20-10, docs/plan_maestro.md bloque 1): etapa `spotting`. Con enabled: true,
+# los candidatos de los dos lados salen del modelo (models/spotting.onnx + su .json: clases, fps, umbral)
+# en vez de las reglas a mano; la identidad de cada golpe es la de siempre (planos de identity + el clic).
+# Apagado: la etapa no calcula nada y los candidatos (y sus huellas) son los de antes.
+# threshold: vacío = el del .json del modelo. chunk/overlap: fotogramas por trozo y de contexto (memoria).
+spotter:
+  enabled: false
+  onnx: models/spotting.onnx
+  threshold:
+  chunk: 4096
+  overlap: 64
+
 # Pasada fina (ventanas de ±window_s alrededor de cada golpe), fps nativos.
 fine_pass:
   window_s: 1.0
