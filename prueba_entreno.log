@@ -712,3 +712,15 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  69 % (4977/7226 fotogramas con jugadoras) · 6 min · quedan ≈ 3 min
   [players] players:  75 % (5386/7226 fotogramas con jugadoras) · 7 min · quedan ≈ 2 min
   [players] players:  80 % (5780/7226 fotogramas con jugadoras) · 7 min · quedan ≈ 2 min
+  [players] players:  86 % (6209/7226 fotogramas con jugadoras) · 8 min · quedan ≈ 74 s
+  [players] players:  92 % (6616/7226 fotogramas con jugadoras) · 8 min · quedan ≈ 44 s
+  [players] players:  97 % (7043/7226 fotogramas con jugadoras) · 9 min · quedan ≈ 13 s
+  [players] players: 100 % (7226/7226 fotogramas con jugadoras) · 9 min · quedan ≈ 0 s
+  [players] tiempo: 8.8 min para 7226 fotogramas a 960 px · modelo 7.2 min · leer vídeo y preparar la entrada 6.6 min en otro hilo (espera real 1.6 min) · apariencia 0.1 min en otro hilo
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere] players terminada a las 09:40:33 en 8.8 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20210216-M-Australian_Open-QF-Novak_Djokovic-Alexander_Zverev] 323 golpes anotados, 14455 fotogramas → 20210216-M-Australian_Open-QF-Novak_Djokovic-Alexander_Zverev.npz
+
+Hechos 20 de 20 partidos (4 de prueba).
+termina 2026-10-20T09:40:36
