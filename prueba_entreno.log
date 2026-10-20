@@ -116,3 +116,19 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  43 % (3344/7780 fotogramas con jugadoras) · 4 min · quedan ≈ 5 min
   [players] players:  48 % (3771/7780 fotogramas con jugadoras) · 4 min · quedan ≈ 4 min
   [players] players:  54 % (4196/7780 fotogramas con jugadoras) · 5 min · quedan ≈ 4 min
+  [players] players:  60 % (4661/7780 fotogramas con jugadoras) · 5 min · quedan ≈ 3 min
+  [players] players:  66 % (5162/7780 fotogramas con jugadoras) · 6 min · quedan ≈ 3 min
+  [players] players:  72 % (5615/7780 fotogramas con jugadoras) · 6 min · quedan ≈ 2 min
+  [players] players:  77 % (6017/7780 fotogramas con jugadoras) · 7 min · quedan ≈ 2 min
+  [players] players:  83 % (6492/7780 fotogramas con jugadoras) · 7 min · quedan ≈ 83 s
+  [players] players:  89 % (6955/7780 fotogramas con jugadoras) · 8 min · quedan ≈ 53 s
+  [players] players:  95 % (7366/7780 fotogramas con jugadoras) · 8 min · quedan ≈ 27 s
+  [players] players: 100 % (7759/7780 fotogramas con jugadoras) · 9 min · quedan ≈ 1 s
+  [players] players: 100 % (7780/7780 fotogramas con jugadoras) · 9 min · quedan ≈ 0 s
+  [players] tiempo: 8.5 min para 7780 fotogramas a 960 px · modelo 7.2 min · leer vídeo y preparar la entrada 6.8 min en otro hilo (espera real 1.4 min) · apariencia 0.1 min en otro hilo
+[spot_20210908_m_us_open_qf_novak_djokovic_matteo_berrettini] players terminada a las 06:17:36 en 8.6 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20210908-M-US_Open-QF-Novak_Djokovic-Matteo_Berrettini] 317 golpes anotados, 16258 fotogramas → 20210908-M-US_Open-QF-Novak_Djokovic-Matteo_Berrettini.npz
+
+[20210909-W-US_Open-SF-Aryna_Sabalenka-Leylah_Fernandez] (train) 90 puntos en 87 tramos
