@@ -102,8 +102,12 @@ def measure(net, ms: list[dict], thr: float) -> dict:
     return {"total": S.evaluate(preds, gts), "per_match": per}
 
 
+MIN_PRECISION = 0.5      # no stroke lost comes first (19-10): the threshold with the most strokes found at this precision
+
+
 def fit(train: list[dict], val: list[dict], epochs: int, seed: int):
-    """Trains on `train`, chooses the threshold (best F1) on `val`; returns (net, threshold, val measure)."""
+    """Trains on `train`, chooses the threshold on `val` (the most strokes found with precision ≥ MIN_PRECISION;
+    best F1 when none reaches it); returns (net, threshold, val measure)."""
     import torch
 
     torch.manual_seed(seed)
@@ -137,7 +141,9 @@ def fit(train: list[dict], val: list[dict], epochs: int, seed: int):
             print(f"  época {ep + 1}: pérdida {tot / max(1, len(data) // 16):.3f} ({time.time() - t0:.0f} s)", flush=True)
     net.eval()
     f1 = lambda r: 2 * (r["recall"] or 0) * (r["precision"] or 0) / max(1e-9, (r["recall"] or 0) + (r["precision"] or 0))
-    best = max(((measure(net, val, t)["total"], t) for t in np.arange(0.2, 0.85, 0.05)), key=lambda rt: f1(rt[0]))
+    cand = [(measure(net, val, t)["total"], t) for t in np.arange(0.1, 0.85, 0.05)]
+    ok = [rt for rt in cand if (rt[0]["precision"] or 0) >= MIN_PRECISION]
+    best = max(ok, key=lambda rt: rt[0]["recall"] or 0) if ok else max(cand, key=lambda rt: f1(rt[0]))
     return net, round(float(best[1]), 2), best[0]
 
 
