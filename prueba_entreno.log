@@ -1372,3 +1372,28 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:  55 % (9980/18105 fotogramas con jugadoras) · 11 min · quedan ≈ 9 min
   [players] players:  58 % (10428/18105 fotogramas con jugadoras) · 12 min · quedan ≈ 8 min
   [players] players:  60 % (10895/18105 fotogramas con jugadoras) · 12 min · quedan ≈ 8 min
+  [players] players:  63 % (11351/18105 fotogramas con jugadoras) · 13 min · quedan ≈ 7 min
+  [players] players:  65 % (11811/18105 fotogramas con jugadoras) · 13 min · quedan ≈ 7 min
+  [players] players:  68 % (12271/18105 fotogramas con jugadoras) · 14 min · quedan ≈ 6 min
+  [players] players:  70 % (12717/18105 fotogramas con jugadoras) · 14 min · quedan ≈ 6 min
+  [players] players:  73 % (13159/18105 fotogramas con jugadoras) · 15 min · quedan ≈ 5 min
+  [players] players:  75 % (13603/18105 fotogramas con jugadoras) · 15 min · quedan ≈ 5 min
+  [players] players:  78 % (14078/18105 fotogramas con jugadoras) · 16 min · quedan ≈ 4 min
+  [players] players:  80 % (14505/18105 fotogramas con jugadoras) · 16 min · quedan ≈ 4 min
+  [players] players:  83 % (14956/18105 fotogramas con jugadoras) · 17 min · quedan ≈ 3 min
+  [players] players:  85 % (15402/18105 fotogramas con jugadoras) · 17 min · quedan ≈ 3 min
+  [players] players:  88 % (15853/18105 fotogramas con jugadoras) · 18 min · quedan ≈ 2 min
+  [players] players:  90 % (16298/18105 fotogramas con jugadoras) · 18 min · quedan ≈ 2 min
+  [players] players:  93 % (16751/18105 fotogramas con jugadoras) · 19 min · quedan ≈ 90 s
+  [players] players:  95 % (17158/18105 fotogramas con jugadoras) · 19 min · quedan ≈ 63 s
+  [players] players:  97 % (17599/18105 fotogramas con jugadoras) · 20 min · quedan ≈ 34 s
+  [players] players: 100 % (18023/18105 fotogramas con jugadoras) · 20 min · quedan ≈ 5 s
+  [players] players: 100 % (18105/18105 fotogramas con jugadoras) · 20 min · quedan ≈ 0 s
+  [players] tiempo: 20.2 min para 18105 fotogramas a 960 px · modelo 17.6 min · leer vídeo y preparar la entrada 14.5 min en otro hilo (espera real 2.5 min) · apariencia 0.2 min en otro hilo
+[spot_20210216_m_australian_open_qf_novak_djokovic_alexander_zvere_25fps] players terminada a las 18:58:10 en 20.3 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20210216-M-Australian_Open-QF-Novak_Djokovic-Alexander_Zverev] 323 golpes anotados, 36137 fotogramas → 20210216-M-Australian_Open-QF-Novak_Djokovic-Alexander_Zverev.npz
+
+Hechos 20 de 20 partidos (4 de prueba).
+termina 2026-10-20T18:58:33
