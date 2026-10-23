@@ -1,9 +1,9 @@
-fecha: 2026-10-23T16:42:04
-estado: Running
+fecha: 2026-10-23T17:42:23
+estado: Ready
 descripcion: Tenis (ciclo v4): trae el codigo nuevo, recalcula lo necesario, revisa y sube los registros
-ultima ejecucion: 10/23/2026 16:41:57
+ultima ejecucion: 10/23/2026 17:37:54
 resultado (0 = bien, 267009 = en marcha, 267011 = nunca, 2147946720 = rechazada porque la anterior seguia trabajando): 0
-proxima: 10/23/2026 16:50:00
-perdidas: 0
+proxima: 10/23/2026 17:50:00
+perdidas: 1
 disparadores: MSFT_TaskDailyTrigger PT10M; MSFT_TaskLogonTrigger 
 accion: wscript.exe //B "C:\tenis\tennis-biomech\scripts\windows\oculto.vbs" "C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1"
