@@ -173,6 +173,18 @@ function Hacer-Peticion($p) {
         $dirs = @(); if ($p["carpetas"]) { $dirs = @($p["carpetas"].Split(",") | ForEach-Object { Join-Path $Base $_.Trim() }) }
         & uv run python scripts/diag_scenes.py "$Base\output\capturas_diag" @dirs 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
         "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "identidad") {
+        # el clic del usuario (19-10): pasada barata hasta la identidad de cada partido y una foto por grupo de
+        # ropa (scripts/identity_prepare.py), para que la aplicacion las ensene al momento; nunca hace el clic
+        $lg = "$Base\output\prueba_identidad.log"
+        "Peticion $($p['id']): preparar el clic de identidad ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        Subir-Registros | Out-Null
+        $script:subido = Get-Date
+        & uv run python scripts/identity_prepare.py "$Base\output\capturas_identidad" 2>&1 | ForEach-Object {
+            "$_" | Add-Content $lg -Encoding UTF8
+            if (((Get-Date) - $script:subido).TotalMinutes -ge 20) { $script:subido = Get-Date; Subir-Registros | Out-Null }
+        }
+        "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "largo") {
         # el video entero (tramo largo) en su propia carpeta _pocN_largo: muchos golpes por situacion
         # y el tiempo real de un partido; nunca toca _smoke

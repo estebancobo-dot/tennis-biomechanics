@@ -11,6 +11,9 @@ carpetas: datasets\f3set\recall\salidas\recall_20230124_w_australian_open_qf_jel
 id: 41
 accion: diag
 carpetas: datasets\f3set\recall\salidas\recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin
+---
+id: 42
+accion: identidad
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
 # Cola: se pueden poner varias peticiones seguidas, separadas por una linea con solo "---"; cada bloque
 #   lleva su "id:", su "accion:" y sus parametros. El PC las hace en orden, una detras de otra en el mismo
@@ -32,6 +35,7 @@ carpetas: datasets\f3set\recall\salidas\recall_20230124_w_australian_open_qf_jel
 #   ventana = pantallas de la aplicacion con el indice real, ventana real oculta, avisos/icono/copia (sin ensenar nada)
 #   movil = copia al movil de cada analisis (720p) comprobada en el navegador del PC, y acceso directo del escritorio
 #   completo = los partidos completos de C:\tenis\videos (lista de videos primero; despues 3_analisis_completo)
+#   identidad = pasada barata hasta la identidad de cada partido y una foto por grupo de ropa (para el clic), a pc-logs/capturas_identidad
 #   diag = hojas de fotogramas de los planos de cada partido (por que hay pocos minutos de camara principal)
 #   rehacer = un partido entero de nuevo (partido: <id>) y despues el analisis completo
 #   recall = golpes encontrados frente a los anotados por personas (F3Set), por lado, tipo y etapa (puntos: N para una prueba corta;

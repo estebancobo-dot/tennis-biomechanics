@@ -150,6 +150,11 @@ function Subir-Registros {
             New-Item -ItemType Directory -Force -Path $to | Out-Null
             Copy-Item "$($sp.FullName)\*.npz", "$($sp.FullName)\indice.json" $to -Force -ErrorAction SilentlyContinue
         }
+        # fotos para el clic de identidad (peticion "identidad")
+        if (Test-Path "$Base\output\capturas_identidad\estado.json") {
+            New-Item -ItemType Directory -Force -Path "$d\capturas_identidad" | Out-Null
+            Copy-Item "$Base\output\capturas_identidad\*" "$d\capturas_identidad" -Force -ErrorAction SilentlyContinue
+        }
         # diagnostico de planos de los partidos (peticion "diag")
         if (Test-Path "$Base\output\capturas_diag\diag_scenes.json") {
             New-Item -ItemType Directory -Force -Path "$d\capturas_diag" | Out-Null
