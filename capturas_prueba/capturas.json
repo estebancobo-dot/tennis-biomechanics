@@ -220,7 +220,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 1386,
+   "text_chars": 1383,
    "charts": 0,
    "videos": 7,
    "black_canvases": 0,
@@ -248,7 +248,7 @@
  ],
  "errors": [],
  "h264": true,
- "browser": "chromium 155.0.8059.85",
+ "browser": "chromium 156.0.8078.48",
  "plays": [
   {
    "name": "«Su derecha» → ▶ Ver sus golpes típicos",
