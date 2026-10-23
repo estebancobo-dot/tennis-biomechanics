@@ -1,1 +1,14 @@
 ﻿Peticion 42: preparar el clic de identidad (2026-10-23T23:54:21)
+[us-open-2026-r4-naomi-osaka-elena-rybakina] pasada barata hasta la identidad
+  [us-open-2026-r4-naomi-osaka-elena-rybakina] identity… (2026-10-23 23:54:29, etapa 7 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+    identity:   0 % (1/880 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+    identity:   1 % (6/880 fotogramas (ropa)) · 2 min · quedan ≈ 306 min
+    identity:   1 % (10/880 fotogramas (ropa)) · 4 min · quedan ≈ 380 min
+    identity:   2 % (16/880 fotogramas (ropa)) · 7 min · quedan ≈ 359 min
+    identity:   2 % (22/880 fotogramas (ropa)) · 9 min · quedan ≈ 344 min
+    identity:   3 % (24/880 fotogramas (ropa)) · 11 min · quedan ≈ 391 min
+    identity:   3 % (28/880 fotogramas (ropa)) · 13 min · quedan ≈ 399 min
