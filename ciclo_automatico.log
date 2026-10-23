@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261023232755
+Start time: 20261023234755
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 11532
+Process ID: 2700
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,16 +17,23 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-23 23:27:55] Codigo nuevo (3b8b689 -> 3c1b6dc): 1 ficheros
+==> [2026-10-23 23:47:55] Codigo nuevo (3c1b6dc -> f40b122): 4 ficheros
     config/peticion_pc.txt
+    scripts/identity_prepare.py
+    scripts/windows/ciclo_automatico.ps1
+    scripts/windows/comun.ps1
 From https://github.com/estebancobo-dot/tennis-biomechanics
  * branch            claude/tennis-biomech-setup-jggqb0 -> FETCH_HEAD
-Updating 3b8b689..3c1b6dc
+Updating 3c1b6dc..f40b122
 Fast-forward
- config/peticion_pc.txt | 4 ++++
- 1 file changed, 4 insertions(+)
-Resolved 124 packages in 14ms
-Checked 89 packages in 16ms
+ config/peticion_pc.txt               |  4 +++
+ scripts/identity_prepare.py          | 56 ++++++++++++++++++++++++++++++++++++
+ scripts/windows/ciclo_automatico.ps1 | 12 ++++++++
+ scripts/windows/comun.ps1            |  5 ++++
+ 4 files changed, 77 insertions(+)
+ create mode 100644 scripts/identity_prepare.py
+Resolved 124 packages in 0.94ms
+Checked 89 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -36,9 +43,9 @@ yolo11m-pose_960.onnx OK 84 MB
 yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
-    (paso terminado en 5 s)
+    (paso terminado en 4 s)
 
-==> [2026-10-23 23:28:01] Que hace falta: informe
+==> [2026-10-23 23:47:59] Que hace falta: informe
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
@@ -69,15 +76,16 @@ Auditoría: 284 cumplidos, 23 no cumplidos, 121 sin golpes suficientes, 89 aviso
   ✘ #211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5): SIN HACER según el registro (#211, docs/peticiones_usuario.md)
   ✘ #216 Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnic: SIN HACER según el registro (#216, docs/peticiones_usuario.md)
   ✘ #217 Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26): SIN HACER según el registro (#217, docs/peticiones_usuario.md)
-Hecho en 174 s, sin volver a analizar vídeo.
-    (paso terminado en 2 min 53 s)
+Hecho en 169 s, sin volver a analizar vídeo.
+    (paso terminado en 2 min 49 s)
 
-==> [2026-10-23 23:30:55] Revision automatica frente a la ejecucion anterior
+==> [2026-10-23 23:50:49] Revision automatica frente a la ejecucion anterior
 # Revisión automática: FALLOS
+Peticion 42 con accion 'identidad' que este ciclo aun no conoce: se hara en el siguiente
 Ciclo automatico terminado (informe).
-    (paso terminado en 3 s)
-Empezado 2026-10-23 23:27:54 - terminado 2026-10-23 23:30:58 - duracion total 3 min 03 s
+    (paso terminado en 0 s)
+Empezado 2026-10-23 23:47:54 - terminado 2026-10-23 23:50:49 - duracion total 2 min 54 s
 **********************
 Windows PowerShell transcript end
-End time: 20261023233058
+End time: 20261023235049
 **********************
