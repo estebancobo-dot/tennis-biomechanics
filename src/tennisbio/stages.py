@@ -432,8 +432,10 @@ def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run
     near_c: dict[int, list] = {}
     far_c: dict[int, list] = {}
     # software decoding, as the scoreboard's frames: on the PC (19-10) the iGPU decoder took ~15 s per frame
-    # here (98 min for 396 frames of a 35-min test), against ~3.6 s per frame with OCR for the scoreboard
-    stream = frames_at(info, [w[0] for w in want]) if want else iter(())
+    # here (98 min for 396 frames of a 35-min test), against ~3.6 s per frame with OCR for the scoreboard.
+    # Read in sequential stretches, not one seek per frame: on the 1080i25 Osaka match (23-10) a seek cost
+    # ~22 s (880 frames → ~5 h), while decoding the whole video once should take minutes (only the selected frames are piped)
+    stream = frames_at(info, [w[0] for w in want], dense_s=60.0) if want else iter(())
     t_dec = t_feat = 0.0
     t_last = time.perf_counter()
     for k, ((t_s, i, t), (_, frame)) in enumerate(zip(want, stream)):
