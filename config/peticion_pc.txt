@@ -7,6 +7,10 @@ fps: 25
 id: 40
 accion: diag
 carpetas: datasets\f3set\recall\salidas\recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin
+---
+id: 41
+accion: diag
+carpetas: datasets\f3set\recall\salidas\recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
 # Cola: se pueden poner varias peticiones seguidas, separadas por una linea con solo "---"; cada bloque
 #   lleva su "id:", su "accion:" y sus parametros. El PC las hace en orden, una detras de otra en el mismo
