@@ -225,8 +225,16 @@ function Actualizar-Codigo {
     try {
         Refrescar-Path
         if ((Test-Path "$RepoDir\.git") -and (Tiene git)) {
-            git -C $RepoDir pull --ff-only origin $Rama 2>&1 | ForEach-Object { "$_" } | Out-Host
-            if ($LASTEXITCODE -ne 0) { Aviso "No se pudo actualizar el codigo; se usa la version que hay." }
+            # fetch + avance a la rama remota por su nombre completo (24-10: "git pull" fallaba en el PC con "Cannot
+            # fast-forward to multiple branches" y el codigo se quedo 6 h sin actualizar)
+            git -C $RepoDir fetch -q origin "+refs/heads/${Rama}:refs/remotes/origin/$Rama" 2>&1 | ForEach-Object { "$_" } | Out-Host
+            git -C $RepoDir merge --ff-only "refs/remotes/origin/$Rama" 2>&1 | ForEach-Object { "$_" } | Out-Host
+            if ($LASTEXITCODE -ne 0) {
+                Aviso "No se pudo actualizar el codigo; se usa la version que hay."
+                # lo necesario para saber por que, en el registro que se sube
+                git -C $RepoDir status -sb 2>&1 | Select-Object -First 15 | ForEach-Object { "    $_" } | Out-Host
+                git -C $RepoDir config --get-all "branch.$Rama.merge" 2>&1 | ForEach-Object { "    merge: $_" } | Out-Host
+            }
             Registrar-Ciclo
             if (Tiene uv) {
                 Push-Location $RepoDir
