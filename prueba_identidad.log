@@ -68,3 +68,22 @@ C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN s
     identity:  65 % (1078/1652 fotogramas (ropa)) · 52 min · quedan ≈ 28 min
     identity:  69 % (1138/1652 fotogramas (ropa)) · 54 min · quedan ≈ 24 min
     identity:  72 % (1197/1652 fotogramas (ropa)) · 55 min · quedan ≈ 21 min
+    identity:  76 % (1257/1652 fotogramas (ropa)) · 56 min · quedan ≈ 18 min
+    identity:  80 % (1317/1652 fotogramas (ropa)) · 57 min · quedan ≈ 15 min
+    identity:  83 % (1377/1652 fotogramas (ropa)) · 58 min · quedan ≈ 12 min
+    identity:  87 % (1438/1652 fotogramas (ropa)) · 59 min · quedan ≈ 9 min
+    identity:  91 % (1498/1652 fotogramas (ropa)) · 60 min · quedan ≈ 6 min
+    identity:  94 % (1558/1652 fotogramas (ropa)) · 60 min · quedan ≈ 4 min
+    identity:  98 % (1622/1652 fotogramas (ropa)) · 61 min · quedan ≈ 67 s
+    identity: 100 % (1652/1652 fotogramas (ropa)) · 61 min · quedan ≈ 0 s
+    ropa: 1652 fotogramas · leerlos 3625 s, medir la ropa 25 s
+    identidad: 276/280 planos · ropa y cambios de lado de acuerdo en 197, solo cambios de lado 11, solo ropa 60, la ropa corrige el marcador en 8, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 3.56
+  [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] identity terminada a las 11:02:35 en 60.9 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] {'listo': True, 'grupos': 2, 'clic_hecho': False, 'minutos': 61.0}
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] pasada barata hasta la identidad
+  [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] identity… (2026-10-24 11:02:40, etapa 7 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+    identity:   0 % (1/2027 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
