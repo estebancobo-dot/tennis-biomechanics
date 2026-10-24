@@ -28,3 +28,23 @@ C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN s
     identity:  65 % (1050/1624 fotogramas (ropa)) · 86 min · quedan ≈ 47 min
     identity:  68 % (1110/1624 fotogramas (ropa)) · 88 min · quedan ≈ 41 min
     identity:  72 % (1170/1624 fotogramas (ropa)) · 91 min · quedan ≈ 35 min
+    identity:  76 % (1230/1624 fotogramas (ropa)) · 93 min · quedan ≈ 30 min
+    identity:  79 % (1290/1624 fotogramas (ropa)) · 94 min · quedan ≈ 24 min
+    identity:  83 % (1350/1624 fotogramas (ropa)) · 96 min · quedan ≈ 19 min
+    identity:  87 % (1410/1624 fotogramas (ropa)) · 97 min · quedan ≈ 15 min
+    identity:  88 % (1428/1624 fotogramas (ropa)) · 98 min · quedan ≈ 13 min
+    identity:  92 % (1488/1624 fotogramas (ropa)) · 99 min · quedan ≈ 9 min
+    identity:  95 % (1548/1624 fotogramas (ropa)) · 100 min · quedan ≈ 5 min
+    identity: 100 % (1624/1624 fotogramas (ropa)) · 100 min · quedan ≈ 0 s
+    ropa: 1624 fotogramas · leerlos 5972 s, medir la ropa 35 s
+    identidad: 275/276 planos · ropa y cambios de lado de acuerdo en 241, solo cambios de lado 10, solo ropa 9, la ropa corrige el marcador en 14, el saque visto en 1, dudosos 1 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 3.56
+  [zheng-qinwen-elena-rybakina] identity terminada a las 10:00:57 en 100.4 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[zheng-qinwen-elena-rybakina] {'listo': True, 'grupos': 2, 'clic_hecho': False, 'minutos': 101.1}
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] pasada barata hasta la identidad
+  [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] identity… (2026-10-24 10:01:40, etapa 7 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+    identity:   0 % (1/1652 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+    identity:   1 % (24/1652 fotogramas (ropa)) · 4 min · quedan ≈ 278 min
