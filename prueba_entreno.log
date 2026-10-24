@@ -1,1 +1,40 @@
 ﻿Peticion 48: datos de entrenamiento del detector de golpes (2026-10-24T18:32:57)
+
+[20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin] (test) 84 puntos en 76 tramos
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 10/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 20/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 30/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 40/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 50/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 60/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 70/76 tramos descargados
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] probe… (2026-10-24 18:33:19, etapa 1 de 14)
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] probe terminada a las 18:33:19 en 0 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] scenes… (2026-10-24 18:33:19, etapa 2 de 14)
+  scenes:   0 % (1/33478 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  30 % (10139/33478 fotogramas) · 30 s · quedan ≈ 69 s
+  scenes:  60 % (20026/33478 fotogramas) · 60 s · quedan ≈ 40 s
+  scenes:  90 % (30084/33478 fotogramas) · 2 min · quedan ≈ 10 s
+  scenes: 100 % (33478/33478 fotogramas) · 2 min · quedan ≈ 0 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] scenes terminada a las 18:35:02 en 1.7 min
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] audio… (2026-10-24 18:35:02, etapa 3 de 14)
+  audio:  22 % (300/1339 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1339/1339 s de sonido) · 14 s · quedan ≈ 0 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] audio terminada a las 18:35:33 en 31 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] court… (2026-10-24 18:35:33, etapa 4 de 14)
+  court:  15 % (64/441 fotogramas) · 0 s · quedan ≈ 0 s
+  court: 100 % (441/441 fotogramas) · 32 s · quedan ≈ 0 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] court terminada a las 18:36:26 en 53 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] players… (2026-10-24 18:36:26, etapa 5 de 14)
+  [players] juego con pista: 12.3 min de 13.1 min de cámara principal
+  [players] players:   0 % (1/7403 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   6 % (439/7403 fotogramas con jugadoras) · 31 s · quedan ≈ 8 min
+  [players] players:  12 % (864/7403 fotogramas con jugadoras) · 61 s · quedan ≈ 8 min
+  [players] players:  18 % (1297/7403 fotogramas con jugadoras) · 2 min · quedan ≈ 7 min
+  [players] players:  23 % (1734/7403 fotogramas con jugadoras) · 2 min · quedan ≈ 7 min
+  [players] players:  29 % (2139/7403 fotogramas con jugadoras) · 3 min · quedan ≈ 6 min
+  [players] players:  35 % (2572/7403 fotogramas con jugadoras) · 3 min · quedan ≈ 6 min
+  [players] players:  40 % (2952/7403 fotogramas con jugadoras) · 4 min · quedan ≈ 5 min
+  [players] players:  45 % (3349/7403 fotogramas con jugadoras) · 4 min · quedan ≈ 5 min
+  [players] players:  50 % (3726/7403 fotogramas con jugadoras) · 5 min · quedan ≈ 4 min
+  [players] players:  55 % (4100/7403 fotogramas con jugadoras) · 5 min · quedan ≈ 4 min
