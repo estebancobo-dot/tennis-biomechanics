@@ -114,3 +114,26 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   scenes:   0 % (1/51003 fotogramas) · 0 s · quedan ≈ 0 s
   scenes:  20 % (10226/51003 fotogramas) · 30 s · quedan ≈ 2 min
   scenes:  40 % (20226/51003 fotogramas) · 61 s · quedan ≈ 2 min
+  scenes:  59 % (30226/51003 fotogramas) · 2 min · quedan ≈ 63 s
+  scenes:  79 % (40226/51003 fotogramas) · 2 min · quedan ≈ 33 s
+  scenes:  98 % (50226/51003 fotogramas) · 3 min · quedan ≈ 2 s
+  scenes: 100 % (51003/51003 fotogramas) · 3 min · quedan ≈ 0 s
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] scenes terminada a las 21:57:48 en 2.6 min
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] audio… (2026-10-24 21:57:48, etapa 3 de 14)
+  audio:  15 % (300/2040 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (2040/2040 s de sonido) · 15 s · quedan ≈ 0 s
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] audio terminada a las 21:58:04 en 16 s
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] court… (2026-10-24 21:58:04, etapa 4 de 14)
+  court:  10 % (64/670 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  29 % (192/670 fotogramas) · 35 s · quedan ≈ 88 s
+  court:  48 % (320/670 fotogramas) · 71 s · quedan ≈ 78 s
+  court:  76 % (512/670 fotogramas) · 2 min · quedan ≈ 32 s
+  court: 100 % (670/670 fotogramas) · 2 min · quedan ≈ 0 s
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] court terminada a las 22:01:21 en 3.3 min
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] players… (2026-10-24 22:01:21, etapa 5 de 14)
+  [players] juego con pista: 19.2 min de 20.0 min de cámara principal
+  [players] players:   0 % (1/11533 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   3 % (396/11533 fotogramas con jugadoras) · 30 s · quedan ≈ 14 min
+  [players] players:   7 % (782/11533 fotogramas con jugadoras) · 60 s · quedan ≈ 14 min
+  [players] players:  10 % (1204/11533 fotogramas con jugadoras) · 2 min · quedan ≈ 13 min
+  [players] players:  14 % (1614/11533 fotogramas con jugadoras) · 2 min · quedan ≈ 12 min
