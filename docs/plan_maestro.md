@@ -97,7 +97,7 @@ Con los bloques 1-4 cerrados; Osaka forzado (`rehacer`). Criterio: auditoría OK
 
 ## 6. Aplicación y móvil
 1. Comprobar la aplicación con los 4 partidos reales (no con pruebas): cada pantalla, automático (`check.py`).
-2. Copia directa al Pixel 8: la prueba el usuario cuando quiera (único paso que necesita su mano: conectar el cable).
+2. Móvil: opcional y al final, solo cuando el usuario lo pida (24-10: «nada de móvil todavía»). No se toca antes.
 
 ## 7. Velocidad
 Hoy 67 min por 35 min de vídeo. Pose en la iGPU y menos trabajo repetido. Criterio: tiempo por partido en `pruebas_velocidad.md`.
