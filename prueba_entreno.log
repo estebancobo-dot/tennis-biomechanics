@@ -75,3 +75,18 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   bola: 1.9 de 7.2 min de juego
   bola: 4.4 de 7.2 min de juego
   bola: 7.1 de 7.2 min de juego
+  bola: 7.2 de 7.2 min de juego
+[20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina] 268 golpes anotados, 12867 fotogramas → 20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina.npz
+
+[20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka] (test) 78 puntos en 75 tramos
+  20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka: 10/75 tramos descargados
+  20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka: 20/75 tramos descargados
+  20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka: 30/75 tramos descargados
+  20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka: 40/75 tramos descargados
+  20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka: 50/75 tramos descargados
+  20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka: 60/75 tramos descargados
+  20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka: 70/75 tramos descargados
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.1 de 12.2 min de juego
+  bola: 2.3 de 12.2 min de juego
