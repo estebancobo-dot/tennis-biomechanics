@@ -172,3 +172,47 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   bola: 15.0 de 19.2 min de juego
   bola: 17.7 de 19.2 min de juego
   bola: 19.2 de 19.2 min de juego
+[20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina] 451 golpes anotados, 20402 fotogramas → 20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina.npz
+
+[20190818-W-Cincinnati-F-Madison_Keys-Svetlana_Kuznetsova] (train) 90 puntos en 79 tramos
+  Ph-pB_KrPsU: vídeo descargado (726 MB)
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] probe… (2026-10-25 00:13:13, etapa 1 de 14)
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] probe terminada a las 00:13:14 en 0 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] scenes… (2026-10-25 00:13:14, etapa 2 de 14)
+  scenes:   0 % (1/33165 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  30 % (10026/33165 fotogramas) · 30 s · quedan ≈ 70 s
+  scenes:  60 % (20026/33165 fotogramas) · 60 s · quedan ≈ 40 s
+  scenes:  91 % (30026/33165 fotogramas) · 2 min · quedan ≈ 9 s
+  scenes: 100 % (33165/33165 fotogramas) · 2 min · quedan ≈ 0 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] scenes terminada a las 00:15:11 en 2.0 min
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] audio… (2026-10-25 00:15:11, etapa 3 de 14)
+  audio:  23 % (300/1326 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (1326/1326 s de sonido) · 3 s · quedan ≈ 0 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] audio terminada a las 00:15:14 en 3 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] court… (2026-10-25 00:15:14, etapa 4 de 14)
+  court:  19 % (64/333 fotogramas) · 0 s · quedan ≈ 0 s
+  court: 100 % (333/333 fotogramas) · 22 s · quedan ≈ 0 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] court terminada a las 00:15:58 en 44 s
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] players… (2026-10-25 00:15:58, etapa 5 de 14)
+  [players] juego con pista: 9.0 min de 9.5 min de cámara principal
+  [players] players:   0 % (1/5418 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [players] players:   7 % (402/5418 fotogramas con jugadoras) · 30 s · quedan ≈ 6 min
+  [players] players:  15 % (817/5418 fotogramas con jugadoras) · 60 s · quedan ≈ 6 min
+  [players] players:  22 % (1166/5418 fotogramas con jugadoras) · 2 min · quedan ≈ 5 min
+  [players] players:  28 % (1527/5418 fotogramas con jugadoras) · 2 min · quedan ≈ 5 min
+  [players] players:  35 % (1882/5418 fotogramas con jugadoras) · 3 min · quedan ≈ 5 min
+  [players] players:  42 % (2258/5418 fotogramas con jugadoras) · 3 min · quedan ≈ 4 min
+  [players] players:  49 % (2662/5418 fotogramas con jugadoras) · 4 min · quedan ≈ 4 min
+  [players] players:  57 % (3099/5418 fotogramas con jugadoras) · 4 min · quedan ≈ 3 min
+  [players] players:  64 % (3458/5418 fotogramas con jugadoras) · 5 min · quedan ≈ 3 min
+  [players] players:  71 % (3828/5418 fotogramas con jugadoras) · 5 min · quedan ≈ 2 min
+  [players] players:  78 % (4214/5418 fotogramas con jugadoras) · 6 min · quedan ≈ 2 min
+  [players] players:  85 % (4584/5418 fotogramas con jugadoras) · 6 min · quedan ≈ 66 s
+  [players] players:  91 % (4957/5418 fotogramas con jugadoras) · 7 min · quedan ≈ 36 s
+  [players] players:  98 % (5334/5418 fotogramas con jugadoras) · 7 min · quedan ≈ 7 s
+  [players] players: 100 % (5418/5418 fotogramas con jugadoras) · 7 min · quedan ≈ 0 s
+  [players] tiempo: 7.2 min para 5418 fotogramas a 960 px · modelo 5.5 min · leer vídeo y preparar la entrada 5.7 min en otro hilo (espera real 1.7 min) · apariencia 0.1 min en otro hilo
+[spot_20190818_w_cincinnati_f_madison_keys_svetlana_kuznetsova] players terminada a las 00:23:10 en 7.2 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.1 de 9.0 min de juego
