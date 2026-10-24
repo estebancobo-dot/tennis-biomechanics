@@ -186,6 +186,13 @@ function Hacer-Peticion($p) {
             if (((Get-Date) - $script:subido).TotalMinutes -ge 20) { $script:subido = Get-Date; Subir-Registros | Out-Null }
         }
         "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "migrar") {
+        # estructura definitiva (bloque 4): copia output\<id>\ a biblioteca\partidos\, comprueba la copia y solo
+        # entonces la activa (scripts/migrate_library.py); nunca borra las carpetas viejas
+        $lg = "$Base\output\prueba_migrar.log"
+        "Peticion $($p['id']): biblioteca ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        & uv run python scripts/migrate_library.py 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "largo") {
         # el video entero (tramo largo) en su propia carpeta _pocN_largo: muchos golpes por situacion
         # y el tiempo real de un partido; nunca toca _smoke

@@ -22,6 +22,7 @@ import json
 import warnings
 from pathlib import Path
 
+from . import match_files as _mf
 import numpy as np
 
 KINDS = ("serve", "forehand", "backhand", "other")
@@ -65,8 +66,8 @@ def build_features(mdir: Path, hand: str = "right", video: Path | None = None, o
     from .stages import _far_player, court_at, near_runs, play_mask
 
     mdir = Path(mdir)
-    rd = lambda n: json.loads((mdir / n).read_text(encoding="utf-8")) if (mdir / n).exists() else None
-    with np.load(mdir / "players.npz", allow_pickle=True) as z:
+    rd = lambda n: json.loads((_mf.at(mdir, n)).read_text(encoding="utf-8")) if (_mf.at(mdir, n)).exists() else None
+    with np.load(_mf.at(mdir, "players.npz"), allow_pickle=True) as z:
         d = {k: z[k] for k in z.files}
     fps, frames = float(d["fps"]), np.asarray(d["frames"], int)
     frame_h = float(d.get("height", 1080))
@@ -251,11 +252,11 @@ def predict_onnx(onnx_path: Path, X: np.ndarray, chunk: int = 4096, overlap: int
 
 
 def _onsets(mdir: Path) -> np.ndarray:
-    a = mdir / "audio_onsets.json"
+    a = _mf.at(mdir, "audio_onsets.json")
     if not a.exists():
         return np.zeros(0)
     a = json.loads(a.read_text(encoding="utf-8"))
-    tr = mdir / "audio_track.json"
+    tr = _mf.at(mdir, "audio_track.json")
     k = json.loads(tr.read_text(encoding="utf-8")).get("track", 0) if tr.exists() else 0
     tracks = a.get("tracks") or [a]
     return np.sort(np.asarray(tracks[k]["t"] if k < len(tracks) else a.get("t", []), float))

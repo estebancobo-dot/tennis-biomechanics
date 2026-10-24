@@ -4,6 +4,7 @@ report, audit). Nothing new is analysed here: the application only calls it (doc
 import json
 from pathlib import Path
 
+from .. import match_files as _mf
 from .. import pipeline, stages
 from ..catalog import Match, save_test_info
 from . import index
@@ -35,12 +36,20 @@ class Engine:
         r = self._row(match_id)
         d = self.dir(match_id)
         opp = r.get("opponent") or ""
-        if not opp and (d / "score.json").exists():
+        if not opp and (_mf.at(d, "score.json")).exists():
             try:
-                opp = json.loads((d / "score.json").read_text(encoding="utf-8")).get("opponent") or ""
+                opp = json.loads((_mf.at(d, "score.json")).read_text(encoding="utf-8")).get("opponent") or ""
             except (OSError, ValueError):
                 opp = ""
-        m = trial_match(d.name, Path(r["vpath"] or ""), index.player(self.db, r["player"]), {}, match_dir=d,
+        # the id the stages always knew (a library folder is named by its slug; partido.json keeps the old id):
+        # a different id could change what the stages infer from it (the surface) and their fingerprints
+        name = d.name
+        if _mf.is_library(d):
+            try:
+                name = json.loads((d / "partido.json").read_text(encoding="utf-8")).get("origen") or match_id
+            except (OSError, ValueError):
+                name = match_id
+        m = trial_match(name, Path(r["vpath"] or ""), index.player(self.db, r["player"]), {}, match_dir=d,
                         opponent=opp, tournament=r.get("tournament") or "", date=r.get("date") or "",
                         surface=r.get("surface") or "", round=r.get("round") or "")
         if r.get("opponent_id"):
@@ -48,9 +57,44 @@ class Engine:
         return m
 
     def dir(self, match_id: str) -> Path:
-        """The match folder: where the index says (test runs live one level down), else <output>/<id>."""
+        """The match folder: where the index says (test runs live one level down; a library folder is an
+        absolute path), else, a new match: its library folder once the library is switched on
+        (tennisbio.layout), or <output>/<id>."""
         r = self.db.one("SELECT dir FROM matches WHERE id=?", match_id)
-        return self.paths.output / (r["dir"] if r and r.get("dir") else match_id)
+        if r and r.get("dir"):
+            return self.paths.output / r["dir"]
+        lib = self._library_dir(match_id)
+        if lib is not None:
+            self.db.x("UPDATE matches SET dir=? WHERE id=?", lib.as_posix(), match_id)
+            return lib
+        return self.paths.output / match_id
+
+    def _library_dir(self, match_id: str) -> Path | None:
+        from ..layout import library_active
+        from ..library import Library, LibraryError, player_slug
+        root = library_active()
+        if root is None:
+            return None
+        r = self._row(match_id)
+        if not r.get("vpath"):
+            return None
+        who = index.player(self.db, r["player"])
+        try:
+            with Library(root) as lib:
+                added = lib.add_video(Path(r["vpath"]), date=r.get("date") or None, tournament=r.get("tournament") or "",
+                                      round=r.get("round") or "", surface=r.get("surface") or "",
+                                      players=[getattr(who, "name", r["player"]), r.get("opponent") or ""])
+                d = added.dir
+        except LibraryError:
+            return None
+        (d / "etapas").mkdir(parents=True, exist_ok=True)
+        p = d / "partido.json"
+        info = json.loads(p.read_text(encoding="utf-8")) if p.exists() else {}
+        if not info.get("jugadora"):
+            info["jugadora"] = player_slug(getattr(who, "name", "") or r["player"])
+            info.setdefault("origen", match_id)
+            p.write_text(json.dumps(info, ensure_ascii=False, indent=1), encoding="utf-8")
+        return d
 
     def video_size(self, match_id: str) -> int:
         return int(self._row(match_id).get("vsize") or 0)
@@ -63,9 +107,10 @@ class Engine:
         m = self.match(match_id)
         d = self.dir(match_id)
         save_test_info(m, d)                       # the folder says what it is (the index can be rebuilt from it)
-        info = json.loads((d / "partido.json").read_text(encoding="utf-8"))
+        f = _mf.test_info(d)
+        info = json.loads(f.read_text(encoding="utf-8"))
         info.update(player=m.player.id, opponent_id=m.extra.get("opponent_id", ""))
-        (d / "partido.json").write_text(json.dumps(info, ensure_ascii=False, indent=1), encoding="utf-8")
+        f.write_text(json.dumps(info, ensure_ascii=False, indent=1), encoding="utf-8")
         return pipeline.Context(m, cfg, d, log=_logger(d))
 
     def run_match(self, match_id: str, player: str, cfg: dict):
@@ -88,7 +133,7 @@ class Engine:
     def count_strokes(self, player: str, stroke: str) -> int:
         n = 0
         for m, d in self._group(player)[1]:
-            f = d / ("strokes.json" if m.player.id == player else "strokes_opponent.json")
+            f = _mf.at(d, "strokes.json" if m.player.id == player else "strokes_opponent.json")
             try:
                 n += sum(s.get("stroke") == stroke for s in json.loads(f.read_text(encoding="utf-8")))
             except (OSError, ValueError, TypeError):

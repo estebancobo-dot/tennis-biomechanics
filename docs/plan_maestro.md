@@ -60,7 +60,7 @@ Tres carriles a la vez. El PC hace un trabajo pesado cada vez; la nube desarroll
 | C4 | Repeticiones y otras cámaras enlazadas (bloque 2) | Nube (agente) | — (se validan con P4/P5) | en marcha |
 | C5 | Estructura de carpetas definitiva (bloque 4) | Nube (agente) | — | en marcha |
 | I1 | Juntar C1-C5, pruebas completas, subir | Nube (Claude) | cada C al terminar | — |
-| I2 | Cambio a la estructura nueva + migración | Nube → PC | C5, antes de P5 | — |
+| I2 | Cambio a la estructura nueva + migración | Nube → PC | C5, antes de P5 | conectada (24-10); se activa con la petición `migrar` antes de P5 |
 | A1 | Aplicación y móvil con los 4 partidos reales (bloque 6) | Nube + PC | P5 | — |
 | V1 | Velocidad (bloque 7) | Nube | — (tras P5 para medir) | — |
 | R1 | Resto de peticiones (bloque 8), por tandas | Nube | según la petición | — |

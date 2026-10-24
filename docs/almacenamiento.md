@@ -102,3 +102,17 @@ La aplicación y el proceso siguen escribiendo en `output\<id>\` hasta el paso d
 - La pasada barata por emisión (`etapas\emision-2\`) y las repeticiones de la segunda emisión enlazadas a su golpe.
 - Ejecutar `migrate` en el PC (una vez, con el ciclo automático), comprobar y solo entonces ofrecer borrar
   las carpetas viejas.
+
+## Conexión (24-10)
+- `tennisbio.match_files.at(carpeta, fichero)`: dónde está cada fichero de un partido. Carpeta antigua → todo junto;
+  carpeta de la biblioteca → la pasada barata (y el clic de identidad, el detector, la bola) en `etapas\`, el resto en
+  `golpes\<jugadora>\`. El proceso (`Context.path`, manifiesto, `video.json`), el informe, la auditoría, la
+  exportación, la aplicación, el detector y la medida de golpes leen y escriben a través de ella.
+- `tennisbio.layout.dir_of`: la carpeta de cada partido. Hasta que existe `biblioteca\datos\activa.json`, la de siempre
+  (`output\<id>\`); después, la de la biblioteca, encontrada por el contenido del vídeo (renombrado o movido = mismo
+  partido). Las pruebas del ciclo (otras raíces) siguen en sus carpetas.
+- Activación: petición `migrar` (`scripts/migrate_library.py`): copia, comprueba y solo sin problemas escribe
+  `activa.json`. Prueba de principio a fin: un partido copiado no recalcula nada (`tests/test_layout.py`).
+- Pendiente: informes y exportaciones en `analisis\` y `exportar\`; lo de la rival en `golpes\<rival>\`; pruebas del
+  ciclo en `pruebas\`; ofrecer borrar las carpetas viejas tras comprobar la copia.
+

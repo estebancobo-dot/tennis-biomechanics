@@ -670,9 +670,7 @@ def _remove_empty_dirs(d: Path, stop: Path):
 
 # outputs of the cheap pass (one per video): they go to etapas/; the rest of a match folder (fine pass,
 # windows, series, caches) goes to golpes/<jugadora>/
-CHEAP_FILES = {"probe.json", "scenes.json", "audio_onsets.json", "audio_track.json", "players.npz", "court.json",
-               "score.json", "identity.json", "candidates.json", "manifest.json", "video.json", "source.mkv",
-               "source.json", "manifest.damaged.json"}
+from .match_files import CHEAP_FILES  # noqa: E402  (one list for the migration and the readers)
 SKIP_TOP = {"datos", "biblioteca"}
 
 
@@ -861,6 +859,7 @@ def _plan_match(d: Path, lib: Path, players: dict, catalog: dict, taken: set, se
     data = {"version": 1, "partido": slug, "fecha": parse_date(date).isoformat() if parse_date(date) else "",
             "torneo": tour, "ronda": rnd, "superficie": info.get("surface") or cat.get("surface") or "",
             "jugadoras": [{"nombre": n, "carpeta": player_slug(n)} for n in names],
+            "jugadora": who,              # whose fine pass is in golpes/ (tennisbio.match_files.player_dir)
             "incompleto": False, "nota": "", "origen": d.name,
             "emisiones": [{"emision": 1, "cadena": "", "segmentos": [seg] if fp else []}]}
     ops.append(Op("write_json", "", f"{rel}/{MATCH_FILE}", data=data))

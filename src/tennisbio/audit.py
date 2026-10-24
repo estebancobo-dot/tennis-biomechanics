@@ -49,6 +49,7 @@ KEY_MOMENTS = {"ready": "espera / split step", "takeback": "inicio de preparaci�
                "acceleration": "inicio de aceleración", "impact": "impacto", "extension": "extensión",
                "finish": "terminación", "recovery": "recuperación"}
 # physical limits of what is shown (a value outside them is a measurement error that got through)
+from . import match_files as _mf
 from .limits import BALL_INCOMING_KMH, METRIC_LIMITS
 from .pipeline import total_seconds
 
@@ -225,13 +226,13 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
 
     strokes, manifests, errors = [], {}, 0
     for d in match_dirs:
-        f = d / "strokes.json"
+        f = _mf.at(d, "strokes.json")
         if f.exists():
             strokes += [s for s in json.loads(f.read_text(encoding="utf-8")) if s.get("stroke") == stroke]
-        if (d / "manifest.json").exists():
-            manifests[d.name] = json.loads((d / "manifest.json").read_text(encoding="utf-8"))
-        if (d / "strokes_errores.json").exists():
-            errors += len(json.loads((d / "strokes_errores.json").read_text(encoding="utf-8")) or [])
+        if (_mf.at(d, "manifest.json")).exists():
+            manifests[d.name] = json.loads((_mf.at(d, "manifest.json")).read_text(encoding="utf-8"))
+        if (_mf.at(d, "strokes_errores.json")).exists():
+            errors += len(json.loads((_mf.at(d, "strokes_errores.json")).read_text(encoding="utf-8")) or [])
     from .situations import apply as _situations
     for s in strokes:                 # outputs written before the situations existed: added, never overwritten
         _situations(s, overwrite=False)
@@ -496,7 +497,7 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
 
     out = []
     for d in match_dirs:
-        sc, st = d / "score.json", d / "strokes.json"
+        sc, st = _mf.at(d, "score.json"), _mf.at(d, "strokes.json")
         if not sc.exists():
             continue
         try:
@@ -509,7 +510,7 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
         status, detail = recall_verdict(len(strokes), serves, counts)
         sides = f" ({sum(s.get('side') != 'far' for s in strokes)} cerca, {sum(s.get('side') == 'far' for s in strokes)} lejos)"
         try:                                      # strokes of undecided identity: analysed, kept apart, not hers yet
-            doubt = json.loads((d / "strokes_doubtful.json").read_text(encoding="utf-8")) if (d / "strokes_doubtful.json").exists() else []
+            doubt = json.loads((_mf.at(d, "strokes_doubtful.json")).read_text(encoding="utf-8")) if (_mf.at(d, "strokes_doubtful.json")).exists() else []
         except (OSError, ValueError):
             doubt = []
         if doubt:
@@ -526,17 +527,17 @@ def views_items(match_dirs: list[Path], min_strokes: int = 20) -> list[dict]:
 
     out = []
     for d in match_dirs:
-        st = d / "strokes.json"
+        st = _mf.at(d, "strokes.json")
         if not st.exists():
             continue
         name = f"Repeticiones y otras cámaras enlazadas: {d.name}"
-        if not (d / "views.json").exists():
+        if not (_mf.at(d, "views.json")).exists():
             out.append(_item(1, "Repeticiones y otras cámaras", name, "aviso",
                              "la etapa «views» no se ha ejecutado en este partido (sin views.json)"))
             continue
         try:
             strokes = json.loads(st.read_text(encoding="utf-8"))
-            vs = json.loads((d / "views.json").read_text(encoding="utf-8")).get("summary") or {}
+            vs = json.loads((_mf.at(d, "views.json")).read_text(encoding="utf-8")).get("summary") or {}
         except (OSError, ValueError):
             continue
         c = coverage(strokes)
@@ -932,9 +933,9 @@ def file_tree_items(match_dirs: list[Path], report_dir: Path | None, out_root: P
     ok = lambda f: f.exists() and f.stat().st_size > 0
     for d in match_dirs:
         miss = [f"{n}/{o}" for n, st in STAGES.items() for o in st.outputs if not ok(d / o)]
-        st_file = d / "strokes.json"
+        st_file = _mf.at(d, "strokes.json")
         strokes = json.loads(st_file.read_text(encoding="utf-8")) if ok(st_file) else []
-        win = [x for x in strokes if x.get("window") and not ok(d / "windows" / x["window"])]
+        win = [x for x in strokes if x.get("window") and not ok(_mf.at(d, "windows") / x["window"])]
         ser = [x for x in strokes if x.get("series") and not ok(d / x["series"])]
         bad = miss + [f"ventana de {x.get('stroke_id', '?')}" for x in win[:3]] + [f"serie de {x.get('stroke_id', '?')}" for x in ser[:3]]
         items.append(_item(5, "Ficheros", f"Partido {d.name}: salida de cada etapa, ventanas y series",

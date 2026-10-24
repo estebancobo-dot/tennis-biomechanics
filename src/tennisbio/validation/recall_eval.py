@@ -38,6 +38,7 @@ from pathlib import Path
 
 import numpy as np
 
+from .. import match_files as _mf
 from .impact_eval import clip_bounds, parse_label
 
 KINDS = {"serve": "saque", "forehand": "derecha", "backhand": "revés", "volley_other": "volea / remate / otro"}
@@ -383,7 +384,7 @@ def load_outputs(mdir: Path, hand: str = "right", window_log: Path | None = None
     """The Outputs of one match folder of the pipeline."""
     from ..skeleton import Skeleton
 
-    rd = lambda n: json.loads((mdir / n).read_text(encoding="utf-8")) if (mdir / n).exists() else None
+    rd = lambda n: json.loads((_mf.at(mdir, n)).read_text(encoding="utf-8")) if (_mf.at(mdir, n)).exists() else None
     o = Outputs()
     sc = rd("scenes.json") or {}
     sf = sc.get("fps") or 1
@@ -394,8 +395,8 @@ def load_outputs(mdir: Path, hand: str = "right", window_log: Path | None = None
         ident, _ = apply_pick(ident, rd(PICK_FILE))
     ifps = ident.get("fps") or 1
     runs = [{**r, "t0": r["start"] / ifps, "t1": r["end"] / ifps} for r in ident.get("runs", [])]
-    if (mdir / "players.npz").exists() and runs:
-        with np.load(mdir / "players.npz", allow_pickle=True) as z:
+    if (_mf.at(mdir, "players.npz")).exists() and runs:
+        with np.load(_mf.at(mdir, "players.npz"), allow_pickle=True) as z:
             d = {k: z[k] for k in z.files}
         audio = rd("audio_onsets.json") or {}
         tracks = audio.get("tracks") or [audio]
@@ -414,7 +415,7 @@ def load_outputs(mdir: Path, hand: str = "right", window_log: Path | None = None
     o.doubtful = [{"t": s["match_time_s"], "side": s.get("side", "near"), "stroke": s.get("stroke")}
                   for s in rd("strokes_doubtful.json") or []]
     o.errors = [e["t"] for e in rd("strokes_errores.json") or []]
-    log = window_log or mdir / "ventanas_fine.log"
+    log = window_log or _mf.at(mdir, "ventanas_fine.log")
     if log.exists():
         o.windows = parse_window_log(log.read_text(encoding="utf-8").splitlines())
     elif o.cands:
@@ -423,7 +424,7 @@ def load_outputs(mdir: Path, hand: str = "right", window_log: Path | None = None
     def seen(w, t):
         from ..ball import clean_track
         from ..fine_gate import seen_fraction
-        f = next(iter(sorted((mdir / "windows").glob(f"{w['id']}_*_ball.npy"))), None) if (mdir / "windows").exists() else None
+        f = next(iter(sorted((_mf.at(mdir, "windows")).glob(f"{w['id']}_*_ball.npy"))), None) if (_mf.at(mdir, "windows")).exists() else None
         if f is None:
             return None
         tr = np.load(f)
@@ -431,7 +432,7 @@ def load_outputs(mdir: Path, hand: str = "right", window_log: Path | None = None
             return None
         fps = len(tr) / w["dur"]
         width = 1280
-        clip = mdir / "windows" / f"{w['id']}.mp4"
+        clip = _mf.at(mdir, "windows") / f"{w['id']}.mp4"
         if clip.exists():
             from ..io.video import probe
             width = probe(clip).width

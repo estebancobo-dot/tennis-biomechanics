@@ -7,6 +7,7 @@ The ball model (TrackNetV3, tennisbio.ball) runs only on main-camera play (scene
 trained) and on frames shrunk to 1280 px (its input is 512x288; no deinterlacing at that size)."""
 from pathlib import Path
 
+from . import match_files as _mf
 import numpy as np
 
 BALL_FPS = 25.0
@@ -102,13 +103,13 @@ def cached_track(mdir: Path, video: Path, tracker_factory, log=None) -> np.ndarr
     """track_play of an analysed video, kept in <mdir>/ball_track.npz (the ball model is the slow part)."""
     import json
 
-    f = Path(mdir) / "ball_track.npz"
+    f = _mf.at(Path(mdir), "ball_track.npz")
     if f.exists():
         with np.load(f) as z:
             return z["track"]
     rd = lambda n: json.loads((Path(mdir) / n).read_text(encoding="utf-8")) if (Path(mdir) / n).exists() else None
     sc, court = rd("scenes.json") or {"shots": []}, rd("court.json")
-    with np.load(Path(mdir) / "players.npz", allow_pickle=True) as z:
+    with np.load(_mf.at(Path(mdir), "players.npz"), allow_pickle=True) as z:
         fps = float(z["fps"])
     tr = track_play(video, sc, court, tracker_factory(), fps, log) if sc.get("shots") else np.zeros((0, 4))
     np.savez_compressed(f, track=tr.astype(np.float32))

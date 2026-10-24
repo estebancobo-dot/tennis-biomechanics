@@ -106,6 +106,16 @@ function Subir-Registros {
                 Copy-Item "$($m.FullName)\series\*.json" "$d\series" -Force -ErrorAction SilentlyContinue
             }
         }
+        # partidos de la biblioteca (bloque 4, cuando esta activada): registro y manifiesto en etapas\, errores en golpes\<jugadora>\
+        foreach ($m in @(Get-ChildItem "$Base\biblioteca\partidos\*\*" -Directory -ErrorAction SilentlyContinue)) {
+            foreach ($j in @("registro.log", "manifest.json")) {
+                $f = Join-Path $m.FullName "etapas\$j"
+                if (Test-Path $f) { Copy-Item $f "$d\partidos\bib_$($m.Name)_$j" -Force }
+            }
+            $e = @(Get-ChildItem "$($m.FullName)\golpes\*\strokes_errores.json" -ErrorAction SilentlyContinue) | Select-Object -First 1
+            if ($e) { Copy-Item $e.FullName "$d\partidos\bib_$($m.Name)_strokes_errores.json" -Force }
+        }
+        if (Test-Path "$Base\output\biblioteca_migracion.json") { Copy-Item "$Base\output\biblioteca_migracion.json" $d -Force }
         # pruebas aparte pedidas por Claude (output\_poc*: velocidad), con otro nombre para no pisar las de _smoke
         foreach ($p in @(Get-ChildItem "$Base\output" -Directory -Filter "_poc*" -ErrorAction SilentlyContinue)) {
             foreach ($m in @(Get-ChildItem $p.FullName -Directory -ErrorAction SilentlyContinue)) {

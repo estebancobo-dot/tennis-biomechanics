@@ -2,6 +2,8 @@
 import argparse
 from pathlib import Path
 
+from . import layout
+from . import match_files as _mf
 from .catalog import load_matches
 from .config import load_config
 from . import pipeline, stages
@@ -75,9 +77,12 @@ def _main(argv=None):
         print(f"informe: {out}")
         return
     if args.cmd == "audit":
+        lib_dirs = None
+        if not args.root and layout.library_active(cfg):     # the matches live in the library, not in <output>
+            lib_dirs = [layout.dir_of(out_root, m, cfg) for m in matches]
         return run_audit(Path(args.root) if args.root else out_root,
                          Path(args.report) if args.report else out_root / _out_name("informe", own, args.stroke, own),
-                         Path(args.out) if args.out else out_root / "auditoria", args.stroke)
+                         Path(args.out) if args.out else out_root / "auditoria", args.stroke, dirs=lib_dirs)
     if args.cmd == "export":
         from .export import export
         pid = args.player or own
@@ -92,7 +97,8 @@ def _main(argv=None):
         matches = [m for m in matches if m.id in args.match]
     failed = []
     for m in matches:
-        ctx = pipeline.Context(m, cfg, out_root / m.id, log=_logger(out_root / m.id))
+        d = layout.dir_of(out_root, m, cfg)        # <output>/<id>, or its library folder once switched on
+        ctx = pipeline.Context(m, cfg, d, log=_logger(d))
         try:
             if args.cmd == "status":
                 st = pipeline.status(ctx)
@@ -130,7 +136,7 @@ def run_audit(root: Path, report: Path, dest: Path, stroke: str = "forehand", di
         print(f"AVISO: no se pudieron hacer las capturas del informe ({e})")
         shots = None
     if dirs is None:
-        dirs = [d for d in sorted(root.iterdir()) if d.is_dir() and (d / "manifest.json").exists()] if root.exists() else []
+        dirs = [d for d in sorted(root.iterdir()) if d.is_dir() and (_mf.at(d, "manifest.json")).exists()] if root.exists() else []
     res = audit(dirs, report, stroke, shots)
     # the PDF summary: exists, how many pages, and a copy for Claude to read (uploaded with the logs)
     es = {"forehand": "derecha", "backhand": "reves", "overhead": "saque"}[stroke]
@@ -168,7 +174,7 @@ def _logger(d: Path):
         print(msg, flush=True)
         try:
             d.mkdir(parents=True, exist_ok=True)
-            with open(d / "registro.log", "a", encoding="utf-8") as f:
+            with open(_mf.at(d, "registro.log"), "a", encoding="utf-8") as f:
                 f.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} {msg}\n")
         except OSError:
             pass

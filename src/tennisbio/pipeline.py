@@ -18,6 +18,7 @@ from pathlib import Path
 from typing import Callable
 
 from .catalog import Match
+from .match_files import at as _at, is_library
 
 
 @dataclass
@@ -57,7 +58,9 @@ class Context:
     _prog: dict = field(default_factory=dict, repr=False)
 
     def path(self, name: str) -> Path:
-        return self.dir / name
+        """A file of this match: in the folder itself, or in the library's etapas/ or golpes/<jugadora>/
+        (tennisbio.match_files)."""
+        return _at(self.dir, name)
 
     def progress(self, done: int, total: int, what: str = "", every_s: float = 30.0):
         """Progress of the running stage: a line with %, elapsed time and the time left, at most every
@@ -79,19 +82,24 @@ class Context:
         self.log(msg)
         try:
             with _PROGRESS_LOCK:            # two stages at once write the same file
-                write_atomic(self.dir.parent / "progreso.json", json.dumps({
+                write_atomic(self.progress_file(), json.dumps({
                     "partido": self.match.id, "etapa": p.get("stage"), "hecho": done, "total": total,
                     "porcentaje": round(frac * 100, 1), "segundos": round(el), "quedan_s": None if left is None else round(left),
                     "hora": time.strftime("%Y-%m-%d %H:%M:%S")}, ensure_ascii=False))
         except OSError:
             pass
 
+    def progress_file(self) -> Path:
+        """<output>/progreso.json (the PC uploads it); beside the match folder before the library."""
+        out = (self.cfg.get("paths") or {}).get("output") if is_library(self.dir) else None
+        return Path(out) / "progreso.json" if out else self.dir.parent / "progreso.json"
+
     @property
     def video(self) -> Path:
         """The video the stages read: the match video, or its clean copy when the probe stage had
         to rewrite its timeline (see stages.st_probe)."""
-        src = self.dir / "source.mkv"
-        return src if src.exists() and (self.dir / "source.json").exists() else self.match.video
+        src = self.path("source.mkv")
+        return src if src.exists() and self.path("source.json").exists() else self.match.video
 
 
 _PROGRESS_LOCK = threading.Lock()
@@ -143,7 +151,7 @@ def video_fingerprint(path: Path, d: Path | None = None) -> str:
     legacy = f"{st.st_size}-{int(st.st_mtime)}"
     if d is None:
         return legacy
-    p = Path(d) / "video.json"
+    p = _at(d, "video.json")
     try:
         rec = json.loads(p.read_text(encoding="utf-8")) if p.exists() else None
     except (json.JSONDecodeError, UnicodeDecodeError, OSError):
@@ -156,7 +164,7 @@ def video_fingerprint(path: Path, d: Path | None = None) -> str:
             write_atomic(p, json.dumps(rec))
             return rec["fp"]
     rec = {"fp": legacy, "size": st.st_size, "mtime": int(st.st_mtime), "sample": video_sample(path)}
-    Path(d).mkdir(parents=True, exist_ok=True)
+    p.parent.mkdir(parents=True, exist_ok=True)
     write_atomic(p, json.dumps(rec))
     return legacy
 
@@ -227,7 +235,7 @@ def load_npz(path):
 
 
 def load_manifest(d: Path) -> dict:
-    p = d / "manifest.json"
+    p = _at(d, "manifest.json")
     if not p.exists():
         return {}
     try:
@@ -238,7 +246,7 @@ def load_manifest(d: Path) -> dict:
 
 
 def save_manifest(d: Path, m: dict):
-    write_atomic(d / "manifest.json", json.dumps(m, indent=1, ensure_ascii=False))
+    write_atomic(_at(d, "manifest.json"), json.dumps(m, indent=1, ensure_ascii=False))
 
 
 def fingerprint(name: str, ctx: Context, manifest: dict) -> str:
@@ -335,6 +343,8 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
     running in a thread carry its name. If a stage fails, no other one starts, the ones running finish
     (and are recorded) and the first error is raised."""
     ctx.dir.mkdir(parents=True, exist_ok=True)
+    for sub in ("manifest.json", "strokes.json"):          # etapas/ and golpes/<jugadora>/ in the library
+        ctx.path(sub).parent.mkdir(parents=True, exist_ok=True)
     if parallel is None:
         parallel = parallel_enabled(ctx.cfg)
     m = load_manifest(ctx.dir)

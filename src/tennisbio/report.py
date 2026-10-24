@@ -16,6 +16,8 @@ import time
 from dataclasses import asdict
 from pathlib import Path
 
+from . import layout as _layout
+from . import match_files as _mf
 from .catalog import Match
 from .pipeline import total_seconds
 
@@ -218,7 +220,7 @@ def run_info(matches, out_root: Path) -> dict:
     each match's manifest, and the last automatic audit and review when they exist (previous run)."""
     info, secs, vid = {}, 0.0, 0.0
     for m in matches:
-        f = out_root / m.id / "manifest.json"
+        f = _mf.at(_layout.dir_of(out_root, m), "manifest.json")
         if f.exists():
             man = json.loads(f.read_text(encoding="utf-8"))
             secs += total_seconds(man)          # stages run at the same time count once
@@ -399,12 +401,12 @@ def collect(matches: list[Match], out_root: Path, stroke="forehand", player_id: 
     matches.yaml gives opponent_id); default: each match's player."""
     ms, strokes, review, raw = [], [], 0, []
     for mi, match in enumerate(matches):
-        d = out_root / match.id
+        d = _layout.dir_of(out_root, match)
         is_opp = player_id is not None and player_id != match.player.id
-        f = d / ("strokes_opponent.json" if is_opp else "strokes.json")
+        f = _mf.at(d, "strokes_opponent.json" if is_opp else "strokes.json")
         if not f.exists():
             continue
-        dur = json.loads((d / "probe.json").read_text(encoding="utf-8")).get("duration", 0) if (d / "probe.json").exists() else 0
+        dur = json.loads((_mf.at(d, "probe.json")).read_text(encoding="utf-8")).get("duration", 0) if (_mf.at(d, "probe.json")).exists() else 0
         rows = [s for s in json.loads(f.read_text(encoding="utf-8")) if s.get("stroke") == stroke]
         from .situations import apply as _situations
         for s in rows:                    # strokes analysed before the situations existed: added, never overwritten
@@ -412,12 +414,13 @@ def collect(matches: list[Match], out_root: Path, stroke="forehand", player_id: 
         for k, s in enumerate(rows):
             r = stroke_record(s, len(ms), match, dur, k, opponent_profile(match).hand if is_opp else match.player.hand)
             r["idx"] = len(strokes)
-            r["_dir"], r["_window"], r["_series"] = str(d), s.get("window"), s.get("series")
+            # the folder of the strokes (windows/ and series/ are beside them: golpes/<jugadora>/ in the library)
+            r["_dir"], r["_window"], r["_series"] = str(f.parent), s.get("window"), s.get("series")
             r["_phases"] = s.get("phases", {})
             strokes.append(r)
             review += bool(r["review"])
             raw.append({**s, "match_id": match.id, "stroke_id": r["id"]})
-        found = json.loads((d / "score.json").read_text(encoding="utf-8")).get("opponent") if (d / "score.json").exists() else None
+        found = json.loads((_mf.at(d, "score.json")).read_text(encoding="utf-8")).get("opponent") if (_mf.at(d, "score.json")).exists() else None
         rival = match.player.name if is_opp else (match.opponent or found or "—")
         ms.append({"id": match.id, "rival": rival, "surf": match.surface or next((s["surface"] for s in rows if s.get("surface")), "—"),
                    "round": match.round or "—", "date": match.date or "—", "sets": None, "n": len(rows), "res": "—"})
@@ -538,14 +541,14 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
             sj = json.loads(txt)
             k = sj["impact"] - sj["first"]
             box = next((sj["box"][j] for j in (k, k - 1, k + 1, k - 2, k + 2) if 0 <= j < len(sj["box"]) and sj["box"][j]), None)
-        if win and (d / "windows" / win).exists():
-            r["video"] = Path(os.path.relpath(d / "windows" / win, dest)).as_posix()
+        if win and (_mf.at(d, "windows") / win).exists():
+            r["video"] = Path(os.path.relpath(_mf.at(d, "windows") / win, dest)).as_posix()
             th = dest / "thumbs" / f"{r['id']}.jpg"
             th.parent.mkdir(exist_ok=True)
-            if r.get("vImpact") is not None and thumbnail(d / "windows" / win, r["vImpact"], box, th):
+            if r.get("vImpact") is not None and thumbnail(_mf.at(d, "windows") / win, r["vImpact"], box, th):
                 r["thumb"] = f"thumbs/{r['id']}.jpg"
         elif win:
-            r["video"] = Path(os.path.relpath(d / "windows" / win, dest)).as_posix()
+            r["video"] = Path(os.path.relpath(_mf.at(d, "windows") / win, dest)).as_posix()
     raw = data.get("_raw", [])
     from .audit import stroke_values
     from .learn import CONDITIONS, content, learn_keys

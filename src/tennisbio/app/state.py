@@ -9,6 +9,7 @@ import shutil
 import time
 from pathlib import Path
 
+from .. import match_files as _mf
 from .. import pipeline
 from . import jobs, notify, storage
 from .db import STROKE_ES
@@ -93,7 +94,7 @@ def _match_rows(app, running: dict | None, prog: dict | None) -> list[dict]:
             "video": m["vpath"] or "", "video_gb": round((m["vsize"] or 0) / 1e9, 1),
             "test_run": "/" in (m["dir"] or ""), "dir": str(d), "stages": stages,
             "running": is_run, "progress": prog if is_run else None, "error": (err or {}).get("message", ""),
-            "rival_done": (d / "strokes_opponent.json").exists(),
+            "rival_done": (_mf.at(d, "strokes_opponent.json")).exists(),
         })
     return out
 

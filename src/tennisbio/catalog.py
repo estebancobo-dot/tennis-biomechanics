@@ -111,7 +111,8 @@ def trial_match(match_id: str, video: Path, player: Player, cfg: dict, source: P
     import json
 
     fields, extra = {}, {}
-    info = (match_dir / TEST_INFO) if match_dir else None
+    from .match_files import test_info
+    info = test_info(match_dir) if match_dir else None
     if info is not None and info.exists():
         try:
             saved = json.loads(info.read_text(encoding="utf-8"))
@@ -133,7 +134,8 @@ def save_test_info(match: Match, match_dir: Path) -> None:
     match_dir.mkdir(parents=True, exist_ok=True)
     info = {k: getattr(match, k) for k in CATALOG_FIELDS}
     info["player"] = match.player.id                # who was analysed (the application's index reads it)
-    (match_dir / TEST_INFO).write_text(json.dumps(info, ensure_ascii=False, indent=1), encoding="utf-8")
+    from .match_files import test_info
+    test_info(match_dir).write_text(json.dumps(info, ensure_ascii=False, indent=1), encoding="utf-8")
 
 
 _CYR = dict(zip("абвгдеёжзийклмнопрстуфхцчшщъыьэюяіїєґ",

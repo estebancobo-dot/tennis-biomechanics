@@ -9,6 +9,7 @@ from pathlib import Path
 
 import yaml
 
+from .. import match_files as _mf
 from ..catalog import Player, ascii_id
 from ..config import CONFIG_DIR
 from ..pipeline import load_manifest, video_sample
@@ -115,14 +116,14 @@ def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR, fres
     for mid, d in match_dirs(paths.output):
         man = load_manifest(d)
         info = {}
-        if (d / "partido.json").exists():
+        if _mf.test_info(d).exists():
             try:
-                info = json.loads((d / "partido.json").read_text(encoding="utf-8"))
+                info = json.loads(_mf.test_info(d).read_text(encoding="utf-8"))
             except (OSError, ValueError):
                 info = {}
         sample = ""
         try:
-            v = json.loads((d / "video.json").read_text(encoding="utf-8"))
+            v = json.loads((_mf.at(d, "video.json")).read_text(encoding="utf-8"))
             sample = v.get("sample", "")
             known = db.one("SELECT path FROM videos WHERE sample=?", sample) if sample else None
             if sample and (not known or not known["path"] or not Path(known["path"]).exists()):
@@ -132,7 +133,8 @@ def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR, fres
         except (OSError, ValueError):
             pass
         state, note = state_from_manifest(man)
-        rel = d.relative_to(paths.output).as_posix()
+        # relative inside <output>; a library folder is outside it (absolute: Engine.dir joins it as it is)
+        rel = d.relative_to(paths.output).as_posix() if d.is_relative_to(paths.output) else d.as_posix()
         row = db.one("SELECT * FROM matches WHERE id=?", mid)
         if row and (fresh or not app_decided(row)):
             db.x("UPDATE matches SET state=?, note=?, dir=?, video=COALESCE(NULLIF(video, ''), ?) WHERE id=?",
@@ -172,13 +174,32 @@ def match_dirs(out: Path) -> list[tuple[str, Path]]:
     for d in sorted(out.iterdir()) if out.exists() else []:
         if not d.is_dir() or d.name in SKIP_DIRS:
             continue
-        if (d / "manifest.json").exists():
+        if (_mf.at(d, "manifest.json")).exists():
             res.append((d.name, d))
             continue
         for sub in sorted(d.iterdir()):
             if sub.is_dir() and (sub / "manifest.json").exists():
                 res.append((f"{d.name.lstrip('_')}:{sub.name}", sub))
-    return res
+    return _with_library(res)
+
+
+def _with_library(res: list[tuple[str, Path]]) -> list[tuple[str, Path]]:
+    """Once the library is switched on (tennisbio.layout), its match folders replace the old ones they were
+    copied from (same id: the old folder name, «origen» in partido.json); the old folders stay on disk until
+    the user removes them, but are not used any more."""
+    from ..layout import library_active
+    root = library_active()
+    if root is None:
+        return res
+    by = dict(res)
+    for m in sorted((root / "partidos").glob("*/*/etapas/manifest.json")):
+        d = m.parent.parent
+        try:
+            mid = json.loads((d / "partido.json").read_text(encoding="utf-8")).get("origen") or d.name
+        except (OSError, ValueError):
+            mid = d.name
+        by[mid] = d
+    return sorted(by.items())
 
 
 def _find_video(places: list[Path], rec: dict) -> str:

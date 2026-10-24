@@ -24,6 +24,7 @@ import cv2
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 
+from . import match_files as _mf
 from . import findings as F
 
 W, H = 1280, 720
@@ -129,7 +130,7 @@ class StrokeClip:
         self.rec, self.ctx, self.size = rec, ctx, size
         d = Path(rec["_dir"])
         self.ser = json.loads((d / rec["_series"]).read_text(encoding="utf-8"))
-        self.video = d / "windows" / rec["_window"]
+        self.video = _mf.at(d, "windows") / rec["_window"]
         s = self.ser
         self.fps, self.first, self.n, self.impact = float(s["fps"]), s["first"], s["n"], s["impact"]
         self.T0 = (self.first - self.impact) / self.fps
@@ -646,7 +647,7 @@ def export(matches, out_root: Path, dest: Path, stroke="forehand", player_id: st
     ctx = {"player": player.get("name", "Jugador"), "hand": player.get("hand"), "stroke": stroke,
            "rival": [m["rival"] for m in data["matches"]]}
     ok = [s for s in data["strokes"] if s.get("_window") and s.get("_series")
-          and (Path(s["_dir"]) / "windows" / s["_window"]).exists() and (Path(s["_dir"]) / s["_series"]).exists()]
+          and (_mf.at(Path(s["_dir"]), "windows") / s["_window"]).exists() and (Path(s["_dir"]) / s["_series"]).exists()]
     dest = Path(dest)
     (dest / "golpes").mkdir(parents=True, exist_ok=True)
     (dest / "montajes").mkdir(parents=True, exist_ok=True)
@@ -677,7 +678,7 @@ def export(matches, out_root: Path, dest: Path, stroke="forehand", player_id: st
     for i, s in enumerate(need):
         out = dest / "golpes" / f"{s['id']}.mp4"
         paths[s["id"]] = out
-        src = [Path(s["_dir"]) / "windows" / s["_window"], Path(s["_dir"]) / s["_series"]]
+        src = [_mf.at(Path(s["_dir"]), "windows") / s["_window"], Path(s["_dir"]) / s["_series"]]
         sig = hashlib.sha1((base + json.dumps({k: v for k, v in s.items() if not k.startswith("_")},
                                               sort_keys=True, default=str)).encode()).hexdigest()[:12]
         if _fresh(out, *src) and sigs.get(s["id"]) == sig:

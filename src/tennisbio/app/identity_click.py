@@ -9,6 +9,7 @@ from pathlib import Path
 
 import numpy as np
 
+from .. import match_files as _mf
 from ..identity import PICK_FILE
 
 PHOTOS = "identidad_fotos"
@@ -17,7 +18,7 @@ PHOTOS = "identidad_fotos"
 def state(match_dir: Path) -> dict:
     """{"needed", "done", "pick"}: the photos can be made once the identity stage has split the clothes."""
     d = Path(match_dir)
-    ident = d / "identity.json"
+    ident = _mf.at(d, "identity.json")
     pick = json.loads((d / PICK_FILE).read_text(encoding="utf-8")) if (d / PICK_FILE).exists() else None
     groups = set()
     if ident.exists():
@@ -33,7 +34,7 @@ def photos(match_dir: Path, video: Path, height: int = 360) -> list[dict]:
     from ..stages import grab_frame, near_runs
 
     d = Path(match_dir)
-    ident = json.loads((d / "identity.json").read_text(encoding="utf-8"))
+    ident = json.loads((_mf.at(d, "identity.json")).read_text(encoding="utf-8"))
     fps = float(ident.get("fps") or 1.0)
     best: dict[int, dict] = {}
     for r in ident.get("runs", []):
@@ -44,9 +45,9 @@ def photos(match_dir: Path, video: Path, height: int = 360) -> list[dict]:
     out_dir.mkdir(exist_ok=True)
     out = []
     want = {r["start"]: c for c, r in best.items()}
-    with np.load(d / "players.npz", allow_pickle=True) as z:
+    with np.load(_mf.at(d, "players.npz"), allow_pickle=True) as z:
         pl = {k: z[k] for k in z.files}
-    court = json.loads((d / "court.json").read_text(encoding="utf-8")) if (d / "court.json").exists() else None
+    court = json.loads((_mf.at(d, "court.json")).read_text(encoding="utf-8")) if (_mf.at(d, "court.json")).exists() else None
     frames = pl["frames"]
     for run, img, cf, h, app, sel in near_runs(pl, Skeleton("coco17", "right"), court, with_sel=True):
         c = want.get(int(frames[run[0]]))

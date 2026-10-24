@@ -2,6 +2,7 @@
 import hashlib
 from pathlib import Path
 
+from .. import match_files as _mf
 from ..config import CONFIG_DIR, ROOT
 from ..pipeline import MissingVideo
 from . import index, jobs, videos
@@ -50,7 +51,7 @@ class App:
         if not main and not rival:
             return f"{name} no sale en ningún partido de la aplicación: añade un partido suyo."
         need = [r["id"] for r in rival if r["state"] in USABLE
-                and not (self.engine.dir(r["id"]) / "strokes_opponent.json").exists()]
+                and not (_mf.at(self.engine.dir(r["id"]), "strokes_opponent.json")).exists()]
         for mid in need:
             jobs.enqueue(self.db, "rival", match=mid, player=player, stroke=stroke, reason=f"analizar también a {name}")
         ready = any(r["state"] in USABLE for r in main) or any(r["state"] in USABLE for r in rival)
