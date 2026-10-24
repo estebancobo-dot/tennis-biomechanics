@@ -14,6 +14,12 @@ carpetas: datasets\f3set\recall\salidas\recall_20230124_w_australian_open_qf_jel
 ---
 id: 42
 accion: identidad
+---
+id: 43
+accion: entreno
+partidos: 16
+horas: 14
+bola: si
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
 # Cola: se pueden poner varias peticiones seguidas, separadas por una linea con solo "---"; cada bloque
 #   lleva su "id:", su "accion:" y sus parametros. El PC las hace en orden, una detras de otra en el mismo
@@ -40,4 +46,4 @@ accion: identidad
 #   rehacer = un partido entero de nuevo (partido: <id>) y despues el analisis completo
 #   recall = golpes encontrados frente a los anotados por personas (F3Set), por lado, tipo y etapa (puntos: N para una prueba corta;
 #            detector: si = candidatos del detector entrenado, informe recall_validation_detector.*)
-#   entreno = datos para entrenar el detector de golpes: partidos de F3Set (pasada barata) exportados como numeros a pc-logs/entreno_golpes (partidos: N, horas: H)
+#   entreno = datos para entrenar el detector de golpes: partidos de F3Set (pasada barata) exportados como numeros a pc-logs/entreno_golpes (partidos: N, horas: H; fps: F; bola: si = tambien la bola, a pc-logs/entreno_golpes_bola)

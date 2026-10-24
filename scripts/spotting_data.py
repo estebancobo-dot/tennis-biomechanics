@@ -66,7 +66,7 @@ def full_video(root: Path, yt_id: str, t_end: float) -> Path | None:
     return None
 
 
-def local_compilation(root: Path, name: str, src: Path, fps: float, segs: list[dict]):
+def local_compilation(root: Path, name: str, src: Path | None, fps: float, segs: list[dict]):
     """The same compilation as validate_recall.build_compilation, cut from the local whole video."""
     import subprocess
 
@@ -77,6 +77,8 @@ def local_compilation(root: Path, name: str, src: Path, fps: float, segs: list[d
     key = [(s["src_t0"], s["src_t1"]) for s in segs]
     if out.exists() and plan_f.exists() and json.loads(plan_f.read_text(encoding="utf-8")).get("key") == key:
         return out, json.loads(plan_f.read_text(encoding="utf-8"))["segments"]
+    if src is None:                          # only the cached compilation was asked for
+        return None, []
     parts, done = [], []
     for s in segs:
         n = base / "norm" / f"{name}_{s['src_t0']:.0f}_{s['src_t1']:.0f}.mp4"
@@ -119,8 +121,24 @@ def cheap_pass(video: Path, mid: str, out_dir: Path, fps: float | None = None) -
     return out_dir / mid
 
 
-def export(dest: Path, mdir: Path, events: list[dict], spans: list, name: str, split: str, video: Path | None = None):
+def ball_tracker():
+    from tennisbio.ball import BallTracker
+    from tennisbio.config import load_config
+
+    cfg = load_config()
+    dml = cfg.get("device", "cpu") == "dml"
+    return BallTracker(str(Path(__file__).resolve().parents[1] / (cfg.get("ball") or {}).get("onnx", "models/balltrack.onnx")),
+                       cfg.get("device", "cpu"), (cfg.get("ball") or {}).get("threshold", 0.5), static_batch=dml)
+
+
+def export(dest: Path, mdir: Path, events: list[dict], spans: list, name: str, split: str, video: Path | None = None,
+           ball: bool = False):
     f = S.build_features(mdir, video=video)
+    extra = {}
+    if ball:                              # plan N2: the ball track over the play (cached in the match folder)
+        from tennisbio import ball_features as BF
+        tr = BF.cached_track(mdir, video, ball_tracker, log=lambda m: print(m, flush=True))
+        extra["B"] = BF.features(tr, len(f["X"]), float(f["fps"])).astype(np.float16)
     ev = [e for e in events if e.get("side") in S.SIDES]
     np.savez_compressed(dest, X=f["X"].astype(np.float16), fps=f["fps"], name=name, split=split,
                         ev_t=np.array([e["t"] for e in ev], np.float32),
@@ -128,7 +146,7 @@ def export(dest: Path, mdir: Path, events: list[dict], spans: list, name: str, s
                         ev_kind=np.array([S.KINDS.index(S.KIND_OF.get(e["kind"], "other")) for e in ev], np.int8),
                         # F3Set's technique of each stroke (e.g. slice): to check the slice class measured from the hand path
                         ev_tech=np.array([str(e.get("technique", "")) for e in ev]),
-                        spans=np.array(spans, np.float32).reshape(-1, 2))
+                        spans=np.array(spans, np.float32).reshape(-1, 2), **extra)
     return len(ev), len(f["X"])
 
 
@@ -141,7 +159,12 @@ def main():
     ap.add_argument("--hours", type=float, default=10.0)
     ap.add_argument("--fps", type=float, default=0, help="fps de la pasada barata para el detector (0 = la de la configuración); "
                                                             "con otro valor, carpetas y ficheros aparte (sufijo _<fps>fps)")
+    ap.add_argument("--ball", action="store_true", help="también la bola (plan N2): carpeta y ficheros aparte (sufijo _bola)")
     args = ap.parse_args()
+    if not args.ball:     # the cycle script that launched this may predate its `bola:` line
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from pc_requests import param
+        args.ball = str(param("bola", "entreno") or "").lower() in ("si", "sí", "1", "true")
     if not args.fps:     # the cycle script that launched this may predate its `fps:` line (it is read once per run)
         sys.path.insert(0, str(Path(__file__).resolve().parent))
         from pc_requests import param             # the request file may hold a queue of blocks («---»)
@@ -160,7 +183,7 @@ def main():
     test = sorted(v for v, ps in by_video.items() if pl in (ps[0]["near_name"] + ps[0]["far_name"]).lower())
     train = sorted((v for v in by_video if v not in test and v in yt), key=lambda v: -len(by_video[v]))[:args.matches]
     tag = f"_{int(args.fps)}fps" if args.fps else ""
-    dest = root / f"spotting{tag}"
+    dest = root / f"spotting{tag}{'_bola' if args.ball else ''}"
     dest.mkdir(parents=True, exist_ok=True)
     done = []
     for name in test + train:
@@ -186,8 +209,10 @@ def main():
             if split == "test":           # Rybakina's: already compiled by the recall benchmark (cached)
                 vid, segs_done = V.build_compilation(root, name, yt[name]["yt_id"], fps, segs)
             else:
-                src = full_video(root, yt[name]["yt_id"], t_end)
-                vid, segs_done = local_compilation(root, name, src, fps, segs) if src else (None, [])
+                vid, segs_done = local_compilation(root, name, None, fps, segs)   # already cut (e.g. for --ball)
+                if vid is None:
+                    src = full_video(root, yt[name]["yt_id"], t_end)
+                    vid, segs_done = local_compilation(root, name, src, fps, segs) if src else (None, [])
             if vid is None:
                 print(f"[{name}] sin vídeo", flush=True)
                 continue
@@ -199,7 +224,7 @@ def main():
                 mdir = cheap_pass(vid, mid, root / "f3set" / "spotting" / "salidas", args.fps or None)
             got = {pid for s in segs_done for pid in s["points"]}
             events, spans = R.place_events([p for p in ps if p["id"] in got], segs_done)
-            n_ev, n_fr = export(out, mdir, events, spans, name, split, vid)
+            n_ev, n_fr = export(out, mdir, events, spans, name, split, vid, ball=args.ball)
             print(f"[{name}] {n_ev} golpes anotados, {n_fr} fotogramas → {out.name}", flush=True)
             if split == "train":          # the whole video is not needed any more (disk)
                 (root / "f3set" / "spotting" / "full" / f"{yt[name]['yt_id']}.mp4").unlink(missing_ok=True)

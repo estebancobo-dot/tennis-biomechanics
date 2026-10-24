@@ -28,6 +28,8 @@ def load(data_dir: Path) -> list[dict]:
         with np.load(f, allow_pickle=False) as z:
             fps = float(z["fps"])
             X = z["X"].astype(np.float32)
+            if "B" in z.files:            # the ball's numbers (tennisbio.ball_features), when exported
+                X = np.concatenate([X, z["B"].astype(np.float32)], axis=1)
             ev = [{"t": float(t), "side": S.SIDES[int(s)], "kind": S.KINDS[int(k)]}
                   for t, s, k in zip(z["ev_t"], z["ev_side"], z["ev_kind"])]
             out.append({"name": str(z["name"]), "split": str(z["split"]), "fps": fps, "X": X, "events": ev,
@@ -209,7 +211,7 @@ def main():
     torch.onnx.export(net, torch.zeros(1, 64, F), out / "spotting.onnx", input_names=["features"],
                       output_names=["prob"], dynamic_axes={"features": {1: "frames"}, "prob": {1: "frames"}}, opset_version=17,
                       dynamo=False)
-    meta = {"classes": list(S.CLASSES), "feature_dim": int(F), "fps": train[0]["fps"], "threshold": thr,
+    meta = {"classes": list(S.CLASSES), "feature_dim": int(F), "ball": int(F) > S.FEATURE_DIM, "fps": train[0]["fps"], "threshold": thr,
             "train_matches": [m["name"] for m in train], "val_matches": [m["name"] for m in val],
             "test_matches": [m["name"] for m in test], "cv": args.cv, "epochs": args.epochs, "seed": args.seed,
             "val": vbest, "test": res}

@@ -48,12 +48,12 @@ Tres carriles a la vez. El PC hace un trabajo pesado cada vez; la nube desarroll
 | Id | Tarea | Carril | Depende de | Estado |
 |---|---|---|---|---|
 | P1 | Datos de entrenamiento a 10 fps (petición 38) | PC | — | en marcha |
-| P2 | Datos a 25 fps + sonido completo (petición 39) | PC | P1 (compilaciones ya bajadas) | en cola |
-| P3 | Diagnóstico de la cámara principal (cuartos AO 2023) | PC | C2 (cola) | pendiente |
+| P2 | Datos a 25 fps + sonido completo (petición 39) | PC | P1 (compilaciones ya bajadas) | hecho: no mejora (63 % / 52 %), descartado |
+| P3 | Diagnóstico de la cámara principal (cuartos AO 2023) | PC | C2 (cola) | hecho (41): la cámara se reconoce bien; el fallo es otro (¿anotaciones desfasadas?) |
 | P4 | Medida de golpes F3Set de principio a fin con detector + clic simulado | PC | C1, C2, modelo ≥ 90 % (o el mejor) | pendiente |
 | P5 | Pasada definitiva de los 4 partidos | PC | C1-C5 integrados, P4 en verde | pendiente |
-| N1 | Reentrenar y medir cada vez que llegan datos (revisión horaria) | Nube | P1/P2 | activo (cercano 60 %) |
-| N2 | Bola como señal del detector (si P2 no basta) | Nube + PC | N1 con P2 | preparado si hace falta |
+| N1 | Reentrenar y medir cada vez que llegan datos (revisión cada 4 h) | Nube | P1/P2 | activo (cercano 62 %) |
+| N2 | Bola como señal del detector (P2 no bastó: 25 fps dio 63 % cercano, 52 % lejano) | Nube + PC | N1 con P2 | en marcha (24-10): `ball_features`, petición 43 |
 | C1 | Detector dentro del proceso (etapa `spotting`, apagado hasta pasar la medida) | Nube (agente) | — | en marcha |
 | C2 | Cola de peticiones del PC | Nube (agente) | — | en marcha |
 | C3 | Situaciones que faltan (bloque 3) | Nube (agente) | — (se validan con P5) | en marcha |
