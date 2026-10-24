@@ -92,3 +92,25 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   bola: 2.3 de 12.2 min de juego
   bola: 5.4 de 12.2 min de juego
   bola: 8.9 de 12.2 min de juego
+  bola: 11.9 de 12.2 min de juego
+  bola: 12.2 de 12.2 min de juego
+[20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka] 308 golpes anotados, 12843 fotogramas → 20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka.npz
+
+[20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina] (test) 123 puntos en 117 tramos
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 10/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 20/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 30/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 40/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 50/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 60/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 70/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 80/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 90/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 100/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 110/117 tramos descargados
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] probe… (2026-10-24 21:55:11, etapa 1 de 14)
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] probe terminada a las 21:55:11 en 0 s
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] scenes… (2026-10-24 21:55:11, etapa 2 de 14)
+  scenes:   0 % (1/51003 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  20 % (10226/51003 fotogramas) · 30 s · quedan ≈ 2 min
+  scenes:  40 % (20226/51003 fotogramas) · 61 s · quedan ≈ 2 min
