@@ -45,3 +45,28 @@ C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN s
     identity:  72 % (1457/2027 fotogramas (ropa)) · 129 min · quedan ≈ 51 min
     identity:  75 % (1513/2027 fotogramas (ropa)) · 131 min · quedan ≈ 45 min
     identity:  78 % (1573/2027 fotogramas (ropa)) · 133 min · quedan ≈ 38 min
+    identity:  79 % (1603/2027 fotogramas (ropa)) · 135 min · quedan ≈ 36 min
+    identity:  82 % (1663/2027 fotogramas (ropa)) · 137 min · quedan ≈ 30 min
+    identity:  84 % (1699/2027 fotogramas (ropa)) · 138 min · quedan ≈ 27 min
+    identity:  87 % (1759/2027 fotogramas (ropa)) · 140 min · quedan ≈ 21 min
+    identity:  89 % (1814/2027 fotogramas (ropa)) · 141 min · quedan ≈ 17 min
+    identity:  92 % (1874/2027 fotogramas (ropa)) · 142 min · quedan ≈ 12 min
+    identity:  93 % (1880/2027 fotogramas (ropa)) · 143 min · quedan ≈ 11 min
+    identity:  93 % (1882/2027 fotogramas (ropa)) · 144 min · quedan ≈ 11 min
+    identity:  94 % (1906/2027 fotogramas (ropa)) · 145 min · quedan ≈ 9 min
+    identity:  94 % (1912/2027 fotogramas (ropa)) · 146 min · quedan ≈ 9 min
+    identity:  95 % (1918/2027 fotogramas (ropa)) · 147 min · quedan ≈ 8 min
+    identity:  95 % (1924/2027 fotogramas (ropa)) · 147 min · quedan ≈ 8 min
+    identity:  95 % (1930/2027 fotogramas (ropa)) · 148 min · quedan ≈ 7 min
+    identity:  98 % (1977/2027 fotogramas (ropa)) · 148 min · quedan ≈ 4 min
+    identity: 100 % (2026/2027 fotogramas (ropa)) · 149 min · quedan ≈ 4 s
+    identity: 100 % (2027/2027 fotogramas (ropa)) · 149 min · quedan ≈ 0 s
+    ropa: 2027 fotogramas · leerlos 8902 s, medir la ropa 33 s
+    identidad: 324/342 planos · ropa y cambios de lado de acuerdo en 283, solo cambios de lado 14, solo ropa 18, la ropa corrige el marcador en 9, el saque visto en 0, dudosos 2 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 7.14
+  [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] identity terminada a las 17:36:04 en 149.4 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] {'listo': True, 'grupos': 2, 'clic_hecho': False, 'minutos': 149.8}
+
+Listos para el clic: 4 de 4 partidos.
+termina 2026-10-24T17:36:31

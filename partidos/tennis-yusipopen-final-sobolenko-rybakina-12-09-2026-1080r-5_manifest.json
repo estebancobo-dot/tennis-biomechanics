@@ -84,18 +84,37 @@
   "overlap_s": 1328.7
  },
  "identity": {
-  "fingerprint": "f4f3fb281121e2a3",
-  "version": "4",
-  "seconds": 58.3,
-  "finished": "2026-10-19 08:54:56",
+  "fingerprint": "374e55993e26fd86",
+  "version": "5",
+  "seconds": 8962.2,
+  "finished": "2026-10-24 17:36:04",
   "summary": {
    "runs": 342,
-   "votes": 195,
-   "confidence": 0.52,
-   "by_end_changes": 308,
-   "by_clothes": 0,
-   "conflicts": 0,
-   "decided": 308
+   "confidence": 0.96,
+   "votes": 294,
+   "agree": 283,
+   "ends_only": 14,
+   "clothes_only": 18,
+   "ends_won": 0,
+   "clothes_won": 9,
+   "doubtful": 2,
+   "none": 16,
+   "by_end_changes": 297,
+   "by_clothes": 310,
+   "conflicts": 2,
+   "conflicts_resolved": 9,
+   "decided": 324,
+   "clothes": {
+    "source": "ropa (torso y pantalón o falda, sin la pista)",
+    "runs": 342,
+    "clear": 312,
+    "margin_median": 0.76,
+    "separation": 7.14,
+    "far_pairs": 8,
+    "far_opposite": 0.38,
+    "same_game_pairs": 245,
+    "same_game_same": 0.98
+   }
   }
  },
  "candidates": {
