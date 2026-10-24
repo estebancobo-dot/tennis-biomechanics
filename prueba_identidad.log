@@ -48,3 +48,5 @@ C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN s
   sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
     identity:   0 % (1/1652 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
     identity:   1 % (24/1652 fotogramas (ropa)) · 4 min · quedan ≈ 278 min
+    identity:   5 % (84/1652 fotogramas (ropa)) · 8 min · quedan ≈ 147 min
+    identity:   9 % (144/1652 fotogramas (ropa)) · 12 min · quedan ≈ 121 min
