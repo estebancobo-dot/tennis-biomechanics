@@ -38,3 +38,17 @@
   [players] players:  45 % (3349/7403 fotogramas con jugadoras) · 4 min · quedan ≈ 5 min
   [players] players:  50 % (3726/7403 fotogramas con jugadoras) · 5 min · quedan ≈ 4 min
   [players] players:  55 % (4100/7403 fotogramas con jugadoras) · 5 min · quedan ≈ 4 min
+  [players] players:  61 % (4489/7403 fotogramas con jugadoras) · 6 min · quedan ≈ 4 min
+  [players] players:  66 % (4863/7403 fotogramas con jugadoras) · 6 min · quedan ≈ 3 min
+  [players] players:  71 % (5281/7403 fotogramas con jugadoras) · 7 min · quedan ≈ 3 min
+  [players] players:  78 % (5753/7403 fotogramas con jugadoras) · 7 min · quedan ≈ 2 min
+  [players] players:  83 % (6167/7403 fotogramas con jugadoras) · 8 min · quedan ≈ 2 min
+  [players] players:  89 % (6557/7403 fotogramas con jugadoras) · 8 min · quedan ≈ 62 s
+  [players] players:  94 % (6936/7403 fotogramas con jugadoras) · 9 min · quedan ≈ 34 s
+  [players] players:  99 % (7311/7403 fotogramas con jugadoras) · 9 min · quedan ≈ 7 s
+  [players] players: 100 % (7403/7403 fotogramas con jugadoras) · 9 min · quedan ≈ 0 s
+  [players] tiempo: 9.2 min para 7403 fotogramas a 960 px · modelo 7.4 min · leer vídeo y preparar la entrada 7.1 min en otro hilo (espera real 1.8 min) · apariencia 0.1 min en otro hilo
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] players terminada a las 18:45:44 en 9.3 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.1 de 12.3 min de juego
