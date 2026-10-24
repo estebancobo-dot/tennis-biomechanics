@@ -304,6 +304,27 @@ try { "arranque: $(Get-Date -Format s) (pid $PID)" | Set-Content "$Out\ciclo_arr
 # otro analisis en marcha (los .bat del usuario o una ejecucion anterior de este ciclo): no molestar
 $ocupado = Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" -ErrorAction SilentlyContinue |
     Where-Object { $_.ProcessId -ne $PID -and $_.CommandLine -match "prueba_rapida|analisis_completo|recalcular_medidas|solo_informe|ciclo_automatico|instalar" }
+# parada pedida por Claude (24-10): config/parar_pc.txt en GitHub con "id: N" nuevo corta el trabajo en marcha (un
+# trabajo largo que va mal, con codigo viejo, ya no espera a que el usuario reinicie el PC); se mira sin descargar
+# el codigo (git show del FETCH_HEAD), una vez por id (output\paradas_hechas.txt), y queda en output\paradas.log
+if ($ocupado) {
+    $ErrorActionPreference = "Continue"
+    git -C $RepoDir fetch -q origin $Rama 2>$null
+    if ($LASTEXITCODE -eq 0) {
+        $txt = (git -C $RepoDir show "FETCH_HEAD:config/parar_pc.txt" 2>$null) -join "`n"
+        if ($txt -match '(?m)^id:\s*(\d+)') {
+            $idp = $Matches[1]
+            $hechas = @(Get-Content "$Out\paradas_hechas.txt" -ErrorAction SilentlyContinue | ForEach-Object { "$_".Trim() })
+            if ($hechas -notcontains $idp) {
+                $idp | Add-Content "$Out\paradas_hechas.txt"
+                $pids = ($ocupado | ForEach-Object { $_.ProcessId }) -join ','
+                foreach ($o in $ocupado) { & taskkill.exe /T /F /PID $o.ProcessId 2>&1 | Out-Null }
+                "$(Get-Date -Format s) parada $idp pedida por Claude: cortados $pids" | Add-Content "$Out\paradas.log"
+                $ocupado = $null
+            }
+        }
+    }
+}
 if ($ocupado) { Senal-Vida "otro analisis en marcha ($(($ocupado | ForEach-Object { $_.ProcessId }) -join ','))" }
 
 Refrescar-Path
