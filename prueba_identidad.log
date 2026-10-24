@@ -189,3 +189,6 @@ C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN s
     identity:   3 % (45/1624 fotogramas (ropa)) · 74 min · quedan ≈ 2608 min
     identity:   3 % (48/1624 fotogramas (ropa)) · 81 min · quedan ≈ 2657 min
     identity:   3 % (54/1624 fotogramas (ropa)) · 88 min · quedan ≈ 2544 min
+    identity:   4 % (57/1624 fotogramas (ropa)) · 94 min · quedan ≈ 2587 min
+    identity:   4 % (60/1624 fotogramas (ropa)) · 101 min · quedan ≈ 2625 min
+    identity:   4 % (66/1624 fotogramas (ropa)) · 107 min · quedan ≈ 2532 min
