@@ -116,8 +116,8 @@
  "fine": {
   "fingerprint": "029ae6fb23820a8d",
   "version": "16",
-  "seconds": 318.7,
-  "finished": "2026-10-24 08:10:47",
+  "seconds": 348.9,
+  "finished": "2026-10-24 12:35:57",
   "summary": {
    "candidates": 154,
    "confirmed": 27,
@@ -134,16 +134,16 @@
      "sin_golpe": 14,
      "bola_no_vista": 3
     },
-    "seconds_in_gated_windows": 4.0
+    "seconds_in_gated_windows": 2.1
    },
    "seconds": {
-    "cuerdas_y_3d": 127.5,
-    "jugadora_lejana": 96.7,
-    "analisis_ventana": 19.5,
-    "pista_ventana": 11.8,
-    "cribado": 10.3,
+    "cuerdas_y_3d": 151.8,
+    "jugadora_lejana": 101.9,
+    "analisis_ventana": 21.1,
+    "pista_ventana": 15.3,
+    "cribado": 5.1,
     "recorte": 2.4,
-    "pose": 0.3,
+    "pose": 0.4,
     "bola_en_paralelo_cpu": 0,
     "espera_bola_en_paralelo": 0.0
    },
@@ -164,7 +164,7 @@
   "fingerprint": "e09519ed337da562",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-10-24 08:10:47",
+  "finished": "2026-10-24 12:35:57",
   "summary": {
    "enabled": false
   }
@@ -172,8 +172,8 @@
  "fine_doubtful": {
   "fingerprint": "9aa2c9daaf5c40a6",
   "version": "1",
-  "seconds": 37.3,
-  "finished": "2026-10-24 08:11:24",
+  "seconds": 34.5,
+  "finished": "2026-10-24 12:36:31",
   "summary": {
    "candidates": 43,
    "confirmed": 1,
@@ -189,15 +189,15 @@
      "sin_golpe": 2,
      "golpe_de_bola": 5
     },
-    "seconds_in_gated_windows": 0.3
+    "seconds_in_gated_windows": 0.4
    },
    "seconds": {
-    "jugadora_lejana": 19.7,
-    "analisis_ventana": 2.6,
-    "pista_ventana": 1.8,
-    "cribado": 0.9,
-    "recorte": 0.3,
-    "pose": 0.0,
+    "jugadora_lejana": 14.1,
+    "pista_ventana": 5.4,
+    "analisis_ventana": 2.9,
+    "cribado": 1.2,
+    "recorte": 0.4,
+    "pose": 0.1,
     "bola_en_paralelo_cpu": 0,
     "espera_bola_en_paralelo": 0.0
    },
@@ -234,8 +234,8 @@
  "views_link": {
   "fingerprint": "f4b1726dd36f9f57",
   "version": "1",
-  "seconds": 0.7,
-  "finished": "2026-10-24 08:11:25",
+  "seconds": 0.3,
+  "finished": "2026-10-24 12:36:31",
   "summary": {
    "strokes": 27,
    "with_replay": 13,
