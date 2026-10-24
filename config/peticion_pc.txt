@@ -21,6 +21,9 @@ accion: identidad
 id: 45
 accion: identidad
 ---
+id: 47
+accion: ventana
+---
 id: 43
 accion: entreno
 partidos: 16
