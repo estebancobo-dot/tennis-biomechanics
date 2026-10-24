@@ -226,3 +226,26 @@ def test_a_window_engine_that_never_answers_cannot_hang_the_check(scene, tmp_pat
     t0 = time.time()
     out = C.live_window(scene.app, tmp_path, timeout_s=2)
     assert time.time() - t0 < 10 and "sin respuesta en 2 s" in out["error"] and not out["ready"]
+
+
+
+def test_watch_records_a_stuck_call_with_every_thread(tmp_path):
+    import threading
+    import time
+
+    from tennisbio.app.window import Watch
+
+    class Fake:
+        def slow(self):
+            time.sleep(1.0)
+            return 1
+
+    w = Watch(tmp_path / "app_registro.log", slow_s=0.3)
+    api = Fake()
+    w.wrap(api)
+    stop = threading.Event()
+    threading.Thread(target=w.watch, args=(stop, 0.1), daemon=True).start()
+    assert api.slow() == 1
+    stop.set()
+    txt = (tmp_path / "app_registro.log").read_text(encoding="utf-8")
+    assert "BLOQUEO: slow" in txt and "test_watch_records" in txt          # the stack of the stuck call

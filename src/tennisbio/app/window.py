@@ -2,8 +2,8 @@
 index, in a window of its own. It uses WebView2, the web engine Windows 11 already has (pywebview, free):
 no server and no open port, the page talks to the core through `Api` (pywebview's js_api).
 
-The queue runs in a thread of the same program while the window is open; a job cut by closing the window
-resumes at the next start (jobs.recover). Without the window engine (pywebview missing or failing) the
+The queue runs in a process of its own while the program is open (a long analysis never freezes the window);
+a job cut by closing the program resumes at the next start (jobs.recover). Without the window engine (pywebview missing or failing) the
 screens open read-only in the system browser and every analysis web opens there too (§5.4)."""
 import json
 import os
@@ -265,19 +265,36 @@ class Api:
         return getattr(self, "mobile_progress", None)
 
 
-def worker(cfg: dict, stop: threading.Event, idle_s: float = 30.0, tray=None):
-    """The queue, in the background while the program runs (its own connection to the index): one job at a
-    time, the disk guard before each, the Windows notifications after, the tray label kept current."""
+def worker(cfg: dict, stop: threading.Event, idle_s: float = 30.0, tray=None, log=None):
+    """The queue while the program runs: the jobs run in a process of their own (`tennisbio app work`, 24-10:
+    run in a thread of the window's process, a long analysis left the window frozen), started when there is a
+    job that can run now; this thread only sends the Windows notifications and keeps the tray label current.
+    Closing the program stops the job (jobs.recover resumes it at the next start)."""
+    import subprocess
     app = App(cfg)
+    child = None
     try:
         while not stop.is_set():
-            ran = jobs.work(app.db, app.paths, app.engine, cfg, once=True, max_jobs=1, stop=stop.is_set)
+            if (child is None or child.poll() is not None) and jobs.next_job(app.db) is not None:
+                out = open(app.paths.output / "app_cola.log", "a", encoding="utf-8")
+                out.write(f"\n== {time.strftime('%Y-%m-%d %H:%M:%S')} cola\n")
+                out.flush()
+                flags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
+                child = subprocess.Popen([sys.executable, "-c", "import sys; from tennisbio.cli import main; "
+                                          "sys.exit(main(['app', 'work']))"], stdout=out, stderr=subprocess.STDOUT,
+                                         creationflags=flags)
+                if log:
+                    log(f"cola: trabajo en otro proceso (pid {child.pid})")
             notify.send_pending(app.db)
             if tray is not None:
                 tray.update(tray_text(app))
-            if not ran:
-                stop.wait(idle_s)
+            stop.wait(idle_s if child is None or child.poll() is not None else 10.0)
     finally:
+        if child is not None and child.poll() is None:
+            if os.name == "nt":
+                subprocess.run(["taskkill", "/T", "/F", "/PID", str(child.pid)], capture_output=True)
+            else:
+                child.terminate()
         app.close()
 
 
@@ -376,14 +393,81 @@ def already_open(app) -> bool:
     return False
 
 
+class Watch:
+    """The program's own record (<output>/app_registro.log, uploaded with the PC logs: nobody copies anything):
+    each start step with its time, every call of the page that takes long, and the state of every thread
+    when one is still running after `slow_s` (where the window is stuck, 24-10 «se queda colgada»)."""
+
+    def __init__(self, f: Path, slow_s: float = 20.0):
+        self.f, self.slow_s, self.t0 = f, slow_s, time.time()
+        self.calls: dict[int, tuple[str, float]] = {}
+        self.dumped: set[int] = set()
+        self.n = 0
+        self.lock = threading.Lock()
+        try:
+            f.parent.mkdir(parents=True, exist_ok=True)
+            if f.exists() and f.stat().st_size > 2e6:          # bounded: the last runs only
+                f.replace(f.with_suffix(".anterior.log"))
+        except OSError:
+            pass
+
+    def log(self, msg: str):
+        try:
+            with self.lock, open(self.f, "a", encoding="utf-8") as fh:
+                fh.write(f"{time.strftime('%Y-%m-%d %H:%M:%S')} (+{time.time() - self.t0:.1f} s) {msg}\n")
+        except OSError:
+            pass
+
+    def wrap(self, api):
+        """Every public method of the Api timed (the page's calls)."""
+        for name in [n for n in dir(type(api)) if not n.startswith("_") and callable(getattr(type(api), n))]:
+            fn = getattr(api, name)
+
+            def timed(*a, _fn=fn, _name=name, **k):
+                with self.lock:
+                    self.n += 1
+                    cid = self.n
+                    self.calls[cid] = (_name, time.time())
+                t = time.time()
+                try:
+                    return _fn(*a, **k)
+                finally:
+                    with self.lock:
+                        self.calls.pop(cid, None)
+                    if time.time() - t > 3:
+                        self.log(f"llamada lenta: {_name} {time.time() - t:.1f} s")
+            setattr(api, name, timed)
+
+    def watch(self, stop: threading.Event, every: float = 5.0):
+        import faulthandler
+        while not stop.wait(every):
+            with self.lock:
+                slow = [(cid, n, time.time() - t) for cid, (n, t) in self.calls.items() if time.time() - t > self.slow_s]
+            for cid, n, dt in slow:
+                if cid in self.dumped:
+                    continue
+                self.dumped.add(cid)
+                self.log(f"BLOQUEO: {n} lleva {dt:.0f} s; estado de cada hilo:")
+                try:
+                    with open(self.f, "a", encoding="utf-8") as fh:
+                        faulthandler.dump_traceback(file=fh, all_threads=True)
+                except OSError:
+                    pass
+
+
 def run(cfg: dict, with_queue: bool = True) -> int:
+    out = Path((cfg.get("paths") or {}).get("output") or "output")
+    watch = Watch(out / "app_registro.log")
+    watch.log(f"arranque (pid {os.getpid()})")
     app = App(cfg)
+    watch.log("índice listo")
     if already_open(app):
         notify.show("Tennisbio ya está abierto", "Está junto al reloj: pulsa el icono TB para abrir la ventana.")
         print("Tennisbio ya está abierto (icono junto al reloj).")
         app.close()
         return 0
     page = write_page(app, with_storage=False)
+    watch.log("página escrita")
     try:
         import webview
     except ImportError:
@@ -392,6 +476,8 @@ def run(cfg: dict, with_queue: bool = True) -> int:
         return fallback(app, page, "falta el motor de la ventana (pywebview)")
     stop = threading.Event()
     api = Api(app)
+    watch.wrap(api)
+    threading.Thread(target=watch.watch, args=(stop,), name="vigilancia", daemon=True).start()
     try:
         api.window = webview.create_window("Tennisbio", url=str(page), js_api=api, width=1360, height=900, min_size=(900, 600))
         tray = None
@@ -402,10 +488,14 @@ def run(cfg: dict, with_queue: bool = True) -> int:
         except Exception as e:                   # noqa: BLE001 — without the icon, closing the window stops the queue
             print(f"Sin icono junto al reloj: {e}")
         if with_queue:
-            threading.Thread(target=worker, args=(cfg, stop), kwargs={"tray": tray}, name="cola", daemon=True).start()
+            threading.Thread(target=worker, args=(cfg, stop), kwargs={"tray": tray, "log": watch.log}, name="cola",
+                             daemon=True).start()
+        watch.log("ventana abierta")
         webview.start()
+        watch.log("ventana cerrada")
     except Exception as e:                       # noqa: BLE001 — no WebView2 runtime, no display…
         stop.set()
+        watch.log(f"la ventana no arrancó: {type(e).__name__}: {e}")
         return fallback(app, page, f"la ventana no arrancó ({type(e).__name__}: {e})")
     finally:
         stop.set()
