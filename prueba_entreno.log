@@ -219,3 +219,10 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   bola: 1.9 de 9.0 min de juego
   bola: 3.4 de 9.0 min de juego
   bola: 6.2 de 9.0 min de juego
+  bola: 8.0 de 9.0 min de juego
+  bola: 9.0 de 9.0 min de juego
+[20190818-W-Cincinnati-F-Madison_Keys-Svetlana_Kuznetsova] 268 golpes anotados, 13267 fotogramas → 20190818-W-Cincinnati-F-Madison_Keys-Svetlana_Kuznetsova.npz
+
+[20210815-W-Montreal-F-Karolina_Pliskova-Camila_Giorgi] (train) 90 puntos en 71 tramos
+  Y4aQrXhbknU: vídeo descargado (570 MB)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
