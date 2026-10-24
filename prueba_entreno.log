@@ -137,3 +137,31 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   [players] players:   7 % (782/11533 fotogramas con jugadoras) · 60 s · quedan ≈ 14 min
   [players] players:  10 % (1204/11533 fotogramas con jugadoras) · 2 min · quedan ≈ 13 min
   [players] players:  14 % (1614/11533 fotogramas con jugadoras) · 2 min · quedan ≈ 12 min
+  [players] players:  17 % (2009/11533 fotogramas con jugadoras) · 3 min · quedan ≈ 12 min
+  [players] players:  21 % (2385/11533 fotogramas con jugadoras) · 3 min · quedan ≈ 12 min
+  [players] players:  24 % (2799/11533 fotogramas con jugadoras) · 4 min · quedan ≈ 11 min
+  [players] players:  28 % (3213/11533 fotogramas con jugadoras) · 4 min · quedan ≈ 10 min
+  [players] players:  31 % (3631/11533 fotogramas con jugadoras) · 5 min · quedan ≈ 10 min
+  [players] players:  35 % (4024/11533 fotogramas con jugadoras) · 5 min · quedan ≈ 9 min
+  [players] players:  38 % (4422/11533 fotogramas con jugadoras) · 6 min · quedan ≈ 9 min
+  [players] players:  42 % (4835/11533 fotogramas con jugadoras) · 6 min · quedan ≈ 8 min
+  [players] players:  46 % (5250/11533 fotogramas con jugadoras) · 7 min · quedan ≈ 8 min
+  [players] players:  49 % (5654/11533 fotogramas con jugadoras) · 7 min · quedan ≈ 7 min
+  [players] players:  53 % (6077/11533 fotogramas con jugadoras) · 8 min · quedan ≈ 7 min
+  [players] players:  56 % (6476/11533 fotogramas con jugadoras) · 8 min · quedan ≈ 6 min
+  [players] players:  60 % (6865/11533 fotogramas con jugadoras) · 9 min · quedan ≈ 6 min
+  [players] players:  63 % (7294/11533 fotogramas con jugadoras) · 9 min · quedan ≈ 5 min
+  [players] players:  67 % (7731/11533 fotogramas con jugadoras) · 10 min · quedan ≈ 5 min
+  [players] players:  71 % (8163/11533 fotogramas con jugadoras) · 10 min · quedan ≈ 4 min
+  [players] players:  75 % (8669/11533 fotogramas con jugadoras) · 11 min · quedan ≈ 3 min
+  [players] players:  79 % (9163/11533 fotogramas con jugadoras) · 11 min · quedan ≈ 3 min
+  [players] players:  84 % (9677/11533 fotogramas con jugadoras) · 12 min · quedan ≈ 2 min
+  [players] players:  88 % (10182/11533 fotogramas con jugadoras) · 12 min · quedan ≈ 2 min
+  [players] players:  93 % (10692/11533 fotogramas con jugadoras) · 13 min · quedan ≈ 59 s
+  [players] players:  97 % (11192/11533 fotogramas con jugadoras) · 13 min · quedan ≈ 24 s
+  [players] players: 100 % (11533/11533 fotogramas con jugadoras) · 13 min · quedan ≈ 0 s
+  [players] tiempo: 13.4 min para 11533 fotogramas a 960 px · modelo 11.7 min · leer vídeo y preparar la entrada 8.9 min en otro hilo (espera real 1.7 min) · apariencia 0.2 min en otro hilo
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] players terminada a las 22:14:44 en 13.4 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.1 de 19.2 min de juego
