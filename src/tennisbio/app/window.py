@@ -145,12 +145,12 @@ class Api:
                                   + base64.b64encode(Path(p["path"]).read_bytes()).decode()} for p in ph]}
 
     def identity_pick(self, match_id: str, t: float) -> str:
+        """Only saves the click (24-10): the strokes are redone in the final pass of the 4 matches, with the
+        trained detector; redoing them now would keep the PC busy for hours with the old one."""
         from . import identity_click as ic
         with self.lock:
             ic.save_pick(self.app.engine.dir(match_id), t, True)
-            m = self.app.db.one("SELECT player FROM matches WHERE id=?", match_id)
-            jobs.enqueue(self.app.db, "partido", match=match_id, player=(m or {}).get("player"), reason="identidad elegida por ti")
-        return "Guardado. Se rehacen solo los golpes de este partido con ella bien identificada (el resto está en caché)."
+        return "Guardado. Se usará en el análisis definitivo de este partido; no hace falta nada más."
 
     def archive(self, match_id: str) -> str:
         self.app.db.x("UPDATE matches SET state='archivado', note='Archivado por ti: sale de las listas, no se borra nada.' WHERE id=?",

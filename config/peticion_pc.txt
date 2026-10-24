@@ -2,7 +2,6 @@ id: 39
 accion: entreno
 partidos: 16
 horas: 14
-fps: 25
 ---
 id: 40
 accion: diag
@@ -28,6 +27,12 @@ id: 43
 accion: entreno
 partidos: 16
 horas: 14
+bola: si
+---
+id: 48
+accion: entreno
+partidos: 16
+horas: 16
 bola: si
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
 # Cola: se pueden poner varias peticiones seguidas, separadas por una linea con solo "---"; cada bloque
