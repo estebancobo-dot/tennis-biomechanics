@@ -1,1 +1,16 @@
 ﻿Peticion 45: preparar el clic de identidad (2026-10-24T15:05:55)
+[us-open-2026-r4-naomi-osaka-elena-rybakina] pasada barata hasta la identidad
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[us-open-2026-r4-naomi-osaka-elena-rybakina] {'listo': True, 'grupos': 2, 'clic_hecho': False, 'minutos': 0.0}
+[zheng-qinwen-elena-rybakina] pasada barata hasta la identidad
+[zheng-qinwen-elena-rybakina] {'listo': True, 'grupos': 2, 'clic_hecho': False, 'minutos': 0.3}
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] pasada barata hasta la identidad
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] {'listo': True, 'grupos': 2, 'clic_hecho': False, 'minutos': 0.3}
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] pasada barata hasta la identidad
+  [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] identity… (2026-10-24 15:06:42, etapa 7 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+    identity:   0 % (1/2027 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+    identity:   0 % (6/2027 fotogramas (ropa)) · 6 min · quedan ≈ 2004 min
+    identity:   2 % (42/2027 fotogramas (ropa)) · 12 min · quedan ≈ 566 min
