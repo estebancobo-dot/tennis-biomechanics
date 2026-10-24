@@ -57,3 +57,18 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   bola: 7.8 de 12.3 min de juego
   bola: 10.7 de 12.3 min de juego
   bola: 12.3 de 12.3 min de juego
+[20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin] 287 golpes anotados, 13392 fotogramas → 20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin.npz
+
+[20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina] (test) 85 puntos en 79 tramos
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 10/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 20/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 30/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 40/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 50/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 60/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 70/79 tramos descargados
+  no se pudo descargar qCB2kFtHd3c 4094-4111 s: ERROR: ffmpeg exited with code 4294967274
+  no se pudo descargar qCB2kFtHd3c 4166-4180 s: ERROR: ffmpeg exited with code 4294967274
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.1 de 7.2 min de juego
