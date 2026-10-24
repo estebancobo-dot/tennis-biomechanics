@@ -51,6 +51,12 @@ class Api:
         self.window = None
         self.lock = threading.RLock()
 
+    def toggle_fullscreen(self) -> bool:
+        """F11 in the window: full screen on and off."""
+        if self.window is not None:
+            self.window.toggle_fullscreen()
+        return True
+
     # reading
     def state(self, full: bool = False) -> dict:
         with self.lock:
@@ -265,15 +271,23 @@ class Api:
         return getattr(self, "mobile_progress", None)
 
 
-def worker(cfg: dict, stop: threading.Event, idle_s: float = 30.0, tray=None, log=None):
+def worker(cfg: dict, stop: threading.Event, idle_s: float = 30.0, tray=None, log=None, in_process: bool = False):
     """The queue while the program runs: the jobs run in a process of their own (`tennisbio app work`, 24-10:
     run in a thread of the window's process, a long analysis left the window frozen), started when there is a
     job that can run now; this thread only sends the Windows notifications and keeps the tray label current.
-    Closing the program stops the job (jobs.recover resumes it at the next start)."""
+    Closing the program stops the job (jobs.recover resumes it at the next start). in_process: the jobs in this
+    thread, as before (tests with a fake engine)."""
     import subprocess
     app = App(cfg)
     child = None
     try:
+        while in_process and not stop.is_set():
+            ran = jobs.work(app.db, app.paths, app.engine, cfg, once=True, max_jobs=1, stop=stop.is_set)
+            notify.send_pending(app.db)
+            if tray is not None:
+                tray.update(tray_text(app))
+            if not ran:
+                stop.wait(idle_s)
         while not stop.is_set():
             if (child is None or child.poll() is not None) and jobs.next_job(app.db) is not None:
                 out = open(app.paths.output / "app_cola.log", "a", encoding="utf-8")
@@ -479,7 +493,11 @@ def run(cfg: dict, with_queue: bool = True) -> int:
     watch.wrap(api)
     threading.Thread(target=watch.watch, args=(stop,), name="vigilancia", daemon=True).start()
     try:
-        api.window = webview.create_window("Tennisbio", url=str(page), js_api=api, width=1360, height=900, min_size=(900, 600))
+        try:                                     # maximized from the start (24-10); F11 toggles full screen
+            api.window = webview.create_window("Tennisbio", url=str(page), js_api=api, width=1360, height=900,
+                                               min_size=(900, 600), maximized=True)
+        except TypeError:                        # an older pywebview without `maximized`
+            api.window = webview.create_window("Tennisbio", url=str(page), js_api=api, width=1360, height=900, min_size=(900, 600))
         tray = None
         try:
             tray = Tray(app, api.window, stop)

@@ -332,6 +332,24 @@ if ($ocupado) {
         }
     }
 }
+# arreglos solo de la aplicacion (src\tennisbio\app\ y docs\) tambien con un trabajo largo en marcha (24-10: la
+# ventana colgada tuvo que esperar a que acabara un trabajo de horas): el trabajo en marcha no usa esos ficheros, y
+# la aplicacion los lee al abrirse. Cualquier otro cambio espera, como siempre, a que el PC quede libre.
+if ($ocupado) {
+    $ErrorActionPreference = "Continue"
+    $h = (git -C $RepoDir rev-parse HEAD).Trim()
+    $f = (git -C $RepoDir rev-parse FETCH_HEAD 2>$null)
+    if ($f) { $f = "$f".Trim() }
+    if ($f -and $h -ne $f) {
+        $files = @(git -C $RepoDir diff --name-only $h $f)
+        $otros = @($files | Where-Object { $_ -and $_ -notmatch '^(src/tennisbio/app/|docs/)' })
+        if ($files.Count -and -not $otros.Count) {
+            git -C $RepoDir merge -q --ff-only $f 2>&1 | Out-Null
+            "$(Get-Date -Format s) solo la aplicacion al dia ($($h.Substring(0,7)) -> $($f.Substring(0,7))) con un trabajo en marcha" |
+                Add-Content "$Out\ciclo_arranque.txt"
+        }
+    }
+}
 if ($ocupado) { Senal-Vida "otro analisis en marcha ($(($ocupado | ForEach-Object { $_.ProcessId }) -join ','))" }
 
 Refrescar-Path

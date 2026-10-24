@@ -40,13 +40,55 @@ def _version() -> str:
         return v
 
 
+# words of the video file names (often transliterated from Russian broadcasts): what they mean (24-10, the user
+# saw «tennis yusipopen polufinal gauff rybakina 10 09 2026 1080r 5» as a match name)
+_WORDS = {"yusipopen": "US Open", "yusopen": "US Open", "usopen": "US Open", "us-open": "US Open", "avstralien": "Australian Open",
+          "uimbldon": "Wimbledon", "vimbldon": "Wimbledon", "rolan": "Roland Garros", "polufinal": "semifinal",
+          "chetvertfinal": "cuartos", "final": "final", "r4": "octavos", "r3": "3.ª ronda", "r2": "2.ª ronda", "r1": "1.ª ronda",
+          "sf": "semifinal", "qf": "cuartos", "sobolenko": "Sabalenka", "sabalenka": "Sabalenka", "gauff": "Gauff",
+          "rybakina": "Rybakina", "rybakin": "Rybakina", "osaka": "Osaka", "zheng": "Zheng", "qinwen": "Qinwen", "swiatek": "Świątek",
+          "svyontek": "Świątek"}
+_DROP = re.compile(r"^(tennis|tenis|\d{3,4}r?|\d{3,4}p|hd|fhd|full|match|elena|naomi|aryna|coco|\d)$")
+
+
+def readable(name: str) -> str:
+    """«US Open 2026 · semifinal · Gauff – Rybakina» from a file or folder name, as well as it can."""
+    name = re.sub(r"^(smoke|poc\w*):", "", name).replace("smoke_", "")
+    date = re.search(r"(\d{1,2})[-_.](\d{1,2})[-_.](20\d\d)", name)
+    year = date.group(3) if date else (re.search(r"(20\d\d)", name).group(1) if re.search(r"(20\d\d)", name) else "")
+    if date:
+        name = name.replace(date.group(0), " ")
+    low = re.sub(r"us[-_ ]open", "usopen", name.lower())
+    low = re.sub(r"zheng[-_ ]qinwen", "zheng", low)                       # one player, two words
+    words = [w for w in re.split(r"[-_\s.]+", low) if w and w != year]
+    tour, rnd, people, other = "", "", [], []
+    for w in words:
+        if _DROP.match(w):
+            continue
+        v = _WORDS.get(w)
+        if v in ("US Open", "Australian Open", "Wimbledon", "Roland Garros"):
+            tour = tour or v
+        elif v in ("semifinal", "cuartos", "final", "octavos", "3.ª ronda", "2.ª ronda", "1.ª ronda"):
+            rnd = rnd or v
+        elif v:
+            if v not in people:
+                people.append(v)
+        elif w not in ("open", "us", "wta", "atp", "women", "w", "m"):
+            other.append(w.capitalize())
+    if not people:
+        people = other[:2]
+    head = " ".join(x for x in (tour, year) if x)
+    parts = [x for x in (head, rnd, " – ".join(people)) if x]
+    return " · ".join(parts)[:60] or name[:48]
+
+
 def match_label(m: dict) -> str:
-    """«US Open 2024 · F» from its data; the folder name when it has none."""
+    """«US Open 2024 · F» from its data; else a readable name made from the folder name."""
     t = " ".join(x for x in (m.get("tournament") or "", (m.get("date") or "")[:4]) if x)
     if t and m.get("round"):
         t += f" · {m['round']}"
     if not t:
-        t = re.sub(r"^(smoke|poc\w*):", "", m["id"]).replace("smoke_", "").replace("-", " ")[:48]
+        t = readable(m["id"])
     return t
 
 

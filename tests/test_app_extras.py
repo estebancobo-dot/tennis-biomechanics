@@ -131,7 +131,7 @@ def test_background_loop_runs_jobs_notifies_and_updates_the_icon(env, monkeypatc
     monkeypatch.setattr(notify, "show", lambda t, x: shown.append(t) or True)
     tray = type("Tray", (), {"update": lambda self, t: labels.append(t)})()
     stop = threading.Event()
-    th = threading.Thread(target=window.worker, args=(env.cfg, stop), kwargs={"idle_s": 0.2, "tray": tray}, daemon=True)
+    th = threading.Thread(target=window.worker, args=(env.cfg, stop), kwargs={"idle_s": 0.2, "tray": tray, "in_process": True}, daemon=True)
     th.start()
     for _ in range(100):
         if labels and labels[-1] == "Tennisbio · todo al día":

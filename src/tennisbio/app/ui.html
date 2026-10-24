@@ -749,18 +749,22 @@ body.web .webview { height: 100vh; }
     }).catch(function () {});
   }
   R.partidos = function () {
-    var M = S.matches || [], tot = M.reduce(function (s, m) { return s + (m.video_gb || 0); }, 0);
+    // the user's matches first; the automatic cycle's test runs folded apart (24-10: they filled the screen)
+    var ALL = S.matches || [], M = ALL.filter(function (m) { return !m.test_run; }), T = ALL.filter(function (m) { return m.test_run; });
+    var tot = M.reduce(function (s, m) { return s + (m.video_gb || 0); }, 0);
     var h = '<div class="head"><div><h1>Partidos</h1><p class="sub">' + M.length + (M.length === 1 ? " partido" : " partidos") + ' · <span class="mono">' + n1(tot) + ' GB</span> de vídeo</p></div><button class="btn pri" data-open="add"><svg><use href="#i-plus"/></svg>Añadir partido</button></div>';
     h += '<div class="drop" data-open="add" role="button" tabindex="0"><div><svg><use href="#i-upload"/></svg><span>Añade el vídeo de un partido completo</span></div><span class="btn sm">Elegir vídeo</span></div>';
     h += '<div class="legend"><span><i class="dot done"></i>hecho</span><span><i class="dot run"></i>en curso</span><span><i class="dot"></i>pendiente</span><span><i class="dot warn"></i>con aviso</span><span><i class="dot err"></i>error</span><span><i class="dot skip"></i>excluido</span></div>';
-    h += '<div class="panel" style="padding:0">' + (M.length ? M.map(function (m) {
+    var row = function (m) {
       var stx = m.running ? "En curso" + (m.progress ? " · " + Math.round(m.progress.porcentaje || 0) + " %" : "") : m.error ? "Error: " + m.error.slice(0, 60) : m.state.charAt(0).toUpperCase() + m.state.slice(1);
       return '<a class="match' + (m.state === "excluido" || m.state === "sin la jugadora" || m.state === "archivado" ? " excl" : "") + '" href="#partido/' + encodeURIComponent(m.id) + '">' +
         '<span class="mini"><svg viewBox="0 0 160 82" preserveAspectRatio="xMidYMid slice"><use href="#' + ({ hierba: "t-grass", "tierra batida": "t-clay" }[m.surface] || "t-court") + '"/></svg></span>' +
         '<span><span class="t">' + esc(m.label) + '</span><br><span class="s">' + esc([m.players, m.surface, dur(m.duration_min)].filter(Boolean).join(" · ")) + "</span>" + (m.test_run ? '<br><span class="tagline">prueba del ciclo automático</span>' : "") + "</span>" +
         '<span class="size">' + (m.video_gb ? n1(m.video_gb) + " GB" : "") + '</span><span class="go dim3">›</span>' +
         '<span class="stat">' + dots(m) + st(m.running ? "en curso" : m.error ? "pendiente de revisar" : m.state, stx) + (m.note ? '<span class="dim3 sm">' + esc(m.note) + "</span>" : "") + "</span></a>";
-    }).join("") : '<div class="empty"><b>Todavía no hay partidos</b>Pulsa «Añadir partido» y elige el vídeo de una retransmisión completa.</div>') + "</div>";
+    };
+    h += '<div class="panel" style="padding:0">' + (M.length ? M.map(row).join("") : '<div class="empty"><b>Todavía no hay partidos</b>Pulsa «Añadir partido» y elige el vídeo de una retransmisión completa.</div>') + "</div>";
+    if (T.length) h += '<details class="panel" style="padding:0;margin-top:14px"><summary style="padding:12px 16px;cursor:pointer" class="dim">Pruebas del ciclo automático (' + T.length + ') · las mantiene el PC, no hace falta tocarlas</summary>' + T.map(row).join("") + "</details>";
     return h;
   };
   R.partido = function (arg) {
@@ -965,14 +969,22 @@ body.web .webview { height: 100vh; }
     $("#updated").textContent = "actualizado " + (S.generated || "").slice(11, 16);
   }
   window.addEventListener("hashchange", route);
+  // one request at a time, and the screen redrawn only when something changed (24-10: with the PC busy a state
+  // took longer than the 4 s between requests; they piled up and every redraw froze the window for a moment)
+  var BUSY = false, LAST = "";
   function refresh(force) {
-    if (!LIVE) return;
+    if (!LIVE || (BUSY && !force)) return;
+    BUSY = true;
     call("state").then(function (d) {
+      BUSY = false;
+      var key = JSON.stringify(Object.assign({}, d, { generated: "" }));
+      if (!force && key === LAST) return;
+      LAST = key;
       var stor = S.storage; S = d; if (stor && !S.storage) S.storage = stor;
       if (force || !document.querySelector(".modal.on")) paint();
-    }).catch(function () {});
+    }).catch(function () { BUSY = false; });
   }
-  setInterval(function () { refresh(false); }, 4000);
+  setInterval(function () { refresh(false); }, 8000);
 
   /* ---------- actions ---------- */
   function done(msg) { return function (r) { toast(typeof r === "string" && r ? r : msg); refresh(true); }; }
@@ -1027,6 +1039,7 @@ body.web .webview { height: 100vh; }
   document.addEventListener("keydown", function (e) {
     if (e.key === "Escape") closeDlg();
     if ((e.key === "Enter" || e.key === " ") && e.target.matches(".drop[data-open], .bigdrop")) { e.preventDefault(); e.target.click(); }
+    if (e.key === "F11" && window.pywebview && window.pywebview.api && window.pywebview.api.toggle_fullscreen) { e.preventDefault(); window.pywebview.api.toggle_fullscreen(); }
   });
 
   /* ---------- dialogs ---------- */
