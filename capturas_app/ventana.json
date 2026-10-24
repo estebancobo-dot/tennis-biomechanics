@@ -1,9 +1,9 @@
 {
  "problems": [],
- "screens": 24,
+ "screens": 36,
  "engine": {
   "pywebview": true,
-  "webview2": "155.0.4283.60",
+  "webview2": "155.0.4283.62",
   "bandeja": true,
   "avisos": {
    "ok": true,
@@ -13,15 +13,15 @@
  "live": {
   "opened": true,
   "ready": true,
-  "bridge": "0.0.1 · 63f0e32 · 2 partidos",
+  "bridge": "0.0.1 · 26dd4ae · 8 partidos",
   "step": "hecho"
  },
  "backup": {
-  "ficheros": 1423,
-  "bytes": 3266292809
+  "ficheros": 4173,
+  "bytes": 20089882275
  },
  "index": {
-  "matches": 2,
+  "matches": 8,
   "players": 2,
   "analyses": 0,
   "jobs_pending": 0,
