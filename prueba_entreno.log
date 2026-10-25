@@ -87,3 +87,11 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   bola: 4.6 de 10.7 min de juego
   bola: 7.0 de 10.7 min de juego
   bola: 9.3 de 10.7 min de juego
+  bola: 10.7 de 10.7 min de juego
+[20200911-M-US_Open-SF-Dominic_Thiem-Daniil_Medvedev] 324 golpes anotados, 15630 fotogramas → 20200911-M-US_Open-SF-Dominic_Thiem-Daniil_Medvedev.npz
+
+[20210216-M-Australian_Open-QF-Novak_Djokovic-Alexander_Zverev] (train) 90 puntos en 83 tramos
+  QVw6bS-GwgU: vídeo descargado (691 MB)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.2 de 12.0 min de juego
