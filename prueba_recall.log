@@ -776,3 +776,4 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   fine_doubtful:  67 % (8/12 golpes candidatos · 1 confirmados · 1 ventanas descartadas sin pose) · 2 min · quedan ≈ 48 s
   ventana w001082350_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
   ventana w001082350_3600: pose hybrid en 89 de 89 fotogramas (14 s; modelo 14 s; pies en 7) · bola 7 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 218 px (segments)
+  ventana w001136500_5900 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.2 s
