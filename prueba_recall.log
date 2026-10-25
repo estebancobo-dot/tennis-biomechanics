@@ -17,3 +17,102 @@
   [score] score:  57 % (108/191 muestras · 99 lecturas · 86 OCR) · 2 min · quedan ≈ 2 min
   [score] score:  69 % (131/191 muestras · 122 lecturas · 106 OCR) · 3 min · quedan ≈ 71 s
   [score] score:  83 % (158/191 muestras · 149 lecturas · 125 OCR) · 3 min · quedan ≈ 39 s
+  [score] score:  94 % (180/191 muestras · 171 lecturas · 143 OCR) · 4 min · quedan ≈ 13 s
+  [score] score: 100 % (191/191 muestras · 182 lecturas · 152 OCR) · 4 min · quedan ≈ 0 s
+  [score] marcador: 191 muestras en juego, 153 OCR (183 lecturas)
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] score terminada a las 19:10:28 en 3.8 min
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] identity… (2026-10-25 19:10:28, etapa 7 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  identity:   0 % (1/594 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+  identity:  30 % (180/594 fotogramas (ropa)) · 32 s · quedan ≈ 73 s
+  identity:  89 % (528/594 fotogramas (ropa)) · 62 s · quedan ≈ 8 s
+  identity: 100 % (594/594 fotogramas (ropa)) · 64 s · quedan ≈ 0 s
+  ropa: 594 fotogramas · leerlos 61 s, medir la ropa 3 s
+  identidad: 99/99 planos · ropa y cambios de lado de acuerdo en 0, solo cambios de lado 99, solo ropa 0, la ropa corrige el marcador en 0, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 4.42
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] identity terminada a las 19:11:50 en 1.4 min
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] spotting… (2026-10-25 19:11:50, etapa 8 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  detector entrenado: 287 golpes (141 cercanos, 146 lejanos) en 22 min de vídeo · umbral 0.1 · 38 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] spotting terminada a las 19:12:29 en 38 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] candidates… (2026-10-25 19:12:29, etapa 9 de 14)
+  identidad con el clic: {'pick': 'aplicado', 'her_cluster': 1, 'changed': 30, 'by_click': 99}
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  candidatos del detector entrenado: 275 (140 lejanos; 12 en repeticiones, fuera)
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] candidates terminada a las 19:12:30 en 2 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] views… (2026-10-25 19:12:30, etapa 10 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  views:   0 % (1/249 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+  views:   6 % (15/249 fotogramas de otras tomas) · 40 s · quedan ≈ 10 min
+  views:  12 % (29/249 fotogramas de otras tomas) · 76 s · quedan ≈ 10 min
+  views:  15 % (38/249 fotogramas de otras tomas) · 2 min · quedan ≈ 10 min
+  views:  17 % (42/249 fotogramas de otras tomas) · 2 min · quedan ≈ 12 min
+  views:  23 % (58/249 fotogramas de otras tomas) · 3 min · quedan ≈ 10 min
+  views:  32 % (80/249 fotogramas de otras tomas) · 4 min · quedan ≈ 8 min
+  views:  37 % (91/249 fotogramas de otras tomas) · 4 min · quedan ≈ 7 min
+  views:  43 % (106/249 fotogramas de otras tomas) · 5 min · quedan ≈ 7 min
+  views:  49 % (123/249 fotogramas de otras tomas) · 5 min · quedan ≈ 6 min
+  views:  59 % (148/249 fotogramas de otras tomas) · 6 min · quedan ≈ 4 min
+  views:  66 % (164/249 fotogramas de otras tomas) · 7 min · quedan ≈ 3 min
+  views:  78 % (193/249 fotogramas de otras tomas) · 7 min · quedan ≈ 2 min
+  views: 100 % (249/249 fotogramas de otras tomas) · 7 min · quedan ≈ 0 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] views terminada a las 19:19:57 en 7.5 min
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] fine… (2026-10-25 19:19:57, etapa 11 de 14)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+  ventana w000006800_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000006800_3600: pose yolo en 89 de 89 fotogramas (10 s; modelo 10 s, 17 a 960 px por perderla) · bola 10 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 67 px (court)
+  fine:   1 % (1/132 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+  ventana w000022553_8947 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w000022553_8947: pose yolo en 223 de 223 fotogramas (32 s; modelo 31 s, 149 a 960 px por perderla) · bola 17 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 67 px (court)
+  fine:   3 % (4/132 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 51 s · quedan ≈ 27 min
+  ventana w000041250_11250 (far, 4 candidatos): pasa · golpe de bola en su lado a 4.28 s
+  ventana w000041250_11250: pose yolo en 282 de 282 fotogramas (55 s; modelo 54 s, 248 a 960 px por perderla) · bola 32 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 69 px (court)
+  fine:   6 % (8/132 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 36 min
+  ventana w000051750_6600 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w000051750_6600: pose yolo en 164 de 164 fotogramas (33 s; modelo 33 s, 160 a 960 px por perderla) · bola 13 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 58 px (pose)
+  fine:   8 % (10/132 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 3 min · quedan ≈ 38 min
+  ventana w000068200_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w000111400_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w000111400_3600: pose yolo en 89 de 89 fotogramas (10 s; modelo 10 s, 46 a 960 px por perderla) · bola 7 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 61 px (court)
+  ventana w000125300_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  fine:  10 % (13/132 golpes candidatos · 1 confirmados · 2 ventanas descartadas sin pose) · 4 min · quedan ≈ 34 min
+  ventana w000148800_5600 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.56 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w000148800_5600: pose yolo en 139 de 139 fotogramas (28 s; modelo 27 s, 137 a 960 px por perderla) · bola 11 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  fine:  11 % (15/132 golpes candidatos · 1 confirmados · 2 ventanas descartadas sin pose) · 4 min · quedan ≈ 34 min
+  ventana w000252000_11000 (far, 4 candidatos): pasa · golpe de bola en su lado a 2.16 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w000252000_11000: pose yolo en 274 de 274 fotogramas (53 s; modelo 52 s, 272 a 960 px por perderla) · bola 21 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  fine:  14 % (19/132 golpes candidatos · 1 confirmados · 2 ventanas descartadas sin pose) · 6 min · quedan ≈ 33 min
+  ventana w000275982_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+  ventana w000290300_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w000290300_3600: pose yolo en 90 de 90 fotogramas (11 s; modelo 11 s, 35 a 960 px por perderla) · bola 7 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 53 px (court)
