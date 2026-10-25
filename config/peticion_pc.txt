@@ -34,6 +34,12 @@ accion: entreno
 partidos: 16
 horas: 16
 bola: si
+---
+id: 49
+accion: entreno
+partidos: 16
+horas: 8
+bola: si
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
 # Cola: se pueden poner varias peticiones seguidas, separadas por una linea con solo "---"; cada bloque
 #   lleva su "id:", su "accion:" y sus parametros. El PC las hace en orden, una detras de otra en el mismo
