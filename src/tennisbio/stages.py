@@ -1736,7 +1736,8 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
                    imgsz=ctx.cfg.get("fine_imgsz", 960), log=lambda *_: None, ball=ball,
                    prefetch=fp.get("pose_prefetch", True), targets=targets,
                    target_tol=CONFIRM_TOL_S, keep=keep, pose_model=fine_pose_model(ctx.cfg),
-                   court_H=H_win, height_scale=hmode, **extra)
+                   court_H=H_win, height_scale=hmode,
+                   spotted=[x["t"] - t0 for x in group if x.get("source") == "spotter"] or None, **extra)
     for k, v in run.timing.items():
         _TIMES[k] = _TIMES.get(k, 0.0) + v
     _took("analisis_ventana", t_ + sum(run.timing.values()))         # the rest of run_clip
@@ -1755,8 +1756,8 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
             + f") · bola {_ball_said(dec, wid)} · raqueta {run.timing.get('raqueta', 0):.0f} s"
             f" ({st.get('kept_impacts', 0)} de {st.get('impacts', 0)} impactos) · {len(run.strokes)} golpes posibles"
             + (f" · altura {run.height_px:.0f} px ({st['height_scale']})" if st.get("height_scale") else ""))
-    if side == "far":                         # far strokes count only when the ball confirms them
-        run.strokes = [s for s in run.strokes if "ball" in s.impact_source]
+    if side == "far":                         # far strokes count only when the ball or the spotter confirms them
+        run.strokes = [s for s in run.strokes if "ball" in s.impact_source or "spotter" in s.impact_source]
     if not run.strokes:
         return []
     out, used = [], set()
@@ -1807,11 +1808,18 @@ def _gate_passes(ctx, group, t0, wid, clip, cache, side, ball, cut_s: float) -> 
         _TIMES["bola"] = _TIMES.get("bola", 0.0) + took
     dec = gate_window(track, fw, fh, fps, [(c["t"] - t0) * fps for c in group], side, fp.get("gate_margin_s", 0.1))
     dec.update(fps=fps, n_frames=len(track) if track is not None else 0, ball_s=took)
+    spot = [(c["t"] - t0) * fps for c in group if c.get("source") == "spotter"]
+    if spot:              # the learned spotter decides the strokes: its windows are never ruled out here
+        w = round(CONFIRM_TOL_S * fps)
+        dec["possible"] = list(dec.get("possible") or []) + [(max(0, int(f) - w), int(f) + w, "detector") for f in spot]
+        if not dec["passed"]:
+            dec.update(passed=True, reason="detector")
     _took("cribado", t_ + took)
     _GATE["reasons"][dec["reason"]] = _GATE["reasons"].get(dec["reason"], 0) + 1
     what = {"golpe_de_bola": f"golpe de bola en su lado a {dec.get('hit_s')} s",
             "bola_no_vista": f"bola no vista cerca de un candidato ({dec.get('at_s')} s): puede haber golpe",
             "sin_datos_de_bola": "sin datos de bola",
+            "detector": "golpe del detector (sin golpe de bola visto)",
             "sin_golpe": f"ningún golpe de bola en su lado a ±{CONFIRM_TOL_S} s de los candidatos"
                          + (" y la bola bien vista ahí" if side == "near" else "")}[dec["reason"]]
     if dec["passed"]:

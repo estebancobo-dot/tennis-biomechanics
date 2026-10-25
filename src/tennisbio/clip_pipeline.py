@@ -173,7 +173,7 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
              prefetch: bool = True, targets: list | None = None, target_tol: float | None = None,
              keep: np.ndarray | None = None, inits: dict | None = None, anchors: list | None = None,
              split: bool = True, pose_model: str = "yolo", court_H: np.ndarray | None = None,
-             height_scale: str = "court") -> ClipRun:
+             height_scale: str = "court", spotted: list | None = None) -> ClipRun:
     """Pose, tracking, impacts and stroke analysis of a short clip (cached).
 
     ball: optional tennisbio.ball.BallTracker; its track is cached next to the pose cache and
@@ -195,6 +195,8 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     its tracking from the person the ball leaves from. split=False: the kept frames are tracked as
     one clip from its first frame, as without keep (fine_pass.pose_fill_every: between the stretches
     a frame in every few is posed, enough to follow her and to measure her height as the whole window).
+    spotted: times (s) of the learned spotter's strokes of this end (spotter.enabled): each one with no
+    impact of the rules within target_tol becomes an impact of its own (impacts.add_spotted).
     pose_model: 'yolo' (YOLO11m-pose) or 'hybrid' (pose.hybrid: YOLO + RTMPose-x with the 6 foot points,
     fine_pass.pose_model) for the near side; the far side is always YOLO (extract_follow). The tracked
     player's foot points are run.feet / run.feet_conf (all NaN / 0 without them).
@@ -300,7 +302,7 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         log("altura no medible en los tramos: ventana entera")
         whole = run_clip(video, cache, hand, height_m, rackets, init_mode, imgsz, log, ball, side,
                          init_box, max_bottom, roi, prefetch, targets, target_tol, pose_model=pose_model,
-                         court_H=court_H, height_scale=height_scale)
+                         court_H=court_H, height_scale=height_scale, spotted=spotted)
         whole.timing["pose"] = whole.timing.get("pose", 0.0) + timing.get("pose", 0.0)
         whole.stats["posed_frames"] = whole.stats.get("posed_frames", 0) + int(np.sum(keep[:T]))
         whole.stats["whole_window_again"] = 1
@@ -337,6 +339,10 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         run_hits = hits
         other = "far" if side == "near" else "near"
         far_hits = [h.frame for h in hits if h.side == other]          # the opponent's hits
+    if spotted:
+        from .impacts import add_spotted
+        impacts = add_spotted(impacts, fps, spotted, run_hits if ball is not None else [],
+                              speed(body[:, sk["dom_wrist"]], fps), T, target_tol or 0.4, side=side)
     log(f"jugadora seguida en {np.mean(sel >= 0) * 100:.0f} % · altura ≈ {height_px:.0f} px ({h_src}) · {len(impacts)} golpes "
         f"({sum(i.source == 'audio+swing' for i in impacts)} con audio)")
     run = ClipRun(fps, sk, img, cf, boxes_t, float(np.mean(sel >= 0)), height_px, onsets, impacts)

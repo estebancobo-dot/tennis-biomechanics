@@ -112,3 +112,32 @@ def fuse_with_ball(impacts: list[Impact], fps: float, hits: list, ball_seen: np.
             continue
         kept.append(imp)
     return kept
+
+
+def add_spotted(impacts: list[Impact], fps: float, spotted: list[float], hits: list, wrist_speed: np.ndarray | None,
+                n_frames: int, tol: float, side: str = "near", snap_s: float = 0.2) -> list[Impact]:
+    """The learned spotter's strokes (tennisbio.spotting, times in s within the clip) that no impact of the
+    rules lies within `tol` of: added as impacts (source "spotter"), since the spotter is the detector
+    (90 % of her strokes found against F3Set, docs/validacion_detector.md) and the rules only time them.
+    The contact is the nearest ball hit of her end within snap_s ("spotter+ball"), else the fastest frame
+    of her dominant wrist within snap_s, else the spotter's own frame."""
+    near = [h.frame for h in hits if h.side == side]
+    out = list(impacts)
+    for t in spotted:
+        f0 = int(round(t * fps))
+        if not 0 <= f0 < n_frames or any(abs(i.frame - f0) <= tol * fps for i in out):
+            continue
+        w = max(1, round(snap_s * fps))
+        hit = min(near, key=lambda f: abs(f - f0), default=None)
+        if hit is not None and abs(hit - f0) <= w:
+            out.append(Impact(hit, hit / fps, "spotter+ball", None, 0.8))
+            continue
+        f = f0
+        if wrist_speed is not None:
+            a, b = max(0, f0 - w), min(len(wrist_speed), f0 + w + 1)
+            seg = wrist_speed[a:b]
+            if b > a and np.isfinite(seg).any():
+                f = a + int(np.nanargmax(seg))
+        out.append(Impact(f, f / fps, "spotter", None, 0.6))
+    out.sort(key=lambda i: i.frame)
+    return out
