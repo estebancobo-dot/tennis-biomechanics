@@ -300,3 +300,11 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   bola: 2.7 de 9.3 min de juego
   bola: 4.9 de 9.3 min de juego
   bola: 7.2 de 9.3 min de juego
+  bola: 9.3 de 9.3 min de juego
+[20220907-W-US_Open-QF-Karolina_Pliskova-Aryna_Sabalenka] 264 golpes anotados, 14861 fotogramas → 20220907-W-US_Open-QF-Karolina_Pliskova-Aryna_Sabalenka.npz
+
+[20220906-M-US_Open-QF-Karen_Khachanov-Nick_Kyrgios] (train) 90 puntos en 70 tramos
+  mvbdH85TLV4: vídeo descargado (549 MB)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.1 de 12.5 min de juego
