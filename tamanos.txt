@@ -1,4 +1,4 @@
-fecha: 2026-10-25T12:30:21
+fecha: 2026-10-25T12:33:04
        3.5 MB  \output\auditoria
        5.7 MB  \output\benchmark
        1.1 MB  \output\capturas_app
@@ -24,8 +24,8 @@ fecha: 2026-10-25T12:30:21
     1528.9 MB  \output\_poc31_35
      182.6 MB  \output\_poc31_4
     7818.9 MB  \output\_poc9_largo
-    1971.9 MB  \output\_smoke
-         1 MB  \output\_smoke\auditoria
+    1973.8 MB  \output\_smoke
+       2.8 MB  \output\_smoke\auditoria
        1.5 MB  \output\_smoke\diag
       40.3 MB  \output\_smoke\exportar
        1.9 MB  \output\_smoke\informe
