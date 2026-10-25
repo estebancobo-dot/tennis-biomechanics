@@ -460,3 +460,14 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   ventana w000361350_5366 (near, 2 candidatos): pasa · golpe de bola en su lado a 3.92 s
   ventana w000361350_5366: pose hybrid en 134 de 134 fotogramas (15 s; modelo 15 s; pies en 134) · bola 10 s · raqueta 12 s (1 de 1 impactos) · 1 golpes posibles · altura 134 px (court)
   fine:  64 % (47/73 golpes candidatos · 5 confirmados · 10 ventanas descartadas sin pose) · 11 min · quedan ≈ 6 min
+  ventana w000407700_5800 (near, 2 candidatos): pasa · golpe de bola en su lado a 4.4 s
+  ventana w000407700_5800: pose hybrid en 145 de 145 fotogramas (19 s; modelo 17 s; pies en 145) · bola 11 s · raqueta 13 s (1 de 1 impactos) · 1 golpes posibles · altura 135 px (court)
+  fine:  67 % (49/73 golpes candidatos · 6 confirmados · 10 ventanas descartadas sin pose) · 11 min · quedan ≈ 6 min
+  ventana w000442300_3600 (near, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos y la bola bien vista ahí
+  ventana w000465150_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w000465150_3600: pose hybrid en 90 de 90 fotogramas (14 s; modelo 12 s; pies en 83) · bola 9 s · raqueta 12 s (1 de 1 impactos) · 1 golpes posibles · altura 135 px (court)
+  fine:  70 % (51/73 golpes candidatos · 7 confirmados · 11 ventanas descartadas sin pose) · 12 min · quedan ≈ 5 min
+  ventana w000630050_6451 (near, 2 candidatos): pasa · bola no vista cerca de un candidato (4.56 s): puede haber golpe
+  ventana w000630050_6451: pose hybrid en 161 de 161 fotogramas (26 s; modelo 25 s; pies en 129) · bola 12 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 144 px (court)
+  fine:  73 % (53/73 golpes candidatos · 7 confirmados · 11 ventanas descartadas sin pose) · 13 min · quedan ≈ 5 min
+  ventana w000654850_5950 (near, 2 candidatos): pasa · golpe de bola en su lado a 4.52 s
