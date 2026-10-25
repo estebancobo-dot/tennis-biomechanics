@@ -283,3 +283,6 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
 
 [20220907-M-US_Open-QF-Andrey_Rublev-Frances_Tiafoe] (train) 90 puntos en 63 tramos
   OsQzOCVrSzk: vídeo descargado (435 MB)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.1 de 8.3 min de juego
