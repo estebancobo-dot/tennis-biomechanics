@@ -291,3 +291,61 @@ load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7
   fine:  99 % (131/132 golpes candidatos · 35 confirmados · 18 ventanas descartadas sin pose) · 46 min · quedan ≈ 21 s
   ventana w001186750_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
   ventana w001186750_3600: pose hybrid en 89 de 89 fotogramas (12 s; modelo 12 s; pies en 70) · bola 93 s en paralelo (CPU) · raqueta 17 s (1 de 2 impactos) · 2 golpes posibles · altura 258 px (segments)
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  fine: 100 % (132/132 golpes candidatos · 36 confirmados · 18 ventanas descartadas sin pose) · 47 min · quedan ≈ 0 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] fine terminada a las 20:07:11 en 47.2 min
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] views_link… (2026-10-25 20:07:11, etapa 12 de 14)
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] views_link terminada a las 20:07:12 en 0 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] fine_opponent… (2026-10-25 20:07:12, etapa 13 de 14)
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] fine_opponent terminada a las 20:07:12 en 0 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] fine_doubtful… (2026-10-25 20:07:12, etapa 14 de 14)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+  fine_doubtful:  14 % (1/7 golpes candidatos · 0 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+  ventana w000310650_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
+  ventana w000310650_3600: pose hybrid en 90 de 90 fotogramas (10 s; modelo 10 s; pies en 90) · bola 8 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 149 px (segments)
+  ventana w000406600_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (2.44 s): puede haber golpe
+  ventana w000406600_3600: pose hybrid en 89 de 89 fotogramas (13 s; modelo 12 s; pies en 89) · bola 8 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 180 px (segments)
+  fine_doubtful:  71 % (5/7 golpes candidatos · 0 confirmados · 0 ventanas descartadas sin pose) · 41 s · quedan ≈ 16 s
+  ventana w000789102_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
+  ventana w000789102_3600: pose hybrid en 89 de 89 fotogramas (17 s; modelo 17 s; pies en 72) · bola 7 s · raqueta 13 s (1 de 1 impactos) · 1 golpes posibles · altura 559 px (segments)
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  fine_doubtful:  86 % (6/7 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 83 s · quedan ≈ 14 s
+  ventana w001301700_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w001301700_3600: pose hybrid en 90 de 90 fotogramas (12 s; modelo 12 s; pies en 90) · bola 110 s en paralelo (CPU) · raqueta 9 s (1 de 1 impactos) · 1 golpes posibles · altura 201 px (segments)
+  fine_doubtful: 100 % (7/7 golpes candidatos · 2 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 0 s
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] fine_doubtful terminada a las 20:09:33 en 2.4 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin] recall 36/141; pérdidas: jugadora cercana no seguida (sin tramo) 6, descartado como repetición 6, criba «sin golpe» (sin pose) 17, bola no vista y no confirmado 2, no confirmado (bola vista) 74
+
+[20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina] 85 puntos en 79 tramos (22 min)
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 10/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 20/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 30/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 40/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 50/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 60/79 tramos descargados
+  20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina: 70/79 tramos descargados
+  no se pudo descargar qCB2kFtHd3c 4094-4111 s: ERROR: ffmpeg exited with code 4294967274
+  no se pudo descargar qCB2kFtHd3c 4166-4180 s: ERROR: ffmpeg exited with code 4294967274
+[recall_20230124_w_australian_open_qf_jelena_ostapenko_elena_rybakin] spotting… (2026-10-25 20:09:45, etapa 8 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
