@@ -1114,3 +1114,50 @@ C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN 
   fine:  80 % (149/187 golpes candidatos · 46 confirmados · 13 ventanas descartadas sin pose) · 47 min · quedan ≈ 12 min
   ventana w001135500_6482 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.24 s
   ventana w001135500_6482: pose hybrid en 163 de 163 fotogramas (25 s; modelo 24 s; pies en 163) · bola 12 s · raqueta 22 s (2 de 2 impactos) · 2 golpes posibles · altura 143 px (court)
+  fine:  81 % (151/187 golpes candidatos · 48 confirmados · 13 ventanas descartadas sin pose) · 49 min · quedan ≈ 12 min
+  ventana w001168050_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w001168050_3600: pose hybrid en 90 de 90 fotogramas (13 s; modelo 12 s; pies en 53) · bola 10 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 415 px (segments)
+  ventana w001199948_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w001199948_3600: pose hybrid en 89 de 89 fotogramas (11 s; modelo 11 s; pies en 89) · bola 79 s en paralelo (CPU) · raqueta 13 s (1 de 1 impactos) · 1 golpes posibles · altura 145 px (court)
+  fine:  82 % (153/187 golpes candidatos · 49 confirmados · 13 ventanas descartadas sin pose) · 49 min · quedan ≈ 11 min
+  ventana w001338050_6000 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.24 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w001338050_6000: pose hybrid en 150 de 150 fotogramas (25 s; modelo 24 s; pies en 1) · bola 156 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  ventana w001369500_6350 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w001369500_6350: pose hybrid en 159 de 159 fotogramas (33 s; modelo 33 s; pies en 159) · bola 150 s en paralelo (CPU) · raqueta 22 s (2 de 2 impactos) · 2 golpes posibles · altura 149 px (court)
+  fine:  84 % (157/187 golpes candidatos · 51 confirmados · 13 ventanas descartadas sin pose) · 51 min · quedan ≈ 10 min
+  ventana w001407050_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w001407050_3600: pose hybrid en 90 de 90 fotogramas (11 s; modelo 11 s; pies en 90) · bola 100 s en paralelo (CPU) · raqueta 12 s (1 de 1 impactos) · 1 golpes posibles · altura 150 px (court)
+  fine:  84 % (158/187 golpes candidatos · 52 confirmados · 13 ventanas descartadas sin pose) · 52 min · quedan ≈ 9 min
+  ventana w001502000_6050 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w001502000_6050: pose hybrid en 151 de 151 fotogramas (20 s; modelo 20 s; pies en 4) · bola 160 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 154 px (court)
+  ventana w001536600_5750 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w001536600_5750: pose hybrid en 143 de 143 fotogramas (21 s; modelo 20 s; pies en 3) · bola 150 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 152 px (court)
+  fine:  87 % (162/187 golpes candidatos · 52 confirmados · 13 ventanas descartadas sin pose) · 52 min · quedan ≈ 8 min
+  ventana w001542500_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w001542500_3600: pose hybrid en 90 de 90 fotogramas (11 s; modelo 11 s; pies en 90) · bola 92 s en paralelo (CPU) · raqueta 10 s (1 de 1 impactos) · 1 golpes posibles · altura 154 px (court)
+  fine:  87 % (163/187 golpes candidatos · 53 confirmados · 13 ventanas descartadas sin pose) · 53 min · quedan ≈ 8 min
+  ventana w001578450_5394 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w001578450_5394: pose hybrid en 135 de 135 fotogramas (16 s; modelo 16 s; pies en 135) · bola 136 s en paralelo (CPU) · raqueta 20 s (2 de 2 impactos) · 2 golpes posibles · altura 145 px (court)
+  fine:  88 % (165/187 golpes candidatos · 55 confirmados · 13 ventanas descartadas sin pose) · 54 min · quedan ≈ 7 min
+  ventana w001593599_6110 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w001593599_6110: pose hybrid en 152 de 152 fotogramas (20 s; modelo 19 s; pies en 152) · bola 166 s en paralelo (CPU) · raqueta 24 s (2 de 2 impactos) · 2 golpes posibles · altura 209 px (segments)
+  fine:  90 % (168/187 golpes candidatos · 57 confirmados · 13 ventanas descartadas sin pose) · 55 min · quedan ≈ 6 min
+  ventana w001622250_12750 (near, 5 candidatos): pasa · golpe de bola en su lado a 2.24 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w001622250_12750: pose hybrid en 319 de 319 fotogramas (40 s; modelo 39 s; pies en 7) · bola 355 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+  fine:  93 % (173/187 golpes candidatos · 57 confirmados · 13 ventanas descartadas sin pose) · 56 min · quedan ≈ 5 min
+  ventana w001634250_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w001634250_3600: pose hybrid en 90 de 90 fotogramas (12 s; modelo 12 s; pies en 90) · bola 107 s en paralelo (CPU) · raqueta 10 s (1 de 1 impactos) · 1 golpes posibles · altura 142 px (court)
+  ventana w001747850_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w001747850_3600: pose hybrid en 90 de 90 fotogramas (12 s; modelo 12 s; pies en 9) · bola 112 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 131 px (pose)
+  fine:  94 % (175/187 golpes candidatos · 58 confirmados · 13 ventanas descartadas sin pose) · 56 min · quedan ≈ 4 min
+  ventana w001790750_8454 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w001790750_8454: pose hybrid en 211 de 211 fotogramas (32 s; modelo 31 s; pies en 211) · bola 241 s en paralelo (CPU) · raqueta 35 s (3 de 3 impactos) · 3 golpes posibles · altura 149 px (court)
+  fine:  95 % (178/187 golpes candidatos · 61 confirmados · 13 ventanas descartadas sin pose) · 58 min · quedan ≈ 3 min
+  ventana w001807650_6450 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w001807650_6450: pose hybrid en 162 de 162 fotogramas (19 s; modelo 19 s; pies en 32) · bola 217 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 713 px (segments)
+  ventana w001982800_5850 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w001982800_5850: pose hybrid en 146 de 146 fotogramas (18 s; modelo 17 s; pies en 146) · bola 165 s en paralelo (CPU) · raqueta 22 s (2 de 2 impactos) · 2 golpes posibles · altura 149 px (court)
