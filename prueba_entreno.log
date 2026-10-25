@@ -268,3 +268,10 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   bola: 8.3 de 12.3 min de juego
   bola: 10.3 de 12.3 min de juego
   bola: 12.3 de 12.3 min de juego
+[20220126-W-Australian_Open-QF-Iga_Swiatek-Kaia_Kanepi] 279 golpes anotados, 14143 fotogramas → 20220126-W-Australian_Open-QF-Iga_Swiatek-Kaia_Kanepi.npz
+
+[20220906-M-US_Open-QF-Casper_Ruud-Matteo_Berrettini] (train) 90 puntos en 74 tramos
+  G7T5Z3WwE1M: vídeo descargado (436 MB)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.1 de 7.8 min de juego
