@@ -777,3 +777,93 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   ventana w001082350_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
   ventana w001082350_3600: pose hybrid en 89 de 89 fotogramas (14 s; modelo 14 s; pies en 7) · bola 7 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 218 px (segments)
   ventana w001136500_5900 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w001136500_5900: pose hybrid en 148 de 148 fotogramas (21 s; modelo 20 s; pies en 148) · bola 680 s en paralelo (CPU) · raqueta 26 s (2 de 2 impactos) · 2 golpes posibles · altura 143 px (court)
+  fine_doubtful:  92 % (11/12 golpes candidatos · 3 confirmados · 1 ventanas descartadas sin pose) · 14 min · quedan ≈ 74 s
+  ventana w001213869_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
+  ventana w001213869_3600: pose hybrid en 89 de 89 fotogramas (14 s; modelo 13 s; pies en 46) · bola 95 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 150 px (segments)
+  fine_doubtful: 100 % (12/12 golpes candidatos · 3 confirmados · 1 ventanas descartadas sin pose) · 14 min · quedan ≈ 0 s
+[recall_20230126_w_australian_open_sf_elena_rybakina_victoria_azaren] fine_doubtful terminada a las 21:39:05 en 14.2 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka] recall 34/154; pérdidas: fuera de la cámara principal 5, descartado como repetición 20, identidad sin decidir 1, identidad equivocada 2, criba «sin golpe» (sin pose) 11, no confirmado (bola vista) 79
+
+[20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina] 123 puntos en 117 tramos (34 min)
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 10/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 20/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 30/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 40/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 50/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 60/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 70/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 80/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 90/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 100/117 tramos descargados
+  20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina: 110/117 tramos descargados
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] score… (2026-10-25 21:39:14, etapa 6 de 14)
+  [score] score:   0 % (1/280 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+  [score] score:   6 % (18/280 muestras · 12 lecturas · 18 OCR) · 32 s · quedan ≈ 8 min
+  [score] score:  12 % (35/280 muestras · 29 lecturas · 35 OCR) · 63 s · quedan ≈ 7 min
+  [score] score:  18 % (50/280 muestras · 44 lecturas · 50 OCR) · 2 min · quedan ≈ 7 min
+  [score] score:  24 % (68/280 muestras · 62 lecturas · 68 OCR) · 2 min · quedan ≈ 7 min
+  [score] score:  30 % (85/280 muestras · 79 lecturas · 85 OCR) · 3 min · quedan ≈ 6 min
+  [score] score:  38 % (105/280 muestras · 99 lecturas · 105 OCR) · 3 min · quedan ≈ 5 min
+  [score] score:  44 % (123/280 muestras · 117 lecturas · 123 OCR) · 4 min · quedan ≈ 5 min
+  [score] score:  50 % (141/280 muestras · 135 lecturas · 141 OCR) · 4 min · quedan ≈ 4 min
+  [score] score:  57 % (161/280 muestras · 155 lecturas · 160 OCR) · 5 min · quedan ≈ 4 min
+  [score] score:  63 % (176/280 muestras · 170 lecturas · 175 OCR) · 5 min · quedan ≈ 3 min
+  [score] score:  69 % (194/280 muestras · 188 lecturas · 193 OCR) · 6 min · quedan ≈ 3 min
+  [score] score:  76 % (214/280 muestras · 208 lecturas · 213 OCR) · 6 min · quedan ≈ 2 min
+  [score] score:  82 % (231/280 muestras · 225 lecturas · 230 OCR) · 7 min · quedan ≈ 87 s
+  [score] score:  89 % (248/280 muestras · 242 lecturas · 247 OCR) · 7 min · quedan ≈ 57 s
+  [score] score:  95 % (266/280 muestras · 259 lecturas · 265 OCR) · 8 min · quedan ≈ 25 s
+  [score] score: 100 % (280/280 muestras · 273 lecturas · 279 OCR) · 8 min · quedan ≈ 0 s
+  [score] marcador: 280 muestras en juego, 279 OCR (274 lecturas)
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] score terminada a las 21:47:31 en 8.3 min
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] identity… (2026-10-25 21:47:31, etapa 7 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+  identity:   0 % (1/746 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+  identity:  24 % (179/746 fotogramas (ropa)) · 38 s · quedan ≈ 2 min
+  identity:  56 % (420/746 fotogramas (ropa)) · 75 s · quedan ≈ 58 s
+  identity: 100 % (746/746 fotogramas (ropa)) · 2 min · quedan ≈ 0 s
+  ropa: 746 fotogramas · leerlos 92 s, medir la ropa 5 s
+  identidad: 0/128 planos · ropa y cambios de lado de acuerdo en 0, solo cambios de lado 0, solo ropa 0, la ropa corrige el marcador en 0, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 2.64
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] identity terminada a las 21:49:10 en 1.6 min
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] spotting… (2026-10-25 21:49:10, etapa 8 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  detector entrenado: 476 golpes (244 cercanos, 232 lejanos) en 34 min de vídeo · umbral 0.1 · 83 s
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] spotting terminada a las 21:50:34 en 1.4 min
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] candidates… (2026-10-25 21:50:34, etapa 9 de 14)
+  identidad con el clic: {'pick': 'aplicado', 'her_cluster': 0, 'changed': 126, 'by_click': 126}
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  candidatos del detector entrenado: 414 (204 lejanos; 62 en repeticiones, fuera)
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] candidates terminada a las 21:50:36 en 2 s
+[recall_20230128_w_australian_open_f_aryna_sabalenka_elena_rybakina] views… (2026-10-25 21:50:36, etapa 10 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  views:   0 % (1/378 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+  views:   2 % (9/378 fotogramas de otras tomas) · 34 s · quedan ≈ 23 min
+  views:   4 % (14/378 fotogramas de otras tomas) · 65 s · quedan ≈ 28 min
+  views:   4 % (17/378 fotogramas de otras tomas) · 2 min · quedan ≈ 34 min
+  views:   6 % (23/378 fotogramas de otras tomas) · 2 min · quedan ≈ 32 min
+  views:   6 % (24/378 fotogramas de otras tomas) · 3 min · quedan ≈ 38 min
+  views:  12 % (45/378 fotogramas de otras tomas) · 3 min · quedan ≈ 23 min
+  views:  14 % (54/378 fotogramas de otras tomas) · 4 min · quedan ≈ 22 min
+  views:  16 % (59/378 fotogramas de otras tomas) · 5 min · quedan ≈ 25 min
+  views:  17 % (66/378 fotogramas de otras tomas) · 5 min · quedan ≈ 26 min
+  views:  20 % (76/378 fotogramas de otras tomas) · 6 min · quedan ≈ 25 min
+  views:  24 % (91/378 fotogramas de otras tomas) · 7 min · quedan ≈ 23 min
