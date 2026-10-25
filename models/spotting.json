@@ -10,7 +10,8 @@
   "far_backhand",
   "far_other"
  ],
- "feature_dim": 113,
+ "feature_dim": 122,
+ "ball": true,
  "fps": 10.0,
  "threshold": 0.1,
  "train_matches": [
@@ -19,6 +20,8 @@
   "20190818-W-Cincinnati-F-Madison_Keys-Svetlana_Kuznetsova",
   "20200111-W-Brisbane-SF-Naomi_Osaka-Karolina_Pliskova",
   "20200129-M-Australian_Open-QF-Rafael_Nadal-Dominic_Thiem",
+  "20200911-M-US_Open-SF-Dominic_Thiem-Daniil_Medvedev",
+  "20210216-M-Australian_Open-QF-Novak_Djokovic-Alexander_Zverev",
   "20210815-W-Montreal-F-Karolina_Pliskova-Camila_Giorgi",
   "20210908-M-US_Open-QF-Novak_Djokovic-Matteo_Berrettini",
   "20210909-W-US_Open-SF-Aryna_Sabalenka-Leylah_Fernandez",
@@ -29,7 +32,6 @@
   "20220907-M-US_Open-QF-Jannik_Sinner-Carlos_Alcaraz",
   "20220907-W-US_Open-QF-Karolina_Pliskova-Aryna_Sabalenka",
   "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
-  "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
   "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka"
  ],
  "val_matches": [
@@ -37,7 +39,6 @@
  ],
  "test_matches": [
   "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
-  "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
   "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
   "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina"
  ],
@@ -45,29 +46,29 @@
  "epochs": 40,
  "seed": 0,
  "val": {
-  "gt": 446,
-  "pred": 456,
-  "found": 361,
-  "recall": 0.809,
-  "precision": 0.792,
+  "gt": 451,
+  "pred": 476,
+  "found": 417,
+  "recall": 0.925,
+  "precision": 0.876,
   "near": {
-   "gt": 222,
-   "found": 188,
-   "recall": 0.847,
+   "gt": 225,
+   "found": 209,
+   "recall": 0.929,
    "serve": {
-    "gt": 55,
-    "found": 46,
-    "recall": 0.836
+    "gt": 56,
+    "found": 51,
+    "recall": 0.911
    },
    "forehand": {
-    "gt": 91,
-    "found": 76,
-    "recall": 0.835
+    "gt": 92,
+    "found": 85,
+    "recall": 0.924
    },
    "backhand": {
-    "gt": 76,
-    "found": 66,
-    "recall": 0.868
+    "gt": 77,
+    "found": 73,
+    "recall": 0.948
    },
    "other": {
     "gt": 0,
@@ -76,23 +77,23 @@
    }
   },
   "far": {
-   "gt": 224,
-   "found": 173,
-   "recall": 0.772,
+   "gt": 226,
+   "found": 208,
+   "recall": 0.92,
    "serve": {
     "gt": 67,
-    "found": 55,
-    "recall": 0.821
+    "found": 64,
+    "recall": 0.955
    },
    "forehand": {
-    "gt": 87,
-    "found": 64,
-    "recall": 0.736
+    "gt": 88,
+    "found": 79,
+    "recall": 0.898
    },
    "backhand": {
-    "gt": 70,
-    "found": 54,
-    "recall": 0.771
+    "gt": 71,
+    "found": 65,
+    "recall": 0.915
    },
    "other": {
     "gt": 0,
@@ -100,100 +101,91 @@
     "recall": null
    }
   },
-  "kind_accuracy": 0.928
+  "kind_accuracy": 0.918
  },
  "test": {
   "per_match": [
    {
     "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
-    "gt": 279,
-    "found": 213,
-    "recall": 0.763,
-    "precision": 0.761,
-    "near": 0.763,
-    "far": 0.764
-   },
-   {
-    "match": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
-    "gt": 268,
-    "found": 33,
-    "recall": 0.123,
-    "precision": 0.069,
-    "near": 0.138,
-    "far": 0.108
+    "gt": 287,
+    "found": 258,
+    "recall": 0.899,
+    "precision": 0.832,
+    "near": 0.909,
+    "far": 0.889
    },
    {
     "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
     "gt": 308,
-    "found": 239,
-    "recall": 0.776,
-    "precision": 0.797,
-    "near": 0.8,
-    "far": 0.75
+    "found": 276,
+    "recall": 0.896,
+    "precision": 0.896,
+    "near": 0.938,
+    "far": 0.851
    },
    {
     "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
-    "gt": 446,
-    "found": 313,
-    "recall": 0.702,
-    "precision": 0.707,
-    "near": 0.698,
-    "far": 0.705
+    "gt": 451,
+    "found": 394,
+    "recall": 0.874,
+    "precision": 0.858,
+    "near": 0.876,
+    "far": 0.872
    }
   ],
   "total": {
-   "gt": 1301,
-   "pred": 1498,
-   "found": 798,
-   "recall": 0.613,
-   "precision": 0.533,
-   "kind_accuracy": 0.861,
+   "gt": 1046,
+   "pred": 1077,
+   "found": 928,
+   "recall": 0.887,
+   "precision": 0.862,
+   "kind_accuracy": 0.924,
    "near": {
-    "gt": 659,
-    "found": 408,
-    "recall": 0.619,
+    "gt": 528,
+    "found": 477,
+    "recall": 0.903,
     "serve": {
-     "gt": 186,
-     "found": 99,
-     "recall": 0.532
+     "gt": 143,
+     "found": 128,
+     "recall": 0.895
     },
     "forehand": {
-     "gt": 243,
-     "found": 173,
-     "recall": 0.712
+     "gt": 207,
+     "found": 189,
+     "recall": 0.913
     },
     "backhand": {
-     "gt": 224,
-     "found": 135,
-     "recall": 0.603
+     "gt": 176,
+     "found": 160,
+     "recall": 0.909
     },
     "other": {
-     "gt": 6,
-     "found": 1,
-     "recall": 0.167
+     "gt": 2,
+     "found": 0,
+     "recall": 0.0
     }
    },
    "far": {
-    "gt": 642,
-    "found": 390,
-    "recall": 0.607,
+    "gt": 518,
+    "found": 451,
+    "recall": 0.871,
     "serve": {
-     "gt": 180,
-     "found": 111,
-     "recall": 0.617
+     "gt": 142,
+     "found": 133,
+     "recall": 0.937
     },
     "forehand": {
-     "gt": 232,
-     "found": 141,
-     "recall": 0.608
+     "gt": 197,
+     "found": 164,
+     "recall": 0.832
     },
     "backhand": {
-     "gt": 226,
-     "found": 138,
-     "recall": 0.611
+     "gt": 177,
+     "found": 154,
+     "recall": 0.87
     },
     "other": {
-     "gt": 4,
+     "gt": 2,
      "found": 0,
      "recall": 0.0
     }
