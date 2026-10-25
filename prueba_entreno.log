@@ -49,3 +49,12 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   bola: 6.0 de 11.4 min de juego
   bola: 8.2 de 11.4 min de juego
   bola: 10.2 de 11.4 min de juego
+  bola: 11.4 de 11.4 min de juego
+[20180318-M-Indian_Wells_Masters-F-Roger_Federer-Juan_Martin_Del_Potro] 262 golpes anotados, 10226 fotogramas → 20180318-M-Indian_Wells_Masters-F-Roger_Federer-Juan_Martin_Del_Potro.npz
+
+[20200111-W-Brisbane-SF-Naomi_Osaka-Karolina_Pliskova] (train) 90 puntos en 77 tramos
+  cZI2JfMF88I: vídeo descargado (570 MB)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.1 de 10.3 min de juego
+  bola: 1.9 de 10.3 min de juego
