@@ -45,3 +45,4 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
   bola: 0.1 de 11.4 min de juego
   bola: 1.6 de 11.4 min de juego
+  bola: 3.9 de 11.4 min de juego
