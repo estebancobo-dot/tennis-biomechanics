@@ -62,3 +62,11 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   bola: 5.5 de 10.3 min de juego
   bola: 7.9 de 10.3 min de juego
   bola: 10.1 de 10.3 min de juego
+  bola: 10.3 de 10.3 min de juego
+[20200111-W-Brisbane-SF-Naomi_Osaka-Karolina_Pliskova] 252 golpes anotados, 14191 fotogramas → 20200111-W-Brisbane-SF-Naomi_Osaka-Karolina_Pliskova.npz
+
+[20200129-M-Australian_Open-QF-Rafael_Nadal-Dominic_Thiem] (train) 90 puntos en 86 tramos
+  wQBlMkVI8F8: vídeo descargado (910 MB)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.0 de 12.3 min de juego
