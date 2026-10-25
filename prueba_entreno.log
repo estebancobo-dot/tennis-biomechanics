@@ -294,3 +294,8 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
 
 [20220907-W-US_Open-QF-Karolina_Pliskova-Aryna_Sabalenka] (train) 90 puntos en 74 tramos
   EOMFFpJxNR0: vídeo descargado (210 MB)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.1 de 9.3 min de juego
+  bola: 2.7 de 9.3 min de juego
+  bola: 4.9 de 9.3 min de juego
