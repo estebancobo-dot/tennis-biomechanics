@@ -329,7 +329,7 @@ Registro `docs/peticiones_usuario.md`: 95 hechas · 94 a medias · 20 sin hacer 
 - ✔ **Cada golpe tiene su vídeo**: 10 de 10 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 10 de 10
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 2042 caracteres de texto, 6 vídeos, 18 gráficos
+- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 2042 caracteres de texto, 7 vídeos, 18 gráficos
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 3248 caracteres de texto, 7 vídeos, 1 gráficos
 - ✔ **Pantalla «Análisis de golpe»**: 4903 caracteres de texto, 8 vídeos, 31 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 3142 caracteres de texto, 7 vídeos, 2 gráficos

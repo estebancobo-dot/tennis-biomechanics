@@ -114,10 +114,10 @@
   }
  },
  "fine": {
-  "fingerprint": "acf3af137b421ff2",
+  "fingerprint": "c8bf35790d2d0326",
   "version": "16",
-  "seconds": 331.5,
-  "finished": "2026-10-25 18:05:39",
+  "seconds": 342.8,
+  "finished": "2026-10-26 00:45:49",
   "summary": {
    "candidates": 154,
    "confirmed": 27,
@@ -134,16 +134,16 @@
      "sin_golpe": 14,
      "bola_no_vista": 3
     },
-    "seconds_in_gated_windows": 1.5
+    "seconds_in_gated_windows": 1.9
    },
    "seconds": {
-    "cuerdas_y_3d": 143.6,
-    "jugadora_lejana": 99.6,
-    "analisis_ventana": 21.3,
-    "pista_ventana": 9.6,
-    "cribado": 4.9,
-    "recorte": 2.6,
-    "pose": 0.3,
+    "cuerdas_y_3d": 153.4,
+    "jugadora_lejana": 99.1,
+    "analisis_ventana": 22.1,
+    "pista_ventana": 11.9,
+    "cribado": 5.0,
+    "recorte": 2.5,
+    "pose": 0.4,
     "bola_en_paralelo_cpu": 0,
     "espera_bola_en_paralelo": 0.0
    },
@@ -156,24 +156,24 @@
     "racket_frames": 0,
     "whole_window_again": 0,
     "frames_960_far": 0,
-    "windows_ball_ahead": 50
+    "windows_ball_ahead": 48
    }
   }
  },
  "fine_opponent": {
-  "fingerprint": "b63f396413c09848",
+  "fingerprint": "614ca7b66eeb3a7c",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-10-25 18:05:39",
+  "finished": "2026-10-26 00:45:49",
   "summary": {
    "enabled": false
   }
  },
  "fine_doubtful": {
-  "fingerprint": "4bf437a671b4cb56",
+  "fingerprint": "827f1dece392753d",
   "version": "1",
-  "seconds": 38.8,
-  "finished": "2026-10-25 18:06:18",
+  "seconds": 38.2,
+  "finished": "2026-10-26 00:46:27",
   "summary": {
    "candidates": 43,
    "confirmed": 1,
@@ -189,14 +189,14 @@
      "sin_golpe": 2,
      "golpe_de_bola": 5
     },
-    "seconds_in_gated_windows": 0.3
+    "seconds_in_gated_windows": 0.2
    },
    "seconds": {
-    "jugadora_lejana": 23.3,
-    "pista_ventana": 8.8,
-    "analisis_ventana": 2.7,
-    "cribado": 1.3,
-    "recorte": 0.3,
+    "jugadora_lejana": 21.2,
+    "pista_ventana": 9.8,
+    "analisis_ventana": 3.3,
+    "cribado": 1.1,
+    "recorte": 0.4,
     "pose": 0.1,
     "bola_en_paralelo_cpu": 0,
     "espera_bola_en_paralelo": 0.0
@@ -232,10 +232,10 @@
   }
  },
  "views_link": {
-  "fingerprint": "8f36e3ec76863039",
+  "fingerprint": "563364fec979a8f1",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-10-25 18:06:18",
+  "finished": "2026-10-26 00:46:27",
   "summary": {
    "strokes": 27,
    "with_replay": 13,
