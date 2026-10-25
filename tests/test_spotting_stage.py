@@ -314,3 +314,16 @@ def test_the_shipped_model_gives_the_same_in_pieces():
     F = S.model_meta(onnx)["feature_dim"]
     X = np.random.default_rng(0).normal(size=(1500, F)).astype(np.float32)
     assert np.allclose(S.predict_onnx(onnx, X, chunk=10 ** 6), S.predict_onnx(onnx, X, chunk=400, overlap=64), atol=1e-5)
+
+
+def test_spotting_stage_adds_the_ball_for_a_model_trained_with_it(tmp_path, monkeypatch):
+    from tennisbio import ball_features as BF
+    onnx = spotter_model(tmp_path, feature_dim=S.FEATURE_DIM + BF.BALL_DIM)
+    ctx = ctx_for(tmp_path, on_cfg(onnx))
+    write_match(ctx.dir)
+    monkeypatch.setattr(S, "sound_flux_stream", lambda v, fps, n, **k: np.zeros(n, np.float32))
+    asked = []
+    monkeypatch.setattr(BF, "cached_track", lambda d, v, factory, log=None: asked.append(d) or np.zeros((0, 4)))
+    res = stages.st_spotting(ctx)
+    assert asked == [ctx.dir] and res["feature_dim"] == S.FEATURE_DIM + BF.BALL_DIM
+    assert len(json.loads((ctx.dir / "spotting.json").read_text())) == 2         # same strokes: the ball adds columns

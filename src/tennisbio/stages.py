@@ -605,6 +605,18 @@ def _spotting_settings(c: dict) -> dict:
             "model": model_state(p), "meta": model_state(p.with_suffix(".json")) if p is not None else None}
 
 
+def _ball_tracker(ctx: Context):
+    """The ball model as the fine pass makes it (models/balltrack.onnx, fixed batch on the iGPU)."""
+    from .ball import BallTracker
+    bcfg = ctx.cfg.get("ball") or {}
+    bpath = resolve_path(bcfg.get("onnx"))
+    if bpath is None or not bpath.exists():
+        raise FileNotFoundError("falta el modelo de bola (models/balltrack.onnx), que necesita el detector entrenado "
+                                "con la bola; ejecuta 1_instalar.bat")
+    return BallTracker(str(bpath), ctx.cfg.get("device", "cpu"), bcfg.get("threshold", 0.5),
+                       static_batch=bool(bcfg.get("static_batch", True)) and ctx.cfg.get("device", "cpu") == "dml")
+
+
 @stage("spotting", "1", deps=("players", "audio", "court", "scenes", "identity"), settings=_spotting_settings,
        outputs=("spotting.json",))
 def st_spotting(ctx: Context):
@@ -634,21 +646,29 @@ def st_spotting(ctx: Context):
     onsets = np.array(tracks[track].get("t", [])) if tracks else np.zeros(0)
     del d
     t0 = time.time()
+    from .ball_features import BALL_DIM
+    # a model trained with the ball (plan N2, 25-10): its 8 numbers per frame after the cheap pass's
+    ball = bool(meta.get("ball")) or F == FEATURE_DIM + BALL_DIM
     # the sound flux only for a model trained with it (it reads the whole soundtrack)
-    feats = build_features(ctx.dir, ctx.match.player.hand, video=ctx.video if F == FEATURE_DIM else None,
+    feats = build_features(ctx.dir, ctx.match.player.hand, video=ctx.video if F >= FEATURE_DIM else None,
                            onsets=onsets, flux=sound_flux_stream)
     fps = float(feats["fps"])
+    # nothing to see outside play (rows of zeros): a stroke there is noise of the model (the last column of the
+    # cheap pass's features; read before the ball's columns are added after it)
+    play = feats["X"][:, -1] > 0
+    if ball:
+        from .ball_features import cached_track, features as ball_feats
+        tr = cached_track(ctx.dir, ctx.video, lambda: _ball_tracker(ctx), log=ctx.log)    # ball_track.npz: once
+        feats["X"] = np.concatenate([feats["X"], ball_feats(tr, len(feats["X"]), fps)], axis=1)
     mfps = float(meta.get("fps") or fps)
     if abs(fps - mfps) > 1e-6:
         ctx.log(f"  AVISO: el detector se entrenó a {mfps:g} fps y la pasada barata de este partido va a {fps:g} fps "
                 f"(cheap_pass.fps): se usa igual, pero encontrará peor los golpes. Pon cheap_pass.fps: {mfps:g} y repite.")
-    X = fit_features(feats["X"], F)
+    X = fit_features(feats["X"], F) if not ball else feats["X"]
     sp = _spotter(ctx.cfg)
     prob = predict_onnx(onnx, X, chunk=int(sp.get("chunk", 4096)), overlap=int(sp.get("overlap", 64)))
     thr = float(sp.get("threshold") or meta.get("threshold", 0.5))
     found = decode(prob, fps, thr)
-    # nothing to see outside play (rows of zeros): a stroke there is noise of the model
-    play = feats["X"][:, -1] > 0
     pad = int(round(0.5 * fps))
 
     def in_play(t: float) -> bool:
