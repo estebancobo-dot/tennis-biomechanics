@@ -13,12 +13,12 @@
  "live": {
   "opened": true,
   "ready": true,
-  "bridge": "0.0.1 · 26dd4ae · 8 partidos",
+  "bridge": "0.0.1 · 7a03cc0 · 8 partidos",
   "step": "hecho"
  },
  "backup": {
-  "ficheros": 4173,
-  "bytes": 20089882275
+  "ficheros": 4177,
+  "bytes": 20089882521
  },
  "index": {
   "matches": 8,
