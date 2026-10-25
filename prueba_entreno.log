@@ -311,3 +311,12 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   bola: 2.8 de 12.5 min de juego
   bola: 5.5 de 12.5 min de juego
   bola: 9.7 de 12.5 min de juego
+  bola: 12.3 de 12.5 min de juego
+  bola: 12.5 de 12.5 min de juego
+[20220906-M-US_Open-QF-Karen_Khachanov-Nick_Kyrgios] 255 golpes anotados, 15283 fotogramas → 20220906-M-US_Open-QF-Karen_Khachanov-Nick_Kyrgios.npz
+
+[20220907-M-US_Open-QF-Jannik_Sinner-Carlos_Alcaraz] (train) 90 puntos en 83 tramos
+  XNYhoYjRs3Y: vídeo descargado (1097 MB)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.3 de 11.5 min de juego
