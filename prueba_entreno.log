@@ -324,3 +324,10 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   bola: 7.4 de 11.5 min de juego
   bola: 9.5 de 11.5 min de juego
   bola: 11.5 de 11.5 min de juego
+[20220907-M-US_Open-QF-Jannik_Sinner-Carlos_Alcaraz] 385 golpes anotados, 17068 fotogramas → 20220907-M-US_Open-QF-Jannik_Sinner-Carlos_Alcaraz.npz
+
+[20160706-M-Wimbledon-QF-Marin_Cilic-Roger_Federer] (train) 90 puntos en 69 tramos
+  Ipg7FIDrHqo: vídeo descargado (883 MB)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.3 de 14.2 min de juego
