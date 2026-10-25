@@ -242,3 +242,24 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   bola: 3.1 de 13.0 min de juego
   bola: 6.3 de 13.0 min de juego
   bola: 9.6 de 13.0 min de juego
+  bola: 12.5 de 13.0 min de juego
+  bola: 13.0 de 13.0 min de juego
+[20210908-M-US_Open-QF-Novak_Djokovic-Matteo_Berrettini] 317 golpes anotados, 16258 fotogramas → 20210908-M-US_Open-QF-Novak_Djokovic-Matteo_Berrettini.npz
+
+[20210909-W-US_Open-SF-Aryna_Sabalenka-Leylah_Fernandez] (train) 90 puntos en 87 tramos
+  l-q5_tmOkqg: vídeo descargado (409 MB)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.1 de 11.6 min de juego
+  bola: 3.0 de 11.6 min de juego
+  bola: 6.2 de 11.6 min de juego
+  bola: 8.4 de 11.6 min de juego
+  bola: 11.1 de 11.6 min de juego
+  bola: 11.6 de 11.6 min de juego
+[20210909-W-US_Open-SF-Aryna_Sabalenka-Leylah_Fernandez] 348 golpes anotados, 16684 fotogramas → 20210909-W-US_Open-SF-Aryna_Sabalenka-Leylah_Fernandez.npz
+
+[20220126-W-Australian_Open-QF-Iga_Swiatek-Kaia_Kanepi] (train) 90 puntos en 78 tramos
+  tf5Jwx_4MaE: vídeo descargado (713 MB)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.0 de 12.3 min de juego
