@@ -39,10 +39,29 @@ def main():
     data = data or {"matches": []}
     known = {Path(m["video"]).name.lower() for m in data["matches"]}
     ids = {m["id"] for m in data["matches"]}
-    added = []
+    added, renamed = [], []
+    # a video renamed by the user (25-10): same content as an entry whose file is gone → that entry, its id and
+    # everything already analysed are kept; only the file name changes (no new match, nothing recomputed)
+    gone = [m for m in data["matches"] if not (videos / Path(m["video"]).name).exists()]
+    pinned = {}
+    out_root = Path(cfg.get("paths", {}).get("output", "output"))
+    for m in gone:
+        try:
+            import json
+            pinned[json.loads((out_root / m["id"] / "video.json").read_text(encoding="utf-8"))["sample"]] = m
+        except (OSError, ValueError, KeyError):
+            continue
     for f in sorted(videos.glob("*")) if videos.exists() else []:
         if f.suffix.lower() not in VIDEO_EXT or f.name.lower() in known:
             continue
+        if pinned:
+            from tennisbio.pipeline import video_sample
+            m = pinned.pop(video_sample(f), None)
+            if m is not None:
+                renamed.append(f"{m['video']} → {f.name}")
+                m["video"] = f.name
+                known.add(f.name.lower())
+                continue
         mid = slug(f.stem)
         while mid in ids:
             mid += "-b"
@@ -51,7 +70,8 @@ def main():
         added.append(mid)
     path.write_text("# Generado automáticamente por scripts/auto_catalog.py; se puede editar.\n"
                     + yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8")
-    print(f"Vídeos en {videos}: {len(data['matches'])} en el catálogo ({len(added)} nuevos: {', '.join(added) or '—'})")
+    print(f"Vídeos en {videos}: {len(data['matches'])} en el catálogo ({len(added)} nuevos: {', '.join(added) or '—'})"
+          + (f"; renombrados (se conserva lo analizado): {'; '.join(renamed)}" if renamed else ""))
     if not data["matches"]:
         print(f"No hay vídeos. Copia los partidos a {videos} y vuelve a ejecutar.")
         sys.exit(1)
