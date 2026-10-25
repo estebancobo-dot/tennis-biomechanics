@@ -231,3 +231,11 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
   bola: 2.7 de 8.1 min de juego
   bola: 5.0 de 8.1 min de juego
   bola: 7.0 de 8.1 min de juego
+  bola: 8.1 de 8.1 min de juego
+[20210815-W-Montreal-F-Karolina_Pliskova-Camila_Giorgi] 278 golpes anotados, 15625 fotogramas → 20210815-W-Montreal-F-Karolina_Pliskova-Camila_Giorgi.npz
+
+[20210908-M-US_Open-QF-Novak_Djokovic-Matteo_Berrettini] (train) 90 puntos en 81 tramos
+  LWBMqafBEoE: vídeo descargado (518 MB)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.2 de 13.0 min de juego
