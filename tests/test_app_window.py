@@ -53,7 +53,7 @@ def test_every_screen_says_its_cases_without_errors_or_sideways_scroll(scene):
     page = window.write_page(scene.app)
     expect = {
         "inicio": ["Hay avisos", "error del programa", "empeoró", "Poco disco"],
-        "partidos": ["Australian Open 2023 · F", "Excluido", "dobles", "Error"],
+        "partidos": ["Australian Open", "Final", "Excluido", "dobles", "Error"],
         "cola": ["Reintentar", "Diagnóstico", "por confirmar", "Confirmar"],
         "calidad": ["regresión", "Qué empeoró", "La lección: ok → falta"],
         "almacenamiento": ["Quedan 32 GB libres", "Liberar"],

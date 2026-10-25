@@ -126,6 +126,14 @@ def _match_rows(app, running: dict | None, prog: dict | None) -> list[dict]:
             stages.append({"k": n, "n": STAGE_ES.get(n, n), "st": st,
                            "min": round((man.get(n) or {}).get("seconds", 0) / 60, 1) if n in man else None})
         pl = [x for x in (m["player"], m["opponent_id"]) if x]
+        test = (m["dir"] or "").startswith("_")              # <output>/_smoke/…: the cycle's test runs
+        cd = None
+        if not test:
+            from .cards import card
+            try:
+                cd = card(m, d, app.paths.data, names.get(m["player"], ""))
+            except Exception:  # noqa: BLE001 — a card that cannot be made never hides the match
+                cd = None
         out.append({
             "id": m["id"], "label": match_label(m), "state": m["state"], "note": m["note"] or "",
             "players": " – ".join(names.get(x, x) for x in pl) or (m["opponent"] or ""),
@@ -134,7 +142,7 @@ def _match_rows(app, running: dict | None, prog: dict | None) -> list[dict]:
             "surface": m["surface"] or "", "tournament": m["tournament"] or "", "round": m["round"] or "", "date": m["date"] or "",
             "duration_min": round((m["vdur"] or 0) / 60) or None, "fps": m["vfps"], "interlaced": bool(m["vint"]),
             "video": m["vpath"] or "", "video_gb": round((m["vsize"] or 0) / 1e9, 1),
-            "test_run": "/" in (m["dir"] or ""), "dir": str(d), "stages": stages,
+            "test_run": test, "dir": str(d), "stages": stages, "card": cd,
             "running": is_run, "progress": prog if is_run else None, "error": (err or {}).get("message", ""),
             "rival_done": (_mf.at(d, "strokes_opponent.json")).exists(),
         })
