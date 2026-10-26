@@ -153,3 +153,16 @@
 2026-10-19 00:16:39 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine terminada a las 00:16:39 en 19.9 min
 2026-10-19 00:16:39 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine_opponent… (2026-10-19 00:16:39, etapa 10 de 10)
 2026-10-19 00:16:39 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine_opponent terminada a las 00:16:39 en 0 s
+2026-10-26 06:04:51 [us-open-2026-r4-naomi-osaka-elena-rybakina] spotting… (2026-10-26 06:04:51, etapa 8 de 14)
+2026-10-26 06:06:17   detector entrenado: 349 golpes (192 cercanos, 157 lejanos) en 71 min de vídeo · umbral 0.1 · 85 s
+2026-10-26 06:06:17 [us-open-2026-r4-naomi-osaka-elena-rybakina] spotting terminada a las 06:06:17 en 1.4 min
+2026-10-26 06:06:17 [us-open-2026-r4-naomi-osaka-elena-rybakina] candidates… (2026-10-26 06:06:17, etapa 9 de 14)
+2026-10-26 06:06:41   sonido: pista 4 de 4 (la que coincide con los golpes)
+2026-10-26 06:06:41   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 0, 'changed': 1, 'by_click': 147}
+2026-10-26 06:07:00   candidatos del detector entrenado: 328 (147 lejanos; 21 en repeticiones, fuera)
+2026-10-26 06:07:00 [us-open-2026-r4-naomi-osaka-elena-rybakina] candidates terminada a las 06:07:00 en 43 s
+2026-10-26 06:07:00 [us-open-2026-r4-naomi-osaka-elena-rybakina] views… (2026-10-26 06:07:00, etapa 10 de 14)
+2026-10-26 06:07:03   views:   0 % (1/961 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+2026-10-26 06:09:32   views:   4 % (42/961 fotogramas de otras tomas) · 2 min · quedan ≈ 54 min
+2026-10-26 06:11:52   views:   5 % (46/961 fotogramas de otras tomas) · 5 min · quedan ≈ 96 min
+2026-10-26 06:14:12   views:   6 % (53/961 fotogramas de otras tomas) · 7 min · quedan ≈ 123 min
