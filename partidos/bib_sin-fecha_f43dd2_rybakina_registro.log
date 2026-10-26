@@ -1,0 +1,155 @@
+2026-10-18 23:30:20 [us-open-2026-r4-naomi-osaka-elena-rybakina] probe… (2026-10-18 23:30:20, etapa 1 de 10)
+2026-10-18 23:30:27   el vídeo tiene saltos de tiempo o es .ts: se copia una vez a un fichero limpio (sin recodificar)
+2026-10-18 23:30:27   AVISO: no se pudo limpiar el vídeo (t)
+[matroska @ 0000024f17be2880] Can't write packet with unknown timestamp
+[out#0/matroska @ 0000024f152883c0] Error writing trailer: Invalid argument); se usa tal cual
+2026-10-18 23:30:27 [us-open-2026-r4-naomi-osaka-elena-rybakina] probe terminada a las 23:30:27 en 7 s
+2026-10-18 23:30:27 [us-open-2026-r4-naomi-osaka-elena-rybakina] scenes… (2026-10-18 23:30:27, etapa 2 de 10)
+2026-10-18 23:30:29   scenes:   0 % (1/107055 fotogramas) · 0 s · quedan ≈ 0 s
+2026-10-18 23:30:59   scenes:   7 % (7997/107055 fotogramas) · 30 s · quedan ≈ 6 min
+2026-10-18 23:31:29   scenes:  15 % (16026/107055 fotogramas) · 60 s · quedan ≈ 6 min
+2026-10-18 23:31:59   scenes:  23 % (24226/107055 fotogramas) · 2 min · quedan ≈ 5 min
+2026-10-18 23:32:29   scenes:  30 % (32267/107055 fotogramas) · 2 min · quedan ≈ 5 min
+2026-10-18 23:32:59   scenes:  38 % (40307/107055 fotogramas) · 3 min · quedan ≈ 4 min
+2026-10-18 23:33:30   scenes:  45 % (48426/107055 fotogramas) · 3 min · quedan ≈ 4 min
+2026-10-18 23:34:00   scenes:  53 % (56602/107055 fotogramas) · 4 min · quedan ≈ 3 min
+2026-10-18 23:34:30   scenes:  60 % (64626/107055 fotogramas) · 4 min · quedan ≈ 3 min
+2026-10-18 23:35:00   scenes:  68 % (72826/107055 fotogramas) · 5 min · quedan ≈ 2 min
+2026-10-18 23:35:30   scenes:  76 % (81026/107055 fotogramas) · 5 min · quedan ≈ 2 min
+2026-10-18 23:36:00   scenes:  83 % (89226/107055 fotogramas) · 6 min · quedan ≈ 66 s
+2026-10-18 23:36:31   scenes:  91 % (97426/107055 fotogramas) · 6 min · quedan ≈ 36 s
+2026-10-18 23:37:01   scenes:  98 % (105426/107055 fotogramas) · 7 min · quedan ≈ 6 s
+2026-10-18 23:37:07   scenes: 100 % (107055/107055 fotogramas) · 7 min · quedan ≈ 0 s
+2026-10-18 23:37:28 [us-open-2026-r4-naomi-osaka-elena-rybakina] scenes terminada a las 23:37:28 en 7.0 min
+2026-10-18 23:37:28 [us-open-2026-r4-naomi-osaka-elena-rybakina] audio… (2026-10-18 23:37:28, etapa 3 de 10)
+2026-10-18 23:37:34   audio:   2 % (300/17128 s de sonido) · 0 s · quedan ≈ 0 s
+2026-10-18 23:38:05   audio:  29 % (4882/17128 s de sonido) · 31 s · quedan ≈ 77 s
+2026-10-18 23:38:36   audio:  57 % (9764/17128 s de sonido) · 62 s · quedan ≈ 47 s
+2026-10-18 23:39:11   audio:  69 % (11864/17128 s de sonido) · 2 min · quedan ≈ 43 s
+2026-10-18 23:39:42   audio:  96 % (16446/17128 s de sonido) · 2 min · quedan ≈ 5 s
+2026-10-18 23:39:53   audio: 100 % (17128/17128 s de sonido) · 2 min · quedan ≈ 0 s
+2026-10-18 23:39:53 [us-open-2026-r4-naomi-osaka-elena-rybakina] audio terminada a las 23:39:53 en 2.4 min
+2026-10-18 23:39:53 [us-open-2026-r4-naomi-osaka-elena-rybakina] court… (2026-10-18 23:39:53, etapa 4 de 10)
+2026-10-18 23:40:29   court:  10 % (64/635 fotogramas) · 0 s · quedan ≈ 0 s
+2026-10-18 23:41:17   court:  30 % (192/635 fotogramas) · 48 s · quedan ≈ 2 min
+2026-10-18 23:41:47   court:  40 % (256/635 fotogramas) · 78 s · quedan ≈ 2 min
+2026-10-18 23:42:50   court:  60 % (384/635 fotogramas) · 2 min · quedan ≈ 2 min
+2026-10-18 23:43:23   court:  81 % (512/635 fotogramas) · 3 min · quedan ≈ 42 s
+2026-10-18 23:44:00   court: 100 % (635/635 fotogramas) · 4 min · quedan ≈ 0 s
+2026-10-18 23:44:23 [us-open-2026-r4-naomi-osaka-elena-rybakina] court terminada a las 23:44:23 en 4.5 min
+2026-10-18 23:44:23 [us-open-2026-r4-naomi-osaka-elena-rybakina] players… (2026-10-18 23:44:23, etapa 5 de 10)
+2026-10-18 23:44:23 [us-open-2026-r4-naomi-osaka-elena-rybakina] score… (2026-10-18 23:44:23, etapa 6 de 10, a la vez que players)
+2026-10-18 23:44:23   [players] juego con pista: 15.2 min de 18.9 min de cámara principal
+2026-10-18 23:44:27   [players] players:   0 % (1/9149 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+2026-10-18 23:44:41   [score] score:   0 % (1/234 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+2026-10-18 23:44:57   [players] players:   4 % (398/9149 fotogramas con jugadoras) · 30 s · quedan ≈ 11 min
+2026-10-18 23:45:11   [score] score:   5 % (12/234 muestras · 0 lecturas · 12 OCR) · 30 s · quedan ≈ 9 min
+2026-10-18 23:45:27   [players] players:   9 % (833/9149 fotogramas con jugadoras) · 60 s · quedan ≈ 10 min
+2026-10-18 23:45:42   [score] score:  11 % (26/234 muestras · 1 lecturas · 27 OCR) · 62 s · quedan ≈ 8 min
+2026-10-18 23:45:57   [players] players:  14 % (1259/9149 fotogramas con jugadoras) · 2 min · quedan ≈ 9 min
+2026-10-18 23:46:13   [score] score:  17 % (40/234 muestras · 1 lecturas · 41 OCR) · 2 min · quedan ≈ 7 min
+2026-10-18 23:46:27   [players] players:  18 % (1687/9149 fotogramas con jugadoras) · 2 min · quedan ≈ 9 min
+2026-10-18 23:46:44   [score] score:  24 % (55/234 muestras · 2 lecturas · 55 OCR) · 2 min · quedan ≈ 7 min
+2026-10-18 23:46:57   [players] players:  23 % (2116/9149 fotogramas con jugadoras) · 3 min · quedan ≈ 8 min
+2026-10-18 23:47:17   [score] score:  32 % (76/234 muestras · 8 lecturas · 72 OCR) · 3 min · quedan ≈ 5 min
+2026-10-18 23:47:27   [players] players:  28 % (2525/9149 fotogramas con jugadoras) · 3 min · quedan ≈ 8 min
+2026-10-18 23:47:47   [score] score:  38 % (90/234 muestras · 8 lecturas · 87 OCR) · 3 min · quedan ≈ 5 min
+2026-10-18 23:47:57   [players] players:  32 % (2931/9149 fotogramas con jugadoras) · 4 min · quedan ≈ 7 min
+2026-10-18 23:48:19   [score] score:  45 % (105/234 muestras · 8 lecturas · 104 OCR) · 4 min · quedan ≈ 4 min
+2026-10-18 23:48:27   [players] players:  37 % (3347/9149 fotogramas con jugadoras) · 4 min · quedan ≈ 7 min
+2026-10-18 23:48:51   [score] score:  50 % (118/234 muestras · 8 lecturas · 120 OCR) · 4 min · quedan ≈ 4 min
+2026-10-18 23:48:57   [players] players:  41 % (3762/9149 fotogramas con jugadoras) · 5 min · quedan ≈ 6 min
+2026-10-18 23:49:22   [score] score:  58 % (135/234 muestras · 9 lecturas · 135 OCR) · 5 min · quedan ≈ 3 min
+2026-10-18 23:49:27   [players] players:  46 % (4183/9149 fotogramas con jugadoras) · 5 min · quedan ≈ 6 min
+2026-10-18 23:49:53   [score] score:  63 % (148/234 muestras · 9 lecturas · 150 OCR) · 5 min · quedan ≈ 3 min
+2026-10-18 23:49:57   [players] players:  50 % (4607/9149 fotogramas con jugadoras) · 6 min · quedan ≈ 5 min
+2026-10-18 23:50:25   [score] score:  70 % (164/234 muestras · 9 lecturas · 168 OCR) · 6 min · quedan ≈ 2 min
+2026-10-18 23:50:27   [players] players:  55 % (5009/9149 fotogramas con jugadoras) · 6 min · quedan ≈ 5 min
+2026-10-18 23:50:56   [score] score:  76 % (178/234 muestras · 9 lecturas · 182 OCR) · 6 min · quedan ≈ 2 min
+2026-10-18 23:50:57   [players] players:  59 % (5433/9149 fotogramas con jugadoras) · 7 min · quedan ≈ 4 min
+2026-10-18 23:51:27   [score] score:  82 % (191/234 muestras · 9 lecturas · 197 OCR) · 7 min · quedan ≈ 2 min
+2026-10-18 23:51:27   [players] players:  64 % (5861/9149 fotogramas con jugadoras) · 7 min · quedan ≈ 4 min
+2026-10-18 23:51:57   [players] players:  69 % (6280/9149 fotogramas con jugadoras) · 8 min · quedan ≈ 3 min
+2026-10-18 23:51:58   [score] score:  87 % (204/234 muestras · 11 lecturas · 212 OCR) · 7 min · quedan ≈ 64 s
+2026-10-18 23:52:27   [players] players:  73 % (6688/9149 fotogramas con jugadoras) · 8 min · quedan ≈ 3 min
+2026-10-18 23:52:28   [score] score:  94 % (221/234 muestras · 17 lecturas · 228 OCR) · 8 min · quedan ≈ 27 s
+2026-10-18 23:52:57   [players] players:  78 % (7119/9149 fotogramas con jugadoras) · 9 min · quedan ≈ 2 min
+2026-10-18 23:52:57   [score] score: 100 % (234/234 muestras · 21 lecturas · 241 OCR) · 8 min · quedan ≈ 0 s
+2026-10-18 23:53:00   [score] marcador: 234 muestras en juego, 242 OCR (21 lecturas)
+2026-10-18 23:53:00 [us-open-2026-r4-naomi-osaka-elena-rybakina] score terminada a las 23:53:00 en 8.6 min
+2026-10-18 23:53:27   [players] players:  82 % (7470/9149 fotogramas con jugadoras) · 9 min · quedan ≈ 2 min
+2026-10-18 23:53:58   [players] players:  86 % (7875/9149 fotogramas con jugadoras) · 10 min · quedan ≈ 2 min
+2026-10-18 23:54:28   [players] players:  90 % (8255/9149 fotogramas con jugadoras) · 10 min · quedan ≈ 65 s
+2026-10-18 23:54:58   [players] players:  94 % (8619/9149 fotogramas con jugadoras) · 11 min · quedan ≈ 39 s
+2026-10-18 23:55:28   [players] players:  99 % (9015/9149 fotogramas con jugadoras) · 11 min · quedan ≈ 10 s
+2026-10-18 23:55:38   [players] players: 100 % (9149/9149 fotogramas con jugadoras) · 11 min · quedan ≈ 0 s
+2026-10-18 23:55:43   [players] tiempo: 11.2 min para 9149 fotogramas a 960 px · modelo 10.4 min · leer vídeo y preparar la entrada 7.8 min en otro hilo (espera real 0.8 min) · apariencia 0.2 min en otro hilo
+2026-10-18 23:55:44 [us-open-2026-r4-naomi-osaka-elena-rybakina] players terminada a las 23:55:44 en 11.3 min (8.6 min a la vez que otra etapa)
+2026-10-18 23:55:44 [us-open-2026-r4-naomi-osaka-elena-rybakina] identity… (2026-10-18 23:55:44, etapa 7 de 10)
+2026-10-18 23:56:01 [us-open-2026-r4-naomi-osaka-elena-rybakina] identity terminada a las 23:56:01 en 17 s
+2026-10-18 23:56:01 [us-open-2026-r4-naomi-osaka-elena-rybakina] candidates… (2026-10-18 23:56:01, etapa 8 de 10)
+2026-10-18 23:56:25   sonido: pista 4 de 4 (la que coincide con los golpes)
+2026-10-18 23:56:48 [us-open-2026-r4-naomi-osaka-elena-rybakina] candidates terminada a las 23:56:48 en 47 s
+2026-10-18 23:56:48 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine… (2026-10-18 23:56:48, etapa 9 de 10)
+2026-10-18 23:57:33   ventana w001069779_13538 (far, 8 candidatos): pasa · golpe de bola en su lado a 4.36 s
+2026-10-18 23:58:27   ventana w001069779_13538: pose yolo en 652 de 652 fotogramas (54 s; modelo 52 s) · bola 39 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 160 px (segments)
+2026-10-18 23:58:27   fine:  12 % (8/67 golpes candidatos · 0 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-10-18 23:58:40   ventana w001082660_6038 (far, 3 candidatos): pasa · golpe de bola en su lado a 1.96 s
+2026-10-18 23:59:01   ventana w001082660_6038: pose yolo en 271 de 271 fotogramas (21 s; modelo 20 s) · bola 11 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 97 px (court)
+2026-10-18 23:59:01   fine:  16 % (11/67 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 34 s · quedan ≈ 3 min
+2026-10-18 23:59:13   ventana w001108266_5016 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-18 23:59:29   ventana w001144233_5597 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-18 23:59:36   ventana w001191561_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-18 23:59:36   fine:  24 % (16/67 golpes candidatos · 1 confirmados · 3 ventanas descartadas sin pose) · 69 s · quedan ≈ 4 min
+2026-10-18 23:59:43   ventana w001254544_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 00:00:10   ventana w001265759_8929 (far, 4 candidatos): pasa · golpe de bola en su lado a 7.68 s
+2026-10-19 00:00:44   ventana w001265759_8929: pose yolo en 421 de 421 fotogramas (34 s; modelo 33 s, 1 a 960 px por perderla) · bola 25 s · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 188 px (segments)
+2026-10-19 00:00:44   fine:  31 % (21/67 golpes candidatos · 1 confirmados · 4 ventanas descartadas sin pose) · 2 min · quedan ≈ 5 min
+2026-10-19 00:00:57   ventana w001320645_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 00:01:16   ventana w002437129_6624 (far, 3 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 00:01:16   fine:  37 % (25/67 golpes candidatos · 1 confirmados · 6 ventanas descartadas sin pose) · 3 min · quedan ≈ 5 min
+2026-10-19 00:01:24   ventana w002462868_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 00:01:31   ventana w002528052_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 00:01:52   ventana w002570098_6363 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 00:01:52   fine:  43 % (29/67 golpes candidatos · 1 confirmados · 9 ventanas descartadas sin pose) · 3 min · quedan ≈ 4 min
+2026-10-19 00:02:01   ventana w002585272_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.6 s
+2026-10-19 00:02:18   ventana w002585272_3600: pose yolo en 164 de 164 fotogramas (16 s; modelo 16 s) · bola 7 s · raqueta 0 s (0 de 2 impactos) · 2 golpes posibles · altura 102 px (court)
+2026-10-19 00:02:48   ventana w003514552_12534 (far, 7 candidatos): pasa · golpe de bola en su lado a 2.34 s
+2026-10-19 00:04:17   ventana w003514552_12534: pose yolo en 589 de 589 fotogramas (90 s; modelo 88 s, 586 a 960 px por perderla) · bola 24 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura nan px (pose)
+2026-10-19 00:04:17   fine:  55 % (37/67 golpes candidatos · 1 confirmados · 9 ventanas descartadas sin pose) · 6 min · quedan ≈ 5 min
+2026-10-19 00:04:24   ventana w003628148_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 00:04:44   ventana w003698331_9927 (far, 6 candidatos): pasa · golpe de bola en su lado a 3.4 s
+2026-10-19 00:05:24   ventana w003698331_9927: pose yolo en 448 de 448 fotogramas (39 s; modelo 38 s) · bola 19 s · raqueta 0 s (2 de 4 impactos) · 4 golpes posibles · altura 97 px (court)
+2026-10-19 00:05:24   fine:  66 % (44/67 golpes candidatos · 2 confirmados · 10 ventanas descartadas sin pose) · 7 min · quedan ≈ 4 min
+2026-10-19 00:05:35   ventana w003726973_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 00:05:49   ventana w003740539_6909 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.12 s
+2026-10-19 00:06:32   ventana w003740539_6909: pose yolo en 307 de 307 fotogramas (43 s; modelo 42 s, 265 a 960 px por perderla) · bola 12 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 248 px (segments)
+2026-10-19 00:06:32   fine:  72 % (48/67 golpes candidatos · 2 confirmados · 11 ventanas descartadas sin pose) · 8 min · quedan ≈ 3 min
+2026-10-19 00:06:50   ventana w003751319_6386 (far, 2 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 00:06:57   ventana w003784581_3600 (far, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 00:07:27   ventana w003806257_8824 (far, 4 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos
+2026-10-19 00:07:27   fine:  82 % (55/67 golpes candidatos · 2 confirmados · 14 ventanas descartadas sin pose) · 9 min · quedan ≈ 2 min
+2026-10-19 00:07:45   ventana w003858740_4773 (far, 2 candidatos): pasa · golpe de bola en su lado a 1.96 s
+2026-10-19 00:08:02   ventana w003858740_4773: pose yolo en 198 de 198 fotogramas (16 s; modelo 15 s) · bola 16 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 95 px (court)
+2026-10-19 00:08:02   fine:  85 % (57/67 golpes candidatos · 2 confirmados · 14 ventanas descartadas sin pose) · 10 min · quedan ≈ 2 min
+2026-10-19 00:08:08   ventana w000680700_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.9 s): puede haber golpe
+2026-10-19 00:08:25   ventana w000680700_3600: pose hybrid en 123 de 123 fotogramas (17 s; modelo 16 s; pies en 104) · bola 5 s · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 180 px (court)
+2026-10-19 00:13:00   ventana w000724700_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.08 s
+2026-10-19 00:13:51   ventana w000724700_3600: pose hybrid en 173 de 173 fotogramas (31 s; modelo 29 s; pies en 173) · bola 310 s en paralelo (CPU) · raqueta 17 s (1 de 1 impactos) · 1 golpes posibles · altura 185 px (court)
+2026-10-19 00:14:14   fine:  88 % (59/67 golpes candidatos · 3 confirmados · 14 ventanas descartadas sin pose) · 16 min · quedan ≈ 2 min
+2026-10-19 00:14:14   ventana w000781737_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.04 s
+2026-10-19 00:14:42   ventana w000781737_3600: pose hybrid en 175 de 175 fotogramas (26 s; modelo 25 s; pies en 8) · bola 88 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 669 px (segments)
+2026-10-19 00:14:42   ventana w001331500_9765 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.56 s
+2026-10-19 00:15:54   ventana w001331500_9765: pose hybrid en 476 de 476 fotogramas (71 s; modelo 69 s; pies en 31) · bola 236 s en paralelo (CPU) · raqueta 0 s (0 de 0 impactos) · 0 golpes posibles · altura 175 px (court)
+2026-10-19 00:15:54   fine:  94 % (63/67 golpes candidatos · 3 confirmados · 14 ventanas descartadas sin pose) · 17 min · quedan ≈ 66 s
+2026-10-19 00:15:54   ventana w001411354_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 1.72 s
+2026-10-19 00:16:20   ventana w001411354_3600: pose hybrid en 160 de 160 fotogramas (23 s; modelo 22 s; pies en 160) · bola 99 s en paralelo (CPU) · raqueta 0 s (0 de 2 impactos) · 2 golpes posibles · altura 196 px (court)
+2026-10-19 00:16:20   ventana w003883493_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (2.54 s): puede haber golpe
+2026-10-19 00:16:39   ventana w003883493_3600: pose hybrid en 127 de 127 fotogramas (18 s; modelo 17 s; pies en 127) · bola 73 s en paralelo (CPU) · raqueta 0 s (0 de 1 impactos) · 1 golpes posibles · altura 196 px (court)
+2026-10-19 00:16:39   fine:  97 % (65/67 golpes candidatos · 3 confirmados · 14 ventanas descartadas sin pose) · 18 min · quedan ≈ 34 s
+2026-10-19 00:16:39   ventana w003934824_3600 (near, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos y la bola bien vista ahí
+2026-10-19 00:16:39   ventana w003971999_3600 (near, 1 candidatos): descartada sin pose · ningún golpe de bola en su lado a ±0.4 s de los candidatos y la bola bien vista ahí
+2026-10-19 00:16:39   fine: 100 % (67/67 golpes candidatos · 3 confirmados · 16 ventanas descartadas sin pose) · 18 min · quedan ≈ 0 s
+2026-10-19 00:16:39 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine terminada a las 00:16:39 en 19.9 min
+2026-10-19 00:16:39 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine_opponent… (2026-10-19 00:16:39, etapa 10 de 10)
+2026-10-19 00:16:39 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine_opponent terminada a las 00:16:39 en 0 s

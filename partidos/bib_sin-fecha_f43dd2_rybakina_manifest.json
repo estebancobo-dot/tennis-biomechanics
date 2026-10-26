@@ -1,0 +1,198 @@
+{
+ "probe": {
+  "fingerprint": "545008ebb669c9b4",
+  "version": "2",
+  "seconds": 7.5,
+  "finished": "2026-10-18 23:30:27",
+  "summary": {
+   "duration_min": 71.4,
+   "fps": 25.0,
+   "size": "1920x1080",
+   "cleaned": false,
+   "vfr": false
+  }
+ },
+ "scenes": {
+  "fingerprint": "85cd8609dc7fb082",
+  "version": "3",
+  "seconds": 420.7,
+  "finished": "2026-10-18 23:37:28",
+  "summary": {
+   "shots": 601,
+   "main_camera_shots": 144,
+   "detector": "transnetv2",
+   "main_camera_min": 18.9,
+   "main_rule": "lines",
+   "main_camera_min_colour": 62.6,
+   "main_views": 133
+  }
+ },
+ "audio": {
+  "fingerprint": "4a57bca93f41a694",
+  "version": "2",
+  "seconds": 145.5,
+  "finished": "2026-10-18 23:39:53",
+  "summary": {
+   "onsets": 4332,
+   "tracks": 4
+  }
+ },
+ "court": {
+  "fingerprint": "e494247cb43e073e",
+  "version": "4",
+  "seconds": 270.2,
+  "finished": "2026-10-18 23:44:23",
+  "summary": {
+   "segments": 275,
+   "with_court": 195,
+   "known_court_reused": 616,
+   "searched": 109,
+   "filled_same_view": 21,
+   "samples": 879,
+   "court_presets": 60,
+   "main_camera_min": 18.9,
+   "court_min": 15.2,
+   "court_share": 0.806,
+   "pitch_deg_median": 19.0
+  }
+ },
+ "score": {
+  "fingerprint": "a31e052688801efa",
+  "version": "6",
+  "seconds": 516.2,
+  "finished": "2026-10-18 23:53:00",
+  "summary": {
+   "readings": 21,
+   "pressure": 12,
+   "samples": 234,
+   "ocr_calls": 242
+  }
+ },
+ "players": {
+  "fingerprint": "b19b61a4daee2ccd",
+  "version": "4",
+  "seconds": 680.1,
+  "finished": "2026-10-18 23:55:44",
+  "summary": {
+   "frames": 9149,
+   "wall_min": 11.2,
+   "model_min": 10.4,
+   "read_min": 7.8,
+   "wait_min": 0.8,
+   "appearance_min": 0.2
+  },
+  "overlap_s": 516.2
+ },
+ "identity": {
+  "fingerprint": "9442f2cacf754a26",
+  "version": "5",
+  "seconds": 12679.4,
+  "finished": "2026-10-24 03:25:48",
+  "summary": {
+   "runs": 148,
+   "confidence": 0.91,
+   "votes": 56,
+   "agree": 51,
+   "ends_only": 1,
+   "clothes_only": 91,
+   "ends_won": 1,
+   "clothes_won": 4,
+   "doubtful": 0,
+   "none": 0,
+   "by_end_changes": 53,
+   "by_clothes": 146,
+   "conflicts": 0,
+   "conflicts_resolved": 5,
+   "decided": 148,
+   "clothes": {
+    "source": "ropa (torso y pantalón o falda, sin la pista)",
+    "runs": 148,
+    "clear": 147,
+    "margin_median": 0.57,
+    "separation": 3.46,
+    "far_pairs": 0,
+    "far_opposite": null,
+    "same_game_pairs": 48,
+    "same_game_same": 0.9
+   }
+  }
+ },
+ "candidates": {
+  "fingerprint": "8d628d2caacc36f4",
+  "version": "7",
+  "seconds": 47.3,
+  "finished": "2026-10-18 23:56:48",
+  "summary": {
+   "candidates": 147,
+   "far": 78,
+   "with_audio": 137,
+   "opponent_runs": 25,
+   "identity_unknown": 33,
+   "replay_runs_skipped": 69,
+   "replays_by_path": 13,
+   "audio_track": 3
+  }
+ },
+ "fine": {
+  "fingerprint": "47688478cf74f797",
+  "version": "16",
+  "seconds": 1191.1,
+  "finished": "2026-10-19 00:16:39",
+  "summary": {
+   "candidates": 67,
+   "confirmed": 3,
+   "errors": 0,
+   "warnings": [],
+   "forehands": 3,
+   "windows": 30,
+   "gate": {
+    "windows_gated": 16,
+    "windows_passed": 14,
+    "windows_ungated": 0,
+    "reasons": {
+     "golpe_de_bola": 12,
+     "sin_golpe": 16,
+     "bola_no_vista": 2
+    },
+    "seconds_in_gated_windows": 164.9
+   },
+   "seconds": {
+    "bola_en_paralelo_cpu": 960.5,
+    "pose": 497.6,
+    "bola": 307.6,
+    "pose_modelo_yolo": 304.9,
+    "espera_bola_en_paralelo": 274.5,
+    "pose_modelo_hybrid": 177.9,
+    "recorte": 28.5,
+    "jugadora_lejana": 24.8,
+    "raqueta": 17.3,
+    "cuerdas_y_3d": 12.7,
+    "pista_ventana": 9.9,
+    "analisis_ventana": 3.3,
+    "cribado": 2.5
+   },
+   "counts": {
+    "overlap_s": 0.7,
+    "frames": 4284,
+    "posed_frames": 4284,
+    "impacts": 13,
+    "kept_impacts": 4,
+    "racket_frames": 31,
+    "whole_window_again": 0,
+    "frames_960_far": 852,
+    "frames_modelo_yolo": 3050,
+    "frames_modelo_hybrid": 1234,
+    "windows_ball_ahead": 7
+   }
+  }
+ },
+ "fine_opponent": {
+  "fingerprint": "f3d894e91aaada9c",
+  "version": "9",
+  "seconds": 0.0,
+  "finished": "2026-10-19 00:16:39",
+  "summary": {
+   "enabled": false
+  }
+ }
+}
