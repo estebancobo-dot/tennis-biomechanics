@@ -451,3 +451,21 @@
 2026-10-26 08:24:34   fine:  96 % (139/145 golpes candidatos · 137 confirmados · 0 ventanas descartadas sin pose) · 85 min · quedan ≈ 4 min
 2026-10-26 08:24:34   ventana w003900696_6304 (near, 2 candidatos): pasa · golpe del detector (sin golpe de bola visto)
 2026-10-26 08:26:11   ventana w003900696_6304: pose hybrid en 273 de 273 fotogramas (44 s; modelo 42 s; pies en 273) · bola 132 s en paralelo (CPU) · raqueta 52 s (2 de 4 impactos) · 4 golpes posibles · altura 209 px (court)
+2026-10-26 08:26:22   fine:  97 % (141/145 golpes candidatos · 139 confirmados · 0 ventanas descartadas sin pose) · 87 min · quedan ≈ 2 min
+2026-10-26 08:26:22   ventana w003907041_3600 (near, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-10-26 08:27:18   ventana w003907041_3600: pose hybrid en 154 de 154 fotogramas (25 s; modelo 25 s; pies en 154) · bola 81 s en paralelo (CPU) · raqueta 31 s (1 de 2 impactos) · 2 golpes posibles · altura 167 px (court)
+2026-10-26 08:27:24   fine:  98 % (142/145 golpes candidatos · 140 confirmados · 0 ventanas descartadas sin pose) · 88 min · quedan ≈ 2 min
+2026-10-26 08:27:24   ventana w003945552_6854 (near, 2 candidatos): pasa · bola no vista cerca de un candidato (5.86 s): puede haber golpe
+2026-10-26 08:28:42   ventana w003945552_6854: pose hybrid en 293 de 293 fotogramas (44 s; modelo 43 s; pies en 3) · bola 148 s en paralelo (CPU) · raqueta 34 s (2 de 2 impactos) · 2 golpes posibles · altura 210 px (court)
+2026-10-26 08:28:44   fine:  99 % (144/145 golpes candidatos · 142 confirmados · 0 ventanas descartadas sin pose) · 89 min · quedan ≈ 37 s
+2026-10-26 08:28:44   ventana w003971898_3600 (near, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-10-26 08:29:24   ventana w003971898_3600: pose hybrid en 147 de 147 fotogramas (23 s; modelo 22 s; pies en 15) · bola 83 s en paralelo (CPU) · raqueta 17 s (1 de 1 impactos) · 1 golpes posibles · altura 106 px (court)
+2026-10-26 08:29:25   fine: 100 % (145/145 golpes candidatos · 143 confirmados · 0 ventanas descartadas sin pose) · 90 min · quedan ≈ 0 s
+2026-10-26 08:29:27 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine terminada a las 08:29:27 en 90.9 min
+2026-10-26 08:29:27 [us-open-2026-r4-naomi-osaka-elena-rybakina] views_link… (2026-10-26 08:29:27, etapa 12 de 14)
+2026-10-26 08:29:27 [us-open-2026-r4-naomi-osaka-elena-rybakina] views_link terminada a las 08:29:27 en 0 s
+2026-10-26 08:29:27 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine_opponent… (2026-10-26 08:29:27, etapa 13 de 14)
+2026-10-26 08:29:27 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine_opponent terminada a las 08:29:27 en 0 s
+2026-10-26 08:29:27 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine_doubtful… (2026-10-26 08:29:27, etapa 14 de 14)
+2026-10-26 08:29:30   fine_doubtful:   6 % (1/17 golpes candidatos · 0 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-10-26 08:29:49   ventana w001124903_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.92 s): puede haber golpe
