@@ -118,18 +118,19 @@
   }
  },
  "candidates": {
-  "fingerprint": "10d2c0eb0959b7e7",
-  "version": "7",
-  "seconds": 39.0,
-  "finished": "2026-10-19 00:59:31",
+  "fingerprint": "5e70bf7e88062bfa",
+  "version": "9",
+  "seconds": 23.1,
+  "finished": "2026-10-26 08:37:19",
   "summary": {
-   "candidates": 1069,
-   "far": 804,
-   "with_audio": 1048,
-   "opponent_runs": 112,
-   "identity_unknown": 1,
-   "replay_runs_skipped": 32,
-   "replays_by_path": 23,
+   "candidates": 562,
+   "far": 263,
+   "with_audio": 475,
+   "source": "spotter",
+   "opponent_strokes": 268,
+   "identity_unknown": 50,
+   "replay_strokes_skipped": 44,
+   "replay_runs": 32,
    "audio_track": 0
   }
  },
@@ -193,6 +194,24 @@
   "finished": "2026-10-19 03:57:04",
   "summary": {
    "enabled": false
+  }
+ },
+ "spotting": {
+  "fingerprint": "25e74af0631db42d",
+  "version": "1",
+  "seconds": 138.4,
+  "finished": "2026-10-26 08:36:56",
+  "summary": {
+   "enabled": true,
+   "strokes": 606,
+   "near": 326,
+   "far": 280,
+   "out_of_play": 4270,
+   "threshold": 0.1,
+   "fps": 10.0,
+   "model_fps": 10.0,
+   "feature_dim": 122,
+   "audio_track": 0
   }
  }
 }

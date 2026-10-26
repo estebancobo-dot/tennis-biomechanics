@@ -643,3 +643,12 @@
 2026-10-19 03:57:04 [zheng-qinwen-elena-rybakina] fine_opponent… (2026-10-19 03:57:04, etapa 10 de 10)
 2026-10-19 03:57:04 [zheng-qinwen-elena-rybakina] fine_opponent terminada a las 03:57:04 en 0 s
 2026-10-26 08:34:37 [zheng-qinwen-elena-rybakina] spotting… (2026-10-26 08:34:37, etapa 8 de 14)
+2026-10-26 08:36:56   detector entrenado: 606 golpes (326 cercanos, 280 lejanos) en 117 min de vídeo · umbral 0.1 · 138 s
+2026-10-26 08:36:56 [zheng-qinwen-elena-rybakina] spotting terminada a las 08:36:56 en 2.3 min
+2026-10-26 08:36:56 [zheng-qinwen-elena-rybakina] candidates… (2026-10-26 08:36:56, etapa 9 de 14)
+2026-10-26 08:36:56   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 0, 'changed': 2, 'by_click': 267}
+2026-10-26 08:37:19   candidatos del detector entrenado: 562 (263 lejanos; 44 en repeticiones, fuera)
+2026-10-26 08:37:19 [zheng-qinwen-elena-rybakina] candidates terminada a las 08:37:19 en 23 s
+2026-10-26 08:37:19 [zheng-qinwen-elena-rybakina] views… (2026-10-26 08:37:19, etapa 10 de 14)
+2026-10-26 08:37:54   views:   0 % (1/1654 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+2026-10-26 08:44:20   views:   1 % (11/1654 fotogramas de otras tomas) · 6 min · quedan ≈ 963 min
