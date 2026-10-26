@@ -718,3 +718,20 @@
 2026-10-26 13:55:13   views:  65 % (1080/1654 fotogramas de otras tomas) · 83 min · quedan ≈ 44 min
 2026-10-26 13:57:36   views:  69 % (1140/1654 fotogramas de otras tomas) · 85 min · quedan ≈ 38 min
 2026-10-26 13:59:43   views:  73 % (1200/1654 fotogramas de otras tomas) · 87 min · quedan ≈ 33 min
+2026-10-26 14:01:37   views:  76 % (1260/1654 fotogramas de otras tomas) · 89 min · quedan ≈ 28 min
+2026-10-26 14:03:14   views:  80 % (1320/1654 fotogramas de otras tomas) · 91 min · quedan ≈ 23 min
+2026-10-26 14:04:37   views:  83 % (1380/1654 fotogramas de otras tomas) · 92 min · quedan ≈ 18 min
+2026-10-26 14:05:47   views:  87 % (1440/1654 fotogramas de otras tomas) · 93 min · quedan ≈ 14 min
+2026-10-26 14:06:39   views:  91 % (1500/1654 fotogramas de otras tomas) · 94 min · quedan ≈ 10 min
+2026-10-26 14:07:19   views:  94 % (1560/1654 fotogramas de otras tomas) · 95 min · quedan ≈ 6 min
+2026-10-26 14:07:50   views:  99 % (1634/1654 fotogramas de otras tomas) · 96 min · quedan ≈ 70 s
+2026-10-26 14:07:56   views: 100 % (1654/1654 fotogramas de otras tomas) · 96 min · quedan ≈ 0 s
+2026-10-26 14:07:56 [zheng-qinwen-elena-rybakina] views terminada a las 14:07:56 en 95.7 min
+2026-10-26 14:07:56 [zheng-qinwen-elena-rybakina] fine… (2026-10-26 14:07:56, etapa 11 de 14)
+2026-10-26 14:08:14   ventana w000413070_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.84 s
+2026-10-26 14:08:33   ventana w000413070_3600: pose yolo en 179 de 179 fotogramas (19 s; modelo 18 s) · bola 10 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 102 px (court)
+2026-10-26 14:08:33   fine:   0 % (1/244 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-10-26 14:09:04   ventana w000434678_6204 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.28 s
+2026-10-26 14:09:55   ventana w000434678_6204: pose yolo en 311 de 311 fotogramas (51 s; modelo 49 s, 309 a 960 px por perderla) · bola 21 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura nan px (pose)
+2026-10-26 14:09:56   fine:   1 % (3/244 golpes candidatos · 3 confirmados · 0 ventanas descartadas sin pose) · 83 s · quedan ≈ 111 min
+2026-10-26 14:10:34   ventana w000488850_8800 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.24 s
