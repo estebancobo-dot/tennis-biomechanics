@@ -619,3 +619,13 @@
 2026-10-19 07:39:32 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine terminada a las 07:39:32 en 168.5 min
 2026-10-19 07:39:32 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine_opponent… (2026-10-19 07:39:32, etapa 10 de 10)
 2026-10-19 07:39:32 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine_opponent terminada a las 07:39:32 en 0 s
+2026-10-26 17:14:36 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] spotting… (2026-10-26 17:14:36, etapa 8 de 14)
+2026-10-26 17:17:00   detector entrenado: 632 golpes (339 cercanos, 293 lejanos) en 133 min de vídeo · umbral 0.1 · 141 s
+2026-10-26 17:17:00 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] spotting terminada a las 17:17:00 en 2.4 min
+2026-10-26 17:17:00 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] candidates… (2026-10-26 17:17:00, etapa 9 de 14)
+2026-10-26 17:17:39   sonido: pista 2 de 2 (la que coincide con los golpes)
+2026-10-26 17:17:39   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 0, 'changed': 0, 'by_click': 265}
+2026-10-26 17:18:06   candidatos del detector entrenado: 488 (238 lejanos; 144 en repeticiones, fuera)
+2026-10-26 17:18:06 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] candidates terminada a las 17:18:06 en 1.1 min
+2026-10-26 17:18:06 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] views… (2026-10-26 17:18:06, etapa 10 de 14)
+2026-10-26 17:18:32   views:   0 % (1/1915 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s

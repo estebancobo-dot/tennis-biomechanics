@@ -1252,3 +1252,9 @@
 2026-10-26 17:12:08   ventana w006517100_3600: pose hybrid en 180 de 180 fotogramas (37 s; modelo 36 s; pies en 107) · bola 79 s en paralelo (CPU) · raqueta 15 s (1 de 1 impactos) · 1 golpes posibles · altura 187 px (segments)
 2026-10-26 17:12:12   fine_doubtful:  94 % (47/50 golpes candidatos · 15 confirmados · 0 ventanas descartadas sin pose) · 17 min · quedan ≈ 63 s
 2026-10-26 17:12:12   ventana w006774899_5401 (near, 2 candidatos): pasa · golpe de bola en su lado a 4.48 s
+2026-10-26 17:13:24   ventana w006774899_5401: pose hybrid en 271 de 271 fotogramas (41 s; modelo 40 s; pies en 91) · bola 112 s en paralelo (CPU) · raqueta 30 s (2 de 2 impactos) · 2 golpes posibles · altura 1047 px (segments)
+2026-10-26 17:13:40   fine_doubtful:  98 % (49/50 golpes candidatos · 17 confirmados · 0 ventanas descartadas sin pose) · 18 min · quedan ≈ 22 s
+2026-10-26 17:13:41   ventana w006816101_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.84 s): puede haber golpe
+2026-10-26 17:14:18   ventana w006816101_3600: pose hybrid en 179 de 179 fotogramas (22 s; modelo 22 s; pies en 100) · bola 87 s en paralelo (CPU) · raqueta 14 s (1 de 1 impactos) · 1 golpes posibles · altura 196 px (segments)
+2026-10-26 17:14:32   fine_doubtful: 100 % (50/50 golpes candidatos · 18 confirmados · 0 ventanas descartadas sin pose) · 19 min · quedan ≈ 0 s
+2026-10-26 17:14:36 [zheng-qinwen-elena-rybakina] fine_doubtful terminada a las 17:14:36 en 19.0 min
