@@ -17,7 +17,7 @@ Un solo trabajo pesado del PC a la vez; la nube solo hace lo que no toca lo que 
 | R2 | Auditoría de la referencia: golpes por partido y situación, qué falta | PC (solo) + nube | R1 | `auditoria.md` leída; lista de huecos con números | — |
 | N1 | Estudio de golpes perdidos en F3Set (petición 52: 64 % recall, 88 % precisión) | Nube (solo lectura) | — | % de la pérdida que es fallo nuestro, por causa | en paralelo |
 | N2 | Lentitud de `score` y `court` (un salto por fotograma, como `identity` y `views`) | Nube | — (se aplica tras R1) | sin repetir esas etapas en los 4 partidos; tiempo medido en un partido nuevo | en paralelo |
-| D1 | Una sola tanda de mejoras de detección, si R2 la pide | Nube + PC | R2, N1 | recall F3Set sube sin bajar precisión; una sola ejecución | — |
+| D1 | Una sola tanda de mejoras de detección, si R2 la pide | Nube + PC | R2, N1 | recall F3Set sube sin bajar precisión; una sola ejecución |pendiente. Incluye: (a) repeticiones que descartan de más (F3Set: 58 golpes, 11 %; Gauff: 144 de 488 candidatos, Zheng/Osaka 6-8 %); (b) `pose/yolo_onnx.py` NMS vacío → `IndexError` (1 golpe de Gauff); (c) etapa `views` aún lenta (final: 2991 fotogramas a ~11,7 s cada uno): medir antes con `medir_recursos.ps1` y desglosar lectura / modelo / pista |
 | P1 | Peticiones pendientes por bloques (95 hechas, 94 a medias, 20 sin hacer) | Nube + PC (desde la caché) | R1 (y D1) | auditoría en verde por petición | — |
 | A1 | Aplicación con los datos reales | PC (comprobación automática con capturas) | P1 | 0 fallos en todas las pantallas | — |
 | M1 | Móvil (opcional, solo si lo pide el usuario) | — | A1 | — | — |
