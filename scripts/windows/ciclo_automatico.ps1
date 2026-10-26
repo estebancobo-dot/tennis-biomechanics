@@ -350,6 +350,15 @@ if ($ocupado) {
         }
     }
 }
+# uso de recursos mientras dure el analisis (26-10): una sola medicion a la vez, oculta; termina sola con el analisis
+if ($ocupado) {
+    $mr = Join-Path $PSScriptRoot "medir_recursos.ps1"
+    $ya = @(Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" -ErrorAction SilentlyContinue |
+        Where-Object { $_.CommandLine -match "medir_recursos" })
+    if ((Test-Path $mr) -and -not $ya.Count) {
+        try { Start-Process powershell.exe -WindowStyle Hidden -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$mr`"") } catch {}
+    }
+}
 if ($ocupado) { Senal-Vida "otro analisis en marcha ($(($ocupado | ForEach-Object { $_.ProcessId }) -join ','))" }
 
 Refrescar-Path

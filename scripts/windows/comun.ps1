@@ -116,6 +116,12 @@ function Subir-Registros {
             if ($e) { Copy-Item $e.FullName "$d\partidos\bib_$($m.Name)_strokes_errores.json" -Force }
         }
         if (Test-Path "$Base\output\biblioteca_migracion.json") { Copy-Item "$Base\output\biblioteca_migracion.json" $d -Force }
+        # uso de CPU, RAM, iGPU y disco por etapa (medir_recursos.ps1, 26-10): los ultimos 5 registros
+        if (Test-Path "$Base\output\recursos") {
+            New-Item -ItemType Directory -Force -Path "$d\recursos" | Out-Null
+            Get-ChildItem "$Base\output\recursos\*.csv" -ErrorAction SilentlyContinue | Sort-Object LastWriteTime -Descending |
+                Select-Object -First 5 | ForEach-Object { Copy-Item $_.FullName "$d\recursos" -Force }
+        }
         # pruebas aparte pedidas por Claude (output\_poc*: velocidad), con otro nombre para no pisar las de _smoke
         foreach ($p in @(Get-ChildItem "$Base\output" -Directory -Filter "_poc*" -ErrorAction SilentlyContinue)) {
             foreach ($m in @(Get-ChildItem $p.FullName -Directory -ErrorAction SilentlyContinue)) {
