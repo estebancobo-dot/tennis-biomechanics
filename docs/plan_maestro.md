@@ -4,6 +4,30 @@
 medido por un script en el PC** (nunca «revisado en el chat»). Un bloque no se da por hecho sin ese número.
 Regla del usuario (19-10): **nada nuevo hasta que la base (golpes que no se pierden e identidad) esté bien.**
 
+## Estado y orden vigente (26-10) — leer primero
+
+**Regla (26-10, tras el retrabajo):** primero una **referencia completa y medida** de los 4 partidos; nada que
+cambie golpes se toca mientras se calcula; los cambios que obligan a rehacer la pasada fina se juntan en **una
+sola tanda**; el resto (informe, medidas, aplicación) se valida contra la referencia y se recalcula desde la caché.
+Un solo trabajo pesado del PC a la vez; la nube solo hace lo que no toca lo que corre.
+
+| # | Qué | Dónde | Depende de | Criterio de terminado | Estado |
+|---|---|---|---|---|---|
+| R1 | Referencia: pasada definitiva de los 4 partidos con el detector (petición 55; la 54 se paró por la etapa `views` lenta) | PC | — | 4 partidos sin errores de etapa; golpes por partido | en marcha (Osaka hecho: 143 confirmados, 6 dudosos, 0 errores, 2,5 h) |
+| R2 | Auditoría de la referencia: golpes por partido y situación, qué falta | PC (solo) + nube | R1 | `auditoria.md` leída; lista de huecos con números | — |
+| N1 | Estudio de golpes perdidos en F3Set (petición 52: 64 % recall, 88 % precisión) | Nube (solo lectura) | — | % de la pérdida que es fallo nuestro, por causa | en paralelo |
+| N2 | Lentitud de `score` y `court` (un salto por fotograma, como `identity` y `views`) | Nube | — (se aplica tras R1) | sin repetir esas etapas en los 4 partidos; tiempo medido en un partido nuevo | en paralelo |
+| D1 | Una sola tanda de mejoras de detección, si R2 la pide | Nube + PC | R2, N1 | recall F3Set sube sin bajar precisión; una sola ejecución | — |
+| P1 | Peticiones pendientes por bloques (95 hechas, 94 a medias, 20 sin hacer) | Nube + PC (desde la caché) | R1 (y D1) | auditoría en verde por petición | — |
+| A1 | Aplicación con los datos reales | PC (comprobación automática con capturas) | P1 | 0 fallos en todas las pantallas | — |
+| M1 | Móvil (opcional, solo si lo pide el usuario) | — | A1 | — | — |
+
+Validación (siempre automática): detección contra 648 golpes anotados de F3Set; partidos reales por golpes y
+errores por partido; informe y medidas por la auditoría; aplicación por capturas en el PC; código por la batería
+de pruebas antes de subir.
+
+## Historial
+
 ## 0. En ejecución ahora
 | | Qué | Estado | Siguiente |
 |---|---|---|---|
