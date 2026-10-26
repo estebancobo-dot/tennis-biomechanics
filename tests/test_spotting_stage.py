@@ -263,11 +263,12 @@ def test_run_orders_spotting_before_candidates_only_when_on(tmp_path):
     assert "spotting" not in pipeline.order(["candidates"], {"cheap_pass": {"fps": FPS}})
 
 
-def test_default_config_has_the_spotter_off():
+def test_default_config_has_the_spotter_on():
+    from pathlib import Path
     from tennisbio.config import load_config
-    cfg = load_config()
-    assert cfg["spotter"]["enabled"] is False and cfg["spotter"]["onnx"] == "models/spotting.onnx"
-    assert not stages.spotter_on(cfg)
+    cfg = load_config()         # on since 26-10: end-to-end recall 64 % against 4 % with the rules
+    assert cfg["spotter"]["enabled"] is True and cfg["spotter"]["onnx"] == "models/spotting.onnx"
+    assert stages.spotter_on(cfg) and (Path(__file__).resolve().parents[1] / "models" / "spotting.onnx").exists()
 
 
 def test_validate_recall_switches_the_spotter_on():
