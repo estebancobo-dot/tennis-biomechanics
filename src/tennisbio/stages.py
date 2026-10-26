@@ -845,7 +845,9 @@ def _views_settings(c: dict) -> dict:
 
 
 def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> dict[int, dict]:
-    """Evidence of the non-live shots from 1-3 frames each (one ffmpeg pass over the sampled times):
+    """Evidence of the non-live shots from 1-3 frames each (one ffmpeg pass over the sampled times; read
+    in sequential stretches, dense_s=60, as the identity clothes frames: one seek per frame cost 3-14 s on
+    the broadcasts, 6.5 h for the 1654 frames of a long match, 26-10):
     lines, the tallest person (the cheap pass's pose model, when it loads) and, where the court is seen
     from an end, the camera tilt of a fitted court (at most `views.max_fits` fits per match)."""
     from .court import camera_pitch_deg, fit_court
@@ -864,7 +866,8 @@ def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> d
     per: dict[int, list] = {}
     fits = 0
     info = probe(ctx.video)
-    for n, ((t, i), (_, fr)) in enumerate(zip(items, frames_at(info, [t for t, _ in items], hwaccel=ctx.cfg.get("hwaccel")))):
+    for n, ((t, i), (_, fr)) in enumerate(zip(items, frames_at(info, [t for t, _ in items], hwaccel=ctx.cfg.get("hwaccel"),
+                                                                    dense_s=60.0))):
         ctx.progress(n + 1, len(items), "fotogramas de otras tomas")
         if fr is None:
             continue
