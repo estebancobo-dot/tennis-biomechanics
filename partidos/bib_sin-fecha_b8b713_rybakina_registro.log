@@ -761,3 +761,12 @@
 2026-10-19 12:03:17 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine_opponent… (2026-10-19 12:03:17, etapa 10 de 10)
 2026-10-19 12:03:17 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine_opponent terminada a las 12:03:17 en 0 s
 2026-10-26 21:53:27 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] spotting… (2026-10-26 21:53:27, etapa 8 de 14)
+2026-10-26 21:56:27   detector entrenado: 659 golpes (326 cercanos, 333 lejanos) en 210 min de vídeo · umbral 0.1 · 176 s
+2026-10-26 21:56:27 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] spotting terminada a las 21:56:27 en 3.0 min
+2026-10-26 21:56:27 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] candidates… (2026-10-26 21:56:27, etapa 9 de 14)
+2026-10-26 21:57:02   sonido: pista 1 de 2 (la que coincide con los golpes)
+2026-10-26 21:57:02   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 0, 'changed': 4, 'by_click': 314}
+2026-10-26 21:57:15   candidatos del detector entrenado: 532 (265 lejanos; 127 en repeticiones, fuera)
+2026-10-26 21:57:15 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] candidates terminada a las 21:57:15 en 48 s
+2026-10-26 21:57:15 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] views… (2026-10-26 21:57:15, etapa 10 de 14)
+2026-10-26 21:57:58   views:   0 % (1/2991 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
