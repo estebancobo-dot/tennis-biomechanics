@@ -1,4 +1,4 @@
-fecha: 2026-10-26T21:45:49
+fecha: 2026-10-26T21:55:54
 AMD Ryzen 7 8745HS w/ Radeon 780M Graphics     
 AMD Radeon 780M Graphics
 RAM GB: 20
