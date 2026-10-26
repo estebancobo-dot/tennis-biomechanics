@@ -1,42 +1,40 @@
 # Golpes perdidos: recall frente a F3Set
 
-648 golpes anotados de Rybakina en 368 puntos de 4 partidos (tolerancia ±0.2 s). **Encontrados 133 (20 %)** y 3 más apartados como de identidad dudosa (con ellos 21 %); precisión 93 % (133 de 143 golpes suyos dentro de los puntos; 3 eran golpes de la rival).
+648 golpes anotados de Rybakina en 368 puntos de 4 partidos (tolerancia ±0.2 s). **Encontrados 412 (64 %)** y 10 más apartados como de identidad dudosa (con ellos 65 %); precisión 88 % (413 de 471 golpes suyos dentro de los puntos; 10 eran golpes de la rival).
 
 ## Recall por lado y tipo
 
 | | saque | derecha | revés | volea / remate / otro | total |
 |---|---|---|---|---|---|
-| cercana | 17/82 | 45/108 | 38/95 | 0/3 | **100/288** (35 %) |
-| lejana | 0/96 | 22/145 | 11/115 | 0/4 | **33/360** (9 %) |
+| cercana | 45/82 | 74/108 | 64/95 | 0/3 | **183/288** (64 %) |
+| lejana | 58/96 | 95/145 | 74/115 | 2/4 | **229/360** (64 %) |
 
 ## Dónde se pierden (primera etapa que falla)
 
 | Etapa | cercana | lejana | total |
 |---|---|---|---|
-| fuera de la cámara principal | 39 | 50 | **89** |
-| jugadora cercana no seguida (sin tramo) | 8 | 9 | **17** |
+| fuera de la cámara principal | 35 | 49 | **84** |
+| jugadora cercana no seguida (sin tramo) | 6 | 9 | **15** |
 | descartado como repetición | 34 | 28 | **62** |
-| identidad sin decidir | 1 | 1 | **2** |
 | identidad equivocada | 2 | 7 | **9** |
 | no es candidato | 16 | 26 | **42** |
-| criba «sin golpe» (sin pose) | 4 | 35 | **39** |
-| bola no vista y no confirmado | 0 | 4 | **4** |
-| no confirmado (bola vista) | 81 | 167 | **248** |
+| bola no vista y no confirmado | 0 | 1 | **1** |
+| no confirmado (bola vista) | 3 | 10 | **13** |
 
-Lo que más importa arreglar: **no confirmado (bola vista)** (248 golpes perdidos de 515).
+Lo que más importa arreglar: **fuera de la cámara principal** (84 golpes perdidos de 236).
 
 ## Por tipo de golpe
 
 | Tipo | recall | etapa principal de pérdida |
 |---|---|---|
-| saque | 17/178 (10 %) | no confirmado (bola vista) (56) |
-| derecha | 67/253 (26 %) | no confirmado (bola vista) (102) |
-| revés | 49/210 (23 %) | no confirmado (bola vista) (88) |
-| volea / remate / otro | 0/7 (0 %) | no es candidato (4) |
+| saque | 103/178 (58 %) | fuera de la cámara principal (26) |
+| derecha | 169/253 (67 %) | fuera de la cámara principal (28) |
+| revés | 138/210 (66 %) | fuera de la cámara principal (29) |
+| volea / remate / otro | 2/7 (29 %) | no es candidato (4) |
 
 ## Identidad
 
-Golpes suyos en un tramo con la identidad bien puesta: 528; mal puesta: 9; sin decidir: 5; sin tramo: 106. Perdidos por identidad: 11.
+Golpes suyos en un tramo con la identidad bien puesta: 528; mal puesta: 9; sin decidir: 5; sin tramo: 106. Perdidos por identidad: 9.
 
 Tramos de la jugadora cercana dentro de puntos anotados: 330.
 
