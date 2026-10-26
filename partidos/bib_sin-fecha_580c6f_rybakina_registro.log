@@ -1007,3 +1007,27 @@
 2026-10-26 21:24:27   ventana w006816038_3600: pose hybrid en 180 de 180 fotogramas (27 s; modelo 26 s; pies en 180) · bola 104 s en paralelo (CPU) · raqueta 14 s (1 de 1 impactos) · 1 golpes posibles · altura 190 px (court)
 2026-10-26 21:24:32   fine:  94 % (188/201 golpes candidatos · 184 confirmados · 0 ventanas descartadas sin pose) · 117 min · quedan ≈ 8 min
 2026-10-26 21:24:33   ventana w006826743_9039 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.24 s
+2026-10-26 21:26:26   ventana w006826743_9039: pose hybrid en 452 de 452 fotogramas (64 s; modelo 62 s; pies en 50) · bola 228 s en paralelo (CPU) · raqueta 49 s (3 de 3 impactos) · 3 golpes posibles · altura 806 px (segments)
+2026-10-26 21:26:29   fine:  95 % (191/201 golpes candidatos · 187 confirmados · 0 ventanas descartadas sin pose) · 119 min · quedan ≈ 6 min
+2026-10-26 21:26:29   ventana w007418247_6108 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.12 s
+2026-10-26 21:27:44   ventana w007418247_6108: pose hybrid en 305 de 305 fotogramas (44 s; modelo 43 s; pies en 305) · bola 143 s en paralelo (CPU) · raqueta 30 s (2 de 2 impactos) · 2 golpes posibles · altura 196 px (court)
+2026-10-26 21:28:14   fine:  96 % (193/201 golpes candidatos · 189 confirmados · 0 ventanas descartadas sin pose) · 121 min · quedan ≈ 5 min
+2026-10-26 21:28:15   ventana w007479568_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.18 s
+2026-10-26 21:28:56   ventana w007479568_3600: pose hybrid en 179 de 179 fotogramas (24 s; modelo 23 s; pies en 179) · bola 80 s en paralelo (CPU) · raqueta 17 s (1 de 1 impactos) · 1 golpes posibles · altura 198 px (court)
+2026-10-26 21:29:08   fine:  97 % (194/201 golpes candidatos · 190 confirmados · 0 ventanas descartadas sin pose) · 122 min · quedan ≈ 4 min
+2026-10-26 21:29:09   ventana w007484876_3600 (near, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-10-26 21:30:05   ventana w007484876_3600: pose hybrid en 180 de 180 fotogramas (27 s; modelo 26 s; pies en 167) · bola 77 s en paralelo (CPU) · raqueta 29 s (1 de 2 impactos) · 2 golpes posibles · altura 146 px (court)
+2026-10-26 21:30:11   fine:  97 % (195/201 golpes candidatos · 191 confirmados · 0 ventanas descartadas sin pose) · 123 min · quedan ≈ 4 min
+2026-10-26 21:30:12   ventana w007515599_11074 (near, 4 candidatos): pasa · golpe de bola en su lado a 2.24 s
+2026-10-26 21:32:46   ventana w007515599_11074: pose hybrid en 554 de 554 fotogramas (90 s; modelo 88 s; pies en 554) · bola 245 s en paralelo (CPU) · raqueta 63 s (4 de 4 impactos) · 4 golpes posibles · altura 196 px (court)
+2026-10-26 21:33:29   fine:  99 % (199/201 golpes candidatos · 195 confirmados · 0 ventanas descartadas sin pose) · 126 min · quedan ≈ 76 s
+2026-10-26 21:33:29   ventana w007525649_6677 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.32 s
+2026-10-26 21:35:07   ventana w007525649_6677: pose hybrid en 333 de 333 fotogramas (56 s; modelo 55 s; pies en 321) · bola 180 s en paralelo (CPU) · raqueta 40 s (2 de 3 impactos) · 3 golpes posibles · altura 204 px (court)
+2026-10-26 21:35:38   fine: 100 % (201/201 golpes candidatos · 197 confirmados · 0 ventanas descartadas sin pose) · 128 min · quedan ≈ 0 s
+2026-10-26 21:35:38   1 golpes no se pudieron analizar (detalle en strokes_errores.json)
+2026-10-26 21:35:38 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine terminada a las 21:35:38 en 128.5 min
+2026-10-26 21:35:38 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] views_link… (2026-10-26 21:35:38, etapa 12 de 14)
+2026-10-26 21:35:39 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] views_link terminada a las 21:35:39 en 0 s
+2026-10-26 21:35:39 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine_opponent… (2026-10-26 21:35:39, etapa 13 de 14)
+2026-10-26 21:35:39 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine_opponent terminada a las 21:35:39 en 0 s
+2026-10-26 21:35:39 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine_doubtful… (2026-10-26 21:35:39, etapa 14 de 14)
