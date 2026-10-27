@@ -15,7 +15,7 @@ Un solo trabajo pesado del PC a la vez; la nube solo hace lo que no toca lo que 
 |---|---|---|---|---|---|
 | R1 | Referencia: pasada definitiva de los 4 partidos con el detector | PC | — | 4 partidos sin errores de etapa | **hecho 27-10 06:00**: 799 golpes suyos (Osaka 143, Zheng 243, Gauff 197, final 216), 68 dudosos, 1 error |
 | R2 | Auditoría de la referencia y prueba de valor | PC + nube | R1 | auditoría leída; valor juzgado | **hecho 27-10**: útil pies/pista/tiempos; cadena cinética mal medida; resultado del punto no creíble; nombres de rivales mal |
-| C1 | Cadena cinética, footwork y timing (lo que define el golpe, usuario 27-10) | Nube → PC | R2 | cadena en orden en la mayoría (era 10 %); pasos medidos en la mayoría (era 32 %); regla de tiempos y huellas numeradas en la app | **en marcha**: medidas cambiadas y probadas con los 193 golpes (79 % y 87 %); pantallas hechas; recálculo en el PC (petición 58) |
+| C1 | Cadena cinética, footwork y timing (lo que define el golpe, usuario 27-10) | Nube → PC | R2 | cadena en orden en la mayoría (era 10 %); pasos medidos en la mayoría (era 32 %); regla de tiempos y huellas numeradas en la app | **medido en el PC 27-10** (193 derechas recalculadas): cadena en orden 76 % (188 con los 3 picos; cadera −100, tronco −80, brazo 0 ms); pasos medidos 80 % (antes 32 %), primer paso en 153, split step en 53; «Su ritmo y su cadena cinética» visible en la captura de Cópiala. Falta: huellas comprobadas en una captura, split step en más golpes |
 | D1 | Una sola tanda de detección: repeticiones que descartan de más (F3Set 11 %, Gauff 30 %), NMS vacío, `views` lenta, exportación del revés colgada | Nube + PC | C1 | recall F3Set sube sin bajar precisión; una ejecución | pendiente |
 | P1 | Lo que no es creíble: resultado del punto (2 ganadores en 191), nombres/fechas de los partidos; después peticiones por bloques (95 hechas, 94 a medias, 20 sin hacer) | Nube + PC (desde la caché) | C1 | auditoría en verde por petición | pendiente |
 | G1 | Genérica: ningún nombre de jugadora en el código (`player` en config; prueba `test_no_hardcoded_player`), golpe y jugador como parámetros | Nube | — | la prueba pasa | **hecho 27-10** |
@@ -49,7 +49,7 @@ Horizontes (27-10, corregido por el usuario: **la base primero, al 100 %**):
     | # | Trabajo | Dónde se mide | Criterio para adoptarlo | Estado |
     |---|---|---|---|---|
     | B-1 | Tiempo límite en toda llamada externa | Pruebas | Ninguna sin límite | **hecho 27-10** (`test_no_unbounded_calls`) |
-    | B-2 | Cuelgue de la exportación del revés | PC (`en_curso.txt`) | Ningún corte por 10 min sin avanzar | pendiente |
+    | B-2 | Cuelgue de la exportación del revés | PC (`en_curso.txt`, `pila.txt`) | Ningún corte por 10 min sin avanzar | vigilancia y diagnóstico puestos 27-10; la derecha **no** estaba colgada (92 min, terminó 15:35): diagnóstico mío equivocado; falta el revés |
     | B-3 | Tomas de cámara con fotogramas clave | PC, recursos | < 15 min por partido, mismas tomas | **código hecho 27-10** (`frames_at(key_only=True)`, etapa `views` v2); falta medir el tiempo en el PC |
     | B-4 | Una lectura de vídeo compartida y modelos por lotes en la pasada fina | PC, recursos | iGPU > 60 % de media, mismos puntos | pendiente |
     | B-5 | Exportación en paralelo | PC | < 20 min la derecha | pendiente |
