@@ -377,3 +377,30 @@ def test_series_keep_the_raw_foot_points_of_the_window():
     json.dumps(s)
     assert series_feet(None, None, 0, 5) == {} and series_feet(f, None, 0, 5) == {}
     assert series_feet(np.full_like(f, np.nan), c, 0, 5) == {} and series_feet(f[:, :4], c[:, :4], 0, 5) == {}
+
+
+def test_running_strides_keep_their_steps_but_noise_does_not():
+    """27-10: running, each foot is in the air about half the time, yet one foot is always on the ground:
+    the steps are measured (each foot still ~half the time used to drop them). Both feet jumping around by
+    noise: no foot is ever still and the steps are not measured."""
+    T, fps = 100, 50.0
+    kp = standing(T)
+    f = np.full((T, 6, 2), np.nan)
+    lx, rx = np.zeros(T), np.zeros(T)
+    for k in range(5):                             # alternate strides of 0.6 m, one foot moving at a time
+        a, b = 20 * k, 20 * k + 10
+        if k % 2 == 0:
+            lx[a:b] = np.linspace(0, 0.6, b - a) + lx[a - 1 if a else 0]
+            lx[b:] = lx[b - 1]
+        else:
+            rx[a:b] = np.linspace(0, 0.6, b - a) + rx[a - 1]
+            rx[b:] = rx[b - 1]
+    for t in range(T):
+        put_foot(f, "left", (-0.35 + lx[t], 0.0), 90.0, t=t)
+        put_foot(f, "right", (0.35 + rx[t], 0.0), 90.0, t=t)
+    c = np.full((T, 6), 0.9)
+    run = footwork(kp, SK, H, np.full(T, 400.0), fps, 80, None, None, None, None, foot_points=clean_feet(f, c))
+    assert run["steps_reliable"] is True and run["feet_still_share"] > 0.9
+    noisy = f + np.random.default_rng(1).normal(0, 40, f.shape)        # ~0.4 m of jitter on every point
+    bad = footwork(kp, SK, H, np.full(T, 400.0), fps, 80, None, None, None, None, foot_points=clean_feet(noisy, c))
+    assert bad["steps_reliable"] is False and "steps" not in bad

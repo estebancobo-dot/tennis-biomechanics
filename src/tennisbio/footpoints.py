@@ -63,9 +63,11 @@ def ground_track(img: np.ndarray, sk: Skeleton, H: np.ndarray, feet: np.ndarray 
     the other foot, and (T, 2) bool = taken from the heel and the toes.
 
     Without feet: the ankles, exactly as footwork.feet_track always did. With feet: the middle of the
-    heel and the toes where both are seen; in the other frames the ankle moved by that foot's median
-    offset ankle → ground contact over the stroke (so switching source does not look like a step), or
-    the plain ankle when that foot was never seen with its heel and toes."""
+    heel and the toes where both are seen, else the heel or the toes alone (27-10: from behind the toes
+    are hidden in most frames; requiring both sent 2 frames in 3 back to the jittery ankle, and only 32 %
+    of the 193 near forehands of the reference had steps measurable; with the heel alone, 90 %); in the
+    other frames the ankle moved by that foot's median offset ankle → ground contact over the stroke (so
+    switching source does not look like a step), or the plain ankle when that foot was never seen."""
     T = len(img)
     ank = np.full((T, 2, 2), np.nan)
     for j, name in enumerate(("dom_ankle", "non_ankle")):
@@ -80,6 +82,9 @@ def ground_track(img: np.ndarray, sk: Skeleton, H: np.ndarray, feet: np.ndarray 
     for j, side in enumerate(("dom", "non")):
         heel, toe = heel_toe(feet, sk, side)
         mid = (heel + toe) / 2
+        for alone in (heel, toe):                    # one of them seen: that one (both on the ground)
+            only = ~np.isfinite(mid).all(axis=1) & np.isfinite(alone).all(axis=1)
+            mid[only] = alone[only]
         ok = np.isfinite(mid).all(axis=1)
         if not ok.any():
             continue

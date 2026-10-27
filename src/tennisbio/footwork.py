@@ -400,8 +400,12 @@ def footwork(img: np.ndarray, sk: Skeleton, H: np.ndarray, scale: np.ndarray, fp
     # the ankles of this player (small in the image, 50 fps) jitter so much that a foot is seen still
     # in less than 40 % of the frames, steps, plants and the split step are not measured: they would
     # be invented (user's PC: 5-36 % on a ~190 px player). Position, distance and speeds stay.
-    ground = plant[a:b][np.isfinite(feet_g[a:b]).all(axis=2)]
-    still = float(np.mean(ground)) if ground.size else 0.0
+    # 27-10: the share of frames with at least ONE foot seen still (a player always has a foot on the
+    # ground but in the short flight of a running stride or a split step). The former share counted each
+    # foot apart, about half of the time in the air when she runs: 0.35 (median) on the reference strokes
+    # even with clean heel and toe points, so 2 strokes in 3 lost their steps
+    seen = np.isfinite(feet_g[a:b]).all(axis=2).any(axis=1)
+    still = float(np.mean(plant[a:b][seen].any(axis=1))) if seen.any() else 0.0
     out["feet_still_share"] = round(still, 2)
     if still < STEPS_MIN_STILL:
         for k in [k for k in out if k.startswith(("steps", "first_step", "last_plant", "last_step", "split_",
