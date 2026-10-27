@@ -1,1 +1,15 @@
 hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram_python_gb,gpu_3d,gpu_compute,gpu_decode,disco
+2026-10-27T10:20:03,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,26.0,6.1,0.4,5.4,19.8,0.6,0.0,0.0,0.0,3.0
+2026-10-27T10:20:26,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,15.0,0.3,0.7,5.4,19.8,0.6,0.0,0.0,0.0,0.0
+2026-10-27T10:20:42,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,13.0,0.8,0.0,5.2,19.8,0.5,0.0,0.0,0.0,0.0
+2026-10-27T10:20:58,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,15.0,1.4,0.0,5.2,19.8,0.5,0.0,0.0,0.0,0.0
+2026-10-27T10:21:14,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,12.0,0.8,0.4,5.2,19.8,0.4,0.0,0.0,0.0,0.0
+2026-10-27T10:21:31,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,12.0,0.7,0.0,5.3,19.8,0.6,0.0,0.0,0.0,0.0
+2026-10-27T10:21:47,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,14.0,2.3,0.8,5.1,19.8,0.3,0.0,0.0,0.0,0.0
+2026-10-27T10:22:03,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,14.0,0.8,0.0,5.2,19.8,0.5,0.0,0.0,0.0,0.0
+2026-10-27T10:22:19,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,23.0,0.0,0.0,5.2,19.8,0.5,0.0,0.0,0.0,0.0
+2026-10-27T10:22:36,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,9.0,4.1,1.4,5.2,19.8,0.4,0.0,0.0,0.0,0.0
+2026-10-27T10:22:52,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,19.0,8.3,3.4,5.2,19.8,0.4,1.0,0.0,0.0,0.0
+2026-10-27T10:23:08,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,12.0,9.8,1.5,5.1,19.8,0.3,1.0,0.0,0.0,0.0
+2026-10-27T10:23:25,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,13.0,14.6,3.8,5.2,19.8,0.4,1.0,0.0,0.0,0.0
+2026-10-27T10:23:41,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,10.0,0.4,0.0,5.2,19.8,0.4,2.0,0.0,0.0,0.0
