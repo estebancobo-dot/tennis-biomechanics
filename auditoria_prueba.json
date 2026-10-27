@@ -3,8 +3,8 @@
  "strokes": 14,
  "near": 10,
  "summary": {
-  "ok": 284,
-  "falta": 23,
+  "ok": 283,
+  "falta": 24,
   "pocos datos": 121,
   "aviso": 89
  },
@@ -2682,7 +2682,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "2042 caracteres de texto, 7 vídeos, 18 gráficos",
+   "detail": "2619 caracteres de texto, 7 vídeos, 19 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2698,7 +2698,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "4903 caracteres de texto, 8 vídeos, 31 gráficos",
+   "detail": "4909 caracteres de texto, 8 vídeos, 31 gráficos",
    "file": "pantalla_3_golpe.jpg"
   },
   {
@@ -2746,7 +2746,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "1383 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "1385 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -2858,8 +2858,8 @@
    "req": 2,
    "area": "Diseño",
    "name": "Primera pantalla, anchura y nombres (diseño definitivo)",
-   "status": "ok",
-   "detail": "vídeo de la lección en y=304–658 de 900; al abrir 1 títulos, 389 palabras, 25 botones"
+   "status": "falta",
+   "detail": "vídeo de la lección en y=608–962 de 900; al abrir 2 títulos, 506 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=962 (más abajo que la primera pantalla, 900)"
   },
   {
    "req": 1,

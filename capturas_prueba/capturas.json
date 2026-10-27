@@ -3,8 +3,8 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 2042,
-   "charts": 18,
+   "text_chars": 2619,
+   "charts": 19,
    "videos": 7,
    "black_canvases": 0,
    "videos_failed": [],
@@ -57,7 +57,7 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 4903,
+   "text_chars": 4909,
    "charts": 31,
    "videos": 8,
    "black_canvases": 0,
@@ -220,7 +220,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 1383,
+   "text_chars": 1385,
    "charts": 0,
    "videos": 7,
    "black_canvases": 0,
@@ -338,16 +338,18 @@
  },
  "entry": {
   "entry": {
-   "vid_top": 304,
-   "vid_bottom": 658,
-   "h2": 1,
-   "words": 389,
+   "vid_top": 608,
+   "vid_bottom": 962,
+   "h2": 2,
+   "words": 506,
    "buttons": 25,
    "height": 900
   },
   "wide": {},
   "file_names": {},
-  "failures": []
+  "failures": [
+   "el vídeo de la lección acaba en y=962 (más abajo que la primera pantalla, 900)"
+  ]
  },
  "lesson": {
   "phases": [
