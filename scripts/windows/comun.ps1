@@ -116,6 +116,8 @@ function Subir-Registros {
             if ($e) { Copy-Item $e.FullName "$d\partidos\bib_$($m.Name)_strokes_errores.json" -Force }
         }
         if (Test-Path "$Base\output\biblioteca_migracion.json") { Copy-Item "$Base\output\biblioteca_migracion.json" $d -Force }
+        # golpes de la referencia con sus series (peticion "referencia", 27-10)
+        Get-ChildItem "$Base\output\referencia_*.zip" -ErrorAction SilentlyContinue | ForEach-Object { Copy-Item $_.FullName $d -Force }
         # uso de CPU, RAM, iGPU y disco por etapa (medir_recursos.ps1, 26-10): los ultimos 5 registros
         if (Test-Path "$Base\output\recursos") {
             New-Item -ItemType Directory -Force -Path "$d\recursos" | Out-Null

@@ -193,6 +193,14 @@ function Hacer-Peticion($p) {
         "Peticion $($p['id']): biblioteca ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
         & uv run python scripts/migrate_library.py 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
         "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "referencia") {
+        # golpes de la referencia y sus series fotograma a fotograma en un zip (27-10), para diagnosticar las medidas
+        # en la nube sin volver a analizar nada (scripts/pack_reference.py); se sube con los registros
+        $lg = "$Base\output\prueba_referencia.log"
+        $golpe = if ($p["golpe"]) { "$($p['golpe'])" } else { "forehand" }
+        "Peticion $($p['id']): referencia $golpe ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        & uv run python scripts/pack_reference.py --stroke $golpe 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "largo") {
         # el video entero (tramo largo) en su propia carpeta _pocN_largo: muchos golpes por situacion
         # y el tiempo real de un partido; nunca toca _smoke
