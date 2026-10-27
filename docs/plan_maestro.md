@@ -13,16 +13,15 @@ Un solo trabajo pesado del PC a la vez; la nube solo hace lo que no toca lo que 
 
 | # | Qué | Dónde | Depende de | Criterio de terminado | Estado |
 |---|---|---|---|---|---|
-| R1 | Referencia: pasada definitiva de los 4 partidos con el detector (petición 55; la 54 se paró por la etapa `views` lenta) | PC | — | 4 partidos sin errores de etapa; golpes por partido | en marcha (Osaka hecho: 143 confirmados, 6 dudosos, 0 errores, 2,5 h) |
-| R2 | Auditoría de la referencia: golpes por partido y situación, qué falta | PC (solo) + nube | R1 | `auditoria.md` leída; lista de huecos con números | — |
-| N1 | Estudio de golpes perdidos en F3Set (petición 52: 64 % recall, 88 % precisión) | Nube (solo lectura) | — | % de la pérdida que es fallo nuestro, por causa | en paralelo |
-| N2 | Lentitud de `score` y `court` (un salto por fotograma, como `identity` y `views`) | Nube | — (se aplica tras R1) | sin repetir esas etapas en los 4 partidos; tiempo medido en un partido nuevo | en paralelo |
-| D1 | Una sola tanda de mejoras de detección, si R2 la pide | Nube + PC | R2, N1 | recall F3Set sube sin bajar precisión; una sola ejecución |pendiente. Incluye: (a) repeticiones que descartan de más (F3Set: 58 golpes, 11 %; Gauff: 144 de 488 candidatos, Zheng/Osaka 6-8 %); (b) `pose/yolo_onnx.py` NMS vacío → `IndexError` (1 golpe de Gauff); (c) etapa `views` aún lenta (final: 2991 fotogramas a ~11,7 s cada uno): medir antes con `medir_recursos.ps1` y desglosar lectura / modelo / pista |
-| P1 | Peticiones pendientes por bloques (95 hechas, 94 a medias, 20 sin hacer) | Nube + PC (desde la caché) | R1 (y D1) | auditoría en verde por petición | — |
-| A1 | Aplicación con los datos reales | PC (comprobación automática con capturas) | P1 | 0 fallos en todas las pantallas | — |
+| R1 | Referencia: pasada definitiva de los 4 partidos con el detector | PC | — | 4 partidos sin errores de etapa | **hecho 27-10 06:00**: 799 golpes suyos (Osaka 143, Zheng 243, Gauff 197, final 216), 68 dudosos, 1 error |
+| R2 | Auditoría de la referencia y prueba de valor | PC + nube | R1 | auditoría leída; valor juzgado | **hecho 27-10**: útil pies/pista/tiempos; cadena cinética mal medida; resultado del punto no creíble; nombres de rivales mal |
+| C1 | Cadena cinética, footwork y timing (lo que define el golpe, usuario 27-10) | Nube → PC | R2 | cadena en orden en la mayoría (era 10 %); pasos medidos en la mayoría (era 32 %); regla de tiempos y huellas numeradas en la app | **en marcha**: medidas cambiadas y probadas con los 193 golpes (79 % y 87 %); pantallas hechas; recálculo en el PC (petición 58) |
+| D1 | Una sola tanda de detección: repeticiones que descartan de más (F3Set 11 %, Gauff 30 %), NMS vacío, `views` lenta, exportación del revés colgada | Nube + PC | C1 | recall F3Set sube sin bajar precisión; una ejecución | pendiente |
+| P1 | Lo que no es creíble: resultado del punto (2 ganadores en 191), nombres/fechas de los partidos; después peticiones por bloques (95 hechas, 94 a medias, 20 sin hacer) | Nube + PC (desde la caché) | C1 | auditoría en verde por petición | pendiente |
+| A1 | Aplicación con los datos reales, comprobada con capturas | PC | C1, P1 | 0 fallos en todas las pantallas | — |
 | M1 | Móvil (opcional, solo si lo pide el usuario) | — | A1 | — | — |
 
-Conexión con el PC (27-10): el PC pasa a ser ejecutor de GitHub Actions (`4_conectar_github.bat` una vez,
+Conexión con el PC (27-10, **conectado y funcionando** desde las 12:05): el PC pasa a ser ejecutor de GitHub Actions (`4_conectar_github.bat` una vez,
 `.github/workflows/pc.yml`): cada petición empieza al subirla y su registro está en Actions. El ciclo de cada
 10 min (ahora mira GitHub cada minuto cuando está libre) sigue debajo como respaldo y para las paradas.
 
