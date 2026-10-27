@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261027120549
+Start time: 20261027121908
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 1856
+Process ID: 14760
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -15,77 +15,4 @@ CLRVersion: 4.0.30319.42000
 WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
-**********************
-
-==> [2026-10-27 12:05:49] Codigo nuevo (8710b5d -> 53bb783): 5 ficheros
-    config/peticion_pc.txt
-    src/tennisbio/export.py
-    src/tennisbio/report.py
-    src/tennisbio/report_template.html
-    tests/test_stroke_page.py
-Updating 8710b5d..53bb783
-Fast-forward
- config/peticion_pc.txt             |  3 ++
- src/tennisbio/export.py            |  7 ++-
- src/tennisbio/report.py            | 49 ++++++++++++++++++++-
- src/tennisbio/report_template.html | 89 ++++++++++++++++++++++++++++++++++++--
- tests/test_stroke_page.py          | 64 +++++++++++++++++++++++++++
- 5 files changed, 206 insertions(+), 6 deletions(-)
-Resolved 124 packages in 1ms
-Checked 89 packages in 4ms
-balltrack.onnx     OK 45 MB
-racketpose.onnx    OK 53 MB
-transnetv2.onnx    OK 31 MB
-rtmw3d-x.onnx      OK 369 MB
-yolo11m-pose_640.onnx OK 84 MB
-yolo11m-pose_960.onnx OK 84 MB
-yolo11m-pose_1280.onnx OK 85 MB
-yolo11m-pose_1920.onnx OK 86 MB
-Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
-    (paso terminado en 5 s)
-
-==> [2026-10-27 12:05:54] Que hace falta: informe
-Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
-Informe: C:\tenis\output\_smoke\informe\index.html
-  golpes 10/14 (43 s)
-Golpes: 6 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
-Montajes: 2 en C:\tenis\output\_smoke\exportar\montajes
-Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
-Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
-Auditoría: 283 cumplidos, 24 no cumplidos, 121 sin golpes suficientes, 89 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-  ✘ Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin: marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto de saque) y 72-133 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 27 golpes, 1 saques/remates → como mucho 38% de sus golpes y 6% de sus saques. Faltan muchos golpes (ver scripts/validate_recall.py para saber en qué etapa se pierden) (19 cerca, 8 lejos); además 1 de identidad dudosa, apartados (no cuentan como suyos)
-  ✘ Primera pantalla, anchura y nombres (diseño definitivo): vídeo de la lección en y=608–962 de 900; al abrir 2 títulos, 506 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=962 (más abajo que la primera pantalla, 900)
-  ✘ Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series: 15 ficheros de etapa, 27 golpes con ventana y serie; faltan o están vacíos: spotting/spotting.json
-  ✘ #1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
-  ✘ #83 Árbol de ficheros generados y validados: 4 comprobaciones: 1 falta, 3 ok; la peor: «Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series» (15 ficheros de etapa, 27 golpes con ventana y serie; faltan o están vacíos: spotting/spotting.json)
-  ✘ #155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
-  ✘ #176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3): SIN HACER según el registro (#176, docs/peticiones_usuario.md)
-  ✘ #189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4): SIN HACER según el registro (#189, docs/peticiones_usuario.md)
-  ✘ #193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10): SIN HACER según el registro (#193, docs/peticiones_usuario.md)
-  ✘ #196 Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18): SIN HACER según el registro (#196, docs/peticiones_usuario.md)
-  ✘ #197 Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19): SIN HACER según el registro (#197, docs/peticiones_usuario.md)
-  ✘ #198 Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20): SIN HACER según el registro (#198, docs/peticiones_usuario.md)
-  ✘ #199 Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10): SIN HACER según el registro (#199, docs/peticiones_usuario.md)
-  ✘ #200 Pista: TennisCourtDetector (14 puntos) + refinado (Estado del arte, 13-10): SIN HACER según el registro (#200, docs/peticiones_usuario.md)
-  ✘ #201 Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10): SIN HACER según el registro (#201, docs/peticiones_usuario.md)
-  ✘ #202 Bola: probar WASB (Estado del arte, 13-10): SIN HACER según el registro (#202, docs/peticiones_usuario.md)
-  ✘ #203 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10): SIN HACER según el registro (#203, docs/peticiones_usuario.md)
-  ✘ #204 Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10): SIN HACER según el registro (#204, docs/peticiones_usuario.md)
-  ✘ #205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3): SIN HACER según el registro (#205, docs/peticiones_usuario.md)
-  ✘ #209 Passing y globo (Revisión completa, §3 B): SIN HACER según el registro (#209, docs/peticiones_usuario.md)
-  ✘ #210 Dejada (bote muy corto en campo rival) (Revisión completa, §3 B): SIN HACER según el registro (#210, docs/peticiones_usuario.md)
-  ✘ #211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5): SIN HACER según el registro (#211, docs/peticiones_usuario.md)
-  ✘ #216 Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnic: SIN HACER según el registro (#216, docs/peticiones_usuario.md)
-  ✘ #217 Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26): SIN HACER según el registro (#217, docs/peticiones_usuario.md)
-Hecho en 786 s, sin volver a analizar vídeo.
-    (paso terminado en 13 min 06 s)
-
-==> [2026-10-27 12:19:00] Revision automatica frente a la ejecucion anterior
-# Revisión automática: REGRESIÓN
-Ciclo automatico terminado (informe).
-    (paso terminado en 0 s)
-Empezado 2026-10-27 12:05:47 - terminado 2026-10-27 12:19:00 - duracion total 13 min 12 s
-**********************
-Windows PowerShell transcript end
-End time: 20261027121900
 **********************
