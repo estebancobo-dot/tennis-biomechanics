@@ -39,7 +39,7 @@ def script(link: str | None, icon: Path, repo: Path = ROOT) -> str:
 def desktop_link() -> Path | None:
     if sys.platform != "win32":
         return None
-    r = subprocess.run(timeout=120, args=["powershell.exe", "-NoProfile", "-NonInteractive", "-Command", "[Environment]::GetFolderPath('Desktop')"],
+    r = subprocess.run(["powershell.exe", "-NoProfile", "-NonInteractive", "-Command", "[Environment]::GetFolderPath('Desktop')"],
                        capture_output=True, text=True, timeout=30, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
     d = r.stdout.strip()
     return Path(d) / f"{NAME}.lnk" if d else None
@@ -55,7 +55,7 @@ def create(data_dir: Path, only_if_missing: bool = False, link: Path | None = No
             return {"link": str(link), "made": False}
         icon = write_icon(data_dir / "tennisbio.ico")
         enc = base64.b64encode(script(str(link) if link else None, icon).encode("utf-16-le")).decode()
-        r = subprocess.run(timeout=120, args=["powershell.exe", "-NoProfile", "-NonInteractive", "-EncodedCommand", enc], capture_output=True,
+        r = subprocess.run(["powershell.exe", "-NoProfile", "-NonInteractive", "-EncodedCommand", enc], capture_output=True,
                            text=True, timeout=60, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
         out = (r.stdout or "").strip().splitlines()
         if r.returncode != 0 or not out:

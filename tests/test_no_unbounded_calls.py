@@ -14,6 +14,18 @@ def _calls(tree, name):
             yield n
 
 
+def test_every_module_compiles():
+    """27-10: a timeout added twice to one call (ast.parse accepts it, the interpreter does not) broke 3
+    modules of the application; every source file must compile."""
+    bad = []
+    for f in list(SRC.rglob("*.py")) + list((SRC.parents[1] / "scripts").glob("*.py")):
+        try:
+            compile(f.read_text(encoding="utf-8"), str(f), "exec")
+        except SyntaxError as e:
+            bad.append(f"{f.name}:{e.lineno}: {e.msg}")
+    assert not bad, bad
+
+
 def test_every_subprocess_run_has_a_timeout():
     bad = []
     for f in SRC.rglob("*.py"):
