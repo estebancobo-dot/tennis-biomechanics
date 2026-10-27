@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261027112027
+Start time: 20261027113003
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 5060
+Process ID: 440
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,13 +17,24 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-27 11:20:27] Codigo nuevo (51077e9 -> a7fca01): 1 ficheros
+==> [2026-10-27 11:30:03] Codigo nuevo (a7fca01 -> 7f5a84b): 5 ficheros
+    .github/workflows/pc.yml
+    4_conectar_github.bat
+    docs/plan_maestro.md
     scripts/windows/ciclo_automatico.ps1
-Updating 51077e9..a7fca01
+    scripts/windows/instalar_runner.ps1
+Updating a7fca01..7f5a84b
 Fast-forward
- scripts/windows/ciclo_automatico.ps1 | 27 +++++++++++++++++++++++++--
- 1 file changed, 25 insertions(+), 2 deletions(-)
-Resolved 124 packages in 0.93ms
+ .github/workflows/pc.yml             | 25 +++++++++++++++++++++++++
+ 4_conectar_github.bat                |  4 ++++
+ docs/plan_maestro.md                 |  4 ++++
+ scripts/windows/ciclo_automatico.ps1 |  1 +
+ scripts/windows/instalar_runner.ps1  | 36 ++++++++++++++++++++++++++++++++++++
+ 5 files changed, 70 insertions(+)
+ create mode 100644 .github/workflows/pc.yml
+ create mode 100644 4_conectar_github.bat
+ create mode 100644 scripts/windows/instalar_runner.ps1
+Resolved 124 packages in 0.92ms
 Checked 89 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
@@ -36,11 +47,11 @@ yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
     (paso terminado en 4 s)
 
-==> [2026-10-27 11:20:31] Que hace falta: nada
+==> [2026-10-27 11:30:07] Que hace falta: nada
 Ciclo automatico terminado (nada).
     (paso terminado en 0 s)
-Empezado 2026-10-27 11:20:25 - terminado 2026-10-27 11:20:31 - duracion total 6 s
+Empezado 2026-10-27 11:30:02 - terminado 2026-10-27 11:30:07 - duracion total 6 s
 **********************
 Windows PowerShell transcript end
-End time: 20261027112031
+End time: 20261027113007
 **********************
