@@ -639,10 +639,23 @@ def _fresh(out: Path, *inputs: Path) -> bool:
 
 def export(matches, out_root: Path, dest: Path, stroke="forehand", player_id: str | None = None,
            reel_max=10, strokes_all=True, log=print) -> Path:
-    from .report import player_dict, prepare
-
     if not shutil.which("ffmpeg"):
         raise RuntimeError("ffmpeg no está en el PATH")
+    # where every thread is, every 5 min, in <dest>/pila.txt (27-10: two exports stopped with no trace of where)
+    import faulthandler
+    Path(dest).mkdir(parents=True, exist_ok=True)
+    _pila = open(Path(dest) / "pila.txt", "w", encoding="utf-8")
+    faulthandler.dump_traceback_later(300, repeat=True, file=_pila)
+    try:
+        return _export(matches, out_root, Path(dest), stroke, player_id, reel_max, strokes_all, log)
+    finally:
+        faulthandler.cancel_dump_traceback_later()
+        _pila.close()
+
+
+def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, strokes_all, log) -> Path:
+    from .report import player_dict, prepare
+
     data = prepare(matches, out_root, stroke, player_id)
     player = player_dict(matches, player_id)
     dist = F.distributions(data)

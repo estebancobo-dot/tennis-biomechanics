@@ -25,16 +25,14 @@ try {
     Ejecutar uv @("run", "tennisbio", "report", "--stroke", "backhand", "--out", "$Base\output\informe_reves")
     Ejecutar uv @("run", "tennisbio", "report", "--stroke", "overhead", "--out", "$Base\output\informe_saque")
 
-    Paso "4/5 Videos por golpe, montajes por conclusion y resumen PDF"
-    Ejecutar uv @("run", "tennisbio", "export", "--stroke", "forehand", "--out", "$Base\output\exportar_derecha")
-    # la auditoria de la derecha antes que los videos del reves y del saque (27-10: la exportacion del reves se
-    # colgo y dejo sin auditoria la referencia de los 4 partidos)
-    Paso "5/5 Comprobacion automatica de requisitos (capturas del informe incluidas; se envia a Claude)"
+    # la auditoria antes que cualquier video (27-10: la exportacion del reves y luego la de la derecha se quedaron
+    # paradas y dejaron sin auditoria la referencia de los 4 partidos)
+    Paso "4/5 Comprobacion automatica de requisitos (capturas del informe incluidas; se envia a Claude)"
     Ejecutar uv @("run", "tennisbio", "audit", "--stroke", "forehand")
-    Paso "Videos del reves y del saque"
-    # 27-10: la exportacion del reves se colgo dos veces sin rastro: si un golpe no avanza en 10 min se corta y se
-    # anota cual (exportar_*\en_curso.txt); los demas pasos siguen
-    foreach ($e in @(@("backhand", "exportar_reves"), @("overhead", "exportar_saque"))) {
+    Paso "5/5 Videos por golpe, montajes por conclusion y resumen PDF"
+    # 27-10: si un golpe no avanza en 10 min se corta y se anota cual (exportar_*\en_curso.txt) y donde estaba
+    # cada hilo (exportar_*\pila.txt); los demas pasos siguen
+    foreach ($e in @(@("forehand", "exportar_derecha"), @("backhand", "exportar_reves"), @("overhead", "exportar_saque"))) {
         $dir = "$Base\output\$($e[1])"
         New-Item -ItemType Directory -Force -Path $dir | Out-Null
         Remove-Item "$dir\en_curso.txt" -Force -ErrorAction SilentlyContinue
@@ -49,6 +47,7 @@ try {
             if (((Get-Date) - $ultimo).TotalMinutes -gt 10) {
                 & taskkill.exe /T /F /PID $pr.Id 2>&1 | Out-Null
                 Write-Host "AVISO: exportacion de $($e[0]) cortada: 10 min sin avanzar en $(Get-Content "$dir\en_curso.txt" -ErrorAction SilentlyContinue)" -ForegroundColor Yellow
+                Get-Content "$dir\pila.txt" -ErrorAction SilentlyContinue | Select-Object -Last 60 | ForEach-Object { Write-Host $_ }
                 break
             }
         }

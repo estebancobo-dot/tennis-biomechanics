@@ -116,6 +116,13 @@ function Subir-Registros {
             if ($e) { Copy-Item $e.FullName "$d\partidos\bib_$($m.Name)_strokes_errores.json" -Force }
         }
         if (Test-Path "$Base\output\biblioteca_migracion.json") { Copy-Item "$Base\output\biblioteca_migracion.json" $d -Force }
+        # donde va o donde se paro cada exportacion de videos (27-10)
+        foreach ($x in @("exportar_derecha", "exportar_reves", "exportar_saque")) {
+            foreach ($j in @("en_curso.txt", "pila.txt")) {
+                $f = "$Base\output\$x\$j"
+                if (Test-Path $f) { Copy-Item $f "$d\$($x)_$j" -Force -ErrorAction SilentlyContinue }
+            }
+        }
         # golpes de la referencia con sus series (peticion "referencia", 27-10)
         Get-ChildItem "$Base\output\referencia_*.zip" -ErrorAction SilentlyContinue | ForEach-Object { Copy-Item $_.FullName $d -Force }
         # uso de CPU, RAM, iGPU y disco por etapa (medir_recursos.ps1, 26-10): los ultimos 5 registros
