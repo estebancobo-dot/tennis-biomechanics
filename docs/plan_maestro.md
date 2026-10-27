@@ -20,7 +20,8 @@ Un solo trabajo pesado del PC a la vez; la nube solo hace lo que no toca lo que 
 | P1 | Lo que no es creíble: resultado del punto (2 ganadores en 191), nombres/fechas de los partidos; después peticiones por bloques (95 hechas, 94 a medias, 20 sin hacer) | Nube + PC (desde la caché) | C1 | auditoría en verde por petición | pendiente |
 | G1 | Genérica: ningún nombre de jugadora en el código (`player` en config; prueba `test_no_hardcoded_player`), golpe y jugador como parámetros | Nube | — | la prueba pasa | **hecho 27-10** |
 | B1 | Comparar la aplicación, pantalla a pantalla, con las profesionales (`docs/comparativa_apps.md`: SwingVision, TennisViz/SkeleTRACK, Sportsbox, Kinovea/OnForm) con los datos reales, y cerrar lo que les falte y la tele permita | Nube + PC | C1 | cada diferencia con su decisión y su prueba automática | pendiente |
-| A1 | Aplicación con los datos reales, comprobada con capturas | PC | C1, P1, B1 | 0 fallos en todas las pantallas | — |
+| E1 | Escenarios del producto completo (`docs/escenarios_producto.md`: jugadores masculinos y zurdos, revés a una mano, otros torneos y superficies, calidades de vídeo, dobles, clic equivocado, comparar jugadores, golpes poco frecuentes, errores): cada ✘ y ◐ con su prueba automática | Nube + PC | C1 (y conjuntos anotados) | todos ✔ o «no medible desde la tele» dicho | pendiente; primero: medir el detector con partidos masculinos |
+| A1 | Aplicación con los datos reales, comprobada con capturas | PC | C1, P1, B1, E1 | 0 fallos en todas las pantallas | — |
 | M1 | Móvil (opcional, solo si lo pide el usuario) | — | A1 | — | — |
 
 Conexión con el PC (27-10, **conectado y funcionando** desde las 12:05): el PC pasa a ser ejecutor de GitHub Actions (`4_conectar_github.bat` una vez,
