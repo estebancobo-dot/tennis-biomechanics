@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261027101034
+Start time: 20261027105004
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 11188
+Process ID: 13548
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,33 +17,30 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-27 10:10:34] Codigo nuevo (d1113ce -> 4f0a91d): 9 ficheros
+==> [2026-10-27 10:50:04] Codigo nuevo (4f0a91d -> 51077e9): 8 ficheros
     config/parar_pc.txt
     config/peticion_pc.txt
-    docs/plan_maestro.md
-    scripts/resources_summary.py
+    scripts/pack_reference.py
     scripts/windows/analisis_completo.ps1
     scripts/windows/ciclo_automatico.ps1
     scripts/windows/comun.ps1
-    scripts/windows/medir_recursos.ps1
-    tests/test_resources_summary.py
-Updating d1113ce..4f0a91d
+    src/tennisbio/export.py
+    tests/test_pack_reference.py
+Updating 4f0a91d..51077e9
 Fast-forward
  config/parar_pc.txt                   |  2 +-
  config/peticion_pc.txt                |  3 ++
- docs/plan_maestro.md                  |  2 +-
- scripts/resources_summary.py          | 82 +++++++++++++++++++++++++++++++++++
- scripts/windows/analisis_completo.ps1 |  7 ++-
- scripts/windows/ciclo_automatico.ps1  |  9 ++++
- scripts/windows/comun.ps1             |  6 +++
- scripts/windows/medir_recursos.ps1    | 54 +++++++++++++++++++++++
- tests/test_resources_summary.py       | 24 ++++++++++
- 9 files changed, 185 insertions(+), 4 deletions(-)
- create mode 100644 scripts/resources_summary.py
- create mode 100644 scripts/windows/medir_recursos.ps1
- create mode 100644 tests/test_resources_summary.py
-Resolved 124 packages in 0.98ms
-Checked 89 packages in 5ms
+ scripts/pack_reference.py             | 52 +++++++++++++++++++++++++++++++++++
+ scripts/windows/analisis_completo.ps1 | 24 ++++++++++++++--
+ scripts/windows/ciclo_automatico.ps1  |  8 ++++++
+ scripts/windows/comun.ps1             |  2 ++
+ src/tennisbio/export.py               |  6 ++++
+ tests/test_pack_reference.py          | 25 +++++++++++++++++
+ 8 files changed, 119 insertions(+), 3 deletions(-)
+ create mode 100644 scripts/pack_reference.py
+ create mode 100644 tests/test_pack_reference.py
+Resolved 124 packages in 0.89ms
+Checked 89 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -53,9 +50,9 @@ yolo11m-pose_960.onnx OK 84 MB
 yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
-    (paso terminado en 5 s)
+    (paso terminado en 4 s)
 
-==> [2026-10-27 10:10:39] Que hace falta: informe
+==> [2026-10-27 10:50:08] Que hace falta: informe
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
@@ -86,12 +83,16 @@ Auditoría: 284 cumplidos, 23 no cumplidos, 121 sin golpes suficientes, 89 aviso
   ✘ #211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5): SIN HACER según el registro (#211, docs/peticiones_usuario.md)
   ✘ #216 Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnic: SIN HACER según el registro (#216, docs/peticiones_usuario.md)
   ✘ #217 Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26): SIN HACER según el registro (#217, docs/peticiones_usuario.md)
-Hecho en 174 s, sin volver a analizar vídeo.
-    (paso terminado en 2 min 54 s)
+Hecho en 171 s, sin volver a analizar vídeo.
+    (paso terminado en 2 min 51 s)
 
-==> [2026-10-27 10:13:33] Revision automatica frente a la ejecucion anterior
+==> [2026-10-27 10:53:00] Revision automatica frente a la ejecucion anterior
 # Revisión automática: FALLOS
-Registro enviado a Claude (no hace falta copiar nada).
-    (paso terminado en 7 s)
-
-==> [2026-10-27 10:13:40] Peticion 56: analisis completo de todos los partidos (horas; registro: analisis_completo.log)
+Peticion 57 con accion 'referencia' que este ciclo aun no conoce: se hara en el siguiente
+Ciclo automatico terminado (informe).
+    (paso terminado en 0 s)
+Empezado 2026-10-27 10:50:02 - terminado 2026-10-27 10:53:00 - duracion total 2 min 57 s
+**********************
+Windows PowerShell transcript end
+End time: 20261027105300
+**********************
