@@ -34,9 +34,9 @@ la auditoría las marcará «sin comprobación automática asignada».
 
 | Estado | Nº |
 |---|---|
-| HECHO | 106 |
+| HECHO | 107 |
 | PARCIAL | 103 |
-| FALTA | 25 |
+| FALTA | 24 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
 | **Total** | **245** |
@@ -272,7 +272,7 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 201 | Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10) | FALTA | `pyproject.toml` sigue en rapidocr-onnxruntime 1.x | — | `scripts/check_requests.py` (registro) | Hecho solo «OCR cuando cambia». |
 | 202 | Bola: probar WASB (Estado del arte, 13-10) | FALTA | — | — | `scripts/check_requests.py` (registro) | No probado. |
 | 203 | 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10) | FALTA | — | — | `scripts/check_requests.py` (registro) | No probado. |
-| 204 | Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10) | FALTA | — | — | `scripts/check_requests.py` (registro) | No hecho; ayudaría a la pérdida de golpes del 19-10. |
+| 204 | Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10) | HECHO | `spotting.py`, `scripts/train_spotting.py`, `models/spotting.onnx` (CNN temporal con bola, entrenada con F3Set) | — | `scripts/validate_recall.py` | 26-10: 80 % de sus golpes en partidos bien anotados, frente al 4 % de las reglas. Probar E2E-Spot/F3ED como alternativa queda en la base (#228). |
 | 205 | Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3) | FALTA | — | — | `scripts/check_requests.py` (registro) | Los 4 partidos dieron menos de la mitad de sus golpes. |
 | 206 | Validación de cuerdas y 3D con referencia real (Comparativa apps, §4.4) | PARCIAL | `scripts/validate_racket.py` | — | `scripts/check_requests.py` (registro) | Sin referencia 3D real. |
 | 207 | Golpes: sin volea, remate ni cortado (Comparativa apps, §3 Peor) | PARCIAL | volea y media volea como clase; cortado como trayectoria | — | `scripts/check_requests.py` (registro) | Sin técnica propia de volea, remate ni cortado. 20-10: la volea también a media pista y fuera de la línea de saque (`class.contact_type`). |
