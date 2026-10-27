@@ -213,5 +213,22 @@
    "feature_dim": 122,
    "audio_track": 0
   }
+ },
+ "views": {
+  "fingerprint": "cbf5883e435ab430",
+  "version": "1",
+  "seconds": 18601.5,
+  "finished": "2026-10-27 03:07:17",
+  "summary": {
+   "views": 1676,
+   "repeticion_principal": 77,
+   "lateral": 100,
+   "frontal": 38,
+   "primer_plano": 1385,
+   "otra": 76,
+   "links": 2096,
+   "linked_views": 1018,
+   "slowmo_links": 36
+  }
  }
 }
