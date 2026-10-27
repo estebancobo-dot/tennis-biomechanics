@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261027113003
+Start time: 20261027114249
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 440
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 9712
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,25 +17,30 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-27 11:30:03] Codigo nuevo (a7fca01 -> 7f5a84b): 5 ficheros
-    .github/workflows/pc.yml
-    4_conectar_github.bat
-    docs/plan_maestro.md
-    scripts/windows/ciclo_automatico.ps1
-    scripts/windows/instalar_runner.ps1
-Updating a7fca01..7f5a84b
+==> [2026-10-27 11:42:49] Codigo nuevo (7f5a84b -> e3e5ef3): 9 ficheros
+    src/tennisbio/explain.py
+    src/tennisbio/learn.py
+    src/tennisbio/model.py
+    src/tennisbio/phases.py
+    src/tennisbio/report_template.html
+    src/tennisbio/series.py
+    src/tennisbio/stroke_analysis.py
+    tests/test_stroke.py
+    tests/test_stroke_page.py
+Updating 7f5a84b..e3e5ef3
 Fast-forward
- .github/workflows/pc.yml             | 25 +++++++++++++++++++++++++
- 4_conectar_github.bat                |  4 ++++
- docs/plan_maestro.md                 |  4 ++++
- scripts/windows/ciclo_automatico.ps1 |  1 +
- scripts/windows/instalar_runner.ps1  | 36 ++++++++++++++++++++++++++++++++++++
- 5 files changed, 70 insertions(+)
- create mode 100644 .github/workflows/pc.yml
- create mode 100644 4_conectar_github.bat
- create mode 100644 scripts/windows/instalar_runner.ps1
-Resolved 124 packages in 0.92ms
-Checked 89 packages in 3ms
+ src/tennisbio/explain.py           | 13 +++++---
+ src/tennisbio/learn.py             |  2 +-
+ src/tennisbio/model.py             | 15 +++++++--
+ src/tennisbio/phases.py            | 64 +++++++++++++++++++++++++++++++++++++-
+ src/tennisbio/report_template.html |  2 +-
+ src/tennisbio/series.py            | 22 ++++++-------
+ src/tennisbio/stroke_analysis.py   |  7 +++--
+ tests/test_stroke.py               | 32 +++++++++++++++++--
+ tests/test_stroke_page.py          |  2 +-
+ 9 files changed, 132 insertions(+), 27 deletions(-)
+Resolved 124 packages in 0.97ms
+Checked 89 packages in 2ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -47,11 +52,44 @@ yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
     (paso terminado en 4 s)
 
-==> [2026-10-27 11:30:07] Que hace falta: nada
-Ciclo automatico terminado (nada).
-    (paso terminado en 0 s)
-Empezado 2026-10-27 11:30:02 - terminado 2026-10-27 11:30:07 - duracion total 6 s
+==> [2026-10-27 11:42:53] Que hace falta: medidas
+Recalcular medidas: empieza 2026-10-27 11:42:54
+
+[2026-10-27 11:42:54] smoke_tennis-yusipopen-final-sobolenko-rybakin: trozo de vídeo tennis-yusipopen-final-sobolenko-rybakin_7264_35m.mkv, rival Sabalenka
+  Se usan los resultados que hay de scenes, court, players, score aunque su código o su vídeo cambiaron (no se rehacen aquí; la próxima prueba completa sí lo hará)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] candidates… (2026-10-27 11:42:54, etapa 9 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+Traceback (most recent call last):
+  File "C:\tenis\tennis-biomech\scripts\recompute_measures.py", line 183, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "C:\tenis\tennis-biomech\scripts\recompute_measures.py", line 163, in main
+    recompute(d, out_root, cfg, player)
+  File "C:\tenis\tennis-biomech\scripts\recompute_measures.py", line 112, in recompute
+    done = pipeline.run(ctx, list(CHEAP), upstream=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\tenis\tennis-biomech\src\tennisbio\pipeline.py", line 426, in run
+    summary = st.run(ctx) or {}
+              ^^^^^^^^^^^
+  File "C:\tenis\tennis-biomech\src\tennisbio\stages.py", line 774, in st_candidates
+    cands, info = spotter_candidates(_read(ctx.path("spotting.json")), identity, fps, spans,
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\tenis\tennis-biomech\src\tennisbio\stages.py", line 34, in _read
+    return json.loads(path.read_text(encoding="utf-8"))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\tenis\\output\\_smoke\\smoke_tennis-yusipopen-final-sobolenko-rybakin\\spotting.json'
+PS>TerminatingError(): "Fallo: uv run python scripts/recompute_measures.py (codigo 1)"
+ERROR: Fallo: uv run python scripts/recompute_measures.py (codigo 1)
+    (paso terminado en 2 s)
+Empezado 2026-10-27 11:42:48 - terminado 2026-10-27 11:42:55 - duracion total 7 s
 **********************
 Windows PowerShell transcript end
-End time: 20261027113007
+End time: 20261027114255
 **********************
