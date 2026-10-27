@@ -50,7 +50,7 @@ Horizontes (27-10, corregido por el usuario: **la base primero, al 100 %**):
     |---|---|---|---|---|
     | B-1 | Tiempo límite en toda llamada externa | Pruebas | Ninguna sin límite | **hecho 27-10** (`test_no_unbounded_calls`) |
     | B-2 | Cuelgue de la exportación del revés | PC (`en_curso.txt`) | Ningún corte por 10 min sin avanzar | pendiente |
-    | B-3 | Tomas de cámara con fotogramas clave | PC, recursos | < 15 min por partido, mismas tomas | pendiente |
+    | B-3 | Tomas de cámara con fotogramas clave | PC, recursos | < 15 min por partido, mismas tomas | **código hecho 27-10** (`frames_at(key_only=True)`, etapa `views` v2); falta medir el tiempo en el PC |
     | B-4 | Una lectura de vídeo compartida y modelos por lotes en la pasada fina | PC, recursos | iGPU > 60 % de media, mismos puntos | pendiente |
     | B-5 | Exportación en paralelo | PC | < 20 min la derecha | pendiente |
     | B-6 | 3D: MotionAGFormer frente a RTMW3D (#203) | PC (las descargas de GitHub fuera del repositorio están bloqueadas en la nube) | Rotaciones coherentes con el 2D en los 193 golpes | pendiente |

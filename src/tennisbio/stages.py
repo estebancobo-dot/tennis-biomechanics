@@ -844,6 +844,9 @@ def _views_settings(c: dict) -> dict:
             "samples": int(v.get("samples", 3))}
 
 
+VIEWS_KEY_ROOM_S = 2.5     # a broadcast puts a keyframe at least every ~2 s: closer to the shot's end, the exact frame
+
+
 def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> dict[int, dict]:
     """Evidence of the non-live shots from 1-3 frames each (one ffmpeg pass over the sampled times; read
     in sequential stretches, dense_s=60, as the identity clothes frames: one seek per frame cost 3-14 s on
@@ -866,8 +869,19 @@ def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> d
     per: dict[int, list] = {}
     fits = 0
     info = probe(ctx.video)
-    for n, ((t, i), (_, fr)) in enumerate(zip(items, frames_at(info, [t for t, _ in items], hwaccel=ctx.cfg.get("hwaccel"),
-                                                                    dense_s=60.0))):
+    # any frame of the shot will do: the first KEYFRAME after each time (only keyframes are decoded; 27-10: 5 h on
+    # the final reading everything in between), unless the shot ends too soon after it for a keyframe to be sure
+    # to fall inside: those few at their exact frame (docs/revision_base.md, B-3)
+    sfps = float(scenes.get("fps") or 1.0)
+    room = lambda t, i: scenes["shots"][i]["end"] / sfps - t
+    keyed = [x for x in items if room(*x) >= VIEWS_KEY_ROOM_S]
+    exact = [x for x in items if room(*x) < VIEWS_KEY_ROOM_S]
+    hw = ctx.cfg.get("hwaccel")
+    import itertools
+    stream = itertools.chain(zip(keyed, frames_at(info, [t for t, _ in keyed], hwaccel=hw, key_only=True)),
+                             zip(exact, frames_at(info, [t for t, _ in exact], hwaccel=hw, dense_s=60.0)))
+    items = keyed + exact
+    for n, ((t, i), (_, fr)) in enumerate(stream):
         ctx.progress(n + 1, len(items), "fotogramas de otras tomas")
         if fr is None:
             continue
@@ -891,7 +905,7 @@ def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> d
     return {i: merge_evidence(v) for i, v in per.items()}
 
 
-@stage("views", "1", deps=("scenes", "court", "players", "score", "audio", "candidates"), settings=_views_settings,
+@stage("views", "2", deps=("scenes", "court", "players", "score", "audio", "candidates"), settings=_views_settings,
        outputs=("views.json",))
 def st_views(ctx: Context):
     """Replays and the other cameras, used and linked to the live stroke they show (tennisbio.views,

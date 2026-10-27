@@ -1,7 +1,7 @@
 {
  "probe": {
   "version": "2",
-  "hash": "a556266a8fdb2466",
+  "hash": "dd40c071c29ba381",
   "modules": [
    "io.video"
   ]
@@ -51,8 +51,8 @@
   ]
  },
  "views": {
-  "version": "1",
-  "hash": "fef02b5b13ddf64e",
+  "version": "2",
+  "hash": "ac335639a741a214",
   "modules": [
    "replays",
    "views"

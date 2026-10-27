@@ -195,9 +195,12 @@ _SHOWINFO_TB = re.compile(r"config in time_base:\s*(\d+)/(\d+)")
 _SHOWINFO_PTS = re.compile(r"\bn:\s*\d+\s+pts:\s*(-?\d+)")
 
 
-def _frames_at_run(info: VideoInfo, targets: list[str], hwaccel: str | None) -> Iterator[np.ndarray | None]:
+def _frames_at_run(info: VideoInfo, targets: list[str], hwaccel: str | None,
+                   key_only: bool = False) -> Iterator[np.ndarray | None]:
     """One ffmpeg process for a run of sorted target times (strings with 3 decimals, as `-ss` takes
-    them): for each one, the first frame whose timestamp is >= it, or None when the video ends first."""
+    them): for each one, the first frame whose timestamp is >= it, or None when the video ends first.
+    key_only: only the keyframes are decoded (`-skip_frame nokey`), so each target gets the first
+    KEYFRAME at or after it, and the frames in between cost nothing."""
     import queue
     import threading
 
@@ -211,6 +214,8 @@ def _frames_at_run(info: VideoInfo, targets: list[str], hwaccel: str | None) -> 
     hwaccel = auto_hwaccel() if hwaccel == "auto" else hwaccel
     if hwaccel:
         cmd += ["-hwaccel", hwaccel]
+    if key_only:
+        cmd += ["-skip_frame", "nokey"]
     if seek_s:
         cmd += ["-ss", str(seek_s)]
     cmd += ["-i", str(info.path), "-an", "-vf", f"select='{expr}',showinfo", "-fps_mode", "passthrough",
@@ -275,7 +280,9 @@ def seek_frame(info: VideoInfo, t: str | float) -> np.ndarray | None:
     return np.frombuffer(raw[:n], np.uint8).reshape(info.height, info.width, 3) if len(raw) >= n else None
 
 
-def _frames_at(info: VideoInfo, times: list[float], hwaccel, dense_s: float, max_run: int):
+def _frames_at(info: VideoInfo, times: list[float], hwaccel, dense_s: float, max_run: int, key_only: bool = False):
+    if key_only:                    # nothing but keyframes is decoded: one process for many times is cheap
+        dense_s, max_run = max(dense_s, 3600.0), max(max_run, 400)
     runs, cur = [], []
     for t in times:
         if cur and (len(cur) >= max_run or t - cur[-1] > dense_s):
@@ -285,15 +292,15 @@ def _frames_at(info: VideoInfo, times: list[float], hwaccel, dense_s: float, max
     if cur:
         runs.append(cur)
     for run in runs:
-        if len(run) == 1:
+        if len(run) == 1 and not key_only:
             yield run[0], seek_frame(info, run[0])
             continue
-        for t, fr in zip(run, _frames_at_run(info, [f"{t:.3f}" for t in run], hwaccel)):
+        for t, fr in zip(run, _frames_at_run(info, [f"{t:.3f}" for t in run], hwaccel, key_only)):
             yield t, fr
 
 
 def frames_at(info: VideoInfo, times: list[float], hwaccel: str | None = None, dense_s: float = 1.5,
-              max_run: int = 60, prefetch: int = 3) -> Iterator[tuple[float, np.ndarray | None]]:
+              max_run: int = 60, prefetch: int = 3, key_only: bool = False) -> Iterator[tuple[float, np.ndarray | None]]:
     """(t, frame) for each of the ascending times: the same frame as `ffmpeg -ss t -frames:v 1` (the
     first one at or after t to the millisecond, full resolution, not deinterlaced), or None after the
     end, as raw BGR (no image encoding in between).
@@ -303,21 +310,22 @@ def frames_at(info: VideoInfo, times: list[float], hwaccel: str | None = None, d
     seek decodes from the previous keyframe; a sequential read decodes everything in between: at
     1080p50 one seek costs about as much as decoding 1-1.5 s of video). The frames are fetched in
     a background thread, up to `prefetch` ahead, so decoding overlaps with whatever the caller does
-    with each frame (OCR)."""
+    with each frame (OCR). key_only: the first KEYFRAME at or after each time instead (only keyframes
+    are decoded: for anything that needs a frame of a shot, not that exact frame)."""
     import queue
     import threading
 
     if any(b < a for a, b in zip(times, times[1:])):
         raise ValueError("frames_at needs ascending times")
     if prefetch <= 0:
-        yield from _frames_at(info, times, hwaccel, dense_s, max_run)
+        yield from _frames_at(info, times, hwaccel, dense_s, max_run, key_only)
         return
     q: queue.Queue = queue.Queue(maxsize=prefetch)
     stop = threading.Event()
     done = object()
 
     def produce():
-        gen = _frames_at(info, times, hwaccel, dense_s, max_run)
+        gen = _frames_at(info, times, hwaccel, dense_s, max_run, key_only)
         try:
             for item in gen:
                 while not stop.is_set():

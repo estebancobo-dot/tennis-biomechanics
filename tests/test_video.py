@@ -129,3 +129,19 @@ def test_frames_at_falls_back_to_one_seek_per_time(tmp_path, monkeypatch):
     got = list(video.frames_at(info, [0.5, 1.5, 9.0]))
     assert np.array_equal(got[0][1], grab_frame(info.path, 0.5)) and np.array_equal(got[1][1], grab_frame(info.path, 1.5))
     assert got[2][1] is None
+
+
+def test_key_only_gives_the_first_keyframe_after_each_time(tmp_path):
+    """27-10 (B-3): the shots' frames are taken from the keyframes only (nothing else is decoded): each
+    time gets the first keyframe at or after it, the same frame an exact read at that keyframe gives."""
+    import subprocess
+    import numpy as np
+    from tennisbio.io.video import frames_at, probe, seek_frame
+    v = tmp_path / "k.mp4"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "testsrc=duration=6:size=160x90:rate=25",
+                    "-c:v", "libx264", "-g", "25", "-keyint_min", "25", "-sc_threshold", "0", "-pix_fmt", "yuv420p", str(v)],
+                   check=True, timeout=60)
+    info = probe(v)
+    got = dict(frames_at(info, [0.3, 1.0, 2.6, 2.7], key_only=True, prefetch=0))
+    for t, key in ((0.3, 1.0), (1.0, 1.0), (2.6, 3.0), (2.7, 3.0)):        # keyframes every second
+        assert got[t] is not None and np.array_equal(got[t], seek_frame(info, key)), t
