@@ -34,12 +34,15 @@ la auditoría las marcará «sin comprobación automática asignada».
 
 | Estado | Nº |
 |---|---|
-| HECHO | 95 |
-| PARCIAL | 94 |
-| FALTA | 20 |
+| HECHO | 106 |
+| PARCIAL | 103 |
+| FALTA | 25 |
 | NO MEDIBLE | 3 |
-| NO APLICA | 7 |
-| **Total** | **219** |
+| NO APLICA | 8 |
+| **Total** | **245** |
+
+**27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
+salió en la prueba de valor; ninguna fila borrada.
 
 **Al día (13-10, tarde).** Web en 2 vistas («Cópiala», «Sus golpes») y «Más»; cada medida validada sola
 (técnica, ruido o sesgo); ciclo automático en el PC con revisión OK/REGRESIÓN/ERROR; golpes dudosos 1 de 10.
@@ -285,6 +288,32 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 217 | Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26) | FALTA | — | — | `scripts/check_requests.py` (registro) | Sin prueba de que se actualizaran. |
 | 218 | La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (velocidad normal o cámara lenta) y las otras tomas (laterales, frontales, primeros planos), enlazadas a su golpe en directo; el usuario no tiene que buscar vídeos de YouTube (19-10) | PARCIAL | `tennisbio.views`, etapas `views` y `views_link` (`stages.st_views`): cada toma que no es juego en directo se clasifica (repetición de la cámara principal, lateral, frontal, primer plano, otra) y se enlaza a su golpe en directo (por el recorrido de sus pies, con el factor de cámara lenta, o por orden y golpes oídos); `strokes.json` lleva `views` y `slowmo_view` | — | `tests/test_views.py`; auditoría «Repeticiones y otras cámaras enlazadas» | Falta validarlo con los partidos reales (umbrales de clasificación), medir sobre esas tomas (pasada fina en la cámara lenta: `views.fine_on_slowmo`, pendiente) y enseñarlas en el informe; el lado del fondo casi no se confirma. |
 | 219 | Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa distancia, no descartados (19-10) | PARCIAL | `stages.st_fine` (lado lejano) | Pista, golpes del fondo | `scripts/validate_recall.py` | Se confirman ~20 % de los golpes del fondo (Zheng: 36 de ~175). |
+| 220 | Almacenamiento definitivo: árbol por jugador, partido y golpe; nombres, colisiones y todos los escenarios (19-10 09:59) | HECHO | `library.py`, `layout.py`, `match_files.py`, `docs/almacenamiento.md` | — | `tests/test_layout.py`, `tests/test_match_files.py` | Las carpetas de la biblioteca salen «sin-fecha»: falta poner fecha, torneo y ronda en el nombre. |
+| 221 | Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano (19-10 19:57) | PARCIAL | `spotting.py`, `stages.st_spotting`, `models/spotting.onnx` | — | `scripts/validate_recall.py` (F3Set) | Recall 80 % en partidos bien anotados; las repeticiones descartan de más (11 % en F3Set, 30 % de candidatos en Gauff). |
+| 222 | Un clic por partido para decir quién es ella (19-10 19:57) | HECHO | `app/identity_click.py`, `stages.st_identity` | Lista de partidos | `tests/test_app_window.py` | Deshacer o cambiar un clic equivocado. |
+| 223 | Revés y derecha cortados (20-10 06:33) | FALTA | — | — | — | Clasificar el cortado por la trayectoria de la muñeca de arriba abajo y el ángulo de la cara; validarlo con golpes anotados. |
+| 224 | Saques: plano, cortado o kick; primero o segundo (20-10 07:30) | FALTA | — | — | — | Primero/segundo por la secuencia del punto y el marcador; el efecto solo como estimación (bola y cara de la raqueta) o «no medible desde la tele». |
+| 225 | La aplicación no se cuelga ni ralentiza el PC (24-10 10:22-10:47) | HECHO | `app/window.py` (trabajos en un proceso aparte, `Watch`) | Aplicación | `tests/test_app_window.py` | Medir su uso de recursos con `medir_recursos.ps1`. |
+| 226 | Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10) | HECHO | `app/cards.py`, `app/state.py`, `app/ui.html` | Partidos | `tests/test_app_window.py` | — |
+| 227 | Pantalla completa en la aplicación (24-10 10:36) | HECHO | `app/window.py` (`toggle_fullscreen`, F11) | Aplicación | `tests/test_app_window.py` | — |
+| 228 | Móvil: opcional y al final, solo si lo pide (24-10 10:52) | NO APLICA | — | — | — | Decisión del usuario: no se toca hasta el final. |
+| 229 | Renombrar el vídeo no rompe nada; el partido se identifica por su contenido (25-10 13:21-13:23) | HECHO | `scripts/auto_catalog.py` (`video_sample`), `library.py` | — | `tests/test_auto_catalog_rename.py` | — |
+| 230 | Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12:56) | PARCIAL | `scripts/windows/medir_recursos.ps1`, `scripts/resources_summary.py` | — | `tests/test_resources_summary.py` | Se mide desde el próximo trabajo; luego acelerar lo que no aproveche el equipo. |
+| 231 | Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11:05-21:50) | PARCIAL | `stages._sample_views` (lectura por tramos) | — | — | Leer solo fotogramas clave (cualquier fotograma de la toma vale) y medir el tiempo. |
+| 232 | Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó (27-10 09:24) | PARCIAL | `export.py` (`en_curso.txt`), `analisis_completo.ps1` (corte a los 10 min) | — | `tests/test_export.py` | Encontrar y arreglar el golpe que cuelga la exportación del revés. |
+| 233 | Una referencia completa y medida antes de validar nada (26-10 11:09) | HECHO | `3_analisis_completo.bat`, biblioteca | Todas | Auditoría | 799 golpes suyos en 4 partidos (27-10). |
+| 234 | Prueba de valor de la aplicación con los datos reales (27-10 07:21) | HECHO | — | Conclusiones, Cópiala | Auditoría + capturas | Útil: pies y pista; mal: cadena (arreglada), resultado del punto, nombres de rivales. |
+| 235 | Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) | PARCIAL | `phases.kinetic_chain` (v2), `footwork.py`, `report.rhythm` | Cópiala «Su ritmo y su cadena cinética» | `tests/test_stroke.py`, `tests/test_foot_metrics.py` | Cadena en orden 79 % y pasos medidos 87 % en los 193 golpes; falta verlo recalculado en el PC. |
+| 236 | Huellas numeradas sobre los pies y patrones de pasos (27-10 09:38) | PARCIAL | `report_template.html` (`footprints`, `drawFeetCourt`) | AG (capa «Pasos»), plano de la pista | `tests/test_stroke_page.py` | Patrón típico de pasos por situación (frecuencia de cada secuencia). |
+| 237 | El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min (27-10 10:19-10:25) | HECHO | `.github/workflows/pc.yml`, `scripts/windows/instalar_runner.ps1` | — | Pestaña Actions | — |
+| 238 | La validación es siempre automática; el usuario no valida la aplicación (27-10 11:42) | PARCIAL | `audit.py`, `app check` con capturas | Calidad | Auditoría | Que cada pantalla nueva entre con su comprobación automática. |
+| 239 | No se descarta ninguna petición (27-10 11:42) | HECHO | este registro | — | `scripts/check_requests.py` | — |
+| 240 | Comparar la aplicación con las profesionales una vez estén los golpes (27-10 11:42) | FALTA | `docs/comparativa_apps.md` | — | — | Bloque B1 del plan: pantalla a pantalla con los datos reales. |
+| 241 | Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código (27-10 11:42) | HECHO | `config.default_player`, `config/players`, `config/strokes` | — | `tests/test_no_hardcoded_player.py` | — |
+| 242 | Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis por persona (27-10 12:06) | PARCIAL | `docs/aplicacion_local.md` §5.1b | Aplicación | — | Medir el detector con partidos masculinos; probar el flujo entero con capturas. |
+| 243 | Todos los escenarios del producto los contempla Claude sin esperar a que se pidan (27-10 12:09) | PARCIAL | `docs/escenarios_producto.md` | — | — | Bloque E1: cada ✘ y ◐ con su prueba automática. |
+| 244 | Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10) | FALTA | `outcome.py` | Conclusiones | — | Revisar ganadores y errores con el marcador y la bola; no mostrar hasta que sea creíble. |
+| 245 | Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10) | FALTA | `report.prepare` | Conclusiones, Partidos | — | Usar los datos del catálogo y del nombre del vídeo (como la lista de la aplicación). |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)
 

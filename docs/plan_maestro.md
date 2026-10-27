@@ -28,6 +28,17 @@ Conexión con el PC (27-10, **conectado y funcionando** desde las 12:05): el PC 
 `.github/workflows/pc.yml`): cada petición empieza al subirla y su registro está en Actions. El ciclo de cada
 10 min (ahora mira GitHub cada minuto cuando está libre) sigue debajo como respaldo y para las paradas.
 
+Horizontes (27-10):
+- **Corto (hoy-mañana):** C1 recalculado y comprobado en el PC (cadena, pies, tiempos, huellas); P1 lo no creíble
+  (resultado del punto, rivales y fechas, carpetas «sin-fecha»); D1 la tanda única de detección (repeticiones,
+  NMS vacío, exportación del revés, etapa de tomas) con medida de recursos.
+- **Medio (esta semana y la siguiente):** B1 comparación con las apps profesionales; E1 escenarios del producto
+  (primero partidos masculinos); las peticiones no terminadas del registro por bloques (`docs/peticiones_usuario.md`:
+  245 filas, 106 hechas, 103 a medias, 25 sin hacer), incluidas usabilidad y psicología del aprendizaje (#122, #123,
+  #189, #197, #198) comprobadas con los datos reales; A1 la aplicación entera con capturas.
+- **Largo:** revés, saque y otros jugadores con su propia validación; velocidad (bajar horas por partido);
+  móvil, solo si el usuario lo pide.
+
 Reglas del usuario (27-10): la validación es **siempre automática** (el usuario no valida la aplicación); **no se
 descarta ninguna petición** de `docs/peticiones_usuario.md` (220 filas): se ordenan por dependencia y se cierran
 todas; la aplicación es **genérica** (partidos, jugadores y golpes se añaden por configuración). El conocimiento de
