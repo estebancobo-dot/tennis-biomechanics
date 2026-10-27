@@ -16,3 +16,11 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
+git : warning: in the working copy of 'revision_automatica.md', LF will be replaced by CRLF the next time Git touches it
+At C:\tenis\tennis-biomech\scripts\windows\comun.ps1:228 char:9
++         git -C $d add -A 2>$null
++         ~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (warning: in the... Git touches it:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+Registro enviado a Claude (no hace falta copiar nada).
+
