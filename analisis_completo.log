@@ -8790,3 +8790,39 @@ Auditoría: 326 cumplidos, 38 no cumplidos, 54 sin golpes suficientes, 115 aviso
     (paso terminado en 3 min 24 s)
 
 ==> [2026-10-27 10:19:21] Videos del reves y del saque
+**********************
+Windows PowerShell transcript start
+Start time: 20261027121913
+Username: esteban\esteb
+RunAs User: esteban\esteb
+Configuration Name: 
+Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\analisis_completo.ps1
+Process ID: 13496
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Already up to date.
+Resolved 124 packages in 1ms
+Checked 89 packages in 3ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+
+==> [2026-10-27 12:19:17] 1/5 Catalogo de partidos (se anaden solos los videos nuevos)
+Vídeos en C:\tenis\videos: 4 en el catálogo (0 nuevos: —)
+    (paso terminado en 0 s)
+
+==> [2026-10-27 12:19:17] 2/5 Analisis de los partidos (horas; se puede cortar y relanzar)
