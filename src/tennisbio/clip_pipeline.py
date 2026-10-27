@@ -111,8 +111,8 @@ def load_audio(video: Path, sr=22050):
         wav = Path(d) / "a.wav"
         # a clip without sound (RacketVision) is normal: no audio, and ffmpeg's complaint is not shown
         try:
-            r = subprocess.run(timeout=600, args=["ffmpeg", "-v", "error", "-y", "-i", str(video), "-vn", "-ac", "1", "-ar", str(sr), str(wav)],
-                               capture_output=True)
+            r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(video), "-vn", "-ac", "1", "-ar", str(sr), str(wav)],
+                               capture_output=True, timeout=600)
         except subprocess.TimeoutExpired:      # the sound of a clip that hangs: none, as a clip without sound
             return np.zeros(0), sr
         if r.returncode or not wav.exists():

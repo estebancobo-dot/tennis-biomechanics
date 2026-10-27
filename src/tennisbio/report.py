@@ -504,8 +504,8 @@ def thumbnail(video: Path, t: float, box: list | None, out: Path, width=360) -> 
               f"'max(0,min(iw-min({w:.0f},iw),{cx - w / 2:.0f}))':'max(0,min(ih-min({h:.0f},ih),{cy - h / 2:.0f}))',"
               f"scale={width}:-2")
     try:
-        r = subprocess.run(timeout=120, args=["ffmpeg", "-v", "error", "-y", "-ss", f"{max(0.0, t):.3f}", "-i", str(video), "-frames:v", "1",
-                            "-vf", vf, "-q:v", "4", str(out)], capture_output=True)
+        r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{max(0.0, t):.3f}", "-i", str(video), "-frames:v", "1",
+                            "-vf", vf, "-q:v", "4", str(out)], capture_output=True, timeout=120)
     except subprocess.TimeoutExpired:
         return False
     return r.returncode == 0 and out.exists()

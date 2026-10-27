@@ -127,8 +127,8 @@ def sound_flux(video: Path, fps: float, n: int, sr: int = 22050, band=(1000, 600
 
     import librosa
 
-    r = subprocess.run(timeout=3600, args=["ffmpeg", "-v", "error", "-i", str(video), "-vn", "-ac", "1", "-ar", str(sr), "-f", "f32le", "pipe:1"],
-                       capture_output=True)
+    r = subprocess.run(["ffmpeg", "-v", "error", "-i", str(video), "-vn", "-ac", "1", "-ar", str(sr), "-f", "f32le", "pipe:1"],
+                       capture_output=True, timeout=3600)
     y = np.frombuffer(r.stdout, np.float32)
     out = np.zeros(n, np.float32)
     if len(y) < sr:

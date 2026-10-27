@@ -59,9 +59,9 @@ def st_probe(ctx: Context):
             # recorded .ts broadcasts carry packets without a timestamp (18-10: «Can't write packet with unknown
             # timestamp» on the Osaka – Rybakina R4): the second try makes them up from the stream's clock
             for flags in ([], ["-fflags", "+genpts+igndts", "-avoid_negative_ts", "make_zero"]):
-                r = subprocess.run(timeout=3600, args=["ffmpeg", "-v", "error", "-y", *flags[:2], "-i", str(ctx.match.video), *flags[2:],
+                r = subprocess.run(["ffmpeg", "-v", "error", "-y", *flags[:2], "-i", str(ctx.match.video), *flags[2:],
                                     "-map", "0:v:0", "-map", "0:a?", "-dn", "-sn", "-c", "copy", str(tmp)],
-                                   capture_output=True, text=True, encoding="utf-8", errors="replace")
+                                   capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=3600)
                 if r.returncode == 0 and _valid_video(tmp):
                     break
             if r.returncode == 0 and _valid_video(tmp):
@@ -143,9 +143,9 @@ def st_audio(ctx: Context, chunk_s=300.0, overlap_s=1.0):
         t = 0.0
         while t < info.duration:
             dur = min(chunk_s + overlap_s, info.duration - t)
-            raw = subprocess.run(timeout=600, args=["ffmpeg", "-v", "error", "-ss", f"{t:.3f}", "-t", f"{dur:.3f}", "-i", str(ctx.video),
+            raw = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{t:.3f}", "-t", f"{dur:.3f}", "-i", str(ctx.video),
                                   "-map", f"0:a:{k}", "-vn", "-ac", "1", "-ar", str(sr), "-f", "f32le", "pipe:1"],
-                                 capture_output=True).stdout
+                                 capture_output=True, timeout=600).stdout
             y = np.frombuffer(raw, np.float32)
             if len(y) > sr:
                 on, st = audio_onsets(y, sr)
@@ -950,8 +950,8 @@ def grab_frame(video: Path, t: float) -> np.ndarray | None:
     import cv2
 
     try:
-        raw = subprocess.run(timeout=120, args=["ffmpeg", "-v", "error", "-nostdin", "-ss", f"{t:.3f}", "-i", str(video), "-frames:v", "1",
-                              "-f", "image2pipe", "-vcodec", "bmp", "pipe:1"], capture_output=True).stdout
+        raw = subprocess.run(["ffmpeg", "-v", "error", "-nostdin", "-ss", f"{t:.3f}", "-i", str(video), "-frames:v", "1",
+                              "-f", "image2pipe", "-vcodec", "bmp", "pipe:1"], capture_output=True, timeout=120).stdout
     except subprocess.TimeoutExpired:          # one frame that hangs: none, as one that is not there
         return None
     return cv2.imdecode(np.frombuffer(raw, np.uint8), cv2.IMREAD_COLOR) if raw else None
@@ -1338,13 +1338,13 @@ def cut_window(video: Path, t0: float, dur: float, dest: Path, interlaced: bool 
     if cfr_fps:
         filters.append(f"fps={cfr_fps * (2 if interlaced else 1):.6f}")
     vf = ["-vf", ",".join(filters)] if filters else []
-    r = subprocess.run(timeout=900, args=["ffmpeg", "-v", "error", "-y", "-ss", f"{max(0.0, t0):.3f}", "-i", str(video), "-t", f"{dur:.3f}",
+    r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{max(0.0, t0):.3f}", "-i", str(video), "-t", f"{dur:.3f}",
                         "-map", "0:v:0", "-map", f"0:a:{audio_track}?", *vf,
                         # a keyframe every 8 frames: frame-by-frame scrubbing in the report stays instant;
                         # yuv420p: the only chroma format every browser plays (broadcasts can be 4:2:2)
                         "-c:v", "libx264", "-crf", "16", "-preset", "veryfast", "-g", "8", "-pix_fmt", "yuv420p",
                         "-movflags", "+faststart", "-c:a", "aac", "-ac", "2", str(tmp)], capture_output=True, text=True,
-                       encoding="utf-8", errors="replace")
+                       encoding="utf-8", errors="replace", timeout=900)
     if r.returncode != 0 or not _valid_video(tmp):
         tmp.unlink(missing_ok=True)
         raise RuntimeError(f"no se pudo recortar {dur:.1f} s en {t0:.1f} s del vídeo ({(r.stderr or '').strip()[-200:]})")

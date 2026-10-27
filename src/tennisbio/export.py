@@ -424,8 +424,8 @@ def concat(parts: list[Path], out: Path):
     q = lambda p: p.resolve().as_posix().replace("'", "'\\''")          # quoting of the concat list
     lst.write_text("".join(f"file '{q(p)}'\n" for p in parts), encoding="utf-8")
     tmp = out.with_name(out.stem + ".part.mp4")
-    subprocess.run(timeout=1800, args=["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(lst), "-c", "copy",
-                    "-movflags", "+faststart", str(tmp)], check=True)
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(lst), "-c", "copy",
+                    "-movflags", "+faststart", str(tmp)], check=True, timeout=1800)
     tmp.replace(out)
     lst.unlink()
 

@@ -306,7 +306,7 @@ def worker(cfg: dict, stop: threading.Event, idle_s: float = 30.0, tray=None, lo
     finally:
         if child is not None and child.poll() is None:
             if os.name == "nt":
-                subprocess.run(timeout=60, args=["taskkill", "/T", "/F", "/PID", str(child.pid)], capture_output=True)
+                subprocess.run(["taskkill", "/T", "/F", "/PID", str(child.pid)], capture_output=True, timeout=60)
             else:
                 child.terminate()
         app.close()
