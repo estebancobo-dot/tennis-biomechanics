@@ -123,6 +123,9 @@ def _smooth(a: np.ndarray, k: int) -> np.ndarray:
     return np.convolve(pad, np.ones(k) / k, mode="valid")
 
 
+CLIP_FROM_S, CLIP_TO_S = -1.0, 0.8      # real-speed part of a stroke video, s from contact
+
+
 class StrokeClip:
     """A stroke ready to draw: its frames cropped around the player (16:9) and its series."""
 
@@ -336,7 +339,9 @@ class StrokeClip:
 
     def strokes_frames(self, metrics, dist):
         """Real speed → 0,25× around the impact → freeze on the impact with her metrics."""
-        for t in np.arange(self.T0, self.T1 + 1e-9, 1 / OUT_FPS):
+        # the clip at real speed keeps its former reach (the series now start at the opponent's hit, 2.5 s
+        # before contact, 27-10): a stroke video stays as long, and the export as fast, as before
+        for t in np.arange(max(self.T0, CLIP_FROM_S), min(self.T1, CLIP_TO_S) + 1e-9, 1 / OUT_FPS):
             yield self._frame(self.f_at(t), t, "1×")
         lo, hi = max(self.T0, -0.6), min(self.T1, 0.5)
         for t in np.arange(lo, hi + 1e-9, 0.25 / OUT_FPS):

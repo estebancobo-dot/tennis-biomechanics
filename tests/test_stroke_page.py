@@ -217,3 +217,67 @@ def test_phone_width(tmp_path):
         b.close()
     assert all(w <= 390 for w in widths.values()), widths
     assert more > 300 and main > 120
+
+
+@pytest.mark.skipif(not CHROMIUM.exists(), reason="sin navegador para la prueba de la web")
+def test_numbered_footprints_appear_as_each_foot_lands(tmp_path):
+    """27-10 (the user: «círculos sobre los pies numerados»): the split step «S» and every step, numbered in
+    the order the feet land, drawn where the foot touches the court (heel and toes), only once it has landed."""
+    from playwright.sync_api import sync_playwright
+
+    s, ser = stroke_and_series()
+    s["phases"]["ready"] = {"t_rel": -0.8, "method": "split_step_landing"}
+    s["technique"]["footwork"] = {"steps_reliable": True, "steps": [
+        {"foot": "non", "t_start": -0.7, "t_land": -0.6, "length_m": 0.5, "dx": -0.5, "dy": 0.0, "crossover": False},
+        {"foot": "dom", "t_start": -0.5, "t_land": -0.4, "length_m": 0.6, "dx": -0.6, "dy": 0.0, "crossover": True},
+        {"foot": "non", "t_start": 0.2, "t_land": 0.3, "length_m": 0.4, "dx": 0.4, "dy": 0.0, "crossover": False}]}
+    n = ser["n"]
+    ser["feet"] = [[[250 + i, 625], [350, 625], [252, 622], [348, 622], [255, 630], [345, 630]] for i in range(n)]
+    ser["feet_conf"] = [[0.9] * 6] * n
+    d = tmp_path / "m1"
+    (d / "series").mkdir(parents=True)
+    (d / "series" / "x.json").write_text(json.dumps(ser), encoding="utf-8")
+    (d / "strokes.json").write_text(json.dumps([s]), encoding="utf-8")
+    html = build([Match("m1", None, Player("p", "P", height_m=1.84))], tmp_path)
+    js = """(f) => { const c = document.createElement('canvas'), ctx = c.getContext('2d'), seen = [];
+                     const ft = ctx.fillText.bind(ctx); ctx.fillText = (t, x, y) => { seen.push([t, Math.round(x)]); ft(t, x, y); };
+                     footprints(ctx, f, p => p, 2, MAIN); return seen; }"""
+    with sync_playwright() as p:
+        b = p.chromium.launch(executable_path=str(CHROMIUM), args=["--allow-file-access-from-files"])
+        pg = b.new_page()
+        errors = []
+        pg.on("pageerror", lambda e: errors.append(str(e)))
+        pg.goto(html.resolve().as_uri())
+        pg.wait_for_timeout(500)
+        pg.evaluate("(async () => { showTab('golpe'); await loadStroke(STROKES[0]); })()")
+        pg.wait_for_timeout(1500)
+        t0 = pg.evaluate("T0")
+        at = lambda t: round((t - t0) * 50)
+        before = pg.evaluate(js, at(-0.9))
+        mid_ = pg.evaluate(js, at(-0.45))
+        end = pg.evaluate(js, at(0.5))
+        b.close()
+    assert not errors, errors[:3]
+    assert before == []                                                  # nothing has landed yet
+    assert [t for t, _ in mid_] == ["S", "S", "1"]                      # split step on both feet, then step 1
+    assert [t for t, _ in end] == ["S", "S", "1", "2", "3"]
+    left = round(sum([250 + at(-0.6), 252, 255]) / 3)                   # step 1: the left (non-dominant) foot's points
+    assert end[2][1] == left
+
+
+def test_rhythm_needs_ten_strokes_and_uses_only_the_new_chain():
+    from tennisbio.report import rhythm
+    rows = [{"side": "near", "metrics": {"time_available_s": 1.1 + i / 100},
+             "phases": {"ready": {"t_rel": -1.0, "method": "split_step_landing"}, "takeback": {"t_rel": -0.8},
+                        "loaded": {"t_rel": -0.25}, "impact": {"t_rel": 0.0}},
+             "chain": {"version": 2, "peaks_s": {"pelvis": -0.12, "trunk": -0.08, "arm": 0.0}, "proximal_to_distal": i % 4 != 0}}
+            for i in range(12)]
+    rows += [{"side": "far", "metrics": {"time_available_s": 3.0}}] * 20
+    rows += [{"side": "near", "chain": {"peaks_s": {"pelvis": -0.06}, "proximal_to_distal": False}}]       # former chain
+    r = rhythm(rows)
+    ev = {e["k"]: e for e in r["events"]}
+    assert ev["opp"]["n"] == 12 and ev["opp"]["median"] == pytest.approx(-1.155, abs=0.01)
+    assert ev["ready"]["median"] == -1.0 and "finish" not in ev                    # no finish measured: not shown
+    assert [c["k"] for c in r["chain"]] == ["pelvis", "trunk", "arm"] and r["chain"][0]["median"] == -0.12
+    assert r["chain_in_order"] == 75 and r["n"] == 13
+    assert rhythm(rows[:5])["events"] == []                                          # fewer than 10: nothing

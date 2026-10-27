@@ -7,6 +7,7 @@ on demand (works from file://), and the stage shows the real window video with t
     tennisbio report            → <output>/informe/index.html
 """
 import json
+import math
 import os
 import shutil
 import subprocess
@@ -189,13 +190,58 @@ def stroke_record(s: dict, match_idx: int, match: Match, duration_s: float, idx:
     }
 
 
-FEET_KEYS = ("steps_reliable", "split_takeoff_vs_opp_s", "split_landing_vs_opp_s", "speed_pre_split_mps", "speed_post_split_mps",
+FEET_KEYS = ("steps_reliable", "steps", "split_takeoff_vs_opp_s", "split_landing_vs_opp_s", "speed_pre_split_mps", "speed_post_split_mps",
              "first_step_s", "first_step_type", "first_step_right_way", "first_step_length_m", "approach_steps", "approach_pattern",
              "path_m", "peak_speed_mps", "direction_changes", "move_direction", "approach_speed_mps", "adjustment_steps",
              "last_step_length_m", "braking_step", "airborne_at_impact", "one_foot_at_impact", "feet_at_impact", "sliding_at_impact",
              "weight_loaded_to_non", "rear_leg_step_after", "kick_back", "step_in", "drag_foot", "back_heel_lift", "back_heel_lift_s", "recovery_steps", "recovery_pattern", "recovery_first_step",
              "recovery_start_s", "recovery_to_centre_m", "recovery_dx_m", "recovery_dy_m", "off_centre_at_opp_hit_m",
              "moving_at_opp_hit_mps", "feet_still_share", "movement")
+
+
+# her timing from the opponent's hit to the recovery (27-10, the user: «footwork, timing y cadena cinética»):
+# each moment in s from contact; the chain's peaks in the same ruler
+RHYTHM_EVENTS = (("opp", "Golpe de la rival"), ("ready", "Aterriza del split step"), ("takeback", "Empieza a preparar"),
+                 ("loaded", "Armado completo"), ("acceleration", "Empieza a acelerar"), ("impact", "Impacto"),
+                 ("finish", "Terminación"), ("recovery", "Primer paso de vuelta"))
+CHAIN_NAMES = (("pelvis", "Cadera"), ("trunk", "Tronco"), ("arm", "Brazo"))
+
+
+def rhythm(raw: list[dict]) -> dict:
+    """Median (p25-p75) time of each moment of her stroke and of each peak of the kinetic chain, in s from
+    contact, over her near strokes; a moment needs 10 strokes. Nothing is shown from fewer."""
+    near = [s for s in raw if s.get("side", "near") != "far"]
+
+    def stat(vals):
+        v = [float(x) for x in vals if isinstance(x, (int, float)) and math.isfinite(x)]
+        if len(v) < 10:
+            return None
+        q = np.percentile(v, [25, 50, 75])
+        return {"p25": round(float(q[0]), 3), "median": round(float(q[1]), 3), "p75": round(float(q[2]), 3), "n": len(v)}
+
+    ev = []
+    for k, label in RHYTHM_EVENTS:
+        if k == "opp":
+            vals = [-(s.get("metrics") or {}).get("time_available_s") for s in near
+                    if isinstance((s.get("metrics") or {}).get("time_available_s"), (int, float))]
+        elif k == "ready":
+            vals = [((s.get("phases") or {}).get("ready") or {}).get("t_rel") for s in near
+                    if ((s.get("phases") or {}).get("ready") or {}).get("method") == "split_step_landing"]
+        else:
+            vals = [((s.get("phases") or {}).get(k) or {}).get("t_rel") for s in near]
+        st = stat(vals)
+        if st:
+            ev.append({"k": k, "label": label, **st})
+    chain = []
+    for k, label in CHAIN_NAMES:
+        st = stat([((s.get("chain") or {}).get("peaks_s") or {}).get(k) for s in near
+                   if (s.get("chain") or {}).get("version", 1) >= 2])
+        if st:
+            chain.append({"k": k, "label": label, **st})
+    in_order = [(s.get("chain") or {}).get("proximal_to_distal") for s in near if (s.get("chain") or {}).get("version", 1) >= 2]
+    in_order = [x for x in in_order if x is not None]
+    return {"events": ev, "chain": chain, "n": len(near),
+            "chain_in_order": round(100 * sum(in_order) / len(in_order)) if len(in_order) >= 10 else None}
 
 
 def feet_record(s: dict) -> dict:
@@ -583,6 +629,7 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
                          "pair": next((v for t, v in pair_of.items() if f.title.endswith(t)), "")} for f in finds]
     data["conclusions"] = [{"text": c.text, "conf": c.confidence, "level": c.level, "ids": [s["id"] for s in c.strokes[:40]],
                             "find": finds.index(c.finding) if c.finding in finds else None} for c in concl]
+    data["rhythm"] = rhythm(data.get("_raw", []))
     data["model"] = model_view(build_model(data.pop("_raw", [])), stroke)
     data["player"] = player or {}
     data["stroke"] = stroke
