@@ -1342,3 +1342,5 @@
 2026-10-27 05:58:56   fine_doubtful:  98 % (50/51 golpes candidatos · 21 confirmados · 0 ventanas descartadas sin pose) · 18 min · quedan ≈ 22 s
 2026-10-27 05:58:56   ventana w012348314_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
 2026-10-27 06:00:19   ventana w012348314_3600: pose hybrid en 179 de 179 fotogramas (52 s; modelo 51 s; pies en 88) · bola 82 s en paralelo (CPU) · raqueta 30 s (1 de 2 impactos) · 2 golpes posibles · altura 231 px (segments)
+2026-10-27 06:00:25   fine_doubtful: 100 % (51/51 golpes candidatos · 22 confirmados · 0 ventanas descartadas sin pose) · 20 min · quedan ≈ 0 s
+2026-10-27 06:00:26 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine_doubtful terminada a las 06:00:26 en 20.8 min
