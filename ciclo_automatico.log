@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261027114249
+Start time: 20261027115303
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 9712
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 9048
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,29 +17,17 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-27 11:42:49] Codigo nuevo (7f5a84b -> e3e5ef3): 9 ficheros
-    src/tennisbio/explain.py
-    src/tennisbio/learn.py
-    src/tennisbio/model.py
-    src/tennisbio/phases.py
-    src/tennisbio/report_template.html
-    src/tennisbio/series.py
-    src/tennisbio/stroke_analysis.py
-    tests/test_stroke.py
-    tests/test_stroke_page.py
-Updating 7f5a84b..e3e5ef3
+==> [2026-10-27 11:53:03] Codigo nuevo (e3e5ef3 -> bc38b8f): 3 ficheros
+    src/tennisbio/footpoints.py
+    src/tennisbio/footwork.py
+    tests/test_foot_metrics.py
+Updating e3e5ef3..bc38b8f
 Fast-forward
- src/tennisbio/explain.py           | 13 +++++---
- src/tennisbio/learn.py             |  2 +-
- src/tennisbio/model.py             | 15 +++++++--
- src/tennisbio/phases.py            | 64 +++++++++++++++++++++++++++++++++++++-
- src/tennisbio/report_template.html |  2 +-
- src/tennisbio/series.py            | 22 ++++++-------
- src/tennisbio/stroke_analysis.py   |  7 +++--
- tests/test_stroke.py               | 32 +++++++++++++++++--
- tests/test_stroke_page.py          |  2 +-
- 9 files changed, 132 insertions(+), 27 deletions(-)
-Resolved 124 packages in 0.97ms
+ src/tennisbio/footpoints.py | 11 ++++++++---
+ src/tennisbio/footwork.py   |  8 ++++++--
+ tests/test_foot_metrics.py  | 27 +++++++++++++++++++++++++++
+ 3 files changed, 41 insertions(+), 5 deletions(-)
+Resolved 124 packages in 0.94ms
 Checked 89 packages in 2ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
@@ -52,12 +40,12 @@ yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
     (paso terminado en 4 s)
 
-==> [2026-10-27 11:42:53] Que hace falta: medidas
-Recalcular medidas: empieza 2026-10-27 11:42:54
+==> [2026-10-27 11:53:07] Que hace falta: medidas
+Recalcular medidas: empieza 2026-10-27 11:53:08
 
-[2026-10-27 11:42:54] smoke_tennis-yusipopen-final-sobolenko-rybakin: trozo de vídeo tennis-yusipopen-final-sobolenko-rybakin_7264_35m.mkv, rival Sabalenka
+[2026-10-27 11:53:08] smoke_tennis-yusipopen-final-sobolenko-rybakin: trozo de vídeo tennis-yusipopen-final-sobolenko-rybakin_7264_35m.mkv, rival Sabalenka
   Se usan los resultados que hay de scenes, court, players, score aunque su código o su vídeo cambiaron (no se rehacen aquí; la próxima prueba completa sí lo hará)
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] candidates… (2026-10-27 11:42:54, etapa 9 de 14)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] candidates… (2026-10-27 11:53:08, etapa 9 de 14)
 C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
   return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
 Traceback (most recent call last):
@@ -88,8 +76,8 @@ FileNotFoundError: [Errno 2] No such file or directory: 'C:\\tenis\\output\\_smo
 PS>TerminatingError(): "Fallo: uv run python scripts/recompute_measures.py (codigo 1)"
 ERROR: Fallo: uv run python scripts/recompute_measures.py (codigo 1)
     (paso terminado en 2 s)
-Empezado 2026-10-27 11:42:48 - terminado 2026-10-27 11:42:55 - duracion total 7 s
+Empezado 2026-10-27 11:53:01 - terminado 2026-10-27 11:53:09 - duracion total 8 s
 **********************
 Windows PowerShell transcript end
-End time: 20261027114255
+End time: 20261027115309
 **********************
