@@ -1189,3 +1189,17 @@
 2026-10-27 13:09:38   ventana w005424886_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
 2026-10-27 13:09:38   ventana w005424886_3600: pose yolo en 180 de 180 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 178 px (segments)
 2026-10-27 13:09:40   ventana w005437303_8000 (far, 3 candidatos): pasa · golpe de bola en su lado a 4.4 s
+2026-10-27 13:09:41   ventana w005437303_8000: pose yolo en 400 de 400 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (3 de 4 impactos) · 4 golpes posibles · altura 194 px (segments)
+2026-10-27 13:09:42   ventana w006004196_11754 (far, 4 candidatos): pasa · golpe de bola en su lado a 2.16 s
+2026-10-27 13:09:46   ventana w006004196_11754: pose yolo en 588 de 588 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (4 de 4 impactos) · 4 golpes posibles · altura 101 px (court)
+2026-10-27 13:09:55   fine:  36 % (73/201 golpes candidatos · 70 confirmados · 0 ventanas descartadas sin pose) · 3 min · quedan ≈ 5 min
+2026-10-27 13:09:56   ventana w006039279_5221 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.64 s
+2026-10-27 13:09:56   ventana w006039279_5221: pose yolo en 261 de 261 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (2 de 4 impactos) · 4 golpes posibles · altura 101 px (court)
+2026-10-27 13:10:00   ventana w006130701_6837 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.2 s
+2026-10-27 13:10:00   ventana w006130701_6837: pose yolo en 342 de 342 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura nan px (pose)
+2026-10-27 13:10:01   ventana w006210697_5799 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.52 s
+2026-10-27 13:10:01   ventana w006210697_5799: pose yolo en 290 de 290 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (2 de 3 impactos) · 3 golpes posibles · altura 85 px (court)
+2026-10-27 13:10:02   ventana w006279999_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-10-27 13:10:03   ventana w006279999_3600: pose yolo en 180 de 180 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 85 px (court)
+2026-10-27 13:10:04   ventana w006935301_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+2026-10-27 13:10:04   ventana w006935301_3600: pose yolo en 179 de 179 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 105 px (court)
