@@ -316,3 +316,26 @@ def test_coverage_and_audit_item(tmp_path):
 def test_fine_on_slowmo_is_a_declared_todo():
     with pytest.raises(NotImplementedError):
         V.fine_on_slowmo(None, {}, {}, {})
+
+
+def test_shot_frames_come_from_a_keyframe_inside_each_shot(tmp_path):
+    """27-10 (B-3): every sampled shot is read at a keyframe inside it (decoded alone); a shot with no keyframe
+    inside it at all is read at its exact frame. Nothing is taken from another shot."""
+    import subprocess
+    from tennisbio import pipeline, stages
+    from tennisbio.catalog import Match, Player
+    v = tmp_path / "v.mp4"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "testsrc=duration=6:size=160x90:rate=25",
+                    "-c:v", "libx264", "-g", "25", "-keyint_min", "25", "-sc_threshold", "0", "-pix_fmt", "yuv420p", str(v)],
+                   check=True, timeout=60)
+    scenes = {"fps": 25.0, "shots": [{"start": 0, "end": 60, "main_camera": False},          # 0-2.4 s: keyframes 0, 1, 2
+                                     {"start": 60, "end": 70, "main_camera": False},         # 2.4-2.8 s: none inside
+                                     {"start": 70, "end": 150, "main_camera": False}]}       # 2.8-6 s: 3, 4, 5
+    logs = []
+    ctx = pipeline.Context(Match("m", v, Player("p", "P")), {"views": {"people": False}}, tmp_path / "o", log=logs.append)
+    ctx.dir.mkdir(parents=True)
+    ctx.progress = lambda *a, **k: None
+    ev = stages._sample_views(ctx, scenes, [0, 1, 2], None)
+    assert set(ev) == {0, 1, 2} and all(e["sampled"] >= 1 for e in ev.values())
+    line = next(l for l in logs if "tomas:" in l)
+    assert "1 exactos" in line and "6 claves en el vídeo" in line

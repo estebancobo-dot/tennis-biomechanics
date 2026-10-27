@@ -17,7 +17,7 @@ from pathlib import Path
 import numpy as np
 
 from .impacts import audio_onsets, swing_peaks
-from .io.video import frames_at, probe, read_ahead, read_frames
+from .io.video import frames_at, keyframe_times, probe, read_ahead, read_frames
 from .kinematics import body_height, clean, speed, to_body_frame
 from .config import model_state, resolve_path
 from .pipeline import Context, savez_atomic, stage, write_atomic
@@ -844,9 +844,6 @@ def _views_settings(c: dict) -> dict:
             "samples": int(v.get("samples", 3))}
 
 
-VIEWS_KEY_ROOM_S = 2.5     # a broadcast puts a keyframe at least every ~2 s: closer to the shot's end, the exact frame
-
-
 def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> dict[int, dict]:
     """Evidence of the non-live shots from 1-3 frames each (one ffmpeg pass over the sampled times; read
     in sequential stretches, dense_s=60, as the identity clothes frames: one seek per frame cost 3-14 s on
@@ -869,43 +866,69 @@ def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> d
     per: dict[int, list] = {}
     fits = 0
     info = probe(ctx.video)
-    # any frame of the shot will do: the first KEYFRAME after each time (only keyframes are decoded; 27-10: 5 h on
-    # the final reading everything in between), unless the shot ends too soon after it for a keyframe to be sure
-    # to fall inside: those few at their exact frame (docs/revision_base.md, B-3)
+    # any frame of the shot will do (docs/revision_base.md, B-3): each sample takes the KEYFRAME inside its shot
+    # nearest to it, decoded alone (27-10: 5 h on the final reading everything in between; then 82 min on Gauff
+    # because its short shots, with no keyframe certain to follow inside them, were read frame by frame). Only a
+    # shot with no keyframe inside it at all is read at its exact frame.
+    import time as _time
     sfps = float(scenes.get("fps") or 1.0)
-    room = lambda t, i: scenes["shots"][i]["end"] / sfps - t
-    keyed = [x for x in items if room(*x) >= VIEWS_KEY_ROOM_S]
-    exact = [x for x in items if room(*x) < VIEWS_KEY_ROOM_S]
+    kt = keyframe_times(info)
+    keyed, exact = [], []
+    for t, i in items:
+        s0, s1 = scenes["shots"][i]["start"] / sfps + 0.04, scenes["shots"][i]["end"] / sfps - 0.04
+        lo, hi = np.searchsorted(kt, s0), np.searchsorted(kt, s1, side="right")
+        if hi > lo:
+            k = kt[lo:hi][int(np.argmin(np.abs(kt[lo:hi] - t)))]
+            keyed.append((float(k), i))
+        else:
+            exact.append((t, i))
+    keyed.sort()
     hw = ctx.cfg.get("hwaccel")
     import itertools
-    stream = itertools.chain(zip(keyed, frames_at(info, [t for t, _ in keyed], hwaccel=hw, key_only=True)),
+    stream = itertools.chain(zip(keyed, frames_at(info, [t - 0.001 for t, _ in keyed], hwaccel=hw, key_only=True)),
                              zip(exact, frames_at(info, [t for t, _ in exact], hwaccel=hw, dense_s=60.0)))
     items = keyed + exact
-    for n, ((t, i), (_, fr)) in enumerate(stream):
-        ctx.progress(n + 1, len(items), "fotogramas de otras tomas")
+    took = {"lectura": 0.0, "personas": 0.0, "pista": 0.0}
+    it = iter(stream)
+    n = 0
+    while True:
+        t_ = _time.time()
+        try:
+            (t, i), (_, fr) = next(it)
+        except StopIteration:
+            break
+        took["lectura"] += _time.time() - t_
+        n += 1
+        ctx.progress(n, len(items), "fotogramas de otras tomas")
         if fr is None:
             continue
         ph = None
         if model is not None:
+            t_ = _time.time()
             try:
                 b, _, _ = model.predict(fr, conf=0.3)
                 ph = float(((b[:, 3] - b[:, 1]).max() / fr.shape[0])) if len(b) else 0.0
             except Exception:                    # noqa: BLE001 — one frame without people size
                 ph = None
+            took["personas"] += _time.time() - t_
         ev = frame_evidence(fr, ph)
         if ev["lines_behind"] >= 1 and fits < st["max_fits"]:
             fits += 1
+            t_ = _time.time()
             try:
                 fit = fit_court(fr)
                 if fit is not None:
                     ev["pitch_deg"] = round(camera_pitch_deg(fit, fr.shape), 1)
             except Exception:                    # noqa: BLE001 — no tilt for this frame
                 pass
+            took["pista"] += _time.time() - t_
         per.setdefault(i, []).append(ev)
+    ctx.log(f"  tomas: {len(keyed)} fotogramas clave y {len(exact)} exactos ({len(kt)} claves en el vídeo); "
+            + ", ".join(f"{k} {v:.0f} s" for k, v in took.items()) + f"; {fits} ajustes de pista")
     return {i: merge_evidence(v) for i, v in per.items()}
 
 
-@stage("views", "2", deps=("scenes", "court", "players", "score", "audio", "candidates"), settings=_views_settings,
+@stage("views", "3", deps=("scenes", "court", "players", "score", "audio", "candidates"), settings=_views_settings,
        outputs=("views.json",))
 def st_views(ctx: Context):
     """Replays and the other cameras, used and linked to the live stroke they show (tennisbio.views,

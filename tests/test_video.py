@@ -145,3 +145,14 @@ def test_key_only_gives_the_first_keyframe_after_each_time(tmp_path):
     got = dict(frames_at(info, [0.3, 1.0, 2.6, 2.7], key_only=True, prefetch=0))
     for t, key in ((0.3, 1.0), (1.0, 1.0), (2.6, 3.0), (2.7, 3.0)):        # keyframes every second
         assert got[t] is not None and np.array_equal(got[t], seek_frame(info, key)), t
+
+
+def test_keyframe_times_from_the_packets(tmp_path):
+    import subprocess
+    import numpy as np
+    from tennisbio.io.video import keyframe_times, probe
+    v = tmp_path / "k.mp4"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "testsrc=duration=4:size=160x90:rate=25",
+                    "-c:v", "libx264", "-g", "25", "-keyint_min", "25", "-sc_threshold", "0", "-pix_fmt", "yuv420p", str(v)],
+                   check=True, timeout=60)
+    assert np.allclose(keyframe_times(probe(v)), [0.0, 1.0, 2.0, 3.0], atol=0.05)

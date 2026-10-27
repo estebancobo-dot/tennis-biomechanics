@@ -280,6 +280,25 @@ def seek_frame(info: VideoInfo, t: str | float) -> np.ndarray | None:
     return np.frombuffer(raw[:n], np.uint8).reshape(info.height, info.width, 3) if len(raw) >= n else None
 
 
+def keyframe_times(info: VideoInfo) -> np.ndarray:
+    """Times (s, ascending) of the video's keyframes, from the container's packet flags: nothing is decoded,
+    so it is quick even for a whole broadcast. Empty when ffprobe cannot tell (then callers read exact frames)."""
+    try:
+        out = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "packet=pts_time,flags",
+                              "-of", "csv=p=0", str(info.path)], capture_output=True, text=True, timeout=900).stdout
+    except (subprocess.TimeoutExpired, OSError):
+        return np.zeros(0)
+    ts = []
+    for line in out.splitlines():
+        a, _, f = line.partition(",")
+        if "K" in f:
+            try:
+                ts.append(float(a))
+            except ValueError:
+                pass
+    return np.unique(np.asarray(ts, float))
+
+
 def _frames_at(info: VideoInfo, times: list[float], hwaccel, dense_s: float, max_run: int, key_only: bool = False):
     if key_only:                    # nothing but keyframes is decoded: one process for many times is cheap
         dense_s, max_run = max(dense_s, 3600.0), max(max_run, 400)
