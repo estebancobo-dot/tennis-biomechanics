@@ -1,1 +1,2 @@
-arranque: 2026-10-27T11:30:02 (pid 440)
+arranque: 2026-10-27T11:40:02 (pid 5452)
+2026-10-27T11:40:03 otro analisis en marcha (3772)
