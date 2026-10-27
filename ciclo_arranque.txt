@@ -1,3 +1,2 @@
-arranque: 2026-10-27T12:40:02 (pid 9440)
-2026-10-27T12:40:03 solo la aplicacion al dia (53bb783 -> b750b77) con un trabajo en marcha
-2026-10-27T12:40:04 otro analisis en marcha (1856,14760,13496)
+arranque: 2026-10-27T12:50:02 (pid 11088)
+2026-10-27T12:50:03 otro analisis en marcha (1856,14760,13496)
