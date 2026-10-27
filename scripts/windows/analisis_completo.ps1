@@ -27,10 +27,13 @@ try {
 
     Paso "4/5 Videos por golpe, montajes por conclusion y resumen PDF"
     Ejecutar uv @("run", "tennisbio", "export", "--stroke", "forehand", "--out", "$Base\output\exportar_derecha")
-    Ejecutar uv @("run", "tennisbio", "export", "--stroke", "backhand", "--out", "$Base\output\exportar_reves")
-    Ejecutar uv @("run", "tennisbio", "export", "--stroke", "overhead", "--out", "$Base\output\exportar_saque")
+    # la auditoria de la derecha antes que los videos del reves y del saque (27-10: la exportacion del reves se
+    # colgo y dejo sin auditoria la referencia de los 4 partidos)
     Paso "5/5 Comprobacion automatica de requisitos (capturas del informe incluidas; se envia a Claude)"
     Ejecutar uv @("run", "tennisbio", "audit", "--stroke", "forehand")
+    Paso "Videos del reves y del saque"
+    Ejecutar uv @("run", "tennisbio", "export", "--stroke", "backhand", "--out", "$Base\output\exportar_reves")
+    Ejecutar uv @("run", "tennisbio", "export", "--stroke", "overhead", "--out", "$Base\output\exportar_saque")
     Start-Process "$Base\output\informe_derecha\index.html"
 
     $dur = (Get-Date) - $inicio

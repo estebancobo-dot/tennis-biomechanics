@@ -1,4 +1,4 @@
 # Parada a distancia de un trabajo del PC que va mal (24-10). Claude pone aqui un id nuevo ("id: N") y el
 # ciclo automatico, al ver un trabajo en marcha, lo corta una sola vez por id (output\paradas.log).
 # Sin linea "id:" no se para nada.
-id: 4
+id: 5
