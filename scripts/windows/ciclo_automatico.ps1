@@ -9,6 +9,22 @@ $Out = "$Base\output"
 $Log = "$Out\ciclo_automatico.log"
 New-Item -ItemType Directory -Force -Path $Out | Out-Null
 # senal de vida (como mucho una por hora): sale sin trabajo pero se ve que la tarea corre y por que no hizo nada
+# el ciclo con el script recien llegado (27-10: una peticion con una accion nueva esperaba 10 min al ciclo siguiente)
+function Relanzar {
+    & powershell.exe -NoProfile -ExecutionPolicy Bypass -File $PSCommandPath
+    exit 0
+}
+# sin nada que hacer, mira GitHub cada minuto durante un rato (27-10: cada peticion tardaba hasta 10 min en empezar)
+function Esperar-Novedades($minutos = 45) {
+    $fin = (Get-Date).AddMinutes($minutos)
+    $h = (git -C $RepoDir rev-parse HEAD 2>$null)
+    while ((Get-Date) -lt $fin) {
+        Start-Sleep -Seconds 60
+        git -C $RepoDir fetch -q origin $Rama 2>$null
+        $f = (git -C $RepoDir rev-parse FETCH_HEAD 2>$null)
+        if ($f -and $h -and "$f".Trim() -ne "$h".Trim()) { Relanzar }
+    }
+}
 function Senal-Vida($motivo) {
     $vivo = "$Out\ciclo_vivo.txt"
     try { "$(Get-Date -Format s) $motivo" | Add-Content "$Out\ciclo_arranque.txt" } catch {}
@@ -316,9 +332,12 @@ try { Sin-Suspender } catch {}
 # rastro de cada arranque (antes de cualquier cosa que pueda fallar): se sube con la senal de vida
 try { "arranque: $(Get-Date -Format s) (pid $PID)" | Set-Content "$Out\ciclo_arranque.txt" } catch {}
 
+# el ciclo que nos lanzo para usar el script nuevo (Relanzar) no cuenta como otro analisis
+$PadrePid = -1
+try { $PadrePid = [int](Get-CimInstance Win32_Process -Filter "ProcessId=$PID").ParentProcessId } catch {}
 # otro analisis en marcha (los .bat del usuario o una ejecucion anterior de este ciclo): no molestar
 $ocupado = Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" -ErrorAction SilentlyContinue |
-    Where-Object { $_.ProcessId -ne $PID -and $_.CommandLine -match "prueba_rapida|analisis_completo|recalcular_medidas|solo_informe|ciclo_automatico|instalar" }
+    Where-Object { $_.ProcessId -ne $PID -and $_.ProcessId -ne $PadrePid -and $_.CommandLine -match "prueba_rapida|analisis_completo|recalcular_medidas|solo_informe|ciclo_automatico|instalar" }
 # parada pedida por Claude (24-10): config/parar_pc.txt en GitHub con "id: N" nuevo corta el trabajo en marcha (un
 # trabajo largo que va mal, con codigo viejo, ya no espera a que el usuario reinicie el PC); se mira sin descargar
 # el codigo (git show del FETCH_HEAD), una vez por id (output\paradas_hechas.txt), y queda en output\paradas.log
@@ -378,6 +397,7 @@ if ($LASTEXITCODE -ne 0) { Senal-Vida "git fetch fallo (sin red o sin permiso)" 
 $antes = (git -C $RepoDir rev-parse HEAD).Trim()
 $nuevo = (git -C $RepoDir rev-parse FETCH_HEAD).Trim()
 $forzar = Test-Path "$Out\forzar_ciclo.txt"
+$relanzar = $false
 if ($antes -eq $nuevo -and -not $forzar) {
     # sin codigo nuevo: una prueba pedida por Claude (el codigo que la pide llego en el ciclo anterior)
     # o la prueba de modelos a medias (otro tramo)
@@ -388,6 +408,7 @@ if ($antes -eq $nuevo -and -not $forzar) {
         try { if ($pet) { Hacer-Peticiones } else { Prueba-Modelos } } finally { Resumen-Tiempo; Stop-Transcript | Out-Null; Subir-Registros }
         exit 0
     }
+    Esperar-Novedades
     Senal-Vida "sin codigo nuevo ($($antes.Substring(0,7)))"
 }
 
@@ -418,7 +439,7 @@ try {
     }
     # prueba de modelos en este PC (scripts/model_trials.py): cuando cambia la prueba o aun no existe
     # pruebas pedidas por Claude en config/peticion_pc.txt (ids nuevos, en cola): primero eso, sin la prueba de modelos a la vez
-    if (Peticion-Pendiente) { Hacer-Peticiones }
+    if (Peticion-Pendiente) { $relanzar = $true }
     elseif ((Pruebas-Pendientes) -or ($cambios -match "model_trials\.py|pose/variants\.py")) { Prueba-Modelos }
     Ok "Ciclo automatico terminado ($modo)."
 } catch {
@@ -429,3 +450,5 @@ try {
     Stop-Transcript | Out-Null
     Subir-Registros
 }
+# las peticiones con el script nuevo (el de este proceso es el anterior a la actualizacion)
+if ($relanzar) { Relanzar }
