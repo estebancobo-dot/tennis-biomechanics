@@ -32,8 +32,28 @@ try {
     Paso "5/5 Comprobacion automatica de requisitos (capturas del informe incluidas; se envia a Claude)"
     Ejecutar uv @("run", "tennisbio", "audit", "--stroke", "forehand")
     Paso "Videos del reves y del saque"
-    Ejecutar uv @("run", "tennisbio", "export", "--stroke", "backhand", "--out", "$Base\output\exportar_reves")
-    Ejecutar uv @("run", "tennisbio", "export", "--stroke", "overhead", "--out", "$Base\output\exportar_saque")
+    # 27-10: la exportacion del reves se colgo dos veces sin rastro: si un golpe no avanza en 10 min se corta y se
+    # anota cual (exportar_*\en_curso.txt); los demas pasos siguen
+    foreach ($e in @(@("backhand", "exportar_reves"), @("overhead", "exportar_saque"))) {
+        $dir = "$Base\output\$($e[1])"
+        New-Item -ItemType Directory -Force -Path $dir | Out-Null
+        Remove-Item "$dir\en_curso.txt" -Force -ErrorAction SilentlyContinue
+        $so, $se = "$dir\exportar.out.txt", "$dir\exportar.err.txt"
+        $pr = Start-Process uv -ArgumentList @("run", "tennisbio", "export", "--stroke", $e[0], "--out", $dir) `
+            -NoNewWindow -PassThru -RedirectStandardOutput $so -RedirectStandardError $se
+        $ultimo = Get-Date
+        while (-not $pr.HasExited) {
+            Start-Sleep -Seconds 30
+            $f = Get-Item "$dir\en_curso.txt" -ErrorAction SilentlyContinue
+            if ($f -and $f.LastWriteTime -gt $ultimo) { $ultimo = $f.LastWriteTime }
+            if (((Get-Date) - $ultimo).TotalMinutes -gt 10) {
+                & taskkill.exe /T /F /PID $pr.Id 2>&1 | Out-Null
+                Write-Host "AVISO: exportacion de $($e[0]) cortada: 10 min sin avanzar en $(Get-Content "$dir\en_curso.txt" -ErrorAction SilentlyContinue)" -ForegroundColor Yellow
+                break
+            }
+        }
+        Get-Content $so, $se -ErrorAction SilentlyContinue | Select-Object -Last 15 | ForEach-Object { Write-Host $_ }
+    }
     Start-Process "$Base\output\informe_derecha\index.html"
 
     $dur = (Get-Date) - $inicio

@@ -684,6 +684,12 @@ def export(matches, out_root: Path, dest: Path, stroke="forehand", player_id: st
         if _fresh(out, *src) and sigs.get(s["id"]) == sig:
             continue
         sigs[s["id"]] = sig
+        # the stroke being encoded, with the time: the Windows script cuts an export that stays on one stroke
+        # too long and says which one (27-10: the backhand export hung twice with no trace of where)
+        try:
+            (dest / "en_curso.txt").write_text(f"{s['id']} {time.strftime('%Y-%m-%d %H:%M:%S')} {i + 1}/{len(need)}", encoding="utf-8")
+        except OSError:
+            pass
         enc = None
         try:
             clip = StrokeClip(s, ctx)
