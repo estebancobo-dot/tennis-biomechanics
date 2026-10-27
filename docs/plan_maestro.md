@@ -22,6 +22,10 @@ Un solo trabajo pesado del PC a la vez; la nube solo hace lo que no toca lo que 
 | A1 | Aplicación con los datos reales | PC (comprobación automática con capturas) | P1 | 0 fallos en todas las pantallas | — |
 | M1 | Móvil (opcional, solo si lo pide el usuario) | — | A1 | — | — |
 
+Conexión con el PC (27-10): el PC pasa a ser ejecutor de GitHub Actions (`4_conectar_github.bat` una vez,
+`.github/workflows/pc.yml`): cada petición empieza al subirla y su registro está en Actions. El ciclo de cada
+10 min (ahora mira GitHub cada minuto cuando está libre) sigue debajo como respaldo y para las paradas.
+
 Validación (siempre automática): detección contra 648 golpes anotados de F3Set; partidos reales por golpes y
 errores por partido; informe y medidas por la auditoría; aplicación por capturas en el PC; código por la batería
 de pruebas antes de subir.

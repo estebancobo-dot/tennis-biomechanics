@@ -16,6 +16,7 @@ function Relanzar {
 }
 # sin nada que hacer, mira GitHub cada minuto durante un rato (27-10: cada peticion tardaba hasta 10 min en empezar)
 function Esperar-Novedades($minutos = 45) {
+    if ($env:GITHUB_ACTIONS) { return }        # en el ejecutor de GitHub: cada peticion ya lanza su propio trabajo
     $fin = (Get-Date).AddMinutes($minutos)
     $h = (git -C $RepoDir rev-parse HEAD 2>$null)
     while ((Get-Date) -lt $fin) {

@@ -1,0 +1,25 @@
+# El PC de casa como ejecutor de GitHub Actions (27-10): cada peticion de config/peticion_pc.txt empieza en
+# cuanto se sube, con su estado, su duracion y su registro en la pestana Actions. El trabajo es el mismo ciclo
+# de siempre (scripts/windows/ciclo_automatico.ps1); el bucle de cada 10 min sigue debajo por si el ejecutor
+# no estuviera en marcha. Solo pushes de esta rama y lanzamientos a mano: nunca PRs de otros (el ejecutor es
+# el PC del usuario).
+name: PC
+on:
+  push:
+    branches: [claude/tennis-biomech-setup-jggqb0]
+    paths: [config/peticion_pc.txt, .github/workflows/pc.yml]
+  workflow_dispatch:
+concurrency:
+  group: pc
+  cancel-in-progress: false
+jobs:
+  ciclo:
+    if: github.repository_owner == 'estebancobo-dot'
+    runs-on: [self-hosted, tenis-pc]
+    timeout-minutes: 4320
+    steps:
+      - name: Peticiones del PC
+        shell: powershell
+        run: |
+          & powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+          exit 0
