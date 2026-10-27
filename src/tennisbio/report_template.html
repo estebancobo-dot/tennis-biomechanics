@@ -1645,7 +1645,7 @@ async function loadStroke(s, fromList = false) {
   renderCtx(); renderMetricsPanel(); renderRacket(); renderHeights(); renderFeetPanel();
   const cols = ["var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)"];
   // peaks: the ones the pipeline used to judge the order (between the backswing and contact)
-  const PK = { Pelvis: "pelvis", Tronco: "trunk", Brazo: "upper_arm", Antebrazo: "forearm" }, cp = s.chainPeaks || {};
+  const PK = { Cadera: "pelvis", Pelvis: "pelvis", Tronco: "trunk", Brazo: "arm" }, cp = s.chainPeaks || {};
   const kin = ser ? Object.entries(ser.kin).map(([n, v], i) => { const t = cp[PK[n]], pf = isN(t) ? fIdx(t) : -1; return { n, v, col: cols[i], pf, pk: isN(t) ? t : NaN }; }) : [];
   lineChart(document.getElementById("g-kin"), kin, { label: "Velocidad angular normalizada", norm1: true, peaks: true, legendEl: document.getElementById("g-kin-leg") });
   const order = kin.filter(k => isN(k.pk)).sort((a, b) => a.pk - b.pk).map(k => k.n);

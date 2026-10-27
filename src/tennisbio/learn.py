@@ -179,7 +179,7 @@ PHASES = [
             "Empieza a girar la cadera y deja que los hombros la sigan.", "Abrir los hombros primero: pierdes la torsión (fuga de energía).",
             "Sombras: gira solo la cadera hacia la red manteniendo los hombros de lado 0,5 s; luego suelta.",
             ["Apertura prematura de hombros (fuga de energía)", "Separación cadera–hombro (torque)", "Rotación pélvica"]),
-         cp("chain.proximal_to_distal", "Orden de la cadena: cadera → tronco → brazo", "", 0, "en qué % de golpes los picos de giro van en ese orden (se mide el orden, no los milisegundos)",
+         cp("chain.proximal_to_distal", "Orden de la cadena: cadera → tronco → brazo", "", 0, "en qué % de golpes los picos de velocidad van en ese orden (con un fotograma de margen)",
             "Empieza el golpe desde abajo: piernas y cadera, después el tronco, y el brazo el último, como un látigo.",
             "Empezar con el brazo: el golpe sale sin cuerpo y cansa el hombro.",
             "Sombras a cámara lenta en tres tiempos («cadera, pecho, brazo»); luego seguido; 3×8.",

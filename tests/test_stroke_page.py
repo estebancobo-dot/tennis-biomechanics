@@ -23,7 +23,7 @@ def stroke_and_series():
     H = [[100.0, 0, 300], [0, -100.0, 700], [0, 0, 1]]
     ser = {"fps": 50.0, "first": first, "impact": impact, "n": n, "kp": kp, "conf": [[1.0] * 17] * n,
            "box": [[240, 180, 360, 640]] * n, "side": "near", "H": H, "ball": [[None, None]] * n,
-           "kin": {"Pelvis": [0.1] * n, "Tronco": [0.1] * n, "Brazo": [0.1] * n, "Antebrazo": [0.1] * n},
+           "kin": {"Cadera": [0.1] * n, "Tronco": [0.1] * n, "Brazo": [0.1] * n},
            "ang": {"Codo": [120.0] * n, "X-factor": [5.0] * n}, "racket": {"elev": [None] * n, "head_cm": [None] * n}}
     hip = np.interp(CURVE_T, [-1.2, -0.8, -0.32, 0.0, 0.2, 0.8], [50, 50, 44, 48, 53, 52])
     tech = {"phases": {"loaded": {"base_court_m": 0.92}, "impact": {"base_court_m": 0.88}, "finish": {"base_court_m": 0.7, "shoulder_width_ratio": 0.6}},

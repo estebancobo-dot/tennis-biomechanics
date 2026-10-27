@@ -224,7 +224,7 @@ COACH = {
     "stroke.wrist_drop": ("Dejar caer la mano y la raqueta por debajo de la bola permite golpear de abajo arriba (liftado).", "Reid, Elliott y Crespo 2013"),
     "acceleration.racket_head_vs_wrist": ("La cabeza de la raqueta cae por debajo de la mano antes de subir hacia la bola: es la base del liftado.", "Reid, Elliott y Crespo 2013; Yandell"),
     "class.swing": ("La dirección del swing (de abajo arriba o plano) decide el efecto de la bola.", "Takahashi; Elliott y Marsh 1989"),
-    "chain": ("Picos de velocidad en orden cadera → tronco → brazo → antebrazo: el cuerpo pasa la energía al brazo.", "Landlinger 2010; Elliott 2006"),
+    "chain": ("Picos de velocidad en orden cadera → tronco → brazo: el cuerpo pasa la energía al brazo.", "Landlinger 2010; Elliott 2006"),
     "stroke.racket_speed_rel": ("La velocidad real no se ve en la tele; esta solo compara sus golpes entre sí.", "—"),
     "impact.wrist_dom_height": ("La altura del contacto marca qué bolas le resultan cómodas.", "Reid, Elliott y Crespo 2013"),
     "impact.wrist_dom_vs_hip": ("Golpear entre la cintura y el pecho es la zona de contacto más habitual del circuito.", "Elliott 1989; Reid 2013"),
@@ -339,7 +339,7 @@ COACH = {
     "class.catch_racket": ("Recoger la raqueta con la mano libre al terminar cierra el giro del tronco y deja lista para recuperar.", "Tennis Australia"),
     "class.finish_trunk": ("Hacia dónde mira el tronco al terminar dice cuánto ha girado: más en los cruzados y con más efecto.", "ITF (Crespo, Reid)"),
     "stroke.dur_preparation": ("La preparación tiene su ritmo: ni a trompicones ni tan lenta que no esté armada al botar la bola.", "Tennis Australia"),
-    "chain.proximal_to_distal": ("La cadena cinética va de abajo arriba: cadera, tronco, brazo y raqueta; desde la tele se mide el orden de los picos, no los milisegundos.", "Landlinger 2010; Elliott 2006"),
+    "chain.proximal_to_distal": ("La cadena cinética va de abajo arriba: cadera, tronco, brazo y raqueta; desde la tele se mide cuándo llega cada uno a su máxima velocidad, con un fotograma (20-40 ms) de margen.", "Landlinger 2010; Elliott 2006"),
     "finish.head_over_base": ("Terminar con la cabeza sobre los pies indica que no perdió el equilibrio al frenar el giro.", "Tennis Australia"),
     "finish.trunk_tilt": ("Un tronco estable al terminar indica que no hubo «desplome» tras el golpe.", "Tennis Australia"),
     "stroke.shoulders_open_first": ("Si los hombros abren antes que la cadera se pierde la separación (fuga de energía, «apertura prematura»).", "Landlinger 2010; Elliott 2006"),
@@ -576,9 +576,14 @@ def _extra_lines(p: str, src: dict) -> list[dict]:
                     "rel": STRINGS_REL[p], "n": st["n"], "change": None})
     if p == "acceleration":
         ch = _share_true(src.get("chain"))
+        pk = (src.get("chain") or {}).get("peaks_ms") or {}
         if ch:
-            out.append({"key": "chain", "text": f"El cuerpo arrastra al brazo en orden (cadera → tronco → brazo → antebrazo) en el {ch[0]} % "
-                        "de los golpes; se mide el orden, no los milisegundos.", "rel": 2, "n": ch[1], "change": None})
+            when = ""
+            if all(k in pk for k in ("pelvis", "trunk", "arm")):
+                when = (f" Máxima velocidad de la cadera a {-pk['pelvis']['median']} ms del impacto, del tronco a "
+                        f"{-pk['trunk']['median']} ms y del brazo a {-pk['arm']['median']} ms (mediana).")
+            out.append({"key": "chain", "text": f"El cuerpo arrastra al brazo en orden (cadera → tronco → brazo) en el {ch[0]} % "
+                        f"de los golpes, con un fotograma de margen.{when}", "rel": 2, "n": ch[1], "change": None})
     fw = src.get("footwork") or {}
     if p == "takeback":
         r = _share_true(fw.get("first_step_right_way"))

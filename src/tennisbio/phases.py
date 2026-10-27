@@ -231,8 +231,70 @@ def detect_phases(img: np.ndarray, body: np.ndarray, conf: np.ndarray, sk: Skele
     return [events[p] for p in PHASES]
 
 
+CHAIN_FROM_S = 0.4      # the chain's peaks are looked for from 0.4 s before contact ...
+CHAIN_TO_S = 0.04       # ... to 40 ms after it
+CHAIN_SMOOTH_S = 0.1    # every signal smoothed over 100 ms (5 frames at 50 fps)
+
+
 def kinetic_chain(img: np.ndarray, body: np.ndarray, sk: Skeleton, fps: float, start: int, impact: int, scale=None):
-    """Peak timing of segment rotation speeds between `start` and just after contact.
+    """Kinetic chain from behind (27-10): the time of the peak unwinding speed of the hips, then the
+    shoulders, then the arm, in seconds from contact.
+
+    Hips and shoulders: the rate of change of the signed image width of the hip and shoulder lines (per
+    body height; it grows while the line unwinds towards the net). The former angle, arccos of that
+    width, multiplies the keypoint noise near square-on, which is where the body is at contact: on the
+    193 near forehands of the 4 reference matches both rotations peaked at -60 ms, with the order right in
+    10 % of them. With the width rate: hips -120 ms, shoulders -80 ms, arm -20 ms (medians), hips not
+    after the shoulders in 72 % and shoulders not after the arm in 85 %. Arm: speed of the dominant wrist
+    in the body frame (the hand at the end of the chain).
+
+    Returns ({segment: s from contact}, order, resolved), segments "pelvis", "trunk", "arm". resolved is
+    False when a segment is missing. The order is judged with one frame of tolerance (chain_in_order): the
+    peaks are 40 ms (2 frames at 50 fps) apart, so a one-frame swap is noise, not a different chain."""
+    T = len(img)
+    lo, hi = max(0, impact - int(round(CHAIN_FROM_S * fps))), min(T, impact + int(round(CHAIN_TO_S * fps)) + 1)
+    sig = chain_signals(img, body, sk, fps, scale)
+    peaks = {}
+    for name, x in sig.items():
+        w = x[lo:hi]
+        if hi - lo < 3 or np.all(np.isnan(w)) or np.nanmax(w) <= 0:
+            continue
+        peaks[name] = round((lo + int(np.nanargmax(w)) - impact) / fps, 3)
+    order = sorted(peaks, key=peaks.get)
+    return peaks, order, len(peaks) == 3
+
+
+def chain_signals(img: np.ndarray, body: np.ndarray, sk: Skeleton, fps: float, scale=None) -> dict:
+    """Per-frame speeds of the chain (kinetic_chain): hips and shoulders unwinding (rate of their signed
+    image width per body height, + = towards the net) and the dominant wrist in the body frame."""
+    from .kinematics import smooth
+
+    T = len(img)
+    h = np.asarray(scale, float) if scale is not None else np.full(T, 1.0)
+    if h.ndim == 0:
+        h = np.full(T, float(h))
+
+    def width(joint):
+        w = (img[:, sk[f"dom_{joint}"], 0] - img[:, sk[f"non_{joint}"], 0]) * sk.dom_sign / h
+        return np.gradient(smooth(w, fps, CHAIN_SMOOTH_S)) * fps
+
+    wr = smooth(body[:, sk["dom_wrist"]], fps, CHAIN_SMOOTH_S)
+    return {"pelvis": width("hip"), "trunk": width("shoulder"),
+            "arm": np.linalg.norm(np.gradient(wr, axis=0), axis=1) * fps}
+
+
+def chain_in_order(peaks: dict, fps: float) -> bool | None:
+    """Hips, then shoulders, then arm, with one frame of tolerance between neighbours; None when a peak
+    is missing."""
+    if not all(k in peaks for k in ("pelvis", "trunk", "arm")):
+        return None
+    tol = 1.0 / fps + 1e-6
+    return peaks["pelvis"] <= peaks["trunk"] + tol and peaks["trunk"] <= peaks["arm"] + tol
+
+
+def kinetic_chain_angles(img: np.ndarray, body: np.ndarray, sk: Skeleton, fps: float, start: int, impact: int, scale=None):
+    """Former measure (until 27-10), kept for comparison: peak timing of segment rotation speeds between
+    `start` and just after contact.
 
     Pelvis and trunk: the speed at which the hip and shoulder lines unwind (their turn away from
     the camera decreases during the forward swing). Arm and forearm: angular speed of the

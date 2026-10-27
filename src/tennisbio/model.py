@@ -348,8 +348,19 @@ def _strings(rows: list) -> dict:
 
 
 def _chain(rows: list) -> dict:
-    """Kinetic chain in order (pelvis → trunk → arm → forearm peaks) or not, per stroke."""
-    return _counts([(s.get("chain") or {}).get("proximal_to_distal") for s in rows])
+    """Kinetic chain in order (hips → shoulders → arm peaks, one frame of tolerance) or not, per stroke,
+    and the median time of each peak in ms before contact with its spread (p25-p75). Strokes measured with
+    the former angle-based chain (no "version") have no timings: their peaks are not comparable."""
+    out = _counts([(s.get("chain") or {}).get("proximal_to_distal") for s in rows])
+    ms = {}
+    for seg in ("pelvis", "trunk", "arm"):
+        v = [1000 * c["peaks_s"][seg] for s in rows for c in [s.get("chain") or {}]
+             if c.get("version", 1) >= 2 and isinstance((c.get("peaks_s") or {}).get(seg), (int, float))]
+        if len(v) >= 3:
+            ms[seg] = {"median": round(float(np.median(v))), "p25": round(float(np.percentile(v, 25))),
+                       "p75": round(float(np.percentile(v, 75))), "n": len(v)}
+    out["peaks_ms"] = ms
+    return out
 
 
 def _mean_skeleton(rows: list) -> dict:

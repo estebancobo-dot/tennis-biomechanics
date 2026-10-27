@@ -5,10 +5,12 @@ the real frames and scrub through the stroke.
 """
 import numpy as np
 
-from .kinematics import joint_angle, line_turn, segment_angle, speed, to_body_frame
+from .kinematics import joint_angle, line_turn, segment_angle, to_body_frame
 from .skeleton import Skeleton
 
-CHAIN = {"pelvis": "Pelvis", "trunk": "Tronco", "upper_arm": "Brazo", "forearm": "Antebrazo"}
+CHAIN = {"pelvis": "Cadera", "trunk": "Tronco", "arm": "Brazo"}
+# from the opponent's hit (split step ≈ 1.2 s before contact) to the recovery (27-10: it began 1 s before)
+WINDOW = (2.5, 1.0)
 
 
 def _r(a, nd=1):
@@ -19,7 +21,7 @@ def _r(a, nd=1):
 
 def stroke_series(img: np.ndarray, conf: np.ndarray, boxes: list, sk: Skeleton, fps: float, height_px: float,
                   impact: int, racket_track: list | None = None, ball: np.ndarray | None = None,
-                  window=(1.0, 0.8), scale=None) -> dict:
+                  window=WINDOW, scale=None) -> dict:
     a = max(0, impact - int(round(window[0] * fps)))
     b = min(len(img), impact + int(round(window[1] * fps)) + 1)
     w = img[a:b]
@@ -31,17 +33,13 @@ def stroke_series(img: np.ndarray, conf: np.ndarray, boxes: list, sk: Skeleton, 
         "upper_arm": segment_angle(body[:, sk["dom_shoulder"]], body[:, sk["dom_elbow"]]),
         "forearm": segment_angle(body[:, sk["dom_elbow"]], body[:, sk["dom_wrist"]]),
     }
+    # the chain's speeds as the measure computes them (phases.chain_signals), each over its own peak
+    from .phases import chain_signals
     kin = {}
-    k5 = max(1, int(round(0.05 * fps)))                # ~50 ms moving average: 2D angles are jittery
-    for k, x in sig.items():
-        v = np.abs(speed(x, fps))
-        if k5 > 1:
-            ok = np.isfinite(v)
-            num = np.convolve(np.where(ok, v, 0), np.ones(k5), "same")
-            den = np.convolve(ok.astype(float), np.ones(k5), "same")
-            v = np.where(den > 0, num / np.maximum(den, 1e-9), np.nan)
+    for k, x in chain_signals(w, body, sk, fps, hs).items():
+        v = np.clip(x, 0, None)
         mx = np.nanmax(v) if np.isfinite(v).any() else np.nan
-        kin[k] = _r(v / mx if mx and np.isfinite(mx) else v, 3)
+        kin[k] = _r(v / mx if mx and np.isfinite(mx) and mx > 0 else v, 3)
     elbow = joint_angle(body[:, sk["dom_shoulder"]], body[:, sk["dom_elbow"]], body[:, sk["dom_wrist"]])
     xf = sig["trunk"] - sig["pelvis"]
     bx = [None if boxes[f] is None else [round(float(v)) for v in boxes[f]] for f in range(a, b)]

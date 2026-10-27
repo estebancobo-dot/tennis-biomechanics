@@ -156,9 +156,10 @@ def analyze_stroke(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, 
 
     peaks, order, resolved = kinetic_chain(w_img, body, sk, fps, ev["loaded"] if ev["loaded"] is not None else i - int(0.4 * fps),
                                            i, scale=hs)
-    # the order is judged only when every segment has its own, separated peak
-    res.chain = {"peaks_s": peaks, "order": order,
-                 "proximal_to_distal": (order == ["pelvis", "trunk", "upper_arm", "forearm"]) if resolved else None}
+    # hips → shoulders → arm, judged with one frame of tolerance (phases.kinetic_chain)
+    from .phases import chain_in_order
+    res.chain = {"peaks_s": peaks, "order": order, "version": 2,
+                 "proximal_to_distal": chain_in_order(peaks, fps) if resolved else None}
 
     # racket through the whole window
     if rackets is not None:

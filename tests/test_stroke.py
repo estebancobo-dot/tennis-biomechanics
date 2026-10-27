@@ -90,7 +90,7 @@ def test_analyze_stroke_metrics():
     assert r.stroke == "forehand"
     assert r.metrics["shoulder_turn_loaded_deg"] == pytest.approx(60, abs=6)
     assert r.metrics["x_factor_deg"] == pytest.approx(30, abs=6)
-    assert set(r.chain["order"]) == {"pelvis", "trunk", "upper_arm", "forearm"}
+    assert set(r.chain["order"]) == {"pelvis", "trunk", "arm"} and r.chain["version"] == 2
     assert r.review == []
 
 
@@ -149,7 +149,7 @@ def test_stroke_series_shapes():
     from tennisbio.series import stroke_series
     sk, kp, conf = synthetic_forehand()
     s = stroke_series(kp, conf, [None] * len(kp), sk, FPS, body_height(kp, sk), IMPACT)
-    assert s["n"] == len(s["kp"]) == len(s["kin"]["Pelvis"]) == len(s["ang"]["Codo"])
+    assert s["n"] == len(s["kp"]) == len(s["kin"]["Cadera"]) == len(s["ang"]["Codo"])
     assert len(s["kp"][0]) == 34 and s["impact"] - s["first"] == FPS
 
 
@@ -165,3 +165,31 @@ def test_serve_events_trophy_and_racket_drop():
     assert abs((ev["loaded"] - i) / fps + 0.4) < 0.03
     assert abs((ev["takeback"] - i) / fps + 0.9) < 0.03
     assert abs((ev["acceleration"] - i) / fps + 0.2) < 0.03
+
+
+def test_chain_from_the_unwinding_widths_and_the_wrist():
+    """Hips unwind first, then the shoulders, then the hand: peaks in that order, in ms before contact,
+    and a one-frame swap still counts as in order (27-10: the former angle peaked at contact)."""
+    from tennisbio.phases import chain_in_order, kinetic_chain
+    from tennisbio.kinematics import to_body_frame
+    from tennisbio.skeleton import Skeleton
+    fps, T, imp = 50.0, 100, 80
+    sk = Skeleton("coco17", "right")
+    t = (np.arange(T) - imp) / fps
+    kp = np.zeros((T, 17, 2))
+    kp[:, :, 1] = 500.0
+    bump = lambda c, w=0.05: 1 / (1 + np.exp(-(t - c) / w))          # width grows fastest at t = c
+    hw, sw = 20 + 60 * bump(-0.12), 30 + 70 * bump(-0.08)
+    kp[:, sk["dom_hip"], 0], kp[:, sk["non_hip"], 0] = 300 + hw / 2, 300 - hw / 2
+    kp[:, sk["dom_shoulder"], 0], kp[:, sk["non_shoulder"], 0] = 300 + sw / 2, 300 - sw / 2
+    kp[:, sk["dom_shoulder"], 1] = kp[:, sk["non_shoulder"], 1] = 400.0
+    kp[:, sk["dom_wrist"], 0] = 300 + 200 * bump(-0.02, 0.03)
+    kp[:, sk["dom_wrist"], 1] = 450.0
+    body = to_body_frame(kp, sk, 200.0)
+    peaks, order, resolved = kinetic_chain(kp, body, sk, fps, imp - 20, imp, scale=200.0)
+    assert resolved and order == ["pelvis", "trunk", "arm"]
+    assert peaks["pelvis"] == pytest.approx(-0.12, abs=0.03) and peaks["arm"] == pytest.approx(-0.02, abs=0.03)
+    assert chain_in_order(peaks, fps)
+    assert chain_in_order({"pelvis": -0.08, "trunk": -0.1, "arm": -0.02}, fps)          # one frame: noise
+    assert not chain_in_order({"pelvis": -0.02, "trunk": -0.1, "arm": -0.06}, fps)
+    assert chain_in_order({"pelvis": -0.1}, fps) is None
