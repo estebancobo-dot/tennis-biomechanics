@@ -43,6 +43,24 @@ Horizontes (27-10, corregido por el usuario: **la base primero, al 100 %**):
   - *Detección:* repeticiones que descartan de más, NMS vacío, exportación del revés colgada.
   - *Autonomía:* la aplicación final trabaja sola (cola, recuperación de errores, actualizaciones, avisos); el
     chat y el ciclo con Claude son solo para desarrollar.
+  - **Lista de trabajo de la base (27-10).** Cada fila se cierra solo con su prueba medida (fichero en
+    `pc-logs`) y cambia a la vez aquí y en `docs/peticiones_usuario.md`:
+
+    | # | Trabajo | Dónde se mide | Criterio para adoptarlo | Estado |
+    |---|---|---|---|---|
+    | B-1 | Tiempo límite en toda llamada externa | Pruebas | Ninguna sin límite | **hecho 27-10** (`test_no_unbounded_calls`) |
+    | B-2 | Cuelgue de la exportación del revés | PC (`en_curso.txt`) | Ningún corte por 10 min sin avanzar | pendiente |
+    | B-3 | Tomas de cámara con fotogramas clave | PC, recursos | < 15 min por partido, mismas tomas | pendiente |
+    | B-4 | Una lectura de vídeo compartida y modelos por lotes en la pasada fina | PC, recursos | iGPU > 60 % de media, mismos puntos | pendiente |
+    | B-5 | Exportación en paralelo | PC | < 20 min la derecha | pendiente |
+    | B-6 | 3D: MotionAGFormer frente a RTMW3D (#203) | PC (las descargas de GitHub fuera del repositorio están bloqueadas en la nube) | Rotaciones coherentes con el 2D en los 193 golpes | pendiente |
+    | B-7 | Bola: WASB frente a TrackNetV3 (#202) | PC, clips de RacketVision | Golpes y botes iguales o mejores | pendiente |
+    | B-8 | Marcador: rapidocr 3.x con PP-OCRv5 (#201) | PC, recortes del marcador | Lecturas iguales o mejores, tiempo | pendiente |
+    | B-9 | Pista: detector de 14 puntos (#200) | PC, tramos donde falla hoy | Más tramos con pista | pendiente |
+    | B-10 | Bote: modelo aprendido (#199) | Botes anotados (RacketVision) | Precisión ≥ la regla | pendiente |
+    | B-11 | Repeticiones que descartan de más; NMS vacío | F3Set | Recall sube sin bajar precisión | pendiente |
+    | B-12 | Aplicación autónoma sin Claude | Prueba de extremo a extremo | Un partido nuevo de principio a fin sin el ciclo | pendiente |
+
 - **2. Medidas y pantallas:** C1 (cadena, pies, tiempos, huellas), P1 (lo no creíble), B1 (apps profesionales),
   E1 (escenarios del producto, primero partidos masculinos), las peticiones a medias y sin hacer por bloques
   (usabilidad y psicología del aprendizaje incluidas), A1 (la aplicación entera comprobada con capturas).
