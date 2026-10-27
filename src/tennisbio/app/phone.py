@@ -78,7 +78,7 @@ def _q(s) -> str:
 
 def _ps(script: str, timeout: float) -> str:
     enc = base64.b64encode(script.encode("utf-16-le")).decode()
-    r = subprocess.run(["powershell.exe", "-NoProfile", "-NonInteractive", "-EncodedCommand", enc], capture_output=True,
+    r = subprocess.run(timeout=600, args=["powershell.exe", "-NoProfile", "-NonInteractive", "-EncodedCommand", enc], capture_output=True,
                        text=True, timeout=timeout, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
     return (r.stdout or "").strip().splitlines()[-1] if (r.stdout or "").strip() else ""
 

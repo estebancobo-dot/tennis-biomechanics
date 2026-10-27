@@ -1,7 +1,7 @@
 {
  "probe": {
   "version": "2",
-  "hash": "b736b3643e55d076",
+  "hash": "9df51316ed76044e",
   "modules": [
    "io.video"
   ]
@@ -15,7 +15,7 @@
  },
  "audio": {
   "version": "2",
-  "hash": "7ee46d590a7a11fe",
+  "hash": "6b123f13494d3d0d",
   "modules": []
  },
  "players": {
@@ -35,7 +35,7 @@
  },
  "spotting": {
   "version": "1",
-  "hash": "f8113a80383d07fe",
+  "hash": "0b946f9f16a9219e",
   "modules": [
    "ball_features",
    "spotting"

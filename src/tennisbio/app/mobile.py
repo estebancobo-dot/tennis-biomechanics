@@ -38,7 +38,7 @@ def read_data(html: str) -> tuple[dict, int, int]:
 
 def _size(path: Path) -> tuple[int, int] | None:
     try:
-        r = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height",
+        r = subprocess.run(timeout=120, args=["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "stream=width,height",
                             "-of", "csv=p=0", str(path)], capture_output=True, text=True, timeout=60,
                            creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))
         w, h = (int(x) for x in r.stdout.strip().split(",")[:2])
@@ -50,7 +50,7 @@ def _size(path: Path) -> tuple[int, int] | None:
 def encode(src: Path, dst: Path, height: int = HEIGHT) -> bool:
     """src at `height` lines at most (never enlarged), playable on any phone."""
     tmp = dst.with_name(dst.stem + ".tmp.mp4")
-    r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-i", str(src), "-map", "0:v:0", "-map", "0:a:0?",
+    r = subprocess.run(timeout=3600, args=["ffmpeg", "-v", "error", "-y", "-i", str(src), "-map", "0:v:0", "-map", "0:a:0?",
                         "-vf", f"scale=-2:'min({height},ih)'", "-c:v", "libx264", "-preset", "veryfast", "-crf", "26",
                         "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "96k", "-movflags", "+faststart", str(tmp)],
                        capture_output=True, timeout=600, creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0))

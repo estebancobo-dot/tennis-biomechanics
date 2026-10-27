@@ -55,10 +55,12 @@ def probe(path: str | Path) -> VideoInfo:
     if not path.exists():
         raise VideoError(f"No existe el vídeo {path}")
     try:
-        out = subprocess.run(["ffprobe", "-v", "error", "-show_format", "-show_streams", "-of", "json", str(path)],
+        out = subprocess.run(timeout=120, args=["ffprobe", "-v", "error", "-show_format", "-show_streams", "-of", "json", str(path)],
                              capture_output=True, text=True, check=True, encoding="utf-8", errors="replace").stdout
     except FileNotFoundError:
         raise VideoError("No se encuentra ffprobe/ffmpeg: ejecuta 1_instalar.bat") from None
+    except subprocess.TimeoutExpired:
+        raise VideoError(f"ffprobe no responde con {path.name} (más de 2 min): vídeo dañado o disco lento") from None
     except subprocess.CalledProcessError as e:
         raise VideoError(f"El vídeo {path.name} está dañado o incompleto ({(e.stderr or '').strip()[:200]})") from None
     info = json.loads(out or "{}")
@@ -115,12 +117,15 @@ def auto_hwaccel() -> str | None:
         if os.name == "nt":
             with tempfile.TemporaryDirectory() as d:
                 f = str(Path(d) / "t.mp4")
-                subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "testsrc=duration=0.4:size=640x360:rate=25",
-                                "-c:v", "libx264", "-pix_fmt", "yuv420p", f], capture_output=True)
-                # frames kept on the GPU: fails instead of silently falling back to the CPU
-                r = subprocess.run(["ffmpeg", "-v", "error", "-hwaccel", "d3d11va", "-hwaccel_output_format", "d3d11",
-                                    "-i", f, "-f", "null", "-"], capture_output=True)
-                if r.returncode == 0 and Path(f).exists():
+                try:
+                    subprocess.run(timeout=60, args=["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "testsrc=duration=0.4:size=640x360:rate=25",
+                                    "-c:v", "libx264", "-pix_fmt", "yuv420p", f], capture_output=True)
+                    # frames kept on the GPU: fails instead of silently falling back to the CPU
+                    r = subprocess.run(timeout=60, args=["ffmpeg", "-v", "error", "-hwaccel", "d3d11va", "-hwaccel_output_format", "d3d11",
+                                        "-i", f, "-f", "null", "-"], capture_output=True)
+                except subprocess.TimeoutExpired:       # a driver that hangs: decode on the CPU
+                    r = None
+                if r is not None and r.returncode == 0 and Path(f).exists():
                     _HW["v"] = "d3d11va"
     return _HW["v"]
 
@@ -261,8 +266,11 @@ def _frames_at_run(info: VideoInfo, targets: list[str], hwaccel: str | None) -> 
 def seek_frame(info: VideoInfo, t: str | float) -> np.ndarray | None:
     """The first full-resolution frame at or after time t (`-ss t -frames:v 1`), or None."""
     t = t if isinstance(t, str) else f"{t:.3f}"
-    raw = subprocess.run(["ffmpeg", "-v", "error", "-nostdin", "-ss", t, "-i", str(info.path), "-frames:v", "1", "-an",
-                          "-f", "rawvideo", "-pix_fmt", "bgr24", "pipe:1"], capture_output=True).stdout
+    try:
+        raw = subprocess.run(timeout=120, args=["ffmpeg", "-v", "error", "-nostdin", "-ss", t, "-i", str(info.path), "-frames:v", "1", "-an",
+                              "-f", "rawvideo", "-pix_fmt", "bgr24", "pipe:1"], capture_output=True).stdout
+    except subprocess.TimeoutExpired:          # one frame that hangs: none, as one that is not there
+        return None
     n = info.width * info.height * 3
     return np.frombuffer(raw[:n], np.uint8).reshape(info.height, info.width, 3) if len(raw) >= n else None
 
@@ -352,7 +360,7 @@ def timeline(path: str | Path) -> dict:
     """Timestamps of the video packets: jumps (recorded broadcasts in .ts restart or skip their
     clock) and a variable frame rate (phones, some screen recordings). Reads the whole file once
     (packet headers only, no decoding)."""
-    out = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "packet=dts_time",
+    out = subprocess.run(timeout=600, args=["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries", "packet=dts_time",
                           "-of", "csv=p=0", str(path)], capture_output=True, text=True, encoding="utf-8", errors="replace").stdout
     t = []
     for line in out.splitlines():
