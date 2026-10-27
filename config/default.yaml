@@ -1,5 +1,9 @@
 # Valores por defecto. Lo específico de cada equipo va en config/local.yaml.
 
+# Jugadora (o jugador) que se analiza por defecto: un id de config/players/<id>.yaml. Cambiarla aquí (o en
+# local.yaml) cambia toda la aplicación; ningún script la lleva escrita.
+player: rybakina
+
 # Pasada barata (partido entero): resolución y fps reducidos.
 cheap_pass:
   width: 640

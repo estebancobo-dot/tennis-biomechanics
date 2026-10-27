@@ -99,13 +99,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default="datasets")
     ap.add_argument("--split", default="test")
-    ap.add_argument("--player", default="Rybakina", help="solo clips donde juega (vacío = todos)")
+    ap.add_argument("--player", default=None, help="solo clips donde juega (vacío = todos; por defecto la jugadora configurada)")
     ap.add_argument("--clips", type=int, default=20)
     ap.add_argument("--tol", type=int, default=3, help="tolerancia en fotogramas para casar un impacto")
     ap.add_argument("--no-racket", action="store_true")
     ap.add_argument("--ball", default=str(Path(__file__).resolve().parents[1] / "models" / "balltrack.onnx"))
     ap.add_argument("--device", default="dml")
     args = ap.parse_args()
+    if args.player is None:
+        from tennisbio.config import player_surname
+        args.player = player_surname()
     root = Path(args.root)
     tracker = None
     if Path(args.ball).exists():

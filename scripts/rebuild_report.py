@@ -2,7 +2,7 @@
 analysing any video again (1-2 min): every change of the web can be seen without re-running the
 pipeline. Uses the test folder (<output>/_smoke) and the practice videos (<output>/entrenamiento).
 
-    uv run python scripts/rebuild_report.py [--player rybakina] [--out-name _smoke]
+    uv run python scripts/rebuild_report.py [--player <id>] [--out-name _smoke]
 """
 import argparse
 import json
@@ -18,16 +18,19 @@ from tennisbio.config import load_config  # noqa: E402
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--player", default="rybakina")
+    ap.add_argument("--player", default=None, help="id de config/players/<id>.yaml (por defecto `player` de la configuración)")
     ap.add_argument("--out-name", default="_smoke", help="carpeta de la salida (p. ej. _poc9_largo)")
     args = ap.parse_args()
+    if args.player is None:
+        from tennisbio.config import default_player
+        args.player = default_player()
     t0 = time.time()
     cfg = load_config()
     out_root = Path(cfg.get("paths", {}).get("output", "output")) / args.out_name
     return rebuild(out_root, args.player, t0)
 
 
-def rebuild(out_root: Path, player: str = "rybakina", t0: float | None = None,
+def rebuild(out_root: Path, player: str | None = None, t0: float | None = None,
             done: str = "sin volver a analizar vídeo") -> int:
     """Report, export and audit of every analysed match folder in out_root (also used by
     scripts/recompute_measures.py after recomputing the measurements)."""
@@ -36,6 +39,9 @@ def rebuild(out_root: Path, player: str = "rybakina", t0: float | None = None,
     if not dirs:
         print(f"No hay nada analizado en {out_root}: lanza antes 2_prueba_rapida.bat")
         return 1
+    if player is None:
+        from tennisbio.config import default_player
+        player = default_player()
     pl = load_player(player)
     from tennisbio.config import load_config
     cfg = load_config()

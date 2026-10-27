@@ -21,7 +21,7 @@ import tempfile
 from pathlib import Path
 
 QUERIES = [
-    "Rybakina forehand analysis", "Rybakina forehand technique breakdown", "Rybakina forehand slow motion",
+    "{n} forehand analysis", "{n} forehand technique breakdown", "{n} forehand slow motion",
     "WTA forehand technique analysis", "pro forehand biomechanics analysis", "modern forehand technique breakdown coach",
     "forehand footwork split step analysis", "forehand racket face lag analysis",
 ]
@@ -47,7 +47,8 @@ def ytdlp(*args, timeout=600, cmd=None) -> subprocess.CompletedProcess:
 
 def search(per_query: int) -> list[dict]:
     seen, out = set(), []
-    for q in QUERIES:
+    from tennisbio.config import player_surname
+    for q in (x.format(n=player_surname()) for x in QUERIES):
         r = ytdlp("--flat-playlist", "--print", "%(id)s\t%(title)s\t%(channel)s\t%(duration)s", f"ytsearch{per_query}:{q}")
         for line in r.stdout.splitlines():
             parts = line.split("\t")

@@ -131,8 +131,8 @@ def run_pipeline(video: Path, mid: str, player_id: str, opponent: str, out_dir: 
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default="datasets")
-    ap.add_argument("--player", default="Rybakina", help="nombre tal como lo escribe F3Set")
-    ap.add_argument("--player-id", default="rybakina", help="config/players/<id>.yaml")
+    ap.add_argument("--player", default=None, help="nombre tal como lo escribe F3Set (por defecto la jugadora configurada)")
+    ap.add_argument("--player-id", default=None, help="config/players/<id>.yaml (por defecto `player` de la configuración)")
     ap.add_argument("--splits", default="train,val,test")
     ap.add_argument("--matches", default="", help="solo los vídeos cuyo nombre contenga esto")
     ap.add_argument("--max-points", type=int, default=0, help="puntos por partido (0 = todos), repartidos por el partido")
@@ -147,6 +147,9 @@ def main():
                     help="candidatos del detector entrenado (spotter.enabled) en vez de las reglas; el informe va a "
                          "recall_validation_detector.json/.md (no pisa el de las reglas)")
     args = ap.parse_args()
+    from tennisbio.config import default_player, player_surname
+    args.player_id = args.player_id or default_player()
+    args.player = args.player or player_surname(args.player_id)
     root = Path(args.root)
     t_start = time.time()
 

@@ -33,8 +33,9 @@ from tennisbio.render import draw_pose, draw_racket  # noqa: E402
 from tennisbio.scenes import detect_boundaries, frame_features  # noqa: E402
 from tennisbio.skeleton import Skeleton  # noqa: E402
 
-QUERIES = ["Rybakina practice", "Rybakina practice court level", "Rybakina training forehand",
-           "Rybakina practice session forehand", "Rybakina forehand side view", "Rybakina hitting practice"]
+# searches for the player's practice videos ({n}: her surname, from config/players/<id>.yaml)
+QUERIES = ["{n} practice", "{n} practice court level", "{n} training forehand",
+           "{n} practice session forehand", "{n} forehand side view", "{n} hitting practice"]
 EXCLUDE = (" vs ", " vs.", " v ", "highlights", "interview", "press conference", "full match", "match point", "reaction")
 FORMAT = "bv*[height<=720][ext=mp4]+ba[ext=m4a]/b[height<=720][ext=mp4]/b[height<=720]/b"   # as validate_f3set (works on the PC)
 MIN_SHOT_S = 2.5
@@ -51,9 +52,9 @@ def ytdlp(*args, timeout=900):
                           encoding="utf-8", errors="replace", timeout=timeout)
 
 
-def search(per_query: int) -> list[dict]:
+def search(per_query: int, surname: str) -> list[dict]:
     seen, out = set(), []
-    for q in QUERIES:
+    for q in (x.format(n=surname.capitalize()) for x in QUERIES):
         r = ytdlp("--flat-playlist", "--print", "%(id)s\t%(title)s\t%(channel)s\t%(duration)s", f"ytsearch{per_query}:{q}", timeout=300)
         for line in r.stdout.splitlines():
             p = line.split("\t")
@@ -64,7 +65,7 @@ def search(per_query: int) -> list[dict]:
                 dur = float(p[3])
             except ValueError:
                 continue
-            if "rybakina" in t and not any(x in t for x in EXCLUDE) and 30 <= dur <= 40 * 60:
+            if surname.lower() in t and not any(x in t for x in EXCLUDE) and 30 <= dur <= 40 * 60:
                 seen.add(p[0])
                 out.append({"id": p[0], "title": p[1], "channel": p[2], "duration_s": dur, "query": q,
                             "url": f"https://www.youtube.com/watch?v={p[0]}"})
@@ -265,10 +266,13 @@ def main():
     ap.add_argument("--max-videos", type=int, default=2)
     ap.add_argument("--max-seconds", type=float, default=90)
     ap.add_argument("--per-query", type=int, default=6)
-    ap.add_argument("--player", default="rybakina")
+    ap.add_argument("--player", default=None, help="id de config/players/<id>.yaml (por defecto `player` de la configuración)")
     ap.add_argument("--file", help="analizar un vídeo local en vez de buscar (pruebas)")
     ap.add_argument("--search", action="store_true", help="buscar en YouTube si no hay lista elegida (config/practice_videos.yaml)")
     args = ap.parse_args()
+    if args.player is None:
+        from tennisbio.config import default_player
+        args.player = default_player()
     out = Path(args.out)
     clips = out / "clips"
     clips.mkdir(parents=True, exist_ok=True)
@@ -305,7 +309,7 @@ def main():
         idx.write_text(json.dumps(vids, ensure_ascii=False, indent=1), encoding="utf-8")
     if not vids and args.search:
         log("Buscando vídeos de entrenamiento de la jugadora en YouTube…")
-        vids = search(args.per_query)
+        vids = search(args.per_query, pl.name.split()[-1])
         idx.write_text(json.dumps(vids, ensure_ascii=False, indent=1), encoding="utf-8")
     log(f"{len(vids)} vídeos candidatos; se analizan {min(args.max_videos, len(vids))} ({args.max_seconds:.0f} s de cada uno)")
     done = 0

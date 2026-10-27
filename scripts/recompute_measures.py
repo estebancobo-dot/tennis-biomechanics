@@ -6,7 +6,7 @@ players, score) is read from its outputs even if its code changed since, and the
 the pose, ball and racket caches of every window (<match>/windows/*.npz, *.npy). Only the fine
 passes are forced; identity and candidates are re-run only when stale (seconds).
 
-    uv run python scripts/recompute_measures.py [--player rybakina] [--out-name _smoke]
+    uv run python scripts/recompute_measures.py [--player <id>] [--out-name _smoke]
 
 --out-name: the folder of <output> to recompute (another test run, e.g. _poc9_largo; default _smoke).
 """
@@ -146,9 +146,12 @@ def recompute(d: Path, out_root: Path, cfg: dict, player) -> dict:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--player", default="rybakina")
+    ap.add_argument("--player", default=None, help="id de config/players/<id>.yaml (por defecto `player` de la configuración)")
     ap.add_argument("--out-name", default="_smoke", help="carpeta de la salida que se recalcula (p. ej. _poc9_largo)")
     args = ap.parse_args()
+    if args.player is None:
+        from tennisbio.config import default_player
+        args.player = default_player()
     t_start = time.time()
     print(f"Recalcular medidas: empieza {now()}", flush=True)
     cfg = load_config()

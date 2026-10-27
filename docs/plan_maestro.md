@@ -18,12 +18,20 @@ Un solo trabajo pesado del PC a la vez; la nube solo hace lo que no toca lo que 
 | C1 | Cadena cinética, footwork y timing (lo que define el golpe, usuario 27-10) | Nube → PC | R2 | cadena en orden en la mayoría (era 10 %); pasos medidos en la mayoría (era 32 %); regla de tiempos y huellas numeradas en la app | **en marcha**: medidas cambiadas y probadas con los 193 golpes (79 % y 87 %); pantallas hechas; recálculo en el PC (petición 58) |
 | D1 | Una sola tanda de detección: repeticiones que descartan de más (F3Set 11 %, Gauff 30 %), NMS vacío, `views` lenta, exportación del revés colgada | Nube + PC | C1 | recall F3Set sube sin bajar precisión; una ejecución | pendiente |
 | P1 | Lo que no es creíble: resultado del punto (2 ganadores en 191), nombres/fechas de los partidos; después peticiones por bloques (95 hechas, 94 a medias, 20 sin hacer) | Nube + PC (desde la caché) | C1 | auditoría en verde por petición | pendiente |
-| A1 | Aplicación con los datos reales, comprobada con capturas | PC | C1, P1 | 0 fallos en todas las pantallas | — |
+| G1 | Genérica: ningún nombre de jugadora en el código (`player` en config; prueba `test_no_hardcoded_player`), golpe y jugador como parámetros | Nube | — | la prueba pasa | **hecho 27-10** |
+| B1 | Comparar la aplicación, pantalla a pantalla, con las profesionales (`docs/comparativa_apps.md`: SwingVision, TennisViz/SkeleTRACK, Sportsbox, Kinovea/OnForm) con los datos reales, y cerrar lo que les falte y la tele permita | Nube + PC | C1 | cada diferencia con su decisión y su prueba automática | pendiente |
+| A1 | Aplicación con los datos reales, comprobada con capturas | PC | C1, P1, B1 | 0 fallos en todas las pantallas | — |
 | M1 | Móvil (opcional, solo si lo pide el usuario) | — | A1 | — | — |
 
 Conexión con el PC (27-10, **conectado y funcionando** desde las 12:05): el PC pasa a ser ejecutor de GitHub Actions (`4_conectar_github.bat` una vez,
 `.github/workflows/pc.yml`): cada petición empieza al subirla y su registro está en Actions. El ciclo de cada
 10 min (ahora mira GitHub cada minuto cuando está libre) sigue debajo como respaldo y para las paradas.
+
+Reglas del usuario (27-10): la validación es **siempre automática** (el usuario no valida la aplicación); **no se
+descarta ninguna petición** de `docs/peticiones_usuario.md` (220 filas): se ordenan por dependencia y se cierran
+todas; la aplicación es **genérica** (partidos, jugadores y golpes se añaden por configuración). El conocimiento de
+las conversaciones vive en los documentos (peticiones_usuario, matriz_cobertura, aprendido_entrenadores,
+investigacion_youtube_usuario, comparativa_apps, comparacion_guia_ivanovic): se releen antes de cada bloque.
 
 Validación (siempre automática): detección contra 648 golpes anotados de F3Set; partidos reales por golpes y
 errores por partido; informe y medidas por la auditoría; aplicación por capturas en el PC; código por la batería

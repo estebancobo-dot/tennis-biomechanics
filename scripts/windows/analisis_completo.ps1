@@ -14,7 +14,7 @@ try {
     $inicio = Get-Date
 
     Paso "1/5 Catalogo de partidos (se anaden solos los videos nuevos)"
-    Ejecutar uv @("run", "python", "scripts/auto_catalog.py", "--player", "rybakina")
+    Ejecutar uv @("run", "python", "scripts/auto_catalog.py")
 
     Paso "2/5 Analisis de los partidos (horas; se puede cortar y relanzar)"
     Ejecutar uv @("run", "tennisbio", "run", "--all")

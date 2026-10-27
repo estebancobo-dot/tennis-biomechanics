@@ -43,7 +43,7 @@ try {
     $sup = if ($Superficie) { @("--surface", $Superficie) } else { @() }
     Ejecutar uv (@("run", "python", "scripts/smoke_test.py", $video.FullName, "--minutes", "$Minutos", "--out-name", $Salida) + $sup)
 
-    Paso "4/4 Validacion automatica: puntos anotados de partidos de Rybakina (F3Set; 20-40 min, solo la primera vez)"
+    Paso "4/4 Validacion automatica: puntos anotados de partidos de la jugadora (F3Set; 20-40 min, solo la primera vez)"
     if (Test-Path "$Base\datasets\reports\f3set_validation.json") { Ok "ya hecha" }
     else {
         try {

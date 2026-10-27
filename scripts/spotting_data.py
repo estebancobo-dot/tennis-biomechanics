@@ -113,10 +113,11 @@ def cheap_pass(video: Path, mid: str, out_dir: Path, fps: float | None = None) -
     from tennisbio.catalog import Match, load_player
     from tennisbio.config import load_config
 
+    from tennisbio.config import default_player
     cfg = load_config()
     if fps:                               # the spotter's own frame rate (a swing lasts 2-3 frames at 10 fps)
         cfg = {**cfg, "cheap_pass": {**cfg["cheap_pass"], "fps": fps}}
-    ctx = pipeline.Context(Match(mid, video, load_player("rybakina")), cfg, out_dir / mid, log=lambda m: print(m, flush=True))
+    ctx = pipeline.Context(Match(mid, video, load_player(default_player(cfg))), cfg, out_dir / mid, log=lambda m: print(m, flush=True))
     pipeline.run(ctx, names=CHEAP)
     return out_dir / mid
 
@@ -153,7 +154,7 @@ def export(dest: Path, mdir: Path, events: list[dict], spans: list, name: str, s
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default="datasets")
-    ap.add_argument("--test-player", default="Rybakina")
+    ap.add_argument("--test-player", default=None, help="como lo escribe F3Set (por defecto la jugadora configurada)")
     ap.add_argument("--matches", type=int, default=16, help="partidos de entrenamiento (sin la jugadora de prueba)")
     ap.add_argument("--points", type=int, default=90, help="puntos por partido de entrenamiento, repartidos")
     ap.add_argument("--hours", type=float, default=10.0)
@@ -161,6 +162,9 @@ def main():
                                                             "con otro valor, carpetas y ficheros aparte (sufijo _<fps>fps)")
     ap.add_argument("--ball", action="store_true", help="también la bola (plan N2): carpeta y ficheros aparte (sufijo _bola)")
     args = ap.parse_args()
+    if args.test_player is None:
+        from tennisbio.config import player_surname
+        args.test_player = player_surname()
     if not args.ball:     # the cycle script that launched this may predate its `bola:` line
         sys.path.insert(0, str(Path(__file__).resolve().parent))
         from pc_requests import param

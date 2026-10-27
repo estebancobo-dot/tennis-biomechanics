@@ -3,7 +3,7 @@
 No hace falta escribir nada a mano: el id sale del nombre del fichero y el rival se lee del
 marcador durante el análisis. Las entradas que ya existen no se tocan.
 
-    uv run python scripts/auto_catalog.py --player rybakina
+    uv run python scripts/auto_catalog.py --player <id>
 """
 import argparse
 import re
@@ -30,8 +30,11 @@ def slug(name: str) -> str:
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--player", default="rybakina", help="id de config/players/<id>.yaml")
+    ap.add_argument("--player", default=None, help="id de config/players/<id>.yaml (por defecto `player` de la configuración)")
     args = ap.parse_args()
+    if args.player is None:
+        from tennisbio.config import default_player
+        args.player = default_player()
     cfg = load_config()
     videos = Path(cfg.get("paths", {}).get("videos", "videos"))
     path = CONFIG_DIR / "matches.yaml"

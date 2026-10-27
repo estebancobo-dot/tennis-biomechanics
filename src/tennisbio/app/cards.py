@@ -32,6 +32,32 @@ ROUND_CODES = {"f": "Final", "sf": "Semifinal", "qf": "Cuartos de final", "r16":
 SURFACES = {"dura": "Pista dura", "hierba": "Hierba", "tierra batida": "Tierra batida"}
 
 
+def _default_name() -> str:
+    """The analysed player's full name (config `player` → config/players/<id>.yaml), never written in code."""
+    try:
+        from ..catalog import load_player
+        from ..config import default_player
+        return load_player(default_player()).name
+    except Exception:  # noqa: BLE001 — no configured player: the card shows no name rather than a wrong one
+        return ""
+
+
+def _known_players() -> dict:
+    """Surname (lowercase) → full name: the transliterations met in file names (PLAYERS) and every player
+    configured in config/players, so a new player added there is recognised in the file names too."""
+    out = dict(PLAYERS)
+    try:
+        import yaml
+        from ..config import CONFIG_DIR
+        for f in (CONFIG_DIR / "players").glob("*.yaml"):
+            name = (yaml.safe_load(f.read_text(encoding="utf-8")) or {}).get("name")
+            if name:
+                out.setdefault(name.split()[-1].lower(), name)
+    except Exception:  # noqa: BLE001 — the fixed table alone
+        pass
+    return out
+
+
 def parse_name(name: str) -> dict:
     """Tournament, round, date and players read from a broadcast's file or folder name."""
     low = re.sub(r"^(smoke|poc\w*):", "", name).lower().replace("_", "-")
@@ -50,7 +76,7 @@ def parse_name(name: str) -> dict:
     year = re.search(r"(20\d\d)", low)
     people = []
     for w in re.split(r"[-\s.]+", low):
-        for k, full in PLAYERS.items():
+        for k, full in _known_players().items():
             if w.startswith(k) and full not in people:
                 people.append(full)
     return {"tournament": tour, "color": color, "round": rnd, "date": date, "iso": iso,
@@ -135,7 +161,7 @@ def card(m: dict, d: Path, data_dir: Path, her_name: str) -> dict:
     tour = m.get("tournament") or info["tournament"]
     color = info["color"] or next((c for k, (t, c) in TOURNAMENTS.items() if t.lower() == (tour or "").lower()), "#555")
     people = info["players"]
-    her = her_name or "Elena Rybakina"
+    her = her_name or _default_name()
     rival = next((p for p in people if p != her), "") or (m.get("opponent") or "")
     photos = _photos(d)
     hc = _her_cluster(d, photos)

@@ -211,7 +211,8 @@ def main():
     torch.onnx.export(net, torch.zeros(1, 64, F), out / "spotting.onnx", input_names=["features"],
                       output_names=["prob"], dynamic_axes={"features": {1: "frames"}, "prob": {1: "frames"}}, opset_version=17,
                       dynamo=False)
-    meta = {"classes": list(S.CLASSES), "feature_dim": int(F), "ball": int(F) > S.FEATURE_DIM, "fps": train[0]["fps"], "threshold": thr,
+    from tennisbio.config import player_surname
+    meta = {"player": player_surname(), "classes": list(S.CLASSES), "feature_dim": int(F), "ball": int(F) > S.FEATURE_DIM, "fps": train[0]["fps"], "threshold": thr,
             "train_matches": [m["name"] for m in train], "val_matches": [m["name"] for m in val],
             "test_matches": [m["name"] for m in test], "cv": args.cv, "epochs": args.epochs, "seed": args.seed,
             "val": vbest, "test": res}
@@ -224,11 +225,11 @@ def report(meta: dict) -> str:
     t = meta["test"]["total"]
     pct = lambda x: "—" if x is None else f"{x * 100:.0f} %"
     L = ["# Detector de golpes entrenado: medida", "",
-         (f"Validación cruzada por partido: cada uno de los {len(meta['test_matches'])} partidos de Rybakina se mide con un "
+         (f"Validación cruzada por partido: cada uno de los {len(meta['test_matches'])} partidos de {meta.get('player', 'la jugadora')} se mide con un "
           f"modelo entrenado **sin él** (con los otros y {len(set(meta['train_matches']) - set(meta['test_matches']))} de otras jugadoras de F3Set)"
           if meta.get("cv") else
           f"Entrenado con {len(meta['train_matches'])} partidos de F3Set; umbral elegido con {len(meta['val_matches'])} "
-          f"partidos aparte; medido en {len(meta['test_matches'])} partidos de Rybakina que **no** vio al entrenar")
+          f"partidos aparte; medido en {len(meta['test_matches'])} partidos de {meta.get('player', 'la jugadora')} que **no** vio al entrenar")
          + " (±0,2 s, mismo lado). Lo genera `scripts/train_spotting.py`.", "",
          f"**Golpes encontrados: {t['found']} de {t['gt']} ({pct(t['recall'])})**, precisión {pct(t['precision'])}, "
          f"tipo de golpe acertado en el {pct(t['kind_accuracy'])} de los encontrados.", "",

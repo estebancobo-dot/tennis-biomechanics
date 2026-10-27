@@ -25,7 +25,7 @@ from tennisbio.report import build  # noqa: E402
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("video")
-    ap.add_argument("--player", default="rybakina")
+    ap.add_argument("--player", default=None, help="id de config/players (por defecto `player` de la configuración)")
     ap.add_argument("--opponent", default="", help="nombre del rival tal como sale en el marcador (para el OCR)")
     ap.add_argument("--start", type=float, default=None,
                     help="segundo de inicio del trozo (por defecto: un tramo de juego buscado automáticamente)")
@@ -36,6 +36,9 @@ def main():
     ap.add_argument("--out-name", default="_smoke",
                     help="carpeta dentro de la salida (otra que _smoke = prueba aparte, p. ej. de velocidad, sin tocar la habitual)")
     args = ap.parse_args()
+    if args.player is None:
+        from tennisbio.config import default_player
+        args.player = default_player()
 
     cfg = load_config()
     out_root = Path(cfg.get("paths", {}).get("output", "output")) / args.out_name
