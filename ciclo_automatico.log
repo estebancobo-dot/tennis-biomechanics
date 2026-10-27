@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261027105004
+Start time: 20261027112027
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 13548
+Process ID: 5060
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,29 +17,13 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-10-27 10:50:04] Codigo nuevo (4f0a91d -> 51077e9): 8 ficheros
-    config/parar_pc.txt
-    config/peticion_pc.txt
-    scripts/pack_reference.py
-    scripts/windows/analisis_completo.ps1
+==> [2026-10-27 11:20:27] Codigo nuevo (51077e9 -> a7fca01): 1 ficheros
     scripts/windows/ciclo_automatico.ps1
-    scripts/windows/comun.ps1
-    src/tennisbio/export.py
-    tests/test_pack_reference.py
-Updating 4f0a91d..51077e9
+Updating 51077e9..a7fca01
 Fast-forward
- config/parar_pc.txt                   |  2 +-
- config/peticion_pc.txt                |  3 ++
- scripts/pack_reference.py             | 52 +++++++++++++++++++++++++++++++++++
- scripts/windows/analisis_completo.ps1 | 24 ++++++++++++++--
- scripts/windows/ciclo_automatico.ps1  |  8 ++++++
- scripts/windows/comun.ps1             |  2 ++
- src/tennisbio/export.py               |  6 ++++
- tests/test_pack_reference.py          | 25 +++++++++++++++++
- 8 files changed, 119 insertions(+), 3 deletions(-)
- create mode 100644 scripts/pack_reference.py
- create mode 100644 tests/test_pack_reference.py
-Resolved 124 packages in 0.89ms
+ scripts/windows/ciclo_automatico.ps1 | 27 +++++++++++++++++++++++++--
+ 1 file changed, 25 insertions(+), 2 deletions(-)
+Resolved 124 packages in 0.93ms
 Checked 89 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
@@ -52,47 +36,11 @@ yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
     (paso terminado en 4 s)
 
-==> [2026-10-27 10:50:08] Que hace falta: informe
-Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (27 golpes)
-Informe: C:\tenis\output\_smoke\informe\index.html
-Golpes: 0 nuevos, 14 en C:\tenis\output\_smoke\exportar\golpes
-Montajes: 2 en C:\tenis\output\_smoke\exportar\montajes
-Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
-Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
-Auditoría: 284 cumplidos, 23 no cumplidos, 121 sin golpes suficientes, 89 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-  ✘ Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin: marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto de saque) y 72-133 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 27 golpes, 1 saques/remates → como mucho 38% de sus golpes y 6% de sus saques. Faltan muchos golpes (ver scripts/validate_recall.py para saber en qué etapa se pierden) (19 cerca, 8 lejos); además 1 de identidad dudosa, apartados (no cuentan como suyos)
-  ✘ Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series: 15 ficheros de etapa, 27 golpes con ventana y serie; faltan o están vacíos: spotting/spotting.json
-  ✘ #1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
-  ✘ #83 Árbol de ficheros generados y validados: 4 comprobaciones: 1 falta, 3 ok; la peor: «Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series» (15 ficheros de etapa, 27 golpes con ventana y serie; faltan o están vacíos: spotting/spotting.json)
-  ✘ #155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
-  ✘ #176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3): SIN HACER según el registro (#176, docs/peticiones_usuario.md)
-  ✘ #189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4): SIN HACER según el registro (#189, docs/peticiones_usuario.md)
-  ✘ #193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10): SIN HACER según el registro (#193, docs/peticiones_usuario.md)
-  ✘ #196 Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18): SIN HACER según el registro (#196, docs/peticiones_usuario.md)
-  ✘ #197 Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19): SIN HACER según el registro (#197, docs/peticiones_usuario.md)
-  ✘ #198 Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20): SIN HACER según el registro (#198, docs/peticiones_usuario.md)
-  ✘ #199 Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10): SIN HACER según el registro (#199, docs/peticiones_usuario.md)
-  ✘ #200 Pista: TennisCourtDetector (14 puntos) + refinado (Estado del arte, 13-10): SIN HACER según el registro (#200, docs/peticiones_usuario.md)
-  ✘ #201 Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10): SIN HACER según el registro (#201, docs/peticiones_usuario.md)
-  ✘ #202 Bola: probar WASB (Estado del arte, 13-10): SIN HACER según el registro (#202, docs/peticiones_usuario.md)
-  ✘ #203 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10): SIN HACER según el registro (#203, docs/peticiones_usuario.md)
-  ✘ #204 Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10): SIN HACER según el registro (#204, docs/peticiones_usuario.md)
-  ✘ #205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3): SIN HACER según el registro (#205, docs/peticiones_usuario.md)
-  ✘ #209 Passing y globo (Revisión completa, §3 B): SIN HACER según el registro (#209, docs/peticiones_usuario.md)
-  ✘ #210 Dejada (bote muy corto en campo rival) (Revisión completa, §3 B): SIN HACER según el registro (#210, docs/peticiones_usuario.md)
-  ✘ #211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5): SIN HACER según el registro (#211, docs/peticiones_usuario.md)
-  ✘ #216 Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnic: SIN HACER según el registro (#216, docs/peticiones_usuario.md)
-  ✘ #217 Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26): SIN HACER según el registro (#217, docs/peticiones_usuario.md)
-Hecho en 171 s, sin volver a analizar vídeo.
-    (paso terminado en 2 min 51 s)
-
-==> [2026-10-27 10:53:00] Revision automatica frente a la ejecucion anterior
-# Revisión automática: FALLOS
-Peticion 57 con accion 'referencia' que este ciclo aun no conoce: se hara en el siguiente
-Ciclo automatico terminado (informe).
+==> [2026-10-27 11:20:31] Que hace falta: nada
+Ciclo automatico terminado (nada).
     (paso terminado en 0 s)
-Empezado 2026-10-27 10:50:02 - terminado 2026-10-27 10:53:00 - duracion total 2 min 57 s
+Empezado 2026-10-27 11:20:25 - terminado 2026-10-27 11:20:31 - duracion total 6 s
 **********************
 Windows PowerShell transcript end
-End time: 20261027105300
+End time: 20261027112031
 **********************
