@@ -4,9 +4,9 @@
  "near": 193,
  "summary": {
   "ok": 326,
-  "falta": 39,
+  "falta": 43,
   "pocos datos": 54,
-  "aviso": 114
+  "aviso": 135
  },
  "items": [
   {
@@ -118,12 +118,12 @@
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina",
    "status": "ok",
-   "detail": "8% de sus golpes con repetición enlazada (12 de 143, 5 a cámara lenta) · 94% con otra cámara (135) · tomas: 20 repeticiones, 22 laterales, 7 frontales, 417 primeros planos, 13 otras",
+   "detail": "5% de sus golpes con repetición enlazada (7 de 143, 5 a cámara lenta) · 94% con otra cámara (135) · tomas: 14 repeticiones, 19 laterales, 12 frontales, 421 primeros planos, 13 otras",
    "strokes": 143,
-   "with_replay": 12,
+   "with_replay": 7,
    "with_other_camera": 135,
    "with_slowmo": 5,
-   "replay_share": 0.084,
+   "replay_share": 0.049,
    "other_share": 0.944
   },
   {
@@ -131,7 +131,7 @@
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "12% de sus golpes con repetición enlazada (28 de 243, 10 a cámara lenta) · 99% con otra cámara (240) · tomas: 39 repeticiones, 34 laterales, 9 frontales, 732 primeros planos, 15 otras",
+   "detail": "12% de sus golpes con repetición enlazada (28 de 243, 10 a cámara lenta) · 99% con otra cámara (240) · tomas: 39 repeticiones, 33 laterales, 11 frontales, 732 primeros planos, 14 otras",
    "strokes": 243,
    "with_replay": 28,
    "with_other_camera": 240,
@@ -144,7 +144,7 @@
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: sin-fecha_580c6f_rybakina",
    "status": "ok",
-   "detail": "13% de sus golpes con repetición enlazada (26 de 197, 6 a cámara lenta) · 93% con otra cámara (183) · tomas: 69 repeticiones, 78 laterales, 12 frontales, 874 primeros planos, 55 otras",
+   "detail": "13% de sus golpes con repetición enlazada (26 de 197, 6 a cámara lenta) · 93% con otra cámara (183) · tomas: 69 repeticiones, 80 laterales, 10 frontales, 874 primeros planos, 55 otras",
    "strokes": 197,
    "with_replay": 26,
    "with_other_camera": 183,
@@ -157,12 +157,12 @@
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: sin-fecha_b8b713_rybakina",
    "status": "ok",
-   "detail": "15% de sus golpes con repetición enlazada (33 de 216, 16 a cámara lenta) · 100% con otra cámara (216) · tomas: 77 repeticiones, 100 laterales, 38 frontales, 1385 primeros planos, 76 otras",
+   "detail": "17% de sus golpes con repetición enlazada (36 de 216, 16 a cámara lenta) · 100% con otra cámara (216) · tomas: 80 repeticiones, 99 laterales, 38 frontales, 1385 primeros planos, 74 otras",
    "strokes": 216,
-   "with_replay": 33,
+   "with_replay": 36,
    "with_other_camera": 216,
    "with_slowmo": 16,
-   "replay_share": 0.153,
+   "replay_share": 0.167,
    "other_share": 1.0
   },
   {
@@ -2902,7 +2902,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2572 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2571 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3169,28 +3169,28 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_f43dd2_rybakina",
    "status": "aviso",
-   "detail": "304 min para 71 min de vídeo ≈ 14.9 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "269 min para 71 min de vídeo ≈ 13.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "276 min para 117 min de vídeo ≈ 8.3 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "226 min para 117 min de vídeo ≈ 6.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_580c6f_rybakina",
    "status": "ok",
-   "detail": "269 min para 133 min de vídeo ≈ 7.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "224 min para 133 min de vídeo ≈ 5.9 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_b8b713_rybakina",
    "status": "ok",
-   "detail": "571 min para 210 min de vídeo ≈ 9.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "485 min para 210 min de vídeo ≈ 8.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 5,
@@ -3358,7 +3358,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (304 min para 71 min de vídeo ≈ 14.9 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (269 min para 71 min de vídeo ≈ 13.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3400,7 +3400,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (304 min para 71 min de vídeo ≈ 14.9 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (269 min para 71 min de vídeo ≈ 13.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3463,7 +3463,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (304 min para 71 min de vídeo ≈ 14.9 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (269 min para 71 min de vídeo ≈ 13.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -3757,7 +3757,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (304 min para 71 min de vídeo ≈ 14.9 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (269 min para 71 min de vídeo ≈ 13.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -4086,7 +4086,7 @@
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
    "status": "aviso",
-   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (304 min para 71 min de vídeo ≈ 14.9 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (269 min para 71 min de vídeo ≈ 13.2 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
   },
   {
    "req": 11,
@@ -4624,8 +4624,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#204 Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10)",
-   "status": "falta",
-   "detail": "SIN HACER según el registro (#204, docs/peticiones_usuario.md)"
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
   },
   {
    "req": 11,
@@ -4731,6 +4731,181 @@
    "name": "#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d",
    "status": "aviso",
    "detail": "A MEDIAS según el registro (#219); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#220 Almacenamiento definitivo: árbol por jugador, partido y golpe; nombres, colisiones y todos los escenarios",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#221 Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#221); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#222 Un clic por partido para decir quién es ella",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#223 Revés y derecha cortados",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#223, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#224 Saques: plano, cortado o kick; primero o segundo",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#224, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#225 La aplicación no se cuelga ni ralentiza el PC",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#227 Pantalla completa en la aplicación",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#229 Renombrar el vídeo no rompe nada; el partido se identifica por su contenido",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#230); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#231); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#232); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#233 Una referencia completa y medida antes de validar nada",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#234 Prueba de valor de la aplicación con los datos reales",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#235 Cadena cinética, footwork y timing: lo que define el golpe",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#235); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#236 Huellas numeradas sobre los pies y patrones de pasos",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#236); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#238 La validación es siempre automática; el usuario no valida la aplicación",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#238); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#239 No se descarta ninguna petición",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#240 Comparar la aplicación con las profesionales una vez estén los golpes",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#240, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#242); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#243 Todos los escenarios del producto los contempla Claude sin esperar a que se pidan",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#243); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#244, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#245, docs/peticiones_usuario.md)"
   }
  ]
 }
