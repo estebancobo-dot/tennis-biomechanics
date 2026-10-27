@@ -58,3 +58,31 @@ Thread 0x0000262c (most recent call first):
   File "C:\tenis\tennis-biomech\.venv\Scripts\tennisbio.exe\__main__.py", line 10 in <module>
   File "<frozen runpy>", line 88 in _run_code
   File "<frozen runpy>", line 198 in _run_module_as_main
+Timeout (0:05:00)!
+Thread 0x0000262c (most recent call first):
+  File "C:\tenis\tennis-biomech\.venv\Lib\site-packages\PIL\ImageFont.py", line 653 in getmask2
+  File "C:\tenis\tennis-biomech\.venv\Lib\site-packages\PIL\ImageDraw.py", line 591 in draw_text
+  File "C:\tenis\tennis-biomech\.venv\Lib\site-packages\PIL\ImageDraw.py", line 647 in text
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 86 in render
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 362 in _frame
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 348 in strokes_frames
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 715 in _export
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 650 in export
+  File "C:\tenis\tennis-biomech\src\tennisbio\cli.py", line 91 in _main
+  File "C:\tenis\tennis-biomech\src\tennisbio\cli.py", line 23 in main
+  File "C:\tenis\tennis-biomech\.venv\Scripts\tennisbio.exe\__main__.py", line 10 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 198 in _run_module_as_main
+Timeout (0:05:00)!
+Thread 0x0000262c (most recent call first):
+  File "C:\tenis\tennis-biomech\.venv\Lib\site-packages\PIL\Image.py", line 3733 in alpha_composite
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 87 in render
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 362 in _frame
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 348 in strokes_frames
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 715 in _export
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 650 in export
+  File "C:\tenis\tennis-biomech\src\tennisbio\cli.py", line 91 in _main
+  File "C:\tenis\tennis-biomech\src\tennisbio\cli.py", line 23 in main
+  File "C:\tenis\tennis-biomech\.venv\Scripts\tennisbio.exe\__main__.py", line 10 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 198 in _run_module_as_main
