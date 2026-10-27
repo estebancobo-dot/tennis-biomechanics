@@ -121,6 +121,22 @@ Cada caso tiene su respuesta automática y su prueba. Ningún caso deja la aplic
 | Copia al móvil | «Copiar al móvil» | Hace la carpeta sin conexión (clips a 720p) y dice dónde está. |
 | Fin de un trabajo | Nada | Pasa la auditoría y la compara con la vez anterior. Aviso de Windows: «Derecha de Rybakina actualizada: 336 ✔, 0 ✘». |
 
+### 5.1b El flujo completo (27-10, como lo pidió el usuario)
+
+1. **Añadir partidos:** uno o varios vídeos a la vez (arrastrar o elegir). Cada vídeo es un partido; se reconoce
+   por su contenido (renombrarlo o moverlo no cambia nada).
+2. **Elegir a quién analizar:** en cada partido salen las fotos de las dos personas (sacadas del propio vídeo); un
+   clic en la que se quiere analizar. Siempre **una persona por análisis**; la otra se puede añadir después
+   («Analizar también a…») reutilizando la pasada barata.
+3. **La ficha del jugador:** nombre, mano, revés a una o dos manos, altura. Hombres y mujeres igual: el
+   algoritmo solo usa esa ficha (zurdos reflejados, distancias por su altura). **Pendiente de validar:** el
+   detector se entrenó y midió con partidos femeninos de F3Set; antes de dar por bueno un partido masculino
+   hay que medirlo igual con puntos anotados de partidos masculinos.
+4. **Elegir golpe:** derecha, revés, saque (y volea/remate cuando haya casos). Un golpe nuevo de un jugador ya
+   analizado es solo otro informe (minutos).
+5. **Ver:** una tarjeta por jugador y golpe, con todos sus partidos juntos; al abrirla, la web del análisis.
+6. **Todo lo demás es automático:** cola, avisos, auditoría y comprobación de las pantallas.
+
 ### 5.2 Límite
 
 | Caso | Respuesta |
