@@ -74,7 +74,7 @@ class YoloOnnx:
         xywh = p[:, :4]
         boxes = np.c_[xywh[:, :2] - xywh[:, 2:] / 2, xywh[:, :2] + xywh[:, 2:] / 2]
         keep = cv2.dnn.NMSBoxes(np.c_[boxes[:, :2], xywh[:, 2:]].tolist(), p[:, 4].tolist(), conf, iou)
-        keep = np.array(keep).ravel()
+        keep = np.array(keep, dtype=int).ravel()       # NMS may keep nothing: an empty float array is no index
         p, boxes = p[keep], boxes[keep]
         kp = p[:, 5:].reshape(-1, 17, 3)
         undo = lambda xy: (xy - [dx, dy]) / s
