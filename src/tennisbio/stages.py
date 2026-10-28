@@ -17,7 +17,7 @@ from pathlib import Path
 import numpy as np
 
 from .impacts import audio_onsets, swing_peaks
-from .io.video import frames_at, keyframe_times, probe, read_ahead, read_frames
+from .io.video import frames_at, keyframe_times, keyframes_at, probe, read_ahead, read_frames
 from .kinematics import body_height, clean, speed, to_body_frame
 from .config import model_state, resolve_path
 from .pipeline import Context, savez_atomic, stage, write_atomic
@@ -885,7 +885,7 @@ def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> d
     keyed.sort()
     hw = ctx.cfg.get("hwaccel")
     import itertools
-    stream = itertools.chain(zip(keyed, frames_at(info, [t - 0.001 for t, _ in keyed], hwaccel=hw, key_only=True)),
+    stream = itertools.chain(zip(keyed, keyframes_at(info, [t for t, _ in keyed])),
                              zip(exact, frames_at(info, [t for t, _ in exact], hwaccel=hw, dense_s=60.0)))
     items = keyed + exact
     took = {"lectura": 0.0, "personas": 0.0, "pista": 0.0}
@@ -928,7 +928,7 @@ def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> d
     return {i: merge_evidence(v) for i, v in per.items()}
 
 
-@stage("views", "4", deps=("scenes", "court", "players", "score", "audio", "candidates"), settings=_views_settings,
+@stage("views", "5", deps=("scenes", "court", "players", "score", "audio", "candidates"), settings=_views_settings,
        outputs=("views.json",))
 def st_views(ctx: Context):
     """Replays and the other cameras, used and linked to the live stroke they show (tennisbio.views,

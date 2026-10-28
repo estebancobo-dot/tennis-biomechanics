@@ -285,6 +285,31 @@ def seek_frame(info: VideoInfo, t: str | float) -> np.ndarray | None:
     return np.frombuffer(raw[:n], np.uint8).reshape(info.height, info.width, 3) if len(raw) >= n else None
 
 
+def seek_keyframe(info: VideoInfo, t: float) -> np.ndarray | None:
+    """The keyframe at time t (a time from keyframe_times), decoded alone: ffmpeg jumps to it through the
+    container's index and decodes that one frame, whatever the codec does with skipped frames. None when it
+    cannot be read."""
+    try:
+        # an exact jump to the keyframe's own time: ffmpeg lands on that keyframe and the first frame it decodes is
+        # the one asked (`-noaccurate_seek` gave the frame before it in Matroska)
+        raw = subprocess.run(["ffmpeg", "-v", "error", "-nostdin", "-ss", f"{t:.3f}", "-i", str(info.path),
+                              "-frames:v", "1", "-an", "-f", "rawvideo", "-pix_fmt", "bgr24", "pipe:1"],
+                             capture_output=True, timeout=120).stdout
+    except subprocess.TimeoutExpired:
+        return None
+    n = info.width * info.height * 3
+    return np.frombuffer(raw[:n], np.uint8).reshape(info.height, info.width, 3) if len(raw) >= n else None
+
+
+def keyframes_at(info: VideoInfo, times: list[float], workers: int = 4) -> Iterator[tuple[float, np.ndarray | None]]:
+    """(t, frame) for keyframe times, each read alone (seek_keyframe) by a few ffmpeg processes at once, in order.
+    28-10: decoding only keyframes in one pass (`-skip_frame nokey`) did not skip anything on 3 of the 4
+    broadcasts (Zheng: 41 min for 1612 keyframes with the CPU or the GPU), so each one is a jump instead."""
+    from concurrent.futures import ThreadPoolExecutor
+    with ThreadPoolExecutor(max_workers=max(1, workers)) as ex:
+        yield from zip(times, ex.map(lambda t: seek_keyframe(info, t), times))
+
+
 def keyframe_times(info: VideoInfo) -> np.ndarray:
     """Times (s, ascending) of the video's keyframes, from the container's packet flags: nothing is decoded,
     so it is quick even for a whole broadcast. Empty when ffprobe cannot tell (then callers read exact frames)."""
