@@ -2968,3 +2968,60 @@
 2026-10-28 19:22:46   ventana w009916366_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 191 px (court)
 2026-10-28 19:23:15   ventana w009963600_5954 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.24 s
 2026-10-28 19:23:16   ventana w009963600_5954: pose hybrid en 298 de 298 fotogramas (0 s; modelo 0 s; pies en 298) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 192 px (court)
+2026-10-28 19:24:25   fine:  96 % (215/223 golpes candidatos · 117 confirmados · 0 ventanas descartadas sin pose) · 56 min · quedan ≈ 2 min
+2026-10-28 19:24:26   ventana w009996804_11796 (near, 4 candidatos): pasa · golpe de bola en su lado a 2.24 s
+2026-10-28 19:24:28   ventana w009996804_11796: pose hybrid en 590 de 590 fotogramas (0 s; modelo 0 s; pies en 584) · bola 0 s · raqueta 0 s (4 de 4 impactos) · 4 golpes posibles · altura 201 px (court)
+2026-10-28 19:26:41   fine:  98 % (219/223 golpes candidatos · 121 confirmados · 0 ventanas descartadas sin pose) · 58 min · quedan ≈ 63 s
+2026-10-28 19:26:42   ventana w011626200_11882 (near, 4 candidatos): pasa · golpe de bola en su lado a 2.16 s
+2026-10-28 19:26:43   ventana w011626200_11882: pose hybrid en 595 de 595 fotogramas (0 s; modelo 0 s; pies en 65) · bola 0 s · raqueta 0 s (4 de 4 impactos) · 4 golpes posibles · altura 892 px (segments)
+2026-10-28 19:26:47   fine: 100 % (223/223 golpes candidatos · 125 confirmados · 0 ventanas descartadas sin pose) · 58 min · quedan ≈ 0 s
+2026-10-28 19:26:47   98 golpes no se pudieron analizar (detalle en strokes_errores.json)
+2026-10-28 19:26:47 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine terminada a las 19:26:47 en 58.0 min
+2026-10-28 19:26:47 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] views_link… (2026-10-28 19:26:47, etapa 12 de 14)
+2026-10-28 19:26:48 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] views_link terminada a las 19:26:48 en 1 s
+2026-10-28 19:26:48 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine_opponent… (2026-10-28 19:26:48, etapa 13 de 14)
+2026-10-28 19:26:48 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine_opponent terminada a las 19:26:48 en 0 s
+2026-10-28 19:26:48 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine_doubtful… (2026-10-28 19:26:48, etapa 14 de 14)
+2026-10-28 19:26:56   fine_doubtful:   2 % (1/51 golpes candidatos · 0 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-10-28 19:26:58   ventana w000465152_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.32 s
+2026-10-28 19:26:59   ventana w000465152_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 8) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura nan px (pose)
+2026-10-28 19:26:59   ventana w000481699_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (2.02 s): puede haber golpe
+2026-10-28 19:26:59   ventana w000481699_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 101) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 247 px (segments)
+2026-10-28 19:27:18   ventana w000684100_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
+2026-10-28 19:27:18   ventana w000684100_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 82) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 169 px (segments)
+2026-10-28 19:27:39   fine_doubtful:  73 % (37/51 golpes candidatos · 3 confirmados · 0 ventanas descartadas sin pose) · 42 s · quedan ≈ 16 s
+2026-10-28 19:27:39   ventana w001170745_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
+2026-10-28 19:27:43   ventana w001170745_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 174) · bola 0 s · raqueta 0 s (1 de 3 impactos) · 3 golpes posibles · altura 255 px (court)
+2026-10-28 19:28:14   fine_doubtful:  75 % (38/51 golpes candidatos · 4 confirmados · 0 ventanas descartadas sin pose) · 77 s · quedan ≈ 26 s
+2026-10-28 19:28:14   ventana w001871415_4297 (near, 2 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
+2026-10-28 19:28:14   ventana w001871415_4297: pose hybrid en 215 de 215 fotogramas (0 s; modelo 0 s; pies en 153) · bola 0 s · raqueta 0 s (2 de 3 impactos) · 3 golpes posibles · altura 1193 px (segments)
+2026-10-28 19:29:00   fine_doubtful:  78 % (40/51 golpes candidatos · 6 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 34 s
+2026-10-28 19:29:00   ventana w003506121_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.7 s): puede haber golpe
+2026-10-28 19:29:00   ventana w003506121_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 10) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 153 px (pose)
+2026-10-28 19:29:02   ventana w003596881_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.7 s): puede haber golpe
+2026-10-28 19:29:02   ventana w003596881_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 104) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 226 px (segments)
+2026-10-28 19:29:30   fine_doubtful:  82 % (42/51 golpes candidatos · 8 confirmados · 0 ventanas descartadas sin pose) · 3 min · quedan ≈ 33 s
+2026-10-28 19:29:31   ventana w003854903_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.7 s): puede haber golpe
+2026-10-28 19:29:32   ventana w003854903_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 113) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 982 px (segments)
+2026-10-28 19:30:00   ventana w004490658_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 1.72 s
+2026-10-28 19:30:00   ventana w004490658_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 99) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 211 px (segments)
+2026-10-28 19:30:25   fine_doubtful:  86 % (44/51 golpes candidatos · 10 confirmados · 0 ventanas descartadas sin pose) · 3 min · quedan ≈ 33 s
+2026-10-28 19:30:26   ventana w004883725_3600 (near, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-10-28 19:30:27   ventana w004883725_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 45) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 165 px (segments)
+2026-10-28 19:30:39   ventana w006220800_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (2.46 s): puede haber golpe
+2026-10-28 19:30:39   ventana w006220800_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 180) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 398 px (segments)
+2026-10-28 19:31:15   fine_doubtful:  90 % (46/51 golpes candidatos · 12 confirmados · 0 ventanas descartadas sin pose) · 4 min · quedan ≈ 28 s
+2026-10-28 19:31:15   ventana w006273611_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
+2026-10-28 19:31:16   ventana w006273611_3600: pose hybrid en 171 de 171 fotogramas (0 s; modelo 0 s; pies en 4) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 855 px (pose)
+2026-10-28 19:31:17   ventana w006930174_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.7 s): puede haber golpe
+2026-10-28 19:31:17   ventana w006930174_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 134) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 1407 px (segments)
+2026-10-28 19:31:39   ventana w008179600_3600 (near, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-10-28 19:31:39   ventana w008179600_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 129) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 169 px (segments)
+2026-10-28 19:32:05   fine_doubtful:  96 % (49/51 golpes candidatos · 15 confirmados · 0 ventanas descartadas sin pose) · 5 min · quedan ≈ 13 s
+2026-10-28 19:32:05   ventana w009342568_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
+2026-10-28 19:32:05   ventana w009342568_3600: pose hybrid en 180 de 180 fotogramas (0 s; modelo 0 s; pies en 102) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 222 px (segments)
+2026-10-28 19:32:26   ventana w012348314_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
+2026-10-28 19:32:26   ventana w012348314_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 88) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 231 px (segments)
+2026-10-28 19:32:51   fine_doubtful: 100 % (51/51 golpes candidatos · 17 confirmados · 0 ventanas descartadas sin pose) · 6 min · quedan ≈ 0 s
+2026-10-28 19:32:52   5 golpes no se pudieron analizar (detalle en strokes_doubtful_errores.json)
+2026-10-28 19:32:52 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine_doubtful terminada a las 19:32:52 en 6.1 min
