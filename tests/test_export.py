@@ -47,3 +47,37 @@ def test_text_helpers():
     assert len(lines) > 1
     img = title_card([("Título con acentos: presión", "bold", 40, (255, 255, 255))])
     assert img.shape == (720, 1280, 3) and img.mean() > 10
+
+
+def test_stroke_videos_in_parallel_processes(tmp_path):
+    """28-10 (B-5): the stroke videos are drawn by several processes at once; the same videos come out as with
+    one process, and a broken window does not stop the others."""
+    import json
+    import subprocess
+    import importlib.util
+    from pathlib import Path
+    spec = importlib.util.spec_from_file_location("tsp", Path(__file__).with_name("test_stroke_page.py"))
+    tsp = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(tsp)
+    stroke_and_series = tsp.stroke_and_series
+    from tennisbio.catalog import Match, Player
+    from tennisbio.export import export
+    s, ser = stroke_and_series()
+    d = tmp_path / "out" / "m1"
+    (d / "series").mkdir(parents=True)
+    (d / "windows").mkdir()
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", f"testsrc=duration={ser['n'] / 50}:size=640x720:rate=50",
+                    "-pix_fmt", "yuv420p", str(d / "windows" / "w.mp4")], check=True, timeout=120)
+    (d / "series" / "x.json").write_text(json.dumps(ser), encoding="utf-8")
+    rows = []
+    for k in range(3):
+        r = dict(s, window="w.mp4" if k < 2 else "missing.mp4", match_time_s=30.0 + 10 * k)
+        rows.append(r)
+    (d / "strokes.json").write_text(json.dumps(rows), encoding="utf-8")
+    m = [Match("m1", None, Player("p", "P", height_m=1.84))]
+    logs = []
+    export(m, tmp_path / "out", tmp_path / "par", workers=2, log=logs.append)
+    export(m, tmp_path / "out", tmp_path / "seq", workers=1, log=lambda *_: None)
+    par = sorted(p.name for p in (tmp_path / "par" / "golpes").glob("*.mp4"))
+    seq = sorted(p.name for p in (tmp_path / "seq" / "golpes").glob("*.mp4"))
+    assert par == seq and len(par) == 2

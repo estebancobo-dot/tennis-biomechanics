@@ -638,7 +638,7 @@ def _fresh(out: Path, *inputs: Path) -> bool:
 
 
 def export(matches, out_root: Path, dest: Path, stroke="forehand", player_id: str | None = None,
-           reel_max=10, strokes_all=True, log=print) -> Path:
+           reel_max=10, strokes_all=True, log=print, workers: int | None = None) -> Path:
     if not shutil.which("ffmpeg"):
         raise RuntimeError("ffmpeg no está en el PATH")
     # where every thread is, every 5 min, in <dest>/pila.txt (27-10: two exports stopped with no trace of where)
@@ -647,13 +647,43 @@ def export(matches, out_root: Path, dest: Path, stroke="forehand", player_id: st
     _pila = open(Path(dest) / "pila.txt", "w", encoding="utf-8")
     faulthandler.dump_traceback_later(300, repeat=True, file=_pila)
     try:
-        return _export(matches, out_root, Path(dest), stroke, player_id, reel_max, strokes_all, log)
+        return _export(matches, out_root, Path(dest), stroke, player_id, reel_max, strokes_all, log, workers)
     finally:
         faulthandler.cancel_dump_traceback_later()
         _pila.close()
 
 
-def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, strokes_all, log) -> Path:
+def _export_workers() -> int:
+    """Processes drawing stroke videos at once: `export.workers` of the configuration, else a third of the
+    logical processors (each ffmpeg encoder uses several threads of its own)."""
+    try:
+        from .config import load_config
+        w = (load_config().get("export") or {}).get("workers")
+        if w:
+            return int(w)
+    except Exception:  # noqa: BLE001 — no configuration: the default
+        pass
+    return max(1, (os.cpu_count() or 3) // 3)
+
+
+def encode_stroke(job) -> tuple[str, str | None]:
+    """One stroke video (run in a worker process): (stroke id, None) or (stroke id, the error)."""
+    s, out, ctx, key_metrics, dist = job
+    enc = None
+    try:
+        clip = StrokeClip(s, ctx)
+        enc = Encoder(Path(out))
+        for img in clip.strokes_frames(key_metrics, dist):
+            enc.write(img)
+        enc.close()
+        return s["id"], None
+    except Exception as e:  # noqa: BLE001 — reported by the caller; the other strokes go on
+        if enc is not None:
+            enc.abort()
+        return s["id"], str(e)[:300]
+
+
+def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, strokes_all, log, workers=None) -> Path:
     from .report import player_dict, prepare
 
     data = prepare(matches, out_root, stroke, player_id)
@@ -685,6 +715,7 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
 
     t0, done = time.time(), 0
     paths = {}
+    todo = []
     # each clip shows this stroke against her median and the noise: it is redone when they change
     sig_path = dest / "golpes" / "firmas.json"
     try:
@@ -702,27 +733,41 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
         if _fresh(out, *src) and sigs.get(s["id"]) == sig:
             continue
         sigs[s["id"]] = sig
-        # the stroke being encoded, with the time: the Windows script cuts an export that stays on one stroke
-        # too long and says which one (27-10: the backhand export hung twice with no trace of where)
+        todo.append((s, out))
+    # each stroke video is independent: several processes draw and encode at once (B-5, 28-10: one process
+    # drew the 799 videos in 6.5 h with the PC at 16 % of CPU; docs/revision_base.md)
+    n_workers = max(1, int(workers if workers is not None else _export_workers()))
+    jobs = [(s, str(out), ctx, key_metrics, dist) for s, out in todo]
+
+    def progress(k, sid):
+        # the stroke just finished, with the time: the Windows script cuts an export that does not move for
+        # 10 min and says where it was (27-10)
         try:
-            (dest / "en_curso.txt").write_text(f"{s['id']} {time.strftime('%Y-%m-%d %H:%M:%S')} {i + 1}/{len(need)}", encoding="utf-8")
+            (dest / "en_curso.txt").write_text(f"{sid} {time.strftime('%Y-%m-%d %H:%M:%S')} {k}/{len(jobs)}", encoding="utf-8")
         except OSError:
             pass
-        enc = None
-        try:
-            clip = StrokeClip(s, ctx)
-            enc = Encoder(out)
-            for img in clip.strokes_frames(key_metrics, dist):
-                enc.write(img)
-            enc.close()
-            done += 1
-        except Exception as e:           # one broken window must not stop the export
-            if enc is not None:
-                enc.abort()
-            log(f"  {s['id']}: no se pudo exportar ({e})")
-            paths.pop(s["id"], None)
-        if (i + 1) % 10 == 0:
-            log(f"  golpes {i + 1}/{len(need)} ({time.time() - t0:.0f} s)")
+        if k % 10 == 0:
+            log(f"  golpes {k}/{len(jobs)} ({time.time() - t0:.0f} s, {n_workers} procesos)")
+
+    if n_workers == 1 or len(jobs) <= 1:
+        results = (encode_stroke(j) for j in jobs)
+    else:
+        import multiprocessing
+        from concurrent.futures import ProcessPoolExecutor
+        # «spawn» everywhere, as on Windows (the PC), so the tests run it the way the PC does
+        pool = ProcessPoolExecutor(max_workers=n_workers, mp_context=multiprocessing.get_context("spawn"))
+        results = pool.map(encode_stroke, jobs, chunksize=1)
+    try:
+        for k, (sid, err) in enumerate(results, 1):
+            if err is None:
+                done += 1
+            else:                          # one broken window must not stop the export
+                log(f"  {sid}: no se pudo exportar ({err})")
+                paths.pop(sid, None)
+            progress(k, sid)
+    finally:
+        if n_workers > 1 and len(jobs) > 1:
+            pool.shutdown(cancel_futures=True)
     if strokes_all:                      # clips of strokes that no longer exist
         for f in (dest / "golpes").glob("*.mp4"):
             if f.stem not in paths:
