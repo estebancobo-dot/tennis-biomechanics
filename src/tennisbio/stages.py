@@ -928,7 +928,7 @@ def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> d
     return {i: merge_evidence(v) for i, v in per.items()}
 
 
-@stage("views", "3", deps=("scenes", "court", "players", "score", "audio", "candidates"), settings=_views_settings,
+@stage("views", "4", deps=("scenes", "court", "players", "score", "audio", "candidates"), settings=_views_settings,
        outputs=("views.json",))
 def st_views(ctx: Context):
     """Replays and the other cameras, used and linked to the live stroke they show (tennisbio.views,

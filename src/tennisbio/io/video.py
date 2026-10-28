@@ -212,6 +212,11 @@ def _frames_at_run(info: VideoInfo, targets: list[str], hwaccel: str | None,
     expr = "+".join(f"gte(t\\,{float(r) - 5e-7:.7f})*not(gte(prev_t\\,{float(r) - 5e-7:.7f}))" for r in rel)
     cmd = ["ffmpeg", "-hide_banner", "-nostdin", "-nostats", "-loglevel", "info"]
     hwaccel = auto_hwaccel() if hwaccel == "auto" else hwaccel
+    if key_only:
+        # keyframes alone are decoded on the CPU: decoding a few I-frames costs milliseconds, and with the GPU
+        # decoder the skip was not applied (28-10: Zheng and Gauff spent 44-48 min reading 1600-1900 keyframes,
+        # ~1.6 s each, as much as decoding everything in between; Osaka, 0.06 s each)
+        hwaccel = None
     if hwaccel:
         cmd += ["-hwaccel", hwaccel]
     if key_only:
