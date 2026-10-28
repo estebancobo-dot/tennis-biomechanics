@@ -61,6 +61,29 @@ Horizontes (27-10, corregido por el usuario: **la base primero, al 100 %**):
     | B-11 | Repeticiones que descartan de más; NMS vacío | F3Set | Recall sube sin bajar precisión | pendiente |
     | B-12 | Aplicación autónoma sin Claude | Prueba de extremo a extremo | Un partido nuevo de principio a fin sin el ciclo | pendiente |
 
+  - **Peticiones del registro (`docs/peticiones_usuario.md`) en cada id del plan (28-10):**
+
+    | Id del plan | Peticiones |
+    |---|---|
+    | B-1, B-2 | #232 (cuelgues), #225 (la aplicación no se cuelga) |
+    | B-3 | #231 (etapa de tomas lenta) |
+    | B-4, B-5 | #230 (aprovechar CPU, RAM, iGPU), #10, #77 (no esperar horas) |
+    | B-6 | #203 (3D) |
+    | B-7 | #202 (bola) |
+    | B-8 | #201 (marcador) |
+    | B-9 | #200 (pista) |
+    | B-10 | #199 (bote) |
+    | B-11 | #221, #155, #205 (golpes que se pierden) |
+    | B-12 | #45 (todo automático), #238 (validación automática) |
+    | C1 | #235, #236 (cadena, pies, tiempos, huellas), #6, #64, #84 |
+    | P1 | #244 (resultado del punto), #245 (rivales y fechas), #220 (carpetas «sin-fecha») |
+    | B1 | #240, #74 (apps profesionales) |
+    | E1 | #242, #243 (escenarios y flujo), #223 (cortados), #224 (tipos de saque), #16 |
+    | G1 | #241 (genérica) — hecho |
+    | Bloque «peticiones por bloques» | el resto de filas no terminadas (1-198): se asignan a su id al empezar ese bloque, sin descartar ninguna |
+    | Hechas | #204, #222, #226, #227, #229, #233, #234, #237, #239 |
+    | Al final | #228 (móvil) |
+
 - **2. Medidas y pantallas:** C1 (cadena, pies, tiempos, huellas), P1 (lo no creíble), B1 (apps profesionales),
   E1 (escenarios del producto, primero partidos masculinos), las peticiones a medias y sin hacer por bloques
   (usabilidad y psicología del aprendizaje incluidas), A1 (la aplicación entera comprobada con capturas).
