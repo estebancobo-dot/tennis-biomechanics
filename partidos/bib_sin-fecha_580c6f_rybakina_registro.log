@@ -1824,3 +1824,18 @@
 2026-10-28 08:58:54   views:  98 % (1882/1915 fotogramas de otras tomas) · 35 min · quedan ≈ 37 s
 2026-10-28 09:04:18   views:  99 % (1887/1915 fotogramas de otras tomas) · 41 min · quedan ≈ 36 s
 2026-10-28 09:08:19   views:  99 % (1891/1915 fotogramas de otras tomas) · 45 min · quedan ≈ 34 s
+2026-10-28 09:11:44   views:  99 % (1894/1915 fotogramas de otras tomas) · 48 min · quedan ≈ 32 s
+2026-10-28 09:14:04   views:  99 % (1900/1915 fotogramas de otras tomas) · 51 min · quedan ≈ 24 s
+2026-10-28 09:15:32   views:  99 % (1905/1915 fotogramas de otras tomas) · 52 min · quedan ≈ 16 s
+2026-10-28 09:16:25   views: 100 % (1909/1915 fotogramas de otras tomas) · 53 min · quedan ≈ 10 s
+2026-10-28 09:17:05   views: 100 % (1911/1915 fotogramas de otras tomas) · 54 min · quedan ≈ 7 s
+2026-10-28 09:17:10   views: 100 % (1915/1915 fotogramas de otras tomas) · 54 min · quedan ≈ 0 s
+2026-10-28 09:17:10   tomas: 1855 fotogramas clave y 60 exactos (5146 claves en el vídeo); lectura 2900 s, personas 225 s, pista 78 s; 76 ajustes de pista
+2026-10-28 09:17:11 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] views terminada a las 09:17:11 en 54.5 min
+2026-10-28 09:17:11 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine… (2026-10-28 09:17:11, etapa 11 de 14)
+2026-10-28 09:17:21   ventana w000935310_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.76 s
+2026-10-28 09:17:22   ventana w000935310_3600: pose yolo en 179 de 179 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 102 px (court)
+2026-10-28 09:17:22   fine:   0 % (1/201 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-10-28 09:17:22   ventana w001566962_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-10-28 09:17:23   ventana w001566962_3600: pose yolo en 179 de 179 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 87 px (court)
+2026-10-28 09:17:26   ventana w001655250_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
