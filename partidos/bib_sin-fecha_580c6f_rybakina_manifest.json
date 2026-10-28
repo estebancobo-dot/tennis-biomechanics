@@ -209,10 +209,10 @@
   }
  },
  "views": {
-  "fingerprint": "a20cfc2132bfb8a9",
-  "version": "3",
-  "seconds": 3270.1,
-  "finished": "2026-10-28 09:17:11",
+  "fingerprint": "40207908c8d679ae",
+  "version": "4",
+  "seconds": 3023.8,
+  "finished": "2026-10-28 16:05:53",
   "summary": {
    "views": 1088,
    "repeticion_principal": 71,
