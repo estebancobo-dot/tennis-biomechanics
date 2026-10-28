@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261028133004
+Start time: 20261028134003
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 4332
+Process ID: 5388
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -15,79 +15,4 @@ CLRVersion: 4.0.30319.42000
 WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
-**********************
-
-==> [2026-10-28 13:30:04] Codigo nuevo (88d003c -> e1abc84): 8 ficheros
-    config/parar_pc.txt
-    config/peticion_pc.txt
-    config/stage_code.json
-    docs/plan_maestro.md
-    src/tennisbio/export.py
-    src/tennisbio/io/video.py
-    src/tennisbio/stages.py
-    tests/test_export.py
-Updating 88d003c..e1abc84
-Fast-forward
- config/parar_pc.txt       |  2 +-
- config/peticion_pc.txt    |  3 ++
- config/stage_code.json    |  6 ++--
- docs/plan_maestro.md      |  6 ++--
- src/tennisbio/export.py   | 87 +++++++++++++++++++++++++++++++++++------------
- src/tennisbio/io/video.py |  5 +++
- src/tennisbio/stages.py   |  2 +-
- tests/test_export.py      | 34 ++++++++++++++++++
- 8 files changed, 116 insertions(+), 29 deletions(-)
-Resolved 124 packages in 0.92ms
-Checked 89 packages in 3ms
-balltrack.onnx     OK 45 MB
-racketpose.onnx    OK 53 MB
-transnetv2.onnx    OK 31 MB
-rtmw3d-x.onnx      OK 369 MB
-yolo11m-pose_640.onnx OK 84 MB
-yolo11m-pose_960.onnx OK 84 MB
-yolo11m-pose_1280.onnx OK 85 MB
-yolo11m-pose_1920.onnx OK 86 MB
-Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
-    (paso terminado en 4 s)
-
-==> [2026-10-28 13:30:08] Que hace falta: medidas
-Recalcular medidas: empieza 2026-10-28 13:30:08
-
-[2026-10-28 13:30:09] smoke_tennis-yusipopen-final-sobolenko-rybakin: trozo de vídeo tennis-yusipopen-final-sobolenko-rybakin_7264_35m.mkv, rival Sabalenka
-  Se usan los resultados que hay de scenes, court, players, score aunque su código o su vídeo cambiaron (no se rehacen aquí; la próxima prueba completa sí lo hará)
-[smoke_tennis-yusipopen-final-sobolenko-rybakin] candidates… (2026-10-28 13:30:09, etapa 9 de 14)
-C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
-  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
-Traceback (most recent call last):
-  File "C:\tenis\tennis-biomech\scripts\recompute_measures.py", line 186, in <module>
-    sys.exit(main())
-             ^^^^^^
-  File "C:\tenis\tennis-biomech\scripts\recompute_measures.py", line 166, in main
-    recompute(d, out_root, cfg, player)
-  File "C:\tenis\tennis-biomech\scripts\recompute_measures.py", line 112, in recompute
-    done = pipeline.run(ctx, list(CHEAP), upstream=False)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\tenis\tennis-biomech\src\tennisbio\pipeline.py", line 426, in run
-    summary = st.run(ctx) or {}
-              ^^^^^^^^^^^
-  File "C:\tenis\tennis-biomech\src\tennisbio\stages.py", line 774, in st_candidates
-    cands, info = spotter_candidates(_read(ctx.path("spotting.json")), identity, fps, spans,
-                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\tenis\tennis-biomech\src\tennisbio\stages.py", line 34, in _read
-    return json.loads(path.read_text(encoding="utf-8"))
-                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\pathlib.py", line 1058, in read_text
-    with self.open(mode='r', encoding=encoding, errors=errors) as f:
-         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\pathlib.py", line 1044, in open
-    return io.open(self, mode, buffering, encoding, errors, newline)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-FileNotFoundError: [Errno 2] No such file or directory: 'C:\\tenis\\output\\_smoke\\smoke_tennis-yusipopen-final-sobolenko-rybakin\\spotting.json'
-PS>TerminatingError(): "Fallo: uv run python scripts/recompute_measures.py (codigo 1)"
-ERROR: Fallo: uv run python scripts/recompute_measures.py (codigo 1)
-    (paso terminado en 2 s)
-Empezado 2026-10-28 13:30:01 - terminado 2026-10-28 13:30:10 - duracion total 8 s
-**********************
-Windows PowerShell transcript end
-End time: 20261028133010
 **********************
