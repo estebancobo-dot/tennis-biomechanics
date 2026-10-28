@@ -1,8 +1,8 @@
-fecha: 2026-10-28T05:00:03
-estado: Running
+fecha: 2026-10-28T05:08:17
+estado: Ready
 descripcion: Tenis (ciclo v4): trae el codigo nuevo, recalcula lo necesario, revisa y sube los registros
 ultima ejecucion: 10/28/2026 05:00:01
-resultado (0 = bien, 267009 = en marcha, 267011 = nunca, 2147946720 = rechazada porque la anterior seguia trabajando): 267009
+resultado (0 = bien, 267009 = en marcha, 267011 = nunca, 2147946720 = rechazada porque la anterior seguia trabajando): 0
 proxima: 10/28/2026 05:10:00
 perdidas: 0
 disparadores: MSFT_TaskDailyTrigger PT10M; MSFT_TaskLogonTrigger 
