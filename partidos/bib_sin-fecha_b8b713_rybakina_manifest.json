@@ -209,19 +209,19 @@
   }
  },
  "views": {
-  "fingerprint": "b90756a86ac175ca",
-  "version": "3",
-  "seconds": 7867.1,
-  "finished": "2026-10-28 11:53:43",
+  "fingerprint": "a78f4d26d9f8ac19",
+  "version": "4",
+  "seconds": 7406.8,
+  "finished": "2026-10-28 18:28:48",
   "summary": {
    "views": 1676,
    "repeticion_principal": 79,
-   "lateral": 100,
-   "frontal": 34,
-   "primer_plano": 1382,
-   "otra": 81,
-   "links": 2099,
-   "linked_views": 1015,
+   "lateral": 457,
+   "frontal": 137,
+   "primer_plano": 0,
+   "otra": 1003,
+   "links": 970,
+   "linked_views": 461,
    "slowmo_links": 36
   }
  },
