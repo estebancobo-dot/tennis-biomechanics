@@ -209,3 +209,16 @@ def test_user_review_file_reruns_its_stage(tmp_path):
         assert len(calls) == 2
     finally:
         P.STAGES.pop("_t_review", None)
+
+
+def test_an_incomplete_stage_is_repeated_next_time(tmp_path, fake_stages):
+    lost = [True]
+
+    @pipeline.stage("c", "1", deps=("a",))
+    def c(ctx):
+        fake_stages.append("c"); ctx.path("c.txt").write_text("c")
+        return {"incomplete": "3 golpes sin analizar por la iGPU"} if lost and lost.pop() else {}
+    assert pipeline.run(make_ctx(tmp_path)) == ["a", "b", "c"]
+    assert pipeline.status(make_ctx(tmp_path))["c"] == "stale"
+    assert pipeline.run(make_ctx(tmp_path)) == ["c"]                     # repeated, the rest kept
+    assert pipeline.run(make_ctx(tmp_path)) == []

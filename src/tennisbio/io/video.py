@@ -303,6 +303,7 @@ def seek_keyframe(info: VideoInfo, t: float) -> np.ndarray | None:
 
 def keyframes_at(info: VideoInfo, times: list[float], workers: int = 4) -> Iterator[tuple[float, np.ndarray | None]]:
     """(t, frame) for keyframe times, each read alone (seek_keyframe) by a few ffmpeg processes at once, in order.
+    Any other time gives the first frame at or after it, as seek_frame (the views stage reads its exact frames so).
     28-10: decoding only keyframes in one pass (`-skip_frame nokey`) did not skip anything on 3 of the 4
     broadcasts (Zheng: 41 min for 1612 keyframes with the CPU or the GPU), so each one is a jump instead."""
     from concurrent.futures import ThreadPoolExecutor

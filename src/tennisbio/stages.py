@@ -883,11 +883,11 @@ def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> d
         else:
             exact.append((t, i))
     keyed.sort()
-    hw = ctx.cfg.get("hwaccel")
-    import itertools
-    stream = itertools.chain(zip(keyed, keyframes_at(info, [t for t, _ in keyed])),
-                             zip(exact, frames_at(info, [t for t, _ in exact], hwaccel=hw, dense_s=60.0)))
+    # the exact frames too are one jump each, 4 at once (`-ss t`, the same frame): read in sequential stretches
+    # (dense_s=60) each one decoded up to a minute of video, 45-70 s per frame (28-10: 45 min for Zheng's 60, 2 h for
+    # the final's 101, while its 2890 keyframes took 15 min)
     items = keyed + exact
+    stream = zip(items, keyframes_at(info, [t for t, _ in items]))
     took = {"lectura": 0.0, "personas": 0.0, "pista": 0.0}
     it = iter(stream)
     n = 0
@@ -1399,10 +1399,16 @@ def _fine_settings(c):
             **_fp16_setting(c)}
 
 
+def _device_lost_msg(msg: str) -> bool:
+    from .pose.estimator import DEVICE_LOST
+
+    return any(k in msg.lower() for k in DEVICE_LOST)
+
+
 FINE_CODE = ("stages", "clip_pipeline", "stroke_analysis", "phases", "kinematics", "impacts", "ball", "court_metrics",
              "outcome", "series", "racket", "racket3d", "racket_face", "racket_orientation", "tracking", "technique",
              "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend", "ball3d", "limits", "fine_gate", "pose.hybrid",
-             "footpoints", "pose.wholebody3d", "body_scale", "fine_ahead", "situations", "returns")
+             "footpoints", "pose.wholebody3d", "body_scale", "fine_ahead", "situations", "returns", "pose.estimator")
 
 
 def _player_fields(p) -> dict:
@@ -1589,7 +1595,10 @@ def _fine(ctx: Context, p, keep, out_name: str):
             "seconds": {k: round(v, 1) for k, v in sorted(_TIMES.items(), key=lambda kv: -kv[1])},
             # how much of it: frames of the analysed windows and those posed (pose_ranges), impacts found and
             # those that can become a stroke (the racket only around these), frames segmented for the racket
-            "counts": dict(_COUNTS)}
+            "counts": dict(_COUNTS),
+            # strokes lost to the machine (the iGPU lost), not to the video: the stage is repeated next time
+            **({"incomplete": f"{lost} golpes sin analizar por la iGPU"} if (lost := sum(
+                _device_lost_msg(e["error"]) for e in errors)) else {})}
 
 
 _TIMES: dict = {}

@@ -379,6 +379,9 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
         spans.append((t0, t1))
         log(f"[{ctx.match.id}] {n} terminada a las {time.strftime('%H:%M:%S')} en {_fmt_dt(dt)}"
             + (f" ({_fmt_dt(ov)} a la vez que otra etapa)" if ov >= 1 else ""))
+        if (summary or {}).get("incomplete"):  # e.g. the iGPU was lost: the next run repeats it (from the caches)
+            fp += "#incompleta"
+            log(f"[{ctx.match.id}] {n} incompleta ({summary['incomplete']}): se repetirá en la próxima ejecución")
         m[n] = {"fingerprint": fp, "version": STAGES[n].version, "seconds": round(dt, 1),
                 "finished": time.strftime("%Y-%m-%d %H:%M:%S"), "summary": summary}
         if ov > 0:

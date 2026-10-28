@@ -13,7 +13,62 @@ ORT_PROVIDERS = {
 _warned: set = set()
 
 
+# Signs of a lost GPU (Windows DXGI): driver reset, device removed/suspended/hung. Seen on the PC (28-10)
+# in the middle of a fine pass: every later stroke failed until the process ended.
+DEVICE_LOST = ("887a0005", "887a0006", "887a0007", "887a0020", "device instance has been suspended",
+               "device removed", "device_removed", "device hung", "device_hung", "device reset")
+_dml_lost = False          # once the iGPU has been lost twice in this process, new sessions go to the CPU
+
+
+def device_lost(e: BaseException) -> bool:
+    msg = str(e).lower()
+    return any(k in msg for k in DEVICE_LOST)
+
+
+class RecoveringSession:
+    """An ONNX Runtime session that survives the iGPU being lost while it runs: the session is made
+    again on the iGPU once (a driver reset usually comes back) and, if that fails too, on the CPU;
+    the same call is then repeated, so no frame or stroke is lost. Other errors are raised as before.
+    Everything else (get_inputs, get_providers, ...) is the wrapped session's."""
+
+    def __init__(self, make, device: str):
+        self._make, self._device = make, device
+        self._sess = make(device)
+        self.recoveries = 0
+
+    def __getattr__(self, name):
+        return getattr(self._sess, name)
+
+    def run(self, *args, **kwargs):
+        global _dml_lost
+        try:
+            return self._sess.run(*args, **kwargs)
+        except Exception as e:                    # noqa: BLE001 — only a lost device is handled
+            if not device_lost(e) or self._sess.get_providers() == ["CPUExecutionProvider"]:
+                raise
+            first = str(e)[:160]
+        self.recoveries += 1
+        if not _dml_lost:
+            print(f"AVISO: la iGPU se perdió ({first}); se vuelve a crear la sesión en la iGPU")
+            try:
+                self._sess = self._make(self._device)
+                return self._sess.run(*args, **kwargs)
+            except Exception as e:                # noqa: BLE001
+                print(f"AVISO: la iGPU sigue sin responder ({str(e)[:160]}); se sigue en la CPU")
+                _dml_lost = True
+        self._sess = self._make("cpu")
+        return self._sess.run(*args, **kwargs)
+
+
 def _ort_session(model_path: str, device: str, free_dims: dict | None = None,
+                 threads: int | None = None) -> RecoveringSession:
+    """See _new_session; the session recovers by itself if the iGPU is lost while running."""
+    if device != "cpu" and _dml_lost:
+        device = "cpu"
+    return RecoveringSession(lambda d: _new_session(model_path, d, free_dims, threads), device)
+
+
+def _new_session(model_path: str, device: str, free_dims: dict | None = None,
                  threads: int | None = None) -> ort.InferenceSession:
     """Session on the requested device, falling back to the CPU (with a warning) when that device
     is not available or fails to load the model: the analysis is slower but never stops.
