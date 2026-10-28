@@ -118,3 +118,14 @@ Thread 0x0000410c (most recent call first):
   File "C:\tenis\tennis-biomech\.venv\Scripts\tennisbio.exe\__main__.py", line 10 in <module>
   File "<frozen runpy>", line 88 in _run_code
   File "<frozen runpy>", line 198 in _run_module_as_main
+Timeout (0:05:00)!
+Thread 0x0000410c (most recent call first):
+  File "C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\_core\numeric.py", line 386 in full
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 441 in pair_clip
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 806 in _export
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 650 in export
+  File "C:\tenis\tennis-biomech\src\tennisbio\cli.py", line 91 in _main
+  File "C:\tenis\tennis-biomech\src\tennisbio\cli.py", line 23 in main
+  File "C:\tenis\tennis-biomech\.venv\Scripts\tennisbio.exe\__main__.py", line 10 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 198 in _run_module_as_main
