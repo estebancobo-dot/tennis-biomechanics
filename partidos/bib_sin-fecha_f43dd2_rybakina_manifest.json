@@ -135,10 +135,10 @@
   }
  },
  "fine": {
-  "fingerprint": "2a75eaf1e2fcfcbf",
+  "fingerprint": "618e964b22817b0a",
   "version": "16",
-  "seconds": 764.8,
-  "finished": "2026-10-28 06:54:33",
+  "seconds": 713.9,
+  "finished": "2026-10-28 13:56:58",
   "summary": {
    "candidates": 145,
    "confirmed": 143,
@@ -158,13 +158,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 455.4,
-    "jugadora_lejana": 48.8,
-    "analisis_ventana": 45.3,
-    "pista_ventana": 28.7,
-    "cribado": 9.5,
-    "recorte": 6.2,
-    "pose": 1.8,
+    "cuerdas_y_3d": 408.8,
+    "jugadora_lejana": 46.2,
+    "pista_ventana": 45.8,
+    "analisis_ventana": 35.5,
+    "cribado": 9.2,
+    "recorte": 4.9,
+    "pose": 1.2,
     "bola_en_paralelo_cpu": 0,
     "espera_bola_en_paralelo": 0.0
    },
@@ -177,15 +177,15 @@
     "racket_frames": 0,
     "whole_window_again": 0,
     "frames_960_far": 0,
-    "windows_ball_ahead": 83
+    "windows_ball_ahead": 84
    }
   }
  },
  "fine_opponent": {
-  "fingerprint": "8d39b85dd0cd4d85",
+  "fingerprint": "7a852b040619eac6",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-10-28 06:54:34",
+  "finished": "2026-10-28 13:56:58",
   "summary": {
    "enabled": false
   }
@@ -226,10 +226,10 @@
   }
  },
  "views_link": {
-  "fingerprint": "9caa492a85d40279",
+  "fingerprint": "a25e877ff8d1b975",
   "version": "1",
-  "seconds": 0.3,
-  "finished": "2026-10-28 06:54:34",
+  "seconds": 0.2,
+  "finished": "2026-10-28 13:56:58",
   "summary": {
    "strokes": 143,
    "with_replay": 12,
@@ -240,10 +240,10 @@
   }
  },
  "fine_doubtful": {
-  "fingerprint": "18dd632b50b3a89e",
+  "fingerprint": "77c93c1953736152",
   "version": "1",
-  "seconds": 64.4,
-  "finished": "2026-10-28 06:55:38",
+  "seconds": 52.6,
+  "finished": "2026-10-28 13:57:51",
   "summary": {
    "candidates": 17,
    "confirmed": 6,
@@ -263,12 +263,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 45.6,
-    "analisis_ventana": 2.0,
-    "recorte": 1.0,
-    "cribado": 0.8,
-    "pose": 0.2,
-    "espera_bola_en_paralelo": 0.1,
+    "cuerdas_y_3d": 27.5,
+    "analisis_ventana": 2.4,
+    "recorte": 0.7,
+    "cribado": 0.7,
+    "pose": 0.1,
+    "espera_bola_en_paralelo": 0.0,
     "jugadora_lejana": 0.0,
     "pista_ventana": 0.0,
     "bola_en_paralelo_cpu": 0
