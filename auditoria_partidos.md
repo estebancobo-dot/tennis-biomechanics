@@ -1,6 +1,6 @@
 # Auditoría de requisitos (forehand)
 
-193 golpes del lado cercano. ✔ 326 cumplidos · ✘ 43 no cumplidos · … 54 sin golpes suficientes en esta ejecución · ! 135 avisos
+193 golpes del lado cercano. ✔ 327 cumplidos · ✘ 42 no cumplidos · … 54 sin golpes suficientes en esta ejecución · ! 134 avisos
 
 ## Peticiones del usuario SIN TERMINAR: 127 de 245
 
@@ -139,7 +139,7 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 
 - ✘ **Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina**: marcador: 69-133 puntos jugados (6 juegos leídos, 10 sin leer), 32 con su saque. Esperados: 32-128 saques (1 o 2 por punto de saque) y 110-346 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 143 golpes, 2 saques/remates → como mucho 100% de sus golpes y 6% de sus saques. Faltan muchos golpes (ver scripts/validate_recall.py para saber en qué etapa se pierden) (72 cerca, 71 lejos); además 6 de identidad dudosa, apartados (no cuentan como suyos)
 - ✘ **Golpes encontrados frente al marcador: sin-fecha_584c5b_rybakina**: marcador: 158-172 puntos jugados (24 juegos leídos, 0 sin leer), 66 con su saque. Esperados: 66-140 saques (1 o 2 por punto de saque) y 253-447 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 243 golpes, 8 saques/remates → como mucho 96% de sus golpes y 12% de sus saques. Faltan muchos golpes (ver scripts/validate_recall.py para saber en qué etapa se pierden) (153 cerca, 90 lejos); además 18 de identidad dudosa, apartados (no cuentan como suyos)
-- ✘ **Golpes encontrados frente al marcador: sin-fecha_580c6f_rybakina**: marcador: 135-139 puntos jugados (24 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-126 saques (1 o 2 por punto de saque) y 216-361 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 197 golpes, 5 saques/remates → como mucho 91% de sus golpes y 8% de sus saques. Faltan muchos golpes (ver scripts/validate_recall.py para saber en qué etapa se pierden) (99 cerca, 98 lejos); además 22 de identidad dudosa, apartados (no cuentan como suyos)
+- ✘ **Golpes encontrados frente al marcador: sin-fecha_580c6f_rybakina**: marcador: 135-139 puntos jugados (24 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-126 saques (1 o 2 por punto de saque) y 216-361 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 198 golpes, 5 saques/remates → como mucho 92% de sus golpes y 8% de sus saques. Faltan muchos golpes (ver scripts/validate_recall.py para saber en qué etapa se pierden) (99 cerca, 99 lejos); además 22 de identidad dudosa, apartados (no cuentan como suyos)
 - ✘ **Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina**: marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por punto de saque) y 299-538 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 216 golpes, 12 saques/remates → como mucho 72% de sus golpes y 14% de sus saques. Faltan muchos golpes (ver scripts/validate_recall.py para saber en qué etapa se pierden) (125 cerca, 91 lejos); además 22 de identidad dudosa, apartados (no cuentan como suyos)
 - ✘ **La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo**: 9 de 9 fases con claves suyas fiables; FALLOS: takeback: 121 palabras en las claves (máximo 120); acceleration: la lección mide 1498 px (más de pantalla y media); impact: la lección mide 1436 px (más de pantalla y media); extension: la lección mide 1536 px (más de pantalla y media)
 - … **1. Fases · Golpe del rival → split step**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
@@ -178,7 +178,7 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ✔ **forehand: golpes analizados**: 193 del lado cercano (con todo el detalle), 110 del lejano
 - ✔ **Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina**: 8% de sus golpes con repetición enlazada (12 de 143, 5 a cámara lenta) · 94% con otra cámara (135) · tomas: 21 repeticiones, 23 laterales, 7 frontales, 412 primeros planos, 16 otras
 - ✔ **Repeticiones y otras cámaras enlazadas: sin-fecha_584c5b_rybakina**: 12% de sus golpes con repetición enlazada (30 de 243, 10 a cámara lenta) · 99% con otra cámara (240) · tomas: 38 repeticiones, 29 laterales, 12 frontales, 734 primeros planos, 16 otras
-- ✔ **Repeticiones y otras cámaras enlazadas: sin-fecha_580c6f_rybakina**: 14% de sus golpes con repetición enlazada (28 de 197, 6 a cámara lenta) · 93% con otra cámara (183) · tomas: 71 repeticiones, 80 laterales, 18 frontales, 868 primeros planos, 51 otras
+- ✔ **Repeticiones y otras cámaras enlazadas: sin-fecha_580c6f_rybakina**: 15% de sus golpes con repetición enlazada (29 de 198, 6 a cámara lenta) · 93% con otra cámara (184) · tomas: 71 repeticiones, 80 laterales, 18 frontales, 868 primeros planos, 51 otras
 - ✔ **Repeticiones y otras cámaras enlazadas: sin-fecha_b8b713_rybakina**: 16% de sus golpes con repetición enlazada (34 de 216, 16 a cámara lenta) · 100% con otra cámara (216) · tomas: 79 repeticiones, 103 laterales, 33 frontales, 1380 primeros planos, 81 otras
 - ✔ **1. Fases · Inicio del giro de bloque (preparación)**: medido en el 92% de los golpes y en el informe
 - ✔ **1. Fases · Impacto**: implementado (sin nombre de dato en la matriz)
@@ -358,7 +358,7 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 5138 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 2333 caracteres de texto, 7 vídeos, 0 gráficos
-- ✔ **Pantalla «Datos del análisis»**: 2570 caracteres de texto, 7 vídeos, 0 gráficos
+- ✔ **Pantalla «Datos del análisis»**: 2568 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
@@ -455,16 +455,15 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 
 ## 5. 100 % automático
 
-- ✘ **Etapas con errores**: sin-fecha_580c6f_rybakina: fine
 - ✘ **Partido sin-fecha_f43dd2_rybakina: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 143 golpes con ventana y serie; faltan o están vacíos: probe/probe.json, scenes/scenes.json, audio/audio_onsets.json, players/players.npz, identity/identity.json, spotting/spotting.json, candidates/candidates.json, candidates/audio_track.json
 - ✘ **Partido sin-fecha_584c5b_rybakina: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 243 golpes con ventana y serie; faltan o están vacíos: probe/probe.json, scenes/scenes.json, audio/audio_onsets.json, players/players.npz, identity/identity.json, spotting/spotting.json, candidates/candidates.json, candidates/audio_track.json
-- ✘ **Partido sin-fecha_580c6f_rybakina: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 197 golpes con ventana y serie; faltan o están vacíos: probe/probe.json, scenes/scenes.json, audio/audio_onsets.json, players/players.npz, identity/identity.json, spotting/spotting.json, candidates/candidates.json, candidates/audio_track.json
+- ✘ **Partido sin-fecha_580c6f_rybakina: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 198 golpes con ventana y serie; faltan o están vacíos: probe/probe.json, scenes/scenes.json, audio/audio_onsets.json, players/players.npz, identity/identity.json, spotting/spotting.json, candidates/candidates.json, candidates/audio_track.json
 - ✘ **Partido sin-fecha_b8b713_rybakina: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 216 golpes con ventana y serie; faltan o están vacíos: probe/probe.json, scenes/scenes.json, audio/audio_onsets.json, players/players.npz, identity/identity.json, spotting/spotting.json, candidates/candidates.json, candidates/audio_track.json
-- ! **Golpes que fallaron al procesarse**: 1 golpes con error (guardados en strokes_errores.json)
 - ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 100 de 193 del lado cercano (52%); motivos: impact_without_audio 62, elbow_implausible_at_impact 43, phase 26, half_volley_candidate 5. Otros 74 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
+- ✔ **Golpes que fallaron al procesarse**: ninguno
 - ✔ **Nada pide revisión manual**: 177 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
 - ✔ **Informe: index.html, series y miniaturas**: 303 golpes; series que faltan 0, miniaturas que faltan 0
-- ✔ **Exportación: resumen PDF y un vídeo por golpe**: 249 vídeos
+- ✔ **Exportación: resumen PDF y un vídeo por golpe**: 303 vídeos
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
@@ -476,8 +475,8 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 ## 9. Rendimiento: un partido en horas, no días
 
 - ! **Tiempo: sin-fecha_f43dd2_rybakina**: 255 min para 71 min de vídeo ≈ 12.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
-- ✔ **Tiempo: sin-fecha_584c5b_rybakina**: 232 min para 117 min de vídeo ≈ 6.9 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
-- ✔ **Tiempo: sin-fecha_580c6f_rybakina**: 153 min para 133 min de vídeo ≈ 4.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
+- ✔ **Tiempo: sin-fecha_584c5b_rybakina**: 227 min para 117 min de vídeo ≈ 6.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
+- ✔ **Tiempo: sin-fecha_580c6f_rybakina**: 152 min para 133 min de vídeo ≈ 4.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
 - ✔ **Tiempo: sin-fecha_b8b713_rybakina**: 271 min para 210 min de vídeo ≈ 4.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
@@ -527,7 +526,7 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ! **#29 Fase 0: entorno y fps reales, con YOLO**: 4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (255 min para 71 min de vídeo ≈ 12.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
 - ! **#36 Mano y antebrazo, cierre de la muñeca**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#44 Sin vídeos del usuario, de entrenadores ni de otras jugadoras**: 11 comprobaciones: 1 aviso, 10 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))
-- ! **#45 Todo automático y completo: el usuario no revisa nada**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Golpes que fallaron al procesarse» (1 golpes con error (guardados en strokes_errores.json))
+- ! **#45 Todo automático y completo: el usuario no revisa nada**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok
 - ! **#53 No pasar de 100 a 0: conservar lo anterior**: 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))
 - ! **#55 Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#57 Nada de gráficas de muchas líneas ni tablas sin frases**: 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))

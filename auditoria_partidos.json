@@ -3,10 +3,10 @@
  "strokes": 303,
  "near": 193,
  "summary": {
-  "ok": 326,
-  "falta": 43,
+  "ok": 327,
+  "falta": 42,
   "pocos datos": 54,
-  "aviso": 135
+  "aviso": 134
  },
  "items": [
   {
@@ -70,8 +70,8 @@
    "area": "Golpes",
    "name": "Golpes encontrados frente al marcador: sin-fecha_580c6f_rybakina",
    "status": "falta",
-   "detail": "marcador: 135-139 puntos jugados (24 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-126 saques (1 o 2 por punto de saque) y 216-361 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 197 golpes, 5 saques/remates → como mucho 91% de sus golpes y 8% de sus saques. Faltan muchos golpes (ver scripts/validate_recall.py para saber en qué etapa se pierden) (99 cerca, 98 lejos); además 22 de identidad dudosa, apartados (no cuentan como suyos)",
-   "found": 197,
+   "detail": "marcador: 135-139 puntos jugados (24 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-126 saques (1 o 2 por punto de saque) y 216-361 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 198 golpes, 5 saques/remates → como mucho 92% de sus golpes y 8% de sus saques. Faltan muchos golpes (ver scripts/validate_recall.py para saber en qué etapa se pierden) (99 cerca, 99 lejos); además 22 de identidad dudosa, apartados (no cuentan como suyos)",
+   "found": 198,
    "serves": 5,
    "counts": {
     "points": 135,
@@ -144,12 +144,12 @@
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: sin-fecha_580c6f_rybakina",
    "status": "ok",
-   "detail": "14% de sus golpes con repetición enlazada (28 de 197, 6 a cámara lenta) · 93% con otra cámara (183) · tomas: 71 repeticiones, 80 laterales, 18 frontales, 868 primeros planos, 51 otras",
-   "strokes": 197,
-   "with_replay": 28,
-   "with_other_camera": 183,
+   "detail": "15% de sus golpes con repetición enlazada (29 de 198, 6 a cámara lenta) · 93% con otra cámara (184) · tomas: 71 repeticiones, 80 laterales, 18 frontales, 868 primeros planos, 51 otras",
+   "strokes": 198,
+   "with_replay": 29,
+   "with_other_camera": 184,
    "with_slowmo": 6,
-   "replay_share": 0.142,
+   "replay_share": 0.146,
    "other_share": 0.929
   },
   {
@@ -2902,7 +2902,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2570 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2568 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3147,8 +3147,8 @@
    "req": 5,
    "area": "Automático",
    "name": "Golpes que fallaron al procesarse",
-   "status": "aviso",
-   "detail": "1 golpes con error (guardados en strokes_errores.json)"
+   "status": "ok",
+   "detail": "ninguno"
   },
   {
    "req": 5,
@@ -3176,14 +3176,14 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "232 min para 117 min de vídeo ≈ 6.9 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "227 min para 117 min de vídeo ≈ 6.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_580c6f_rybakina",
    "status": "ok",
-   "detail": "153 min para 133 min de vídeo ≈ 4.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "152 min para 133 min de vídeo ≈ 4.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -3191,13 +3191,6 @@
    "name": "Tiempo: sin-fecha_b8b713_rybakina",
    "status": "ok",
    "detail": "271 min para 210 min de vídeo ≈ 4.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
-  },
-  {
-   "req": 5,
-   "area": "Automático",
-   "name": "Etapas con errores",
-   "status": "falta",
-   "detail": "sin-fecha_580c6f_rybakina: fine"
   },
   {
    "req": 2,
@@ -3239,7 +3232,7 @@
    "area": "Ficheros",
    "name": "Partido sin-fecha_580c6f_rybakina: salida de cada etapa, ventanas y series",
    "status": "falta",
-   "detail": "15 ficheros de etapa, 197 golpes con ventana y serie; faltan o están vacíos: probe/probe.json, scenes/scenes.json, audio/audio_onsets.json, players/players.npz, identity/identity.json, spotting/spotting.json, candidates/candidates.json, candidates/audio_track.json"
+   "detail": "15 ficheros de etapa, 198 golpes con ventana y serie; faltan o están vacíos: probe/probe.json, scenes/scenes.json, audio/audio_onsets.json, players/players.npz, identity/identity.json, spotting/spotting.json, candidates/candidates.json, candidates/audio_track.json"
   },
   {
    "req": 5,
@@ -3260,7 +3253,7 @@
    "area": "Ficheros",
    "name": "Exportación: resumen PDF y un vídeo por golpe",
    "status": "ok",
-   "detail": "249 vídeos"
+   "detail": "303 vídeos"
   },
   {
    "req": 5,
@@ -3575,7 +3568,7 @@
    "area": "Peticiones",
    "name": "#45 Todo automático y completo: el usuario no revisa nada",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Golpes que fallaron al procesarse» (1 golpes con error (guardados en strokes_errores.json))"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
