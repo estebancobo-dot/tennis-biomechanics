@@ -151,5 +151,22 @@
    "replay_runs": 12,
    "audio_track": 0
   }
+ },
+ "views": {
+  "fingerprint": "9b60183f25350dc4",
+  "version": "5",
+  "seconds": 144.2,
+  "finished": "2026-10-29 11:43:27",
+  "summary": {
+   "views": 247,
+   "repeticion_principal": 13,
+   "lateral": 8,
+   "frontal": 2,
+   "primer_plano": 220,
+   "otra": 4,
+   "links": 520,
+   "linked_views": 227,
+   "slowmo_links": 4
+  }
  }
 }
