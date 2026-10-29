@@ -1,4 +1,4 @@
-fecha: 2026-10-29T12:02:56
+fecha: 2026-10-29T12:13:05
        3.9 MB  \output\auditoria
        5.7 MB  \output\benchmark
        1.2 MB  \output\capturas_app
@@ -24,7 +24,7 @@ fecha: 2026-10-29T12:02:56
     1751.8 MB  \output\zheng-qinwen-elena-rybakina
     1528.9 MB  \output\_poc31_35
      182.6 MB  \output\_poc31_4
-    1060.1 MB  \output\_poc67_35
+    1125.2 MB  \output\_poc67_35
      167.9 MB  \output\_poc67_4
     7818.9 MB  \output\_poc9_largo
     2202.2 MB  \output\_smoke
