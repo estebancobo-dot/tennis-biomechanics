@@ -135,14 +135,14 @@
   }
  },
  "fine": {
-  "fingerprint": "d66857a6bf3e692f",
+  "fingerprint": "02909ec40922ce21",
   "version": "16",
-  "seconds": 1125.6,
-  "finished": "2026-10-28 23:17:30",
+  "seconds": 1107.6,
+  "finished": "2026-10-29 05:53:35",
   "summary": {
    "candidates": 201,
-   "confirmed": 197,
-   "errors": 1,
+   "confirmed": 198,
+   "errors": 0,
    "warnings": [],
    "forehands": 76,
    "windows": 128,
@@ -158,34 +158,36 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 602.8,
-    "jugadora_lejana": 87.1,
-    "analisis_ventana": 61.4,
-    "pista_ventana": 48.6,
-    "cribado": 22.0,
-    "recorte": 9.1,
-    "pose": 1.9,
+    "cuerdas_y_3d": 644.0,
+    "jugadora_lejana": 100.3,
+    "analisis_ventana": 53.2,
+    "pista_ventana": 47.9,
+    "pose": 27.8,
+    "pose_modelo_yolo": 25.2,
+    "cribado": 15.8,
+    "recorte": 8.5,
     "bola_en_paralelo_cpu": 0,
     "espera_bola_en_paralelo": 0.0
    },
    "counts": {
     "overlap_s": 1.1,
-    "frames": 32023,
-    "posed_frames": 32023,
-    "impacts": 224,
-    "kept_impacts": 200,
+    "frames": 32202,
+    "posed_frames": 32202,
+    "impacts": 225,
+    "kept_impacts": 201,
     "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 0,
+    "frames_960_far": 146,
+    "frames_modelo_yolo": 179,
     "windows_ball_ahead": 124
    }
   }
  },
  "fine_opponent": {
-  "fingerprint": "b209a71ae39cf80a",
+  "fingerprint": "03644449633a6d8f",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-10-28 23:17:35",
+  "finished": "2026-10-29 05:53:35",
   "summary": {
    "enabled": false
   }
@@ -226,16 +228,16 @@
   }
  },
  "views_link": {
-  "fingerprint": "98453fdade2b419a",
+  "fingerprint": "651397bcba75adbd",
   "version": "1",
-  "seconds": 5.1,
-  "finished": "2026-10-28 23:17:35",
+  "seconds": 0.5,
+  "finished": "2026-10-29 05:53:35",
   "summary": {
-   "strokes": 197,
-   "with_replay": 28,
-   "with_other_camera": 183,
+   "strokes": 198,
+   "with_replay": 29,
+   "with_other_camera": 184,
    "with_slowmo": 6,
-   "replay_share": 0.142,
+   "replay_share": 0.146,
    "other_share": 0.929
   }
  },
