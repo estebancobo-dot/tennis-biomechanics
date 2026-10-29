@@ -240,10 +240,10 @@
   }
  },
  "fine_doubtful": {
-  "fingerprint": "dc9fffef5897127f",
+  "fingerprint": "4136bae1dddc5586",
   "version": "1",
-  "seconds": 636.8,
-  "finished": "2026-10-28 22:50:15",
+  "seconds": 378.4,
+  "finished": "2026-10-29 05:35:07",
   "summary": {
    "candidates": 50,
    "confirmed": 18,
@@ -263,14 +263,14 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "bola_en_paralelo_cpu": 484.1,
-    "espera_bola_en_paralelo": 482.1,
-    "cuerdas_y_3d": 101.0,
-    "analisis_ventana": 6.9,
-    "jugadora_lejana": 2.8,
-    "recorte": 2.1,
-    "cribado": 1.9,
-    "pista_ventana": 1.4,
+    "bola_en_paralelo_cpu": 241.3,
+    "espera_bola_en_paralelo": 239.0,
+    "cuerdas_y_3d": 97.7,
+    "analisis_ventana": 5.8,
+    "jugadora_lejana": 3.0,
+    "recorte": 2.3,
+    "cribado": 2.0,
+    "pista_ventana": 0.8,
     "pose": 0.3
    },
    "counts": {
@@ -282,7 +282,7 @@
     "racket_frames": 0,
     "whole_window_again": 0,
     "frames_960_far": 0,
-    "windows_ball_ahead": 21
+    "windows_ball_ahead": 22
    }
   }
  }
