@@ -97,6 +97,10 @@ etapas: fine
 ---
 id: 67
 accion: poc
+---
+id: 68
+accion: medir
+script: bench_ball
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
 # Cola: se pueden poner varias peticiones seguidas, separadas por una linea con solo "---"; cada bloque
 #   lleva su "id:", su "accion:" y sus parametros. El PC las hace en orden, una detras de otra en el mismo
@@ -122,6 +126,7 @@ accion: poc
 #   migrar = estructura definitiva: copia output a biblioteca\partidos, la comprueba y solo entonces la activa (nunca borra)
 #   diag = hojas de fotogramas de los planos de cada partido (por que hay pocos minutos de camara principal)
 #   rehacer = un partido entero de nuevo (partido: <id>) y despues el analisis completo
+#   medir = una medida con un script del repositorio (script: bench_ball), registro output\medir_<script>.log
 #   repetir = unas etapas de todos los partidos aunque esten al dia (etapas: fine[,fine_doubtful]) y despues el analisis completo
 #   recall = golpes encontrados frente a los anotados por personas (F3Set), por lado, tipo y etapa (puntos: N para una prueba corta;
 #            detector: si = candidatos del detector entrenado, informe recall_validation_detector.*)

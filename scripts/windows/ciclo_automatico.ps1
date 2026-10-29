@@ -157,6 +157,17 @@ function Hacer-Peticion($p) {
         & uv run tennisbio run --all --stages @et --force 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
         & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $RepoDir "scripts\windows\analisis_completo.ps1") | Out-Host
         "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "medir") {
+        # una medida de Claude con un script del repositorio (script: bench_ball -> scripts\bench_ball.py, sin
+        # tocar ningun analisis); registro output\medir_<script>.log (se sube solo)
+        $sc = "$($p['script'])"
+        $lg = "$Base\output\medir_$sc.log"
+        if ($sc -notmatch '^[a-z0-9_]+$' -or -not (Test-Path (Join-Path $RepoDir "scripts\$sc.py"))) {
+            "Peticion $($p['id']): script no valido: '$sc'" | Set-Content "$Base\output\medir.log" -Encoding UTF8; return }
+        "Peticion $($p['id']): medir $sc ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        Paso "Peticion $($p['id']): medida scripts\$sc.py"
+        & uv run python "scripts/$sc.py" 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "recall") {
         # cuantos golpes suyos encuentra el analisis frente a los anotados por personas (F3Set, 650 golpes),
         # por lado, tipo y etapa donde se pierde cada uno, e identidad (scripts/validate_recall.py)

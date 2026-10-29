@@ -1485,14 +1485,41 @@ def window_cache_key(cfg: dict) -> str:
                                    + pose_cache_tag(cfg)).encode()).hexdigest()[:8]
 
 
-def _fine_workers(cfg: dict, n_groups: int) -> int:
-    """Processes of the fine pass (`fine_speed.workers`; default 2 with the iGPU, 1 on the CPU, where one process
-    already takes every core), never more than windows nor than the cores leave room for."""
+def available_ram_gb() -> float | None:
+    """Memory free for new work now (GB), or None when the system does not say."""
     import os
-    w = (cfg.get("fine_speed") or {}).get("workers")
+    try:
+        if os.name == "nt":
+            import ctypes
+
+            class MS(ctypes.Structure):
+                _fields_ = [("len", ctypes.c_ulong), ("load", ctypes.c_ulong), ("total", ctypes.c_ulonglong),
+                            ("avail", ctypes.c_ulonglong), ("pt", ctypes.c_ulonglong), ("pa", ctypes.c_ulonglong),
+                            ("vt", ctypes.c_ulonglong), ("va", ctypes.c_ulonglong), ("ext", ctypes.c_ulonglong)]
+            m = MS()
+            m.len = ctypes.sizeof(MS)
+            return m.avail / 2 ** 30 if ctypes.windll.kernel32.GlobalMemoryStatusEx(ctypes.byref(m)) else None
+        with open("/proc/meminfo", encoding="ascii") as fh:
+            info = {ln.split(":")[0]: ln.split()[1] for ln in fh}
+        return int(info["MemAvailable"]) / 2 ** 20
+    except Exception:                             # noqa: BLE001 — unknown: no limit from it
+        return None
+
+
+def _fine_workers(cfg: dict, n_groups: int, free_gb: float | None = None) -> int:
+    """Processes of the fine pass (`fine_speed.workers`; default 2 with the iGPU, 1 on the CPU, where one process
+    already takes every core), never more than windows, than the cores leave room for, nor than the free memory
+    holds (`fine_speed.worker_ram_gb` each, 6 by default: 29-10, two processes took the PC to 19.4 of 19.8 GB)."""
+    import os
+    fs = cfg.get("fine_speed") or {}
+    w = fs.get("workers")
     if w is None:
         w = 2 if cfg.get("device", "cpu") == "dml" else 1
-    return max(1, min(int(w), n_groups, max(1, (os.cpu_count() or 2) // 4)))
+    w = min(int(w), n_groups, max(1, (os.cpu_count() or 2) // 4))
+    free_gb = available_ram_gb() if free_gb is None else free_gb
+    if free_gb is not None:
+        w = min(w, int(free_gb // float(fs.get("worker_ram_gb", 6.0))))
+    return max(1, w)
 
 
 _FW: dict = {}          # one process of the fine pass: its context, inputs and models (_fine_worker_init)
@@ -1563,36 +1590,46 @@ def _fine_parallel(ctx: Context, p, groups: list, workers: int, args: tuple, too
     return sorted(left)
 
 
-def _fine_models(ctx: Context):
-    """The fine pass's models (ball, racket, 3D hand) and its racket_face settings, as each process of it builds them."""
-    ball, warnings = None, []
-    bcfg = ctx.cfg.get("ball") or {}
-    bpath = resolve_path(bcfg.get("onnx"))
-    if bpath is not None and bpath.exists():
-        from .ball import BallTracker
-        # on the iGPU the ball model runs with a fixed batch (ball.static_batch): DirectML compiles it once
-        ball = BallTracker(str(bpath), ctx.cfg.get("device", "cpu"), bcfg.get("threshold", 0.5),
-                           static_batch=bool(bcfg.get("static_batch", True)) and ctx.cfg.get("device", "cpu") == "dml")
-    else:
+def _fine_model_files(ctx: Context):
+    """The fine pass's model files (ball, racket, 3D hand), its racket_face settings and the warnings for the
+    missing ones, without loading anything."""
+    warnings = []
+    bpath = resolve_path((ctx.cfg.get("ball") or {}).get("onnx"))
+    if bpath is None or not bpath.exists():
+        bpath = None
         warnings.append("falta el modelo de bola (models/balltrack.onnx): la detección de golpes será mucho peor; "
                         "ejecuta 1_instalar.bat")
     fcfg = ctx.cfg.get("racket_face") or {}
-    rpose = wb3d = None
+    rp = hp = None
     if fcfg.get("enabled", True):
         rp, hp = resolve_path(fcfg.get("pose_onnx")), resolve_path(fcfg.get("hand3d_onnx"))
-        if rp is not None and rp.exists():
-            from .racket_pose import RacketPose
-            rpose = RacketPose(str(rp), ctx.cfg.get("device", "cpu"))
-        else:
+        if rp is None or not rp.exists():
+            rp = None
             warnings.append("falta el modelo de raqueta (models/racketpose.onnx): sin orientación de las cuerdas")
-        if hp is not None and hp.exists():
-            from .pose.wholebody3d import WholeBody3D
-            wb3d = WholeBody3D(str(hp), ctx.cfg.get("device", "cpu"))
-        else:
+        if hp is None or not hp.exists():
+            hp = None
             warnings.append("falta el modelo 3D (models/rtmw3d-x.onnx): cuerdas y rotaciones sin 3D")
-    # the models' files name the window memos of their outputs (racket_orientation.ModelMemo)
-    fcfg = {**fcfg, "_memo_tag": "|".join(f"{q.name}:{q.stat().st_size}" for q in (rp, hp)
-                                          if q is not None and q.exists())} if fcfg.get("enabled", True) else fcfg
+        # the models' files name the window memos of their outputs (racket_orientation.ModelMemo)
+        fcfg = {**fcfg, "_memo_tag": "|".join(f"{q.name}:{q.stat().st_size}" for q in (rp, hp) if q is not None)}
+    return bpath, rp, hp, fcfg, warnings
+
+
+def _fine_models(ctx: Context):
+    """The fine pass's models (ball, racket, 3D hand) and its racket_face settings, as each process of it builds them."""
+    bpath, rp, hp, fcfg, warnings = _fine_model_files(ctx)
+    ball = rpose = wb3d = None
+    if bpath is not None:
+        from .ball import BallTracker
+        bcfg = ctx.cfg.get("ball") or {}
+        # on the iGPU the ball model runs with a fixed batch (ball.static_batch): DirectML compiles it once
+        ball = BallTracker(str(bpath), ctx.cfg.get("device", "cpu"), bcfg.get("threshold", 0.5),
+                           static_batch=bool(bcfg.get("static_batch", True)) and ctx.cfg.get("device", "cpu") == "dml")
+    if rp is not None:
+        from .racket_pose import RacketPose
+        rpose = RacketPose(str(rp), ctx.cfg.get("device", "cpu"))
+    if hp is not None:
+        from .pose.wholebody3d import WholeBody3D
+        wb3d = WholeBody3D(str(hp), ctx.cfg.get("device", "cpu"))
     return ball, rpose, wb3d, fcfg, bpath, warnings
 
 
@@ -1603,9 +1640,11 @@ def _fine(ctx: Context, p, keep, out_name: str):
     score = _read(ctx.path("score.json"))
     onsets = load_onsets(ctx)
     scenes = _read(ctx.path("scenes.json")) if ctx.path("scenes.json").exists() else {"fps": 1, "shots": []}
-    ball, rpose, wb3d, fcfg, bpath, warnings = _fine_models(ctx)
+    # the models are loaded only where they run: here when the windows go one by one, in each process otherwise
+    bpath, _, _, fcfg, warnings = _fine_model_files(ctx)
+    ball = rpose = wb3d = None
     pre, post = ctx.cfg["fine_pass"]["window_s"] + 0.3, ctx.cfg["fine_pass"]["window_s"]
-    if ball is not None:      # reach back to the opponent's hit (time available, split step) and
+    if bpath is not None:     # reach back to the opponent's hit (time available, split step) and
         pre = max(pre, ctx.cfg["fine_pass"].get("ball_lead_s", 2.2))       # forward to where her shot lands
         post = max(post, ctx.cfg["fine_pass"].get("ball_tail_s", 1.4))
     for w in warnings:
@@ -1652,7 +1691,9 @@ def _fine(ctx: Context, p, keep, out_name: str):
         left = _fine_parallel(ctx, p, groups, nw, (pre, post, interlaced, ph), took)
         if left:
             warnings.append(f"ventanas en paralelo: {len(left)} se hicieron después una a una (falló un proceso)")
-    elif ahead_enabled(ctx.cfg, len(groups), ball is not None):
+    if left:
+        ball, rpose, wb3d, fcfg, _, _ = _fine_models(ctx)
+    if nw <= 1 and ahead_enabled(ctx.cfg, len(groups), ball is not None):
         ahead = BallAhead(len(groups), _ahead_job(ctx, groups, pre, post, interlaced, ph, bpath),
                           gap=int((ctx.cfg.get("fine_speed") or {}).get("ball_ahead_gap", 1))).start()
     try:

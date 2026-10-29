@@ -12,12 +12,22 @@ from tennisbio.catalog import Match, Player
 
 def test_workers_default_by_device(monkeypatch):
     monkeypatch.setattr("os.cpu_count", lambda: 16)
+    monkeypatch.setattr(stages, "available_ram_gb", lambda: None)
     assert stages._fine_workers({"device": "dml"}, 50) == 2
     assert stages._fine_workers({"device": "cpu"}, 50) == 1
     assert stages._fine_workers({"device": "dml", "fine_speed": {"workers": 3}}, 50) == 3
     assert stages._fine_workers({"device": "dml"}, 1) == 1                       # one window: one process
     monkeypatch.setattr("os.cpu_count", lambda: 4)
     assert stages._fine_workers({"device": "dml", "fine_speed": {"workers": 3}}, 50) == 1
+
+
+def test_workers_fit_in_the_free_memory(monkeypatch):
+    cfg = {"device": "dml", "fine_speed": {"workers": 3}}
+    monkeypatch.setattr("os.cpu_count", lambda: 16)
+    assert stages._fine_workers(cfg, 50, free_gb=20) == 3
+    assert stages._fine_workers(cfg, 50, free_gb=13) == 2                     # 6 GB each
+    assert stages._fine_workers(cfg, 50, free_gb=4) == 1                      # never less than one
+    assert stages.available_ram_gb() is None or stages.available_ram_gb() > 0
 
 
 def test_what_a_process_gets_can_be_sent(tmp_path):
