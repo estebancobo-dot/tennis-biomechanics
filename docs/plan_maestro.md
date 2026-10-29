@@ -60,6 +60,7 @@ Horizontes (27-10, corregido por el usuario: **la base primero, al 100 %**):
     | B-10 | Bote: modelo aprendido (#199) | Botes anotados (RacketVision) | Precisión ≥ la regla | pendiente |
     | B-11 | Repeticiones que descartan de más; NMS vacío | F3Set | Recall sube sin bajar precisión | NMS vacío **arreglado 29-10** (el único golpe con error en Gauff; prueba `test_yolo_onnx_nms`); repeticiones pendiente |
     | B-13 | iGPU perdida a mitad de análisis (DirectML 887A0005, 28-10: 98 golpes de la final y 43 de Gauff sin analizar) | Pruebas con sesión que falla | Ningún golpe perdido por la máquina | **hecho**: la sesión se rehace en la iGPU y, si no, sigue en la CPU, repitiendo la llamada; la etapa con golpes perdidos así queda «incompleta» y se repite sola. **Medido (petición 64)**: Gauff 197 golpes y final 216, sin ningún error de la iGPU ✔ |
+    | B-14 | El ciclo automático se paraba al recalcular una carpeta de prueba anterior al detector (29-10: «spotting.json» no encontrado) | `test_recompute_runs_the_stages_the_config_adds` | El ciclo nunca se para por una etapa nueva | **hecho**: las etapas que se recalculan salen del grafo de dependencias, no de una lista fija |
     | B-12 | Aplicación autónoma sin Claude | Prueba de extremo a extremo | Un partido nuevo de principio a fin sin el ciclo | pendiente |
 
   - **Peticiones del registro (`docs/peticiones_usuario.md`) en cada id del plan (28-10):**

@@ -179,3 +179,15 @@ def test_request_ventana_paints_the_app_screens_with_the_real_index():
     assert '"--extra", "app"' in (win / "instalar.ps1").read_text(encoding="utf-8")
     vbs = (Path(__file__).resolve().parents[1] / "Tennisbio.vbs").read_text(encoding="utf-8")
     assert vbs.isascii() and "tennisbio app ventana" in vbs and ", 0, False" in vbs
+
+
+def test_recompute_runs_the_stages_the_config_adds():
+    """29-10: a trial folder made before the spotter had no spotting.json and the cycle stopped."""
+    import sys
+    from pathlib import Path
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+    import recompute_measures as r
+
+    on = r.cheap_stages({"spotter": {"enabled": True}})
+    assert on.index("spotting") < on.index("candidates") and not set(on) & set(r.EXPENSIVE + r.FINE)
+    assert "spotting" not in r.cheap_stages({"spotter": {"enabled": False}})

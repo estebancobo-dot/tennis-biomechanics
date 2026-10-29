@@ -26,6 +26,13 @@ from tennisbio.config import load_config  # noqa: E402
 
 EXPENSIVE = ("probe", "scenes", "audio", "court", "players", "score")    # never re-run here
 CHEAP = ("identity", "candidates", "views")                              # re-run only when stale
+
+
+def cheap_stages(cfg: dict) -> list[str]:
+    """Every stage the fine passes need that is not an expensive one, in order: CHEAP plus those the
+    configuration adds (29-10: the learned spotter's stage, missing in a trial folder made before it, stopped
+    the automatic cycle with spotting.json not found)."""
+    return [n for n in pipeline.order(list(CHEAP) + list(FINE), cfg) if n not in EXPENSIVE and n not in FINE]
 FINE = ("fine", "fine_opponent", "fine_doubtful", "views_link")                           # always re-run
 # views_link after the fine passes: it adds the linked replays and cameras to the new strokes.json
 VIDEO_EXT = {".mp4", ".mkv", ".ts", ".mov", ".avi", ".m4v", ".webm"}
@@ -109,7 +116,7 @@ def recompute(d: Path, out_root: Path, cfg: dict, player) -> dict:
     before = window_files(d)
     times = {}
     t0 = time.time()
-    done = pipeline.run(ctx, list(CHEAP), upstream=False)
+    done = pipeline.run(ctx, cheap_stages(cfg), upstream=False)
     times["identidad y candidatos"] = time.time() - t0
     print(f"[{now()}] Etapas baratas rehechas: {', '.join(done) or 'ninguna (al día)'} ({took(t0)})", flush=True)
     t0 = time.time()
