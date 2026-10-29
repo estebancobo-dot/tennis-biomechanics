@@ -115,57 +115,63 @@
   }
  },
  "fine": {
-  "fingerprint": "c8bf35790d2d0326",
+  "fingerprint": "4f3abf3db5c6eaac",
   "version": "16",
-  "seconds": 342.8,
-  "finished": "2026-10-26 00:45:49",
+  "seconds": 2429.7,
+  "finished": "2026-10-29 03:59:04",
   "summary": {
-   "candidates": 154,
-   "confirmed": 27,
+   "candidates": 66,
+   "confirmed": 63,
    "errors": 0,
    "warnings": [],
-   "forehands": 14,
-   "windows": 53,
+   "forehands": 20,
+   "windows": 51,
    "gate": {
-    "windows_gated": 14,
-    "windows_passed": 37,
+    "windows_gated": 0,
+    "windows_passed": 51,
     "windows_ungated": 0,
     "reasons": {
-     "golpe_de_bola": 34,
-     "sin_golpe": 14,
-     "bola_no_vista": 3
+     "detector": 18,
+     "golpe_de_bola": 25,
+     "bola_no_vista": 8
     },
-    "seconds_in_gated_windows": 1.9
+    "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 153.4,
-    "jugadora_lejana": 99.1,
-    "analisis_ventana": 22.1,
-    "pista_ventana": 11.9,
-    "cribado": 5.0,
-    "recorte": 2.5,
-    "pose": 0.4,
-    "bola_en_paralelo_cpu": 0,
+    "bola_en_paralelo_cpu": 1458.1,
+    "pose": 1192.5,
+    "pose_modelo_hybrid": 681.4,
+    "raqueta": 506.8,
+    "pose_modelo_yolo": 471.7,
+    "bola": 416.5,
+    "cuerdas_y_3d": 147.8,
+    "jugadora_lejana": 39.4,
+    "recorte": 37.4,
+    "pista_ventana": 21.3,
+    "analisis_ventana": 11.8,
+    "cribado": 4.1,
     "espera_bola_en_paralelo": 0.0
    },
    "counts": {
-    "overlap_s": 0.7,
-    "frames": 13081,
-    "posed_frames": 13081,
-    "impacts": 42,
-    "kept_impacts": 31,
-    "racket_frames": 0,
+    "overlap_s": 0.0,
+    "frames": 10900,
+    "posed_frames": 10900,
+    "impacts": 80,
+    "kept_impacts": 66,
+    "racket_frames": 984,
     "whole_window_again": 0,
-    "frames_960_far": 0,
-    "windows_ball_ahead": 48
+    "frames_960_far": 647,
+    "frames_modelo_yolo": 5818,
+    "frames_modelo_hybrid": 5082,
+    "windows_ball_ahead": 13
    }
   }
  },
  "fine_opponent": {
-  "fingerprint": "614ca7b66eeb3a7c",
+  "fingerprint": "95e4d7af2d93dd8f",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-10-26 00:45:49",
+  "finished": "2026-10-29 03:59:04",
   "summary": {
    "enabled": false
   }
