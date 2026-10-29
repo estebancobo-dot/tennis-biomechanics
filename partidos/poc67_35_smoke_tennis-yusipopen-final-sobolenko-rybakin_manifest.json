@@ -116,5 +116,40 @@
     "same_game_same": 1.0
    }
   }
+ },
+ "spotting": {
+  "fingerprint": "503f6542538cd326",
+  "version": "1",
+  "seconds": 2975.9,
+  "finished": "2026-10-29 11:41:01",
+  "summary": {
+   "enabled": true,
+   "strokes": 157,
+   "near": 72,
+   "far": 85,
+   "out_of_play": 1296,
+   "threshold": 0.1,
+   "fps": 10.0,
+   "model_fps": 10.0,
+   "feature_dim": 122,
+   "audio_track": 0
+  }
+ },
+ "candidates": {
+  "fingerprint": "8ad4a2c12bc88c51",
+  "version": "9",
+  "seconds": 0.9,
+  "finished": "2026-10-29 11:41:02",
+  "summary": {
+   "candidates": 137,
+   "far": 72,
+   "with_audio": 114,
+   "source": "spotter",
+   "opponent_strokes": 71,
+   "identity_unknown": 7,
+   "replay_strokes_skipped": 20,
+   "replay_runs": 12,
+   "audio_track": 0
+  }
  }
 }
