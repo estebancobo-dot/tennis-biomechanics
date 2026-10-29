@@ -92,7 +92,8 @@ id: 65
 accion: completo
 ---
 id: 66
-accion: completo
+accion: repetir
+etapas: fine
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
 # Cola: se pueden poner varias peticiones seguidas, separadas por una linea con solo "---"; cada bloque
 #   lleva su "id:", su "accion:" y sus parametros. El PC las hace en orden, una detras de otra en el mismo
@@ -118,6 +119,7 @@ accion: completo
 #   migrar = estructura definitiva: copia output a biblioteca\partidos, la comprueba y solo entonces la activa (nunca borra)
 #   diag = hojas de fotogramas de los planos de cada partido (por que hay pocos minutos de camara principal)
 #   rehacer = un partido entero de nuevo (partido: <id>) y despues el analisis completo
+#   repetir = unas etapas de todos los partidos aunque esten al dia (etapas: fine[,fine_doubtful]) y despues el analisis completo
 #   recall = golpes encontrados frente a los anotados por personas (F3Set), por lado, tipo y etapa (puntos: N para una prueba corta;
 #            detector: si = candidatos del detector entrenado, informe recall_validation_detector.*)
 #   entreno = datos para entrenar el detector de golpes: partidos de F3Set (pasada barata) exportados como numeros a pc-logs/entreno_golpes (partidos: N, horas: H; fps: F; bola: si = tambien la bola, a pc-logs/entreno_golpes_bola)

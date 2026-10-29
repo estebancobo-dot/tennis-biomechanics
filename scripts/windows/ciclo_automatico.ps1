@@ -146,6 +146,17 @@ function Hacer-Peticion($p) {
         & uv run tennisbio run --match $m --force 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
         & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $RepoDir "scripts\windows\analisis_completo.ps1") | Out-Host
         "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "repetir") {
+        # unas etapas de todos los partidos de nuevo aunque esten al dia (etapas: fine[,fine_doubtful]; 29-10: medir
+        # una etapa tras cambiar su velocidad sin cambiar sus resultados) y despues el analisis completo
+        $lg = "$Base\output\prueba_repetir.log"
+        $et = @("$($p['etapas'])" -split '[,\s]+' | Where-Object { $_ })
+        "Peticion $($p['id']): repetir $($et -join ', ') ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        if (-not $et -or ($et | Where-Object { $_ -notmatch '^[a-z_]+$' })) { "  etapas no validas: '$($p['etapas'])'" | Add-Content $lg -Encoding UTF8; return }
+        Paso "Peticion $($p['id']): repetir $($et -join ', ') en todos los partidos y despues el analisis completo"
+        & uv run tennisbio run --all --stages @et --force 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $RepoDir "scripts\windows\analisis_completo.ps1") | Out-Host
+        "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "recall") {
         # cuantos golpes suyos encuentra el analisis frente a los anotados por personas (F3Set, 650 golpes),
         # por lado, tipo y etapa donde se pierde cada uno, e identidad (scripts/validate_recall.py)
