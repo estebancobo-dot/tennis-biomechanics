@@ -1,3 +1,209 @@
-﻿# Revision automatica: ERROR
+# Revisión automática: REGRESIÓN
 
-Fallo: uv run python scripts/recompute_measures.py (codigo 1)
+283 cumplidos · 26 no cumplidos · 121 sin golpes suficientes · 112 avisos (antes: 283 cumplidos, 24 no cumplidos)
+
+## Peticiones del usuario SIN TERMINAR: 127 de 245
+
+Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+
+- **#1 [FALTA]** Derecha de Rybakina en sus 4 partidos completos, una vez y al final (10-10 17:27; 11-10 19:37) — falta: Ningún partido completo analizado. 19-10: el análisis de los 4 partidos encuentra como mucho el 43 % de sus golpes y el 29 % de sus saques (`audit.recall_items…
+- **#155 [FALTA]** es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 19-10 06:15) — falta: Detección sin arreglar: como mucho 43 % de sus golpes y 29 % de sus saques en la final del US Open. Falta correr el banco de 650 golpes anotados y corregir la …
+- **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
+- **#189 [FALTA]** «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4) — falta: No está en `learn.py`.
+- **#193 [FALTA]** Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10) — falta: No hay medida ni punto de control (`impact.wrist_non_lateral` no existe).
+- **#196 [FALTA]** Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18) — falta: No están en `practice.SIDE_METRICS`.
+- **#197 [FALTA]** Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19) — falta: Pendiente de confirmar con el usuario (descartó la hoja de sesión).
+- **#198 [FALTA]** Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20) — falta: Opcional, fuera del golpe.
+- **#199 [FALTA]** Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10) — falta: Sigue la heurística.
+- **#200 [FALTA]** Pista: TennisCourtDetector (14 puntos) + refinado (Estado del arte, 13-10) — falta: Sigue la detección por líneas propia.
+- **#201 [FALTA]** Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10) — falta: Hecho solo «OCR cuando cambia».
+- **#202 [FALTA]** Bola: probar WASB (Estado del arte, 13-10) — falta: No probado.
+- **#203 [FALTA]** 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10) — falta: No probado.
+- **#205 [FALTA]** Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3) — falta: Los 4 partidos dieron menos de la mitad de sus golpes.
+- **#209 [FALTA]** Passing y globo (Revisión completa, §3 B) — falta: Medible en parte (rival en la red + trayectoria); sin hacer.
+- **#210 [FALTA]** Dejada (bote muy corto en campo rival) (Revisión completa, §3 B) — falta: Medible con el bote de su bola; sin hacer.
+- **#211 [FALTA]** CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5) — falta: Decir «a la altura que marca su valor».
+- **#216 [FALTA]** Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnica #25) — falta: Ver huecos 3 y 9 de Ivanovic.
+- **#217 [FALTA]** Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26) — falta: Sin prueba de que se actualizaran.
+- **#223 [FALTA]** Revés y derecha cortados (20-10 06:33) — falta: Clasificar el cortado por la trayectoria de la muñeca de arriba abajo y el ángulo de la cara; validarlo con golpes anotados.
+- **#224 [FALTA]** Saques: plano, cortado o kick; primero o segundo (20-10 07:30) — falta: Primero/segundo por la secuencia del punto y el marcador; el efecto solo como estimación (bola y cara de la raqueta) o «no medible desde la tele».
+- **#240 [FALTA]** Comparar la aplicación con las profesionales una vez estén los golpes (27-10 11:42) — falta: Bloque B1 del plan: pantalla a pantalla con los datos reales.
+- **#244 [FALTA]** Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10) — falta: Revisar ganadores y errores con el marcador y la bola; no mostrar hasta que sea creíble.
+- **#245 [FALTA]** Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10) — falta: Usar los datos del catálogo y del nombre del vídeo (como la lista de la aplicación).
+- **#2 [PARCIAL]** Ver informe y salidas en el móvil (11-10 18:21, 18:29, 18:33) — falta: 19-10: copia hecha; el paso directo al Pixel 8 sin probar en el teléfono.
+- **#4 [PARCIAL]** Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como base para cualquiera (11-10 19… — falta: Valores de 1 a 10 golpes, todos «provisional». SuD, `copy_cue` y `COACH` no se ven (≥12).
+- **#5 [PARCIAL]** Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto, apoyo, dirección, ataque/de… — falta: 0 de 2.992 combinaciones con ≥12. Niveles vacíos: parada 0, paralela 0, rodilla 0, en el aire 0. 19-10: faltaban de su mensaje del 10-10 18:05 «ángulos» (golpe…
+- **#6 [PARCIAL]** Juego de pies: split step, primer paso, ajuste, reacción, recuperación (11-10 08:22, 19:23) — falta: Pasos medidos en el 40 % de los golpes. El golpe capturado dice «no medible» en el primer paso, el ajuste y tras golpear.
+- **#7 [PARCIAL]** Empuñadura en la espera y al golpear (11-10 19:23) — falta: El bisel no se mide. `ready_hands` da «mano libre separada» en el 100 % (7 golpes) y en revés a dos manos, contra R2 de los entrenadores: medida dudosa. La lis…
+- **#9 [PARCIAL]** Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras (10-10 18:09-18:47; 11-10 18:06-19:23; 12-10 16:22-17… — falta: SuD vacía. Comparativas: 8 «Sin datos…». Explorador: 41 «—». El 13-10 05:48 el usuario dice que «no vale para nada».
+- **#10 [PARCIAL]** Ver los cambios en la prueba rápida, sin 1 h (12-10 17:32, 17:40) — falta: Una medida nueva exige volver a analizar el vídeo: la prueba media dura 5 h 02 min. La prueba rápida deja unas 5 derechas.
+- **#11 [PARCIAL]** Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía (12-10 13:14, 16:36, 17:10; 13-10 05:… — falta: Comprueba que la estructura existe, no que el valor sea correcto. Las peticiones 64-113 no tienen regla.
+- **#12 [PARCIAL]** Validar cada medida con clips públicos anotados; el usuario no valida a mano (11-10 09:05, 09:12) — falta: Ninguna medida corporal (codo, rodillas, pasos, apoyo, fases) está validada.
+- **#13 [PARCIAL]** Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe (11-10 19:23) — falta: Ningún partido completo. En la última ejecución, la etapa `fine` falló en 4 golpes.
+- **#15 [PARCIAL]** Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos (12-10 16:30-17:51) — falta: 6 de las 15 mejoras siguen en NO o a medias (filas 99-113).
+- **#16 [PARCIAL]** Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas (10-10 18:05; 11-10 09:02) — falta: Ningún caso en los datos (0 y 0). La volea no tiene técnica propia. 20-10: la regla de la media volea es una sola para la clase y la marca de revisión (`techni…
+- **#17 [PARCIAL]** Una entrada que se entienda sola: «no entiendo nada ni cómo usarla» (12-10 16:22) — falta: La segunda pestaña (SuD) está vacía. Aprende y SuD se solapan. Las «Novedades» están en SuD.
+- **#23 [PARCIAL]** Seguir a la jugadora en los cambios de lado (10-10 17:27) — falta: Sin validar con datos anotados. 19-10: fallos de identidad en los partidos completos; validar con `validation/recall_eval.py`.
+- **#25 [PARCIAL]** Métricas por derecha: apoyo, base, rodillas, cadera, hombros, X-factor, codo, impacto, cadena, pista (10-10 17:27) — falta: X-factor 2D: mediana de 1° en Aprende, sospechoso (fila 113). 19-10: giro de hombros y X-factor 2D salen «sesgo» y no se dan; rodillas con escorzo; impacto del…
+- **#36 [PARCIAL]** Mano y antebrazo, cierre de la muñeca (11-10 09:56, 10:19) — falta: El lag sale en el 40 % de los golpes y Aprende lo da con **1 golpe**.
+- **#45 [PARCIAL]** Todo automático y completo: el usuario no revisa nada (11-10 09:05, 19:38; 12-10 11:41) — falta: 4 golpes fallaron (`strokes_errores.json`) y nadie los recupera.
+- **#55 [PARCIAL]** Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo (12-10 17:40) — falta: En sus datos hay 0 paralelas y 1 cerrado más «invertida paralela»: el ejemplo no se puede ver. 19-10: apoyo cerrado + paralela sí se combinan; «cerca de la red…
+- **#64 [PARCIAL]** Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la inversa» (12-10 18:03, 18:06;… — falta: El paso cruzado no aparece en ningún golpe. El primer paso y el ajuste salen «no medible» si los tobillos se ven quietos menos del 40 % del tiempo.
+- **#68 [PARCIAL]** La meta: mejorar mi derecha tomando la de X como base (12-10 22:25; 13-10 05:48 p5) — falta: Valores provisionales de 1-10 golpes. Sin progresión ni prioridad (qué copiar primero según lo que la distingue).
+- **#69 [PARCIAL]** Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replicarlo) (13-10 05:48 p8) — falta: Con sus datos hay 0 golpes exactos: se quitan las 5 condiciones y se ven las 10 derechas. «Qué cambia» es texto general, no lo que hace ella.
+- **#70 [PARCIAL]** Las 2000 y pico combinaciones, usables y validadas (13-10 05:48 p2; 06:00) — falta: Combinaciones de medida y nivel: 0 de 2.992 visibles. Solo se prueba un trío o más (el ejemplo del usuario).
+- **#71 [PARCIAL]** El conocimiento de los vídeos de entrenadores en la web (12-10 21:31; 13-10 05:48 p3) — falta: La fuente es una etiqueta genérica. Falta «Lo que la distingue» (mejora 12). El examen R no sale en la web (decisión de diseño).
+- **#72 [PARCIAL]** El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos (13-10 06:00, 06:30) — falta: Está en la web, pero con 10 golpes casi nada se puede afirmar. SuD (fases, `copy_cue`) no se ve.
+- **#73 [PARCIAL]** Revisar la web de arriba abajo para que aporte valor (13-10 05:48 p6) — falta: SuD vacía, Comparativas con 8 «Sin datos», Explorador con 41 «—». Panel dice 14 derechas y Aprende 10 (cuenta las lejanas).
+- **#74 [PARCIAL]** ¿El análisis de las apps de pago y libres fue profundo o superficial? (13-10 05:48 p7) — falta: Solo documental: sin contrastar pantalla a pantalla. Aprende imita las posiciones P de Sportsbox.
+- **#77 [PARCIAL]** No lanzar pruebas de 6 h para validar (13-10 06:01) — falta: Validar el análisis exige la prueba media (5 h).
+- **#78 [PARCIAL]** No depender de que al usuario se le ocurran funciones (13-10 06:09) — falta: Quedan sin hacer 4 mejoras propuestas por Claude (filas 102, 106, 110, 112).
+- **#79 [PARCIAL]** Vídeos de entrenamiento con otras cámaras, en un apartado aparte y marcado (12-10 21:31, 21:32) — falta: Solo 3 derechas de lado medidas (de 23 laterales), así que no hay resumen. En Aprende, «— menos de 12» aunque haya 13 estimaciones 3D.
+- **#84 [PARCIAL]** Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca) (12-10 21:14) — falta: Fuerza contra el suelo, pronación y snap: solo «no medible». X-factor 1°. Lag con 1 golpe.
+- **#85 [PARCIAL]** Matriz §2 Cuerpo (cabeza, brazos, tronco, piernas, pie de arrastre) — falta: Mirada y core: no medibles. Cabeza quieta: 2 golpes. Rodillas desde detrás: escorzo; la rodilla de lado sale «—».
+- **#86 [PARCIAL]** Matriz §3 Raqueta (bucle, caída, cara, trayectoria) — falta: Caída bajo la bola solo de lado («—»). Dentro-fuera: no medible. Cara en el impacto estimada.
+- **#88 [PARCIAL]** Matriz §5 Pies (split, ajuste, cruzado, paso de ataque, recuperación) — falta: El paso cruzado nunca aparece. Pasos en 4 de 10 golpes.
+- **#89 [PARCIAL]** Matriz §6 Modalidades (plano, liftado, cortado, botepronto, volea, 3 terminaciones) — falta: «Plano» = trayectoria, no efecto: 0 casos. Botepronto y volea: 0. Terminaciones: sí.
+- **#90 [PARCIAL]** Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral) — falta: Ningún nivel llega a 12 golpes. «Qué cambia» es texto genérico, no su cambio medido.
+- **#91 [PARCIAL]** Matriz §8 Dirección (cruzado, paralelo, dentro-fuera, dentro-dentro) — falta: Paralela 0, invertida cruzada 0.
+- **#92 [PARCIAL]** Matriz §9 Control (zona de impacto, relajación, equilibrio) — falta: «Delante de la cadera» solo de lado o en 3D: en Aprende «—». Equilibrio: 1 golpe.
+- **#95 [PARCIAL]** Matriz §12 Neuro y visión (latencia, mirada, EMG) — falta: Latencia con 4 golpes. Mirada y EMG: no medibles.
+- **#97 [PARCIAL]** Matriz §14 Fugas de energía (apertura prematura, casting, vector) — falta: Casting solo de lado (3 golpes, «—»).
+- **#100 [PARCIAL]** Mejora 2: raqueta al lado del cuerpo o detrás de la espalda, y adónde apunta la punta — falta: Sale «—» en sus 10 golpes. `tip_points_to` no existe.
+- **#107 [PARCIAL]** Mejora 9: caída por debajo de la bola — falta: Desde la tele no existe.
+- **#109 [PARCIAL]** Mejora 11: frases con datos existentes (mano libre, terminación, base al terminar, desplazarse bajo) — falta: Faltan la mano libre en el armado, `finish.elbow_non`, la base al terminar y la cadera durante el desplazamiento.
+- **#113 [PARCIAL]** Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25) — falta: Nada confirmado ni refutado. R2 apunta a un fallo de `ready_hands` (100 % «mano libre separada»).
+- **#124 [PARCIAL]** Hacia dónde mira el tronco y las manos en la espera, medidas fiables (13-10 13:00) — falta: Manos en la espera solo en 3 de 10 golpes (la raqueta casi no se ve en la espera).
+- **#130 [PARCIAL]** Resto de derecha (devolver el saque) con todas sus variantes, en la matriz y en la aplicación (13-10 14:30) — falta: Pocos restos en la prueba corta; primer/segundo saque es probable (un corte entre saques lo confunde); el tipo de resto sale de las clases de preparación, term…
+- **#135 [PARCIAL]** distancia al fondo, red (Chat, 11-10 19:23) — falta: Hay distancia al fondo, pero no a la red: «dentro de la pista» junta todo lo que está a más de 0,5 m dentro de la línea, de la zona de saque a la red. 20-10: h…
+- **#140 [PARCIAL]** de la jugadora de fondo se sacan imagenes para la captura de datos en vista frontal? (Chat, 14-10 20:08) — falta: No se usa como vista frontal para medidas del cuerpo: a 60-90 px los tobillos y la raqueta salen imprecisos.
+- **#142 [PARCIAL]** (punto 2) como se puede hacer una aplicacion profesional ... mas jugadores, mas golpes ... como se lanza, almacenamiento, videos, progreso … — falta: Construida y probada, pero el análisis real de los 4 partidos (18-10) se lanzó con el ciclo, no desde la aplicación; nunca usada con datos correctos.
+- **#143 [PARCIAL]** (punto 3) esta es una guia para la derecha de otra jugadora ... revisar si aplica todo (Chat, 17-10 09:49) — falta: De sus 20 huecos, 7 siguen a medias o sin hacer (ver fuente «Guía Ivanovic»).
+- **#147 [PARCIAL]** la guia de ivanovic esta aplicada al 100 por 100? sobre todo los puntos 1 2 3 5 6 y 10 (Chat, 17-10 10:52) — falta: 3 a medias (falta «punta arriba / codo alto»), 6 a medias (faltan 3 alarmas), 10 sin hacer (mano libre en aceleración e impacto).
+- **#154 [PARCIAL]** mi movil es android google pixel 8 ... que copie directo al pixel (Chat, 18-10 12:11) — falta: Sin probar con el teléfono conectado.
+- **#156 [PARCIAL]** como sabes la identidad de la jugadora y porque hay fallos? porque no buscas en la web de la wta la imagen y altura (Chat, 19-10 06:29) — falta: Fallos sin explicar ni corregir; una foto de la WTA sería una fuente externa (requisito 6) y no sirve desde detrás: la identidad debe validarse con `validation…
+- **#159 [PARCIAL]** volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (Chat, 19-10 08:11) — falta: La empuñadura no se ve en la tele: el golpe de fondo se reconoce por el swing (preparación no compacta y terminación completa). La medida «bola seguida» (`ball…
+- **#160 [PARCIAL]** la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11) — falta: Arranca, pero los análisis de los 4 partidos no son válidos (golpes perdidos).
+- **#162 [PARCIAL]** Galerías ordenadas por calidad de captura, representatividad y resultado del punto (CLAUDE.md, Informe) — falta: No hay orden por resultado del punto (solo filtro).
+- **#163 [PARCIAL]** Final del armado (máximo giro, raqueta más atrás) (Matriz (literatura), §1) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#164 [PARCIAL]** Final de la extensión (Matriz (literatura), §1) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#165 [PARCIAL]** Giro de cadera y de hombros al final del armado (Matriz (literatura), §2) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#166 [PARCIAL]** Separación cadera–hombros (X-factor) (Matriz (literatura), §2) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#167 [PARCIAL]** Cabeza quieta tras el impacto (Matriz (literatura), §2) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#168 [PARCIAL]** Hombros más girados que la cadera en el impacto (Matriz (literatura), §2) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#169 [PARCIAL]** Transferencia de peso del armado al impacto (Matriz (literatura), §2) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#170 [PARCIAL]** Empuje de piernas («bajar y subir») (Matriz (literatura), §2) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#171 [PARCIAL]** Primer paso: tipo (gravity, jab, pivot, counter, cruzado, lateral) (Matriz (literatura), §3) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#172 [PARCIAL]** Cada paso nombrado: lateral (sin cruzar), cruzado, de carrera, hacia delante, hacia atrás, de ajuste (Matriz (literatura), §3) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#173 [PARCIAL]** Frenado: último paso largo con caída de la velocidad (Matriz (literatura), §3) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#174 [PARCIAL]** Patada atrás (tijera) tras el impacto (Matriz (literatura), §3) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#175 [PARCIAL]** Recuperación: tipo de cada paso de vuelta, cuándo empieza (Matriz (literatura), §3) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#177 [PARCIAL]** Orientación del pie (talón → dedo gordo respecto a la línea de fondo) en el armado y el impacto (Matriz (literatura), §3) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#178 [PARCIAL]** Pivote sobre la punta del pie de atrás (talón arriba, punta apoyada) (Matriz (literatura), §3) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#179 [PARCIAL]** Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP) (Matriz (literatura), §4) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#180 [PARCIAL]** Retraso de la muñeca (lag) (Matriz (literatura), §4) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#181 [PARCIAL]** Cara en el impacto (Matriz (literatura), §4) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#182 [PARCIAL]** Velocidad de la raqueta relativa entre golpes (Matriz (literatura), §4) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#183 [PARCIAL]** Posición de la mano en el mango (Matriz (literatura), §4) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#184 [PARCIAL]** Altura de la bola en su vuelo, bote, punto más alto; contacto subiendo / arriba / cayendo (Matriz (literatura), §5) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#185 [PARCIAL]** Longitud del peloteo (Matriz (literatura), §5) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#186 [PARCIAL]** Resto, globo, dejada, volea, subida a la red (Matriz (literatura), §5) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#187 [PARCIAL]** Ganador / error (forzado o no) (Matriz (literatura), §5) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#188 [PARCIAL]** Resto de primer o de segundo saque (Matriz (literatura), §5b) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
+- **#190 [PARCIAL]** Clase de forma del armado: bucle verdadero, loop falso, recto atrás; tendencia «punta arriba / codo alto» (Guía Ivanovic, hueco 3) — falta: Falta la tendencia «punta arriba / codo alto».
+- **#191 [PARCIAL]** Alarmas por golpe: cara al cielo, punta hacia la red tras el giro, pausa arriba, caída bajo la rodilla, cabeza que sube, retrocede en el im… — falta: Faltan «punta hacia la red tras el giro», «caída bajo la rodilla» y «se mueve hacia atrás en el impacto»; la alarma de pausa usa una medida declarada no medibl…
+- **#192 [PARCIAL]** Terminación «hacia adelante», «la mano libre recoge la raqueta», codo al terminar (Guía Ivanovic, hueco 9) — falta: Faltan el nivel «hacia adelante» en `technique.finish_class` y el codo libre al terminar (`finish.elbow_non`).
+- **#194 [PARCIAL]** «Sus principios» (5-6 frases) y «Lo que la distingue» (Guía Ivanovic, hueco 13) — falta: No hay «Sus principios».
+- **#195 [PARCIAL]** Fuentes en COACH: Iino y Kojima 2001, Bahamonde y Knudson 2003, Kawamoto 2019, LTA, Wulf, autoinstrucciones (Guía Ivanovic, hueco 17) — falta: Faltan Iino, Kojima, Bahamonde, Knudson 2003, Kawamoto, LTA y el metaanálisis.
+- **#206 [PARCIAL]** Validación de cuerdas y 3D con referencia real (Comparativa apps, §4.4) — falta: Sin referencia 3D real.
+- **#207 [PARCIAL]** Golpes: sin volea, remate ni cortado (Comparativa apps, §3 Peor) — falta: Sin técnica propia de volea, remate ni cortado. 20-10: la volea también a media pista y fuera de la línea de saque (`class.contact_type`).
+- **#208 [PARCIAL]** Lógica duplicada JS/Python: calcular una vez en Python (Revisión completa, §2 fallo 17) — falta: La plantilla aún calcula en JavaScript partes de Comparar, la videoteca y la lección.
+- **#212 [PARCIAL]** Grados de estimaciones poco fiables como objetivo (cara en el impacto) (Auditorías 17-10, técnica #15) — falta: Sigue mostrando grados en el impacto.
+- **#213 [PARCIAL]** Textos COACH (el porqué con fuente) en todas las claves de la lección (Auditorías 17-10, técnica #17) — falta: Sin COACH: `footwork.recovery_start_s`, `class.recovery_first_step`, `footwork.rear_leg_step_after`, `class.approach_main`.
+- **#214 [PARCIAL]** Fuentes de Ivanovic §3 #17 (Auditorías 17-10, técnica #18) — falta: Ver hueco 17 de Ivanovic.
+- **#215 [PARCIAL]** Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22) — falta: Unificar en «armado completo cuando bota».
+- **#218 [PARCIAL]** La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (velocidad normal o cámara lent… — falta: Falta validarlo con los partidos reales (umbrales de clasificación), medir sobre esas tomas (pasada fina en la cámara lenta: `views.fine_on_slowmo`, pendiente)…
+- **#219 [PARCIAL]** Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa distancia, no descartados (19-… — falta: Se confirman ~20 % de los golpes del fondo (Zheng: 36 de ~175).
+- **#221 [PARCIAL]** Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano (19-10 19:57) — falta: Recall 80 % en partidos bien anotados; las repeticiones descartan de más (11 % en F3Set, 30 % de candidatos en Gauff).
+- **#230 [PARCIAL]** Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12:56) — falta: Se mide desde el próximo trabajo; luego acelerar lo que no aproveche el equipo.
+- **#231 [PARCIAL]** Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11:05-21:50) — falta: Leer solo fotogramas clave (cualquier fotograma de la toma vale) y medir el tiempo.
+- **#232 [PARCIAL]** Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó (27-10 09:24) — falta: Encontrar y arreglar el golpe que cuelga la exportación del revés.
+- **#235 [PARCIAL]** Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) — falta: Cadena en orden 79 % y pasos medidos 87 % en los 193 golpes; falta verlo recalculado en el PC.
+- **#236 [PARCIAL]** Huellas numeradas sobre los pies y patrones de pasos (27-10 09:38) — falta: Patrón típico de pasos por situación (frecuencia de cada secuencia).
+- **#238 [PARCIAL]** La validación es siempre automática; el usuario no valida la aplicación (27-10 11:42) — falta: Que cada pantalla nueva entre con su comprobación automática.
+- **#242 [PARCIAL]** Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis por persona (27-10 12:06) — falta: Medir el detector con partidos masculinos; probar el flujo entero con capturas.
+- **#243 [PARCIAL]** Todos los escenarios del producto los contempla Claude sin esperar a que se pidan (27-10 12:09) — falta: Bloque E1: cada ✘ y ◐ con su prueba automática.
+
+
+## No cumplidos
+
+- **Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin**: marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto de saque) y 72-133 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 63 golpes, 1 saques/remates → como mucho 88% de sus golpes y 6% de sus 
+- **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=786–1141 de 900; al abrir 2 títulos, 544 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1141 (más abajo que la primera pantalla, 900)
+- **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
+- **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
+- **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
+- **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
+- **#193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10)**: SIN HACER según el registro (#193, docs/peticiones_usuario.md)
+- **#196 Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18)**: SIN HACER según el registro (#196, docs/peticiones_usuario.md)
+- **#197 Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19)**: SIN HACER según el registro (#197, docs/peticiones_usuario.md)
+- **#198 Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20)**: SIN HACER según el registro (#198, docs/peticiones_usuario.md)
+- **#199 Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10)**: SIN HACER según el registro (#199, docs/peticiones_usuario.md)
+- **#200 Pista: TennisCourtDetector (14 puntos) + refinado (Estado del arte, 13-10)**: SIN HACER según el registro (#200, docs/peticiones_usuario.md)
+- **#201 Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10)**: SIN HACER según el registro (#201, docs/peticiones_usuario.md)
+- **#202 Bola: probar WASB (Estado del arte, 13-10)**: SIN HACER según el registro (#202, docs/peticiones_usuario.md)
+- **#203 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10)**: SIN HACER según el registro (#203, docs/peticiones_usuario.md)
+- **#205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3)**: SIN HACER según el registro (#205, docs/peticiones_usuario.md)
+- **#209 Passing y globo (Revisión completa, §3 B)**: SIN HACER según el registro (#209, docs/peticiones_usuario.md)
+- **#210 Dejada (bote muy corto en campo rival) (Revisión completa, §3 B)**: SIN HACER según el registro (#210, docs/peticiones_usuario.md)
+- **#211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5)**: SIN HACER según el registro (#211, docs/peticiones_usuario.md)
+- **#216 Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnic**: SIN HACER según el registro (#216, docs/peticiones_usuario.md)
+- **#217 Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26)**: SIN HACER según el registro (#217, docs/peticiones_usuario.md)
+- **#223 Revés y derecha cortados**: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
+- **#224 Saques: plano, cortado o kick; primero o segundo**: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
+- **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
+- **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
+- **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
+
+## Empeora respecto a la ejecución anterior
+
+- **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: ok → aviso: 5 de 11 del lado cercano (45%); motivos: elbow_implausible_at_impact 2, phase 2, impact_without_audio 2. Otros 5 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado):
+- **#76 «Un 50 % de golpes dudosos»**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (5 de 11 del lado cercano (45%); motivos: elbow_implausible_at_impact 2, phase 2, impact_without_audio 2
+
+## Mejora
+
+- Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series: falta → ok
+- #83 Árbol de ficheros generados y validados: falta → ok
+- #204 Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10): falta → aviso
+
+## Comprobaciones nuevas
+
+- #220 Almacenamiento definitivo: árbol por jugador, partido y golpe; nombres, colisiones y todos los escenarios: aviso (sin comprobación automática asignada)
+- #221 Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano: aviso (A MEDIAS según el registro (#221); sin comprobación automática asignada)
+- #222 Un clic por partido para decir quién es ella: aviso (sin comprobación automática asignada)
+- #223 Revés y derecha cortados: falta (SIN HACER según el registro (#223, docs/peticiones_usuario.md))
+- #224 Saques: plano, cortado o kick; primero o segundo: falta (SIN HACER según el registro (#224, docs/peticiones_usuario.md))
+- #225 La aplicación no se cuelga ni ralentiza el PC: aviso (sin comprobación automática asignada)
+- #226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10): aviso (sin comprobación automática asignada)
+- #227 Pantalla completa en la aplicación: aviso (sin comprobación automática asignada)
+- #229 Renombrar el vídeo no rompe nada; el partido se identifica por su contenido: aviso (sin comprobación automática asignada)
+- #230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo: aviso (A MEDIAS según el registro (#230); sin comprobación automática asignada)
+- #231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta: aviso (A MEDIAS según el registro (#231); sin comprobación automática asignada)
+- #232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó: aviso (A MEDIAS según el registro (#232); sin comprobación automática asignada)
+- #233 Una referencia completa y medida antes de validar nada: aviso (sin comprobación automática asignada)
+- #234 Prueba de valor de la aplicación con los datos reales: aviso (sin comprobación automática asignada)
+- #235 Cadena cinética, footwork y timing: lo que define el golpe: aviso (A MEDIAS según el registro (#235); sin comprobación automática asignada)
+- #236 Huellas numeradas sobre los pies y patrones de pasos: aviso (A MEDIAS según el registro (#236); sin comprobación automática asignada)
+- #237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min: aviso (sin comprobación automática asignada)
+- #238 La validación es siempre automática; el usuario no valida la aplicación: aviso (A MEDIAS según el registro (#238); sin comprobación automática asignada)
+- #239 No se descarta ninguna petición: aviso (sin comprobación automática asignada)
+- #240 Comparar la aplicación con las profesionales una vez estén los golpes: falta (SIN HACER según el registro (#240, docs/peticiones_usuario.md))
+- #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: aviso (sin comprobación automática asignada)
+- #242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po: aviso (A MEDIAS según el registro (#242); sin comprobación automática asignada)
+- #243 Todos los escenarios del producto los contempla Claude sin esperar a que se pidan: aviso (A MEDIAS según el registro (#243); sin comprobación automática asignada)
+- #244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10): falta (SIN HACER según el registro (#244, docs/peticiones_usuario.md))
+- #245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10): falta (SIN HACER según el registro (#245, docs/peticiones_usuario.md))
+
+## Fiabilidad de las medidas
+
+- ahora: 80 medidas: 9 dudosa, 51 fiable, 13 no comprobable, 1 sesgo, 6 sin juzgar. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
+- antes: 80 medidas: 7 dudosa, 52 fiable, 12 no comprobable, 2 ruido, 3 sesgo, 4 sin juzgar. No se dan como valor suyo (ruido): takeback.shoulder_turn ±3.4, impact.face_tilt ±3.2. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
