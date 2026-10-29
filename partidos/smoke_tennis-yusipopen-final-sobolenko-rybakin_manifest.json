@@ -98,18 +98,19 @@
   }
  },
  "candidates": {
-  "fingerprint": "0ae70d0c1c159d0c",
+  "fingerprint": "ab1940b0df282a75",
   "version": "9",
-  "seconds": 0.9,
-  "finished": "2026-10-20 02:44:07",
+  "seconds": 1.2,
+  "finished": "2026-10-29 03:17:12",
   "summary": {
-   "candidates": 343,
-   "far": 275,
-   "with_audio": 336,
-   "opponent_runs": 29,
-   "identity_unknown": 43,
-   "replay_runs_skipped": 7,
-   "replays_by_path": 5,
+   "candidates": 175,
+   "far": 89,
+   "with_audio": 141,
+   "source": "spotter",
+   "opponent_strokes": 74,
+   "identity_unknown": 35,
+   "replay_strokes_skipped": 10,
+   "replay_runs": 7,
    "audio_track": 0
   }
  },
@@ -215,20 +216,20 @@
   }
  },
  "views": {
-  "fingerprint": "a91485b0be313fe0",
-  "version": "1",
-  "seconds": 834.3,
-  "finished": "2026-10-20 10:03:19",
+  "fingerprint": "52e08b8853b502e8",
+  "version": "5",
+  "seconds": 83.1,
+  "finished": "2026-10-29 03:18:35",
   "summary": {
    "views": 123,
    "repeticion_principal": 22,
-   "lateral": 2,
+   "lateral": 3,
    "frontal": 1,
-   "primer_plano": 96,
+   "primer_plano": 95,
    "otra": 2,
-   "links": 555,
-   "linked_views": 115,
-   "slowmo_links": 7
+   "links": 330,
+   "linked_views": 113,
+   "slowmo_links": 5
   }
  },
  "views_link": {
@@ -243,6 +244,24 @@
    "with_slowmo": 0,
    "replay_share": 0.481,
    "other_share": 0.815
+  }
+ },
+ "spotting": {
+  "fingerprint": "dbcd20df400cbf56",
+  "version": "1",
+  "seconds": 3414.7,
+  "finished": "2026-10-29 03:17:10",
+  "summary": {
+   "enabled": true,
+   "strokes": 185,
+   "near": 90,
+   "far": 95,
+   "out_of_play": 1240,
+   "threshold": 0.1,
+   "fps": 10.0,
+   "model_fps": 10.0,
+   "feature_dim": 122,
+   "audio_track": 0
   }
  }
 }
