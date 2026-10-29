@@ -142,6 +142,9 @@ ball:
   # añadido): DirectML compila la red para una sola forma. Mismo mapa de calor por fotograma.
   # apagado tras la prueba 5 en el PC (14-10): la bola no fue más rápida en DirectML (1394 s frente a 1332 s)
   static_batch: false
+  # media precisión en la iGPU (29-10, scripts/bench_ball.py en el PC): 16 → 25 fotogramas/s con la misma bola
+  # en los 2560 fotogramas medidos (0 px de diferencia). Solo velocidad: no cambia ningún resultado.
+  fp16: true
 
 # Orientación de las cuerdas en la pasada fina: 5 puntos de la raqueta (RacketVision,
 # `scripts/export_racketpose.py`) y, si está, la mano/antebrazo en 3D (RTMW3D, más lento:

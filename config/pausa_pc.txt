@@ -1,0 +1,4 @@
+# Pausa total del PC pedida por el usuario (29-10, "no hagas nada mas en local hasta que yo te avise").
+# "pausa: si": el ciclo corta todo lo de este proyecto que este en marcha, apaga la tarea de Windows de cada 10 min y
+# el bucle de inicio de sesion no sigue. Solo Claude la quita ("pausa: no"), y solo cuando el usuario lo diga.
+pausa: si

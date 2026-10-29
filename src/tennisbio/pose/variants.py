@@ -40,10 +40,17 @@ def to_fp16(src: str | Path, dst: str | Path | None = None) -> Path:
     import onnx
     from onnxruntime.transformers.float16 import convert_float_to_float16
 
+    import os
+
     m = convert_float_to_float16(onnx.load(str(src)), keep_io_types=True)
-    tmp = dst.with_suffix(".part")
+    tmp = dst.with_suffix(f".{os.getpid()}.part")      # one per process: two fine processes may make it at once
     onnx.save(m, str(tmp))
-    tmp.replace(dst)
+    try:
+        tmp.replace(dst)
+    except OSError:                                    # the other process's copy is there (and in use): the same
+        tmp.unlink(missing_ok=True)
+        if not dst.exists():
+            raise
     return dst
 
 

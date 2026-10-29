@@ -349,3 +349,19 @@ def test_worker_that_hangs_is_killed_not_waited_forever(tmp_path, monkeypatch):
         assert not ok and "colgado" in err and time.time() - t0 < 15 and not w.alive()
     finally:
         w.close()
+
+
+def test_ball_fp16_on_the_igpu_only_and_not_in_the_fingerprint(monkeypatch, tmp_path):
+    """29-10 (bench_ball.py on the PC): the half-precision ball model, 16 → 25 frames/s, the same ball."""
+    from tennisbio import ball, stages
+    from tennisbio.pose import estimator, variants
+
+    got = []
+    monkeypatch.setattr(estimator, "_ort_session", lambda path, *a, **k: got.append(str(path)))
+    monkeypatch.setattr(variants, "to_fp16", lambda p: tmp_path / "b_fp16.onnx")
+    ball.BallTracker(tmp_path / "b.onnx", "dml", fp16=True)
+    ball.BallTracker(tmp_path / "b.onnx", "cpu", fp16=True)
+    ball.BallTracker(tmp_path / "b.onnx", "dml")
+    assert got == [str(tmp_path / "b_fp16.onnx"), str(tmp_path / "b.onnx"), str(tmp_path / "b.onnx")]
+    cfg = {"fine_pass": {}, "ball": {"onnx": "x", "threshold": 0.5}}
+    assert stages._fine_settings(cfg) == stages._fine_settings({**cfg, "ball": {**cfg["ball"], "fp16": True}})

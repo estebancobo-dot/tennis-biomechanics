@@ -614,7 +614,8 @@ def _ball_tracker(ctx: Context):
         raise FileNotFoundError("falta el modelo de bola (models/balltrack.onnx), que necesita el detector entrenado "
                                 "con la bola; ejecuta 1_instalar.bat")
     return BallTracker(str(bpath), ctx.cfg.get("device", "cpu"), bcfg.get("threshold", 0.5),
-                       static_batch=bool(bcfg.get("static_batch", True)) and ctx.cfg.get("device", "cpu") == "dml")
+                       static_batch=bool(bcfg.get("static_batch", True)) and ctx.cfg.get("device", "cpu") == "dml",
+                       fp16=bool(bcfg.get("fp16", True)))
 
 
 @stage("spotting", "1", deps=("players", "audio", "court", "scenes", "identity"), settings=_spotting_settings,
@@ -1391,7 +1392,9 @@ def cut_window(video: Path, t0: float, dur: float, dest: Path, interlaced: bool 
 
 def _fine_settings(c):
     rf = c.get("racket_face") or {}
-    return {"fine": c["fine_pass"], "imgsz": c.get("fine_imgsz", 960), "ball": c.get("ball"),
+    # ball.fp16 is speed only (the same ball, ball.BallTracker): not part of what the results depend on
+    ball = {k: v for k, v in (c.get("ball") or {}).items() if k != "fp16"} if c.get("ball") is not None else None
+    return {"fine": c["fine_pass"], "imgsz": c.get("fine_imgsz", 960), "ball": ball,
             "racket_face": rf, "include_undecided": c.get("include_undecided", False),
             # the models themselves: adding or replacing one re-runs the fine pass
             "models": {"ball": model_state((c.get("ball") or {}).get("onnx")), "racket": model_state(rf.get("pose_onnx")),
@@ -1623,7 +1626,8 @@ def _fine_models(ctx: Context):
         bcfg = ctx.cfg.get("ball") or {}
         # on the iGPU the ball model runs with a fixed batch (ball.static_batch): DirectML compiles it once
         ball = BallTracker(str(bpath), ctx.cfg.get("device", "cpu"), bcfg.get("threshold", 0.5),
-                           static_batch=bool(bcfg.get("static_batch", True)) and ctx.cfg.get("device", "cpu") == "dml")
+                           static_batch=bool(bcfg.get("static_batch", True)) and ctx.cfg.get("device", "cpu") == "dml",
+                           fp16=bool(bcfg.get("fp16", True)))
     if rp is not None:
         from .racket_pose import RacketPose
         rpose = RacketPose(str(rp), ctx.cfg.get("device", "cpu"))

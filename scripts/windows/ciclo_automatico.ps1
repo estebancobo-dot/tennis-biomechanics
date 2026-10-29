@@ -355,6 +355,37 @@ try { Sin-Suspender } catch {}
 # rastro de cada arranque (antes de cualquier cosa que pueda fallar): se sube con la senal de vida
 try { "arranque: $(Get-Date -Format s) (pid $PID)" | Set-Content "$Out\ciclo_arranque.txt" } catch {}
 
+# PAUSA TOTAL pedida por el usuario (29-10): config/pausa_pc.txt con "pausa: si" (en GitHub, o ya en el disco si no hay
+# red) corta todo lo de este proyecto que este en marcha, apaga la tarea de Windows de cada 10 min y no hace nada mas;
+# el bucle de inicio de sesion (ciclo_bucle.ps1) tampoco sigue: no se corta desde aqui (es el abuelo de este ciclo),
+# lee la pausa del disco y termina. Se reanuda solo cuando Claude pone "pausa: no".
+function En-Pausa {
+    $txt = ""
+    try {
+        git -C $RepoDir fetch -q origin $Rama 2>$null
+        if ($LASTEXITCODE -eq 0) { $txt = (git -C $RepoDir show "FETCH_HEAD:config/pausa_pc.txt" 2>$null) -join "`n" }
+    } catch {}
+    if (-not $txt) { $txt = (Get-Content (Join-Path $RepoDir "config\pausa_pc.txt") -ErrorAction SilentlyContinue) -join "`n" }
+    return ($txt -match '(?m)^pausa:\s*si\b')
+}
+if (En-Pausa) {
+    $ErrorActionPreference = "Continue"
+    $padre = -1
+    try { $padre = [int](Get-CimInstance Win32_Process -Filter "ProcessId=$PID").ParentProcessId } catch {}
+    $mios = Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" -ErrorAction SilentlyContinue |
+        Where-Object { $_.ProcessId -ne $PID -and $_.ProcessId -ne $padre -and $_.CommandLine -match "prueba_rapida|analisis_completo|recalcular_medidas|solo_informe|ciclo_automatico|medir_recursos|instalar" }
+    foreach ($o in $mios) { & taskkill.exe /T /F /PID $o.ProcessId 2>&1 | Out-Null }
+    try { Disable-ScheduledTask -TaskName "tenis-ciclo-automatico" -ErrorAction SilentlyContinue | Out-Null } catch {}
+    # el codigo al dia (sin ejecutar nada): asi la pausa tambien esta en el disco y vale sin red
+    try { git -C $RepoDir merge -q --ff-only FETCH_HEAD 2>&1 | Out-Null } catch {}
+    "$(Get-Date -Format s) EN PAUSA (config/pausa_pc.txt): cortados $((@($mios) | ForEach-Object { $_.ProcessId }) -join ','); tarea de Windows apagada" |
+        Add-Content "$Out\paradas.log"
+    try { "en pausa desde $(Get-Date -Format s): nada en marcha" | Set-Content "$Out\ciclo_vivo.txt"; Subir-Registros | Out-Null } catch {}
+    exit 0
+}
+# fuera de pausa, la tarea de Windows vuelve a estar encendida (Registrar-Ciclo la deja al dia mas abajo)
+try { Enable-ScheduledTask -TaskName "tenis-ciclo-automatico" -ErrorAction SilentlyContinue | Out-Null } catch {}
+
 # el ciclo que nos lanzo para usar el script nuevo (Relanzar) no cuenta como otro analisis
 $PadrePid = -1
 try { $PadrePid = [int](Get-CimInstance Win32_Process -Filter "ProcessId=$PID").ParentProcessId } catch {}

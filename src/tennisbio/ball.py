@@ -19,12 +19,18 @@ def median_background(frames: list[np.ndarray], max_frames=60) -> np.ndarray:
 
 class BallTracker:
     def __init__(self, onnx_path: str | Path, device="cpu", threshold=0.5, batch=8, static_batch: bool = False,
-                 threads: int | None = None):
+                 threads: int | None = None, fp16: bool = False):
         """static_batch: the model's batch is fixed to `batch` (the last, shorter batch of a window is
         padded and the padding's heatmaps dropped): on the iGPU, DirectML then compiles the whole
         network for one shape instead of running it as a dynamic graph. Same heatmap for each frame.
-        threads: CPU threads of the model (None: all cores; fine_speed.ball_ahead_threads)."""
+        threads: CPU threads of the model (None: all cores; fine_speed.ball_ahead_threads).
+        fp16: the half-precision copy of the model, on the iGPU only (29-10, scripts/bench_ball.py on the PC:
+        16 → 25 frames/s with the same ball in all 2560 frames, 0 px apart; on the CPU it would be slower)."""
         from .pose.estimator import _ort_session
+
+        if fp16 and device != "cpu":
+            from .pose.variants import to_fp16
+            onnx_path = to_fp16(onnx_path)
 
         self.static = bool(static_batch)
         self.sess = _ort_session(str(onnx_path), device, {"n": batch} if self.static else None, threads=threads)

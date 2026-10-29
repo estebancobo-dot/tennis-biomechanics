@@ -10,7 +10,10 @@ try {
     Add-Type -Namespace Win32 -Name Power -MemberDefinition '[DllImport("kernel32.dll")] public static extern uint SetThreadExecutionState(uint esFlags);' -ErrorAction SilentlyContinue
     [Win32.Power]::SetThreadExecutionState([uint32]"0x80000001") | Out-Null
 } catch {}
+$pausa = Join-Path (Split-Path (Split-Path $PSScriptRoot)) "config\pausa_pc.txt"
 while ($true) {
+    # pausa total pedida por el usuario (config/pausa_pc.txt, "pausa: si"): el bucle no sigue (29-10)
+    if ((Get-Content $pausa -ErrorAction SilentlyContinue) -match '^pausa:\s*si\b') { exit 0 }
     try {
         # sin ventana ni parpadeo (oculto.vbs); si faltara, como antes
         if (Test-Path $vbs) { Start-Process wscript.exe -Wait -ArgumentList @("//B", "`"$vbs`"", "`"$ps1`"") }
