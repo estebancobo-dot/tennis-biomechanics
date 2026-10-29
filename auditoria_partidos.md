@@ -1,6 +1,6 @@
 # Auditoría de requisitos (forehand)
 
-193 golpes del lado cercano. ✔ 327 cumplidos · ✘ 42 no cumplidos · … 54 sin golpes suficientes en esta ejecución · ! 134 avisos
+193 golpes del lado cercano. ✔ 333 cumplidos · ✘ 42 no cumplidos · … 54 sin golpes suficientes en esta ejecución · ! 128 avisos
 
 ## Peticiones del usuario SIN TERMINAR: 127 de 245
 
@@ -474,10 +474,10 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 
 ## 9. Rendimiento: un partido en horas, no días
 
-- ! **Tiempo: sin-fecha_f43dd2_rybakina**: 255 min para 71 min de vídeo ≈ 12.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
-- ✔ **Tiempo: sin-fecha_584c5b_rybakina**: 227 min para 117 min de vídeo ≈ 6.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
-- ✔ **Tiempo: sin-fecha_580c6f_rybakina**: 152 min para 133 min de vídeo ≈ 4.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
-- ✔ **Tiempo: sin-fecha_b8b713_rybakina**: 271 min para 210 min de vídeo ≈ 4.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
+- ✔ **Tiempo: sin-fecha_f43dd2_rybakina**: 245 min para 71 min de vídeo ≈ 12.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
+- ✔ **Tiempo: sin-fecha_584c5b_rybakina**: 200 min para 117 min de vídeo ≈ 6.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
+- ✔ **Tiempo: sin-fecha_580c6f_rybakina**: 130 min para 133 min de vídeo ≈ 3.4 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
+- ✔ **Tiempo: sin-fecha_b8b713_rybakina**: 245 min para 210 min de vídeo ≈ 4.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
@@ -518,12 +518,9 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ! **#10 Ver los cambios en la prueba rápida, sin 1 h**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 11 comprobaciones: 11 ok
 - ! **#12 Validar cada medida con clips públicos anotados; el usuario no valida a mano**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: A MEDIAS según el registro (#13); no se comprueba en las salidas: en los tests del código (uv run pytest, pc-logs:pruebas.log), no en las salidas
-- ! **#14 Rendimiento: un partido en horas, no días**: 4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (255 min para 71 min de vídeo ≈ 12.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
 - ! **#15 Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
-- ! **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (255 min para 71 min de vídeo ≈ 12.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
 - ! **#23 Seguir a la jugadora en los cambios de lado**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#25 Métricas por derecha: apoyo, base, rodillas, cadera, hombros, X-factor, codo, impacto, cadena, pista**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
-- ! **#29 Fase 0: entorno y fps reales, con YOLO**: 4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (255 min para 71 min de vídeo ≈ 12.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
 - ! **#36 Mano y antebrazo, cierre de la muñeca**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#44 Sin vídeos del usuario, de entrenadores ni de otras jugadoras**: 11 comprobaciones: 1 aviso, 10 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))
 - ! **#45 Todo automático y completo: el usuario no revisa nada**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok
@@ -536,7 +533,6 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ! **#71 El conocimiento de los vídeos de entrenadores en la web**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 21 comprobaciones: 4 aviso, 17 ok; la peor: «R17 La terminación más frecuente es sobre el hombro» (refuta: la más frecuente: limpiaparabrisas)
 - ! **#73 Revisar la web de arriba abajo para que aporte valor**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 23 comprobaciones: 1 aviso, 22 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))
 - ! **#74 ¿El análisis de las apps de pago y libres fue profundo o superficial?**: A MEDIAS según el registro (#74); no se comprueba en las salidas: análisis documental (docs/comparativa_apps.md), no una salida
-- ! **#75 Velocidad: «10 golpes en 5 horas es absurdo»**: 4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (255 min para 71 min de vídeo ≈ 12.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
 - ! **#76 «Un 50 % de golpes dudosos»**: 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (100 de 193 del lado cercano (52%); motivos: impact_without_audio 62, elbow_implausible_at_impact 43, phase 26, half_voll)
 - ! **#77 No lanzar pruebas de 6 h para validar**: A MEDIAS según el registro (#77); no se comprueba en las salidas: lanzadores cortos (2c, 2d) sin repetir el análisis de vídeo
 - ! **#78 No depender de que al usuario se le ocurran funciones**: A MEDIAS según el registro (#78); no se comprueba en las salidas: proceso: Claude propone las funciones desde la matriz y los entrenadores
@@ -551,7 +547,6 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ! **#121 Ver lo que se pinta por separado, por grupos o una a una**: 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))
 - ! **#122 Web en 2 vistas principales y el resto en «Más», en dos grupos (funcional y técnico), sin perder datos**: 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))
 - ! **#124 Hacia dónde mira el tronco y las manos en la espera, medidas fiables**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
-- ! **#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno**: 4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (255 min para 71 min de vídeo ≈ 12.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))
 - ! **#130 Resto de derecha (devolver el saque) con todas sus variantes, en la matriz y en la aplicación**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 12 ok
 - ! **#131 detectar impactos de bola por AUDIO (Chat, 10-10 17:27)**: sin comprobación automática asignada
 - ! **#134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06)**: sin comprobación automática asignada
@@ -660,14 +655,17 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - … **#158 bola corta alta cerca de la red (Chat, 19-10 08:11)**: 1 comprobaciones: 1 pocos datos; la peor: «Bola corta alta cerca de la red (#158)» (0 golpes de 193 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa))
 - … **#159 volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (Chat, 19-10 08:11)**: 2 comprobaciones: 2 pocos datos; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 193 (la clase «Contacto» se pudo decidir en 97; sin señal, ninguna clase: nunca se inventa); sin golpes sufi)
 - ✔ **#8 Cuerdas y cara (suelo, valla lateral o trasera, ángulos, cierre muñeca–raqueta) en todas las fases. Obligatori**: 7 comprobaciones: 7 ok
+- ✔ **#14 Rendimiento: un partido en horas, no días**: 4 comprobaciones: 4 ok
 - ✔ **#18 Herramienta Python cinemática 2D, 1 jugador y 1 golpe, parametrizable**: 1 comprobaciones: 1 ok
 - ✔ **#19 Vídeos y salidas fuera del repo, rutas por configuración**: 1 comprobaciones: 1 ok
+- ✔ **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 4 comprobaciones: 4 ok
 - ✔ **#21 Dos pasadas, barata y fina de ±1 s**: 1 comprobaciones: 1 ok
 - ✔ **#22 Solo la cámara principal, sin repeticiones ni primeros planos**: 1 comprobaciones: 1 ok
 - ✔ **#24 OCR del marcador y presión**: 1 comprobaciones: 1 ok
 - ✔ **#26 Fases y cadena completa, del salto inicial a la terminación**: 8 comprobaciones: 8 ok
 - ✔ **#27 Agregados por partido y set, fatiga, ganadores y errores, presión**: 1 comprobaciones: 1 ok
 - ✔ **#28 Informe HTML con gráficos y esqueleto**: 2 comprobaciones: 2 ok
+- ✔ **#29 Fase 0: entorno y fps reales, con YOLO**: 4 comprobaciones: 4 ok
 - ✔ **#30 Estado del arte: igual, mejor o peor que otras apps**: no se comprueba en las salidas: documento de estado del arte (docs), no una salida
 - ✔ **#31 Procesado incremental al añadir vídeos**: no se comprueba en las salidas: proceso (caché por etapas), no una salida
 - ✔ **#32 Ampliable a otros golpes y jugadores**: no se comprueba en las salidas: configuración (config/players, config/strokes), no una salida
@@ -689,6 +687,7 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ✔ **#58 La IA más moderna posible**: no se comprueba en las salidas: elección de modelos (RTMPose, YOLO11, TrackNetV3, RTMW3D)
 - ✔ **#65 El play del vídeo funciona (no solo un fotograma)**: 11 comprobaciones: 11 ok
 - ✔ **#66 Fechas y duración en los registros**: no se comprueba en las salidas: registros con fecha y duración (comun.ps1), no una salida
+- ✔ **#75 Velocidad: «10 golpes en 5 horas es absurdo»**: 4 comprobaciones: 4 ok
 - ✔ **#80 Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice**: no se comprueba en las salidas: cadena de prueba, auditoría y subida a pc-logs
 - ✔ **#81 Tamaño de la salida; comprobación sin gastar tokens**: no se comprueba en las salidas: tamanos.txt y auditoría en Python sin Claude
 - ✔ **#82 Dónde se graban las salidas, qué va a git, qué se reutiliza**: no se comprueba en las salidas: salidas en C:\tenis\output, registros en pc-logs, caché por etapas
@@ -712,6 +711,7 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ✔ **#118 Validar cada medida de forma automática, no a mano: ¿técnica o ruido?**: 1 comprobaciones: 1 ok
 - ✔ **#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa**: no se comprueba en las salidas: ciclo automático del PC: revision_automatica.md en pc-logs
 - ✔ **#123 Lo que se aprende en una sesión: plan de 3 prioridades en orden, foco externo por fase, detalle plegado**: 1 comprobaciones: 1 ok
+- ✔ **#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno**: 4 comprobaciones: 4 ok
 - ✔ **#126 Consignas con su número en «Cómo hacerlo tú» («baja unos 14 cm desde la espera, como ella»), solo si es fiable**: 1 comprobaciones: 1 ok
 - ✔ **#127 Guía de primer uso, «empieza aquí»**: 2 comprobaciones: 2 ok
 - ✔ **#128 Glosario de términos**: 2 comprobaciones: 2 ok

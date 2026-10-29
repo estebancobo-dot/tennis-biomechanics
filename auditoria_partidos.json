@@ -3,10 +3,10 @@
  "strokes": 303,
  "near": 193,
  "summary": {
-  "ok": 327,
+  "ok": 333,
   "falta": 42,
   "pocos datos": 54,
-  "aviso": 134
+  "aviso": 128
  },
  "items": [
   {
@@ -3168,29 +3168,29 @@
    "req": 9,
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_f43dd2_rybakina",
-   "status": "aviso",
-   "detail": "255 min para 71 min de vídeo ≈ 12.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "status": "ok",
+   "detail": "245 min para 71 min de vídeo ≈ 12.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "227 min para 117 min de vídeo ≈ 6.8 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "200 min para 117 min de vídeo ≈ 6.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_580c6f_rybakina",
    "status": "ok",
-   "detail": "152 min para 133 min de vídeo ≈ 4.0 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "130 min para 133 min de vídeo ≈ 3.4 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_b8b713_rybakina",
    "status": "ok",
-   "detail": "271 min para 210 min de vídeo ≈ 4.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "245 min para 210 min de vídeo ≈ 4.1 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
   },
   {
    "req": 2,
@@ -3350,8 +3350,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
-   "status": "aviso",
-   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (255 min para 71 min de vídeo ≈ 12.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "status": "ok",
+   "detail": "4 comprobaciones: 4 ok"
   },
   {
    "req": 11,
@@ -3392,8 +3392,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
-   "status": "aviso",
-   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (255 min para 71 min de vídeo ≈ 12.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "status": "ok",
+   "detail": "4 comprobaciones: 4 ok"
   },
   {
    "req": 11,
@@ -3455,8 +3455,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
-   "status": "aviso",
-   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (255 min para 71 min de vídeo ≈ 12.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "status": "ok",
+   "detail": "4 comprobaciones: 4 ok"
   },
   {
    "req": 11,
@@ -3749,8 +3749,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
-   "status": "aviso",
-   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (255 min para 71 min de vídeo ≈ 12.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "status": "ok",
+   "detail": "4 comprobaciones: 4 ok"
   },
   {
    "req": 11,
@@ -4078,8 +4078,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
-   "status": "aviso",
-   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: sin-fecha_f43dd2_rybakina» (255 min para 71 min de vídeo ≈ 12.5 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "status": "ok",
+   "detail": "4 comprobaciones: 4 ok"
   },
   {
    "req": 11,
