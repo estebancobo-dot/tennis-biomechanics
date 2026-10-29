@@ -88,3 +88,15 @@ Thread 0x00002514 (most recent call first):
   File "C:\tenis\tennis-biomech\.venv\Scripts\tennisbio.exe\__main__.py", line 10 in <module>
   File "<frozen runpy>", line 88 in _run_code
   File "<frozen runpy>", line 198 in _run_module_as_main
+Timeout (0:05:00)!
+Thread 0x00002514 (most recent call first):
+  File "C:\tenis\tennis-biomech\src\tennisbio\io\video.py", line 177 in read_frames
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 173 in _read
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 144 in __init__
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 806 in _export
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 650 in export
+  File "C:\tenis\tennis-biomech\src\tennisbio\cli.py", line 91 in _main
+  File "C:\tenis\tennis-biomech\src\tennisbio\cli.py", line 23 in main
+  File "C:\tenis\tennis-biomech\.venv\Scripts\tennisbio.exe\__main__.py", line 10 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 198 in _run_module_as_main
