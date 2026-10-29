@@ -87,6 +87,8 @@ fine_pass:
 #   más rápida: así el principal no espera a la CPU en la ventana siguiente).
 # - ball_ahead_batch: fotogramas por pasada en la CPU (1: allí un lote no va más rápido y uno de 8 ocupa ≈ 3 GB
 #   de memoria; con 1, ≈ 0,5 GB).
+# - workers: ventanas de la pasada fina a la vez, cada una en su proceso con sus modelos (sin poner: 2 con la iGPU,
+#   1 en la CPU, que ya usa todos los núcleos); con más de 1, la bola va dentro de cada proceso (sin ball_ahead).
 fine_speed:
   ball_ahead: true
   ball_ahead_threads: 4

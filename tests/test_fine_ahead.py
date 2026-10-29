@@ -160,7 +160,7 @@ def _fine_ctx(tmp_path, device, n_cands, fine_speed=None):
     for name, obj in (("candidates.json", cands), ("court.json", []), ("score.json", {})):
         stages._write(tmp_path / name, obj)
     cfg = {"fine_pass": {"window_s": 1.0}, "device": device, "ball": {"onnx": str(model)},
-           "racket_face": {"enabled": False}, "fine_speed": fine_speed or {}}
+           "racket_face": {"enabled": False}, "fine_speed": {"workers": 1, **(fine_speed or {})}}
     logs = []
     ctx = SimpleNamespace(cfg=cfg, log=logs.append, path=lambda n: tmp_path / n, video=tmp_path / "match.mp4",
                           progress=lambda *a, **k: None, match=None)

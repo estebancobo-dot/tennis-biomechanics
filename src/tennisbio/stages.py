@@ -1485,13 +1485,86 @@ def window_cache_key(cfg: dict) -> str:
                                    + pose_cache_tag(cfg)).encode()).hexdigest()[:8]
 
 
-def _fine(ctx: Context, p, keep, out_name: str):
-    """Full-quality analysis of the kept candidates, one window per stretch of play."""
-    cands = _read(ctx.path("candidates.json"))
-    court = _read(ctx.path("court.json"))
-    score = _read(ctx.path("score.json"))
-    onsets = load_onsets(ctx)
+def _fine_workers(cfg: dict, n_groups: int) -> int:
+    """Processes of the fine pass (`fine_speed.workers`; default 2 with the iGPU, 1 on the CPU, where one process
+    already takes every core), never more than windows nor than the cores leave room for."""
+    import os
+    w = (cfg.get("fine_speed") or {}).get("workers")
+    if w is None:
+        w = 2 if cfg.get("device", "cpu") == "dml" else 1
+    return max(1, min(int(w), n_groups, max(1, (os.cpu_count() or 2) // 4)))
+
+
+_FW: dict = {}          # one process of the fine pass: its context, inputs and models (_fine_worker_init)
+
+
+def _fine_worker_init(match, cfg: dict, d: str, player):
+    lines: list = []
+    ctx = Context(match, cfg, Path(d), log=lines.append)
     scenes = _read(ctx.path("scenes.json")) if ctx.path("scenes.json").exists() else {"fps": 1, "shots": []}
+    ball, rpose, wb3d, fcfg, _, _ = _fine_models(ctx)
+    _FW.update(ctx=ctx, lines=lines, p=player, court=_read(ctx.path("court.json")), score=_read(ctx.path("score.json")),
+               onsets=load_onsets(ctx), scenes=scenes, ball=ball, rpose=rpose, wb3d=wb3d, fcfg=fcfg)
+
+
+def _fine_worker(job) -> dict:
+    """One window in a process of the fine pass: its strokes, errors, log lines and where its time went."""
+    i, g, (pre, post, interlaced, ph) = job
+    w = _FW
+    _TIMES.clear()
+    _COUNTS.clear()
+    _GATE.clear()
+    _GATE.update(passed=0, gated=0, off=0, reasons={}, seconds_gated=0.0)
+    w["lines"].clear()
+    strokes, errors = [], []
+    try:
+        strokes = _fine_one(w["ctx"], w["p"], g, pre, post, interlaced, ph, w["court"], w["score"], w["onsets"],
+                            w["scenes"], w["ball"], w["rpose"], w["wb3d"], w["fcfg"])
+    except Exception as e:                        # one bad window never stops the match
+        for c in g:
+            errors.append({"t": c["t"], "error": f"{type(e).__name__}: {e}", "trace": traceback.format_exc()[-1500:]})
+    return {"i": i, "n": len(g), "strokes": strokes, "errors": errors, "lines": list(w["lines"]),
+            "times": dict(_TIMES), "counts": dict(_COUNTS), "gate": {**_GATE, "reasons": dict(_GATE["reasons"])}}
+
+
+def _merge_fine_stats(r: dict):
+    for k, v in r["times"].items():
+        _TIMES[k] = _TIMES.get(k, 0.0) + v
+    for k, v in r["counts"].items():
+        if k != "overlap_s":
+            _COUNTS[k] = _COUNTS.get(k, 0) + v
+    for k in ("passed", "gated", "off", "seconds_gated"):
+        _GATE[k] = _GATE.get(k, 0) + r["gate"].get(k, 0)
+    for k, v in r["gate"].get("reasons", {}).items():
+        _GATE["reasons"][k] = _GATE["reasons"].get(k, 0) + v
+
+
+def _fine_parallel(ctx: Context, p, groups: list, workers: int, args: tuple, took) -> list[int]:
+    """The windows in `workers` processes ("spawn", as on Windows), in order of submission; each result goes to
+    took() as it arrives. Returns the windows still to do (a process that died: they are done one by one after)."""
+    import multiprocessing as mp
+    from concurrent.futures import ProcessPoolExecutor, as_completed
+
+    left = set(range(len(groups)))
+    try:
+        with ProcessPoolExecutor(workers, mp_context=mp.get_context("spawn"), initializer=_fine_worker_init,
+                                 initargs=(ctx.match, ctx.cfg, str(ctx.dir), p)) as ex:
+            futs = [ex.submit(_fine_worker, (i, g, args)) for i, g in enumerate(groups)]
+            for f in as_completed(futs):
+                r = f.result()
+                for line in r["lines"]:
+                    ctx.log(line)
+                _merge_fine_stats(r)
+                left.discard(r["i"])
+                took(r)
+    except Exception as e:                        # noqa: BLE001 — a process that died: the rest here, one by one
+        ctx.log(f"  AVISO: ventanas en paralelo interrumpidas ({type(e).__name__}: {str(e)[:160]}); "
+                f"quedan {len(left)}, se hacen una a una")
+    return sorted(left)
+
+
+def _fine_models(ctx: Context):
+    """The fine pass's models (ball, racket, 3D hand) and its racket_face settings, as each process of it builds them."""
     ball, warnings = None, []
     bcfg = ctx.cfg.get("ball") or {}
     bpath = resolve_path(bcfg.get("onnx"))
@@ -1503,10 +1576,6 @@ def _fine(ctx: Context, p, keep, out_name: str):
     else:
         warnings.append("falta el modelo de bola (models/balltrack.onnx): la detección de golpes será mucho peor; "
                         "ejecuta 1_instalar.bat")
-    pre, post = ctx.cfg["fine_pass"]["window_s"] + 0.3, ctx.cfg["fine_pass"]["window_s"]
-    if ball is not None:      # reach back to the opponent's hit (time available, split step) and
-        pre = max(pre, ctx.cfg["fine_pass"].get("ball_lead_s", 2.2))       # forward to where her shot lands
-        post = max(post, ctx.cfg["fine_pass"].get("ball_tail_s", 1.4))
     fcfg = ctx.cfg.get("racket_face") or {}
     rpose = wb3d = None
     if fcfg.get("enabled", True):
@@ -1524,6 +1593,21 @@ def _fine(ctx: Context, p, keep, out_name: str):
     # the models' files name the window memos of their outputs (racket_orientation.ModelMemo)
     fcfg = {**fcfg, "_memo_tag": "|".join(f"{q.name}:{q.stat().st_size}" for q in (rp, hp)
                                           if q is not None and q.exists())} if fcfg.get("enabled", True) else fcfg
+    return ball, rpose, wb3d, fcfg, bpath, warnings
+
+
+def _fine(ctx: Context, p, keep, out_name: str):
+    """Full-quality analysis of the kept candidates, one window per stretch of play."""
+    cands = _read(ctx.path("candidates.json"))
+    court = _read(ctx.path("court.json"))
+    score = _read(ctx.path("score.json"))
+    onsets = load_onsets(ctx)
+    scenes = _read(ctx.path("scenes.json")) if ctx.path("scenes.json").exists() else {"fps": 1, "shots": []}
+    ball, rpose, wb3d, fcfg, bpath, warnings = _fine_models(ctx)
+    pre, post = ctx.cfg["fine_pass"]["window_s"] + 0.3, ctx.cfg["fine_pass"]["window_s"]
+    if ball is not None:      # reach back to the opponent's hit (time available, split step) and
+        pre = max(pre, ctx.cfg["fine_pass"].get("ball_lead_s", 2.2))       # forward to where her shot lands
+        post = max(post, ctx.cfg["fine_pass"].get("ball_tail_s", 1.4))
     for w in warnings:
         ctx.log(f"  AVISO: {w}")
     interlaced = bool(_read(ctx.path("probe.json")).get("interlaced")) if ctx.path("probe.json").exists() else False
@@ -1553,11 +1637,27 @@ def _fine(ctx: Context, p, keep, out_name: str):
     # the ball of the windows from the last one backwards on the CPU while the pose runs on the iGPU
     from .fine_ahead import BallAhead, ahead_enabled
     ahead = None
-    if ahead_enabled(ctx.cfg, len(groups), ball is not None):
+    # several windows at once, each process with its own models (B-4: one window at a time left the iGPU at
+    # 15 % and the CPU at 20 % while it decoded, cut and measured); then the ball runs inside each of them
+    nw = _fine_workers(ctx.cfg, len(groups))
+    left = list(range(len(groups)))
+    if nw > 1:
+        def took(r):
+            nonlocal done
+            strokes.extend(r["strokes"])
+            errors.extend(r["errors"])
+            done += r["n"]
+            ctx.progress(done, len(kept), f"golpes candidatos · {len(strokes)} confirmados · "
+                                          f"{_GATE['gated']} ventanas descartadas sin pose")
+        left = _fine_parallel(ctx, p, groups, nw, (pre, post, interlaced, ph), took)
+        if left:
+            warnings.append(f"ventanas en paralelo: {len(left)} se hicieron después una a una (falló un proceso)")
+    elif ahead_enabled(ctx.cfg, len(groups), ball is not None):
         ahead = BallAhead(len(groups), _ahead_job(ctx, groups, pre, post, interlaced, ph, bpath),
                           gap=int((ctx.cfg.get("fine_speed") or {}).get("ball_ahead_gap", 1))).start()
     try:
-        for i, g in enumerate(groups):
+        for i in left:
+            g = groups[i]
             if ahead is not None:
                 ahead.claim(i)
             try:
@@ -1581,6 +1681,7 @@ def _fine(ctx: Context, p, keep, out_name: str):
                 warnings.append(f"bola en paralelo: falló en {len(ahead.errors)} ventanas (hechas en la iGPU): "
                                 + next(iter(ahead.errors.values()))[:200])
     strokes.sort(key=lambda d: d["match_time_s"])
+    errors.sort(key=lambda e: e["t"])                  # the same file whatever order the windows ended in
     _rally_position(strokes, cands, scenes)
     _write(ctx.path(out_name), strokes)
     other = ctx.path("strokes_opponent.json" if out_name == "strokes.json" else "strokes.json")
