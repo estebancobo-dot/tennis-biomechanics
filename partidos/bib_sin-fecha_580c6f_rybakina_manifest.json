@@ -135,10 +135,10 @@
   }
  },
  "fine": {
-  "fingerprint": "02909ec40922ce21",
+  "fingerprint": "b7f28c7312bc6f3a",
   "version": "16",
-  "seconds": 1107.6,
-  "finished": "2026-10-29 05:53:35",
+  "seconds": 214.2,
+  "finished": "2026-10-29 07:58:46",
   "summary": {
    "candidates": 201,
    "confirmed": 198,
@@ -151,23 +151,20 @@
     "windows_passed": 128,
     "windows_ungated": 0,
     "reasons": {
-     "golpe_de_bola": 95,
      "detector": 28,
+     "golpe_de_bola": 95,
      "bola_no_vista": 5
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 644.0,
-    "jugadora_lejana": 100.3,
-    "analisis_ventana": 53.2,
-    "pista_ventana": 47.9,
-    "pose": 27.8,
-    "pose_modelo_yolo": 25.2,
-    "cribado": 15.8,
-    "recorte": 8.5,
-    "bola_en_paralelo_cpu": 0,
-    "espera_bola_en_paralelo": 0.0
+    "cuerdas_y_3d": 119.4,
+    "jugadora_lejana": 72.3,
+    "pista_ventana": 32.1,
+    "analisis_ventana": 28.2,
+    "cribado": 8.4,
+    "recorte": 7.5,
+    "pose": 1.9
    },
    "counts": {
     "overlap_s": 1.1,
@@ -177,17 +174,15 @@
     "kept_impacts": 201,
     "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 146,
-    "frames_modelo_yolo": 179,
-    "windows_ball_ahead": 124
+    "frames_960_far": 0
    }
   }
  },
  "fine_opponent": {
-  "fingerprint": "03644449633a6d8f",
+  "fingerprint": "6434a3357bfa6018",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-10-29 05:53:35",
+  "finished": "2026-10-29 08:04:36",
   "summary": {
    "enabled": false
   }
@@ -228,10 +223,10 @@
   }
  },
  "views_link": {
-  "fingerprint": "651397bcba75adbd",
+  "fingerprint": "fad052e66d52c193",
   "version": "1",
-  "seconds": 0.5,
-  "finished": "2026-10-29 05:53:35",
+  "seconds": 0.4,
+  "finished": "2026-10-29 08:04:36",
   "summary": {
    "strokes": 198,
    "with_replay": 29,
@@ -242,10 +237,10 @@
   }
  },
  "fine_doubtful": {
-  "fingerprint": "8dec1c80a06351d6",
+  "fingerprint": "e58b434f6ac08198",
   "version": "1",
-  "seconds": 465.9,
-  "finished": "2026-10-29 06:01:21",
+  "seconds": 37.7,
+  "finished": "2026-10-29 08:05:14",
   "summary": {
    "candidates": 41,
    "confirmed": 22,
@@ -265,15 +260,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "bola_en_paralelo_cpu": 395.7,
-    "espera_bola_en_paralelo": 378.3,
-    "cuerdas_y_3d": 38.3,
-    "jugadora_lejana": 12.0,
-    "pista_ventana": 5.2,
-    "analisis_ventana": 4.6,
-    "cribado": 2.0,
-    "recorte": 1.8,
-    "pose": 0.1
+    "jugadora_lejana": 12.1,
+    "pista_ventana": 6.7,
+    "analisis_ventana": 6.4,
+    "cuerdas_y_3d": 5.3,
+    "recorte": 2.2,
+    "cribado": 1.2,
+    "pose": 0.2
    },
    "counts": {
     "overlap_s": 0.0,
@@ -283,8 +276,7 @@
     "kept_impacts": 22,
     "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 0,
-    "windows_ball_ahead": 22
+    "frames_960_far": 0
    }
   }
  }
