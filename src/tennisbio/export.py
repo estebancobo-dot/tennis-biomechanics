@@ -727,10 +727,16 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
     for i, s in enumerate(need):
         out = dest / "golpes" / f"{s['id']}.mp4"
         paths[s["id"]] = out
-        src = [_mf.at(Path(s["_dir"]), "windows") / s["_window"], Path(s["_dir"]) / s["_series"]]
-        sig = hashlib.sha1((base + json.dumps({k: v for k, v in s.items() if not k.startswith("_")},
-                                              sort_keys=True, default=str)).encode()).hexdigest()[:12]
-        if _fresh(out, *src) and sigs.get(s["id"]) == sig:
+        win, ser = _mf.at(Path(s["_dir"]), "windows") / s["_window"], Path(s["_dir"]) / s["_series"]
+        # the series by its content, not its date: a fine pass run again rewrites the same series (29-10: request 66
+        # re-encoded every video, ~50 min, for unchanged strokes)
+        try:
+            ser_sig = hashlib.sha1(ser.read_bytes()).hexdigest()
+        except OSError:
+            ser_sig = None
+        sig = hashlib.sha1((base + str(ser_sig) + json.dumps({k: v for k, v in s.items() if not k.startswith("_")},
+                                                                  sort_keys=True, default=str)).encode()).hexdigest()[:12]
+        if _fresh(out, win) and sigs.get(s["id"]) == sig:
             continue
         sigs[s["id"]] = sig
         todo.append((s, out))

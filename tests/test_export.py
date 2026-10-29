@@ -81,3 +81,15 @@ def test_stroke_videos_in_parallel_processes(tmp_path):
     par = sorted(p.name for p in (tmp_path / "par" / "golpes").glob("*.mp4"))
     seq = sorted(p.name for p in (tmp_path / "seq" / "golpes").glob("*.mp4"))
     assert par == seq and len(par) == 2
+    # a fine pass run again rewrites the same series (newer date, same content): nothing is encoded again
+    import os
+    import time as _t
+    later = _t.time() + 5
+    os.utime(d / "series" / "x.json", (later, later))
+    again = []
+    export(m, tmp_path / "out", tmp_path / "seq", workers=1, log=again.append)
+    assert any("Golpes: 0 nuevos" in line for line in again), again
+    (d / "series" / "x.json").write_text(json.dumps(ser) + " ", encoding="utf-8")    # changed: encoded again
+    again = []
+    export(m, tmp_path / "out", tmp_path / "seq", workers=1, log=again.append)
+    assert any("Golpes: 2 nuevos" in line for line in again), again
