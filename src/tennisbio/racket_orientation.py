@@ -4,6 +4,8 @@ Combines the racket keypoints (RacketVision RTMPose, racket_pose), the outline a
 optional 3D hand/forearm (RTMW3D) and the camera pitch from the court homography; the 3D solver
 is tennisbio.racket_face.face_track.
 """
+import os
+import pickle
 from pathlib import Path
 
 import cv2
@@ -130,13 +132,69 @@ def read_frames(video: Path, a: int, b: int) -> dict:
     return out
 
 
+class ModelMemo:
+    """The racket and 3D model outputs of a window, per (frame, box), kept in a file next to its pose cache
+    (29-10: both models ran again on every recompute, 60 % of the fine pass from the caches, ~15 min a match).
+    `tag` names the models: other models (or another version of this file's format) start empty.
+    Outputs are the models' own, so a stroke measured from the memo is the same as one measured afresh."""
+
+    VERSION = 1
+
+    def __init__(self, path: Path | None, tag: str):
+        self.path, self.tag, self.data, self.dirty = path, f"{self.VERSION}|{tag}", {}, False
+        if path is not None and Path(path).exists():
+            try:
+                with open(path, "rb") as fh:
+                    d = pickle.load(fh)
+                if d.get("tag") == self.tag:
+                    self.data = d["out"]
+            except Exception:                        # noqa: BLE001 — a damaged memo is recomputed
+                self.data = {}
+
+    @staticmethod
+    def key(kind: str, f: int, box=None) -> tuple:
+        return (kind, int(f)) + (() if box is None else tuple(round(float(v), 2) for v in np.ravel(box)))
+
+    def __contains__(self, k) -> bool:
+        return k in self.data
+
+    def __getitem__(self, k):
+        return self.data[k]
+
+    def __setitem__(self, k, v):
+        self.data[k], self.dirty = v, True
+
+    def save(self):
+        if self.path is None or not self.dirty:
+            return
+        tmp = Path(f"{self.path}.tmp")
+        with open(tmp, "wb") as fh:
+            pickle.dump({"tag": self.tag, "out": self.data}, fh, protocol=pickle.HIGHEST_PROTOCOL)
+        os.replace(tmp, self.path)
+        self.dirty = False
+
+
+class _Memo3D:
+    """wb3d through the memo: frame → its index by identity (the frames dict of the window)."""
+
+    def __init__(self, model, memo: ModelMemo, frames: dict):
+        self.model, self.memo, self.by_id = model, memo, {id(fr): f for f, fr in frames.items()}
+
+    def __call__(self, frame, box):
+        k = ModelMemo.key("w", self.by_id[id(frame)], box)
+        if k not in self.memo:
+            self.memo[k] = self.model(frame, box)
+        return self.memo[k]
+
+
 from .clip_pipeline import READY_HALF  # noqa: E402  (the racket is searched around the wait the same width)
 
 
 def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | None = None, rpose=None,
                  wb3d=None, hand3d_step: int = 2, grip_close_deg: float = 15.0, window=(1.0, 0.8),
-                 hitting_face: str | None = None, shot_dir=None) -> dict:
-    """{"phases": {phase: face summary}, "frames": [first, ...per-frame tilt/yaw/label/observed]}."""
+                 hitting_face: str | None = None, shot_dir=None, memo: ModelMemo | None = None) -> dict:
+    """{"phases": {phase: face summary}, "frames": [first, ...per-frame tilt/yaw/label/observed]}.
+    memo: the window's model outputs (ModelMemo); when it holds all of them the video is not read."""
     fps, i = run.fps, stroke.impact_frame
     a = max(0, i - int(round(window[0] * fps)))
     b = min(len(run.img), i + int(round(window[1] * fps)) + 1)
@@ -148,26 +206,59 @@ def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | N
         a = ready - READY_HALF
     elif ready is not None and ready - READY_HALF < 0 <= ready - 1 < a:
         a = 0
-    frames = read_frames(video, a, b)
     sk, wrist_k = run.sk, run.sk["dom_wrist"]
-    rkps = {}
-    if rpose is not None:
-        todo = []
-        for f, fr in frames.items():
+
+    def racket_boxes(idx):
+        out = []
+        for f in idx:
             polys = run.rackets[f] if f < len(run.rackets) else None
             poly = pick_racket(polys, run.img[f, wrist_k], 0.3 * run.height_px) if polys is not None else None
             if poly is not None:
-                todo.append((f, fr, [*poly.min(0), *poly.max(0)]))
-        if hasattr(rpose, "many"):       # all the window's rackets in a few model runs
-            kp_all, _ = rpose.many([(fr, box) for _, fr, box in todo])
-            rkps = {f: k for (f, _, _), k in zip(todo, kp_all)}
+                out.append((f, [*poly.min(0), *poly.max(0)]))
+        return out
+
+    def hand_idx(idx):
+        return [f for f in idx if (f >= a0 and (f - a0) % max(1, hand3d_step) == 0)
+                or (ready is not None and abs(f - ready) <= READY_HALF)] if wb3d is not None else []
+
+    read_k = ModelMemo.key("frames", a, (b,))
+    frames = None
+    if memo is not None and read_k in memo:          # every output already there: the video is not read
+        idx = memo[read_k]
+        need = [ModelMemo.key("r", f, box) for f, box in racket_boxes(idx)] if rpose is not None else []
+        need += [ModelMemo.key("w", f, run.boxes[f]) for f in hand_idx(idx) if run.boxes[f] is not None]
+        if all(k in memo for k in need):
+            frames = {f: object() for f in idx}      # stand-ins: only the models (memo) look at the pixels
+    if frames is None:
+        frames = read_frames(video, a, b)
+        if memo is not None:
+            memo[read_k] = list(frames)
+    rkps = {}
+    if rpose is not None:
+        todo = [(f, frames[f], box) for f, box in racket_boxes(list(frames))]
+        miss = [t for t in todo if memo is None or ModelMemo.key("r", t[0], t[2]) not in memo]
+        if miss:
+            if hasattr(rpose, "many"):       # all the window's rackets in a few model runs
+                kp_all, _ = rpose.many([(fr, box) for _, fr, box in miss])
+                got = {f: k for (f, _, _), k in zip(miss, kp_all)}
+            else:
+                got = {f: rpose(fr, [box])[0][0] for f, fr, box in miss}
         else:
-            rkps = {f: rpose(fr, [box])[0][0] for f, fr, box in todo}
-    hand_frames = ({f: fr for f, fr in frames.items()
-                    if (f >= a0 and (f - a0) % max(1, hand3d_step) == 0) or (ready is not None and abs(f - ready) <= READY_HALF)}
-                   if wb3d is not None else {})
+            got = {}
+        for f, _, box in todo:
+            if f in got:
+                rkps[f] = got[f]
+                if memo is not None:
+                    memo[ModelMemo.key("r", f, box)] = got[f]
+            else:
+                rkps[f] = memo[ModelMemo.key("r", f, box)]
+    hand_frames = {f: frames[f] for f in hand_idx(list(frames))}
+    if memo is not None and wb3d is not None:
+        wb3d_call = _Memo3D(wb3d, memo, hand_frames)
+    else:
+        wb3d_call = wb3d
     cam = Camera(pitch_deg if pitch_deg is not None else 20.0)
-    rec = _Recorder(wb3d, hand_frames) if wb3d is not None else None
+    rec = _Recorder(wb3d_call, hand_frames) if wb3d is not None else None
     if hitting_face is None:      # forehand: palm side of the dominant hand; backhand: back of the hand
         hitting_face = "back" if stroke.stroke == "backhand" else "palm"
     track = face_track(hand_frames, run.boxes, run.img, run.rackets, sk, run.height_px, height_m, i, a, b,
@@ -190,6 +281,8 @@ def stroke_faces(video: Path, run, stroke, height_m: float, pitch_deg: float | N
         phases[name] = {k: t[k] for k in ("points_to", "tilt_deg", "yaw_deg", "observed", "hand_evidence", "ambiguous")}
     per = [by_f.get(f) or {} for f in range(a, b)]
     trunk = trunk_at(rot, (stroke.phases.get("loaded") or {}).get("frame"), 3 * max(1, hand3d_step))
+    if memo is not None:
+        memo.save()
     return {
         "trunk3d": trunk,
         "rot3d": {str(f): [round(v, 1) for v in rt[:2]] + [round(v, 3) for v in rt[2:]] for f, rt in rot.items()},

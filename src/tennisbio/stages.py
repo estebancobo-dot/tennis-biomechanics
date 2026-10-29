@@ -1521,6 +1521,9 @@ def _fine(ctx: Context, p, keep, out_name: str):
             wb3d = WholeBody3D(str(hp), ctx.cfg.get("device", "cpu"))
         else:
             warnings.append("falta el modelo 3D (models/rtmw3d-x.onnx): cuerdas y rotaciones sin 3D")
+    # the models' files name the window memos of their outputs (racket_orientation.ModelMemo)
+    fcfg = {**fcfg, "_memo_tag": "|".join(f"{q.name}:{q.stat().st_size}" for q in (rp, hp)
+                                          if q is not None and q.exists())} if fcfg.get("enabled", True) else fcfg
     for w in warnings:
         ctx.log(f"  AVISO: {w}")
     interlaced = bool(_read(ctx.path("probe.json")).get("interlaced")) if ctx.path("probe.json").exists() else False
@@ -1982,8 +1985,10 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
             dx, dy = d["shot_bounce_m"][0] - d["court_pos_m"][0], d["shot_bounce_m"][1] - d["court_pos_m"][1]
             if dy > 3:
                 sdir = [dx, dy, 0.15 * float(np.hypot(dx, dy))]
+        from .racket_orientation import ModelMemo
+        memo = ModelMemo(clip.with_name(f"{clip.stem}_faces.pkl"), fcfg.get("_memo_tag", ""))
         faces = stroke_faces(clip, run, r, p.height_m, pitch if H_img is not None else None, rpose, wb3d,
-                             step3d, grip, shot_dir=sdir)
+                             step3d, grip, shot_dir=sdir, memo=memo)
         _took("cuerdas_y_3d", t_)
         d["face"] = faces["phases"]
         d["metrics"].update(faces["trunk3d"])
