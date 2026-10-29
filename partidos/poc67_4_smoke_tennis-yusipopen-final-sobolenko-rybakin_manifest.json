@@ -1,0 +1,155 @@
+{
+ "probe": {
+  "fingerprint": "847fb4248ae0479d",
+  "version": "2",
+  "seconds": 0.3,
+  "finished": "2026-10-29 10:10:17",
+  "summary": {
+   "duration_min": 4.0,
+   "fps": 50.0,
+   "size": "1920x1080",
+   "cleaned": false,
+   "vfr": true
+  }
+ },
+ "scenes": {
+  "fingerprint": "373ac7936dc3bb11",
+  "version": "3",
+  "seconds": 31.3,
+  "finished": "2026-10-29 10:10:48",
+  "summary": {
+   "shots": 41,
+   "main_camera_shots": 11,
+   "detector": "transnetv2",
+   "main_camera_min": 1.4,
+   "main_rule": "lines",
+   "main_camera_min_colour": 3.5,
+   "main_views": 10
+  }
+ },
+ "audio": {
+  "fingerprint": "a6027ac80ee59373",
+  "version": "2",
+  "seconds": 12.8,
+  "finished": "2026-10-29 10:11:01",
+  "summary": {
+   "onsets": 243,
+   "tracks": 1
+  }
+ },
+ "court": {
+  "fingerprint": "9e75d7240c26c058",
+  "version": "4",
+  "seconds": 13.0,
+  "finished": "2026-10-29 10:11:14",
+  "summary": {
+   "segments": 30,
+   "with_court": 27,
+   "known_court_reused": 69,
+   "searched": 3,
+   "filled_same_view": 3,
+   "samples": 83,
+   "court_presets": 9,
+   "main_camera_min": 1.4,
+   "court_min": 1.3,
+   "court_share": 0.887,
+   "pitch_deg_median": 18.3
+  }
+ },
+ "score": {
+  "fingerprint": "2bbe36b4701b3d69",
+  "version": "6",
+  "seconds": 60.1,
+  "finished": "2026-10-29 10:12:14",
+  "summary": {
+   "readings": 19,
+   "pressure": 7,
+   "samples": 19,
+   "ocr_calls": 18
+  }
+ },
+ "players": {
+  "fingerprint": "21c1456ae44e9fa3",
+  "version": "4",
+  "seconds": 65.8,
+  "finished": "2026-10-29 10:12:20",
+  "summary": {
+   "frames": 751,
+   "wall_min": 1.1,
+   "model_min": 0.9,
+   "read_min": 1.0,
+   "wait_min": 0.1,
+   "appearance_min": 0.0
+  },
+  "overlap_s": 60.1
+ },
+ "identity": {
+  "fingerprint": "5664ac2af413d5ac",
+  "version": "5",
+  "seconds": 10.0,
+  "finished": "2026-10-29 10:12:30",
+  "summary": {
+   "runs": 11,
+   "confidence": 0.73,
+   "votes": 11,
+   "agree": 8,
+   "ends_only": 0,
+   "clothes_only": 0,
+   "ends_won": 1,
+   "clothes_won": 0,
+   "doubtful": 2,
+   "none": 0,
+   "by_end_changes": 9,
+   "by_clothes": 8,
+   "conflicts": 2,
+   "conflicts_resolved": 1,
+   "decided": 9,
+   "clothes": {
+    "source": "ropa (torso y pantalón o falda, sin la pista)",
+    "runs": 11,
+    "clear": 11,
+    "margin_median": 0.22,
+    "separation": 1.75,
+    "far_pairs": 0,
+    "far_opposite": null,
+    "same_game_pairs": 10,
+    "same_game_same": 0.9
+   }
+  }
+ },
+ "spotting": {
+  "fingerprint": "ed07c16d48d0f2cf",
+  "version": "1",
+  "seconds": 450.4,
+  "finished": "2026-10-29 10:20:00",
+  "summary": {
+   "enabled": true,
+   "strokes": 19,
+   "near": 8,
+   "far": 11,
+   "out_of_play": 126,
+   "threshold": 0.1,
+   "fps": 10.0,
+   "model_fps": 10.0,
+   "feature_dim": 122,
+   "audio_track": 0
+  }
+ },
+ "candidates": {
+  "fingerprint": "d183aa3b039eea6e",
+  "version": "9",
+  "seconds": 0.1,
+  "finished": "2026-10-29 10:20:00",
+  "summary": {
+   "candidates": 19,
+   "far": 11,
+   "with_audio": 13,
+   "source": "spotter",
+   "opponent_strokes": 11,
+   "identity_unknown": 1,
+   "replay_strokes_skipped": 0,
+   "replay_runs": 1,
+   "audio_track": 0
+  }
+ }
+}
