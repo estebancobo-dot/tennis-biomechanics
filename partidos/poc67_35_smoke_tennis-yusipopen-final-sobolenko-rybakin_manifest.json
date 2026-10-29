@@ -55,5 +55,66 @@
    "court_share": 0.81,
    "pitch_deg_median": 18.3
   }
+ },
+ "score": {
+  "fingerprint": "6b6f184e9c8fc403",
+  "version": "6",
+  "seconds": 292.9,
+  "finished": "2026-10-29 10:44:09",
+  "summary": {
+   "readings": 139,
+   "pressure": 53,
+   "samples": 143,
+   "ocr_calls": 124
+  }
+ },
+ "players": {
+  "fingerprint": "57bf95a6066f1e00",
+  "version": "4",
+  "seconds": 417.7,
+  "finished": "2026-10-29 10:46:14",
+  "summary": {
+   "frames": 5532,
+   "wall_min": 6.9,
+   "model_min": 6.0,
+   "read_min": 6.4,
+   "wait_min": 0.9,
+   "appearance_min": 0.1
+  },
+  "overlap_s": 292.9
+ },
+ "identity": {
+  "fingerprint": "488b9bd42735058a",
+  "version": "5",
+  "seconds": 311.8,
+  "finished": "2026-10-29 10:51:26",
+  "summary": {
+   "runs": 73,
+   "confidence": 1.0,
+   "votes": 72,
+   "agree": 72,
+   "ends_only": 0,
+   "clothes_only": 1,
+   "ends_won": 0,
+   "clothes_won": 0,
+   "doubtful": 0,
+   "none": 0,
+   "by_end_changes": 72,
+   "by_clothes": 73,
+   "conflicts": 0,
+   "conflicts_resolved": 0,
+   "decided": 73,
+   "clothes": {
+    "source": "ropa (torso y pantalón o falda, sin la pista)",
+    "runs": 73,
+    "clear": 73,
+    "margin_median": 0.82,
+    "separation": 11.55,
+    "far_pairs": 0,
+    "far_opposite": null,
+    "same_game_pairs": 65,
+    "same_game_same": 1.0
+   }
+  }
  }
 }
