@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-283 cumplidos · 26 no cumplidos · 121 sin golpes suficientes · 112 avisos (antes: 283 cumplidos, 24 no cumplidos)
+283 cumplidos · 26 no cumplidos · 121 sin golpes suficientes · 112 avisos (antes: 283 cumplidos, 26 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 127 de 245
 
@@ -163,47 +163,3 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-
-## Empeora respecto a la ejecución anterior
-
-- **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: ok → aviso: 5 de 11 del lado cercano (45%); motivos: elbow_implausible_at_impact 2, phase 2, impact_without_audio 2. Otros 5 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado):
-- **#76 «Un 50 % de golpes dudosos»**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (5 de 11 del lado cercano (45%); motivos: elbow_implausible_at_impact 2, phase 2, impact_without_audio 2
-
-## Mejora
-
-- Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series: falta → ok
-- #83 Árbol de ficheros generados y validados: falta → ok
-- #204 Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10): falta → aviso
-
-## Comprobaciones nuevas
-
-- #220 Almacenamiento definitivo: árbol por jugador, partido y golpe; nombres, colisiones y todos los escenarios: aviso (sin comprobación automática asignada)
-- #221 Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano: aviso (A MEDIAS según el registro (#221); sin comprobación automática asignada)
-- #222 Un clic por partido para decir quién es ella: aviso (sin comprobación automática asignada)
-- #223 Revés y derecha cortados: falta (SIN HACER según el registro (#223, docs/peticiones_usuario.md))
-- #224 Saques: plano, cortado o kick; primero o segundo: falta (SIN HACER según el registro (#224, docs/peticiones_usuario.md))
-- #225 La aplicación no se cuelga ni ralentiza el PC: aviso (sin comprobación automática asignada)
-- #226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10): aviso (sin comprobación automática asignada)
-- #227 Pantalla completa en la aplicación: aviso (sin comprobación automática asignada)
-- #229 Renombrar el vídeo no rompe nada; el partido se identifica por su contenido: aviso (sin comprobación automática asignada)
-- #230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo: aviso (A MEDIAS según el registro (#230); sin comprobación automática asignada)
-- #231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta: aviso (A MEDIAS según el registro (#231); sin comprobación automática asignada)
-- #232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó: aviso (A MEDIAS según el registro (#232); sin comprobación automática asignada)
-- #233 Una referencia completa y medida antes de validar nada: aviso (sin comprobación automática asignada)
-- #234 Prueba de valor de la aplicación con los datos reales: aviso (sin comprobación automática asignada)
-- #235 Cadena cinética, footwork y timing: lo que define el golpe: aviso (A MEDIAS según el registro (#235); sin comprobación automática asignada)
-- #236 Huellas numeradas sobre los pies y patrones de pasos: aviso (A MEDIAS según el registro (#236); sin comprobación automática asignada)
-- #237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min: aviso (sin comprobación automática asignada)
-- #238 La validación es siempre automática; el usuario no valida la aplicación: aviso (A MEDIAS según el registro (#238); sin comprobación automática asignada)
-- #239 No se descarta ninguna petición: aviso (sin comprobación automática asignada)
-- #240 Comparar la aplicación con las profesionales una vez estén los golpes: falta (SIN HACER según el registro (#240, docs/peticiones_usuario.md))
-- #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: aviso (sin comprobación automática asignada)
-- #242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po: aviso (A MEDIAS según el registro (#242); sin comprobación automática asignada)
-- #243 Todos los escenarios del producto los contempla Claude sin esperar a que se pidan: aviso (A MEDIAS según el registro (#243); sin comprobación automática asignada)
-- #244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10): falta (SIN HACER según el registro (#244, docs/peticiones_usuario.md))
-- #245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10): falta (SIN HACER según el registro (#245, docs/peticiones_usuario.md))
-
-## Fiabilidad de las medidas
-
-- ahora: 80 medidas: 9 dudosa, 51 fiable, 13 no comprobable, 1 sesgo, 6 sin juzgar. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
-- antes: 80 medidas: 7 dudosa, 52 fiable, 12 no comprobable, 2 ruido, 3 sesgo, 4 sin juzgar. No se dan como valor suyo (ruido): takeback.shoulder_turn ±3.4, impact.face_tilt ±3.2. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
