@@ -88,3 +88,63 @@ Thread 0x00002864 (most recent call first):
   File "C:\tenis\tennis-biomech\.venv\Scripts\tennisbio.exe\__main__.py", line 10 in <module>
   File "<frozen runpy>", line 88 in _run_code
   File "<frozen runpy>", line 198 in _run_module_as_main
+Timeout (0:05:00)!
+Thread 0x000030c8 (most recent call first):
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\multiprocessing\connection.py", line 293 in _send_bytes
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\multiprocessing\connection.py", line 200 in send_bytes
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\multiprocessing\queues.py", line 246 in _feed
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\threading.py", line 982 in run
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\threading.py", line 1045 in _bootstrap_inner
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\threading.py", line 1002 in _bootstrap
+
+Thread 0x000022a8 (most recent call first):
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\multiprocessing\connection.py", line 828 in _exhaustive_wait
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\multiprocessing\connection.py", line 896 in wait
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\concurrent\futures\process.py", line 417 in wait_result_broken_or_wakeup
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\concurrent\futures\process.py", line 344 in run
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\threading.py", line 1045 in _bootstrap_inner
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\threading.py", line 1002 in _bootstrap
+
+Thread 0x00002864 (most recent call first):
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\threading.py", line 327 in wait
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\concurrent\futures\_base.py", line 451 in result
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\concurrent\futures\_base.py", line 317 in _result_or_cancel
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\concurrent\futures\_base.py", line 619 in result_iterator
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\concurrent\futures\process.py", line 620 in _chain_from_iterable_of_lists
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 761 in _export
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 650 in export
+  File "C:\tenis\tennis-biomech\src\tennisbio\cli.py", line 91 in _main
+  File "C:\tenis\tennis-biomech\src\tennisbio\cli.py", line 23 in main
+  File "C:\tenis\tennis-biomech\.venv\Scripts\tennisbio.exe\__main__.py", line 10 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 198 in _run_module_as_main
+Timeout (0:05:00)!
+Thread 0x000030c8 (most recent call first):
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\multiprocessing\connection.py", line 293 in _send_bytes
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\multiprocessing\connection.py", line 200 in send_bytes
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\multiprocessing\queues.py", line 246 in _feed
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\threading.py", line 982 in run
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\threading.py", line 1045 in _bootstrap_inner
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\threading.py", line 1002 in _bootstrap
+
+Thread 0x000022a8 (most recent call first):
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\multiprocessing\connection.py", line 828 in _exhaustive_wait
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\multiprocessing\connection.py", line 896 in wait
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\concurrent\futures\process.py", line 417 in wait_result_broken_or_wakeup
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\concurrent\futures\process.py", line 344 in run
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\threading.py", line 1045 in _bootstrap_inner
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\threading.py", line 1002 in _bootstrap
+
+Thread 0x00002864 (most recent call first):
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\threading.py", line 327 in wait
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\concurrent\futures\_base.py", line 451 in result
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\concurrent\futures\_base.py", line 317 in _result_or_cancel
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\concurrent\futures\_base.py", line 619 in result_iterator
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\concurrent\futures\process.py", line 620 in _chain_from_iterable_of_lists
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 761 in _export
+  File "C:\tenis\tennis-biomech\src\tennisbio\export.py", line 650 in export
+  File "C:\tenis\tennis-biomech\src\tennisbio\cli.py", line 91 in _main
+  File "C:\tenis\tennis-biomech\src\tennisbio\cli.py", line 23 in main
+  File "C:\tenis\tennis-biomech\.venv\Scripts\tennisbio.exe\__main__.py", line 10 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 198 in _run_module_as_main
