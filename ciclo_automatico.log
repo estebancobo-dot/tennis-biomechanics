@@ -18,3 +18,8 @@ SerializationVersion: 1.1.0.1
 **********************
 
 ==> [2026-11-02 18:30:02] Peticion 69: medida scripts\bench_models.py
+Registro enviado a Claude (no hace falta copiar nada).
+
+    (paso terminado en 2 min 10 s)
+
+==> [2026-11-02 18:32:13] Peticion 70: prueba de velocidad, 4 min de partido en output\_poc70_4
