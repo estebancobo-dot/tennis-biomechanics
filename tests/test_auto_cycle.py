@@ -90,7 +90,10 @@ def test_cycle_starts_without_any_window():
     vbs = (win / "oculto.vbs").read_text(encoding="utf-8")
     assert vbs.isascii() and ", 0, True" in vbs
     comun = (win / "comun.ps1").read_text(encoding="utf-8")
-    assert '-Execute "wscript.exe"' in comun and '"ciclo v4"' in comun and "tenis-ciclo.vbs" in comun
+    assert '-Execute "wscript.exe"' in comun and '"ciclo v5"' in comun and "tenis-ciclo.vbs" in comun
+    # 02-11: the task at normal priority (without it Windows ran it below normal, ~3 times slower)
+    assert "-Priority 4" in comun
+    assert "PriorityClass" in (win / "ciclo_automatico.ps1").read_text(encoding="utf-8")
     assert "oculto.vbs" in (win / "ciclo_bucle.ps1").read_text(encoding="utf-8")
 
 

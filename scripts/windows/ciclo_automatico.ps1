@@ -355,6 +355,9 @@ function Hacer-Peticion($p) {
 # el equipo no se suspende mientras el ciclo exista (la pantalla si puede apagarse): cada arranque, cada
 # 10 min, reinicia el contador de inactividad de Windows; durante un trabajo largo lo mantiene despierto
 try { Sin-Suspender } catch {}
+# prioridad normal para este ciclo y todo lo que lance (02-11): la tarea de Windows lo arrancaba por debajo de lo
+# normal y el analisis iba unas 3 veces mas lento; los procesos hijos heredan la prioridad
+try { (Get-Process -Id $PID).PriorityClass = [System.Diagnostics.ProcessPriorityClass]::Normal } catch {}
 # rastro de cada arranque (antes de cualquier cosa que pueda fallar): se sube con la senal de vida
 try { "arranque: $(Get-Date -Format s) (pid $PID)" | Set-Content "$Out\ciclo_arranque.txt" } catch {}
 

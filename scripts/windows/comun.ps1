@@ -273,7 +273,9 @@ function Registrar-Ciclo {
     try {
         $nombre = "tenis-ciclo-automatico"
         # v4: todo se lanza con oculto.vbs (wscript): sin el terminal que aparecia y se cerraba solo
-        $version = "ciclo v4"
+        # v5 (02-11): prioridad normal; sin -Priority Windows la ejecuta por debajo de lo normal y el analisis iba
+        # unas 3 veces mas lento (bench_ball: 5-7 fotogramas/s frente a 16-25 el 29-10, CPU al 8-22 %)
+        $version = "ciclo v5"
         if (Test-Path "$Base\output\ciclo_desactivado.txt") { return }
         $vbs = Join-Path $RepoDir "scripts\windows\oculto.vbs"
         # 1) bucle en segundo plano que arranca con la sesion (carpeta Inicio): no depende del
@@ -287,7 +289,8 @@ function Registrar-Ciclo {
         }
         $vivo = Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" -ErrorAction SilentlyContinue |
             Where-Object { $_.CommandLine -match "ciclo_bucle" }
-        if (-not $vivo) {
+        # desde GitHub Actions no: el ejecutor cierra al terminar los procesos que deja el trabajo
+        if (-not $vivo -and -not $env:GITHUB_ACTIONS) {
             Start-Process wscript.exe -ArgumentList @("//B", "`"$vbs`"", "`"$bucle`"")
             Ok "Ciclo automatico en marcha (cada 10 minutos, en segundo plano; arranca solo al encender)."
         }
@@ -304,7 +307,7 @@ function Registrar-Ciclo {
         # Parallel: si el ciclo anterior sigue trabajando, el nuevo arranca, lo ve y sale sin error
         # (con IgnoreNew Windows lo rechazaba y lo marcaba como fallo, 0x800710E0, cada 10 minutos)
         $ajustes = New-ScheduledTaskSettingsSet -StartWhenAvailable -MultipleInstances Parallel -AllowStartIfOnBatteries `
-            -DontStopIfGoingOnBatteries -ExecutionTimeLimit (New-TimeSpan -Hours 12)
+            -DontStopIfGoingOnBatteries -ExecutionTimeLimit (New-TimeSpan -Hours 12) -Priority 4
         $quien = New-ScheduledTaskPrincipal -UserId "$env:USERDOMAIN\$env:USERNAME" -LogonType Interactive -RunLevel Limited
         Register-ScheduledTask -TaskName $nombre -Action $accion -Trigger @($diario, $alEntrar) -Settings $ajustes -Principal $quien `
             -Description "Tenis ($version): trae el codigo nuevo, recalcula lo necesario, revisa y sube los registros" -Force | Out-Null
