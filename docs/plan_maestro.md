@@ -4,6 +4,8 @@
 medido por un script en el PC** (nunca «revisado en el chat»). Un bloque no se da por hecho sin ese número.
 Regla del usuario (19-10): **nada nuevo hasta que la base (golpes que no se pierden e identidad) esté bien.**
 
+**El plan a corto plazo al detalle (tareas, forma de ejecutar, enlaces y validación) está en `docs/plan_corto_plazo.md`.**
+
 ## Plan a corto plazo (02-11) — LEER PRIMERO; manda sobre todo lo de abajo
 
 **Regla:** se termina la Base, paso a paso y en este orden. Nada nuevo entra mientras tanto.
