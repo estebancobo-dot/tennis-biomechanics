@@ -1,4 +1,4 @@
-fecha: 2026-11-03T00:31:58
+fecha: 2026-11-03T00:40:11
        3.9 MB  \output\auditoria
        5.7 MB  \output\benchmark
        1.2 MB  \output\capturas_app
@@ -30,7 +30,7 @@ fecha: 2026-11-03T00:31:58
      167.9 MB  \output\_poc70_4
     1300.4 MB  \output\_poc71_35
      167.8 MB  \output\_poc71_4
-      93.7 MB  \output\_poc74_4
+     167.2 MB  \output\_poc74_4
     7818.9 MB  \output\_poc9_largo
     2202.2 MB  \output\_smoke
        3.1 MB  \output\_smoke\auditoria
