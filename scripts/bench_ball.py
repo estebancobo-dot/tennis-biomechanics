@@ -104,8 +104,10 @@ def main():
     onnx = resolve_path((cfg.get("ball") or {}).get("onnx"))
     dev = cfg.get("device", "cpu")
     base = None
-    runs = [("fp32", onnx, dev, 8, True), ("fp32", onnx, dev, 16, True), ("fp32", onnx, dev, 32, True),
-            ("fp16", None, dev, 8, True), ("fp16", None, dev, 16, True), ("fp32_cpu", onnx, "cpu", 8, False)]
+    # 02-11: the spotter's ball ran at ~5 frames/s on the PC with the configured dynamic batch (ball.static_batch:
+    # false), against 25 here with a fixed one: both, on the same frames
+    runs = [("fp32", onnx, dev, 8, True), ("fp16", None, dev, 8, True), ("fp16", None, dev, 16, True),
+            ("fp32_dyn", onnx, dev, 8, False), ("fp16_dyn", None, dev, 8, False)]
     for name, path, device, batch, static in runs:
         key = f"model_{name}_b{batch}_{device}"
         try:

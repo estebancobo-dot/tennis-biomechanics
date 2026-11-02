@@ -6,8 +6,11 @@ automatic audit on the real outputs actually checks. Levels, from weakest to str
   2 comprobación que falla    the audit checks it on the real outputs and it fails, warns, or has too few strokes
   3 comprobado en salidas     the audit checks it on the real outputs and it passes (the data or screen exists and
                               is consistent: NOT that it is correct)
-  4 validado con verdad       measured against annotated ground truth (VALIDATED below, with its number)
-  5 aceptado por el usuario   the user used it and accepted it (none yet)
+  4 validado con verdad       measured against annotated ground truth with its threshold (VALIDATED below)
+(No "accepted by the user" level: validation is always automatic, request #238.)
+
+Each request belongs to one work package of the plan (config/plan_peticiones.yaml); the progress of a package
+is the levels of its requests.
 
     uv run python scripts/real_status.py <auditoria.json> [--out docs/estado_real_peticiones.md]
 """
@@ -22,13 +25,21 @@ REGISTRY = ROOT / "docs" / "peticiones_usuario.md"
 # requests measured against annotated ground truth, with the measure (docs/validacion.md, plan_maestro.md)
 VALIDATED: dict[int, str] = {}
 LEVELS = ["sin construir", "construido, sin comprobar", "comprobación que falla", "comprobado en salidas",
-          "validado con verdad", "aceptado por el usuario"]
+          "validado con verdad"]
+PLAN = ROOT / "config" / "plan_peticiones.yaml"
+
+
+def packages(path: Path = PLAN) -> dict:
+    import yaml
+
+    return yaml.safe_load(path.read_text(encoding="utf-8"))["paquetes"]
 
 
 def registry(path: Path = REGISTRY) -> list[tuple[int, str, str]]:
     out = []
     for line in path.read_text(encoding="utf-8").splitlines():
-        m = re.match(r"^\|\s*(\d+)\s*\|\s*([^|]*?)\s*\|\s*([A-ZÁÉÍÓÚ ]+?)\s*\|", line)
+        # the state may carry a note after it: "FALTA (19-10: …)", "HECHO (como «no medible»)"
+        m = re.match(r"^\|\s*(\d+)\s*\|\s*([^|]*?)\s*\|\s*(HECHO|PARCIAL|FALTA|NO MEDIBLE|NO APLICA)[^|]*\|", line)
         if m:
             out.append((int(m.group(1)), m.group(2), m.group(3)))
     return out
@@ -63,12 +74,24 @@ def main():
     counts = [sum(r[3] == k for r in rows) for k in range(len(LEVELS))]
     lines = ["# Estado real de las peticiones (generado por `scripts/real_status.py`; no editar a mano)", "",
              f"{len(rows)} peticiones (sin las que no aplican). «HECHO» en el registro es la etiqueta de Claude; "
-             "aquí cuenta solo lo que se comprueba.", "", "| Nivel | Peticiones |", "|---|---|"]
+             "aquí cuenta solo lo que se comprueba. «Comprobado en salidas» = existe y es coherente con los datos "
+             "reales, no que sea correcto; eso es «validado con verdad».", "", "| Nivel | Peticiones |", "|---|---|"]
     lines += [f"| {k} {LEVELS[k]} | {counts[k]} |" for k in range(len(LEVELS))]
-    lines += ["", "| # | Petición | Registro | Nivel | Lo que comprueba la auditoría |", "|---|---|---|---|---|"]
+    pk = packages()
+    of = {rid: code for code, p in pk.items() for rid in p["peticiones"]}
+    lv_of = {r[0]: r[3] for r in rows}
+    lines += ["", "## Por paquete del plan (en el orden de ejecución)", "",
+              "| Paquete | Peticiones | " + " | ".join(LEVELS) + " | Se cierra con |",
+              "|---|---|" + "---|" * len(LEVELS) + "---|"]
+    for code, p in pk.items():
+        ids = [i for i in p["peticiones"] if i in lv_of]
+        c = [sum(lv_of[i] == k for i in ids) for k in range(len(LEVELS))]
+        lines.append(f"| {code} {p['nombre']} | {len(ids)} | " + " | ".join(str(x) for x in c) + f" | {p['cierre']} |")
+    lines += ["", "## Cada petición", "", "| # | Petición | Paquete | Registro | Nivel | Lo que comprueba la auditoría |",
+              "|---|---|---|---|---|---|"]
     for rid, title, st, lv, it in rows:
         det = (it or {}).get("detail", "—").replace("|", "/")[:140]
-        lines.append(f"| {rid} | {title[:90]} | {st} | {lv} {LEVELS[lv]} | {det} |")
+        lines.append(f"| {rid} | {title[:90]} | {of.get(rid, '—')} | {st} | {lv} {LEVELS[lv]} | {det} |")
     Path(a.out).write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(json.dumps(dict(zip(LEVELS, counts)), ensure_ascii=False))
     return 0

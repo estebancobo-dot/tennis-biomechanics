@@ -111,6 +111,10 @@ accion: poc
 ---
 id: 71
 accion: poc
+---
+id: 72
+accion: medir
+script: bench_ball
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
 # Cola: se pueden poner varias peticiones seguidas, separadas por una linea con solo "---"; cada bloque
 #   lleva su "id:", su "accion:" y sus parametros. El PC las hace en orden, una detras de otra en el mismo
