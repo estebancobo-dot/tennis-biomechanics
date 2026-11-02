@@ -58,6 +58,7 @@ Horizontes (27-10, corregido por el usuario: **la base primero, al 100 %**):
     | B-8 | Marcador: rapidocr 3.x con PP-OCRv5 (#201) | PC, recortes del marcador | Lecturas iguales o mejores, tiempo | pendiente |
     | B-9 | Pista: detector de 14 puntos (#200) | PC, tramos donde falla hoy | Más tramos con pista | pendiente |
     | B-10 | Bote: modelo aprendido (#199) | Botes anotados (RacketVision) | Precisión ≥ la regla | pendiente |
+    | B-15 | Lo aprovechable de «Claude as a Tennis Coach» (off policy, 22-10-2026, enviado por el usuario el 02-11; retransmisiones como las nuestras): (a) sus modelos medidos sobre conjuntos anotados: personas RF-DETR M (jugador lejano 100 % frente a 98,5 % de YOLO11m), esqueleto RTMW-x (OKS 0,855; pies 0,833), bola WASB (F1 0,886 a 4 px), pista TennisCourtDetector (95,6 % a 7 px), golpes F3ED → se suman a B-6..B-9 como candidatos; (b) cada medida en longitudes de torso y con los efectos de la cámara (zoom, inclinación, posición de la línea de fondo, altura en pantalla) y de la situación restados dentro de cada jugador; **una medida no se muestra si la cámara explica ≥ 10 % de su variación entre golpes** → criterio automático para la fiabilidad de cada medida; (c) medidas que descartan desde atrás: codo en el impacto, separación cadera-hombros, rodillas, profundidad de los pies, velocidad de la muñeca → contrastarlo con las nuestras; (d) solo derecha/revés si la muñeca está en el lado que toca en el impacto, sin bolas de saque/entrega | Las mismas pruebas de B-6..B-9 y la de la cámara sobre los 4 partidos | Cada medida con su % explicado por la cámara | pendiente (después de B-4) |
     | B-11 | Repeticiones que descartan de más; NMS vacío | F3Set | Recall sube sin bajar precisión | NMS vacío **arreglado 29-10** (el único golpe con error en Gauff; prueba `test_yolo_onnx_nms`); repeticiones pendiente |
     | B-13 | iGPU perdida a mitad de análisis (DirectML 887A0005, 28-10: 98 golpes de la final y 43 de Gauff sin analizar) | Pruebas con sesión que falla | Ningún golpe perdido por la máquina | **hecho**: la sesión se rehace en la iGPU y, si no, sigue en la CPU, repitiendo la llamada; la etapa con golpes perdidos así queda «incompleta» y se repite sola. **Medido (petición 64)**: Gauff 197 golpes y final 216, sin ningún error de la iGPU ✔ |
     | B-14 | El ciclo automático se paraba al recalcular una carpeta de prueba anterior al detector (29-10: «spotting.json» no encontrado) | `test_recompute_runs_the_stages_the_config_adds` | El ciclo nunca se para por una etapa nueva | **hecho**: las etapas que se recalculan salen del grafo de dependencias, no de una lista fija |
@@ -75,6 +76,7 @@ Horizontes (27-10, corregido por el usuario: **la base primero, al 100 %**):
     | B-8 | #201 (marcador) |
     | B-9 | #200 (pista) |
     | B-10 | #199 (bote) |
+    | B-15 | referencia externa del 02-11 (sin número de registro aún) |
     | B-11 | #221, #155, #205 (golpes que se pierden) |
     | B-12 | #45 (todo automático), #238 (validación automática) |
     | C1 | #235, #236 (cadena, pies, tiempos, huellas), #6, #64, #84 |
