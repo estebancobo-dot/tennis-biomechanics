@@ -800,56 +800,56 @@
   "face": {
    "ready": {
     "points_to": "valla derecha",
-    "tilt_deg": -30.4,
-    "yaw_deg": 125.3,
+    "tilt_deg": -30.6,
+    "yaw_deg": 125.4,
     "observed": true,
     "hand_evidence": true,
     "ambiguous": true
    },
    "takeback": {
     "points_to": "valla izquierda",
-    "tilt_deg": 15.6,
-    "yaw_deg": -91.1,
+    "tilt_deg": 15.7,
+    "yaw_deg": -90.9,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
    },
    "loaded": {
     "points_to": "valla izquierda",
-    "tilt_deg": 13.5,
-    "yaw_deg": -95.6,
+    "tilt_deg": 13.1,
+    "yaw_deg": -95.5,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "valla izquierda",
-    "tilt_deg": -24.4,
-    "yaw_deg": -49.9,
+    "tilt_deg": -25.8,
+    "yaw_deg": -54.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -13.5,
-    "yaw_deg": -1.4,
+    "tilt_deg": -15.5,
+    "yaw_deg": -3.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -7.4,
-    "yaw_deg": -19.0,
+    "tilt_deg": -8.4,
+    "yaw_deg": -19.4,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "finish": {
     "points_to": "valla izquierda",
-    "tilt_deg": -25.0,
-    "yaw_deg": -105.7,
+    "tilt_deg": -25.5,
+    "yaw_deg": -105.6,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
@@ -902,13 +902,13 @@
      "shoulder_turn": 68.6,
      "hip_turn": 58.2,
      "racket_head_vs_wrist": 16.4,
-     "racket_angle": 70.3,
-     "racket_forearm": 87.4,
+     "racket_angle": 70.4,
+     "racket_forearm": 87.3,
      "racket_tip_height": 77.2,
      "racket_tip_vs_head": -3.2,
      "racket_head_lateral": 8.2,
-     "face_tilt": -30.4,
-     "face_yaw": 125.3,
+     "face_tilt": -30.6,
+     "face_yaw": 125.4,
      "face_points_to": "valla derecha",
      "face_observed": true
     },
@@ -943,8 +943,8 @@
      "racket_tip_height": 76.6,
      "racket_tip_vs_head": -0.0,
      "racket_head_lateral": -19.9,
-     "face_tilt": 15.6,
-     "face_yaw": -91.1,
+     "face_tilt": 15.7,
+     "face_yaw": -90.9,
      "face_points_to": "valla izquierda",
      "face_observed": true
     },
@@ -982,8 +982,8 @@
      "racket_tip_height": 38.8,
      "racket_tip_vs_head": -48.3,
      "racket_head_lateral": -22.8,
-     "face_tilt": 13.5,
-     "face_yaw": -95.6,
+     "face_tilt": 13.1,
+     "face_yaw": -95.5,
      "face_points_to": "valla izquierda",
      "face_observed": false,
      "back_foot_angle_deg": 16.5,
@@ -1025,8 +1025,8 @@
      "racket_tip_height": 50.3,
      "racket_tip_vs_head": -40.4,
      "racket_head_lateral": -30.4,
-     "face_tilt": -24.4,
-     "face_yaw": -49.9,
+     "face_tilt": -25.8,
+     "face_yaw": -54.0,
      "face_points_to": "valla izquierda",
      "face_observed": false
     },
@@ -1061,8 +1061,8 @@
      "racket_tip_height": 47.0,
      "racket_tip_vs_head": -42.9,
      "racket_head_lateral": -41.9,
-     "face_tilt": -13.5,
-     "face_yaw": -1.4,
+     "face_tilt": -15.5,
+     "face_yaw": -3.0,
      "face_points_to": "red",
      "face_observed": false,
      "base_court_m": 0.8,
@@ -1131,8 +1131,8 @@
      "racket_tip_height": 122.0,
      "racket_tip_vs_head": 32.8,
      "racket_head_lateral": 18.3,
-     "face_tilt": -25.0,
-     "face_yaw": -105.7,
+     "face_tilt": -25.5,
+     "face_yaw": -105.6,
      "face_points_to": "valla izquierda",
      "face_observed": false,
      "base_court_m": 0.83,
@@ -1198,13 +1198,13 @@
      "arm_extension": 96.4,
      "shoulder_turn": 77.6,
      "racket_head_vs_wrist": 25.4,
-     "racket_angle": 80.6,
-     "racket_forearm": 91.0,
+     "racket_angle": 80.7,
+     "racket_forearm": 91.1,
      "racket_tip_height": 92.1,
      "racket_tip_vs_head": 10.6,
      "racket_head_lateral": -34.5,
-     "face_tilt": -29.8,
-     "face_yaw": -160.0,
+     "face_tilt": -29.5,
+     "face_yaw": -159.5,
      "face_points_to": "valla trasera",
      "face_observed": false,
      "t_to_contact": 0.4
@@ -1459,13 +1459,13 @@
     "ready.shoulder_turn": 0.7,
     "ready.hip_turn": 0.95,
     "ready.racket_head_vs_wrist": 0.15,
-    "ready.racket_angle": 1.55,
+    "ready.racket_angle": 1.65,
     "ready.racket_forearm": 6.0,
     "ready.racket_tip_height": 0.5,
     "ready.racket_tip_vs_head": 0.2,
     "ready.racket_head_lateral": 0.6,
-    "ready.face_tilt": 1.25,
-    "ready.face_yaw": 2.8,
+    "ready.face_tilt": 1.3,
+    "ready.face_yaw": 2.75,
     "takeback.body_height": 2.8,
     "takeback.hip_height": 1.75,
     "takeback.head_over_base": 1.35,
@@ -1494,10 +1494,10 @@
     "takeback.racket_angle": 10.9,
     "takeback.racket_forearm": 12.1,
     "takeback.racket_tip_height": 1.6,
-    "takeback.racket_tip_vs_head": 0.85,
+    "takeback.racket_tip_vs_head": 0.9,
     "takeback.racket_head_lateral": 0.2,
-    "takeback.face_tilt": 24.35,
-    "takeback.face_yaw": 6.25,
+    "takeback.face_tilt": 24.1,
+    "takeback.face_yaw": 6.2,
     "loaded.body_height": 2.2,
     "loaded.hip_height": 2.05,
     "loaded.head_over_base": 0.65,
@@ -1531,8 +1531,8 @@
     "loaded.racket_tip_height": 1.25,
     "loaded.racket_tip_vs_head": 1.7,
     "loaded.racket_head_lateral": 2.35,
-    "loaded.face_tilt": 6.7,
-    "loaded.face_yaw": 4.5,
+    "loaded.face_tilt": 6.75,
+    "loaded.face_yaw": 3.9,
     "loaded.back_foot_angle_deg": 0.35,
     "acceleration.body_height": 1.2,
     "acceleration.hip_height": 1.3,
@@ -1567,8 +1567,8 @@
     "acceleration.racket_tip_height": 6.65,
     "acceleration.racket_tip_vs_head": 5.7,
     "acceleration.racket_head_lateral": 6.6,
-    "acceleration.face_tilt": 20.65,
-    "acceleration.face_yaw": 31.05,
+    "acceleration.face_tilt": 21.45,
+    "acceleration.face_yaw": 28.45,
     "impact.body_height": 0.4,
     "impact.hip_height": 0.45,
     "impact.head_over_base": 1.7,
@@ -1599,7 +1599,7 @@
     "impact.racket_tip_height": 1.9,
     "impact.racket_tip_vs_head": 0.8,
     "impact.racket_head_lateral": 0.7,
-    "impact.face_tilt": 6.95,
+    "impact.face_tilt": 7.75,
     "impact.face_yaw": 11.25,
     "extension.body_height": 0.3,
     "extension.hip_height": 0.65,
@@ -1658,7 +1658,7 @@
     "finish.racket_tip_height": 0.4,
     "finish.racket_tip_vs_head": 0.4,
     "finish.racket_head_lateral": 1.7,
-    "finish.face_tilt": 3.4,
+    "finish.face_tilt": 2.9,
     "finish.face_yaw": 24.4,
     "recovery.body_height": 3.35,
     "recovery.hip_height": 2.95,
@@ -1682,14 +1682,14 @@
     "recovery.arm_extension": 2.65,
     "recovery.shoulder_turn": 1.75,
     "recovery.hip_turn": 3.0,
-    "recovery.racket_head_vs_wrist": 4.0,
+    "recovery.racket_head_vs_wrist": 4.05,
     "recovery.racket_angle": 9.15,
     "recovery.racket_forearm": 1.6,
     "recovery.racket_tip_height": 6.95,
     "recovery.racket_tip_vs_head": 4.75,
     "recovery.racket_head_lateral": 2.55,
-    "recovery.face_tilt": 22.75,
-    "recovery.face_yaw": 16.55,
+    "recovery.face_tilt": 22.6,
+    "recovery.face_yaw": 16.3,
     "stroke.head_still_after_cm": 0.56,
     "stroke.hip_drop_pct": 0.0,
     "stroke.hip_rise_after_pct": 0.0,
@@ -2553,7 +2553,7 @@
      77.6,
      80.5,
      83.0,
-     84.1,
+     84.2,
      81.4,
      74.5,
      66.5,
@@ -2576,7 +2576,7 @@
      78.3,
      82.7,
      82.2,
-     79.8,
+     79.9,
      77.5,
      77.7,
      67.3,
@@ -2595,31 +2595,7 @@
   "series": "series/w000015434_6854_near_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 1,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 30.0,
-    "t1": 42.9,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 42.9,
-    "t1": 97.6,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 272,
@@ -3333,48 +3309,48 @@
   "face": {
    "ready": {
     "points_to": "valla izquierda",
-    "tilt_deg": -16.8,
-    "yaw_deg": -86.4,
+    "tilt_deg": -16.7,
+    "yaw_deg": -86.6,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "takeback": {
     "points_to": "valla trasera",
-    "tilt_deg": 39.9,
-    "yaw_deg": -165.8,
+    "tilt_deg": 39.6,
+    "yaw_deg": -169.8,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "loaded": {
     "points_to": "valla derecha",
-    "tilt_deg": -3.0,
-    "yaw_deg": 89.9,
+    "tilt_deg": -2.4,
+    "yaw_deg": 90.0,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "red",
-    "tilt_deg": -20.8,
-    "yaw_deg": 20.8,
+    "tilt_deg": -20.4,
+    "yaw_deg": 20.6,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -14.1,
-    "yaw_deg": 11.1,
+    "tilt_deg": -13.8,
+    "yaw_deg": 11.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -5.5,
-    "yaw_deg": 19.7,
+    "tilt_deg": -5.2,
+    "yaw_deg": 19.9,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
@@ -3382,7 +3358,7 @@
    "finish": {
     "points_to": "valla trasera",
     "tilt_deg": -36.3,
-    "yaw_deg": 152.7,
+    "yaw_deg": 152.9,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -3390,7 +3366,7 @@
    "recovery": {
     "points_to": "cielo",
     "tilt_deg": -47.2,
-    "yaw_deg": 138.8,
+    "yaw_deg": 138.7,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -3440,8 +3416,8 @@
      "racket_tip_height": 74.6,
      "racket_tip_vs_head": -1.4,
      "racket_head_lateral": -19.2,
-     "face_tilt": -16.8,
-     "face_yaw": -86.4,
+     "face_tilt": -16.7,
+     "face_yaw": -86.6,
      "face_points_to": "valla izquierda",
      "face_observed": false
     },
@@ -3502,13 +3478,13 @@
      "hip_turn": 110.5,
      "x_factor": -2.1,
      "racket_head_vs_wrist": -3.2,
-     "racket_angle": 74.9,
-     "racket_forearm": 173.3,
+     "racket_angle": 75.2,
+     "racket_forearm": 172.9,
      "racket_tip_height": 50.0,
      "racket_tip_vs_head": -33.0,
      "racket_head_lateral": -5.4,
-     "face_tilt": -3.0,
-     "face_yaw": 89.9,
+     "face_tilt": -2.4,
+     "face_yaw": 90.0,
      "face_points_to": "valla derecha",
      "face_observed": false,
      "base_court_m": 1.07,
@@ -3577,8 +3553,8 @@
      "arm_extension": 80.2,
      "shoulder_turn": 35.7,
      "hip_turn": 52.0,
-     "face_tilt": -14.1,
-     "face_yaw": 11.1,
+     "face_tilt": -13.8,
+     "face_yaw": 11.0,
      "face_points_to": "red",
      "face_observed": false,
      "base_court_m": 0.46,
@@ -3638,13 +3614,13 @@
      "shoulder_turn": 74.9,
      "hip_turn": 49.3,
      "racket_head_vs_wrist": -11.3,
-     "racket_angle": -24.8,
-     "racket_forearm": 90.2,
-     "racket_tip_height": 67.6,
+     "racket_angle": -24.6,
+     "racket_forearm": 90.0,
+     "racket_tip_height": 67.7,
      "racket_tip_vs_head": -15.6,
-     "racket_head_lateral": -21.9,
+     "racket_head_lateral": -22.0,
      "face_tilt": -36.3,
-     "face_yaw": 152.7,
+     "face_yaw": 152.9,
      "face_points_to": "valla trasera",
      "face_observed": false,
      "base_court_m": 0.91,
@@ -3677,13 +3653,13 @@
      "shoulder_turn": 78.8,
      "hip_turn": 51.3,
      "racket_head_vs_wrist": -3.4,
-     "racket_angle": -22.2,
-     "racket_forearm": 110.2,
+     "racket_angle": -23.9,
+     "racket_forearm": 111.9,
      "racket_tip_height": 68.6,
      "racket_tip_vs_head": -12.8,
      "racket_head_lateral": -19.5,
      "face_tilt": -47.2,
-     "face_yaw": 138.8,
+     "face_yaw": 138.7,
      "face_points_to": "cielo",
      "face_observed": false
     },
@@ -3713,13 +3689,13 @@
      "arm_extension": 92.3,
      "shoulder_turn": 74.7,
      "racket_head_vs_wrist": 28.2,
-     "racket_angle": 78.9,
-     "racket_forearm": 103.8,
+     "racket_angle": 78.8,
+     "racket_forearm": 103.9,
      "racket_tip_height": 93.7,
      "racket_tip_vs_head": 15.4,
      "racket_head_lateral": -29.2,
-     "face_tilt": 29.1,
-     "face_yaw": 141.1,
+     "face_tilt": 28.8,
+     "face_yaw": 140.4,
      "face_points_to": "valla trasera",
      "face_observed": false,
      "t_to_contact": 0.72
@@ -3882,7 +3858,7 @@
     "ready.racket_tip_vs_head": 0.55,
     "ready.racket_head_lateral": 3.25,
     "ready.face_tilt": 2.7,
-    "ready.face_yaw": 0.15,
+    "ready.face_yaw": 0.1,
     "takeback.body_height": 0.75,
     "takeback.hip_height": 1.15,
     "takeback.head_over_base": 1.25,
@@ -3935,13 +3911,13 @@
     "loaded.hip_turn": 19.75,
     "loaded.x_factor": 6.4,
     "loaded.racket_head_vs_wrist": 2.35,
-    "loaded.racket_angle": 67.85,
-    "loaded.racket_forearm": 80.4,
+    "loaded.racket_angle": 68.0,
+    "loaded.racket_forearm": 80.35,
     "loaded.racket_tip_height": 5.5,
     "loaded.racket_tip_vs_head": 4.85,
     "loaded.racket_head_lateral": 7.15,
-    "loaded.face_tilt": 9.8,
-    "loaded.face_yaw": 0.85,
+    "loaded.face_tilt": 10.1,
+    "loaded.face_yaw": 1.1,
     "acceleration.body_height": 3.05,
     "acceleration.hip_height": 1.9,
     "acceleration.head_over_base": 2.3,
@@ -3999,8 +3975,8 @@
     "impact.arm_extension": 13.35,
     "impact.shoulder_turn": 12.45,
     "impact.hip_turn": 9.3,
-    "impact.face_tilt": 7.65,
-    "impact.face_yaw": 9.15,
+    "impact.face_tilt": 7.6,
+    "impact.face_yaw": 9.25,
     "extension.body_height": 0.9,
     "extension.hip_height": 1.4,
     "extension.head_over_base": 1.65,
@@ -4048,14 +4024,14 @@
     "finish.arm_extension": 1.35,
     "finish.shoulder_turn": 1.1,
     "finish.hip_turn": 3.4,
-    "finish.racket_head_vs_wrist": 0.6,
+    "finish.racket_head_vs_wrist": 0.7,
     "finish.racket_angle": 0.0,
     "finish.racket_forearm": 2.1,
-    "finish.racket_tip_height": 0.3,
+    "finish.racket_tip_height": 0.4,
     "finish.racket_tip_vs_head": 0.1,
-    "finish.racket_head_lateral": 0.5,
+    "finish.racket_head_lateral": 0.4,
     "finish.face_tilt": 1.0,
-    "finish.face_yaw": 1.9,
+    "finish.face_yaw": 1.7,
     "recovery.body_height": 0.5,
     "recovery.hip_height": 0.7,
     "recovery.head_over_base": 1.65,
@@ -4086,8 +4062,8 @@
     "recovery.racket_tip_height": 0.5,
     "recovery.racket_tip_vs_head": 1.2,
     "recovery.racket_head_lateral": 1.2,
-    "recovery.face_tilt": 6.1,
-    "recovery.face_yaw": 14.1,
+    "recovery.face_tilt": 6.0,
+    "recovery.face_yaw": 14.2,
     "stroke.head_still_after_cm": 0.68,
     "stroke.hip_drop_pct": 0.15,
     "stroke.hip_rise_after_pct": 0.0,
@@ -4937,9 +4913,9 @@
      82.6,
      85.8,
      83.3,
-     80.8,
-     78.3,
-     75.8,
+     80.9,
+     78.4,
+     75.9,
      74.9,
      77.3,
      81.6,
@@ -4964,31 +4940,7 @@
   "series": "series/w000015434_6854_near_272.json",
   "window_impact_s": 5.44,
   "shot_in_point": 2,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 30.0,
-    "t1": 42.9,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 42.9,
-    "t1": 97.6,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 112,
@@ -5914,33 +5866,33 @@
   "outcome": "rally",
   "face": {
    "ready": {
-    "points_to": "valla trasera",
-    "tilt_deg": 6.0,
-    "yaw_deg": -168.3,
+    "points_to": "red",
+    "tilt_deg": -6.5,
+    "yaw_deg": -10.4,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
    },
    "takeback": {
-    "points_to": "valla trasera",
-    "tilt_deg": 18.7,
-    "yaw_deg": -147.9,
+    "points_to": "red",
+    "tilt_deg": -23.4,
+    "yaw_deg": -24.9,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "loaded": {
     "points_to": "red",
-    "tilt_deg": -6.5,
-    "yaw_deg": 12.4,
+    "tilt_deg": -6.7,
+    "yaw_deg": 7.6,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "red",
-    "tilt_deg": -23.2,
-    "yaw_deg": -16.7,
+    "tilt_deg": -24.1,
+    "yaw_deg": -20.9,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
@@ -5948,31 +5900,31 @@
    "impact": {
     "points_to": "red",
     "tilt_deg": -8.0,
-    "yaw_deg": -2.8,
+    "yaw_deg": -2.9,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -0.2,
-    "yaw_deg": 6.1,
+    "tilt_deg": -0.1,
+    "yaw_deg": 6.2,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
     "points_to": "red",
-    "tilt_deg": -8.2,
-    "yaw_deg": -14.3,
+    "tilt_deg": -8.4,
+    "yaw_deg": -14.5,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "valla izquierda",
-    "tilt_deg": 12.0,
-    "yaw_deg": -119.8,
+    "tilt_deg": 12.3,
+    "yaw_deg": -118.2,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -6020,9 +5972,9 @@
      "racket_tip_height": 69.9,
      "racket_tip_vs_head": 10.1,
      "racket_head_lateral": 2.2,
-     "face_tilt": 6.0,
-     "face_yaw": -168.3,
-     "face_points_to": "valla trasera",
+     "face_tilt": -6.5,
+     "face_yaw": -10.4,
+     "face_points_to": "red",
      "face_observed": true
     },
     "takeback": {
@@ -6055,9 +6007,9 @@
      "racket_tip_height": 66.2,
      "racket_tip_vs_head": 5.1,
      "racket_head_lateral": 3.7,
-     "face_tilt": 18.7,
-     "face_yaw": -147.9,
-     "face_points_to": "valla trasera",
+     "face_tilt": -23.4,
+     "face_yaw": -24.9,
+     "face_points_to": "red",
      "face_observed": false
     },
     "loaded": {
@@ -6147,7 +6099,7 @@
      "racket_tip_vs_head": -18.2,
      "racket_head_lateral": 35.1,
      "face_tilt": -8.0,
-     "face_yaw": -2.8,
+     "face_yaw": -2.9,
      "face_points_to": "red",
      "face_observed": false,
      "front_foot_angle_deg": 11.5,
@@ -6222,8 +6174,8 @@
      "racket_tip_height": 94.2,
      "racket_tip_vs_head": 41.7,
      "racket_head_lateral": 40.0,
-     "face_tilt": -8.2,
-     "face_yaw": -14.3,
+     "face_tilt": -8.4,
+     "face_yaw": -14.5,
      "face_points_to": "red",
      "face_observed": false,
      "base_court_m": 1.7,
@@ -6261,8 +6213,8 @@
      "racket_tip_height": 78.3,
      "racket_tip_vs_head": 23.9,
      "racket_head_lateral": 7.7,
-     "face_tilt": 12.0,
-     "face_yaw": -119.8,
+     "face_tilt": 12.3,
+     "face_yaw": -118.2,
      "face_points_to": "valla izquierda",
      "face_observed": false
     },
@@ -6290,13 +6242,13 @@
      "arm_extension": 73.1,
      "shoulder_turn": 74.0,
      "racket_head_vs_wrist": 30.2,
-     "racket_angle": 84.5,
-     "racket_forearm": 82.8,
+     "racket_angle": 84.4,
+     "racket_forearm": 82.7,
      "racket_tip_height": 72.8,
      "racket_tip_vs_head": 11.3,
      "racket_head_lateral": 19.3,
-     "face_tilt": -5.3,
-     "face_yaw": 56.6,
+     "face_tilt": -4.9,
+     "face_yaw": 59.1,
      "face_points_to": "valla derecha",
      "face_observed": false,
      "t_to_contact": 0.28
@@ -6426,8 +6378,8 @@
     "ready.racket_tip_height": 0.25,
     "ready.racket_tip_vs_head": 0.45,
     "ready.racket_head_lateral": 0.2,
-    "ready.face_tilt": 3.7,
-    "ready.face_yaw": 1.85,
+    "ready.face_tilt": 3.0,
+    "ready.face_yaw": 1.05,
     "takeback.body_height": 2.7,
     "takeback.hip_height": 2.5,
     "takeback.head_over_base": 3.2,
@@ -6457,8 +6409,8 @@
     "takeback.racket_tip_height": 1.9,
     "takeback.racket_tip_vs_head": 1.2,
     "takeback.racket_head_lateral": 0.3,
-    "takeback.face_tilt": 0.8,
-    "takeback.face_yaw": 2.5,
+    "takeback.face_tilt": 1.6,
+    "takeback.face_yaw": 2.1,
     "loaded.body_height": 2.7,
     "loaded.hip_height": 1.55,
     "loaded.head_over_base": 6.45,
@@ -6533,8 +6485,8 @@
     "impact.racket_tip_height": 5.85,
     "impact.racket_tip_vs_head": 7.3,
     "impact.racket_head_lateral": 5.0,
-    "impact.face_tilt": 6.4,
-    "impact.face_yaw": 7.45,
+    "impact.face_tilt": 6.6,
+    "impact.face_yaw": 7.65,
     "impact.front_foot_angle_deg": 3.8,
     "extension.body_height": 3.95,
     "extension.hip_height": 1.7,
@@ -6598,8 +6550,8 @@
     "finish.racket_tip_height": 1.9,
     "finish.racket_tip_vs_head": 1.8,
     "finish.racket_head_lateral": 10.2,
-    "finish.face_tilt": 4.6,
-    "finish.face_yaw": 19.8,
+    "finish.face_tilt": 4.65,
+    "finish.face_yaw": 20.0,
     "recovery.body_height": 0.9,
     "recovery.hip_height": 0.4,
     "recovery.head_over_base": 2.4,
@@ -6630,8 +6582,8 @@
     "recovery.racket_tip_height": 0.7,
     "recovery.racket_tip_vs_head": 1.15,
     "recovery.racket_head_lateral": 6.25,
-    "recovery.face_tilt": 5.9,
-    "recovery.face_yaw": 25.15,
+    "recovery.face_tilt": 6.15,
+    "recovery.face_yaw": 23.9,
     "stroke.head_still_after_cm": 0.96,
     "stroke.feet_move_m": 0.09,
     "stroke.t_trunk_finish": 0.0,
@@ -7499,20 +7451,7 @@
   "series": "series/w000073500_3600_near_112.json",
   "window_impact_s": 2.24,
   "shot_in_point": 1,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 159.3,
-    "t1": 166.7,
-    "slowmo": 0.87,
-    "speed": "normal",
-    "impact_t": 161.105,
-    "method": "recorrido",
-    "confidence": 0.7
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 112,
@@ -7592,8 +7531,8 @@
    "time_available_s": 1.44,
    "opponent_hit_source": "ball",
    "shoulder_turn_3d_deg": 3.7,
-   "hip_turn_3d_deg": 3.8,
-   "x_factor_3d_deg": -0.1,
+   "hip_turn_3d_deg": 3.7,
+   "x_factor_3d_deg": -0.0,
    "trunk3d_readings": 2,
    "trunk3d_rigid": true
   },
@@ -8445,32 +8384,32 @@
   "face": {
    "ready": {
     "points_to": "valla derecha",
-    "tilt_deg": -18.2,
-    "yaw_deg": 78.1,
+    "tilt_deg": -17.8,
+    "yaw_deg": 77.9,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "takeback": {
     "points_to": "valla derecha",
-    "tilt_deg": -7.4,
-    "yaw_deg": 95.9,
+    "tilt_deg": -7.1,
+    "yaw_deg": 96.9,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
    },
    "loaded": {
     "points_to": "red",
-    "tilt_deg": 13.0,
-    "yaw_deg": 35.7,
+    "tilt_deg": 12.1,
+    "yaw_deg": 36.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "red",
-    "tilt_deg": 13.1,
-    "yaw_deg": -23.5,
+    "tilt_deg": 12.8,
+    "yaw_deg": -23.2,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -8478,31 +8417,31 @@
    "impact": {
     "points_to": "red",
     "tilt_deg": -2.9,
-    "yaw_deg": -19.7,
+    "yaw_deg": -19.8,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -12.3,
-    "yaw_deg": -7.0,
+    "tilt_deg": -12.0,
+    "yaw_deg": -7.4,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
     "points_to": "red",
-    "tilt_deg": -36.1,
-    "yaw_deg": 41.5,
+    "tilt_deg": -36.7,
+    "yaw_deg": 41.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "cielo",
-    "tilt_deg": -45.0,
-    "yaw_deg": 153.5,
+    "tilt_deg": -43.4,
+    "yaw_deg": 152.0,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
@@ -8584,8 +8523,8 @@
      "racket_tip_height": 80.1,
      "racket_tip_vs_head": 4.6,
      "racket_head_lateral": -20.6,
-     "face_tilt": -7.4,
-     "face_yaw": 95.9,
+     "face_tilt": -7.1,
+     "face_yaw": 96.9,
      "face_points_to": "valla derecha",
      "face_observed": true
     },
@@ -8621,8 +8560,8 @@
      "racket_tip_height": 62.4,
      "racket_tip_vs_head": -15.0,
      "racket_head_lateral": 16.2,
-     "face_tilt": 13.0,
-     "face_yaw": 35.7,
+     "face_tilt": 12.1,
+     "face_yaw": 36.0,
      "face_points_to": "red",
      "face_observed": false,
      "back_foot_angle_deg": 36.1,
@@ -8663,7 +8602,7 @@
      "racket_forearm": 43.5,
      "racket_tip_height": 59.6,
      "racket_tip_vs_head": -22.0,
-     "racket_head_lateral": 30.6,
+     "racket_head_lateral": 30.9,
      "face_points_to": "red",
      "face_observed": false
     },
@@ -8699,7 +8638,7 @@
      "racket_tip_vs_head": -9.2,
      "racket_head_lateral": 18.2,
      "face_tilt": -2.9,
-     "face_yaw": -19.7,
+     "face_yaw": -19.8,
      "face_points_to": "red",
      "face_observed": false,
      "front_foot_angle_deg": 114.5,
@@ -8765,8 +8704,8 @@
      "racket_tip_height": 57.7,
      "racket_tip_vs_head": -12.8,
      "racket_head_lateral": -28.9,
-     "face_tilt": -36.1,
-     "face_yaw": 41.5,
+     "face_tilt": -36.7,
+     "face_yaw": 41.0,
      "face_points_to": "red",
      "face_observed": false,
      "base_court_m": 1.12,
@@ -8834,7 +8773,7 @@
      "racket_tip_height": 94.4,
      "racket_tip_vs_head": 23.3,
      "racket_head_lateral": 20.7,
-     "face_tilt": -9.5,
+     "face_tilt": -9.4,
      "face_yaw": 77.6,
      "face_points_to": "valla derecha",
      "face_observed": false,
@@ -9178,8 +9117,8 @@
     "takeback.racket_tip_height": 0.35,
     "takeback.racket_tip_vs_head": 0.95,
     "takeback.racket_head_lateral": 0.75,
-    "takeback.face_tilt": 14.35,
-    "takeback.face_yaw": 5.8,
+    "takeback.face_tilt": 14.75,
+    "takeback.face_yaw": 5.25,
     "loaded.body_height": 2.05,
     "loaded.hip_height": 1.2,
     "loaded.head_over_base": 0.15,
@@ -9211,8 +9150,8 @@
     "loaded.racket_tip_height": 0.3,
     "loaded.racket_tip_vs_head": 2.4,
     "loaded.racket_head_lateral": 4.4,
-    "loaded.face_tilt": 5.75,
-    "loaded.face_yaw": 27.9,
+    "loaded.face_tilt": 5.6,
+    "loaded.face_yaw": 27.85,
     "loaded.back_foot_angle_deg": 4.4,
     "acceleration.body_height": 0.9,
     "acceleration.hip_height": 0.45,
@@ -9277,8 +9216,8 @@
     "impact.racket_tip_height": 2.2,
     "impact.racket_tip_vs_head": 0.3,
     "impact.racket_head_lateral": 1.1,
-    "impact.face_tilt": 7.5,
-    "impact.face_yaw": 6.25,
+    "impact.face_tilt": 7.35,
+    "impact.face_yaw": 6.05,
     "impact.front_foot_angle_deg": 1.0,
     "extension.body_height": 1.85,
     "extension.hip_height": 1.55,
@@ -9333,8 +9272,8 @@
     "finish.racket_tip_height": 0.3,
     "finish.racket_tip_vs_head": 0.9,
     "finish.racket_head_lateral": 1.65,
-    "finish.face_tilt": 6.65,
-    "finish.face_yaw": 20.8,
+    "finish.face_tilt": 7.0,
+    "finish.face_yaw": 22.05,
     "recovery.body_height": 0.85,
     "recovery.hip_height": 2.1,
     "recovery.head_over_base": 3.8,
@@ -10271,31 +10210,7 @@
   "series": "series/w000131000_3600_near_112.json",
   "window_impact_s": 2.24,
   "shot_in_point": 1,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 141.6,
-    "t1": 146.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 146.7,
-    "t1": 159.3,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 110,
@@ -10990,31 +10905,7 @@
   "window_impact_s": 2.2,
   "shot_in_point": 2,
   "shots_in_point": 2,
-  "is_return": false,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 141.6,
-    "t1": 146.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 146.7,
-    "t1": 159.3,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "is_return": false
  },
  {
   "impact_frame": 112,
@@ -11782,23 +11673,23 @@
    "ready": {
     "points_to": "valla derecha",
     "tilt_deg": -34.0,
-    "yaw_deg": 107.6,
+    "yaw_deg": 107.2,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "takeback": {
     "points_to": "valla derecha",
-    "tilt_deg": 18.9,
-    "yaw_deg": 52.9,
+    "tilt_deg": 19.1,
+    "yaw_deg": 53.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "loaded": {
     "points_to": "valla izquierda",
-    "tilt_deg": 19.9,
-    "yaw_deg": -107.3,
+    "tilt_deg": 22.4,
+    "yaw_deg": -105.5,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -11813,31 +11704,31 @@
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -15.1,
-    "yaw_deg": 9.1,
+    "tilt_deg": -15.4,
+    "yaw_deg": 9.2,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -15.4,
-    "yaw_deg": -9.0,
+    "tilt_deg": -15.7,
+    "yaw_deg": -9.1,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "finish": {
     "points_to": "valla izquierda",
-    "tilt_deg": -31.8,
-    "yaw_deg": -97.7,
+    "tilt_deg": -31.7,
+    "yaw_deg": -97.6,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
    },
    "recovery": {
     "points_to": "valla izquierda",
-    "tilt_deg": -5.5,
+    "tilt_deg": -5.4,
     "yaw_deg": -95.8,
     "observed": true,
     "hand_evidence": false,
@@ -11892,7 +11783,7 @@
      "racket_tip_vs_head": 5.1,
      "racket_head_lateral": 0.7,
      "face_tilt": -34.0,
-     "face_yaw": 107.6,
+     "face_yaw": 107.2,
      "face_points_to": "valla derecha",
      "face_observed": false
     },
@@ -11958,8 +11849,8 @@
      "racket_tip_height": 68.2,
      "racket_tip_vs_head": -15.6,
      "racket_head_lateral": -21.2,
-     "face_tilt": 19.9,
-     "face_yaw": -107.3,
+     "face_tilt": 22.4,
+     "face_yaw": -105.5,
      "face_points_to": "valla izquierda",
      "face_observed": false,
      "back_foot_angle_deg": 36.5,
@@ -12031,8 +11922,8 @@
      "arm_extension": 65.6,
      "shoulder_turn": 45.3,
      "hip_turn": 18.9,
-     "face_tilt": -15.1,
-     "face_yaw": 9.1,
+     "face_tilt": -15.4,
+     "face_yaw": 9.2,
      "face_points_to": "red",
      "face_observed": false,
      "base_court_m": 0.69,
@@ -12098,8 +11989,8 @@
      "racket_tip_height": 108.2,
      "racket_tip_vs_head": 27.0,
      "racket_head_lateral": 25.7,
-     "face_tilt": -31.8,
-     "face_yaw": -97.7,
+     "face_tilt": -31.7,
+     "face_yaw": -97.6,
      "face_points_to": "valla izquierda",
      "face_observed": true,
      "base_court_m": 1.14,
@@ -12131,12 +12022,12 @@
      "shoulder_turn": 38.7,
      "hip_turn": 28.1,
      "racket_head_vs_wrist": 14.5,
-     "racket_angle": 89.3,
-     "racket_forearm": 3.3,
+     "racket_angle": 89.2,
+     "racket_forearm": 3.4,
      "racket_tip_height": 89.6,
      "racket_tip_vs_head": 7.7,
      "racket_head_lateral": 10.6,
-     "face_tilt": -5.5,
+     "face_tilt": -5.4,
      "face_yaw": -95.8,
      "face_points_to": "valla izquierda",
      "face_observed": true
@@ -12197,7 +12088,7 @@
      "racket_tip_vs_head": 5.2,
      "racket_head_lateral": -43.7,
      "face_tilt": 54.8,
-     "face_yaw": -23.6,
+     "face_yaw": -24.3,
      "face_points_to": "suelo",
      "face_observed": false,
      "t_to_contact": 0.36
@@ -12444,7 +12335,7 @@
     "ready.racket_tip_height": 0.3,
     "ready.racket_tip_vs_head": 0.6,
     "ready.racket_head_lateral": 0.85,
-    "ready.face_tilt": 5.85,
+    "ready.face_tilt": 5.75,
     "ready.face_yaw": 12.05,
     "takeback.body_height": 0.25,
     "takeback.hip_height": 0.3,
@@ -12503,8 +12394,8 @@
     "loaded.racket_tip_height": 0.95,
     "loaded.racket_tip_vs_head": 3.75,
     "loaded.racket_head_lateral": 2.55,
-    "loaded.face_tilt": 22.05,
-    "loaded.face_yaw": 15.3,
+    "loaded.face_tilt": 23.95,
+    "loaded.face_yaw": 13.95,
     "loaded.back_foot_angle_deg": 2.1,
     "acceleration.body_height": 2.05,
     "acceleration.hip_height": 2.3,
@@ -12539,8 +12430,8 @@
     "acceleration.racket_tip_height": 1.25,
     "acceleration.racket_tip_vs_head": 3.45,
     "acceleration.racket_head_lateral": 2.05,
-    "acceleration.face_tilt": 18.6,
-    "acceleration.face_yaw": 20.9,
+    "acceleration.face_tilt": 19.9,
+    "acceleration.face_yaw": 19.75,
     "impact.body_height": 0.8,
     "impact.hip_height": 0.6,
     "impact.head_over_base": 1.65,
@@ -12565,8 +12456,8 @@
     "impact.arm_extension": 16.75,
     "impact.shoulder_turn": 4.3,
     "impact.hip_turn": 6.55,
-    "impact.face_tilt": 4.2,
-    "impact.face_yaw": 11.6,
+    "impact.face_tilt": 4.4,
+    "impact.face_yaw": 11.65,
     "extension.body_height": 2.3,
     "extension.hip_height": 1.8,
     "extension.head_over_base": 1.1,
@@ -12621,7 +12512,7 @@
     "finish.racket_tip_height": 1.0,
     "finish.racket_tip_vs_head": 0.45,
     "finish.racket_head_lateral": 2.85,
-    "finish.face_tilt": 6.4,
+    "finish.face_tilt": 6.45,
     "finish.face_yaw": 1.45,
     "recovery.body_height": 0.9,
     "recovery.hip_height": 0.2,
@@ -12647,13 +12538,13 @@
     "recovery.shoulder_turn": 2.1,
     "recovery.hip_turn": 3.15,
     "recovery.racket_head_vs_wrist": 4.05,
-    "recovery.racket_angle": 2.0,
-    "recovery.racket_forearm": 3.95,
+    "recovery.racket_angle": 1.95,
+    "recovery.racket_forearm": 4.0,
     "recovery.racket_tip_height": 3.9,
     "recovery.racket_tip_vs_head": 3.65,
     "recovery.racket_head_lateral": 3.15,
-    "recovery.face_tilt": 7.25,
-    "recovery.face_yaw": 3.3,
+    "recovery.face_tilt": 7.15,
+    "recovery.face_yaw": 3.15,
     "stroke.head_still_after_cm": 0.61,
     "stroke.hip_drop_pct": 0.0,
     "stroke.hip_rise_after_pct": 0.0,
@@ -13530,7 +13421,7 @@
      95.8,
      97.3,
      94.7,
-     92.7,
+     92.8,
      90.3,
      87.9,
      85.0,
@@ -13557,20 +13448,7 @@
   "series": "series/w000174644_6260_near_112.json",
   "window_impact_s": 2.24,
   "shot_in_point": 1,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 204.0,
-    "t1": 207.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 244,
@@ -14423,7 +14301,7 @@
   "face": {
    "ready": {
     "points_to": "valla izquierda",
-    "tilt_deg": 4.2,
+    "tilt_deg": 4.1,
     "yaw_deg": -77.7,
     "observed": true,
     "hand_evidence": true,
@@ -14431,8 +14309,8 @@
    },
    "takeback": {
     "points_to": "valla izquierda",
-    "tilt_deg": 11.8,
-    "yaw_deg": -88.8,
+    "tilt_deg": 11.9,
+    "yaw_deg": -89.3,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
@@ -14440,47 +14318,47 @@
    "loaded": {
     "points_to": "red",
     "tilt_deg": -10.4,
-    "yaw_deg": -21.5,
+    "yaw_deg": -21.6,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "red",
-    "tilt_deg": -18.1,
-    "yaw_deg": -1.5,
+    "tilt_deg": -18.2,
+    "yaw_deg": -2.7,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -14.7,
-    "yaw_deg": -10.1,
+    "tilt_deg": -14.5,
+    "yaw_deg": -10.4,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -24.4,
-    "yaw_deg": -32.9,
+    "tilt_deg": -23.8,
+    "yaw_deg": -32.6,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
     "points_to": "valla izquierda",
-    "tilt_deg": -37.8,
-    "yaw_deg": -69.3,
+    "tilt_deg": -38.6,
+    "yaw_deg": -71.7,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "valla izquierda",
-    "tilt_deg": -18.1,
-    "yaw_deg": -83.3,
+    "tilt_deg": -18.2,
+    "yaw_deg": -84.6,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -14532,7 +14410,7 @@
      "racket_tip_height": 98.8,
      "racket_tip_vs_head": 14.1,
      "racket_head_lateral": 21.9,
-     "face_tilt": 4.2,
+     "face_tilt": 4.1,
      "face_yaw": -77.7,
      "face_points_to": "valla izquierda",
      "face_observed": true
@@ -14564,14 +14442,14 @@
      "shoulder_turn": 67.3,
      "hip_turn": 48.1,
      "x_factor": 19.2,
-     "racket_head_vs_wrist": 31.0,
+     "racket_head_vs_wrist": 31.2,
      "racket_angle": 78.3,
      "racket_forearm": 85.8,
      "racket_tip_height": 105.3,
      "racket_tip_vs_head": 20.8,
      "racket_head_lateral": 23.2,
-     "face_tilt": 11.8,
-     "face_yaw": -88.8,
+     "face_tilt": 11.9,
+     "face_yaw": -89.3,
      "face_points_to": "valla izquierda",
      "face_observed": true
     },
@@ -14667,13 +14545,13 @@
      "shoulder_turn": 45.4,
      "hip_turn": 45.3,
      "racket_head_vs_wrist": -7.7,
-     "racket_angle": 73.0,
-     "racket_forearm": 76.9,
+     "racket_angle": 70.6,
+     "racket_forearm": 113.3,
      "racket_tip_height": 50.7,
      "racket_tip_vs_head": -30.7,
      "racket_head_lateral": 17.6,
-     "face_tilt": -14.7,
-     "face_yaw": -10.1,
+     "face_tilt": -14.5,
+     "face_yaw": -10.4,
      "face_points_to": "red",
      "face_observed": false,
      "front_foot_angle_deg": 38.4,
@@ -14707,8 +14585,8 @@
      "shoulder_turn": 31.8,
      "hip_turn": 53.2,
      "racket_head_vs_wrist": -17.1,
-     "racket_angle": 66.0,
-     "racket_forearm": 64.1,
+     "racket_angle": 65.9,
+     "racket_forearm": 64.2,
      "racket_tip_height": 59.3,
      "racket_tip_vs_head": -20.8,
      "racket_head_lateral": 27.3,
@@ -14746,8 +14624,8 @@
      "racket_tip_height": 86.0,
      "racket_tip_vs_head": 5.4,
      "racket_head_lateral": 8.1,
-     "face_tilt": -37.8,
-     "face_yaw": -69.3,
+     "face_tilt": -38.6,
+     "face_yaw": -71.7,
      "face_points_to": "valla izquierda",
      "face_observed": false,
      "base_court_m": 0.43,
@@ -14811,7 +14689,7 @@
      "racket_tip_vs_head": 14.2,
      "racket_head_lateral": 22.0,
      "face_tilt": 6.3,
-     "face_yaw": -81.7,
+     "face_yaw": -81.6,
      "face_points_to": "valla izquierda",
      "face_observed": true,
      "t_to_contact": 0.8
@@ -14846,9 +14724,9 @@
      "racket_forearm": 83.4,
      "racket_tip_height": 102.2,
      "racket_tip_vs_head": 22.1,
-     "racket_head_lateral": 27.0,
-     "face_tilt": 1.3,
-     "face_yaw": -72.6,
+     "racket_head_lateral": 26.9,
+     "face_tilt": 1.2,
+     "face_yaw": -72.5,
      "face_points_to": "valla izquierda",
      "face_observed": false,
      "t_to_contact": 0.52
@@ -14930,7 +14808,7 @@
     "weight_shift": -0.51,
     "pause_at_loaded": 0.0,
     "hand_on_handle": 25.5,
-    "racket_speed_rel": 4.33,
+    "racket_speed_rel": 4.32,
     "takeback_vs_first_step": 0.12,
     "last_plant_vs_bounce": 0.16,
     "loaded_vs_last_plant": 0.18
@@ -15114,13 +14992,13 @@
     "ready.arm_extension": 0.25,
     "ready.shoulder_turn": 1.35,
     "ready.hip_turn": 2.7,
-    "ready.racket_head_vs_wrist": 1.25,
+    "ready.racket_head_vs_wrist": 1.2,
     "ready.racket_angle": 2.3,
     "ready.racket_forearm": 0.8,
-    "ready.racket_tip_height": 3.35,
-    "ready.racket_tip_vs_head": 1.95,
+    "ready.racket_tip_height": 3.4,
+    "ready.racket_tip_vs_head": 2.0,
     "ready.racket_head_lateral": 0.45,
-    "ready.face_tilt": 2.7,
+    "ready.face_tilt": 2.75,
     "ready.face_yaw": 6.25,
     "takeback.body_height": 1.6,
     "takeback.hip_height": 1.2,
@@ -15148,7 +15026,7 @@
     "takeback.shoulder_turn": 1.85,
     "takeback.hip_turn": 0.6,
     "takeback.x_factor": 1.15,
-    "takeback.racket_head_vs_wrist": 1.25,
+    "takeback.racket_head_vs_wrist": 1.35,
     "takeback.racket_angle": 0.65,
     "takeback.racket_forearm": 0.75,
     "takeback.racket_tip_height": 2.0,
@@ -15236,13 +15114,13 @@
     "impact.shoulder_turn": 11.5,
     "impact.hip_turn": 5.2,
     "impact.racket_head_vs_wrist": 4.4,
-    "impact.racket_angle": 7.0,
-    "impact.racket_forearm": 16.75,
+    "impact.racket_angle": 4.7,
+    "impact.racket_forearm": 31.2,
     "impact.racket_tip_height": 9.95,
     "impact.racket_tip_vs_head": 10.8,
-    "impact.racket_head_lateral": 10.0,
-    "impact.face_tilt": 2.4,
-    "impact.face_yaw": 9.85,
+    "impact.racket_head_lateral": 9.95,
+    "impact.face_tilt": 2.45,
+    "impact.face_yaw": 9.3,
     "impact.front_foot_angle_deg": 0.75,
     "extension.body_height": 0.85,
     "extension.hip_height": 1.2,
@@ -15269,8 +15147,8 @@
     "extension.shoulder_turn": 5.25,
     "extension.hip_turn": 5.45,
     "extension.racket_head_vs_wrist": 11.45,
-    "extension.racket_angle": 21.8,
-    "extension.racket_forearm": 16.3,
+    "extension.racket_angle": 20.6,
+    "extension.racket_forearm": 25.85,
     "extension.racket_tip_height": 10.6,
     "extension.racket_tip_vs_head": 11.6,
     "extension.racket_head_lateral": 5.3,
@@ -15304,8 +15182,8 @@
     "finish.racket_tip_height": 1.6,
     "finish.racket_tip_vs_head": 2.2,
     "finish.racket_head_lateral": 0.1,
-    "finish.face_tilt": 3.65,
-    "finish.face_yaw": 1.1,
+    "finish.face_tilt": 3.05,
+    "finish.face_yaw": 2.05,
     "recovery.body_height": 0.7,
     "recovery.hip_height": 0.75,
     "recovery.head_over_base": 1.45,
@@ -16189,8 +16067,8 @@
      76.4,
      81.7,
      86.3,
-     90.7,
-     93.5,
+     90.8,
+     93.6,
      94.4,
      92.8,
      93.3,
@@ -16199,7 +16077,7 @@
      88.9,
      84.6,
      78.5,
-     72.4,
+     72.5,
      null,
      null,
      null,
@@ -16240,20 +16118,7 @@
   "series": "series/w000174644_6260_near_244.json",
   "window_impact_s": 4.88,
   "shot_in_point": 2,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 204.0,
-    "t1": 207.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 106,
@@ -16332,9 +16197,9 @@
    "bounce_to_impact_s": 0.3,
    "time_available_s": 0.68,
    "opponent_hit_source": "audio",
-   "shoulder_turn_3d_deg": 8.0,
-   "hip_turn_3d_deg": 3.7,
-   "x_factor_3d_deg": 4.3,
+   "shoulder_turn_3d_deg": 7.9,
+   "hip_turn_3d_deg": 2.9,
+   "x_factor_3d_deg": 5.0,
    "trunk3d_readings": 2,
    "trunk3d_rigid": true
   },
@@ -16997,31 +16862,31 @@
   "face": {
    "ready": {
     "points_to": "valla trasera",
-    "tilt_deg": -7.1,
-    "yaw_deg": -149.3,
+    "tilt_deg": -5.7,
+    "yaw_deg": -148.9,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "takeback": {
     "points_to": "valla trasera",
-    "tilt_deg": -2.4,
-    "yaw_deg": -144.9,
+    "tilt_deg": -1.1,
+    "yaw_deg": -144.4,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "loaded": {
     "points_to": "valla izquierda",
-    "tilt_deg": -8.0,
-    "yaw_deg": -89.5,
+    "tilt_deg": -7.9,
+    "yaw_deg": -89.6,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
    },
    "acceleration": {
     "points_to": "valla izquierda",
-    "tilt_deg": -13.5,
+    "tilt_deg": -13.7,
     "yaw_deg": -57.5,
     "observed": false,
     "hand_evidence": false,
@@ -17029,32 +16894,32 @@
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": 1.4,
-    "yaw_deg": -16.3,
+    "tilt_deg": 1.0,
+    "yaw_deg": -16.7,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": 11.2,
-    "yaw_deg": 2.9,
+    "tilt_deg": 10.6,
+    "yaw_deg": 1.8,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
     "points_to": "red",
-    "tilt_deg": 20.0,
-    "yaw_deg": -0.6,
+    "tilt_deg": 19.2,
+    "yaw_deg": -0.8,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "valla izquierda",
-    "tilt_deg": -13.1,
-    "yaw_deg": -83.7,
+    "tilt_deg": -13.8,
+    "yaw_deg": -84.8,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -17166,8 +17031,8 @@
      "racket_tip_height": 41.6,
      "racket_tip_vs_head": -33.5,
      "racket_head_lateral": 27.1,
-     "face_tilt": -8.0,
-     "face_yaw": -89.5,
+     "face_tilt": -7.9,
+     "face_yaw": -89.6,
      "face_points_to": "valla izquierda",
      "face_observed": true,
      "back_foot_angle_deg": 22.6,
@@ -17210,7 +17075,7 @@
      "racket_tip_height": 20.8,
      "racket_tip_vs_head": -59.5,
      "racket_head_lateral": 23.8,
-     "face_tilt": -13.5,
+     "face_tilt": -13.7,
      "face_yaw": -57.5,
      "face_points_to": "valla izquierda",
      "face_observed": false
@@ -17241,8 +17106,8 @@
      "arm_extension": 64.4,
      "shoulder_turn": 33.2,
      "hip_turn": 34.3,
-     "face_tilt": 1.4,
-     "face_yaw": -16.3,
+     "face_tilt": 1.0,
+     "face_yaw": -16.7,
      "face_points_to": "red",
      "face_observed": false,
      "base_court_m": 0.61,
@@ -17338,8 +17203,8 @@
      "racket_tip_height": 31.1,
      "racket_tip_vs_head": -37.1,
      "racket_head_lateral": -25.3,
-     "face_tilt": -13.1,
-     "face_yaw": -83.7,
+     "face_tilt": -13.8,
+     "face_yaw": -84.8,
      "face_points_to": "valla izquierda",
      "face_observed": false
     },
@@ -17373,8 +17238,8 @@
      "racket_tip_height": 80.8,
      "racket_tip_vs_head": 11.0,
      "racket_head_lateral": 31.7,
-     "face_tilt": 10.9,
-     "face_yaw": -66.7,
+     "face_tilt": 11.8,
+     "face_yaw": -66.1,
      "face_points_to": "valla izquierda",
      "face_observed": false,
      "t_to_contact": 0.38
@@ -17404,13 +17269,13 @@
      "arm_extension": 80.4,
      "shoulder_turn": 66.1,
      "racket_head_vs_wrist": 24.0,
-     "racket_angle": 73.3,
-     "racket_forearm": 56.5,
+     "racket_angle": 73.5,
+     "racket_forearm": 56.7,
      "racket_tip_height": 75.6,
      "racket_tip_vs_head": 7.4,
-     "racket_head_lateral": 32.8,
-     "face_tilt": -4.6,
-     "face_yaw": -76.0,
+     "racket_head_lateral": 32.7,
+     "face_tilt": -4.3,
+     "face_yaw": -75.9,
      "face_points_to": "valla izquierda",
      "face_observed": true,
      "t_to_contact": 0.3
@@ -17704,7 +17569,7 @@
     "loaded.racket_tip_vs_head": 16.25,
     "loaded.racket_head_lateral": 2.0,
     "loaded.face_tilt": 2.35,
-    "loaded.face_yaw": 5.3,
+    "loaded.face_yaw": 5.4,
     "loaded.back_foot_angle_deg": 4.25,
     "acceleration.body_height": 0.75,
     "acceleration.hip_height": 0.7,
@@ -17740,7 +17605,7 @@
     "acceleration.racket_tip_height": 1.4,
     "acceleration.racket_tip_vs_head": 2.65,
     "acceleration.racket_head_lateral": 3.05,
-    "acceleration.face_tilt": 3.45,
+    "acceleration.face_tilt": 3.3,
     "acceleration.face_yaw": 20.8,
     "impact.body_height": 1.35,
     "impact.hip_height": 0.6,
@@ -17767,8 +17632,8 @@
     "impact.arm_extension": 11.4,
     "impact.shoulder_turn": 3.0,
     "impact.hip_turn": 0.45,
-    "impact.face_tilt": 7.05,
-    "impact.face_yaw": 15.65,
+    "impact.face_tilt": 6.95,
+    "impact.face_yaw": 15.2,
     "extension.body_height": 1.3,
     "extension.hip_height": 0.7,
     "extension.head_over_base": 4.1,
@@ -17846,8 +17711,8 @@
     "recovery.racket_tip_height": 0.4,
     "recovery.racket_tip_vs_head": 0.8,
     "recovery.racket_head_lateral": 2.4,
-    "recovery.face_tilt": 1.9,
-    "recovery.face_yaw": 1.9,
+    "recovery.face_tilt": 1.7,
+    "recovery.face_yaw": 2.2,
     "stroke.head_still_after_cm": 0.18,
     "stroke.feet_move_m": 0.02,
     "stroke.t_trunk_finish": 0.0,
@@ -18746,31 +18611,7 @@
   "series": "series/w000209450_3600_near_106.json",
   "window_impact_s": 2.12,
   "shot_in_point": 1,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 228.8,
-    "t1": 236.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 236.7,
-    "t1": 271.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 115,
@@ -18845,8 +18686,8 @@
    "time_available_s": 0.96,
    "opponent_hit_source": "audio",
    "shoulder_turn_3d_deg": -173.0,
-   "hip_turn_3d_deg": -175.9,
-   "x_factor_3d_deg": 2.8,
+   "hip_turn_3d_deg": -176.0,
+   "x_factor_3d_deg": 3.0,
    "trunk3d_readings": 7,
    "trunk3d_rigid": true
   },
@@ -20282,42 +20123,7 @@
   "series": "series/w000213846_3600_near_115.json",
   "window_impact_s": 2.3,
   "shot_in_point": 2,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 225.4,
-    "t1": 228.8,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 228.8,
-    "t1": 236.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 236.7,
-    "t1": 271.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 110,
@@ -21189,16 +20995,16 @@
   "face": {
    "ready": {
     "points_to": "valla derecha",
-    "tilt_deg": 2.9,
-    "yaw_deg": 80.1,
+    "tilt_deg": 4.8,
+    "yaw_deg": 80.9,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "takeback": {
     "points_to": "red",
-    "tilt_deg": 6.7,
-    "yaw_deg": 17.3,
+    "tilt_deg": 7.6,
+    "yaw_deg": 17.6,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -21206,30 +21012,30 @@
    "loaded": {
     "points_to": "valla izquierda",
     "tilt_deg": 24.8,
-    "yaw_deg": -58.8,
+    "yaw_deg": -58.9,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "red",
-    "tilt_deg": -25.3,
-    "yaw_deg": -20.0,
+    "tilt_deg": -24.0,
+    "yaw_deg": -23.2,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -9.0,
-    "yaw_deg": 7.4,
+    "tilt_deg": -9.1,
+    "yaw_deg": 7.2,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -8.3,
+    "tilt_deg": -9.2,
     "yaw_deg": 30.4,
     "observed": false,
     "hand_evidence": false,
@@ -21237,16 +21043,16 @@
    },
    "finish": {
     "points_to": "valla derecha",
-    "tilt_deg": -3.8,
-    "yaw_deg": 103.9,
+    "tilt_deg": -3.7,
+    "yaw_deg": 103.7,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
    },
    "recovery": {
     "points_to": "valla derecha",
-    "tilt_deg": -19.7,
-    "yaw_deg": 103.4,
+    "tilt_deg": -16.9,
+    "yaw_deg": 102.5,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -21346,12 +21152,12 @@
      "x_factor": 12.5,
      "racket_head_vs_wrist": 21.0,
      "racket_angle": 74.7,
-     "racket_forearm": 95.3,
+     "racket_forearm": 95.2,
      "racket_tip_height": 82.6,
      "racket_tip_vs_head": 5.1,
      "racket_head_lateral": -35.0,
      "face_tilt": 24.8,
-     "face_yaw": -58.8,
+     "face_yaw": -58.9,
      "face_points_to": "valla izquierda",
      "face_observed": false,
      "front_foot_angle_deg": 9.2,
@@ -21411,8 +21217,8 @@
      "arm_extension": 85.1,
      "shoulder_turn": 45.8,
      "hip_turn": 34.5,
-     "face_tilt": -9.0,
-     "face_yaw": 7.4,
+     "face_tilt": -9.1,
+     "face_yaw": 7.2,
      "face_points_to": "red",
      "face_observed": false,
      "back_foot_angle_deg": 32.7,
@@ -21479,8 +21285,8 @@
      "racket_tip_height": 119.0,
      "racket_tip_vs_head": 32.7,
      "racket_head_lateral": 5.9,
-     "face_tilt": -3.8,
-     "face_yaw": 103.9,
+     "face_tilt": -3.7,
+     "face_yaw": 103.7,
      "face_points_to": "valla derecha",
      "face_observed": true,
      "base_court_m": 0.8,
@@ -21832,12 +21638,12 @@
     "loaded.x_factor": 1.85,
     "loaded.racket_head_vs_wrist": 0.7,
     "loaded.racket_angle": 5.35,
-    "loaded.racket_forearm": 4.6,
+    "loaded.racket_forearm": 4.7,
     "loaded.racket_tip_height": 1.2,
     "loaded.racket_tip_vs_head": 1.8,
     "loaded.racket_head_lateral": 1.4,
-    "loaded.face_tilt": 9.2,
-    "loaded.face_yaw": 16.65,
+    "loaded.face_tilt": 9.15,
+    "loaded.face_yaw": 16.45,
     "loaded.front_foot_angle_deg": 0.7,
     "loaded.back_foot_angle_deg": 11.8,
     "acceleration.body_height": 0.35,
@@ -21886,8 +21692,8 @@
     "impact.arm_extension": 5.4,
     "impact.shoulder_turn": 14.15,
     "impact.hip_turn": 7.3,
-    "impact.face_tilt": 0.95,
-    "impact.face_yaw": 10.95,
+    "impact.face_tilt": 0.55,
+    "impact.face_yaw": 11.5,
     "impact.back_foot_angle_deg": 1.95,
     "extension.body_height": 1.05,
     "extension.hip_height": 0.55,
@@ -21943,7 +21749,7 @@
     "finish.racket_tip_height": 2.05,
     "finish.racket_tip_vs_head": 2.15,
     "finish.racket_head_lateral": 2.85,
-    "finish.face_tilt": 6.55,
+    "finish.face_tilt": 6.6,
     "finish.face_yaw": 4.25,
     "recovery.body_height": 1.85,
     "recovery.hip_height": 1.65,
@@ -22863,31 +22669,7 @@
   "series": "series/w000256600_5948_near_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 1,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 271.2,
-    "t1": 277.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 277.8,
-    "t1": 317.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 226,
@@ -23723,24 +23505,24 @@
   "outcome": "rally",
   "face": {
    "ready": {
-    "points_to": "valla izquierda",
-    "tilt_deg": 15.3,
-    "yaw_deg": -88.1,
+    "points_to": "suelo",
+    "tilt_deg": 68.0,
+    "yaw_deg": 56.4,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "takeback": {
-    "points_to": "valla izquierda",
-    "tilt_deg": 22.5,
-    "yaw_deg": -65.8,
+    "points_to": "suelo",
+    "tilt_deg": 38.6,
+    "yaw_deg": -37.9,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "loaded": {
     "points_to": "valla izquierda",
-    "tilt_deg": 27.4,
+    "tilt_deg": 27.5,
     "yaw_deg": -95.1,
     "observed": false,
     "hand_evidence": false,
@@ -23748,8 +23530,8 @@
    },
    "acceleration": {
     "points_to": "red",
-    "tilt_deg": -29.6,
-    "yaw_deg": -25.4,
+    "tilt_deg": -29.4,
+    "yaw_deg": -25.6,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
@@ -23757,22 +23539,22 @@
    "impact": {
     "points_to": "red",
     "tilt_deg": -10.5,
-    "yaw_deg": -15.4,
+    "yaw_deg": -15.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -8.9,
-    "yaw_deg": -22.9,
+    "tilt_deg": -9.6,
+    "yaw_deg": -21.9,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
-    "points_to": "suelo",
-    "tilt_deg": 44.6,
+    "points_to": "valla izquierda",
+    "tilt_deg": 44.3,
     "yaw_deg": -101.6,
     "observed": true,
     "hand_evidence": false,
@@ -23780,8 +23562,8 @@
    },
    "recovery": {
     "points_to": "valla izquierda",
-    "tilt_deg": 22.8,
-    "yaw_deg": -62.4,
+    "tilt_deg": 12.0,
+    "yaw_deg": -50.7,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
@@ -23830,7 +23612,7 @@
      "arm_extension": 68.8,
      "shoulder_turn": 16.1,
      "hip_turn": 25.5,
-     "face_points_to": "valla izquierda",
+     "face_points_to": "suelo",
      "face_observed": false
     },
     "takeback": {
@@ -23860,7 +23642,7 @@
      "shoulder_turn": 22.5,
      "hip_turn": 20.2,
      "x_factor": 2.3,
-     "face_points_to": "valla izquierda",
+     "face_points_to": "suelo",
      "face_observed": false
     },
     "loaded": {
@@ -23895,7 +23677,7 @@
      "racket_tip_height": 93.9,
      "racket_tip_vs_head": 22.1,
      "racket_head_lateral": 12.8,
-     "face_tilt": 27.4,
+     "face_tilt": 27.5,
      "face_yaw": -95.1,
      "face_points_to": "valla izquierda",
      "face_observed": false,
@@ -23965,7 +23747,7 @@
      "racket_tip_vs_head": -35.1,
      "racket_head_lateral": 31.0,
      "face_tilt": -10.5,
-     "face_yaw": -15.4,
+     "face_yaw": -15.0,
      "face_points_to": "red",
      "face_observed": false,
      "back_foot_angle_deg": 0.3,
@@ -24041,9 +23823,9 @@
      "racket_tip_height": 101.2,
      "racket_tip_vs_head": 18.9,
      "racket_head_lateral": -4.2,
-     "face_tilt": 44.6,
+     "face_tilt": 44.3,
      "face_yaw": -101.6,
-     "face_points_to": "suelo",
+     "face_points_to": "valla izquierda",
      "face_observed": true,
      "base_court_m": 0.62,
      "shoulder_width_ratio": 0.65,
@@ -24108,8 +23890,8 @@
      "racket_tip_height": 86.3,
      "racket_tip_vs_head": 8.6,
      "racket_head_lateral": 7.9,
-     "face_tilt": 1.0,
-     "face_yaw": 56.6,
+     "face_tilt": 0.8,
+     "face_yaw": 56.7,
      "face_points_to": "valla derecha",
      "face_observed": false,
      "t_to_contact": 0.6
@@ -24462,13 +24244,13 @@
     "loaded.hip_turn": 2.25,
     "loaded.x_factor": 5.8,
     "loaded.racket_head_vs_wrist": 0.4,
-    "loaded.racket_angle": 4.35,
+    "loaded.racket_angle": 4.3,
     "loaded.racket_forearm": 2.6,
     "loaded.racket_tip_height": 0.25,
     "loaded.racket_tip_vs_head": 0.8,
     "loaded.racket_head_lateral": 4.45,
-    "loaded.face_tilt": 1.1,
-    "loaded.face_yaw": 5.0,
+    "loaded.face_tilt": 1.05,
+    "loaded.face_yaw": 4.9,
     "loaded.front_foot_angle_deg": 3.2,
     "acceleration.body_height": 0.5,
     "acceleration.hip_height": 0.35,
@@ -24525,8 +24307,8 @@
     "impact.racket_tip_height": 0.3,
     "impact.racket_tip_vs_head": 0.2,
     "impact.racket_head_lateral": 4.3,
-    "impact.face_tilt": 4.45,
-    "impact.face_yaw": 5.55,
+    "impact.face_tilt": 4.2,
+    "impact.face_yaw": 5.4,
     "impact.back_foot_angle_deg": 4.35,
     "extension.body_height": 0.4,
     "extension.hip_height": 1.0,
@@ -24591,8 +24373,8 @@
     "finish.racket_tip_height": 1.65,
     "finish.racket_tip_vs_head": 1.7,
     "finish.racket_head_lateral": 2.05,
-    "finish.face_tilt": 10.05,
-    "finish.face_yaw": 30.6,
+    "finish.face_tilt": 11.0,
+    "finish.face_yaw": 34.2,
     "recovery.body_height": 0.95,
     "recovery.hip_height": 1.05,
     "recovery.head_over_base": 0.3,
@@ -25500,8 +25282,8 @@
      115.5,
      110.6,
      100.9,
-     91.0,
-     81.2,
+     91.1,
+     81.3,
      76.5,
      82.3,
      93.5,
@@ -25525,31 +25307,7 @@
   "series": "series/w000256600_5948_near_226.json",
   "window_impact_s": 4.52,
   "shot_in_point": 2,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 271.2,
-    "t1": 277.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 277.8,
-    "t1": 317.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 107,
@@ -26290,8 +26048,8 @@
   "face": {
    "ready": {
     "points_to": "red",
-    "tilt_deg": -29.0,
-    "yaw_deg": 36.9,
+    "tilt_deg": -30.0,
+    "yaw_deg": 37.3,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
@@ -26299,48 +26057,48 @@
    "takeback": null,
    "loaded": {
     "points_to": "valla derecha",
-    "tilt_deg": -23.6,
-    "yaw_deg": 84.1,
+    "tilt_deg": -24.3,
+    "yaw_deg": 83.7,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
    },
    "acceleration": {
     "points_to": "valla derecha",
-    "tilt_deg": -30.4,
-    "yaw_deg": 79.4,
+    "tilt_deg": -30.1,
+    "yaw_deg": 79.5,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -12.4,
-    "yaw_deg": 11.8,
+    "tilt_deg": -12.2,
+    "yaw_deg": 11.4,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -16.0,
-    "yaw_deg": 28.8,
+    "tilt_deg": -15.9,
+    "yaw_deg": 28.7,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
     "points_to": "valla trasera",
-    "tilt_deg": 37.3,
-    "yaw_deg": -177.7,
+    "tilt_deg": 35.9,
+    "yaw_deg": -176.2,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "valla izquierda",
-    "tilt_deg": 34.3,
-    "yaw_deg": -130.9,
+    "tilt_deg": 34.2,
+    "yaw_deg": -134.3,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -26406,14 +26164,14 @@
      "shoulder_turn": 20.2,
      "hip_turn": 25.1,
      "x_factor": -4.9,
-     "racket_head_vs_wrist": -12.1,
+     "racket_head_vs_wrist": -12.3,
      "racket_angle": -77.4,
      "racket_forearm": 17.4,
      "racket_tip_height": 24.0,
      "racket_tip_vs_head": -57.5,
      "racket_head_lateral": 9.8,
-     "face_tilt": -23.6,
-     "face_yaw": 84.1,
+     "face_tilt": -24.3,
+     "face_yaw": 83.7,
      "face_points_to": "valla derecha",
      "face_observed": true,
      "front_foot_angle_deg": 8.9,
@@ -26450,13 +26208,13 @@
      "hip_turn": 25.9,
      "x_factor": -5.7,
      "racket_head_vs_wrist": -10.4,
-     "racket_angle": -57.4,
-     "racket_forearm": 5.0,
+     "racket_angle": -58.6,
+     "racket_forearm": 3.7,
      "racket_tip_height": 26.8,
      "racket_tip_vs_head": -56.3,
      "racket_head_lateral": 13.1,
-     "face_tilt": -30.4,
-     "face_yaw": 79.4,
+     "face_tilt": -30.1,
+     "face_yaw": 79.5,
      "face_points_to": "valla derecha",
      "face_observed": false
     },
@@ -26494,8 +26252,8 @@
      "racket_tip_height": 18.3,
      "racket_tip_vs_head": -63.8,
      "racket_head_lateral": 16.8,
-     "face_tilt": -12.4,
-     "face_yaw": 11.8,
+     "face_tilt": -12.2,
+     "face_yaw": 11.4,
      "face_points_to": "red",
      "face_observed": false,
      "base_court_m": 0.16,
@@ -26623,7 +26381,7 @@
     "shoulders_open_first": -0.14,
     "shoulder_brake": 70.0,
     "hip_rise": 0.7,
-    "hand_on_handle": 23.3,
+    "hand_on_handle": 22.5,
     "racket_speed_rel": 0.51,
     "loaded_vs_last_plant": -0.14,
     "return_ready_depth_m": -0.69,
@@ -26861,14 +26619,14 @@
     "loaded.shoulder_turn": 0.55,
     "loaded.hip_turn": 2.4,
     "loaded.x_factor": 1.95,
-    "loaded.racket_head_vs_wrist": 1.45,
+    "loaded.racket_head_vs_wrist": 1.25,
     "loaded.racket_angle": 9.8,
     "loaded.racket_forearm": 8.85,
     "loaded.racket_tip_height": 3.05,
     "loaded.racket_tip_vs_head": 1.25,
     "loaded.racket_head_lateral": 0.85,
     "loaded.face_tilt": 3.9,
-    "loaded.face_yaw": 1.15,
+    "loaded.face_yaw": 1.35,
     "loaded.front_foot_angle_deg": 0.15,
     "acceleration.body_height": 0.7,
     "acceleration.hip_height": 0.35,
@@ -26898,12 +26656,12 @@
     "acceleration.hip_turn": 1.45,
     "acceleration.x_factor": 0.8,
     "acceleration.racket_head_vs_wrist": 0.6,
-    "acceleration.racket_angle": 14.95,
-    "acceleration.racket_forearm": 13.3,
+    "acceleration.racket_angle": 14.35,
+    "acceleration.racket_forearm": 13.9,
     "acceleration.racket_tip_height": 0.25,
     "acceleration.racket_tip_vs_head": 1.0,
     "acceleration.racket_head_lateral": 2.1,
-    "acceleration.face_tilt": 1.4,
+    "acceleration.face_tilt": 1.45,
     "acceleration.face_yaw": 1.05,
     "impact.body_height": 0.2,
     "impact.hip_height": 0.45,
@@ -26938,8 +26696,8 @@
     "impact.racket_tip_height": 1.75,
     "impact.racket_tip_vs_head": 1.75,
     "impact.racket_head_lateral": 1.0,
-    "impact.face_tilt": 2.8,
-    "impact.face_yaw": 10.05,
+    "impact.face_tilt": 2.85,
+    "impact.face_yaw": 9.95,
     "extension.body_height": 0.1,
     "extension.hip_height": 0.4,
     "extension.head_over_base": 0.75,
@@ -27788,8 +27546,8 @@
      19.7,
      22.6,
      26.5,
-     30.7,
-     34.3,
+     30.6,
+     34.2,
      35.6,
      34.5,
      33.3,
@@ -27829,130 +27587,7 @@
   "series": "series/w000320900_3600_near_107.json",
   "window_impact_s": 2.14,
   "shot_in_point": 1,
-  "shots_in_point": 1,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 327.2,
-    "t1": 331.5,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 331.5,
-    "t1": 338.1,
-    "slowmo": 0.32,
-    "speed": "rapida",
-    "impact_t": 334.484,
-    "method": "recorrido",
-    "confidence": 0.9
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 338.2,
-    "t1": 341.1,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 341.1,
-    "t1": 345.0,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 349.7,
-    "t1": 358.8,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 358.8,
-    "t1": 359.3,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "lateral",
-    "label": "Cámara lateral",
-    "t0": 359.3,
-    "t1": 360.4,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.6
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 360.4,
-    "t1": 366.4,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "frontal",
-    "label": "Cámara frontal",
-    "t0": 366.4,
-    "t1": 367.1,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.4
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 367.1,
-    "t1": 367.8,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 367.8,
-    "t1": 377.5,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 1
  },
  {
   "impact_frame": 231,
@@ -28120,31 +27755,7 @@
   "series": "series/w000409653_5904_far_231.json",
   "window_impact_s": 4.62,
   "shot_in_point": 2,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 425.0,
-    "t1": 429.0,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 429.7,
-    "t1": 441.3,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 113,
@@ -28306,42 +27917,7 @@
   "window_impact_s": 2.26,
   "shot_in_point": 1,
   "shots_in_point": 3,
-  "is_return": false,
-  "views": [
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 510.3,
-    "t1": 520.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 520.9,
-    "t1": 534.3,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 534.3,
-    "t1": 578.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "is_return": false
  },
  {
   "impact_frame": 120,
@@ -28509,42 +28085,7 @@
   "series": "series/w000492482_3600_far_120.json",
   "window_impact_s": 2.4,
   "shot_in_point": 2,
-  "shots_in_point": 3,
-  "views": [
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 510.3,
-    "t1": 520.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 520.9,
-    "t1": 534.3,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 534.3,
-    "t1": 578.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 3
  },
  {
   "impact_frame": 110,
@@ -28692,64 +28233,7 @@
   "series": "series/w000498900_3600_far_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 3,
-  "shots_in_point": 3,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 509.6,
-    "t1": 510.3,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 510.3,
-    "t1": 520.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 520.2,
-    "t1": 520.9,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 520.9,
-    "t1": 534.3,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 534.3,
-    "t1": 578.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 3
  },
  {
   "impact_frame": 111,
@@ -28917,42 +28401,7 @@
   "series": "series/w000562001_3600_far_111.json",
   "window_impact_s": 2.22,
   "shot_in_point": 1,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 579.4,
-    "t1": 583.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "lateral",
-    "label": "Cámara lateral",
-    "t0": 583.2,
-    "t1": 585.1,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.4
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 585.1,
-    "t1": 634.0,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 115,
@@ -29120,53 +28569,7 @@
   "series": "series/w000565900_3600_far_115.json",
   "window_impact_s": 2.3,
   "shot_in_point": 2,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 578.7,
-    "t1": 579.4,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 579.4,
-    "t1": 583.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "lateral",
-    "label": "Cámara lateral",
-    "t0": 583.2,
-    "t1": 585.1,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.4
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 585.1,
-    "t1": 634.0,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 118,
@@ -29336,20 +28739,7 @@
   "series": "series/w000599803_3600_far_118.json",
   "window_impact_s": 2.36,
   "shot_in_point": 1,
-  "shots_in_point": 1,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 639.2,
-    "t1": 645.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 1
  },
  {
   "impact_frame": 109,
@@ -29508,31 +28898,7 @@
   "window_impact_s": 2.18,
   "shot_in_point": 1,
   "shots_in_point": 4,
-  "is_return": false,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 652.7,
-    "t1": 734.0,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 734.0,
-    "t1": 782.0,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "is_return": false
  },
  {
   "impact_frame": 219,
@@ -29700,31 +29066,7 @@
   "series": "series/w000645670_7644_far_219.json",
   "window_impact_s": 4.38,
   "shot_in_point": 2,
-  "shots_in_point": 4,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 652.7,
-    "t1": 734.0,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 734.0,
-    "t1": 782.0,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 4
  },
  {
   "impact_frame": 310,
@@ -29891,31 +29233,7 @@
   "series": "series/w000645670_7644_far_310.json",
   "window_impact_s": 6.2,
   "shot_in_point": 4,
-  "shots_in_point": 4,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 652.7,
-    "t1": 734.0,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 734.0,
-    "t1": 782.0,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 4
  },
  {
   "impact_frame": 108,
@@ -30108,20 +29426,7 @@
   "series": "series/w000950300_3600_far_108.json",
   "window_impact_s": 2.16,
   "shot_in_point": 1,
-  "shots_in_point": 1,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 956.1,
-    "t1": 960.9,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 1
  },
  {
   "impact_frame": 104,
@@ -30330,42 +29635,7 @@
   "series": "series/w000962295_3600_far_104.json",
   "window_impact_s": 2.08,
   "shot_in_point": 1,
-  "shots_in_point": 1,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 969.4,
-    "t1": 973.5,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 973.5,
-    "t1": 999.9,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 999.9,
-    "t1": 1020.5,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 1
  },
  {
   "impact_frame": 112,
@@ -30563,53 +29833,7 @@
   "series": "series/w001027500_3600_far_112.json",
   "window_impact_s": 2.24,
   "shot_in_point": 1,
-  "shots_in_point": 1,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1032.5,
-    "t1": 1034.5,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1034.5,
-    "t1": 1039.8,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1039.8,
-    "t1": 1040.5,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1040.5,
-    "t1": 1050.1,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   }
-  ]
+  "shots_in_point": 1
  },
  {
   "impact_frame": 100,
@@ -30786,31 +30010,7 @@
   "series": "series/w001056302_3600_far_100.json",
   "window_impact_s": 2.0,
   "shot_in_point": 1,
-  "shots_in_point": 1,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1061.6,
-    "t1": 1067.6,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1083.8,
-    "t1": 1090.6,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   }
-  ]
+  "shots_in_point": 1
  },
  {
   "impact_frame": 110,
@@ -30958,42 +30158,7 @@
    "footwork": {}
   },
   "series": "series/w001065646_3600_far_110.json",
-  "window_impact_s": 2.2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1079.6,
-    "t1": 1083.8,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1083.8,
-    "t1": 1090.6,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1090.6,
-    "t1": 1094.1,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "window_impact_s": 2.2
  },
  {
   "impact_frame": 102,
@@ -31171,31 +30336,7 @@
   "series": "series/w001097700_6508_far_102.json",
   "window_impact_s": 2.04,
   "shot_in_point": 1,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1114.2,
-    "t1": 1129.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1138.5,
-    "t1": 1144.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 265,
@@ -31367,31 +30508,7 @@
   "series": "series/w001097700_6508_far_265.json",
   "window_impact_s": 5.3,
   "shot_in_point": 2,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1114.2,
-    "t1": 1129.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1138.5,
-    "t1": 1144.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 108,
@@ -31588,20 +30705,7 @@
   "series": "series/w001145788_3600_far_108.json",
   "window_impact_s": 2.16,
   "shot_in_point": 1,
-  "shots_in_point": 1,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1150.5,
-    "t1": 1170.4,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 1
  },
  {
   "impact_frame": 100,
@@ -31780,32 +30884,7 @@
   "window_impact_s": 2.0,
   "shot_in_point": 1,
   "shots_in_point": 2,
-  "is_return": true,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1180.9,
-    "t1": 1183.9,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1229.7,
-    "t1": 1236.7,
-    "slowmo": 1.33,
-    "speed": "lenta",
-    "impact_t": 1234.827,
-    "method": "recorrido",
-    "confidence": 0.7
-   }
-  ],
-  "slowmo_view": true
+  "is_return": true
  },
  {
   "impact_frame": 170,
@@ -32011,32 +31090,7 @@
   "series": "series/w001170500_4792_far_170.json",
   "window_impact_s": 3.4,
   "shot_in_point": 2,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1180.9,
-    "t1": 1183.9,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1229.7,
-    "t1": 1236.7,
-    "slowmo": 1.33,
-    "speed": "lenta",
-    "impact_t": 1236.412,
-    "method": "recorrido",
-    "confidence": 0.7
-   }
-  ],
-  "slowmo_view": true
+  "shots_in_point": 2
  },
  {
   "impact_frame": 110,
@@ -32247,31 +31301,7 @@
   "series": "series/w001202675_6025_far_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 1,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1212.3,
-    "t1": 1217.3,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1217.3,
-    "t1": 1229.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 240,
@@ -32475,31 +31505,7 @@
   "series": "series/w001202675_6025_far_240.json",
   "window_impact_s": 4.8,
   "shot_in_point": 2,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1212.3,
-    "t1": 1217.3,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1217.3,
-    "t1": 1229.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 117,
@@ -32575,9 +31581,9 @@
    "time_impact_to_finish_s": 0.12,
    "time_available_s": 1.34,
    "opponent_hit_source": "ball",
-   "shoulder_turn_3d_deg": 5.1,
-   "hip_turn_3d_deg": 6.4,
-   "x_factor_3d_deg": -1.3,
+   "shoulder_turn_3d_deg": 5.2,
+   "hip_turn_3d_deg": 6.3,
+   "x_factor_3d_deg": -1.1,
    "trunk3d_readings": 2,
    "trunk3d_rigid": true
   },
@@ -33372,63 +32378,63 @@
   "face": {
    "ready": {
     "points_to": "valla derecha",
-    "tilt_deg": -0.2,
-    "yaw_deg": 48.5,
+    "tilt_deg": -0.3,
+    "yaw_deg": 49.8,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "takeback": {
     "points_to": "valla derecha",
-    "tilt_deg": -1.2,
-    "yaw_deg": 62.7,
+    "tilt_deg": -1.4,
+    "yaw_deg": 72.6,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "loaded": {
     "points_to": "cielo",
-    "tilt_deg": -64.1,
-    "yaw_deg": 62.4,
+    "tilt_deg": -54.3,
+    "yaw_deg": 59.7,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "red",
-    "tilt_deg": -31.9,
-    "yaw_deg": -2.8,
+    "tilt_deg": -32.7,
+    "yaw_deg": 7.0,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -12.5,
-    "yaw_deg": 7.8,
+    "tilt_deg": -11.4,
+    "yaw_deg": 8.3,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -2.6,
-    "yaw_deg": 32.7,
+    "tilt_deg": 1.7,
+    "yaw_deg": 30.8,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
     "points_to": "valla derecha",
-    "tilt_deg": 13.5,
-    "yaw_deg": 78.5,
+    "tilt_deg": 12.9,
+    "yaw_deg": 78.1,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "valla derecha",
-    "tilt_deg": 16.9,
+    "tilt_deg": 17.0,
     "yaw_deg": 60.5,
     "observed": true,
     "hand_evidence": false,
@@ -33527,13 +32533,13 @@
      "hip_turn": 7.0,
      "x_factor": -11.5,
      "racket_head_vs_wrist": -10.4,
-     "racket_angle": -40.1,
-     "racket_forearm": 21.7,
+     "racket_angle": -40.2,
+     "racket_forearm": 21.5,
      "racket_tip_height": 35.7,
      "racket_tip_vs_head": -49.5,
-     "racket_head_lateral": 18.7,
-     "face_tilt": -64.1,
-     "face_yaw": 62.4,
+     "racket_head_lateral": 18.6,
+     "face_tilt": -54.3,
+     "face_yaw": 59.7,
      "face_points_to": "cielo",
      "face_observed": false,
      "front_foot_angle_deg": 98.0,
@@ -33605,13 +32611,13 @@
      "shoulder_turn": 20.2,
      "hip_turn": 17.7,
      "racket_head_vs_wrist": 0.8,
-     "racket_angle": 41.7,
-     "racket_forearm": 95.4,
+     "racket_angle": 41.5,
+     "racket_forearm": 95.3,
      "racket_tip_height": 53.2,
      "racket_tip_vs_head": -32.7,
      "racket_head_lateral": 18.8,
-     "face_tilt": -12.5,
-     "face_yaw": 7.8,
+     "face_tilt": -11.4,
+     "face_yaw": 8.3,
      "face_points_to": "red",
      "face_observed": false,
      "base_court_m": 0.4,
@@ -33689,8 +32695,8 @@
      "racket_tip_height": 58.0,
      "racket_tip_vs_head": -26.5,
      "racket_head_lateral": 13.8,
-     "face_tilt": 13.5,
-     "face_yaw": 78.5,
+     "face_tilt": 12.9,
+     "face_yaw": 78.1,
      "face_points_to": "valla derecha",
      "face_observed": false,
      "base_court_m": 0.51,
@@ -33729,7 +32735,7 @@
      "racket_tip_height": 44.3,
      "racket_tip_vs_head": -32.2,
      "racket_head_lateral": 9.3,
-     "face_tilt": 16.9,
+     "face_tilt": 17.0,
      "face_yaw": 60.5,
      "face_points_to": "valla derecha",
      "face_observed": true
@@ -34067,13 +33073,13 @@
     "loaded.hip_turn": 4.8,
     "loaded.x_factor": 3.6,
     "loaded.racket_head_vs_wrist": 4.45,
-    "loaded.racket_angle": 23.55,
-    "loaded.racket_forearm": 19.35,
+    "loaded.racket_angle": 23.25,
+    "loaded.racket_forearm": 19.05,
     "loaded.racket_tip_height": 6.65,
     "loaded.racket_tip_vs_head": 6.1,
-    "loaded.racket_head_lateral": 0.8,
-    "loaded.face_tilt": 9.5,
-    "loaded.face_yaw": 20.5,
+    "loaded.racket_head_lateral": 0.9,
+    "loaded.face_tilt": 4.25,
+    "loaded.face_yaw": 13.3,
     "loaded.front_foot_angle_deg": 0.4,
     "acceleration.body_height": 0.45,
     "acceleration.hip_height": 0.8,
@@ -34102,8 +33108,8 @@
     "acceleration.hip_turn": 0.55,
     "acceleration.x_factor": 6.75,
     "acceleration.racket_head_vs_wrist": 2.25,
-    "acceleration.racket_angle": 23.4,
-    "acceleration.racket_forearm": 21.45,
+    "acceleration.racket_angle": 23.3,
+    "acceleration.racket_forearm": 21.4,
     "acceleration.racket_tip_height": 4.75,
     "acceleration.racket_tip_vs_head": 5.1,
     "acceleration.racket_head_lateral": 0.25,
@@ -34134,13 +33140,13 @@
     "impact.shoulder_turn": 3.8,
     "impact.hip_turn": 1.0,
     "impact.racket_head_vs_wrist": 1.75,
-    "impact.racket_angle": 13.5,
-    "impact.racket_forearm": 13.8,
+    "impact.racket_angle": 13.7,
+    "impact.racket_forearm": 13.9,
     "impact.racket_tip_height": 3.0,
     "impact.racket_tip_vs_head": 3.5,
     "impact.racket_head_lateral": 0.9,
-    "impact.face_tilt": 8.9,
-    "impact.face_yaw": 10.6,
+    "impact.face_tilt": 11.25,
+    "impact.face_yaw": 6.1,
     "extension.body_height": 0.2,
     "extension.hip_height": 0.4,
     "extension.head_over_base": 0.25,
@@ -34207,7 +33213,7 @@
     "finish.racket_tip_height": 0.25,
     "finish.racket_tip_vs_head": 0.45,
     "finish.racket_head_lateral": 1.15,
-    "finish.face_tilt": 2.35,
+    "finish.face_tilt": 2.3,
     "finish.face_yaw": 5.6,
     "recovery.body_height": 0.45,
     "recovery.hip_height": 0.75,
@@ -34239,9 +33245,9 @@
     "recovery.racket_forearm": 2.2,
     "recovery.racket_tip_height": 0.6,
     "recovery.racket_tip_vs_head": 0.5,
-    "recovery.racket_head_lateral": 1.05,
-    "recovery.face_tilt": 2.65,
-    "recovery.face_yaw": 8.65,
+    "recovery.racket_head_lateral": 1.1,
+    "recovery.face_tilt": 2.75,
+    "recovery.face_yaw": 8.3,
     "stroke.head_still_after_cm": 0.37,
     "stroke.hip_drop_pct": 0.5,
     "stroke.hip_rise_after_pct": 0.0,
@@ -34251,7 +33257,7 @@
     "stroke.hip_rise_after_cm": 0.0,
     "stroke.feet_move_m": 0.015,
     "stroke.t_trunk_finish": 0.03,
-    "stroke.racket_lag_deg": 24.85,
+    "stroke.racket_lag_deg": 24.9,
     "stroke.t_racket_lag": 0.04,
     "stroke.t_takeback": 0.03,
     "stroke.t_loaded": 0.03,
@@ -35109,7 +34115,7 @@
      49.6,
      48.8,
      47.7,
-     46.1,
+     46.2,
      44.6,
      42.4,
      40.1,
@@ -35133,31 +34139,7 @@
   "series": "series/w001247398_3600_near_117.json",
   "window_impact_s": 2.34,
   "shot_in_point": 1,
-  "shots_in_point": 1,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1250.9,
-    "t1": 1254.0,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1254.0,
-    "t1": 1280.8,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 1
  },
  {
   "impact_frame": 110,
@@ -36035,20 +35017,7 @@
   "window_impact_s": 2.2,
   "shot_in_point": 1,
   "shots_in_point": 2,
-  "is_return": true,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1280.8,
-    "t1": 1290.1,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "is_return": true
  },
  {
   "impact_frame": 235,
@@ -37150,20 +36119,7 @@
   "series": "series/w001273081_6109_near_235.json",
   "window_impact_s": 4.7,
   "shot_in_point": 2,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1280.8,
-    "t1": 1290.1,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 110,
@@ -37311,42 +36267,7 @@
    "footwork": {}
   },
   "series": "series/w001289166_3600_far_110.json",
-  "window_impact_s": 2.2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1302.2,
-    "t1": 1302.9,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1302.9,
-    "t1": 1311.8,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1311.8,
-    "t1": 1312.5,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "window_impact_s": 2.2
  },
  {
   "impact_frame": 108,
@@ -37523,20 +36444,7 @@
   "series": "series/w001315898_3600_far_108.json",
   "window_impact_s": 2.16,
   "shot_in_point": 1,
-  "shots_in_point": 1,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1321.3,
-    "t1": 1330.5,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 1
  },
  {
   "impact_frame": 104,
@@ -37748,42 +36656,7 @@
   "series": "series/w001332032_3600_far_104.json",
   "window_impact_s": 2.08,
   "shot_in_point": 1,
-  "shots_in_point": 1,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1336.4,
-    "t1": 1353.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1353.2,
-    "t1": 1399.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1399.2,
-    "t1": 1414.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 1
  },
  {
   "impact_frame": 108,
@@ -38696,31 +37569,7 @@
    }
   },
   "series": "series/w001433999_9118_near_108.json",
-  "window_impact_s": 2.16,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1445.5,
-    "t1": 1466.4,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1466.4,
-    "t1": 1470.1,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "window_impact_s": 2.16
  },
  {
   "impact_frame": 237,
@@ -39706,31 +38555,7 @@
    }
   },
   "series": "series/w001433999_9118_near_237.json",
-  "window_impact_s": 4.74,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1445.5,
-    "t1": 1466.4,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1466.4,
-    "t1": 1470.1,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "window_impact_s": 4.74
  },
  {
   "impact_frame": 386,
@@ -41097,42 +39922,7 @@
    }
   },
   "series": "series/w001433999_9118_near_386.json",
-  "window_impact_s": 7.72,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1442.4,
-    "t1": 1445.5,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1445.5,
-    "t1": 1466.4,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1466.4,
-    "t1": 1470.1,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "window_impact_s": 7.72
  },
  {
   "impact_frame": 115,
@@ -41783,15 +40573,15 @@
   "face": {
    "ready": {
     "points_to": "red",
-    "tilt_deg": -26.5,
-    "yaw_deg": 8.3,
+    "tilt_deg": -26.6,
+    "yaw_deg": 8.7,
     "observed": true,
     "hand_evidence": true,
     "ambiguous": false
    },
    "takeback": {
     "points_to": "cielo",
-    "tilt_deg": -43.3,
+    "tilt_deg": -43.0,
     "yaw_deg": 131.0,
     "observed": false,
     "hand_evidence": false,
@@ -41799,23 +40589,23 @@
    },
    "loaded": {
     "points_to": "valla izquierda",
-    "tilt_deg": 11.3,
-    "yaw_deg": -99.6,
+    "tilt_deg": 10.7,
+    "yaw_deg": -99.7,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "red",
-    "tilt_deg": 16.5,
-    "yaw_deg": -30.1,
+    "tilt_deg": 17.4,
+    "yaw_deg": -29.4,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": 0.1,
+    "tilt_deg": 0.2,
     "yaw_deg": -0.4,
     "observed": false,
     "hand_evidence": false,
@@ -41823,24 +40613,24 @@
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": 12.1,
-    "yaw_deg": 24.4,
+    "tilt_deg": 11.6,
+    "yaw_deg": 24.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "finish": {
     "points_to": "valla derecha",
-    "tilt_deg": -4.2,
-    "yaw_deg": 49.7,
+    "tilt_deg": -0.1,
+    "yaw_deg": 48.1,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "red",
-    "tilt_deg": 14.1,
-    "yaw_deg": 39.3,
+    "tilt_deg": 18.7,
+    "yaw_deg": 30.6,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -41881,8 +40671,8 @@
      "racket_tip_height": 104.9,
      "racket_tip_vs_head": 21.1,
      "racket_head_lateral": -17.5,
-     "face_tilt": -26.5,
-     "face_yaw": 8.3,
+     "face_tilt": -26.6,
+     "face_yaw": 8.7,
      "face_points_to": "red",
      "face_observed": true
     },
@@ -41916,7 +40706,7 @@
      "racket_tip_height": 42.4,
      "racket_tip_vs_head": -43.8,
      "racket_head_lateral": -17.2,
-     "face_tilt": -43.3,
+     "face_tilt": -43.0,
      "face_yaw": 131.0,
      "face_points_to": "cielo",
      "face_observed": false
@@ -41956,8 +40746,8 @@
      "racket_tip_height": 144.9,
      "racket_tip_vs_head": 56.9,
      "racket_head_lateral": -1.5,
-     "face_tilt": 11.3,
-     "face_yaw": -99.6,
+     "face_tilt": 10.7,
+     "face_yaw": -99.7,
      "face_points_to": "valla izquierda",
      "face_observed": false,
      "base_court_m": 0.49,
@@ -42025,7 +40815,7 @@
      "racket_tip_height": 88.0,
      "racket_tip_vs_head": 8.8,
      "racket_head_lateral": -28.7,
-     "face_tilt": 0.1,
+     "face_tilt": 0.2,
      "face_yaw": -0.4,
      "face_points_to": "red",
      "face_observed": false,
@@ -42245,8 +41035,8 @@
     "ready.racket_tip_height": 3.55,
     "ready.racket_tip_vs_head": 4.2,
     "ready.racket_head_lateral": 4.85,
-    "ready.face_tilt": 13.4,
-    "ready.face_yaw": 49.15,
+    "ready.face_tilt": 13.25,
+    "ready.face_yaw": 49.35,
     "takeback.body_height": 0.5,
     "takeback.hip_height": 1.0,
     "takeback.head_over_base": 5.2,
@@ -42276,8 +41066,8 @@
     "takeback.racket_tip_height": 1.7,
     "takeback.racket_tip_vs_head": 1.6,
     "takeback.racket_head_lateral": 1.4,
-    "takeback.face_tilt": 26.7,
-    "takeback.face_yaw": 16.0,
+    "takeback.face_tilt": 26.3,
+    "takeback.face_yaw": 15.5,
     "loaded.body_height": 0.85,
     "loaded.hip_height": 0.3,
     "loaded.head_over_base": 3.0,
@@ -42311,8 +41101,8 @@
     "loaded.racket_tip_height": 0.0,
     "loaded.racket_tip_vs_head": 0.9,
     "loaded.racket_head_lateral": 1.0,
-    "loaded.face_tilt": 16.7,
-    "loaded.face_yaw": 7.9,
+    "loaded.face_tilt": 17.1,
+    "loaded.face_yaw": 8.0,
     "acceleration.body_height": 2.2,
     "acceleration.hip_height": 0.5,
     "acceleration.head_over_base": 2.6,
@@ -42369,8 +41159,8 @@
     "impact.racket_tip_height": 0.3,
     "impact.racket_tip_vs_head": 0.9,
     "impact.racket_head_lateral": 1.4,
-    "impact.face_tilt": 8.75,
-    "impact.face_yaw": 18.95,
+    "impact.face_tilt": 8.65,
+    "impact.face_yaw": 18.6,
     "extension.body_height": 0.45,
     "extension.hip_height": 0.25,
     "extension.head_over_base": 1.4,
@@ -43308,20 +42098,7 @@
   "window_impact_s": 2.3,
   "shot_in_point": 1,
   "shots_in_point": 1,
-  "is_return": false,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1479.8,
-    "t1": 1501.6,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "is_return": false
  },
  {
   "impact_frame": 114,
@@ -44004,8 +42781,8 @@
   "face": {
    "ready": {
     "points_to": "valla derecha",
-    "tilt_deg": -1.4,
-    "yaw_deg": 84.3,
+    "tilt_deg": -1.3,
+    "yaw_deg": 84.2,
     "observed": true,
     "hand_evidence": true,
     "ambiguous": true
@@ -44013,32 +42790,32 @@
    "takeback": null,
    "loaded": {
     "points_to": "valla derecha",
-    "tilt_deg": -10.9,
-    "yaw_deg": 97.8,
+    "tilt_deg": -11.1,
+    "yaw_deg": 97.9,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
    },
    "acceleration": {
     "points_to": "valla derecha",
-    "tilt_deg": 16.4,
-    "yaw_deg": 87.1,
+    "tilt_deg": 16.5,
+    "yaw_deg": 88.8,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -28.7,
-    "yaw_deg": -4.2,
+    "tilt_deg": -27.3,
+    "yaw_deg": -6.1,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -28.6,
-    "yaw_deg": -3.0,
+    "tilt_deg": -20.5,
+    "yaw_deg": -5.3,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -44046,15 +42823,15 @@
    "finish": {
     "points_to": "suelo",
     "tilt_deg": 53.9,
-    "yaw_deg": 38.2,
+    "yaw_deg": 38.4,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
    },
    "recovery": {
     "points_to": "red",
-    "tilt_deg": 0.5,
-    "yaw_deg": 31.4,
+    "tilt_deg": -1.9,
+    "yaw_deg": 31.1,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -44097,8 +42874,8 @@
      "racket_tip_height": 110.7,
      "racket_tip_vs_head": 26.6,
      "racket_head_lateral": -15.8,
-     "face_tilt": -1.4,
-     "face_yaw": 84.3,
+     "face_tilt": -1.3,
+     "face_yaw": 84.2,
      "face_points_to": "valla derecha",
      "face_observed": true
     },
@@ -44133,8 +42910,8 @@
      "racket_tip_height": 80.7,
      "racket_tip_vs_head": -9.4,
      "racket_head_lateral": -8.0,
-     "face_tilt": -10.9,
-     "face_yaw": 97.8,
+     "face_tilt": -11.1,
+     "face_yaw": 97.9,
      "face_points_to": "valla derecha",
      "face_observed": true,
      "base_court_m": 0.26,
@@ -44165,14 +42942,14 @@
      "shoulder_turn": 89.4,
      "hip_turn": 57.4,
      "x_factor": 32.0,
-     "racket_head_vs_wrist": -34.8,
+     "racket_head_vs_wrist": -34.7,
      "racket_angle": -78.3,
      "racket_forearm": 70.2,
      "racket_tip_height": 39.5,
      "racket_tip_vs_head": -52.0,
      "racket_head_lateral": -9.6,
-     "face_tilt": 16.4,
-     "face_yaw": 87.1,
+     "face_tilt": 16.5,
+     "face_yaw": 88.8,
      "face_points_to": "valla derecha",
      "face_observed": true
     },
@@ -44201,8 +42978,8 @@
      "arm_extension": 99.8,
      "shoulder_turn": 49.4,
      "hip_turn": 32.7,
-     "face_tilt": -28.7,
-     "face_yaw": -4.2,
+     "face_tilt": -27.3,
+     "face_yaw": -6.1,
      "face_points_to": "red",
      "face_observed": false,
      "base_court_m": 0.51,
@@ -44272,7 +43049,7 @@
      "racket_tip_vs_head": -27.9,
      "racket_head_lateral": -31.5,
      "face_tilt": 53.9,
-     "face_yaw": 38.2,
+     "face_yaw": 38.4,
      "face_points_to": "suelo",
      "face_observed": true,
      "base_court_m": 0.55,
@@ -44423,8 +43200,8 @@
     "ready.racket_tip_height": 4.25,
     "ready.racket_tip_vs_head": 4.45,
     "ready.racket_head_lateral": 3.15,
-    "ready.face_tilt": 12.5,
-    "ready.face_yaw": 4.05,
+    "ready.face_tilt": 12.45,
+    "ready.face_yaw": 4.25,
     "loaded.body_height": 1.2,
     "loaded.hip_height": 3.1,
     "loaded.head_over_base": 2.25,
@@ -44451,12 +43228,12 @@
     "loaded.x_factor": 2.7,
     "loaded.racket_head_vs_wrist": 2.55,
     "loaded.racket_angle": 58.95,
-    "loaded.racket_forearm": 59.5,
+    "loaded.racket_forearm": 59.4,
     "loaded.racket_tip_height": 2.95,
     "loaded.racket_tip_vs_head": 5.1,
     "loaded.racket_head_lateral": 4.7,
-    "loaded.face_tilt": 15.45,
-    "loaded.face_yaw": 6.65,
+    "loaded.face_tilt": 15.5,
+    "loaded.face_yaw": 6.55,
     "acceleration.body_height": 0.4,
     "acceleration.hip_height": 0.65,
     "acceleration.head_over_base": 1.5,
@@ -44480,14 +43257,14 @@
     "acceleration.shoulder_turn": 6.6,
     "acceleration.hip_turn": 8.15,
     "acceleration.x_factor": 1.6,
-    "acceleration.racket_head_vs_wrist": 11.2,
-    "acceleration.racket_angle": 2.0,
-    "acceleration.racket_forearm": 25.05,
+    "acceleration.racket_head_vs_wrist": 11.1,
+    "acceleration.racket_angle": 1.9,
+    "acceleration.racket_forearm": 25.1,
     "acceleration.racket_tip_height": 2.9,
     "acceleration.racket_tip_vs_head": 3.25,
     "acceleration.racket_head_lateral": 8.55,
-    "acceleration.face_tilt": 20.95,
-    "acceleration.face_yaw": 16.7,
+    "acceleration.face_tilt": 21.1,
+    "acceleration.face_yaw": 15.85,
     "impact.body_height": 0.6,
     "impact.hip_height": 0.35,
     "impact.head_over_base": 1.35,
@@ -44512,8 +43289,8 @@
     "impact.arm_extension": 1.25,
     "impact.shoulder_turn": 2.45,
     "impact.hip_turn": 1.15,
-    "impact.face_tilt": 8.5,
-    "impact.face_yaw": 1.2,
+    "impact.face_tilt": 10.65,
+    "impact.face_yaw": 1.45,
     "extension.body_height": 0.25,
     "extension.hip_height": 0.25,
     "extension.head_over_base": 0.45,
@@ -44569,8 +43346,8 @@
     "finish.racket_tip_height": 3.6,
     "finish.racket_tip_vs_head": 4.6,
     "finish.racket_head_lateral": 0.95,
-    "finish.face_tilt": 8.0,
-    "finish.face_yaw": 6.5,
+    "finish.face_tilt": 8.1,
+    "finish.face_yaw": 6.7,
     "recovery.body_height": 0.95,
     "recovery.hip_height": 0.65,
     "recovery.head_over_base": 0.8,
@@ -45350,13 +44127,13 @@
      120.4,
      116.0,
      100.1,
-     84.2,
+     84.3,
      68.4,
-     52.5,
+     52.6,
      36.7,
-     33.3,
-     42.5,
-     51.7,
+     33.4,
+     42.6,
+     51.8,
      60.9,
      65.2,
      63.7,
@@ -45382,42 +44159,7 @@
   "series": "series/w001492330_3600_near_114.json",
   "window_impact_s": 2.28,
   "shot_in_point": 1,
-  "shots_in_point": 1,
-  "views": [
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1501.6,
-    "t1": 1510.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1510.2,
-    "t1": 1516.3,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1516.3,
-    "t1": 1524.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 1
  },
  {
   "impact_frame": 110,
@@ -46174,16 +44916,16 @@
   "face": {
    "ready": {
     "points_to": "valla derecha",
-    "tilt_deg": -22.0,
-    "yaw_deg": 61.8,
+    "tilt_deg": -21.6,
+    "yaw_deg": 62.2,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "takeback": {
     "points_to": "valla derecha",
-    "tilt_deg": -3.7,
-    "yaw_deg": 51.0,
+    "tilt_deg": -3.8,
+    "yaw_deg": 51.2,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -46191,15 +44933,15 @@
    "loaded": {
     "points_to": "red",
     "tilt_deg": -36.1,
-    "yaw_deg": 4.4,
+    "yaw_deg": 5.4,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "red",
-    "tilt_deg": -34.8,
-    "yaw_deg": 5.0,
+    "tilt_deg": -35.3,
+    "yaw_deg": 6.5,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -46207,31 +44949,31 @@
    "impact": {
     "points_to": "red",
     "tilt_deg": -7.3,
-    "yaw_deg": 0.6,
+    "yaw_deg": 0.7,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": 0.2,
-    "yaw_deg": 1.0,
+    "tilt_deg": 0.3,
+    "yaw_deg": 1.1,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
     "points_to": "red",
-    "tilt_deg": -16.3,
-    "yaw_deg": 1.0,
+    "tilt_deg": -15.8,
+    "yaw_deg": 2.5,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "red",
-    "tilt_deg": -40.6,
-    "yaw_deg": 14.9,
+    "tilt_deg": -42.6,
+    "yaw_deg": 21.9,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -46272,8 +45014,8 @@
      "racket_tip_height": 76.9,
      "racket_tip_vs_head": -0.7,
      "racket_head_lateral": -27.8,
-     "face_tilt": -22.0,
-     "face_yaw": 61.8,
+     "face_tilt": -21.6,
+     "face_yaw": 62.2,
      "face_points_to": "valla derecha",
      "face_observed": false
     },
@@ -46309,8 +45051,8 @@
      "racket_tip_height": 73.3,
      "racket_tip_vs_head": 0.5,
      "racket_head_lateral": -28.5,
-     "face_tilt": -3.7,
-     "face_yaw": 51.0,
+     "face_tilt": -3.8,
+     "face_yaw": 51.2,
      "face_points_to": "valla derecha",
      "face_observed": false
     },
@@ -46402,7 +45144,7 @@
      "shoulder_turn": 130.2,
      "hip_turn": 120.9,
      "face_tilt": -7.3,
-     "face_yaw": 0.6,
+     "face_yaw": 0.7,
      "face_points_to": "red",
      "face_observed": false,
      "front_foot_angle_deg": -32.7,
@@ -46706,8 +45448,8 @@
     "ready.racket_tip_height": 0.2,
     "ready.racket_tip_vs_head": 1.35,
     "ready.racket_head_lateral": 0.55,
-    "ready.face_tilt": 2.95,
-    "ready.face_yaw": 13.85,
+    "ready.face_tilt": 3.2,
+    "ready.face_yaw": 13.55,
     "takeback.body_height": 1.45,
     "takeback.hip_height": 0.55,
     "takeback.head_over_base": 2.9,
@@ -46739,8 +45481,8 @@
     "takeback.racket_tip_height": 3.75,
     "takeback.racket_tip_vs_head": 2.15,
     "takeback.racket_head_lateral": 5.45,
-    "takeback.face_tilt": 7.8,
-    "takeback.face_yaw": 15.95,
+    "takeback.face_tilt": 7.75,
+    "takeback.face_yaw": 15.8,
     "loaded.body_height": 0.75,
     "loaded.hip_height": 0.4,
     "loaded.head_over_base": 0.35,
@@ -46816,7 +45558,7 @@
     "impact.arm_extension": 0.2,
     "impact.shoulder_turn": 2.2,
     "impact.hip_turn": 3.7,
-    "impact.face_tilt": 3.05,
+    "impact.face_tilt": 3.3,
     "impact.face_yaw": 0.4,
     "impact.front_foot_angle_deg": 1.3,
     "impact.back_foot_angle_deg": 1.2,
@@ -47779,31 +46521,7 @@
   "series": "series/w001538351_3600_near_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 1,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1555.0,
-    "t1": 1565.4,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1565.4,
-    "t1": 1603.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 120,
@@ -47883,8 +46601,8 @@
    "time_available_s": 1.5,
    "opponent_hit_source": "ball",
    "shoulder_turn_3d_deg": 20.5,
-   "hip_turn_3d_deg": 14.7,
-   "x_factor_3d_deg": 5.7,
+   "hip_turn_3d_deg": 14.4,
+   "x_factor_3d_deg": 6.1,
    "trunk3d_readings": 2,
    "trunk3d_rigid": true
   },
@@ -48759,64 +47477,64 @@
   "face": {
    "ready": {
     "points_to": "valla derecha",
-    "tilt_deg": -40.0,
-    "yaw_deg": 71.5,
+    "tilt_deg": -39.9,
+    "yaw_deg": 70.8,
     "observed": true,
     "hand_evidence": true,
     "ambiguous": true
    },
    "takeback": {
     "points_to": "cielo",
-    "tilt_deg": -61.7,
-    "yaw_deg": -32.6,
+    "tilt_deg": -65.5,
+    "yaw_deg": -31.8,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "loaded": {
-    "points_to": "red",
-    "tilt_deg": -4.1,
-    "yaw_deg": -34.3,
+    "points_to": "valla izquierda",
+    "tilt_deg": -4.6,
+    "yaw_deg": -49.5,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "red",
-    "tilt_deg": -5.3,
-    "yaw_deg": 3.6,
+    "tilt_deg": -5.7,
+    "yaw_deg": -1.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -7.1,
-    "yaw_deg": -3.0,
+    "tilt_deg": -7.2,
+    "yaw_deg": -4.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -5.5,
-    "yaw_deg": -34.9,
+    "tilt_deg": -5.6,
+    "yaw_deg": -34.7,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "finish": {
     "points_to": "valla izquierda",
-    "tilt_deg": 8.4,
-    "yaw_deg": -95.8,
+    "tilt_deg": 8.5,
+    "yaw_deg": -95.5,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "valla izquierda",
-    "tilt_deg": -1.9,
-    "yaw_deg": -119.3,
+    "tilt_deg": -1.8,
+    "yaw_deg": -119.2,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
@@ -48870,8 +47588,8 @@
      "racket_tip_height": 76.3,
      "racket_tip_vs_head": -14.6,
      "racket_head_lateral": -2.9,
-     "face_tilt": -40.0,
-     "face_yaw": 71.5,
+     "face_tilt": -39.9,
+     "face_yaw": 70.8,
      "face_points_to": "valla derecha",
      "face_observed": true
     },
@@ -48919,7 +47637,7 @@
      "shoulder_turn": 104.1,
      "hip_turn": 122.9,
      "x_factor": -18.8,
-     "face_points_to": "red",
+     "face_points_to": "valla izquierda",
      "face_observed": false
     },
     "acceleration": {
@@ -48969,8 +47687,8 @@
      "racket_tip_height": 39.5,
      "racket_tip_vs_head": -17.5,
      "racket_head_lateral": -38.6,
-     "face_tilt": -7.1,
-     "face_yaw": -3.0,
+     "face_tilt": -7.2,
+     "face_yaw": -4.0,
      "face_points_to": "red",
      "face_observed": false,
      "base_court_m": 0.18,
@@ -49040,8 +47758,8 @@
      "racket_tip_height": 107.7,
      "racket_tip_vs_head": 45.0,
      "racket_head_lateral": 16.8,
-     "face_tilt": 8.4,
-     "face_yaw": -95.8,
+     "face_tilt": 8.5,
+     "face_yaw": -95.5,
      "face_points_to": "valla izquierda",
      "face_observed": false,
      "base_court_m": 0.43,
@@ -49075,13 +47793,13 @@
      "shoulder_turn": 60.5,
      "hip_turn": 14.2,
      "racket_head_vs_wrist": 28.1,
-     "racket_angle": 62.3,
-     "racket_forearm": 35.4,
+     "racket_angle": 62.5,
+     "racket_forearm": 35.2,
      "racket_tip_height": 103.7,
      "racket_tip_vs_head": 34.3,
      "racket_head_lateral": 8.1,
-     "face_tilt": -1.9,
-     "face_yaw": -119.3,
+     "face_tilt": -1.8,
+     "face_yaw": -119.2,
      "face_points_to": "valla izquierda",
      "face_observed": true
     },
@@ -49351,7 +48069,7 @@
     "ready.racket_tip_height": 1.1,
     "ready.racket_tip_vs_head": 1.55,
     "ready.racket_head_lateral": 0.5,
-    "ready.face_tilt": 2.5,
+    "ready.face_tilt": 2.55,
     "ready.face_yaw": 2.8,
     "takeback.body_height": 0.4,
     "takeback.hip_height": 0.3,
@@ -49434,8 +48152,8 @@
     "impact.racket_tip_height": 0.4,
     "impact.racket_tip_vs_head": 1.2,
     "impact.racket_head_lateral": 1.6,
-    "impact.face_tilt": 1.2,
-    "impact.face_yaw": 9.75,
+    "impact.face_tilt": 1.1,
+    "impact.face_yaw": 8.35,
     "extension.body_height": 1.55,
     "extension.hip_height": 1.0,
     "extension.head_over_base": 0.6,
@@ -49488,13 +48206,13 @@
     "finish.arm_extension": 1.05,
     "finish.shoulder_turn": 1.0,
     "finish.hip_turn": 1.35,
-    "finish.racket_head_vs_wrist": 3.4,
+    "finish.racket_head_vs_wrist": 3.5,
     "finish.racket_angle": 1.8,
     "finish.racket_forearm": 0.85,
     "finish.racket_tip_height": 2.0,
     "finish.racket_tip_vs_head": 2.1,
     "finish.racket_head_lateral": 2.15,
-    "finish.face_tilt": 1.25,
+    "finish.face_tilt": 1.3,
     "finish.face_yaw": 0.85,
     "recovery.body_height": 3.8,
     "recovery.hip_height": 2.55,
@@ -49522,12 +48240,12 @@
     "recovery.shoulder_turn": 0.7,
     "recovery.hip_turn": 3.65,
     "recovery.racket_head_vs_wrist": 0.95,
-    "recovery.racket_angle": 2.7,
+    "recovery.racket_angle": 2.45,
     "recovery.racket_forearm": 9.35,
     "recovery.racket_tip_height": 1.8,
     "recovery.racket_tip_vs_head": 3.15,
     "recovery.racket_head_lateral": 1.55,
-    "recovery.face_tilt": 6.65,
+    "recovery.face_tilt": 6.6,
     "recovery.face_yaw": 8.4,
     "stroke.head_still_after_cm": 0.41,
     "stroke.t_trunk_finish": 0.0,
@@ -50395,42 +49113,7 @@
   "series": "series/w001542150_3600_near_120.json",
   "window_impact_s": 2.4,
   "shot_in_point": 2,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1554.3,
-    "t1": 1555.0,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1555.0,
-    "t1": 1565.4,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1565.4,
-    "t1": 1603.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 112,
@@ -51351,23 +50034,23 @@
    },
    "takeback": {
     "points_to": "valla trasera",
-    "tilt_deg": 18.5,
-    "yaw_deg": -178.0,
+    "tilt_deg": 18.4,
+    "yaw_deg": -177.9,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "loaded": {
     "points_to": "red",
-    "tilt_deg": 32.9,
-    "yaw_deg": -27.0,
+    "tilt_deg": 34.7,
+    "yaw_deg": -28.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "suelo",
-    "tilt_deg": 47.8,
+    "tilt_deg": 48.3,
     "yaw_deg": -26.8,
     "observed": false,
     "hand_evidence": false,
@@ -51375,32 +50058,32 @@
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -1.0,
-    "yaw_deg": 3.7,
+    "tilt_deg": -1.2,
+    "yaw_deg": 4.8,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -9.1,
-    "yaw_deg": 33.2,
+    "tilt_deg": -6.3,
+    "yaw_deg": 37.5,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
     "points_to": "cielo",
-    "tilt_deg": -66.1,
-    "yaw_deg": -22.1,
+    "tilt_deg": -64.9,
+    "yaw_deg": -17.2,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "cielo",
-    "tilt_deg": -53.7,
-    "yaw_deg": -24.9,
+    "tilt_deg": -54.9,
+    "yaw_deg": -25.1,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
@@ -51484,8 +50167,8 @@
      "racket_tip_height": 60.7,
      "racket_tip_vs_head": 6.7,
      "racket_head_lateral": 3.9,
-     "face_tilt": 18.5,
-     "face_yaw": -178.0,
+     "face_tilt": 18.4,
+     "face_yaw": -177.9,
      "face_points_to": "valla trasera",
      "face_observed": false
     },
@@ -51578,8 +50261,8 @@
      "racket_tip_height": 76.9,
      "racket_tip_vs_head": 0.3,
      "racket_head_lateral": 39.9,
-     "face_tilt": -1.0,
-     "face_yaw": 3.7,
+     "face_tilt": -1.2,
+     "face_yaw": 4.8,
      "face_points_to": "red",
      "face_observed": false,
      "front_foot_angle_deg": 15.2,
@@ -51655,8 +50338,8 @@
      "racket_tip_height": 92.0,
      "racket_tip_vs_head": 21.2,
      "racket_head_lateral": -16.7,
-     "face_tilt": -66.1,
-     "face_yaw": -22.1,
+     "face_tilt": -64.9,
+     "face_yaw": -17.2,
      "face_points_to": "cielo",
      "face_observed": false,
      "base_court_m": 1.39,
@@ -51694,8 +50377,8 @@
      "racket_tip_height": 74.2,
      "racket_tip_vs_head": 4.3,
      "racket_head_lateral": -15.5,
-     "face_tilt": -53.7,
-     "face_yaw": -24.9,
+     "face_tilt": -54.9,
+     "face_yaw": -25.1,
      "face_points_to": "cielo",
      "face_observed": true
     },
@@ -52063,8 +50746,8 @@
     "impact.racket_tip_height": 20.45,
     "impact.racket_tip_vs_head": 18.95,
     "impact.racket_head_lateral": 10.95,
-    "impact.face_tilt": 7.5,
-    "impact.face_yaw": 21.2,
+    "impact.face_tilt": 5.95,
+    "impact.face_yaw": 22.65,
     "impact.front_foot_angle_deg": 3.2,
     "extension.body_height": 1.95,
     "extension.hip_height": 2.3,
@@ -52129,8 +50812,8 @@
     "finish.racket_tip_height": 8.75,
     "finish.racket_tip_vs_head": 7.8,
     "finish.racket_head_lateral": 4.55,
-    "finish.face_tilt": 4.3,
-    "finish.face_yaw": 37.95,
+    "finish.face_tilt": 3.3,
+    "finish.face_yaw": 42.4,
     "recovery.body_height": 0.8,
     "recovery.hip_height": 1.1,
     "recovery.head_over_base": 0.9,
@@ -52157,12 +50840,12 @@
     "recovery.hip_turn": 4.3,
     "recovery.racket_head_vs_wrist": 3.15,
     "recovery.racket_angle": 4.5,
-    "recovery.racket_forearm": 3.9,
+    "recovery.racket_forearm": 3.8,
     "recovery.racket_tip_height": 1.6,
     "recovery.racket_tip_vs_head": 1.3,
     "recovery.racket_head_lateral": 4.85,
-    "recovery.face_tilt": 5.6,
-    "recovery.face_yaw": 7.2,
+    "recovery.face_tilt": 5.0,
+    "recovery.face_yaw": 6.5,
     "stroke.head_still_after_cm": 0.89,
     "stroke.t_trunk_finish": 0.0,
     "stroke.racket_lag_deg": 0.0,
@@ -53031,7 +51714,7 @@
      97.9,
      94.5,
      91.1,
-     87.7,
+     87.8,
      84.4,
      86.7,
      93.0,
@@ -54059,20 +52742,7 @@
   "series": "series/w001594341_3600_near_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 2,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1603.7,
-    "t1": 1608.9,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 113,
@@ -54843,16 +53513,16 @@
   "face": {
    "ready": {
     "points_to": "valla trasera",
-    "tilt_deg": 32.4,
-    "yaw_deg": -155.3,
+    "tilt_deg": 33.0,
+    "yaw_deg": -158.8,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "takeback": {
     "points_to": "valla trasera",
-    "tilt_deg": 40.4,
-    "yaw_deg": 178.5,
+    "tilt_deg": 37.7,
+    "yaw_deg": 174.0,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -54860,47 +53530,47 @@
    "loaded": {
     "points_to": "valla derecha",
     "tilt_deg": 33.0,
-    "yaw_deg": 101.3,
+    "yaw_deg": 101.4,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "valla derecha",
-    "tilt_deg": 17.5,
-    "yaw_deg": 54.8,
+    "tilt_deg": 19.1,
+    "yaw_deg": 54.6,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -3.9,
-    "yaw_deg": 0.8,
+    "tilt_deg": -2.8,
+    "yaw_deg": 1.8,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -8.6,
-    "yaw_deg": -12.3,
+    "tilt_deg": -8.1,
+    "yaw_deg": -9.6,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
     "points_to": "red",
-    "tilt_deg": -14.0,
-    "yaw_deg": 31.4,
+    "tilt_deg": -14.7,
+    "yaw_deg": 32.4,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "valla derecha",
-    "tilt_deg": -28.4,
-    "yaw_deg": 75.5,
+    "tilt_deg": -28.5,
+    "yaw_deg": 75.7,
     "observed": true,
     "hand_evidence": false,
     "ambiguous": true
@@ -55018,7 +53688,7 @@
      "racket_tip_vs_head": -46.0,
      "racket_head_lateral": 16.5,
      "face_tilt": 33.0,
-     "face_yaw": 101.3,
+     "face_yaw": 101.4,
      "face_points_to": "valla derecha",
      "face_observed": false,
      "base_court_m": 0.7,
@@ -55055,12 +53725,12 @@
      "x_factor": 10.9,
      "racket_head_vs_wrist": -20.6,
      "racket_angle": -76.0,
-     "racket_forearm": 100.9,
+     "racket_forearm": 100.8,
      "racket_tip_height": 35.1,
      "racket_tip_vs_head": -55.8,
      "racket_head_lateral": 25.0,
-     "face_tilt": 17.5,
-     "face_yaw": 54.8,
+     "face_tilt": 19.1,
+     "face_yaw": 54.6,
      "face_points_to": "valla derecha",
      "face_observed": false
     },
@@ -55090,8 +53760,8 @@
      "arm_extension": 57.4,
      "shoulder_turn": 37.0,
      "hip_turn": 42.3,
-     "face_tilt": -3.9,
-     "face_yaw": 0.8,
+     "face_tilt": -2.8,
+     "face_yaw": 1.8,
      "face_points_to": "red",
      "face_observed": false,
      "base_court_m": 0.62,
@@ -55185,8 +53855,8 @@
      "racket_tip_height": 24.7,
      "racket_tip_vs_head": -49.3,
      "racket_head_lateral": -11.1,
-     "face_tilt": -28.4,
-     "face_yaw": 75.5,
+     "face_tilt": -28.5,
+     "face_yaw": 75.7,
      "face_points_to": "valla derecha",
      "face_observed": true
     },
@@ -55264,7 +53934,7 @@
     "hip_rise_after_cm": 22.0,
     "feet_move_m": 0.64,
     "t_trunk_finish": 0.32,
-    "racket_lag_deg": 100.9,
+    "racket_lag_deg": 100.8,
     "t_racket_lag": -0.06,
     "t_takeback": 0.58,
     "t_loaded": 0.12,
@@ -55297,7 +53967,7 @@
     "hip_rise": 5.4,
     "weight_shift": -0.01,
     "pause_at_loaded": 0.0,
-    "hand_on_handle": 26.0,
+    "hand_on_handle": 25.9,
     "takeback_vs_first_step": -0.04,
     "last_plant_vs_bounce": 0.0,
     "loaded_vs_last_plant": 0.22,
@@ -55555,8 +54225,8 @@
     "loaded.racket_tip_height": 3.25,
     "loaded.racket_tip_vs_head": 6.15,
     "loaded.racket_head_lateral": 2.65,
-    "loaded.face_tilt": 5.4,
-    "loaded.face_yaw": 11.25,
+    "loaded.face_tilt": 5.25,
+    "loaded.face_yaw": 11.35,
     "acceleration.body_height": 0.95,
     "acceleration.hip_height": 1.4,
     "acceleration.head_over_base": 2.0,
@@ -55584,14 +54254,14 @@
     "acceleration.shoulder_turn": 10.35,
     "acceleration.hip_turn": 0.6,
     "acceleration.x_factor": 10.6,
-    "acceleration.racket_head_vs_wrist": 4.55,
+    "acceleration.racket_head_vs_wrist": 4.5,
     "acceleration.racket_angle": 8.1,
-    "acceleration.racket_forearm": 10.55,
+    "acceleration.racket_forearm": 10.65,
     "acceleration.racket_tip_height": 1.8,
     "acceleration.racket_tip_vs_head": 1.6,
     "acceleration.racket_head_lateral": 5.2,
-    "acceleration.face_tilt": 7.7,
-    "acceleration.face_yaw": 29.8,
+    "acceleration.face_tilt": 6.6,
+    "acceleration.face_yaw": 30.05,
     "impact.body_height": 0.95,
     "impact.hip_height": 0.75,
     "impact.head_over_base": 5.5,
@@ -55617,8 +54287,8 @@
     "impact.arm_extension": 26.8,
     "impact.shoulder_turn": 2.95,
     "impact.hip_turn": 1.3,
-    "impact.face_tilt": 5.35,
-    "impact.face_yaw": 13.4,
+    "impact.face_tilt": 5.9,
+    "impact.face_yaw": 12.15,
     "extension.body_height": 3.45,
     "extension.hip_height": 3.2,
     "extension.head_over_base": 4.8,
@@ -55694,8 +54364,8 @@
     "recovery.racket_tip_height": 0.8,
     "recovery.racket_tip_vs_head": 0.2,
     "recovery.racket_head_lateral": 2.0,
-    "recovery.face_tilt": 1.9,
-    "recovery.face_yaw": 5.1,
+    "recovery.face_tilt": 1.7,
+    "recovery.face_yaw": 4.95,
     "stroke.head_still_after_cm": 1.22,
     "stroke.hip_drop_pct": 0.1,
     "stroke.hip_rise_after_pct": 0.0,
@@ -56557,7 +55227,7 @@
      null,
      null,
      92.0,
-     93.3,
+     93.4,
      94.7,
      95.4,
      93.9,
@@ -56567,12 +55237,12 @@
      51.2,
      41.4,
      39.6,
-     39.8,
-     39.1,
+     39.9,
+     39.2,
      38.5,
      null,
      null,
-     36.4,
+     36.5,
      35.8,
      35.1,
      36.2,
@@ -56601,20 +55271,7 @@
   "series": "series/w001610245_3600_near_113.json",
   "window_impact_s": 2.26,
   "shot_in_point": 1,
-  "shots_in_point": 1,
-  "views": [
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1622.2,
-    "t1": 1629.5,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   }
-  ]
+  "shots_in_point": 1
  },
  {
   "impact_frame": 110,
@@ -57679,9 +56336,9 @@
    "bounce_to_impact_s": 0.3,
    "time_available_s": 0.86,
    "opponent_hit_source": "audio",
-   "shoulder_turn_3d_deg": 5.7,
-   "hip_turn_3d_deg": 4.4,
-   "x_factor_3d_deg": 1.3,
+   "shoulder_turn_3d_deg": 5.8,
+   "hip_turn_3d_deg": 4.1,
+   "x_factor_3d_deg": 1.7,
    "trunk3d_readings": 3,
    "trunk3d_rigid": true
   },
@@ -58380,23 +57037,23 @@
   "face": {
    "ready": {
     "points_to": "valla izquierda",
-    "tilt_deg": 15.9,
-    "yaw_deg": -99.6,
+    "tilt_deg": 15.4,
+    "yaw_deg": -100.1,
     "observed": true,
     "hand_evidence": true,
     "ambiguous": true
    },
    "takeback": {
     "points_to": "valla izquierda",
-    "tilt_deg": 29.9,
-    "yaw_deg": -130.6,
+    "tilt_deg": 29.4,
+    "yaw_deg": -131.8,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "loaded": {
     "points_to": "valla izquierda",
-    "tilt_deg": 18.4,
+    "tilt_deg": 18.3,
     "yaw_deg": -82.3,
     "observed": false,
     "hand_evidence": true,
@@ -58405,14 +57062,14 @@
    "acceleration": {
     "points_to": "red",
     "tilt_deg": 6.0,
-    "yaw_deg": -25.1,
+    "yaw_deg": -25.0,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": 1.3,
+    "tilt_deg": 1.4,
     "yaw_deg": -14.8,
     "observed": false,
     "hand_evidence": false,
@@ -58420,15 +57077,15 @@
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": 12.1,
-    "yaw_deg": -21.4,
+    "tilt_deg": 12.2,
+    "yaw_deg": -21.5,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
     "points_to": "valla izquierda",
-    "tilt_deg": -3.1,
+    "tilt_deg": -3.7,
     "yaw_deg": -86.2,
     "observed": true,
     "hand_evidence": false,
@@ -58436,8 +57093,8 @@
    },
    "recovery": {
     "points_to": "red",
-    "tilt_deg": -22.3,
-    "yaw_deg": 25.3,
+    "tilt_deg": -18.9,
+    "yaw_deg": 21.6,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -58490,8 +57147,8 @@
      "racket_tip_height": 88.6,
      "racket_tip_vs_head": 6.5,
      "racket_head_lateral": -20.1,
-     "face_tilt": 15.9,
-     "face_yaw": -99.6,
+     "face_tilt": 15.4,
+     "face_yaw": -100.1,
      "face_points_to": "valla izquierda",
      "face_observed": true
     },
@@ -58552,12 +57209,12 @@
      "hip_turn": 54.2,
      "x_factor": 30.9,
      "racket_head_vs_wrist": 7.8,
-     "racket_angle": 62.5,
-     "racket_forearm": 121.9,
+     "racket_angle": 62.7,
+     "racket_forearm": 121.7,
      "racket_tip_height": 60.3,
      "racket_tip_vs_head": -16.1,
      "racket_head_lateral": 22.3,
-     "face_tilt": 18.4,
+     "face_tilt": 18.3,
      "face_yaw": -82.3,
      "face_points_to": "valla izquierda",
      "face_observed": false,
@@ -58636,7 +57293,7 @@
      "racket_tip_height": 57.6,
      "racket_tip_vs_head": -25.7,
      "racket_head_lateral": 26.7,
-     "face_tilt": 1.3,
+     "face_tilt": 1.4,
      "face_yaw": -14.8,
      "face_points_to": "red",
      "face_observed": false,
@@ -58700,13 +57357,13 @@
      "arm_extension": 92.3,
      "shoulder_turn": 53.0,
      "hip_turn": 42.7,
-     "racket_head_vs_wrist": 13.4,
-     "racket_angle": 78.2,
-     "racket_forearm": 57.8,
-     "racket_tip_height": 104.7,
-     "racket_tip_vs_head": 33.3,
+     "racket_head_vs_wrist": 12.9,
+     "racket_angle": 77.4,
+     "racket_forearm": 58.6,
+     "racket_tip_height": 103.7,
+     "racket_tip_vs_head": 32.3,
      "racket_head_lateral": -12.1,
-     "face_tilt": -3.1,
+     "face_tilt": -3.7,
      "face_yaw": -86.2,
      "face_points_to": "valla izquierda",
      "face_observed": true,
@@ -58768,13 +57425,13 @@
      "arm_extension": 77.6,
      "shoulder_turn": 64.2,
      "racket_head_vs_wrist": 29.5,
-     "racket_angle": 77.7,
-     "racket_forearm": 61.0,
+     "racket_angle": 77.8,
+     "racket_forearm": 60.8,
      "racket_tip_height": 96.3,
      "racket_tip_vs_head": 24.3,
      "racket_head_lateral": 19.9,
-     "face_tilt": 33.0,
-     "face_yaw": -62.1,
+     "face_tilt": 33.2,
+     "face_yaw": -62.2,
      "face_points_to": "valla izquierda",
      "face_observed": true,
      "t_to_contact": 0.3
@@ -59102,14 +57759,14 @@
     "ready.arm_extension": 1.05,
     "ready.shoulder_turn": 0.45,
     "ready.hip_turn": 0.35,
-    "ready.racket_head_vs_wrist": 0.2,
+    "ready.racket_head_vs_wrist": 0.15,
     "ready.racket_angle": 2.8,
     "ready.racket_forearm": 3.0,
     "ready.racket_tip_height": 0.1,
     "ready.racket_tip_vs_head": 0.25,
     "ready.racket_head_lateral": 0.3,
-    "ready.face_tilt": 1.3,
-    "ready.face_yaw": 2.2,
+    "ready.face_tilt": 1.35,
+    "ready.face_yaw": 2.4,
     "takeback.body_height": 0.75,
     "takeback.hip_height": 0.2,
     "takeback.head_over_base": 0.2,
@@ -59167,8 +57824,8 @@
     "loaded.racket_tip_height": 0.2,
     "loaded.racket_tip_vs_head": 1.4,
     "loaded.racket_head_lateral": 1.4,
-    "loaded.face_tilt": 2.9,
-    "loaded.face_yaw": 11.4,
+    "loaded.face_tilt": 2.8,
+    "loaded.face_yaw": 11.5,
     "loaded.back_foot_angle_deg": 1.95,
     "acceleration.body_height": 1.15,
     "acceleration.hip_height": 0.6,
@@ -59288,14 +57945,14 @@
     "finish.arm_extension": 0.55,
     "finish.shoulder_turn": 3.1,
     "finish.hip_turn": 3.6,
-    "finish.racket_head_vs_wrist": 3.8,
-    "finish.racket_angle": 2.5,
-    "finish.racket_forearm": 17.35,
-    "finish.racket_tip_height": 4.5,
-    "finish.racket_tip_vs_head": 4.25,
+    "finish.racket_head_vs_wrist": 4.0,
+    "finish.racket_angle": 2.1,
+    "finish.racket_forearm": 17.75,
+    "finish.racket_tip_height": 5.0,
+    "finish.racket_tip_vs_head": 4.75,
     "finish.racket_head_lateral": 5.55,
-    "finish.face_tilt": 16.2,
-    "finish.face_yaw": 7.75,
+    "finish.face_tilt": 15.55,
+    "finish.face_yaw": 8.75,
     "recovery.body_height": 0.65,
     "recovery.hip_height": 2.05,
     "recovery.head_over_base": 3.5,
@@ -60175,7 +58832,7 @@
      null,
      null,
      82.8,
-     82.8,
+     83.1,
      82.7,
      83.3,
      82.4,
@@ -60192,7 +58849,7 @@
      85.0,
      87.0,
      89.3,
-     89.6,
+     89.7,
      85.8,
      76.5,
      64.7,
@@ -60232,20 +58889,7 @@
   "series": "series/w001707206_3600_near_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 2,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1732.8,
-    "t1": 1747.3,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 103,
@@ -61077,39 +59721,39 @@
   "face": {
    "ready": {
     "points_to": "valla izquierda",
-    "tilt_deg": 23.7,
-    "yaw_deg": -95.3,
+    "tilt_deg": 23.6,
+    "yaw_deg": -95.1,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "takeback": {
     "points_to": "valla izquierda",
-    "tilt_deg": 9.3,
-    "yaw_deg": -70.9,
+    "tilt_deg": 10.9,
+    "yaw_deg": -70.2,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "loaded": {
     "points_to": "red",
-    "tilt_deg": -39.2,
-    "yaw_deg": -4.7,
+    "tilt_deg": -36.1,
+    "yaw_deg": -3.6,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "acceleration": {
     "points_to": "red",
-    "tilt_deg": -19.5,
-    "yaw_deg": -1.0,
+    "tilt_deg": -18.8,
+    "yaw_deg": -0.9,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "impact": {
     "points_to": "red",
-    "tilt_deg": -7.7,
+    "tilt_deg": -7.5,
     "yaw_deg": 5.2,
     "observed": false,
     "hand_evidence": false,
@@ -61118,23 +59762,23 @@
    "extension": {
     "points_to": "red",
     "tilt_deg": -7.6,
-    "yaw_deg": 8.0,
+    "yaw_deg": 8.3,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
    },
    "finish": {
     "points_to": "suelo",
-    "tilt_deg": 72.7,
-    "yaw_deg": -178.2,
+    "tilt_deg": 74.0,
+    "yaw_deg": 155.3,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
    },
    "recovery": {
     "points_to": "valla izquierda",
-    "tilt_deg": 1.0,
-    "yaw_deg": -65.1,
+    "tilt_deg": -1.3,
+    "yaw_deg": -64.8,
     "observed": false,
     "hand_evidence": false,
     "ambiguous": false
@@ -61202,11 +59846,11 @@
      "racket_head_vs_wrist": 22.3,
      "racket_angle": 73.1,
      "racket_forearm": 56.2,
-     "racket_tip_height": 73.9,
-     "racket_tip_vs_head": 1.9,
+     "racket_tip_height": 74.0,
+     "racket_tip_vs_head": 2.0,
      "racket_head_lateral": 21.7,
-     "face_tilt": 9.3,
-     "face_yaw": -70.9,
+     "face_tilt": 10.9,
+     "face_yaw": -70.2,
      "face_points_to": "valla izquierda",
      "face_observed": false
     },
@@ -61303,7 +59947,7 @@
      "racket_tip_height": 19.5,
      "racket_tip_vs_head": -51.6,
      "racket_head_lateral": 19.9,
-     "face_tilt": -7.7,
+     "face_tilt": -7.5,
      "face_yaw": 5.2,
      "face_points_to": "red",
      "face_observed": false,
@@ -61381,8 +60025,8 @@
      "racket_tip_height": 109.4,
      "racket_tip_vs_head": 18.1,
      "racket_head_lateral": -18.3,
-     "face_tilt": 72.7,
-     "face_yaw": -178.2,
+     "face_tilt": 74.0,
+     "face_yaw": 155.3,
      "face_points_to": "suelo",
      "face_observed": false,
      "base_court_m": 1.02,
@@ -61570,10 +60214,10 @@
     "takeback.racket_angle": 0.0,
     "takeback.racket_forearm": 9.5,
     "takeback.racket_tip_height": 0.4,
-    "takeback.racket_tip_vs_head": 1.5,
+    "takeback.racket_tip_vs_head": 1.6,
     "takeback.racket_head_lateral": 2.4,
-    "takeback.face_tilt": 3.0,
-    "takeback.face_yaw": 0.6,
+    "takeback.face_tilt": 3.5,
+    "takeback.face_yaw": 0.9,
     "loaded.body_height": 1.15,
     "loaded.hip_height": 0.5,
     "loaded.head_over_base": 0.75,
@@ -61655,8 +60299,8 @@
     "impact.racket_tip_height": 0.3,
     "impact.racket_tip_vs_head": 0.1,
     "impact.racket_head_lateral": 0.6,
-    "impact.face_tilt": 3.35,
-    "impact.face_yaw": 2.75,
+    "impact.face_tilt": 3.2,
+    "impact.face_yaw": 2.9,
     "impact.front_foot_angle_deg": 0.5,
     "impact.back_foot_angle_deg": 2.55,
     "extension.body_height": 0.95,
@@ -61722,8 +60366,8 @@
     "finish.racket_tip_height": 1.2,
     "finish.racket_tip_vs_head": 0.5,
     "finish.racket_head_lateral": 0.2,
-    "finish.face_tilt": 0.7,
-    "finish.face_yaw": 7.3,
+    "finish.face_tilt": 1.1,
+    "finish.face_yaw": 16.8,
     "recovery.body_height": 1.15,
     "recovery.hip_height": 2.25,
     "recovery.head_over_base": 1.05,
@@ -62614,75 +61258,7 @@
   "series": "series/w001751001_6399_near_103.json",
   "window_impact_s": 2.06,
   "shot_in_point": 1,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1759.3,
-    "t1": 1763.5,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1767.1,
-    "t1": 1782.4,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1782.4,
-    "t1": 1805.0,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1805.0,
-    "t1": 1809.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1809.7,
-    "t1": 1818.4,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1818.5,
-    "t1": 1858.9,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 249,
@@ -63507,8 +62083,8 @@
   "face": {
    "ready": {
     "points_to": "valla derecha",
-    "tilt_deg": -17.8,
-    "yaw_deg": 71.5,
+    "tilt_deg": -16.0,
+    "yaw_deg": 71.3,
     "observed": false,
     "hand_evidence": true,
     "ambiguous": false
@@ -63518,7 +62094,7 @@
    "acceleration": null,
    "impact": {
     "points_to": "red",
-    "tilt_deg": -8.3,
+    "tilt_deg": -8.5,
     "yaw_deg": 0.3,
     "observed": false,
     "hand_evidence": false,
@@ -63526,7 +62102,7 @@
    },
    "extension": {
     "points_to": "red",
-    "tilt_deg": -9.2,
+    "tilt_deg": -9.7,
     "yaw_deg": -4.8,
     "observed": false,
     "hand_evidence": false,
@@ -63573,7 +62149,7 @@
      "face_observed": false
     },
     "impact": {
-     "face_tilt": -8.3,
+     "face_tilt": -8.5,
      "face_yaw": 0.3,
      "face_points_to": "red",
      "face_observed": false
@@ -63613,7 +62189,7 @@
      "racket_tip_height": 89.1,
      "racket_tip_vs_head": 12.2,
      "racket_head_lateral": 14.7,
-     "face_tilt": -16.4,
+     "face_tilt": -16.3,
      "face_yaw": -117.5,
      "face_points_to": "valla izquierda",
      "face_observed": true,
@@ -63686,7 +62262,7 @@
     "ready.arm_extension": 2.55,
     "ready.shoulder_turn": 1.2,
     "ready.hip_turn": 1.15,
-    "impact.face_tilt": 0.7,
+    "impact.face_tilt": 0.9,
     "impact.face_yaw": 3.95,
     "stroke.t_max_shoulder_turn": 0.0,
     "stroke.t_max_hip_turn": 0.0,
@@ -63995,86 +62571,7 @@
   "series": "series/w001751001_6399_near_249.json",
   "window_impact_s": 4.98,
   "shot_in_point": 2,
-  "shots_in_point": 2,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1759.3,
-    "t1": 1763.5,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1763.5,
-    "t1": 1767.1,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1767.1,
-    "t1": 1782.4,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1782.4,
-    "t1": 1805.0,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1805.0,
-    "t1": 1809.7,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1809.7,
-    "t1": 1818.4,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1818.5,
-    "t1": 1858.9,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 2
  },
  {
   "impact_frame": 116,
@@ -64630,31 +63127,7 @@
   "series": "series/w001921830_3600_far_122.json",
   "window_impact_s": 2.44,
   "shot_in_point": 2,
-  "shots_in_point": 3,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1931.0,
-    "t1": 1933.1,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1933.1,
-    "t1": 1976.5,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 3
  },
  {
   "impact_frame": 110,
@@ -64806,31 +63279,7 @@
   "series": "series/w001928700_3600_far_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 3,
-  "shots_in_point": 3,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1931.0,
-    "t1": 1933.1,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1933.1,
-    "t1": 1976.5,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 3
  },
  {
   "impact_frame": 112,
@@ -64995,20 +63444,7 @@
   "window_impact_s": 2.24,
   "shot_in_point": 1,
   "shots_in_point": 4,
-  "is_return": false,
-  "views": [
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1977.2,
-    "t1": 1991.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   }
-  ]
+  "is_return": false
  },
  {
   "impact_frame": 258,
@@ -65212,20 +63648,7 @@
   "series": "series/w001949670_6559_far_258.json",
   "window_impact_s": 5.16,
   "shot_in_point": 2,
-  "shots_in_point": 4,
-  "views": [
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1977.2,
-    "t1": 1991.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   }
-  ]
+  "shots_in_point": 4
  },
  {
   "impact_frame": 107,
@@ -65398,20 +63821,7 @@
   "series": "series/w001960800_3600_far_107.json",
   "window_impact_s": 2.14,
   "shot_in_point": 3,
-  "shots_in_point": 4,
-  "views": [
-   {
-    "kind": "repeticion_principal",
-    "label": "Repetición (cámara principal)",
-    "t0": 1977.2,
-    "t1": 1991.2,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.5
-   }
-  ]
+  "shots_in_point": 4
  },
  {
   "impact_frame": 110,
@@ -66216,31 +64626,7 @@
   "window_impact_s": 2.2,
   "shot_in_point": 1,
   "shots_in_point": 1,
-  "is_return": false,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 1997.6,
-    "t1": 2001.6,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 2021.4,
-    "t1": 2026.8,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "is_return": false
  },
  {
   "impact_frame": 112,
@@ -66412,30 +64798,6 @@
   "series": "series/w002031400_3600_far_112.json",
   "window_impact_s": 2.24,
   "shot_in_point": 1,
-  "shots_in_point": 1,
-  "views": [
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 2036.7,
-    "t1": 2044.4,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   },
-   {
-    "kind": "primer_plano",
-    "label": "Primer plano",
-    "t0": 2044.4,
-    "t1": 2067.9,
-    "slowmo": null,
-    "speed": null,
-    "impact_t": null,
-    "method": "orden",
-    "confidence": 0.3
-   }
-  ]
+  "shots_in_point": 1
  }
 ]
