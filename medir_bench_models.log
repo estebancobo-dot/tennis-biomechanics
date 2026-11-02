@@ -1,1 +1,22 @@
 ﻿Peticion 69: medir bench_models (2026-11-02T18:30:02)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+rtmw3d {'fp32_fps': 12.7, 'fp16_fps': 33.6, 'xy_px_median': 0.0, 'xy_px_p95': 0.71, 'depth_m_p95': 0.0076}
+racketpose {'fp32_fps': 90.5, 'fp16_fps': 115.8, 'px_median': 0.0, 'px_p95': 0.51}
+{
+ "device": "dml",
+ "frames": 120,
+ "rtmw3d": {
+  "fp32_fps": 12.7,
+  "fp16_fps": 33.6,
+  "xy_px_median": 0.0,
+  "xy_px_p95": 0.71,
+  "depth_m_p95": 0.0076
+ },
+ "racketpose": {
+  "fp32_fps": 90.5,
+  "fp16_fps": 115.8,
+  "px_median": 0.0,
+  "px_p95": 0.51
+ }
+}
+termina 2026-11-02T18:32:07
