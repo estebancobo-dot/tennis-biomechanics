@@ -54,7 +54,8 @@ Lo leen igual el usuario y cualquier sesión de Claude que continúe.
 | 1.1 | PC sec. | — | Petición 71: prueba desde cero 4 + 35 min con todos los modelos en fp16 y los tiempos por parte del detector | Medido | **hecho**: 35 min en **1 h 28**; detector 43 min, de ellos **bola 42 min**; pasada fina 16,5 min |
 | 1.2 | PC sec. | 1.1 | Petición 72: bola con lote fijo frente a variable, fp16 (`bench_ball`) | Medido | **hecho**: lote fijo o variable da igual (5-7 fotogramas/s), pero la misma medida dio 16-25 el 29-10 y la lectura del vídeo 59 s frente a 16: **todo el PC ~3 veces más lento**, con la CPU al 8-22 % → la tarea de Windows corre a prioridad baja |
 | 1.3 | Nube sec. | 1.2 | Prioridad normal para el ciclo, su tarea de Windows (ciclo v5) y todo lo que lancen; el bucle no se arranca desde GitHub Actions | Subido | **hecho** |
-| 1.3b | PC sec. | 1.3 | Petición 73: la misma medida de la bola | Vuelve a 16-25 fotogramas/s → causa probada | en cola |
+| 1.3b | PC sec. | 1.3 | Petición 73: la misma medida de la bola | Vuelve a 16-25 fotogramas/s → causa probada | **hecho**: fp16 24-26 fotogramas/s, lectura 16,7 s (antes 5-7 y 59 s): **probado** |
+| 1.3c | PC sec. | 1.3b | Petición 74: prueba desde cero de 35 min con la prioridad corregida | Medido | en cola |
 | 1.4 | PC sec. | 1.3 | Nueva prueba desde cero (poc) | Detector de golpes ≤ 15 min en 35 min de vídeo | — |
 | 1.5 | Nube sec. | 1.4 si no basta | Calcular la bola de todo el juego a la vez que el marcador (CPU) y en lotes; o en la CPU en paralelo con la iGPU | Ídem | — |
 | 1.6 | PC sec. | 1.4/1.5 | Prueba desde cero final | **≤ 45 min en 35 min de vídeo; mismo número de golpes ±5 %** → cierra B1 | — |
