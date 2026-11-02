@@ -154,6 +154,10 @@ racket_face:
   pose_onnx: models/racketpose.onnx
   hand3d_onnx: models/rtmw3d-x.onnx
   hand3d_step: 2
+  # raqueta y 3D en media precisión en la iGPU (02-11, scripts/bench_models.py en el PC): 3D 12,7 → 33,6 fotogramas/s,
+  # raqueta 90 → 116; puntos a 0 px en la mediana y < 1 px en el percentil 95 (profundidad 8 mm). Cambia los puntos
+  # muy poco, pero cambia: forma parte de la huella de la pasada fina y de la memoria de sus ventanas.
+  fp16: true
 
 # Analizar también a la rival con los mismos vídeos (planos en los que ella está en el lado
 # cercano). Su perfil: `opponent_id` en matches.yaml → config/players/<opponent_id>.yaml.

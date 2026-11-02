@@ -24,9 +24,14 @@ def _affine(box, padding=1.25):
 
 
 class RacketPose:
-    def __init__(self, onnx_path: str | Path, device="cpu"):
+    def __init__(self, onnx_path: str | Path, device="cpu", fp16: bool = False):
+        """fp16: the half-precision copy on the iGPU (02-11, scripts/bench_models.py on the PC: 90 → 116 crops/s,
+        keypoints 0 px apart in the median, 0.5 px at the 95th percentile)."""
         from .pose.estimator import _ort_session
 
+        if fp16 and device != "cpu":
+            from .pose.variants import to_fp16
+            onnx_path = to_fp16(onnx_path)
         self.sess = _ort_session(str(onnx_path), device)
 
     def __call__(self, frame: np.ndarray, boxes: np.ndarray) -> tuple[np.ndarray, np.ndarray]:

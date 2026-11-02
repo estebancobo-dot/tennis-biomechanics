@@ -7,6 +7,9 @@ $ErrorActionPreference = "Stop"
 . "$PSScriptRoot\comun.ps1"
 $Out = "$Base\output"
 $Log = "$Out\ciclo_automatico.log"
+# el de GitHub Actions en su propio registro (02-11: un ciclo lanzado por GitHub con codigo nuevo termino a mitad sin
+# decir por que, y el siguiente ciclo de 10 min borro su registro)
+if ($env:GITHUB_ACTIONS) { $Log = "$Out\ciclo_actions.log" }
 New-Item -ItemType Directory -Force -Path $Out | Out-Null
 # senal de vida (como mucho una por hora): sale sin trabajo pero se ve que la tarea corre y por que no hizo nada
 # el ciclo con el script recien llegado (27-10: una peticion con una accion nueva esperaba 10 min al ciclo siguiente)

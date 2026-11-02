@@ -49,13 +49,19 @@ def decode_simcc3d(simcc_x: np.ndarray, simcc_y: np.ndarray, simcc_z: np.ndarray
 
 
 class WholeBody3D:
-    def __init__(self, model: str = RTMW3D_URL, device: str = "cpu"):
+    def __init__(self, model: str = RTMW3D_URL, device: str = "cpu", fp16: bool = False):
+        """fp16: the half-precision copy on the iGPU (02-11, scripts/bench_models.py on the PC: 12.7 → 33.6
+        frames/s, image points 0 px apart in the median and 0.7 px at the 95th percentile, depth 8 mm)."""
         from rtmlib import RTMPose3d
 
         backend = "openvino" if device == "openvino" else "onnxruntime"
         self.model = RTMPose3d(model, model_input_size=(288, 384), backend=backend, device="cpu")
         if device == "dml":
-            self.model.session = _ort_session(self.model.onnx_model, device)
+            path = self.model.onnx_model
+            if fp16:
+                from .variants import to_fp16
+                path = str(to_fp16(path))
+            self.model.session = _ort_session(path, device)
 
     def __call__(self, frame: np.ndarray, box: np.ndarray):
         """(kp3d (133, 3): x, y in model-crop pixels, z depth in m (+ away from camera); scores (133,);

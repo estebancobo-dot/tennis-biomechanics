@@ -640,10 +640,13 @@ def st_spotting(ctx: Context):
         raise ValueError(f"el detector entrenado tiene otras clases ({meta.get('classes')}) que el proceso "
                          f"({list(CLASSES)}): hay que volver a entrenarlo")
     F = int(meta.get("feature_dim", FEATURE_DIM))
+    took = {}                                  # where the stage's time goes (02-11: 50 min on 35 min of a new video)
+    t_ = time.time()
     d = _players(ctx)
     sk = Skeleton("coco17", ctx.match.player.hand)
     court = _read(ctx.path("court.json")) if ctx.path("court.json").exists() else {}
     tracks, track = _audio_tracks(ctx, d, sk, court)
+    took["jugadores_y_audio"] = time.time() - t_
     onsets = np.array(tracks[track].get("t", [])) if tracks else np.zeros(0)
     del d
     t0 = time.time()
@@ -651,15 +654,19 @@ def st_spotting(ctx: Context):
     # a model trained with the ball (plan N2, 25-10): its 8 numbers per frame after the cheap pass's
     ball = bool(meta.get("ball")) or F == FEATURE_DIM + BALL_DIM
     # the sound flux only for a model trained with it (it reads the whole soundtrack)
+    t_ = time.time()
     feats = build_features(ctx.dir, ctx.match.player.hand, video=ctx.video if F >= FEATURE_DIM else None,
                            onsets=onsets, flux=sound_flux_stream)
+    took["rasgos"] = time.time() - t_
     fps = float(feats["fps"])
     # nothing to see outside play (rows of zeros): a stroke there is noise of the model (the last column of the
     # cheap pass's features; read before the ball's columns are added after it)
     play = feats["X"][:, -1] > 0
     if ball:
         from .ball_features import cached_track, features as ball_feats
+        t_ = time.time()
         tr = cached_track(ctx.dir, ctx.video, lambda: _ball_tracker(ctx), log=ctx.log)    # ball_track.npz: once
+        took["bola"] = time.time() - t_
         feats["X"] = np.concatenate([feats["X"], ball_feats(tr, len(feats["X"]), fps)], axis=1)
     mfps = float(meta.get("fps") or fps)
     if abs(fps - mfps) > 1e-6:
@@ -667,7 +674,9 @@ def st_spotting(ctx: Context):
                 f"(cheap_pass.fps): se usa igual, pero encontrará peor los golpes. Pon cheap_pass.fps: {mfps:g} y repite.")
     X = fit_features(feats["X"], F) if not ball else feats["X"]
     sp = _spotter(ctx.cfg)
+    t_ = time.time()
     prob = predict_onnx(onnx, X, chunk=int(sp.get("chunk", 4096)), overlap=int(sp.get("overlap", 64)))
+    took["modelo"] = time.time() - t_
     thr = float(sp.get("threshold") or meta.get("threshold", 0.5))
     found = decode(prob, fps, thr)
     pad = int(round(0.5 * fps))
@@ -679,10 +688,11 @@ def st_spotting(ctx: Context):
     _write(ctx.path("spotting.json"), strokes)
     n_near = sum(e["side"] == "near" for e in strokes)
     ctx.log(f"  detector entrenado: {len(strokes)} golpes ({n_near} cercanos, {len(strokes) - n_near} lejanos) en "
-            f"{len(X) / fps / 60:.0f} min de vídeo · umbral {thr:g} · {time.time() - t0:.0f} s")
+            f"{len(X) / fps / 60:.0f} min de vídeo · umbral {thr:g} · {time.time() - t0:.0f} s ("
+            + ", ".join(f"{k} {v:.0f} s" for k, v in took.items()) + ")")
     return {"enabled": True, "strokes": len(strokes), "near": n_near, "far": len(strokes) - n_near,
             "out_of_play": len(found) - len(strokes), "threshold": thr, "fps": fps, "model_fps": mfps,
-            "feature_dim": F, "audio_track": track}
+            "feature_dim": F, "audio_track": track, "seconds": {k: round(v, 1) for k, v in took.items()}}
 
 
 def spotter_candidates(spotted: list[dict], identity: dict, fps: float, runs: list[tuple], no_board: list,
@@ -1613,7 +1623,10 @@ def _fine_model_files(ctx: Context):
             hp = None
             warnings.append("falta el modelo 3D (models/rtmw3d-x.onnx): cuerdas y rotaciones sin 3D")
         # the models' files name the window memos of their outputs (racket_orientation.ModelMemo)
-        fcfg = {**fcfg, "_memo_tag": "|".join(f"{q.name}:{q.stat().st_size}" for q in (rp, hp) if q is not None)}
+        # the half-precision models give slightly other points (< 1 px): their own memos
+        half = bool(fcfg.get("fp16", True)) and ctx.cfg.get("device", "cpu") != "cpu"
+        fcfg = {**fcfg, "_memo_tag": "|".join(f"{q.name}:{q.stat().st_size}" for q in (rp, hp) if q is not None)
+                + ("|fp16" if half else "")}
     return bpath, rp, hp, fcfg, warnings
 
 
@@ -1628,12 +1641,13 @@ def _fine_models(ctx: Context):
         ball = BallTracker(str(bpath), ctx.cfg.get("device", "cpu"), bcfg.get("threshold", 0.5),
                            static_batch=bool(bcfg.get("static_batch", True)) and ctx.cfg.get("device", "cpu") == "dml",
                            fp16=bool(bcfg.get("fp16", True)))
+    half = bool(fcfg.get("fp16", True))
     if rp is not None:
         from .racket_pose import RacketPose
-        rpose = RacketPose(str(rp), ctx.cfg.get("device", "cpu"))
+        rpose = RacketPose(str(rp), ctx.cfg.get("device", "cpu"), fp16=half)
     if hp is not None:
         from .pose.wholebody3d import WholeBody3D
-        wb3d = WholeBody3D(str(hp), ctx.cfg.get("device", "cpu"))
+        wb3d = WholeBody3D(str(hp), ctx.cfg.get("device", "cpu"), fp16=half)
     return ball, rpose, wb3d, fcfg, bpath, warnings
 
 

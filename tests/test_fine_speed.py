@@ -365,3 +365,24 @@ def test_ball_fp16_on_the_igpu_only_and_not_in_the_fingerprint(monkeypatch, tmp_
     assert got == [str(tmp_path / "b_fp16.onnx"), str(tmp_path / "b.onnx"), str(tmp_path / "b.onnx")]
     cfg = {"fine_pass": {}, "ball": {"onnx": "x", "threshold": 0.5}}
     assert stages._fine_settings(cfg) == stages._fine_settings({**cfg, "ball": {**cfg["ball"], "fp16": True}})
+
+
+def test_racket_and_3d_fp16_on_the_igpu_and_in_the_memo_tag(monkeypatch, tmp_path):
+    """02-11 (bench_models.py on the PC): 3D 12.7 → 33.6 frames/s, racket 90 → 116; points < 1 px apart."""
+    from types import SimpleNamespace
+
+    from tennisbio import racket_pose, stages
+    from tennisbio.pose import estimator, variants
+
+    got = []
+    monkeypatch.setattr(estimator, "_ort_session", lambda path, *a, **k: got.append(str(path)))
+    monkeypatch.setattr(variants, "to_fp16", lambda p: tmp_path / "r_fp16.onnx")
+    racket_pose.RacketPose(tmp_path / "r.onnx", "dml", fp16=True)
+    racket_pose.RacketPose(tmp_path / "r.onnx", "cpu", fp16=True)
+    assert got == [str(tmp_path / "r_fp16.onnx"), str(tmp_path / "r.onnx")]
+    (tmp_path / "r.onnx").write_bytes(b"x")
+    cfg = {"device": "dml", "racket_face": {"enabled": True, "pose_onnx": str(tmp_path / "r.onnx")}}
+    tag = lambda c: stages._fine_model_files(SimpleNamespace(cfg=c))[3]["_memo_tag"]
+    assert tag(cfg).endswith("|fp16")
+    assert not tag({**cfg, "racket_face": {**cfg["racket_face"], "fp16": False}}).endswith("|fp16")
+    assert not tag({**cfg, "device": "cpu"}).endswith("|fp16")
