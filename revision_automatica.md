@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-286 cumplidos · 30 no cumplidos · 123 sin golpes suficientes · 105 avisos (antes: 283 cumplidos, 26 no cumplidos)
+286 cumplidos · 30 no cumplidos · 123 sin golpes suficientes · 105 avisos (antes: 286 cumplidos, 30 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 127 de 245
 
@@ -167,22 +167,3 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-
-## Empeora respecto a la ejecución anterior
-
-- **#118 Validar cada medida de forma automática, no a mano: ¿técnica o ruido?**: ok → pocos datos: 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)» (11 golpes con la homografía de su ventana: hacen falta al menos
-- **#134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06)**: aviso → falta: 2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer)
-- **#151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25)**: aviso → falta: 2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer)
-- **#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d**: aviso → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con 
-- **#233 Una referencia completa y medida antes de validar nada**: aviso → falta: 2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer)
-
-## Mejora
-
-- #225 La aplicación no se cuelga ni ralentiza el PC: aviso → ok
-- #234 Prueba de valor de la aplicación con los datos reales: aviso → ok
-- #237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min: aviso → ok
-
-## Comprobaciones nuevas
-
-- forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación): pocos datos (11 golpes con la homografía de su ventana: hacen falta al menos 40)
-- Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin: ok (1.4 min (objetivo ≤ 15 min))
