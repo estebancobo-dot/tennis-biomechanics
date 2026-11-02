@@ -4,6 +4,31 @@
 medido por un script en el PC** (nunca «revisado en el chat»). Un bloque no se da por hecho sin ese número.
 Regla del usuario (19-10): **nada nuevo hasta que la base (golpes que no se pierden e identidad) esté bien.**
 
+## Plan a corto plazo (02-11) — LEER PRIMERO; manda sobre todo lo de abajo
+
+**Regla:** se termina la Base, paso a paso y en este orden. Nada nuevo entra mientras tanto.
+- Una fuente externa (artículos, otros proyectos) solo entra como **candidato dentro del paso donde toca**, sobre todo en la prueba de modelos (paso 2). Nunca como trabajo aparte.
+- Lo ya hecho de B-15a (la cámara en la auditoría) se queda y no se amplía hasta después de la Base.
+- Los proyectos citados en B-15 que aún no se han mirado (tennis-vision, tennisvision, CalTennis, Capture4D) se revisan solo al llegar a su paso: P1, B-10 y B-6.
+
+| Paso | Qué | Dónde | Terminado cuando | Estado |
+|---|---|---|---|---|
+| **1. B-4 velocidad de un partido nuevo** | Prueba desde cero de 35 min: 2 h 02 → **1 h 29** (pasada fina 42,6 → 18,2 min). Queda el detector de golpes: 42 min, casi todo seguir la bola por todo el juego | PC (peticiones 71 y siguientes) + nube | la prueba de 35 min en ≤ 45 min, con los mismos golpes | **EN CURSO**: la 71 da los tiempos por parte; luego se arregla la parte más lenta |
+| 2. B-6..B-10 + modelos del artículo | **Una sola tanda** de pruebas de modelos en el PC, cada uno frente al actual en precisión y en fotogramas/s. Bola: WASB. Esqueleto: RTMW-x 2D frente a YOLO + RTMPose. Lado lejano: RF-DETR. Pista: 14 puntos. Golpes: F3ED a 25 fps frente al detector propio. Marcador: PP-OCRv5. 3D: MotionAGFormer. Todos pasados a ONNX en la nube | nube (exportar) → PC (medir) | cada candidato con su decisión medida; se adoptan los que ganan | pendiente |
+| 3. B-11 golpes perdidos | Repeticiones que descartan de más, más la regla de 2,5 s entre golpes del artículo | nube → PC (F3Set) | recall F3Set sube sin bajar la precisión | pendiente |
+| 4. B-5 exportación | Vídeos por golpe en ≤ 20 min | PC | medido | 56 min; sin cambios, 0 vídeos |
+| 5. Referencia definitiva | Una sola pasada de los 4 partidos con todo lo adoptado en 1-4 | PC | 4 partidos sin errores; la auditoría leída | pendiente |
+| 6. B-12 autonomía | La aplicación trabaja sola, sin el ciclo ni este chat | PC | un partido nuevo de principio a fin sin el ciclo | pendiente |
+
+Después de la Base, en este orden:
+1. C1: lo que falta (huellas en una captura, split step).
+2. P1: resultado del punto y nombres; aquí se revisa la conciliación del marcador de tennis-vision.
+3. B-15: la cámara en el informe y las medidas suyas que faltan.
+4. B1: comparación con las apps profesionales.
+5. E1: escenarios (jugadores masculinos, zurdos…).
+6. El resto del registro.
+7. A1: la aplicación entera con capturas.
+
 ## Estado y orden vigente (26-10) — leer primero
 
 **Regla (26-10, tras el retrabajo):** primero una **referencia completa y medida** de los 4 partidos; nada que
