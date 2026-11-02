@@ -174,5 +174,118 @@
    "linked_views": 31,
    "slowmo_links": 1
   }
+ },
+ "fine": {
+  "fingerprint": "413b07f6d6484176",
+  "version": "16",
+  "seconds": 229.1,
+  "finished": "2026-11-02 20:53:30",
+  "summary": {
+   "candidates": 7,
+   "confirmed": 7,
+   "errors": 0,
+   "warnings": [],
+   "forehands": 6,
+   "windows": 5,
+   "gate": {
+    "windows_gated": 0,
+    "windows_passed": 5,
+    "windows_ungated": 0,
+    "reasons": {
+     "golpe_de_bola": 5
+    },
+    "seconds_in_gated_windows": 0.0
+   },
+   "seconds": {
+    "pose": 179.4,
+    "pose_modelo_hybrid": 172.9,
+    "raqueta": 130.8,
+    "bola": 40.4,
+    "cuerdas_y_3d": 37.5,
+    "recorte": 5.3,
+    "analisis_ventana": 3.7,
+    "pista_ventana": 0.8,
+    "cribado": 0.4
+   },
+   "counts": {
+    "overlap_s": 0.0,
+    "frames": 1142,
+    "posed_frames": 1142,
+    "impacts": 9,
+    "kept_impacts": 7,
+    "racket_frames": 256,
+    "whole_window_again": 0,
+    "frames_960_far": 0,
+    "frames_modelo_hybrid": 1142
+   }
+  }
+ },
+ "views_link": {
+  "fingerprint": "a589d8640e06cacd",
+  "version": "1",
+  "seconds": 0.0,
+  "finished": "2026-11-02 20:53:30",
+  "summary": {
+   "strokes": 7,
+   "with_replay": 0,
+   "with_other_camera": 7,
+   "with_slowmo": 0,
+   "replay_share": 0.0,
+   "other_share": 1.0
+  }
+ },
+ "fine_opponent": {
+  "fingerprint": "73e3fcd9e5aba095",
+  "version": "9",
+  "seconds": 0.0,
+  "finished": "2026-11-02 20:53:30",
+  "summary": {
+   "enabled": false
+  }
+ },
+ "fine_doubtful": {
+  "fingerprint": "78547b52418ef927",
+  "version": "1",
+  "seconds": 80.7,
+  "finished": "2026-11-02 20:54:51",
+  "summary": {
+   "candidates": 1,
+   "confirmed": 1,
+   "errors": 0,
+   "warnings": [],
+   "forehands": 0,
+   "windows": 1,
+   "gate": {
+    "windows_gated": 0,
+    "windows_passed": 1,
+    "windows_ungated": 0,
+    "reasons": {
+     "golpe_de_bola": 1
+    },
+    "seconds_in_gated_windows": 0.0
+   },
+   "seconds": {
+    "pose": 38.6,
+    "pose_modelo_hybrid": 32.2,
+    "bola": 17.5,
+    "raqueta": 14.5,
+    "cuerdas_y_3d": 3.9,
+    "analisis_ventana": 1.2,
+    "recorte": 0.8,
+    "pista_ventana": 0.3,
+    "cribado": 0.1
+   },
+   "counts": {
+    "overlap_s": 0.0,
+    "frames": 179,
+    "posed_frames": 179,
+    "impacts": 1,
+    "kept_impacts": 1,
+    "racket_frames": 31,
+    "whole_window_again": 0,
+    "frames_960_far": 0,
+    "frames_modelo_hybrid": 179
+   }
+  }
  }
 }
