@@ -16,6 +16,11 @@ data/
 models/*.onnx
 models/*.pt
 models/*.pth
+# modelos candidatos (scripts/export_*.py, scripts/bench_candidates.py): pesos y descargas
+models/*.tar
+models/*.zip
+models/*.part
+models/f3ed/
 
 # Python
 __pycache__/
