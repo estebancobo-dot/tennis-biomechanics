@@ -3,10 +3,10 @@
  "strokes": 20,
  "near": 11,
  "summary": {
-  "ok": 283,
-  "falta": 26,
-  "pocos datos": 121,
-  "aviso": 112
+  "ok": 286,
+  "falta": 30,
+  "pocos datos": 123,
+  "aviso": 105
  },
  "items": [
   {
@@ -53,6 +53,13 @@
    "with_slowmo": 2,
    "replay_share": 0.397,
    "other_share": 0.857
+  },
+  {
+   "req": 3,
+   "area": "Fiabilidad",
+   "name": "forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)",
+   "status": "pocos datos",
+   "detail": "11 golpes con la homografía de su ventana: hacen falta al menos 40"
   },
   {
    "req": 1,
@@ -2999,7 +3006,14 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución)"
+   "detail": "246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+  },
+  {
+   "req": 9,
+   "area": "Rendimiento",
+   "name": "Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin",
+   "status": "ok",
+   "detail": "1.4 min (objetivo ≤ 15 min)"
   },
   {
    "req": 2,
@@ -3139,7 +3153,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -3181,7 +3195,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -3244,7 +3258,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -3538,7 +3552,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -3817,8 +3831,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#118 Validar cada medida de forma automática, no a mano: ¿técnica o ruido?",
-   "status": "ok",
-   "detail": "1 comprobaciones: 1 ok"
+   "status": "pocos datos",
+   "detail": "2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)» (11 golpes con la homografía de su ventana: hacen falta al menos 40)"
   },
   {
    "req": 11,
@@ -3867,7 +3881,7 @@
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (con las etapas medidas en su última ejecución))"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -3915,8 +3929,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "falta",
+   "detail": "2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto )"
   },
   {
    "req": 11,
@@ -3937,7 +3951,7 @@
    "area": "Peticiones",
    "name": "#137 hay algo que se pueda paralelizar ... threading (Chat, 13-10 18:31)",
    "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -4034,8 +4048,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25)",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "falta",
+   "detail": "2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto )"
   },
   {
    "req": 11,
@@ -4510,8 +4524,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d",
-   "status": "aviso",
-   "detail": "A MEDIAS según el registro (#219); sin comprobación automática asignada"
+   "status": "falta",
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto )"
   },
   {
    "req": 11,
@@ -4552,8 +4566,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#225 La aplicación no se cuelga ni ralentiza el PC",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -4581,35 +4595,35 @@
    "area": "Peticiones",
    "name": "#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo",
    "status": "aviso",
-   "detail": "A MEDIAS según el registro (#230); sin comprobación automática asignada"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
    "status": "aviso",
-   "detail": "A MEDIAS según el registro (#231); sin comprobación automática asignada"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó",
    "status": "aviso",
-   "detail": "A MEDIAS según el registro (#232); sin comprobación automática asignada"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#233 Una referencia completa y medida antes de validar nada",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "falta",
+   "detail": "2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto )"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#234 Prueba de valor de la aplicación con los datos reales",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "no se comprueba en las salidas: prueba de valor del 27-10 (docs/plan_maestro.md, R2)"
   },
   {
    "req": 11,
@@ -4629,8 +4643,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "no se comprueba en las salidas: GitHub Actions: cada petición con su registro en la pestaña Actions del repositorio"
   },
   {
    "req": 11,
