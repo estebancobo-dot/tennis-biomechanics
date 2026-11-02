@@ -138,7 +138,7 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 ## No cumplidos
 
 - **Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin**: marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto de saque) y 72-133 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 63 golpes, 1 saques/remates → como mucho 88% de sus golpes y 6% de sus 
-- **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=786–1141 de 900; al abrir 2 títulos, 544 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1141 (más abajo que la primera pantalla, 900)
+- **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=786–1141 de 900; al abrir 2 títulos, 543 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1141 (más abajo que la primera pantalla, 900)
 - **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
 - **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)

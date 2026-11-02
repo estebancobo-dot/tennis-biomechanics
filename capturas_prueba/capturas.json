@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 2814,
+   "text_chars": 2804,
    "charts": 20,
    "videos": 7,
    "black_canvases": 0,
@@ -248,7 +248,7 @@
  ],
  "errors": [],
  "h264": true,
- "browser": "chromium 156.0.8078.74",
+ "browser": "chromium 156.0.8078.80",
  "plays": [
   {
    "name": "«Su derecha» → ▶ Ver sus golpes típicos",
@@ -341,7 +341,7 @@
    "vid_top": 786,
    "vid_bottom": 1141,
    "h2": 2,
-   "words": 544,
+   "words": 543,
    "buttons": 25,
    "height": 900
   },

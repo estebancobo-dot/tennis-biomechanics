@@ -2595,7 +2595,31 @@
   "series": "series/w000015434_6854_near_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 1,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 30.0,
+    "t1": 42.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 42.9,
+    "t1": 97.6,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 272,
@@ -4940,7 +4964,31 @@
   "series": "series/w000015434_6854_near_272.json",
   "window_impact_s": 5.44,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 30.0,
+    "t1": 42.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 42.9,
+    "t1": 97.6,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 112,
@@ -7451,7 +7499,20 @@
   "series": "series/w000073500_3600_near_112.json",
   "window_impact_s": 2.24,
   "shot_in_point": 1,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 159.3,
+    "t1": 166.7,
+    "slowmo": 0.87,
+    "speed": "normal",
+    "impact_t": 161.105,
+    "method": "recorrido",
+    "confidence": 0.7
+   }
+  ]
  },
  {
   "impact_frame": 112,
@@ -10210,7 +10271,31 @@
   "series": "series/w000131000_3600_near_112.json",
   "window_impact_s": 2.24,
   "shot_in_point": 1,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 141.6,
+    "t1": 146.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 146.7,
+    "t1": 159.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 110,
@@ -10905,7 +10990,31 @@
   "window_impact_s": 2.2,
   "shot_in_point": 2,
   "shots_in_point": 2,
-  "is_return": false
+  "is_return": false,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 141.6,
+    "t1": 146.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 146.7,
+    "t1": 159.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 112,
@@ -13448,7 +13557,20 @@
   "series": "series/w000174644_6260_near_112.json",
   "window_impact_s": 2.24,
   "shot_in_point": 1,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 204.0,
+    "t1": 207.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 244,
@@ -16118,7 +16240,20 @@
   "series": "series/w000174644_6260_near_244.json",
   "window_impact_s": 4.88,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 204.0,
+    "t1": 207.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 106,
@@ -18611,7 +18746,31 @@
   "series": "series/w000209450_3600_near_106.json",
   "window_impact_s": 2.12,
   "shot_in_point": 1,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 228.8,
+    "t1": 236.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 236.7,
+    "t1": 271.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 115,
@@ -20123,7 +20282,42 @@
   "series": "series/w000213846_3600_near_115.json",
   "window_impact_s": 2.3,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 225.4,
+    "t1": 228.8,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 228.8,
+    "t1": 236.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 236.7,
+    "t1": 271.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 110,
@@ -22669,7 +22863,31 @@
   "series": "series/w000256600_5948_near_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 1,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 271.2,
+    "t1": 277.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 277.8,
+    "t1": 317.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 226,
@@ -25307,7 +25525,31 @@
   "series": "series/w000256600_5948_near_226.json",
   "window_impact_s": 4.52,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 271.2,
+    "t1": 277.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 277.8,
+    "t1": 317.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 107,
@@ -27587,7 +27829,130 @@
   "series": "series/w000320900_3600_near_107.json",
   "window_impact_s": 2.14,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 327.2,
+    "t1": 331.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 331.5,
+    "t1": 338.1,
+    "slowmo": 0.32,
+    "speed": "rapida",
+    "impact_t": 334.484,
+    "method": "recorrido",
+    "confidence": 0.9
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 338.2,
+    "t1": 341.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 341.1,
+    "t1": 345.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 349.7,
+    "t1": 358.8,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 358.8,
+    "t1": 359.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "lateral",
+    "label": "Cámara lateral",
+    "t0": 359.3,
+    "t1": 360.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.6
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 360.4,
+    "t1": 366.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "frontal",
+    "label": "Cámara frontal",
+    "t0": 366.4,
+    "t1": 367.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.4
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 367.1,
+    "t1": 367.8,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 367.8,
+    "t1": 377.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 231,
@@ -27755,7 +28120,31 @@
   "series": "series/w000409653_5904_far_231.json",
   "window_impact_s": 4.62,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 425.0,
+    "t1": 429.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 429.7,
+    "t1": 441.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   }
+  ]
  },
  {
   "impact_frame": 113,
@@ -27917,7 +28306,42 @@
   "window_impact_s": 2.26,
   "shot_in_point": 1,
   "shots_in_point": 3,
-  "is_return": false
+  "is_return": false,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 510.3,
+    "t1": 520.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 520.9,
+    "t1": 534.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 534.3,
+    "t1": 578.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 120,
@@ -28085,7 +28509,42 @@
   "series": "series/w000492482_3600_far_120.json",
   "window_impact_s": 2.4,
   "shot_in_point": 2,
-  "shots_in_point": 3
+  "shots_in_point": 3,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 510.3,
+    "t1": 520.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 520.9,
+    "t1": 534.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 534.3,
+    "t1": 578.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 110,
@@ -28233,7 +28692,64 @@
   "series": "series/w000498900_3600_far_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 3,
-  "shots_in_point": 3
+  "shots_in_point": 3,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 509.6,
+    "t1": 510.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 510.3,
+    "t1": 520.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 520.2,
+    "t1": 520.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 520.9,
+    "t1": 534.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 534.3,
+    "t1": 578.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 111,
@@ -28401,7 +28917,42 @@
   "series": "series/w000562001_3600_far_111.json",
   "window_impact_s": 2.22,
   "shot_in_point": 1,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 579.4,
+    "t1": 583.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "lateral",
+    "label": "Cámara lateral",
+    "t0": 583.2,
+    "t1": 585.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.4
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 585.1,
+    "t1": 634.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 115,
@@ -28569,7 +29120,53 @@
   "series": "series/w000565900_3600_far_115.json",
   "window_impact_s": 2.3,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 578.7,
+    "t1": 579.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 579.4,
+    "t1": 583.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "lateral",
+    "label": "Cámara lateral",
+    "t0": 583.2,
+    "t1": 585.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.4
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 585.1,
+    "t1": 634.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 118,
@@ -28739,7 +29336,20 @@
   "series": "series/w000599803_3600_far_118.json",
   "window_impact_s": 2.36,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 639.2,
+    "t1": 645.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 109,
@@ -28898,7 +29508,31 @@
   "window_impact_s": 2.18,
   "shot_in_point": 1,
   "shots_in_point": 4,
-  "is_return": false
+  "is_return": false,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 652.7,
+    "t1": 734.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 734.0,
+    "t1": 782.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 219,
@@ -29066,7 +29700,31 @@
   "series": "series/w000645670_7644_far_219.json",
   "window_impact_s": 4.38,
   "shot_in_point": 2,
-  "shots_in_point": 4
+  "shots_in_point": 4,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 652.7,
+    "t1": 734.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 734.0,
+    "t1": 782.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 310,
@@ -29233,7 +29891,31 @@
   "series": "series/w000645670_7644_far_310.json",
   "window_impact_s": 6.2,
   "shot_in_point": 4,
-  "shots_in_point": 4
+  "shots_in_point": 4,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 652.7,
+    "t1": 734.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 734.0,
+    "t1": 782.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 108,
@@ -29426,7 +30108,20 @@
   "series": "series/w000950300_3600_far_108.json",
   "window_impact_s": 2.16,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 956.1,
+    "t1": 960.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 104,
@@ -29635,7 +30330,42 @@
   "series": "series/w000962295_3600_far_104.json",
   "window_impact_s": 2.08,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 969.4,
+    "t1": 973.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 973.5,
+    "t1": 999.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 999.9,
+    "t1": 1020.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 112,
@@ -29833,7 +30563,53 @@
   "series": "series/w001027500_3600_far_112.json",
   "window_impact_s": 2.24,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1032.5,
+    "t1": 1034.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1034.5,
+    "t1": 1039.8,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1039.8,
+    "t1": 1040.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1040.5,
+    "t1": 1050.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   }
+  ]
  },
  {
   "impact_frame": 100,
@@ -30010,7 +30786,31 @@
   "series": "series/w001056302_3600_far_100.json",
   "window_impact_s": 2.0,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1061.6,
+    "t1": 1067.6,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1083.8,
+    "t1": 1090.6,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   }
+  ]
  },
  {
   "impact_frame": 110,
@@ -30158,7 +30958,42 @@
    "footwork": {}
   },
   "series": "series/w001065646_3600_far_110.json",
-  "window_impact_s": 2.2
+  "window_impact_s": 2.2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1079.6,
+    "t1": 1083.8,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1083.8,
+    "t1": 1090.6,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1090.6,
+    "t1": 1094.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 102,
@@ -30336,7 +31171,31 @@
   "series": "series/w001097700_6508_far_102.json",
   "window_impact_s": 2.04,
   "shot_in_point": 1,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1114.2,
+    "t1": 1129.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1138.5,
+    "t1": 1144.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 265,
@@ -30508,7 +31367,31 @@
   "series": "series/w001097700_6508_far_265.json",
   "window_impact_s": 5.3,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1114.2,
+    "t1": 1129.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1138.5,
+    "t1": 1144.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 108,
@@ -30705,7 +31588,20 @@
   "series": "series/w001145788_3600_far_108.json",
   "window_impact_s": 2.16,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1150.5,
+    "t1": 1170.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 100,
@@ -30884,7 +31780,32 @@
   "window_impact_s": 2.0,
   "shot_in_point": 1,
   "shots_in_point": 2,
-  "is_return": true
+  "is_return": true,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1180.9,
+    "t1": 1183.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1229.7,
+    "t1": 1236.7,
+    "slowmo": 1.33,
+    "speed": "lenta",
+    "impact_t": 1234.827,
+    "method": "recorrido",
+    "confidence": 0.7
+   }
+  ],
+  "slowmo_view": true
  },
  {
   "impact_frame": 170,
@@ -31090,7 +32011,32 @@
   "series": "series/w001170500_4792_far_170.json",
   "window_impact_s": 3.4,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1180.9,
+    "t1": 1183.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1229.7,
+    "t1": 1236.7,
+    "slowmo": 1.33,
+    "speed": "lenta",
+    "impact_t": 1236.412,
+    "method": "recorrido",
+    "confidence": 0.7
+   }
+  ],
+  "slowmo_view": true
  },
  {
   "impact_frame": 110,
@@ -31301,7 +32247,31 @@
   "series": "series/w001202675_6025_far_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 1,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1212.3,
+    "t1": 1217.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1217.3,
+    "t1": 1229.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 240,
@@ -31505,7 +32475,31 @@
   "series": "series/w001202675_6025_far_240.json",
   "window_impact_s": 4.8,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1212.3,
+    "t1": 1217.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1217.3,
+    "t1": 1229.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 117,
@@ -34139,7 +35133,31 @@
   "series": "series/w001247398_3600_near_117.json",
   "window_impact_s": 2.34,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1250.9,
+    "t1": 1254.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1254.0,
+    "t1": 1280.8,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 110,
@@ -35017,7 +36035,20 @@
   "window_impact_s": 2.2,
   "shot_in_point": 1,
   "shots_in_point": 2,
-  "is_return": true
+  "is_return": true,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1280.8,
+    "t1": 1290.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 235,
@@ -36119,7 +37150,20 @@
   "series": "series/w001273081_6109_near_235.json",
   "window_impact_s": 4.7,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1280.8,
+    "t1": 1290.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 110,
@@ -36267,7 +37311,42 @@
    "footwork": {}
   },
   "series": "series/w001289166_3600_far_110.json",
-  "window_impact_s": 2.2
+  "window_impact_s": 2.2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1302.2,
+    "t1": 1302.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1302.9,
+    "t1": 1311.8,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1311.8,
+    "t1": 1312.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 108,
@@ -36444,7 +37523,20 @@
   "series": "series/w001315898_3600_far_108.json",
   "window_impact_s": 2.16,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1321.3,
+    "t1": 1330.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 104,
@@ -36656,7 +37748,42 @@
   "series": "series/w001332032_3600_far_104.json",
   "window_impact_s": 2.08,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1336.4,
+    "t1": 1353.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1353.2,
+    "t1": 1399.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1399.2,
+    "t1": 1414.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 108,
@@ -37569,7 +38696,31 @@
    }
   },
   "series": "series/w001433999_9118_near_108.json",
-  "window_impact_s": 2.16
+  "window_impact_s": 2.16,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1445.5,
+    "t1": 1466.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1466.4,
+    "t1": 1470.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 237,
@@ -38555,7 +39706,31 @@
    }
   },
   "series": "series/w001433999_9118_near_237.json",
-  "window_impact_s": 4.74
+  "window_impact_s": 4.74,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1445.5,
+    "t1": 1466.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1466.4,
+    "t1": 1470.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 386,
@@ -39922,7 +41097,42 @@
    }
   },
   "series": "series/w001433999_9118_near_386.json",
-  "window_impact_s": 7.72
+  "window_impact_s": 7.72,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1442.4,
+    "t1": 1445.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1445.5,
+    "t1": 1466.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1466.4,
+    "t1": 1470.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 115,
@@ -42098,7 +43308,20 @@
   "window_impact_s": 2.3,
   "shot_in_point": 1,
   "shots_in_point": 1,
-  "is_return": false
+  "is_return": false,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1479.8,
+    "t1": 1501.6,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 114,
@@ -44159,7 +45382,42 @@
   "series": "series/w001492330_3600_near_114.json",
   "window_impact_s": 2.28,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1501.6,
+    "t1": 1510.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1510.2,
+    "t1": 1516.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1516.3,
+    "t1": 1524.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 110,
@@ -46521,7 +47779,31 @@
   "series": "series/w001538351_3600_near_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 1,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1555.0,
+    "t1": 1565.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1565.4,
+    "t1": 1603.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 120,
@@ -49113,7 +50395,42 @@
   "series": "series/w001542150_3600_near_120.json",
   "window_impact_s": 2.4,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1554.3,
+    "t1": 1555.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1555.0,
+    "t1": 1565.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1565.4,
+    "t1": 1603.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 112,
@@ -52742,7 +54059,20 @@
   "series": "series/w001594341_3600_near_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1603.7,
+    "t1": 1608.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 113,
@@ -55271,7 +56601,20 @@
   "series": "series/w001610245_3600_near_113.json",
   "window_impact_s": 2.26,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1622.2,
+    "t1": 1629.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   }
+  ]
  },
  {
   "impact_frame": 110,
@@ -58889,7 +60232,20 @@
   "series": "series/w001707206_3600_near_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1732.8,
+    "t1": 1747.3,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 103,
@@ -61258,7 +62614,75 @@
   "series": "series/w001751001_6399_near_103.json",
   "window_impact_s": 2.06,
   "shot_in_point": 1,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1759.3,
+    "t1": 1763.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1767.1,
+    "t1": 1782.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1782.4,
+    "t1": 1805.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1805.0,
+    "t1": 1809.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1809.7,
+    "t1": 1818.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1818.5,
+    "t1": 1858.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 249,
@@ -62571,7 +63995,86 @@
   "series": "series/w001751001_6399_near_249.json",
   "window_impact_s": 4.98,
   "shot_in_point": 2,
-  "shots_in_point": 2
+  "shots_in_point": 2,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1759.3,
+    "t1": 1763.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1763.5,
+    "t1": 1767.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1767.1,
+    "t1": 1782.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1782.4,
+    "t1": 1805.0,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1805.0,
+    "t1": 1809.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1809.7,
+    "t1": 1818.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1818.5,
+    "t1": 1858.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 116,
@@ -63127,7 +64630,31 @@
   "series": "series/w001921830_3600_far_122.json",
   "window_impact_s": 2.44,
   "shot_in_point": 2,
-  "shots_in_point": 3
+  "shots_in_point": 3,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1931.0,
+    "t1": 1933.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1933.1,
+    "t1": 1976.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 110,
@@ -63279,7 +64806,31 @@
   "series": "series/w001928700_3600_far_110.json",
   "window_impact_s": 2.2,
   "shot_in_point": 3,
-  "shots_in_point": 3
+  "shots_in_point": 3,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1931.0,
+    "t1": 1933.1,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1933.1,
+    "t1": 1976.5,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 112,
@@ -63444,7 +64995,20 @@
   "window_impact_s": 2.24,
   "shot_in_point": 1,
   "shots_in_point": 4,
-  "is_return": false
+  "is_return": false,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1977.2,
+    "t1": 1991.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   }
+  ]
  },
  {
   "impact_frame": 258,
@@ -63648,7 +65212,20 @@
   "series": "series/w001949670_6559_far_258.json",
   "window_impact_s": 5.16,
   "shot_in_point": 2,
-  "shots_in_point": 4
+  "shots_in_point": 4,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1977.2,
+    "t1": 1991.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   }
+  ]
  },
  {
   "impact_frame": 107,
@@ -63821,7 +65398,20 @@
   "series": "series/w001960800_3600_far_107.json",
   "window_impact_s": 2.14,
   "shot_in_point": 3,
-  "shots_in_point": 4
+  "shots_in_point": 4,
+  "views": [
+   {
+    "kind": "repeticion_principal",
+    "label": "Repetición (cámara principal)",
+    "t0": 1977.2,
+    "t1": 1991.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.5
+   }
+  ]
  },
  {
   "impact_frame": 110,
@@ -64626,7 +66216,31 @@
   "window_impact_s": 2.2,
   "shot_in_point": 1,
   "shots_in_point": 1,
-  "is_return": false
+  "is_return": false,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1997.6,
+    "t1": 2001.6,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 2021.4,
+    "t1": 2026.8,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  },
  {
   "impact_frame": 112,
@@ -64798,6 +66412,30 @@
   "series": "series/w002031400_3600_far_112.json",
   "window_impact_s": 2.24,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 2036.7,
+    "t1": 2044.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 2044.4,
+    "t1": 2067.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
  }
 ]
