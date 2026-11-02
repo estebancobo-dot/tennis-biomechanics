@@ -10,6 +10,7 @@ Regla del usuario (19-10): **nada nuevo hasta que la base (golpes que no se pier
 - Una fuente externa (artículos, otros proyectos) solo entra como **candidato dentro del paso donde toca**, sobre todo en la prueba de modelos (paso 2). Nunca como trabajo aparte.
 - Lo ya hecho de B-15a (la cámara en la auditoría) se queda y no se amplía hasta después de la Base.
 - Los proyectos citados en B-15 que aún no se han mirado (tennis-vision, tennisvision, CalTennis, Capture4D) se revisan solo al llegar a su paso: P1, B-10 y B-6.
+- **Estado real de las peticiones (02-11)**: el «HECHO» del registro es la etiqueta de Claude, no una validación. El estado que cuenta es el que genera `scripts/real_status.py` desde la auditoría sobre las salidas reales (`docs/estado_real_peticiones.md`). El 02-11, de 226 peticiones: 23 sin construir, 104 construidas sin comprobar, 57 con una comprobación que falla, 42 comprobadas en las salidas (existen y son coherentes, no que sean correctas), 0 validadas con datos anotados y 0 aceptadas por el usuario.
 - Cómo se buscan, filtran, leen, comparan y usan las referencias externas, y su tabla: `docs/referencias_externas.md`. La búsqueda se repite al empezar cada bloque.
 
 | Paso | Qué | Dónde | Terminado cuando | Estado |
