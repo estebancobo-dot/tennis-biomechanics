@@ -157,6 +157,13 @@ def run_audit(root: Path, report: Path, dest: Path, stroke: str = "forehand", di
     res["items"] += petition_items(res["items"])
     res["summary"] = {st: sum(i["status"] == st for i in res["items"]) for st in ("ok", "falta", "pocos datos", "aviso")}
     md = write(res, dest)
+    try:                                       # the honest status of every request, per plan package (02-11)
+        from .real_status import render
+        txt, counts = render(res)
+        (Path(dest) / "estado_real_peticiones.md").write_text(txt, encoding="utf-8")
+        print("Peticiones: " + " · ".join(f"{v} {k}" for k, v in counts.items()))
+    except Exception as e:                     # noqa: BLE001 — never stops the audit
+        print(f"AVISO: no se pudo calcular el estado real de las peticiones ({e})")
     s = res["summary"]
     print(f"Auditoría: {s['ok']} cumplidos, {s['falta']} no cumplidos, {s['pocos datos']} sin golpes suficientes, "
           f"{s['aviso']} avisos → {md}")

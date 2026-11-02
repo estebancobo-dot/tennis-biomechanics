@@ -152,6 +152,7 @@ function Subir-Registros {
             if (Test-Path "$($a[0])\auditoria.md") {
                 Copy-Item "$($a[0])\auditoria.md" "$d\auditoria_$($a[1]).md" -Force
                 Copy-Item "$($a[0])\auditoria.json" "$d\auditoria_$($a[1]).json" -Force -ErrorAction SilentlyContinue
+                Copy-Item "$($a[0])\estado_real_peticiones.md" "$d\estado_real_$($a[1]).md" -Force -ErrorAction SilentlyContinue
                 $c = "$d\capturas_$($a[1])"
                 New-Item -ItemType Directory -Force -Path $c | Out-Null
                 Remove-Item "$c\*" -Force -ErrorAction SilentlyContinue

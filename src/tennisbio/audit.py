@@ -478,10 +478,15 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
         secs = total_seconds(man)          # stages run at the same time count once
         if dur:
             per_h = secs / 3600 / (dur / 60) if dur else None        # hours of processing per hour of video
-            st = "ok" if per_h is not None and per_h * 3.5 <= 12 else "aviso"
+            # paso 1 de la Base (B1, 02-11): 35 min de vídeo desde cero en ≤ 45 min, ≈ 1,3 h por hora de vídeo
+            st = "ok" if per_h is not None and per_h <= SPEED_TARGET else "aviso"
             items.append(_item(9, "Rendimiento", f"Tiempo: {m}", st,
                                f"{secs / 60:.0f} min para {dur:.0f} min de vídeo ≈ {per_h * 3.5:.1f} h para un partido de 3,5 h "
-                               "(con las etapas medidas en su última ejecución)"))
+                               f"(objetivo ≤ {SPEED_TARGET * 3.5:.1f} h; con las etapas medidas en su última ejecución)"))
+        views = (man.get("views") or {}).get("seconds")
+        if views is not None:                     # B-3: the camera-shots stage under 15 min a match
+            items.append(_item(9, "Rendimiento", f"Tomas de cámara: {m}", "ok" if views <= 900 else "aviso",
+                               f"{views / 60:.1f} min (objetivo ≤ 15 min)"))
     if failed:
         items.append(_item(5, "Automático", "Etapas con errores", "falta", "; ".join(failed)))
 
@@ -921,10 +926,19 @@ PETITIONS = {
     129: Note("descartado por el usuario (13-10): sin hoja de sesión"),
     130: r"Resto de derecha|Resto:|Lado del resto|Dirección del saque|responde a cada combinación",
     218: r"^Repeticiones y otras cámaras$",
+    # Base packages (config/plan_peticiones.yaml), 02-11
+    137: r"^Rendimiento$", 231: r"^Rendimiento$", 230: r"^Rendimiento$",
+    237: Note("GitHub Actions: cada petición con su registro en la pestaña Actions del repositorio"),
+    225: r"Golpes que fallaron|Etapas con errores", 232: r"Golpes que fallaron|Etapas con errores|Exportación",
+    233: r"golpes analizados|Etapas con errores|Golpes encontrados frente al marcador",
+    134: r"golpes analizados|Golpes encontrados frente al marcador",
+    234: Note("prueba de valor del 27-10 (docs/plan_maestro.md, R2)"),
+    151: r"golpes analizados|Golpes encontrados frente al marcador", 219: r"^Repeticiones y otras cámaras$|Golpes encontrados frente al marcador",
     132: r"Golpe angulado", 157: r"Bola corta baja cerca de la red", 158: r"Bola corta alta cerca de la red",
     159: r"Volea a media pista con golpe de fondo|Volea fuera de la línea de saque",
 }
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
+SPEED_TARGET = 45 / 35          # hours of processing per hour of video (Base step 1: 35 min in ≤ 45 min)
 
 
 def parse_petitions(path: Path = PETITIONS_DOC) -> list[tuple[int, str, str]]:
