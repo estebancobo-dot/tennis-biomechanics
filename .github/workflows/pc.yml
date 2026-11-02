@@ -18,8 +18,10 @@ jobs:
     runs-on: [self-hosted, tenis-pc]
     timeout-minutes: 4320
     steps:
+      # desde cmd (02-11): el paso "shell: powershell" ejecuta un .ps1 temporal que Windows bloqueo por su politica de
+      # scripts; asi solo se lanza powershell.exe con -ExecutionPolicy Bypass, que no depende de ella
       - name: Peticiones del PC
-        shell: powershell
+        shell: cmd
         run: |
-          & powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-          exit 0
+          powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+          exit /b 0
