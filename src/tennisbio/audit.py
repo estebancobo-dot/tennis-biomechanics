@@ -252,6 +252,7 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
                        n=len(near)))
     items += recall_items(match_dirs)
     items += views_items(match_dirs)
+    items += camera_items(match_dirs, stroke)
 
     # 1. taxonomy: each row of the coverage matrix
     for row in parse_matrix():
@@ -518,6 +519,46 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
         out.append(_item(1, "Golpes", f"Golpes encontrados frente al marcador: {d.name}", status, detail + sides,
                          found=len(strokes), serves=serves, counts=counts, doubtful=len(doubt)))
     return out
+
+
+def camera_items(match_dirs: list[Path], stroke: str = "forehand", weak_below: int = 6) -> list[dict]:
+    """B-15a (docs/analisis_referencias.md §2): how much of each measure the camera explains, from her near strokes
+    and the homography of their series; a measure at 10 % or more and above chance is the picture, not her."""
+    from .camera_share import LIMIT, camera_of, shares
+
+    rows = []
+    for d in match_dirs:
+        f = _mf.at(d, "strokes.json")
+        if not f.exists():
+            continue
+        try:
+            strokes = json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        for s in strokes:
+            if s.get("stroke") != stroke or s.get("side") == "far" or not s.get("series"):
+                continue
+            try:
+                ser = json.loads((f.parent / s["series"]).read_text(encoding="utf-8"))
+            except (OSError, ValueError):
+                continue
+            cam = camera_of(ser.get("H"), (s.get("height_scale") or {}).get("px"), s.get("camera_pitch_deg"))
+            if cam:
+                rows.append((d.name, cam, stroke_values(s)))
+    res = shares(rows)
+    name = f"{stroke}: medidas que dependen de la cámara (la cámara explica ≥ {LIMIT:.0%} de su variación)"
+    if not res:
+        return [_item(3, "Fiabilidad", name, "pocos datos",
+                      f"{len(rows)} golpes con la homografía de su ventana: hacen falta al menos 40")]
+    bad = [e for e in res if e["camera_dependent"]]
+    nm = len({r[0] for r in rows})
+    weak = (f"; prueba débil con {nm} partidos (cámaras parecidas): «dentro del azar» no demuestra que no dependan"
+            if nm < weak_below else "")
+    det = (f"{len(res)} medidas en {len(rows)} golpes de {nm} partidos; dependen de la cámara: "
+           + (", ".join(f"{e['measure']} {e['share']:.0%} (azar {e['chance']:.0%})" for e in bad[:12]) or "ninguna")
+           + weak)
+    return [_item(3, "Fiabilidad", name, "aviso" if bad else ("pocos datos" if weak else "ok"), det,
+                  measures=res)]
 
 
 def views_items(match_dirs: list[Path], min_strokes: int = 20) -> list[dict]:

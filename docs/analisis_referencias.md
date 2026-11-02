@@ -42,7 +42,20 @@ Hecho con las 193 derechas del lado cercano de los 4 partidos (`referencia_foreh
 | Altura de la muñeca al terminar | 8,4 % | 6,9 % | Algo por encima del azar, bajo el 10 % |
 | Todas las medidas 2D restantes (giros, codo, apoyo, base, altura del impacto, tiempos, cabeza, X-factor 2D) | 0,6-6 % | 6-8 % | Dentro del azar |
 
-**Límites, dichos claramente:**
+****Ya en la auditoría (B-15a, `tennisbio.camera_share`, `audit.camera_items`)**, sobre **las 479 medidas** de la
+taxonomía y con corrección por comparaciones múltiples (prueba F parcial + Benjamini-Hochberg al 5 %: con 479
+medidas, 1 de cada 20 pasaría la línea del azar por suerte). Con la corrección, dependen de la cámara **9**:
+- profundidad de espera en el resto (66 %);
+- raqueta y muñeca hacia el lado en el bote (54 % y 29 %);
+- lecturas 3D del tronco (48 %);
+- inclinación de hombros en la aceleración (33 %);
+- cabeza de la raqueta hacia el lado en la aceleración (19 %);
+- anchura de la base en la recuperación y la terminación (13 % y 12 %);
+- codo respecto al hombro en la recuperación (12 %).
+
+El informe debe tratarlas como «no medible desde esta cámara» (siguiente paso).
+
+**Límites, dichos claramente:****
 - Son 4 partidos del mismo torneo, con cámaras muy parecidas. La prueba tiene poca potencia, así que «dentro del azar» no demuestra que esas medidas no dependan de la cámara.
 - Cuando entren partidos de otros torneos y cadenas, la misma prueba será concluyente. Por eso pasa a la auditoría y se repite en cada ejecución.
 - Ya confirma lo que decía la revisión: **el 3D (RTMW3D) no sirve para las rotaciones**.
