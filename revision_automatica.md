@@ -1,6 +1,6 @@
 # Revisión automática: FALLOS
 
-314 cumplidos · 34 no cumplidos · 102 sin golpes suficientes · 108 avisos (antes: 292 cumplidos, 34 no cumplidos)
+314 cumplidos · 34 no cumplidos · 102 sin golpes suficientes · 108 avisos (antes: 314 cumplidos, 34 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 127 de 245
 
@@ -171,28 +171,3 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-
-## Mejora
-
-- Pruebas en este PC: test_pipeline: aviso → ok
-- Pruebas en este PC: test_auto_cycle: aviso → ok
-- Pruebas en este PC: test_pc_requests: aviso → ok
-- Pruebas en este PC: test_library: aviso → ok
-- Pruebas en este PC: test_layout: aviso → ok
-- Pruebas en este PC: test_identity_click: aviso → ok
-- Pruebas en este PC: test_app_core: aviso → ok
-- Pruebas en este PC: test_auto_catalog_rename: aviso → ok
-- Pruebas en este PC: test_no_hardcoded_player: aviso → ok
-- Pruebas en este PC: test_no_unbounded_calls: aviso → ok
-- #31 Procesado incremental al añadir vídeos: aviso → ok
-- #32 Ampliable a otros golpes y jugadores: aviso → ok
-- #49 No perder contexto ni sesión; registros automáticos: aviso → ok
-- #80 Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice: aviso → ok
-- #119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa: aviso → ok
-- #144 (punto 4) hay tareas o schedulers ... salen terminales y se apagan solos (Chat, 17-10 09:49): aviso → ok
-- #152 como queda la estructura de directorios ... carpeta normalizada de los jugadores (Chat, 18-10 10:12): aviso → ok
-- #161 como se enlazan los partidos de una jugadora ... tienen que estar el analisis junto (Chat, 19-10 08:11): aviso → ok
-- #220 Almacenamiento definitivo: árbol por jugador, partido y golpe; nombres, colisiones y todos los escenarios: aviso → ok
-- #222 Un clic por partido para decir quién es ella: aviso → ok
-- #229 Renombrar el vídeo no rompe nada; el partido se identifica por su contenido: aviso → ok
-- #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: aviso → ok
