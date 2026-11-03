@@ -2753,7 +2753,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "1376 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "1727 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3020,7 +3020,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "270 min para 35 min de vídeo ≈ 27.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -3048,7 +3048,7 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "falta",
-   "detail": "código ? (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_twice_moved_or_copied_is_recognised, tests/test_app_core.py::test_video_without_audio_is_said, tests/test_app_core.py::test_test_runs_one_level_down_are_indexed_and_reported_from_their_folder, tests/test_app_core.py::test_test_run_clip_is_found_next_to_its_matches, tests/test_app_core.py::test_plan_leaves_the_cycles_test_runs_to_the_cycle",
+   "detail": "código 83083dd (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_twice_moved_or_copied_is_recognised, tests/test_app_core.py::test_video_without_audio_is_said, tests/test_app_core.py::test_test_runs_one_level_down_are_indexed_and_reported_from_their_folder, tests/test_app_core.py::test_test_run_clip_is_found_next_to_its_matches, tests/test_app_core.py::test_plan_leaves_the_cycles_test_runs_to_the_cycle",
    "passed": 669,
    "failed": 12
   },
@@ -3169,14 +3169,14 @@
    "area": "Peticiones",
    "name": "#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe",
    "status": "falta",
-   "detail": "1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código ? (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_twice_mo)"
+   "detail": "1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 83083dd (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_tw)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (270 min para 35 min de vídeo ≈ 27.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -3218,7 +3218,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "falta",
-   "detail": "3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código ? (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_twice_mo)"
+   "detail": "3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 83083dd (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_tw)"
   },
   {
    "req": 11,
@@ -3281,7 +3281,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (270 min para 35 min de vídeo ≈ 27.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -3435,7 +3435,7 @@
    "area": "Peticiones",
    "name": "#51 El código de la prueba es el de los casos reales",
    "status": "falta",
-   "detail": "1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código ? (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_twice_mo)"
+   "detail": "1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 83083dd (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_tw)"
   },
   {
    "req": 11,
@@ -3575,7 +3575,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (270 min para 35 min de vídeo ≈ 27.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -3904,7 +3904,7 @@
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
    "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (270 min para 35 min de vídeo ≈ 27.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -3974,7 +3974,7 @@
    "area": "Peticiones",
    "name": "#137 hay algo que se pueda paralelizar ... threading (Chat, 13-10 18:31)",
    "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (270 min para 35 min de vídeo ≈ 27.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -4618,14 +4618,14 @@
    "area": "Peticiones",
    "name": "#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (270 min para 35 min de vídeo ≈ 27.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (270 min para 35 min de vídeo ≈ 27.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -4695,7 +4695,7 @@
    "area": "Peticiones",
    "name": "#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código",
    "status": "falta",
-   "detail": "1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código ? (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_twice_mo)"
+   "detail": "1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 83083dd (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_tw)"
   },
   {
    "req": 11,
