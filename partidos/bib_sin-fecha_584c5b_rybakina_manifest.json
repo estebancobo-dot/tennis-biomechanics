@@ -57,14 +57,14 @@
   }
  },
  "score": {
-  "fingerprint": "dabb758d32dc3b51",
+  "fingerprint": "f230f24cbf11660e",
   "version": "6",
-  "seconds": 861.4,
-  "finished": "2026-10-19 00:49:18",
+  "seconds": 515.1,
+  "finished": "2026-11-03 18:47:40",
   "summary": {
-   "readings": 455,
+   "readings": 454,
    "pressure": 137,
-   "samples": 484,
+   "samples": 483,
    "ocr_calls": 388
   }
  },
