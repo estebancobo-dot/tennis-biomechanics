@@ -141,6 +141,7 @@ detector: si
 id: 79
 accion: recall
 detector: si
+# 03-11 10:2x UTC: el usuario usa el PC; pausa total (config/pausa_pc.txt) hasta que lo diga
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
 # Cola: se pueden poner varias peticiones seguidas, separadas por una linea con solo "---"; cada bloque
 #   lleva su "id:", su "accion:" y sus parametros. El PC las hace en orden, una detras de otra en el mismo
