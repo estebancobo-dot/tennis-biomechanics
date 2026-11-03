@@ -1,0 +1,120 @@
+{
+ "probe": {
+  "fingerprint": "c1af398babfe5871",
+  "version": "2",
+  "seconds": 0.3,
+  "finished": "2026-11-03 04:10:18",
+  "summary": {
+   "duration_min": 4.0,
+   "fps": 50.0,
+   "size": "1920x1080",
+   "cleaned": false,
+   "vfr": true
+  }
+ },
+ "scenes": {
+  "fingerprint": "52100f14f417c582",
+  "version": "3",
+  "seconds": 29.5,
+  "finished": "2026-11-03 04:10:47",
+  "summary": {
+   "shots": 41,
+   "main_camera_shots": 11,
+   "detector": "transnetv2",
+   "main_camera_min": 1.4,
+   "main_rule": "lines",
+   "main_camera_min_colour": 3.5,
+   "main_views": 10
+  }
+ },
+ "audio": {
+  "fingerprint": "b27930baf981bbd5",
+  "version": "2",
+  "seconds": 1.9,
+  "finished": "2026-11-03 04:10:49",
+  "summary": {
+   "onsets": 243,
+   "tracks": 1
+  }
+ },
+ "court": {
+  "fingerprint": "5f9440964ddce626",
+  "version": "5",
+  "seconds": 10.5,
+  "finished": "2026-11-03 04:10:59",
+  "summary": {
+   "segments": 29,
+   "with_court": 26,
+   "known_court_reused": 61,
+   "searched": 3,
+   "filled_same_view": 3,
+   "samples": 75,
+   "court_presets": 9,
+   "main_camera_min": 1.4,
+   "court_min": 1.3,
+   "court_share": 0.887,
+   "pitch_deg_median": 18.4
+  }
+ },
+ "score": {
+  "fingerprint": "f61aed79a986ba31",
+  "version": "6",
+  "seconds": 34.3,
+  "finished": "2026-11-03 04:11:34",
+  "summary": {
+   "readings": 19,
+   "pressure": 7,
+   "samples": 19,
+   "ocr_calls": 18
+  }
+ },
+ "players": {
+  "fingerprint": "bea9ca4ead76a99d",
+  "version": "4",
+  "seconds": 56.9,
+  "finished": "2026-11-03 04:11:56",
+  "summary": {
+   "frames": 751,
+   "wall_min": 0.9,
+   "model_min": 0.8,
+   "read_min": 0.9,
+   "wait_min": 0.1,
+   "appearance_min": 0.0
+  },
+  "overlap_s": 34.3
+ },
+ "identity": {
+  "fingerprint": "8cc4f4c23dc653e5",
+  "version": "5",
+  "seconds": 6.8,
+  "finished": "2026-11-03 04:12:03",
+  "summary": {
+   "runs": 11,
+   "confidence": 0.73,
+   "votes": 11,
+   "agree": 8,
+   "ends_only": 0,
+   "clothes_only": 0,
+   "ends_won": 1,
+   "clothes_won": 0,
+   "doubtful": 2,
+   "none": 0,
+   "by_end_changes": 9,
+   "by_clothes": 8,
+   "conflicts": 2,
+   "conflicts_resolved": 1,
+   "decided": 9,
+   "clothes": {
+    "source": "ropa (torso y pantalón o falda, sin la pista)",
+    "runs": 11,
+    "clear": 11,
+    "margin_median": 0.22,
+    "separation": 1.75,
+    "far_pairs": 0,
+    "far_opposite": null,
+    "same_game_pairs": 10,
+    "same_game_same": 0.9
+   }
+  }
+ }
+}
