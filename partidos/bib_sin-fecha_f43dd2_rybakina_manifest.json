@@ -38,34 +38,34 @@
   }
  },
  "court": {
-  "fingerprint": "e494247cb43e073e",
-  "version": "4",
-  "seconds": 270.2,
-  "finished": "2026-10-18 23:44:23",
+  "fingerprint": "8276f55e5fbbd978",
+  "version": "5",
+  "seconds": 94.5,
+  "finished": "2026-11-03 17:39:32",
   "summary": {
-   "segments": 275,
-   "with_court": 195,
-   "known_court_reused": 616,
-   "searched": 109,
-   "filled_same_view": 21,
-   "samples": 879,
-   "court_presets": 60,
+   "segments": 278,
+   "with_court": 197,
+   "known_court_reused": 613,
+   "searched": 111,
+   "filled_same_view": 26,
+   "samples": 881,
+   "court_presets": 62,
    "main_camera_min": 18.9,
-   "court_min": 15.2,
+   "court_min": 15.3,
    "court_share": 0.806,
-   "pitch_deg_median": 19.0
+   "pitch_deg_median": 18.9
   }
  },
  "score": {
-  "fingerprint": "a31e052688801efa",
+  "fingerprint": "88a553aeb88e573b",
   "version": "6",
-  "seconds": 516.2,
-  "finished": "2026-10-18 23:53:00",
+  "seconds": 440.7,
+  "finished": "2026-11-03 17:46:53",
   "summary": {
-   "readings": 21,
-   "pressure": 12,
+   "readings": 185,
+   "pressure": 38,
    "samples": 234,
-   "ocr_calls": 242
+   "ocr_calls": 210
   }
  },
  "players": {
