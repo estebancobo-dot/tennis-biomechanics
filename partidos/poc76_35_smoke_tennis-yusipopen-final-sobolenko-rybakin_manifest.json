@@ -174,5 +174,125 @@
    "linked_views": 227,
    "slowmo_links": 5
   }
+ },
+ "fine": {
+  "fingerprint": "5f9cf707cefd6767",
+  "version": "16",
+  "seconds": 978.4,
+  "finished": "2026-11-03 05:06:56",
+  "summary": {
+   "candidates": 58,
+   "confirmed": 55,
+   "errors": 0,
+   "warnings": [],
+   "forehands": 23,
+   "windows": 44,
+   "gate": {
+    "windows_gated": 0,
+    "windows_passed": 44,
+    "windows_ungated": 0,
+    "reasons": {
+     "detector": 19,
+     "golpe_de_bola": 24,
+     "bola_no_vista": 1
+    },
+    "seconds_in_gated_windows": 0.0
+   },
+   "seconds": {
+    "pose": 1067.2,
+    "pose_modelo_hybrid": 678.8,
+    "pose_modelo_yolo": 375.6,
+    "raqueta": 369.9,
+    "bola": 301.1,
+    "cuerdas_y_3d": 68.5,
+    "recorte": 49.9,
+    "jugadora_lejana": 30.0,
+    "analisis_ventana": 8.9,
+    "pista_ventana": 8.9,
+    "cribado": 2.3
+   },
+   "counts": {
+    "overlap_s": 0.0,
+    "frames": 9353,
+    "posed_frames": 9353,
+    "impacts": 68,
+    "kept_impacts": 58,
+    "racket_frames": 844,
+    "whole_window_again": 0,
+    "frames_960_far": 1439,
+    "frames_modelo_yolo": 5161,
+    "frames_modelo_hybrid": 4192
+   }
+  }
+ },
+ "views_link": {
+  "fingerprint": "eca08c564c3195e4",
+  "version": "1",
+  "seconds": 0.1,
+  "finished": "2026-11-03 05:06:56",
+  "summary": {
+   "strokes": 55,
+   "with_replay": 8,
+   "with_other_camera": 54,
+   "with_slowmo": 3,
+   "replay_share": 0.145,
+   "other_share": 0.982
+  }
+ },
+ "fine_opponent": {
+  "fingerprint": "24b49524a550c1c2",
+  "version": "9",
+  "seconds": 0.0,
+  "finished": "2026-11-03 05:06:56",
+  "summary": {
+   "enabled": false
+  }
+ },
+ "fine_doubtful": {
+  "fingerprint": "4f00417512b897a1",
+  "version": "1",
+  "seconds": 123.0,
+  "finished": "2026-11-03 05:08:59",
+  "summary": {
+   "candidates": 8,
+   "confirmed": 4,
+   "errors": 0,
+   "warnings": [],
+   "forehands": 1,
+   "windows": 8,
+   "gate": {
+    "windows_gated": 0,
+    "windows_passed": 4,
+    "windows_ungated": 0,
+    "reasons": {
+     "bola_no_vista": 3,
+     "golpe_de_bola": 1
+    },
+    "seconds_in_gated_windows": 0.0
+   },
+   "seconds": {
+    "pose": 116.5,
+    "pose_modelo_hybrid": 112.9,
+    "raqueta": 69.0,
+    "bola": 26.2,
+    "recorte": 10.4,
+    "cuerdas_y_3d": 6.1,
+    "analisis_ventana": 3.1,
+    "pista_ventana": 2.4,
+    "cribado": 0.2,
+    "jugadora_lejana": 0.0
+   },
+   "counts": {
+    "overlap_s": 0.0,
+    "frames": 719,
+    "posed_frames": 719,
+    "impacts": 5,
+    "kept_impacts": 4,
+    "racket_frames": 147,
+    "whole_window_again": 0,
+    "frames_960_far": 0,
+    "frames_modelo_hybrid": 719
+   }
+  }
  }
 }
