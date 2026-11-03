@@ -12,41 +12,41 @@
  "summary": {
   "total": {
    "gt": 648,
-   "found": 412,
-   "recall": 0.636,
+   "found": 413,
+   "recall": 0.637,
    "found_doubtful": 10,
-   "recall_any": 0.651
+   "recall_any": 0.653
   },
   "by_side": {
    "near": {
     "gt": 288,
-    "found": 183,
-    "recall": 0.635,
+    "found": 180,
+    "recall": 0.625,
     "found_doubtful": 9,
-    "recall_any": 0.667
+    "recall_any": 0.656
    },
    "far": {
     "gt": 360,
-    "found": 229,
-    "recall": 0.636,
+    "found": 233,
+    "recall": 0.647,
     "found_doubtful": 1,
-    "recall_any": 0.639
+    "recall_any": 0.65
    }
   },
   "by_kind": {
    "serve": {
     "gt": 178,
-    "found": 103,
-    "recall": 0.579,
+    "found": 102,
+    "recall": 0.573,
     "found_doubtful": 4,
-    "recall_any": 0.601
+    "recall_any": 0.596
    },
    "forehand": {
     "gt": 253,
-    "found": 169,
-    "recall": 0.668,
+    "found": 171,
+    "recall": 0.676,
     "found_doubtful": 4,
-    "recall_any": 0.684
+    "recall_any": 0.692
    },
    "backhand": {
     "gt": 210,
@@ -66,17 +66,17 @@
   "by_side_kind": {
    "near/serve": {
     "gt": 82,
-    "found": 45,
-    "recall": 0.549,
+    "found": 43,
+    "recall": 0.524,
     "found_doubtful": 3,
-    "recall_any": 0.585
+    "recall_any": 0.561
    },
    "near/forehand": {
     "gt": 108,
-    "found": 74,
-    "recall": 0.685,
+    "found": 73,
+    "recall": 0.676,
     "found_doubtful": 4,
-    "recall_any": 0.722
+    "recall_any": 0.713
    },
    "near/backhand": {
     "gt": 95,
@@ -94,17 +94,17 @@
    },
    "far/serve": {
     "gt": 96,
-    "found": 58,
-    "recall": 0.604,
+    "found": 59,
+    "recall": 0.615,
     "found_doubtful": 1,
-    "recall_any": 0.615
+    "recall_any": 0.625
    },
    "far/forehand": {
     "gt": 145,
-    "found": 95,
-    "recall": 0.655,
+    "found": 98,
+    "recall": 0.676,
     "found_doubtful": 0,
-    "recall_any": 0.655
+    "recall_any": 0.676
    },
    "far/backhand": {
     "gt": 115,
@@ -122,12 +122,12 @@
    }
   },
   "steps": {
-   "fuera_de_camara": 84,
-   "sin_seguimiento": 15,
-   "repeticion": 62,
+   "fuera_de_camara": 85,
+   "sin_seguimiento": 16,
+   "repeticion": 61,
    "identidad_sin_decidir": 0,
-   "identidad_equivocada": 9,
-   "no_candidato": 42,
+   "identidad_equivocada": 8,
+   "no_candidato": 41,
    "error": 0,
    "lejana_no_encontrada": 0,
    "sin_ventana": 0,
@@ -135,13 +135,13 @@
    "bola_no_vista": 1,
    "no_confirmado": 13,
    "encontrado_dudoso": 10,
-   "encontrado": 412
+   "encontrado": 413
   },
   "steps_by_side": {
    "near": {
-    "fuera_de_camara": 35,
+    "fuera_de_camara": 36,
     "sin_seguimiento": 6,
-    "repeticion": 34,
+    "repeticion": 35,
     "identidad_sin_decidir": 0,
     "identidad_equivocada": 2,
     "no_candidato": 16,
@@ -150,35 +150,35 @@
     "sin_ventana": 0,
     "criba_sin_golpe": 0,
     "bola_no_vista": 0,
-    "no_confirmado": 3,
+    "no_confirmado": 4,
     "encontrado_dudoso": 9,
-    "encontrado": 183
+    "encontrado": 180
    },
    "far": {
     "fuera_de_camara": 49,
-    "sin_seguimiento": 9,
-    "repeticion": 28,
+    "sin_seguimiento": 10,
+    "repeticion": 26,
     "identidad_sin_decidir": 0,
-    "identidad_equivocada": 7,
-    "no_candidato": 26,
+    "identidad_equivocada": 6,
+    "no_candidato": 25,
     "error": 0,
     "lejana_no_encontrada": 0,
     "sin_ventana": 0,
     "criba_sin_golpe": 0,
     "bola_no_vista": 1,
-    "no_confirmado": 10,
+    "no_confirmado": 9,
     "encontrado_dudoso": 1,
-    "encontrado": 229
+    "encontrado": 233
    }
   },
   "steps_by_kind": {
    "serve": {
-    "fuera_de_camara": 26,
+    "fuera_de_camara": 27,
     "sin_seguimiento": 4,
-    "repeticion": 23,
+    "repeticion": 25,
     "identidad_sin_decidir": 0,
     "identidad_equivocada": 1,
-    "no_candidato": 12,
+    "no_candidato": 10,
     "error": 0,
     "lejana_no_encontrada": 0,
     "sin_ventana": 0,
@@ -186,12 +186,12 @@
     "bola_no_vista": 0,
     "no_confirmado": 5,
     "encontrado_dudoso": 4,
-    "encontrado": 103
+    "encontrado": 102
    },
    "forehand": {
     "fuera_de_camara": 28,
     "sin_seguimiento": 7,
-    "repeticion": 23,
+    "repeticion": 21,
     "identidad_sin_decidir": 0,
     "identidad_equivocada": 6,
     "no_candidato": 10,
@@ -202,15 +202,15 @@
     "bola_no_vista": 1,
     "no_confirmado": 5,
     "encontrado_dudoso": 4,
-    "encontrado": 169
+    "encontrado": 171
    },
    "backhand": {
     "fuera_de_camara": 29,
-    "sin_seguimiento": 4,
-    "repeticion": 16,
+    "sin_seguimiento": 5,
+    "repeticion": 15,
     "identidad_sin_decidir": 0,
-    "identidad_equivocada": 2,
-    "no_candidato": 16,
+    "identidad_equivocada": 1,
+    "no_candidato": 17,
     "error": 0,
     "lejana_no_encontrada": 0,
     "sin_ventana": 0,
@@ -239,38 +239,38 @@
   },
   "precision": {
    "predicted_in_points": 471,
-   "true": 413,
+   "true": 414,
    "opponent_strokes": 10,
-   "other": 48,
-   "precision": 0.877
+   "other": 47,
+   "precision": 0.879
   },
   "kind_confusion": {
-   "backhand->backhand": 133,
-   "backhand->forehand": 5,
-   "forehand->backhand": 91,
+   "backhand->backhand": 135,
+   "backhand->forehand": 3,
+   "forehand->backhand": 93,
    "forehand->forehand": 78,
-   "serve->backhand": 72,
-   "serve->forehand": 4,
-   "serve->overhead": 27,
+   "serve->backhand": 68,
+   "serve->forehand": 5,
+   "serve->overhead": 29,
    "volley_other->backhand": 2
   },
   "identity": {
    "strokes": {
-    "right": 528,
+    "right": 526,
     "wrong": 9,
     "undecided": 5,
-    "no_run": 106,
-    "lost_by_identity": 9
+    "no_run": 108,
+    "lost_by_identity": 8
    },
-   "runs_checked": 330,
+   "runs_checked": 334,
    "runs_by_cue": {
     "ropa + clic": {
-     "runs": 286,
-     "right": 283,
+     "runs": 289,
+     "right": 286,
      "wrong": 3,
      "undecided": 0,
-     "serve_vote": 81,
-     "return_vote": 67
+     "serve_vote": 82,
+     "return_vote": 66
     },
     "ropa": {
      "runs": 3,
@@ -281,8 +281,8 @@
      "return_vote": 0
     },
     "ropa y cambios de lado": {
-     "runs": 35,
-     "right": 26,
+     "runs": 36,
+     "right": 27,
      "wrong": 9,
      "undecided": 0,
      "serve_vote": 2,
@@ -314,25 +314,25 @@
    "summary": {
     "total": {
      "gt": 141,
-     "found": 127,
-     "recall": 0.901,
+     "found": 129,
+     "recall": 0.915,
      "found_doubtful": 1,
-     "recall_any": 0.908
+     "recall_any": 0.922
     },
     "by_side": {
      "near": {
       "gt": 52,
-      "found": 46,
-      "recall": 0.885,
+      "found": 47,
+      "recall": 0.904,
       "found_doubtful": 1,
-      "recall_any": 0.904
+      "recall_any": 0.923
      },
      "far": {
       "gt": 89,
-      "found": 81,
-      "recall": 0.91,
+      "found": 82,
+      "recall": 0.921,
       "found_doubtful": 0,
-      "recall_any": 0.91
+      "recall_any": 0.921
      }
     },
     "by_kind": {
@@ -352,10 +352,10 @@
      },
      "backhand": {
       "gt": 50,
-      "found": 46,
-      "recall": 0.92,
+      "found": 48,
+      "recall": 0.96,
       "found_doubtful": 0,
-      "recall_any": 0.92
+      "recall_any": 0.96
      },
      "volley_other": {
       "gt": 0,
@@ -382,10 +382,10 @@
      },
      "near/backhand": {
       "gt": 21,
-      "found": 20,
-      "recall": 0.952,
+      "found": 21,
+      "recall": 1.0,
       "found_doubtful": 0,
-      "recall_any": 0.952
+      "recall_any": 1.0
      },
      "near/volley_other": {
       "gt": 0,
@@ -410,10 +410,10 @@
      },
      "far/backhand": {
       "gt": 29,
-      "found": 26,
-      "recall": 0.897,
+      "found": 27,
+      "recall": 0.931,
       "found_doubtful": 0,
-      "recall_any": 0.897
+      "recall_any": 0.931
      },
      "far/volley_other": {
       "gt": 0,
@@ -426,7 +426,7 @@
     "steps": {
      "fuera_de_camara": 0,
      "sin_seguimiento": 5,
-     "repeticion": 6,
+     "repeticion": 4,
      "identidad_sin_decidir": 0,
      "identidad_equivocada": 0,
      "no_candidato": 0,
@@ -437,13 +437,13 @@
      "bola_no_vista": 0,
      "no_confirmado": 2,
      "encontrado_dudoso": 1,
-     "encontrado": 127
+     "encontrado": 129
     },
     "steps_by_side": {
      "near": {
       "fuera_de_camara": 0,
       "sin_seguimiento": 2,
-      "repeticion": 2,
+      "repeticion": 1,
       "identidad_sin_decidir": 0,
       "identidad_equivocada": 0,
       "no_candidato": 0,
@@ -454,12 +454,12 @@
       "bola_no_vista": 0,
       "no_confirmado": 1,
       "encontrado_dudoso": 1,
-      "encontrado": 46
+      "encontrado": 47
      },
      "far": {
       "fuera_de_camara": 0,
       "sin_seguimiento": 3,
-      "repeticion": 4,
+      "repeticion": 3,
       "identidad_sin_decidir": 0,
       "identidad_equivocada": 0,
       "no_candidato": 0,
@@ -470,7 +470,7 @@
       "bola_no_vista": 0,
       "no_confirmado": 1,
       "encontrado_dudoso": 0,
-      "encontrado": 81
+      "encontrado": 82
      }
     },
     "steps_by_kind": {
@@ -509,7 +509,7 @@
      "backhand": {
       "fuera_de_camara": 0,
       "sin_seguimiento": 1,
-      "repeticion": 3,
+      "repeticion": 1,
       "identidad_sin_decidir": 0,
       "identidad_equivocada": 0,
       "no_candidato": 0,
@@ -520,7 +520,7 @@
       "bola_no_vista": 0,
       "no_confirmado": 0,
       "encontrado_dudoso": 0,
-      "encontrado": 46
+      "encontrado": 48
      },
      "volley_other": {
       "fuera_de_camara": 0,
@@ -540,14 +540,14 @@
      }
     },
     "precision": {
-     "predicted_in_points": 130,
-     "true": 127,
+     "predicted_in_points": 132,
+     "true": 129,
      "opponent_strokes": 0,
      "other": 3,
      "precision": 0.977
     },
     "kind_confusion": {
-     "backhand->backhand": 43,
+     "backhand->backhand": 45,
      "backhand->forehand": 3,
      "forehand->backhand": 31,
      "forehand->forehand": 13,
@@ -695,16 +695,16 @@
     "steps": {
      "fuera_de_camara": 82,
      "sin_seguimiento": 6,
-     "repeticion": 4,
+     "repeticion": 6,
      "identidad_sin_decidir": 0,
-     "identidad_equivocada": 7,
-     "no_candidato": 30,
+     "identidad_equivocada": 6,
+     "no_candidato": 28,
      "error": 0,
      "lejana_no_encontrada": 0,
      "sin_ventana": 0,
      "criba_sin_golpe": 0,
      "bola_no_vista": 0,
-     "no_confirmado": 1,
+     "no_confirmado": 2,
      "encontrado_dudoso": 0,
      "encontrado": 1
     },
@@ -715,23 +715,23 @@
       "repeticion": 4,
       "identidad_sin_decidir": 0,
       "identidad_equivocada": 2,
-      "no_candidato": 15,
+      "no_candidato": 14,
       "error": 0,
       "lejana_no_encontrada": 0,
       "sin_ventana": 0,
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
-      "no_confirmado": 1,
+      "no_confirmado": 2,
       "encontrado_dudoso": 0,
       "encontrado": 1
      },
      "far": {
       "fuera_de_camara": 47,
       "sin_seguimiento": 5,
-      "repeticion": 0,
+      "repeticion": 2,
       "identidad_sin_decidir": 0,
-      "identidad_equivocada": 5,
-      "no_candidato": 15,
+      "identidad_equivocada": 4,
+      "no_candidato": 14,
       "error": 0,
       "lejana_no_encontrada": 0,
       "sin_ventana": 0,
@@ -746,16 +746,16 @@
      "serve": {
       "fuera_de_camara": 24,
       "sin_seguimiento": 2,
-      "repeticion": 1,
+      "repeticion": 2,
       "identidad_sin_decidir": 0,
       "identidad_equivocada": 0,
-      "no_candidato": 10,
+      "no_candidato": 8,
       "error": 0,
       "lejana_no_encontrada": 0,
       "sin_ventana": 0,
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
-      "no_confirmado": 0,
+      "no_confirmado": 1,
       "encontrado_dudoso": 0,
       "encontrado": 1
      },
@@ -778,9 +778,9 @@
      "backhand": {
       "fuera_de_camara": 29,
       "sin_seguimiento": 2,
-      "repeticion": 1,
+      "repeticion": 2,
       "identidad_sin_decidir": 0,
-      "identidad_equivocada": 2,
+      "identidad_equivocada": 1,
       "no_candidato": 10,
       "error": 0,
       "lejana_no_encontrada": 0,
@@ -809,11 +809,11 @@
      }
     },
     "precision": {
-     "predicted_in_points": 36,
+     "predicted_in_points": 35,
      "true": 1,
      "opponent_strokes": 6,
-     "other": 29,
-     "precision": 0.028
+     "other": 28,
+     "precision": 0.029
     },
     "kind_confusion": {
      "serve->backhand": 1
@@ -824,9 +824,9 @@
       "wrong": 7,
       "undecided": 0,
       "no_run": 88,
-      "lost_by_identity": 7
+      "lost_by_identity": 6
      },
-     "runs_checked": 40,
+     "runs_checked": 41,
      "runs_by_cue": {
       "ropa": {
        "runs": 3,
@@ -837,8 +837,8 @@
        "return_vote": 0
       },
       "ropa y cambios de lado": {
-       "runs": 35,
-       "right": 26,
+       "runs": 36,
+       "right": 27,
        "wrong": 9,
        "undecided": 0,
        "serve_vote": 2,
@@ -862,41 +862,41 @@
    "summary": {
     "total": {
      "gt": 154,
-     "found": 118,
-     "recall": 0.766,
+     "found": 116,
+     "recall": 0.753,
      "found_doubtful": 6,
-     "recall_any": 0.805
+     "recall_any": 0.792
     },
     "by_side": {
      "near": {
       "gt": 61,
-      "found": 45,
-      "recall": 0.738,
+      "found": 42,
+      "recall": 0.689,
       "found_doubtful": 6,
-      "recall_any": 0.836
+      "recall_any": 0.787
      },
      "far": {
       "gt": 93,
-      "found": 73,
-      "recall": 0.785,
+      "found": 74,
+      "recall": 0.796,
       "found_doubtful": 0,
-      "recall_any": 0.785
+      "recall_any": 0.796
      }
     },
     "by_kind": {
      "serve": {
       "gt": 39,
-      "found": 23,
-      "recall": 0.59,
+      "found": 22,
+      "recall": 0.564,
       "found_doubtful": 3,
-      "recall_any": 0.667
+      "recall_any": 0.641
      },
      "forehand": {
       "gt": 62,
-      "found": 48,
-      "recall": 0.774,
+      "found": 47,
+      "recall": 0.758,
       "found_doubtful": 2,
-      "recall_any": 0.806
+      "recall_any": 0.79
      },
      "backhand": {
       "gt": 51,
@@ -916,17 +916,17 @@
     "by_side_kind": {
      "near/serve": {
       "gt": 22,
-      "found": 13,
-      "recall": 0.591,
+      "found": 11,
+      "recall": 0.5,
       "found_doubtful": 3,
-      "recall_any": 0.727
+      "recall_any": 0.636
      },
      "near/forehand": {
       "gt": 21,
-      "found": 17,
-      "recall": 0.81,
+      "found": 16,
+      "recall": 0.762,
       "found_doubtful": 2,
-      "recall_any": 0.905
+      "recall_any": 0.857
      },
      "near/backhand": {
       "gt": 18,
@@ -944,10 +944,10 @@
      },
      "far/serve": {
       "gt": 17,
-      "found": 10,
-      "recall": 0.588,
+      "found": 11,
+      "recall": 0.647,
       "found_doubtful": 0,
-      "recall_any": 0.588
+      "recall_any": 0.647
      },
      "far/forehand": {
       "gt": 41,
@@ -972,9 +972,9 @@
      }
     },
     "steps": {
-     "fuera_de_camara": 1,
+     "fuera_de_camara": 2,
      "sin_seguimiento": 0,
-     "repeticion": 20,
+     "repeticion": 22,
      "identidad_sin_decidir": 0,
      "identidad_equivocada": 2,
      "no_candidato": 0,
@@ -983,15 +983,15 @@
      "sin_ventana": 0,
      "criba_sin_golpe": 0,
      "bola_no_vista": 0,
-     "no_confirmado": 7,
+     "no_confirmado": 6,
      "encontrado_dudoso": 6,
-     "encontrado": 118
+     "encontrado": 116
     },
     "steps_by_side": {
      "near": {
-      "fuera_de_camara": 0,
+      "fuera_de_camara": 1,
       "sin_seguimiento": 0,
-      "repeticion": 9,
+      "repeticion": 11,
       "identidad_sin_decidir": 0,
       "identidad_equivocada": 0,
       "no_candidato": 0,
@@ -1002,7 +1002,7 @@
       "bola_no_vista": 0,
       "no_confirmado": 1,
       "encontrado_dudoso": 6,
-      "encontrado": 45
+      "encontrado": 42
      },
      "far": {
       "fuera_de_camara": 1,
@@ -1016,16 +1016,16 @@
       "sin_ventana": 0,
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
-      "no_confirmado": 6,
+      "no_confirmado": 5,
       "encontrado_dudoso": 0,
-      "encontrado": 73
+      "encontrado": 74
      }
     },
     "steps_by_kind": {
      "serve": {
-      "fuera_de_camara": 1,
+      "fuera_de_camara": 2,
       "sin_seguimiento": 0,
-      "repeticion": 8,
+      "repeticion": 9,
       "identidad_sin_decidir": 0,
       "identidad_equivocada": 1,
       "no_candidato": 0,
@@ -1034,14 +1034,14 @@
       "sin_ventana": 0,
       "criba_sin_golpe": 0,
       "bola_no_vista": 0,
-      "no_confirmado": 3,
+      "no_confirmado": 2,
       "encontrado_dudoso": 3,
-      "encontrado": 23
+      "encontrado": 22
      },
      "forehand": {
       "fuera_de_camara": 0,
       "sin_seguimiento": 0,
-      "repeticion": 8,
+      "repeticion": 9,
       "identidad_sin_decidir": 0,
       "identidad_equivocada": 1,
       "no_candidato": 0,
@@ -1052,7 +1052,7 @@
       "bola_no_vista": 0,
       "no_confirmado": 3,
       "encontrado_dudoso": 2,
-      "encontrado": 48
+      "encontrado": 47
      },
      "backhand": {
       "fuera_de_camara": 0,
@@ -1088,18 +1088,17 @@
      }
     },
     "precision": {
-     "predicted_in_points": 127,
-     "true": 118,
+     "predicted_in_points": 125,
+     "true": 116,
      "opponent_strokes": 3,
      "other": 6,
-     "precision": 0.929
+     "precision": 0.928
     },
     "kind_confusion": {
-     "backhand->backhand": 43,
-     "backhand->forehand": 2,
-     "forehand->backhand": 20,
-     "forehand->forehand": 28,
-     "serve->backhand": 18,
+     "backhand->backhand": 45,
+     "forehand->backhand": 22,
+     "forehand->forehand": 25,
+     "serve->backhand": 17,
      "serve->overhead": 5,
      "volley_other->backhand": 2
     },
@@ -1119,7 +1118,7 @@
        "wrong": 2,
        "undecided": 0,
        "serve_vote": 28,
-       "return_vote": 17
+       "return_vote": 16
       },
       "sin decidir": {
        "runs": 2,
@@ -1139,25 +1138,25 @@
    "summary": {
     "total": {
      "gt": 222,
-     "found": 166,
-     "recall": 0.748,
+     "found": 167,
+     "recall": 0.752,
      "found_doubtful": 3,
-     "recall_any": 0.761
+     "recall_any": 0.766
     },
     "by_side": {
      "near": {
       "gt": 116,
-      "found": 91,
-      "recall": 0.784,
+      "found": 90,
+      "recall": 0.776,
       "found_doubtful": 2,
-      "recall_any": 0.802
+      "recall_any": 0.793
      },
      "far": {
       "gt": 106,
-      "found": 75,
-      "recall": 0.708,
+      "found": 77,
+      "recall": 0.726,
       "found_doubtful": 1,
-      "recall_any": 0.717
+      "recall_any": 0.736
      }
     },
     "by_kind": {
@@ -1170,17 +1169,17 @@
      },
      "forehand": {
       "gt": 99,
-      "found": 77,
-      "recall": 0.778,
+      "found": 80,
+      "recall": 0.808,
       "found_doubtful": 1,
-      "recall_any": 0.788
+      "recall_any": 0.818
      },
      "backhand": {
       "gt": 64,
-      "found": 47,
-      "recall": 0.734,
+      "found": 45,
+      "recall": 0.703,
       "found_doubtful": 1,
-      "recall_any": 0.75
+      "recall_any": 0.719
      },
      "volley_other": {
       "gt": 0,
@@ -1207,10 +1206,10 @@
      },
      "near/backhand": {
       "gt": 37,
-      "found": 29,
-      "recall": 0.784,
+      "found": 28,
+      "recall": 0.757,
       "found_doubtful": 1,
-      "recall_any": 0.811
+      "recall_any": 0.784
      },
      "near/volley_other": {
       "gt": 0,
@@ -1228,17 +1227,17 @@
      },
      "far/forehand": {
       "gt": 48,
-      "found": 34,
-      "recall": 0.708,
+      "found": 37,
+      "recall": 0.771,
       "found_doubtful": 0,
-      "recall_any": 0.708
+      "recall_any": 0.771
      },
      "far/backhand": {
       "gt": 27,
-      "found": 18,
-      "recall": 0.667,
+      "found": 17,
+      "recall": 0.63,
       "found_doubtful": 0,
-      "recall_any": 0.667
+      "recall_any": 0.63
      },
      "far/volley_other": {
       "gt": 0,
@@ -1250,11 +1249,11 @@
     },
     "steps": {
      "fuera_de_camara": 1,
-     "sin_seguimiento": 4,
-     "repeticion": 32,
+     "sin_seguimiento": 5,
+     "repeticion": 29,
      "identidad_sin_decidir": 0,
      "identidad_equivocada": 0,
-     "no_candidato": 12,
+     "no_candidato": 13,
      "error": 0,
      "lejana_no_encontrada": 0,
      "sin_ventana": 0,
@@ -1262,7 +1261,7 @@
      "bola_no_vista": 1,
      "no_confirmado": 3,
      "encontrado_dudoso": 3,
-     "encontrado": 166
+     "encontrado": 167
     },
     "steps_by_side": {
      "near": {
@@ -1271,7 +1270,7 @@
       "repeticion": 19,
       "identidad_sin_decidir": 0,
       "identidad_equivocada": 0,
-      "no_candidato": 1,
+      "no_candidato": 2,
       "error": 0,
       "lejana_no_encontrada": 0,
       "sin_ventana": 0,
@@ -1279,12 +1278,12 @@
       "bola_no_vista": 0,
       "no_confirmado": 0,
       "encontrado_dudoso": 2,
-      "encontrado": 91
+      "encontrado": 90
      },
      "far": {
       "fuera_de_camara": 1,
-      "sin_seguimiento": 1,
-      "repeticion": 13,
+      "sin_seguimiento": 2,
+      "repeticion": 10,
       "identidad_sin_decidir": 0,
       "identidad_equivocada": 0,
       "no_candidato": 11,
@@ -1295,7 +1294,7 @@
       "bola_no_vista": 1,
       "no_confirmado": 3,
       "encontrado_dudoso": 1,
-      "encontrado": 75
+      "encontrado": 77
      }
     },
     "steps_by_kind": {
@@ -1318,7 +1317,7 @@
      "forehand": {
       "fuera_de_camara": 0,
       "sin_seguimiento": 2,
-      "repeticion": 13,
+      "repeticion": 10,
       "identidad_sin_decidir": 0,
       "identidad_equivocada": 0,
       "no_candidato": 4,
@@ -1329,15 +1328,15 @@
       "bola_no_vista": 1,
       "no_confirmado": 1,
       "encontrado_dudoso": 1,
-      "encontrado": 77
+      "encontrado": 80
      },
      "backhand": {
       "fuera_de_camara": 0,
-      "sin_seguimiento": 1,
+      "sin_seguimiento": 2,
       "repeticion": 8,
       "identidad_sin_decidir": 0,
       "identidad_equivocada": 0,
-      "no_candidato": 6,
+      "no_candidato": 7,
       "error": 0,
       "lejana_no_encontrada": 0,
       "sin_ventana": 0,
@@ -1345,7 +1344,7 @@
       "bola_no_vista": 0,
       "no_confirmado": 1,
       "encontrado_dudoso": 1,
-      "encontrado": 47
+      "encontrado": 45
      },
      "volley_other": {
       "fuera_de_camara": 0,
@@ -1365,36 +1364,36 @@
      }
     },
     "precision": {
-     "predicted_in_points": 178,
-     "true": 166,
+     "predicted_in_points": 179,
+     "true": 167,
      "opponent_strokes": 1,
      "other": 11,
      "precision": 0.933
     },
     "kind_confusion": {
-     "backhand->backhand": 47,
+     "backhand->backhand": 45,
      "forehand->backhand": 40,
-     "forehand->forehand": 37,
-     "serve->backhand": 25,
-     "serve->forehand": 3,
-     "serve->overhead": 14
+     "forehand->forehand": 40,
+     "serve->backhand": 22,
+     "serve->forehand": 4,
+     "serve->overhead": 16
     },
     "identity": {
      "strokes": {
-      "right": 213,
+      "right": 211,
       "wrong": 0,
       "undecided": 2,
-      "no_run": 7,
+      "no_run": 9,
       "lost_by_identity": 0
      },
-     "runs_checked": 125,
+     "runs_checked": 128,
      "runs_by_cue": {
       "ropa + clic": {
-       "runs": 123,
-       "right": 122,
+       "runs": 126,
+       "right": 125,
        "wrong": 1,
        "undecided": 0,
-       "serve_vote": 32,
+       "serve_vote": 33,
        "return_vote": 31
       },
       "sin decidir": {
@@ -1438,8 +1437,8 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
-   "dt": 0.033
+   "pred_stroke": "forehand",
+   "dt": 0.032
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -1452,7 +1451,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.007
+   "dt": -0.008
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -1465,7 +1464,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.087
+   "dt": -0.088
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -1478,7 +1477,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": 0.02
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -1491,7 +1490,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.05
+   "dt": 0.06
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -1504,7 +1503,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.01
+   "dt": -0.02
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -1517,7 +1516,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.09
+   "dt": 0.1
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -1530,7 +1529,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.01
+   "dt": -0.02
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -1543,7 +1542,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.07
+   "dt": 0.02
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -1634,7 +1633,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.04
+   "dt": 0.08
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -1647,7 +1646,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.01
+   "dt": 0.02
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -1660,7 +1659,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.05
+   "dt": -0.02
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -1733,12 +1732,12 @@
    "label": "far_middle_return_bh_gs_DM_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "repeticion",
+   "step": "encontrado",
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.04
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -1850,12 +1849,12 @@
    "label": "near_ad_return_bh_gs_CC_-_in",
    "side": "near",
    "kind": "backhand",
-   "step": "repeticion",
+   "step": "encontrado",
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": 0.01
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2024,7 +2023,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.08
+   "dt": 0.0
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2127,7 +2126,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
+   "pred_stroke": "backhand",
    "dt": -0.0
   },
   {
@@ -2154,7 +2153,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.0
+   "dt": -0.01
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2167,7 +2166,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.0
+   "dt": 0.01
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2362,7 +2361,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "overhead",
-   "dt": 0.01
+   "dt": 0.02
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2375,7 +2374,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": -0.02
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2531,7 +2530,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": 0.02
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2609,7 +2608,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.09
+   "dt": -0.06
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2622,7 +2621,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.01
+   "dt": 0.02
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2635,7 +2634,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.05
+   "dt": -0.02
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2648,7 +2647,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "overhead",
-   "dt": 0.01
+   "dt": 0.0
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2661,7 +2660,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "overhead",
-   "dt": -0.01
+   "dt": 0.02
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2674,7 +2673,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.05
+   "dt": -0.02
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2869,7 +2868,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.15
+   "dt": 0.16
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2960,7 +2959,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.01
+   "dt": -0.01
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2973,7 +2972,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.01
+   "dt": -0.01
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -2999,7 +2998,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.04
+   "dt": 0.01
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -3012,7 +3011,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.04
+   "dt": 0.05
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -3025,7 +3024,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.0
+   "dt": 0.01
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -3194,7 +3193,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.07
+   "dt": -0.03
   },
   {
    "match": "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
@@ -3423,7 +3422,7 @@
    "label": "far_ad_serve_-_-_T_-_winner",
    "side": "far",
    "kind": "serve",
-   "step": "no_candidato",
+   "step": "repeticion",
    "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
@@ -3748,10 +3747,10 @@
    "label": "near_ad_serve_-_-_W_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "no_candidato",
+   "step": "no_confirmado",
    "run_method": "ropa y cambios de lado",
    "identity_ok": true,
-   "ball_seen": null,
+   "ball_seen": 1.0,
    "pred_stroke": null,
    "dt": null
   },
@@ -3983,7 +3982,7 @@
    "side": "far",
    "kind": "serve",
    "step": "no_candidato",
-   "run_method": "cambios de lado",
+   "run_method": "ropa y cambios de lado",
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": null,
@@ -4034,7 +4033,7 @@
    "label": "far_deuce_return_bh_gs_DM_-_unforced-err",
    "side": "far",
    "kind": "backhand",
-   "step": "identidad_equivocada",
+   "step": "repeticion",
    "run_method": "ropa y cambios de lado",
    "identity_ok": false,
    "ball_seen": null,
@@ -4572,7 +4571,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.173
+   "dt": 0.187
   },
   {
    "match": "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
@@ -4962,7 +4961,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.07
+   "dt": -0.02
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5027,7 +5026,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5040,7 +5039,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5053,7 +5052,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.01
+   "dt": 0.01
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5066,7 +5065,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5100,12 +5099,12 @@
    "label": "near_ad_serve_-_-_W_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "encontrado",
+   "step": "encontrado_dudoso",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.05
+   "dt": -0.19
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5117,8 +5116,8 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
-   "dt": -0.05
+   "pred_stroke": "backhand",
+   "dt": -0.02
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5157,7 +5156,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.02
+   "dt": 0.02
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5365,7 +5364,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.017
+   "dt": 0.0
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5386,12 +5385,12 @@
    "label": "near_deuce_serve_-_-_B_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "encontrado_dudoso",
+   "step": "fuera_de_camara",
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": "backhand",
-   "dt": -0.05
+   "pred_stroke": null,
+   "dt": null
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5456,7 +5455,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.02
+   "dt": -0.01
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5469,7 +5468,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.06
+   "dt": 0.03
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5482,7 +5481,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.02
+   "dt": -0.01
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5495,7 +5494,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.012
+   "dt": 0.0
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5507,8 +5506,8 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
-   "dt": -0.052
+   "pred_stroke": "backhand",
+   "dt": -0.04
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5520,8 +5519,8 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
-   "dt": -0.052
+   "pred_stroke": "backhand",
+   "dt": -0.04
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5533,8 +5532,8 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
-   "dt": -0.012
+   "pred_stroke": "backhand",
+   "dt": -0.0
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5546,8 +5545,8 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
-   "dt": -0.012
+   "pred_stroke": "backhand",
+   "dt": 0.0
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5560,7 +5559,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.031
+   "dt": -0.05
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5586,7 +5585,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.02
+   "dt": -0.01
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5599,7 +5598,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.019
+   "dt": 0.04
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5612,7 +5611,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.061
+   "dt": 0.04
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5625,7 +5624,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.059
+   "dt": 0.04
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5729,7 +5728,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.02
+   "dt": -0.03
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5742,7 +5741,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.02
+   "dt": -0.03
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5781,7 +5780,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "overhead",
-   "dt": 0.07
+   "dt": 0.09
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5794,7 +5793,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5807,7 +5806,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5820,7 +5819,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5833,7 +5832,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5937,7 +5936,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": 0.02
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6054,7 +6053,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.18
+   "dt": 0.15
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6067,7 +6066,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.06
+   "dt": 0.15
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6080,7 +6079,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.02
+   "dt": -0.01
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6093,7 +6092,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.02
+   "dt": -0.01
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6101,12 +6100,12 @@
    "label": "far_ad_serve_-_-_W_-_in",
    "side": "far",
    "kind": "serve",
-   "step": "no_confirmado",
+   "step": "encontrado",
    "run_method": "ropa + clic",
    "identity_ok": true,
-   "ball_seen": 0.87,
-   "pred_stroke": null,
-   "dt": null
+   "ball_seen": null,
+   "pred_stroke": "backhand",
+   "dt": -0.15
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6119,7 +6118,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.03
+   "dt": 0.05
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6171,7 +6170,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "overhead",
-   "dt": 0.09
+   "dt": 0.1
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6184,7 +6183,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.03
+   "dt": -0.02
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6197,7 +6196,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.01
+   "dt": 0.02
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6205,12 +6204,12 @@
    "label": "near_deuce_serve_-_-_W_-_in",
    "side": "near",
    "kind": "serve",
-   "step": "encontrado",
+   "step": "repeticion",
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
-   "dt": -0.09
+   "pred_stroke": null,
+   "dt": null
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6218,12 +6217,12 @@
    "label": "near_deuce_stroke_fh_gs_CC_-_unforced-err",
    "side": "near",
    "kind": "forehand",
-   "step": "encontrado",
+   "step": "repeticion",
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
-   "dt": -0.01
+   "pred_stroke": null,
+   "dt": null
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6301,7 +6300,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.01
+   "dt": 0.0
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6314,7 +6313,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": -0.04
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6327,7 +6326,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.01
+   "dt": 0.0
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6457,7 +6456,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.0
+   "dt": 0.05
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6561,7 +6560,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.0
+   "dt": 0.01
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6574,7 +6573,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.0
+   "dt": 0.01
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6600,7 +6599,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.0
+   "dt": 0.05
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6613,7 +6612,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.0
+   "dt": 0.01
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6626,7 +6625,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.0
+   "dt": 0.01
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6678,7 +6677,7 @@
    "identity_ok": null,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.05
+   "dt": 0.05
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6959,12 +6958,12 @@
    "label": "far_middle_return_fh_gs_DM_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "repeticion",
+   "step": "encontrado",
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": 0.148
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -6972,12 +6971,12 @@
    "label": "far_middle_stroke_fh_gs_CC_-_in",
    "side": "far",
    "kind": "forehand",
-   "step": "repeticion",
+   "step": "encontrado",
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": -0.052
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -6985,12 +6984,12 @@
    "label": "far_middle_stroke_fh_gs_CC_-_unforced-err",
    "side": "far",
    "kind": "forehand",
-   "step": "repeticion",
+   "step": "encontrado",
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": null,
-   "dt": null
+   "pred_stroke": "backhand",
+   "dt": 0.028
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7003,7 +7002,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "overhead",
-   "dt": 0.0
+   "dt": 0.011
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7016,7 +7015,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.04
+   "dt": -0.029
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7029,7 +7028,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.021
+   "dt": -0.018
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7042,7 +7041,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.059
+   "dt": -0.098
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7055,7 +7054,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.019
+   "dt": -0.058
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7107,7 +7106,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.013
+   "dt": -0.006
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7120,7 +7119,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.02
+   "dt": -0.058
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7172,7 +7171,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.02
+   "dt": -0.05
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7185,7 +7184,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.02
+   "dt": -0.05
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7198,7 +7197,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.083
+   "dt": 0.082
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7211,7 +7210,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "overhead",
-   "dt": -0.036
+   "dt": -0.044
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7224,7 +7223,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.004
+   "dt": -0.004
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7237,7 +7236,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.004
+   "dt": -0.004
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7250,7 +7249,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.018
+   "dt": -0.019
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7327,8 +7326,8 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
-   "dt": -0.02
+   "pred_stroke": "forehand",
+   "dt": 0.031
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7341,7 +7340,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.06
+   "dt": 0.031
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7380,7 +7379,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.004
+   "dt": -0.01
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7419,7 +7418,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.006
+   "dt": -0.018
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7432,7 +7431,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.01
+   "dt": 0.01
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7445,7 +7444,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "overhead",
-   "dt": -0.011
+   "dt": 0.0
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7458,7 +7457,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.091
+   "dt": -0.08
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7484,7 +7483,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.055
+   "dt": -0.04
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7497,7 +7496,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.015
+   "dt": 0.0
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7510,7 +7509,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.055
+   "dt": -0.04
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7523,7 +7522,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.095
+   "dt": -0.08
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7536,7 +7535,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.04
+   "dt": -0.05
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7549,7 +7548,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.04
+   "dt": -0.05
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7562,7 +7561,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.04
+   "dt": -0.05
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7575,7 +7574,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.055
+   "dt": -0.052
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7601,7 +7600,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.021
+   "dt": 0.026
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7614,7 +7613,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.019
+   "dt": -0.054
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7640,7 +7639,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.01
+   "dt": 0.0
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7653,7 +7652,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.03
+   "dt": 0.08
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7783,7 +7782,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.0
+   "dt": 0.01
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7796,7 +7795,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.04
+   "dt": -0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7809,7 +7808,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.0
+   "dt": -0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7822,7 +7821,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.04
+   "dt": -0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7848,7 +7847,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "overhead",
-   "dt": 0.07
+   "dt": 0.09
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7861,7 +7860,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7874,7 +7873,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "overhead",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7887,7 +7886,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7900,7 +7899,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.01
+   "dt": 0.0
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7913,7 +7912,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": -0.05
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7926,7 +7925,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": -0.05
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7939,7 +7938,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.0
+   "dt": 0.001
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7952,7 +7951,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.0
+   "dt": 0.001
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7965,7 +7964,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.04
+   "dt": -0.039
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7978,7 +7977,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.04
+   "dt": -0.039
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7991,7 +7990,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.02
+   "dt": 0.005
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8004,7 +8003,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.02
+   "dt": -0.004
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8017,7 +8016,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.02
+   "dt": -0.044
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8029,8 +8028,8 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
-   "dt": 0.02
+   "pred_stroke": "forehand",
+   "dt": -0.004
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8134,7 +8133,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.086
+   "dt": 0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8146,8 +8145,8 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
-   "dt": 0.074
+   "pred_stroke": "forehand",
+   "dt": 0.06
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8168,12 +8167,12 @@
    "label": "far_ad_stroke_bh_gs_CC_-_in",
    "side": "far",
    "kind": "backhand",
-   "step": "encontrado",
-   "run_method": "ropa + clic",
-   "identity_ok": true,
+   "step": "sin_seguimiento",
+   "run_method": null,
+   "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": "backhand",
-   "dt": -0.193
+   "pred_stroke": null,
+   "dt": null
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8186,7 +8185,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.153
+   "dt": -0.159
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8199,7 +8198,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.028
+   "dt": 0.133
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8210,7 +8209,7 @@
    "step": "no_confirmado",
    "run_method": "ropa + clic",
    "identity_ok": true,
-   "ball_seen": 0.6,
+   "ball_seen": 0.67,
    "pred_stroke": null,
    "dt": null
   },
@@ -8273,11 +8272,11 @@
    "side": "far",
    "kind": "forehand",
    "step": "encontrado",
-   "run_method": "ropa + clic",
-   "identity_ok": true,
+   "run_method": null,
+   "identity_ok": null,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.097
+   "dt": 0.096
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8290,7 +8289,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.05
+   "dt": 0.045
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8303,7 +8302,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.03
+   "dt": -0.035
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8316,7 +8315,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.05
+   "dt": 0.045
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8355,7 +8354,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "overhead",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8368,7 +8367,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8381,7 +8380,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.01
+   "dt": 0.01
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8394,7 +8393,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8420,7 +8419,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "overhead",
-   "dt": -0.01
+   "dt": 0.0
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8433,7 +8432,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.09
+   "dt": -0.08
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8446,7 +8445,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.01
+   "dt": 0.01
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8459,7 +8458,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8472,7 +8471,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8485,7 +8484,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.01
+   "dt": 0.01
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8498,7 +8497,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.05
+   "dt": -0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8602,7 +8601,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": -0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8615,7 +8614,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.012
+   "dt": -0.011
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8628,7 +8627,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.041
+   "dt": 0.04
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8667,7 +8666,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "overhead",
-   "dt": -0.07
+   "dt": 0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8680,7 +8679,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": -0.05
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8693,7 +8692,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.05
+   "dt": 0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8706,7 +8705,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.09
+   "dt": 0.11
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8732,7 +8731,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.117
+   "dt": 0.118
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8745,7 +8744,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.003
+   "dt": -0.002
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8848,8 +8847,8 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
-   "dt": 0.01
+   "pred_stroke": "overhead",
+   "dt": 0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8861,8 +8860,8 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
-   "dt": -0.03
+   "pred_stroke": "forehand",
+   "dt": -0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8914,7 +8913,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.03
+   "dt": -0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8927,7 +8926,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.06
+   "dt": 0.059
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8940,7 +8939,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.02
+   "dt": 0.019
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8953,7 +8952,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": 0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9044,7 +9043,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.04
+   "dt": -0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9057,7 +9056,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.0
+   "dt": 0.01
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9109,7 +9108,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.02
+   "dt": -0.025
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9122,7 +9121,7 @@
    "identity_ok": null,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.002
+   "dt": -0.003
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9148,7 +9147,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "overhead",
-   "dt": 0.01
+   "dt": 0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9161,7 +9160,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.01
+   "dt": 0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9182,12 +9181,12 @@
    "label": "near_middle_stroke_bh_gs_DM_-_unforced-err",
    "side": "near",
    "kind": "backhand",
-   "step": "encontrado",
+   "step": "no_candidato",
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
-   "dt": -0.121
+   "pred_stroke": null,
+   "dt": null
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9226,7 +9225,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.01
+   "dt": 0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9239,7 +9238,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": -0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9252,7 +9251,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": -0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9265,7 +9264,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.07
+   "dt": -0.06
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9278,7 +9277,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": -0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9291,7 +9290,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.03
+   "dt": -0.05
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9304,7 +9303,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.05
+   "dt": 0.049
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9330,7 +9329,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.039
+   "dt": -0.038
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9356,7 +9355,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.053
+   "dt": -0.057
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9368,8 +9367,8 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
-   "dt": -0.019
+   "pred_stroke": "overhead",
+   "dt": 0.022
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9382,7 +9381,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.021
+   "dt": -0.018
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9395,7 +9394,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.139
+   "dt": -0.058
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9408,7 +9407,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.057
+   "dt": -0.056
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9421,7 +9420,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.017
+   "dt": -0.016
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9434,7 +9433,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.053
+   "dt": -0.05
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9499,7 +9498,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": -0.05
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9512,7 +9511,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": -0.05
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9603,7 +9602,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.064
+   "dt": -0.015
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9694,7 +9693,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.032
+   "dt": -0.037
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9811,7 +9810,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.01
+   "dt": 0.0
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9824,7 +9823,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.05
+   "dt": -0.04
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9837,8 +9836,8 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.01
+   "dt": 0.0
   }
  ],
- "minutes": 82.4
+ "minutes": 100.7
 }
