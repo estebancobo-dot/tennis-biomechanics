@@ -2557,3 +2557,14 @@
 2026-11-03 17:49:04   [players] players:  85 % (7783/9155 fotogramas con jugadoras) · 10 min · quedan ≈ 2 min
 2026-11-03 17:49:34   [players] players:  91 % (8335/9155 fotogramas con jugadoras) · 10 min · quedan ≈ 59 s
 2026-11-03 17:50:04   [players] players:  97 % (8884/9155 fotogramas con jugadoras) · 11 min · quedan ≈ 19 s
+2026-11-03 17:50:19   [players] players: 100 % (9155/9155 fotogramas con jugadoras) · 11 min · quedan ≈ 0 s
+2026-11-03 17:50:19   [players] tiempo: 10.8 min para 9155 fotogramas a 960 px · modelo 10.4 min · leer vídeo y preparar la entrada 7.5 min en otro hilo (espera real 0.4 min) · apariencia 0.2 min en otro hilo
+2026-11-03 17:50:19 [us-open-2026-r4-naomi-osaka-elena-rybakina] players terminada a las 17:50:19 en 10.8 min (7.3 min a la vez que otra etapa)
+2026-11-03 17:50:19 [us-open-2026-r4-naomi-osaka-elena-rybakina] identity… (2026-11-03 17:50:19, etapa 7 de 14)
+2026-11-03 17:50:21   identity:   0 % (1/880 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+2026-11-03 17:51:43   identity:   1 % (6/880 fotogramas (ropa)) · 82 s · quedan ≈ 200 min
+2026-11-03 17:53:02   identity:   7 % (65/880 fotogramas (ropa)) · 3 min · quedan ≈ 34 min
+2026-11-03 17:54:17   identity:  14 % (126/880 fotogramas (ropa)) · 4 min · quedan ≈ 24 min
+2026-11-03 17:55:28   identity:  21 % (186/880 fotogramas (ropa)) · 5 min · quedan ≈ 19 min
+2026-11-03 17:56:34   identity:  28 % (245/880 fotogramas (ropa)) · 6 min · quedan ≈ 16 min
+2026-11-03 17:57:36   identity:  35 % (306/880 fotogramas (ropa)) · 7 min · quedan ≈ 14 min
