@@ -8,16 +8,25 @@ accuracy and in speed on the configured device (the iGPU, `dml`).
     court14    tennisbio.court.fit_court (lines)    TennisCourtDetector's val split: 14 annotated points per frame
     rfdetr     YOLO11m-pose on the far half         RacketVision test frames: the far player's annotated racket
     f3ed       our learned spotter (spotting.json)  F3Set compilations of scripts/validate_recall.py (YouTube)
+    ocr5       rapidocr-onnxruntime 1.4 (PP-OCRv4)  no annotated scoreboards: the frames our `score` stage read in the
+               (score stage)                        analysed matches; agreement and consistency, NOT accuracy (#201)
+    mag3d      RTMW3D (trunk turn in 3D)            CalTennis: two calibrated synchronised views of the same player;
+                                                    the shoulder/hip line triangulated from both (#203, #206)
+    bounce     the bounce rule (sharpest ball turn  TrackNet dataset: every frame's ball and status (2 = bounce);
+               between two hits, tennisbio.ball)    on its annotated ball and on our ball tracker's (#199)
 
 Rule to adopt a candidate, written in the output for each one: accuracy equal or better AND not slower for the
 whole pass of a new match (the same work, on this PC). A candidate that wins only one of the two is not adopted;
 nothing here changes the pipeline: adopting one is a change of its own.
 
 The missing ONNX files are made first with their export scripts (scripts/export_*.py; RF-DETR with
-`uv run --with rfdetr==1.11.2`). Every candidate's result is saved as soon as it is measured; a later run measures
-only what is missing (--force to repeat). With no arguments (a "medir" request of the PC: script bench_candidates)
-it measures everything with the configured device and datasets next to the output folder.
+`uv run --with rfdetr==1.11.2`, the bounce model with `--with catboost==1.2.10`). PP-OCRv5 runs in its own
+environment (`uv run --with rapidocr==3.10.0`, scripts/bench_ocr.py). Every candidate's result is saved as soon as it
+is measured; a later run measures only what is missing (--force to repeat). With no arguments (a "medir" request of
+the PC: script bench_candidates) it measures everything with the configured device and datasets next to the output
+folder. One candidate alone:
 
+    uv run python scripts/bench_candidates.py --only ocr5      (also mag3d, bounce; or several: --only mag3d,bounce)
     uv run python scripts/bench_candidates.py [--only wasb,court14] [--device dml] [--root C:\\tenis\\datasets]
 
 Writes <root>/reports/bench_candidates.json and .md, and copies both to <output>/.
@@ -43,14 +52,19 @@ sys.path.insert(0, str(ROOT / "src"))
 sys.path.insert(0, str(ROOT / "scripts"))
 
 VERSION = 1
-CANDIDATES = ("wasb", "rtmw", "court14", "rfdetr", "f3ed")
+CANDIDATES = ("wasb", "rtmw", "court14", "rfdetr", "f3ed", "ocr5", "mag3d", "bounce")
 MODELS = ROOT / "models"
+# candidate → (ONNX file, export script and its arguments, packages the export needs on top of the project's)
 EXPORTS = {
-    "wasb": (MODELS / "wasb_tennis.onnx", ["export_wasb.py"], False),
-    "rtmw": (MODELS / "rtmw-x_384x288.onnx", ["export_rtmw.py"], False),
-    "court14": (MODELS / "court_tcd.onnx", ["export_court_tcd.py"], False),
-    "rfdetr": (MODELS / "rfdetr_medium_1152.onnx", ["export_rfdetr.py"], True),
-    "f3ed": (MODELS / "f3ed.onnx", ["export_f3ed.py"], False),
+    "wasb": (MODELS / "wasb_tennis.onnx", ["export_wasb.py"], ()),
+    "rtmw": (MODELS / "rtmw-x_384x288.onnx", ["export_rtmw.py"], ()),
+    "court14": (MODELS / "court_tcd.onnx", ["export_court_tcd.py"], ()),
+    "rfdetr": (MODELS / "rfdetr_medium_1152.onnx", ["export_rfdetr.py"], ("rfdetr==1.11.2",)),
+    "f3ed": (MODELS / "f3ed.onnx", ["export_f3ed.py"], ()),
+    "ocr5": (MODELS / "ppocrv5" / "ch_PP-OCRv5_rec_mobile.onnx", ["export_ppocrv5.py"], ()),
+    "mag3d": (MODELS / "motionagformer_xs.onnx", ["export_motionagformer.py", "--size", "xs"], ()),
+    "mag3d-s": (MODELS / "motionagformer_s.onnx", ["export_motionagformer.py", "--size", "s"], ()),
+    "bounce": (MODELS / "bounce_ctb.onnx", ["export_bounce_ctb.py"], ("catboost==1.2.10",)),
 }
 EXPORT_TIMEOUT_S = 3600
 TCD_DATASET = "https://drive.usercontent.google.com/download?id=1lhAaeQCmk2y440PmagA0KmIVBIysVMwu&export=download&confirm=t"
@@ -110,11 +124,12 @@ def to_markdown(rep: dict) -> str:
 
 def ensure_model(name: str) -> Path:
     """The candidate's ONNX file, made with its export script when missing."""
-    path, script, with_rfdetr = EXPORTS[name]
+    path, script, extra = EXPORTS[name]
     if path.exists():
         return path
-    cmd = ([shutil.which("uv") or "uv", "run", "--with", "rfdetr==1.11.2", "python"] if with_rfdetr else [sys.executable])
-    cmd += [str(ROOT / "scripts" / script[0]), "--out", str(path)]
+    cmd = ([shutil.which("uv") or "uv", "run", *[a for p in extra for a in ("--with", p)], "python"] if extra
+           else [sys.executable])
+    cmd += [str(ROOT / "scripts" / script[0]), *script[1:], "--out", str(path)]
     print(f"  exportando {name}: {' '.join(cmd)}", flush=True)
     r = subprocess.run(cmd, cwd=ROOT, timeout=EXPORT_TIMEOUT_S, capture_output=True, text=True, encoding="utf-8",
                        errors="replace")
@@ -605,6 +620,511 @@ def bench_f3ed(root: Path, device: str, cfg: dict) -> dict:
             "verdict": v, "notes": notes}
 
 
+# ---------------------------------------------------------------- scoreboard: PP-OCRv5 vs our rapidocr
+
+OCR_TIMEOUT_S = 4 * 3600
+
+
+def ocr_samples(score: dict, n: int, every_s: float) -> tuple[list[float], list[float]]:
+    """(up to n times our `score` stage read the scoreboard at, evenly spread; up to n/2 times it tried and read
+    nothing, in shots of the main camera where it failed at least once). The second set is approximate: score.json
+    keeps each shot's tries, not their times, so they are re-made as the stage makes them (start + 0.5 s, every_s)."""
+    import bisect
+
+    read = sorted(float(r["t"]) for r in score.get("readings") or [] if r.get("t") is not None)
+    pick = read[:: max(1, len(read) // max(1, n))][:n] if read else []
+    missed = []
+    for sh in score.get("shots") or []:
+        if (sh.get("tried") or 0) <= (sh.get("read") or 0):
+            continue
+        t = float(sh["start"]) + 0.5
+        while t < float(sh["end"]):
+            k = bisect.bisect_left(read, t - 0.05)
+            if not (k < len(read) and abs(read[k] - t) <= 0.05):
+                missed.append(round(t, 2))
+            t += every_s
+    m = max(1, n // 2)
+    return pick, missed[:: max(1, len(missed) // m)][:m]
+
+
+def ocr_plan(cfg: dict, n: int) -> tuple[list[dict], list[str]]:
+    """The analysed matches of the catalogue with a score.json and their video still on disk."""
+    from tennisbio import layout
+    from tennisbio import match_files as mf
+    from tennisbio.catalog import load_matches
+
+    out_root = Path((cfg.get("paths") or {}).get("output") or "output")
+    every = float((cfg.get("score") or {}).get("every_s", 5.0))
+    plan, notes = [], []
+    for m in load_matches(cfg):
+        d = layout.dir_of(out_root, m, cfg)
+        sc = mf.at(d, "score.json")
+        if not sc.exists():
+            continue
+        score = json.loads(sc.read_text(encoding="utf-8"))
+        names = score.get("names") or []
+        if not score.get("readings") or len(names) != 2 or not all(names):
+            notes.append(f"{m.id}: score.json sin lecturas")
+            continue
+        src = mf.at(d, "source.mkv")                     # the copy the stages read when the timeline was rewritten
+        video = src if src.exists() and mf.at(d, "source.json").exists() else Path(m.video)
+        if not video.exists():
+            notes.append(f"{m.id}: falta el vídeo ({video})")
+            continue
+        read_t, miss_t = ocr_samples(score, n, every)
+        stored = {round(float(r["t"]), 2): r for r in score["readings"]}
+        plan.append({"id": m.id, "video": str(video), "names": names, "times": sorted(read_t + miss_t),
+                     "stored": {f"{t:.2f}": stored.get(round(t, 2)) for t in read_t}})
+    return plan, notes
+
+
+def bench_ocr5(root: Path, device: str, cfg: dict, n: int) -> dict:
+    from tennisbio.candidates.ocr5 import RAPIDOCR3, agreement, consistent, state_key
+
+    plan, notes = ocr_plan(cfg, n)
+    if not plan:
+        raise RuntimeError("no hay partidos analizados con score.json y su vídeo: " + "; ".join(notes))
+    ensure_model("ocr5")
+    work = root / "ocr5"
+    work.mkdir(parents=True, exist_ok=True)
+    pf = work / "plan.json"
+    pf.write_text(json.dumps({"matches": plan}, ensure_ascii=False), encoding="utf-8")
+    uv = shutil.which("uv") or "uv"
+    runs = {}
+    for eng, py in (("ours", [sys.executable]), ("ppocrv5", [uv, "run", "--with", RAPIDOCR3, "python"])):
+        out = work / f"lecturas_{eng}.json"
+        # both on the CPU: the score stage runs there, next to the iGPU work of the rest of the pass
+        cmd = py + [str(ROOT / "scripts" / "bench_ocr.py"), "--engine", eng, "--plan", str(pf), "--out", str(out),
+                    "--device", "cpu"]
+        print(f"  marcador {eng}: {' '.join(cmd)}", flush=True)
+        r = subprocess.run(cmd, cwd=ROOT, timeout=OCR_TIMEOUT_S, capture_output=True, text=True, encoding="utf-8",
+                           errors="replace")
+        print(r.stdout[-1500:], flush=True)
+        if r.returncode or not out.exists():
+            raise RuntimeError(f"la lectura con {eng} falló: {r.stderr.strip()[-600:]}")
+        runs[eng] = {m["id"]: m for m in json.loads(out.read_text(encoding="utf-8"))["matches"]}
+    per, agree_now, agree_stored = {}, ([], []), {"ours": ([], []), "ppocrv5": ([], [])}
+    for eng in runs:
+        n_s = n_read = n_ok = 0
+        secs = 0.0
+        read_known = [0, 0]                     # read where our stage read; read where it had not
+        for m in plan:
+            got = runs[eng][m["id"]]
+            rs = [None if r is None else {**r, "t": t} for t, r in zip(got["times"], got["readings"])]
+            ok = consistent([r or {} for r in rs])
+            n_s += len(rs)
+            n_read += sum(state_key(r) is not None for r in rs)
+            n_ok += sum(ok)
+            secs += got["seconds"]
+            for t, r in zip(got["times"], rs):
+                hit = state_key(r) is not None
+                if f"{t:.2f}" in m["stored"]:
+                    read_known[0] += hit
+                    agree_stored[eng][0].append(m["stored"][f"{t:.2f}"])
+                    agree_stored[eng][1].append(r)
+                else:
+                    read_known[1] += hit
+        n_known = sum(len(m["stored"]) for m in plan)
+        per[eng] = {"samples": n_s, "read": round(n_read / n_s, 3) if n_s else None,
+                    "consistent_per_sample": round(n_ok / n_s, 3) if n_s else None,
+                    "consistent_of_read": round(n_ok / n_read, 3) if n_read else None,
+                    "read_where_stage_read": round(read_known[0] / n_known, 3) if n_known else None,
+                    "read_where_stage_missed": round(read_known[1] / (n_s - n_known), 3) if n_s > n_known else None,
+                    "s_per_sample": round(secs / n_s, 3) if n_s else None}
+    for m in plan:
+        agree_now[0].extend(runs["ours"][m["id"]]["readings"])
+        agree_now[1].extend(runs["ppocrv5"][m["id"]]["readings"])
+    b, c = per["ours"], per["ppocrv5"]
+    v = verdict(c["consistent_per_sample"], b["consistent_per_sample"], c["s_per_sample"], b["s_per_sample"],
+                "lecturas coherentes por muestra", "s por muestra", higher_is_faster=False)
+    return {"baseline": "rapidocr-onnxruntime 1.4 (PP-OCRv4)", "candidate": "rapidocr 3.10 + PP-OCRv5 mobile",
+            "matches": [m["id"] for m in plan], "per_model": per,
+            "agreement_ours_vs_candidate": agreement(*agree_now),
+            "agreement_with_score_json": {k: agreement(*v_) for k, v_ in agree_stored.items()},
+            "accuracy": f"lecturas coherentes por muestra {c['consistent_per_sample']} / {b['consistent_per_sample']}; "
+                        f"leídas {c['read']} / {b['read']}",
+            "speed": f"{c['s_per_sample']} / {b['s_per_sample']} s por muestra (CPU)", "verdict": v,
+            "notes": notes + [
+                "Sin marcadores anotados: no es una precisión frente a la verdad, sino acuerdo entre motores y "
+                "coherencia (una lectura cuenta si encaja con la secuencia del partido según las reglas del tenis: "
+                "juegos que solo crecen, el marcador de juegos más leído para cada total, puntos que no retroceden "
+                "dentro de un juego; tennisbio.point_count). Un error que dé otra puntuación posible no se detecta.",
+                "Muestras: instantes en que nuestra etapa leyó el marcador (score.json) y, aproximados, instantes en "
+                "que lo intentó sin leerlo; los dos motores leen exactamente los mismos fotogramas, sin reutilizar "
+                "lecturas, en la CPU (donde corre la etapa)."]}
+
+
+# ---------------------------------------------------------------- 3D trunk: MotionAGFormer vs RTMW3D (CalTennis)
+
+CAL_MARGIN_S = 1.2              # each segment is cut this much wider: the views are synchronised only to ±1 s
+SYNC_MAX_PX = 8.0               # a segment whose two views never triangulate better than this is not used
+REF_MAX_PX = 10.0               # a frame's trunk reference: its 4 points reproject within this in both views
+MIN_REF_FRAMES = 200
+
+
+def pose_track(video: Path, pose2d) -> dict:
+    """2D pose of every person in every frame of a segment (our hybrid model): boxes, COCO keypoints, scores."""
+    from tennisbio.io.video import open_capture
+
+    cap = open_capture(video)
+    fps = cap.get(5) or 60.0
+    boxes, kps, confs, size = [], [], [], None
+    while True:
+        ok, fr = cap.read()
+        if not ok:
+            break
+        size = (fr.shape[1], fr.shape[0])
+        b, k, c, _, _ = pose2d(fr)
+        boxes.append(np.asarray(b, float).reshape(len(b), -1)[:, :4])
+        kps.append(np.asarray(k, float).reshape(len(b), 17, 2))
+        confs.append(np.asarray(c, float).reshape(len(b), 17))
+    cap.release()
+    return {"fps": float(fps), "size": size, "boxes": boxes, "kps": kps, "confs": confs}
+
+
+def follow(p: dict, start: int, idx: int) -> tuple[np.ndarray, np.ndarray, list]:
+    """(keypoints (T, 17, 2) NaN where lost, scores (T, 17), boxes) of one person tracked from `idx` at `start`."""
+    from tennisbio.candidates.caltennis import track
+
+    ids = track(p["boxes"], start, idx)
+    T = len(p["boxes"])
+    k, c, b = np.full((T, 17, 2), np.nan), np.zeros((T, 17)), [None] * T
+    for f, i in enumerate(ids):
+        if i is not None:
+            k[f], c[f], b[f] = p["kps"][f][i], p["confs"][f][i], p["boxes"][f][i]
+    return k, c, b
+
+
+def pair_person(ca, cb, pa: dict, pb: dict):
+    """(frame of a, person in a, frame of b, person in b) of the same player in both views, around the middle of the
+    segment (b searched over ±1 s, as the clocks may be that far apart); None when no pair triangulates."""
+    from tennisbio.candidates.caltennis import match_people
+
+    ia = len(pa["kps"]) // 2
+    best = None
+    for jb in range(max(0, ia - int(pb["fps"])), min(len(pb["kps"]), ia + int(pb["fps"]) + 1), 6):
+        if not len(pa["kps"][ia]) or not len(pb["kps"][jb]):
+            continue
+        m = match_people(ca, cb, pa["kps"][ia], pa["confs"][ia], pb["kps"][jb], pb["confs"][jb])
+        if m is not None and (best is None or m[2] < best[4]):
+            best = (ia, m[0], jb, m[1], m[2])
+    return None if best is None else best[:4]
+
+
+def trunk_reference(c1, c2, k1, s1, t1, k2, s2, t2, off):
+    """(T1, 2) shoulder/hip line directions at view 1's frames triangulated with view 2 (its clock + off = view 1's),
+    NaN where the 4 trunk points are not seen in both or reproject worse than REF_MAX_PX; and the pelvis (T1, 3)."""
+    from tennisbio.candidates.caltennis import COCO_TRUNK, interp, reproj_error, triangulate, trunk_yaw_from_world
+
+    j = list(COCO_TRUNK)
+    k2i, s2i = interp(t2 + off, k2[:, j], t1), interp(t2 + off, s2[:, j], t1)
+    X = triangulate(c1.P, c2.P, k1[:, j], k2i)
+    err = reproj_error(c1, c2, k1[:, j], k2i, X)
+    good = (s1[:, j] >= 0.5).all(1) & (np.nan_to_num(s2i) >= 0.5).all(1) & (np.nan_to_num(err, nan=1e9) <= REF_MAX_PX).all(1)
+    yaw = trunk_yaw_from_world(X)
+    yaw[~good] = np.nan
+    pelvis = X[:, 2:4].mean(1)
+    pelvis[~good] = np.nan
+    return yaw, pelvis
+
+
+def rtmw3d_yaw(video: Path, boxes: list, cam, pelvis: np.ndarray, wb3d) -> tuple[np.ndarray, list]:
+    """(T, 2) shoulder/hip directions in the world from RTMW3D in one view, and the ms of each call. Its image points
+    are put at the true depth of the pelvis (from the reference: the best case for it; in a match the depth comes from
+    her height) and its own depth offsets are added along the viewing axis (+ away from the camera)."""
+    from tennisbio.candidates.caltennis import trunk_yaw_from_world
+    from tennisbio.io.video import open_capture
+
+    out, ms = np.full((len(boxes), 2), np.nan), []
+    fx, fy, cx, cy = cam.K[0, 0], cam.K[1, 1], cam.K[0, 2], cam.K[1, 2]
+    cap = open_capture(video)
+    for f in range(len(boxes)):
+        ok, fr = cap.read()
+        if not ok:
+            break
+        if boxes[f] is None or not np.isfinite(pelvis[f]).all():
+            continue
+        t0 = time.perf_counter()
+        k3, _, k2 = wb3d(fr, np.asarray(boxes[f], float))
+        ms.append(1000 * (time.perf_counter() - t0))
+        Z = float(cam.to_cam(pelvis[f])[2])
+        idx = [5, 6, 11, 12]                               # COCO-WholeBody: shoulders and hips, as COCO
+        z = k3[idx, 2] - k3[idx[2:], 2].mean()
+        pc = np.stack([(k2[idx, 0] - cx) * Z / fx, (k2[idx, 1] - cy) * Z / fy, Z + z], 1)
+        out[f] = trunk_yaw_from_world((pc @ cam.R_c2w.T)[None])[0]
+    cap.release()
+    return out, ms
+
+
+def bench_mag3d(root: Path, device: str, cfg: dict, n_pairs: int, n_segments: int, seg_s: float) -> dict:
+    from tennisbio.candidates import caltennis as C
+    from tennisbio.candidates.motionagformer import (H36M_L_HIP, H36M_L_SH, H36M_R_HIP, H36M_R_SH, MotionAGFormerLifter,
+                                                     line_yaw_world)
+    from tennisbio.config import resolve_path
+    from tennisbio.pose.backend import set_device
+    from tennisbio.pose.variants import model as pose_model
+    from tennisbio.pose.wholebody3d import WholeBody3D
+
+    set_device(device)
+    fcfg = cfg.get("fine_pass") or {}
+    hp = resolve_path(fcfg.get("hand3d_onnx") or "models/rtmw3d-x.onnx")
+    if hp is None or not hp.exists():
+        raise FileNotFoundError(f"falta nuestro modelo 3D ({hp}): ejecuta scripts/setup_models.py")
+    wb3d = WholeBody3D(str(hp), device, fp16=bool(fcfg.get("fp16", True)) and device != "cpu")
+    lifters = {"mag3d-xs": MotionAGFormerLifter(ensure_model("mag3d"), device),
+               "mag3d-s": MotionAGFormerLifter(ensure_model("mag3d-s"), device)}
+    base = "ours (RTMW3D)"
+    pose2d = pose_model("hybrid-x", device)
+    prs = C.pairs(root, C.metadata(root))[:n_pairs]
+    if not prs:
+        raise RuntimeError("CalTennis: ningún par de vistas calibradas del mismo lado de la pista")
+    mono = {k: [] for k in (base, *lifters)}
+    refs = {k: [] for k in mono}
+    ms = {k: [] for k in mono}
+    used, notes = [], []
+    work = root / "caltennis" / "segmentos"
+    for p in prs:
+        cam = {"a": C.camera(root, p["a"]), "b": C.camera(root, p["b"])}
+        st = {"a": C.start_time(p["a"]["video_id"]), "b": C.start_time(p["b"]["video_id"])}
+        lo, hi = p["overlap"][0] + 60, p["overlap"][1] - 60 - seg_s
+        for k, g in enumerate(np.linspace(lo, max(lo, hi), n_segments)):
+            vids, pt = {}, {}
+            for v in ("a", "b"):
+                vids[v] = C.fetch_segment(p[v], g - st[v] - CAL_MARGIN_S, seg_s + 2 * CAL_MARGIN_S,
+                                          work / f"{p['session']}_{k}_{v}.mp4")
+                pt[v] = pose_track(vids[v], pose2d)
+            pair = pair_person(cam["a"], cam["b"], pt["a"], pt["b"])
+            if pair is None:
+                notes.append(f"{p['session']} tramo {k}: la misma persona no se encuentra en las dos vistas")
+                continue
+            ka, sa, ba = follow(pt["a"], pair[0], pair[1])
+            kb, sb, bb = follow(pt["b"], pair[2], pair[3])
+            ta, tb = np.arange(len(ka)) / pt["a"]["fps"], np.arange(len(kb)) / pt["b"]["fps"]
+            off, err = C.best_offset(cam["a"], cam["b"], ta, ka, sa, tb, kb, sb,
+                                     np.arange(-1.5, 1.5, 1 / (2 * pt["a"]["fps"])))
+            if off is None or err > SYNC_MAX_PX:
+                notes.append(f"{p['session']} tramo {k}: no se sincroniza (error {err:.1f} px)")
+                continue
+            for v, (c1, c2, k1, s1, t1, b1, k2, s2, t2, o) in {
+                    "a": (cam["a"], cam["b"], ka, sa, ta, ba, kb, sb, tb, off),
+                    "b": (cam["b"], cam["a"], kb, sb, tb, bb, ka, sa, ta, -off)}.items():
+                ref, pelvis = trunk_reference(c1, c2, k1, s1, t1, k2, s2, t2, o)
+                inner = (t1 >= CAL_MARGIN_S) & (t1 <= CAL_MARGIN_S + seg_s)        # the segment proper
+                ref[~inner] = np.nan
+                y, t_ms = rtmw3d_yaw(vids[v], b1, c1, pelvis, wb3d)
+                mono[base].append(y)
+                refs[base].append(ref)
+                ms[base] += t_ms
+                w, h = pt[v]["size"]
+                for name, lf in lifters.items():
+                    t0 = time.perf_counter()
+                    X = lf.lift(k1, s1, w, h)
+                    ms[name].append(1000 * (time.perf_counter() - t0) / max(1, len(k1)))
+                    yl = np.stack([line_yaw_world(X, H36M_L_SH, H36M_R_SH, c1.R_c2w),
+                                   line_yaw_world(X, H36M_L_HIP, H36M_R_HIP, c1.R_c2w)], 1)
+                    yl[~(s1[:, [5, 6, 11, 12]] >= 0.5).all(1)] = np.nan
+                    mono[name].append(yl)
+                    refs[name].append(ref)
+            used.append({"session": p["session"], "segment": k, "angle": p["angle"], "sync_s": round(off, 3),
+                         "sync_px": round(err, 2)})
+            print(f"  3D {p['session']} tramo {k}: desfase {off:+.3f} s, {err:.1f} px", flush=True)
+    per = {}
+    for name in mono:
+        e = C.angle_errors(np.concatenate(mono[name]) if mono[name] else np.zeros((0, 2)),
+                           np.concatenate(refs[name]) if refs[name] else np.zeros((0, 2)))
+        e["ms_per_frame"] = round(float(np.median(ms[name])), 2) if ms[name] else None
+        e["fps"] = round(1000 / e["ms_per_frame"], 1) if e["ms_per_frame"] else None
+        per[name] = e
+    b = per[base]
+    cand = max(lifters, key=lambda k: ((per[k]["within_15deg"] or 0), per[k]["fps"] or 0))
+    c = per[cand]
+    v = verdict(c["within_15deg"], b["within_15deg"], c["fps"], b["fps"], "giro del tronco a ≤15° de la referencia",
+                "fotogramas/s")
+    if (b["frames"] or 0) < MIN_REF_FRAMES or (c["frames"] or 0) < MIN_REF_FRAMES:
+        v = {"adopt": False, "insufficient": True,
+             "reason": f"solo {min(b['frames'], c['frames'])} fotogramas con referencia (hacen falta {MIN_REF_FRAMES})"}
+    return {"baseline": "RTMW3D (tennisbio.pose.wholebody3d)", "candidate": f"MotionAGFormer ({cand})", "per_model": per,
+            "segments": used, "accuracy": f"a ≤15° {c['within_15deg']} / {b['within_15deg']}; mediana "
+                                          f"{c['median_err_deg']} / {b['median_err_deg']}°; X-factor "
+                                          f"{c['xfactor_median_err_deg']} / {b['xfactor_median_err_deg']}°",
+            "speed": f"{c['fps']} / {b['fps']} fotogramas/s (el candidato usa la pose 2D que ya tiene la pasada fina)",
+            "verdict": v, "notes": notes + [
+                "Referencia: la línea de hombros y la de caderas triangulada desde dos vistas calibradas y sincronizadas "
+                "de CalTennis (nuestra pose 2D en las dos; no depende de ninguna profundidad estimada). Cada modelo 3D "
+                "se lee en una sola vista; error = diferencia de su dirección alrededor de la vertical.",
+                "Las cámaras de CalTennis están a ~1,7 m de altura, a un lado o detrás de la pista; la de la tele está "
+                "más alta. Un modelo que falla aquí no sirve; uno que acierta aquí no queda probado para la vista de "
+                "la tele (allí RTMW3D aplanaba la profundidad: tennisbio.reliability).",
+                "RTMW3D se sitúa a la profundidad real de la pelvis (sacada de la referencia): es su mejor caso."]}
+
+
+# ---------------------------------------------------------------- bounce: CatBoost vs our rule (TrackNet dataset)
+
+TRACKNET_ZIP = "https://drive.usercontent.google.com/download?id=1DQ3ZbvokTsgOq6x-ay6O8U2W4a8e3LFw&export=download&confirm=t"
+TRACKNET_FPS = 30.0
+BOUNCE_TOL_F = 3                # frames (0.1 s at 30 fps): a predicted bounce this close to an annotated one is right
+MIN_BOUNCES = 20
+
+
+def tracknet_index(root: Path) -> dict[str, str]:
+    """clip key (game_clip) → its folder inside the TrackNet dataset's zip; the 95 Label.csv files are read by HTTP
+    ranges once (not the 2.6 GB of images) and kept in <root>/tracknet/labels/."""
+    d = root / "tracknet" / "labels"
+    idx = d / "index.json"
+    if not idx.exists():
+        z = zipfile.ZipFile(io.BufferedReader(HttpFile(TRACKNET_ZIP), 1 << 16))
+        d.mkdir(parents=True, exist_ok=True)
+        folders = {}
+        for name in z.namelist():
+            if name.endswith("/Label.csv"):
+                game, clip = name.split("/")[-3:-1]
+                (d / f"{game}_{clip}.csv").write_bytes(z.read(name))
+                folders[f"{game}_{clip}"] = name[: -len("Label.csv")]
+        idx.write_text(json.dumps(folders, indent=1), encoding="utf-8")
+    return json.loads(idx.read_text(encoding="utf-8"))
+
+
+def read_tracknet(path: Path) -> tuple[list[str], np.ndarray, np.ndarray]:
+    """(image names, ball (T, 2) with NaN where not visible, status (T,): 0 flying, 1 hit, 2 bounce, -1 unknown)."""
+    names, xy, st = [], [], []
+    with open(path, newline="") as f:
+        for r in csv.DictReader(f):
+            names.append(r["file name"])
+            x, y = (r.get("x-coordinate") or "").strip(), (r.get("y-coordinate") or "").strip()
+            vis = (r.get("visibility") or "0").strip() not in ("", "0")
+            xy.append((float(x), float(y)) if vis and x and y else (np.nan, np.nan))
+            s = (r.get("status") or "").strip()
+            st.append(int(float(s)) if s else -1)
+    return names, np.asarray(xy, float).reshape(-1, 2), np.asarray(st, int)
+
+
+def tracknet_frames(root: Path, key: str, folder: str, names: list[str]) -> list[np.ndarray]:
+    import cv2
+
+    d = root / "tracknet" / "images" / key
+    d.mkdir(parents=True, exist_ok=True)
+    z = None
+    out = []
+    for n in names:
+        p = d / n
+        if not p.exists():
+            z = z or zipfile.ZipFile(io.BufferedReader(HttpFile(TRACKNET_ZIP), 1 << 16))
+            p.write_bytes(z.read(folder + n))
+        out.append(cv2.imread(str(p)))
+    return out
+
+
+def rule_bounces(track: np.ndarray, hits: list[int], fps: float) -> list[int]:
+    """Our rule as the stages use it: the bounce of each shot is the sharpest turn of the ball path between its hit
+    and the next (tennisbio.ball.bounce_before of the next hit), and after the last hit the first turn
+    (bounce_after). No image band here: the dataset has both halves of the court."""
+    from tennisbio.ball import bounce_after, bounce_before
+
+    hits = sorted(int(h) for h in hits)
+    out = set()
+    for prev, h in zip(hits, hits[1:]):
+        b = bounce_before(track, h, fps, prev_hit=prev)
+        if b is not None:
+            out.add(b.frame)
+    if hits:
+        a = bounce_after(track, hits[-1], fps)
+        if a:
+            out.add(a[0].frame)
+    return sorted(out)
+
+
+def match_events(pred: list[int], gt: list[int], tol: int) -> tuple[int, int, int, list[int]]:
+    """(right, false, missed, frame errors of the right ones): each annotated event takes the closest free
+    prediction within tol frames (closest pairs first)."""
+    pairs = sorted((abs(p - g), i, j) for i, p in enumerate(pred) for j, g in enumerate(gt) if abs(p - g) <= tol)
+    used_p, used_g, errs = set(), set(), []
+    for d, i, j in pairs:
+        if i in used_p or j in used_g:
+            continue
+        used_p.add(i)
+        used_g.add(j)
+        errs.append(d)
+    return len(errs), len(pred) - len(errs), len(gt) - len(errs), errs
+
+
+def bench_bounce(root: Path, device: str, cfg: dict, n_clips: int) -> dict:
+    import math
+
+    from tennisbio.ball import BallTracker, ball_hits
+    from tennisbio.candidates.bounce_ctb import CatBoostBounce
+    from tennisbio.config import resolve_path
+
+    folders = tracknet_index(root)
+    lab = root / "tracknet" / "labels"
+    ctb = CatBoostBounce(ensure_model("bounce"), device)
+    names = ("ours (regla)", "bounce")
+    acc = {m: {k: [0, 0, 0, []] for k in names} for m in ("annotated", "tracked")}
+    secs, frames_timed, n_gt = {k: 0.0 for k in names}, 0, {"annotated": 0, "tracked": 0}
+
+    def add(mode, preds, gt):
+        n_gt[mode] += len(gt)
+        for k, p in preds.items():
+            tp, fp, fn, e = match_events(p, list(gt), BOUNCE_TOL_F)
+            a = acc[mode][k]
+            a[0] += tp
+            a[1] += fp
+            a[2] += fn
+            a[3] += e
+    keys = sorted(folders)
+    for key in keys:                                     # the annotated ball: the bounce models alone
+        _, tr, st = read_tracknet(lab / f"{key}.csv")
+        add("annotated", {"ours (regla)": rule_bounces(tr, list(np.flatnonzero(st == 1)), TRACKNET_FPS),
+                          "bounce": ctb.bounces(tr)}, np.flatnonzero(st == 2))
+    ours_path = resolve_path((cfg.get("ball") or {}).get("onnx") or "models/balltrack.onnx")
+    if ours_path is None or not ours_path.exists():
+        raise FileNotFoundError(f"falta nuestro modelo de bola ({ours_path}): ejecuta scripts/setup_models.py")
+    tracker = BallTracker(str(ours_path), device, fp16=bool((cfg.get("ball") or {}).get("fp16", True)) and device != "cpu")
+    sel = keys[:: max(1, len(keys) // max(1, n_clips))][:n_clips]
+    for key in sel:                                      # our ball tracker's path: the task in a match
+        nm, _, st = read_tracknet(lab / f"{key}.csv")
+        frames = tracknet_frames(root, key, folders[key], nm)
+        tr = tracker.track(frames, step=1)               # 30 fps: as the fine pass reads the ball
+        hits = [h.frame for h in ball_hits(tr, frames[0].shape[0], TRACKNET_FPS)]
+        rb, dt_r = timed(rule_bounces, tr, hits, TRACKNET_FPS)
+        cb, dt_c = timed(ctb.bounces, tr)
+        secs["ours (regla)"] += dt_r
+        secs["bounce"] += dt_c
+        frames_timed += len(tr)
+        add("tracked", {"ours (regla)": rb, "bounce": cb}, np.flatnonzero(st == 2))
+        print(f"  bote {key}: {len(frames)} fotogramas", flush=True)
+    per = {}
+    for mode in acc:
+        per[mode] = {k: {**prf(*a[:3]), "median_err_f": float(np.median(a[3])) if a[3] else None}
+                     for k, a in acc[mode].items()}
+    # what each adds to the full pass: seconds per hour of 30 fps video, and minutes rounded up to 0.1 (the full pass
+    # takes ~75 min per hour of video and varies by minutes between runs: less than 6 s per hour cannot change it)
+    sph = {k: (round(secs[k] / frames_timed * TRACKNET_FPS * 3600, 1) if frames_timed else None) for k in names}
+    mph = {k: (None if s is None else math.ceil(s / 6) / 10) for k, s in sph.items()}
+    b, c = per["tracked"]["ours (regla)"], per["tracked"]["bounce"]
+    v = verdict(c["f1"], b["f1"], mph["bounce"], mph["ours (regla)"], "F1 botes (bola de nuestro detector)",
+                "min añadidos a la pasada por hora de vídeo", higher_is_faster=False)
+    if n_gt["tracked"] < MIN_BOUNCES:
+        v = {"adopt": False, "insufficient": True, "reason": f"solo {n_gt['tracked']} botes anotados en los clips medidos "
+                                                             f"(hacen falta {MIN_BOUNCES})"}
+    ca, ba = per["annotated"]["bounce"], per["annotated"]["ours (regla)"]
+    return {"baseline": "regla del giro más brusco (tennisbio.ball)", "candidate": "CatBoost (TennisProject)",
+            "per_model": per, "seconds_per_hour": sph, "minutes_per_hour": mph,
+            "clips": {"annotated": len(keys), "tracked": len(sel)}, "bounces": n_gt,
+            "accuracy": f"F1 botes con nuestra bola {c['f1']} / {b['f1']}; con la bola anotada {ca['f1']} / {ba['f1']}",
+            "speed": f"{mph['bounce']} / {mph['ours (regla)']} min por hora de vídeo "
+                     f"({sph['bounce']} / {sph['ours (regla)']} s)", "verdict": v,
+            "notes": [f"Bote acertado si está a ≤{BOUNCE_TOL_F} fotogramas (0,1 s) de uno anotado.",
+                      "El modelo CatBoost se entrenó con este mismo conjunto (10 partidos, 75 % de sus fotogramas al azar): "
+                      "su cifra es optimista; no hay otro conjunto público con botes anotados. Con la bola de nuestro "
+                      "detector las entradas ya no son las de su entrenamiento.",
+                      "Con la bola anotada la regla recibe los golpes anotados; con la de nuestro detector, los golpes "
+                      "que saca tennisbio.ball.ball_hits, como en un partido.",
+                      "Las dos son pasos sobre la trayectoria de la bola ya calculada. Velocidad: lo que cada una añade a "
+                      "la pasada completa, en minutos por hora de vídeo redondeados hacia arriba a 0,1 (la pasada dura "
+                      "~75 min por hora de vídeo y varía minutos entre ejecuciones; menos de 6 s por hora no la cambia); "
+                      "entre paréntesis, los segundos medidos."]}
+
+
 # ---------------------------------------------------------------- main
 
 def default_root(cfg: dict) -> Path:
@@ -625,6 +1145,11 @@ def main(argv=None):
     ap.add_argument("--clips", type=int, default=8, help="clips de RacketVision (bola y pose)")
     ap.add_argument("--court-images", type=int, default=300)
     ap.add_argument("--far-images", type=int, default=300)
+    ap.add_argument("--ocr-samples", type=int, default=150, help="marcador: muestras leídas por partido (+ la mitad sin leer)")
+    ap.add_argument("--cal-pairs", type=int, default=3, help="3D: pares de vistas de CalTennis")
+    ap.add_argument("--cal-segments", type=int, default=5, help="3D: tramos por par")
+    ap.add_argument("--cal-seconds", type=float, default=4.0, help="3D: segundos por tramo")
+    ap.add_argument("--bounce-clips", type=int, default=24, help="bote: clips del conjunto TrackNet con nuestra bola")
     ap.add_argument("--budget-min", type=float, default=0, help="no empezar otro candidato pasado este tiempo (0 = sin límite)")
     a = ap.parse_args(argv)
     root = Path(a.root) if a.root else default_root(cfg)
@@ -641,7 +1166,10 @@ def main(argv=None):
         rep = {"version": VERSION, "device": device, "results": {}}
     runs = {"wasb": lambda: bench_ball(root, device, cfg, a.clips), "rtmw": lambda: bench_pose(root, device, a.clips),
             "court14": lambda: bench_court(root, device, a.court_images),
-            "rfdetr": lambda: bench_far(root, device, a.far_images), "f3ed": lambda: bench_f3ed(root, device, cfg)}
+            "rfdetr": lambda: bench_far(root, device, a.far_images), "f3ed": lambda: bench_f3ed(root, device, cfg),
+            "ocr5": lambda: bench_ocr5(root, device, cfg, a.ocr_samples),
+            "mag3d": lambda: bench_mag3d(root, device, cfg, a.cal_pairs, a.cal_segments, a.cal_seconds),
+            "bounce": lambda: bench_bounce(root, device, cfg, a.bounce_clips)}
     t0 = time.time()
     for name in todo:
         done = (rep["results"].get(name) or {}).get("verdict") or {}
