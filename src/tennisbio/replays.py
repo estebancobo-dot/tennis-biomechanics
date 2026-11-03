@@ -47,9 +47,10 @@ def matches(run: Run, earlier: Run, tol_m: float = 0.6, share: float = 0.8, min_
     return bool(np.mean(d <= tol_m) >= share)
 
 
-def find_replays(runs: list[Run], window_s: float = 90.0, slow_ratio: float = 0.7) -> list[int]:
-    """Indices of the runs that are replays of an earlier run of the last window_s seconds."""
-    out = []
+def replay_reasons(runs: list[Run], window_s: float = 90.0, slow_ratio: float = 0.7) -> dict[int, str]:
+    """{index: why} of the runs that are replays of an earlier run of the last window_s seconds: "lenta" (the same
+    path, slower) or "sin_sonido" (the same path, no impact sound where the original had them)."""
+    out: dict[int, str] = {}
     for i, r in enumerate(runs):
         for e in runs[:i]:
             if i in out or not (0 <= r.t0 - e.t1 <= window_s) or not matches(r, e):
@@ -58,6 +59,11 @@ def find_replays(runs: list[Run], window_s: float = 90.0, slow_ratio: float = 0.
             slow = v_e > 0 and v_r < slow_ratio * v_e
             silent = r.impacts == 0 and e.impacts > 0
             if slow or silent:
-                out.append(i)
+                out[i] = "lenta" if slow else "sin_sonido"
                 break
     return out
+
+
+def find_replays(runs: list[Run], window_s: float = 90.0, slow_ratio: float = 0.7) -> list[int]:
+    """Indices of the runs that are replays of an earlier run of the last window_s seconds."""
+    return sorted(replay_reasons(runs, window_s, slow_ratio))

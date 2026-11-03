@@ -587,6 +587,39 @@ def confirmed_without_board(no_board: list[tuple[float, float]], hits: np.ndarra
     return out
 
 
+def run_replay_reasons(d: dict, sk, runs_all: list, court: dict, onsets: np.ndarray, score: dict,
+                       hits: np.ndarray | None = None) -> tuple[list[str | None], list[tuple[float, float]]]:
+    """Why each near run (stages.near_runs) is a replay, or None for live play — the one rule of the candidates
+    stage and of the recall validation (03-11: the validation had its own copy and kept the old rule):
+    "sin_marcador" (a short shot where the scoreboard is never read, confirmed by no impact sound or slow hits when
+    the spotter's hits are given: confirmed_without_board), "lenta" or "sin_sonido" (her feet retrace a path of the
+    last seconds, slower or silent: tennisbio.replays). Also the scoreboard-less spans kept as replays."""
+    from .court_metrics import to_court
+    from .replays import Run, replay_reasons
+
+    fps, frames = float(d["fps"]), d["frames"]
+    no_board = replay_spans_without_board(score)
+    if no_board and hits is not None:
+        no_board = confirmed_without_board(no_board, hits, onsets)
+    paths = []
+    for run, img, cf, h, _ in runs_all:
+        t0, t1 = frames[run[0]] / fps, frames[run[-1]] / fps
+        H = court_at(court, t0)[0]
+        with warnings.catch_warnings():          # an ankle unseen in a frame stays NaN
+            warnings.simplefilter("ignore", RuntimeWarning)
+            feet = np.nanmean(img[:, [sk["left_ankle"], sk["right_ankle"]]], axis=1) if H is not None else None
+        path = to_court(H, np.nan_to_num(feet, nan=-1e6)) if feet is not None else np.full((len(run), 2), np.nan)
+        if feet is not None:
+            path[~np.isfinite(feet).all(1)] = np.nan
+        paths.append(Run(t0, t1, path, fps, int(np.sum((onsets >= t0) & (onsets <= t1))) if len(onsets) else 0))
+    by_path = replay_reasons(paths)
+    out = []
+    for k, (run, *_r) in enumerate(runs_all):
+        t_mid = frames[run[len(run) // 2]] / fps
+        out.append("sin_marcador" if any(a <= t_mid < b for a, b in no_board) else by_path.get(k))
+    return out, no_board
+
+
 def _audio_tracks(ctx: Context, d: dict, sk, court: dict, tol_s=0.35) -> tuple[list, int]:
     """The audio transients' tracks and the one to use: with several (commentary vs ambient), the one
     that sounds with the near player's swings."""
@@ -779,36 +812,19 @@ def st_candidates(ctx: Context, tol_s=0.35):
         return {"candidates": 0, "doubles": True}
     cands, skipped, replays = [], 0, 0
     score = _read(ctx.path("score.json")) if ctx.path("score.json").exists() else {}
-    no_board = replay_spans_without_board(score)
+    hits = (np.array([e["t"] for e in _read(ctx.path("spotting.json"))], float)
+            if spotter_on(ctx.cfg) and ctx.path("spotting.json").exists() else None)
+    runs_all = list(near_runs(d, sk, court))
+    reasons, no_board = run_replay_reasons(d, sk, runs_all, court, onsets, score, hits)
     board_works = bool(no_board)
-    if board_works and spotter_on(ctx.cfg):      # a hidden scoreboard alone is not a replay (confirmed_without_board)
-        hits = np.array([e["t"] for e in _read(ctx.path("spotting.json"))], float)
-        n0 = len(no_board)
-        no_board = confirmed_without_board(no_board, hits, onsets)
-        ctx.log(f"  tomas sin marcador: {len(no_board)} de {n0} son repeticiones (sin sonido o con golpes a más de "
-                f"{REPLAY_HIT_GAP_S:g} s); las demás son juego en directo")
-    # replays from the main camera with the scoreboard still on: her feet retrace a path of the last
-    # seconds, slower (slow motion) or without impact sounds (tennisbio.replays)
-    from .court_metrics import to_court
-    from .replays import Run, find_replays
-    runs_all, paths = list(near_runs(d, sk, court)), []
-    for run, img, cf, h, _ in runs_all:
-        t0, t1 = frames[run[0]] / fps, frames[run[-1]] / fps
-        H = court_at(court, t0)[0]
-        with warnings.catch_warnings():          # an ankle unseen in a frame stays NaN
-            warnings.simplefilter("ignore", RuntimeWarning)
-            feet = np.nanmean(img[:, [sk["left_ankle"], sk["right_ankle"]]], axis=1) if H is not None else None
-        path = to_court(H, np.nan_to_num(feet, nan=-1e6)) if feet is not None else np.full((len(run), 2), np.nan)
-        if feet is not None:
-            path[~np.isfinite(feet).all(1)] = np.nan
-        paths.append(Run(t0, t1, path, fps, int(np.sum((onsets >= t0) & (onsets <= t1))) if len(onsets) else 0))
-    slow_replays = set(find_replays(paths))
+    slow_replays = {k for k, r in enumerate(reasons) if r}
+    why = {r: reasons.count(r) for r in set(reasons) if r}
+    if why:
+        ctx.log("  tramos que son repeticiones: " + ", ".join(f"{v} {k.replace('_', ' ')}" for k, v in sorted(why.items())))
     if spotter_on(ctx.cfg):
         spans = []
         for k, (run, img, cf, h, _) in enumerate(runs_all):
-            t_mid = frames[run[len(run) // 2]] / fps
-            spans.append((frames[run[0]] / fps, frames[run[-1]] / fps,
-                          bool((board_works and any(a <= t_mid < b for a, b in no_board)) or k in slow_replays)))
+            spans.append((frames[run[0]] / fps, frames[run[-1]] / fps, bool(reasons[k])))
         cands, info = spotter_candidates(_read(ctx.path("spotting.json")), identity, fps, spans,
                                          no_board if board_works else [], onsets, tol_s)
         _write(ctx.path("candidates.json"), cands)
@@ -820,8 +836,7 @@ def st_candidates(ctx: Context, tol_s=0.35):
                 "identity_unknown": sum(c["identity"] is None for c in cands),
                 "replay_strokes_skipped": info["replays"], "replay_runs": sum(r[2] for r in spans), "audio_track": track}
     for k, (run, img, cf, h, _) in enumerate(runs_all):
-        t_mid = frames[run[len(run) // 2]] / fps
-        if (board_works and any(a <= t_mid < b for a, b in no_board)) or k in slow_replays:
+        if k in slow_replays:
             replays += 1                  # a replay: its strokes were already counted live
             continue
         who = near_is_target(identity, int(frames[run[0]]))

@@ -43,16 +43,15 @@
  },
  "candidates": {
   "version": "10",
-  "hash": "9def1f725e306773",
+  "hash": "a04784d604066ad0",
   "modules": [
    "court_metrics",
-   "identity",
-   "replays"
+   "identity"
   ]
  },
  "views": {
   "version": "5",
-  "hash": "6c87e2f5de38ae89",
+  "hash": "c3ba491febe6e0f7",
   "modules": [
    "replays",
    "views"

@@ -41,12 +41,16 @@ import numpy as np
 from .. import match_files as _mf
 from .impact_eval import clip_bounds, parse_label
 
+REPLAY_WHY = ("sin_marcador", "lenta", "sin_sonido")      # stages.run_replay_reasons
 KINDS = {"serve": "saque", "forehand": "derecha", "backhand": "revés", "volley_other": "volea / remate / otro"}
 SIDES = {"near": "cercana", "far": "lejana"}
 STEPS = {
     "fuera_de_camara": "fuera de la cámara principal",
     "sin_seguimiento": "jugadora cercana no seguida (sin tramo)",
     "repeticion": "descartado como repetición",
+    "repeticion_sin_marcador": "descartado como repetición: toma sin marcador",
+    "repeticion_lenta": "descartado como repetición: el mismo recorrido, más lento",
+    "repeticion_sin_sonido": "descartado como repetición: el mismo recorrido, sin sonido",
     "identidad_sin_decidir": "identidad sin decidir",
     "identidad_equivocada": "identidad equivocada",
     "no_candidato": "no es candidato",
@@ -224,7 +228,7 @@ def attribute(events: list[dict], out: Outputs, tol: float = 0.2, cand_tol: floa
         elif r is None:
             step = "sin_seguimiento"
         elif r.get("replay"):
-            step = "repeticion"
+            step = f"repeticion_{r['replay_reason']}" if r.get("replay_reason") in REPLAY_WHY else "repeticion"
         elif r.get("near_is_target") is None:
             step = "identidad_sin_decidir"
         elif not info["identity_ok"]:
@@ -352,32 +356,12 @@ def parse_window_log(lines) -> list[dict]:
     return wins
 
 
-def replay_runs(d: dict, sk, court: dict, onsets: np.ndarray, score: dict) -> list[bool]:
-    """For each run of stages.near_runs, whether st_candidates skips it as a replay (the same rule,
-    recomputed from the stage outputs)."""
-    from ..court_metrics import to_court
-    from ..replays import Run, find_replays
-    from ..stages import court_at, near_runs, replay_spans_without_board
+def replay_runs(d: dict, sk, court: dict, onsets: np.ndarray, score: dict, hits: np.ndarray | None = None) -> list:
+    """For each run of stages.near_runs, why st_candidates skips it as a replay (None: live play) — the stage's
+    own rule (stages.run_replay_reasons), not a copy of it."""
+    from ..stages import near_runs, run_replay_reasons
 
-    fps, frames = float(d["fps"]), d["frames"]
-    no_board = replay_spans_without_board(score)
-    runs_all, paths = list(near_runs(d, sk, court)), []
-    for run, img, cf, h, _ in runs_all:
-        t0, t1 = frames[run[0]] / fps, frames[run[-1]] / fps
-        H = court_at(court, t0)[0]
-        with warnings.catch_warnings():
-            warnings.simplefilter("ignore", RuntimeWarning)
-            feet = np.nanmean(img[:, [sk["left_ankle"], sk["right_ankle"]]], axis=1) if H is not None else None
-        path = to_court(H, np.nan_to_num(feet, nan=-1e6)) if feet is not None else np.full((len(run), 2), np.nan)
-        if feet is not None:
-            path[~np.isfinite(feet).all(1)] = np.nan
-        paths.append(Run(t0, t1, path, fps, int(np.sum((onsets >= t0) & (onsets <= t1))) if len(onsets) else 0))
-    slow = set(find_replays(paths))
-    out = []
-    for k, (run, *_r) in enumerate(runs_all):
-        t_mid = frames[run[len(run) // 2]] / fps
-        out.append(bool(no_board and any(a <= t_mid < b for a, b in no_board)) or k in slow)
-    return out
+    return run_replay_reasons(d, sk, list(near_runs(d, sk, court)), court, onsets, score, hits)[0]
 
 
 def load_outputs(mdir: Path, hand: str = "right", window_log: Path | None = None) -> Outputs:
@@ -402,10 +386,12 @@ def load_outputs(mdir: Path, hand: str = "right", window_log: Path | None = None
         tracks = audio.get("tracks") or [audio]
         tr = (rd("audio_track.json") or {}).get("track", 0)
         onsets = np.array(tracks[tr].get("t", [])) if tracks and tr < len(tracks) else np.zeros(0)
-        rep = replay_runs(d, Skeleton("coco17", hand), rd("court.json") or {}, onsets, rd("score.json") or {})
+        spot = rd("spotting.json")
+        hits = np.array([e["t"] for e in spot], float) if spot else None
+        rep = replay_runs(d, Skeleton("coco17", hand), rd("court.json") or {}, onsets, rd("score.json") or {}, hits)
         if len(rep) == len(runs):
             for r, x in zip(runs, rep):
-                r["replay"] = x
+                r["replay"], r["replay_reason"] = bool(x), x
         else:
             o.notes.append(f"repeticiones: {len(rep)} tramos recalculados frente a {len(runs)} en identity.json")
     o.runs = runs
