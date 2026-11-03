@@ -1,1 +1,22 @@
 ﻿Peticion 80: medir bench_export (2026-11-03T13:20:04)
+libx264 {'s_per_video': 4.39, 'wait_share': 0.048, 'frames': 4200}
+h264_amf {'s_per_video': 5.18, 'wait_share': 0.092, 'frames': 4200}
+{
+ "strokes": 20,
+ "of": 303,
+ "encoders": {
+  "libx264": {
+   "s_per_video": 4.39,
+   "wait_share": 0.048,
+   "frames": 4200
+  },
+  "h264_amf": {
+   "s_per_video": 5.18,
+   "wait_share": 0.092,
+   "frames": 4200,
+   "psnr_vs_libx264_min": 46.24,
+   "adopt": false
+  }
+ }
+}
+termina 2026-11-03T13:23:21
