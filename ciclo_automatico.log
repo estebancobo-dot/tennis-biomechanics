@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261103155306
+Start time: 20261103163002
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 17508
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 5432
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,10 +17,32 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-11-03 15:53:06] Peticion 82: medida scripts\bench_candidates.py
-    (paso terminado en 28 min 47 s)
-Empezado 2026-11-03 15:53:04 - terminado 2026-11-03 16:21:54 - duracion total 28 min 49 s
+==> [2026-11-03 16:30:02] Codigo nuevo (9e45ee8 -> 3154642): 1 ficheros
+    docs/plan_corto_plazo.md
+Updating 9e45ee8..3154642
+Fast-forward
+ docs/plan_corto_plazo.md | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+Resolved 124 packages in 0.96ms
+Checked 89 packages in 4ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+    (paso terminado en 4 s)
+
+==> [2026-11-03 16:30:06] Que hace falta: nada
+Ciclo automatico terminado (nada).
+    (paso terminado en 0 s)
+Empezado 2026-11-03 16:30:00 - terminado 2026-11-03 16:30:06 - duracion total 6 s
 **********************
 Windows PowerShell transcript end
-End time: 20261103162154
+End time: 20261103163006
 **********************
