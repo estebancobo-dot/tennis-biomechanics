@@ -294,3 +294,8 @@ hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram
 2026-11-03T18:37:55,zheng-qinwen-elena-rybakina,court,71.0,2.3,40.9,6.0,19.8,0.7,0.0,0.0,0.0,3.0
 2026-11-03T18:38:11,zheng-qinwen-elena-rybakina,court,76.0,9.7,0.0,5.6,19.8,0.5,0.0,0.0,0.0,2.0
 2026-11-03T18:38:28,zheng-qinwen-elena-rybakina,court,60.0,11.9,3.5,5.7,19.8,0.5,0.0,0.0,0.0,2.0
+2026-11-03T18:38:45,zheng-qinwen-elena-rybakina,court,80.0,11.3,12.1,5.5,19.8,0.4,0.0,0.0,0.0,0.0
+2026-11-03T18:39:01,zheng-qinwen-elena-rybakina,court,75.0,7.4,10.6,5.5,19.8,0.3,0.0,0.0,0.0,0.0
+2026-11-03T18:39:18,zheng-qinwen-elena-rybakina,score,70.0,56.8,0.3,5.6,19.8,0.4,80.0,0.0,0.0,0.0
+2026-11-03T18:39:36,zheng-qinwen-elena-rybakina,players,73.0,45.6,1.6,5.6,19.8,0.7,93.0,0.0,0.0,0.0
+2026-11-03T18:39:54,zheng-qinwen-elena-rybakina,score,58.0,57.1,1.8,5.7,19.8,0.7,100.0,0.0,0.0,0.0
