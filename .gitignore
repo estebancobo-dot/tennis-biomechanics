@@ -21,6 +21,10 @@ models/*.tar
 models/*.zip
 models/*.part
 models/f3ed/
+# paso 2.5: bote (CatBoost), 3D (MotionAGFormer), marcador (PP-OCRv5, con su versión PyTorch para la comprobación)
+models/*.cbm
+models/*.tr
+models/ppocrv5/
 
 # Python
 __pycache__/

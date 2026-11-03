@@ -169,7 +169,14 @@ function Hacer-Peticion($p) {
             "Peticion $($p['id']): script no valido: '$sc'" | Set-Content "$Base\output\medir.log" -Encoding UTF8; return }
         "Peticion $($p['id']): medir $sc ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
         Paso "Peticion $($p['id']): medida scripts\$sc.py"
-        & uv run python "scripts/$sc.py" 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        # argumentos (03-11): opciones del script, solo letras, numeros, guiones, comas y espacios (p. ej. "--only ocr5,bounce")
+        $ar = @()
+        if ($p["argumentos"]) {
+            if ("$($p['argumentos'])" -notmatch '^[A-Za-z0-9_,. =-]+$') {
+                "Peticion $($p['id']): argumentos no validos: '$($p['argumentos'])'" | Add-Content $lg -Encoding UTF8; return }
+            $ar = @("$($p['argumentos'])".Trim() -split '\s+')
+        }
+        & uv run python "scripts/$sc.py" @ar 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
         "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "recall") {
         # cuantos golpes suyos encuentra el analisis frente a los anotados por personas (F3Set, 650 golpes),

@@ -11,6 +11,13 @@ least as accurate and not slower, and then as a change of its own.
     rfdetr    person detector (RF-DETR Medium)                  against the far-player search (YOLO11m-pose)
     f3ed      hit spotter (F3ED, F3Set)                         against tennisbio.spotting (stage `spotting`)
 
+Paso 2.5 (the rest of B3):
+
+    ocr5      scoreboard OCR (rapidocr 3.x + PP-OCRv5)          against tennisbio.scoreboard (rapidocr 1.4, PP-OCRv4)
+    mag3d     2D→3D lifter (MotionAGFormer xs / s)              against tennisbio.pose.wholebody3d (RTMW3D), on
+              (caltennis: the multi-view reference)              CalTennis's calibrated views
+    bounce    learned bounce (CatBoost of TennisProject)        against tennisbio.ball's bounce rule
+
 Every wrapper builds its session with tennisbio.pose.estimator._ort_session, so the iGPU recovery and the CPU
 fallback apply as for the models in use.
 """

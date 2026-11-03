@@ -368,3 +368,304 @@ def test_no_stage_uses_a_candidate():
            if "candidates" not in f.relative_to(src).parts and "candidates" in f.read_text(encoding="utf-8")
            and re.search(r"(from|import)\s+[.\w]*candidates", f.read_text(encoding="utf-8"))]
     assert not bad, bad
+
+
+# ---------------------------------------------------------------- paso 2.5: learned bounce (CatBoost, TennisProject)
+
+def _v_path(n=40, bounce=20):
+    """A ball falling then rising in the image (y down): a bounce at `bounce`, x moving steadily."""
+    t = np.arange(n)
+    x = 100 + 5.0 * t
+    y = np.where(t <= bounce, 200 + 8.0 * t, 200 + 8.0 * bounce - 6.0 * (t - bounce))
+    return np.stack([x, y], 1)
+
+
+def test_bounce_features_follow_the_model_columns():
+    from tennisbio.candidates.bounce_ctb import features
+
+    tr = _v_path()
+    tr[5] = np.nan                                                   # not seen: frames 3-7 have no full window
+    f, fr = features(tr[:, 0], tr[:, 1])
+    assert f.shape == (len(fr), 12) and f.dtype == np.float32
+    assert fr[0] == 2 and fr[-1] == 37 and not {3, 4, 5, 6, 7} & set(fr.tolist())
+    row = f[list(fr).index(20)]                                      # at the bounce: y came down, goes back up
+    assert row.tolist()[:4] == [5, 10, 5, 10]                        # |x| diffs: lag 1, 2, ahead 1, 2
+    assert np.isclose(row[4], 1) and np.isclose(row[5], 1)           # their ratios
+    assert row[6] == -8 and row[8] == -6 and np.isclose(row[10], 8 / 6)   # y before − y, y after − y, their ratio
+
+
+def test_bounce_smooth_fills_short_gaps_only():
+    from tennisbio.candidates.bounce_ctb import smooth
+
+    tr = _v_path()
+    x, y = tr[:, 0].copy(), tr[:, 1].copy()
+    x[10] = y[10] = np.nan                                           # after 5 seen frames: extrapolated
+    x[2] = y[2] = np.nan                                             # too early: stays missing
+    sx, sy = smooth(x, y)
+    assert np.isclose(sx[10], tr[10, 0], atol=0.5) and np.isclose(sy[10], tr[10, 1], atol=0.5)
+    assert np.isnan(sx[2])
+    x2, y2 = tr[:, 0].copy(), tr[:, 1].copy()
+    x2[10] = y2[10] = np.nan
+    y2[11] += 200                     # a jump right after the fill: dropped, then extrapolated in turn (as upstream)
+    _, sy2 = smooth(x2, y2)
+    assert np.isclose(sy2[11], tr[11, 1], atol=0.5)
+
+
+def test_bounce_peaks_and_detector_with_fake_model():
+    from tennisbio.candidates.bounce_ctb import CatBoostBounce, peaks
+
+    s = np.array([0.1, 0.5, 0.9, 0.6, 0.1, 0.7, 0.1])
+    assert peaks(np.array([1, 2, 3, 5]), s) == [2, 5]
+
+    def fn(x):                                     # high score where y turns back up (y_diff_1 and y_diff_inv_1 < 0)
+        return (((x[:, 6] < 0) & (x[:, 8] < 0)).astype(np.float32) * 0.9)[:, None]
+    d = CatBoostBounce.__new__(CatBoostBounce)
+    d.sess, d.threshold = FakeSession(fn), 0.45
+    assert d.bounces(_v_path()) == [20]
+    full = np.repeat(_v_path(), 2, axis=0)                           # a 60 fps track read at 30 fps
+    assert d.bounces(full, step=2) == [40]
+    assert d.bounces(np.full((10, 2), np.nan)) == []
+
+
+def test_bounce_rule_and_event_matching():
+    from bench_candidates import match_events, rule_bounces
+
+    tr = _v_path(60, 30)
+    tr[46:, 1] = tr[45, 1] + 8.0 * np.arange(1, 15)                 # hit at 45: the ball comes down again
+    got = rule_bounces(tr, [10, 45], 30.0)
+    assert 30 in got and all(f > 10 for f in got)
+    assert rule_bounces(tr, [], 30.0) == []
+    assert match_events([10, 31, 50], [30, 12], 3) == (2, 1, 0, [1, 2])
+    assert match_events([], [5], 3) == (0, 0, 1, [])
+
+
+def test_tracknet_labels_are_read_with_blanks(tmp_path):
+    from bench_candidates import read_tracknet
+
+    p = tmp_path / "Label.csv"
+    p.write_text("file name,visibility,x-coordinate,y-coordinate,status\n0000.jpg,1,599,423,0\n0001.jpg,0,,,\n"
+                 "0002.jpg,1,601,388,2\n0003.jpg,2,600,380,1.0\n")
+    names, tr, st = read_tracknet(p)
+    assert names[2] == "0002.jpg" and np.isnan(tr[1]).all() and tr[2].tolist() == [601, 388]
+    assert st.tolist() == [0, -1, 2, 1]
+
+
+# ---------------------------------------------------------------- paso 2.5: scoreboard OCR (PP-OCRv5)
+
+def test_ocr5_items_like_rapidocr_1():
+    from tennisbio.candidates.ocr5 import MODELS, TORCH, to_items
+
+    boxes = np.array([[[0, 0], [10, 0], [10, 5], [0, 5]]], np.float32)
+    items = to_items(boxes, ("ABC 6",), (0.93,))
+    assert items == [[[[0.0, 0.0], [10.0, 0.0], [10.0, 5.0], [0.0, 5.0]], "ABC 6", pytest.approx(0.93)]]
+    assert to_items(None, None, None) == []
+    assert all(len(v[2]) == 64 and v[1].startswith("https://www.modelscope.cn/") for v in {**MODELS, **TORCH}.values())
+
+
+def _reading(t, games, points, flags=()):
+    return {"t": t, "games": games, "points": points, "flags": list(flags)}
+
+
+def test_ocr5_consistency_follows_tennis_rules():
+    from tennisbio.candidates.ocr5 import consistent
+
+    rs = [_reading(0, [[2, 1]], ["15", "0"]), _reading(5, [[2, 1]], ["30", "0"]),
+          _reading(10, [[2, 1]], ["15", "0"]),                       # points going back in the game: a misread
+          _reading(15, [[2, 7]], ["0", "0"]),                       # games total jumps then falls: not in sequence
+          _reading(20, [[3, 1]], ["0", "15"]), _reading(25, [[3, 1]], ["0", "15"], ["columns_mismatch"]),
+          {}, _reading(30, [[3, 1]], ["X", "15"])]
+    assert consistent(rs) == [True, True, False, False, True, False, False, False]
+    assert consistent([]) == []
+
+
+def test_ocr5_agreement_frame_by_frame():
+    from tennisbio.candidates.ocr5 import agreement
+
+    a = [_reading(0, [[1, 0]], ["15", "0"]), _reading(0, [[1, 0]], ["30", "0"]), None, _reading(0, [[1, 1]], ["0", "0"])]
+    b = [_reading(0, [[1, 0]], ["15", "0"]), _reading(0, [[1, 0]], ["40", "0"]), _reading(0, [[1, 0]], ["0", "0"]), None]
+    assert agreement(a, b) == {"both": 2, "same": 1, "same_share": 0.5, "only_first": 1, "only_second": 1}
+
+
+def test_ocr_samples_read_and_missed():
+    from bench_candidates import ocr_samples
+
+    score = {"readings": [{"t": 10.5}, {"t": 15.5}, {"t": 20.5}, {"t": 25.5}],
+             "shots": [{"start": 10.0, "end": 30.0, "tried": 5, "read": 4}, {"start": 40.0, "end": 50.0, "tried": 2, "read": 2}]}
+    read, missed = ocr_samples(score, 2, 5.0)
+    assert read == [10.5, 20.5] and missed == []                    # every try of the failing shot was read
+    score["shots"][0]["end"] = 36.0                                  # two more tries there: 30.5 and 35.5
+    _, missed = ocr_samples(score, 4, 5.0)
+    assert missed == [30.5, 35.5]
+
+
+# ---------------------------------------------------------------- paso 2.5: MotionAGFormer
+
+def _coco_person(T=5):
+    """A standing person (COCO-17, image px) seen from the front."""
+    base = np.array([[100, 20], [95, 15], [105, 15], [90, 18], [110, 18], [80, 40], [120, 40], [75, 70], [125, 70],
+                     [72, 95], [128, 95], [88, 100], [112, 100], [88, 140], [112, 140], [88, 180], [112, 180]], float)
+    return np.repeat(base[None], T, 0), np.full((T, 17), 0.9)
+
+
+def test_mag_coco_to_h36m_and_flip():
+    from tennisbio.candidates.motionagformer import (H36M_L_HIP, H36M_L_SH, H36M_R_HIP, H36M_R_SH, clips,
+                                                     coco_to_h36m, flip, normalise)
+
+    k, s = _coco_person()
+    h, hs = coco_to_h36m(k, s)
+    assert h.shape == (5, 17, 2) and hs.shape == (5, 17)
+    assert np.allclose(h[0, 0], [100, 100])                          # pelvis: between the hips
+    assert np.allclose(h[0, H36M_L_SH], k[0, 5]) and np.allclose(h[0, H36M_R_SH], k[0, 6])
+    assert np.allclose(h[0, H36M_L_HIP], k[0, 11]) and np.allclose(h[0, H36M_R_HIP], k[0, 12])
+    assert np.isclose(hs[0, 0], 0.9)
+    x = np.random.default_rng(0).normal(size=(3, 17, 3))
+    assert np.allclose(flip(flip(x)), x)
+    assert np.allclose(normalise(np.array([[0, 0], [1920, 1080]]), 1920, 1080), [[-1, -0.5625], [1, 0.5625]])
+    c = clips(60, 27)
+    assert [len(i) for i in c] == [27, 27, 27] and set(np.concatenate(c).tolist()) == set(range(60))
+    short = clips(10, 27)[0]
+    assert len(short) == 27 and short[0] == 0 and short[-1] == 9 and (np.diff(short) >= 0).all()
+
+
+def test_mag_lifter_with_fake_model():
+    from tennisbio.candidates.motionagformer import H36M_L_SH, H36M_R_SH, MotionAGFormerLifter, line_yaw_world
+
+    def fn(x):                          # "lift": x, y as given, depth 0 (a flat person facing the camera)
+        assert x.shape == (2, 27, 17, 3)
+        y = x.copy()
+        y[..., 2] = 0
+        return y
+    lf = MotionAGFormerLifter.__new__(MotionAGFormerLifter)
+    lf.sess, lf.length, lf.name = FakeSession(fn, shape=(2, 27, 17, 3)), 27, "x"
+    k, s = _coco_person(40)
+    k[7] = np.nan                                                    # one frame without 2D: filled, not a crash
+    X = lf.lift(k, s, 200, 200)
+    assert X.shape == (40, 17, 3) and np.allclose(X[:, 0], 0) and np.isfinite(X).all()
+    # a camera looking along world +y (z up): image right is world +x, so the shoulders read along world +x
+    r_c2w = np.array([[1, 0, 0], [0, 0, 1], [0, -1, 0]], float)
+    assert np.allclose(line_yaw_world(X, H36M_L_SH, H36M_R_SH, r_c2w), 0, atol=1e-4)
+    assert lf.lift(np.full((5, 17, 2), np.nan), np.zeros((5, 17)), 200, 200).shape == (5, 17, 3)
+
+
+def test_mag_network_matches_the_checkpoint_names():
+    torch = pytest.importorskip("torch")
+    import export_motionagformer as E
+
+    m = E.build("xs").eval()
+    keys = set(m.state_dict())
+    assert {"pos_embed", "joints_embed.weight", "layers.0.att_spatial.mixer.qkv.weight",
+            "layers.0.att_temporal.layer_scale_1", "layers.11.graph_temporal.mixer.batch_norm.running_var",
+            "layers.0.graph_spatial.mixer.U.weight", "layers.0.fusion.weight", "rep_logit.fc.weight", "head.weight"} <= keys
+    assert not any(k.endswith(".adj") for k in keys)                  # the graph is not in the published files
+    assert sum(1 for k in keys if k.endswith("att_spatial.mixer.qkv.weight")) == 12
+    with torch.no_grad():
+        y = m(torch.randn(2, 27, 17, 3))
+    assert y.shape == (2, 27, 17, 3) and torch.isfinite(y).all()
+
+
+# ---------------------------------------------------------------- paso 2.5: CalTennis geometry
+
+def _look_at(C, target):
+    from tennisbio.candidates.caltennis import Camera
+
+    C, target = np.asarray(C, float), np.asarray(target, float)
+    f = (target - C) / np.linalg.norm(target - C)
+    right = np.cross(f, [0, 0, 1.0])
+    right /= np.linalg.norm(right)
+    down = np.cross(f, right)
+    K = np.array([[1600, 0, 960], [0, 1600, 540], [0, 0, 1.0]])
+    return Camera(K, np.stack([right, down, f], 1), C, (1920, 1080))
+
+
+def _two_views():
+    return _look_at([11, -3.4, 1.7], [0.6, 5.7, 1.0]), _look_at([10.9, 14.0, 1.7], [0.6, 5.7, 1.0])
+
+
+def test_caltennis_camera_files_and_names():
+    from tennisbio.candidates.caltennis import Camera, start_time
+
+    rt = [[0.66, 0.0065, -0.75, 11.07], [0.75, -0.0014, 0.66, -3.44], [0.0033, -1.0, -0.0059, 1.68]]
+    good = {"K": np.eye(3).tolist(), "Rt_c2w": rt, "camera_model": "pinhole", "dist_coeffs": None,
+            "reprojection_error": 2.3, "image_shape": {"height": 1080, "width": 1920}}
+    cam = Camera.from_json(good)
+    assert np.allclose(cam.C, [11.07, -3.44, 1.68]) and cam.size == (1920, 1080)
+    assert Camera.from_json({**good, "camera_model": "fisheye", "dist_coeffs": [0.1, 0, 0, 0]}) is None
+    assert Camera.from_json({**good, "reprojection_error": 110.0}) is None
+    a = start_time("01_23_2026_16_59_47_000_2_E_01_18_20_30_998")
+    b = start_time("01_23_2026_17_00_17_000_2_W_02_18_10_24_610")
+    assert b - a == pytest.approx(30.0)
+    assert start_time("09_18_2025_16_15_court5_overhead") is None
+
+
+def test_caltennis_triangulation_and_view_pair():
+    from tennisbio.candidates.caltennis import reproj_error, triangulate, trunk_yaw_from_world, view_pair
+
+    a, b = _two_views()
+    ang, tgt = view_pair(a, b)
+    assert 70 < ang < 90 and np.allclose(tgt, [0.6, 5.7], atol=0.3)
+    assert view_pair(a, a) is None                                    # same direction: nothing to triangulate
+    X = np.array([[0.4, 5.6, 1.4], [0.8, 5.8, 1.45], [0.5, 5.6, 0.95], [0.75, 5.8, 0.95]])   # ls, rs, lh, rh
+    Y = triangulate(a.P, b.P, a.project(X), b.project(X))
+    assert np.allclose(Y, X, atol=1e-6) and reproj_error(a, b, a.project(X), b.project(X), Y).max() < 1e-6
+    assert np.allclose(trunk_yaw_from_world(X), np.degrees(np.arctan2([0.2, 0.2], [0.4, 0.25])))
+    assert np.isnan(triangulate(a.P, b.P, np.full((1, 2), np.nan), np.zeros((1, 2)))).all()
+
+
+def test_caltennis_sync_offset_is_found():
+    from tennisbio.candidates.caltennis import best_offset
+
+    a, b = _two_views()
+    pts = np.random.default_rng(1).normal([0.6, 5.7, 1.0], 0.3, (17, 3))
+
+    def body(t):                                                     # a person moving sideways and turning
+        c, s = np.cos(2.0 * t), np.sin(2.0 * t)
+        R = np.array([[c, -s, 0], [s, c, 0], [0, 0, 1]])
+        return (pts - pts.mean(0)) @ R.T + pts.mean(0) + [1.5 * t, 0, 0]
+    ta = np.arange(120) / 60.0
+    true = 0.35                                                      # b's clock + 0.35 s = a's clock
+    tb = np.arange(160) / 60.0 - 0.2
+    ka = np.stack([a.project(body(t)) for t in ta])
+    kb = np.stack([b.project(body(t + true)) for t in tb])
+    off, err = best_offset(a, b, ta, ka, np.ones((len(ta), 17)), tb, kb, np.ones((len(tb), 17)),
+                           np.arange(-1.0, 1.0, 1 / 120))
+    assert abs(off - true) <= 1 / 120 and err < 1.0
+
+
+def test_caltennis_tracking_pairing_and_errors():
+    from tennisbio.candidates.caltennis import angle_errors, interp, match_people, track, wrap
+
+    boxes = [np.array([[0, 0, 10, 20], [100, 0, 110, 20]]), np.array([[101, 1, 111, 21], [1, 0, 11, 20]]),
+             np.array([[2, 1, 12, 21]]), np.zeros((0, 4)), np.array([[3, 1, 13, 21]])]
+    assert track(boxes, 0, 0) == [0, 1, 0, None, None]               # lost at the empty frame: stops there
+    assert track(boxes, 1, 0) == [1, 0, None, None, None]
+    a, b = _two_views()
+    p1 = np.random.default_rng(2).normal([0.6, 5.7, 1.0], 0.3, (17, 3))
+    p2 = p1 + [3.0, -2.0, 0]
+    ka, kb = np.stack([a.project(p1), a.project(p2)]), np.stack([b.project(p2), b.project(p1)])
+    i, j, e = match_people(a, b, ka, np.ones((2, 17)), kb, np.ones((2, 17)))
+    assert (i, j) == (0, 1) and e < 1e-3
+    assert np.allclose(wrap([190, -190, 360]), [-170, 170, 0])
+    e = angle_errors(np.array([[10, 0], [179, 5], [np.nan, 0]]), np.array([[0, 0], [-179, 0], [0, 0]]))
+    assert e["frames"] == 2 and e["median_err_deg"] == pytest.approx(3.5) and e["within_15deg"] == 1.0
+    v = interp(np.array([0.0, 1.0]), np.array([[0.0], [10.0]]), np.array([0.25, 2.0]))
+    assert v[0, 0] == pytest.approx(2.5) and np.isnan(v[1, 0])
+
+
+def test_new_exports_run_with_their_packages(monkeypatch, tmp_path):
+    import bench_candidates as B
+
+    seen = []
+
+    def run(cmd, **kw):
+        assert kw.get("timeout")
+        seen.append(cmd)
+        Path(cmd[cmd.index("--out") + 1]).write_bytes(b"x")
+        return type("R", (), {"returncode": 0, "stdout": "", "stderr": ""})()
+    monkeypatch.setattr(B.subprocess, "run", run)
+    monkeypatch.setitem(B.EXPORTS, "bounce", (tmp_path / "b.onnx", ["export_bounce_ctb.py"], ("catboost==1.2.10",)))
+    monkeypatch.setitem(B.EXPORTS, "mag3d-s", (tmp_path / "s.onnx", ["export_motionagformer.py", "--size", "s"], ()))
+    B.ensure_model("bounce")
+    B.ensure_model("mag3d-s")
+    assert seen[0][1:4] == ["run", "--with", "catboost==1.2.10"] and seen[0][-2:] == ["--out", str(tmp_path / "b.onnx")]
+    assert seen[1][0] == sys.executable and seen[1][2:4] == ["--size", "s"]
+    assert {"ocr5", "mag3d", "bounce"} <= set(B.CANDIDATES) and all(c in B.EXPORTS for c in B.CANDIDATES)

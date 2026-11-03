@@ -149,6 +149,12 @@ script: bench_export
 id: 81
 accion: recall
 detector: si
+---
+id: 82
+accion: medir
+script: bench_candidates
+argumentos: --only ocr5,mag3d,bounce
+# 82 (03-11): paso 2.5, los tres candidatos de B3 que faltan (marcador PP-OCRv5, 3D MotionAGFormer, bote CatBoost)
 # 81 (03-11): la 79 se corto a las 13:20 en el 2.o partido; de nuevo, con el recall sin el partido de anotaciones
 # desfasadas (cuartos AO 2023) aparte
 # 03-11: pausa quitada (el usuario lo pide). En orden: 79 = paso 3 (golpes perdidos como repeticion, regla v11);
@@ -178,7 +184,7 @@ detector: si
 #   migrar = estructura definitiva: copia output a biblioteca\partidos, la comprueba y solo entonces la activa (nunca borra)
 #   diag = hojas de fotogramas de los planos de cada partido (por que hay pocos minutos de camara principal)
 #   rehacer = un partido entero de nuevo (partido: <id>) y despues el analisis completo
-#   medir = una medida con un script del repositorio (script: bench_ball), registro output\medir_<script>.log
+#   medir = una medida con un script del repositorio (script: bench_ball; argumentos: --only ocr5 opcional), registro output\medir_<script>.log
 #   repetir = unas etapas de todos los partidos aunque esten al dia (etapas: fine[,fine_doubtful]) y despues el analisis completo
 #   recall = golpes encontrados frente a los anotados por personas (F3Set), por lado, tipo y etapa (puntos: N para una prueba corta;
 #            detector: si = candidatos del detector entrenado, informe recall_validation_detector.*)
