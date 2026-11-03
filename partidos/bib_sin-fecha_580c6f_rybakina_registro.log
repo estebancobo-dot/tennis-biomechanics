@@ -3629,3 +3629,46 @@
 2026-11-03 21:58:24   identity:  69 % (1156/1681 fotogramas (ropa)) · 47 min · quedan ≈ 21 min
 2026-11-03 21:59:31   identity:  72 % (1216/1681 fotogramas (ropa)) · 48 min · quedan ≈ 18 min
 2026-11-03 22:00:30   identity:  76 % (1275/1681 fotogramas (ropa)) · 49 min · quedan ≈ 16 min
+2026-11-03 22:01:23   identity:  79 % (1336/1681 fotogramas (ropa)) · 50 min · quedan ≈ 13 min
+2026-11-03 22:02:09   identity:  83 % (1395/1681 fotogramas (ropa)) · 51 min · quedan ≈ 10 min
+2026-11-03 22:02:49   identity:  87 % (1456/1681 fotogramas (ropa)) · 51 min · quedan ≈ 8 min
+2026-11-03 22:03:23   identity:  90 % (1516/1681 fotogramas (ropa)) · 52 min · quedan ≈ 6 min
+2026-11-03 22:03:53   identity:  95 % (1602/1681 fotogramas (ropa)) · 52 min · quedan ≈ 3 min
+2026-11-03 22:04:26   identity:  98 % (1651/1681 fotogramas (ropa)) · 53 min · quedan ≈ 58 s
+2026-11-03 22:04:28   identity: 100 % (1681/1681 fotogramas (ropa)) · 53 min · quedan ≈ 0 s
+2026-11-03 22:04:28   ropa: 1681 fotogramas · leerlos 3154 s, medir la ropa 21 s
+2026-11-03 22:04:28   identidad: 281/285 planos · ropa y cambios de lado de acuerdo en 201, solo cambios de lado 11, solo ropa 62, la ropa corrige el marcador en 7, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 3.59
+2026-11-03 22:04:28 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] identity terminada a las 22:04:28 en 53.0 min
+2026-11-03 22:04:28 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] spotting… (2026-11-03 22:04:28, etapa 8 de 14)
+2026-11-03 22:05:00   detector entrenado: 643 golpes (344 cercanos, 299 lejanos) en 133 min de vídeo · umbral 0.1 · 29 s (jugadores_y_audio 3 s, rasgos 29 s, bola 0 s, modelo 0 s)
+2026-11-03 22:05:00 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] spotting terminada a las 22:05:00 en 32 s
+2026-11-03 22:05:00 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] candidates… (2026-11-03 22:05:00, etapa 9 de 14)
+2026-11-03 22:05:04   sonido: pista 1 de 2 (la que coincide con los golpes)
+2026-11-03 22:05:04   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 0, 'changed': 0, 'by_click': 270}
+2026-11-03 22:05:07   tramos que son repeticiones: 1 lenta, 8 sin marcador
+2026-11-03 22:05:07   candidatos del detector entrenado: 625 (293 lejanos; 18 en repeticiones, fuera)
+2026-11-03 22:05:07 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] candidates terminada a las 22:05:07 en 6 s
+2026-11-03 22:05:07 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] views… (2026-11-03 22:05:07, etapa 10 de 14)
+2026-11-03 22:05:13   views:   0 % (1/1915 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+2026-11-03 22:05:43   views:   7 % (140/1915 fotogramas de otras tomas) · 30 s · quedan ≈ 6 min
+2026-11-03 22:06:13   views:  15 % (287/1915 fotogramas de otras tomas) · 60 s · quedan ≈ 6 min
+2026-11-03 22:06:43   views:  24 % (451/1915 fotogramas de otras tomas) · 2 min · quedan ≈ 5 min
+2026-11-03 22:07:13   views:  34 % (654/1915 fotogramas de otras tomas) · 2 min · quedan ≈ 4 min
+2026-11-03 22:07:43   views:  46 % (874/1915 fotogramas de otras tomas) · 3 min · quedan ≈ 3 min
+2026-11-03 22:08:13   views:  56 % (1072/1915 fotogramas de otras tomas) · 3 min · quedan ≈ 2 min
+2026-11-03 22:08:43   views:  67 % (1280/1915 fotogramas de otras tomas) · 4 min · quedan ≈ 2 min
+2026-11-03 22:09:13   views:  89 % (1712/1915 fotogramas de otras tomas) · 4 min · quedan ≈ 29 s
+2026-11-03 22:09:32   views: 100 % (1915/1915 fotogramas de otras tomas) · 4 min · quedan ≈ 0 s
+2026-11-03 22:09:32   tomas: 1855 fotogramas clave y 60 exactos (5146 claves en el vídeo); lectura 1 s, personas 189 s, pista 57 s; 79 ajustes de pista
+2026-11-03 22:09:32 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] views terminada a las 22:09:32 en 4.4 min
+2026-11-03 22:09:32 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine… (2026-11-03 22:09:32, etapa 11 de 14)
+2026-11-03 22:09:55   ventana w000796677_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+2026-11-03 22:09:55   ventana w000796677_3600: pose yolo en 180 de 180 fotogramas (11 s; modelo 11 s) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 102 px (court)
+2026-11-03 22:09:55   fine:   0 % (1/248 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-11-03 22:09:55   ventana w000828054_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.18 s
+2026-11-03 22:09:55   ventana w000828054_3600: pose yolo en 180 de 180 fotogramas (11 s; modelo 11 s) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 102 px (court)
+2026-11-03 22:10:31   ventana w000935308_5536 (far, 2 candidatos): pasa · golpe de bola en su lado a 1.76 s
+2026-11-03 22:10:31   ventana w000935308_5536: pose yolo en 276 de 276 fotogramas (24 s; modelo 24 s, 47 a 960 px por perderla) · bola 9 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 103 px (court)
+2026-11-03 22:10:31   fine:   2 % (4/248 golpes candidatos · 4 confirmados · 0 ventanas descartadas sin pose) · 36 s · quedan ≈ 37 min
+2026-11-03 22:10:38   ventana w000906110_6053 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.26 s
+2026-11-03 22:10:38   ventana w000906110_6053: pose yolo en 302 de 302 fotogramas (29 s; modelo 29 s, 289 a 960 px por perderla) · bola 10 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 287 px (segments)
