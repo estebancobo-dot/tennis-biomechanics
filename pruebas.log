@@ -1,3 +1,330 @@
-﻿...........................s............................................ [ 61%]
-..............................................                           [100%]
-117 passed, 1 skipped in 3.81s
+﻿commit: 83083dd
+inicio: 2026-11-03T03:31:54
+fin: 2026-11-03T03:39:53
+codigo: 
+................F.......F.........F...FF.........s......ss..sss....sssss [ 10%]
+ss...................................................................... [ 20%]
+.........................F..FF....................F..................... [ 30%]
+........................................................................ [ 40%]
+...........................F...................ssss.sssss.ss............ [ 50%]
+........................................................................ [ 60%]
+........................................................................ [ 70%]
+........................................................................ [ 81%]
+.....................................F.................ssssss........... [ 91%]
+.............................................................F.          [100%]
+================================== FAILURES ===================================
+_____________ test_same_video_twice_moved_or_copied_is_recognised _____________
+
+env = namespace(cfg={'paths': {'output': 'C:\\Users\\esteb\\AppData\\Local\\Temp\\pytest-of-esteb\\pytest-4\\test_same_video...=48000), tmp=WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-4/test_same_video_twice_moved_or0'))
+
+    def test_same_video_twice_moved_or_copied_is_recognised(env):
+        a = env.app()
+        f = env.make()
+        a.add(f, player="rybakina")
+        copy = env.tmp / "otra_carpeta" / "copia.mp4"
+        copy.parent.mkdir()
+        copy.write_bytes(f.read_bytes())
+        prop, mid = a.add(copy, player="rybakina")
+        assert mid is None and prop.duplicate_of and "lo reconozco por su contenido" in prop.flags["duplicado"]
+>       assert a.db.one("SELECT path FROM videos")["path"] == str(copy)
+E       AssertionError: assert '' == 'C:\\Users\\e...ta\\copia.mp4'
+E         
+E         - C:\Users\esteb\AppData\Local\Temp\pytest-of-esteb\pytest-4\test_same_video_twice_moved_or0\otra_carpeta\copia.mp4
+
+tests\test_app_core.py:267: AssertionError
+______________________ test_video_without_audio_is_said _______________________
+
+env = namespace(cfg={'paths': {'output': 'C:\\Users\\esteb\\AppData\\Local\\Temp\\pytest-of-esteb\\pytest-4\\test_video_with...e=None), tmp=WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-4/test_video_without_audio_is_sa0'))
+
+    def test_video_without_audio_is_said(env):
+        a = env.app()
+        env.probe.audio_tracks, env.probe.audio_rate = 0, None
+        prop, mid = _added(env, a)
+        assert "no tiene sonido" in prop.flags["sin_audio"] and "sin_audio" not in a.db.one("SELECT note FROM matches")["note"]
+>       assert a.db.one("SELECT note FROM matches")["note"].startswith("El vÃ­deo no tiene sonido")
+E       AssertionError: assert False
+E        +  where False = <built-in method startswith of str object at 0x00007FFF15DE96E0>('El vÃ­deo no tiene sonido')
+E        +    where <built-in method startswith of str object at 0x00007FFF15DE96E0> = ''.startswith
+
+tests\test_app_core.py:348: AssertionError
+__ test_test_runs_one_level_down_are_indexed_and_reported_from_their_folder ___
+
+env = namespace(cfg={'paths': {'output': 'C:\\Users\\esteb\\AppData\\Local\\Temp\\pytest-of-esteb\\pytest-4\\test_test_runs_...=48000), tmp=WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-4/test_test_runs_one_level_down_0'))
+
+    def test_test_runs_one_level_down_are_indexed_and_reported_from_their_folder(env):
+        """The PC's real analyses so far are test runs (<output>/_smoke/<match>, <output>/_poc9_largo/<match>):
+        the index sees them (the same video in two runs stays two matches), keeps their folder, deduces the
+        player from the folder name when the run did not save it, and picks them up at the next start."""
+        from tennisbio.app.engine import Engine
+        a = env.app()
+        out = a.paths.output
+        for grp in ("_smoke", "_poc9_largo"):
+            d = out / grp / "smoke_tennis-yusipopen-final-sobolenko-rybakin"
+            d.mkdir(parents=True)
+            (d / "manifest.json").write_text(json.dumps({"candidates": {"summary": {"candidates": 9}},
+                                                         "fine": {"summary": {"confirmed": 9}}}), encoding="utf-8")
+        a.close()
+        b = env.app()                                               # next start: picks them up
+        rows = {r["id"]: r for r in b.db.q("SELECT * FROM matches")}
+>       assert set(rows) == {"smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+                             "poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin"}
+E       AssertionError: assert {'poc9_largo:...ena-rybakina'} == {'poc9_largo:...enko-rybakin'}
+E         
+E         Extra items in the left set:
+E         'tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5'
+E         'us-open-2026-r4-naomi-osaka-elena-rybakina'
+E         'tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5'
+E         'zheng-qinwen-elena-rybakina'
+E         Use -v to get more diff
+
+tests\test_app_core.py:490: AssertionError
+_______________ test_test_run_clip_is_found_next_to_its_matches _______________
+
+env = namespace(cfg={'paths': {'output': 'C:\\Users\\esteb\\AppData\\Local\\Temp\\pytest-of-esteb\\pytest-4\\test_test_run_c...=48000), tmp=WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-4/test_test_run_clip_is_found_ne0'))
+
+    def test_test_run_clip_is_found_next_to_its_matches(env):
+        """Test runs cut their clip into the run's folder (output/_smoke/<name>_1800_4m.mkv), not the videos
+        folder; a video not found once is looked for again at the next start."""
+        from tennisbio.pipeline import video_fingerprint
+        a = env.app()
+        run = a.paths.output / "_smoke"
+        d = run / "smoke_x-rybakina"
+        d.mkdir(parents=True)
+        (d / "manifest.json").write_text(json.dumps({"fine": {"summary": {"confirmed": 3}}}), encoding="utf-8")
+        clip = run / "x_1800_4m.mkv"
+        clip.write_bytes(b"v" * 5000)
+        video_fingerprint(clip, d)                                   # what the pipeline pins in video.json
+        clip.rename(env.tmp / "aparte.bin")                          # not there at the first look
+        a.close()
+        b = env.app()
+        assert b.db.one("SELECT path FROM videos")["path"] == ""
+        (env.tmp / "aparte.bin").rename(clip)
+        b.close()
+        c = env.app()
+>       assert c.db.one("SELECT path FROM videos")["path"] == str(clip)
+E       AssertionError: assert '' == 'C:\\Users\\e...x_1800_4m.mkv'
+E         
+E         - C:\Users\esteb\AppData\Local\Temp\pytest-of-esteb\pytest-4\test_test_run_clip_is_found_ne0\output\_smoke\x_1800_4m.mkv
+
+tests\test_app_core.py:556: AssertionError
+_____________ test_plan_leaves_the_cycles_test_runs_to_the_cycle ______________
+
+env = namespace(cfg={'paths': {'output': 'C:\\Users\\esteb\\AppData\\Local\\Temp\\pytest-of-esteb\\pytest-4\\test_plan_leave...=48000), tmp=WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-4/test_plan_leaves_the_cycles_te0'))
+
+    def test_plan_leaves_the_cycles_test_runs_to_the_cycle(env):
+        """On the PC (18-10) the plan wanted 3 h for the test runs: their cheap stages are stale on purpose (the
+        cycle recomputes the measures from the caches only). They belong to the automatic cycle."""
+        a = env.app()
+        d = a.paths.output / "_smoke" / "smoke_x-rybakina"
+        d.mkdir(parents=True)
+        (d / "manifest.json").write_text(json.dumps({"fine": {"summary": {"confirmed": 3}}}), encoding="utf-8")
+        a.close()
+        b = env.app()
+        b.engine.stale_stages = {"smoke:smoke_x-rybakina": ["scenes", "fine"]}
+        jobs.enqueue(b.db, "partido", match="smoke:smoke_x-rybakina", player="rybakina", reason="nueva versiÃ³n (plan anterior)")
+        b.db.notice("plan", "info", "Nueva versiÃ³n: recalcula 1 partido(s)")
+        r = b.plan_updates()
+>       assert r["matches"] == 0 and r["test_runs"] == 1
+E       assert (0 == 0 and 5 == 1)
+
+tests\test_app_core.py:572: AssertionError
+__________________ test_batched_search_equals_former_search ___________________
+
+    def test_batched_search_equals_former_search():
+        for i, kw in enumerate(PRESETS.values()):
+            frame = render(broadcast_H(**kw), seed=i)
+            ref, fast = _reference_fit_court(frame), fit_court(frame)
+            assert ref is not None and fast is not None
+>           assert abs(ref.score - fast.score) < 1e-9
+E           assert 0.00940238772293156 < 1e-09
+E            +  where 0.00940238772293156 = abs((0.9207719256774162 - 0.9113695379544846))
+E            +    where 0.9207719256774162 = CourtFit(H=array([[1.01173815e+02, 6.45431582e+01, 9.59374233e+02],\n       [0.00000000e+00, 2.13855412e+00, 8.35000000e+02],\n       [0.00000000e+00, 6.70737976e-02, 1.00000000e+00]]), score=0.9207719256774162).score
+E            +    and   0.9113695379544846 = CourtFit(H=array([[1.02613034e+02, 6.55386879e+01, 9.61210871e+02],\n       [9.54746762e-01, 2.17188321e+00, 8.37000000e+02],\n       [1.14067714e-03, 6.84245456e-02, 1.00000000e+00]]), score=0.9113695379544846).score
+
+tests\test_court.py:154: AssertionError
+___________ test_known_court_reused_when_the_camera_preset_repeats ____________
+
+    def test_known_court_reused_when_the_camera_preset_repeats():
+        fits = {k: fit_court(render(broadcast_H(**kw), seed=i)) for i, (k, kw) in enumerate(PRESETS.items())}
+        known = [fits["p15"], fits["p20"]]
+        for seed in (11, 12):                                         # the same preset later in the match
+            frame = render(broadcast_H(20.0), seed=seed)
+            hit, full = C.match_known(frame, known), fit_court(frame)
+            assert hit is not None and full is not None
+            assert np.array_equal(hit.H, fits["p20"].H)                 # the right preset is picked
+>           assert _corner_err(hit.H, full.H) < 2.0                     # same court as a fresh search (px)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           assert np.float64(2.426031138356393) < 2.0
+E            +  where np.float64(2.426031138356393) = _corner_err(array([[1.02613034e+02, 6.55386879e+01, 9.61210871e+02],\n       [9.54746762e-01, 2.17188321e+00, 8.37000000e+02],\n       [1.14067714e-03, 6.84245456e-02, 1.00000000e+00]]), array([[1.01336579e+02, 6.49657299e+01, 9.58500000e+02],\n       [7.75580435e-15, 2.08109654e+00, 8.37000000e+02],\n       [1.06608994e-17, 6.79743842e-02, 1.00000000e+00]]))
+E            +    where array([[1.02613034e+02, 6.55386879e+01, 9.61210871e+02],\n       [9.54746762e-01, 2.17188321e+00, 8.37000000e+02],\n       [1.14067714e-03, 6.84245456e-02, 1.00000000e+00]]) = CourtFit(H=array([[1.02613034e+02, 6.55386879e+01, 9.61210871e+02],\n       [9.54746762e-01, 2.17188321e+00, 8.37000000e+02],\n       [1.14067714e-03, 6.84245456e-02, 1.00000000e+00]]), score=0.9113695379544846).H
+E            +    and   array([[1.01336579e+02, 6.49657299e+01, 9.58500000e+02],\n       [7.75580435e-15, 2.08109654e+00, 8.37000000e+02],\n       [1.06608994e-17, 6.79743842e-02, 1.00000000e+00]]) = CourtFit(H=array([[1.01336579e+02, 6.49657299e+01, 9.58500000e+02],\n       [7.75580435e-15, 2.08109654e+00, 8.37000000e+02],\n       [1.06608994e-17, 6.79743842e-02, 1.00000000e+00]]), score=0.9155727263651792).H
+
+tests\test_court.py:184: AssertionError
+_______________________ test_court_stage_reuses_presets _______________________
+
+tmp_path = WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-4/test_court_stage_reuses_preset0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x00000207256E3110>
+
+    def test_court_stage_reuses_presets(tmp_path, monkeypatch):
+        """The court stage on a synthetic broadcast (two camera presets, a shot without court): every
+        stretch gets the court a full search finds there, and the search runs only when needed."""
+        from tennisbio import stages
+        from tennisbio.catalog import Match, Player
+        from tennisbio.pipeline import Context
+    
+        fps = 25
+        plan = ["p20", "p20", "p15", None, "p20", "p15", "p15", "p20"]   # one 8-s shot each
+        shots = [{"start": i * 8 * fps, "end": (i + 1) * 8 * fps, "main_camera": True} for i in range(len(plan))]
+        frames = {}
+    
+        def grab(video, t):
+            i = int(t // 8)
+            if i not in frames:
+                frames[i] = _clutter(i) if plan[i] is None else render(broadcast_H(**PRESETS[plan[i]]), seed=100 + i)
+            return frames[i]
+    
+        calls = {"search": 0}
+        real_fit = C.fit_court
+    
+        def counting_fit(*a, **k):
+            calls["search"] += 1
+            return real_fit(*a, **k)
+    
+        monkeypatch.setattr(stages, "grab_frame", grab)
+        monkeypatch.setattr(C, "fit_court", counting_fit)
+        out = tmp_path / "out"
+        out.mkdir()
+        (out / "scenes.json").write_text(json.dumps({"fps": fps, "shots": shots}))
+        ctx = Context(Match("m1", tmp_path / "v.mp4", Player("p", "P")), {}, out, log=lambda *_: None)
+        ctx._prog["stage"] = "court"                    # as pipeline.run sets it
+        res = stages.st_court(ctx)
+        segs = json.loads((out / "court.json").read_text())["shots"]
+        assert segs[0]["start"] == 0 and segs[-1]["end"] == len(plan) * 8 * fps
+        for s in segs:
+            for i in range(s["start"] // (8 * fps), s["end"] // (8 * fps)):
+                if plan[i] is None:
+                    assert s["H"] is None
+                else:
+>                   assert s["H"] is not None and _corner_err(np.array(s["H"]), real_fit(grab(None, i * 8 + 4)).H) < 2.0
+E                   assert ([[101.17381514284843, 64.54315603261566, 959.3742325036286], [1.2436116859173908e-13, 2.138551963275496, 835.0], [1.5649350129922319e-16, 0.0670737942253294, 1.0]] is not None and np.float64(7.0442588375358355) < 2.0)
+E                    +  where np.float64(7.0442588375358355) = _corner_err(array([[1.01173815e+02, 6.45431560e+01, 9.59374233e+02],\n       [1.24361169e-13, 2.13855196e+00, 8.35000000e+02],\n       [1.56493501e-16, 6.70737942e-02, 1.00000000e+00]]), array([[1.02425249e+02, 6.48371713e+01, 9.60448991e+02],\n       [9.50669320e-01, 1.51090670e+00, 8.37000000e+02],\n       [1.13580564e-03, 6.73537093e-02, 1.00000000e+00]]))
+E                    +    where array([[1.01173815e+02, 6.45431560e+01, 9.59374233e+02],\n       [1.24361169e-13, 2.13855196e+00, 8.35000000e+02],\n       [1.56493501e-16, 6.70737942e-02, 1.00000000e+00]]) = <built-in function array>([[101.17381514284843, 64.54315603261566, 959.3742325036286], [1.2436116859173908e-13, 2.138551963275496, 835.0], [1.5649350129922319e-16, 0.0670737942253294, 1.0]])
+E                    +      where <built-in function array> = np.array
+E                    +    and   array([[1.02425249e+02, 6.48371713e+01, 9.60448991e+02],\n       [9.50669320e-01, 1.51090670e+00, 8.37000000e+02],\n       [1.13580564e-03, 6.73537093e-02, 1.00000000e+00]]) = CourtFit(H=array([[1.02425249e+02, 6.48371713e+01, 9.60448991e+02],\n       [9.50669320e-01, 1.51090670e+00, 8.37000000e+02],\n       [1.13580564e-03, 6.73537093e-02, 1.00000000e+00]]), score=0.8823350843135016).H
+E                    +      where CourtFit(H=array([[1.02425249e+02, 6.48371713e+01, 9.60448991e+02],\n       [9.50669320e-01, 1.51090670e+00, 8.37000000e+02],\n       [1.13580564e-03, 6.73537093e-02, 1.00000000e+00]]), score=0.8823350843135016) = <function fit_court at 0x00000207163179C0>(array([[[ 53, 111,  54],\n        [ 63, 104,  56],\n        [ 64, 114,  54],\n        ...,\n        [ 58, 113,  57],\n     ...  ...,\n        [ 73, 121,  43],\n        [ 58, 103,  54],\n        [ 60, 113,  53]]], shape=(1080, 1920, 3), dtype=uint8))
+E                    +        where array([[[ 53, 111,  54],\n        [ 63, 104,  56],\n        [ 64, 114,  54],\n        ...,\n        [ 58, 113,  57],\n     ...  ...,\n        [ 73, 121,  43],\n        [ 58, 103,  54],\n        [ 60, 113,  53]]], shape=(1080, 1920, 3), dtype=uint8) = <function test_court_stage_reuses_presets.<locals>.grab at 0x00000207256F11C0>(None, ((0 * 8) + 4))
+
+tests\test_court.py:231: AssertionError
+__________ test_the_worker_leaves_the_next_window_to_the_main_thread __________
+
+    def test_the_worker_leaves_the_next_window_to_the_main_thread():
+        # gap 1: never the window right after the one the main thread is on
+        ahead, done_by, _ = _drive(2, work_s=0.05, job_s=0.0, gap=5)
+        assert done_by == {0: "main", 1: "main"}
+        ahead, done_by, _ = _drive(4, work_s=0.05, job_s=0.0, gap=1)
+>       assert done_by[0] == "main" and done_by[1] == "main"
+E       AssertionError: assert ('main' == 'main'
+E         
+E           main and 'worker' == 'main'
+E         
+E         - main
+E         + worker)
+
+tests\test_fine_ahead.py:60: AssertionError
+______________________ test_config_switch_on_by_default _______________________
+
+tmp_path = WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-4/test_config_switch_on_by_defau0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002072B3F9690>
+
+    def test_config_switch_on_by_default(tmp_path, monkeypatch):
+        from tennisbio.config import load_config
+    
+        cfg = load_config()
+        # on since 14-10 (measured on the PC): the window caches get the hybrid tag
+        assert cfg["fine_pass"]["pose_model"] == "hybrid"
+>       assert fine_pose_model(cfg) == "hybrid" and pose_cache_tag(cfg) == ["hybrid"]
+E       AssertionError: assert ('hybrid' == 'hybrid'
+E         
+E           hybrid and ['hybrid', 'rtmw-x'] == ['hybrid']
+E         
+E         Left contains one more item: 'rtmw-x'
+E         Use -v to get more diff)
+
+tests\test_hybrid_pose.py:108: AssertionError
+_______________ test_the_shipped_model_gives_the_same_in_pieces _______________
+
+    def test_the_shipped_model_gives_the_same_in_pieces():
+        """models/spotting.onnx sees Â±24 frames: pieces with 64 frames of context give what the whole video gives."""
+        from pathlib import Path
+        onnx = Path(__file__).resolve().parents[1] / "models" / "spotting.onnx"
+        if not onnx.exists():
+            pytest.skip("sin models/spotting.onnx")
+        F = S.model_meta(onnx)["feature_dim"]
+        X = np.random.default_rng(0).normal(size=(1500, F)).astype(np.float32)
+>       assert np.allclose(S.predict_onnx(onnx, X, chunk=10 ** 6), S.predict_onnx(onnx, X, chunk=400, overlap=64), atol=1e-5)
+E       AssertionError: assert False
+E        +  where False = <function allclose at 0x0000020774512770>(array([[1.0000000e+00, 0.0000000e+00, 0.0000000e+00, ..., 0.0000000e+00,\n        2.3823678e-16, 0.0000000e+00],\n      ...0000000e+00, 0.0000000e+00, ..., 0.0000000e+00,\n        0.0000000e+00, 0.0000000e+00]], shape=(1500, 9), dtype=float32), array([[1.0000000e+00, 0.0000000e+00, 0.0000000e+00, ..., 0.0000000e+00,\n        2.3822225e-16, 0.0000000e+00],\n      ...0000000e+00, 0.0000000e+00, ..., 0.0000000e+00,\n        0.0000000e+00, 0.0000000e+00]], shape=(1500, 9), dtype=float32), atol=1e-05)
+E        +    where <function allclose at 0x0000020774512770> = np.allclose
+E        +    and   array([[1.0000000e+00, 0.0000000e+00, 0.0000000e+00, ..., 0.0000000e+00,\n        2.3823678e-16, 0.0000000e+00],\n      ...0000000e+00, 0.0000000e+00, ..., 0.0000000e+00,\n        0.0000000e+00, 0.0000000e+00]], shape=(1500, 9), dtype=float32) = <function predict_onnx at 0x00000207176414E0>(WindowsPath('C:/tenis/tennis-biomech/models/spotting.onnx'), array([[ 1.2573022e-01, -1.3210486e-01,  6.4042264e-01, ...,\n         1.1648639e+00,  7.8758824e-01,  8.4407866e-01],\n... -4.1987070e-01, ...,\n         1.3502777e+00, -1.2299397e+00, -8.7632579e-01]],\n      shape=(1500, 122), dtype=float32), chunk=(10 ** 6))
+E        +      where <function predict_onnx at 0x00000207176414E0> = S.predict_onnx
+E        +    and   array([[1.0000000e+00, 0.0000000e+00, 0.0000000e+00, ..., 0.0000000e+00,\n        2.3822225e-16, 0.0000000e+00],\n      ...0000000e+00, 0.0000000e+00, ..., 0.0000000e+00,\n        0.0000000e+00, 0.0000000e+00]], shape=(1500, 9), dtype=float32) = <function predict_onnx at 0x00000207176414E0>(WindowsPath('C:/tenis/tennis-biomech/models/spotting.onnx'), array([[ 1.2573022e-01, -1.3210486e-01,  6.4042264e-01, ...,\n         1.1648639e+00,  7.8758824e-01,  8.4407866e-01],\n... -4.1987070e-01, ...,\n         1.3502777e+00, -1.2299397e+00, -8.7632579e-01]],\n      shape=(1500, 122), dtype=float32), chunk=400, overlap=64)
+E        +      where <function predict_onnx at 0x00000207176414E0> = S.predict_onnx
+
+tests\test_spotting_stage.py:317: AssertionError
+____________________ test_model_depth_axis_has_width_bins _____________________
+
+    def test_model_depth_axis_has_width_bins():
+        """On a machine with the model: its depth output has the width's bins (2 Ã— 288), not the height's."""
+        root = Path(__file__).resolve().parents[1]
+>       m = next((p for p in (root / "models" / "rtmw3d-x.onnx", root.parents[2] / "models" / "rtmw3d-x.onnx")
+                                                                 ^^^^^^^^^^^^^^^
+                  if p.exists()), None)
+
+tests\test_wholebody3d.py:89: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <WindowsPath.parents>, idx = 2
+
+    def __getitem__(self, idx):
+        if isinstance(idx, slice):
+            return tuple(self[i] for i in range(*idx.indices(len(self))))
+    
+        if idx >= len(self) or idx < -len(self):
+>           raise IndexError(idx)
+E           IndexError: 2
+
+C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\pathlib.py:445: IndexError
+============================== warnings summary ===============================
+tests/test_body_scale.py::test_court_scale_without_any_face_seen
+tests/test_fine_ranges.py::test_pose_ranges_fall_back_to_the_whole_window_when_her_height_is_not_seen
+  C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+    return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+
+tests/test_fine_ranges.py::test_pose_ranges_start_from_the_person_the_ball_leaves
+  C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:85: RuntimeWarning: invalid value encountered in divide
+    rel = (kp - hip_center(kp, sk)[:, None, :]) / (h[:, None, None] if h.ndim == 1 else h)
+
+tests/test_no_hardcoded_player.py::test_no_player_name_in_the_code
+tests/test_no_unbounded_calls.py::test_every_subprocess_run_has_a_timeout
+tests/test_no_unbounded_calls.py::test_long_lived_processes_are_the_known_watched_ones
+  <unknown>:21: DeprecationWarning: invalid escape sequence '\d'
+
+tests/test_no_unbounded_calls.py::test_every_module_compiles
+  C:\tenis\tennis-biomech\src\tennisbio\screens.py:21: DeprecationWarning: invalid escape sequence '\d'
+    _JS_SCREEN = """(tab) => {
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/test_app_core.py::test_same_video_twice_moved_or_copied_is_recognised
+FAILED tests/test_app_core.py::test_video_without_audio_is_said - AssertionEr...
+FAILED tests/test_app_core.py::test_test_runs_one_level_down_are_indexed_and_reported_from_their_folder
+FAILED tests/test_app_core.py::test_test_run_clip_is_found_next_to_its_matches
+FAILED tests/test_app_core.py::test_plan_leaves_the_cycles_test_runs_to_the_cycle
+FAILED tests/test_court.py::test_batched_search_equals_former_search - assert...
+FAILED tests/test_court.py::test_known_court_reused_when_the_camera_preset_repeats
+FAILED tests/test_court.py::test_court_stage_reuses_presets - assert ([[101.1...
+FAILED tests/test_fine_ahead.py::test_the_worker_leaves_the_next_window_to_the_main_thread
+FAILED tests/test_hybrid_pose.py::test_config_switch_on_by_default - Assertio...
+FAILED tests/test_spotting_stage.py::test_the_shipped_model_gives_the_same_in_pieces
+FAILED tests/test_wholebody3d.py::test_model_depth_axis_has_width_bins - Inde...
+12 failed, 669 passed, 30 skipped, 7 warnings in 475.02s (0:07:55)
