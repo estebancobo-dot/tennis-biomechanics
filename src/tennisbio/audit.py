@@ -869,10 +869,10 @@ PETITIONS = {
     4: r"^Taxonomía$|^Situaciones$|^Combinaciones$|^Aprende su derecha$", 5: r"^Situaciones$|^Combinaciones$|^Aprende su derecha$",
     6: r"Pies y desplazamiento|Sus pies en este golpe|Split step|Pasos", 7: r"· Empuñadura|Posición de la mano en el mango|Mano libre en la garganta", 8: r"^Cuerdas$|Cara de la raqueta",
     9: r"^Pantallas$|Tablas a la vista", 10: r"Novedades|Reproducir", 11: r"^Taxonomía$|^Combinaciones$|^Vistas pedidas$",
-    12: r"Validación con clips anotados", 13: Note("en los tests del código (uv run pytest, pc-logs:pruebas.log), no en las salidas"),
+    12: r"Validación con clips anotados",
     14: r"^Rendimiento$", 15: r"Vídeos de análisis de entrenadores", 16: r"Botepronto|Volea",
     17: r"Pantalla «Cópiala|Novedades|^Aprende su derecha$", 18: r"golpes analizados", 19: r"Cada golpe tiene su vídeo",
-    20: r"^Rendimiento$", 21: r"golpes analizados", 22: r"golpes analizados", 23: r"golpes analizados",
+    21: r"golpes analizados", 22: r"golpes analizados", 23: r"golpes analizados",
     24: r"Presión, set, fatiga", 25: r"Separación cadera|Ángulo del codo|Tipo de apoyo|Cadena cinética",
     26: r"Fotograma clave", 27: r"Presión, set, fatiga", 28: r"Cada golpe tiene su esqueleto|Cada golpe tiene su vídeo",
     29: r"^Rendimiento$", 30: Note("documento de estado del arte (docs), no una salida"), 31: Note("proceso (caché por etapas), no una salida"),
@@ -884,7 +884,7 @@ PETITIONS = {
     44: r"Enlaces externos|Vídeos de entrenamiento analizados|^Pantallas$", 45: r"Nada pide revisión manual|Golpes que fallaron",
     46: r"Resumen PDF|Valores dentro de límites", 47: r"^Taxonomía$", 48: r"Curvas de altura|Cabeza estable",
     49: Note("registros subidos solos a pc-logs"), 50: Note("registros con fecha y duración en la terminal"),
-    51: Note("el mismo código (clip_pipeline, stages) en la prueba y en los partidos"), 52: r"Navegador de las capturas|Pantalla «",
+    52: r"Navegador de las capturas|Pantalla «",
     53: r"^Pantallas$", 54: r"La bola y ella", 55: r"Filtros combinables", 56: r"Barras de altura", 57: r"más de 4 líneas|Tablas a la vista|^Pantallas$",
     58: Note("elección de modelos (RTMPose, YOLO11, TrackNetV3, RTMW3D)"), 59: r"^Valores posibles$|Cada frase lleva",
     64: r"Split step|Pasos de ajuste|Pasos cruzados|Pasos de recuperación|Paso de ataque|Número de pasos|Sus pies en este golpe",
@@ -926,6 +926,9 @@ PETITIONS = {
     129: Note("descartado por el usuario (13-10): sin hoja de sesión"),
     130: r"Resto de derecha|Resto:|Lado del resto|Dirección del saque|responde a cada combinación",
     218: r"^Repeticiones y otras cámaras$",
+    # the code's tests on this PC (Windows native, generic code, robustness tests), 03-11
+    13: r"Pruebas del código en este PC", 20: r"^Rendimiento$|Pruebas del código en este PC",
+    241: r"Pruebas del código en este PC", 51: r"Pruebas del código en este PC",
     # Base packages (config/plan_peticiones.yaml), 02-11
     137: r"^Rendimiento$", 231: r"^Rendimiento$", 230: r"^Rendimiento$",
     237: Note("GitHub Actions: cada petición con su registro en la pestaña Actions del repositorio"),
@@ -951,6 +954,26 @@ def parse_petitions(path: Path = PETITIONS_DOC) -> list[tuple[int, str, str]]:
     return out
 
 
+def code_tests_item(log: Path | None) -> dict:
+    """The code's automatic tests run on this PC after each new code (scripts/windows/pruebas_fondo.ps1): Windows,
+    its iGPU and its paths, not only the cloud. Red when a test fails or the run was cut."""
+    name = "Pruebas del código en este PC"
+    if log is None:
+        return _item(5, "Automático", name, "aviso", "todavía no se han ejecutado aquí (pruebas.log)")
+    txt = log.read_text(encoding="utf-8", errors="replace")
+    head = dict(ln.split(": ", 1) for ln in txt.splitlines()[:4] if ": " in ln)
+    m = re.search(r"(\d+) passed", txt)
+    f = re.search(r"(\d+) failed", txt)
+    e = re.search(r"(\d+) errors?\b", txt)
+    passed, failed, errors = (int(x.group(1)) if x else 0 for x in (m, f, e))
+    cut = "cortado" in head.get("codigo", "")
+    st = "falta" if failed or errors or cut or not passed else "ok"
+    names = re.findall(r"^FAILED (\S+)", txt, re.M)[:5]
+    det = (f"código {head.get('commit', '?')} ({head.get('fin', '?')}): {passed} bien, {failed} fallan, {errors} errores"
+           + ("; cortado a los 40 min" if cut else "") + (f"; fallan: {', '.join(names)}" if names else ""))
+    return _item(5, "Automático", name, st, det, passed=passed, failed=failed)
+
+
 def side_checks(out_root: Path) -> list[dict]:
     """Outputs that live next to the match folders: the validation with annotated public clips and the
     coach videos Claude learned from."""
@@ -966,6 +989,7 @@ def side_checks(out_root: Path) -> list[dict]:
                            f"golpes: precisión {sm.get('precision')}, recall {sm.get('recall')}; derecha/revés {sm.get('fh_bh_accuracy')}; "
                            f"dirección {sm.get('direction_accuracy')}. Solo detección y clases: el valor de cada medida (codo, rodillas, "
                            "pasos…) aún no tiene clips anotados con los que compararse"))
+    items.append(code_tests_item(next((b / "pruebas.log" for b in base if (b / "pruebas.log").exists()), None)))
     inv = next((b / "investigacion" / "indice.json" for b in base if (b / "investigacion" / "indice.json").exists()), None)
     if inv is None:
         items.append(_item(6, "Aprendizaje", "Vídeos de análisis de entrenadores (solo para aprender)", "aviso", "no se han bajado"))

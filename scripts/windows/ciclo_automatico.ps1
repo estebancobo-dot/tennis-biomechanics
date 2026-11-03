@@ -480,6 +480,11 @@ try {
     Actualizar-Codigo
     Comprobar-Instalacion
     Set-Location $RepoDir
+    # las pruebas del codigo nuevo en este PC, en segundo plano y por debajo de lo normal (03-11; pruebas_fondo.ps1)
+    try {
+        Start-Process wscript.exe -ArgumentList @("//B", "`"$(Join-Path $PSScriptRoot 'oculto.vbs')`"",
+            "`"$(Join-Path $PSScriptRoot 'pruebas_fondo.ps1')`"") | Out-Null
+    } catch {}
     if ($forzar) { $modo = "medidas"; Remove-Item "$Out\forzar_ciclo.txt" -Force -ErrorAction SilentlyContinue }
     else {
         $r = & uv run python scripts/auto_cycle.py decide @cambios | Select-Object -Last 1
