@@ -1,4 +1,4 @@
-fecha: 2026-11-03T08:59:51
+fecha: 2026-11-03T09:20:05
        3.9 MB  \output\auditoria
        5.7 MB  \output\benchmark
        1.2 MB  \output\capturas_app
