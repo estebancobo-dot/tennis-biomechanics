@@ -135,54 +135,60 @@
   }
  },
  "fine": {
-  "fingerprint": "68b6f0bd6929218b",
+  "fingerprint": "547cb10181310d60",
   "version": "16",
-  "seconds": 289.1,
-  "finished": "2026-10-29 07:55:12",
+  "seconds": 1159.0,
+  "finished": "2026-11-03 20:43:03",
   "summary": {
-   "candidates": 244,
-   "confirmed": 243,
+   "candidates": 262,
+   "confirmed": 262,
    "errors": 0,
    "warnings": [],
-   "forehands": 91,
-   "windows": 163,
+   "forehands": 99,
+   "windows": 175,
    "gate": {
     "windows_gated": 0,
-    "windows_passed": 162,
+    "windows_passed": 175,
     "windows_ungated": 0,
     "reasons": {
-     "golpe_de_bola": 62,
-     "detector": 35,
-     "bola_no_vista": 65
+     "golpe_de_bola": 64,
+     "detector": 38,
+     "bola_no_vista": 73
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 162.1,
-    "jugadora_lejana": 161.2,
-    "analisis_ventana": 39.5,
-    "pista_ventana": 29.1,
-    "cribado": 9.3,
-    "recorte": 9.0,
-    "pose": 2.7
+    "pose": 930.5,
+    "pose_modelo_hybrid": 734.7,
+    "raqueta": 436.4,
+    "cuerdas_y_3d": 356.7,
+    "bola": 223.0,
+    "pose_modelo_yolo": 184.1,
+    "jugadora_lejana": 155.7,
+    "recorte": 49.2,
+    "pista_ventana": 32.3,
+    "analisis_ventana": 24.4,
+    "cribado": 7.0
    },
    "counts": {
     "overlap_s": 2.2,
-    "frames": 38982,
-    "posed_frames": 38982,
-    "impacts": 291,
-    "kept_impacts": 244,
-    "racket_frames": 0,
+    "frames": 42057,
+    "posed_frames": 42057,
+    "impacts": 314,
+    "kept_impacts": 263,
+    "racket_frames": 1085,
     "whole_window_again": 0,
-    "frames_960_far": 0
+    "frames_960_far": 838,
+    "frames_modelo_yolo": 2327,
+    "frames_modelo_hybrid": 5103
    }
   }
  },
  "fine_opponent": {
-  "fingerprint": "1231a9ded734f435",
+  "fingerprint": "ddbd67d17ca4e2b7",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-10-29 08:04:02",
+  "finished": "2026-11-03 20:43:03",
   "summary": {
    "enabled": false
   }
@@ -229,60 +235,66 @@
   }
  },
  "views_link": {
-  "fingerprint": "622178d2c4b9030e",
+  "fingerprint": "47057c7a33154879",
   "version": "1",
-  "seconds": 0.5,
-  "finished": "2026-10-29 08:04:02",
+  "seconds": 0.4,
+  "finished": "2026-11-03 20:43:03",
   "summary": {
-   "strokes": 243,
-   "with_replay": 30,
-   "with_other_camera": 240,
-   "with_slowmo": 10,
-   "replay_share": 0.123,
-   "other_share": 0.988
+   "strokes": 262,
+   "with_replay": 37,
+   "with_other_camera": 258,
+   "with_slowmo": 9,
+   "replay_share": 0.141,
+   "other_share": 0.985
   }
  },
  "fine_doubtful": {
-  "fingerprint": "ace34d608b44bac1",
+  "fingerprint": "63d3e4937f9bc8b7",
   "version": "1",
-  "seconds": 34.1,
-  "finished": "2026-10-29 08:04:36",
+  "seconds": 70.5,
+  "finished": "2026-11-03 20:44:14",
   "summary": {
-   "candidates": 50,
-   "confirmed": 18,
+   "candidates": 49,
+   "confirmed": 17,
    "errors": 0,
    "warnings": [],
    "forehands": 2,
-   "windows": 49,
+   "windows": 48,
    "gate": {
     "windows_gated": 0,
-    "windows_passed": 17,
+    "windows_passed": 16,
     "windows_ungated": 0,
     "reasons": {
      "detector": 2,
      "bola_no_vista": 12,
-     "golpe_de_bola": 3
+     "golpe_de_bola": 2
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 15.0,
-    "analisis_ventana": 5.6,
-    "jugadora_lejana": 3.5,
-    "recorte": 2.5,
-    "pista_ventana": 1.0,
-    "cribado": 0.9,
-    "pose": 0.1
+    "pose": 34.7,
+    "cuerdas_y_3d": 34.6,
+    "pose_modelo_hybrid": 20.0,
+    "pose_modelo_yolo": 12.0,
+    "raqueta": 10.1,
+    "bola": 10.1,
+    "recorte": 5.3,
+    "analisis_ventana": 4.6,
+    "jugadora_lejana": 3.2,
+    "pista_ventana": 1.2,
+    "cribado": 0.7
    },
    "counts": {
     "overlap_s": 0.0,
-    "frames": 3144,
-    "posed_frames": 3144,
-    "impacts": 24,
-    "kept_impacts": 18,
-    "racket_frames": 0,
+    "frames": 2965,
+    "posed_frames": 2965,
+    "impacts": 22,
+    "kept_impacts": 17,
+    "racket_frames": 31,
     "whole_window_again": 0,
-    "frames_960_far": 0
+    "frames_960_far": 75,
+    "frames_modelo_yolo": 180,
+    "frames_modelo_hybrid": 180
    }
   }
  }

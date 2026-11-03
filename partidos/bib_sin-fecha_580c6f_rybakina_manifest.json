@@ -38,22 +38,22 @@
   }
  },
  "court": {
-  "fingerprint": "1cd19d311d3014d4",
-  "version": "4",
-  "seconds": 385.1,
-  "finished": "2026-10-19 04:23:21",
+  "fingerprint": "0b1f0b636be28abb",
+  "version": "5",
+  "seconds": 171.0,
+  "finished": "2026-11-03 20:47:05",
   "summary": {
-   "segments": 497,
-   "with_court": 448,
-   "known_court_reused": 1281,
-   "searched": 125,
-   "filled_same_view": 89,
-   "samples": 1739,
+   "segments": 477,
+   "with_court": 419,
+   "known_court_reused": 1247,
+   "searched": 123,
+   "filled_same_view": 87,
+   "samples": 1714,
    "court_presets": 64,
    "main_camera_min": 43.0,
-   "court_min": 35.7,
-   "court_share": 0.83,
-   "pitch_deg_median": 18.6
+   "court_min": 35.6,
+   "court_share": 0.827,
+   "pitch_deg_median": 18.5
   }
  },
  "score": {
