@@ -69,19 +69,19 @@
   }
  },
  "players": {
-  "fingerprint": "13c8d53f83c4e4c6",
+  "fingerprint": "2b8c451552f105b6",
   "version": "4",
-  "seconds": 1586.7,
-  "finished": "2026-10-19 04:49:47",
+  "seconds": 1466.1,
+  "finished": "2026-11-03 21:11:31",
   "summary": {
-   "frames": 21415,
-   "wall_min": 26.4,
-   "model_min": 23.0,
-   "read_min": 24.1,
-   "wait_min": 3.5,
-   "appearance_min": 0.4
+   "frames": 21340,
+   "wall_min": 24.4,
+   "model_min": 21.4,
+   "read_min": 24.4,
+   "wait_min": 3.0,
+   "appearance_min": 0.3
   },
-  "overlap_s": 982.1
+  "overlap_s": 569.7
  },
  "identity": {
   "fingerprint": "0a814896f1a1f3c4",
