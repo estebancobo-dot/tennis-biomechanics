@@ -135,54 +135,60 @@
   }
  },
  "fine": {
-  "fingerprint": "b7f28c7312bc6f3a",
+  "fingerprint": "9edc9087a93f523d",
   "version": "16",
-  "seconds": 214.2,
-  "finished": "2026-10-29 07:58:46",
+  "seconds": 3827.7,
+  "finished": "2026-11-03 23:13:20",
   "summary": {
-   "candidates": 201,
-   "confirmed": 198,
+   "candidates": 248,
+   "confirmed": 245,
    "errors": 0,
    "warnings": [],
-   "forehands": 76,
-   "windows": 128,
+   "forehands": 97,
+   "windows": 167,
    "gate": {
     "windows_gated": 0,
-    "windows_passed": 128,
+    "windows_passed": 167,
     "windows_ungated": 0,
     "reasons": {
-     "detector": 28,
-     "golpe_de_bola": 95,
-     "bola_no_vista": 5
+     "golpe_de_bola": 116,
+     "detector": 39,
+     "bola_no_vista": 12
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 119.4,
-    "jugadora_lejana": 72.3,
-    "pista_ventana": 32.1,
-    "analisis_ventana": 28.2,
-    "cribado": 8.4,
-    "recorte": 7.5,
-    "pose": 1.9
+    "pose": 4101.0,
+    "pose_modelo_hybrid": 2808.3,
+    "raqueta": 1663.6,
+    "pose_modelo_yolo": 1255.9,
+    "bola": 1066.8,
+    "cuerdas_y_3d": 352.0,
+    "recorte": 194.2,
+    "jugadora_lejana": 63.4,
+    "pista_ventana": 42.2,
+    "analisis_ventana": 25.9,
+    "cribado": 7.9
    },
    "counts": {
     "overlap_s": 1.1,
-    "frames": 32202,
-    "posed_frames": 32202,
-    "impacts": 225,
-    "kept_impacts": 201,
-    "racket_frames": 0,
+    "frames": 39950,
+    "posed_frames": 39950,
+    "impacts": 275,
+    "kept_impacts": 248,
+    "racket_frames": 3947,
     "whole_window_again": 0,
-    "frames_960_far": 0
+    "frames_960_far": 5319,
+    "frames_modelo_yolo": 16893,
+    "frames_modelo_hybrid": 19050
    }
   }
  },
  "fine_opponent": {
-  "fingerprint": "6434a3357bfa6018",
+  "fingerprint": "51275cf330fa3731",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-10-29 08:04:36",
+  "finished": "2026-11-03 23:13:21",
   "summary": {
    "enabled": false
   }
@@ -229,17 +235,17 @@
   }
  },
  "views_link": {
-  "fingerprint": "fad052e66d52c193",
+  "fingerprint": "0cbc24c2bf360b9e",
   "version": "1",
   "seconds": 0.4,
-  "finished": "2026-10-29 08:04:36",
+  "finished": "2026-11-03 23:13:21",
   "summary": {
-   "strokes": 198,
-   "with_replay": 29,
-   "with_other_camera": 184,
+   "strokes": 245,
+   "with_replay": 47,
+   "with_other_camera": 225,
    "with_slowmo": 6,
-   "replay_share": 0.146,
-   "other_share": 0.929
+   "replay_share": 0.192,
+   "other_share": 0.918
   }
  },
  "fine_doubtful": {
