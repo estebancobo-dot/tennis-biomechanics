@@ -3781,3 +3781,14 @@
 2026-11-03 22:20:00   ventana w005008077_3600: pose yolo en 178 de 178 fotogramas (10 s; modelo 10 s) · bola 5 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 103 px (court)
 2026-11-03 22:20:03   ventana w004954292_5441 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.0 s
 2026-11-03 22:20:03   ventana w004954292_5441: pose yolo en 272 de 272 fotogramas (16 s; modelo 16 s) · bola 8 s · raqueta 0 s (2 de 3 impactos) · 3 golpes posibles · altura 100 px (court)
+2026-11-03 22:20:24   ventana w005108703_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+2026-11-03 22:20:24   ventana w005108703_3600: pose yolo en 180 de 180 fotogramas (13 s; modelo 13 s) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 102 px (court)
+2026-11-03 22:20:24   fine:  31 % (77/248 golpes candidatos · 76 confirmados · 0 ventanas descartadas sin pose) · 10 min · quedan ≈ 23 min
+2026-11-03 22:20:27   ventana w005051663_4851 (far, 2 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-03 22:20:27   ventana w005051663_4851: pose yolo en 243 de 243 fotogramas (17 s; modelo 17 s, 112 a 960 px por perderla) · bola 8 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 96 px (court)
+2026-11-03 22:20:29   ventana w005321500_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.28 s
+2026-11-03 22:20:29   ventana w005321500_3600: pose yolo en 180 de 180 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 101 px (court)
+2026-11-03 22:20:48   ventana w005307941_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-03 22:20:48   ventana w005307941_3600: pose yolo en 180 de 180 fotogramas (15 s; modelo 15 s, 105 a 960 px por perderla) · bola 5 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 103 px (court)
+2026-11-03 22:20:49   ventana w005326508_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-03 22:20:49   ventana w005326508_3600: pose yolo en 180 de 180 fotogramas (13 s; modelo 13 s, 23 a 960 px por perderla) · bola 5 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 91 px (court)

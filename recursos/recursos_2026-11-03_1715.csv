@@ -1085,3 +1085,6 @@ hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram
 2026-11-03T22:19:27,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,fine,28.0,14.5,0.0,13.7,19.8,9.0,96.0,0.0,0.0,0.0
 2026-11-03T22:19:44,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,fine,33.0,10.3,0.0,13.8,19.8,9.0,55.0,0.0,0.0,0.0
 2026-11-03T22:20:01,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,fine,30.0,30.8,0.0,13.6,19.8,8.9,0.0,0.0,0.0,0.0
+2026-11-03T22:20:18,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,fine,22.0,21.2,0.0,13.7,19.8,9.0,75.0,0.0,0.0,2.0
+2026-11-03T22:20:35,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,fine,23.0,12.2,0.0,13.6,19.8,8.9,86.0,0.0,0.0,0.0
+2026-11-03T22:20:52,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,fine,29.0,14.2,0.0,13.8,19.8,9.2,95.0,0.0,0.0,0.0
