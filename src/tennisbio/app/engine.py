@@ -70,9 +70,9 @@ class Engine:
         return self.paths.output / match_id
 
     def _library_dir(self, match_id: str) -> Path | None:
-        from ..layout import library_active
+        from ..layout import library_active_at
         from ..library import Library, LibraryError, player_slug
-        root = library_active()
+        root = library_active_at(self.paths.library_root)
         if root is None:
             return None
         r = self._row(match_id)

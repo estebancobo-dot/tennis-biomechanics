@@ -33,7 +33,9 @@ class BallAhead:
         self.seconds: dict[int, float] = {}  # time the worker spent on each window it did
         self.errors: dict[int, str] = {}
         self.waited = 0.0                    # time the main thread waited for the worker
-        self.main_at = -1
+        # the main thread starts at window 0 even before it claims it (03-11: on the PC the worker took window 1
+        # in the moment before the main thread's first claim)
+        self.main_at = 0
         self._stop = False
         self._cv = threading.Condition()
         self._thread = threading.Thread(target=self._run, name="bola-en-paralelo", daemon=True)

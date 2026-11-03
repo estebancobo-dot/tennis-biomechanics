@@ -54,12 +54,19 @@ class Paths:
     output: Path
     videos: Path
     data: Path
+    library: Path | None = None          # the library root of this configuration (library.library_root)
 
     @classmethod
     def from_config(cls, cfg: dict) -> "Paths":
+        from ..library import library_root
+
         p = cfg.get("paths", {})
         out = Path(p.get("output", "output"))
-        return cls(out, Path(p.get("videos", ".")), Path(p.get("data") or out.parent / "datos"))
+        return cls(out, Path(p.get("videos", ".")), Path(p.get("data") or out.parent / "datos"), library_root(cfg))
+
+    @property
+    def library_root(self) -> Path:
+        return self.library if self.library is not None else self.output.parent / "biblioteca"
 
     @property
     def db(self) -> Path:

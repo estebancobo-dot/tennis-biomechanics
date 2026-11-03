@@ -113,7 +113,7 @@ def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR, fres
     the cycle, a folder copied in) and reads again what the folders say about the others; what only the
     application knows (archived, a notice about the video) is kept."""
     import_catalog(db, cfg, config_dir)
-    for mid, d in match_dirs(paths.output):
+    for mid, d in match_dirs(paths.output, paths.library_root):
         man = load_manifest(d)
         info = {}
         if _mf.test_info(d).exists():
@@ -166,7 +166,7 @@ def app_decided(row: dict) -> bool:
     return row["state"] == "archivado" or (row["state"] == "con aviso" and (row["note"] or "").startswith("El vídeo"))
 
 
-def match_dirs(out: Path) -> list[tuple[str, Path]]:
+def match_dirs(out: Path, library: Path | None = None) -> list[tuple[str, Path]]:
     """Every match folder (with a manifest) under the output: <output>/<match> and, one level down, the
     test runs (<output>/_smoke/<match>, <output>/_poc9_largo/<match>). The id of a nested one carries its
     group («smoke:…», «poc9_largo:…»): the same video in two runs stays two matches."""
@@ -180,15 +180,15 @@ def match_dirs(out: Path) -> list[tuple[str, Path]]:
         for sub in sorted(d.iterdir()):
             if sub.is_dir() and (sub / "manifest.json").exists():
                 res.append((f"{d.name.lstrip('_')}:{sub.name}", sub))
-    return _with_library(res)
+    return _with_library(res, library if library is not None else Path(out).parent / "biblioteca")
 
 
-def _with_library(res: list[tuple[str, Path]]) -> list[tuple[str, Path]]:
+def _with_library(res: list[tuple[str, Path]], library: Path) -> list[tuple[str, Path]]:
     """Once the library is switched on (tennisbio.layout), its match folders replace the old ones they were
     copied from (same id: the old folder name, «origen» in partido.json); the old folders stay on disk until
     the user removes them, but are not used any more."""
-    from ..layout import library_active
-    root = library_active()
+    from ..layout import library_active_at
+    root = library_active_at(library)
     if root is None:
         return res
     by = dict(res)

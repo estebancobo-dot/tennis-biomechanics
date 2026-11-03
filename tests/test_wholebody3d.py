@@ -86,8 +86,9 @@ def test_wholebody3d_call_returns_metres():
 def test_model_depth_axis_has_width_bins():
     """On a machine with the model: its depth output has the width's bins (2 × 288), not the height's."""
     root = Path(__file__).resolve().parents[1]
-    m = next((p for p in (root / "models" / "rtmw3d-x.onnx", root.parents[2] / "models" / "rtmw3d-x.onnx")
-              if p.exists()), None)
+    places = [root / "models" / "rtmw3d-x.onnx"] + ([root.parents[2] / "models" / "rtmw3d-x.onnx"]
+                                                      if len(root.parents) > 2 else [])    # C:\tenis\tennis-biomech: 2
+    m = next((p for p in places if p.exists()), None)
     if m is None:
         pytest.skip("models/rtmw3d-x.onnx not present")
     import onnxruntime as ort

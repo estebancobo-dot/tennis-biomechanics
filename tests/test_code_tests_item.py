@@ -4,7 +4,7 @@ from tennisbio.audit import code_tests_item
 
 def test_reads_the_pc_test_log(tmp_path):
     f = tmp_path / "pruebas.log"
-    f.write_text("commit: abc1234\ninicio: 2026-11-03T01:00:00\nfin: 2026-11-03T01:14:00\ncodigo: 0\n"
+    f.write_text("\ufeffcommit: abc1234\ninicio: 2026-11-03T01:00:00\nfin: 2026-11-03T01:14:00\ncodigo: 0\n"
                  "....\n707 passed, 1 skipped in 600s\n", encoding="utf-8")
     it = code_tests_item(f)
     assert it["status"] == "ok" and it["passed"] == 707 and "abc1234" in it["detail"]

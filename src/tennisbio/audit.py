@@ -960,7 +960,7 @@ def code_tests_item(log: Path | None) -> dict:
     name = "Pruebas del código en este PC"
     if log is None:
         return _item(5, "Automático", name, "aviso", "todavía no se han ejecutado aquí (pruebas.log)")
-    txt = log.read_text(encoding="utf-8", errors="replace")
+    txt = log.read_text(encoding="utf-8-sig", errors="replace")       # Out-File utf8 writes a BOM (Windows PowerShell)
     head = dict(ln.split(": ", 1) for ln in txt.splitlines()[:4] if ": " in ln)
     m = re.search(r"(\d+) passed", txt)
     f = re.search(r"(\d+) failed", txt)

@@ -102,10 +102,16 @@ def test_hybrid_cache_is_the_yolo_cache_plus_feet(tmp_path, monkeypatch):
 def test_config_switch_on_by_default(tmp_path, monkeypatch):
     from tennisbio.config import load_config
 
+    from tennisbio.pose import hybrid
+
     cfg = load_config()
-    # on since 14-10 (measured on the PC): the window caches get the hybrid tag
-    assert cfg["fine_pass"]["pose_model"] == "hybrid"
-    assert fine_pose_model(cfg) == "hybrid" and pose_cache_tag(cfg) == ["hybrid"]
+    # on since 14-10 (measured on the PC): the window caches get the hybrid tag; RTMW-x refines since 03-11 (its
+    # own tag) wherever its model file is, as on the PC
+    have = tmp_path / "rtmw.onnx"
+    have.write_bytes(b"x")
+    monkeypatch.setattr(hybrid, "RTMW_ONNX", have)
+    assert cfg["fine_pass"]["pose_model"] == "hybrid" and cfg["fine_pass"]["refine"] == "rtmw-x"
+    assert fine_pose_model(cfg) == "hybrid" and pose_cache_tag(cfg) == ["hybrid", "rtmw-x"]
     assert fine_pose_model({"fine_pass": {"pose_model": "Hybrid"}}) == "hybrid"
     assert pose_cache_tag({"fine_pass": {"pose_model": "yolo"}}) == [] and pose_cache_tag({}) == []
     assert fine_pose_model({"fine_pass": {"pose_model": "rtmpose"}}) == "yolo"      # typo: never stops

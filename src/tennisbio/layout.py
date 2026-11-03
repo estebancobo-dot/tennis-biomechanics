@@ -20,8 +20,13 @@ def _cfg() -> dict:
 def library_active(cfg: dict | None = None) -> Path | None:
     """The library root when it is switched on, else None."""
     from .library import library_root
-    root = library_root(cfg if cfg is not None else _cfg())
-    return root if (root / "datos" / ACTIVE).exists() else None
+    return library_active_at(library_root(cfg if cfg is not None else _cfg()))
+
+
+def library_active_at(root: Path | None) -> Path | None:
+    """`root` when it is a library switched on, else None (03-11: the application asks with its own folders, not
+    the machine's configuration: on the PC its tests found the real library)."""
+    return root if root is not None and (Path(root) / "datos" / ACTIVE).exists() else None
 
 
 def activate(root: Path, stats: dict) -> bool:

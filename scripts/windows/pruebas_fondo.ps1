@@ -14,6 +14,7 @@ $commit = "$(git -C $RepoDir rev-parse --short HEAD 2>$null)".Trim()
 $t0 = Get-Date
 $p = Start-Process uv -ArgumentList @("run", "pytest", "-q", "-p", "no:cacheprovider") -WorkingDirectory $RepoDir `
     -NoNewWindow -PassThru -RedirectStandardOutput $tmp -RedirectStandardError "$tmp.err"
+$null = $p.Handle                     # without it Windows PowerShell gives no ExitCode for a -PassThru process
 try { $p.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::BelowNormal } catch {}
 $fin = $p.WaitForExit(40 * 60 * 1000)
 if (-not $fin) { & taskkill.exe /T /F /PID $p.Id 2>&1 | Out-Null }
