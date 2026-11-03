@@ -669,3 +669,48 @@ def test_new_exports_run_with_their_packages(monkeypatch, tmp_path):
     assert seen[0][1:4] == ["run", "--with", "catboost==1.2.10"] and seen[0][-2:] == ["--out", str(tmp_path / "b.onnx")]
     assert seen[1][0] == sys.executable and seen[1][2:4] == ["--size", "s"]
     assert {"ocr5", "mag3d", "bounce"} <= set(B.CANDIDATES) and all(c in B.EXPORTS for c in B.CANDIDATES)
+
+
+def test_pose_track_keeps_frames_with_nobody(tmp_path, monkeypatch):
+    """Request 82: a CalTennis frame with no person raised reshape(0, -1); it is now an empty frame."""
+    import cv2
+    import bench_candidates as B
+
+    vid = tmp_path / "v.avi"
+    w = cv2.VideoWriter(str(vid), cv2.VideoWriter_fourcc(*"MJPG"), 10, (64, 48))
+    for _ in range(3):
+        w.write(np.zeros((48, 64, 3), np.uint8))
+    w.release()
+    calls = iter([([], [], [], None, None), ([[1, 2, 30, 40, 0.9]], np.zeros((1, 17, 2)), np.ones((1, 17)), None, None),
+                  ([], [], [], None, None)])
+    p = B.pose_track(vid, lambda fr: next(calls))
+    assert [len(b) for b in p["boxes"]] == [0, 1, 0] and p["kps"][0].shape == (0, 17, 2)
+
+
+def test_http_file_asks_again_for_a_short_block(monkeypatch):
+    """Request 82: a block that came back short gave a truncated zip; it is asked for again."""
+    import io as _io
+    import bench_candidates as B
+
+    data = bytes(range(256)) * 16
+    served = {"n": 0}
+
+    class R(_io.BytesIO):
+        headers = {"Content-Range": f"bytes 0-0/{len(data)}"}
+
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *a):
+            return False
+
+    def urlopen(req, timeout=None):
+        a, b = map(int, req.headers["Range"].split("=")[1].split("-"))
+        served["n"] += 1
+        chunk = data[a:b + 1]
+        return R(chunk[: len(chunk) // 2] if served["n"] == 2 else chunk)   # the first real block comes short once
+
+    monkeypatch.setattr(B.urllib.request, "urlopen", urlopen)
+    monkeypatch.setattr(B.time, "sleep", lambda s: None)
+    f = B.HttpFile("http://x", block=1024)
+    assert f.read() == data

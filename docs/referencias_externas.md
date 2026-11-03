@@ -43,3 +43,6 @@ candidato dentro del paso del plan donde se aplica, y solo se adopta si gana **m
 | CalTennis (arXiv 2606.20542) | búsqueda, 02-11 | datos con varias cámaras ✔ | no | Validación automática del 3D y de los pies → B-6 | — | se lee en el paso 2 (3D) |
 | Capture4D (Sensors 26-1411) | búsqueda, 02-11 | artículo | no | Confirma que, con una sola cámara, el orden de la cadena cinética es fiable | — | nada que adoptar |
 | xiaollz/tennis_analyzer, otros de GitHub con MediaPipe | búsqueda, 02-11 | móvil o clip corto | no | probablemente nada | — | filtrar en la próxima búsqueda |
+| PP-OCRv5 mobile (RapidAI, rapidocr 3.10) | plan, 13-10 (#201) | Apache ✔ · pesos ✔ | sí (03-11) | Marcador → paso 2.5 | Petición 82: coherencia 0,44 frente a 0,52 (actual PP-OCRv4); 0,57 / 0,69 s por muestra | **no** (lee peor nuestros marcadores) |
+| MotionAGFormer (TaatiTeam) + CalTennis | plan, 13-10 (#203, #206) | Apache ✔ · pesos ✔ · CalTennis CC BY-NC | sí (03-11) | 3D del tronco → paso 2.5 | Petición 83 | — |
+| TennisProject (CatBoost de botes, vía tennisvision) | búsqueda, 02-11 (#199) | sin licencia ✘ · pesos ✔ | sí (03-11) | Bote → paso 2.5 | Petición 83 (conjunto TrackNet, con el que se entrenó: cifra optimista) | — (aunque gane, sin licencia no se copia: habría que reentrenar) |

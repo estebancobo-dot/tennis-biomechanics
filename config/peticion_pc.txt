@@ -154,6 +154,17 @@ id: 82
 accion: medir
 script: bench_candidates
 argumentos: --only ocr5,mag3d,bounce
+---
+id: 83
+accion: medir
+script: bench_candidates
+argumentos: --only mag3d,bounce
+---
+id: 84
+accion: completo
+# 84 (03-11): paso 5, referencia de los 4 partidos con todo lo adoptado (pista de 14 puntos, repeticiones v11,
+# lectura por tramos de la exportacion); rehace solo las etapas cuyas entradas cambiaron; mide la exportacion (4.2)
+# 83 (03-11): 3D y bote otra vez (en la 82 fallaron: fotograma sin persona en CalTennis; bloque de Drive incompleto)
 # 82 (03-11): paso 2.5, los tres candidatos de B3 que faltan (marcador PP-OCRv5, 3D MotionAGFormer, bote CatBoost)
 # 81 (03-11): la 79 se corto a las 13:20 en el 2.o partido; de nuevo, con el recall sin el partido de anotaciones
 # desfasadas (cuartos AO 2023) aparte

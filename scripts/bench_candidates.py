@@ -365,9 +365,21 @@ class HttpFile(io.RawIOBase):
         if i not in self.cache:
             a = i * self.block
             b = min(self.size, a + self.block) - 1
-            req = urllib.request.Request(self.url, headers={"Range": f"bytes={a}-{b}"})
-            with urllib.request.urlopen(req, timeout=self.timeout) as r:
-                self.cache[i] = r.read()
+            # a block that comes back short (03-11, request 82 on the PC: "Truncated central directory") is asked
+            # again; after 5 tries it is an error, never a silently shorter file
+            for attempt in range(5):
+                try:
+                    req = urllib.request.Request(self.url, headers={"Range": f"bytes={a}-{b}"})
+                    with urllib.request.urlopen(req, timeout=self.timeout) as r:
+                        data = r.read()
+                except OSError:
+                    data = b""
+                if len(data) == b - a + 1:
+                    break
+                time.sleep(2 * (attempt + 1))
+            else:
+                raise OSError(f"{self.url}: bytes {a}-{b} incompletos tras 5 intentos")
+            self.cache[i] = data
             if len(self.cache) > 64:                   # keep memory bounded
                 self.cache.pop(next(iter(self.cache)))
         return self.cache[i]
@@ -775,6 +787,11 @@ def pose_track(video: Path, pose2d) -> dict:
             break
         size = (fr.shape[1], fr.shape[0])
         b, k, c, _, _ = pose2d(fr)
+        if not len(b):                    # nobody in this frame (03-11, request 82: reshape(0, -1) raised)
+            boxes.append(np.zeros((0, 4)))
+            kps.append(np.zeros((0, 17, 2)))
+            confs.append(np.zeros((0, 17)))
+            continue
         boxes.append(np.asarray(b, float).reshape(len(b), -1)[:, :4])
         kps.append(np.asarray(k, float).reshape(len(b), 17, 2))
         confs.append(np.asarray(c, float).reshape(len(b), 17))
