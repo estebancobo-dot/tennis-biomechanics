@@ -168,6 +168,7 @@ def main():
 
     out_dir = root / "f3set" / "recall" / "salidas"
     all_attr, all_ev, all_strokes, all_spans, all_runs, all_pspans, per_match, notes = [], [], [], [], [], [], [], []
+    ok_attr, ok_ev, ok_strokes, ok_spans, ok_runs, ok_pspans = [], [], [], [], [], []
     for k, (name, ps) in enumerate(sorted(by_video.items())):
         if args.max_points and len(ps) > args.max_points:
             ps = ps[:: max(1, len(ps) // args.max_points)][:args.max_points]
@@ -218,7 +219,8 @@ def main():
                     pspans.append({"t0": s["offset"] + p["a"] / p["fps"] - s["src_t0"],
                                    "t1": s["offset"] + p["b"] / p["fps"] - s["src_t0"], "near_is_target": p["near_is_target"]})
         sm = R.summarize(attr, events, o.strokes, spans, args.tol, o.runs, pspans)
-        per_match.append({"match": name, "points": len(ps), "summary": sm})
+        per_match.append({"match": name, "points": len(ps), "summary": sm, "misaligned": R.misaligned(sm)})
+        bad = per_match[-1]["misaligned"]
         print(f"[{name}] recall {sm['total']['found']}/{sm['total']['gt']}; pérdidas: "
               + ", ".join(f"{R.STEPS[s]} {n}" for s, n in sm["steps"].items() if n and s not in R.FOUND))
         # all matches in one timeline (each match shifted 1e6 s)
@@ -229,12 +231,22 @@ def main():
         all_spans += [(a + sh, b + sh) for a, b in spans]
         all_runs += [{**r, "t0": r["t0"] + sh, "t1": r["t1"] + sh} for r in o.runs]
         all_pspans += [{**p, "t0": p["t0"] + sh, "t1": p["t1"] + sh} for p in pspans]
+        if not bad:
+            ok_attr += [{**a, "t": a["t"] + sh, "match": name} for a in attr]
+            ok_ev += [{**e, "t": e["t"] + sh} for e in events]
+            ok_strokes += [{**s, "t": s["t"] + sh} for s in o.strokes]
+            ok_spans += [(a + sh, b + sh) for a, b in spans]
+            ok_runs += [{**r, "t0": r["t0"] + sh, "t1": r["t1"] + sh} for r in o.runs]
+            ok_pspans += [{**p, "t0": p["t0"] + sh, "t1": p["t1"] + sh} for p in pspans]
 
     total = R.summarize(all_attr, all_ev, all_strokes, all_spans, args.tol, all_runs, all_pspans) if all_attr else None
+    excluded = [m["match"] for m in per_match if m["misaligned"]]
+    valid = (R.summarize(ok_attr, ok_ev, ok_strokes, ok_spans, args.tol, ok_runs, ok_pspans)
+             if excluded and ok_attr else None)
     if args.spotter:
         notes.append("candidatos del detector entrenado (spotter.enabled), no de las reglas")
     res = {"player": args.player, "tol_s": args.tol, "spotter": args.spotter, "points": sum(m["points"] for m in per_match),
-           "matches": [m["match"] for m in per_match], "summary": total, "per_match": per_match, "notes": notes,
+           "matches": [m["match"] for m in per_match], "summary": total, "summary_valid": valid, "excluded": excluded, "per_match": per_match, "notes": notes,
            "strokes": [{k: a.get(k) for k in ("match", "point", "label", "side", "kind", "step", "run_method", "identity_ok",
                                                "ball_seen", "pred_stroke", "dt")} for a in all_attr],
            "minutes": round((time.time() - t_start) / 60, 1)}

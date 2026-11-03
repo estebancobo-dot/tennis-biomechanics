@@ -145,6 +145,12 @@ detector: si
 id: 80
 accion: medir
 script: bench_export
+---
+id: 81
+accion: recall
+detector: si
+# 81 (03-11): la 79 se corto a las 13:20 en el 2.o partido; de nuevo, con el recall sin el partido de anotaciones
+# desfasadas (cuartos AO 2023) aparte
 # 03-11: pausa quitada (el usuario lo pide). En orden: 79 = paso 3 (golpes perdidos como repeticion, regla v11);
 # 80 = paso 4.1 (codificador de la iGPU frente a libx264: tiempo por video e imagen)
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):

@@ -297,6 +297,20 @@ def summarize(attr: list[dict], events: list[dict], out_strokes: list[dict], spa
     return s
 
 
+# A match whose annotations do not line up with its video (03-11): F3Set's AO 2023 quarter-final puts 82 of its 131
+# strokes outside every main-camera shot, though the camera is recognised there (request 41, docs/plan_maestro.md P3)
+# — its timestamps belong to another upload. Decided from the numbers, never by name: at least half of the annotated
+# strokes outside the main camera and almost nothing found. Its recall is reported apart, not mixed in the headline.
+MISALIGNED_OUTSIDE = 0.5
+MISALIGNED_RECALL = 0.1
+
+
+def misaligned(sm: dict) -> bool:
+    gt = sm["total"]["gt"]
+    return bool(gt >= 30 and sm["steps"].get("fuera_de_camara", 0) >= MISALIGNED_OUTSIDE * gt
+                and (sm["total"]["recall"] or 0) < MISALIGNED_RECALL)
+
+
 def identity_summary(attr: list[dict], runs: list[dict], point_spans: list) -> dict:
     """Identity seen from her annotated strokes (run right / wrong / undecided / no run) and from the
     runs that overlap annotated points (each with the truth: is she the near player there?), per cue
@@ -434,6 +448,28 @@ def _pct(x):
     return "—" if x is None else f"{x * 100:.0f} %"
 
 
+def _valid_lines(res: dict) -> list[str]:
+    """The headline without the matches whose annotations do not line up with the video, and each match's recall."""
+    L = []
+    v, ex = res.get("summary_valid"), res.get("excluded") or []
+    if v and ex:
+        L += [f"**Sin {', '.join(ex)}** (anotaciones desfasadas con el vídeo: la mitad o más de sus golpes anotados caen "
+              f"fuera de la cámara principal, que sí se reconoce): **encontrados {v['total']['found']} de "
+              f"{v['total']['gt']} ({_pct(v['total']['recall'])})**; precisión {_pct(v['precision']['precision'])}. "
+              f"Cercana {_pct(v['by_side']['near']['recall'])}, lejana {_pct(v['by_side']['far']['recall'])}.", ""]
+    pm = res.get("per_match") or []
+    if pm:
+        L += ["| Partido | recall | precisión | principal pérdida |", "|---|---|---|---|"]
+        for m in pm:
+            sm = m["summary"]
+            worst = max(LOST, key=lambda k: sm["steps"].get(k, 0))
+            L.append(f"| {m['match']}{' (desfasado)' if m['match'] in ex else ''} | {sm['total']['found']}/{sm['total']['gt']} "
+                     f"({_pct(sm['total']['recall'])}) | {_pct(sm['precision']['precision'])} | "
+                     + (f"{STEPS[worst]} ({sm['steps'][worst]})" if sm["steps"].get(worst) else "—") + " |")
+        L.append("")
+    return L
+
+
 def to_markdown(res: dict) -> str:
     """The benchmark for a person (Spanish), short: recall by end and kind, where the strokes are lost."""
     s = res["summary"]
@@ -444,6 +480,7 @@ def to_markdown(res: dict) -> str:
             f"{_pct(s['total']['recall_any'])})" if s['total'].get('found_doubtful') else "") + "; "
          f"precisión {_pct(s['precision']['precision'])} ({s['precision']['true']} de {s['precision']['predicted_in_points']} "
          f"golpes suyos dentro de los puntos; {s['precision']['opponent_strokes']} eran golpes de la rival).", "",
+         ] + _valid_lines(res) + [
          "## Recall por lado y tipo", "", "| | " + " | ".join(KINDS.values()) + " | total |", "|---|" + "---|" * (len(KINDS) + 1)]
     for a, an in SIDES.items():
         cells = [f"{x['found']}/{x['gt']}" for x in (s["by_side_kind"][f"{a}/{k}"] for k in KINDS)]
