@@ -3,10 +3,10 @@
  "strokes": 20,
  "near": 11,
  "summary": {
-  "ok": 286,
+  "ok": 288,
   "falta": 30,
   "pocos datos": 123,
-  "aviso": 105
+  "aviso": 104
  },
  "items": [
   {
@@ -3030,6 +3030,15 @@
    "detail": "golpes: precisión 0.917, recall 0.647; derecha/revés 0.969; dirección 0.885. Solo detección y clases: el valor de cada medida (codo, rodillas, pasos…) aún no tiene clips anotados con los que compararse"
   },
   {
+   "req": 5,
+   "area": "Automático",
+   "name": "Pruebas del código en este PC",
+   "status": "ok",
+   "detail": "código ? (?): 117 bien, 0 fallan, 0 errores",
+   "passed": 117,
+   "failed": 0
+  },
+  {
    "req": 6,
    "area": "Aprendizaje",
    "name": "Vídeos de análisis de entrenadores (solo para aprender)",
@@ -3146,7 +3155,7 @@
    "area": "Peticiones",
    "name": "#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe",
    "status": "aviso",
-   "detail": "A MEDIAS según el registro (#13); no se comprueba en las salidas: en los tests del código (uv run pytest, pc-logs:pruebas.log), no en las salidas"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3195,7 +3204,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "3 comprobaciones: 1 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -3412,7 +3421,7 @@
    "area": "Peticiones",
    "name": "#51 El código de la prueba es el de los casos reales",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: el mismo código (clip_pipeline, stages) en la prueba y en los partidos"
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -4671,8 +4680,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código",
-   "status": "aviso",
-   "detail": "sin comprobación automática asignada"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,

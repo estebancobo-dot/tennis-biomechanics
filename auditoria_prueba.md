@@ -1,6 +1,6 @@
 # Auditoría de requisitos (forehand)
 
-11 golpes del lado cercano. ✔ 286 cumplidos · ✘ 30 no cumplidos · … 123 sin golpes suficientes en esta ejecución · ! 105 avisos
+11 golpes del lado cercano. ✔ 288 cumplidos · ✘ 30 no cumplidos · … 123 sin golpes suficientes en esta ejecución · ! 104 avisos
 
 ## Peticiones del usuario SIN TERMINAR: 127 de 245
 
@@ -450,6 +450,7 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 5 de 11 del lado cercano (45%); motivos: elbow_implausible_at_impact 2, phase 2, impact_without_audio 2. Otros 5 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
 - ✔ **Golpes que fallaron al procesarse**: ninguno
 - ✔ **Nada pide revisión manual**: 14 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
+- ✔ **Pruebas del código en este PC**: código ? (?): 117 bien, 0 fallan, 0 errores
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 63 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 20 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 20 vídeos
@@ -500,10 +501,10 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ! **#9 Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok
 - ! **#10 Ver los cambios en la prueba rápida, sin 1 h**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok
 - ! **#12 Validar cada medida con clips públicos anotados; el usuario no valida a mano**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
-- ! **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: A MEDIAS según el registro (#13); no se comprueba en las salidas: en los tests del código (uv run pytest, pc-logs:pruebas.log), no en las salidas
+- ! **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#14 Rendimiento: un partido en horas, no días**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
 - ! **#15 Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
-- ! **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
+- ! **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
 - ! **#25 Métricas por derecha: apoyo, base, rodillas, cadera, hombros, X-factor, codo, impacto, cadena, pista**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
 - ! **#29 Fase 0: entorno y fps reales, con YOLO**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (246 min para 35 min de vídeo ≈ 24.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
 - ! **#45 Todo automático y completo: el usuario no revisa nada**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok
@@ -596,7 +597,6 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ! **#236 Huellas numeradas sobre los pies y patrones de pasos**: A MEDIAS según el registro (#236); sin comprobación automática asignada
 - ! **#238 La validación es siempre automática; el usuario no valida la aplicación**: A MEDIAS según el registro (#238); sin comprobación automática asignada
 - ! **#239 No se descarta ninguna petición**: sin comprobación automática asignada
-- ! **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: sin comprobación automática asignada
 - ! **#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po**: A MEDIAS según el registro (#242); sin comprobación automática asignada
 - ! **#243 Todos los escenarios del producto los contempla Claude sin esperar a que se pidan**: A MEDIAS según el registro (#243); sin comprobación automática asignada
 - … **#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b**: 201 comprobaciones: 51 pocos datos, 150 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
@@ -661,7 +661,7 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ✔ **#48 Posición de la cabeza y altura del cuerpo al inicio y al final**: 3 comprobaciones: 3 ok
 - ✔ **#49 No perder contexto ni sesión; registros automáticos**: no se comprueba en las salidas: registros subidos solos a pc-logs
 - ✔ **#50 Progreso y monitorización visibles**: no se comprueba en las salidas: registros con fecha y duración en la terminal
-- ✔ **#51 El código de la prueba es el de los casos reales**: no se comprueba en las salidas: el mismo código (clip_pipeline, stages) en la prueba y en los partidos
+- ✔ **#51 El código de la prueba es el de los casos reales**: 1 comprobaciones: 1 ok
 - ✔ **#52 Brave, no instalar Edge**: 9 comprobaciones: 9 ok
 - ✔ **#53 No pasar de 100 a 0: conservar lo anterior**: 9 comprobaciones: 9 ok
 - ✔ **#54 Qué hace ella cuando la rival golpea, la bola cruza la red, bota y llega arriba**: 2 comprobaciones: 2 ok
@@ -702,3 +702,4 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ✔ **#225 La aplicación no se cuelga ni ralentiza el PC**: 1 comprobaciones: 1 ok
 - ✔ **#234 Prueba de valor de la aplicación con los datos reales**: no se comprueba en las salidas: prueba de valor del 27-10 (docs/plan_maestro.md, R2)
 - ✔ **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: no se comprueba en las salidas: GitHub Actions: cada petición con su registro en la pestaña Actions del repositorio
+- ✔ **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 1 comprobaciones: 1 ok
