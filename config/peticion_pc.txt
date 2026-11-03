@@ -170,6 +170,13 @@ argumentos: --only bounce
 ---
 id: 86
 accion: completo
+---
+id: 87
+accion: app
+---
+id: 88
+accion: ventana
+# 87-88 (03-11): paso 6.2, la aplicacion con los datos reales de la referencia y sus pantallas, sin el ciclo
 # 85 (03-11): bote otra vez (Drive no deja leer por partes desde el PC: descarga completa una vez, 2,6 GB)
 # 86 (03-11): la referencia con el giro 3D del tronco adoptado (MotionAGFormer): rehace solo la pasada fina desde
 # las caches (pose, bola y raqueta guardadas), no el video
