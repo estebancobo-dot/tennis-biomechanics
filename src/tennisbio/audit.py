@@ -940,6 +940,18 @@ PETITIONS = {
     132: r"Golpe angulado", 157: r"Bola corta baja cerca de la red", 158: r"Bola corta alta cerca de la red",
     159: r"Volea a media pista con golpe de fondo|Volea fuera de la línea de saque",
 }
+# requests checked by their own tests run on the PC (module_tests_items), 03-11: they replace the notes above
+_T = "Pruebas en este PC: "
+PETITIONS.update({
+    31: _T + "test_pipeline$", 32: _T + "(test_app_core|test_no_hardcoded_player)$", 49: _T + "test_auto_cycle$",
+    80: _T + "test_auto_cycle$", 119: _T + "(test_auto_cycle|test_pc_requests)$", 144: _T + "test_auto_cycle$",
+    152: _T + "(test_library|test_layout)$", 160: _T + "(test_app_window|test_app_core)$", 161: _T + "test_library$",
+    220: _T + "(test_library|test_layout)$", 222: _T + "test_identity_click$", 226: _T + "test_app_window$",
+    227: _T + "test_app_window$", 229: _T + "(test_auto_catalog_rename|test_library)$",
+    242: _T + "(test_app_core|test_app_window)$", 225: r"Golpes que fallaron|Etapas con errores|" + _T + "(test_no_unbounded_calls|test_app_window)$",
+    232: r"Golpes que fallaron|Etapas con errores|Exportación|" + _T + "test_no_unbounded_calls$",
+    241: r"Pruebas del código en este PC|" + _T + "test_no_hardcoded_player$",
+})
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 SPEED_TARGET = 45 / 35          # hours of processing per hour of video (Base step 1: 35 min in ≤ 45 min)
 
@@ -974,6 +986,44 @@ def code_tests_item(log: Path | None) -> dict:
     return _item(5, "Automático", name, st, det, passed=passed, failed=failed)
 
 
+# test modules that check user requests on the PC itself (pruebas.xml of scripts/windows/pruebas_fondo.ps1), 03-11
+MODULE_TESTS = ("test_pipeline", "test_auto_cycle", "test_pc_requests", "test_library", "test_layout",
+                "test_identity_click", "test_app_core", "test_app_window", "test_auto_catalog_rename",
+                "test_no_hardcoded_player", "test_no_unbounded_calls")
+
+
+def module_tests_items(xml: Path | None) -> list[dict]:
+    """One item per test module of MODULE_TESTS, from the PC's own run of the tests (JUnit XML): «ok» when all its
+    tests passed there, «falta» when one failed, «aviso» when it did not run. Requests point at them (PETITIONS)."""
+    if xml is None:
+        return [_item(5, "Pruebas en este PC", f"Pruebas en este PC: {m}", "aviso", "todavía sin pruebas.xml")
+                for m in MODULE_TESTS]
+    import xml.etree.ElementTree as ET
+    try:
+        root = ET.parse(xml).getroot()
+    except (ET.ParseError, OSError) as e:
+        return [_item(5, "Pruebas en este PC", f"Pruebas en este PC: {m}", "aviso", f"pruebas.xml ilegible ({e})")
+                for m in MODULE_TESTS]
+    per: dict[str, dict] = {m: {"ok": 0, "fail": [], "skip": 0} for m in MODULE_TESTS}
+    for tc in root.iter("testcase"):
+        mod = (tc.get("classname") or "").split(".")[-1]
+        if mod not in per:
+            continue
+        if tc.find("failure") is not None or tc.find("error") is not None:
+            per[mod]["fail"].append(tc.get("name"))
+        elif tc.find("skipped") is not None:
+            per[mod]["skip"] += 1
+        else:
+            per[mod]["ok"] += 1
+    out = []
+    for m, r in per.items():
+        st = "falta" if r["fail"] else ("ok" if r["ok"] else "aviso")
+        det = (f"{r['ok']} bien, {len(r['fail'])} fallan, {r['skip']} omitidas"
+               + (f"; fallan: {', '.join(r['fail'][:4])}" if r["fail"] else "") + (" (no se ejecutó)" if not any(r.values()) else ""))
+        out.append(_item(5, "Pruebas en este PC", f"Pruebas en este PC: {m}", st, det))
+    return out
+
+
 def side_checks(out_root: Path) -> list[dict]:
     """Outputs that live next to the match folders: the validation with annotated public clips and the
     coach videos Claude learned from."""
@@ -990,6 +1040,7 @@ def side_checks(out_root: Path) -> list[dict]:
                            f"dirección {sm.get('direction_accuracy')}. Solo detección y clases: el valor de cada medida (codo, rodillas, "
                            "pasos…) aún no tiene clips anotados con los que compararse"))
     items.append(code_tests_item(next((b / "pruebas.log" for b in base if (b / "pruebas.log").exists()), None)))
+    items += module_tests_items(next((b / "pruebas.xml" for b in base if (b / "pruebas.xml").exists()), None))
     inv = next((b / "investigacion" / "indice.json" for b in base if (b / "investigacion" / "indice.json").exists()), None)
     if inv is None:
         items.append(_item(6, "Aprendizaje", "Vídeos de análisis de entrenadores (solo para aprender)", "aviso", "no se han bajado"))

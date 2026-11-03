@@ -126,6 +126,32 @@ def _smooth(a: np.ndarray, k: int) -> np.ndarray:
 CLIP_FROM_S, CLIP_TO_S = -1.0, 0.8      # real-speed part of a stroke video, s from contact
 
 
+class _LazyFrames:
+    """The clip's frames, read when first needed and only the stretch the stroke video shows (CLIP_FROM_S..CLIP_TO_S
+    around contact; 03-11: the series now start 2.5 s before it, and every video read and cropped all of them at
+    full resolution); a frame outside it (a phase still of the summary) widens the stretch read. The same frames as
+    reading the whole series."""
+
+    def __init__(self, clip: "StrokeClip"):
+        self.clip, self.lo, self.hi, self.data = clip, 0, 0, []
+
+    def __len__(self):
+        return self.clip.n
+
+    def __getitem__(self, f: int):
+        f = int(f)
+        c = self.clip
+        if not self.data:
+            lo = min(c.f_at(max(c.T0, CLIP_FROM_S)), f)
+            hi = min(max(c.f_at(min(c.T1, CLIP_TO_S)) + 1, f + 1), c.n)
+            self.data, self.lo, self.hi = c._read(lo, hi), lo, hi
+        elif f < self.lo:                      # only the missing frames are read
+            self.data, self.lo = c._read(f, self.lo) + self.data, f
+        elif f >= self.hi:
+            self.data, self.hi = self.data + c._read(self.hi, f + 1), min(f + 1, c.n)
+        return self.data[f - self.lo]
+
+
 class StrokeClip:
     """A stroke ready to draw: its frames cropped around the player (16:9) and its series."""
 
@@ -141,7 +167,7 @@ class StrokeClip:
         self.dom_wrist = 9 if ctx.get("hand") == "left" else 10
         self.kp = [None if k is None else np.array([np.nan if v is None else v for v in k], float).reshape(-1, 2) for k in s["kp"]]
         self._crops()
-        self.frames = self._read()
+        self.frames = _LazyFrames(self)
         self.Hi = np.linalg.inv(np.array(s["H"], float)) if s.get("H") else None
 
     def _crops(self):
@@ -164,17 +190,20 @@ class StrokeClip:
         self.sx = np.clip(cx - cw / 2, 0, np.maximum(0, self.vw - cw))
         self.sy = np.clip(cy - ch / 2, 0, np.maximum(0, self.vh - ch))
 
-    def _read(self) -> list:
+    def _read(self, lo: int = 0, hi: int | None = None) -> list:
+        """Her crops of the series frames lo..hi-1 (all by default)."""
         from .io.video import read_frames
-        # frame-exact seek to the first frame of the series (the windows are constant-rate, so frame
-        # k starts at k/fps; half a frame earlier lands on it): same frames as decoding from the start
+        hi = self.n if hi is None else min(hi, self.n)
+        # frame-exact seek to frame lo of the series (the windows are constant-rate, so frame k starts at
+        # k/fps; half a frame earlier lands on it): same frames as decoding from the start
         out = []
-        start = self.info.start_time + (self.first - 0.5) / self.info.fps if self.first > 0 else 0.0
-        for f, fr in enumerate(read_frames(self.info, start=start)):
-            if f >= self.n:
+        k = self.first + lo
+        start = self.info.start_time + (k - 0.5) / self.info.fps if k > 0 else 0.0
+        for i, fr in enumerate(read_frames(self.info, start=start)):
+            if lo + i >= hi:
                 break
-            out.append(self._crop(fr, f))
-        while len(out) < self.n:               # short video: hold the last frame
+            out.append(self._crop(fr, lo + i))
+        while len(out) < hi - lo:              # short video: hold the last frame
             out.append(out[-1] if out else np.zeros((self.size[1], self.size[0], 3), np.uint8))
         return out
 

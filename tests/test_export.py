@@ -93,3 +93,32 @@ def test_stroke_videos_in_parallel_processes(tmp_path):
     again = []
     export(m, tmp_path / "out", tmp_path / "seq", workers=1, log=again.append)
     assert any("Golpes: 2 nuevos" in line for line in again), again
+
+
+def test_lazy_frames_are_the_frames_of_the_whole_series(tmp_path):
+    """03-11 (B5): a stroke video reads only the stretch it shows, and later frames on demand; the same frames."""
+    import json
+    import subprocess
+    import importlib.util
+    from pathlib import Path
+
+    import numpy as np
+
+    spec = importlib.util.spec_from_file_location("tsp", Path(__file__).with_name("test_stroke_page.py"))
+    tsp = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(tsp)
+    from tennisbio.export import StrokeClip
+
+    s, ser = tsp.stroke_and_series()
+    d = tmp_path / "m1"
+    (d / "series").mkdir(parents=True)
+    (d / "windows").mkdir()
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", f"testsrc=duration={ser['n'] / 50 + 1}:size=640x360:rate=50",
+                    "-pix_fmt", "yuv420p", str(d / "windows" / "w.mp4")], check=True, timeout=120)
+    (d / "series" / "x.json").write_text(json.dumps(ser), encoding="utf-8")
+    rec = dict(s, _dir=str(d), _series="series/x.json", _window="w.mp4")
+    clip = StrokeClip(rec, {"hand": "right"})
+    full = clip._read()
+    order = [clip.f_at(0.0), clip.n - 1, 0, clip.n // 2]
+    for f in order:
+        assert np.array_equal(clip.frames[f], full[f]), f

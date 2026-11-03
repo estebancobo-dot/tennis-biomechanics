@@ -12,7 +12,8 @@ $log = "$Base\output\pruebas.log"
 $tmp = "$Base\output\pruebas_en_curso.txt"
 $commit = "$(git -C $RepoDir rev-parse --short HEAD 2>$null)".Trim()
 $t0 = Get-Date
-$p = Start-Process uv -ArgumentList @("run", "pytest", "-q", "-p", "no:cacheprovider") -WorkingDirectory $RepoDir `
+# pruebas.xml: el resultado de cada prueba con su nombre, para que la auditoria enlace cada peticion con las suyas
+$p = Start-Process uv -ArgumentList @("run", "pytest", "-q", "-p", "no:cacheprovider", "--junitxml", "`"$Base\output\pruebas.xml`"") -WorkingDirectory $RepoDir `
     -NoNewWindow -PassThru -RedirectStandardOutput $tmp -RedirectStandardError "$tmp.err"
 $null = $p.Handle                     # without it Windows PowerShell gives no ExitCode for a -PassThru process
 try { $p.PriorityClass = [System.Diagnostics.ProcessPriorityClass]::BelowNormal } catch {}
