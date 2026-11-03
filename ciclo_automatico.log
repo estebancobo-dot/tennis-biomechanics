@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261103013005
+Start time: 20261103014256
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 18128
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 16468
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,56 +17,14 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-11-03 01:30:05] Codigo nuevo (03006f7 -> 6894a5b): 16 ficheros
-    .gitignore
+==> [2026-11-03 01:42:56] Codigo nuevo (6894a5b -> c84041a): 2 ficheros
+    config/peticion_pc.txt
     docs/plan_corto_plazo.md
-    scripts/_candidate_export.py
-    scripts/bench_candidates.py
-    scripts/export_court_tcd.py
-    scripts/export_f3ed.py
-    scripts/export_rfdetr.py
-    scripts/export_rtmw.py
-    scripts/export_wasb.py
-    src/tennisbio/candidates/__init__.py
-    src/tennisbio/candidates/court14.py
-    src/tennisbio/candidates/f3ed.py
-    src/tennisbio/candidates/rfdetr.py
-    src/tennisbio/candidates/rtmw.py
-    src/tennisbio/candidates/wasb.py
-    tests/test_candidates.py
-Updating 03006f7..6894a5b
+Updating 6894a5b..c84041a
 Fast-forward
- .gitignore                           |   5 +
- docs/plan_corto_plazo.md             |   4 +-
- scripts/_candidate_export.py         |  52 +++
- scripts/bench_candidates.py          | 678 +++++++++++++++++++++++++++++++++++
- scripts/export_court_tcd.py          |  89 +++++
- scripts/export_f3ed.py               | 177 +++++++++
- scripts/export_rfdetr.py             |  75 ++++
- scripts/export_rtmw.py               |  56 +++
- scripts/export_wasb.py               | 237 ++++++++++++
- src/tennisbio/candidates/__init__.py |  16 +
- src/tennisbio/candidates/court14.py  | 139 +++++++
- src/tennisbio/candidates/f3ed.py     | 114 ++++++
- src/tennisbio/candidates/rfdetr.py   |  49 +++
- src/tennisbio/candidates/rtmw.py     |  74 ++++
- src/tennisbio/candidates/wasb.py     |  96 +++++
- tests/test_candidates.py             | 370 +++++++++++++++++++
- 16 files changed, 2229 insertions(+), 2 deletions(-)
- create mode 100644 scripts/_candidate_export.py
- create mode 100644 scripts/bench_candidates.py
- create mode 100644 scripts/export_court_tcd.py
- create mode 100644 scripts/export_f3ed.py
- create mode 100644 scripts/export_rfdetr.py
- create mode 100644 scripts/export_rtmw.py
- create mode 100644 scripts/export_wasb.py
- create mode 100644 src/tennisbio/candidates/__init__.py
- create mode 100644 src/tennisbio/candidates/court14.py
- create mode 100644 src/tennisbio/candidates/f3ed.py
- create mode 100644 src/tennisbio/candidates/rfdetr.py
- create mode 100644 src/tennisbio/candidates/rtmw.py
- create mode 100644 src/tennisbio/candidates/wasb.py
- create mode 100644 tests/test_candidates.py
+ config/peticion_pc.txt   | 4 ++++
+ docs/plan_corto_plazo.md | 6 +++---
+ 2 files changed, 7 insertions(+), 3 deletions(-)
 Resolved 124 packages in 1ms
 Checked 89 packages in 5ms
 balltrack.onnx     OK 45 MB
@@ -80,7 +38,7 @@ yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
     (paso terminado en 6 s)
 
-==> [2026-11-03 01:30:11] Que hace falta: informe
+==> [2026-11-03 01:43:02] Que hace falta: informe
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (63 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Golpes: 0 nuevos, 20 en C:\tenis\output\_smoke\exportar\golpes
@@ -119,15 +77,15 @@ Auditoría: 286 cumplidos, 30 no cumplidos, 123 sin golpes suficientes, 105 avis
   ✘ #240 Comparar la aplicación con las profesionales una vez estén los golpes: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
   ✘ #244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10): SIN HACER según el registro (#244, docs/peticiones_usuario.md)
   ✘ #245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10): SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-Hecho en 192 s, sin volver a analizar vídeo.
-    (paso terminado en 3 min 12 s)
+Hecho en 190 s, sin volver a analizar vídeo.
+    (paso terminado en 3 min 09 s)
 
-==> [2026-11-03 01:33:23] Revision automatica frente a la ejecucion anterior
+==> [2026-11-03 01:46:12] Revision automatica frente a la ejecucion anterior
 # Revisión automática: FALLOS
 Ciclo automatico terminado (informe).
     (paso terminado en 0 s)
-Empezado 2026-11-03 01:30:02 - terminado 2026-11-03 01:33:23 - duracion total 3 min 20 s
+Empezado 2026-11-03 01:42:54 - terminado 2026-11-03 01:46:12 - duracion total 3 min 18 s
 **********************
 Windows PowerShell transcript end
-End time: 20261103013323
+End time: 20261103014612
 **********************
