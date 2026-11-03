@@ -4264,3 +4264,26 @@
 2026-10-29 08:06:00   ventana w012348314_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 88) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 231 px (segments)
 2026-10-29 08:06:00   fine_doubtful: 100 % (51/51 golpes candidatos · 22 confirmados · 0 ventanas descartadas sin pose) · 36 s · quedan ≈ 0 s
 2026-10-29 08:06:02 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine_doubtful terminada a las 08:06:02 en 47 s
+2026-11-03 23:24:32 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] court… (2026-11-03 23:24:32, etapa 4 de 14)
+2026-11-03 23:24:44   court:   4 % (64/1814 fotogramas) · 0 s · quedan ≈ 0 s
+2026-11-03 23:25:18   court:  14 % (256/1814 fotogramas) · 34 s · quedan ≈ 3 min
+2026-11-03 23:25:51   court:  32 % (576/1814 fotogramas) · 67 s · quedan ≈ 2 min
+2026-11-03 23:26:30   court:  49 % (896/1814 fotogramas) · 2 min · quedan ≈ 2 min
+2026-11-03 23:27:04   court:  64 % (1152/1814 fotogramas) · 2 min · quedan ≈ 81 s
+2026-11-03 23:27:41   court:  81 % (1472/1814 fotogramas) · 3 min · quedan ≈ 41 s
+2026-11-03 23:28:20   court:  95 % (1728/1814 fotogramas) · 4 min · quedan ≈ 11 s
+2026-11-03 23:28:33   court: 100 % (1814/1814 fotogramas) · 4 min · quedan ≈ 0 s
+2026-11-03 23:29:21 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] court terminada a las 23:29:21 en 4.8 min
+2026-11-03 23:29:21 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] players… (2026-11-03 23:29:21, etapa 5 de 14)
+2026-11-03 23:29:21 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] score… (2026-11-03 23:29:21, etapa 6 de 14, a la vez que players)
+2026-11-03 23:29:21   [players] juego con pista: 41.9 min de 54.9 min de cámara principal
+2026-11-03 23:29:22   [players] players:   0 % (1/25156 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+2026-11-03 23:29:36   [score] score:   0 % (1/648 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+2026-11-03 23:29:52   [players] players:   1 % (337/25156 fotogramas con jugadoras) · 30 s · quedan ≈ 37 min
+2026-11-03 23:30:06   [score] score:   3 % (18/648 muestras · 4 lecturas · 18 OCR) · 31 s · quedan ≈ 18 min
+2026-11-03 23:30:22   [players] players:   3 % (642/25156 fotogramas con jugadoras) · 60 s · quedan ≈ 38 min
+2026-11-03 23:30:36   [score] score:   6 % (42/648 muestras · 10 lecturas · 42 OCR) · 61 s · quedan ≈ 15 min
+2026-11-03 23:30:52   [players] players:   4 % (899/25156 fotogramas con jugadoras) · 2 min · quedan ≈ 41 min
+2026-11-03 23:31:06   [score] score:  11 % (70/648 muestras · 23 lecturas · 66 OCR) · 2 min · quedan ≈ 12 min
+2026-11-03 23:31:22   [players] players:   5 % (1223/25156 fotogramas con jugadoras) · 2 min · quedan ≈ 39 min
+2026-11-03 23:31:37   [score] score:  15 % (100/648 muestras · 52 lecturas · 89 OCR) · 2 min · quedan ≈ 11 min
