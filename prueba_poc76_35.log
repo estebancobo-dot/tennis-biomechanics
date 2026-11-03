@@ -72,3 +72,564 @@ load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
     (paso terminado en 3 s)
 
 ==> [2026-11-03 04:21:26] 3/4 35 minutos de partido, todas las etapas e informe (unos 60 min)
+Tramo de juego (ya buscado): minuto 121
+Partido: rival sin determinar (lo lee el marcador), superficie dura
+Análisis del tramo: empieza 2026-11-03 04:21:28
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] probe… (2026-11-03 04:21:28, etapa 1 de 14)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] probe terminada a las 04:21:30 en 1 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] scenes… (2026-11-03 04:21:30, etapa 2 de 14)
+  scenes:   0 % (1/52512 fotogramas) · 0 s · quedan ≈ 0 s
+  scenes:  12 % (6256/52512 fotogramas) · 30 s · quedan ≈ 4 min
+  scenes:  24 % (12490/52512 fotogramas) · 60 s · quedan ≈ 3 min
+  scenes:  36 % (18743/52512 fotogramas) · 2 min · quedan ≈ 3 min
+  scenes:  48 % (24963/52512 fotogramas) · 2 min · quedan ≈ 2 min
+  scenes:  59 % (31226/52512 fotogramas) · 3 min · quedan ≈ 2 min
+  scenes:  72 % (37556/52512 fotogramas) · 3 min · quedan ≈ 72 s
+  scenes:  83 % (43826/52512 fotogramas) · 4 min · quedan ≈ 42 s
+  scenes:  96 % (50226/52512 fotogramas) · 4 min · quedan ≈ 11 s
+  scenes: 100 % (52512/52512 fotogramas) · 4 min · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] scenes terminada a las 04:25:44 en 4.2 min
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] audio… (2026-11-03 04:25:44, etapa 3 de 14)
+  audio:  14 % (300/2100 s de sonido) · 0 s · quedan ≈ 0 s
+  audio: 100 % (2100/2100 s de sonido) · 5 s · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] audio terminada a las 04:25:51 en 7 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] court… (2026-11-03 04:25:51, etapa 4 de 14)
+  court:  17 % (64/375 fotogramas) · 0 s · quedan ≈ 0 s
+  court:  85 % (320/375 fotogramas) · 31 s · quedan ≈ 5 s
+  court: 100 % (375/375 fotogramas) · 37 s · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] court terminada a las 04:26:48 en 57 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] players… (2026-11-03 04:26:48, etapa 5 de 14)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] score… (2026-11-03 04:26:48, etapa 6 de 14, a la vez que players)
+  [players] juego con pista: 9.2 min de 11.4 min de cámara principal
+  [players] players:   0 % (1/5536 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+  [score] score:   1 % (1/143 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+  [players] players:   6 % (326/5536 fotogramas con jugadoras) · 30 s · quedan ≈ 8 min
+  [score] score:  15 % (22/143 muestras · 21 lecturas · 20 OCR) · 31 s · quedan ≈ 3 min
+  [players] players:  12 % (645/5536 fotogramas con jugadoras) · 60 s · quedan ≈ 8 min
+  [score] score:  31 % (45/143 muestras · 44 lecturas · 43 OCR) · 62 s · quedan ≈ 2 min
+  [players] players:  17 % (959/5536 fotogramas con jugadoras) · 2 min · quedan ≈ 7 min
+  [score] score:  50 % (71/143 muestras · 69 lecturas · 64 OCR) · 2 min · quedan ≈ 2 min
+  [players] players:  23 % (1264/5536 fotogramas con jugadoras) · 2 min · quedan ≈ 7 min
+  [score] score:  67 % (96/143 muestras · 94 lecturas · 87 OCR) · 2 min · quedan ≈ 60 s
+  [players] players:  29 % (1588/5536 fotogramas con jugadoras) · 3 min · quedan ≈ 6 min
+  [score] score:  85 % (121/143 muestras · 119 lecturas · 107 OCR) · 3 min · quedan ≈ 28 s
+  [players] players:  34 % (1894/5536 fotogramas con jugadoras) · 3 min · quedan ≈ 6 min
+  [score] score: 100 % (143/143 muestras · 138 lecturas · 123 OCR) · 3 min · quedan ≈ 0 s
+  [score] marcador: 143 muestras en juego, 124 OCR (139 lecturas)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] score terminada a las 04:29:53 en 3.1 min
+  [players] players:  43 % (2363/5536 fotogramas con jugadoras) · 4 min · quedan ≈ 5 min
+  [players] players:  52 % (2860/5536 fotogramas con jugadoras) · 4 min · quedan ≈ 4 min
+  [players] players:  61 % (3356/5536 fotogramas con jugadoras) · 5 min · quedan ≈ 3 min
+  [players] players:  69 % (3846/5536 fotogramas con jugadoras) · 5 min · quedan ≈ 2 min
+  [players] players:  78 % (4345/5536 fotogramas con jugadoras) · 6 min · quedan ≈ 2 min
+  [players] players:  87 % (4835/5536 fotogramas con jugadoras) · 6 min · quedan ≈ 52 s
+  [players] players:  96 % (5328/5536 fotogramas con jugadoras) · 7 min · quedan ≈ 15 s
+  [players] players: 100 % (5536/5536 fotogramas con jugadoras) · 7 min · quedan ≈ 0 s
+  [players] tiempo: 6.7 min para 5536 fotogramas a 960 px · modelo 5.9 min · leer vídeo y preparar la entrada 6.7 min en otro hilo (espera real 0.8 min) · apariencia 0.1 min en otro hilo
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] players terminada a las 04:33:32 en 6.7 min (3.1 min a la vez que otra etapa)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] identity… (2026-11-03 04:33:32, etapa 7 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+  identity:   0 % (1/427 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+  identity:  14 % (60/427 fotogramas (ropa)) · 52 s · quedan ≈ 5 min
+  identity:  28 % (120/427 fotogramas (ropa)) · 2 min · quedan ≈ 4 min
+  identity:  37 % (156/427 fotogramas (ropa)) · 2 min · quedan ≈ 4 min
+  identity:  52 % (223/427 fotogramas (ropa)) · 3 min · quedan ≈ 3 min
+  identity:  77 % (330/427 fotogramas (ropa)) · 3 min · quedan ≈ 61 s
+  identity: 100 % (427/427 fotogramas (ropa)) · 4 min · quedan ≈ 0 s
+  ropa: 427 fotogramas · leerlos 220 s, medir la ropa 6 s
+  identidad: 72/72 planos · ropa y cambios de lado de acuerdo en 71, solo cambios de lado 0, solo ropa 1, la ropa corrige el marcador en 0, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 11.31
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] identity terminada a las 04:37:20 en 3.8 min
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] spotting… (2026-11-03 04:37:20, etapa 8 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  bola: 0.1 de 9.2 min de juego
+  bola: 2.7 de 9.2 min de juego
+  bola: 5.3 de 9.2 min de juego
+  bola: 7.8 de 9.2 min de juego
+  bola: 9.2 de 9.2 min de juego
+  detector entrenado: 157 golpes (73 cercanos, 84 lejanos) en 35 min de vídeo · umbral 0.1 · 722 s (jugadores_y_audio 0 s, rasgos 10 s, bola 711 s, modelo 0 s)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] spotting terminada a las 04:49:22 en 12.0 min
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] candidates… (2026-11-03 04:49:22, etapa 9 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  candidatos del detector entrenado: 137 (71 lejanos; 20 en repeticiones, fuera)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] candidates terminada a las 04:49:23 en 1 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] views… (2026-11-03 04:49:23, etapa 10 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  views:   0 % (1/461 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+  views:  26 % (119/461 fotogramas de otras tomas) · 30 s · quedan ≈ 86 s
+  views:  71 % (326/461 fotogramas de otras tomas) · 60 s · quedan ≈ 25 s
+  views: 100 % (461/461 fotogramas de otras tomas) · 72 s · quedan ≈ 0 s
+  tomas: 450 fotogramas clave y 11 exactos (1312 claves en el vídeo); lectura 1 s, personas 47 s, pista 22 s; 24 ajustes de pista
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] views terminada a las 04:50:38 en 1.2 min
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine… (2026-11-03 04:50:38, etapa 11 de 14)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  ventana w000409579_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000409579_3600: pose yolo en 180 de 180 fotogramas (14 s; modelo 14 s) · bola 7 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 105 px (court)
+  fine:   2 % (1/58 golpes candidatos · 0 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w000443500_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000443500_3600: pose yolo en 180 de 180 fotogramas (14 s; modelo 14 s, 106 a 960 px por perderla) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 193 px (segments)
+C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w000486986_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000486986_3600: pose yolo en 179 de 179 fotogramas (15 s; modelo 15 s, 165 a 960 px por perderla) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 107 px (court)
+  ventana w000455550_6014 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.68 s
+  ventana w000455550_6014: pose yolo en 300 de 300 fotogramas (22 s; modelo 22 s) · bola 11 s · raqueta 0 s (2 de 3 impactos) · 3 golpes posibles · altura 107 px (court)
+  fine:   9 % (5/58 golpes candidatos · 4 confirmados · 0 ventanas descartadas sin pose) · 35 s · quedan ≈ 6 min
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w000492477_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.4 s
+  ventana w000492477_3600: pose yolo en 180 de 180 fotogramas (13 s; modelo 13 s, 80 a 960 px por perderla) · bola 5 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 109 px (court)
+  ventana w000537846_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000537846_3600: pose yolo en 179 de 179 fotogramas (12 s; modelo 12 s) · bola 5 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 110 px (court)
+  ventana w000563840_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w000563840_3600: pose yolo en 180 de 180 fotogramas (11 s; modelo 11 s) · bola 5 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 112 px (court)
+  fine:  14 % (8/58 golpes candidatos · 7 confirmados · 0 ventanas descartadas sin pose) · 66 s · quedan ≈ 7 min
+  ventana w000599797_5765 (far, 2 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000599797_5765: pose yolo en 288 de 288 fotogramas (20 s; modelo 20 s) · bola 8 s · raqueta 0 s (2 de 3 impactos) · 3 golpes posibles · altura 109 px (court)
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w000633531_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.02 s
+  ventana w000633531_3600: pose yolo en 180 de 180 fotogramas (13 s; modelo 13 s, 106 a 960 px por perderla) · bola 5 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 107 px (court)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w000947988_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000947988_3600: pose yolo en 179 de 179 fotogramas (15 s; modelo 15 s, 140 a 960 px por perderla) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 185 px (segments)
+  fine:  21 % (12/58 golpes candidatos · 11 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 7 min
+  ventana w000645668_7657 (far, 4 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w000645668_7657: pose yolo en 382 de 382 fotogramas (27 s; modelo 26 s, 11 a 960 px por perderla) · bola 13 s · raqueta 0 s (4 de 4 impactos) · 4 golpes posibles · altura 106 px (court)
+  ventana w000962298_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.08 s
+  ventana w000962298_3600: pose yolo en 180 de 180 fotogramas (10 s; modelo 9 s) · bola 5 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 107 px (court)
+  ventana w000988916_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w000988916_3600: pose yolo en 180 de 180 fotogramas (14 s; modelo 14 s) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 107 px (court)
+  fine:  31 % (18/58 golpes candidatos · 16 confirmados · 0 ventanas descartadas sin pose) · 3 min · quedan ≈ 6 min
+C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+  ventana w001026202_4898 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.12 s
+  ventana w001026202_4898: pose yolo en 244 de 244 fotogramas (21 s; modelo 21 s, 187 a 960 px por perderla) · bola 7 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 106 px (court)
+  ventana w001100618_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001100618_3600: pose yolo en 180 de 180 fotogramas (10 s; modelo 10 s) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 111 px (court)
+  ventana w001170500_4781 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.02 s
+  ventana w001170500_4781: pose yolo en 239 de 239 fotogramas (18 s; modelo 18 s) · bola 7 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 92 px (court)
+  fine:  40 % (23/58 golpes candidatos · 21 confirmados · 0 ventanas descartadas sin pose) · 3 min · quedan ≈ 5 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w001200521_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001200521_3600: pose yolo en 179 de 179 fotogramas (16 s; modelo 16 s, 157 a 960 px por perderla) · bola 5 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 200 px (segments)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w001288380_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001288380_3600: pose yolo en 180 de 180 fotogramas (21 s; modelo 21 s, 178 a 960 px por perderla) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura nan px (pose)
+  fine:  43 % (25/58 golpes candidatos · 23 confirmados · 0 ventanas descartadas sin pose) · 4 min · quedan ≈ 5 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+  ventana w001243827_5923 (far, 2 candidatos): pasa · golpe de bola en su lado a 4.56 s
+  ventana w001243827_5923: pose yolo en 296 de 296 fotogramas (33 s; modelo 32 s, 270 a 960 px por perderla) · bola 12 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura nan px (pose)
+  ventana w001332047_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.1 s
+  ventana w001332047_3600: pose yolo en 179 de 179 fotogramas (10 s; modelo 10 s) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 107 px (court)
+  ventana w001873505_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001873505_3600: pose yolo en 179 de 179 fotogramas (11 s; modelo 11 s, 27 a 960 px por perderla) · bola 5 s · raqueta 0 s (1 de 3 impactos) · 3 golpes posibles · altura 106 px (court)
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w001888701_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001888701_3600: pose yolo en 179 de 179 fotogramas (11 s; modelo 10 s, 1 a 960 px por perderla) · bola 5 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 102 px (court)
+  fine:  52 % (30/58 golpes candidatos · 28 confirmados · 0 ventanas descartadas sin pose) · 4 min · quedan ≈ 4 min
+  ventana w001909229_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001909229_3600: pose yolo en 179 de 179 fotogramas (10 s; modelo 10 s) · bola 5 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 106 px (court)
+  ventana w001960800_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001960800_3600: pose yolo en 180 de 180 fotogramas (10 s; modelo 10 s) · bola 5 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 120 px (court)
+  ventana w002031400_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w002031400_3600: pose yolo en 180 de 180 fotogramas (10 s; modelo 10 s, 11 a 960 px por perderla) · bola 5 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 102 px (court)
+ [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 4 : 5 5 : 5 5 . 9 3 9 1 7 8 7   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 9 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 4 : 5 5 : 5 5 . 9 3 9 7 0 9 1   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 1 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 4 : 5 5 : 5 5 . 9 4 0 1 9 3 6   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 6 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+load C:\tenis\tennis-biomech\models\rtmw-x_384x288.onnx with onnxruntime backend
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 4 : 5 5 : 5 6 . 6 2 2 9 0 3 0   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 9 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 4 : 5 5 : 5 6 . 6 2 3 1 6 1 5   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 1 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 4 : 5 5 : 5 6 . 6 2 3 3 6 7 8   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 6 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 4 : 5 6 : 0 2 . 5 7 1 5 9 5 8   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 9 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 4 : 5 6 : 0 2 . 5 7 1 8 8 0 3   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 1 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 4 : 5 6 : 0 2 . 5 7 2 3 6 6 6   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 6 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+load C:\tenis\tennis-biomech\models\rtmw-x_384x288.onnx with onnxruntime backend
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 4 : 5 6 : 0 3 . 1 6 9 2 3 6 5   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 9 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 4 : 5 6 : 0 3 . 1 6 9 4 9 2 6   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 1 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 4 : 5 6 : 0 3 . 1 6 9 6 9 7 5   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 6 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  ventana w000015379_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w000015379_3600: pose hybrid en 180 de 180 fotogramas (32 s; modelo 31 s; pies en 180) · bola 5 s · raqueta 15 s (1 de 1 impactos) · 1 golpes posibles · altura 407 px (court)
+  fine:  59 % (34/58 golpes candidatos · 31 confirmados · 0 ventanas descartadas sin pose) · 6 min · quedan ≈ 4 min
+  ventana w000073500_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w000073500_3600: pose hybrid en 180 de 180 fotogramas (30 s; modelo 28 s; pies en 179) · bola 6 s · raqueta 15 s (1 de 1 impactos) · 1 golpes posibles · altura 209 px (court)
+  ventana w000131000_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+  ventana w000131000_3600: pose hybrid en 180 de 180 fotogramas (30 s; modelo 30 s; pies en 180) · bola 7 s · raqueta 15 s (1 de 1 impactos) · 1 golpes posibles · altura 201 px (court)
+  fine:  62 % (36/58 golpes candidatos · 33 confirmados · 0 ventanas descartadas sin pose) · 7 min · quedan ≈ 4 min
+  ventana w000087700_5800 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000087700_5800: pose hybrid en 290 de 290 fotogramas (47 s; modelo 46 s; pies en 290) · bola 9 s · raqueta 49 s (2 de 4 impactos) · 4 golpes posibles · altura 197 px (court)
+  fine:  66 % (38/58 golpes candidatos · 35 confirmados · 0 ventanas descartadas sin pose) · 8 min · quedan ≈ 4 min
+  ventana w000174611_6291 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.28 s
+  ventana w000174611_6291: pose hybrid en 315 de 315 fotogramas (47 s; modelo 46 s; pies en 315) · bola 10 s · raqueta 28 s (2 de 2 impactos) · 2 golpes posibles · altura 198 px (court)
+  fine:  69 % (40/58 golpes candidatos · 37 confirmados · 0 ventanas descartadas sin pose) · 8 min · quedan ≈ 4 min
+  ventana w000209350_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000209350_3600: pose hybrid en 179 de 179 fotogramas (27 s; modelo 27 s; pies en 179) · bola 7 s · raqueta 14 s (1 de 1 impactos) · 1 golpes posibles · altura 206 px (court)
+  ventana w000320901_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.7 s): puede haber golpe
+  ventana w000320901_3600: pose hybrid en 179 de 179 fotogramas (31 s; modelo 31 s; pies en 168) · bola 6 s · raqueta 15 s (1 de 1 impactos) · 1 golpes posibles · altura 206 px (court)
+  fine:  72 % (42/58 golpes candidatos · 39 confirmados · 0 ventanas descartadas sin pose) · 9 min · quedan ≈ 4 min
+  ventana w000256600_5907 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000256600_5907: pose hybrid en 295 de 295 fotogramas (48 s; modelo 48 s; pies en 295) · bola 9 s · raqueta 28 s (2 de 2 impactos) · 2 golpes posibles · altura 216 px (court)
+  ventana w001459999_3600 (near, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001459999_3600: pose hybrid en 180 de 180 fotogramas (30 s; modelo 30 s; pies en 180) · bola 6 s · raqueta 14 s (1 de 1 impactos) · 1 golpes posibles · altura 349 px (court)
+  fine:  78 % (45/58 golpes candidatos · 42 confirmados · 0 ventanas descartadas sin pose) · 11 min · quedan ≈ 3 min
+ C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w001470950_3600 (near, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001470950_3600: pose hybrid en 179 de 179 fotogramas (29 s; modelo 29 s; pies en 179) · bola 6 s · raqueta 13 s (1 de 1 impactos) · 1 golpes posibles · altura 356 px (court)
+  fine:  79 % (46/58 golpes candidatos · 43 confirmados · 0 ventanas descartadas sin pose) · 12 min · quedan ≈ 3 min
+C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w001433977_9165 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w001433977_9165: pose hybrid en 458 de 458 fotogramas (71 s; modelo 70 s; pies en 51) · bola 14 s · raqueta 46 s (3 de 4 impactos) · 4 golpes posibles · altura 1152 px (segments)
+  ventana w001492272_3600 (near, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001492272_3600: pose hybrid en 180 de 180 fotogramas (30 s; modelo 29 s; pies en 180) · bola 6 s · raqueta 12 s (1 de 1 impactos) · 1 golpes posibles · altura 329 px (court)
+  fine:  86 % (50/58 golpes candidatos · 47 confirmados · 0 ventanas descartadas sin pose) · 13 min · quedan ≈ 2 min
+  ventana w001526399_3600 (near, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001526399_3600: pose hybrid en 180 de 180 fotogramas (31 s; modelo 31 s; pies en 180) · bola 6 s · raqueta 13 s (1 de 1 impactos) · 1 golpes posibles · altura 199 px (court)
+  ventana w001538391_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.16 s
+  ventana w001538391_3600: pose hybrid en 180 de 180 fotogramas (30 s; modelo 30 s; pies en 180) · bola 6 s · raqueta 13 s (1 de 1 impactos) · 1 golpes posibles · altura 200 px (court)
+  fine:  90 % (52/58 golpes candidatos · 49 confirmados · 0 ventanas descartadas sin pose) · 13 min · quedan ≈ 2 min
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+  ventana w001542200_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.36 s
+  ventana w001542200_3600: pose hybrid en 180 de 180 fotogramas (30 s; modelo 30 s; pies en 155) · bola 6 s · raqueta 13 s (1 de 1 impactos) · 1 golpes posibles · altura 212 px (court)
+  ventana w001610253_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.26 s
+  ventana w001610253_3600: pose hybrid en 180 de 180 fotogramas (30 s; modelo 30 s; pies en 176) · bola 6 s · raqueta 13 s (1 de 1 impactos) · 1 golpes posibles · altura 203 px (court)
+  fine:  93 % (54/58 golpes candidatos · 51 confirmados · 0 ventanas descartadas sin pose) · 14 min · quedan ≈ 64 s
+  ventana w001651402_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w001651402_3600: pose hybrid en 179 de 179 fotogramas (30 s; modelo 30 s; pies en 179) · bola 6 s · raqueta 13 s (1 de 1 impactos) · 1 golpes posibles · altura 207 px (court)
+  ventana w001707205_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w001707205_3600: pose hybrid en 179 de 179 fotogramas (30 s; modelo 30 s; pies en 179) · bola 6 s · raqueta 23 s (1 de 2 impactos) · 2 golpes posibles · altura 196 px (court)
+  fine:  97 % (56/58 golpes candidatos · 53 confirmados · 0 ventanas descartadas sin pose) · 15 min · quedan ≈ 33 s
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:681: RuntimeWarning: All-NaN slice encountered
+  fy = np.nanmax(img[f, [sk["left_ankle"], sk["right_ankle"]], 1])
+  ventana w001751001_6399 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.06 s
+  ventana w001751001_6399: pose hybrid en 319 de 319 fotogramas (52 s; modelo 51 s; pies en 214) · bola 10 s · raqueta 17 s (2 de 2 impactos) · 2 golpes posibles · altura 207 px (court)
+  fine: 100 % (58/58 golpes candidatos · 55 confirmados · 0 ventanas descartadas sin pose) · 16 min · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine terminada a las 05:06:56 en 16.3 min
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] views_link… (2026-11-03 05:06:56, etapa 12 de 14)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] views_link terminada a las 05:06:56 en 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent… (2026-11-03 05:06:56, etapa 13 de 14)
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_opponent terminada a las 05:06:56 en 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_doubtful… (2026-11-03 05:06:56, etapa 14 de 14)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+  fine_doubtful:  12 % (1/8 golpes candidatos · 0 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+ [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 5 : 0 7 : 1 0 . 3 6 0 1 7 1 1   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 9 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 5 : 0 7 : 1 0 . 3 6 0 6 1 1 1   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 1 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 5 : 0 7 : 1 0 . 3 6 1 0 9 6 0   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 6 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+load C:\tenis\tennis-biomech\models\rtmw-x_384x288.onnx with onnxruntime backend
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 5 : 0 7 : 1 0 . 7 4 2 0 8 3 6   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 9 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 5 : 0 7 : 1 0 . 7 4 2 5 6 7 9   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 1 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 5 : 0 7 : 1 0 . 7 4 3 0 4 8 9   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 6 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 5 : 0 7 : 1 1 . 1 4 4 5 4 9 1   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 9 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 5 : 0 7 : 1 1 . 1 4 5 1 6 5 8   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 1 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 5 : 0 7 : 1 1 . 1 4 7 3 4 9 6   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 6 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+load C:\tenis\tennis-biomech\models\rtmw-x_384x288.onnx with onnxruntime backend
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 5 : 0 7 : 1 1 . 5 7 9 0 4 9 2   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 9 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 5 : 0 7 : 1 1 . 5 7 9 3 2 8 9   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 1 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+  [ 0 ; 9 3 m 2 0 2 6 - 1 1 - 0 3   0 5 : 0 7 : 1 1 . 5 7 9 5 5 2 7   [ W : o n n x r u n t i m e : ,   g r a p h . c c : 5 2 4 1   o n n x r u n t i m e : : G r a p h : : C l e a n U n u s e d I n i t i a l i z e r s A n d N o d e A r g s ]   R e m o v i n g   i n i t i a l i z e r   ' 1 7 0 6 ' .   I t   i s   n o t   u s e d   b y   a n y   n o d e   a n d   s h o u l d   b e   r e m o v e d   f r o m   t h e   m o d e l .  [ m 
+ C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w001103098_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (2.14 s): puede haber golpe
+  ventana w001103098_3600: pose hybrid en 180 de 180 fotogramas (31 s; modelo 29 s; pies en 107) · bola 7 s · raqueta 15 s (1 de 1 impactos) · 1 golpes posibles · altura 207 px (segments)
+  fine_doubtful:  62 % (5/8 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 61 s · quedan ≈ 36 s
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w000908210_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
+  ventana w000908210_3600: pose hybrid en 179 de 179 fotogramas (33 s; modelo 32 s; pies en 19) · bola 7 s · raqueta 16 s (1 de 1 impactos) · 1 golpes posibles · altura 793 px (segments)
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w001845997_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.72 s): puede haber golpe
+  ventana w001845997_3600: pose hybrid en 180 de 180 fotogramas (20 s; modelo 20 s; pies en 21) · bola 7 s · raqueta 24 s (1 de 2 impactos) · 2 golpes posibles · altura 305 px (segments)
+  fine_doubtful:  88 % (7/8 golpes candidatos · 3 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 17 s
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  ventana w001696598_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.68 s
+  ventana w001696598_3600: pose hybrid en 180 de 180 fotogramas (32 s; modelo 32 s; pies en 109) · bola 7 s · raqueta 14 s (1 de 1 impactos) · 1 golpes posibles · altura 202 px (segments)
+  fine_doubtful: 100 % (8/8 golpes candidatos · 4 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 0 s
+[smoke_tennis-yusipopen-final-sobolenko-rybakin] fine_doubtful terminada a las 05:08:59 en 2.0 min
+Análisis del tramo: termina 2026-11-03 05:08:59 (47.5 min)
+
+Etapas ejecutadas: probe, scenes, audio, court, score, players, identity, spotting, candidates, views, fine, views_link, fine_opponent, fine_doubtful
+  probe           1.1 s  {'duration_min': 35.0, 'fps': 50.0, 'size': '1920x1080', 'cleaned': False, 'vfr': True}
+  scenes        254.2 s  {'shots': 303, 'main_camera_shots': 74, 'detector': 'transnetv2', 'main_camera_min': 11.4, 'main_rule': 'lines', 'main_camera_min_colour': 30.3, 'main_views': 70}
+  audio           7.3 s  {'onsets': 2205, 'tracks': 1}
+  court          57.5 s  {'segments': 111, 'with_court': 95, 'known_court_reused': 329, 'searched': 27, 'filled_same_view': 11, 'samples': 444, 'court_presets': 20, 'main_camera_min': 11.4, 'court_min': 9.2, 'court_share': 0.811, 'pitch_deg_median': 18.3}
+  score         184.6 s  {'readings': 139, 'pressure': 53, 'samples': 143, 'ocr_calls': 124}
+  players       403.9 s  {'frames': 5536, 'wall_min': 6.7, 'model_min': 5.9, 'read_min': 6.7, 'wait_min': 0.8, 'appearance_min': 0.1}
+  identity      227.6 s  {'runs': 72, 'confidence': 1.0, 'votes': 71, 'agree': 71, 'ends_only': 0, 'clothes_only': 1, 'ends_won': 0, 'clothes_won': 0, 'doubtful': 0, 'none': 0, 'by_end_changes': 71, 'by_clothes': 72, 'conflicts': 0, 'conflicts_resolved': 0, 'decided': 72, 'clothes': {'source': 'ropa (torso y pantalón o falda, sin la pista)', 'runs': 72, 'clear': 72, 'margin_median': 0.81, 'separation': 11.31, 'far_pairs': 0, 'far_opposite': None, 'same_game_pairs': 64, 'same_game_same': 1.0}}
+  spotting      721.8 s  {'enabled': True, 'strokes': 157, 'near': 73, 'far': 84, 'out_of_play': 1296, 'threshold': 0.1, 'fps': 10.0, 'model_fps': 10.0, 'feature_dim': 122, 'audio_track': 0, 'seconds': {'jugadores_y_audio': 0.0, 'rasgos': 9.9, 'bola': 711.3, 'modelo': 0.1}}
+  candidates      0.9 s  {'candidates': 137, 'far': 71, 'with_audio': 113, 'source': 'spotter', 'opponent_strokes': 71, 'identity_unknown': 8, 'replay_strokes_skipped': 20, 'replay_runs': 12, 'audio_track': 0}
+  views          74.9 s  {'views': 247, 'repeticion_principal': 13, 'lateral': 8, 'frontal': 2, 'primer_plano': 220, 'otra': 4, 'links': 517, 'linked_views': 227, 'slowmo_links': 5}
+  fine          978.4 s  {'candidates': 58, 'confirmed': 55, 'errors': 0, 'warnings': [], 'forehands': 23, 'windows': 44, 'gate': {'windows_gated': 0, 'windows_passed': 44, 'windows_ungated': 0, 'reasons': {'detector': 19, 'golpe_de_bola': 24, 'bola_no_vista': 1}, 'seconds_in_gated_windows': 0.0}, 'seconds': {'pose': 1067.2, 'pose_modelo_hybrid': 678.8, 'pose_modelo_yolo': 375.6, 'raqueta': 369.9, 'bola': 301.1, 'cuerdas_y_3d': 68.5, 'recorte': 49.9, 'jugadora_lejana': 30.0, 'analisis_ventana': 8.9, 'pista_ventana': 8.9, 'cribado': 2.3}, 'counts': {'overlap_s': 0.0, 'frames': 9353, 'posed_frames': 9353, 'impacts': 68, 'kept_impacts': 58, 'racket_frames': 844, 'whole_window_again': 0, 'frames_960_far': 1439, 'frames_modelo_yolo': 5161, 'frames_modelo_hybrid': 4192}}
+  views_link      0.1 s  {'strokes': 55, 'with_replay': 8, 'with_other_camera': 54, 'with_slowmo': 3, 'replay_share': 0.145, 'other_share': 0.982}
+  fine_opponent     0.0 s  {'enabled': False}
+  fine_doubtful   123.0 s  {'candidates': 8, 'confirmed': 4, 'errors': 0, 'warnings': [], 'forehands': 1, 'windows': 8, 'gate': {'windows_gated': 0, 'windows_passed': 4, 'windows_ungated': 0, 'reasons': {'bola_no_vista': 3, 'golpe_de_bola': 1}, 'seconds_in_gated_windows': 0.0}, 'seconds': {'pose': 116.5, 'pose_modelo_hybrid': 112.9, 'raqueta': 69.0, 'bola': 26.2, 'recorte': 10.4, 'cuerdas_y_3d': 6.1, 'analisis_ventana': 3.1, 'pista_ventana': 2.4, 'cribado': 0.2, 'jugadora_lejana': 0.0}, 'counts': {'overlap_s': 0.0, 'frames': 719, 'posed_frames': 719, 'impacts': 5, 'kept_impacts': 4, 'racket_frames': 147, 'whole_window_again': 0, 'frames_960_far': 0, 'frames_modelo_hybrid': 719}}
+  golpes 10/23 (40 s, 5 procesos)
+  golpes 20/23 (78 s, 5 procesos)
+Golpes: 23 nuevos, 23 en C:\tenis\output\_poc76_35\exportar\golpes
+Montajes: 9 en C:\tenis\output\_poc76_35\exportar\montajes
+Resumen: C:\tenis\output\_poc76_35\exportar\resumen.pdf
+
+Total 47.5 min para 35 min de vídeo → partido de 210 min ≈ 4.8 h (estimación lineal)
+Informe: C:\tenis\output\_poc76_35\informe\index.html
+Vídeos, montajes y resumen PDF: C:\tenis\output\_poc76_35\exportar
+Peticiones: 24 sin construir · 96 construido, sin comprobar · 73 comprobación que falla · 44 comprobado en salidas · 0 validado con verdad
+Auditoría: 299 cumplidos, 38 no cumplidos, 101 sin golpes suficientes, 109 avisos → C:\tenis\output\_poc76_35\auditoria\auditoria.md
+  ✘ Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin: marcador: 44-50 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto de saque) y 70-130 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 55 golpes, 0 saques/remates → como mucho 79% de sus golpes y 0% de sus saques. Faltan muchos golpes (ver scripts/validate_recall.py para saber en qué etapa se pierden) (25 cerca, 30 lejos); además 4 de identidad dudosa, apartados (no cuentan como suyos)
+  ✘ Valores dentro de límites físicos: stance_width_m: 1 de 13 fuera de 0.1–2.5
+  ✘ Primera pantalla, anchura y nombres (diseño definitivo): vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 579 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
+  ✘ Pruebas del código en este PC: código ? (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_twice_moved_or_copied_is_recognised, tests/test_app_core.py::test_video_without_audio_is_said, tests/test_app_core.py::test_test_runs_one_level_down_are_indexed_and_reported_from_their_folder, tests/test_app_core.py::test_test_run_clip_is_found_next_to_its_matches, tests/test_app_core.py::test_plan_leaves_the_cycles_test_runs_to_the_cycle
+  ✘ #1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
+  ✘ #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código ? (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_twice_mo)
+  ✘ #20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código ? (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_twice_mo)
+  ✘ #46 Sin PDF enorme y sin inventar datos: 2 comprobaciones: 1 falta, 1 ok; la peor: «Valores dentro de límites físicos» (stance_width_m: 1 de 13 fuera de 0.1–2.5)
+  ✘ #51 El código de la prueba es el de los casos reales: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código ? (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_twice_mo)
+  ✘ #59 Diferencias solo por encima del error y en situaciones equivalentes: 6 comprobaciones: 1 falta, 5 ok; la peor: «Valores dentro de límites físicos» (stance_width_m: 1 de 13 fuera de 0.1–2.5)
+  ✘ #134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06): 2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 44-50 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto )
+  ✘ #151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25): 2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 44-50 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto )
+  ✘ #155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
+  ✘ #176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3): SIN HACER según el registro (#176, docs/peticiones_usuario.md)
+  ✘ #189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4): SIN HACER según el registro (#189, docs/peticiones_usuario.md)
+  ✘ #193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10): SIN HACER según el registro (#193, docs/peticiones_usuario.md)
+  ✘ #196 Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18): SIN HACER según el registro (#196, docs/peticiones_usuario.md)
+  ✘ #197 Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19): SIN HACER según el registro (#197, docs/peticiones_usuario.md)
+  ✘ #198 Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20): SIN HACER según el registro (#198, docs/peticiones_usuario.md)
+  ✘ #199 Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10): SIN HACER según el registro (#199, docs/peticiones_usuario.md)
+  ✘ #200 Pista: TennisCourtDetector (14 puntos) + refinado (Estado del arte, 13-10): SIN HACER según el registro (#200, docs/peticiones_usuario.md)
+  ✘ #201 Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10): SIN HACER según el registro (#201, docs/peticiones_usuario.md)
+  ✘ #202 Bola: probar WASB (Estado del arte, 13-10): SIN HACER según el registro (#202, docs/peticiones_usuario.md)
+  ✘ #203 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10): SIN HACER según el registro (#203, docs/peticiones_usuario.md)
+  ✘ #205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3): SIN HACER según el registro (#205, docs/peticiones_usuario.md)
+  ✘ #209 Passing y globo (Revisión completa, §3 B): SIN HACER según el registro (#209, docs/peticiones_usuario.md)
+  ✘ #210 Dejada (bote muy corto en campo rival) (Revisión completa, §3 B): SIN HACER según el registro (#210, docs/peticiones_usuario.md)
+  ✘ #211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5): SIN HACER según el registro (#211, docs/peticiones_usuario.md)
+  ✘ #216 Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnic: SIN HACER según el registro (#216, docs/peticiones_usuario.md)
+  ✘ #217 Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26): SIN HACER según el registro (#217, docs/peticiones_usuario.md)
+  ✘ #219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d: 2 comprobaciones: 1 falta, 1 ok; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 44-50 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto )
+  ✘ #223 Revés y derecha cortados: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
+  ✘ #224 Saques: plano, cortado o kick; primero o segundo: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
+  ✘ #233 Una referencia completa y medida antes de validar nada: 2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 44-50 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto )
+  ✘ #240 Comparar la aplicación con las profesionales una vez estén los golpes: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
+  ✘ #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código ? (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_twice_mo)
+  ✘ #244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10): SIN HACER según el registro (#244, docs/peticiones_usuario.md)
+  ✘ #245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10): SIN HACER según el registro (#245, docs/peticiones_usuario.md)
+    (paso terminado en 52 min 41 s)
+
+==> [2026-11-03 05:14:07] 4/4 Validacion automatica: puntos anotados de partidos de la jugadora (F3Set; 20-40 min, solo la primera vez)
+ya hecha
+    (paso terminado en 0 s)
+
+==> [2026-11-03 05:14:07] Extra: videos de analisis de entrenadores en YouTube (10-20 min, solo la primera vez)
+ya hecho
+
+PRUEBA TERMINADA. El informe se ha abierto en el navegador.
+El registro se envia a Claude automaticamente.
+    (paso terminado en 0 s)
+Empezado 2026-11-03 04:21:14 - terminado 2026-11-03 05:14:07 - duracion total 52 min 52 s
+**********************
+Windows PowerShell transcript end
+End time: 20261103051407
+**********************
