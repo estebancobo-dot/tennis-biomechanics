@@ -60,8 +60,8 @@ Lo leen igual el usuario y cualquier sesión de Claude que continúe.
 | 1.5 | Nube sec. | 1.4 si no basta | Calcular la bola de todo el juego a la vez que el marcador (CPU) y en lotes; o en la CPU en paralelo con la iGPU | Ídem | — |
 | 1.6 | PC sec. | 1.4/1.5 | Prueba desde cero final | **≤ 45 min en 35 min de vídeo; mismo número de golpes ±5 %** → cierra B1 | — |
 | **Paso 2 · B3 mejores modelos** | | | **Cada candidato medido frente al actual** | | **preparándose en paralelo** |
-| 2.1 | Nube par. | — | Ayudante: WASB, RTMW-x 2D, TennisCourtDetector, RF-DETR y F3ED a ONNX, con prueba ONNX = PyTorch y su script de medida | Ficheros y pruebas en su rama | en marcha |
-| 2.2 | Nube sec. | 2.1 | Revisar lo del ayudante, unirlo, batería completa | Subido | — |
+| 2.1 | Nube par. | — | Ayudante: WASB, RTMW-x 2D, TennisCourtDetector, RF-DETR y F3ED a ONNX, con prueba ONNX = PyTorch y su script de medida | Ficheros y pruebas en su rama | **hecho**: los 5 en ONNX, con diferencia frente a PyTorch de 1e-7 a 1e-3; medida en el PC: `scripts/bench_candidates.py` (acción `medir`, script `bench_candidates`) |
+| 2.2 | Nube sec. | 2.1 | Revisar lo del ayudante, unirlo, batería completa | Subido | **hecho** (02-11). Prueba rápida en la CPU de la nube, que no es un resultado: bola WASB F1 0,77 frente a 0,81 nuestro (2 clips); pista 99,5 % frente a 97,6 %; lejana 8/8 frente a 7/8. F3ED se mide en el PC (sus clips de F3Set solo están allí) |
 | 2.3 | PC sec. | paso 1 cerrado, 2.2 | **Una sola tanda** en el PC: precisión con F3Set y RacketVision, y fotogramas/s, cada candidato frente al actual. También PP-OCRv5 (#201) y MotionAGFormer o CalTennis para el 3D (#203, #206) | Tabla medida | — |
 | 2.4 | Nube sec. | 2.3 | Adoptar los que ganan (mejor o igual precisión y no más lentos en un partido nuevo), cada uno detrás de su opción de configuración y con su prueba | Decisión de cada candidato en `docs/referencias_externas.md` → cierra B3 | — |
 | **Paso 3 · B4 no perder golpes** | | | | | |
