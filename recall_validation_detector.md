@@ -1,40 +1,50 @@
 # Golpes perdidos: recall frente a F3Set
 
-648 golpes anotados de Rybakina en 368 puntos de 4 partidos (tolerancia ±0.2 s). **Encontrados 413 (64 %)** y 10 más apartados como de identidad dudosa (con ellos 65 %); precisión 88 % (414 de 471 golpes suyos dentro de los puntos; 10 eran golpes de la rival).
+648 golpes anotados de Rybakina en 368 puntos de 4 partidos (tolerancia ±0.2 s). **Encontrados 465 (72 %)** y 11 más apartados como de identidad dudosa (con ellos 74 %); precisión 88 % (466 de 528 golpes suyos dentro de los puntos; 10 eran golpes de la rival).
+
+**Sin 20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina** (anotaciones desfasadas con el vídeo: la mitad o más de sus golpes anotados caen fuera de la cámara principal, que sí se reconoce): **encontrados 464 de 517 (90 %)**; precisión 95 %. Cercana 92 %, lejana 88 %.
+
+| Partido | recall | precisión | principal pérdida |
+|---|---|---|---|
+| 20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin | 133/141 (94 %) | 98 % | jugadora cercana no seguida (sin tramo) (5) |
+| 20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina (desfasado) | 1/131 (1 %) | 3 % | fuera de la cámara principal (82) |
+| 20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka | 138/154 (90 %) | 94 % | no confirmado (bola vista) (6) |
+| 20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina | 193/222 (87 %) | 94 % | no es candidato (15) |
 
 ## Recall por lado y tipo
 
 | | saque | derecha | revés | volea / remate / otro | total |
 |---|---|---|---|---|---|
-| cercana | 43/82 | 73/108 | 64/95 | 0/3 | **180/288** (62 %) |
-| lejana | 59/96 | 98/145 | 74/115 | 2/4 | **233/360** (65 %) |
+| cercana | 59/82 | 82/108 | 70/95 | 0/3 | **211/288** (73 %) |
+| lejana | 65/96 | 107/145 | 80/115 | 2/4 | **254/360** (71 %) |
 
 ## Dónde se pierden (primera etapa que falla)
 
 | Etapa | cercana | lejana | total |
 |---|---|---|---|
-| fuera de la cámara principal | 36 | 49 | **85** |
+| fuera de la cámara principal | 35 | 49 | **84** |
 | jugadora cercana no seguida (sin tramo) | 6 | 10 | **16** |
-| descartado como repetición: el mismo recorrido, más lento | 35 | 26 | **61** |
-| identidad equivocada | 2 | 6 | **8** |
-| no es candidato | 16 | 25 | **41** |
+| descartado como repetición: el mismo recorrido, más lento | 2 | 0 | **2** |
+| identidad equivocada | 2 | 7 | **9** |
+| no es candidato | 17 | 28 | **45** |
+| jugadora lejana no encontrada en la ventana | 0 | 1 | **1** |
 | bola no vista y no confirmado | 0 | 1 | **1** |
-| no confirmado (bola vista) | 4 | 9 | **13** |
+| no confirmado (bola vista) | 5 | 9 | **14** |
 
-Lo que más importa arreglar: **fuera de la cámara principal** (85 golpes perdidos de 235).
+Lo que más importa arreglar: **fuera de la cámara principal** (84 golpes perdidos de 183).
 
 ## Por tipo de golpe
 
 | Tipo | recall | etapa principal de pérdida |
 |---|---|---|
-| saque | 102/178 (57 %) | fuera de la cámara principal (27) |
-| derecha | 171/253 (68 %) | fuera de la cámara principal (28) |
-| revés | 138/210 (66 %) | fuera de la cámara principal (29) |
+| saque | 124/178 (70 %) | fuera de la cámara principal (26) |
+| derecha | 189/253 (75 %) | fuera de la cámara principal (28) |
+| revés | 150/210 (71 %) | fuera de la cámara principal (29) |
 | volea / remate / otro | 2/7 (29 %) | no es candidato (4) |
 
 ## Identidad
 
-Golpes suyos en un tramo con la identidad bien puesta: 526; mal puesta: 9; sin decidir: 5; sin tramo: 108. Perdidos por identidad: 8.
+Golpes suyos en un tramo con la identidad bien puesta: 526; mal puesta: 9; sin decidir: 5; sin tramo: 108. Perdidos por identidad: 9.
 
 Tramos de la jugadora cercana dentro de puntos anotados: 334.
 
