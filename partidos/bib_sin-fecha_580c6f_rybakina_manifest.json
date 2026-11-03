@@ -57,15 +57,15 @@
   }
  },
  "score": {
-  "fingerprint": "80c3deea148e1b9e",
+  "fingerprint": "12d7283d453b2ec1",
   "version": "6",
-  "seconds": 982.1,
-  "finished": "2026-10-19 04:39:43",
+  "seconds": 569.7,
+  "finished": "2026-11-03 20:56:35",
   "summary": {
-   "readings": 388,
+   "readings": 386,
    "pressure": 60,
-   "samples": 533,
-   "ocr_calls": 413
+   "samples": 531,
+   "ocr_calls": 411
   }
  },
  "players": {
