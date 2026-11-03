@@ -566,6 +566,27 @@ def replay_spans_without_board(score: dict) -> list[tuple[float, float]]:
     return [(x["start"], x["end"]) for x in tried if x["read"] == 0 and x["end"] - x["start"] < 30]
 
 
+REPLAY_HIT_GAP_S = 2.5        # slow motion: the hits of a rally more than this apart (deep-sports-analysis, 03-11)
+
+
+def confirmed_without_board(no_board: list[tuple[float, float]], hits: np.ndarray, onsets: np.ndarray,
+                            max_gap_s: float = REPLAY_HIT_GAP_S) -> list[tuple[float, float]]:
+    """The scoreboard-less shots that are replays: a hidden scoreboard alone is not one (03-11: the Australian Open
+    shows its scoreboard only between points, and 62 of 648 annotated F3Set strokes of live play were dropped as
+    replays, 52 of them in its two matches). A replay also has no impact sound, or its hits (both players', from
+    the spotter) come more than max_gap_s apart, as in slow motion; a span with one hit or none and impact sounds
+    is live play."""
+    hits, onsets = np.asarray(hits, float), np.asarray(onsets, float)
+    out = []
+    for a, b in no_board:
+        h = np.sort(hits[(hits >= a) & (hits < b)])
+        silent = not np.any((onsets >= a) & (onsets < b))
+        slow = len(h) >= 2 and float(np.median(np.diff(h))) > max_gap_s
+        if silent or slow:
+            out.append((a, b))
+    return out
+
+
 def _audio_tracks(ctx: Context, d: dict, sk, court: dict, tol_s=0.35) -> tuple[list, int]:
     """The audio transients' tracks and the one to use: with several (commentary vs ambient), the one
     that sounds with the near player's swings."""
@@ -720,7 +741,7 @@ def spotter_candidates(spotted: list[dict], identity: dict, fps: float, runs: li
     return out, info
 
 
-@stage("candidates", "9", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
+@stage("candidates", "10", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
        reviews=("identidad_clic.json",),
        # with the learned spotter (off by default) it reads spotting.json; off, its fingerprint is the one it always was
        settings=lambda c: {"spotter": True} if spotter_on(c) else {},
@@ -760,6 +781,12 @@ def st_candidates(ctx: Context, tol_s=0.35):
     score = _read(ctx.path("score.json")) if ctx.path("score.json").exists() else {}
     no_board = replay_spans_without_board(score)
     board_works = bool(no_board)
+    if board_works and spotter_on(ctx.cfg):      # a hidden scoreboard alone is not a replay (confirmed_without_board)
+        hits = np.array([e["t"] for e in _read(ctx.path("spotting.json"))], float)
+        n0 = len(no_board)
+        no_board = confirmed_without_board(no_board, hits, onsets)
+        ctx.log(f"  tomas sin marcador: {len(no_board)} de {n0} son repeticiones (sin sonido o con golpes a más de "
+                f"{REPLAY_HIT_GAP_S:g} s); las demás son juego en directo")
     # replays from the main camera with the scoreboard still on: her feet retrace a path of the last
     # seconds, slower (slow motion) or without impact sounds (tennisbio.replays)
     from .court_metrics import to_court
