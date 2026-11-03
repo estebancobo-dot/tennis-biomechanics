@@ -225,7 +225,8 @@ def test_existing_outputs_and_stages_unchanged(tmp_path, evidence):
 
     for n in ("candidates", "fine", "fine_opponent", "fine_doubtful"):
         assert "views" not in pipeline.STAGES[n].deps and "views_link" not in pipeline.STAGES[n].deps
-    assert pipeline.STAGES["candidates"].version == "9" and pipeline.STAGES["fine"].version == "16"
+    # candidates 10 (03-11): a hidden scoreboard alone is no replay (stages.confirmed_without_board)
+    assert pipeline.STAGES["candidates"].version == "10" and pipeline.STAGES["fine"].version == "16"
     assert set(pipeline.STAGES["views"].deps) == {"scenes", "court", "players", "score", "audio", "candidates"}
     assert set(pipeline.STAGES["views_link"].deps) == {"views", "fine"}
     assert pipeline.STAGES["views"].resource is None
