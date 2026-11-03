@@ -1,6 +1,6 @@
-﻿commit: 9e45ee8
-inicio: 2026-11-03T15:50:06
-fin: 2026-11-03T16:00:27
+﻿commit: 3154642
+inicio: 2026-11-03T16:30:06
+fin: 2026-11-03T16:42:11
 codigo: 0
 .................................................s......ss..sss....sssss [  9%]
 ss...................................................................... [ 19%]
@@ -33,4 +33,4 @@ tests/test_no_unbounded_calls.py::test_every_module_compiles
     _JS_SCREEN = """(tab) => {
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-708 passed, 30 skipped, 7 warnings in 616.15s (0:10:16)
+708 passed, 30 skipped, 7 warnings in 723.53s (0:12:03)
