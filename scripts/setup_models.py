@@ -48,6 +48,11 @@ def main():
             run("export_court_tcd.py", "--out", str(MODELS / "court_tcd.onnx"))
         except subprocess.CalledProcessError:      # the court is found from its lines, as before
             print("AVISO: no se pudo crear court_tcd.onnx; la pista se busca por sus líneas")
+    if not (MODELS / "motionagformer_xs.onnx").exists():   # the trunk's 3D turn (trunk3d, adopted 03-11)
+        try:
+            run("export_motionagformer.py", "--size", "xs", "--out", str(MODELS / "motionagformer_xs.onnx"))
+        except subprocess.CalledProcessError:      # the trunk's 3D comes from RTMW3D, as before
+            print("AVISO: no se pudo crear motionagformer_xs.onnx; el giro 3D del tronco sale de RTMW3D")
     w3d = MODELS / "rtmw3d-x.onnx"
     if not w3d.exists():
         from tennisbio.pose.wholebody3d import RTMW3D_URL
@@ -67,7 +72,7 @@ def main():
         RapidOCR()
     except ImportError:
         print("falta el OCR del marcador: uv sync --extra ocr")
-    for f in ("balltrack.onnx", "racketpose.onnx", "transnetv2.onnx", "rtmw3d-x.onnx", "rtmw-x_384x288.onnx", "court_tcd.onnx", *[f"yolo11m-pose_{z}.onnx" for z in POSE_SIZES]):
+    for f in ("balltrack.onnx", "racketpose.onnx", "transnetv2.onnx", "rtmw3d-x.onnx", "rtmw-x_384x288.onnx", "court_tcd.onnx", "motionagformer_xs.onnx", *[f"yolo11m-pose_{z}.onnx" for z in POSE_SIZES]):
         p = MODELS / f
         print(f"{f:18} {'OK ' + str(round(p.stat().st_size / 1e6)) + ' MB' if p.exists() else 'FALTA'}")
 

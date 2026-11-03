@@ -1458,7 +1458,10 @@ def _fine_settings(c):
             "racket_face": rf, "include_undecided": c.get("include_undecided", False),
             # the models themselves: adding or replacing one re-runs the fine pass
             "models": {"ball": model_state((c.get("ball") or {}).get("onnx")), "racket": model_state(rf.get("pose_onnx")),
-                       "hand3d": model_state(rf.get("hand3d_onnx")), "pose": c.get("yolo_pose", "yolo11m-pose.pt")},
+                       "hand3d": model_state(rf.get("hand3d_onnx")), "pose": c.get("yolo_pose", "yolo11m-pose.pt"),
+                       # the trunk's 3D (trunk3d, 03-11): MotionAGFormer on the 2D pose, or the former RTMW3D reading
+                       "trunk3d": [(c.get("trunk3d") or {}).get("model", "motionagformer"),
+                                   model_state((c.get("trunk3d") or {}).get("onnx") or "models/motionagformer_xs.onnx")]},
             **_fp16_setting(c)}
 
 
@@ -1471,7 +1474,8 @@ def _device_lost_msg(msg: str) -> bool:
 FINE_CODE = ("stages", "clip_pipeline", "stroke_analysis", "phases", "kinematics", "impacts", "ball", "court_metrics",
              "outcome", "series", "racket", "racket3d", "racket_face", "racket_orientation", "tracking", "technique",
              "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend", "ball3d", "limits", "fine_gate", "pose.hybrid",
-             "footpoints", "pose.wholebody3d", "body_scale", "fine_ahead", "situations", "returns", "pose.estimator")
+             "footpoints", "pose.wholebody3d", "body_scale", "fine_ahead", "situations", "returns", "pose.estimator",
+             "trunk3d", "pose.motionagformer")
 
 
 def _player_fields(p) -> dict:
@@ -2203,6 +2207,26 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
         d["face"] = faces["phases"]
         d["metrics"].update(faces["trunk3d"])
         ser["face"] = {key: faces[key] for key in ("first", "tilt", "yaw", "label", "observed", "keypoints", "source", "hand3d", "rot3d")}
+        # the trunk's turn in 3D from the 2D pose (MotionAGFormer, adopted 03-11 after request 83); the former
+        # reading (RTMW3D) stays when its model file is missing
+        from . import trunk3d as T3
+        tpath = T3.model_path(ctx.cfg)
+        if tpath is not None:
+            try:
+                import cv2
+                cap = cv2.VideoCapture(str(clip))
+                size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+                cap.release()
+                tm, trot = T3.trunk(T3.lifter(tpath), run.img, run.conf, run.sk, size,
+                                    pitch if (H_img is not None and pitch is not None) else 20.0, p.hand,
+                                    (r.phases.get("loaded") or {}).get("frame"), 3 * max(1, step3d))
+                for k in [k for k in d["metrics"] if k.startswith(("shoulder_turn_3d", "hip_turn_3d", "x_factor_3d", "trunk3d_"))]:
+                    d["metrics"].pop(k)
+                d["metrics"].update(tm)
+                ser["face"]["rot3d"] = {str(f): [round(v, 1) for v in rt[:2]] + [round(v, 3) for v in rt[2:]]
+                                        for f, rt in trot.items()}
+            except Exception as e:  # noqa: BLE001 — the former reading stays; said in the log
+                ctx.log(f"  giro 3D del tronco (MotionAGFormer) no disponible en {clip.name}: {e}")
     # who won the point (from the next change of the scoreboard); target = row 0 of the scoreboard
     pw = point_won(score, t_imp)
     if pw is not None:

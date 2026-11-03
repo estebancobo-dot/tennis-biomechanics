@@ -983,13 +983,36 @@ BOUNCE_TOL_F = 3                # frames (0.1 s at 30 fps): a predicted bounce t
 MIN_BOUNCES = 20
 
 
+def tracknet_zip(root: Path) -> zipfile.ZipFile:
+    """The TrackNet dataset's zip: read by HTTP ranges when the server allows them, else downloaded once whole to
+    <root>/tracknet/Dataset.zip (03-11, request 83: Google Drive refused ranges to the PC, though not to the cloud)."""
+    local = root / "tracknet" / "Dataset.zip"
+    if local.exists():
+        return zipfile.ZipFile(local)
+    try:
+        return zipfile.ZipFile(io.BufferedReader(HttpFile(TRACKNET_ZIP), 1 << 16))
+    except (RuntimeError, OSError, zipfile.BadZipFile) as e:
+        print(f"  bote: lectura por partes no disponible ({str(e)[:120]}); descarga completa (2,6 GB, una vez)", flush=True)
+    local.parent.mkdir(parents=True, exist_ok=True)
+    part = local.with_suffix(".part")
+    with urllib.request.urlopen(urllib.request.Request(TRACKNET_ZIP), timeout=600) as r, open(part, "wb") as f:
+        while True:
+            b = r.read(1 << 22)
+            if not b:
+                break
+            f.write(b)
+    zipfile.ZipFile(part).close()                     # a broken download is an error here, not a wrong measure
+    part.replace(local)
+    return zipfile.ZipFile(local)
+
+
 def tracknet_index(root: Path) -> dict[str, str]:
     """clip key (game_clip) → its folder inside the TrackNet dataset's zip; the 95 Label.csv files are read by HTTP
     ranges once (not the 2.6 GB of images) and kept in <root>/tracknet/labels/."""
     d = root / "tracknet" / "labels"
     idx = d / "index.json"
     if not idx.exists():
-        z = zipfile.ZipFile(io.BufferedReader(HttpFile(TRACKNET_ZIP), 1 << 16))
+        z = tracknet_zip(root)
         d.mkdir(parents=True, exist_ok=True)
         folders = {}
         for name in z.namelist():
@@ -1025,7 +1048,7 @@ def tracknet_frames(root: Path, key: str, folder: str, names: list[str]) -> list
     for n in names:
         p = d / n
         if not p.exists():
-            z = z or zipfile.ZipFile(io.BufferedReader(HttpFile(TRACKNET_ZIP), 1 << 16))
+            z = z or tracknet_zip(root)
             p.write_bytes(z.read(folder + n))
         out.append(cv2.imread(str(p)))
     return out

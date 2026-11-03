@@ -184,3 +184,10 @@ analyze_opponent: false
 # codificar todos los vídeos una vez (los montajes juntan vídeos sin recodificar).
 export:
   encoder: libx264
+
+# Giro 3D de hombros y cadera (X-factor 3D). model: motionagformer (adoptado el 03-11 tras la petición 83: 58 % de
+# fotogramas a ≤15° de la referencia de dos cámaras de CalTennis frente al 13 % de RTMW3D; usa la pose 2D, en la CPU)
+# o rtmw3d (la lectura anterior). Si falta el fichero, se usa la anterior.
+trunk3d:
+  model: motionagformer
+  onnx: models/motionagformer_xs.onnx

@@ -162,6 +162,17 @@ argumentos: --only mag3d,bounce
 ---
 id: 84
 accion: completo
+---
+id: 85
+accion: medir
+script: bench_candidates
+argumentos: --only bounce
+---
+id: 86
+accion: completo
+# 85 (03-11): bote otra vez (Drive no deja leer por partes desde el PC: descarga completa una vez, 2,6 GB)
+# 86 (03-11): la referencia con el giro 3D del tronco adoptado (MotionAGFormer): rehace solo la pasada fina desde
+# las caches (pose, bola y raqueta guardadas), no el video
 # 84 (03-11): paso 5, referencia de los 4 partidos con todo lo adoptado (pista de 14 puntos, repeticiones v11,
 # lectura por tramos de la exportacion); rehace solo las etapas cuyas entradas cambiaron; mide la exportacion (4.2)
 # 83 (03-11): 3D y bote otra vez (en la 82 fallaron: fotograma sin persona en CalTennis; bloque de Drive incompleto)
