@@ -3,8 +3,8 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 3009,
-   "charts": 21,
+   "text_chars": 2804,
+   "charts": 20,
    "videos": 7,
    "black_canvases": 0,
    "videos_failed": [],
@@ -30,7 +30,7 @@
   },
   {
    "title": "Sus golpes (Videoteca y pista)",
-   "text_chars": 4416,
+   "text_chars": 4103,
    "charts": 1,
    "videos": 7,
    "black_canvases": 0,
@@ -57,16 +57,16 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 5272,
-   "charts": 31,
+   "text_chars": 5872,
+   "charts": 33,
    "videos": 8,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 7,
-   "ball_moments": 5,
+   "dashes": 8,
+   "ball_moments": 6,
    "feet_cycle": 9,
-   "ball_measures": 5,
+   "ball_measures": 6,
    "body_hip": 4,
    "body_base": 4,
    "body_trunk": 2,
@@ -85,7 +85,7 @@
   },
   {
    "title": "Comparar dos golpes",
-   "text_chars": 4130,
+   "text_chars": 3802,
    "charts": 2,
    "videos": 7,
    "black_canvases": 0,
@@ -112,7 +112,7 @@
   },
   {
    "title": "Conclusiones (Panel y Comparativas)",
-   "text_chars": 4537,
+   "text_chars": 3288,
    "charts": 11,
    "videos": 7,
    "black_canvases": 0,
@@ -139,7 +139,7 @@
   },
   {
    "title": "Tabla de golpes (Explorador)",
-   "text_chars": 4050,
+   "text_chars": 3787,
    "charts": 0,
    "videos": 7,
    "black_canvases": 0,
@@ -193,13 +193,13 @@
   },
   {
    "title": "Fiabilidad de las medidas",
-   "text_chars": 3043,
+   "text_chars": 3508,
    "charts": 0,
    "videos": 7,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 4,
+   "dashes": 2,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -220,7 +220,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 1727,
+   "text_chars": 1812,
    "charts": 0,
    "videos": 7,
    "black_canvases": 0,
@@ -280,10 +280,7 @@
   },
   {
    "name": "Panel → ▶ vídeos de una conclusión",
-   "present": true,
-   "plays": true,
-   "mode": "video",
-   "play_error": null
+   "present": false
   }
  ],
  "plays_reduced_motion": [
@@ -317,44 +314,41 @@
   },
   {
    "name": "Panel → ▶ vídeos de una conclusión",
-   "present": true,
-   "plays": true,
-   "mode": "video",
-   "play_error": null
+   "present": false
   }
  ],
  "learn": {
   "combinations": 2050,
-  "with_exact_strokes": 654,
+  "with_exact_strokes": 627,
   "checkpoints_checked": 184500,
   "failures": [],
   "rows_all": 90,
-  "valued_all": 88,
-  "targeted_all": 55,
+  "valued_all": 89,
+  "targeted_all": 56,
   "glossed_all": 76,
   "signature": 3,
-  "style": "Estilo de su derecha: preparación compacta (55 %) · apoyo abierto (62 %) · efecto liftado (de abajo arriba) (62 %) · terminación limpiaparabrisas (54 %).",
+  "style": "Estilo de su derecha: preparación amplia (80 %) · apoyo variable (la más frecuente, abierto, en 45 %) · efecto liftado (de abajo arriba) (64 %) · terminación variable (la más frecuente, limpiaparabrisas, en 45 %) provisional: 11 golpes.",
   "example": {
    "exact": 0,
    "near": 1,
    "rows": 90,
-   "valued": 82,
+   "valued": 81,
    "bad": []
   }
  },
  "entry": {
   "entry": {
-   "vid_top": 805,
-   "vid_bottom": 1159,
+   "vid_top": 786,
+   "vid_bottom": 1141,
    "h2": 2,
-   "words": 586,
+   "words": 543,
    "buttons": 25,
    "height": 900
   },
   "wide": {},
   "file_names": {},
   "failures": [
-   "el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)"
+   "el vídeo de la lección acaba en y=1141 (más abajo que la primera pantalla, 900)"
   ]
  },
  "lesson": {
@@ -365,16 +359,16 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 93,
+    "words": 87,
     "focus_words": 12,
     "focus_body": false,
     "practice": true,
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 13,
+    "reps": 11,
     "video": true,
-    "height": 1022
+    "height": 929
    },
    {
     "phase": "takeback",
@@ -382,14 +376,14 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 112,
+    "words": 109,
     "focus_words": 18,
     "focus_body": false,
     "practice": true,
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 11,
+    "reps": 10,
     "video": true,
     "height": 1042
    },
@@ -399,16 +393,16 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 69,
+    "words": 64,
     "focus_words": 14,
     "focus_body": false,
     "practice": true,
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 13,
+    "reps": 11,
     "video": true,
-    "height": 981
+    "height": 909
    },
    {
     "phase": "acceleration",
@@ -416,16 +410,16 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 97,
+    "words": 94,
     "focus_words": 17,
     "focus_body": false,
     "practice": true,
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 13,
+    "reps": 11,
     "video": true,
-    "height": 1137
+    "height": 1094
    },
    {
     "phase": "impact",
@@ -433,16 +427,16 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 107,
+    "words": 104,
     "focus_words": 17,
     "focus_body": false,
     "practice": true,
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 13,
+    "reps": 11,
     "video": true,
-    "height": 1114
+    "height": 1072
    },
    {
     "phase": "extension",
@@ -450,16 +444,16 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 115,
+    "words": 109,
     "focus_words": 14,
     "focus_body": false,
     "practice": true,
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 13,
+    "reps": 11,
     "video": true,
-    "height": 1246
+    "height": 1163
    },
    {
     "phase": "finish",
@@ -467,16 +461,16 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 109,
+    "words": 103,
     "focus_words": 20,
     "focus_body": false,
     "practice": true,
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 13,
+    "reps": 11,
     "video": true,
-    "height": 1133
+    "height": 1112
    },
    {
     "phase": "recovery",
@@ -484,14 +478,14 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 105,
+    "words": 106,
     "focus_words": 15,
     "focus_body": false,
     "practice": true,
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 13,
+    "reps": 11,
     "video": true,
     "height": 1041
    },
@@ -508,7 +502,7 @@
     "strings": false,
     "repeats": 0,
     "reason": "",
-    "reps": 13,
+    "reps": 11,
     "video": true,
     "height": 920
    }

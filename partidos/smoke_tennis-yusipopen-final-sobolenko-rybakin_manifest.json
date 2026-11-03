@@ -98,80 +98,83 @@
   }
  },
  "candidates": {
-  "fingerprint": "ab1940b0df282a75",
-  "version": "9",
-  "seconds": 1.2,
-  "finished": "2026-10-29 03:17:12",
+  "fingerprint": "f5abc922fd69f104",
+  "version": "10",
+  "seconds": 1.0,
+  "finished": "2026-11-03 05:47:25",
   "summary": {
-   "candidates": 175,
-   "far": 89,
-   "with_audio": 141,
+   "candidates": 176,
+   "far": 90,
+   "with_audio": 142,
    "source": "spotter",
    "opponent_strokes": 74,
    "identity_unknown": 35,
-   "replay_strokes_skipped": 10,
-   "replay_runs": 7,
+   "replay_strokes_skipped": 9,
+   "replay_runs": 5,
    "audio_track": 0
   }
  },
  "fine": {
-  "fingerprint": "5d377f752b363332",
+  "fingerprint": "4243d36879ad3458",
   "version": "16",
-  "seconds": 50.2,
-  "finished": "2026-11-03 05:21:02",
+  "seconds": 59.4,
+  "finished": "2026-11-03 05:49:10",
   "summary": {
-   "candidates": 66,
-   "confirmed": 63,
+   "candidates": 67,
+   "confirmed": 64,
    "errors": 0,
    "warnings": [],
-   "forehands": 22,
-   "windows": 51,
+   "forehands": 20,
+   "windows": 52,
    "gate": {
     "windows_gated": 0,
-    "windows_passed": 51,
+    "windows_passed": 52,
     "windows_ungated": 0,
     "reasons": {
-     "detector": 17,
+     "detector": 18,
      "golpe_de_bola": 26,
      "bola_no_vista": 8
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 25.8,
-    "pista_ventana": 14.3,
-    "cuerdas_y_3d": 13.2,
-    "analisis_ventana": 10.0,
-    "recorte": 2.9,
-    "cribado": 2.9,
-    "pose": 0.3
+    "jugadora_lejana": 24.4,
+    "pista_ventana": 15.0,
+    "cuerdas_y_3d": 12.8,
+    "pose": 10.6,
+    "pose_modelo_yolo": 10.1,
+    "analisis_ventana": 9.7,
+    "bola": 5.6,
+    "recorte": 4.4,
+    "cribado": 2.7
    },
    "counts": {
     "overlap_s": 0.0,
-    "frames": 10900,
-    "posed_frames": 10900,
-    "impacts": 82,
-    "kept_impacts": 66,
+    "frames": 11079,
+    "posed_frames": 11079,
+    "impacts": 81,
+    "kept_impacts": 67,
     "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 0
+    "frames_960_far": 78,
+    "frames_modelo_yolo": 179
    }
   }
  },
  "fine_opponent": {
-  "fingerprint": "35b725583b6ea159",
+  "fingerprint": "1c6434c5c4dffb97",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-03 05:21:02",
+  "finished": "2026-11-03 05:49:10",
   "summary": {
    "enabled": false
   }
  },
  "fine_doubtful": {
-  "fingerprint": "83bf21a4faa24cad",
+  "fingerprint": "f47dd868e5c69cf6",
   "version": "1",
-  "seconds": 21.5,
-  "finished": "2026-11-03 05:21:23",
+  "seconds": 21.2,
+  "finished": "2026-11-03 05:49:31",
   "summary": {
    "candidates": 35,
    "confirmed": 26,
@@ -191,10 +194,10 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 10.1,
-    "analisis_ventana": 5.3,
-    "jugadora_lejana": 3.3,
-    "pista_ventana": 2.0,
+    "cuerdas_y_3d": 9.6,
+    "analisis_ventana": 5.2,
+    "jugadora_lejana": 3.1,
+    "pista_ventana": 1.9,
     "recorte": 1.5,
     "cribado": 1.0,
     "pose": 0.1
@@ -203,7 +206,7 @@
     "overlap_s": 0.0,
     "frames": 4161,
     "posed_frames": 4161,
-    "impacts": 33,
+    "impacts": 31,
     "kept_impacts": 26,
     "racket_frames": 0,
     "whole_window_again": 0,
@@ -212,10 +215,10 @@
   }
  },
  "views": {
-  "fingerprint": "52e08b8853b502e8",
+  "fingerprint": "c2bd888ab536ae3d",
   "version": "5",
-  "seconds": 83.1,
-  "finished": "2026-10-29 03:18:35",
+  "seconds": 44.9,
+  "finished": "2026-11-03 05:48:10",
   "summary": {
    "views": 123,
    "repeticion_principal": 22,
@@ -229,17 +232,17 @@
   }
  },
  "views_link": {
-  "fingerprint": "635d11cd14f8ba6d",
+  "fingerprint": "557a975d8e8b5d0b",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-11-03 05:21:23",
+  "finished": "2026-11-03 05:49:31",
   "summary": {
-   "strokes": 63,
+   "strokes": 64,
    "with_replay": 25,
-   "with_other_camera": 54,
+   "with_other_camera": 55,
    "with_slowmo": 2,
-   "replay_share": 0.397,
-   "other_share": 0.857
+   "replay_share": 0.391,
+   "other_share": 0.859
   }
  },
  "spotting": {

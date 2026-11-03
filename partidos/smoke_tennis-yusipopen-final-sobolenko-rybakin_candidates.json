@@ -1640,6 +1640,16 @@
   "source": "spotter"
  },
  {
+  "t": 1977.704,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true,
+  "kind": "serve",
+  "score": 0.184,
+  "source": "spotter"
+ },
+ {
   "t": 1994.1,
   "audio": true,
   "side": "near",

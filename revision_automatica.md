@@ -1,6 +1,6 @@
-# Revisión automática: FALLOS
+# Revisión automática: REGRESIÓN
 
-295 cumplidos · 38 no cumplidos · 102 sin golpes suficientes · 112 avisos (antes: 295 cumplidos, 38 no cumplidos)
+288 cumplidos · 30 no cumplidos · 123 sin golpes suficientes · 104 avisos (antes: 295 cumplidos, 38 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 127 de 245
 
@@ -137,16 +137,9 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 
 ## No cumplidos
 
-- **Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin**: marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto de saque) y 72-133 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 63 golpes, 1 saques/remates → como mucho 88% de sus golpes y 6% de sus 
-- **Valores dentro de límites físicos**: stance_width_m: 1 de 13 fuera de 0.1–2.5
-- **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 586 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
-- **Pruebas del código en este PC**: código 83083dd (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_twice_moved_or_copied_is_recognised, tests/test_app_core.py::test_video_without_audio_is_said, tests/test_app_core.py::test_test_runs_one_level_down_are_indexed_and_reported_from_the
+- **Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin**: marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto de saque) y 72-133 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 64 golpes, 1 saques/remates → como mucho 89% de sus golpes y 6% de sus 
+- **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=786–1141 de 900; al abrir 2 títulos, 543 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1141 (más abajo que la primera pantalla, 900)
 - **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
-- **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 83083dd (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_tw)
-- **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 83083dd (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_tw)
-- **#46 Sin PDF enorme y sin inventar datos**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Valores dentro de límites físicos» (stance_width_m: 1 de 13 fuera de 0.1–2.5)
-- **#51 El código de la prueba es el de los casos reales**: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 83083dd (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_tw)
-- **#59 Diferencias solo por encima del error y en situaciones equivalentes**: 6 comprobaciones: 1 falta, 5 ok; la peor: «Valores dentro de límites físicos» (stance_width_m: 1 de 13 fuera de 0.1–2.5)
 - **#134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06)**: 2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto )
 - **#151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25)**: 2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto )
 - **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
@@ -172,6 +165,49 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - **#224 Saques: plano, cortado o kick; primero o segundo**: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
 - **#233 Una referencia completa y medida antes de validar nada**: 2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto )
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
-- **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 83083dd (2026-11-03T03:39:53): 669 bien, 12 fallan, 0 errores; fallan: tests/test_app_core.py::test_same_video_tw)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
+
+## Empeora respecto a la ejecución anterior
+
+- **2. Cuerpo · Hombros más girados que la cadera en el impacto**: ok → pocos datos: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- **3. Pies y desplazamiento · Subtipos: abierto de ataque, abierto defensivo, neutro de ataque**: ok → pocos datos: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- **4. Raqueta, swing y empuñadura · Posición de la mano en el mango**: ok → pocos datos: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- **6. Matriz del usuario · Rotación pélvica**: ok → pocos datos: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- **6. Matriz del usuario · Apoyo abierto extremo defensivo**: ok → pocos datos: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- **R1 Golpe liftado de trayectoria moderada, no extrema**: ok → pocos datos: pocos datos: 11 golpes con el dato (hacen falta 12)
+- **R13 La mano cae antes de acelerar en la mayoría**: ok → pocos datos: pocos datos: 11 golpes con el dato (hacen falta 12)
+- **R20 Más apoyos cerrados o neutros que el circuito (~16 %)**: ok → pocos datos: pocos datos: 11 golpes con el dato (hacen falta 12)
+- **Cada frase lleva cuántos golpes la respaldan y su fiabilidad**: ok → pocos datos: 0 frases
+- **#87 Matriz §4 Apoyos (abierto, semiabierto, neutro o cerrado, salto, abierto extremo)**: ok → pocos datos: 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Apoyo abierto extremo defensivo» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
+
+## Mejora
+
+- R2 Dos manos en la raqueta en la espera (≥ 80 %): aviso → pocos datos
+- R7 La mano libre pasa al lado del brazo en el armado: aviso → pocos datos
+- R14 La cadera gira hacia la pista entre armado e impacto (> 10°): aviso → pocos datos
+- R17 La terminación más frecuente es sobre el hombro: aviso → pocos datos
+- R23 La cadera llega a su máximo giro antes que los hombros: aviso → pocos datos
+- Valores dentro de límites físicos: falta → ok
+- Pruebas del código en este PC: falta → ok
+- #7 Empuñadura en la espera y al golpear: aviso → pocos datos
+- #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: falta → aviso
+- #20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML: falta → aviso
+- #36 Mano y antebrazo, cierre de la muñeca: aviso → pocos datos
+- #46 Sin PDF enorme y sin inventar datos: falta → ok
+- #51 El código de la prueba es el de los casos reales: falta → ok
+- #59 Diferencias solo por encima del error y en situaciones equivalentes: falta → pocos datos
+- #71 El conocimiento de los vídeos de entrenadores en la web: aviso → pocos datos
+- #84 Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca): aviso → pocos datos
+- #113 Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25): aviso → pocos datos
+- #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: falta → ok
+
+## Comprobaciones que ya no aparecen
+
+- Reproducir: Panel → ▶ vídeos de una conclusión
+- Reproducir: Panel → ▶ vídeos de una conclusión (con las animaciones de Windows desactivadas)
+
+## Fiabilidad de las medidas
+
+- ahora: 80 medidas: 9 dudosa, 51 fiable, 13 no comprobable, 1 sesgo, 6 sin juzgar. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
+- antes: 80 medidas: 7 dudosa, 56 fiable, 12 no comprobable, 2 sesgo, 3 sin juzgar. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
