@@ -69,7 +69,10 @@ fine_pass:
   # rtmw-x (RTMW-x, del proyecto deep-sports-analysis) encuentra los mismos golpes, con el mismo temblor y los mismos
   # pies vistos, a 10 fotogramas/s frente a 3,3 de RTMPose-x. rtmpose-x = como antes. Sin models/rtmw-x_384x288.onnx
   # (scripts/export_rtmw.py) se usa rtmpose-x y se avisa.
-  refine: rtmw-x
+  # 03-11, petición 76 (prueba desde cero, análisis real): con rtmw-x la pose fina fue MÁS lenta (0,162 frente a
+  # 0,144 s por fotograma de la cascada) con los mismos golpes; la medida aislada no reflejaba su uso en la pasada.
+  # Por la regla de adopción («no más lento») se queda rtmpose-x; rtmw-x sigue como opción.
+  refine: rtmpose-x
   # Escala de su altura en píxeles (todas las medidas en % de altura o en cm; src/tennisbio/body_scale.py):
   # court = la altura real de config/players proyectada con la cámara que da la pista en el sitio donde
   # está (no depende de su postura ni de qué fotogramas se posan); sin pista o si su tronco y sus piernas

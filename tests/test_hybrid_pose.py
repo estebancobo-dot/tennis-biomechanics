@@ -110,8 +110,9 @@ def test_config_switch_on_by_default(tmp_path, monkeypatch):
     have = tmp_path / "rtmw.onnx"
     have.write_bytes(b"x")
     monkeypatch.setattr(hybrid, "RTMW_ONNX", have)
-    assert cfg["fine_pass"]["pose_model"] == "hybrid" and cfg["fine_pass"]["refine"] == "rtmw-x"
-    assert fine_pose_model(cfg) == "hybrid" and pose_cache_tag(cfg) == ["hybrid", "rtmw-x"]
+    # 03-11: rtmw-x measured slower in the real fine pass (request 76): the default stays rtmpose-x
+    assert cfg["fine_pass"]["pose_model"] == "hybrid" and cfg["fine_pass"]["refine"] == "rtmpose-x"
+    assert fine_pose_model(cfg) == "hybrid" and pose_cache_tag(cfg) == ["hybrid"]
     assert fine_pose_model({"fine_pass": {"pose_model": "Hybrid"}}) == "hybrid"
     assert pose_cache_tag({"fine_pass": {"pose_model": "yolo"}}) == [] and pose_cache_tag({}) == []
     assert fine_pose_model({"fine_pass": {"pose_model": "rtmpose"}}) == "yolo"      # typo: never stops
