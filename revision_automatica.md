@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-288 cumplidos · 30 no cumplidos · 123 sin golpes suficientes · 104 avisos (antes: 295 cumplidos, 38 no cumplidos)
+288 cumplidos · 30 no cumplidos · 123 sin golpes suficientes · 104 avisos (antes: 288 cumplidos, 30 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 127 de 245
 
@@ -167,47 +167,3 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-
-## Empeora respecto a la ejecución anterior
-
-- **2. Cuerpo · Hombros más girados que la cadera en el impacto**: ok → pocos datos: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- **3. Pies y desplazamiento · Subtipos: abierto de ataque, abierto defensivo, neutro de ataque**: ok → pocos datos: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- **4. Raqueta, swing y empuñadura · Posición de la mano en el mango**: ok → pocos datos: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- **6. Matriz del usuario · Rotación pélvica**: ok → pocos datos: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- **6. Matriz del usuario · Apoyo abierto extremo defensivo**: ok → pocos datos: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- **R1 Golpe liftado de trayectoria moderada, no extrema**: ok → pocos datos: pocos datos: 11 golpes con el dato (hacen falta 12)
-- **R13 La mano cae antes de acelerar en la mayoría**: ok → pocos datos: pocos datos: 11 golpes con el dato (hacen falta 12)
-- **R20 Más apoyos cerrados o neutros que el circuito (~16 %)**: ok → pocos datos: pocos datos: 11 golpes con el dato (hacen falta 12)
-- **Cada frase lleva cuántos golpes la respaldan y su fiabilidad**: ok → pocos datos: 0 frases
-- **#87 Matriz §4 Apoyos (abierto, semiabierto, neutro o cerrado, salto, abierto extremo)**: ok → pocos datos: 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Apoyo abierto extremo defensivo» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
-
-## Mejora
-
-- R2 Dos manos en la raqueta en la espera (≥ 80 %): aviso → pocos datos
-- R7 La mano libre pasa al lado del brazo en el armado: aviso → pocos datos
-- R14 La cadera gira hacia la pista entre armado e impacto (> 10°): aviso → pocos datos
-- R17 La terminación más frecuente es sobre el hombro: aviso → pocos datos
-- R23 La cadera llega a su máximo giro antes que los hombros: aviso → pocos datos
-- Valores dentro de límites físicos: falta → ok
-- Pruebas del código en este PC: falta → ok
-- #7 Empuñadura en la espera y al golpear: aviso → pocos datos
-- #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: falta → aviso
-- #20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML: falta → aviso
-- #36 Mano y antebrazo, cierre de la muñeca: aviso → pocos datos
-- #46 Sin PDF enorme y sin inventar datos: falta → ok
-- #51 El código de la prueba es el de los casos reales: falta → ok
-- #59 Diferencias solo por encima del error y en situaciones equivalentes: falta → pocos datos
-- #71 El conocimiento de los vídeos de entrenadores en la web: aviso → pocos datos
-- #84 Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca): aviso → pocos datos
-- #113 Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25): aviso → pocos datos
-- #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: falta → ok
-
-## Comprobaciones que ya no aparecen
-
-- Reproducir: Panel → ▶ vídeos de una conclusión
-- Reproducir: Panel → ▶ vídeos de una conclusión (con las animaciones de Windows desactivadas)
-
-## Fiabilidad de las medidas
-
-- ahora: 80 medidas: 9 dudosa, 51 fiable, 13 no comprobable, 1 sesgo, 6 sin juzgar. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
-- antes: 80 medidas: 7 dudosa, 56 fiable, 12 no comprobable, 2 sesgo, 3 sin juzgar. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga

@@ -115,10 +115,10 @@
   }
  },
  "fine": {
-  "fingerprint": "4243d36879ad3458",
+  "fingerprint": "6574d1b4e7bdbcbc",
   "version": "16",
-  "seconds": 59.4,
-  "finished": "2026-11-03 05:49:10",
+  "seconds": 47.2,
+  "finished": "2026-11-03 08:40:57",
   "summary": {
    "candidates": 67,
    "confirmed": 64,
@@ -138,15 +138,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 24.4,
-    "pista_ventana": 15.0,
-    "cuerdas_y_3d": 12.8,
-    "pose": 10.6,
-    "pose_modelo_yolo": 10.1,
-    "analisis_ventana": 9.7,
-    "bola": 5.6,
-    "recorte": 4.4,
-    "cribado": 2.7
+    "jugadora_lejana": 24.9,
+    "pista_ventana": 14.2,
+    "cuerdas_y_3d": 11.5,
+    "analisis_ventana": 9.0,
+    "cribado": 2.7,
+    "recorte": 2.6,
+    "pose": 0.2
    },
    "counts": {
     "overlap_s": 0.0,
@@ -156,25 +154,24 @@
     "kept_impacts": 67,
     "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 78,
-    "frames_modelo_yolo": 179
+    "frames_960_far": 0
    }
   }
  },
  "fine_opponent": {
-  "fingerprint": "1c6434c5c4dffb97",
+  "fingerprint": "c932ff3cacb5c73d",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-03 05:49:10",
+  "finished": "2026-11-03 08:40:57",
   "summary": {
    "enabled": false
   }
  },
  "fine_doubtful": {
-  "fingerprint": "f47dd868e5c69cf6",
+  "fingerprint": "9aa8ff8df494ca33",
   "version": "1",
-  "seconds": 21.2,
-  "finished": "2026-11-03 05:49:31",
+  "seconds": 18.9,
+  "finished": "2026-11-03 08:41:16",
   "summary": {
    "candidates": 35,
    "confirmed": 26,
@@ -194,12 +191,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 9.6,
-    "analisis_ventana": 5.2,
-    "jugadora_lejana": 3.1,
+    "cuerdas_y_3d": 8.8,
+    "analisis_ventana": 4.3,
+    "jugadora_lejana": 3.2,
     "pista_ventana": 1.9,
-    "recorte": 1.5,
-    "cribado": 1.0,
+    "recorte": 1.3,
+    "cribado": 0.9,
     "pose": 0.1
    },
    "counts": {
@@ -232,10 +229,10 @@
   }
  },
  "views_link": {
-  "fingerprint": "557a975d8e8b5d0b",
+  "fingerprint": "bad9128fbc28ef67",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-11-03 05:49:31",
+  "finished": "2026-11-03 08:41:16",
   "summary": {
    "strokes": 64,
    "with_replay": 25,
