@@ -2720,3 +2720,14 @@
 2026-11-03 18:18:10   ventana w001332100_11750: pose hybrid en 555 de 555 fotogramas (85 s; modelo 84 s; pies en 555) · bola 17 s · raqueta 84 s (4 de 8 impactos) · 8 golpes posibles · altura 203 px (court)
 2026-11-03 18:18:11   ventana w001430748_3600 (near, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
 2026-11-03 18:18:11   ventana w001430748_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 25) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 1029 px (segments)
+2026-11-03 18:18:25   ventana w001441200_9377 (near, 3 candidatos): pasa · golpe de bola en su lado a 1.72 s
+2026-11-03 18:18:25   ventana w001441200_9377: pose hybrid en 441 de 441 fotogramas (0 s; modelo 0 s; pies en 441) · bola 0 s · raqueta 0 s (3 de 6 impactos) · 6 golpes posibles · altura 205 px (court)
+2026-11-03 18:18:25   fine:  62 % (98/159 golpes candidatos · 96 confirmados · 0 ventanas descartadas sin pose) · 13 min · quedan ≈ 8 min
+2026-11-03 18:19:14   ventana w001493553_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (2.4 s): puede haber golpe
+2026-11-03 18:19:14   ventana w001493553_3600: pose hybrid en 120 de 120 fotogramas (18 s; modelo 18 s; pies en 120) · bola 4 s · raqueta 22 s (1 de 2 impactos) · 2 golpes posibles · altura 193 px (court)
+2026-11-03 18:19:14   fine:  62 % (99/159 golpes candidatos · 97 confirmados · 0 ventanas descartadas sin pose) · 14 min · quedan ≈ 8 min
+2026-11-03 18:19:20   ventana w001408699_6101 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.24 s
+2026-11-03 18:19:20   ventana w001408699_6101: pose hybrid en 303 de 303 fotogramas (39 s; modelo 39 s; pies en 63) · bola 8 s · raqueta 40 s (2 de 3 impactos) · 3 golpes posibles · altura 1562 px (segments)
+2026-11-03 18:20:01   ventana w001520028_3600 (near, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-03 18:20:01   ventana w001520028_3600: pose hybrid en 143 de 143 fotogramas (22 s; modelo 22 s; pies en 143) · bola 4 s · raqueta 15 s (1 de 1 impactos) · 1 golpes posibles · altura 161 px (court)
+2026-11-03 18:20:01   fine:  64 % (102/159 golpes candidatos · 100 confirmados · 0 ventanas descartadas sin pose) · 14 min · quedan ≈ 8 min
