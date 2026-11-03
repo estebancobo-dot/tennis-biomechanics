@@ -3048,8 +3048,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 27db231 (2026-11-03T15:34:35): 691 bien, 0 fallan, 0 errores",
-   "passed": 691,
+   "detail": "código 3154642 (2026-11-03T16:42:11): 708 bien, 0 fallan, 0 errores",
+   "passed": 708,
    "failed": 0
   },
   {
