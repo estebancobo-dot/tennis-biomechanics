@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-292 cumplidos · 34 no cumplidos · 102 sin golpes suficientes · 130 avisos (antes: 288 cumplidos, 30 no cumplidos)
+314 cumplidos · 34 no cumplidos · 102 sin golpes suficientes · 108 avisos (antes: 292 cumplidos, 34 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 127 de 245
 
@@ -172,60 +172,27 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 
-## Empeora respecto a la ejecución anterior
-
-- **R1 Golpe liftado de trayectoria moderada, no extrema**: pocos datos → aviso: refuta: liftado 58%, inclinación mediana 39°
-- **R7 La mano libre pasa al lado del brazo en el armado**: pocos datos → aviso: refuta: posición lateral mediana -5
-- **R17 La terminación más frecuente es sobre el hombro**: pocos datos → aviso: refuta: la más frecuente: limpiaparabrisas
-- **R23 La cadera llega a su máximo giro antes que los hombros**: pocos datos → aviso: refuta: hombros -0.04 s después de la cadera; orden completo de la cadena en el 73%
-- **«Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm**: ok → falta: 1 en la pantalla
-- **#7 Empuñadura en la espera y al golpear**: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
-- **#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía**: pocos datos → falta: 191 comprobaciones: 1 falta, 30 pocos datos, 160 ok; la peor: ««Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm» (1 en la pantalla)
-- **#31 Procesado incremental al añadir vídeos**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_pipeline» (todavía sin pruebas.xml)
-- **#32 Ampliable a otros golpes y jugadores**: ok → aviso: 2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC: test_app_core» (todavía sin pruebas.xml)
-- **#36 Mano y antebrazo, cierre de la muñeca**: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
-- **#49 No perder contexto ni sesión; registros automáticos**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_auto_cycle» (todavía sin pruebas.xml)
-- **#71 El conocimiento de los vídeos de entrenadores en la web**: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 21 comprobaciones: 4 aviso, 9 pocos datos, 8 ok; la peor: «R1 Golpe liftado de trayectoria moderada, no extrema» (r
-- **#73 Revisar la web de arriba abajo para que aporte valor**: aviso → falta: 22 comprobaciones: 1 falta, 21 ok; la peor: ««Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm» (1 en la pantalla)
-- **#80 Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_auto_cycle» (todavía sin pruebas.xml)
-- **#84 Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca)**: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok
-- **#113 Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25)**: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 19 comprobaciones: 4 aviso, 9 pocos datos, 6 ok; la peor: «R1 Golpe liftado de trayectoria moderada, no extrema» (r
-- **#115 Cuánto baja y sube el cuerpo, con fotogramas y barras horizontales: de la espera al punto más bajo y del más b**: ok → falta: 1 comprobaciones: 1 falta; la peor: ««Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm» (1 en la pantalla)
-- **#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa**: ok → aviso: 2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC: test_auto_cycle» (todavía sin pruebas.xml)
-- **#225 La aplicación no se cuelga ni ralentiza el PC**: ok → aviso: 3 comprobaciones: 2 aviso, 1 ok; la peor: «Pruebas en este PC: test_app_window» (todavía sin pruebas.xml)
-- **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: ok → aviso: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_no_hardcoded_player» (todavía sin pruebas.xml)
-
 ## Mejora
 
-- 2. Cuerpo · Hombros más girados que la cadera en el impacto: pocos datos → ok
-- 3. Pies y desplazamiento · Subtipos: abierto de ataque, abierto defensivo, neutro de ataque: pocos datos → ok
-- 4. Raqueta, swing y empuñadura · Posición de la mano en el mango: pocos datos → ok
-- 6. Matriz del usuario · Rotación pélvica: pocos datos → ok
-- 6. Matriz del usuario · Apoyo abierto extremo defensivo: pocos datos → ok
-- R13 La mano cae antes de acelerar en la mayoría: pocos datos → ok
-- R14 La cadera gira hacia la pista entre armado e impacto (> 10°): pocos datos → ok
-- R20 Más apoyos cerrados o neutros que el circuito (~16 %): pocos datos → ok
-- Cada frase lleva cuántos golpes la respaldan y su fiabilidad: pocos datos → ok
-- #59 Diferencias solo por encima del error y en situaciones equivalentes: pocos datos → ok
-- #87 Matriz §4 Apoyos (abierto, semiabierto, neutro o cerrado, salto, abierto extremo): pocos datos → ok
-
-## Comprobaciones nuevas
-
-- Reproducir: Panel → ▶ vídeos de una conclusión: ok (el vídeo arranca y avanza)
-- Reproducir: Panel → ▶ vídeos de una conclusión (con las animaciones de Windows desactivadas): ok (el vídeo arranca y avanza)
-- Pruebas en este PC: test_pipeline: aviso (todavía sin pruebas.xml)
-- Pruebas en este PC: test_auto_cycle: aviso (todavía sin pruebas.xml)
-- Pruebas en este PC: test_pc_requests: aviso (todavía sin pruebas.xml)
-- Pruebas en este PC: test_library: aviso (todavía sin pruebas.xml)
-- Pruebas en este PC: test_layout: aviso (todavía sin pruebas.xml)
-- Pruebas en este PC: test_identity_click: aviso (todavía sin pruebas.xml)
-- Pruebas en este PC: test_app_core: aviso (todavía sin pruebas.xml)
-- Pruebas en este PC: test_app_window: aviso (todavía sin pruebas.xml)
-- Pruebas en este PC: test_auto_catalog_rename: aviso (todavía sin pruebas.xml)
-- Pruebas en este PC: test_no_hardcoded_player: aviso (todavía sin pruebas.xml)
-- Pruebas en este PC: test_no_unbounded_calls: aviso (todavía sin pruebas.xml)
-
-## Fiabilidad de las medidas
-
-- ahora: 80 medidas: 7 dudosa, 53 fiable, 13 no comprobable, 1 sesgo, 6 sin juzgar. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
-- antes: 80 medidas: 9 dudosa, 51 fiable, 13 no comprobable, 1 sesgo, 6 sin juzgar. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
+- Pruebas en este PC: test_pipeline: aviso → ok
+- Pruebas en este PC: test_auto_cycle: aviso → ok
+- Pruebas en este PC: test_pc_requests: aviso → ok
+- Pruebas en este PC: test_library: aviso → ok
+- Pruebas en este PC: test_layout: aviso → ok
+- Pruebas en este PC: test_identity_click: aviso → ok
+- Pruebas en este PC: test_app_core: aviso → ok
+- Pruebas en este PC: test_auto_catalog_rename: aviso → ok
+- Pruebas en este PC: test_no_hardcoded_player: aviso → ok
+- Pruebas en este PC: test_no_unbounded_calls: aviso → ok
+- #31 Procesado incremental al añadir vídeos: aviso → ok
+- #32 Ampliable a otros golpes y jugadores: aviso → ok
+- #49 No perder contexto ni sesión; registros automáticos: aviso → ok
+- #80 Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice: aviso → ok
+- #119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa: aviso → ok
+- #144 (punto 4) hay tareas o schedulers ... salen terminales y se apagan solos (Chat, 17-10 09:49): aviso → ok
+- #152 como queda la estructura de directorios ... carpeta normalizada de los jugadores (Chat, 18-10 10:12): aviso → ok
+- #161 como se enlazan los partidos de una jugadora ... tienen que estar el analisis junto (Chat, 19-10 08:11): aviso → ok
+- #220 Almacenamiento definitivo: árbol por jugador, partido y golpe; nombres, colisiones y todos los escenarios: aviso → ok
+- #222 Un clic por partido para decir quién es ella: aviso → ok
+- #229 Renombrar el vídeo no rompe nada; el partido se identifica por su contenido: aviso → ok
+- #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: aviso → ok

@@ -3,10 +3,10 @@
  "strokes": 22,
  "near": 12,
  "summary": {
-  "ok": 292,
+  "ok": 314,
   "falta": 34,
   "pocos datos": 102,
-  "aviso": 130
+  "aviso": 108
  },
  "items": [
   {
@@ -2753,7 +2753,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "1814 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "1817 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3048,86 +3048,86 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código e4b467f (2026-11-03T08:48:09): 683 bien, 0 fallan, 0 errores",
-   "passed": 683,
+   "detail": "código 04748dd (2026-11-03T13:19:53): 689 bien, 0 fallan, 0 errores",
+   "passed": 689,
    "failed": 0
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_pipeline",
-   "status": "aviso",
-   "detail": "todavía sin pruebas.xml"
+   "status": "ok",
+   "detail": "15 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_auto_cycle",
-   "status": "aviso",
-   "detail": "todavía sin pruebas.xml"
+   "status": "ok",
+   "detail": "13 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_pc_requests",
-   "status": "aviso",
-   "detail": "todavía sin pruebas.xml"
+   "status": "ok",
+   "detail": "9 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_library",
-   "status": "aviso",
-   "detail": "todavía sin pruebas.xml"
+   "status": "ok",
+   "detail": "41 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_layout",
-   "status": "aviso",
-   "detail": "todavía sin pruebas.xml"
+   "status": "ok",
+   "detail": "4 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_identity_click",
-   "status": "aviso",
-   "detail": "todavía sin pruebas.xml"
+   "status": "ok",
+   "detail": "1 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_app_core",
-   "status": "aviso",
-   "detail": "todavía sin pruebas.xml"
+   "status": "ok",
+   "detail": "38 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_app_window",
    "status": "aviso",
-   "detail": "todavía sin pruebas.xml"
+   "detail": "0 bien, 0 fallan, 7 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_auto_catalog_rename",
-   "status": "aviso",
-   "detail": "todavía sin pruebas.xml"
+   "status": "ok",
+   "detail": "1 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_no_hardcoded_player",
-   "status": "aviso",
-   "detail": "todavía sin pruebas.xml"
+   "status": "ok",
+   "detail": "2 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_no_unbounded_calls",
-   "status": "aviso",
-   "detail": "todavía sin pruebas.xml"
+   "status": "ok",
+   "detail": "3 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 6,
@@ -3371,15 +3371,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#31 Procesado incremental al añadir vídeos",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_pipeline» (todavía sin pruebas.xml)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#32 Ampliable a otros golpes y jugadores",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC: test_app_core» (todavía sin pruebas.xml)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -3497,8 +3497,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#49 No perder contexto ni sesión; registros automáticos",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_auto_cycle» (todavía sin pruebas.xml)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3686,8 +3686,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#80 Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_auto_cycle» (todavía sin pruebas.xml)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3938,8 +3938,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC: test_auto_cycle» (todavía sin pruebas.xml)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -4099,8 +4099,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#144 (punto 4) hay tareas o schedulers ... salen terminales y se apagan solos (Chat, 17-10 09:49)",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_auto_cycle» (todavía sin pruebas.xml)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -4155,8 +4155,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#152 como queda la estructura de directorios ... carpeta normalizada de los jugadores (Chat, 18-10 10:12)",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC: test_library» (todavía sin pruebas.xml)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -4212,14 +4212,14 @@
    "area": "Peticiones",
    "name": "#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC: test_app_core» (todavía sin pruebas.xml)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#161 como se enlazan los partidos de una jugadora ... tienen que estar el analisis junto (Chat, 19-10 08:11)",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_library» (todavía sin pruebas.xml)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -4631,8 +4631,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#220 Almacenamiento definitivo: árbol por jugador, partido y golpe; nombres, colisiones y todos los escenarios",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC: test_library» (todavía sin pruebas.xml)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -4645,8 +4645,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#222 Un clic por partido para decir quién es ella",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_identity_click» (todavía sin pruebas.xml)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -4667,28 +4667,28 @@
    "area": "Peticiones",
    "name": "#225 La aplicación no se cuelga ni ralentiza el PC",
    "status": "aviso",
-   "detail": "3 comprobaciones: 2 aviso, 1 ok; la peor: «Pruebas en este PC: test_app_window» (todavía sin pruebas.xml)"
+   "detail": "3 comprobaciones: 1 aviso, 2 ok; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_app_window» (todavía sin pruebas.xml)"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#227 Pantalla completa en la aplicación",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_app_window» (todavía sin pruebas.xml)"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#229 Renombrar el vídeo no rompe nada; el partido se identifica por su contenido",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC: test_library» (todavía sin pruebas.xml)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -4709,7 +4709,7 @@
    "area": "Peticiones",
    "name": "#232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Pruebas en este PC: test_no_unbounded_calls» (todavía sin pruebas.xml)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
   },
   {
    "req": 11,
@@ -4771,15 +4771,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_no_hardcoded_player» (todavía sin pruebas.xml)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC: test_app_core» (todavía sin pruebas.xml)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)"
   },
   {
    "req": 11,

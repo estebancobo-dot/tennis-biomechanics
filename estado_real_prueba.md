@@ -6,8 +6,8 @@
 |---|---|
 | 0 sin construir | 24 |
 | 1 construido, sin comprobar | 81 |
-| 2 comprobación que falla | 87 |
-| 3 comprobado en salidas | 45 |
+| 2 comprobación que falla | 75 |
+| 3 comprobado en salidas | 57 |
 | 4 validado con verdad | 0 |
 
 ## Por paquete del plan (en el orden de ejecución)
@@ -20,7 +20,7 @@
 | B4 Base · no perder golpes | 6 | 2 | 0 | 4 | 0 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión |
 | B5 Base · exportación | 1 | 0 | 0 | 0 | 1 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues |
 | B6 Base · referencia definitiva de los 4 partidos | 4 | 1 | 1 | 2 | 0 | 0 | 4 partidos sin errores de etapa; auditoría generada |
-| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 10 | 22 | 4 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos |
+| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 10 | 10 | 16 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos |
 | M1 Medidas · fases, cadena cinética y ritmo | 12 | 0 | 7 | 3 | 2 | 0 | Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara |
 | M2 Medidas · pies y apoyos | 20 | 2 | 10 | 3 | 5 | 0 | Pasos y apoyos medidos en la mayoría de golpes; fiables en la auditoría |
 | M3 Medidas · cuerpo | 14 | 1 | 2 | 5 | 6 | 0 | Fiables en la auditoría y sin depender de la cámara |
@@ -69,8 +69,8 @@
 | 28 | Informe HTML con gráficos y esqueleto (10-10 17:27) | P2 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 29 | Fase 0: entorno y fps reales, con YOLO (10-10 17:27; 11-10 08:49) | B1 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h pa |
 | 30 | Estado del arte: igual, mejor o peor que otras apps (10-10 17:40; 11-10 09:05, 18:06) | B3 | HECHO | 1 construido, sin comprobar | no se comprueba en las salidas: documento de estado del arte (docs), no una salida |
-| 31 | Procesado incremental al añadir vídeos (10-10 18:05) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_pipeline» (todavía sin pruebas.xml) |
-| 32 | Ampliable a otros golpes y jugadores (10-10 18:07) | B7 | HECHO | 2 comprobación que falla | 2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC: test_app_core» (todavía sin pruebas.xml) |
+| 31 | Procesado incremental al añadir vídeos (10-10 18:05) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
+| 32 | Ampliable a otros golpes y jugadores (10-10 18:07) | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 33 | Capturas de los mejores golpes de cada tipo y N imágenes de un golpe (10-10 18:12) | P2 | HECHO | 3 comprobado en salidas | 8 comprobaciones: 8 ok |
 | 34 | Maqueta con datos inventados, con apoyos (10-10 18:13; 12-10 17:21) | P2 | HECHO | 1 construido, sin comprobar | no se comprueba en las salidas: maqueta (docs/maqueta-informe.html), no una salida |
 | 35 | Medidas de la raqueta (altura, ángulos) en todo el golpe; qué miden los profesionales (11- | M4 | HECHO | 2 comprobación que falla | 11 comprobaciones: 2 pocos datos, 9 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entre |
@@ -87,7 +87,7 @@
 | 46 | Sin PDF enorme y sin inventar datos (11-10 19:40) | P1 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 47 | Modelo técnico con fuentes; cómo saber si está completo (12-10 06:32) | P1 | HECHO | 2 comprobación que falla | 169 comprobaciones: 21 pocos datos, 148 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo  |
 | 48 | Posición de la cabeza y altura del cuerpo al inicio y al final (11-10 19:48) | M3 | HECHO | 3 comprobado en salidas | 3 comprobaciones: 3 ok |
-| 49 | No perder contexto ni sesión; registros automáticos (12-10 11:39-11:45) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_auto_cycle» (todavía sin pruebas.xml) |
+| 49 | No perder contexto ni sesión; registros automáticos (12-10 11:39-11:45) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 50 | Progreso y monitorización visibles (12-10 14:37, 14:43) | B7 | HECHO | 1 construido, sin comprobar | no se comprueba en las salidas: registros con fecha y duración en la terminal |
 | 51 | El código de la prueba es el de los casos reales (12-10 14:37) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 52 | Brave, no instalar Edge (12-10 16:48) | B7 | HECHO | 3 comprobado en salidas | 9 comprobaciones: 9 ok |
@@ -114,7 +114,7 @@
 | 77 | No lanzar pruebas de 6 h para validar (13-10 06:01) | B1 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#77); no se comprueba en las salidas: lanzadores cortos (2c, 2d) sin repetir el análisis de vídeo |
 | 78 | No depender de que al usuario se le ocurran funciones (13-10 06:09) | P5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#78); no se comprueba en las salidas: proceso: Claude propone las funciones desde la matriz y los entrenadores |
 | 79 | Vídeos de entrenamiento con otras cámaras, en un apartado aparte y marcado (12-10 21:31, 2 | P1 | PARCIAL | 2 comprobación que falla | 20 comprobaciones: 11 pocos datos, 9 ok; la peor: «Derechas filmadas de lado» (6 (se resume cada medida con 12 o más)) |
-| 80 | Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice (12-10 22:43) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_auto_cycle» (todavía sin pruebas.xml) |
+| 80 | Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice (12-10 22:43) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 81 | Tamaño de la salida; comprobación sin gastar tokens (12-10 22:40) | B7 | HECHO | 1 construido, sin comprobar | no se comprueba en las salidas: tamanos.txt y auditoría en Python sin Claude |
 | 82 | Dónde se graban las salidas, qué va a git, qué se reutiliza (12-10 22:47) | B7 | HECHO | 1 construido, sin comprobar | no se comprueba en las salidas: salidas en C:\tenis\output, registros en pc-logs, caché por etapas |
 | 83 | Árbol de ficheros generados y validados (12-10 22:25) | B7 | HECHO | 3 comprobado en salidas | 4 comprobaciones: 4 ok |
@@ -153,7 +153,7 @@
 | 116 | Distancia entre las piernas en los golpes: base y estabilidad (13-10 11:50) | M2 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 117 | Hacia dónde mira el tronco al terminar (valla lateral, de frente, girado) según el golpe ( | M3 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 118 | Validar cada medida de forma automática, no a mano: ¿técnica o ruido? (13-10 08:40-10:30) | P3 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)» (12  |
-| 119 | Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa (13-10 10:40, 11: | B7 | HECHO | 2 comprobación que falla | 2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC: test_auto_cycle» (todavía sin pruebas.xml) |
+| 119 | Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa (13-10 10:40, 11: | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 120 | Vídeo a pantalla completa (13-10 12:00) | P2 | HECHO | 3 comprobado en salidas | 9 comprobaciones: 9 ok |
 | 121 | Ver lo que se pinta por separado, por grupos o una a una (13-10 12:00) | P2 | HECHO | 3 comprobado en salidas | 9 comprobaciones: 9 ok |
 | 122 | Web en 2 vistas principales y el resto en «Más», en dos grupos (funcional y técnico), sin  | P2 | HECHO | 3 comprobado en salidas | 9 comprobaciones: 9 ok |
@@ -176,7 +176,7 @@
 | 141 | (punto 0) la imagen ... Estroboscópica ... no vale para nada; ... Sus pies en este golpe t | P2 | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 142 | (punto 2) como se puede hacer una aplicacion profesional ... mas jugadores, mas golpes ... | P4 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#142); sin comprobación automática asignada |
 | 143 | (punto 3) esta es una guia para la derecha de otra jugadora ... revisar si aplica todo (Ch | P1 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#143); sin comprobación automática asignada |
-| 144 | (punto 4) hay tareas o schedulers ... salen terminales y se apagan solos (Chat, 17-10 09:4 | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_auto_cycle» (todavía sin pruebas.xml) |
+| 144 | (punto 4) hay tareas o schedulers ... salen terminales y se apagan solos (Chat, 17-10 09:4 | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 145 | no quiero nada en la nube ni pagar ni nada (Chat, 17-10 10:09) | B7 | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 146 | borra las carpetas de pruebas antiguas (Chat, 17-10 10:49) | B7 | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 147 | la guia de ivanovic esta aplicada al 100 por 100? sobre todo los puntos 1 2 3 5 6 y 10 (Ch | P1 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#147); sin comprobación automática asignada |
@@ -184,7 +184,7 @@
 | 149 | no se como validar eso lo tienes que hacer tu (Chat, 17-10 13:11) | P3 | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 150 | estos son mas videos de youtube para analizar (3 enlaces) (Chat, 17-10 17:21) | P1 | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 151 | como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (C | B4 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» ( |
-| 152 | como queda la estructura de directorios ... carpeta normalizada de los jugadores (Chat, 18 | B7 | HECHO | 2 comprobación que falla | 2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC: test_library» (todavía sin pruebas.xml) |
+| 152 | como queda la estructura de directorios ... carpeta normalizada de los jugadores (Chat, 18 | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 153 | y analizo estos videos (2 enlaces de Olivari) (Chat, 18-10 11:19) | P1 | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 154 | mi movil es android google pixel 8 ... que copie directo al pixel (Chat, 18-10 12:11) | P6 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#154); sin comprobación automática asignada |
 | 155 | es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pie | B4 | FALTA | 0 sin construir | SIN HACER según el registro (#155, docs/peticiones_usuario.md) |
@@ -192,8 +192,8 @@
 | 157 | bola corta baja cerca de la red (Chat, 19-10 08:11) | M5 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «Bola corta baja cerca de la red (#157)» (0 golpes de 12 (la clase «Bola corta cerca de la red» se |
 | 158 | bola corta alta cerca de la red (Chat, 19-10 08:11) | M5 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «Bola corta alta cerca de la red (#158)» (0 golpes de 12 (la clase «Bola corta cerca de la red» se |
 | 159 | volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (C | M6 | PARCIAL | 2 comprobación que falla | 2 comprobaciones: 2 pocos datos; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 12 (la clase «Contacto» se pudo decid |
-| 160 | la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11) | B7 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC |
-| 161 | como se enlazan los partidos de una jugadora ... tienen que estar el analisis junto (Chat, | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_library» (todavía sin pruebas.xml) |
+| 160 | la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11) | B7 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en e |
+| 161 | como se enlazan los partidos de una jugadora ... tienen que estar el analisis junto (Chat, | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 162 | Galerías ordenadas por calidad de captura, representatividad y resultado del punto (CLAUDE | P2 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#162); sin comprobación automática asignada |
 | 163 | Final del armado (máximo giro, raqueta más atrás) (Matriz (literatura), §1) | M1 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#163); sin comprobación automática asignada |
 | 164 | Final de la extensión (Matriz (literatura), §1) | M1 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#164); sin comprobación automática asignada |
@@ -252,18 +252,18 @@
 | 217 | Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26 | D | FALTA | 0 sin construir | SIN HACER según el registro (#217, docs/peticiones_usuario.md) |
 | 218 | La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen | B4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
 | 219 | Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y co | B4 | PARCIAL | 2 comprobación que falla | 2 comprobaciones: 1 falta, 1 ok; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: |
-| 220 | Almacenamiento definitivo: árbol por jugador, partido y golpe; nombres, colisiones y todos | B7 | HECHO | 2 comprobación que falla | 2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC: test_library» (todavía sin pruebas.xml) |
+| 220 | Almacenamiento definitivo: árbol por jugador, partido y golpe; nombres, colisiones y todos | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 221 | Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano  | B3 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#221); sin comprobación automática asignada |
-| 222 | Un clic por partido para decir quién es ella (19-10 19:57) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_identity_click» (todavía sin pruebas.xml) |
+| 222 | Un clic por partido para decir quién es ella (19-10 19:57) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 223 | Revés y derecha cortados (20-10 06:33) | M6 | FALTA | 0 sin construir | SIN HACER según el registro (#223, docs/peticiones_usuario.md) |
 | 224 | Saques: plano, cortado o kick; primero o segundo (20-10 07:30) | M6 | FALTA | 0 sin construir | SIN HACER según el registro (#224, docs/peticiones_usuario.md) |
-| 225 | La aplicación no se cuelga ni ralentiza el PC (24-10 10:22-10:47) | B2 | HECHO | 2 comprobación que falla | 3 comprobaciones: 2 aviso, 1 ok; la peor: «Pruebas en este PC: test_app_window» (todavía sin pruebas.xml) |
-| 226 | Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin prue | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_app_window» (todavía sin pruebas.xml) |
-| 227 | Pantalla completa en la aplicación (24-10 10:36) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_app_window» (todavía sin pruebas.xml) |
-| 229 | Renombrar el vídeo no rompe nada; el partido se identifica por su contenido (25-10 13:21-1 | B7 | HECHO | 2 comprobación que falla | 2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC: test_library» (todavía sin pruebas.xml) |
+| 225 | La aplicación no se cuelga ni ralentiza el PC (24-10 10:22-10:47) | B2 | HECHO | 2 comprobación que falla | 3 comprobaciones: 1 aviso, 2 ok; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas) |
+| 226 | Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin prue | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas) |
+| 227 | Pantalla completa en la aplicación (24-10 10:36) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas) |
+| 229 | Renombrar el vídeo no rompe nada; el partido se identifica por su contenido (25-10 13:21-1 | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 230 | Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12 | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smok |
 | 231 | Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11: | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smok |
-| 232 | Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó (27-10 09 | B2 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Pruebas en e |
+| 232 | Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó (27-10 09 | B2 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok |
 | 233 | Una referencia completa y medida antes de validar nada (26-10 11:09) | B6 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» ( |
 | 234 | Prueba de valor de la aplicación con los datos reales (27-10 07:21) | B6 | HECHO | 1 construido, sin comprobar | no se comprueba en las salidas: prueba de valor del 27-10 (docs/plan_maestro.md, R2) |
 | 235 | Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) | M1 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#235); sin comprobación automática asignada |
@@ -272,8 +272,8 @@
 | 238 | La validación es siempre automática; el usuario no valida la aplicación (27-10 11:42) | P3 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#238); sin comprobación automática asignada |
 | 239 | No se descarta ninguna petición (27-10 11:42) | D | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 240 | Comparar la aplicación con las profesionales una vez estén los golpes (27-10 11:42) | P4 | FALTA | 0 sin construir | SIN HACER según el registro (#240, docs/peticiones_usuario.md) |
-| 241 | Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el códig | B7 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_no_hardcoded_player» (todavía sin pruebas.xml) |
-| 242 | Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femen | B7 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 aviso; la peor: «Pruebas en este PC |
+| 241 | Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el códig | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
+| 242 | Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femen | B7 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en e |
 | 243 | Todos los escenarios del producto los contempla Claude sin esperar a que se pidan (27-10 1 | P5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#243); sin comprobación automática asignada |
 | 244 | Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-1 | M7 | FALTA | 0 sin construir | SIN HACER según el registro (#244, docs/peticiones_usuario.md) |
 | 245 | Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10) | M7 | FALTA | 0 sin construir | SIN HACER según el registro (#245, docs/peticiones_usuario.md) |
