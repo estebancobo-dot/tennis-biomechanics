@@ -1,0 +1,51 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261103111855
+Username: esteban\esteb
+RunAs User: esteban\esteb
+Configuration Name: 
+Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
+Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 10752
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+==> [2026-11-03 11:18:55] Codigo nuevo (e4b467f -> 7652015): 6 ficheros
+    config/peticion_pc.txt
+    config/stage_code.json
+    docs/plan_corto_plazo.md
+    src/tennisbio/stages.py
+    tests/test_replay_board.py
+    tests/test_views.py
+Updating e4b467f..7652015
+Fast-forward
+ config/peticion_pc.txt     |  4 ++++
+ config/stage_code.json     |  4 ++--
+ docs/plan_corto_plazo.md   |  2 +-
+ src/tennisbio/stages.py    | 14 +++++++++++---
+ tests/test_replay_board.py | 27 +++++++++++++++++++++++++++
+ tests/test_views.py        |  4 ++--
+ 6 files changed, 47 insertions(+), 8 deletions(-)
+Resolved 124 packages in 1ms
+Checked 89 packages in 6ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+    (paso terminado en 5 s)
+
+==> [2026-11-03 11:19:00] Que hace falta: medidas

@@ -150,6 +150,16 @@
   "source": "spotter"
  },
  {
+  "t": 161.785,
+  "audio": false,
+  "side": "far",
+  "identity": true,
+  "target": false,
+  "kind": "serve",
+  "score": 0.11,
+  "source": "spotter"
+ },
+ {
   "t": 176.0,
   "audio": true,
   "side": "far",
@@ -307,6 +317,16 @@
   "target": true,
   "kind": "serve",
   "score": 0.966,
+  "source": "spotter"
+ },
+ {
+  "t": 334.27,
+  "audio": true,
+  "side": "near",
+  "identity": true,
+  "target": true,
+  "kind": "forehand",
+  "score": 0.996,
   "source": "spotter"
  },
  {
@@ -870,6 +890,36 @@
   "source": "spotter"
  },
  {
+  "t": 1131.193,
+  "audio": false,
+  "side": "far",
+  "identity": false,
+  "target": true,
+  "kind": "forehand",
+  "score": 0.187,
+  "source": "spotter"
+ },
+ {
+  "t": 1133.298,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true,
+  "kind": "backhand",
+  "score": 0.479,
+  "source": "spotter"
+ },
+ {
+  "t": 1135.383,
+  "audio": true,
+  "side": "near",
+  "identity": false,
+  "target": false,
+  "kind": "backhand",
+  "score": 0.955,
+  "source": "spotter"
+ },
+ {
   "t": 1147.988,
   "audio": true,
   "side": "far",
@@ -947,6 +997,26 @@
   "target": true,
   "kind": "backhand",
   "score": 1.0,
+  "source": "spotter"
+ },
+ {
+  "t": 1231.877,
+  "audio": false,
+  "side": "far",
+  "identity": false,
+  "target": true,
+  "kind": "forehand",
+  "score": 0.4,
+  "source": "spotter"
+ },
+ {
+  "t": 1234.307,
+  "audio": true,
+  "side": "near",
+  "identity": false,
+  "target": false,
+  "kind": "forehand",
+  "score": 0.945,
   "source": "spotter"
  },
  {
@@ -1677,6 +1747,26 @@
   "target": false,
   "kind": "backhand",
   "score": 1.0,
+  "source": "spotter"
+ },
+ {
+  "t": 2016.891,
+  "audio": true,
+  "side": "far",
+  "identity": false,
+  "target": true,
+  "kind": "serve",
+  "score": 0.201,
+  "source": "spotter"
+ },
+ {
+  "t": 2017.641,
+  "audio": true,
+  "side": "near",
+  "identity": false,
+  "target": false,
+  "kind": "forehand",
+  "score": 0.996,
   "source": "spotter"
  },
  {

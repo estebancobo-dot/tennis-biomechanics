@@ -1,4 +1,4 @@
-fecha: 2026-11-03T11:00:07
+fecha: 2026-11-03T11:25:47
        3.9 MB  \output\auditoria
        5.7 MB  \output\benchmark
        1.2 MB  \output\capturas_app
@@ -35,9 +35,9 @@ fecha: 2026-11-03T11:00:07
     1383.8 MB  \output\_poc76_35
        168 MB  \output\_poc76_4
     7818.9 MB  \output\_poc9_largo
-    2218.7 MB  \output\_smoke
-       3.1 MB  \output\_smoke\auditoria
-       2.2 MB  \output\_smoke\diag
-      55.3 MB  \output\_smoke\exportar
-       3.6 MB  \output\_smoke\informe
-    1097.6 MB  \output\_smoke\smoke_tennis-yusipopen-final-sobolenko-rybakin
+    2312.9 MB  \output\_smoke
+       3.2 MB  \output\_smoke\auditoria
+       2.3 MB  \output\_smoke\diag
+     122.1 MB  \output\_smoke\exportar
+       3.9 MB  \output\_smoke\informe
+    1124.6 MB  \output\_smoke\smoke_tennis-yusipopen-final-sobolenko-rybakin
