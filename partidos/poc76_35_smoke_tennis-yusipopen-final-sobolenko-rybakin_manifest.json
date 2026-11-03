@@ -116,5 +116,63 @@
     "same_game_same": 1.0
    }
   }
+ },
+ "spotting": {
+  "fingerprint": "62de07b9b8a3de01",
+  "version": "1",
+  "seconds": 721.8,
+  "finished": "2026-11-03 04:49:22",
+  "summary": {
+   "enabled": true,
+   "strokes": 157,
+   "near": 73,
+   "far": 84,
+   "out_of_play": 1296,
+   "threshold": 0.1,
+   "fps": 10.0,
+   "model_fps": 10.0,
+   "feature_dim": 122,
+   "audio_track": 0,
+   "seconds": {
+    "jugadores_y_audio": 0.0,
+    "rasgos": 9.9,
+    "bola": 711.3,
+    "modelo": 0.1
+   }
+  }
+ },
+ "candidates": {
+  "fingerprint": "96aa7e0371199413",
+  "version": "9",
+  "seconds": 0.9,
+  "finished": "2026-11-03 04:49:23",
+  "summary": {
+   "candidates": 137,
+   "far": 71,
+   "with_audio": 113,
+   "source": "spotter",
+   "opponent_strokes": 71,
+   "identity_unknown": 8,
+   "replay_strokes_skipped": 20,
+   "replay_runs": 12,
+   "audio_track": 0
+  }
+ },
+ "views": {
+  "fingerprint": "ecb6b3d45e56dc15",
+  "version": "5",
+  "seconds": 74.9,
+  "finished": "2026-11-03 04:50:38",
+  "summary": {
+   "views": 247,
+   "repeticion_principal": 13,
+   "lateral": 8,
+   "frontal": 2,
+   "primer_plano": 220,
+   "otra": 4,
+   "links": 517,
+   "linked_views": 227,
+   "slowmo_links": 5
+  }
  }
 }
