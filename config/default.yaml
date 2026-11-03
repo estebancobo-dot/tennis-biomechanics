@@ -178,3 +178,9 @@ court:
   detector: tcd14
 
 analyze_opponent: false
+
+# Exportación de vídeos por golpe (B5). encoder: libx264 (CPU, por defecto) o h264_amf (iGPU AMD); se cambia solo si
+# scripts/bench_export.py lo mide más rápido con la misma imagen (PSNR ≥ 38 dB frente a libx264). Cambiarlo vuelve a
+# codificar todos los vídeos una vez (los montajes juntan vídeos sin recodificar).
+export:
+  encoder: libx264

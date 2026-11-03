@@ -392,20 +392,44 @@ class StrokeClip:
 
 
 # ---------------------------------------------------------------- encoding
+# H.264 encoders (B5, 03-11): libx264 on the CPU (default) or the AMD iGPU's (h264_amf), chosen by
+# `export.encoder`; scripts/bench_export.py measures both on the same strokes (time and image difference)
+ENCODERS = {
+    "libx264": ["-c:v", "libx264", "-crf", "20", "-preset", "veryfast"],
+    "h264_amf": ["-c:v", "h264_amf", "-quality", "speed", "-rc", "cqp", "-qp_i", "20", "-qp_p", "22"],
+}
+
+
+def encoder_name() -> str:
+    """`export.encoder` of the configuration, else libx264."""
+    try:
+        from .config import load_config
+        e = (load_config().get("export") or {}).get("encoder")
+        if e in ENCODERS:
+            return e
+    except Exception:  # noqa: BLE001 — no configuration: the default
+        pass
+    return "libx264"
+
+
 class Encoder:
     """Raw BGR frames → H.264 MP4 (yuv420p, constant 25 fps): the same parameters for every file, so
     reels are joined without re-encoding."""
 
-    def __init__(self, path: Path, size=(W, H)):
+    def __init__(self, path: Path, size=(W, H), codec: str | None = None):
         self.path = Path(path)
         self.tmp = self.path.with_name(self.path.stem + ".part.mp4")
+        self.waited = 0.0                    # seconds spent waiting on the encoder's pipe (bench_export)
+        args = ENCODERS[codec or encoder_name()]
         self.p = subprocess.Popen(["ffmpeg", "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{size[0]}x{size[1]}",
-                                   "-r", str(OUT_FPS), "-i", "-", "-c:v", "libx264", "-crf", "20", "-preset", "veryfast",
+                                   "-r", str(OUT_FPS), "-i", "-", *args,
                                    "-pix_fmt", "yuv420p", "-g", str(OUT_FPS), "-movflags", "+faststart", str(self.tmp)],
                                   stdin=subprocess.PIPE)
 
     def write(self, img: np.ndarray):
+        t = time.perf_counter()
         self.p.stdin.write(np.ascontiguousarray(img).tobytes())
+        self.waited += time.perf_counter() - t
 
     def abort(self):
         try:
@@ -751,8 +775,9 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
         sigs = json.loads(sig_path.read_text(encoding="utf-8"))
     except (OSError, ValueError):
         sigs = {}
-    base = json.dumps([[m.get("k"), m.get("noise")] for m in key_metrics] + [dist.get(m.get("k")) for m in key_metrics],
-                      sort_keys=True, default=str)
+    # and with the encoder: reels join clips without re-encoding, so they must all come from the same one
+    base = json.dumps([[m.get("k"), m.get("noise")] for m in key_metrics] + [dist.get(m.get("k")) for m in key_metrics]
+                      + ([encoder_name()] if encoder_name() != "libx264" else []), sort_keys=True, default=str)
     for i, s in enumerate(need):
         out = dest / "golpes" / f"{s['id']}.mp4"
         paths[s["id"]] = out
