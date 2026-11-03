@@ -42,8 +42,8 @@
   ]
  },
  "candidates": {
-  "version": "10",
-  "hash": "a04784d604066ad0",
+  "version": "11",
+  "hash": "9d8b5f7a118e6b7c",
   "modules": [
    "court_metrics",
    "identity"

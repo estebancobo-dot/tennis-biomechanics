@@ -567,6 +567,7 @@ def replay_spans_without_board(score: dict) -> list[tuple[float, float]]:
 
 
 REPLAY_HIT_GAP_S = 2.5        # slow motion: the hits of a rally more than this apart (deep-sports-analysis, 03-11)
+REPLAY_SLOW_RATIO = 0.5       # slow motion: at most this share of the original run's speed (was 0.7, 03-11)
 
 
 def confirmed_without_board(no_board: list[tuple[float, float]], hits: np.ndarray, onsets: np.ndarray,
@@ -612,11 +613,18 @@ def run_replay_reasons(d: dict, sk, runs_all: list, court: dict, onsets: np.ndar
         if feet is not None:
             path[~np.isfinite(feet).all(1)] = np.nan
         paths.append(Run(t0, t1, path, fps, int(np.sum((onsets >= t0) & (onsets <= t1))) if len(onsets) else 0))
-    by_path = replay_reasons(paths)
+    # slow motion is at most half the speed (03-11, F3Set: with 0.7 all 61 live strokes lost "as replays" were runs
+    # that retrace a baseline path a little slower, as a rally does), and a slow replay also lacks the hits' sound or
+    # spreads them out like slow motion (confirmed_without_board's test on the run's own span)
+    by_path = replay_reasons(paths, slow_ratio=REPLAY_SLOW_RATIO)
     out = []
     for k, (run, *_r) in enumerate(runs_all):
         t_mid = frames[run[len(run) // 2]] / fps
-        out.append("sin_marcador" if any(a <= t_mid < b for a, b in no_board) else by_path.get(k))
+        why = "sin_marcador" if any(a <= t_mid < b for a, b in no_board) else by_path.get(k)
+        if why == "lenta" and not confirmed_without_board([(paths[k].t0, paths[k].t1)],
+                                                          hits if hits is not None else np.zeros(0), onsets):
+            why = None
+        out.append(why)
     return out, no_board
 
 
@@ -774,7 +782,7 @@ def spotter_candidates(spotted: list[dict], identity: dict, fps: float, runs: li
     return out, info
 
 
-@stage("candidates", "10", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
+@stage("candidates", "11", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
        reviews=("identidad_clic.json",),
        # with the learned spotter (off by default) it reads spotting.json; off, its fingerprint is the one it always was
        settings=lambda c: {"spotter": True} if spotter_on(c) else {},

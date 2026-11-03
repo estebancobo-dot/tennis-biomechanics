@@ -30,3 +30,30 @@ def test_the_validation_uses_the_stage_rule(monkeypatch):
     assert recall_eval.replay_runs({}, None, {}, np.zeros(0), {}, np.array([1.0])) == ["sin_marcador", None]
     assert seen["hits"] is not None
     assert "repeticion_sin_marcador" in recall_eval.STEPS and "repeticion_lenta" in recall_eval.STEPS
+
+
+def test_a_rally_that_retraces_a_path_a_little_slower_is_live(monkeypatch):
+    """03-11, F3Set: all 61 live strokes lost "as replays" were runs retracing a baseline path a bit slower."""
+    from types import SimpleNamespace
+
+    from tennisbio import stages
+
+    fps = 25.0
+    t = np.arange(0, 125) / fps
+    x = np.sin(t)                                             # side to side along the baseline
+    img = np.zeros((len(t), 17, 2))
+    sk = {"left_ankle": 15, "right_ankle": 16}
+    runs = []
+    for k, (start, slow) in enumerate([(0, 1.0), (10, 0.8), (20, 0.4)]):
+        frames_k = np.arange(len(t)) + int(start * fps)
+        runs.append((frames_k, img, None, None, None))
+    d = {"fps": fps, "frames": np.arange(0, 2000)}
+    monkeypatch.setattr(stages, "court_at", lambda court, t0: (np.eye(3), None))
+    paths = iter([np.column_stack([x, np.zeros_like(x)]), np.column_stack([x * 0.8, np.zeros_like(x)]),
+                  np.column_stack([np.sin(t * 0.4), np.zeros_like(x)])])
+    monkeypatch.setattr("tennisbio.court_metrics.to_court", lambda H, feet: next(paths))
+    onsets = np.arange(0, 30, 1.2)                            # hits heard all along: live play
+    hits = np.arange(0, 30, 1.2)
+    reasons, _ = stages.run_replay_reasons(d, sk, runs, {}, onsets, {}, hits)
+    assert reasons[1] is None                                 # a little slower, with its hits heard: live
+    assert stages.REPLAY_SLOW_RATIO == 0.5
