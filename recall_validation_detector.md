@@ -15,7 +15,7 @@
 |---|---|---|---|
 | fuera de la cámara principal | 36 | 49 | **85** |
 | jugadora cercana no seguida (sin tramo) | 6 | 10 | **16** |
-| descartado como repetición | 35 | 26 | **61** |
+| descartado como repetición: el mismo recorrido, más lento | 35 | 26 | **61** |
 | identidad equivocada | 2 | 6 | **8** |
 | no es candidato | 16 | 25 | **41** |
 | bola no vista y no confirmado | 0 | 1 | **1** |
