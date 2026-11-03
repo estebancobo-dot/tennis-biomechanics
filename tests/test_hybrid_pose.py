@@ -266,3 +266,20 @@ def test_feet_on_court_ground_and_direction():
     assert foot_direction_deg(kp, 0, sk, H, "dom") == pytest.approx(np.degrees(np.arctan2(10, 1)))
     assert foot_direction_deg(kp, 0, sk, H, "non") is None
     assert foot_direction_deg(kp[:, :17], 0, Skeleton("coco17"), H, "dom") is None
+
+
+def test_rtmw_refiner_by_config_with_fallback(monkeypatch, tmp_path):
+    """03-11 (bench_candidates on the PC): RTMW-x redoes the big people (same strokes, 3x faster); its own window
+    caches; without its model file, RTMPose-x and a warning."""
+    from tennisbio.pose import hybrid
+
+    have = tmp_path / "rtmw.onnx"
+    have.write_bytes(b"x")
+    monkeypatch.setattr(hybrid, "RTMW_ONNX", have)
+    cfg = {"fine_pass": {"pose_model": "hybrid", "refine": "rtmw-x"}}
+    assert hybrid.refiner(cfg) == "rtmw-x" and hybrid.pose_cache_tag(cfg) == ["hybrid", "rtmw-x"]
+    assert hybrid.refiner({"fine_pass": {"pose_model": "hybrid"}}) == "rtmpose-x"
+    assert hybrid.pose_cache_tag({"fine_pass": {"pose_model": "hybrid"}}) == ["hybrid"]   # caches as before
+    assert hybrid.refiner({"fine_pass": {"refine": "nope"}}) == "rtmpose-x"
+    monkeypatch.setattr(hybrid, "RTMW_ONNX", tmp_path / "missing.onnx")
+    assert hybrid.refiner(cfg) == "rtmpose-x"

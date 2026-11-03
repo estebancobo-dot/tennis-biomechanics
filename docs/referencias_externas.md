@@ -36,7 +36,7 @@ candidato dentro del paso del plan donde se aplica, y solo se adopta si gana **m
 
 | Fuente | Encontrada | Filtro | Código leído | Qué aporta → paso del plan | Medido | Decisión |
 |---|---|---|---|---|---|---|
-| deep-sports-analysis (off policy), artículo del 22-10 | usuario, 02-11 | TV ✔ · MIT ✔ · pesos ✔ · precisión ✔ | **sí** (02-11, `docs/analisis_referencias.md`) | Modelos WASB, RTMW-x, RF-DETR, TennisCourtDetector y F3ED → paso 2. Regla de 2,5 s → paso 3. Regla de la cámara → B-15 (hecha en la auditoría). 22 medidas → B-15 | Regla de la cámara: 9 de 479 medidas dependen de la cámara | modelos: pendiente (paso 2) |
+| deep-sports-analysis (off policy), artículo del 22-10 | usuario, 02-11 | TV ✔ · MIT ✔ · pesos ✔ · precisión ✔ | **sí** (02-11, `docs/analisis_referencias.md`) | Modelos WASB, RTMW-x, RF-DETR, TennisCourtDetector y F3ED → paso 2. Regla de 2,5 s → paso 3. Regla de la cámara → B-15 (hecha en la auditoría). 22 medidas → B-15 | Regla de la cámara: 9 de 479 medidas dependen de la cámara. Modelos (petición 75, iGPU): RTMW-x igual precisión y 3 veces más rápido; pista de 14 puntos mejor y más rápida; WASB peor; RF-DETR mejor pero más lento; F3ED peor y más lento | **RTMW-x y la pista de 14 puntos adoptados (03-11)**; WASB, RF-DETR y F3ED no |
 | explainx.ai / Roboflow (iPhone) | usuario, 02-11 | móvil ✘ · sin código ✘ · sin medidas ✘ | — | — | — | **descartada** |
 | philippdubach/tennis-vision | búsqueda, 02-11 | TV ✔ · licencia por ver | no | Marcador + conciliación por cambios de tanteo → P1 (resultado del punto) | — | se lee al llegar a P1 |
 | JustinSongXh/tennisvision | búsqueda, 02-11 | por ver | no | Botes de bola → B-10 | — | se lee en el paso 2 (bote) |

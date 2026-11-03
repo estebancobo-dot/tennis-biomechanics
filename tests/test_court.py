@@ -319,3 +319,33 @@ def test_fit_in_the_shade():
         assert _corner_err(fit.H, H) < 6.0
     dark_clutter = (_clutter(9) * 0.45).astype(np.uint8)                   # crowd in the shade: still no court
     assert fit_court(dark_clutter) is None
+
+
+def test_fit_court_takes_the_14_point_detector_when_it_fits_the_lines(monkeypatch):
+    """03-11 (bench_candidates on the PC): the detector first, scored like the line search; its court only when it
+    fits the lines well, else the line search (and the better of both)."""
+    import numpy as np
+    from tennisbio import court
+
+    class Fake:
+        def __init__(self, H):
+            self.H = H
+
+        def fit(self, frame):
+            return court.CourtFit(self.H, 1.0) if self.H is not None else None
+
+    H = np.array([[60.0, 0, 640], [0, -14.0, 650], [0, 0.02, 1]])
+    frame = np.zeros((720, 1280, 3), np.uint8)
+    monkeypatch.setattr(court, "plausible", lambda *a, **k: True)
+    monkeypatch.setattr(court, "score_many", lambda Hs, *a, **k: np.array([0.9] * len(Hs)))
+    monkeypatch.setitem(court._TCD, "m", Fake(H))
+    fit = court.fit_court(frame)
+    assert fit is not None and np.allclose(fit.H, H) and fit.score == 0.9          # scored by the lines
+    monkeypatch.setitem(court._TCD, "m", Fake(None))                               # the detector finds nothing
+    calls = []
+    monkeypatch.setattr(court, "_fit_with", lambda *a, **k: calls.append(1) or None)
+    assert court.fit_court(frame) is None and calls                                # the line search ran
+    monkeypatch.setitem(court._TCD, "m", None)                                     # no detector: as before
+    calls.clear()
+    court.fit_court(frame)
+    assert calls

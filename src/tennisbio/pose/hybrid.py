@@ -58,7 +58,7 @@ class HybridPose:
 
     @property
     def backend(self) -> str:
-        return f"hybrid({getattr(self.yolo, 'backend', 'yolo')}+rtmpose-x)"
+        return f"hybrid({getattr(self.yolo, 'backend', 'yolo')}+{getattr(self.rtm, 'name', 'rtmpose-x')})"
 
     def prepare(self, img: np.ndarray):
         """YOLO's input for img, computable ahead in a reader thread (PoseModel.prepare)."""
@@ -114,11 +114,40 @@ def _rtmpose(url: str, input_size: tuple, device: str):
     return PoseEstimator(url, input_size, device)
 
 
+REFINERS = ("rtmpose-x", "rtmw-x")
+RTMW_ONNX = Path(__file__).resolve().parents[3] / "models" / "rtmw-x_384x288.onnx"
+
+
+def refiner(cfg: dict | None) -> str:
+    """`fine_pass.refine`: the model that redoes the big people of the cascade. rtmw-x (RTMW-x whole body, its feet
+    in our Halpe26 layout: tennisbio.pose.rtmw) since 03-11 — measured on the PC (scripts/bench_candidates.py,
+    request 75): the same strokes found (F1 0.667 / 0.667), the same jitter (0.356 / 0.357 %) and feet seen (0.998 /
+    0.997), 10.0 against 3.3 frames/s. rtmpose-x = before. Without its model file: rtmpose-x, with a warning."""
+    m = str(((cfg or {}).get("fine_pass") or {}).get("refine", "rtmpose-x") or "rtmpose-x").strip().lower()
+    if m not in REFINERS:
+        print(f"AVISO: fine_pass.refine '{m}' no existe ({' o '.join(REFINERS)}); se usa rtmpose-x")
+        return "rtmpose-x"
+    if m == "rtmw-x" and not RTMW_ONNX.exists():
+        print(f"AVISO: falta {RTMW_ONNX.name} (scripts/export_rtmw.py); la pose fina usa RTMPose-x")
+        return "rtmpose-x"
+    return m
+
+
 @lru_cache(maxsize=4)
-def _cached(yolo_name: str, imgsz: int, device: str, url: str, input_size: tuple, min_rel: float) -> HybridPose:
+def _rtmw(device: str):
+    from .rtmw import RtmwPose
+
+    return RtmwPose(RTMW_ONNX, device)
+
+
+@lru_cache(maxsize=4)
+def _cached(yolo_name: str, imgsz: int, device: str, url: str, input_size: tuple, min_rel: float,
+            refine: str = "rtmpose-x") -> HybridPose:
     from .backend import pose_model
 
-    return HybridPose(pose_model(yolo_name, imgsz, device), _rtmpose(url, input_size, device), min_rel)
+    yolo = pose_model(yolo_name, imgsz, device)
+    rtm = _rtmw(device) if refine == "rtmw-x" else _rtmpose(url, input_size, device)
+    return HybridPose(yolo, rtm, min_rel)
 
 
 def hybrid_model(yolo_name: str = "yolo11m-pose", imgsz: int = 960, device: str | None = None,
@@ -132,7 +161,7 @@ def hybrid_model(yolo_name: str = "yolo11m-pose", imgsz: int = 960, device: str 
         cfg = load_config()
     pose = cfg["models"]["poses"][(cfg.get("fine_pass") or {}).get("pose", "performance")]
     return _cached(Path(str(yolo_name)).stem, int(imgsz), device or DEFAULT_DEVICE, pose["url"],
-                   tuple(int(v) for v in pose["input_size"]), MIN_REL_HEIGHT)
+                   tuple(int(v) for v in pose["input_size"]), MIN_REL_HEIGHT, refiner(cfg))
 
 
 def fine_pose_model(cfg: dict | None = None) -> str:
@@ -151,7 +180,10 @@ def fine_pose_model(cfg: dict | None = None) -> str:
 def pose_cache_tag(cfg: dict) -> list:
     """What to add to the fine pass's window cache key (stages: `ph`): nothing with the default, so the
     caches already computed with YOLO stay valid; ['hybrid'] otherwise, so YOLO caches are not reused."""
-    return [] if fine_pose_model(cfg) == "yolo" else ["hybrid"]
+    if fine_pose_model(cfg) == "yolo":
+        return []
+    # the refining model is part of the window caches: RTMW-x does not reuse RTMPose-x's (03-11)
+    return ["hybrid"] + (["rtmw-x"] if refiner(cfg) == "rtmw-x" else [])
 
 
 def extract_hybrid(video: str | Path, out: str | Path, pose_model="yolo11m-pose.pt", imgsz=960, every=1,

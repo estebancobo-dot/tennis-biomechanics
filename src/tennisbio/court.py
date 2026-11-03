@@ -264,10 +264,51 @@ class CourtFit:
         return p[:, :2] / p[:, 2:]
 
 
+TCD_ONNX = __import__("pathlib").Path(__file__).resolve().parents[2] / "models" / "court_tcd.onnx"
+_TCD: dict = {}
+
+
+def _tcd():
+    """TennisCourtDetector (14 points; tennisbio.court_tcd, MIT), adopted on 03-11 as the first try of
+    fit_court: measured on the PC (scripts/bench_candidates.py, request 75) 95.6 % of points within 7 px against 91 %
+    and the court found in 100 % of the frames against 95.7 %, at 6.3 against 3.6 frames/s. `court.detector: lines`
+    (or no model file) = the line search alone, as before. Loaded once per process."""
+    if "m" not in _TCD:
+        _TCD["m"] = None
+        try:
+            from .config import load_config
+            cfg = load_config()
+            if str((cfg.get("court") or {}).get("detector", "tcd14")).lower() == "tcd14" and TCD_ONNX.exists():
+                from .court_tcd import CourtTcd
+                _TCD["m"] = CourtTcd(TCD_ONNX, cfg.get("device", "cpu"))
+        except Exception as e:                    # noqa: BLE001 — the line search still works
+            print(f"AVISO: el detector de pista de 14 puntos no se pudo cargar ({str(e)[:120]}); se buscan las líneas")
+    return _TCD["m"]
+
+
+def _tcd_fit(frame: np.ndarray, masks: LineMasks) -> CourtFit | None:
+    """The detector's court, scored as the line search scores its own (the best line-mask agreement), so the two
+    compare and every threshold keeps its meaning; None without the detector or with an implausible court."""
+    m = _tcd()
+    if m is None:
+        return None
+    try:
+        fit = m.fit(frame)
+    except Exception:                             # noqa: BLE001 — a frame the detector fails on: the line search
+        return None
+    if fit is None or not plausible(fit.H, masks.shape):
+        return None
+    sc = max(float(score_many(fit.H[None], dil, integ)[0]) for _, dil, integ in (masks[i] for i in range(len(masks))))
+    return CourtFit(np.asarray(fit.H, float), sc)
+
+
 def fit_court(frame: np.ndarray, max_lines=6, good=0.8, min_score=0.5, masks: LineMasks | None = None) -> CourtFit | None:
-    """Best court homography; tries stricter line masks first, then more permissive ones."""
+    """Best court homography: the 14-point detector's when it fits the lines well (score ≥ good); else the line
+    search, stricter line masks first, then more permissive ones, keeping the better of the two."""
     masks = LineMasks(frame) if masks is None else masks
-    best = None
+    best = _tcd_fit(frame, masks)
+    if best is not None and best.score >= good:
+        return best
     for i in range(len(masks)):
         mask, dil, integ = masks[i]
         fit = _fit_with(frame, mask, max_lines, dil, integ)

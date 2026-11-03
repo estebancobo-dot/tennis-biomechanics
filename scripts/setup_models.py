@@ -38,6 +38,16 @@ def main():
             run("export_transnetv2.py", "--cache", str(MODELS), "--out", str(MODELS / "transnetv2.onnx"))
         except subprocess.CalledProcessError:      # the cuts fall back to the colour histograms
             print("AVISO: no se pudo crear transnetv2.onnx; los cortes de plano se detectan sin él")
+    if not (MODELS / "rtmw-x_384x288.onnx").exists():    # the fine pass's refining pose (fine_pass.refine, 03-11)
+        try:
+            run("export_rtmw.py", "--zip", str(MODELS / "rtmw-x_384x288.zip"), "--out", str(MODELS / "rtmw-x_384x288.onnx"))
+        except subprocess.CalledProcessError:      # the fine pass falls back to RTMPose-x
+            print("AVISO: no se pudo crear rtmw-x_384x288.onnx; la pose fina usa RTMPose-x")
+    if not (MODELS / "court_tcd.onnx").exists():        # the 14-point court detector (court.detector, 03-11)
+        try:
+            run("export_court_tcd.py", "--out", str(MODELS / "court_tcd.onnx"))
+        except subprocess.CalledProcessError:      # the court is found from its lines, as before
+            print("AVISO: no se pudo crear court_tcd.onnx; la pista se busca por sus líneas")
     w3d = MODELS / "rtmw3d-x.onnx"
     if not w3d.exists():
         from tennisbio.pose.wholebody3d import RTMW3D_URL
@@ -57,7 +67,7 @@ def main():
         RapidOCR()
     except ImportError:
         print("falta el OCR del marcador: uv sync --extra ocr")
-    for f in ("balltrack.onnx", "racketpose.onnx", "transnetv2.onnx", "rtmw3d-x.onnx", *[f"yolo11m-pose_{z}.onnx" for z in POSE_SIZES]):
+    for f in ("balltrack.onnx", "racketpose.onnx", "transnetv2.onnx", "rtmw3d-x.onnx", "rtmw-x_384x288.onnx", "court_tcd.onnx", *[f"yolo11m-pose_{z}.onnx" for z in POSE_SIZES]):
         p = MODELS / f
         print(f"{f:18} {'OK ' + str(round(p.stat().st_size / 1e6)) + ' MB' if p.exists() else 'FALTA'}")
 

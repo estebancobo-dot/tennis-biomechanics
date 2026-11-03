@@ -1051,7 +1051,7 @@ def _same_view(a, b, tol=12.0) -> bool:
     return a is not None and b is not None and float(np.abs(a - b).mean()) <= tol
 
 
-@stage("court", "4", deps=("scenes",), outputs=("court.json",))
+@stage("court", "5", deps=("scenes",), outputs=("court.json",))   # 5 (03-11): 14-point detector first (court.fit_court)
 def st_court(ctx: Context, n_fit=6, min_score=0.5, every_s=8.0, step_s=2.0, refine_s=0.5, fill_score=0.3,
              max_known=64):
     """Court homography of the main camera, decided on frames sampled every `step_s` seconds of

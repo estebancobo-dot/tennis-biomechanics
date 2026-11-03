@@ -65,6 +65,11 @@ fine_pass:
   # con YOLO (recorte que la sigue; sus pies, de ~70 px, no se usan). yolo = como antes (sin pies).
   # Activado el 14-10: la pasada fina se repite una vez en el PC (nueva clave de caché de las ventanas).
   pose_model: hybrid
+  # Modelo que rehace a las personas grandes de la cascada (03-11, scripts/bench_candidates.py en el PC, petición 75):
+  # rtmw-x (RTMW-x, del proyecto deep-sports-analysis) encuentra los mismos golpes, con el mismo temblor y los mismos
+  # pies vistos, a 10 fotogramas/s frente a 3,3 de RTMPose-x. rtmpose-x = como antes. Sin models/rtmw-x_384x288.onnx
+  # (scripts/export_rtmw.py) se usa rtmpose-x y se avisa.
+  refine: rtmw-x
   # Escala de su altura en píxeles (todas las medidas en % de altura o en cm; src/tennisbio/body_scale.py):
   # court = la altura real de config/players proyectada con la cámara que da la pista en el sitio donde
   # está (no depende de su postura ni de qué fotogramas se posan); sin pista o si su tronco y sus piernas
@@ -161,4 +166,12 @@ racket_face:
 
 # Analizar también a la rival con los mismos vídeos (planos en los que ella está en el lado
 # cercano). Su perfil: `opponent_id` en matches.yaml → config/players/<opponent_id>.yaml.
+# Pista (03-11, scripts/bench_candidates.py en el PC, petición 75): tcd14 = primero el detector de 14 puntos
+# (TennisCourtDetector, del proyecto deep-sports-analysis): 95,6 % de los puntos a ≤ 7 px frente al 91 % de la
+# búsqueda de líneas, la pista hallada en el 100 % de los fotogramas frente al 95,7 %, a 6,3 frente a 3,6
+# fotogramas/s. Se usa su pista si encaja con las líneas (misma puntuación que antes); si no, la búsqueda de líneas.
+# lines = solo la búsqueda de líneas, como antes. Sin models/court_tcd.onnx se buscan las líneas.
+court:
+  detector: tcd14
+
 analyze_opponent: false
