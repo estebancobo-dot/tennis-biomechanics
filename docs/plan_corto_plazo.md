@@ -45,6 +45,8 @@ Lo leen igual el usuario y cualquier sesión de Claude que continúe.
 - Ningún paso empieza hasta que el anterior se cierra medido.
 - Nada nuevo entra mientras tanto. Lo externo (artículos, otros proyectos) solo entra como candidato dentro de su paso, con el procedimiento de `docs/referencias_externas.md`.
 - Nunca se borra trabajo hecho.
+- **Antes de cualquier ejecución larga en el PC (03-11, tras la petición 84):** previsión escrita por partido y etapa de qué se rehace (huellas que cambian) y cuánto tardará, con tiempos medidos en **partidos enteros**, no en clips (`tennisbio app plan`). Una etapa que nunca se ha medido desde cero en un partido entero se mide antes, sola.
+- **Un fallo de lectura de vídeo arreglado en una etapa se revisa en todas las que leen igual** (la identidad seguía con la lectura lenta ya corregida en las vistas).
 
 ## 2. Base: tareas al detalle
 
@@ -59,6 +61,7 @@ Lo leen igual el usuario y cualquier sesión de Claude que continúe.
 | 1.4 | PC sec. | 1.3 | Nueva prueba desde cero (poc) | Detector de golpes ≤ 15 min en 35 min de vídeo | — |
 | 1.5 | Nube sec. | 1.4 si no basta | Calcular la bola de todo el juego a la vez que el marcador (CPU) y en lotes; o en la CPU en paralelo con la iGPU | Ídem | — |
 | 1.6 | PC sec. | 1.4/1.5 | Prueba desde cero final | **≤ 45 min en 35 min de vídeo; mismo número de golpes ±5 %** → cierra B1 | — |
+| 1.7 | Nube sec. → PC sec. | petición 84 | **B1 reabierto (03-11)**: en la referencia, la identidad tardó ~80 min por partido entero (~3 s por fotograma de ropa; 4 min en la prueba de 35 min, que no lo mostraba). Causa a confirmar con el registro de la 84 (lectura de los ~1.600 fotogramas de ropa repartidos por todo el partido, `run_clothes` con `frames_at(dense_s=60)`). Arreglo con prueba, y cada etapa medida desde cero en un partido entero | Identidad ≤ 20 min por partido entero; mismo resultado | pendiente |
 | **Paso 2 · B3 mejores modelos** | | | **Cada candidato medido frente al actual** | | **en curso** |
 | 2.1 | Nube par. | — | Ayudante: WASB, RTMW-x 2D, TennisCourtDetector, RF-DETR y F3ED a ONNX, con prueba ONNX = PyTorch y su script de medida | Ficheros y pruebas en su rama | **hecho**: los 5 en ONNX, con diferencia frente a PyTorch de 1e-7 a 1e-3; medida en el PC: `scripts/bench_candidates.py` (acción `medir`, script `bench_candidates`) |
 | 2.2 | Nube sec. | 2.1 | Revisar lo del ayudante, unirlo, batería completa | Subido | **hecho** (02-11). Prueba rápida en la CPU de la nube, que no es un resultado: bola WASB F1 0,77 frente a 0,81 nuestro (2 clips); pista 99,5 % frente a 97,6 %; lejana 8/8 frente a 7/8. F3ED se mide en el PC (sus clips de F3Set solo están allí) |
