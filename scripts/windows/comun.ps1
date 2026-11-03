@@ -206,6 +206,10 @@ function Subir-Registros {
                 ForEach-Object { Copy-Item $_.FullName $e -Force }
         }
         if (Test-Path "$Base\output\progreso.json") { Copy-Item "$Base\output\progreso.json" "$d\progreso.json" -Force }
+        # alarmas de tiempo, ritmos medidos por etapa y la prevision antes de ejecutar (tennisbio.budget, 03-11)
+        foreach ($f in @("alarmas.json", "ritmos.json", "prevision.md")) {
+            if (Test-Path "$Base\output\$f") { Copy-Item "$Base\output\$f" "$d\$f" -Force }
+        }
         if (Test-Path "$Base\output\_smoke\progreso.json") { Copy-Item "$Base\output\_smoke\progreso.json" "$d\progreso_prueba.json" -Force }
         foreach ($f in @("$Base\output\benchmark\results.json", "$Base\datasets\reports\f3set_validation.json", "$Base\datasets\reports\model_trials.json", "$Base\datasets\reports\model_trials.md")) {
             if (Test-Path $f) { Copy-Item $f "$d\$(Split-Path $f -Leaf)" -Force }

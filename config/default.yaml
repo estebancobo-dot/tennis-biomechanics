@@ -191,3 +191,11 @@ export:
 trunk3d:
   model: motionagformer
   onnx: models/motionagformer_xs.onnx
+
+# Presupuesto de tiempo por etapa (tennisbio.budget, 03-11): segundos por unidad de su progreso. Si una etapa va más de
+# `factor` veces por encima (o, sin presupuesto aquí, de la mediana de sus ejecuciones anteriores en este PC), sale una
+# ALARMA en el registro y en output\alarmas.json, que el PC sube en cada señal de vida. identity: 0,75 s por fotograma
+# de ropa = un partido entero (~1.600 fotogramas) en ≤ 20 min; en la petición 84 fue ~3 s.
+budgets:
+  factor: 2.0
+  identity: 0.75

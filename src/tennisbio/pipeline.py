@@ -70,7 +70,7 @@ class Context:
         p = self._prog
         done = min(done, total)
         if p.get("stage") != p.get("_seen"):
-            p.update(_seen=p.get("stage"), t0=now, last=0.0, ended=False)
+            p.update(_seen=p.get("stage"), t0=now, last=0.0, ended=False, alarmed=False)
         if p["ended"] or (done < total and now - p["last"] < every_s):
             return
         p["last"], p["ended"] = now, done >= total
@@ -80,6 +80,22 @@ class Context:
         fmt = lambda s: "?" if s is None else (f"{s / 60:.0f} min" if s >= 90 else f"{s:.0f} s")
         msg = f"  {p.get('stage', '')}: {frac * 100:3.0f} % ({done}/{total}{' ' + what if what else ''}) · {fmt(el)} · quedan ≈ {fmt(left)}"
         self.log(msg)
+        # time budget (tennisbio.budget, 03-11): an alarm as soon as the stage runs far slower than it should, and
+        # the finished stage's rate per unit for the next runs; never stops the stage
+        try:
+            from . import budget
+            out = self.progress_file().parent
+            if p["ended"]:
+                if el >= budget.REAL_RUN_S:
+                    budget.record_unit(out, p.get("stage", ""), el / max(1, total), total, self.match.id)
+            elif not p.get("alarmed"):
+                al = budget.check(self.cfg, out, p.get("stage", ""), el, done, total)
+                if al:
+                    p["alarmed"] = True
+                    self.log(f"  ALARMA de tiempo: {al}")
+                    budget.raise_alarm(out, self.match.id, p.get("stage", ""), al)
+        except Exception:  # noqa: BLE001 — the budget never breaks a stage
+            pass
         try:
             with _PROGRESS_LOCK:            # two stages at once write the same file
                 write_atomic(self.progress_file(), json.dumps({
@@ -388,6 +404,12 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
             m[n]["overlap_s"] = round(ov, 1)
         save_manifest(ctx.dir, m)          # after every stage, so an interruption loses little
         done.append(n)
+        try:                               # its rate per minute of video on this machine (tennisbio.budget)
+            from . import budget
+            info = json.loads(ctx.path("probe.json").read_text(encoding="utf-8")) if ctx.path("probe.json").exists() else {}
+            budget.record_stage(ctx.progress_file().parent, n, dt, (info.get("duration") or 0) / 60, ctx.match.id)
+        except Exception:  # noqa: BLE001 — never breaks the run
+            pass
 
     def worker(n: str, sub: Context):
         t0 = time.time()

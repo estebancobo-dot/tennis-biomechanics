@@ -134,6 +134,8 @@ function Hacer-Peticion($p) {
             Where-Object { $_.Extension -match '^\.(mp4|mkv|ts|mov|avi|webm|m2ts)$' } |
             ForEach-Object { "  video: {0} ({1:N2} GB)" -f $_.FullName, ($_.Length / 1GB) } | Add-Content $lg -Encoding UTF8
         "libre C: $([math]::Round((Get-PSDrive C).Free / 1GB)) GB" | Add-Content $lg -Encoding UTF8
+        # prevision antes de horas de trabajo (03-11): que etapas se rehacen en cada partido y cuanto tardaran
+        & uv run python scripts/preflight.py 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
         Subir-Registros | Out-Null
         Paso "Peticion $($p['id']): analisis completo de todos los partidos (horas; registro: analisis_completo.log)"
         & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $RepoDir "scripts\windows\analisis_completo.ps1") | Out-Host
@@ -157,9 +159,17 @@ function Hacer-Peticion($p) {
         "Peticion $($p['id']): repetir $($et -join ', ') ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
         if (-not $et -or ($et | Where-Object { $_ -notmatch '^[a-z_]+$' })) { "  etapas no validas: '$($p['etapas'])'" | Add-Content $lg -Encoding UTF8; return }
         Paso "Peticion $($p['id']): repetir $($et -join ', ') en todos los partidos y despues el analisis completo"
+        & uv run python scripts/preflight.py --stages ($et -join ',') 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        Subir-Registros | Out-Null
         & uv run tennisbio run --all --stages @et --force 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
         & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $RepoDir "scripts\windows\analisis_completo.ps1") | Out-Host
         "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "prevision") {
+        # solo la prevision (03-11): que se rehace y cuanto tardaria, sin ejecutar nada (output\prevision.md)
+        $lg = "$Base\output\prevision.log"
+        "Peticion $($p['id']): prevision ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        $ar = @(); if ($p["etapas"]) { $ar = @("--stages", "$($p['etapas'])") }
+        & uv run python scripts/preflight.py @ar 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "medir") {
         # una medida de Claude con un script del repositorio (script: bench_ball -> scripts\bench_ball.py, sin
         # tocar ningun analisis); registro output\medir_<script>.log (se sube solo)

@@ -213,6 +213,7 @@ accion: ventana
 #   migrar = estructura definitiva: copia output a biblioteca\partidos, la comprueba y solo entonces la activa (nunca borra)
 #   diag = hojas de fotogramas de los planos de cada partido (por que hay pocos minutos de camara principal)
 #   rehacer = un partido entero de nuevo (partido: <id>) y despues el analisis completo
+#   prevision = que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada (etapas: opcional)
 #   medir = una medida con un script del repositorio (script: bench_ball; argumentos: --only ocr5 opcional), registro output\medir_<script>.log
 #   repetir = unas etapas de todos los partidos aunque esten al dia (etapas: fine[,fine_doubtful]) y despues el analisis completo
 #   recall = golpes encontrados frente a los anotados por personas (F3Set), por lado, tipo y etapa (puntos: N para una prueba corta;
