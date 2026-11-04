@@ -1,10 +1,10 @@
-# Revisión automática: FALLOS
+# Revisión automática: REGRESIÓN
 
-314 cumplidos · 34 no cumplidos · 102 sin golpes suficientes · 108 avisos (antes: 314 cumplidos, 34 no cumplidos)
+296 cumplidos · 20 no cumplidos · 125 sin golpes suficientes · 117 avisos (antes: 314 cumplidos, 34 no cumplidos)
 
-## Peticiones del usuario SIN TERMINAR: 127 de 245
+## Peticiones del usuario SIN TERMINAR: 123 de 245
 
-Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#1 [FALTA]** Derecha de Rybakina en sus 4 partidos completos, una vez y al final (10-10 17:27; 11-10 19:37) — falta: Ningún partido completo analizado. 19-10: el análisis de los 4 partidos encuentra como mucho el 43 % de sus golpes y el 29 % de sus saques (`audit.recall_items…
 - **#155 [FALTA]** es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 19-10 06:15) — falta: Detección sin arreglar: como mucho 43 % de sus golpes y 29 % de sus saques en la final del US Open. Falta correr el banco de 650 golpes anotados y corregir la …
@@ -14,11 +14,6 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - **#196 [FALTA]** Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18) — falta: No están en `practice.SIDE_METRICS`.
 - **#197 [FALTA]** Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19) — falta: Pendiente de confirmar con el usuario (descartó la hoja de sesión).
 - **#198 [FALTA]** Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20) — falta: Opcional, fuera del golpe.
-- **#199 [FALTA]** Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10) — falta: Sigue la heurística.
-- **#200 [FALTA]** Pista: TennisCourtDetector (14 puntos) + refinado (Estado del arte, 13-10) — falta: Sigue la detección por líneas propia.
-- **#201 [FALTA]** Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10) — falta: Hecho solo «OCR cuando cambia».
-- **#202 [FALTA]** Bola: probar WASB (Estado del arte, 13-10) — falta: No probado.
-- **#203 [FALTA]** 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10) — falta: No probado.
 - **#205 [FALTA]** Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3) — falta: Los 4 partidos dieron menos de la mitad de sus golpes.
 - **#209 [FALTA]** Passing y globo (Revisión completa, §3 B) — falta: Medible en parte (rival en la red + trayectoria); sin hacer.
 - **#210 [FALTA]** Dejada (bote muy corto en campo rival) (Revisión completa, §3 B) — falta: Medible con el bote de su bola; sin hacer.
@@ -115,6 +110,7 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - **#192 [PARCIAL]** Terminación «hacia adelante», «la mano libre recoge la raqueta», codo al terminar (Guía Ivanovic, hueco 9) — falta: Faltan el nivel «hacia adelante» en `technique.finish_class` y el codo libre al terminar (`finish.elbow_non`).
 - **#194 [PARCIAL]** «Sus principios» (5-6 frases) y «Lo que la distingue» (Guía Ivanovic, hueco 13) — falta: No hay «Sus principios».
 - **#195 [PARCIAL]** Fuentes en COACH: Iino y Kojima 2001, Bahamonde y Knudson 2003, Kawamoto 2019, LTA, Wulf, autoinstrucciones (Guía Ivanovic, hueco 17) — falta: Faltan Iino, Kojima, Bahamonde, Knudson 2003, Kawamoto, LTA y el metaanálisis.
+- **#199 [PARCIAL]** Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10) — falta: Medido: CatBoost de TennisProject F1 0,899 frente a 0,581 de la regla (con nuestra bola). Sin licencia: no se copia; falta un modelo propio (M5).
 - **#206 [PARCIAL]** Validación de cuerdas y 3D con referencia real (Comparativa apps, §4.4) — falta: Sin referencia 3D real.
 - **#207 [PARCIAL]** Golpes: sin volea, remate ni cortado (Comparativa apps, §3 Peor) — falta: Sin técnica propia de volea, remate ni cortado. 20-10: la volea también a media pista y fuera de la línea de saque (`class.contact_type`).
 - **#208 [PARCIAL]** Lógica duplicada JS/Python: calcular una vez en Python (Revisión completa, §2 fallo 17) — falta: La plantilla aún calcula en JavaScript partes de Comparar, la videoteca y la lección.
@@ -137,15 +133,8 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 
 ## No cumplidos
 
-- **Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin**: marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto de saque) y 72-133 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 69 golpes, 1 saques/remates → como mucho 96% de sus golpes y 6% de sus 
-- **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 561 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
-- **«Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm**: 1 en la pantalla
+- **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=608–962 de 900; al abrir 2 títulos, 492 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=962 (más abajo que la primera pantalla, 900)
 - **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
-- **#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía**: 191 comprobaciones: 1 falta, 30 pocos datos, 160 ok; la peor: ««Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm» (1 en la pantalla)
-- **#73 Revisar la web de arriba abajo para que aporte valor**: 22 comprobaciones: 1 falta, 21 ok; la peor: ««Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm» (1 en la pantalla)
-- **#115 Cuánto baja y sube el cuerpo, con fotogramas y barras horizontales: de la espera al punto más bajo y del más b**: 1 comprobaciones: 1 falta; la peor: ««Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm» (1 en la pantalla)
-- **#134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06)**: 2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto )
-- **#151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25)**: 2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto )
 - **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -153,21 +142,68 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - **#196 Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18)**: SIN HACER según el registro (#196, docs/peticiones_usuario.md)
 - **#197 Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19)**: SIN HACER según el registro (#197, docs/peticiones_usuario.md)
 - **#198 Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20)**: SIN HACER según el registro (#198, docs/peticiones_usuario.md)
-- **#199 Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10)**: SIN HACER según el registro (#199, docs/peticiones_usuario.md)
-- **#200 Pista: TennisCourtDetector (14 puntos) + refinado (Estado del arte, 13-10)**: SIN HACER según el registro (#200, docs/peticiones_usuario.md)
-- **#201 Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10)**: SIN HACER según el registro (#201, docs/peticiones_usuario.md)
-- **#202 Bola: probar WASB (Estado del arte, 13-10)**: SIN HACER según el registro (#202, docs/peticiones_usuario.md)
-- **#203 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10)**: SIN HACER según el registro (#203, docs/peticiones_usuario.md)
 - **#205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3)**: SIN HACER según el registro (#205, docs/peticiones_usuario.md)
 - **#209 Passing y globo (Revisión completa, §3 B)**: SIN HACER según el registro (#209, docs/peticiones_usuario.md)
 - **#210 Dejada (bote muy corto en campo rival) (Revisión completa, §3 B)**: SIN HACER según el registro (#210, docs/peticiones_usuario.md)
 - **#211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5)**: SIN HACER según el registro (#211, docs/peticiones_usuario.md)
 - **#216 Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnic**: SIN HACER según el registro (#216, docs/peticiones_usuario.md)
 - **#217 Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26)**: SIN HACER según el registro (#217, docs/peticiones_usuario.md)
-- **#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto )
 - **#223 Revés y derecha cortados**: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
 - **#224 Saques: plano, cortado o kick; primero o segundo**: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
-- **#233 Una referencia completa y medida antes de validar nada**: 2 comprobaciones: 1 falta, 1 pocos datos; la peor: «Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin» (marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto )
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
+
+## Empeora respecto a la ejecución anterior
+
+- **2. Cuerpo · Hombros más girados que la cadera en el impacto**: ok → pocos datos: se mide (85% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- **3. Pies y desplazamiento · Subtipos: abierto de ataque, abierto defensivo, neutro de ataque**: ok → pocos datos: se mide (77% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- **4. Raqueta, swing y empuñadura · Posición de la mano en el mango**: ok → pocos datos: se mide (77% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- **6. Matriz del usuario · Rotación pélvica**: ok → pocos datos: se mide (85% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- **6. Matriz del usuario · Apoyo abierto extremo defensivo**: ok → pocos datos: se mide (77% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- **R13 La mano cae antes de acelerar en la mayoría**: ok → pocos datos: pocos datos: 10 golpes con el dato (hacen falta 12)
+- **R14 La cadera gira hacia la pista entre armado e impacto (> 10°)**: ok → pocos datos: pocos datos: 10 golpes con el dato (hacen falta 12)
+- **R20 Más apoyos cerrados o neutros que el circuito (~16 %)**: ok → pocos datos: pocos datos: 10 golpes con el dato (hacen falta 12)
+- **Fotograma clave: inicio de preparación**: ok → aviso: encontrado en el 69% de los golpes
+- **Fotograma clave: armado**: ok → aviso: encontrado en el 77% de los golpes
+- **Fotograma clave: inicio de aceleración**: ok → aviso: encontrado en el 77% de los golpes
+- **Fotograma clave: terminación**: ok → aviso: encontrado en el 77% de los golpes
+- **Fotograma clave: recuperación**: ok → aviso: encontrado en el 77% de los golpes
+- **Punta de la raqueta respecto a la cabeza en el armado**: ok → pocos datos: medido en 6 de 13 golpes; en «Aprende»; fiabilidad: fiable
+- **Cada frase lleva cuántos golpes la respaldan y su fiabilidad**: ok → pocos datos: 0 frases
+- **#26 Fases y cadena completa, del salto inicial a la terminación**: ok → aviso: 8 comprobaciones: 5 aviso, 3 ok; la peor: «Fotograma clave: inicio de preparación» (encontrado en el 69% de los golpes)
+- **#33 Capturas de los mejores golpes de cada tipo y N imágenes de un golpe**: ok → aviso: 8 comprobaciones: 5 aviso, 3 ok; la peor: «Fotograma clave: inicio de preparación» (encontrado en el 69% de los golpes)
+- **#59 Diferencias solo por encima del error y en situaciones equivalentes**: ok → pocos datos: 6 comprobaciones: 2 pocos datos, 4 ok; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 6 de 13 golpes; en «Aprende»; fiabilidad: fiable)
+- **#87 Matriz §4 Apoyos (abierto, semiabierto, neutro o cerrado, salto, abierto extremo)**: ok → pocos datos: 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Apoyo abierto extremo defensivo» (se mide (77% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
+- **#102 Mejora 4: punta de la raqueta respecto a la cabeza en el armado**: ok → pocos datos: 1 comprobaciones: 1 pocos datos; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 6 de 13 golpes; en «Aprende»; fiabilidad: fiable)
+
+## Mejora
+
+- Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin: falta → aviso
+- R1 Golpe liftado de trayectoria moderada, no extrema: aviso → pocos datos
+- R7 La mano libre pasa al lado del brazo en el armado: aviso → pocos datos
+- R17 La terminación más frecuente es sobre el hombro: aviso → pocos datos
+- R23 La cadera llega a su máximo giro antes que los hombros: aviso → pocos datos
+- «Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm: falta → ok
+- #7 Empuñadura en la espera y al golpear: aviso → pocos datos
+- #11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía: falta → pocos datos
+- #36 Mano y antebrazo, cierre de la muñeca: aviso → pocos datos
+- #71 El conocimiento de los vídeos de entrenadores en la web: aviso → pocos datos
+- #73 Revisar la web de arriba abajo para que aporte valor: falta → aviso
+- #84 Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca): aviso → pocos datos
+- #113 Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25): aviso → pocos datos
+- #115 Cuánto baja y sube el cuerpo, con fotogramas y barras horizontales: de la espera al punto más bajo y del más b: falta → ok
+- #134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06): falta → aviso
+- #151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25): falta → aviso
+- #199 Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10): falta → aviso
+- #200 Pista: TennisCourtDetector (14 puntos) + refinado (Estado del arte, 13-10): falta → aviso
+- #201 Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10): falta → aviso
+- #202 Bola: probar WASB (Estado del arte, 13-10): falta → aviso
+- #203 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10): falta → aviso
+- #219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d: falta → aviso
+- #233 Una referencia completa y medida antes de validar nada: falta → aviso
+
+## Fiabilidad de las medidas
+
+- ahora: 80 medidas: 5 dudosa, 52 fiable, 14 no comprobable, 2 ruido, 1 sesgo, 6 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.85, takeback.shoulder_turn ±3.3. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
+- antes: 80 medidas: 7 dudosa, 53 fiable, 13 no comprobable, 1 sesgo, 6 sin juzgar. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga

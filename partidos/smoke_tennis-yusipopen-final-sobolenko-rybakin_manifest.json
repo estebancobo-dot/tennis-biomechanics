@@ -115,16 +115,16 @@
   }
  },
  "fine": {
-  "fingerprint": "b652176f2fa534c1",
+  "fingerprint": "352cb52207907cad",
   "version": "16",
-  "seconds": 60.5,
-  "finished": "2026-11-04 04:11:10",
+  "seconds": 60.9,
+  "finished": "2026-11-04 08:34:38",
   "summary": {
    "candidates": 72,
    "confirmed": 69,
    "errors": 0,
    "warnings": [],
-   "forehands": 22,
+   "forehands": 23,
    "windows": 56,
    "gate": {
     "windows_gated": 0,
@@ -138,12 +138,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 28.2,
-    "pista_ventana": 15.5,
-    "cuerdas_y_3d": 12.5,
-    "analisis_ventana": 10.8,
-    "recorte": 3.1,
-    "cribado": 2.6,
+    "jugadora_lejana": 29.2,
+    "pista_ventana": 14.9,
+    "cuerdas_y_3d": 12.6,
+    "analisis_ventana": 10.1,
+    "cribado": 2.9,
+    "recorte": 2.9,
     "pose": 0.3
    },
    "counts": {
@@ -159,19 +159,19 @@
   }
  },
  "fine_opponent": {
-  "fingerprint": "c8e1f3fddc18dce1",
+  "fingerprint": "2e7625f260b35b0b",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-04 04:11:10",
+  "finished": "2026-11-04 08:34:38",
   "summary": {
    "enabled": false
   }
  },
  "fine_doubtful": {
-  "fingerprint": "abcd71f04948f30b",
+  "fingerprint": "f33bec100d8e3631",
   "version": "1",
-  "seconds": 24.7,
-  "finished": "2026-11-04 04:11:34",
+  "seconds": 25.1,
+  "finished": "2026-11-04 08:35:03",
   "summary": {
    "candidates": 35,
    "confirmed": 26,
@@ -191,12 +191,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 9.1,
-    "analisis_ventana": 4.4,
-    "jugadora_lejana": 3.1,
-    "pista_ventana": 1.9,
+    "cuerdas_y_3d": 9.2,
+    "analisis_ventana": 4.6,
+    "jugadora_lejana": 2.9,
+    "pista_ventana": 2.0,
     "recorte": 1.3,
-    "cribado": 0.8,
+    "cribado": 0.9,
     "pose": 0.1
    },
    "counts": {
@@ -229,10 +229,10 @@
   }
  },
  "views_link": {
-  "fingerprint": "729f612efd5f9a90",
+  "fingerprint": "c32bd809296dd5a4",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-11-04 04:11:34",
+  "finished": "2026-11-04 08:35:03",
   "summary": {
    "strokes": 69,
    "with_replay": 26,
