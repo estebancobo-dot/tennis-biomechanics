@@ -67844,7 +67844,7 @@
  {
   "impact_frame": 116,
   "impact_source": "spotter",
-  "stroke": "forehand",
+  "stroke": "overhead",
   "phases": {
    "ready": {
     "frame": 54,
@@ -68012,7 +68012,9 @@
   "series": "series/w001888702_3600_far_116.json",
   "window_impact_s": 2.32,
   "shot_in_point": 1,
-  "shots_in_point": 1
+  "shots_in_point": 1,
+  "stroke_before": "forehand",
+  "stroke_rule": "primer golpe de quien saca"
  },
  {
   "impact_frame": 120,
@@ -68789,7 +68791,7 @@
  {
   "impact_frame": 258,
   "impact_source": "audio+ball+swing",
-  "stroke": "backhand",
+  "stroke": "overhead",
   "phases": {
    "ready": {
     "frame": 164,
@@ -68991,6 +68993,8 @@
   "window_impact_s": 5.16,
   "shot_in_point": 2,
   "shots_in_point": 4,
+  "stroke_before": "backhand",
+  "stroke_rule": "primer golpe de quien saca",
   "views": [
    {
     "kind": "repeticion_principal",

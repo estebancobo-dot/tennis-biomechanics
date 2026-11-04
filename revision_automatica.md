@@ -1,6 +1,6 @@
 # Revisión automática: FALLOS
 
-350 cumplidos · 23 no cumplidos · 127 sin golpes suficientes · 105 avisos (antes: 348 cumplidos, 23 no cumplidos)
+352 cumplidos · 23 no cumplidos · 127 sin golpes suficientes · 103 avisos (antes: 350 cumplidos, 23 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 121 de 245
 
@@ -131,7 +131,7 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 
 ## No cumplidos
 
-- **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 7 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 3, golpes suyos, pero ningún saque 4; sus saques encontrados caen en puntos de su saque 11, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 4
+- **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 9 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 3, golpes suyos, pero ningún saque 2; sus saques encontrados caen en puntos de su saque 13, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 31.3 s (mediana de 2
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
 - **Registros con fecha y duración**: 54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final
 - **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
@@ -157,9 +157,5 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 
 ## Mejora
 
-- #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: aviso → ok
-
-## Comprobaciones nuevas
-
-- Pruebas en este PC: test_export_end: aviso (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
-- Exportación terminada: exportar: ok (terminó el 2026-11-04 21:50:14 en 0 min: 25 vídeos de 25 golpes)
+- Pruebas en este PC: test_export_end: aviso → ok
+- #232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó: aviso → ok

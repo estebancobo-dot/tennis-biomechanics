@@ -30,7 +30,7 @@
   },
   {
    "title": "Sus golpes (Videoteca y pista)",
-   "text_chars": 4509,
+   "text_chars": 4416,
    "charts": 1,
    "videos": 7,
    "black_canvases": 0,
@@ -85,7 +85,7 @@
   },
   {
    "title": "Comparar dos golpes",
-   "text_chars": 4357,
+   "text_chars": 4255,
    "charts": 2,
    "videos": 7,
    "black_canvases": 0,
@@ -139,13 +139,13 @@
   },
   {
    "title": "Tabla de golpes (Explorador)",
-   "text_chars": 4696,
+   "text_chars": 4576,
    "charts": 0,
    "videos": 7,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 94,
+   "dashes": 89,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,

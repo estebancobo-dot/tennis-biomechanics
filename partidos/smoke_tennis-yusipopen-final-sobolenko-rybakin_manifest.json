@@ -127,16 +127,16 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "78cd7434b51b6e7a",
+  "fingerprint": "18884dfb48dcf6a9",
   "version": "16",
-  "seconds": 62.1,
-  "finished": "2026-11-04 16:31:56",
+  "seconds": 63.1,
+  "finished": "2026-11-04 22:29:21",
   "summary": {
    "candidates": 77,
    "confirmed": 74,
    "errors": 0,
    "warnings": [],
-   "forehands": 25,
+   "forehands": 24,
    "windows": 59,
    "gate": {
     "windows_gated": 0,
@@ -150,12 +150,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 29.0,
-    "pista_ventana": 15.3,
+    "jugadora_lejana": 29.2,
+    "pista_ventana": 15.8,
     "cuerdas_y_3d": 12.6,
     "analisis_ventana": 10.8,
+    "cribado": 3.2,
     "recorte": 3.0,
-    "cribado": 2.8,
     "pose": 0.3
    },
    "counts": {
@@ -169,14 +169,14 @@
     "frames_960_far": 0
    }
   },
-  "out_hash": "125be271cfdb459c5548",
+  "out_hash": "cecba624257672129aef",
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "68d54e08b2087e2d",
+  "fingerprint": "05acc73e78a9e920",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-04 16:31:56",
+  "finished": "2026-11-04 22:29:21",
   "summary": {
    "enabled": false
   },
@@ -184,10 +184,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "37dd22a8a6bcdfbf",
+  "fingerprint": "9384bd994895236f",
   "version": "1",
-  "seconds": 21.1,
-  "finished": "2026-11-04 16:32:17",
+  "seconds": 21.3,
+  "finished": "2026-11-04 22:29:42",
   "summary": {
    "candidates": 28,
    "confirmed": 19,
@@ -207,11 +207,11 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 7.6,
-    "analisis_ventana": 4.2,
+    "cuerdas_y_3d": 7.8,
+    "analisis_ventana": 4.1,
     "jugadora_lejana": 2.5,
-    "pista_ventana": 1.5,
-    "recorte": 1.2,
+    "pista_ventana": 1.4,
+    "recorte": 1.1,
     "cribado": 0.7,
     "pose": 0.1
    },
@@ -249,10 +249,10 @@
   "scheme": 2
  },
  "views_link": {
-  "fingerprint": "3b8fa42e2f0df01d",
+  "fingerprint": "17c53b7a7bd6dbb9",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-11-04 16:32:17",
+  "finished": "2026-11-04 22:29:42",
   "summary": {
    "strokes": 74,
    "with_replay": 26,
