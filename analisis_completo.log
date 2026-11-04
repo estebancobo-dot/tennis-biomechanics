@@ -87104,3 +87104,27 @@ Resumen: C:\tenis\output\exportar_derecha\resumen.pdf
 Golpes: 272 nuevos, 272 en C:\tenis\output\exportar_reves\golpes
 Montajes: 10 en C:\tenis\output\exportar_reves\montajes
 Resumen: C:\tenis\output\exportar_reves\resumen.pdf
+  golpes 110/229 (267 s, 5 procesos)
+  golpes 120/229 (290 s, 5 procesos)
+  golpes 130/229 (313 s, 5 procesos)
+  golpes 140/229 (337 s, 5 procesos)
+  golpes 150/229 (360 s, 5 procesos)
+  golpes 160/229 (384 s, 5 procesos)
+  golpes 170/229 (409 s, 5 procesos)
+  golpes 180/229 (432 s, 5 procesos)
+  golpes 190/229 (457 s, 5 procesos)
+  golpes 200/229 (480 s, 5 procesos)
+  golpes 210/229 (504 s, 5 procesos)
+  golpes 220/229 (529 s, 5 procesos)
+Golpes: 229 nuevos, 229 en C:\tenis\output\exportar_saque\golpes
+Montajes: 8 en C:\tenis\output\exportar_saque\montajes
+Resumen: C:\tenis\output\exportar_saque\resumen.pdf
+Informe: C:\tenis\output\informe_derecha\index.html (o en la aplicacion Tennisbio)
+
+TERMINADO en 00:58. Informes en C:\tenis\output\informe_*; videos, montajes y resumen.pdf en C:\tenis\output\exportar_*
+    (paso terminado en 38 min 30 s)
+Empezado 2026-11-04 22:49:23 - terminado 2026-11-04 23:47:59 - duracion total 58 min 36 s
+**********************
+Windows PowerShell transcript end
+End time: 20261104234759
+**********************
