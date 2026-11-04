@@ -151,9 +151,10 @@ def run_audit(root: Path, report: Path, dest: Path, stroke: str = "forehand", di
                              "detail": f"{pages} páginas, {pdf.stat().st_size / 1e6:.1f} MB"})
         if shots is not None and pdf.stat().st_size < 15e6:
             _sh.copy2(pdf, shots / "resumen.pdf")
-    from .audit import file_tree_items, petition_items, side_checks
+    from .audit import base_items, file_tree_items, petition_items, side_checks
     res["items"] += side_checks(root)
     res["items"] += file_tree_items(dirs, report, root)
+    res["items"] += base_items(dirs, root)          # Base packages B1 and B3: models, stage times, PC use, Actions (04-11)
     res["items"] += petition_items(res["items"])
     res["summary"] = {st: sum(i["status"] == st for i in res["items"]) for st in ("ok", "falta", "pocos datos", "aviso")}
     md = write(res, dest)

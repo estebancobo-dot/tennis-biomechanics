@@ -34,6 +34,7 @@ REQUIREMENTS = {
     6: "Sin fuentes externas (nada de vídeos de otros)",
     9: "Rendimiento: un partido en horas, no días",
     11: "Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una",
+    12: "Mejores modelos: cada candidato medido frente al actual y los adoptados en uso (B3)",
 }
 # requirement 1, word by word: each variant the user named → factor of the model ("" = none)
 VARIANTS_ASKED = {
@@ -980,6 +981,32 @@ PETITIONS.update({
     232: r"Golpes que fallaron|Etapas con errores|Exportación|" + _T + "test_no_unbounded_calls$",
     241: r"Pruebas del código en este PC|" + _T + "test_no_hardcoded_player$",
 })
+# Base packages B1 and B3, 04-11 (base_items, cli.run_audit): each request with a check on the outputs, the PC's
+# configuration or its own tests on the PC; added on top of the rules above, never instead of a stricter one.
+# Without an automatic check, on purpose: #30 (a document: docs/comparativa_apps.md, its conclusions are not an output).
+PETITIONS.update({
+    # B1 · speed and use of the PC
+    10: r"Novedades|Reproducir|" + _T + "test_auto_cycle$",
+    77: _T + "(test_auto_cycle|test_pc_requests)$",
+    137: r"^Rendimiento$|^Trabajo en paralelo$|" + _T + "(test_fine_ahead|test_parallel|test_fine_parallel)$",
+    230: r"^Rendimiento$|^Uso del PC$|" + _T + "test_resources_summary$",
+    231: r"^Rendimiento$|^Tiempo por etapa$|" + _T + "test_budget$",
+    237: r"^Peticiones por GitHub Actions",
+    # B3 · best models (each candidate measured against the current one; the adopted ones in use)
+    58: r"^Modelo candidato medido|^Modelo en uso",
+    138: r"^Modelo en uso: esqueleto híbrido|" + _T + "test_hybrid_pose$",
+    199: r"^Modelo candidato medido: bounce|" + _T + "test_candidates$",
+    200: r"^Modelo candidato medido: court14|^Modelo en uso: pista de 14 puntos|" + _T + "(test_court|test_candidates)$",
+    201: r"^Modelo candidato medido: ocr5|" + _T + "test_candidates$",
+    202: r"^Modelo candidato medido: wasb|^Modelo en uso: bola|" + _T + "test_candidates$",
+    203: r"^Modelo candidato medido: mag3d|^Modelo en uso: giro 3D|" + _T + "test_trunk3d$",
+    204: r"^Modelo candidato medido: f3ed|^Modelo en uso: detector de golpes|^Golpes del detector aprendido|"
+         + _T + "(test_spotting|test_spotting_stage)$",
+    221: r"^Modelo en uso: detector de golpes|^Golpes del detector aprendido|"
+         + _T + "(test_spotting|test_spotting_stage|test_stroke_from_spotter)$",
+})
+PETITIONS[30] = Note("documento de estado del arte (docs/comparativa_apps.md): sin comprobación automática posible; "
+                     "los modelos que compara se miden en #58 y #199-#204")
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 SPEED_TARGET = 45 / 35          # hours of processing per hour of video (Base step 1: 35 min in ≤ 45 min)
 
@@ -1017,7 +1044,11 @@ def code_tests_item(log: Path | None) -> dict:
 # test modules that check user requests on the PC itself (pruebas.xml of scripts/windows/pruebas_fondo.ps1), 03-11
 MODULE_TESTS = ("test_pipeline", "test_auto_cycle", "test_pc_requests", "test_library", "test_layout",
                 "test_identity_click", "test_app_core", "test_app_window", "test_auto_catalog_rename",
-                "test_no_hardcoded_player", "test_no_unbounded_calls")
+                "test_no_hardcoded_player", "test_no_unbounded_calls",
+                # Base packages B1 and B3, 04-11
+                "test_budget", "test_resources_summary", "test_fine_ahead", "test_parallel", "test_fine_parallel",
+                "test_hybrid_pose", "test_candidates", "test_court", "test_trunk3d", "test_spotting",
+                "test_spotting_stage", "test_stroke_from_spotter")
 
 
 def module_tests_items(xml: Path | None) -> list[dict]:
@@ -1050,6 +1081,276 @@ def module_tests_items(xml: Path | None) -> list[dict]:
                + (f"; fallan: {', '.join(r['fail'][:4])}" if r["fail"] else "") + (" (no se ejecutó)" if not any(r.values()) else ""))
         out.append(_item(5, "Pruebas en este PC", f"Pruebas en este PC: {m}", st, det))
     return out
+
+
+# Base packages B1 and B3 (config/plan_peticiones.yaml), 04-11: checks computed from what the PC leaves next to the
+# match folders (bench_candidates.json, ritmos.json, recursos/*.csv, ciclo_actions.log), from the manifests and from
+# the PC's own configuration (the models the next analysis will use)
+
+# candidates of scripts/bench_candidates.py → (what it is, the model it would replace)
+CANDIDATE_MODELS = {
+    "wasb": ("bola WASB", "TrackNetV3"), "rtmw": ("esqueleto RTMW-x", "RTMPose-x"),
+    "court14": ("pista de 14 puntos (TennisCourtDetector)", "búsqueda de líneas"),
+    "rfdetr": ("jugadora lejana RF-DETR", "YOLO11 en la mitad lejana"),
+    "f3ed": ("detector de golpes F3ED", "detector propio entrenado con F3Set"),
+    "ocr5": ("marcador PP-OCRv5", "PP-OCRv4 (rapidocr 1.4)"), "mag3d": ("giro 3D MotionAGFormer", "RTMW3D"),
+    "bounce": ("bote CatBoost", "regla del giro de la bola"),
+}
+STAGE_SLOW_FACTOR = 2.0       # a stage is «slow» at this many times its usual rate on this PC (budgets.factor)
+STAGE_MIN_REFS = 3            # runs of a stage on this PC needed to say what is usual
+ACTIONS_WAIT_MIN = 10.0       # #237: a request must start within this (the waits were 10-40 min)
+
+
+def _find(out_root: Path, *rels: str) -> Path | None:
+    """The first of out_root/rel, its parent/rel or its grandparent/rel that exists."""
+    for b in (out_root, out_root.parent, out_root.parent.parent):
+        for r in rels:
+            if (b / r).exists():
+                return b / r
+    return None
+
+
+def candidate_items(out_root: Path) -> list[dict]:
+    """B3: one item per state-of-the-art candidate, from the PC's measure (scripts/bench_candidates.py →
+    bench_candidates.json): «ok» when it was measured against the current model (accuracy on annotated data and
+    speed on this PC) and decided; «falta» when its measure failed; «aviso» when not measured or too little data."""
+    f = _find(out_root, "bench_candidates.json", "datasets/reports/bench_candidates.json")
+    rep = None
+    if f is not None:
+        try:
+            rep = json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            rep = None
+    out = []
+    for name, (what, ours) in CANDIDATE_MODELS.items():
+        iname = f"Modelo candidato medido: {name} ({what})"
+        if rep is None:
+            out.append(_item(12, "Modelos", iname, "aviso",
+                             "sin bench_candidates.json (se mide en el PC con scripts/bench_candidates.py)"))
+            continue
+        r = (rep.get("results") or {}).get(name)
+        v = (r or {}).get("verdict") or {}
+        if not r:
+            st, det = "aviso", "todavía sin medir"
+        elif r.get("error"):
+            st, det = "falta", f"la medida falló: {str(r['error'])[:160]}"
+        elif not v or v.get("insufficient"):
+            st, det = "aviso", f"medida incompleta: {v.get('reason', 'sin decisión')}"
+        else:
+            st = "ok"
+            det = (f"frente a {r.get('baseline') or ours}: precisión {r.get('accuracy', '?')}; velocidad {r.get('speed', '?')}; "
+                   f"{'se adopta' if v.get('adopt') else 'no se adopta'} ({v.get('reason', '')[:160]})")
+        out.append(_item(12, "Modelos", iname, st, det + f" [{rep.get('generated', '?')}, {rep.get('device', '?')}]"))
+    return out
+
+
+def models_in_use_items(cfg: dict | None = None) -> list[dict]:
+    """B3: the models the next analysis uses, from this PC's configuration and its model files: an adopted model
+    configured without its file falls back to the former one (the pipeline never stops), and that is said here."""
+    from .config import resolve_path
+
+    if cfg is None:
+        try:
+            from .config import load_config
+            cfg = load_config()
+        except Exception as e:  # noqa: BLE001 — the audit must still be written
+            return [_item(12, "Modelos", "Modelo en uso: configuración", "aviso", f"no se pudo leer la configuración ({e})")]
+    from . import court, trunk3d
+
+    def has(p) -> bool:
+        q = resolve_path(p)
+        return q is not None and Path(q).exists()
+
+    fp = cfg.get("fine_pass") or {}
+    sp = cfg.get("spotter") or {}
+    rows = [
+        ("detector de golpes aprendido (F3Set)", bool(sp.get("enabled")), has(sp.get("onnx")),
+         f"spotter.enabled: {sp.get('enabled')}, {sp.get('onnx')}"),
+        ("esqueleto híbrido (YOLO11 + RTMPose)", fp.get("pose_model") == "hybrid", True,
+         f"fine_pass.pose_model: {fp.get('pose_model')}, refine: {fp.get('refine')}"),
+        ("pista de 14 puntos (TennisCourtDetector)", str((cfg.get("court") or {}).get("detector", "tcd14")).lower() == "tcd14",
+         Path(court.TCD_ONNX).exists(), f"court.detector: {(cfg.get('court') or {}).get('detector', 'tcd14')}"),
+        ("giro 3D del tronco (MotionAGFormer)", ((cfg.get("trunk3d") or {}).get("model") or "motionagformer") == "motionagformer",
+         trunk3d.model_path(cfg) is not None, f"trunk3d.model: {(cfg.get('trunk3d') or {}).get('model', 'motionagformer')}"),
+        ("bola (TrackNetV3 de RacketVision)", bool((cfg.get("ball") or {}).get("onnx")), has((cfg.get("ball") or {}).get("onnx")),
+         f"ball.onnx: {(cfg.get('ball') or {}).get('onnx')}"),
+        ("raqueta (RTMPose de RacketVision)", bool((cfg.get("racket_face") or {}).get("pose_onnx")),
+         has((cfg.get("racket_face") or {}).get("pose_onnx")), f"racket_face.pose_onnx: {(cfg.get('racket_face') or {}).get('pose_onnx')}"),
+        ("cortes de plano (TransNetV2)", bool((cfg.get("scenes") or {}).get("onnx")), has((cfg.get("scenes") or {}).get("onnx")),
+         f"scenes.onnx: {(cfg.get('scenes') or {}).get('onnx')}"),
+    ]
+    out = []
+    for label, chosen, present, det in rows:
+        st = "ok" if chosen and present else "aviso"
+        why = ("elegido y con su modelo en este PC" if st == "ok" else
+               "no elegido en la configuración" if not chosen else "elegido pero sin su fichero: se usa lo anterior")
+        out.append(_item(12, "Modelos", f"Modelo en uso: {label}", st, f"{why} ({det})"))
+    return out
+
+
+def spotter_items(match_dirs: list[Path]) -> list[dict]:
+    """#204/#221: per match, whether its candidate strokes came from the learned detector (manifest of the run)."""
+    out = []
+    for d in match_dirs:
+        f = _mf.at(d, "manifest.json")
+        try:
+            man = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+        except (OSError, ValueError):
+            continue
+        cand = (man.get("candidates") or {}).get("summary") or {}
+        if not cand:
+            continue
+        sp = (man.get("spotting") or {}).get("summary") or {}
+        ok = cand.get("source") == "spotter" and sp.get("enabled")
+        out.append(_item(12, "Modelos", f"Golpes del detector aprendido: {d.name}", "ok" if ok else "aviso",
+                         (f"{cand.get('candidates', '?')} candidatos del detector entrenado con F3Set "
+                          f"({sp.get('near', '?')} cerca, {sp.get('far', '?')} lejos, umbral {sp.get('threshold', '?')})")
+                         if ok else f"candidatos de las reglas, no del detector aprendido (origen: {cand.get('source') or 'reglas'})"))
+    return out
+
+
+def stage_time_items(match_dirs: list[Path], out_root: Path) -> list[dict]:
+    """#231 (a match cannot take twice as long without knowing why): per match, each stage that really computed
+    (≥ budget.REAL_RUN_S) in seconds per minute of video, against the median of its rates on this PC
+    (ritmos.json); a stage above STAGE_SLOW_FACTOR × that median is named, with the alarm raised live if any."""
+    from .budget import ALARMS, RATES, REAL_RUN_S
+
+    rf = _find(out_root, RATES)
+    try:
+        rates = json.loads(rf.read_text(encoding="utf-8")) if rf else {}
+        alarms = (json.loads(af.read_text(encoding="utf-8")) if (af := _find(out_root, ALARMS)) else {}).get("alarmas") or []
+    except (OSError, ValueError):
+        rates, alarms = {}, []
+    out = []
+    for d in match_dirs:
+        f = _mf.at(d, "manifest.json")
+        try:
+            man = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+        except (OSError, ValueError):
+            continue
+        dur = ((man.get("probe") or {}).get("summary") or {}).get("duration_min")
+        if not dur:
+            continue
+        name = f"Tiempo de cada etapa frente a su ritmo en este PC: {d.name}"
+        slow, judged, rows = [], 0, []
+        for st, e in man.items():
+            if not isinstance(e, dict) or (e.get("seconds") or 0) < REAL_RUN_S:
+                continue
+            rate = e["seconds"] / dur
+            ref = [x["s"] for x in rates.get(f"{st}:minuto", []) if isinstance(x.get("s"), (int, float))]
+            rows.append((e["seconds"], st))
+            if len(ref) < STAGE_MIN_REFS:
+                continue
+            judged += 1
+            med = float(np.median(ref))
+            if med > 0 and rate > STAGE_SLOW_FACTOR * med:
+                al = [a for a in alarms if a.get("etapa") == st]
+                slow.append(f"{st} {rate:.1f} s por min de vídeo, {rate / med:.1f} veces su mediana ({med:.1f})"
+                            + (f"; alarma en vivo: {al[-1].get('texto', '')[:100]}" if al else "; sin alarma en vivo"))
+        if not rows:
+            continue
+        top = ", ".join(f"{st} {s / 60:.1f} min" for s, st in sorted(rows, reverse=True)[:5])
+        if not judged:
+            out.append(_item(9, "Tiempo por etapa", name, "pocos datos",
+                             f"{top}; sin ritmos suficientes de esas etapas en este PC (ritmos.json, hacen falta {STAGE_MIN_REFS})"))
+            continue
+        out.append(_item(9, "Tiempo por etapa", name, "aviso" if slow else "ok",
+                         f"{judged} etapas comparadas con su mediana aquí; las que más tardan: {top}"
+                         + (f"; MÁS LENTAS de {STAGE_SLOW_FACTOR:.0f} veces: " + " · ".join(slow) if slow else
+                            f"; ninguna pasa de {STAGE_SLOW_FACTOR:.0f} veces su ritmo habitual")))
+    return out
+
+
+def parallel_items(match_dirs: list[Path]) -> list[dict]:
+    """#137: per match, the minutes of stages that ran at the same time as another (manifest `overlap_s`)."""
+    out = []
+    for d in match_dirs:
+        f = _mf.at(d, "manifest.json")
+        try:
+            man = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+        except (OSError, ValueError):
+            continue
+        ov = {st: e.get("overlap_s", 0) for st, e in man.items() if isinstance(e, dict) and e.get("overlap_s")}
+        if not any(isinstance(e, dict) and e.get("seconds") for e in man.values()):
+            continue
+        out.append(_item(9, "Trabajo en paralelo", f"Etapas a la vez: {d.name}", "ok" if ov else "aviso",
+                         (f"{sum(ov.values()) / 60:.1f} min ganados con etapas a la vez ("
+                          + ", ".join(f"{k} {v / 60:.1f} min" for k, v in ov.items()) + ")") if ov else
+                         "todas las etapas de su última ejecución corrieron en serie"))
+    return out
+
+
+def resources_items(out_root: Path) -> list[dict]:
+    """#230: CPU, RAM, iGPU and disk per stage (min / mean / max) of the latest run, from the samples of
+    scripts/windows/medir_recursos.ps1 (<output>/recursos/*.csv) summarized by scripts/resources_summary.py."""
+    name = "Uso del PC por etapa (CPU, RAM, iGPU y disco)"
+    d = _find(out_root, "recursos")
+    files = sorted(d.glob("recursos_*.csv")) if d else []
+    if not files:
+        return [_item(9, "Uso del PC", name, "aviso", "sin mediciones (recursos/*.csv de medir_recursos.ps1)")]
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("resources_summary", ROOT / "scripts" / "resources_summary.py")
+        rs = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(rs)
+        groups = [g for g in rs.summarize(rs.read([files[-1]])) if g.get("etapa")]
+    except Exception as e:  # noqa: BLE001 — the audit must still be written
+        return [_item(9, "Uso del PC", name, "aviso", f"no se pudo resumir {files[-1].name} ({e})")]
+    if not groups:
+        return [_item(9, "Uso del PC", name, "aviso", f"{files[-1].name} sin muestras con su etapa")]
+    fmt = lambda t: "/".join("—" if x != x else f"{x:.0f}" for x in t)          # NaN → —
+    det = "; ".join(f"{g['partido'][:30]} {g['etapa']} ({g['minutos']} min): CPU {fmt(g['stats']['cpu_total'])} %, "
+                    f"iGPU {fmt(g['stats']['gpu_3d'])} %, RAM máx {g['stats']['ram_usada_gb'][2]:.1f} GB → {g['limite']}"
+                    for g in groups[:6])
+    return [_item(9, "Uso del PC", name, "ok", f"{files[-1].name} (mín/media/máx): {det}")]
+
+
+def _request_time(repo: Path = ROOT):
+    """Local time of the last commit that starts a job of the PC's runner (config/peticion_pc.txt or the workflow)."""
+    from datetime import datetime
+    try:
+        r = subprocess.run(["git", "log", "-1", "--format=%ct", "--", "config/peticion_pc.txt", ".github/workflows/pc.yml"],
+                           cwd=repo, capture_output=True, text=True, timeout=20)
+        return datetime.fromtimestamp(int(r.stdout.strip())) if r.stdout.strip() else None
+    except (OSError, ValueError, subprocess.SubprocessError):
+        return None
+
+
+def actions_item(out_root: Path, request_time=None) -> dict:
+    """#237: the PC starts each request at once (GitHub Actions runner). From the transcript of the last job
+    (<output>/ciclo_actions.log, «Start time») against the time of the last request commit."""
+    from datetime import datetime
+    name = "Peticiones por GitHub Actions: espera hasta empezar"
+    f = _find(out_root, "ciclo_actions.log")
+    if f is None:
+        return _item(5, "Peticiones del PC", name, "aviso", "el PC todavía no ha hecho ningún trabajo por GitHub Actions (sin ciclo_actions.log)")
+    m = re.search(r"Start time: (\d{14})", f.read_text(encoding="utf-8-sig", errors="replace"))
+    if not m:
+        return _item(5, "Peticiones del PC", name, "aviso", "ciclo_actions.log sin hora de inicio")
+    start = datetime.strptime(m.group(1), "%Y%m%d%H%M%S")
+    req = request_time if request_time is not None else _request_time()
+    if req is None:
+        return _item(5, "Peticiones del PC", name, "aviso", f"último trabajo {start:%d-%m %H:%M}; no se pudo leer la hora de la petición (git)")
+    wait = (start - req).total_seconds() / 60
+    if wait < -1:
+        return _item(5, "Peticiones del PC", name, "aviso",
+                     f"la última petición ({req:%d-%m %H:%M}) no empezó por GitHub Actions; el último trabajo por Actions fue el {start:%d-%m %H:%M}")
+    return _item(5, "Peticiones del PC", name, "ok" if wait <= ACTIONS_WAIT_MIN else "aviso",
+                 f"petición del {req:%d-%m %H:%M}, empezó a los {max(wait, 0):.1f} min (objetivo ≤ {ACTIONS_WAIT_MIN:.0f} min; "
+                 "si el PC estaba con otro trabajo, espera a que acabe)")
+
+
+def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) -> list[dict]:
+    """Every check of the Base packages B1 and B3 that is not in audit() itself (cli.run_audit)."""
+    items = []
+    for fn in (lambda: candidate_items(out_root), lambda: models_in_use_items(cfg), lambda: spotter_items(match_dirs),
+               lambda: stage_time_items(match_dirs, out_root), lambda: parallel_items(match_dirs),
+               lambda: resources_items(out_root), lambda: [actions_item(out_root)]):
+        try:
+            items += fn()
+        except Exception as e:  # noqa: BLE001 — one check that breaks never stops the audit
+            items.append(_item(9, "Auditoría", "Comprobaciones de la base (B1, B3)", "aviso", f"no se pudo calcular ({e})"))
+    return items
 
 
 def side_checks(out_root: Path) -> list[dict]:
