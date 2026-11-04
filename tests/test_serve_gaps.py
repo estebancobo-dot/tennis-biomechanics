@@ -57,7 +57,8 @@ def test_her_first_stroke_behind_the_baseline_in_a_point_of_her_serve_becomes_he
     readings = [_r(0, (0, 0)), _r(40, (15, 0)), _r(80, (30, 0)), _r(120, (40, 0)),
                 _r(160, (40, 0), server=1, games=((3, 1),)), _r(200, (40, 15), server=1, games=((3, 1),))]
     strokes = [
-        {"stroke": "forehand", "match_time_s": 8, "court_pos_m": [1.0, -0.2]},     # point 1: first, behind, 8 s in → serve
+        {"stroke": "forehand", "match_time_s": 8, "court_pos_m": [1.0, -0.2],
+         "metrics": {"contact_height_pct": 130}},                                 # point 1: first, behind, hand high → serve
         {"stroke": "backhand", "match_time_s": 12, "court_pos_m": [0.5, 1.0]},     # its rally: unchanged
         {"stroke": "overhead", "match_time_s": 45, "court_pos_m": [1.0, -0.3]},    # point 2: serve already found
         {"stroke": "forehand", "match_time_s": 50, "court_pos_m": [1.0, -0.3]},
@@ -73,5 +74,14 @@ def test_her_first_stroke_behind_the_baseline_in_a_point_of_her_serve_becomes_he
 def test_a_first_stroke_long_after_the_camera_returns_is_not_taken_for_the_serve():
     from tennisbio.point_count import serves_by_rule
     readings = [_r(0, (0, 0)), _r(60, (15, 0))]
-    strokes = [{"stroke": "forehand", "match_time_s": 40, "court_pos_m": [1.0, -0.2]}]
+    strokes = [{"stroke": "forehand", "match_time_s": 40, "court_pos_m": [1.0, -0.2], "metrics": {"contact_height_pct": 130}}]
     assert serves_by_rule(strokes, readings, [(10, 100)]) == 0                    # 30 s after the camera came back
+
+
+def test_a_groundstroke_height_contact_is_never_taken_for_the_serve():
+    """Request 104: the rule alone made serves of 31 forehands and backhands in F3Set."""
+    from tennisbio.point_count import serves_by_rule
+    readings = [_r(0, (0, 0)), _r(40, (15, 0))]
+    low = [{"stroke": "forehand", "match_time_s": 8, "court_pos_m": [1.0, -0.2], "metrics": {"contact_height_pct": 60}}]
+    none = [{"stroke": "forehand", "match_time_s": 8, "court_pos_m": [1.0, -0.2], "metrics": {}}]
+    assert serves_by_rule(low, readings, [(0, 300)]) == 0 and serves_by_rule(none, readings, [(0, 300)]) == 0

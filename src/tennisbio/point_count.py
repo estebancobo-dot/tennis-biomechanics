@@ -346,7 +346,7 @@ SERVE_RULE = "primer golpe de quien saca"
 
 
 def serves_by_rule(strokes: list[dict], readings: list[dict], main_shots: list[tuple[float, float]],
-                   behind_m: float = 0.5, max_after_shot_s: float = 15.0) -> int:
+                   behind_m: float = 0.5, max_after_shot_s: float = 15.0, min_contact_pct: float = 95.0) -> int:
     """B4 (04-11): in a point on her serve, her first stroke is her serve (the rules of tennis). Requests 101-102: in the
     points of her serve with no serve found, her first stroke came 4-9 s after the main camera returned and behind her
     baseline, named forehand/backhand by the learned spotter — her serve, misnamed. Each such stroke (the first of hers in
@@ -364,6 +364,11 @@ def serves_by_rule(strokes: list[dict], readings: list[dict], main_shots: list[t
         starts = [a for a, b in main_shots if a <= t <= b]
         shot = max(starts) if starts else None
         if y is None or float(y) > behind_m or shot is None or t - max(shot, t0) > max_after_shot_s:
+            continue
+        # and her hand above her head at contact (request 104: without it, 31 of F3Set's forehands and backhands —
+        # first strokes of a point read across two clips — were made serves)
+        ch = (s.get("metrics") or {}).get("contact_height_pct")
+        if ch is None or float(ch) < min_contact_pct:
             continue
         s["stroke_before"] = s.get("stroke")
         s["stroke"], s["stroke_rule"] = "overhead", SERVE_RULE

@@ -232,6 +232,19 @@ detector: si
 ---
 id: 105
 accion: completo
+---
+id: 106
+accion: recall
+detector: si
+---
+id: 107
+accion: completo
+---
+id: 108
+accion: app
+trabajar: si
+# 106-108 (04-11): la regla del saque ahora exige la mano por encima de la cabeza (104: convertia 31 golpes de fondo de
+# F3Set); 106 = tipos en F3Set, 107 = los 4 partidos, 108 = indice de la aplicacion (solo informes si nada que recalcular)
 # 104-105 (04-11): regla del tenis para el saque (primer golpe suyo, detras de su linea de fondo, en un punto de su saque):
 # 104 = tabla de tipos en F3Set (que no convierta golpes de fondo en saques); 105 = los 4 partidos (pasada fina desde las
 # caches) y la auditoria de saques por punto
