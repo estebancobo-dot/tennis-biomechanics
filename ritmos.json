@@ -47,6 +47,12 @@
    "units": 269,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-04 09:02"
+  },
+  {
+   "s": 11.5656,
+   "units": 172,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-04 11:06"
   }
  ],
  "fine:minuto": [
@@ -97,6 +103,12 @@
    "video_min": 210.4,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-04 09:02"
+  },
+  {
+   "s": 28.255,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-04 11:06"
   }
  ],
  "identity:minuto": [
@@ -105,6 +117,12 @@
    "video_min": 71.4,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-04 10:31"
+  },
+  {
+   "s": 0.837,
+   "video_min": 116.7,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-04 11:08"
   }
  ],
  "views:unidad": [
@@ -121,6 +139,14 @@
    "video_min": 71.4,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-04 10:33"
+  }
+ ],
+ "identity:unidad": [
+  {
+   "s": 0.0554,
+   "units": 1625,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-04 11:08"
   }
  ]
 }
