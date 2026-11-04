@@ -195,6 +195,10 @@ accion: ventana
 ---
 id: 94
 accion: completo
+---
+id: 95
+accion: ventana
+# 95 (04-11): la ventana real otra vez, con los atributos del puente privados (pywebview recorria toda la aplicacion)
 # 94 (04-11): la referencia con la identidad v6 (fotogramas clave) y las huellas por contenido: segun la prevision (92)
 # solo identidad y pasada fina desde las caches; Osaka primero, con la alarma de tiempo vigilando la identidad
 # 93 (04-11): la ventana real con el diagnostico de eventos (que eventos de WebView2 llegan y si carga una pagina minima)

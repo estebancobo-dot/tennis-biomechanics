@@ -83,7 +83,7 @@ def _live_child(page: str, res_f: str, wait_s: float = 60.0):
     out["page_kb"] = round(Path(page).stat().st_size / 1024)
     w = webview.create_window("Tennisbio (comprobación)", url=str(page), js_api=api, width=480, height=320,
                               x=-32000, y=-32000, focus=False)
-    api.window = w
+    api._window = w
     w.events.loaded += lambda *a: loaded.set()
     # which window events fire, and when (04-11, requests 88-89: «loaded» never came with WebView2 156): the next
     # check says where the engine stops instead of only «sin respuesta»

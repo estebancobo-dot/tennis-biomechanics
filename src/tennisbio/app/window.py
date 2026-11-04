@@ -47,93 +47,96 @@ class Api:
     rejected promise and is shown as «No se pudo: …» (the window never hangs)."""
 
     def __init__(self, app: App):
-        self.app = app
-        self.window = None
-        self.lock = threading.RLock()
+        # private (a leading underscore): pywebview walks every public attribute of its js_api object to expose it
+        # to the page, also nested objects; with the whole application here (index, engine, configuration) the
+        # page never loaded (04-11, requests 88-93: «before_load», then nothing for 120 s)
+        self._app = app
+        self._window = None
+        self._lock = threading.RLock()
 
     def toggle_fullscreen(self) -> bool:
         """F11 in the window: full screen on and off."""
-        if self.window is not None:
-            self.window.toggle_fullscreen()
+        if self._window is not None:
+            self._window.toggle_fullscreen()
         return True
 
     # reading
     def state(self, full: bool = False) -> dict:
-        with self.lock:
-            return state.snapshot(self.app, with_storage=bool(full))
+        with self._lock:
+            return state.snapshot(self._app, with_storage=bool(full))
 
     def storage(self) -> dict:
-        with self.lock:
-            return state.storage_info(self.app)
+        with self._lock:
+            return state.storage_info(self._app)
 
     # adding a match
     def choose_video(self) -> str | None:
         import webview
-        r = self.window.create_file_dialog(webview.OPEN_DIALOG, allow_multiple=False, file_types=VIDEO_TYPES)
+        r = self._window.create_file_dialog(webview.OPEN_DIALOG, allow_multiple=False, file_types=VIDEO_TYPES)
         return str(r[0]) if r else None
 
     def propose(self, path: str) -> dict:
-        with self.lock:
-            p = self.app.propose(Path(path))
+        with self._lock:
+            p = self._app.propose(Path(path))
             d = asdict(p)
             d.update(path=str(p.path), name=p.path.name)
             return d
 
     def confirm(self, path: str, f: dict) -> dict:
-        with self.lock:
-            prop = self.app.propose(Path(path))
-            mid = videos.confirm(self.app.db, prop, f.get("player") or None, f.get("opponent_id") or None,
+        with self._lock:
+            prop = self._app.propose(Path(path))
+            mid = videos.confirm(self._app.db, prop, f.get("player") or None, f.get("opponent_id") or None,
                                  choose=f.get("choose") or "nuevo",
                                  **{k: f[k] for k in ("tournament", "date", "round", "surface") if f.get(k)})
-            e = jobs.eta(self.app.db)
+            e = jobs.eta(self._app.db)
             return {"match_id": mid, "text": (f"Termina hacia las {e['ends']} (≈ {jobs.fmt_duration(e['seconds'])} con lo que hay en la cola). "
                                               "Te aviso al terminar, con su auditoría.") if mid and e["seconds"] else ""}
 
     def also(self, player: str, stroke: str) -> str:
-        with self.lock:
-            return self.app.analyze_also(player, stroke)
+        with self._lock:
+            return self._app.analyze_also(player, stroke)
 
     # the queue
     def plan(self) -> str:
-        with self.lock:
-            r = self.app.plan_updates()
+        with self._lock:
+            r = self._app.plan_updates()
         return (f"{r['matches']} partido(s) a recalcular, {r['reports']} informe(s)"
                 + (" — espera tu confirmación" if r["confirm"] else ""))
 
     def confirm_plan(self) -> str:
-        with self.lock:
-            return f"{self.app.confirm_plan()} trabajos confirmados"
+        with self._lock:
+            return f"{self._app.confirm_plan()} trabajos confirmados"
 
     def pause(self, on: bool) -> str:
-        self.app.db.set_setting("pausa", bool(on))
+        self._app.db.set_setting("pausa", bool(on))
         return "Cola en pausa: el trabajo en curso termina y guarda lo hecho" if on else "Cola reanudada donde se quedó"
 
     def band(self, band: list | None) -> str:
-        self.app.db.set_setting("franja", band or None)
+        self._app.db.set_setting("franja", band or None)
         return f"Trabajos pesados solo de {band[0]} a {band[1]}" if band else "Sin franja: trabaja siempre"
 
     def retry(self, job_id: int) -> str:
-        self.app.db.x("UPDATE jobs SET state='pendiente', attempts=0, message='reintento pedido' WHERE id=? AND state IN ('error', 'aviso')",
+        self._app.db.x("UPDATE jobs SET state='pendiente', attempts=0, message='reintento pedido' WHERE id=? AND state IN ('error', 'aviso')",
                       int(job_id))
         return "Vuelve a la cola"
 
     def priority(self, job_id: int, delta: int) -> str:
-        self.app.db.x("UPDATE jobs SET priority=MAX(0, priority + ?) WHERE id=?", int(delta), int(job_id))
+        self._app.db.x("UPDATE jobs SET priority=MAX(0, priority + ?) WHERE id=?", int(delta), int(job_id))
         return "Prioridad cambiada"
 
     def reanalyze(self, match_id: str) -> str:
-        with self.lock:
-            m = self.app.db.one("SELECT player FROM matches WHERE id=?", match_id)
-            jobs.enqueue(self.app.db, "partido", match=match_id, player=(m or {}).get("player"), reason="reanalizar (pedido)")
+        with self._lock:
+            m = self._app.db.one("SELECT player FROM matches WHERE id=?", match_id)
+            jobs.enqueue(self._app.db, "partido", match=match_id, player=(m or {}).get("player"), reason="reanalizar (pedido)")
         return "Encolado: rehace solo lo que haya cambiado, desde las cachés; nada se borra"
 
     # «¿Cuál es ella?»: the one click per match (19-10)
     def identity_photos(self, match_id: str) -> dict:
         import base64
         from . import identity_click as ic
-        with self.lock:
-            d = self.app.engine.dir(match_id)
-            video = self.app.engine.match(match_id).video
+        with self._lock:
+            d = self._app.engine.dir(match_id)
+            video = self._app.engine.match(match_id).video
         st = ic.state(d)
         if not st["possible"]:
             return {**st, "photos": []}
@@ -148,12 +151,12 @@ class Api:
         """Only saves the click (24-10): the strokes are redone in the final pass of the 4 matches, with the
         trained detector; redoing them now would keep the PC busy for hours with the old one."""
         from . import identity_click as ic
-        with self.lock:
-            ic.save_pick(self.app.engine.dir(match_id), t, True)
+        with self._lock:
+            ic.save_pick(self._app.engine.dir(match_id), t, True)
         return "Guardado. Se usará en el análisis definitivo de este partido; no hace falta nada más."
 
     def archive(self, match_id: str) -> str:
-        self.app.db.x("UPDATE matches SET state='archivado', note='Archivado por ti: sale de las listas, no se borra nada.' WHERE id=?",
+        self._app.db.x("UPDATE matches SET state='archivado', note='Archivado por ti: sale de las listas, no se borra nada.' WHERE id=?",
                       match_id)
         return "Archivado: sale de las listas, no se borra"
 
@@ -161,21 +164,21 @@ class Api:
     def set_height(self, player: str, h: float) -> str:
         import yaml
         h = round(float(h), 2)
-        with self.lock:
-            self.app.db.x("UPDATE players SET height_m=?, height_known=1 WHERE id=?", h, player)
-            self.app.db.clear_notice(f"height_{player}")
-            f = self.app.config_dir / "players" / f"{player}.yaml"
+        with self._lock:
+            self._app.db.x("UPDATE players SET height_m=?, height_known=1 WHERE id=?", h, player)
+            self._app.db.clear_notice(f"height_{player}")
+            f = self._app.config_dir / "players" / f"{player}.yaml"
             d = (yaml.safe_load(f.read_text(encoding="utf-8")) or {}) if f.exists() else {}
             d["height_m"] = h
             f.write_text(yaml.safe_dump(d, allow_unicode=True, sort_keys=False), encoding="utf-8")
-            for a in self.app.db.q("SELECT stroke FROM analyses WHERE player=?", player):
-                jobs.enqueue(self.app.db, "informe", player=player, stroke=a["stroke"], reason="altura nueva")
+            for a in self._app.db.q("SELECT stroke FROM analyses WHERE player=?", player):
+                jobs.enqueue(self._app.db, "informe", player=player, stroke=a["stroke"], reason="altura nueva")
         return "Altura guardada: se recalculan solo los informes"
 
     # storage and files
     def free(self) -> float:
-        with self.lock:
-            return storage.free_regenerable(self.app.paths.output)
+        with self._lock:
+            return storage.free_regenerable(self._app.paths.output)
 
     def open_path(self, p: str) -> bool:
         open_path(p)
@@ -183,17 +186,17 @@ class Api:
 
     # part 3: notifications and backup
     def notices_settings(self, d: dict) -> dict:
-        cur = notify.settings(self.app.db)
+        cur = notify.settings(self._app.db)
         cur.update({k: bool(v) for k, v in (d or {}).items() if k in notify.DEFAULT})
-        self.app.db.set_setting("avisos", cur)
+        self._app.db.set_setting("avisos", cur)
         return cur
 
     def drives(self) -> list:
         return [{**d, "plan": None} for d in backup.removable_drives()]
 
     def backup_plan(self, root: str, videos: bool = False) -> dict:
-        with self.lock:
-            p = backup.plan(self.app, Path(root), bool(videos))
+        with self._lock:
+            p = backup.plan(self._app, Path(root), bool(videos))
         return {k: v for k, v in p.items() if k != "todo"}
 
     def backup(self, root: str, videos: bool = False) -> str:
@@ -204,15 +207,15 @@ class Api:
 
         def go():
             try:
-                with self.lock:
-                    res = backup.run(self.app, Path(root), bool(videos),
+                with self._lock:
+                    res = backup.run(self._app, Path(root), bool(videos),
                                      lambda i, n, b: self.backup_progress.update(done=i, total=n, bytes=b))
-                self.app.db.notice("backup", "ok" if not res["errors"] else "aviso",
+                self._app.db.notice("backup", "ok" if not res["errors"] else "aviso",
                                    f"Copia de seguridad hecha en {root}: {res['copied']} ficheros nuevos o cambiados"
                                    f" ({storage._gb(res['bytes'])} GB). " + ("Nada se ha borrado." if not res["errors"]
                                                                              else f"{len(res['errors'])} ficheros no se pudieron copiar."))
             except Exception as e:               # noqa: BLE001 — it does not fit, the drive was pulled out…
-                self.app.db.notice("backup", "aviso", f"La copia de seguridad no se hizo: {e}")
+                self._app.db.notice("backup", "aviso", f"La copia de seguridad no se hizo: {e}")
             finally:
                 self.backup_progress = None
         self._bk = threading.Thread(target=go, name="copia", daemon=True)
@@ -228,36 +231,36 @@ class Api:
         held meanwhile); its progress is in mobile_state() and its result in the settings («movil»)."""
         if getattr(self, "_mb", None) and self._mb.is_alive():
             return "Ya se está haciendo una copia para el móvil"
-        with self.lock:
-            a = self.app.db.one("SELECT player, stroke FROM analyses WHERE id=?", aid)
+        with self._lock:
+            a = self._app.db.one("SELECT player, stroke FROM analyses WHERE id=?", aid)
         if not a:
             raise ValueError(f"no hay análisis {aid}")
         self.mobile_progress = {"id": aid, "done": 0, "total": 0}
 
         def go():
             try:
-                res = mobile.make(self.app.paths, a["player"], a["stroke"],
+                res = mobile.make(self._app.paths, a["player"], a["stroke"],
                                   progress=lambda i, n: self.mobile_progress.update(done=i, total=n))
                 devs = phone.devices()                   # the phone by cable: straight to it
                 sent = None
                 if devs:
                     self.mobile_progress.update(phone=devs[0]["name"])
                     sent = phone.send(Path(res["dest"]), devs[0])
-                cur = self.app.db.setting("movil") or {}
+                cur = self._app.db.setting("movil") or {}
                 cur[aid] = {"when": time.strftime("%Y-%m-%dT%H:%M:%S"), **{k: res[k] for k in
                             ("dest", "bytes", "strokes", "with_video", "encoded", "failed", "missing") if k in res},
                             "zip": res.get("zip"), "phone": sent}
-                self.app.db.set_setting("movil", cur)
+                self._app.db.set_setting("movil", cur)
                 bad = len(res["failed"]) + res["missing"]
                 where = (f"Ya está en tu {sent['device']}: ábrela en Chrome con {sent['url']} (guárdala en marcadores; "
                          "siempre abre la última copia)" if sent and sent["ok"]
                          else f"No se pudo pasar al {sent['device']}: {sent['why']}. Está en {res.get('zip') or res['dest']}" if sent
                          else f"Está en {res.get('zip') or res['dest']}; conecta el móvil por cable y vuelve a pulsar para pasarla directa")
-                self.app.db.notice(f"movil_{aid}", "ok" if not bad and (not sent or sent["ok"]) else "aviso",
+                self._app.db.notice(f"movil_{aid}", "ok" if not bad and (not sent or sent["ok"]) else "aviso",
                                    f"Copia para el móvil lista: {res['with_video']} golpes con vídeo, {storage._gb(res['bytes'])} GB. "
                                    + where + (f"; {bad} golpes sin vídeo (su clip no está o no se pudo convertir)." if bad else "."))
             except Exception as e:               # noqa: BLE001 — no space, no analysis yet, ffmpeg missing…
-                self.app.db.notice(f"movil_{aid}", "aviso", f"La copia para el móvil no se hizo. {e}")
+                self._app.db.notice(f"movil_{aid}", "aviso", f"La copia para el móvil no se hizo. {e}")
             finally:
                 self.mobile_progress = None
         self._mb = threading.Thread(target=go, name="movil", daemon=True)
@@ -494,14 +497,14 @@ def run(cfg: dict, with_queue: bool = True) -> int:
     threading.Thread(target=watch.watch, args=(stop,), name="vigilancia", daemon=True).start()
     try:
         try:                                     # maximized from the start (24-10); F11 toggles full screen
-            api.window = webview.create_window("Tennisbio", url=str(page), js_api=api, width=1360, height=900,
+            api._window = webview.create_window("Tennisbio", url=str(page), js_api=api, width=1360, height=900,
                                                min_size=(900, 600), maximized=True)
         except TypeError:                        # an older pywebview without `maximized`
-            api.window = webview.create_window("Tennisbio", url=str(page), js_api=api, width=1360, height=900, min_size=(900, 600))
+            api._window = webview.create_window("Tennisbio", url=str(page), js_api=api, width=1360, height=900, min_size=(900, 600))
         tray = None
         try:
-            tray = Tray(app, api.window, stop)
-            api.window.events.closing += tray.on_closing
+            tray = Tray(app, api._window, stop)
+            api._window.events.closing += tray.on_closing
             tray.start()
         except Exception as e:                   # noqa: BLE001 — without the icon, closing the window stops the queue
             print(f"Sin icono junto al reloj: {e}")
