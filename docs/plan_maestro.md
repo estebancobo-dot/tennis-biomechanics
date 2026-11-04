@@ -36,6 +36,7 @@ Después de la Base, en este orden:
 5. E1: escenarios (jugadores masculinos, zurdos…).
 6. El resto del registro.
 7. A1: la aplicación entera con capturas.
+8. **Al final (decisión del usuario, 04-11): limpieza del código.** Nada se borra ni se mueve antes. Entonces, el código de los modelos medidos y descartados (WASB, RF-DETR, F3ED, PP-OCRv5, bote CatBoost: scripts `export_*`, `bench_ocr.py`, `model_trials.py`, `_candidate_export.py`, `src/tennisbio/candidates/`) y los ~150 avisos de posible código muerto (`uvx vulture src/tennisbio`) se revisan uno a uno, con el usuario.
 
 ## Estado y orden vigente (26-10) — leer primero
 
