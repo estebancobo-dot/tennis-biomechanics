@@ -39,6 +39,17 @@ def removable_drives() -> list[dict]:
     return out
 
 
+def _place(app, d: Path) -> Path:
+    """Where a match folder goes inside the copy: output/<its path there>, or biblioteca/<its path in the library>
+    (04-11, request 88 on the PC: the library folders live outside <output> and relative_to raised)."""
+    for root, name in ((app.paths.output, "output"), (app.paths.library_root, "biblioteca")):
+        try:
+            return Path(name) / Path(d).resolve().relative_to(Path(root).resolve())
+        except ValueError:
+            continue
+    return Path("partidos") / Path(d).name
+
+
 def _files(app, videos: bool) -> list[tuple[Path, Path]]:
     """(source, path inside the copy) of everything that goes."""
     regen = {str(p) for p in storage.regenerable(app.paths.output)}
@@ -53,8 +64,7 @@ def _files(app, videos: bool) -> list[tuple[Path, Path]]:
     for m in app.db.q("SELECT id FROM matches WHERE state <> 'archivado' OR state IS NULL"):
         d = app.engine.dir(m["id"])
         if d.exists():
-            rel = d.relative_to(app.paths.output)
-            out += [(f, Path("output") / rel / f.relative_to(d)) for f in d.rglob("*") if f.is_file() and not skip(f)]
+            out += [(f, _place(app, d) / f.relative_to(d)) for f in d.rglob("*") if f.is_file() and not skip(f)]
     for a in sorted(app.paths.analyses.glob("*")) if app.paths.analyses.exists() else []:
         for sub in ("actual",):
             if (a / sub).exists():

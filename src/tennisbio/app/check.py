@@ -41,7 +41,7 @@ def window_engine() -> dict:
 
 
 def live_window(app, dest: Path, timeout_s: float = 120.0) -> dict:
-    """The real window, minimized and without focus (a few seconds in the taskbar at most): WebView2 opens the
+    """The real window, off the screen and without focus (a few seconds in the taskbar at most): WebView2 opens the
     page, the page finds the bridge, and a call through it comes back with the index. It runs in a separate
     process killed after `timeout_s`: a window engine that never answers can never hang the PC's cycle (it did
     on 18-10: a hidden WebView2 window never loaded and pywebview waits for JavaScript without a limit)."""
@@ -78,8 +78,11 @@ def _live_child(page: str, res_f: str, wait_s: float = 60.0):
     app = App(load_config())
     api = window.Api(app)
     loaded = threading.Event()
+    # off the screen, not minimized (04-11, request 88: with WebView2 156 a minimized window never fired «loaded»,
+    # as a hidden one did on 18-10); the user's window is opened normally (window.run)
+    out["page_kb"] = round(Path(page).stat().st_size / 1024)
     w = webview.create_window("Tennisbio (comprobación)", url=str(page), js_api=api, width=480, height=320,
-                              minimized=True, focus=False)
+                              x=-32000, y=-32000, focus=False)
     api.window = w
     w.events.loaded += lambda *a: loaded.set()
 

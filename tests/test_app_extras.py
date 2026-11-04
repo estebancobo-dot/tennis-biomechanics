@@ -194,3 +194,13 @@ def test_a_second_double_click_does_not_start_a_second_queue(env, monkeypatch):
         other.kill()
         other.wait()
     assert not window.already_open(a)                              # it ended: the next one starts normally
+
+
+def test_backup_places_library_folders_outside_output(tmp_path):
+    """Request 88 (04-11): a match folder in the library (outside <output>) made the copy fail with relative_to."""
+    from types import SimpleNamespace
+    out, lib = tmp_path / "output", tmp_path / "biblioteca"
+    app = SimpleNamespace(paths=SimpleNamespace(output=out, library_root=lib))
+    assert backup._place(app, out / "m1") == Path("output") / "m1"
+    assert backup._place(app, lib / "partidos" / "sin-fecha" / "x") == Path("biblioteca") / "partidos" / "sin-fecha" / "x"
+    assert backup._place(app, tmp_path / "elsewhere" / "y") == Path("partidos") / "y"
