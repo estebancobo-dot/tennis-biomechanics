@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 3236,
+   "text_chars": 3212,
    "charts": 21,
    "videos": 7,
    "black_canvases": 0,
@@ -30,7 +30,7 @@
   },
   {
    "title": "Sus golpes (Videoteca y pista)",
-   "text_chars": 8230,
+   "text_chars": 8234,
    "charts": 1,
    "videos": 7,
    "black_canvases": 0,
@@ -85,7 +85,7 @@
   },
   {
    "title": "Comparar dos golpes",
-   "text_chars": 56573,
+   "text_chars": 55808,
    "charts": 2,
    "videos": 7,
    "black_canvases": 0,
@@ -104,7 +104,7 @@
    "intro": true,
    "external_links": 0,
    "tables": 0,
-   "sentences": 7,
+   "sentences": 6,
    "many_lines": 0,
    "tab": "comparar",
    "file": "pantalla_4_comparar.jpg",
@@ -112,7 +112,7 @@
   },
   {
    "title": "Conclusiones (Panel y Comparativas)",
-   "text_chars": 5654,
+   "text_chars": 5752,
    "charts": 22,
    "videos": 7,
    "black_canvases": 0,
@@ -131,7 +131,7 @@
    "intro": true,
    "external_links": 0,
    "tables": 1,
-   "sentences": 1,
+   "sentences": 2,
    "many_lines": 0,
    "tab": "conclusiones",
    "file": "pantalla_5_conclusiones.jpg",
@@ -220,7 +220,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 2578,
+   "text_chars": 2581,
    "charts": 0,
    "videos": 7,
    "black_canvases": 0,
@@ -325,7 +325,7 @@
  ],
  "learn": {
   "combinations": 2050,
-  "with_exact_strokes": 1205,
+  "with_exact_strokes": 1213,
   "checkpoints_checked": 184500,
   "failures": [],
   "rows_all": 90,
@@ -333,12 +333,12 @@
   "targeted_all": 54,
   "glossed_all": 76,
   "signature": 1,
-  "style": "Estilo de su derecha: preparación amplia (61 %) · apoyo variable (la más frecuente, abierto, en 42 %) · efecto liftado (de abajo arriba) (65 %).",
+  "style": "Estilo de su derecha: preparación amplia (61 %) · apoyo variable (la más frecuente, abierto, en 43 %) · efecto liftado (de abajo arriba) (65 %).",
   "example": {
    "exact": 0,
-   "near": 2,
+   "near": 3,
    "rows": 90,
-   "valued": 80,
+   "valued": 85,
    "bad": []
   }
  },
@@ -347,7 +347,7 @@
    "vid_top": 805,
    "vid_bottom": 1159,
    "h2": 2,
-   "words": 632,
+   "words": 626,
    "buttons": 25,
    "height": 900
   },
@@ -374,7 +374,7 @@
     "reason": "",
     "reps": 290,
     "video": true,
-    "height": 1232
+    "height": 1177
    },
    {
     "phase": "takeback",
@@ -382,14 +382,14 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 121,
+    "words": 124,
     "focus_words": 18,
     "focus_body": false,
     "practice": true,
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 234,
+    "reps": 235,
     "video": true,
     "height": 1311
    },
@@ -406,7 +406,7 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 253,
+    "reps": 252,
     "video": true,
     "height": 1224
    },
@@ -416,16 +416,16 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 100,
+    "words": 96,
     "focus_words": 17,
     "focus_body": false,
     "practice": true,
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 251,
+    "reps": 250,
     "video": true,
-    "height": 1359
+    "height": 1380
    },
    {
     "phase": "impact",
@@ -433,7 +433,7 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 110,
+    "words": 113,
     "focus_words": 17,
     "focus_body": false,
     "practice": true,
@@ -442,7 +442,7 @@
     "reason": "",
     "reps": 290,
     "video": true,
-    "height": 1303
+    "height": 1339
    },
    {
     "phase": "extension",
@@ -474,7 +474,7 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 252,
+    "reps": 251,
     "video": true,
     "height": 1176
    },
@@ -491,7 +491,7 @@
     "strings": true,
     "repeats": 0,
     "reason": "",
-    "reps": 252,
+    "reps": 251,
     "video": true,
     "height": 1138
    },
@@ -508,7 +508,7 @@
     "strings": false,
     "repeats": 0,
     "reason": "",
-    "reps": 254,
+    "reps": 253,
     "video": true,
     "height": 1034
    }
@@ -517,7 +517,7 @@
    {
     "phase": "takeback",
     "why": [
-     "121 palabras en las claves (máximo 120)"
+     "124 palabras en las claves (máximo 120)"
     ]
    },
    {
