@@ -1,6 +1,6 @@
 # Revisión automática: FALLOS
 
-298 cumplidos · 21 no cumplidos · 127 sin golpes suficientes · 113 avisos (antes: 295 cumplidos, 26 no cumplidos)
+298 cumplidos · 21 no cumplidos · 127 sin golpes suficientes · 113 avisos (antes: 298 cumplidos, 21 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 123 de 245
 
@@ -154,11 +154,3 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-
-## Mejora
-
-- Pruebas del código en este PC: falta → ok
-- #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: falta → aviso
-- #20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML: falta → aviso
-- #51 El código de la prueba es el de los casos reales: falta → ok
-- #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: falta → ok
