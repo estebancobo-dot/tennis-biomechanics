@@ -189,6 +189,10 @@ accion: completo
 ---
 id: 92
 accion: prevision
+---
+id: 93
+accion: ventana
+# 93 (04-11): la ventana real con el diagnostico de eventos (que eventos de WebView2 llegan y si carga una pagina minima)
 # 92 (04-11): que se rehace con las huellas por contenido y la identidad v6, y cuanto tardaria (sin ejecutar nada)
 # 90-91 (04-11): el tipo de golpe lo da el detector aprendido (la pose llamaba reves a la mitad de las derechas y a
 # casi todos los saques); 90 = tabla de tipos en F3Set; 91 = los 4 partidos (solo la pasada fina, desde las caches):
