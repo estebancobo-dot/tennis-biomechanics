@@ -112,3 +112,77 @@ TERMINADO en 00:05. Informes en C:\tenis\output\informe_*; videos, montajes y re
     (paso terminado en 1 min 30 s)
 Empezado 2026-11-05 00:10:49 - terminado 2026-11-05 00:16:24 - duracion total 5 min 34 s
 Registro enviado a Claude (no hace falta copiar nada).
+Registro enviado a Claude (no hace falta copiar nada).
+
+    (paso terminado en 5 min 50 s)
+
+==> [2026-11-05 00:16:39] Peticion 108: indice de la aplicacion local (registro: C:\tenis\output\prueba_app.log)
+Ahora: nada en curso
+En cola: ≈ 54 min, termina hacia las 01:11
+Jugadoras: 2 · partidos: 18
+
+Análisis:
+Partidos:
+  poc31_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc31_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc67_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc67_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc70_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc70_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc71_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc71_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc74_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc74_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc76_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc76_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5: analizado
+  tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: analizado
+  us-open-2026-r4-naomi-osaka-elena-rybakina: analizado
+  zheng-qinwen-elena-rybakina: analizado
+Cola (4):
+  #3 partido us-open-2026-r4-naomi-osaka-elena-rybakina rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
+  #4 partido zheng-qinwen-elena-rybakina rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
+  #5 partido tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
+  #6 partido tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
+Avisos:
+  [info] Nueva versión: recalcula 4 partido(s) ≈ 54 min, desde las cachés.
+4 partido(s) a recalcular, 0 informe(s); 14 prueba(s) del ciclo automático: las mantiene el ciclo
+Ahora: nada en curso
+En cola: ≈ 54 min, termina hacia las 01:11
+Jugadoras: 2 · partidos: 18
+
+Análisis:
+Partidos:
+  poc31_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc31_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc67_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc67_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc70_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc70_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc71_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc71_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc74_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc74_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc76_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc76_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5: analizado
+  tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: analizado
+  us-open-2026-r4-naomi-osaka-elena-rybakina: analizado
+  zheng-qinwen-elena-rybakina: analizado
+Cola (4):
+  #3 partido us-open-2026-r4-naomi-osaka-elena-rybakina rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
+  #4 partido zheng-qinwen-elena-rybakina rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
+  #5 partido tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
+  #6 partido tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
+Avisos:
+  [info] Nueva versión: recalcula 4 partido(s) ≈ 54 min, desde las cachés.
+    (paso terminado en 3 s)
+Empezado 2026-11-05 00:10:02 - terminado 2026-11-05 00:16:42 - duracion total 6 min 40 s
+**********************
+Windows PowerShell transcript end
+End time: 20261105001642
+**********************

@@ -1,6 +1,7 @@
-﻿Peticion 103: indice de la aplicacion local (2026-11-04T21:40:04)
+﻿Peticion 108: indice de la aplicacion local (2026-11-05T00:16:39)
 == tennisbio app status
 Ahora: nada en curso
+En cola: ≈ 54 min, termina hacia las 01:11
 Jugadoras: 2 · partidos: 18
 
 Análisis:
@@ -23,12 +24,18 @@ Partidos:
   tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: analizado
   us-open-2026-r4-naomi-osaka-elena-rybakina: analizado
   zheng-qinwen-elena-rybakina: analizado
-Cola (0):
+Cola (4):
+  #3 partido us-open-2026-r4-naomi-osaka-elena-rybakina rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
+  #4 partido zheng-qinwen-elena-rybakina rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
+  #5 partido tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
+  #6 partido tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
+Avisos:
+  [info] Nueva versión: recalcula 4 partido(s) ≈ 54 min, desde las cachés.
 == tennisbio app plan
 4 partido(s) a recalcular, 0 informe(s); 14 prueba(s) del ciclo automático: las mantiene el ciclo
 == tennisbio app status
 Ahora: nada en curso
-En cola: ≈ 54 min, termina hacia las 22:34
+En cola: ≈ 54 min, termina hacia las 01:11
 Jugadoras: 2 · partidos: 18
 
 Análisis:
@@ -59,4 +66,4 @@ Cola (4):
 Avisos:
   [info] Nueva versión: recalcula 4 partido(s) ≈ 54 min, desde las cachés.
   no se ejecuta la cola: el plan tiene partidos que recalcular (ver arriba)
-codigo de salida: 0; termina 2026-11-04T21:40:06
+codigo de salida: 0; termina 2026-11-05T00:16:42
