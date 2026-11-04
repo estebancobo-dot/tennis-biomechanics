@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-296 cumplidos · 20 no cumplidos · 125 sin golpes suficientes · 117 avisos (antes: 314 cumplidos, 34 no cumplidos)
+298 cumplidos · 20 no cumplidos · 127 sin golpes suficientes · 113 avisos (antes: 296 cumplidos, 20 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 123 de 245
 
@@ -133,7 +133,7 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 
 ## No cumplidos
 
-- **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=608–962 de 900; al abrir 2 títulos, 492 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=962 (más abajo que la primera pantalla, 900)
+- **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
 - **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
 - **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
@@ -154,56 +154,15 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 
-## Empeora respecto a la ejecución anterior
-
-- **2. Cuerpo · Hombros más girados que la cadera en el impacto**: ok → pocos datos: se mide (85% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- **3. Pies y desplazamiento · Subtipos: abierto de ataque, abierto defensivo, neutro de ataque**: ok → pocos datos: se mide (77% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- **4. Raqueta, swing y empuñadura · Posición de la mano en el mango**: ok → pocos datos: se mide (77% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- **6. Matriz del usuario · Rotación pélvica**: ok → pocos datos: se mide (85% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- **6. Matriz del usuario · Apoyo abierto extremo defensivo**: ok → pocos datos: se mide (77% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- **R13 La mano cae antes de acelerar en la mayoría**: ok → pocos datos: pocos datos: 10 golpes con el dato (hacen falta 12)
-- **R14 La cadera gira hacia la pista entre armado e impacto (> 10°)**: ok → pocos datos: pocos datos: 10 golpes con el dato (hacen falta 12)
-- **R20 Más apoyos cerrados o neutros que el circuito (~16 %)**: ok → pocos datos: pocos datos: 10 golpes con el dato (hacen falta 12)
-- **Fotograma clave: inicio de preparación**: ok → aviso: encontrado en el 69% de los golpes
-- **Fotograma clave: armado**: ok → aviso: encontrado en el 77% de los golpes
-- **Fotograma clave: inicio de aceleración**: ok → aviso: encontrado en el 77% de los golpes
-- **Fotograma clave: terminación**: ok → aviso: encontrado en el 77% de los golpes
-- **Fotograma clave: recuperación**: ok → aviso: encontrado en el 77% de los golpes
-- **Punta de la raqueta respecto a la cabeza en el armado**: ok → pocos datos: medido en 6 de 13 golpes; en «Aprende»; fiabilidad: fiable
-- **Cada frase lleva cuántos golpes la respaldan y su fiabilidad**: ok → pocos datos: 0 frases
-- **#26 Fases y cadena completa, del salto inicial a la terminación**: ok → aviso: 8 comprobaciones: 5 aviso, 3 ok; la peor: «Fotograma clave: inicio de preparación» (encontrado en el 69% de los golpes)
-- **#33 Capturas de los mejores golpes de cada tipo y N imágenes de un golpe**: ok → aviso: 8 comprobaciones: 5 aviso, 3 ok; la peor: «Fotograma clave: inicio de preparación» (encontrado en el 69% de los golpes)
-- **#59 Diferencias solo por encima del error y en situaciones equivalentes**: ok → pocos datos: 6 comprobaciones: 2 pocos datos, 4 ok; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 6 de 13 golpes; en «Aprende»; fiabilidad: fiable)
-- **#87 Matriz §4 Apoyos (abierto, semiabierto, neutro o cerrado, salto, abierto extremo)**: ok → pocos datos: 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Apoyo abierto extremo defensivo» (se mide (77% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
-- **#102 Mejora 4: punta de la raqueta respecto a la cabeza en el armado**: ok → pocos datos: 1 comprobaciones: 1 pocos datos; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 6 de 13 golpes; en «Aprende»; fiabilidad: fiable)
-
 ## Mejora
 
-- Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin: falta → aviso
-- R1 Golpe liftado de trayectoria moderada, no extrema: aviso → pocos datos
-- R7 La mano libre pasa al lado del brazo en el armado: aviso → pocos datos
-- R17 La terminación más frecuente es sobre el hombro: aviso → pocos datos
-- R23 La cadera llega a su máximo giro antes que los hombros: aviso → pocos datos
-- «Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm: falta → ok
-- #7 Empuñadura en la espera y al golpear: aviso → pocos datos
-- #11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía: falta → pocos datos
-- #36 Mano y antebrazo, cierre de la muñeca: aviso → pocos datos
-- #71 El conocimiento de los vídeos de entrenadores en la web: aviso → pocos datos
-- #73 Revisar la web de arriba abajo para que aporte valor: falta → aviso
-- #84 Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca): aviso → pocos datos
-- #113 Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25): aviso → pocos datos
-- #115 Cuánto baja y sube el cuerpo, con fotogramas y barras horizontales: de la espera al punto más bajo y del más b: falta → ok
-- #134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06): falta → aviso
-- #151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25): falta → aviso
-- #199 Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10): falta → aviso
-- #200 Pista: TennisCourtDetector (14 puntos) + refinado (Estado del arte, 13-10): falta → aviso
-- #201 Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10): falta → aviso
-- #202 Bola: probar WASB (Estado del arte, 13-10): falta → aviso
-- #203 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10): falta → aviso
-- #219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d: falta → aviso
-- #233 Una referencia completa y medida antes de validar nada: falta → aviso
+- Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso → ok
+- 5. Bola, resultado y contexto · Puntos ganados en ataque / en defensa: pocos datos → ok
+- #134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06): aviso → pocos datos
+- #151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25): aviso → pocos datos
+- #233 Una referencia completa y medida antes de validar nada: aviso → pocos datos
 
 ## Fiabilidad de las medidas
 
-- ahora: 80 medidas: 5 dudosa, 52 fiable, 14 no comprobable, 2 ruido, 1 sesgo, 6 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.85, takeback.shoulder_turn ±3.3. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
-- antes: 80 medidas: 7 dudosa, 53 fiable, 13 no comprobable, 1 sesgo, 6 sin juzgar. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
+- ahora: 80 medidas: 7 dudosa, 49 fiable, 14 no comprobable, 2 ruido, 1 sesgo, 7 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.85, takeback.shoulder_turn ±3.3. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
+- antes: 80 medidas: 5 dudosa, 52 fiable, 14 no comprobable, 2 ruido, 1 sesgo, 6 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.85, takeback.shoulder_turn ±3.3. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
