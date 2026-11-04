@@ -212,19 +212,19 @@
   }
  },
  "views": {
-  "fingerprint": "213e571bfc22d7ed",
+  "fingerprint": "cbc83af61b318280",
   "version": "5",
-  "seconds": 688.7,
-  "finished": "2026-10-28 23:37:17",
+  "seconds": 429.5,
+  "finished": "2026-11-04 02:20:01",
   "summary": {
-   "views": 1676,
-   "repeticion_principal": 79,
+   "views": 1673,
+   "repeticion_principal": 76,
    "lateral": 103,
    "frontal": 33,
    "primer_plano": 1380,
    "otra": 81,
-   "links": 2099,
-   "linked_views": 1015,
+   "links": 2225,
+   "linked_views": 1064,
    "slowmo_links": 36
   }
  },
