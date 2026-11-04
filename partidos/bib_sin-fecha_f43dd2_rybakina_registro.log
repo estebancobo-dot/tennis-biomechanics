@@ -3766,3 +3766,13 @@
 2026-11-04 15:00:54   ventana w003863426_3600: pose hybrid en 123 de 123 fotogramas (0 s; modelo 0 s; pies en 95) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 181 px (segments)
 2026-11-04 15:00:54   fine_doubtful: 100 % (24/24 golpes candidatos · 8 confirmados · 0 ventanas descartadas sin pose) · 11 s · quedan ≈ 0 s
 2026-11-04 15:00:54 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine_doubtful terminada a las 15:00:54 en 17 s
+2026-11-04 16:40:17 [us-open-2026-r4-naomi-osaka-elena-rybakina] identity… (2026-11-04 16:40:17, etapa 7 de 14)
+2026-11-04 16:40:19   identity:   0 % (1/880 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+2026-11-04 16:41:40   identity:   1 % (6/880 fotogramas (ropa)) · 81 s · quedan ≈ 196 min
+2026-11-04 16:42:57   identity:   8 % (66/880 fotogramas (ropa)) · 3 min · quedan ≈ 33 min
+2026-11-04 16:42:57   ALARMA de tiempo: identity: 2.41 s por unidad frente a 0.75 de presupuesto (configuración), 3.2 veces; a este ritmo quedan 33 min
+2026-11-04 16:44:12   identity:  14 % (126/880 fotogramas (ropa)) · 4 min · quedan ≈ 23 min
+2026-11-04 16:45:22   identity:  21 % (186/880 fotogramas (ropa)) · 5 min · quedan ≈ 19 min
+2026-11-04 16:46:27   identity:  28 % (246/880 fotogramas (ropa)) · 6 min · quedan ≈ 16 min
+2026-11-04 16:47:29   identity:  35 % (306/880 fotogramas (ropa)) · 7 min · quedan ≈ 13 min
+2026-11-04 16:48:26   identity:  39 % (339/880 fotogramas (ropa)) · 8 min · quedan ≈ 13 min

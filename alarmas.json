@@ -5,6 +5,12 @@
    "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "etapa": "fine",
    "texto": "fine: 4.84 s por unidad frente a 0.86 de presupuesto (mediana de 8 ejecuciones aquí), 5.6 veces; a este ritmo quedan 11 min"
+  },
+  {
+   "hora": "2026-11-04 16:42:57",
+   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "etapa": "identity",
+   "texto": "identity: 2.41 s por unidad frente a 0.75 de presupuesto (configuración), 3.2 veces; a este ritmo quedan 33 min"
   }
  ]
 }
