@@ -453,7 +453,7 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ! **Pruebas en este PC: test_app_window**: 0 bien, 0 fallan, 7 omitidas
 - ✔ **Golpes que fallaron al procesarse**: ninguno
 - ✔ **Nada pide revisión manual**: 16 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
-- ✔ **Pruebas del código en este PC**: código 913ca15 (2026-11-03T17:18:26): 710 bien, 0 fallan, 0 errores
+- ✔ **Pruebas del código en este PC**: código 23d5f63 (2026-11-04T04:19:37): 717 bien, 0 fallan, 0 errores
 - ✔ **Pruebas en este PC: test_pipeline**: 15 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_auto_cycle**: 13 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_pc_requests**: 9 bien, 0 fallan, 0 omitidas
