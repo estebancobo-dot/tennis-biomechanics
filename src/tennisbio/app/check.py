@@ -85,12 +85,31 @@ def _live_child(page: str, res_f: str, wait_s: float = 60.0):
                               x=-32000, y=-32000, focus=False)
     api.window = w
     w.events.loaded += lambda *a: loaded.set()
+    # which window events fire, and when (04-11, requests 88-89: «loaded» never came with WebView2 156): the next
+    # check says where the engine stops instead of only «sin respuesta»
+    t_start = time.time()
+    out["events"] = []
+
+    def mark(name):
+        out["events"].append(f"{name} {time.time() - t_start:.1f} s")
+        save()
+    for ev in ("shown", "before_load", "loaded", "before_show"):
+        h = getattr(w.events, ev, None)
+        if h is not None:
+            h += (lambda *a, _n=ev: mark(_n))
 
     def probe():
         out.update(opened=True, step="cargar la página")
         save()
         try:
-            if loaded.wait(wait_s):
+            if not loaded.wait(wait_s):
+                # the engine itself, with a page of one line: does it load anything at all?
+                out["step"] = "página mínima"
+                save()
+                w.load_html("<html><body>ok</body></html>")
+                out["minimal_page_loaded"] = loaded.wait(20)
+                save()
+            else:
                 out["step"] = "esperar al puente"
                 save()
                 # pywebview injects its bridge a moment after the page loads (on the PC, 18-10, one look found it
