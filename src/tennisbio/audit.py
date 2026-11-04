@@ -956,7 +956,7 @@ PETITIONS = {
     130: r"Resto de derecha|Resto:|Lado del resto|Dirección del saque|responde a cada combinación",
     218: r"^Repeticiones y otras cámaras$",
     # the code's tests on this PC (Windows native, generic code, robustness tests), 03-11
-    13: r"Pruebas del código en este PC", 20: r"^Rendimiento$|Pruebas del código en este PC",
+    13: r"Pruebas del código en este PC|Golpes que fallaron|Etapas con errores", 20: r"^Rendimiento$|Pruebas del código en este PC",
     241: r"Pruebas del código en este PC", 51: r"Pruebas del código en este PC",
     # Base packages (config/plan_peticiones.yaml), 02-11
     137: r"^Rendimiento$", 231: r"^Rendimiento$", 230: r"^Rendimiento$",
@@ -978,7 +978,7 @@ PETITIONS.update({
     220: _T + "(test_library|test_layout)$", 222: _T + "test_identity_click$", 226: _T + "test_app_window$",
     227: _T + "test_app_window$", 229: _T + "(test_auto_catalog_rename|test_library)$",
     242: _T + "(test_app_core|test_app_window)$", 225: r"Golpes que fallaron|Etapas con errores|" + _T + "(test_no_unbounded_calls|test_app_window)$",
-    232: r"Golpes que fallaron|Etapas con errores|Exportación|" + _T + "test_no_unbounded_calls$",
+    232: r"Golpes que fallaron|Etapas con errores|Exportación|" + _T + "(test_no_unbounded_calls|test_export_end)$",
     241: r"Pruebas del código en este PC|" + _T + "test_no_hardcoded_player$",
 })
 # Base packages B1 and B3, 04-11 (base_items, cli.run_audit): each request with a check on the outputs, the PC's
@@ -1064,7 +1064,9 @@ MODULE_TESTS = ("test_pipeline", "test_auto_cycle", "test_pc_requests", "test_li
                 "test_spotting_stage", "test_stroke_from_spotter",
                 # package B7 (04-11)
                 "test_windows_scripts", "test_local_only", "test_logs_progress", "test_output_places",
-                "test_project_context", "test_speed_keeps_quality")
+                "test_project_context", "test_speed_keeps_quality",
+                # package B2 (04-11): an export cut or hung is reported, every export folder (#232)
+                "test_export_end")
 
 
 def module_tests_items(xml: Path | None) -> list[dict]:
@@ -1605,6 +1607,7 @@ def file_tree_items(match_dirs: list[Path], report_dir: Path | None, out_root: P
                                "falta" if empty or not ok(exp / "resumen.pdf") else "ok",
                                f"{len(clips)} vídeos" + (f"; vacíos: {', '.join(empty[:4])}" if empty else "")
                                + ("" if ok(exp / "resumen.pdf") else "; falta resumen.pdf")))
+        items += export_end_items(report_dir.parent)
     pr = next((b / "entrenamiento" for b in (out_root, out_root.parent) if (b / "entrenamiento" / "entrenamiento.json").exists()), None)
     if pr is not None:
         st = json.loads((pr / "entrenamiento.json").read_text(encoding="utf-8")).get("strokes", [])
@@ -1613,6 +1616,53 @@ def file_tree_items(match_dirs: list[Path], report_dir: Path | None, out_root: P
                            "falta" if miss else "ok", f"{len(st) - len(miss)} de {len(st)} vídeos"
                            + (f"; faltan: {', '.join(miss[:4])}" if miss else "")))
     return items
+
+
+def export_end_items(out_dir: Path) -> list[dict]:
+    """Request 232 (27-10: the backhand export hung twice): one item per export folder beside the reports
+    (exportar_derecha, exportar_reves, exportar_saque, another player's…) saying whether its last export ended;
+    the «Exportación: resumen PDF…» item above only looks at the forehand one."""
+    from .export import END_RECORD
+
+    return [export_end_item(d) for d in sorted(p for p in Path(out_dir).glob("exportar*") if p.is_dir())
+            if any((d / n).exists() for n in (END_RECORD, "pila.txt", "resumen.pdf", "golpes"))]
+
+
+def export_end_item(d: Path) -> dict:
+    """Whether the last export into folder d ended. An export removes export.END_RECORD when it starts and writes it
+    last, so it is there only when the last export ended. Before that record existed (exports up to 04-11) the dates
+    say it: the summary PDF is written last, after the last stack dump of pila.txt (opened at the start and written
+    every 5 min while the export runs). A stroke in en_curso.txt short of the total is an export cut or hung there."""
+    from .export import END_RECORD
+
+    d = Path(d)
+    name = f"Exportación terminada: {d.name}"
+    cur = (d / "en_curso.txt").read_text(encoding="utf-8", errors="replace").strip() if (d / "en_curso.txt").exists() else ""
+    m = re.search(r"(\d+)/(\d+)$", cur)
+    cut = bool(m) and int(m.group(1)) < int(m.group(2))
+
+    def mt(n):
+        return (d / n).stat().st_mtime if (d / n).exists() else None
+    if mt(END_RECORD) is not None:            # removed when an export starts: there only if the last one ended
+        try:
+            rec = json.loads((d / END_RECORD).read_text(encoding="utf-8"))
+        except (OSError, ValueError) as e:
+            return _item(5, "Ficheros", name, "falta", f"{END_RECORD} ilegible ({e})")
+        bad = rec.get("failed") or []
+        return _item(5, "Ficheros", name, "falta" if bad else "ok",
+                     f"terminó el {rec.get('ended', '?')} en {(rec.get('seconds') or 0) / 60:.0f} min: "
+                     f"{rec.get('videos', '?')} vídeos de {rec.get('strokes', '?')} golpes"
+                     + (f"; {len(bad)} no se pudieron exportar: " + ", ".join(str(b.get("id")) for b in bad[:4]) if bad else ""))
+    if cut:
+        return _item(5, "Ficheros", name, "falta",
+                     f"cortada o colgada en el golpe {cur} (en_curso.txt; dónde estaba cada hilo en pila.txt)")
+    if mt("pila.txt") is None:
+        return _item(5, "Ficheros", name, "aviso", "sin pila.txt ni registro de fin: no se sabe si terminó")
+    if mt("resumen.pdf") is not None and mt("resumen.pdf") >= mt("pila.txt"):
+        return _item(5, "Ficheros", name, "ok", f"terminó: su resumen PDF es posterior a su inicio (sin {END_RECORD}: "
+                     "exportación anterior a ese registro)" + (f"; último golpe {cur}" if cur else ""))
+    return _item(5, "Ficheros", name, "falta", "no terminó: no dejó el resumen PDF de esta exportación"
+                 + (f" (último golpe {cur})" if cur else ""))
 
 
 def petition_items(items: list[dict]) -> list[dict]:
