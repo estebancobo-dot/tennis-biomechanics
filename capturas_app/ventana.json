@@ -1,6 +1,6 @@
 {
  "problems": [
-  "la ventana real no funcionó: {'opened': True, 'ready': False, 'bridge': None, 'step': 'cargar la página', 'page_kb': 136, 'error': 'sin respuesta en 120 s: se cerró a la fuerza (lo último: cargar la página)'}"
+  "la ventana real no funcionó: {'opened': True, 'ready': False, 'bridge': None, 'step': 'cargar la página', 'page_kb': 136, 'events': ['before_show 0.6 s', 'shown 0.6 s', 'before_load 1.3 s'], 'error': 'sin respuesta en 120 s: se cerró a la fuerza (lo último: cargar la página)'}"
  ],
  "screens": 56,
  "engine": {
@@ -18,11 +18,16 @@
   "bridge": null,
   "step": "cargar la página",
   "page_kb": 136,
+  "events": [
+   "before_show 0.6 s",
+   "shown 0.6 s",
+   "before_load 1.3 s"
+  ],
   "error": "sin respuesta en 120 s: se cerró a la fuerza (lo último: cargar la página)"
  },
  "backup": {
-  "ficheros": 10712,
-  "bytes": 29325099393
+  "ficheros": 10706,
+  "bytes": 29334626592
  },
  "index": {
   "matches": 18,
