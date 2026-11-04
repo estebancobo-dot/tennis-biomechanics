@@ -96,10 +96,10 @@
   "scheme": 2
  },
  "identity": {
-  "fingerprint": "96667a54052b4e52",
-  "version": "6",
-  "seconds": 141.3,
-  "finished": "2026-11-04 11:19:15",
+  "fingerprint": "aabc2daa1ac36325",
+  "version": "7",
+  "seconds": 145.0,
+  "finished": "2026-11-04 15:12:44",
   "summary": {
    "runs": 285,
    "confidence": 0.97,
@@ -234,10 +234,10 @@
   "scheme": 2
  },
  "views": {
-  "fingerprint": "4bd830c2a6fe6f51",
-  "version": "5",
-  "seconds": 265.8,
-  "finished": "2026-11-03 22:09:32",
+  "fingerprint": "ae6725f76f3202b6",
+  "version": "6",
+  "seconds": 269.9,
+  "finished": "2026-11-04 15:17:14",
   "summary": {
    "views": 1093,
    "repeticion_principal": 76,
