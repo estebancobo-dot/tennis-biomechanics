@@ -523,6 +523,28 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
             sides += f"; además {len(doubt)} de identidad dudosa, apartados (no cuentan como suyos)"
         out.append(_item(1, "Golpes", f"Golpes encontrados frente al marcador: {d.name}", status, detail + sides,
                          found=len(strokes), serves=serves, counts=counts, doubtful=len(doubt)))
+        # B4 (04-11): each point on her serve with no serve found, and why (camera, detection or stroke type)
+        try:
+            from .point_count import GAP_CAUSES, serve_gaps
+            sc_f = _mf.at(d, "scenes.json")
+            shots = []
+            if sc_f.exists():
+                scn = json.loads(sc_f.read_text(encoding="utf-8"))
+                fps = float(scn.get("fps") or 1.0)
+                shots = [(sh["start"] / fps, sh["end"] / fps) for sh in scn.get("shots", []) if sh.get("main_camera")]
+            g = serve_gaps(readings, strokes, shots)
+            if g["points"]:
+                why = ", ".join(f"{GAP_CAUSES[k]} {v}" for k, v in g["by_cause"].items() if v)
+                miss = g["points"] - g["found"]
+                st_ = "ok" if miss <= 0.1 * g["points"] else ("aviso" if miss <= 0.3 * g["points"] else "falta")
+                out.append(_item(1, "Golpes", f"Saques por punto de su saque: {d.name}", st_,
+                                 f"{g['found']} de {g['points']} puntos de su saque con su saque encontrado"
+                                 + (f"; sin saque: {why}" if why else "")
+                                 + ("; primeros: " + ", ".join(f"{x['t0'] / 60:.1f}-{x['t1'] / 60:.1f} min ({x['cause']})"
+                                                               for x in g["gaps"][:8]) if g["gaps"] else ""),
+                                 serve_gaps=g))
+        except Exception as e:  # noqa: BLE001 — the audit must still be written
+            out.append(_item(1, "Golpes", f"Saques por punto de su saque: {d.name}", "aviso", f"no se pudo calcular ({e})"))
     return out
 
 

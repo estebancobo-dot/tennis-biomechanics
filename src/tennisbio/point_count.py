@@ -241,3 +241,48 @@ def recall_verdict(found_all: int, found_serves: int, counts: dict, min_points: 
     if r_all < 1.0 or (s_lo >= 10 and r_srv < 1.0):
         return "aviso", det
     return "ok", det
+
+
+GAP_CAUSES = {"sin_camara": "sin plano de la cámara principal", "sin_golpes": "sin ningún golpe suyo",
+              "sin_saque": "golpes suyos, pero ningún saque"}
+
+
+def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple[float, float]],
+               lead_s: float = 25.0) -> dict:
+    """B4 (04-11): the points played on HER serve (scoreboard row 0 serving, a point counted between two readings of
+    the same game) with no serve of hers found, and why: no main-camera shot in that stretch (the broadcast did not
+    show it), none of her strokes at all (detection), or strokes but no serve (stroke type). The stretch of a point is
+    from the first reading that shows its score (5 s earlier at most) to the reading that shows the next one. Returns {"points": n, "found": n, "gaps": [{"t0", "t1", "cause"}], "by_cause": {cause: n}}."""
+    st = clean_states(readings)
+    serve_t = sorted(float(s["match_time_s"]) for s in strokes
+                     if s.get("stroke") == "overhead" and s.get("match_time_s") is not None)
+    any_t = sorted(float(s["match_time_s"]) for s in strokes if s.get("match_time_s") is not None)
+    import bisect
+
+    def inside(ts, a, b):
+        i = bisect.bisect_left(ts, a)
+        return i < len(ts) and ts[i] <= b
+
+    out = {"points": 0, "found": 0, "gaps": [], "by_cause": {k: 0 for k in GAP_CAUSES}}
+    since = st[0]["t"] if st else 0.0           # when the score of the current reading was first shown
+    for a, b in zip(st, st[1:]):
+        same_score = b["g"] == a["g"] and b["pts"] == a["pts"]
+        if not same_score:
+            start, since = since, b["t"]
+        if b["g"] != a["g"] or a["server"] != 0 or a["tb"] or same_score or not _in_game(a, b):
+            continue
+        # the point starts once its score is on the board (a few seconds of slack for the reading rate)
+        t0, t1 = start - min(lead_s, 5.0), b["t"]
+        out["points"] += 1
+        if inside(serve_t, t0, t1):
+            out["found"] += 1
+            continue
+        if not any(s < t1 and e > t0 for s, e in main_shots):
+            cause = "sin_camara"
+        elif not inside(any_t, t0, t1):
+            cause = "sin_golpes"
+        else:
+            cause = "sin_saque"
+        out["by_cause"][cause] += 1
+        out["gaps"].append({"t0": round(t0, 1), "t1": round(t1, 1), "cause": cause})
+    return out
