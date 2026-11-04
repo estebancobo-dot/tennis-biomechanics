@@ -151,10 +151,10 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "fbe49e2e1e4f77b5",
+  "fingerprint": "e4b28863440259ec",
   "version": "16",
-  "seconds": 258.1,
-  "finished": "2026-11-04 15:09:58",
+  "seconds": 260.6,
+  "finished": "2026-11-04 17:03:49",
   "summary": {
    "candidates": 263,
    "confirmed": 262,
@@ -174,13 +174,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 174.1,
-    "cuerdas_y_3d": 75.3,
-    "pista_ventana": 29.6,
-    "analisis_ventana": 24.4,
-    "recorte": 8.8,
-    "cribado": 6.3,
-    "pose": 1.0
+    "jugadora_lejana": 176.2,
+    "cuerdas_y_3d": 75.6,
+    "pista_ventana": 30.9,
+    "analisis_ventana": 25.1,
+    "recorte": 8.9,
+    "cribado": 7.0,
+    "pose": 0.9
    },
    "counts": {
     "overlap_s": 2.2,
@@ -197,10 +197,10 @@
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "852e2f49256abac8",
+  "fingerprint": "ab9d50659a36277f",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-04 15:09:58",
+  "finished": "2026-11-04 17:03:49",
   "summary": {
    "enabled": false
   },
@@ -269,10 +269,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "eb60621c2ae3c747",
+  "fingerprint": "b6a84c62903fc515",
   "version": "1",
-  "seconds": 20.6,
-  "finished": "2026-11-04 15:10:19",
+  "seconds": 20.8,
+  "finished": "2026-11-04 17:04:10",
   "summary": {
    "candidates": 49,
    "confirmed": 17,
@@ -292,12 +292,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 7.9,
-    "analisis_ventana": 4.0,
-    "jugadora_lejana": 2.9,
-    "recorte": 2.3,
+    "cuerdas_y_3d": 7.8,
+    "analisis_ventana": 4.4,
+    "jugadora_lejana": 3.1,
+    "recorte": 2.4,
     "pista_ventana": 1.2,
-    "cribado": 0.6,
+    "cribado": 0.7,
     "pose": 0.1
    },
    "counts": {
