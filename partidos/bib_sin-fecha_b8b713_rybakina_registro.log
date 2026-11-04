@@ -6378,3 +6378,27 @@
 2026-11-04 11:40:51   ventana w012348314_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 88) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 231 px (segments)
 2026-11-04 11:40:51   fine_doubtful: 100 % (64/64 golpes candidatos · 34 confirmados · 0 ventanas descartadas sin pose) · 27 s · quedan ≈ 0 s
 2026-11-04 11:40:52 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine_doubtful terminada a las 11:40:52 en 34 s
+2026-11-04 15:21:12 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] identity… (2026-11-04 15:21:12, etapa 7 de 14)
+2026-11-04 15:21:23   identity:   0 % (1/2027 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+2026-11-04 15:21:53   identity:  15 % (294/2027 fotogramas (ropa)) · 30 s · quedan ≈ 3 min
+2026-11-04 15:22:23   identity:  29 % (589/2027 fotogramas (ropa)) · 60 s · quedan ≈ 2 min
+2026-11-04 15:22:53   identity:  44 % (890/2027 fotogramas (ropa)) · 2 min · quedan ≈ 2 min
+2026-11-04 15:23:23   identity:  59 % (1186/2027 fotogramas (ropa)) · 2 min · quedan ≈ 85 s
+2026-11-04 15:23:54   identity:  73 % (1482/2027 fotogramas (ropa)) · 3 min · quedan ≈ 55 s
+2026-11-04 15:24:24   identity:  88 % (1774/2027 fotogramas (ropa)) · 3 min · quedan ≈ 26 s
+2026-11-04 15:24:49   identity: 100 % (2027/2027 fotogramas (ropa)) · 3 min · quedan ≈ 0 s
+2026-11-04 15:24:49   ropa: 2027 fotogramas · leerlos 188 s, medir la ropa 18 s
+2026-11-04 15:24:49   identidad: 327/342 planos · ropa y cambios de lado de acuerdo en 282, solo cambios de lado 15, solo ropa 21, la ropa corrige el marcador en 9, el saque visto en 0, dudosos 2 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 5.84
+2026-11-04 15:24:49 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] identity terminada a las 15:24:49 en 3.6 min
+2026-11-04 15:24:49 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] views… (2026-11-04 15:24:49, etapa 10 de 14)
+2026-11-04 15:24:57   views:   0 % (1/2991 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+2026-11-04 15:25:28   views:   7 % (216/2991 fotogramas de otras tomas) · 31 s · quedan ≈ 7 min
+2026-11-04 15:25:58   views:  13 % (385/2991 fotogramas de otras tomas) · 61 s · quedan ≈ 7 min
+2026-11-04 15:26:29   views:  18 % (545/2991 fotogramas de otras tomas) · 2 min · quedan ≈ 7 min
+2026-11-04 15:26:59   views:  23 % (687/2991 fotogramas de otras tomas) · 2 min · quedan ≈ 7 min
+2026-11-04 15:27:29   views:  31 % (942/2991 fotogramas de otras tomas) · 3 min · quedan ≈ 5 min
+2026-11-04 15:27:59   views:  38 % (1138/2991 fotogramas de otras tomas) · 3 min · quedan ≈ 5 min
+2026-11-04 15:28:29   views:  44 % (1310/2991 fotogramas de otras tomas) · 4 min · quedan ≈ 5 min
+2026-11-04 15:28:59   views:  52 % (1558/2991 fotogramas de otras tomas) · 4 min · quedan ≈ 4 min
+2026-11-04 15:29:29   views:  61 % (1823/2991 fotogramas de otras tomas) · 5 min · quedan ≈ 3 min
+2026-11-04 15:29:59   views:  68 % (2031/2991 fotogramas de otras tomas) · 5 min · quedan ≈ 2 min
