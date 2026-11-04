@@ -96,10 +96,10 @@
   "scheme": 2
  },
  "identity": {
-  "fingerprint": "872fb19a88d274aa",
-  "version": "6",
-  "seconds": 97.7,
-  "finished": "2026-11-04 11:08:46",
+  "fingerprint": "61669b2c174ce458",
+  "version": "7",
+  "seconds": 101.3,
+  "finished": "2026-11-04 15:02:36",
   "summary": {
    "runs": 276,
    "confidence": 0.93,
@@ -151,10 +151,10 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "2b52411f46f00358",
+  "fingerprint": "fbe49e2e1e4f77b5",
   "version": "16",
-  "seconds": 256.6,
-  "finished": "2026-11-04 11:16:33",
+  "seconds": 258.1,
+  "finished": "2026-11-04 15:09:58",
   "summary": {
    "candidates": 263,
    "confirmed": 262,
@@ -174,13 +174,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 172.9,
-    "cuerdas_y_3d": 76.3,
-    "pista_ventana": 30.2,
-    "analisis_ventana": 23.9,
-    "recorte": 8.6,
-    "cribado": 6.8,
-    "pose": 0.6
+    "jugadora_lejana": 174.1,
+    "cuerdas_y_3d": 75.3,
+    "pista_ventana": 29.6,
+    "analisis_ventana": 24.4,
+    "recorte": 8.8,
+    "cribado": 6.3,
+    "pose": 1.0
    },
    "counts": {
     "overlap_s": 2.2,
@@ -197,10 +197,10 @@
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "caf4fe21854676ba",
+  "fingerprint": "852e2f49256abac8",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-04 11:16:34",
+  "finished": "2026-11-04 15:09:58",
   "summary": {
    "enabled": false
   },
@@ -234,10 +234,10 @@
   "scheme": 2
  },
  "views": {
-  "fingerprint": "14312107cb3a4e96",
-  "version": "5",
-  "seconds": 185.8,
-  "finished": "2026-11-04 11:12:17",
+  "fingerprint": "9e84474013cc3c66",
+  "version": "6",
+  "seconds": 184.2,
+  "finished": "2026-11-04 15:05:40",
   "summary": {
    "views": 828,
    "repeticion_principal": 38,
@@ -269,10 +269,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "b8dcc0e074895ecc",
+  "fingerprint": "eb60621c2ae3c747",
   "version": "1",
-  "seconds": 20.0,
-  "finished": "2026-11-04 11:16:54",
+  "seconds": 20.6,
+  "finished": "2026-11-04 15:10:19",
   "summary": {
    "candidates": 49,
    "confirmed": 17,
@@ -293,11 +293,11 @@
    },
    "seconds": {
     "cuerdas_y_3d": 7.9,
-    "analisis_ventana": 3.9,
-    "jugadora_lejana": 3.0,
-    "recorte": 2.5,
-    "pista_ventana": 1.1,
-    "cribado": 0.7,
+    "analisis_ventana": 4.0,
+    "jugadora_lejana": 2.9,
+    "recorte": 2.3,
+    "pista_ventana": 1.2,
+    "cribado": 0.6,
     "pose": 0.1
    },
    "counts": {
