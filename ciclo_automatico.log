@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261104142056
+Start time: 20261104144515
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 6368
+Process ID: 16796
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,18 +17,21 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-11-04 14:20:56] Codigo nuevo (ec9ed32 -> 33fcd7d): 3 ficheros
+==> [2026-11-04 14:45:15] Codigo nuevo (33fcd7d -> 90c6765): 4 ficheros
+    config/peticion_pc.txt
     docs/plan_corto_plazo.md
-    src/tennisbio/audit.py
-    src/tennisbio/point_count.py
-Updating ec9ed32..33fcd7d
+    tests/test_recall.py
+    tests/test_serve_gaps.py
+Updating 33fcd7d..90c6765
 Fast-forward
- docs/plan_corto_plazo.md     |  2 +-
- src/tennisbio/audit.py       | 22 ++++++++++++++++++++++
- src/tennisbio/point_count.py | 45 ++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 68 insertions(+), 1 deletion(-)
-Resolved 124 packages in 1ms
-Checked 89 packages in 3ms
+ config/peticion_pc.txt   |  5 +++++
+ docs/plan_corto_plazo.md |  4 ++--
+ tests/test_recall.py     |  3 ++-
+ tests/test_serve_gaps.py | 27 +++++++++++++++++++++++++++
+ 4 files changed, 36 insertions(+), 3 deletions(-)
+ create mode 100644 tests/test_serve_gaps.py
+Resolved 124 packages in 0.91ms
+Checked 89 packages in 4ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -41,20 +44,24 @@ yolo11m-pose_960.onnx OK 84 MB
 yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
-    (paso terminado en 4 s)
+    (paso terminado en 5 s)
 
-==> [2026-11-04 14:21:00] Que hace falta: informe
+==> [2026-11-04 14:45:20] Que hace falta: informe
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (74 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Golpes: 0 nuevos, 25 en C:\tenis\output\_smoke\exportar\golpes
 Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
 Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
 Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
-Peticiones: 19 sin construir · 86 construido, sin comprobar · 79 comprobación que falla · 53 comprobado en salidas · 0 validado con verdad
-Auditoría: 298 cumplidos, 21 no cumplidos, 127 sin golpes suficientes, 113 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+Peticiones: 19 sin construir · 86 construido, sin comprobar · 81 comprobación que falla · 51 comprobado en salidas · 0 validado con verdad
+Auditoría: 295 cumplidos, 26 no cumplidos, 127 sin golpes suficientes, 111 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
   ✘ Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin: 7 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 3, golpes suyos, pero ningún saque 4; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque), 23.2-23.9 min (sin_golpes), 31.1-31.7 min (sin_saque), 32.6-32.8 min (sin_saque)
   ✘ Primera pantalla, anchura y nombres (diseño definitivo): vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
+  ✘ Pruebas del código en este PC: código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fallan: tests/test_recall.py::test_audit_item_reads_match_folder
   ✘ #1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
+  ✘ #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fallan: tests/test_recall.py::test_audit_item_reads)
+  ✘ #20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fallan: tests/test_recall.py::test_audit_item_reads)
+  ✘ #51 El código de la prueba es el de los casos reales: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fallan: tests/test_recall.py::test_audit_item_reads)
   ✘ #155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
   ✘ #176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3): SIN HACER según el registro (#176, docs/peticiones_usuario.md)
   ✘ #189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4): SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -71,17 +78,18 @@ Auditoría: 298 cumplidos, 21 no cumplidos, 127 sin golpes suficientes, 113 avis
   ✘ #223 Revés y derecha cortados: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
   ✘ #224 Saques: plano, cortado o kick; primero o segundo: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
   ✘ #240 Comparar la aplicación con las profesionales una vez estén los golpes: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
+  ✘ #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fallan: tests/test_recall.py::test_audit_item_reads)
   ✘ #244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10): SIN HACER según el registro (#244, docs/peticiones_usuario.md)
   ✘ #245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10): SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 Hecho en 167 s, sin volver a analizar vídeo.
     (paso terminado en 2 min 47 s)
 
-==> [2026-11-04 14:23:47] Revision automatica frente a la ejecucion anterior
-# Revisión automática: FALLOS
+==> [2026-11-04 14:48:07] Revision automatica frente a la ejecucion anterior
+# Revisión automática: REGRESIÓN
 Ciclo automatico terminado (informe).
     (paso terminado en 0 s)
-Empezado 2026-11-04 14:20:53 - terminado 2026-11-04 14:23:47 - duracion total 2 min 54 s
+Empezado 2026-11-04 14:45:13 - terminado 2026-11-04 14:48:07 - duracion total 2 min 54 s
 **********************
 Windows PowerShell transcript end
-End time: 20261104142347
+End time: 20261104144807
 **********************

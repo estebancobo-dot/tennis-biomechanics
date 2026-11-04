@@ -3,10 +3,10 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 298,
-  "falta": 21,
+  "ok": 295,
+  "falta": 26,
   "pocos datos": 127,
-  "aviso": 113
+  "aviso": 111
  },
  "items": [
   {
@@ -3100,10 +3100,10 @@
    "req": 5,
    "area": "Automático",
    "name": "Pruebas del código en este PC",
-   "status": "ok",
-   "detail": "código ec9ed32 (2026-11-04T13:36:15): 726 bien, 0 fallan, 0 errores",
-   "passed": 726,
-   "failed": 0
+   "status": "falta",
+   "detail": "código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fallan: tests/test_recall.py::test_audit_item_reads_match_folder",
+   "passed": 725,
+   "failed": 1
   },
   {
    "req": 5,
@@ -3298,8 +3298,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "status": "falta",
+   "detail": "1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fallan: tests/test_recall.py::test_audit_item_reads)"
   },
   {
    "req": 11,
@@ -3347,8 +3347,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
-   "status": "aviso",
-   "detail": "3 comprobaciones: 1 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)"
+   "status": "falta",
+   "detail": "3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fallan: tests/test_recall.py::test_audit_item_reads)"
   },
   {
    "req": 11,
@@ -3564,8 +3564,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#51 El código de la prueba es el de los casos reales",
-   "status": "ok",
-   "detail": "1 comprobaciones: 1 ok"
+   "status": "falta",
+   "detail": "1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fallan: tests/test_recall.py::test_audit_item_reads)"
   },
   {
    "req": 11,
@@ -4824,8 +4824,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código",
-   "status": "ok",
-   "detail": "2 comprobaciones: 2 ok"
+   "status": "falta",
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fallan: tests/test_recall.py::test_audit_item_reads)"
   },
   {
    "req": 11,

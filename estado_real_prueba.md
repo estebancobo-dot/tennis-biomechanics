@@ -6,8 +6,8 @@
 |---|---|
 | 0 sin construir | 19 |
 | 1 construido, sin comprobar | 86 |
-| 2 comprobación que falla | 79 |
-| 3 comprobado en salidas | 53 |
+| 2 comprobación que falla | 81 |
+| 3 comprobado en salidas | 51 |
 | 4 validado con verdad | 0 |
 
 ## Por paquete del plan (en el orden de ejecución)
@@ -20,7 +20,7 @@
 | B4 Base · no perder golpes | 6 | 2 | 0 | 4 | 0 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión |
 | B5 Base · exportación | 1 | 0 | 0 | 0 | 1 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues |
 | B6 Base · referencia definitiva de los 4 partidos | 4 | 1 | 1 | 2 | 0 | 0 | 4 partidos sin errores de etapa; auditoría generada |
-| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 10 | 10 | 16 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos |
+| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 10 | 12 | 14 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos |
 | M1 Medidas · fases, cadena cinética y ritmo | 12 | 0 | 7 | 4 | 1 | 0 | Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara |
 | M2 Medidas · pies y apoyos | 20 | 2 | 10 | 4 | 4 | 0 | Pasos y apoyos medidos en la mayoría de golpes; fiables en la auditoría |
 | M3 Medidas · cuerpo | 14 | 1 | 2 | 4 | 7 | 0 | Fiables en la auditoría y sin depender de la cámara |
@@ -51,14 +51,14 @@
 | 10 | Ver los cambios en la prueba rápida, sin 1 h (12-10 17:32, 17:40) | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 11 comprobaciones: 11 ok |
 | 11 | Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y l | P3 | PARCIAL | 2 comprobación que falla | 191 comprobaciones: 34 pocos datos, 157 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo  |
 | 12 | Validar cada medida con clips públicos anotados; el usuario no valida a mano (11-10 09:05, | P3 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
-| 13 | Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimient | B2 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
+| 13 | Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimient | B2 | PARCIAL | 2 comprobación que falla | 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fa |
 | 14 | Rendimiento: un partido en horas, no días (12-10 13:09) | B1 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para |
 | 15 | Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos (12-10 | P1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
 | 16 | Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas (10-10 | M6 | PARCIAL | 2 comprobación que falla | 5 comprobaciones: 3 pocos datos, 2 ok; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 13 (la clase «Contacto» se pudo |
 | 17 | Una entrada que se entienda sola: «no entiendo nada ni cómo usarla» (12-10 16:22) | P2 | PARCIAL | 2 comprobación que falla | 10 comprobaciones: 1 pocos datos, 9 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes  |
 | 18 | Herramienta Python cinemática 2D, 1 jugador y 1 golpe, parametrizable (10-10 17:27) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos |
 | 19 | Vídeos y salidas fuera del repo, rutas por configuración (10-10 17:27) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
-| 20 | Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML (10-10 17:27) | B7 | HECHO | 2 comprobación que falla | 3 comprobaciones: 1 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para |
+| 20 | Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML (10-10 17:27) | B7 | HECHO | 2 comprobación que falla | 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan |
 | 21 | Dos pasadas, barata y fina de ±1 s (10-10 17:27) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos |
 | 22 | Solo la cámara principal, sin repeticiones ni primeros planos (10-10 17:27) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos |
 | 23 | Seguir a la jugadora en los cambios de lado (10-10 17:27) | B4 | PARCIAL | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos |
@@ -89,7 +89,7 @@
 | 48 | Posición de la cabeza y altura del cuerpo al inicio y al final (11-10 19:48) | M3 | HECHO | 3 comprobado en salidas | 3 comprobaciones: 3 ok |
 | 49 | No perder contexto ni sesión; registros automáticos (12-10 11:39-11:45) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 50 | Progreso y monitorización visibles (12-10 14:37, 14:43) | B7 | HECHO | 1 construido, sin comprobar | no se comprueba en las salidas: registros con fecha y duración en la terminal |
-| 51 | El código de la prueba es el de los casos reales (12-10 14:37) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
+| 51 | El código de la prueba es el de los casos reales (12-10 14:37) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fa |
 | 52 | Brave, no instalar Edge (12-10 16:48) | B7 | HECHO | 3 comprobado en salidas | 9 comprobaciones: 9 ok |
 | 53 | No pasar de 100 a 0: conservar lo anterior (12-10 17:21) | P2 | HECHO | 3 comprobado en salidas | 9 comprobaciones: 9 ok |
 | 54 | Qué hace ella cuando la rival golpea, la bola cruza la red, bota y llega arriba (12-10 17: | M3 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
@@ -272,7 +272,7 @@
 | 238 | La validación es siempre automática; el usuario no valida la aplicación (27-10 11:42) | P3 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#238); sin comprobación automática asignada |
 | 239 | No se descarta ninguna petición (27-10 11:42) | D | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 240 | Comparar la aplicación con las profesionales una vez estén los golpes (27-10 11:42) | P4 | FALTA | 0 sin construir | SIN HACER según el registro (#240, docs/peticiones_usuario.md) |
-| 241 | Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el códig | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
+| 241 | Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el códig | B7 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 error |
 | 242 | Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femen | B7 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en e |
 | 243 | Todos los escenarios del producto los contempla Claude sin esperar a que se pidan (27-10 1 | P5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#243); sin comprobación automática asignada |
 | 244 | Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-1 | M7 | FALTA | 0 sin construir | SIN HACER según el registro (#244, docs/peticiones_usuario.md) |
