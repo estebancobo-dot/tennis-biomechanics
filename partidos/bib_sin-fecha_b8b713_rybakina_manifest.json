@@ -151,10 +151,10 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "019cb323a3579407",
+  "fingerprint": "b48eeb0498597d21",
   "version": "16",
-  "seconds": 283.8,
-  "finished": "2026-11-04 11:40:17",
+  "seconds": 284.9,
+  "finished": "2026-11-04 15:36:59",
   "summary": {
    "candidates": 270,
    "confirmed": 259,
@@ -174,13 +174,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 221.6,
-    "cuerdas_y_3d": 71.5,
-    "pista_ventana": 39.5,
-    "analisis_ventana": 27.1,
-    "recorte": 9.5,
-    "cribado": 8.4,
-    "pose": 1.1
+    "jugadora_lejana": 221.3,
+    "cuerdas_y_3d": 70.3,
+    "pista_ventana": 39.8,
+    "analisis_ventana": 27.8,
+    "recorte": 10.2,
+    "cribado": 8.1,
+    "pose": 1.4
    },
    "counts": {
     "overlap_s": 0.0,
@@ -197,10 +197,10 @@
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "d02ced01f8de57e3",
+  "fingerprint": "32c4dd90b3999d15",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-04 11:40:18",
+  "finished": "2026-11-04 15:37:00",
   "summary": {
    "enabled": false
   },
@@ -234,10 +234,10 @@
   "scheme": 2
  },
  "views": {
-  "fingerprint": "47137831da39a8c6",
-  "version": "5",
-  "seconds": 440.6,
-  "finished": "2026-11-04 11:35:34",
+  "fingerprint": "12be666bf9a97966",
+  "version": "6",
+  "seconds": 445.4,
+  "finished": "2026-11-04 15:32:14",
   "summary": {
    "views": 1673,
    "repeticion_principal": 76,
@@ -269,10 +269,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "e4c22c47f36b18ae",
+  "fingerprint": "0a48ae13560e97fd",
   "version": "1",
-  "seconds": 34.2,
-  "finished": "2026-11-04 11:40:52",
+  "seconds": 35.0,
+  "finished": "2026-11-04 15:37:35",
   "summary": {
    "candidates": 64,
    "confirmed": 34,
@@ -292,11 +292,11 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 10.3,
-    "jugadora_lejana": 9.4,
-    "analisis_ventana": 6.4,
-    "pista_ventana": 5.9,
-    "recorte": 2.6,
+    "cuerdas_y_3d": 10.2,
+    "jugadora_lejana": 9.3,
+    "analisis_ventana": 6.3,
+    "pista_ventana": 6.0,
+    "recorte": 2.7,
     "cribado": 1.3,
     "pose": 0.1
    },
