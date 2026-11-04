@@ -33,3 +33,11 @@ def test_serves_found_are_placed_in_her_points_the_opponents_or_none():
     strokes = [{"stroke": "overhead", "match_time_s": t} for t in (10, 120, 400)]
     g = serve_gaps(readings, strokes, [(0, 500)])
     assert g["serves_at"] == {"her_points": 1, "opponent_points": 1, "elsewhere": 1}
+
+
+def test_gaps_say_when_her_first_stroke_comes_after_the_main_camera_returns():
+    readings = [_r(0, (0, 0)), _r(40, (15, 0))]
+    strokes = [{"stroke": "forehand", "match_time_s": 30}]
+    g = serve_gaps(readings, strokes, [(20, 60)])          # the main camera comes back at 20 s
+    assert g["gaps"][0]["shot_start"] == 20 and g["gaps"][0]["first_stroke_after_s"] == 10
+    assert g["first_stroke_after_shot_start_s"] == {"median": 10, "n": 1, "under_3": 0}

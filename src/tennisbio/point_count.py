@@ -290,7 +290,21 @@ def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple
         else:
             cause = "sin_saque"
         out["by_cause"][cause] += 1
-        out["gaps"].append({"t0": round(t0, 1), "t1": round(t1, 1), "cause": cause})
+        gap = {"t0": round(t0, 1), "t1": round(t1, 1), "cause": cause}
+        # when the main camera comes back in this point and her first stroke found after it: a serve lost at the very
+        # start of the shot (after a replay or a close-up) shows as a first stroke many seconds after the shot starts
+        st_main = [s0 for s0, e0 in main_shots if e0 > t0 and s0 < t1]
+        if st_main:
+            s0 = max(t0, min(st_main))
+            gap["shot_start"] = round(s0, 1)
+            first = next((t for t in any_t if s0 <= t <= t1), None)
+            if first is not None:
+                gap["first_stroke_after_s"] = round(first - s0, 1)
+        out["gaps"].append(gap)
+    delays = sorted(g["first_stroke_after_s"] for g in out["gaps"] if "first_stroke_after_s" in g)
+    out["first_stroke_after_shot_start_s"] = (None if not delays else
+                                              {"median": delays[len(delays) // 2], "n": len(delays),
+                                               "under_3": sum(d < 3 for d in delays)})
     # where her serves found fall: in a point of her serve, of the opponent's (identity or a smash), or in none read
     within = lambda t, ws: any(a <= t <= b for a, b in ws)
     out["serves_at"] = {"her_points": sum(within(t, her_w) for t in serve_t),
