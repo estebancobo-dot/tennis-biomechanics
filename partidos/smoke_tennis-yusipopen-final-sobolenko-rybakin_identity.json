@@ -1,69 +1,69 @@
 {
  "fps": 10.0,
- "target_cluster": 0,
+ "target_cluster": 1,
  "confidence": 0.86,
- "votes": 65,
+ "votes": 66,
  "ends_base": true,
  "clothes": {
   "source": "ropa (torso y pantalón o falda, sin la pista)",
   "runs": 67,
-  "clear": 65,
-  "margin_median": 0.78,
-  "separation": 6.97,
+  "clear": 66,
+  "margin_median": 0.74,
+  "separation": 6.0,
   "far_pairs": 7,
-  "far_opposite": 0.71,
-  "same_game_pairs": 57,
-  "same_game_same": 0.74
+  "far_opposite": 0.57,
+  "same_game_pairs": 59,
+  "same_game_same": 0.75
  },
  "runs": [
   {
    "start": 0,
    "end": 75,
    "end_changes": 10,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.73,
+   "clothes_margin": 0.7,
    "clothes_says": true
   },
   {
    "start": 150,
    "end": 225,
    "end_changes": 10,
-   "cluster": 0,
-   "near_is_target": true,
-   "method": "ropa y cambios de lado",
-   "clothes_margin": 0.73,
-   "clothes_says": true
-  },
-  {
-   "start": 429,
-   "end": 507,
-   "end_changes": 10,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
    "clothes_margin": 0.64,
    "clothes_says": true
   },
   {
+   "start": 429,
+   "end": 507,
+   "end_changes": 10,
+   "cluster": 1,
+   "near_is_target": true,
+   "method": "ropa y cambios de lado",
+   "clothes_margin": 0.65,
+   "clothes_says": true
+  },
+  {
    "start": 742,
    "end": 898,
    "end_changes": 10,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.69,
+   "clothes_margin": 0.59,
    "clothes_says": true
   },
   {
    "start": 1152,
    "end": 1240,
    "end_changes": 10,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa (corrige el marcador)",
-   "clothes_margin": 0.83,
+   "clothes_margin": 0.82,
    "clothes_says": false,
    "ends_said": true
   },
@@ -72,10 +72,10 @@
    "end": 1416,
    "return_vote": true,
    "end_changes": 10,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.69,
+   "clothes_margin": 0.74,
    "clothes_says": true
   },
   {
@@ -83,10 +83,10 @@
    "end": 1668,
    "return_vote": true,
    "end_changes": 10,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.78,
+   "clothes_margin": 0.72,
    "clothes_says": true
   },
   {
@@ -94,10 +94,10 @@
    "end": 1816,
    "return_vote": true,
    "end_changes": 10,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.74,
+   "clothes_margin": 0.68,
    "clothes_says": true
   },
   {
@@ -105,10 +105,10 @@
    "end": 2166,
    "return_vote": true,
    "end_changes": 10,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.74,
+   "clothes_margin": 0.65,
    "clothes_says": true
   },
   {
@@ -116,10 +116,10 @@
    "end": 2453,
    "return_vote": true,
    "end_changes": 10,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.75,
+   "clothes_margin": 0.67,
    "clothes_says": true
   },
   {
@@ -127,20 +127,20 @@
    "end": 2626,
    "return_vote": true,
    "end_changes": 10,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.7,
+   "clothes_margin": 0.71,
    "clothes_says": true
   },
   {
    "start": 2858,
    "end": 2938,
    "end_changes": 10,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa (corrige el marcador)",
-   "clothes_margin": 0.84,
+   "clothes_margin": 0.82,
    "clothes_says": false,
    "ends_said": true
   },
@@ -148,10 +148,10 @@
    "start": 3177,
    "end": 3272,
    "end_changes": 10,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.75,
+   "clothes_margin": 0.68,
    "clothes_says": true
   },
   {
@@ -159,10 +159,10 @@
    "end": 3382,
    "return_vote": true,
    "end_changes": 10,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.73,
+   "clothes_margin": 0.7,
    "clothes_says": true
   },
   {
@@ -170,20 +170,20 @@
    "end": 3882,
    "return_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.88,
+   "clothes_margin": 0.86,
    "clothes_says": false
   },
   {
    "start": 3970,
    "end": 4040,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.89,
+   "clothes_margin": 0.85,
    "clothes_says": false
   },
   {
@@ -191,17 +191,17 @@
    "end": 4250,
    "return_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.89,
+   "clothes_margin": 0.83,
    "clothes_says": false
   },
   {
    "start": 4413,
    "end": 4677,
    "end_changes": 11,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": null,
    "method": "dudoso",
    "clothes_margin": 0.15,
@@ -213,10 +213,10 @@
    "end": 5024,
    "return_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.89,
+   "clothes_margin": 0.88,
    "clothes_says": false
   },
   {
@@ -224,10 +224,10 @@
    "end": 5417,
    "return_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.88,
+   "clothes_margin": 0.84,
    "clothes_says": false
   },
   {
@@ -235,10 +235,10 @@
    "end": 5713,
    "return_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.86,
+   "clothes_margin": 0.81,
    "clothes_says": false
   },
   {
@@ -246,20 +246,20 @@
    "end": 6096,
    "return_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.89,
+   "clothes_margin": 0.84,
    "clothes_says": false
   },
   {
    "start": 6340,
    "end": 6392,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.88,
+   "clothes_margin": 0.86,
    "clothes_says": false
   },
   {
@@ -267,7 +267,7 @@
    "end": 6527,
    "return_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
    "clothes_margin": 0.83,
@@ -277,7 +277,7 @@
    "start": 9114,
    "end": 9348,
    "end_changes": null,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": null,
    "method": null,
    "clothes_margin": 0.02,
@@ -287,10 +287,10 @@
    "start": 9464,
    "end": 9561,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.76,
+   "clothes_margin": 0.78,
    "clothes_says": false
   },
   {
@@ -298,20 +298,20 @@
    "end": 9694,
    "serve_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.86,
+   "clothes_margin": 0.82,
    "clothes_says": false
   },
   {
    "start": 10136,
    "end": 10205,
    "end_changes": 11,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa (corrige el marcador)",
-   "clothes_margin": 0.35,
+   "clothes_margin": 0.34,
    "clothes_says": true,
    "ends_said": false
   },
@@ -320,20 +320,20 @@
    "end": 10325,
    "serve_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.88,
+   "clothes_margin": 0.81,
    "clothes_says": false
   },
   {
    "start": 10502,
    "end": 10616,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.79,
+   "clothes_margin": 0.82,
    "clothes_says": false
   },
   {
@@ -341,10 +341,10 @@
    "end": 10736,
    "serve_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.8,
+   "clothes_margin": 0.87,
    "clothes_says": false
   },
   {
@@ -353,19 +353,19 @@
    "end_changes": 11,
    "cluster": 0,
    "near_is_target": false,
-   "method": "cambios de lado",
-   "clothes_margin": -0.05,
-   "clothes_says": null
+   "method": "ropa y cambios de lado",
+   "clothes_margin": 0.09,
+   "clothes_says": false
   },
   {
    "start": 11292,
    "end": 11385,
    "serve_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.8,
+   "clothes_margin": 0.81,
    "clothes_says": false
   },
   {
@@ -373,10 +373,10 @@
    "end": 11505,
    "serve_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.89,
+   "clothes_margin": 0.86,
    "clothes_says": false
   },
   {
@@ -384,20 +384,20 @@
    "end": 11809,
    "serve_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.9,
+   "clothes_margin": 0.86,
    "clothes_says": false
   },
   {
    "start": 11981,
    "end": 12123,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.84,
+   "clothes_margin": 0.8,
    "clothes_says": false
   },
   {
@@ -405,20 +405,20 @@
    "end": 12368,
    "serve_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.86,
+   "clothes_margin": 0.84,
    "clothes_says": false
   },
   {
    "start": 12438,
    "end": 12509,
    "end_changes": 11,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa (corrige el marcador)",
-   "clothes_margin": 0.29,
+   "clothes_margin": 0.3,
    "clothes_says": true,
    "ends_said": false
   },
@@ -426,7 +426,7 @@
    "start": 12719,
    "end": 12808,
    "end_changes": 11,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa (corrige el marcador)",
    "clothes_margin": 0.58,
@@ -438,10 +438,10 @@
    "end": 12962,
    "serve_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.89,
+   "clothes_margin": 0.87,
    "clothes_says": false
   },
   {
@@ -449,10 +449,10 @@
    "end": 13213,
    "serve_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.88,
+   "clothes_margin": 0.87,
    "clothes_says": false
   },
   {
@@ -460,10 +460,10 @@
    "end": 13364,
    "serve_vote": false,
    "end_changes": 11,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.9,
+   "clothes_margin": 0.83,
    "clothes_says": false
   },
   {
@@ -471,10 +471,10 @@
    "end": 14207,
    "serve_vote": true,
    "end_changes": 12,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.8,
+   "clothes_margin": 0.76,
    "clothes_says": true
   },
   {
@@ -482,10 +482,10 @@
    "end": 14424,
    "serve_vote": true,
    "end_changes": 12,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.77,
+   "clothes_margin": 0.6,
    "clothes_says": true
   },
   {
@@ -493,10 +493,10 @@
    "end": 14664,
    "serve_vote": true,
    "end_changes": 12,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.7,
+   "clothes_margin": 0.66,
    "clothes_says": true
   },
   {
@@ -504,10 +504,10 @@
    "end": 14775,
    "serve_vote": true,
    "end_changes": 12,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.74,
+   "clothes_margin": 0.7,
    "clothes_says": true
   },
   {
@@ -515,20 +515,20 @@
    "end": 15016,
    "serve_vote": true,
    "end_changes": 12,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.68,
+   "clothes_margin": 0.69,
    "clothes_says": true
   },
   {
    "start": 15247,
    "end": 15321,
    "end_changes": 12,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.79,
+   "clothes_margin": 0.72,
    "clothes_says": true
   },
   {
@@ -536,20 +536,20 @@
    "end": 15469,
    "return_vote": true,
    "end_changes": 12,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.74,
+   "clothes_margin": 0.69,
    "clothes_says": true
   },
   {
    "start": 15654,
    "end": 15731,
    "end_changes": 12,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.35,
+   "clothes_margin": 0.37,
    "clothes_says": true
   },
   {
@@ -557,10 +557,10 @@
    "end": 16037,
    "return_vote": true,
    "end_changes": 12,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.74,
+   "clothes_margin": 0.67,
    "clothes_says": true
   },
   {
@@ -568,30 +568,30 @@
    "end": 16155,
    "return_vote": true,
    "end_changes": 12,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.73,
+   "clothes_margin": 0.72,
    "clothes_says": true
   },
   {
    "start": 16222,
    "end": 16296,
    "end_changes": 12,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.51,
+   "clothes_margin": 0.47,
    "clothes_says": true
   },
   {
    "start": 16370,
    "end": 16593,
    "end_changes": 12,
-   "cluster": 1,
-   "near_is_target": null,
-   "method": "dudoso",
-   "clothes_margin": 0.12,
+   "cluster": 0,
+   "near_is_target": false,
+   "method": "ropa (corrige el marcador)",
+   "clothes_margin": 0.5,
    "clothes_says": false,
    "ends_said": true
   },
@@ -600,10 +600,10 @@
    "end": 17100,
    "return_vote": true,
    "end_changes": 12,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.69,
+   "clothes_margin": 0.68,
    "clothes_says": true
   },
   {
@@ -611,30 +611,30 @@
    "end": 17400,
    "return_vote": true,
    "end_changes": 12,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.74,
+   "clothes_margin": 0.73,
    "clothes_says": true
   },
   {
    "start": 17473,
    "end": 17593,
    "end_changes": 12,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.76,
+   "clothes_margin": 0.67,
    "clothes_says": true
   },
   {
    "start": 18716,
    "end": 18801,
    "end_changes": 13,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa (corrige el marcador)",
-   "clothes_margin": 0.64,
+   "clothes_margin": 0.62,
    "clothes_says": true,
    "ends_said": false
   },
@@ -643,10 +643,10 @@
    "end": 18924,
    "return_vote": false,
    "end_changes": 13,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.88,
+   "clothes_margin": 0.86,
    "clothes_says": false
   },
   {
@@ -654,10 +654,10 @@
    "end": 19163,
    "return_vote": false,
    "end_changes": 13,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.9,
+   "clothes_margin": 0.84,
    "clothes_says": false
   },
   {
@@ -665,10 +665,10 @@
    "end": 19310,
    "return_vote": false,
    "end_changes": 13,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.9,
+   "clothes_margin": 0.83,
    "clothes_says": false
   },
   {
@@ -676,10 +676,10 @@
    "end": 19678,
    "return_vote": false,
    "end_changes": 13,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.88,
+   "clothes_margin": 0.82,
    "clothes_says": false
   },
   {
@@ -687,20 +687,20 @@
    "end": 19913,
    "return_vote": false,
    "end_changes": 13,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.81,
+   "clothes_margin": 0.74,
    "clothes_says": false
   },
   {
    "start": 19920,
    "end": 19976,
    "end_changes": 13,
-   "cluster": 0,
+   "cluster": 1,
    "near_is_target": true,
    "method": "ropa (corrige el marcador)",
-   "clothes_margin": 0.58,
+   "clothes_margin": 0.57,
    "clothes_says": true,
    "ends_said": false
   },
@@ -708,10 +708,10 @@
    "start": 20115,
    "end": 20214,
    "end_changes": 13,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.79,
+   "clothes_margin": 0.78,
    "clothes_says": false
   },
   {
@@ -719,10 +719,10 @@
    "end": 20367,
    "return_vote": false,
    "end_changes": 13,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.88,
+   "clothes_margin": 0.84,
    "clothes_says": false
   },
   {
@@ -730,10 +730,10 @@
    "end": 20768,
    "serve_vote": false,
    "end_changes": 13,
-   "cluster": 1,
+   "cluster": 0,
    "near_is_target": false,
    "method": "ropa y cambios de lado",
-   "clothes_margin": 0.85,
+   "clothes_margin": 0.87,
    "clothes_says": false
   }
  ]

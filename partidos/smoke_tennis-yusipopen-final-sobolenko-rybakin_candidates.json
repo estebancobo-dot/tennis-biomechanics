@@ -20,16 +20,6 @@
   "source": "spotter"
  },
  {
-  "t": 47.0,
-  "audio": true,
-  "side": "far",
-  "identity": true,
-  "target": false,
-  "kind": "serve",
-  "score": 0.922,
-  "source": "spotter"
- },
- {
   "t": 74.095,
   "audio": false,
   "side": "far",
@@ -170,17 +160,17 @@
   "source": "spotter"
  },
  {
-  "t": 176.844,
+  "t": 176.846,
   "audio": true,
   "side": "near",
   "identity": true,
   "target": true,
   "kind": "backhand",
-  "score": 0.954,
+  "score": 0.97,
   "source": "spotter"
  },
  {
-  "t": 177.818,
+  "t": 177.821,
   "audio": true,
   "side": "far",
   "identity": true,
@@ -206,7 +196,7 @@
   "identity": null,
   "target": null,
   "kind": "serve",
-  "score": 0.716,
+  "score": 0.725,
   "source": "spotter"
  },
  {
@@ -220,7 +210,7 @@
   "source": "spotter"
  },
  {
-  "t": 211.65,
+  "t": 211.6,
   "audio": true,
   "side": "near",
   "identity": true,
@@ -510,13 +500,13 @@
   "source": "spotter"
  },
  {
-  "t": 539.498,
+  "t": 539.952,
   "audio": true,
-  "side": "near",
+  "side": "far",
   "identity": false,
-  "target": false,
+  "target": true,
   "kind": "backhand",
-  "score": 0.212,
+  "score": 0.728,
   "source": "spotter"
  },
  {
@@ -526,7 +516,7 @@
   "identity": false,
   "target": true,
   "kind": "serve",
-  "score": 0.346,
+  "score": 0.363,
   "source": "spotter"
  },
  {
@@ -540,23 +530,23 @@
   "source": "spotter"
  },
  {
-  "t": 602.003,
+  "t": 602.005,
   "audio": true,
   "side": "far",
   "identity": false,
   "target": true,
   "kind": "serve",
-  "score": 0.419,
+  "score": 0.613,
   "source": "spotter"
  },
  {
-  "t": 602.83,
+  "t": 602.831,
   "audio": true,
   "side": "near",
   "identity": false,
   "target": false,
   "kind": "forehand",
-  "score": 0.889,
+  "score": 0.913,
   "source": "spotter"
  },
  {
@@ -850,43 +840,33 @@
   "source": "spotter"
  },
  {
-  "t": 1073.405,
+  "t": 1073.414,
   "audio": true,
   "side": "near",
   "identity": false,
   "target": false,
   "kind": "serve",
-  "score": 0.945,
+  "score": 0.981,
   "source": "spotter"
  },
  {
-  "t": 1099.9,
+  "t": 1099.901,
   "audio": true,
   "side": "far",
   "identity": false,
   "target": true,
   "kind": "serve",
-  "score": 0.222,
+  "score": 0.372,
   "source": "spotter"
  },
  {
-  "t": 1101.557,
-  "audio": true,
-  "side": "near",
-  "identity": false,
-  "target": false,
-  "kind": "forehand",
-  "score": 0.845,
-  "source": "spotter"
- },
- {
-  "t": 1102.808,
+  "t": 1102.812,
   "audio": false,
   "side": "far",
   "identity": false,
   "target": true,
   "kind": "forehand",
-  "score": 0.785,
+  "score": 0.218,
   "source": "spotter"
  },
  {
@@ -960,23 +940,13 @@
   "source": "spotter"
  },
  {
-  "t": 1202.472,
-  "audio": false,
-  "side": "near",
-  "identity": false,
-  "target": false,
-  "kind": "serve",
-  "score": 0.636,
-  "source": "spotter"
- },
- {
-  "t": 1204.875,
+  "t": 1204.9,
   "audio": true,
   "side": "far",
   "identity": false,
   "target": true,
   "kind": "forehand",
-  "score": 0.772,
+  "score": 0.998,
   "source": "spotter"
  },
  {
@@ -1030,23 +1000,13 @@
   "source": "spotter"
  },
  {
-  "t": 1248.332,
-  "audio": true,
-  "side": "far",
-  "identity": true,
-  "target": false,
-  "kind": "backhand",
-  "score": 0.143,
-  "source": "spotter"
- },
- {
-  "t": 1249.598,
+  "t": 1249.599,
   "audio": false,
   "side": "near",
   "identity": true,
   "target": true,
   "kind": "backhand",
-  "score": 0.74,
+  "score": 0.565,
   "source": "spotter"
  },
  {
@@ -1090,13 +1050,13 @@
   "source": "spotter"
  },
  {
-  "t": 1291.366,
+  "t": 1291.388,
   "audio": false,
   "side": "far",
   "identity": false,
   "target": true,
   "kind": "forehand",
-  "score": 0.121,
+  "score": 0.126,
   "source": "spotter"
  },
  {
@@ -1250,13 +1210,13 @@
   "source": "spotter"
  },
  {
-  "t": 1494.53,
+  "t": 1494.526,
   "audio": true,
   "side": "near",
   "identity": true,
   "target": true,
   "kind": "serve",
-  "score": 0.991,
+  "score": 0.998,
   "source": "spotter"
  },
  {
@@ -1290,7 +1250,7 @@
   "source": "spotter"
  },
  {
-  "t": 1540.551,
+  "t": 1540.55,
   "audio": true,
   "side": "near",
   "identity": true,
@@ -1393,8 +1353,8 @@
   "t": 1642.395,
   "audio": false,
   "side": "near",
-  "identity": null,
-  "target": null,
+  "identity": false,
+  "target": false,
   "kind": "backhand",
   "score": 0.622,
   "source": "spotter"
@@ -1403,8 +1363,8 @@
   "t": 1643.738,
   "audio": true,
   "side": "far",
-  "identity": null,
-  "target": null,
+  "identity": false,
+  "target": true,
   "kind": "forehand",
   "score": 0.998,
   "source": "spotter"
@@ -1413,8 +1373,8 @@
   "t": 1644.6,
   "audio": true,
   "side": "near",
-  "identity": null,
-  "target": null,
+  "identity": false,
+  "target": false,
   "kind": "forehand",
   "score": 1.0,
   "source": "spotter"
@@ -1423,8 +1383,8 @@
   "t": 1650.146,
   "audio": true,
   "side": "near",
-  "identity": null,
-  "target": null,
+  "identity": false,
+  "target": false,
   "kind": "backhand",
   "score": 0.99,
   "source": "spotter"
@@ -1433,8 +1393,8 @@
   "t": 1651.095,
   "audio": true,
   "side": "far",
-  "identity": null,
-  "target": null,
+  "identity": false,
+  "target": true,
   "kind": "other",
   "score": 0.999,
   "source": "spotter"
@@ -1443,8 +1403,8 @@
   "t": 1652.699,
   "audio": true,
   "side": "far",
-  "identity": null,
-  "target": null,
+  "identity": false,
+  "target": true,
   "kind": "forehand",
   "score": 0.155,
   "source": "spotter"
@@ -1453,8 +1413,8 @@
   "t": 1654.97,
   "audio": true,
   "side": "far",
-  "identity": null,
-  "target": null,
+  "identity": false,
+  "target": true,
   "kind": "backhand",
   "score": 0.979,
   "source": "spotter"
@@ -1680,7 +1640,7 @@
   "source": "spotter"
  },
  {
-  "t": 1958.761,
+  "t": 1958.76,
   "audio": true,
   "side": "near",
   "identity": false,
@@ -1740,7 +1700,7 @@
   "source": "spotter"
  },
  {
-  "t": 1996.88,
+  "t": 1996.801,
   "audio": true,
   "side": "far",
   "identity": true,
