@@ -1,0 +1,675 @@
+{
+ "version": 1,
+ "device": "dml",
+ "results": {
+  "wasb": {
+   "baseline": "ours (TrackNetV3, fp16)",
+   "candidate": "wasb-fp16",
+   "clips": 8,
+   "frames": 3363,
+   "per_model": {
+    "ours (TrackNetV3, fp16)": {
+     "tp": 324,
+     "fp": 24,
+     "fn": 43,
+     "precision": 0.931,
+     "recall": 0.883,
+     "f1": 0.906,
+     "median_err_px": 1.88,
+     "fps": 34.5
+    },
+    "wasb": {
+     "tp": 305,
+     "fp": 35,
+     "fn": 62,
+     "precision": 0.897,
+     "recall": 0.831,
+     "f1": 0.863,
+     "median_err_px": 2.08,
+     "fps": 29.1
+    },
+    "wasb-fp16": {
+     "tp": 305,
+     "fp": 35,
+     "fn": 62,
+     "precision": 0.897,
+     "recall": 0.831,
+     "f1": 0.863,
+     "median_err_px": 2.08,
+     "fps": 44.4
+    }
+   },
+   "accuracy": "F1 0.863 / 0.906",
+   "speed": "44.4 / 34.5 fps",
+   "verdict": {
+    "adopt": false,
+    "reason": "F1 bola a 10 px 0.863 frente a 0.906 (peor); fotogramas/s 44.4 frente a 34.5 (no más lento)"
+   },
+   "notes": [
+    "La bola corre sobre todo el juego de un partido nuevo (detector de golpes): su velocidad por fotograma es la de esa parte de la pasada."
+   ],
+   "minutes": 5.3
+  },
+  "rtmw": {
+   "baseline": "YOLO11m-pose + RTMPose-x (hybrid-x)",
+   "candidate": "YOLO11m-pose + RTMW-x",
+   "per_model": {
+    "hybrid-x": {
+     "f1": 0.667,
+     "precision": 0.643,
+     "recall": 0.692,
+     "gt": 13,
+     "ms_per_frame": 300.1,
+     "jerk_pct": 0.357,
+     "feet_seen": 0.997
+    },
+    "candidate_hybrid-rtmw-x": {
+     "f1": 0.667,
+     "precision": 0.643,
+     "recall": 0.692,
+     "gt": 13,
+     "ms_per_frame": 100.0,
+     "jerk_pct": 0.356,
+     "feet_seen": 0.998
+    }
+   },
+   "accuracy": "F1 0.667 / 0.667; temblor 0.356 / 0.357 %; pies 0.998 / 0.997",
+   "speed": "10.0 / 3.3 fps",
+   "verdict": {
+    "adopt": true,
+    "reason": "F1 golpes 0.667 frente a 0.667 (igual o mejor); fotogramas/s 10.0 frente a 3.3 (no más lento)"
+   },
+   "notes": [
+    "Sin esqueletos anotados en nuestros datos: la precisión es la de la tarea (golpes encontrados frente a los giros de bola anotados de RacketVision), más el temblor de los puntos y los pies vistos."
+   ],
+   "minutes": 9.6
+  },
+  "court14": {
+   "baseline": "tennisbio.court.fit_court",
+   "candidate": "TennisCourtDetector",
+   "per_model": {
+    "ours (líneas)": {
+     "images": 300,
+     "court_found": 0.957,
+     "points_within_7px": 0.91,
+     "median_err_px": 2.0,
+     "fps": 3.6
+    },
+    "court14": {
+     "images": 300,
+     "court_found": 1.0,
+     "points_within_7px": 0.956,
+     "median_err_px": 2.0,
+     "fps": 6.3
+    }
+   },
+   "accuracy": "puntos a ≤7 px 0.956 / 0.91; pista hallada 1.0 / 0.957",
+   "speed": "6.3 / 3.6 fotogramas/s",
+   "verdict": {
+    "adopt": true,
+    "reason": "puntos a ≤7 px 0.956 frente a 0.91 (igual o mejor); fotogramas/s 6.3 frente a 3.6 (no más lento)"
+   },
+   "notes": [
+    "Conjunto de validación de TennisCourtDetector (300 fotogramas 1280x720; ese modelo eligió sus pesos con él, así que su cifra es algo optimista)."
+   ],
+   "minutes": 12.8
+  },
+  "rfdetr": {
+   "baseline": "YOLO11m-pose en la mitad lejana",
+   "candidate": "RF-DETR Medium 1152",
+   "per_model": {
+    "ours (YOLO11m-pose, mitad lejana)": {
+     "far_found": 0.903,
+     "fps": 1.3
+    },
+    "rfdetr": {
+     "far_found": 1.0,
+     "fps": 0.5
+    }
+   },
+   "far_rackets": 360,
+   "accuracy": "jugadora lejana hallada 1.0 / 0.903",
+   "speed": "0.5 / 1.3 fotogramas/s",
+   "verdict": {
+    "adopt": false,
+    "reason": "lejana hallada 1.0 frente a 0.903 (igual o mejor); fotogramas/s 0.5 frente a 1.3 (más lento)"
+   },
+   "notes": [
+    "Referencia: la raqueta anotada del jugador lejano en los fotogramas de prueba de RacketVision (la persona hallada la contiene, con un margen de media caja)."
+   ],
+   "minutes": 14.9
+  },
+  "f3ed": {
+   "baseline": "detector propio (spotting)",
+   "candidate": "F3ED",
+   "matches": [
+    "20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin",
+    "20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina",
+    "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
+    "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina"
+   ],
+   "per_model": {
+    "f3ed": {
+     "all": {
+      "gt": 1314,
+      "pred": 1142,
+      "found": 1048,
+      "recall": 0.798,
+      "precision": 0.918,
+      "near": {
+       "gt": 666,
+       "found": 529,
+       "recall": 0.794,
+       "serve": {
+        "gt": 187,
+        "found": 143,
+        "recall": 0.765
+       },
+       "forehand": {
+        "gt": 248,
+        "found": 207,
+        "recall": 0.835
+       },
+       "backhand": {
+        "gt": 225,
+        "found": 176,
+        "recall": 0.782
+       },
+       "other": {
+        "gt": 6,
+        "found": 3,
+        "recall": 0.5
+       }
+      },
+      "far": {
+       "gt": 648,
+       "found": 519,
+       "recall": 0.801,
+       "serve": {
+        "gt": 181,
+        "found": 143,
+        "recall": 0.79
+       },
+       "forehand": {
+        "gt": 236,
+        "found": 197,
+        "recall": 0.835
+       },
+       "backhand": {
+        "gt": 227,
+        "found": 178,
+        "recall": 0.784
+       },
+       "other": {
+        "gt": 4,
+        "found": 1,
+        "recall": 0.25
+       }
+      },
+      "kind_accuracy": 0.996
+     },
+     "test": {
+      "gt": 308,
+      "pred": 308,
+      "found": 306,
+      "recall": 0.994,
+      "precision": 0.994,
+      "near": {
+       "gt": 160,
+       "found": 159,
+       "recall": 0.994,
+       "serve": {
+        "gt": 49,
+        "found": 48,
+        "recall": 0.98
+       },
+       "forehand": {
+        "gt": 55,
+        "found": 55,
+        "recall": 1.0
+       },
+       "backhand": {
+        "gt": 56,
+        "found": 56,
+        "recall": 1.0
+       },
+       "other": {
+        "gt": 0,
+        "found": 0,
+        "recall": null
+       }
+      },
+      "far": {
+       "gt": 148,
+       "found": 147,
+       "recall": 0.993,
+       "serve": {
+        "gt": 29,
+        "found": 29,
+        "recall": 1.0
+       },
+       "forehand": {
+        "gt": 62,
+        "found": 62,
+        "recall": 1.0
+       },
+       "backhand": {
+        "gt": 55,
+        "found": 55,
+        "recall": 1.0
+       },
+       "other": {
+        "gt": 2,
+        "found": 1,
+        "recall": 0.5
+       }
+      },
+      "kind_accuracy": 1.0
+     },
+     "min_per_video_min": 0.153
+    },
+    "ours": {
+     "all": {
+      "gt": 1314,
+      "pred": 1144,
+      "found": 1006,
+      "recall": 0.766,
+      "precision": 0.879,
+      "near": {
+       "gt": 666,
+       "found": 508,
+       "recall": 0.763,
+       "serve": {
+        "gt": 187,
+        "found": 139,
+        "recall": 0.743
+       },
+       "forehand": {
+        "gt": 248,
+        "found": 195,
+        "recall": 0.786
+       },
+       "backhand": {
+        "gt": 225,
+        "found": 171,
+        "recall": 0.76
+       },
+       "other": {
+        "gt": 6,
+        "found": 3,
+        "recall": 0.5
+       }
+      },
+      "far": {
+       "gt": 648,
+       "found": 498,
+       "recall": 0.769,
+       "serve": {
+        "gt": 181,
+        "found": 139,
+        "recall": 0.768
+       },
+       "forehand": {
+        "gt": 236,
+        "found": 186,
+        "recall": 0.788
+       },
+       "backhand": {
+        "gt": 227,
+        "found": 171,
+        "recall": 0.753
+       },
+       "other": {
+        "gt": 4,
+        "found": 2,
+        "recall": 0.5
+       }
+      },
+      "kind_accuracy": 0.965
+     },
+     "test": {
+      "gt": 308,
+      "pred": 310,
+      "found": 308,
+      "recall": 1.0,
+      "precision": 0.994,
+      "near": {
+       "gt": 160,
+       "found": 160,
+       "recall": 1.0,
+       "serve": {
+        "gt": 49,
+        "found": 49,
+        "recall": 1.0
+       },
+       "forehand": {
+        "gt": 55,
+        "found": 55,
+        "recall": 1.0
+       },
+       "backhand": {
+        "gt": 56,
+        "found": 56,
+        "recall": 1.0
+       },
+       "other": {
+        "gt": 0,
+        "found": 0,
+        "recall": null
+       }
+      },
+      "far": {
+       "gt": 148,
+       "found": 148,
+       "recall": 1.0,
+       "serve": {
+        "gt": 29,
+        "found": 29,
+        "recall": 1.0
+       },
+       "forehand": {
+        "gt": 62,
+        "found": 62,
+        "recall": 1.0
+       },
+       "backhand": {
+        "gt": 55,
+        "found": 55,
+        "recall": 1.0
+       },
+       "other": {
+        "gt": 2,
+        "found": 2,
+        "recall": 1.0
+       }
+      },
+      "kind_accuracy": 1.0
+     },
+     "min_per_video_min": 0.031
+    }
+   },
+   "accuracy": "F1 golpes (test) 0.994 / 0.997",
+   "speed": "0.153 / 0.031 min por min de vídeo",
+   "verdict": {
+    "adopt": false,
+    "reason": "F1 golpes 0.994 frente a 0.997 (peor); min por min de vídeo 0.153 frente a 0.031 (más lento)"
+   },
+   "notes": [
+    "F3ED se entrenó con la parte «train» de F3Set: la comparación justa es la de los puntos de «test».",
+    "Velocidad: minutos de cálculo por minuto de vídeo; el propio es el tiempo de la etapa spotting (sin la pasada barata que también usan otras etapas)."
+   ],
+   "minutes": 15.4
+  },
+  "ocr5": {
+   "baseline": "rapidocr-onnxruntime 1.4 (PP-OCRv4)",
+   "candidate": "rapidocr 3.10 + PP-OCRv5 mobile",
+   "matches": [
+    "us-open-2026-r4-naomi-osaka-elena-rybakina",
+    "zheng-qinwen-elena-rybakina",
+    "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+    "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5"
+   ],
+   "per_model": {
+    "ours": {
+     "samples": 730,
+     "read": 0.526,
+     "consistent_per_sample": 0.518,
+     "consistent_of_read": 0.984,
+     "read_where_stage_read": 0.796,
+     "read_where_stage_missed": 0.035,
+     "s_per_sample": 0.693
+    },
+    "ppocrv5": {
+     "samples": 730,
+     "read": 0.456,
+     "consistent_per_sample": 0.438,
+     "consistent_of_read": 0.961,
+     "read_where_stage_read": 0.609,
+     "read_where_stage_missed": 0.178,
+     "s_per_sample": 0.573
+    }
+   },
+   "agreement_ours_vs_candidate": {
+    "both": 270,
+    "same": 268,
+    "same_share": 0.993,
+    "only_first": 114,
+    "only_second": 63
+   },
+   "agreement_with_score_json": {
+    "ours": {
+     "both": 370,
+     "same": 370,
+     "same_share": 1.0,
+     "only_first": 73,
+     "only_second": 5
+    },
+    "ppocrv5": {
+     "both": 270,
+     "same": 268,
+     "same_share": 0.993,
+     "only_first": 173,
+     "only_second": 17
+    }
+   },
+   "accuracy": "lecturas coherentes por muestra 0.438 / 0.518; leídas 0.456 / 0.526",
+   "speed": "0.573 / 0.693 s por muestra (CPU)",
+   "verdict": {
+    "adopt": false,
+    "reason": "lecturas coherentes por muestra 0.438 frente a 0.518 (peor); s por muestra 0.573 frente a 0.693 (no más lento)"
+   },
+   "notes": [
+    "Sin marcadores anotados: no es una precisión frente a la verdad, sino acuerdo entre motores y coherencia (una lectura cuenta si encaja con la secuencia del partido según las reglas del tenis: juegos que solo crecen, el marcador de juegos más leído para cada total, puntos que no retroceden dentro de un juego; tennisbio.point_count). Un error que dé otra puntuación posible no se detecta.",
+    "Muestras: instantes en que nuestra etapa leyó el marcador (score.json) y, aproximados, instantes en que lo intentó sin leerlo; los dos motores leen exactamente los mismos fotogramas, sin reutilizar lecturas, en la CPU (donde corre la etapa)."
+   ],
+   "minutes": 15.7
+  },
+  "mag3d": {
+   "baseline": "RTMW3D (tennisbio.pose.wholebody3d)",
+   "candidate": "MotionAGFormer (mag3d-s)",
+   "per_model": {
+    "ours (RTMW3D)": {
+     "frames": 5131,
+     "median_err_deg": 40.399,
+     "within_15deg": 0.13,
+     "xfactor_median_err_deg": 10.188,
+     "ms_per_frame": 29.35,
+     "fps": 34.1
+    },
+    "mag3d-xs": {
+     "frames": 5131,
+     "median_err_deg": 19.555,
+     "within_15deg": 0.366,
+     "xfactor_median_err_deg": 14.739,
+     "ms_per_frame": 2.12,
+     "fps": 471.7
+    },
+    "mag3d-s": {
+     "frames": 5131,
+     "median_err_deg": 12.486,
+     "within_15deg": 0.58,
+     "xfactor_median_err_deg": 10.4,
+     "ms_per_frame": 5.09,
+     "fps": 196.5
+    }
+   },
+   "segments": [
+    {
+     "session": "01_28_2026_16_30_ath",
+     "segment": 0,
+     "angle": 82.5,
+     "sync_s": -0.641,
+     "sync_px": 1.54
+    },
+    {
+     "session": "01_28_2026_16_30_ath",
+     "segment": 1,
+     "angle": 82.5,
+     "sync_s": -0.391,
+     "sync_px": 2.64
+    },
+    {
+     "session": "01_28_2026_16_30_ath",
+     "segment": 2,
+     "angle": 82.5,
+     "sync_s": 0.377,
+     "sync_px": 2.56
+    },
+    {
+     "session": "01_28_2026_16_30_ath",
+     "segment": 3,
+     "angle": 82.5,
+     "sync_s": -1.408,
+     "sync_px": 1.18
+    },
+    {
+     "session": "01_28_2026_16_30_ath",
+     "segment": 4,
+     "angle": 82.5,
+     "sync_s": -0.691,
+     "sync_px": 2.0
+    },
+    {
+     "session": "01_23_2026_17_00_court2",
+     "segment": 0,
+     "angle": 80.3,
+     "sync_s": -0.291,
+     "sync_px": 0.62
+    },
+    {
+     "session": "01_23_2026_17_00_court2",
+     "segment": 4,
+     "angle": 80.3,
+     "sync_s": 1.493,
+     "sync_px": 7.46
+    },
+    {
+     "session": "01_28_2026_19_00_ath",
+     "segment": 0,
+     "angle": 76.8,
+     "sync_s": -1.5,
+     "sync_px": 3.14
+    },
+    {
+     "session": "01_28_2026_19_00_ath",
+     "segment": 1,
+     "angle": 76.8,
+     "sync_s": -1.5,
+     "sync_px": 3.0
+    },
+    {
+     "session": "01_28_2026_19_00_ath",
+     "segment": 2,
+     "angle": 76.8,
+     "sync_s": -1.475,
+     "sync_px": 1.74
+    },
+    {
+     "session": "01_28_2026_19_00_ath",
+     "segment": 3,
+     "angle": 76.8,
+     "sync_s": -1.325,
+     "sync_px": 1.43
+    },
+    {
+     "session": "01_28_2026_19_00_ath",
+     "segment": 4,
+     "angle": 76.8,
+     "sync_s": -1.492,
+     "sync_px": 1.34
+    }
+   ],
+   "accuracy": "a ≤15° 0.58 / 0.13; mediana 12.486 / 40.399°; X-factor 10.4 / 10.188°",
+   "speed": "196.5 / 34.1 fotogramas/s (el candidato usa la pose 2D que ya tiene la pasada fina)",
+   "verdict": {
+    "adopt": true,
+    "reason": "giro del tronco a ≤15° de la referencia 0.58 frente a 0.13 (igual o mejor); fotogramas/s 196.5 frente a 34.1 (no más lento)"
+   },
+   "notes": [
+    "01_23_2026_17_00_court2 tramo 1: la misma persona no se encuentra en las dos vistas",
+    "01_23_2026_17_00_court2 tramo 2: la misma persona no se encuentra en las dos vistas",
+    "01_23_2026_17_00_court2 tramo 3: la misma persona no se encuentra en las dos vistas",
+    "Referencia: la línea de hombros y la de caderas triangulada desde dos vistas calibradas y sincronizadas de CalTennis (nuestra pose 2D en las dos; no depende de ninguna profundidad estimada). Cada modelo 3D se lee en una sola vista; error = diferencia de su dirección alrededor de la vertical.",
+    "Las cámaras de CalTennis están a ~1,7 m de altura, a un lado o detrás de la pista; la de la tele está más alta. Un modelo que falla aquí no sirve; uno que acierta aquí no queda probado para la vista de la tele (allí RTMW3D aplanaba la profundidad: tennisbio.reliability).",
+    "RTMW3D se sitúa a la profundidad real de la pelvis (sacada de la referencia): es su mejor caso."
+   ],
+   "minutes": 24.5
+  },
+  "bounce": {
+   "baseline": "regla del giro más brusco (tennisbio.ball)",
+   "candidate": "CatBoost (TennisProject)",
+   "per_model": {
+    "annotated": {
+     "ours (regla)": {
+      "tp": 406,
+      "fp": 72,
+      "fn": 117,
+      "precision": 0.849,
+      "recall": 0.776,
+      "f1": 0.811,
+      "median_err_f": 0.0
+     },
+     "bounce": {
+      "tp": 495,
+      "fp": 40,
+      "fn": 28,
+      "precision": 0.925,
+      "recall": 0.946,
+      "f1": 0.936,
+      "median_err_f": 0.0
+     }
+    },
+    "tracked": {
+     "ours (regla)": {
+      "tp": 79,
+      "fp": 48,
+      "fn": 66,
+      "precision": 0.622,
+      "recall": 0.545,
+      "f1": 0.581,
+      "median_err_f": 0.0
+     },
+     "bounce": {
+      "tp": 133,
+      "fp": 18,
+      "fn": 12,
+      "precision": 0.881,
+      "recall": 0.917,
+      "f1": 0.899,
+      "median_err_f": 0.0
+     }
+    }
+   },
+   "seconds_per_hour": {
+    "ours (regla)": 0.5,
+    "bounce": 1.6
+   },
+   "minutes_per_hour": {
+    "ours (regla)": 0.1,
+    "bounce": 0.1
+   },
+   "clips": {
+    "annotated": 95,
+    "tracked": 24
+   },
+   "bounces": {
+    "annotated": 523,
+    "tracked": 145
+   },
+   "accuracy": "F1 botes con nuestra bola 0.899 / 0.581; con la bola anotada 0.936 / 0.811",
+   "speed": "0.1 / 0.1 min por hora de vídeo (1.6 / 0.5 s)",
+   "verdict": {
+    "adopt": true,
+    "reason": "F1 botes (bola de nuestro detector) 0.899 frente a 0.581 (igual o mejor); min añadidos a la pasada por hora de vídeo 0.1 frente a 0.1 (no más lento)"
+   },
+   "notes": [
+    "Bote acertado si está a ≤3 fotogramas (0,1 s) de uno anotado.",
+    "El modelo CatBoost se entrenó con este mismo conjunto (10 partidos, 75 % de sus fotogramas al azar): su cifra es optimista; no hay otro conjunto público con botes anotados. Con la bola de nuestro detector las entradas ya no son las de su entrenamiento.",
+    "Con la bola anotada la regla recibe los golpes anotados; con la de nuestro detector, los golpes que saca tennisbio.ball.ball_hits, como en un partido.",
+    "Las dos son pasos sobre la trayectoria de la bola ya calculada. Velocidad: lo que cada una añade a la pasada completa, en minutos por hora de vídeo redondeados hacia arriba a 0,1 (la pasada dura ~75 min por hora de vídeo y varía minutos entre ejecuciones; menos de 6 s por hora no la cambia); entre paréntesis, los segundos medidos."
+   ],
+   "minutes": 20.9
+  }
+ },
+ "generated": "2026-11-04 04:36"
+}
