@@ -980,6 +980,18 @@ PETITIONS.update({
     232: r"Golpes que fallaron|Etapas con errores|Exportación|" + _T + "test_no_unbounded_calls$",
     241: r"Pruebas del código en este PC|" + _T + "test_no_hardcoded_player$",
 })
+# package B7 (04-11): the notes and unchecked requests of the base, now with their own tests run on the PC and the
+# checks read from the PC's own files (infrastructure_items); they replace the notes above
+PETITIONS.update({
+    40: _T + "test_windows_scripts$", 43: _T + "test_local_only$", 145: _T + "test_local_only$",
+    50: r"^Progreso visible|" + _T + "test_logs_progress$", 66: r"^Registros con fecha y duración$|" + _T + "test_logs_progress$",
+    81: r"^Tamaño de la salida|" + _T + "test_output_places$", 82: _T + "(test_output_places|test_pipeline)$",
+    136: _T + "test_project_context$", 139: _T + "test_speed_keeps_quality$", 146: r"^Carpetas de pruebas antiguas$",
+    # «completo»: also the strokes found against the scoreboard (none lost), not only nothing asked to the user
+    45: r"Nada pide revisión manual|Golpes que fallaron|Golpes encontrados frente al marcador",
+    160: r"^Aplicación: |" + _T + "(test_app_window|test_app_core)$",
+    242: r"^Aplicación: |" + _T + "(test_app_core|test_app_window)$",
+})
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 SPEED_TARGET = 45 / 35          # hours of processing per hour of video (Base step 1: 35 min in ≤ 45 min)
 
@@ -1017,7 +1029,10 @@ def code_tests_item(log: Path | None) -> dict:
 # test modules that check user requests on the PC itself (pruebas.xml of scripts/windows/pruebas_fondo.ps1), 03-11
 MODULE_TESTS = ("test_pipeline", "test_auto_cycle", "test_pc_requests", "test_library", "test_layout",
                 "test_identity_click", "test_app_core", "test_app_window", "test_auto_catalog_rename",
-                "test_no_hardcoded_player", "test_no_unbounded_calls")
+                "test_no_hardcoded_player", "test_no_unbounded_calls",
+                # package B7 (04-11)
+                "test_windows_scripts", "test_local_only", "test_logs_progress", "test_output_places",
+                "test_project_context", "test_speed_keeps_quality")
 
 
 def module_tests_items(xml: Path | None) -> list[dict]:
@@ -1052,6 +1067,174 @@ def module_tests_items(xml: Path | None) -> list[dict]:
     return out
 
 
+# --- the PC's infrastructure, read from the files it leaves (package B7, 04-11) ----------------------------------------
+_DATE = r"\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}(:\d{2})?"
+LOG_RUNNING_S = 3 * 3600          # a request log without its end, written less than this ago: still running
+OLD_TEST_DAYS = 14                # a test folder (_poc*) untouched for longer is an old one (request #146)
+
+
+def progress_item(bases: list[Path]) -> dict:
+    """#50: the progress of the running stage is visible: <output>/progreso.json with match, stage, % and time
+    (pipeline.Context.progress writes it; the PC uploads it and the application shows it)."""
+    name = "Progreso visible (progreso.json)"
+    f = next((b / "progreso.json" for b in bases if (b / "progreso.json").exists()), None)
+    if f is None:
+        return _item(5, "Infraestructura", name, "aviso", "no se encontró progreso.json (ninguna etapa ha dicho su avance aquí)")
+    try:
+        p = json.loads(f.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        return _item(5, "Infraestructura", name, "falta", f"progreso.json ilegible ({e})")
+    need = ("partido", "etapa", "hecho", "total", "porcentaje", "hora")
+    miss = [k for k in need if p.get(k) is None]
+    if miss or not re.match(_DATE, str(p.get("hora", ""))):
+        return _item(5, "Infraestructura", name, "falta", f"progreso.json sin {', '.join(miss) or 'hora válida'}")
+    return _item(5, "Infraestructura", name, "ok",
+                 f"último: {p['etapa']} de {p['partido']} al {p['porcentaje']} % ({p['hecho']}/{p['total']}), "
+                 f"{p.get('segundos', '?')} s, quedan ≈ {p.get('quedan_s', '?')} s, a las {p['hora']}")
+
+
+def log_dates(text: str, age_s: float) -> str:
+    """'' when a log of the PC says when it started and when it ended (or how long it took); else what is missing.
+    Formats: the double-click scripts' transcripts (steps «==> [fecha]» and «Empezado … duracion total», comun.ps1),
+    a request's log («Peticion N: … (fecha)» … «termina fecha»), the tests' log (inicio/fin) and event logs
+    (each line with its date). A request log written less than LOG_RUNNING_S ago may still be running."""
+    lines = [ln.strip().lstrip("﻿") for ln in text.splitlines() if ln.strip().lstrip("﻿")]
+    if not lines:
+        return "vacío"
+    if "Windows PowerShell transcript start" in text[:400]:
+        if not re.search(r"==> \[" + _DATE + r"\]|Empezado " + _DATE, text):
+            return "sin la fecha de sus pasos"
+        if "End time:" in text[-400:] and "duracion total" not in text:
+            return "terminó sin «Empezado … duracion total»"
+        return ""
+    if lines[0].startswith("Peticion "):
+        if not re.search(r"\(" + _DATE, lines[0]):
+            return "sin la fecha de inicio"
+        if re.search(r"termina " + _DATE + r"|duracion total", "\n".join(lines[-5:])):
+            return ""
+        return "" if age_s < LOG_RUNNING_S else "sin «termina fecha» al final"
+    if lines[0].startswith("commit:"):
+        head = "\n".join(lines[:5])
+        return "" if re.search(r"inicio: " + _DATE, head) and re.search(r"fin: " + _DATE, head) else "sin inicio y fin"
+    dated = sum(bool(re.match(_DATE, ln)) for ln in lines)
+    if dated and dated >= 0.8 * len(lines):          # an event log: each line with its date (tracebacks in between)
+        return ""
+    return "sin fechas"
+
+
+def logs_item(bases: list[Path], now: float | None = None) -> dict:
+    """#66: every log the PC writes in <output> (double-click scripts, Claude's requests, tests, events) says when it
+    started and when it ended or how long it took (scripts/windows/comun.ps1 and ciclo_automatico.ps1)."""
+    import time
+    name = "Registros con fecha y duración"
+    now = time.time() if now is None else now
+    folder = next((b for b in bases if b.exists() and any(b.glob("*.log"))), None)
+    if folder is None:
+        return _item(5, "Infraestructura", name, "aviso", "no se encontró ningún registro (.log) del PC")
+    logs = sorted(folder.glob("*.log"))
+    bad = []
+    for f in logs:
+        try:
+            why = log_dates(f.read_text(encoding="utf-8-sig", errors="replace"), now - f.stat().st_mtime)
+        except OSError as e:
+            why = f"ilegible ({e})"
+        if why:
+            bad.append(f"{f.name}: {why}")
+    return _item(5, "Infraestructura", name, "falta" if bad else "ok",
+                 f"{len(logs) - len(bad)} de {len(logs)} registros con fecha de inicio y de fin o duración"
+                 + (f"; sin ellas: {'; '.join(bad[:6])}" if bad else ""))
+
+
+def _sizes(f: Path) -> tuple[str, dict[str, float]]:
+    """tamanos.txt (comun.ps1, Subir-Registros): its date and MB of each output folder by its path."""
+    date, mb = "", {}
+    for ln in f.read_text(encoding="utf-8-sig", errors="replace").splitlines():
+        if ln.startswith("fecha:"):
+            date = ln.split(":", 1)[1].strip()
+        m = re.match(r"\s*([\d.,]+)\s*MB\s+(\S.*)$", ln)
+        if m:
+            mb[m.group(2).strip()] = float(m.group(1).replace(",", "."))
+    return date, mb
+
+
+def sizes_item(bases: list[Path]) -> dict:
+    """#81: the size of each output folder, written by the PC itself every cycle (registros/tamanos.txt, uploaded with
+    the logs): the disk is watched without spending anyone's time or tokens."""
+    name = "Tamaño de la salida (tamanos.txt)"
+    f = next((b / "registros" / "tamanos.txt" for b in bases if (b / "registros" / "tamanos.txt").exists()), None)
+    if f is None:
+        return _item(5, "Infraestructura", name, "aviso", "no se encontró registros/tamanos.txt")
+    date, mb = _sizes(f)
+    if not date or not mb:
+        return _item(5, "Infraestructura", name, "falta", "tamanos.txt sin fecha o sin carpetas")
+    top = sorted(((v, k) for k, v in mb.items() if k.count("\\") <= 2), reverse=True)[:3]
+    tot = sum(v for k, v in mb.items() if k.count("\\") <= 2)
+    return _item(5, "Infraestructura", name, "ok", f"{len(mb)} carpetas, {tot / 1024:.1f} GB en total ({date}); las mayores: "
+                 + ", ".join(f"{k.rsplit(chr(92), 1)[-1]} {v / 1024:.1f} GB" for v, k in top))
+
+
+def old_test_folders_item(bases: list[Path], now: float | None = None, days: float = OLD_TEST_DAYS) -> dict:
+    """#146 «borra las carpetas de pruebas antiguas»: test folders of the cycle (<output>/_poc*) untouched for more than
+    `days` days, with their size (tamanos.txt) — they only fill the disk. Nothing is deleted here (only the user's
+    request to the PC deletes them, ciclo_automatico.ps1 «borrar»)."""
+    import time
+    name = "Carpetas de pruebas antiguas"
+    now = time.time() if now is None else now
+    out = next((b for b in bases if b.exists() and any(b.glob("_poc*"))), None)
+    if out is None:
+        return _item(5, "Infraestructura", name, "ok", "ninguna carpeta de pruebas (_poc*) en la salida")
+    sizes = {}
+    tf = next((b / "registros" / "tamanos.txt" for b in bases if (b / "registros" / "tamanos.txt").exists()), None)
+    if tf is not None:
+        sizes = {k.rsplit("\\", 1)[-1]: v for k, v in _sizes(tf)[1].items()}
+    old = []
+    for d in sorted(p for p in out.glob("_poc*") if p.is_dir()):
+        try:
+            last = max([d.stat().st_mtime] + [c.stat().st_mtime for c in d.iterdir()])
+        except OSError:
+            continue
+        if now - last > days * 86400:
+            old.append((d.name, sizes.get(d.name)))
+    if not old:
+        return _item(5, "Infraestructura", name, "ok", f"ninguna carpeta de pruebas con más de {days:.0f} días sin usar")
+    gb = sum(v for _, v in old if v) / 1024
+    return _item(5, "Infraestructura", name, "aviso",
+                 f"{len(old)} carpeta(s) de pruebas sin usar en más de {days:.0f} días"
+                 + (f" ({gb:.1f} GB)" if gb else "") + ": " + ", ".join(n for n, _ in old[:8])
+                 + ". Se borran con la petición «borrar» del PC")
+
+
+def app_items(bases: list[Path]) -> list[dict]:
+    """#160, #242: the application on the PC, from its own check (tennisbio app comprobar → capturas_app/ventana.json):
+    the real window loads and every screen is painted without problems; its index holds the analyses."""
+    f = next((b / "capturas_app" / "ventana.json" for b in bases if (b / "capturas_app" / "ventana.json").exists()), None)
+    names = ("Aplicación: ventana real y pantallas", "Aplicación: análisis en su índice")
+    if f is None:
+        return [_item(5, "Aplicación", n, "aviso", "todavía sin la comprobación de la aplicación (capturas_app/ventana.json)")
+                for n in names]
+    try:
+        v = json.loads(f.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        return [_item(5, "Aplicación", n, "falta", f"ventana.json ilegible ({e})") for n in names]
+    live, idx, probs = v.get("live") or {}, v.get("index") or {}, v.get("problems") or []
+    ok_win = not probs and (v.get("screens") or 0) > 0 and live.get("ready") is True
+    out = [_item(5, "Aplicación", names[0], "ok" if ok_win else "falta",
+                 f"{v.get('screens', 0)} pantallas pintadas, {len(probs)} problemas; ventana real: "
+                 + ("carga" if live.get("ready") else f"no carga ({live.get('error') or live.get('step') or 'sin dato'})")
+                 + (f"; {'; '.join(str(p) for p in probs[:3])}" if probs else ""))]
+    n_an, n_m = idx.get("analyses") or 0, idx.get("matches") or 0
+    out.append(_item(5, "Aplicación", names[1], "ok" if n_an else "aviso",
+                     f"{n_an} análisis y {n_m} partidos en el índice de la aplicación"
+                     + ("" if n_an else ": los análisis de los partidos hechos por el ciclo automático aún no están en ella")))
+    return out
+
+
+def infrastructure_items(out_root: Path) -> list[dict]:
+    """The B7 checks read from the PC's own files (progress, logs, sizes, old test folders, the application)."""
+    bases = [out_root, out_root.parent, out_root.parent.parent]
+    return [progress_item(bases), logs_item(bases), sizes_item(bases), old_test_folders_item(bases)] + app_items(bases)
+
+
 def side_checks(out_root: Path) -> list[dict]:
     """Outputs that live next to the match folders: the validation with annotated public clips and the
     coach videos Claude learned from."""
@@ -1077,6 +1260,10 @@ def side_checks(out_root: Path) -> list[dict]:
         n = sum(1 for x in v if x.get("subtitles"))
         items.append(_item(6, "Aprendizaje", "Vídeos de análisis de entrenadores (solo para aprender)", "ok" if n else "aviso",
                            f"{len(v)} vídeos, {n} con texto (docs/aprendido_entrenadores.md); nunca en el informe"))
+    try:
+        items += infrastructure_items(out_root)
+    except Exception as e:  # noqa: BLE001 — the audit must still be written
+        items.append(_item(5, "Infraestructura", "Comprobaciones de la infraestructura del PC", "aviso", f"no se pudieron hacer ({e})"))
     return items
 
 
@@ -1090,11 +1277,13 @@ def file_tree_items(match_dirs: list[Path], report_dir: Path | None, out_root: P
     items = []
     ok = lambda f: f.exists() and f.stat().st_size > 0
     for d in match_dirs:
-        miss = [f"{n}/{o}" for n, st in STAGES.items() for o in st.outputs if not ok(d / o)]
+        # each file where the stages write it (match_files.at): in a library folder the cheap pass is in etapas/
+        # and the rest in golpes/<jugadora>/ (04-11: read beside the folder, every library match lacked them all)
+        miss = [f"{n}/{o}" for n, st in STAGES.items() for o in st.outputs if not ok(_mf.at(d, o))]
         st_file = _mf.at(d, "strokes.json")
         strokes = json.loads(st_file.read_text(encoding="utf-8")) if ok(st_file) else []
         win = [x for x in strokes if x.get("window") and not ok(_mf.at(d, "windows") / x["window"])]
-        ser = [x for x in strokes if x.get("series") and not ok(d / x["series"])]
+        ser = [x for x in strokes if x.get("series") and not ok(_mf.at(d, x["series"]))]
         bad = miss + [f"ventana de {x.get('stroke_id', '?')}" for x in win[:3]] + [f"serie de {x.get('stroke_id', '?')}" for x in ser[:3]]
         items.append(_item(5, "Ficheros", f"Partido {d.name}: salida de cada etapa, ventanas y series",
                            "falta" if bad else "ok",
