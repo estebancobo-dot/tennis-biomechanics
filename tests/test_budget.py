@@ -14,11 +14,11 @@ def test_identity_like_slowness_raises_an_alarm_once_warmed_up(tmp_path):
     assert al and "identity" in al and "3.9 veces" in al
 
 
-def test_without_a_budget_the_median_of_past_runs_here_is_the_budget(tmp_path):
+def test_without_a_budget_the_slowest_past_run_here_is_the_budget(tmp_path):
     for s in (1.0, 1.2, 0.8):
         B.record_unit(tmp_path, "fine", s, 200, "m")
-    assert B.budget_per_unit({}, tmp_path, "fine")[0] == 1.0
-    assert B.check({}, tmp_path, "fine", 300, 200, 400) is None        # 1.5 s per stroke: within 2×
+    assert B.budget_per_unit({}, tmp_path, "fine")[0] == 1.2           # the slowest run here
+    assert B.check({}, tmp_path, "fine", 400, 200, 400) is None        # 2 s per stroke: within 2 × 1.2
     assert B.check({}, tmp_path, "fine", 600, 200, 400)                # 3 s: alarm
 
 
@@ -46,8 +46,15 @@ def test_forecast_flags_stages_never_measured_on_a_whole_match(tmp_path):
     md, total = B.forecast([{"match": "x", "video_min": 100, "seconds": {"identity": 4},
                              "stages": {"fine": "stale", "identity": "stale", "views": "ok", "court": "missing"}}],
                            tmp_path)
-    assert "| x | fine | por rehacer | 25 min | medido en partido entero |" in md
+    assert "| x | fine | por rehacer | 25 min | medido en partido entero |" in md          # one rate: no range
     assert "| x | identity | por rehacer | 11 min | **sin medir en partido entero** |" in md
     assert "court" in md and "sin medir aquí" in md and "views" not in md.split("| x |")[-1]
     assert "Etapas sin medir en un partido entero: court, identity" in md
     assert abs(total - (1500 + 685.7)) < 1
+
+
+def test_forecast_gives_a_range_from_caches_to_computing_everything(tmp_path):
+    B.record_stage(tmp_path, "fine", 300, 120, "cached")      # 2.5 s per minute: from its caches
+    B.record_stage(tmp_path, "fine", 3600, 120, "fresh")      # 30 s per minute: everything computed
+    md, total = B.forecast([{"match": "x", "video_min": 120, "seconds": {}, "stages": {"fine": "stale"}}], tmp_path)
+    assert "| x | fine | por rehacer | 5-60 min |" in md and "desde las cachés - calculando todo" in md

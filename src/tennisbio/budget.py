@@ -73,7 +73,9 @@ def budget_per_unit(cfg: dict, out: Path, stage: str) -> tuple[float | None, str
         return float(b), "configuración"
     past = [e["s"] for e in _load(Path(out) / RATES).get(f"{stage}:unidad", [])]
     if len(past) >= 2:
-        return float(statistics.median(past)), f"mediana de {len(past)} ejecuciones aquí"
+        # the slowest run here, not the median (04-11, request 94: the median came from runs that only read their
+        # caches, and a stage that really computed raised a false alarm)
+        return float(max(past)), f"la más lenta de {len(past)} ejecuciones aquí"
     return None, ""
 
 
@@ -102,12 +104,14 @@ def raise_alarm(out: Path, match: str, stage: str, text: str):
     _save(p, d)
 
 
-def per_minute(out: Path, stage: str) -> tuple[float | None, bool]:
-    """(median seconds per minute of video of a stage here, whether one of them was a whole match)."""
+def per_minute(out: Path, stage: str) -> tuple[float | None, bool, float | None]:
+    """(fastest seconds per minute of video of a stage here, whether one of them was a whole match, slowest): the
+    fastest is a run from its caches, the slowest one that computed everything (04-11: a median mixed the two)."""
     es = _load(Path(out) / RATES).get(f"{stage}:minuto", [])
     if not es:
-        return None, False
-    return float(statistics.median(e["s"] for e in es)), any(e.get("video_min", 0) >= WHOLE_MATCH_MIN for e in es)
+        return None, False, None
+    v = [e["s"] for e in es]
+    return float(min(v)), any(e.get("video_min", 0) >= WHOLE_MATCH_MIN for e in es), float(max(v))
 
 
 def forecast(rows: list[dict], out: Path) -> tuple[str, float]:
@@ -116,26 +120,31 @@ def forecast(rows: list[dict], out: Path) -> tuple[str, float]:
     rate × minutes and its last time."""
     L = ["# Previsión antes de ejecutar", "",
          "| Partido | Etapa | Estado | Estimación | Base de la estimación |", "|---|---|---|---|---|"]
-    total, maybe, unmeasured = 0.0, 0.0, set()
+    total, total_hi, maybe, unmeasured = 0.0, 0.0, 0.0, set()
     for r in rows:
         for n, st in r["stages"].items():
             if st == "ok":
                 continue
-            rate, whole = per_minute(out, n)
+            rate, whole, slow = per_minute(out, n)
             last = (r.get("seconds") or {}).get(n) or 0.0
-            est = max(rate * r["video_min"], last) if rate and r.get("video_min") else last
+            vm = r.get("video_min") or 0
+            est = rate * vm if rate and vm else last              # from its caches
+            hi = max(slow * vm if slow and vm else 0.0, last, est)  # computing everything
             basis = ("medido en partido entero" if whole else
                      "**sin medir en partido entero**" if rate else "**sin medir aquí**")
+            rng = f"{est / 60:.0f} min" if hi - est < 60 else f"{est / 60:.0f}-{hi / 60:.0f} min"
             if st == "upstream":          # re-runs only if a stage above comes out different (pipeline 1.7)
-                maybe += est
-                L.append(f"| {r['match']} | {n} | solo si cambia lo de arriba | hasta {est / 60:.0f} min | {basis} |")
+                maybe += hi
+                L.append(f"| {r['match']} | {n} | solo si cambia lo de arriba | hasta {hi / 60:.0f} min | {basis} |")
                 continue
             if not whole:
                 unmeasured.add(n)
             total += est
-            L.append(f"| {r['match']} | {n} | {'por rehacer' if st == 'stale' else 'falta'} | "
-                     f"{est / 60:.0f} min | {basis} |")
-    L += ["", f"**Total estimado: {total / 3600:.1f} h**"
+            total_hi += hi
+            L.append(f"| {r['match']} | {n} | {'por rehacer' if st == 'stale' else 'falta'} | {rng} | {basis} |")
+    span = (f"{total / 3600:.1f} h" if total_hi - total < 360 else
+            f"{total / 3600:.1f}-{total_hi / 3600:.1f} h (desde las cachés - calculando todo)")
+    L += ["", f"**Total estimado: {span}**"
           + (f" (y hasta {maybe / 3600:.1f} h más si cambian los resultados de las etapas de arriba)." if maybe else ".")]
     if unmeasured:
         L.append(f"Etapas sin medir en un partido entero: {', '.join(sorted(unmeasured))} → se miden antes, solas.")
