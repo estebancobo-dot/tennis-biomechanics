@@ -215,6 +215,11 @@ accion: completo
 ---
 id: 100
 accion: completo
+---
+id: 101
+accion: completo
+# 101 (04-11): sin etapas que rehacer: informes y auditoria de los 4 partidos con el codigo nuevo (retraso del saque tras
+# volver la camara principal; comprobaciones de B1, B3 y B7)
 # 100 (04-11): identity v8 (video entrelazado, Osaka: fotogramas exactos como antes) y la auditoria de saques con donde
 # caen los saques encontrados; no se lanza si la prevision pasa de 6 h
 # 99 (04-11): la referencia con identity v7 y views v6 (prevision 98: 0,6-4,7 h); su auditoria trae, por cada punto de
