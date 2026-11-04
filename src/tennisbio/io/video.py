@@ -327,7 +327,9 @@ def keyframe_times(info: VideoInfo) -> np.ndarray:
                 ts.append(float(a))
             except ValueError:
                 pass
-    return np.unique(np.asarray(ts, float))
+    # relative to the start of the video, like every other time here and like `-ss` (04-11: in a .ts the packets start
+    # at the file's start_time, e.g. 1.4 s or more; Osaka's identity read its clothes that far off her keypoints)
+    return np.unique(np.asarray(ts, float)) - float(info.start_time or 0.0)
 
 
 def _frames_at(info: VideoInfo, times: list[float], hwaccel, dense_s: float, max_run: int, key_only: bool = False):

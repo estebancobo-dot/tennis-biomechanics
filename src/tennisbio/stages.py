@@ -481,7 +481,7 @@ def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run
     return codes, far
 
 
-@stage("identity", "6", deps=("players", "score", "court", "audio"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
+@stage("identity", "7", deps=("players", "score", "court", "audio"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
 def st_identity(ctx: Context):
     """Is the near player the target in each run? Two independent cues, fused:
     - the end-change chain: serves + the scoreboard's serve marker name who is near in some runs
@@ -1006,7 +1006,7 @@ def _sample_views(ctx: Context, scenes: dict, shots: list[int], main_pitch) -> d
     return {i: merge_evidence(v) for i, v in per.items()}
 
 
-@stage("views", "5", deps=("scenes", "court", "players", "score", "audio", "candidates"), settings=_views_settings,
+@stage("views", "6", deps=("scenes", "court", "players", "score", "audio", "candidates"), settings=_views_settings,
        outputs=("views.json",))
 def st_views(ctx: Context):
     """Replays and the other cameras, used and linked to the live stroke they show (tennisbio.views,

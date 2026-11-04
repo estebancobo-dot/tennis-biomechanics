@@ -1,7 +1,7 @@
 {
  "probe": {
   "version": "2",
-  "hash": "f201200a6787c53e",
+  "hash": "1b8a23258799d2a8",
   "modules": [
    "io.video"
   ]
@@ -26,8 +26,8 @@
   ]
  },
  "identity": {
-  "version": "5",
-  "hash": "60ed093b7de6f998",
+  "version": "7",
+  "hash": "073c833b13c91834",
   "modules": [
    "clothes",
    "identity"
@@ -50,8 +50,8 @@
   ]
  },
  "views": {
-  "version": "5",
-  "hash": "c3ba491febe6e0f7",
+  "version": "6",
+  "hash": "6cc0a4b7e8d9e716",
   "modules": [
    "replays",
    "views"

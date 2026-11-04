@@ -172,3 +172,21 @@ def test_each_keyframe_read_alone_by_a_jump(tmp_path):
     assert [t for t, _ in got] == list(kt)
     for t, fr in got:
         assert fr is not None and np.array_equal(fr, seek_frame(info, float(t))), t
+
+
+def test_keyframe_times_of_a_ts_are_relative_to_its_start(tmp_path):
+    """04-11: a .ts starts its packets at its start_time (here 11.4 s); the keyframe times must be relative to the
+    video's start, like every other time and like `-ss`, or a keyframe read is the frame start_time later (Osaka)."""
+    import subprocess
+    import numpy as np
+    from tennisbio.io.video import keyframe_times, keyframes_at, probe, seek_frame
+    v = tmp_path / "k.ts"
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "lavfi", "-i", "testsrc=duration=5:size=160x90:rate=25",
+                    "-c:v", "libx264", "-g", "25", "-keyint_min", "25", "-sc_threshold", "0", "-pix_fmt", "yuv420p",
+                    "-output_ts_offset", "10", str(v)], check=True, timeout=60)
+    info = probe(v)
+    assert info.start_time > 10
+    kt = keyframe_times(info)
+    assert np.allclose(kt, [0.0, 1.0, 2.0, 3.0, 4.0], atol=0.05)
+    for t, fr in keyframes_at(info, list(kt[:3]), workers=2):
+        assert fr is not None and np.array_equal(fr, seek_frame(info, float(t))), t
