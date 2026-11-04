@@ -5882,3 +5882,29 @@
 2026-11-04 09:02:41   ventana w012348314_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 88) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 231 px (segments)
 2026-11-04 09:02:41   fine_doubtful: 100 % (66/66 golpes candidatos · 36 confirmados · 0 ventanas descartadas sin pose) · 30 s · quedan ≈ 0 s
 2026-11-04 09:02:42 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine_doubtful terminada a las 09:02:42 en 40 s
+2026-11-04 11:23:53 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] identity… (2026-11-04 11:23:53, etapa 7 de 14)
+2026-11-04 11:24:04   identity:   0 % (1/2027 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+2026-11-04 11:24:34   identity:  16 % (319/2027 fotogramas (ropa)) · 30 s · quedan ≈ 3 min
+2026-11-04 11:25:05   identity:  33 % (663/2027 fotogramas (ropa)) · 60 s · quedan ≈ 2 min
+2026-11-04 11:25:35   identity:  48 % (971/2027 fotogramas (ropa)) · 2 min · quedan ≈ 2 min
+2026-11-04 11:26:05   identity:  63 % (1287/2027 fotogramas (ropa)) · 2 min · quedan ≈ 70 s
+2026-11-04 11:26:35   identity:  79 % (1592/2027 fotogramas (ropa)) · 3 min · quedan ≈ 41 s
+2026-11-04 11:27:06   identity:  93 % (1892/2027 fotogramas (ropa)) · 3 min · quedan ≈ 13 s
+2026-11-04 11:27:18   identity: 100 % (2027/2027 fotogramas (ropa)) · 3 min · quedan ≈ 0 s
+2026-11-04 11:27:19   ropa: 2027 fotogramas · leerlos 175 s, medir la ropa 19 s
+2026-11-04 11:27:19   identidad: 327/342 planos · ropa y cambios de lado de acuerdo en 282, solo cambios de lado 15, solo ropa 21, la ropa corrige el marcador en 9, el saque visto en 0, dudosos 2 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 5.84
+2026-11-04 11:27:19 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] identity terminada a las 11:27:19 en 3.4 min
+2026-11-04 11:27:19 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] spotting… (2026-11-04 11:27:19, etapa 8 de 14)
+2026-11-04 11:28:06   detector entrenado: 656 golpes (324 cercanos, 332 lejanos) en 210 min de vídeo · umbral 0.1 · 44 s (jugadores_y_audio 4 s, rasgos 43 s, bola 0 s, modelo 0 s)
+2026-11-04 11:28:06 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] spotting terminada a las 11:28:06 en 47 s
+2026-11-04 11:28:06 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] candidates… (2026-11-04 11:28:06, etapa 9 de 14)
+2026-11-04 11:28:10   sonido: pista 1 de 2 (la que coincide con los golpes)
+2026-11-04 11:28:10   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 1, 'changed': 4, 'by_click': 316}
+2026-11-04 11:28:13   tramos que son repeticiones: 7 sin marcador
+2026-11-04 11:28:13   candidatos del detector entrenado: 636 (323 lejanos; 20 en repeticiones, fuera)
+2026-11-04 11:28:13 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] candidates terminada a las 11:28:13 en 7 s
+2026-11-04 11:28:13 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] views… (2026-11-04 11:28:13, etapa 10 de 14)
+2026-11-04 11:28:21   views:   0 % (1/2991 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+2026-11-04 11:28:51   views:   7 % (213/2991 fotogramas de otras tomas) · 30 s · quedan ≈ 7 min
+2026-11-04 11:29:22   views:  12 % (371/2991 fotogramas de otras tomas) · 61 s · quedan ≈ 7 min
+2026-11-04 11:29:52   views:  18 % (532/2991 fotogramas de otras tomas) · 2 min · quedan ≈ 7 min
