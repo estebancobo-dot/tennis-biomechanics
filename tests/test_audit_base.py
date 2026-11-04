@@ -1,0 +1,160 @@
+"""Checks of the Base packages B1 (speed and use of the PC) and B3 (best models) in the audit, 04-11: every request
+of both packages has an automatic check (or says why not), computed from what the PC leaves (bench_candidates.json,
+ritmos.json, recursos/*.csv, ciclo_actions.log), the manifests, the configuration and its own tests on the PC."""
+import json
+from datetime import datetime
+
+import tennisbio.audit as A
+from tennisbio import real_status
+
+HEAD = "hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram_python_gb,gpu_3d,gpu_compute,gpu_decode,disco\n"
+
+
+def _manifest(d, **stages):
+    d.mkdir(parents=True, exist_ok=True)
+    (d / "manifest.json").write_text(json.dumps(stages), encoding="utf-8")
+    return d
+
+
+def test_each_candidate_measured_or_said_why_not(tmp_path):
+    out = tmp_path / "output"
+    out.mkdir()
+    items = A.candidate_items(out)
+    assert len(items) == len(A.CANDIDATE_MODELS) and {i["status"] for i in items} == {"aviso"}
+    rep = {"version": 1, "device": "dml", "generated": "2026-11-03 10:00", "results": {
+        "wasb": {"baseline": "ours (TrackNetV3, fp16)", "accuracy": "F1 0.863 / 0.906", "speed": "44.4 / 34.5 fps",
+                 "verdict": {"adopt": False, "reason": "F1 peor"}},
+        "mag3d": {"accuracy": "58 % / 13 %", "speed": "196 / 34", "verdict": {"adopt": True, "reason": "mejor"}},
+        "ocr5": {"error": "RuntimeError: boom"},
+        "rfdetr": {"verdict": {"adopt": False, "insufficient": True, "reason": "sin medida completa"}}}}
+    rd = tmp_path / "datasets" / "reports"            # where bench_candidates.py writes it, next to the output
+    rd.mkdir(parents=True)
+    (rd / "bench_candidates.json").write_text(json.dumps(rep), encoding="utf-8")
+    it = {i["name"].split(": ")[1].split(" ")[0]: i for i in A.candidate_items(out)}
+    assert it["wasb"]["status"] == "ok" and "no se adopta" in it["wasb"]["detail"] and "0.863" in it["wasb"]["detail"]
+    assert it["mag3d"]["status"] == "ok" and "se adopta" in it["mag3d"]["detail"]
+    assert it["ocr5"]["status"] == "falta" and "boom" in it["ocr5"]["detail"]
+    assert it["rfdetr"]["status"] == "aviso" and it["bounce"]["status"] == "aviso"
+    # the copy in the output folder wins over the one in datasets
+    (out / "bench_candidates.json").write_text(json.dumps({"results": {}}), encoding="utf-8")
+    assert {i["status"] for i in A.candidate_items(out)} == {"aviso"}
+
+
+def test_models_in_use_from_the_configuration_and_their_files(tmp_path, monkeypatch):
+    from tennisbio import court
+
+    f = {k: tmp_path / f"{k}.onnx" for k in ("spot", "ball", "racket", "scenes", "mag", "tcd")}
+    for p in f.values():
+        p.write_bytes(b"x")
+    monkeypatch.setattr(court, "TCD_ONNX", f["tcd"])
+    cfg = {"spotter": {"enabled": True, "onnx": str(f["spot"])}, "fine_pass": {"pose_model": "hybrid", "refine": "rtmpose-x"},
+           "court": {"detector": "tcd14"}, "trunk3d": {"model": "motionagformer", "onnx": str(f["mag"])},
+           "ball": {"onnx": str(f["ball"])}, "racket_face": {"pose_onnx": str(f["racket"])}, "scenes": {"onnx": str(f["scenes"])}}
+    items = A.models_in_use_items(cfg)
+    assert len(items) == 7 and all(i["status"] == "ok" for i in items), items
+    f["mag"].unlink()                                          # adopted but missing: the former reading is used
+    cfg["court"]["detector"] = "lines"
+    it = {i["name"]: i for i in A.models_in_use_items(cfg)}
+    assert it["Modelo en uso: giro 3D del tronco (MotionAGFormer)"]["status"] == "aviso"
+    assert "sin su fichero" in it["Modelo en uso: giro 3D del tronco (MotionAGFormer)"]["detail"]
+    assert "no elegido" in it["Modelo en uso: pista de 14 puntos (TennisCourtDetector)"]["detail"]
+
+
+def test_strokes_from_the_learned_detector_per_match(tmp_path):
+    a = _manifest(tmp_path / "a", candidates={"summary": {"candidates": 625, "source": "spotter"}},
+                  spotting={"summary": {"enabled": True, "near": 344, "far": 299, "threshold": 0.1}})
+    b = _manifest(tmp_path / "b", candidates={"summary": {"candidates": 40}})
+    c = _manifest(tmp_path / "c", probe={"summary": {"duration_min": 10}})       # no candidates yet: nothing said
+    it = {i["name"]: i for i in A.spotter_items([a, b, c])}
+    assert it["Golpes del detector aprendido: a"]["status"] == "ok" and "625" in it["Golpes del detector aprendido: a"]["detail"]
+    assert it["Golpes del detector aprendido: b"]["status"] == "aviso" and len(it) == 2
+
+
+def test_a_stage_twice_as_slow_as_usual_is_named(tmp_path):
+    out = tmp_path / "output"
+    out.mkdir()
+    m = _manifest(out / "m", probe={"seconds": 10, "summary": {"duration_min": 100.0}},
+                  identity={"seconds": 600.0}, fine={"seconds": 150.0}, scenes={"seconds": 30.0})
+    assert A.stage_time_items([m], out)[0]["status"] == "pocos datos"             # nothing to compare with yet
+    rates = {"identity:minuto": [{"s": 1.0}, {"s": 1.1}, {"s": 0.9}], "fine:minuto": [{"s": 1.4}, {"s": 1.6}, {"s": 1.5}],
+             "scenes:minuto": [{"s": 0.01}] * 3}
+    (out / "ritmos.json").write_text(json.dumps(rates), encoding="utf-8")
+    (out / "alarmas.json").write_text(json.dumps({"alarmas": [{"etapa": "identity", "texto": "identity: 2.41 s por unidad"}]}),
+                                      encoding="utf-8")
+    it = A.stage_time_items([m], out)[0]
+    assert it["status"] == "aviso" and "identity 6.0 s por min" in it["detail"] and "alarma en vivo" in it["detail"]
+    assert "fine" not in it["detail"].split("MÁS LENTAS")[1]                       # 1.5 s/min, its usual rate
+    assert "scenes" not in it["detail"]                                            # read from its caches: not judged
+    m2 = _manifest(out / "m2", probe={"summary": {"duration_min": 100.0}}, identity={"seconds": 120.0})
+    assert A.stage_time_items([m2], out)[0]["status"] == "ok"
+
+
+def test_stages_at_the_same_time(tmp_path):
+    a = _manifest(tmp_path / "a", score={"seconds": 600}, players={"seconds": 1466, "overlap_s": 569.7})
+    b = _manifest(tmp_path / "b", score={"seconds": 600}, players={"seconds": 1466})
+    it = {i["name"]: i for i in A.parallel_items([a, b])}
+    assert it["Etapas a la vez: a"]["status"] == "ok" and "9.5 min" in it["Etapas a la vez: a"]["detail"]
+    assert it["Etapas a la vez: b"]["status"] == "aviso"
+
+
+def test_use_of_the_pc_per_stage(tmp_path):
+    out = tmp_path / "output"
+    out.mkdir()
+    assert A.resources_items(out)[0]["status"] == "aviso"
+    (out / "recursos").mkdir()
+    (out / "recursos" / "recursos_2026-11-04_1648.csv").write_text(
+        HEAD + "t,osaka,identity,65.0,0.0,46.3,5.3,19.8,0.1,0.0,0.0,0.0,0.0\n"
+        + "t,osaka,fine,40.0,30.0,5.0,12.0,19.8,4.0,95.0,0.0,0.0,2.0\n", encoding="ascii")
+    it = A.resources_items(out)[0]
+    assert it["status"] == "ok" and "identity" in it["detail"] and "iGPU al límite" in it["detail"]
+
+
+def test_requests_start_at_once_by_github_actions(tmp_path):
+    out = tmp_path / "output"
+    out.mkdir()
+    assert A.actions_item(out, datetime(2026, 11, 4, 13, 30))["status"] == "aviso"
+    (out / "ciclo_actions.log").write_text("**********************\nWindows PowerShell transcript start\n"
+                                           "Start time: 20261104133433\n", encoding="utf-8")
+    assert A.actions_item(out, datetime(2026, 11, 4, 13, 30))["status"] == "ok"
+    late = A.actions_item(out, datetime(2026, 11, 4, 13, 0))
+    assert late["status"] == "aviso" and "empezó a los 34." in late["detail"]
+    newer = A.actions_item(out, datetime(2026, 11, 4, 15, 0))                 # the last request did not come by Actions
+    assert newer["status"] == "aviso" and "no empezó por GitHub Actions" in newer["detail"]
+
+
+def test_base_items_never_break_the_audit(tmp_path, monkeypatch):
+    monkeypatch.setattr(A, "candidate_items", lambda out: 1 / 0)
+    items = A.base_items([], tmp_path, cfg={})
+    assert any(i["name"] == "Comprobaciones de la base (B1, B3)" and i["status"] == "aviso" for i in items)
+    assert any(i["name"].startswith("Peticiones por GitHub Actions") for i in items)
+
+
+def test_every_request_of_b1_and_b3_has_a_check_and_reaches_level_3_when_it_holds(monkeypatch):
+    """With every check passing, each HECHO request of B1 and B3 is «comprobado en salidas»; a PARCIAL one stays at
+    level 2 (built only in part, whatever its checks say) and #30, a document, says it has no automatic check."""
+    pk = real_status.packages()
+    ids = pk["B1"]["peticiones"] + pk["B3"]["peticiones"]
+    for rid in ids:
+        assert A.PETITIONS.get(rid) is not None, rid
+    assert [r for r in ids if isinstance(A.PETITIONS[r], A.Note)] == [30]
+    assert "sin comprobación automática posible" in A.PETITIONS[30]
+    ok = lambda area, name: {"req": 9, "area": area, "name": name, "status": "ok", "detail": ""}
+    items = [ok("Rendimiento", "Tiempo: m"), ok("Pantallas", "Novedades de la versión"), ok("Uso del PC", "Uso del PC por etapa"),
+             ok("Tiempo por etapa", "Tiempo de cada etapa frente a su ritmo en este PC: m"),
+             ok("Trabajo en paralelo", "Etapas a la vez: m"), ok("Peticiones del PC", "Peticiones por GitHub Actions: espera"),
+             ok("Modelos", "Golpes del detector aprendido: m")]
+    items += [ok("Modelos", f"Modelo candidato medido: {n} ({w})") for n, (w, _) in A.CANDIDATE_MODELS.items()]
+    items += [ok("Modelos", f"Modelo en uso: {x}") for x in ("detector de golpes aprendido (F3Set)", "esqueleto híbrido (YOLO11 + RTMPose)",
+                                                           "pista de 14 puntos (TennisCourtDetector)", "giro 3D del tronco (MotionAGFormer)",
+                                                           "bola (TrackNetV3 de RacketVision)")]
+    items += [ok("Pruebas en este PC", f"Pruebas en este PC: {m}") for m in A.MODULE_TESTS]
+    pet = {int(i["name"].split(" ")[0][1:]): i for i in A.petition_items(items)}
+    states = {rid: st for rid, _, st in real_status.registry()}
+    for rid in ids:
+        lv = real_status.level(states[rid], pet.get(rid), rid)
+        want = 1 if rid == 30 else 3 if states[rid] == "HECHO" else 2
+        assert lv == want, (rid, states[rid], pet.get(rid))
+    # and a failing check is said: the candidate of #202 not measured → #202 drops to level 2
+    items = [i if not i["name"].startswith("Modelo candidato medido: wasb") else {**i, "status": "aviso"} for i in items]
+    pet = {int(i["name"].split(" ")[0][1:]): i for i in A.petition_items(items)}
+    assert real_status.level(states[202], pet[202], 202) == 2
