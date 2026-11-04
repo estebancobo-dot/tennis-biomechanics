@@ -179,6 +179,16 @@ accion: ventana
 ---
 id: 89
 accion: ventana
+---
+id: 90
+accion: recall
+detector: si
+---
+id: 91
+accion: completo
+# 90-91 (04-11): el tipo de golpe lo da el detector aprendido (la pose llamaba reves a la mitad de las derechas y a
+# casi todos los saques); 90 = tabla de tipos en F3Set; 91 = los 4 partidos (solo la pasada fina, desde las caches):
+# saques encontrados frente al marcador en la auditoria
 # 89 (04-11): pantallas otra vez: en la 88 la ventana real no cargo (minimizada, WebView2 156) y la copia a USB fallaba
 # con las carpetas de la biblioteca; los dos arreglados
 # 87-88 (03-11): paso 6.2, la aplicacion con los datos reales de la referencia y sus pantallas, sin el ciclo

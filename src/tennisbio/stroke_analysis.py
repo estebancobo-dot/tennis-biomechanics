@@ -21,6 +21,8 @@ class StrokeResult:
     ball: dict = field(default_factory=dict)   # bounce before contact (image px, s before contact)  # per frame in window: [t_rel, elevation, head_above_wrist_cm]
     chain: dict = field(default_factory=dict)
     review: list = field(default_factory=list)   # reasons to send to manual review
+    stroke_pose: str | None = None               # the pose vote's answer when the spotter named the type (04-11)
+    stroke_source: str = "pose"                  # "detector" (learned spotter) or "pose" (classify_side)
 
     def to_dict(self):
         return asdict(self)

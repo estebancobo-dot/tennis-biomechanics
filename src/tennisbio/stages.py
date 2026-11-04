@@ -2101,6 +2101,22 @@ def _gate_passes(ctx, group, t0, wid, clip, cache, side, ball, cut_s: float) -> 
     return {}
 
 
+SPOTTER_KIND = {"serve": "overhead", "forehand": "forehand", "backhand": "backhand"}
+
+
+def stroke_from_spotter(r, c: dict) -> None:
+    """The stroke type of the learned spotter when the stroke is one of its candidates (04-11). The pose vote
+    (stroke_analysis.classify_side) called 101 of 189 annotated forehands and 84 of 132 serves «backhand» on
+    F3Set since the spotter's own strokes entered the fine pass (25-10, 219af58: their contact frames are less
+    exact, and with no clear vote the pose answer falls back to backhand); the spotter names the type with 92 %
+    accuracy on its held-out match. The pose answer stays in stroke_pose; "other" (volleys…) keeps the pose's."""
+    k = SPOTTER_KIND.get(c.get("kind") or "") if c.get("source") == "spotter" else None
+    r.stroke_pose = r.stroke
+    if k is not None and k != r.stroke:
+        r.stroke = k
+    r.stroke_source = "detector" if k is not None else "pose"
+
+
 def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets, scenes, rpose, wb3d, fcfg):
     """One confirmed stroke of an analysed window, or None."""
     target = (c["t"] - t0) * run.fps
@@ -2112,6 +2128,7 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
     if abs(r.impact_frame - target) > CONFIRM_TOL_S * run.fps:
         return None                           # the fine pass did not confirm this candidate
     used.add(r.impact_frame)
+    stroke_from_spotter(r, c)
     from .limits import sanitize
     r.review += [f"impossible:{k}" for k in sanitize(r.metrics)]      # measurement errors, never shown
     d = r.to_dict()

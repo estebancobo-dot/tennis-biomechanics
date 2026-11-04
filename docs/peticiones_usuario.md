@@ -34,9 +34,9 @@ la auditoría las marcará «sin comprobación automática asignada».
 
 | Estado | Nº |
 |---|---|
-| HECHO | 107 |
-| PARCIAL | 103 |
-| FALTA | 24 |
+| HECHO | 111 |
+| PARCIAL | 104 |
+| FALTA | 19 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
 | **Total** | **245** |
@@ -267,11 +267,11 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 196 | Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18) | FALTA | — | — | `scripts/check_requests.py` (registro) | No están en `practice.SIDE_METRICS`. |
 | 197 | Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19) | FALTA | — | — | `scripts/check_requests.py` (registro) | Pendiente de confirmar con el usuario (descartó la hoja de sesión). |
 | 198 | Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20) | FALTA | — | — | `scripts/check_requests.py` (registro) | Opcional, fuera del golpe. |
-| 199 | Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10) | FALTA | — | — | `scripts/check_requests.py` (registro) | Sigue la heurística. |
-| 200 | Pista: TennisCourtDetector (14 puntos) + refinado (Estado del arte, 13-10) | FALTA | — | — | `scripts/check_requests.py` (registro) | Sigue la detección por líneas propia. |
-| 201 | Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10) | FALTA | `pyproject.toml` sigue en rapidocr-onnxruntime 1.x | — | `scripts/check_requests.py` (registro) | Hecho solo «OCR cuando cambia». |
-| 202 | Bola: probar WASB (Estado del arte, 13-10) | FALTA | — | — | `scripts/check_requests.py` (registro) | No probado. |
-| 203 | 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10) | FALTA | — | — | `scripts/check_requests.py` (registro) | No probado. |
+| 199 | Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10) | PARCIAL | `src/tennisbio/candidates/bounce_ctb.py`, `scripts/bench_candidates.py` | — | petición 85 (04-11) | Medido: CatBoost de TennisProject F1 0,899 frente a 0,581 de la regla (con nuestra bola). Sin licencia: no se copia; falta un modelo propio (M5). |
+| 200 | Pista: TennisCourtDetector (14 puntos) + refinado (Estado del arte, 13-10) | HECHO | `src/tennisbio/court_tcd.py`, `src/tennisbio/court.py` | — | petición 75 (03-11) | Adoptada: puntos ≤ 7 px 95,6 % frente a 91 %; su pista solo si encaja con las líneas (`court.detector: tcd14`). |
+| 201 | Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10) | HECHO | `src/tennisbio/candidates/ocr5.py`, `scripts/bench_ocr.py` | — | petición 82 (03-11) | Medido y descartado: lecturas coherentes 0,44 frente a 0,52 del actual. |
+| 202 | Bola: probar WASB (Estado del arte, 13-10) | HECHO | `scripts/export_wasb.py`, `scripts/bench_candidates.py` | — | petición 75 (03-11) | Medido y descartado: F1 0,863 frente a 0,906 de la actual. |
+| 203 | 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10) | HECHO | `src/tennisbio/trunk3d.py`, `src/tennisbio/pose/motionagformer.py` | `tests/test_trunk3d.py` | petición 83 (03-11) | Adoptado: a ≤15° de la referencia de dos cámaras (CalTennis) 58 % frente a 13 % de RTMW3D. |
 | 204 | Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10) | HECHO | `spotting.py`, `scripts/train_spotting.py`, `models/spotting.onnx` (CNN temporal con bola, entrenada con F3Set) | — | `scripts/validate_recall.py` | 26-10: 80 % de sus golpes en partidos bien anotados, frente al 4 % de las reglas. Probar E2E-Spot/F3ED como alternativa queda en la base (#228). |
 | 205 | Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3) | FALTA | — | — | `scripts/check_requests.py` (registro) | Los 4 partidos dieron menos de la mitad de sus golpes. |
 | 206 | Validación de cuerdas y 3D con referencia real (Comparativa apps, §4.4) | PARCIAL | `scripts/validate_racket.py` | — | `scripts/check_requests.py` (registro) | Sin referencia 3D real. |
