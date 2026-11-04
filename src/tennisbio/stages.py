@@ -390,6 +390,9 @@ def _far_player(boxes: np.ndarray, H, near: int) -> int | None:
     return int(np.argmax(hh))
 
 
+KEY_TOL_S = 0.12      # a clothes frame read at a keyframe this close to one of her frames (she is at her stillest)
+
+
 def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run=6, min_far_px=40.0):
     """Clothing code of the near player in each run (and of the far player when the players stage
     saw her in the same frames), from up to `per_run` frames per run spread over it, each the
@@ -409,7 +412,8 @@ def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run
         ctx.log(f"  ropa: no se puede leer el vídeo ({type(e).__name__}); se usa la apariencia de la caja entera")
         return None, []
     fps, frames = float(d["fps"]), d["frames"]
-    want = []                                                    # (time, run, frame index in run)
+    want = []                                                    # (time read, run, frame index in run)
+    kt = keyframe_times(info)
     for i, (run, sel, img) in enumerate(tracks):
         good = np.array([j >= 0 and bool(np.all(d["confs"][run[t]][j][[5, 6, 11, 12]] > 0.3)) for t, j in enumerate(sel)])
         if not good.any():
@@ -425,8 +429,21 @@ def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run
         sp = np.where(np.isfinite(sp), sp, 1e6)
         cand = np.flatnonzero(good)
         for part in np.array_split(cand, min(per_run, len(cand))):
-            t = int(part[np.argmin(sp[part])])
-            want.append((frames[run[t]] / fps, i, t))
+            # 04-11 (plan 1.7): the stillest frame of the stretch that lies next to a KEYFRAME, read alone by a jump
+            # (as the views stage does), instead of decoding the whole match: request 84 spent 99 % of this stage
+            # reading (13-133 min per match, ~3-4 s per frame). Only a stretch with no keyframe within
+            # KEY_TOL_S of a frame of hers is read at its exact frame.
+            ts = frames[run[part]] / fps
+            if len(kt):
+                j = np.clip(np.searchsorted(kt, ts), 1, len(kt) - 1)
+                k = np.where(np.abs(kt[j - 1] - ts) <= np.abs(kt[j] - ts), kt[j - 1], kt[j])
+                close = np.abs(k - ts) <= KEY_TOL_S
+            else:
+                k, close = ts, np.zeros(len(part), bool)
+            pool = np.flatnonzero(close) if close.any() else np.arange(len(part))
+            q = int(pool[np.argmin(sp[part[pool]])])
+            t = int(part[q])
+            want.append((float(k[q]) if close[q] else float(ts[q]), i, t))
     want.sort()
     codes = np.full((len(tracks), CLOTHES_DIM), np.nan, np.float32)
     near_c: dict[int, list] = {}
@@ -435,7 +452,7 @@ def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run
     # here (98 min for 396 frames of a 35-min test), against ~3.6 s per frame with OCR for the scoreboard.
     # Read in sequential stretches, not one seek per frame: on the 1080i25 Osaka match (23-10) a seek cost
     # ~22 s (880 frames → ~5 h), while decoding the whole video once should take minutes (only the selected frames are piped)
-    stream = frames_at(info, [w[0] for w in want], dense_s=60.0) if want else iter(())
+    stream = keyframes_at(info, [w[0] for w in want]) if want else iter(())
     t_dec = t_feat = 0.0
     t_last = time.perf_counter()
     for k, ((t_s, i, t), (_, frame)) in enumerate(zip(want, stream)):
@@ -464,7 +481,7 @@ def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run
     return codes, far
 
 
-@stage("identity", "5", deps=("players", "score", "court", "audio"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
+@stage("identity", "6", deps=("players", "score", "court", "audio"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
 def st_identity(ctx: Context):
     """Is the near player the target in each run? Two independent cues, fused:
     - the end-change chain: serves + the scoreboard's serve marker name who is near in some runs
