@@ -1,6 +1,6 @@
-# Revisión automática: FALLOS
+# Revisión automática: REGRESIÓN
 
-298 cumplidos · 21 no cumplidos · 127 sin golpes suficientes · 113 avisos (antes: 298 cumplidos, 21 no cumplidos)
+235 cumplidos · 20 no cumplidos · 123 sin golpes suficientes · 138 avisos (antes: 298 cumplidos, 21 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 123 de 245
 
@@ -133,8 +133,7 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 
 ## No cumplidos
 
-- **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 7 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 3, golpes suyos, pero ningún saque 4; sus saques encontrados caen en puntos de su saque 11, de la rival 5, fuera de los puntos leídos 4; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_
-- **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
+- **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 7 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 3, golpes suyos, pero ningún saque 4; sus saques encontrados caen en puntos de su saque 11, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 4
 - **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
 - **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
@@ -154,3 +153,77 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
+
+## Empeora respecto a la ejecución anterior
+
+- **#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»**: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
+- **#52 Brave, no instalar Edge**: ok → aviso: ninguna comprobación de esta ejecución la cubre (Navegador de las capturas|Pantalla «)
+- **#53 No pasar de 100 a 0: conservar lo anterior**: ok → aviso: ninguna comprobación de esta ejecución la cubre (^Pantallas$)
+- **#54 Qué hace ella cuando la rival golpea, la bola cruza la red, bota y llega arriba**: ok → aviso: ninguna comprobación de esta ejecución la cubre (La bola y ella)
+- **#56 Barras horizontales con la diferencia de altura de la cabeza**: ok → aviso: ninguna comprobación de esta ejecución la cubre (Barras de altura)
+- **#57 Nada de gráficas de muchas líneas ni tablas sin frases**: ok → aviso: ninguna comprobación de esta ejecución la cubre (más de 4 líneas|Tablas a la vista|^Pantallas$)
+- **#65 El play del vídeo funciona (no solo un fotograma)**: ok → aviso: ninguna comprobación de esta ejecución la cubre (^Reproducir|se reproduce al pulsar)
+- **#67 No borrar el trabajo hecho: lo complejo como extra**: ok → aviso: ninguna comprobación de esta ejecución la cubre (^Pantallas$|la tabla sigue debajo)
+- **#68 La meta: mejorar mi derecha tomando la de X como base**: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
+- **#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica**: pocos datos → aviso: ninguna comprobación de esta ejecución la cubre (Tu ejemplo)
+- **#99 Mejora 1 (entrenadores): líneas dibujadas sobre el fotograma**: ok → aviso: ninguna comprobación de esta ejecución la cubre (Pantalla «Análisis de golpe»)
+- **#110 Mejora 12: «Lo que la distingue» (2-3 rasgos frente a la literatura, con vídeo)**: ok → aviso: ninguna comprobación de esta ejecución la cubre (Lo que la distingue)
+- **#111 Mejora 13: consigna «para imitarla» y error que evita, por fase**: ok → aviso: ninguna comprobación de esta ejecución la cubre (responde a cada combinación)
+- **#112 Mejora 14: clase descriptiva de estilo (`fh_style`)**: ok → aviso: ninguna comprobación de esta ejecución la cubre (Estilo de su derecha)
+- **#114 Cuerpo respecto a la bola en cada momento (golpe rival, cruza la red, cae, bota, sube, golpe): fotogramas y me**: ok → aviso: ninguna comprobación de esta ejecución la cubre (La bola y ella)
+- **#115 Cuánto baja y sube el cuerpo, con fotogramas y barras horizontales: de la espera al punto más bajo y del más b**: ok → aviso: ninguna comprobación de esta ejecución la cubre (Bajar y subir|Cuánto baja|Cuánto sube)
+- **#116 Distancia entre las piernas en los golpes: base y estabilidad**: ok → aviso: ninguna comprobación de esta ejecución la cubre («Base»|Base al armar|Base en el impacto|Pies quietos)
+- **#117 Hacia dónde mira el tronco al terminar (valla lateral, de frente, girado) según el golpe**: ok → aviso: ninguna comprobación de esta ejecución la cubre (Tronco al terminar|Hacia dónde mira el tronco)
+- **#120 Vídeo a pantalla completa**: ok → aviso: ninguna comprobación de esta ejecución la cubre (^Pantallas$)
+- **#121 Ver lo que se pinta por separado, por grupos o una a una**: ok → aviso: ninguna comprobación de esta ejecución la cubre (^Pantallas$)
+- **#122 Web en 2 vistas principales y el resto en «Más», en dos grupos (funcional y técnico), sin perder datos**: ok → aviso: ninguna comprobación de esta ejecución la cubre (^Pantallas$|Pantalla «)
+- **#123 Lo que se aprende en una sesión: plan de 3 prioridades en orden, foco externo por fase, detalle plegado**: ok → aviso: ninguna comprobación de esta ejecución la cubre (responde a cada combinación)
+- **#126 Consignas con su número en «Cómo hacerlo tú» («baja unos 14 cm desde la espera, como ella»), solo si es fiable**: ok → aviso: ninguna comprobación de esta ejecución la cubre (Tu objetivo)
+- **#127 Guía de primer uso, «empieza aquí»**: ok → aviso: ninguna comprobación de esta ejecución la cubre (Tu objetivo|responde a cada combinación)
+- **#128 Glosario de términos**: ok → aviso: ninguna comprobación de esta ejecución la cubre (Tu objetivo|responde a cada combinación)
+
+## Comprobaciones que ya no aparecen
+
+- Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»
+- Pantalla «Sus golpes (Videoteca y pista)»
+- Pantalla «Análisis de golpe»
+- Pantalla «Comparar dos golpes»
+- Pantalla «Conclusiones (Panel y Comparativas)»
+- Pantalla «Tabla de golpes (Explorador)»
+- Pantalla «Vista lateral (entreno)»
+- Pantalla «Fiabilidad de las medidas»
+- Pantalla «Datos del análisis»
+- Reproducir: «Su derecha» → ▶ Ver sus golpes típicos
+- Reproducir: Videoteca → ▶ Reproducir todos
+- Reproducir: Análisis de golpe → ▶
+- Reproducir: Comparar golpes → ▶
+- Reproducir: Panel → ▶ vídeos de una conclusión
+- Reproducir: «Su derecha» → ▶ Ver sus golpes típicos (con las animaciones de Windows desactivadas)
+- Reproducir: Videoteca → ▶ Reproducir todos (con las animaciones de Windows desactivadas)
+- Reproducir: Análisis de golpe → ▶ (con las animaciones de Windows desactivadas)
+- Reproducir: Comparar golpes → ▶ (con las animaciones de Windows desactivadas)
+- Reproducir: Panel → ▶ vídeos de una conclusión (con las animaciones de Windows desactivadas)
+- El vídeo del golpe se reproduce al pulsar ▶
+- La pantalla responde a cada combinación
+- Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha
+- Lo que la distingue: su firma (rasgos que repite) con vídeo
+- Estilo de su derecha en una frase
+- Puntos de «Aprende» con su valor medido (todas sus derechas)
+- «Tu objetivo»: la consigna con su número en cada medida suya fiable
+- Primera pantalla, anchura y nombres (diseño definitivo)
+- La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo
+- La lección enseña su vídeo de cada fase, en bucle
+- La tira de fases enseña su golpe en fotos reales, como las secuencias de los entrenadores
+- «La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella
+- «Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos)
+- «La bola y ella»: medidas reales en cada fotograma (cadera en cm, pies en m, recorrido)
+- «Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm
+- «Base»: fotogramas con la barra entre los pies y su distancia en la pista
+- «Tronco al terminar»: fotograma con la línea de hombros y hacia dónde mira
+- Barras de altura de la cabeza y la cadera sobre el vídeo
+- Filtros combinables de la videoteca (apoyo, dirección, bola, contacto…)
+- Novedades de la versión (en «Datos del análisis»)
+- «Análisis de golpe»: la raqueta por fase dicha en frases (la tabla sigue debajo)
+- «Explorador»: resumen en frases de los golpes filtrados (la tabla sigue debajo)
+- «Conclusiones»: qué cambia, en frases (la tabla sigue debajo)
+- «Comparar golpes»: diferencias en frases (la tabla sigue debajo)
