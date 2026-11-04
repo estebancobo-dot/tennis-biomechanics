@@ -164,7 +164,11 @@ def test_request_app_builds_the_local_index_without_running_jobs():
     block = ps1[ps1.index('$p["accion"] -eq "app"'):]
     block = block[:block.index("} elseif")]
     assert '@("status", "plan", "status")' in block and "uv run tennisbio app $orden" in block and "prueba_app.log" in block
-    assert "work" not in block
+    # the queue runs only when asked («trabajar: si», 04-11) AND the plan has nothing to recompute (reports only)
+    before_guard = block[:block.index("trabajar")]
+    assert "work" not in before_guard
+    guarded = block[block.index("trabajar"):]
+    assert "0 partido\\(s\\) a recalcular" in guarded and guarded.index("a recalcular") < guarded.index("app work")
 
 
 def test_request_ventana_paints_the_app_screens_with_the_real_index():

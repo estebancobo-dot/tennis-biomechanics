@@ -221,6 +221,12 @@ accion: completo
 ---
 id: 102
 accion: completo
+---
+id: 103
+accion: app
+trabajar: si
+# 103 (04-11): 6.3: el indice de la aplicacion con los analisis de la referencia (solo informes; la cola no se ejecuta si
+# el plan tiene algun partido que recalcular)
 # 102 (04-11): auditoria con el tipo, origen y posicion del primer golpe de los puntos de su saque sin saque (B4): si es el
 # saque mal clasificado, el arreglo es por la regla del tenis (el primer golpe de quien saca es el saque)
 # 101 (04-11): sin etapas que rehacer: informes y auditoria de los 4 partidos con el codigo nuevo (retraso del saque tras

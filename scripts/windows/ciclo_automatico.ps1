@@ -330,10 +330,20 @@ function Hacer-Peticion($p) {
         "Peticion $($p['id']): indice de la aplicacion local ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
         Paso "Peticion $($p['id']): indice de la aplicacion local (registro: $lg)"
         $env:UV_NO_PROGRESS = "1"
+        $planTxt = @()
         foreach ($orden in @("status", "plan", "status")) {
             "== tennisbio app $orden" | Add-Content $lg -Encoding UTF8
             & uv run tennisbio app $orden 2>&1 |
-                ForEach-Object { $l = "$_"; Add-Content $lg $l -Encoding UTF8; $l } | Out-Host
+                ForEach-Object { $l = "$_"; Add-Content $lg $l -Encoding UTF8; if ($orden -eq "plan") { $planTxt += $l }; $l } | Out-Host
+        }
+        # trabajar: si (04-11) = despues del plan, la cola de la aplicacion SOLO si no hay ningun partido que recalcular
+        # (asi solo se hacen los analisis/informes, minutos, nunca etapas)
+        if ("$($p['trabajar'])" -match '^(si|true|1)$') {
+            if (($planTxt -join "`n") -match '(^|\D)0 partido\(s\) a recalcular') {
+                "== tennisbio app work (solo informes)" | Add-Content $lg -Encoding UTF8
+                & uv run --extra app tennisbio app work 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+                & uv run tennisbio app status 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+            } else { "  no se ejecuta la cola: el plan tiene partidos que recalcular (ver arriba)" | Add-Content $lg -Encoding UTF8 }
         }
         "codigo de salida: $LASTEXITCODE; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "ventana") {
