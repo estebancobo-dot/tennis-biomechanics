@@ -1,6 +1,5 @@
 """Screenshots of the report as the user sees it, for the audit (tennisbio.audit) and for Claude:
-the report is opened in a real browser already installed (Brave on the user's PC; nothing is
-downloaded),
+the report is opened in Playwright's own Chromium (installed apart, never the user's browser),
 each screen is shown in turn and photographed, and what the page says is written down: its text,
 its videos (loaded or not), its charts, its "no data" messages and every error of the page.
 
@@ -59,28 +58,29 @@ _JS_SCREEN = """(tab) => {
 
 
 def _browser(p):
-    """A browser already installed, never downloaded: Edge (Windows always has it), else Chrome, and Brave only when
-    neither is there; always headless with a temporary profile, never the user's; on Linux, the machine's Chromium."""
-    # as the user opens it: no special autoplay permission (play must work from the click itself)
+    """The browser of the automatic screenshots (04-11): Playwright's own Chromium, installed apart for this
+    (`playwright install chromium`, done by the PC's update), headless with a temporary profile; else the browser
+    named by TENNISBIO_BROWSER, else Chrome. Never the user's Brave: a report opened from the cycle cost the user
+    their browser session. Without any of them the audit goes on without screenshots and says so."""
     kw = {"args": ["--allow-file-access-from-files"], "headless": True}
+    tried = []
+    try:
+        return p.chromium.launch(**kw)                     # Playwright's own Chromium
+    except Exception as e:  # noqa: BLE001 — not installed: the next ones
+        tried.append(f"Chromium de Playwright: {str(e).splitlines()[0][:120]}")
     exes = [os.environ.get("TENNISBIO_BROWSER", "")]
     if sys.platform == "win32":
         bases = [os.environ.get(v, "") for v in ("ProgramFiles", "ProgramFiles(x86)", "LOCALAPPDATA")]
-        # Edge first (04-11): never the user's own Brave for automatic screenshots, even headless with a temporary
-        # profile; Brave only when nothing else is installed
-        for rel in (("Microsoft", "Edge", "Application", "msedge.exe"),
-                    ("Google", "Chrome", "Application", "chrome.exe"),
-                    ("BraveSoftware", "Brave-Browser", "Application", "brave.exe")):
-            exes += [str(Path(b, *rel)) for b in bases if b]
+        exes += [str(Path(b, "Google", "Chrome", "Application", "chrome.exe")) for b in bases if b]
     exes.append("/opt/pw-browsers/chromium")
-    tried = []
     for exe in exes:
         if exe and Path(exe).exists():
             try:
                 return p.chromium.launch(executable_path=exe, **kw)
-            except Exception as e:
+            except Exception as e:  # noqa: BLE001
                 tried.append(f"{exe}: {str(e).splitlines()[0]}")
-    raise RuntimeError("no se encontró Brave (ni Edge ni Chrome) instalado" + (": " + " | ".join(tried) if tried else ""))
+    raise RuntimeError("no hay navegador para las capturas (se instala con `uv run playwright install chromium`)"
+                       + (": " + " | ".join(tried) if tried else ""))
 
 
 # every button that plays strokes, as the user clicks it: the video must advance within ~2 s

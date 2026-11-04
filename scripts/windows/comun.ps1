@@ -261,6 +261,9 @@ function Actualizar-Codigo {
                 uv sync --extra yolo --extra ocr --extra dev --extra validation --extra app 2>&1 | ForEach-Object { "$_" } | Out-Host
                 # modelos nuevos que pida el codigo (p. ej. transnetv2.onnx): solo crea los que falten
                 uv run python scripts/setup_models.py 2>&1 | ForEach-Object { "$_" } | Out-Host
+                # el navegador propio de las capturas automaticas (04-11): el Chromium de Playwright, aparte, nunca el
+                # navegador del usuario; solo se descarga si falta (unos 150 MB, una vez)
+                uv run playwright install chromium 2>&1 | ForEach-Object { "$_" } | Out-Host
                 # el acceso directo "Tennisbio" del escritorio, si falta (nunca hay que reinstalar)
                 uv run --extra app tennisbio app acceso --si-falta 2>&1 | ForEach-Object { "$_" } | Out-Host
                 Pop-Location

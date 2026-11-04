@@ -16,6 +16,6 @@ def test_no_windows_script_opens_a_report_in_the_browser():
     assert not bad, bad
 
 
-def test_screenshots_never_use_brave_first():
+def test_screenshots_never_use_the_users_brave():
     src = (ROOT / "src" / "tennisbio" / "screens.py").read_text(encoding="utf-8")
-    assert src.index("msedge.exe") < src.index("brave.exe") and '"headless": True' in src
+    assert "brave.exe" not in src and '"headless": True' in src and "p.chromium.launch(**kw)" in src
