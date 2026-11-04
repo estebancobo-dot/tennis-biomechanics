@@ -1763,3 +1763,15 @@ hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram
 2026-11-04T01:29:20,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,identity,66.0,0.0,56.1,5.0,19.8,0.3,0.0,0.0,0.0,0.0
 2026-11-04T01:29:36,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,identity,59.0,0.0,44.8,5.0,19.8,0.3,0.0,0.0,0.0,0.0
 2026-11-04T01:29:53,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,identity,77.0,0.0,58.4,5.0,19.8,0.3,0.0,0.0,0.0,0.0
+2026-11-04T01:30:09,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,identity,65.0,0.0,52.9,5.2,19.8,0.3,0.0,0.0,0.0,0.0
+2026-11-04T01:30:26,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,identity,65.0,0.0,52.1,5.1,19.8,0.3,0.0,0.0,0.0,0.0
+2026-11-04T01:30:42,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,identity,48.0,0.0,54.6,5.0,19.8,0.3,0.0,0.0,0.0,0.0
+2026-11-04T01:30:58,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,identity,58.0,0.0,58.4,5.0,19.8,0.3,0.0,0.0,0.0,0.0
+2026-11-04T01:31:15,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,identity,69.0,0.0,57.2,5.0,19.8,0.3,0.0,0.0,0.0,0.0
+2026-11-04T01:31:32,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,identity,54.0,0.0,54.9,5.0,19.8,0.3,0.0,0.0,0.0,0.0
+2026-11-04T01:31:48,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,identity,49.0,0.0,51.8,5.0,19.8,0.3,0.0,0.0,0.0,0.0
+2026-11-04T01:32:04,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,identity,65.0,0.0,52.4,5.0,19.8,0.3,0.0,0.0,0.0,0.0
+2026-11-04T01:32:21,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,identity,65.0,0.0,54.6,4.9,19.8,0.3,0.0,0.0,0.0,0.0
+2026-11-04T01:32:37,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,identity,55.0,0.0,54.4,4.9,19.8,0.3,0.0,0.0,0.0,0.0
+2026-11-04T01:32:54,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,identity,46.0,0.0,55.9,4.9,19.8,0.3,0.0,0.0,0.0,0.0
+2026-11-04T01:33:10,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,identity,63.0,0.0,65.8,4.9,19.8,0.3,0.0,0.0,0.0,0.0
