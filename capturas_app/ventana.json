@@ -1,7 +1,6 @@
 {
  "problems": [
-  "la copia a USB no sabe qué copiar: ValueError: 'C:\\\\tenis\\\\biblioteca\\\\partidos\\\\sin-fecha\\\\sin-fecha_f43dd2_rybakina' is not in the subpath of 'C:\\\\tenis\\\\output' OR one path is relative and the other is absolute.",
-  "la ventana real no funcionó: {'opened': True, 'ready': False, 'bridge': None, 'step': 'cargar la página', 'error': 'sin respuesta en 120 s: se cerró a la fuerza (lo último: cargar la página)'}"
+  "la ventana real no funcionó: {'opened': True, 'ready': False, 'bridge': None, 'step': 'cargar la página', 'page_kb': 136, 'error': 'sin respuesta en 120 s: se cerró a la fuerza (lo último: cargar la página)'}"
  ],
  "screens": 56,
  "engine": {
@@ -18,10 +17,12 @@
   "ready": false,
   "bridge": null,
   "step": "cargar la página",
+  "page_kb": 136,
   "error": "sin respuesta en 120 s: se cerró a la fuerza (lo último: cargar la página)"
  },
  "backup": {
-  "error": "ValueError: 'C:\\\\tenis\\\\biblioteca\\\\partidos\\\\sin-fecha\\\\sin-fecha_f43dd2_rybakina' is not in the subpath of 'C:\\\\tenis\\\\output' OR one path is relative and the other is absolute."
+  "ficheros": 10712,
+  "bytes": 29325099393
  },
  "index": {
   "matches": 18,
