@@ -202,6 +202,12 @@ accion: ventana
 id: 96
 accion: app_nuevo
 minutos: 35
+---
+id: 97
+accion: recall
+detector: si
+# 97 (04-11): la identidad v6 (ropa en fotogramas clave) cambio decisiones en la referencia: errores de identidad frente
+# a F3Set (antes 9 golpes perdidos por identidad; 466 de 528 suyos)
 # 96 (04-11): paso 6.2 (B7): 35 min de un partido como partido NUEVO, con la aplicacion de principio a fin y sin el
 # ciclo, en output\_app_nuevo (indice y carpetas propios; nunca el indice real)
 # 95 (04-11): la ventana real otra vez, con los atributos del puente privados (pywebview recorria toda la aplicacion)
