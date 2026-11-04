@@ -87,7 +87,8 @@ def test_audit_item_reads_match_folder(tmp_path):
     (d / "score.json").write_text(json.dumps({"readings": r}))
     (d / "strokes.json").write_text(json.dumps([{"stroke": "forehand", "side": "near"}] * 10))
     it = recall_items([d])
-    assert len(it) == 1 and it[0]["status"] == "falta" and it[0]["found"] == 10
+    assert len(it) == 2 and it[0]["status"] == "falta" and it[0]["found"] == 10
+    assert it[1]["name"].startswith("Saques por punto de su saque") and "serve_gaps" in it[1]
 
 
 # --------------------------------------------------------------------------------------- recall_eval

@@ -209,6 +209,11 @@ detector: si
 ---
 id: 98
 accion: prevision
+---
+id: 99
+accion: completo
+# 99 (04-11): la referencia con identity v7 y views v6 (prevision 98: 0,6-4,7 h); su auditoria trae, por cada punto de
+# su saque sin saque, el minuto y la causa (B4)
 # 98 (04-11): prevision con identity v7 y views v6 (tiempos de los fotogramas clave relativos al inicio del video:
 # en el .ts de Osaka iban desplazados); se espera identidad y vistas en los 4 y el resto solo si cambia
 # 97 (04-11): la identidad v6 (ropa en fotogramas clave) cambio decisiones en la referencia: errores de identidad frente
