@@ -3728,3 +3728,13 @@
 2026-11-04 15:00:00   ventana w003726150_3600: pose hybrid en 121 de 121 fotogramas (0 s; modelo 0 s; pies en 121) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 184 px (court)
 2026-11-04 15:00:01   ventana w003750700_5650 (near, 2 candidatos): pasa · bola no vista cerca de un candidato (2.3 s): puede haber golpe
 2026-11-04 15:00:01   ventana w003750700_5650: pose hybrid en 252 de 252 fotogramas (0 s; modelo 0 s; pies en 11) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura nan px (pose)
+2026-11-04 15:00:07   ventana w003805302_9018 (near, 3 candidatos): pasa · bola no vista cerca de un candidato (8.0 s): puede haber golpe
+2026-11-04 15:00:07   ventana w003805302_9018: pose hybrid en 400 de 400 fotogramas (0 s; modelo 0 s; pies en 400) · bola 0 s · raqueta 0 s (3 de 6 impactos) · 6 golpes posibles · altura 194 px (court)
+2026-11-04 15:00:09   ventana w003883390_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (2.42 s): puede haber golpe
+2026-11-04 15:00:09   ventana w003883390_3600: pose hybrid en 121 de 121 fotogramas (0 s; modelo 0 s; pies en 121) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 197 px (court)
+2026-11-04 15:00:10   ventana w003895627_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (2.66 s): puede haber golpe
+2026-11-04 15:00:10   ventana w003895627_3600: pose hybrid en 133 de 133 fotogramas (0 s; modelo 0 s; pies en 10) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 107 px (court)
+2026-11-04 15:00:14   ventana w003900697_6303 (near, 2 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-04 15:00:14   ventana w003900697_6303: pose hybrid en 273 de 273 fotogramas (0 s; modelo 0 s; pies en 273) · bola 0 s · raqueta 0 s (2 de 4 impactos) · 4 golpes posibles · altura 210 px (court)
+2026-11-04 15:00:16   ventana w003907040_3600 (near, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-04 15:00:16   ventana w003907040_3600: pose hybrid en 154 de 154 fotogramas (0 s; modelo 0 s; pies en 154) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 168 px (court)
