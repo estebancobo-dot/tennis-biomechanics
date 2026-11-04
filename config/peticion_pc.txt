@@ -218,6 +218,11 @@ accion: completo
 ---
 id: 101
 accion: completo
+---
+id: 102
+accion: completo
+# 102 (04-11): auditoria con el tipo, origen y posicion del primer golpe de los puntos de su saque sin saque (B4): si es el
+# saque mal clasificado, el arreglo es por la regla del tenis (el primer golpe de quien saca es el saque)
 # 101 (04-11): sin etapas que rehacer: informes y auditoria de los 4 partidos con el codigo nuevo (retraso del saque tras
 # volver la camara principal; comprobaciones de B1, B3 y B7)
 # 100 (04-11): identity v8 (video entrelazado, Osaka: fotogramas exactos como antes) y la auditoria de saques con donde

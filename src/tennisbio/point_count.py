@@ -257,6 +257,7 @@ def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple
     serve_t = sorted(float(s["match_time_s"]) for s in strokes
                      if s.get("stroke") == "overhead" and s.get("match_time_s") is not None)
     any_t = sorted(float(s["match_time_s"]) for s in strokes if s.get("match_time_s") is not None)
+    by_t = {float(s["match_time_s"]): s for s in strokes if s.get("match_time_s") is not None}
     import bisect
 
     def inside(ts, a, b):
@@ -300,8 +301,20 @@ def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple
             first = next((t for t in any_t if s0 <= t <= t1), None)
             if first is not None:
                 gap["first_stroke_after_s"] = round(first - s0, 1)
+                fs = by_t.get(first) or {}
+                cp = fs.get("court_pos_m") or [None, None]
+                gap["first_stroke"] = {"stroke": fs.get("stroke"), "source": fs.get("stroke_source"),
+                                       "pose": fs.get("stroke_pose"), "side": fs.get("side"),
+                                       "court_y_m": None if cp[1] is None else round(float(cp[1]), 2)}
         out["gaps"].append(gap)
     delays = sorted(g["first_stroke_after_s"] for g in out["gaps"] if "first_stroke_after_s" in g)
+    firsts = [g["first_stroke"] for g in out["gaps"] if g.get("cause") == "sin_saque" and g.get("first_stroke")]
+    from collections import Counter
+    out["first_strokes_without_serve"] = {
+        "n": len(firsts),
+        "type": dict(Counter(f"{f['stroke']}/{f['source']}" for f in firsts)),
+        "side": dict(Counter(str(f["side"]) for f in firsts)),
+        "behind_baseline": sum(1 for f in firsts if f["court_y_m"] is not None and f["court_y_m"] <= 0.5)}
     out["first_stroke_after_shot_start_s"] = (None if not delays else
                                               {"median": delays[len(delays) // 2], "n": len(delays),
                                                "under_3": sum(d < 3 for d in delays)})

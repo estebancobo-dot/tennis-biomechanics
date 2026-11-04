@@ -547,6 +547,9 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
                                  + (f"; en los puntos sin saque, su primer golpe encontrado llega {fs['median']} s "
                                     f"(mediana de {fs['n']}) después de que vuelva la cámara principal"
                                     if (fs := g.get("first_stroke_after_shot_start_s")) else "")
+                                 + (f"; ese primer golpe (puntos con golpes y sin saque, {fw['n']}): tipo {fw['type']}, "
+                                    f"lado {fw['side']}, {fw['behind_baseline']} detrás de la línea de fondo"
+                                    if (fw := g.get("first_strokes_without_serve")) and fw["n"] else "")
                                  + ("; primeros: " + ", ".join(f"{x['t0'] / 60:.1f}-{x['t1'] / 60:.1f} min ({x['cause']})"
                                                                for x in g["gaps"][:8]) if g["gaps"] else ""),
                                  serve_gaps=g))

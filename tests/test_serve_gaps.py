@@ -41,3 +41,12 @@ def test_gaps_say_when_her_first_stroke_comes_after_the_main_camera_returns():
     g = serve_gaps(readings, strokes, [(20, 60)])          # the main camera comes back at 20 s
     assert g["gaps"][0]["shot_start"] == 20 and g["gaps"][0]["first_stroke_after_s"] == 10
     assert g["first_stroke_after_shot_start_s"] == {"median": 10, "n": 1, "under_3": 0}
+
+
+def test_first_stroke_of_a_point_without_serve_is_described():
+    readings = [_r(0, (0, 0)), _r(40, (15, 0))]
+    strokes = [{"stroke": "backhand", "stroke_source": "pose", "stroke_pose": "backhand", "side": "near",
+                "court_pos_m": [1.0, -0.3], "match_time_s": 25}]
+    g = serve_gaps(readings, strokes, [(20, 60)])
+    fw = g["first_strokes_without_serve"]
+    assert fw["n"] == 1 and fw["type"] == {"backhand/pose": 1} and fw["behind_baseline"] == 1
