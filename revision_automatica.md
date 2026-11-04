@@ -1,10 +1,10 @@
 # Revisión automática: FALLOS
 
-348 cumplidos · 23 no cumplidos · 127 sin golpes suficientes · 105 avisos (antes: 348 cumplidos, 23 no cumplidos)
+350 cumplidos · 23 no cumplidos · 127 sin golpes suficientes · 105 avisos (antes: 348 cumplidos, 23 no cumplidos)
 
-## Peticiones del usuario SIN TERMINAR: 123 de 245
+## Peticiones del usuario SIN TERMINAR: 121 de 245
 
-Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#1 [FALTA]** Derecha de Rybakina en sus 4 partidos completos, una vez y al final (10-10 17:27; 11-10 19:37) — falta: Ningún partido completo analizado. 19-10: el análisis de los 4 partidos encuentra como mucho el 43 % de sus golpes y el 29 % de sus saques (`audit.recall_items…
 - **#155 [FALTA]** es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 19-10 06:15) — falta: Detección sin arreglar: como mucho 43 % de sus golpes y 29 % de sus saques en la final del US Open. Falta correr el banco de 650 golpes anotados y corregir la …
@@ -34,7 +34,6 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - **#10 [PARCIAL]** Ver los cambios en la prueba rápida, sin 1 h (12-10 17:32, 17:40) — falta: Una medida nueva exige volver a analizar el vídeo: la prueba media dura 5 h 02 min. La prueba rápida deja unas 5 derechas.
 - **#11 [PARCIAL]** Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía (12-10 13:14, 16:36, 17:10; 13-10 05:… — falta: Comprueba que la estructura existe, no que el valor sea correcto. Las peticiones 64-113 no tienen regla.
 - **#12 [PARCIAL]** Validar cada medida con clips públicos anotados; el usuario no valida a mano (11-10 09:05, 09:12) — falta: Ninguna medida corporal (codo, rodillas, pasos, apoyo, fases) está validada.
-- **#13 [PARCIAL]** Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe (11-10 19:23) — falta: Ningún partido completo. En la última ejecución, la etapa `fine` falló en 4 golpes.
 - **#15 [PARCIAL]** Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos (12-10 16:30-17:51) — falta: 6 de las 15 mejoras siguen en NO o a medias (filas 99-113).
 - **#16 [PARCIAL]** Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas (10-10 18:05; 11-10 09:02) — falta: Ningún caso en los datos (0 y 0). La volea no tiene técnica propia. 20-10: la regla de la media volea es una sola para la clase y la marca de revisión (`techni…
 - **#17 [PARCIAL]** Una entrada que se entienda sola: «no entiendo nada ni cómo usarla» (12-10 16:22) — falta: La segunda pestaña (SuD) está vacía. Aprende y SuD se solapan. Las «Novedades» están en SuD.
@@ -123,7 +122,6 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - **#221 [PARCIAL]** Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano (19-10 19:57) — falta: Recall 80 % en partidos bien anotados; las repeticiones descartan de más (11 % en F3Set, 30 % de candidatos en Gauff).
 - **#230 [PARCIAL]** Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12:56) — falta: Se mide desde el próximo trabajo; luego acelerar lo que no aproveche el equipo.
 - **#231 [PARCIAL]** Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11:05-21:50) — falta: Leer solo fotogramas clave (cualquier fotograma de la toma vale) y medir el tiempo.
-- **#232 [PARCIAL]** Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó (27-10 09:24) — falta: Encontrar y arreglar el golpe que cuelga la exportación del revés.
 - **#235 [PARCIAL]** Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) — falta: Cadena en orden 79 % y pasos medidos 87 % en los 193 golpes; falta verlo recalculado en el PC.
 - **#236 [PARCIAL]** Huellas numeradas sobre los pies y patrones de pasos (27-10 09:38) — falta: Patrón típico de pasos por situación (frecuencia de cada secuencia).
 - **#238 [PARCIAL]** La validación es siempre automática; el usuario no valida la aplicación (27-10 11:42) — falta: Que cada pantalla nueva entre con su comprobación automática.
@@ -156,3 +154,12 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
+
+## Mejora
+
+- #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: aviso → ok
+
+## Comprobaciones nuevas
+
+- Pruebas en este PC: test_export_end: aviso (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
+- Exportación terminada: exportar: ok (terminó el 2026-11-04 21:50:14 en 0 min: 25 vídeos de 25 golpes)

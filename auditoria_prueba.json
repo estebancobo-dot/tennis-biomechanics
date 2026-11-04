@@ -3,7 +3,7 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 348,
+  "ok": 350,
   "falta": 23,
   "pocos datos": 127,
   "aviso": 105
@@ -2835,7 +2835,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4244 caracteres de texto, 7 vídeos, 12 gráficos",
+   "detail": "4232 caracteres de texto, 7 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2867,7 +2867,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2004 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2001 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3162,8 +3162,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 2a9329e (2026-11-04T21:06:38): 789 bien, 0 fallan, 0 errores",
-   "passed": 789,
+   "detail": "código de5ae71 (2026-11-04T21:45:44): 794 bien, 0 fallan, 0 errores",
+   "passed": 794,
    "failed": 0
   },
   {
@@ -3213,7 +3213,7 @@
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_app_core",
    "status": "ok",
-   "detail": "38 bien, 0 fallan, 0 omitidas"
+   "detail": "42 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
@@ -3370,6 +3370,13 @@
    "detail": "4 bien, 0 fallan, 0 omitidas"
   },
   {
+   "req": 5,
+   "area": "Pruebas en este PC",
+   "name": "Pruebas en este PC: test_export_end",
+   "status": "aviso",
+   "detail": "0 bien, 0 fallan, 0 omitidas (no se ejecutó)"
+  },
+  {
    "req": 6,
    "area": "Aprendizaje",
    "name": "Vídeos de análisis de entrenadores (solo para aprender)",
@@ -3395,7 +3402,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "43 carpetas, 37.6 GB en total (2026-11-04T21:20:05); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "43 carpetas, 37.6 GB en total (2026-11-04T21:40:08); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -3438,6 +3445,13 @@
    "name": "Exportación: resumen PDF y un vídeo por golpe",
    "status": "ok",
    "detail": "25 vídeos"
+  },
+  {
+   "req": 5,
+   "area": "Ficheros",
+   "name": "Exportación terminada: exportar",
+   "status": "ok",
+   "detail": "terminó el 2026-11-04 21:50:14 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3577,7 +3591,7 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-04_2120.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (14.2 min): CPU 2/18/30 %, iGPU 0/0/0 %, RAM máx 7.6 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
+   "detail": "recursos_2026-11-04_2120.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (14.5 min): CPU 2/18/30 %, iGPU 0/0/0 %, RAM máx 7.6 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
   },
   {
    "req": 5,
@@ -3667,8 +3681,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -4130,7 +4144,7 @@
    "area": "Peticiones",
    "name": "#83 Árbol de ficheros generados y validados",
    "status": "ok",
-   "detail": "4 comprobaciones: 4 ok"
+   "detail": "5 comprobaciones: 5 ok"
   },
   {
    "req": 11,
@@ -5131,7 +5145,7 @@
    "area": "Peticiones",
    "name": "#232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
+   "detail": "5 comprobaciones: 1 aviso, 4 ok; la peor: «Pruebas en este PC: test_export_end» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
   },
   {
    "req": 11,

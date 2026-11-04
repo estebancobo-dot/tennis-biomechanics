@@ -6,8 +6,8 @@
 |---|---|
 | 0 sin construir | 19 |
 | 1 construido, sin comprobar | 65 |
-| 2 comprobación que falla | 82 |
-| 3 comprobado en salidas | 71 |
+| 2 comprobación que falla | 81 |
+| 3 comprobado en salidas | 72 |
 | 4 validado con verdad | 0 |
 
 ## Por paquete del plan (en el orden de ejecución)
@@ -15,7 +15,7 @@
 | Paquete | Peticiones | sin construir | construido, sin comprobar | comprobación que falla | comprobado en salidas | validado con verdad | Se cierra con |
 |---|---|---|---|---|---|---|---|
 | B1 Base · velocidad y uso del PC | 10 | 0 | 0 | 10 | 0 | 0 | Prueba desde cero de 35 min en ≤ 45 min; CPU/iGPU por etapa medidas en cada ejecución |
-| B2 Base · robustez (nada se cuelga, todo se recupera) | 3 | 0 | 0 | 2 | 1 | 0 | Prueba por cada caso de error y cuelgue; 0 etapas con error en la referencia |
+| B2 Base · robustez (nada se cuelga, todo se recupera) | 3 | 0 | 0 | 1 | 2 | 0 | Prueba por cada caso de error y cuelgue; 0 etapas con error en la referencia |
 | B3 Base · mejores modelos (estado del arte medido) | 10 | 0 | 1 | 2 | 7 | 0 | Cada candidato medido frente al actual (precisión con datos anotados y fotogramas/s en el PC) |
 | B4 Base · no perder golpes | 6 | 2 | 0 | 4 | 0 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión |
 | B5 Base · exportación | 1 | 0 | 0 | 0 | 1 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues |
@@ -51,7 +51,7 @@
 | 10 | Ver los cambios en la prueba rápida, sin 1 h (12-10 17:32, 17:40) | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 12 ok |
 | 11 | Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y l | P3 | PARCIAL | 2 comprobación que falla | 191 comprobaciones: 34 pocos datos, 157 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo  |
 | 12 | Validar cada medida con clips públicos anotados; el usuario no valida a mano (11-10 09:05, | P3 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
-| 13 | Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimient | B2 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
+| 13 | Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimient | B2 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 14 | Rendimiento: un partido en horas, no días (12-10 13:09) | B1 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para |
 | 15 | Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos (12-10 | P1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
 | 16 | Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas (10-10 | M6 | PARCIAL | 2 comprobación que falla | 5 comprobaciones: 3 pocos datos, 2 ok; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 13 (la clase «Contacto» se pudo |
@@ -117,7 +117,7 @@
 | 80 | Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice (12-10 22:43) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 81 | Tamaño de la salida; comprobación sin gastar tokens (12-10 22:40) | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 82 | Dónde se graban las salidas, qué va a git, qué se reutiliza (12-10 22:47) | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
-| 83 | Árbol de ficheros generados y validados (12-10 22:25) | B7 | HECHO | 3 comprobado en salidas | 4 comprobaciones: 4 ok |
+| 83 | Árbol de ficheros generados y validados (12-10 22:25) | B7 | HECHO | 3 comprobado en salidas | 5 comprobaciones: 5 ok |
 | 84 | Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca) (12-10 21 | M1 | PARCIAL | 2 comprobación que falla | 10 comprobaciones: 1 pocos datos, 9 ok; la peor: «6. Matriz del usuario · Rotación pélvica» (se mide (85% de los golpes); el informe lo ense |
 | 85 | Matriz §2 Cuerpo (cabeza, brazos, tronco, piernas, pie de arrastre) | M3 | PARCIAL | 2 comprobación que falla | 14 comprobaciones: 4 pocos datos, 10 ok; la peor: «6. Matriz del usuario · Rodilla de atrás en la carga (110–130°) y de delante en el impact |
 | 86 | Matriz §3 Raqueta (bucle, caída, cara, trayectoria) | M4 | PARCIAL | 2 comprobación que falla | 13 comprobaciones: 2 pocos datos, 11 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entr |
@@ -263,7 +263,7 @@
 | 229 | Renombrar el vídeo no rompe nada; el partido se identifica por su contenido (25-10 13:21-1 | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 230 | Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12 | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: smok |
 | 231 | Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11: | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: smok |
-| 232 | Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó (27-10 09 | B2 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok |
+| 232 | Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó (27-10 09 | B2 | HECHO | 2 comprobación que falla | 5 comprobaciones: 1 aviso, 4 ok; la peor: «Pruebas en este PC: test_export_end» (0 bien, 0 fallan, 0 omitidas (no se ejecutó)) |
 | 233 | Una referencia completa y medida antes de validar nada (26-10 11:09) | B6 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con |
 | 234 | Prueba de valor de la aplicación con los datos reales (27-10 07:21) | B6 | HECHO | 1 construido, sin comprobar | no se comprueba en las salidas: prueba de valor del 27-10 (docs/plan_maestro.md, R2) |
 | 235 | Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) | M1 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#235); sin comprobación automática asignada |
