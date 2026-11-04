@@ -76,7 +76,12 @@
    "bounce_to_impact_s": 0.4,
    "time_available_s": 0.96,
    "opponent_hit_source": "ball",
-   "trunk3d_unobservable": true
+   "shoulder_turn_3d_deg": -61.2,
+   "hip_turn_3d_deg": -53.0,
+   "x_factor_3d_deg": -8.2,
+   "trunk3d_readings": 24,
+   "trunk3d_rigid": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -2698,7 +2703,8 @@
    "bounce_to_impact_s": 0.72,
    "time_available_s": 0.64,
    "opponent_hit_source": "audio",
-   "trunk3d_unobservable": true
+   "trunk3d_unobservable": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -5067,7 +5073,8 @@
    "bounce_to_impact_s": 0.28,
    "time_available_s": 1.48,
    "opponent_hit_source": "ball",
-   "trunk3d_unobservable": true
+   "trunk3d_unobservable": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -7591,11 +7598,12 @@
    "bounce_to_impact_s": 0.28,
    "time_available_s": 1.44,
    "opponent_hit_source": "ball",
-   "shoulder_turn_3d_deg": 3.7,
-   "hip_turn_3d_deg": 3.7,
-   "x_factor_3d_deg": -0.0,
-   "trunk3d_readings": 2,
-   "trunk3d_rigid": true
+   "shoulder_turn_3d_deg": 5.1,
+   "hip_turn_3d_deg": 12.3,
+   "x_factor_3d_deg": -7.2,
+   "trunk3d_readings": 11,
+   "trunk3d_rigid": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -11093,7 +11101,12 @@
    "bounce_to_impact_s": 0.36,
    "time_available_s": 0.78,
    "opponent_hit_source": "audio",
-   "trunk3d_unobservable": true
+   "shoulder_turn_3d_deg": -28.1,
+   "hip_turn_3d_deg": -23.9,
+   "x_factor_3d_deg": -4.1,
+   "trunk3d_readings": 5,
+   "trunk3d_rigid": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -13649,7 +13662,8 @@
    "bounce_to_impact_s": 0.52,
    "time_available_s": 1.12,
    "opponent_hit_source": "audio",
-   "trunk3d_unobservable": true
+   "trunk3d_unobservable": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -16332,11 +16346,12 @@
    "bounce_to_impact_s": 0.3,
    "time_available_s": 0.68,
    "opponent_hit_source": "audio",
-   "shoulder_turn_3d_deg": 7.9,
-   "hip_turn_3d_deg": 2.9,
-   "x_factor_3d_deg": 5.0,
-   "trunk3d_readings": 2,
-   "trunk3d_rigid": true
+   "shoulder_turn_3d_deg": 25.4,
+   "hip_turn_3d_deg": 23.1,
+   "x_factor_3d_deg": 2.3,
+   "trunk3d_readings": 14,
+   "trunk3d_rigid": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -18844,11 +18859,8 @@
    "time_impact_to_finish_s": 0.24,
    "time_available_s": 0.96,
    "opponent_hit_source": "audio",
-   "shoulder_turn_3d_deg": -173.0,
-   "hip_turn_3d_deg": -176.0,
-   "x_factor_3d_deg": 3.0,
-   "trunk3d_readings": 7,
-   "trunk3d_rigid": true
+   "trunk3d_unobservable": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -20395,7 +20407,12 @@
    "ball_gap_pre_s": 0.1,
    "time_available_s": 1.28,
    "opponent_hit_source": "ball",
-   "trunk3d_unstable": true
+   "shoulder_turn_3d_deg": -40.7,
+   "hip_turn_3d_deg": -49.0,
+   "x_factor_3d_deg": 8.3,
+   "trunk3d_readings": 8,
+   "trunk3d_rigid": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -22966,7 +22983,8 @@
    "bounce_to_impact_s": 0.16,
    "time_available_s": 1.08,
    "opponent_hit_source": "ball",
-   "trunk3d_unobservable": true
+   "trunk3d_unobservable": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -25624,7 +25642,12 @@
    "time_impact_to_finish_s": 0.68,
    "time_available_s": 0.86,
    "opponent_hit_source": "audio",
-   "trunk3d_unobservable": true
+   "shoulder_turn_3d_deg": -10.9,
+   "hip_turn_3d_deg": -14.3,
+   "x_factor_3d_deg": 3.3,
+   "trunk3d_readings": 18,
+   "trunk3d_rigid": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -27928,11 +27951,12 @@
    "time_impact_to_finish_s": 0.68,
    "time_available_s": 0.7,
    "opponent_hit_source": "audio",
-   "shoulder_turn_3d_deg": 4.3,
-   "hip_turn_3d_deg": -0.5,
-   "x_factor_3d_deg": 4.8,
-   "trunk3d_readings": 7,
-   "trunk3d_rigid": true
+   "shoulder_turn_3d_deg": 3.0,
+   "hip_turn_3d_deg": -1.2,
+   "x_factor_3d_deg": 4.2,
+   "trunk3d_readings": 25,
+   "trunk3d_rigid": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -35391,11 +35415,12 @@
    "time_impact_to_finish_s": 0.12,
    "time_available_s": 1.34,
    "opponent_hit_source": "ball",
-   "shoulder_turn_3d_deg": 5.2,
-   "hip_turn_3d_deg": 6.3,
-   "x_factor_3d_deg": -1.1,
-   "trunk3d_readings": 2,
-   "trunk3d_rigid": true
+   "shoulder_turn_3d_deg": 4.1,
+   "hip_turn_3d_deg": -11.4,
+   "x_factor_3d_deg": 15.5,
+   "trunk3d_readings": 25,
+   "trunk3d_rigid": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -44016,7 +44041,8 @@
    "time_loaded_to_impact_s": 0.12,
    "time_acceleration_to_impact_s": 0.04,
    "time_impact_to_finish_s": 0.68,
-   "trunk3d_unobservable": true
+   "trunk3d_unobservable": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -46206,7 +46232,12 @@
    "time_impact_to_finish_s": 0.5,
    "time_available_s": 0.62,
    "opponent_hit_source": "ball",
-   "trunk3d_unobservable": true
+   "shoulder_turn_3d_deg": 108.3,
+   "hip_turn_3d_deg": 94.1,
+   "x_factor_3d_deg": 14.3,
+   "trunk3d_readings": 16,
+   "trunk3d_rigid": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -48305,7 +48336,8 @@
    "ball_gap_pre_s": 0.38,
    "time_available_s": 0.8,
    "opponent_hit_source": "audio",
-   "trunk3d_unobservable": true
+   "trunk3d_unobservable": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -50692,11 +50724,8 @@
    "bounce_to_impact_s": 0.4,
    "time_available_s": 1.5,
    "opponent_hit_source": "ball",
-   "shoulder_turn_3d_deg": 20.5,
-   "hip_turn_3d_deg": 14.4,
-   "x_factor_3d_deg": 6.1,
-   "trunk3d_readings": 2,
-   "trunk3d_rigid": true
+   "trunk3d_unobservable": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -53319,7 +53348,8 @@
    "bounce_to_impact_s": 0.34,
    "time_available_s": 1.4,
    "opponent_hit_source": "ball",
-   "trunk3d_unobservable": true
+   "trunk3d_unobservable": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -56961,11 +56991,12 @@
    "bounce_to_impact_s": 0.34,
    "time_available_s": 0.78,
    "opponent_hit_source": "audio",
-   "shoulder_turn_3d_deg": 7.4,
-   "hip_turn_3d_deg": 11.4,
-   "x_factor_3d_deg": -4.0,
-   "trunk3d_readings": 3,
-   "trunk3d_rigid": true
+   "shoulder_turn_3d_deg": 7.6,
+   "hip_turn_3d_deg": 23.0,
+   "x_factor_3d_deg": -15.4,
+   "trunk3d_readings": 12,
+   "trunk3d_rigid": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -60489,11 +60520,12 @@
    "bounce_to_impact_s": 0.3,
    "time_available_s": 0.86,
    "opponent_hit_source": "audio",
-   "shoulder_turn_3d_deg": 5.8,
-   "hip_turn_3d_deg": 4.1,
-   "x_factor_3d_deg": 1.7,
-   "trunk3d_readings": 3,
-   "trunk3d_rigid": true
+   "shoulder_turn_3d_deg": 5.0,
+   "hip_turn_3d_deg": 11.3,
+   "x_factor_3d_deg": -6.3,
+   "trunk3d_readings": 13,
+   "trunk3d_rigid": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {
@@ -63133,7 +63165,8 @@
    "ball_gap_pre_s": 0.06,
    "time_available_s": 1.06,
    "opponent_hit_source": "ball",
-   "trunk3d_unobservable": true
+   "trunk3d_unobservable": true,
+   "trunk3d_model": "motionagformer"
   },
   "racket": {
    "ready": {

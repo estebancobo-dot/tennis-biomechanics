@@ -346,7 +346,7 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
 - ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 2889 caracteres de texto, 7 vídeos, 21 gráficos
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 4345 caracteres de texto, 7 vídeos, 1 gráficos
-- ✔ **Pantalla «Análisis de golpe»**: 5272 caracteres de texto, 8 vídeos, 29 gráficos
+- ✔ **Pantalla «Análisis de golpe»**: 5286 caracteres de texto, 8 vídeos, 29 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 4050 caracteres de texto, 7 vídeos, 2 gráficos
 - ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4120 caracteres de texto, 7 vídeos, 11 gráficos
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 4024 caracteres de texto, 7 vídeos, 0 gráficos
@@ -453,7 +453,7 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ! **Pruebas en este PC: test_app_window**: 0 bien, 0 fallan, 7 omitidas
 - ✔ **Golpes que fallaron al procesarse**: ninguno
 - ✔ **Nada pide revisión manual**: 16 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
-- ✔ **Pruebas del código en este PC**: código 3154642 (2026-11-03T16:42:11): 708 bien, 0 fallan, 0 errores
+- ✔ **Pruebas del código en este PC**: código 913ca15 (2026-11-03T17:18:26): 710 bien, 0 fallan, 0 errores
 - ✔ **Pruebas en este PC: test_pipeline**: 15 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_auto_cycle**: 13 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_pc_requests**: 9 bien, 0 fallan, 0 omitidas
@@ -477,7 +477,7 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 
 ## 9. Rendimiento: un partido en horas, no días
 
-- ! **Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
+- ! **Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
 - ✔ **Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 0.8 min (objetivo ≤ 15 min)
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
@@ -519,17 +519,17 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ! **#10 Ver los cambios en la prueba rápida, sin 1 h**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 11 comprobaciones: 11 ok
 - ! **#12 Validar cada medida con clips públicos anotados; el usuario no valida a mano**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
-- ! **#14 Rendimiento: un partido en horas, no días**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
+- ! **#14 Rendimiento: un partido en horas, no días**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
 - ! **#15 Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
-- ! **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
+- ! **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
 - ! **#25 Métricas por derecha: apoyo, base, rodillas, cadera, hombros, X-factor, codo, impacto, cadena, pista**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
-- ! **#29 Fase 0: entorno y fps reales, con YOLO**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
+- ! **#29 Fase 0: entorno y fps reales, con YOLO**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
 - ! **#36 Mano y antebrazo, cierre de la muñeca**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#45 Todo automático y completo: el usuario no revisa nada**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok
 - ! **#55 Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#71 El conocimiento de los vídeos de entrenadores en la web**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 21 comprobaciones: 4 aviso, 9 pocos datos, 8 ok; la peor: «R1 Golpe liftado de trayectoria moderada, no extrema» (refuta: liftado 58%, inclinación mediana 39°)
 - ! **#74 ¿El análisis de las apps de pago y libres fue profundo o superficial?**: A MEDIAS según el registro (#74); no se comprueba en las salidas: análisis documental (docs/comparativa_apps.md), no una salida
-- ! **#75 Velocidad: «10 golpes en 5 horas es absurdo»**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
+- ! **#75 Velocidad: «10 golpes en 5 horas es absurdo»**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
 - ! **#76 «Un 50 % de golpes dudosos»**: 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (6 de 12 del lado cercano (50%); motivos: elbow_implausible_at_impact 3, phase 3, impact_without_audio 3. Otros 5 golpes )
 - ! **#77 No lanzar pruebas de 6 h para validar**: A MEDIAS según el registro (#77); no se comprueba en las salidas: lanzadores cortos (2c, 2d) sin repetir el análisis de vídeo
 - ! **#78 No depender de que al usuario se le ocurran funciones**: A MEDIAS según el registro (#78); no se comprueba en las salidas: proceso: Claude propone las funciones desde la matriz y los entrenadores
@@ -539,12 +539,12 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ! **#109 Mejora 11: frases con datos existentes (mano libre, terminación, base al terminar, desplazarse bajo)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 ok
 - ! **#113 Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 19 comprobaciones: 4 aviso, 9 pocos datos, 6 ok; la peor: «R1 Golpe liftado de trayectoria moderada, no extrema» (refuta: liftado 58%, inclinación mediana 39°)
 - ! **#124 Hacia dónde mira el tronco y las manos en la espera, medidas fiables**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
-- ! **#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
+- ! **#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
 - ! **#130 Resto de derecha (devolver el saque) con todas sus variantes, en la matriz y en la aplicación**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 12 ok
 - ! **#131 detectar impactos de bola por AUDIO (Chat, 10-10 17:27)**: sin comprobación automática asignada
 - ! **#135 distancia al fondo, red (Chat, 11-10 19:23)**: A MEDIAS según el registro (#135); sin comprobación automática asignada
 - ! **#136 lo puedes añadir al contexto o fichero base? (Chat, 13-10 09:47)**: sin comprobación automática asignada
-- ! **#137 hay algo que se pueda paralelizar ... threading (Chat, 13-10 18:31)**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
+- ! **#137 hay algo que se pueda paralelizar ... threading (Chat, 13-10 18:31)**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
 - ! **#138 se puede hacer modelos hibridos de alguna manera? (Chat, 13-10 18:34)**: sin comprobación automática asignada
 - ! **#139 si se pierde calidad no tocamos nada (Chat, 14-10 20:08)**: sin comprobación automática asignada
 - ! **#140 de la jugadora de fondo se sacan imagenes para la captura de datos en vista frontal? (Chat, 14-10 20:08)**: A MEDIAS según el registro (#140); sin comprobación automática asignada
@@ -605,8 +605,8 @@ Registro `docs/peticiones_usuario.md`: 107 hechas · 103 a medias · 24 sin hace
 - ! **#225 La aplicación no se cuelga ni ralentiza el PC**: 3 comprobaciones: 1 aviso, 2 ok; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)
 - ! **#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)**: 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)
 - ! **#227 Pantalla completa en la aplicación**: 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)
-- ! **#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
-- ! **#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
+- ! **#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
+- ! **#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
 - ! **#232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#235 Cadena cinética, footwork y timing: lo que define el golpe**: A MEDIAS según el registro (#235); sin comprobación automática asignada
 - ! **#236 Huellas numeradas sobre los pies y patrones de pasos**: A MEDIAS según el registro (#236); sin comprobación automática asignada

@@ -2705,7 +2705,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "5272 caracteres de texto, 8 vídeos, 29 gráficos",
+   "detail": "5286 caracteres de texto, 8 vídeos, 29 gráficos",
    "file": "pantalla_3_golpe.jpg"
   },
   {
@@ -3020,7 +3020,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -3048,8 +3048,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 3154642 (2026-11-03T16:42:11): 708 bien, 0 fallan, 0 errores",
-   "passed": 708,
+   "detail": "código 913ca15 (2026-11-03T17:18:26): 710 bien, 0 fallan, 0 errores",
+   "passed": 710,
    "failed": 0
   },
   {
@@ -3253,7 +3253,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -3295,7 +3295,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "3 comprobaciones: 1 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "3 comprobaciones: 1 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -3358,7 +3358,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -3652,7 +3652,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -3981,7 +3981,7 @@
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
    "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -4051,7 +4051,7 @@
    "area": "Peticiones",
    "name": "#137 hay algo que se pueda paralelizar ... threading (Chat, 13-10 18:31)",
    "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
@@ -4695,14 +4695,14 @@
    "area": "Peticiones",
    "name": "#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (245 min para 35 min de vídeo ≈ 24.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (244 min para 35 min de vídeo ≈ 24.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)"
   },
   {
    "req": 11,

@@ -115,10 +115,10 @@
   }
  },
  "fine": {
-  "fingerprint": "b115f023222eeed8",
+  "fingerprint": "b652176f2fa534c1",
   "version": "16",
-  "seconds": 124.5,
-  "finished": "2026-11-03 11:21:52",
+  "seconds": 60.5,
+  "finished": "2026-11-04 04:11:10",
   "summary": {
    "candidates": 72,
    "confirmed": 69,
@@ -138,17 +138,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "pose": 75.4,
-    "pose_modelo_yolo": 55.2,
-    "bola": 28.0,
-    "jugadora_lejana": 27.5,
-    "pose_modelo_hybrid": 18.1,
-    "pista_ventana": 17.4,
-    "cuerdas_y_3d": 16.3,
-    "raqueta": 14.1,
-    "analisis_ventana": 11.0,
-    "recorte": 7.2,
-    "cribado": 3.1
+    "jugadora_lejana": 28.2,
+    "pista_ventana": 15.5,
+    "cuerdas_y_3d": 12.5,
+    "analisis_ventana": 10.8,
+    "recorte": 3.1,
+    "cribado": 2.6,
+    "pose": 0.3
    },
    "counts": {
     "overlap_s": 0.0,
@@ -156,28 +152,26 @@
     "posed_frames": 11903,
     "impacts": 88,
     "kept_impacts": 72,
-    "racket_frames": 39,
+    "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 292,
-    "frames_modelo_yolo": 645,
-    "frames_modelo_hybrid": 179
+    "frames_960_far": 0
    }
   }
  },
  "fine_opponent": {
-  "fingerprint": "04d5fcc15a85042d",
+  "fingerprint": "c8e1f3fddc18dce1",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-03 11:21:52",
+  "finished": "2026-11-04 04:11:10",
   "summary": {
    "enabled": false
   }
  },
  "fine_doubtful": {
-  "fingerprint": "d06f1ff4b4f445bc",
+  "fingerprint": "abcd71f04948f30b",
   "version": "1",
-  "seconds": 20.3,
-  "finished": "2026-11-03 11:22:13",
+  "seconds": 24.7,
+  "finished": "2026-11-04 04:11:34",
   "summary": {
    "candidates": 35,
    "confirmed": 26,
@@ -197,12 +191,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 9.4,
-    "analisis_ventana": 4.7,
+    "cuerdas_y_3d": 9.1,
+    "analisis_ventana": 4.4,
     "jugadora_lejana": 3.1,
-    "pista_ventana": 2.0,
-    "recorte": 1.4,
-    "cribado": 1.0,
+    "pista_ventana": 1.9,
+    "recorte": 1.3,
+    "cribado": 0.8,
     "pose": 0.1
    },
    "counts": {
@@ -235,10 +229,10 @@
   }
  },
  "views_link": {
-  "fingerprint": "d59143aa50bd446b",
+  "fingerprint": "729f612efd5f9a90",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-11-03 11:22:13",
+  "finished": "2026-11-04 04:11:34",
   "summary": {
    "strokes": 69,
    "with_replay": 26,
