@@ -3,10 +3,10 @@
  "strokes": 450,
  "near": 267,
  "summary": {
-  "ok": 401,
+  "ok": 417,
   "falta": 34,
   "pocos datos": 54,
-  "aviso": 142
+  "aviso": 126
  },
  "items": [
   {
@@ -46,7 +46,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_f43dd2_rybakina",
    "status": "falta",
-   "detail": "14 de 30 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 6, golpes suyos, pero ningún saque 10; sus saques encontrados caen en puntos de su saque 16, de la rival 5, fuera de los puntos leídos 8; en los puntos sin saque, su primer golpe encontrado llega 8.8 s (mediana de 10) después de que vuelva la cámara principal; primeros: 13.3-14.1 min (sin_saque), 18.4-19.1 min (sin_golpes), 19.0-19.9 min (sin_golpes), 20.5-20.9 min (sin_golpes), 20.9-21.5 min (sin_saque), 25.2-26.3 min (sin_saque), 26.7-27.2 min (sin_golpes), 34.8-35.4 min (sin_saque)",
+   "detail": "14 de 30 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 6, golpes suyos, pero ningún saque 10; sus saques encontrados caen en puntos de su saque 16, de la rival 5, fuera de los puntos leídos 8; en los puntos sin saque, su primer golpe encontrado llega 8.8 s (mediana de 10) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 10): tipo {'forehand/detector': 6, 'backhand/detector': 4}, lado {'near': 5, 'far': 5}, 8 detrás de la línea de fondo; primeros: 13.3-14.1 min (sin_saque), 18.4-19.1 min (sin_golpes), 19.0-19.9 min (sin_golpes), 20.5-20.9 min (sin_golpes), 20.9-21.5 min (sin_saque), 25.2-26.3 min (sin_saque), 26.7-27.2 min (sin_golpes), 34.8-35.4 min (sin_saque)",
    "serve_gaps": {
     "points": 30,
     "found": 14,
@@ -56,7 +56,14 @@
       "t1": 846.8,
       "cause": "sin_saque",
       "shot_start": 800.6,
-      "first_stroke_after_s": 15.6
+      "first_stroke_after_s": 15.6,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "near",
+       "court_y_m": -0.65
+      }
      },
      {
       "t0": 1104.8,
@@ -81,14 +88,28 @@
       "t1": 1291.8,
       "cause": "sin_saque",
       "shot_start": 1255.7,
-      "first_stroke_after_s": 14.8
+      "first_stroke_after_s": 14.8,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": -0.98
+      }
      },
      {
       "t0": 1512.8,
       "t1": 1580.6,
       "cause": "sin_saque",
       "shot_start": 1517.3,
-      "first_stroke_after_s": 4.7
+      "first_stroke_after_s": 4.7,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "near",
+       "court_y_m": 5.8
+      }
      },
      {
       "t0": 1603.9,
@@ -101,7 +122,14 @@
       "t1": 2122.5,
       "cause": "sin_saque",
       "shot_start": 2094.3,
-      "first_stroke_after_s": 4.3
+      "first_stroke_after_s": 4.3,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "near",
+       "court_y_m": -0.94
+      }
      },
      {
       "t0": 2433.5,
@@ -114,28 +142,56 @@
       "t1": 2485.8,
       "cause": "sin_saque",
       "shot_start": 2463.6,
-      "first_stroke_after_s": 1.4
+      "first_stroke_after_s": 1.4,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": 0.08
+      }
      },
      {
       "t0": 2480.8,
       "t1": 2505.4,
       "cause": "sin_saque",
       "shot_start": 2485.3,
-      "first_stroke_after_s": 12.9
+      "first_stroke_after_s": 12.9,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": -1.72
+      }
      },
      {
       "t0": 2500.4,
       "t1": 2571.6,
       "cause": "sin_saque",
       "shot_start": 2500.4,
-      "first_stroke_after_s": 42.6
+      "first_stroke_after_s": 42.6,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": -1.34
+      }
      },
      {
       "t0": 3050.2,
       "t1": 3098.3,
       "cause": "sin_saque",
       "shot_start": 3054.7,
-      "first_stroke_after_s": 4.0
+      "first_stroke_after_s": 4.0,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "near",
+       "court_y_m": -0.16
+      }
      },
      {
       "t0": 3420.7,
@@ -148,20 +204,46 @@
       "t1": 3475.1,
       "cause": "sin_saque",
       "shot_start": 3453.2,
-      "first_stroke_after_s": 1.3
+      "first_stroke_after_s": 1.3,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "far",
+       "court_y_m": 0.12
+      }
      },
      {
       "t0": 3849.8,
       "t1": 3884.7,
       "cause": "sin_saque",
       "shot_start": 3854.3,
-      "first_stroke_after_s": 8.8
+      "first_stroke_after_s": 8.8,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "near",
+       "court_y_m": 1.44
+      }
      }
     ],
     "by_cause": {
      "sin_camara": 0,
      "sin_golpes": 6,
      "sin_saque": 10
+    },
+    "first_strokes_without_serve": {
+     "n": 10,
+     "type": {
+      "forehand/detector": 6,
+      "backhand/detector": 4
+     },
+     "side": {
+      "near": 5,
+      "far": 5
+     },
+     "behind_baseline": 8
     },
     "first_stroke_after_shot_start_s": {
      "median": 8.8,
@@ -204,7 +286,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_584c5b_rybakina",
    "status": "falta",
-   "detail": "24 de 50 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 11, golpes suyos, pero ningún saque 15; sus saques encontrados caen en puntos de su saque 30, de la rival 4, fuera de los puntos leídos 12; en los puntos sin saque, su primer golpe encontrado llega 4.3 s (mediana de 15) después de que vuelva la cámara principal; primeros: 11.6-12.2 min (sin_saque), 12.1-12.7 min (sin_golpes), 12.6-13.3 min (sin_saque), 13.8-14.7 min (sin_saque), 17.9-18.4 min (sin_saque), 18.4-19.1 min (sin_golpes), 19.8-20.6 min (sin_saque), 25.0-25.8 min (sin_saque)",
+   "detail": "24 de 50 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 11, golpes suyos, pero ningún saque 15; sus saques encontrados caen en puntos de su saque 30, de la rival 4, fuera de los puntos leídos 12; en los puntos sin saque, su primer golpe encontrado llega 4.3 s (mediana de 15) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 15): tipo {'forehand/detector': 10, 'backhand/detector': 5}, lado {'near': 7, 'far': 8}, 11 detrás de la línea de fondo; primeros: 11.6-12.2 min (sin_saque), 12.1-12.7 min (sin_golpes), 12.6-13.3 min (sin_saque), 13.8-14.7 min (sin_saque), 17.9-18.4 min (sin_saque), 18.4-19.1 min (sin_golpes), 19.8-20.6 min (sin_saque), 25.0-25.8 min (sin_saque)",
    "serve_gaps": {
     "points": 50,
     "found": 24,
@@ -214,7 +296,14 @@
       "t1": 733.8,
       "cause": "sin_saque",
       "shot_start": 699.4,
-      "first_stroke_after_s": 16.2
+      "first_stroke_after_s": 16.2,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -0.75
+      }
      },
      {
       "t0": 728.8,
@@ -227,21 +316,42 @@
       "t1": 796.7,
       "cause": "sin_saque",
       "shot_start": 762.6,
-      "first_stroke_after_s": 14.1
+      "first_stroke_after_s": 14.1,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -0.62
+      }
      },
      {
       "t0": 826.9,
       "t1": 880.0,
       "cause": "sin_saque",
       "shot_start": 831.4,
-      "first_stroke_after_s": 20.8
+      "first_stroke_after_s": 20.8,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -2.48
+      }
      },
      {
       "t0": 1077.0,
       "t1": 1106.1,
       "cause": "sin_saque",
       "shot_start": 1081.5,
-      "first_stroke_after_s": 0.5
+      "first_stroke_after_s": 0.5,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": null
+      }
      },
      {
       "t0": 1101.1,
@@ -254,14 +364,28 @@
       "t1": 1236.7,
       "cause": "sin_saque",
       "shot_start": 1192.3,
-      "first_stroke_after_s": 1.3
+      "first_stroke_after_s": 1.3,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": null
+      }
      },
      {
       "t0": 1500.0,
       "t1": 1547.6,
       "cause": "sin_saque",
       "shot_start": 1504.5,
-      "first_stroke_after_s": 14.6
+      "first_stroke_after_s": 14.6,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -1.49
+      }
      },
      {
       "t0": 1669.0,
@@ -286,7 +410,14 @@
       "t1": 3672.6,
       "cause": "sin_saque",
       "shot_start": 3641.3,
-      "first_stroke_after_s": 4.8
+      "first_stroke_after_s": 4.8,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": null
+      }
      },
      {
       "t0": 3725.7,
@@ -317,28 +448,56 @@
       "t1": 4330.4,
       "cause": "sin_saque",
       "shot_start": 4314.6,
-      "first_stroke_after_s": 4.3
+      "first_stroke_after_s": 4.3,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -2.09
+      }
      },
      {
       "t0": 5087.7,
       "t1": 5119.2,
       "cause": "sin_saque",
       "shot_start": 5092.2,
-      "first_stroke_after_s": 3.5
+      "first_stroke_after_s": 3.5,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "far",
+       "court_y_m": -3.86
+      }
      },
      {
       "t0": 5159.0,
       "t1": 5197.7,
       "cause": "sin_saque",
       "shot_start": 5163.5,
-      "first_stroke_after_s": 0.7
+      "first_stroke_after_s": 0.7,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": null
+      }
      },
      {
       "t0": 6077.4,
       "t1": 6131.6,
       "cause": "sin_saque",
       "shot_start": 6081.9,
-      "first_stroke_after_s": 9.7
+      "first_stroke_after_s": 9.7,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "far",
+       "court_y_m": -3.13
+      }
      },
      {
       "t0": 6126.6,
@@ -351,7 +510,14 @@
       "t1": 6194.4,
       "cause": "sin_saque",
       "shot_start": 6165.0,
-      "first_stroke_after_s": 2.4
+      "first_stroke_after_s": 2.4,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": -2.32
+      }
      },
      {
       "t0": 6189.4,
@@ -364,27 +530,60 @@
       "t1": 6384.0,
       "cause": "sin_saque",
       "shot_start": 6343.5,
-      "first_stroke_after_s": 2.4
+      "first_stroke_after_s": 2.4,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": -0.88
+      }
      },
      {
       "t0": 6800.6,
       "t1": 6836.3,
       "cause": "sin_saque",
       "shot_start": 6805.1,
-      "first_stroke_after_s": 9.9
+      "first_stroke_after_s": 9.9,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -1.9
+      }
      },
      {
       "t0": 6868.3,
       "t1": 6907.5,
       "cause": "sin_saque",
       "shot_start": 6872.8,
-      "first_stroke_after_s": 4.1
+      "first_stroke_after_s": 4.1,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -1.85
+      }
      }
     ],
     "by_cause": {
      "sin_camara": 0,
      "sin_golpes": 11,
      "sin_saque": 15
+    },
+    "first_strokes_without_serve": {
+     "n": 15,
+     "type": {
+      "forehand/detector": 10,
+      "backhand/detector": 5
+     },
+     "side": {
+      "near": 7,
+      "far": 8
+     },
+     "behind_baseline": 11
     },
     "first_stroke_after_shot_start_s": {
      "median": 4.3,
@@ -427,7 +626,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_580c6f_rybakina",
    "status": "falta",
-   "detail": "17 de 50 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 18, golpes suyos, pero ningún saque 15; sus saques encontrados caen en puntos de su saque 21, de la rival 9, fuera de los puntos leídos 24; en los puntos sin saque, su primer golpe encontrado llega 6.9 s (mediana de 15) después de que vuelva la cámara principal; primeros: 34.8-35.4 min (sin_saque), 36.0-36.7 min (sin_saque), 36.6-37.6 min (sin_saque), 42.4-42.9 min (sin_saque), 43.6-44.3 min (sin_saque), 44.2-44.5 min (sin_saque), 44.4-45.5 min (sin_saque), 52.4-53.0 min (sin_saque)",
+   "detail": "17 de 50 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 18, golpes suyos, pero ningún saque 15; sus saques encontrados caen en puntos de su saque 21, de la rival 9, fuera de los puntos leídos 24; en los puntos sin saque, su primer golpe encontrado llega 6.9 s (mediana de 15) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 15): tipo {'backhand/detector': 8, 'forehand/detector': 6, 'forehand/pose': 1}, lado {'near': 6, 'far': 9}, 9 detrás de la línea de fondo; primeros: 34.8-35.4 min (sin_saque), 36.0-36.7 min (sin_saque), 36.6-37.6 min (sin_saque), 42.4-42.9 min (sin_saque), 43.6-44.3 min (sin_saque), 44.2-44.5 min (sin_saque), 44.4-45.5 min (sin_saque), 52.4-53.0 min (sin_saque)",
    "serve_gaps": {
     "points": 50,
     "found": 17,
@@ -437,70 +636,140 @@
       "t1": 2124.7,
       "cause": "sin_saque",
       "shot_start": 2093.4,
-      "first_stroke_after_s": 3.8
+      "first_stroke_after_s": 3.8,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "near",
+       "court_y_m": -0.77
+      }
      },
      {
       "t0": 2159.0,
       "t1": 2199.2,
       "cause": "sin_saque",
       "shot_start": 2159.0,
-      "first_stroke_after_s": 3.8
+      "first_stroke_after_s": 3.8,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "near",
+       "court_y_m": -0.98
+      }
      },
      {
       "t0": 2194.2,
       "t1": 2256.0,
       "cause": "sin_saque",
       "shot_start": 2198.7,
-      "first_stroke_after_s": 27.8
+      "first_stroke_after_s": 27.8,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "near",
+       "court_y_m": -1.6
+      }
      },
      {
       "t0": 2544.1,
       "t1": 2576.6,
       "cause": "sin_saque",
       "shot_start": 2548.6,
-      "first_stroke_after_s": 11.7
+      "first_stroke_after_s": 11.7,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": 5.89
+      }
      },
      {
       "t0": 2616.5,
       "t1": 2658.2,
       "cause": "sin_saque",
       "shot_start": 2621.0,
-      "first_stroke_after_s": 16.9
+      "first_stroke_after_s": 16.9,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "far",
+       "court_y_m": -8.81
+      }
      },
      {
       "t0": 2653.2,
       "t1": 2668.2,
       "cause": "sin_saque",
       "shot_start": 2657.7,
-      "first_stroke_after_s": 4.3
+      "first_stroke_after_s": 4.3,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": -2.33
+      }
      },
      {
       "t0": 2663.2,
       "t1": 2731.4,
       "cause": "sin_saque",
       "shot_start": 2663.2,
-      "first_stroke_after_s": 29.1
+      "first_stroke_after_s": 29.1,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": null
+      }
      },
      {
       "t0": 3144.3,
       "t1": 3177.3,
       "cause": "sin_saque",
       "shot_start": 3148.8,
-      "first_stroke_after_s": 5.8
+      "first_stroke_after_s": 5.8,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": 0.66
+      }
      },
      {
       "t0": 3510.9,
       "t1": 3553.1,
       "cause": "sin_saque",
       "shot_start": 3515.4,
-      "first_stroke_after_s": 16.8
+      "first_stroke_after_s": 16.8,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "far",
+       "court_y_m": -2.36
+      }
      },
      {
       "t0": 3581.4,
       "t1": 3604.2,
       "cause": "sin_saque",
       "shot_start": 3585.9,
-      "first_stroke_after_s": 4.7
+      "first_stroke_after_s": 4.7,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "far",
+       "court_y_m": 0.3
+      }
      },
      {
       "t0": 3599.2,
@@ -531,7 +800,14 @@
       "t1": 4378.6,
       "cause": "sin_saque",
       "shot_start": 4336.6,
-      "first_stroke_after_s": 11.6
+      "first_stroke_after_s": 11.6,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": 4.72
+      }
      },
      {
       "t0": 4373.6,
@@ -544,7 +820,14 @@
       "t1": 4452.0,
       "cause": "sin_saque",
       "shot_start": 4421.6,
-      "first_stroke_after_s": 3.7
+      "first_stroke_after_s": 3.7,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": null
+      }
      },
      {
       "t0": 4447.0,
@@ -557,7 +840,14 @@
       "t1": 4795.0,
       "cause": "sin_saque",
       "shot_start": 4774.2,
-      "first_stroke_after_s": 6.9
+      "first_stroke_after_s": 6.9,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "near",
+       "court_y_m": -2.98
+      }
      },
      {
       "t0": 4790.0,
@@ -594,7 +884,14 @@
       "t1": 5923.0,
       "cause": "sin_saque",
       "shot_start": 5895.4,
-      "first_stroke_after_s": 6.9
+      "first_stroke_after_s": 6.9,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": 2.52
+      }
      },
      {
       "t0": 6165.4,
@@ -625,7 +922,14 @@
       "t1": 7201.2,
       "cause": "sin_saque",
       "shot_start": 7150.6,
-      "first_stroke_after_s": 16.8
+      "first_stroke_after_s": 16.8,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "pose",
+       "pose": "forehand",
+       "side": "far",
+       "court_y_m": -5.15
+      }
      },
      {
       "t0": 7196.2,
@@ -650,6 +954,19 @@
      "sin_camara": 0,
      "sin_golpes": 18,
      "sin_saque": 15
+    },
+    "first_strokes_without_serve": {
+     "n": 15,
+     "type": {
+      "backhand/detector": 8,
+      "forehand/detector": 6,
+      "forehand/pose": 1
+     },
+     "side": {
+      "near": 6,
+      "far": 9
+     },
+     "behind_baseline": 9
     },
     "first_stroke_after_shot_start_s": {
      "median": 6.9,
@@ -692,7 +1009,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_b8b713_rybakina",
    "status": "falta",
-   "detail": "28 de 70 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 16, golpes suyos, pero ningún saque 26; sus saques encontrados caen en puntos de su saque 35, de la rival 7, fuera de los puntos leídos 13; en los puntos sin saque, su primer golpe encontrado llega 5.1 s (mediana de 26) después de que vuelva la cámara principal; primeros: 47.2-47.8 min (sin_golpes), 55.0-55.6 min (sin_golpes), 55.8-56.6 min (sin_golpes), 56.9-57.4 min (sin_golpes), 62.3-62.7 min (sin_golpes), 62.6-63.2 min (sin_saque), 63.2-63.7 min (sin_golpes), 70.1-70.6 min (sin_saque)",
+   "detail": "28 de 70 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 16, golpes suyos, pero ningún saque 26; sus saques encontrados caen en puntos de su saque 35, de la rival 7, fuera de los puntos leídos 13; en los puntos sin saque, su primer golpe encontrado llega 5.1 s (mediana de 26) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 26): tipo {'forehand/detector': 17, 'backhand/detector': 9}, lado {'far': 12, 'near': 14}, 21 detrás de la línea de fondo; primeros: 47.2-47.8 min (sin_golpes), 55.0-55.6 min (sin_golpes), 55.8-56.6 min (sin_golpes), 56.9-57.4 min (sin_golpes), 62.3-62.7 min (sin_golpes), 62.6-63.2 min (sin_saque), 63.2-63.7 min (sin_golpes), 70.1-70.6 min (sin_saque)",
    "serve_gaps": {
     "points": 70,
     "found": 28,
@@ -732,7 +1049,14 @@
       "t1": 3794.5,
       "cause": "sin_saque",
       "shot_start": 3762.3,
-      "first_stroke_after_s": 2.7
+      "first_stroke_after_s": 2.7,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": -2.49
+      }
      },
      {
       "t0": 3789.5,
@@ -745,28 +1069,56 @@
       "t1": 4235.4,
       "cause": "sin_saque",
       "shot_start": 4207.3,
-      "first_stroke_after_s": 2.4
+      "first_stroke_after_s": 2.4,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -2.21
+      }
      },
      {
       "t0": 4270.9,
       "t1": 4319.5,
       "cause": "sin_saque",
       "shot_start": 4275.4,
-      "first_stroke_after_s": 18.9
+      "first_stroke_after_s": 18.9,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": 0.1
+      }
      },
      {
       "t0": 4342.0,
       "t1": 4398.0,
       "cause": "sin_saque",
       "shot_start": 4342.7,
-      "first_stroke_after_s": 19.5
+      "first_stroke_after_s": 19.5,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -2.01
+      }
      },
      {
       "t0": 4696.0,
       "t1": 4726.6,
       "cause": "sin_saque",
       "shot_start": 4700.5,
-      "first_stroke_after_s": 5.1
+      "first_stroke_after_s": 5.1,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": -1.28
+      }
      },
      {
       "t0": 4753.6,
@@ -779,21 +1131,42 @@
       "t1": 4815.5,
       "cause": "sin_saque",
       "shot_start": 4781.6,
-      "first_stroke_after_s": 2.7
+      "first_stroke_after_s": 2.7,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "overhead",
+       "side": "far",
+       "court_y_m": -1.45
+      }
      },
      {
       "t0": 4810.5,
       "t1": 4870.0,
       "cause": "sin_saque",
       "shot_start": 4815.0,
-      "first_stroke_after_s": 27.3
+      "first_stroke_after_s": 27.3,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": -2.18
+      }
      },
      {
       "t0": 5413.1,
       "t1": 5475.6,
       "cause": "sin_saque",
       "shot_start": 5417.6,
-      "first_stroke_after_s": 15.3
+      "first_stroke_after_s": 15.3,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -1.59
+      }
      },
      {
       "t0": 5470.6,
@@ -806,28 +1179,56 @@
       "t1": 5565.5,
       "cause": "sin_saque",
       "shot_start": 5525.1,
-      "first_stroke_after_s": 5.1
+      "first_stroke_after_s": 5.1,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -0.32
+      }
      },
      {
       "t0": 6051.2,
       "t1": 6087.4,
       "cause": "sin_saque",
       "shot_start": 6055.7,
-      "first_stroke_after_s": 2.1
+      "first_stroke_after_s": 2.1,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": null
+      }
      },
      {
       "t0": 6288.9,
       "t1": 6322.7,
       "cause": "sin_saque",
       "shot_start": 6293.4,
-      "first_stroke_after_s": 4.9
+      "first_stroke_after_s": 4.9,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -1.25
+      }
      },
      {
       "t0": 6405.8,
       "t1": 6437.0,
       "cause": "sin_saque",
       "shot_start": 6410.3,
-      "first_stroke_after_s": 3.7
+      "first_stroke_after_s": 3.7,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "near",
+       "court_y_m": 3.02
+      }
      },
      {
       "t0": 6628.0,
@@ -852,14 +1253,28 @@
       "t1": 6974.6,
       "cause": "sin_saque",
       "shot_start": 6954.7,
-      "first_stroke_after_s": 3.5
+      "first_stroke_after_s": 3.5,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "near",
+       "court_y_m": 0.8
+      }
      },
      {
       "t0": 7005.0,
       "t1": 7043.8,
       "cause": "sin_saque",
       "shot_start": 7009.5,
-      "first_stroke_after_s": 15.6
+      "first_stroke_after_s": 15.6,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -1.4
+      }
      },
      {
       "t0": 7038.8,
@@ -872,7 +1287,14 @@
       "t1": 7114.7,
       "cause": "sin_saque",
       "shot_start": 7078.5,
-      "first_stroke_after_s": 3.6
+      "first_stroke_after_s": 3.6,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -0.26
+      }
      },
      {
       "t0": 7636.6,
@@ -885,14 +1307,28 @@
       "t1": 7752.0,
       "cause": "sin_saque",
       "shot_start": 7708.0,
-      "first_stroke_after_s": 18.3
+      "first_stroke_after_s": 18.3,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": -2.9
+      }
      },
      {
       "t0": 7747.0,
       "t1": 7798.4,
       "cause": "sin_saque",
       "shot_start": 7751.5,
-      "first_stroke_after_s": 6.8
+      "first_stroke_after_s": 6.8,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "far",
+       "court_y_m": -8.43
+      }
      },
      {
       "t0": 7793.4,
@@ -911,63 +1347,126 @@
       "t1": 8703.4,
       "cause": "sin_saque",
       "shot_start": 8677.9,
-      "first_stroke_after_s": 24.5
+      "first_stroke_after_s": 24.5,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -0.72
+      }
      },
      {
       "t0": 8698.4,
       "t1": 8723.0,
       "cause": "sin_saque",
       "shot_start": 8698.4,
-      "first_stroke_after_s": 4.0
+      "first_stroke_after_s": 4.0,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": -0.72
+      }
      },
      {
       "t0": 9132.4,
       "t1": 9173.0,
       "cause": "sin_saque",
       "shot_start": 9136.9,
-      "first_stroke_after_s": 15.1
+      "first_stroke_after_s": 15.1,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "far",
+       "court_y_m": -3.21
+      }
      },
      {
       "t0": 9168.0,
       "t1": 9222.5,
       "cause": "sin_saque",
       "shot_start": 9172.5,
-      "first_stroke_after_s": 2.8
+      "first_stroke_after_s": 2.8,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "overhead",
+       "side": "far",
+       "court_y_m": -2.3
+      }
      },
      {
       "t0": 9217.5,
       "t1": 9257.4,
       "cause": "sin_saque",
       "shot_start": 9217.5,
-      "first_stroke_after_s": 3.0
+      "first_stroke_after_s": 3.0,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "far",
+       "court_y_m": -2.37
+      }
      },
      {
       "t0": 9252.4,
       "t1": 9282.7,
       "cause": "sin_saque",
       "shot_start": 9256.9,
-      "first_stroke_after_s": 1.1
+      "first_stroke_after_s": 1.1,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": null
+      }
      },
      {
       "t0": 9589.4,
       "t1": 9626.6,
       "cause": "sin_saque",
       "shot_start": 9593.9,
-      "first_stroke_after_s": 5.2
+      "first_stroke_after_s": 5.2,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": 0.15
+      }
      },
      {
       "t0": 9621.6,
       "t1": 9651.4,
       "cause": "sin_saque",
       "shot_start": 9626.1,
-      "first_stroke_after_s": 5.2
+      "first_stroke_after_s": 5.2,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": 0.61
+      }
      },
      {
       "t0": 10223.0,
       "t1": 10275.0,
       "cause": "sin_saque",
       "shot_start": 10227.5,
-      "first_stroke_after_s": 18.6
+      "first_stroke_after_s": 18.6,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "far",
+       "court_y_m": -2.38
+      }
      },
      {
       "t0": 10270.0,
@@ -980,6 +1479,18 @@
      "sin_camara": 0,
      "sin_golpes": 16,
      "sin_saque": 26
+    },
+    "first_strokes_without_serve": {
+     "n": 26,
+     "type": {
+      "forehand/detector": 17,
+      "backhand/detector": 9
+     },
+     "side": {
+      "far": 12,
+      "near": 14
+     },
+     "behind_baseline": 21
     },
     "first_stroke_after_shot_start_s": {
      "median": 5.1,
@@ -8139,7 +8650,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2588 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2591 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -8476,8 +8987,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 7312cda (2026-11-04T19:04:16): 744 bien, 0 fallan, 0 errores",
-   "passed": 744,
+   "detail": "código 2a9329e (2026-11-04T21:06:38): 789 bien, 0 fallan, 0 errores",
+   "passed": 789,
    "failed": 0
   },
   {
@@ -8533,8 +9044,8 @@
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_app_window",
-   "status": "aviso",
-   "detail": "0 bien, 0 fallan, 7 omitidas"
+   "status": "ok",
+   "detail": "7 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
@@ -8645,43 +9156,43 @@
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_windows_scripts",
-   "status": "aviso",
-   "detail": "0 bien, 0 fallan, 0 omitidas (no se ejecutó)"
+   "status": "ok",
+   "detail": "5 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_local_only",
-   "status": "aviso",
-   "detail": "0 bien, 0 fallan, 0 omitidas (no se ejecutó)"
+   "status": "ok",
+   "detail": "6 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_logs_progress",
-   "status": "aviso",
-   "detail": "0 bien, 0 fallan, 0 omitidas (no se ejecutó)"
+   "status": "ok",
+   "detail": "5 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_output_places",
-   "status": "aviso",
-   "detail": "0 bien, 0 fallan, 0 omitidas (no se ejecutó)"
+   "status": "ok",
+   "detail": "5 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_project_context",
-   "status": "aviso",
-   "detail": "0 bien, 0 fallan, 0 omitidas (no se ejecutó)"
+   "status": "ok",
+   "detail": "3 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_speed_keeps_quality",
-   "status": "aviso",
-   "detail": "0 bien, 0 fallan, 0 omitidas (no se ejecutó)"
+   "status": "ok",
+   "detail": "4 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 6,
@@ -8709,7 +9220,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "43 carpetas, 37.6 GB en total (2026-11-04T20:02:38); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "43 carpetas, 37.6 GB en total (2026-11-04T21:10:06); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -8975,14 +9486,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-04_2000.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (6.2 min): CPU 8/22/70 %, iGPU 0/0/0 %, RAM máx 8.9 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
+   "detail": "recursos_2026-11-04_2102.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (5.0 min): CPU 5/19/53 %, iGPU 0/0/1 %, RAM máx 7.2 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
-   "status": "ok",
-   "detail": "petición del 04-11 19:59, empezó a los 3.5 min (objetivo ≤ 10 min; si el PC estaba con otro trabajo, espera a que acabe)"
+   "status": "aviso",
+   "detail": "la última petición (04-11 21:05) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02"
   },
   {
    "req": 11,
@@ -9254,8 +9765,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#40 Scripts de instalación, uso rápido y completo, sin leer nada",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_windows_scripts» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -9275,8 +9786,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#43 El PC no es servidor",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_local_only» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -9324,8 +9835,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#50 Progreso y monitorización visibles",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_logs_progress» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -9409,7 +9920,7 @@
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
    "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 aviso; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final)"
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final)"
   },
   {
    "req": 11,
@@ -9513,15 +10024,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#81 Tamaño de la salida; comprobación sin gastar tokens",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_output_places» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#82 Dónde se graban las salidas, qué va a git, qué se reutiliza",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_output_places» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -9863,8 +10374,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#136 lo puedes añadir al contexto o fichero base? (Chat, 13-10 09:47)",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_project_context» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -9884,8 +10395,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#139 si se pierde calidad no tocamos nada (Chat, 14-10 20:08)",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_speed_keeps_quality» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -9926,8 +10437,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#145 no quiero nada en la nube ni pagar ni nada (Chat, 17-10 10:09)",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_local_only» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -10032,7 +10543,7 @@
    "area": "Peticiones",
    "name": "#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 2 aviso, 2 ok; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Aplicación: análisis en su índice» (0 análisis y 18 partidos en el índice de la aplicación: los análisis de los partidos hechos por el ciclo automático aún )"
   },
   {
    "req": 11,
@@ -10486,22 +10997,22 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#225 La aplicación no se cuelga ni ralentiza el PC",
-   "status": "aviso",
-   "detail": "3 comprobaciones: 1 aviso, 2 ok; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)"
+   "status": "ok",
+   "detail": "3 comprobaciones: 3 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#227 Pantalla completa en la aplicación",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -10563,8 +11074,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
-   "status": "ok",
-   "detail": "1 comprobaciones: 1 ok"
+   "status": "aviso",
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (04-11 21:05) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02)"
   },
   {
    "req": 11,
@@ -10599,7 +11110,7 @@
    "area": "Peticiones",
    "name": "#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 2 aviso, 2 ok; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Aplicación: análisis en su índice» (0 análisis y 18 partidos en el índice de la aplicación: los análisis de los partidos hechos por el ciclo automático aún )"
   },
   {
    "req": 11,
