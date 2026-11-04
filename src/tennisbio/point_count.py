@@ -324,3 +324,48 @@ def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple
                         "opponent_points": sum(within(t, opp_w) and not within(t, her_w) for t in serve_t),
                         "elsewhere": sum(not within(t, her_w) and not within(t, opp_w) for t in serve_t)}
     return out
+
+
+def her_serve_points(readings: list[dict], lead_s: float = 5.0) -> list[tuple[float, float]]:
+    """(start, end) of each point on HER serve read on the scoreboard (row 0 serving, same game, one point played):
+    from the first reading that shows its score (lead_s earlier at most) to the reading that shows the next one."""
+    st = clean_states(readings)
+    out = []
+    since = st[0]["t"] if st else 0.0
+    for a, b in zip(st, st[1:]):
+        same_score = b["g"] == a["g"] and b["pts"] == a["pts"]
+        if not same_score:
+            start, since = since, b["t"]
+        if b["g"] != a["g"] or a["tb"] or same_score or a["server"] != 0 or not _in_game(a, b):
+            continue
+        out.append((start - lead_s, b["t"]))
+    return out
+
+
+SERVE_RULE = "primer golpe de quien saca"
+
+
+def serves_by_rule(strokes: list[dict], readings: list[dict], main_shots: list[tuple[float, float]],
+                   behind_m: float = 0.5, max_after_shot_s: float = 15.0) -> int:
+    """B4 (04-11): in a point on her serve, her first stroke is her serve (the rules of tennis). Requests 101-102: in the
+    points of her serve with no serve found, her first stroke came 4-9 s after the main camera returned and behind her
+    baseline, named forehand/backhand by the learned spotter — her serve, misnamed. Each such stroke (the first of hers in
+    the point, behind her baseline, at most `max_after_shot_s` after the main camera is back, in a point with no serve of
+    hers yet) becomes "overhead"; what it was called stays in stroke_before. Returns how many changed (in place)."""
+    changed = 0
+    ts = sorted((float(s["match_time_s"]), i) for i, s in enumerate(strokes) if s.get("match_time_s") is not None)
+    for t0, t1 in her_serve_points(readings):
+        inside = [(t, i) for t, i in ts if t0 <= t <= t1]
+        if not inside or any(strokes[i].get("stroke") == "overhead" for _, i in inside):
+            continue
+        t, i = inside[0]
+        s = strokes[i]
+        y = (s.get("court_pos_m") or [None, None])[1]
+        starts = [a for a, b in main_shots if a <= t <= b]
+        shot = max(starts) if starts else None
+        if y is None or float(y) > behind_m or shot is None or t - max(shot, t0) > max_after_shot_s:
+            continue
+        s["stroke_before"] = s.get("stroke")
+        s["stroke"], s["stroke_rule"] = "overhead", SERVE_RULE
+        changed += 1
+    return changed

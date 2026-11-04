@@ -225,6 +225,16 @@ accion: completo
 id: 103
 accion: app
 trabajar: si
+---
+id: 104
+accion: recall
+detector: si
+---
+id: 105
+accion: completo
+# 104-105 (04-11): regla del tenis para el saque (primer golpe suyo, detras de su linea de fondo, en un punto de su saque):
+# 104 = tabla de tipos en F3Set (que no convierta golpes de fondo en saques); 105 = los 4 partidos (pasada fina desde las
+# caches) y la auditoria de saques por punto
 # 103 (04-11): 6.3: el indice de la aplicacion con los analisis de la referencia (solo informes; la cola no se ejecuta si
 # el plan tiene algun partido que recalcular)
 # 102 (04-11): auditoria con el tipo, origen y posicion del primer golpe de los puntos de su saque sin saque (B4): si es el

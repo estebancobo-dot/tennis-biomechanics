@@ -1817,6 +1817,14 @@ def _fine(ctx: Context, p, keep, out_name: str):
     strokes.sort(key=lambda d: d["match_time_s"])
     errors.sort(key=lambda e: e["t"])                  # the same file whatever order the windows ended in
     _rally_position(strokes, cands, scenes)
+    if out_name == "strokes.json" and score:
+        # B4 (04-11): her first stroke in a point of her serve is her serve (point_count.serves_by_rule)
+        from .point_count import serves_by_rule
+        sfps = float(scenes.get("fps") or 1.0)
+        main = [(sh["start"] / sfps, sh["end"] / sfps) for sh in scenes.get("shots", []) if sh.get("main_camera")]
+        n_rule = serves_by_rule(strokes, score.get("readings") or [], main)
+        if n_rule:
+            ctx.log(f"  saques por la regla del tenis (primer golpe suyo en un punto de su saque): {n_rule}")
     _write(ctx.path(out_name), strokes)
     other = ctx.path("strokes_opponent.json" if out_name == "strokes.json" else "strokes.json")
     _drop_orphans(ctx, cands, strokes, _read(other) if other.exists() else [],
