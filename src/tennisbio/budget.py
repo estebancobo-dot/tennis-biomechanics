@@ -111,12 +111,12 @@ def per_minute(out: Path, stage: str) -> tuple[float | None, bool]:
 
 
 def forecast(rows: list[dict], out: Path) -> tuple[str, float]:
-    """rows: [{"match", "video_min", "stages": {name: "ok"|"stale"|"missing"}, "seconds": {name: last seconds}}] →
+    """rows: [{"match", "video_min", "stages": {name: "ok"|"stale"|"upstream"|"missing"}, "seconds": {name: last s}}] →
     (markdown, total seconds). A stage without a whole-match rate is flagged, and its estimate is the larger of its
     rate × minutes and its last time."""
     L = ["# Previsión antes de ejecutar", "",
          "| Partido | Etapa | Estado | Estimación | Base de la estimación |", "|---|---|---|---|---|"]
-    total, unmeasured = 0.0, set()
+    total, maybe, unmeasured = 0.0, 0.0, set()
     for r in rows:
         for n, st in r["stages"].items():
             if st == "ok":
@@ -126,12 +126,17 @@ def forecast(rows: list[dict], out: Path) -> tuple[str, float]:
             est = max(rate * r["video_min"], last) if rate and r.get("video_min") else last
             basis = ("medido en partido entero" if whole else
                      "**sin medir en partido entero**" if rate else "**sin medir aquí**")
+            if st == "upstream":          # re-runs only if a stage above comes out different (pipeline 1.7)
+                maybe += est
+                L.append(f"| {r['match']} | {n} | solo si cambia lo de arriba | hasta {est / 60:.0f} min | {basis} |")
+                continue
             if not whole:
                 unmeasured.add(n)
             total += est
             L.append(f"| {r['match']} | {n} | {'por rehacer' if st == 'stale' else 'falta'} | "
                      f"{est / 60:.0f} min | {basis} |")
-    L += ["", f"**Total estimado: {total / 3600:.1f} h.**"]
+    L += ["", f"**Total estimado: {total / 3600:.1f} h**"
+          + (f" (y hasta {maybe / 3600:.1f} h más si cambian los resultados de las etapas de arriba)." if maybe else ".")]
     if unmeasured:
         L.append(f"Etapas sin medir en un partido entero: {', '.join(sorted(unmeasured))} → se miden antes, solas.")
     return "\n".join(L) + "\n", total

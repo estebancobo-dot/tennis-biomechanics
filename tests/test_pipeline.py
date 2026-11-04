@@ -33,7 +33,7 @@ def test_incremental_runs_only_what_changed(tmp_path, fake_stages):
     assert pipeline.run(make_ctx(tmp_path)) == ["a", "b"]
     assert pipeline.run(make_ctx(tmp_path)) == []                       # nothing changed
     assert pipeline.status(make_ctx(tmp_path)) == {"a": "ok", "b": "ok"}
-    assert pipeline.status(make_ctx(tmp_path, x=2)) == {"a": "stale", "b": "stale"}
+    assert pipeline.status(make_ctx(tmp_path, x=2)) == {"a": "stale", "b": "upstream"}  # b: only if a changes
     assert pipeline.run(make_ctx(tmp_path, x=2)) == ["a", "b"]          # a's settings changed → b too
     pipeline.STAGES["b"].version = "2"
     assert pipeline.run(make_ctx(tmp_path, x=2)) == ["b"]                # only b's code changed
@@ -222,3 +222,49 @@ def test_an_incomplete_stage_is_repeated_next_time(tmp_path, fake_stages):
     assert pipeline.status(make_ctx(tmp_path))["c"] == "stale"
     assert pipeline.run(make_ctx(tmp_path)) == ["c"]                     # repeated, the rest kept
     assert pipeline.run(make_ctx(tmp_path)) == []
+
+
+def test_a_change_above_that_leaves_its_output_as_it_was_reruns_nothing_below(tmp_path, monkeypatch):
+    """1.7 (04-11): the next stages depend on the CONTENT of a stage's outputs, not on its fingerprint."""
+    calls, reg = [], {}
+    monkeypatch.setattr(pipeline, "STAGES", reg)
+    out = {"a": "a1"}
+
+    @pipeline.stage("a", "1", settings=lambda c: {"x": c["x"]}, outputs=("a.json",))
+    def a(ctx):
+        calls.append("a"); ctx.path("a.json").write_text(json.dumps({"v": out["a"], "took": len(calls)}))
+
+    @pipeline.stage("b", "1", deps=("a",), outputs=("b.txt",))
+    def b(ctx):
+        calls.append("b"); ctx.path("b.txt").write_text("b")
+
+    assert pipeline.run(make_ctx(tmp_path)) == ["a", "b"]
+    assert pipeline.status(make_ctx(tmp_path, x=2)) == {"a": "stale", "b": "upstream"}
+    assert pipeline.run(make_ctx(tmp_path, x=2)) == ["a"]           # same result («took» is volatile): b kept
+    out["a"] = "a2"
+    assert pipeline.run(make_ctx(tmp_path, x=3)) == ["a", "b"]      # a different result: b re-runs
+
+
+def test_a_manifest_of_the_former_scheme_moves_over_without_rerunning(tmp_path, monkeypatch):
+    reg = {}
+    monkeypatch.setattr(pipeline, "STAGES", reg)
+
+    @pipeline.stage("a", "1", outputs=("a.txt",))
+    def a(ctx):
+        ctx.path("a.txt").write_text("a")
+
+    @pipeline.stage("b", "1", deps=("a",), outputs=("b.txt",))
+    def b(ctx):
+        ctx.path("b.txt").write_text("b")
+
+    ctx = make_ctx(tmp_path)
+    ctx.dir.mkdir(parents=True)
+    ctx.path("a.txt").write_text("a"); ctx.path("b.txt").write_text("b")
+    fa = pipeline.fingerprint("a", ctx, {}, by_content=False)
+    old = {"a": {"fingerprint": fa, "version": "1"}}
+    old["b"] = {"fingerprint": pipeline.fingerprint("b", ctx, old, by_content=False), "version": "1"}
+    pipeline.save_manifest(ctx.dir, old)                             # as the PC's manifests are today
+    assert pipeline.status(make_ctx(tmp_path)) == {"a": "ok", "b": "ok"}
+    assert pipeline.run(make_ctx(tmp_path)) == []
+    m = pipeline.load_manifest(ctx.dir)
+    assert m["a"]["scheme"] == pipeline.SCHEME and m["a"]["out_hash"] and set(m) == {"a", "b"}

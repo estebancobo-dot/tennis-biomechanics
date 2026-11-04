@@ -265,12 +265,62 @@ def save_manifest(d: Path, m: dict):
     write_atomic(_at(d, "manifest.json"), json.dumps(m, indent=1, ensure_ascii=False))
 
 
-def fingerprint(name: str, ctx: Context, manifest: dict) -> str:
+# Volatile keys of a stage's JSON outputs (times, dates): they change at every run without changing the result, so
+# they are left out of the content hash that the next stages depend on
+VOLATILE = {"took", "seconds", "elapsed", "finished", "started", "created", "date", "fecha", "hora", "timing", "times",
+            "minutes", "duration_s", "wall_s"}
+
+
+def _stable(o):
+    if isinstance(o, dict):
+        return {k: _stable(v) for k, v in sorted(o.items()) if k not in VOLATILE}
+    if isinstance(o, list):
+        return [_stable(v) for v in o]
+    return o
+
+
+def output_hash(name: str, ctx: Context) -> str | None:
+    """Hash of the CONTENT of a stage's outputs (04-11, docs/plan_corto_plazo.md 1.7): what the next stages depend
+    on, instead of the stage's own fingerprint, so a change upstream that leaves an output as it was re-runs nothing
+    below it. JSON is hashed without its volatile keys (times, dates); other files byte for byte. None when the
+    stage declares no outputs (then the next stages depend on its fingerprint, as before)."""
+    outs = STAGES[name].outputs
+    if not outs:
+        return None
+    h = hashlib.sha1()
+    for o in sorted(outs):
+        p = ctx.path(o)
+        h.update(o.encode())
+        if not p.exists():
+            h.update(b"<missing>")
+            continue
+        if p.suffix == ".json":
+            try:
+                h.update(json.dumps(_stable(json.loads(p.read_text(encoding="utf-8"))), sort_keys=True,
+                                    ensure_ascii=False).encode())
+                continue
+            except (ValueError, UnicodeDecodeError):
+                pass
+        with open(p, "rb") as f:
+            for chunk in iter(lambda: f.read(1 << 20), b""):
+                h.update(chunk)
+    return h.hexdigest()[:20]
+
+
+def _dep_key(manifest: dict, d: str):
+    e = manifest.get(d, {})
+    return e.get("out_hash") or e.get("fingerprint")
+
+
+def fingerprint(name: str, ctx: Context, manifest: dict, by_content: bool = True) -> str:
+    """by_content (scheme 2, 04-11): a dependency counts by the content of its outputs (out_hash); False: by its
+    fingerprint, the former scheme (only to recognise manifests written before, see _migrate)."""
     st = STAGES[name]
     key = {"stage": name, "version": st.version, "video": video_fingerprint(ctx.match.video, ctx.dir),
            "settings": st.settings(ctx.cfg), "code": code_fingerprint(st.code) if st.code else None,
            "match": st.match_fields(ctx.match) if st.match_fields else None,
-           "deps": {d: manifest.get(d, {}).get("fingerprint") for d in st.all_deps(ctx.cfg)}}
+           "deps": {d: (_dep_key(manifest, d) if by_content else manifest.get(d, {}).get("fingerprint"))
+                    for d in st.all_deps(ctx.cfg)}}
     if st.reviews:                    # only stages that have them: the others keep their fingerprints
         key["reviews"] = {f: (hashlib.sha1(ctx.path(f).read_bytes()).hexdigest()[:16] if ctx.path(f).exists() else None)
                           for f in st.reviews}
@@ -297,17 +347,40 @@ def order(names, cfg: dict | None = None) -> list[str]:
     return out
 
 
+SCHEME = 2
+
+
+def _migrate(ctx: Context, m: dict) -> bool:
+    """A manifest written with the former scheme (dependencies by fingerprint) moves to the content scheme without
+    re-running anything: every stage still up to date by the former rule gets the hash of its outputs and its
+    fingerprint in the new scheme; the others stay as they were (stale either way). Returns whether it changed."""
+    old = {n: dict(e) for n, e in m.items() if isinstance(e, dict) and "fingerprint" in e}
+    if not old or all(e.get("scheme") == SCHEME for e in old.values()):
+        return False
+    for n in order(STAGES, ctx.cfg):
+        if n not in old or old[n].get("scheme") == SCHEME:
+            continue
+        if old[n]["fingerprint"] == fingerprint(n, ctx, old, by_content=False) and outputs_ok(n, ctx):
+            m[n]["out_hash"] = output_hash(n, ctx)
+            m[n]["fingerprint"] = fingerprint(n, ctx, m)
+        m[n]["scheme"] = SCHEME                  # moved over (or stale either way): never looked at again
+    return True
+
+
 def status(ctx: Context) -> dict[str, str]:
-    """'ok' (up to date), 'stale' (inputs changed, also upstream) or 'missing' for every stage."""
+    """'ok' (up to date), 'stale' (its own inputs changed), 'upstream' (only a stage above will re-run: this one
+    re-runs only if that one's outputs come out different) or 'missing', for every stage."""
     m = load_manifest(ctx.dir)
-    expected = {}                      # what each fingerprint would be after re-running upstream
+    if _migrate(ctx, m):
+        save_manifest(ctx.dir, m)
     res = {}
     for n in order(STAGES, ctx.cfg):
-        expected[n] = {"fingerprint": fingerprint(n, ctx, expected)}
         if n not in m:
             res[n] = "missing"
-        else:
-            res[n] = "ok" if m[n]["fingerprint"] == expected[n]["fingerprint"] and outputs_ok(n, ctx) else "stale"
+            continue
+        ok_own = m[n]["fingerprint"] == fingerprint(n, ctx, m) and outputs_ok(n, ctx)
+        above = [d for d in STAGES[n].all_deps(ctx.cfg) if res.get(d) in ("stale", "missing", "upstream")]
+        res[n] = "stale" if not ok_own else ("upstream" if above else "ok")
     return res
 
 
@@ -364,6 +437,8 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
     if parallel is None:
         parallel = parallel_enabled(ctx.cfg)
     m = load_manifest(ctx.dir)
+    if _migrate(ctx, m):
+        save_manifest(ctx.dir, m)
     done: list[str] = []
     requested = set(names or STAGES)
     full = order(names or list(STAGES), ctx.cfg)
@@ -399,7 +474,8 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
             fp += "#incompleta"
             log(f"[{ctx.match.id}] {n} incompleta ({summary['incomplete']}): se repetirá en la próxima ejecución")
         m[n] = {"fingerprint": fp, "version": STAGES[n].version, "seconds": round(dt, 1),
-                "finished": time.strftime("%Y-%m-%d %H:%M:%S"), "summary": summary}
+                "finished": time.strftime("%Y-%m-%d %H:%M:%S"), "summary": summary,
+                "out_hash": output_hash(n, ctx), "scheme": SCHEME}
         if ov > 0:
             m[n]["overlap_s"] = round(ov, 1)
         save_manifest(ctx.dir, m)          # after every stage, so an interruption loses little
