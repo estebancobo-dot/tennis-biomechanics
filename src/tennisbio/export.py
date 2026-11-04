@@ -690,6 +690,9 @@ def _fresh(out: Path, *inputs: Path) -> bool:
     return out.exists() and all(out.stat().st_mtime >= p.stat().st_mtime for p in inputs if p.exists())
 
 
+END_RECORD = "exportacion.json"     # written last by an export that ended: when, strokes, videos, the ones that failed
+
+
 def export(matches, out_root: Path, dest: Path, stroke="forehand", player_id: str | None = None,
            reel_max=10, strokes_all=True, log=print, workers: int | None = None) -> Path:
     if not shutil.which("ffmpeg"):
@@ -697,6 +700,9 @@ def export(matches, out_root: Path, dest: Path, stroke="forehand", player_id: st
     # where every thread is, every 5 min, in <dest>/pila.txt (27-10: two exports stopped with no trace of where)
     import faulthandler
     Path(dest).mkdir(parents=True, exist_ok=True)
+    # the record of an export that ended (END_RECORD): gone while this one runs, so an export cut or hung leaves none
+    # and the audit says so (request 232, 04-11: nothing checked that the backhand export ended)
+    (Path(dest) / END_RECORD).unlink(missing_ok=True)
     _pila = open(Path(dest) / "pila.txt", "w", encoding="utf-8")
     faulthandler.dump_traceback_later(300, repeat=True, file=_pila)
     try:
@@ -767,7 +773,7 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
     need = ok if strokes_all else list({s["id"]: s for r in reels for s in r[4]}.values())
 
     t0, done = time.time(), 0
-    paths = {}
+    paths, failed = {}, []
     todo = []
     # each clip shows this stroke against her median and the noise: it is redone when they change
     sig_path = dest / "golpes" / "firmas.json"
@@ -824,6 +830,7 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
             else:                          # one broken window must not stop the export
                 log(f"  {sid}: no se pudo exportar ({err})")
                 paths.pop(sid, None)
+                failed.append({"id": sid, "error": err})
             progress(k, sid)
     finally:
         if n_workers > 1 and len(jobs) > 1:
@@ -885,4 +892,8 @@ def _export(matches, out_root: Path, dest: Path, stroke, player_id, reel_max, st
     pdf = dest / "resumen.pdf"
     pdf_summary(pdf, data, dist, finds, concl, typ, ctx, reel_names)
     log(f"Resumen: {pdf}")
+    (dest / END_RECORD).write_text(json.dumps(
+        {"stroke": stroke, "ended": time.strftime("%Y-%m-%d %H:%M:%S"), "seconds": round(time.time() - t0, 1),
+         "strokes": len(need), "encoded": done, "videos": len(paths), "failed": failed, "reels": len(reel_names)},
+        ensure_ascii=False, indent=1), encoding="utf-8")
     return dest

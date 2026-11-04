@@ -81,6 +81,12 @@ def test_stroke_videos_in_parallel_processes(tmp_path):
     par = sorted(p.name for p in (tmp_path / "par" / "golpes").glob("*.mp4"))
     seq = sorted(p.name for p in (tmp_path / "seq" / "golpes").glob("*.mp4"))
     assert par == seq and len(par) == 2
+    # request 232: an export that ends says so last (the audit's «Exportación terminada»)
+    from tennisbio.audit import export_end_item
+    from tennisbio.export import END_RECORD
+    rec = json.loads((tmp_path / "par" / END_RECORD).read_text(encoding="utf-8"))
+    assert rec["strokes"] == 2 and rec["videos"] == 2 and rec["failed"] == [] and rec["stroke"] == "forehand"
+    assert [export_end_item(tmp_path / f)["status"] for f in ("par", "seq")] == ["ok", "ok"]
     # a fine pass run again rewrites the same series (newer date, same content): nothing is encoded again
     import os
     import time as _t
