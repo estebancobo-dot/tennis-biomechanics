@@ -53,7 +53,9 @@ try {
         }
         Get-Content $so, $se -ErrorAction SilentlyContinue | Select-Object -Last 15 | ForEach-Object { Write-Host $_ }
     }
-    Start-Process "$Base\output\informe_derecha\index.html"
+    # (04-11) no se abre ningun navegador: abrirlo desde el ciclo dejo Brave como proceso del trabajo y se cerro a la
+    # fuerza con el (el usuario perdio su sesion). Los analisis se ven en la aplicacion (acceso directo Tennisbio).
+    Write-Host "Informe: $Base\output\informe_derecha\index.html (o en la aplicacion Tennisbio)"
 
     $dur = (Get-Date) - $inicio
     Write-Host ""

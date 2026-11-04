@@ -63,7 +63,7 @@ try {
     }
 
     $informe = "$Base\output\$Salida\informe\index.html"
-    if (Test-Path $informe) { Start-Process $informe }
+    if (Test-Path $informe) { Write-Host "Informe: $informe (o en la aplicacion Tennisbio)" }   # nunca se abre el navegador (04-11)
     Write-Host ""
     Ok "PRUEBA TERMINADA. El informe se ha abierto en el navegador."
     Ok "El registro se envia a Claude automaticamente."

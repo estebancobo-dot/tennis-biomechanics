@@ -12,7 +12,7 @@ try {
     Paso "Informe, PDF y auditoria con lo ya analizado (sin analizar video)"
     Ejecutar uv @("run", "python", "scripts/rebuild_report.py")
     $informe = "$Base\output\_smoke\informe\index.html"
-    if (Test-Path $informe) { Start-Process $informe }
+    if (Test-Path $informe) { Write-Host "Informe: $informe (o en la aplicacion Tennisbio)" }   # nunca se abre el navegador (04-11)
     Ok "HECHO. El informe se ha abierto en el navegador."
 } catch {
     Write-Host ""

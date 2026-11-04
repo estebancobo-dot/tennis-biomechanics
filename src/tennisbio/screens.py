@@ -59,16 +59,18 @@ _JS_SCREEN = """(tab) => {
 
 
 def _browser(p):
-    """A browser already installed, never downloaded: Brave (the user's), else Edge or Chrome if they
-    are there; on Linux, the machine's Chromium."""
+    """A browser already installed, never downloaded: Edge (Windows always has it), else Chrome, and Brave only when
+    neither is there; always headless with a temporary profile, never the user's; on Linux, the machine's Chromium."""
     # as the user opens it: no special autoplay permission (play must work from the click itself)
-    kw = {"args": ["--allow-file-access-from-files"]}
+    kw = {"args": ["--allow-file-access-from-files"], "headless": True}
     exes = [os.environ.get("TENNISBIO_BROWSER", "")]
     if sys.platform == "win32":
         bases = [os.environ.get(v, "") for v in ("ProgramFiles", "ProgramFiles(x86)", "LOCALAPPDATA")]
-        for rel in (("BraveSoftware", "Brave-Browser", "Application", "brave.exe"),
-                    ("Microsoft", "Edge", "Application", "msedge.exe"),
-                    ("Google", "Chrome", "Application", "chrome.exe")):
+        # Edge first (04-11): never the user's own Brave for automatic screenshots, even headless with a temporary
+        # profile; Brave only when nothing else is installed
+        for rel in (("Microsoft", "Edge", "Application", "msedge.exe"),
+                    ("Google", "Chrome", "Application", "chrome.exe"),
+                    ("BraveSoftware", "Brave-Browser", "Application", "brave.exe")):
             exes += [str(Path(b, *rel)) for b in bases if b]
     exes.append("/opt/pw-browsers/chromium")
     tried = []

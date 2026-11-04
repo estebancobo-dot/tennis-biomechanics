@@ -14,7 +14,7 @@ try {
     Paso "Medidas de los golpes ya analizados con el codigo nuevo, e informe, PDF y auditoria"
     Ejecutar uv @("run", "python", "scripts/recompute_measures.py")
     $informe = "$Base\output\_smoke\informe\index.html"
-    if (Test-Path $informe) { Start-Process $informe }
+    if (Test-Path $informe) { Write-Host "Informe: $informe (o en la aplicacion Tennisbio)" }   # nunca se abre el navegador (04-11)
     Ok "HECHO. El informe se ha abierto en el navegador."
 } catch {
     Write-Host ""
