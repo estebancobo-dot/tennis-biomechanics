@@ -84,10 +84,10 @@
   "overlap_s": 772.8
  },
  "identity": {
-  "fingerprint": "374e55993e26fd86",
+  "fingerprint": "9718a97b45a216c2",
   "version": "5",
-  "seconds": 8962.2,
-  "finished": "2026-10-24 17:36:04",
+  "seconds": 7957.7,
+  "finished": "2026-11-04 02:11:56",
   "summary": {
    "runs": 342,
    "confidence": 0.96,
@@ -118,19 +118,19 @@
   }
  },
  "candidates": {
-  "fingerprint": "923bc4439b7b6a55",
-  "version": "9",
-  "seconds": 48.1,
-  "finished": "2026-10-26 21:57:15",
+  "fingerprint": "962100fb454be374",
+  "version": "11",
+  "seconds": 7.2,
+  "finished": "2026-11-04 02:12:52",
   "summary": {
-   "candidates": 532,
-   "far": 265,
-   "with_audio": 442,
+   "candidates": 636,
+   "far": 323,
+   "with_audio": 532,
    "source": "spotter",
-   "opponent_strokes": 258,
-   "identity_unknown": 51,
-   "replay_strokes_skipped": 127,
-   "replay_runs": 74,
+   "opponent_strokes": 301,
+   "identity_unknown": 66,
+   "replay_strokes_skipped": 20,
+   "replay_runs": 7,
    "audio_track": 0
   }
  },
@@ -188,21 +188,27 @@
   }
  },
  "spotting": {
-  "fingerprint": "fc85e01b813644f6",
+  "fingerprint": "0ce19c77cc16e94c",
   "version": "1",
-  "seconds": 180.0,
-  "finished": "2026-10-26 21:56:27",
+  "seconds": 48.6,
+  "finished": "2026-11-04 02:12:45",
   "summary": {
    "enabled": true,
-   "strokes": 659,
-   "near": 326,
-   "far": 333,
-   "out_of_play": 8780,
+   "strokes": 656,
+   "near": 324,
+   "far": 332,
+   "out_of_play": 8779,
    "threshold": 0.1,
    "fps": 10.0,
    "model_fps": 10.0,
    "feature_dim": 122,
-   "audio_track": 0
+   "audio_track": 0,
+   "seconds": {
+    "jugadores_y_audio": 3.7,
+    "rasgos": 44.2,
+    "bola": 0.0,
+    "modelo": 0.5
+   }
   }
  },
  "views": {
