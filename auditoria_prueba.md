@@ -1,6 +1,6 @@
 # Auditoría de requisitos (forehand)
 
-13 golpes del lado cercano. ✔ 330 cumplidos · ✘ 23 no cumplidos · … 127 sin golpes suficientes en esta ejecución · ! 123 avisos
+13 golpes del lado cercano. ✔ 332 cumplidos · ✘ 23 no cumplidos · … 127 sin golpes suficientes en esta ejecución · ! 121 avisos
 
 ## Peticiones del usuario SIN TERMINAR: 123 de 245
 
@@ -340,11 +340,11 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - ✔ **Cada golpe tiene su vídeo**: 13 de 13 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 13 de 13
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 2446 caracteres de texto, 7 vídeos, 19 gráficos
+- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 2446 caracteres de texto, 6 vídeos, 19 gráficos
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 4509 caracteres de texto, 7 vídeos, 1 gráficos
 - ✔ **Pantalla «Análisis de golpe»**: 4888 caracteres de texto, 8 vídeos, 31 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 4357 caracteres de texto, 7 vídeos, 2 gráficos
-- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4232 caracteres de texto, 7 vídeos, 12 gráficos
+- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4244 caracteres de texto, 7 vídeos, 12 gráficos
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 4696 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 3805 caracteres de texto, 7 vídeos, 0 gráficos
@@ -457,10 +457,9 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - ! **Pruebas en este PC: test_speed_keeps_quality**: 0 bien, 0 fallan, 0 omitidas (no se ejecutó)
 - ! **Carpetas de pruebas antiguas**: 3 carpeta(s) de pruebas sin usar en más de 14 días (9.3 GB): _poc31_35, _poc31_4, _poc9_largo. Se borran con la petición «borrar» del PC
 - ! **Aplicación: análisis en su índice**: 0 análisis y 18 partidos en el índice de la aplicación: los análisis de los partidos hechos por el ciclo automático aún no están en ella
-- ! **Peticiones por GitHub Actions: espera hasta empezar**: la última petición (04-11 16:18) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 13:34
 - ✔ **Golpes que fallaron al procesarse**: ninguno
 - ✔ **Nada pide revisión manual**: 19 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
-- ✔ **Pruebas del código en este PC**: código 81c2dec (2026-11-04T18:21:21): 735 bien, 0 fallan, 0 errores
+- ✔ **Pruebas del código en este PC**: código 7312cda (2026-11-04T19:04:16): 744 bien, 0 fallan, 0 errores
 - ✔ **Pruebas en este PC: test_pipeline**: 17 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_auto_cycle**: 13 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_pc_requests**: 9 bien, 0 fallan, 0 omitidas
@@ -484,12 +483,13 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - ✔ **Pruebas en este PC: test_spotting_stage**: 18 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_stroke_from_spotter**: 2 bien, 0 fallan, 0 omitidas
 - ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 18 s, quedan ≈ 0 s, a las 2026-11-04 16:32:16
-- ✔ **Tamaño de la salida (tamanos.txt)**: 43 carpetas, 37.6 GB en total (2026-11-04T19:03:45); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 43 carpetas, 37.6 GB en total (2026-11-04T20:00:05); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB
 - ✔ **Aplicación: ventana real y pantallas**: 56 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 74 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 25 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 25 vídeos
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
+- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 04-11 19:59, empezó a los 0.2 min (objetivo ≤ 10 min; si el PC estaba con otro trabajo, espera a que acabe)
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
 
@@ -503,7 +503,7 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - ! **Etapas a la vez: smoke_tennis-yusipopen-final-sobolenko-rybakin**: todas las etapas de su última ejecución corrieron en serie
 - ✔ **Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 0.7 min (objetivo ≤ 15 min)
 - ✔ **Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.0 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-04_1903.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (0.5 min): CPU 22/24/27 %, iGPU 0/0/0 %, RAM máx 7.3 GB → equipo infrautilizado: trabajo en serie (se puede repartir)
+- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-04_2000.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (2.2 min): CPU 9/20/36 %, iGPU 0/0/0 %, RAM máx 7.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir)
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
@@ -627,7 +627,6 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - ! **#232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#235 Cadena cinética, footwork y timing: lo que define el golpe**: A MEDIAS según el registro (#235); sin comprobación automática asignada
 - ! **#236 Huellas numeradas sobre los pies y patrones de pasos**: A MEDIAS según el registro (#236); sin comprobación automática asignada
-- ! **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (04-11 16:18) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 13:34)
 - ! **#238 La validación es siempre automática; el usuario no valida la aplicación**: A MEDIAS según el registro (#238); sin comprobación automática asignada
 - ! **#239 No se descarta ninguna petición**: sin comprobación automática asignada
 - ! **#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 2 aviso, 2 ok; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)
@@ -740,6 +739,7 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - ✔ **#222 Un clic por partido para decir quién es ella**: 1 comprobaciones: 1 ok
 - ✔ **#229 Renombrar el vídeo no rompe nada; el partido se identifica por su contenido**: 2 comprobaciones: 2 ok
 - ✔ **#234 Prueba de valor de la aplicación con los datos reales**: no se comprueba en las salidas: prueba de valor del 27-10 (docs/plan_maestro.md, R2)
+- ✔ **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: 1 comprobaciones: 1 ok
 - ✔ **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 2 comprobaciones: 2 ok
 
 ## 12. Mejores modelos: cada candidato medido frente al actual y los adoptados en uso (B3)

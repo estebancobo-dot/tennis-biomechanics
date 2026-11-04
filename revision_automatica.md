@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-330 cumplidos · 23 no cumplidos · 127 sin golpes suficientes · 123 avisos (antes: 333 cumplidos, 21 no cumplidos)
+332 cumplidos · 23 no cumplidos · 127 sin golpes suficientes · 121 avisos (antes: 330 cumplidos, 23 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 123 de 245
 
@@ -157,26 +157,7 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 
-## Empeora respecto a la ejecución anterior
+## Mejora
 
-- **#40 Scripts de instalación, uso rápido y completo, sin leer nada**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_windows_scripts» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
-- **#43 El PC no es servidor**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_local_only» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
-- **#50 Progreso y monitorización visibles**: ok → aviso: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_logs_progress» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
-- **#66 Fechas y duración en los registros**: ok → falta: 2 comprobaciones: 1 falta, 1 aviso; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final)
-- **#81 Tamaño de la salida; comprobación sin gastar tokens**: ok → aviso: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_output_places» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
-- **#82 Dónde se graban las salidas, qué va a git, qué se reutiliza**: ok → aviso: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_output_places» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
-
-## Comprobaciones nuevas
-
-- Pruebas en este PC: test_windows_scripts: aviso (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
-- Pruebas en este PC: test_local_only: aviso (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
-- Pruebas en este PC: test_logs_progress: aviso (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
-- Pruebas en este PC: test_output_places: aviso (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
-- Pruebas en este PC: test_project_context: aviso (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
-- Pruebas en este PC: test_speed_keeps_quality: aviso (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
-- Progreso visible (progreso.json): ok (último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 18 s, quedan ≈ 0 s, a las 2026-11-04 16:32:16)
-- Registros con fecha y duración: falta (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final)
-- Tamaño de la salida (tamanos.txt): ok (43 carpetas, 37.6 GB en total (2026-11-04T19:03:45); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tenni)
-- Carpetas de pruebas antiguas: aviso (3 carpeta(s) de pruebas sin usar en más de 14 días (9.3 GB): _poc31_35, _poc31_4, _poc9_largo. Se borran con la petición «borrar» del PC)
-- Aplicación: ventana real y pantallas: ok (56 pantallas pintadas, 0 problemas; ventana real: carga)
-- Aplicación: análisis en su índice: aviso (0 análisis y 18 partidos en el índice de la aplicación: los análisis de los partidos hechos por el ciclo automático aún no están en ella)
+- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok
+- #237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min: aviso → ok

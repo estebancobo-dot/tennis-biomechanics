@@ -3,10 +3,10 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 330,
+  "ok": 332,
   "falta": 23,
   "pocos datos": 127,
-  "aviso": 123
+  "aviso": 121
  },
  "items": [
   {
@@ -2763,7 +2763,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "2446 caracteres de texto, 7 vídeos, 19 gráficos",
+   "detail": "2446 caracteres de texto, 6 vídeos, 19 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2795,7 +2795,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4232 caracteres de texto, 7 vídeos, 12 gráficos",
+   "detail": "4244 caracteres de texto, 7 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -3122,8 +3122,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 81c2dec (2026-11-04T18:21:21): 735 bien, 0 fallan, 0 errores",
-   "passed": 735,
+   "detail": "código 7312cda (2026-11-04T19:04:16): 744 bien, 0 fallan, 0 errores",
+   "passed": 744,
    "failed": 0
   },
   {
@@ -3355,7 +3355,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "43 carpetas, 37.6 GB en total (2026-11-04T19:03:45); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "43 carpetas, 37.6 GB en total (2026-11-04T20:00:05); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -3537,14 +3537,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-04_1903.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (0.5 min): CPU 22/24/27 %, iGPU 0/0/0 %, RAM máx 7.3 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
+   "detail": "recursos_2026-11-04_2000.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (2.2 min): CPU 9/20/36 %, iGPU 0/0/0 %, RAM máx 7.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
-   "status": "aviso",
-   "detail": "la última petición (04-11 16:18) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 13:34"
+   "status": "ok",
+   "detail": "petición del 04-11 19:59, empezó a los 0.2 min (objetivo ≤ 10 min; si el PC estaba con otro trabajo, espera a que acabe)"
   },
   {
    "req": 11,
@@ -5125,8 +5125,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (04-11 16:18) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 13:34)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
