@@ -26,3 +26,16 @@ def test_surface_from_tournament_or_file_name():
     assert surface_of("partido sin nombre") == ""
     assert Match("m", Path("x/Madrid QF.mp4"), Player("p", "P")).surface == "tierra batida"
     assert Match("m", Path("x.mp4"), Player("p", "P"), surface="dura cubierta").surface == "dura cubierta"   # never overwritten
+
+
+def test_sandbox_paths_replace_the_users_without_touching_them(tmp_path, monkeypatch):
+    """04-11: the PC's `app_nuevo` check runs the application in its own folders (TENNISBIO_SANDBOX)."""
+    from tennisbio.config import load_config
+    sb = tmp_path / "sandbox.yaml"
+    sb.write_text(f"paths:\n  output: {tmp_path / 'out'}\n  data: {tmp_path / 'datos'}\n  library: {tmp_path / 'lib'}\n",
+                  encoding="utf-8")
+    monkeypatch.setenv("TENNISBIO_SANDBOX", str(sb))
+    cfg = load_config()
+    assert cfg["paths"]["output"] == str(tmp_path / "out") and cfg["paths"]["library"] == str(tmp_path / "lib")
+    monkeypatch.delenv("TENNISBIO_SANDBOX")
+    assert (load_config().get("paths") or {}).get("output") != str(tmp_path / "out")

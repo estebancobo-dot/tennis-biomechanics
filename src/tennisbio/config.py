@@ -61,4 +61,10 @@ def load_config(config_dir: Path = CONFIG_DIR) -> dict:
     local = config_dir / "local.yaml"
     if local.exists():
         cfg = _merge(cfg, yaml.safe_load(local.read_text(encoding="utf-8-sig")) or {})
+    # a sandbox on top (04-11): TENNISBIO_SANDBOX names a YAML whose paths (output, data, videos) replace the user's,
+    # so a check of the application from beginning to end (the PC's `app_nuevo` request) never touches the real index
+    import os
+    sb = os.environ.get("TENNISBIO_SANDBOX")
+    if sb and Path(sb).is_file():
+        cfg = _merge(cfg, yaml.safe_load(Path(sb).read_text(encoding="utf-8-sig")) or {})
     return cfg

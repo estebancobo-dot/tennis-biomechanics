@@ -207,7 +207,7 @@ function Subir-Registros {
         }
         if (Test-Path "$Base\output\progreso.json") { Copy-Item "$Base\output\progreso.json" "$d\progreso.json" -Force }
         # alarmas de tiempo, ritmos medidos por etapa y la prevision antes de ejecutar (tennisbio.budget, 03-11)
-        foreach ($f in @("alarmas.json", "ritmos.json", "prevision.md")) {
+        foreach ($f in @("alarmas.json", "ritmos.json", "prevision.md", "prueba_app_nuevo.log")) {
             if (Test-Path "$Base\output\$f") { Copy-Item "$Base\output\$f" "$d\$f" -Force }
         }
         if (Test-Path "$Base\output\_smoke\progreso.json") { Copy-Item "$Base\output\_smoke\progreso.json" "$d\progreso_prueba.json" -Force }

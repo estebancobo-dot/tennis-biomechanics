@@ -164,6 +164,31 @@ function Hacer-Peticion($p) {
         & uv run tennisbio run --all --stages @et --force 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
         & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $RepoDir "scripts\windows\analisis_completo.ps1") | Out-Host
         "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "app_nuevo") {
+        # B7 (04-11): un partido nuevo de principio a fin con la aplicacion, sin el ciclo: un tramo de un partido
+        # (minutos: 35 por defecto) se anade como partido nuevo y la cola de la aplicacion lo analiza entero, en una
+        # carpeta aparte (output\_app_nuevo, con su propio indice: TENNISBIO_SANDBOX); nunca toca el indice real
+        $sbx = "$Base\output\_app_nuevo"
+        $lg = "$Base\output\prueba_app_nuevo.log"
+        "Peticion $($p['id']): partido nuevo con la aplicacion ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        Remove-Item $sbx -Recurse -Force -ErrorAction SilentlyContinue
+        New-Item -ItemType Directory -Force -Path "$sbx\videos", "$sbx\output", "$sbx\datos" | Out-Null
+        $src = Get-ChildItem "$Base\videos" -Recurse -File -ErrorAction SilentlyContinue |
+            Where-Object { $_.Extension -match '^\.(mp4|mkv|ts|mov)$' } | Sort-Object Length | Select-Object -First 1
+        $min = if ($p["minutos"]) { [int]$p["minutos"] } else { 35 }
+        $clip = "$sbx\videos\prueba_app_$($min)m$($src.Extension)"
+        & ffmpeg -v error -y -ss 1800 -i $src.FullName -t ($min * 60) -c copy $clip 2>&1 | Add-Content $lg -Encoding UTF8
+        # la biblioteca tambien aparte: si no, la del usuario (C:\tenis\biblioteca) estaria activa aqui
+        "paths:`n  videos: $sbx\videos`n  output: $sbx\output`n  data: $sbx\datos`n  library: $sbx\biblioteca" | Set-Content "$sbx\sandbox.yaml" -Encoding UTF8
+        $env:TENNISBIO_SANDBOX = "$sbx\sandbox.yaml"
+        "  tramo: $min min de $($src.Name) desde 30:00" | Add-Content $lg -Encoding UTF8
+        $t0 = Get-Date
+        $jug = "$(uv run python -c "from tennisbio.config import default_player; print(default_player())" 2>$null)".Trim()
+        & uv run --extra app tennisbio app add $clip --si --usar nuevo --jugadora $jug 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        & uv run --extra app tennisbio app work 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        & uv run --extra app tennisbio app status 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        Remove-Item Env:\TENNISBIO_SANDBOX -ErrorAction SilentlyContinue
+        "duracion total: $([math]::Round(((Get-Date) - $t0).TotalMinutes, 1)) min; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "prevision") {
         # solo la prevision (03-11): que se rehace y cuanto tardaria, sin ejecutar nada (output\prevision.md)
         $lg = "$Base\output\prevision.log"

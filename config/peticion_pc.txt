@@ -198,6 +198,12 @@ accion: completo
 ---
 id: 95
 accion: ventana
+---
+id: 96
+accion: app_nuevo
+minutos: 35
+# 96 (04-11): paso 6.2 (B7): 35 min de un partido como partido NUEVO, con la aplicacion de principio a fin y sin el
+# ciclo, en output\_app_nuevo (indice y carpetas propios; nunca el indice real)
 # 95 (04-11): la ventana real otra vez, con los atributos del puente privados (pywebview recorria toda la aplicacion)
 # 94 (04-11): la referencia con la identidad v6 (fotogramas clave) y las huellas por contenido: segun la prevision (92)
 # solo identidad y pasada fina desde las caches; Osaka primero, con la alarma de tiempo vigilando la identidad
@@ -245,6 +251,7 @@ accion: ventana
 #   migrar = estructura definitiva: copia output a biblioteca\partidos, la comprueba y solo entonces la activa (nunca borra)
 #   diag = hojas de fotogramas de los planos de cada partido (por que hay pocos minutos de camara principal)
 #   rehacer = un partido entero de nuevo (partido: <id>) y despues el analisis completo
+#   app_nuevo = un tramo (minutos: 35) como partido nuevo con la aplicacion, sin el ciclo, en output\_app_nuevo
 #   prevision = que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada (etapas: opcional)
 #   medir = una medida con un script del repositorio (script: bench_ball; argumentos: --only ocr5 opcional), registro output\medir_<script>.log
 #   repetir = unas etapas de todos los partidos aunque esten al dia (etapas: fine[,fine_doubtful]) y despues el analisis completo
