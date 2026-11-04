@@ -2835,7 +2835,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4232 caracteres de texto, 7 vídeos, 12 gráficos",
+   "detail": "4244 caracteres de texto, 7 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2867,7 +2867,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2001 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2004 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3395,7 +3395,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "43 carpetas, 37.6 GB en total (2026-11-04T20:52:42); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "43 carpetas, 37.6 GB en total (2026-11-04T21:20:05); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -3577,14 +3577,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-04_2102.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (5.0 min): CPU 5/19/53 %, iGPU 0/0/1 %, RAM máx 7.2 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
+   "detail": "recursos_2026-11-04_2120.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (14.2 min): CPU 2/18/30 %, iGPU 0/0/0 %, RAM máx 7.6 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "aviso",
-   "detail": "la última petición (04-11 21:05) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02"
+   "detail": "la última petición (04-11 21:31) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02"
   },
   {
    "req": 11,
@@ -5166,7 +5166,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (04-11 21:05) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02)"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (04-11 21:31) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02)"
   },
   {
    "req": 11,

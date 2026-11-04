@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261104211004
+Start time: 20261104213239
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 4620
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 6268
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -16,12 +16,31 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Registro enviado a Claude (no hace falta copiar nada).
 
-==> [2026-11-04 21:10:11] Peticion 102: analisis completo de todos los partidos (horas; registro: analisis_completo.log)
-Already up to date.
-Resolved 124 packages in 0.90ms
-Checked 89 packages in 2ms
+==> [2026-11-04 21:32:39] Codigo nuevo (6bbe483 -> de5ae71): 9 ficheros
+    config/peticion_pc.txt
+    docs/plan_corto_plazo.md
+    scripts/windows/ciclo_automatico.ps1
+    src/tennisbio/app/cli.py
+    src/tennisbio/app/core.py
+    src/tennisbio/app/engine.py
+    src/tennisbio/layout.py
+    tests/test_app_core.py
+    tests/test_auto_cycle.py
+Updating 6bbe483..de5ae71
+Fast-forward
+ config/peticion_pc.txt               |   6 +++
+ docs/plan_corto_plazo.md             |   2 +-
+ scripts/windows/ciclo_automatico.ps1 |  12 ++++-
+ src/tennisbio/app/cli.py             |   2 +
+ src/tennisbio/app/core.py            |  20 +++++--
+ src/tennisbio/app/engine.py          |  35 +++++++++---
+ src/tennisbio/layout.py              |   6 ++-
+ tests/test_app_core.py               | 102 +++++++++++++++++++++++++++++++++++
+ tests/test_auto_cycle.py             |   6 ++-
+ 9 files changed, 176 insertions(+), 15 deletions(-)
+Resolved 124 packages in 0.95ms
+Checked 89 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -34,47 +53,22 @@ yolo11m-pose_960.onnx OK 84 MB
 yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+    (paso terminado en 4 s)
 
-==> [2026-11-04 21:10:16] 1/5 Catalogo de partidos (se anaden solos los videos nuevos)
-Vídeos en C:\tenis\videos: 4 en el catálogo (0 nuevos: —)
-    (paso terminado en 0 s)
-
-==> [2026-11-04 21:10:16] 2/5 Analisis de los partidos (horas; se puede cortar y relanzar)
-us-open-2026-r4-naomi-osaka-elena-rybakina: al día
-zheng-qinwen-elena-rybakina: al día
-tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: al día
-tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5: al día
-us-open-2026-r4-naomi-osaka-elena-rybakina probe:ok  scenes:ok  audio:ok  court:ok  players:ok  score:ok  identity:ok  spotting:ok  candidates:ok  views:ok  fine:ok  views_link:ok  fine_opponent:ok  fine_doubtful:ok
-zheng-qinwen-elena-rybakina probe:ok  scenes:ok  audio:ok  court:ok  players:ok  score:ok  identity:ok  spotting:ok  candidates:ok  views:ok  fine:ok  views_link:ok  fine_opponent:ok  fine_doubtful:ok
-tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 probe:ok  scenes:ok  audio:ok  court:ok  players:ok  score:ok  identity:ok  spotting:ok  candidates:ok  views:ok  fine:ok  views_link:ok  fine_opponent:ok  fine_doubtful:ok
-tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 probe:ok  scenes:ok  audio:ok  court:ok  players:ok  score:ok  identity:ok  spotting:ok  candidates:ok  views:ok  fine:ok  views_link:ok  fine_opponent:ok  fine_doubtful:ok
-    (paso terminado en 2 s)
-
-==> [2026-11-04 21:10:18] 3/5 Informes
-informe: C:\tenis\output\informe_derecha\index.html
-informe: C:\tenis\output\informe_reves\index.html
-informe: C:\tenis\output\informe_saque\index.html
-    (paso terminado en 11 s)
-
-==> [2026-11-04 21:10:28] 4/5 Comprobacion automatica de requisitos (capturas del informe incluidas; se envia a Claude)
-Peticiones: 19 sin construir · 65 construido, sin comprobar · 75 comprobación que falla · 78 comprobado en salidas · 0 validado con verdad
-Auditoría: 417 cumplidos, 34 no cumplidos, 54 sin golpes suficientes, 126 avisos → C:\tenis\output\auditoria\auditoria.md
-  ✘ Saques por punto de su saque: sin-fecha_f43dd2_rybakina: 14 de 30 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 6, golpes suyos, pero ningún saque 10; sus saques encontrados caen en puntos de su saque 16, de la rival 5, fuera de los puntos leídos 8; en los puntos sin saque, su primer golpe encontrado llega 8.8 s (mediana de 10) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 10): tipo {'forehand/detector': 6, 'backhand/detector': 4}, lado {'near': 5, 'far': 5}, 8 detrás de la línea de fondo; primeros: 13.3-14.1 min (sin_saque), 18.4-19.1 min (sin_golpes), 19.0-19.9 min (sin_golpes), 20.5-20.9 min (sin_golpes), 20.9-21.5 min (sin_saque), 25.2-26.3 min (sin_saque), 26.7-27.2 min (sin_golpes), 34.8-35.4 min (sin_saque)
-  ✘ Saques por punto de su saque: sin-fecha_584c5b_rybakina: 24 de 50 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 11, golpes suyos, pero ningún saque 15; sus saques encontrados caen en puntos de su saque 30, de la rival 4, fuera de los puntos leídos 12; en los puntos sin saque, su primer golpe encontrado llega 4.3 s (mediana de 15) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 15): tipo {'forehand/detector': 10, 'backhand/detector': 5}, lado {'near': 7, 'far': 8}, 11 detrás de la línea de fondo; primeros: 11.6-12.2 min (sin_saque), 12.1-12.7 min (sin_golpes), 12.6-13.3 min (sin_saque), 13.8-14.7 min (sin_saque), 17.9-18.4 min (sin_saque), 18.4-19.1 min (sin_golpes), 19.8-20.6 min (sin_saque), 25.0-25.8 min (sin_saque)
-  ✘ Saques por punto de su saque: sin-fecha_580c6f_rybakina: 17 de 50 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 18, golpes suyos, pero ningún saque 15; sus saques encontrados caen en puntos de su saque 21, de la rival 9, fuera de los puntos leídos 24; en los puntos sin saque, su primer golpe encontrado llega 6.9 s (mediana de 15) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 15): tipo {'backhand/detector': 8, 'forehand/detector': 6, 'forehand/pose': 1}, lado {'near': 6, 'far': 9}, 9 detrás de la línea de fondo; primeros: 34.8-35.4 min (sin_saque), 36.0-36.7 min (sin_saque), 36.6-37.6 min (sin_saque), 42.4-42.9 min (sin_saque), 43.6-44.3 min (sin_saque), 44.2-44.5 min (sin_saque), 44.4-45.5 min (sin_saque), 52.4-53.0 min (sin_saque)
-  ✘ Saques por punto de su saque: sin-fecha_b8b713_rybakina: 28 de 70 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 16, golpes suyos, pero ningún saque 26; sus saques encontrados caen en puntos de su saque 35, de la rival 7, fuera de los puntos leídos 13; en los puntos sin saque, su primer golpe encontrado llega 5.1 s (mediana de 26) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 26): tipo {'forehand/detector': 17, 'backhand/detector': 9}, lado {'far': 12, 'near': 14}, 21 detrás de la línea de fondo; primeros: 47.2-47.8 min (sin_golpes), 55.0-55.6 min (sin_golpes), 55.8-56.6 min (sin_golpes), 56.9-57.4 min (sin_golpes), 62.3-62.7 min (sin_golpes), 62.6-63.2 min (sin_saque), 63.2-63.7 min (sin_golpes), 70.1-70.6 min (sin_saque)
-  ✘ Valores dentro de límites físicos: ball_flight.apex_height_m: 3 de 102 fuera de 0.2–4.0
-  ✘ Primera pantalla, anchura y nombres (diseño definitivo): vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 598 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
-  ✘ La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo: 9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección mide 1419 px (más de pantalla y media)
+==> [2026-11-04 21:32:43] Que hace falta: informe
+Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (74 golpes)
+Informe: C:\tenis\output\_smoke\informe\index.html
+Golpes: 0 nuevos, 25 en C:\tenis\output\_smoke\exportar\golpes
+Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
+Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
+Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
+Peticiones: 19 sin construir · 65 construido, sin comprobar · 82 comprobación que falla · 71 comprobado en salidas · 0 validado con verdad
+Auditoría: 348 cumplidos, 23 no cumplidos, 127 sin golpes suficientes, 105 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+  ✘ Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin: 7 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 3, golpes suyos, pero ningún saque 4; sus saques encontrados caen en puntos de su saque 11, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 4) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 4): tipo {'backhand/detector': 2, 'backhand/pose': 1, 'forehand/detector': 1}, lado {'far': 4}, 3 detrás de la línea de fondo; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque), 23.2-23.9 min (sin_golpes), 31.1-31.7 min (sin_saque), 32.6-32.8 min (sin_saque)
+  ✘ Primera pantalla, anchura y nombres (diseño definitivo): vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
   ✘ Registros con fecha y duración: 54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final
   ✘ #1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
-  ✘ #4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b: 201 comprobaciones: 1 falta, 23 pocos datos, 177 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )
-  ✘ #5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto: 32 comprobaciones: 1 falta, 7 pocos datos, 24 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )
-  ✘ #17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»: 10 comprobaciones: 1 falta, 1 pocos datos, 8 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )
-  ✘ #46 Sin PDF enorme y sin inventar datos: 2 comprobaciones: 1 falta, 1 ok; la peor: «Valores dentro de límites físicos» (ball_flight.apex_height_m: 3 de 102 fuera de 0.2–4.0)
-  ✘ #59 Diferencias solo por encima del error y en situaciones equivalentes: 6 comprobaciones: 1 falta, 5 ok; la peor: «Valores dentro de límites físicos» (ball_flight.apex_height_m: 3 de 102 fuera de 0.2–4.0)
   ✘ #66 Fechas y duración en los registros: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final)
-  ✘ #68 La meta: mejorar mi derecha tomando la de X como base: 8 comprobaciones: 1 falta, 1 pocos datos, 6 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )
   ✘ #155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
   ✘ #176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3): SIN HACER según el registro (#176, docs/peticiones_usuario.md)
   ✘ #189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4): SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -93,27 +87,15 @@ Auditoría: 417 cumplidos, 34 no cumplidos, 54 sin golpes suficientes, 126 aviso
   ✘ #240 Comparar la aplicación con las profesionales una vez estén los golpes: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
   ✘ #244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10): SIN HACER según el registro (#244, docs/peticiones_usuario.md)
   ✘ #245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10): SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-    (paso terminado en 3 min 46 s)
+Hecho en 182 s, sin volver a analizar vídeo.
+    (paso terminado en 3 min 02 s)
 
-==> [2026-11-04 21:14:14] 5/5 Videos por golpe, montajes por conclusion y resumen PDF
-Golpes: 0 nuevos, 450 en C:\tenis\output\exportar_derecha\golpes
-Montajes: 10 en C:\tenis\output\exportar_derecha\montajes
-Resumen: C:\tenis\output\exportar_derecha\resumen.pdf
-Golpes: 0 nuevos, 289 en C:\tenis\output\exportar_reves\golpes
-Montajes: 10 en C:\tenis\output\exportar_reves\montajes
-Resumen: C:\tenis\output\exportar_reves\resumen.pdf
-Golpes: 0 nuevos, 184 en C:\tenis\output\exportar_saque\golpes
-Montajes: 8 en C:\tenis\output\exportar_saque\montajes
-Resumen: C:\tenis\output\exportar_saque\resumen.pdf
-Informe: C:\tenis\output\informe_derecha\index.html (o en la aplicacion Tennisbio)
-
-TERMINADO en 00:05. Informes en C:\tenis\output\informe_*; videos, montajes y resumen.pdf en C:\tenis\output\exportar_*
-    (paso terminado en 1 min 30 s)
-Empezado 2026-11-04 21:10:11 - terminado 2026-11-04 21:15:45 - duracion total 5 min 33 s
-Registro enviado a Claude (no hace falta copiar nada).
-    (paso terminado en 5 min 42 s)
-Empezado 2026-11-04 21:10:02 - terminado 2026-11-04 21:15:53 - duracion total 5 min 51 s
+==> [2026-11-04 21:35:45] Revision automatica frente a la ejecucion anterior
+# Revisión automática: FALLOS
+Ciclo automatico terminado (informe).
+    (paso terminado en 0 s)
+Empezado 2026-11-04 21:32:37 - terminado 2026-11-04 21:35:45 - duracion total 3 min 08 s
 **********************
 Windows PowerShell transcript end
-End time: 20261104211553
+End time: 20261104213545
 **********************
