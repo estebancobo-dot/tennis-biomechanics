@@ -10,10 +10,12 @@
    "size": "1920x1080",
    "cleaned": false,
    "vfr": false
-  }
+  },
+  "out_hash": "c274a34772e6378a1fa1",
+  "scheme": 2
  },
  "scenes": {
-  "fingerprint": "ccc37a9175a7c685",
+  "fingerprint": "49f628b05856d9f1",
   "version": "3",
   "seconds": 867.7,
   "finished": "2026-10-19 00:31:14",
@@ -25,20 +27,24 @@
    "main_rule": "lines",
    "main_camera_min_colour": 108.5,
    "main_views": 208
-  }
+  },
+  "out_hash": "8d4b236e92de42fbecbd",
+  "scheme": 2
  },
  "audio": {
-  "fingerprint": "340b776b785a599e",
+  "fingerprint": "e4671728d3981a1e",
   "version": "2",
   "seconds": 13.1,
   "finished": "2026-10-19 00:31:27",
   "summary": {
    "onsets": 6221,
    "tracks": 1
-  }
+  },
+  "out_hash": "cd826251049ddb682c92",
+  "scheme": 2
  },
  "court": {
-  "fingerprint": "bb1278df64ea0e08",
+  "fingerprint": "c7c1950fda272fea",
   "version": "5",
   "seconds": 151.9,
   "finished": "2026-11-03 18:39:05",
@@ -54,10 +60,12 @@
    "court_min": 32.4,
    "court_share": 0.887,
    "pitch_deg_median": 18.5
-  }
+  },
+  "out_hash": "3535f6bfb6502530f6f1",
+  "scheme": 2
  },
  "score": {
-  "fingerprint": "f230f24cbf11660e",
+  "fingerprint": "8d696ede071acb4c",
   "version": "6",
   "seconds": 515.1,
   "finished": "2026-11-03 18:47:40",
@@ -66,10 +74,12 @@
    "pressure": 137,
    "samples": 483,
    "ocr_calls": 388
-  }
+  },
+  "out_hash": "4c15ec9e215fe2217eb6",
+  "scheme": 2
  },
  "players": {
-  "fingerprint": "7429cbf8082c6e67",
+  "fingerprint": "905dc0ac4e2ee64f",
   "version": "4",
   "seconds": 1335.2,
   "finished": "2026-11-03 19:01:20",
@@ -81,7 +91,9 @@
    "wait_min": 2.8,
    "appearance_min": 0.2
   },
-  "overlap_s": 515.1
+  "overlap_s": 515.1,
+  "out_hash": "d6f0f90c26db110e2027",
+  "scheme": 2
  },
  "identity": {
   "fingerprint": "cf09e2f83166b97a",
@@ -115,10 +127,11 @@
     "same_game_pairs": 210,
     "same_game_same": 0.99
    }
-  }
+  },
+  "scheme": 2
  },
  "candidates": {
-  "fingerprint": "0696861b9b45035e",
+  "fingerprint": "b8a1bdb04dd8e419",
   "version": "11",
   "seconds": 3.0,
   "finished": "2026-11-03 20:20:39",
@@ -132,7 +145,9 @@
    "replay_strokes_skipped": 4,
    "replay_runs": 3,
    "audio_track": 0
-  }
+  },
+  "out_hash": "3aa4bb409b373db0a3fe",
+  "scheme": 2
  },
  "fine": {
   "fingerprint": "628133224c54c4bb",
@@ -176,7 +191,8 @@
     "whole_window_again": 0,
     "frames_960_far": 0
    }
-  }
+  },
+  "scheme": 2
  },
  "fine_opponent": {
   "fingerprint": "ddd59e2335d69c38",
@@ -185,10 +201,11 @@
   "finished": "2026-11-04 08:53:18",
   "summary": {
    "enabled": false
-  }
+  },
+  "scheme": 2
  },
  "spotting": {
-  "fingerprint": "e2a9a734b8f389c9",
+  "fingerprint": "5ea741f6098045ed",
   "version": "1",
   "seconds": 21.8,
   "finished": "2026-11-03 20:20:36",
@@ -209,10 +226,12 @@
     "bola": 0.0,
     "modelo": 0.1
    }
-  }
+  },
+  "out_hash": "1e6228ab54514aad8839",
+  "scheme": 2
  },
  "views": {
-  "fingerprint": "d56fda5911fe554e",
+  "fingerprint": "fdc8e7f8a6d4bf70",
   "version": "5",
   "seconds": 184.6,
   "finished": "2026-11-03 20:23:44",
@@ -226,10 +245,12 @@
    "links": 1911,
    "linked_views": 785,
    "slowmo_links": 24
-  }
+  },
+  "out_hash": "ceb993373833a72fb242",
+  "scheme": 2
  },
  "views_link": {
-  "fingerprint": "8765a81398339b5a",
+  "fingerprint": "bc56237b4c3b877f",
   "version": "1",
   "seconds": 0.3,
   "finished": "2026-11-04 08:53:18",
@@ -240,7 +261,9 @@
    "with_slowmo": 9,
    "replay_share": 0.141,
    "other_share": 0.985
-  }
+  },
+  "out_hash": "4f51d6c9fd2737fe3ac3",
+  "scheme": 2
  },
  "fine_doubtful": {
   "fingerprint": "e1f28bdb2b9a813f",
@@ -284,6 +307,7 @@
     "whole_window_again": 0,
     "frames_960_far": 0
    }
-  }
+  },
+  "scheme": 2
  }
 }
