@@ -3,10 +3,10 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 295,
-  "falta": 26,
+  "ok": 298,
+  "falta": 21,
   "pocos datos": 127,
-  "aviso": 111
+  "aviso": 113
  },
  "items": [
   {
@@ -46,7 +46,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "falta",
-   "detail": "7 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 3, golpes suyos, pero ningún saque 4; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque), 23.2-23.9 min (sin_golpes), 31.1-31.7 min (sin_saque), 32.6-32.8 min (sin_saque)",
+   "detail": "7 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 3, golpes suyos, pero ningún saque 4; sus saques encontrados caen en puntos de su saque 11, de la rival 5, fuera de los puntos leídos 4; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque), 23.2-23.9 min (sin_golpes), 31.1-31.7 min (sin_saque), 32.6-32.8 min (sin_saque)",
    "serve_gaps": {
     "points": 14,
     "found": 7,
@@ -91,6 +91,11 @@
      "sin_camara": 0,
      "sin_golpes": 3,
      "sin_saque": 4
+    },
+    "serves_at": {
+     "her_points": 11,
+     "opponent_points": 5,
+     "elsewhere": 4
     }
    }
   },
@@ -2774,7 +2779,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4232 caracteres de texto, 7 vídeos, 12 gráficos",
+   "detail": "4244 caracteres de texto, 7 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2806,7 +2811,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2001 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2004 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3100,10 +3105,10 @@
    "req": 5,
    "area": "Automático",
    "name": "Pruebas del código en este PC",
-   "status": "falta",
-   "detail": "código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fallan: tests/test_recall.py::test_audit_item_reads_match_folder",
-   "passed": 725,
-   "failed": 1
+   "status": "ok",
+   "detail": "código 90c6765 (2026-11-04T14:55:17): 729 bien, 0 fallan, 0 errores",
+   "passed": 729,
+   "failed": 0
   },
   {
    "req": 5,
@@ -3298,8 +3303,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe",
-   "status": "falta",
-   "detail": "1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fallan: tests/test_recall.py::test_audit_item_reads)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3347,8 +3352,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
-   "status": "falta",
-   "detail": "3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fallan: tests/test_recall.py::test_audit_item_reads)"
+   "status": "aviso",
+   "detail": "3 comprobaciones: 1 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)"
   },
   {
    "req": 11,
@@ -3564,8 +3569,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#51 El código de la prueba es el de los casos reales",
-   "status": "falta",
-   "detail": "1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fallan: tests/test_recall.py::test_audit_item_reads)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -4824,8 +4829,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código",
-   "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 33fcd7d (2026-11-04T14:34:21): 725 bien, 1 fallan, 0 errores; fallan: tests/test_recall.py::test_audit_item_reads)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
