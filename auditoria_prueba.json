@@ -4,7 +4,7 @@
  "near": 13,
  "summary": {
   "ok": 298,
-  "falta": 20,
+  "falta": 21,
   "pocos datos": 127,
   "aviso": 113
  },
@@ -40,6 +40,59 @@
     ]
    },
    "doubtful": 19
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin",
+   "status": "falta",
+   "detail": "7 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 3, golpes suyos, pero ningún saque 4; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque), 23.2-23.9 min (sin_golpes), 31.1-31.7 min (sin_saque), 32.6-32.8 min (sin_saque)",
+   "serve_gaps": {
+    "points": 14,
+    "found": 7,
+    "gaps": [
+     {
+      "t0": 368.3,
+      "t1": 388.0,
+      "cause": "sin_golpes"
+     },
+     {
+      "t0": 383.0,
+      "t1": 425.5,
+      "cause": "sin_saque"
+     },
+     {
+      "t0": 420.5,
+      "t1": 470.4,
+      "cause": "sin_golpes"
+     },
+     {
+      "t0": 498.4,
+      "t1": 549.8,
+      "cause": "sin_saque"
+     },
+     {
+      "t0": 1394.7,
+      "t1": 1431.2,
+      "cause": "sin_golpes"
+     },
+     {
+      "t0": 1863.5,
+      "t1": 1904.7,
+      "cause": "sin_saque"
+     },
+     {
+      "t0": 1953.6,
+      "t1": 1968.6,
+      "cause": "sin_saque"
+     }
+    ],
+    "by_cause": {
+     "sin_camara": 0,
+     "sin_golpes": 3,
+     "sin_saque": 4
+    }
+   }
   },
   {
    "req": 1,
@@ -2721,7 +2774,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4244 caracteres de texto, 7 vídeos, 12 gráficos",
+   "detail": "4232 caracteres de texto, 7 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -3048,8 +3101,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 268cafe (2026-11-04T12:33:00): 724 bien, 0 fallan, 0 errores",
-   "passed": 724,
+   "detail": "código ec9ed32 (2026-11-04T13:36:15): 726 bien, 0 fallan, 0 errores",
+   "passed": 726,
    "failed": 0
   },
   {
