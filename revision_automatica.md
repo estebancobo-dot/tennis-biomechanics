@@ -1,6 +1,6 @@
 # Revisión automática: REGRESIÓN
 
-333 cumplidos · 21 no cumplidos · 127 sin golpes suficientes · 110 avisos (antes: 235 cumplidos, 20 no cumplidos)
+330 cumplidos · 23 no cumplidos · 127 sin golpes suficientes · 123 avisos (antes: 333 cumplidos, 21 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 123 de 245
 
@@ -41,7 +41,7 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - **#23 [PARCIAL]** Seguir a la jugadora en los cambios de lado (10-10 17:27) — falta: Sin validar con datos anotados. 19-10: fallos de identidad en los partidos completos; validar con `validation/recall_eval.py`.
 - **#25 [PARCIAL]** Métricas por derecha: apoyo, base, rodillas, cadera, hombros, X-factor, codo, impacto, cadena, pista (10-10 17:27) — falta: X-factor 2D: mediana de 1° en Aprende, sospechoso (fila 113). 19-10: giro de hombros y X-factor 2D salen «sesgo» y no se dan; rodillas con escorzo; impacto del…
 - **#36 [PARCIAL]** Mano y antebrazo, cierre de la muñeca (11-10 09:56, 10:19) — falta: El lag sale en el 40 % de los golpes y Aprende lo da con **1 golpe**.
-- **#45 [PARCIAL]** Todo automático y completo: el usuario no revisa nada (11-10 09:05, 19:38; 12-10 11:41) — falta: 4 golpes fallaron (`strokes_errores.json`) y nadie los recupera.
+- **#45 [PARCIAL]** Todo automático y completo: el usuario no revisa nada (11-10 09:05, 19:38; 12-10 11:41) — falta: 4 golpes fallaron (`strokes_errores.json`) y nadie los recupera. (04-11: 0 golpes fallaron en la referencia; uno que falle se rehace cuando cambia el código de…
 - **#55 [PARCIAL]** Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo (12-10 17:40) — falta: En sus datos hay 0 paralelas y 1 cerrado más «invertida paralela»: el ejemplo no se puede ver. 19-10: apoyo cerrado + paralela sí se combinan; «cerca de la red…
 - **#64 [PARCIAL]** Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la inversa» (12-10 18:03, 18:06;… — falta: El paso cruzado no aparece en ningún golpe. El primer paso y el ajuste salen «no medible» si los tobillos se ven quietos menos del 40 % del tiempo.
 - **#68 [PARCIAL]** La meta: mejorar mi derecha tomando la de X como base (12-10 22:25; 13-10 05:48 p5) — falta: Valores provisionales de 1-10 golpes. Sin progresión ni prioridad (qué copiar primero según lo que la distingue).
@@ -78,7 +78,7 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - **#154 [PARCIAL]** mi movil es android google pixel 8 ... que copie directo al pixel (Chat, 18-10 12:11) — falta: Sin probar con el teléfono conectado.
 - **#156 [PARCIAL]** como sabes la identidad de la jugadora y porque hay fallos? porque no buscas en la web de la wta la imagen y altura (Chat, 19-10 06:29) — falta: Fallos sin explicar ni corregir; una foto de la WTA sería una fuente externa (requisito 6) y no sirve desde detrás: la identidad debe validarse con `validation…
 - **#159 [PARCIAL]** volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (Chat, 19-10 08:11) — falta: La empuñadura no se ve en la tele: el golpe de fondo se reconoce por el swing (preparación no compacta y terminación completa). La medida «bola seguida» (`ball…
-- **#160 [PARCIAL]** la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11) — falta: Arranca, pero los análisis de los 4 partidos no son válidos (golpes perdidos).
+- **#160 [PARCIAL]** la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11) — falta: Arranca, pero los análisis de los 4 partidos no son válidos (golpes perdidos). (04-11: el índice de la aplicación tiene 0 análisis; los de la referencia los hi…
 - **#162 [PARCIAL]** Galerías ordenadas por calidad de captura, representatividad y resultado del punto (CLAUDE.md, Informe) — falta: No hay orden por resultado del punto (solo filtro).
 - **#163 [PARCIAL]** Final del armado (máximo giro, raqueta más atrás) (Matriz (literatura), §1) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
 - **#164 [PARCIAL]** Final de la extensión (Matriz (literatura), §1) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
@@ -135,7 +135,9 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 
 - **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 7 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 3, golpes suyos, pero ningún saque 4; sus saques encontrados caen en puntos de su saque 11, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 4
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
+- **Registros con fecha y duración**: 54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final
 - **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
+- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 aviso; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final)
 - **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -157,116 +159,24 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 
 ## Empeora respecto a la ejecución anterior
 
-- **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (04-11 16:18) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 13:
-
-## Mejora
-
-- #17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»: aviso → pocos datos
-- #52 Brave, no instalar Edge: aviso → ok
-- #53 No pasar de 100 a 0: conservar lo anterior: aviso → ok
-- #54 Qué hace ella cuando la rival golpea, la bola cruza la red, bota y llega arriba: aviso → ok
-- #56 Barras horizontales con la diferencia de altura de la cabeza: aviso → ok
-- #57 Nada de gráficas de muchas líneas ni tablas sin frases: aviso → ok
-- #65 El play del vídeo funciona (no solo un fotograma): aviso → ok
-- #67 No borrar el trabajo hecho: lo complejo como extra: aviso → ok
-- #68 La meta: mejorar mi derecha tomando la de X como base: aviso → pocos datos
-- #69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica: aviso → pocos datos
-- #99 Mejora 1 (entrenadores): líneas dibujadas sobre el fotograma: aviso → ok
-- #110 Mejora 12: «Lo que la distingue» (2-3 rasgos frente a la literatura, con vídeo): aviso → ok
-- #111 Mejora 13: consigna «para imitarla» y error que evita, por fase: aviso → ok
-- #112 Mejora 14: clase descriptiva de estilo (`fh_style`): aviso → ok
-- #114 Cuerpo respecto a la bola en cada momento (golpe rival, cruza la red, cae, bota, sube, golpe): fotogramas y me: aviso → ok
-- #115 Cuánto baja y sube el cuerpo, con fotogramas y barras horizontales: de la espera al punto más bajo y del más b: aviso → ok
-- #116 Distancia entre las piernas en los golpes: base y estabilidad: aviso → ok
-- #117 Hacia dónde mira el tronco al terminar (valla lateral, de frente, girado) según el golpe: aviso → ok
-- #120 Vídeo a pantalla completa: aviso → ok
-- #121 Ver lo que se pinta por separado, por grupos o una a una: aviso → ok
-- #122 Web en 2 vistas principales y el resto en «Más», en dos grupos (funcional y técnico), sin perder datos: aviso → ok
-- #123 Lo que se aprende en una sesión: plan de 3 prioridades en orden, foco externo por fase, detalle plegado: aviso → ok
-- #126 Consignas con su número en «Cómo hacerlo tú» («baja unos 14 cm desde la espera, como ella»), solo si es fiable: aviso → ok
-- #127 Guía de primer uso, «empieza aquí»: aviso → ok
-- #128 Glosario de términos: aviso → ok
-- #138 se puede hacer modelos hibridos de alguna manera? (Chat, 13-10 18:34): aviso → ok
-- #200 Pista: TennisCourtDetector (14 puntos) + refinado (Estado del arte, 13-10): aviso → ok
-- #201 Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10): aviso → ok
-- #202 Bola: probar WASB (Estado del arte, 13-10): aviso → ok
-- #203 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10): aviso → ok
-- #204 Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10): aviso → ok
+- **#40 Scripts de instalación, uso rápido y completo, sin leer nada**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_windows_scripts» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
+- **#43 El PC no es servidor**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_local_only» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
+- **#50 Progreso y monitorización visibles**: ok → aviso: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_logs_progress» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
+- **#66 Fechas y duración en los registros**: ok → falta: 2 comprobaciones: 1 falta, 1 aviso; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final)
+- **#81 Tamaño de la salida; comprobación sin gastar tokens**: ok → aviso: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_output_places» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
+- **#82 Dónde se graban las salidas, qué va a git, qué se reutiliza**: ok → aviso: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_output_places» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
 
 ## Comprobaciones nuevas
 
-- Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»: ok (2446 caracteres de texto, 7 vídeos, 19 gráficos)
-- Pantalla «Sus golpes (Videoteca y pista)»: ok (4509 caracteres de texto, 7 vídeos, 1 gráficos)
-- Pantalla «Análisis de golpe»: ok (4888 caracteres de texto, 8 vídeos, 31 gráficos)
-- Pantalla «Comparar dos golpes»: ok (4357 caracteres de texto, 7 vídeos, 2 gráficos)
-- Pantalla «Conclusiones (Panel y Comparativas)»: ok (4232 caracteres de texto, 7 vídeos, 12 gráficos)
-- Pantalla «Tabla de golpes (Explorador)»: ok (4696 caracteres de texto, 7 vídeos, 0 gráficos)
-- Pantalla «Vista lateral (entreno)»: ok (7620 caracteres de texto, 7 vídeos, 0 gráficos)
-- Pantalla «Fiabilidad de las medidas»: ok (3805 caracteres de texto, 7 vídeos, 0 gráficos)
-- Pantalla «Datos del análisis»: ok (2004 caracteres de texto, 7 vídeos, 0 gráficos)
-- Reproducir: «Su derecha» → ▶ Ver sus golpes típicos: ok (el vídeo arranca y avanza)
-- Reproducir: Videoteca → ▶ Reproducir todos: ok (el vídeo arranca y avanza)
-- Reproducir: Análisis de golpe → ▶: ok (el vídeo arranca y avanza)
-- Reproducir: Comparar golpes → ▶: ok (el vídeo arranca y avanza)
-- Reproducir: Panel → ▶ vídeos de una conclusión: ok (el vídeo arranca y avanza)
-- Reproducir: «Su derecha» → ▶ Ver sus golpes típicos (con las animaciones de Windows desactivadas): ok (el vídeo arranca y avanza)
-- Reproducir: Videoteca → ▶ Reproducir todos (con las animaciones de Windows desactivadas): ok (el vídeo arranca y avanza)
-- Reproducir: Análisis de golpe → ▶ (con las animaciones de Windows desactivadas): ok (el vídeo arranca y avanza)
-- Reproducir: Comparar golpes → ▶ (con las animaciones de Windows desactivadas): ok (el vídeo arranca y avanza)
-- Reproducir: Panel → ▶ vídeos de una conclusión (con las animaciones de Windows desactivadas): ok (el vídeo arranca y avanza)
-- El vídeo del golpe se reproduce al pulsar ▶: ok (avanza y sigue reproduciéndose)
-- La pantalla responde a cada combinación: ok (2050 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 184500 puntos de control comprobados; 600 con golpes exactos)
-- Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha: pocos datos (0 golpes exactos, 1 parecidos; 79 de 90 puntos con su valor medido)
-- Lo que la distingue: su firma (rasgos que repite) con vídeo: ok (4 rasgos que repite en ≥ 75 % de sus golpes, solo de medidas fiables)
-- Estilo de su derecha en una frase: ok (Estilo de su derecha: preparación amplia (89 %) · apoyo variable (la más frecuente, abierto, en 40 %) · efecto liftado (de abajo arriba) (70 %) · terminación va)
-- Puntos de «Aprende» con su valor medido (todas sus derechas): ok (87 de 90; el resto dice por qué falta)
-- «Tu objetivo»: la consigna con su número en cada medida suya fiable: ok (55 medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); 76 palabras con su explicación al tocarlas; guía de primer uso y glosario comprobad)
-- Primera pantalla, anchura y nombres (diseño definitivo): falta (vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera p)
-- La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo: ok (9 de 9 fases con claves suyas fiables)
-- La lección enseña su vídeo de cada fase, en bucle: ok (9 de 9 fases con su vídeo cargado)
-- La tira de fases enseña su golpe en fotos reales, como las secuencias de los entrenadores: ok (9 de 9 fases con su foto en la tira)
-- «La bola y ella»: qué hace cuando golpea la rival, cruza la red, bota y golpea ella: ok (3 en la pantalla)
-- «Sus pies en este golpe»: el ciclo de pies del split step a la recuperación (8 pasos): ok (9 en la pantalla)
-- «La bola y ella»: medidas reales en cada fotograma (cadera en cm, pies en m, recorrido): ok (3 en la pantalla)
-- «Bajar y subir»: 3 fotogramas (espera, punto más bajo, más alto tras golpear) con barras y cm: ok (4 en la pantalla)
-- «Base»: fotogramas con la barra entre los pies y su distancia en la pista: ok (4 en la pantalla)
-- «Tronco al terminar»: fotograma con la línea de hombros y hacia dónde mira: ok (2 en la pantalla)
-- Barras de altura de la cabeza y la cadera sobre el vídeo: ok (1 en la pantalla)
-- Filtros combinables de la videoteca (apoyo, dirección, bola, contacto…): ok (33 en la pantalla)
-- Novedades de la versión (en «Datos del análisis»): ok (1 en la pantalla)
-- «Análisis de golpe»: la raqueta por fase dicha en frases (la tabla sigue debajo): ok (8 en la pantalla)
-- «Explorador»: resumen en frases de los golpes filtrados (la tabla sigue debajo): ok (4 en la pantalla)
-- «Conclusiones»: qué cambia, en frases (la tabla sigue debajo): ok (1 en la pantalla)
-- «Comparar golpes»: diferencias en frases (la tabla sigue debajo): ok (7 en la pantalla)
-- Pruebas en este PC: test_budget: ok (6 bien, 0 fallan, 0 omitidas)
-- Pruebas en este PC: test_resources_summary: ok (1 bien, 0 fallan, 0 omitidas)
-- Pruebas en este PC: test_fine_ahead: ok (20 bien, 0 fallan, 0 omitidas)
-- Pruebas en este PC: test_parallel: ok (13 bien, 0 fallan, 0 omitidas)
-- Pruebas en este PC: test_fine_parallel: ok (6 bien, 0 fallan, 0 omitidas)
-- Pruebas en este PC: test_hybrid_pose: ok (13 bien, 0 fallan, 0 omitidas)
-- Pruebas en este PC: test_candidates: ok (37 bien, 0 fallan, 0 omitidas)
-- Pruebas en este PC: test_court: ok (10 bien, 0 fallan, 0 omitidas)
-- Pruebas en este PC: test_trunk3d: ok (3 bien, 0 fallan, 0 omitidas)
-- Pruebas en este PC: test_spotting: ok (3 bien, 0 fallan, 0 omitidas)
-- Pruebas en este PC: test_spotting_stage: ok (18 bien, 0 fallan, 0 omitidas)
-- Pruebas en este PC: test_stroke_from_spotter: ok (2 bien, 0 fallan, 0 omitidas)
-- Modelo candidato medido: wasb (bola WASB): ok (frente a ours (TrackNetV3, fp16): precisión F1 0.863 / 0.906; velocidad 44.4 / 34.5 fps; no se adopta (F1 bola a 10 px 0.863 frente a 0.906 (peor); fotogramas/s)
-- Modelo candidato medido: rtmw (esqueleto RTMW-x): ok (frente a YOLO11m-pose + RTMPose-x (hybrid-x): precisión F1 0.667 / 0.667; temblor 0.356 / 0.357 %; pies 0.998 / 0.997; velocidad 10.0 / 3.3 fps; se adopta (F1 g)
-- Modelo candidato medido: court14 (pista de 14 puntos (TennisCourtDetector)): ok (frente a tennisbio.court.fit_court: precisión puntos a ≤7 px 0.956 / 0.91; pista hallada 1.0 / 0.957; velocidad 6.3 / 3.6 fotogramas/s; se adopta (puntos a ≤7 p)
-- Modelo candidato medido: rfdetr (jugadora lejana RF-DETR): ok (frente a YOLO11m-pose en la mitad lejana: precisión jugadora lejana hallada 1.0 / 0.903; velocidad 0.5 / 1.3 fotogramas/s; no se adopta (lejana hallada 1.0 fren)
-- Modelo candidato medido: f3ed (detector de golpes F3ED): ok (frente a detector propio (spotting): precisión F1 golpes (test) 0.994 / 0.997; velocidad 0.153 / 0.031 min por min de vídeo; no se adopta (F1 golpes 0.994 frent)
-- Modelo candidato medido: ocr5 (marcador PP-OCRv5): ok (frente a rapidocr-onnxruntime 1.4 (PP-OCRv4): precisión lecturas coherentes por muestra 0.438 / 0.518; leídas 0.456 / 0.526; velocidad 0.573 / 0.693 s por muest)
-- Modelo candidato medido: mag3d (giro 3D MotionAGFormer): ok (frente a RTMW3D (tennisbio.pose.wholebody3d): precisión a ≤15° 0.58 / 0.13; mediana 12.486 / 40.399°; X-factor 10.4 / 10.188°; velocidad 196.5 / 34.1 fotogramas)
-- Modelo candidato medido: bounce (bote CatBoost): ok (frente a regla del giro más brusco (tennisbio.ball): precisión F1 botes con nuestra bola 0.899 / 0.581; con la bola anotada 0.936 / 0.811; velocidad 0.1 / 0.1 m)
-- Modelo en uso: detector de golpes aprendido (F3Set): ok (elegido y con su modelo en este PC (spotter.enabled: True, models/spotting.onnx))
-- Modelo en uso: esqueleto híbrido (YOLO11 + RTMPose): ok (elegido y con su modelo en este PC (fine_pass.pose_model: hybrid, refine: rtmpose-x))
-- Modelo en uso: pista de 14 puntos (TennisCourtDetector): ok (elegido y con su modelo en este PC (court.detector: tcd14))
-- Modelo en uso: giro 3D del tronco (MotionAGFormer): ok (elegido y con su modelo en este PC (trunk3d.model: motionagformer))
-- Modelo en uso: bola (TrackNetV3 de RacketVision): ok (elegido y con su modelo en este PC (ball.onnx: models/balltrack.onnx))
-- Modelo en uso: raqueta (RTMPose de RacketVision): ok (elegido y con su modelo en este PC (racket_face.pose_onnx: models/racketpose.onnx))
-- Modelo en uso: cortes de plano (TransNetV2): ok (elegido y con su modelo en este PC (scenes.onnx: models/transnetv2.onnx))
-- Golpes del detector aprendido: smoke_tennis-yusipopen-final-sobolenko-rybakin: ok (181 candidatos del detector entrenado con F3Set (87 cerca, 94 lejos, umbral 0.1))
-- Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin: ok (1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.0 min; ninguna pasa de 2 v)
-- Etapas a la vez: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso (todas las etapas de su última ejecución corrieron en serie)
-- Uso del PC por etapa (CPU, RAM, iGPU y disco): ok (recursos_2026-11-04_1830.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (21.0 min): CPU 5/18/34 %, iGPU 0/0/1 %, RAM máx 7.5 GB → equipo infr)
-- Peticiones por GitHub Actions: espera hasta empezar: aviso (la última petición (04-11 16:18) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 13:34)
+- Pruebas en este PC: test_windows_scripts: aviso (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
+- Pruebas en este PC: test_local_only: aviso (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
+- Pruebas en este PC: test_logs_progress: aviso (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
+- Pruebas en este PC: test_output_places: aviso (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
+- Pruebas en este PC: test_project_context: aviso (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
+- Pruebas en este PC: test_speed_keeps_quality: aviso (0 bien, 0 fallan, 0 omitidas (no se ejecutó))
+- Progreso visible (progreso.json): ok (último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 18 s, quedan ≈ 0 s, a las 2026-11-04 16:32:16)
+- Registros con fecha y duración: falta (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final)
+- Tamaño de la salida (tamanos.txt): ok (43 carpetas, 37.6 GB en total (2026-11-04T19:03:45); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tenni)
+- Carpetas de pruebas antiguas: aviso (3 carpeta(s) de pruebas sin usar en más de 14 días (9.3 GB): _poc31_35, _poc31_4, _poc9_largo. Se borran con la petición «borrar» del PC)
+- Aplicación: ventana real y pantallas: ok (56 pantallas pintadas, 0 problemas; ventana real: carga)
+- Aplicación: análisis en su índice: aviso (0 análisis y 18 partidos en el índice de la aplicación: los análisis de los partidos hechos por el ciclo automático aún no están en ella)
