@@ -16,7 +16,29 @@ from tennisbio.app import jobs, storage, videos, window  # noqa: E402
 from tennisbio.app.core import App  # noqa: E402
 
 CHROMIUM = Path("/opt/pw-browsers/chromium")
-pytestmark = pytest.mark.skipif(not CHROMIUM.exists(), reason="sin navegador para la prueba de la ventana")
+
+
+def _own_chromium() -> str | None:
+    """The browser of these tests: Playwright's own Chromium (installed apart by the PC's update, `playwright install
+    chromium`; headless with a temporary profile, never the user's browser) → "propio"; else the cloud's one (its
+    path); None when there is neither. 04-11: with only the cloud's path every test of this module was skipped on the
+    PC (0 bien, 7 omitidas) and nothing was checked there."""
+    try:
+        from playwright.sync_api import sync_playwright
+        with sync_playwright() as p:
+            p.chromium.launch(headless=True).close()
+        return "propio"
+    except Exception:  # noqa: BLE001 — not installed, or playwright missing: the cloud's path, or none
+        pass
+    return str(CHROMIUM) if CHROMIUM.exists() else None
+
+
+BROWSER = _own_chromium()
+
+
+# a test that paints the page: skipped without a browser, except on the PC (Windows), whose update installs one: there
+# a missing browser fails the test (_browser says why) instead of a silent skip
+needs_browser = pytest.mark.skipif(BROWSER is None and sys.platform != "win32", reason="sin navegador para la prueba de la ventana")
 SCREENS = ["inicio", "analisis", "partidos", "jugadoras", "cola", "calidad", "almacenamiento", "ajustes"]
 
 
@@ -45,9 +67,12 @@ def scene(env, monkeypatch):
 
 
 def _browser(p):
-    return p.chromium.launch(executable_path=str(CHROMIUM), args=["--allow-file-access-from-files"])
+    assert BROWSER, "sin el Chromium de Playwright en el PC (se instala con `uv run playwright install chromium`)"
+    kw = {} if BROWSER == "propio" else {"executable_path": BROWSER}
+    return p.chromium.launch(headless=True, args=["--allow-file-access-from-files"], **kw)
 
 
+@needs_browser
 def test_every_screen_says_its_cases_without_errors_or_sideways_scroll(scene):
     from playwright.sync_api import sync_playwright
     page = window.write_page(scene.app)
@@ -93,6 +118,7 @@ def _live(pg, api):
         return function () { return window.tbcall(k, JSON.stringify(Array.prototype.slice.call(arguments))); }; }})};""")
 
 
+@needs_browser
 def test_buttons_change_the_index_as_they_say(scene, monkeypatch):
     from playwright.sync_api import sync_playwright
     a = scene.app
@@ -166,6 +192,7 @@ def test_buttons_change_the_index_as_they_say(scene, monkeypatch):
     assert not errs, errs
 
 
+@needs_browser
 def test_read_only_page_says_so_and_changes_nothing(scene):
     from playwright.sync_api import sync_playwright
     page = window.write_page(scene.app)
@@ -202,6 +229,7 @@ def test_without_the_window_engine_it_opens_in_the_browser(env, monkeypatch):
     assert '"storage"' in page.read_text(encoding="utf-8")                  # the read-only page carries the disk too
 
 
+@needs_browser
 def test_the_pc_check_finds_nothing_wrong_in_the_cases(scene, tmp_path):
     """app/check.py, the check the PC runs with the real index: every screen and every match and player page,
     at 1280 and on a phone, with screenshots."""

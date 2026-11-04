@@ -199,6 +199,8 @@ function Hacer-Peticion($p) {
         "Peticion $($p['id']): prevision ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
         $ar = @(); if ($p["etapas"]) { $ar = @("--stages", "$($p['etapas'])") }
         & uv run python scripts/preflight.py @ar 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        # como todos los registros: cuando termina (04-11, peticion #66; antes solo decia cuando empezaba)
+        "codigo de salida: $LASTEXITCODE; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "medir") {
         # una medida de Claude con un script del repositorio (script: bench_ball -> scripts\bench_ball.py, sin
         # tocar ningun analisis); registro output\medir_<script>.log (se sube solo)
