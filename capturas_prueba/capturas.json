@@ -112,7 +112,7 @@
   },
   {
    "title": "Conclusiones (Panel y Comparativas)",
-   "text_chars": 4244,
+   "text_chars": 4232,
    "charts": 12,
    "videos": 7,
    "black_canvases": 0,
@@ -220,7 +220,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 2001,
+   "text_chars": 2004,
    "charts": 0,
    "videos": 7,
    "black_canvases": 0,
@@ -248,7 +248,7 @@
  ],
  "errors": [],
  "h264": true,
- "browser": "chromium 156.0.8078.80",
+ "browser": "chromium 153.0.8010.12",
  "plays": [
   {
    "name": "«Su derecha» → ▶ Ver sus golpes típicos",
