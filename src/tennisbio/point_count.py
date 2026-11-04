@@ -264,15 +264,21 @@ def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple
         return i < len(ts) and ts[i] <= b
 
     out = {"points": 0, "found": 0, "gaps": [], "by_cause": {k: 0 for k in GAP_CAUSES}}
+    her_w, opp_w = [], []                       # point stretches on her serve and on the opponent's
     since = st[0]["t"] if st else 0.0           # when the score of the current reading was first shown
     for a, b in zip(st, st[1:]):
         same_score = b["g"] == a["g"] and b["pts"] == a["pts"]
         if not same_score:
             start, since = since, b["t"]
-        if b["g"] != a["g"] or a["server"] != 0 or a["tb"] or same_score or not _in_game(a, b):
+        if b["g"] != a["g"] or a["tb"] or same_score or not _in_game(a, b):
             continue
         # the point starts once its score is on the board (a few seconds of slack for the reading rate)
         t0, t1 = start - min(lead_s, 5.0), b["t"]
+        if a["server"] != 0:
+            if a["server"] == 1:
+                opp_w.append((t0, t1))
+            continue
+        her_w.append((t0, t1))
         out["points"] += 1
         if inside(serve_t, t0, t1):
             out["found"] += 1
@@ -285,4 +291,9 @@ def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple
             cause = "sin_saque"
         out["by_cause"][cause] += 1
         out["gaps"].append({"t0": round(t0, 1), "t1": round(t1, 1), "cause": cause})
+    # where her serves found fall: in a point of her serve, of the opponent's (identity or a smash), or in none read
+    within = lambda t, ws: any(a <= t <= b for a, b in ws)
+    out["serves_at"] = {"her_points": sum(within(t, her_w) for t in serve_t),
+                        "opponent_points": sum(within(t, opp_w) and not within(t, her_w) for t in serve_t),
+                        "elsewhere": sum(not within(t, her_w) and not within(t, opp_w) for t in serve_t)}
     return out

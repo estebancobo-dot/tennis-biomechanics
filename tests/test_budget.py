@@ -58,3 +58,10 @@ def test_forecast_gives_a_range_from_caches_to_computing_everything(tmp_path):
     B.record_stage(tmp_path, "fine", 3600, 120, "fresh")      # 30 s per minute: everything computed
     md, total = B.forecast([{"match": "x", "video_min": 120, "seconds": {}, "stages": {"fine": "stale"}}], tmp_path)
     assert "| x | fine | por rehacer | 5-60 min |" in md and "desde las cachés - calculando todo" in md
+
+
+def test_forecast_keeps_its_worst_case_for_the_guard(tmp_path):
+    B.record_stage(tmp_path, "fine", 300, 120, "cached")
+    B.record_stage(tmp_path, "fine", 3600, 120, "fresh")
+    B.forecast([{"match": "x", "video_min": 120, "seconds": {}, "stages": {"fine": "stale"}}], tmp_path)
+    assert abs(B.forecast.last_upper - 3600) < 1

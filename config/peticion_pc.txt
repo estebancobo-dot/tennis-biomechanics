@@ -212,6 +212,11 @@ accion: prevision
 ---
 id: 99
 accion: completo
+---
+id: 100
+accion: completo
+# 100 (04-11): identity v8 (video entrelazado, Osaka: fotogramas exactos como antes) y la auditoria de saques con donde
+# caen los saques encontrados; no se lanza si la prevision pasa de 6 h
 # 99 (04-11): la referencia con identity v7 y views v6 (prevision 98: 0,6-4,7 h); su auditoria trae, por cada punto de
 # su saque sin saque, el minuto y la causa (B4)
 # 98 (04-11): prevision con identity v7 y views v6 (tiempos de los fotogramas clave relativos al inicio del video:

@@ -148,4 +148,5 @@ def forecast(rows: list[dict], out: Path) -> tuple[str, float]:
           + (f" (y hasta {maybe / 3600:.1f} h más si cambian los resultados de las etapas de arriba)." if maybe else ".")]
     if unmeasured:
         L.append(f"Etapas sin medir en un partido entero: {', '.join(sorted(unmeasured))} → se miden antes, solas.")
+    forecast.last_upper = total_hi + maybe        # the worst case, for the guard of scripts/preflight.py --max-h
     return "\n".join(L) + "\n", total

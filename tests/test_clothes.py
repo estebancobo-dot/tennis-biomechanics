@@ -306,3 +306,30 @@ def test_run_clothes_reads_keyframes_next_to_her_stillest_frames(tmp_path, monke
     codes, _ = S.run_clothes(ctx, d, tracks, None, per_run=4)
     assert np.isfinite(codes).all()
     assert set(asked) <= {0.0, 1.05, 2.0, 3.5} and len(asked) == 4      # every stretch had a keyframe close by
+
+
+def test_interlaced_video_reads_its_exact_frames_as_before(tmp_path, monkeypatch):
+    """Osaka (1080i25): the keyframe reading lost its clothes separation; interlaced video keeps the exact frames."""
+    import tennisbio.stages as S
+
+    fps, T = 10, 20
+    path = tmp_path / "v.mp4"
+    rng = np.random.default_rng(2)
+    vw = cv2.VideoWriter(str(path), cv2.VideoWriter_fourcc(*"mp4v"), fps, (720, 480))
+    boxes, kps, confs = [], [], []
+    for t in range(T):
+        f, b, kp, cf = person("A", rng=rng, x=200)
+        vw.write(f)
+        boxes.append(b[None]); kps.append(kp[None]); confs.append(cf[None])
+    vw.release()
+    d = {"fps": np.float64(fps), "frames": np.arange(T)}
+    for k, xs in (("boxes", boxes), ("kps", kps), ("confs", confs)):
+        a = np.empty(T, dtype=object); a[:] = xs; d[k] = a
+    run = np.arange(T)
+    tracks = [(run, np.zeros(T, int), np.stack([kps[k][0] for k in run]))]
+    real_probe = S.probe
+    monkeypatch.setattr(S, "probe", lambda p: __import__("dataclasses").replace(real_probe(p), interlaced=True))
+    monkeypatch.setattr(S, "keyframes_at", lambda *a, **k: (_ for _ in ()).throw(AssertionError("keyframes read")))
+    ctx = SimpleNamespace(video=path, cfg={}, log=lambda *a: None, progress=lambda *a, **k: None)
+    codes, _ = S.run_clothes(ctx, d, tracks, None, per_run=3)
+    assert np.isfinite(codes).all()

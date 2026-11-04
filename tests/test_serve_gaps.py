@@ -25,3 +25,11 @@ def test_no_main_camera_is_its_own_cause():
     readings = [_r(100, (0, 0)), _r(140, (15, 0))]
     g = serve_gaps(readings, [], [(0, 50)])
     assert g["gaps"] == [{"t0": 95.0, "t1": 140.0, "cause": "sin_camara"}]
+
+
+def test_serves_found_are_placed_in_her_points_the_opponents_or_none():
+    readings = [_r(0, (0, 0)), _r(40, (15, 0)), _r(60, (15, 0), server=1, games=((2, 2),)),
+                _r(100, (15, 0), server=1, games=((2, 2),)), _r(140, (15, 15), server=1, games=((2, 2),))]
+    strokes = [{"stroke": "overhead", "match_time_s": t} for t in (10, 120, 400)]
+    g = serve_gaps(readings, strokes, [(0, 500)])
+    assert g["serves_at"] == {"her_points": 1, "opponent_points": 1, "elsewhere": 1}

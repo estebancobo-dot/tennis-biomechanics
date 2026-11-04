@@ -41,6 +41,8 @@ def rows(cfg: dict, only: list[str] | None = None) -> list[dict]:
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--stages", default="")
+    ap.add_argument("--max-h", type=float, default=None,
+                    help="exit 3 when the worst case is above this many hours (the PC then does not start the run)")
     a = ap.parse_args()
     cfg = load_config()
     out = Path(cfg["paths"]["output"])
@@ -48,6 +50,10 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     (out / "prevision.md").write_text(md, encoding="utf-8")
     print(md)
+    worst = getattr(budget.forecast, "last_upper", total) / 3600
+    if a.max_h is not None and worst > a.max_h:
+        print(f"NO SE LANZA: el peor caso ({worst:.1f} h) supera {a.max_h:g} h")
+        return 3
     return 0
 
 

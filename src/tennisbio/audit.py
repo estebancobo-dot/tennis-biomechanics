@@ -540,6 +540,9 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
                 out.append(_item(1, "Golpes", f"Saques por punto de su saque: {d.name}", st_,
                                  f"{g['found']} de {g['points']} puntos de su saque con su saque encontrado"
                                  + (f"; sin saque: {why}" if why else "")
+                                 + (f"; sus saques encontrados caen en puntos de su saque {g['serves_at']['her_points']}, "
+                                    f"de la rival {g['serves_at']['opponent_points']}, fuera de los puntos leídos "
+                                    f"{g['serves_at']['elsewhere']}")
                                  + ("; primeros: " + ", ".join(f"{x['t0'] / 60:.1f}-{x['t1'] / 60:.1f} min ({x['cause']})"
                                                                for x in g["gaps"][:8]) if g["gaps"] else ""),
                                  serve_gaps=g))

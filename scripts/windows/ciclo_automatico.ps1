@@ -134,9 +134,13 @@ function Hacer-Peticion($p) {
             Where-Object { $_.Extension -match '^\.(mp4|mkv|ts|mov|avi|webm|m2ts)$' } |
             ForEach-Object { "  video: {0} ({1:N2} GB)" -f $_.FullName, ($_.Length / 1GB) } | Add-Content $lg -Encoding UTF8
         "libre C: $([math]::Round((Get-PSDrive C).Free / 1GB)) GB" | Add-Content $lg -Encoding UTF8
-        # prevision antes de horas de trabajo (03-11): que etapas se rehacen en cada partido y cuanto tardaran
-        & uv run python scripts/preflight.py 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        # prevision antes de horas de trabajo (03-11): que etapas se rehacen en cada partido y cuanto tardaran; si el
+        # peor caso pasa de 6 h (o de horas_max: N) no se lanza (04-11) y se dice en el registro
+        $mx = if ($p["horas_max"]) { "$($p['horas_max'])" } else { "6" }
+        & uv run python scripts/preflight.py --max-h $mx 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        $pf = $LASTEXITCODE
         Subir-Registros | Out-Null
+        if ($pf -eq 3) { "Peticion $($p['id']): no se lanza, la prevision supera $mx h (prevision.md)" | Add-Content $lg -Encoding UTF8; return }
         Paso "Peticion $($p['id']): analisis completo de todos los partidos (horas; registro: analisis_completo.log)"
         & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $RepoDir "scripts\windows\analisis_completo.ps1") | Out-Host
         "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8

@@ -413,7 +413,9 @@ def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run
         return None, []
     fps, frames = float(d["fps"]), d["frames"]
     want = []                                                    # (time read, run, frame index in run)
-    kt = keyframe_times(info)
+    # interlaced video (Osaka, 1080i25): its exact frames as before (requests 94 and 99: with the keyframe reading
+    # its clothes stopped separating the two players, 1.5 against 4.4; cause still open, docs/plan_corto_plazo.md 1.7)
+    kt = np.zeros(0) if info.interlaced else keyframe_times(info)
     for i, (run, sel, img) in enumerate(tracks):
         good = np.array([j >= 0 and bool(np.all(d["confs"][run[t]][j][[5, 6, 11, 12]] > 0.3)) for t, j in enumerate(sel)])
         if not good.any():
@@ -452,7 +454,9 @@ def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run
     # here (98 min for 396 frames of a 35-min test), against ~3.6 s per frame with OCR for the scoreboard.
     # Read in sequential stretches, not one seek per frame: on the 1080i25 Osaka match (23-10) a seek cost
     # ~22 s (880 frames → ~5 h), while decoding the whole video once should take minutes (only the selected frames are piped)
-    stream = keyframes_at(info, [w[0] for w in want]) if want else iter(())
+    times = [w[0] for w in want]
+    stream = (iter(()) if not want else frames_at(info, times, dense_s=60.0) if info.interlaced
+              else keyframes_at(info, times))
     t_dec = t_feat = 0.0
     t_last = time.perf_counter()
     for k, ((t_s, i, t), (_, frame)) in enumerate(zip(want, stream)):
@@ -481,7 +485,7 @@ def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run
     return codes, far
 
 
-@stage("identity", "7", deps=("players", "score", "court", "audio"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
+@stage("identity", "8", deps=("players", "score", "court", "audio"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
 def st_identity(ctx: Context):
     """Is the near player the target in each run? Two independent cues, fused:
     - the end-change chain: serves + the scoreboard's serve marker name who is near in some runs
