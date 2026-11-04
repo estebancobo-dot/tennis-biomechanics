@@ -61749,3 +61749,41 @@ Auditoría: 356 cumplidos, 33 no cumplidos, 54 sin golpes suficientes, 131 aviso
 Golpes: 449 nuevos, 449 en C:\tenis\output\exportar_derecha\golpes
 Montajes: 10 en C:\tenis\output\exportar_derecha\montajes
 Resumen: C:\tenis\output\exportar_derecha\resumen.pdf
+  golpes 170/289 (411 s, 5 procesos)
+  golpes 180/289 (435 s, 5 procesos)
+  golpes 190/289 (459 s, 5 procesos)
+  golpes 200/289 (483 s, 5 procesos)
+  golpes 210/289 (508 s, 5 procesos)
+  golpes 220/289 (530 s, 5 procesos)
+  golpes 230/289 (551 s, 5 procesos)
+  golpes 240/289 (574 s, 5 procesos)
+  golpes 250/289 (598 s, 5 procesos)
+  golpes 260/289 (623 s, 5 procesos)
+  golpes 270/289 (648 s, 5 procesos)
+  golpes 280/289 (674 s, 5 procesos)
+Golpes: 289 nuevos, 289 en C:\tenis\output\exportar_reves\golpes
+Montajes: 10 en C:\tenis\output\exportar_reves\montajes
+Resumen: C:\tenis\output\exportar_reves\resumen.pdf
+  golpes 70/184 (171 s, 5 procesos)
+  golpes 80/184 (196 s, 5 procesos)
+  golpes 90/184 (220 s, 5 procesos)
+  golpes 100/184 (244 s, 5 procesos)
+  golpes 110/184 (268 s, 5 procesos)
+  golpes 120/184 (292 s, 5 procesos)
+  golpes 130/184 (315 s, 5 procesos)
+  golpes 140/184 (338 s, 5 procesos)
+  golpes 150/184 (362 s, 5 procesos)
+  golpes 160/184 (385 s, 5 procesos)
+  golpes 170/184 (409 s, 5 procesos)
+  golpes 180/184 (433 s, 5 procesos)
+Golpes: 184 nuevos, 184 en C:\tenis\output\exportar_saque\golpes
+Montajes: 8 en C:\tenis\output\exportar_saque\montajes
+Resumen: C:\tenis\output\exportar_saque\resumen.pdf
+
+TERMINADO en 00:58. Informes en C:\tenis\output\informe_*; videos, montajes y resumen.pdf en C:\tenis\output\exportar_*
+    (paso terminado en 38 min 00 s)
+Empezado 2026-11-04 08:47:01 - terminado 2026-11-04 09:45:26 - duracion total 58 min 24 s
+**********************
+Windows PowerShell transcript end
+End time: 20261104094526
+**********************
