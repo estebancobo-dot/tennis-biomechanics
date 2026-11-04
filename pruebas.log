@@ -1,6 +1,6 @@
-﻿commit: fbead74
-inicio: 2026-11-04T09:50:08
-fin: 2026-11-04T09:58:25
+﻿commit: 6df1132
+inicio: 2026-11-04T10:15:13
+fin: 2026-11-04T10:28:35
 codigo: 0
 .................................................s.......ss..sss....ssss [  9%]
 sss..................................................................... [ 19%]
@@ -33,4 +33,4 @@ tests/test_no_unbounded_calls.py::test_every_module_compiles
     _JS_SCREEN = """(tab) => {
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-723 passed, 30 skipped, 7 warnings in 494.86s (0:08:14)
+723 passed, 30 skipped, 7 warnings in 800.81s (0:13:20)

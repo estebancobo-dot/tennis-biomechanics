@@ -343,7 +343,7 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 4509 caracteres de texto, 7 vídeos, 1 gráficos
 - ✔ **Pantalla «Análisis de golpe»**: 4888 caracteres de texto, 8 vídeos, 31 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 4357 caracteres de texto, 7 vídeos, 2 gráficos
-- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4232 caracteres de texto, 7 vídeos, 12 gráficos
+- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4244 caracteres de texto, 7 vídeos, 12 gráficos
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 4696 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 3805 caracteres de texto, 7 vídeos, 0 gráficos
@@ -449,7 +449,7 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - ! **Pruebas en este PC: test_app_window**: 0 bien, 0 fallan, 7 omitidas
 - ✔ **Golpes que fallaron al procesarse**: ninguno
 - ✔ **Nada pide revisión manual**: 19 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
-- ✔ **Pruebas del código en este PC**: código fbead74 (2026-11-04T09:58:25): 723 bien, 0 fallan, 0 errores
+- ✔ **Pruebas del código en este PC**: código 6df1132 (2026-11-04T10:28:35): 723 bien, 0 fallan, 0 errores
 - ✔ **Pruebas en este PC: test_pipeline**: 17 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_auto_cycle**: 13 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_pc_requests**: 9 bien, 0 fallan, 0 omitidas

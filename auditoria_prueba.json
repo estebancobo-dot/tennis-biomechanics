@@ -2721,7 +2721,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4232 caracteres de texto, 7 vídeos, 12 gráficos",
+   "detail": "4244 caracteres de texto, 7 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -3048,7 +3048,7 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código fbead74 (2026-11-04T09:58:25): 723 bien, 0 fallan, 0 errores",
+   "detail": "código 6df1132 (2026-11-04T10:28:35): 723 bien, 0 fallan, 0 errores",
    "passed": 723,
    "failed": 0
   },
