@@ -95,6 +95,12 @@
    "units": 270,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-04 15:36"
+  },
+  {
+   "s": 0.7945,
+   "units": 159,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-04 16:57"
   }
  ],
  "fine:minuto": [
@@ -193,6 +199,12 @@
    "video_min": 210.4,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-04 15:37"
+  },
+  {
+   "s": 1.868,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-04 16:57"
   }
  ],
  "identity:minuto": [
@@ -243,6 +255,18 @@
    "video_min": 210.4,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-04 15:24"
+  },
+  {
+   "s": 10.82,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-04 16:53"
+  },
+  {
+   "s": 0.902,
+   "video_min": 116.7,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-04 16:59"
   }
  ],
  "views:unidad": [
@@ -287,6 +311,12 @@
    "units": 2991,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-04 15:32"
+  },
+  {
+   "s": 0.1116,
+   "units": 964,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-04 16:55"
   }
  ],
  "views:minuto": [
@@ -331,6 +361,12 @@
    "video_min": 210.4,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-04 15:32"
+  },
+  {
+   "s": 1.569,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-04 16:55"
   }
  ],
  "identity:unidad": [
@@ -375,6 +411,18 @@
    "units": 2027,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-04 15:24"
+  },
+  {
+   "s": 0.8755,
+   "units": 880,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-04 16:53"
+  },
+  {
+   "s": 0.06,
+   "units": 1625,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-04 16:59"
   }
  ]
 }
