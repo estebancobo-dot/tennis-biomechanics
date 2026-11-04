@@ -7,7 +7,7 @@ from ..config import CONFIG_DIR, ROOT
 from ..pipeline import MissingVideo
 from . import index, jobs, videos
 from .db import STROKE_ES, Paths, open_db
-from .engine import USABLE, Engine
+from .engine import USABLE, Engine, is_test_run
 
 # what the web and its audit are made of: a change here rebuilds every analysis (minutes each)
 REPORT_CODE = ("report.py", "report_template.html", "audit.py", "learn.py", "learn_check.py", "explain.py", "findings.py",
@@ -70,8 +70,9 @@ class App:
         """After an update: which matches have stages whose code or settings changed, the cost, and the
         jobs (waiting for one click when it is long). A changed web rebuilds every analysis (minutes)."""
         plan, total, no_video, test_runs = [], 0.0, 0, 0
+        ready: dict[str, list[str]] = {}               # player → her analysed matches with nothing to recompute
         for r in self.db.q("SELECT id, player, dir FROM matches WHERE state IN (%s)" % ",".join("?" * len(USABLE)), *USABLE):
-            if "/" in (r.get("dir") or ""):
+            if is_test_run(self.paths.output, r.get("dir") or ""):
                 test_runs += 1                             # a test run of the automatic cycle: the cycle keeps it
                 self.db.x("UPDATE jobs SET state='cancelado', message='prueba del ciclo automático: la mantiene el ciclo' "
                           "WHERE match=? AND kind='partido' AND state IN ('pendiente', 'por confirmar')", r["id"])
@@ -80,8 +81,10 @@ class App:
                 stale = self.engine.stale(r["id"], self.cfg)
             except (MissingVideo, KeyError, OSError):
                 no_video += 1                              # no video: its results are kept as they are
-                continue
+                stale = []                                 # ... and still feed her analysis
             if not stale:
+                if r.get("player"):
+                    ready.setdefault(r["player"], []).append(r["id"])
                 continue
             est = self.engine.stale_seconds(r["id"], stale) or jobs.DEFAULT_S["partido"]
             plan.append((r, stale, est))
@@ -97,6 +100,15 @@ class App:
                 jobs.enqueue(self.db, "informe", player=a["player"], stroke=a["stroke"], reason="nueva versión del informe")
                 rebuilt_reports += 1
             self.db.set_setting("report_code", code)
+        # matches analysed outside the queue (the automatic cycle, a folder copied in) whose player has no
+        # analysis yet: only her report (minutes, from the strokes already saved; no stage runs again)
+        missing = 0
+        for pid, mids in sorted(ready.items()):
+            if self.db.one("SELECT id FROM analyses WHERE player=?", pid):
+                continue
+            jobs.enqueue(self.db, "informe", player=pid, stroke="forehand",
+                         reason=f"partido(s) ya analizado(s) sin su análisis: {', '.join(sorted(mids))}")
+            missing += 1
         if not plan:
             self.db.clear_notice("plan")
         if plan:
@@ -105,7 +117,7 @@ class App:
                     + (f", {nights} noche(s). Confirma con un clic para empezar." if long_plan else ", desde las cachés."))
             self.db.notice("plan", "aviso" if long_plan else "info", text)
         return {"matches": len(plan), "seconds": total, "confirm": long_plan, "reports": rebuilt_reports, "no_video": no_video,
-                "test_runs": test_runs}
+                "test_runs": test_runs, "missing_analyses": missing}
 
     def confirm_plan(self) -> int:
         n = len(self.db.q("SELECT id FROM jobs WHERE state='por confirmar'"))

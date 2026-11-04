@@ -53,7 +53,11 @@ def _by_origin(lib, match_id: str) -> str | None:
 
 
 def dir_of(out_root: Path, match, cfg: dict | None = None) -> Path:
-    """The folder of `match` for results under `out_root`."""
+    """The folder of `match` for results under `out_root`. A match that already knows its folder (the
+    application's index: extra «match_dir», app.engine.Engine.matches_of) uses it as it is."""
+    known = (getattr(match, "extra", None) or {}).get("match_dir")
+    if known:
+        return Path(known)
     cfg = cfg if cfg is not None else _cfg()
     root = library_active(cfg)
     out = Path((cfg.get("paths") or {}).get("output") or "output")

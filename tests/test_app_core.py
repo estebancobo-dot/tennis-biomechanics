@@ -588,3 +588,105 @@ def test_match_is_built_as_the_runs_build_it(env):
     b = env.app()
     m = Engine(b.db, b.paths).match("poc9_largo:smoke_x-rybakina")
     assert (m.id, m.opponent, m.surface, m.round, m.tournament) == ("smoke_x-rybakina", "SABALENKA", "dura", "F", "US Open")
+
+
+# ------------------------------------- plan 6.3: matches analysed by the cycle (library) ------------
+
+LIB_ORIGIN = "2022_Wimbledon_F_Rybakina_Jabeur"
+
+
+def _library_match(tmp: Path, n_strokes: int = 3) -> Path:
+    """A library match folder as the cycle leaves it (layout.py, match_files.py): the library switched on
+    (datos/activa.json), the cheap pass in etapas/, the fine pass in golpes/<jugadora>/."""
+    lib = tmp / "biblioteca"
+    (lib / "datos").mkdir(parents=True)
+    (lib / "datos" / "activa.json").write_text("{}", encoding="utf-8")
+    d = lib / "partidos" / "2022" / "2022-wimbledon-f-rybakina-jabeur"
+    (d / "etapas").mkdir(parents=True)
+    (d / "etapas" / "manifest.json").write_text(json.dumps({"candidates": {"summary": {"candidates": 40}},
+                                                           "fine": {"summary": {"confirmed": n_strokes}}}), encoding="utf-8")
+    (d / "partido.json").write_text(json.dumps({"origen": LIB_ORIGIN, "jugadora": "rybakina-elena"}), encoding="utf-8")
+    (d / "etapas" / "partido_origen.json").write_text(json.dumps({"player": "rybakina", "tournament": "Wimbledon",
+                                                                  "date": "2022-07-09", "opponent": "Ons Jabeur"}),
+                                                      encoding="utf-8")
+    g = d / "golpes" / "rybakina-elena"
+    g.mkdir(parents=True)
+    (g / "strokes.json").write_text(json.dumps([{"stroke": "forehand", "t": 10.0 + i} for i in range(n_strokes)]
+                                               + [{"stroke": "backhand", "t": 50.0}]), encoding="utf-8")
+    return d
+
+
+def _smoke_run(out: Path) -> Path:
+    d = out / "_smoke" / "smoke_tennis-final-rybakina"
+    d.mkdir(parents=True)
+    (d / "manifest.json").write_text(json.dumps({"candidates": {"summary": {"candidates": 9}},
+                                                 "fine": {"summary": {"confirmed": 9}}}), encoding="utf-8")
+    return d
+
+
+def test_a_library_folder_is_not_a_test_run_of_the_cycle(tmp_path):
+    """Cause 2 of plan 6.3: «/» in the stored folder was taken for a test run, and library folders are
+    stored as absolute paths (C:/tenis/biblioteca/... on the PC)."""
+    from tennisbio.app.engine import is_test_run
+    out = tmp_path / "output"
+    _smoke_run(out)
+    assert is_test_run(out, "_smoke/smoke_tennis-final-rybakina")
+    assert not is_test_run(out, "")
+    assert not is_test_run(out, "2023_Australian_Open_F_Sabalenka_Rybakina")           # a flat <output>/<id>
+    assert not is_test_run(out, "C:/tenis/biblioteca/partidos/2022/2022-wimbledon-f-rybakina-jabeur")
+    assert not is_test_run(out, "C:\\tenis\\biblioteca\\partidos\\2022\\x")
+    assert not is_test_run(out, (tmp_path / "biblioteca" / "partidos" / "2022" / "x").as_posix())
+    inside = out / "biblioteca" / "partidos" / "2022" / "y"                              # a library inside <output>
+    (inside / "etapas").mkdir(parents=True)
+    assert not is_test_run(out, "biblioteca/partidos/2022/y")
+
+
+def test_matches_analysed_by_the_cycle_get_their_analysis_queued_but_not_test_runs(env):
+    """Causes 1 and 2 of plan 6.3: the index had the 4 reference matches «analizado» and 0 analyses. The
+    plan queues the analysis (only its report) of every analysed match with no analysis for its player,
+    including library matches; nothing runs a stage again; a test run of the cycle stays the cycle's."""
+    d = _library_match(env.tmp)
+    _smoke_run(env.tmp / "output")
+    a = env.app()
+    row = a.db.one("SELECT * FROM matches WHERE id=?", LIB_ORIGIN)
+    assert row["state"] == "analizado" and row["player"] == "rybakina" and row["dir"] == d.as_posix()
+    r = a.plan_updates()
+    assert r["test_runs"] == 1 and r["matches"] == 0 and r["missing_analyses"] == 1
+    q = a.db.q("SELECT * FROM jobs WHERE state='pendiente'")
+    assert [(j["kind"], j["player"], j["stroke"]) for j in q] == [("informe", "rybakina", "forehand")]
+    assert LIB_ORIGIN in q[0]["reason"] and "smoke" not in q[0]["reason"]
+    assert a.plan_updates()["missing_analyses"] == 1 and len(a.db.q("SELECT id FROM jobs")) == 1     # once
+    a.work()
+    assert [c[0] for c in a.engine.calls] == ["informe"]                                 # no stage ran
+    assert a.db.one("SELECT * FROM analyses WHERE player='rybakina' AND stroke='forehand'")
+    assert a.plan_updates()["missing_analyses"] == 0 and not a.db.q("SELECT id FROM jobs WHERE state='pendiente'")
+
+
+def test_a_library_match_is_reported_from_its_own_folder(env):
+    """Cause 3 of plan 6.3: the report read <root>/<match id>, and a library folder is named by its slug
+    (with <root> = its year folder): enqueuing alone gave an empty analysis. Its group is the real one
+    (with <output> as root, preferred to the test runs) and each match carries its folder."""
+    from tennisbio import layout
+    from tennisbio.app.engine import Engine
+    from tennisbio.report import collect
+    d = _library_match(env.tmp, n_strokes=3)
+    _smoke_run(env.tmp / "output")
+    a = env.app()
+    e = Engine(a.db, a.paths)
+    assert e.dir(LIB_ORIGIN) == d
+    root, mine = e._group("rybakina")
+    assert root == a.paths.output and [x for _, x in mine] == [d]
+    m = mine[0][0]
+    assert m.id == LIB_ORIGIN and layout.dir_of(root, m) == d
+    assert e.count_strokes("rybakina", "forehand") == 3
+    data = collect([m], root, "forehand", "rybakina")
+    assert len(data["strokes"]) == 3 and {Path(s["_dir"]) for s in data["strokes"]} == {d / "golpes" / "rybakina-elena"}
+
+
+def test_only_test_runs_still_report_from_their_own_run(env):
+    """Without real matches the report still comes from the test run with most of her matches."""
+    from tennisbio.app.engine import Engine
+    s = _smoke_run(env.tmp / "output")
+    a = env.app()
+    root, mine = Engine(a.db, a.paths)._group("rybakina")
+    assert root == s.parent and [x for _, x in mine] == [s]
