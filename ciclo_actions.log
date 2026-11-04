@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261104133433
+Start time: 20261104195920
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 8880
+Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 8400
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -16,11 +16,27 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Registro enviado a Claude (no hace falta copiar nada).
-Registro enviado a Claude (no hace falta copiar nada).
 
-Empezado 2026-11-04 13:34:31 - terminado 2026-11-04 13:47:39 - duracion total 13 min 08 s
-**********************
-Windows PowerShell transcript end
-End time: 20261104134739
-**********************
+==> [2026-11-04 19:59:20] Codigo nuevo (3b3d8fd -> 86d12c0): 1 ficheros
+    config/peticion_pc.txt
+Updating 3b3d8fd..86d12c0
+Fast-forward
+ config/peticion_pc.txt | 5 +++++
+ 1 file changed, 5 insertions(+)
+Resolved 124 packages in 0.98ms
+Checked 89 packages in 4ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+motionagformer_xs.onnx OK 9 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+    (paso terminado en 4 s)
+
+==> [2026-11-04 19:59:25] Que hace falta: informe
