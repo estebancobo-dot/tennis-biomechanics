@@ -243,16 +243,16 @@
   }
  },
  "fine_doubtful": {
-  "fingerprint": "e7bd6caad2e06d9a",
+  "fingerprint": "c50d976127518273",
   "version": "1",
-  "seconds": 34.7,
-  "finished": "2026-11-04 04:47:28",
+  "seconds": 34.1,
+  "finished": "2026-11-04 08:57:30",
   "summary": {
    "candidates": 58,
    "confirmed": 32,
    "errors": 0,
    "warnings": [],
-   "forehands": 6,
+   "forehands": 11,
    "windows": 54,
    "gate": {
     "windows_gated": 0,
@@ -266,12 +266,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 13.6,
-    "cuerdas_y_3d": 7.8,
-    "pista_ventana": 6.9,
-    "analisis_ventana": 5.7,
-    "recorte": 2.6,
-    "cribado": 1.4,
+    "jugadora_lejana": 13.7,
+    "cuerdas_y_3d": 8.0,
+    "pista_ventana": 6.8,
+    "analisis_ventana": 5.8,
+    "recorte": 2.7,
+    "cribado": 1.3,
     "pose": 0.1
    },
    "counts": {
