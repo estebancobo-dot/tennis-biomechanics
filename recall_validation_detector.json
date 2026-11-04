@@ -266,13 +266,12 @@
    "precision": 0.883
   },
   "kind_confusion": {
-   "backhand->backhand": 146,
-   "backhand->forehand": 4,
-   "forehand->backhand": 101,
-   "forehand->forehand": 88,
-   "serve->backhand": 85,
-   "serve->forehand": 5,
-   "serve->overhead": 34,
+   "backhand->backhand": 148,
+   "backhand->forehand": 2,
+   "forehand->backhand": 5,
+   "forehand->forehand": 184,
+   "serve->backhand": 1,
+   "serve->overhead": 123,
    "volley_other->backhand": 2
   },
   "identity": {
@@ -585,13 +584,11 @@
    "precision": 0.951
   },
   "kind_confusion": {
-   "backhand->backhand": 146,
-   "backhand->forehand": 4,
-   "forehand->backhand": 101,
-   "forehand->forehand": 88,
-   "serve->backhand": 84,
-   "serve->forehand": 5,
-   "serve->overhead": 34,
+   "backhand->backhand": 148,
+   "backhand->forehand": 2,
+   "forehand->backhand": 5,
+   "forehand->forehand": 184,
+   "serve->overhead": 123,
    "volley_other->backhand": 2
   },
   "identity": {
@@ -887,13 +884,9 @@
      "precision": 0.978
     },
     "kind_confusion": {
-     "backhand->backhand": 45,
-     "backhand->forehand": 4,
-     "forehand->backhand": 31,
-     "forehand->forehand": 13,
-     "serve->backhand": 30,
-     "serve->forehand": 1,
-     "serve->overhead": 9
+     "backhand->backhand": 49,
+     "forehand->forehand": 44,
+     "serve->overhead": 40
     },
     "identity": {
      "strokes": {
@@ -1480,10 +1473,8 @@
     },
     "kind_confusion": {
      "backhand->backhand": 49,
-     "forehand->backhand": 27,
-     "forehand->forehand": 29,
-     "serve->backhand": 25,
-     "serve->overhead": 6,
+     "forehand->forehand": 56,
+     "serve->overhead": 31,
      "volley_other->backhand": 2
     },
     "identity": {
@@ -1777,12 +1768,11 @@
      "precision": 0.937
     },
     "kind_confusion": {
-     "backhand->backhand": 52,
-     "forehand->backhand": 43,
-     "forehand->forehand": 46,
-     "serve->backhand": 29,
-     "serve->forehand": 4,
-     "serve->overhead": 19
+     "backhand->backhand": 50,
+     "backhand->forehand": 2,
+     "forehand->backhand": 5,
+     "forehand->forehand": 84,
+     "serve->overhead": 52
     },
     "identity": {
      "strokes": {
@@ -1844,7 +1834,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
+   "pred_stroke": "backhand",
    "dt": 0.032
   },
   {
@@ -1857,7 +1847,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.008
   },
   {
@@ -1870,7 +1860,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.088
   },
   {
@@ -1883,7 +1873,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.02
   },
   {
@@ -1909,7 +1899,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.02
   },
   {
@@ -1922,7 +1912,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.1
   },
   {
@@ -1935,7 +1925,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.02
   },
   {
@@ -1961,7 +1951,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.04
   },
   {
@@ -1987,7 +1977,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.04
   },
   {
@@ -2000,7 +1990,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.02
   },
   {
@@ -2013,7 +2003,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.02
   },
   {
@@ -2026,7 +2016,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.04
   },
   {
@@ -2156,7 +2146,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   },
   {
@@ -2182,7 +2172,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.04
   },
   {
@@ -2195,7 +2185,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.04
   },
   {
@@ -2208,7 +2198,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
+   "pred_stroke": "backhand",
    "dt": -0.02
   },
   {
@@ -2234,7 +2224,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.03
   },
   {
@@ -2247,7 +2237,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.04
   },
   {
@@ -2273,7 +2263,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.02
   },
   {
@@ -2299,7 +2289,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.02
   },
   {
@@ -2377,7 +2367,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.02
   },
   {
@@ -2403,7 +2393,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.04
   },
   {
@@ -2429,7 +2419,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   },
   {
@@ -2442,7 +2432,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.04
   },
   {
@@ -2455,7 +2445,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.0
   },
   {
@@ -2546,7 +2536,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.08
   },
   {
@@ -2559,7 +2549,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
+   "pred_stroke": "backhand",
    "dt": -0.01
   },
   {
@@ -2572,7 +2562,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.01
   },
   {
@@ -2598,7 +2588,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.04
   },
   {
@@ -2624,7 +2614,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.02
   },
   {
@@ -2650,7 +2640,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.04
   },
   {
@@ -2663,7 +2653,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.04
   },
   {
@@ -2676,7 +2666,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.05
   },
   {
@@ -2715,7 +2705,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.02
   },
   {
@@ -2793,7 +2783,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.0
   },
   {
@@ -2897,7 +2887,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.02
   },
   {
@@ -2923,7 +2913,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.02
   },
   {
@@ -2936,7 +2926,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.02
   },
   {
@@ -3131,7 +3121,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
+   "pred_stroke": "backhand",
    "dt": -0.06
   },
   {
@@ -3170,7 +3160,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.06
   },
   {
@@ -3209,7 +3199,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.02
   },
   {
@@ -3222,7 +3212,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.02
   },
   {
@@ -3235,7 +3225,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.02
   },
   {
@@ -3248,7 +3238,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.05
   },
   {
@@ -3274,7 +3264,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.16
   },
   {
@@ -3287,7 +3277,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.03
   },
   {
@@ -3300,7 +3290,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.02
   },
   {
@@ -3365,7 +3355,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.01
   },
   {
@@ -3378,7 +3368,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.01
   },
   {
@@ -3404,7 +3394,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.01
   },
   {
@@ -3417,7 +3407,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.05
   },
   {
@@ -3430,7 +3420,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.01
   },
   {
@@ -3443,7 +3433,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.02
   },
   {
@@ -3456,7 +3446,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.02
   },
   {
@@ -3469,7 +3459,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.02
   },
   {
@@ -3482,7 +3472,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.03
   },
   {
@@ -3508,7 +3498,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.02
   },
   {
@@ -3521,7 +3511,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.14
   },
   {
@@ -3534,7 +3524,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.02
   },
   {
@@ -3547,7 +3537,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.06
   },
   {
@@ -3560,7 +3550,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
+   "pred_stroke": "overhead",
    "dt": 0.07
   },
   {
@@ -3573,7 +3563,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.02
   },
   {
@@ -3599,7 +3589,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.03
   },
   {
@@ -3625,7 +3615,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.05
   },
   {
@@ -3638,7 +3628,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.01
   },
   {
@@ -3651,7 +3641,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.04
   },
   {
@@ -5367,7 +5357,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.02
   },
   {
@@ -5432,7 +5422,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.03
   },
   {
@@ -5445,7 +5435,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.03
   },
   {
@@ -5471,7 +5461,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.03
   },
   {
@@ -5484,7 +5474,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.11
   },
   {
@@ -5510,7 +5500,7 @@
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.19
   },
   {
@@ -5523,7 +5513,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.02
   },
   {
@@ -5549,7 +5539,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.02
   },
   {
@@ -5575,7 +5565,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   },
   {
@@ -5653,7 +5643,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.04
   },
   {
@@ -5679,7 +5669,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.08
   },
   {
@@ -5705,7 +5695,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.0
   },
   {
@@ -5718,7 +5708,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   },
   {
@@ -5731,7 +5721,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.0
   },
   {
@@ -5770,7 +5760,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.0
   },
   {
@@ -5783,7 +5773,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.03
   },
   {
@@ -5796,7 +5786,7 @@
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.05
   },
   {
@@ -5835,7 +5825,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.02
   },
   {
@@ -5874,7 +5864,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.03
   },
   {
@@ -5887,7 +5877,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.01
   },
   {
@@ -5913,7 +5903,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.04
   },
   {
@@ -5952,7 +5942,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   },
   {
@@ -6004,7 +5994,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.04
   },
   {
@@ -6017,7 +6007,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.04
   },
   {
@@ -6056,7 +6046,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.021
   },
   {
@@ -6134,7 +6124,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.03
   },
   {
@@ -6160,7 +6150,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.01
   },
   {
@@ -6251,7 +6241,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.01
   },
   {
@@ -6290,7 +6280,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.0
   },
   {
@@ -6303,7 +6293,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.12
   },
   {
@@ -6316,7 +6306,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.03
   },
   {
@@ -6329,7 +6319,7 @@
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.04
   },
   {
@@ -6342,7 +6332,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.02
   },
   {
@@ -6394,7 +6384,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.06
   },
   {
@@ -6511,7 +6501,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.15
   },
   {
@@ -6537,7 +6527,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.09
   },
   {
@@ -6563,7 +6553,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.01
   },
   {
@@ -6615,7 +6605,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.09
   },
   {
@@ -6628,7 +6618,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.01
   },
   {
@@ -6641,7 +6631,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   },
   {
@@ -6693,7 +6683,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.08
   },
   {
@@ -6810,7 +6800,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.0
   },
   {
@@ -6836,7 +6826,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.0
   },
   {
@@ -6849,7 +6839,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.031
   },
   {
@@ -6862,7 +6852,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.05
   },
   {
@@ -6875,7 +6865,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.04
   },
   {
@@ -6901,7 +6891,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.02
   },
   {
@@ -6992,7 +6982,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.02
   },
   {
@@ -7018,7 +7008,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.01
   },
   {
@@ -7031,7 +7021,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.01
   },
   {
@@ -7070,7 +7060,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.09
   },
   {
@@ -7083,7 +7073,7 @@
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.05
   },
   {
@@ -7187,7 +7177,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.02
   },
   {
@@ -7239,7 +7229,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.1
   },
   {
@@ -7265,7 +7255,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.01
   },
   {
@@ -7317,7 +7307,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   },
   {
@@ -7369,7 +7359,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.148
   },
   {
@@ -7382,7 +7372,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.052
   },
   {
@@ -7395,7 +7385,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.028
   },
   {
@@ -7434,7 +7424,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.018
   },
   {
@@ -7447,7 +7437,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.098
   },
   {
@@ -7460,7 +7450,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.058
   },
   {
@@ -7473,7 +7463,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
+   "pred_stroke": "overhead",
    "dt": -0.02
   },
   {
@@ -7486,7 +7476,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.019
   },
   {
@@ -7499,7 +7489,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.02
   },
   {
@@ -7577,7 +7567,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.05
   },
   {
@@ -7590,7 +7580,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.05
   },
   {
@@ -7603,7 +7593,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.082
   },
   {
@@ -7642,7 +7632,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.004
   },
   {
@@ -7655,7 +7645,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.019
   },
   {
@@ -7668,7 +7658,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
+   "pred_stroke": "overhead",
    "dt": 0.14
   },
   {
@@ -7733,7 +7723,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
+   "pred_stroke": "overhead",
    "dt": 0.031
   },
   {
@@ -7798,7 +7788,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
+   "pred_stroke": "backhand",
    "dt": 0.02
   },
   {
@@ -7837,7 +7827,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.01
   },
   {
@@ -7876,7 +7866,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.048
   },
   {
@@ -7889,7 +7879,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.04
   },
   {
@@ -7902,7 +7892,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   },
   {
@@ -7993,7 +7983,7 @@
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.061
   },
   {
@@ -8006,7 +7996,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.026
   },
   {
@@ -8058,7 +8048,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.08
   },
   {
@@ -8071,7 +8061,7 @@
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": "forehand",
+   "pred_stroke": "overhead",
    "dt": -0.08
   },
   {
@@ -8084,7 +8074,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   },
   {
@@ -8188,7 +8178,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.01
   },
   {
@@ -8305,7 +8295,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.0
   },
   {
@@ -8331,7 +8321,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.05
   },
   {
@@ -8344,7 +8334,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.001
   },
   {
@@ -8448,7 +8438,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.03
   },
   {
@@ -8539,7 +8529,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.02
   },
   {
@@ -8604,7 +8594,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.133
   },
   {
@@ -8721,7 +8711,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.045
   },
   {
@@ -8734,7 +8724,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   },
   {
@@ -8747,7 +8737,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.01
   },
   {
@@ -8851,7 +8841,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.01
   },
   {
@@ -8864,7 +8854,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.03
   },
   {
@@ -8877,7 +8867,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.03
   },
   {
@@ -8929,7 +8919,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.04
   },
   {
@@ -8942,7 +8932,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.01
   },
   {
@@ -8955,7 +8945,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.01
   },
   {
@@ -9007,7 +8997,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.02
   },
   {
@@ -9033,7 +9023,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.04
   },
   {
@@ -9098,7 +9088,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.03
   },
   {
@@ -9111,7 +9101,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.11
   },
   {
@@ -9137,7 +9127,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.118
   },
   {
@@ -9280,7 +9270,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.02
   },
   {
@@ -9332,7 +9322,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.059
   },
   {
@@ -9345,7 +9335,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.019
   },
   {
@@ -9358,7 +9348,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.02
   },
   {
@@ -9410,7 +9400,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.05
   },
   {
@@ -9449,7 +9439,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.03
   },
   {
@@ -9488,7 +9478,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   },
   {
@@ -9618,7 +9608,7 @@
    "run_method": null,
    "identity_ok": null,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.038
   },
   {
@@ -9631,7 +9621,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": 0.02
   },
   {
@@ -9670,7 +9660,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.06
   },
   {
@@ -9787,7 +9777,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.018
   },
   {
@@ -9813,7 +9803,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.056
   },
   {
@@ -9826,7 +9816,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.016
   },
   {
@@ -9839,7 +9829,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.05
   },
   {
@@ -9852,7 +9842,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.01
   },
   {
@@ -9904,7 +9894,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.05
   },
   {
@@ -9917,7 +9907,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.05
   },
   {
@@ -9930,7 +9920,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.01
   },
   {
@@ -9943,7 +9933,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.01
   },
   {
@@ -10008,7 +9998,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.015
   },
   {
@@ -10021,7 +10011,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
+   "pred_stroke": "backhand",
    "dt": -0.018
   },
   {
@@ -10047,7 +10037,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.04
   },
   {
@@ -10060,7 +10050,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   },
   {
@@ -10073,7 +10063,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   },
   {
@@ -10086,7 +10076,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   },
   {
@@ -10125,7 +10115,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.005
   },
   {
@@ -10138,7 +10128,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "overhead",
    "dt": -0.18
   },
   {
@@ -10151,7 +10141,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.06
   },
   {
@@ -10177,7 +10167,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.02
   },
   {
@@ -10216,7 +10206,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   },
   {
@@ -10229,7 +10219,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": -0.04
   },
   {
@@ -10242,9 +10232,9 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "backhand",
+   "pred_stroke": "forehand",
    "dt": 0.0
   }
  ],
- "minutes": 14.0
+ "minutes": 6.6
 }
