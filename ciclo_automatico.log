@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261104190107
+Start time: 20261104205236
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 9920
+Process ID: 17236
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,45 +17,13 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-11-04 19:01:07] Codigo nuevo (7312cda -> 3b3d8fd): 13 ficheros
-    docs/peticiones_usuario.md
+==> [2026-11-04 20:52:36] Codigo nuevo (86d12c0 -> 2a9329e): 1 ficheros
     docs/plan_corto_plazo.md
-    scripts/windows/ciclo_automatico.ps1
-    src/tennisbio/audit.py
-    tests/test_app_window.py
-    tests/test_file_tree.py
-    tests/test_infra_checks.py
-    tests/test_local_only.py
-    tests/test_logs_progress.py
-    tests/test_output_places.py
-    tests/test_project_context.py
-    tests/test_speed_keeps_quality.py
-    tests/test_windows_scripts.py
-Updating 7312cda..3b3d8fd
+Updating 86d12c0..2a9329e
 Fast-forward
- docs/peticiones_usuario.md           |  32 +++---
- docs/plan_corto_plazo.md             |   2 +-
- scripts/windows/ciclo_automatico.ps1 |   2 +
- src/tennisbio/audit.py               | 195 ++++++++++++++++++++++++++++++++++-
- tests/test_app_window.py             |  32 +++++-
- tests/test_file_tree.py              |  56 ++++++++++
- tests/test_infra_checks.py           | 129 +++++++++++++++++++++++
- tests/test_local_only.py             |  77 ++++++++++++++
- tests/test_logs_progress.py          |  74 +++++++++++++
- tests/test_output_places.py          |  77 ++++++++++++++
- tests/test_project_context.py        |  39 +++++++
- tests/test_speed_keeps_quality.py    |  62 +++++++++++
- tests/test_windows_scripts.py        |  91 ++++++++++++++++
- 13 files changed, 846 insertions(+), 22 deletions(-)
- create mode 100644 tests/test_file_tree.py
- create mode 100644 tests/test_infra_checks.py
- create mode 100644 tests/test_local_only.py
- create mode 100644 tests/test_logs_progress.py
- create mode 100644 tests/test_output_places.py
- create mode 100644 tests/test_project_context.py
- create mode 100644 tests/test_speed_keeps_quality.py
- create mode 100644 tests/test_windows_scripts.py
-Resolved 124 packages in 0.88ms
+ docs/plan_corto_plazo.md | 1 +
+ 1 file changed, 1 insertion(+)
+Resolved 124 packages in 0.99ms
 Checked 89 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
@@ -71,47 +39,11 @@ yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
     (paso terminado en 4 s)
 
-==> [2026-11-04 19:01:11] Que hace falta: informe
-Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (74 golpes)
-Informe: C:\tenis\output\_smoke\informe\index.html
-Golpes: 0 nuevos, 25 en C:\tenis\output\_smoke\exportar\golpes
-Montajes: 8 en C:\tenis\output\_smoke\exportar\montajes
-Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
-Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
-Peticiones: 19 sin construir · 65 construido, sin comprobar · 93 comprobación que falla · 60 comprobado en salidas · 0 validado con verdad
-Auditoría: 330 cumplidos, 23 no cumplidos, 127 sin golpes suficientes, 123 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-  ✘ Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin: 7 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 3, golpes suyos, pero ningún saque 4; sus saques encontrados caen en puntos de su saque 11, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 4) después de que vuelva la cámara principal; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque), 23.2-23.9 min (sin_golpes), 31.1-31.7 min (sin_saque), 32.6-32.8 min (sin_saque)
-  ✘ Primera pantalla, anchura y nombres (diseño definitivo): vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
-  ✘ Registros con fecha y duración: 54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final
-  ✘ #1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
-  ✘ #66 Fechas y duración en los registros: 2 comprobaciones: 1 falta, 1 aviso; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final)
-  ✘ #155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
-  ✘ #176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3): SIN HACER según el registro (#176, docs/peticiones_usuario.md)
-  ✘ #189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4): SIN HACER según el registro (#189, docs/peticiones_usuario.md)
-  ✘ #193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10): SIN HACER según el registro (#193, docs/peticiones_usuario.md)
-  ✘ #196 Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18): SIN HACER según el registro (#196, docs/peticiones_usuario.md)
-  ✘ #197 Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19): SIN HACER según el registro (#197, docs/peticiones_usuario.md)
-  ✘ #198 Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20): SIN HACER según el registro (#198, docs/peticiones_usuario.md)
-  ✘ #205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3): SIN HACER según el registro (#205, docs/peticiones_usuario.md)
-  ✘ #209 Passing y globo (Revisión completa, §3 B): SIN HACER según el registro (#209, docs/peticiones_usuario.md)
-  ✘ #210 Dejada (bote muy corto en campo rival) (Revisión completa, §3 B): SIN HACER según el registro (#210, docs/peticiones_usuario.md)
-  ✘ #211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5): SIN HACER según el registro (#211, docs/peticiones_usuario.md)
-  ✘ #216 Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnic: SIN HACER según el registro (#216, docs/peticiones_usuario.md)
-  ✘ #217 Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26): SIN HACER según el registro (#217, docs/peticiones_usuario.md)
-  ✘ #223 Revés y derecha cortados: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
-  ✘ #224 Saques: plano, cortado o kick; primero o segundo: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
-  ✘ #240 Comparar la aplicación con las profesionales una vez estén los golpes: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
-  ✘ #244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10): SIN HACER según el registro (#244, docs/peticiones_usuario.md)
-  ✘ #245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10): SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-Hecho en 181 s, sin volver a analizar vídeo.
-    (paso terminado en 3 min 01 s)
-
-==> [2026-11-04 19:04:13] Revision automatica frente a la ejecucion anterior
-# Revisión automática: REGRESIÓN
-Ciclo automatico terminado (informe).
+==> [2026-11-04 20:52:40] Que hace falta: nada
+Ciclo automatico terminado (nada).
     (paso terminado en 0 s)
-Empezado 2026-11-04 19:01:05 - terminado 2026-11-04 19:04:13 - duracion total 3 min 08 s
+Empezado 2026-11-04 20:52:33 - terminado 2026-11-04 20:52:40 - duracion total 7 s
 **********************
 Windows PowerShell transcript end
-End time: 20261104190413
+End time: 20261104205240
 **********************
