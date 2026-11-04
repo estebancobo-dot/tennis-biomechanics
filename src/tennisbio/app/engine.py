@@ -16,6 +16,19 @@ MAIN_STAGES = tuple(n for n in pipeline.STAGES if n != "fine_opponent")
 USABLE = ("analizado", "identidad dudosa", "con aviso")     # matches whose strokes feed an analysis
 
 
+def is_test_run(output: Path, stored_dir: str) -> bool:
+    """A test run of the automatic cycle: a folder one level down in <output> (index «dir» relative with a
+    «/», like «_smoke/<match>»). A library match folder is not one: the index stores it as an absolute path
+    (outside <output>; «C:/tenis/biblioteca/…» on the PC) or, were the library inside <output>, it has its
+    etapas/ (match_files.is_library). Both checks hold on Windows and Linux alike (05-11, plan 6.3: the 4
+    reference matches were taken for test runs and their analysis never queued)."""
+    from pathlib import PurePosixPath, PureWindowsPath
+    s = (stored_dir or "").replace("\\", "/")
+    if "/" not in s or PurePosixPath(s).is_absolute() or PureWindowsPath(s).is_absolute():
+        return False
+    return not _mf.is_library(Path(output) / s)
+
+
 class Engine:
     def __init__(self, db: DB, paths: Paths):
         self.db, self.paths = db, paths
@@ -125,9 +138,13 @@ class Engine:
         for r in self.db.q("SELECT id FROM matches WHERE (player=? OR opponent_id=?) AND state IN (%s) ORDER BY date, id"
                            % ",".join("?" * len(USABLE)), player, player, *USABLE):
             try:
-                out.append((self.match(r["id"]), self.dir(r["id"])))
+                m, d = self.match(r["id"]), self.dir(r["id"])
             except KeyError:
                 continue
+            # the report finds each match by its folder (layout.dir_of): a library folder is named by its slug,
+            # not by the match id, so the folder goes with the match (05-11, plan 6.3)
+            m.extra["match_dir"] = str(d)
+            out.append((m, d))
         return out
 
     def count_strokes(self, player: str, stroke: str) -> int:
@@ -141,15 +158,19 @@ class Engine:
         return n
 
     def _group(self, player: str) -> tuple[Path, list[tuple[Match, Path]]]:
-        """The report reads <root>/<match id>: its matches must share one root. Matches added by the
-        application all live in <output>; test runs live one level down, each run its own root: the
-        root with most of her matches is used."""
+        """The matches of one report and its root (where the report looks for the audit and the practice
+        videos). Matches added by the application live in <output> or, once the library is switched on, in
+        their library folders (each match carries its folder: matches_of): together they are her real group,
+        with <output> as root, and they are used whenever there is one. Test runs of the cycle live one level
+        down, each run its own root: only without real matches, the run with most of her matches is used."""
         by: dict[Path, list] = {}
+        out = self.paths.output
         for m, d in self.matches_of(player):
-            by.setdefault(d.parent, []).append((m, d))
+            real = d.parent == out or _mf.is_library(d) or not d.is_relative_to(out)
+            by.setdefault(out if real else d.parent, []).append((m, d))
         if not by:
-            return self.paths.output, []
-        root = max(by, key=lambda r: (len(by[r]), r == self.paths.output))
+            return out, []
+        root = out if out in by else max(by, key=lambda r: len(by[r]))
         return root, by[root]
 
     def build_report(self, player: str, stroke: str, dest: Path, cfg: dict) -> int:
