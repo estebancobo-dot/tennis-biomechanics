@@ -1,6 +1,6 @@
 # Revisión automática: FALLOS
 
-298 cumplidos · 20 no cumplidos · 127 sin golpes suficientes · 113 avisos (antes: 296 cumplidos, 20 no cumplidos)
+298 cumplidos · 20 no cumplidos · 127 sin golpes suficientes · 113 avisos (antes: 298 cumplidos, 20 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 123 de 245
 
@@ -153,16 +153,3 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-
-## Mejora
-
-- Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso → ok
-- 5. Bola, resultado y contexto · Puntos ganados en ataque / en defensa: pocos datos → ok
-- #134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06): aviso → pocos datos
-- #151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25): aviso → pocos datos
-- #233 Una referencia completa y medida antes de validar nada: aviso → pocos datos
-
-## Fiabilidad de las medidas
-
-- ahora: 80 medidas: 7 dudosa, 49 fiable, 14 no comprobable, 2 ruido, 1 sesgo, 7 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.85, takeback.shoulder_turn ±3.3. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
-- antes: 80 medidas: 5 dudosa, 52 fiable, 14 no comprobable, 2 ruido, 1 sesgo, 6 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.85, takeback.shoulder_turn ±3.3. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
