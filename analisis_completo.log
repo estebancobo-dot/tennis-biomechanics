@@ -87128,3 +87128,114 @@ Empezado 2026-11-04 22:49:23 - terminado 2026-11-04 23:47:59 - duracion total 58
 Windows PowerShell transcript end
 End time: 20261104234759
 **********************
+**********************
+Windows PowerShell transcript start
+Start time: 20261105001049
+Username: esteban\esteb
+RunAs User: esteban\esteb
+Configuration Name: 
+Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\analisis_completo.ps1
+Process ID: 11800
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Already up to date.
+Resolved 124 packages in 0.84ms
+Checked 89 packages in 3ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+motionagformer_xs.onnx OK 9 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+
+==> [2026-11-05 00:10:54] 1/5 Catalogo de partidos (se anaden solos los videos nuevos)
+Vídeos en C:\tenis\videos: 4 en el catálogo (0 nuevos: —)
+    (paso terminado en 0 s)
+
+==> [2026-11-05 00:10:54] 2/5 Analisis de los partidos (horas; se puede cortar y relanzar)
+us-open-2026-r4-naomi-osaka-elena-rybakina: al día
+zheng-qinwen-elena-rybakina: al día
+tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: al día
+tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5: al día
+us-open-2026-r4-naomi-osaka-elena-rybakina probe:ok  scenes:ok  audio:ok  court:ok  players:ok  score:ok  identity:ok  spotting:ok  candidates:ok  views:ok  fine:ok  views_link:ok  fine_opponent:ok  fine_doubtful:ok
+zheng-qinwen-elena-rybakina probe:ok  scenes:ok  audio:ok  court:ok  players:ok  score:ok  identity:ok  spotting:ok  candidates:ok  views:ok  fine:ok  views_link:ok  fine_opponent:ok  fine_doubtful:ok
+tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 probe:ok  scenes:ok  audio:ok  court:ok  players:ok  score:ok  identity:ok  spotting:ok  candidates:ok  views:ok  fine:ok  views_link:ok  fine_opponent:ok  fine_doubtful:ok
+tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 probe:ok  scenes:ok  audio:ok  court:ok  players:ok  score:ok  identity:ok  spotting:ok  candidates:ok  views:ok  fine:ok  views_link:ok  fine_opponent:ok  fine_doubtful:ok
+    (paso terminado en 2 s)
+
+==> [2026-11-05 00:10:56] 3/5 Informes
+informe: C:\tenis\output\informe_derecha\index.html
+informe: C:\tenis\output\informe_reves\index.html
+informe: C:\tenis\output\informe_saque\index.html
+    (paso terminado en 10 s)
+
+==> [2026-11-05 00:11:07] 4/5 Comprobacion automatica de requisitos (capturas del informe incluidas; se envia a Claude)
+Peticiones: 19 sin construir · 65 construido, sin comprobar · 73 comprobación que falla · 80 comprobado en salidas · 0 validado con verdad
+Auditoría: 427 cumplidos, 32 no cumplidos, 54 sin golpes suficientes, 122 avisos → C:\tenis\output\auditoria\auditoria.md
+  ✘ Saques por punto de su saque: sin-fecha_580c6f_rybakina: 26 de 50 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 18, golpes suyos, pero ningún saque 6; sus saques encontrados caen en puntos de su saque 30, de la rival 9, fuera de los puntos leídos 24; en los puntos sin saque, su primer golpe encontrado llega 11.6 s (mediana de 6) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 6): tipo {'forehand/detector': 4, 'backhand/detector': 2}, lado {'far': 4, 'near': 2}, 0 detrás de la línea de fondo; primeros: 42.4-42.9 min (sin_saque), 44.4-45.5 min (sin_saque), 52.4-53.0 min (sin_saque), 60.0-60.6 min (sin_golpes), 65.5-66.0 min (sin_golpes), 66.0-66.4 min (sin_golpes), 66.3-67.0 min (sin_golpes), 72.3-73.0 min (sin_saque)
+  ✘ Saques por punto de su saque: sin-fecha_b8b713_rybakina: 46 de 70 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 16, golpes suyos, pero ningún saque 8; sus saques encontrados caen en puntos de su saque 52, de la rival 7, fuera de los puntos leídos 13; en los puntos sin saque, su primer golpe encontrado llega 5.2 s (mediana de 8) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 8): tipo {'forehand/detector': 4, 'backhand/detector': 4}, lado {'near': 5, 'far': 3}, 3 detrás de la línea de fondo; primeros: 47.2-47.8 min (sin_golpes), 55.0-55.6 min (sin_golpes), 55.8-56.6 min (sin_golpes), 56.9-57.4 min (sin_golpes), 62.3-62.7 min (sin_golpes), 63.2-63.7 min (sin_golpes), 71.2-72.0 min (sin_saque), 79.2-79.7 min (sin_golpes)
+  ✘ Valores dentro de límites físicos: ball_flight.apex_height_m: 3 de 95 fuera de 0.2–4.0
+  ✘ Primera pantalla, anchura y nombres (diseño definitivo): vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 598 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
+  ✘ La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo: 9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección mide 1419 px (más de pantalla y media)
+  ✘ Registros con fecha y duración: 54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final
+  ✘ #1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
+  ✘ #4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b: 201 comprobaciones: 1 falta, 23 pocos datos, 177 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )
+  ✘ #5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto: 32 comprobaciones: 1 falta, 7 pocos datos, 24 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )
+  ✘ #17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»: 10 comprobaciones: 1 falta, 1 pocos datos, 8 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )
+  ✘ #46 Sin PDF enorme y sin inventar datos: 2 comprobaciones: 1 falta, 1 ok; la peor: «Valores dentro de límites físicos» (ball_flight.apex_height_m: 3 de 95 fuera de 0.2–4.0)
+  ✘ #59 Diferencias solo por encima del error y en situaciones equivalentes: 6 comprobaciones: 1 falta, 5 ok; la peor: «Valores dentro de límites físicos» (ball_flight.apex_height_m: 3 de 95 fuera de 0.2–4.0)
+  ✘ #66 Fechas y duración en los registros: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final)
+  ✘ #68 La meta: mejorar mi derecha tomando la de X como base: 8 comprobaciones: 1 falta, 1 pocos datos, 6 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )
+  ✘ #155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
+  ✘ #176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3): SIN HACER según el registro (#176, docs/peticiones_usuario.md)
+  ✘ #189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4): SIN HACER según el registro (#189, docs/peticiones_usuario.md)
+  ✘ #193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10): SIN HACER según el registro (#193, docs/peticiones_usuario.md)
+  ✘ #196 Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18): SIN HACER según el registro (#196, docs/peticiones_usuario.md)
+  ✘ #197 Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19): SIN HACER según el registro (#197, docs/peticiones_usuario.md)
+  ✘ #198 Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20): SIN HACER según el registro (#198, docs/peticiones_usuario.md)
+  ✘ #205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3): SIN HACER según el registro (#205, docs/peticiones_usuario.md)
+  ✘ #209 Passing y globo (Revisión completa, §3 B): SIN HACER según el registro (#209, docs/peticiones_usuario.md)
+  ✘ #210 Dejada (bote muy corto en campo rival) (Revisión completa, §3 B): SIN HACER según el registro (#210, docs/peticiones_usuario.md)
+  ✘ #211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5): SIN HACER según el registro (#211, docs/peticiones_usuario.md)
+  ✘ #216 Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnic: SIN HACER según el registro (#216, docs/peticiones_usuario.md)
+  ✘ #217 Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26): SIN HACER según el registro (#217, docs/peticiones_usuario.md)
+  ✘ #223 Revés y derecha cortados: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
+  ✘ #224 Saques: plano, cortado o kick; primero o segundo: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
+  ✘ #240 Comparar la aplicación con las profesionales una vez estén los golpes: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
+  ✘ #244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10): SIN HACER según el registro (#244, docs/peticiones_usuario.md)
+  ✘ #245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10): SIN HACER según el registro (#245, docs/peticiones_usuario.md)
+    (paso terminado en 3 min 46 s)
+
+==> [2026-11-05 00:14:53] 5/5 Videos por golpe, montajes por conclusion y resumen PDF
+Golpes: 0 nuevos, 422 en C:\tenis\output\exportar_derecha\golpes
+Montajes: 10 en C:\tenis\output\exportar_derecha\montajes
+Resumen: C:\tenis\output\exportar_derecha\resumen.pdf
+Golpes: 0 nuevos, 272 en C:\tenis\output\exportar_reves\golpes
+Montajes: 10 en C:\tenis\output\exportar_reves\montajes
+Resumen: C:\tenis\output\exportar_reves\resumen.pdf
+Golpes: 0 nuevos, 229 en C:\tenis\output\exportar_saque\golpes
+Montajes: 8 en C:\tenis\output\exportar_saque\montajes
+Resumen: C:\tenis\output\exportar_saque\resumen.pdf
+Informe: C:\tenis\output\informe_derecha\index.html (o en la aplicacion Tennisbio)
+
+TERMINADO en 00:05. Informes en C:\tenis\output\informe_*; videos, montajes y resumen.pdf en C:\tenis\output\exportar_*
+    (paso terminado en 1 min 30 s)
+Empezado 2026-11-05 00:10:49 - terminado 2026-11-05 00:16:24 - duracion total 5 min 34 s
+**********************
+Windows PowerShell transcript end
+End time: 20261105001624
+**********************
