@@ -17,6 +17,12 @@
    "units": 248,
    "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
    "date": "2026-11-04 04:46"
+  },
+  {
+   "s": 0.9917,
+   "units": 269,
+   "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+   "date": "2026-11-04 04:52"
   }
  ],
  "fine:minuto": [
@@ -37,6 +43,12 @@
    "video_min": 133.4,
    "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
    "date": "2026-11-04 04:46"
+  },
+  {
+   "s": 1.313,
+   "video_min": 210.4,
+   "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+   "date": "2026-11-04 04:52"
   }
  ]
 }

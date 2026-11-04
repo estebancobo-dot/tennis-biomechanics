@@ -3,7 +3,7 @@
  "screens": [
   {
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
-   "text_chars": 3260,
+   "text_chars": 3267,
    "charts": 21,
    "videos": 7,
    "black_canvases": 0,
@@ -30,7 +30,7 @@
   },
   {
    "title": "Sus golpes (Videoteca y pista)",
-   "text_chars": 8159,
+   "text_chars": 8118,
    "charts": 1,
    "videos": 7,
    "black_canvases": 0,
@@ -57,13 +57,13 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 5228,
+   "text_chars": 5224,
    "charts": 33,
    "videos": 8,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 8,
+   "dashes": 6,
    "ball_moments": 5,
    "feet_cycle": 9,
    "ball_measures": 5,
@@ -85,7 +85,7 @@
   },
   {
    "title": "Comparar dos golpes",
-   "text_chars": 43288,
+   "text_chars": 43357,
    "charts": 2,
    "videos": 7,
    "black_canvases": 0,
@@ -104,7 +104,7 @@
    "intro": true,
    "external_links": 0,
    "tables": 0,
-   "sentences": 4,
+   "sentences": 5,
    "many_lines": 0,
    "tab": "comparar",
    "file": "pantalla_4_comparar.jpg",
@@ -112,7 +112,7 @@
   },
   {
    "title": "Conclusiones (Panel y Comparativas)",
-   "text_chars": 5410,
+   "text_chars": 5411,
    "charts": 22,
    "videos": 7,
    "black_canvases": 0,
@@ -139,7 +139,7 @@
   },
   {
    "title": "Tabla de golpes (Explorador)",
-   "text_chars": 5056,
+   "text_chars": 5068,
    "charts": 0,
    "videos": 7,
    "black_canvases": 0,
@@ -220,7 +220,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 2569,
+   "text_chars": 2579,
    "charts": 0,
    "videos": 7,
    "black_canvases": 0,
