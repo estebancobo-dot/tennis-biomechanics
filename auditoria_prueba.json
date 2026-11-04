@@ -3,10 +3,10 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 332,
+  "ok": 348,
   "falta": 23,
   "pocos datos": 127,
-  "aviso": 121
+  "aviso": 105
  },
  "items": [
   {
@@ -46,7 +46,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "falta",
-   "detail": "7 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 3, golpes suyos, pero ningún saque 4; sus saques encontrados caen en puntos de su saque 11, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 4) después de que vuelva la cámara principal; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque), 23.2-23.9 min (sin_golpes), 31.1-31.7 min (sin_saque), 32.6-32.8 min (sin_saque)",
+   "detail": "7 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 3, golpes suyos, pero ningún saque 4; sus saques encontrados caen en puntos de su saque 11, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 4) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 4): tipo {'backhand/detector': 2, 'backhand/pose': 1, 'forehand/detector': 1}, lado {'far': 4}, 3 detrás de la línea de fondo; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque), 23.2-23.9 min (sin_golpes), 31.1-31.7 min (sin_saque), 32.6-32.8 min (sin_saque)",
    "serve_gaps": {
     "points": 14,
     "found": 7,
@@ -62,7 +62,14 @@
       "t1": 425.5,
       "cause": "sin_saque",
       "shot_start": 383.0,
-      "first_stroke_after_s": 31.3
+      "first_stroke_after_s": 31.3,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": -2.82
+      }
      },
      {
       "t0": 420.5,
@@ -75,7 +82,14 @@
       "t1": 549.8,
       "cause": "sin_saque",
       "shot_start": 498.4,
-      "first_stroke_after_s": 2.7
+      "first_stroke_after_s": 2.7,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "pose",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": null
+      }
      },
      {
       "t0": 1394.7,
@@ -88,20 +102,46 @@
       "t1": 1904.7,
       "cause": "sin_saque",
       "shot_start": 1863.5,
-      "first_stroke_after_s": 27.5
+      "first_stroke_after_s": 27.5,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": -3.04
+      }
      },
      {
       "t0": 1953.6,
       "t1": 1968.6,
       "cause": "sin_saque",
       "shot_start": 1953.6,
-      "first_stroke_after_s": 1.2
+      "first_stroke_after_s": 1.2,
+      "first_stroke": {
+       "stroke": "backhand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": -2.83
+      }
      }
     ],
     "by_cause": {
      "sin_camara": 0,
      "sin_golpes": 3,
      "sin_saque": 4
+    },
+    "first_strokes_without_serve": {
+     "n": 4,
+     "type": {
+      "backhand/detector": 2,
+      "backhand/pose": 1,
+      "forehand/detector": 1
+     },
+     "side": {
+      "far": 4
+     },
+     "behind_baseline": 3
     },
     "first_stroke_after_shot_start_s": {
      "median": 27.5,
@@ -2763,7 +2803,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "2446 caracteres de texto, 6 vídeos, 19 gráficos",
+   "detail": "2446 caracteres de texto, 7 vídeos, 19 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2795,7 +2835,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4244 caracteres de texto, 7 vídeos, 12 gráficos",
+   "detail": "4232 caracteres de texto, 7 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2827,7 +2867,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2004 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2001 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3122,8 +3162,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 7312cda (2026-11-04T19:04:16): 744 bien, 0 fallan, 0 errores",
-   "passed": 744,
+   "detail": "código 2a9329e (2026-11-04T21:06:38): 789 bien, 0 fallan, 0 errores",
+   "passed": 789,
    "failed": 0
   },
   {
@@ -3179,8 +3219,8 @@
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_app_window",
-   "status": "aviso",
-   "detail": "0 bien, 0 fallan, 7 omitidas"
+   "status": "ok",
+   "detail": "7 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
@@ -3291,43 +3331,43 @@
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_windows_scripts",
-   "status": "aviso",
-   "detail": "0 bien, 0 fallan, 0 omitidas (no se ejecutó)"
+   "status": "ok",
+   "detail": "5 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_local_only",
-   "status": "aviso",
-   "detail": "0 bien, 0 fallan, 0 omitidas (no se ejecutó)"
+   "status": "ok",
+   "detail": "6 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_logs_progress",
-   "status": "aviso",
-   "detail": "0 bien, 0 fallan, 0 omitidas (no se ejecutó)"
+   "status": "ok",
+   "detail": "5 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_output_places",
-   "status": "aviso",
-   "detail": "0 bien, 0 fallan, 0 omitidas (no se ejecutó)"
+   "status": "ok",
+   "detail": "5 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_project_context",
-   "status": "aviso",
-   "detail": "0 bien, 0 fallan, 0 omitidas (no se ejecutó)"
+   "status": "ok",
+   "detail": "3 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_speed_keeps_quality",
-   "status": "aviso",
-   "detail": "0 bien, 0 fallan, 0 omitidas (no se ejecutó)"
+   "status": "ok",
+   "detail": "4 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 6,
@@ -3355,7 +3395,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "43 carpetas, 37.6 GB en total (2026-11-04T20:00:05); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "43 carpetas, 37.6 GB en total (2026-11-04T20:52:42); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -3537,14 +3577,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-04_2000.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (2.2 min): CPU 9/20/36 %, iGPU 0/0/0 %, RAM máx 7.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
+   "detail": "recursos_2026-11-04_2102.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (5.0 min): CPU 5/19/53 %, iGPU 0/0/1 %, RAM máx 7.2 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
-   "status": "ok",
-   "detail": "petición del 04-11 19:59, empezó a los 0.2 min (objetivo ≤ 10 min; si el PC estaba con otro trabajo, espera a que acabe)"
+   "status": "aviso",
+   "detail": "la última petición (04-11 21:05) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02"
   },
   {
    "req": 11,
@@ -3816,8 +3856,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#40 Scripts de instalación, uso rápido y completo, sin leer nada",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_windows_scripts» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3837,8 +3877,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#43 El PC no es servidor",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_local_only» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -3886,8 +3926,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#50 Progreso y monitorización visibles",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_logs_progress» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -3971,7 +4011,7 @@
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
    "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 aviso; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final)"
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final)"
   },
   {
    "req": 11,
@@ -4075,15 +4115,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#81 Tamaño de la salida; comprobación sin gastar tokens",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_output_places» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#82 Dónde se graban las salidas, qué va a git, qué se reutiliza",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Pruebas en este PC: test_output_places» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -4425,8 +4465,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#136 lo puedes añadir al contexto o fichero base? (Chat, 13-10 09:47)",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_project_context» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -4446,8 +4486,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#139 si se pierde calidad no tocamos nada (Chat, 14-10 20:08)",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_speed_keeps_quality» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -4488,8 +4528,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#145 no quiero nada en la nube ni pagar ni nada (Chat, 17-10 10:09)",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_local_only» (0 bien, 0 fallan, 0 omitidas (no se ejecutó))"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -4594,7 +4634,7 @@
    "area": "Peticiones",
    "name": "#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 2 aviso, 2 ok; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Aplicación: análisis en su índice» (0 análisis y 18 partidos en el índice de la aplicación: los análisis de los partidos hechos por el ciclo automático aún )"
   },
   {
    "req": 11,
@@ -5048,22 +5088,22 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#225 La aplicación no se cuelga ni ralentiza el PC",
-   "status": "aviso",
-   "detail": "3 comprobaciones: 1 aviso, 2 ok; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)"
+   "status": "ok",
+   "detail": "3 comprobaciones: 3 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#227 Pantalla completa en la aplicación",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -5125,8 +5165,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
-   "status": "ok",
-   "detail": "1 comprobaciones: 1 ok"
+   "status": "aviso",
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (04-11 21:05) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02)"
   },
   {
    "req": 11,
@@ -5161,7 +5201,7 @@
    "area": "Peticiones",
    "name": "#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 2 aviso, 2 ok; la peor: «Pruebas en este PC: test_app_window» (0 bien, 0 fallan, 7 omitidas)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Aplicación: análisis en su índice» (0 análisis y 18 partidos en el índice de la aplicación: los análisis de los partidos hechos por el ciclo automático aún )"
   },
   {
    "req": 11,

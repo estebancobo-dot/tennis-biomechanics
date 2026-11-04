@@ -1,6 +1,6 @@
-# Revisión automática: FALLOS
+# Revisión automática: REGRESIÓN
 
-332 cumplidos · 23 no cumplidos · 127 sin golpes suficientes · 121 avisos (antes: 330 cumplidos, 23 no cumplidos)
+348 cumplidos · 23 no cumplidos · 127 sin golpes suficientes · 105 avisos (antes: 332 cumplidos, 23 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 123 de 245
 
@@ -137,7 +137,7 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
 - **Registros con fecha y duración**: 54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final
 - **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
-- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 aviso; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final)
+- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final)
 - **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -157,7 +157,28 @@ Registro `docs/peticiones_usuario.md`: 111 hechas · 104 a medias · 19 sin hace
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 
+## Empeora respecto a la ejecución anterior
+
+- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: la última petición (04-11 21:05) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02
+- **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (04-11 21:05) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:
+
 ## Mejora
 
-- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok
-- #237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min: aviso → ok
+- Pruebas en este PC: test_app_window: aviso → ok
+- Pruebas en este PC: test_windows_scripts: aviso → ok
+- Pruebas en este PC: test_local_only: aviso → ok
+- Pruebas en este PC: test_logs_progress: aviso → ok
+- Pruebas en este PC: test_output_places: aviso → ok
+- Pruebas en este PC: test_project_context: aviso → ok
+- Pruebas en este PC: test_speed_keeps_quality: aviso → ok
+- #40 Scripts de instalación, uso rápido y completo, sin leer nada: aviso → ok
+- #43 El PC no es servidor: aviso → ok
+- #50 Progreso y monitorización visibles: aviso → ok
+- #81 Tamaño de la salida; comprobación sin gastar tokens: aviso → ok
+- #82 Dónde se graban las salidas, qué va a git, qué se reutiliza: aviso → ok
+- #136 lo puedes añadir al contexto o fichero base? (Chat, 13-10 09:47): aviso → ok
+- #139 si se pierde calidad no tocamos nada (Chat, 14-10 20:08): aviso → ok
+- #145 no quiero nada en la nube ni pagar ni nada (Chat, 17-10 10:09): aviso → ok
+- #225 La aplicación no se cuelga ni ralentiza el PC: aviso → ok
+- #226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10): aviso → ok
+- #227 Pantalla completa en la aplicación: aviso → ok
