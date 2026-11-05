@@ -127,16 +127,16 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "18884dfb48dcf6a9",
+  "fingerprint": "9cc34d1934bc1f4e",
   "version": "16",
-  "seconds": 63.1,
-  "finished": "2026-11-04 22:29:21",
+  "seconds": 63.8,
+  "finished": "2026-11-05 01:56:42",
   "summary": {
    "candidates": 77,
    "confirmed": 74,
    "errors": 0,
    "warnings": [],
-   "forehands": 24,
+   "forehands": 25,
    "windows": 59,
    "gate": {
     "windows_gated": 0,
@@ -150,12 +150,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 29.2,
-    "pista_ventana": 15.8,
+    "jugadora_lejana": 29.1,
+    "pista_ventana": 16.5,
     "cuerdas_y_3d": 12.6,
-    "analisis_ventana": 10.8,
-    "cribado": 3.2,
-    "recorte": 3.0,
+    "analisis_ventana": 11.3,
+    "recorte": 3.1,
+    "cribado": 3.0,
     "pose": 0.3
    },
    "counts": {
@@ -169,14 +169,14 @@
     "frames_960_far": 0
    }
   },
-  "out_hash": "cecba624257672129aef",
+  "out_hash": "125be271cfdb459c5548",
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "05acc73e78a9e920",
+  "fingerprint": "eacf390b6c9a2240",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-04 22:29:21",
+  "finished": "2026-11-05 01:56:42",
   "summary": {
    "enabled": false
   },
@@ -184,10 +184,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "9384bd994895236f",
+  "fingerprint": "18a051e3fb1ecf43",
   "version": "1",
-  "seconds": 21.3,
-  "finished": "2026-11-04 22:29:42",
+  "seconds": 20.5,
+  "finished": "2026-11-05 01:57:02",
   "summary": {
    "candidates": 28,
    "confirmed": 19,
@@ -200,16 +200,16 @@
     "windows_passed": 14,
     "windows_ungated": 0,
     "reasons": {
-     "detector": 1,
      "golpe_de_bola": 6,
+     "detector": 1,
      "bola_no_vista": 7
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 7.8,
-    "analisis_ventana": 4.1,
-    "jugadora_lejana": 2.5,
+    "cuerdas_y_3d": 7.4,
+    "analisis_ventana": 4.0,
+    "jugadora_lejana": 2.2,
     "pista_ventana": 1.4,
     "recorte": 1.1,
     "cribado": 0.7,
@@ -249,10 +249,10 @@
   "scheme": 2
  },
  "views_link": {
-  "fingerprint": "17c53b7a7bd6dbb9",
+  "fingerprint": "3b8fa42e2f0df01d",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-11-04 22:29:42",
+  "finished": "2026-11-05 01:57:02",
   "summary": {
    "strokes": 74,
    "with_replay": 26,
