@@ -131,7 +131,7 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 
 ## No cumplidos
 
-- **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 9 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 3, golpes suyos, pero ningún saque 2; sus saques encontrados caen en puntos de su saque 13, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 31.3 s (mediana de 2
+- **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 7 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 3, golpes suyos, pero ningún saque 4; sus saques encontrados caen en puntos de su saque 11, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 4
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
 - **Registros con fecha y duración**: 54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final
 - **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
