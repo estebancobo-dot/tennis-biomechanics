@@ -1496,7 +1496,7 @@ FINE_CODE = ("stages", "clip_pipeline", "stroke_analysis", "phases", "kinematics
              "outcome", "series", "racket", "racket3d", "racket_face", "racket_orientation", "tracking", "technique",
              "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend", "ball3d", "limits", "fine_gate", "pose.hybrid",
              "footpoints", "pose.wholebody3d", "body_scale", "fine_ahead", "situations", "returns", "pose.estimator",
-             "trunk3d", "pose.motionagformer")
+             "trunk3d", "pose.motionagformer", "point_count", "racket_pose")   # 04-11: every module the fine pass imports
 
 
 def _player_fields(p) -> dict:

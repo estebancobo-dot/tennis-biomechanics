@@ -198,3 +198,15 @@ def test_recompute_runs_the_stages_the_config_adds():
     on = r.cheap_stages({"spotter": {"enabled": True}})
     assert on.index("spotting") < on.index("candidates") and not set(on) & set(r.EXPENSIVE + r.FINE)
     assert "spotting" not in r.cheap_stages({"spotter": {"enabled": False}})
+
+
+def test_every_module_the_fine_pass_imports_is_in_its_code_fingerprint():
+    """04-11 (request 106): the serve rule lived in point_count, not in FINE_CODE, so the PC never re-ran the fine pass
+    after a change to it and kept the former results."""
+    import re
+    from pathlib import Path
+    from tennisbio.stages import FINE_CODE
+    s = (Path(__file__).resolve().parents[1] / "src" / "tennisbio" / "stages.py").read_text(encoding="utf-8")
+    region = s[s.index("def _fine_model_files"):s.index("\n_TIMES: dict = {}")]
+    missing = set(re.findall(r"from \.([\w.]+) import", region)) - set(FINE_CODE)
+    assert not missing, missing
