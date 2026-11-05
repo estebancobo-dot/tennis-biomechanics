@@ -1,7 +1,7 @@
-﻿Peticion 108: indice de la aplicacion local (2026-11-05T00:16:39)
+﻿Peticion 111: indice de la aplicacion local (2026-11-05T03:15:29)
 == tennisbio app status
 Ahora: nada en curso
-En cola: ≈ 54 min, termina hacia las 01:11
+En cola: ≈ 54 min, termina hacia las 04:10
 Jugadoras: 2 · partidos: 18
 
 Análisis:
@@ -35,7 +35,7 @@ Avisos:
 4 partido(s) a recalcular, 0 informe(s); 14 prueba(s) del ciclo automático: las mantiene el ciclo
 == tennisbio app status
 Ahora: nada en curso
-En cola: ≈ 54 min, termina hacia las 01:11
+En cola: ≈ 54 min, termina hacia las 04:10
 Jugadoras: 2 · partidos: 18
 
 Análisis:
@@ -66,4 +66,4 @@ Cola (4):
 Avisos:
   [info] Nueva versión: recalcula 4 partido(s) ≈ 54 min, desde las cachés.
   no se ejecuta la cola: el plan tiene partidos que recalcular (ver arriba)
-codigo de salida: 0; termina 2026-11-05T00:16:42
+codigo de salida: 0; termina 2026-11-05T03:15:31
