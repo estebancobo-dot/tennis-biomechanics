@@ -151,16 +151,16 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "0e4bd0463af4f755",
+  "fingerprint": "9574941114a523e2",
   "version": "16",
-  "seconds": 114.4,
-  "finished": "2026-11-05 02:19:05",
+  "seconds": 117.1,
+  "finished": "2026-11-06 23:42:38",
   "summary": {
    "candidates": 159,
    "confirmed": 157,
    "errors": 0,
    "warnings": [],
-   "forehands": 85,
+   "forehands": 83,
    "windows": 93,
    "gate": {
     "windows_gated": 0,
@@ -174,13 +174,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 35.7,
-    "jugadora_lejana": 31.0,
-    "pista_ventana": 21.0,
-    "analisis_ventana": 16.4,
-    "recorte": 4.8,
-    "cribado": 4.8,
-    "pose": 0.3
+    "cuerdas_y_3d": 36.3,
+    "jugadora_lejana": 30.0,
+    "pista_ventana": 22.0,
+    "analisis_ventana": 16.6,
+    "recorte": 5.3,
+    "cribado": 4.9,
+    "pose": 0.6
    },
    "counts": {
     "overlap_s": 0.0,
@@ -193,14 +193,14 @@
     "frames_960_far": 0
    }
   },
-  "out_hash": "43d0472f4670f1546c21",
+  "out_hash": "a6f4a87956f8669d6743",
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "b64ec1ec463b4c7c",
+  "fingerprint": "fa2de3b775af413c",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-05 02:19:05",
+  "finished": "2026-11-06 23:42:38",
   "summary": {
    "enabled": false
   },
@@ -253,10 +253,10 @@
   "scheme": 2
  },
  "views_link": {
-  "fingerprint": "5402c9134bbef6e9",
+  "fingerprint": "05a1ae9274a47f51",
   "version": "1",
   "seconds": 0.2,
-  "finished": "2026-11-05 02:19:05",
+  "finished": "2026-11-06 23:42:38",
   "summary": {
    "strokes": 157,
    "with_replay": 24,
@@ -269,10 +269,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "7ebfb17786dec33a",
+  "fingerprint": "b460c241d28a9e6f",
   "version": "1",
-  "seconds": 8.2,
-  "finished": "2026-11-05 02:19:13",
+  "seconds": 8.7,
+  "finished": "2026-11-06 23:42:47",
   "summary": {
    "candidates": 17,
    "confirmed": 5,
@@ -292,12 +292,12 @@
    },
    "seconds": {
     "analisis_ventana": 2.7,
-    "cuerdas_y_3d": 2.1,
+    "cuerdas_y_3d": 1.9,
     "recorte": 0.8,
-    "cribado": 0.3,
+    "cribado": 0.2,
     "pose": 0.0,
-    "jugadora_lejana": 0.0,
-    "pista_ventana": 0.0
+    "pista_ventana": 0.0,
+    "jugadora_lejana": 0.0
    },
    "counts": {
     "overlap_s": 0.0,
@@ -310,7 +310,7 @@
     "frames_960_far": 0
    }
   },
-  "out_hash": "06b9b08fb2e9946109fc",
+  "out_hash": "e010446535c7e4e13249",
   "scheme": 2
  }
 }
