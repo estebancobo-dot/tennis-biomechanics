@@ -151,10 +151,10 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "452c46a2b53bb73f",
+  "fingerprint": "1967120908e4fb82",
   "version": "16",
-  "seconds": 203.3,
-  "finished": "2026-11-05 02:27:17",
+  "seconds": 205.1,
+  "finished": "2026-11-06 23:50:57",
   "summary": {
    "candidates": 248,
    "confirmed": 245,
@@ -174,11 +174,11 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 70.0,
-    "cuerdas_y_3d": 65.2,
-    "pista_ventana": 39.0,
-    "analisis_ventana": 25.0,
-    "recorte": 7.9,
+    "cuerdas_y_3d": 67.7,
+    "jugadora_lejana": 65.7,
+    "pista_ventana": 39.9,
+    "analisis_ventana": 26.1,
+    "recorte": 9.0,
     "cribado": 7.7,
     "pose": 0.9
    },
@@ -193,14 +193,14 @@
     "frames_960_far": 0
    }
   },
-  "out_hash": "24fea714ae81aa7d6312",
+  "out_hash": "de8b9cc2c5b0cd3f7c73",
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "bbed36d56ca73a92",
+  "fingerprint": "5024f621697e3360",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-05 02:27:18",
+  "finished": "2026-11-06 23:50:57",
   "summary": {
    "enabled": false
   },
@@ -253,10 +253,10 @@
   "scheme": 2
  },
  "views_link": {
-  "fingerprint": "f8b0fda8b31b2fff",
+  "fingerprint": "b4d19f052521cc65",
   "version": "1",
   "seconds": 0.3,
-  "finished": "2026-11-05 02:27:18",
+  "finished": "2026-11-06 23:50:57",
   "summary": {
    "strokes": 245,
    "with_replay": 47,
@@ -269,10 +269,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "0533aa2bf7bb96b1",
+  "fingerprint": "4a15b3c935e02182",
   "version": "1",
-  "seconds": 35.0,
-  "finished": "2026-11-05 02:27:53",
+  "seconds": 35.5,
+  "finished": "2026-11-06 23:51:33",
   "summary": {
    "candidates": 58,
    "confirmed": 32,
@@ -292,13 +292,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 14.2,
-    "cuerdas_y_3d": 8.2,
-    "pista_ventana": 6.9,
-    "analisis_ventana": 6.3,
-    "recorte": 2.8,
-    "cribado": 1.5,
-    "pose": 0.1
+    "jugadora_lejana": 13.4,
+    "cuerdas_y_3d": 8.1,
+    "pista_ventana": 7.1,
+    "analisis_ventana": 6.1,
+    "recorte": 3.0,
+    "cribado": 1.2,
+    "pose": 0.2
    },
    "counts": {
     "overlap_s": 0.0,
@@ -311,7 +311,7 @@
     "frames_960_far": 0
    }
   },
-  "out_hash": "c23f6326dcae0f690c75",
+  "out_hash": "59188e25a054b3f4fc8a",
   "scheme": 2
  }
 }
