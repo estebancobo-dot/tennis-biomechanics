@@ -269,7 +269,8 @@
    "backhand->backhand": 147,
    "backhand->forehand": 2,
    "forehand->backhand": 5,
-   "forehand->forehand": 183,
+   "forehand->forehand": 182,
+   "forehand->overhead": 1,
    "serve->backhand": 1,
    "serve->overhead": 123,
    "volley_other->backhand": 1
@@ -587,7 +588,8 @@
    "backhand->backhand": 147,
    "backhand->forehand": 2,
    "forehand->backhand": 5,
-   "forehand->forehand": 183,
+   "forehand->forehand": 182,
+   "forehand->overhead": 1,
    "serve->overhead": 123,
    "volley_other->backhand": 1
   },
@@ -1771,7 +1773,8 @@
      "backhand->backhand": 50,
      "backhand->forehand": 2,
      "forehand->backhand": 5,
-     "forehand->forehand": 84,
+     "forehand->forehand": 83,
+     "forehand->overhead": 1,
      "serve->overhead": 52
     },
     "identity": {
@@ -9465,7 +9468,7 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
+   "pred_stroke": "overhead",
    "dt": -0.01
   },
   {
@@ -10236,5 +10239,5 @@
    "dt": 0.0
   }
  ],
- "minutes": 6.7
+ "minutes": 7.0
 }
