@@ -3,10 +3,10 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 352,
+  "ok": 355,
   "falta": 23,
   "pocos datos": 127,
-  "aviso": 103
+  "aviso": 100
  },
  "items": [
   {
@@ -2789,7 +2789,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "2446 caracteres de texto, 7 vídeos, 19 gráficos",
+   "detail": "2446 caracteres de texto, 6 vídeos, 19 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2821,7 +2821,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4244 caracteres de texto, 7 vídeos, 12 gráficos",
+   "detail": "4232 caracteres de texto, 7 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -3148,8 +3148,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 9fb92d8 (2026-11-05T02:04:25): 804 bien, 0 fallan, 0 errores",
-   "passed": 804,
+   "detail": "código aee0a31 (2026-11-06T23:37:28): 806 bien, 0 fallan, 0 errores",
+   "passed": 806,
    "failed": 0
   },
   {
@@ -3199,7 +3199,7 @@
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_app_core",
    "status": "ok",
-   "detail": "42 bien, 0 fallan, 0 omitidas"
+   "detail": "43 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
@@ -3388,7 +3388,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "43 carpetas, 37.6 GB en total (2026-11-06T23:26:10); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "43 carpetas, 37.6 GB en total (2026-11-07T00:27:44); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -3437,7 +3437,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-06 23:28:23 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-07 00:30:15 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3577,14 +3577,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-06_2305.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (24.0 min): CPU 6/20/73 %, iGPU 0/2/78 %, RAM máx 8.7 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
+   "detail": "recursos_2026-11-06_2341.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (1.0 min): CPU 32/40/49 %, iGPU 0/0/1 %, RAM máx 7.3 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 19/19/19 %, iGPU 1/1/1 %, RAM máx 7.1 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (3.8 min): CPU 24/46/79 %, iGPU 0/34/100 %, RAM máx 7.6 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 32/52/72 %, iGPU 0/36/71 %, RAM máx 7.1 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine (3.0 min): CPU 25/44/90 %, iGPU 0/27/100 %, RAM máx 7.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.8 min): CPU 29/41/63 %, iGPU 42/76/100 %, RAM máx 7.7 GB → uso medio: margen para repartir trabajo"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "aviso",
-   "detail": "la última petición (06-11 23:25) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02"
+   "detail": "la última petición (06-11 23:59) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02"
   },
   {
    "req": 11,
@@ -3646,8 +3646,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#10 Ver los cambios en la prueba rápida, sin 1 h",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 12 ok"
+   "status": "ok",
+   "detail": "12 comprobaciones: 12 ok"
   },
   {
    "req": 11,
@@ -4087,8 +4087,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#77 No lanzar pruebas de 6 h para validar",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -5060,8 +5060,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#221 Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok"
+   "status": "ok",
+   "detail": "5 comprobaciones: 5 ok"
   },
   {
    "req": 11,
@@ -5166,7 +5166,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (06-11 23:25) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (06-11 23:59) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02)"
   },
   {
    "req": 11,

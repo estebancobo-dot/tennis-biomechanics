@@ -1,10 +1,10 @@
 # Revisión automática: FALLOS
 
-352 cumplidos · 23 no cumplidos · 127 sin golpes suficientes · 103 avisos (antes: 352 cumplidos, 23 no cumplidos)
+355 cumplidos · 23 no cumplidos · 127 sin golpes suficientes · 100 avisos (antes: 352 cumplidos, 23 no cumplidos)
 
-## Peticiones del usuario SIN TERMINAR: 121 de 245
+## Peticiones del usuario SIN TERMINAR: 120 de 245
 
-Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 114 hechas · 101 a medias · 19 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#1 [FALTA]** Derecha de Rybakina en sus 4 partidos completos, una vez y al final (10-10 17:27; 11-10 19:37) — falta: Ningún partido completo analizado. 19-10: el análisis de los 4 partidos encuentra como mucho el 43 % de sus golpes y el 29 % de sus saques (`audit.recall_items…
 - **#155 [FALTA]** es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 19-10 06:15) — falta: Detección sin arreglar: como mucho 43 % de sus golpes y 29 % de sus saques en la final del US Open. Falta correr el banco de 650 golpes anotados y corregir la …
@@ -31,7 +31,6 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - **#6 [PARCIAL]** Juego de pies: split step, primer paso, ajuste, reacción, recuperación (11-10 08:22, 19:23) — falta: Pasos medidos en el 40 % de los golpes. El golpe capturado dice «no medible» en el primer paso, el ajuste y tras golpear.
 - **#7 [PARCIAL]** Empuñadura en la espera y al golpear (11-10 19:23) — falta: El bisel no se mide. `ready_hands` da «mano libre separada» en el 100 % (7 golpes) y en revés a dos manos, contra R2 de los entrenadores: medida dudosa. La lis…
 - **#9 [PARCIAL]** Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras (10-10 18:09-18:47; 11-10 18:06-19:23; 12-10 16:22-17… — falta: SuD vacía. Comparativas: 8 «Sin datos…». Explorador: 41 «—». El 13-10 05:48 el usuario dice que «no vale para nada».
-- **#10 [PARCIAL]** Ver los cambios en la prueba rápida, sin 1 h (12-10 17:32, 17:40) — falta: Una medida nueva exige volver a analizar el vídeo: la prueba media dura 5 h 02 min. La prueba rápida deja unas 5 derechas.
 - **#11 [PARCIAL]** Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía (12-10 13:14, 16:36, 17:10; 13-10 05:… — falta: Comprueba que la estructura existe, no que el valor sea correcto. Las peticiones 64-113 no tienen regla.
 - **#12 [PARCIAL]** Validar cada medida con clips públicos anotados; el usuario no valida a mano (11-10 09:05, 09:12) — falta: Ninguna medida corporal (codo, rodillas, pasos, apoyo, fases) está validada.
 - **#15 [PARCIAL]** Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos (12-10 16:30-17:51) — falta: 6 de las 15 mejoras siguen en NO o a medias (filas 99-113).
@@ -43,6 +42,7 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - **#45 [PARCIAL]** Todo automático y completo: el usuario no revisa nada (11-10 09:05, 19:38; 12-10 11:41) — falta: 4 golpes fallaron (`strokes_errores.json`) y nadie los recupera. (04-11: 0 golpes fallaron en la referencia; uno que falle se rehace cuando cambia el código de…
 - **#55 [PARCIAL]** Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo (12-10 17:40) — falta: En sus datos hay 0 paralelas y 1 cerrado más «invertida paralela»: el ejemplo no se puede ver. 19-10: apoyo cerrado + paralela sí se combinan; «cerca de la red…
 - **#64 [PARCIAL]** Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la inversa» (12-10 18:03, 18:06;… — falta: El paso cruzado no aparece en ningún golpe. El primer paso y el ajuste salen «no medible» si los tobillos se ven quietos menos del 40 % del tiempo.
+- **#66 [PARCIAL]** Fechas y duración en los registros (12-10 18:25) — falta: 06-11: la auditoría del PC falla en 1 de 55 registros: `prevision.log` es del 04-11 13:47 (petición 98), escrito **antes** del arreglo (04-11 17:44) que añade …
 - **#68 [PARCIAL]** La meta: mejorar mi derecha tomando la de X como base (12-10 22:25; 13-10 05:48 p5) — falta: Valores provisionales de 1-10 golpes. Sin progresión ni prioridad (qué copiar primero según lo que la distingue).
 - **#69 [PARCIAL]** Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replicarlo) (13-10 05:48 p8) — falta: Con sus datos hay 0 golpes exactos: se quitan las 5 condiciones y se ven las 10 derechas. «Qué cambia» es texto general, no lo que hace ella.
 - **#70 [PARCIAL]** Las 2000 y pico combinaciones, usables y validadas (13-10 05:48 p2; 06:00) — falta: Combinaciones de medida y nivel: 0 de 2.992 visibles. Solo se prueba un trío o más (el ejemplo del usuario).
@@ -50,7 +50,6 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - **#72 [PARCIAL]** El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos (13-10 06:00, 06:30) — falta: Está en la web, pero con 10 golpes casi nada se puede afirmar. SuD (fases, `copy_cue`) no se ve.
 - **#73 [PARCIAL]** Revisar la web de arriba abajo para que aporte valor (13-10 05:48 p6) — falta: SuD vacía, Comparativas con 8 «Sin datos», Explorador con 41 «—». Panel dice 14 derechas y Aprende 10 (cuenta las lejanas).
 - **#74 [PARCIAL]** ¿El análisis de las apps de pago y libres fue profundo o superficial? (13-10 05:48 p7) — falta: Solo documental: sin contrastar pantalla a pantalla. Aprende imita las posiciones P de Sportsbox.
-- **#77 [PARCIAL]** No lanzar pruebas de 6 h para validar (13-10 06:01) — falta: Validar el análisis exige la prueba media (5 h).
 - **#78 [PARCIAL]** No depender de que al usuario se le ocurran funciones (13-10 06:09) — falta: Quedan sin hacer 4 mejoras propuestas por Claude (filas 102, 106, 110, 112).
 - **#79 [PARCIAL]** Vídeos de entrenamiento con otras cámaras, en un apartado aparte y marcado (12-10 21:31, 21:32) — falta: Solo 3 derechas de lado medidas (de 23 laterales), así que no hay resumen. En Aprende, «— menos de 12» aunque haya 13 estimaciones 3D.
 - **#84 [PARCIAL]** Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca) (12-10 21:14) — falta: Fuerza contra el suelo, pronación y snap: solo «no medible». X-factor 1°. Lag con 1 golpe.
@@ -109,7 +108,7 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - **#192 [PARCIAL]** Terminación «hacia adelante», «la mano libre recoge la raqueta», codo al terminar (Guía Ivanovic, hueco 9) — falta: Faltan el nivel «hacia adelante» en `technique.finish_class` y el codo libre al terminar (`finish.elbow_non`).
 - **#194 [PARCIAL]** «Sus principios» (5-6 frases) y «Lo que la distingue» (Guía Ivanovic, hueco 13) — falta: No hay «Sus principios».
 - **#195 [PARCIAL]** Fuentes en COACH: Iino y Kojima 2001, Bahamonde y Knudson 2003, Kawamoto 2019, LTA, Wulf, autoinstrucciones (Guía Ivanovic, hueco 17) — falta: Faltan Iino, Kojima, Bahamonde, Knudson 2003, Kawamoto, LTA y el metaanálisis.
-- **#199 [PARCIAL]** Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10) — falta: Medido: CatBoost de TennisProject F1 0,899 frente a 0,581 de la regla (con nuestra bola). Sin licencia: no se copia; falta un modelo propio (M5).
+- **#199 [PARCIAL]** Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10) — falta: Medido: CatBoost de TennisProject F1 0,899 frente a 0,581 de la regla (con nuestra bola). Sin licencia: no se copia; falta un modelo propio (M5). 06-11: sigue …
 - **#206 [PARCIAL]** Validación de cuerdas y 3D con referencia real (Comparativa apps, §4.4) — falta: Sin referencia 3D real.
 - **#207 [PARCIAL]** Golpes: sin volea, remate ni cortado (Comparativa apps, §3 Peor) — falta: Sin técnica propia de volea, remate ni cortado. 20-10: la volea también a media pista y fuera de la línea de saque (`class.contact_type`).
 - **#208 [PARCIAL]** Lógica duplicada JS/Python: calcular una vez en Python (Revisión completa, §2 fallo 17) — falta: La plantilla aún calcula en JavaScript partes de Comparar, la videoteca y la lección.
@@ -119,13 +118,13 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - **#215 [PARCIAL]** Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22) — falta: Unificar en «armado completo cuando bota».
 - **#218 [PARCIAL]** La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (velocidad normal o cámara lent… — falta: Falta validarlo con los partidos reales (umbrales de clasificación), medir sobre esas tomas (pasada fina en la cámara lenta: `views.fine_on_slowmo`, pendiente)…
 - **#219 [PARCIAL]** Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa distancia, no descartados (19-… — falta: Se confirman ~20 % de los golpes del fondo (Zheng: 36 de ~175).
-- **#221 [PARCIAL]** Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano (19-10 19:57) — falta: Recall 80 % en partidos bien anotados; las repeticiones descartan de más (11 % en F3Set, 30 % de candidatos en Gauff).
-- **#230 [PARCIAL]** Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12:56) — falta: Se mide desde el próximo trabajo; luego acelerar lo que no aproveche el equipo.
-- **#231 [PARCIAL]** Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11:05-21:50) — falta: Leer solo fotogramas clave (cualquier fotograma de la toma vale) y medir el tiempo.
+- **#230 [PARCIAL]** Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12:56) — falta: Se mide desde el próximo trabajo; luego acelerar lo que no aproveche el equipo. 06-11: la medida ya se hace (auditoría ✔ «Uso del PC por etapa», `recursos_2026…
+- **#231 [PARCIAL]** Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11:05-21:50) — falta: Leer solo fotogramas clave (cualquier fotograma de la toma vale) y medir el tiempo. 06-11: la etapa de tomas ya lee fotogramas clave (`stages.py`, `keyframes_a…
 - **#235 [PARCIAL]** Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) — falta: Cadena en orden 79 % y pasos medidos 87 % en los 193 golpes; falta verlo recalculado en el PC.
 - **#236 [PARCIAL]** Huellas numeradas sobre los pies y patrones de pasos (27-10 09:38) — falta: Patrón típico de pasos por situación (frecuencia de cada secuencia).
+- **#237 [PARCIAL]** El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min (27-10 10:19-10:25) — falta: 06-11, causa encontrada: el trabajo de Actions arrancó a los segundos (ejecuciones 49 y 50, 05-11 00:55Z y 06-11 22:26Z) pero salió en 2 s al ver «otro análisi…
 - **#238 [PARCIAL]** La validación es siempre automática; el usuario no valida la aplicación (27-10 11:42) — falta: Que cada pantalla nueva entre con su comprobación automática.
-- **#242 [PARCIAL]** Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis por persona (27-10 12:06) — falta: Medir el detector con partidos masculinos; probar el flujo entero con capturas.
+- **#242 [PARCIAL]** Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis por persona (27-10 12:06) — falta: Medir el detector con partidos masculinos; probar el flujo entero con capturas. 06-11: sigue igual. La ventana y sus 56 pantallas ✔, pero «Aplicación: análisis…
 - **#243 [PARCIAL]** Todos los escenarios del producto los contempla Claude sin esperar a que se pidan (27-10 12:09) — falta: Bloque E1: cada ✘ y ◐ con su prueba automática.
 
 
@@ -154,3 +153,9 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
+
+## Mejora
+
+- #10 Ver los cambios en la prueba rápida, sin 1 h: aviso → ok
+- #77 No lanzar pruebas de 6 h para validar: aviso → ok
+- #221 Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano: aviso → ok

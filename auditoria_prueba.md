@@ -1,10 +1,10 @@
 # Auditoría de requisitos (forehand)
 
-13 golpes del lado cercano. ✔ 352 cumplidos · ✘ 23 no cumplidos · … 127 sin golpes suficientes en esta ejecución · ! 103 avisos
+13 golpes del lado cercano. ✔ 355 cumplidos · ✘ 23 no cumplidos · … 127 sin golpes suficientes en esta ejecución · ! 100 avisos
 
-## Peticiones del usuario SIN TERMINAR: 121 de 245
+## Peticiones del usuario SIN TERMINAR: 120 de 245
 
-Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 114 hechas · 101 a medias · 19 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#1 [FALTA]** Derecha de Rybakina en sus 4 partidos completos, una vez y al final (10-10 17:27; 11-10 19:37) — falta: Ningún partido completo analizado. 19-10: el análisis de los 4 partidos encuentra como mucho el 43 % de sus golpes y el 29 % de sus saques (`audit.recall_items…
 - **#155 [FALTA]** es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 19-10 06:15) — falta: Detección sin arreglar: como mucho 43 % de sus golpes y 29 % de sus saques en la final del US Open. Falta correr el banco de 650 golpes anotados y corregir la …
@@ -31,7 +31,6 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - **#6 [PARCIAL]** Juego de pies: split step, primer paso, ajuste, reacción, recuperación (11-10 08:22, 19:23) — falta: Pasos medidos en el 40 % de los golpes. El golpe capturado dice «no medible» en el primer paso, el ajuste y tras golpear.
 - **#7 [PARCIAL]** Empuñadura en la espera y al golpear (11-10 19:23) — falta: El bisel no se mide. `ready_hands` da «mano libre separada» en el 100 % (7 golpes) y en revés a dos manos, contra R2 de los entrenadores: medida dudosa. La lis…
 - **#9 [PARCIAL]** Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras (10-10 18:09-18:47; 11-10 18:06-19:23; 12-10 16:22-17… — falta: SuD vacía. Comparativas: 8 «Sin datos…». Explorador: 41 «—». El 13-10 05:48 el usuario dice que «no vale para nada».
-- **#10 [PARCIAL]** Ver los cambios en la prueba rápida, sin 1 h (12-10 17:32, 17:40) — falta: Una medida nueva exige volver a analizar el vídeo: la prueba media dura 5 h 02 min. La prueba rápida deja unas 5 derechas.
 - **#11 [PARCIAL]** Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía (12-10 13:14, 16:36, 17:10; 13-10 05:… — falta: Comprueba que la estructura existe, no que el valor sea correcto. Las peticiones 64-113 no tienen regla.
 - **#12 [PARCIAL]** Validar cada medida con clips públicos anotados; el usuario no valida a mano (11-10 09:05, 09:12) — falta: Ninguna medida corporal (codo, rodillas, pasos, apoyo, fases) está validada.
 - **#15 [PARCIAL]** Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos (12-10 16:30-17:51) — falta: 6 de las 15 mejoras siguen en NO o a medias (filas 99-113).
@@ -43,6 +42,7 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - **#45 [PARCIAL]** Todo automático y completo: el usuario no revisa nada (11-10 09:05, 19:38; 12-10 11:41) — falta: 4 golpes fallaron (`strokes_errores.json`) y nadie los recupera. (04-11: 0 golpes fallaron en la referencia; uno que falle se rehace cuando cambia el código de…
 - **#55 [PARCIAL]** Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo (12-10 17:40) — falta: En sus datos hay 0 paralelas y 1 cerrado más «invertida paralela»: el ejemplo no se puede ver. 19-10: apoyo cerrado + paralela sí se combinan; «cerca de la red…
 - **#64 [PARCIAL]** Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la inversa» (12-10 18:03, 18:06;… — falta: El paso cruzado no aparece en ningún golpe. El primer paso y el ajuste salen «no medible» si los tobillos se ven quietos menos del 40 % del tiempo.
+- **#66 [PARCIAL]** Fechas y duración en los registros (12-10 18:25) — falta: 06-11: la auditoría del PC falla en 1 de 55 registros: `prevision.log` es del 04-11 13:47 (petición 98), escrito **antes** del arreglo (04-11 17:44) que añade …
 - **#68 [PARCIAL]** La meta: mejorar mi derecha tomando la de X como base (12-10 22:25; 13-10 05:48 p5) — falta: Valores provisionales de 1-10 golpes. Sin progresión ni prioridad (qué copiar primero según lo que la distingue).
 - **#69 [PARCIAL]** Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replicarlo) (13-10 05:48 p8) — falta: Con sus datos hay 0 golpes exactos: se quitan las 5 condiciones y se ven las 10 derechas. «Qué cambia» es texto general, no lo que hace ella.
 - **#70 [PARCIAL]** Las 2000 y pico combinaciones, usables y validadas (13-10 05:48 p2; 06:00) — falta: Combinaciones de medida y nivel: 0 de 2.992 visibles. Solo se prueba un trío o más (el ejemplo del usuario).
@@ -50,7 +50,6 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - **#72 [PARCIAL]** El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos (13-10 06:00, 06:30) — falta: Está en la web, pero con 10 golpes casi nada se puede afirmar. SuD (fases, `copy_cue`) no se ve.
 - **#73 [PARCIAL]** Revisar la web de arriba abajo para que aporte valor (13-10 05:48 p6) — falta: SuD vacía, Comparativas con 8 «Sin datos», Explorador con 41 «—». Panel dice 14 derechas y Aprende 10 (cuenta las lejanas).
 - **#74 [PARCIAL]** ¿El análisis de las apps de pago y libres fue profundo o superficial? (13-10 05:48 p7) — falta: Solo documental: sin contrastar pantalla a pantalla. Aprende imita las posiciones P de Sportsbox.
-- **#77 [PARCIAL]** No lanzar pruebas de 6 h para validar (13-10 06:01) — falta: Validar el análisis exige la prueba media (5 h).
 - **#78 [PARCIAL]** No depender de que al usuario se le ocurran funciones (13-10 06:09) — falta: Quedan sin hacer 4 mejoras propuestas por Claude (filas 102, 106, 110, 112).
 - **#79 [PARCIAL]** Vídeos de entrenamiento con otras cámaras, en un apartado aparte y marcado (12-10 21:31, 21:32) — falta: Solo 3 derechas de lado medidas (de 23 laterales), así que no hay resumen. En Aprende, «— menos de 12» aunque haya 13 estimaciones 3D.
 - **#84 [PARCIAL]** Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca) (12-10 21:14) — falta: Fuerza contra el suelo, pronación y snap: solo «no medible». X-factor 1°. Lag con 1 golpe.
@@ -109,7 +108,7 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - **#192 [PARCIAL]** Terminación «hacia adelante», «la mano libre recoge la raqueta», codo al terminar (Guía Ivanovic, hueco 9) — falta: Faltan el nivel «hacia adelante» en `technique.finish_class` y el codo libre al terminar (`finish.elbow_non`).
 - **#194 [PARCIAL]** «Sus principios» (5-6 frases) y «Lo que la distingue» (Guía Ivanovic, hueco 13) — falta: No hay «Sus principios».
 - **#195 [PARCIAL]** Fuentes en COACH: Iino y Kojima 2001, Bahamonde y Knudson 2003, Kawamoto 2019, LTA, Wulf, autoinstrucciones (Guía Ivanovic, hueco 17) — falta: Faltan Iino, Kojima, Bahamonde, Knudson 2003, Kawamoto, LTA y el metaanálisis.
-- **#199 [PARCIAL]** Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10) — falta: Medido: CatBoost de TennisProject F1 0,899 frente a 0,581 de la regla (con nuestra bola). Sin licencia: no se copia; falta un modelo propio (M5).
+- **#199 [PARCIAL]** Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10) — falta: Medido: CatBoost de TennisProject F1 0,899 frente a 0,581 de la regla (con nuestra bola). Sin licencia: no se copia; falta un modelo propio (M5). 06-11: sigue …
 - **#206 [PARCIAL]** Validación de cuerdas y 3D con referencia real (Comparativa apps, §4.4) — falta: Sin referencia 3D real.
 - **#207 [PARCIAL]** Golpes: sin volea, remate ni cortado (Comparativa apps, §3 Peor) — falta: Sin técnica propia de volea, remate ni cortado. 20-10: la volea también a media pista y fuera de la línea de saque (`class.contact_type`).
 - **#208 [PARCIAL]** Lógica duplicada JS/Python: calcular una vez en Python (Revisión completa, §2 fallo 17) — falta: La plantilla aún calcula en JavaScript partes de Comparar, la videoteca y la lección.
@@ -119,13 +118,13 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - **#215 [PARCIAL]** Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22) — falta: Unificar en «armado completo cuando bota».
 - **#218 [PARCIAL]** La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (velocidad normal o cámara lent… — falta: Falta validarlo con los partidos reales (umbrales de clasificación), medir sobre esas tomas (pasada fina en la cámara lenta: `views.fine_on_slowmo`, pendiente)…
 - **#219 [PARCIAL]** Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa distancia, no descartados (19-… — falta: Se confirman ~20 % de los golpes del fondo (Zheng: 36 de ~175).
-- **#221 [PARCIAL]** Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano (19-10 19:57) — falta: Recall 80 % en partidos bien anotados; las repeticiones descartan de más (11 % en F3Set, 30 % de candidatos en Gauff).
-- **#230 [PARCIAL]** Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12:56) — falta: Se mide desde el próximo trabajo; luego acelerar lo que no aproveche el equipo.
-- **#231 [PARCIAL]** Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11:05-21:50) — falta: Leer solo fotogramas clave (cualquier fotograma de la toma vale) y medir el tiempo.
+- **#230 [PARCIAL]** Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12:56) — falta: Se mide desde el próximo trabajo; luego acelerar lo que no aproveche el equipo. 06-11: la medida ya se hace (auditoría ✔ «Uso del PC por etapa», `recursos_2026…
+- **#231 [PARCIAL]** Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11:05-21:50) — falta: Leer solo fotogramas clave (cualquier fotograma de la toma vale) y medir el tiempo. 06-11: la etapa de tomas ya lee fotogramas clave (`stages.py`, `keyframes_a…
 - **#235 [PARCIAL]** Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) — falta: Cadena en orden 79 % y pasos medidos 87 % en los 193 golpes; falta verlo recalculado en el PC.
 - **#236 [PARCIAL]** Huellas numeradas sobre los pies y patrones de pasos (27-10 09:38) — falta: Patrón típico de pasos por situación (frecuencia de cada secuencia).
+- **#237 [PARCIAL]** El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min (27-10 10:19-10:25) — falta: 06-11, causa encontrada: el trabajo de Actions arrancó a los segundos (ejecuciones 49 y 50, 05-11 00:55Z y 06-11 22:26Z) pero salió en 2 s al ver «otro análisi…
 - **#238 [PARCIAL]** La validación es siempre automática; el usuario no valida la aplicación (27-10 11:42) — falta: Que cada pantalla nueva entre con su comprobación automática.
-- **#242 [PARCIAL]** Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis por persona (27-10 12:06) — falta: Medir el detector con partidos masculinos; probar el flujo entero con capturas.
+- **#242 [PARCIAL]** Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis por persona (27-10 12:06) — falta: Medir el detector con partidos masculinos; probar el flujo entero con capturas. 06-11: sigue igual. La ventana y sus 56 pantallas ✔, pero «Aplicación: análisis…
 - **#243 [PARCIAL]** Todos los escenarios del producto los contempla Claude sin esperar a que se pidan (27-10 12:09) — falta: Bloque E1: cada ✘ y ◐ con su prueba automática.
 
 
@@ -338,11 +337,11 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - ✔ **Cada golpe tiene su vídeo**: 13 de 13 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 13 de 13
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 2446 caracteres de texto, 7 vídeos, 19 gráficos
+- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 2446 caracteres de texto, 6 vídeos, 19 gráficos
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 4509 caracteres de texto, 7 vídeos, 1 gráficos
 - ✔ **Pantalla «Análisis de golpe»**: 4888 caracteres de texto, 8 vídeos, 31 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 4357 caracteres de texto, 7 vídeos, 2 gráficos
-- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4244 caracteres de texto, 7 vídeos, 12 gráficos
+- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4232 caracteres de texto, 7 vídeos, 12 gráficos
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 4696 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 3805 caracteres de texto, 7 vídeos, 0 gráficos
@@ -448,17 +447,17 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 7 de 13 del lado cercano (54%); motivos: phase 20, elbow_implausible_at_impact 3, impact_without_audio 2. Otros 6 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
 - ! **Carpetas de pruebas antiguas**: 3 carpeta(s) de pruebas sin usar en más de 14 días (9.3 GB): _poc31_35, _poc31_4, _poc9_largo. Se borran con la petición «borrar» del PC
 - ! **Aplicación: análisis en su índice**: 0 análisis y 18 partidos en el índice de la aplicación: los análisis de los partidos hechos por el ciclo automático aún no están en ella
-- ! **Peticiones por GitHub Actions: espera hasta empezar**: la última petición (06-11 23:25) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02
+- ! **Peticiones por GitHub Actions: espera hasta empezar**: la última petición (06-11 23:59) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02
 - ✔ **Golpes que fallaron al procesarse**: ninguno
 - ✔ **Nada pide revisión manual**: 19 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
-- ✔ **Pruebas del código en este PC**: código 9fb92d8 (2026-11-05T02:04:25): 804 bien, 0 fallan, 0 errores
+- ✔ **Pruebas del código en este PC**: código aee0a31 (2026-11-06T23:37:28): 806 bien, 0 fallan, 0 errores
 - ✔ **Pruebas en este PC: test_pipeline**: 17 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_auto_cycle**: 14 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_pc_requests**: 9 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_library**: 41 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_layout**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_identity_click**: 1 bien, 0 fallan, 0 omitidas
-- ✔ **Pruebas en este PC: test_app_core**: 42 bien, 0 fallan, 0 omitidas
+- ✔ **Pruebas en este PC: test_app_core**: 43 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_app_window**: 7 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_auto_catalog_rename**: 1 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_no_hardcoded_player**: 2 bien, 0 fallan, 0 omitidas
@@ -483,12 +482,12 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
 - ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 19 s, quedan ≈ 0 s, a las 2026-11-06 23:28:00
-- ✔ **Tamaño de la salida (tamanos.txt)**: 43 carpetas, 37.6 GB en total (2026-11-06T23:26:10); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 43 carpetas, 37.6 GB en total (2026-11-07T00:27:44); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB
 - ✔ **Aplicación: ventana real y pantallas**: 56 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 74 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 25 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 25 vídeos
-- ✔ **Exportación terminada: exportar**: terminó el 2026-11-06 23:28:23 en 0 min: 25 vídeos de 25 golpes
+- ✔ **Exportación terminada: exportar**: terminó el 2026-11-07 00:30:15 en 0 min: 25 vídeos de 25 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
@@ -503,7 +502,7 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - ! **Etapas a la vez: smoke_tennis-yusipopen-final-sobolenko-rybakin**: todas las etapas de su última ejecución corrieron en serie
 - ✔ **Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 0.7 min (objetivo ≤ 15 min)
 - ✔ **Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.1 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-06_2305.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (24.0 min): CPU 6/20/73 %, iGPU 0/2/78 %, RAM máx 8.7 GB → equipo infrautilizado: trabajo en serie (se puede repartir)
+- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-06_2341.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (1.0 min): CPU 32/40/49 %, iGPU 0/0/1 %, RAM máx 7.3 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 19/19/19 %, iGPU 1/1/1 %, RAM máx 7.1 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (3.8 min): CPU 24/46/79 %, iGPU 0/34/100 %, RAM máx 7.6 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 32/52/72 %, iGPU 0/36/71 %, RAM máx 7.1 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine (3.0 min): CPU 25/44/90 %, iGPU 0/27/100 %, RAM máx 7.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.8 min): CPU 29/41/63 %, iGPU 42/76/100 %, RAM máx 7.7 GB → uso medio: margen para repartir trabajo
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
@@ -529,7 +528,6 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - ✘ **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 - ! **#2 Ver informe y salidas en el móvil**: A MEDIAS según el registro (#2); no se comprueba en las salidas: aplazado por el usuario (móvil al final)
 - ! **#9 Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok
-- ! **#10 Ver los cambios en la prueba rápida, sin 1 h**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 12 ok
 - ! **#12 Validar cada medida con clips públicos anotados; el usuario no valida a mano**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#14 Rendimiento: un partido en horas, no días**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)
 - ! **#15 Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
@@ -544,7 +542,6 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - ! **#74 ¿El análisis de las apps de pago y libres fue profundo o superficial?**: A MEDIAS según el registro (#74); no se comprueba en las salidas: análisis documental (docs/comparativa_apps.md), no una salida
 - ! **#75 Velocidad: «10 golpes en 5 horas es absurdo»**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)
 - ! **#76 «Un 50 % de golpes dudosos»**: 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (7 de 13 del lado cercano (54%); motivos: phase 20, elbow_implausible_at_impact 3, impact_without_audio 2. Otros 6 golpes)
-- ! **#77 No lanzar pruebas de 6 h para validar**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok
 - ! **#78 No depender de que al usuario se le ocurran funciones**: A MEDIAS según el registro (#78); no se comprueba en las salidas: proceso: Claude propone las funciones desde la matriz y los entrenadores
 - ! **#95 Matriz §12 Neuro y visión (latencia, mirada, EMG)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#100 Mejora 2: raqueta al lado del cuerpo o detrás de la espalda, y adónde apunta la punta**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
@@ -609,12 +606,11 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - ! **#215 Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22)**: A MEDIAS según el registro (#215); sin comprobación automática asignada
 - ! **#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok
-- ! **#221 Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
 - ! **#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)
 - ! **#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)
 - ! **#235 Cadena cinética, footwork y timing: lo que define el golpe**: A MEDIAS según el registro (#235); sin comprobación automática asignada
 - ! **#236 Huellas numeradas sobre los pies y patrones de pasos**: A MEDIAS según el registro (#236); sin comprobación automática asignada
-- ! **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (06-11 23:25) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02)
+- ! **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (06-11 23:59) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02)
 - ! **#238 La validación es siempre automática; el usuario no valida la aplicación**: A MEDIAS según el registro (#238); sin comprobación automática asignada
 - ! **#239 No se descarta ninguna petición**: sin comprobación automática asignada
 - ! **#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Aplicación: análisis en su índice» (0 análisis y 18 partidos en el índice de la aplicación: los análisis de los partidos hechos por el ciclo automático aún )
@@ -666,6 +662,7 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - … **#159 volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (Chat, 19-10 08:11)**: 2 comprobaciones: 2 pocos datos; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 13 (la clase «Contacto» se pudo decidir en 10; sin señal, ninguna clase: nunca se inventa); sin golpes sufic)
 - … **#233 Una referencia completa y medida antes de validar nada**: 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos de 20 muchas situaciones no se pueden describir)
 - ✔ **#8 Cuerdas y cara (suelo, valla lateral o trasera, ángulos, cierre muñeca–raqueta) en todas las fases. Obligatori**: 7 comprobaciones: 7 ok
+- ✔ **#10 Ver los cambios en la prueba rápida, sin 1 h**: 12 comprobaciones: 12 ok
 - ✔ **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: 2 comprobaciones: 2 ok
 - ✔ **#19 Vídeos y salidas fuera del repo, rutas por configuración**: 1 comprobaciones: 1 ok
 - ✔ **#24 OCR del marcador y presión**: 1 comprobaciones: 1 ok
@@ -693,6 +690,7 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - ✔ **#58 La IA más moderna posible**: 15 comprobaciones: 15 ok
 - ✔ **#65 El play del vídeo funciona (no solo un fotograma)**: 11 comprobaciones: 11 ok
 - ✔ **#67 No borrar el trabajo hecho: lo complejo como extra**: 13 comprobaciones: 13 ok
+- ✔ **#77 No lanzar pruebas de 6 h para validar**: 2 comprobaciones: 2 ok
 - ✔ **#80 Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice**: 1 comprobaciones: 1 ok
 - ✔ **#81 Tamaño de la salida; comprobación sin gastar tokens**: 2 comprobaciones: 2 ok
 - ✔ **#82 Dónde se graban las salidas, qué va a git, qué se reutiliza**: 2 comprobaciones: 2 ok
@@ -733,6 +731,7 @@ Registro `docs/peticiones_usuario.md`: 113 hechas · 102 a medias · 19 sin hace
 - ✔ **#203 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10)**: 3 comprobaciones: 3 ok
 - ✔ **#204 Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10)**: 5 comprobaciones: 5 ok
 - ✔ **#220 Almacenamiento definitivo: árbol por jugador, partido y golpe; nombres, colisiones y todos los escenarios**: 2 comprobaciones: 2 ok
+- ✔ **#221 Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano**: 5 comprobaciones: 5 ok
 - ✔ **#222 Un clic por partido para decir quién es ella**: 1 comprobaciones: 1 ok
 - ✔ **#225 La aplicación no se cuelga ni ralentiza el PC**: 3 comprobaciones: 3 ok
 - ✔ **#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)**: 1 comprobaciones: 1 ok
