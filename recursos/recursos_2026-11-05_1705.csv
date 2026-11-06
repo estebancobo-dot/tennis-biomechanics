@@ -1,1 +1,12 @@
 hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram_python_gb,gpu_3d,gpu_compute,gpu_decode,disco
+2026-11-05T17:05:39,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,13.0,0.0,0.0,4.8,19.8,0.0,0.0,0.0,0.0,2.0
+2026-11-05T17:06:02,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,20.0,0.0,0.0,4.7,19.8,0.0,0.0,0.0,0.0,0.0
+2026-11-05T17:06:19,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,32.0,0.0,0.0,4.6,19.8,0.0,0.0,0.0,0.0,0.0
+2026-11-05T17:06:35,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,27.0,0.0,0.0,4.5,19.8,0.0,0.0,0.0,0.0,0.0
+2026-11-05T17:06:52,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,12.0,0.0,0.0,4.5,19.8,0.0,0.0,0.0,0.0,0.0
+2026-11-05T17:07:08,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,19.0,0.0,0.0,4.5,19.8,0.0,0.0,0.0,0.0,0.0
+2026-11-05T17:07:25,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,10.0,0.0,0.0,4.5,19.8,0.0,0.0,0.0,0.0,0.0
+2026-11-05T17:07:41,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,26.0,0.0,0.0,4.5,19.8,0.0,0.0,0.0,0.0,0.0
+2026-11-05T17:07:58,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,8.0,0.0,0.0,4.5,19.8,0.0,0.0,0.0,0.0,0.0
+2026-11-05T17:08:14,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,16.0,0.0,0.0,4.5,19.8,0.0,0.0,0.0,0.0,0.0
+2026-11-05T17:08:31,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,17.0,0.0,0.0,3.9,19.8,0.0,0.0,0.0,0.0,0.0
