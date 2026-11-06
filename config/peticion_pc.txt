@@ -254,6 +254,19 @@ accion: completo
 id: 111
 accion: app
 trabajar: si
+---
+id: 112
+accion: recall
+detector: si
+---
+id: 113
+accion: completo
+---
+id: 114
+accion: app
+trabajar: si
+# 112-114 (06-11): saque por la regla con la mano del lanzamiento por encima de la cabeza (o la mano alta en el contacto);
+# la aplicacion usa el partido del catalogo (como el ciclo) y cancela los trabajos que ya no hacen falta
 # 109-111 (05-11): 106-107 no aplicaron la regla corregida del saque: point_count no estaba en la huella de la pasada fina
 # (ahora si, con una prueba que lo exige para todo lo que la pasada fina importa); las mismas tres otra vez
 # 106-108 (04-11): la regla del saque ahora exige la mano por encima de la cabeza (104: convertia 31 golpes de fondo de

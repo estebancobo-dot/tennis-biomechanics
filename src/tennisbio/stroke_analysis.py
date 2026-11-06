@@ -132,6 +132,12 @@ def analyze_stroke(img: np.ndarray, conf: np.ndarray, sk: Skeleton, fps: float, 
         res.review.append("elbow_implausible_at_impact")   # usually a blurred or swapped arm keypoint
     m["contact_height_pct"] = None if np.isnan(body[i, dw, 1] - feet_y[i]) else float((body[i, dw, 1] - feet_y[i]) * 100)
     m["contact_lateral_pct"] = None if np.isnan(body[i, dw, 0]) else float(abs(body[i, dw, 0]) * 100)
+    # the tossing hand above the head before contact (body heights; > 0: above the nose): a serve's signature that does
+    # not depend on the contact frame being exact (05-11, request 110: the spotter's serves misnamed forehand/backhand
+    # had their contact frame low; groundstrokes never raise the free hand above the head)
+    lo, hi = max(0, i - int(round(1.5 * fps))), max(1, i - int(round(0.1 * fps)))
+    lift = body[lo:hi, sk["non_wrist"], 1] - body[lo:hi, sk["nose"], 1]
+    m["toss_above_head_bh"] = float(np.nanmax(lift)) if np.isfinite(lift).any() else None
     m["base_width_loaded_pct"] = None if ev["loaded"] is None else g(base * 100, ev["loaded"])
     if ev["ready"] is not None and ev["loaded"] is not None:
         d = hip_h[ev["ready"]] - hip_h[ev["loaded"]]

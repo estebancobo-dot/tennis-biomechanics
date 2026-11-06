@@ -83,6 +83,11 @@ class App:
                 no_video += 1                              # no video: its results are kept as they are
                 stale = []                                 # ... and still feed her analysis
             if not stale:
+                # a job queued by an earlier plan that is no longer needed (05-11: queued because the Match was built
+                # differently from the cycle's) is cancelled, never run
+                self.db.x("UPDATE jobs SET state='cancelado', message='ya no hace falta: el partido está al día' "
+                          "WHERE match=? AND kind='partido' AND state IN ('pendiente', 'por confirmar') "
+                          "AND reason LIKE 'nueva versión%'", r["id"])
                 if r.get("player"):
                     ready.setdefault(r["player"], []).append(r["id"])
                 continue

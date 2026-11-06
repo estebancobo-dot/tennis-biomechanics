@@ -62,12 +62,32 @@ class Engine:
                 name = json.loads((d / "partido.json").read_text(encoding="utf-8")).get("origen") or match_id
             except (OSError, ValueError):
                 name = match_id
+        # a match of the catalogue (config/matches.yaml) is the very Match the automatic cycle builds (05-11, request
+        # 111: the index's rival and surface replaced the catalogue's, so score and the fine passes looked changed and
+        # 4 matches were queued again for ~54 min of nothing)
+        cm = self._catalog_match(name, r.get("vpath"))
+        if cm is not None:
+            if r.get("opponent_id"):
+                cm.extra["opponent_id"] = r["opponent_id"]
+            return cm
         m = trial_match(name, Path(r["vpath"] or ""), index.player(self.db, r["player"]), {}, match_dir=d,
                         opponent=opp, tournament=r.get("tournament") or "", date=r.get("date") or "",
                         surface=r.get("surface") or "", round=r.get("round") or "")
         if r.get("opponent_id"):
             m.extra["opponent_id"] = r["opponent_id"]
         return m
+
+    @staticmethod
+    def _catalog_match(name: str, vpath: str | None) -> Match | None:
+        """The catalogue's Match for this match (same id, or the same video file), else None."""
+        try:
+            from ..catalog import load_matches
+            from ..config import load_config
+            ms = load_matches(load_config())
+        except Exception:  # noqa: BLE001 — no catalogue: the index's data, as before
+            return None
+        vp = Path(vpath).name.lower() if vpath else None
+        return next((m for m in ms if m.id == name or (vp and Path(m.video).name.lower() == vp)), None)
 
     def dir(self, match_id: str) -> Path:
         """The match folder: where the index says (test runs live one level down; a library folder is an

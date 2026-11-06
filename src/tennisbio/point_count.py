@@ -346,7 +346,8 @@ SERVE_RULE = "primer golpe de quien saca"
 
 
 def serves_by_rule(strokes: list[dict], readings: list[dict], main_shots: list[tuple[float, float]],
-                   behind_m: float = 0.5, max_after_shot_s: float = 15.0, min_contact_pct: float = 95.0) -> int:
+                   behind_m: float = 0.5, max_after_shot_s: float = 15.0, min_contact_pct: float = 95.0,
+                   min_toss_bh: float = 0.05) -> int:
     """B4 (04-11): in a point on her serve, her first stroke is her serve (the rules of tennis). Requests 101-102: in the
     points of her serve with no serve found, her first stroke came 4-9 s after the main camera returned and behind her
     baseline, named forehand/backhand by the learned spotter — her serve, misnamed. Each such stroke (the first of hers in
@@ -367,8 +368,11 @@ def serves_by_rule(strokes: list[dict], readings: list[dict], main_shots: list[t
             continue
         # and her hand above her head at contact (request 104: without it, 31 of F3Set's forehands and backhands —
         # first strokes of a point read across two clips — were made serves)
-        ch = (s.get("metrics") or {}).get("contact_height_pct")
-        if ch is None or float(ch) < min_contact_pct:
+        # or her free hand above her head before contact (the toss; request 110: the hand-at-contact test alone found
+        # none of the real matches' misnamed serves, their contact frame was not the contact)
+        mt = s.get("metrics") or {}
+        ch, toss = mt.get("contact_height_pct"), mt.get("toss_above_head_bh")
+        if not ((ch is not None and float(ch) >= min_contact_pct) or (toss is not None and float(toss) >= min_toss_bh)):
             continue
         s["stroke_before"] = s.get("stroke")
         s["stroke"], s["stroke_rule"] = "overhead", SERVE_RULE

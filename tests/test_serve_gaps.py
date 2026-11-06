@@ -85,3 +85,13 @@ def test_a_groundstroke_height_contact_is_never_taken_for_the_serve():
     low = [{"stroke": "forehand", "match_time_s": 8, "court_pos_m": [1.0, -0.2], "metrics": {"contact_height_pct": 60}}]
     none = [{"stroke": "forehand", "match_time_s": 8, "court_pos_m": [1.0, -0.2], "metrics": {}}]
     assert serves_by_rule(low, readings, [(0, 300)]) == 0 and serves_by_rule(none, readings, [(0, 300)]) == 0
+
+
+def test_the_toss_hand_above_the_head_also_marks_the_serve():
+    from tennisbio.point_count import serves_by_rule
+    readings = [_r(0, (0, 0)), _r(40, (15, 0))]
+    toss = [{"stroke": "forehand", "match_time_s": 8, "court_pos_m": [1.0, -0.2],
+             "metrics": {"contact_height_pct": 60, "toss_above_head_bh": 0.2}}]
+    flat = [{"stroke": "forehand", "match_time_s": 8, "court_pos_m": [1.0, -0.2],
+             "metrics": {"contact_height_pct": 60, "toss_above_head_bh": -0.3}}]
+    assert serves_by_rule(toss, readings, [(0, 300)]) == 1 and serves_by_rule(flat, readings, [(0, 300)]) == 0

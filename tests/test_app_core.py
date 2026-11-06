@@ -690,3 +690,19 @@ def test_only_test_runs_still_report_from_their_own_run(env):
     a = env.app()
     root, mine = Engine(a.db, a.paths)._group("rybakina")
     assert root == s.parent and [x for _, x in mine] == [s]
+
+
+def test_a_catalogue_match_is_the_very_match_the_cycle_builds(monkeypatch):
+    """05-11 (request 111): the index's rival and surface replaced the catalogue's, so the app saw score and the fine
+    passes changed and queued the 4 reference matches again."""
+    from pathlib import Path
+    from tennisbio import catalog
+    from tennisbio.app.engine import Engine
+    from tennisbio.catalog import Match, Player
+
+    cm = Match("zheng-qinwen-elena-rybakina", Path("C:/tenis/videos/Zheng Qinwen - Elena Rybakina.mkv"),
+               Player("rybakina", "Elena Rybakina"), opponent="Zheng Qinwen", surface="dura")
+    monkeypatch.setattr(catalog, "load_matches", lambda cfg: [cm])
+    assert Engine._catalog_match("zheng-qinwen-elena-rybakina", None) is cm
+    assert Engine._catalog_match("otro", "D:/x/zheng qinwen - elena rybakina.MKV") is cm      # by its video file
+    assert Engine._catalog_match("otro", "D:/x/otro.mkv") is None
