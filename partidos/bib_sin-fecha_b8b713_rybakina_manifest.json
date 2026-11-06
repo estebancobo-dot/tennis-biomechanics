@@ -151,16 +151,16 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "df46a606ff39fc46",
+  "fingerprint": "a3fb4c5e84183e2a",
   "version": "16",
-  "seconds": 280.6,
-  "finished": "2026-11-05 02:32:33",
+  "seconds": 280.2,
+  "finished": "2026-11-06 23:56:13",
   "summary": {
    "candidates": 270,
    "confirmed": 259,
    "errors": 0,
    "warnings": [],
-   "forehands": 118,
+   "forehands": 113,
    "windows": 196,
    "gate": {
     "windows_gated": 0,
@@ -174,13 +174,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 219.8,
-    "cuerdas_y_3d": 71.3,
-    "pista_ventana": 40.0,
-    "analisis_ventana": 28.3,
-    "recorte": 10.1,
-    "cribado": 9.0,
-    "pose": 1.0
+    "jugadora_lejana": 214.3,
+    "cuerdas_y_3d": 71.9,
+    "pista_ventana": 41.2,
+    "analisis_ventana": 30.1,
+    "recorte": 11.4,
+    "cribado": 8.6,
+    "pose": 0.7
    },
    "counts": {
     "overlap_s": 0.0,
@@ -193,14 +193,14 @@
     "frames_960_far": 0
    }
   },
-  "out_hash": "5a8e8c11d5481bd6c74b",
+  "out_hash": "da620304368412979646",
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "a79e533e6b4d7368",
+  "fingerprint": "30604d5e2e8db57c",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-05 02:32:34",
+  "finished": "2026-11-06 23:56:14",
   "summary": {
    "enabled": false
   },
@@ -253,10 +253,10 @@
   "scheme": 2
  },
  "views_link": {
-  "fingerprint": "5b0612ea358e524c",
+  "fingerprint": "771455cac7c38644",
   "version": "1",
-  "seconds": 0.3,
-  "finished": "2026-11-05 02:32:34",
+  "seconds": 0.4,
+  "finished": "2026-11-06 23:56:14",
   "summary": {
    "strokes": 259,
    "with_replay": 39,
@@ -269,10 +269,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "4d433c34242eb107",
+  "fingerprint": "1c2127da89899aa5",
   "version": "1",
-  "seconds": 34.7,
-  "finished": "2026-11-05 02:33:09",
+  "seconds": 34.9,
+  "finished": "2026-11-06 23:56:48",
   "summary": {
    "candidates": 64,
    "confirmed": 34,
@@ -292,13 +292,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 10.5,
-    "jugadora_lejana": 9.0,
-    "analisis_ventana": 6.5,
-    "pista_ventana": 5.8,
-    "recorte": 2.6,
+    "cuerdas_y_3d": 10.1,
+    "jugadora_lejana": 8.6,
+    "analisis_ventana": 6.6,
+    "pista_ventana": 6.2,
+    "recorte": 2.8,
     "cribado": 1.3,
-    "pose": 0.2
+    "pose": 0.1
    },
    "counts": {
     "overlap_s": 0.0,
@@ -311,7 +311,7 @@
     "frames_960_far": 0
    }
   },
-  "out_hash": "29a3d684b4875b79b494",
+  "out_hash": "17bf7bd59a703b802c4d",
   "scheme": 2
  }
 }
