@@ -210,3 +210,34 @@ def test_every_module_the_fine_pass_imports_is_in_its_code_fingerprint():
     region = s[s.index("def _fine_model_files"):s.index("\n_TIMES: dict = {}")]
     missing = set(re.findall(r"from \.([\w.]+) import", region)) - set(FINE_CODE)
     assert not missing, missing
+
+
+def test_actions_job_waits_for_the_running_job_instead_of_leaving_the_request_to_the_next_cycle():
+    """Request #237 (05-11 01:55 and 06-11 23:26): the GitHub Actions job found another cycle running and left in 2 s,
+    so the request waited for the 10-min cycle (22 min on 05-11). Now: every cycle that launched this one (parent,
+    grandparent, ...) is not «another analysis»; a cycle that only waits for news (Esperar-Novedades) does not hold the
+    Actions job; and the Actions job waits until the PC is free, then does the request (with the newer script if it
+    changed meanwhile). The loop's 10-min cycles still leave at once when busy."""
+    import re
+    ps1 = (Path(__file__).resolve().parents[1] / "scripts" / "windows" / "ciclo_automatico.ps1").read_text(encoding="utf-8")
+    assert ps1.isascii()
+    anc = ps1[ps1.index("function Antecesores"):]
+    anc = anc[:anc.index("\n}\n")]
+    assert "ParentProcessId" in anc and "-lt 12" in anc            # walks up the chain, bounded
+    busy = ps1[ps1.index("function Otros-Analisis"):]
+    busy = busy[:busy.index("\n}\n")]
+    assert "$MisAntecesores -notcontains $_.ProcessId" in busy and "ciclo_esperando.txt" in busy
+    assert "if ($env:GITHUB_ACTIONS)" in busy                       # only the Actions job ignores the waiting cycle
+    wait = ps1[ps1.index("function Esperar-Novedades"):]
+    wait = wait[:wait.index("\n}\n")]
+    assert '"$PID" | Set-Content $esp' in wait and wait.count("Remove-Item $esp") == 2
+    # the Actions job waits (bounded below the workflow's 72 h timeout), then goes on; others still leave when busy
+    i_wait = ps1.index("if ($ocupado -and $env:GITHUB_ACTIONS)")
+    i_leave = ps1.index('if ($ocupado) { Senal-Vida "otro analisis en marcha')
+    assert i_wait < i_leave
+    block = ps1[i_wait:i_leave]
+    assert "Start-Sleep" in block and "$ocupado = Otros-Analisis" in block and "Relanzar" in block
+    hours = float(re.search(r"TotalHours -lt (\d+)", block).group(1))
+    wf = (Path(__file__).resolve().parents[1] / ".github" / "workflows" / "pc.yml").read_text(encoding="utf-8")
+    assert hours * 60 < int(re.search(r"timeout-minutes: (\d+)", wf).group(1))
+    assert "concurrency:" in wf and "cancel-in-progress: false" in wf   # one Actions job at a time, none cancelled

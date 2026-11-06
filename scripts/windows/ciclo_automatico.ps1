@@ -22,12 +22,16 @@ function Esperar-Novedades($minutos = 45) {
     if ($env:GITHUB_ACTIONS) { return }        # en el ejecutor de GitHub: cada peticion ya lanza su propio trabajo
     $fin = (Get-Date).AddMinutes($minutos)
     $h = (git -C $RepoDir rev-parse HEAD 2>$null)
+    # este ciclo solo espera (06-11, #237): el trabajo de GitHub Actions no lo cuenta como otro analisis
+    $esp = "$Out\ciclo_esperando.txt"
+    try { "$PID" | Set-Content $esp } catch {}
     while ((Get-Date) -lt $fin) {
         Start-Sleep -Seconds 60
         git -C $RepoDir fetch -q origin $Rama 2>$null
         $f = (git -C $RepoDir rev-parse FETCH_HEAD 2>$null)
-        if ($f -and $h -and "$f".Trim() -ne "$h".Trim()) { Relanzar }
+        if ($f -and $h -and "$f".Trim() -ne "$h".Trim()) { Remove-Item $esp -Force -ErrorAction SilentlyContinue; Relanzar }
     }
+    Remove-Item $esp -Force -ErrorAction SilentlyContinue
 }
 function Senal-Vida($motivo) {
     $vivo = "$Out\ciclo_vivo.txt"
@@ -450,12 +454,36 @@ if (En-Pausa) {
 # fuera de pausa, la tarea de Windows vuelve a estar encendida (Registrar-Ciclo la deja al dia mas abajo)
 try { Enable-ScheduledTask -TaskName "tenis-ciclo-automatico" -ErrorAction SilentlyContinue | Out-Null } catch {}
 
-# el ciclo que nos lanzo para usar el script nuevo (Relanzar) no cuenta como otro analisis
+# los ciclos que nos lanzaron para usar el script nuevo (Relanzar) no cuentan como otro analisis: el padre y
+# tambien el abuelo y los de mas arriba (06-11, peticion #237: un ciclo que esperaba novedades relanzo uno que, al
+# terminar, relanzo otro; este veia al abuelo como "otro analisis" y la peticion 110 espero 22 min al ciclo siguiente)
+function Antecesores {
+    $ids = @()
+    $p = $PID
+    for ($i = 0; $i -lt 12; $i++) {
+        $pp = -1
+        try { $pp = [int](Get-CimInstance Win32_Process -Filter "ProcessId=$p").ParentProcessId } catch {}
+        if ($pp -le 0 -or $ids -contains $pp) { break }
+        $ids += $pp
+        $p = $pp
+    }
+    return ,$ids
+}
 $PadrePid = -1
 try { $PadrePid = [int](Get-CimInstance Win32_Process -Filter "ProcessId=$PID").ParentProcessId } catch {}
+$MisAntecesores = Antecesores
 # otro analisis en marcha (los .bat del usuario o una ejecucion anterior de este ciclo): no molestar
-$ocupado = Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" -ErrorAction SilentlyContinue |
-    Where-Object { $_.ProcessId -ne $PID -and $_.ProcessId -ne $PadrePid -and $_.CommandLine -match "prueba_rapida|analisis_completo|recalcular_medidas|solo_informe|ciclo_automatico|instalar" }
+function Otros-Analisis {
+    # para el trabajo de GitHub Actions, un ciclo que solo espera novedades (Esperar-Novedades) no es trabajo
+    $esperando = -1
+    if ($env:GITHUB_ACTIONS) { try { $esperando = [int]("$(Get-Content "$Out\ciclo_esperando.txt" -ErrorAction Stop)".Trim()) } catch {} }
+    return @(Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" -ErrorAction SilentlyContinue |
+        Where-Object { $_.ProcessId -ne $PID -and $_.ProcessId -ne $PadrePid -and $MisAntecesores -notcontains $_.ProcessId -and
+            $_.ProcessId -ne $esperando -and
+            $_.CommandLine -match "prueba_rapida|analisis_completo|recalcular_medidas|solo_informe|ciclo_automatico|instalar" })
+}
+$ocupado = Otros-Analisis
+if (-not $ocupado.Count) { $ocupado = $null }
 # parada pedida por Claude (24-10): config/parar_pc.txt en GitHub con "id: N" nuevo corta el trabajo en marcha (un
 # trabajo largo que va mal, con codigo viejo, ya no espera a que el usuario reinicie el PC); se mira sin descargar
 # el codigo (git show del FETCH_HEAD), una vez por id (output\paradas_hechas.txt), y queda en output\paradas.log
@@ -502,6 +530,27 @@ if ($ocupado) {
         Where-Object { $_.CommandLine -match "medir_recursos" })
     if ((Test-Path $mr) -and -not $ya.Count) {
         try { Start-Process powershell.exe -WindowStyle Hidden -ArgumentList @("-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "`"$mr`"") } catch {}
+    }
+}
+# el trabajo de GitHub Actions espera a que acabe el otro y entonces hace la peticion (06-11, peticion #237: salia en
+# 2 s y la peticion esperaba al ciclo de 10 min siguiente, o a que acabara el analisis largo y luego otros 10 min).
+# Mientras espera, los ciclos de 10 min lo ven como otro analisis y no la toman; una parada (parar_pc.txt) o la pausa
+# lo cortan como a cualquier otro. Si el script cambio mientras esperaba, sigue con el nuevo (Relanzar).
+if ($ocupado -and $env:GITHUB_ACTIONS) {
+    $ErrorActionPreference = "Continue"
+    $t0 = Get-Date
+    $guion = (Get-Item $PSCommandPath).LastWriteTime
+    try { "$(Get-Date -Format s) GitHub Actions espera a que acabe otro analisis ($(($ocupado | ForEach-Object { $_.ProcessId }) -join ','))" |
+        Add-Content "$Out\ciclo_arranque.txt" } catch {}
+    while ($ocupado -and ((Get-Date) - $t0).TotalHours -lt 70) {
+        Start-Sleep -Seconds 30
+        $ocupado = Otros-Analisis
+        if (-not $ocupado.Count) { $ocupado = $null }
+    }
+    if (-not $ocupado) {
+        try { "$(Get-Date -Format s) GitHub Actions: libre tras $([math]::Round(((Get-Date) - $t0).TotalMinutes, 1)) min de espera" |
+            Add-Content "$Out\ciclo_arranque.txt" } catch {}
+        if ((Get-Item $PSCommandPath).LastWriteTime -gt $guion) { Relanzar }
     }
 }
 if ($ocupado) { Senal-Vida "otro analisis en marcha ($(($ocupado | ForEach-Object { $_.ProcessId }) -join ','))" }

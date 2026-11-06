@@ -65,3 +65,25 @@ def test_forecast_keeps_its_worst_case_for_the_guard(tmp_path):
     B.record_stage(tmp_path, "fine", 3600, 120, "fresh")
     B.forecast([{"match": "x", "video_min": 120, "seconds": {}, "stages": {"fine": "stale"}}], tmp_path)
     assert abs(B.forecast.last_upper - 3600) < 1
+
+
+def test_preflight_refuses_a_run_whose_worst_case_passes_the_limit(tmp_path, monkeypatch, capsys):
+    """Request #77 (no 6-hour runs to validate): scripts/preflight.py --max-h exits 3 when the forecast's worst case
+    is above the limit (ciclo_automatico.ps1 then does not start «completo»), 0 otherwise; prevision.md always written."""
+    import importlib.util
+    import sys
+    from pathlib import Path
+
+    spec = importlib.util.spec_from_file_location("preflight", Path(__file__).resolve().parents[1] / "scripts" / "preflight.py")
+    pf = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(pf)
+    B.record_stage(tmp_path, "fine", 300, 120, "cached")
+    B.record_stage(tmp_path, "fine", 3600 * 8, 120, "fresh")          # computing everything: 8 h
+    monkeypatch.setattr(pf, "load_config", lambda: {"paths": {"output": str(tmp_path)}})
+    monkeypatch.setattr(pf, "rows", lambda cfg, only=None: [{"match": "x", "video_min": 120, "seconds": {},
+                                                              "stages": {"fine": "stale"}}])
+    monkeypatch.setattr(sys, "argv", ["preflight.py", "--max-h", "6"])
+    assert pf.main() == 3 and "NO SE LANZA" in capsys.readouterr().out
+    assert (tmp_path / "prevision.md").exists()
+    monkeypatch.setattr(sys, "argv", ["preflight.py", "--max-h", "9"])
+    assert pf.main() == 0 and "NO SE LANZA" not in capsys.readouterr().out
