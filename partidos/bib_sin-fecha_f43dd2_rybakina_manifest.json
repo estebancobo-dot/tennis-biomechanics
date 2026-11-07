@@ -151,10 +151,10 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "9574941114a523e2",
+  "fingerprint": "ee996175f1002204",
   "version": "16",
-  "seconds": 117.1,
-  "finished": "2026-11-07 00:48:50",
+  "seconds": 144.5,
+  "finished": "2026-11-07 01:45:14",
   "summary": {
    "candidates": 159,
    "confirmed": 157,
@@ -174,13 +174,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 37.0,
-    "jugadora_lejana": 30.2,
-    "pista_ventana": 22.0,
-    "analisis_ventana": 17.0,
-    "recorte": 5.1,
-    "cribado": 4.9,
-    "pose": 0.3
+    "cuerdas_y_3d": 44.0,
+    "jugadora_lejana": 42.2,
+    "pista_ventana": 29.2,
+    "analisis_ventana": 22.2,
+    "cribado": 6.0,
+    "recorte": 6.0,
+    "pose": 0.6
    },
    "counts": {
     "overlap_s": 0.0,
@@ -197,10 +197,10 @@
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "fa2de3b775af413c",
+  "fingerprint": "d3ec8958980591d1",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-06 23:42:38",
+  "finished": "2026-11-07 01:45:15",
   "summary": {
    "enabled": false
   },
@@ -269,10 +269,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "b460c241d28a9e6f",
+  "fingerprint": "34521b31567dc3b3",
   "version": "1",
-  "seconds": 8.5,
-  "finished": "2026-11-07 00:48:59",
+  "seconds": 39.8,
+  "finished": "2026-11-07 01:45:54",
   "summary": {
    "candidates": 17,
    "confirmed": 5,
@@ -291,11 +291,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "analisis_ventana": 2.7,
-    "cuerdas_y_3d": 2.0,
+    "espera_bola_en_paralelo": 29.1,
+    "bola_en_paralelo_cpu": 29.1,
+    "cuerdas_y_3d": 1.9,
+    "analisis_ventana": 1.7,
     "recorte": 0.8,
     "cribado": 0.2,
-    "pose": 0.1,
+    "pose": 0.0,
     "jugadora_lejana": 0.0,
     "pista_ventana": 0.0
    },
@@ -307,7 +309,8 @@
     "kept_impacts": 5,
     "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 0
+    "frames_960_far": 0,
+    "windows_ball_ahead": 6
    }
   },
   "out_hash": "e010446535c7e4e13249",
