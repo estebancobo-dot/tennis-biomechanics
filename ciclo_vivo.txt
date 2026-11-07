@@ -1,1 +1,1 @@
-ultimo ciclo sin trabajo: 2026-11-07T05:08:58; otro analisis en marcha (10492,12456,12176,14792)
+ultimo ciclo sin trabajo: 2026-11-07T05:29:14; otro analisis en marcha (10492,12456,12176,14792,12920)
