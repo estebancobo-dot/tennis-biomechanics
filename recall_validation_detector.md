@@ -1,8 +1,8 @@
 # Golpes perdidos: recall frente a F3Set
 
-648 golpes anotados de Rybakina en 368 puntos de 4 partidos (tolerancia ±0.2 s). **Encontrados 461 (71 %)** y 11 más apartados como de identidad dudosa (con ellos 73 %); precisión 88 % (462 de 526 golpes suyos dentro de los puntos; 13 eran golpes de la rival).
+648 golpes anotados de Rybakina en 368 puntos de 4 partidos (tolerancia ±0.2 s). **Encontrados 461 (71 %)** y 11 más apartados como de identidad dudosa (con ellos 73 %); precisión 88 % (462 de 527 golpes suyos dentro de los puntos; 14 eran golpes de la rival).
 
-**Sin 20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina** (anotaciones desfasadas con el vídeo: la mitad o más de sus golpes anotados caen fuera de la cámara principal, que sí se reconoce): **encontrados 460 de 517 (89 %)**; precisión 95 %. Cercana 92 %, lejana 87 %.
+**Sin 20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina** (anotaciones desfasadas con el vídeo: la mitad o más de sus golpes anotados caen fuera de la cámara principal, que sí se reconoce): **encontrados 460 de 517 (89 %)**; precisión 94 %. Cercana 92 %, lejana 87 %.
 
 | Partido | recall | precisión | principal pérdida |
 |---|---|---|---|
