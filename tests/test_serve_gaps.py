@@ -106,3 +106,26 @@ def test_what_the_spotter_saw_before_her_first_stroke():
     g = serve_gaps(readings, strokes, [(0, 300)], spotted=spotted)
     sb = g["spotter_before_first"]
     assert sb["golpe_de_la_rival_antes"] == 1 and sb["saque_suyo_visto_y_perdido"] == 1
+
+
+def test_a_serve_candidate_is_added_before_the_opponents_return_when_hers_was_not_seen(monkeypatch):
+    import tennisbio.stages as S
+    readings = [_r(0, (0, 0)), _r(40, (15, 0)), _r(80, (30, 0))]
+    cands = [{"t": 20.0, "target": False, "side": "far", "source": "spotter"},      # point 1: the return only
+             {"t": 21.5, "target": True, "side": "near", "source": "spotter"},
+             {"t": 50.0, "target": True, "side": "near", "source": "spotter", "kind": "serve"},   # point 2: her serve seen
+             {"t": 50.9, "target": False, "side": "far", "source": "spotter"}]
+    monkeypatch.setattr(S, "near_is_target", lambda identity, frame: True)
+    n = S.add_serve_candidates(cands, {"readings": readings}, {"fps": 25}, 25.0)
+    assert n == 1
+    new = [c for c in cands if c["source"] == "marcador"]
+    assert new == [{"t": 19.2, "audio": False, "side": "near", "identity": True, "target": True, "kind": "serve",
+                    "score": None, "source": "marcador"}]
+
+
+def test_a_scoreboard_serve_candidate_is_named_serve_in_the_fine_pass():
+    from tennisbio.stages import stroke_from_spotter
+    from tennisbio.stroke_analysis import StrokeResult
+    r = StrokeResult(impact_frame=10, impact_source="spotter", stroke="backhand")
+    stroke_from_spotter(r, {"source": "marcador", "kind": "serve"})
+    assert r.stroke == "overhead"

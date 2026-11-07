@@ -275,6 +275,15 @@ etapas: identity,fine,fine_doubtful
 ---
 id: 117
 accion: completo
+---
+id: 118
+accion: recall
+detector: si
+---
+id: 119
+accion: completo
+# 118-119 (07-11): candidatos de saque por el marcador (su saque no visto por el detector, el resto de la rival si):
+# 118 = F3Set (que no anada saques falsos), 119 = los 4 partidos (saques por punto de su saque)
 # 117 (07-11): auditoria con lo que vio el detector antes del primer golpe suyo en los puntos de su saque sin saque
 # (saque visto y perdido despues / golpe de la rival antes = su saque no detectado / nada)
 # 115-116 (06-11): 115 rehace prevision.log con su fin (#66); 116 mide identidad y pasadas finas en los 4 partidos desde

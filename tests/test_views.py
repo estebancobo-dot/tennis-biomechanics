@@ -226,7 +226,7 @@ def test_existing_outputs_and_stages_unchanged(tmp_path, evidence):
     for n in ("candidates", "fine", "fine_opponent", "fine_doubtful"):
         assert "views" not in pipeline.STAGES[n].deps and "views_link" not in pipeline.STAGES[n].deps
     # candidates 11 (03-11): replays need a second sign (stages.run_replay_reasons)
-    assert pipeline.STAGES["candidates"].version == "11" and pipeline.STAGES["fine"].version == "16"
+    assert pipeline.STAGES["candidates"].version == "12" and pipeline.STAGES["fine"].version == "16"   # 12 (07-11): serves by the scoreboard
     assert set(pipeline.STAGES["views"].deps) == {"scenes", "court", "players", "score", "audio", "candidates"}
     assert set(pipeline.STAGES["views_link"].deps) == {"views", "fine"}
     assert pipeline.STAGES["views"].resource is None

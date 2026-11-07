@@ -803,7 +803,36 @@ def spotter_candidates(spotted: list[dict], identity: dict, fps: float, runs: li
     return out, info
 
 
-@stage("candidates", "11", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
+SERVE_BEFORE_RETURN_S = 0.8     # her serve's contact before the opponent's return (a first serve crosses in ~0.8 s)
+
+
+def add_serve_candidates(cands: list[dict], score: dict, identity: dict, fps: float) -> int:
+    """B4 (07-11): request 117 showed the learned spotter misses her serve in full broadcasts (it was trained on F3Set's
+    matches, where it found them all): in the points of her serve with no serve found, it had seen the opponent's return
+    (9-15 per match) but nothing of hers before it. In each point of her serve on the scoreboard where her first candidate
+    comes after the opponent's first one, a candidate of kind serve is added SERVE_BEFORE_RETURN_S before that return
+    (source "marcador"); the fine pass confirms it with her pose and the ball like any other. Returns how many (in place)."""
+    from .point_count import her_serve_points
+    ifps = float((identity or {}).get("fps") or fps)
+    ts = sorted(cands, key=lambda c: c["t"])
+    added = []
+    for t0, t1 in her_serve_points((score or {}).get("readings") or []):
+        inside = [c for c in ts if t0 <= c["t"] <= t1]
+        opp = next((c for c in inside if c.get("target") is False), None)
+        if opp is None or any(c.get("target") and c["t"] < opp["t"] for c in inside):
+            continue
+        t = opp["t"] - SERVE_BEFORE_RETURN_S
+        who = near_is_target(identity, int(round(t * ifps))) if identity else None
+        if who is None:
+            continue
+        added.append({"t": round(t, 3), "audio": False, "side": "near" if who else "far", "identity": who, "target": True,
+                      "kind": "serve", "score": None, "source": "marcador"})
+    cands.extend(added)
+    cands.sort(key=lambda c: c["t"])
+    return len(added)
+
+
+@stage("candidates", "12", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
        reviews=("identidad_clic.json",),
        # with the learned spotter (off by default) it reads spotting.json; off, its fingerprint is the one it always was
        settings=lambda c: {"spotter": True} if spotter_on(c) else {},
@@ -856,6 +885,9 @@ def st_candidates(ctx: Context, tol_s=0.35):
             spans.append((frames[run[0]] / fps, frames[run[-1]] / fps, bool(reasons[k])))
         cands, info = spotter_candidates(_read(ctx.path("spotting.json")), identity, fps, spans,
                                          no_board if board_works else [], onsets, tol_s)
+        n_srv = add_serve_candidates(cands, score, identity, fps)
+        if n_srv:
+            ctx.log(f"  saques añadidos por el marcador (su saque no visto, el resto de la rival sí): {n_srv}")
         _write(ctx.path("candidates.json"), cands)
         ctx.log(f"  candidatos del detector entrenado: {len(cands)} ({sum(c['side'] == 'far' for c in cands)} lejanos; "
                 f"{info['replays']} en repeticiones, fuera)")
@@ -2035,7 +2067,7 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
                    prefetch=fp.get("pose_prefetch", True), targets=targets,
                    target_tol=CONFIRM_TOL_S, keep=keep, pose_model=fine_pose_model(ctx.cfg),
                    court_H=H_win, height_scale=hmode,
-                   spotted=[x["t"] - t0 for x in group if x.get("source") == "spotter"] or None, **extra)
+                   spotted=[x["t"] - t0 for x in group if x.get("source") in ("spotter", "marcador")] or None, **extra)
     for k, v in run.timing.items():
         _TIMES[k] = _TIMES.get(k, 0.0) + v
     _took("analisis_ventana", t_ + sum(run.timing.values()))         # the rest of run_clip
@@ -2139,7 +2171,7 @@ def stroke_from_spotter(r, c: dict) -> None:
     F3Set since the spotter's own strokes entered the fine pass (25-10, 219af58: their contact frames are less
     exact, and with no clear vote the pose answer falls back to backhand); the spotter names the type with 92 %
     accuracy on its held-out match. The pose answer stays in stroke_pose; "other" (volleys…) keeps the pose's."""
-    k = SPOTTER_KIND.get(c.get("kind") or "") if c.get("source") == "spotter" else None
+    k = SPOTTER_KIND.get(c.get("kind") or "") if c.get("source") in ("spotter", "marcador") else None
     r.stroke_pose = r.stroke
     if k is not None and k != r.stroke:
         r.stroke = k
