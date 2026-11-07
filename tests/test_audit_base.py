@@ -152,18 +152,18 @@ def test_base_items_never_break_the_audit(tmp_path, monkeypatch):
 
 def test_every_request_of_b1_and_b3_has_a_check_and_reaches_level_3_when_it_holds(monkeypatch):
     """With every check passing, each HECHO request of B1 and B3 is «comprobado en salidas»; a PARCIAL one stays at
-    level 2 (built only in part, whatever its checks say) and #30, a document, says it has no automatic check."""
+    level 2 (built only in part, whatever its checks say). #30, a document, is checked since 07-11 against the measured
+    state (comparison_doc_item), so it reaches level 3 too."""
     pk = real_status.packages()
     ids = pk["B1"]["peticiones"] + pk["B3"]["peticiones"]
     for rid in ids:
         assert A.PETITIONS.get(rid) is not None, rid
-    assert [r for r in ids if isinstance(A.PETITIONS[r], A.Note)] == [30]
-    assert "sin comprobación automática posible" in A.PETITIONS[30]
+    assert [r for r in ids if isinstance(A.PETITIONS[r], A.Note)] == []
     ok = lambda area, name: {"req": 9, "area": area, "name": name, "status": "ok", "detail": ""}
     items = [ok("Rendimiento", "Tiempo: m"), ok("Pantallas", "Novedades de la versión"), ok("Uso del PC", "Uso del PC por etapa"),
              ok("Tiempo por etapa", "Tiempo de cada etapa frente a su ritmo en este PC: m"),
              ok("Trabajo en paralelo", "Etapas a la vez: m"), ok("Peticiones del PC", "Peticiones por GitHub Actions: espera"),
-             ok("Modelos", "Golpes del detector aprendido: m")]
+             ok("Modelos", "Golpes del detector aprendido: m"), ok("Modelos", A.COMPARISON_ITEM)]
     items += [ok("Modelos", f"Modelo candidato medido: {n} ({w})") for n, (w, _) in A.CANDIDATE_MODELS.items()]
     items += [ok("Modelos", f"Modelo en uso: {x}") for x in ("detector de golpes aprendido (F3Set)", "esqueleto híbrido (YOLO11 + RTMPose)",
                                                            "pista de 14 puntos (TennisCourtDetector)", "giro 3D del tronco (MotionAGFormer)",
@@ -173,7 +173,7 @@ def test_every_request_of_b1_and_b3_has_a_check_and_reaches_level_3_when_it_hold
     states = {rid: st for rid, _, st in real_status.registry()}
     for rid in ids:
         lv = real_status.level(states[rid], pet.get(rid), rid)
-        want = 1 if rid == 30 else 3 if states[rid] == "HECHO" else 2
+        want = 3 if states[rid] == "HECHO" else 2
         assert lv == want, (rid, states[rid], pet.get(rid))
     # and a failing check is said: the candidate of #202 not measured → #202 drops to level 2
     items = [i if not i["name"].startswith("Modelo candidato medido: wasb") else {**i, "status": "aviso"} for i in items]

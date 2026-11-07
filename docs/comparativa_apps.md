@@ -1,7 +1,12 @@
 # TennisBio frente a aplicaciones reales
 
-Estado: octubre 2026. Las características de terceros salen de sus fichas y notas públicas
-(enlaces al final); donde no hay confirmación se indica.
+Estado: 07-11-2026. Las características de terceros salen de sus fichas y notas públicas
+(enlaces al final); donde no hay confirmación se indica. La primera versión es de octubre de 2026; el 07-11 se
+pusieron al día las cifras de detección y los modelos (sección 6).
+
+> La auditoría del PC comprueba sola este documento (petición #30, «Comparativa con otras apps al día»): que cada
+> modelo que nombra esté en uso o medido en el PC, que sus cifras de detección coincidan con el último recuento
+> de F3Set (±0,03) y que esta fecha no tenga más de 14 días respecto a la última medida de modelos.
 
 ## 1. Con qué se compara
 | Producto | Qué es | Fuente de datos | Para quién |
@@ -19,7 +24,7 @@ Leyenda: ✔ lo hace · ◐ parcial o aproximado · ✘ no · ? no confirmado
 |---|---|---|---|---|---|
 | Analiza a profesionales en partido real | ✘ (tu juego) | ✔ (con acceso a sus datos) | ✘ | ◐ (a mano, vídeo a vídeo) | **✔ desde la tele** |
 | Necesita grabar o instalar cámaras | Sí (móvil) | Sí (estadio) | Sí (móvil) | Sí | **No** |
-| Detección automática de golpes | ✔ | ✔ | ✘ | ✘ | ✔ (P 0,73 / R 0,84 sin audio, lado cercano; P 0,89 / R 0,80 lado lejano) |
+| Detección automática de golpes | ✔ | ✔ | ✘ | ✘ | ✔ (P 0,95 / R 0,89 con el detector de golpes entrenado con F3Set: 460 de 517 golpes anotados de Rybakina en 3 partidos, cercana 92 %, lejana 87 %; sin el partido de anotaciones desfasadas. Con los 4 partidos, P 0,88 / R 0,71. 13-10, con las reglas: P 0,73 / R 0,84 sin audio, lado cercano; P 0,89 / R 0,80 lado lejano) |
 | Tipo de golpe | ✔ | ✔ (clasificación) | ✘ | ✘ (tú lo marcas) | ✔ derecha/revés/saque; ✘ volea, remate, cortado |
 | Velocidad de bola | ✔ | ✔ | ✘ | ◐ (calibrando a mano) | **✘** (no fiable desde la tele) |
 | Efecto (rpm) | ? | ✔ | ✘ | ✘ | **✘** |
@@ -55,6 +60,8 @@ Leyenda: ✔ lo hace · ◐ parcial o aproximado · ✘ no · ? no confirmado
 
 **Parecido:**
 - Detección y clasificación automática de golpes, posición en pista, dónde bota la bola: al nivel de SwingVision, pero desde la tele.
+  Desde el 07-11 la detección es la de un detector entrenado con golpes anotados (F3Set), como las apps profesionales,
+  y el bote lo decide un modelo propio de bote (F1 0,884 frente a 0,594 de la regla en partidos que no vio).
 - Ángulos y fases automáticas, como Sportsbox o SkeleTRACK, pero solo en 2D y desde una cámara.
 
 **Peor:**
@@ -90,6 +97,23 @@ Leyenda: ✔ lo hace · ◐ parcial o aproximado · ✘ no · ? no confirmado
   - `tennisbio export` genera un MP4 por golpe con el esqueleto y los datos dibujados, montajes por
     conclusión y un resumen PDF (`C:\tenis\output\exportar_<golpe>\`).
   - Los recortes `.mp4` de `windows\` siguen siendo el vídeo original, sin superposición.
+
+## 6. Modelos que usa hoy (medidos en el PC, 07-11-2026)
+Cada modelo se mide en el PC frente al que sustituiría (`scripts/bench_candidates.py`: precisión con datos
+anotados y velocidad en la iGPU) y solo se adopta si mejora sin ser más lento.
+
+| Qué | En uso | Medido frente a él | Resultado |
+|---|---|---|---|
+| Detección de golpes | detector de golpes aprendido (entrenado con F3Set) | F3ED | F3ED no se adopta (F1 0,994 frente a 0,997, 5 veces más lento) |
+| Bola | TrackNetV3 (RacketVision) | WASB | WASB no se adopta (F1 0,863 frente a 0,906) |
+| Bote de la bola | modelo propio de bote (`scripts/train_bounce.py`) | regla del giro más brusco; CatBoost de TennisProject | el propio se adopta: F1 0,884 frente a 0,594 de la regla en partidos de TrackNet que no vio. El CatBoost (F1 0,892) solo se midió como referencia: sin licencia, no se usa |
+| Esqueleto | YOLO11 + RTMPose (híbrido) | RTMW-x | la medida lo daría por bueno (mismo F1 de golpes, 0,667, y 3 veces más rápido); la configuración del PC sigue con RTMPose-x |
+| Raqueta | RTMPose de RacketVision (5 puntos) | — | — |
+| Pista | TennisCourtDetector (14 puntos) | búsqueda de líneas propia | se adopta (puntos a ≤ 7 px 0,956 frente a 0,91) |
+| Giro 3D del tronco | MotionAGFormer | RTMW3D | se adopta (a ≤ 15° de la referencia 0,58 frente a 0,13) |
+| Jugadora lejana | YOLO11 en la mitad lejana | RF-DETR | RF-DETR no se adopta (más lento: 0,5 frente a 1,3 fotogramas/s) |
+| Marcador | PP-OCRv4 (rapidocr 1.4) | PP-OCRv5 | PP-OCRv5 no se adopta (lecturas coherentes 0,438 frente a 0,518) |
+| Cortes de plano | TransNetV2 | — | — |
 
 ## Fuentes
 - SwingVision, ficha de la App Store: <https://apps.apple.com/us/app/swingvision-tennis-pickleball/id989461317>

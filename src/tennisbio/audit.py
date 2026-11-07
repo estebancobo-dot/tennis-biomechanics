@@ -1006,7 +1006,8 @@ PETITIONS.update({
 })
 # Base packages B1 and B3, 04-11 (base_items, cli.run_audit): each request with a check on the outputs, the PC's
 # configuration or its own tests on the PC; added on top of the rules above, never instead of a stricter one.
-# Without an automatic check, on purpose: #30 (a document: docs/comparativa_apps.md, its conclusions are not an output).
+# Until 07-11 without an automatic check, on purpose: #30 (a document: docs/comparativa_apps.md); since 07-11 the
+# document is checked against the measured models, the latest F3Set recall and its date (comparison_doc_item).
 PETITIONS.update({
     # B1 · speed and use of the PC
     10: r"Novedades|Reproducir|" + _T + "test_auto_cycle$",
@@ -1028,8 +1029,10 @@ PETITIONS.update({
     221: r"^Modelo en uso: detector de golpes|^Golpes del detector aprendido|"
          + _T + "(test_spotting|test_spotting_stage|test_stroke_from_spotter)$",
 })
-PETITIONS[30] = Note("documento de estado del arte (docs/comparativa_apps.md): sin comprobación automática posible; "
-                     "los modelos que compara se miden en #58 y #199-#204")
+# 04-11 to 06-11 #30 was a Note («documento de estado del arte (docs/comparativa_apps.md): sin comprobación automática
+# posible; los modelos que compara se miden en #58 y #199-#204»). 07-11: the document is checked against the measured
+# state (comparison_doc_item: its models, its detection figures, its date).
+PETITIONS[30] = r"^Comparativa con otras apps al día"
 
 # package B7 (04-11): the notes and unchecked requests of the base, now with their own tests run on the PC and the
 # checks read from the PC's own files (infrastructure_items); they replace the notes above
@@ -1421,12 +1424,152 @@ def actions_item(out_root: Path, request_time=None) -> dict:
                  "desde la petición o desde que acaba el trabajo anterior)")
 
 
+# request #30 (07-11): the state-of-the-art document (docs/comparativa_apps.md) checked against the measured state:
+# the models it names, its stroke-detection figures and its date
+COMPARISON_DOC = ROOT / "docs" / "comparativa_apps.md"
+COMPARISON_ITEM = "Comparativa con otras apps al día (docs/comparativa_apps.md)"
+COMPARISON_TOL = 0.03          # its precision / recall may differ this much from the latest F3Set recall
+COMPARISON_MAX_DAYS = 14       # its date may be this many days older than the latest model measure
+# model named in the document (regular expression) → (audit item that backs it, bench_candidates.json result that
+# backs it); one «ok» item or one measured result (verdict, no error) is enough
+COMPARISON_MODELS = {
+    r"\bTrackNetV3\b": (r"^Modelo en uso: bola", "wasb"),
+    r"\bRTMPose\b": (r"^Modelo en uso: (esqueleto híbrido|raqueta)", "rtmw"),
+    r"\bYOLO11\b": (r"^Modelo en uso: esqueleto híbrido", "rfdetr"),
+    r"\bTennisCourtDetector\b": (r"^Modelo en uso: pista de 14 puntos", "court14"),
+    r"\bMotionAGFormer\b": (r"^Modelo en uso: giro 3D", "mag3d"),
+    r"\bRTMW3D\b": (None, "mag3d"),
+    r"\bTransNetV2\b": (r"^Modelo en uso: cortes de plano", None),
+    r"\bF3ED\b": (r"^Modelo candidato medido: f3ed", "f3ed"),
+    r"detector de golpes (aprendido|entrenado)": (r"^Modelo en uso: detector de golpes", "f3ed"),
+    r"\bWASB\b": (r"^Modelo candidato medido: wasb", "wasb"),
+    r"\bRTMW-x\b": (r"^Modelo candidato medido: rtmw", "rtmw"),
+    r"\bRF-DETR\b": (r"^Modelo candidato medido: rfdetr", "rfdetr"),
+    r"\bPP-OCRv5\b": (r"^Modelo candidato medido: ocr5", "ocr5"),
+    r"\bCatBoost\b": (r"^Modelo candidato medido: bounce", "bounce"),
+    r"modelo propio de bote": (None, "bounce_own"),
+}
+_MONTHS = {m: i + 1 for i, m in enumerate(("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto",
+                                           "septiembre", "octubre", "noviembre", "diciembre"))}
+
+
+def _doc_date(text: str):
+    """The date of the line «Estado: …» (07-11-2026, 2026-11-07, 7 de noviembre de 2026 or «octubre 2026», read as
+    the first day of that month), or None."""
+    from datetime import date
+    m = re.search(r"^Estado:\s*([^.\n]+)", text, re.M)
+    if not m:
+        return None
+    s = m.group(1).strip().lower()
+    try:
+        if d := re.match(r"(\d{1,2})-(\d{1,2})-(\d{4})", s):
+            return date(int(d.group(3)), int(d.group(2)), int(d.group(1)))
+        if d := re.match(r"(\d{4})-(\d{1,2})-(\d{1,2})", s):
+            return date(int(d.group(1)), int(d.group(2)), int(d.group(3)))
+        if d := re.match(r"(?:(\d{1,2}) de )?([a-záéíóú]+)(?: de)? (\d{4})", s):
+            return date(int(d.group(3)), _MONTHS[d.group(2)], int(d.group(1) or 1))
+    except (KeyError, ValueError):
+        return None
+    return None
+
+
+def _latest_recall(out_root: Path):
+    """(file name, precision, recall, found, annotated) of the latest F3Set recall (scripts/validate_recall.py, the
+    learned detector's first), without the matches it excluded as misaligned; None when there is none."""
+    for name in ("recall_validation_detector.json", "recall_validation.json"):
+        f = _find(out_root, name, f"datasets/reports/{name}")
+        if f is None:
+            continue
+        try:
+            r = json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        s = r.get("summary_valid") or r.get("summary") or {}
+        tot = s.get("total") or {}
+        p = (s.get("precision") or {}).get("precision")
+        if tot.get("recall") is not None and p is not None:
+            return name, float(p), float(tot["recall"]), tot.get("found"), tot.get("gt")
+    return None
+
+
+def comparison_doc_item(items: list[dict], out_root: Path, doc: Path | None = None) -> dict:
+    """#30: docs/comparativa_apps.md agrees with the measured state. «ok» only when (a) every model it names is in
+    use or was measured on the PC (audit items «Modelo en uso» / «Modelo candidato medido», bench_candidates.json),
+    (b) its stroke-detection figures (the first «P x / R y» of its row «Detección automática de golpes») are within
+    COMPARISON_TOL of the latest F3Set recall, and (c) its date («Estado: …») is at most COMPARISON_MAX_DAYS older
+    than the latest model measure (bench_candidates.json «generated»). Otherwise «aviso» with what is stale."""
+    from datetime import datetime
+    doc = COMPARISON_DOC if doc is None else Path(doc)
+    if not doc.exists():
+        return _item(12, "Modelos", COMPARISON_ITEM, "aviso", f"no se encontró {doc.name}")
+    text = doc.read_text(encoding="utf-8")
+    bf = _find(out_root, "bench_candidates.json", "datasets/reports/bench_candidates.json")
+    try:
+        bench = json.loads(bf.read_text(encoding="utf-8")) if bf else {}
+    except (OSError, ValueError):
+        bench = {}
+    res = bench.get("results") or {}
+    stale, good = [], []
+    # (a) the models it names
+    named, unbacked = [], []
+    for pat, (item_rx, key) in COMPARISON_MODELS.items():
+        if not re.search(pat, text):
+            continue
+        label = re.sub(r"\((\w+)\|\w+\)", r"\1", pat.replace(r"\b", ""))     # «detector de golpes aprendido»
+        named.append(label)
+        by_item = item_rx is not None and any(re.search(item_rx, i.get("name", "")) and i.get("status") == "ok" for i in items)
+        r = res.get(key) if key else None
+        by_bench = bool(r) and not r.get("error") and bool(r.get("verdict")) and not (r.get("verdict") or {}).get("insufficient")
+        if not (by_item or by_bench):
+            unbacked.append(label)
+    if unbacked:
+        stale.append(f"modelos que nombra sin estar en uso ni medidos en el PC: {', '.join(unbacked)}")
+    elif named:
+        good.append(f"{len(named)} modelos que nombra, todos en uso o medidos en el PC")
+    # (b) its detection figures against the latest F3Set recall
+    rec = _latest_recall(out_root)
+    row = next((ln for ln in text.splitlines() if "Detección automática de golpes" in ln), "")
+    m = re.search(r"P\s*(\d+[,.]\d+)\s*/\s*R\s*(\d+[,.]\d+)", row)
+    if rec is None:
+        stale.append("sin recuento de F3Set con el que comparar sus cifras (recall_validation_detector.json)")
+    elif not m:
+        stale.append("su fila «Detección automática de golpes» no da precisión y recall («P x / R y»)")
+    else:
+        dp, dr = (float(x.replace(",", ".")) for x in m.groups())
+        fname, p, r_, found, gt = rec
+        cmp = f"P {dp:.2f} / R {dr:.2f} en el documento frente a P {p:.2f} / R {r_:.2f} de {fname} ({found} de {gt})"
+        (stale if abs(dp - p) > COMPARISON_TOL or abs(dr - r_) > COMPARISON_TOL else good).append(
+            ("cifras de detección desfasadas: " if abs(dp - p) > COMPARISON_TOL or abs(dr - r_) > COMPARISON_TOL
+             else "cifras de detección al día: ") + cmp)
+    # (c) its date against the latest model measure
+    dd = _doc_date(text)
+    gen = str(bench.get("generated") or "")
+    try:
+        last = datetime.fromisoformat(gen.replace(" ", "T")).date() if gen else None
+    except ValueError:
+        last = None
+    if dd is None:
+        stale.append("sin fecha legible en su línea «Estado:»")
+    elif last is None:
+        stale.append(f"fecha {dd:%d-%m-%Y}; sin fecha de la última medida de modelos (bench_candidates.json)")
+    elif (last - dd).days > COMPARISON_MAX_DAYS:
+        stale.append(f"fecha {dd:%d-%m-%Y}, {(last - dd).days} días anterior a la última medida de modelos "
+                     f"({last:%d-%m-%Y}; máximo {COMPARISON_MAX_DAYS})")
+    else:
+        good.append(f"fecha {dd:%d-%m-%Y} frente a la última medida de modelos {last:%d-%m-%Y}")
+    return _item(12, "Modelos", COMPARISON_ITEM, "aviso" if stale else "ok",
+                 ("DESFASADO: " + "; ".join(stale) + ("; bien: " + "; ".join(good) if good else "")) if stale
+                 else "; ".join(good))
+
+
 def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) -> list[dict]:
     """Every check of the Base packages B1 and B3 that is not in audit() itself (cli.run_audit)."""
     items = []
     for fn in (lambda: candidate_items(out_root), lambda: models_in_use_items(cfg), lambda: spotter_items(match_dirs),
                lambda: stage_time_items(match_dirs, out_root), lambda: parallel_items(match_dirs),
-               lambda: resources_items(out_root), lambda: [actions_item(out_root)]):
+               lambda: resources_items(out_root), lambda: [actions_item(out_root)],
+               # #30: after the model items, which it reads
+               lambda: [comparison_doc_item(items, out_root)]):
         try:
             items += fn()
         except Exception as e:  # noqa: BLE001 — one check that breaks never stops the audit
