@@ -1,15 +1,15 @@
 # Golpes perdidos: recall frente a F3Set
 
-648 golpes anotados de Rybakina en 368 puntos de 4 partidos (tolerancia ±0.2 s). **Encontrados 461 (71 %)** y 11 más apartados como de identidad dudosa (con ellos 73 %); precisión 81 % (462 de 568 golpes suyos dentro de los puntos; 13 eran golpes de la rival).
+648 golpes anotados de Rybakina en 368 puntos de 4 partidos (tolerancia ±0.2 s). **Encontrados 461 (71 %)** y 11 más apartados como de identidad dudosa (con ellos 73 %); precisión 88 % (462 de 526 golpes suyos dentro de los puntos; 13 eran golpes de la rival).
 
-**Sin 20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina** (anotaciones desfasadas con el vídeo: la mitad o más de sus golpes anotados caen fuera de la cámara principal, que sí se reconoce): **encontrados 460 de 517 (89 %)**; precisión 87 %. Cercana 92 %, lejana 87 %.
+**Sin 20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina** (anotaciones desfasadas con el vídeo: la mitad o más de sus golpes anotados caen fuera de la cámara principal, que sí se reconoce): **encontrados 460 de 517 (89 %)**; precisión 95 %. Cercana 92 %, lejana 87 %.
 
 | Partido | recall | precisión | principal pérdida |
 |---|---|---|---|
 | 20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin | 133/141 (94 %) | 98 % | jugadora cercana no seguida (sin tramo) (5) |
 | 20230124-W-Australian_Open-QF-Jelena_Ostapenko-Elena_Rybakina (desfasado) | 1/131 (1 %) | 3 % | fuera de la cámara principal (82) |
-| 20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka | 135/154 (88 %) | 83 % | no confirmado (bola vista) (6) |
-| 20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina | 192/222 (86 %) | 83 % | no es candidato (13) |
+| 20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka | 135/154 (88 %) | 92 % | no confirmado (bola vista) (6) |
+| 20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina | 192/222 (86 %) | 94 % | no es candidato (13) |
 
 ## Recall por lado y tipo
 

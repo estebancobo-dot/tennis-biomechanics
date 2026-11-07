@@ -259,17 +259,18 @@
    }
   },
   "precision": {
-   "predicted_in_points": 568,
+   "predicted_in_points": 526,
    "true": 462,
    "opponent_strokes": 13,
-   "other": 93,
-   "precision": 0.813
+   "other": 51,
+   "precision": 0.878
   },
   "kind_confusion": {
    "backhand->backhand": 147,
    "backhand->forehand": 2,
    "forehand->backhand": 5,
-   "forehand->forehand": 181,
+   "forehand->forehand": 180,
+   "forehand->overhead": 1,
    "serve->backhand": 1,
    "serve->overhead": 124,
    "volley_other->backhand": 1
@@ -577,17 +578,18 @@
    }
   },
   "precision": {
-   "predicted_in_points": 529,
+   "predicted_in_points": 487,
    "true": 461,
    "opponent_strokes": 7,
-   "other": 61,
-   "precision": 0.871
+   "other": 19,
+   "precision": 0.947
   },
   "kind_confusion": {
    "backhand->backhand": 147,
    "backhand->forehand": 2,
    "forehand->backhand": 5,
-   "forehand->forehand": 181,
+   "forehand->forehand": 180,
+   "forehand->overhead": 1,
    "serve->overhead": 124,
    "volley_other->backhand": 1
   },
@@ -1465,11 +1467,11 @@
      }
     },
     "precision": {
-     "predicted_in_points": 162,
+     "predicted_in_points": 147,
      "true": 135,
      "opponent_strokes": 6,
-     "other": 21,
-     "precision": 0.833
+     "other": 6,
+     "precision": 0.918
     },
     "kind_confusion": {
      "backhand->backhand": 48,
@@ -1761,17 +1763,18 @@
      }
     },
     "precision": {
-     "predicted_in_points": 231,
+     "predicted_in_points": 204,
      "true": 192,
      "opponent_strokes": 1,
-     "other": 38,
-     "precision": 0.831
+     "other": 11,
+     "precision": 0.941
     },
     "kind_confusion": {
      "backhand->backhand": 50,
      "backhand->forehand": 2,
      "forehand->backhand": 5,
-     "forehand->forehand": 82,
+     "forehand->forehand": 81,
+     "forehand->overhead": 1,
      "serve->overhead": 53
     },
     "identity": {
@@ -5527,7 +5530,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.03
+   "dt": 0.06
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5540,7 +5543,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.01
+   "dt": 0.02
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5553,7 +5556,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.05
+   "dt": 0.02
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5800,7 +5803,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.01
+   "dt": 0.02
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5813,7 +5816,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.01
+   "dt": -0.02
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5826,7 +5829,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.01
+   "dt": 0.02
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5839,7 +5842,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.033
+   "dt": 0.06
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5891,7 +5894,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.01
+   "dt": 0.0
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5904,7 +5907,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.03
+   "dt": -0.04
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5917,7 +5920,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": -0.04
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5930,7 +5933,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.01
+   "dt": -0.0
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -5956,7 +5959,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.04
+   "dt": -0.05
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6086,7 +6089,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.031
+   "dt": -0.05
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6099,7 +6102,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.031
+   "dt": -0.05
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6411,7 +6414,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.05
+   "dt": 0.03
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6697,7 +6700,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.01
+   "dt": 0.0
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6710,7 +6713,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.03
+   "dt": -0.04
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6723,7 +6726,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.01
+   "dt": 0.0
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6736,7 +6739,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.01
+   "dt": 0.04
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6749,7 +6752,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.11
+   "dt": 0.12
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6762,7 +6765,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.01
+   "dt": -0.0
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -6957,7 +6960,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": 0.02
+   "dt": 0.01
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -7295,7 +7298,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.01
+   "dt": 0.01
   },
   {
    "match": "20230126-W-Australian_Open-SF-Elena_Rybakina-Victoria_Azarenka",
@@ -7503,7 +7506,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.0
+   "dt": -0.006
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7516,7 +7519,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.02
+   "dt": -0.058
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7789,7 +7792,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.009
+   "dt": 0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7802,7 +7805,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.009
+   "dt": 0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7880,7 +7883,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.05
+   "dt": -0.04
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7893,7 +7896,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.01
+   "dt": 0.0
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7906,7 +7909,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.05
+   "dt": -0.04
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -7919,7 +7922,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.09
+   "dt": -0.08
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8114,7 +8117,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.026
+   "dt": -0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8166,7 +8169,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.021
+   "dt": -0.0
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8387,7 +8390,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.01
+   "dt": 0.005
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8673,7 +8676,7 @@
    "identity_ok": null,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.1
+   "dt": 0.096
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8686,7 +8689,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.04
+   "dt": 0.045
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8699,7 +8702,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.04
+   "dt": -0.035
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8712,7 +8715,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.04
+   "dt": 0.045
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8959,7 +8962,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.05
+   "dt": -0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -8972,7 +8975,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.01
+   "dt": 0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9440,7 +9443,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.04
+   "dt": -0.03
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9453,7 +9456,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.0
+   "dt": 0.01
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9465,8 +9468,8 @@
    "run_method": "ropa + clic",
    "identity_ok": true,
    "ball_seen": null,
-   "pred_stroke": "forehand",
-   "dt": 0.0
+   "pred_stroke": "overhead",
+   "dt": -0.01
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9479,7 +9482,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.006
+   "dt": 0.0
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9492,7 +9495,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "backhand",
-   "dt": -0.006
+   "dt": -0.0
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9700,7 +9703,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.036
+   "dt": 0.049
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9843,7 +9846,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": 0.02
+   "dt": 0.01
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9973,7 +9976,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.01
+   "dt": 0.011
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -9986,7 +9989,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.007
+   "dt": 0.02
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -10207,7 +10210,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.009
+   "dt": 0.0
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -10220,7 +10223,7 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.049
+   "dt": -0.04
   },
   {
    "match": "20230128-W-Australian_Open-F-Aryna_Sabalenka-Elena_Rybakina",
@@ -10233,8 +10236,8 @@
    "identity_ok": true,
    "ball_seen": null,
    "pred_stroke": "forehand",
-   "dt": -0.009
+   "dt": 0.0
   }
  ],
- "minutes": 9.9
+ "minutes": 11.2
 }
