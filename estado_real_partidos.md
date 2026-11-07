@@ -76,7 +76,7 @@
 | 35 | Medidas de la raqueta (altura, ángulos) en todo el golpe; qué miden los profesionales (11- | M4 | HECHO | 2 comprobación que falla | 11 comprobaciones: 2 pocos datos, 9 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entre |
 | 36 | Mano y antebrazo, cierre de la muñeca (11-10 09:56, 10:19) | M4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok |
 | 37 | Prueba en local sin procesar 20 GB (11-10 09:02) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
-| 38 | Dirección y profundidad del golpe (11-10 17:24) | M5 | HECHO | 2 comprobación que falla | 6 comprobaciones: 1 pocos datos, 5 ok; la peor: «5. Bola, resultado y contexto · Bote: profundidad, anchura, dentro/fuera» (se mide (47% de  |
+| 38 | Dirección y profundidad del golpe (11-10 17:24) | M5 | HECHO | 2 comprobación que falla | 6 comprobaciones: 1 pocos datos, 5 ok; la peor: «5. Bola, resultado y contexto · Bote: profundidad, anchura, dentro/fuera» (se mide (46% de  |
 | 39 | Lado del fondo de la pista (11-10 17:32-17:33) | M5 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 40 | Scripts de instalación, uso rápido y completo, sin leer nada (11-10 18:06, 18:21) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 41 | Exportación: cómo se ven y se graban (11-10 18:06; 19:01 «haz el punto 4») | B5 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
@@ -84,7 +84,7 @@
 | 43 | El PC no es servidor (11-10 18:27) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 44 | Sin vídeos del usuario, de entrenadores ni de otras jugadoras (11-10 19:37), salvo su entr | P1 | HECHO | 2 comprobación que falla | 11 comprobaciones: 1 aviso, 10 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió informa |
 | 45 | Todo automático y completo: el usuario no revisa nada (11-10 09:05, 19:38; 12-10 11:41) | B7 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 6 comprobaciones: 3 aviso, 3 ok; la peor: «Golpes encon |
-| 46 | Sin PDF enorme y sin inventar datos (11-10 19:40) | P1 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 falta, 1 ok; la peor: «Valores dentro de límites físicos» (ball_flight.apex_height_m: 3 de 98 fuera de 0.2–4.0) |
+| 46 | Sin PDF enorme y sin inventar datos (11-10 19:40) | P1 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 falta, 1 ok; la peor: «Valores dentro de límites físicos» (ball_flight.apex_height_m: 3 de 96 fuera de 0.2–4.0) |
 | 47 | Modelo técnico con fuentes; cómo saber si está completo (12-10 06:32) | P1 | HECHO | 2 comprobación que falla | 169 comprobaciones: 16 pocos datos, 153 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo  |
 | 48 | Posición de la cabeza y altura del cuerpo al inicio y al final (11-10 19:48) | M3 | HECHO | 3 comprobado en salidas | 3 comprobaciones: 3 ok |
 | 49 | No perder contexto ni sesión; registros automáticos (12-10 11:39-11:45) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
@@ -97,7 +97,7 @@
 | 56 | Barras horizontales con la diferencia de altura de la cabeza (12-10 17:40) | M3 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 57 | Nada de gráficas de muchas líneas ni tablas sin frases (12-10 17:10) | P1 | HECHO | 2 comprobación que falla | 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió informac |
 | 58 | La IA más moderna posible (11-10 09:05) | B3 | HECHO | 3 comprobado en salidas | 15 comprobaciones: 15 ok |
-| 59 | Diferencias solo por encima del error y en situaciones equivalentes (10-10 18:05) | M5 | HECHO | 2 comprobación que falla | 6 comprobaciones: 1 falta, 1 pocos datos, 4 ok; la peor: «Valores dentro de límites físicos» (ball_flight.apex_height_m: 3 de 98 fuera de 0. |
+| 59 | Diferencias solo por encima del error y en situaciones equivalentes (10-10 18:05) | M5 | HECHO | 2 comprobación que falla | 6 comprobaciones: 1 falta, 1 pocos datos, 4 ok; la peor: «Valores dentro de límites físicos» (ball_flight.apex_height_m: 3 de 96 fuera de 0. |
 | 64 | Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso | M2 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok |
 | 65 | El play del vídeo funciona (no solo un fotograma) (12-10 18:14, 21:03, 21:14) | P2 | HECHO | 3 comprobado en salidas | 11 comprobaciones: 11 ok |
 | 66 | Fechas y duración en los registros (12-10 18:25) | B7 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok |
@@ -110,7 +110,7 @@
 | 73 | Revisar la web de arriba abajo para que aporte valor (13-10 05:48 p6) | P2 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 23 comprobaciones: 1 aviso, 22 ok; la peor: «Tablas a l |
 | 74 | ¿El análisis de las apps de pago y libres fue profundo o superficial? (13-10 05:48 p7) | P4 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#74); no se comprueba en las salidas: análisis documental (docs/comparativa_apps.md), no una salida |
 | 75 | Velocidad: «10 golpes en 5 horas es absurdo» (13-10 05:48 p10) | B1 | HECHO | 3 comprobado en salidas | 8 comprobaciones: 8 ok |
-| 76 | «Un 50 % de golpes dudosos» (13-10 05:48 p10) | P3 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (167 de 265 del lado cercano (63%); motivos: |
+| 76 | «Un 50 % de golpes dudosos» (13-10 05:48 p10) | P3 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (170 de 265 del lado cercano (64%); motivos: |
 | 77 | No lanzar pruebas de 6 h para validar (13-10 06:01) | B1 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 78 | No depender de que al usuario se le ocurran funciones (13-10 06:09) | P5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#78); no se comprueba en las salidas: proceso: Claude propone las funciones desde la matriz y los entrenadores |
 | 79 | Vídeos de entrenamiento con otras cámaras, en un apartado aparte y marcado (12-10 21:31, 2 | P1 | PARCIAL | 2 comprobación que falla | 20 comprobaciones: 11 pocos datos, 9 ok; la peor: «Derechas filmadas de lado» (6 (se resume cada medida con 12 o más)) |
@@ -124,7 +124,7 @@
 | 87 | Matriz §4 Apoyos (abierto, semiabierto, neutro o cerrado, salto, abierto extremo) | M2 | HECHO | 3 comprobado en salidas | 4 comprobaciones: 4 ok |
 | 88 | Matriz §5 Pies (split, ajuste, cruzado, paso de ataque, recuperación) | M2 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 8 ok |
 | 89 | Matriz §6 Modalidades (plano, liftado, cortado, botepronto, volea, 3 terminaciones) | M6 | PARCIAL | 2 comprobación que falla | 8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Botepronto / media volea: casos (#16)» (4 golpes de 265 (la clase «Contacto» se pudo decidi |
-| 90 | Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral) | M5 | PARCIAL | 2 comprobación que falla | 16 comprobaciones: 6 pocos datos, 10 ok; la peor: «Golpe angulado (#132)» (0 golpes de 265 (la clase «Golpe angulado» se pudo decidir en 89; |
+| 90 | Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral) | M5 | PARCIAL | 2 comprobación que falla | 16 comprobaciones: 6 pocos datos, 10 ok; la peor: «Golpe angulado (#132)» (0 golpes de 265 (la clase «Golpe angulado» se pudo decidir en 86; |
 | 91 | Matriz §8 Dirección (cruzado, paralelo, dentro-fuera, dentro-dentro) | M5 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok |
 | 92 | Matriz §9 Control (zona de impacto, relajación, equilibrio) | M3 | PARCIAL | 2 comprobación que falla | 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Zona de impacto: delante de la cadera» (vista lateral de entrenamie |
 | 93 | Matriz §10 Propiedades de la raqueta | P1 | HECHO | 1 construido, sin comprobar | — |
@@ -136,7 +136,7 @@
 | 99 | Mejora 1 (entrenadores): líneas dibujadas sobre el fotograma | P1 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 100 | Mejora 2: raqueta al lado del cuerpo o detrás de la espalda, y adónde apunta la punta | M4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
 | 101 | Mejora 3: altura y separación del codo | M3 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
-| 102 | Mejora 4: punta de la raqueta respecto a la cabeza en el armado | M4 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 129 de 265 golpes; en «Aprende» |
+| 102 | Mejora 4: punta de la raqueta respecto a la cabeza en el armado | M4 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 128 de 265 golpes; en «Aprende» |
 | 103 | Mejora 5: transferencia de peso en una frase | M2 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 104 | Mejora 6: empuje de piernas («bajar y subir») | M2 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 105 | Mejora 7: ritmo con la bola (caída al subir la bola) | M5 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
@@ -152,7 +152,7 @@
 | 115 | Cuánto baja y sube el cuerpo, con fotogramas y barras horizontales: de la espera al punto  | M3 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 116 | Distancia entre las piernas en los golpes: base y estabilidad (13-10 11:50) | M2 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 117 | Hacia dónde mira el tronco al terminar (valla lateral, de frente, girado) según el golpe ( | M3 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
-| 118 | Validar cada medida de forma automática, no a mano: ¿técnica o ruido? (13-10 08:40-10:30) | P3 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 aviso, 1 ok; la peor: «forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)» (481 medid |
+| 118 | Validar cada medida de forma automática, no a mano: ¿técnica o ruido? (13-10 08:40-10:30) | P3 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 aviso, 1 ok; la peor: «forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)» (482 medid |
 | 119 | Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa (13-10 10:40, 11: | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 120 | Vídeo a pantalla completa (13-10 12:00) | P2 | HECHO | 2 comprobación que falla | 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió informac |
 | 121 | Ver lo que se pinta por separado, por grupos o una a una (13-10 12:00) | P2 | HECHO | 2 comprobación que falla | 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió informac |
@@ -165,7 +165,7 @@
 | 128 | Glosario de términos (13-10 14:00) | P2 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 130 | Resto de derecha (devolver el saque) con todas sus variantes, en la matriz y en la aplicac | M6 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 12 ok |
 | 131 | detectar impactos de bola por AUDIO (Chat, 10-10 17:27) | M5 | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
-| 132 | ángulos (golpe angulado) — repetido el 19-10 08:11: «golpe angulado ... te lo he dicho muc | M5 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Golpe angulado (#132)» (0 golpes de 265 (la clase «Golpe angulado» se pudo decidir en 89; s |
+| 132 | ángulos (golpe angulado) — repetido el 19-10 08:11: «golpe angulado ... te lo he dicho muc | M5 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Golpe angulado (#132)» (0 golpes de 265 (la clase «Golpe angulado» se pudo decidir en 86; s |
 | 134 | prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06) | B6 | HECHO | 2 comprobación que falla | 5 comprobaciones: 3 aviso, 2 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 93-101 puntos jugado |
 | 135 | distancia al fondo, red (Chat, 11-10 19:23) | M5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#135); sin comprobación automática asignada |
 | 136 | lo puedes añadir al contexto o fichero base? (Chat, 13-10 09:47) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
@@ -262,13 +262,13 @@
 | 227 | Pantalla completa en la aplicación (24-10 10:36) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 229 | Renombrar el vídeo no rompe nada; el partido se identifica por su contenido (25-10 13:21-1 | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 230 | Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12 | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok |
-| 231 | Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11: | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 13 comprobaciones: 4 aviso, 9 ok; la peor: «Tiempo de c |
+| 231 | Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11: | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 13 comprobaciones: 2 aviso, 11 ok; la peor: «Tiempo de  |
 | 232 | Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó (27-10 09 | B2 | HECHO | 3 comprobado en salidas | 7 comprobaciones: 7 ok |
 | 233 | Una referencia completa y medida antes de validar nada (26-10 11:09) | B6 | HECHO | 2 comprobación que falla | 5 comprobaciones: 3 aviso, 2 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 93-101 puntos jugado |
 | 234 | Prueba de valor de la aplicación con los datos reales (27-10 07:21) | B6 | HECHO | 1 construido, sin comprobar | no se comprueba en las salidas: prueba de valor del 27-10 (docs/plan_maestro.md, R2) |
 | 235 | Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) | M1 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#235); sin comprobación automática asignada |
 | 236 | Huellas numeradas sobre los pies y patrones de pasos (27-10 09:38) | M2 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#236); sin comprobación automática asignada |
-| 237 | El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min (27-10 10 | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
+| 237 | El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min (27-10 10 | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Peticiones por Git |
 | 238 | La validación es siempre automática; el usuario no valida la aplicación (27-10 11:42) | P3 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#238); sin comprobación automática asignada |
 | 239 | No se descarta ninguna petición (27-10 11:42) | D | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 240 | Comparar la aplicación con las profesionales una vez estén los golpes (27-10 11:42) | P4 | FALTA | 0 sin construir | SIN HACER según el registro (#240, docs/peticiones_usuario.md) |

@@ -1,12 +1,6 @@
 {
  "fine:unidad": [
   {
-   "s": 0.9672,
-   "units": 263,
-   "match": "zheng-qinwen-elena-rybakina",
-   "date": "2026-11-04 17:03"
-  },
-  {
    "s": 0.8144,
    "units": 248,
    "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
@@ -179,15 +173,15 @@
    "units": 275,
    "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
    "date": "2026-11-07 07:47"
+  },
+  {
+   "s": 1.3922,
+   "units": 304,
+   "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+   "date": "2026-11-07 08:03"
   }
  ],
  "fine:minuto": [
-  {
-   "s": 2.234,
-   "video_min": 116.7,
-   "match": "zheng-qinwen-elena-rybakina",
-   "date": "2026-11-04 17:03"
-  },
   {
    "s": 1.559,
    "video_min": 133.4,
@@ -361,6 +355,12 @@
    "video_min": 133.4,
    "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
    "date": "2026-11-07 07:47"
+  },
+  {
+   "s": 2.064,
+   "video_min": 210.4,
+   "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+   "date": "2026-11-07 08:03"
   }
  ],
  "identity:minuto": [
