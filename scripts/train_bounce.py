@@ -52,7 +52,7 @@ def _frames(root: Path, key: str, folder: str, names: list[str]):
     """The clip's frames one by one (extracted from the zip once, as bench_candidates.tracknet_frames), so a long clip
     never has to fit in memory."""
     import cv2
-    from bench_candidates import tracknet_zip
+    from bench_candidates import tracknet_download
 
     d = root / "tracknet" / "images" / key
     d.mkdir(parents=True, exist_ok=True)
@@ -60,7 +60,9 @@ def _frames(root: Path, key: str, folder: str, names: list[str]):
     for n in names:
         p = d / n
         if not p.exists():
-            z = z or tracknet_zip(root)
+            # all 95 clips' frames: the whole zip once (resumable) rather than thousands of reads by parts (07-11,
+            # request 125: a read by parts died at 2.3 of 2.6 GB)
+            z = z or tracknet_download(root)
             p.write_bytes(z.read(folder + n))
         yield cv2.imread(str(p))
 

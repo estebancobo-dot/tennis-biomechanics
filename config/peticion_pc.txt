@@ -308,6 +308,18 @@ argumentos: --only bounce_own
 ---
 id: 126
 accion: prevision
+---
+id: 127
+accion: completo
+---
+id: 128
+accion: medir
+script: bench_candidates
+argumentos: --only bounce_own
+# 127 (07-11, B4): los 4 partidos (desde las caches) para la auditoria con el detalle nuevo de los puntos de su saque
+# sin ningun golpe suyo (golpes de la rival o de nadie, segundos de camara principal)
+# 128 (07-11, #199): la 125 otra vez; fallo la lectura por partes del conjunto TrackNet a 2,3 de 2,6 GB: ahora se
+# descarga entero una vez, reanudando donde se corte
 # 126 (07-11, #66): rehace prevision.log con su hora de fin (el del 04-11 era anterior al arreglo)
 # 125 (07-11, #199): bote propio (HistGradientBoosting, 12 rasgos) entrenado con el conjunto TrackNet y nuestra bola,
 # separado por partido; se adopta solo si su F1 supera el de la regla en mas de 0,05 (bench_bounce_own.md)

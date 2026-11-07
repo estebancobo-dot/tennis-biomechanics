@@ -998,17 +998,40 @@ def tracknet_zip(root: Path) -> zipfile.ZipFile:
         return zipfile.ZipFile(io.BufferedReader(HttpFile(TRACKNET_ZIP), 1 << 16))
     except (RuntimeError, OSError, zipfile.BadZipFile) as e:
         print(f"  bote: lectura por partes no disponible ({str(e)[:120]}); descarga completa (2,6 GB, una vez)", flush=True)
+    return tracknet_download(root)
+
+
+def tracknet_download(root: Path, url: str = TRACKNET_ZIP, tries: int = 8, opener=None) -> zipfile.ZipFile:
+    """The whole zip to <root>/tracknet/Dataset.zip, resumed from what a cut download left in its .part file (07-11,
+    request 125: reading it by parts died at 2.3 of 2.6 GB after 5 tries and the measure was lost)."""
+    import time
+
+    opener = opener or urllib.request.urlopen
+    local = root / "tracknet" / "Dataset.zip"
+    if local.exists():
+        return zipfile.ZipFile(local)
     local.parent.mkdir(parents=True, exist_ok=True)
     part = local.with_suffix(".part")
-    with urllib.request.urlopen(urllib.request.Request(TRACKNET_ZIP), timeout=600) as r, open(part, "wb") as f:
-        while True:
-            b = r.read(1 << 22)
-            if not b:
-                break
-            f.write(b)
-    zipfile.ZipFile(part).close()                     # a broken download is an error here, not a wrong measure
-    part.replace(local)
-    return zipfile.ZipFile(local)
+    for k in range(tries):
+        have = part.stat().st_size if part.exists() else 0
+        req = urllib.request.Request(url, headers={"Range": f"bytes={have}-"} if have else {})
+        try:
+            with opener(req, timeout=600) as r:
+                resumed = have and getattr(r, "status", 200) == 206
+                with open(part, "ab" if resumed else "wb") as f:
+                    while True:
+                        b = r.read(1 << 22)
+                        if not b:
+                            break
+                        f.write(b)
+            zipfile.ZipFile(part).close()             # a broken download is an error here, not a wrong measure
+            part.replace(local)
+            return zipfile.ZipFile(local)
+        except (OSError, zipfile.BadZipFile) as e:
+            print(f"  bote: descarga cortada ({str(e)[:100]}); intento {k + 2} de {tries}, desde "
+                  f"{(part.stat().st_size if part.exists() else 0) / 1e9:.2f} GB", flush=True)
+            time.sleep(min(60, 2 ** k))
+    raise OSError(f"TrackNet: descarga sin terminar tras {tries} intentos")
 
 
 def tracknet_index(root: Path) -> dict[str, str]:
@@ -1054,7 +1077,11 @@ def tracknet_frames(root: Path, key: str, folder: str, names: list[str]) -> list
         p = d / n
         if not p.exists():
             z = z or tracknet_zip(root)
-            p.write_bytes(z.read(folder + n))
+            try:
+                p.write_bytes(z.read(folder + n))
+            except OSError:                           # a read by parts that dies: the whole zip, resumable, once
+                z = tracknet_download(root)
+                p.write_bytes(z.read(folder + n))
         out.append(cv2.imread(str(p)))
     return out
 
