@@ -151,16 +151,16 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "125f5691ab77b607",
+  "fingerprint": "81f04ca1dfdf0391",
   "version": "16",
-  "seconds": 277.9,
-  "finished": "2026-11-07 22:03:42",
+  "seconds": 234.6,
+  "finished": "2026-11-08 00:45:00",
   "summary": {
    "candidates": 273,
    "confirmed": 269,
    "errors": 0,
    "warnings": [],
-   "forehands": 111,
+   "forehands": 110,
    "windows": 182,
    "gate": {
     "windows_gated": 0,
@@ -174,14 +174,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "pose": 95.4,
-    "pose_modelo_yolo": 92.9,
-    "jugadora_lejana": 78.1,
-    "cuerdas_y_3d": 70.7,
-    "pista_ventana": 45.0,
-    "analisis_ventana": 33.5,
-    "recorte": 10.4,
-    "cribado": 8.1
+    "jugadora_lejana": 88.4,
+    "cuerdas_y_3d": 70.2,
+    "pista_ventana": 44.9,
+    "analisis_ventana": 33.4,
+    "recorte": 10.2,
+    "cribado": 8.3,
+    "pose": 1.2
    },
    "counts": {
     "overlap_s": 1.1,
@@ -191,18 +190,17 @@
     "kept_impacts": 272,
     "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 342,
-    "frames_modelo_yolo": 1435
+    "frames_960_far": 0
    }
   },
-  "out_hash": "d79e9eb5bc11ebaed0c2",
+  "out_hash": "1d0b1071942c5bc2ea46",
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "7ce3a856990a5aa1",
+  "fingerprint": "32940aa4872f287a",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-07 22:03:42",
+  "finished": "2026-11-08 00:45:00",
   "summary": {
    "enabled": false
   },
@@ -255,10 +253,10 @@
   "scheme": 2
  },
  "views_link": {
-  "fingerprint": "19ec184207b49e1d",
+  "fingerprint": "55791ff872d262e2",
   "version": "1",
-  "seconds": 0.3,
-  "finished": "2026-11-07 22:03:42",
+  "seconds": 0.4,
+  "finished": "2026-11-08 00:45:00",
   "summary": {
    "strokes": 269,
    "with_replay": 54,
@@ -271,10 +269,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "619e13319ce16da7",
+  "fingerprint": "ca521c7c810e2ca1",
   "version": "1",
-  "seconds": 36.3,
-  "finished": "2026-11-07 22:04:19",
+  "seconds": 36.4,
+  "finished": "2026-11-08 00:45:37",
   "summary": {
    "candidates": 58,
    "confirmed": 32,
@@ -294,13 +292,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 13.8,
+    "jugadora_lejana": 13.9,
     "cuerdas_y_3d": 8.3,
-    "pista_ventana": 7.0,
+    "pista_ventana": 7.4,
     "analisis_ventana": 6.7,
-    "recorte": 3.2,
-    "cribado": 1.2,
-    "pose": 0.2
+    "recorte": 3.0,
+    "cribado": 1.3,
+    "pose": 0.1
    },
    "counts": {
     "overlap_s": 0.0,
