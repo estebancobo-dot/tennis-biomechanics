@@ -1,6 +1,6 @@
 # Auditoría de requisitos (forehand)
 
-13 golpes del lado cercano. ✔ 357 cumplidos · ✘ 23 no cumplidos · … 127 sin golpes suficientes en esta ejecución · ! 98 avisos
+13 golpes del lado cercano. ✔ 358 cumplidos · ✘ 21 no cumplidos · … 127 sin golpes suficientes en esta ejecución · ! 99 avisos
 
 ## Peticiones del usuario SIN TERMINAR: 120 de 245
 
@@ -130,7 +130,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 101 a medias · 19 sin hace
 
 ## 1. Toda la taxonomía del golpe y todas sus variantes (situaciones)
 
-- ✘ **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 9 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 2, golpes suyos, pero ningún saque 3; sus saques encontrados caen en puntos de su saque 13, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 3) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 3): tipo {'backhand/detector': 1, 'backhand/pose': 1, 'forehand/detector': 1}, lado {'far': 3}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 2, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 2}; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque), 31.1-31.7 min (sin_saque)
+- ✘ **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 9 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 2, golpes suyos, pero ningún saque 3; sus saques encontrados caen en puntos de su saque 13, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 3) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 3): tipo {'backhand/detector': 1, 'backhand/pose': 1, 'forehand/detector': 1}, lado {'far': 3}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 2, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 2}; en los puntos sin ningún golpe suyo: con golpes de la rival 1, sin golpes de nadie 1, cámara principal 47.7 s (mediana); primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque), 31.1-31.7 min (sin_saque)
 - ! **Fotograma clave: inicio de preparación**: encontrado en el 69% de los golpes
 - ! **Fotograma clave: armado**: encontrado en el 77% de los golpes
 - ! **Fotograma clave: inicio de aceleración**: encontrado en el 77% de los golpes
@@ -341,11 +341,11 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 101 a medias · 19 sin hace
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 4509 caracteres de texto, 7 vídeos, 1 gráficos
 - ✔ **Pantalla «Análisis de golpe»**: 4888 caracteres de texto, 8 vídeos, 31 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 4357 caracteres de texto, 7 vídeos, 2 gráficos
-- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4232 caracteres de texto, 7 vídeos, 12 gráficos
+- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4244 caracteres de texto, 7 vídeos, 12 gráficos
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 4696 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 3805 caracteres de texto, 7 vídeos, 0 gráficos
-- ✔ **Pantalla «Datos del análisis»**: 2000 caracteres de texto, 7 vídeos, 0 gráficos
+- ✔ **Pantalla «Datos del análisis»**: 2003 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
@@ -443,7 +443,6 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 101 a medias · 19 sin hace
 
 ## 5. 100 % automático
 
-- ✘ **Registros con fecha y duración**: 54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: medir_bench_candidates.log: ilegible ([Errno 13] Permission denied: 'C:\\tenis\\output\\medir_bench_candidates.log')
 - ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 7 de 13 del lado cercano (54%); motivos: phase 20, elbow_implausible_at_impact 3, impact_without_audio 2. Otros 6 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
 - ! **Carpetas de pruebas antiguas**: 1 carpeta(s) de pruebas sin usar en más de 14 días (7.6 GB): _poc9_largo. Se borran con la petición «borrar» del PC
 - ✔ **Golpes que fallaron al procesarse**: ninguno
@@ -479,14 +478,15 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 101 a medias · 19 sin hace
 - ✔ **Pruebas en este PC: test_project_context**: 3 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
-- ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 19 s, quedan ≈ 0 s, a las 2026-11-07 12:09:23
-- ✔ **Tamaño de la salida (tamanos.txt)**: 42 carpetas, 36.2 GB en total (2026-11-07T12:07:38); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB
+- ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 19 s, quedan ≈ 0 s, a las 2026-11-07 13:00:01
+- ✔ **Registros con fecha y duración**: 55 de 55 registros con fecha de inicio y de fin o duración
+- ✔ **Tamaño de la salida (tamanos.txt)**: 42 carpetas, 36.2 GB en total (2026-11-07T12:56:06); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB
 - ✔ **Aplicación: ventana real y pantallas**: 56 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 1 análisis y 18 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 75 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 25 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 25 vídeos
-- ✔ **Exportación terminada: exportar**: terminó el 2026-11-07 12:09:49 en 0 min: 25 vídeos de 25 golpes
+- ✔ **Exportación terminada: exportar**: terminó el 2026-11-07 13:00:27 en 0 min: 25 vídeos de 25 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
 - ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 07-11 10:58, empezó a los 68.8 min; el PC estaba con otro trabajo hasta las 12:07 (68.6 min, no cuentan), empezó 0.2 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
 
@@ -502,12 +502,11 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 101 a medias · 19 sin hace
 - ! **Etapas a la vez: smoke_tennis-yusipopen-final-sobolenko-rybakin**: todas las etapas de su última ejecución corrieron en serie
 - ✔ **Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 0.8 min (objetivo ≤ 15 min)
 - ✔ **Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.1 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-07_1029.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (62.0 min): CPU 7/37/86 %, iGPU 0/2/94 %, RAM máx 19.3 GB → RAM al límite; us-open-2026-r4-naomi-osaka-el fine (3.2 min): CPU 28/43/73 %, iGPU 0/10/95 %, RAM máx 9.6 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 18/18/18 %, iGPU 0/0/0 %, RAM máx 8.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina views (2.8 min): CPU 20/48/87 %, iGPU 0/40/84 %, RAM máx 8.6 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine (4.2 min): CPU 21/39/67 %, iGPU 0/33/97 %, RAM máx 9.1 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 18/36/53 %, iGPU 0/22/43 %, RAM máx 8.9 GB → uso medio: margen para repartir trabajo
+- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-07_1029.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (108.0 min): CPU 6/30/86 %, iGPU 0/8/100 %, RAM máx 19.3 GB → RAM al límite; us-open-2026-r4-naomi-osaka-el fine (3.2 min): CPU 28/43/73 %, iGPU 0/10/95 %, RAM máx 9.6 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 18/18/18 %, iGPU 0/0/0 %, RAM máx 8.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina views (2.8 min): CPU 20/48/87 %, iGPU 0/40/84 %, RAM máx 8.6 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine (4.2 min): CPU 21/39/67 %, iGPU 0/33/97 %, RAM máx 9.1 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 18/36/53 %, iGPU 0/22/43 %, RAM máx 8.9 GB → uso medio: margen para repartir trabajo
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
 - ✘ **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
-- ✘ **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: medir_bench_candidates.log: ilegible ([Errno 13] )
 - ✘ **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
 - ✘ **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - ✘ **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -538,6 +537,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 101 a medias · 19 sin hace
 - ! **#33 Capturas de los mejores golpes de cada tipo y N imágenes de un golpe**: 8 comprobaciones: 5 aviso, 3 ok; la peor: «Fotograma clave: inicio de preparación» (encontrado en el 69% de los golpes)
 - ! **#45 Todo automático y completo: el usuario no revisa nada**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#55 Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
+- ! **#66 Fechas y duración en los registros**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok
 - ! **#73 Revisar la web de arriba abajo para que aporte valor**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 22 comprobaciones: 22 ok
 - ! **#74 ¿El análisis de las apps de pago y libres fue profundo o superficial?**: A MEDIAS según el registro (#74); no se comprueba en las salidas: análisis documental (docs/comparativa_apps.md), no una salida
 - ! **#75 Velocidad: «10 golpes en 5 horas es absurdo»**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)
@@ -743,14 +743,14 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 101 a medias · 19 sin hace
 
 ## 12. Mejores modelos: cada candidato medido frente al actual y los adoptados en uso (B3)
 
-- ✔ **Modelo candidato medido: wasb (bola WASB)**: frente a ours (TrackNetV3, fp16): precisión F1 0.863 / 0.906; velocidad 44.4 / 34.5 fps; no se adopta (F1 bola a 10 px 0.863 frente a 0.906 (peor); fotogramas/s 44.4 frente a 34.5 (no más lento)) [2026-11-04 04:36, dml]
-- ✔ **Modelo candidato medido: rtmw (esqueleto RTMW-x)**: frente a YOLO11m-pose + RTMPose-x (hybrid-x): precisión F1 0.667 / 0.667; temblor 0.356 / 0.357 %; pies 0.998 / 0.997; velocidad 10.0 / 3.3 fps; se adopta (F1 golpes 0.667 frente a 0.667 (igual o mejor); fotogramas/s 10.0 frente a 3.3 (no más lento)) [2026-11-04 04:36, dml]
-- ✔ **Modelo candidato medido: court14 (pista de 14 puntos (TennisCourtDetector))**: frente a tennisbio.court.fit_court: precisión puntos a ≤7 px 0.956 / 0.91; pista hallada 1.0 / 0.957; velocidad 6.3 / 3.6 fotogramas/s; se adopta (puntos a ≤7 px 0.956 frente a 0.91 (igual o mejor); fotogramas/s 6.3 frente a 3.6 (no más lento)) [2026-11-04 04:36, dml]
-- ✔ **Modelo candidato medido: rfdetr (jugadora lejana RF-DETR)**: frente a YOLO11m-pose en la mitad lejana: precisión jugadora lejana hallada 1.0 / 0.903; velocidad 0.5 / 1.3 fotogramas/s; no se adopta (lejana hallada 1.0 frente a 0.903 (igual o mejor); fotogramas/s 0.5 frente a 1.3 (más lento)) [2026-11-04 04:36, dml]
-- ✔ **Modelo candidato medido: f3ed (detector de golpes F3ED)**: frente a detector propio (spotting): precisión F1 golpes (test) 0.994 / 0.997; velocidad 0.153 / 0.031 min por min de vídeo; no se adopta (F1 golpes 0.994 frente a 0.997 (peor); min por min de vídeo 0.153 frente a 0.031 (más lento)) [2026-11-04 04:36, dml]
-- ✔ **Modelo candidato medido: ocr5 (marcador PP-OCRv5)**: frente a rapidocr-onnxruntime 1.4 (PP-OCRv4): precisión lecturas coherentes por muestra 0.438 / 0.518; leídas 0.456 / 0.526; velocidad 0.573 / 0.693 s por muestra (CPU); no se adopta (lecturas coherentes por muestra 0.438 frente a 0.518 (peor); s por muestra 0.573 frente a 0.693 (no más lento)) [2026-11-04 04:36, dml]
-- ✔ **Modelo candidato medido: mag3d (giro 3D MotionAGFormer)**: frente a RTMW3D (tennisbio.pose.wholebody3d): precisión a ≤15° 0.58 / 0.13; mediana 12.486 / 40.399°; X-factor 10.4 / 10.188°; velocidad 196.5 / 34.1 fotogramas/s (el candidato usa la pose 2D que ya tiene la pasada fina); se adopta (giro del tronco a ≤15° de la referencia 0.58 frente a 0.13 (igual o mejor); fotogramas/s 196.5 frente a 34.1 (no más lento)) [2026-11-04 04:36, dml]
-- ✔ **Modelo candidato medido: bounce (bote CatBoost)**: frente a regla del giro más brusco (tennisbio.ball): precisión F1 botes con nuestra bola 0.899 / 0.581; con la bola anotada 0.936 / 0.811; velocidad 0.1 / 0.1 min por hora de vídeo (1.6 / 0.5 s); se adopta (F1 botes (bola de nuestro detector) 0.899 frente a 0.581 (igual o mejor); min añadidos a la pasada por hora de vídeo 0.1 frente a 0.1 (no más lento)) [2026-11-04 04:36, dml]
+- ✔ **Modelo candidato medido: wasb (bola WASB)**: frente a ours (TrackNetV3, fp16): precisión F1 0.863 / 0.906; velocidad 44.4 / 34.5 fps; no se adopta (F1 bola a 10 px 0.863 frente a 0.906 (peor); fotogramas/s 44.4 frente a 34.5 (no más lento)) [2026-11-07 12:56, dml]
+- ✔ **Modelo candidato medido: rtmw (esqueleto RTMW-x)**: frente a YOLO11m-pose + RTMPose-x (hybrid-x): precisión F1 0.667 / 0.667; temblor 0.356 / 0.357 %; pies 0.998 / 0.997; velocidad 10.0 / 3.3 fps; se adopta (F1 golpes 0.667 frente a 0.667 (igual o mejor); fotogramas/s 10.0 frente a 3.3 (no más lento)) [2026-11-07 12:56, dml]
+- ✔ **Modelo candidato medido: court14 (pista de 14 puntos (TennisCourtDetector))**: frente a tennisbio.court.fit_court: precisión puntos a ≤7 px 0.956 / 0.91; pista hallada 1.0 / 0.957; velocidad 6.3 / 3.6 fotogramas/s; se adopta (puntos a ≤7 px 0.956 frente a 0.91 (igual o mejor); fotogramas/s 6.3 frente a 3.6 (no más lento)) [2026-11-07 12:56, dml]
+- ✔ **Modelo candidato medido: rfdetr (jugadora lejana RF-DETR)**: frente a YOLO11m-pose en la mitad lejana: precisión jugadora lejana hallada 1.0 / 0.903; velocidad 0.5 / 1.3 fotogramas/s; no se adopta (lejana hallada 1.0 frente a 0.903 (igual o mejor); fotogramas/s 0.5 frente a 1.3 (más lento)) [2026-11-07 12:56, dml]
+- ✔ **Modelo candidato medido: f3ed (detector de golpes F3ED)**: frente a detector propio (spotting): precisión F1 golpes (test) 0.994 / 0.997; velocidad 0.153 / 0.031 min por min de vídeo; no se adopta (F1 golpes 0.994 frente a 0.997 (peor); min por min de vídeo 0.153 frente a 0.031 (más lento)) [2026-11-07 12:56, dml]
+- ✔ **Modelo candidato medido: ocr5 (marcador PP-OCRv5)**: frente a rapidocr-onnxruntime 1.4 (PP-OCRv4): precisión lecturas coherentes por muestra 0.438 / 0.518; leídas 0.456 / 0.526; velocidad 0.573 / 0.693 s por muestra (CPU); no se adopta (lecturas coherentes por muestra 0.438 frente a 0.518 (peor); s por muestra 0.573 frente a 0.693 (no más lento)) [2026-11-07 12:56, dml]
+- ✔ **Modelo candidato medido: mag3d (giro 3D MotionAGFormer)**: frente a RTMW3D (tennisbio.pose.wholebody3d): precisión a ≤15° 0.58 / 0.13; mediana 12.486 / 40.399°; X-factor 10.4 / 10.188°; velocidad 196.5 / 34.1 fotogramas/s (el candidato usa la pose 2D que ya tiene la pasada fina); se adopta (giro del tronco a ≤15° de la referencia 0.58 frente a 0.13 (igual o mejor); fotogramas/s 196.5 frente a 34.1 (no más lento)) [2026-11-07 12:56, dml]
+- ✔ **Modelo candidato medido: bounce (bote CatBoost)**: frente a regla del giro más brusco (tennisbio.ball): precisión F1 botes con nuestra bola 0.899 / 0.581; con la bola anotada 0.936 / 0.811; velocidad 0.1 / 0.1 min por hora de vídeo (1.6 / 0.5 s); se adopta (F1 botes (bola de nuestro detector) 0.899 frente a 0.581 (igual o mejor); min añadidos a la pasada por hora de vídeo 0.1 frente a 0.1 (no más lento)) [2026-11-07 12:56, dml]
 - ✔ **Modelo en uso: detector de golpes aprendido (F3Set)**: elegido y con su modelo en este PC (spotter.enabled: True, models/spotting.onnx)
 - ✔ **Modelo en uso: esqueleto híbrido (YOLO11 + RTMPose)**: elegido y con su modelo en este PC (fine_pass.pose_model: hybrid, refine: rtmpose-x)
 - ✔ **Modelo en uso: pista de 14 puntos (TennisCourtDetector)**: elegido y con su modelo en este PC (court.detector: tcd14)
