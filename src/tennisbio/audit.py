@@ -1341,6 +1341,35 @@ def _request_time(repo: Path = ROOT):
         return None
 
 
+def _previous_job_end(folder: Path, before, skip: str = "ciclo_actions.log"):
+    """The latest end of another PC job (its log in `folder`: transcript «End time:», «terminado fecha» of
+    comun.ps1 or «termina fecha» of a request) up to `before` (+1 min); None when there is none. The Actions job
+    waits while the PC is busy, so that time is not a wait of the runner (#237)."""
+    from datetime import datetime, timedelta
+    pats = ((r"End time: (\d{14})", "%Y%m%d%H%M%S"),
+            (r"terminado (\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}:\d{2})", None),
+            (r"termina (\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}(?::\d{2})?)", None))
+    best = None
+    for f in folder.glob("*.log"):
+        if f.name == skip:
+            continue
+        try:
+            with f.open("rb") as h:
+                h.seek(max(f.stat().st_size - 8192, 0))
+                tail = h.read().decode("utf-8", errors="replace")
+        except OSError:
+            continue
+        for pat, fmt in pats:
+            for s in re.findall(pat, tail):
+                try:
+                    t = datetime.strptime(s, fmt) if fmt else datetime.fromisoformat(s.replace(" ", "T"))
+                except ValueError:
+                    continue
+                if t <= before + timedelta(minutes=1) and (best is None or t > best):
+                    best = t
+    return best
+
+
 def actions_item(out_root: Path, request_time=None) -> dict:
     """#237: the PC starts each request at once (GitHub Actions runner). From the transcript of the last job
     (<output>/ciclo_actions.log, «Start time») against the time of the last request commit."""
@@ -1360,9 +1389,15 @@ def actions_item(out_root: Path, request_time=None) -> dict:
     if wait < -1:
         return _item(5, "Peticiones del PC", name, "aviso",
                      f"la última petición ({req:%d-%m %H:%M}) no empezó por GitHub Actions; el último trabajo por Actions fue el {start:%d-%m %H:%M}")
-    return _item(5, "Peticiones del PC", name, "ok" if wait <= ACTIONS_WAIT_MIN else "aviso",
-                 f"petición del {req:%d-%m %H:%M}, empezó a los {max(wait, 0):.1f} min (objetivo ≤ {ACTIONS_WAIT_MIN:.0f} min; "
-                 "si el PC estaba con otro trabajo, espera a que acabe)")
+    # the time the PC was busy with another job after the request does not count (the job waits for it to end)
+    prev = _previous_job_end(f.parent, start)
+    busy = (prev - req).total_seconds() / 60 if prev is not None and prev > req else 0.0
+    idle_wait = wait - busy
+    busy_txt = (f"; el PC estaba con otro trabajo hasta las {prev:%H:%M} ({busy:.1f} min, no cuentan), "
+                f"empezó {max(idle_wait, 0):.1f} min después de quedar libre" if busy > 0 else "; el PC estaba libre")
+    return _item(5, "Peticiones del PC", name, "ok" if idle_wait <= ACTIONS_WAIT_MIN else "aviso",
+                 f"petición del {req:%d-%m %H:%M}, empezó a los {max(wait, 0):.1f} min{busy_txt} (objetivo ≤ {ACTIONS_WAIT_MIN:.0f} min "
+                 "desde la petición o desde que acaba el trabajo anterior)")
 
 
 def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) -> list[dict]:

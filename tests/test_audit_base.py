@@ -122,6 +122,27 @@ def test_requests_start_at_once_by_github_actions(tmp_path):
     assert newer["status"] == "aviso" and "no empezó por GitHub Actions" in newer["detail"]
 
 
+def test_actions_wait_does_not_count_the_time_the_pc_was_busy(tmp_path):
+    """#237 (07-11): request at 06:20 while the full analysis ran until 07:06; the job started at 07:11."""
+    out = tmp_path / "output"
+    out.mkdir()
+    (out / "ciclo_actions.log").write_text("Windows PowerShell transcript start\nStart time: 20261107071120\n", encoding="utf-8")
+    req = datetime(2026, 11, 7, 6, 20, 30)
+    idle = A.actions_item(out, req)                                    # nothing else ran: 50.8 min of real wait
+    assert idle["status"] == "aviso" and "empezó a los 50.8 min" in idle["detail"] and "estaba libre" in idle["detail"]
+    (out / "ciclo_automatico.log").write_text(
+        "Start time: 20261107044424\n==> [2026-11-07 05:13:32] Peticion 119: analisis completo\n"
+        "Empezado 2026-11-07 04:44:19 - terminado 2026-11-07 07:05:57 - duracion total 2 h 21 min\n"
+        "End time: 20261107070603\n", encoding="utf-8")
+    (out / "solo_informe.log").write_text("End time: 20261107100000\n", encoding="utf-8")   # after: not the previous job
+    busy = A.actions_item(out, req)
+    assert busy["status"] == "ok", busy["detail"]
+    assert "otro trabajo hasta las 07:06" in busy["detail"] and "45.5 min" in busy["detail"]
+    assert "5.3 min después de quedar libre" in busy["detail"]
+    (out / "ciclo_automatico.log").write_text("End time: 20261107061000\n", encoding="utf-8")  # ended before the request
+    assert A.actions_item(out, req)["status"] == "aviso"
+
+
 def test_base_items_never_break_the_audit(tmp_path, monkeypatch):
     monkeypatch.setattr(A, "candidate_items", lambda out: 1 / 0)
     items = A.base_items([], tmp_path, cfg={})
