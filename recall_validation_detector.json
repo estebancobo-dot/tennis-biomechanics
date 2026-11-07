@@ -259,11 +259,11 @@
    }
   },
   "precision": {
-   "predicted_in_points": 567,
+   "predicted_in_points": 568,
    "true": 462,
    "opponent_strokes": 13,
-   "other": 92,
-   "precision": 0.815
+   "other": 93,
+   "precision": 0.813
   },
   "kind_confusion": {
    "backhand->backhand": 147,
@@ -577,11 +577,11 @@
    }
   },
   "precision": {
-   "predicted_in_points": 528,
+   "predicted_in_points": 529,
    "true": 461,
    "opponent_strokes": 7,
-   "other": 60,
-   "precision": 0.873
+   "other": 61,
+   "precision": 0.871
   },
   "kind_confusion": {
    "backhand->backhand": 147,
@@ -1465,11 +1465,11 @@
      }
     },
     "precision": {
-     "predicted_in_points": 160,
+     "predicted_in_points": 162,
      "true": 135,
      "opponent_strokes": 6,
-     "other": 19,
-     "precision": 0.844
+     "other": 21,
+     "precision": 0.833
     },
     "kind_confusion": {
      "backhand->backhand": 48,
@@ -1761,11 +1761,11 @@
      }
     },
     "precision": {
-     "predicted_in_points": 232,
+     "predicted_in_points": 231,
      "true": 192,
      "opponent_strokes": 1,
-     "other": 39,
-     "precision": 0.828
+     "other": 38,
+     "precision": 0.831
     },
     "kind_confusion": {
      "backhand->backhand": 50,
@@ -10236,5 +10236,5 @@
    "dt": -0.009
   }
  ],
- "minutes": 28.7
+ "minutes": 9.9
 }
