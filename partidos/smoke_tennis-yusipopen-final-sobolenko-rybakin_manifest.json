@@ -184,10 +184,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "1d4acff76e435886",
+  "fingerprint": "dc974569d2d7455b",
   "version": "1",
-  "seconds": 22.1,
-  "finished": "2026-11-07 17:49:31",
+  "seconds": 23.3,
+  "finished": "2026-11-07 19:50:24",
   "summary": {
    "candidates": 28,
    "confirmed": 19,
@@ -207,11 +207,11 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 7.8,
-    "analisis_ventana": 4.6,
-    "jugadora_lejana": 2.6,
-    "pista_ventana": 1.4,
-    "recorte": 1.4,
+    "cuerdas_y_3d": 8.0,
+    "analisis_ventana": 5.1,
+    "jugadora_lejana": 2.4,
+    "recorte": 1.5,
+    "pista_ventana": 1.5,
     "cribado": 0.7,
     "pose": 0.1
    },
@@ -252,7 +252,7 @@
   "fingerprint": "9820e4ce46d3b6f9",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-11-07 17:49:31",
+  "finished": "2026-11-07 19:50:24",
   "summary": {
    "strokes": 75,
    "with_replay": 26,
