@@ -5,7 +5,7 @@
    "title": "Cópiala (Aprende su derecha, con su patrón típico)",
    "text_chars": 2446,
    "charts": 19,
-   "videos": 7,
+   "videos": 6,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
@@ -30,7 +30,7 @@
   },
   {
    "title": "Sus golpes (Videoteca y pista)",
-   "text_chars": 4509,
+   "text_chars": 4496,
    "charts": 1,
    "videos": 7,
    "black_canvases": 0,
@@ -57,7 +57,7 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 4888,
+   "text_chars": 4979,
    "charts": 31,
    "videos": 8,
    "black_canvases": 0,
@@ -85,7 +85,7 @@
   },
   {
    "title": "Comparar dos golpes",
-   "text_chars": 4357,
+   "text_chars": 4354,
    "charts": 2,
    "videos": 7,
    "black_canvases": 0,
@@ -112,7 +112,7 @@
   },
   {
    "title": "Conclusiones (Panel y Comparativas)",
-   "text_chars": 4232,
+   "text_chars": 4043,
    "charts": 12,
    "videos": 7,
    "black_canvases": 0,
@@ -139,7 +139,7 @@
   },
   {
    "title": "Tabla de golpes (Explorador)",
-   "text_chars": 4696,
+   "text_chars": 4689,
    "charts": 0,
    "videos": 7,
    "black_canvases": 0,
@@ -193,7 +193,7 @@
   },
   {
    "title": "Fiabilidad de las medidas",
-   "text_chars": 3805,
+   "text_chars": 3424,
    "charts": 0,
    "videos": 7,
    "black_canvases": 0,
@@ -220,7 +220,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 2000,
+   "text_chars": 2027,
    "charts": 0,
    "videos": 7,
    "black_canvases": 0,
@@ -325,7 +325,7 @@
  ],
  "learn": {
   "combinations": 2050,
-  "with_exact_strokes": 600,
+  "with_exact_strokes": 608,
   "checkpoints_checked": 184500,
   "failures": [],
   "rows_all": 90,
@@ -399,7 +399,7 @@
     "valued": 3,
     "checked": 3,
     "drilled": 3,
-    "words": 64,
+    "words": 60,
     "focus_words": 14,
     "focus_body": false,
     "practice": true,
