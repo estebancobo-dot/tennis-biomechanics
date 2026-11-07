@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261107003318
+Start time: 20261107014235
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 4784
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 6392
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -15,70 +15,4 @@ CLRVersion: 4.0.30319.42000
 WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
-**********************
-
-==> [2026-11-07 00:33:18] Peticion 114: indice de la aplicacion local (registro: C:\tenis\output\prueba_app.log)
-Ahora: nada en curso
-En cola: ≈ 54 min, termina hacia las 01:28
-Jugadoras: 2 · partidos: 18
-
-Análisis:
-Partidos:
-  poc31_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  poc31_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  poc67_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  poc67_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
-  poc70_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  poc70_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
-  poc71_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  poc71_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
-  poc74_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  poc74_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
-  poc76_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  poc76_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
-  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5: analizado
-  tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: analizado
-  us-open-2026-r4-naomi-osaka-elena-rybakina: analizado
-  zheng-qinwen-elena-rybakina: analizado
-Cola (4):
-  #3 partido us-open-2026-r4-naomi-osaka-elena-rybakina rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
-  #4 partido zheng-qinwen-elena-rybakina rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
-  #5 partido tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
-  #6 partido tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 rybakina  · pendiente · nueva versión: cambió score, fine, fine_doubtful
-Avisos:
-  [info] Nueva versión: recalcula 4 partido(s) ≈ 54 min, desde las cachés.
-0 partido(s) a recalcular, 0 informe(s); 1 análisis por hacer de partidos ya analizados (solo su informe, sin repetir etapas: tennisbio app work); 14 prueba(s) del ciclo automático: las mantiene el ciclo
-Ahora: nada en curso
-En cola: ≈ 10 min, termina hacia las 00:43
-Jugadoras: 2 · partidos: 18
-
-Análisis:
-Partidos:
-  poc31_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  poc31_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  poc67_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  poc67_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
-  poc70_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  poc70_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
-  poc71_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  poc71_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
-  poc74_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  poc74_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
-  poc76_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  poc76_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
-  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
-  tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5: analizado
-  tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: analizado
-  us-open-2026-r4-naomi-osaka-elena-rybakina: analizado
-  zheng-qinwen-elena-rybakina: analizado
-Cola (1):
-  #7 informe  rybakina forehand · pendiente · partido(s) ya analizado(s) sin su análisis: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5, us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina
-    (paso terminado en 7 min 05 s)
-Empezado 2026-11-07 00:33:16 - terminado 2026-11-07 00:40:24 - duracion total 7 min 07 s
-**********************
-Windows PowerShell transcript end
-End time: 20261107004024
 **********************
