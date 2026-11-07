@@ -1334,7 +1334,10 @@ def resources_items(out_root: Path) -> list[dict]:
         spec = importlib.util.spec_from_file_location("resources_summary", ROOT / "scripts" / "resources_summary.py")
         rs = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(rs)
-        groups = [g for g in rs.summarize(rs.read([files[-1]])) if g.get("etapa")]
+        allg = [g for g in rs.summarize(rs.read([files[-1]])) if g.get("etapa")]
+        # samples once the stage named had ended are not that stage's (07-11, #230): apart, at the end
+        groups = [g for g in allg if not g.get("after")]
+        after_min = round(sum(g["minutos"] for g in allg if g.get("after")), 1)
     except Exception as e:  # noqa: BLE001 — the audit must still be written
         return [_item(9, "Uso del PC", name, "aviso", f"no se pudo resumir {files[-1].name} ({e})")]
     if not groups:
@@ -1343,6 +1346,8 @@ def resources_items(out_root: Path) -> list[dict]:
     det = "; ".join(f"{g['partido'][:30]} {g['etapa']} ({g['minutos']} min): CPU {fmt(g['stats']['cpu_total'])} %, "
                     f"iGPU {fmt(g['stats']['gpu_3d'])} %, RAM máx {g['stats']['ram_usada_gb'][2]:.1f} GB → {g['limite']}"
                     for g in groups[:6])
+    if after_min:
+        det += f"; {after_min} min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
     return [_item(9, "Uso del PC", name, "ok", f"{files[-1].name} (mín/media/máx): {det}")]
 
 

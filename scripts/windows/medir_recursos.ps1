@@ -2,6 +2,8 @@
 # RAM (usada, python), iGPU (por tipo de motor: 3D, Compute, VideoDecode) y disco, con la etapa y el partido de
 # output\progreso.json. Escribe output\recursos\recursos_<fecha>.csv; termina sola cuando ya no hay analisis.
 # La arranca el ciclo automatico (una sola a la vez). Clases CIM, no contadores: sus nombres no se traducen.
+# 07-11 (#230): tambien la hora y el % de progreso.json, para que resources_summary.py no cuente como de la etapa
+# las muestras tomadas cuando ya habia terminado (progreso.json se queda con la ultima etapa al 100 %).
 param([int]$Cada = 15)
 $ErrorActionPreference = "SilentlyContinue"
 . (Join-Path $PSScriptRoot "comun.ps1")
@@ -9,7 +11,7 @@ $Out = "$Base\output"
 $dir = "$Out\recursos"
 New-Item -ItemType Directory -Force $dir | Out-Null
 $csv = Join-Path $dir ("recursos_" + (Get-Date -Format "yyyy-MM-dd_HHmm") + ".csv")
-"hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram_python_gb,gpu_3d,gpu_compute,gpu_decode,disco" |
+"hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram_python_gb,gpu_3d,gpu_compute,gpu_decode,disco,progreso_hora,progreso_pct" |
     Set-Content $csv -Encoding ASCII
 $nucleos = [int](Get-CimInstance Win32_ComputerSystem).NumberOfLogicalProcessors
 if ($nucleos -lt 1) { $nucleos = 1 }
@@ -24,10 +26,11 @@ function Num($v) { if ($null -eq $v) { return "" } ; return ([double]$v).ToStrin
 
 while (Hay-Analisis) {
     $hora = Get-Date -Format s
-    $partido, $etapa = "", ""
+    $partido, $etapa, $phora, $ppct = "", "", "", ""
     try {
         $p = Get-Content "$Out\progreso.json" -Raw | ConvertFrom-Json
         $partido, $etapa = "$($p.partido)", "$($p.etapa)"
+        $phora, $ppct = "$($p.hora)", (Num $p.porcentaje)
     } catch {}
     $cpu = (Get-CimInstance Win32_PerfFormattedData_PerfOS_Processor -Filter "Name='_Total'").PercentProcessorTime
     $procs = @(Get-CimInstance Win32_PerfFormattedData_PerfProc_Process | Where-Object { $_.Name -match '^(python|ffmpeg)(#\d+)?$' })
@@ -48,7 +51,7 @@ while (Hay-Analisis) {
     }
     $disco = (Get-CimInstance Win32_PerfFormattedData_PerfDisk_PhysicalDisk -Filter "Name='_Total'").PercentDiskTime
     $linea = @($hora, $partido, $etapa, (Num $cpu), (Num $cpuPy), (Num $cpuFf), (Num $ramUsada), (Num $ramTot), (Num $ramPy),
-               (Num ([math]::Min(100, $g3d))), (Num ([math]::Min(100, $gco))), (Num ([math]::Min(100, $gde))), (Num ([math]::Min(100, $disco)))) -join ","
+               (Num ([math]::Min(100, $g3d))), (Num ([math]::Min(100, $gco))), (Num ([math]::Min(100, $gde))), (Num ([math]::Min(100, $disco))), $phora, $ppct) -join ","
     $linea | Add-Content $csv -Encoding ASCII
     Start-Sleep -Seconds $Cada
 }

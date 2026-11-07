@@ -125,3 +125,38 @@ def test_real_processes_start_and_answer(tmp_path):
     left = stages._fine_parallel(ctx, m.player, [[{"t": 5.0}], [{"t": 9.0}]], 2, (1.0, 1.0, False, "k"), got.append)
     assert left == [] and len(got) == 2, logs
     assert all(r["errors"] and r["strokes"] == [] for r in got)                # no video here: an error each
+
+
+@pytest.mark.parametrize("stage, out, who", [("fine", "strokes.json", True),
+                                             ("fine_doubtful", "strokes_doubtful.json", None),
+                                             ("fine_opponent", "strokes_opponent.json", False)])
+def test_every_fine_stage_uses_the_pool_and_gives_the_same_file(fake, monkeypatch, stage, out, who):
+    """#230 (07-11): fine, fine_doubtful and fine_opponent all go through _fine, so all three spread their windows
+    over the same processes (fine_speed.workers) and write byte for byte the same file as one by one."""
+    from tennisbio.pipeline import Context
+
+    tmp = fake
+    cands = [{"t": float(t), "side": "near", "target": w} for t in (10, 11, 30, 50, 70, 90) for w in (True, None, False)]
+    stages._write(tmp / "candidates.json", cands)
+    stages._write(tmp / "scenes.json", {"fps": 1, "shots": []})
+    cfg = {"device": "dml", "fine_pass": {"window_s": 1.0}, "racket_face": {"enabled": False}, "analyze_opponent": True}
+    monkeypatch.setattr("os.cpu_count", lambda: 16)
+    monkeypatch.setattr(stages, "available_ram_gb", lambda: 20.0)
+    monkeypatch.setattr(stages, "_fine_one", lambda ctx, p, g, *a: [{"match_time_s": c["t"], "stroke": "forehand",
+                                                                     "who": c["target"]} for c in g])
+    pools = []
+    real = stages._fine_parallel
+    monkeypatch.setattr(stages, "_fine_parallel", lambda *a: pools.append(a[3]) or real(*a))
+
+    def run(workers):
+        ctx = Context(Match("m1", tmp / "v.mp4", Player("p", "P")), {**cfg, "fine_speed": {"workers": workers}}, tmp,
+                      log=lambda s: None)
+        ctx.progress = lambda *a, **k: None
+        res = getattr(stages, f"st_{stage}")(ctx)
+        return (tmp / out).read_bytes(), {k: v for k, v in res.items() if k != "seconds"}
+
+    par, serial = run(2), run(1)
+    assert pools == [2]                                   # the pool (2 processes) in the first run, not in the second
+    assert par == serial
+    got = stages._read(tmp / out)
+    assert len(got) == 6 and {s["who"] for s in got} == {who}

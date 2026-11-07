@@ -42,10 +42,29 @@ def limit(s: dict, ram_total: float) -> str:
     return "uso medio: margen para repartir trabajo"
 
 
+AFTER = "tras "          # prefix of the samples taken once the stage named had ended (see stale)
+
+
+def stale(r: dict, grace_s: float = 60.0) -> bool:
+    """A sample taken when progreso.json still names a stage that had already ended (100 % more than `grace_s`
+    before): the report, the audit or another job ran then, not that stage (07-11, #230: the final's
+    fine_doubtful took 36 s, but 71.8 min of samples carried its name). Old CSVs without the columns: never."""
+    from datetime import datetime
+    try:
+        if float(r.get("progreso_pct") or "nan") < 100:
+            return False
+        t = datetime.fromisoformat(str(r.get("hora", "")).replace(" ", "T"))
+        ended = datetime.fromisoformat(str(r.get("progreso_hora", "")).replace(" ", "T"))
+    except (TypeError, ValueError):
+        return False
+    return (t - ended).total_seconds() > grace_s
+
+
 def summarize(rows: list[dict], every_s: float = 15.0) -> list[dict]:
     groups: dict[tuple, list] = {}
     for r in rows:
-        groups.setdefault((r.get("partido", ""), r.get("etapa", "")), []).append(r)
+        st = r.get("etapa", "")
+        groups.setdefault((r.get("partido", ""), AFTER + st if st and stale(r) else st), []).append(r)
     ram_total = max((r["ram_total_gb"] for r in rows if r["ram_total_gb"] == r["ram_total_gb"]), default=float("nan"))
     out = []
     for (m, st), rs in groups.items():
@@ -53,7 +72,10 @@ def summarize(rows: list[dict], every_s: float = 15.0) -> list[dict]:
         for c in COLS:
             v = [r[c] for r in rs if r[c] == r[c]]
             s[c] = (min(v), sum(v) / len(v), max(v)) if v else (float("nan"),) * 3
-        out.append({"partido": m, "etapa": st, "minutos": round(len(rs) * every_s / 60, 1), "stats": s, "limite": limit(s, ram_total)})
+        after = st.startswith(AFTER)
+        out.append({"partido": m, "etapa": st, "minutos": round(len(rs) * every_s / 60, 1), "stats": s, "after": after,
+                    "limite": "fuera de la etapa: ya había terminado (informe, auditoría u otro trabajo)" if after
+                    else limit(s, ram_total)})
     return out
 
 
