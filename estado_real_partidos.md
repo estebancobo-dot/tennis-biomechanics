@@ -6,15 +6,15 @@
 |---|---|
 | 0 sin construir | 19 |
 | 1 construido, sin comprobar | 65 |
-| 2 comprobación que falla | 73 |
-| 3 comprobado en salidas | 80 |
+| 2 comprobación que falla | 72 |
+| 3 comprobado en salidas | 81 |
 | 4 validado con verdad | 0 |
 
 ## Por paquete del plan (en el orden de ejecución)
 
 | Paquete | Peticiones | sin construir | construido, sin comprobar | comprobación que falla | comprobado en salidas | validado con verdad | Se cierra con |
 |---|---|---|---|---|---|---|---|
-| B1 Base · velocidad y uso del PC | 10 | 0 | 0 | 3 | 7 | 0 | Prueba desde cero de 35 min en ≤ 45 min; CPU/iGPU por etapa medidas en cada ejecución |
+| B1 Base · velocidad y uso del PC | 10 | 0 | 0 | 2 | 8 | 0 | Prueba desde cero de 35 min en ≤ 45 min; CPU/iGPU por etapa medidas en cada ejecución |
 | B2 Base · robustez (nada se cuelga, todo se recupera) | 3 | 0 | 0 | 0 | 3 | 0 | Prueba por cada caso de error y cuelgue; 0 etapas con error en la referencia |
 | B3 Base · mejores modelos (estado del arte medido) | 10 | 0 | 1 | 1 | 8 | 0 | Cada candidato medido frente al actual (precisión con datos anotados y fotogramas/s en el PC) |
 | B4 Base · no perder golpes | 6 | 2 | 0 | 4 | 0 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión |
@@ -250,8 +250,8 @@
 | 215 | Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22) | M5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#215); sin comprobación automática asignada |
 | 216 | Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Audi | M4 | FALTA | 0 sin construir | SIN HACER según el registro (#216, docs/peticiones_usuario.md) |
 | 217 | Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26 | D | FALTA | 0 sin construir | SIN HACER según el registro (#217, docs/peticiones_usuario.md) |
-| 218 | La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen | B4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Repeticiones |
-| 219 | Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y co | B4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 4 aviso, 4 ok; la peor: «Golpes encon |
+| 218 | La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen | B4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 aviso; la peor: «Repeticiones y otr |
+| 219 | Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y co | B4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 7 aviso, 1 ok; la peor: «Golpes encon |
 | 220 | Almacenamiento definitivo: árbol por jugador, partido y golpe; nombres, colisiones y todos | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 221 | Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano  | B3 | HECHO | 3 comprobado en salidas | 8 comprobaciones: 8 ok |
 | 222 | Un clic por partido para decir quién es ella (19-10 19:57) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
@@ -268,7 +268,7 @@
 | 234 | Prueba de valor de la aplicación con los datos reales (27-10 07:21) | B6 | HECHO | 1 construido, sin comprobar | no se comprueba en las salidas: prueba de valor del 27-10 (docs/plan_maestro.md, R2) |
 | 235 | Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) | M1 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#235); sin comprobación automática asignada |
 | 236 | Huellas numeradas sobre los pies y patrones de pasos (27-10 09:38) | M2 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#236); sin comprobación automática asignada |
-| 237 | El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min (27-10 10 | B1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
+| 237 | El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min (27-10 10 | B1 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 238 | La validación es siempre automática; el usuario no valida la aplicación (27-10 11:42) | P3 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#238); sin comprobación automática asignada |
 | 239 | No se descarta ninguna petición (27-10 11:42) | D | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 240 | Comparar la aplicación con las profesionales una vez estén los golpes (27-10 11:42) | P4 | FALTA | 0 sin construir | SIN HACER según el registro (#240, docs/peticiones_usuario.md) |
