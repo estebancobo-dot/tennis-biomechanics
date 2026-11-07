@@ -151,10 +151,10 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "9dd6ff6127b05cee",
+  "fingerprint": "91607d493dbdbdf1",
   "version": "16",
-  "seconds": 303.8,
-  "finished": "2026-11-07 16:05:16",
+  "seconds": 309.3,
+  "finished": "2026-11-07 18:09:33",
   "summary": {
    "candidates": 302,
    "confirmed": 286,
@@ -175,13 +175,13 @@
     "seconds_in_gated_windows": 0.4
    },
    "seconds": {
-    "jugadora_lejana": 235.2,
-    "cuerdas_y_3d": 69.4,
-    "pista_ventana": 45.6,
-    "analisis_ventana": 32.3,
-    "recorte": 11.7,
-    "cribado": 8.8,
-    "pose": 0.6
+    "jugadora_lejana": 232.3,
+    "cuerdas_y_3d": 70.5,
+    "pista_ventana": 46.2,
+    "analisis_ventana": 36.4,
+    "recorte": 11.6,
+    "cribado": 9.6,
+    "pose": 1.1
    },
    "counts": {
     "overlap_s": 0.0,
@@ -194,14 +194,14 @@
     "frames_960_far": 0
    }
   },
-  "out_hash": "9b5a92a9500efcd5e3c8",
+  "out_hash": "675bed7a40350b010505",
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "9feb1cf9c4b14b95",
+  "fingerprint": "fb2748442131843b",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-07 16:05:16",
+  "finished": "2026-11-07 18:09:33",
   "summary": {
    "enabled": false
   },
@@ -254,10 +254,10 @@
   "scheme": 2
  },
  "views_link": {
-  "fingerprint": "434b1020379c7837",
+  "fingerprint": "70cccd199c769c53",
   "version": "1",
   "seconds": 0.4,
-  "finished": "2026-11-07 11:28:27",
+  "finished": "2026-11-07 18:09:33",
   "summary": {
    "strokes": 286,
    "with_replay": 44,
@@ -270,10 +270,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "2a8a2654c9c4a5a1",
+  "fingerprint": "edbaffdd67f95377",
   "version": "1",
-  "seconds": 36.5,
-  "finished": "2026-11-07 16:05:53",
+  "seconds": 36.4,
+  "finished": "2026-11-07 18:10:10",
   "summary": {
    "candidates": 64,
    "confirmed": 34,
@@ -293,13 +293,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 10.2,
-    "jugadora_lejana": 9.8,
-    "analisis_ventana": 6.7,
-    "pista_ventana": 6.2,
+    "cuerdas_y_3d": 10.3,
+    "jugadora_lejana": 9.1,
+    "analisis_ventana": 6.9,
+    "pista_ventana": 6.0,
     "recorte": 3.0,
     "cribado": 1.4,
-    "pose": 0.2
+    "pose": 0.1
    },
    "counts": {
     "overlap_s": 0.0,
@@ -312,7 +312,7 @@
     "frames_960_far": 0
    }
   },
-  "out_hash": "17bf7bd59a703b802c4d",
+  "out_hash": "0e639845c71e73d781ee",
   "scheme": 2
  }
 }
