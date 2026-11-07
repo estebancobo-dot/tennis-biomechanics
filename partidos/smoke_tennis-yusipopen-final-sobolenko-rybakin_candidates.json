@@ -1520,16 +1520,6 @@
   "source": "spotter"
  },
  {
-  "t": 1875.04,
-  "audio": false,
-  "side": "near",
-  "identity": true,
-  "target": true,
-  "kind": "serve",
-  "score": null,
-  "source": "marcador"
- },
- {
   "t": 1875.84,
   "audio": true,
   "side": "far",

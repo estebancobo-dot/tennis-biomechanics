@@ -108,12 +108,12 @@
   "scheme": 2
  },
  "candidates": {
-  "fingerprint": "4fe6ecd4df1fc65f",
-  "version": "13",
+  "fingerprint": "cb4dd8bbd0b2c47d",
+  "version": "14",
   "seconds": 0.9,
-  "finished": "2026-11-07 07:06:28",
+  "finished": "2026-11-07 10:06:47",
   "summary": {
-   "candidates": 183,
+   "candidates": 182,
    "far": 94,
    "with_audio": 145,
    "source": "spotter",
@@ -123,7 +123,7 @@
    "replay_runs": 0,
    "audio_track": 0
   },
-  "out_hash": "576d7e4a3ccbbfe58301",
+  "out_hash": "5857f3515b7153f4594b",
   "scheme": 2
  },
  "fine": {
@@ -230,10 +230,10 @@
   "scheme": 2
  },
  "views": {
-  "fingerprint": "fa67ec6c3320cc1a",
+  "fingerprint": "0d284e5fd022be48",
   "version": "6",
-  "seconds": 45.7,
-  "finished": "2026-11-07 04:44:49",
+  "seconds": 45.3,
+  "finished": "2026-11-07 10:07:33",
   "summary": {
    "views": 123,
    "repeticion_principal": 22,
@@ -241,11 +241,11 @@
    "frontal": 1,
    "primer_plano": 95,
    "otra": 2,
-   "links": 329,
+   "links": 327,
    "linked_views": 115,
    "slowmo_links": 5
   },
-  "out_hash": "ec8adde37dbd1519c0ec",
+  "out_hash": "75d37920f96307bd1f98",
   "scheme": 2
  },
  "views_link": {
