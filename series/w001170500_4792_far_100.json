@@ -10615,8 +10615,5 @@
   ]
  ],
  "shot_bounce_m": null,
- "bounce_court_m": [
-  1.99,
-  9.26
- ]
+ "bounce_court_m": null
 }

@@ -16911,10 +16911,7 @@
   -3.32,
   21.63
  ],
- "bounce_court_m": [
-  1.29,
-  2.07
- ],
+ "bounce_court_m": null,
  "face": {
   "first": 42,
   "tilt": [

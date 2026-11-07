@@ -11034,12 +11034,9 @@
    1.92976644
   ]
  ],
- "shot_bounce_m": [
-  -1.29,
-  21.7
- ],
+ "shot_bounce_m": null,
  "bounce_court_m": [
-  3.82,
+  3.55,
   6.87
  ]
 }

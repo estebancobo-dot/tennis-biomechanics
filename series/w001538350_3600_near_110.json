@@ -17120,10 +17120,7 @@
   ]
  ],
  "shot_bounce_m": null,
- "bounce_court_m": [
-  0.31,
-  6.74
- ],
+ "bounce_court_m": null,
  "face": {
   "first": 60,
   "tilt": [
