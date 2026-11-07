@@ -88,3 +88,4 @@ hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram
 2026-11-07T10:52:46,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,7.0,0.0,0.0,4.6,19.8,0.0,0.0,0.0,0.0,0.0
 2026-11-07T10:53:03,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,24.0,13.0,0.0,5.1,19.8,0.1,1.0,0.0,0.0,0.0
 2026-11-07T10:53:19,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,50.0,14.6,28.9,7.8,19.8,2.7,93.0,0.0,0.0,25.0
+2026-11-07T10:53:36,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,49.0,14.4,0.0,7.8,19.8,2.5,90.0,0.0,0.0,13.0
