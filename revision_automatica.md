@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-356 cumplidos · 23 no cumplidos · 127 sin golpes suficientes · 99 avisos (antes: 356 cumplidos, 20 no cumplidos)
+358 cumplidos · 21 no cumplidos · 127 sin golpes suficientes · 99 avisos (antes: 356 cumplidos, 23 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 120 de 245
 
@@ -132,9 +132,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 101 a medias · 19 sin hace
 
 - **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 9 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 2, golpes suyos, pero ningún saque 3; sus saques encontrados caen en puntos de su saque 13, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 3
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
-- **Registros con fecha y duración**: 54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos
 - **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
-- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos)
 - **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -154,12 +152,8 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 101 a medias · 19 sin hace
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 
-## Empeora respecto a la ejecución anterior
-
-- **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: aviso → falta: 9 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 2, golpes suyos, pero ningún saque 3; sus saques encontrados caen en puntos de su saque 13, de la rival 5, fuera de
-- **Registros con fecha y duración**: ok → falta: 54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos
-- **#66 Fechas y duración en los registros**: aviso → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos)
-
 ## Mejora
 
-- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok
+- Registros con fecha y duración: falta → ok
+- Aplicación: análisis en su índice: aviso → ok
+- #66 Fechas y duración en los registros: falta → aviso

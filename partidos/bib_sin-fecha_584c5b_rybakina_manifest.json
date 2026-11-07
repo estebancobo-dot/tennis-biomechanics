@@ -132,13 +132,13 @@
   "scheme": 2
  },
  "candidates": {
-  "fingerprint": "5060efba7e82062a",
-  "version": "13",
-  "seconds": 3.0,
-  "finished": "2026-11-07 07:27:32",
+  "fingerprint": "07e9d16dd33075da",
+  "version": "14",
+  "seconds": 3.1,
+  "finished": "2026-11-07 10:57:58",
   "summary": {
-   "candidates": 626,
-   "far": 290,
+   "candidates": 624,
+   "far": 288,
    "with_audio": 506,
    "source": "spotter",
    "opponent_strokes": 288,
@@ -147,7 +147,7 @@
    "replay_runs": 3,
    "audio_track": 0
   },
-  "out_hash": "dda380fa970c6a742d67",
+  "out_hash": "9029fc83dfc797003948",
   "scheme": 2
  },
  "fine": {

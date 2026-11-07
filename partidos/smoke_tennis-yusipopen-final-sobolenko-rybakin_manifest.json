@@ -129,8 +129,8 @@
  "fine": {
   "fingerprint": "e519ad2216b5cf47",
   "version": "16",
-  "seconds": 71.4,
-  "finished": "2026-11-07 10:08:44",
+  "seconds": 65.7,
+  "finished": "2026-11-07 10:54:09",
   "summary": {
    "candidates": 78,
    "confirmed": 75,
@@ -150,13 +150,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 29.2,
-    "pista_ventana": 19.7,
-    "cuerdas_y_3d": 14.1,
-    "analisis_ventana": 13.1,
-    "recorte": 3.9,
-    "cribado": 3.3,
-    "pose": 0.3
+    "jugadora_lejana": 27.2,
+    "pista_ventana": 17.7,
+    "cuerdas_y_3d": 13.4,
+    "analisis_ventana": 12.1,
+    "recorte": 3.6,
+    "cribado": 3.1,
+    "pose": 0.2
    },
    "counts": {
     "overlap_s": 0.0,
@@ -176,7 +176,7 @@
   "fingerprint": "1cb0a20c940bf236",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-07 10:08:44",
+  "finished": "2026-11-07 10:54:09",
   "summary": {
    "enabled": false
   },
@@ -186,8 +186,8 @@
  "fine_doubtful": {
   "fingerprint": "376fe0ea14e1801f",
   "version": "1",
-  "seconds": 26.4,
-  "finished": "2026-11-07 10:09:10",
+  "seconds": 26.0,
+  "finished": "2026-11-07 10:54:35",
   "summary": {
    "candidates": 28,
    "confirmed": 19,
@@ -208,11 +208,11 @@
    },
    "seconds": {
     "cuerdas_y_3d": 8.5,
-    "analisis_ventana": 5.5,
-    "jugadora_lejana": 4.7,
-    "pista_ventana": 1.8,
+    "analisis_ventana": 5.3,
+    "jugadora_lejana": 2.8,
+    "pista_ventana": 1.7,
     "recorte": 1.6,
-    "cribado": 0.7,
+    "cribado": 0.8,
     "pose": 0.1
    },
    "counts": {
@@ -252,7 +252,7 @@
   "fingerprint": "4ece18b385e1074e",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-11-07 10:09:11",
+  "finished": "2026-11-07 10:54:35",
   "summary": {
    "strokes": 75,
    "with_replay": 26,

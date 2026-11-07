@@ -100,7 +100,7 @@
 | 59 | Diferencias solo por encima del error y en situaciones equivalentes (10-10 18:05) | M5 | HECHO | 2 comprobación que falla | 6 comprobaciones: 2 pocos datos, 4 ok; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 6 de 13 golpes; en «Apren |
 | 64 | Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso | M2 | PARCIAL | 2 comprobación que falla | 10 comprobaciones: 2 pocos datos, 8 ok; la peor: «3. Pies y desplazamiento · Split step: aterrizaje respecto al golpe del rival» (se mide (1 |
 | 65 | El play del vídeo funciona (no solo un fotograma) (12-10 18:14, 21:03, 21:14) | P2 | HECHO | 3 comprobado en salidas | 11 comprobaciones: 11 ok |
-| 66 | Fechas y duración en los registros (12-10 18:25) | B7 | PARCIAL | 2 comprobación que falla | 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin  |
+| 66 | Fechas y duración en los registros (12-10 18:25) | B7 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok |
 | 67 | No borrar el trabajo hecho: lo complejo como extra (12-10 22:35; 13-10 05:48 p6) | P2 | HECHO | 3 comprobado en salidas | 13 comprobaciones: 13 ok |
 | 68 | La meta: mejorar mi derecha tomando la de X como base (12-10 22:25; 13-10 05:48 p5) | P1 | PARCIAL | 2 comprobación que falla | 8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes e |
 | 69 | Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace | M5 | PARCIAL | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos |
@@ -178,7 +178,7 @@
 | 143 | (punto 3) esta es una guia para la derecha de otra jugadora ... revisar si aplica todo (Ch | P1 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#143); sin comprobación automática asignada |
 | 144 | (punto 4) hay tareas o schedulers ... salen terminales y se apagan solos (Chat, 17-10 09:4 | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 145 | no quiero nada en la nube ni pagar ni nada (Chat, 17-10 10:09) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
-| 146 | borra las carpetas de pruebas antiguas (Chat, 17-10 10:49) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Carpetas de pruebas antiguas» (3 carpeta(s) de pruebas sin usar en más de 14 días (9.3 GB): _poc31_35,  |
+| 146 | borra las carpetas de pruebas antiguas (Chat, 17-10 10:49) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Carpetas de pruebas antiguas» (1 carpeta(s) de pruebas sin usar en más de 14 días (7.6 GB): _poc9_largo |
 | 147 | la guia de ivanovic esta aplicada al 100 por 100? sobre todo los puntos 1 2 3 5 6 y 10 (Ch | P1 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#147); sin comprobación automática asignada |
 | 148 | empieza por la maqueta de una fase (Chat, 17-10 13:05) | P2 | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 149 | no se como validar eso lo tienes que hacer tu (Chat, 17-10 13:11) | P3 | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
@@ -192,7 +192,7 @@
 | 157 | bola corta baja cerca de la red (Chat, 19-10 08:11) | M5 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «Bola corta baja cerca de la red (#157)» (0 golpes de 13 (la clase «Bola corta cerca de la red» se |
 | 158 | bola corta alta cerca de la red (Chat, 19-10 08:11) | M5 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «Bola corta alta cerca de la red (#158)» (0 golpes de 13 (la clase «Bola corta cerca de la red» se |
 | 159 | volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (C | M6 | PARCIAL | 2 comprobación que falla | 2 comprobaciones: 2 pocos datos; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 13 (la clase «Contacto» se pudo decid |
-| 160 | la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11) | B7 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Aplicación:  |
+| 160 | la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11) | B7 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 ok |
 | 161 | como se enlazan los partidos de una jugadora ... tienen que estar el analisis junto (Chat, | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 162 | Galerías ordenadas por calidad de captura, representatividad y resultado del punto (CLAUDE | P2 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#162); sin comprobación automática asignada |
 | 163 | Final del armado (máximo giro, raqueta más atrás) (Matriz (literatura), §1) | M1 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#163); sin comprobación automática asignada |
@@ -273,7 +273,7 @@
 | 239 | No se descarta ninguna petición (27-10 11:42) | D | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 240 | Comparar la aplicación con las profesionales una vez estén los golpes (27-10 11:42) | P4 | FALTA | 0 sin construir | SIN HACER según el registro (#240, docs/peticiones_usuario.md) |
 | 241 | Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el códig | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
-| 242 | Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femen | B7 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Aplicación:  |
+| 242 | Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femen | B7 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 ok |
 | 243 | Todos los escenarios del producto los contempla Claude sin esperar a que se pidan (27-10 1 | P5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#243); sin comprobación automática asignada |
 | 244 | Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-1 | M7 | FALTA | 0 sin construir | SIN HACER según el registro (#244, docs/peticiones_usuario.md) |
 | 245 | Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10) | M7 | FALTA | 0 sin construir | SIN HACER según el registro (#245, docs/peticiones_usuario.md) |
