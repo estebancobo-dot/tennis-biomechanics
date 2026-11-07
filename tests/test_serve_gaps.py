@@ -111,7 +111,8 @@ def test_what_the_spotter_saw_before_her_first_stroke():
 def test_a_serve_candidate_is_added_before_the_opponents_return_when_hers_was_not_seen(monkeypatch):
     import tennisbio.stages as S
     readings = [_r(0, (0, 0)), _r(40, (15, 0)), _r(80, (30, 0))]
-    cands = [{"t": 20.0, "target": False, "side": "far", "source": "spotter"},      # point 1: the return only
+    cands = [{"t": 5.0, "target": True, "side": "near", "source": "spotter"},       # the previous point's last stroke
+             {"t": 20.0, "target": False, "side": "far", "source": "spotter"},      # point 1: the return only
              {"t": 21.5, "target": True, "side": "near", "source": "spotter"},
              {"t": 50.0, "target": True, "side": "near", "source": "spotter", "kind": "serve"},   # point 2: her serve seen
              {"t": 50.9, "target": False, "side": "far", "source": "spotter"}]
@@ -129,3 +130,27 @@ def test_a_scoreboard_serve_candidate_is_named_serve_in_the_fine_pass():
     r = StrokeResult(impact_frame=10, impact_source="spotter", stroke="backhand")
     stroke_from_spotter(r, {"source": "marcador", "kind": "serve"})
     assert r.stroke == "overhead"
+
+
+def test_the_previous_points_last_stroke_is_not_taken_for_the_return(monkeypatch):
+    """Request 118: the window opened on the previous point's last strokes and invented serves (F3Set 94.5 → 87.3 %)."""
+    import tennisbio.stages as S
+    readings = [_r(0, (0, 0)), _r(40, (15, 0))]
+    cands = [{"t": 0.5, "target": False, "side": "far"},          # the previous point's rally
+             {"t": 1.2, "target": True, "side": "near"},
+             {"t": 2.0, "target": False, "side": "far"},          # the previous point's last stroke
+             {"t": 18.0, "target": True, "side": "near"},         # her serve, seen
+             {"t": 18.8, "target": False, "side": "far"}]         # the return
+    monkeypatch.setattr(S, "near_is_target", lambda identity, frame: True)
+    assert S.add_serve_candidates(cands, {"readings": readings}, {"fps": 25}, 25.0) == 0
+
+
+def test_a_return_after_a_pause_with_her_serve_unseen_gets_one(monkeypatch):
+    import tennisbio.stages as S
+    readings = [_r(0, (0, 0)), _r(40, (15, 0))]
+    cands = [{"t": 0.5, "target": False, "side": "far"}, {"t": 1.2, "target": True, "side": "near"},
+             {"t": 2.0, "target": False, "side": "far"},
+             {"t": 18.8, "target": False, "side": "far"}, {"t": 20.0, "target": True, "side": "near"}]
+    monkeypatch.setattr(S, "near_is_target", lambda identity, frame: True)
+    assert S.add_serve_candidates(cands, {"readings": readings}, {"fps": 25}, 25.0) == 1
+    assert any(c.get("source") == "marcador" and abs(c["t"] - 18.0) < 1e-6 for c in cands)

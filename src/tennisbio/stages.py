@@ -804,6 +804,8 @@ def spotter_candidates(spotted: list[dict], identity: dict, fps: float, runs: li
 
 
 SERVE_BEFORE_RETURN_S = 0.8     # her serve's contact before the opponent's return (a first serve crosses in ~0.8 s)
+RALLY_PAUSE_S = 5.0             # no stroke for this long before the return: a new point (between points: 15-25 s)
+SERVE_LOOK_S = 3.0              # a candidate of hers this long before the return is her serve already
 
 
 def add_serve_candidates(cands: list[dict], score: dict, identity: dict, fps: float) -> int:
@@ -818,8 +820,17 @@ def add_serve_candidates(cands: list[dict], score: dict, identity: dict, fps: fl
     added = []
     for t0, t1 in her_serve_points((score or {}).get("readings") or []):
         inside = [c for c in ts if t0 <= c["t"] <= t1]
-        opp = next((c for c in inside if c.get("target") is False), None)
-        if opp is None or any(c.get("target") and c["t"] < opp["t"] for c in inside):
+        # the return is the opponent's first stroke after a pause with no stroke at all (a rally starts): the window can
+        # open on the last strokes of the previous point (the board changes a few seconds late; request 118: without this
+        # F3Set's precision fell from 94.5 % to 87.3 %)
+        opp = None
+        for c in inside:
+            prev = max((x["t"] for x in ts if x["t"] < c["t"]), default=None)
+            # the very first stroke of the video has no pause known before it: never taken for a return
+            if c.get("target") is False and prev is not None and c["t"] - prev >= RALLY_PAUSE_S:
+                opp = c
+                break
+        if opp is None or any(c.get("target") and opp["t"] - SERVE_LOOK_S <= c["t"] < opp["t"] for c in ts):
             continue
         t = opp["t"] - SERVE_BEFORE_RETURN_S
         who = near_is_target(identity, int(round(t * ifps))) if identity else None
@@ -832,7 +843,7 @@ def add_serve_candidates(cands: list[dict], score: dict, identity: dict, fps: fl
     return len(added)
 
 
-@stage("candidates", "12", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
+@stage("candidates", "13", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
        reviews=("identidad_clic.json",),
        # with the learned spotter (off by default) it reads spotting.json; off, its fingerprint is the one it always was
        settings=lambda c: {"spotter": True} if spotter_on(c) else {},

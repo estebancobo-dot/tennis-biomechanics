@@ -282,6 +282,16 @@ detector: si
 ---
 id: 119
 accion: completo
+---
+id: 120
+accion: recall
+detector: si
+---
+id: 121
+accion: completo
+# 120-121 (07-11): 118 dio precision 0,873 (antes 0,945): la ventana del punto empezaba en los ultimos golpes del punto
+# anterior y tomaba uno por el resto. Ahora el resto es el primer golpe de la rival tras >= 5 s sin golpes, y no se anade
+# si hay un golpe suyo en los 3 s antes (candidatos v13). 120 = F3Set, 121 = los 4 partidos
 # 118-119 (07-11): candidatos de saque por el marcador (su saque no visto por el detector, el resto de la rival si):
 # 118 = F3Set (que no anada saques falsos), 119 = los 4 partidos (saques por punto de su saque)
 # 117 (07-11): auditoria con lo que vio el detector antes del primer golpe suyo en los puntos de su saque sin saque
