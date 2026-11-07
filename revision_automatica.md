@@ -1,6 +1,6 @@
 # Revisión automática: FALLOS
 
-359 cumplidos · 21 no cumplidos · 127 sin golpes suficientes · 98 avisos (antes: 358 cumplidos, 21 no cumplidos)
+359 cumplidos · 21 no cumplidos · 127 sin golpes suficientes · 98 avisos (antes: 359 cumplidos, 21 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 119 de 245
 
@@ -150,7 +150,3 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 100 a medias · 19 sin hace
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-
-## Mejora
-
-- #237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min: aviso → ok

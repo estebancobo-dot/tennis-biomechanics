@@ -131,3 +131,13 @@ hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram
 2026-11-07T13:55:37,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,7.0,1.7,0.0,5.7,19.8,0.2,0.0,0.0,0.0,1.0
 2026-11-07T13:55:54,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,32.0,2.5,0.0,7.5,19.8,0.2,0.0,0.0,0.0,1.0
 2026-11-07T13:56:11,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,15.0,0.6,0.0,7.0,19.8,0.2,0.0,0.0,0.0,0.0
+2026-11-07T13:56:27,tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5,fine_doubtful,72.0,46.7,0.0,7.1,19.8,0.3,0.0,0.0,0.0,0.0
+2026-11-07T13:56:44,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,41.0,8.6,0.0,9.6,19.8,2.7,100.0,0.0,0.0,0.0
+2026-11-07T13:57:00,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,43.0,12.9,0.0,9.8,19.8,2.9,98.0,0.0,0.0,1.0
+2026-11-07T13:57:17,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,37.0,17.9,0.0,9.9,19.8,2.8,44.0,0.0,0.0,0.0
+2026-11-07T13:57:33,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,96.0,69.2,0.0,10.0,19.8,2.9,0.0,0.0,0.0,3.0
+2026-11-07T13:57:50,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,74.0,44.7,0.0,10.0,19.8,3.0,0.0,0.0,0.0,0.0
+2026-11-07T13:58:06,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,42.0,58.6,0.0,10.4,19.8,3.4,0.0,0.0,0.0,2.0
+2026-11-07T13:58:23,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,76.0,14.3,0.0,10.7,19.8,3.6,0.0,0.0,0.0,0.0
+2026-11-07T13:58:39,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,42.0,15.6,0.0,10.9,19.8,3.8,0.0,0.0,0.0,0.0
+2026-11-07T13:58:56,us-open-2026-r4-naomi-osaka-elena-rybakina,fine_doubtful,23.0,16.4,0.0,8.8,19.8,1.7,0.0,0.0,0.0,0.0
