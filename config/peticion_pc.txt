@@ -342,6 +342,16 @@ accion: completo
 ---
 id: 135
 accion: completo
+---
+id: 136
+accion: recall
+detector: si
+---
+id: 137
+accion: completo
+# 136-137 (07-11, B4): 135 dio el motivo: 8 de los 10 golpes suyos perdidos los descartaba el cribado de la bola; los
+# saques del marcador ya no se criban por la bola (como los del detector). 136 = F3Set (que no baje la precision 0,95),
+# 137 = los 4 partidos (saques por punto de su saque)
 # 135 (07-11, B4): 134 dio 10 golpes suyos descartados en la pasada fina y 3 de identidad dudosa en los puntos de su
 # saque; ahora la pasada fina escribe por que descarta cada candidato (strokes_descartados.json) y la auditoria lo dice
 # 134 (07-11, B4): auditoria que dice si los golpes suyos perdidos en los puntos de su saque quedaron de identidad

@@ -218,3 +218,23 @@ def test_the_fine_pass_records_why_it_dropped_a_candidate():
                                              "dropped": [{"t": 1.0, "why": "x"}]}}
     S._merge_fine_stats(r)
     assert len(S._GATE["dropped"]) == 2
+
+
+def test_a_scoreboard_serve_window_is_not_ruled_out_by_the_ball(monkeypatch, tmp_path):
+    """Request 135: 8 of her 10 strokes lost in points of her serve were ruled out by the ball alone."""
+    from types import SimpleNamespace
+    import numpy as np
+    import tennisbio.stages as S
+    import tennisbio.clip_pipeline as CP
+    import tennisbio.fine_gate as FG
+
+    monkeypatch.setattr(CP, "window_ball", lambda clip, cache, ball: (np.zeros((50, 3)), 0.0, 1280, 720, 25.0))
+    monkeypatch.setattr(FG, "gate_window", lambda *a, **k: {"passed": False, "reason": "sin_golpe", "possible": []})
+    S._GATE.clear()
+    S._GATE.update(passed=0, gated=0, off=0, reasons={}, seconds_gated=0.0, dropped=[])
+    ctx = SimpleNamespace(cfg={"fine_pass": {}}, log=lambda *a: None)
+    swing = [{"t": 10.0, "source": None, "side": "near"}]
+    assert S._gate_passes(ctx, swing, 9.0, "w1", tmp_path / "w1.mp4", None, "near", object(), 0.0) == {}
+    board = [{"t": 10.0, "source": "marcador", "kind": "serve", "side": "near"}]
+    dec = S._gate_passes(ctx, board, 9.0, "w2", tmp_path / "w2.mp4", None, "near", object(), 0.0)
+    assert dec["passed"] and dec["reason"] == "detector"

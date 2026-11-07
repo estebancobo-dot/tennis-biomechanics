@@ -2185,8 +2185,11 @@ def _gate_passes(ctx, group, t0, wid, clip, cache, side, ball, cut_s: float) -> 
         _TIMES["bola"] = _TIMES.get("bola", 0.0) + took
     dec = gate_window(track, fw, fh, fps, [(c["t"] - t0) * fps for c in group], side, fp.get("gate_margin_s", 0.1))
     dec.update(fps=fps, n_frames=len(track) if track is not None else 0, ball_s=took)
-    spot = [(c["t"] - t0) * fps for c in group if c.get("source") == "spotter"]
-    if spot:              # the learned spotter decides the strokes: its windows are never ruled out here
+    # the learned spotter decides the strokes, and the serve the scoreboard says she hit (source "marcador", B4): their
+    # windows are never ruled out here (07-11, request 135: 8 of her 10 strokes lost in points of her serve were
+    # ruled out by the ball alone; a serve's ball is small and fast, often unseen at the toss and the contact)
+    spot = [(c["t"] - t0) * fps for c in group if c.get("source") in ("spotter", "marcador")]
+    if spot:
         w = round(CONFIRM_TOL_S * fps)
         dec["possible"] = list(dec.get("possible") or []) + [(max(0, int(f) - w), int(f) + w, "detector") for f in spot]
         if not dec["passed"]:
