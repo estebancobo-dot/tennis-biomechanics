@@ -9133,3 +9133,15 @@
 2026-11-07 01:53:15   ventana w006774899_5401: pose hybrid en 271 de 271 fotogramas (0 s; modelo 0 s; pies en 91) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 1047 px (segments)
 2026-11-07 01:53:15   fine_doubtful: 100 % (49/49 golpes candidatos · 17 confirmados · 0 ventanas descartadas sin pose) · 18 s · quedan ≈ 0 s
 2026-11-07 01:53:16 [zheng-qinwen-elena-rybakina] fine_doubtful terminada a las 01:53:16 en 21 s
+2026-11-07 05:21:29 [zheng-qinwen-elena-rybakina] candidates… (2026-11-07 05:21:29, etapa 9 de 14)
+2026-11-07 05:21:29   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 0, 'changed': 3, 'by_click': 268}
+2026-11-07 05:21:32   tramos que son repeticiones: 3 sin marcador
+2026-11-07 05:21:32   saques añadidos por el marcador (su saque no visto, el resto de la rival sí): 20
+2026-11-07 05:21:32   candidatos del detector entrenado: 620 (287 lejanos; 4 en repeticiones, fuera)
+2026-11-07 05:21:32 [zheng-qinwen-elena-rybakina] candidates terminada a las 05:21:32 en 3 s
+2026-11-07 05:21:32 [zheng-qinwen-elena-rybakina] views… (2026-11-07 05:21:32, etapa 10 de 14)
+2026-11-07 05:21:40   views:   0 % (1/1654 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+2026-11-07 05:22:10   views:  15 % (249/1654 fotogramas de otras tomas) · 30 s · quedan ≈ 3 min
+2026-11-07 05:22:40   views:  28 % (466/1654 fotogramas de otras tomas) · 60 s · quedan ≈ 3 min
+2026-11-07 05:23:10   views:  43 % (712/1654 fotogramas de otras tomas) · 2 min · quedan ≈ 2 min
+2026-11-07 05:23:40   views:  57 % (942/1654 fotogramas de otras tomas) · 2 min · quedan ≈ 2 min
