@@ -1,33 +1,32 @@
-﻿Peticion 137: analisis completo de los partidos (2026-11-07T21:50:32)
+﻿Peticion 139: analisis completo de los partidos (2026-11-08T00:33:37)
   video: C:\tenis\videos\Elena Rybakina - Jessica Pegula - Miami - 2026 - Quarter final.mkv (3.42 GB)
   video: C:\tenis\videos\US Open 2026.R4.Naomi Osaka - Elena Rybakina.ts (3.59 GB)
   video: C:\tenis\videos\Zheng Qinwen - Elena Rybakina.mkv (3.50 GB)
   video: C:\tenis\videos\Zverev Alexander - Sinner Jannik - Indian Wells - 2026 - Semi final.mkv (2.52 GB)
   video: C:\tenis\videos\Теннис.ЮСИПОПЕН.Полуфинал.Гауфф—Рыбакина.10.09.2026.1080р.50fps.Мосгортранс.mkv (3.20 GB)
   video: C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv (5.15 GB)
-libre C: 187 GB
+libre C: 189 GB
 # Previsión antes de ejecutar
 
 | Partido | Etapa | Estado | Estimación | Base de la estimación |
 |---|---|---|---|---|
-| us-open-2026-r4-naomi-osaka-elena-rybakina | fine | por rehacer | 2-9 min | medido en partido entero |
+| us-open-2026-r4-naomi-osaka-elena-rybakina | fine | por rehacer | 2-6 min | medido en partido entero |
 | us-open-2026-r4-naomi-osaka-elena-rybakina | views_link | solo si cambia lo de arriba | hasta 0 min | **sin medir aquí** |
 | us-open-2026-r4-naomi-osaka-elena-rybakina | fine_opponent | por rehacer | 0 min | **sin medir aquí** |
 | us-open-2026-r4-naomi-osaka-elena-rybakina | fine_doubtful | por rehacer | 0 min | **sin medir aquí** |
-| zheng-qinwen-elena-rybakina | fine | por rehacer | 3-14 min | medido en partido entero |
+| zheng-qinwen-elena-rybakina | fine | por rehacer | 3-10 min | medido en partido entero |
 | zheng-qinwen-elena-rybakina | views_link | solo si cambia lo de arriba | hasta 0 min | **sin medir aquí** |
 | zheng-qinwen-elena-rybakina | fine_opponent | por rehacer | 0 min | **sin medir aquí** |
 | zheng-qinwen-elena-rybakina | fine_doubtful | por rehacer | 0 min | **sin medir aquí** |
-| tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | fine | por rehacer | 3-16 min | medido en partido entero |
+| tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | fine | por rehacer | 3-11 min | medido en partido entero |
 | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | views_link | solo si cambia lo de arriba | hasta 0 min | **sin medir aquí** |
 | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | fine_opponent | por rehacer | 0 min | **sin medir aquí** |
 | tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 | fine_doubtful | por rehacer | 1 min | **sin medir aquí** |
-| tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | fine | por rehacer | 5-25 min | medido en partido entero |
+| tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | fine | por rehacer | 5-18 min | medido en partido entero |
 | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | views_link | solo si cambia lo de arriba | hasta 0 min | **sin medir aquí** |
 | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | fine_opponent | por rehacer | 0 min | **sin medir aquí** |
 | tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 | fine_doubtful | por rehacer | 1 min | **sin medir aquí** |
 
-**Total estimado: 0.2-1.1 h (desde las cachés - calculando todo)** (y hasta 0.0 h más si cambian los resultados de las etapas de arriba).
+**Total estimado: 0.2-0.8 h (desde las cachés - calculando todo)** (y hasta 0.0 h más si cambian los resultados de las etapas de arriba).
 Etapas sin medir en un partido entero: fine_doubtful, fine_opponent → se miden antes, solas.
 
-termina 2026-11-07T22:31:53
