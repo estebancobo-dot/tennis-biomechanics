@@ -25,3 +25,14 @@ def test_a_renamed_video_keeps_its_match(tmp_path, monkeypatch):
     A.main()
     ms = yaml.safe_load((cfgdir / "matches.yaml").read_text(encoding="utf-8"))["matches"]
     assert [(m["id"], m["video"]) for m in ms] == [(mid, "US Open 2026 final Sabalenka Rybakina.mp4")]
+
+
+def test_a_new_video_names_its_player(tmp_path):
+    """07-11: a match of Sinner copied next to Rybakina's is his, not the default player's."""
+    (tmp_path / "players").mkdir()
+    for pid, name in (("rybakina", "Elena Rybakina"), ("sabalenka", "Aryna Sabalenka"), ("sinner", "Jannik Sinner")):
+        (tmp_path / "players" / f"{pid}.yaml").write_text(f"name: {name}\nhand: right\n", encoding="utf-8")
+    assert A.player_of("Wimbledon 2026 final Sinner vs Alcaraz", "rybakina", tmp_path) == "sinner"
+    assert A.player_of("US Open 2026 final Sabalenka Rybakina", "rybakina", tmp_path) == "rybakina"
+    assert A.player_of("Roland Garros 2026 R3", "rybakina", tmp_path) == "rybakina"
+    assert A.player_of("Sinner Sabalenka exhibition", "rybakina", tmp_path) == "rybakina"   # two named: the default

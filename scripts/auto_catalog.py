@@ -28,6 +28,25 @@ def slug(name: str) -> str:
     return ascii_id(name)
 
 
+def player_of(file_name: str, default: str, config_dir: Path) -> str:
+    """The player of a new video (07-11, a match of Sinner next to Rybakina's): the default player when the file name
+    names her or names no configured player; else the one configured player it names (ids of config/players/*.yaml
+    and their surnames, compared as ASCII words)."""
+    words = set(slug(file_name).replace("_", "-").split("-"))
+    named = []
+    for f in sorted((config_dir / "players").glob("*.yaml")):
+        try:
+            name = (yaml.safe_load(f.read_text(encoding="utf-8")) or {}).get("name") or ""
+        except (OSError, yaml.YAMLError):
+            name = ""
+        keys = {f.stem.lower()} | ({slug(name.split()[-1])} if name.strip() else set())
+        if keys & words:
+            named.append(f.stem)
+    if default in named or len(named) != 1:
+        return default
+    return named[0]
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--player", default=None, help="id de config/players/<id>.yaml (por defecto `player` de la configuración)")
@@ -69,7 +88,7 @@ def main():
         while mid in ids:
             mid += "-b"
         ids.add(mid)
-        data["matches"].append({"id": mid, "video": f.name, "player": args.player})
+        data["matches"].append({"id": mid, "video": f.name, "player": player_of(f.stem, args.player, CONFIG_DIR)})
         added.append(mid)
     path.write_text("# Generado automáticamente por scripts/auto_catalog.py; se puede editar.\n"
                     + yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8")

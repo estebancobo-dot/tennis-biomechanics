@@ -293,6 +293,12 @@ accion: completo
 id: 122
 accion: recall
 detector: si
+---
+id: 123
+accion: borrar
+carpetas: _poc31_35,_poc31_4
+# 123 (07-11): el usuario aprueba borrar las carpetas de pruebas antiguas (#146). _poc9_largo se queda hasta saber si
+# la aplicacion la usa (sus pruebas la leen como analisis de prueba)
 # 122 (07-11): 120 dio lo mismo que 118 (17 y 39 saques anadidos en F3Set, precision 0,873) aunque sus saques ya se
 # encontraban (35/39, 54/59): el servidor del marcador mal leido, el "resto" era el saque de la rival. Ahora no se anade
 # si el detector dice que ese golpe de la rival es un saque (candidatos v14). Los 4 partidos solo si F3Set mejora
