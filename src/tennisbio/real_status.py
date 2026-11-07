@@ -56,6 +56,31 @@ def level(state: str, item: dict | None, rid: int) -> int:
     return 3 if item.get("status") == "ok" else 2
 
 
+def main_test(patterns: list[str], items: list[dict]) -> tuple[str, list[str]]:
+    """(«ok» | «falla» | «sin medir», the failing or missing parts) of a package's main test (07-11): every audit
+    item matching one of its patterns must be ok, and each pattern must match at least one item."""
+    bad, seen = [], 0
+    for pat in patterns:
+        optional = pat.startswith("?")            # "?^Etapas con errores": the audit writes it only when it fails
+        pat = pat.lstrip("?")
+        hit = [it for it in items if re.search(pat, it.get("name", ""))]
+        seen += len(hit)
+        if not hit and not optional:
+            bad.append(f"{pat.lstrip('^')}: sin medir")
+        bad += [f"{it['name']}: {it.get('status')}" for it in hit if it.get("status") != "ok"]
+    if not patterns:
+        return "sin medir", ["sin prueba principal definida"]
+    if not seen:
+        return "sin medir", bad
+    return ("ok" if not bad else "falla"), bad
+
+
+def closed(lv_ids: list[int], test: str) -> bool:
+    """A package is closed only when its main test passes AND every one of its requests is checked on the real
+    outputs (level ≥ 3): Claude's word never closes one (the user's rule, 07-11)."""
+    return test == "ok" and bool(lv_ids) and all(v >= 3 for v in lv_ids)
+
+
 def render(aud: dict) -> tuple[str, dict]:
     """(markdown, {level: count}) of every request from one audit result (audit.audit's dict)."""
     by = {}
@@ -74,13 +99,27 @@ def render(aud: dict) -> tuple[str, dict]:
     pk = packages()
     of = {rid: code for code, p in pk.items() for rid in p["peticiones"]}
     lv_of = {r[0]: r[3] for r in rows}
+    items = aud.get("items", [])
     lines += ["", "## Por paquete del plan (en el orden de ejecución)", "",
-              "| Paquete | Peticiones | " + " | ".join(LEVELS) + " | Se cierra con |",
-              "|---|---|" + "---|" * len(LEVELS) + "---|"]
+              "«¿Cerrado?» lo calcula este programa: sí solo si la prueba principal pasa (todas sus comprobaciones de la "
+              "auditoría en «ok») y todas las peticiones del paquete están comprobadas en salidas (nivel 3 o 4).", "",
+              "| Paquete | Peticiones | " + " | ".join(LEVELS) + " | Se cierra con | Prueba principal | ¿Cerrado? |",
+              "|---|---|" + "---|" * len(LEVELS) + "---|---|---|"]
+    detail = []
     for code, p in pk.items():
         ids = [i for i in p["peticiones"] if i in lv_of]
         c = [sum(lv_of[i] == k for i in ids) for k in range(len(LEVELS))]
-        lines.append(f"| {code} {p['nombre']} | {len(ids)} | " + " | ".join(str(x) for x in c) + f" | {p['cierre']} |")
+        test, bad = main_test(p.get("prueba") or [], items) if "prueba" in p else ("—", [])
+        done = closed([lv_of[i] for i in ids], test) if "prueba" in p else None
+        lines.append(f"| {code} {p['nombre']} | {len(ids)} | " + " | ".join(str(x) for x in c) + f" | {p['cierre']} | "
+                     f"{test} | {'—' if done is None else ('**sí**' if done else 'no')} |")
+        if "prueba" in p and not done:
+            low = [i for i in ids if lv_of[i] < 3]
+            detail.append(f"- **{code}**: " + "; ".join(
+                ([f"prueba principal: {', '.join(b.replace('|', '/')[:90] for b in bad[:6])}"] if bad else [])
+                + ([f"peticiones sin comprobar o que fallan: {', '.join(f'#{i}' for i in low)}"] if low else [])))
+    if detail:
+        lines += ["", "Lo que le falta a cada paquete de la Base para cerrarse:", ""] + detail
     lines += ["", "## Cada petición", "", "| # | Petición | Paquete | Registro | Nivel | Lo que comprueba la auditoría |",
               "|---|---|---|---|---|---|"]
     for rid, title, st, lv, it in rows:

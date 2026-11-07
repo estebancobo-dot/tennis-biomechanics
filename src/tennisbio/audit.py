@@ -1617,10 +1617,38 @@ def app_index_counts(bases: list[Path]) -> tuple[int, int] | None:
     return None
 
 
+NEW_MATCH_ITEM = "Aplicación: un partido nuevo de principio a fin"
+# a run before this day was made with older code (candidates v14, app index step: 07-11) and does not count
+NEW_MATCH_SINCE = "2026-11-07"
+
+
+def new_match_item(bases: list[Path]) -> dict:
+    """B7's main test (07-11): a match the application has never seen, analysed from start to end by the application
+    alone (PC request `app_nuevo` → prueba_app_nuevo.log): it ends, with its analysis updated and no error."""
+    f = next((b / "prueba_app_nuevo.log" for b in bases if (b / "prueba_app_nuevo.log").exists()), None)
+    if f is None:
+        return _item(5, "Aplicación", NEW_MATCH_ITEM, "aviso", "sin ejecutar todavía (petición «app_nuevo» del PC)")
+    txt = f.read_text(encoding="utf-8", errors="replace")
+    end = re.search(r"termina (\d{4}-\d{2}-\d{2}T[\d:]+)", txt)
+    bad = [l.strip() for l in txt.splitlines() if re.search(r"Traceback|ERROR|\[error\]|\[fallo\]", l)]
+    ok = end is not None and not bad and "[ok]" in txt
+    if ok and end.group(1)[:10] < NEW_MATCH_SINCE:
+        return _item(5, "Aplicación", NEW_MATCH_ITEM, "aviso",
+                     f"la última ejecución (termina {end.group(1)}) es anterior al código actual ({NEW_MATCH_SINCE}): "
+                     "hay que repetirla (petición «app_nuevo» del PC)")
+    dur = re.search(r"duracion total: ([\d.]+) min", txt)
+    return _item(5, "Aplicación", NEW_MATCH_ITEM, "ok" if ok else "falta",
+                 (f"terminó {end.group(1)}" if end else "sin terminar")
+                 + (f" en {dur.group(1)} min" if dur else "")
+                 + ("; análisis actualizado" if "[ok]" in txt else "; sin análisis actualizado")
+                 + (f"; errores: {'; '.join(bad[:3])}" if bad else ""))
+
+
 def infrastructure_items(out_root: Path) -> list[dict]:
     """The B7 checks read from the PC's own files (progress, logs, sizes, old test folders, the application)."""
     bases = [out_root, out_root.parent, out_root.parent.parent]
-    return [progress_item(bases), logs_item(bases), sizes_item(bases), old_test_folders_item(bases)] + app_items(bases)
+    return ([progress_item(bases), logs_item(bases), sizes_item(bases), old_test_folders_item(bases)] + app_items(bases)
+            + [new_match_item(bases)])
 
 
 def side_checks(out_root: Path) -> list[dict]:

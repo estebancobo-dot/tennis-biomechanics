@@ -7,31 +7,38 @@ paquetes:
     nombre: "Base · velocidad y uso del PC"
     cierre: "Prueba desde cero de 35 min en ≤ 45 min; CPU/iGPU por etapa medidas en cada ejecución"
     peticiones: [10, 14, 29, 75, 77, 125, 137, 230, 231, 237]
+    prueba: ["^Tiempo: ", "^Uso del PC por etapa", "^Peticiones por GitHub Actions", "^Tomas de cámara"]
   B2:
     nombre: "Base · robustez (nada se cuelga, todo se recupera)"
     cierre: "Prueba por cada caso de error y cuelgue; 0 etapas con error en la referencia"
     peticiones: [13, 225, 232]
+    prueba: ["^Golpes que fallaron al procesarse", "?^Etapas con errores", "^Partido .*: salida de cada etapa"]
   B3:
     nombre: "Base · mejores modelos (estado del arte medido)"
     cierre: "Cada candidato medido frente al actual (precisión con datos anotados y fotogramas/s en el PC)"
     peticiones: [30, 58, 138, 199, 200, 201, 202, 203, 204, 221]
+    prueba: ["^Modelo candidato medido", "^Modelo en uso"]
   B4:
     nombre: "Base · no perder golpes"
     cierre: "Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión"
     peticiones: [23, 151, 155, 205, 218, 219]
+    prueba: ["^Validación con clips anotados \\(F3Set\\)", "^Golpes encontrados frente al marcador", "^Saques por punto de su saque"]
   B5:
     nombre: "Base · exportación"
     cierre: "Vídeos por golpe en ≤ 20 min sin cuelgues"
     peticiones: [41]
+    prueba: ["^Exportación"]
   B6:
     nombre: "Base · referencia definitiva de los 4 partidos"
     cierre: "4 partidos sin errores de etapa; auditoría generada"
     peticiones: [1, 134, 233, 234]
+    prueba: ["^Partido .*: salida de cada etapa", "?^Etapas con errores", "^Golpes que fallaron al procesarse"]
   B7:
     nombre: "Base · aplicación autónoma e infraestructura"
     cierre: "Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos"
     peticiones: [18, 19, 20, 21, 22, 31, 32, 37, 40, 43, 45, 49, 50, 51, 52, 66, 80, 81, 82, 83, 119, 136, 139,
                  144, 145, 146, 152, 160, 161, 220, 222, 226, 227, 229, 241, 242]
+    prueba: ["^Aplicación: ventana real", "^Aplicación: análisis en su índice", "^Aplicación: un partido nuevo de principio a fin", "^Pruebas del código en este PC", "^Pruebas en este PC", "^Progreso visible", "^Nada pide revisión manual"]
   M1:
     nombre: "Medidas · fases, cadena cinética y ritmo"
     cierre: "Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara"

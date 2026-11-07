@@ -329,6 +329,12 @@ id: 131
 accion: medir
 script: bench_candidates
 argumentos: --only bounce_own
+---
+id: 132
+accion: app_nuevo
+minutos: 35
+# 132 (07-11, B7): prueba principal de B7 con el codigo actual: 35 min de un partido como partido nuevo, analizado de
+# principio a fin solo por la aplicacion (en una carpeta aparte); la del 04-11 era de un codigo anterior
 # 131 (07-11, #199): la medida del bote propio con los 95 clips, si el usuario ya ha dejado el zip de TrackNet en
 # C:\tenis\datasets\tracknet\Dataset.zip (descarga a mano: Google Drive no se lo da al PC); si no, con los del disco
 # 129 (07-11, #199): la 128 fallo porque Google Drive da al PC una pagina, no el zip: ahora se entrena con los clips ya
