@@ -297,6 +297,11 @@ detector: si
 id: 123
 accion: borrar
 carpetas: _poc31_35,_poc31_4
+---
+id: 124
+accion: completo
+# 124 (07-11): los 4 partidos con candidatos v14 (saques del marcador) y, tras el analisis, "tennisbio app tras-completo"
+# (paso 3b: rehace los analisis de la aplicacion, solo informes); la auditoria lee el indice real (#160, #242)
 # 123 (07-11): el usuario aprueba borrar las carpetas de pruebas antiguas (#146). _poc9_largo se queda hasta saber si
 # la aplicacion la usa (sus pruebas la leen como analisis de prueba)
 # 122 (07-11): 120 dio lo mismo que 118 (17 y 39 saques anadidos en F3Set, precision 0,873) aunque sus saques ya se
