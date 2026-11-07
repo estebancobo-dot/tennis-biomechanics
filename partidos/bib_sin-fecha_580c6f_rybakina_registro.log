@@ -8750,3 +8750,19 @@
 2026-11-07 05:55:17   ventana w007936731_3600: pose hybrid en 178 de 178 fotogramas (0 s; modelo 0 s; pies en 160) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 201 px (court)
 2026-11-07 05:55:17   fine_doubtful: 100 % (58/58 golpes candidatos · 32 confirmados · 0 ventanas descartadas sin pose) · 33 s · quedan ≈ 0 s
 2026-11-07 05:55:18 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine_doubtful terminada a las 05:55:18 en 36 s
+2026-11-07 07:37:41 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] candidates… (2026-11-07 07:37:41, etapa 9 de 14)
+2026-11-07 07:37:45   sonido: pista 1 de 2 (la que coincide con los golpes)
+2026-11-07 07:37:45   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 0, 'changed': 0, 'by_click': 268}
+2026-11-07 07:37:48   tramos que son repeticiones: 1 lenta, 8 sin marcador
+2026-11-07 07:37:48   saques añadidos por el marcador (su saque no visto, el resto de la rival sí): 27
+2026-11-07 07:37:48   candidatos del detector entrenado: 652 (309 lejanos; 18 en repeticiones, fuera)
+2026-11-07 07:37:48 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] candidates terminada a las 07:37:48 en 6 s
+2026-11-07 07:37:48 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] views… (2026-11-07 07:37:48, etapa 10 de 14)
+2026-11-07 07:37:56   views:   0 % (1/1915 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+2026-11-07 07:38:26   views:   9 % (179/1915 fotogramas de otras tomas) · 30 s · quedan ≈ 5 min
+2026-11-07 07:38:56   views:  19 % (359/1915 fotogramas de otras tomas) · 60 s · quedan ≈ 4 min
+2026-11-07 07:39:26   views:  30 % (574/1915 fotogramas de otras tomas) · 2 min · quedan ≈ 4 min
+2026-11-07 07:39:56   views:  43 % (819/1915 fotogramas de otras tomas) · 2 min · quedan ≈ 3 min
+2026-11-07 07:40:26   views:  55 % (1060/1915 fotogramas de otras tomas) · 3 min · quedan ≈ 2 min
+2026-11-07 07:40:56   views:  68 % (1294/1915 fotogramas de otras tomas) · 3 min · quedan ≈ 87 s
+2026-11-07 07:41:26   views:  80 % (1526/1915 fotogramas de otras tomas) · 4 min · quedan ≈ 54 s
