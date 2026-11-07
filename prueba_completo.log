@@ -1,9 +1,9 @@
-﻿Peticion 121: analisis completo de los partidos (2026-11-07T07:21:29)
+﻿Peticion 124: analisis completo de los partidos (2026-11-07T10:53:46)
   video: C:\tenis\videos\US Open 2026.R4.Naomi Osaka - Elena Rybakina.ts (3.59 GB)
   video: C:\tenis\videos\Zheng Qinwen - Elena Rybakina.mkv (3.50 GB)
   video: C:\tenis\videos\Теннис.ЮСИПОПЕН.Полуфинал.Гауфф—Рыбакина.10.09.2026.1080р.50fps.Мосгортранс.mkv (3.20 GB)
   video: C:\tenis\videos\Теннис.ЮСИПОПЕН.Финал.Соболенко—Рыбакина.12.09.2026.1080р.50fps.Мосгортранс.mkv (5.15 GB)
-libre C: 202 GB
+libre C: 203 GB
 # Previsión antes de ejecutar
 
 | Partido | Etapa | Estado | Estimación | Base de la estimación |
@@ -36,4 +36,3 @@ libre C: 202 GB
 **Total estimado: 0.2-1.1 h (desde las cachés - calculando todo)** (y hasta 0.3 h más si cambian los resultados de las etapas de arriba).
 Etapas sin medir en un partido entero: candidates, fine_doubtful, fine_opponent → se miden antes, solas.
 
-termina 2026-11-07T08:49:28
