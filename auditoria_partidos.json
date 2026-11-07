@@ -46,7 +46,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_f43dd2_rybakina",
    "status": "falta",
-   "detail": "16 de 30 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 6, golpes suyos, pero ningún saque 8; sus saques encontrados caen en puntos de su saque 18, de la rival 5, fuera de los puntos leídos 8; en los puntos sin saque, su primer golpe encontrado llega 12.9 s (mediana de 8) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 8): tipo {'forehand/detector': 4, 'backhand/detector': 4}, lado {'near': 4, 'far': 4}, 6 detrás de la línea de fondo; primeros: 13.3-14.1 min (sin_saque), 18.4-19.1 min (sin_golpes), 19.0-19.9 min (sin_golpes), 20.5-20.9 min (sin_golpes), 20.9-21.5 min (sin_saque), 25.2-26.3 min (sin_saque), 26.7-27.2 min (sin_golpes), 40.6-41.1 min (sin_golpes)",
+   "detail": "16 de 30 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 6, golpes suyos, pero ningún saque 8; sus saques encontrados caen en puntos de su saque 18, de la rival 5, fuera de los puntos leídos 8; en los puntos sin saque, su primer golpe encontrado llega 12.9 s (mediana de 8) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 8): tipo {'forehand/detector': 4, 'backhand/detector': 4}, lado {'near': 4, 'far': 4}, 6 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 2, 'golpe_de_la_rival_antes': 1, 'nada_antes': 5, 'sin_primer_golpe': 6}; primeros: 13.3-14.1 min (sin_saque), 18.4-19.1 min (sin_golpes), 19.0-19.9 min (sin_golpes), 20.5-20.9 min (sin_golpes), 20.9-21.5 min (sin_saque), 25.2-26.3 min (sin_saque), 26.7-27.2 min (sin_golpes), 40.6-41.1 min (sin_golpes)",
    "serve_gaps": {
     "points": 30,
     "found": 16,
@@ -205,6 +205,13 @@
      "sin_golpes": 6,
      "sin_saque": 8
     },
+    "spotter_before_first": {
+     "saque_suyo_visto_y_perdido": 0,
+     "golpe_suyo_visto_y_perdido": 2,
+     "golpe_de_la_rival_antes": 1,
+     "nada_antes": 5,
+     "sin_primer_golpe": 6
+    },
     "first_strokes_without_serve": {
      "n": 8,
      "type": {
@@ -258,7 +265,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_584c5b_rybakina",
    "status": "falta",
-   "detail": "26 de 50 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 11, golpes suyos, pero ningún saque 13; sus saques encontrados caen en puntos de su saque 32, de la rival 4, fuera de los puntos leídos 12; en los puntos sin saque, su primer golpe encontrado llega 4.3 s (mediana de 13) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 13): tipo {'forehand/detector': 8, 'backhand/detector': 5}, lado {'near': 6, 'far': 7}, 9 detrás de la línea de fondo; primeros: 11.6-12.2 min (sin_saque), 12.1-12.7 min (sin_golpes), 12.6-13.3 min (sin_saque), 13.8-14.7 min (sin_saque), 17.9-18.4 min (sin_saque), 18.4-19.1 min (sin_golpes), 19.8-20.6 min (sin_saque), 27.8-28.5 min (sin_golpes)",
+   "detail": "26 de 50 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 11, golpes suyos, pero ningún saque 13; sus saques encontrados caen en puntos de su saque 32, de la rival 4, fuera de los puntos leídos 12; en los puntos sin saque, su primer golpe encontrado llega 4.3 s (mediana de 13) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 13): tipo {'forehand/detector': 8, 'backhand/detector': 5}, lado {'near': 6, 'far': 7}, 9 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 1, 'golpe_de_la_rival_antes': 9, 'nada_antes': 3, 'sin_primer_golpe': 11}; primeros: 11.6-12.2 min (sin_saque), 12.1-12.7 min (sin_golpes), 12.6-13.3 min (sin_saque), 13.8-14.7 min (sin_saque), 17.9-18.4 min (sin_saque), 18.4-19.1 min (sin_golpes), 19.8-20.6 min (sin_saque), 27.8-28.5 min (sin_golpes)",
    "serve_gaps": {
     "points": 50,
     "found": 26,
@@ -517,6 +524,13 @@
      "sin_golpes": 11,
      "sin_saque": 13
     },
+    "spotter_before_first": {
+     "saque_suyo_visto_y_perdido": 0,
+     "golpe_suyo_visto_y_perdido": 1,
+     "golpe_de_la_rival_antes": 9,
+     "nada_antes": 3,
+     "sin_primer_golpe": 11
+    },
     "first_strokes_without_serve": {
      "n": 13,
      "type": {
@@ -570,7 +584,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_580c6f_rybakina",
    "status": "falta",
-   "detail": "17 de 50 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 18, golpes suyos, pero ningún saque 15; sus saques encontrados caen en puntos de su saque 21, de la rival 9, fuera de los puntos leídos 24; en los puntos sin saque, su primer golpe encontrado llega 6.9 s (mediana de 15) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 15): tipo {'backhand/detector': 8, 'forehand/detector': 6, 'forehand/pose': 1}, lado {'near': 6, 'far': 9}, 9 detrás de la línea de fondo; primeros: 34.8-35.4 min (sin_saque), 36.0-36.7 min (sin_saque), 36.6-37.6 min (sin_saque), 42.4-42.9 min (sin_saque), 43.6-44.3 min (sin_saque), 44.2-44.5 min (sin_saque), 44.4-45.5 min (sin_saque), 52.4-53.0 min (sin_saque)",
+   "detail": "17 de 50 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 18, golpes suyos, pero ningún saque 15; sus saques encontrados caen en puntos de su saque 21, de la rival 9, fuera de los puntos leídos 24; en los puntos sin saque, su primer golpe encontrado llega 6.9 s (mediana de 15) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 15): tipo {'backhand/detector': 8, 'forehand/detector': 6, 'forehand/pose': 1}, lado {'near': 6, 'far': 9}, 9 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 1, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 10, 'nada_antes': 4, 'sin_primer_golpe': 18}; primeros: 34.8-35.4 min (sin_saque), 36.0-36.7 min (sin_saque), 36.6-37.6 min (sin_saque), 42.4-42.9 min (sin_saque), 43.6-44.3 min (sin_saque), 44.2-44.5 min (sin_saque), 44.4-45.5 min (sin_saque), 52.4-53.0 min (sin_saque)",
    "serve_gaps": {
     "points": 50,
     "found": 17,
@@ -899,6 +913,13 @@
      "sin_golpes": 18,
      "sin_saque": 15
     },
+    "spotter_before_first": {
+     "saque_suyo_visto_y_perdido": 1,
+     "golpe_suyo_visto_y_perdido": 0,
+     "golpe_de_la_rival_antes": 10,
+     "nada_antes": 4,
+     "sin_primer_golpe": 18
+    },
     "first_strokes_without_serve": {
      "n": 15,
      "type": {
@@ -953,7 +974,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_b8b713_rybakina",
    "status": "falta",
-   "detail": "33 de 70 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 16, golpes suyos, pero ningún saque 21; sus saques encontrados caen en puntos de su saque 40, de la rival 7, fuera de los puntos leídos 13; en los puntos sin saque, su primer golpe encontrado llega 5.2 s (mediana de 21) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 21): tipo {'forehand/detector': 12, 'backhand/detector': 9}, lado {'near': 12, 'far': 9}, 16 detrás de la línea de fondo; primeros: 47.2-47.8 min (sin_golpes), 55.0-55.6 min (sin_golpes), 55.8-56.6 min (sin_golpes), 56.9-57.4 min (sin_golpes), 62.3-62.7 min (sin_golpes), 63.2-63.7 min (sin_golpes), 71.2-72.0 min (sin_saque), 72.4-73.3 min (sin_saque)",
+   "detail": "33 de 70 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 16, golpes suyos, pero ningún saque 21; sus saques encontrados caen en puntos de su saque 40, de la rival 7, fuera de los puntos leídos 13; en los puntos sin saque, su primer golpe encontrado llega 5.2 s (mediana de 21) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 21): tipo {'forehand/detector': 12, 'backhand/detector': 9}, lado {'near': 12, 'far': 9}, 16 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 1, 'golpe_suyo_visto_y_perdido': 2, 'golpe_de_la_rival_antes': 15, 'nada_antes': 3, 'sin_primer_golpe': 16}; primeros: 47.2-47.8 min (sin_golpes), 55.0-55.6 min (sin_golpes), 55.8-56.6 min (sin_golpes), 56.9-57.4 min (sin_golpes), 62.3-62.7 min (sin_golpes), 63.2-63.7 min (sin_golpes), 71.2-72.0 min (sin_saque), 72.4-73.3 min (sin_saque)",
    "serve_gaps": {
     "points": 70,
     "found": 33,
@@ -1353,6 +1374,13 @@
      "sin_camara": 0,
      "sin_golpes": 16,
      "sin_saque": 21
+    },
+    "spotter_before_first": {
+     "saque_suyo_visto_y_perdido": 1,
+     "golpe_suyo_visto_y_perdido": 2,
+     "golpe_de_la_rival_antes": 15,
+     "nada_antes": 3,
+     "sin_primer_golpe": 16
     },
     "first_strokes_without_serve": {
      "n": 21,
@@ -8800,7 +8828,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_f43dd2_rybakina",
    "status": "ok",
-   "detail": "40 min para 71 min de vídeo ≈ 1.9 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "40 min para 71 min de vídeo ≈ 2.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -8814,7 +8842,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "50 min para 117 min de vídeo ≈ 1.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "52 min para 117 min de vídeo ≈ 1.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -9096,7 +9124,7 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (64/64), 29 s, quedan ≈ 0 s, a las 2026-11-07 01:11:14"
+   "detail": "último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (64/64), 28 s, quedan ≈ 0 s, a las 2026-11-07 02:02:36"
   },
   {
    "req": 5,
@@ -9110,7 +9138,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "44 carpetas, 37.6 GB en total (2026-11-07T00:33:31); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "44 carpetas, 37.7 GB en total (2026-11-07T02:02:57); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -9180,21 +9208,21 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_derecha",
    "status": "ok",
-   "detail": "terminó el 2026-11-07 00:18:57 en 18 min: 441 vídeos de 441 golpes"
+   "detail": "terminó el 2026-11-07 01:15:45 en 0 min: 441 vídeos de 441 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_reves",
    "status": "ok",
-   "detail": "terminó el 2026-11-07 00:19:15 en 0 min: 289 vídeos de 289 golpes"
+   "detail": "terminó el 2026-11-07 01:16:14 en 0 min: 289 vídeos de 289 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_saque",
    "status": "ok",
-   "detail": "terminó el 2026-11-07 00:27:20 en 8 min: 193 vídeos de 193 golpes"
+   "detail": "terminó el 2026-11-07 01:16:35 en 0 min: 193 vídeos de 193 golpes"
   },
   {
    "req": 5,
@@ -9347,8 +9375,8 @@
    "req": 9,
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina",
-   "status": "ok",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 4.3 min, views 3.1 min; ninguna pasa de 2 veces su ritmo habitual"
+   "status": "aviso",
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 7.0 min, views 3.1 min; MÁS LENTAS de 2 veces: fine 3.6 s por min de vídeo, 2.3 veces su mediana (1.5); alarma en vivo: fine: 4.84 s por unidad frente a 0.86 de presupuesto (mediana de 8 ejecuciones aquí), 5.6 veces; a e"
   },
   {
    "req": 9,
@@ -9397,14 +9425,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-07_0037.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el identity (8.2 min): CPU 35/55/73 %, iGPU 0/0/0 %, RAM máx 8.6 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine (1.8 min): CPU 19/42/72 %, iGPU 0/12/86 %, RAM máx 7.0 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 22/22/22 %, iGPU 0/0/0 %, RAM máx 5.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina identity (1.5 min): CPU 44/58/67 %, iGPU 0/0/0 %, RAM máx 5.8 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine (3.8 min): CPU 25/40/62 %, iGPU 0/34/100 %, RAM máx 7.1 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 25/34/43 %, iGPU 0/0/0 %, RAM máx 6.9 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
+   "detail": "recursos_2026-11-07_0127.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (18.2 min): CPU 1/20/74 %, iGPU 0/1/100 %, RAM máx 9.3 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el fine (2.0 min): CPU 41/62/100 %, iGPU 0/12/74 %, RAM máx 11.9 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.8 min): CPU 37/42/50 %, iGPU 0/0/0 %, RAM máx 10.0 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine (6.2 min): CPU 9/34/71 %, iGPU 0/31/100 %, RAM máx 12.7 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine_doubtful (0.2 min): CPU 29/29/29 %, iGPU 0/0/0 %, RAM máx 9.5 GB → equipo infrautilizado: trabajo en serie (se puede repartir); tennis-yusipopen-polufinal-gau fine (3.2 min): CPU 21/44/71 %, iGPU 0/18/83 %, RAM máx 9.6 GB → uso medio: margen para repartir trabajo"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
-   "status": "aviso",
-   "detail": "la última petición (06-11 23:59) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02"
+   "status": "ok",
+   "detail": "petición del 07-11 01:41, empezó a los 0.2 min (objetivo ≤ 10 min; si el PC estaba con otro trabajo, espera a que acabe)"
   },
   {
    "req": 11,
@@ -10944,7 +10972,7 @@
    "area": "Peticiones",
    "name": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 13 comprobaciones: 1 aviso, 12 ok; la peor: «Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina» (3 etapas comparadas con su mediana aquí; las que más tardan: identity 13.3 min, players 10.8 min, score 7.3 min, scenes )"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 13 comprobaciones: 2 aviso, 11 ok; la peor: «Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina» (3 etapas comparadas con su mediana aquí; las que más tardan: identity 13.3 min, players 10.8 min, score 7.3 min, scenes )"
   },
   {
    "req": 11,
@@ -10986,7 +11014,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (06-11 23:59) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
