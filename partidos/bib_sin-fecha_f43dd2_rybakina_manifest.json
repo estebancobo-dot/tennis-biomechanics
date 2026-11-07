@@ -151,10 +151,10 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "d6ec2354202f10f2",
+  "fingerprint": "e0f31e4a04786ab5",
   "version": "16",
-  "seconds": 211.7,
-  "finished": "2026-11-07 15:50:39",
+  "seconds": 235.6,
+  "finished": "2026-11-07 17:54:39",
   "summary": {
    "candidates": 170,
    "confirmed": 163,
@@ -175,13 +175,13 @@
     "seconds_in_gated_windows": 0.5
    },
    "seconds": {
-    "cuerdas_y_3d": 29.7,
-    "jugadora_lejana": 25.5,
-    "pista_ventana": 20.3,
-    "analisis_ventana": 15.1,
-    "recorte": 4.9,
-    "cribado": 4.6,
-    "pose": 0.4,
+    "cuerdas_y_3d": 36.2,
+    "jugadora_lejana": 27.6,
+    "pista_ventana": 23.5,
+    "analisis_ventana": 21.4,
+    "recorte": 5.6,
+    "cribado": 5.2,
+    "pose": 0.6,
     "bola_en_paralelo_cpu": 0,
     "espera_bola_en_paralelo": 0.0
    },
@@ -197,14 +197,14 @@
     "windows_ball_ahead": 94
    }
   },
-  "out_hash": "e7169b252757493f38e9",
+  "out_hash": "a94a6cd749f442515946",
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "ac592ee160cac38c",
+  "fingerprint": "46ba0a16222c7d82",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-07 15:50:39",
+  "finished": "2026-11-07 17:54:39",
   "summary": {
    "enabled": false
   },
@@ -257,10 +257,10 @@
   "scheme": 2
  },
  "views_link": {
-  "fingerprint": "c8ae11542f17c334",
+  "fingerprint": "7b86207880441eda",
   "version": "1",
   "seconds": 0.2,
-  "finished": "2026-11-07 07:27:20",
+  "finished": "2026-11-07 17:54:39",
   "summary": {
    "strokes": 163,
    "with_replay": 25,
@@ -273,10 +273,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "204ed858faf46858",
+  "fingerprint": "ba73dfbeb27d53e6",
   "version": "1",
-  "seconds": 8.8,
-  "finished": "2026-11-07 15:50:48",
+  "seconds": 9.4,
+  "finished": "2026-11-07 17:54:49",
   "summary": {
    "candidates": 17,
    "confirmed": 5,
@@ -295,13 +295,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "analisis_ventana": 2.8,
-    "cuerdas_y_3d": 1.9,
-    "recorte": 0.9,
+    "analisis_ventana": 3.0,
+    "cuerdas_y_3d": 2.0,
+    "recorte": 0.8,
     "cribado": 0.2,
     "pose": 0.0,
-    "pista_ventana": 0.0,
-    "jugadora_lejana": 0.0
+    "jugadora_lejana": 0.0,
+    "pista_ventana": 0.0
    },
    "counts": {
     "overlap_s": 0.0,
