@@ -5,9 +5,9 @@
 | Nivel | Peticiones |
 |---|---|
 | 0 sin construir | 19 |
-| 1 construido, sin comprobar | 65 |
+| 1 construido, sin comprobar | 64 |
 | 2 comprobación que falla | 75 |
-| 3 comprobado en salidas | 78 |
+| 3 comprobado en salidas | 79 |
 | 4 validado con verdad | 0 |
 
 ## Por paquete del plan (en el orden de ejecución)
@@ -18,7 +18,7 @@
 |---|---|---|---|---|---|---|---|---|---|
 | B1 Base · velocidad y uso del PC | 10 | 0 | 0 | 7 | 3 | 0 | Prueba desde cero de 35 min en ≤ 45 min; CPU/iGPU por etapa medidas en cada ejecución | falla | no |
 | B2 Base · robustez (nada se cuelga, todo se recupera) | 3 | 0 | 0 | 0 | 3 | 0 | Prueba por cada caso de error y cuelgue; 0 etapas con error en la referencia | ok | **sí** |
-| B3 Base · mejores modelos (estado del arte medido) | 10 | 0 | 1 | 0 | 9 | 0 | Cada candidato medido frente al actual (precisión con datos anotados y fotogramas/s en el PC) | ok | no |
+| B3 Base · mejores modelos (estado del arte medido) | 10 | 0 | 0 | 0 | 10 | 0 | Cada candidato medido frente al actual (precisión con datos anotados y fotogramas/s en el PC) | ok | **sí** |
 | B4 Base · no perder golpes | 6 | 2 | 0 | 4 | 0 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | falla | no |
 | B5 Base · exportación | 1 | 0 | 0 | 0 | 1 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues | ok | **sí** |
 | B6 Base · referencia definitiva de los 4 partidos | 4 | 1 | 1 | 2 | 0 | 0 | 4 partidos sin errores de etapa; auditoría generada | ok | no |
@@ -41,7 +41,6 @@
 Lo que le falta a cada paquete de la Base para cerrarse:
 
 - **B1**: prueba principal: Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso, Uso del PC por etapa (CPU, RAM, iGPU y disco): aviso; peticiones sin comprobar o que fallan: #14, #29, #75, #125, #137, #230, #231
-- **B3**: peticiones sin comprobar o que fallan: #30
 - **B4**: prueba principal: Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin: falta; peticiones sin comprobar o que fallan: #23, #151, #155, #205, #218, #219
 - **B6**: peticiones sin comprobar o que fallan: #1, #134, #233, #234
 - **B7**: peticiones sin comprobar o que fallan: #18, #20, #21, #22, #37, #45, #66, #146, #160, #242
@@ -78,7 +77,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 27 | Agregados por partido y set, fatiga, ganadores y errores, presión (10-10 17:27) | M5 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 28 | Informe HTML con gráficos y esqueleto (10-10 17:27) | P2 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 29 | Fase 0: entorno y fps reales, con YOLO (10-10 17:27; 11-10 08:49) | B1 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para |
-| 30 | Estado del arte: igual, mejor o peor que otras apps (10-10 17:40; 11-10 09:05, 18:06) | B3 | HECHO | 1 construido, sin comprobar | no se comprueba en las salidas: documento de estado del arte (docs/comparativa_apps.md): sin comprobación automática posible; los modelos qu |
+| 30 | Estado del arte: igual, mejor o peor que otras apps (10-10 17:40; 11-10 09:05, 18:06) | B3 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 31 | Procesado incremental al añadir vídeos (10-10 18:05) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 32 | Ampliable a otros golpes y jugadores (10-10 18:07) | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 33 | Capturas de los mejores golpes de cada tipo y N imágenes de un golpe (10-10 18:12) | P2 | HECHO | 2 comprobación que falla | 8 comprobaciones: 5 aviso, 3 ok; la peor: «Fotograma clave: inicio de preparación» (encontrado en el 69% de los golpes) |

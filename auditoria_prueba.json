@@ -3,7 +3,7 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 360,
+  "ok": 361,
   "falta": 21,
   "pocos datos": 127,
   "aviso": 98
@@ -2807,7 +2807,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "2446 caracteres de texto, 7 vídeos, 19 gráficos",
+   "detail": "2446 caracteres de texto, 6 vídeos, 19 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2871,7 +2871,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2027 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2030 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3406,7 +3406,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "42 carpetas, 36.2 GB en total (2026-11-07T19:30:06); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "42 carpetas, 36.2 GB en total (2026-11-07T19:32:19); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -3462,7 +3462,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-07 19:29:21 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-07 19:37:31 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3610,6 +3610,13 @@
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
    "detail": "petición del 07-11 19:04, empezó a los 3.5 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+  },
+  {
+   "req": 12,
+   "area": "Modelos",
+   "name": "Comparativa con otras apps al día (docs/comparativa_apps.md)",
+   "status": "ok",
+   "detail": "15 modelos que nombra, todos en uso o medidos en el PC; cifras de detección al día: P 0.95 / R 0.89 en el documento frente a P 0.95 / R 0.89 de recall_validation_detector.json (460 de 517); fecha 07-11-2026 frente a la última medida de modelos 07-11-2026"
   },
   {
    "req": 11,
@@ -3812,7 +3819,7 @@
    "area": "Peticiones",
    "name": "#30 Estado del arte: igual, mejor o peor que otras apps",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: documento de estado del arte (docs/comparativa_apps.md): sin comprobación automática posible; los modelos que compara se miden en #58 y #199-#204"
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
