@@ -33,3 +33,18 @@ Fast-forward
  5 files changed, 69 insertions(+), 9 deletions(-)
 Resolved 124 packages in 0.88ms
 Checked 89 packages in 4ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+motionagformer_xs.onnx OK 9 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+    (paso terminado en 5 s)
+
+==> [2026-11-07 15:43:01] Que hace falta: medidas

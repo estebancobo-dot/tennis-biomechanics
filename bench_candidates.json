@@ -671,9 +671,47 @@
    "minutes": 20.9
   },
   "bounce_own": {
-   "error": "OSError: TrackNet: descarga sin terminar tras 8 intentos",
-   "trace": "ain_bounce.py\", line 87, in tracked\n    tr = tracker.track(frames(), step=1)           # 30 fps: as bench_candidates (and the fine pass, ~25 fps)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\ball.py\", line 47, in track\n    for f in frames:\n  File \"C:\\tenis\\tennis-biomech\\scripts\\train_bounce.py\", line 83, in frames\n    for i, f in enumerate(_frames(root, key, folder, names)):\n  File \"C:\\tenis\\tennis-biomech\\scripts\\train_bounce.py\", line 65, in _frames\n    z = z or tracknet_download(root)\n             ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\scripts\\bench_candidates.py\", line 1034, in tracknet_download\n    raise OSError(f\"TrackNet: descarga sin terminar tras {tries} intentos\")\nOSError: TrackNet: descarga sin terminar tras 8 intentos\n"
+   "baseline": "regla del giro más brusco (tennisbio.ball)",
+   "candidate": "modelo propio (train_bounce.py)",
+   "per_model": {
+    "own": {
+     "tp": 412,
+     "fp": 55,
+     "fn": 53,
+     "precision": 0.882,
+     "recall": 0.886,
+     "f1": 0.884
+    },
+    "rule": {
+     "tp": 253,
+     "fp": 134,
+     "fn": 212,
+     "precision": 0.654,
+     "recall": 0.544,
+     "f1": 0.594
+    },
+    "catboost_ref": {
+     "tp": 417,
+     "fp": 53,
+     "fn": 48,
+     "precision": 0.887,
+     "recall": 0.897,
+     "f1": 0.892
+    }
+   },
+   "clips": 84,
+   "bounces": 465,
+   "accuracy": "F1 botes con nuestra bola, partidos no vistos 0.884 / 0.594 (CatBoost de referencia 0.892)",
+   "speed": "2.6 / 2.3 s por hora de vídeo",
+   "verdict": {
+    "adopt": true,
+    "reason": "F1 botes (nuestra bola, partidos no vistos) 0.884 frente a 0.594 de la regla: supera la regla + 0.05"
+   },
+   "notes": [
+    "Criterio propio (petición 199): F1 > el de la regla + 0.05; separación por partido; detalle en bench_bounce_own.md. Activarlo es un cambio de configuración aparte (bounce_model: {use: own})."
+   ],
+   "minutes": 3.5
   }
  },
- "generated": "2026-11-07 14:30"
+ "generated": "2026-11-07 15:46"
 }
