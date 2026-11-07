@@ -988,11 +988,22 @@ BOUNCE_TOL_F = 3                # frames (0.1 s at 30 fps): a predicted bounce t
 MIN_BOUNCES = 20
 
 
+def tracknet_local(root: Path) -> Path | None:
+    """The zip already on disk: <root>/tracknet/Dataset.zip, or the one the user downloaded by hand next to it in a
+    folder «dataset» (07-11: Google Drive gives the PC a page instead of the zip; the user saved it in
+    C:\\tenis\\dataset\\tracknet)."""
+    for p in (root / "tracknet" / "Dataset.zip", root.parent / "dataset" / "tracknet" / "Dataset.zip",
+              root / "tracknet" / "dataset.zip"):
+        if p.exists() and p.stat().st_size > 0:
+            return p
+    return None
+
+
 def tracknet_zip(root: Path) -> zipfile.ZipFile:
     """The TrackNet dataset's zip: read by HTTP ranges when the server allows them, else downloaded once whole to
     <root>/tracknet/Dataset.zip (03-11, request 83: Google Drive refused ranges to the PC, though not to the cloud)."""
-    local = root / "tracknet" / "Dataset.zip"
-    if local.exists():
+    local = tracknet_local(root)
+    if local is not None:
         return zipfile.ZipFile(local)
     try:
         return zipfile.ZipFile(io.BufferedReader(HttpFile(TRACKNET_ZIP), 1 << 16))
@@ -1007,9 +1018,10 @@ def tracknet_download(root: Path, url: str = TRACKNET_ZIP, tries: int = 8, opene
     import time
 
     opener = opener or urllib.request.urlopen
+    found = tracknet_local(root)
+    if found is not None:
+        return zipfile.ZipFile(found)
     local = root / "tracknet" / "Dataset.zip"
-    if local.exists():
-        return zipfile.ZipFile(local)
     local.parent.mkdir(parents=True, exist_ok=True)
     part = local.with_suffix(".part")
     for k in range(tries):

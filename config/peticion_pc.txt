@@ -324,6 +324,13 @@ argumentos: --only bounce_own
 ---
 id: 130
 accion: completo
+---
+id: 131
+accion: medir
+script: bench_candidates
+argumentos: --only bounce_own
+# 131 (07-11, #199): la medida del bote propio con los 95 clips, si el usuario ya ha dejado el zip de TrackNet en
+# C:\tenis\datasets\tracknet\Dataset.zip (descarga a mano: Google Drive no se lo da al PC); si no, con los del disco
 # 129 (07-11, #199): la 128 fallo porque Google Drive da al PC una pagina, no el zip: ahora se entrena con los clips ya
 # en el disco (los de la medida del bote) y se dejan fuera los demas, dicho en el informe
 # 130 (07-11, B4): auditoria de los 4 partidos con de quien eran los candidatos en los puntos sin golpes suyos

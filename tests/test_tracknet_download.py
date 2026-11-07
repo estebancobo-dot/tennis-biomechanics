@@ -47,3 +47,13 @@ def test_a_cut_download_resumes_where_it_stopped(tmp_path, monkeypatch):
     assert z.namelist() == ["Dataset/game1/Clip1/Label.csv"]
     assert calls[0] is None and calls[1].startswith("bytes=") and calls[1] != "bytes=0-"
     assert (tmp_path / "tracknet" / "Dataset.zip").exists() and not (tmp_path / "tracknet" / "Dataset.part").exists()
+
+
+def test_the_zip_the_user_saved_in_a_folder_dataset_is_used(tmp_path):
+    """07-11: the user downloaded it by hand to C:\\tenis\\dataset\\tracknet (not «datasets»)."""
+    root = tmp_path / "datasets"
+    root.mkdir()
+    (tmp_path / "dataset" / "tracknet").mkdir(parents=True)
+    (tmp_path / "dataset" / "tracknet" / "Dataset.zip").write_bytes(_zip_bytes())
+    assert B.tracknet_local(root) == tmp_path / "dataset" / "tracknet" / "Dataset.zip"
+    assert B.tracknet_download(root, url="http://never", opener=None).namelist() == ["Dataset/game1/Clip1/Label.csv"]
