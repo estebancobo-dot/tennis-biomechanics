@@ -339,6 +339,11 @@ accion: completo
 ---
 id: 134
 accion: completo
+---
+id: 135
+accion: completo
+# 135 (07-11, B4): 134 dio 10 golpes suyos descartados en la pasada fina y 3 de identidad dudosa en los puntos de su
+# saque; ahora la pasada fina escribe por que descarta cada candidato (strokes_descartados.json) y la auditoria lo dice
 # 134 (07-11, B4): auditoria que dice si los golpes suyos perdidos en los puntos de su saque quedaron de identidad
 # dudosa o descartados en la pasada fina; los 2 videos nuevos del usuario quedan en espera (catalog.hold)
 # 133 (07-11): los 4 partidos con el bote propio adoptado (131: F1 0,884 frente a 0,594) y la auditoria que deja fuera

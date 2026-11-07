@@ -1685,7 +1685,7 @@ def _fine_worker(job) -> dict:
     _TIMES.clear()
     _COUNTS.clear()
     _GATE.clear()
-    _GATE.update(passed=0, gated=0, off=0, reasons={}, seconds_gated=0.0)
+    _GATE.update(passed=0, gated=0, off=0, reasons={}, seconds_gated=0.0, dropped=[])
     w["lines"].clear()
     strokes, errors = [], []
     try:
@@ -1695,7 +1695,8 @@ def _fine_worker(job) -> dict:
         for c in g:
             errors.append({"t": c["t"], "error": f"{type(e).__name__}: {e}", "trace": traceback.format_exc()[-1500:]})
     return {"i": i, "n": len(g), "strokes": strokes, "errors": errors, "lines": list(w["lines"]),
-            "times": dict(_TIMES), "counts": dict(_COUNTS), "gate": {**_GATE, "reasons": dict(_GATE["reasons"])}}
+            "times": dict(_TIMES), "counts": dict(_COUNTS),
+            "gate": {**_GATE, "reasons": dict(_GATE["reasons"]), "dropped": list(_GATE.get("dropped", []))}}
 
 
 def _merge_fine_stats(r: dict):
@@ -1708,6 +1709,7 @@ def _merge_fine_stats(r: dict):
         _GATE[k] = _GATE.get(k, 0) + r["gate"].get(k, 0)
     for k, v in r["gate"].get("reasons", {}).items():
         _GATE["reasons"][k] = _GATE["reasons"].get(k, 0) + v
+    _GATE.setdefault("dropped", []).extend(r["gate"].get("dropped", []))
 
 
 def _fine_parallel(ctx: Context, p, groups: list, workers: int, args: tuple, took) -> list[int]:
@@ -1816,7 +1818,7 @@ def _fine(ctx: Context, p, keep, out_name: str):
     _TIMES.clear()
     _COUNTS.clear()
     _GATE.clear()
-    _GATE.update(passed=0, gated=0, off=0, reasons={}, seconds_gated=0.0)
+    _GATE.update(passed=0, gated=0, off=0, reasons={}, seconds_gated=0.0, dropped=[])
     _BALL_AHEAD.clear()
     # seconds of video in more than one window of the same end (a rally longer than a window's 10 s is
     # cut in two): their frames are posed and tracked twice (docs/pruebas_velocidad.md)
@@ -1886,6 +1888,8 @@ def _fine(ctx: Context, p, keep, out_name: str):
     _drop_orphans(ctx, cands, strokes, _read(other) if other.exists() else [],
                   {_window_of(g, pre, post)[2] for g in groups}, kept)
     _write(ctx.path(out_name.replace(".json", "_errores.json")), errors)
+    _write(ctx.path(out_name.replace(".json", "_descartados.json")),
+           sorted(_GATE.get("dropped", []), key=lambda x: x["t"]))
     if errors:
         ctx.log(f"  {len(errors)} golpes no se pudieron analizar (detalle en {out_name.replace('.json', '_errores.json')})")
     return {"candidates": len(kept), "confirmed": len(strokes), "errors": len(errors), "warnings": warnings,
@@ -2047,11 +2051,13 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
         fi = far_start(clip, H_far)
         _took("jugadora_lejana", t_)
         if fi is None:
+            _drop(group, "jugadora_lejana_no_encontrada")
             return []                         # no court or no far player found: nothing reliable
         extra, cache = dict(side="far", **fi), clip.with_name(f"{clip.stem}_{ph}_far.npz")
     # cascade: the ball alone rules out windows without a possible stroke before any pose is run
     dec = _gate_passes(ctx, group, t0, wid, clip, cache, side, ball, cut_s)
     if not dec:
+        _drop(group, "cribado_por_la_bola")
         return []
     # the pose only where a possible stroke can use it (fine_pass.pose_ranges): frames around the
     # impacts the gate still allows, each stretch tracked on its own as a window of its own
@@ -2117,13 +2123,26 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
     if side == "far":                         # far strokes count only when the ball or the spotter confirms them
         run.strokes = [s for s in run.strokes if "ball" in s.impact_source or "spotter" in s.impact_source]
     if not run.strokes:
+        _drop(group, "sin_golpe_en_la_pose" if side == "near" else "lejana_sin_bola_ni_detector")
         return []
     out, used = [], set()
     for c in group:
         d = _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets, scenes, rpose, wb3d, fcfg)
         if d is not None:
             out.append(d)
+        else:
+            near = min((abs(t0 + s.impact_frame / run.fps - c["t"]) for s in run.strokes), default=None)
+            _drop([c], "sin_impacto_cerca", impacto_mas_cercano_s=None if near is None else round(near, 2))
     return out
+
+
+def _drop(group: list[dict], why: str, **extra):
+    """B4 (07-11, request 134): why the fine pass did not keep a candidate (10 of hers lost in points of her serve):
+    written to strokes_descartados.json, read by the audit; results are not changed by it."""
+    for c in group:
+        _GATE.setdefault("dropped", []).append({"t": round(float(c["t"]), 3), "why": why, "side": c.get("side"),
+                                                "target": c.get("target"), "source": c.get("source"),
+                                                "kind": c.get("kind"), **extra})
 
 
 def _ball_said(dec: dict, wid: str) -> str:

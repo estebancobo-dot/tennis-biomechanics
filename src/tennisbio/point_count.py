@@ -249,7 +249,7 @@ GAP_CAUSES = {"sin_camara": "sin plano de la cámara principal", "sin_golpes": "
 
 def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple[float, float]],
                lead_s: float = 25.0, spotted: list[dict] | None = None, candidates: list[dict] | None = None,
-               doubtful: list[dict] | None = None) -> dict:
+               doubtful: list[dict] | None = None, dropped: list[dict] | None = None) -> dict:
     """B4 (04-11): the points played on HER serve (scoreboard row 0 serving, a point counted between two readings of
     the same game) with no serve of hers found, and why: no main-camera shot in that stretch (the broadcast did not
     show it), none of her strokes at all (detection), or strokes but no serve (stroke type). The stretch of a point is
@@ -347,6 +347,7 @@ def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple
             who = {"suyos_perdidos_despues": 0, "solo_de_la_rival": 0, "identidad_sin_decidir": 0, "sin_candidatos": 0}
             dts = sorted(float(x["match_time_s"]) for x in (doubtful or []) if x.get("match_time_s") is not None)
             lost = {"de_identidad_dudosa": 0, "descartados_en_la_pasada_fina": 0}
+            why = {}                                 # strokes_descartados.json: why the fine pass dropped them
             for g in out["gaps"]:
                 if g["cause"] != "sin_golpes":
                     continue
@@ -355,7 +356,13 @@ def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple
                     g["unseen"] = True             # nobody plays on the main camera: the broadcast did not show it
                 if any(c.get("target") is True for c in cs_):
                     who["suyos_perdidos_despues"] += 1
-                    lost["de_identidad_dudosa" if inside(dts, g["t0"], g["t1"]) else "descartados_en_la_pasada_fina"] += 1
+                    k_ = "de_identidad_dudosa" if inside(dts, g["t0"], g["t1"]) else "descartados_en_la_pasada_fina"
+                    lost[k_] += 1
+                    if k_ == "descartados_en_la_pasada_fina" and dropped is not None:
+                        rs = sorted({str(x.get("why")) for x in dropped if x.get("target") is True
+                                     and g["t0"] <= float(x.get("t", -1)) <= g["t1"]}) or ["sin_registro"]
+                        for r_ in rs:
+                            why[r_] = why.get(r_, 0) + 1
                 elif any(c.get("target") is None for c in cs_):
                     who["identidad_sin_decidir"] += 1
                 elif cs_:
@@ -364,6 +371,8 @@ def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple
                     who["sin_candidatos"] += 1
             none["candidatos"] = who
             none["suyos_perdidos"] = lost
+            if dropped is not None:
+                none["motivos_descarte"] = why
         cs = sorted(none.pop("camara_principal_s"))
         none["camara_principal_s_mediana"] = cs[len(cs) // 2] if cs else None
         out["no_strokes_points"] = none

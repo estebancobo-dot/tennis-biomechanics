@@ -196,3 +196,25 @@ def test_points_nobody_plays_in_are_unseen_and_lost_strokes_say_where_they_went(
                    doubtful=doubtful)
     assert g["unseen"] == 1                                    # point 3: nobody, nothing
     assert g["no_strokes_points"]["suyos_perdidos"] == {"de_identidad_dudosa": 1, "descartados_en_la_pasada_fina": 1}
+
+
+def test_lost_strokes_say_why_the_fine_pass_dropped_them():
+    from tennisbio.point_count import serve_gaps
+    readings = [_r(0, (0, 0)), _r(40, (15, 0)), _r(80, (30, 0))]
+    cands = [{"t": 20.0, "target": True}, {"t": 60.0, "target": True}]
+    dropped = [{"t": 20.0, "target": True, "why": "cribado_por_la_bola"}]
+    g = serve_gaps(readings, [], [(0.0, 80.0)], spotted=[], candidates=cands, doubtful=[], dropped=dropped)
+    assert g["no_strokes_points"]["motivos_descarte"] == {"cribado_por_la_bola": 1, "sin_registro": 1}
+
+
+def test_the_fine_pass_records_why_it_dropped_a_candidate():
+    import tennisbio.stages as S
+    S._GATE.clear()
+    S._GATE.update(passed=0, gated=0, off=0, reasons={}, seconds_gated=0.0, dropped=[])
+    S._drop([{"t": 12.3456, "side": "near", "target": True, "source": "marcador", "kind": "serve"}], "cribado_por_la_bola")
+    assert S._GATE["dropped"] == [{"t": 12.346, "why": "cribado_por_la_bola", "side": "near", "target": True,
+                                   "source": "marcador", "kind": "serve"}]
+    r = {"times": {}, "counts": {}, "gate": {"passed": 0, "gated": 1, "off": 0, "seconds_gated": 0.0, "reasons": {},
+                                             "dropped": [{"t": 1.0, "why": "x"}]}}
+    S._merge_fine_stats(r)
+    assert len(S._GATE["dropped"]) == 2

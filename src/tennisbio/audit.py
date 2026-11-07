@@ -540,7 +540,9 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
             if cd_f.exists():
                 cj = json.loads(cd_f.read_text(encoding="utf-8"))
                 cands = cj.get("candidates", cj) if isinstance(cj, dict) else cj
-            g = serve_gaps(readings, strokes, shots, spotted=spotted, candidates=cands, doubtful=doubt)
+            dr_f = _mf.at(d, "strokes_descartados.json")
+            dropped = json.loads(dr_f.read_text(encoding="utf-8")) if dr_f.exists() else None
+            g = serve_gaps(readings, strokes, shots, spotted=spotted, candidates=cands, doubtful=doubt, dropped=dropped)
             if g["points"]:
                 why = ", ".join(f"{GAP_CAUSES[k]} {v}" for k, v in g["by_cause"].items() if v)
                 # points nobody plays in on the main camera (no candidate, nothing spotted) were not shown by the
@@ -569,6 +571,7 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
                                     f"principal {nb['camara_principal_s_mediana']} s (mediana)"
                                     + (f", candidatos {nb['candidatos']}" if nb.get("candidatos") else "")
                                     + (f", golpes suyos perdidos {nb['suyos_perdidos']}" if nb.get("suyos_perdidos") else "")
+                                    + (f", motivos del descarte {nb['motivos_descarte']}" if nb.get("motivos_descarte") else "")
                                     if (nb := g.get("no_strokes_points")) and g["by_cause"].get("sin_golpes") else "")
                                  + ("; primeros: " + ", ".join(f"{x['t0'] / 60:.1f}-{x['t1'] / 60:.1f} min ({x['cause']})"
                                                                for x in g["gaps"][:8]) if g["gaps"] else ""),
