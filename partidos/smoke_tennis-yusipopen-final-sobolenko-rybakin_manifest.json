@@ -108,12 +108,12 @@
   "scheme": 2
  },
  "candidates": {
-  "fingerprint": "d600b578a024ca94",
-  "version": "11",
-  "seconds": 0.8,
-  "finished": "2026-11-04 09:51:01",
+  "fingerprint": "2ee67528d3cf86ee",
+  "version": "12",
+  "seconds": 0.9,
+  "finished": "2026-11-07 04:44:04",
   "summary": {
-   "candidates": 181,
+   "candidates": 183,
    "far": 94,
    "with_audio": 145,
    "source": "spotter",
@@ -123,7 +123,7 @@
    "replay_runs": 0,
    "audio_track": 0
   },
-  "out_hash": "de12c246f31a98576a7c",
+  "out_hash": "576d7e4a3ccbbfe58301",
   "scheme": 2
  },
  "fine": {
