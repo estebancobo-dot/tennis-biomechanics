@@ -300,6 +300,13 @@ carpetas: _poc31_35,_poc31_4
 ---
 id: 124
 accion: completo
+---
+id: 125
+accion: medir
+script: bench_candidates
+argumentos: --only bounce_own
+# 125 (07-11, #199): bote propio (HistGradientBoosting, 12 rasgos) entrenado con el conjunto TrackNet y nuestra bola,
+# separado por partido; se adopta solo si su F1 supera el de la regla en mas de 0,05 (bench_bounce_own.md)
 # 124 (07-11): los 4 partidos con candidatos v14 (saques del marcador) y, tras el analisis, "tennisbio app tras-completo"
 # (paso 3b: rehace los analisis de la aplicacion, solo informes); la auditoria lee el indice real (#160, #242)
 # 123 (07-11): el usuario aprueba borrar las carpetas de pruebas antiguas (#146). _poc9_largo se queda hasta saber si

@@ -17,6 +17,9 @@ Paso 2.5 (the rest of B3):
     mag3d     2D→3D lifter (MotionAGFormer xs / s)              against tennisbio.pose.wholebody3d (RTMW3D), on
               (caltennis: the multi-view reference)              CalTennis's calibrated views
     bounce    learned bounce (CatBoost of TennisProject)        against tennisbio.ball's bounce rule
+    bounce_own OUR learned bounce (request 199; same 12 features, against tennisbio.ball's bounce rule, on games it
+              scripts/train_bounce.py)                           did not see. The one module the fine pass imports, for
+                                                                 its switch `bounce_model: {use: own}` (off by default)
 
 Every wrapper builds its session with tennisbio.pose.estimator._ort_session, so the iGPU recovery and the CPU
 fallback apply as for the models in use.

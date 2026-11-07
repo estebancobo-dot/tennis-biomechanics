@@ -362,11 +362,12 @@ def test_markdown_report_lists_every_candidate():
 
 
 def test_no_stage_uses_a_candidate():
-    """Candidates are measured, not used: nothing outside tennisbio/candidates imports them."""
+    """Candidates are measured, not used: nothing outside tennisbio/candidates imports them. One exception (request
+    199): our own bounce model's switch (candidates.bounce_own), off by default (`bounce_model: {use: rule}`)."""
     src = ROOT / "src" / "tennisbio"
     bad = [f.relative_to(src).as_posix() for f in src.rglob("*.py")
            if "candidates" not in f.relative_to(src).parts and "candidates" in f.read_text(encoding="utf-8")
-           and re.search(r"(from|import)\s+[.\w]*candidates", f.read_text(encoding="utf-8"))]
+           and re.search(r"(from|import)\s+[.\w]*candidates(?!\.bounce_own\b)", f.read_text(encoding="utf-8"))]
     assert not bad, bad
 
 

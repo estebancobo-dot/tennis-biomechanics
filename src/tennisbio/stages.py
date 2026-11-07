@@ -1530,7 +1530,15 @@ def _fine_settings(c):
                        # the trunk's 3D (trunk3d, 03-11): MotionAGFormer on the 2D pose, or the former RTMW3D reading
                        "trunk3d": [(c.get("trunk3d") or {}).get("model", "motionagformer"),
                                    model_state((c.get("trunk3d") or {}).get("onnx") or "models/motionagformer_xs.onnx")]},
-            **_fp16_setting(c)}
+            **_fp16_setting(c), **_bounce_setting(c)}
+
+
+def _bounce_setting(c) -> dict:
+    """{} with the bounce rule (the default: fingerprints stay as they were); the own model and its file with
+    `bounce_model: {use: own}` (request 199)."""
+    from .candidates.bounce_own import setting
+
+    return setting(c)
 
 
 def _device_lost_msg(msg: str) -> bool:
@@ -1543,6 +1551,7 @@ FINE_CODE = ("stages", "clip_pipeline", "stroke_analysis", "phases", "kinematics
              "outcome", "series", "racket", "racket3d", "racket_face", "racket_orientation", "tracking", "technique",
              "footwork", "pose.yolo", "pose.yolo_onnx", "pose.backend", "ball3d", "limits", "fine_gate", "pose.hybrid",
              "footpoints", "pose.wholebody3d", "body_scale", "fine_ahead", "situations", "returns", "pose.estimator",
+             "candidates.bounce_own", "candidates.bounce_ctb",          # the own bounce model (request 199, off by default)
              "trunk3d", "pose.motionagformer", "point_count", "racket_pose")   # 04-11: every module the fine pass imports
 
 
@@ -2076,6 +2085,10 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
         if H_win is not None:
             H_win = _check_court(clip, c["t"] - t0, H_win, None)[0]
         _took("pista_ventana", t_)
+    from .candidates.bounce_own import configured as own_bounce
+    bm = own_bounce(ctx.cfg)                  # None: the bounce rule (default); else our model (request 199)
+    if bm is not None:
+        extra = {**extra, "bounce_model": bm}
     t_ = time.time()
     run = run_clip(clip, cache, p.hand, p.height_m, init_mode="near", rackets=side == "near",
                    imgsz=ctx.cfg.get("fine_imgsz", 960), log=lambda *_: None, ball=ball,

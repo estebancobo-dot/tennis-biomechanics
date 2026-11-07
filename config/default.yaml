@@ -154,6 +154,14 @@ ball:
   # en los 2560 fotogramas medidos (0 px de diferencia). Solo velocidad: no cambia ningún resultado.
   fp16: true
 
+# Bote de la bola (petición 199): rule = el giro más brusco de la trayectoria (tennisbio.ball, como siempre);
+# own = nuestro modelo aprendido (scripts/train_bounce.py, models/bounce_own.pkl, tennisbio.candidates.bounce_own).
+# Se pasa a own solo si su medida lo adopta (F1 en partidos no vistos > F1 de la regla + 0,05: bench_bounce_own.md).
+# Con rule la huella de la pasada fina no cambia; con own incluye el modelo (cambiarlo rehace la pasada fina).
+bounce_model:
+  use: rule
+  path: models/bounce_own.pkl
+
 # Orientación de las cuerdas en la pasada fina: 5 puntos de la raqueta (RacketVision,
 # `scripts/export_racketpose.py`) y, si está, la mano/antebrazo en 3D (RTMW3D, más lento:
 # se evalúa uno de cada `hand3d_step` fotogramas).

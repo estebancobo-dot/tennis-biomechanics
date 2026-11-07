@@ -14,6 +14,9 @@ accuracy and in speed on the configured device (the iGPU, `dml`).
                                                     the shoulder/hip line triangulated from both (#203, #206)
     bounce     the bounce rule (sharpest ball turn  TrackNet dataset: every frame's ball and status (2 = bounce);
                between two hits, tennisbio.ball)    on its annotated ball and on our ball tracker's (#199)
+    bounce_own the bounce rule                      the same TrackNet clips: OUR model trained on its bounces, measured
+               (only with --only bounce_own:        on games it did not see (scripts/train_bounce.py; own criterion:
+               it trains a model)                   held-out F1 > the rule's + 0.05; also bench_bounce_own.json/.md)
 
 Rule to adopt a candidate, written in the output for each one: accuracy equal or better AND not slower for the
 whole pass of a new match (the same work, on this PC). A candidate that wins only one of the two is not adopted;
@@ -53,6 +56,8 @@ sys.path.insert(0, str(ROOT / "scripts"))
 
 VERSION = 1
 CANDIDATES = ("wasb", "rtmw", "court14", "rfdetr", "f3ed", "ocr5", "mag3d", "bounce")
+# measured only when asked for by name (--only bounce_own): they train a model of ours, not export someone else's
+TRAINED = ("bounce_own",)
 MODELS = ROOT / "models"
 # candidate → (ONNX file, export script and its arguments, packages the export needs on top of the project's)
 EXPORTS = {
@@ -102,7 +107,7 @@ def to_markdown(rep: dict) -> str:
              "nuevo. Nada de esto cambia el análisis: adoptar uno es un cambio aparte.", "",
              "| Candidato | Frente a | Precisión (candidato / actual) | Velocidad (candidato / actual) | ¿Se adopta? |",
              "|---|---|---|---|---|"]
-    for name in CANDIDATES:
+    for name in CANDIDATES + tuple(t for t in TRAINED if t in rep["results"]):
         r = rep["results"].get(name)
         if not r:
             lines.append(f"| {name} | | sin medir | | |")
@@ -113,7 +118,7 @@ def to_markdown(rep: dict) -> str:
         v = r.get("verdict") or {}
         lines.append(f"| {name} | {r.get('baseline', '')} | {r.get('accuracy', '')} | {r.get('speed', '')} | "
                      f"{'**sí**' if v.get('adopt') else 'no'}: {v.get('reason', '')} |")
-    for name in CANDIDATES:
+    for name in CANDIDATES + TRAINED:
         r = rep["results"].get(name)
         if r and r.get("notes"):
             lines += ["", f"- {name}: " + " ".join(r["notes"])]
@@ -1165,6 +1170,24 @@ def bench_bounce(root: Path, device: str, cfg: dict, n_clips: int) -> dict:
                       "entre paréntesis, los segundos medidos."]}
 
 
+def bench_bounce_own(root: Path, device: str, cfg: dict, folds: int) -> dict:
+    """Our own bounce model (scripts/train_bounce.py) against the rule, on TrackNet games it did not see."""
+    import train_bounce as T
+
+    r = T.run(root, cfg, device, folds, out_dir=T.output_dir(cfg))
+    own, rule = r["per_model"]["own"], r["per_model"]["rule"]
+    ref = r["per_model"].get("catboost_ref")
+    return {"baseline": "regla del giro más brusco (tennisbio.ball)", "candidate": "modelo propio (train_bounce.py)",
+            "per_model": r["per_model"], "clips": r["clips"], "bounces": r["bounces"],
+            "accuracy": f"F1 botes con nuestra bola, partidos no vistos {own['f1']} / {rule['f1']}"
+                        + (f" (CatBoost de referencia {ref['f1']})" if ref else ""),
+            "speed": f"{r['seconds_per_hour']['own']} / {r['seconds_per_hour']['rule']} s por hora de vídeo",
+            "verdict": r["verdict"],
+            "notes": [f"Criterio propio (petición 199): F1 > el de la regla + {T.MARGIN}; separación por partido; "
+                      "detalle en bench_bounce_own.md. Activarlo es un cambio de configuración aparte "
+                      "(bounce_model: {use: own})."]}
+
+
 # ---------------------------------------------------------------- main
 
 def default_root(cfg: dict) -> Path:
@@ -1180,7 +1203,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default=None, help="carpeta de datos anotados (por defecto <salidas>/../datasets)")
     ap.add_argument("--device", default=None, help="dml, cpu… (por defecto el de la configuración)")
-    ap.add_argument("--only", default="", help="candidatos separados por comas: " + ",".join(CANDIDATES))
+    ap.add_argument("--only", default="", help="candidatos separados por comas: " + ",".join(CANDIDATES + TRAINED))
     ap.add_argument("--force", action="store_true", help="repetir también los ya medidos")
     ap.add_argument("--clips", type=int, default=8, help="clips de RacketVision (bola y pose)")
     ap.add_argument("--court-images", type=int, default=300)
@@ -1190,12 +1213,13 @@ def main(argv=None):
     ap.add_argument("--cal-segments", type=int, default=5, help="3D: tramos por par")
     ap.add_argument("--cal-seconds", type=float, default=4.0, help="3D: segundos por tramo")
     ap.add_argument("--bounce-clips", type=int, default=24, help="bote: clips del conjunto TrackNet con nuestra bola")
+    ap.add_argument("--bounce-folds", type=int, default=5, help="bote propio: grupos de partidos (separación por partido)")
     ap.add_argument("--budget-min", type=float, default=0, help="no empezar otro candidato pasado este tiempo (0 = sin límite)")
     a = ap.parse_args(argv)
     root = Path(a.root) if a.root else default_root(cfg)
     device = a.device or cfg.get("device", "cpu")
     todo = [c for c in (a.only.split(",") if a.only else CANDIDATES) if c]
-    bad = [c for c in todo if c not in CANDIDATES]
+    bad = [c for c in todo if c not in CANDIDATES + TRAINED]
     if bad:
         sys.exit(f"candidatos desconocidos: {bad}")
     rep_dir = root / "reports"
@@ -1209,7 +1233,8 @@ def main(argv=None):
             "rfdetr": lambda: bench_far(root, device, a.far_images), "f3ed": lambda: bench_f3ed(root, device, cfg),
             "ocr5": lambda: bench_ocr5(root, device, cfg, a.ocr_samples),
             "mag3d": lambda: bench_mag3d(root, device, cfg, a.cal_pairs, a.cal_segments, a.cal_seconds),
-            "bounce": lambda: bench_bounce(root, device, cfg, a.bounce_clips)}
+            "bounce": lambda: bench_bounce(root, device, cfg, a.bounce_clips),
+            "bounce_own": lambda: bench_bounce_own(root, device, cfg, a.bounce_folds)}
     t0 = time.time()
     for name in todo:
         done = (rep["results"].get(name) or {}).get("verdict") or {}

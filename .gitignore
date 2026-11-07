@@ -23,6 +23,9 @@ models/*.part
 models/f3ed/
 # paso 2.5: bote (CatBoost), 3D (MotionAGFormer), marcador (PP-OCRv5, con su versión PyTorch para la comprobación)
 models/*.cbm
+# bote propio (petición 199, scripts/train_bounce.py): se entrena en el PC con el conjunto TrackNet
+models/*.pkl
+models/*.pkl.tmp
 models/*.tr
 models/ppocrv5/
 
