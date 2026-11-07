@@ -330,6 +330,19 @@ def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple
             elif fs:
                 seen["nada_antes"] += 1
         out["spotter_before_first"] = seen
+        # the points with none of her strokes (07-11, request 124: 6-15 per match, the main cause): did the spotter see
+        # the opponent play in it (her strokes lost) or nobody (the point not on the main camera while it was played)?
+        none = {"golpes_de_la_rival": 0, "nadie_golpea": 0, "camara_principal_s": []}
+        for g in out["gaps"]:
+            if g["cause"] != "sin_golpes":
+                continue
+            seen_any = [e for t, e in sp if g["t0"] <= t <= g["t1"]]
+            none["golpes_de_la_rival" if seen_any else "nadie_golpea"] += 1
+            none["camara_principal_s"].append(round(sum(max(0.0, min(e, g["t1"]) - max(s, g["t0"]))
+                                                        for s, e in main_shots), 1))
+        cs = sorted(none.pop("camara_principal_s"))
+        none["camara_principal_s_mediana"] = cs[len(cs) // 2] if cs else None
+        out["no_strokes_points"] = none
     firsts = [g["first_stroke"] for g in out["gaps"] if g.get("cause") == "sin_saque" and g.get("first_stroke")]
     from collections import Counter
     out["first_strokes_without_serve"] = {

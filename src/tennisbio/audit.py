@@ -554,6 +554,10 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
                                     if (fw := g.get("first_strokes_without_serve")) and fw["n"] else "")
                                  + (f"; lo que vio el detector antes de su primer golpe: {sb}"
                                     if (sb := g.get("spotter_before_first")) else "")
+                                 + (f"; en los puntos sin ningún golpe suyo: con golpes de la rival "
+                                    f"{nb['golpes_de_la_rival']}, sin golpes de nadie {nb['nadie_golpea']}, cámara "
+                                    f"principal {nb['camara_principal_s_mediana']} s (mediana)"
+                                    if (nb := g.get("no_strokes_points")) and g["by_cause"].get("sin_golpes") else "")
                                  + ("; primeros: " + ", ".join(f"{x['t0'] / 60:.1f}-{x['t1'] / 60:.1f} min ({x['cause']})"
                                                                for x in g["gaps"][:8]) if g["gaps"] else ""),
                                  serve_gaps=g))

@@ -166,3 +166,13 @@ def test_no_serve_is_added_when_the_opponents_first_stroke_is_her_own_serve(monk
              {"t": 19.6, "target": True, "side": "near", "kind": "forehand"}]
     monkeypatch.setattr(S, "near_is_target", lambda identity, frame: True)
     assert S.add_serve_candidates(cands, {"readings": readings}, {"fps": 25}, 25.0) == 0
+
+
+def test_points_without_her_strokes_say_whether_anybody_played_in_them():
+    from tennisbio.point_count import serve_gaps
+    readings = [_r(0, (0, 0)), _r(40, (15, 0)), _r(80, (30, 0))]
+    spotted = [{"t": 20.0, "side": "far", "kind": "forehand"}]            # point 1: only the opponent seen
+    g = serve_gaps(readings, [], [(0.0, 30.0), (60.0, 70.0)], spotted=spotted)   # point 2: nobody
+    assert g["by_cause"]["sin_golpes"] == 2
+    assert g["no_strokes_points"]["golpes_de_la_rival"] == 1 and g["no_strokes_points"]["nadie_golpea"] == 1
+    assert g["no_strokes_points"]["camara_principal_s_mediana"] in (10.0, 30.0)
