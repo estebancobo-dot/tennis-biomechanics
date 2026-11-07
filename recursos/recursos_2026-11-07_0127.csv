@@ -77,3 +77,8 @@ hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram
 2026-11-07T01:48:07,zheng-qinwen-elena-rybakina,fine,28.0,12.3,0.0,9.8,19.8,2.1,45.0,0.0,0.0,0.0
 2026-11-07T01:48:24,zheng-qinwen-elena-rybakina,fine,32.0,11.8,0.0,9.9,19.8,2.2,100.0,0.0,0.0,0.0
 2026-11-07T01:48:40,zheng-qinwen-elena-rybakina,fine,71.0,44.6,0.0,9.8,19.8,1.9,91.0,0.0,0.0,0.0
+2026-11-07T01:48:57,zheng-qinwen-elena-rybakina,fine,18.0,7.2,0.0,7.1,19.8,1.2,0.0,0.0,0.0,0.0
+2026-11-07T01:49:13,zheng-qinwen-elena-rybakina,fine,20.0,38.6,0.0,6.4,19.8,0.7,0.0,0.0,0.0,0.0
+2026-11-07T01:49:30,zheng-qinwen-elena-rybakina,fine,23.0,8.5,0.0,6.3,19.8,0.7,0.0,0.0,0.0,0.0
+2026-11-07T01:49:46,zheng-qinwen-elena-rybakina,fine,16.0,3.7,0.0,6.3,19.8,0.7,0.0,0.0,0.0,4.0
+2026-11-07T01:50:03,zheng-qinwen-elena-rybakina,fine,20.0,6.5,0.0,6.4,19.8,0.7,0.0,0.0,0.0,0.0
