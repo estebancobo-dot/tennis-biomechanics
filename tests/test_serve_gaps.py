@@ -185,3 +185,14 @@ def test_points_without_her_strokes_say_whose_the_candidates_were():
     g = serve_gaps(readings, [], [(0.0, 160.0)], spotted=[], candidates=cands)
     assert g["no_strokes_points"]["candidatos"] == {"suyos_perdidos_despues": 1, "solo_de_la_rival": 1,
                                                    "identidad_sin_decidir": 1, "sin_candidatos": 1}
+
+
+def test_points_nobody_plays_in_are_unseen_and_lost_strokes_say_where_they_went():
+    from tennisbio.point_count import serve_gaps
+    readings = [_r(0, (0, 0)), _r(40, (15, 0)), _r(80, (30, 0)), _r(120, (40, 0))]
+    cands = [{"t": 20.0, "target": True}, {"t": 60.0, "target": True}]
+    doubtful = [{"match_time_s": 61.0}]
+    g = serve_gaps(readings, [], [(0.0, 120.0)], spotted=[{"t": 20.0, "side": "near"}], candidates=cands,
+                   doubtful=doubtful)
+    assert g["unseen"] == 1                                    # point 3: nobody, nothing
+    assert g["no_strokes_points"]["suyos_perdidos"] == {"de_identidad_dudosa": 1, "descartados_en_la_pasada_fina": 1}

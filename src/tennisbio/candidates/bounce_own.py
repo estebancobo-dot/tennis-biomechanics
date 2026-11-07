@@ -145,9 +145,11 @@ class OwnBounce:
 _LOADED: dict = {}
 
 
-def configured(cfg: dict) -> OwnBounce | None:
-    """The own bounce model when the configuration asks for it (`bounce_model: {use: own, path: ...}`), else None
-    (the rule of tennisbio.ball). Asked for and missing: an error, never a silent fallback."""
+_WARNED: set = set()
+
+
+def _own_path(cfg: dict):
+    """The own model's file when it is asked for and exists, else None (warning once when asked for and missing)."""
     bm = (cfg or {}).get("bounce_model") or {}
     if str(bm.get("use", "rule")).lower() != "own":
         return None
@@ -155,7 +157,22 @@ def configured(cfg: dict) -> OwnBounce | None:
 
     p = resolve_path(bm.get("path") or "models/bounce_own.pkl")
     if p is None or not p.exists():
-        raise FileNotFoundError(f"bounce_model.use = own pero falta el modelo ({p}): scripts/train_bounce.py")
+        if str(p) not in _WARNED:
+            _WARNED.add(str(p))
+            print(f"  AVISO: bounce_model.use = own pero falta el modelo ({p}); se usa la regla "
+                  "(scripts/train_bounce.py lo crea)", flush=True)
+        return None
+    return p
+
+
+def configured(cfg: dict) -> OwnBounce | None:
+    """The own bounce model when the configuration asks for it (`bounce_model: {use: own, path: ...}`), else None
+    (the rule of tennisbio.ball). Asked for and missing (a machine where scripts/train_bounce.py never ran, 07-11:
+    adopted by default after request 131): the rule, said once in the log, and the fingerprint says «rule» too
+    (`setting`), so no result claims a model it did not use."""
+    p = _own_path(cfg)
+    if p is None:
+        return None
     key = (str(p), p.stat().st_mtime)
     if key not in _LOADED:
         _LOADED[key] = OwnBounce.load(p)
@@ -164,9 +181,9 @@ def configured(cfg: dict) -> OwnBounce | None:
 
 def setting(cfg: dict) -> dict:
     """The part of the fine pass's fingerprint: {} with the rule (fingerprints stay as they were), else the model."""
-    bm = (cfg or {}).get("bounce_model") or {}
-    if str(bm.get("use", "rule")).lower() != "own":
+    p = _own_path(cfg)
+    if p is None:
         return {}
     from ..config import model_state
 
-    return {"bounce_model": ["own", model_state(bm.get("path") or "models/bounce_own.pkl")]}
+    return {"bounce_model": ["own", model_state(str(p))]}

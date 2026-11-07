@@ -333,6 +333,11 @@ argumentos: --only bounce_own
 id: 132
 accion: app_nuevo
 minutos: 35
+---
+id: 133
+accion: completo
+# 133 (07-11): los 4 partidos con el bote propio adoptado (131: F1 0,884 frente a 0,594) y la auditoria que deja fuera
+# los puntos que la tele no ensena y dice si los golpes suyos perdidos quedaron de identidad dudosa o descartados
 # 132 (07-11, B7): prueba principal de B7 con el codigo actual: 35 min de un partido como partido nuevo, analizado de
 # principio a fin solo por la aplicacion (en una carpeta aparte); la del 04-11 era de un codigo anterior
 # 131 (07-11, #199): la medida del bote propio con los 95 clips, si el usuario ya ha dejado el zip de TrackNet en

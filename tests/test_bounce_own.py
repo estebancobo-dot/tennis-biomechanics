@@ -140,11 +140,13 @@ def test_switch_off_keeps_the_rule(tmp_path):
     from tennisbio.stages import _fine_settings
 
     cfg = load_config()
-    assert (cfg.get("bounce_model") or {}).get("use") == "rule"                   # default: the rule
-    assert configured(cfg) is None and configured({}) is None and setting(cfg) == {}
-    assert "bounce_model" not in _fine_settings(cfg)                              # fingerprint as it was
-    with pytest.raises(FileNotFoundError):
-        configured({"bounce_model": {"use": "own", "path": str(tmp_path / "none.pkl")}})
+    assert (cfg.get("bounce_model") or {}).get("use") == "own"                    # adopted 07-11 (request 131)
+    rule = {**cfg, "bounce_model": {"use": "rule"}}
+    assert configured(rule) is None and configured({}) is None and setting(rule) == {}
+    assert "bounce_model" not in _fine_settings(rule)                             # fingerprint as it was
+    missing = {**cfg, "bounce_model": {"use": "own", "path": str(tmp_path / "none.pkl")}}
+    assert configured(missing) is None and setting(missing) == {}                 # no file: the rule, and it says so
+    assert "bounce_model" not in _fine_settings(missing)
     import train_bounce as T
     from tennisbio.candidates.bounce_own import OwnBounce
     p = OwnBounce(T.fit(toy_clips(n_games=2, per_game=1)), 0.5).save(tmp_path / "own.pkl")

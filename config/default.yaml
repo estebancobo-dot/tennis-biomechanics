@@ -159,7 +159,9 @@ ball:
 # Se pasa a own solo si su medida lo adopta (F1 en partidos no vistos > F1 de la regla + 0,05: bench_bounce_own.md).
 # Con rule la huella de la pasada fina no cambia; con own incluye el modelo (cambiarlo rehace la pasada fina).
 bounce_model:
-  use: rule
+  # own (07-11, request 131): our model, F1 0.884 on TrackNet games it never saw against 0.594 of the rule (criterion
+  # written before measuring: > rule + 0.05); without its file (scripts/train_bounce.py) the rule is used and said
+  use: own
   path: models/bounce_own.pkl
 
 # Orientación de las cuerdas en la pasada fina: 5 puntos de la raqueta (RacketVision,

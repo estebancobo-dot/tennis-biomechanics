@@ -540,13 +540,18 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
             if cd_f.exists():
                 cj = json.loads(cd_f.read_text(encoding="utf-8"))
                 cands = cj.get("candidates", cj) if isinstance(cj, dict) else cj
-            g = serve_gaps(readings, strokes, shots, spotted=spotted, candidates=cands)
+            g = serve_gaps(readings, strokes, shots, spotted=spotted, candidates=cands, doubtful=doubt)
             if g["points"]:
                 why = ", ".join(f"{GAP_CAUSES[k]} {v}" for k, v in g["by_cause"].items() if v)
-                miss = g["points"] - g["found"]
-                st_ = "ok" if miss <= 0.1 * g["points"] else ("aviso" if miss <= 0.3 * g["points"] else "falta")
+                # points nobody plays in on the main camera (no candidate, nothing spotted) were not shown by the
+                # broadcast: not measurable from TV, left out of the count and said (07-11, requests 127-130)
+                seen_pts = g["points"] - g.get("unseen", 0)
+                miss = seen_pts - g["found"]
+                st_ = "ok" if miss <= 0.1 * seen_pts else ("aviso" if miss <= 0.3 * seen_pts else "falta")
                 out.append(_item(1, "Golpes", f"Saques por punto de su saque: {d.name}", st_,
-                                 f"{g['found']} de {g['points']} puntos de su saque con su saque encontrado"
+                                 f"{g['found']} de {seen_pts} puntos de su saque vistos con su saque encontrado"
+                                 + (f" ({g['unseen']} puntos más sin nadie jugando en la cámara principal: la tele "
+                                    "no los enseñó, no cuentan)" if g.get("unseen") else "")
                                  + (f"; sin saque: {why}" if why else "")
                                  + (f"; sus saques encontrados caen en puntos de su saque {g['serves_at']['her_points']}, "
                                     f"de la rival {g['serves_at']['opponent_points']}, fuera de los puntos leídos "
