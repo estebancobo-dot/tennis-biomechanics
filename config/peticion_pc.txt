@@ -305,6 +305,10 @@ id: 125
 accion: medir
 script: bench_candidates
 argumentos: --only bounce_own
+---
+id: 126
+accion: prevision
+# 126 (07-11, #66): rehace prevision.log con su hora de fin (el del 04-11 era anterior al arreglo)
 # 125 (07-11, #199): bote propio (HistGradientBoosting, 12 rasgos) entrenado con el conjunto TrackNet y nuestra bola,
 # separado por partido; se adopta solo si su F1 supera el de la regla en mas de 0,05 (bench_bounce_own.md)
 # 124 (07-11): los 4 partidos con candidatos v14 (saques del marcador) y, tras el analisis, "tennisbio app tras-completo"
