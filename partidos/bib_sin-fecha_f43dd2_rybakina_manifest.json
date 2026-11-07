@@ -151,16 +151,16 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "990586633f876c3d",
+  "fingerprint": "fac332ce53109984",
   "version": "16",
-  "seconds": 154.8,
-  "finished": "2026-11-07 21:53:19",
+  "seconds": 125.8,
+  "finished": "2026-11-08 00:35:54",
   "summary": {
    "candidates": 170,
    "confirmed": 168,
    "errors": 0,
    "warnings": [],
-   "forehands": 83,
+   "forehands": 82,
    "windows": 101,
    "gate": {
     "windows_gated": 0,
@@ -174,16 +174,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "pose": 42.3,
-    "cuerdas_y_3d": 35.2,
-    "jugadora_lejana": 30.9,
-    "pose_modelo_yolo": 25.8,
-    "pista_ventana": 25.8,
-    "analisis_ventana": 21.3,
-    "pose_modelo_hybrid": 14.3,
-    "raqueta": 10.4,
-    "recorte": 6.5,
-    "cribado": 5.6
+    "cuerdas_y_3d": 34.3,
+    "jugadora_lejana": 31.9,
+    "pista_ventana": 25.1,
+    "analisis_ventana": 21.2,
+    "cribado": 5.6,
+    "recorte": 5.5,
+    "pose": 0.6
    },
    "counts": {
     "overlap_s": 0.0,
@@ -191,21 +188,19 @@
     "posed_frames": 23418,
     "impacts": 240,
     "kept_impacts": 169,
-    "racket_frames": 31,
+    "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 0,
-    "frames_modelo_yolo": 575,
-    "frames_modelo_hybrid": 154
+    "frames_960_far": 0
    }
   },
-  "out_hash": "5abbe10feceeb5a907ab",
+  "out_hash": "9f44c789a25c8a608bf2",
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "c0592b8977fc14ba",
+  "fingerprint": "b1c6905874760adf",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-07 21:53:19",
+  "finished": "2026-11-08 00:35:54",
   "summary": {
    "enabled": false
   },
@@ -258,10 +253,10 @@
   "scheme": 2
  },
  "views_link": {
-  "fingerprint": "fc09130d3979c4de",
+  "fingerprint": "8023124e28a4c3e1",
   "version": "1",
   "seconds": 0.2,
-  "finished": "2026-11-07 21:53:19",
+  "finished": "2026-11-08 00:35:54",
   "summary": {
    "strokes": 168,
    "with_replay": 26,
@@ -274,10 +269,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "8006edde3d670af1",
+  "fingerprint": "c6c26ca72ea05c9c",
   "version": "1",
-  "seconds": 9.4,
-  "finished": "2026-11-07 21:53:28",
+  "seconds": 9.2,
+  "finished": "2026-11-08 00:36:04",
   "summary": {
    "candidates": 17,
    "confirmed": 5,
@@ -297,7 +292,7 @@
    },
    "seconds": {
     "analisis_ventana": 3.0,
-    "cuerdas_y_3d": 2.1,
+    "cuerdas_y_3d": 1.9,
     "recorte": 0.9,
     "cribado": 0.2,
     "pose": 0.0,
