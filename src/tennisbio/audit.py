@@ -535,7 +535,12 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
                 shots = [(sh["start"] / fps, sh["end"] / fps) for sh in scn.get("shots", []) if sh.get("main_camera")]
             sp_f = _mf.at(d, "spotting.json")
             spotted = json.loads(sp_f.read_text(encoding="utf-8")) if sp_f.exists() else None
-            g = serve_gaps(readings, strokes, shots, spotted=spotted)
+            cd_f = _mf.at(d, "candidates.json")
+            cands = None
+            if cd_f.exists():
+                cj = json.loads(cd_f.read_text(encoding="utf-8"))
+                cands = cj.get("candidates", cj) if isinstance(cj, dict) else cj
+            g = serve_gaps(readings, strokes, shots, spotted=spotted, candidates=cands)
             if g["points"]:
                 why = ", ".join(f"{GAP_CAUSES[k]} {v}" for k, v in g["by_cause"].items() if v)
                 miss = g["points"] - g["found"]
@@ -554,9 +559,10 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
                                     if (fw := g.get("first_strokes_without_serve")) and fw["n"] else "")
                                  + (f"; lo que vio el detector antes de su primer golpe: {sb}"
                                     if (sb := g.get("spotter_before_first")) else "")
-                                 + (f"; en los puntos sin ningún golpe suyo: con golpes de la rival "
-                                    f"{nb['golpes_de_la_rival']}, sin golpes de nadie {nb['nadie_golpea']}, cámara "
+                                 + (f"; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) "
+                                    f"{nb['golpes_de_alguien']}, sin golpes de nadie {nb['nadie_golpea']}, cámara "
                                     f"principal {nb['camara_principal_s_mediana']} s (mediana)"
+                                    + (f", candidatos {nb['candidatos']}" if nb.get("candidatos") else "")
                                     if (nb := g.get("no_strokes_points")) and g["by_cause"].get("sin_golpes") else "")
                                  + ("; primeros: " + ", ".join(f"{x['t0'] / 60:.1f}-{x['t1'] / 60:.1f} min ({x['cause']})"
                                                                for x in g["gaps"][:8]) if g["gaps"] else ""),

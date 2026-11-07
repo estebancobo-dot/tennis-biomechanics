@@ -174,5 +174,14 @@ def test_points_without_her_strokes_say_whether_anybody_played_in_them():
     spotted = [{"t": 20.0, "side": "far", "kind": "forehand"}]            # point 1: only the opponent seen
     g = serve_gaps(readings, [], [(0.0, 30.0), (60.0, 70.0)], spotted=spotted)   # point 2: nobody
     assert g["by_cause"]["sin_golpes"] == 2
-    assert g["no_strokes_points"]["golpes_de_la_rival"] == 1 and g["no_strokes_points"]["nadie_golpea"] == 1
+    assert g["no_strokes_points"]["golpes_de_alguien"] == 1 and g["no_strokes_points"]["nadie_golpea"] == 1
     assert g["no_strokes_points"]["camara_principal_s_mediana"] in (10.0, 30.0)
+
+
+def test_points_without_her_strokes_say_whose_the_candidates_were():
+    from tennisbio.point_count import serve_gaps
+    readings = [_r(0, (0, 0)), _r(40, (15, 0)), _r(80, (30, 0)), _r(120, (40, 0)), _r(160, (40, 15))]
+    cands = [{"t": 20.0, "target": True}, {"t": 60.0, "target": False}, {"t": 100.0, "target": None}]
+    g = serve_gaps(readings, [], [(0.0, 160.0)], spotted=[], candidates=cands)
+    assert g["no_strokes_points"]["candidatos"] == {"suyos_perdidos_despues": 1, "solo_de_la_rival": 1,
+                                                   "identidad_sin_decidir": 1, "sin_candidatos": 1}

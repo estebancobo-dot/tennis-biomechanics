@@ -48,6 +48,9 @@ def game_of(key: str) -> str:
     return key.split("_")[0]
 
 
+_DOWNLOAD = {"failed": None}     # the reason the whole zip could not be downloaded, once per run
+
+
 def _frames(root: Path, key: str, folder: str, names: list[str]):
     """The clip's frames one by one (extracted from the zip once, as bench_candidates.tracknet_frames), so a long clip
     never has to fit in memory."""
@@ -62,7 +65,16 @@ def _frames(root: Path, key: str, folder: str, names: list[str]):
         if not p.exists():
             # all 95 clips' frames: the whole zip once (resumable) rather than thousands of reads by parts (07-11,
             # request 125: a read by parts died at 2.3 of 2.6 GB)
-            z = z or tracknet_download(root)
+            if z is None:
+                if _DOWNLOAD["failed"]:
+                    raise OSError(_DOWNLOAD["failed"])
+                try:
+                    z = tracknet_download(root)
+                except OSError as e:
+                    # 07-11, request 128: Google Drive answers the PC with a page, not the zip; the clips already on
+                    # disk (those of the bounce measure) are used and the rest skipped, said in the report
+                    _DOWNLOAD["failed"] = str(e)[:200]
+                    raise
             p.write_bytes(z.read(folder + n))
         yield cv2.imread(str(p))
 
@@ -110,7 +122,11 @@ def load_clips(root: Path, cfg: dict, device: str, keys: list[str] | None = None
     for key in (keys or sorted(folders)):
         names, ann, st = read_tracknet(lab / f"{key}.csv")
         t_ = time.time()
-        tr, fh = tracked(root, key, folders[key], names, tracker, state)
+        try:
+            tr, fh = tracked(root, key, folders[key], names, tracker, state)
+        except OSError as e:
+            print(f"  {key}: sin fotogramas en el disco y sin descarga ({str(e)[:100]}): se deja fuera", flush=True)
+            continue
         print(f"  {key}: {len(names)} fotogramas, {int(np.sum(st == 2))} botes ({time.time() - t_:.0f} s)", flush=True)
         clips.append({"key": key, "group": game_of(key), "tracked": tr, "frame_h": fh, "annotated": ann,
                       "hits": [int(h) for h in np.flatnonzero(st == 1)], "gt": [int(b) for b in np.flatnonzero(st == 2)]})

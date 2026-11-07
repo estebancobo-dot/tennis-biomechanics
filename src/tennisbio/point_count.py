@@ -248,7 +248,7 @@ GAP_CAUSES = {"sin_camara": "sin plano de la cámara principal", "sin_golpes": "
 
 
 def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple[float, float]],
-               lead_s: float = 25.0, spotted: list[dict] | None = None) -> dict:
+               lead_s: float = 25.0, spotted: list[dict] | None = None, candidates: list[dict] | None = None) -> dict:
     """B4 (04-11): the points played on HER serve (scoreboard row 0 serving, a point counted between two readings of
     the same game) with no serve of hers found, and why: no main-camera shot in that stretch (the broadcast did not
     show it), none of her strokes at all (detection), or strokes but no serve (stroke type). The stretch of a point is
@@ -332,14 +332,31 @@ def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple
         out["spotter_before_first"] = seen
         # the points with none of her strokes (07-11, request 124: 6-15 per match, the main cause): did the spotter see
         # the opponent play in it (her strokes lost) or nobody (the point not on the main camera while it was played)?
-        none = {"golpes_de_la_rival": 0, "nadie_golpea": 0, "camara_principal_s": []}
+        none = {"golpes_de_alguien": 0, "nadie_golpea": 0, "camara_principal_s": []}
         for g in out["gaps"]:
             if g["cause"] != "sin_golpes":
                 continue
             seen_any = [e for t, e in sp if g["t0"] <= t <= g["t1"]]
-            none["golpes_de_la_rival" if seen_any else "nadie_golpea"] += 1
+            none["golpes_de_alguien" if seen_any else "nadie_golpea"] += 1
             none["camara_principal_s"].append(round(sum(max(0.0, min(e, g["t1"]) - max(s, g["t0"]))
                                                         for s, e in main_shots), 1))
+        # whose the candidates of those points were (candidates.json, 07-11): hers and lost later (fine pass), the
+        # opponent's only (identity, e.g. after a change of ends) or undecided
+        if candidates is not None:
+            who = {"suyos_perdidos_despues": 0, "solo_de_la_rival": 0, "identidad_sin_decidir": 0, "sin_candidatos": 0}
+            for g in out["gaps"]:
+                if g["cause"] != "sin_golpes":
+                    continue
+                cs_ = [c for c in candidates if c.get("t") is not None and g["t0"] <= float(c["t"]) <= g["t1"]]
+                if any(c.get("target") is True for c in cs_):
+                    who["suyos_perdidos_despues"] += 1
+                elif any(c.get("target") is None for c in cs_):
+                    who["identidad_sin_decidir"] += 1
+                elif cs_:
+                    who["solo_de_la_rival"] += 1
+                else:
+                    who["sin_candidatos"] += 1
+            none["candidatos"] = who
         cs = sorted(none.pop("camara_principal_s"))
         none["camara_principal_s_mediana"] = cs[len(cs) // 2] if cs else None
         out["no_strokes_points"] = none

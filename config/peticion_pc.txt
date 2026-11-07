@@ -316,6 +316,18 @@ id: 128
 accion: medir
 script: bench_candidates
 argumentos: --only bounce_own
+---
+id: 129
+accion: medir
+script: bench_candidates
+argumentos: --only bounce_own
+---
+id: 130
+accion: completo
+# 129 (07-11, #199): la 128 fallo porque Google Drive da al PC una pagina, no el zip: ahora se entrena con los clips ya
+# en el disco (los de la medida del bote) y se dejan fuera los demas, dicho en el informe
+# 130 (07-11, B4): auditoria de los 4 partidos con de quien eran los candidatos en los puntos sin golpes suyos
+# (suyos perdidos en la pasada fina, solo de la rival = identidad, sin decidir)
 # 127 (07-11, B4): los 4 partidos (desde las caches) para la auditoria con el detalle nuevo de los puntos de su saque
 # sin ningun golpe suyo (golpes de la rival o de nadie, segundos de camara principal)
 # 128 (07-11, #199): la 125 otra vez; fallo la lectura por partes del conjunto TrackNet a 2,3 de 2,6 GB: ahora se
