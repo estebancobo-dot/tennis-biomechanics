@@ -127,10 +127,10 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "e519ad2216b5cf47",
+  "fingerprint": "883bd879cfce0b49",
   "version": "16",
-  "seconds": 65.7,
-  "finished": "2026-11-07 10:54:09",
+  "seconds": 66.8,
+  "finished": "2026-11-07 12:09:02",
   "summary": {
    "candidates": 78,
    "confirmed": 75,
@@ -150,13 +150,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 27.2,
-    "pista_ventana": 17.7,
-    "cuerdas_y_3d": 13.4,
-    "analisis_ventana": 12.1,
-    "recorte": 3.6,
-    "cribado": 3.1,
-    "pose": 0.2
+    "jugadora_lejana": 29.6,
+    "pista_ventana": 18.1,
+    "analisis_ventana": 15.5,
+    "cuerdas_y_3d": 12.5,
+    "recorte": 3.4,
+    "cribado": 2.9,
+    "pose": 0.4
    },
    "counts": {
     "overlap_s": 0.0,
@@ -173,10 +173,10 @@
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "1cb0a20c940bf236",
+  "fingerprint": "64ec2f69d52db18c",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-07 10:54:09",
+  "finished": "2026-11-07 12:09:02",
   "summary": {
    "enabled": false
   },
@@ -184,10 +184,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "376fe0ea14e1801f",
+  "fingerprint": "fe2a95f979089a61",
   "version": "1",
-  "seconds": 26.0,
-  "finished": "2026-11-07 10:54:35",
+  "seconds": 21.7,
+  "finished": "2026-11-07 12:09:23",
   "summary": {
    "candidates": 28,
    "confirmed": 19,
@@ -200,19 +200,19 @@
     "windows_passed": 14,
     "windows_ungated": 0,
     "reasons": {
-     "detector": 1,
      "golpe_de_bola": 6,
+     "detector": 1,
      "bola_no_vista": 7
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 8.5,
-    "analisis_ventana": 5.3,
-    "jugadora_lejana": 2.8,
-    "pista_ventana": 1.7,
-    "recorte": 1.6,
-    "cribado": 0.8,
+    "cuerdas_y_3d": 7.8,
+    "analisis_ventana": 4.3,
+    "jugadora_lejana": 2.1,
+    "pista_ventana": 1.5,
+    "recorte": 1.2,
+    "cribado": 0.7,
     "pose": 0.1
    },
    "counts": {
@@ -252,7 +252,7 @@
   "fingerprint": "4ece18b385e1074e",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-11-07 10:54:35",
+  "finished": "2026-11-07 12:09:23",
   "summary": {
    "strokes": 75,
    "with_replay": 26,

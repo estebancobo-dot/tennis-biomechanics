@@ -3,10 +3,10 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 358,
-  "falta": 21,
+  "ok": 357,
+  "falta": 23,
   "pocos datos": 127,
-  "aviso": 99
+  "aviso": 98
  },
  "items": [
   {
@@ -2790,7 +2790,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "2446 caracteres de texto, 6 vídeos, 19 gráficos",
+   "detail": "2446 caracteres de texto, 7 vídeos, 19 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2854,7 +2854,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2003 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2000 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3375,21 +3375,21 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 22 s, quedan ≈ 0 s, a las 2026-11-07 10:54:34"
+   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 19 s, quedan ≈ 0 s, a las 2026-11-07 12:09:23"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
-   "status": "ok",
-   "detail": "55 de 55 registros con fecha de inicio y de fin o duración"
+   "status": "falta",
+   "detail": "54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: medir_bench_candidates.log: ilegible ([Errno 13] Permission denied: 'C:\\\\tenis\\\\output\\\\medir_bench_candidates.log')"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "42 carpetas, 36.1 GB en total (2026-11-07T10:53:49); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "42 carpetas, 36.2 GB en total (2026-11-07T12:07:38); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -3438,7 +3438,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-07 10:55:06 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-07 12:09:49 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3578,14 +3578,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-07_1029.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (23.0 min): CPU 7/19/67 %, iGPU 0/2/93 %, RAM máx 7.8 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el fine (3.2 min): CPU 28/43/73 %, iGPU 0/10/95 %, RAM máx 9.6 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 18/18/18 %, iGPU 0/0/0 %, RAM máx 8.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
+   "detail": "recursos_2026-11-07_1029.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (62.0 min): CPU 7/37/86 %, iGPU 0/2/94 %, RAM máx 19.3 GB → RAM al límite; us-open-2026-r4-naomi-osaka-el fine (3.2 min): CPU 28/43/73 %, iGPU 0/10/95 %, RAM máx 9.6 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 18/18/18 %, iGPU 0/0/0 %, RAM máx 8.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina views (2.8 min): CPU 20/48/87 %, iGPU 0/40/84 %, RAM máx 8.6 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine (4.2 min): CPU 21/39/67 %, iGPU 0/33/97 %, RAM máx 9.1 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 18/36/53 %, iGPU 0/22/43 %, RAM máx 8.9 GB → uso medio: margen para repartir trabajo"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 07-11 10:52, empezó a los 0.2 min; el PC estaba con otro trabajo hasta las 10:53 (0.8 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 07-11 10:58, empezó a los 68.8 min; el PC estaba con otro trabajo hasta las 12:07 (68.6 min, no cuentan), empezó 0.2 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 11,
@@ -4011,8 +4011,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
+   "status": "falta",
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: medir_bench_candidates.log: ilegible ([Errno 13] )"
   },
   {
    "req": 11,

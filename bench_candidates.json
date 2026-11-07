@@ -669,7 +669,11 @@
     "Las dos son pasos sobre la trayectoria de la bola ya calculada. Velocidad: lo que cada una añade a la pasada completa, en minutos por hora de vídeo redondeados hacia arriba a 0,1 (la pasada dura ~75 min por hora de vídeo y varía minutos entre ejecuciones; menos de 6 s por hora no la cambia); entre paréntesis, los segundos medidos."
    ],
    "minutes": 20.9
+  },
+  "bounce_own": {
+   "error": "OSError: https://drive.usercontent.google.com/download?id=1DQ3ZbvokTsgOq6x-ay6O8U2W4a8e3LFw&export=download&confirm=t: bytes 2303721472-2304770047 incompletos tras 5 intentos",
+   "trace": "3.11-windows-x86_64-none\\Lib\\zipfile.py\", line 1107, in _read2\n    data = self._fileobj.read(n)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\esteb\\AppData\\Roaming\\uv\\python\\cpython-3.11-windows-x86_64-none\\Lib\\zipfile.py\", line 811, in read\n    data = self._file.read(n)\n           ^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\scripts\\bench_candidates.py\", line 398, in readinto\n    d = self._blk(i)[p - i * self.block:][: n - len(got)]\n        ^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\scripts\\bench_candidates.py\", line 386, in _blk\n    raise OSError(f\"{self.url}: bytes {a}-{b} incompletos tras 5 intentos\")\nOSError: https://drive.usercontent.google.com/download?id=1DQ3ZbvokTsgOq6x-ay6O8U2W4a8e3LFw&export=download&confirm=t: bytes 2303721472-2304770047 incompletos tras 5 intentos\n"
   }
  },
- "generated": "2026-11-04 04:36"
+ "generated": "2026-11-07 12:56"
 }
