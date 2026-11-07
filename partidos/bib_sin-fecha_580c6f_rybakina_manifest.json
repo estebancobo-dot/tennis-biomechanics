@@ -132,13 +132,13 @@
   "scheme": 2
  },
  "candidates": {
-  "fingerprint": "6ba1b501c23d82c2",
-  "version": "13",
+  "fingerprint": "fe50e0a6d5b17369",
+  "version": "14",
   "seconds": 6.3,
-  "finished": "2026-11-07 07:37:48",
+  "finished": "2026-11-07 11:06:18",
   "summary": {
-   "candidates": 652,
-   "far": 309,
+   "candidates": 650,
+   "far": 307,
    "with_audio": 539,
    "source": "spotter",
    "opponent_strokes": 319,
@@ -147,7 +147,7 @@
    "replay_runs": 9,
    "audio_track": 0
   },
-  "out_hash": "60d31a00f0d29c147063",
+  "out_hash": "8f8fb2087c03aef6a1e9",
   "scheme": 2
  },
  "fine": {
@@ -241,10 +241,10 @@
   "scheme": 2
  },
  "views": {
-  "fingerprint": "34c7df9ebcd68898",
+  "fingerprint": "ea6358c562afe10a",
   "version": "6",
-  "seconds": 271.3,
-  "finished": "2026-11-07 07:42:19",
+  "seconds": 276.2,
+  "finished": "2026-11-07 11:10:55",
   "summary": {
    "views": 1093,
    "repeticion_principal": 76,
@@ -252,11 +252,11 @@
    "frontal": 18,
    "primer_plano": 868,
    "otra": 51,
-   "links": 2224,
+   "links": 2217,
    "linked_views": 915,
    "slowmo_links": 16
   },
-  "out_hash": "fe0e4c59fb1c79f3266c",
+  "out_hash": "c1a6c73253253a0e0703",
   "scheme": 2
  },
  "views_link": {
