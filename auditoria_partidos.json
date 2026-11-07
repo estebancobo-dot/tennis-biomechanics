@@ -3,10 +3,10 @@
  "strokes": 445,
  "near": 265,
  "summary": {
-  "ok": 422,
+  "ok": 424,
   "falta": 30,
   "pocos datos": 56,
-  "aviso": 127
+  "aviso": 125
  },
  "items": [
   {
@@ -627,9 +627,9 @@
    "area": "Golpes",
    "name": "Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina",
    "status": "aviso",
-   "detail": "marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por punto de saque) y 299-538 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 287 golpes, 85 saques/remates → como mucho 96% de sus golpes y 99% de sus saques (161 cerca, 126 lejos); además 34 de identidad dudosa, apartados (no cuentan como suyos)",
-   "found": 287,
-   "serves": 85,
+   "detail": "marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por punto de saque) y 299-538 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 286 golpes, 84 saques/remates → como mucho 96% de sus golpes y 98% de sus saques (160 cerca, 126 lejos); además 34 de identidad dudosa, apartados (no cuentan como suyos)",
+   "found": 286,
+   "serves": 84,
    "counts": {
     "points": 187,
     "points_high": 207,
@@ -651,10 +651,10 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_b8b713_rybakina",
    "status": "aviso",
-   "detail": "53 de 70 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 11, golpes suyos, pero ningún saque 6; sus saques encontrados caen en puntos de su saque 65, de la rival 7, fuera de los puntos leídos 13; en los puntos sin saque, su primer golpe encontrado llega 5.1 s (mediana de 6) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 6): tipo {'backhand/detector': 6}, lado {'far': 5, 'near': 1}, 3 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 2, 'golpe_de_la_rival_antes': 1, 'nada_antes': 3, 'sin_primer_golpe': 11}; primeros: 47.2-47.8 min (sin_golpes), 62.3-62.7 min (sin_golpes), 63.2-63.7 min (sin_golpes), 78.3-78.8 min (sin_saque), 79.2-79.7 min (sin_golpes), 100.9-101.5 min (sin_saque), 106.8-107.3 min (sin_saque), 110.5-110.9 min (sin_golpes)",
+   "detail": "52 de 70 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 11, golpes suyos, pero ningún saque 7; sus saques encontrados caen en puntos de su saque 64, de la rival 7, fuera de los puntos leídos 13; en los puntos sin saque, su primer golpe encontrado llega 5.1 s (mediana de 7) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 7): tipo {'backhand/detector': 6, 'forehand/detector': 1}, lado {'far': 5, 'near': 2}, 4 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 2, 'golpe_de_la_rival_antes': 2, 'nada_antes': 3, 'sin_primer_golpe': 11}; primeros: 47.2-47.8 min (sin_golpes), 62.3-62.7 min (sin_golpes), 63.2-63.7 min (sin_golpes), 78.3-78.8 min (sin_saque), 79.2-79.7 min (sin_golpes), 100.9-101.5 min (sin_saque), 106.8-107.3 min (sin_saque), 110.5-110.9 min (sin_golpes)",
    "serve_gaps": {
     "points": 70,
-    "found": 53,
+    "found": 52,
     "gaps": [
      {
       "t0": 2830.7,
@@ -787,6 +787,20 @@
       }
      },
      {
+      "t0": 9589.4,
+      "t1": 9626.6,
+      "cause": "sin_saque",
+      "shot_start": 9593.9,
+      "first_stroke_after_s": 5.2,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "forehand",
+       "side": "near",
+       "court_y_m": 0.15
+      }
+     },
+     {
       "t0": 10223.0,
       "t1": 10275.0,
       "cause": "sin_saque",
@@ -810,33 +824,34 @@
     "by_cause": {
      "sin_camara": 0,
      "sin_golpes": 11,
-     "sin_saque": 6
+     "sin_saque": 7
     },
     "spotter_before_first": {
      "saque_suyo_visto_y_perdido": 0,
      "golpe_suyo_visto_y_perdido": 2,
-     "golpe_de_la_rival_antes": 1,
+     "golpe_de_la_rival_antes": 2,
      "nada_antes": 3,
      "sin_primer_golpe": 11
     },
     "first_strokes_without_serve": {
-     "n": 6,
+     "n": 7,
      "type": {
-      "backhand/detector": 6
+      "backhand/detector": 6,
+      "forehand/detector": 1
      },
      "side": {
       "far": 5,
-      "near": 1
+      "near": 2
      },
-     "behind_baseline": 3
+     "behind_baseline": 4
     },
     "first_stroke_after_shot_start_s": {
      "median": 5.1,
-     "n": 6,
+     "n": 7,
      "under_3": 2
     },
     "serves_at": {
-     "her_points": 65,
+     "her_points": 64,
      "opponent_points": 7,
      "elsewhere": 13
     }
@@ -846,14 +861,14 @@
    "req": 1,
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina",
-   "status": "ok",
-   "detail": "15% de sus golpes con repetición enlazada (25 de 163, 6 a cámara lenta) · 93% con otra cámara (151) · tomas: 30 repeticiones, 25 laterales, 6 frontales, 408 primeros planos, 17 otras",
+   "status": "aviso",
+   "detail": "0% de sus golpes con repetición enlazada (0 de 163, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 30 repeticiones, 25 laterales, 6 frontales, 408 primeros planos, 17 otras",
    "strokes": 163,
-   "with_replay": 25,
-   "with_other_camera": 151,
-   "with_slowmo": 6,
-   "replay_share": 0.153,
-   "other_share": 0.926
+   "with_replay": 0,
+   "with_other_camera": 0,
+   "with_slowmo": 0,
+   "replay_share": 0.0,
+   "other_share": 0.0
   },
   {
    "req": 1,
@@ -886,12 +901,12 @@
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: sin-fecha_b8b713_rybakina",
    "status": "ok",
-   "detail": "16% de sus golpes con repetición enlazada (45 de 287, 21 a cámara lenta) · 99% con otra cámara (284) · tomas: 76 repeticiones, 103 laterales, 33 frontales, 1380 primeros planos, 81 otras",
-   "strokes": 287,
-   "with_replay": 45,
-   "with_other_camera": 284,
-   "with_slowmo": 21,
-   "replay_share": 0.157,
+   "detail": "15% de sus golpes con repetición enlazada (44 de 286, 20 a cámara lenta) · 99% con otra cámara (283) · tomas: 76 repeticiones, 103 laterales, 33 frontales, 1380 primeros planos, 81 otras",
+   "strokes": 286,
+   "with_replay": 44,
+   "with_other_camera": 283,
+   "with_slowmo": 20,
+   "replay_share": 0.154,
    "other_share": 0.99
   },
   {
@@ -899,14 +914,14 @@
    "area": "Fiabilidad",
    "name": "forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)",
    "status": "aviso",
-   "detail": "482 medidas en 263 golpes de 4 partidos; dependen de la cámara: stroke.return_ready_depth_m 70% (azar 31%), stroke.return_step_in_m 57% (azar 22%), footwork.feet_still_share 31% (azar 5%), metrics.shoulder_turn_3d_deg 30% (azar 15%), ready.shoulder_tilt 26% (azar 8%), metrics.hip_turn_3d_deg 22% (azar 16%), metrics.x_factor_3d_deg 20% (azar 10%), ready.racket_head_vs_wrist 20% (azar 15%), ready.racket_tip_vs_head 19% (azar 14%), finish.shoulder_turn 14% (azar 7%), metrics.time_ready_to_impact_s 13% (azar 5%), recovery.hip_turn 12% (azar 11%); prueba débil con 4 partidos (cámaras parecidas): «dentro del azar» no demuestra que no dependan",
+   "detail": "482 medidas en 263 golpes de 4 partidos; dependen de la cámara: stroke.return_ready_depth_m 70% (azar 31%), stroke.return_step_in_m 57% (azar 22%), footwork.feet_still_share 31% (azar 5%), metrics.shoulder_turn_3d_deg 30% (azar 14%), ready.shoulder_tilt 26% (azar 8%), metrics.hip_turn_3d_deg 22% (azar 16%), metrics.x_factor_3d_deg 20% (azar 9%), ready.racket_head_vs_wrist 20% (azar 16%), ready.racket_tip_vs_head 19% (azar 14%), finish.shoulder_turn 14% (azar 7%), metrics.time_ready_to_impact_s 13% (azar 6%), recovery.hip_turn 12% (azar 10%); prueba débil con 4 partidos (cámaras parecidas): «dentro del azar» no demuestra que no dependan",
    "measures": [
     {
      "measure": "stroke.return_ready_depth_m",
      "n": 65,
      "matches": 4,
      "share": 0.7018,
-     "chance": 0.3057,
+     "chance": 0.307,
      "p": 7.569276872261937e-13,
      "camera_dependent": true
     },
@@ -915,44 +930,44 @@
      "n": 65,
      "matches": 4,
      "share": 0.5703,
-     "chance": 0.2249,
+     "chance": 0.22,
      "p": 1.1736310856487886e-08,
-     "camera_dependent": true
-    },
-    {
-     "measure": "footwork.feet_still_share",
-     "n": 260,
-     "matches": 4,
-     "share": 0.3147,
-     "chance": 0.0469,
-     "p": 2.5195553036431147e-18,
-     "camera_dependent": true
-    },
-    {
-     "measure": "metrics.shoulder_turn_3d_deg",
-     "n": 127,
-     "matches": 4,
-     "share": 0.3014,
-     "chance": 0.1466,
-     "p": 1.359990820545772e-07,
      "camera_dependent": true
     },
     {
      "measure": "ball_net.elbow_non",
      "n": 45,
      "matches": 4,
-     "share": 0.2967,
-     "chance": 0.229,
-     "p": 0.043205266395710186,
+     "share": 0.3225,
+     "chance": 0.2478,
+     "p": 0.025812999602128017,
      "camera_dependent": false
+    },
+    {
+     "measure": "footwork.feet_still_share",
+     "n": 260,
+     "matches": 4,
+     "share": 0.3149,
+     "chance": 0.0458,
+     "p": 2.409998213464089e-18,
+     "camera_dependent": true
+    },
+    {
+     "measure": "metrics.shoulder_turn_3d_deg",
+     "n": 127,
+     "matches": 4,
+     "share": 0.3025,
+     "chance": 0.1397,
+     "p": 1.2520477773848435e-07,
+     "camera_dependent": true
     },
     {
      "measure": "ball_net.racket_head_lateral",
      "n": 45,
      "matches": 4,
-     "share": 0.2794,
-     "chance": 0.2962,
-     "p": 0.05984630978661403,
+     "share": 0.2864,
+     "chance": 0.2987,
+     "p": 0.05253921576831181,
      "camera_dependent": false
     },
     {
@@ -960,7 +975,7 @@
      "n": 57,
      "matches": 4,
      "share": 0.2709,
-     "chance": 0.2364,
+     "chance": 0.2242,
      "p": 0.01697480884336428,
      "camera_dependent": false
     },
@@ -968,55 +983,37 @@
      "measure": "ready.shoulder_tilt",
      "n": 178,
      "matches": 4,
-     "share": 0.2584,
-     "chance": 0.0835,
-     "p": 3.2525629597585867e-09,
+     "share": 0.258,
+     "chance": 0.0823,
+     "p": 3.4011827296362614e-09,
      "camera_dependent": true
     },
     {
      "measure": "ball_net.shoulder_abd_non",
      "n": 46,
      "matches": 4,
-     "share": 0.2508,
-     "chance": 0.2724,
-     "p": 0.08993745632665068,
+     "share": 0.2547,
+     "chance": 0.2516,
+     "p": 0.0839480718111642,
      "camera_dependent": false
     },
     {
      "measure": "ball_net.face_yaw",
      "n": 45,
      "matches": 4,
-     "share": 0.223,
-     "chance": 0.3072,
-     "p": 0.15668365649733088,
+     "share": 0.2361,
+     "chance": 0.2977,
+     "p": 0.12708499140737473,
      "camera_dependent": false
     },
     {
      "measure": "metrics.hip_turn_3d_deg",
      "n": 127,
      "matches": 4,
-     "share": 0.2181,
-     "chance": 0.1554,
-     "p": 5.415612503952184e-05,
+     "share": 0.2188,
+     "chance": 0.1605,
+     "p": 5.171840546427211e-05,
      "camera_dependent": true
-    },
-    {
-     "measure": "ball_net.wrist_non_lateral",
-     "n": 67,
-     "matches": 4,
-     "share": 0.2178,
-     "chance": 0.2078,
-     "p": 0.0247201136667584,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_bounce.racket_forearm",
-     "n": 85,
-     "matches": 4,
-     "share": 0.2134,
-     "chance": 0.1359,
-     "p": 0.005171155221663596,
-     "camera_dependent": false
     },
     {
      "measure": "acceleration.shoulder_tilt",
@@ -1028,38 +1025,65 @@
      "camera_dependent": false
     },
     {
-     "measure": "ball_net.shoulder_turn",
+     "measure": "ball_net.wrist_non_lateral",
      "n": 67,
      "matches": 4,
-     "share": 0.2049,
-     "chance": 0.2056,
-     "p": 0.03556303263327476,
+     "share": 0.206,
+     "chance": 0.1983,
+     "p": 0.03446596807314004,
      "camera_dependent": false
     },
     {
      "measure": "metrics.x_factor_3d_deg",
      "n": 127,
      "matches": 4,
-     "share": 0.2031,
-     "chance": 0.095,
-     "p": 0.0001441686770702254,
+     "share": 0.2045,
+     "chance": 0.0903,
+     "p": 0.00013172955646356473,
      "camera_dependent": true
+    },
+    {
+     "measure": "ball_bounce.racket_forearm",
+     "n": 85,
+     "matches": 4,
+     "share": 0.2036,
+     "chance": 0.1348,
+     "p": 0.007563263310955184,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_net.shoulder_turn",
+     "n": 67,
+     "matches": 4,
+     "share": 0.1964,
+     "chance": 0.2055,
+     "p": 0.04488487182681541,
+     "camera_dependent": false
     },
     {
      "measure": "ready.racket_head_vs_wrist",
      "n": 111,
      "matches": 4,
      "share": 0.196,
-     "chance": 0.1505,
+     "chance": 0.1551,
      "p": 0.0009975373308131843,
      "camera_dependent": true
+    },
+    {
+     "measure": "ball_net.racket_angle",
+     "n": 45,
+     "matches": 4,
+     "share": 0.1942,
+     "chance": 0.1791,
+     "p": 0.24013360909283857,
+     "camera_dependent": false
     },
     {
      "measure": "ready.racket_tip_vs_head",
      "n": 111,
      "matches": 4,
      "share": 0.1899,
-     "chance": 0.1394,
+     "chance": 0.1417,
      "p": 0.001381300803687643,
      "camera_dependent": true
     },
@@ -1067,36 +1091,27 @@
      "measure": "ball_bounce.shoulder_turn",
      "n": 101,
      "matches": 4,
-     "share": 0.1891,
+     "share": 0.1887,
      "chance": 0.1464,
-     "p": 0.003425865298545222,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_net.racket_angle",
-     "n": 45,
-     "matches": 4,
-     "share": 0.1883,
-     "chance": 0.1913,
-     "p": 0.26066862138505076,
+     "p": 0.003484290033915897,
      "camera_dependent": false
     },
     {
      "measure": "ball_bounce.racket_head_lateral",
      "n": 85,
      "matches": 4,
-     "share": 0.188,
+     "share": 0.1875,
      "chance": 0.1647,
-     "p": 0.013635442857478568,
+     "p": 0.013852422137305288,
      "camera_dependent": false
     },
     {
      "measure": "ball_net.racket_forearm",
      "n": 45,
      "matches": 4,
-     "share": 0.1753,
-     "chance": 0.3133,
-     "p": 0.3100650537069111,
+     "share": 0.1779,
+     "chance": 0.3108,
+     "p": 0.2996708925219436,
      "camera_dependent": false
     },
     {
@@ -1104,53 +1119,53 @@
      "n": 110,
      "matches": 4,
      "share": 0.1687,
-     "chance": 0.1341,
+     "chance": 0.1464,
      "p": 0.004435781924738149,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_bounce.arm_extension",
-     "n": 102,
-     "matches": 4,
-     "share": 0.1599,
-     "chance": 0.1422,
-     "p": 0.011923093581669765,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_net.arm_extension",
-     "n": 67,
-     "matches": 4,
-     "share": 0.1582,
-     "chance": 0.1615,
-     "p": 0.11837746606672189,
-     "camera_dependent": false
-    },
-    {
-     "measure": "loaded.face_tilt",
-     "n": 127,
-     "matches": 4,
-     "share": 0.1542,
-     "chance": 0.1066,
-     "p": 0.0028529341960368787,
      "camera_dependent": false
     },
     {
      "measure": "ball_net.head_over_base",
      "n": 67,
      "matches": 4,
-     "share": 0.1499,
-     "chance": 0.1643,
-     "p": 0.14393958775879814,
+     "share": 0.1625,
+     "chance": 0.1634,
+     "p": 0.10680717070315225,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_net.arm_extension",
+     "n": 67,
+     "matches": 4,
+     "share": 0.1588,
+     "chance": 0.1617,
+     "p": 0.11678804181029732,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_bounce.arm_extension",
+     "n": 102,
+     "matches": 4,
+     "share": 0.1575,
+     "chance": 0.1356,
+     "p": 0.013202150074824129,
+     "camera_dependent": false
+    },
+    {
+     "measure": "loaded.face_tilt",
+     "n": 127,
+     "matches": 4,
+     "share": 0.1522,
+     "chance": 0.1077,
+     "p": 0.0032144084827993107,
      "camera_dependent": false
     },
     {
      "measure": "ball_bounce.body_height",
      "n": 102,
      "matches": 4,
-     "share": 0.1494,
-     "chance": 0.1116,
-     "p": 0.018706820320341013,
+     "share": 0.1512,
+     "chance": 0.1119,
+     "p": 0.01732596912952211,
      "camera_dependent": false
     },
     {
@@ -1158,17 +1173,8 @@
      "n": 63,
      "matches": 4,
      "share": 0.148,
-     "chance": 0.1648,
+     "chance": 0.1662,
      "p": 0.18493690638938146,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_net.head_vs_hips",
-     "n": 67,
-     "matches": 4,
-     "share": 0.1431,
-     "chance": 0.1809,
-     "p": 0.16776352690438706,
      "camera_dependent": false
     },
     {
@@ -1176,16 +1182,34 @@
      "n": 202,
      "matches": 4,
      "share": 0.1424,
-     "chance": 0.0655,
-     "p": 4.2783023386314085e-05,
+     "chance": 0.0664,
+     "p": 4.3056222658598985e-05,
      "camera_dependent": true
+    },
+    {
+     "measure": "finish.elbow_non",
+     "n": 47,
+     "matches": 4,
+     "share": 0.1419,
+     "chance": 0.2602,
+     "p": 0.4279417717203755,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_flight.net_frame",
+     "n": 80,
+     "matches": 4,
+     "share": 0.1406,
+     "chance": 0.1542,
+     "p": 0.09138002938052116,
+     "camera_dependent": false
     },
     {
      "measure": "footwork.split_landing_vs_opp_s",
      "n": 57,
      "matches": 4,
      "share": 0.1389,
-     "chance": 0.206,
+     "chance": 0.2029,
      "p": 0.2924668167939448,
      "camera_dependent": false
     },
@@ -1193,135 +1217,90 @@
      "measure": "metrics.trunk3d_readings",
      "n": 127,
      "matches": 4,
-     "share": 0.137,
-     "chance": 0.1085,
-     "p": 0.007545461425850727,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_net.wrist_dom_lateral",
-     "n": 67,
-     "matches": 4,
-     "share": 0.1357,
-     "chance": 0.229,
-     "p": 0.19750871124602587,
+     "share": 0.1368,
+     "chance": 0.1094,
+     "p": 0.007629829313338855,
      "camera_dependent": false
     },
     {
      "measure": "ball_net.wrist_non_height",
      "n": 67,
      "matches": 4,
-     "share": 0.1342,
-     "chance": 0.1794,
-     "p": 0.20409151422784433,
+     "share": 0.1352,
+     "chance": 0.1782,
+     "p": 0.19975691105847362,
      "camera_dependent": false
     },
     {
-     "measure": "ball_flight.net_frame",
-     "n": 80,
+     "measure": "ball_net.wrist_dom_vs_hip",
+     "n": 67,
      "matches": 4,
-     "share": 0.134,
-     "chance": 0.1507,
-     "p": 0.11053700790049836,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_bounce.elbow_dom_lateral",
-     "n": 102,
-     "matches": 4,
-     "share": 0.1323,
-     "chance": 0.1264,
-     "p": 0.0380099771422209,
+     "share": 0.1337,
+     "chance": 0.1956,
+     "p": 0.20644109522885024,
      "camera_dependent": false
     },
     {
      "measure": "metrics.time_ready_to_impact_s",
      "n": 260,
      "matches": 4,
-     "share": 0.1323,
-     "chance": 0.0536,
-     "p": 3.090366548921363e-06,
+     "share": 0.1322,
+     "chance": 0.055,
+     "p": 3.110522131524751e-06,
      "camera_dependent": true
-    },
-    {
-     "measure": "ball_net.wrist_dom_vs_hip",
-     "n": 67,
-     "matches": 4,
-     "share": 0.1319,
-     "chance": 0.1931,
-     "p": 0.21439744447285006,
-     "camera_dependent": false
     },
     {
      "measure": "ball_bounce.elbow_non",
      "n": 74,
      "matches": 4,
-     "share": 0.1315,
-     "chance": 0.2048,
-     "p": 0.15761849955958349,
+     "share": 0.13,
+     "chance": 0.2057,
+     "p": 0.16360276606212548,
      "camera_dependent": false
     },
     {
-     "measure": "ball_net.racket_tip_height",
-     "n": 45,
-     "matches": 4,
-     "share": 0.1294,
-     "chance": 0.2843,
-     "p": 0.5284595876005895,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_bounce.hip_height",
+     "measure": "ball_bounce.elbow_dom_lateral",
      "n": 102,
      "matches": 4,
+     "share": 0.1291,
+     "chance": 0.1258,
+     "p": 0.04330052041414429,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_net.head_vs_hips",
+     "n": 67,
+     "matches": 4,
+     "share": 0.1286,
+     "chance": 0.1765,
+     "p": 0.2297249814054969,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_net.hip_tilt",
+     "n": 49,
+     "matches": 4,
      "share": 0.1283,
-     "chance": 0.1256,
-     "p": 0.04459532693379276,
+     "chance": 0.236,
+     "p": 0.46704623670917544,
      "camera_dependent": false
     },
     {
      "measure": "shot_quality_proxy",
      "n": 104,
      "matches": 4,
-     "share": 0.1281,
-     "chance": 0.1155,
-     "p": 0.04071982010744526,
+     "share": 0.1277,
+     "chance": 0.1355,
+     "p": 0.04132262789685898,
      "camera_dependent": false
     },
     {
-     "measure": "ball_bounce.elbow_dom",
-     "n": 93,
+     "measure": "ball_bounce.hip_height",
+     "n": 102,
      "matches": 4,
-     "share": 0.1269,
-     "chance": 0.1285,
-     "p": 0.07329035757157991,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.elbow_non",
-     "n": 46,
-     "matches": 4,
-     "share": 0.1266,
-     "chance": 0.2964,
-     "p": 0.5266645187118607,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_flight.contact_height_m",
-     "n": 96,
-     "matches": 4,
-     "share": 0.125,
-     "chance": 0.1263,
-     "p": 0.06782898590049424,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.contact_height_m",
-     "n": 96,
-     "matches": 4,
-     "share": 0.125,
-     "chance": 0.1459,
-     "p": 0.06782898590049424,
+     "share": 0.1259,
+     "chance": 0.1255,
+     "p": 0.04908608851136277,
      "camera_dependent": false
     },
     {
@@ -1329,17 +1308,35 @@
      "n": 63,
      "matches": 4,
      "share": 0.1249,
-     "chance": 0.1911,
+     "chance": 0.1894,
      "p": 0.29151157837340036,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_flight.contact_height_m",
+     "n": 96,
+     "matches": 4,
+     "share": 0.1244,
+     "chance": 0.1228,
+     "p": 0.06947281704463061,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.contact_height_m",
+     "n": 96,
+     "matches": 4,
+     "share": 0.1244,
+     "chance": 0.1481,
+     "p": 0.06947281704463061,
      "camera_dependent": false
     },
     {
      "measure": "recovery.hip_turn",
      "n": 199,
      "matches": 4,
-     "share": 0.1245,
-     "chance": 0.1065,
-     "p": 0.0002892222910118308,
+     "share": 0.1242,
+     "chance": 0.1003,
+     "p": 0.0002981906524130973,
      "camera_dependent": true
     },
     {
@@ -1347,71 +1344,89 @@
      "n": 63,
      "matches": 4,
      "share": 0.124,
-     "chance": 0.2013,
+     "chance": 0.2083,
      "p": 0.29636951864041156,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_net.wrist_dom_lateral",
+     "n": 67,
+     "matches": 4,
+     "share": 0.1239,
+     "chance": 0.2227,
+     "p": 0.25350985474999077,
      "camera_dependent": false
     },
     {
      "measure": "ball_bounce.base_width",
      "n": 102,
      "matches": 4,
-     "share": 0.1229,
-     "chance": 0.1309,
-     "p": 0.05505633775562325,
+     "share": 0.1235,
+     "chance": 0.1278,
+     "p": 0.05388940517977741,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_bounce.elbow_dom",
+     "n": 93,
+     "matches": 4,
+     "share": 0.1226,
+     "chance": 0.1332,
+     "p": 0.08482604987988551,
      "camera_dependent": false
     },
     {
      "measure": "metrics.toss_above_head_bh",
      "n": 208,
      "matches": 4,
-     "share": 0.121,
-     "chance": 0.062,
-     "p": 0.00024403753449884434,
+     "share": 0.1206,
+     "chance": 0.0599,
+     "p": 0.00025395495896239124,
      "camera_dependent": true
-    },
-    {
-     "measure": "ball_net.hip_tilt",
-     "n": 49,
-     "matches": 4,
-     "share": 0.1202,
-     "chance": 0.232,
-     "p": 0.5127286484303223,
-     "camera_dependent": false
     },
     {
      "measure": "ball_bounce.wrist_dom_height",
      "n": 102,
      "matches": 4,
-     "share": 0.1184,
-     "chance": 0.1297,
-     "p": 0.0657255801999776,
+     "share": 0.1205,
+     "chance": 0.1273,
+     "p": 0.0604513507650599,
+     "camera_dependent": false
+    },
+    {
+     "measure": "footwork.moving_at_opp_hit_mps",
+     "n": 85,
+     "matches": 4,
+     "share": 0.1188,
+     "chance": 0.1519,
+     "p": 0.13614424215065593,
      "camera_dependent": false
     },
     {
      "measure": "finish.hip_turn",
      "n": 202,
      "matches": 4,
-     "share": 0.1181,
-     "chance": 0.0783,
-     "p": 0.0004451547585938845,
+     "share": 0.1178,
+     "chance": 0.0794,
+     "p": 0.0004564879699102241,
      "camera_dependent": true
     },
     {
-     "measure": "footwork.moving_at_opp_hit_mps",
-     "n": 86,
+     "measure": "ball_bounce.face_tilt",
+     "n": 83,
      "matches": 4,
-     "share": 0.1157,
-     "chance": 0.1384,
-     "p": 0.1430899721674472,
+     "share": 0.1161,
+     "chance": 0.1433,
+     "p": 0.15992782880200948,
      "camera_dependent": false
     },
     {
-     "measure": "ball_net.face_tilt",
-     "n": 45,
+     "measure": "recovery.shoulder_abd_dom",
+     "n": 131,
      "matches": 4,
-     "share": 0.1146,
-     "chance": 0.3028,
-     "p": 0.6097962849967851,
+     "share": 0.1147,
+     "chance": 0.0851,
+     "p": 0.020357201361592414,
      "camera_dependent": false
     },
     {
@@ -1424,75 +1439,57 @@
      "camera_dependent": false
     },
     {
-     "measure": "recovery.shoulder_abd_dom",
-     "n": 131,
+     "measure": "takeback.knee_non",
+     "n": 127,
      "matches": 4,
-     "share": 0.1143,
-     "chance": 0.0861,
-     "p": 0.020865519501028443,
+     "share": 0.1144,
+     "chance": 0.11,
+     "p": 0.024920629062111045,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_bounce.wrist_dom_lateral",
+     "n": 102,
+     "matches": 4,
+     "share": 0.1137,
+     "chance": 0.1598,
+     "p": 0.07829993251674158,
      "camera_dependent": false
     },
     {
      "measure": "recovery.shoulder_turn",
      "n": 201,
      "matches": 4,
-     "share": 0.1136,
-     "chance": 0.0688,
-     "p": 0.0007130265900942864,
+     "share": 0.1137,
+     "chance": 0.0722,
+     "p": 0.0007056688373856579,
      "camera_dependent": true
     },
     {
-     "measure": "ball_bounce.wrist_dom_lateral",
-     "n": 102,
-     "matches": 4,
-     "share": 0.1134,
-     "chance": 0.16,
-     "p": 0.07912725386797131,
-     "camera_dependent": false
-    },
-    {
      "measure": "acceleration.elbow_non",
-     "n": 61,
-     "matches": 4,
-     "share": 0.1124,
-     "chance": 0.2191,
-     "p": 0.38918826617644525,
-     "camera_dependent": false
-    },
-    {
-     "measure": "takeback.knee_non",
-     "n": 127,
-     "matches": 4,
-     "share": 0.1123,
-     "chance": 0.111,
-     "p": 0.02777077159906381,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_bounce.face_tilt",
-     "n": 83,
+     "n": 60,
      "matches": 4,
      "share": 0.1115,
-     "chance": 0.1505,
-     "p": 0.18150950687846756,
+     "chance": 0.2197,
+     "p": 0.40734014832928345,
      "camera_dependent": false
     },
     {
      "measure": "stroke.contact_vs_top",
      "n": 96,
      "matches": 4,
-     "share": 0.1103,
-     "chance": 0.1608,
-     "p": 0.11350161876105777,
+     "share": 0.1107,
+     "chance": 0.1679,
+     "p": 0.11195517306586412,
      "camera_dependent": false
     },
     {
-     "measure": "ball_net.base_width",
-     "n": 67,
+     "measure": "ball_net.knee_dom",
+     "n": 60,
      "matches": 4,
-     "share": 0.1079,
-     "chance": 0.1667,
-     "p": 0.3461624774823434,
+     "share": 0.1095,
+     "chance": 0.1592,
+     "p": 0.4204812612787945,
      "camera_dependent": false
     },
     {
@@ -1500,26 +1497,17 @@
      "n": 63,
      "matches": 4,
      "share": 0.1072,
-     "chance": 0.2019,
+     "chance": 0.2062,
      "p": 0.3977360851365953,
      "camera_dependent": false
     },
     {
-     "measure": "ball_net.elbow_dom_lateral",
+     "measure": "ball_net.wrist_dom_vs_shoulder",
      "n": 67,
      "matches": 4,
-     "share": 0.1068,
-     "chance": 0.1822,
-     "p": 0.3537979985714804,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_net.knee_dom",
-     "n": 60,
-     "matches": 4,
-     "share": 0.1068,
-     "chance": 0.164,
-     "p": 0.4381768075140813,
+     "share": 0.1067,
+     "chance": 0.1962,
+     "p": 0.3544522604594004,
      "camera_dependent": false
     },
     {
@@ -1527,134 +1515,116 @@
      "n": 63,
      "matches": 4,
      "share": 0.1063,
-     "chance": 0.2136,
+     "chance": 0.2227,
      "p": 0.40382595755996853,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ready.racket_angle",
-     "n": 111,
-     "matches": 4,
-     "share": 0.1045,
-     "chance": 0.1439,
-     "p": 0.07770418987082155,
      "camera_dependent": false
     },
     {
      "measure": "recovery.base_width",
      "n": 201,
      "matches": 4,
-     "share": 0.1041,
-     "chance": 0.0631,
-     "p": 0.0016774237743408505,
-     "camera_dependent": false
+     "share": 0.1047,
+     "chance": 0.061,
+     "p": 0.0015934587248339705,
+     "camera_dependent": true
     },
     {
-     "measure": "ball_net.wrist_dom_vs_shoulder",
-     "n": 67,
+     "measure": "ready.racket_angle",
+     "n": 111,
      "matches": 4,
-     "share": 0.103,
-     "chance": 0.1925,
-     "p": 0.37915459359163645,
+     "share": 0.1045,
+     "chance": 0.1367,
+     "p": 0.07770418987082155,
      "camera_dependent": false
     },
     {
-     "measure": "ball_net.racket_tip_vs_head",
+     "measure": "ball_net.racket_tip_height",
      "n": 45,
      "matches": 4,
-     "share": 0.101,
-     "chance": 0.2853,
-     "p": 0.6857248400121032,
+     "share": 0.1044,
+     "chance": 0.2719,
+     "p": 0.6667793239825133,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_net.face_tilt",
+     "n": 45,
+     "matches": 4,
+     "share": 0.1043,
+     "chance": 0.2881,
+     "p": 0.6670460749483176,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_net.elbow_dom_lateral",
+     "n": 67,
+     "matches": 4,
+     "share": 0.1039,
+     "chance": 0.1742,
+     "p": 0.3725890607010978,
      "camera_dependent": false
     },
     {
      "measure": "impact.back_foot_angle_deg",
      "n": 52,
      "matches": 4,
-     "share": 0.101,
-     "chance": 0.2714,
-     "p": 0.5852023703759659,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_net.shoulder_abd_dom",
-     "n": 67,
-     "matches": 4,
-     "share": 0.1004,
-     "chance": 0.2095,
-     "p": 0.3970887095851579,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_net.hands_apart",
-     "n": 67,
-     "matches": 4,
-     "share": 0.1,
-     "chance": 0.1699,
-     "p": 0.39973430691838796,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.loaded_vs_top",
-     "n": 96,
-     "matches": 4,
-     "share": 0.0999,
-     "chance": 0.1537,
-     "p": 0.15967722415667954,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_bounce.face_yaw",
-     "n": 83,
-     "matches": 4,
-     "share": 0.0985,
-     "chance": 0.1634,
-     "p": 0.2552270519042284,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_net.elbow_dom_vs_shoulder",
-     "n": 67,
-     "matches": 4,
-     "share": 0.0984,
-     "chance": 0.1463,
-     "p": 0.41118307013387434,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_bounce.com_over_feet",
-     "n": 96,
-     "matches": 4,
-     "share": 0.0978,
-     "chance": 0.1359,
-     "p": 0.1707853080502196,
+     "share": 0.1035,
+     "chance": 0.2601,
+     "p": 0.5694787336546782,
      "camera_dependent": false
     },
     {
      "measure": "stroke.acceleration_vs_bounce",
      "n": 102,
      "matches": 4,
-     "share": 0.0978,
-     "chance": 0.1724,
-     "p": 0.13941928800351344,
+     "share": 0.0982,
+     "chance": 0.1751,
+     "p": 0.1373600795722578,
      "camera_dependent": false
     },
     {
-     "measure": "recovery.racket_head_lateral",
-     "n": 122,
+     "measure": "ball_net.base_width",
+     "n": 67,
      "matches": 4,
-     "share": 0.0964,
-     "chance": 0.0984,
-     "p": 0.0726114681585488,
+     "share": 0.0976,
+     "chance": 0.1668,
+     "p": 0.41672774753807185,
      "camera_dependent": false
     },
     {
-     "measure": "takeback.shoulder_tilt",
-     "n": 151,
+     "measure": "ball_net.racket_tip_vs_head",
+     "n": 45,
      "matches": 4,
-     "share": 0.0955,
-     "chance": 0.1144,
-     "p": 0.026030786318203124,
+     "share": 0.0972,
+     "chance": 0.2597,
+     "p": 0.7067079731083014,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_bounce.face_yaw",
+     "n": 83,
+     "matches": 4,
+     "share": 0.0963,
+     "chance": 0.1581,
+     "p": 0.26965488182704683,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.loaded_vs_top",
+     "n": 96,
+     "matches": 4,
+     "share": 0.0959,
+     "chance": 0.155,
+     "p": 0.18129675158118086,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_net.shoulder_abd_dom",
+     "n": 67,
+     "matches": 4,
+     "share": 0.0956,
+     "chance": 0.1947,
+     "p": 0.431853483924031,
      "camera_dependent": false
     },
     {
@@ -1662,8 +1632,17 @@
      "n": 205,
      "matches": 4,
      "share": 0.0954,
-     "chance": 0.0665,
-     "p": 0.0030599491040720667,
+     "chance": 0.0674,
+     "p": 0.0030596164847279694,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_bounce.com_over_feet",
+     "n": 96,
+     "matches": 4,
+     "share": 0.095,
+     "chance": 0.1341,
+     "p": 0.1862746863508587,
      "camera_dependent": false
     },
     {
@@ -1671,8 +1650,26 @@
      "n": 63,
      "matches": 4,
      "share": 0.0947,
-     "chance": 0.1929,
+     "chance": 0.1976,
      "p": 0.48511780656116654,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.racket_head_lateral",
+     "n": 122,
+     "matches": 4,
+     "share": 0.0937,
+     "chance": 0.1099,
+     "p": 0.08197873418815983,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_net.elbow_dom_vs_shoulder",
+     "n": 67,
+     "matches": 4,
+     "share": 0.0933,
+     "chance": 0.148,
+     "p": 0.44920642284258805,
      "camera_dependent": false
     },
     {
@@ -1680,7 +1677,7 @@
      "n": 43,
      "matches": 4,
      "share": 0.093,
-     "chance": 0.2764,
+     "chance": 0.301,
      "p": 0.7558622325031825,
      "camera_dependent": false
     },
@@ -1689,116 +1686,143 @@
      "n": 41,
      "matches": 4,
      "share": 0.0927,
-     "chance": 0.2882,
+     "chance": 0.3046,
      "p": 0.7828178432747788,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.racket_forearm",
-     "n": 123,
-     "matches": 4,
-     "share": 0.0911,
-     "chance": 0.0975,
-     "p": 0.08905492636018195,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_net.hip_height",
-     "n": 67,
-     "matches": 4,
-     "share": 0.0909,
-     "chance": 0.16,
-     "p": 0.4668615480329338,
      "camera_dependent": false
     },
     {
      "measure": "finish.wrist_non_lateral",
      "n": 204,
      "matches": 4,
-     "share": 0.0906,
-     "chance": 0.0547,
-     "p": 0.004875818562856449,
+     "share": 0.0913,
+     "chance": 0.055,
+     "p": 0.004586230166779495,
      "camera_dependent": false
     },
     {
      "measure": "ready.head_vs_hips",
      "n": 206,
      "matches": 4,
-     "share": 0.0906,
-     "chance": 0.0634,
-     "p": 0.004514181765178535,
-     "camera_dependent": false
-    },
-    {
-     "measure": "loaded.racket_forearm",
-     "n": 127,
-     "matches": 4,
-     "share": 0.0876,
-     "chance": 0.106,
-     "p": 0.09121425304853213,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_net.trunk_tilt",
-     "n": 67,
-     "matches": 4,
-     "share": 0.0873,
-     "chance": 0.1774,
-     "p": 0.49552200403027435,
-     "camera_dependent": false
-    },
-    {
-     "measure": "extension.shoulder_abd_dom",
-     "n": 108,
-     "matches": 4,
-     "share": 0.0864,
-     "chance": 0.1056,
-     "p": 0.17174137509553625,
+     "share": 0.0907,
+     "chance": 0.0618,
+     "p": 0.004488747343397712,
      "camera_dependent": false
     },
     {
      "measure": "ball_net.com_over_feet",
      "n": 65,
      "matches": 4,
-     "share": 0.0855,
-     "chance": 0.2092,
-     "p": 0.5321619648812166,
+     "share": 0.0904,
+     "chance": 0.2046,
+     "p": 0.49393151978674144,
+     "camera_dependent": false
+    },
+    {
+     "measure": "finish.racket_forearm",
+     "n": 122,
+     "matches": 4,
+     "share": 0.0898,
+     "chance": 0.098,
+     "p": 0.09736008352252651,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_net.hands_apart",
+     "n": 67,
+     "matches": 4,
+     "share": 0.0895,
+     "chance": 0.1576,
+     "p": 0.47836364553356836,
+     "camera_dependent": false
+    },
+    {
+     "measure": "extension.shoulder_abd_dom",
+     "n": 106,
+     "matches": 4,
+     "share": 0.0886,
+     "chance": 0.1219,
+     "p": 0.16866605063243534,
+     "camera_dependent": false
+    },
+    {
+     "measure": "takeback.shoulder_tilt",
+     "n": 151,
+     "matches": 4,
+     "share": 0.0879,
+     "chance": 0.1095,
+     "p": 0.04058922772566095,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_net.hip_height",
+     "n": 67,
+     "matches": 4,
+     "share": 0.0874,
+     "chance": 0.1649,
+     "p": 0.49446320496508733,
      "camera_dependent": false
     },
     {
      "measure": "ball_bounce.wrist_non_height",
      "n": 102,
      "matches": 4,
-     "share": 0.0848,
-     "chance": 0.129,
-     "p": 0.21509898537924876,
+     "share": 0.0871,
+     "chance": 0.1286,
+     "p": 0.19997074456895952,
+     "camera_dependent": false
+    },
+    {
+     "measure": "loaded.racket_forearm",
+     "n": 127,
+     "matches": 4,
+     "share": 0.087,
+     "chance": 0.1027,
+     "p": 0.09400825776168885,
      "camera_dependent": false
     },
     {
      "measure": "ball_flight.apex_height_m",
      "n": 96,
      "matches": 4,
-     "share": 0.0845,
-     "chance": 0.2473,
-     "p": 0.25602489370354686,
+     "share": 0.084,
+     "chance": 0.2451,
+     "p": 0.25931904020125124,
      "camera_dependent": false
     },
     {
      "measure": "stroke.apex_height_m",
      "n": 96,
      "matches": 4,
-     "share": 0.0845,
-     "chance": 0.2581,
-     "p": 0.25602489370354686,
+     "share": 0.084,
+     "chance": 0.2582,
+     "p": 0.25931904020125124,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_net.trunk_tilt",
+     "n": 67,
+     "matches": 4,
+     "share": 0.0839,
+     "chance": 0.1778,
+     "p": 0.5225427054410408,
      "camera_dependent": false
     },
     {
      "measure": "stroke.swing_rise_after",
      "n": 201,
      "matches": 4,
-     "share": 0.0834,
-     "chance": 0.0531,
-     "p": 0.010026217236277491,
+     "share": 0.0837,
+     "chance": 0.0528,
+     "p": 0.009804119027344226,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.face_yaw",
+     "n": 123,
+     "matches": 4,
+     "share": 0.0833,
+     "chance": 0.1012,
+     "p": 0.12443708316068469,
      "camera_dependent": false
     },
     {
@@ -1806,35 +1830,17 @@
      "n": 67,
      "matches": 4,
      "share": 0.083,
-     "chance": 0.1841,
-     "p": 0.5302912914025628,
+     "chance": 0.1796,
+     "p": 0.5299852398865268,
      "camera_dependent": false
     },
     {
      "measure": "impact.wrist_dom_vs_hip",
      "n": 203,
      "matches": 4,
-     "share": 0.0812,
-     "chance": 0.0603,
-     "p": 0.01121320443307139,
-     "camera_dependent": false
-    },
-    {
-     "measure": "acceleration.racket_head_lateral",
-     "n": 124,
-     "matches": 4,
-     "share": 0.081,
-     "chance": 0.1255,
-     "p": 0.13374676101494795,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_bounce.elbow_dom_vs_shoulder",
-     "n": 102,
-     "matches": 4,
-     "share": 0.081,
-     "chance": 0.1187,
-     "p": 0.24248185966204974,
+     "share": 0.0817,
+     "chance": 0.0596,
+     "p": 0.010769512147835678,
      "camera_dependent": false
     },
     {
@@ -1842,89 +1848,89 @@
      "n": 206,
      "matches": 4,
      "share": 0.0809,
-     "chance": 0.063,
-     "p": 0.010479255423613481,
+     "chance": 0.0632,
+     "p": 0.010476731147563027,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_bounce.elbow_dom_vs_shoulder",
+     "n": 102,
+     "matches": 4,
+     "share": 0.0803,
+     "chance": 0.12,
+     "p": 0.2483632230910521,
      "camera_dependent": false
     },
     {
      "measure": "ball_bounce.wrist_dom_vs_hip",
      "n": 102,
      "matches": 4,
-     "share": 0.0805,
-     "chance": 0.1423,
-     "p": 0.2468936519649074,
+     "share": 0.0802,
+     "chance": 0.143,
+     "p": 0.248587031089676,
      "camera_dependent": false
     },
     {
-     "measure": "stroke.t_racket_lag",
-     "n": 170,
+     "measure": "acceleration.racket_head_lateral",
+     "n": 124,
      "matches": 4,
      "share": 0.08,
-     "chance": 0.0771,
-     "p": 0.03574346242316777,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.wrist_dom_vs_shoulder",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0791,
-     "chance": 0.0575,
-     "p": 0.013423335694834936,
+     "chance": 0.1296,
+     "p": 0.1393992674935809,
      "camera_dependent": false
     },
     {
      "measure": "recovery.wrist_dom_vs_hip",
      "n": 201,
      "matches": 4,
-     "share": 0.0785,
-     "chance": 0.0557,
-     "p": 0.015030284263563579,
+     "share": 0.0796,
+     "chance": 0.0566,
+     "p": 0.013697827449214984,
      "camera_dependent": false
     },
     {
-     "measure": "stroke.loaded_vs_bounce",
-     "n": 102,
+     "measure": "impact.wrist_dom_vs_shoulder",
+     "n": 203,
      "matches": 4,
-     "share": 0.0769,
-     "chance": 0.1418,
-     "p": 0.2753482663718947,
+     "share": 0.0792,
+     "chance": 0.0542,
+     "p": 0.013251170540325085,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_net.racket_head_vs_wrist",
+     "n": 45,
+     "matches": 4,
+     "share": 0.0788,
+     "chance": 0.2758,
+     "p": 0.8048797882146359,
      "camera_dependent": false
     },
     {
      "measure": "finish.elbow_dom",
      "n": 76,
      "matches": 4,
-     "share": 0.0767,
-     "chance": 0.1719,
-     "p": 0.4904792121016628,
+     "share": 0.0773,
+     "chance": 0.1716,
+     "p": 0.48556842323796123,
      "camera_dependent": false
     },
     {
      "measure": "recovery.elbow_dom_vs_shoulder",
      "n": 202,
      "matches": 4,
-     "share": 0.076,
-     "chance": 0.0598,
-     "p": 0.01775732490925657,
-     "camera_dependent": false
-    },
-    {
-     "measure": "recovery.face_yaw",
-     "n": 123,
-     "matches": 4,
      "share": 0.0756,
-     "chance": 0.0979,
-     "p": 0.17132657253713954,
+     "chance": 0.0602,
+     "p": 0.018351059438812566,
      "camera_dependent": false
     },
     {
-     "measure": "loaded.elbow_non",
-     "n": 107,
+     "measure": "ball_bounce.hands_apart",
+     "n": 102,
      "matches": 4,
      "share": 0.075,
-     "chance": 0.1219,
-     "p": 0.25939588316277773,
+     "chance": 0.1561,
+     "p": 0.29158054084772633,
      "camera_dependent": false
     },
     {
@@ -1932,53 +1938,71 @@
      "n": 112,
      "matches": 4,
      "share": 0.0749,
-     "chance": 0.116,
+     "chance": 0.1132,
      "p": 0.23132493200180504,
-     "camera_dependent": false
-    },
-    {
-     "measure": "recovery.hip_height",
-     "n": 201,
-     "matches": 4,
-     "share": 0.0748,
-     "chance": 0.0625,
-     "p": 0.02023049195471984,
      "camera_dependent": false
     },
     {
      "measure": "shot_depth_m",
      "n": 121,
      "matches": 4,
-     "share": 0.0747,
-     "chance": 0.1254,
-     "p": 0.1867220063564123,
+     "share": 0.0748,
+     "chance": 0.1176,
+     "p": 0.18637734105470186,
      "camera_dependent": false
     },
     {
-     "measure": "ball_bounce.hands_apart",
+     "measure": "loaded.elbow_non",
+     "n": 107,
+     "matches": 4,
+     "share": 0.0741,
+     "chance": 0.1369,
+     "p": 0.26769742819616593,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.hip_height",
+     "n": 201,
+     "matches": 4,
+     "share": 0.0738,
+     "chance": 0.0603,
+     "p": 0.021830591964435344,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.t_racket_lag",
+     "n": 169,
+     "matches": 4,
+     "share": 0.0737,
+     "chance": 0.0758,
+     "p": 0.0550449398597526,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.loaded_vs_bounce",
      "n": 102,
      "matches": 4,
-     "share": 0.0743,
-     "chance": 0.1564,
-     "p": 0.29814652419315457,
+     "share": 0.0733,
+     "chance": 0.1416,
+     "p": 0.3068004191639794,
      "camera_dependent": false
     },
     {
      "measure": "finish.elbow_dom_vs_shoulder",
      "n": 205,
      "matches": 4,
-     "share": 0.0721,
+     "share": 0.072,
      "chance": 0.0573,
-     "p": 0.022405319919057833,
+     "p": 0.022505687142691782,
      "camera_dependent": false
     },
     {
      "measure": "stroke.last_plant_vs_bounce",
      "n": 76,
      "matches": 4,
-     "share": 0.072,
-     "chance": 0.2307,
-     "p": 0.5336432178362549,
+     "share": 0.0708,
+     "chance": 0.2272,
+     "p": 0.5446483531496781,
      "camera_dependent": false
     },
     {
@@ -1986,35 +2010,26 @@
      "n": 205,
      "matches": 4,
      "share": 0.0705,
-     "chance": 0.0693,
-     "p": 0.02541931741605844,
-     "camera_dependent": false
-    },
-    {
-     "measure": "acceleration.racket_head_vs_wrist",
-     "n": 124,
-     "matches": 4,
-     "share": 0.07,
-     "chance": 0.1,
-     "p": 0.20941665225014655,
+     "chance": 0.0686,
+     "p": 0.025369799708403487,
      "camera_dependent": false
     },
     {
      "measure": "finish.base_width",
      "n": 204,
      "matches": 4,
-     "share": 0.0689,
-     "chance": 0.059,
-     "p": 0.029646782666852046,
+     "share": 0.0703,
+     "chance": 0.0591,
+     "p": 0.02664926444509355,
      "camera_dependent": false
     },
     {
      "measure": "ready.arm_extension",
      "n": 206,
      "matches": 4,
-     "share": 0.0688,
-     "chance": 0.0639,
-     "p": 0.02832510597970608,
+     "share": 0.0693,
+     "chance": 0.0581,
+     "p": 0.02734247460043572,
      "camera_dependent": false
     },
     {
@@ -2022,44 +2037,53 @@
      "n": 63,
      "matches": 4,
      "share": 0.0686,
-     "chance": 0.2145,
+     "chance": 0.2053,
      "p": 0.6894502673071821,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.shoulder_abd_dom",
-     "n": 112,
-     "matches": 4,
-     "share": 0.0679,
-     "chance": 0.0873,
-     "p": 0.29347713687498334,
      "camera_dependent": false
     },
     {
      "measure": "footwork.weight_loaded_to_non",
      "n": 162,
      "matches": 4,
-     "share": 0.0678,
-     "chance": 0.0804,
-     "p": 0.09447670021251237,
+     "share": 0.0684,
+     "chance": 0.0782,
+     "p": 0.09121608561074976,
      "camera_dependent": false
     },
     {
-     "measure": "loaded.face_yaw",
-     "n": 127,
+     "measure": "finish.shoulder_abd_dom",
+     "n": 112,
      "matches": 4,
-     "share": 0.0671,
-     "chance": 0.1056,
-     "p": 0.21936268434167752,
+     "share": 0.0681,
+     "chance": 0.0894,
+     "p": 0.291534519976009,
+     "camera_dependent": false
+    },
+    {
+     "measure": "acceleration.racket_head_vs_wrist",
+     "n": 124,
+     "matches": 4,
+     "share": 0.0678,
+     "chance": 0.0977,
+     "p": 0.2281064158960999,
      "camera_dependent": false
     },
     {
      "measure": "impact.shoulder_tilt",
      "n": 173,
      "matches": 4,
-     "share": 0.0667,
-     "chance": 0.0661,
-     "p": 0.0768772866966661,
+     "share": 0.0671,
+     "chance": 0.072,
+     "p": 0.07515760226172212,
+     "camera_dependent": false
+    },
+    {
+     "measure": "loaded.face_yaw",
+     "n": 127,
+     "matches": 4,
+     "share": 0.0662,
+     "chance": 0.1007,
+     "p": 0.2270586530687948,
      "camera_dependent": false
     },
     {
@@ -2067,7 +2091,7 @@
      "n": 63,
      "matches": 4,
      "share": 0.066,
-     "chance": 0.2135,
+     "chance": 0.2132,
      "p": 0.7101413653144988,
      "camera_dependent": false
     },
@@ -2075,90 +2099,108 @@
      "measure": "metrics.finish_wrist_height_pct",
      "n": 205,
      "matches": 4,
-     "share": 0.0659,
-     "chance": 0.0579,
-     "p": 0.03682412400904286,
+     "share": 0.0657,
+     "chance": 0.0557,
+     "p": 0.03735436054954919,
      "camera_dependent": false
     },
     {
-     "measure": "ball_flight.bounce_to_apex_s",
-     "n": 96,
+     "measure": "ball_net.wrist_dom_height",
+     "n": 67,
      "matches": 4,
      "share": 0.0656,
-     "chance": 0.1814,
-     "p": 0.426499553131015,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.bounce_to_apex_s",
-     "n": 96,
-     "matches": 4,
-     "share": 0.0656,
-     "chance": 0.2233,
-     "p": 0.426499553131015,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_flight.rise_speed_mps",
-     "n": 96,
-     "matches": 4,
-     "share": 0.0654,
-     "chance": 0.2307,
-     "p": 0.42838840235404435,
-     "camera_dependent": false
-    },
-    {
-     "measure": "extension.shoulder_tilt",
-     "n": 179,
-     "matches": 4,
-     "share": 0.0652,
-     "chance": 0.0672,
-     "p": 0.07341773703621289,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ready.com_over_feet",
-     "n": 198,
-     "matches": 4,
-     "share": 0.0647,
-     "chance": 0.0645,
-     "p": 0.04807173273644413,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ready.wrist_dom_vs_shoulder",
-     "n": 205,
-     "matches": 4,
-     "share": 0.0647,
-     "chance": 0.0666,
-     "p": 0.04042750123352533,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_net.racket_head_vs_wrist",
-     "n": 45,
-     "matches": 4,
-     "share": 0.0645,
-     "chance": 0.2957,
-     "p": 0.8726147041345054,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.t_max_shoulder_turn",
-     "n": 206,
-     "matches": 4,
-     "share": 0.0644,
-     "chance": 0.0646,
-     "p": 0.04033761902514542,
+     "chance": 0.1892,
+     "p": 0.6768065965174177,
      "camera_dependent": false
     },
     {
      "measure": "footwork.move_dy_m",
      "n": 205,
      "matches": 4,
-     "share": 0.0638,
-     "chance": 0.0578,
-     "p": 0.04313141387904683,
+     "share": 0.0655,
+     "chance": 0.0577,
+     "p": 0.03784012022519888,
+     "camera_dependent": false
+    },
+    {
+     "measure": "extension.shoulder_tilt",
+     "n": 179,
+     "matches": 4,
+     "share": 0.0654,
+     "chance": 0.0678,
+     "p": 0.07252079830497032,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_flight.bounce_to_apex_s",
+     "n": 96,
+     "matches": 4,
+     "share": 0.0649,
+     "chance": 0.1803,
+     "p": 0.43370839220061386,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ready.wrist_dom_vs_shoulder",
+     "n": 205,
+     "matches": 4,
+     "share": 0.0649,
+     "chance": 0.0632,
+     "p": 0.03981895485427463,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.bounce_to_apex_s",
+     "n": 96,
+     "matches": 4,
+     "share": 0.0649,
+     "chance": 0.2159,
+     "p": 0.43370839220061386,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_flight.rise_speed_mps",
+     "n": 96,
+     "matches": 4,
+     "share": 0.0648,
+     "chance": 0.2271,
+     "p": 0.4354734927693017,
+     "camera_dependent": false
+    },
+    {
+     "measure": "impact.hip_tilt",
+     "n": 176,
+     "matches": 4,
+     "share": 0.0648,
+     "chance": 0.0697,
+     "p": 0.08105291501044393,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ready.com_over_feet",
+     "n": 198,
+     "matches": 4,
+     "share": 0.0646,
+     "chance": 0.0625,
+     "p": 0.04818589064108006,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.t_max_shoulder_turn",
+     "n": 206,
+     "matches": 4,
+     "share": 0.0643,
+     "chance": 0.0643,
+     "p": 0.040524535692386135,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.racket_lag_deg",
+     "n": 169,
+     "matches": 4,
+     "share": 0.0639,
+     "chance": 0.0762,
+     "p": 0.10050397479524542,
      "camera_dependent": false
     },
     {
@@ -2166,53 +2208,53 @@
      "n": 112,
      "matches": 4,
      "share": 0.0638,
-     "chance": 0.1163,
+     "chance": 0.1156,
      "p": 0.33494784299147384,
      "camera_dependent": false
     },
     {
-     "measure": "ball_bounce.trunk_tilt",
-     "n": 102,
+     "measure": "impact.wrist_dom_height",
+     "n": 203,
      "matches": 4,
-     "share": 0.0636,
-     "chance": 0.1251,
-     "p": 0.4037215608448329,
+     "share": 0.0627,
+     "chance": 0.0563,
+     "p": 0.049539872772823734,
      "camera_dependent": false
     },
     {
-     "measure": "impact.hip_tilt",
-     "n": 176,
+     "measure": "impact.arm_extension",
+     "n": 204,
      "matches": 4,
-     "share": 0.0634,
-     "chance": 0.0747,
-     "p": 0.0881663347637805,
+     "share": 0.0626,
+     "chance": 0.0495,
+     "p": 0.04852318793777905,
      "camera_dependent": false
     },
     {
-     "measure": "stroke.racket_lag_deg",
-     "n": 170,
+     "measure": "ready.elbow_dom_lateral",
+     "n": 206,
      "matches": 4,
-     "share": 0.0634,
-     "chance": 0.0758,
-     "p": 0.10134186801732765,
+     "share": 0.0626,
+     "chance": 0.0685,
+     "p": 0.04636377128117922,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.wrist_dom_height",
+     "n": 201,
+     "matches": 4,
+     "share": 0.0626,
+     "chance": 0.0578,
+     "p": 0.05235401322312402,
      "camera_dependent": false
     },
     {
      "measure": "acceleration.wrist_dom_height",
      "n": 203,
      "matches": 4,
-     "share": 0.0629,
-     "chance": 0.0692,
-     "p": 0.048777110132484404,
-     "camera_dependent": false
-    },
-    {
-     "measure": "footwork.direction_changes",
-     "n": 205,
-     "matches": 4,
-     "share": 0.0626,
-     "chance": 0.0632,
-     "p": 0.04763162529059978,
+     "share": 0.0625,
+     "chance": 0.0693,
+     "p": 0.0500557769466566,
      "camera_dependent": false
     },
     {
@@ -2220,107 +2262,107 @@
      "n": 204,
      "matches": 4,
      "share": 0.0625,
-     "chance": 0.0688,
-     "p": 0.04894931799345481,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ready.elbow_dom_lateral",
-     "n": 206,
-     "matches": 4,
-     "share": 0.0624,
-     "chance": 0.0691,
-     "p": 0.047009440974225054,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.wrist_dom_height",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0623,
-     "chance": 0.0569,
-     "p": 0.05102152650493033,
+     "chance": 0.0681,
+     "p": 0.04902399729241676,
      "camera_dependent": false
     },
     {
      "measure": "metrics.contact_height_pct",
      "n": 203,
      "matches": 4,
-     "share": 0.0622,
-     "chance": 0.0574,
-     "p": 0.051411525902825474,
+     "share": 0.0625,
+     "chance": 0.0608,
+     "p": 0.04999460685054402,
      "camera_dependent": false
     },
     {
-     "measure": "impact.arm_extension",
-     "n": 204,
+     "measure": "ball_bounce.knee_non",
+     "n": 60,
      "matches": 4,
-     "share": 0.0619,
-     "chance": 0.0512,
-     "p": 0.051077915824768685,
-     "camera_dependent": false
-    },
-    {
-     "measure": "recovery.wrist_dom_height",
-     "n": 201,
-     "matches": 4,
-     "share": 0.0614,
-     "chance": 0.0591,
-     "p": 0.05716865054820871,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_net.wrist_dom_height",
-     "n": 67,
-     "matches": 4,
-     "share": 0.0613,
-     "chance": 0.1901,
-     "p": 0.7129427486524256,
+     "share": 0.0617,
+     "chance": 0.1862,
+     "p": 0.768922969981851,
      "camera_dependent": false
     },
     {
      "measure": "metrics.ball_gap_pre_s",
      "n": 135,
      "matches": 4,
-     "share": 0.0612,
-     "chance": 0.1022,
-     "p": 0.2371455516436306,
+     "share": 0.0614,
+     "chance": 0.0983,
+     "p": 0.23429651115485414,
      "camera_dependent": false
     },
     {
      "measure": "ball_flight.incoming_speed_kmh",
      "n": 80,
      "matches": 4,
-     "share": 0.0604,
-     "chance": 0.1283,
-     "p": 0.611935838405757,
+     "share": 0.0612,
+     "chance": 0.1281,
+     "p": 0.6032030165549189,
      "camera_dependent": false
     },
     {
      "measure": "stroke.takeback_vs_first_step",
      "n": 140,
      "matches": 4,
-     "share": 0.0601,
-     "chance": 0.0986,
-     "p": 0.2251188320229484,
+     "share": 0.0611,
+     "chance": 0.0997,
+     "p": 0.21531213680671674,
+     "camera_dependent": false
+    },
+    {
+     "measure": "footwork.direction_changes",
+     "n": 205,
+     "matches": 4,
+     "share": 0.0609,
+     "chance": 0.0635,
+     "p": 0.05426847639977603,
      "camera_dependent": false
     },
     {
      "measure": "acceleration.wrist_non_height",
      "n": 203,
      "matches": 4,
-     "share": 0.0598,
-     "chance": 0.0557,
-     "p": 0.06135757938927631,
+     "share": 0.0606,
+     "chance": 0.0552,
+     "p": 0.05796458134142025,
+     "camera_dependent": false
+    },
+    {
+     "measure": "extension.wrist_non_lateral",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0603,
+     "chance": 0.0534,
+     "p": 0.05935013954392769,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.elbow_dom",
+     "n": 61,
+     "matches": 4,
+     "share": 0.06,
+     "chance": 0.1961,
+     "p": 0.7729882358073794,
      "camera_dependent": false
     },
     {
      "measure": "metrics.ball_seen_pre_share",
      "n": 135,
      "matches": 4,
-     "share": 0.0598,
-     "chance": 0.0989,
-     "p": 0.25042652550442873,
+     "share": 0.0599,
+     "chance": 0.0995,
+     "p": 0.24944782395010728,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.head_over_base",
+     "n": 201,
+     "matches": 4,
+     "share": 0.0596,
+     "chance": 0.0531,
+     "p": 0.06514868863936436,
      "camera_dependent": false
     },
     {
@@ -2328,35 +2370,17 @@
      "n": 111,
      "matches": 4,
      "share": 0.0595,
-     "chance": 0.1202,
+     "chance": 0.1208,
      "p": 0.38810609818949376,
      "camera_dependent": false
     },
     {
-     "measure": "recovery.elbow_dom",
-     "n": 61,
-     "matches": 4,
-     "share": 0.0594,
-     "chance": 0.1897,
-     "p": 0.777649184994214,
-     "camera_dependent": false
-    },
-    {
-     "measure": "takeback.wrist_dom_vs_hip",
-     "n": 192,
-     "matches": 4,
-     "share": 0.0594,
-     "chance": 0.0891,
-     "p": 0.08042610525129235,
-     "camera_dependent": false
-    },
-    {
-     "measure": "extension.wrist_non_lateral",
-     "n": 203,
+     "measure": "ball_bounce.trunk_tilt",
+     "n": 102,
      "matches": 4,
      "share": 0.0593,
-     "chance": 0.054,
-     "p": 0.06358017228213868,
+     "chance": 0.1221,
+     "p": 0.45272604491789603,
      "camera_dependent": false
     },
     {
@@ -2364,80 +2388,80 @@
      "n": 206,
      "matches": 4,
      "share": 0.0592,
-     "chance": 0.09,
-     "p": 0.06031190530426826,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_bounce.knee_non",
-     "n": 61,
-     "matches": 4,
-     "share": 0.0584,
-     "chance": 0.1866,
-     "p": 0.7848366166232517,
-     "camera_dependent": false
-    },
-    {
-     "measure": "loaded.hip_tilt",
-     "n": 119,
-     "matches": 4,
-     "share": 0.0584,
-     "chance": 0.1117,
-     "p": 0.3512665795519481,
-     "camera_dependent": false
-    },
-    {
-     "measure": "recovery.head_over_base",
-     "n": 201,
-     "matches": 4,
-     "share": 0.0584,
-     "chance": 0.0533,
-     "p": 0.07106566737716648,
+     "chance": 0.0817,
+     "p": 0.06013416869732635,
      "camera_dependent": false
     },
     {
      "measure": "ball_net.t_to_contact",
      "n": 80,
      "matches": 4,
-     "share": 0.0583,
-     "chance": 0.1471,
-     "p": 0.6332394483614842,
+     "share": 0.0587,
+     "chance": 0.1314,
+     "p": 0.6286343353971504,
      "camera_dependent": false
     },
     {
-     "measure": "ball_bounce.shoulder_abd_dom",
-     "n": 101,
+     "measure": "takeback.wrist_dom_vs_hip",
+     "n": 192,
      "matches": 4,
-     "share": 0.0581,
-     "chance": 0.1286,
-     "p": 0.4730396721825113,
-     "camera_dependent": false
-    },
-    {
-     "measure": "acceleration.wrist_non_lateral",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0577,
-     "chance": 0.0518,
-     "p": 0.0720445302610597,
+     "share": 0.0585,
+     "chance": 0.0937,
+     "p": 0.08542801435877848,
      "camera_dependent": false
     },
     {
      "measure": "acceleration.racket_tip_vs_head",
      "n": 124,
      "matches": 4,
-     "share": 0.0576,
-     "chance": 0.1027,
-     "p": 0.3319827372667915,
+     "share": 0.0584,
+     "chance": 0.1023,
+     "p": 0.32313021867161085,
      "camera_dependent": false
     },
     {
-     "measure": "acceleration.wrist_dom_vs_shoulder",
-     "n": 203,
+     "measure": "ball_bounce.shoulder_abd_dom",
+     "n": 101,
      "matches": 4,
-     "share": 0.0576,
-     "chance": 0.0537,
-     "p": 0.07241278034925241,
+     "share": 0.058,
+     "chance": 0.1276,
+     "p": 0.47478844766277917,
+     "camera_dependent": false
+    },
+    {
+     "measure": "loaded.hip_tilt",
+     "n": 119,
+     "matches": 4,
+     "share": 0.058,
+     "chance": 0.1282,
+     "p": 0.3567964248023585,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.wrist_dom_vs_shoulder",
+     "n": 201,
+     "matches": 4,
+     "share": 0.0577,
+     "chance": 0.0532,
+     "p": 0.0747183977149638,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.elbow_dom_lateral",
+     "n": 202,
+     "matches": 4,
+     "share": 0.0574,
+     "chance": 0.0565,
+     "p": 0.07490481922516885,
+     "camera_dependent": false
+    },
+    {
+     "measure": "extension.racket_forearm",
+     "n": 134,
+     "matches": 4,
+     "share": 0.0573,
+     "chance": 0.0875,
+     "p": 0.28315139635382885,
      "camera_dependent": false
     },
     {
@@ -2445,44 +2469,53 @@
      "n": 63,
      "matches": 4,
      "share": 0.0573,
-     "chance": 0.2063,
+     "chance": 0.2264,
      "p": 0.7780953201287106,
+     "camera_dependent": false
+    },
+    {
+     "measure": "acceleration.racket_tip_height",
+     "n": 124,
+     "matches": 4,
+     "share": 0.0571,
+     "chance": 0.1036,
+     "p": 0.3379621376424085,
      "camera_dependent": false
     },
     {
      "measure": "ball_bounce.wrist_dom_vs_shoulder",
      "n": 102,
      "matches": 4,
-     "share": 0.0571,
-     "chance": 0.1234,
-     "p": 0.4785274825456024,
+     "share": 0.057,
+     "chance": 0.1231,
+     "p": 0.47991697326372873,
      "camera_dependent": false
     },
     {
-     "measure": "recovery.wrist_dom_vs_shoulder",
-     "n": 201,
+     "measure": "acceleration.wrist_dom_vs_shoulder",
+     "n": 203,
      "matches": 4,
      "share": 0.0569,
-     "chance": 0.053,
-     "p": 0.07966235329400567,
+     "chance": 0.0538,
+     "p": 0.07590537085785617,
      "camera_dependent": false
     },
     {
      "measure": "face.loaded",
      "n": 203,
      "matches": 4,
-     "share": 0.0568,
-     "chance": 0.0573,
-     "p": 0.07655948623687946,
+     "share": 0.0569,
+     "chance": 0.0553,
+     "p": 0.0759767530523724,
      "camera_dependent": false
     },
     {
-     "measure": "recovery.elbow_dom_lateral",
-     "n": 202,
+     "measure": "finish.face_yaw",
+     "n": 122,
      "matches": 4,
-     "share": 0.0568,
-     "chance": 0.0558,
-     "p": 0.07836565658619116,
+     "share": 0.0566,
+     "chance": 0.0997,
+     "p": 0.3550282104039222,
      "camera_dependent": false
     },
     {
@@ -2491,34 +2524,25 @@
      "matches": 4,
      "share": 0.0566,
      "chance": 0.0641,
-     "p": 0.0748124534335556,
-     "camera_dependent": false
-    },
-    {
-     "measure": "acceleration.racket_tip_height",
-     "n": 124,
-     "matches": 4,
-     "share": 0.0564,
-     "chance": 0.1033,
-     "p": 0.34643176141747833,
-     "camera_dependent": false
-    },
-    {
-     "measure": "extension.racket_forearm",
-     "n": 135,
-     "matches": 4,
-     "share": 0.0564,
-     "chance": 0.0946,
-     "p": 0.28827356852674,
+     "p": 0.07458028535540792,
      "camera_dependent": false
     },
     {
      "measure": "takeback.wrist_dom_vs_shoulder",
      "n": 192,
      "matches": 4,
-     "share": 0.0564,
-     "chance": 0.0783,
-     "p": 0.09877408982810633,
+     "share": 0.056,
+     "chance": 0.0786,
+     "p": 0.10142849585375524,
+     "camera_dependent": false
+    },
+    {
+     "measure": "acceleration.wrist_non_lateral",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0559,
+     "chance": 0.0536,
+     "p": 0.0818013897913135,
      "camera_dependent": false
     },
     {
@@ -2526,8 +2550,8 @@
      "n": 127,
      "matches": 4,
      "share": 0.0558,
-     "chance": 0.1028,
-     "p": 0.3369042500247906,
+     "chance": 0.108,
+     "p": 0.33630033311728463,
      "camera_dependent": false
     },
     {
@@ -2535,26 +2559,26 @@
      "n": 154,
      "matches": 4,
      "share": 0.0557,
-     "chance": 0.0653,
-     "p": 0.21243267996833864,
+     "chance": 0.0636,
+     "p": 0.21239739080846606,
      "camera_dependent": false
     },
     {
-     "measure": "recovery.body_height",
-     "n": 201,
+     "measure": "impact.wrist_non_height",
+     "n": 203,
      "matches": 4,
-     "share": 0.0551,
-     "chance": 0.0567,
-     "p": 0.09042727190592188,
+     "share": 0.0557,
+     "chance": 0.0494,
+     "p": 0.08328775224982021,
      "camera_dependent": false
     },
     {
-     "measure": "recovery.elbow_non",
-     "n": 97,
+     "measure": "finish.wrist_dom_vs_hip",
+     "n": 204,
      "matches": 4,
      "share": 0.0551,
-     "chance": 0.1085,
-     "p": 0.5386905793989538,
+     "chance": 0.0554,
+     "p": 0.084801165932679,
      "camera_dependent": false
     },
     {
@@ -2562,179 +2586,170 @@
      "n": 151,
      "matches": 4,
      "share": 0.055,
-     "chance": 0.0772,
-     "p": 0.23169020944813978,
+     "chance": 0.0747,
+     "p": 0.23116328425214422,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.body_height",
+     "n": 201,
+     "matches": 4,
+     "share": 0.055,
+     "chance": 0.0574,
+     "p": 0.09086848261395318,
      "camera_dependent": false
     },
     {
      "measure": "acceleration.elbow_dom_vs_shoulder",
      "n": 203,
      "matches": 4,
-     "share": 0.0549,
-     "chance": 0.0607,
-     "p": 0.08804856630325072,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.face_yaw",
-     "n": 123,
-     "matches": 4,
      "share": 0.0548,
-     "chance": 0.0984,
-     "p": 0.3716863732376911,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.wrist_dom_vs_hip",
-     "n": 204,
-     "matches": 4,
-     "share": 0.0547,
-     "chance": 0.0553,
-     "p": 0.08760499778634236,
+     "chance": 0.0611,
+     "p": 0.0890022114251073,
      "camera_dependent": false
     },
     {
      "measure": "acceleration.knee_dom",
      "n": 191,
      "matches": 4,
-     "share": 0.0546,
-     "chance": 0.055,
-     "p": 0.1132893185805513,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.hip_rise_after_cm",
-     "n": 187,
-     "matches": 4,
-     "share": 0.0546,
-     "chance": 0.0598,
-     "p": 0.12236821275533993,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.wrist_non_height",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0539,
-     "chance": 0.0494,
-     "p": 0.0949476076656423,
+     "share": 0.0544,
+     "chance": 0.0546,
+     "p": 0.11495908380640671,
      "camera_dependent": false
     },
     {
      "measure": "finish.body_height",
      "n": 204,
      "matches": 4,
-     "share": 0.0537,
-     "chance": 0.0558,
-     "p": 0.0942197808036308,
+     "share": 0.054,
+     "chance": 0.0579,
+     "p": 0.09228759807813872,
      "camera_dependent": false
     },
     {
-     "measure": "loaded.wrist_non_height",
-     "n": 203,
+     "measure": "stroke.hip_rise_after_cm",
+     "n": 187,
      "matches": 4,
-     "share": 0.0537,
-     "chance": 0.0688,
-     "p": 0.09602979350121933,
+     "share": 0.054,
+     "chance": 0.0763,
+     "p": 0.12768703200809078,
      "camera_dependent": false
     },
     {
-     "measure": "acceleration.wrist_dom_vs_hip",
-     "n": 203,
+     "measure": "recovery.elbow_non",
+     "n": 97,
      "matches": 4,
-     "share": 0.0536,
-     "chance": 0.055,
-     "p": 0.09657331005872985,
+     "share": 0.0538,
+     "chance": 0.1091,
+     "p": 0.5540068846869308,
      "camera_dependent": false
     },
     {
      "measure": "footwork.move_dx_m",
      "n": 205,
      "matches": 4,
-     "share": 0.0534,
-     "chance": 0.0575,
-     "p": 0.09447292486397031,
+     "share": 0.0531,
+     "chance": 0.0582,
+     "p": 0.09651926010394035,
+     "camera_dependent": false
+    },
+    {
+     "measure": "loaded.wrist_non_height",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0531,
+     "chance": 0.0689,
+     "p": 0.10016925094347336,
      "camera_dependent": false
     },
     {
      "measure": "stroke.loaded_vs_last_plant",
      "n": 153,
      "matches": 4,
-     "share": 0.0532,
-     "chance": 0.0708,
-     "p": 0.24388300307288294,
+     "share": 0.053,
+     "chance": 0.0723,
+     "p": 0.24546889375668923,
      "camera_dependent": false
     },
     {
-     "measure": "stroke.hip_rise_after_pct",
-     "n": 187,
+     "measure": "acceleration.wrist_dom_vs_hip",
+     "n": 203,
      "matches": 4,
-     "share": 0.0531,
-     "chance": 0.0689,
-     "p": 0.13447463456983066,
+     "share": 0.0528,
+     "chance": 0.0547,
+     "p": 0.1020288120088284,
      "camera_dependent": false
     },
     {
      "measure": "takeback.hands_apart",
      "n": 192,
      "matches": 4,
-     "share": 0.0531,
-     "chance": 0.0972,
-     "p": 0.1230308165473554,
+     "share": 0.0528,
+     "chance": 0.0815,
+     "p": 0.1256255563327956,
      "camera_dependent": false
     },
     {
-     "measure": "ball_flight.apex_frame",
-     "n": 96,
+     "measure": "stroke.hip_rise_after_pct",
+     "n": 187,
      "matches": 4,
-     "share": 0.0526,
-     "chance": 0.143,
-     "p": 0.5758936560396299,
+     "share": 0.0525,
+     "chance": 0.0647,
+     "p": 0.14008140071195632,
+     "camera_dependent": false
+    },
+    {
+     "measure": "metrics.non_elbow_impact_deg",
+     "n": 181,
+     "matches": 4,
+     "share": 0.0523,
+     "chance": 0.0643,
+     "p": 0.15823161911605807,
      "camera_dependent": false
     },
     {
      "measure": "stroke.hand_on_handle",
      "n": 207,
      "matches": 4,
-     "share": 0.0522,
-     "chance": 0.0619,
-     "p": 0.09941839179746226,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.elbow_dom_vs_shoulder",
-     "n": 204,
-     "matches": 4,
-     "share": 0.0517,
-     "chance": 0.0573,
-     "p": 0.10877163111455528,
+     "share": 0.052,
+     "chance": 0.066,
+     "p": 0.10101001650801167,
      "camera_dependent": false
     },
     {
      "measure": "stroke.t_trunk_finish",
      "n": 205,
      "matches": 4,
-     "share": 0.0515,
-     "chance": 0.0583,
-     "p": 0.10853873990880318,
-     "camera_dependent": false
-    },
-    {
-     "measure": "metrics.base_width_loaded_pct",
-     "n": 197,
-     "matches": 4,
-     "share": 0.0514,
-     "chance": 0.0606,
-     "p": 0.12595861876771525,
+     "share": 0.0516,
+     "chance": 0.054,
+     "p": 0.1071269454275253,
      "camera_dependent": false
     },
     {
      "measure": "extension.wrist_dom_vs_hip",
      "n": 203,
      "matches": 4,
+     "share": 0.0514,
+     "chance": 0.0578,
+     "p": 0.11303095212333197,
+     "camera_dependent": false
+    },
+    {
+     "measure": "impact.elbow_dom_vs_shoulder",
+     "n": 204,
+     "matches": 4,
+     "share": 0.0512,
+     "chance": 0.0596,
+     "p": 0.11221992452961854,
+     "camera_dependent": false
+    },
+    {
+     "measure": "finish.head_vs_hips",
+     "n": 205,
+     "matches": 4,
      "share": 0.0507,
-     "chance": 0.0563,
-     "p": 0.11827820496449509,
+     "chance": 0.058,
+     "p": 0.11461497874779425,
      "camera_dependent": false
     },
     {
@@ -2742,35 +2757,26 @@
      "n": 57,
      "matches": 4,
      "share": 0.0507,
-     "chance": 0.2153,
+     "chance": 0.2229,
      "p": 0.8630171980239949,
-     "camera_dependent": false
-    },
-    {
-     "measure": "takeback.base_width",
-     "n": 191,
-     "matches": 4,
-     "share": 0.0506,
-     "chance": 0.0634,
-     "p": 0.1477437890372037,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.head_vs_hips",
-     "n": 205,
-     "matches": 4,
-     "share": 0.0503,
-     "chance": 0.0579,
-     "p": 0.11767326436051082,
      "camera_dependent": false
     },
     {
      "measure": "impact.wrist_non_lateral",
      "n": 203,
      "matches": 4,
+     "share": 0.0504,
+     "chance": 0.0513,
+     "p": 0.12109472572709423,
+     "camera_dependent": false
+    },
+    {
+     "measure": "metrics.base_width_loaded_pct",
+     "n": 197,
+     "matches": 4,
      "share": 0.0502,
-     "chance": 0.0494,
-     "p": 0.12316041224757543,
+     "chance": 0.0624,
+     "p": 0.13600715451485967,
      "camera_dependent": false
     },
     {
@@ -2778,62 +2784,44 @@
      "n": 205,
      "matches": 4,
      "share": 0.05,
-     "chance": 0.0557,
-     "p": 0.12022802815548192,
+     "chance": 0.0528,
+     "p": 0.12016797556762743,
+     "camera_dependent": false
+    },
+    {
+     "measure": "takeback.base_width",
+     "n": 191,
+     "matches": 4,
+     "share": 0.05,
+     "chance": 0.0612,
+     "p": 0.1531744576605699,
      "camera_dependent": false
     },
     {
      "measure": "loaded.knee_non",
      "n": 120,
      "matches": 4,
-     "share": 0.0497,
-     "chance": 0.1275,
-     "p": 0.45660388055442813,
+     "share": 0.0495,
+     "chance": 0.1231,
+     "p": 0.4594390314585288,
      "camera_dependent": false
     },
     {
      "measure": "ready.shoulder_abd_dom",
      "n": 205,
      "matches": 4,
-     "share": 0.0496,
-     "chance": 0.0636,
-     "p": 0.12400247748919892,
-     "camera_dependent": false
-    },
-    {
-     "measure": "loaded.racket_head_vs_wrist",
-     "n": 127,
-     "matches": 4,
-     "share": 0.0495,
-     "chance": 0.1044,
-     "p": 0.4186090068529602,
-     "camera_dependent": false
-    },
-    {
-     "measure": "takeback.com_over_feet",
-     "n": 188,
-     "matches": 4,
      "share": 0.0494,
-     "chance": 0.0765,
-     "p": 0.16721559180281245,
+     "chance": 0.0738,
+     "p": 0.1253016580895982,
      "camera_dependent": false
     },
     {
-     "measure": "acceleration.hands_apart",
-     "n": 203,
+     "measure": "impact.racket_forearm",
+     "n": 144,
      "matches": 4,
-     "share": 0.0493,
-     "chance": 0.0563,
-     "p": 0.13038275410965136,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.tempo_ratio",
-     "n": 191,
-     "matches": 4,
-     "share": 0.0487,
-     "chance": 0.074,
-     "p": 0.16591388659033396,
+     "share": 0.0488,
+     "chance": 0.087,
+     "p": 0.339191920430959,
      "camera_dependent": false
     },
     {
@@ -2841,368 +2829,431 @@
      "n": 63,
      "matches": 4,
      "share": 0.0487,
-     "chance": 0.205,
+     "chance": 0.21,
      "p": 0.8403463464411035,
      "camera_dependent": false
     },
     {
-     "measure": "recovery.knee_non",
-     "n": 166,
-     "matches": 4,
-     "share": 0.0486,
-     "chance": 0.0665,
-     "p": 0.2483331540082947,
-     "camera_dependent": false
-    },
-    {
-     "measure": "footwork.speed_post_split_mps",
-     "n": 163,
-     "matches": 4,
-     "share": 0.048,
-     "chance": 0.0604,
-     "p": 0.26704598547171976,
-     "camera_dependent": false
-    },
-    {
-     "measure": "metrics.non_elbow_impact_deg",
-     "n": 181,
-     "matches": 4,
-     "share": 0.0477,
-     "chance": 0.0581,
-     "p": 0.2068369465997861,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.pause_at_loaded",
-     "n": 196,
-     "matches": 4,
-     "share": 0.0472,
-     "chance": 0.0657,
-     "p": 0.16810635718024983,
-     "camera_dependent": false
-    },
-    {
-     "measure": "footwork.path_m",
-     "n": 205,
-     "matches": 4,
-     "share": 0.0471,
-     "chance": 0.0598,
-     "p": 0.14694162633540478,
-     "camera_dependent": false
-    },
-    {
-     "measure": "metrics.time_takeback_to_impact_s",
-     "n": 192,
-     "matches": 4,
-     "share": 0.0471,
-     "chance": 0.0622,
-     "p": 0.18091590932341442,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.t_takeback",
-     "n": 192,
-     "matches": 4,
-     "share": 0.0471,
-     "chance": 0.0653,
-     "p": 0.18091590932341442,
-     "camera_dependent": false
-    },
-    {
-     "measure": "extension.wrist_dom_vs_shoulder",
+     "measure": "acceleration.hands_apart",
      "n": 203,
      "matches": 4,
-     "share": 0.047,
-     "chance": 0.055,
-     "p": 0.1525248878124867,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_bounce.t_to_contact",
-     "n": 122,
-     "matches": 4,
-     "share": 0.0469,
-     "chance": 0.1174,
-     "p": 0.484373176613062,
-     "camera_dependent": false
-    },
-    {
-     "measure": "metrics.bounce_to_impact_s",
-     "n": 122,
-     "matches": 4,
-     "share": 0.0469,
-     "chance": 0.1279,
-     "p": 0.484373176613062,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_bounce.wrist_non_lateral",
-     "n": 102,
-     "matches": 4,
-     "share": 0.0464,
-     "chance": 0.1387,
-     "p": 0.6136185035596817,
-     "camera_dependent": false
-    },
-    {
-     "measure": "loaded.elbow_dom_vs_shoulder",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0461,
-     "chance": 0.0757,
-     "p": 0.16211251175154467,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.front_foot_angle_deg",
-     "n": 63,
-     "matches": 4,
-     "share": 0.0459,
-     "chance": 0.191,
-     "p": 0.8593293342727817,
-     "camera_dependent": false
-    },
-    {
-     "measure": "footwork.last_step_length_m",
-     "n": 154,
-     "matches": 4,
-     "share": 0.0455,
-     "chance": 0.0747,
-     "p": 0.34053485895847596,
+     "share": 0.0485,
+     "chance": 0.0565,
+     "p": 0.13806474078486486,
      "camera_dependent": false
     },
     {
      "measure": "ball_bounce.shoulder_abd_non",
      "n": 76,
      "matches": 4,
-     "share": 0.0454,
-     "chance": 0.2092,
-     "p": 0.7887217128349301,
+     "share": 0.0485,
+     "chance": 0.2088,
+     "p": 0.7602204761592435,
      "camera_dependent": false
     },
     {
-     "measure": "impact.hip_turn",
-     "n": 201,
+     "measure": "stroke.tempo_ratio",
+     "n": 191,
      "matches": 4,
-     "share": 0.0451,
-     "chance": 0.0663,
-     "p": 0.17931144075284655,
+     "share": 0.0483,
+     "chance": 0.0792,
+     "p": 0.16986275775033896,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.knee_non",
+     "n": 166,
+     "matches": 4,
+     "share": 0.0482,
+     "chance": 0.0662,
+     "p": 0.2531709142185525,
+     "camera_dependent": false
+    },
+    {
+     "measure": "takeback.com_over_feet",
+     "n": 188,
+     "matches": 4,
+     "share": 0.0481,
+     "chance": 0.069,
+     "p": 0.18134172228616274,
+     "camera_dependent": false
+    },
+    {
+     "measure": "metrics.time_takeback_to_impact_s",
+     "n": 192,
+     "matches": 4,
+     "share": 0.0479,
+     "chance": 0.0687,
+     "p": 0.17147889847911338,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.t_takeback",
+     "n": 192,
+     "matches": 4,
+     "share": 0.0479,
+     "chance": 0.0659,
+     "p": 0.17147889847911338,
+     "camera_dependent": false
+    },
+    {
+     "measure": "extension.wrist_dom_vs_shoulder",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0473,
+     "chance": 0.0533,
+     "p": 0.14970153219967045,
+     "camera_dependent": false
+    },
+    {
+     "measure": "footwork.path_m",
+     "n": 205,
+     "matches": 4,
+     "share": 0.047,
+     "chance": 0.0577,
+     "p": 0.14861947976137937,
+     "camera_dependent": false
+    },
+    {
+     "measure": "loaded.racket_head_vs_wrist",
+     "n": 127,
+     "matches": 4,
+     "share": 0.0467,
+     "chance": 0.1027,
+     "p": 0.4587406876373006,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_bounce.wrist_non_lateral",
+     "n": 102,
+     "matches": 4,
+     "share": 0.0465,
+     "chance": 0.1404,
+     "p": 0.6128630485217108,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_bounce.t_to_contact",
+     "n": 122,
+     "matches": 4,
+     "share": 0.0463,
+     "chance": 0.0974,
+     "p": 0.49281300956775687,
+     "camera_dependent": false
+    },
+    {
+     "measure": "footwork.speed_post_split_mps",
+     "n": 163,
+     "matches": 4,
+     "share": 0.0463,
+     "chance": 0.0618,
+     "p": 0.29025597658597274,
+     "camera_dependent": false
+    },
+    {
+     "measure": "loaded.elbow_dom_vs_shoulder",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0463,
+     "chance": 0.0757,
+     "p": 0.16084897734452053,
+     "camera_dependent": false
+    },
+    {
+     "measure": "metrics.bounce_to_impact_s",
+     "n": 122,
+     "matches": 4,
+     "share": 0.0463,
+     "chance": 0.1417,
+     "p": 0.49281300956775687,
+     "camera_dependent": false
+    },
+    {
+     "measure": "footwork.last_step_length_m",
+     "n": 154,
+     "matches": 4,
+     "share": 0.0454,
+     "chance": 0.0728,
+     "p": 0.3413159380958226,
+     "camera_dependent": false
+    },
+    {
+     "measure": "impact.front_foot_angle_deg",
+     "n": 63,
+     "matches": 4,
+     "share": 0.0454,
+     "chance": 0.1687,
+     "p": 0.8626758185420634,
      "camera_dependent": false
     },
     {
      "measure": "ready.knee_dom",
      "n": 181,
      "matches": 4,
-     "share": 0.0449,
-     "chance": 0.072,
-     "p": 0.24195774803141448,
+     "share": 0.045,
+     "chance": 0.0698,
+     "p": 0.2410365673254534,
      "camera_dependent": false
     },
     {
-     "measure": "acceleration.racket_angle",
-     "n": 124,
+     "measure": "impact.hip_turn",
+     "n": 201,
      "matches": 4,
-     "share": 0.0448,
-     "chance": 0.0909,
-     "p": 0.5046414745500412,
-     "camera_dependent": false
-    },
-    {
-     "measure": "takeback.elbow_dom_vs_shoulder",
-     "n": 192,
-     "matches": 4,
-     "share": 0.0446,
-     "chance": 0.0906,
-     "p": 0.21062693809018757,
-     "camera_dependent": false
-    },
-    {
-     "measure": "displacement_m",
-     "n": 202,
-     "matches": 4,
-     "share": 0.044,
-     "chance": 0.0516,
-     "p": 0.1889106447373339,
+     "share": 0.0447,
+     "chance": 0.0666,
+     "p": 0.18414422996409507,
      "camera_dependent": false
     },
     {
      "measure": "finish.wrist_dom_vs_shoulder",
      "n": 204,
      "matches": 4,
-     "share": 0.0439,
+     "share": 0.0444,
      "chance": 0.0523,
-     "p": 0.18528564579592433,
-     "camera_dependent": false
-    },
-    {
-     "measure": "loaded.x_factor",
-     "n": 201,
-     "matches": 4,
-     "share": 0.0436,
-     "chance": 0.0625,
-     "p": 0.19678559981723917,
-     "camera_dependent": false
-    },
-    {
-     "measure": "takeback.shoulder_abd_dom",
-     "n": 182,
-     "matches": 4,
-     "share": 0.0434,
-     "chance": 0.08,
-     "p": 0.2590792019130185,
+     "p": 0.1797610616590789,
      "camera_dependent": false
     },
     {
      "measure": "finish.wrist_dom_height",
      "n": 204,
      "matches": 4,
-     "share": 0.0433,
-     "chance": 0.05,
-     "p": 0.1925878489078629,
+     "share": 0.0443,
+     "chance": 0.0542,
+     "p": 0.18042469883260578,
      "camera_dependent": false
     },
     {
-     "measure": "metrics.x_factor_deg",
-     "n": 200,
+     "measure": "takeback.elbow_dom_vs_shoulder",
+     "n": 192,
      "matches": 4,
-     "share": 0.043,
-     "chance": 0.0646,
-     "p": 0.20758089271589825,
+     "share": 0.0442,
+     "chance": 0.0821,
+     "p": 0.21528842921919314,
      "camera_dependent": false
     },
     {
-     "measure": "ready.wrist_dom_vs_hip",
-     "n": 205,
-     "matches": 4,
-     "share": 0.043,
-     "chance": 0.0696,
-     "p": 0.19398341603711677,
-     "camera_dependent": false
-    },
-    {
-     "measure": "loaded.shoulder_turn",
+     "measure": "displacement_m",
      "n": 202,
      "matches": 4,
-     "share": 0.0429,
-     "chance": 0.0629,
-     "p": 0.20330239664085292,
+     "share": 0.0441,
+     "chance": 0.0658,
+     "p": 0.1882924615215333,
      "camera_dependent": false
     },
     {
-     "measure": "ball_flight.fit_rms_m",
-     "n": 96,
+     "measure": "stroke.pause_at_loaded",
+     "n": 196,
      "matches": 4,
-     "share": 0.0426,
-     "chance": 0.1412,
-     "p": 0.6992103709646699,
-     "camera_dependent": false
-    },
-    {
-     "measure": "face.acceleration",
-     "n": 202,
-     "matches": 4,
-     "share": 0.0426,
-     "chance": 0.0622,
-     "p": 0.2077421366807898,
+     "share": 0.044,
+     "chance": 0.0664,
+     "p": 0.20578196138567012,
      "camera_dependent": false
     },
     {
      "measure": "footwork.crossover_steps",
      "n": 170,
      "matches": 4,
-     "share": 0.0424,
-     "chance": 0.0716,
-     "p": 0.3188480570762474,
+     "share": 0.0439,
+     "chance": 0.0733,
+     "p": 0.2965998737694022,
+     "camera_dependent": false
+    },
+    {
+     "measure": "acceleration.racket_angle",
+     "n": 124,
+     "matches": 4,
+     "share": 0.0432,
+     "chance": 0.0933,
+     "p": 0.5288481514053957,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ready.wrist_dom_vs_hip",
+     "n": 205,
+     "matches": 4,
+     "share": 0.0432,
+     "chance": 0.0696,
+     "p": 0.1911507658928895,
+     "camera_dependent": false
+    },
+    {
+     "measure": "takeback.shoulder_abd_dom",
+     "n": 182,
+     "matches": 4,
+     "share": 0.0432,
+     "chance": 0.0809,
+     "p": 0.2626743746222346,
      "camera_dependent": false
     },
     {
      "measure": "loaded.body_height",
      "n": 203,
      "matches": 4,
-     "share": 0.0423,
-     "chance": 0.0578,
-     "p": 0.2083814588450946,
+     "share": 0.0429,
+     "chance": 0.057,
+     "p": 0.2002206023579981,
      "camera_dependent": false
     },
     {
-     "measure": "extension.hip_turn",
+     "measure": "loaded.x_factor",
+     "n": 201,
+     "matches": 4,
+     "share": 0.0428,
+     "chance": 0.0609,
+     "p": 0.20803885947694686,
+     "camera_dependent": false
+    },
+    {
+     "measure": "loaded.shoulder_turn",
      "n": 202,
      "matches": 4,
-     "share": 0.0422,
-     "chance": 0.0556,
-     "p": 0.21267265903470922,
+     "share": 0.0427,
+     "chance": 0.0605,
+     "p": 0.20640337501435468,
      "camera_dependent": false
     },
     {
      "measure": "acceleration.shoulder_turn",
      "n": 202,
      "matches": 4,
-     "share": 0.0419,
-     "chance": 0.0636,
-     "p": 0.21729166907181885,
-     "camera_dependent": false
-    },
-    {
-     "measure": "footwork.recovery_dy_m",
-     "n": 199,
-     "matches": 4,
-     "share": 0.0418,
-     "chance": 0.059,
-     "p": 0.2262807105058525,
-     "camera_dependent": false
-    },
-    {
-     "measure": "acceleration.body_height",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0417,
-     "chance": 0.0607,
-     "p": 0.21720316663903544,
-     "camera_dependent": false
-    },
-    {
-     "measure": "extension.arm_extension",
-     "n": 204,
-     "matches": 4,
-     "share": 0.0415,
-     "chance": 0.0575,
-     "p": 0.21636653321609456,
+     "share": 0.0424,
+     "chance": 0.0632,
+     "p": 0.20966840785992172,
      "camera_dependent": false
     },
     {
      "measure": "impact.body_height",
      "n": 203,
      "matches": 4,
-     "share": 0.0415,
-     "chance": 0.0589,
-     "p": 0.22003449424479946,
+     "share": 0.0424,
+     "chance": 0.0586,
+     "p": 0.20735632942396132,
+     "camera_dependent": false
+    },
+    {
+     "measure": "extension.hip_turn",
+     "n": 202,
+     "matches": 4,
+     "share": 0.0423,
+     "chance": 0.0549,
+     "p": 0.21153092795836942,
+     "camera_dependent": false
+    },
+    {
+     "measure": "face.acceleration",
+     "n": 202,
+     "matches": 4,
+     "share": 0.0423,
+     "chance": 0.062,
+     "p": 0.2112347604164876,
+     "camera_dependent": false
+    },
+    {
+     "measure": "footwork.recovery_dy_m",
+     "n": 199,
+     "matches": 4,
+     "share": 0.0423,
+     "chance": 0.0462,
+     "p": 0.22008084397633546,
+     "camera_dependent": false
+    },
+    {
+     "measure": "acceleration.body_height",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0422,
+     "chance": 0.0605,
+     "p": 0.20990310274214996,
+     "camera_dependent": false
+    },
+    {
+     "measure": "metrics.x_factor_deg",
+     "n": 200,
+     "matches": 4,
+     "share": 0.0422,
+     "chance": 0.0644,
+     "p": 0.21843254615514512,
+     "camera_dependent": false
+    },
+    {
+     "measure": "extension.arm_extension",
+     "n": 204,
+     "matches": 4,
+     "share": 0.0419,
+     "chance": 0.0567,
+     "p": 0.21085439702377465,
      "camera_dependent": false
     },
     {
      "measure": "recovery.shoulder_tilt",
      "n": 131,
      "matches": 4,
-     "share": 0.0413,
-     "chance": 0.0796,
-     "p": 0.5198977901583274,
+     "share": 0.0419,
+     "chance": 0.0789,
+     "p": 0.5100270791451085,
      "camera_dependent": false
     },
     {
      "measure": "finish.base_court_m",
      "n": 203,
      "matches": 4,
-     "share": 0.0412,
-     "chance": 0.0569,
-     "p": 0.22300545243932063,
+     "share": 0.0416,
+     "chance": 0.0563,
+     "p": 0.2179009272646149,
+     "camera_dependent": false
+    },
+    {
+     "measure": "impact.racket_angle",
+     "n": 144,
+     "matches": 4,
+     "share": 0.0415,
+     "chance": 0.0843,
+     "p": 0.4496827345053529,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_flight.apex_frame",
+     "n": 96,
+     "matches": 4,
+     "share": 0.0413,
+     "chance": 0.1482,
+     "p": 0.7163494233259863,
      "camera_dependent": false
     },
     {
      "measure": "acceleration.hip_height",
      "n": 203,
      "matches": 4,
-     "share": 0.041,
-     "chance": 0.0631,
-     "p": 0.22591972418265654,
+     "share": 0.0412,
+     "chance": 0.0625,
+     "p": 0.22286720234576862,
+     "camera_dependent": false
+    },
+    {
+     "measure": "extension.knee_non",
+     "n": 118,
+     "matches": 4,
+     "share": 0.0412,
+     "chance": 0.1184,
+     "p": 0.5918450745630883,
+     "camera_dependent": false
+    },
+    {
+     "measure": "finish.head_over_base",
+     "n": 204,
+     "matches": 4,
+     "share": 0.0411,
+     "chance": 0.0529,
+     "p": 0.22174005851198642,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ready.wrist_non_height",
+     "n": 205,
+     "matches": 4,
+     "share": 0.0407,
+     "chance": 0.0699,
+     "p": 0.22457768115502827,
      "camera_dependent": false
     },
     {
@@ -3210,98 +3261,71 @@
      "n": 126,
      "matches": 4,
      "share": 0.0406,
-     "chance": 0.1031,
-     "p": 0.5583839882473542,
+     "chance": 0.1038,
+     "p": 0.558372884481374,
      "camera_dependent": false
     },
     {
-     "measure": "extension.knee_non",
-     "n": 118,
+     "measure": "acceleration.shoulder_abd_non",
+     "n": 138,
      "matches": 4,
-     "share": 0.0404,
-     "chance": 0.1159,
-     "p": 0.6038631999798242,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ready.wrist_non_height",
-     "n": 205,
-     "matches": 4,
-     "share": 0.0404,
-     "chance": 0.0641,
-     "p": 0.22916657047488626,
+     "share": 0.0406,
+     "chance": 0.0863,
+     "p": 0.49512283108399324,
      "camera_dependent": false
     },
     {
      "measure": "extension.elbow_dom_vs_shoulder",
      "n": 204,
      "matches": 4,
-     "share": 0.0403,
-     "chance": 0.0587,
-     "p": 0.23370205625657645,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.head_over_base",
-     "n": 204,
-     "matches": 4,
-     "share": 0.0403,
-     "chance": 0.0514,
-     "p": 0.2331615650166336,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.hip_drop_pct",
-     "n": 187,
-     "matches": 4,
-     "share": 0.0403,
-     "chance": 0.0691,
-     "p": 0.28784179796891685,
-     "camera_dependent": false
-    },
-    {
-     "measure": "takeback.shoulder_turn",
-     "n": 192,
-     "matches": 4,
-     "share": 0.0403,
-     "chance": 0.0819,
-     "p": 0.2709084593764214,
-     "camera_dependent": false
-    },
-    {
-     "measure": "acceleration.hip_turn",
-     "n": 201,
-     "matches": 4,
-     "share": 0.0402,
-     "chance": 0.0619,
-     "p": 0.24408399911312675,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.arm_extension",
-     "n": 205,
-     "matches": 4,
-     "share": 0.0402,
-     "chance": 0.0627,
-     "p": 0.23284935031833107,
-     "camera_dependent": false
-    },
-    {
-     "measure": "loaded.base_width",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0399,
-     "chance": 0.0545,
-     "p": 0.24241486184551964,
+     "share": 0.0405,
+     "chance": 0.0588,
+     "p": 0.2311201315469496,
      "camera_dependent": false
     },
     {
      "measure": "recovery.arm_extension",
      "n": 202,
      "matches": 4,
-     "share": 0.0396,
+     "share": 0.0402,
+     "chance": 0.0698,
+     "p": 0.24087977224607984,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.hip_drop_pct",
+     "n": 187,
+     "matches": 4,
+     "share": 0.0402,
      "chance": 0.0688,
-     "p": 0.24950847053560285,
+     "p": 0.28964754222967937,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_bounce.racket_head_vs_wrist",
+     "n": 85,
+     "matches": 4,
+     "share": 0.0401,
+     "chance": 0.1488,
+     "p": 0.7897327842633173,
+     "camera_dependent": false
+    },
+    {
+     "measure": "acceleration.hip_turn",
+     "n": 201,
+     "matches": 4,
+     "share": 0.04,
+     "chance": 0.0621,
+     "p": 0.24705779985581147,
+     "camera_dependent": false
+    },
+    {
+     "measure": "finish.arm_extension",
+     "n": 205,
+     "matches": 4,
+     "share": 0.04,
+     "chance": 0.0585,
+     "p": 0.23520746015624308,
      "camera_dependent": false
     },
     {
@@ -3309,35 +3333,53 @@
      "n": 48,
      "matches": 4,
      "share": 0.0396,
-     "chance": 0.2723,
+     "chance": 0.2686,
      "p": 0.9515404326030351,
      "camera_dependent": false
     },
     {
-     "measure": "acceleration.shoulder_abd_non",
-     "n": 139,
+     "measure": "ball_speed_avg_kmh",
+     "n": 98,
      "matches": 4,
      "share": 0.0395,
-     "chance": 0.0832,
-     "p": 0.5078905545348403,
+     "chance": 0.1939,
+     "p": 0.7271542932942845,
      "camera_dependent": false
     },
     {
-     "measure": "ball_bounce.racket_head_vs_wrist",
-     "n": 85,
+     "measure": "takeback.shoulder_turn",
+     "n": 192,
      "matches": 4,
-     "share": 0.0393,
-     "chance": 0.1585,
-     "p": 0.7984564726458668,
+     "share": 0.0395,
+     "chance": 0.0857,
+     "p": 0.2837227666341674,
      "camera_dependent": false
     },
     {
-     "measure": "stroke.hip_drop_cm",
-     "n": 187,
+     "measure": "ball_flight.fit_rms_m",
+     "n": 96,
      "matches": 4,
-     "share": 0.0393,
-     "chance": 0.0712,
-     "p": 0.30423894405477303,
+     "share": 0.0392,
+     "chance": 0.1331,
+     "p": 0.741333489158472,
+     "camera_dependent": false
+    },
+    {
+     "measure": "extension.wrist_dom_height",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0392,
+     "chance": 0.0549,
+     "p": 0.2527604264222799,
+     "camera_dependent": false
+    },
+    {
+     "measure": "loaded.base_width",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0392,
+     "chance": 0.0559,
+     "p": 0.25286876498080985,
      "camera_dependent": false
     },
     {
@@ -3345,8 +3387,8 @@
      "n": 205,
      "matches": 4,
      "share": 0.0392,
-     "chance": 0.0618,
-     "p": 0.24694005953870796,
+     "chance": 0.0645,
+     "p": 0.2468093419006257,
      "camera_dependent": false
     },
     {
@@ -3354,8 +3396,17 @@
      "n": 201,
      "matches": 4,
      "share": 0.0392,
-     "chance": 0.0522,
-     "p": 0.2598518530150481,
+     "chance": 0.0534,
+     "p": 0.2587900511673843,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.hip_drop_cm",
+     "n": 187,
+     "matches": 4,
+     "share": 0.0392,
+     "chance": 0.0701,
+     "p": 0.3062535302301887,
      "camera_dependent": false
     },
     {
@@ -3363,62 +3414,17 @@
      "n": 203,
      "matches": 4,
      "share": 0.0391,
-     "chance": 0.0576,
-     "p": 0.2556152420236353,
+     "chance": 0.0585,
+     "p": 0.254923804548231,
      "camera_dependent": false
     },
     {
-     "measure": "extension.wrist_dom_height",
-     "n": 203,
+     "measure": "footwork.off_centre_at_opp_hit_m",
+     "n": 85,
      "matches": 4,
-     "share": 0.0388,
-     "chance": 0.0543,
-     "p": 0.25913041777578016,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.racket_forearm",
-     "n": 144,
-     "matches": 4,
-     "share": 0.0388,
-     "chance": 0.0904,
-     "p": 0.49641487193634926,
-     "camera_dependent": false
-    },
-    {
-     "measure": "metrics.time_loaded_to_impact_s",
-     "n": 204,
-     "matches": 4,
-     "share": 0.0388,
-     "chance": 0.0681,
-     "p": 0.25661243074079954,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.dur_forward",
-     "n": 204,
-     "matches": 4,
-     "share": 0.0388,
-     "chance": 0.0682,
-     "p": 0.25661243074079954,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.t_loaded",
-     "n": 204,
-     "matches": 4,
-     "share": 0.0388,
-     "chance": 0.0639,
-     "p": 0.25661243074079954,
-     "camera_dependent": false
-    },
-    {
-     "measure": "takeback.x_factor",
-     "n": 192,
-     "matches": 4,
-     "share": 0.0387,
-     "chance": 0.0647,
-     "p": 0.29767242597232046,
+     "share": 0.0383,
+     "chance": 0.1574,
+     "p": 0.808080681787397,
      "camera_dependent": false
     },
     {
@@ -3426,80 +3432,89 @@
      "n": 205,
      "matches": 4,
      "share": 0.0381,
-     "chance": 0.0587,
-     "p": 0.26491724520571014,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.racket_angle",
-     "n": 144,
-     "matches": 4,
-     "share": 0.0381,
-     "chance": 0.0885,
-     "p": 0.5083467579490079,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.racket_speed_rel",
-     "n": 157,
-     "matches": 4,
-     "share": 0.038,
-     "chance": 0.074,
-     "p": 0.4490995505428854,
-     "camera_dependent": false
-    },
-    {
-     "measure": "recovery.wrist_non_lateral",
-     "n": 201,
-     "matches": 4,
-     "share": 0.0378,
-     "chance": 0.0559,
-     "p": 0.2820379685842774,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ready.hip_tilt",
-     "n": 186,
-     "matches": 4,
-     "share": 0.0377,
-     "chance": 0.0637,
-     "p": 0.33541027089640985,
+     "chance": 0.0633,
+     "p": 0.26477026962332667,
      "camera_dependent": false
     },
     {
      "measure": "loaded.wrist_dom_height",
      "n": 203,
      "matches": 4,
-     "share": 0.0376,
-     "chance": 0.058,
-     "p": 0.279025525910205,
+     "share": 0.0381,
+     "chance": 0.0578,
+     "p": 0.2713913097277026,
      "camera_dependent": false
     },
     {
-     "measure": "loaded.stance_angle",
-     "n": 203,
+     "measure": "recovery.wrist_non_lateral",
+     "n": 201,
      "matches": 4,
-     "share": 0.0374,
-     "chance": 0.0605,
-     "p": 0.28293913259129067,
+     "share": 0.0381,
+     "chance": 0.0549,
+     "p": 0.27779308886582266,
      "camera_dependent": false
     },
     {
      "measure": "extension.body_height",
      "n": 203,
      "matches": 4,
-     "share": 0.0373,
-     "chance": 0.0602,
-     "p": 0.2839543348263704,
+     "share": 0.038,
+     "chance": 0.0601,
+     "p": 0.2723667309270932,
      "camera_dependent": false
     },
     {
-     "measure": "footwork.speed_pre_split_mps",
-     "n": 163,
+     "measure": "impact.shoulder_turn",
+     "n": 203,
      "matches": 4,
-     "share": 0.0373,
-     "chance": 0.0707,
-     "p": 0.4358894955651359,
+     "share": 0.0379,
+     "chance": 0.0594,
+     "p": 0.27506516668501496,
+     "camera_dependent": false
+    },
+    {
+     "measure": "takeback.x_factor",
+     "n": 192,
+     "matches": 4,
+     "share": 0.0376,
+     "chance": 0.0631,
+     "p": 0.3155453313301092,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ready.hip_tilt",
+     "n": 186,
+     "matches": 4,
+     "share": 0.0375,
+     "chance": 0.0655,
+     "p": 0.3394064968326378,
+     "camera_dependent": false
+    },
+    {
+     "measure": "metrics.time_loaded_to_impact_s",
+     "n": 204,
+     "matches": 4,
+     "share": 0.0374,
+     "chance": 0.0681,
+     "p": 0.2795659580516444,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.dur_forward",
+     "n": 204,
+     "matches": 4,
+     "share": 0.0374,
+     "chance": 0.0655,
+     "p": 0.2795659580516444,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.t_loaded",
+     "n": 204,
+     "matches": 4,
+     "share": 0.0374,
+     "chance": 0.0634,
+     "p": 0.2795659580516444,
      "camera_dependent": false
     },
     {
@@ -3507,71 +3522,89 @@
      "n": 63,
      "matches": 4,
      "share": 0.0373,
-     "chance": 0.2181,
+     "chance": 0.2157,
      "p": 0.9110668680947512,
+     "camera_dependent": false
+    },
+    {
+     "measure": "footwork.speed_pre_split_mps",
+     "n": 163,
+     "matches": 4,
+     "share": 0.0372,
+     "chance": 0.0734,
+     "p": 0.4375071026682805,
+     "camera_dependent": false
+    },
+    {
+     "measure": "loaded.stance_angle",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0372,
+     "chance": 0.0536,
+     "p": 0.2864318392942014,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.racket_speed_rel",
+     "n": 157,
+     "matches": 4,
+     "share": 0.037,
+     "chance": 0.0795,
+     "p": 0.46722083815742077,
      "camera_dependent": false
     },
     {
      "measure": "takeback.trunk_tilt",
      "n": 192,
      "matches": 4,
-     "share": 0.0372,
-     "chance": 0.0712,
-     "p": 0.3240588767955698,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.shoulder_turn",
-     "n": 203,
-     "matches": 4,
      "share": 0.0367,
-     "chance": 0.0545,
-     "p": 0.2950359933128919,
-     "camera_dependent": false
-    },
-    {
-     "measure": "footwork.off_centre_at_opp_hit_m",
-     "n": 86,
-     "matches": 4,
-     "share": 0.0366,
-     "chance": 0.1793,
-     "p": 0.8201413644177188,
+     "chance": 0.0712,
+     "p": 0.33287137820088164,
      "camera_dependent": false
     },
     {
      "measure": "footwork.steps_to_impact",
      "n": 170,
      "matches": 4,
-     "share": 0.0365,
-     "chance": 0.0822,
-     "p": 0.42152188686082626,
-     "camera_dependent": false
-    },
-    {
-     "measure": "extension.head_over_base",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0364,
-     "chance": 0.0613,
-     "p": 0.3004030237626497,
+     "share": 0.0363,
+     "chance": 0.0816,
+     "p": 0.42451425986783786,
      "camera_dependent": false
     },
     {
      "measure": "footwork.speed_at_impact_mps",
      "n": 203,
      "matches": 4,
-     "share": 0.0361,
-     "chance": 0.0519,
-     "p": 0.3058500139880638,
+     "share": 0.036,
+     "chance": 0.0523,
+     "p": 0.3073233972891448,
      "camera_dependent": false
     },
     {
-     "measure": "ball_bounce.racket_tip_height",
-     "n": 85,
+     "measure": "loaded.shoulder_abd_non",
+     "n": 132,
      "matches": 4,
-     "share": 0.0357,
-     "chance": 0.1232,
-     "p": 0.8339848599486013,
+     "share": 0.0359,
+     "chance": 0.0981,
+     "p": 0.6056930596456875,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.swing_low_to_high",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0359,
+     "chance": 0.0546,
+     "p": 0.3090211063246152,
+     "camera_dependent": false
+    },
+    {
+     "measure": "extension.head_over_base",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0358,
+     "chance": 0.061,
+     "p": 0.3101049320785195,
      "camera_dependent": false
     },
     {
@@ -3579,8 +3612,8 @@
      "n": 205,
      "matches": 4,
      "share": 0.0357,
-     "chance": 0.0637,
-     "p": 0.3063812049314177,
+     "chance": 0.0723,
+     "p": 0.30660470178105526,
      "camera_dependent": false
     },
     {
@@ -3588,125 +3621,125 @@
      "n": 205,
      "matches": 4,
      "share": 0.0357,
-     "chance": 0.0661,
-     "p": 0.3063812049314177,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.swing_low_to_high",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0354,
-     "chance": 0.053,
-     "p": 0.31789415547813993,
+     "chance": 0.0673,
+     "p": 0.30660470178105526,
      "camera_dependent": false
     },
     {
      "measure": "extension.head_vs_hips",
      "n": 204,
      "matches": 4,
-     "share": 0.0353,
-     "chance": 0.0548,
-     "p": 0.3173519175522264,
-     "camera_dependent": false
-    },
-    {
-     "measure": "loaded.shoulder_abd_non",
-     "n": 132,
-     "matches": 4,
      "share": 0.0352,
-     "chance": 0.0906,
-     "p": 0.616869799313571,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_speed_avg_kmh",
-     "n": 98,
-     "matches": 4,
-     "share": 0.0351,
-     "chance": 0.1985,
-     "p": 0.7810787952300818,
-     "camera_dependent": false
-    },
-    {
-     "measure": "recovery.racket_forearm",
-     "n": 122,
-     "matches": 4,
-     "share": 0.0348,
-     "chance": 0.1027,
-     "p": 0.6719619137366921,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.racket_tip_vs_head",
-     "n": 144,
-     "matches": 4,
-     "share": 0.0347,
-     "chance": 0.0807,
-     "p": 0.5691689561218083,
-     "camera_dependent": false
-    },
-    {
-     "measure": "takeback.arm_extension",
-     "n": 192,
-     "matches": 4,
-     "share": 0.0344,
-     "chance": 0.0742,
-     "p": 0.3759880876990084,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_bounce.knee_dom",
-     "n": 94,
-     "matches": 4,
-     "share": 0.0343,
-     "chance": 0.1395,
-     "p": 0.8092981544495408,
-     "camera_dependent": false
-    },
-    {
-     "measure": "loaded.wrist_dom_vs_hip",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0339,
-     "chance": 0.0631,
-     "p": 0.34773608132069467,
-     "camera_dependent": false
-    },
-    {
-     "measure": "metrics.contact_lateral_pct",
-     "n": 204,
-     "matches": 4,
-     "share": 0.0339,
-     "chance": 0.0572,
-     "p": 0.3437597907847696,
+     "chance": 0.0553,
+     "p": 0.31836984383301714,
      "camera_dependent": false
     },
     {
      "measure": "loaded.back_foot_angle_deg",
      "n": 114,
      "matches": 4,
-     "share": 0.0337,
-     "chance": 0.093,
-     "p": 0.725545991986501,
+     "share": 0.0351,
+     "chance": 0.0942,
+     "p": 0.7052234594051072,
      "camera_dependent": false
     },
     {
-     "measure": "loaded.racket_tip_vs_head",
-     "n": 127,
+     "measure": "ball_bounce.knee_dom",
+     "n": 94,
      "matches": 4,
-     "share": 0.0332,
-     "chance": 0.0861,
-     "p": 0.6738111242380944,
+     "share": 0.0346,
+     "chance": 0.1375,
+     "p": 0.8059318760586637,
+     "camera_dependent": false
+    },
+    {
+     "measure": "impact.racket_tip_vs_head",
+     "n": 144,
+     "matches": 4,
+     "share": 0.0346,
+     "chance": 0.0834,
+     "p": 0.5711148126311945,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_bounce.racket_tip_height",
+     "n": 85,
+     "matches": 4,
+     "share": 0.0344,
+     "chance": 0.1454,
+     "p": 0.8459619286962965,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.racket_forearm",
+     "n": 122,
+     "matches": 4,
+     "share": 0.0344,
+     "chance": 0.1031,
+     "p": 0.6780719010673466,
+     "camera_dependent": false
+    },
+    {
+     "measure": "takeback.arm_extension",
+     "n": 192,
+     "matches": 4,
+     "share": 0.0343,
+     "chance": 0.0783,
+     "p": 0.37732775531550466,
+     "camera_dependent": false
+    },
+    {
+     "measure": "loaded.wrist_dom_vs_hip",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0341,
+     "chance": 0.0618,
+     "p": 0.342986234143274,
      "camera_dependent": false
     },
     {
      "measure": "metrics.non_arm_extension_loaded_deg",
      "n": 203,
      "matches": 4,
+     "share": 0.0339,
+     "chance": 0.0711,
+     "p": 0.34725356741774643,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_net.body_height",
+     "n": 67,
+     "matches": 4,
+     "share": 0.0338,
+     "chance": 0.1511,
+     "p": 0.9168735751418685,
+     "camera_dependent": false
+    },
+    {
+     "measure": "metrics.contact_lateral_pct",
+     "n": 204,
+     "matches": 4,
+     "share": 0.0338,
+     "chance": 0.0571,
+     "p": 0.3450528778402863,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.shoulder_abd_non",
+     "n": 191,
+     "matches": 4,
+     "share": 0.0337,
+     "chance": 0.0631,
+     "p": 0.3925769905937996,
+     "camera_dependent": false
+    },
+    {
+     "measure": "takeback.shoulder_abd_non",
+     "n": 155,
+     "matches": 4,
      "share": 0.0332,
-     "chance": 0.0702,
-     "p": 0.3608685598972289,
+     "chance": 0.0907,
+     "p": 0.5478470234640211,
      "camera_dependent": false
     },
     {
@@ -3714,62 +3747,44 @@
      "n": 51,
      "matches": 4,
      "share": 0.0331,
-     "chance": 0.2665,
+     "chance": 0.2688,
      "p": 0.9628706173947802,
-     "camera_dependent": false
-    },
-    {
-     "measure": "recovery.shoulder_abd_non",
-     "n": 191,
-     "matches": 4,
-     "share": 0.0331,
-     "chance": 0.061,
-     "p": 0.40560377663702446,
-     "camera_dependent": false
-    },
-    {
-     "measure": "takeback.shoulder_abd_non",
-     "n": 155,
-     "matches": 4,
-     "share": 0.0331,
-     "chance": 0.0835,
-     "p": 0.5510215277260045,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_bounce.racket_angle",
-     "n": 85,
-     "matches": 4,
-     "share": 0.0327,
-     "chance": 0.1197,
-     "p": 0.861329777778588,
-     "camera_dependent": false
-    },
-    {
-     "measure": "footwork.recovery_to_centre_m",
-     "n": 199,
-     "matches": 4,
-     "share": 0.0327,
-     "chance": 0.0623,
-     "p": 0.38543547740919815,
      "camera_dependent": false
     },
     {
      "measure": "takeback.hip_tilt",
      "n": 161,
      "matches": 4,
+     "share": 0.0331,
+     "chance": 0.071,
+     "p": 0.5239175891673835,
+     "camera_dependent": false
+    },
+    {
+     "measure": "impact.hip_height",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0328,
+     "chance": 0.0606,
+     "p": 0.36895757788831035,
+     "camera_dependent": false
+    },
+    {
+     "measure": "footwork.recovery_to_centre_m",
+     "n": 199,
+     "matches": 4,
      "share": 0.0324,
-     "chance": 0.0721,
-     "p": 0.5389816053941912,
+     "chance": 0.0593,
+     "p": 0.39067181697800624,
      "camera_dependent": false
     },
     {
      "measure": "impact.knee_dom",
      "n": 185,
      "matches": 4,
-     "share": 0.0323,
-     "chance": 0.0614,
-     "p": 0.44451594146102136,
+     "share": 0.0324,
+     "chance": 0.0601,
+     "p": 0.443626219227226,
      "camera_dependent": false
     },
     {
@@ -3778,88 +3793,124 @@
      "matches": 4,
      "share": 0.0323,
      "chance": 0.0693,
-     "p": 0.3798160563542059,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.hip_height",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0322,
-     "chance": 0.061,
-     "p": 0.38097417117064064,
+     "p": 0.3797025175378976,
      "camera_dependent": false
     },
     {
      "measure": "stroke.dur_preparation",
      "n": 191,
      "matches": 4,
-     "share": 0.0315,
-     "chance": 0.069,
-     "p": 0.4389465639533633,
+     "share": 0.0319,
+     "chance": 0.0742,
+     "p": 0.43039486827266227,
      "camera_dependent": false
     },
     {
      "measure": "loaded.knee_dom",
      "n": 195,
      "matches": 4,
-     "share": 0.0314,
-     "chance": 0.0675,
-     "p": 0.4281101994913489,
+     "share": 0.0316,
+     "chance": 0.0576,
+     "p": 0.4235822023305471,
      "camera_dependent": false
     },
     {
      "measure": "finish.wrist_non_height",
      "n": 204,
      "matches": 4,
-     "share": 0.0309,
-     "chance": 0.0582,
-     "p": 0.40538555830897904,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_net.body_height",
-     "n": 67,
-     "matches": 4,
-     "share": 0.0308,
-     "chance": 0.1516,
-     "p": 0.9334889342508121,
-     "camera_dependent": false
-    },
-    {
-     "measure": "face.recovery",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0308,
-     "chance": 0.0664,
-     "p": 0.411519028912528,
+     "share": 0.0311,
+     "chance": 0.057,
+     "p": 0.40288865818198805,
      "camera_dependent": false
     },
     {
      "measure": "finish.shoulder_abd_non",
      "n": 188,
      "matches": 4,
-     "share": 0.0304,
-     "chance": 0.0681,
-     "p": 0.4735521230427375,
+     "share": 0.031,
+     "chance": 0.0696,
+     "p": 0.4617013681389369,
+     "camera_dependent": false
+    },
+    {
+     "measure": "extension.wrist_non_height",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0309,
+     "chance": 0.0514,
+     "p": 0.4099393903882673,
+     "camera_dependent": false
+    },
+    {
+     "measure": "loaded.racket_tip_vs_head",
+     "n": 127,
+     "matches": 4,
+     "share": 0.0309,
+     "chance": 0.0858,
+     "p": 0.7132822146628423,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.face_tilt",
+     "n": 123,
+     "matches": 4,
+     "share": 0.0308,
+     "chance": 0.0965,
+     "p": 0.7308611224249089,
      "camera_dependent": false
     },
     {
      "measure": "metrics.elbow_impact_deg",
-     "n": 178,
+     "n": 177,
+     "matches": 4,
+     "share": 0.0307,
+     "chance": 0.0669,
+     "p": 0.5090890890209145,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_bounce.racket_angle",
+     "n": 85,
      "matches": 4,
      "share": 0.0304,
-     "chance": 0.0679,
-     "p": 0.5127668132579033,
+     "chance": 0.1272,
+     "p": 0.8823284246290721,
+     "camera_dependent": false
+    },
+    {
+     "measure": "face.recovery",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0303,
+     "chance": 0.0641,
+     "p": 0.42266569706338825,
+     "camera_dependent": false
+    },
+    {
+     "measure": "face.takeback",
+     "n": 192,
+     "matches": 4,
+     "share": 0.0303,
+     "chance": 0.0675,
+     "p": 0.462727232990095,
      "camera_dependent": false
     },
     {
      "measure": "impact.head_vs_hips",
      "n": 204,
      "matches": 4,
-     "share": 0.0303,
-     "chance": 0.0531,
-     "p": 0.4207076328834555,
+     "share": 0.0301,
+     "chance": 0.0567,
+     "p": 0.4247071062990676,
+     "camera_dependent": false
+    },
+    {
+     "measure": "impact.knee_non",
+     "n": 121,
+     "matches": 4,
+     "share": 0.0301,
+     "chance": 0.0882,
+     "p": 0.7503368602588859,
      "camera_dependent": false
     },
     {
@@ -3867,44 +3918,35 @@
      "n": 192,
      "matches": 4,
      "share": 0.0301,
-     "chance": 0.0725,
-     "p": 0.46623760222197586,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ball_bounce.head_over_base",
-     "n": 102,
-     "matches": 4,
-     "share": 0.0299,
-     "chance": 0.1263,
-     "p": 0.8265045661570753,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.knee_non",
-     "n": 131,
-     "matches": 4,
-     "share": 0.0299,
-     "chance": 0.1052,
-     "p": 0.7135575432110203,
+     "chance": 0.0729,
+     "p": 0.46748160405003625,
      "camera_dependent": false
     },
     {
      "measure": "acceleration.x_factor",
      "n": 201,
      "matches": 4,
-     "share": 0.0298,
-     "chance": 0.062,
-     "p": 0.44087315331289356,
+     "share": 0.03,
+     "chance": 0.0619,
+     "p": 0.4375204387768872,
      "camera_dependent": false
     },
     {
-     "measure": "extension.wrist_non_height",
-     "n": 203,
+     "measure": "loaded.front_foot_angle_deg",
+     "n": 55,
+     "matches": 4,
+     "share": 0.0298,
+     "chance": 0.2235,
+     "p": 0.9645988354110974,
+     "camera_dependent": false
+    },
+    {
+     "measure": "face.ready",
+     "n": 207,
      "matches": 4,
      "share": 0.0297,
-     "chance": 0.0511,
-     "p": 0.437843622344569,
+     "chance": 0.0597,
+     "p": 0.42247034468084366,
      "camera_dependent": false
     },
     {
@@ -3912,80 +3954,62 @@
      "n": 177,
      "matches": 4,
      "share": 0.0297,
-     "chance": 0.0785,
-     "p": 0.5311880407429856,
-     "camera_dependent": false
-    },
-    {
-     "measure": "acceleration.base_width",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0295,
-     "chance": 0.0564,
-     "p": 0.4423292194522418,
+     "chance": 0.0655,
+     "p": 0.5311751523942003,
      "camera_dependent": false
     },
     {
      "measure": "finish.dom_shoulder_ahead",
      "n": 205,
      "matches": 4,
-     "share": 0.0295,
-     "chance": 0.0588,
-     "p": 0.4354344755506352,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.knee_non",
-     "n": 121,
-     "matches": 4,
-     "share": 0.0294,
-     "chance": 0.0943,
-     "p": 0.7605005619325819,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.head_over_base",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0292,
-     "chance": 0.0538,
-     "p": 0.44951412910876853,
-     "camera_dependent": false
-    },
-    {
-     "measure": "takeback.head_over_base",
-     "n": 191,
-     "matches": 4,
-     "share": 0.0292,
-     "chance": 0.0701,
-     "p": 0.4900706972046466,
-     "camera_dependent": false
-    },
-    {
-     "measure": "face.takeback",
-     "n": 192,
-     "matches": 4,
-     "share": 0.0291,
-     "chance": 0.0721,
-     "p": 0.4887714052906651,
+     "share": 0.0296,
+     "chance": 0.0584,
+     "p": 0.43282444166533274,
      "camera_dependent": false
     },
     {
      "measure": "takeback.body_height",
      "n": 192,
      "matches": 4,
-     "share": 0.0291,
-     "chance": 0.064,
-     "p": 0.4892275220243212,
+     "share": 0.0294,
+     "chance": 0.0632,
+     "p": 0.48352999499470495,
+     "camera_dependent": false
+    },
+    {
+     "measure": "acceleration.base_width",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0293,
+     "chance": 0.0562,
+     "p": 0.4453550647626061,
      "camera_dependent": false
     },
     {
      "measure": "finish.racket_head_lateral",
-     "n": 123,
+     "n": 122,
      "matches": 4,
      "share": 0.029,
-     "chance": 0.0884,
-     "p": 0.7587710826630705,
+     "chance": 0.0925,
+     "p": 0.7629784001334248,
+     "camera_dependent": false
+    },
+    {
+     "measure": "impact.head_over_base",
+     "n": 203,
+     "matches": 4,
+     "share": 0.029,
+     "chance": 0.0542,
+     "p": 0.4537241994654404,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ready.elbow_dom_vs_shoulder",
+     "n": 206,
+     "matches": 4,
+     "share": 0.029,
+     "chance": 0.0618,
+     "p": 0.4433612955050744,
      "camera_dependent": false
     },
     {
@@ -3993,35 +4017,53 @@
      "n": 202,
      "matches": 4,
      "share": 0.029,
-     "chance": 0.0569,
-     "p": 0.45735595600248125,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ready.elbow_dom_vs_shoulder",
-     "n": 206,
-     "matches": 4,
-     "share": 0.0289,
-     "chance": 0.063,
-     "p": 0.44568340827021957,
-     "camera_dependent": false
-    },
-    {
-     "measure": "footwork.adjustment_steps",
-     "n": 170,
-     "matches": 4,
-     "share": 0.0287,
-     "chance": 0.0748,
-     "p": 0.5795755817374326,
+     "chance": 0.0592,
+     "p": 0.4577165806767669,
      "camera_dependent": false
     },
     {
      "measure": "metrics.hip_drop_pct",
      "n": 203,
      "matches": 4,
+     "share": 0.0289,
+     "chance": 0.0573,
+     "p": 0.4564075498100607,
+     "camera_dependent": false
+    },
+    {
+     "measure": "footwork.adjustment_steps",
+     "n": 170,
+     "matches": 4,
+     "share": 0.0288,
+     "chance": 0.0769,
+     "p": 0.5794054002010693,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.racket_head_vs_wrist",
+     "n": 122,
+     "matches": 4,
      "share": 0.0287,
-     "chance": 0.0562,
-     "p": 0.45997193359584054,
+     "chance": 0.0917,
+     "p": 0.7678341354152876,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.takeback_peak_vs_shoulder",
+     "n": 191,
+     "matches": 4,
+     "share": 0.0287,
+     "chance": 0.0746,
+     "p": 0.5016044137439963,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ball_bounce.head_over_base",
+     "n": 102,
+     "matches": 4,
+     "share": 0.0286,
+     "chance": 0.1266,
+     "p": 0.8420816025750609,
      "camera_dependent": false
     },
     {
@@ -4029,35 +4071,26 @@
      "n": 150,
      "matches": 4,
      "share": 0.0286,
-     "chance": 0.0842,
-     "p": 0.6598025774650256,
-     "camera_dependent": false
-    },
-    {
-     "measure": "recovery.racket_head_vs_wrist",
-     "n": 122,
-     "matches": 4,
-     "share": 0.0286,
-     "chance": 0.0933,
-     "p": 0.7698047630707735,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.takeback_peak_vs_shoulder",
-     "n": 191,
-     "matches": 4,
-     "share": 0.0286,
-     "chance": 0.0776,
-     "p": 0.50378432688129,
+     "chance": 0.0873,
+     "p": 0.6612645056459918,
      "camera_dependent": false
     },
     {
      "measure": "extension.shoulder_turn",
      "n": 203,
      "matches": 4,
+     "share": 0.0284,
+     "chance": 0.0601,
+     "p": 0.46712177964253243,
+     "camera_dependent": false
+    },
+    {
+     "measure": "footwork.peak_speed_mps",
+     "n": 205,
+     "matches": 4,
      "share": 0.0281,
-     "chance": 0.0629,
-     "p": 0.47570542367845103,
+     "chance": 0.0636,
+     "p": 0.4683351776873983,
      "camera_dependent": false
     },
     {
@@ -4065,89 +4098,53 @@
      "n": 204,
      "matches": 4,
      "share": 0.0281,
-     "chance": 0.0594,
-     "p": 0.4708982685831178,
+     "chance": 0.0633,
+     "p": 0.47156463178236174,
      "camera_dependent": false
     },
     {
-     "measure": "footwork.peak_speed_mps",
-     "n": 205,
+     "measure": "takeback.head_over_base",
+     "n": 191,
      "matches": 4,
      "share": 0.028,
-     "chance": 0.0623,
-     "p": 0.46964214710801944,
+     "chance": 0.0699,
+     "p": 0.5178754965284154,
      "camera_dependent": false
     },
     {
      "measure": "impact.wrist_dom_lateral",
      "n": 203,
      "matches": 4,
-     "share": 0.028,
-     "chance": 0.0602,
-     "p": 0.47800012762835487,
-     "camera_dependent": false
-    },
-    {
-     "measure": "face.ready",
-     "n": 207,
-     "matches": 4,
-     "share": 0.0279,
-     "chance": 0.0595,
-     "p": 0.4651603331768177,
-     "camera_dependent": false
-    },
-    {
-     "measure": "takeback.hip_height",
-     "n": 192,
-     "matches": 4,
-     "share": 0.0279,
-     "chance": 0.0686,
-     "p": 0.5181811030663143,
-     "camera_dependent": false
-    },
-    {
-     "measure": "recovery.face_tilt",
-     "n": 123,
-     "matches": 4,
      "share": 0.0278,
-     "chance": 0.0986,
-     "p": 0.7777650682144639,
-     "camera_dependent": false
-    },
-    {
-     "measure": "acceleration.racket_forearm",
-     "n": 124,
-     "matches": 4,
-     "share": 0.0277,
-     "chance": 0.1131,
-     "p": 0.7754276396327096,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.racket_tip_height",
-     "n": 144,
-     "matches": 4,
-     "share": 0.0276,
-     "chance": 0.0869,
-     "p": 0.7025492773114826,
+     "chance": 0.055,
+     "p": 0.48144460699477754,
      "camera_dependent": false
     },
     {
      "measure": "stroke.feet_move_m",
      "n": 197,
      "matches": 4,
-     "share": 0.0276,
-     "chance": 0.0586,
-     "p": 0.5081973745046722,
+     "share": 0.0278,
+     "chance": 0.061,
+     "p": 0.5017554663651499,
      "camera_dependent": false
     },
     {
-     "measure": "stroke.takeback_vs_bounce",
-     "n": 101,
+     "measure": "impact.racket_tip_height",
+     "n": 144,
      "matches": 4,
-     "share": 0.0275,
-     "chance": 0.1415,
-     "p": 0.8574731633553287,
+     "share": 0.0277,
+     "chance": 0.0825,
+     "p": 0.7019548804793396,
+     "camera_dependent": false
+    },
+    {
+     "measure": "finish.shoulder_tilt",
+     "n": 183,
+     "matches": 4,
+     "share": 0.0274,
+     "chance": 0.0591,
+     "p": 0.5619117022054207,
      "camera_dependent": false
     },
     {
@@ -4155,71 +4152,98 @@
      "n": 198,
      "matches": 4,
      "share": 0.0274,
-     "chance": 0.0599,
-     "p": 0.5081196775568757,
+     "chance": 0.0657,
+     "p": 0.5093264605517358,
      "camera_dependent": false
     },
     {
-     "measure": "face.impact",
-     "n": 207,
+     "measure": "takeback.hip_height",
+     "n": 192,
      "matches": 4,
      "share": 0.0273,
-     "chance": 0.0723,
-     "p": 0.47933465222442906,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.face_tilt",
-     "n": 207,
-     "matches": 4,
-     "share": 0.0273,
-     "chance": 0.0709,
-     "p": 0.47933465222442906,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.elbow_dom_lateral",
-     "n": 205,
-     "matches": 4,
-     "share": 0.027,
-     "chance": 0.0617,
-     "p": 0.4955235119725081,
+     "chance": 0.0666,
+     "p": 0.5309946211186243,
      "camera_dependent": false
     },
     {
      "measure": "impact.face_yaw",
      "n": 207,
      "matches": 4,
-     "share": 0.027,
-     "chance": 0.0794,
-     "p": 0.4890527592680246,
+     "share": 0.0271,
+     "chance": 0.0802,
+     "p": 0.4859374602607561,
      "camera_dependent": false
     },
     {
-     "measure": "stroke.t_hip_lowest",
-     "n": 187,
+     "measure": "stroke.takeback_vs_bounce",
+     "n": 101,
      "matches": 4,
-     "share": 0.027,
-     "chance": 0.0682,
-     "p": 0.5572685519998422,
+     "share": 0.0271,
+     "chance": 0.1392,
+     "p": 0.8624939213743515,
      "camera_dependent": false
     },
     {
      "measure": "takeback.hip_turn",
      "n": 192,
      "matches": 4,
-     "share": 0.0269,
-     "chance": 0.0816,
-     "p": 0.5418433901085076,
+     "share": 0.027,
+     "chance": 0.0817,
+     "p": 0.5401483780465047,
+     "camera_dependent": false
+    },
+    {
+     "measure": "finish.elbow_dom_lateral",
+     "n": 205,
+     "matches": 4,
+     "share": 0.0267,
+     "chance": 0.0625,
+     "p": 0.5013878156224993,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.racket_tip_height",
+     "n": 122,
+     "matches": 4,
+     "share": 0.0267,
+     "chance": 0.0987,
+     "p": 0.7975123205137136,
+     "camera_dependent": false
+    },
+    {
+     "measure": "face.impact",
+     "n": 207,
+     "matches": 4,
+     "share": 0.0266,
+     "chance": 0.0708,
+     "p": 0.4988479534268889,
+     "camera_dependent": false
+    },
+    {
+     "measure": "impact.face_tilt",
+     "n": 207,
+     "matches": 4,
+     "share": 0.0266,
+     "chance": 0.0715,
+     "p": 0.4988479534268889,
+     "camera_dependent": false
+    },
+    {
+     "measure": "finish.knee_non",
+     "n": 130,
+     "matches": 4,
+     "share": 0.0264,
+     "chance": 0.092,
+     "p": 0.7751867935521,
      "camera_dependent": false
     },
     {
      "measure": "impact.hands_apart",
      "n": 204,
      "matches": 4,
-     "share": 0.0265,
-     "chance": 0.057,
-     "p": 0.5095660823264982,
+     "share": 0.0264,
+     "chance": 0.058,
+     "p": 0.5133575805646556,
      "camera_dependent": false
     },
     {
@@ -4227,134 +4251,107 @@
      "n": 201,
      "matches": 4,
      "share": 0.0263,
-     "chance": 0.0653,
-     "p": 0.525674078800472,
+     "chance": 0.0638,
+     "p": 0.5257447548870549,
      "camera_dependent": false
     },
     {
      "measure": "stroke.head_motion_cm",
      "n": 203,
      "matches": 4,
-     "share": 0.0261,
-     "chance": 0.062,
-     "p": 0.5232195958643977,
-     "camera_dependent": false
-    },
-    {
-     "measure": "loaded.racket_angle",
-     "n": 127,
-     "matches": 4,
-     "share": 0.026,
-     "chance": 0.0882,
-     "p": 0.7915763489661943,
+     "share": 0.0262,
+     "chance": 0.0593,
+     "p": 0.520923780474083,
      "camera_dependent": false
     },
     {
      "measure": "metrics.head_motion_impact_cm",
      "n": 203,
      "matches": 4,
-     "share": 0.026,
-     "chance": 0.0589,
-     "p": 0.5255671544784595,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.shoulder_tilt",
-     "n": 183,
-     "matches": 4,
-     "share": 0.0259,
+     "share": 0.0261,
      "chance": 0.0576,
-     "p": 0.5980642447557575,
+     "p": 0.5233953401651477,
      "camera_dependent": false
     },
     {
-     "measure": "loaded.elbow_dom",
-     "n": 160,
+     "measure": "stroke.t_hip_lowest",
+     "n": 187,
      "matches": 4,
-     "share": 0.0258,
-     "chance": 0.0679,
-     "p": 0.6811649194327222,
-     "camera_dependent": false
-    },
-    {
-     "measure": "recovery.racket_tip_height",
-     "n": 122,
-     "matches": 4,
-     "share": 0.0257,
-     "chance": 0.101,
-     "p": 0.813175852754307,
+     "share": 0.0261,
+     "chance": 0.0687,
+     "p": 0.5788975468952713,
      "camera_dependent": false
     },
     {
      "measure": "footwork.recovery_dx_m",
      "n": 199,
      "matches": 4,
-     "share": 0.0256,
-     "chance": 0.0652,
-     "p": 0.5487266897763154,
+     "share": 0.0259,
+     "chance": 0.0563,
+     "p": 0.5434473555627697,
      "camera_dependent": false
     },
     {
-     "measure": "recovery.hip_tilt",
-     "n": 187,
+     "measure": "loaded.elbow_dom",
+     "n": 161,
      "matches": 4,
-     "share": 0.0255,
-     "chance": 0.0738,
-     "p": 0.5921549719326038,
-     "camera_dependent": false
-    },
-    {
-     "measure": "extension.racket_tip_vs_head",
-     "n": 135,
-     "matches": 4,
-     "share": 0.0254,
-     "chance": 0.0762,
-     "p": 0.7751204839070239,
+     "share": 0.0258,
+     "chance": 0.0753,
+     "p": 0.6766115256103982,
      "camera_dependent": false
     },
     {
      "measure": "impact.racket_head_lateral",
      "n": 144,
      "matches": 4,
-     "share": 0.0254,
-     "chance": 0.0839,
-     "p": 0.743813394014901,
+     "share": 0.0256,
+     "chance": 0.0899,
+     "p": 0.7396017565594093,
      "camera_dependent": false
     },
     {
-     "measure": "face.extension",
-     "n": 207,
+     "measure": "recovery.hip_tilt",
+     "n": 187,
      "matches": 4,
-     "share": 0.025,
-     "chance": 0.0656,
-     "p": 0.5386439912695653,
+     "share": 0.0254,
+     "chance": 0.072,
+     "p": 0.5951715214419471,
+     "camera_dependent": false
+    },
+    {
+     "measure": "extension.racket_tip_vs_head",
+     "n": 134,
+     "matches": 4,
+     "share": 0.0253,
+     "chance": 0.0806,
+     "p": 0.7802170127550473,
      "camera_dependent": false
     },
     {
      "measure": "extension.hip_height",
      "n": 203,
      "matches": 4,
-     "share": 0.0249,
-     "chance": 0.0566,
-     "p": 0.5552784378158385,
+     "share": 0.0252,
+     "chance": 0.0568,
+     "p": 0.5473874907723351,
      "camera_dependent": false
     },
     {
      "measure": "extension.hip_tilt",
      "n": 185,
      "matches": 4,
-     "share": 0.0248,
-     "chance": 0.0736,
-     "p": 0.6171770305167368,
+     "share": 0.0252,
+     "chance": 0.0685,
+     "p": 0.6072441301449095,
      "camera_dependent": false
     },
     {
      "measure": "extension.trunk_tilt",
      "n": 204,
      "matches": 4,
-     "share": 0.0248,
-     "chance": 0.0573,
-     "p": 0.5529884201499525,
+     "share": 0.0251,
+     "chance": 0.0582,
+     "p": 0.5469035611358442,
      "camera_dependent": false
     },
     {
@@ -4362,35 +4359,53 @@
      "n": 203,
      "matches": 4,
      "share": 0.0248,
-     "chance": 0.0531,
-     "p": 0.5565842389136757,
+     "chance": 0.0551,
+     "p": 0.5566892565581466,
      "camera_dependent": false
     },
     {
      "measure": "extension.knee_dom",
      "n": 186,
      "matches": 4,
-     "share": 0.0247,
-     "chance": 0.0607,
-     "p": 0.6166932541202143,
+     "share": 0.0245,
+     "chance": 0.06,
+     "p": 0.6205517792949506,
      "camera_dependent": false
     },
     {
-     "measure": "takeback.wrist_non_lateral",
-     "n": 192,
+     "measure": "stroke.shoulder_brake",
+     "n": 200,
      "matches": 4,
-     "share": 0.0246,
-     "chance": 0.0741,
-     "p": 0.5982771212805449,
+     "share": 0.0245,
+     "chance": 0.058,
+     "p": 0.573948439848539,
+     "camera_dependent": false
+    },
+    {
+     "measure": "acceleration.racket_forearm",
+     "n": 124,
+     "matches": 4,
+     "share": 0.0244,
+     "chance": 0.1139,
+     "p": 0.8251979398621084,
+     "camera_dependent": false
+    },
+    {
+     "measure": "face.extension",
+     "n": 207,
+     "matches": 4,
+     "share": 0.0242,
+     "chance": 0.0709,
+     "p": 0.5598080580366842,
      "camera_dependent": false
     },
     {
      "measure": "metrics.shoulder_turn_loaded_deg",
      "n": 202,
      "matches": 4,
-     "share": 0.0243,
-     "chance": 0.0638,
-     "p": 0.5733398677183192,
+     "share": 0.0242,
+     "chance": 0.0652,
+     "p": 0.5762354145533732,
      "camera_dependent": false
     },
     {
@@ -4398,53 +4413,35 @@
      "n": 205,
      "matches": 4,
      "share": 0.0241,
-     "chance": 0.0551,
-     "p": 0.5682002340033825,
+     "chance": 0.0561,
+     "p": 0.568450454288082,
      "camera_dependent": false
     },
     {
-     "measure": "loaded.hands_apart",
-     "n": 203,
+     "measure": "loaded.racket_angle",
+     "n": 127,
      "matches": 4,
-     "share": 0.0241,
-     "chance": 0.0614,
-     "p": 0.575238745228877,
+     "share": 0.024,
+     "chance": 0.0949,
+     "p": 0.8218615885726496,
      "camera_dependent": false
     },
     {
      "measure": "metrics.hip_turn_loaded_deg",
      "n": 200,
      "matches": 4,
-     "share": 0.0241,
-     "chance": 0.0705,
-     "p": 0.5837211923797068,
-     "camera_dependent": false
-    },
-    {
-     "measure": "acceleration.elbow_dom_lateral",
-     "n": 203,
-     "matches": 4,
      "share": 0.024,
-     "chance": 0.0619,
-     "p": 0.5777396261969241,
+     "chance": 0.0651,
+     "p": 0.5865615100689787,
      "camera_dependent": false
     },
     {
-     "measure": "loaded.wrist_non_lateral",
-     "n": 203,
+     "measure": "metrics.time_available_s",
+     "n": 259,
      "matches": 4,
-     "share": 0.0239,
-     "chance": 0.0574,
-     "p": 0.581480605205313,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.shoulder_brake",
-     "n": 200,
-     "matches": 4,
-     "share": 0.0239,
-     "chance": 0.0587,
-     "p": 0.5908009939588045,
+     "share": 0.0238,
+     "chance": 0.0541,
+     "p": 0.4174124020411232,
      "camera_dependent": false
     },
     {
@@ -4452,17 +4449,17 @@
      "n": 205,
      "matches": 4,
      "share": 0.0238,
-     "chance": 0.0632,
-     "p": 0.5766455242256066,
+     "chance": 0.0603,
+     "p": 0.5781435045069307,
      "camera_dependent": false
     },
     {
-     "measure": "metrics.time_available_s",
-     "n": 259,
+     "measure": "takeback.wrist_non_lateral",
+     "n": 192,
      "matches": 4,
-     "share": 0.0237,
-     "chance": 0.0476,
-     "p": 0.4212786085881811,
+     "share": 0.0238,
+     "chance": 0.0719,
+     "p": 0.6174537492070136,
      "camera_dependent": false
     },
     {
@@ -4470,17 +4467,17 @@
      "n": 203,
      "matches": 4,
      "share": 0.0234,
-     "chance": 0.0777,
-     "p": 0.5925185626421097,
+     "chance": 0.0771,
+     "p": 0.5941547488120406,
      "camera_dependent": false
     },
     {
      "measure": "loaded.shoulder_abd_dom",
      "n": 192,
      "matches": 4,
-     "share": 0.0232,
-     "chance": 0.0778,
-     "p": 0.6343421679306138,
+     "share": 0.0233,
+     "chance": 0.0733,
+     "p": 0.6306906268283468,
      "camera_dependent": false
     },
     {
@@ -4488,53 +4485,53 @@
      "n": 202,
      "matches": 4,
      "share": 0.0232,
-     "chance": 0.0603,
-     "p": 0.6018654131549359,
+     "chance": 0.0578,
+     "p": 0.6009004212137384,
+     "camera_dependent": false
+    },
+    {
+     "measure": "acceleration.elbow_dom_lateral",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0231,
+     "chance": 0.0612,
+     "p": 0.6012515122646522,
+     "camera_dependent": false
+    },
+    {
+     "measure": "extension.racket_head_lateral",
+     "n": 134,
+     "matches": 4,
+     "share": 0.023,
+     "chance": 0.1106,
+     "p": 0.8172229291871207,
      "camera_dependent": false
     },
     {
      "measure": "finish.knee_dom",
      "n": 166,
      "matches": 4,
-     "share": 0.023,
-     "chance": 0.0867,
-     "p": 0.7201478779987259,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.hands_apart",
-     "n": 205,
-     "matches": 4,
      "share": 0.0229,
-     "chance": 0.0611,
-     "p": 0.599769311414784,
+     "chance": 0.0796,
+     "p": 0.7236520311156525,
      "camera_dependent": false
     },
     {
      "measure": "impact.trunk_tilt",
      "n": 204,
      "matches": 4,
-     "share": 0.0228,
+     "share": 0.0229,
      "chance": 0.0505,
-     "p": 0.6072886022903591,
+     "p": 0.604754437934435,
      "camera_dependent": false
     },
     {
-     "measure": "takeback.head_vs_hips",
-     "n": 192,
+     "measure": "finish.hands_apart",
+     "n": 205,
      "matches": 4,
      "share": 0.0228,
-     "chance": 0.0707,
-     "p": 0.6426446188278763,
-     "camera_dependent": false
-    },
-    {
-     "measure": "acceleration.shoulder_abd_dom",
-     "n": 191,
-     "matches": 4,
-     "share": 0.0227,
-     "chance": 0.0698,
-     "p": 0.6485475214823035,
+     "chance": 0.0606,
+     "p": 0.6026721901779379,
      "camera_dependent": false
     },
     {
@@ -4542,8 +4539,8 @@
      "n": 163,
      "matches": 4,
      "share": 0.0227,
-     "chance": 0.0877,
-     "p": 0.7362980019738598,
+     "chance": 0.0772,
+     "p": 0.7360409597574393,
      "camera_dependent": false
     },
     {
@@ -4551,62 +4548,71 @@
      "n": 202,
      "matches": 4,
      "share": 0.0227,
-     "chance": 0.0698,
-     "p": 0.6154415983751669,
+     "chance": 0.0676,
+     "p": 0.6141599488284548,
      "camera_dependent": false
     },
     {
-     "measure": "extension.racket_head_lateral",
-     "n": 135,
+     "measure": "loaded.wrist_non_lateral",
+     "n": 203,
      "matches": 4,
-     "share": 0.0226,
-     "chance": 0.1053,
-     "p": 0.8207574283494932,
-     "camera_dependent": false
-    },
-    {
-     "measure": "loaded.front_foot_angle_deg",
-     "n": 56,
-     "matches": 4,
-     "share": 0.0224,
-     "chance": 0.2236,
-     "p": 0.9821809679527176,
+     "share": 0.0225,
+     "chance": 0.057,
+     "p": 0.6189154917364825,
      "camera_dependent": false
     },
     {
      "measure": "recovery.com_over_feet",
      "n": 195,
      "matches": 4,
-     "share": 0.0222,
-     "chance": 0.0673,
-     "p": 0.6504271033617315,
+     "share": 0.0225,
+     "chance": 0.0715,
+     "p": 0.6411339625563681,
      "camera_dependent": false
     },
     {
-     "measure": "recovery.knee_dom",
-     "n": 177,
+     "measure": "takeback.head_vs_hips",
+     "n": 192,
+     "matches": 4,
+     "share": 0.0224,
+     "chance": 0.0708,
+     "p": 0.6536684068970098,
+     "camera_dependent": false
+    },
+    {
+     "measure": "acceleration.shoulder_abd_dom",
+     "n": 191,
      "matches": 4,
      "share": 0.0221,
-     "chance": 0.0685,
-     "p": 0.7060682304198862,
+     "chance": 0.0695,
+     "p": 0.6638574917403677,
+     "camera_dependent": false
+    },
+    {
+     "measure": "loaded.hands_apart",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0218,
+     "chance": 0.0542,
+     "p": 0.6351510809750864,
      "camera_dependent": false
     },
     {
      "measure": "impact.shoulder_abd_non",
      "n": 183,
      "matches": 4,
-     "share": 0.0216,
-     "chance": 0.06,
-     "p": 0.7012105585010922,
+     "share": 0.0217,
+     "chance": 0.0582,
+     "p": 0.6994049430179125,
      "camera_dependent": false
     },
     {
-     "measure": "ball_bounce.head_vs_hips",
-     "n": 102,
+     "measure": "recovery.knee_dom",
+     "n": 177,
      "matches": 4,
-     "share": 0.0211,
-     "chance": 0.1662,
-     "p": 0.9194596250410676,
+     "share": 0.0217,
+     "chance": 0.0692,
+     "p": 0.7167555853200314,
      "camera_dependent": false
     },
     {
@@ -4614,17 +4620,8 @@
      "n": 204,
      "matches": 4,
      "share": 0.021,
-     "chance": 0.0568,
-     "p": 0.6539428230604775,
-     "camera_dependent": false
-    },
-    {
-     "measure": "extension.racket_head_vs_wrist",
-     "n": 135,
-     "matches": 4,
-     "share": 0.021,
-     "chance": 0.082,
-     "p": 0.8461400208410234,
+     "chance": 0.0584,
+     "p": 0.6537423388564179,
      "camera_dependent": false
     },
     {
@@ -4632,107 +4629,116 @@
      "n": 169,
      "matches": 4,
      "share": 0.0209,
-     "chance": 0.0724,
-     "p": 0.7564146215619643,
+     "chance": 0.0722,
+     "p": 0.7577616934418661,
      "camera_dependent": false
     },
     {
-     "measure": "extension.base_width",
-     "n": 203,
+     "measure": "extension.racket_head_vs_wrist",
+     "n": 134,
      "matches": 4,
-     "share": 0.0207,
-     "chance": 0.0497,
-     "p": 0.6672162420319798,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.racket_angle",
-     "n": 123,
-     "matches": 4,
-     "share": 0.0206,
-     "chance": 0.1132,
-     "p": 0.8805097340471412,
+     "share": 0.0208,
+     "chance": 0.081,
+     "p": 0.8516784374999968,
      "camera_dependent": false
     },
     {
      "measure": "impact.base_court_m",
      "n": 203,
      "matches": 4,
-     "share": 0.0206,
-     "chance": 0.0563,
-     "p": 0.6676270886317172,
+     "share": 0.0207,
+     "chance": 0.0555,
+     "p": 0.6649163795035032,
      "camera_dependent": false
     },
     {
      "measure": "impact.base_m",
      "n": 203,
      "matches": 4,
-     "share": 0.0206,
-     "chance": 0.0562,
-     "p": 0.6676270886317172,
+     "share": 0.0207,
+     "chance": 0.0575,
+     "p": 0.6649163795035032,
      "camera_dependent": false
     },
     {
      "measure": "stance_width_m",
      "n": 203,
      "matches": 4,
-     "share": 0.0206,
-     "chance": 0.057,
-     "p": 0.6676270886317172,
+     "share": 0.0207,
+     "chance": 0.0569,
+     "p": 0.6649163795035032,
+     "camera_dependent": false
+    },
+    {
+     "measure": "extension.base_width",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0204,
+     "chance": 0.0498,
+     "p": 0.6740988494403224,
+     "camera_dependent": false
+    },
+    {
+     "measure": "recovery.racket_angle",
+     "n": 122,
+     "matches": 4,
+     "share": 0.0203,
+     "chance": 0.0972,
+     "p": 0.8867514584558182,
      "camera_dependent": false
     },
     {
      "measure": "takeback.wrist_non_height",
      "n": 192,
      "matches": 4,
-     "share": 0.0206,
-     "chance": 0.072,
-     "p": 0.700201613815723,
-     "camera_dependent": false
-    },
-    {
-     "measure": "face.finish",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0205,
-     "chance": 0.0621,
-     "p": 0.6703397644766439,
+     "share": 0.0203,
+     "chance": 0.0724,
+     "p": 0.7073768994226297,
      "camera_dependent": false
     },
     {
      "measure": "impact.base_width",
      "n": 203,
      "matches": 4,
-     "share": 0.0204,
-     "chance": 0.0601,
-     "p": 0.6739213842803998,
+     "share": 0.0202,
+     "chance": 0.0599,
+     "p": 0.679825494188874,
      "camera_dependent": false
     },
     {
-     "measure": "acceleration.elbow_dom",
-     "n": 162,
+     "measure": "ball_bounce.head_vs_hips",
+     "n": 102,
      "matches": 4,
-     "share": 0.0194,
-     "chance": 0.0886,
-     "p": 0.8076145399563633,
+     "share": 0.0198,
+     "chance": 0.1647,
+     "p": 0.9305002141373315,
      "camera_dependent": false
     },
     {
-     "measure": "finish.hip_tilt",
-     "n": 186,
-     "matches": 4,
-     "share": 0.0194,
-     "chance": 0.0706,
-     "p": 0.7461310769784233,
-     "camera_dependent": false
-    },
-    {
-     "measure": "loaded.trunk_tilt",
+     "measure": "face.finish",
      "n": 203,
      "matches": 4,
-     "share": 0.0194,
-     "chance": 0.0661,
-     "p": 0.7014415538796941,
+     "share": 0.0198,
+     "chance": 0.0593,
+     "p": 0.6905832038953987,
+     "camera_dependent": false
+    },
+    {
+     "measure": "finish.racket_angle",
+     "n": 122,
+     "matches": 4,
+     "share": 0.0197,
+     "chance": 0.1061,
+     "p": 0.8936238044428215,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.hip_rise",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0197,
+     "chance": 0.0623,
+     "p": 0.6934423520854367,
      "camera_dependent": false
     },
     {
@@ -4740,89 +4746,80 @@
      "n": 205,
      "matches": 4,
      "share": 0.0194,
-     "chance": 0.0658,
-     "p": 0.6950259548769386,
+     "chance": 0.0766,
+     "p": 0.69524626331084,
      "camera_dependent": false
     },
     {
-     "measure": "stroke.hip_rise",
-     "n": 203,
+     "measure": "acceleration.elbow_dom",
+     "n": 162,
      "matches": 4,
      "share": 0.0193,
-     "chance": 0.061,
-     "p": 0.7047991817964907,
+     "chance": 0.0891,
+     "p": 0.8088982395549533,
+     "camera_dependent": false
+    },
+    {
+     "measure": "finish.hip_tilt",
+     "n": 186,
+     "matches": 4,
+     "share": 0.0192,
+     "chance": 0.0711,
+     "p": 0.7497053026941591,
      "camera_dependent": false
     },
     {
      "measure": "acceleration.hip_tilt",
      "n": 133,
      "matches": 4,
-     "share": 0.0189,
-     "chance": 0.0924,
-     "p": 0.8810275367510464,
-     "camera_dependent": false
-    },
-    {
-     "measure": "recovery.racket_angle",
-     "n": 122,
-     "matches": 4,
-     "share": 0.0189,
-     "chance": 0.0897,
-     "p": 0.9026363909083026,
+     "share": 0.019,
+     "chance": 0.0937,
+     "p": 0.880127015223952,
      "camera_dependent": false
     },
     {
      "measure": "stroke.takeback_after_opp",
      "n": 192,
      "matches": 4,
-     "share": 0.0188,
-     "chance": 0.0787,
-     "p": 0.7445426644145692,
+     "share": 0.0186,
+     "chance": 0.0806,
+     "p": 0.7490643051776094,
      "camera_dependent": false
     },
     {
-     "measure": "loaded.racket_tip_height",
-     "n": 127,
+     "measure": "extension.racket_angle",
+     "n": 134,
      "matches": 4,
-     "share": 0.0184,
-     "chance": 0.0842,
-     "p": 0.8997353931321431,
+     "share": 0.0185,
+     "chance": 0.0831,
+     "p": 0.8841509102441198,
      "camera_dependent": false
     },
     {
      "measure": "footwork.forward_speed_at_impact_mps",
      "n": 203,
      "matches": 4,
-     "share": 0.0181,
-     "chance": 0.0597,
-     "p": 0.7357682848982038,
+     "share": 0.0184,
+     "chance": 0.0593,
+     "p": 0.7283014528464478,
      "camera_dependent": false
     },
     {
-     "measure": "acceleration.trunk_tilt",
+     "measure": "loaded.trunk_tilt",
      "n": 203,
      "matches": 4,
-     "share": 0.0179,
-     "chance": 0.0565,
-     "p": 0.7405990418528274,
+     "share": 0.0182,
+     "chance": 0.0658,
+     "p": 0.7320652500284792,
      "camera_dependent": false
     },
     {
-     "measure": "finish.racket_tip_height",
-     "n": 123,
+     "measure": "finish.face_tilt",
+     "n": 122,
      "matches": 4,
-     "share": 0.0177,
-     "chance": 0.0985,
-     "p": 0.9148342874695107,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ready.shoulder_turn",
-     "n": 205,
-     "matches": 4,
-     "share": 0.0177,
-     "chance": 0.0687,
-     "p": 0.7414523852535448,
+     "share": 0.018,
+     "chance": 0.1027,
+     "p": 0.9134275187341665,
      "camera_dependent": false
     },
     {
@@ -4830,8 +4827,26 @@
      "n": 197,
      "matches": 4,
      "share": 0.0176,
-     "chance": 0.0666,
-     "p": 0.7641734340242808,
+     "chance": 0.0641,
+     "p": 0.7639596411855659,
+     "camera_dependent": false
+    },
+    {
+     "measure": "finish.racket_head_vs_wrist",
+     "n": 122,
+     "matches": 4,
+     "share": 0.0176,
+     "chance": 0.1053,
+     "p": 0.9171620721253855,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ready.shoulder_turn",
+     "n": 205,
+     "matches": 4,
+     "share": 0.0176,
+     "chance": 0.062,
+     "p": 0.7444961446624233,
      "camera_dependent": false
     },
     {
@@ -4839,44 +4854,62 @@
      "n": 205,
      "matches": 4,
      "share": 0.0176,
-     "chance": 0.0655,
-     "p": 0.7455177670726314,
+     "chance": 0.0647,
+     "p": 0.7440467678746434,
      "camera_dependent": false
     },
     {
      "measure": "extension.racket_tip_height",
-     "n": 135,
+     "n": 134,
      "matches": 4,
-     "share": 0.0175,
-     "chance": 0.0848,
-     "p": 0.8961120433589291,
+     "share": 0.0174,
+     "chance": 0.0814,
+     "p": 0.8993648392197007,
+     "camera_dependent": false
+    },
+    {
+     "measure": "acceleration.trunk_tilt",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0173,
+     "chance": 0.0566,
+     "p": 0.7564902155560286,
+     "camera_dependent": false
+    },
+    {
+     "measure": "finish.racket_tip_height",
+     "n": 122,
+     "matches": 4,
+     "share": 0.0172,
+     "chance": 0.095,
+     "p": 0.921355983605527,
      "camera_dependent": false
     },
     {
      "measure": "ready.hip_turn",
      "n": 205,
      "matches": 4,
-     "share": 0.0173,
-     "chance": 0.0572,
-     "p": 0.7525958558082587,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.racket_head_vs_wrist",
-     "n": 123,
-     "matches": 4,
-     "share": 0.0168,
-     "chance": 0.1022,
-     "p": 0.9239883324392184,
+     "share": 0.0171,
+     "chance": 0.0574,
+     "p": 0.7573844073059749,
      "camera_dependent": false
     },
     {
      "measure": "stroke.head_still_after_cm",
      "n": 204,
      "matches": 4,
-     "share": 0.0167,
-     "chance": 0.0529,
-     "p": 0.7703734232669363,
+     "share": 0.017,
+     "chance": 0.0536,
+     "p": 0.7636551115705229,
+     "camera_dependent": false
+    },
+    {
+     "measure": "loaded.racket_tip_height",
+     "n": 127,
+     "matches": 4,
+     "share": 0.0166,
+     "chance": 0.084,
+     "p": 0.9206743787858761,
      "camera_dependent": false
     },
     {
@@ -4884,17 +4917,8 @@
      "n": 121,
      "matches": 4,
      "share": 0.0165,
-     "chance": 0.1726,
-     "p": 0.9302044564379949,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.t_hip_highest",
-     "n": 187,
-     "matches": 4,
-     "share": 0.0165,
-     "chance": 0.0605,
-     "p": 0.8124975095085354,
+     "chance": 0.1794,
+     "p": 0.9307008772948465,
      "camera_dependent": false
     },
     {
@@ -4902,8 +4926,8 @@
      "n": 203,
      "matches": 4,
      "share": 0.0163,
-     "chance": 0.0606,
-     "p": 0.7821011806755154,
+     "chance": 0.0613,
+     "p": 0.7826550441452482,
      "camera_dependent": false
     },
     {
@@ -4911,53 +4935,53 @@
      "n": 203,
      "matches": 4,
      "share": 0.0163,
-     "chance": 0.0568,
-     "p": 0.7821011806755154,
+     "chance": 0.0567,
+     "p": 0.7826550441452482,
+     "camera_dependent": false
+    },
+    {
+     "measure": "finish.wrist_dom_lateral",
+     "n": 204,
+     "matches": 4,
+     "share": 0.0161,
+     "chance": 0.0557,
+     "p": 0.784948712119329,
+     "camera_dependent": false
+    },
+    {
+     "measure": "finish.racket_tip_vs_head",
+     "n": 122,
+     "matches": 4,
+     "share": 0.016,
+     "chance": 0.0995,
+     "p": 0.9336653183264911,
      "camera_dependent": false
     },
     {
      "measure": "acceleration.head_vs_hips",
      "n": 203,
      "matches": 4,
-     "share": 0.0162,
+     "share": 0.0159,
      "chance": 0.0597,
-     "p": 0.7841630087252791,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.face_tilt",
-     "n": 123,
-     "matches": 4,
-     "share": 0.0162,
-     "chance": 0.093,
-     "p": 0.9301549929447647,
-     "camera_dependent": false
-    },
-    {
-     "measure": "extension.racket_angle",
-     "n": 135,
-     "matches": 4,
-     "share": 0.0161,
-     "chance": 0.0807,
-     "p": 0.9145429434016857,
+     "p": 0.7928485325794891,
      "camera_dependent": false
     },
     {
      "measure": "extension.wrist_dom_lateral",
      "n": 203,
      "matches": 4,
-     "share": 0.016,
-     "chance": 0.0573,
-     "p": 0.7902215486380538,
+     "share": 0.0159,
+     "chance": 0.0568,
+     "p": 0.7929721726207968,
      "camera_dependent": false
     },
     {
-     "measure": "finish.racket_tip_vs_head",
-     "n": 123,
+     "measure": "stroke.t_hip_highest",
+     "n": 187,
      "matches": 4,
-     "share": 0.016,
-     "chance": 0.1048,
-     "p": 0.9323503646045515,
+     "share": 0.0159,
+     "chance": 0.063,
+     "p": 0.8243558173431997,
      "camera_dependent": false
     },
     {
@@ -4965,26 +4989,35 @@
      "n": 205,
      "matches": 4,
      "share": 0.0157,
-     "chance": 0.0733,
-     "p": 0.7949476678068753,
-     "camera_dependent": false
-    },
-    {
-     "measure": "finish.wrist_dom_lateral",
-     "n": 204,
-     "matches": 4,
-     "share": 0.0156,
-     "chance": 0.0544,
-     "p": 0.7993382102983941,
+     "chance": 0.0734,
+     "p": 0.7951980968476359,
      "camera_dependent": false
     },
     {
      "measure": "takeback.wrist_dom_lateral",
      "n": 192,
      "matches": 4,
-     "share": 0.0152,
-     "chance": 0.0741,
-     "p": 0.8303172185120684,
+     "share": 0.0151,
+     "chance": 0.0742,
+     "p": 0.8341278558692653,
+     "camera_dependent": false
+    },
+    {
+     "measure": "impact.racket_head_vs_wrist",
+     "n": 144,
+     "matches": 4,
+     "share": 0.0149,
+     "chance": 0.0872,
+     "p": 0.9159797842343085,
+     "camera_dependent": false
+    },
+    {
+     "measure": "ready.wrist_dom_height",
+     "n": 205,
+     "matches": 4,
+     "share": 0.0148,
+     "chance": 0.0658,
+     "p": 0.8168853400062328,
      "camera_dependent": false
     },
     {
@@ -4992,8 +5025,8 @@
      "n": 201,
      "matches": 4,
      "share": 0.0148,
-     "chance": 0.0657,
-     "p": 0.8241127039118648,
+     "chance": 0.0656,
+     "p": 0.8233046537935722,
      "camera_dependent": false
     },
     {
@@ -5001,98 +5034,80 @@
      "n": 191,
      "matches": 4,
      "share": 0.0147,
-     "chance": 0.0716,
-     "p": 0.845073550814633,
-     "camera_dependent": false
-    },
-    {
-     "measure": "ready.wrist_dom_height",
-     "n": 205,
-     "matches": 4,
-     "share": 0.0146,
-     "chance": 0.066,
-     "p": 0.8213291180849059,
+     "chance": 0.0769,
+     "p": 0.8432025422952472,
      "camera_dependent": false
     },
     {
      "measure": "footwork.back_heel_lift_s",
      "n": 68,
      "matches": 4,
-     "share": 0.0145,
-     "chance": 0.1517,
-     "p": 0.9899455062835604,
+     "share": 0.0146,
+     "chance": 0.1503,
+     "p": 0.989756469548214,
      "camera_dependent": false
     },
     {
      "measure": "stroke.weight_shift",
      "n": 188,
      "matches": 4,
-     "share": 0.0145,
-     "chance": 0.0714,
-     "p": 0.8535317113888976,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.com_over_feet",
-     "n": 193,
-     "matches": 4,
-     "share": 0.0143,
-     "chance": 0.0694,
-     "p": 0.8507071132340782,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.racket_head_vs_wrist",
-     "n": 144,
-     "matches": 4,
-     "share": 0.0143,
-     "chance": 0.0863,
-     "p": 0.9232839162483487,
+     "share": 0.0146,
+     "chance": 0.0738,
+     "p": 0.8520313296217462,
      "camera_dependent": false
     },
     {
      "measure": "loaded.arm_extension",
      "n": 203,
      "matches": 4,
-     "share": 0.0143,
-     "chance": 0.0572,
-     "p": 0.8327253655049826,
-     "camera_dependent": false
-    },
-    {
-     "measure": "footwork.first_step_s",
-     "n": 169,
-     "matches": 4,
-     "share": 0.0136,
-     "chance": 0.0677,
-     "p": 0.8991531038001268,
-     "camera_dependent": false
-    },
-    {
-     "measure": "stroke.wrist_drop",
-     "n": 203,
-     "matches": 4,
-     "share": 0.0132,
-     "chance": 0.0602,
-     "p": 0.8585508927892236,
-     "camera_dependent": false
-    },
-    {
-     "measure": "acceleration.arm_extension",
-     "n": 203,
-     "matches": 4,
-     "share": 0.013,
-     "chance": 0.0578,
-     "p": 0.8635618739724074,
+     "share": 0.0142,
+     "chance": 0.0617,
+     "p": 0.8352265969754952,
      "camera_dependent": false
     },
     {
      "measure": "recovery.racket_tip_vs_head",
      "n": 122,
      "matches": 4,
-     "share": 0.0128,
-     "chance": 0.0835,
-     "p": 0.9613213870171873,
+     "share": 0.014,
+     "chance": 0.0863,
+     "p": 0.9522446396654753,
+     "camera_dependent": false
+    },
+    {
+     "measure": "footwork.first_step_s",
+     "n": 169,
+     "matches": 4,
+     "share": 0.0137,
+     "chance": 0.0669,
+     "p": 0.8981810071699259,
+     "camera_dependent": false
+    },
+    {
+     "measure": "impact.com_over_feet",
+     "n": 193,
+     "matches": 4,
+     "share": 0.0137,
+     "chance": 0.0615,
+     "p": 0.8615607528822787,
+     "camera_dependent": false
+    },
+    {
+     "measure": "acceleration.arm_extension",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0129,
+     "chance": 0.0589,
+     "p": 0.8640320208839286,
+     "camera_dependent": false
+    },
+    {
+     "measure": "stroke.wrist_drop",
+     "n": 203,
+     "matches": 4,
+     "share": 0.0127,
+     "chance": 0.0597,
+     "p": 0.8689433152985133,
      "camera_dependent": false
     },
     {
@@ -5100,143 +5115,143 @@
      "n": 169,
      "matches": 4,
      "share": 0.0123,
-     "chance": 0.0759,
-     "p": 0.9197906021631613,
-     "camera_dependent": false
-    },
-    {
-     "measure": "takeback.elbow_dom_lateral",
-     "n": 192,
-     "matches": 4,
-     "share": 0.0109,
-     "chance": 0.0804,
-     "p": 0.9189910614459134,
+     "chance": 0.0744,
+     "p": 0.9207093385701346,
      "camera_dependent": false
     },
     {
      "measure": "extension.shoulder_abd_non",
      "n": 182,
      "matches": 4,
+     "share": 0.0108,
+     "chance": 0.0657,
+     "p": 0.9303520669108086,
+     "camera_dependent": false
+    },
+    {
+     "measure": "takeback.elbow_dom_lateral",
+     "n": 192,
+     "matches": 4,
      "share": 0.0106,
-     "chance": 0.0587,
-     "p": 0.9321606473759014,
+     "chance": 0.0834,
+     "p": 0.9228164965905268,
      "camera_dependent": false
     },
     {
      "measure": "loaded.com_over_feet",
      "n": 198,
      "matches": 4,
-     "share": 0.0102,
-     "chance": 0.064,
-     "p": 0.9242561124513902,
+     "share": 0.0098,
+     "chance": 0.0651,
+     "p": 0.9309348971183089,
      "camera_dependent": false
     },
     {
      "measure": "acceleration.com_over_feet",
      "n": 198,
      "matches": 4,
-     "share": 0.0096,
-     "chance": 0.0585,
-     "p": 0.9339005072339306,
+     "share": 0.0097,
+     "chance": 0.0579,
+     "p": 0.9331685338994197,
      "camera_dependent": false
     },
     {
      "measure": "ball_bounce.racket_tip_vs_head",
      "n": 85,
      "matches": 4,
-     "share": 0.0095,
-     "chance": 0.1255,
-     "p": 0.9936207157086671,
+     "share": 0.0096,
+     "chance": 0.1274,
+     "p": 0.9935909707616766,
      "camera_dependent": false
     },
     {
      "measure": "metrics.time_acceleration_to_impact_s",
      "n": 203,
      "matches": 4,
-     "share": 0.0087,
-     "chance": 0.08,
-     "p": 0.944325389782391,
+     "share": 0.0089,
+     "chance": 0.0802,
+     "p": 0.9423776375226597,
      "camera_dependent": false
     },
     {
      "measure": "stroke.t_acceleration",
      "n": 203,
      "matches": 4,
-     "share": 0.0087,
-     "chance": 0.0801,
-     "p": 0.944325389782391,
+     "share": 0.0089,
+     "chance": 0.0733,
+     "p": 0.9423776375226597,
      "camera_dependent": false
     },
     {
      "measure": "extension.com_over_feet",
      "n": 196,
      "matches": 4,
-     "share": 0.0086,
-     "chance": 0.0581,
-     "p": 0.9511166125244138,
+     "share": 0.0083,
+     "chance": 0.0574,
+     "p": 0.9545614548720923,
      "camera_dependent": false
     },
     {
      "measure": "loaded.head_over_base",
      "n": 203,
      "matches": 4,
-     "share": 0.0082,
-     "chance": 0.0605,
-     "p": 0.9519407285495993,
+     "share": 0.0081,
+     "chance": 0.0604,
+     "p": 0.9534386820121293,
      "camera_dependent": false
     },
     {
      "measure": "takeback.knee_dom",
      "n": 161,
      "matches": 4,
-     "share": 0.0074,
-     "chance": 0.081,
-     "p": 0.98021537566161,
+     "share": 0.0071,
+     "chance": 0.0907,
+     "p": 0.9816934034985157,
      "camera_dependent": false
     },
     {
      "measure": "acceleration.head_over_base",
      "n": 203,
      "matches": 4,
-     "share": 0.0068,
-     "chance": 0.0807,
-     "p": 0.969784989456783,
+     "share": 0.0067,
+     "chance": 0.079,
+     "p": 0.9709983187196718,
      "camera_dependent": false
     },
     {
      "measure": "loaded.head_vs_hips",
      "n": 203,
      "matches": 4,
-     "share": 0.0066,
-     "chance": 0.0636,
-     "p": 0.9723326888843408,
+     "share": 0.0062,
+     "chance": 0.0632,
+     "p": 0.9766959725191131,
      "camera_dependent": false
     },
     {
      "measure": "extension.elbow_dom_lateral",
      "n": 204,
      "matches": 4,
-     "share": 0.0054,
-     "chance": 0.0539,
-     "p": 0.9831187896941878,
+     "share": 0.0053,
+     "chance": 0.0495,
+     "p": 0.9840311481024172,
      "camera_dependent": false
     },
     {
      "measure": "loaded.elbow_dom_lateral",
      "n": 203,
      "matches": 4,
-     "share": 0.0053,
-     "chance": 0.0675,
-     "p": 0.9844640214940683,
+     "share": 0.0052,
+     "chance": 0.0625,
+     "p": 0.9849081600189139,
      "camera_dependent": false
     },
     {
      "measure": "loaded.wrist_dom_lateral",
      "n": 203,
      "matches": 4,
-     "share": 0.0038,
-     "chance": 0.0673,
-     "p": 0.9936854316878384,
+     "share": 0.0036,
+     "chance": 0.0672,
+     "p": 0.9945084252786277,
      "camera_dependent": false
     }
    ]
@@ -7303,7 +7318,7 @@
    "area": "Situaciones",
    "name": "Bola rápida / lenta",
    "status": "ok",
-   "detail": "lenta 53, media 95, rápida 54, muy rápida 62 (se muestra con ≥ 12 golpes)",
+   "detail": "lenta 52, media 97, rápida 53, muy rápida 62 (se muestra con ≥ 12 golpes)",
    "shown": [
     "lenta",
     "media",
@@ -7367,10 +7382,11 @@
    "area": "Situaciones",
    "name": "Dirección del golpe",
    "status": "ok",
-   "detail": "cruzada 17, paralela 11, al centro 34, invertida cruzada 7, invertida paralela 7, invertida al centro 11 (se muestra con ≥ 12 golpes)",
+   "detail": "cruzada 17, paralela 12, al centro 34, invertida cruzada 7, invertida paralela 7, invertida al centro 11 (se muestra con ≥ 12 golpes)",
    "shown": [
     "al centro",
-    "cruzada"
+    "cruzada",
+    "paralela"
    ]
   },
   {
@@ -7378,7 +7394,7 @@
    "area": "Situaciones",
    "name": "Ataque / defensa",
    "status": "ok",
-   "detail": "ataque 25, neutra 153, defensa 87 (se muestra con ≥ 12 golpes)",
+   "detail": "ataque 26, neutra 152, defensa 87 (se muestra con ≥ 12 golpes)",
    "shown": [
     "ataque",
     "defensa",
@@ -7401,7 +7417,7 @@
    "area": "Situaciones",
    "name": "Bola centrada / abierta",
    "status": "ok",
-   "detail": "centrada 79, abierta 86, muy abierta 37 (se muestra con ≥ 12 golpes)",
+   "detail": "centrada 80, abierta 85, muy abierta 37 (se muestra con ≥ 12 golpes)",
    "shown": [
     "abierta",
     "centrada",
@@ -7413,9 +7429,9 @@
    "area": "Combinaciones",
    "name": "Bola rápida / lenta: cada medida en cada nivel",
    "status": "ok",
-   "detail": "73 medidas × 4 niveles = 292 combinaciones; 274 mostradas con ≥ 12 golpes",
+   "detail": "73 medidas × 4 niveles = 292 combinaciones; 271 mostradas con ≥ 12 golpes",
    "combos": 292,
-   "shown": 274
+   "shown": 271
   },
   {
    "req": 1,
@@ -7458,9 +7474,9 @@
    "area": "Combinaciones",
    "name": "Dirección del golpe: cada medida en cada nivel",
    "status": "ok",
-   "detail": "73 medidas × 6 niveles = 438 combinaciones; 126 mostradas con ≥ 12 golpes; niveles con pocos golpes: paralela 11, invertida cruzada 7, invertida paralela 7, invertida al centro 11",
+   "detail": "73 medidas × 6 niveles = 438 combinaciones; 163 mostradas con ≥ 12 golpes; niveles con pocos golpes: invertida cruzada 7, invertida paralela 7, invertida al centro 11",
    "combos": 438,
-   "shown": 126
+   "shown": 163
   },
   {
    "req": 1,
@@ -7494,7 +7510,7 @@
    "area": "Examen de entrenadores",
    "name": "R1 Golpe liftado de trayectoria moderada, no extrema",
    "status": "ok",
-   "detail": "confirma: liftado 70%, inclinación mediana 48°"
+   "detail": "confirma: liftado 70%, inclinación mediana 49°"
   },
   {
    "req": 3,
@@ -7536,7 +7552,7 @@
    "area": "Examen de entrenadores",
    "name": "R11 Con bola rápida sigue armando a tiempo (no más de 0,1 s más tarde)",
    "status": "ok",
-   "detail": "confirma: rápida +0.07 s, lenta +0.11 s"
+   "detail": "confirma: rápida +0.08 s, lenta +0.10 s"
   },
   {
    "req": 3,
@@ -7725,7 +7741,7 @@
    "area": "Valores posibles",
    "name": "Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)",
    "status": "ok",
-   "detail": "80 medidas: 3 dudosa, 62 fiable, 11 no comprobable, 1 ruido, 3 sesgo. No se dan como valor suyo (ruido): impact.face_tilt ±5.3. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
+   "detail": "80 medidas: 3 dudosa, 62 fiable, 11 no comprobable, 1 ruido, 3 sesgo. No se dan como valor suyo (ruido): impact.face_tilt ±5.4. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga"
   },
   {
    "req": 3,
@@ -7915,7 +7931,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Sus golpes (Videoteca y pista)»",
    "status": "ok",
-   "detail": "8259 caracteres de texto, 7 vídeos, 1 gráficos",
+   "detail": "8258 caracteres de texto, 7 vídeos, 1 gráficos",
    "file": "pantalla_2_videoteca.jpg"
   },
   {
@@ -7931,7 +7947,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Comparar dos golpes»",
    "status": "ok",
-   "detail": "54724 caracteres de texto, 7 vídeos, 2 gráficos",
+   "detail": "54708 caracteres de texto, 7 vídeos, 2 gráficos",
    "file": "pantalla_4_comparar.jpg"
   },
   {
@@ -7946,7 +7962,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "6206 caracteres de texto, 7 vídeos, 22 gráficos",
+   "detail": "5645 caracteres de texto, 7 vídeos, 22 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -7954,7 +7970,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Tabla de golpes (Explorador)»",
    "status": "ok",
-   "detail": "5072 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "5071 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_6_explorador.jpg"
   },
   {
@@ -7978,7 +7994,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2592 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2589 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -8063,7 +8079,7 @@
    "area": "Aprende su derecha",
    "name": "La pantalla responde a cada combinación",
    "status": "ok",
-   "detail": "2050 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 184500 puntos de control comprobados; 1200 con golpes exactos"
+   "detail": "2050 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 184500 puntos de control comprobados; 1201 con golpes exactos"
   },
   {
    "req": 1,
@@ -8210,7 +8226,7 @@
    "area": "Vistas pedidas",
    "name": "«Conclusiones»: qué cambia, en frases (la tabla sigue debajo)",
    "status": "ok",
-   "detail": "4 en la pantalla"
+   "detail": "1 en la pantalla"
   },
   {
    "req": 2,
@@ -8231,14 +8247,14 @@
    "area": "Automático",
    "name": "Golpes dudosos (duda sobre el golpe, no sobre una medida)",
    "status": "aviso",
-   "detail": "170 de 265 del lado cercano (64%); motivos: phase 372, impact_without_audio 107, elbow_implausible_at_impact 38, half_volley_candidate 4. Otros 73 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos"
+   "detail": "171 de 265 del lado cercano (65%); motivos: phase 372, impact_without_audio 107, elbow_implausible_at_impact 39, half_volley_candidate 4. Otros 71 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos"
   },
   {
    "req": 5,
    "area": "Automático",
    "name": "Nada pide revisión manual",
    "status": "ok",
-   "detail": "316 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario"
+   "detail": "317 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario"
   },
   {
    "req": 9,
@@ -8259,7 +8275,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "52 min para 117 min de vídeo ≈ 1.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "50 min para 117 min de vídeo ≈ 1.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -8273,21 +8289,21 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_580c6f_rybakina",
    "status": "ok",
-   "detail": "61 min para 133 min de vídeo ≈ 1.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "59 min para 133 min de vídeo ≈ 1.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
    "area": "Rendimiento",
    "name": "Tomas de cámara: sin-fecha_580c6f_rybakina",
    "status": "ok",
-   "detail": "4.5 min (objetivo ≤ 15 min)"
+   "detail": "4.6 min (objetivo ≤ 15 min)"
   },
   {
    "req": 9,
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_b8b713_rybakina",
    "status": "ok",
-   "detail": "88 min para 210 min de vídeo ≈ 1.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "86 min para 210 min de vídeo ≈ 1.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -8541,7 +8557,7 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (64/64), 29 s, quedan ≈ 0 s, a las 2026-11-07 08:04:09"
+   "detail": "último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (64/64), 29 s, quedan ≈ 0 s, a las 2026-11-07 11:29:02"
   },
   {
    "req": 5,
@@ -8555,14 +8571,14 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "44 carpetas, 37.8 GB en total (2026-11-07T08:02:11); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "42 carpetas, 36.2 GB en total (2026-11-07T11:34:22); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Carpetas de pruebas antiguas",
    "status": "aviso",
-   "detail": "3 carpeta(s) de pruebas sin usar en más de 14 días (9.3 GB): _poc31_35, _poc31_4, _poc9_largo. Se borran con la petición «borrar» del PC"
+   "detail": "1 carpeta(s) de pruebas sin usar en más de 14 días (7.6 GB): _poc9_largo. Se borran con la petición «borrar» del PC"
   },
   {
    "req": 5,
@@ -8575,8 +8591,8 @@
    "req": 5,
    "area": "Aplicación",
    "name": "Aplicación: análisis en su índice",
-   "status": "aviso",
-   "detail": "0 análisis y 18 partidos en el índice de la aplicación: los análisis de los partidos hechos por el ciclo automático aún no están en ella"
+   "status": "ok",
+   "detail": "1 análisis y 18 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)"
   },
   {
    "req": 5,
@@ -8604,7 +8620,7 @@
    "area": "Ficheros",
    "name": "Partido sin-fecha_b8b713_rybakina: salida de cada etapa, ventanas y series",
    "status": "ok",
-   "detail": "15 ficheros de etapa, 287 golpes con ventana y serie"
+   "detail": "15 ficheros de etapa, 286 golpes con ventana y serie"
   },
   {
    "req": 5,
@@ -8618,28 +8634,28 @@
    "area": "Ficheros",
    "name": "Exportación: resumen PDF y un vídeo por golpe",
    "status": "ok",
-   "detail": "444 vídeos"
+   "detail": "445 vídeos"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_derecha",
    "status": "ok",
-   "detail": "terminó el 2026-11-07 06:43:31 en 18 min: 444 vídeos de 444 golpes"
+   "detail": "terminó el 2026-11-07 08:26:31 en 18 min: 445 vídeos de 445 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_reves",
    "status": "ok",
-   "detail": "terminó el 2026-11-07 06:55:48 en 12 min: 289 vídeos de 289 golpes"
+   "detail": "terminó el 2026-11-07 08:38:43 en 12 min: 289 vídeos de 289 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_saque",
    "status": "ok",
-   "detail": "terminó el 2026-11-07 07:05:54 en 10 min: 245 vídeos de 245 golpes"
+   "detail": "terminó el 2026-11-07 08:49:13 en 10 min: 257 vídeos de 257 golpes"
   },
   {
    "req": 5,
@@ -8765,49 +8781,49 @@
    "area": "Modelos",
    "name": "Golpes del detector aprendido: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "626 candidatos del detector entrenado con F3Set (324 cerca, 280 lejos, umbral 0.1)"
+   "detail": "624 candidatos del detector entrenado con F3Set (324 cerca, 280 lejos, umbral 0.1)"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Golpes del detector aprendido: sin-fecha_580c6f_rybakina",
    "status": "ok",
-   "detail": "652 candidatos del detector entrenado con F3Set (344 cerca, 299 lejos, umbral 0.1)"
+   "detail": "650 candidatos del detector entrenado con F3Set (344 cerca, 299 lejos, umbral 0.1)"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Golpes del detector aprendido: sin-fecha_b8b713_rybakina",
    "status": "ok",
-   "detail": "670 candidatos del detector entrenado con F3Set (324 cerca, 332 lejos, umbral 0.1)"
+   "detail": "668 candidatos del detector entrenado con F3Set (324 cerca, 332 lejos, umbral 0.1)"
   },
   {
    "req": 9,
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina",
    "status": "aviso",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: identity 13.3 min, players 10.8 min, score 7.3 min, scenes 7.0 min, fine 3.6 min; MÁS LENTAS de 2 veces: identity 11.2 s por min de vídeo, 10.8 veces su mediana (1.0); alarma en vivo: identity: 2.72 s por unidad frente a 0.75 de presupuesto (configuración), 3.6 veces; a este ritmo qu"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: identity 13.3 min, players 10.8 min, score 7.3 min, scenes 7.0 min, fine 3.7 min; MÁS LENTAS de 2 veces: identity 11.2 s por min de vídeo, 10.8 veces su mediana (1.0); alarma en vivo: identity: 2.72 s por unidad frente a 0.75 de presupuesto (configuración), 3.6 veces; a este ritmo qu"
   },
   {
    "req": 9,
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina",
-   "status": "aviso",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 6.6 min, views 3.2 min; MÁS LENTAS de 2 veces: fine 3.4 s por min de vídeo, 2.1 veces su mediana (1.6); alarma en vivo: fine: 4.84 s por unidad frente a 0.86 de presupuesto (mediana de 8 ejecuciones aquí), 5.6 veces; a e"
+   "status": "ok",
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 4.7 min, views 3.2 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_580c6f_rybakina",
    "status": "ok",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 24.4 min, scenes 17.2 min, score 9.5 min, fine 5.5 min, views 4.5 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 24.4 min, scenes 17.2 min, score 9.5 min, views 4.6 min, fine 3.9 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_b8b713_rybakina",
    "status": "ok",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 30.0 min, scenes 28.5 min, score 12.9 min, views 7.8 min, fine 7.2 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 30.0 min, scenes 28.5 min, score 12.9 min, views 7.8 min, fine 5.2 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -8842,14 +8858,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-07_0444.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (85.0 min): CPU 8/46/98 %, iGPU 0/26/100 %, RAM máx 19.2 GB → RAM al límite; us-open-2026-r4-naomi-osaka-el views (3.5 min): CPU 24/46/59 %, iGPU 0/48/89 %, RAM máx 5.8 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine (8.2 min): CPU 21/35/68 %, iGPU 0/63/100 %, RAM máx 16.6 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.5 min): CPU 16/19/22 %, iGPU 0/0/0 %, RAM máx 6.1 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina views (5.5 min): CPU 15/51/72 %, iGPU 0/53/100 %, RAM máx 8.6 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine (18.5 min): CPU 17/36/94 %, iGPU 0/68/100 %, RAM máx 16.7 GB → uso medio: margen para repartir trabajo"
+   "detail": "recursos_2026-11-07_1029.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (31.5 min): CPU 7/19/71 %, iGPU 0/2/93 %, RAM máx 9.0 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el fine (3.2 min): CPU 28/43/73 %, iGPU 0/10/95 %, RAM máx 9.6 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 18/18/18 %, iGPU 0/0/0 %, RAM máx 8.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina views (2.8 min): CPU 20/48/87 %, iGPU 0/40/84 %, RAM máx 8.6 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine (4.2 min): CPU 21/39/67 %, iGPU 0/33/97 %, RAM máx 9.1 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 18/36/53 %, iGPU 0/22/43 %, RAM máx 8.9 GB → uso medio: margen para repartir trabajo"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
-   "status": "aviso",
-   "detail": "petición del 07-11 06:20, empezó a los 50.6 min (objetivo ≤ 10 min; si el PC estaba con otro trabajo, espera a que acabe)"
+   "status": "ok",
+   "detail": "petición del 07-11 10:52, empezó a los 0.2 min; el PC estaba con otro trabajo hasta las 10:53 (0.8 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 11,
@@ -9346,7 +9362,7 @@
    "area": "Peticiones",
    "name": "#76 «Un 50 % de golpes dudosos»",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (170 de 265 del lado cercano (64%); motivos: phase 372, impact_without_audio 107, elbow_implausible_at_impact 38, half_vo)"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (171 de 265 del lado cercano (65%); motivos: phase 372, impact_without_audio 107, elbow_implausible_at_impact 39, half_vo)"
   },
   {
    "req": 11,
@@ -9801,7 +9817,7 @@
    "area": "Peticiones",
    "name": "#146 borra las carpetas de pruebas antiguas (Chat, 17-10 10:49)",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Carpetas de pruebas antiguas» (3 carpeta(s) de pruebas sin usar en más de 14 días (9.3 GB): _poc31_35, _poc31_4, _poc9_largo. Se borran con la petición)"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Carpetas de pruebas antiguas» (1 carpeta(s) de pruebas sin usar en más de 14 días (7.6 GB): _poc9_largo. Se borran con la petición «borrar» del PC)"
   },
   {
    "req": 11,
@@ -9899,7 +9915,7 @@
    "area": "Peticiones",
    "name": "#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Aplicación: análisis en su índice» (0 análisis y 18 partidos en el índice de la aplicación: los análisis de los partidos hechos por el ciclo automático aún )"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 ok"
   },
   {
    "req": 11,
@@ -10305,14 +10321,14 @@
    "area": "Peticiones",
    "name": "#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 ok"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina» (0% de sus golpes con repetición enlazada (0 de 163, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 30 repeticiones,)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 3 aviso, 5 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 93-101 puntos jugados (16 juegos leídos, 0 sin leer), 44 con su saque. Esperados: 44-92 saques (1 o 2 por punt)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 4 aviso, 4 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 93-101 puntos jugados (16 juegos leídos, 0 sin leer), 44 con su saque. Esperados: 44-92 saques (1 o 2 por punt)"
   },
   {
    "req": 11,
@@ -10389,7 +10405,7 @@
    "area": "Peticiones",
    "name": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 13 comprobaciones: 2 aviso, 11 ok; la peor: «Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina» (3 etapas comparadas con su mediana aquí; las que más tardan: identity 13.3 min, players 10.8 min, score 7.3 min, scenes )"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 13 comprobaciones: 1 aviso, 12 ok; la peor: «Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina» (3 etapas comparadas con su mediana aquí; las que más tardan: identity 13.3 min, players 10.8 min, score 7.3 min, scenes )"
   },
   {
    "req": 11,
@@ -10431,7 +10447,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (petición del 07-11 06:20, empezó a los 50.6 min (objetivo ≤ 10 min; si el PC estaba con otro trabajo, espera a que acabe)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -10466,7 +10482,7 @@
    "area": "Peticiones",
    "name": "#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Aplicación: análisis en su índice» (0 análisis y 18 partidos en el índice de la aplicación: los análisis de los partidos hechos por el ciclo automático aún )"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 ok"
   },
   {
    "req": 11,
