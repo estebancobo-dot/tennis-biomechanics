@@ -120182,3 +120182,18 @@ Auditoría: 422 cumplidos, 30 no cumplidos, 56 sin golpes suficientes, 127 aviso
     (paso terminado en 3 min 54 s)
 
 ==> [2026-11-07 08:08:20] 5/5 Videos por golpe, montajes por conclusion y resumen PDF
+  golpes 330/445 (798 s, 5 procesos)
+  golpes 340/445 (824 s, 5 procesos)
+  golpes 350/445 (849 s, 5 procesos)
+  golpes 360/445 (873 s, 5 procesos)
+  golpes 370/445 (898 s, 5 procesos)
+  golpes 380/445 (922 s, 5 procesos)
+  golpes 390/445 (946 s, 5 procesos)
+  golpes 400/445 (970 s, 5 procesos)
+  golpes 410/445 (994 s, 5 procesos)
+  golpes 420/445 (1018 s, 5 procesos)
+  golpes 430/445 (1041 s, 5 procesos)
+  golpes 440/445 (1065 s, 5 procesos)
+Golpes: 445 nuevos, 445 en C:\tenis\output\exportar_derecha\golpes
+Montajes: 10 en C:\tenis\output\exportar_derecha\montajes
+Resumen: C:\tenis\output\exportar_derecha\resumen.pdf
