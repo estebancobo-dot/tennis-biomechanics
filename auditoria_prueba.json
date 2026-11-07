@@ -3,10 +3,10 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 358,
+  "ok": 359,
   "falta": 21,
   "pocos datos": 127,
-  "aviso": 99
+  "aviso": 98
  },
  "items": [
   {
@@ -2827,7 +2827,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4244 caracteres de texto, 7 vídeos, 12 gráficos",
+   "detail": "4232 caracteres de texto, 7 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2859,7 +2859,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2003 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2000 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3154,8 +3154,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 725ca10 (2026-11-07T07:17:16): 813 bien, 0 fallan, 0 errores",
-   "passed": 813,
+   "detail": "código 237a381 (2026-11-07T13:12:12): 828 bien, 0 fallan, 0 errores",
+   "passed": 828,
    "failed": 0
   },
   {
@@ -3205,7 +3205,7 @@
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_app_core",
    "status": "ok",
-   "detail": "43 bien, 0 fallan, 0 omitidas"
+   "detail": "44 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
@@ -3219,7 +3219,7 @@
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_auto_catalog_rename",
    "status": "ok",
-   "detail": "1 bien, 0 fallan, 0 omitidas"
+   "detail": "2 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
@@ -3394,7 +3394,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "42 carpetas, 36.2 GB en total (2026-11-07T12:56:06); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "42 carpetas, 36.2 GB en total (2026-11-07T13:29:21); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -3443,7 +3443,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-07 13:00:27 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-07 13:29:27 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3583,14 +3583,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-07_1029.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (108.0 min): CPU 6/30/86 %, iGPU 0/8/100 %, RAM máx 19.3 GB → RAM al límite; us-open-2026-r4-naomi-osaka-el fine (3.2 min): CPU 28/43/73 %, iGPU 0/10/95 %, RAM máx 9.6 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 18/18/18 %, iGPU 0/0/0 %, RAM máx 8.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina views (2.8 min): CPU 20/48/87 %, iGPU 0/40/84 %, RAM máx 8.6 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine (4.2 min): CPU 21/39/67 %, iGPU 0/33/97 %, RAM máx 9.1 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 18/36/53 %, iGPU 0/22/43 %, RAM máx 8.9 GB → uso medio: margen para repartir trabajo"
+   "detail": "recursos_2026-11-07_1320.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (11.2 min): CPU 7/20/47 %, iGPU 0/0/1 %, RAM máx 7.6 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 07-11 10:58, empezó a los 68.8 min; el PC estaba con otro trabajo hasta las 12:07 (68.6 min, no cuentan), empezó 0.2 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 07-11 13:28, empezó a los 0.7 min; el PC estaba con otro trabajo hasta las 13:29 (0.7 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 11,
@@ -5171,8 +5171,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
