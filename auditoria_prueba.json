@@ -4,9 +4,9 @@
  "near": 13,
  "summary": {
   "ok": 356,
-  "falta": 20,
+  "falta": 23,
   "pocos datos": 127,
-  "aviso": 102
+  "aviso": 99
  },
  "items": [
   {
@@ -22,9 +22,9 @@
    "area": "Golpes",
    "name": "Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto de saque) y 72-133 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 76 golpes, 23 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (33 cerca, 43 lejos); además 19 de identidad dudosa, apartados (no cuentan como suyos)",
-   "found": 76,
-   "serves": 23,
+   "detail": "marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto de saque) y 72-133 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 75 golpes, 22 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (32 cerca, 43 lejos); además 19 de identidad dudosa, apartados (no cuentan como suyos)",
+   "found": 75,
+   "serves": 22,
    "counts": {
     "points": 45,
     "points_high": 51,
@@ -45,11 +45,11 @@
    "req": 1,
    "area": "Golpes",
    "name": "Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin",
-   "status": "aviso",
-   "detail": "10 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 2, golpes suyos, pero ningún saque 2; sus saques encontrados caen en puntos de su saque 14, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 31.3 s (mediana de 2) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 2): tipo {'backhand/detector': 1, 'backhand/pose': 1}, lado {'far': 2}, 1 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 1, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 2}; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque)",
+   "status": "falta",
+   "detail": "9 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 2, golpes suyos, pero ningún saque 3; sus saques encontrados caen en puntos de su saque 13, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 3) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 3): tipo {'backhand/detector': 1, 'backhand/pose': 1, 'forehand/detector': 1}, lado {'far': 3}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 2, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 2}; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque), 31.1-31.7 min (sin_saque)",
    "serve_gaps": {
     "points": 14,
-    "found": 10,
+    "found": 9,
     "gaps": [
      {
       "t0": 368.3,
@@ -90,38 +90,53 @@
        "side": "far",
        "court_y_m": null
       }
+     },
+     {
+      "t0": 1863.5,
+      "t1": 1904.7,
+      "cause": "sin_saque",
+      "shot_start": 1863.5,
+      "first_stroke_after_s": 27.5,
+      "first_stroke": {
+       "stroke": "forehand",
+       "source": "detector",
+       "pose": "backhand",
+       "side": "far",
+       "court_y_m": -3.04
+      }
      }
     ],
     "by_cause": {
      "sin_camara": 0,
      "sin_golpes": 2,
-     "sin_saque": 2
+     "sin_saque": 3
     },
     "spotter_before_first": {
-     "saque_suyo_visto_y_perdido": 1,
+     "saque_suyo_visto_y_perdido": 2,
      "golpe_suyo_visto_y_perdido": 0,
      "golpe_de_la_rival_antes": 0,
      "nada_antes": 1,
      "sin_primer_golpe": 2
     },
     "first_strokes_without_serve": {
-     "n": 2,
+     "n": 3,
      "type": {
       "backhand/detector": 1,
-      "backhand/pose": 1
+      "backhand/pose": 1,
+      "forehand/detector": 1
      },
      "side": {
-      "far": 2
+      "far": 3
      },
-     "behind_baseline": 1
+     "behind_baseline": 2
     },
     "first_stroke_after_shot_start_s": {
-     "median": 31.3,
-     "n": 2,
+     "median": 27.5,
+     "n": 3,
      "under_3": 1
     },
     "serves_at": {
-     "her_points": 14,
+     "her_points": 13,
      "opponent_points": 5,
      "elsewhere": 4
     }
@@ -132,13 +147,13 @@
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "34% de sus golpes con repetición enlazada (26 de 76, 2 a cámara lenta) · 86% con otra cámara (65) · tomas: 22 repeticiones, 3 laterales, 1 frontales, 95 primeros planos, 2 otras",
-   "strokes": 76,
+   "detail": "35% de sus golpes con repetición enlazada (26 de 75, 2 a cámara lenta) · 85% con otra cámara (64) · tomas: 22 repeticiones, 3 laterales, 1 frontales, 95 primeros planos, 2 otras",
+   "strokes": 75,
    "with_replay": 26,
-   "with_other_camera": 65,
+   "with_other_camera": 64,
    "with_slowmo": 2,
-   "replay_share": 0.342,
-   "other_share": 0.855
+   "replay_share": 0.347,
+   "other_share": 0.853
   },
   {
    "req": 3,
@@ -2775,7 +2790,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "2446 caracteres de texto, 7 vídeos, 19 gráficos",
+   "detail": "2446 caracteres de texto, 6 vídeos, 19 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -3134,8 +3149,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código ab9b1f8 (2026-11-07T04:53:20): 811 bien, 0 fallan, 0 errores",
-   "passed": 811,
+   "detail": "código 725ca10 (2026-11-07T07:17:16): 813 bien, 0 fallan, 0 errores",
+   "passed": 813,
    "failed": 0
   },
   {
@@ -3360,21 +3375,21 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 18 s, quedan ≈ 0 s, a las 2026-11-07 07:07:55"
+   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 23 s, quedan ≈ 0 s, a las 2026-11-07 10:09:10"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
-   "status": "ok",
-   "detail": "55 de 55 registros con fecha de inicio y de fin o duración"
+   "status": "falta",
+   "detail": "54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "44 carpetas, 37.8 GB en total (2026-11-07T07:10:35); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "44 carpetas, 37.8 GB en total (2026-11-07T10:10:06); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -3402,7 +3417,7 @@
    "area": "Ficheros",
    "name": "Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series",
    "status": "ok",
-   "detail": "15 ficheros de etapa, 76 golpes con ventana y serie"
+   "detail": "15 ficheros de etapa, 75 golpes con ventana y serie"
   },
   {
    "req": 5,
@@ -3423,7 +3438,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-07 07:08:19 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-07 10:09:39 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3542,14 +3557,14 @@
    "area": "Modelos",
    "name": "Golpes del detector aprendido: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "183 candidatos del detector entrenado con F3Set (87 cerca, 94 lejos, umbral 0.1)"
+   "detail": "182 candidatos del detector entrenado con F3Set (87 cerca, 94 lejos, umbral 0.1)"
   },
   {
    "req": 9,
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.1 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.2 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -3563,14 +3578,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-07_0444.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (71.2 min): CPU 8/49/98 %, iGPU 0/24/100 %, RAM máx 19.2 GB → RAM al límite; us-open-2026-r4-naomi-osaka-el views (1.8 min): CPU 24/45/59 %, iGPU 0/54/89 %, RAM máx 5.3 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine (5.0 min): CPU 23/35/68 %, iGPU 0/68/100 %, RAM máx 16.6 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 16/16/16 %, iGPU 0/0/0 %, RAM máx 5.2 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina views (2.8 min): CPU 15/48/72 %, iGPU 0/48/100 %, RAM máx 8.6 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine (12.5 min): CPU 20/35/70 %, iGPU 0/77/100 %, RAM máx 16.7 GB → uso medio: margen para repartir trabajo"
+   "detail": "recursos_2026-11-07_0947.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (23.0 min): CPU 4/25/98 %, iGPU 0/8/100 %, RAM máx 13.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
-   "status": "aviso",
-   "detail": "petición del 07-11 06:20, empezó a los 45.6 min (objetivo ≤ 10 min; si el PC estaba con otro trabajo, espera a que acabe)"
+   "status": "ok",
+   "detail": "petición del 07-11 10:06, empezó a los 0.2 min (objetivo ≤ 10 min; si el PC estaba con otro trabajo, espera a que acabe)"
   },
   {
    "req": 11,
@@ -3996,8 +4011,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
+   "status": "falta",
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos)"
   },
   {
    "req": 11,
@@ -5152,7 +5167,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (petición del 07-11 06:20, empezó a los 45.6 min (objetivo ≤ 10 min; si el PC estaba con otro trabajo, espera a que acabe)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
