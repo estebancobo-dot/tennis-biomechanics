@@ -557,6 +557,12 @@
    "units": 2991,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-07 07:56"
+  },
+  {
+   "s": 0.111,
+   "units": 1654,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-07 11:01"
   }
  ],
  "views:minuto": [
@@ -655,6 +661,12 @@
    "video_min": 210.4,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-07 07:56"
+  },
+  {
+   "s": 1.648,
+   "video_min": 116.7,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-07 11:01"
   }
  ],
  "identity:unidad": [
