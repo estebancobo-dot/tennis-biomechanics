@@ -533,7 +533,9 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
                 scn = json.loads(sc_f.read_text(encoding="utf-8"))
                 fps = float(scn.get("fps") or 1.0)
                 shots = [(sh["start"] / fps, sh["end"] / fps) for sh in scn.get("shots", []) if sh.get("main_camera")]
-            g = serve_gaps(readings, strokes, shots)
+            sp_f = _mf.at(d, "spotting.json")
+            spotted = json.loads(sp_f.read_text(encoding="utf-8")) if sp_f.exists() else None
+            g = serve_gaps(readings, strokes, shots, spotted=spotted)
             if g["points"]:
                 why = ", ".join(f"{GAP_CAUSES[k]} {v}" for k, v in g["by_cause"].items() if v)
                 miss = g["points"] - g["found"]
@@ -550,6 +552,8 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
                                  + (f"; ese primer golpe (puntos con golpes y sin saque, {fw['n']}): tipo {fw['type']}, "
                                     f"lado {fw['side']}, {fw['behind_baseline']} detrás de la línea de fondo"
                                     if (fw := g.get("first_strokes_without_serve")) and fw["n"] else "")
+                                 + (f"; lo que vio el detector antes de su primer golpe: {sb}"
+                                    if (sb := g.get("spotter_before_first")) else "")
                                  + ("; primeros: " + ", ".join(f"{x['t0'] / 60:.1f}-{x['t1'] / 60:.1f} min ({x['cause']})"
                                                                for x in g["gaps"][:8]) if g["gaps"] else ""),
                                  serve_gaps=g))

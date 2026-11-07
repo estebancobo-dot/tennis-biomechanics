@@ -272,6 +272,11 @@ accion: prevision
 id: 116
 accion: repetir
 etapas: identity,fine,fine_doubtful
+---
+id: 117
+accion: completo
+# 117 (07-11): auditoria con lo que vio el detector antes del primer golpe suyo en los puntos de su saque sin saque
+# (saque visto y perdido despues / golpe de la rival antes = su saque no detectado / nada)
 # 115-116 (06-11): 115 rehace prevision.log con su fin (#66); 116 mide identidad y pasadas finas en los 4 partidos desde
 # las caches con el uso del PC por etapa (#230, #231)
 # 112-114 (06-11): saque por la regla con la mano del lanzamiento por encima de la cabeza (o la mano alta en el contacto);

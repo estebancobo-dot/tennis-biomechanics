@@ -248,7 +248,7 @@ GAP_CAUSES = {"sin_camara": "sin plano de la cámara principal", "sin_golpes": "
 
 
 def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple[float, float]],
-               lead_s: float = 25.0) -> dict:
+               lead_s: float = 25.0, spotted: list[dict] | None = None) -> dict:
     """B4 (04-11): the points played on HER serve (scoreboard row 0 serving, a point counted between two readings of
     the same game) with no serve of hers found, and why: no main-camera shot in that stretch (the broadcast did not
     show it), none of her strokes at all (detection), or strokes but no serve (stroke type). The stretch of a point is
@@ -308,6 +308,28 @@ def serve_gaps(readings: list[dict], strokes: list[dict], main_shots: list[tuple
                                        "court_y_m": None if cp[1] is None else round(float(cp[1]), 2)}
         out["gaps"].append(gap)
     delays = sorted(g["first_stroke_after_s"] for g in out["gaps"] if "first_stroke_after_s" in g)
+    # what the learned spotter saw (spotting.json, both players) in each point without a serve before her first stroke
+    # found (07-11): a serve on her side lost later, the opponent's stroke (her serve never spotted), or nothing
+    if spotted is not None:
+        sp = sorted((float(e["t"]), e) for e in spotted if e.get("t") is not None)
+        seen = {"saque_suyo_visto_y_perdido": 0, "golpe_suyo_visto_y_perdido": 0, "golpe_de_la_rival_antes": 0,
+                "nada_antes": 0, "sin_primer_golpe": 0}
+        for g in out["gaps"]:
+            fs = g.get("first_stroke") or {}
+            side = fs.get("side")
+            end = g["t0"] + g.get("first_stroke_after_s", 0) + (g.get("shot_start", g["t0"]) - g["t0"]) if fs else g["t1"]
+            before = [e for t, e in sp if g["t0"] <= t < end - 0.3]
+            if not fs:
+                seen["sin_primer_golpe"] += 1
+            if side and any(e.get("side") == side and e.get("kind") == "serve" for e in before):
+                seen["saque_suyo_visto_y_perdido"] += 1
+            elif side and any(e.get("side") == side for e in before):
+                seen["golpe_suyo_visto_y_perdido"] += 1
+            elif side and any(e.get("side") not in (None, side) for e in before):
+                seen["golpe_de_la_rival_antes"] += 1
+            elif fs:
+                seen["nada_antes"] += 1
+        out["spotter_before_first"] = seen
     firsts = [g["first_stroke"] for g in out["gaps"] if g.get("cause") == "sin_saque" and g.get("first_stroke")]
     from collections import Counter
     out["first_strokes_without_serve"] = {

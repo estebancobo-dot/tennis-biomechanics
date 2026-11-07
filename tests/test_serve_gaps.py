@@ -95,3 +95,14 @@ def test_the_toss_hand_above_the_head_also_marks_the_serve():
     flat = [{"stroke": "forehand", "match_time_s": 8, "court_pos_m": [1.0, -0.2],
              "metrics": {"contact_height_pct": 60, "toss_above_head_bh": -0.3}}]
     assert serves_by_rule(toss, readings, [(0, 300)]) == 1 and serves_by_rule(flat, readings, [(0, 300)]) == 0
+
+
+def test_what_the_spotter_saw_before_her_first_stroke():
+    readings = [_r(0, (0, 0)), _r(40, (15, 0)), _r(80, (30, 0))]
+    strokes = [{"stroke": "forehand", "side": "near", "match_time_s": 12},
+               {"stroke": "forehand", "side": "near", "match_time_s": 55}]
+    spotted = [{"t": 9.0, "side": "far", "kind": "forehand"},      # point 1: the opponent's return first
+               {"t": 50.0, "side": "near", "kind": "serve"}]       # point 2: her serve spotted, lost later
+    g = serve_gaps(readings, strokes, [(0, 300)], spotted=spotted)
+    sb = g["spotter_before_first"]
+    assert sb["golpe_de_la_rival_antes"] == 1 and sb["saque_suyo_visto_y_perdido"] == 1
