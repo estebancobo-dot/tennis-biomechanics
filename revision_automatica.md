@@ -1,6 +1,6 @@
 # Revisión automática: FALLOS
 
-361 cumplidos · 21 no cumplidos · 127 sin golpes suficientes · 97 avisos (antes: 354 cumplidos, 21 no cumplidos)
+361 cumplidos · 21 no cumplidos · 127 sin golpes suficientes · 97 avisos (antes: 361 cumplidos, 21 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 118 de 245
 
@@ -149,26 +149,3 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-
-## Mejora
-
-- #199 Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10): aviso → ok
-
-## Comprobaciones nuevas
-
-- Progreso visible (progreso.json): ok (último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 19 s, quedan ≈ 0 s, a las 2026-11-07 17:49:30)
-- Registros con fecha y duración: ok (55 de 55 registros con fecha de inicio y de fin o duración)
-- Tamaño de la salida (tamanos.txt): ok (42 carpetas, 36.2 GB en total (2026-11-07T17:50:14); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tenni)
-- Carpetas de pruebas antiguas: aviso (1 carpeta(s) de pruebas sin usar en más de 14 días (7.6 GB): _poc9_largo. Se borran con la petición «borrar» del PC)
-- Aplicación: ventana real y pantallas: ok (56 pantallas pintadas, 0 problemas; ventana real: carga)
-- Aplicación: análisis en su índice: ok (1 análisis y 18 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db))
-- Aplicación: un partido nuevo de principio a fin: ok (terminó 2026-11-07T17:47:21 en 62.6 min; análisis actualizado)
-
-## Comprobaciones que ya no aparecen
-
-- Comprobaciones de la infraestructura del PC
-
-## Fiabilidad de las medidas
-
-- ahora: 80 medidas: 4 dudosa, 52 fiable, 13 no comprobable, 2 ruido, 1 sesgo, 8 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.85, takeback.shoulder_turn ±3.3. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
-- antes: 80 medidas: 7 dudosa, 49 fiable, 14 no comprobable, 2 ruido, 1 sesgo, 7 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.85, takeback.shoulder_turn ±3.3. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga

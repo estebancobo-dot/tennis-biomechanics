@@ -128,7 +128,7 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 
 ## 1. Toda la taxonomía del golpe y todas sus variantes (situaciones)
 
-- ✘ **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 9 de 13 puntos de su saque vistos con su saque encontrado (1 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 2, golpes suyos, pero ningún saque 3; sus saques encontrados caen en puntos de su saque 13, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 3) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 3): tipo {'backhand/detector': 1, 'backhand/pose': 1, 'forehand/detector': 1}, lado {'far': 3}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 2, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 2}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 1, sin golpes de nadie 1, cámara principal 47.7 s (mediana), candidatos {'suyos_perdidos_despues': 0, 'solo_de_la_rival': 0, 'identidad_sin_decidir': 1, 'sin_candidatos': 1}; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque), 31.1-31.7 min (sin_saque)
+- ✘ **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 9 de 13 puntos de su saque vistos con su saque encontrado (1 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 2, golpes suyos, pero ningún saque 3; sus saques encontrados caen en puntos de su saque 13, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 3) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 3): tipo {'backhand/detector': 1, 'backhand/pose': 1, 'forehand/detector': 1}, lado {'far': 3}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 2, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 2}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 1, sin golpes de nadie 1, cámara principal 47.7 s (mediana), candidatos {'suyos_perdidos_despues': 0, 'solo_de_la_rival': 0, 'identidad_sin_decidir': 1, 'sin_candidatos': 1}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 0}; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque), 31.1-31.7 min (sin_saque)
 - ! **Fotograma clave: inicio de preparación**: encontrado en el 69% de los golpes
 - ! **Fotograma clave: armado**: encontrado en el 77% de los golpes
 - ! **Fotograma clave: inicio de aceleración**: encontrado en el 77% de los golpes
@@ -339,7 +339,7 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 4496 caracteres de texto, 7 vídeos, 1 gráficos
 - ✔ **Pantalla «Análisis de golpe»**: 4979 caracteres de texto, 8 vídeos, 31 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 4354 caracteres de texto, 7 vídeos, 2 gráficos
-- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4043 caracteres de texto, 7 vídeos, 12 gráficos
+- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4055 caracteres de texto, 7 vídeos, 12 gráficos
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 4689 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 3424 caracteres de texto, 7 vídeos, 0 gráficos
@@ -478,16 +478,16 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
 - ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 19 s, quedan ≈ 0 s, a las 2026-11-07 17:49:30
 - ✔ **Registros con fecha y duración**: 55 de 55 registros con fecha de inicio y de fin o duración
-- ✔ **Tamaño de la salida (tamanos.txt)**: 42 carpetas, 36.2 GB en total (2026-11-07T17:50:14); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 42 carpetas, 36.2 GB en total (2026-11-07T19:00:30); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB
 - ✔ **Aplicación: ventana real y pantallas**: 56 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 1 análisis y 18 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
 - ✔ **Aplicación: un partido nuevo de principio a fin**: terminó 2026-11-07T17:47:21 en 62.6 min; análisis actualizado
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 75 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 25 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 25 vídeos
-- ✔ **Exportación terminada: exportar**: terminó el 2026-11-07 17:51:07 en 1 min: 25 vídeos de 25 golpes
+- ✔ **Exportación terminada: exportar**: terminó el 2026-11-07 19:05:05 en 0 min: 25 vídeos de 25 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
-- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 07-11 17:34, empezó a los 13.8 min; el PC estaba con otro trabajo hasta las 17:47 (13.2 min, no cuentan), empezó 0.6 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
+- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 07-11 19:04, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
 
@@ -501,7 +501,7 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - ! **Etapas a la vez: smoke_tennis-yusipopen-final-sobolenko-rybakin**: todas las etapas de su última ejecución corrieron en serie
 - ✔ **Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 0.8 min (objetivo ≤ 15 min)
 - ✔ **Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.1 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-07_1640.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (63.5 min): CPU 6/31/82 %, iGPU 0/65/100 %, RAM máx 19.1 GB → RAM al límite; us-open-2026-r4-naomi-osaka-el fine (2.8 min): CPU 23/47/77 %, iGPU 0/7/81 %, RAM máx 11.4 GB → uso medio: margen para repartir trabajo
+- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-07_1640.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (108.0 min): CPU 6/40/87 %, iGPU 0/38/100 %, RAM máx 19.1 GB → RAM al límite; us-open-2026-r4-naomi-osaka-el fine (3.2 min): CPU 23/45/77 %, iGPU 0/6/81 %, RAM máx 11.4 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 31/31/31 %, iGPU 0/0/0 %, RAM máx 7.0 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (4.2 min): CPU 24/43/66 %, iGPU 0/37/100 %, RAM máx 9.6 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.2 min): CPU 32/32/32 %, iGPU 0/0/0 %, RAM máx 9.3 GB → equipo infrautilizado: trabajo en serie (se puede repartir); tennis-yusipopen-polufinal-gau fine (3.5 min): CPU 12/48/100 %, iGPU 0/28/91 %, RAM máx 9.6 GB → uso medio: margen para repartir trabajo
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
