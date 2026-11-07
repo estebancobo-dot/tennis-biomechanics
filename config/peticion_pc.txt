@@ -336,6 +336,11 @@ minutos: 35
 ---
 id: 133
 accion: completo
+---
+id: 134
+accion: completo
+# 134 (07-11, B4): auditoria que dice si los golpes suyos perdidos en los puntos de su saque quedaron de identidad
+# dudosa o descartados en la pasada fina; los 2 videos nuevos del usuario quedan en espera (catalog.hold)
 # 133 (07-11): los 4 partidos con el bote propio adoptado (131: F1 0,884 frente a 0,594) y la auditoria que deja fuera
 # los puntos que la tele no ensena y dice si los golpes suyos perdidos quedaron de identidad dudosa o descartados
 # 132 (07-11, B7): prueba principal de B7 con el codigo actual: 35 min de un partido como partido nuevo, analizado de

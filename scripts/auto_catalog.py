@@ -73,8 +73,15 @@ def main():
             pinned[json.loads((out_root / m["id"] / "video.json").read_text(encoding="utf-8"))["sample"]] = m
         except (OSError, ValueError, KeyError):
             continue
+    # videos the user already copied for the final test, held until the Base is closed (07-11: «prefiero acabar la
+    # base completa y al final los vídeos nuevos»); config `catalog.hold`: their file names
+    hold = {str(x).lower() for x in ((cfg.get("catalog") or {}).get("hold") or [])}
+    held = []
     for f in sorted(videos.glob("*")) if videos.exists() else []:
         if f.suffix.lower() not in VIDEO_EXT or f.name.lower() in known:
+            continue
+        if f.name.lower() in hold:
+            held.append(f.name)
             continue
         if pinned:
             from tennisbio.pipeline import video_sample
@@ -93,7 +100,8 @@ def main():
     path.write_text("# Generado automáticamente por scripts/auto_catalog.py; se puede editar.\n"
                     + yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8")
     print(f"Vídeos en {videos}: {len(data['matches'])} en el catálogo ({len(added)} nuevos: {', '.join(added) or '—'})"
-          + (f"; renombrados (se conserva lo analizado): {'; '.join(renamed)}" if renamed else ""))
+          + (f"; renombrados (se conserva lo analizado): {'; '.join(renamed)}" if renamed else "")
+          + (f"; en espera hasta cerrar la Base (catalog.hold): {', '.join(held)}" if held else ""))
     if not data["matches"]:
         print(f"No hay vídeos. Copia los partidos a {videos} y vuelve a ejecutar.")
         sys.exit(1)

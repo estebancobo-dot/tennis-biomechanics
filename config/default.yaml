@@ -209,3 +209,9 @@ trunk3d:
 budgets:
   factor: 2.0
   identity: 0.75
+
+catalog:
+  # the user's new videos for the final test (07-11): not added to the catalogue until the Base is closed
+  hold:
+    - "Zverev Alexander - Sinner Jannik - Indian Wells - 2026 - Semi final.mkv"
+    - "Elena Rybakina - Jessica Pegula - Miami - 2026 - Quarter final.mkv"

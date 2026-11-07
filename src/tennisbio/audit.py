@@ -568,6 +568,7 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
                                     f"{nb['golpes_de_alguien']}, sin golpes de nadie {nb['nadie_golpea']}, cámara "
                                     f"principal {nb['camara_principal_s_mediana']} s (mediana)"
                                     + (f", candidatos {nb['candidatos']}" if nb.get("candidatos") else "")
+                                    + (f", golpes suyos perdidos {nb['suyos_perdidos']}" if nb.get("suyos_perdidos") else "")
                                     if (nb := g.get("no_strokes_points")) and g["by_cause"].get("sin_golpes") else "")
                                  + ("; primeros: " + ", ".join(f"{x['t0'] / 60:.1f}-{x['t1'] / 60:.1f} min ({x['cause']})"
                                                                for x in g["gaps"][:8]) if g["gaps"] else ""),
