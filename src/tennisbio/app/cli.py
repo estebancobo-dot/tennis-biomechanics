@@ -6,6 +6,8 @@
     tennisbio app also JUGADORA [--golpe forehand|backhand|overhead]   «Analizar también…»
     tennisbio app plan [--confirmar]         after an update: what to recompute and its cost
     tennisbio app work [--siempre]           runs the queue (by default until nothing can run now)
+    tennisbio app tras-completo              after the cycle's full analysis: the plan, and only the reports
+                                             (analyses) of the matches it analysed; never a stage
     tennisbio app pausa | seguir             pause or resume the queue
     tennisbio app franja 22:00 08:00 | franja no   heavy jobs only in that band
     tennisbio app rebuild                    rebuilds the index from the folders (the old one is kept aside)
@@ -41,6 +43,7 @@ def main(argv=None) -> int:
     pl.add_argument("--confirmar", action="store_true")
     w = sub.add_parser("work")
     w.add_argument("--siempre", action="store_true")
+    sub.add_parser("tras-completo")
     sub.add_parser("pausa")
     sub.add_parser("seguir")
     fr = sub.add_parser("franja")
@@ -114,6 +117,15 @@ def main(argv=None) -> int:
             for jid, st in app.work(once=not args.siempre):
                 print(f"trabajo #{jid}: {st}")
             print(app.status())
+        elif args.cmd == "tras-completo":
+            r = app.after_full_run()
+            print(f"{r['matches']} partido(s) a recalcular (quedan en la cola), {r['missing_analyses']} análisis que faltaban, "
+                  f"{r['stale_analyses']} análisis con resultados nuevos de sus partidos")
+            for jid, st in r["ran"]:
+                print(f"trabajo #{jid}: {st}")
+            print(f"Índice: {r['analyses']} análisis y {r['matches_total']} partidos")
+            print(app.status())
+            return 1 if any(st == "error" for _, st in r["ran"]) else 0
         elif args.cmd in ("pausa", "seguir"):
             app.db.set_setting("pausa", args.cmd == "pausa")
             print("cola en pausa" if args.cmd == "pausa" else "cola en marcha")

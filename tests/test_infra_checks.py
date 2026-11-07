@@ -118,6 +118,29 @@ def test_app_items_from_the_pcs_own_check(tmp_path):
     assert app_items([tmp_path])[0]["status"] == "falta"
 
 
+def test_app_index_item_reads_the_index_itself_not_an_old_window_check(tmp_path):
+    """#160, #242 (07-11): the audit said «0 análisis» from capturas_app/ventana.json of 04-11 while the index had
+    the forehand of the 4 matches since request 114 (07-11 00:40): the item reads the index as it is now."""
+    from tennisbio.app.db import DB
+    out = tmp_path / "output"
+    (out / "capturas_app").mkdir(parents=True)
+    (out / "capturas_app" / "ventana.json").write_text(json.dumps(
+        {"problems": [], "screens": 56, "live": {"opened": True, "ready": True},
+         "index": {"matches": 18, "players": 2, "analyses": 0}}), encoding="utf-8")      # the PC on 04-11
+    bases = [out, tmp_path, tmp_path.parent]
+    assert app_items(bases)[1]["status"] == "aviso"                                     # no index: the snapshot
+    db = DB(tmp_path / "datos" / "tennisbio.db")
+    db.upsert("matches", {"id": "zheng-qinwen-elena-rybakina", "state": "analizado"})
+    db.upsert("analyses", {"id": "rybakina_forehand", "player": "rybakina", "stroke": "forehand", "n_strokes": 441})
+    db.close()
+    win, an = app_items(bases)
+    assert win["status"] == "ok" and an["status"] == "ok"
+    assert "1 análisis y 1 partidos" in an["detail"] and "tennisbio.db" in an["detail"]
+    (out / "capturas_app" / "ventana.json").unlink()                                    # no window check yet
+    win, an = app_items(bases)
+    assert win["status"] == "aviso" and an["status"] == "ok"
+
+
 def test_every_infrastructure_item_is_tied_to_its_request(tmp_path):
     import re
     names = [i["name"] for i in infrastructure_items(tmp_path / "output")]

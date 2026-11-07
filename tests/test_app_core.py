@@ -706,3 +706,50 @@ def test_a_catalogue_match_is_the_very_match_the_cycle_builds(monkeypatch):
     assert Engine._catalog_match("zheng-qinwen-elena-rybakina", None) is cm
     assert Engine._catalog_match("otro", "D:/x/zheng qinwen - elena rybakina.MKV") is cm      # by its video file
     assert Engine._catalog_match("otro", "D:/x/otro.mkv") is None
+
+
+def _cycle_match(out: Path, mid: str = "zheng-qinwen-elena-rybakina") -> Path:
+    """A reference match as the automatic cycle leaves it in <output> (flat folder, its partido.json)."""
+    d = out / mid
+    d.mkdir(parents=True, exist_ok=True)
+    (d / "manifest.json").write_text(json.dumps({"candidates": {"summary": {"candidates": 40}},
+                                                 "fine": {"summary": {"confirmed": 30}}}), encoding="utf-8")
+    (d / "partido.json").write_text(json.dumps({"player": "rybakina", "opponent": "Zheng Qinwen"}), encoding="utf-8")
+    return d
+
+
+def test_after_the_cycles_full_run_the_index_holds_its_analyses(env):
+    """#160, #242 (07-11): request 114 put the forehand of the 4 reference matches in the index (441 strokes); the
+    full runs that followed (117, 119, 121) changed their strokes and nothing rebuilt the analysis (the plan only
+    queues a missing analysis or a new report code). After every full run (analisis_completo.ps1 → tennisbio app
+    tras-completo) the index holds the analyses of the matches the cycle analysed: the missing ones and the ones
+    older than their matches' results, only their reports (no stage), never from a test run of the cycle."""
+    import os
+    import time as _t
+    out = env.tmp / "output"
+    d = _cycle_match(out)
+    _smoke_run(out)
+    a = env.app()
+    r = a.after_full_run()                                           # a fresh index: the missing analysis is made
+    assert r["missing_analyses"] == 1 and [st for _, st in r["ran"]] == ["hecho"] and r["analyses"] == 1
+    assert [c[0] for c in a.engine.calls] == ["informe"]             # no stage ran
+    v1 = a.db.one("SELECT version FROM analyses WHERE player='rybakina'")["version"]
+    assert a.after_full_run()["ran"] == []                           # nothing new: nothing runs
+    # the cycle analyses the match again (new strokes): the plan alone leaves the analysis as it was (the failure)
+    a.db.x("UPDATE analyses SET updated=?", _t.strftime("%Y-%m-%d %H:%M:%S", _t.localtime(_t.time() - 7200)))
+    later = _t.time() - 3600
+    os.utime(d / "manifest.json", (later, later))
+    assert a.plan_updates()["missing_analyses"] == 0 and not a.db.q("SELECT id FROM jobs WHERE state='pendiente'")
+    r = a.after_full_run()
+    assert r["stale_analyses"] == 1 and [st for _, st in r["ran"]] == ["hecho"]
+    assert a.db.one("SELECT version FROM analyses WHERE player='rybakina'")["version"] == v1 + 1
+    assert [c[0] for c in a.engine.calls] == ["informe", "informe"]
+    # a test run of the cycle never makes the analysis stale
+    smoke = out / "_smoke" / "smoke_tennis-final-rybakina" / "manifest.json"
+    far = _t.time() + 3600
+    os.utime(smoke, (far, far))
+    assert a.after_full_run()["stale_analyses"] == 0
+    # paused by the user: queued, not run
+    a.db.set_setting("pausa", True)
+    os.utime(d / "manifest.json", (far, far))
+    assert a.after_full_run()["ran"] == [] and a.db.q("SELECT id FROM jobs WHERE state='pendiente' AND kind='informe'")

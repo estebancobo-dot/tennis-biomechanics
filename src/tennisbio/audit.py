@@ -1555,8 +1555,16 @@ def app_items(bases: list[Path]) -> list[dict]:
     f = next((b / "capturas_app" / "ventana.json" for b in bases if (b / "capturas_app" / "ventana.json").exists()), None)
     names = ("Aplicación: ventana real y pantallas", "Aplicación: análisis en su índice")
     if f is None:
-        return [_item(5, "Aplicación", n, "aviso", "todavía sin la comprobación de la aplicación (capturas_app/ventana.json)")
-                for n in names]
+        out = [_item(5, "Aplicación", n, "aviso", "todavía sin la comprobación de la aplicación (capturas_app/ventana.json)")
+               for n in names]
+        live_idx = app_index_counts(bases)
+        if live_idx is not None:
+            out[1] = _item(5, "Aplicación", names[1], "ok" if live_idx[0] else "aviso",
+                           f"{live_idx[0]} análisis y {live_idx[1]} partidos en el índice de la aplicación "
+                           "(leído del índice, datos/tennisbio.db)"
+                           + ("" if live_idx[0] else ": los análisis de los partidos hechos por el ciclo automático "
+                              "aún no están en ella"))
+        return out
     try:
         v = json.loads(f.read_text(encoding="utf-8"))
     except (OSError, ValueError) as e:
@@ -1568,10 +1576,35 @@ def app_items(bases: list[Path]) -> list[dict]:
                  + ("carga" if live.get("ready") else f"no carga ({live.get('error') or live.get('step') or 'sin dato'})")
                  + (f"; {'; '.join(str(p) for p in probs[:3])}" if probs else ""))]
     n_an, n_m = idx.get("analyses") or 0, idx.get("matches") or 0
+    live_idx = app_index_counts(bases)
+    if live_idx is not None:            # the index itself (07-11: ventana.json was from 04-11, before request 114)
+        n_an, n_m = live_idx
     out.append(_item(5, "Aplicación", names[1], "ok" if n_an else "aviso",
                      f"{n_an} análisis y {n_m} partidos en el índice de la aplicación"
+                     + (" (leído del índice, datos/tennisbio.db)" if live_idx is not None else "")
                      + ("" if n_an else ": los análisis de los partidos hechos por el ciclo automático aún no están en ella")))
     return out
+
+
+def app_index_counts(bases: list[Path]) -> tuple[int, int] | None:
+    """(analyses, matches) in the application's index as it is now (<base>/datos/tennisbio.db, read only), or None
+    without it. The window's check (ventana.json) is a snapshot of the day it ran: the index changes after it
+    (request 114 filled it on 07-11; the audit kept reading the 0 of 04-11)."""
+    import sqlite3
+    for b in bases:
+        f = b / "datos" / "tennisbio.db"
+        if not f.is_file():
+            continue
+        try:
+            con = sqlite3.connect(f"{f.resolve().as_uri()}?mode=ro", uri=True, timeout=10)
+            try:
+                return (con.execute("SELECT count(*) FROM analyses").fetchone()[0],
+                        con.execute("SELECT count(*) FROM matches").fetchone()[0])
+            finally:
+                con.close()
+        except sqlite3.Error:
+            continue
+    return None
 
 
 def infrastructure_items(out_root: Path) -> list[dict]:

@@ -25,6 +25,13 @@ try {
     Ejecutar uv @("run", "tennisbio", "report", "--stroke", "backhand", "--out", "$Base\output\informe_reves")
     Ejecutar uv @("run", "tennisbio", "report", "--stroke", "overhead", "--out", "$Base\output\informe_saque")
 
+    # (07-11, #160, #242) el indice de la aplicacion con los analisis de los partidos que acaba de analizar el ciclo:
+    # el plan y SOLO los informes (minutos, desde los golpes guardados; ninguna etapa). Antes de la auditoria, que lo lee.
+    # Un fallo aqui no para el analisis completo.
+    Paso "3b/5 Analisis en la aplicacion (solo sus informes)"
+    try { Ejecutar uv @("run", "--extra", "app", "tennisbio", "app", "tras-completo") }
+    catch { Write-Host "AVISO: el indice de la aplicacion no se actualizo: $_" -ForegroundColor Yellow }
+
     # la auditoria antes que cualquier video (27-10: la exportacion del reves y luego la de la derecha se quedaron
     # paradas y dejaron sin auditoria la referencia de los 4 partidos)
     Paso "4/5 Comprobacion automatica de requisitos (capturas del informe incluidas; se envia a Claude)"

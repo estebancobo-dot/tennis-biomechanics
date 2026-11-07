@@ -1,5 +1,6 @@
 """The application as one object: what the window (part 2) and the command line call."""
 import hashlib
+import time
 from pathlib import Path
 
 from .. import match_files as _mf
@@ -123,6 +124,45 @@ class App:
             self.db.notice("plan", "aviso" if long_plan else "info", text)
         return {"matches": len(plan), "seconds": total, "confirm": long_plan, "reports": rebuilt_reports, "no_video": no_video,
                 "test_runs": test_runs, "missing_analyses": missing}
+
+    def after_full_run(self) -> dict:
+        """After the full analysis of the automatic cycle (analisis_completo.ps1, #160, #242): the index holds
+        the analyses of the matches the cycle analysed. The plan queues what is missing (an analysed match with
+        no analysis for its player); every analysis older than the results of one of its player's matches (the
+        cycle re-analysed it: new strokes) gets its report again; then ONLY those reports run (minutes, from
+        the strokes already saved: no stage runs here, a match to recompute stays in the queue as the plan says).
+        07-11: the index had 1 analysis (request 114) built before three full runs changed the strokes, and
+        nothing rebuilt it afterwards."""
+        r = self.plan_updates()
+        stale = 0
+        for a in self.db.q("SELECT player, stroke, updated FROM analyses"):
+            newest = 0.0
+            for m in self.db.q("SELECT id, dir FROM matches WHERE player=? AND state IN (%s)" % ",".join("?" * len(USABLE)),
+                               a["player"], *USABLE):
+                if is_test_run(self.paths.output, m.get("dir") or ""):
+                    continue
+                d = self.engine.dir(m["id"])
+                for name in ("manifest.json", "strokes.json"):
+                    try:
+                        newest = max(newest, _mf.at(d, name).stat().st_mtime)
+                    except OSError:
+                        continue
+            if newest and time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(newest)) > (a.get("updated") or ""):
+                jobs.enqueue(self.db, "informe", player=a["player"], stroke=a["stroke"],
+                             reason="análisis completo del ciclo: sus partidos tienen resultados nuevos")
+                stale += 1
+        ran = []
+        if not self.db.setting("pausa", False):
+            jobs.recover(self.db)
+            while True:
+                job = self.db.one("SELECT * FROM jobs WHERE state='pendiente' AND kind='informe' "
+                                  "AND id NOT IN (%s) ORDER BY priority, id" % ",".join(["0"] + [str(j) for j, _ in ran]))
+                if job is None:
+                    break
+                ran.append((job["id"], jobs.run_one(self.db, self.paths, self.engine, self.cfg, job)))
+        return {**r, "stale_analyses": stale, "ran": ran,
+                "analyses": self.db.one("SELECT count(*) AS n FROM analyses")["n"],
+                "matches_total": self.db.one("SELECT count(*) AS n FROM matches")["n"]}
 
     def confirm_plan(self) -> int:
         n = len(self.db.q("SELECT id FROM jobs WHERE state='por confirmar'"))
