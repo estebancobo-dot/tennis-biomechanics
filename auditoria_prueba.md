@@ -335,15 +335,15 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - ✔ **Cada golpe tiene su vídeo**: 13 de 13 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 13 de 13
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 2446 caracteres de texto, 7 vídeos, 19 gráficos
+- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 2446 caracteres de texto, 6 vídeos, 19 gráficos
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 4496 caracteres de texto, 7 vídeos, 1 gráficos
 - ✔ **Pantalla «Análisis de golpe»**: 4979 caracteres de texto, 8 vídeos, 31 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 4354 caracteres de texto, 7 vídeos, 2 gráficos
-- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4055 caracteres de texto, 7 vídeos, 12 gráficos
+- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4043 caracteres de texto, 7 vídeos, 12 gráficos
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 4689 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 3424 caracteres de texto, 7 vídeos, 0 gráficos
-- ✔ **Pantalla «Datos del análisis»**: 2027 caracteres de texto, 7 vídeos, 0 gráficos
+- ✔ **Pantalla «Datos del análisis»**: 2030 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
@@ -446,7 +446,7 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - ! **Carpetas de pruebas antiguas**: 1 carpeta(s) de pruebas sin usar en más de 14 días (7.6 GB): _poc9_largo. Se borran con la petición «borrar» del PC
 - ✔ **Golpes que fallaron al procesarse**: ninguno
 - ✔ **Nada pide revisión manual**: 20 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
-- ✔ **Pruebas del código en este PC**: código 6fe750f (2026-11-07T19:41:43): 843 bien, 0 fallan, 0 errores
+- ✔ **Pruebas del código en este PC**: código 0fffeeb (2026-11-07T21:48:53): 853 bien, 0 fallan, 0 errores
 - ✔ **Pruebas en este PC: test_pipeline**: 17 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_auto_cycle**: 15 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_pc_requests**: 9 bien, 0 fallan, 0 omitidas
@@ -477,17 +477,17 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - ✔ **Pruebas en este PC: test_project_context**: 3 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
-- ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 78 s, quedan ≈ 0 s, a las 2026-11-07 21:42:18
-- ✔ **Tamaño de la salida (tamanos.txt)**: 42 carpetas, 36.2 GB en total (2026-11-07T21:45:46); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB
+- ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 79 s, quedan ≈ 0 s, a las 2026-11-08 00:23:02
+- ✔ **Tamaño de la salida (tamanos.txt)**: 42 carpetas, 36.2 GB en total (2026-11-08T00:21:10); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB
 - ✔ **Aplicación: ventana real y pantallas**: 56 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 1 análisis y 18 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
 - ✔ **Aplicación: un partido nuevo de principio a fin**: terminó 2026-11-07T17:47:21 en 62.6 min; análisis actualizado
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 75 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 25 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 25 vídeos
-- ✔ **Exportación terminada: exportar**: terminó el 2026-11-07 21:42:44 en 0 min: 25 vídeos de 25 golpes
+- ✔ **Exportación terminada: exportar**: terminó el 2026-11-08 00:23:28 en 0 min: 25 vídeos de 25 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
-- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 07-11 21:39, empezó a los 0.1 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
+- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 08-11 00:20, empezó a los 0.1 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
 
@@ -499,9 +499,9 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 
 - ! **Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
 - ! **Etapas a la vez: smoke_tennis-yusipopen-final-sobolenko-rybakin**: todas las etapas de su última ejecución corrieron en serie
-- ! **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-07_2030.csv sin muestras con su etapa
+- ! **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-07_2340.csv sin muestras con su etapa
 - ✔ **Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 0.8 min (objetivo ≤ 15 min)
-- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 2 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine_doubtful 1.3 min; ninguna pasa de 2 veces su ritmo habitual
+- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 2 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine_doubtful 1.4 min; ninguna pasa de 2 veces su ritmo habitual
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
@@ -758,4 +758,4 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - ✔ **Modelo en uso: raqueta (RTMPose de RacketVision)**: elegido y con su modelo en este PC (racket_face.pose_onnx: models/racketpose.onnx)
 - ✔ **Modelo en uso: cortes de plano (TransNetV2)**: elegido y con su modelo en este PC (scenes.onnx: models/transnetv2.onnx)
 - ✔ **Golpes del detector aprendido: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 182 candidatos del detector entrenado con F3Set (87 cerca, 94 lejos, umbral 0.1)
-- ✔ **Comparativa con otras apps al día (docs/comparativa_apps.md)**: 15 modelos que nombra, todos en uso o medidos en el PC; cifras de detección al día: P 0.95 / R 0.89 en el documento frente a P 0.95 / R 0.89 de recall_validation_detector.json (460 de 517); fecha 07-11-2026 frente a la última medida de modelos 07-11-2026
+- ✔ **Comparativa con otras apps al día (docs/comparativa_apps.md)**: 15 modelos que nombra, todos en uso o medidos en el PC; cifras de detección al día: P 0.95 / R 0.89 en el documento frente a P 0.94 / R 0.89 de recall_validation_detector.json (460 de 517); fecha 07-11-2026 frente a la última medida de modelos 07-11-2026

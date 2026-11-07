@@ -127,10 +127,10 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "6dc381b90c473aec",
+  "fingerprint": "63b2443ddf32919c",
   "version": "16",
-  "seconds": 68.4,
-  "finished": "2026-11-07 21:40:57",
+  "seconds": 72.8,
+  "finished": "2026-11-08 00:21:41",
   "summary": {
    "candidates": 78,
    "confirmed": 75,
@@ -150,12 +150,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 28.8,
-    "pista_ventana": 18.1,
-    "analisis_ventana": 13.5,
-    "cuerdas_y_3d": 13.5,
-    "recorte": 3.3,
-    "cribado": 3.0,
+    "jugadora_lejana": 29.8,
+    "pista_ventana": 17.9,
+    "analisis_ventana": 15.7,
+    "cuerdas_y_3d": 14.1,
+    "recorte": 3.6,
+    "cribado": 3.1,
     "pose": 0.3
    },
    "counts": {
@@ -173,10 +173,10 @@
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "c515cb035dfcf2bf",
+  "fingerprint": "edef5ea18b1db070",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-07 21:40:57",
+  "finished": "2026-11-08 00:21:41",
   "summary": {
    "enabled": false
   },
@@ -184,10 +184,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "b6442eb613bd8c56",
+  "fingerprint": "2195638007732200",
   "version": "1",
-  "seconds": 80.8,
-  "finished": "2026-11-07 21:42:18",
+  "seconds": 81.0,
+  "finished": "2026-11-08 00:23:02",
   "summary": {
    "candidates": 28,
    "confirmed": 19,
@@ -207,13 +207,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "bola_en_paralelo_cpu": 46.4,
+    "bola_en_paralelo_cpu": 46.3,
     "espera_bola_en_paralelo": 39.8,
     "cuerdas_y_3d": 7.6,
-    "analisis_ventana": 4.9,
-    "jugadora_lejana": 3.0,
-    "pista_ventana": 1.8,
-    "recorte": 1.2,
+    "analisis_ventana": 5.1,
+    "jugadora_lejana": 2.6,
+    "pista_ventana": 2.0,
+    "recorte": 1.7,
     "cribado": 0.8,
     "pose": 0.1
    },
@@ -226,7 +226,7 @@
     "racket_frames": 0,
     "whole_window_again": 0,
     "frames_960_far": 0,
-    "windows_ball_ahead": 15
+    "windows_ball_ahead": 16
    }
   },
   "out_hash": "6b1c31ea89d0e4de4bba",
@@ -255,7 +255,7 @@
   "fingerprint": "9820e4ce46d3b6f9",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-11-07 21:42:18",
+  "finished": "2026-11-08 00:23:02",
   "summary": {
    "strokes": 75,
    "with_replay": 26,

@@ -2808,7 +2808,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "2446 caracteres de texto, 7 vídeos, 19 gráficos",
+   "detail": "2446 caracteres de texto, 6 vídeos, 19 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2840,7 +2840,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4055 caracteres de texto, 7 vídeos, 12 gráficos",
+   "detail": "4043 caracteres de texto, 7 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2872,7 +2872,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2027 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2030 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3167,8 +3167,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 6fe750f (2026-11-07T19:41:43): 843 bien, 0 fallan, 0 errores",
-   "passed": 843,
+   "detail": "código 0fffeeb (2026-11-07T21:48:53): 853 bien, 0 fallan, 0 errores",
+   "passed": 853,
    "failed": 0
   },
   {
@@ -3393,7 +3393,7 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 78 s, quedan ≈ 0 s, a las 2026-11-07 21:42:18"
+   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 79 s, quedan ≈ 0 s, a las 2026-11-08 00:23:02"
   },
   {
    "req": 5,
@@ -3407,7 +3407,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "42 carpetas, 36.2 GB en total (2026-11-07T21:45:46); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "42 carpetas, 36.2 GB en total (2026-11-08T00:21:10); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -3463,7 +3463,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-07 21:42:44 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-08 00:23:28 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3589,7 +3589,7 @@
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "2 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine_doubtful 1.3 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "2 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine_doubtful 1.4 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -3603,21 +3603,21 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "aviso",
-   "detail": "recursos_2026-11-07_2030.csv sin muestras con su etapa"
+   "detail": "recursos_2026-11-07_2340.csv sin muestras con su etapa"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 07-11 21:39, empezó a los 0.1 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 08-11 00:20, empezó a los 0.1 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Comparativa con otras apps al día (docs/comparativa_apps.md)",
    "status": "ok",
-   "detail": "15 modelos que nombra, todos en uso o medidos en el PC; cifras de detección al día: P 0.95 / R 0.89 en el documento frente a P 0.95 / R 0.89 de recall_validation_detector.json (460 de 517); fecha 07-11-2026 frente a la última medida de modelos 07-11-2026"
+   "detail": "15 modelos que nombra, todos en uso o medidos en el PC; cifras de detección al día: P 0.95 / R 0.89 en el documento frente a P 0.94 / R 0.89 de recall_validation_detector.json (460 de 517); fecha 07-11-2026 frente a la última medida de modelos 07-11-2026"
   },
   {
    "req": 11,
