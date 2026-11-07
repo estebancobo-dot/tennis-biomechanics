@@ -9576,3 +9576,26 @@
 2026-11-07 05:39:05   ventana w006774899_5401: pose hybrid en 271 de 271 fotogramas (0 s; modelo 0 s; pies en 91) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 1047 px (segments)
 2026-11-07 05:39:05   fine_doubtful: 100 % (49/49 golpes candidatos · 17 confirmados · 0 ventanas descartadas sin pose) · 18 s · quedan ≈ 0 s
 2026-11-07 05:39:06 [zheng-qinwen-elena-rybakina] fine_doubtful terminada a las 05:39:06 en 21 s
+2026-11-07 07:27:29 [zheng-qinwen-elena-rybakina] candidates… (2026-11-07 07:27:29, etapa 9 de 14)
+2026-11-07 07:27:29   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 0, 'changed': 3, 'by_click': 268}
+2026-11-07 07:27:32   tramos que son repeticiones: 3 sin marcador
+2026-11-07 07:27:32   saques añadidos por el marcador (su saque no visto, el resto de la rival sí): 26
+2026-11-07 07:27:32   candidatos del detector entrenado: 626 (290 lejanos; 4 en repeticiones, fuera)
+2026-11-07 07:27:32 [zheng-qinwen-elena-rybakina] candidates terminada a las 07:27:32 en 3 s
+2026-11-07 07:27:32 [zheng-qinwen-elena-rybakina] views… (2026-11-07 07:27:32, etapa 10 de 14)
+2026-11-07 07:27:39   views:   0 % (1/1654 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+2026-11-07 07:28:09   views:  16 % (263/1654 fotogramas de otras tomas) · 30 s · quedan ≈ 3 min
+2026-11-07 07:28:39   views:  29 % (482/1654 fotogramas de otras tomas) · 60 s · quedan ≈ 2 min
+2026-11-07 07:29:09   views:  45 % (750/1654 fotogramas de otras tomas) · 2 min · quedan ≈ 2 min
+2026-11-07 07:29:39   views:  59 % (980/1654 fotogramas de otras tomas) · 2 min · quedan ≈ 83 s
+2026-11-07 07:30:09   views:  76 % (1263/1654 fotogramas de otras tomas) · 3 min · quedan ≈ 46 s
+2026-11-07 07:30:40   views:  99 % (1636/1654 fotogramas de otras tomas) · 3 min · quedan ≈ 2 s
+2026-11-07 07:30:41   views: 100 % (1654/1654 fotogramas de otras tomas) · 3 min · quedan ≈ 0 s
+2026-11-07 07:30:41   tomas: 1612 fotogramas clave y 42 exactos (3500 claves en el vídeo); lectura 1 s, personas 130 s, pista 40 s; 67 ajustes de pista
+2026-11-07 07:30:41 [zheng-qinwen-elena-rybakina] views terminada a las 07:30:41 en 3.2 min
+2026-11-07 07:30:41 [zheng-qinwen-elena-rybakina] fine… (2026-11-07 07:30:41, etapa 11 de 14)
+2026-11-07 07:30:46   ventana w000320146_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+2026-11-07 07:30:46   ventana w000320146_3600: pose yolo en 179 de 179 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 104 px (court)
+2026-11-07 07:30:46   fine:   0 % (1/289 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-11-07 07:30:48   ventana w000340143_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-07 07:30:48   ventana w000340143_3600: pose yolo en 179 de 179 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 98 px (court)
