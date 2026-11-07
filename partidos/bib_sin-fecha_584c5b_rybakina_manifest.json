@@ -98,8 +98,8 @@
  "identity": {
   "fingerprint": "c846078e05311412",
   "version": "8",
-  "seconds": 105.3,
-  "finished": "2026-11-04 16:59:28",
+  "seconds": 112.1,
+  "finished": "2026-11-07 00:50:51",
   "summary": {
    "runs": 276,
    "confidence": 0.93,
@@ -153,8 +153,8 @@
  "fine": {
   "fingerprint": "0ba5a2d4efb61fd4",
   "version": "16",
-  "seconds": 263.0,
-  "finished": "2026-11-06 23:47:10",
+  "seconds": 257.1,
+  "finished": "2026-11-07 00:55:08",
   "summary": {
    "candidates": 263,
    "confirmed": 262,
@@ -174,13 +174,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 170.4,
-    "cuerdas_y_3d": 76.1,
-    "pista_ventana": 31.7,
-    "analisis_ventana": 26.6,
-    "recorte": 9.0,
-    "cribado": 6.8,
-    "pose": 1.0
+    "jugadora_lejana": 169.5,
+    "cuerdas_y_3d": 77.0,
+    "pista_ventana": 32.3,
+    "analisis_ventana": 25.3,
+    "recorte": 8.1,
+    "cribado": 6.6,
+    "pose": 1.1
    },
    "counts": {
     "overlap_s": 2.2,
@@ -271,8 +271,8 @@
  "fine_doubtful": {
   "fingerprint": "f754d8dd4c8075e6",
   "version": "1",
-  "seconds": 21.0,
-  "finished": "2026-11-06 23:47:32",
+  "seconds": 20.6,
+  "finished": "2026-11-07 00:55:29",
   "summary": {
    "candidates": 49,
    "confirmed": 17,
@@ -292,12 +292,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 8.1,
-    "analisis_ventana": 4.3,
+    "cuerdas_y_3d": 7.9,
+    "analisis_ventana": 4.1,
     "jugadora_lejana": 3.0,
-    "recorte": 2.5,
+    "recorte": 2.4,
     "pista_ventana": 1.2,
-    "cribado": 0.7,
+    "cribado": 0.6,
     "pose": 0.1
    },
    "counts": {

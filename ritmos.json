@@ -1,30 +1,6 @@
 {
  "fine:unidad": [
   {
-   "s": 0.78,
-   "units": 248,
-   "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
-   "date": "2026-11-04 04:46"
-  },
-  {
-   "s": 0.9917,
-   "units": 269,
-   "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
-   "date": "2026-11-04 04:52"
-  },
-  {
-   "s": 0.6725,
-   "units": 159,
-   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "date": "2026-11-04 08:48"
-  },
-  {
-   "s": 0.9338,
-   "units": 262,
-   "match": "zheng-qinwen-elena-rybakina",
-   "date": "2026-11-04 08:53"
-  },
-  {
    "s": 0.7775,
    "units": 248,
    "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
@@ -179,33 +155,33 @@
    "units": 270,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-06 23:56"
+  },
+  {
+   "s": 0.698,
+   "units": 159,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-07 00:48"
+  },
+  {
+   "s": 0.957,
+   "units": 263,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-07 00:55"
+  },
+  {
+   "s": 0.8047,
+   "units": 248,
+   "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+   "date": "2026-11-07 01:01"
+  },
+  {
+   "s": 1.0052,
+   "units": 270,
+   "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+   "date": "2026-11-07 01:10"
   }
  ],
  "fine:minuto": [
-  {
-   "s": 1.489,
-   "video_min": 133.4,
-   "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
-   "date": "2026-11-04 04:46"
-  },
-  {
-   "s": 1.313,
-   "video_min": 210.4,
-   "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
-   "date": "2026-11-04 04:52"
-  },
-  {
-   "s": 1.578,
-   "video_min": 71.4,
-   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
-   "date": "2026-11-04 08:48"
-  },
-  {
-   "s": 2.142,
-   "video_min": 116.7,
-   "match": "zheng-qinwen-elena-rybakina",
-   "date": "2026-11-04 08:53"
-  },
   {
    "s": 1.485,
    "video_min": 133.4,
@@ -361,6 +337,30 @@
    "video_min": 210.4,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-06 23:56"
+  },
+  {
+   "s": 1.641,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-07 00:48"
+  },
+  {
+   "s": 2.203,
+   "video_min": 116.7,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-07 00:55"
+  },
+  {
+   "s": 1.54,
+   "video_min": 133.4,
+   "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+   "date": "2026-11-07 01:01"
+  },
+  {
+   "s": 1.339,
+   "video_min": 210.4,
+   "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+   "date": "2026-11-07 01:10"
   }
  ],
  "identity:minuto": [
@@ -435,6 +435,30 @@
    "video_min": 210.4,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-04 17:14"
+  },
+  {
+   "s": 11.179,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-07 00:46"
+  },
+  {
+   "s": 0.961,
+   "video_min": 116.7,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-07 00:50"
+  },
+  {
+   "s": 1.172,
+   "video_min": 133.4,
+   "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+   "date": "2026-11-07 00:58"
+  },
+  {
+   "s": 1.099,
+   "video_min": 210.4,
+   "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+   "date": "2026-11-07 01:05"
   }
  ],
  "views:unidad": [
@@ -603,6 +627,30 @@
    "units": 2027,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-04 17:14"
+  },
+  {
+   "s": 0.9043,
+   "units": 880,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-07 00:46"
+  },
+  {
+   "s": 0.0643,
+   "units": 1625,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-07 00:50"
+  },
+  {
+   "s": 0.0881,
+   "units": 1681,
+   "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+   "date": "2026-11-07 00:58"
+  },
+  {
+   "s": 0.1084,
+   "units": 2027,
+   "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+   "date": "2026-11-07 01:05"
   }
  ]
 }

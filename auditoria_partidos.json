@@ -4,9 +4,9 @@
  "near": 263,
  "summary": {
   "ok": 426,
-  "falta": 34,
+  "falta": 32,
   "pocos datos": 54,
-  "aviso": 121
+  "aviso": 123
  },
  "items": [
   {
@@ -1382,53 +1382,53 @@
    "req": 1,
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina",
-   "status": "ok",
-   "detail": "15% de sus golpes con repetición enlazada (24 de 157, 6 a cámara lenta) · 94% con otra cámara (147) · tomas: 30 repeticiones, 25 laterales, 6 frontales, 408 primeros planos, 17 otras",
+   "status": "aviso",
+   "detail": "0% de sus golpes con repetición enlazada (0 de 157, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 30 repeticiones, 25 laterales, 6 frontales, 408 primeros planos, 17 otras",
    "strokes": 157,
-   "with_replay": 24,
-   "with_other_camera": 147,
-   "with_slowmo": 6,
-   "replay_share": 0.153,
-   "other_share": 0.936
+   "with_replay": 0,
+   "with_other_camera": 0,
+   "with_slowmo": 0,
+   "replay_share": 0.0,
+   "other_share": 0.0
   },
   {
    "req": 1,
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: sin-fecha_584c5b_rybakina",
-   "status": "ok",
-   "detail": "14% de sus golpes con repetición enlazada (37 de 262, 9 a cámara lenta) · 98% con otra cámara (258) · tomas: 38 repeticiones, 29 laterales, 11 frontales, 734 primeros planos, 16 otras",
+   "status": "aviso",
+   "detail": "0% de sus golpes con repetición enlazada (0 de 262, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 38 repeticiones, 29 laterales, 11 frontales, 734 primeros planos, 16 otras",
    "strokes": 262,
-   "with_replay": 37,
-   "with_other_camera": 258,
-   "with_slowmo": 9,
-   "replay_share": 0.141,
-   "other_share": 0.985
+   "with_replay": 0,
+   "with_other_camera": 0,
+   "with_slowmo": 0,
+   "replay_share": 0.0,
+   "other_share": 0.0
   },
   {
    "req": 1,
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: sin-fecha_580c6f_rybakina",
-   "status": "ok",
-   "detail": "19% de sus golpes con repetición enlazada (47 de 245, 6 a cámara lenta) · 92% con otra cámara (225) · tomas: 76 repeticiones, 80 laterales, 18 frontales, 868 primeros planos, 51 otras",
+   "status": "aviso",
+   "detail": "0% de sus golpes con repetición enlazada (0 de 245, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 76 repeticiones, 80 laterales, 18 frontales, 868 primeros planos, 51 otras",
    "strokes": 245,
-   "with_replay": 47,
-   "with_other_camera": 225,
-   "with_slowmo": 6,
-   "replay_share": 0.192,
-   "other_share": 0.918
+   "with_replay": 0,
+   "with_other_camera": 0,
+   "with_slowmo": 0,
+   "replay_share": 0.0,
+   "other_share": 0.0
   },
   {
    "req": 1,
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: sin-fecha_b8b713_rybakina",
-   "status": "ok",
-   "detail": "15% de sus golpes con repetición enlazada (39 de 259, 16 a cámara lenta) · 100% con otra cámara (258) · tomas: 76 repeticiones, 103 laterales, 33 frontales, 1380 primeros planos, 81 otras",
+   "status": "aviso",
+   "detail": "0% de sus golpes con repetición enlazada (0 de 259, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 76 repeticiones, 103 laterales, 33 frontales, 1380 primeros planos, 81 otras",
    "strokes": 259,
-   "with_replay": 39,
-   "with_other_camera": 258,
-   "with_slowmo": 16,
-   "replay_share": 0.151,
-   "other_share": 0.996
+   "with_replay": 0,
+   "with_other_camera": 0,
+   "with_slowmo": 0,
+   "replay_share": 0.0,
+   "other_share": 0.0
   },
   {
    "req": 3,
@@ -8800,7 +8800,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_f43dd2_rybakina",
    "status": "ok",
-   "detail": "39 min para 71 min de vídeo ≈ 1.9 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "40 min para 71 min de vídeo ≈ 1.9 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -8870,8 +8870,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código aee0a31 (2026-11-06T23:37:28): 806 bien, 0 fallan, 0 errores",
-   "passed": 806,
+   "detail": "código 768f612 (2026-11-07T00:38:35): 808 bien, 0 fallan, 0 errores",
+   "passed": 808,
    "failed": 0
   },
   {
@@ -8886,7 +8886,7 @@
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_auto_cycle",
    "status": "ok",
-   "detail": "14 bien, 0 fallan, 0 omitidas"
+   "detail": "15 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
@@ -8956,7 +8956,7 @@
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_budget",
    "status": "ok",
-   "detail": "6 bien, 0 fallan, 0 omitidas"
+   "detail": "7 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
@@ -9096,21 +9096,21 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (64/64), 29 s, quedan ≈ 0 s, a las 2026-11-06 23:56:48"
+   "detail": "último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (64/64), 29 s, quedan ≈ 0 s, a las 2026-11-07 01:11:14"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
-   "status": "falta",
-   "detail": "54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final"
+   "status": "ok",
+   "detail": "55 de 55 registros con fecha de inicio y de fin o duración"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "43 carpetas, 37.6 GB en total (2026-11-07T00:00:50); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "44 carpetas, 37.6 GB en total (2026-11-07T00:33:31); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -9173,28 +9173,28 @@
    "area": "Ficheros",
    "name": "Exportación: resumen PDF y un vídeo por golpe",
    "status": "ok",
-   "detail": "450 vídeos"
+   "detail": "441 vídeos"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_derecha",
    "status": "ok",
-   "detail": "terminó el 2026-11-05 02:55:31 en 18 min: 450 vídeos de 450 golpes"
+   "detail": "terminó el 2026-11-07 00:18:57 en 18 min: 441 vídeos de 441 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_reves",
    "status": "ok",
-   "detail": "terminó el 2026-11-05 03:07:33 en 12 min: 289 vídeos de 289 golpes"
+   "detail": "terminó el 2026-11-07 00:19:15 en 0 min: 289 vídeos de 289 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_saque",
    "status": "ok",
-   "detail": "terminó el 2026-11-05 03:15:14 en 7 min: 184 vídeos de 184 golpes"
+   "detail": "terminó el 2026-11-07 00:27:20 en 8 min: 193 vídeos de 193 golpes"
   },
   {
    "req": 5,
@@ -9341,14 +9341,14 @@
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina",
    "status": "aviso",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: identity 12.9 min, players 10.8 min, score 7.3 min, scenes 7.0 min, audio 2.4 min; MÁS LENTAS de 2 veces: identity 10.8 s por min de vídeo, 10.8 veces su mediana (1.0); alarma en vivo: identity: 2.41 s por unidad frente a 0.75 de presupuesto (configuración), 3.2 veces; a este ritmo qu"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: identity 13.3 min, players 10.8 min, score 7.3 min, scenes 7.0 min, audio 2.4 min; MÁS LENTAS de 2 veces: identity 11.2 s por min de vídeo, 10.8 veces su mediana (1.0); alarma en vivo: identity: 2.72 s por unidad frente a 0.75 de presupuesto (configuración), 3.6 veces; a este ritmo qu"
   },
   {
    "req": 9,
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 4.4 min, views 3.1 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 4.3 min, views 3.1 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -9397,14 +9397,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-06_2341.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (1.0 min): CPU 32/40/49 %, iGPU 0/0/1 %, RAM máx 7.3 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 19/19/19 %, iGPU 1/1/1 %, RAM máx 7.1 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (3.8 min): CPU 24/46/79 %, iGPU 0/34/100 %, RAM máx 7.6 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 32/52/72 %, iGPU 0/36/71 %, RAM máx 7.1 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine (3.0 min): CPU 25/44/90 %, iGPU 0/27/100 %, RAM máx 7.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.8 min): CPU 29/41/63 %, iGPU 42/76/100 %, RAM máx 7.7 GB → uso medio: margen para repartir trabajo"
+   "detail": "recursos_2026-11-07_0037.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el identity (8.2 min): CPU 35/55/73 %, iGPU 0/0/0 %, RAM máx 8.6 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine (1.8 min): CPU 19/42/72 %, iGPU 0/12/86 %, RAM máx 7.0 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 22/22/22 %, iGPU 0/0/0 %, RAM máx 5.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina identity (1.5 min): CPU 44/58/67 %, iGPU 0/0/0 %, RAM máx 5.8 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine (3.8 min): CPU 25/40/62 %, iGPU 0/34/100 %, RAM máx 7.1 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 25/34/43 %, iGPU 0/0/0 %, RAM máx 6.9 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "aviso",
-   "detail": "la última petición (06-11 23:25) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02"
+   "detail": "la última petición (06-11 23:59) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02"
   },
   {
    "req": 11,
@@ -9466,8 +9466,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#10 Ver los cambios en la prueba rápida, sin 1 h",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 12 ok"
+   "status": "ok",
+   "detail": "12 comprobaciones: 12 ok"
   },
   {
    "req": 11,
@@ -9830,8 +9830,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: prevision.log: sin «termina fecha» al final)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -9907,8 +9907,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#77 No lanzar pruebas de 6 h para validar",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -10860,14 +10860,14 @@
    "area": "Peticiones",
    "name": "#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 ok"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 aviso; la peor: «Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina» (0% de sus golpes con repetición enlazada (0 de 157, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 30 repeticiones,)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 4 aviso, 4 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 93-101 puntos jugados (16 juegos leídos, 0 sin leer), 44 con su saque. Esperados: 44-92 saques (1 o 2 por punt)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 8 aviso; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 93-101 puntos jugados (16 juegos leídos, 0 sin leer), 44 con su saque. Esperados: 44-92 saques (1 o 2 por punt)"
   },
   {
    "req": 11,
@@ -10880,8 +10880,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#221 Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 8 ok"
+   "status": "ok",
+   "detail": "8 comprobaciones: 8 ok"
   },
   {
    "req": 11,
@@ -10944,7 +10944,7 @@
    "area": "Peticiones",
    "name": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 13 comprobaciones: 1 aviso, 12 ok; la peor: «Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina» (3 etapas comparadas con su mediana aquí; las que más tardan: identity 12.9 min, players 10.8 min, score 7.3 min, scenes )"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 13 comprobaciones: 1 aviso, 12 ok; la peor: «Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina» (3 etapas comparadas con su mediana aquí; las que más tardan: identity 13.3 min, players 10.8 min, score 7.3 min, scenes )"
   },
   {
    "req": 11,
@@ -10986,7 +10986,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (06-11 23:25) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (06-11 23:59) no empezó por GitHub Actions; el último trabajo por Actions fue el 04-11 20:02)"
   },
   {
    "req": 11,
