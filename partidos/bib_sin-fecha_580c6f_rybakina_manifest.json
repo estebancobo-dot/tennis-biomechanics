@@ -151,63 +151,63 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "b2f509499376dc4c",
+  "fingerprint": "0731a2b3f8aface3",
   "version": "16",
-  "seconds": 657.4,
-  "finished": "2026-11-07 05:54:42",
+  "seconds": 330.5,
+  "finished": "2026-11-07 07:47:50",
   "summary": {
-   "candidates": 271,
-   "confirmed": 260,
+   "candidates": 275,
+   "confirmed": 261,
    "errors": 0,
    "warnings": [],
    "forehands": 111,
-   "windows": 183,
+   "windows": 184,
    "gate": {
-    "windows_gated": 8,
-    "windows_passed": 175,
+    "windows_gated": 10,
+    "windows_passed": 174,
     "windows_ungated": 0,
     "reasons": {
      "golpe_de_bola": 119,
      "detector": 39,
-     "sin_golpe": 8,
-     "bola_no_vista": 17
+     "sin_golpe": 10,
+     "bola_no_vista": 16
     },
-    "seconds_in_gated_windows": 55.8
+    "seconds_in_gated_windows": 16.1
    },
    "seconds": {
-    "pose": 434.7,
-    "pose_modelo_hybrid": 322.0,
-    "raqueta": 196.5,
-    "bola": 159.3,
-    "pose_modelo_yolo": 104.4,
-    "cuerdas_y_3d": 103.0,
-    "jugadora_lejana": 84.5,
-    "pista_ventana": 47.4,
-    "recorte": 35.4,
-    "analisis_ventana": 30.3,
-    "cribado": 8.6
+    "pose": 120.2,
+    "pose_modelo_yolo": 85.3,
+    "jugadora_lejana": 82.8,
+    "cuerdas_y_3d": 71.1,
+    "bola": 53.2,
+    "pista_ventana": 47.3,
+    "pose_modelo_hybrid": 32.4,
+    "analisis_ventana": 30.6,
+    "raqueta": 20.4,
+    "recorte": 20.3,
+    "cribado": 8.4
    },
    "counts": {
     "overlap_s": 1.1,
-    "frames": 42075,
-    "posed_frames": 42075,
+    "frames": 42224,
+    "posed_frames": 42224,
     "impacts": 292,
-    "kept_impacts": 263,
-    "racket_frames": 515,
+    "kept_impacts": 264,
+    "racket_frames": 62,
     "whole_window_again": 0,
-    "frames_960_far": 988,
-    "frames_modelo_yolo": 1187,
-    "frames_modelo_hybrid": 2387
+    "frames_960_far": 685,
+    "frames_modelo_yolo": 1020,
+    "frames_modelo_hybrid": 345
    }
   },
-  "out_hash": "db7a0275c5583b091b1e",
+  "out_hash": "8c0aa21da2a7af3c1326",
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "c999c60fa5d4064a",
+  "fingerprint": "889d23a810fcc2ee",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-07 05:54:42",
+  "finished": "2026-11-07 07:47:50",
   "summary": {
    "enabled": false
   },
@@ -241,10 +241,10 @@
   "scheme": 2
  },
  "views": {
-  "fingerprint": "758f56db2faaf027",
+  "fingerprint": "34c7df9ebcd68898",
   "version": "6",
-  "seconds": 272.1,
-  "finished": "2026-11-07 05:43:44",
+  "seconds": 271.3,
+  "finished": "2026-11-07 07:42:19",
   "summary": {
    "views": 1093,
    "repeticion_principal": 76,
@@ -252,34 +252,34 @@
    "frontal": 18,
    "primer_plano": 868,
    "otra": 51,
-   "links": 2211,
+   "links": 2224,
    "linked_views": 915,
-   "slowmo_links": 15
+   "slowmo_links": 16
   },
-  "out_hash": "5abc3adb82172a379dfe",
+  "out_hash": "fe0e4c59fb1c79f3266c",
   "scheme": 2
  },
  "views_link": {
-  "fingerprint": "e5f6e233bedc3ff2",
+  "fingerprint": "2add6a5b3cf99a37",
   "version": "1",
-  "seconds": 0.4,
-  "finished": "2026-11-07 05:54:42",
+  "seconds": 0.3,
+  "finished": "2026-11-07 07:47:50",
   "summary": {
-   "strokes": 260,
-   "with_replay": 50,
-   "with_other_camera": 240,
+   "strokes": 261,
+   "with_replay": 52,
+   "with_other_camera": 241,
    "with_slowmo": 7,
-   "replay_share": 0.192,
+   "replay_share": 0.199,
    "other_share": 0.923
   },
-  "out_hash": "51bf4fcd2ef82c618294",
+  "out_hash": "85cb6e4cac2f546431ad",
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "3f7d74561c8e50c3",
+  "fingerprint": "98ea0e0dc9f7a472",
   "version": "1",
-  "seconds": 35.6,
-  "finished": "2026-11-07 05:55:18",
+  "seconds": 35.8,
+  "finished": "2026-11-07 07:48:26",
   "summary": {
    "candidates": 58,
    "confirmed": 32,
@@ -299,13 +299,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 13.5,
-    "cuerdas_y_3d": 8.0,
-    "pista_ventana": 7.1,
-    "analisis_ventana": 6.2,
-    "recorte": 3.1,
+    "jugadora_lejana": 13.7,
+    "cuerdas_y_3d": 8.3,
+    "pista_ventana": 7.0,
+    "analisis_ventana": 6.3,
+    "recorte": 2.9,
     "cribado": 1.3,
-    "pose": 0.1
+    "pose": 0.2
    },
    "counts": {
     "overlap_s": 0.0,
@@ -318,7 +318,7 @@
     "frames_960_far": 0
    }
   },
-  "out_hash": "836224564cfdeb52d94d",
+  "out_hash": "78e678acf3686bf2d8f6",
   "scheme": 2
  }
 }
