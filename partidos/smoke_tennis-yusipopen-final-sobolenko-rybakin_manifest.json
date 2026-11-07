@@ -127,10 +127,10 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "f3181c8aba6245c5",
+  "fingerprint": "6dc381b90c473aec",
   "version": "16",
-  "seconds": 65.6,
-  "finished": "2026-11-07 19:50:00",
+  "seconds": 68.4,
+  "finished": "2026-11-07 21:40:57",
   "summary": {
    "candidates": 78,
    "confirmed": 75,
@@ -150,13 +150,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 28.0,
-    "pista_ventana": 16.8,
-    "analisis_ventana": 12.9,
-    "cuerdas_y_3d": 12.7,
-    "recorte": 3.4,
+    "jugadora_lejana": 28.8,
+    "pista_ventana": 18.1,
+    "analisis_ventana": 13.5,
+    "cuerdas_y_3d": 13.5,
+    "recorte": 3.3,
     "cribado": 3.0,
-    "pose": 0.4
+    "pose": 0.3
    },
    "counts": {
     "overlap_s": 0.0,
@@ -173,10 +173,10 @@
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "40ac979657a543bb",
+  "fingerprint": "c515cb035dfcf2bf",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-07 19:50:01",
+  "finished": "2026-11-07 21:40:57",
   "summary": {
    "enabled": false
   },
@@ -184,10 +184,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "dc974569d2d7455b",
+  "fingerprint": "b6442eb613bd8c56",
   "version": "1",
-  "seconds": 23.3,
-  "finished": "2026-11-07 19:50:24",
+  "seconds": 80.8,
+  "finished": "2026-11-07 21:42:18",
   "summary": {
    "candidates": 28,
    "confirmed": 19,
@@ -207,12 +207,14 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 8.0,
-    "analisis_ventana": 5.1,
-    "jugadora_lejana": 2.4,
-    "recorte": 1.5,
-    "pista_ventana": 1.5,
-    "cribado": 0.7,
+    "bola_en_paralelo_cpu": 46.4,
+    "espera_bola_en_paralelo": 39.8,
+    "cuerdas_y_3d": 7.6,
+    "analisis_ventana": 4.9,
+    "jugadora_lejana": 3.0,
+    "pista_ventana": 1.8,
+    "recorte": 1.2,
+    "cribado": 0.8,
     "pose": 0.1
    },
    "counts": {
@@ -223,7 +225,8 @@
     "kept_impacts": 19,
     "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 0
+    "frames_960_far": 0,
+    "windows_ball_ahead": 15
    }
   },
   "out_hash": "6b1c31ea89d0e4de4bba",
@@ -252,7 +255,7 @@
   "fingerprint": "9820e4ce46d3b6f9",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-11-07 19:50:24",
+  "finished": "2026-11-07 21:42:18",
   "summary": {
    "strokes": 75,
    "with_replay": 26,
