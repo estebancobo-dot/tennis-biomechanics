@@ -1,1 +1,9 @@
 hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram_python_gb,gpu_3d,gpu_compute,gpu_decode,disco,progreso_hora,progreso_pct
+2026-11-07T19:51:47,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,59.0,55.6,8.7,9.8,19.8,2.0,0.0,0.0,0.0,0.0,2026-11-07 19:51:33,44.7
+2026-11-07T19:52:11,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,37.0,45.4,0.0,8.8,19.8,1.6,0.0,0.0,0.0,0.0,2026-11-07 19:52:04,57.6
+2026-11-07T19:52:28,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,31.0,40.7,0.0,9.4,19.8,2.2,0.0,0.0,0.0,2.0,2026-11-07 19:52:04,57.6
+2026-11-07T19:52:44,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,25.0,9.8,0.0,8.7,19.8,1.5,0.0,0.0,0.0,0.0,2026-11-07 19:52:36,68.8
+2026-11-07T19:53:01,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,57.0,17.8,0.0,8.8,19.8,1.6,0.0,0.0,0.0,0.0,2026-11-07 19:52:36,68.8
+2026-11-07T19:53:18,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,22.0,20.1,0.0,8.8,19.8,1.5,0.0,0.0,0.0,2.0,2026-11-07 19:53:08,80.0
+2026-11-07T19:53:34,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,45.0,30.6,0.0,8.9,19.8,1.5,0.0,0.0,0.0,0.0,2026-11-07 19:53:08,80.0
+2026-11-07T19:53:51,us-open-2026-r4-naomi-osaka-elena-rybakina,fine,39.0,8.6,0.0,7.1,19.8,1.5,0.0,0.0,0.0,0.0,2026-11-07 19:53:39,91.2
