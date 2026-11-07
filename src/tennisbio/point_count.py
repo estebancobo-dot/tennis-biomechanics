@@ -416,7 +416,7 @@ SERVE_RULE = "primer golpe de quien saca"
 
 def serves_by_rule(strokes: list[dict], readings: list[dict], main_shots: list[tuple[float, float]],
                    behind_m: float = 0.5, max_after_shot_s: float = 15.0, min_contact_pct: float = 95.0,
-                   min_toss_bh: float = 0.05) -> int:
+                   min_toss_bh: float = 0.05, others: list[float] | None = None, pause_s: float = 5.0) -> int:
     """B4 (04-11): in a point on her serve, her first stroke is her serve (the rules of tennis). Requests 101-102: in the
     points of her serve with no serve found, her first stroke came 4-9 s after the main camera returned and behind her
     baseline, named forehand/backhand by the learned spotter — her serve, misnamed. Each such stroke (the first of hers in
@@ -441,7 +441,14 @@ def serves_by_rule(strokes: list[dict], readings: list[dict], main_shots: list[t
         # none of the real matches' misnamed serves, their contact frame was not the contact)
         mt = s.get("metrics") or {}
         ch, toss = mt.get("contact_height_pct"), mt.get("toss_above_head_bh")
-        if not ((ch is not None and float(ch) >= min_contact_pct) or (toss is not None and float(toss) >= min_toss_bh)):
+        by_hand = (ch is not None and float(ch) >= min_contact_pct) or (toss is not None and float(toss) >= min_toss_bh)
+        # far end (07-11, request 137): her hands are not measured there (too small), so the rule is the point itself:
+        # no stroke of anybody (all the candidates of both players, `others`) for `pause_s` before it — the first stroke
+        # after a pause, from behind her baseline, in a point of her serve, is her serve (13 such first strokes in
+        # the 4 matches were named forehand/backhand with nothing seen before them)
+        quiet = (s.get("side") == "far" and others is not None
+                 and not any(t - pause_s <= o < t - 0.3 for o in others))
+        if not (by_hand or quiet):
             continue
         s["stroke_before"] = s.get("stroke")
         s["stroke"], s["stroke_rule"] = "overhead", SERVE_RULE

@@ -349,6 +349,16 @@ detector: si
 ---
 id: 137
 accion: completo
+---
+id: 138
+accion: recall
+detector: si
+---
+id: 139
+accion: completo
+# 138-139 (08-11, B4): 137 dio 24/30, 36/44, 39/47, 52/62 (F3Set 94 %). Quedan puntos con golpes suyos pero sin saque,
+# su primer golpe en el lado lejano y nada antes: en el lado lejano la regla del saque usa la pausa antes del golpe
+# (no se mide la mano alli). 138 = F3Set (precision >= 0,94), 139 = los 4 partidos
 # 136-137 (07-11, B4): 135 dio el motivo: 8 de los 10 golpes suyos perdidos los descartaba el cribado de la bola; los
 # saques del marcador ya no se criban por la bola (como los del detector). 136 = F3Set (que no baje la precision 0,95),
 # 137 = los 4 partidos (saques por punto de su saque)

@@ -1880,7 +1880,8 @@ def _fine(ctx: Context, p, keep, out_name: str):
         from .point_count import serves_by_rule
         sfps = float(scenes.get("fps") or 1.0)
         main = [(sh["start"] / sfps, sh["end"] / sfps) for sh in scenes.get("shots", []) if sh.get("main_camera")]
-        n_rule = serves_by_rule(strokes, score.get("readings") or [], main)
+        n_rule = serves_by_rule(strokes, score.get("readings") or [], main,
+                                others=[float(c["t"]) for c in cands if c.get("t") is not None])
         if n_rule:
             ctx.log(f"  saques por la regla del tenis (primer golpe suyo en un punto de su saque): {n_rule}")
     _write(ctx.path(out_name), strokes)

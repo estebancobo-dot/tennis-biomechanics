@@ -238,3 +238,20 @@ def test_a_scoreboard_serve_window_is_not_ruled_out_by_the_ball(monkeypatch, tmp
     board = [{"t": 10.0, "source": "marcador", "kind": "serve", "side": "near"}]
     dec = S._gate_passes(ctx, board, 9.0, "w2", tmp_path / "w2.mp4", None, "near", object(), 0.0)
     assert dec["passed"] and dec["reason"] == "detector"
+
+
+def test_a_far_first_stroke_after_a_pause_is_her_serve():
+    """Request 137: at the far end her hands are not measured; the first stroke after a pause, behind her baseline, in
+    a point of her serve, is her serve; with a stroke of anybody just before it, it is not."""
+    from tennisbio.point_count import serves_by_rule
+    readings = [_r(0, (0, 0)), _r(40, (15, 0))]
+    far = lambda: [{"match_time_s": 20.0, "stroke": "backhand", "side": "far", "court_pos_m": [1.0, -0.5], "metrics": {}}]
+    s = far()
+    assert serves_by_rule(s, readings, [(10.0, 39.0)], others=[2.0, 20.0, 21.0]) == 1 and s[0]["stroke"] == "overhead"
+    s = far()
+    assert serves_by_rule(s, readings, [(10.0, 39.0)], others=[18.5, 20.0]) == 0           # a stroke 1.5 s before
+    s = far()
+    assert serves_by_rule(s, readings, [(10.0, 39.0)]) == 0                                # nothing known: as before
+    s = far()
+    s[0]["side"] = "near"
+    assert serves_by_rule(s, readings, [(10.0, 39.0)], others=[2.0]) == 0                 # near: the hand decides
