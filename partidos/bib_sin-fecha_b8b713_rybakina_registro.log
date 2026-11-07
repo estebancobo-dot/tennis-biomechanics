@@ -10666,3 +10666,20 @@
 2026-11-07 08:04:09   ventana w012348314_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 88) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 231 px (segments)
 2026-11-07 08:04:09   fine_doubtful: 100 % (64/64 golpes candidatos · 34 confirmados · 0 ventanas descartadas sin pose) · 29 s · quedan ≈ 0 s
 2026-11-07 08:04:10 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine_doubtful terminada a las 08:04:10 en 35 s
+2026-11-07 11:15:24 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] candidates… (2026-11-07 11:15:24, etapa 9 de 14)
+2026-11-07 11:15:28   sonido: pista 1 de 2 (la que coincide con los golpes)
+2026-11-07 11:15:28   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 1, 'changed': 4, 'by_click': 316}
+2026-11-07 11:15:31   tramos que son repeticiones: 7 sin marcador
+2026-11-07 11:15:31   saques añadidos por el marcador (su saque no visto, el resto de la rival sí): 32
+2026-11-07 11:15:31   candidatos del detector entrenado: 668 (333 lejanos; 20 en repeticiones, fuera)
+2026-11-07 11:15:31 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] candidates terminada a las 11:15:31 en 7 s
+2026-11-07 11:15:31 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] views… (2026-11-07 11:15:31, etapa 10 de 14)
+2026-11-07 11:15:43   views:   0 % (1/2991 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+2026-11-07 11:16:13   views:   7 % (202/2991 fotogramas de otras tomas) · 30 s · quedan ≈ 7 min
+2026-11-07 11:16:44   views:  12 % (371/2991 fotogramas de otras tomas) · 61 s · quedan ≈ 7 min
+2026-11-07 11:17:15   views:  18 % (545/2991 fotogramas de otras tomas) · 2 min · quedan ≈ 7 min
+2026-11-07 11:17:45   views:  24 % (705/2991 fotogramas de otras tomas) · 2 min · quedan ≈ 7 min
+2026-11-07 11:18:15   views:  32 % (970/2991 fotogramas de otras tomas) · 3 min · quedan ≈ 5 min
+2026-11-07 11:18:45   views:  39 % (1156/2991 fotogramas de otras tomas) · 3 min · quedan ≈ 5 min
+2026-11-07 11:19:15   views:  44 % (1322/2991 fotogramas de otras tomas) · 4 min · quedan ≈ 4 min
+2026-11-07 11:19:45   views:  52 % (1552/2991 fotogramas de otras tomas) · 4 min · quedan ≈ 4 min
