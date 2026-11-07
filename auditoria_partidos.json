@@ -46,7 +46,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_f43dd2_rybakina",
    "status": "falta",
-   "detail": "20 de 30 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 6, golpes suyos, pero ningún saque 4; sus saques encontrados caen en puntos de su saque 24, de la rival 5, fuera de los puntos leídos 8; en los puntos sin saque, su primer golpe encontrado llega 12.9 s (mediana de 4) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 4): tipo {'backhand/detector': 2, 'forehand/detector': 2}, lado {'far': 3, 'near': 1}, 3 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 4, 'sin_primer_golpe': 6}; en los puntos sin ningún golpe suyo: con golpes de la rival 6, sin golpes de nadie 0, cámara principal 12.8 s (mediana); primeros: 18.4-19.1 min (sin_golpes), 19.0-19.9 min (sin_golpes), 20.5-20.9 min (sin_golpes), 20.9-21.5 min (sin_saque), 26.7-27.2 min (sin_golpes), 40.6-41.1 min (sin_golpes), 41.3-41.8 min (sin_saque), 57.0-57.6 min (sin_golpes)",
+   "detail": "20 de 30 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 6, golpes suyos, pero ningún saque 4; sus saques encontrados caen en puntos de su saque 24, de la rival 5, fuera de los puntos leídos 8; en los puntos sin saque, su primer golpe encontrado llega 12.9 s (mediana de 4) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 4): tipo {'backhand/detector': 2, 'forehand/detector': 2}, lado {'far': 3, 'near': 1}, 3 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 4, 'sin_primer_golpe': 6}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 6, sin golpes de nadie 0, cámara principal 12.8 s (mediana), candidatos {'suyos_perdidos_despues': 4, 'solo_de_la_rival': 1, 'identidad_sin_decidir': 1, 'sin_candidatos': 0}; primeros: 18.4-19.1 min (sin_golpes), 19.0-19.9 min (sin_golpes), 20.5-20.9 min (sin_golpes), 20.9-21.5 min (sin_saque), 26.7-27.2 min (sin_golpes), 40.6-41.1 min (sin_golpes), 41.3-41.8 min (sin_saque), 57.0-57.6 min (sin_golpes)",
    "serve_gaps": {
     "points": 30,
     "found": 20,
@@ -157,8 +157,14 @@
      "sin_primer_golpe": 6
     },
     "no_strokes_points": {
-     "golpes_de_la_rival": 6,
+     "golpes_de_alguien": 6,
      "nadie_golpea": 0,
+     "candidatos": {
+      "suyos_perdidos_despues": 4,
+      "solo_de_la_rival": 1,
+      "identidad_sin_decidir": 1,
+      "sin_candidatos": 0
+     },
      "camara_principal_s_mediana": 12.8
     },
     "first_strokes_without_serve": {
@@ -214,7 +220,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_584c5b_rybakina",
    "status": "aviso",
-   "detail": "38 de 50 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 7, golpes suyos, pero ningún saque 5; sus saques encontrados caen en puntos de su saque 49, de la rival 4, fuera de los puntos leídos 12; en los puntos sin saque, su primer golpe encontrado llega 4.8 s (mediana de 5) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 5): tipo {'backhand/detector': 2, 'forehand/detector': 3}, lado {'far': 4, 'near': 1}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 1, 'golpe_de_la_rival_antes': 2, 'nada_antes': 2, 'sin_primer_golpe': 7}; en los puntos sin ningún golpe suyo: con golpes de la rival 4, sin golpes de nadie 3, cámara principal 12.3 s (mediana); primeros: 17.9-18.4 min (sin_saque), 55.6-56.1 min (sin_golpes), 56.7-57.4 min (sin_golpes), 60.7-61.2 min (sin_saque), 62.1-62.8 min (sin_golpes), 62.7-63.4 min (sin_golpes), 63.3-64.1 min (sin_golpes), 70.9-71.1 min (sin_golpes)",
+   "detail": "38 de 50 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 7, golpes suyos, pero ningún saque 5; sus saques encontrados caen en puntos de su saque 49, de la rival 4, fuera de los puntos leídos 12; en los puntos sin saque, su primer golpe encontrado llega 4.8 s (mediana de 5) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 5): tipo {'backhand/detector': 2, 'forehand/detector': 3}, lado {'far': 4, 'near': 1}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 1, 'golpe_de_la_rival_antes': 2, 'nada_antes': 2, 'sin_primer_golpe': 7}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 4, sin golpes de nadie 3, cámara principal 12.3 s (mediana), candidatos {'suyos_perdidos_despues': 1, 'solo_de_la_rival': 1, 'identidad_sin_decidir': 2, 'sin_candidatos': 3}; primeros: 17.9-18.4 min (sin_saque), 55.6-56.1 min (sin_golpes), 56.7-57.4 min (sin_golpes), 60.7-61.2 min (sin_saque), 62.1-62.8 min (sin_golpes), 62.7-63.4 min (sin_golpes), 63.3-64.1 min (sin_golpes), 70.9-71.1 min (sin_golpes)",
    "serve_gaps": {
     "points": 50,
     "found": 38,
@@ -345,8 +351,14 @@
      "sin_primer_golpe": 7
     },
     "no_strokes_points": {
-     "golpes_de_la_rival": 4,
+     "golpes_de_alguien": 4,
      "nadie_golpea": 3,
+     "candidatos": {
+      "suyos_perdidos_despues": 1,
+      "solo_de_la_rival": 1,
+      "identidad_sin_decidir": 2,
+      "sin_candidatos": 3
+     },
      "camara_principal_s_mediana": 12.3
     },
     "first_strokes_without_serve": {
@@ -402,7 +414,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_580c6f_rybakina",
    "status": "falta",
-   "detail": "28 de 50 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 15, golpes suyos, pero ningún saque 7; sus saques encontrados caen en puntos de su saque 37, de la rival 9, fuera de los puntos leídos 24; en los puntos sin saque, su primer golpe encontrado llega 11.7 s (mediana de 7) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 7): tipo {'backhand/detector': 4, 'forehand/detector': 3}, lado {'near': 1, 'far': 6}, 4 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 3, 'nada_antes': 4, 'sin_primer_golpe': 15}; en los puntos sin ningún golpe suyo: con golpes de la rival 9, sin golpes de nadie 6, cámara principal 8.8 s (mediana); primeros: 34.8-35.4 min (sin_saque), 42.4-42.9 min (sin_saque), 43.6-44.3 min (sin_saque), 44.4-45.5 min (sin_saque), 58.5-59.2 min (sin_saque), 59.7-60.1 min (sin_saque), 60.0-60.6 min (sin_golpes), 66.0-66.4 min (sin_golpes)",
+   "detail": "28 de 50 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 15, golpes suyos, pero ningún saque 7; sus saques encontrados caen en puntos de su saque 37, de la rival 9, fuera de los puntos leídos 24; en los puntos sin saque, su primer golpe encontrado llega 11.7 s (mediana de 7) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 7): tipo {'backhand/detector': 4, 'forehand/detector': 3}, lado {'near': 1, 'far': 6}, 4 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 3, 'nada_antes': 4, 'sin_primer_golpe': 15}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 9, sin golpes de nadie 6, cámara principal 8.8 s (mediana), candidatos {'suyos_perdidos_despues': 6, 'solo_de_la_rival': 0, 'identidad_sin_decidir': 3, 'sin_candidatos': 6}; primeros: 34.8-35.4 min (sin_saque), 42.4-42.9 min (sin_saque), 43.6-44.3 min (sin_saque), 44.4-45.5 min (sin_saque), 58.5-59.2 min (sin_saque), 59.7-60.1 min (sin_saque), 60.0-60.6 min (sin_golpes), 66.0-66.4 min (sin_golpes)",
    "serve_gaps": {
     "points": 50,
     "found": 28,
@@ -609,8 +621,14 @@
      "sin_primer_golpe": 15
     },
     "no_strokes_points": {
-     "golpes_de_la_rival": 9,
+     "golpes_de_alguien": 9,
      "nadie_golpea": 6,
+     "candidatos": {
+      "suyos_perdidos_despues": 6,
+      "solo_de_la_rival": 0,
+      "identidad_sin_decidir": 3,
+      "sin_candidatos": 6
+     },
      "camara_principal_s_mediana": 8.8
     },
     "first_strokes_without_serve": {
@@ -666,7 +684,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_b8b713_rybakina",
    "status": "aviso",
-   "detail": "52 de 70 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 11, golpes suyos, pero ningún saque 7; sus saques encontrados caen en puntos de su saque 64, de la rival 7, fuera de los puntos leídos 13; en los puntos sin saque, su primer golpe encontrado llega 5.1 s (mediana de 7) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 7): tipo {'backhand/detector': 6, 'forehand/detector': 1}, lado {'far': 5, 'near': 2}, 4 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 2, 'golpe_de_la_rival_antes': 2, 'nada_antes': 3, 'sin_primer_golpe': 11}; en los puntos sin ningún golpe suyo: con golpes de la rival 3, sin golpes de nadie 8, cámara principal 8.0 s (mediana); primeros: 47.2-47.8 min (sin_golpes), 62.3-62.7 min (sin_golpes), 63.2-63.7 min (sin_golpes), 78.3-78.8 min (sin_saque), 79.2-79.7 min (sin_golpes), 100.9-101.5 min (sin_saque), 106.8-107.3 min (sin_saque), 110.5-110.9 min (sin_golpes)",
+   "detail": "52 de 70 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 11, golpes suyos, pero ningún saque 7; sus saques encontrados caen en puntos de su saque 64, de la rival 7, fuera de los puntos leídos 13; en los puntos sin saque, su primer golpe encontrado llega 5.1 s (mediana de 7) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 7): tipo {'backhand/detector': 6, 'forehand/detector': 1}, lado {'far': 5, 'near': 2}, 4 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 2, 'golpe_de_la_rival_antes': 2, 'nada_antes': 3, 'sin_primer_golpe': 11}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 3, sin golpes de nadie 8, cámara principal 8.0 s (mediana), candidatos {'suyos_perdidos_despues': 2, 'solo_de_la_rival': 1, 'identidad_sin_decidir': 0, 'sin_candidatos': 8}; primeros: 47.2-47.8 min (sin_golpes), 62.3-62.7 min (sin_golpes), 63.2-63.7 min (sin_golpes), 78.3-78.8 min (sin_saque), 79.2-79.7 min (sin_golpes), 100.9-101.5 min (sin_saque), 106.8-107.3 min (sin_saque), 110.5-110.9 min (sin_golpes)",
    "serve_gaps": {
     "points": 70,
     "found": 52,
@@ -849,8 +867,14 @@
      "sin_primer_golpe": 11
     },
     "no_strokes_points": {
-     "golpes_de_la_rival": 3,
+     "golpes_de_alguien": 3,
      "nadie_golpea": 8,
+     "candidatos": {
+      "suyos_perdidos_despues": 2,
+      "solo_de_la_rival": 1,
+      "identidad_sin_decidir": 0,
+      "sin_candidatos": 8
+     },
      "camara_principal_s_mediana": 8.0
     },
     "first_strokes_without_serve": {
@@ -8281,7 +8305,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_f43dd2_rybakina",
    "status": "ok",
-   "detail": "40 min para 71 min de vídeo ≈ 2.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "41 min para 71 min de vídeo ≈ 2.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -8295,7 +8319,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "53 min para 117 min de vídeo ≈ 1.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "50 min para 117 min de vídeo ≈ 1.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -8577,7 +8601,7 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (64/64), 29 s, quedan ≈ 0 s, a las 2026-11-07 14:16:55"
+   "detail": "último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (64/64), 29 s, quedan ≈ 0 s, a las 2026-11-07 16:05:52"
   },
   {
    "req": 5,
@@ -8591,7 +8615,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "42 carpetas, 36.2 GB en total (2026-11-07T14:16:44); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "42 carpetas, 36.3 GB en total (2026-11-07T16:07:15); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -8661,21 +8685,21 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_derecha",
    "status": "ok",
-   "detail": "terminó el 2026-11-07 11:56:12 en 18 min: 445 vídeos de 445 golpes"
+   "detail": "terminó el 2026-11-07 14:25:58 en 0 min: 445 vídeos de 445 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_reves",
    "status": "ok",
-   "detail": "terminó el 2026-11-07 11:56:45 en 0 min: 289 vídeos de 289 golpes"
+   "detail": "terminó el 2026-11-07 14:26:27 en 0 min: 289 vídeos de 289 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_saque",
    "status": "ok",
-   "detail": "terminó el 2026-11-07 12:07:24 en 10 min: 256 vídeos de 256 golpes"
+   "detail": "terminó el 2026-11-07 14:26:48 en 0 min: 256 vídeos de 256 golpes"
   },
   {
    "req": 5,
@@ -8689,56 +8713,56 @@
    "area": "Modelos",
    "name": "Modelo candidato medido: wasb (bola WASB)",
    "status": "ok",
-   "detail": "frente a ours (TrackNetV3, fp16): precisión F1 0.863 / 0.906; velocidad 44.4 / 34.5 fps; no se adopta (F1 bola a 10 px 0.863 frente a 0.906 (peor); fotogramas/s 44.4 frente a 34.5 (no más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a ours (TrackNetV3, fp16): precisión F1 0.863 / 0.906; velocidad 44.4 / 34.5 fps; no se adopta (F1 bola a 10 px 0.863 frente a 0.906 (peor); fotogramas/s 44.4 frente a 34.5 (no más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Modelo candidato medido: rtmw (esqueleto RTMW-x)",
    "status": "ok",
-   "detail": "frente a YOLO11m-pose + RTMPose-x (hybrid-x): precisión F1 0.667 / 0.667; temblor 0.356 / 0.357 %; pies 0.998 / 0.997; velocidad 10.0 / 3.3 fps; se adopta (F1 golpes 0.667 frente a 0.667 (igual o mejor); fotogramas/s 10.0 frente a 3.3 (no más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a YOLO11m-pose + RTMPose-x (hybrid-x): precisión F1 0.667 / 0.667; temblor 0.356 / 0.357 %; pies 0.998 / 0.997; velocidad 10.0 / 3.3 fps; se adopta (F1 golpes 0.667 frente a 0.667 (igual o mejor); fotogramas/s 10.0 frente a 3.3 (no más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Modelo candidato medido: court14 (pista de 14 puntos (TennisCourtDetector))",
    "status": "ok",
-   "detail": "frente a tennisbio.court.fit_court: precisión puntos a ≤7 px 0.956 / 0.91; pista hallada 1.0 / 0.957; velocidad 6.3 / 3.6 fotogramas/s; se adopta (puntos a ≤7 px 0.956 frente a 0.91 (igual o mejor); fotogramas/s 6.3 frente a 3.6 (no más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a tennisbio.court.fit_court: precisión puntos a ≤7 px 0.956 / 0.91; pista hallada 1.0 / 0.957; velocidad 6.3 / 3.6 fotogramas/s; se adopta (puntos a ≤7 px 0.956 frente a 0.91 (igual o mejor); fotogramas/s 6.3 frente a 3.6 (no más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Modelo candidato medido: rfdetr (jugadora lejana RF-DETR)",
    "status": "ok",
-   "detail": "frente a YOLO11m-pose en la mitad lejana: precisión jugadora lejana hallada 1.0 / 0.903; velocidad 0.5 / 1.3 fotogramas/s; no se adopta (lejana hallada 1.0 frente a 0.903 (igual o mejor); fotogramas/s 0.5 frente a 1.3 (más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a YOLO11m-pose en la mitad lejana: precisión jugadora lejana hallada 1.0 / 0.903; velocidad 0.5 / 1.3 fotogramas/s; no se adopta (lejana hallada 1.0 frente a 0.903 (igual o mejor); fotogramas/s 0.5 frente a 1.3 (más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Modelo candidato medido: f3ed (detector de golpes F3ED)",
    "status": "ok",
-   "detail": "frente a detector propio (spotting): precisión F1 golpes (test) 0.994 / 0.997; velocidad 0.153 / 0.031 min por min de vídeo; no se adopta (F1 golpes 0.994 frente a 0.997 (peor); min por min de vídeo 0.153 frente a 0.031 (más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a detector propio (spotting): precisión F1 golpes (test) 0.994 / 0.997; velocidad 0.153 / 0.031 min por min de vídeo; no se adopta (F1 golpes 0.994 frente a 0.997 (peor); min por min de vídeo 0.153 frente a 0.031 (más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Modelo candidato medido: ocr5 (marcador PP-OCRv5)",
    "status": "ok",
-   "detail": "frente a rapidocr-onnxruntime 1.4 (PP-OCRv4): precisión lecturas coherentes por muestra 0.438 / 0.518; leídas 0.456 / 0.526; velocidad 0.573 / 0.693 s por muestra (CPU); no se adopta (lecturas coherentes por muestra 0.438 frente a 0.518 (peor); s por muestra 0.573 frente a 0.693 (no más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a rapidocr-onnxruntime 1.4 (PP-OCRv4): precisión lecturas coherentes por muestra 0.438 / 0.518; leídas 0.456 / 0.526; velocidad 0.573 / 0.693 s por muestra (CPU); no se adopta (lecturas coherentes por muestra 0.438 frente a 0.518 (peor); s por muestra 0.573 frente a 0.693 (no más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Modelo candidato medido: mag3d (giro 3D MotionAGFormer)",
    "status": "ok",
-   "detail": "frente a RTMW3D (tennisbio.pose.wholebody3d): precisión a ≤15° 0.58 / 0.13; mediana 12.486 / 40.399°; X-factor 10.4 / 10.188°; velocidad 196.5 / 34.1 fotogramas/s (el candidato usa la pose 2D que ya tiene la pasada fina); se adopta (giro del tronco a ≤15° de la referencia 0.58 frente a 0.13 (igual o mejor); fotogramas/s 196.5 frente a 34.1 (no más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a RTMW3D (tennisbio.pose.wholebody3d): precisión a ≤15° 0.58 / 0.13; mediana 12.486 / 40.399°; X-factor 10.4 / 10.188°; velocidad 196.5 / 34.1 fotogramas/s (el candidato usa la pose 2D que ya tiene la pasada fina); se adopta (giro del tronco a ≤15° de la referencia 0.58 frente a 0.13 (igual o mejor); fotogramas/s 196.5 frente a 34.1 (no más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Modelo candidato medido: bounce (bote CatBoost)",
    "status": "ok",
-   "detail": "frente a regla del giro más brusco (tennisbio.ball): precisión F1 botes con nuestra bola 0.899 / 0.581; con la bola anotada 0.936 / 0.811; velocidad 0.1 / 0.1 min por hora de vídeo (1.6 / 0.5 s); se adopta (F1 botes (bola de nuestro detector) 0.899 frente a 0.581 (igual o mejor); min añadidos a la pasada por hora de vídeo 0.1 frente a 0.1 (no más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a regla del giro más brusco (tennisbio.ball): precisión F1 botes con nuestra bola 0.899 / 0.581; con la bola anotada 0.936 / 0.811; velocidad 0.1 / 0.1 min por hora de vídeo (1.6 / 0.5 s); se adopta (F1 botes (bola de nuestro detector) 0.899 frente a 0.581 (igual o mejor); min añadidos a la pasada por hora de vídeo 0.1 frente a 0.1 (no más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
@@ -8822,14 +8846,14 @@
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina",
    "status": "aviso",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: identity 13.3 min, players 10.8 min, score 7.3 min, scenes 7.0 min, audio 2.4 min; MÁS LENTAS de 2 veces: identity 11.2 s por min de vídeo, 10.8 veces su mediana (1.0); alarma en vivo: identity: 2.72 s por unidad frente a 0.75 de presupuesto (configuración), 3.6 veces; a este ritmo qu"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: identity 13.3 min, players 10.8 min, score 7.3 min, scenes 7.0 min, fine 3.5 min; MÁS LENTAS de 2 veces: identity 11.2 s por min de vídeo, 10.8 veces su mediana (1.0); alarma en vivo: identity: 2.72 s por unidad frente a 0.75 de presupuesto (configuración), 3.6 veces; a este ritmo qu"
   },
   {
    "req": 9,
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 7.5 min, views 3.2 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 4.7 min, views 3.2 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -8843,7 +8867,7 @@
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_b8b713_rybakina",
    "status": "ok",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 30.0 min, scenes 28.5 min, score 12.9 min, views 7.8 min, fine 5.0 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 30.0 min, scenes 28.5 min, score 12.9 min, views 7.8 min, fine 5.1 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -8878,14 +8902,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-07_1320.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (41.5 min): CPU 7/19/72 %, iGPU 0/0/1 %, RAM máx 9.2 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el fine (2.0 min): CPU 37/56/96 %, iGPU 0/30/100 %, RAM máx 10.9 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 23/23/23 %, iGPU 0/0/0 %, RAM máx 8.8 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (6.8 min): CPU 18/36/62 %, iGPU 0/26/100 %, RAM máx 8.2 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 20/28/36 %, iGPU 0/20/39 %, RAM máx 9.2 GB → equipo infrautilizado: trabajo en serie (se puede repartir); tennis-yusipopen-polufinal-gau fine (3.2 min): CPU 21/40/65 %, iGPU 0/13/78 %, RAM máx 9.5 GB → uso medio: margen para repartir trabajo"
+   "detail": "recursos_2026-11-07_1540.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (15.2 min): CPU 11/22/70 %, iGPU 0/2/92 %, RAM máx 9.1 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el fine (3.2 min): CPU 14/30/60 %, iGPU 0/26/91 %, RAM máx 9.8 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (4.2 min): CPU 21/44/84 %, iGPU 0/39/100 %, RAM máx 9.3 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 18/32/47 %, iGPU 0/0/0 %, RAM máx 9.0 GB → equipo infrautilizado: trabajo en serie (se puede repartir); tennis-yusipopen-polufinal-gau fine (3.2 min): CPU 28/49/100 %, iGPU 0/12/100 %, RAM máx 9.2 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.5 min): CPU 20/23/26 %, iGPU 0/0/0 %, RAM máx 9.2 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 07-11 13:55, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 07-11 15:42, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 11,
