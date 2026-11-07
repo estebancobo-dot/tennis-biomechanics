@@ -20,3 +20,7 @@ SerializationVersion: 1.1.0.1
 ==> [2026-11-07 15:43:16] Peticion 129: medida scripts\bench_candidates.py
 Registro enviado a Claude (no hace falta copiar nada).
 
+Registro enviado a Claude (no hace falta copiar nada).
+    (paso terminado en 3 min 44 s)
+
+==> [2026-11-07 15:47:00] Peticion 130: analisis completo de todos los partidos (horas; registro: analisis_completo.log)

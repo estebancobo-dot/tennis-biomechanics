@@ -46,7 +46,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "falta",
-   "detail": "9 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 2, golpes suyos, pero ningún saque 3; sus saques encontrados caen en puntos de su saque 13, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 3) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 3): tipo {'backhand/detector': 1, 'backhand/pose': 1, 'forehand/detector': 1}, lado {'far': 3}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 2, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 2}; en los puntos sin ningún golpe suyo: con golpes de la rival 1, sin golpes de nadie 1, cámara principal 47.7 s (mediana); primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque), 31.1-31.7 min (sin_saque)",
+   "detail": "9 de 14 puntos de su saque con su saque encontrado; sin saque: sin ningún golpe suyo 2, golpes suyos, pero ningún saque 3; sus saques encontrados caen en puntos de su saque 13, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 3) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 3): tipo {'backhand/detector': 1, 'backhand/pose': 1, 'forehand/detector': 1}, lado {'far': 3}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 2, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 2}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 1, sin golpes de nadie 1, cámara principal 47.7 s (mediana), candidatos {'suyos_perdidos_despues': 0, 'solo_de_la_rival': 0, 'identidad_sin_decidir': 1, 'sin_candidatos': 1}; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 7.0-7.8 min (sin_golpes), 8.3-9.2 min (sin_saque), 31.1-31.7 min (sin_saque)",
    "serve_gaps": {
     "points": 14,
     "found": 9,
@@ -119,8 +119,14 @@
      "sin_primer_golpe": 2
     },
     "no_strokes_points": {
-     "golpes_de_la_rival": 1,
+     "golpes_de_alguien": 1,
      "nadie_golpea": 1,
+     "candidatos": {
+      "suyos_perdidos_despues": 0,
+      "solo_de_la_rival": 0,
+      "identidad_sin_decidir": 1,
+      "sin_candidatos": 1
+     },
      "camara_principal_s_mediana": 47.7
     },
     "first_strokes_without_serve": {
@@ -2827,7 +2833,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4232 caracteres de texto, 7 vídeos, 12 gráficos",
+   "detail": "4244 caracteres de texto, 7 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -3154,8 +3160,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 237a381 (2026-11-07T13:12:12): 828 bien, 0 fallan, 0 errores",
-   "passed": 828,
+   "detail": "código e6f262f (2026-11-07T14:04:01): 829 bien, 0 fallan, 0 errores",
+   "passed": 829,
    "failed": 0
   },
   {
@@ -3380,7 +3386,7 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 19 s, quedan ≈ 0 s, a las 2026-11-07 13:00:01"
+   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (28/28), 19 s, quedan ≈ 0 s, a las 2026-11-07 15:44:27"
   },
   {
    "req": 5,
@@ -3394,7 +3400,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "42 carpetas, 36.2 GB en total (2026-11-07T13:56:25); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "42 carpetas, 36.2 GB en total (2026-11-07T15:46:56); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -3443,7 +3449,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-07 13:55:37 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-07 15:44:53 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3457,56 +3463,56 @@
    "area": "Modelos",
    "name": "Modelo candidato medido: wasb (bola WASB)",
    "status": "ok",
-   "detail": "frente a ours (TrackNetV3, fp16): precisión F1 0.863 / 0.906; velocidad 44.4 / 34.5 fps; no se adopta (F1 bola a 10 px 0.863 frente a 0.906 (peor); fotogramas/s 44.4 frente a 34.5 (no más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a ours (TrackNetV3, fp16): precisión F1 0.863 / 0.906; velocidad 44.4 / 34.5 fps; no se adopta (F1 bola a 10 px 0.863 frente a 0.906 (peor); fotogramas/s 44.4 frente a 34.5 (no más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Modelo candidato medido: rtmw (esqueleto RTMW-x)",
    "status": "ok",
-   "detail": "frente a YOLO11m-pose + RTMPose-x (hybrid-x): precisión F1 0.667 / 0.667; temblor 0.356 / 0.357 %; pies 0.998 / 0.997; velocidad 10.0 / 3.3 fps; se adopta (F1 golpes 0.667 frente a 0.667 (igual o mejor); fotogramas/s 10.0 frente a 3.3 (no más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a YOLO11m-pose + RTMPose-x (hybrid-x): precisión F1 0.667 / 0.667; temblor 0.356 / 0.357 %; pies 0.998 / 0.997; velocidad 10.0 / 3.3 fps; se adopta (F1 golpes 0.667 frente a 0.667 (igual o mejor); fotogramas/s 10.0 frente a 3.3 (no más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Modelo candidato medido: court14 (pista de 14 puntos (TennisCourtDetector))",
    "status": "ok",
-   "detail": "frente a tennisbio.court.fit_court: precisión puntos a ≤7 px 0.956 / 0.91; pista hallada 1.0 / 0.957; velocidad 6.3 / 3.6 fotogramas/s; se adopta (puntos a ≤7 px 0.956 frente a 0.91 (igual o mejor); fotogramas/s 6.3 frente a 3.6 (no más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a tennisbio.court.fit_court: precisión puntos a ≤7 px 0.956 / 0.91; pista hallada 1.0 / 0.957; velocidad 6.3 / 3.6 fotogramas/s; se adopta (puntos a ≤7 px 0.956 frente a 0.91 (igual o mejor); fotogramas/s 6.3 frente a 3.6 (no más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Modelo candidato medido: rfdetr (jugadora lejana RF-DETR)",
    "status": "ok",
-   "detail": "frente a YOLO11m-pose en la mitad lejana: precisión jugadora lejana hallada 1.0 / 0.903; velocidad 0.5 / 1.3 fotogramas/s; no se adopta (lejana hallada 1.0 frente a 0.903 (igual o mejor); fotogramas/s 0.5 frente a 1.3 (más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a YOLO11m-pose en la mitad lejana: precisión jugadora lejana hallada 1.0 / 0.903; velocidad 0.5 / 1.3 fotogramas/s; no se adopta (lejana hallada 1.0 frente a 0.903 (igual o mejor); fotogramas/s 0.5 frente a 1.3 (más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Modelo candidato medido: f3ed (detector de golpes F3ED)",
    "status": "ok",
-   "detail": "frente a detector propio (spotting): precisión F1 golpes (test) 0.994 / 0.997; velocidad 0.153 / 0.031 min por min de vídeo; no se adopta (F1 golpes 0.994 frente a 0.997 (peor); min por min de vídeo 0.153 frente a 0.031 (más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a detector propio (spotting): precisión F1 golpes (test) 0.994 / 0.997; velocidad 0.153 / 0.031 min por min de vídeo; no se adopta (F1 golpes 0.994 frente a 0.997 (peor); min por min de vídeo 0.153 frente a 0.031 (más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Modelo candidato medido: ocr5 (marcador PP-OCRv5)",
    "status": "ok",
-   "detail": "frente a rapidocr-onnxruntime 1.4 (PP-OCRv4): precisión lecturas coherentes por muestra 0.438 / 0.518; leídas 0.456 / 0.526; velocidad 0.573 / 0.693 s por muestra (CPU); no se adopta (lecturas coherentes por muestra 0.438 frente a 0.518 (peor); s por muestra 0.573 frente a 0.693 (no más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a rapidocr-onnxruntime 1.4 (PP-OCRv4): precisión lecturas coherentes por muestra 0.438 / 0.518; leídas 0.456 / 0.526; velocidad 0.573 / 0.693 s por muestra (CPU); no se adopta (lecturas coherentes por muestra 0.438 frente a 0.518 (peor); s por muestra 0.573 frente a 0.693 (no más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Modelo candidato medido: mag3d (giro 3D MotionAGFormer)",
    "status": "ok",
-   "detail": "frente a RTMW3D (tennisbio.pose.wholebody3d): precisión a ≤15° 0.58 / 0.13; mediana 12.486 / 40.399°; X-factor 10.4 / 10.188°; velocidad 196.5 / 34.1 fotogramas/s (el candidato usa la pose 2D que ya tiene la pasada fina); se adopta (giro del tronco a ≤15° de la referencia 0.58 frente a 0.13 (igual o mejor); fotogramas/s 196.5 frente a 34.1 (no más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a RTMW3D (tennisbio.pose.wholebody3d): precisión a ≤15° 0.58 / 0.13; mediana 12.486 / 40.399°; X-factor 10.4 / 10.188°; velocidad 196.5 / 34.1 fotogramas/s (el candidato usa la pose 2D que ya tiene la pasada fina); se adopta (giro del tronco a ≤15° de la referencia 0.58 frente a 0.13 (igual o mejor); fotogramas/s 196.5 frente a 34.1 (no más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
    "area": "Modelos",
    "name": "Modelo candidato medido: bounce (bote CatBoost)",
    "status": "ok",
-   "detail": "frente a regla del giro más brusco (tennisbio.ball): precisión F1 botes con nuestra bola 0.899 / 0.581; con la bola anotada 0.936 / 0.811; velocidad 0.1 / 0.1 min por hora de vídeo (1.6 / 0.5 s); se adopta (F1 botes (bola de nuestro detector) 0.899 frente a 0.581 (igual o mejor); min añadidos a la pasada por hora de vídeo 0.1 frente a 0.1 (no más lento)) [2026-11-07 12:56, dml]"
+   "detail": "frente a regla del giro más brusco (tennisbio.ball): precisión F1 botes con nuestra bola 0.899 / 0.581; con la bola anotada 0.936 / 0.811; velocidad 0.1 / 0.1 min por hora de vídeo (1.6 / 0.5 s); se adopta (F1 botes (bola de nuestro detector) 0.899 frente a 0.581 (igual o mejor); min añadidos a la pasada por hora de vídeo 0.1 frente a 0.1 (no más lento)) [2026-11-07 15:46, dml]"
   },
   {
    "req": 12,
@@ -3583,14 +3589,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-07_1320.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (33.2 min): CPU 7/19/72 %, iGPU 0/0/1 %, RAM máx 7.6 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el fine (2.0 min): CPU 37/56/96 %, iGPU 0/30/100 %, RAM máx 10.9 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 23/23/23 %, iGPU 0/0/0 %, RAM máx 8.8 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
+   "detail": "recursos_2026-11-07_1540.csv (mín/media/máx): tennis-yusipopen-final-sobolen fine_doubtful (6.5 min): CPU 11/25/70 %, iGPU 0/4/92 %, RAM máx 8.5 GB → equipo infrautilizado: trabajo en serie (se puede repartir); us-open-2026-r4-naomi-osaka-el fine (0.8 min): CPU 19/29/34 %, iGPU 86/88/91 %, RAM máx 9.8 GB → iGPU al límite"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 07-11 13:55, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 07-11 15:42, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 11,
