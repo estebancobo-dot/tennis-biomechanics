@@ -154,3 +154,15 @@ def test_a_return_after_a_pause_with_her_serve_unseen_gets_one(monkeypatch):
     monkeypatch.setattr(S, "near_is_target", lambda identity, frame: True)
     assert S.add_serve_candidates(cands, {"readings": readings}, {"fps": 25}, 25.0) == 1
     assert any(c.get("source") == "marcador" and abs(c["t"] - 18.0) < 1e-6 for c in cands)
+
+
+def test_no_serve_is_added_when_the_opponents_first_stroke_is_her_own_serve(monkeypatch):
+    """Request 120: the scoreboard's server misread; the opponent served (the spotter says so) and a false serve of
+    hers was added before it (F3Set: 17 and 39 added where her serves were already found)."""
+    import tennisbio.stages as S
+    readings = [_r(0, (0, 0)), _r(40, (15, 0))]
+    cands = [{"t": 0.5, "target": False, "side": "far"}, {"t": 1.2, "target": True, "side": "near"},
+             {"t": 18.8, "target": False, "side": "far", "kind": "serve"},
+             {"t": 19.6, "target": True, "side": "near", "kind": "forehand"}]
+    monkeypatch.setattr(S, "near_is_target", lambda identity, frame: True)
+    assert S.add_serve_candidates(cands, {"readings": readings}, {"fps": 25}, 25.0) == 0

@@ -832,6 +832,10 @@ def add_serve_candidates(cands: list[dict], score: dict, identity: dict, fps: fl
                 break
         if opp is None or any(c.get("target") and opp["t"] - SERVE_LOOK_S <= c["t"] < opp["t"] for c in ts):
             continue
+        # the opponent's stroke is a serve for the learned spotter: the point is hers to serve, the scoreboard's server
+        # was misread (request 120: in F3Set her serves were already found, 35/39 and 54/59, yet 17 and 39 were added)
+        if opp.get("kind") == "serve":
+            continue
         t = opp["t"] - SERVE_BEFORE_RETURN_S
         who = near_is_target(identity, int(round(t * ifps))) if identity else None
         if who is None:
@@ -843,7 +847,7 @@ def add_serve_candidates(cands: list[dict], score: dict, identity: dict, fps: fl
     return len(added)
 
 
-@stage("candidates", "13", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
+@stage("candidates", "14", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
        reviews=("identidad_clic.json",),
        # with the learned spotter (off by default) it reads spotting.json; off, its fingerprint is the one it always was
        settings=lambda c: {"spotter": True} if spotter_on(c) else {},

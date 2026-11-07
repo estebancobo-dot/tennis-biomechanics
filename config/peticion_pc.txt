@@ -289,6 +289,13 @@ detector: si
 ---
 id: 121
 accion: completo
+---
+id: 122
+accion: recall
+detector: si
+# 122 (07-11): 120 dio lo mismo que 118 (17 y 39 saques anadidos en F3Set, precision 0,873) aunque sus saques ya se
+# encontraban (35/39, 54/59): el servidor del marcador mal leido, el "resto" era el saque de la rival. Ahora no se anade
+# si el detector dice que ese golpe de la rival es un saque (candidatos v14). Los 4 partidos solo si F3Set mejora
 # 120-121 (07-11): 118 dio precision 0,873 (antes 0,945): la ventana del punto empezaba en los ultimos golpes del punto
 # anterior y tomaba uno por el resto. Ahora el resto es el primer golpe de la rival tras >= 5 s sin golpes, y no se anade
 # si hay un golpe suyo en los 3 s antes (candidatos v13). 120 = F3Set, 121 = los 4 partidos
