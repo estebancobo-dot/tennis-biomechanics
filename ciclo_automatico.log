@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261107162428
+Start time: 20261107164446
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 644
+Process ID: 9500
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -16,11 +16,8 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-
-==> [2026-11-07 16:24:28] Peticion 131: medida scripts\bench_candidates.py
-    (paso terminado en 0 s)
-Empezado 2026-11-07 16:24:25 - terminado 2026-11-07 16:24:28 - duracion total 3 s
+Empezado 2026-11-07 16:44:44 - terminado 2026-11-07 17:47:21 - duracion total 1 h 02 min
 **********************
 Windows PowerShell transcript end
-End time: 20261107162428
+End time: 20261107174721
 **********************
