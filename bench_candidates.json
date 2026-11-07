@@ -671,9 +671,9 @@
    "minutes": 20.9
   },
   "bounce_own": {
-   "error": "OSError: https://drive.usercontent.google.com/download?id=1DQ3ZbvokTsgOq6x-ay6O8U2W4a8e3LFw&export=download&confirm=t: bytes 2303721472-2304770047 incompletos tras 5 intentos",
-   "trace": "3.11-windows-x86_64-none\\Lib\\zipfile.py\", line 1107, in _read2\n    data = self._fileobj.read(n)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\esteb\\AppData\\Roaming\\uv\\python\\cpython-3.11-windows-x86_64-none\\Lib\\zipfile.py\", line 811, in read\n    data = self._file.read(n)\n           ^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\scripts\\bench_candidates.py\", line 398, in readinto\n    d = self._blk(i)[p - i * self.block:][: n - len(got)]\n        ^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\scripts\\bench_candidates.py\", line 386, in _blk\n    raise OSError(f\"{self.url}: bytes {a}-{b} incompletos tras 5 intentos\")\nOSError: https://drive.usercontent.google.com/download?id=1DQ3ZbvokTsgOq6x-ay6O8U2W4a8e3LFw&export=download&confirm=t: bytes 2303721472-2304770047 incompletos tras 5 intentos\n"
+   "error": "OSError: TrackNet: descarga sin terminar tras 8 intentos",
+   "trace": "ain_bounce.py\", line 87, in tracked\n    tr = tracker.track(frames(), step=1)           # 30 fps: as bench_candidates (and the fine pass, ~25 fps)\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\src\\tennisbio\\ball.py\", line 47, in track\n    for f in frames:\n  File \"C:\\tenis\\tennis-biomech\\scripts\\train_bounce.py\", line 83, in frames\n    for i, f in enumerate(_frames(root, key, folder, names)):\n  File \"C:\\tenis\\tennis-biomech\\scripts\\train_bounce.py\", line 65, in _frames\n    z = z or tracknet_download(root)\n             ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\tenis\\tennis-biomech\\scripts\\bench_candidates.py\", line 1034, in tracknet_download\n    raise OSError(f\"TrackNet: descarga sin terminar tras {tries} intentos\")\nOSError: TrackNet: descarga sin terminar tras 8 intentos\n"
   }
  },
- "generated": "2026-11-07 12:56"
+ "generated": "2026-11-07 14:30"
 }

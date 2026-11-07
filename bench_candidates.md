@@ -1,4 +1,4 @@
-# Modelos candidatos frente a los actuales (2026-11-07 12:56, dml)
+# Modelos candidatos frente a los actuales (2026-11-07 14:30, dml)
 
 Regla: se adopta si su precisión es igual o mejor **y** no es más lento en la pasada completa de un partido nuevo. Nada de esto cambia el análisis: adoptar uno es un cambio aparte.
 
@@ -12,7 +12,7 @@ Regla: se adopta si su precisión es igual o mejor **y** no es más lento en la 
 | ocr5 | rapidocr-onnxruntime 1.4 (PP-OCRv4) | lecturas coherentes por muestra 0.438 / 0.518; leídas 0.456 / 0.526 | 0.573 / 0.693 s por muestra (CPU) | no: lecturas coherentes por muestra 0.438 frente a 0.518 (peor); s por muestra 0.573 frente a 0.693 (no más lento) |
 | mag3d | RTMW3D (tennisbio.pose.wholebody3d) | a ≤15° 0.58 / 0.13; mediana 12.486 / 40.399°; X-factor 10.4 / 10.188° | 196.5 / 34.1 fotogramas/s (el candidato usa la pose 2D que ya tiene la pasada fina) | **sí**: giro del tronco a ≤15° de la referencia 0.58 frente a 0.13 (igual o mejor); fotogramas/s 196.5 frente a 34.1 (no más lento) |
 | bounce | regla del giro más brusco (tennisbio.ball) | F1 botes con nuestra bola 0.899 / 0.581; con la bola anotada 0.936 / 0.811 | 0.1 / 0.1 min por hora de vídeo (1.6 / 0.5 s) | **sí**: F1 botes (bola de nuestro detector) 0.899 frente a 0.581 (igual o mejor); min añadidos a la pasada por hora de vídeo 0.1 frente a 0.1 (no más lento) |
-| bounce_own | | error: OSError: https://drive.usercontent.google.com/download?id=1DQ3ZbvokTsgOq6x-ay6O8U2W4a8e3LFw&export=download&confirm=t: b | | no |
+| bounce_own | | error: OSError: TrackNet: descarga sin terminar tras 8 intentos | | no |
 
 - wasb: La bola corre sobre todo el juego de un partido nuevo (detector de golpes): su velocidad por fotograma es la de esa parte de la pasada.
 
