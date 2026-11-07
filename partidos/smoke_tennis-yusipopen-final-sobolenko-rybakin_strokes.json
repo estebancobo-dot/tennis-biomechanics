@@ -40544,6 +40544,733 @@
   ]
  },
  {
+  "impact_frame": 110,
+  "impact_source": "spotter",
+  "stroke": "overhead",
+  "phases": {
+   "ready": {
+    "frame": 68,
+    "t_rel": -0.84,
+    "method": "fallback_before_takeback",
+    "confidence": 0.0
+   },
+   "takeback": {
+    "frame": null,
+    "t_rel": null,
+    "method": "no_backswing",
+    "confidence": 0.0
+   },
+   "loaded": {
+    "frame": null,
+    "t_rel": null,
+    "method": "wrist_pause_before_forward_swing",
+    "confidence": 0.0
+   },
+   "acceleration": {
+    "frame": null,
+    "t_rel": null,
+    "method": "none",
+    "confidence": 0.0
+   },
+   "impact": {
+    "frame": 110,
+    "t_rel": 0.0,
+    "method": "given",
+    "confidence": 0.0
+   },
+   "extension": {
+    "frame": 112,
+    "t_rel": 0.04,
+    "method": "impact_plus_50ms",
+    "confidence": 0.0
+   },
+   "finish": {
+    "frame": null,
+    "t_rel": null,
+    "method": "wrist_stops_after_swing",
+    "confidence": 0.0
+   },
+   "recovery": {
+    "frame": null,
+    "t_rel": null,
+    "method": "none",
+    "confidence": 0.0
+   }
+  },
+  "metrics": {
+   "shoulder_turn_loaded_deg": null,
+   "hip_turn_loaded_deg": null,
+   "elbow_impact_deg": null,
+   "non_elbow_impact_deg": null,
+   "non_arm_extension_loaded_deg": null,
+   "contact_height_pct": null,
+   "contact_lateral_pct": null,
+   "toss_above_head_bh": null,
+   "base_width_loaded_pct": null,
+   "finish_wrist_height_pct": null,
+   "head_motion_impact_cm": null,
+   "time_ready_to_impact_s": 0.84
+  },
+  "racket": {
+   "ready": {
+    "detected": false,
+    "elevation_deg": null,
+    "head_above_wrist_cm": null
+   },
+   "impact": {
+    "detected": false,
+    "elevation_deg": null,
+    "head_above_wrist_cm": null
+   },
+   "extension": {
+    "detected": false,
+    "elevation_deg": null,
+    "head_above_wrist_cm": null
+   }
+  },
+  "racket_track": [
+   [
+    -1.0,
+    null,
+    null
+   ],
+   [
+    -0.98,
+    null,
+    null
+   ],
+   [
+    -0.96,
+    null,
+    null
+   ],
+   [
+    -0.94,
+    null,
+    null
+   ],
+   [
+    -0.92,
+    null,
+    null
+   ],
+   [
+    -0.9,
+    null,
+    null
+   ],
+   [
+    -0.88,
+    null,
+    null
+   ],
+   [
+    -0.86,
+    null,
+    null
+   ],
+   [
+    -0.84,
+    null,
+    null
+   ],
+   [
+    -0.82,
+    null,
+    null
+   ],
+   [
+    -0.8,
+    null,
+    null
+   ],
+   [
+    -0.78,
+    null,
+    null
+   ],
+   [
+    -0.76,
+    null,
+    null
+   ],
+   [
+    -0.74,
+    null,
+    null
+   ],
+   [
+    -0.72,
+    null,
+    null
+   ],
+   [
+    -0.7,
+    null,
+    null
+   ],
+   [
+    -0.68,
+    null,
+    null
+   ],
+   [
+    -0.66,
+    null,
+    null
+   ],
+   [
+    -0.64,
+    null,
+    null
+   ],
+   [
+    -0.62,
+    null,
+    null
+   ],
+   [
+    -0.6,
+    null,
+    null
+   ],
+   [
+    -0.58,
+    null,
+    null
+   ],
+   [
+    -0.56,
+    null,
+    null
+   ],
+   [
+    -0.54,
+    null,
+    null
+   ],
+   [
+    -0.52,
+    null,
+    null
+   ],
+   [
+    -0.5,
+    null,
+    null
+   ],
+   [
+    -0.48,
+    null,
+    null
+   ],
+   [
+    -0.46,
+    null,
+    null
+   ],
+   [
+    -0.44,
+    null,
+    null
+   ],
+   [
+    -0.42,
+    null,
+    null
+   ],
+   [
+    -0.4,
+    null,
+    null
+   ],
+   [
+    -0.38,
+    null,
+    null
+   ],
+   [
+    -0.36,
+    null,
+    null
+   ],
+   [
+    -0.34,
+    null,
+    null
+   ],
+   [
+    -0.32,
+    null,
+    null
+   ],
+   [
+    -0.3,
+    null,
+    null
+   ],
+   [
+    -0.28,
+    null,
+    null
+   ],
+   [
+    -0.26,
+    null,
+    null
+   ],
+   [
+    -0.24,
+    null,
+    null
+   ],
+   [
+    -0.22,
+    null,
+    null
+   ],
+   [
+    -0.2,
+    null,
+    null
+   ],
+   [
+    -0.18,
+    null,
+    null
+   ],
+   [
+    -0.16,
+    null,
+    null
+   ],
+   [
+    -0.14,
+    null,
+    null
+   ],
+   [
+    -0.12,
+    null,
+    null
+   ],
+   [
+    -0.1,
+    null,
+    null
+   ],
+   [
+    -0.08,
+    null,
+    null
+   ],
+   [
+    -0.06,
+    null,
+    null
+   ],
+   [
+    -0.04,
+    null,
+    null
+   ],
+   [
+    -0.02,
+    null,
+    null
+   ],
+   [
+    0.0,
+    null,
+    null
+   ],
+   [
+    0.02,
+    null,
+    null
+   ],
+   [
+    0.04,
+    null,
+    null
+   ],
+   [
+    0.06,
+    null,
+    null
+   ],
+   [
+    0.08,
+    null,
+    null
+   ],
+   [
+    0.1,
+    null,
+    null
+   ],
+   [
+    0.12,
+    null,
+    null
+   ],
+   [
+    0.14,
+    null,
+    null
+   ],
+   [
+    0.16,
+    null,
+    null
+   ],
+   [
+    0.18,
+    null,
+    null
+   ],
+   [
+    0.2,
+    null,
+    null
+   ],
+   [
+    0.22,
+    null,
+    null
+   ],
+   [
+    0.24,
+    null,
+    null
+   ],
+   [
+    0.26,
+    null,
+    null
+   ],
+   [
+    0.28,
+    null,
+    null
+   ],
+   [
+    0.3,
+    null,
+    null
+   ],
+   [
+    0.32,
+    null,
+    null
+   ],
+   [
+    0.34,
+    null,
+    null
+   ],
+   [
+    0.36,
+    null,
+    null
+   ],
+   [
+    0.38,
+    null,
+    null
+   ],
+   [
+    0.4,
+    null,
+    null
+   ],
+   [
+    0.42,
+    null,
+    null
+   ],
+   [
+    0.44,
+    null,
+    null
+   ],
+   [
+    0.46,
+    null,
+    null
+   ],
+   [
+    0.48,
+    null,
+    null
+   ],
+   [
+    0.5,
+    null,
+    null
+   ],
+   [
+    0.52,
+    null,
+    null
+   ],
+   [
+    0.54,
+    null,
+    null
+   ],
+   [
+    0.56,
+    null,
+    null
+   ],
+   [
+    0.58,
+    null,
+    null
+   ],
+   [
+    0.6,
+    null,
+    null
+   ],
+   [
+    0.62,
+    null,
+    null
+   ],
+   [
+    0.64,
+    null,
+    null
+   ],
+   [
+    0.66,
+    null,
+    null
+   ],
+   [
+    0.68,
+    null,
+    null
+   ],
+   [
+    0.7,
+    null,
+    null
+   ],
+   [
+    0.72,
+    null,
+    null
+   ],
+   [
+    0.74,
+    null,
+    null
+   ],
+   [
+    0.76,
+    null,
+    null
+   ],
+   [
+    0.78,
+    null,
+    null
+   ],
+   [
+    0.8,
+    null,
+    null
+   ]
+  ],
+  "ball": {},
+  "chain": {
+   "peaks_s": {},
+   "order": [],
+   "version": 2,
+   "proximal_to_distal": null
+  },
+  "review": [
+   "phase:ready",
+   "phase:takeback",
+   "phase:loaded",
+   "phase:acceleration",
+   "phase:impact",
+   "phase:extension",
+   "phase:finish",
+   "phase:recovery",
+   "impact_without_audio",
+   "racket_not_seen_when_loaded"
+  ],
+  "stroke_pose": "backhand",
+  "stroke_source": "detector",
+  "window": "w001414097_3600.mp4",
+  "window_start_s": 1414.097,
+  "match_time_s": 1416.297,
+  "candidate_audio": false,
+  "identity": true,
+  "target": true,
+  "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0141630",
+  "surface": "dura",
+  "score": {
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     7
+    ],
+    [
+     0,
+     1
+    ]
+   ],
+   "points": [
+    null,
+    null
+   ],
+   "banner": "",
+   "set": 3,
+   "sets_won": [
+    1,
+    1
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "server": 0
+  },
+  "court_check": "ok",
+  "side": "near",
+  "height_scale": {
+   "source": "segments",
+   "px": 1883.1,
+   "court": "sin_pies"
+  },
+  "camera_pitch_deg": 18.2,
+  "outcome": "rally",
+  "face": {
+   "ready": null,
+   "takeback": null,
+   "loaded": null,
+   "acceleration": null,
+   "impact": null,
+   "extension": null,
+   "finish": null,
+   "recovery": null
+  },
+  "point_won": false,
+  "technique": {
+   "phases": {
+    "ready": {},
+    "impact": {},
+    "extension": {}
+   },
+   "stroke": {},
+   "classes": {
+    "intent": "neutra",
+    "play": "inicio del punto"
+   },
+   "footwork": {
+    "airborne_at_impact": false,
+    "one_foot_at_impact": false,
+    "speed_at_impact_mps": null,
+    "step_kinds": [],
+    "movement": null,
+    "feet_still_share": 0.0,
+    "steps_reliable": false
+   },
+   "pose": {
+    "ready": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "impact": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "extension": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "curves": {},
+   "jitter": {
+    "footwork.airborne_at_impact": 0.0,
+    "footwork.one_foot_at_impact": 0.0,
+    "footwork.feet_still_share": 0.0,
+    "footwork.steps_reliable": 0.0,
+    "class.intent": 0.0
+   }
+  },
+  "series": "series/w001414097_3600_near_110.json",
+  "window_impact_s": 2.2,
+  "shot_in_point": 1,
+  "shots_in_point": 1,
+  "is_return": false,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1420.7,
+    "t1": 1442.4,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
+ },
+ {
   "impact_frame": 108,
   "impact_source": "spotter+ball",
   "stroke": "overhead",
@@ -67896,6 +68623,910 @@
     "label": "Primer plano",
     "t0": 1818.5,
     "t1": 1858.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
+ },
+ {
+  "impact_frame": 110,
+  "impact_source": "spotter",
+  "stroke": "overhead",
+  "phases": {
+   "ready": {
+    "frame": 68,
+    "t_rel": -0.84,
+    "method": "fallback_before_takeback",
+    "confidence": 0.0
+   },
+   "takeback": {
+    "frame": null,
+    "t_rel": null,
+    "method": "no_backswing",
+    "confidence": 0.0
+   },
+   "loaded": {
+    "frame": null,
+    "t_rel": null,
+    "method": "wrist_pause_before_forward_swing",
+    "confidence": 0.0
+   },
+   "acceleration": {
+    "frame": null,
+    "t_rel": null,
+    "method": "none",
+    "confidence": 0.0
+   },
+   "impact": {
+    "frame": 110,
+    "t_rel": 0.0,
+    "method": "given",
+    "confidence": 0.0
+   },
+   "extension": {
+    "frame": 112,
+    "t_rel": 0.04,
+    "method": "impact_plus_50ms",
+    "confidence": 0.0
+   },
+   "finish": {
+    "frame": null,
+    "t_rel": null,
+    "method": "wrist_stops_after_swing",
+    "confidence": 0.0
+   },
+   "recovery": {
+    "frame": null,
+    "t_rel": null,
+    "method": "none",
+    "confidence": 0.0
+   }
+  },
+  "metrics": {
+   "shoulder_turn_loaded_deg": null,
+   "hip_turn_loaded_deg": null,
+   "elbow_impact_deg": null,
+   "non_elbow_impact_deg": null,
+   "non_arm_extension_loaded_deg": null,
+   "contact_height_pct": null,
+   "contact_lateral_pct": null,
+   "toss_above_head_bh": null,
+   "base_width_loaded_pct": null,
+   "finish_wrist_height_pct": null,
+   "head_motion_impact_cm": null,
+   "time_ready_to_impact_s": 0.84
+  },
+  "racket": {
+   "ready": {
+    "detected": false,
+    "elevation_deg": null,
+    "head_above_wrist_cm": null
+   },
+   "impact": {
+    "detected": false,
+    "elevation_deg": null,
+    "head_above_wrist_cm": null
+   },
+   "extension": {
+    "detected": false,
+    "elevation_deg": null,
+    "head_above_wrist_cm": null
+   }
+  },
+  "racket_track": [
+   [
+    -1.0,
+    null,
+    null
+   ],
+   [
+    -0.98,
+    null,
+    null
+   ],
+   [
+    -0.96,
+    null,
+    null
+   ],
+   [
+    -0.94,
+    null,
+    null
+   ],
+   [
+    -0.92,
+    null,
+    null
+   ],
+   [
+    -0.9,
+    null,
+    null
+   ],
+   [
+    -0.88,
+    null,
+    null
+   ],
+   [
+    -0.86,
+    null,
+    null
+   ],
+   [
+    -0.84,
+    null,
+    null
+   ],
+   [
+    -0.82,
+    null,
+    null
+   ],
+   [
+    -0.8,
+    null,
+    null
+   ],
+   [
+    -0.78,
+    null,
+    null
+   ],
+   [
+    -0.76,
+    null,
+    null
+   ],
+   [
+    -0.74,
+    null,
+    null
+   ],
+   [
+    -0.72,
+    null,
+    null
+   ],
+   [
+    -0.7,
+    null,
+    null
+   ],
+   [
+    -0.68,
+    null,
+    null
+   ],
+   [
+    -0.66,
+    null,
+    null
+   ],
+   [
+    -0.64,
+    null,
+    null
+   ],
+   [
+    -0.62,
+    null,
+    null
+   ],
+   [
+    -0.6,
+    null,
+    null
+   ],
+   [
+    -0.58,
+    null,
+    null
+   ],
+   [
+    -0.56,
+    null,
+    null
+   ],
+   [
+    -0.54,
+    null,
+    null
+   ],
+   [
+    -0.52,
+    null,
+    null
+   ],
+   [
+    -0.5,
+    null,
+    null
+   ],
+   [
+    -0.48,
+    null,
+    null
+   ],
+   [
+    -0.46,
+    null,
+    null
+   ],
+   [
+    -0.44,
+    null,
+    null
+   ],
+   [
+    -0.42,
+    null,
+    null
+   ],
+   [
+    -0.4,
+    null,
+    null
+   ],
+   [
+    -0.38,
+    null,
+    null
+   ],
+   [
+    -0.36,
+    null,
+    null
+   ],
+   [
+    -0.34,
+    null,
+    null
+   ],
+   [
+    -0.32,
+    null,
+    null
+   ],
+   [
+    -0.3,
+    null,
+    null
+   ],
+   [
+    -0.28,
+    null,
+    null
+   ],
+   [
+    -0.26,
+    null,
+    null
+   ],
+   [
+    -0.24,
+    null,
+    null
+   ],
+   [
+    -0.22,
+    null,
+    null
+   ],
+   [
+    -0.2,
+    null,
+    null
+   ],
+   [
+    -0.18,
+    null,
+    null
+   ],
+   [
+    -0.16,
+    null,
+    null
+   ],
+   [
+    -0.14,
+    null,
+    null
+   ],
+   [
+    -0.12,
+    null,
+    null
+   ],
+   [
+    -0.1,
+    null,
+    null
+   ],
+   [
+    -0.08,
+    null,
+    null
+   ],
+   [
+    -0.06,
+    null,
+    null
+   ],
+   [
+    -0.04,
+    null,
+    null
+   ],
+   [
+    -0.02,
+    null,
+    null
+   ],
+   [
+    0.0,
+    null,
+    null
+   ],
+   [
+    0.02,
+    null,
+    null
+   ],
+   [
+    0.04,
+    null,
+    null
+   ],
+   [
+    0.06,
+    null,
+    null
+   ],
+   [
+    0.08,
+    null,
+    null
+   ],
+   [
+    0.1,
+    null,
+    null
+   ],
+   [
+    0.12,
+    null,
+    null
+   ],
+   [
+    0.14,
+    null,
+    null
+   ],
+   [
+    0.16,
+    null,
+    null
+   ],
+   [
+    0.18,
+    null,
+    null
+   ],
+   [
+    0.2,
+    null,
+    null
+   ],
+   [
+    0.22,
+    null,
+    null
+   ],
+   [
+    0.24,
+    null,
+    null
+   ],
+   [
+    0.26,
+    null,
+    null
+   ],
+   [
+    0.28,
+    null,
+    null
+   ],
+   [
+    0.3,
+    null,
+    null
+   ],
+   [
+    0.32,
+    null,
+    null
+   ],
+   [
+    0.34,
+    null,
+    null
+   ],
+   [
+    0.36,
+    null,
+    null
+   ],
+   [
+    0.38,
+    null,
+    null
+   ],
+   [
+    0.4,
+    null,
+    null
+   ],
+   [
+    0.42,
+    null,
+    null
+   ],
+   [
+    0.44,
+    null,
+    null
+   ],
+   [
+    0.46,
+    null,
+    null
+   ],
+   [
+    0.48,
+    null,
+    null
+   ],
+   [
+    0.5,
+    null,
+    null
+   ],
+   [
+    0.52,
+    null,
+    null
+   ],
+   [
+    0.54,
+    null,
+    null
+   ],
+   [
+    0.56,
+    null,
+    null
+   ],
+   [
+    0.58,
+    null,
+    null
+   ],
+   [
+    0.6,
+    null,
+    null
+   ],
+   [
+    0.62,
+    null,
+    null
+   ],
+   [
+    0.64,
+    null,
+    null
+   ],
+   [
+    0.66,
+    null,
+    null
+   ],
+   [
+    0.68,
+    null,
+    null
+   ],
+   [
+    0.7,
+    null,
+    null
+   ],
+   [
+    0.72,
+    null,
+    null
+   ],
+   [
+    0.74,
+    null,
+    null
+   ],
+   [
+    0.76,
+    null,
+    null
+   ],
+   [
+    0.78,
+    null,
+    null
+   ],
+   [
+    0.8,
+    null,
+    null
+   ]
+  ],
+  "ball": {},
+  "chain": {
+   "peaks_s": {},
+   "order": [],
+   "version": 2,
+   "proximal_to_distal": null
+  },
+  "review": [
+   "phase:ready",
+   "phase:takeback",
+   "phase:loaded",
+   "phase:acceleration",
+   "phase:impact",
+   "phase:extension",
+   "phase:finish",
+   "phase:recovery",
+   "impact_without_audio",
+   "racket_not_seen_when_loaded"
+  ],
+  "stroke_pose": "backhand",
+  "stroke_source": "detector",
+  "window": "w001872840_3600.mp4",
+  "window_start_s": 1872.84,
+  "match_time_s": 1875.04,
+  "candidate_audio": false,
+  "identity": true,
+  "target": true,
+  "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0187504",
+  "surface": "dura",
+  "score": {
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     7
+    ],
+    [
+     2,
+     1
+    ]
+   ],
+   "points": [
+    null,
+    null
+   ],
+   "banner": "",
+   "set": 3,
+   "sets_won": [
+    1,
+    1
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "server": 0
+  },
+  "court_check": "ok",
+  "side": "near",
+  "height_scale": {
+   "source": "segments",
+   "px": 818.1,
+   "segments_ratio": 4.033,
+   "court": "contradicha_por_el_cuerpo",
+   "pose_ratio": 0.868
+  },
+  "camera_pitch_deg": 18.3,
+  "outcome": "rally",
+  "face": {
+   "ready": null,
+   "takeback": null,
+   "loaded": null,
+   "acceleration": null,
+   "impact": null,
+   "extension": null,
+   "finish": null,
+   "recovery": null
+  },
+  "point_won": true,
+  "technique": {
+   "phases": {
+    "ready": {},
+    "impact": {},
+    "extension": {}
+   },
+   "stroke": {},
+   "classes": {
+    "intent": "neutra",
+    "play": "inicio del punto"
+   },
+   "footwork": {
+    "airborne_at_impact": false,
+    "one_foot_at_impact": false,
+    "speed_at_impact_mps": null,
+    "step_kinds": [],
+    "movement": null,
+    "feet_still_share": 0.0,
+    "steps_reliable": false
+   },
+   "pose": {
+    "ready": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "impact": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "extension": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "curves": {
+    "head": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "hip": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ],
+    "hand": [
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null,
+     null
+    ]
+   },
+   "feet_check": {
+    "impact.front": "sin_pie",
+    "impact.back": "sin_pie"
+   },
+   "jitter": {
+    "footwork.airborne_at_impact": 0.0,
+    "footwork.one_foot_at_impact": 0.0,
+    "footwork.feet_still_share": 0.0,
+    "footwork.steps_reliable": 0.0,
+    "class.intent": 0.0
+   }
+  },
+  "series": "series/w001872840_3600_near_110.json",
+  "window_impact_s": 2.2,
+  "shot_in_point": 1,
+  "shots_in_point": 1,
+  "is_return": false,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1880.1,
+    "t1": 1884.2,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   },
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 1884.2,
+    "t1": 1908.9,
     "slowmo": null,
     "speed": null,
     "impact_t": null,

@@ -127,56 +127,60 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "a688d02537e6a8d9",
+  "fingerprint": "2ce388ab0745f8fa",
   "version": "16",
-  "seconds": 67.4,
-  "finished": "2026-11-07 01:43:01",
+  "seconds": 159.3,
+  "finished": "2026-11-07 04:47:29",
   "summary": {
-   "candidates": 77,
-   "confirmed": 74,
+   "candidates": 79,
+   "confirmed": 76,
    "errors": 0,
    "warnings": [],
    "forehands": 25,
-   "windows": 59,
+   "windows": 61,
    "gate": {
     "windows_gated": 0,
-    "windows_passed": 59,
+    "windows_passed": 61,
     "windows_ungated": 0,
     "reasons": {
      "detector": 21,
      "golpe_de_bola": 29,
-     "bola_no_vista": 9
+     "bola_no_vista": 11
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 29.4,
-    "pista_ventana": 17.1,
-    "cuerdas_y_3d": 14.3,
-    "analisis_ventana": 12.2,
-    "recorte": 3.4,
-    "cribado": 3.0,
-    "pose": 0.4
+    "jugadora_lejana": 46.1,
+    "pose": 42.4,
+    "pose_modelo_hybrid": 38.3,
+    "pista_ventana": 28.0,
+    "raqueta": 25.2,
+    "analisis_ventana": 18.1,
+    "cuerdas_y_3d": 17.9,
+    "bola": 17.5,
+    "recorte": 7.9,
+    "cribado": 3.7
    },
    "counts": {
     "overlap_s": 0.0,
-    "frames": 12636,
-    "posed_frames": 12636,
-    "impacts": 94,
-    "kept_impacts": 77,
-    "racket_frames": 0,
+    "frames": 12996,
+    "posed_frames": 12996,
+    "impacts": 96,
+    "kept_impacts": 79,
+    "racket_frames": 62,
     "whole_window_again": 0,
-    "frames_960_far": 0
+    "frames_960_far": 0,
+    "frames_modelo_hybrid": 360
    }
   },
-  "out_hash": "f9866bdaccc3ff90e41e",
+  "out_hash": "4217683a6ef427f55697",
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "601402c3d96f8b16",
+  "fingerprint": "20cffd8647b6b2e7",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-07 01:43:01",
+  "finished": "2026-11-07 04:47:29",
   "summary": {
    "enabled": false
   },
@@ -184,10 +188,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "2bd449bc81074020",
+  "fingerprint": "8bda80f671710b72",
   "version": "1",
-  "seconds": 94.0,
-  "finished": "2026-11-07 01:44:35",
+  "seconds": 98.5,
+  "finished": "2026-11-07 04:49:07",
   "summary": {
    "candidates": 28,
    "confirmed": 19,
@@ -207,14 +211,14 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "bola_en_paralelo_cpu": 54.5,
-    "espera_bola_en_paralelo": 48.1,
-    "cuerdas_y_3d": 8.6,
-    "analisis_ventana": 4.2,
-    "jugadora_lejana": 2.8,
-    "recorte": 1.8,
-    "pista_ventana": 1.6,
-    "cribado": 1.1,
+    "bola_en_paralelo_cpu": 63.3,
+    "espera_bola_en_paralelo": 54.3,
+    "cuerdas_y_3d": 7.4,
+    "analisis_ventana": 6.3,
+    "jugadora_lejana": 3.2,
+    "pista_ventana": 2.4,
+    "recorte": 1.7,
+    "cribado": 0.9,
     "pose": 0.1
    },
    "counts": {
@@ -226,17 +230,17 @@
     "racket_frames": 0,
     "whole_window_again": 0,
     "frames_960_far": 0,
-    "windows_ball_ahead": 13
+    "windows_ball_ahead": 14
    }
   },
-  "out_hash": "d533ed2d17a41f6a1892",
+  "out_hash": "a631676844fdbf1ff489",
   "scheme": 2
  },
  "views": {
-  "fingerprint": "b4896bbd99b4ce11",
+  "fingerprint": "fa67ec6c3320cc1a",
   "version": "6",
-  "seconds": 39.1,
-  "finished": "2026-11-04 13:29:48",
+  "seconds": 45.7,
+  "finished": "2026-11-07 04:44:49",
   "summary": {
    "views": 123,
    "repeticion_principal": 22,
@@ -244,27 +248,27 @@
    "frontal": 1,
    "primer_plano": 95,
    "otra": 2,
-   "links": 326,
+   "links": 329,
    "linked_views": 115,
    "slowmo_links": 5
   },
-  "out_hash": "f109b645df0efd6a8d60",
+  "out_hash": "ec8adde37dbd1519c0ec",
   "scheme": 2
  },
  "views_link": {
-  "fingerprint": "5de66b274b34a1e7",
+  "fingerprint": "06dd63f11808be09",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-11-07 01:44:35",
+  "finished": "2026-11-07 04:49:07",
   "summary": {
-   "strokes": 74,
+   "strokes": 76,
    "with_replay": 26,
-   "with_other_camera": 63,
+   "with_other_camera": 65,
    "with_slowmo": 2,
-   "replay_share": 0.351,
-   "other_share": 0.851
+   "replay_share": 0.342,
+   "other_share": 0.855
   },
-  "out_hash": "95179f2ac9e1b2ea3996",
+  "out_hash": "3516c195576261fc26e9",
   "scheme": 2
  },
  "spotting": {
