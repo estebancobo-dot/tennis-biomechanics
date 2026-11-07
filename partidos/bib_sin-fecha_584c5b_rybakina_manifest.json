@@ -151,10 +151,10 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "0ba5a2d4efb61fd4",
+  "fingerprint": "3a8581bbdd4538fb",
   "version": "16",
-  "seconds": 257.1,
-  "finished": "2026-11-07 00:55:08",
+  "seconds": 420.3,
+  "finished": "2026-11-07 01:52:55",
   "summary": {
    "candidates": 263,
    "confirmed": 262,
@@ -174,13 +174,15 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 169.5,
-    "cuerdas_y_3d": 77.0,
-    "pista_ventana": 32.3,
-    "analisis_ventana": 25.3,
-    "recorte": 8.1,
-    "cribado": 6.6,
-    "pose": 1.1
+    "jugadora_lejana": 124.6,
+    "cuerdas_y_3d": 68.2,
+    "pista_ventana": 27.5,
+    "analisis_ventana": 21.7,
+    "recorte": 7.8,
+    "cribado": 6.0,
+    "pose": 0.8,
+    "bola_en_paralelo_cpu": 0,
+    "espera_bola_en_paralelo": 0.0
    },
    "counts": {
     "overlap_s": 2.2,
@@ -190,17 +192,18 @@
     "kept_impacts": 263,
     "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 0
+    "frames_960_far": 0,
+    "windows_ball_ahead": 168
    }
   },
   "out_hash": "e4390425a4ac9232639b",
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "0c2b2c30a76a70cb",
+  "fingerprint": "b0f02fef7cc11716",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-06 23:47:11",
+  "finished": "2026-11-07 01:52:55",
   "summary": {
    "enabled": false
   },
@@ -269,10 +272,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "f754d8dd4c8075e6",
+  "fingerprint": "ea6e08adbeec755a",
   "version": "1",
-  "seconds": 20.6,
-  "finished": "2026-11-07 00:55:29",
+  "seconds": 21.1,
+  "finished": "2026-11-07 01:53:16",
   "summary": {
    "candidates": 49,
    "confirmed": 17,
@@ -292,12 +295,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 7.9,
-    "analisis_ventana": 4.1,
-    "jugadora_lejana": 3.0,
-    "recorte": 2.4,
-    "pista_ventana": 1.2,
-    "cribado": 0.6,
+    "cuerdas_y_3d": 8.0,
+    "analisis_ventana": 4.3,
+    "jugadora_lejana": 3.4,
+    "recorte": 2.5,
+    "pista_ventana": 1.3,
+    "cribado": 0.7,
     "pose": 0.1
    },
    "counts": {
