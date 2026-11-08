@@ -388,12 +388,13 @@ function Hacer-Peticion($p) {
         "codigo de salida: $($pr.ExitCode); termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "borrar") {
         # borra carpetas de pruebas de velocidad ya documentadas (lo pide el usuario); solo nombres
-        # _poc, _pocN o _pocN_M: nunca _poc9_largo, _smoke ni nada mas
+        # _poc, _pocN o _pocN_M y, nombrada a mano, _poc9_largo (08-11, #146: la aplicacion ya no la usa; su
+        # auditoria sigue en pc-logs): nunca _smoke ni nada mas
         $lg = "$Base\output\prueba_borrado.log"
         "Peticion $($p['id']): borrar carpetas de pruebas ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
         foreach ($c in ("$($p['carpetas'])" -split ",")) {
             $c = $c.Trim()
-            if ($c -notmatch '^_poc\d*(_\d+)?$') { "  no se toca (nombre no permitido): '$c'" | Add-Content $lg -Encoding UTF8; continue }
+            if ($c -notmatch '^(_poc\d*(_\d+)?|_poc9_largo)$') { "  no se toca (nombre no permitido): '$c'" | Add-Content $lg -Encoding UTF8; continue }
             $d = "$Base\output\$c"
             if (-not (Test-Path $d)) { "  no existe: $c" | Add-Content $lg -Encoding UTF8; continue }
             $mb = [math]::Round(((Get-ChildItem $d -Recurse -File -ErrorAction SilentlyContinue | Measure-Object Length -Sum).Sum) / 1MB, 1)

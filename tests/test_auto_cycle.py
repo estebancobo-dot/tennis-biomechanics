@@ -98,7 +98,9 @@ def test_cycle_starts_without_any_window():
 
 
 def test_request_borrar_only_old_speed_test_folders():
-    """«accion: borrar» removes only folders named _poc, _pocN or _pocN_M: never the long run or _smoke."""
+    """«accion: borrar» removes only folders named _poc, _pocN or _pocN_M and, named by hand, the long run _poc9_largo
+    (08-11, #146: the application no longer uses it; the user approved deleting the old test folders on 07-11):
+    never _smoke nor anything else."""
     import re
 
     ps1 = (Path(__file__).resolve().parents[1] / "scripts" / "windows" / "ciclo_automatico.ps1").read_text(encoding="utf-8")
@@ -106,9 +108,9 @@ def test_request_borrar_only_old_speed_test_folders():
     block = ps1[ps1.index('$p["accion"] -eq "borrar"'):]
     block = block[:block.index("} else {")]
     rx = re.search(r"-notmatch '([^']+)'", block).group(1)
-    for ok in ("_poc", "_poc3", "_poc3_4", "_poc5_35", "_poc7_4"):
+    for ok in ("_poc", "_poc3", "_poc3_4", "_poc5_35", "_poc7_4", "_poc9_largo"):
         assert re.match(rx, ok), ok
-    for no in ("_poc9_largo", "_smoke", "_poc_x", "..", "_poc3\\..", "videos", ""):
+    for no in ("_smoke", "_poc_x", "..", "_poc3\\..", "videos", "", "_poc8_largo", "_poc9_largo\\..", "_poc9_largox"):
         assert not re.match(rx, no), no
     assert 'prueba_borrado.log' in block
 

@@ -194,3 +194,38 @@ def test_a_request_the_scheduled_cycle_started_once_the_pc_was_free_is_ok(tmp_pa
     assert it["status"] == "ok" and "ciclo programado" in it["detail"], it["detail"]
     (tmp_path / "prueba_recall.log").write_text("termina 2026-11-08T05:40:00\n", encoding="utf-8")
     assert actions_item(tmp_path, request_time=datetime(2026, 11, 8, 5, 48))["status"] == "aviso"   # idle 14.8 min
+
+
+def test_b6_and_b7_requests_are_checked_on_the_outputs_and_their_level_follows_the_checks():
+    """08-11: #1 and #234 (B6) were notes (level 0-1 whatever the outputs said); now each request of B6 and of the B7
+    ones that were open (#45, #66, #146, #160, #242) has a rule on the real outputs. With every check passing a HECHO
+    request reaches level 3 and a PARCIAL one stays at 2; a warning on the strokes found against the scoreboard of
+    one match drops #1, #45, #134 and #233 to level 2; the old test folder still on disk drops #146."""
+    pk = real_status.packages()
+    ids = pk["B6"]["peticiones"] + [45, 66, 146, 160, 242]
+    for rid in ids:
+        assert A.PETITIONS.get(rid) is not None and not isinstance(A.PETITIONS[rid], A.Note), rid
+    ok = lambda area, name: {"req": 5, "area": area, "name": name, "status": "ok", "detail": ""}
+    items = [ok("Golpes", "forehand: golpes analizados"), ok("Golpes", "Golpes encontrados frente al marcador: m"),
+             ok("Golpes", "Saques por punto de su saque: m"), ok("Ficheros", "Partido m: salida de cada etapa, ventanas y series"),
+             ok("Automático", "Golpes que fallaron al procesarse"), ok("Automático", "Nada pide revisión manual"),
+             ok("Pantallas", "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»"),
+             ok("Pantallas", "Pantalla «Conclusiones (Panel y Comparativas)»"),
+             ok("Infraestructura", "Registros con fecha y duración"), ok("Infraestructura", "Carpetas de pruebas antiguas"),
+             ok("Aplicación", "Aplicación: ventana real y pantallas"), ok("Aplicación", "Aplicación: análisis en su índice"),
+             ok("Aplicación", A.NEW_MATCH_ITEM)]
+    items += [ok("Pruebas en este PC", f"Pruebas en este PC: {m}") for m in A.MODULE_TESTS]
+    states = {rid: st for rid, _, st in real_status.registry()}
+    pet = {int(i["name"].split(" ")[0][1:]): i for i in A.petition_items(items)}
+    for rid in ids:
+        assert real_status.level(states[rid], pet.get(rid), rid) == (3 if states[rid] == "HECHO" else 2), (rid, pet.get(rid))
+    assert "3 comprobaciones" in pet[234]["detail"], pet[234]        # the application with the real data, not a note
+    # the strokes of one match below the scoreboard's typical range: every request that needs the reference complete
+    bad = [{**i, "status": "aviso"} if i["name"].startswith("Golpes encontrados frente al marcador") else i for i in items]
+    pet = {int(i["name"].split(" ")[0][1:]): i for i in A.petition_items(bad)}
+    for rid in (1, 45, 134, 233):
+        assert pet[rid]["status"] == "aviso" and real_status.level(states[rid], pet[rid], rid) == 2, rid
+    assert real_status.level(states[234], pet[234], 234) == (3 if states[234] == "HECHO" else 2)
+    old = [{**i, "status": "aviso"} if i["name"] == "Carpetas de pruebas antiguas" else i for i in items]
+    pet = {int(i["name"].split(" ")[0][1:]): i for i in A.petition_items(old)}
+    assert real_status.level(states[146], pet[146], 146) == 2

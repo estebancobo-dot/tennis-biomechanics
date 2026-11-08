@@ -1060,6 +1060,19 @@ PETITIONS.update({
     160: r"^Aplicación: |" + _T + "(test_app_window|test_app_core)$",
     242: r"^Aplicación: |" + _T + "(test_app_core|test_app_window)$",
 })
+# package B6 (08-11): the two requests of the 4 matches' reference that were only notes, now checked on the outputs.
+# Until 08-11 #1 was Note («pendiente por diseño: los 4 partidos se analizan una vez, al final») and #234 Note
+# («prueba de valor del 27-10 (docs/plan_maestro.md, R2)»).
+# #1: the 4 complete matches analysed with every stage, no stroke failed, and none of hers lost against the scoreboard
+#     (all of them and her serves per point); the final run, once, at the end, is still the plan's.
+# #234: the value test with the real data, repeatable: the application holds the analysis of the real matches and the
+#     screens the 27-10 test judged (Cópiala, Conclusiones) are painted with their content; what it found wrong has its
+#     own request (#244 point result, #245 names; the kinetic chain in #84/#235).
+PETITIONS.update({
+    1: r"golpes analizados|^Partido .*: salida de cada etapa|Etapas con errores|^Golpes que fallaron al procesarse|"
+       r"^Golpes encontrados frente al marcador|^Saques por punto de su saque",
+    234: r"^Aplicación: análisis en su índice$|^Pantalla «(Cópiala|Conclusiones)",
+})
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 SPEED_TARGET = 45 / 35          # hours of processing per hour of video (Base step 1: 35 min in ≤ 45 min)
 
@@ -2002,7 +2015,10 @@ def petition_items(items: list[dict]) -> list[dict]:
         if st == "ok" and partial:                 # its checks pass, but part of it is not built yet
             st = "aviso"
         out.append(_item(11, "Peticiones", name, st,
-                         ("sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); " if st == "aviso" and partial else "") +
+                         # 08-11: «se cumplen» only when they do (it was said too when one of them warned)
+                         ("sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); "
+                          if st == "aviso" and partial and worst["status"] == "ok" else
+                          "a medias según el registro (ver docs/peticiones_usuario.md); " if partial else "") +
                          f"{len(hit)} comprobaciones: " + ", ".join(f"{v} {k}" for k, v in cnt.items() if v)
                          + ("" if worst["status"] == "ok" else f"; la peor: «{worst['name']}» ({worst['detail'][:120]})")))
     return out
