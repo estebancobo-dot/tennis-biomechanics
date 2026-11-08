@@ -6,8 +6,8 @@
 |---|---|
 | 0 sin construir | 18 |
 | 1 construido, sin comprobar | 63 |
-| 2 comprobación que falla | 66 |
-| 3 comprobado en salidas | 90 |
+| 2 comprobación que falla | 67 |
+| 3 comprobado en salidas | 89 |
 | 4 validado con verdad | 0 |
 
 ## Por paquete del plan (en el orden de ejecución)
@@ -16,10 +16,10 @@
 
 | Paquete | Peticiones | sin construir | construido, sin comprobar | comprobación que falla | comprobado en salidas | validado con verdad | Se cierra con | Prueba principal | ¿Cerrado? |
 |---|---|---|---|---|---|---|---|---|---|
-| B1 Base · velocidad y uso del PC | 10 | 0 | 0 | 0 | 10 | 0 | Prueba desde cero de 35 min en ≤ 45 min; CPU/iGPU por etapa medidas en cada ejecución | ok | **sí** |
+| B1 Base · velocidad y uso del PC | 10 | 0 | 0 | 1 | 9 | 0 | Prueba desde cero de 35 min en ≤ 45 min; CPU/iGPU por etapa medidas en cada ejecución | falla | no |
 | B2 Base · robustez (nada se cuelga, todo se recupera) | 3 | 0 | 0 | 0 | 3 | 0 | Prueba por cada caso de error y cuelgue; 0 etapas con error en la referencia | ok | **sí** |
 | B3 Base · mejores modelos (estado del arte medido) | 10 | 0 | 0 | 0 | 10 | 0 | Cada candidato medido frente al actual (precisión con datos anotados y fotogramas/s en el PC) | ok | **sí** |
-| B4 Base · no perder golpes | 6 | 2 | 0 | 3 | 1 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | falla | no |
+| B4 Base · no perder golpes | 6 | 2 | 0 | 3 | 1 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | ok | no |
 | B5 Base · exportación | 1 | 0 | 0 | 0 | 1 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues | ok | **sí** |
 | B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 3 | 1 | 0 | 4 partidos sin errores de etapa; auditoría generada | ok | no |
 | B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 2 | 34 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | ok | no |
@@ -40,7 +40,8 @@
 
 Lo que le falta a cada paquete de la Base para cerrarse:
 
-- **B4**: prueba principal: Saques por punto de su saque: sin-fecha_584c5b_rybakina: aviso, Saques por punto de su saque: sin-fecha_580c6f_rybakina: aviso, Saques por punto de su saque: sin-fecha_b8b713_rybakina: aviso; peticiones sin comprobar o que fallan: #23, #155, #205, #218, #219
+- **B1**: prueba principal: Uso del PC por etapa (CPU, RAM, iGPU y disco): aviso; peticiones sin comprobar o que fallan: #230
+- **B4**: peticiones sin comprobar o que fallan: #23, #155, #205, #218, #219
 - **B6**: peticiones sin comprobar o que fallan: #1, #134, #233
 - **B7**: peticiones sin comprobar o que fallan: #45, #242
 
@@ -48,7 +49,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 
 | # | Petición | Paquete | Registro | Nivel | Lo que comprueba la auditoría |
 |---|---|---|---|---|---|
-| 1 | Derecha de Rybakina en sus 4 partidos completos, una vez y al final (10-10 17:27; 11-10 19 | B6 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 14 comprobaciones: 3 aviso, 11 ok; la peor: «Saques por punto de su saque: sin- |
+| 1 | Derecha de Rybakina en sus 4 partidos completos, una vez y al final (10-10 17:27; 11-10 19 | B6 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 14 comprobaciones: 14 ok |
 | 2 | Ver informe y salidas en el móvil (11-10 18:21, 18:29, 18:33) | P6 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#2); no se comprueba en las salidas: aplazado por el usuario (móvil al final) |
 | 4 | Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las po | P1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 201 comprobaciones: 1 falta, 23 pocos datos, 177 ok; la peor: «La lección: como |
 | 5 | Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda,  | M5 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 32 comprobaciones: 1 falta, 7 pocos datos, 24 ok; la peor: «La lección: como mu |
@@ -269,7 +270,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 226 | Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin prue | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 227 | Pantalla completa en la aplicación (24-10 10:36) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 229 | Renombrar el vídeo no rompe nada; el partido se identifica por su contenido (25-10 13:21-1 | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
-| 230 | Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12 | B1 | HECHO | 3 comprobado en salidas | 10 comprobaciones: 10 ok |
+| 230 | Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12 | B1 | HECHO | 2 comprobación que falla | 10 comprobaciones: 1 aviso, 9 ok; la peor: «Uso del PC por etapa (CPU, RAM, iGPU y disco)» (recursos_2026-11-08_1910.csv sin muestras con su |
 | 231 | Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11: | B1 | HECHO | 3 comprobado en salidas | 13 comprobaciones: 13 ok |
 | 232 | Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó (27-10 09 | B2 | HECHO | 3 comprobado en salidas | 7 comprobaciones: 7 ok |
 | 233 | Una referencia completa y medida antes de validar nada (26-10 11:09) | B6 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok |
