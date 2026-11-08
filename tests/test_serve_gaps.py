@@ -253,8 +253,11 @@ def test_a_far_first_stroke_after_a_pause_is_her_serve():
     s = far()
     assert serves_by_rule(s, readings, [(10.0, 39.0)]) == 0                                # nothing known: as before
     s = far()
-    s[0]["side"] = "near"
+    s[0]["side"], s[0]["metrics"] = "near", {"contact_height_pct": 60.0}
     assert serves_by_rule(s, readings, [(10.0, 39.0)], others=[2.0]) == 0                 # near: the hand decides
+    s = far()
+    s[0]["side"] = "near"                                                                 # near, no hand measure
+    assert serves_by_rule(s, readings, [(10.0, 39.0)], others=[2.0]) == 1
 
 
 def test_the_server_is_known_the_first_serve_of_a_point_of_hers_is_hers():

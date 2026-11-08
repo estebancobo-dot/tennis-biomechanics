@@ -446,7 +446,9 @@ def serves_by_rule(strokes: list[dict], readings: list[dict], main_shots: list[t
         # no stroke of anybody (all the candidates of both players, `others`) for `pause_s` before it — the first stroke
         # after a pause, from behind her baseline, in a point of her serve, is her serve (13 such first strokes in
         # the 4 matches were named forehand/backhand with nothing seen before them)
-        quiet = (s.get("side") == "far" and others is not None
+        # near end with no hand measure at all (contact and toss unreadable, 08-11): the same rule as the far end
+        unmeasured = s.get("side") == "far" or (ch is None and toss is None)
+        quiet = (unmeasured and others is not None
                  and not any(t - pause_s <= o < t - 0.3 for o in others))
         if not (by_hand or quiet):
             continue

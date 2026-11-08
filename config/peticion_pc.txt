@@ -363,6 +363,15 @@ detector: si
 ---
 id: 141
 accion: completo
+---
+id: 142
+accion: recall
+detector: si
+---
+id: 143
+accion: completo
+# 142-143 (08-11, B4): 141 dio 27/30, 38/44, 40/47, 55/62 (F3Set 463/517, 94 %). La regla de la pausa del saque se
+# aplica tambien en el lado cercano cuando no hay medida de la mano. 142 = F3Set, 143 = los 4 partidos
 # 140-141 (08-11, B4): 139 dio 27/30, 38/44, 39/47, 54/62 (F3Set 94 %). Ahora la identidad sin decidir del primer
 # saque tras una pausa en un punto de su saque se resuelve con el marcador (candidatos v15), y un saque suyo del
 # lado lejano lo confirma tambien el marcador (no solo la bola o el detector). 140 = F3Set, 141 = los 4 partidos
