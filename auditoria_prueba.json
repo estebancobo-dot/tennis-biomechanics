@@ -3,10 +3,10 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 366,
-  "falta": 19,
-  "pocos datos": 127,
-  "aviso": 97
+  "ok": 369,
+  "falta": 17,
+  "pocos datos": 126,
+  "aviso": 102
  },
  "items": [
   {
@@ -15,7 +15,8 @@
    "name": "forehand: golpes analizados",
    "status": "pocos datos",
    "detail": "13 del lado cercano (con todo el detalle), 12 del lejano; con menos de 20 muchas situaciones no se pueden describir",
-   "n": 13
+   "n": 13,
+   "far": 12
   },
   {
    "req": 1,
@@ -39,7 +40,9 @@
      2083.4
     ]
    },
-   "doubtful": 17
+   "doubtful": 17,
+   "near": 32,
+   "far": 45
   },
   {
    "req": 1,
@@ -153,6 +156,28 @@
      "elsewhere": 4
     }
    }
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Volumen: forehand analizados en los partidos",
+   "status": "aviso",
+   "detail": "25 golpes (13 cerca con todo el detalle, 12 lejos) en 1 partidos; objetivo ≥ 400 (docs/comparativa_apps.md §4.3)",
+   "n": 25
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Identidad en los cambios de lado: smoke_tennis-yusipopen-final-sobolenko-rybakin",
+   "status": "aviso",
+   "detail": "65 de 67 planos decididos (97%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 57 de 66 planos con las dos señales (86%; objetivo ≥ 90%); misma ropa dentro de un juego 75% (objetivo ≥ 95%); sus golpes: 32 cerca y 45 lejos (42% en el lado con menos); dudosos 1, sin decidir 1 · falla: cambios de lado y ropa de acuerdo 86% < 90%, ropa igual dentro de un juego 75% < 95%. Sin verdad anotada: coherencia, no validación"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Golpes del fondo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
+   "status": "ok",
+   "detail": "45 de sus 77 golpes en el lado lejano (58%; objetivo ≥ 25%); confirmados 45 de 48 candidatos suyos del fondo (94%); con su posición en la pista 82% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino)"
   },
   {
    "req": 1,
@@ -2841,7 +2866,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4043 caracteres de texto, 7 vídeos, 12 gráficos",
+   "detail": "4055 caracteres de texto, 7 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2873,7 +2898,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2030 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2027 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3408,7 +3433,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "41 carpetas, 28.6 GB en total (2026-11-08T20:03:18); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
+   "detail": "41 carpetas, 28.6 GB en total (2026-11-08T20:14:13); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
   },
   {
    "req": 5,
@@ -3464,7 +3489,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 20:02:44 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-08 20:20:15 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3619,6 +3644,20 @@
    "name": "Golpes inventados: precisión en F3Set ≥ 0.94",
    "status": "ok",
    "detail": "precisión 0.942, encontrados 466 de 517 (90%) en recall_validation_detector.json"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Identidad frente a F3Set (anotado)",
+   "status": "ok",
+   "detail": "487 de 492 golpes suyos anotados en planos con la identidad decidida la tienen bien (99%; objetivo ≥ 95%); sin decidir 5, sin plano 20; perdidos por identidad 5 (recall_validation_detector.json)"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Golpes del fondo frente a F3Set (anotado)",
+   "status": "ok",
+   "detail": "lado lejano 253 de 288 (88%) frente al cercano 213 de 229 (93%); diferencia 5 puntos (objetivo ≤ 10) (recall_validation_detector.json)"
   },
   {
    "req": 12,
@@ -3778,8 +3817,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#23 Seguir a la jugadora en los cambios de lado",
-   "status": "pocos datos",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
+   "status": "aviso",
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Identidad en los cambios de lado: smoke_tennis-yusipopen-final-sobolenko-rybakin» (65 de 67 planos decididos (97%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 57 de 66 planos con l)"
   },
   {
    "req": 11,
@@ -4639,8 +4678,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1",
-   "status": "falta",
-   "detail": "SIN HACER según el registro (#155, docs/peticiones_usuario.md)"
+   "status": "aviso",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin» (10 de 13 puntos de su saque vistos con su saque encontrado (77%; objetivo ≥ 85%) (1 puntos más sin nadie jugando en la c)"
   },
   {
    "req": 11,
@@ -4989,8 +5028,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3)",
-   "status": "falta",
-   "detail": "SIN HACER según el registro (#205, docs/peticiones_usuario.md)"
+   "status": "aviso",
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Volumen: forehand analizados en los partidos» (25 golpes (13 cerca con todo el detalle, 12 lejos) en 1 partidos; objetivo ≥ 400 (docs/comparativa_apps.md §4.3))"
   },
   {
    "req": 11,
@@ -5081,14 +5120,14 @@
    "area": "Peticiones",
    "name": "#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
   },
   {
    "req": 11,

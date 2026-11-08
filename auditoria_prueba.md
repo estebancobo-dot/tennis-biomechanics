@@ -1,19 +1,17 @@
 # Auditoría de requisitos (forehand)
 
-13 golpes del lado cercano. ✔ 366 cumplidos · ✘ 19 no cumplidos · … 127 sin golpes suficientes en esta ejecución · ! 97 avisos
+13 golpes del lado cercano. ✔ 369 cumplidos · ✘ 17 no cumplidos · … 126 sin golpes suficientes en esta ejecución · ! 102 avisos
 
-## Peticiones del usuario SIN TERMINAR: 116 de 245
+## Peticiones del usuario SIN TERMINAR: 114 de 245
 
-Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 120 hechas · 98 a medias · 16 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
-- **#155 [FALTA]** es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 19-10 06:15) — falta: Detección sin arreglar: como mucho 43 % de sus golpes y 29 % de sus saques en la final del US Open. Falta correr el banco de 650 golpes anotados y corregir la …
 - **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
 - **#189 [FALTA]** «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4) — falta: No está en `learn.py`.
 - **#193 [FALTA]** Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10) — falta: No hay medida ni punto de control (`impact.wrist_non_lateral` no existe).
 - **#196 [FALTA]** Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18) — falta: No están en `practice.SIDE_METRICS`.
 - **#197 [FALTA]** Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19) — falta: Pendiente de confirmar con el usuario (descartó la hoja de sesión).
 - **#198 [FALTA]** Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20) — falta: Opcional, fuera del golpe.
-- **#205 [FALTA]** Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3) — falta: Los 4 partidos dieron menos de la mitad de sus golpes.
 - **#209 [FALTA]** Passing y globo (Revisión completa, §3 B) — falta: Medible en parte (rival en la red + trayectoria); sin hacer.
 - **#210 [FALTA]** Dejada (bote muy corto en campo rival) (Revisión completa, §3 B) — falta: Medible con el bote de su bola; sin hacer.
 - **#211 [FALTA]** CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5) — falta: Decir «a la altura que marca su valor».
@@ -36,7 +34,6 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 - **#15 [PARCIAL]** Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos (12-10 16:30-17:51) — falta: 6 de las 15 mejoras siguen en NO o a medias (filas 99-113).
 - **#16 [PARCIAL]** Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas (10-10 18:05; 11-10 09:02) — falta: Ningún caso en los datos (0 y 0). La volea no tiene técnica propia. 20-10: la regla de la media volea es una sola para la clase y la marca de revisión (`techni…
 - **#17 [PARCIAL]** Una entrada que se entienda sola: «no entiendo nada ni cómo usarla» (12-10 16:22) — falta: La segunda pestaña (SuD) está vacía. Aprende y SuD se solapan. Las «Novedades» están en SuD.
-- **#23 [PARCIAL]** Seguir a la jugadora en los cambios de lado (10-10 17:27) — falta: Sin validar con datos anotados. 19-10: fallos de identidad en los partidos completos; validar con `validation/recall_eval.py`.
 - **#25 [PARCIAL]** Métricas por derecha: apoyo, base, rodillas, cadera, hombros, X-factor, codo, impacto, cadena, pista (10-10 17:27) — falta: X-factor 2D: mediana de 1° en Aprende, sospechoso (fila 113). 19-10: giro de hombros y X-factor 2D salen «sesgo» y no se dan; rodillas con escorzo; impacto del…
 - **#36 [PARCIAL]** Mano y antebrazo, cierre de la muñeca (11-10 09:56, 10:19) — falta: El lag sale en el 40 % de los golpes y Aprende lo da con **1 golpe**.
 - **#45 [PARCIAL]** Todo automático y completo: el usuario no revisa nada (11-10 09:05, 19:38; 12-10 11:41) — falta: 4 golpes fallaron (`strokes_errores.json`) y nadie los recupera. (04-11: 0 golpes fallaron en la referencia; uno que falle se rehace cuando cambia el código de…
@@ -74,6 +71,7 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 - **#143 [PARCIAL]** (punto 3) esta es una guia para la derecha de otra jugadora ... revisar si aplica todo (Chat, 17-10 09:49) — falta: De sus 20 huecos, 7 siguen a medias o sin hacer (ver fuente «Guía Ivanovic»).
 - **#147 [PARCIAL]** la guia de ivanovic esta aplicada al 100 por 100? sobre todo los puntos 1 2 3 5 6 y 10 (Chat, 17-10 10:52) — falta: 3 a medias (falta «punta arriba / codo alto»), 6 a medias (faltan 3 alarmas), 10 sin hacer (mano libre en aceleración e impacto).
 - **#154 [PARCIAL]** mi movil es android google pixel 8 ... que copie directo al pixel (Chat, 18-10 12:11) — falta: Sin probar con el teléfono conectado.
+- **#155 [PARCIAL]** es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 19-10 06:15) — falta: Hasta el 08-11: detección sin arreglar, como mucho 43 % de sus golpes y 29 % de sus saques en la final del US Open (nota desfasada). 08-11 (B4), salidas del PC…
 - **#156 [PARCIAL]** como sabes la identidad de la jugadora y porque hay fallos? porque no buscas en la web de la wta la imagen y altura (Chat, 19-10 06:29) — falta: Fallos sin explicar ni corregir; una foto de la WTA sería una fuente externa (requisito 6) y no sirve desde detrás: la identidad debe validarse con `validation…
 - **#159 [PARCIAL]** volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (Chat, 19-10 08:11) — falta: La empuñadura no se ve en la tele: el golpe de fondo se reconoce por el swing (preparación no compacta y terminación completa). La medida «bola seguida» (`ball…
 - **#162 [PARCIAL]** Galerías ordenadas por calidad de captura, representatividad y resultado del punto (CLAUDE.md, Informe) — falta: No hay orden por resultado del punto (solo filtro).
@@ -115,7 +113,7 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 - **#214 [PARCIAL]** Fuentes de Ivanovic §3 #17 (Auditorías 17-10, técnica #18) — falta: Ver hueco 17 de Ivanovic.
 - **#215 [PARCIAL]** Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22) — falta: Unificar en «armado completo cuando bota».
 - **#218 [PARCIAL]** La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (velocidad normal o cámara lent… — falta: Falta validarlo con los partidos reales (umbrales de clasificación), medir sobre esas tomas (pasada fina en la cámara lenta: `views.fine_on_slowmo`, pendiente)…
-- **#219 [PARCIAL]** Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa distancia, no descartados (19-… — falta: Se confirman ~20 % de los golpes del fondo (Zheng: 36 de ~175).
+- **#219 [PARCIAL]** Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa distancia, no descartados (19-… — falta: Hasta el 08-11: se confirmaban ~20 % de los golpes del fondo (Zheng: 36 de ~175; nota desfasada). 08-11 (B4), salidas del PC del 08-11: **contados**, frente a …
 - **#233 [PARCIAL]** Una referencia completa y medida antes de validar nada (26-10 11:09) — falta: 799 golpes suyos en 4 partidos (27-10). 08-11: la referencia se ha rehecho (1016 golpes suyos; «Partido …: salida de cada etapa» ✔ en los 4, ningún golpe falli…
 - **#235 [PARCIAL]** Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) — falta: Cadena en orden 79 % y pasos medidos 87 % en los 193 golpes; falta verlo recalculado en el PC.
 - **#236 [PARCIAL]** Huellas numeradas sobre los pies y patrones de pasos (27-10 09:38) — falta: Patrón típico de pasos por situación (frecuencia de cada secuencia).
@@ -127,6 +125,8 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 ## 1. Toda la taxonomía del golpe y todas sus variantes (situaciones)
 
 - ! **Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 10 de 13 puntos de su saque vistos con su saque encontrado (77%; objetivo ≥ 85%) (1 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 1, golpes suyos, pero ningún saque 3; sus saques encontrados caen en puntos de su saque 15, de la rival 5, fuera de los puntos leídos 4; en los puntos sin saque, su primer golpe encontrado llega 27.5 s (mediana de 3) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 3): tipo {'backhand/detector': 1, 'backhand/pose': 1, 'forehand/detector': 1}, lado {'far': 3}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 2, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 1}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 0, sin golpes de nadie 1, cámara principal 19.7 s (mediana), candidatos {'suyos_perdidos_despues': 0, 'solo_de_la_rival': 0, 'identidad_sin_decidir': 0, 'sin_candidatos': 1}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 0}; primeros: 6.1-6.5 min (sin_golpes), 6.4-7.1 min (sin_saque), 8.3-9.2 min (sin_saque), 31.1-31.7 min (sin_saque)
+- ! **Volumen: forehand analizados en los partidos**: 25 golpes (13 cerca con todo el detalle, 12 lejos) en 1 partidos; objetivo ≥ 400 (docs/comparativa_apps.md §4.3)
+- ! **Identidad en los cambios de lado: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 65 de 67 planos decididos (97%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 57 de 66 planos con las dos señales (86%; objetivo ≥ 90%); misma ropa dentro de un juego 75% (objetivo ≥ 95%); sus golpes: 32 cerca y 45 lejos (42% en el lado con menos); dudosos 1, sin decidir 1 · falla: cambios de lado y ropa de acuerdo 86% < 90%, ropa igual dentro de un juego 75% < 95%. Sin verdad anotada: coherencia, no validación
 - ! **Cobertura del saque dicha en el informe**: no se encontró el informe del saque (C:\tenis\output\_smoke\informe_saque\index.html)
 - ! **Fotograma clave: inicio de preparación**: encontrado en el 69% de los golpes
 - ! **Fotograma clave: armado**: encontrado en el 77% de los golpes
@@ -195,6 +195,7 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 - … **Cabeza girada hacia el impacto**: 0 derechas de frente con esta medida
 - … **Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha**: 0 golpes exactos, 1 parecidos; 79 de 90 puntos con su valor medido
 - ✔ **Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin**: marcador: 42-48 puntos jugados (7 juegos leídos, 0 sin leer), 16 con su saque. Esperados: 16-36 saques (1 o 2 por punto de saque) y 67-125 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 77 golpes, 24 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (sin 3 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 1 de su saque) (32 cerca, 45 lejos); además 17 de identidad dudosa, apartados (no cuentan como suyos)
+- ✔ **Golpes del fondo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 45 de sus 77 golpes en el lado lejano (58%; objetivo ≥ 25%); confirmados 45 de 48 candidatos suyos del fondo (94%); con su posición en la pista 82% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino)
 - ✔ **Repeticiones y otras cámaras enlazadas: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 34% de sus golpes con repetición enlazada (26 de 77, 2 a cámara lenta) · 84% con otra cámara (65) · tomas: 22 repeticiones, 3 laterales, 1 frontales, 95 primeros planos, 2 otras
 - ✔ **1. Fases · Inicio del giro de bloque (preparación)**: medido en el 69% de los golpes y en el informe
 - ✔ **1. Fases · Impacto**: implementado (sin nombre de dato en la matriz)
@@ -327,6 +328,8 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 - ✔ **«Tu objetivo»: la consigna con su número en cada medida suya fiable**: 55 medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); 76 palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados
 - ✔ **La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo**: 9 de 9 fases con claves suyas fiables
 - ✔ **Golpes inventados: precisión en F3Set ≥ 0.94**: precisión 0.942, encontrados 466 de 517 (90%) en recall_validation_detector.json
+- ✔ **Identidad frente a F3Set (anotado)**: 487 de 492 golpes suyos anotados en planos con la identidad decidida la tienen bien (99%; objetivo ≥ 95%); sin decidir 5, sin plano 20; perdidos por identidad 5 (recall_validation_detector.json)
+- ✔ **Golpes del fondo frente a F3Set (anotado)**: lado lejano 253 de 288 (88%) frente al cercano 213 de 229 (93%); diferencia 5 puntos (objetivo ≤ 10) (recall_validation_detector.json)
 
 ## 2. Información, no tablas: vídeo real como prueba en cada pantalla
 
@@ -339,11 +342,11 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 4496 caracteres de texto, 7 vídeos, 1 gráficos
 - ✔ **Pantalla «Análisis de golpe»**: 4979 caracteres de texto, 8 vídeos, 31 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 4354 caracteres de texto, 7 vídeos, 2 gráficos
-- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4043 caracteres de texto, 7 vídeos, 12 gráficos
+- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4055 caracteres de texto, 7 vídeos, 12 gráficos
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 4689 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 3424 caracteres de texto, 7 vídeos, 0 gráficos
-- ✔ **Pantalla «Datos del análisis»**: 2030 caracteres de texto, 7 vídeos, 0 gráficos
+- ✔ **Pantalla «Datos del análisis»**: 2027 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
@@ -477,7 +480,7 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
 - ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (26/26), 37 s, quedan ≈ 0 s, a las 2026-11-08 17:36:56
 - ✔ **Registros con fecha y duración**: 55 de 55 registros con fecha de inicio y de fin o duración
-- ✔ **Tamaño de la salida (tamanos.txt)**: 41 carpetas, 28.6 GB en total (2026-11-08T20:03:18); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 41 carpetas, 28.6 GB en total (2026-11-08T20:14:13); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB
 - ✔ **Carpetas de pruebas antiguas**: ninguna carpeta de pruebas con más de 14 días sin usar
 - ✔ **Aplicación: ventana real y pantallas**: 56 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 1 análisis y 18 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
@@ -485,7 +488,7 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 77 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 25 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 25 vídeos
-- ✔ **Exportación terminada: exportar**: terminó el 2026-11-08 20:02:44 en 0 min: 25 vídeos de 25 golpes
+- ✔ **Exportación terminada: exportar**: terminó el 2026-11-08 20:20:15 en 0 min: 25 vídeos de 25 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
 - ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 08-11 20:02, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
 
@@ -505,14 +508,12 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
-- ✘ **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
 - ✘ **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - ✘ **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
 - ✘ **#193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10)**: SIN HACER según el registro (#193, docs/peticiones_usuario.md)
 - ✘ **#196 Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18)**: SIN HACER según el registro (#196, docs/peticiones_usuario.md)
 - ✘ **#197 Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19)**: SIN HACER según el registro (#197, docs/peticiones_usuario.md)
 - ✘ **#198 Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20)**: SIN HACER según el registro (#198, docs/peticiones_usuario.md)
-- ✘ **#205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3)**: SIN HACER según el registro (#205, docs/peticiones_usuario.md)
 - ✘ **#209 Passing y globo (Revisión completa, §3 B)**: SIN HACER según el registro (#209, docs/peticiones_usuario.md)
 - ✘ **#210 Dejada (bote muy corto en campo rival) (Revisión completa, §3 B)**: SIN HACER según el registro (#210, docs/peticiones_usuario.md)
 - ✘ **#211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5)**: SIN HACER según el registro (#211, docs/peticiones_usuario.md)
@@ -530,6 +531,7 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 - ! **#14 Rendimiento: un partido en horas, no días**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)
 - ! **#15 Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)
+- ! **#23 Seguir a la jugadora en los cambios de lado**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Identidad en los cambios de lado: smoke_tennis-yusipopen-final-sobolenko-rybakin» (65 de 67 planos decididos (97%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 57 de 66 planos con l)
 - ! **#25 Métricas por derecha: apoyo, base, rodillas, cadera, hombros, X-factor, codo, impacto, cadena, pista**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
 - ! **#26 Fases y cadena completa, del salto inicial a la terminación**: 8 comprobaciones: 5 aviso, 3 ok; la peor: «Fotograma clave: inicio de preparación» (encontrado en el 69% de los golpes)
 - ! **#29 Fase 0: entorno y fps reales, con YOLO**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)
@@ -560,6 +562,7 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 - ! **#150 estos son mas videos de youtube para analizar (3 enlaces) (Chat, 17-10 17:21)**: sin comprobación automática asignada
 - ! **#153 y analizo estos videos (2 enlaces de Olivari) (Chat, 18-10 11:19)**: sin comprobación automática asignada
 - ! **#154 mi movil es android google pixel 8 ... que copie directo al pixel (Chat, 18-10 12:11)**: A MEDIAS según el registro (#154); sin comprobación automática asignada
+- ! **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin» (10 de 13 puntos de su saque vistos con su saque encontrado (77%; objetivo ≥ 85%) (1 puntos más sin nadie jugando en la c)
 - ! **#156 como sabes la identidad de la jugadora y porque hay fallos? porque no buscas en la web de la wta la imagen y a**: A MEDIAS según el registro (#156); sin comprobación automática asignada
 - ! **#162 Galerías ordenadas por calidad de captura, representatividad y resultado del punto (CLAUDE.md, Informe)**: A MEDIAS según el registro (#162); sin comprobación automática asignada
 - ! **#163 Final del armado (máximo giro, raqueta más atrás) (Matriz (literatura), §1)**: A MEDIAS según el registro (#163); sin comprobación automática asignada
@@ -592,6 +595,7 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 - ! **#192 Terminación «hacia adelante», «la mano libre recoge la raqueta», codo al terminar (Guía Ivanovic, hueco 9)**: A MEDIAS según el registro (#192); sin comprobación automática asignada
 - ! **#194 «Sus principios» (5-6 frases) y «Lo que la distingue» (Guía Ivanovic, hueco 13)**: A MEDIAS según el registro (#194); sin comprobación automática asignada
 - ! **#195 Fuentes en COACH: Iino y Kojima 2001, Bahamonde y Knudson 2003, Kawamoto 2019, LTA, Wulf, autoinstrucciones (G**: A MEDIAS según el registro (#195); sin comprobación automática asignada
+- ! **#205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3)**: 1 comprobaciones: 1 aviso; la peor: «Volumen: forehand analizados en los partidos» (25 golpes (13 cerca con todo el detalle, 12 lejos) en 1 partidos; objetivo ≥ 400 (docs/comparativa_apps.md §4.3))
 - ! **#206 Validación de cuerdas y 3D con referencia real (Comparativa apps, §4.4)**: A MEDIAS según el registro (#206); sin comprobación automática asignada
 - ! **#207 Golpes: sin volea, remate ni cortado (Comparativa apps, §3 Peor)**: A MEDIAS según el registro (#207); sin comprobación automática asignada
 - ! **#208 Lógica duplicada JS/Python: calcular una vez en Python (Revisión completa, §2 fallo 17)**: A MEDIAS según el registro (#208); sin comprobación automática asignada
@@ -599,8 +603,8 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 - ! **#213 Textos COACH (el porqué con fuente) en todas las claves de la lección (Auditorías 17-10, técnica #17)**: A MEDIAS según el registro (#213); sin comprobación automática asignada
 - ! **#214 Fuentes de Ivanovic §3 #17 (Auditorías 17-10, técnica #18)**: A MEDIAS según el registro (#214); sin comprobación automática asignada
 - ! **#215 Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22)**: A MEDIAS según el registro (#215); sin comprobación automática asignada
-- ! **#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
-- ! **#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok
+- ! **#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
+- ! **#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo**: 4 comprobaciones: 2 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)
 - ! **#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta**: 4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)
 - ! **#235 Cadena cinética, footwork y timing: lo que define el golpe**: A MEDIAS según el registro (#235); sin comprobación automática asignada
@@ -619,7 +623,6 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 - … **#18 Herramienta Python cinemática 2D, 1 jugador y 1 golpe, parametrizable**: 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos de 20 muchas situaciones no se pueden describir)
 - … **#21 Dos pasadas, barata y fina de ±1 s**: 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos de 20 muchas situaciones no se pueden describir)
 - … **#22 Solo la cámara principal, sin repeticiones ni primeros planos**: 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos de 20 muchas situaciones no se pueden describir)
-- … **#23 Seguir a la jugadora en los cambios de lado**: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos de 20 muchas situaciones no se pueden describir)
 - … **#35 Medidas de la raqueta (altura, ángulos) en todo el golpe; qué miden los profesionales**: 11 comprobaciones: 2 pocos datos, 9 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más)
 - … **#36 Mano y antebrazo, cierre de la muñeca**: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 pocos datos, 2 ok; la peor: «4. Raqueta, swing y empuñadura · Posición de la mano en el mango» (se mide (77% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
 - … **#37 Prueba en local sin procesar 20 GB**: 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos de 20 muchas situaciones no se pueden describir)

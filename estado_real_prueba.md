@@ -4,9 +4,9 @@
 
 | Nivel | Peticiones |
 |---|---|
-| 0 sin construir | 18 |
+| 0 sin construir | 16 |
 | 1 construido, sin comprobar | 63 |
-| 2 comprobación que falla | 73 |
+| 2 comprobación que falla | 75 |
 | 3 comprobado en salidas | 83 |
 | 4 validado con verdad | 0 |
 
@@ -19,7 +19,7 @@
 | B1 Base · velocidad y uso del PC | 10 | 0 | 0 | 7 | 3 | 0 | Prueba desde cero de 35 min en ≤ 45 min; CPU/iGPU por etapa medidas en cada ejecución | falla | no |
 | B2 Base · robustez (nada se cuelga, todo se recupera) | 3 | 0 | 0 | 0 | 3 | 0 | Prueba por cada caso de error y cuelgue; 0 etapas con error en la referencia | ok | **sí** |
 | B3 Base · mejores modelos (estado del arte medido) | 10 | 0 | 0 | 0 | 10 | 0 | Cada candidato medido frente al actual (precisión con datos anotados y fotogramas/s en el PC) | ok | **sí** |
-| B4 Base · no perder golpes | 6 | 2 | 0 | 4 | 0 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | falla | no |
+| B4 Base · no perder golpes | 6 | 0 | 0 | 6 | 0 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | falla | no |
 | B5 Base · exportación | 1 | 0 | 0 | 0 | 1 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues | ok | **sí** |
 | B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 3 | 1 | 0 | 4 partidos sin errores de etapa; auditoría generada | ok | no |
 | B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 7 | 29 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | ok | no |
@@ -70,7 +70,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 20 | Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML (10-10 17:27) | B7 | HECHO | 2 comprobación que falla | 3 comprobaciones: 1 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para |
 | 21 | Dos pasadas, barata y fina de ±1 s (10-10 17:27) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos |
 | 22 | Solo la cámara principal, sin repeticiones ni primeros planos (10-10 17:27) | B7 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos |
-| 23 | Seguir a la jugadora en los cambios de lado (10-10 17:27) | B4 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 pocos datos; la peor: «forehand: golpes analizados» (13 del |
+| 23 | Seguir a la jugadora en los cambios de lado (10-10 17:27) | B4 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 aviso, 1 ok; la peor: «Identidad en los cambios de lado: smoke_tennis-yusipopen-final-sobolenko-rybakin» (65 de 67 plano |
 | 24 | OCR del marcador y presión (10-10 17:27) | M7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 25 | Métricas por derecha: apoyo, base, rodillas, cadera, hombros, X-factor, codo, impacto, cad | M1 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok |
 | 26 | Fases y cadena completa, del salto inicial a la terminación (10-10 17:27; 11-10 08:22) | M1 | HECHO | 2 comprobación que falla | 8 comprobaciones: 5 aviso, 3 ok; la peor: «Fotograma clave: inicio de preparación» (encontrado en el 69% de los golpes) |
@@ -196,7 +196,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 152 | como queda la estructura de directorios ... carpeta normalizada de los jugadores (Chat, 18 | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 153 | y analizo estos videos (2 enlaces de Olivari) (Chat, 18-10 11:19) | P1 | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 154 | mi movil es android google pixel 8 ... que copie directo al pixel (Chat, 18-10 12:11) | P6 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#154); sin comprobación automática asignada |
-| 155 | es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pie | B4 | FALTA | 0 sin construir | SIN HACER según el registro (#155, docs/peticiones_usuario.md) |
+| 155 | es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pie | B4 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Saques por punto de su saque: smoke_ |
 | 156 | como sabes la identidad de la jugadora y porque hay fallos? porque no buscas en la web de  | P5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#156); sin comprobación automática asignada |
 | 157 | bola corta baja cerca de la red (Chat, 19-10 08:11) | M5 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «Bola corta baja cerca de la red (#157)» (0 golpes de 13 (la clase «Bola corta cerca de la red» se |
 | 158 | bola corta alta cerca de la red (Chat, 19-10 08:11) | M5 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 pocos datos; la peor: «Bola corta alta cerca de la red (#158)» (0 golpes de 13 (la clase «Bola corta cerca de la red» se |
@@ -246,7 +246,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 202 | Bola: probar WASB (Estado del arte, 13-10) | B3 | HECHO | 3 comprobado en salidas | 3 comprobaciones: 3 ok |
 | 203 | 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10) | B3 | HECHO | 3 comprobado en salidas | 3 comprobaciones: 3 ok |
 | 204 | Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10) | B3 | HECHO | 3 comprobado en salidas | 5 comprobaciones: 5 ok |
-| 205 | Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3) | B4 | FALTA | 0 sin construir | SIN HACER según el registro (#205, docs/peticiones_usuario.md) |
+| 205 | Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3) | B4 | HECHO | 2 comprobación que falla | 1 comprobaciones: 1 aviso; la peor: «Volumen: forehand analizados en los partidos» (25 golpes (13 cerca con todo el detalle, 12 lejos) en 1  |
 | 206 | Validación de cuerdas y 3D con referencia real (Comparativa apps, §4.4) | M4 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#206); sin comprobación automática asignada |
 | 207 | Golpes: sin volea, remate ni cortado (Comparativa apps, §3 Peor) | M6 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#207); sin comprobación automática asignada |
 | 208 | Lógica duplicada JS/Python: calcular una vez en Python (Revisión completa, §2 fallo 17) | P2 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#208); sin comprobación automática asignada |
@@ -259,8 +259,8 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 215 | Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22) | M5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#215); sin comprobación automática asignada |
 | 216 | Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Audi | M4 | FALTA | 0 sin construir | SIN HACER según el registro (#216, docs/peticiones_usuario.md) |
 | 217 | Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26 | D | FALTA | 0 sin construir | SIN HACER según el registro (#217, docs/peticiones_usuario.md) |
-| 218 | La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen | B4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
-| 219 | Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y co | B4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok |
+| 218 | La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen | B4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok |
+| 219 | Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y co | B4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok |
 | 220 | Almacenamiento definitivo: árbol por jugador, partido y golpe; nombres, colisiones y todos | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 221 | Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano  | B3 | HECHO | 3 comprobado en salidas | 5 comprobaciones: 5 ok |
 | 222 | Un clic por partido para decir quién es ella (19-10 19:57) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
