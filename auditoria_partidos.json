@@ -3,10 +3,10 @@
  "strokes": 443,
  "near": 265,
  "summary": {
-  "ok": 436,
+  "ok": 437,
   "falta": 27,
   "pocos datos": 56,
-  "aviso": 120
+  "aviso": 119
  },
  "items": [
   {
@@ -7897,7 +7897,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2589 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2592 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -8234,8 +8234,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 412fd4c (2026-11-08T15:14:50): 868 bien, 0 fallan, 0 errores",
-   "passed": 868,
+   "detail": "código d70643a (2026-11-08T17:20:42): 869 bien, 0 fallan, 0 errores",
+   "passed": 869,
    "failed": 0
   },
   {
@@ -8474,7 +8474,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "41 carpetas, 28.6 GB en total (2026-11-08T15:40:32); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
+   "detail": "41 carpetas, 28.7 GB en total (2026-11-08T17:21:35); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
   },
   {
    "req": 5,
@@ -8551,21 +8551,21 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_derecha",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 11:03:28 en 0 min: 443 vídeos de 443 golpes"
+   "detail": "terminó el 2026-11-08 15:41:55 en 0 min: 443 vídeos de 443 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_reves",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 11:03:56 en 0 min: 283 vídeos de 283 golpes"
+   "detail": "terminó el 2026-11-08 15:42:23 en 0 min: 283 vídeos de 283 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_saque",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 11:04:18 en 0 min: 291 vídeos de 291 golpes"
+   "detail": "terminó el 2026-11-08 15:42:45 en 0 min: 291 vídeos de 291 golpes"
   },
   {
    "req": 5,
@@ -8718,8 +8718,8 @@
    "req": 9,
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina",
-   "status": "aviso",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 7.5 min, views 3.2 min; MÁS LENTAS de 2 veces: fine 3.8 s por min de vídeo, 2.1 veces su mediana (1.8); alarma en vivo: fine: 4.84 s por unidad frente a 0.86 de presupuesto (mediana de 8 ejecuciones aquí), 5.6 veces; a e"
+   "status": "ok",
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 7.5 min, views 3.2 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -8767,15 +8767,15 @@
    "req": 9,
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
-   "status": "ok",
-   "detail": "recursos_2026-11-08_1434.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (3.5 min): CPU 16/47/95 %, iGPU 0/14/99 %, RAM máx 12.5 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 14/14/14 %, iGPU 0/0/0 %, RAM máx 8.0 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (6.8 min): CPU 14/30/60 %, iGPU 0/18/100 %, RAM máx 8.3 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 28/30/31 %, iGPU 0/0/1 %, RAM máx 10.7 GB → equipo infrautilizado: trabajo en serie (se puede repartir); tennis-yusipopen-polufinal-gau fine (3.2 min): CPU 27/45/76 %, iGPU 0/25/100 %, RAM máx 10.8 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.8 min): CPU 25/32/35 %, iGPU 0/62/100 %, RAM máx 10.7 GB → uso medio: margen para repartir trabajo; 40.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
+   "status": "aviso",
+   "detail": "recursos_2026-11-08_1720.csv sin muestras con su etapa"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 08-11 15:06, empezó a los 2.7 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 08-11 17:18, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -9740,8 +9740,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#146 borra las carpetas de pruebas antiguas (Chat, 17-10 10:49)",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -10321,15 +10321,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo",
-   "status": "ok",
-   "detail": "10 comprobaciones: 10 ok"
+   "status": "aviso",
+   "detail": "10 comprobaciones: 1 aviso, 9 ok; la peor: «Uso del PC por etapa (CPU, RAM, iGPU y disco)» (recursos_2026-11-08_1720.csv sin muestras con su etapa)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
-   "status": "aviso",
-   "detail": "13 comprobaciones: 1 aviso, 12 ok; la peor: «Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina» (3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 7.5 )"
+   "status": "ok",
+   "detail": "13 comprobaciones: 13 ok"
   },
   {
    "req": 11,
