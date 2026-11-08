@@ -343,7 +343,7 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 4689 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 3424 caracteres de texto, 7 vídeos, 0 gráficos
-- ✔ **Pantalla «Datos del análisis»**: 2027 caracteres de texto, 7 vídeos, 0 gráficos
+- ✔ **Pantalla «Datos del análisis»**: 2031 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
@@ -446,7 +446,7 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - ! **Peticiones por GitHub Actions: espera hasta empezar**: la última petición (08-11 05:48) no empezó por GitHub Actions; el último trabajo por Actions fue el 08-11 03:04
 - ✔ **Golpes que fallaron al procesarse**: ninguno
 - ✔ **Nada pide revisión manual**: 20 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
-- ✔ **Pruebas del código en este PC**: código 9ac22a5 (2026-11-08T03:14:30): 855 bien, 0 fallan, 0 errores
+- ✔ **Pruebas del código en este PC**: código 7e0c099 (2026-11-08T05:59:18): 855 bien, 0 fallan, 0 errores
 - ✔ **Pruebas en este PC: test_pipeline**: 17 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_auto_cycle**: 15 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_pc_requests**: 9 bien, 0 fallan, 0 omitidas
@@ -479,14 +479,14 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
 - ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (26/26), 19 s, quedan ≈ 0 s, a las 2026-11-08 05:49:56
 - ✔ **Registros con fecha y duración**: 55 de 55 registros con fecha de inicio y de fin o duración
-- ✔ **Tamaño de la salida (tamanos.txt)**: 42 carpetas, 36.3 GB en total (2026-11-08T05:51:36); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 42 carpetas, 36.3 GB en total (2026-11-08T07:50:05); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB
 - ✔ **Aplicación: ventana real y pantallas**: 56 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 1 análisis y 18 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
 - ✔ **Aplicación: un partido nuevo de principio a fin**: terminó 2026-11-07T17:47:21 en 62.6 min; análisis actualizado
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 77 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 25 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 25 vídeos
-- ✔ **Exportación terminada: exportar**: terminó el 2026-11-08 05:50:23 en 0 min: 25 vídeos de 25 golpes
+- ✔ **Exportación terminada: exportar**: terminó el 2026-11-08 07:51:35 en 0 min: 25 vídeos de 25 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
@@ -499,7 +499,7 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 
 - ! **Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
 - ! **Etapas a la vez: smoke_tennis-yusipopen-final-sobolenko-rybakin**: todas las etapas de su última ejecución corrieron en serie
-- ! **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-08_0440.csv sin muestras con su etapa
+- ! **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-08_0650.csv sin muestras con su etapa
 - ✔ **Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 0.8 min (objetivo ≤ 15 min)
 - ✔ **Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.2 min; ninguna pasa de 2 veces su ritmo habitual
 
