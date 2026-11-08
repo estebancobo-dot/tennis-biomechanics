@@ -409,6 +409,13 @@ id: 154
 accion: medir
 script: validate_rv_strokes
 argumentos: --clips 12 --ball auto --device dml
+---
+id: 155
+accion: completo
+# 155 (08-11, #218): views_link se repite en f43dd2 y 580c6f (la pasada fina reescribia strokes.json sin sus
+# repeticiones y la huella no cambiaba); comprobar "Repeticiones y otras camaras enlazadas" OK en los 4 partidos.
+# Tambien #219: la posicion en pista del lado lejano sale del fotograma con pies mas cercano al contacto (<= 0,2 s);
+# la pasada fina se rehace (~1 h) y "Golpes del fondo: <partido>" debe dar OK en los 4
 # 154 (08-11, B4): el cierre de B4 pide el recuento tambien en RacketVision (golpes del lado cercano con la bola)
 # 153 (08-11): auditoria con la medida de recursos que usa la ultima ejecucion con muestras de una etapa (#230) y las
 # comprobaciones nuevas de B4 (#23, #155, #205, #218, #219)
