@@ -381,6 +381,12 @@ accion: completo
 id: 146
 accion: borrar
 carpetas: _poc9_largo
+---
+id: 147
+accion: repetir
+etapas: identity
+# 147 (08-11, #231): la identidad lenta de Osaka era la lectura de fotogramas exactos (ffmpeg decodificaba el resto
+# del partido en cada tramo); se espera 1,5-2 min en vez de 13 al leer la ropa, con los mismos resultados
 # 146 (08-11, #146): la ultima carpeta de pruebas antigua (7,6 GB); el usuario aprobo borrar las tres el 07-11 y la
 # aplicacion no la usa (sus analisis dejan fuera las pruebas del ciclo)
 # 144-145 (08-11, B4): 143 dio 27/30, 38/44, 40/47, 55/62. El saque del marcador se confirma con el impacto a +-0,6 s
