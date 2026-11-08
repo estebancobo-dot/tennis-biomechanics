@@ -1,6 +1,6 @@
 # Revisión automática: FALLOS
 
-361 cumplidos · 24 no cumplidos · 127 sin golpes suficientes · 97 avisos (antes: 361 cumplidos, 24 no cumplidos)
+362 cumplidos · 24 no cumplidos · 127 sin golpes suficientes · 96 avisos (antes: 361 cumplidos, 24 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 117 de 245
 
@@ -151,3 +151,7 @@ Registro `docs/peticiones_usuario.md`: 117 hechas · 99 a medias · 18 sin hacer
 - **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 9335553 (2026-11-08T14:24:21): 867 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
+
+## Mejora
+
+- Uso del PC por etapa (CPU, RAM, iGPU y disco): aviso → ok
