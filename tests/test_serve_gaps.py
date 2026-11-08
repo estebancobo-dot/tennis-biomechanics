@@ -299,3 +299,14 @@ def test_serve_loss_bias_and_f3set_precision(tmp_path):
     (tmp_path / "recall_validation_detector.json").write_text(json.dumps({"summary_valid": {
         "total": {"recall": 0.896, "found": 463, "gt": 517}, "precision": {"precision": 0.94}}}), encoding="utf-8")
     assert f3set_precision_item(tmp_path)["status"] == "ok"
+
+
+def test_points_the_tv_did_not_show_are_not_expected_to_hold_her_strokes():
+    from tennisbio.point_count import seen_counts, unseen_points
+    readings = [_r(0, (0, 0)), _r(40, (15, 0)), _r(80, (30, 0)), _r(120, (30, 0), server=1, games=((2, 2),)),
+                _r(160, (0, 15), server=1, games=((2, 2),))]
+    cands = [{"t": 20.0}]                              # point 1 (hers) played; point 2 (hers) nobody; point 3 nobody
+    un = unseen_points(readings, cands, [])
+    assert un["hers"] >= 1 and un["all"] >= un["hers"]
+    c = seen_counts({"points": 10, "points_high": 12, "her_service_points": 5, "her_service_points_high": 6}, un)
+    assert c["points"] == 10 - un["all"] and c["her_service_points"] == 5 - un["hers"]

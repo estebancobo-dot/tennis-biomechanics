@@ -411,6 +411,46 @@ def her_serve_points(readings: list[dict], lead_s: float = 5.0) -> list[tuple[fl
     return out
 
 
+def point_windows(readings: list[dict], lead_s: float = 5.0) -> list[tuple[float, float, int | None]]:
+    """(start, end, server row) of every point read on the scoreboard (same game, one point played), as
+    her_serve_points but for both servers."""
+    st = clean_states(readings)
+    out = []
+    since = st[0]["t"] if st else 0.0
+    for a, b in zip(st, st[1:]):
+        same_score = b["g"] == a["g"] and b["pts"] == a["pts"]
+        if not same_score:
+            start, since = since, b["t"]
+        if b["g"] != a["g"] or a["tb"] or same_score or not _in_game(a, b):
+            continue
+        out.append((start - lead_s, b["t"], a["server"]))
+    return out
+
+
+def unseen_points(readings: list[dict], candidates: list[dict] | None, spotted: list[dict] | None) -> dict:
+    """Points nobody plays in on the main camera (no candidate, nothing spotted): the broadcast did not show them
+    (08-11). {"all": n, "hers": n} — her serve: server row 0."""
+    ts = sorted(float(x["t"]) for x in list(candidates or []) + list(spotted or []) if x.get("t") is not None)
+    out = {"all": 0, "hers": 0}
+    for t0, t1, srv in point_windows(readings):
+        i = bisect.bisect_left(ts, t0)
+        if i < len(ts) and ts[i] <= t1:
+            continue
+        out["all"] += 1
+        out["hers"] += srv == 0
+    return out
+
+
+def seen_counts(counts: dict, unseen: dict) -> dict:
+    """The scoreboard's counts without the points the TV did not show (never below zero)."""
+    c = dict(counts)
+    for k in ("points", "points_high"):
+        c[k] = max(0, c[k] - unseen.get("all", 0))
+    for k in ("her_service_points", "her_service_points_high"):
+        c[k] = max(0, c[k] - unseen.get("hers", 0))
+    return c
+
+
 SERVE_RULE = "primer golpe de quien saca"
 
 

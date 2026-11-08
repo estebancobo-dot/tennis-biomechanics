@@ -517,7 +517,24 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
             continue
         counts = count_points(readings)
         serves = sum(s.get("stroke") == "overhead" for s in strokes)
+        # points the TV did not show (nobody plays on the main camera) are not expected to hold her strokes (08-11)
+        unseen_txt = ""
+        try:
+            from .point_count import seen_counts, unseen_points
+            cj_f, sp_f0 = _mf.at(d, "candidates.json"), _mf.at(d, "spotting.json")
+            if cj_f.exists():
+                cj0 = json.loads(cj_f.read_text(encoding="utf-8"))
+                cd0 = cj0.get("candidates", cj0) if isinstance(cj0, dict) else cj0
+                sp0 = json.loads(sp_f0.read_text(encoding="utf-8")) if sp_f0.exists() else []
+                un = unseen_points(readings, cd0, sp0)
+                if un["all"]:
+                    counts = seen_counts(counts, un)
+                    unseen_txt = (f" (sin {un['all']} puntos en los que nadie juega en la cámara principal: la tele no "
+                                  f"los enseñó, {un['hers']} de su saque)")
+        except (OSError, ValueError, KeyError, TypeError):
+            pass
         status, detail = recall_verdict(len(strokes), serves, counts)
+        detail += unseen_txt
         sides = f" ({sum(s.get('side') != 'far' for s in strokes)} cerca, {sum(s.get('side') == 'far' for s in strokes)} lejos)"
         try:                                      # strokes of undecided identity: analysed, kept apart, not hers yet
             doubt = json.loads((_mf.at(d, "strokes_doubtful.json")).read_text(encoding="utf-8")) if (_mf.at(d, "strokes_doubtful.json")).exists() else []
