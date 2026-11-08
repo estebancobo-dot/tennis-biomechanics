@@ -1424,8 +1424,8 @@ def spotter_items(match_dirs: list[Path]) -> list[dict]:
 
 def stage_time_items(match_dirs: list[Path], out_root: Path) -> list[dict]:
     """#231 (a match cannot take twice as long without knowing why): per match, each stage that really computed
-    (≥ budget.REAL_RUN_S) in seconds per minute of video, against the median of its rates on this PC
-    (ritmos.json); a stage above STAGE_SLOW_FACTOR × that median is named, with the alarm raised live if any."""
+    (≥ budget.REAL_RUN_S) in seconds per minute of video, against the slowest of its rates on this PC
+    (ritmos.json); a stage above STAGE_SLOW_FACTOR × that rate is named, with the alarm raised live if any."""
     from .budget import ALARMS, RATES, REAL_RUN_S
 
     rf = _find(out_root, RATES)
@@ -1455,10 +1455,13 @@ def stage_time_items(match_dirs: list[Path], out_root: Path) -> list[dict]:
             if len(ref) < STAGE_MIN_REFS:
                 continue
             judged += 1
-            med = float(np.median(ref))
+            # against the slowest past run here, not the median (08-11, as budget.budget_per_unit since 04-11): the
+            # median came from runs that only re-read their caches, and a stage that really computed (584c5b's fine
+            # after a code change, 7.5 min) was named slow
+            med = float(np.max(ref))
             if med > 0 and rate > STAGE_SLOW_FACTOR * med:
                 al = [a for a in alarms if a.get("etapa") == st]
-                slow.append(f"{st} {rate:.1f} s por min de vídeo, {rate / med:.1f} veces su mediana ({med:.1f})"
+                slow.append(f"{st} {rate:.1f} s por min de vídeo, {rate / med:.1f} veces la más lenta aquí ({med:.1f})"
                             + (f"; alarma en vivo: {al[-1].get('texto', '')[:100]}" if al else "; sin alarma en vivo"))
         if not rows:
             continue

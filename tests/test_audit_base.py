@@ -229,3 +229,21 @@ def test_b6_and_b7_requests_are_checked_on_the_outputs_and_their_level_follows_t
     old = [{**i, "status": "aviso"} if i["name"] == "Carpetas de pruebas antiguas" else i for i in items]
     pet = {int(i["name"].split(" ")[0][1:]): i for i in A.petition_items(old)}
     assert real_status.level(states[146], pet[146], 146) == 2
+
+
+def test_a_stage_that_really_computed_is_judged_against_the_slowest_run_not_the_median(tmp_path):
+    """08-11: 584c5b's fine (7.5 min after a code change) was called slow against a median of cache re-reads."""
+    import json
+    from tennisbio.audit import stage_time_items
+    out = tmp_path / "output"
+    d = out / "m"
+    d.mkdir(parents=True)
+    (out / "ritmos.json").write_text(json.dumps({"fine:minuto": [{"s": 1.5}, {"s": 1.6}, {"s": 1.8}, {"s": 3.5}]}),
+                                     encoding="utf-8")
+    (d / "manifest.json").write_text(json.dumps({"probe": {"summary": {"duration_min": 120}},
+                                                 "fine": {"seconds": 450}}), encoding="utf-8")
+    it = stage_time_items([d], out)[0]
+    assert it["status"] == "ok", it["detail"]                       # 3.75 s/min < 2 × 3.5
+    (d / "manifest.json").write_text(json.dumps({"probe": {"summary": {"duration_min": 120}},
+                                                 "fine": {"seconds": 900}}), encoding="utf-8")
+    assert stage_time_items([d], out)[0]["status"] == "aviso"       # 7.5 s/min > 2 × 3.5
