@@ -1,12 +1,11 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-360 cumplidos · 22 no cumplidos · 127 sin golpes suficientes · 98 avisos (antes: 359 cumplidos, 20 no cumplidos)
+364 cumplidos · 19 no cumplidos · 127 sin golpes suficientes · 97 avisos (antes: 360 cumplidos, 22 no cumplidos)
 
-## Peticiones del usuario SIN TERMINAR: 118 de 245
+## Peticiones del usuario SIN TERMINAR: 119 de 245
 
-Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 115 hechas · 101 a medias · 18 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
-- **#1 [FALTA]** Derecha de Rybakina en sus 4 partidos completos, una vez y al final (10-10 17:27; 11-10 19:37) — falta: Ningún partido completo analizado. 19-10: el análisis de los 4 partidos encuentra como mucho el 43 % de sus golpes y el 29 % de sus saques (`audit.recall_items…
 - **#155 [FALTA]** es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 19-10 06:15) — falta: Detección sin arreglar: como mucho 43 % de sus golpes y 29 % de sus saques en la final del US Open. Falta correr el banco de 650 golpes anotados y corregir la …
 - **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
 - **#189 [FALTA]** «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4) — falta: No está en `learn.py`.
@@ -25,6 +24,7 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - **#240 [FALTA]** Comparar la aplicación con las profesionales una vez estén los golpes (27-10 11:42) — falta: Bloque B1 del plan: pantalla a pantalla con los datos reales.
 - **#244 [FALTA]** Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10) — falta: Revisar ganadores y errores con el marcador y la bola; no mostrar hasta que sea creíble.
 - **#245 [FALTA]** Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10) — falta: Usar los datos del catálogo y del nombre del vídeo (como la lista de la aplicación).
+- **#1 [PARCIAL]** Derecha de Rybakina en sus 4 partidos completos, una vez y al final (10-10 17:27; 11-10 19:37) — falta: Ningún partido completo analizado. 19-10: el análisis de los 4 partidos encuentra como mucho el 43 % de sus golpes y el 29 % de sus saques (`audit.recall_items…
 - **#2 [PARCIAL]** Ver informe y salidas en el móvil (11-10 18:21, 18:29, 18:33) — falta: 19-10: copia hecha; el paso directo al Pixel 8 sin probar en el teléfono.
 - **#4 [PARCIAL]** Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como base para cualquiera (11-10 19… — falta: Valores de 1 a 10 golpes, todos «provisional». SuD, `copy_cue` y `COACH` no se ven (≥12).
 - **#5 [PARCIAL]** Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto, apoyo, dirección, ataque/de… — falta: 0 de 2.992 combinaciones con ≥12. Niveles vacíos: parada 0, paralela 0, rodilla 0, en el aire 0. 19-10: faltaban de su mensaje del 10-10 18:05 «ángulos» (golpe…
@@ -42,7 +42,6 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - **#45 [PARCIAL]** Todo automático y completo: el usuario no revisa nada (11-10 09:05, 19:38; 12-10 11:41) — falta: 4 golpes fallaron (`strokes_errores.json`) y nadie los recupera. (04-11: 0 golpes fallaron en la referencia; uno que falle se rehace cuando cambia el código de…
 - **#55 [PARCIAL]** Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo (12-10 17:40) — falta: En sus datos hay 0 paralelas y 1 cerrado más «invertida paralela»: el ejemplo no se puede ver. 19-10: apoyo cerrado + paralela sí se combinan; «cerca de la red…
 - **#64 [PARCIAL]** Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la inversa» (12-10 18:03, 18:06;… — falta: El paso cruzado no aparece en ningún golpe. El primer paso y el ajuste salen «no medible» si los tobillos se ven quietos menos del 40 % del tiempo.
-- **#66 [PARCIAL]** Fechas y duración en los registros (12-10 18:25) — falta: 06-11: la auditoría del PC falla en 1 de 55 registros: `prevision.log` es del 04-11 13:47 (petición 98), escrito **antes** del arreglo (04-11 17:44) que añade …
 - **#68 [PARCIAL]** La meta: mejorar mi derecha tomando la de X como base (12-10 22:25; 13-10 05:48 p5) — falta: Valores provisionales de 1-10 golpes. Sin progresión ni prioridad (qué copiar primero según lo que la distingue).
 - **#69 [PARCIAL]** Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replicarlo) (13-10 05:48 p8) — falta: Con sus datos hay 0 golpes exactos: se quitan las 5 condiciones y se ven las 10 derechas. «Qué cambia» es texto general, no lo que hace ella.
 - **#70 [PARCIAL]** Las 2000 y pico combinaciones, usables y validadas (13-10 05:48 p2; 06:00) — falta: Combinaciones de medida y nivel: 0 de 2.992 visibles. Solo se prueba un trío o más (el ejemplo del usuario).
@@ -68,15 +67,16 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - **#113 [PARCIAL]** Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25) — falta: Nada confirmado ni refutado. R2 apunta a un fallo de `ready_hands` (100 % «mano libre separada»).
 - **#124 [PARCIAL]** Hacia dónde mira el tronco y las manos en la espera, medidas fiables (13-10 13:00) — falta: Manos en la espera solo en 3 de 10 golpes (la raqueta casi no se ve en la espera).
 - **#130 [PARCIAL]** Resto de derecha (devolver el saque) con todas sus variantes, en la matriz y en la aplicación (13-10 14:30) — falta: Pocos restos en la prueba corta; primer/segundo saque es probable (un corte entre saques lo confunde); el tipo de resto sale de las clases de preparación, term…
+- **#134 [PARCIAL]** prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06) — falta: 08-11: la referencia completa existe (4 partidos completos, 1016 golpes suyos), pero la auditoría del PC 08-11 09:30 (`auditoria_partidos.json`) da «Golpes enc…
 - **#135 [PARCIAL]** distancia al fondo, red (Chat, 11-10 19:23) — falta: Hay distancia al fondo, pero no a la red: «dentro de la pista» junta todo lo que está a más de 0,5 m dentro de la línea, de la zona de saque a la red. 20-10: h…
 - **#140 [PARCIAL]** de la jugadora de fondo se sacan imagenes para la captura de datos en vista frontal? (Chat, 14-10 20:08) — falta: No se usa como vista frontal para medidas del cuerpo: a 60-90 px los tobillos y la raqueta salen imprecisos.
 - **#142 [PARCIAL]** (punto 2) como se puede hacer una aplicacion profesional ... mas jugadores, mas golpes ... como se lanza, almacenamiento, videos, progreso … — falta: Construida y probada, pero el análisis real de los 4 partidos (18-10) se lanzó con el ciclo, no desde la aplicación; nunca usada con datos correctos.
 - **#143 [PARCIAL]** (punto 3) esta es una guia para la derecha de otra jugadora ... revisar si aplica todo (Chat, 17-10 09:49) — falta: De sus 20 huecos, 7 siguen a medias o sin hacer (ver fuente «Guía Ivanovic»).
+- **#146 [PARCIAL]** borra las carpetas de pruebas antiguas (Chat, 17-10 10:49) — falta: — 07-11: el usuario aprueba borrar; petición 123 borra _poc31_35 y _poc31_4. _poc9_largo se queda hasta saber si la aplicación la usa. 08-11: la aplicación no …
 - **#147 [PARCIAL]** la guia de ivanovic esta aplicada al 100 por 100? sobre todo los puntos 1 2 3 5 6 y 10 (Chat, 17-10 10:52) — falta: 3 a medias (falta «punta arriba / codo alto»), 6 a medias (faltan 3 alarmas), 10 sin hacer (mano libre en aceleración e impacto).
 - **#154 [PARCIAL]** mi movil es android google pixel 8 ... que copie directo al pixel (Chat, 18-10 12:11) — falta: Sin probar con el teléfono conectado.
 - **#156 [PARCIAL]** como sabes la identidad de la jugadora y porque hay fallos? porque no buscas en la web de la wta la imagen y altura (Chat, 19-10 06:29) — falta: Fallos sin explicar ni corregir; una foto de la WTA sería una fuente externa (requisito 6) y no sirve desde detrás: la identidad debe validarse con `validation…
 - **#159 [PARCIAL]** volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (Chat, 19-10 08:11) — falta: La empuñadura no se ve en la tele: el golpe de fondo se reconoce por el swing (preparación no compacta y terminación completa). La medida «bola seguida» (`ball…
-- **#160 [PARCIAL]** la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11) — falta: Arranca, pero los análisis de los 4 partidos no son válidos (golpes perdidos). (04-11: el índice de la aplicación tiene 0 análisis; los de la referencia los hi…
 - **#162 [PARCIAL]** Galerías ordenadas por calidad de captura, representatividad y resultado del punto (CLAUDE.md, Informe) — falta: No hay orden por resultado del punto (solo filtro).
 - **#163 [PARCIAL]** Final del armado (máximo giro, raqueta más atrás) (Matriz (literatura), §1) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
 - **#164 [PARCIAL]** Final de la extensión (Matriz (literatura), §1) — falta: Parcial en `docs/matriz_cobertura.md`: aproximado, 2D o solo en la vista lateral.
@@ -119,6 +119,7 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - **#219 [PARCIAL]** Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa distancia, no descartados (19-… — falta: Se confirman ~20 % de los golpes del fondo (Zheng: 36 de ~175).
 - **#230 [PARCIAL]** Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo (26-10 12:56) — falta: Se mide desde el próximo trabajo; luego acelerar lo que no aproveche el equipo. 06-11: la medida ya se hace (auditoría ✔ «Uso del PC por etapa», `recursos_2026…
 - **#231 [PARCIAL]** Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta (26-10 11:05-21:50) — falta: Leer solo fotogramas clave (cualquier fotograma de la toma vale) y medir el tiempo. 06-11: la etapa de tomas ya lee fotogramas clave (`stages.py`, `keyframes_a…
+- **#233 [PARCIAL]** Una referencia completa y medida antes de validar nada (26-10 11:09) — falta: 799 golpes suyos en 4 partidos (27-10). 08-11: la referencia se ha rehecho (1016 golpes suyos; «Partido …: salida de cada etapa» ✔ en los 4, ningún golpe falli…
 - **#235 [PARCIAL]** Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) — falta: Cadena en orden 79 % y pasos medidos 87 % en los 193 golpes; falta verlo recalculado en el PC.
 - **#236 [PARCIAL]** Huellas numeradas sobre los pies y patrones de pasos (27-10 09:38) — falta: Patrón típico de pasos por situación (frecuencia de cada secuencia).
 - **#238 [PARCIAL]** La validación es siempre automática; el usuario no valida la aplicación (27-10 11:42) — falta: Que cada pantalla nueva entre con su comprobación automática.
@@ -129,9 +130,6 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 ## No cumplidos
 
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
-- **Registros con fecha y duración**: 54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos
-- **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: SIN HACER según el registro (#1, docs/peticiones_usuario.md)
-- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos)
 - **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -151,12 +149,10 @@ Registro `docs/peticiones_usuario.md`: 116 hechas · 99 a medias · 19 sin hacer
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 
-## Empeora respecto a la ejecución anterior
-
-- **Registros con fecha y duración**: ok → falta: 54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos
-- **#66 Fechas y duración en los registros**: aviso → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos)
-
 ## Mejora
 
-- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok
-- #237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min: aviso → ok
+- Registros con fecha y duración: falta → ok
+- Uso del PC por etapa (CPU, RAM, iGPU y disco): aviso → ok
+- #1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final: falta → aviso
+- #66 Fechas y duración en los registros: falta → ok
+- #160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11): aviso → ok
