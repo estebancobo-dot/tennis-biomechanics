@@ -370,6 +370,15 @@ detector: si
 ---
 id: 143
 accion: completo
+---
+id: 144
+accion: recall
+detector: si
+---
+id: 145
+accion: completo
+# 144-145 (08-11, B4): 143 dio 27/30, 38/44, 40/47, 55/62. El saque del marcador se confirma con el impacto a +-0,6 s
+# (el resto llega 0,6-1,3 s despues del saque) y la auditoria cuenta los saques del marcador descartados por motivo
 # 142-143 (08-11, B4): 141 dio 27/30, 38/44, 40/47, 55/62 (F3Set 463/517, 94 %). La regla de la pausa del saque se
 # aplica tambien en el lado cercano cuando no hay medida de la mano. 142 = F3Set, 143 = los 4 partidos
 # 140-141 (08-11, B4): 139 dio 27/30, 38/44, 39/47, 54/62 (F3Set 94 %). Ahora la identidad sin decidir del primer

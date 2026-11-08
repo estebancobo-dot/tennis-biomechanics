@@ -271,3 +271,16 @@ def test_the_server_is_known_the_first_serve_of_a_point_of_hers_is_hers():
     assert S.serve_identity(cands, {"readings": readings}) == 1
     assert cands[1]["target"] is True and cands[1]["identity"] is True and cands[1]["identity_source"] == "marcador_saque"
     assert cands[2]["target"] is None and cands[3]["target"] is None
+
+
+def test_a_scoreboard_serve_is_confirmed_in_a_wider_span_and_its_drops_are_counted():
+    from types import SimpleNamespace
+    import tennisbio.stages as S
+    from tennisbio.audit import _board_drops
+
+    run = SimpleNamespace(fps=25.0, strokes=[SimpleNamespace(impact_frame=25 + 13)])      # 0.52 s after the guess
+    c = {"t": 11.0, "source": "spotter"}
+    assert S._fine_stroke(None, None, c, 10.0, "w", None, "near", run, set(), *[None] * 7) is None
+    assert S.SERVE_BOARD_TOL_S >= 0.5
+    assert _board_drops([{"source": "marcador", "why": "sin_impacto_cerca"}, {"source": "spotter", "why": "x"}]) == \
+        {"sin_impacto_cerca": 1}

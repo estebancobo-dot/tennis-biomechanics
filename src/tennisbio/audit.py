@@ -573,11 +573,22 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
                                     + (f", golpes suyos perdidos {nb['suyos_perdidos']}" if nb.get("suyos_perdidos") else "")
                                     + (f", motivos del descarte {nb['motivos_descarte']}" if nb.get("motivos_descarte") else "")
                                     if (nb := g.get("no_strokes_points")) and g["by_cause"].get("sin_golpes") else "")
+                                 + (f"; saques del marcador descartados en la pasada fina: {mb}"
+                                    if (mb := _board_drops(dropped)) else "")
                                  + ("; primeros: " + ", ".join(f"{x['t0'] / 60:.1f}-{x['t1'] / 60:.1f} min ({x['cause']})"
                                                                for x in g["gaps"][:8]) if g["gaps"] else ""),
                                  serve_gaps=g))
         except Exception as e:  # noqa: BLE001 — the audit must still be written
             out.append(_item(1, "Golpes", f"Saques por punto de su saque: {d.name}", "aviso", f"no se pudo calcular ({e})"))
+    return out
+
+
+def _board_drops(dropped: list[dict] | None) -> dict:
+    """The scoreboard's serve candidates (source «marcador») the fine pass dropped, by reason (08-11)."""
+    out: dict = {}
+    for x in dropped or []:
+        if x.get("source") == "marcador":
+            out[str(x.get("why"))] = out.get(str(x.get("why")), 0) + 1
     return out
 
 

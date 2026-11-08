@@ -804,6 +804,7 @@ def spotter_candidates(spotted: list[dict], identity: dict, fps: float, runs: li
 
 
 SERVE_BEFORE_RETURN_S = 0.8     # her serve's contact before the opponent's return (a first serve crosses in ~0.8 s)
+SERVE_BOARD_TOL_S = 0.6        # a scoreboard serve's impact: within this of its guessed time (0.8 s before the return)
 RALLY_PAUSE_S = 5.0             # no stroke for this long before the return: a new point (between points: 15-25 s)
 SERVE_LOOK_S = 3.0              # a candidate of hers this long before the return is her serve already
 
@@ -2268,7 +2269,10 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
         return None
     r = min(free, key=lambda s: abs(s.impact_frame - target))
     from .fine_gate import CONFIRM_TOL_S
-    if abs(r.impact_frame - target) > CONFIRM_TOL_S * run.fps:
+    # a scoreboard serve is placed SERVE_BEFORE_RETURN_S before the opponent's return, but a serve takes 0.6-1.3 s
+    # to be returned (08-11): its impact is looked for in a wider span
+    tol = SERVE_BOARD_TOL_S if c.get("source") == "marcador" else CONFIRM_TOL_S
+    if abs(r.impact_frame - target) > tol * run.fps:
         return None                           # the fine pass did not confirm this candidate
     used.add(r.impact_frame)
     stroke_from_spotter(r, c)
