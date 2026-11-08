@@ -113,3 +113,19 @@ def test_b4_requests_have_a_rule_and_their_level_follows_their_checks():
         pet = {int(i["name"].split(" ")[0][1:]): i for i in A.petition_items(bad)}
         for rid in rids:
             assert states[rid] == "FALTA" or real_status.level(states[rid], pet[rid], rid) == 2, (rid, name)
+
+
+def test_far_end_detail_lists_what_is_measured_there():
+    """#219 (08-11): the PC audit shows, for her far strokes, position, displacement, contact height and destination,
+    the positions taken next to contact and the strokes without pose."""
+    fine = {"candidates": 10, "confirmed": 10}
+    ok = {"side": "far", "court_pos_m": [0.5, 2.0], "displacement_m": 1.2, "metrics": {"contact_height_pct": 40},
+          "shot_bounce_m": [1, 20], "phases": {"loaded": {"frame": 90}}}
+    far = [ok] * 7 + [{**ok, "court_pos_offset_s": -0.08, "shot_bounce_m": None}] + \
+          [{"side": "far", "phases": {"ready": {"frame": 68}, "impact": {"frame": 110}}}] * 2
+    it = A.far_end_item("m", (10, 10), fine, far)
+    assert it["status"] == "ok", it["detail"]
+    d = it["detail"]
+    assert "posición en la pista 80%" in d and "desplazamiento 80%" in d and "altura del impacto 80%" in d
+    assert "destino 70%" in d and "≤ 0,2 s del impacto en 1" in d and "2 sin pose" in d
+    assert A.far_end_item("m", (10, 10), fine, far[:7] + far[8:] + far[8:9])["status"] == "aviso"     # 70 % with position

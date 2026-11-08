@@ -2308,7 +2308,7 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
         ta = r.metrics.get("time_available_s")
         opp = None if ta is None else r.impact_frame - int(round(ta * run.fps))
         cm = court_metrics(run.img, run.sk, H, r.stroke, r.impact_frame, opp,
-                           feet=getattr(run, "feet", None), feet_conf=getattr(run, "feet_conf", None))
+                           feet=getattr(run, "feet", None), feet_conf=getattr(run, "feet_conf", None), fps=run.fps)
         if side == "far":       # ankles of a ~70 px player are too rough for stance and base width
             for k in ("stance", "stance_angle_deg", "stance_width_m"):
                 cm.pop(k, None)

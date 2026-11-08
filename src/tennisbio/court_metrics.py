@@ -49,23 +49,49 @@ def stance(dom_foot: np.ndarray, non_foot: np.ndarray, stroke: str, dom_sign: in
     return kind, a
 
 
+POS_MAX_OFFSET_S = 0.2      # her position on court from the nearest frame with feet, at most this far from contact
+
+
+def nearest_feet(img_kp: np.ndarray, frame: int, sk: Skeleton, H: np.ndarray, feet=None, max_offset: int = 0):
+    """(offset in frames, (dom foot, non foot)) of the frame nearest to `frame` (at most max_offset away, the
+    earlier one first on a tie) whose feet are on the court, or None."""
+    if frame is None:
+        return None
+    for k in range(max(0, int(max_offset)) + 1):
+        for o in ((0,) if k == 0 else (-k, k)):
+            f = feet_on_court(img_kp, frame + o, sk, H, feet)
+            if f is not None:
+                return o, f
+    return None
+
+
 def court_metrics(img_kp: np.ndarray, sk: Skeleton, H: np.ndarray, stroke: str, impact: int,
-                  opponent_hit: int | None = None, feet=None, feet_conf=None) -> dict:
+                  opponent_hit: int | None = None, feet=None, feet_conf=None, fps: float | None = None) -> dict:
     """Position, base width and stance at contact; displacement since the opponent's hit. feet /
     feet_conf: run.feet / run.feet_conf (hybrid pose) when there are foot points; the stance is then
-    the line between the two ground contacts (heel–toe middles) instead of the ankles."""
+    the line between the two ground contacts (heel–toe middles) instead of the ankles.
+
+    fps given (request 219, 08-11): when her feet are not seen in the contact frame itself (the far player, ~70 px,
+    loses her ankles in the swing), her position (and the displacement) come from the nearest frame with feet at most
+    POS_MAX_OFFSET_S away, said in court_pos_offset_s; stance and base width only from the contact frame."""
     from .footpoints import clean_feet
 
     out = {}
     fk = clean_feet(feet, feet_conf)
     f = feet_on_court(img_kp, impact, sk, H, fk)
     if f is None:
-        return out
-    dom, non = f
-    mid = (dom + non) / 2
-    kind, ang = stance(dom, non, stroke, sk.dom_sign)
-    out.update(court_pos_m=[round(float(v), 2) for v in mid], stance_width_m=round(float(np.linalg.norm(dom - non)), 2),
-               stance=kind, stance_angle_deg=round(ang, 1))
+        near = nearest_feet(img_kp, impact, sk, H, fk, int(round(POS_MAX_OFFSET_S * fps)) if fps else 0)
+        if near is None:
+            return out
+        off, (dom, non) = near
+        mid = (dom + non) / 2
+        out.update(court_pos_m=[round(float(v), 2) for v in mid], court_pos_offset_s=round(off / fps, 3))
+    else:
+        dom, non = f
+        mid = (dom + non) / 2
+        kind, ang = stance(dom, non, stroke, sk.dom_sign)
+        out.update(court_pos_m=[round(float(v), 2) for v in mid], stance_width_m=round(float(np.linalg.norm(dom - non)), 2),
+                   stance=kind, stance_angle_deg=round(ang, 1))
     g = feet_on_court(img_kp, opponent_hit, sk, H, fk)
     if g is not None:
         out["displacement_m"] = round(float(np.linalg.norm(mid - (g[0] + g[1]) / 2)), 2)

@@ -719,6 +719,14 @@ def identity_item(match: str, summ: dict | None, sides: tuple[int, int] | None) 
                  + (f" · falla: {', '.join(bad)}" if bad else "") + ". Sin verdad anotada: coherencia, no validación")
 
 
+# what a far stroke has measured at that distance (CLAUDE.md, far end), as stroke fields of the fine pass
+FAR_MEASURES = {
+    "desplazamiento": lambda s: s.get("displacement_m") is not None,
+    "altura del impacto": lambda s: (s.get("metrics") or {}).get("contact_height_pct") is not None,
+    "destino": lambda s: bool(s.get("shot_bounce_m")),
+}
+
+
 def far_end_item(match: str, sides: tuple[int, int] | None, fine: dict | None, far_strokes: list[dict] | None,
                  far_candidates: int | None = None) -> dict:
     """#218/#219: the strokes of the main camera's far end count for her too: found (a fair share of hers at that
@@ -747,9 +755,19 @@ def far_end_item(match: str, sides: tuple[int, int] | None, fine: dict | None, f
     if far_strokes is None:
         bad.append("sin strokes.json: lo medido en el fondo sin comprobar")
     elif far_strokes:
-        pos = sum(bool(s.get("court_pos_m")) for s in far_strokes) / len(far_strokes)
+        n_f = len(far_strokes)
+        pos = sum(bool(s.get("court_pos_m")) for s in far_strokes) / n_f
         txt.append(f"con su posición en la pista {pos:.0%} (objetivo ≥ {FAR_POSITION_MIN:.0%}; en el fondo solo lo fiable "
                    "a esa distancia: posición, desplazamiento, altura del impacto, destino)")
+        # #219 (08-11): the rest of what is measurable at that distance, so the PC audit shows all of it
+        shares = {k: sum(bool(f(s)) for s in far_strokes) / n_f for k, f in FAR_MEASURES.items()}
+        near_pos = sum(s.get("court_pos_offset_s") not in (None, 0, 0.0) for s in far_strokes)
+        # no phase of her body found (impact and extension come from the candidate, ready from the sound): no pose
+        no_pose = sum(not any(((s.get("phases") or {}).get(k) or {}).get("frame") is not None
+                              for k in ("takeback", "loaded", "acceleration", "finish", "recovery")) for s in far_strokes)
+        txt.append(f"de sus {n_f} golpes del fondo: " + ", ".join(f"{k} {v:.0%}" for k, v in shares.items())
+                   + (f"; posición de un fotograma a ≤ 0,2 s del impacto en {near_pos}" if near_pos else "")
+                   + (f"; {no_pose} sin pose en la ventana (confirmados por la bola o el detector)" if no_pose else ""))
         if pos < FAR_POSITION_MIN - 1e-9:
             bad.append(f"posición medida {pos:.0%}")
     return _item(1, "Golpes", name, "aviso" if bad else "ok",

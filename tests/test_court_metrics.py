@@ -44,3 +44,23 @@ def test_player_frame_for_the_far_end():
     # a point 1 m inside the far baseline, 2 m to the image left = her right (she faces the camera)
     assert np.allclose(to_court(Hf, np.array([[-2.0, 22.77]])), [[2.0, 1.0]])
     assert player_frame_H(H, "near") is H
+
+
+def test_position_from_the_nearest_frame_with_feet_when_contact_has_none():
+    """#219 (08-11): the far player (~70 px) often loses her ankles in the contact frame itself; her position then
+    comes from the nearest frame with feet at most 0.2 s away (said in court_pos_offset_s), never the stance."""
+    sk = Skeleton("coco17", "right")
+    kp = np.full((30, 17, 2), np.nan)
+    kp[:, sk["right_ankle"]], kp[:, sk["left_ankle"]] = [1.0, 2.0], [0.0, 2.0]
+    kp[0, sk["right_ankle"]], kp[0, sk["left_ankle"]] = [4.0, 2.0], [3.0, 2.0]
+    kp[15:20] = np.nan                                        # no feet from frame 15 to 19; contact at 17
+    assert court_metrics(kp, sk, np.eye(3), "forehand", impact=17, opponent_hit=0) == {}       # as before without fps
+    m = court_metrics(kp, sk, np.eye(3), "forehand", impact=17, opponent_hit=0, fps=25.0)
+    assert m["court_pos_m"] == [0.5, 2.0] and m["court_pos_offset_s"] == -0.12 and m["displacement_m"] == 3.0
+    assert "stance" not in m and "stance_width_m" not in m
+    kp[5:28] = np.nan                                         # nothing within 0.2 s (5 frames at 25 fps)
+    assert court_metrics(kp, sk, np.eye(3), "forehand", impact=17, opponent_hit=0, fps=25.0) == {}
+    kp[:] = np.nan
+    kp[:, sk["right_ankle"]], kp[:, sk["left_ankle"]] = [1.0, 2.0], [0.0, 2.0]
+    m = court_metrics(kp, sk, np.eye(3), "forehand", impact=17, fps=25.0)     # feet at contact: nothing changes
+    assert "court_pos_offset_s" not in m and m["stance"] == "abierto"
