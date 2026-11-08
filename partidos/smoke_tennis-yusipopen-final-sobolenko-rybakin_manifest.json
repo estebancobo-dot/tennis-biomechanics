@@ -128,10 +128,10 @@
   "rewrote": {}
  },
  "fine": {
-  "fingerprint": "c81adba7d70b8159",
+  "fingerprint": "974c587287cd9cbc",
   "version": "16",
-  "seconds": 83.7,
-  "finished": "2026-11-08 17:36:17",
+  "seconds": 74.4,
+  "finished": "2026-11-08 22:16:16",
   "summary": {
    "candidates": 80,
    "confirmed": 77,
@@ -151,13 +151,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 37.9,
-    "pista_ventana": 22.9,
-    "analisis_ventana": 16.7,
-    "cuerdas_y_3d": 15.1,
-    "recorte": 4.4,
-    "cribado": 3.5,
-    "pose": 0.3
+    "jugadora_lejana": 29.5,
+    "pista_ventana": 18.9,
+    "cuerdas_y_3d": 15.0,
+    "analisis_ventana": 14.6,
+    "recorte": 4.0,
+    "cribado": 3.1,
+    "pose": 0.5
    },
    "counts": {
     "overlap_s": 0.0,
@@ -171,24 +171,26 @@
    }
   },
   "out_hash": "611038bb6fff63e709e1",
-  "scheme": 2
+  "scheme": 2,
+  "rewrote": {}
  },
  "fine_opponent": {
-  "fingerprint": "327974ac520b3638",
+  "fingerprint": "b28148c41ceb2939",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-08 17:36:17",
+  "finished": "2026-11-08 22:16:17",
   "summary": {
    "enabled": false
   },
   "out_hash": "dafe9abfb6c998959474",
-  "scheme": 2
+  "scheme": 2,
+  "rewrote": {}
  },
  "fine_doubtful": {
-  "fingerprint": "21cb0a948d59bc68",
+  "fingerprint": "938094d556349949",
   "version": "1",
-  "seconds": 39.5,
-  "finished": "2026-11-08 17:36:56",
+  "seconds": 42.8,
+  "finished": "2026-11-08 22:16:59",
   "summary": {
    "candidates": 26,
    "confirmed": 17,
@@ -207,12 +209,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 7.5,
+    "cuerdas_y_3d": 8.7,
     "analisis_ventana": 4.4,
-    "jugadora_lejana": 1.7,
+    "jugadora_lejana": 2.1,
     "pista_ventana": 1.6,
-    "recorte": 1.1,
-    "cribado": 0.7,
+    "recorte": 1.4,
+    "cribado": 0.8,
     "pose": 0.1,
     "bola_en_paralelo_cpu": 0,
     "espera_bola_en_paralelo": 0.0
@@ -230,7 +232,8 @@
    }
   },
   "out_hash": "e9e5d67f4e7e277c3b90",
-  "scheme": 2
+  "scheme": 2,
+  "rewrote": {}
  },
  "views": {
   "fingerprint": "4155f2452fa721d5",
@@ -255,7 +258,7 @@
   "fingerprint": "0143ceda80fe4eb0",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-11-08 17:36:56",
+  "finished": "2026-11-08 22:17:00",
   "summary": {
    "strokes": 77,
    "with_replay": 26,
@@ -265,7 +268,10 @@
    "other_share": 0.844
   },
   "out_hash": "a2a6974b3e62dfd3ff65",
-  "scheme": 2
+  "scheme": 2,
+  "rewrote": {
+   "fine": "627dcbb78a676eb8453a"
+  }
  },
  "spotting": {
   "fingerprint": "7607ce4a30bdbd4a",

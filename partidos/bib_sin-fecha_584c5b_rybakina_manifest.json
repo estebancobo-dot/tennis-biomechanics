@@ -134,8 +134,8 @@
  "candidates": {
   "fingerprint": "ea2a9de731b171eb",
   "version": "15",
-  "seconds": 3.0,
-  "finished": "2026-11-08 03:24:48",
+  "seconds": 3.1,
+  "finished": "2026-11-08 22:20:29",
   "summary": {
    "candidates": 624,
    "far": 288,
@@ -148,7 +148,8 @@
    "audio_track": 0
   },
   "out_hash": "23a8281be1275590a7db",
-  "scheme": 2
+  "scheme": 2,
+  "rewrote": {}
  },
  "fine": {
   "fingerprint": "2a9da89dc9281e31",

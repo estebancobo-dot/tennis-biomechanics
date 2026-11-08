@@ -177,7 +177,7 @@
    "area": "Golpes",
    "name": "Golpes del fondo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "45 de sus 77 golpes en el lado lejano (58%; objetivo ≥ 25%); confirmados 45 de 48 candidatos suyos del fondo (94%); con su posición en la pista 82% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino)"
+   "detail": "45 de sus 77 golpes en el lado lejano (58%; objetivo ≥ 25%); confirmados 45 de 48 candidatos suyos del fondo (94%); con su posición en la pista 82% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino); de sus 45 golpes del fondo: desplazamiento 67%, altura del impacto 80%, destino 18%; 7 sin pose en la ventana (confirmados por la bola o el detector)"
   },
   {
    "req": 1,
@@ -2834,7 +2834,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "2446 caracteres de texto, 7 vídeos, 19 gráficos",
+   "detail": "2446 caracteres de texto, 6 vídeos, 19 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2866,7 +2866,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4055 caracteres de texto, 7 vídeos, 12 gráficos",
+   "detail": "4043 caracteres de texto, 7 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -3193,8 +3193,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 4dc2afb (2026-11-08T20:30:29): 880 bien, 0 fallan, 0 errores",
-   "passed": 880,
+   "detail": "código f9ef9eb (2026-11-08T21:36:35): 881 bien, 0 fallan, 0 errores",
+   "passed": 881,
    "failed": 0
   },
   {
@@ -3286,7 +3286,7 @@
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_resources_summary",
    "status": "ok",
-   "detail": "3 bien, 0 fallan, 0 omitidas"
+   "detail": "4 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
@@ -3419,21 +3419,21 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (26/26), 37 s, quedan ≈ 0 s, a las 2026-11-08 17:36:56"
+   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (26/26), 40 s, quedan ≈ 0 s, a las 2026-11-08 22:16:59"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
    "status": "ok",
-   "detail": "55 de 55 registros con fecha de inicio y de fin o duración"
+   "detail": "56 de 56 registros con fecha de inicio y de fin o duración"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "41 carpetas, 28.6 GB en total (2026-11-08T21:25:12); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
+   "detail": "41 carpetas, 28.6 GB en total (2026-11-08T22:15:42); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
   },
   {
    "req": 5,
@@ -3489,7 +3489,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 21:24:43 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-08 22:17:31 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3615,7 +3615,7 @@
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.4 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.2 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -3629,14 +3629,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-08_1740.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (2.0 min): CPU 23/31/40 %, iGPU 0/10/51 %, RAM máx 9.5 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (4.5 min): CPU 25/39/85 %, iGPU 0/40/100 %, RAM máx 9.9 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.2 min): CPU 19/19/19 %, iGPU 0/0/0 %, RAM máx 9.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); tennis-yusipopen-polufinal-gau fine (3.5 min): CPU 23/52/100 %, iGPU 0/18/87 %, RAM máx 9.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.8 min): CPU 26/33/38 %, iGPU 42/76/100 %, RAM máx 9.5 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-final-sobolen fine (5.8 min): CPU 20/39/91 %, iGPU 0/39/100 %, RAM máx 14.1 GB → uso medio: margen para repartir trabajo; 49.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-08_2125.csv, recursos_2026-11-08_2040.csv, recursos_2026-11-08_1910.csv"
+   "detail": "recursos_2026-11-08_2125.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (4.0 min): CPU 17/47/97 %, iGPU 0/20/96 %, RAM máx 14.8 GB → uso medio: margen para repartir trabajo; 44.5 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 08-11 21:24, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 08-11 22:13, empezó a los 1.2 min; el PC estaba con otro trabajo hasta las 22:14 (1.0 min, no cuentan), empezó 0.2 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,

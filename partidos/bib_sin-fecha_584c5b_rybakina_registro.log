@@ -15181,3 +15181,16 @@
 2026-11-08 17:55:36   ventana w006774899_5401: pose hybrid en 271 de 271 fotogramas (0 s; modelo 0 s; pies en 91) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 1047 px (segments)
 2026-11-08 17:55:36   fine_doubtful: 100 % (47/47 golpes candidatos · 16 confirmados · 0 ventanas descartadas sin pose) · 19 s · quedan ≈ 0 s
 2026-11-08 17:55:37 [zheng-qinwen-elena-rybakina] fine_doubtful terminada a las 17:55:37 en 22 s
+2026-11-08 22:20:25 [zheng-qinwen-elena-rybakina] candidates… (2026-11-08 22:20:25, etapa 9 de 14)
+2026-11-08 22:20:26   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 0, 'changed': 3, 'by_click': 268}
+2026-11-08 22:20:29   tramos que son repeticiones: 3 sin marcador
+2026-11-08 22:20:29   identidad por el marcador (su saque, primer golpe del punto, identidad sin decidir): 2
+2026-11-08 22:20:29   saques añadidos por el marcador (su saque no visto, el resto de la rival sí): 24
+2026-11-08 22:20:29   candidatos del detector entrenado: 624 (288 lejanos; 4 en repeticiones, fuera)
+2026-11-08 22:20:29 [zheng-qinwen-elena-rybakina] candidates terminada a las 22:20:29 en 3 s
+2026-11-08 22:20:29 [zheng-qinwen-elena-rybakina] fine… (2026-11-08 22:20:29, etapa 11 de 14)
+2026-11-08 22:20:30   ventana w000320146_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+2026-11-08 22:20:30   ventana w000320146_3600: pose yolo en 179 de 179 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 104 px (court)
+2026-11-08 22:20:31   fine:   0 % (1/289 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-11-08 22:20:31   ventana w000340143_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-08 22:20:32   ventana w000340143_3600: pose yolo en 179 de 179 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 98 px (court)
