@@ -108,22 +108,22 @@
   "scheme": 2
  },
  "candidates": {
-  "fingerprint": "cb4dd8bbd0b2c47d",
-  "version": "14",
+  "fingerprint": "3b2148902b40feb3",
+  "version": "15",
   "seconds": 0.9,
-  "finished": "2026-11-07 10:06:47",
+  "finished": "2026-11-08 03:05:05",
   "summary": {
    "candidates": 182,
    "far": 94,
    "with_audio": 145,
    "source": "spotter",
    "opponent_strokes": 76,
-   "identity_unknown": 28,
+   "identity_unknown": 26,
    "replay_strokes_skipped": 0,
    "replay_runs": 0,
    "audio_track": 0
   },
-  "out_hash": "5857f3515b7153f4594b",
+  "out_hash": "6a7707eac82956d5def8",
   "scheme": 2
  },
  "fine": {
