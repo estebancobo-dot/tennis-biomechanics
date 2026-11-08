@@ -391,6 +391,15 @@ accion: completo
 ---
 id: 149
 accion: completo
+---
+id: 150
+accion: recall
+detector: si
+---
+id: 151
+accion: completo
+# 150-151 (08-11, B4): sesgo de los saques perdidos en 584c5b (4 de 5 del lado lejano): si la jugadora lejana no
+# aparece en los 2 primeros segundos de la ventana se busca en toda la ventana. 150 = F3Set, 151 = los 4 partidos
 # 149 (08-11): auditoria de los 4 partidos con la comprobacion de tiempos contra la ejecucion mas lenta (#231) y #146
 # 148 (08-11): auditoria de los 4 partidos con el codigo de hoy (cobertura del saque en el informe, precision de F3Set,
 # sesgo de los saques perdidos, golpes esperados sin los puntos que la tele no enseno); el ciclo de 10 min solo

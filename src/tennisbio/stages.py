@@ -2078,6 +2078,10 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
         t_ = time.time()
         H_far = court_at(court, c["t"], ws)[0]
         fi = far_start(clip, H_far)
+        if fi is None:
+            # not in the first 2 s (a cut, or bent over before her serve): the whole window, once (08-11: a far serve of
+            # hers in 584c5b dropped as «jugadora_lejana_no_encontrada»)
+            fi = far_start(clip, H_far, search_s=dur)
         _took("jugadora_lejana", t_)
         if fi is None:
             _drop(group, "jugadora_lejana_no_encontrada")

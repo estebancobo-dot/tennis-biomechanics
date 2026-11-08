@@ -310,3 +310,23 @@ def test_points_the_tv_did_not_show_are_not_expected_to_hold_her_strokes():
     assert un["hers"] >= 1 and un["all"] >= un["hers"]
     c = seen_counts({"points": 10, "points_high": 12, "her_service_points": 5, "her_service_points_high": 6}, un)
     assert c["points"] == 10 - un["all"] and c["her_service_points"] == 5 - un["hers"]
+
+
+def test_the_far_player_is_looked_for_in_the_whole_window_when_not_in_its_first_seconds(monkeypatch, tmp_path):
+    import tennisbio.stages as S
+    calls = []
+
+    def fake_far_start(clip, H, search_s=2.0, step=5):
+        calls.append(search_s)
+        return None if search_s == 2.0 else {"roi": "follow", "init_box": (0, 0, 1, 1), "max_bottom": 0}
+    monkeypatch.setattr(S, "far_start", fake_far_start)
+    monkeypatch.setattr(S, "court_at", lambda court, t, ws: (object(), None))
+    monkeypatch.setattr(S, "cut_window", lambda *a, **k: tmp_path / "w.mp4")
+    monkeypatch.setattr(S, "_gate_passes", lambda *a, **k: {})        # stop right after the far player is found
+    monkeypatch.setattr("tennisbio.pose.backend.set_device", lambda *a: None)
+    from types import SimpleNamespace
+    ctx = SimpleNamespace(cfg={"device": "cpu"}, path=lambda n: tmp_path / n, video=tmp_path / "v.mp4", log=lambda *a: None)
+    monkeypatch.setattr(S, "_cut_args", lambda ctx: {"width": 1920})
+    group = [{"t": 10.0, "side": "far", "source": "marcador", "kind": "serve"}]
+    assert S._fine_one(ctx, None, group, 1.5, 1.0, False, "p", {}, {}, None, {}, None, None, None, {}) == []
+    assert calls[0] == 2.0 and calls[1] > 2.0
