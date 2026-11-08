@@ -22,7 +22,7 @@ paquetes:
     nombre: "Base · no perder golpes"
     cierre: "Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión"
     peticiones: [23, 151, 155, 205, 218, 219]
-    prueba: ["^Validación con clips anotados \\(F3Set\\)", "^Golpes encontrados frente al marcador", "^Saques por punto de su saque"]
+    prueba: ["^Validación con clips anotados \\(F3Set\\)", "^Golpes encontrados frente al marcador", "^Saques por punto de su saque", "^Golpes inventados: precisión en F3Set"]
   B5:
     nombre: "Base · exportación"
     cierre: "Vídeos por golpe en ≤ 20 min sin cuelgues"

@@ -549,9 +549,17 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
                 # broadcast: not measurable from TV, left out of the count and said (07-11, requests 127-130)
                 seen_pts = g["points"] - g.get("unseen", 0)
                 miss = seen_pts - g["found"]
-                st_ = "ok" if miss <= 0.1 * seen_pts else ("aviso" if miss <= 0.3 * seen_pts else "falta")
+                st_ = ("ok" if g["found"] >= SERVE_POINTS_MIN * seen_pts - 1e-9 else
+                       ("aviso" if miss <= 0.3 * seen_pts else "falta"))
+                # the serves lost must not all be of one kind (08-11, agreed with the user): her end in the lost points
+                # (first stroke found) against her end in the serves found
+                bias = serve_loss_bias(strokes, g)
+                if bias and st_ == "ok":
+                    st_ = "aviso"
                 out.append(_item(1, "Golpes", f"Saques por punto de su saque: {d.name}", st_,
-                                 f"{g['found']} de {seen_pts} puntos de su saque vistos con su saque encontrado"
+                                 f"{g['found']} de {seen_pts} puntos de su saque vistos con su saque encontrado "
+                                 f"({g['found'] / max(seen_pts, 1):.0%}; objetivo ≥ {SERVE_POINTS_MIN:.0%})"
+                                 + (f"; SESGO: {bias}" if bias else "")
                                  + (f" ({g['unseen']} puntos más sin nadie jugando en la cámara principal: la tele "
                                     "no los enseñó, no cuentan)" if g.get("unseen") else "")
                                  + (f"; sin saque: {why}" if why else "")
@@ -581,6 +589,40 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
         except Exception as e:  # noqa: BLE001 — the audit must still be written
             out.append(_item(1, "Golpes", f"Saques por punto de su saque: {d.name}", "aviso", f"no se pudo calcular ({e})"))
     return out
+
+
+# her serves found per point of her serve the TV showed (B4's main test). 0.90 set by Claude without an external
+# reference; agreed with the user on 08-11: 0.85 from the morning of 09-11 if a match is still below 0.90, together with
+# F3Set precision ≥ F3SET_PRECISION_MIN, no bias in the serves lost (serve_loss_bias) and the coverage said in the report
+SERVE_POINTS_MIN = 0.90
+F3SET_PRECISION_MIN = 0.94
+BIAS_MIN_LOST = 5               # lost points with a known end needed to call a bias
+BIAS_MAX_DIFF = 0.35            # far-end share among the lost against among the found
+
+
+def serve_loss_bias(strokes: list[dict], g: dict) -> str:
+    """'' or why the serves lost are of one kind: her end (near/far) in the points without a serve (first stroke found)
+    against the end of her serves found."""
+    lost = [x["first_stroke"]["side"] for x in g.get("gaps", []) if (x.get("first_stroke") or {}).get("side")]
+    found = [s.get("side") for s in strokes if s.get("stroke") == "overhead" and s.get("side")]
+    if len(lost) < BIAS_MIN_LOST or not found:
+        return ""
+    fl, ff = sum(x == "far" for x in lost) / len(lost), sum(x == "far" for x in found) / len(found)
+    if abs(fl - ff) <= BIAS_MAX_DIFF:
+        return ""
+    return (f"los puntos sin saque son del lado lejano en un {fl:.0%} frente al {ff:.0%} de sus saques encontrados "
+            f"({len(lost)} con lado conocido)")
+
+
+def f3set_precision_item(out_root: Path) -> dict:
+    """B4 (08-11): no stroke invented — the precision of her strokes on F3Set (annotated by people) holds."""
+    name = f"Golpes inventados: precisión en F3Set ≥ {F3SET_PRECISION_MIN:.2f}"
+    r = _latest_recall(out_root)
+    if r is None:
+        return _item(1, "Golpes", name, "aviso", "sin recuento de F3Set (recall_validation_detector.json)")
+    f, p, rec, found, gt = r
+    return _item(1, "Golpes", name, "ok" if p >= F3SET_PRECISION_MIN - 1e-9 else "falta",
+                 f"precisión {p:.3f}, encontrados {found} de {gt} ({rec:.0%}) en {f}")
 
 
 def _board_drops(dropped: list[dict] | None) -> dict:
@@ -1615,6 +1657,7 @@ def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) 
     for fn in (lambda: candidate_items(out_root), lambda: models_in_use_items(cfg), lambda: spotter_items(match_dirs),
                lambda: stage_time_items(match_dirs, out_root), lambda: parallel_items(match_dirs),
                lambda: resources_items(out_root), lambda: [actions_item(out_root)],
+               lambda: [f3set_precision_item(out_root)],
                # #30: after the model items, which it reads
                lambda: [comparison_doc_item(items, out_root)]):
         try:

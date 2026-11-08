@@ -284,3 +284,18 @@ def test_a_scoreboard_serve_is_confirmed_in_a_wider_span_and_its_drops_are_count
     assert S.SERVE_BOARD_TOL_S >= 0.5
     assert _board_drops([{"source": "marcador", "why": "sin_impacto_cerca"}, {"source": "spotter", "why": "x"}]) == \
         {"sin_impacto_cerca": 1}
+
+
+def test_serve_loss_bias_and_f3set_precision(tmp_path):
+    import json
+    from tennisbio.audit import f3set_precision_item, serve_loss_bias
+    g = {"gaps": [{"first_stroke": {"side": "far"}}] * 6}
+    found = [{"stroke": "overhead", "side": "near"}] * 8 + [{"stroke": "overhead", "side": "far"}] * 2
+    assert "lado lejano" in serve_loss_bias(found, g)                     # 100 % far lost against 20 % far found
+    mixed = {"gaps": [{"first_stroke": {"side": s}} for s in ("far", "near", "far", "near", "near", "far")]}
+    assert serve_loss_bias(found, mixed) == ""
+    assert serve_loss_bias(found, {"gaps": [{"first_stroke": {"side": "far"}}] * 3}) == ""   # too few to say
+    assert f3set_precision_item(tmp_path)["status"] == "aviso"
+    (tmp_path / "recall_validation_detector.json").write_text(json.dumps({"summary_valid": {
+        "total": {"recall": 0.896, "found": 463, "gt": 517}, "precision": {"precision": 0.94}}}), encoding="utf-8")
+    assert f3set_precision_item(tmp_path)["status"] == "ok"
