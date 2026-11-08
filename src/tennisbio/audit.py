@@ -2239,9 +2239,13 @@ def side_checks(out_root: Path) -> list[dict]:
     if f3 is None:
         items.append(_item(3, "Validación", "Validación con clips anotados (F3Set)", "aviso", "no se encontró f3set_validation.json"))
     else:
-        sm = json.loads(f3.read_text(encoding="utf-8")).get("summary", {})
+        f3d = json.loads(f3.read_text(encoding="utf-8"))
+        sm = f3d.get("summary", {})
+        # 08-11: validate_f3set measures the old clip path (run_clip), not the analysis's detector (validate_recall)
+        old = ("camino antiguo (run_clip, no el detector del análisis; el del análisis: recall_validation) — "
+               if f3d.get("path", "legacy") == "legacy" else "")
         items.append(_item(3, "Validación", "Validación con clips anotados (F3Set)", "ok" if sm.get("f1", 0) >= 0.6 else "falta",
-                           f"golpes: precisión {sm.get('precision')}, recall {sm.get('recall')}; derecha/revés {sm.get('fh_bh_accuracy')}; "
+                           f"{old}golpes: precisión {sm.get('precision')}, recall {sm.get('recall')}; derecha/revés {sm.get('fh_bh_accuracy')}; "
                            f"dirección {sm.get('direction_accuracy')}. Solo detección y clases: el valor de cada medida (codo, rodillas, "
                            "pasos…) aún no tiene clips anotados con los que compararse"))
     items.append(code_tests_item(next((b / "pruebas.log" for b in base if (b / "pruebas.log").exists()), None)))

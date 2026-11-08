@@ -47,7 +47,8 @@ try {
     if (Test-Path "$Base\datasets\reports\f3set_validation.json") { Ok "ya hecha" }
     else {
         try {
-            Ejecutar uv @("run", "python", "scripts/validate_f3set.py", "--root", "$Base\datasets", "--clips", "30")
+            # --legacy (08-11): mide el camino antiguo (run_clip), no el detector del analisis (eso es validate_recall.py)
+            Ejecutar uv @("run", "python", "scripts/validate_f3set.py", "--legacy", "--root", "$Base\datasets", "--clips", "30")
         } catch {
             Write-Host "La validacion no se pudo completar (descarga de YouTube?). No impide usar el programa." -ForegroundColor Yellow
         }

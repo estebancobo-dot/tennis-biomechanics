@@ -1,11 +1,20 @@
-"""Automatic validation of near-player stroke detection on broadcast clips (RacketVision).
+"""Automatic validation of stroke detection on broadcast clips (RacketVision).
 
-Reference contacts come from the annotated ball track (see tennisbio.validation.ball_hits).
-These clips have no audio: this measures pose (+ ball, with --ball) detection; tolerance ±6
-frames (annotations are every 5-11 frames). Doubles clips (two players on the near side) are
-out of scope and skipped.
+Reference contacts come from the annotated ball track (see tennisbio.validation.ball_hits). Tolerance ±6 frames.
+Doubles clips (two players on the near side) are out of scope and skipped.
+
+By default (08-11) it measures the PRODUCTION path, the one the analysis of a match runs: every analysis stage on
+each clip with the user's configuration (learned spotter `spotting` → `candidates` → fine pass `fine` /
+`fine_doubtful`; tennisbio.validation.rv_eval), both ends at once. Writes <root>/reports/rv_validation.json/.md
+and a copy in the configured output folder (uploaded by the PC to pc-logs).
 
     uv run python scripts/validate_rv_strokes.py --root C:\\tenis\\datasets --clips 12
+
+--legacy keeps the old measure (clip_pipeline.run_clip: pose, + ball with --ball; one end, --side), the one PC
+request 154 ran (precision 0.64, recall 0.74): it is NOT the analysis's detector and its output says so
+(<root>/reports/rv_strokes_validation_<side>.json, "path": "legacy").
+
+    uv run python scripts/validate_rv_strokes.py --legacy --root C:\\tenis\\datasets --clips 12 --ball auto
 """
 import argparse
 import json
@@ -18,6 +27,11 @@ from tennisbio.clip_pipeline import run_clip  # noqa: E402
 from tennisbio.validation.ball_hits import hits_from_ball, read_ball_csv  # noqa: E402
 from tennisbio.validation.datasets import RV_BASE, fetch, racketvision_video  # noqa: E402
 from tennisbio.validation.impact_eval import GTEvent, Pred, match, summarize  # noqa: E402
+from tennisbio.validation import rv_eval  # noqa: E402
+
+# the detector this validation measures by default: the analysis's own stages (the learned spotter when
+# `spotter.enabled`); the old run_clip path only with --legacy (tests/test_validation_detector.py)
+DETECTOR = rv_eval.DETECTOR
 
 
 def is_doubles(cache: Path, video: Path) -> bool:
@@ -90,16 +104,20 @@ def gate_misses(run, video: Path, cache: Path, side: str) -> int:
     return misses
 
 
-def main():
+def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default="datasets")
+    ap.add_argument("--legacy", action="store_true",
+                    help="la medida antigua (clip_pipeline.run_clip: pose + regla de la bola), NO el detector del análisis")
     ap.add_argument("--clips", type=int, default=12)
     ap.add_argument("--tol", type=int, default=6)
-    ap.add_argument("--ball", default=None, help="models/balltrack.onnx para usar la bola")
-    ap.add_argument("--device", default="cpu")
-    ap.add_argument("--side", default="near", choices=["near", "far"], help="jugador cercano o lejano")
+    ap.add_argument("--ball", default=None,
+                    help="--legacy: models/balltrack.onnx (o auto) para usar la bola; sin --legacy, la bola del análisis")
+    ap.add_argument("--device", default="cpu", help="--legacy: dispositivo de la bola (sin --legacy, el del análisis)")
+    ap.add_argument("--side", default="near", choices=["near", "far"],
+                    help="--legacy: jugador cercano o lejano (sin --legacy se miden los dos lados a la vez)")
     ap.add_argument("--imgsz", type=int, default=960)
-    args = ap.parse_args()
+    args = ap.parse_args(argv)
     root = Path(args.root)
     # on the PC the datasets live next to the output (C:\\tenis\\datasets) and a PC request cannot pass a path
     # (08-11): «datasets» missing here → the configured output's sibling; --ball auto → the configured ball model
@@ -116,6 +134,93 @@ def main():
         args.ball = str(resolve_path((cfg.get("ball") or {}).get("onnx") or "models/balltrack.onnx"))
     split = json.loads(fetch(f"{RV_BASE}/info/test.json", root / "rv" / "test.json").read_text())
     sel = split[:: max(1, len(split) // args.clips)][:args.clips]
+    if args.legacy:
+        return legacy_main(args, root, sel)
+    return production_main(args, root, sel)
+
+
+def output_dir() -> Path | None:
+    """The configured output folder (C:\\tenis\\output on the PC), where the PC picks the reports up for pc-logs."""
+    try:
+        from tennisbio.config import load_config
+        p = (load_config().get("paths") or {}).get("output")
+        return Path(p) if p else None
+    except Exception:  # noqa: BLE001 — no configured output: only the copy under <root>/reports
+        return None
+
+
+def production_main(args, root: Path, sel: list) -> int:
+    """The analysis's own detector (rv_eval): every stage on each clip with the user's configuration, both ends."""
+    import time
+
+    from tennisbio.config import load_config
+    from tennisbio.stages import spotter_on
+
+    t0 = time.time()
+    cfg = load_config()
+    on = spotter_on(cfg)
+    detector = ("detector entrenado (spotter.enabled: true) → candidates → pasada fina" if on else
+                "reglas (spotter.enabled: false en la configuración, como el análisis) → candidates → pasada fina")
+    print(f"Camino de PRODUCCIÓN: {detector}", flush=True)
+    out_dir = root / "rv" / "salidas"
+    rows, unavailable = [], None
+    n_doubles = n_failed = 0
+    for match_id, clip in sel:
+        name = f"{match_id}_{clip}"
+        video = racketvision_video(root, match_id, clip)
+        ball = read_ball_csv(fetch(f"{RV_BASE}/all/{match_id}/csv/{clip}_ball.csv", root / "rv" / "ball" / f"{match_id}_{clip}.csv"))
+        gt = hits_from_ball(ball, 1080)
+        mid = "rv_" + name
+        try:
+            print(f"  {name}: analizando con las etapas del análisis…", flush=True)
+            rv_eval.run_clip_pipeline(video, mid, out_dir, cfg, log=rv_eval.short_log)
+        except Exception as e:  # noqa: BLE001 — one clip failing must not stop the others; said in the report
+            n_failed += 1
+            msg = f"{type(e).__name__}: {e}"
+            if on and ("spotting" in msg or "detector" in msg):
+                unavailable = msg               # the spotter itself could not run: said, never replaced by the rules
+            rows.append(dict(clip=name, gt=gt, pred={}, note=f"error: {msg[:200]}"))
+            print(f"  {name}: ERROR {msg[:200]}", flush=True)
+            continue
+        o = rv_eval.clip_outputs(out_dir / mid)
+        if o["doubles"]:
+            n_doubles += 1
+            print(f"  {name}: dobles, se omite", flush=True)
+            continue
+        fps = o["fps"] or 25.0
+        pred = {side: rv_eval.predicted_frames(o, side, fps) for side in rv_eval.SIDES}
+        rows.append(dict(clip=name, gt=gt, pred=pred, spotted=len(o["spotted"]), candidates=len(o["candidates"]),
+                         candidate_source=o["candidate_source"], fps=fps,
+                         doubtful=sum(s["file"] == "strokes_doubtful.json" for s in o["strokes"])))
+        print(f"  {name}: referencia {gt}  detectados {pred}  (detector {len(o['spotted'])}, candidatos "
+              f"{len(o['candidates'])} de {o['candidate_source']})", flush=True)
+    used = [r for r in rows if "note" not in r]
+    fps_used = sorted({r["fps"] for r in used})
+    res = {"path": "production", "path_label": "producción: las etapas del análisis (" + detector + ")",
+           "detector": detector, "spotter_enabled": on, "spotter_unavailable": unavailable,
+           "clips_selected": len(sel), "clips_used": len(used), "clips_doubles": n_doubles, "clips_failed": n_failed,
+           "tol_frames": args.tol, "tol_s": round(args.tol / fps_used[0], 3) if fps_used else None,
+           "summary": rv_eval.evaluate(used, args.tol), "notes": list(rv_eval.NOTES),
+           "legacy_reference": "petición 154: precisión 0,64, recall 0,74, 19 golpes (lado cercano, run_clip)",
+           "clips": rows, "minutes": round((time.time() - t0) / 60, 1)}
+    md = rv_eval.to_markdown(res)
+    for d in [root / "reports", output_dir()]:
+        if d is None:
+            continue
+        try:
+            d.mkdir(parents=True, exist_ok=True)
+            (d / "rv_validation.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
+            (d / "rv_validation.md").write_text(md, encoding="utf-8")
+        except OSError as e:
+            print(f"  no se pudo escribir en {d}: {e}")
+    print("\n" + md)
+    return 0 if used else 1
+
+
+def legacy_main(args, root: Path, sel: list) -> int:
+    """The old measure (before 08-11; PC request 154): clip_pipeline.run_clip on each clip, one end. It is NOT the
+    analysis's detector: labelled as such on screen and in its JSON ("path": "legacy")."""
+    print(rv_eval.LEGACY_LABEL, flush=True)
     tracker = None
     if args.ball:
         from tennisbio.ball import BallTracker
@@ -154,12 +259,14 @@ def main():
         s["gate_misses"] = misses        # strokes the cascade gate of the fine pass would lose (must be 0)
     out = root / "reports"
     out.mkdir(parents=True, exist_ok=True)
-    (out / f"rv_strokes_validation_{args.side}.json").write_text(json.dumps({"summary": s, "clips": rows}, indent=1))
-    print(f"\nRESUMEN (jugador {'cercano' if args.side == 'near' else 'lejano'}, sin audio)")
+    (out / f"rv_strokes_validation_{args.side}.json").write_text(
+        json.dumps({"path": "legacy", "path_label": rv_eval.LEGACY_LABEL, "summary": s, "clips": rows}, indent=1))
+    print(f"\nRESUMEN LEGACY (camino antiguo, run_clip; jugador {'cercano' if args.side == 'near' else 'lejano'}, sin audio)")
     for k in ("gt", "detected", "true_positives", "precision", "recall", "f1", "timing_err_frames_median", "timing_bias_frames", "gate_misses"):
         if k in s:
             print(f"  {k:28} {s[k]}")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

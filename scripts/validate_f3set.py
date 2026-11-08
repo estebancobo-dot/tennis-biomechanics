@@ -6,7 +6,11 @@ every near-player stroke with the annotations: detection (precision, recall, tim
 forehand/backhand, direction of her shot (cross, down the line, middle, inside-out, inside-in),
 approach to the net and errors. Runs on the user's PC (YouTube blocks data-centre addresses).
 
-    uv run python scripts/validate_f3set.py --root C:\\tenis\\datasets --player Rybakina --clips 20
+08-11: its detection is the OLD clip path (clip_pipeline.run_clip: pose + ball rule), not the analysis's detector
+(the learned spotter → candidates → fine pass). It therefore runs only with an explicit --legacy and says so in its
+output ("path": "legacy"); the production measure of detection on F3Set is scripts/validate_recall.py.
+
+    uv run python scripts/validate_f3set.py --legacy --root C:\\tenis\\datasets --player Rybakina --clips 20
 """
 import argparse
 import json
@@ -21,6 +25,10 @@ from tennisbio.validation.datasets import f3set_tennis  # noqa: E402
 from tennisbio.validation.impact_eval import Pred, clip_bounds, match, parse_label, summarize  # noqa: E402
 
 HAND = {"forehand": "fh", "backhand": "bh", "overhead": "-"}
+# the detector it measures: only the old run_clip path, and only with --legacy (tests/test_validation_detector.py);
+# the analysis's detector on F3Set is measured by scripts/validate_recall.py
+DETECTOR = "legacy"
+LEGACY_LABEL = "LEGACY: camino antiguo (clip_pipeline.run_clip: pose + regla de la bola), no el del análisis"
 
 
 def download(yt_id: str, dest: Path, t0: float | None = None, t1: float | None = None) -> Path | None:
@@ -95,9 +103,11 @@ def shot_labels(run, r, H, hand: str):
     return d, approach, err, None if sw is None else sw.startswith("cortado")
 
 
-def main():
+def main(argv=None) -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--root", default="datasets")
+    ap.add_argument("--legacy", action="store_true",
+                    help="obligatorio: esta medida usa el camino antiguo (run_clip), no el detector del análisis")
     ap.add_argument("--split", default="test")
     ap.add_argument("--player", default=None, help="solo clips donde juega (vacío = todos; por defecto la jugadora configurada)")
     ap.add_argument("--clips", type=int, default=20)
@@ -105,7 +115,12 @@ def main():
     ap.add_argument("--no-racket", action="store_true")
     ap.add_argument("--ball", default=str(Path(__file__).resolve().parents[1] / "models" / "balltrack.onnx"))
     ap.add_argument("--device", default="dml")
-    args = ap.parse_args()
+    args = ap.parse_args(argv)
+    if not args.legacy:
+        print("validate_f3set mide la detección con el camino antiguo (run_clip), no con el detector del análisis: "
+              "añade --legacy para ejecutarla así. La detección del análisis en F3Set la mide scripts/validate_recall.py.")
+        return 2
+    print(LEGACY_LABEL, flush=True)
     if args.player is None:
         from tennisbio.config import player_surname
         args.player = player_surname()
@@ -151,11 +166,13 @@ def main():
     total = summarize(all_pairs, all_fp, all_fn)
     out = root / "reports"
     out.mkdir(parents=True, exist_ok=True)
-    (out / "f3set_validation.json").write_text(json.dumps({"summary": total, "clips": rows}, indent=1))
-    print("\nRESUMEN (jugador cercano)")
+    (out / "f3set_validation.json").write_text(
+        json.dumps({"path": "legacy", "path_label": LEGACY_LABEL, "summary": total, "clips": rows}, indent=1))
+    print("\nRESUMEN LEGACY (camino antiguo, run_clip; jugador cercano)")
     for k, v in total.items():
         print(f"  {k:28} {v}")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

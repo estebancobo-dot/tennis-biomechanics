@@ -28,6 +28,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 from tennisbio.validation import recall_eval as R  # noqa: E402
 from tennisbio.validation.datasets import f3set_tennis  # noqa: E402
 
+# the detector it measures: the analysis's own stages with the user's configuration (the learned spotter when
+# `spotter.enabled`; --spotter only forces it on) — tests/test_validation_detector.py
+DETECTOR = "pipeline"
+
 
 def download(yt_id: str, dest: Path, t0: float, t1: float) -> Path | None:
     """Only [t0, t1] seconds of the YouTube video (720p), cut at those times."""

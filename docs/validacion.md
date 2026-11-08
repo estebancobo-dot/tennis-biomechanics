@@ -31,8 +31,16 @@ Eje punta–garganta: error mediano 2,9°, p90 9,2°. Las puntuaciones del model
 aciertos de fallos (no se filtra por ellas; la continuidad temporal decide). Los bordes dan la
 anchura aparente del cabezal → apertura de la cara, sin depender de la silueta.
 
-## Golpes del jugador cercano — RacketVision sin audio (pose + bola)
-`uv run python scripts/validate_rv_strokes.py --root <datasets> --clips 12 --ball models/balltrack.onnx`
+## Golpes en RacketVision con el detector del análisis (08-11)
+`uv run python scripts/validate_rv_strokes.py --root <datasets> --clips 12` (sin `--legacy`): todas las etapas
+del análisis en cada clip con la configuración del usuario (detector entrenado → `candidates` → pasada fina),
+los dos lados a la vez; escribe `rv_validation.json/.md` (el PC lo sube a `pc-logs`). Diferencias con un partido,
+dichas en su salida: clips sin sonido, 10 s de contexto, identidad sin decidir (cuentan también los golpes de
+`strokes_doubtful.json`). Las tablas de abajo y la petición 154 del PC (precisión 0,64, recall 0,74) son del
+camino antiguo (`run_clip`), que ya no usa el análisis: hoy solo con `--legacy`.
+
+## Golpes del jugador cercano — RacketVision sin audio (pose + bola; camino antiguo, `--legacy`)
+`uv run python scripts/validate_rv_strokes.py --legacy --root <datasets> --clips 12 --ball models/balltrack.onnx`
 Referencia: giros de la bola anotada (cada 5-11 fotogramas), tolerancia ±6. Clips de dobles
 (dos personas dentro de la mitad cercana, por homografía) excluidos: 3 de 12.
 
@@ -47,7 +55,7 @@ recoge (la bola no estaba anotada en ese tramo), así que la precisión real es 
 el 73-100 % de los fotogramas, 96-100 % a ≤15 px de la anotación (mediana 2 px).
 
 ## Golpes del jugador lejano — RacketVision sin audio (pose en recorte que la sigue + bola)
-`uv run python scripts/validate_rv_strokes.py --root <datasets> --clips 12 --ball models/balltrack.onnx --side far`
+`uv run python scripts/validate_rv_strokes.py --legacy --root <datasets> --clips 12 --ball models/balltrack.onnx --side far`
 
 | Clips | Golpes de referencia | Precisión | Recall | F1 | Error del instante |
 |---|---|---|---|---|---|
@@ -145,7 +153,7 @@ que también lleva los impactos. En un partido, con cientos de golpes, la elecci
 automática con 80 golpes).
 
 ## Impactos — F3Set-Tennis (TV, contacto exacto por fotograma)
-`uv run python scripts/validate_f3set.py --root <datasets> --player Rybakina --clips 30`
+`uv run python scripts/validate_f3set.py --legacy --root <datasets> --player Rybakina --clips 30`
 Se ejecuta solo en el PC del usuario (paso 4 de `2_prueba_rapida.bat`): YouTube bloquea las
 descargas desde servidores. Descarga solo los segundos de cada punto anotado (4 partidos de
 Rybakina en F3Set) y mide, golpe a golpe: detección, derecha/revés, dirección de su golpe

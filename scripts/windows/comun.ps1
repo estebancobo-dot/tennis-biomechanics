@@ -170,6 +170,11 @@ function Subir-Registros {
         foreach ($f in @("recall_validation.md", "recall_validation.json", "recall_validation_detector.md", "recall_validation_detector.json")) {
             if (Test-Path "$Base\output\$f") { Copy-Item "$Base\output\$f" "$d\$f" -Force -ErrorAction SilentlyContinue }
         }
+        # deteccion de golpes en RacketVision con el camino del analisis (scripts/validate_rv_strokes.py, 08-11)
+        foreach ($f in @("rv_validation.md", "rv_validation.json")) {
+            if (Test-Path "$Base\output\$f") { Copy-Item "$Base\output\$f" "$d\$f" -Force -ErrorAction SilentlyContinue }
+            elseif (Test-Path "$Base\datasets\reports\$f") { Copy-Item "$Base\datasets\reports\$f" "$d\$f" -Force -ErrorAction SilentlyContinue }
+        }
         # datos de entrenamiento del detector de golpes (peticion "entreno"): solo numeros, unos MB por partido
         foreach ($sp in @(Get-ChildItem "$Base\datasets" -Directory -Filter "spotting*" -ErrorAction SilentlyContinue)) {
             $to = "$d\entreno_golpes" + $sp.Name.Substring(8)          # spotting_25fps -> entreno_golpes_25fps
