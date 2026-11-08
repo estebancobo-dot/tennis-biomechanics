@@ -180173,3 +180173,6 @@ Auditoría: 432 cumplidos, 28 no cumplidos, 56 sin golpes suficientes, 121 aviso
     (paso terminado en 3 min 38 s)
 
 ==> [2026-11-08 04:05:09] 5/5 Videos por golpe, montajes por conclusion y resumen PDF
+Golpes: 0 nuevos, 443 en C:\tenis\output\exportar_derecha\golpes
+Montajes: 10 en C:\tenis\output\exportar_derecha\montajes
+Resumen: C:\tenis\output\exportar_derecha\resumen.pdf
