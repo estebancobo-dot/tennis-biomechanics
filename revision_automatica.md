@@ -1,6 +1,6 @@
-# Revisión automática: FALLOS
+# Revisión automática: REGRESIÓN
 
-364 cumplidos · 19 no cumplidos · 127 sin golpes suficientes · 97 avisos (antes: 360 cumplidos, 22 no cumplidos)
+365 cumplidos · 19 no cumplidos · 127 sin golpes suficientes · 97 avisos (antes: 364 cumplidos, 19 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 119 de 245
 
@@ -149,10 +149,14 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 101 a medias · 18 sin hace
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 
+## Empeora respecto a la ejecución anterior
+
+- **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: ok → aviso: recursos_2026-11-08_1210.csv sin muestras con su etapa
+
 ## Mejora
 
-- Registros con fecha y duración: falta → ok
-- Uso del PC por etapa (CPU, RAM, iGPU y disco): aviso → ok
-- #1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final: falta → aviso
-- #66 Fechas y duración en los registros: falta → ok
-- #160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11): aviso → ok
+- Carpetas de pruebas antiguas: aviso → ok
+
+## Comprobaciones nuevas
+
+- Golpes inventados: precisión en F3Set ≥ 0.94: ok (precisión 0.943, encontrados 463 de 517 (90%) en recall_validation_detector.json)
