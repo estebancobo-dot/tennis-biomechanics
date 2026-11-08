@@ -1,7 +1,7 @@
-﻿commit: 9335553
-inicio: 2026-11-08T14:11:06
-fin: 2026-11-08T14:24:21
-codigo: 1
+﻿commit: 412fd4c
+inicio: 2026-11-08T15:05:38
+fin: 2026-11-08T15:14:50
+codigo: 0
 .......................................................s.......ss..sss.. [  8%]
 ........................................................................ [ 16%]
 ........................................................................ [ 24%]
@@ -13,36 +13,8 @@ codigo: 1
 ........................................................................ [ 72%]
 ........................................................................ [ 80%]
 ........................................................................ [ 88%]
-......ssssss.........................................................F.. [ 96%]
+......ssssss............................................................ [ 96%]
 ...........................                                              [100%]
-================================== FAILURES ===================================
-______ test_a_run_hands_over_its_last_frame_without_decoding_to_the_end _______
-
-tmp_path = WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-61/test_a_run_hands_over_its_last0')
-
-    def test_a_run_hands_over_its_last_frame_without_decoding_to_the_end(tmp_path):
-        """08-11 (request 231): ffmpeg passes a selected frame on only when the next one is selected (or at the end), so
-        each run of times decoded the rest of the video before giving its last frame (Osaka's identity: 13 min, ~7 whole
-        matches decoded). A run near the start of a long video now costs a small part of decoding it all."""
-        import time
-    
-        from tennisbio.io.video import frames_at
-        v = tmp_path / "long.mp4"
-        _ff("-f", "lavfi", "-i", "testsrc2=duration=600:size=320x180:rate=25", "-pix_fmt", "yuv420p", "-c:v", "libx264",
-            "-preset", "ultrafast", str(v))
-        info = probe(v)
-        t0 = time.perf_counter()
-        got = list(frames_at(info, [1.0, 1.5, 2.04], dense_s=60.0, prefetch=0))
-        early = time.perf_counter() - t0
-        t0 = time.perf_counter()
-        whole = list(frames_at(info, [1.0, 599.0], dense_s=1e9, prefetch=0))      # one run across the whole video
-        full = time.perf_counter() - t0
-        assert all(f is not None for _, f in got) and whole[-1][1] is not None
->       assert early < full / 3, (early, full)
-E       AssertionError: (0.639570300001651, 1.0809934998396784)
-E       assert 0.639570300001651 < (1.0809934998396784 / 3)
-
-tests\test_video.py:213: AssertionError
 ============================== warnings summary ===============================
 tests/test_body_scale.py::test_court_scale_without_any_face_seen
 tests/test_fine_ranges.py::test_pose_ranges_fall_back_to_the_whole_window_when_her_height_is_not_seen
@@ -63,6 +35,4 @@ tests/test_no_unbounded_calls.py::test_every_module_compiles
     _JS_SCREEN = """(tab) => {
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-=========================== short test summary info ===========================
-FAILED tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
-1 failed, 867 passed, 23 skipped, 7 warnings in 777.64s (0:12:57)
+868 passed, 23 skipped, 7 warnings in 546.42s (0:09:06)

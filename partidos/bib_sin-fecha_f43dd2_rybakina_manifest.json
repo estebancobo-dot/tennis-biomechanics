@@ -151,10 +151,10 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "d671040b42c46c2a",
+  "fingerprint": "b875658bda600df1",
   "version": "16",
-  "seconds": 129.8,
-  "finished": "2026-11-08 10:00:11",
+  "seconds": 251.2,
+  "finished": "2026-11-08 15:14:30",
   "summary": {
    "candidates": 173,
    "confirmed": 169,
@@ -167,20 +167,22 @@
     "windows_passed": 102,
     "windows_ungated": 0,
     "reasons": {
-     "golpe_de_bola": 40,
      "detector": 41,
+     "golpe_de_bola": 40,
      "bola_no_vista": 21
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 35.5,
-    "jugadora_lejana": 33.2,
-    "pista_ventana": 25.6,
-    "analisis_ventana": 22.5,
-    "recorte": 5.8,
-    "cribado": 5.5,
-    "pose": 0.7
+    "bola_en_paralelo_cpu": 43.7,
+    "cuerdas_y_3d": 32.6,
+    "jugadora_lejana": 30.7,
+    "pista_ventana": 26.7,
+    "analisis_ventana": 23.2,
+    "espera_bola_en_paralelo": 9.7,
+    "recorte": 6.6,
+    "cribado": 5.3,
+    "pose": 0.6
    },
    "counts": {
     "overlap_s": 0.0,
@@ -190,17 +192,18 @@
     "kept_impacts": 170,
     "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 0
+    "frames_960_far": 0,
+    "windows_ball_ahead": 83
    }
   },
   "out_hash": "a5d0c3c90c211fc91d19",
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "f016563937235030",
+  "fingerprint": "3ffb64937848a858",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-08 10:00:11",
+  "finished": "2026-11-08 15:14:30",
   "summary": {
    "enabled": false
   },
@@ -269,10 +272,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "745d7c2c29931d79",
+  "fingerprint": "8f5fa863425f9034",
   "version": "1",
-  "seconds": 8.6,
-  "finished": "2026-11-08 10:00:19",
+  "seconds": 8.2,
+  "finished": "2026-11-08 15:14:38",
   "summary": {
    "candidates": 14,
    "confirmed": 4,
@@ -291,13 +294,15 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "analisis_ventana": 2.9,
     "cuerdas_y_3d": 1.7,
-    "recorte": 0.7,
+    "analisis_ventana": 0.9,
+    "recorte": 0.8,
     "cribado": 0.2,
     "pose": 0.0,
     "jugadora_lejana": 0.0,
-    "pista_ventana": 0.0
+    "pista_ventana": 0.0,
+    "bola_en_paralelo_cpu": 0,
+    "espera_bola_en_paralelo": 0.0
    },
    "counts": {
     "overlap_s": 0.0,
@@ -307,7 +312,8 @@
     "kept_impacts": 4,
     "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 0
+    "frames_960_far": 0,
+    "windows_ball_ahead": 5
    }
   },
   "out_hash": "3a53ef263aed529d13ce",
