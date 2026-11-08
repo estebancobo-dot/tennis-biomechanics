@@ -2898,7 +2898,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2031 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2028 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3433,7 +3433,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "41 carpetas, 28.6 GB en total (2026-11-08T21:01:31); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
+   "detail": "41 carpetas, 28.6 GB en total (2026-11-08T21:25:12); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
   },
   {
    "req": 5,
@@ -3489,7 +3489,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 21:00:56 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-08 21:24:43 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3629,14 +3629,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-08_1740.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (2.0 min): CPU 23/31/40 %, iGPU 0/10/51 %, RAM máx 9.5 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (4.5 min): CPU 25/39/85 %, iGPU 0/40/100 %, RAM máx 9.9 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.2 min): CPU 19/19/19 %, iGPU 0/0/0 %, RAM máx 9.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); tennis-yusipopen-polufinal-gau fine (3.5 min): CPU 23/52/100 %, iGPU 0/18/87 %, RAM máx 9.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.8 min): CPU 26/33/38 %, iGPU 42/76/100 %, RAM máx 9.5 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-final-sobolen fine (5.8 min): CPU 20/39/91 %, iGPU 0/39/100 %, RAM máx 14.1 GB → uso medio: margen para repartir trabajo; 49.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-08_2040.csv, recursos_2026-11-08_1910.csv"
+   "detail": "recursos_2026-11-08_1740.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (2.0 min): CPU 23/31/40 %, iGPU 0/10/51 %, RAM máx 9.5 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (4.5 min): CPU 25/39/85 %, iGPU 0/40/100 %, RAM máx 9.9 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.2 min): CPU 19/19/19 %, iGPU 0/0/0 %, RAM máx 9.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); tennis-yusipopen-polufinal-gau fine (3.5 min): CPU 23/52/100 %, iGPU 0/18/87 %, RAM máx 9.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.8 min): CPU 26/33/38 %, iGPU 42/76/100 %, RAM máx 9.5 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-final-sobolen fine (5.8 min): CPU 20/39/91 %, iGPU 0/39/100 %, RAM máx 14.1 GB → uso medio: margen para repartir trabajo; 49.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-08_2125.csv, recursos_2026-11-08_2040.csv, recursos_2026-11-08_1910.csv"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 08-11 21:00, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 08-11 21:24, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
