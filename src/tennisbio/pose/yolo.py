@@ -353,9 +353,15 @@ def close_seg_worker():
         w.close()
 
 
+FOLLOW_RESEARCH_AFTER = 3     # frames in a row without her before the far half is searched again (far_H given)
+FOLLOW_RESEARCH_EVERY = 8     # while still lost, a new search every this many frames
+FOLLOW_MAX_GROWTH = 2         # with the search: the crop grows at most to (1 + 0.5 × this) × its size
+
+
 def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yolo11m-pose.pt", imgsz=640,
                    context=4.0, min_side=256, progress=False, max_bottom: float | None = None, frames=None,
-                   prefetch: bool = True, keep=None, inits: dict | None = None, stats: dict | None = None) -> Path:
+                   prefetch: bool = True, keep=None, inits: dict | None = None, stats: dict | None = None,
+                   far_H: np.ndarray | None = None) -> Path:
     """Pose of a small, distant player: every frame, a square crop centred on her last position
     (side = context × her height) is enlarged to `imgsz` for the model, so she is seen 2-3× bigger
     than in the full frame. Same output format as `extract` (full-frame coordinates; only the
@@ -363,7 +369,14 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
     frames: as in extract. prefetch: appearance histograms in another thread (same output).
     keep: optional (T,) bool, the frames to run the model on (others saved with nobody); inits:
     {frame: box} where the follow starts again (the first frame of each stretch of `keep`, where
-    she was searched for: fine_pass.pose_ranges)."""
+    she was searched for: fine_pass.pose_ranges, or the frame where far_start found her).
+    far_H: court → image homography of the window (#219, 08-11). Without it, a lost player made the crop grow
+    up to 4× (16 × her height, enlarged to 960 px): she was then ~70 px in the model's input, the size at which
+    YOLO does not see the far player, so once lost she was never found again (PC 08-11: in 132 of 2186 far
+    windows the whole window was posed «a 960 px por perderla» with no keypoint of hers, and her strokes there
+    were kept by the ball or the detector without pose). With it, after FOLLOW_RESEARCH_AFTER frames without
+    her the far half is searched again as far_start does (detect_people on far_roi, pick_far_player), every
+    FOLLOW_RESEARCH_EVERY frames while she is lost, and the crop grows at most FOLLOW_MAX_GROWTH steps."""
     from concurrent.futures import ThreadPoolExecutor
     from time import perf_counter
 
@@ -375,6 +388,8 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
     misses = 0                      # frames in a row without her: the crop grows to find her again
     boxes, kps, confs, feats = [], [], [], []
     n_model, n_big, t_model = 0, 0, 0.0
+    n_search, n_found = 0, 0
+    grow = 6 if far_H is None else FOLLOW_MAX_GROWTH
     pool = ThreadPoolExecutor(max_workers=1) if prefetch else None
     try:
         for i, frame in enumerate(capture_frames(video) if frames is None else frames):
@@ -384,9 +399,17 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
                 continue
             if inits and i in inits:
                 last, misses = np.asarray(inits[i], float), 0
+            if far_H is not None and misses >= FOLLOW_RESEARCH_AFTER \
+                    and (misses - FOLLOW_RESEARCH_AFTER) % FOLLOW_RESEARCH_EVERY == 0:
+                from ..court_metrics import far_roi, pick_far_player
+                n_search += 1
+                again = pick_far_player(detect_people(frame, far_roi(far_H, frame.shape)), far_H)
+                if again is not None:              # found again where far_start looks for her
+                    last, misses = np.asarray(again, float), 0
+                    n_found += 1
             H, W = frame.shape[:2]
             cx, cy = (last[0] + last[2]) / 2, (last[1] + last[3]) / 2
-            side = min(max(H, W), max(min_side, context * (last[3] - last[1])) * (1 + 0.5 * min(misses, 6)))
+            side = min(max(H, W), max(min_side, context * (last[3] - last[1])) * (1 + 0.5 * min(misses, grow)))
             x0, y0 = int(np.clip(cx - side / 2, 0, max(0, W - side))), int(np.clip(cy - side / 2, 0, max(0, H - side)))
             crop = frame[y0:y0 + int(side), x0:x0 + int(side)]
             t_ = perf_counter()
@@ -405,7 +428,7 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
             if len(b):
                 d = np.hypot((b[:, 0] + b[:, 2]) / 2 - cx, (b[:, 1] + b[:, 3]) / 2 - cy)
                 j = int(np.argmin(d))
-                if d[j] < (1.5 + 0.5 * min(misses, 6)) * (last[3] - last[1]):
+                if d[j] < (1.5 + 0.5 * min(misses, grow)) * (last[3] - last[1]):
                     last = b[j].astype(float)
                     misses = 0
                 else:
@@ -427,6 +450,9 @@ def extract_follow(video: str | Path, out: str | Path, init_box, pose_model="yol
         stats["frames"] = stats.get("frames", 0) + n_model
         stats["model_s"] = stats.get("model_s", 0.0) + t_model
         stats["frames_960"] = stats.get("frames_960", 0) + n_big      # she was lost: bigger crop at 960 px
+        if far_H is not None:              # searched for again in the far half while lost, and found
+            stats["far_searches"] = stats.get("far_searches", 0) + n_search
+            stats["far_refound"] = stats.get("far_refound", 0) + n_found
     out = Path(out)
     savez_atomic(out, fps=fps, n=len(boxes), boxes=_objects(boxes), kps=_objects(kps), confs=_objects(confs),
                         feats=_objects(feats))
@@ -453,9 +479,20 @@ def find_far_player(video: str | Path, H: np.ndarray, search_s=2.0, step=5):
     return find_far_players(video, H, [0], search_s, step)[0]
 
 
+def find_far_player_at(video: str | Path, H: np.ndarray, search_s=2.0, step=5):
+    """find_far_player with the frame where she was found: (frame, box), or None (#219: the follow
+    restarts from that box at that frame, not only at the first frame of the window)."""
+    return _find_far(video, H, [0], search_s, step)[0]
+
+
 def find_far_players(video: str | Path, H: np.ndarray, starts, search_s=2.0, step=5) -> dict:
     """find_far_player from each of several start frames, in one reading of the video:
     {start: box or None}. The search from a start never looks past `search_s` after it."""
+    return {s: None if v is None else v[1] for s, v in _find_far(video, H, starts, search_s, step).items()}
+
+
+def _find_far(video: str | Path, H: np.ndarray, starts, search_s=2.0, step=5) -> dict:
+    """{start: (frame where she was found, box) or None}, in one reading of the video."""
     from ..court_metrics import far_roi, pick_far_player
 
     starts = sorted({int(s) for s in starts})
@@ -479,7 +516,7 @@ def find_far_players(video: str | Path, H: np.ndarray, starts, search_s=2.0, ste
                 box = pick_far_player(detect_people(frame, far_roi(H, frame.shape)), H)
                 if box is not None:
                     for s in todo:
-                        found[s] = box
+                        found[s] = (i, box)
             i += 1
     finally:
         cap.release()

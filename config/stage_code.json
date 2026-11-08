@@ -20,7 +20,7 @@
  },
  "players": {
   "version": "4",
-  "hash": "96281bc539175782",
+  "hash": "e8dacd896e6e635b",
   "modules": [
    "pose.yolo"
   ]

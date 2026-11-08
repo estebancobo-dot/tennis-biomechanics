@@ -1489,14 +1489,20 @@ def _check_court(clip: Path, t: float, H, pitch, min_score=0.5):
 def far_start(clip: Path, H, search_s=2.0, step=5) -> dict | None:
     """Where the far player is near the start of a window: people found in the far half of the
     court (enlarged region) in the first frames (she may be blurred in a serve jump), the one
-    standing in it; plus the net row that she never crosses."""
+    standing in it; plus the net row that she never crosses.
+    #219 (08-11): also the frame where she was found (init_frame: the follow and her tracking start from that box
+    at that frame, not at the window's first frame, where she can be elsewhere or in another shot) and the court
+    (far_H: while the follow has lost her, the far half is searched again as here; pose.yolo.extract_follow)."""
     if H is None:
         return None
     from .court_metrics import net_row
-    from .pose.yolo import find_far_player
+    from .pose.yolo import find_far_player_at
 
-    found = find_far_player(clip, H, search_s, step)
-    return None if found is None else dict(roi="follow", init_box=found, max_bottom=net_row(H))
+    found = find_far_player_at(clip, H, search_s, step)
+    if found is None:
+        return None
+    return dict(roi="follow", init_box=found[1], max_bottom=net_row(H), init_frame=int(found[0]),
+                far_H=np.asarray(H, float))
 
 
 def _valid_video(p: Path) -> bool:
@@ -2150,6 +2156,8 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
             f" ({run.timing.get('pose', 0):.0f} s; modelo {st.get('model_s', 0):.0f} s"
             + (f"; pies en {st['feet_frames']}" if pm == "hybrid" and "feet_frames" in st else "")
             + (f", {st['frames_960']} a 960 px por perderla" if st.get("frames_960") else "")
+            + (f"; buscada de nuevo {st['far_searches']} veces, encontrada {st.get('far_refound', 0)}"
+               if st.get("far_searches") else "")
             + f") · bola {_ball_said(dec, wid)} · raqueta {run.timing.get('raqueta', 0):.0f} s"
             f" ({st.get('kept_impacts', 0)} de {st.get('impacts', 0)} impactos) · {len(run.strokes)} golpes posibles"
             + (f" · altura {run.height_px:.0f} px ({st['height_scale']})" if st.get("height_scale") else ""))

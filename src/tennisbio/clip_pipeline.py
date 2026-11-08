@@ -139,6 +139,9 @@ def pick_initial(boxes, mode="largest") -> tuple[int, np.ndarray]:
     return first, b[int(np.argmax(h * (b[:, 2] - b[:, 0])))]
 
 
+FOLLOW_CACHE_TAG = "f2"     # pose caches of the far follow that searches for her again (#219, 08-11)
+
+
 def keep_key(keep) -> str:
     """Short name of a set of frames (pose caches of fine_pass.pose_ranges carry it)."""
     import hashlib
@@ -176,7 +179,8 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
              prefetch: bool = True, targets: list | None = None, target_tol: float | None = None,
              keep: np.ndarray | None = None, inits: dict | None = None, anchors: list | None = None,
              split: bool = True, pose_model: str = "yolo", court_H: np.ndarray | None = None,
-             height_scale: str = "court", spotted: list | None = None, bounce_model=None) -> ClipRun:
+             height_scale: str = "court", spotted: list | None = None, bounce_model=None,
+             init_frame: int | None = None, far_H: np.ndarray | None = None) -> ClipRun:
     """Pose, tracking, impacts and stroke analysis of a short clip (cached).
 
     bounce_model: None = the bounce rule (tennisbio.ball.bounce_before / bounce_after); else our learned model
@@ -209,7 +213,11 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     court_H: court → image homography of the window (real court frame, window pixels), or None;
     height_scale: how her height in px is estimated (body_scale.height_scale: 'court' from court_H and
     height_m, else her body segments; 'pose' as before). run.height_t / run.height_px are that scale;
-    the swings are still found with the former one (their thresholds were tuned with it)."""
+    the swings are still found with the former one (their thresholds were tuned with it).
+    init_frame / far_H (far end, roi "follow"; stages.far_start, #219 08-11): the frame where init_box was found,
+    from which the follow restarts and her tracking runs both ways, and the court with which the follow searches
+    the far half again while it has lost her (pose.yolo.extract_follow). Their pose cache carries
+    FOLLOW_CACHE_TAG (a cache of the former follow, which never found her again once lost, is not reused)."""
     import time
     video, cache = Path(video), Path(cache)
     cache.parent.mkdir(parents=True, exist_ok=True)
@@ -219,9 +227,11 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         bcache = ball_cache_path(cache)
         ball_track = _load_ball_cache(bcache)
     t_ = time.time()
-    if keep is not None and cache.exists() and load_npz(cache) is not None:
+    # the far follow that searches for her again: caches of its own (the ball's stays next to `cache`)
+    wcache = cache.with_name(f"{cache.stem}_{FOLLOW_CACHE_TAG}.npz") if roi == "follow" and far_H is not None else cache
+    if keep is not None and wcache.exists() and load_npz(wcache) is not None:
         keep = inits = None                 # the whole window is already posed (an earlier run): reused
-    pcache = cache if keep is None else cache.with_name(f"{cache.stem}_r{keep_key(keep)}.npz")
+    pcache = wcache if keep is None else wcache.with_name(f"{wcache.stem}_r{keep_key(keep)}.npz")
     use_model = "hybrid" if pose_model == "hybrid" and side == "near" and roi != "follow" else "yolo"
     pstats: dict = {"pose_model": use_model}
     if load_npz(pcache) is None:          # missing or damaged (interrupted run): extract again
@@ -234,8 +244,9 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
             frames = _tee(_cv2_frames(video), feed)
         if roi == "follow":            # small far player: crop that follows her, enlarged
             from .pose.yolo import extract_follow
+            start = inits if inits else ({int(init_frame): init_box} if init_frame else None)
             extract_follow(video, pcache, init_box, max_bottom=max_bottom, frames=frames, prefetch=prefetch,
-                           keep=keep, inits=inits, stats=pstats)
+                           keep=keep, inits=start, stats=pstats, far_H=far_H)
         else:
             extract_fine(video, pcache, imgsz=imgsz, progress=False, roi=roi, frames=frames, prefetch=prefetch,
                          keep=keep, stats=pstats, model_name=use_model)
@@ -273,6 +284,8 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         # lowest in the image at the start of a stretch can be a ball kid), followed both ways from there
         anc = None if not split or init_box is not None else _anchor(boxes, [h for h in (anchors or [])
                                                                                 if a <= h[0] < b], a, b)
+        if not split and init_box is not None and init_frame and a < int(init_frame) < b:
+            anc = (int(init_frame), init)       # far end: she was found there; followed both ways from it
         if anc is not None:
             f, init = anc
         min_bottom = None
@@ -308,7 +321,8 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         log("altura no medible en los tramos: ventana entera")
         whole = run_clip(video, cache, hand, height_m, rackets, init_mode, imgsz, log, ball, side,
                          init_box, max_bottom, roi, prefetch, targets, target_tol, pose_model=pose_model,
-                         court_H=court_H, height_scale=height_scale, spotted=spotted)
+                         court_H=court_H, height_scale=height_scale, spotted=spotted,
+                         init_frame=init_frame, far_H=far_H)
         whole.timing["pose"] = whole.timing.get("pose", 0.0) + timing.get("pose", 0.0)
         whole.stats["posed_frames"] = whole.stats.get("posed_frames", 0) + int(np.sum(keep[:T]))
         whole.stats["whole_window_again"] = 1
