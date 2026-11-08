@@ -127,10 +127,10 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "e44610cd6b301c82",
+  "fingerprint": "c81adba7d70b8159",
   "version": "16",
-  "seconds": 68.9,
-  "finished": "2026-11-08 14:12:16",
+  "seconds": 83.7,
+  "finished": "2026-11-08 17:36:17",
   "summary": {
    "candidates": 80,
    "confirmed": 77,
@@ -150,12 +150,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 30.6,
-    "pista_ventana": 17.6,
-    "analisis_ventana": 13.8,
-    "cuerdas_y_3d": 12.7,
-    "recorte": 3.7,
-    "cribado": 3.2,
+    "jugadora_lejana": 37.9,
+    "pista_ventana": 22.9,
+    "analisis_ventana": 16.7,
+    "cuerdas_y_3d": 15.1,
+    "recorte": 4.4,
+    "cribado": 3.5,
     "pose": 0.3
    },
    "counts": {
@@ -173,10 +173,10 @@
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "1c1dcfb84f5b741b",
+  "fingerprint": "327974ac520b3638",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-08 14:12:16",
+  "finished": "2026-11-08 17:36:17",
   "summary": {
    "enabled": false
   },
@@ -184,10 +184,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "e96888ceb22f4687",
+  "fingerprint": "21cb0a948d59bc68",
   "version": "1",
-  "seconds": 22.5,
-  "finished": "2026-11-08 14:12:38",
+  "seconds": 39.5,
+  "finished": "2026-11-08 17:36:56",
   "summary": {
    "candidates": 26,
    "confirmed": 17,
@@ -206,13 +206,15 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 7.3,
+    "cuerdas_y_3d": 7.5,
     "analisis_ventana": 4.4,
-    "jugadora_lejana": 2.3,
-    "pista_ventana": 1.3,
-    "recorte": 1.2,
-    "cribado": 0.6,
-    "pose": 0.1
+    "jugadora_lejana": 1.7,
+    "pista_ventana": 1.6,
+    "recorte": 1.1,
+    "cribado": 0.7,
+    "pose": 0.1,
+    "bola_en_paralelo_cpu": 0,
+    "espera_bola_en_paralelo": 0.0
    },
    "counts": {
     "overlap_s": 0.0,
@@ -222,7 +224,8 @@
     "kept_impacts": 17,
     "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 0
+    "frames_960_far": 0,
+    "windows_ball_ahead": 17
    }
   },
   "out_hash": "e9e5d67f4e7e277c3b90",
@@ -251,7 +254,7 @@
   "fingerprint": "0143ceda80fe4eb0",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-11-08 14:12:38",
+  "finished": "2026-11-08 17:36:56",
   "summary": {
    "strokes": 77,
    "with_replay": 26,
