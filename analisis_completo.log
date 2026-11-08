@@ -218443,3 +218443,33 @@ Auditoría: 456 cumplidos, 25 no cumplidos, 56 sin golpes suficientes, 113 aviso
     (paso terminado en 3 min 45 s)
 
 ==> [2026-11-08 22:48:51] 5/5 Videos por golpe, montajes por conclusion y resumen PDF
+  golpes 330/445 (778 s, 5 procesos)
+  golpes 340/445 (801 s, 5 procesos)
+  golpes 350/445 (823 s, 5 procesos)
+  golpes 360/445 (847 s, 5 procesos)
+  golpes 370/445 (870 s, 5 procesos)
+  golpes 380/445 (892 s, 5 procesos)
+  golpes 390/445 (915 s, 5 procesos)
+  golpes 400/445 (939 s, 5 procesos)
+  golpes 410/445 (963 s, 5 procesos)
+  golpes 420/445 (987 s, 5 procesos)
+  golpes 430/445 (1010 s, 5 procesos)
+  golpes 440/445 (1033 s, 5 procesos)
+Golpes: 445 nuevos, 445 en C:\tenis\output\exportar_derecha\golpes
+Montajes: 10 en C:\tenis\output\exportar_derecha\montajes
+Resumen: C:\tenis\output\exportar_derecha\resumen.pdf
+Golpes: 0 nuevos, 284 en C:\tenis\output\exportar_reves\golpes
+Montajes: 9 en C:\tenis\output\exportar_reves\montajes
+Resumen: C:\tenis\output\exportar_reves\resumen.pdf
+Golpes: 1 nuevos, 292 en C:\tenis\output\exportar_saque\golpes
+Montajes: 8 en C:\tenis\output\exportar_saque\montajes
+Resumen: C:\tenis\output\exportar_saque\resumen.pdf
+Informe: C:\tenis\output\informe_derecha\index.html (o en la aplicacion Tennisbio)
+
+TERMINADO en 00:51. Informes en C:\tenis\output\informe_*; videos, montajes y resumen.pdf en C:\tenis\output\exportar_*
+    (paso terminado en 19 min 00 s)
+Empezado 2026-11-08 22:15:48 - terminado 2026-11-08 23:07:51 - duracion total 52 min 03 s
+**********************
+Windows PowerShell transcript end
+End time: 20261108230751
+**********************
