@@ -377,6 +377,12 @@ detector: si
 ---
 id: 145
 accion: completo
+---
+id: 146
+accion: borrar
+carpetas: _poc9_largo
+# 146 (08-11, #146): la ultima carpeta de pruebas antigua (7,6 GB); el usuario aprobo borrar las tres el 07-11 y la
+# aplicacion no la usa (sus analisis dejan fuera las pruebas del ciclo)
 # 144-145 (08-11, B4): 143 dio 27/30, 38/44, 40/47, 55/62. El saque del marcador se confirma con el impacto a +-0,6 s
 # (el resto llega 0,6-1,3 s despues del saque) y la auditoria cuenta los saques del marcador descartados por motivo
 # 142-143 (08-11, B4): 141 dio 27/30, 38/44, 40/47, 55/62 (F3Set 463/517, 94 %). La regla de la pausa del saque se
