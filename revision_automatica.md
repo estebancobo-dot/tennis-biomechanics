@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-366 cumplidos · 19 no cumplidos · 127 sin golpes suficientes · 97 avisos (antes: 362 cumplidos, 24 no cumplidos)
+366 cumplidos · 19 no cumplidos · 127 sin golpes suficientes · 97 avisos (antes: 366 cumplidos, 19 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 116 de 245
 
@@ -145,16 +145,3 @@ Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-
-## Empeora respecto a la ejecución anterior
-
-- **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: ok → aviso: recursos_2026-11-08_1650.csv sin muestras con su etapa
-
-## Mejora
-
-- Pruebas del código en este PC: falta → ok
-- #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: falta → ok
-- #20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML: falta → aviso
-- #51 El código de la prueba es el de los casos reales: falta → ok
-- #146 borra las carpetas de pruebas antiguas (Chat, 17-10 10:49): aviso → ok
-- #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: falta → ok
