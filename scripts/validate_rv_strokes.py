@@ -101,6 +101,19 @@ def main():
     ap.add_argument("--imgsz", type=int, default=960)
     args = ap.parse_args()
     root = Path(args.root)
+    # on the PC the datasets live next to the output (C:\\tenis\\datasets) and a PC request cannot pass a path
+    # (08-11): «datasets» missing here → the configured output's sibling; --ball auto → the configured ball model
+    if not root.exists() and args.root == "datasets":
+        try:
+            from tennisbio.config import load_config
+            near = Path(load_config()["paths"]["output"]).parent / "datasets"
+            root = near if near.exists() else root
+        except Exception:  # noqa: BLE001 — keep the default
+            pass
+    if args.ball == "auto":
+        from tennisbio.config import load_config, resolve_path
+        cfg = load_config()
+        args.ball = str(resolve_path((cfg.get("ball") or {}).get("onnx") or "models/balltrack.onnx"))
     split = json.loads(fetch(f"{RV_BASE}/info/test.json", root / "rv" / "test.json").read_text())
     sel = split[:: max(1, len(split) // args.clips)][:args.clips]
     tracker = None

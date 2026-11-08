@@ -404,6 +404,12 @@ accion: completo
 ---
 id: 153
 accion: completo
+---
+id: 154
+accion: medir
+script: validate_rv_strokes
+argumentos: --clips 12 --ball auto --device dml
+# 154 (08-11, B4): el cierre de B4 pide el recuento tambien en RacketVision (golpes del lado cercano con la bola)
 # 153 (08-11): auditoria con la medida de recursos que usa la ultima ejecucion con muestras de una etapa (#230) y las
 # comprobaciones nuevas de B4 (#23, #155, #205, #218, #219)
 # 152 (08-11, B4): el usuario cierra el saque con el 85 % y el hueco del lado lejano dicho en el informe; auditoria e
