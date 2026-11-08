@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-369 cumplidos · 17 no cumplidos · 126 sin golpes suficientes · 102 avisos (antes: 366 cumplidos, 19 no cumplidos)
+370 cumplidos · 17 no cumplidos · 126 sin golpes suficientes · 101 avisos (antes: 369 cumplidos, 17 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 114 de 245
 
@@ -142,19 +142,6 @@ Registro `docs/peticiones_usuario.md`: 120 hechas · 98 a medias · 16 sin hacer
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 
-## Empeora respecto a la ejecución anterior
-
-- **#23 Seguir a la jugadora en los cambios de lado**: pocos datos → aviso: 2 comprobaciones: 1 aviso, 1 ok; la peor: «Identidad en los cambios de lado: smoke_tennis-yusipopen-final-sobolenko-rybakin» (65 de 67 planos decididos (97%; objetivo ≥ 95%); cambios de lado del marca
-
 ## Mejora
 
-- #155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1: falta → aviso
-- #205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3): falta → aviso
-
-## Comprobaciones nuevas
-
-- Volumen: forehand analizados en los partidos: aviso (25 golpes (13 cerca con todo el detalle, 12 lejos) en 1 partidos; objetivo ≥ 400 (docs/comparativa_apps.md §4.3))
-- Identidad en los cambios de lado: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso (65 de 67 planos decididos (97%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 57 de 66 planos con las dos señales (86%; objetivo ≥ 90%); mi)
-- Golpes del fondo: smoke_tennis-yusipopen-final-sobolenko-rybakin: ok (45 de sus 77 golpes en el lado lejano (58%; objetivo ≥ 25%); confirmados 45 de 48 candidatos suyos del fondo (94%); con su posición en la pista 82% (objetivo ≥ )
-- Identidad frente a F3Set (anotado): ok (487 de 492 golpes suyos anotados en planos con la identidad decidida la tienen bien (99%; objetivo ≥ 95%); sin decidir 5, sin plano 20; perdidos por identidad 5)
-- Golpes del fondo frente a F3Set (anotado): ok (lado lejano 253 de 288 (88%) frente al cercano 213 de 229 (93%); diferencia 5 puntos (objetivo ≤ 10) (recall_validation_detector.json))
+- Uso del PC por etapa (CPU, RAM, iGPU y disco): aviso → ok
