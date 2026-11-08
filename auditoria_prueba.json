@@ -3,10 +3,10 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 359,
-  "falta": 20,
+  "ok": 360,
+  "falta": 22,
   "pocos datos": 127,
-  "aviso": 101
+  "aviso": 98
  },
  "items": [
   {
@@ -2802,7 +2802,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "2446 caracteres de texto, 7 vídeos, 19 gráficos",
+   "detail": "2446 caracteres de texto, 6 vídeos, 19 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2834,7 +2834,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4043 caracteres de texto, 7 vídeos, 12 gráficos",
+   "detail": "4055 caracteres de texto, 7 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2866,7 +2866,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2031 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2028 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3161,8 +3161,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 7e0c099 (2026-11-08T05:59:18): 855 bien, 0 fallan, 0 errores",
-   "passed": 855,
+   "detail": "código c7e621d (2026-11-08T08:03:10): 856 bien, 0 fallan, 0 errores",
+   "passed": 856,
    "failed": 0
   },
   {
@@ -3387,21 +3387,21 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (26/26), 19 s, quedan ≈ 0 s, a las 2026-11-08 05:49:56"
+   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (26/26), 37 s, quedan ≈ 0 s, a las 2026-11-08 09:47:21"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
-   "status": "ok",
-   "detail": "55 de 55 registros con fecha de inicio y de fin o duración"
+   "status": "falta",
+   "detail": "54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "42 carpetas, 36.3 GB en total (2026-11-08T07:50:05); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "42 carpetas, 36.3 GB en total (2026-11-08T09:50:07); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
   },
   {
    "req": 5,
@@ -3457,7 +3457,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 07:51:35 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-08 09:47:56 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3597,14 +3597,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "aviso",
-   "detail": "recursos_2026-11-08_0650.csv sin muestras con su etapa"
+   "detail": "recursos_2026-11-08_0900.csv sin muestras con su etapa"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
-   "status": "aviso",
-   "detail": "la última petición (08-11 05:48) no empezó por GitHub Actions; el último trabajo por Actions fue el 08-11 03:04"
+   "status": "ok",
+   "detail": "petición del 08-11 09:45, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 12,
@@ -4037,8 +4037,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
+   "status": "falta",
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos)"
   },
   {
    "req": 11,
@@ -5192,8 +5192,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
-   "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (08-11 05:48) no empezó por GitHub Actions; el último trabajo por Actions fue el 08-11 03:04)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
