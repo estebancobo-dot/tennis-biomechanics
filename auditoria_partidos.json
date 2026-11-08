@@ -3,10 +3,10 @@
  "strokes": 445,
  "near": 265,
  "summary": {
-  "ok": 442,
-  "falta": 27,
+  "ok": 453,
+  "falta": 25,
   "pocos datos": 56,
-  "aviso": 114
+  "aviso": 116
  },
  "items": [
   {
@@ -15,7 +15,8 @@
    "name": "forehand: golpes analizados",
    "status": "ok",
    "detail": "265 del lado cercano (con todo el detalle), 180 del lejano",
-   "n": 265
+   "n": 265,
+   "far": 180
   },
   {
    "req": 1,
@@ -39,7 +40,9 @@
      3973.4
     ]
    },
-   "doubtful": 4
+   "doubtful": 4,
+   "near": 90,
+   "far": 79
   },
   {
    "req": 1,
@@ -151,7 +154,9 @@
      6940.5
     ]
    },
-   "doubtful": 16
+   "doubtful": 16,
+   "near": 180,
+   "far": 106
   },
   {
    "req": 1,
@@ -342,7 +347,9 @@
      7515.8
     ]
    },
-   "doubtful": 30
+   "doubtful": 30,
+   "near": 140,
+   "far": 131
   },
   {
    "req": 1,
@@ -526,7 +533,9 @@
      10314.8
     ]
    },
-   "doubtful": 33
+   "doubtful": 33,
+   "near": 160,
+   "far": 135
   },
   {
    "req": 1,
@@ -731,6 +740,70 @@
      "elsewhere": 13
     }
    }
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Volumen: forehand analizados en los partidos",
+   "status": "ok",
+   "detail": "445 golpes (265 cerca con todo el detalle, 180 lejos) en 4 partidos; objetivo ≥ 400 (docs/comparativa_apps.md §4.3)",
+   "n": 445
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Identidad en los cambios de lado: sin-fecha_f43dd2_rybakina",
+   "status": "ok",
+   "detail": "148 de 148 planos decididos (100%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 129 de 136 planos con las dos señales (95%; objetivo ≥ 90%); misma ropa dentro de un juego 95% (objetivo ≥ 95%); sus golpes: 90 cerca y 79 lejos (47% en el lado con menos); dudosos 0, sin decidir 0. Sin verdad anotada: coherencia, no validación"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Golpes del fondo: sin-fecha_f43dd2_rybakina",
+   "status": "aviso",
+   "detail": "79 de sus 169 golpes en el lado lejano (47%; objetivo ≥ 25%); confirmados 79 de 82 candidatos suyos del fondo (96%); con su posición en la pista 75% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino) · falla: posición medida 75%"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Identidad en los cambios de lado: sin-fecha_584c5b_rybakina",
+   "status": "ok",
+   "detail": "274 de 276 planos decididos (99%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 240 de 257 planos con las dos señales (93%; objetivo ≥ 90%); misma ropa dentro de un juego 100% (objetivo ≥ 95%); sus golpes: 180 cerca y 106 lejos (37% en el lado con menos); dudosos 2, sin decidir 0. Sin verdad anotada: coherencia, no validación"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Golpes del fondo: sin-fecha_584c5b_rybakina",
+   "status": "aviso",
+   "detail": "106 de sus 286 golpes en el lado lejano (37%; objetivo ≥ 25%); confirmados 106 de 109 candidatos suyos del fondo (97%); con su posición en la pista 44% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino) · falla: posición medida 44%"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Identidad en los cambios de lado: sin-fecha_580c6f_rybakina",
+   "status": "ok",
+   "detail": "281 de 285 planos decididos (99%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 199 de 206 planos con las dos señales (97%; objetivo ≥ 90%); misma ropa dentro de un juego 99% (objetivo ≥ 95%); sus golpes: 140 cerca y 131 lejos (48% en el lado con menos); dudosos 0, sin decidir 4. Sin verdad anotada: coherencia, no validación"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Golpes del fondo: sin-fecha_580c6f_rybakina",
+   "status": "aviso",
+   "detail": "131 de sus 271 golpes en el lado lejano (48%; objetivo ≥ 25%); confirmados 131 de 137 candidatos suyos del fondo (96%); con su posición en la pista 59% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino) · falla: posición medida 59%"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Identidad en los cambios de lado: sin-fecha_b8b713_rybakina",
+   "status": "ok",
+   "detail": "327 de 342 planos decididos (96%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 282 de 293 planos con las dos señales (96%; objetivo ≥ 90%); misma ropa dentro de un juego 98% (objetivo ≥ 95%); sus golpes: 160 cerca y 135 lejos (46% en el lado con menos); dudosos 2, sin decidir 13. Sin verdad anotada: coherencia, no validación"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Golpes del fondo: sin-fecha_b8b713_rybakina",
+   "status": "aviso",
+   "detail": "135 de sus 295 golpes en el lado lejano (46%; objetivo ≥ 25%); confirmados 135 de 143 candidatos suyos del fondo (94%); con su posición en la pista 65% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino) · falla: posición medida 65%"
   },
   {
    "req": 1,
@@ -8238,8 +8311,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código fd20e19 (2026-11-08T17:44:02): 870 bien, 0 fallan, 0 errores",
-   "passed": 870,
+   "detail": "código 4dc2afb (2026-11-08T20:30:29): 880 bien, 0 fallan, 0 errores",
+   "passed": 880,
    "failed": 0
   },
   {
@@ -8478,7 +8551,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "41 carpetas, 28.7 GB en total (2026-11-08T20:05:50); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
+   "detail": "41 carpetas, 28.7 GB en total (2026-11-08T21:04:05); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
   },
   {
    "req": 5,
@@ -8555,21 +8628,21 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_derecha",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 18:34:20 en 18 min: 445 vídeos de 445 golpes"
+   "detail": "terminó el 2026-11-08 20:12:52 en 0 min: 445 vídeos de 445 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_reves",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 18:46:22 en 12 min: 284 vídeos de 284 golpes"
+   "detail": "terminó el 2026-11-08 20:13:20 en 0 min: 284 vídeos de 284 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_saque",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 18:55:37 en 9 min: 292 vídeos de 292 golpes"
+   "detail": "terminó el 2026-11-08 20:13:42 en 0 min: 292 vídeos de 292 golpes"
   },
   {
    "req": 5,
@@ -8771,15 +8844,15 @@
    "req": 9,
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
-   "status": "aviso",
-   "detail": "recursos_2026-11-08_1910.csv sin muestras con su etapa"
+   "status": "ok",
+   "detail": "recursos_2026-11-08_1740.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (2.0 min): CPU 23/31/40 %, iGPU 0/10/51 %, RAM máx 9.5 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (4.5 min): CPU 25/39/85 %, iGPU 0/40/100 %, RAM máx 9.9 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.2 min): CPU 19/19/19 %, iGPU 0/0/0 %, RAM máx 9.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); tennis-yusipopen-polufinal-gau fine (3.5 min): CPU 23/52/100 %, iGPU 0/18/87 %, RAM máx 9.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.8 min): CPU 26/33/38 %, iGPU 42/76/100 %, RAM máx 9.5 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-final-sobolen fine (5.8 min): CPU 20/39/91 %, iGPU 0/39/100 %, RAM máx 14.1 GB → uso medio: margen para repartir trabajo; 49.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-08_2040.csv, recursos_2026-11-08_1910.csv"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 08-11 20:02, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 08-11 21:00, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -8787,6 +8860,20 @@
    "name": "Golpes inventados: precisión en F3Set ≥ 0.94",
    "status": "ok",
    "detail": "precisión 0.942, encontrados 466 de 517 (90%) en recall_validation_detector.json"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Identidad frente a F3Set (anotado)",
+   "status": "ok",
+   "detail": "487 de 492 golpes suyos anotados en planos con la identidad decidida la tienen bien (99%; objetivo ≥ 95%); sin decidir 5, sin plano 20; perdidos por identidad 5 (recall_validation_detector.json)"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Golpes del fondo frente a F3Set (anotado)",
+   "status": "ok",
+   "detail": "lado lejano 253 de 288 (88%) frente al cercano 213 de 229 (93%); diferencia 5 puntos (objetivo ≤ 10) (recall_validation_detector.json)"
   },
   {
    "req": 12,
@@ -8946,8 +9033,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#23 Seguir a la jugadora en los cambios de lado",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
+   "status": "ok",
+   "detail": "5 comprobaciones: 5 ok"
   },
   {
    "req": 11,
@@ -9807,8 +9894,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1",
-   "status": "falta",
-   "detail": "SIN HACER según el registro (#155, docs/peticiones_usuario.md)"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok"
   },
   {
    "req": 11,
@@ -10157,8 +10244,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3)",
-   "status": "falta",
-   "detail": "SIN HACER según el registro (#205, docs/peticiones_usuario.md)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -10249,14 +10336,14 @@
    "area": "Peticiones",
    "name": "#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 2 aviso, 2 ok; la peor: «Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina» (0% de sus golpes con repetición enlazada (0 de 169, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 30 repeticiones,)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 9 comprobaciones: 6 aviso, 3 ok; la peor: «Golpes del fondo: sin-fecha_f43dd2_rybakina» (79 de sus 169 golpes en el lado lejano (47%; objetivo ≥ 25%); confirmados 79 de 82 candidatos suyos del fondo (96%); con)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 2 aviso, 6 ok; la peor: «Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina» (0% de sus golpes con repetición enlazada (0 de 169, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 30 repeticiones,)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 9 comprobaciones: 4 aviso, 5 ok; la peor: «Golpes del fondo: sin-fecha_f43dd2_rybakina» (79 de sus 169 golpes en el lado lejano (47%; objetivo ≥ 25%); confirmados 79 de 82 candidatos suyos del fondo (96%); con)"
   },
   {
    "req": 11,
@@ -10325,8 +10412,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo",
-   "status": "aviso",
-   "detail": "10 comprobaciones: 1 aviso, 9 ok; la peor: «Uso del PC por etapa (CPU, RAM, iGPU y disco)» (recursos_2026-11-08_1910.csv sin muestras con su etapa)"
+   "status": "ok",
+   "detail": "10 comprobaciones: 10 ok"
   },
   {
    "req": 11,
