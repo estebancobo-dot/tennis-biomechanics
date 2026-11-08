@@ -340,3 +340,84 @@ def test_shot_frames_come_from_a_keyframe_inside_each_shot(tmp_path):
     assert set(ev) == {0, 1, 2} and all(e["sampled"] >= 1 for e in ev.values())
     line = next(l for l in logs if "tomas:" in l)
     assert "1 exactos" in line and "6 claves en el vídeo" in line
+
+
+# --- #218 (08-11): the fine pass re-ran after views_link with the same result and the links were lost ------------
+def _rewrite_stages(monkeypatch, calls, fine_out):
+    """A fake `fine` (writes strokes.json) and the real views.attach in a `views_link` that adds the `views`
+    of each stroke to fine's strokes.json in place, as the stages of the same names."""
+    monkeypatch.setattr(pipeline, "STAGES", {})
+
+    @pipeline.stage("fine", "1", settings=lambda c: {"x": c.get("x")}, outputs=("strokes.json",))
+    def fine(ctx):
+        calls.append("fine")
+        ctx.path("strokes.json").write_text(json.dumps(fine_out), encoding="utf-8")
+
+    @pipeline.stage("views_link", "1", deps=("fine",), outputs=("views_link.json",))
+    def views_link(ctx):
+        calls.append("views_link")
+        doc = {"links": [{"live_t": 10.0, "side": "near", "kind": "repeticion_principal", "shot_span": [20.0, 24.0],
+                          "slowmo": 2.0, "method": "recorrido", "confidence": 0.9}]}
+        st = V.attach(json.loads(ctx.path("strokes.json").read_text(encoding="utf-8")), doc)
+        ctx.path("strokes.json").write_text(json.dumps(st), encoding="utf-8")
+        ctx.path("views_link.json").write_text(json.dumps(V.coverage(st)), encoding="utf-8")
+
+
+STROKE = [{"match_time_s": 10.0, "side": "near", "stroke": "forehand"}]
+
+
+def _ctx(tmp_path, x=1):
+    v = tmp_path / "v.mp4"
+    if not v.exists():
+        v.write_bytes(b"0" * 10)
+    return Context(Match("m", v, Player("p", "P")), {"x": x}, tmp_path / "out", log=lambda *_: None)
+
+
+def _with_replay(tmp_path):
+    st = json.loads(_ctx(tmp_path).path("strokes.json").read_text(encoding="utf-8"))
+    return V.coverage(st)["with_replay"]
+
+
+def test_views_link_reruns_when_fine_rewrites_the_same_strokes(tmp_path, monkeypatch):
+    """Osaka and Gauff (auditoría 08-11: 0 of 169 / 271 linked with 30 / 76 replays): fine re-ran after views_link
+    and wrote the same strokes.json (same out_hash) → views_link looked up to date and its `views` were gone."""
+    calls = []
+    _rewrite_stages(monkeypatch, calls, STROKE)
+    assert pipeline.run(_ctx(tmp_path), parallel=False) == ["fine", "views_link"]
+    assert _with_replay(tmp_path) == 1
+    m = pipeline.load_manifest(tmp_path / "out")
+    assert list(m["views_link"][pipeline.REWROTE]) == ["fine"] and m["fine"].get(pipeline.REWROTE) == {}
+    assert pipeline.run(_ctx(tmp_path), parallel=False) == []                    # nothing changed: nothing re-runs
+    # the fine pass runs again (its settings changed) and writes the same strokes: views_link must run again
+    assert pipeline.status(_ctx(tmp_path, x=2))["fine"] == "stale"
+    assert pipeline.run(_ctx(tmp_path, x=2), parallel=False) == ["fine", "views_link"]
+    assert _with_replay(tmp_path) == 1
+    assert pipeline.status(_ctx(tmp_path, x=2)) == {"fine": "ok", "views_link": "ok"}
+    # the strokes rewritten by the fine pass alone (recompute_measures.py: upstream=False) → stale too
+    pipeline.run(_ctx(tmp_path, x=3), ["fine"], upstream=False, parallel=False)
+    assert _with_replay(tmp_path) == 0 and pipeline.status(_ctx(tmp_path, x=3))["views_link"] == "stale"
+    assert pipeline.run(_ctx(tmp_path, x=3), parallel=False) == ["views_link"] and _with_replay(tmp_path) == 1
+
+
+def test_views_link_of_a_manifest_written_before_the_fix_reruns_once(tmp_path, monkeypatch):
+    """The PC's manifests: views_link (0 s) finished before the fine pass that wiped its links, no `rewrote`."""
+    calls = []
+    _rewrite_stages(monkeypatch, calls, STROKE)
+    pipeline.run(_ctx(tmp_path), parallel=False)
+    d = tmp_path / "out"
+    m = pipeline.load_manifest(d)
+    for e in m.values():
+        e.pop(pipeline.REWROTE, None)
+    m["views_link"]["finished"], m["fine"]["finished"] = "2026-11-08 03:24:37", "2026-11-08 17:50:09"
+    _ctx(tmp_path).path("strokes.json").write_text(json.dumps(STROKE), encoding="utf-8")
+    pipeline.save_manifest(d, m)                                                # as Osaka's manifest is today
+    assert _with_replay(tmp_path) == 0
+    assert pipeline.status(_ctx(tmp_path))["views_link"] == "stale"
+    assert pipeline.run(_ctx(tmp_path), parallel=False) == ["views_link"] and _with_replay(tmp_path) == 1
+    assert pipeline.run(_ctx(tmp_path), parallel=False) == []                    # once
+    # an expensive stage of an old manifest is never re-run by this rule (only cheap ones)
+    m = pipeline.load_manifest(d)
+    m["views_link"].pop(pipeline.REWROTE)
+    m["views_link"]["seconds"], m["views_link"]["finished"] = 3600.0, "2026-11-08 03:24:37"
+    pipeline.save_manifest(d, m)
+    assert pipeline.status(_ctx(tmp_path))["views_link"] == "ok"

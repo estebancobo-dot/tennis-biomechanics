@@ -331,6 +331,37 @@ def outputs_ok(name: str, ctx: Context) -> bool:
     return all(ctx.path(o).exists() for o in STAGES[name].outputs)
 
 
+# A stage may add to an output of one of its dependencies in place (views_link writes the `views` of each stroke
+# into fine's strokes.json). When that dependency runs again and writes the same content as before, its out_hash
+# does not change, so the stage that wrote into it looked up to date while its additions were gone (#218, 08-11:
+# 0 strokes with replays in Osaka and Gauff, whose fine pass re-ran after views_link with the same result). The
+# stage records what it left in those files (`rewrote`: dependency → hash of its outputs after the stage) and is
+# stale while they no longer hold it.
+REWROTE = "rewrote"
+LEGACY_CHEAP_S = 10.0     # entries written before `rewrote` existed: a stage this fast whose dependency ran after it
+
+
+def _json_outputs_hash(name: str, ctx: Context) -> str | None:
+    """output_hash of a stage whose outputs are all JSON (the only ones a later stage rewrites in place, and cheap
+    to hash before and after every stage); None for the others."""
+    outs = STAGES[name].outputs
+    if not outs or not all(o.endswith(".json") for o in outs):
+        return None
+    return output_hash(name, ctx)
+
+
+def rewrites_lost(name: str, ctx: Context, m: dict) -> bool:
+    """Whether a stage's additions to its dependencies' outputs are gone (the dependency re-ran after it). Entries
+    written before `rewrote` existed: re-run once when they are cheap (≤ LEGACY_CHEAP_S) and a dependency finished
+    after them (possibly overwriting what they wrote), which also records their `rewrote` from then on."""
+    e = m.get(name) or {}
+    if REWROTE in e:
+        return any(_json_outputs_hash(d, ctx) != h for d, h in (e[REWROTE] or {}).items())
+    if not e or float(e.get("seconds") or 0) > LEGACY_CHEAP_S or not e.get("finished"):
+        return False
+    return any(str((m.get(d) or {}).get("finished") or "") > e["finished"] for d in STAGES[name].all_deps(ctx.cfg))
+
+
 def order(names, cfg: dict | None = None) -> list[str]:
     """Stages in dependency order (dependencies included; with cfg, also those the config adds)."""
     out, seen = [], set()
@@ -378,7 +409,7 @@ def status(ctx: Context) -> dict[str, str]:
         if n not in m:
             res[n] = "missing"
             continue
-        ok_own = m[n]["fingerprint"] == fingerprint(n, ctx, m) and outputs_ok(n, ctx)
+        ok_own = m[n]["fingerprint"] == fingerprint(n, ctx, m) and outputs_ok(n, ctx) and not rewrites_lost(n, ctx, m)
         above = [d for d in STAGES[n].all_deps(ctx.cfg) if res.get(d) in ("stale", "missing", "upstream")]
         res[n] = "stale" if not ok_own else ("upstream" if above else "ok")
     return res
@@ -464,7 +495,11 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
                            "Libera al menos 5 GB (por ejemplo, borra vídeos ya analizados) y vuelve a ejecutar: "
                            "se sigue donde se quedó.")
 
-    def finish(n: str, fp: str, summary: dict, t0: float, t1: float):
+    def snapshot(n: str) -> dict:
+        """Hashes of the JSON outputs of n's dependencies before it runs (to see which ones it rewrites)."""
+        return {d: _json_outputs_hash(d, ctx) for d in STAGES[n].all_deps(ctx.cfg)}
+
+    def finish(n: str, fp: str, summary: dict, t0: float, t1: float, before: dict | None = None):
         dt = t1 - t0
         ov = _overlap((t0, t1), spans)
         spans.append((t0, t1))
@@ -476,6 +511,8 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
         m[n] = {"fingerprint": fp, "version": STAGES[n].version, "seconds": round(dt, 1),
                 "finished": time.strftime("%Y-%m-%d %H:%M:%S"), "summary": summary,
                 "out_hash": output_hash(n, ctx), "scheme": SCHEME}
+        after = {d: _json_outputs_hash(d, ctx) for d in (before or {})}
+        m[n][REWROTE] = {d: h for d, h in after.items() if h is not None and h != before[d]}
         if ov > 0:
             m[n]["overlap_s"] = round(ov, 1)
         save_manifest(ctx.dir, m)          # after every stage, so an interruption loses little
@@ -496,6 +533,7 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
         events.put((n, res, err, t0, time.time()))
 
     fps: dict[str, str] = {}
+    befores: dict[str, dict] = {}
     while pending or running:
         started = False
         for n in list(pending) if not errors else []:
@@ -503,7 +541,8 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
             if any(d in in_plan and (d in pending or d in running) for d in st.all_deps(ctx.cfg)):
                 continue                                     # a dependency is not finished yet
             fp = fingerprint(n, ctx, m)
-            if not (force and n in requested) and m.get(n, {}).get("fingerprint") == fp and outputs_ok(n, ctx):
+            if not (force and n in requested) and m.get(n, {}).get("fingerprint") == fp and outputs_ok(n, ctx) \
+                    and not rewrites_lost(n, ctx, m):
                 pending.remove(n)
                 continue
             res_n = resource(n, ctx.cfg) if parallel else None
@@ -518,6 +557,7 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
                 errors.append(e)
                 break
             pending.remove(n)
+            before = snapshot(n)
             k = full.index(n) + 1
             others = f", a la vez que {', '.join(running)}" if running else ""
             log(f"[{ctx.match.id}] {n}… ({time.strftime('%Y-%m-%d %H:%M:%S')}, etapa {k} de {len(STAGES)}{others})")
@@ -525,10 +565,11 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
                 ctx._prog["stage"] = n
                 t0 = time.time()
                 summary = st.run(ctx) or {}
-                finish(n, fp, summary, t0, time.time())
+                finish(n, fp, summary, t0, time.time(), before)
                 started = True
                 break                                        # rescan: what depends on it may be ready
             fps[n] = fp
+            befores[n] = before
             pre = f"[{n}] "
             sub = replace(ctx, log=lambda msg, pre=pre: log(pre + msg if not msg.startswith("  ") else "  " + pre + msg[2:]),
                           _prog={"stage": n})
@@ -548,7 +589,7 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
             log(f"[{ctx.match.id}] {n} falló: {type(err).__name__}: {err}")
             errors.append(err)
         else:
-            finish(n, fps[n], res, t0, t1)
+            finish(n, fps[n], res, t0, t1, befores.get(n))
     if errors:
         raise errors[0]
     return done
