@@ -1,10 +1,10 @@
-# Revisión automática: FALLOS
+# Revisión automática: REGRESIÓN
 
-362 cumplidos · 24 no cumplidos · 127 sin golpes suficientes · 96 avisos (antes: 361 cumplidos, 24 no cumplidos)
+366 cumplidos · 19 no cumplidos · 127 sin golpes suficientes · 97 avisos (antes: 362 cumplidos, 24 no cumplidos)
 
-## Peticiones del usuario SIN TERMINAR: 117 de 245
+## Peticiones del usuario SIN TERMINAR: 116 de 245
 
-Registro `docs/peticiones_usuario.md`: 117 hechas · 99 a medias · 18 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 118 hechas · 98 a medias · 18 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#155 [FALTA]** es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 19-10 06:15) — falta: Detección sin arreglar: como mucho 43 % de sus golpes y 29 % de sus saques en la final del US Open. Falta correr el banco de 650 golpes anotados y corregir la …
 - **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
@@ -72,7 +72,6 @@ Registro `docs/peticiones_usuario.md`: 117 hechas · 99 a medias · 18 sin hacer
 - **#140 [PARCIAL]** de la jugadora de fondo se sacan imagenes para la captura de datos en vista frontal? (Chat, 14-10 20:08) — falta: No se usa como vista frontal para medidas del cuerpo: a 60-90 px los tobillos y la raqueta salen imprecisos.
 - **#142 [PARCIAL]** (punto 2) como se puede hacer una aplicacion profesional ... mas jugadores, mas golpes ... como se lanza, almacenamiento, videos, progreso … — falta: Construida y probada, pero el análisis real de los 4 partidos (18-10) se lanzó con el ciclo, no desde la aplicación; nunca usada con datos correctos.
 - **#143 [PARCIAL]** (punto 3) esta es una guia para la derecha de otra jugadora ... revisar si aplica todo (Chat, 17-10 09:49) — falta: De sus 20 huecos, 7 siguen a medias o sin hacer (ver fuente «Guía Ivanovic»).
-- **#146 [PARCIAL]** borra las carpetas de pruebas antiguas (Chat, 17-10 10:49) — falta: — 07-11: el usuario aprueba borrar; petición 123 borra _poc31_35 y _poc31_4. _poc9_largo se queda hasta saber si la aplicación la usa. 08-11: la aplicación no …
 - **#147 [PARCIAL]** la guia de ivanovic esta aplicada al 100 por 100? sobre todo los puntos 1 2 3 5 6 y 10 (Chat, 17-10 10:52) — falta: 3 a medias (falta «punta arriba / codo alto»), 6 a medias (faltan 3 alarmas), 10 sin hacer (mano libre en aceleración e impacto).
 - **#154 [PARCIAL]** mi movil es android google pixel 8 ... que copie directo al pixel (Chat, 18-10 12:11) — falta: Sin probar con el teléfono conectado.
 - **#156 [PARCIAL]** como sabes la identidad de la jugadora y porque hay fallos? porque no buscas en la web de la wta la imagen y altura (Chat, 19-10 06:29) — falta: Fallos sin explicar ni corregir; una foto de la WTA sería una fuente externa (requisito 6) y no sirve desde detrás: la identidad debe validarse con `validation…
@@ -128,10 +127,6 @@ Registro `docs/peticiones_usuario.md`: 117 hechas · 99 a medias · 18 sin hacer
 ## No cumplidos
 
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
-- **Pruebas del código en este PC**: código 9335553 (2026-11-08T14:24:21): 867 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
-- **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 9335553 (2026-11-08T14:24:21): 867 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-- **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 9335553 (2026-11-08T14:24:21): 867 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-- **#51 El código de la prueba es el de los casos reales**: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 9335553 (2026-11-08T14:24:21): 867 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
 - **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -148,10 +143,18 @@ Registro `docs/peticiones_usuario.md`: 117 hechas · 99 a medias · 18 sin hacer
 - **#223 Revés y derecha cortados**: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
 - **#224 Saques: plano, cortado o kick; primero o segundo**: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
-- **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 9335553 (2026-11-08T14:24:21): 867 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 
+## Empeora respecto a la ejecución anterior
+
+- **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: ok → aviso: recursos_2026-11-08_1650.csv sin muestras con su etapa
+
 ## Mejora
 
-- Uso del PC por etapa (CPU, RAM, iGPU y disco): aviso → ok
+- Pruebas del código en este PC: falta → ok
+- #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: falta → ok
+- #20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML: falta → aviso
+- #51 El código de la prueba es el de los casos reales: falta → ok
+- #146 borra las carpetas de pruebas antiguas (Chat, 17-10 10:49): aviso → ok
+- #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: falta → ok
