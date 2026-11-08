@@ -190,3 +190,45 @@ def test_keyframe_times_of_a_ts_are_relative_to_its_start(tmp_path):
     assert np.allclose(kt, [0.0, 1.0, 2.0, 3.0, 4.0], atol=0.05)
     for t, fr in keyframes_at(info, list(kt[:3]), workers=2):
         assert fr is not None and np.array_equal(fr, seek_frame(info, float(t))), t
+
+
+def test_a_run_hands_over_its_last_frame_without_decoding_to_the_end(tmp_path):
+    """08-11 (request 231): ffmpeg passes a selected frame on only when the next one is selected (or at the end), so
+    each run of times decoded the rest of the video before giving its last frame (Osaka's identity: 13 min, ~7 whole
+    matches decoded). A run near the start of a long video now costs a small part of decoding it all."""
+    import time
+
+    from tennisbio.io.video import frames_at
+    v = tmp_path / "long.mp4"
+    _ff("-f", "lavfi", "-i", "testsrc2=duration=600:size=320x180:rate=25", "-pix_fmt", "yuv420p", "-c:v", "libx264",
+        "-preset", "ultrafast", str(v))
+    info = probe(v)
+    t0 = time.perf_counter()
+    got = list(frames_at(info, [1.0, 1.5, 2.04], dense_s=60.0, prefetch=0))
+    early = time.perf_counter() - t0
+    t0 = time.perf_counter()
+    whole = list(frames_at(info, [1.0, 599.0], dense_s=1e9, prefetch=0))      # one run across the whole video
+    full = time.perf_counter() - t0
+    assert all(f is not None for _, f in got) and whole[-1][1] is not None
+    assert early < full / 3, (early, full)
+
+
+def test_interlaced_ts_stretches_give_the_frames_of_one_continuous_decode(tmp_path):
+    """Request 231: the clothes frames of an interlaced broadcast (Osaka, 1080i25 .ts) are read in stretches, each
+    starting with a jump; they are exactly the frames of decoding the whole video from its start."""
+    import numpy as np
+
+    from tennisbio.io.video import frames_at
+    v = tmp_path / "i.ts"
+    _ff("-f", "lavfi", "-i", "testsrc2=duration=30:size=640x360:rate=25,noise=alls=10:allf=t", "-vf", "setfield=tff",
+        "-flags", "+ildct+ilme", "-c:v", "libx264", "-preset", "ultrafast", "-g", "12", "-bf", "2", "-f", "mpegts", str(v))
+    info = probe(v)
+    assert info.interlaced and info.start_time > 0
+    ts = [0.52, 1.3, 4.04, 4.9, 9.513, 13.0, 17.77, 21.2, 25.6, 29.9, 31.0]
+    ref = list(frames_at(info, ts, dense_s=1e9, max_run=10**6, prefetch=0))
+    for kw in ({"dense_s": 60.0}, {"dense_s": 60.0, "max_run": 3}):
+        got = list(frames_at(info, ts, **kw))
+        assert [t for t, _ in got] == ts
+        for (t, f), (_, r) in zip(got, ref):
+            assert (f is None) == (r is None) and (f is None or np.array_equal(f, r)), (kw, t)
+    assert ref[-1][1] is None and ref[-2][1] is not None

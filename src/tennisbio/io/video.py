@@ -210,6 +210,11 @@ def _frames_at_run(info: VideoInfo, targets: list[str], hwaccel: str | None,
     # first frame at or after each target, also across a timestamp gap: t >= T and the previous frame < T
     # (half a microsecond of slack: `-ss` rounds the target to microseconds the same way)
     expr = "+".join(f"gte(t\\,{float(r) - 5e-7:.7f})*not(gte(prev_t\\,{float(r) - 5e-7:.7f}))" for r in rel)
+    # 08-11 (request 231): ffmpeg hands a selected frame to the pipe only when the NEXT frame is selected (or at the
+    # end of the video), so the last target of each run waited for the decoding of the rest of the video: every run
+    # decoded to the end (Osaka's identity, 15 runs of 60 times: ~7 whole matches decoded, 13 min). Every frame from
+    # the last target's on is selected too: the one after it releases it, and the process is killed once read.
+    expr += f"+gte(prev_t\\,{float(rel[-1]) - 5e-7:.7f})"
     cmd = ["ffmpeg", "-hide_banner", "-nostdin", "-nostats", "-loglevel", "info"]
     hwaccel = auto_hwaccel() if hwaccel == "auto" else hwaccel
     if key_only:
