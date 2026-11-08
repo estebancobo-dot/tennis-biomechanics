@@ -1,0 +1,25 @@
+﻿Peticion 154: medir validate_rv_strokes (2026-11-08T21:27:47)
+  match1_000: referencia []  detectados []  seguida 98%
+  match101_000: dobles, se omite
+  match104_000: referencia [31, 179, 315]  detectados [20, 178, 318, 451]  seguida 100%
+  match107_000: referencia [139, 329, 471]  detectados [134, 300, 472]  seguida 100%
+  match11_000: dobles, se omite
+  match112_000: referencia [51, 112, 192]  detectados [51, 119, 196]  seguida 100%
+  match115_000: referencia [22, 80, 152]  detectados [21, 83, 151]  seguida 100%
+  match118_000: referencia [554]  detectados [31, 358]  seguida 100%
+  match120_000: referencia [139, 341]  detectados [54, 138, 340]  seguida 86%
+  match123_000: referencia [46, 112]  detectados [45]  seguida 82%
+  match126_000: referencia [63, 202]  detectados [68, 135, 206]  seguida 100%
+  match129_000: dobles, se omite
+
+RESUMEN (jugador cercano, sin audio)
+  gt                           19
+  detected                     22
+  true_positives               14
+  precision                    0.636
+  recall                       0.737
+  f1                           0.683
+  timing_err_frames_median     1.0
+  timing_bias_frames           0.64
+  gate_misses                  0
+termina 2026-11-08T22:14:31
