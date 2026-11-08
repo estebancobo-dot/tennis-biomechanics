@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-361 cumplidos · 24 no cumplidos · 127 sin golpes suficientes · 97 avisos (antes: 365 cumplidos, 19 no cumplidos)
+361 cumplidos · 24 no cumplidos · 127 sin golpes suficientes · 97 avisos (antes: 361 cumplidos, 24 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 119 de 245
 
@@ -130,10 +130,10 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 101 a medias · 18 sin hace
 ## No cumplidos
 
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
-- **Pruebas del código en este PC**: código 10dcbe8 (2026-11-08T12:44:47): 860 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
-- **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 10dcbe8 (2026-11-08T12:44:47): 860 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-- **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 10dcbe8 (2026-11-08T12:44:47): 860 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-- **#51 El código de la prueba es el de los casos reales**: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 10dcbe8 (2026-11-08T12:44:47): 860 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- **Pruebas del código en este PC**: código d4fabbd (2026-11-08T13:09:20): 866 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
+- **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código d4fabbd (2026-11-08T13:09:20): 866 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código d4fabbd (2026-11-08T13:09:20): 866 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- **#51 El código de la prueba es el de los casos reales**: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código d4fabbd (2026-11-08T13:09:20): 866 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
 - **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -150,18 +150,6 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 101 a medias · 18 sin hace
 - **#223 Revés y derecha cortados**: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
 - **#224 Saques: plano, cortado o kick; primero o segundo**: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
-- **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 10dcbe8 (2026-11-08T12:44:47): 860 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código d4fabbd (2026-11-08T13:09:20): 866 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-
-## Empeora respecto a la ejecución anterior
-
-- **Pruebas del código en este PC**: ok → falta: código 10dcbe8 (2026-11-08T12:44:47): 860 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
-- **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: ok → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 10dcbe8 (2026-11-08T12:44:47): 860 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-- **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: aviso → falta: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 10dcbe8 (2026-11-08T12:44:47): 860 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_o
-- **#51 El código de la prueba es el de los casos reales**: ok → falta: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 10dcbe8 (2026-11-08T12:44:47): 860 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-- **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: ok → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 10dcbe8 (2026-11-08T12:44:47): 860 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-
-## Comprobaciones nuevas
-
-- Cobertura del saque dicha en el informe: aviso (no se encontró el informe del saque (C:\tenis\output\_smoke\informe_saque\index.html))

@@ -197,7 +197,7 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 101 a medias · 18 sin hace
 - … **Ángulo antebrazo–raqueta antes del impacto**: 6 derechas de lado con esta medida
 - … **Cabeza girada hacia el impacto**: 0 derechas de frente con esta medida
 - … **Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha**: 0 golpes exactos, 1 parecidos; 79 de 90 puntos con su valor medido
-- ✔ **Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin**: marcador: 45-51 puntos jugados (7 juegos leídos, 0 sin leer), 17 con su saque. Esperados: 17-38 saques (1 o 2 por punto de saque) y 72-133 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 77 golpes, 24 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (32 cerca, 45 lejos); además 17 de identidad dudosa, apartados (no cuentan como suyos)
+- ✔ **Golpes encontrados frente al marcador: smoke_tennis-yusipopen-final-sobolenko-rybakin**: marcador: 42-48 puntos jugados (7 juegos leídos, 0 sin leer), 16 con su saque. Esperados: 16-36 saques (1 o 2 por punto de saque) y 67-125 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 77 golpes, 24 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (sin 3 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 1 de su saque) (32 cerca, 45 lejos); además 17 de identidad dudosa, apartados (no cuentan como suyos)
 - ✔ **Repeticiones y otras cámaras enlazadas: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 34% de sus golpes con repetición enlazada (26 de 77, 2 a cámara lenta) · 84% con otra cámara (65) · tomas: 22 repeticiones, 3 laterales, 1 frontales, 95 primeros planos, 2 otras
 - ✔ **1. Fases · Inicio del giro de bloque (preparación)**: medido en el 69% de los golpes y en el informe
 - ✔ **1. Fases · Impacto**: implementado (sin nombre de dato en la matriz)
@@ -342,7 +342,7 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 101 a medias · 18 sin hace
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 4496 caracteres de texto, 7 vídeos, 1 gráficos
 - ✔ **Pantalla «Análisis de golpe»**: 4979 caracteres de texto, 8 vídeos, 31 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 4354 caracteres de texto, 7 vídeos, 2 gráficos
-- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4055 caracteres de texto, 7 vídeos, 12 gráficos
+- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 4043 caracteres de texto, 7 vídeos, 12 gráficos
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 4689 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 3424 caracteres de texto, 7 vídeos, 0 gráficos
@@ -444,7 +444,7 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 101 a medias · 18 sin hace
 
 ## 5. 100 % automático
 
-- ✘ **Pruebas del código en este PC**: código 10dcbe8 (2026-11-08T12:44:47): 860 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
+- ✘ **Pruebas del código en este PC**: código d4fabbd (2026-11-08T13:09:20): 866 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
 - ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 8 de 13 del lado cercano (62%); motivos: phase 20, elbow_implausible_at_impact 3, impact_without_audio 2, half_volley_candidate 1. Otros 5 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
 - ✔ **Golpes que fallaron al procesarse**: ninguno
 - ✔ **Nada pide revisión manual**: 20 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
@@ -478,9 +478,9 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 101 a medias · 18 sin hace
 - ✔ **Pruebas en este PC: test_project_context**: 3 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
-- ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (26/26), 20 s, quedan ≈ 0 s, a las 2026-11-08 12:59:48
+- ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (26/26), 19 s, quedan ≈ 0 s, a las 2026-11-08 14:12:37
 - ✔ **Registros con fecha y duración**: 55 de 55 registros con fecha de inicio y de fin o duración
-- ✔ **Tamaño de la salida (tamanos.txt)**: 41 carpetas, 28.6 GB en total (2026-11-08T12:54:52); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 41 carpetas, 28.6 GB en total (2026-11-08T14:11:15); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB
 - ✔ **Carpetas de pruebas antiguas**: ninguna carpeta de pruebas con más de 14 días sin usar
 - ✔ **Aplicación: ventana real y pantallas**: 56 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 1 análisis y 18 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
@@ -488,7 +488,7 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 101 a medias · 18 sin hace
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 77 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 25 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 25 vídeos
-- ✔ **Exportación terminada: exportar**: terminó el 2026-11-08 13:00:16 en 0 min: 25 vídeos de 25 golpes
+- ✔ **Exportación terminada: exportar**: terminó el 2026-11-08 14:13:04 en 0 min: 25 vídeos de 25 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
 - ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 08-11 10:15, empezó a los 27.3 min; el PC estaba con otro trabajo hasta las 10:43 (27.3 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
 
@@ -502,15 +502,15 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 101 a medias · 18 sin hace
 
 - ! **Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
 - ! **Etapas a la vez: smoke_tennis-yusipopen-final-sobolenko-rybakin**: todas las etapas de su última ejecución corrieron en serie
-- ! **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-08_1254.csv sin muestras con su etapa
+- ! **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-08_1410.csv sin muestras con su etapa
 - ✔ **Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 0.8 min (objetivo ≤ 15 min)
-- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.2 min; ninguna pasa de 2 veces su ritmo habitual
+- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.1 min; ninguna pasa de 2 veces su ritmo habitual
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
-- ✘ **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 10dcbe8 (2026-11-08T12:44:47): 860 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-- ✘ **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 10dcbe8 (2026-11-08T12:44:47): 860 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-- ✘ **#51 El código de la prueba es el de los casos reales**: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 10dcbe8 (2026-11-08T12:44:47): 860 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- ✘ **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código d4fabbd (2026-11-08T13:09:20): 866 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- ✘ **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código d4fabbd (2026-11-08T13:09:20): 866 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- ✘ **#51 El código de la prueba es el de los casos reales**: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código d4fabbd (2026-11-08T13:09:20): 866 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
 - ✘ **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: SIN HACER según el registro (#155, docs/peticiones_usuario.md)
 - ✘ **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - ✘ **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -527,7 +527,7 @@ Registro `docs/peticiones_usuario.md`: 115 hechas · 101 a medias · 18 sin hace
 - ✘ **#223 Revés y derecha cortados**: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
 - ✘ **#224 Saques: plano, cortado o kick; primero o segundo**: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
 - ✘ **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
-- ✘ **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 10dcbe8 (2026-11-08T12:44:47): 860 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- ✘ **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código d4fabbd (2026-11-08T13:09:20): 866 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
 - ✘ **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - ✘ **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 - ! **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 1 aviso, 1 pocos datos, 3 ok; la peor: «Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin» (10 de 13 puntos de su saque vistos con su saque encontrado (77%; objetivo ≥ 90%) (1 puntos más sin nadie jugando en la c)
