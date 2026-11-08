@@ -1,6 +1,6 @@
-﻿commit: 10dcbe8
-inicio: 2026-11-08T12:34:04
-fin: 2026-11-08T12:44:47
+﻿commit: d4fabbd
+inicio: 2026-11-08T12:58:16
+fin: 2026-11-08T13:09:20
 codigo: 1
 .......................................................s.......ss..sss.. [  8%]
 ........................................................................ [ 16%]
@@ -8,17 +8,17 @@ codigo: 1
 ........................................................................ [ 32%]
 ........................................................................ [ 40%]
 ........................................................................ [ 48%]
-.ssss.sssss.ss.......................................................... [ 57%]
-........................................................................ [ 65%]
-........................................................................ [ 73%]
-........................................................................ [ 81%]
-.......................................................................s [ 89%]
-sssss.........................................................F......... [ 97%]
-....................                                                     [100%]
+.ssss.sssss.ss.......................................................... [ 56%]
+........................................................................ [ 64%]
+........................................................................ [ 72%]
+........................................................................ [ 80%]
+........................................................................ [ 88%]
+.....ssssss.........................................................F... [ 97%]
+..........................                                               [100%]
 ================================== FAILURES ===================================
 ______ test_a_run_hands_over_its_last_frame_without_decoding_to_the_end _______
 
-tmp_path = WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-59/test_a_run_hands_over_its_last0')
+tmp_path = WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest-60/test_a_run_hands_over_its_last0')
 
     def test_a_run_hands_over_its_last_frame_without_decoding_to_the_end(tmp_path):
         """08-11 (request 231): ffmpeg passes a selected frame on only when the next one is selected (or at the end), so
@@ -39,8 +39,8 @@ tmp_path = WindowsPath('C:/Users/esteb/AppData/Local/Temp/pytest-of-esteb/pytest
         full = time.perf_counter() - t0
         assert all(f is not None for _, f in got) and whole[-1][1] is not None
 >       assert early < full / 3, (early, full)
-E       AssertionError: (0.5214625999797136, 1.0884058000519872)
-E       assert 0.5214625999797136 < (1.0884058000519872 / 3)
+E       AssertionError: (0.5229555999394506, 1.0333360999356955)
+E       assert 0.5229555999394506 < (1.0333360999356955 / 3)
 
 tests\test_video.py:213: AssertionError
 ============================== warnings summary ===============================
@@ -65,4 +65,4 @@ tests/test_no_unbounded_calls.py::test_every_module_compiles
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
 =========================== short test summary info ===========================
 FAILED tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
-1 failed, 860 passed, 23 skipped, 7 warnings in 641.74s (0:10:41)
+1 failed, 866 passed, 23 skipped, 7 warnings in 662.28s (0:11:02)
