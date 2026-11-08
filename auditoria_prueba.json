@@ -2809,7 +2809,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "2446 caracteres de texto, 6 vídeos, 19 gráficos",
+   "detail": "2446 caracteres de texto, 7 vídeos, 19 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2873,7 +2873,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2030 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2027 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3168,8 +3168,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "falta",
-   "detail": "código d4fabbd (2026-11-08T13:09:20): 866 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end",
-   "passed": 866,
+   "detail": "código 9335553 (2026-11-08T14:24:21): 867 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end",
+   "passed": 867,
    "failed": 1
   },
   {
@@ -3408,7 +3408,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "41 carpetas, 28.6 GB en total (2026-11-08T14:11:15); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
+   "detail": "41 carpetas, 28.6 GB en total (2026-11-08T15:00:06); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
   },
   {
    "req": 5,
@@ -3464,7 +3464,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 14:13:04 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-08 15:05:44 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3604,7 +3604,7 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "aviso",
-   "detail": "recursos_2026-11-08_1410.csv sin muestras con su etapa"
+   "detail": "recursos_2026-11-08_1434.csv sin muestras con su etapa"
   },
   {
    "req": 5,
@@ -3709,7 +3709,7 @@
    "area": "Peticiones",
    "name": "#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe",
    "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código d4fabbd (2026-11-08T13:09:20): 866 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)"
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 9335553 (2026-11-08T14:24:21): 867 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)"
   },
   {
    "req": 11,
@@ -3758,7 +3758,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "falta",
-   "detail": "3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código d4fabbd (2026-11-08T13:09:20): 866 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)"
+   "detail": "3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 9335553 (2026-11-08T14:24:21): 867 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)"
   },
   {
    "req": 11,
@@ -3975,7 +3975,7 @@
    "area": "Peticiones",
    "name": "#51 El código de la prueba es el de los casos reales",
    "status": "falta",
-   "detail": "1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código d4fabbd (2026-11-08T13:09:20): 866 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)"
+   "detail": "1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 9335553 (2026-11-08T14:24:21): 867 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)"
   },
   {
    "req": 11,
@@ -5158,14 +5158,14 @@
    "area": "Peticiones",
    "name": "#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 2 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)"
+   "detail": "4 comprobaciones: 2 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)"
+   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejec)"
   },
   {
    "req": 11,
@@ -5235,7 +5235,7 @@
    "area": "Peticiones",
    "name": "#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código",
    "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código d4fabbd (2026-11-08T13:09:20): 866 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)"
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 9335553 (2026-11-08T14:24:21): 867 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)"
   },
   {
    "req": 11,
