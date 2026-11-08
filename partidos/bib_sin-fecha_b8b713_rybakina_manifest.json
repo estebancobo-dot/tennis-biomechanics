@@ -132,22 +132,22 @@
   "scheme": 2
  },
  "candidates": {
-  "fingerprint": "512bf88f8e97b624",
-  "version": "14",
-  "seconds": 7.2,
-  "finished": "2026-11-07 11:15:31",
+  "fingerprint": "4a321c78a2e65f72",
+  "version": "15",
+  "seconds": 7.1,
+  "finished": "2026-11-08 03:42:30",
   "summary": {
    "candidates": 668,
    "far": 333,
    "with_audio": 532,
    "source": "spotter",
    "opponent_strokes": 302,
-   "identity_unknown": 64,
+   "identity_unknown": 63,
    "replay_strokes_skipped": 20,
    "replay_runs": 7,
    "audio_track": 0
   },
-  "out_hash": "dd9679d580f63fb25d06",
+  "out_hash": "a468620155eb74644a73",
   "scheme": 2
  },
  "fine": {
@@ -234,10 +234,10 @@
   "scheme": 2
  },
  "views": {
-  "fingerprint": "fc916a00c8c17d34",
+  "fingerprint": "b96234985a5585fa",
   "version": "6",
-  "seconds": 466.0,
-  "finished": "2026-11-07 11:23:17",
+  "seconds": 477.4,
+  "finished": "2026-11-08 03:50:28",
   "summary": {
    "views": 1673,
    "repeticion_principal": 76,

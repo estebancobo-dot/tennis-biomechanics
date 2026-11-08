@@ -14140,3 +14140,41 @@
 2026-11-08 00:51:21   ventana w012348314_3600: pose hybrid en 179 de 179 fotogramas (0 s; modelo 0 s; pies en 88) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 231 px (segments)
 2026-11-08 00:51:21   fine_doubtful: 100 % (64/64 golpes candidatos · 34 confirmados · 0 ventanas descartadas sin pose) · 29 s · quedan ≈ 0 s
 2026-11-08 00:51:22 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine_doubtful terminada a las 00:51:22 en 36 s
+2026-11-08 03:42:23 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] candidates… (2026-11-08 03:42:23, etapa 9 de 14)
+2026-11-08 03:42:27   sonido: pista 1 de 2 (la que coincide con los golpes)
+2026-11-08 03:42:27   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 1, 'changed': 4, 'by_click': 316}
+2026-11-08 03:42:30   tramos que son repeticiones: 7 sin marcador
+2026-11-08 03:42:30   identidad por el marcador (su saque, primer golpe del punto, identidad sin decidir): 1
+2026-11-08 03:42:30   saques añadidos por el marcador (su saque no visto, el resto de la rival sí): 32
+2026-11-08 03:42:30   candidatos del detector entrenado: 668 (333 lejanos; 20 en repeticiones, fuera)
+2026-11-08 03:42:30 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] candidates terminada a las 03:42:30 en 7 s
+2026-11-08 03:42:30 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] views… (2026-11-08 03:42:30, etapa 10 de 14)
+2026-11-08 03:42:42   views:   0 % (1/2991 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+2026-11-08 03:43:12   views:   7 % (195/2991 fotogramas de otras tomas) · 30 s · quedan ≈ 7 min
+2026-11-08 03:43:42   views:  12 % (369/2991 fotogramas de otras tomas) · 60 s · quedan ≈ 7 min
+2026-11-08 03:44:12   views:  18 % (543/2991 fotogramas de otras tomas) · 2 min · quedan ≈ 7 min
+2026-11-08 03:44:42   views:  24 % (709/2991 fotogramas de otras tomas) · 2 min · quedan ≈ 6 min
+2026-11-08 03:45:12   views:  31 % (934/2991 fotogramas de otras tomas) · 3 min · quedan ≈ 6 min
+2026-11-08 03:45:42   views:  37 % (1115/2991 fotogramas de otras tomas) · 3 min · quedan ≈ 5 min
+2026-11-08 03:46:12   views:  43 % (1275/2991 fotogramas de otras tomas) · 4 min · quedan ≈ 5 min
+2026-11-08 03:46:43   views:  50 % (1495/2991 fotogramas de otras tomas) · 4 min · quedan ≈ 4 min
+2026-11-08 03:47:13   views:  57 % (1693/2991 fotogramas de otras tomas) · 5 min · quedan ≈ 3 min
+2026-11-08 03:47:43   views:  63 % (1890/2991 fotogramas de otras tomas) · 5 min · quedan ≈ 3 min
+2026-11-08 03:48:13   views:  70 % (2087/2991 fotogramas de otras tomas) · 6 min · quedan ≈ 2 min
+2026-11-08 03:48:43   views:  76 % (2283/2991 fotogramas de otras tomas) · 6 min · quedan ≈ 2 min
+2026-11-08 03:49:13   views:  83 % (2479/2991 fotogramas de otras tomas) · 7 min · quedan ≈ 81 s
+2026-11-08 03:49:43   views:  89 % (2676/2991 fotogramas de otras tomas) · 7 min · quedan ≈ 50 s
+2026-11-08 03:50:13   views:  96 % (2882/2991 fotogramas de otras tomas) · 8 min · quedan ≈ 17 s
+2026-11-08 03:50:27   views: 100 % (2991/2991 fotogramas de otras tomas) · 8 min · quedan ≈ 0 s
+2026-11-08 03:50:27   tomas: 2890 fotogramas clave y 101 exactos (8101 claves en el vídeo); lectura 142 s, personas 247 s, pista 63 s; 80 ajustes de pista
+2026-11-08 03:50:28 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] views terminada a las 03:50:28 en 8.0 min
+2026-11-08 03:50:28 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] fine… (2026-11-08 03:50:28, etapa 11 de 14)
+2026-11-08 03:50:38   ventana w000370910_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.84 s
+2026-11-08 03:50:38   ventana w000370910_3600: pose yolo en 179 de 179 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 65 px (pose)
+2026-11-08 03:50:38   fine:   0 % (1/303 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-11-08 03:50:40   ventana w002752583_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-08 03:50:40   ventana w002752583_3600: pose yolo en 179 de 179 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 105 px (court)
+2026-11-08 03:50:42   ventana w002772650_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-08 03:50:42   ventana w002772650_3600: pose yolo en 179 de 179 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura nan px (pose)
+2026-11-08 03:50:42   ventana w001042050_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.96 s
+2026-11-08 03:50:42   ventana w001042050_3600: pose yolo en 179 de 179 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 120 px (court)
