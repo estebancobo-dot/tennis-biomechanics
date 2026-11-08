@@ -1,4 +1,4 @@
-fecha: 2026-11-08T18:38:46
+fecha: 2026-11-08T18:48:57
      153.7 MB  \output\analisis
        4.1 MB  \output\auditoria
        5.7 MB  \output\benchmark
@@ -7,8 +7,8 @@ fecha: 2026-11-08T18:38:46
        0.1 MB  \output\capturas_identidad
      450.2 MB  \output\entrenamiento
      747.2 MB  \output\exportar_derecha
-     534.4 MB  \output\exportar_reves
-     521.9 MB  \output\exportar_saque
+       536 MB  \output\exportar_reves
+       523 MB  \output\exportar_saque
       73.4 MB  \output\informe_derecha
       44.2 MB  \output\informe_reves
       43.1 MB  \output\informe_saque

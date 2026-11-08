@@ -210537,3 +210537,18 @@ Auditoría: 441 cumplidos, 27 no cumplidos, 56 sin golpes suficientes, 115 aviso
 Golpes: 445 nuevos, 445 en C:\tenis\output\exportar_derecha\golpes
 Montajes: 10 en C:\tenis\output\exportar_derecha\montajes
 Resumen: C:\tenis\output\exportar_derecha\resumen.pdf
+  golpes 170/284 (416 s, 5 procesos)
+  golpes 180/284 (441 s, 5 procesos)
+  golpes 190/284 (465 s, 5 procesos)
+  golpes 200/284 (489 s, 5 procesos)
+  golpes 210/284 (512 s, 5 procesos)
+  golpes 220/284 (535 s, 5 procesos)
+  golpes 230/284 (557 s, 5 procesos)
+  golpes 240/284 (581 s, 5 procesos)
+  golpes 250/284 (605 s, 5 procesos)
+  golpes 260/284 (629 s, 5 procesos)
+  golpes 270/284 (655 s, 5 procesos)
+  golpes 280/284 (681 s, 5 procesos)
+Golpes: 284 nuevos, 284 en C:\tenis\output\exportar_reves\golpes
+Montajes: 9 en C:\tenis\output\exportar_reves\montajes
+Resumen: C:\tenis\output\exportar_reves\resumen.pdf
