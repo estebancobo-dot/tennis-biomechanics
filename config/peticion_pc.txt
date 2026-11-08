@@ -388,6 +388,10 @@ etapas: identity
 ---
 id: 148
 accion: completo
+---
+id: 149
+accion: completo
+# 149 (08-11): auditoria de los 4 partidos con la comprobacion de tiempos contra la ejecucion mas lenta (#231) y #146
 # 148 (08-11): auditoria de los 4 partidos con el codigo de hoy (cobertura del saque en el informe, precision de F3Set,
 # sesgo de los saques perdidos, golpes esperados sin los puntos que la tele no enseno); el ciclo de 10 min solo
 # rehace la prueba corta, no la auditoria de los partidos
