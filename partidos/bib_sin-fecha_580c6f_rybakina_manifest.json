@@ -151,10 +151,10 @@
   "scheme": 2
  },
  "fine": {
-  "fingerprint": "2028de2138cce2e3",
+  "fingerprint": "772665f46ed7da90",
   "version": "16",
-  "seconds": 237.1,
-  "finished": "2026-11-08 10:09:20",
+  "seconds": 237.5,
+  "finished": "2026-11-08 15:26:26",
   "summary": {
    "candidates": 278,
    "confirmed": 271,
@@ -174,13 +174,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 88.4,
-    "cuerdas_y_3d": 70.1,
-    "pista_ventana": 47.9,
-    "analisis_ventana": 35.1,
-    "recorte": 11.0,
-    "cribado": 8.8,
-    "pose": 0.8
+    "jugadora_lejana": 88.0,
+    "cuerdas_y_3d": 70.6,
+    "pista_ventana": 48.3,
+    "analisis_ventana": 34.2,
+    "recorte": 10.6,
+    "cribado": 8.2,
+    "pose": 1.1
    },
    "counts": {
     "overlap_s": 1.1,
@@ -197,10 +197,10 @@
   "scheme": 2
  },
  "fine_opponent": {
-  "fingerprint": "1250a02dd15dd53d",
+  "fingerprint": "1560529a22e0a1ab",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-08 10:09:20",
+  "finished": "2026-11-08 15:26:26",
   "summary": {
    "enabled": false
   },
@@ -269,10 +269,10 @@
   "scheme": 2
  },
  "fine_doubtful": {
-  "fingerprint": "5b0f740774e7cd5b",
+  "fingerprint": "ba002bcc22a13c75",
   "version": "1",
-  "seconds": 34.7,
-  "finished": "2026-11-08 10:09:55",
+  "seconds": 34.6,
+  "finished": "2026-11-08 15:27:00",
   "summary": {
    "candidates": 53,
    "confirmed": 30,
@@ -292,12 +292,12 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 13.0,
-    "cuerdas_y_3d": 8.1,
-    "pista_ventana": 6.5,
+    "jugadora_lejana": 12.9,
+    "cuerdas_y_3d": 8.0,
+    "pista_ventana": 6.4,
     "analisis_ventana": 6.4,
     "recorte": 2.8,
-    "cribado": 1.2,
+    "cribado": 1.1,
     "pose": 0.2
    },
    "counts": {
