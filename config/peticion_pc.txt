@@ -401,6 +401,11 @@ accion: completo
 ---
 id: 152
 accion: completo
+---
+id: 153
+accion: completo
+# 153 (08-11): auditoria con la medida de recursos que usa la ultima ejecucion con muestras de una etapa (#230) y las
+# comprobaciones nuevas de B4 (#23, #155, #205, #218, #219)
 # 152 (08-11, B4): el usuario cierra el saque con el 85 % y el hueco del lado lejano dicho en el informe; auditoria e
 # informes de los 4 partidos con ese criterio
 # 150-151 (08-11, B4): sesgo de los saques perdidos en 584c5b (4 de 5 del lado lejano): si la jugadora lejana no

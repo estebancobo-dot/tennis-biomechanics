@@ -51,3 +51,15 @@ def test_the_audit_leaves_them_apart(tmp_path):
     it = audit.resources_items(tmp_path)[0]
     assert it["status"] == "ok" and "fine_doubtful (0.2 min)" in it["detail"], it
     assert "tras fine_doubtful" not in it["detail"] and "etapa ya terminada" in it["detail"], it
+
+
+def test_a_newer_run_without_stage_samples_does_not_hide_the_last_measure(tmp_path):
+    """08-11: a run from the caches ended before any sample fell inside a stage; the latest file alone said nothing."""
+    from tennisbio import audit
+    d = tmp_path / "recursos"
+    d.mkdir()
+    (d / "recursos_2026-11-07_1640.csv").write_text(HEAD2 + RUN + LATE, encoding="ascii")
+    (d / "recursos_2026-11-08_1910.csv").write_text(HEAD2 + LATE, encoding="ascii")
+    it = audit.resources_items(tmp_path)[0]
+    assert it["status"] == "ok" and it["detail"].startswith("recursos_2026-11-07_1640.csv"), it
+    assert "recursos_2026-11-08_1910.csv" in it["detail"]

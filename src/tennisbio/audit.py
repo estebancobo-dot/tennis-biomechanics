@@ -1708,21 +1708,34 @@ def resources_items(out_root: Path) -> list[dict]:
         spec = importlib.util.spec_from_file_location("resources_summary", ROOT / "scripts" / "resources_summary.py")
         rs = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(rs)
-        allg = [g for g in rs.summarize(rs.read([files[-1]])) if g.get("etapa")]
+    except Exception as e:  # noqa: BLE001 — the audit must still be written
+        return [_item(9, "Uso del PC", name, "aviso", f"no se pudo cargar resources_summary ({e})")]
+    # the latest run with samples of a stage running (08-11: a run from the caches can end before any sample falls
+    # inside a stage, and its file alone said nothing about the PC); the newer empty ones are named
+    groups, after_min, used, skipped = [], 0.0, None, []
+    for f in reversed(files[-10:]):
+        try:
+            allg = [g for g in rs.summarize(rs.read([f])) if g.get("etapa")]
+        except Exception:  # noqa: BLE001 — a damaged file is skipped, and said
+            skipped.append(f.name)
+            continue
         # samples once the stage named had ended are not that stage's (07-11, #230): apart, at the end
         groups = [g for g in allg if not g.get("after")]
-        after_min = round(sum(g["minutos"] for g in allg if g.get("after")), 1)
-    except Exception as e:  # noqa: BLE001 — the audit must still be written
-        return [_item(9, "Uso del PC", name, "aviso", f"no se pudo resumir {files[-1].name} ({e})")]
+        if groups:
+            after_min, used = round(sum(g["minutos"] for g in allg if g.get("after")), 1), f
+            break
+        skipped.append(f.name)
     if not groups:
-        return [_item(9, "Uso del PC", name, "aviso", f"{files[-1].name} sin muestras con su etapa")]
+        return [_item(9, "Uso del PC", name, "aviso", f"{files[-1].name} sin muestras con su etapa (ni las 9 anteriores)")]
     fmt = lambda t: "/".join("—" if x != x else f"{x:.0f}" for x in t)          # NaN → —
     det = "; ".join(f"{g['partido'][:30]} {g['etapa']} ({g['minutos']} min): CPU {fmt(g['stats']['cpu_total'])} %, "
                     f"iGPU {fmt(g['stats']['gpu_3d'])} %, RAM máx {g['stats']['ram_usada_gb'][2]:.1f} GB → {g['limite']}"
                     for g in groups[:6])
     if after_min:
         det += f"; {after_min} min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
-    return [_item(9, "Uso del PC", name, "ok", f"{files[-1].name} (mín/media/máx): {det}")]
+    if skipped:
+        det += f"; más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): {', '.join(skipped[:3])}"
+    return [_item(9, "Uso del PC", name, "ok", f"{used.name} (mín/media/máx): {det}")]
 
 
 def _request_time(repo: Path = ROOT):
