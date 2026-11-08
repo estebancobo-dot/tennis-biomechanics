@@ -76,7 +76,8 @@ def test_audit_warns_when_numbers_differ_or_report_missing(tmp_path):
     it = serve_coverage_item([d], html)
     assert it["status"] == "aviso" and "m1" in it["detail"]
     assert serve_coverage_item([d], tmp_path / "no" / "index.html")["status"] == "aviso"
-    html.write_text(f"m1: {NO_SCOREBOARD}", encoding="utf-8")
+    from tennisbio.audit import SERVE_FAR_GAP
+    html.write_text(f"m1: {NO_SCOREBOARD} Límite: {SERVE_FAR_GAP}", encoding="utf-8")     # 08-11: the far gap said
     e = tmp_path / "e"
     e.mkdir()
     assert serve_coverage_item([e], html)["status"] == "ok"

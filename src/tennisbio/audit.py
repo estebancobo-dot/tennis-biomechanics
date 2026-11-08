@@ -574,12 +574,15 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
                 # the serves lost must not all be of one kind (08-11, agreed with the user): her end in the lost points
                 # (first stroke found) against her end in the serves found
                 bias = serve_loss_bias(strokes, g)
-                if bias and st_ == "ok":
+                far_gap = bool(bias) and SERVE_FAR_GAP_ACCEPTED and "lado lejano" in bias
+                if bias and st_ == "ok" and not far_gap:
                     st_ = "aviso"
                 out.append(_item(1, "Golpes", f"Saques por punto de su saque: {d.name}", st_,
                                  f"{g['found']} de {seen_pts} puntos de su saque vistos con su saque encontrado "
                                  f"({g['found'] / max(seen_pts, 1):.0%}; objetivo ≥ {SERVE_POINTS_MIN:.0%})"
-                                 + (f"; SESGO: {bias}" if bias else "")
+                                 + (f"; SESGO: {bias}" + ("; aceptado como limitación conocida del lado lejano "
+                                                         "(08-11), dicho en el informe" if far_gap else "")
+                                    if bias else "")
                                  + (f" ({g['unseen']} puntos más sin nadie jugando en la cámara principal: la tele "
                                     "no los enseñó, no cuentan)" if g.get("unseen") else "")
                                  + (f"; sin saque: {why}" if why else "")
@@ -614,7 +617,13 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
 # her serves found per point of her serve the TV showed (B4's main test). 0.90 set by Claude without an external
 # reference; agreed with the user on 08-11: 0.85 from the morning of 09-11 if a match is still below 0.90, together with
 # F3Set precision ≥ F3SET_PRECISION_MIN, no bias in the serves lost (serve_loss_bias) and the coverage said in the report
-SERVE_POINTS_MIN = 0.90
+# 08-11 (the user: «cierra el saque con el 85% con el gap del lado lejano»): 0.85, the 90 % stays as the target of the
+# measures phase; the far end is the known gap (a far serve the spotter never sees: no rule recovers it), accepted and
+# said in the report (SERVE_FAR_GAP); a bias toward the near end still fails
+SERVE_POINTS_MIN = 0.85
+SERVE_FAR_GAP_ACCEPTED = True
+SERVE_FAR_GAP = ("el saque del lado lejano está menos cubierto: el detector no ve algunos de sus saques de ese lado "
+                 "(limitación conocida)")
 F3SET_PRECISION_MIN = 0.94
 BIAS_MIN_LOST = 5               # lost points with a known end needed to call a bias
 BIAS_MAX_DIFF = 0.35            # far-end share among the lost against among the found
@@ -697,7 +706,7 @@ def serve_coverage_text(match_dirs: list[tuple[str, Path]]) -> dict:
         total = NO_SCOREBOARD
     else:
         total = serve_coverage_sentence(found, shown) + (" (solo los partidos con marcador)" if missing else "")
-    return {"matches": rows, "total": total}
+    return {"matches": rows, "total": total, "limitation": SERVE_FAR_GAP}
 
 
 def serve_coverage_item(match_dirs: list[Path], report_html: Path | None) -> dict:
@@ -715,7 +724,8 @@ def serve_coverage_item(match_dirs: list[Path], report_html: Path | None) -> dic
     except OSError as e:
         return _item(1, "Golpes", name, "aviso", f"no se pudo leer el informe del saque ({e})")
     exp = serve_coverage_text([(d.name, d) for d in match_dirs])
-    want = [(r["match"], r["text"]) for r in exp["matches"]] + [("total", exp["total"].split(" (solo")[0])]
+    want = ([(r["match"], r["text"]) for r in exp["matches"]] + [("total", exp["total"].split(" (solo")[0])]
+            + [("limitación", exp["limitation"])])
     bad = [f"{m}: falta «{t}»" for m, t in want if t not in txt]
     shown = [t for m, t in want if t != NO_SCOREBOARD]
     if bad:

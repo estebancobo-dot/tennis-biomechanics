@@ -846,7 +846,7 @@ function renderData() {
   document.getElementById("datos-body").innerHTML = `<ul class="say">`
     + li("Partidos", MATCHES.map(m => `${m.id} contra ${m.rival} · ${m.surf !== "—" ? "pista " + m.surf : "superficie sin determinar"}${m.date !== "—" ? " · " + m.date : ""} · ${m.n} golpes`).join("<br>"))
     + li("Golpes", `${near.length} del lado cercano (con todo el detalle) y ${far.length} del lado lejano (solo posición, desplazamiento, altura del impacto y destino)`)
-    + (I.serve_coverage ? li("Cuántos de sus saques cubre", I.serve_coverage.matches.map(r => `${r.match}: ${r.text}`).concat([`En total: ${I.serve_coverage.total}`]).join("<br>")) : "")
+    + (I.serve_coverage ? li("Cuántos de sus saques cubre", I.serve_coverage.matches.map(r => `${r.match}: ${r.text}`).concat([`En total: ${I.serve_coverage.total}`]).concat(I.serve_coverage.limitation ? [`Límite: ${I.serve_coverage.limitation}`] : []).join("<br>")) : "")
     + li("Golpes dudosos", doubts.length ? `${near.filter(s => (s.review || []).length).length} de ${near.length}: ${doubts.map(([k, n]) => `${revTxt(k)} (${n})`).join(", ")}` : `ninguno de ${near.length}`)
     + li("Medidas que faltan en algún golpe", notes.length ? notes.map(([k, n]) => `${revTxt(k)} (${n})`).join(", ") + ". Esos golpes son válidos: solo falta esa medida" : "ninguna")
     + li("Fiabilidad de las medidas", rc.length ? rc.map(([k, n]) => `${n} ${k}`).join(" · ") + ` (detalle en «Fiabilidad de las medidas»)` : "sin juzgar todavía")

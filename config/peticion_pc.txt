@@ -398,6 +398,11 @@ detector: si
 ---
 id: 151
 accion: completo
+---
+id: 152
+accion: completo
+# 152 (08-11, B4): el usuario cierra el saque con el 85 % y el hueco del lado lejano dicho en el informe; auditoria e
+# informes de los 4 partidos con ese criterio
 # 150-151 (08-11, B4): sesgo de los saques perdidos en 584c5b (4 de 5 del lado lejano): si la jugadora lejana no
 # aparece en los 2 primeros segundos de la ventana se busca en toda la ventana. 150 = F3Set, 151 = los 4 partidos
 # 149 (08-11): auditoria de los 4 partidos con la comprobacion de tiempos contra la ejecucion mas lenta (#231) y #146

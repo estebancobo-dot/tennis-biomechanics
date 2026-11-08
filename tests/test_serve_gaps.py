@@ -330,3 +330,10 @@ def test_the_far_player_is_looked_for_in_the_whole_window_when_not_in_its_first_
     group = [{"t": 10.0, "side": "far", "source": "marcador", "kind": "serve"}]
     assert S._fine_one(ctx, None, group, 1.5, 1.0, False, "p", {}, {}, None, {}, None, None, None, {}) == []
     assert calls[0] == 2.0 and calls[1] > 2.0
+
+
+def test_the_serve_threshold_is_85_and_the_far_gap_is_accepted_and_said():
+    """08-11, the user: «cierra el saque con el 85% con el gap del lado lejano»."""
+    from tennisbio.audit import SERVE_FAR_GAP, SERVE_FAR_GAP_ACCEPTED, SERVE_POINTS_MIN, serve_coverage_text
+    assert SERVE_POINTS_MIN == 0.85 and SERVE_FAR_GAP_ACCEPTED and "lado lejano" in SERVE_FAR_GAP
+    assert serve_coverage_text([])["limitation"] == SERVE_FAR_GAP
