@@ -6,8 +6,8 @@
 |---|---|
 | 0 sin construir | 18 |
 | 1 construido, sin comprobar | 63 |
-| 2 comprobación que falla | 74 |
-| 3 comprobado en salidas | 82 |
+| 2 comprobación que falla | 73 |
+| 3 comprobado en salidas | 83 |
 | 4 validado con verdad | 0 |
 
 ## Por paquete del plan (en el orden de ejecución)
@@ -22,7 +22,7 @@
 | B4 Base · no perder golpes | 6 | 2 | 0 | 4 | 0 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | falla | no |
 | B5 Base · exportación | 1 | 0 | 0 | 0 | 1 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues | ok | **sí** |
 | B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 3 | 1 | 0 | 4 partidos sin errores de etapa; auditoría generada | ok | no |
-| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 8 | 28 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | ok | no |
+| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 7 | 29 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | ok | no |
 | M1 Medidas · fases, cadena cinética y ritmo | 12 | 0 | 7 | 4 | 1 | 0 | Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara | — | — |
 | M2 Medidas · pies y apoyos | 20 | 2 | 10 | 4 | 4 | 0 | Pasos y apoyos medidos en la mayoría de golpes; fiables en la auditoría | — | — |
 | M3 Medidas · cuerpo | 14 | 1 | 2 | 4 | 7 | 0 | Fiables en la auditoría y sin depender de la cámara | — | — |
@@ -43,7 +43,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 - **B1**: prueba principal: Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso, Uso del PC por etapa (CPU, RAM, iGPU y disco): aviso; peticiones sin comprobar o que fallan: #14, #29, #75, #125, #137, #230, #231
 - **B4**: prueba principal: Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso, Cobertura del saque dicha en el informe: aviso; peticiones sin comprobar o que fallan: #23, #151, #155, #205, #218, #219
 - **B6**: peticiones sin comprobar o que fallan: #1, #134, #233
-- **B7**: peticiones sin comprobar o que fallan: #18, #20, #21, #22, #37, #45, #66, #242
+- **B7**: peticiones sin comprobar o que fallan: #18, #20, #21, #22, #37, #45, #242
 
 ## Cada petición
 
@@ -109,7 +109,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 59 | Diferencias solo por encima del error y en situaciones equivalentes (10-10 18:05) | M5 | HECHO | 2 comprobación que falla | 6 comprobaciones: 2 pocos datos, 4 ok; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 6 de 13 golpes; en «Apren |
 | 64 | Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso | M2 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 10 comprobaciones: 2 pocos datos, 8 ok; la peor: «3. Pies y desplazamiento · Sp |
 | 65 | El play del vídeo funciona (no solo un fotograma) (12-10 18:14, 21:03, 21:14) | P2 | HECHO | 3 comprobado en salidas | 11 comprobaciones: 11 ok |
-| 66 | Fechas y duración en los registros (12-10 18:25) | B7 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (54 de 55 registros con fecha de inicio y de fin o duración; sin  |
+| 66 | Fechas y duración en los registros (12-10 18:25) | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 67 | No borrar el trabajo hecho: lo complejo como extra (12-10 22:35; 13-10 05:48 p6) | P2 | HECHO | 3 comprobado en salidas | 13 comprobaciones: 13 ok |
 | 68 | La meta: mejorar mi derecha tomando la de X como base (12-10 22:25; 13-10 05:48 p5) | P1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela,  |
 | 69 | Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace | M5 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo  |
