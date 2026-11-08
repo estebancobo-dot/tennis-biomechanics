@@ -220,7 +220,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 2592,
+   "text_chars": 2589,
    "charts": 0,
    "videos": 7,
    "black_canvases": 0,
@@ -325,7 +325,7 @@
  ],
  "learn": {
   "combinations": 2050,
-  "with_exact_strokes": 1212,
+  "with_exact_strokes": 1217,
   "checkpoints_checked": 184500,
   "failures": [],
   "rows_all": 90,

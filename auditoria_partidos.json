@@ -3,10 +3,10 @@
  "strokes": 445,
  "near": 265,
  "summary": {
-  "ok": 453,
+  "ok": 456,
   "falta": 25,
   "pocos datos": 56,
-  "aviso": 116
+  "aviso": 113
  },
  "items": [
   {
@@ -761,7 +761,7 @@
    "area": "Golpes",
    "name": "Golpes del fondo: sin-fecha_f43dd2_rybakina",
    "status": "aviso",
-   "detail": "79 de sus 169 golpes en el lado lejano (47%; objetivo ≥ 25%); confirmados 79 de 82 candidatos suyos del fondo (96%); con su posición en la pista 75% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino) · falla: posición medida 75%"
+   "detail": "79 de sus 169 golpes en el lado lejano (47%; objetivo ≥ 25%); confirmados 79 de 82 candidatos suyos del fondo (96%); con su posición en la pista 75% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino); de sus 79 golpes del fondo: desplazamiento 63%, altura del impacto 75%, destino 16%; 19 sin pose en la ventana (confirmados por la bola o el detector) · falla: posición medida 75%"
   },
   {
    "req": 1,
@@ -775,7 +775,7 @@
    "area": "Golpes",
    "name": "Golpes del fondo: sin-fecha_584c5b_rybakina",
    "status": "aviso",
-   "detail": "106 de sus 286 golpes en el lado lejano (37%; objetivo ≥ 25%); confirmados 106 de 109 candidatos suyos del fondo (97%); con su posición en la pista 44% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino) · falla: posición medida 44%"
+   "detail": "106 de sus 286 golpes en el lado lejano (37%; objetivo ≥ 25%); confirmados 106 de 109 candidatos suyos del fondo (97%); con su posición en la pista 44% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino); de sus 106 golpes del fondo: desplazamiento 42%, altura del impacto 44%, destino 18%; 56 sin pose en la ventana (confirmados por la bola o el detector) · falla: posición medida 44%"
   },
   {
    "req": 1,
@@ -789,7 +789,7 @@
    "area": "Golpes",
    "name": "Golpes del fondo: sin-fecha_580c6f_rybakina",
    "status": "aviso",
-   "detail": "131 de sus 271 golpes en el lado lejano (48%; objetivo ≥ 25%); confirmados 131 de 137 candidatos suyos del fondo (96%); con su posición en la pista 59% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino) · falla: posición medida 59%"
+   "detail": "131 de sus 271 golpes en el lado lejano (48%; objetivo ≥ 25%); confirmados 131 de 137 candidatos suyos del fondo (96%); con su posición en la pista 59% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino); de sus 131 golpes del fondo: desplazamiento 50%, altura del impacto 57%, destino 30%; 52 sin pose en la ventana (confirmados por la bola o el detector) · falla: posición medida 59%"
   },
   {
    "req": 1,
@@ -803,7 +803,7 @@
    "area": "Golpes",
    "name": "Golpes del fondo: sin-fecha_b8b713_rybakina",
    "status": "aviso",
-   "detail": "135 de sus 295 golpes en el lado lejano (46%; objetivo ≥ 25%); confirmados 135 de 143 candidatos suyos del fondo (94%); con su posición en la pista 65% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino) · falla: posición medida 65%"
+   "detail": "135 de sus 295 golpes en el lado lejano (46%; objetivo ≥ 25%); confirmados 135 de 143 candidatos suyos del fondo (94%); con su posición en la pista 66% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino); de sus 135 golpes del fondo: desplazamiento 52%, altura del impacto 65%, destino 24%; posición de un fotograma a ≤ 0,2 s del impacto en 1; 45 sin pose en la ventana (confirmados por la bola o el detector) · falla: posición medida 66%"
   },
   {
    "req": 1,
@@ -842,14 +842,14 @@
    "req": 1,
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina",
-   "status": "aviso",
-   "detail": "0% de sus golpes con repetición enlazada (0 de 169, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 30 repeticiones, 25 laterales, 6 frontales, 408 primeros planos, 17 otras",
+   "status": "ok",
+   "detail": "15% de sus golpes con repetición enlazada (26 de 169, 6 a cámara lenta) · 93% con otra cámara (157) · tomas: 30 repeticiones, 25 laterales, 6 frontales, 408 primeros planos, 17 otras",
    "strokes": 169,
-   "with_replay": 0,
-   "with_other_camera": 0,
-   "with_slowmo": 0,
-   "replay_share": 0.0,
-   "other_share": 0.0
+   "with_replay": 26,
+   "with_other_camera": 157,
+   "with_slowmo": 6,
+   "replay_share": 0.154,
+   "other_share": 0.929
   },
   {
    "req": 1,
@@ -868,14 +868,14 @@
    "req": 1,
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: sin-fecha_580c6f_rybakina",
-   "status": "aviso",
-   "detail": "0% de sus golpes con repetición enlazada (0 de 271, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 76 repeticiones, 80 laterales, 18 frontales, 868 primeros planos, 51 otras",
+   "status": "ok",
+   "detail": "20% de sus golpes con repetición enlazada (54 de 271, 7 a cámara lenta) · 92% con otra cámara (250) · tomas: 76 repeticiones, 80 laterales, 18 frontales, 868 primeros planos, 51 otras",
    "strokes": 271,
-   "with_replay": 0,
-   "with_other_camera": 0,
-   "with_slowmo": 0,
-   "replay_share": 0.0,
-   "other_share": 0.0
+   "with_replay": 54,
+   "with_other_camera": 250,
+   "with_slowmo": 7,
+   "replay_share": 0.199,
+   "other_share": 0.923
   },
   {
    "req": 1,
@@ -895,14 +895,14 @@
    "area": "Fiabilidad",
    "name": "forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)",
    "status": "aviso",
-   "detail": "482 medidas en 263 golpes de 4 partidos; dependen de la cámara: stroke.return_ready_depth_m 70% (azar 29%), stroke.return_step_in_m 57% (azar 21%), ball_flight.fit_rms_m 39% (azar 13%), footwork.feet_still_share 31% (azar 5%), ball_bounce.arm_extension 31% (azar 16%), metrics.shoulder_turn_3d_deg 30% (azar 16%), ready.shoulder_tilt 26% (azar 8%), metrics.hip_turn_3d_deg 22% (azar 15%), metrics.x_factor_3d_deg 20% (azar 9%), ready.racket_head_vs_wrist 20% (azar 15%), ready.racket_tip_vs_head 19% (azar 14%), finish.shoulder_turn 14% (azar 8%); prueba débil con 4 partidos (cámaras parecidas): «dentro del azar» no demuestra que no dependan",
+   "detail": "482 medidas en 263 golpes de 4 partidos; dependen de la cámara: stroke.return_ready_depth_m 70% (azar 29%), stroke.return_step_in_m 57% (azar 22%), ball_flight.fit_rms_m 39% (azar 13%), footwork.feet_still_share 31% (azar 4%), ball_bounce.arm_extension 31% (azar 16%), metrics.shoulder_turn_3d_deg 30% (azar 15%), ready.shoulder_tilt 26% (azar 8%), metrics.hip_turn_3d_deg 22% (azar 16%), metrics.x_factor_3d_deg 20% (azar 9%), ready.racket_head_vs_wrist 20% (azar 15%), ready.racket_tip_vs_head 19% (azar 14%), finish.shoulder_turn 14% (azar 8%); prueba débil con 4 partidos (cámaras parecidas): «dentro del azar» no demuestra que no dependan",
    "measures": [
     {
      "measure": "stroke.return_ready_depth_m",
      "n": 65,
      "matches": 4,
      "share": 0.7018,
-     "chance": 0.2908,
+     "chance": 0.2937,
      "p": 7.569276872261937e-13,
      "camera_dependent": true
     },
@@ -911,7 +911,7 @@
      "n": 65,
      "matches": 4,
      "share": 0.5703,
-     "chance": 0.207,
+     "chance": 0.2183,
      "p": 1.1736310856487886e-08,
      "camera_dependent": true
     },
@@ -929,7 +929,7 @@
      "n": 260,
      "matches": 4,
      "share": 0.3149,
-     "chance": 0.0469,
+     "chance": 0.0427,
      "p": 2.409998213464089e-18,
      "camera_dependent": true
     },
@@ -947,7 +947,7 @@
      "n": 127,
      "matches": 4,
      "share": 0.3025,
-     "chance": 0.1554,
+     "chance": 0.1465,
      "p": 1.2520477773848435e-07,
      "camera_dependent": true
     },
@@ -1019,7 +1019,7 @@
      "n": 127,
      "matches": 4,
      "share": 0.2188,
-     "chance": 0.1542,
+     "chance": 0.1576,
      "p": 5.171840546427211e-05,
      "camera_dependent": true
     },
@@ -1127,7 +1127,7 @@
      "n": 127,
      "matches": 4,
      "share": 0.1519,
-     "chance": 0.1122,
+     "chance": 0.1113,
      "p": 0.003268784594390605,
      "camera_dependent": false
     },
@@ -1163,7 +1163,7 @@
      "n": 202,
      "matches": 4,
      "share": 0.1424,
-     "chance": 0.078,
+     "chance": 0.08,
      "p": 4.3056222658598985e-05,
      "camera_dependent": true
     },
@@ -1172,7 +1172,7 @@
      "n": 47,
      "matches": 4,
      "share": 0.1419,
-     "chance": 0.2549,
+     "chance": 0.2776,
      "p": 0.4279417717203755,
      "camera_dependent": false
     },
@@ -1190,7 +1190,7 @@
      "n": 101,
      "matches": 4,
      "share": 0.1417,
-     "chance": 0.1193,
+     "chance": 0.1105,
      "p": 0.027458460243163174,
      "camera_dependent": false
     },
@@ -1217,7 +1217,7 @@
      "n": 57,
      "matches": 4,
      "share": 0.1389,
-     "chance": 0.2059,
+     "chance": 0.206,
      "p": 0.2924668167939448,
      "camera_dependent": false
     },
@@ -1244,7 +1244,7 @@
      "n": 127,
      "matches": 4,
      "share": 0.1368,
-     "chance": 0.1094,
+     "chance": 0.1093,
      "p": 0.007629829313338855,
      "camera_dependent": false
     },
@@ -1271,7 +1271,7 @@
      "n": 260,
      "matches": 4,
      "share": 0.1322,
-     "chance": 0.0568,
+     "chance": 0.0535,
      "p": 3.110522131524751e-06,
      "camera_dependent": true
     },
@@ -1307,7 +1307,7 @@
      "n": 63,
      "matches": 4,
      "share": 0.1261,
-     "chance": 0.175,
+     "chance": 0.1867,
      "p": 0.2850075690244948,
      "camera_dependent": false
     },
@@ -1316,34 +1316,34 @@
      "n": 199,
      "matches": 4,
      "share": 0.1242,
-     "chance": 0.1,
+     "chance": 0.0686,
      "p": 0.0002981906524130973,
-     "camera_dependent": true
-    },
-    {
-     "measure": "metrics.toss_above_head_bh",
-     "n": 208,
-     "matches": 4,
-     "share": 0.1206,
-     "chance": 0.0599,
-     "p": 0.00025395495896239124,
      "camera_dependent": true
     },
     {
      "measure": "shot_quality_proxy",
      "n": 98,
      "matches": 4,
-     "share": 0.1201,
-     "chance": 0.1308,
-     "p": 0.07395261559492267,
+     "share": 0.1218,
+     "chance": 0.1166,
+     "p": 0.06948955459453873,
      "camera_dependent": false
+    },
+    {
+     "measure": "metrics.toss_above_head_bh",
+     "n": 208,
+     "matches": 4,
+     "share": 0.1206,
+     "chance": 0.0609,
+     "p": 0.00025395495896239124,
+     "camera_dependent": true
     },
     {
      "measure": "footwork.moving_at_opp_hit_mps",
      "n": 85,
      "matches": 4,
      "share": 0.1188,
-     "chance": 0.1517,
+     "chance": 0.1488,
      "p": 0.13614424215065593,
      "camera_dependent": false
     },
@@ -1361,7 +1361,7 @@
      "n": 202,
      "matches": 4,
      "share": 0.1178,
-     "chance": 0.0779,
+     "chance": 0.0687,
      "p": 0.0004564879699102241,
      "camera_dependent": true
     },
@@ -1397,7 +1397,7 @@
      "n": 201,
      "matches": 4,
      "share": 0.1137,
-     "chance": 0.0637,
+     "chance": 0.0661,
      "p": 0.0007056688373856579,
      "camera_dependent": true
     },
@@ -1442,7 +1442,7 @@
      "n": 96,
      "matches": 4,
      "share": 0.1091,
-     "chance": 0.1356,
+     "chance": 0.1386,
      "p": 0.11809563489112287,
      "camera_dependent": false
     },
@@ -1505,7 +1505,7 @@
      "n": 111,
      "matches": 4,
      "share": 0.1045,
-     "chance": 0.1375,
+     "chance": 0.1439,
      "p": 0.07770418987082155,
      "camera_dependent": false
     },
@@ -1514,7 +1514,7 @@
      "n": 52,
      "matches": 4,
      "share": 0.1035,
-     "chance": 0.2827,
+     "chance": 0.285,
      "p": 0.5694787336546782,
      "camera_dependent": false
     },
@@ -1541,7 +1541,7 @@
      "n": 68,
      "matches": 4,
      "share": 0.1007,
-     "chance": 0.184,
+     "chance": 0.1876,
      "p": 0.38376367209613593,
      "camera_dependent": false
     },
@@ -1595,7 +1595,7 @@
      "n": 63,
      "matches": 4,
      "share": 0.0947,
-     "chance": 0.1929,
+     "chance": 0.1946,
      "p": 0.48511780656116654,
      "camera_dependent": false
     },
@@ -1603,9 +1603,9 @@
      "measure": "recovery.face_yaw",
      "n": 123,
      "matches": 4,
-     "share": 0.0942,
+     "share": 0.0941,
      "chance": 0.1042,
-     "p": 0.07761118515893685,
+     "p": 0.07765405427941147,
      "camera_dependent": false
     },
     {
@@ -1622,7 +1622,7 @@
      "n": 43,
      "matches": 4,
      "share": 0.093,
-     "chance": 0.301,
+     "chance": 0.2935,
      "p": 0.7558622325031825,
      "camera_dependent": false
     },
@@ -1631,7 +1631,7 @@
      "n": 41,
      "matches": 4,
      "share": 0.0927,
-     "chance": 0.3128,
+     "chance": 0.3075,
      "p": 0.7828178432747788,
      "camera_dependent": false
     },
@@ -1667,7 +1667,7 @@
      "n": 122,
      "matches": 4,
      "share": 0.0898,
-     "chance": 0.1063,
+     "chance": 0.0988,
      "p": 0.09736008352252651,
      "camera_dependent": false
     },
@@ -1694,7 +1694,7 @@
      "n": 151,
      "matches": 4,
      "share": 0.0879,
-     "chance": 0.1089,
+     "chance": 0.1116,
      "p": 0.04058922772566095,
      "camera_dependent": false
     },
@@ -1712,7 +1712,7 @@
      "n": 127,
      "matches": 4,
      "share": 0.087,
-     "chance": 0.1027,
+     "chance": 0.1059,
      "p": 0.09400825776168885,
      "camera_dependent": false
     },
@@ -1748,7 +1748,7 @@
      "n": 201,
      "matches": 4,
      "share": 0.0837,
-     "chance": 0.0495,
+     "chance": 0.0533,
      "p": 0.009804119027344226,
      "camera_dependent": false
     },
@@ -1757,7 +1757,7 @@
      "n": 110,
      "matches": 4,
      "share": 0.083,
-     "chance": 0.1064,
+     "chance": 0.1047,
      "p": 0.18279113284096493,
      "camera_dependent": false
     },
@@ -1811,7 +1811,7 @@
      "n": 101,
      "matches": 4,
      "share": 0.0807,
-     "chance": 0.1241,
+     "chance": 0.124,
      "p": 0.2513180624764848,
      "camera_dependent": false
     },
@@ -1883,7 +1883,7 @@
      "n": 76,
      "matches": 4,
      "share": 0.0773,
-     "chance": 0.1716,
+     "chance": 0.1667,
      "p": 0.48556842323796123,
      "camera_dependent": false
     },
@@ -1964,7 +1964,7 @@
      "n": 169,
      "matches": 4,
      "share": 0.0737,
-     "chance": 0.077,
+     "chance": 0.0773,
      "p": 0.0550449398597526,
      "camera_dependent": false
     },
@@ -2036,7 +2036,7 @@
      "n": 96,
      "matches": 4,
      "share": 0.0699,
-     "chance": 0.2001,
+     "chance": 0.2036,
      "p": 0.3827518506482163,
      "camera_dependent": false
     },
@@ -2054,7 +2054,7 @@
      "n": 206,
      "matches": 4,
      "share": 0.0693,
-     "chance": 0.0638,
+     "chance": 0.0647,
      "p": 0.02734247460043572,
      "camera_dependent": false
     },
@@ -2063,7 +2063,7 @@
      "n": 63,
      "matches": 4,
      "share": 0.0686,
-     "chance": 0.2155,
+     "chance": 0.2145,
      "p": 0.6894502673071821,
      "camera_dependent": false
     },
@@ -2072,7 +2072,7 @@
      "n": 162,
      "matches": 4,
      "share": 0.0684,
-     "chance": 0.0873,
+     "chance": 0.0868,
      "p": 0.09121608561074976,
      "camera_dependent": false
     },
@@ -2081,7 +2081,7 @@
      "n": 112,
      "matches": 4,
      "share": 0.0681,
-     "chance": 0.0903,
+     "chance": 0.09,
      "p": 0.291534519976009,
      "camera_dependent": false
     },
@@ -2135,7 +2135,7 @@
      "n": 63,
      "matches": 4,
      "share": 0.066,
-     "chance": 0.2135,
+     "chance": 0.2146,
      "p": 0.7101413653144988,
      "camera_dependent": false
     },
@@ -2153,7 +2153,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0657,
-     "chance": 0.0567,
+     "chance": 0.0623,
      "p": 0.03735436054954919,
      "camera_dependent": false
     },
@@ -2189,7 +2189,7 @@
      "n": 176,
      "matches": 4,
      "share": 0.0648,
-     "chance": 0.0672,
+     "chance": 0.0697,
      "p": 0.08105291501044393,
      "camera_dependent": false
     },
@@ -2207,7 +2207,7 @@
      "n": 206,
      "matches": 4,
      "share": 0.0643,
-     "chance": 0.069,
+     "chance": 0.0643,
      "p": 0.040524535692386135,
      "camera_dependent": false
     },
@@ -2216,7 +2216,7 @@
      "n": 74,
      "matches": 4,
      "share": 0.0641,
-     "chance": 0.1585,
+     "chance": 0.1614,
      "p": 0.6262594620882874,
      "camera_dependent": false
     },
@@ -2225,7 +2225,7 @@
      "n": 169,
      "matches": 4,
      "share": 0.0639,
-     "chance": 0.0778,
+     "chance": 0.0797,
      "p": 0.10050397479524542,
      "camera_dependent": false
     },
@@ -2252,7 +2252,7 @@
      "n": 204,
      "matches": 4,
      "share": 0.0626,
-     "chance": 0.0526,
+     "chance": 0.0543,
      "p": 0.04852318793777905,
      "camera_dependent": false
     },
@@ -2261,7 +2261,7 @@
      "n": 206,
      "matches": 4,
      "share": 0.0626,
-     "chance": 0.0707,
+     "chance": 0.073,
      "p": 0.04636377128117922,
      "camera_dependent": false
     },
@@ -2315,7 +2315,7 @@
      "n": 135,
      "matches": 4,
      "share": 0.0614,
-     "chance": 0.1015,
+     "chance": 0.1019,
      "p": 0.23429651115485414,
      "camera_dependent": false
     },
@@ -2324,7 +2324,7 @@
      "n": 140,
      "matches": 4,
      "share": 0.0611,
-     "chance": 0.1171,
+     "chance": 0.0997,
      "p": 0.21531213680671674,
      "camera_dependent": false
     },
@@ -2333,7 +2333,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0609,
-     "chance": 0.0622,
+     "chance": 0.0638,
      "p": 0.05426847639977603,
      "camera_dependent": false
     },
@@ -2360,7 +2360,7 @@
      "n": 61,
      "matches": 4,
      "share": 0.06,
-     "chance": 0.1913,
+     "chance": 0.189,
      "p": 0.7729882358073794,
      "camera_dependent": false
     },
@@ -2387,7 +2387,7 @@
      "n": 111,
      "matches": 4,
      "share": 0.0595,
-     "chance": 0.1177,
+     "chance": 0.1164,
      "p": 0.38810609818949376,
      "camera_dependent": false
     },
@@ -2414,7 +2414,7 @@
      "n": 192,
      "matches": 4,
      "share": 0.0585,
-     "chance": 0.0887,
+     "chance": 0.0884,
      "p": 0.08542801435877848,
      "camera_dependent": false
     },
@@ -2432,7 +2432,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0581,
-     "chance": 0.0607,
+     "chance": 0.06,
      "p": 0.06983239624054645,
      "camera_dependent": false
     },
@@ -2441,7 +2441,7 @@
      "n": 119,
      "matches": 4,
      "share": 0.058,
-     "chance": 0.1234,
+     "chance": 0.1116,
      "p": 0.3567964248023585,
      "camera_dependent": false
     },
@@ -2459,7 +2459,7 @@
      "n": 202,
      "matches": 4,
      "share": 0.0574,
-     "chance": 0.0672,
+     "chance": 0.0593,
      "p": 0.07490481922516885,
      "camera_dependent": false
     },
@@ -2477,7 +2477,7 @@
      "n": 63,
      "matches": 4,
      "share": 0.0573,
-     "chance": 0.2267,
+     "chance": 0.2326,
      "p": 0.7780953201287106,
      "camera_dependent": false
     },
@@ -2495,7 +2495,7 @@
      "n": 119,
      "matches": 4,
      "share": 0.0572,
-     "chance": 0.0984,
+     "chance": 0.1017,
      "p": 0.3663766636253179,
      "camera_dependent": false
     },
@@ -2540,7 +2540,7 @@
      "n": 192,
      "matches": 4,
      "share": 0.056,
-     "chance": 0.0804,
+     "chance": 0.0867,
      "p": 0.10142849585375524,
      "camera_dependent": false
     },
@@ -2558,7 +2558,7 @@
      "n": 127,
      "matches": 4,
      "share": 0.0558,
-     "chance": 0.108,
+     "chance": 0.1043,
      "p": 0.33630033311728463,
      "camera_dependent": false
     },
@@ -2567,7 +2567,7 @@
      "n": 154,
      "matches": 4,
      "share": 0.0557,
-     "chance": 0.0698,
+     "chance": 0.0648,
      "p": 0.21239739080846606,
      "camera_dependent": false
     },
@@ -2648,7 +2648,7 @@
      "n": 187,
      "matches": 4,
      "share": 0.054,
-     "chance": 0.0763,
+     "chance": 0.0744,
      "p": 0.12768703200809078,
      "camera_dependent": false
     },
@@ -2657,7 +2657,7 @@
      "n": 97,
      "matches": 4,
      "share": 0.0538,
-     "chance": 0.1074,
+     "chance": 0.1091,
      "p": 0.5540068846869308,
      "camera_dependent": false
     },
@@ -2666,7 +2666,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0531,
-     "chance": 0.0547,
+     "chance": 0.0566,
      "p": 0.09651926010394035,
      "camera_dependent": false
     },
@@ -2684,7 +2684,7 @@
      "n": 153,
      "matches": 4,
      "share": 0.053,
-     "chance": 0.0683,
+     "chance": 0.0685,
      "p": 0.24546889375668923,
      "camera_dependent": false
     },
@@ -2702,7 +2702,7 @@
      "n": 192,
      "matches": 4,
      "share": 0.0528,
-     "chance": 0.0857,
+     "chance": 0.0814,
      "p": 0.1256255563327956,
      "camera_dependent": false
     },
@@ -2747,7 +2747,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0516,
-     "chance": 0.0553,
+     "chance": 0.0618,
      "p": 0.1071269454275253,
      "camera_dependent": false
     },
@@ -2765,8 +2765,17 @@
      "n": 204,
      "matches": 4,
      "share": 0.0512,
-     "chance": 0.0573,
+     "chance": 0.0576,
      "p": 0.11221992452961854,
+     "camera_dependent": false
+    },
+    {
+     "measure": "finish.face_yaw",
+     "n": 122,
+     "matches": 4,
+     "share": 0.0508,
+     "chance": 0.0983,
+     "p": 0.4302343879581587,
      "camera_dependent": false
     },
     {
@@ -2779,20 +2788,11 @@
      "camera_dependent": false
     },
     {
-     "measure": "finish.face_yaw",
-     "n": 122,
-     "matches": 4,
-     "share": 0.0507,
-     "chance": 0.0982,
-     "p": 0.4304019047524602,
-     "camera_dependent": false
-    },
-    {
      "measure": "finish.head_vs_hips",
      "n": 205,
      "matches": 4,
      "share": 0.0507,
-     "chance": 0.0596,
+     "chance": 0.0593,
      "p": 0.11461497874779425,
      "camera_dependent": false
     },
@@ -2801,7 +2801,7 @@
      "n": 57,
      "matches": 4,
      "share": 0.0507,
-     "chance": 0.2106,
+     "chance": 0.2086,
      "p": 0.8630171980239949,
      "camera_dependent": false
     },
@@ -2837,7 +2837,7 @@
      "n": 191,
      "matches": 4,
      "share": 0.05,
-     "chance": 0.0635,
+     "chance": 0.0642,
      "p": 0.1531744576605699,
      "camera_dependent": false
     },
@@ -2855,7 +2855,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0494,
-     "chance": 0.0637,
+     "chance": 0.0692,
      "p": 0.1253016580895982,
      "camera_dependent": false
     },
@@ -2891,7 +2891,7 @@
      "n": 191,
      "matches": 4,
      "share": 0.0483,
-     "chance": 0.0719,
+     "chance": 0.0735,
      "p": 0.16986275775033896,
      "camera_dependent": false
     },
@@ -2909,7 +2909,7 @@
      "n": 188,
      "matches": 4,
      "share": 0.0481,
-     "chance": 0.069,
+     "chance": 0.0711,
      "p": 0.18134172228616274,
      "camera_dependent": false
     },
@@ -2918,7 +2918,7 @@
      "n": 192,
      "matches": 4,
      "share": 0.0479,
-     "chance": 0.0623,
+     "chance": 0.0714,
      "p": 0.17147889847911338,
      "camera_dependent": false
     },
@@ -2927,7 +2927,7 @@
      "n": 192,
      "matches": 4,
      "share": 0.0479,
-     "chance": 0.0638,
+     "chance": 0.0644,
      "p": 0.17147889847911338,
      "camera_dependent": false
     },
@@ -2945,7 +2945,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.047,
-     "chance": 0.0629,
+     "chance": 0.0601,
      "p": 0.14861947976137937,
      "camera_dependent": false
     },
@@ -2963,7 +2963,7 @@
      "n": 163,
      "matches": 4,
      "share": 0.0463,
-     "chance": 0.0584,
+     "chance": 0.0571,
      "p": 0.29025597658597274,
      "camera_dependent": false
     },
@@ -2972,7 +2972,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0463,
-     "chance": 0.0757,
+     "chance": 0.0755,
      "p": 0.16084897734452053,
      "camera_dependent": false
     },
@@ -2981,7 +2981,7 @@
      "n": 100,
      "matches": 4,
      "share": 0.0459,
-     "chance": 0.1235,
+     "chance": 0.1225,
      "p": 0.6338210663936914,
      "camera_dependent": false
     },
@@ -2999,7 +2999,7 @@
      "n": 63,
      "matches": 4,
      "share": 0.0454,
-     "chance": 0.1706,
+     "chance": 0.1747,
      "p": 0.8626758185420634,
      "camera_dependent": false
     },
@@ -3017,7 +3017,7 @@
      "n": 202,
      "matches": 4,
      "share": 0.0453,
-     "chance": 0.0595,
+     "chance": 0.0592,
      "p": 0.17374444476951983,
      "camera_dependent": false
     },
@@ -3026,7 +3026,7 @@
      "n": 181,
      "matches": 4,
      "share": 0.045,
-     "chance": 0.0709,
+     "chance": 0.0713,
      "p": 0.2410365673254534,
      "camera_dependent": false
     },
@@ -3035,7 +3035,7 @@
      "n": 201,
      "matches": 4,
      "share": 0.0447,
-     "chance": 0.0663,
+     "chance": 0.0666,
      "p": 0.18414422996409507,
      "camera_dependent": false
     },
@@ -3080,7 +3080,7 @@
      "n": 196,
      "matches": 4,
      "share": 0.044,
-     "chance": 0.0663,
+     "chance": 0.0672,
      "p": 0.20578196138567012,
      "camera_dependent": false
     },
@@ -3089,7 +3089,7 @@
      "n": 170,
      "matches": 4,
      "share": 0.0439,
-     "chance": 0.0741,
+     "chance": 0.0732,
      "p": 0.2965998737694022,
      "camera_dependent": false
     },
@@ -3116,7 +3116,7 @@
      "n": 182,
      "matches": 4,
      "share": 0.0432,
-     "chance": 0.0805,
+     "chance": 0.0856,
      "p": 0.2626743746222346,
      "camera_dependent": false
     },
@@ -3134,7 +3134,7 @@
      "n": 201,
      "matches": 4,
      "share": 0.0428,
-     "chance": 0.0638,
+     "chance": 0.0624,
      "p": 0.20803885947694686,
      "camera_dependent": false
     },
@@ -3143,7 +3143,7 @@
      "n": 202,
      "matches": 4,
      "share": 0.0427,
-     "chance": 0.0672,
+     "chance": 0.0629,
      "p": 0.20640337501435468,
      "camera_dependent": false
     },
@@ -3170,7 +3170,7 @@
      "n": 202,
      "matches": 4,
      "share": 0.0423,
-     "chance": 0.0549,
+     "chance": 0.0555,
      "p": 0.21153092795836942,
      "camera_dependent": false
     },
@@ -3179,7 +3179,7 @@
      "n": 199,
      "matches": 4,
      "share": 0.0423,
-     "chance": 0.0555,
+     "chance": 0.0601,
      "p": 0.22008084397633546,
      "camera_dependent": false
     },
@@ -3197,7 +3197,7 @@
      "n": 200,
      "matches": 4,
      "share": 0.0422,
-     "chance": 0.0637,
+     "chance": 0.0656,
      "p": 0.21843254615514512,
      "camera_dependent": false
     },
@@ -3215,7 +3215,7 @@
      "n": 131,
      "matches": 4,
      "share": 0.0419,
-     "chance": 0.0752,
+     "chance": 0.075,
      "p": 0.5100270791451085,
      "camera_dependent": false
     },
@@ -3233,7 +3233,7 @@
      "n": 144,
      "matches": 4,
      "share": 0.0415,
-     "chance": 0.0873,
+     "chance": 0.0861,
      "p": 0.4496827345053529,
      "camera_dependent": false
     },
@@ -3251,7 +3251,7 @@
      "n": 118,
      "matches": 4,
      "share": 0.0412,
-     "chance": 0.1152,
+     "chance": 0.1184,
      "p": 0.5918450745630883,
      "camera_dependent": false
     },
@@ -3260,7 +3260,7 @@
      "n": 204,
      "matches": 4,
      "share": 0.0411,
-     "chance": 0.0529,
+     "chance": 0.0526,
      "p": 0.22174005851198642,
      "camera_dependent": false
     },
@@ -3341,7 +3341,7 @@
      "n": 48,
      "matches": 4,
      "share": 0.0396,
-     "chance": 0.2435,
+     "chance": 0.2691,
      "p": 0.9515404326030351,
      "camera_dependent": false
     },
@@ -3350,7 +3350,7 @@
      "n": 192,
      "matches": 4,
      "share": 0.0395,
-     "chance": 0.0797,
+     "chance": 0.0857,
      "p": 0.2837227666341674,
      "camera_dependent": false
     },
@@ -3377,7 +3377,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0392,
-     "chance": 0.0611,
+     "chance": 0.0617,
      "p": 0.2468093419006257,
      "camera_dependent": false
     },
@@ -3395,7 +3395,7 @@
      "n": 187,
      "matches": 4,
      "share": 0.0392,
-     "chance": 0.0732,
+     "chance": 0.0701,
      "p": 0.3062535302301887,
      "camera_dependent": false
     },
@@ -3413,7 +3413,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0391,
-     "chance": 0.0604,
+     "chance": 0.0569,
      "p": 0.254923804548231,
      "camera_dependent": false
     },
@@ -3431,7 +3431,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0381,
-     "chance": 0.0587,
+     "chance": 0.0626,
      "p": 0.26477026962332667,
      "camera_dependent": false
     },
@@ -3467,7 +3467,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0379,
-     "chance": 0.053,
+     "chance": 0.057,
      "p": 0.27506516668501496,
      "camera_dependent": false
     },
@@ -3503,7 +3503,7 @@
      "n": 204,
      "matches": 4,
      "share": 0.0374,
-     "chance": 0.0707,
+     "chance": 0.0685,
      "p": 0.2795659580516444,
      "camera_dependent": false
     },
@@ -3512,7 +3512,7 @@
      "n": 204,
      "matches": 4,
      "share": 0.0374,
-     "chance": 0.0636,
+     "chance": 0.0654,
      "p": 0.2795659580516444,
      "camera_dependent": false
     },
@@ -3530,7 +3530,7 @@
      "n": 163,
      "matches": 4,
      "share": 0.0372,
-     "chance": 0.0734,
+     "chance": 0.0717,
      "p": 0.4375071026682805,
      "camera_dependent": false
     },
@@ -3539,7 +3539,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0372,
-     "chance": 0.0614,
+     "chance": 0.0613,
      "p": 0.2864318392942014,
      "camera_dependent": false
     },
@@ -3548,7 +3548,7 @@
      "n": 157,
      "matches": 4,
      "share": 0.037,
-     "chance": 0.0702,
+     "chance": 0.0713,
      "p": 0.46722083815742077,
      "camera_dependent": false
     },
@@ -3557,7 +3557,7 @@
      "n": 192,
      "matches": 4,
      "share": 0.0367,
-     "chance": 0.0663,
+     "chance": 0.0712,
      "p": 0.33287137820088164,
      "camera_dependent": false
     },
@@ -3566,7 +3566,7 @@
      "n": 170,
      "matches": 4,
      "share": 0.0363,
-     "chance": 0.0821,
+     "chance": 0.0834,
      "p": 0.42451425986783786,
      "camera_dependent": false
     },
@@ -3584,7 +3584,7 @@
      "n": 132,
      "matches": 4,
      "share": 0.0359,
-     "chance": 0.0881,
+     "chance": 0.0903,
      "p": 0.6056930596456875,
      "camera_dependent": false
     },
@@ -3611,8 +3611,8 @@
      "n": 203,
      "matches": 4,
      "share": 0.0357,
-     "chance": 0.0697,
-     "p": 0.3129159564494359,
+     "chance": 0.0698,
+     "p": 0.31320923056762445,
      "camera_dependent": false
     },
     {
@@ -3620,7 +3620,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0357,
-     "chance": 0.0636,
+     "chance": 0.0644,
      "p": 0.30660470178105526,
      "camera_dependent": false
     },
@@ -3629,7 +3629,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0357,
-     "chance": 0.0638,
+     "chance": 0.0646,
      "p": 0.30660470178105526,
      "camera_dependent": false
     },
@@ -3656,7 +3656,7 @@
      "n": 114,
      "matches": 4,
      "share": 0.0351,
-     "chance": 0.0942,
+     "chance": 0.0874,
      "p": 0.7052234594051072,
      "camera_dependent": false
     },
@@ -3665,8 +3665,8 @@
      "n": 207,
      "matches": 4,
      "share": 0.035,
-     "chance": 0.0596,
-     "p": 0.3133085495682008,
+     "chance": 0.0598,
+     "p": 0.31285588736113634,
      "camera_dependent": false
     },
     {
@@ -3701,7 +3701,7 @@
      "n": 122,
      "matches": 4,
      "share": 0.0344,
-     "chance": 0.1031,
+     "chance": 0.1037,
      "p": 0.6780719010673466,
      "camera_dependent": false
     },
@@ -3710,7 +3710,7 @@
      "n": 192,
      "matches": 4,
      "share": 0.0343,
-     "chance": 0.0792,
+     "chance": 0.0787,
      "p": 0.37732775531550466,
      "camera_dependent": false
     },
@@ -3782,7 +3782,7 @@
      "n": 161,
      "matches": 4,
      "share": 0.0331,
-     "chance": 0.0668,
+     "chance": 0.0696,
      "p": 0.5239175891673835,
      "camera_dependent": false
     },
@@ -3833,11 +3833,11 @@
     },
     {
      "measure": "ball_speed_avg_kmh",
-     "n": 89,
+     "n": 90,
      "matches": 4,
-     "share": 0.0322,
-     "chance": 0.1282,
-     "p": 0.8509199711985798,
+     "share": 0.0321,
+     "chance": 0.1302,
+     "p": 0.8484120037402026,
      "camera_dependent": false
     },
     {
@@ -3854,7 +3854,7 @@
      "n": 195,
      "matches": 4,
      "share": 0.0316,
-     "chance": 0.0634,
+     "chance": 0.0677,
      "p": 0.4235822023305471,
      "camera_dependent": false
     },
@@ -3881,7 +3881,7 @@
      "n": 188,
      "matches": 4,
      "share": 0.031,
-     "chance": 0.0776,
+     "chance": 0.0678,
      "p": 0.4617013681389369,
      "camera_dependent": false
     },
@@ -3908,7 +3908,7 @@
      "n": 177,
      "matches": 4,
      "share": 0.0307,
-     "chance": 0.0669,
+     "chance": 0.0658,
      "p": 0.5090890890209145,
      "camera_dependent": false
     },
@@ -3917,7 +3917,7 @@
      "n": 204,
      "matches": 4,
      "share": 0.0301,
-     "chance": 0.0507,
+     "chance": 0.0531,
      "p": 0.4247071062990676,
      "camera_dependent": false
     },
@@ -3953,7 +3953,7 @@
      "n": 55,
      "matches": 4,
      "share": 0.0298,
-     "chance": 0.2403,
+     "chance": 0.2383,
      "p": 0.9645988354110974,
      "camera_dependent": false
     },
@@ -3962,7 +3962,7 @@
      "n": 177,
      "matches": 4,
      "share": 0.0297,
-     "chance": 0.0655,
+     "chance": 0.0794,
      "p": 0.5311751523942003,
      "camera_dependent": false
     },
@@ -3971,7 +3971,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0296,
-     "chance": 0.0574,
+     "chance": 0.0584,
      "p": 0.43282444166533274,
      "camera_dependent": false
     },
@@ -3980,7 +3980,7 @@
      "n": 192,
      "matches": 4,
      "share": 0.0294,
-     "chance": 0.0706,
+     "chance": 0.0707,
      "p": 0.48352999499470495,
      "camera_dependent": false
     },
@@ -4007,7 +4007,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.029,
-     "chance": 0.0568,
+     "chance": 0.0534,
      "p": 0.4537241994654404,
      "camera_dependent": false
     },
@@ -4016,7 +4016,7 @@
      "n": 206,
      "matches": 4,
      "share": 0.029,
-     "chance": 0.0618,
+     "chance": 0.0623,
      "p": 0.4433612955050744,
      "camera_dependent": false
     },
@@ -4025,7 +4025,7 @@
      "n": 202,
      "matches": 4,
      "share": 0.029,
-     "chance": 0.06,
+     "chance": 0.0588,
      "p": 0.4577165806767669,
      "camera_dependent": false
     },
@@ -4043,7 +4043,7 @@
      "n": 170,
      "matches": 4,
      "share": 0.0288,
-     "chance": 0.0749,
+     "chance": 0.0789,
      "p": 0.5794054002010693,
      "camera_dependent": false
     },
@@ -4079,7 +4079,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0284,
-     "chance": 0.0633,
+     "chance": 0.0627,
      "p": 0.46712177964253243,
      "camera_dependent": false
     },
@@ -4088,7 +4088,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0281,
-     "chance": 0.0634,
+     "chance": 0.0669,
      "p": 0.4683351776873983,
      "camera_dependent": false
     },
@@ -4097,7 +4097,7 @@
      "n": 204,
      "matches": 4,
      "share": 0.0281,
-     "chance": 0.0594,
+     "chance": 0.0626,
      "p": 0.47156463178236174,
      "camera_dependent": false
     },
@@ -4106,7 +4106,7 @@
      "n": 191,
      "matches": 4,
      "share": 0.028,
-     "chance": 0.0681,
+     "chance": 0.0682,
      "p": 0.5178754965284154,
      "camera_dependent": false
     },
@@ -4115,7 +4115,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0278,
-     "chance": 0.0596,
+     "chance": 0.0619,
      "p": 0.48144460699477754,
      "camera_dependent": false
     },
@@ -4124,7 +4124,7 @@
      "n": 197,
      "matches": 4,
      "share": 0.0278,
-     "chance": 0.0589,
+     "chance": 0.06,
      "p": 0.5017554663651499,
      "camera_dependent": false
     },
@@ -4133,7 +4133,7 @@
      "n": 144,
      "matches": 4,
      "share": 0.0277,
-     "chance": 0.0876,
+     "chance": 0.0866,
      "p": 0.7019548804793396,
      "camera_dependent": false
     },
@@ -4151,7 +4151,7 @@
      "n": 198,
      "matches": 4,
      "share": 0.0274,
-     "chance": 0.0597,
+     "chance": 0.0621,
      "p": 0.5093264605517358,
      "camera_dependent": false
     },
@@ -4178,7 +4178,7 @@
      "n": 192,
      "matches": 4,
      "share": 0.027,
-     "chance": 0.0771,
+     "chance": 0.0785,
      "p": 0.5401483780465047,
      "camera_dependent": false
     },
@@ -4187,7 +4187,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0267,
-     "chance": 0.06,
+     "chance": 0.0586,
      "p": 0.5013878156224993,
      "camera_dependent": false
     },
@@ -4196,7 +4196,7 @@
      "n": 122,
      "matches": 4,
      "share": 0.0267,
-     "chance": 0.0987,
+     "chance": 0.1001,
      "p": 0.7975123205137136,
      "camera_dependent": false
     },
@@ -4214,7 +4214,7 @@
      "n": 204,
      "matches": 4,
      "share": 0.0264,
-     "chance": 0.0534,
+     "chance": 0.0571,
      "p": 0.5133575805646556,
      "camera_dependent": false
     },
@@ -4223,7 +4223,7 @@
      "n": 201,
      "matches": 4,
      "share": 0.0263,
-     "chance": 0.0667,
+     "chance": 0.0655,
      "p": 0.5257447548870549,
      "camera_dependent": false
     },
@@ -4232,7 +4232,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0262,
-     "chance": 0.0594,
+     "chance": 0.0593,
      "p": 0.520923780474083,
      "camera_dependent": false
     },
@@ -4250,7 +4250,7 @@
      "n": 207,
      "matches": 4,
      "share": 0.0261,
-     "chance": 0.0732,
+     "chance": 0.0764,
      "p": 0.5112491828936997,
      "camera_dependent": false
     },
@@ -4268,7 +4268,7 @@
      "n": 187,
      "matches": 4,
      "share": 0.0261,
-     "chance": 0.0719,
+     "chance": 0.0687,
      "p": 0.5788975468952713,
      "camera_dependent": false
     },
@@ -4286,7 +4286,7 @@
      "n": 161,
      "matches": 4,
      "share": 0.0258,
-     "chance": 0.0705,
+     "chance": 0.0711,
      "p": 0.6766115256103982,
      "camera_dependent": false
     },
@@ -4295,7 +4295,7 @@
      "n": 144,
      "matches": 4,
      "share": 0.0256,
-     "chance": 0.0847,
+     "chance": 0.0857,
      "p": 0.7396017565594093,
      "camera_dependent": false
     },
@@ -4304,7 +4304,7 @@
      "n": 187,
      "matches": 4,
      "share": 0.0254,
-     "chance": 0.0623,
+     "chance": 0.0636,
      "p": 0.5951715214419471,
      "camera_dependent": false
     },
@@ -4313,7 +4313,7 @@
      "n": 134,
      "matches": 4,
      "share": 0.0253,
-     "chance": 0.0743,
+     "chance": 0.0735,
      "p": 0.7802170127550473,
      "camera_dependent": false
     },
@@ -4345,15 +4345,6 @@
      "camera_dependent": false
     },
     {
-     "measure": "recovery.face_tilt",
-     "n": 123,
-     "matches": 4,
-     "share": 0.0249,
-     "chance": 0.104,
-     "p": 0.8218903561018052,
-     "camera_dependent": false
-    },
-    {
      "measure": "loaded.base_m",
      "n": 203,
      "matches": 4,
@@ -4363,21 +4354,21 @@
      "camera_dependent": false
     },
     {
+     "measure": "recovery.face_tilt",
+     "n": 123,
+     "matches": 4,
+     "share": 0.0248,
+     "chance": 0.0998,
+     "p": 0.8226795721642834,
+     "camera_dependent": false
+    },
+    {
      "measure": "extension.knee_dom",
      "n": 186,
      "matches": 4,
      "share": 0.0245,
-     "chance": 0.063,
+     "chance": 0.06,
      "p": 0.6205517792949506,
-     "camera_dependent": false
-    },
-    {
-     "measure": "impact.face_yaw",
-     "n": 207,
-     "matches": 4,
-     "share": 0.0245,
-     "chance": 0.0771,
-     "p": 0.5518771301855916,
      "camera_dependent": false
     },
     {
@@ -4385,7 +4376,7 @@
      "n": 200,
      "matches": 4,
      "share": 0.0245,
-     "chance": 0.058,
+     "chance": 0.0581,
      "p": 0.573948439848539,
      "camera_dependent": false
     },
@@ -4403,7 +4394,7 @@
      "n": 202,
      "matches": 4,
      "share": 0.0242,
-     "chance": 0.0643,
+     "chance": 0.0638,
      "p": 0.5762354145533732,
      "camera_dependent": false
     },
@@ -4421,7 +4412,7 @@
      "n": 127,
      "matches": 4,
      "share": 0.024,
-     "chance": 0.091,
+     "chance": 0.0894,
      "p": 0.8218615885726496,
      "camera_dependent": false
     },
@@ -4430,8 +4421,17 @@
      "n": 200,
      "matches": 4,
      "share": 0.024,
-     "chance": 0.066,
+     "chance": 0.0651,
      "p": 0.5865615100689787,
+     "camera_dependent": false
+    },
+    {
+     "measure": "impact.face_yaw",
+     "n": 207,
+     "matches": 4,
+     "share": 0.0239,
+     "chance": 0.0749,
+     "p": 0.5678137969108229,
      "camera_dependent": false
     },
     {
@@ -4439,7 +4439,7 @@
      "n": 259,
      "matches": 4,
      "share": 0.0238,
-     "chance": 0.0453,
+     "chance": 0.0541,
      "p": 0.4174124020411232,
      "camera_dependent": false
     },
@@ -4475,7 +4475,7 @@
      "n": 192,
      "matches": 4,
      "share": 0.0233,
-     "chance": 0.0661,
+     "chance": 0.0785,
      "p": 0.6306906268283468,
      "camera_dependent": false
     },
@@ -4511,7 +4511,7 @@
      "n": 166,
      "matches": 4,
      "share": 0.0229,
-     "chance": 0.0862,
+     "chance": 0.0815,
      "p": 0.7236520311156525,
      "camera_dependent": false
     },
@@ -4520,7 +4520,7 @@
      "n": 204,
      "matches": 4,
      "share": 0.0229,
-     "chance": 0.0501,
+     "chance": 0.049,
      "p": 0.604754437934435,
      "camera_dependent": false
     },
@@ -4529,7 +4529,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0228,
-     "chance": 0.0609,
+     "chance": 0.0634,
      "p": 0.6026721901779379,
      "camera_dependent": false
     },
@@ -4556,8 +4556,8 @@
      "n": 207,
      "matches": 4,
      "share": 0.0226,
-     "chance": 0.0595,
-     "p": 0.6026085561025059,
+     "chance": 0.0613,
+     "p": 0.6026237022258509,
      "camera_dependent": false
     },
     {
@@ -4610,7 +4610,7 @@
      "n": 183,
      "matches": 4,
      "share": 0.0217,
-     "chance": 0.0603,
+     "chance": 0.0595,
      "p": 0.6994049430179125,
      "camera_dependent": false
     },
@@ -4619,7 +4619,7 @@
      "n": 177,
      "matches": 4,
      "share": 0.0217,
-     "chance": 0.0702,
+     "chance": 0.063,
      "p": 0.7167555853200314,
      "camera_dependent": false
     },
@@ -4637,7 +4637,7 @@
      "n": 169,
      "matches": 4,
      "share": 0.0209,
-     "chance": 0.071,
+     "chance": 0.0707,
      "p": 0.7577616934418661,
      "camera_dependent": false
     },
@@ -4655,8 +4655,8 @@
      "n": 203,
      "matches": 4,
      "share": 0.0208,
-     "chance": 0.0558,
-     "p": 0.6642406450780425,
+     "chance": 0.056,
+     "p": 0.6639264596429202,
      "camera_dependent": false
     },
     {
@@ -4664,7 +4664,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0207,
-     "chance": 0.0555,
+     "chance": 0.0573,
      "p": 0.6649163795035032,
      "camera_dependent": false
     },
@@ -4700,7 +4700,7 @@
      "n": 122,
      "matches": 4,
      "share": 0.0203,
-     "chance": 0.096,
+     "chance": 0.0958,
      "p": 0.8867514584558182,
      "camera_dependent": false
     },
@@ -4709,7 +4709,7 @@
      "n": 192,
      "matches": 4,
      "share": 0.0203,
-     "chance": 0.0724,
+     "chance": 0.0719,
      "p": 0.7073768994226297,
      "camera_dependent": false
     },
@@ -4727,7 +4727,7 @@
      "n": 122,
      "matches": 4,
      "share": 0.0197,
-     "chance": 0.1061,
+     "chance": 0.1017,
      "p": 0.8936238044428215,
      "camera_dependent": false
     },
@@ -4745,7 +4745,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0194,
-     "chance": 0.0766,
+     "chance": 0.0656,
      "p": 0.69524626331084,
      "camera_dependent": false
     },
@@ -4763,7 +4763,7 @@
      "n": 186,
      "matches": 4,
      "share": 0.0192,
-     "chance": 0.0683,
+     "chance": 0.0657,
      "p": 0.7497053026941591,
      "camera_dependent": false
     },
@@ -4781,8 +4781,8 @@
      "n": 122,
      "matches": 4,
      "share": 0.019,
-     "chance": 0.1048,
-     "p": 0.9021929668608999,
+     "chance": 0.1047,
+     "p": 0.902006076419369,
      "camera_dependent": false
     },
     {
@@ -4808,7 +4808,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0184,
-     "chance": 0.0571,
+     "chance": 0.0593,
      "p": 0.7283014528464478,
      "camera_dependent": false
     },
@@ -4844,7 +4844,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0176,
-     "chance": 0.068,
+     "chance": 0.0687,
      "p": 0.7444961446624233,
      "camera_dependent": false
     },
@@ -4862,7 +4862,7 @@
      "n": 134,
      "matches": 4,
      "share": 0.0174,
-     "chance": 0.0814,
+     "chance": 0.0819,
      "p": 0.8993648392197007,
      "camera_dependent": false
     },
@@ -4889,7 +4889,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0171,
-     "chance": 0.0681,
+     "chance": 0.0577,
      "p": 0.7573844073059749,
      "camera_dependent": false
     },
@@ -4898,7 +4898,7 @@
      "n": 204,
      "matches": 4,
      "share": 0.017,
-     "chance": 0.0597,
+     "chance": 0.0536,
      "p": 0.7636551115705229,
      "camera_dependent": false
     },
@@ -4925,7 +4925,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0163,
-     "chance": 0.0552,
+     "chance": 0.0567,
      "p": 0.7826550441452482,
      "camera_dependent": false
     },
@@ -4934,7 +4934,7 @@
      "n": 204,
      "matches": 4,
      "share": 0.0161,
-     "chance": 0.0557,
+     "chance": 0.0569,
      "p": 0.784948712119329,
      "camera_dependent": false
     },
@@ -4970,7 +4970,7 @@
      "n": 187,
      "matches": 4,
      "share": 0.0159,
-     "chance": 0.056,
+     "chance": 0.0628,
      "p": 0.8243558173431997,
      "camera_dependent": false
     },
@@ -4979,7 +4979,7 @@
      "n": 205,
      "matches": 4,
      "share": 0.0157,
-     "chance": 0.0734,
+     "chance": 0.0788,
      "p": 0.7951980968476359,
      "camera_dependent": false
     },
@@ -4997,7 +4997,7 @@
      "n": 144,
      "matches": 4,
      "share": 0.0149,
-     "chance": 0.0872,
+     "chance": 0.0887,
      "p": 0.9159797842343085,
      "camera_dependent": false
     },
@@ -5024,7 +5024,7 @@
      "n": 191,
      "matches": 4,
      "share": 0.0147,
-     "chance": 0.0775,
+     "chance": 0.0769,
      "p": 0.8432025422952472,
      "camera_dependent": false
     },
@@ -5033,7 +5033,7 @@
      "n": 68,
      "matches": 4,
      "share": 0.0146,
-     "chance": 0.1629,
+     "chance": 0.1597,
      "p": 0.989756469548214,
      "camera_dependent": false
     },
@@ -5042,7 +5042,7 @@
      "n": 188,
      "matches": 4,
      "share": 0.0146,
-     "chance": 0.0742,
+     "chance": 0.0738,
      "p": 0.8520313296217462,
      "camera_dependent": false
     },
@@ -5051,7 +5051,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0142,
-     "chance": 0.0635,
+     "chance": 0.0578,
      "p": 0.8352265969754952,
      "camera_dependent": false
     },
@@ -5060,7 +5060,7 @@
      "n": 122,
      "matches": 4,
      "share": 0.014,
-     "chance": 0.0856,
+     "chance": 0.0835,
      "p": 0.9522446396654753,
      "camera_dependent": false
     },
@@ -5096,7 +5096,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0127,
-     "chance": 0.0568,
+     "chance": 0.0545,
      "p": 0.8689433152985133,
      "camera_dependent": false
     },
@@ -5105,7 +5105,7 @@
      "n": 169,
      "matches": 4,
      "share": 0.0123,
-     "chance": 0.0772,
+     "chance": 0.0764,
      "p": 0.9207093385701346,
      "camera_dependent": false
     },
@@ -5114,7 +5114,7 @@
      "n": 182,
      "matches": 4,
      "share": 0.0108,
-     "chance": 0.0613,
+     "chance": 0.0626,
      "p": 0.9303520669108086,
      "camera_dependent": false
     },
@@ -5123,7 +5123,7 @@
      "n": 192,
      "matches": 4,
      "share": 0.0106,
-     "chance": 0.0814,
+     "chance": 0.0813,
      "p": 0.9228164965905268,
      "camera_dependent": false
     },
@@ -5159,7 +5159,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0089,
-     "chance": 0.0732,
+     "chance": 0.0701,
      "p": 0.9423776375226597,
      "camera_dependent": false
     },
@@ -5222,7 +5222,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0052,
-     "chance": 0.0647,
+     "chance": 0.0645,
      "p": 0.9849081600189139,
      "camera_dependent": false
     },
@@ -5231,7 +5231,7 @@
      "n": 203,
      "matches": 4,
      "share": 0.0036,
-     "chance": 0.0672,
+     "chance": 0.0665,
      "p": 0.9945084252786277,
      "camera_dependent": false
     }
@@ -5951,11 +5951,11 @@
    "area": "Taxonomía",
    "name": "3. Pies y desplazamiento · Rodear la bola para la derecha invertida",
    "status": "ok",
-   "detail": "medido en el 22% de los golpes y en el informe",
+   "detail": "medido en el 23% de los golpes y en el informe",
    "keys": [
     "class.around_ball"
    ],
-   "measured": 0.22
+   "measured": 0.23
   },
   {
    "req": 1,
@@ -6256,11 +6256,11 @@
    "area": "Taxonomía",
    "name": "5. Bola, resultado y contexto · Golpe angulado (cruzado, corto y junto al lateral)",
    "status": "ok",
-   "detail": "medido en el 30% de los golpes y en el informe",
+   "detail": "medido en el 31% de los golpes y en el informe",
    "keys": [
     "class.shot_angle"
    ],
-   "measured": 0.3
+   "measured": 0.31
   },
   {
    "req": 1,
@@ -7245,9 +7245,9 @@
    "area": "Situaciones",
    "name": "Golpe angulado (#132)",
    "status": "pocos datos",
-   "detail": "0 golpes de 265 (la clase «Golpe angulado» se pudo decidir en 80; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)",
+   "detail": "0 golpes de 265 (la clase «Golpe angulado» se pudo decidir en 81; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)",
    "n": 0,
-   "measured": 80
+   "measured": 81
   },
   {
    "req": 1,
@@ -7325,7 +7325,7 @@
    "area": "Situaciones",
    "name": "Bola corta / profunda",
    "status": "ok",
-   "detail": "dentro de la pista 19, sobre la línea 35, 1-2 m detrás 97, 2-4 m detrás 52, muy atrás 0 (se muestra con ≥ 12 golpes)",
+   "detail": "dentro de la pista 19, sobre la línea 35, 1-2 m detrás 97, 2-4 m detrás 53, muy atrás 1 (se muestra con ≥ 12 golpes)",
    "shown": [
     "1-2 m detrás",
     "2-4 m detrás",
@@ -7427,7 +7427,7 @@
    "area": "Combinaciones",
    "name": "Bola corta / profunda: cada medida en cada nivel",
    "status": "ok",
-   "detail": "73 medidas × 5 niveles = 365 combinaciones; 262 mostradas con ≥ 12 golpes; niveles con pocos golpes: muy atrás 0",
+   "detail": "73 medidas × 5 niveles = 365 combinaciones; 262 mostradas con ≥ 12 golpes; niveles con pocos golpes: muy atrás 1",
    "combos": 365,
    "shown": 262
   },
@@ -7974,7 +7974,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2592 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2589 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -8059,7 +8059,7 @@
    "area": "Aprende su derecha",
    "name": "La pantalla responde a cada combinación",
    "status": "ok",
-   "detail": "2050 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 184500 puntos de control comprobados; 1212 con golpes exactos"
+   "detail": "2050 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 184500 puntos de control comprobados; 1217 con golpes exactos"
   },
   {
    "req": 1,
@@ -8241,7 +8241,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_f43dd2_rybakina",
    "status": "ok",
-   "detail": "28 min para 71 min de vídeo ≈ 1.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "30 min para 71 min de vídeo ≈ 1.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -8255,7 +8255,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "51 min para 117 min de vídeo ≈ 1.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "53 min para 117 min de vídeo ≈ 1.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -8311,8 +8311,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 4dc2afb (2026-11-08T20:30:29): 880 bien, 0 fallan, 0 errores",
-   "passed": 880,
+   "detail": "código f9ef9eb (2026-11-08T21:36:35): 881 bien, 0 fallan, 0 errores",
+   "passed": 881,
    "failed": 0
   },
   {
@@ -8404,7 +8404,7 @@
    "area": "Pruebas en este PC",
    "name": "Pruebas en este PC: test_resources_summary",
    "status": "ok",
-   "detail": "3 bien, 0 fallan, 0 omitidas"
+   "detail": "4 bien, 0 fallan, 0 omitidas"
   },
   {
    "req": 5,
@@ -8537,21 +8537,21 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (63/63), 30 s, quedan ≈ 0 s, a las 2026-11-08 18:07:10"
+   "detail": "último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (63/63), 30 s, quedan ≈ 0 s, a las 2026-11-08 22:39:45"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
    "status": "ok",
-   "detail": "55 de 55 registros con fecha de inicio y de fin o duración"
+   "detail": "56 de 56 registros con fecha de inicio y de fin o duración"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "41 carpetas, 28.7 GB en total (2026-11-08T21:04:05); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
+   "detail": "41 carpetas, 28.6 GB en total (2026-11-08T22:46:09); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
   },
   {
    "req": 5,
@@ -8628,21 +8628,21 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_derecha",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 20:12:52 en 0 min: 445 vídeos de 445 golpes"
+   "detail": "terminó el 2026-11-08 21:11:06 en 0 min: 445 vídeos de 445 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_reves",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 20:13:20 en 0 min: 284 vídeos de 284 golpes"
+   "detail": "terminó el 2026-11-08 21:11:34 en 0 min: 284 vídeos de 284 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_saque",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 20:13:42 en 0 min: 292 vídeos de 292 golpes"
+   "detail": "terminó el 2026-11-08 21:11:56 en 0 min: 292 vídeos de 292 golpes"
   },
   {
    "req": 5,
@@ -8789,14 +8789,14 @@
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina",
    "status": "ok",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 10.8 min, score 7.3 min, scenes 7.0 min, audio 2.4 min, fine 2.1 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 10.8 min, score 7.3 min, scenes 7.0 min, fine 4.3 min, audio 2.4 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 4.9 min, views 3.2 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 7.4 min, views 3.2 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -8810,7 +8810,7 @@
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_b8b713_rybakina",
    "status": "ok",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 30.0 min, scenes 28.5 min, score 12.9 min, views 8.0 min, fine 6.4 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 30.0 min, scenes 28.5 min, score 12.9 min, views 8.0 min, fine 6.0 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -8845,14 +8845,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-08_1740.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (2.0 min): CPU 23/31/40 %, iGPU 0/10/51 %, RAM máx 9.5 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (4.5 min): CPU 25/39/85 %, iGPU 0/40/100 %, RAM máx 9.9 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.2 min): CPU 19/19/19 %, iGPU 0/0/0 %, RAM máx 9.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); tennis-yusipopen-polufinal-gau fine (3.5 min): CPU 23/52/100 %, iGPU 0/18/87 %, RAM máx 9.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.8 min): CPU 26/33/38 %, iGPU 42/76/100 %, RAM máx 9.5 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-final-sobolen fine (5.8 min): CPU 20/39/91 %, iGPU 0/39/100 %, RAM máx 14.1 GB → uso medio: margen para repartir trabajo; 49.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-08_2040.csv, recursos_2026-11-08_1910.csv"
+   "detail": "recursos_2026-11-08_2125.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (4.0 min): CPU 17/47/97 %, iGPU 0/20/96 %, RAM máx 14.8 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine (7.0 min): CPU 12/26/59 %, iGPU 0/21/100 %, RAM máx 9.7 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 31/38/44 %, iGPU 0/46/91 %, RAM máx 10.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine (3.2 min): CPU 19/38/62 %, iGPU 0/22/100 %, RAM máx 10.8 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.8 min): CPU 21/36/64 %, iGPU 0/0/1 %, RAM máx 10.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-final-sobolen fine (5.5 min): CPU 20/40/95 %, iGPU 0/40/100 %, RAM máx 11.0 GB → uso medio: margen para repartir trabajo; 51.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 08-11 21:00, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 08-11 22:13, empezó a los 1.2 min; el PC estaba con otro trabajo hasta las 22:14 (1.0 min, no cuentan), empezó 0.2 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -9475,7 +9475,7 @@
    "area": "Peticiones",
    "name": "#90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral)",
    "status": "pocos datos",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 16 comprobaciones: 6 pocos datos, 10 ok; la peor: «Golpe angulado (#132)» (0 golpes de 265 (la clase «Golpe angulado» se pudo decidir en 80; sin señal, ninguna clase: nunca se inventa); sin golpe)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 16 comprobaciones: 6 pocos datos, 10 ok; la peor: «Golpe angulado (#132)» (0 golpes de 265 (la clase «Golpe angulado» se pudo decidir en 81; sin señal, ninguna clase: nunca se inventa); sin golpe)"
   },
   {
    "req": 11,
@@ -9741,7 +9741,7 @@
    "area": "Peticiones",
    "name": "#132 ángulos (golpe angulado) — repetido el 19-10 08:11: «golpe angulado ... te lo he dicho muchas veces» (Chat, 10",
    "status": "pocos datos",
-   "detail": "2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Golpe angulado (#132)» (0 golpes de 265 (la clase «Golpe angulado» se pudo decidir en 80; sin señal, ninguna clase: nunca se inventa); sin golpe)"
+   "detail": "2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Golpe angulado (#132)» (0 golpes de 265 (la clase «Golpe angulado» se pudo decidir en 81; sin señal, ninguna clase: nunca se inventa); sin golpe)"
   },
   {
    "req": 11,
@@ -9894,8 +9894,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok"
+   "status": "ok",
+   "detail": "9 comprobaciones: 9 ok"
   },
   {
    "req": 11,
@@ -10336,7 +10336,7 @@
    "area": "Peticiones",
    "name": "#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 9 comprobaciones: 6 aviso, 3 ok; la peor: «Golpes del fondo: sin-fecha_f43dd2_rybakina» (79 de sus 169 golpes en el lado lejano (47%; objetivo ≥ 25%); confirmados 79 de 82 candidatos suyos del fondo (96%); con)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 9 comprobaciones: 4 aviso, 5 ok; la peor: «Golpes del fondo: sin-fecha_f43dd2_rybakina» (79 de sus 169 golpes en el lado lejano (47%; objetivo ≥ 25%); confirmados 79 de 82 candidatos suyos del fondo (96%); con)"
   },
   {
    "req": 11,
