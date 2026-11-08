@@ -385,6 +385,12 @@ carpetas: _poc9_largo
 id: 147
 accion: repetir
 etapas: identity
+---
+id: 148
+accion: completo
+# 148 (08-11): auditoria de los 4 partidos con el codigo de hoy (cobertura del saque en el informe, precision de F3Set,
+# sesgo de los saques perdidos, golpes esperados sin los puntos que la tele no enseno); el ciclo de 10 min solo
+# rehace la prueba corta, no la auditoria de los partidos
 # 147 (08-11, #231): la identidad lenta de Osaka era la lectura de fotogramas exactos (ffmpeg decodificaba el resto
 # del partido en cada tramo); se espera 1,5-2 min en vez de 13 al leer la ropa, con los mismos resultados
 # 146 (08-11, #146): la ultima carpeta de pruebas antigua (7,6 GB); el usuario aprobo borrar las tres el 07-11 y la
