@@ -3,10 +3,10 @@
  "strokes": 443,
  "near": 265,
  "summary": {
-  "ok": 433,
+  "ok": 436,
   "falta": 27,
   "pocos datos": 56,
-  "aviso": 121
+  "aviso": 120
  },
  "items": [
   {
@@ -22,12 +22,12 @@
    "area": "Golpes",
    "name": "Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina",
    "status": "ok",
-   "detail": "marcador: 93-101 puntos jugados (16 juegos leídos, 0 sin leer), 44 con su saque. Esperados: 44-92 saques (1 o 2 por punto de saque) y 149-263 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 169 golpes, 46 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (90 cerca, 79 lejos); además 4 de identidad dudosa, apartados (no cuentan como suyos)",
+   "detail": "marcador: 91-99 puntos jugados (16 juegos leídos, 0 sin leer), 44 con su saque. Esperados: 44-92 saques (1 o 2 por punto de saque) y 146-257 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 169 golpes, 46 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (sin 2 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 0 de su saque) (90 cerca, 79 lejos); además 4 de identidad dudosa, apartados (no cuentan como suyos)",
    "found": 169,
    "serves": 46,
    "counts": {
-    "points": 93,
-    "points_high": 101,
+    "points": 91,
+    "points_high": 99,
     "her_service_points": 44.0,
     "her_service_points_high": 46.0,
     "unknown_server": 0,
@@ -46,7 +46,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_f43dd2_rybakina",
    "status": "ok",
-   "detail": "27 de 30 puntos de su saque vistos con su saque encontrado; sin saque: sin ningún golpe suyo 2, golpes suyos, pero ningún saque 1; sus saques encontrados caen en puntos de su saque 33, de la rival 5, fuera de los puntos leídos 8; en los puntos sin saque, su primer golpe encontrado llega 8.8 s (mediana de 1) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 1): tipo {'forehand/detector': 1}, lado {'near': 1}, 0 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 2}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 2, sin golpes de nadie 0, cámara principal 16.4 s (mediana), candidatos {'suyos_perdidos_despues': 0, 'solo_de_la_rival': 1, 'identidad_sin_decidir': 1, 'sin_candidatos': 0}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 0}; primeros: 19.0-19.9 min (sin_golpes), 20.5-20.9 min (sin_golpes), 64.2-64.7 min (sin_saque)",
+   "detail": "27 de 30 puntos de su saque vistos con su saque encontrado (90%; objetivo ≥ 90%); sin saque: sin ningún golpe suyo 2, golpes suyos, pero ningún saque 1; sus saques encontrados caen en puntos de su saque 33, de la rival 5, fuera de los puntos leídos 8; en los puntos sin saque, su primer golpe encontrado llega 8.8 s (mediana de 1) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 1): tipo {'forehand/detector': 1}, lado {'near': 1}, 0 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 2}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 2, sin golpes de nadie 0, cámara principal 16.4 s (mediana), candidatos {'suyos_perdidos_despues': 0, 'solo_de_la_rival': 1, 'identidad_sin_decidir': 1, 'sin_candidatos': 0}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 0}; primeros: 19.0-19.9 min (sin_golpes), 20.5-20.9 min (sin_golpes), 64.2-64.7 min (sin_saque)",
    "serve_gaps": {
     "points": 30,
     "found": 27,
@@ -134,14 +134,14 @@
    "area": "Golpes",
    "name": "Golpes encontrados frente al marcador: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "marcador: 158-172 puntos jugados (24 juegos leídos, 0 sin leer), 66 con su saque. Esperados: 66-140 saques (1 o 2 por punto de saque) y 253-447 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 285 golpes, 71 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (180 cerca, 105 lejos); además 16 de identidad dudosa, apartados (no cuentan como suyos)",
+   "detail": "marcador: 153-167 puntos jugados (24 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-134 saques (1 o 2 por punto de saque) y 245-434 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 285 golpes, 71 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (sin 5 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 3 de su saque) (180 cerca, 105 lejos); además 16 de identidad dudosa, apartados (no cuentan como suyos)",
    "found": 285,
    "serves": 71,
    "counts": {
-    "points": 158,
-    "points_high": 172,
-    "her_service_points": 66.0,
-    "her_service_points_high": 70.0,
+    "points": 153,
+    "points_high": 167,
+    "her_service_points": 63.0,
+    "her_service_points_high": 67.0,
     "unknown_server": 4,
     "games_seen": 24,
     "games_unread": 0,
@@ -158,7 +158,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_584c5b_rybakina",
    "status": "aviso",
-   "detail": "40 de 47 puntos de su saque vistos con su saque encontrado (3 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 5, golpes suyos, pero ningún saque 5; sus saques encontrados caen en puntos de su saque 55, de la rival 4, fuera de los puntos leídos 12; en los puntos sin saque, su primer golpe encontrado llega 4.8 s (mediana de 5) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 5): tipo {'backhand/detector': 2, 'forehand/detector': 3}, lado {'far': 4, 'near': 1}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 1, 'golpe_de_la_rival_antes': 2, 'nada_antes': 2, 'sin_primer_golpe': 5}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 2, sin golpes de nadie 3, cámara principal 12.3 s (mediana), candidatos {'suyos_perdidos_despues': 0, 'solo_de_la_rival': 1, 'identidad_sin_decidir': 1, 'sin_candidatos': 3}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 0}; saques del marcador descartados en la pasada fina: {'jugadora_lejana_no_encontrada': 1}; primeros: 17.9-18.4 min (sin_saque), 55.6-56.1 min (sin_golpes), 56.7-57.4 min (sin_golpes), 60.7-61.2 min (sin_saque), 63.3-64.1 min (sin_golpes), 70.9-71.1 min (sin_golpes), 86.0-86.6 min (sin_saque), 101.3-102.2 min (sin_saque)",
+   "detail": "40 de 47 puntos de su saque vistos con su saque encontrado (85%; objetivo ≥ 90%); SESGO: los puntos sin saque son del lado lejano en un 80% frente al 28% de sus saques encontrados (5 con lado conocido) (3 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 5, golpes suyos, pero ningún saque 5; sus saques encontrados caen en puntos de su saque 55, de la rival 4, fuera de los puntos leídos 12; en los puntos sin saque, su primer golpe encontrado llega 4.8 s (mediana de 5) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 5): tipo {'backhand/detector': 2, 'forehand/detector': 3}, lado {'far': 4, 'near': 1}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 1, 'golpe_de_la_rival_antes': 2, 'nada_antes': 2, 'sin_primer_golpe': 5}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 2, sin golpes de nadie 3, cámara principal 12.3 s (mediana), candidatos {'suyos_perdidos_despues': 0, 'solo_de_la_rival': 1, 'identidad_sin_decidir': 1, 'sin_candidatos': 3}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 0}; saques del marcador descartados en la pasada fina: {'jugadora_lejana_no_encontrada': 1}; primeros: 17.9-18.4 min (sin_saque), 55.6-56.1 min (sin_golpes), 56.7-57.4 min (sin_golpes), 60.7-61.2 min (sin_saque), 63.3-64.1 min (sin_golpes), 70.9-71.1 min (sin_golpes), 86.0-86.6 min (sin_saque), 101.3-102.2 min (sin_saque)",
    "serve_gaps": {
     "points": 50,
     "found": 40,
@@ -325,14 +325,14 @@
    "area": "Golpes",
    "name": "Golpes encontrados frente al marcador: sin-fecha_580c6f_rybakina",
    "status": "ok",
-   "detail": "marcador: 135-139 puntos jugados (24 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-126 saques (1 o 2 por punto de saque) y 216-361 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 271 golpes, 82 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (140 cerca, 131 lejos); además 30 de identidad dudosa, apartados (no cuentan como suyos)",
+   "detail": "marcador: 125-129 puntos jugados (24 juegos leídos, 0 sin leer), 57 con su saque. Esperados: 57-114 saques (1 o 2 por punto de saque) y 200-335 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 271 golpes, 82 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (sin 10 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 6 de su saque) (140 cerca, 131 lejos); además 30 de identidad dudosa, apartados (no cuentan como suyos)",
    "found": 271,
    "serves": 82,
    "counts": {
-    "points": 135,
-    "points_high": 139,
-    "her_service_points": 63.0,
-    "her_service_points_high": 63.0,
+    "points": 125,
+    "points_high": 129,
+    "her_service_points": 57.0,
+    "her_service_points_high": 57.0,
     "unknown_server": 0,
     "games_seen": 24,
     "games_unread": 0,
@@ -349,7 +349,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_580c6f_rybakina",
    "status": "aviso",
-   "detail": "38 de 44 puntos de su saque vistos con su saque encontrado (6 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 10, golpes suyos, pero ningún saque 2; sus saques encontrados caen en puntos de su saque 49, de la rival 9, fuera de los puntos leídos 24; en los puntos sin saque, su primer golpe encontrado llega 11.7 s (mediana de 2) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 2): tipo {'backhand/detector': 1, 'forehand/detector': 1}, lado {'near': 1, 'far': 1}, 1 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 2, 'sin_primer_golpe': 10}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 4, sin golpes de nadie 6, cámara principal 7.9 s (mediana), candidatos {'suyos_perdidos_despues': 1, 'solo_de_la_rival': 0, 'identidad_sin_decidir': 3, 'sin_candidatos': 6}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 1}, motivos del descarte {'lejana_sin_bola_ni_detector': 1}; saques del marcador descartados en la pasada fina: {'sin_impacto_cerca': 1}; primeros: 34.8-35.4 min (sin_saque), 42.4-42.9 min (sin_saque), 60.0-60.6 min (sin_golpes), 66.0-66.4 min (sin_golpes), 79.8-80.2 min (sin_golpes), 89.9-90.4 min (sin_golpes), 97.8-98.3 min (sin_golpes), 103.4-104.0 min (sin_golpes)",
+   "detail": "38 de 44 puntos de su saque vistos con su saque encontrado (86%; objetivo ≥ 90%) (6 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 10, golpes suyos, pero ningún saque 2; sus saques encontrados caen en puntos de su saque 49, de la rival 9, fuera de los puntos leídos 24; en los puntos sin saque, su primer golpe encontrado llega 11.7 s (mediana de 2) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 2): tipo {'backhand/detector': 1, 'forehand/detector': 1}, lado {'near': 1, 'far': 1}, 1 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 2, 'sin_primer_golpe': 10}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 4, sin golpes de nadie 6, cámara principal 7.9 s (mediana), candidatos {'suyos_perdidos_despues': 1, 'solo_de_la_rival': 0, 'identidad_sin_decidir': 3, 'sin_candidatos': 6}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 1}, motivos del descarte {'lejana_sin_bola_ni_detector': 1}; saques del marcador descartados en la pasada fina: {'sin_impacto_cerca': 1}; primeros: 34.8-35.4 min (sin_saque), 42.4-42.9 min (sin_saque), 60.0-60.6 min (sin_golpes), 66.0-66.4 min (sin_golpes), 79.8-80.2 min (sin_golpes), 89.9-90.4 min (sin_golpes), 97.8-98.3 min (sin_golpes), 103.4-104.0 min (sin_golpes)",
    "serve_gaps": {
     "points": 50,
     "found": 38,
@@ -508,15 +508,15 @@
    "req": 1,
    "area": "Golpes",
    "name": "Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina",
-   "status": "aviso",
-   "detail": "marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por punto de saque) y 299-538 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 292 golpes, 92 saques/remates → como mucho 98% de sus golpes y 100% de sus saques (160 cerca, 132 lejos); además 33 de identidad dudosa, apartados (no cuentan como suyos)",
+   "status": "ok",
+   "detail": "marcador: 173-193 puntos jugados (30 juegos leídos, 0 sin leer), 78 con su saque. Esperados: 78-172 saques (1 o 2 por punto de saque) y 277-502 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 292 golpes, 92 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (sin 14 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 8 de su saque) (160 cerca, 132 lejos); además 33 de identidad dudosa, apartados (no cuentan como suyos)",
    "found": 292,
    "serves": 92,
    "counts": {
-    "points": 187,
-    "points_high": 207,
-    "her_service_points": 86.0,
-    "her_service_points_high": 94.0,
+    "points": 173,
+    "points_high": 193,
+    "her_service_points": 78.0,
+    "her_service_points_high": 86.0,
     "unknown_server": 0,
     "games_seen": 30,
     "games_unread": 0,
@@ -533,7 +533,7 @@
    "area": "Golpes",
    "name": "Saques por punto de su saque: sin-fecha_b8b713_rybakina",
    "status": "aviso",
-   "detail": "55 de 62 puntos de su saque vistos con su saque encontrado (8 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 10, golpes suyos, pero ningún saque 5; sus saques encontrados caen en puntos de su saque 72, de la rival 7, fuera de los puntos leídos 13; en los puntos sin saque, su primer golpe encontrado llega 3.7 s (mediana de 5) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 5): tipo {'backhand/detector': 4, 'forehand/detector': 1}, lado {'far': 3, 'near': 2}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 1, 'golpe_de_la_rival_antes': 2, 'nada_antes': 2, 'sin_primer_golpe': 10}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 2, sin golpes de nadie 8, cámara principal 8.2 s (mediana), candidatos {'suyos_perdidos_despues': 1, 'solo_de_la_rival': 1, 'identidad_sin_decidir': 0, 'sin_candidatos': 8}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 1}, motivos del descarte {'lejana_sin_bola_ni_detector': 1}; primeros: 47.2-47.8 min (sin_golpes), 62.3-62.7 min (sin_golpes), 63.2-63.7 min (sin_golpes), 79.2-79.7 min (sin_golpes), 100.9-101.5 min (sin_saque), 106.8-107.3 min (sin_saque), 110.5-110.9 min (sin_golpes), 110.8-111.4 min (sin_golpes)",
+   "detail": "55 de 62 puntos de su saque vistos con su saque encontrado (89%; objetivo ≥ 90%) (8 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 10, golpes suyos, pero ningún saque 5; sus saques encontrados caen en puntos de su saque 72, de la rival 7, fuera de los puntos leídos 13; en los puntos sin saque, su primer golpe encontrado llega 3.7 s (mediana de 5) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 5): tipo {'backhand/detector': 4, 'forehand/detector': 1}, lado {'far': 3, 'near': 2}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 1, 'golpe_de_la_rival_antes': 2, 'nada_antes': 2, 'sin_primer_golpe': 10}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 2, sin golpes de nadie 8, cámara principal 8.2 s (mediana), candidatos {'suyos_perdidos_despues': 1, 'solo_de_la_rival': 1, 'identidad_sin_decidir': 0, 'sin_candidatos': 8}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 1}, motivos del descarte {'lejana_sin_bola_ni_detector': 1}; primeros: 47.2-47.8 min (sin_golpes), 62.3-62.7 min (sin_golpes), 63.2-63.7 min (sin_golpes), 79.2-79.7 min (sin_golpes), 100.9-101.5 min (sin_saque), 106.8-107.3 min (sin_saque), 110.5-110.9 min (sin_golpes), 110.8-111.4 min (sin_golpes)",
    "serve_gaps": {
     "points": 70,
     "found": 55,
@@ -734,6 +734,35 @@
   },
   {
    "req": 1,
+   "area": "Golpes",
+   "name": "Cobertura del saque dicha en el informe",
+   "status": "ok",
+   "detail": "el informe del saque lo dice: sin-fecha_f43dd2_rybakina: Saques analizados: 27 de los ~30 puntos de su saque que enseña la tele (90 %); sin-fecha_584c5b_rybakina: Saques analizados: 40 de los ~47 puntos de su saque que enseña la tele (85 %); sin-fecha_580c6f_rybakina: Saques analizados: 38 de los ~44 puntos de su saque que enseña la tele (86 %); sin-fecha_b8b713_rybakina: Saques analizados: 55 de los ~62 puntos de su saque que enseña la tele (89 %); total: Saques analizados: 160 de los ~183 puntos de su saque que enseña la tele (87 %)",
+   "expected": [
+    [
+     "sin-fecha_f43dd2_rybakina",
+     "Saques analizados: 27 de los ~30 puntos de su saque que enseña la tele (90 %)"
+    ],
+    [
+     "sin-fecha_584c5b_rybakina",
+     "Saques analizados: 40 de los ~47 puntos de su saque que enseña la tele (85 %)"
+    ],
+    [
+     "sin-fecha_580c6f_rybakina",
+     "Saques analizados: 38 de los ~44 puntos de su saque que enseña la tele (86 %)"
+    ],
+    [
+     "sin-fecha_b8b713_rybakina",
+     "Saques analizados: 55 de los ~62 puntos de su saque que enseña la tele (89 %)"
+    ],
+    [
+     "total",
+     "Saques analizados: 160 de los ~183 puntos de su saque que enseña la tele (87 %)"
+    ]
+   ]
+  },
+  {
+   "req": 1,
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina",
    "status": "aviso",
@@ -775,14 +804,14 @@
    "req": 1,
    "area": "Repeticiones y otras cámaras",
    "name": "Repeticiones y otras cámaras enlazadas: sin-fecha_b8b713_rybakina",
-   "status": "ok",
-   "detail": "15% de sus golpes con repetición enlazada (44 de 292, 20 a cámara lenta) · 98% con otra cámara (287) · tomas: 76 repeticiones, 103 laterales, 33 frontales, 1380 primeros planos, 81 otras",
+   "status": "aviso",
+   "detail": "0% de sus golpes con repetición enlazada (0 de 292, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 76 repeticiones, 103 laterales, 33 frontales, 1380 primeros planos, 81 otras",
    "strokes": 292,
-   "with_replay": 44,
-   "with_other_camera": 287,
-   "with_slowmo": 20,
-   "replay_share": 0.151,
-   "other_share": 0.983
+   "with_replay": 0,
+   "with_other_camera": 0,
+   "with_slowmo": 0,
+   "replay_share": 0.0,
+   "other_share": 0.0
   },
   {
    "req": 3,
@@ -8135,7 +8164,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_f43dd2_rybakina",
    "status": "ok",
-   "detail": "28 min para 71 min de vídeo ≈ 1.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "30 min para 71 min de vídeo ≈ 1.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -8149,7 +8178,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "51 min para 117 min de vídeo ≈ 1.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "53 min para 117 min de vídeo ≈ 1.6 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -8205,8 +8234,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 47871b4 (2026-11-08T10:46:50): 860 bien, 0 fallan, 0 errores",
-   "passed": 860,
+   "detail": "código 412fd4c (2026-11-08T15:14:50): 868 bien, 0 fallan, 0 errores",
+   "passed": 868,
    "failed": 0
   },
   {
@@ -8431,7 +8460,7 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: identity de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (2027/2027), 241 s, quedan ≈ 0 s, a las 2026-11-08 10:54:08"
+   "detail": "último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (63/63), 29 s, quedan ≈ 0 s, a las 2026-11-08 15:32:52"
   },
   {
    "req": 5,
@@ -8445,7 +8474,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "41 carpetas, 28.6 GB en total (2026-11-08T10:43:17); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
+   "detail": "41 carpetas, 28.6 GB en total (2026-11-08T15:40:32); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
   },
   {
    "req": 5,
@@ -8522,21 +8551,21 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_derecha",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 10:24:49 en 0 min: 443 vídeos de 443 golpes"
+   "detail": "terminó el 2026-11-08 11:03:28 en 0 min: 443 vídeos de 443 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_reves",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 10:25:18 en 0 min: 283 vídeos de 283 golpes"
+   "detail": "terminó el 2026-11-08 11:03:56 en 0 min: 283 vídeos de 283 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_saque",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 10:37:17 en 12 min: 291 vídeos de 291 golpes"
+   "detail": "terminó el 2026-11-08 11:04:18 en 0 min: 291 vídeos de 291 golpes"
   },
   {
    "req": 5,
@@ -8683,14 +8712,14 @@
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina",
    "status": "ok",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 10.8 min, score 7.3 min, scenes 7.0 min, audio 2.4 min, fine 2.2 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 10.8 min, score 7.3 min, scenes 7.0 min, fine 4.2 min, audio 2.4 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina",
-   "status": "ok",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 4.7 min, views 3.2 min; ninguna pasa de 2 veces su ritmo habitual"
+   "status": "aviso",
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 7.5 min, views 3.2 min; MÁS LENTAS de 2 veces: fine 3.8 s por min de vídeo, 2.1 veces su mediana (1.8); alarma en vivo: fine: 4.84 s por unidad frente a 0.86 de presupuesto (mediana de 8 ejecuciones aquí), 5.6 veces; a e"
   },
   {
    "req": 9,
@@ -8704,7 +8733,7 @@
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_b8b713_rybakina",
    "status": "ok",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 30.0 min, scenes 28.5 min, score 12.9 min, views 8.0 min, fine 5.2 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 30.0 min, scenes 28.5 min, score 12.9 min, views 8.0 min, fine 5.3 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -8739,14 +8768,21 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-08_0900.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (2.0 min): CPU 27/51/100 %, iGPU 0/23/98 %, RAM máx 9.4 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 25/25/25 %, iGPU 1/1/1 %, RAM máx 8.8 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (4.0 min): CPU 20/37/100 %, iGPU 0/30/100 %, RAM máx 9.5 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 23/50/78 %, iGPU 0/0/0 %, RAM máx 9.4 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine (3.5 min): CPU 16/41/66 %, iGPU 0/21/89 %, RAM máx 9.6 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.5 min): CPU 59/62/64 %, iGPU 0/0/0 %, RAM máx 9.2 GB → uso medio: margen para repartir trabajo; 84.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
+   "detail": "recursos_2026-11-08_1434.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (3.5 min): CPU 16/47/95 %, iGPU 0/14/99 %, RAM máx 12.5 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 14/14/14 %, iGPU 0/0/0 %, RAM máx 8.0 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (6.8 min): CPU 14/30/60 %, iGPU 0/18/100 %, RAM máx 8.3 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 28/30/31 %, iGPU 0/0/1 %, RAM máx 10.7 GB → equipo infrautilizado: trabajo en serie (se puede repartir); tennis-yusipopen-polufinal-gau fine (3.2 min): CPU 27/45/76 %, iGPU 0/25/100 %, RAM máx 10.8 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.8 min): CPU 25/32/35 %, iGPU 0/62/100 %, RAM máx 10.7 GB → uso medio: margen para repartir trabajo; 40.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 08-11 10:15, empezó a los 27.3 min; el PC estaba con otro trabajo hasta las 10:43 (27.3 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 08-11 15:06, empezó a los 2.7 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Golpes inventados: precisión en F3Set ≥ 0.94",
+   "status": "ok",
+   "detail": "precisión 0.943, encontrados 463 de 517 (90%) en recall_validation_detector.json"
   },
   {
    "req": 12,
@@ -8760,7 +8796,7 @@
    "area": "Peticiones",
    "name": "#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 14 comprobaciones: 4 aviso, 10 ok; la peor: «Saques por punto de su saque: sin-fecha_584c5b_rybakina» (40 de 47 puntos de su saque vistos con su saque encontrado (3 puntos más sin nadie jugando en la cámara principal: la te)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 14 comprobaciones: 3 aviso, 11 ok; la peor: «Saques por punto de su saque: sin-fecha_584c5b_rybakina» (40 de 47 puntos de su saque vistos con su saque encontrado (85%; objetivo ≥ 90%); SESGO: los puntos sin saque son del la)"
   },
   {
    "req": 11,
@@ -9061,7 +9097,7 @@
    "area": "Peticiones",
    "name": "#45 Todo automático y completo: el usuario no revisa nada",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 aviso, 5 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina» (marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por pu)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 6 comprobaciones: 6 ok"
   },
   {
    "req": 11,
@@ -9621,7 +9657,7 @@
    "area": "Peticiones",
    "name": "#134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06)",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 1 aviso, 4 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina» (marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por pu)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok"
   },
   {
    "req": 11,
@@ -9739,8 +9775,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25)",
-   "status": "aviso",
-   "detail": "5 comprobaciones: 1 aviso, 4 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina» (marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por pu)"
+   "status": "ok",
+   "detail": "5 comprobaciones: 5 ok"
   },
   {
    "req": 11,
@@ -10209,14 +10245,14 @@
    "area": "Peticiones",
    "name": "#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 3 aviso, 1 ok; la peor: «Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina» (0% de sus golpes con repetición enlazada (0 de 169, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 30 repeticiones,)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 aviso; la peor: «Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina» (0% de sus golpes con repetición enlazada (0 de 169, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 30 repeticiones,)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 4 aviso, 4 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina» (marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por pu)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 4 aviso, 4 ok; la peor: «Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina» (0% de sus golpes con repetición enlazada (0 de 169, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 30 repeticiones,)"
   },
   {
    "req": 11,
@@ -10285,15 +10321,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok"
+   "status": "ok",
+   "detail": "10 comprobaciones: 10 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 13 comprobaciones: 13 ok"
+   "detail": "13 comprobaciones: 1 aviso, 12 ok; la peor: «Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina» (3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 7.5 )"
   },
   {
    "req": 11,
@@ -10307,7 +10343,7 @@
    "area": "Peticiones",
    "name": "#233 Una referencia completa y medida antes de validar nada",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 1 aviso, 4 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina» (marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por pu)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok"
   },
   {
    "req": 11,
