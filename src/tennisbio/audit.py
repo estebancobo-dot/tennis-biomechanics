@@ -252,6 +252,9 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
                        + (f"; con menos de {min_strokes} muchas situaciones no se pueden describir" if few else ""),
                        n=len(near)))
     items += recall_items(match_dirs)
+    if report_dir:          # the serve report (informe_saque next to this one) says how much of her serves it covers
+        serve_html = (report_dir if stroke == "overhead" else report_dir.parent / "informe_saque") / "index.html"
+        items.append(serve_coverage_item(match_dirs, serve_html))
     items += views_items(match_dirs)
     items += camera_items(match_dirs, stroke)
 
@@ -623,6 +626,86 @@ def f3set_precision_item(out_root: Path) -> dict:
     f, p, rec, found, gt = r
     return _item(1, "Golpes", name, "ok" if p >= F3SET_PRECISION_MIN - 1e-9 else "falta",
                  f"precisión {p:.3f}, encontrados {found} de {gt} ({rec:.0%}) en {f}")
+
+
+def serve_coverage(d: Path) -> dict | None:
+    """B4 (08-11): her serves found and the points of her serve the TV showed in one match folder, with the same
+    inputs and the same numbers as the item «Saques por punto de su saque» (recall_items): serve_gaps over score.json,
+    strokes.json, the main-camera shots, spotting, candidates, doubtful and dropped strokes. None without score.json."""
+    from .point_count import serve_gaps
+
+    sc = _mf.at(d, "score.json")
+    if not sc.exists():
+        return None
+    load = lambda name, default=None: (json.loads(_mf.at(d, name).read_text(encoding="utf-8"))
+                                       if _mf.at(d, name).exists() else default)
+    readings = (load("score.json") or {}).get("readings") or []
+    strokes = load("strokes.json", [])
+    try:
+        doubt = load("strokes_doubtful.json", [])
+    except (OSError, ValueError):
+        doubt = []
+    shots = []
+    scn = load("scenes.json")
+    if scn:
+        fps = float(scn.get("fps") or 1.0)
+        shots = [(sh["start"] / fps, sh["end"] / fps) for sh in scn.get("shots", []) if sh.get("main_camera")]
+    cj = load("candidates.json")
+    cands = (cj.get("candidates", cj) if isinstance(cj, dict) else cj) if cj is not None else None
+    g = serve_gaps(readings, strokes, shots, spotted=load("spotting.json"), candidates=cands, doubtful=doubt,
+                   dropped=load("strokes_descartados.json"))
+    unseen = g.get("unseen", 0)
+    return {"found": g["found"], "points": g["points"], "unseen": unseen, "shown": g["points"] - unseen}
+
+
+def serve_coverage_text(match_dirs: list[tuple[str, Path]]) -> dict:
+    """The sentences of the serve report (screen «Datos del análisis»): one per match ({"match", "text"}) and the
+    total over the matches with a scoreboard; «sin marcador…» where score.json is missing."""
+    from .point_count import NO_SCOREBOARD, serve_coverage_sentence
+
+    rows, found, shown, missing = [], 0, 0, 0
+    for label, d in match_dirs:
+        try:
+            c = serve_coverage(d)
+        except (OSError, ValueError, KeyError, TypeError) as e:
+            rows.append({"match": label, "text": f"no se pudo calcular ({e})"})
+            continue
+        if c is None:
+            missing += 1
+            rows.append({"match": label, "text": NO_SCOREBOARD})
+            continue
+        found, shown = found + c["found"], shown + c["shown"]
+        rows.append({"match": label, "text": serve_coverage_sentence(c["found"], c["shown"])})
+    if missing == len(match_dirs):
+        total = NO_SCOREBOARD
+    else:
+        total = serve_coverage_sentence(found, shown) + (" (solo los partidos con marcador)" if missing else "")
+    return {"matches": rows, "total": total}
+
+
+def serve_coverage_item(match_dirs: list[Path], report_html: Path | None) -> dict:
+    """«Cobertura del saque dicha en el informe» (B4, 08-11): the serve report says how much of her serves it covers,
+    with the numbers of serve_gaps (tolerance 0) for each match and in total."""
+    from html import unescape
+
+    from .point_count import NO_SCOREBOARD
+
+    name = "Cobertura del saque dicha en el informe"
+    if report_html is None or not report_html.exists():
+        return _item(1, "Golpes", name, "aviso", f"no se encontró el informe del saque ({report_html})")
+    try:
+        txt = unescape(report_html.read_text(encoding="utf-8"))
+    except OSError as e:
+        return _item(1, "Golpes", name, "aviso", f"no se pudo leer el informe del saque ({e})")
+    exp = serve_coverage_text([(d.name, d) for d in match_dirs])
+    want = [(r["match"], r["text"]) for r in exp["matches"]] + [("total", exp["total"].split(" (solo")[0])]
+    bad = [f"{m}: falta «{t}»" for m, t in want if t not in txt]
+    shown = [t for m, t in want if t != NO_SCOREBOARD]
+    if bad:
+        return _item(1, "Golpes", name, "aviso", "el informe del saque no dice su cobertura con los números del "
+                     "marcador: " + "; ".join(bad[:6]), expected=want)
+    return _item(1, "Golpes", name, "ok", "el informe del saque lo dice: " + "; ".join(f"{m}: {t}" for m, t in want)
+                 + ("" if shown else " (sin marcador en ningún partido)"), expected=want)
 
 
 def _board_drops(dropped: list[dict] | None) -> dict:

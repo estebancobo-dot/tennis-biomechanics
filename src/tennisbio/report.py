@@ -639,6 +639,12 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
     data["generated"] = time.strftime("%Y-%m-%d %H:%M")
     data["practice"] = practice_data(out_root, dest)
     data["run_info"] = run_info(matches, out_root)
+    # B4 (08-11): the serve report says how much of her serves it covers (her serves found against the points of her
+    # serve the TV showed, tennisbio.point_count.serve_gaps), per match and in total, so it never seems to cover more
+    own = matches[0].player.id if matches else None
+    if stroke == "overhead" and (player_id is None or player_id == own):
+        from .audit import serve_coverage_text
+        data["run_info"]["serve_coverage"] = serve_coverage_text([(m.id, _layout.dir_of(out_root, m)) for m in matches])
     # the exports made with `tennisbio export` (PDF summary, video montages), linked from «Datos»
     data["exports"] = [Path(os.path.relpath(f, dest)).as_posix() for f in sorted(dest.parent.glob("exportar*/resumen.pdf"))
                        + sorted(dest.parent.glob("exportar*/montajes/*.mp4"))[:12]]

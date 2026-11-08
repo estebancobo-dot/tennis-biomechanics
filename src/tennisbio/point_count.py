@@ -456,3 +456,13 @@ def serves_by_rule(strokes: list[dict], readings: list[dict], main_shots: list[t
         s["stroke"], s["stroke_rule"] = "overhead", SERVE_RULE
         changed += 1
     return changed
+
+
+NO_SCOREBOARD = "sin marcador: no se puede saber cuántos saques enseña la tele"
+
+
+def serve_coverage_sentence(found: int, shown: int) -> str:
+    """B4 (08-11): how much of her serves the serve report covers, said in the report so it never seems to cover more
+    than it does: her serves found against the points of her serve the TV showed (serve_gaps: points minus unseen)."""
+    pct = f" ({round(100 * found / shown)} %)" if shown > 0 else ""
+    return f"Saques analizados: {found} de los ~{shown} puntos de su saque que enseña la tele{pct}"
