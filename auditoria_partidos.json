@@ -3,10 +3,10 @@
  "strokes": 443,
  "near": 265,
  "summary": {
-  "ok": 429,
-  "falta": 28,
+  "ok": 433,
+  "falta": 27,
   "pocos datos": 56,
-  "aviso": 124
+  "aviso": 121
  },
  "items": [
   {
@@ -7868,7 +7868,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2592 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2589 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -8135,7 +8135,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_f43dd2_rybakina",
    "status": "ok",
-   "detail": "40 min para 71 min de vídeo ≈ 2.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "28 min para 71 min de vídeo ≈ 1.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -8149,7 +8149,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "50 min para 117 min de vídeo ≈ 1.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "51 min para 117 min de vídeo ≈ 1.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -8177,7 +8177,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_b8b713_rybakina",
    "status": "ok",
-   "detail": "86 min para 210 min de vídeo ≈ 1.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
+   "detail": "87 min para 210 min de vídeo ≈ 1.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -8205,8 +8205,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código e42c7e3 (2026-11-08T09:54:31): 857 bien, 0 fallan, 0 errores",
-   "passed": 857,
+   "detail": "código 47871b4 (2026-11-08T10:46:50): 860 bien, 0 fallan, 0 errores",
+   "passed": 860,
    "failed": 0
   },
   {
@@ -8431,7 +8431,7 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (63/63), 30 s, quedan ≈ 0 s, a las 2026-11-08 10:15:46"
+   "detail": "último: identity de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (2027/2027), 241 s, quedan ≈ 0 s, a las 2026-11-08 10:54:08"
   },
   {
    "req": 5,
@@ -8445,14 +8445,14 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "42 carpetas, 36.3 GB en total (2026-11-08T10:18:10); las mayores: _poc9_largo 7.6 GB, tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB"
+   "detail": "41 carpetas, 28.6 GB en total (2026-11-08T10:43:17); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Carpetas de pruebas antiguas",
-   "status": "aviso",
-   "detail": "1 carpeta(s) de pruebas sin usar en más de 14 días (7.6 GB): _poc9_largo. Se borran con la petición «borrar» del PC"
+   "status": "ok",
+   "detail": "ninguna carpeta de pruebas con más de 14 días sin usar"
   },
   {
    "req": 5,
@@ -8522,21 +8522,21 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_derecha",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 06:29:36 en 0 min: 443 vídeos de 443 golpes"
+   "detail": "terminó el 2026-11-08 10:24:49 en 0 min: 443 vídeos de 443 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_reves",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 06:30:05 en 0 min: 283 vídeos de 283 golpes"
+   "detail": "terminó el 2026-11-08 10:25:18 en 0 min: 283 vídeos de 283 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_saque",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 06:30:27 en 0 min: 290 vídeos de 290 golpes"
+   "detail": "terminó el 2026-11-08 10:37:17 en 12 min: 291 vídeos de 291 golpes"
   },
   {
    "req": 5,
@@ -8682,8 +8682,8 @@
    "req": 9,
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina",
-   "status": "aviso",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: identity 13.3 min, players 10.8 min, score 7.3 min, scenes 7.0 min, audio 2.4 min; MÁS LENTAS de 2 veces: identity 11.2 s por min de vídeo, 10.8 veces su mediana (1.0); alarma en vivo: identity: 2.72 s por unidad frente a 0.75 de presupuesto (configuración), 3.6 veces; a este ritmo qu"
+   "status": "ok",
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 10.8 min, score 7.3 min, scenes 7.0 min, audio 2.4 min, fine 2.2 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -8739,14 +8739,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-08_0900.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (2.0 min): CPU 27/51/100 %, iGPU 0/23/98 %, RAM máx 9.4 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 25/25/25 %, iGPU 1/1/1 %, RAM máx 8.8 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (4.0 min): CPU 20/37/100 %, iGPU 0/30/100 %, RAM máx 9.5 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 23/50/78 %, iGPU 0/0/0 %, RAM máx 9.4 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine (3.5 min): CPU 16/41/66 %, iGPU 0/21/89 %, RAM máx 9.6 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.5 min): CPU 59/62/64 %, iGPU 0/0/0 %, RAM máx 9.2 GB → uso medio: margen para repartir trabajo; 59.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
+   "detail": "recursos_2026-11-08_0900.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (2.0 min): CPU 27/51/100 %, iGPU 0/23/98 %, RAM máx 9.4 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 25/25/25 %, iGPU 1/1/1 %, RAM máx 8.8 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine (4.0 min): CPU 20/37/100 %, iGPU 0/30/100 %, RAM máx 9.5 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 23/50/78 %, iGPU 0/0/0 %, RAM máx 9.4 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine (3.5 min): CPU 16/41/66 %, iGPU 0/21/89 %, RAM máx 9.6 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.5 min): CPU 59/62/64 %, iGPU 0/0/0 %, RAM máx 9.2 GB → uso medio: margen para repartir trabajo; 84.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 08-11 09:45, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 08-11 10:15, empezó a los 27.3 min; el PC estaba con otro trabajo hasta las 10:43 (27.3 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 12,
@@ -8759,8 +8759,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final",
-   "status": "falta",
-   "detail": "SIN HACER según el registro (#1, docs/peticiones_usuario.md)"
+   "status": "aviso",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 14 comprobaciones: 4 aviso, 10 ok; la peor: «Saques por punto de su saque: sin-fecha_584c5b_rybakina» (40 de 47 puntos de su saque vistos con su saque encontrado (3 puntos más sin nadie jugando en la cámara principal: la te)"
   },
   {
    "req": 11,
@@ -8774,21 +8774,21 @@
    "area": "Peticiones",
    "name": "#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b",
    "status": "falta",
-   "detail": "201 comprobaciones: 1 falta, 23 pocos datos, 177 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 201 comprobaciones: 1 falta, 23 pocos datos, 177 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto",
    "status": "falta",
-   "detail": "32 comprobaciones: 1 falta, 7 pocos datos, 24 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 32 comprobaciones: 1 falta, 7 pocos datos, 24 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#6 Juego de pies: split step, primer paso, ajuste, reacción, recuperación",
    "status": "pocos datos",
-   "detail": "35 comprobaciones: 1 pocos datos, 34 ok; la peor: «3. Pies y desplazamiento · Presencia del split» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 35 comprobaciones: 1 pocos datos, 34 ok; la peor: «3. Pies y desplazamiento · Presencia del split» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -8809,7 +8809,7 @@
    "area": "Peticiones",
    "name": "#9 Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))"
   },
   {
    "req": 11,
@@ -8823,7 +8823,7 @@
    "area": "Peticiones",
    "name": "#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía",
    "status": "pocos datos",
-   "detail": "191 comprobaciones: 16 pocos datos, 175 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 191 comprobaciones: 16 pocos datos, 175 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
@@ -8858,14 +8858,14 @@
    "area": "Peticiones",
    "name": "#16 Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas",
    "status": "pocos datos",
-   "detail": "5 comprobaciones: 3 pocos datos, 2 ok; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 265 (la clase «Contacto» se pudo decidir en 122; sin señal, ninguna clase: nunca se inventa); sin golpes suf)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 3 pocos datos, 2 ok; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 265 (la clase «Contacto» se pudo decidir en 122; sin señal, ninguna clase: nunca se inventa); sin golpes suf)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»",
    "status": "falta",
-   "detail": "10 comprobaciones: 1 falta, 1 pocos datos, 8 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 falta, 1 pocos datos, 8 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )"
   },
   {
    "req": 11,
@@ -9061,7 +9061,7 @@
    "area": "Peticiones",
    "name": "#45 Todo automático y completo: el usuario no revisa nada",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 aviso, 5 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina» (marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por pu)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 aviso, 5 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina» (marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por pu)"
   },
   {
    "req": 11,
@@ -9179,8 +9179,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -9194,14 +9194,14 @@
    "area": "Peticiones",
    "name": "#68 La meta: mejorar mi derecha tomando la de X como base",
    "status": "falta",
-   "detail": "8 comprobaciones: 1 falta, 1 pocos datos, 6 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 falta, 1 pocos datos, 6 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica",
    "status": "pocos datos",
-   "detail": "1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 1 parecidos; 75 de 90 puntos con su valor medido)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 1 parecidos; 75 de 90 puntos con su valor medido)"
   },
   {
    "req": 11,
@@ -9215,21 +9215,21 @@
    "area": "Peticiones",
    "name": "#71 El conocimiento de los vídeos de entrenadores en la web",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 21 comprobaciones: 4 aviso, 17 ok; la peor: «R17 La terminación más frecuente es sobre el hombro» (refuta: la más frecuente: limpiaparabrisas)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 21 comprobaciones: 4 aviso, 17 ok; la peor: «R17 La terminación más frecuente es sobre el hombro» (refuta: la más frecuente: limpiaparabrisas)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos",
    "status": "pocos datos",
-   "detail": "170 comprobaciones: 16 pocos datos, 154 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 170 comprobaciones: 16 pocos datos, 154 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#73 Revisar la web de arriba abajo para que aporte valor",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 23 comprobaciones: 1 aviso, 22 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 23 comprobaciones: 1 aviso, 22 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))"
   },
   {
    "req": 11,
@@ -9271,7 +9271,7 @@
    "area": "Peticiones",
    "name": "#79 Vídeos de entrenamiento con otras cámaras, en un apartado aparte y marcado",
    "status": "pocos datos",
-   "detail": "20 comprobaciones: 11 pocos datos, 9 ok; la peor: «Derechas filmadas de lado» (6 (se resume cada medida con 12 o más))"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 20 comprobaciones: 11 pocos datos, 9 ok; la peor: «Derechas filmadas de lado» (6 (se resume cada medida con 12 o más))"
   },
   {
    "req": 11,
@@ -9313,14 +9313,14 @@
    "area": "Peticiones",
    "name": "#85 Matriz §2 Cuerpo (cabeza, brazos, tronco, piernas, pie de arrastre)",
    "status": "pocos datos",
-   "detail": "14 comprobaciones: 3 pocos datos, 11 ok; la peor: «6. Matriz del usuario · Rodilla de atrás en la carga (110–130°) y de delante en el impacto» (vista lateral de entrenamiento: back_knee_loaded_deg en 6 derechas de lado, front_knee_impact_deg en 6 derechas de lado;)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 14 comprobaciones: 3 pocos datos, 11 ok; la peor: «6. Matriz del usuario · Rodilla de atrás en la carga (110–130°) y de delante en el impacto» (vista lateral de entrenamiento: back_knee_loaded_deg en 6 derechas de lado, front_knee_impact_deg en 6 derechas de lado;)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#86 Matriz §3 Raqueta (bucle, caída, cara, trayectoria)",
    "status": "pocos datos",
-   "detail": "13 comprobaciones: 2 pocos datos, 11 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 13 comprobaciones: 2 pocos datos, 11 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más)"
   },
   {
    "req": 11,
@@ -9341,14 +9341,14 @@
    "area": "Peticiones",
    "name": "#89 Matriz §6 Modalidades (plano, liftado, cortado, botepronto, volea, 3 terminaciones)",
    "status": "pocos datos",
-   "detail": "8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Botepronto / media volea: casos (#16)» (5 golpes de 265 (la clase «Contacto» se pudo decidir en 122; sin señal, ninguna clase: nunca se inventa); candidatos mar)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Botepronto / media volea: casos (#16)» (5 golpes de 265 (la clase «Contacto» se pudo decidir en 122; sin señal, ninguna clase: nunca se inventa); candidatos mar)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral)",
    "status": "pocos datos",
-   "detail": "16 comprobaciones: 6 pocos datos, 10 ok; la peor: «Golpe angulado (#132)» (0 golpes de 265 (la clase «Golpe angulado» se pudo decidir en 80; sin señal, ninguna clase: nunca se inventa); sin golpe)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 16 comprobaciones: 6 pocos datos, 10 ok; la peor: «Golpe angulado (#132)» (0 golpes de 265 (la clase «Golpe angulado» se pudo decidir en 80; sin señal, ninguna clase: nunca se inventa); sin golpe)"
   },
   {
    "req": 11,
@@ -9362,7 +9362,7 @@
    "area": "Peticiones",
    "name": "#92 Matriz §9 Control (zona de impacto, relajación, equilibrio)",
    "status": "pocos datos",
-   "detail": "4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Zona de impacto: delante de la cadera» (vista lateral de entrenamiento: contact_in_front_pct en 6 derechas de lado; se resume con 12 o más)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Zona de impacto: delante de la cadera» (vista lateral de entrenamiento: contact_in_front_pct en 6 derechas de lado; se resume con 12 o más)"
   },
   {
    "req": 11,
@@ -9376,7 +9376,7 @@
    "area": "Peticiones",
    "name": "#97 Matriz §14 Fugas de energía (apertura prematura, casting, vector)",
    "status": "pocos datos",
-   "detail": "4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Liberación anticipada de la muñeca («casting»)» (vista lateral de entrenamiento: lag_accel_deg en 5 derechas de lado, lag_pre_impact_deg en 6 derechas de lado; se resume)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Liberación anticipada de la muñeca («casting»)» (vista lateral de entrenamiento: lag_accel_deg en 5 derechas de lado, lag_pre_impact_deg en 6 derechas de lado; se resume)"
   },
   {
    "req": 11,
@@ -9446,7 +9446,7 @@
    "area": "Peticiones",
    "name": "#107 Mejora 9: caída por debajo de la bola",
    "status": "pocos datos",
-   "detail": "2 comprobaciones: 2 pocos datos; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 pocos datos; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más)"
   },
   {
    "req": 11,
@@ -9488,7 +9488,7 @@
    "area": "Peticiones",
    "name": "#113 Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25)",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 19 comprobaciones: 4 aviso, 15 ok; la peor: «R17 La terminación más frecuente es sobre el hombro» (refuta: la más frecuente: limpiaparabrisas)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 19 comprobaciones: 4 aviso, 15 ok; la peor: «R17 La terminación más frecuente es sobre el hombro» (refuta: la más frecuente: limpiaparabrisas)"
   },
   {
    "req": 11,
@@ -9621,7 +9621,7 @@
    "area": "Peticiones",
    "name": "#134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06)",
    "status": "aviso",
-   "detail": "5 comprobaciones: 1 aviso, 4 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina» (marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por pu)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 1 aviso, 4 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina» (marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por pu)"
   },
   {
    "req": 11,
@@ -9705,7 +9705,7 @@
    "area": "Peticiones",
    "name": "#146 borra las carpetas de pruebas antiguas (Chat, 17-10 10:49)",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Carpetas de pruebas antiguas» (1 carpeta(s) de pruebas sin usar en más de 14 días (7.6 GB): _poc9_largo. Se borran con la petición «borrar» del PC)"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -9796,14 +9796,14 @@
    "area": "Peticiones",
    "name": "#159 volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (Chat, 19-10 08:11)",
    "status": "pocos datos",
-   "detail": "2 comprobaciones: 2 pocos datos; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 265 (la clase «Contacto» se pudo decidir en 122; sin señal, ninguna clase: nunca se inventa); sin golpes suf)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 pocos datos; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 265 (la clase «Contacto» se pudo decidir en 122; sin señal, ninguna clase: nunca se inventa); sin golpes suf)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok"
+   "status": "ok",
+   "detail": "5 comprobaciones: 5 ok"
   },
   {
    "req": 11,
@@ -10209,14 +10209,14 @@
    "area": "Peticiones",
    "name": "#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 3 aviso, 1 ok; la peor: «Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina» (0% de sus golpes con repetición enlazada (0 de 169, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 30 repeticiones,)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 3 aviso, 1 ok; la peor: «Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina» (0% de sus golpes con repetición enlazada (0 de 169, 0 a cámara lenta) · 0% con otra cámara (0) · tomas: 30 repeticiones,)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 4 aviso, 4 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina» (marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por pu)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 4 aviso, 4 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina» (marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por pu)"
   },
   {
    "req": 11,
@@ -10293,7 +10293,7 @@
    "area": "Peticiones",
    "name": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
    "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 13 comprobaciones: 1 aviso, 12 ok; la peor: «Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina» (3 etapas comparadas con su mediana aquí; las que más tardan: identity 13.3 min, players 10.8 min, score 7.3 min, scenes )"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 13 comprobaciones: 13 ok"
   },
   {
    "req": 11,
@@ -10307,14 +10307,14 @@
    "area": "Peticiones",
    "name": "#233 Una referencia completa y medida antes de validar nada",
    "status": "aviso",
-   "detail": "5 comprobaciones: 1 aviso, 4 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina» (marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por pu)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 1 aviso, 4 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina» (marcador: 187-207 puntos jugados (30 juegos leídos, 0 sin leer), 86 con su saque. Esperados: 86-188 saques (1 o 2 por pu)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#234 Prueba de valor de la aplicación con los datos reales",
    "status": "ok",
-   "detail": "no se comprueba en las salidas: prueba de valor del 27-10 (docs/plan_maestro.md, R2)"
+   "detail": "3 comprobaciones: 3 ok"
   },
   {
    "req": 11,

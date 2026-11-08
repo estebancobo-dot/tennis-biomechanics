@@ -10,3 +10,65 @@
 
 **Total estimado: 0.1-1.7 h (desde las cachés - calculando todo)**.
 
+[us-open-2026-r4-naomi-osaka-elena-rybakina] identity… (2026-11-08 10:43:21, etapa 7 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+  identity:   0 % (1/880 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+  identity:  41 % (358/880 fotogramas (ropa)) · 30 s · quedan ≈ 44 s
+  identity:  73 % (640/880 fotogramas (ropa)) · 61 s · quedan ≈ 23 s
+  identity: 100 % (880/880 fotogramas (ropa)) · 80 s · quedan ≈ 0 s
+  ropa: 880 fotogramas · leerlos 69 s, medir la ropa 11 s
+  identidad: 148/148 planos · ropa y cambios de lado de acuerdo en 129, solo cambios de lado 0, solo ropa 12, la ropa corrige el marcador en 7, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 4.4
+[us-open-2026-r4-naomi-osaka-elena-rybakina] identity terminada a las 10:44:43 en 1.4 min
+us-open-2026-r4-naomi-osaka-elena-rybakina: ejecutado identity
+[zheng-qinwen-elena-rybakina] identity… (2026-11-08 10:44:43, etapa 7 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+  identity:   0 % (1/1625 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+  identity:  24 % (395/1625 fotogramas (ropa)) · 30 s · quedan ≈ 2 min
+  identity:  48 % (779/1625 fotogramas (ropa)) · 60 s · quedan ≈ 65 s
+  identity:  72 % (1167/1625 fotogramas (ropa)) · 2 min · quedan ≈ 35 s
+  identity:  93 % (1516/1625 fotogramas (ropa)) · 2 min · quedan ≈ 9 s
+  identity: 100 % (1625/1625 fotogramas (ropa)) · 2 min · quedan ≈ 0 s
+  ropa: 1625 fotogramas · leerlos 115 s, medir la ropa 14 s
+  identidad: 274/276 planos · ropa y cambios de lado de acuerdo en 240, solo cambios de lado 10, solo ropa 9, la ropa corrige el marcador en 14, el saque visto en 1, dudosos 2 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 3.52
+[zheng-qinwen-elena-rybakina] identity terminada a las 10:47:00 en 2.3 min
+zheng-qinwen-elena-rybakina: ejecutado identity
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] identity… (2026-11-08 10:47:00, etapa 7 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+  identity:   0 % (1/1681 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+  identity:  18 % (305/1681 fotogramas (ropa)) · 30 s · quedan ≈ 2 min
+  identity:  36 % (607/1681 fotogramas (ropa)) · 60 s · quedan ≈ 2 min
+  identity:  54 % (913/1681 fotogramas (ropa)) · 2 min · quedan ≈ 76 s
+  identity:  72 % (1209/1681 fotogramas (ropa)) · 2 min · quedan ≈ 47 s
+  identity:  90 % (1515/1681 fotogramas (ropa)) · 3 min · quedan ≈ 17 s
+  identity: 100 % (1681/1681 fotogramas (ropa)) · 3 min · quedan ≈ 0 s
+  ropa: 1681 fotogramas · leerlos 153 s, medir la ropa 15 s
+  identidad: 281/285 planos · ropa y cambios de lado de acuerdo en 199, solo cambios de lado 13, solo ropa 62, la ropa corrige el marcador en 7, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 2.97
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] identity terminada a las 10:49:55 en 2.9 min
+tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: ejecutado identity
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] identity… (2026-11-08 10:49:55, etapa 7 de 14)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+  identity:   0 % (1/2027 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+  identity:  13 % (257/2027 fotogramas (ropa)) · 30 s · quedan ≈ 3 min
+  identity:  25 % (509/2027 fotogramas (ropa)) · 60 s · quedan ≈ 3 min
+  identity:  38 % (761/2027 fotogramas (ropa)) · 2 min · quedan ≈ 3 min
+  identity:  50 % (1017/2027 fotogramas (ropa)) · 2 min · quedan ≈ 2 min
+  identity:  63 % (1273/2027 fotogramas (ropa)) · 3 min · quedan ≈ 90 s
+  identity:  75 % (1525/2027 fotogramas (ropa)) · 3 min · quedan ≈ 60 s
+  identity:  88 % (1774/2027 fotogramas (ropa)) · 4 min · quedan ≈ 30 s
+  identity: 100 % (2027/2027 fotogramas (ropa)) · 4 min · quedan ≈ 0 s
+  ropa: 2027 fotogramas · leerlos 224 s, medir la ropa 18 s
+  identidad: 327/342 planos · ropa y cambios de lado de acuerdo en 282, solo cambios de lado 15, solo ropa 21, la ropa corrige el marcador en 9, el saque visto en 0, dudosos 2 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 5.84
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] identity terminada a las 10:54:08 en 4.2 min
+tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5: ejecutado identity

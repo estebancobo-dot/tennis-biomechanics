@@ -7853,3 +7853,11 @@
 2026-11-08 10:00:19   ventana w003863426_3600: pose hybrid en 123 de 123 fotogramas (0 s; modelo 0 s; pies en 95) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 181 px (segments)
 2026-11-08 10:00:19   fine_doubtful: 100 % (14/14 golpes candidatos · 4 confirmados · 0 ventanas descartadas sin pose) · 6 s · quedan ≈ 0 s
 2026-11-08 10:00:19 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine_doubtful terminada a las 10:00:19 en 9 s
+2026-11-08 10:43:21 [us-open-2026-r4-naomi-osaka-elena-rybakina] identity… (2026-11-08 10:43:21, etapa 7 de 14)
+2026-11-08 10:43:23   identity:   0 % (1/880 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+2026-11-08 10:43:53   identity:  41 % (358/880 fotogramas (ropa)) · 30 s · quedan ≈ 44 s
+2026-11-08 10:44:24   identity:  73 % (640/880 fotogramas (ropa)) · 61 s · quedan ≈ 23 s
+2026-11-08 10:44:43   identity: 100 % (880/880 fotogramas (ropa)) · 80 s · quedan ≈ 0 s
+2026-11-08 10:44:43   ropa: 880 fotogramas · leerlos 69 s, medir la ropa 11 s
+2026-11-08 10:44:43   identidad: 148/148 planos · ropa y cambios de lado de acuerdo en 129, solo cambios de lado 0, solo ropa 12, la ropa corrige el marcador en 7, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 4.4
+2026-11-08 10:44:43 [us-open-2026-r4-naomi-osaka-elena-rybakina] identity terminada a las 10:44:43 en 1.4 min
