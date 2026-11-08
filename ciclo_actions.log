@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261108212747
+Start time: 20261108221445
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 13424
+Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 5640
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,10 +17,44 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-11-08 21:27:47] Peticion 154: medida scripts\validate_rv_strokes.py
-    (paso terminado en 46 min 44 s)
-Empezado 2026-11-08 21:27:44 - terminado 2026-11-08 22:14:31 - duracion total 46 min 46 s
-**********************
-Windows PowerShell transcript end
-End time: 20261108221431
-**********************
+==> [2026-11-08 22:14:45] Codigo nuevo (f9ef9eb -> 96a113b): 10 ficheros
+    config/peticion_pc.txt
+    config/stage_code.json
+    docs/peticiones_usuario.md
+    src/tennisbio/audit.py
+    src/tennisbio/court_metrics.py
+    src/tennisbio/pipeline.py
+    src/tennisbio/stages.py
+    tests/test_b4_checks.py
+    tests/test_court_metrics.py
+    tests/test_views.py
+Updating f9ef9eb..96a113b
+Fast-forward
+ config/peticion_pc.txt         |  7 ++++
+ config/stage_code.json         |  2 +-
+ docs/peticiones_usuario.md     |  4 +--
+ src/tennisbio/audit.py         | 20 ++++++++++-
+ src/tennisbio/court_metrics.py | 42 +++++++++++++++++-----
+ src/tennisbio/pipeline.py      | 51 +++++++++++++++++++++++---
+ src/tennisbio/stages.py        |  2 +-
+ tests/test_b4_checks.py        | 16 +++++++++
+ tests/test_court_metrics.py    | 20 +++++++++++
+ tests/test_views.py            | 81 ++++++++++++++++++++++++++++++++++++++++++
+ 10 files changed, 227 insertions(+), 18 deletions(-)
+Resolved 124 packages in 0.95ms
+Checked 89 packages in 3ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+motionagformer_xs.onnx OK 9 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+    (paso terminado en 4 s)
+
+==> [2026-11-08 22:14:49] Que hace falta: medidas
