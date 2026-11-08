@@ -808,6 +808,30 @@ RALLY_PAUSE_S = 5.0             # no stroke for this long before the return: a n
 SERVE_LOOK_S = 3.0              # a candidate of hers this long before the return is her serve already
 
 
+def serve_identity(cands: list[dict], score: dict) -> int:
+    """B4 (08-11, request 139): 5 points of her serve lost her strokes because the identity of the player was undecided
+    (target None → the doubtful pass). In a point of her serve on the scoreboard, the first candidate after a pause
+    (RALLY_PAUSE_S without any stroke; a second serve too), named a serve by the learned spotter, is hers: the server is
+    known. Such a
+    candidate with an undecided identity becomes hers (target True, its end decides the near player's identity).
+    Returns how many changed (in place)."""
+    from .point_count import her_serve_points
+    ts = sorted((c for c in cands if c.get("t") is not None), key=lambda c: c["t"])
+    changed = 0
+    for t0, t1 in her_serve_points((score or {}).get("readings") or []):
+        for k, c in enumerate(ts):
+            if not t0 <= c["t"] <= t1:
+                continue
+            if k and c["t"] - ts[k - 1]["t"] < RALLY_PAUSE_S:
+                continue
+            if c.get("target") is None and c.get("kind") == "serve":   # a first stroke after a pause: a (2nd) serve
+                c["target"] = True
+                c["identity"] = c.get("side", "near") == "near"
+                c["identity_source"] = "marcador_saque"
+                changed += 1
+    return changed
+
+
 def add_serve_candidates(cands: list[dict], score: dict, identity: dict, fps: float) -> int:
     """B4 (07-11): request 117 showed the learned spotter misses her serve in full broadcasts (it was trained on F3Set's
     matches, where it found them all): in the points of her serve with no serve found, it had seen the opponent's return
@@ -847,7 +871,7 @@ def add_serve_candidates(cands: list[dict], score: dict, identity: dict, fps: fl
     return len(added)
 
 
-@stage("candidates", "14", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
+@stage("candidates", "15", deps=("players", "audio", "identity", "court", "score"), outputs=("candidates.json", "audio_track.json"),
        reviews=("identidad_clic.json",),
        # with the learned spotter (off by default) it reads spotting.json; off, its fingerprint is the one it always was
        settings=lambda c: {"spotter": True} if spotter_on(c) else {},
@@ -900,6 +924,9 @@ def st_candidates(ctx: Context, tol_s=0.35):
             spans.append((frames[run[0]] / fps, frames[run[-1]] / fps, bool(reasons[k])))
         cands, info = spotter_candidates(_read(ctx.path("spotting.json")), identity, fps, spans,
                                          no_board if board_works else [], onsets, tol_s)
+        n_id = serve_identity(cands, score)
+        if n_id:
+            ctx.log(f"  identidad por el marcador (su saque, primer golpe del punto, identidad sin decidir): {n_id}")
         n_srv = add_serve_candidates(cands, score, identity, fps)
         if n_srv:
             ctx.log(f"  saques añadidos por el marcador (su saque no visto, el resto de la rival sí): {n_srv}")
@@ -2122,7 +2149,11 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
             f" ({st.get('kept_impacts', 0)} de {st.get('impacts', 0)} impactos) · {len(run.strokes)} golpes posibles"
             + (f" · altura {run.height_px:.0f} px ({st['height_scale']})" if st.get("height_scale") else ""))
     if side == "far":                         # far strokes count only when the ball or the spotter confirms them
-        run.strokes = [s for s in run.strokes if "ball" in s.impact_source or "spotter" in s.impact_source]
+        # or the scoreboard says she served there (08-11, request 139: 3 far serves of hers dropped, the ball unseen)
+        board = [(c["t"] - t0) * run.fps for c in group if c.get("source") == "marcador"]
+        from .fine_gate import CONFIRM_TOL_S as _tol
+        run.strokes = [s for s in run.strokes if "ball" in s.impact_source or "spotter" in s.impact_source
+                       or any(abs(s.impact_frame - b) <= _tol * run.fps for b in board)]
     if not run.strokes:
         _drop(group, "sin_golpe_en_la_pose" if side == "near" else "lejana_sin_bola_ni_detector")
         return []

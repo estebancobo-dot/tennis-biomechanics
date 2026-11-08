@@ -356,6 +356,16 @@ detector: si
 ---
 id: 139
 accion: completo
+---
+id: 140
+accion: recall
+detector: si
+---
+id: 141
+accion: completo
+# 140-141 (08-11, B4): 139 dio 27/30, 38/44, 39/47, 54/62 (F3Set 94 %). Ahora la identidad sin decidir del primer
+# saque tras una pausa en un punto de su saque se resuelve con el marcador (candidatos v15), y un saque suyo del
+# lado lejano lo confirma tambien el marcador (no solo la bola o el detector). 140 = F3Set, 141 = los 4 partidos
 # 138-139 (08-11, B4): 137 dio 24/30, 36/44, 39/47, 52/62 (F3Set 94 %). Quedan puntos con golpes suyos pero sin saque,
 # su primer golpe en el lado lejano y nada antes: en el lado lejano la regla del saque usa la pausa antes del golpe
 # (no se mide la mano alli). 138 = F3Set (precision >= 0,94), 139 = los 4 partidos

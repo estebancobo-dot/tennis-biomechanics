@@ -255,3 +255,16 @@ def test_a_far_first_stroke_after_a_pause_is_her_serve():
     s = far()
     s[0]["side"] = "near"
     assert serves_by_rule(s, readings, [(10.0, 39.0)], others=[2.0]) == 0                 # near: the hand decides
+
+
+def test_the_server_is_known_the_first_serve_of_a_point_of_hers_is_hers():
+    """Request 139: points of her serve lost her serve because the identity was undecided."""
+    import tennisbio.stages as S
+    readings = [_r(0, (0, 0)), _r(40, (15, 0))]
+    cands = [{"t": 1.0, "target": False, "side": "far"},
+             {"t": 18.0, "target": None, "side": "near", "kind": "serve"},      # first after a pause: hers
+             {"t": 19.0, "target": None, "side": "far", "kind": "forehand"},    # the return: left as it is
+             {"t": 21.0, "target": None, "side": "near", "kind": "serve"}]      # not after a pause
+    assert S.serve_identity(cands, {"readings": readings}) == 1
+    assert cands[1]["target"] is True and cands[1]["identity"] is True and cands[1]["identity_source"] == "marcador_saque"
+    assert cands[2]["target"] is None and cands[3]["target"] is None
