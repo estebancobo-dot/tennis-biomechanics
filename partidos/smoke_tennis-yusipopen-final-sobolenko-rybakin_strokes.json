@@ -30079,6 +30079,361 @@
   ]
  },
  {
+  "impact_frame": 115,
+  "impact_source": "spotter",
+  "stroke": "overhead",
+  "phases": {
+   "ready": {
+    "frame": 58,
+    "t_rel": -1.14,
+    "method": "fallback_before_takeback",
+    "confidence": 0.0
+   },
+   "takeback": {
+    "frame": 70,
+    "t_rel": -0.9,
+    "method": "wrist_starts_back",
+    "confidence": 0.0
+   },
+   "loaded": {
+    "frame": 110,
+    "t_rel": -0.1,
+    "method": "wrist_pause_before_forward_swing",
+    "confidence": 0.88
+   },
+   "acceleration": {
+    "frame": 113,
+    "t_rel": -0.04,
+    "method": "wrist_low_point",
+    "confidence": 0.69
+   },
+   "impact": {
+    "frame": 115,
+    "t_rel": 0.0,
+    "method": "given",
+    "confidence": 0.91
+   },
+   "extension": {
+    "frame": 117,
+    "t_rel": 0.04,
+    "method": "impact_plus_50ms",
+    "confidence": 0.79
+   },
+   "finish": {
+    "frame": 145,
+    "t_rel": 0.6,
+    "method": "wrist_high_point",
+    "confidence": 0.89
+   },
+   "recovery": {
+    "frame": 152,
+    "t_rel": 0.74,
+    "method": "first_step",
+    "confidence": 0.8
+   }
+  },
+  "metrics": {
+   "shoulder_turn_loaded_deg": 49.77396746304008,
+   "hip_turn_loaded_deg": 36.00383005197248,
+   "x_factor_deg": 13.770137411067601,
+   "elbow_impact_deg": 91.07074680511698,
+   "non_elbow_impact_deg": 179.97748986305797,
+   "non_arm_extension_loaded_deg": 133.4894674957549,
+   "contact_height_pct": 72.06907848573695,
+   "contact_lateral_pct": 1.820197909955759,
+   "toss_above_head_bh": -0.16858882760606428,
+   "base_width_loaded_pct": 19.29794006123223,
+   "hip_drop_pct": null,
+   "finish_wrist_height_pct": 2.1847941662152275,
+   "head_motion_impact_cm": 8.420432650236096,
+   "time_ready_to_impact_s": 1.14,
+   "time_takeback_to_impact_s": 0.9,
+   "time_loaded_to_impact_s": 0.1,
+   "time_acceleration_to_impact_s": 0.04,
+   "time_impact_to_finish_s": 0.6,
+   "time_available_s": 0.9,
+   "opponent_hit_source": "audio"
+  },
+  "racket": {},
+  "racket_track": [],
+  "ball": {},
+  "chain": {
+   "peaks_s": {
+    "pelvis": -0.04,
+    "trunk": -0.04,
+    "arm": 0.0
+   },
+   "order": [
+    "pelvis",
+    "trunk",
+    "arm"
+   ],
+   "version": 2,
+   "proximal_to_distal": true
+  },
+  "review": [
+   "phase:ready",
+   "phase:takeback",
+   "impact_without_audio"
+  ],
+  "stroke_pose": "backhand",
+  "stroke_source": "detector",
+  "window": "w000443501_3600.mp4",
+  "window_start_s": 443.50100000000003,
+  "match_time_s": 445.80100000000004,
+  "candidate_audio": true,
+  "identity": false,
+  "target": true,
+  "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0044580",
+  "surface": "dura",
+  "score": {
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     6
+    ]
+   ],
+   "points": [
+    "30",
+    null
+   ],
+   "banner": "",
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "server": 0
+  },
+  "court_check": "ok",
+  "side": "far",
+  "height_scale": {
+   "source": "court",
+   "px": 106.9,
+   "segments_ratio": 0.983,
+   "pose_ratio": 0.903
+  },
+  "court_pos_m": [
+   1.73,
+   -1.82
+  ],
+  "camera_pitch_deg": 18.2,
+  "landing_inside_m": -1.4,
+  "outcome": "rally",
+  "point_won": false,
+  "is_return": false,
+  "technique": {
+   "classes": {
+    "ball_speed": "rápida",
+    "ball_height": "pecho-hombro",
+    "depth": "1-2 m detrás",
+    "court_side": "lado de su derecha",
+    "intent": "neutra",
+    "play": "inicio del punto"
+   },
+   "phases": {},
+   "stroke": {},
+   "footwork": {}
+  },
+  "series": "series/w000443501_3600_far_115.json",
+  "window_impact_s": 2.3,
+  "shot_in_point": 1,
+  "shots_in_point": 3
+ },
+ {
+  "impact_frame": 106,
+  "impact_source": "spotter",
+  "stroke": "overhead",
+  "phases": {
+   "ready": {
+    "frame": 54,
+    "t_rel": -1.04,
+    "method": "fallback_before_takeback",
+    "confidence": 0.24
+   },
+   "takeback": {
+    "frame": 56,
+    "t_rel": -1.0,
+    "method": "shoulders_start_turning",
+    "confidence": 0.67
+   },
+   "loaded": {
+    "frame": 94,
+    "t_rel": -0.24,
+    "method": "wrist_pause_before_forward_swing",
+    "confidence": 0.85
+   },
+   "acceleration": {
+    "frame": 104,
+    "t_rel": -0.04,
+    "method": "wrist_low_point",
+    "confidence": 0.56
+   },
+   "impact": {
+    "frame": 106,
+    "t_rel": 0.0,
+    "method": "given",
+    "confidence": 0.78
+   },
+   "extension": {
+    "frame": 108,
+    "t_rel": 0.04,
+    "method": "impact_plus_50ms",
+    "confidence": 0.76
+   },
+   "finish": {
+    "frame": 112,
+    "t_rel": 0.12,
+    "method": "wrist_high_point",
+    "confidence": 0.89
+   },
+   "recovery": {
+    "frame": 117,
+    "t_rel": 0.22,
+    "method": "first_step",
+    "confidence": 0.75
+   }
+  },
+  "metrics": {
+   "shoulder_turn_loaded_deg": 103.69411058978683,
+   "hip_turn_loaded_deg": 94.08278434997099,
+   "x_factor_deg": 9.611326239815838,
+   "elbow_impact_deg": 117.13434446921315,
+   "non_elbow_impact_deg": 145.74987527990228,
+   "non_arm_extension_loaded_deg": 164.95369553196537,
+   "contact_height_pct": 88.95644192048347,
+   "contact_lateral_pct": 13.793704916432626,
+   "toss_above_head_bh": 0.25303180990029733,
+   "base_width_loaded_pct": null,
+   "hip_drop_pct": 7.675584611141517,
+   "finish_wrist_height_pct": 36.04556293897605,
+   "head_motion_impact_cm": 8.395727520545956,
+   "time_ready_to_impact_s": 1.04,
+   "time_takeback_to_impact_s": 1.0,
+   "time_loaded_to_impact_s": 0.24,
+   "time_acceleration_to_impact_s": 0.04,
+   "time_impact_to_finish_s": 0.12,
+   "time_available_s": 0.54,
+   "opponent_hit_source": "audio"
+  },
+  "racket": {},
+  "racket_track": [],
+  "ball": {},
+  "chain": {
+   "peaks_s": {
+    "pelvis": 0.02,
+    "trunk": 0.02,
+    "arm": 0.0
+   },
+   "order": [
+    "arm",
+    "pelvis",
+    "trunk"
+   ],
+   "version": 2,
+   "proximal_to_distal": true
+  },
+  "review": [
+   "phase:ready",
+   "impact_without_audio",
+   "impossible:base_width_loaded_pct"
+  ],
+  "stroke_pose": "backhand",
+  "stroke_source": "detector",
+  "window": "w000455548_3600.mp4",
+  "window_start_s": 455.548,
+  "match_time_s": 457.668,
+  "candidate_audio": true,
+  "identity": false,
+  "target": true,
+  "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0045767",
+  "surface": "dura",
+  "score": {
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     6
+    ]
+   ],
+   "points": [
+    "30",
+    null
+   ],
+   "banner": "",
+   "set": 2,
+   "sets_won": [
+    1,
+    0
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "server": 0
+  },
+  "court_check": "ok",
+  "side": "far",
+  "height_scale": {
+   "source": "court",
+   "px": 107.8,
+   "segments_ratio": 1.031,
+   "pose_ratio": 0.882
+  },
+  "court_pos_m": [
+   1.51,
+   -1.47
+  ],
+  "displacement_m": 0.39,
+  "pos_at_opp_m": [
+   1.22,
+   -1.21
+  ],
+  "camera_pitch_deg": 18.3,
+  "landing_inside_m": -2.36,
+  "outcome": "rally",
+  "point_won": false,
+  "is_return": false,
+  "technique": {
+   "classes": {
+    "ball_speed": "muy rápida",
+    "ball_height": "por encima del hombro",
+    "depth": "1-2 m detrás",
+    "court_side": "lado de su derecha",
+    "width": "centrada",
+    "intent": "defensa",
+    "play": "inicio del punto"
+   },
+   "phases": {},
+   "stroke": {},
+   "footwork": {}
+  },
+  "series": "series/w000455548_3600_far_106.json",
+  "window_impact_s": 2.12,
+  "shot_in_point": 2,
+  "shots_in_point": 3,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 469.9,
+    "t1": 487.9,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
+ },
+ {
   "impact_frame": 113,
   "impact_source": "spotter",
   "stroke": "overhead",
