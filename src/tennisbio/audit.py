@@ -250,8 +250,9 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
                        "ok" if not few else "pocos datos",
                        f"{len(near)} del lado cercano (con todo el detalle), {len(strokes) - len(near)} del lejano"
                        + (f"; con menos de {min_strokes} muchas situaciones no se pueden describir" if few else ""),
-                       n=len(near)))
+                       n=len(near), far=len(strokes) - len(near)))
     items += recall_items(match_dirs)
+    items += b4_items(match_dirs, items, stroke, len(near), len(strokes) - len(near))   # #23, #205, #218/#219 (08-11)
     if report_dir:          # the serve report (informe_saque next to this one) says how much of her serves it covers
         serve_html = (report_dir if stroke == "overhead" else report_dir.parent / "informe_saque") / "index.html"
         items.append(serve_coverage_item(match_dirs, serve_html))
@@ -543,7 +544,8 @@ def recall_items(match_dirs: list[Path]) -> list[dict]:
         if doubt:
             sides += f"; además {len(doubt)} de identidad dudosa, apartados (no cuentan como suyos)"
         out.append(_item(1, "Golpes", f"Golpes encontrados frente al marcador: {d.name}", status, detail + sides,
-                         found=len(strokes), serves=serves, counts=counts, doubtful=len(doubt)))
+                         found=len(strokes), serves=serves, counts=counts, doubtful=len(doubt),
+                         near=sum(s.get("side") != "far" for s in strokes), far=sum(s.get("side") == "far" for s in strokes)))
         # B4 (04-11): each point on her serve with no serve found, and why (camera, detection or stroke type)
         try:
             from .point_count import GAP_CAUSES, serve_gaps
@@ -652,6 +654,183 @@ def f3set_precision_item(out_root: Path) -> dict:
     f, p, rec, found, gt = r
     return _item(1, "Golpes", name, "ok" if p >= F3SET_PRECISION_MIN - 1e-9 else "falta",
                  f"precisión {p:.3f}, encontrados {found} de {gt} ({rec:.0%}) en {f}")
+
+
+# --- package B4 (08-11): the requests that had no check of their own on the outputs --------------------------------
+# #23 (follow her across the changes of ends) was checked only by «golpes analizados» (any stroke analysed), #205
+# (about 400 strokes with the 4 matches) and #155 were FALTA with no rule, #219 (far end counted and measured) borrowed
+# the replays' check. Thresholds set by Claude (08-11), written here and in each item's detail.
+IDENTITY_DECIDED_MIN = 0.95     # runs of the main camera whose near player is decided (hers or the opponent)
+IDENTITY_AGREE_MIN = 0.90       # runs where the end-change chain (scoreboard) and her clothes say the same, of those
+#                                 where both speak: two independent cues
+IDENTITY_SAME_GAME_MIN = 0.95   # pairs of runs inside one game (no change of ends) with the same clothes group
+ENDS_SHARE_MIN = 0.25           # share of her strokes at each end (she plays about half of each match at each one)
+FAR_CONFIRMED_MIN = 0.90        # her candidate strokes confirmed by the fine pass (not discarded)
+FAR_POSITION_MIN = 0.80         # her far strokes with what is measurable there: her position on court
+VOLUME_MIN = 400                # «unos 400 golpes con 4 partidos» (docs/comparativa_apps.md §4.3), of the analysed stroke
+
+
+def _sides_of(item: dict | None) -> tuple[int, int] | None:
+    """(near, far) of her strokes from the item «Golpes encontrados frente al marcador» (its fields, or its text)."""
+    if not item:
+        return None
+    if item.get("near") is not None and item.get("far") is not None:
+        return int(item["near"]), int(item["far"])
+    m = re.search(r"\((\d+) cerca, (\d+) lejos\)", item.get("detail", ""))
+    return (int(m.group(1)), int(m.group(2))) if m else None
+
+
+def identity_item(match: str, summ: dict | None, sides: tuple[int, int] | None) -> dict:
+    """#23: she is followed across the changes of ends in one match, from the identity stage's summary (manifest):
+    the runs decided, the two independent cues agreeing (end changes read on the scoreboard and her clothes), the
+    clothes stable inside a game, and her strokes found at both ends."""
+    name = f"Identidad en los cambios de lado: {match}"
+    if not summ or not summ.get("runs"):
+        return _item(1, "Golpes", name, "aviso", "sin el resumen de la etapa identity (manifest.json)")
+    runs = int(summ["runs"])
+    decided = int(summ.get("decided") or 0) / runs
+    both = sum(int(summ.get(k) or 0) for k in ("agree", "ends_won", "clothes_won", "doubtful"))
+    agree = int(summ.get("agree") or 0) / both if both else None
+    same = (summ.get("clothes") or {}).get("same_game_same")
+    bad = []
+    if decided < IDENTITY_DECIDED_MIN - 1e-9:
+        bad.append(f"planos decididos {decided:.0%} < {IDENTITY_DECIDED_MIN:.0%}")
+    if agree is None or agree < IDENTITY_AGREE_MIN - 1e-9:
+        bad.append("cambios de lado y ropa sin comparar" if agree is None else
+                   f"cambios de lado y ropa de acuerdo {agree:.0%} < {IDENTITY_AGREE_MIN:.0%}")
+    if same is not None and same < IDENTITY_SAME_GAME_MIN - 1e-9:
+        bad.append(f"ropa igual dentro de un juego {same:.0%} < {IDENTITY_SAME_GAME_MIN:.0%}")
+    ends = ""
+    if sides is None:
+        bad.append("sin el lado de sus golpes")
+    else:
+        n = sum(sides)
+        low = min(sides) / n if n else 0.0
+        ends = f"; sus golpes: {sides[0]} cerca y {sides[1]} lejos ({low:.0%} en el lado con menos)"
+        if low < ENDS_SHARE_MIN - 1e-9:
+            bad.append(f"golpes en un lado {low:.0%} < {ENDS_SHARE_MIN:.0%}")
+    return _item(1, "Golpes", name, "aviso" if bad else "ok",
+                 f"{summ.get('decided', 0)} de {runs} planos decididos ({decided:.0%}; objetivo ≥ {IDENTITY_DECIDED_MIN:.0%})"
+                 + ("" if agree is None else f"; cambios de lado del marcador y ropa de acuerdo en {summ.get('agree')} de "
+                    f"{both} planos con las dos señales ({agree:.0%}; objetivo ≥ {IDENTITY_AGREE_MIN:.0%})")
+                 + ("" if same is None else f"; misma ropa dentro de un juego {same:.0%} (objetivo ≥ "
+                    f"{IDENTITY_SAME_GAME_MIN:.0%})") + ends
+                 + (f"; dudosos {summ.get('doubtful', 0)}, sin decidir {summ.get('none', 0)}")
+                 + (f" · falla: {', '.join(bad)}" if bad else "") + ". Sin verdad anotada: coherencia, no validación")
+
+
+def far_end_item(match: str, sides: tuple[int, int] | None, fine: dict | None, far_strokes: list[dict] | None,
+                 far_candidates: int | None = None) -> dict:
+    """#218/#219: the strokes of the main camera's far end count for her too: found (a fair share of hers at that
+    end), confirmed by the fine pass (not discarded) and measured with what is measurable at that distance (position)."""
+    name = f"Golpes del fondo: {match}"
+    bad, txt = [], []
+    if sides is None:
+        bad.append("sin el lado de sus golpes")
+    else:
+        n = sum(sides)
+        share = sides[1] / n if n else 0.0
+        txt.append(f"{sides[1]} de sus {n} golpes en el lado lejano ({share:.0%}; objetivo ≥ {ENDS_SHARE_MIN:.0%})")
+        if share < ENDS_SHARE_MIN - 1e-9:
+            bad.append(f"lado lejano {share:.0%}")
+    if far_candidates and sides is not None:          # per end, when the candidates are at hand
+        conf = min(1.0, sides[1] / far_candidates)
+        txt.append(f"confirmados {sides[1]} de {far_candidates} candidatos suyos del fondo ({conf:.0%})")
+    elif fine and fine.get("candidates"):
+        conf = int(fine.get("confirmed") or 0) / int(fine["candidates"])
+        txt.append(f"confirmados {fine.get('confirmed')} de {fine['candidates']} candidatos suyos de los dos lados ({conf:.0%})")
+    else:
+        conf = None
+        bad.append("sin el resumen de la pasada fina")
+    if conf is not None and conf < FAR_CONFIRMED_MIN - 1e-9:
+        bad.append(f"confirmados {conf:.0%} < {FAR_CONFIRMED_MIN:.0%}")
+    if far_strokes is None:
+        bad.append("sin strokes.json: lo medido en el fondo sin comprobar")
+    elif far_strokes:
+        pos = sum(bool(s.get("court_pos_m")) for s in far_strokes) / len(far_strokes)
+        txt.append(f"con su posición en la pista {pos:.0%} (objetivo ≥ {FAR_POSITION_MIN:.0%}; en el fondo solo lo fiable "
+                   "a esa distancia: posición, desplazamiento, altura del impacto, destino)")
+        if pos < FAR_POSITION_MIN - 1e-9:
+            bad.append(f"posición medida {pos:.0%}")
+    return _item(1, "Golpes", name, "aviso" if bad else "ok",
+                 "; ".join(txt) + (f" · falla: {', '.join(bad)}" if bad else ""))
+
+
+def volume_item(stroke: str, near: int, far: int, matches: int) -> dict:
+    """#205: the volume the comparisons and the measurement noise need, about 400 strokes with the 4 matches."""
+    n = near + far
+    return _item(1, "Golpes", f"Volumen: {stroke} analizados en los partidos", "ok" if n >= VOLUME_MIN else "aviso",
+                 f"{n} golpes ({near} cerca con todo el detalle, {far} lejos) en {matches} partidos; objetivo ≥ {VOLUME_MIN} "
+                 "(docs/comparativa_apps.md §4.3)", n=n)
+
+
+IDENTITY_TRUTH_MIN = 0.95       # her annotated strokes in runs whose identity was decided right, of the decided ones
+FAR_RECALL_GAP_MAX = 0.10       # far-end recall on F3Set at most this below the near-end one (counted as the near ones)
+
+
+def f3set_sides_items(out_root: Path) -> list[dict]:
+    """#23, #218/#219 against annotated truth (F3Set, scripts/validate_recall.py, without the misaligned matches): the
+    identity of the runs that hold her annotated strokes, and her far-end strokes found as often as the near-end ones."""
+    names = ("Identidad frente a F3Set (anotado)", "Golpes del fondo frente a F3Set (anotado)")
+    r, fname = None, None
+    for name in ("recall_validation_detector.json", "recall_validation.json"):
+        f = _find(out_root, name, f"datasets/reports/{name}")
+        if f is not None:
+            try:
+                r, fname = json.loads(f.read_text(encoding="utf-8")), name
+                break
+            except (OSError, ValueError):
+                continue
+    if r is None:
+        return [_item(1, "Golpes", n, "aviso", "sin recuento de F3Set (recall_validation_detector.json)") for n in names]
+    s = r.get("summary_valid") or r.get("summary") or {}
+    out = []
+    ids = (s.get("identity") or {}).get("strokes") or {}
+    right, wrong = int(ids.get("right") or 0), int(ids.get("wrong") or 0)
+    if right + wrong:
+        share = right / (right + wrong)
+        out.append(_item(1, "Golpes", names[0], "ok" if share >= IDENTITY_TRUTH_MIN - 1e-9 else "aviso",
+                         f"{right} de {right + wrong} golpes suyos anotados en planos con la identidad decidida la tienen bien "
+                         f"({share:.0%}; objetivo ≥ {IDENTITY_TRUTH_MIN:.0%}); sin decidir {ids.get('undecided', 0)}, sin "
+                         f"plano {ids.get('no_run', 0)}; perdidos por identidad {ids.get('lost_by_identity', 0)} ({fname})"))
+    else:
+        out.append(_item(1, "Golpes", names[0], "aviso", f"el recuento no tiene la identidad por golpe ({fname})"))
+    bs = s.get("by_side") or {}
+    nr, fr = (bs.get("near") or {}).get("recall"), (bs.get("far") or {}).get("recall")
+    if nr is not None and fr is not None:
+        gap = float(nr) - float(fr)
+        out.append(_item(1, "Golpes", names[1], "ok" if gap <= FAR_RECALL_GAP_MAX + 1e-9 else "aviso",
+                         f"lado lejano {bs['far'].get('found')} de {bs['far'].get('gt')} ({float(fr):.0%}) frente al cercano "
+                         f"{bs['near'].get('found')} de {bs['near'].get('gt')} ({float(nr):.0%}); diferencia {gap * 100:.0f} "
+                         f"puntos (objetivo ≤ {FAR_RECALL_GAP_MAX * 100:.0f}) ({fname})"))
+    else:
+        out.append(_item(1, "Golpes", names[1], "aviso", f"el recuento no tiene el recall por lado ({fname})"))
+    return out
+
+
+def b4_items(match_dirs: list[Path], items: list[dict], stroke: str, near: int, far: int) -> list[dict]:
+    """The B4 checks of one run (audit): identity across ends and far-end strokes per match, and the volume."""
+    out = [volume_item(stroke, near, far, len(match_dirs))]
+    found = {i["name"].split(": ", 1)[1]: i for i in items if i["name"].startswith("Golpes encontrados frente al marcador: ")}
+    for d in match_dirs:
+        if d.name not in found:                      # no scoreboard read: not a complete match
+            continue
+        try:
+            mf = _mf.at(d, "manifest.json")
+            man = json.loads(mf.read_text(encoding="utf-8")) if mf.exists() else {}
+            sides = _sides_of(found[d.name])
+            out.append(identity_item(d.name, (man.get("identity") or {}).get("summary"), sides))
+            st = _mf.at(d, "strokes.json")
+            far_s = [s for s in json.loads(st.read_text(encoding="utf-8")) if s.get("side") == "far"] if st.exists() else None
+            cf, n_far = _mf.at(d, "candidates.json"), None
+            if cf.exists():
+                cj = json.loads(cf.read_text(encoding="utf-8"))
+                cands = cj.get("candidates", cj) if isinstance(cj, dict) else cj
+                n_far = sum(c.get("side") == "far" and c.get("target", c.get("identity")) is True for c in cands) or None
+            out.append(far_end_item(d.name, sides, (man.get("fine") or {}).get("summary"), far_s, n_far))
+        except Exception as e:  # noqa: BLE001 — the audit must still be written
+            out.append(_item(1, "Golpes", f"Identidad en los cambios de lado: {d.name}", "aviso", f"no se pudo calcular ({e})"))
+    return out
 
 
 def serve_coverage(d: Path) -> dict | None:
@@ -1225,6 +1404,16 @@ PETITIONS.update({
        r"^Golpes encontrados frente al marcador|^Saques por punto de su saque",
     234: r"^Aplicación: análisis en su índice$|^Pantalla «(Cópiala|Conclusiones)",
 })
+# package B4 (08-11): each request with its own check on the outputs (b4_items). Until 08-11: #23 r"golpes analizados"
+# (any stroke analysed, nothing about the ends), #155 and #205 no rule (FALTA), #218 r"^Repeticiones y otras cámaras$",
+# #219 r"^Repeticiones y otras cámaras$|Golpes encontrados frente al marcador" (the replays are #218's, not the far end).
+PETITIONS.update({
+    23: r"^Identidad en los cambios de lado: |^Identidad frente a F3Set",
+    155: r"^Golpes encontrados frente al marcador|^Saques por punto de su saque|^Golpes inventados: precisión en F3Set",
+    205: r"^Volumen: ",
+    218: r"^Repeticiones y otras cámaras$|^Golpes del fondo: |^Golpes del fondo frente a F3Set",
+    219: r"^Golpes encontrados frente al marcador|^Golpes del fondo: |^Golpes del fondo frente a F3Set",
+})
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 SPEED_TARGET = 45 / 35          # hours of processing per hour of video (Base step 1: 35 min in ≤ 45 min)
 
@@ -1771,6 +1960,7 @@ def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) 
                lambda: stage_time_items(match_dirs, out_root), lambda: parallel_items(match_dirs),
                lambda: resources_items(out_root), lambda: [actions_item(out_root)],
                lambda: [f3set_precision_item(out_root)],
+               lambda: f3set_sides_items(out_root),          # B4 (08-11): identity and far end against F3Set
                # #30: after the model items, which it reads
                lambda: [comparison_doc_item(items, out_root)]):
         try:
