@@ -179,3 +179,18 @@ def test_every_request_of_b1_and_b3_has_a_check_and_reaches_level_3_when_it_hold
     items = [i if not i["name"].startswith("Modelo candidato medido: wasb") else {**i, "status": "aviso"} for i in items]
     pet = {int(i["name"].split(" ")[0][1:]): i for i in A.petition_items(items)}
     assert real_status.level(states[202], pet[202], 202) == 2
+
+
+
+def test_a_request_the_scheduled_cycle_started_once_the_pc_was_free_is_ok(tmp_path):
+    """08-11: request 143 (05:48) was started by the scheduled cycle at 06:02:50, when request 142 ended (06:02:37)."""
+    from datetime import datetime
+    from tennisbio.audit import actions_item
+    (tmp_path / "ciclo_actions.log").write_text("Start time: 20261108030400\n", encoding="utf-8")
+    (tmp_path / "prueba_recall.log").write_text("termina 2026-11-08T06:02:37\n", encoding="utf-8")
+    (tmp_path / "ciclo_automatico.log").write_text(
+        "Start time: 20261108055321\n==> [2026-11-08 06:02:50] Peticion 143: analisis completo\n", encoding="utf-8")
+    it = actions_item(tmp_path, request_time=datetime(2026, 11, 8, 5, 48))
+    assert it["status"] == "ok" and "ciclo programado" in it["detail"], it["detail"]
+    (tmp_path / "prueba_recall.log").write_text("termina 2026-11-08T05:40:00\n", encoding="utf-8")
+    assert actions_item(tmp_path, request_time=datetime(2026, 11, 8, 5, 48))["status"] == "aviso"   # idle 14.8 min

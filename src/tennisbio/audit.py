@@ -1400,7 +1400,7 @@ def _previous_job_end(folder: Path, before, skip: str = "ciclo_actions.log"):
 def actions_item(out_root: Path, request_time=None) -> dict:
     """#237: the PC starts each request at once (GitHub Actions runner). From the transcript of the last job
     (<output>/ciclo_actions.log, «Start time») against the time of the last request commit."""
-    from datetime import datetime
+    from datetime import datetime, timedelta
     name = "Peticiones por GitHub Actions: espera hasta empezar"
     f = _find(out_root, "ciclo_actions.log")
     if f is None:
@@ -1414,6 +1414,26 @@ def actions_item(out_root: Path, request_time=None) -> dict:
         return _item(5, "Peticiones del PC", name, "aviso", f"último trabajo {start:%d-%m %H:%M}; no se pudo leer la hora de la petición (git)")
     wait = (start - req).total_seconds() / 60
     if wait < -1:
+        # 08-11: the scheduled cycle may take it first when the PC frees up (the Actions job waits on the same busy PC):
+        # what counts is that it started at once once the PC was free, whoever started it
+        cyc = _find(out_root, "ciclo_automatico.log")
+        starts = []
+        if cyc is not None:
+            for ts in re.findall(r"==> \[(\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2})\] Peticion",
+                                 cyc.read_text(encoding="utf-8-sig", errors="replace")):
+                t = datetime.fromisoformat(ts.replace(" ", "T"))
+                if t >= req - timedelta(minutes=1):
+                    starts.append(t)
+        if starts:
+            first = min(starts)
+            prev = _previous_job_end(cyc.parent, first)
+            busy = (prev - req).total_seconds() / 60 if prev is not None and prev > req else 0.0
+            idle = (first - req).total_seconds() / 60 - busy
+            return _item(5, "Peticiones del PC", name, "ok" if idle <= ACTIONS_WAIT_MIN else "aviso",
+                         f"petición del {req:%d-%m %H:%M}, la empezó el ciclo programado a las {first:%H:%M}"
+                         + (f"; el PC estaba con otro trabajo hasta las {prev:%H:%M} ({busy:.1f} min, no cuentan)"
+                            if busy > 0 else "; el PC estaba libre")
+                         + f", {max(idle, 0):.1f} min después de quedar libre (objetivo ≤ {ACTIONS_WAIT_MIN:.0f} min)")
         return _item(5, "Peticiones del PC", name, "aviso",
                      f"la última petición ({req:%d-%m %H:%M}) no empezó por GitHub Actions; el último trabajo por Actions fue el {start:%d-%m %H:%M}")
     # the time the PC was busy with another job after the request does not count (the job waits for it to end)
