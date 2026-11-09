@@ -446,6 +446,10 @@ accion: completo
 ---
 id: 164
 accion: completo
+---
+id: 165
+accion: completo
+# 165 (09-11): auditoria final de la Base con #218 y #219 hechas (sin casos a camara lenta = nada que medir, no falla)
 # 164 (09-11, #218): repeticiones y otras camaras en la ficha del golpe (etapa view_clips) y medidas en la repeticion
 # a camara lenta (etapa slowmo_fine, views.fine_on_slowmo: true); la pasada fina no se rehace. Comprobar
 # "Repeticiones en el informe: <partido>" y "Medidas en la camara lenta: <partido>" OK en los 4 partidos

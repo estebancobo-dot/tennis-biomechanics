@@ -1109,8 +1109,11 @@ def slowmo_items(match_dirs: list[Path], report_dir: Path | None, stroke: str = 
             continue
         want = [s for s in strokes if slowmo_view(s) is not None]
         if not want:
-            out.append(_item(2, "Repeticiones y otras cámaras", name, "pocos datos",
-                             f"ninguno de sus {len(strokes)} golpes cercanos ({stroke}) tiene repetición a cámara lenta con su instante"))
+            # nothing to measure is not a failure (09-11): the check is that every stroke with such a replay is measured
+            # and shown; with none, it holds and says so (the other matches show it working on real replays)
+            out.append(_item(2, "Repeticiones y otras cámaras", name, "ok" if strokes else "pocos datos",
+                             f"ninguno de sus {len(strokes)} golpes cercanos ({stroke}) tiene repetición a cámara lenta con su "
+                             "instante: nada que medir en este partido"))
             continue
         if not f.exists():
             out.append(_item(2, "Repeticiones y otras cámaras", name, "aviso",

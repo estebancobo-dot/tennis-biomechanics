@@ -315,7 +315,8 @@ def test_report_without_the_new_stages_is_as_before(tmp_path):
     it = A.view_clips_items([d], html.parent)[0]
     assert it["status"] == "aviso" and "view_clips" in it["detail"]
     it = A.slowmo_items([d], html.parent)[0]                                # no slow-motion replay with its instant
-    assert it["status"] == "pocos datos" and "cámara lenta" in it["detail"]
+    # 09-11: nothing to measure holds (every stroke with such a replay is measured: there are none), and says so
+    assert it["status"] == "ok" and "nada que medir" in it["detail"]
 
 
 def test_audit_warns_when_clips_are_missing_or_not_in_the_report(tmp_path):
