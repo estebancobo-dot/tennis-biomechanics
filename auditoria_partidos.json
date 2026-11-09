@@ -3,9 +3,9 @@
  "strokes": 444,
  "near": 265,
  "summary": {
-  "ok": 468,
+  "ok": 470,
   "falta": 25,
-  "pocos datos": 58,
+  "pocos datos": 56,
   "aviso": 107
  },
  "items": [
@@ -940,8 +940,8 @@
    "req": 2,
    "area": "Repeticiones y otras cámaras",
    "name": "Medidas en la cámara lenta: sin-fecha_b8b713_rybakina",
-   "status": "pocos datos",
-   "detail": "ninguno de sus 67 golpes cercanos (forehand) tiene repetición a cámara lenta con su instante"
+   "status": "ok",
+   "detail": "ninguno de sus 67 golpes cercanos (forehand) tiene repetición a cámara lenta con su instante: nada que medir en este partido"
   },
   {
    "req": 3,
@@ -8604,7 +8604,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "41 carpetas, 28.9 GB en total (2026-11-09T06:24:53); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB"
+   "detail": "41 carpetas, 28.9 GB en total (2026-11-09T06:50:06); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB"
   },
   {
    "req": 5,
@@ -8681,21 +8681,21 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_derecha",
    "status": "ok",
-   "detail": "terminó el 2026-11-09 05:01:36 en 18 min: 444 vídeos de 444 golpes"
+   "detail": "terminó el 2026-11-09 06:28:36 en 0 min: 444 vídeos de 444 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_reves",
    "status": "ok",
-   "detail": "terminó el 2026-11-09 05:13:36 en 12 min: 283 vídeos de 283 golpes"
+   "detail": "terminó el 2026-11-09 06:29:04 en 0 min: 283 vídeos de 283 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_saque",
    "status": "ok",
-   "detail": "terminó el 2026-11-09 05:25:49 en 12 min: 294 vídeos de 294 golpes"
+   "detail": "terminó el 2026-11-09 06:29:26 en 0 min: 294 vídeos de 294 golpes"
   },
   {
    "req": 5,
@@ -8898,14 +8898,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-09_0540.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el view_clips (4.2 min): CPU 25/68/100 %, iGPU 0/0/1 %, RAM máx 8.7 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina view_clips (8.2 min): CPU 28/65/98 %, iGPU 0/0/0 %, RAM máx 11.7 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina slowmo_fine (0.5 min): CPU 19/22/25 %, iGPU 84/92/99 %, RAM máx 6.0 GB → iGPU al límite; tennis-yusipopen-polufinal-gau view_clips (7.8 min): CPU 27/55/83 %, iGPU 0/0/0 %, RAM máx 6.3 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau slowmo_fine (0.2 min): CPU 24/24/24 %, iGPU 86/86/86 %, RAM máx 6.0 GB → iGPU al límite; tennis-yusipopen-final-sobolen view_clips (9.8 min): CPU 12/47/82 %, iGPU 0/0/0 %, RAM máx 6.2 GB → uso medio: margen para repartir trabajo; 11.5 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
+   "detail": "recursos_2026-11-09_0540.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el view_clips (4.2 min): CPU 25/68/100 %, iGPU 0/0/1 %, RAM máx 8.7 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina view_clips (8.2 min): CPU 28/65/98 %, iGPU 0/0/0 %, RAM máx 11.7 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina slowmo_fine (0.5 min): CPU 19/22/25 %, iGPU 84/92/99 %, RAM máx 6.0 GB → iGPU al límite; tennis-yusipopen-polufinal-gau view_clips (7.8 min): CPU 27/55/83 %, iGPU 0/0/0 %, RAM máx 6.3 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau slowmo_fine (0.2 min): CPU 24/24/24 %, iGPU 86/86/86 %, RAM máx 6.0 GB → iGPU al límite; tennis-yusipopen-final-sobolen view_clips (9.8 min): CPU 12/47/82 %, iGPU 0/0/0 %, RAM máx 6.2 GB → uso medio: margen para repartir trabajo; 33.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 09-11 05:43, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 09-11 06:42, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -10388,8 +10388,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v",
-   "status": "pocos datos",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 17 comprobaciones: 1 pocos datos, 16 ok; la peor: «Medidas en la cámara lenta: sin-fecha_b8b713_rybakina» (ninguno de sus 67 golpes cercanos (forehand) tiene repetición a cámara lenta con su instante)"
+   "status": "ok",
+   "detail": "17 comprobaciones: 17 ok"
   },
   {
    "req": 11,
