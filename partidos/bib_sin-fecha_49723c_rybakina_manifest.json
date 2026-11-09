@@ -147,5 +147,52 @@
   "out_hash": "4e93ac66c0fe756c4654",
   "scheme": 2,
   "rewrote": {}
+ },
+ "spotting": {
+  "fingerprint": "f5b7249c8f52399f",
+  "version": "1",
+  "seconds": 25.2,
+  "finished": "2026-11-09 14:38:04",
+  "summary": {
+   "enabled": true,
+   "strokes": 671,
+   "near": 358,
+   "far": 313,
+   "out_of_play": 3621,
+   "threshold": 0.1,
+   "fps": 10.0,
+   "model_fps": 10.0,
+   "feature_dim": 122,
+   "audio_track": 0,
+   "seconds": {
+    "jugadores_y_audio": 0.1,
+    "rasgos": 24.9,
+    "bola": 0.0,
+    "modelo": 0.1
+   }
+  },
+  "out_hash": "bd38ab8fb8b7f63dcbdf",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "candidates": {
+  "fingerprint": "99d81032bbfbe523",
+  "version": "15",
+  "seconds": 3.2,
+  "finished": "2026-11-09 14:38:08",
+  "summary": {
+   "candidates": 665,
+   "far": 313,
+   "with_audio": 591,
+   "source": "spotter",
+   "opponent_strokes": 242,
+   "identity_unknown": 149,
+   "replay_strokes_skipped": 21,
+   "replay_runs": 4,
+   "audio_track": 0
+  },
+  "out_hash": "6d192cc3a7fa487a54a7",
+  "scheme": 2,
+  "rewrote": {}
  }
 }

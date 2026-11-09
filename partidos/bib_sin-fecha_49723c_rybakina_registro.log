@@ -1,0 +1,14 @@
+2026-11-09 14:37:39 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] spotting… (2026-11-09 14:37:39, etapa 8 de 16)
+2026-11-09 14:38:04   detector entrenado: 671 golpes (358 cercanos, 313 lejanos) en 112 min de vídeo · umbral 0.1 · 25 s (jugadores_y_audio 0 s, rasgos 25 s, bola 0 s, modelo 0 s)
+2026-11-09 14:38:04 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] spotting terminada a las 14:38:04 en 25 s
+2026-11-09 14:38:04 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] candidates… (2026-11-09 14:38:04, etapa 9 de 16)
+2026-11-09 14:38:08   tramos que son repeticiones: 4 sin marcador
+2026-11-09 14:38:08   identidad por el marcador (su saque, primer golpe del punto, identidad sin decidir): 4
+2026-11-09 14:38:08   saques añadidos por el marcador (su saque no visto, el resto de la rival sí): 15
+2026-11-09 14:38:08   candidatos del detector entrenado: 665 (313 lejanos; 21 en repeticiones, fuera)
+2026-11-09 14:38:08 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] candidates terminada a las 14:38:08 en 3 s
+2026-11-09 14:38:08 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] views… (2026-11-09 14:38:08, etapa 10 de 16)
+2026-11-09 14:38:13   views:   0 % (1/1615 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+2026-11-09 14:38:43   views:  16 % (261/1615 fotogramas de otras tomas) · 30 s · quedan ≈ 3 min
+2026-11-09 14:39:13   views:  32 % (509/1615 fotogramas de otras tomas) · 60 s · quedan ≈ 2 min
+2026-11-09 14:39:44   views:  49 % (794/1615 fotogramas de otras tomas) · 2 min · quedan ≈ 2 min

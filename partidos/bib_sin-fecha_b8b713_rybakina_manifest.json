@@ -164,10 +164,10 @@
   "rewrote": {}
  },
  "fine": {
-  "fingerprint": "7203db6009fcaa93",
+  "fingerprint": "4795ec39121fc996",
   "version": "16",
-  "seconds": 599.2,
-  "finished": "2026-11-09 04:33:08",
+  "seconds": 366.0,
+  "finished": "2026-11-09 14:36:27",
   "summary": {
    "candidates": 303,
    "confirmed": 295,
@@ -187,14 +187,14 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "pose_medida_lejana": 1023.3,
-    "jugadora_lejana": 275.7,
-    "cuerdas_y_3d": 71.8,
-    "pista_ventana": 51.5,
-    "analisis_ventana": 42.7,
-    "recorte": 13.8,
-    "cribado": 9.8,
-    "pose": 1.2
+    "jugadora_lejana": 307.7,
+    "cuerdas_y_3d": 71.5,
+    "pista_ventana": 57.0,
+    "analisis_ventana": 43.7,
+    "recorte": 15.8,
+    "cribado": 9.5,
+    "pose_medida_lejana": 1.4,
+    "pose": 1.3
    },
    "counts": {
     "overlap_s": 0.0,
@@ -208,15 +208,15 @@
     "far_measure_windows": 31
    }
   },
-  "out_hash": "62c6b3035b106e50bbf5",
+  "out_hash": "dc1c79560a305d65fcc1",
   "scheme": 2,
   "rewrote": {}
  },
  "fine_opponent": {
-  "fingerprint": "7bf7b8e970ed0083",
+  "fingerprint": "3e32f996e0afb48e",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-09 04:33:10",
+  "finished": "2026-11-09 14:37:02",
   "summary": {
    "enabled": false
   },
@@ -272,10 +272,10 @@
   "rewrote": {}
  },
  "views_link": {
-  "fingerprint": "18454ee3322f1079",
+  "fingerprint": "acc4f2e6b3d83713",
   "version": "1",
   "seconds": 0.4,
-  "finished": "2026-11-09 04:33:09",
+  "finished": "2026-11-09 14:36:28",
   "summary": {
    "strokes": 295,
    "with_replay": 45,
@@ -287,14 +287,14 @@
   "out_hash": "93ee76583a97a8a3a682",
   "scheme": 2,
   "rewrote": {
-   "fine": "24fa407e5282e58cbd4f"
+   "fine": "195399da46eb9e6c9632"
   }
  },
  "fine_doubtful": {
-  "fingerprint": "3b9ff5eefad10e32",
+  "fingerprint": "76567c4929ebf1fc",
   "version": "1",
-  "seconds": 73.8,
-  "finished": "2026-11-09 04:34:23",
+  "seconds": 37.4,
+  "finished": "2026-11-09 14:37:39",
   "summary": {
    "candidates": 63,
    "confirmed": 33,
@@ -314,14 +314,14 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "pose_medida_lejana": 140.8,
-    "cuerdas_y_3d": 10.3,
-    "jugadora_lejana": 8.6,
-    "analisis_ventana": 7.8,
-    "pista_ventana": 6.8,
-    "recorte": 3.5,
-    "cribado": 1.4,
-    "pose": 0.1
+    "cuerdas_y_3d": 10.2,
+    "jugadora_lejana": 8.7,
+    "analisis_ventana": 7.7,
+    "pista_ventana": 6.4,
+    "recorte": 3.2,
+    "cribado": 1.3,
+    "pose_medida_lejana": 0.3,
+    "pose": 0.2
    },
    "counts": {
     "overlap_s": 0.0,
@@ -335,43 +335,43 @@
     "far_measure_windows": 4
    }
   },
-  "out_hash": "a161c6257b7a543d9c8f",
+  "out_hash": "12f26edbbbbf6484e6bc",
   "scheme": 2,
   "rewrote": {}
  },
  "view_clips": {
-  "fingerprint": "a1ca858d64d7b452",
+  "fingerprint": "1dcbab513c786954",
   "version": "1",
-  "seconds": 654.7,
-  "finished": "2026-11-09 06:18:29",
+  "seconds": 30.3,
+  "finished": "2026-11-09 14:36:59",
   "summary": {
    "enabled": true,
    "linked_strokes": 291,
    "views": 997,
    "clips": 713,
-   "cut": 713,
-   "reused": 0,
+   "cut": 0,
+   "reused": 713,
    "failed": 0,
-   "seconds": 654.6,
+   "seconds": 30.2,
    "clip_seconds": 3897.7,
    "strokes_with_clip": 291
   },
-  "out_hash": "ea04db5f248495683ca5",
+  "out_hash": "6c70adc24469942a0e69",
   "scheme": 2,
   "rewrote": {}
  },
  "slowmo_fine": {
-  "fingerprint": "918d9757814ee9c4",
+  "fingerprint": "1c94ad489ee83e42",
   "version": "1",
-  "seconds": 36.5,
-  "finished": "2026-11-09 06:19:06",
+  "seconds": 2.1,
+  "finished": "2026-11-09 14:37:01",
   "summary": {
    "enabled": true,
    "slowmo_strokes": 6,
    "measured": 6,
    "failed": 0,
    "frames": 345,
-   "seconds": 36.4
+   "seconds": 2.0
   },
   "out_hash": "d029ab46aec5645c3b50",
   "scheme": 2,
