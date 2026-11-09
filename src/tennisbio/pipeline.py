@@ -188,16 +188,64 @@ def video_fingerprint(path: Path, d: Path | None = None) -> str:
 _code_cache: dict = {}
 
 
-def code_fingerprint(modules: tuple[str, ...]) -> str:
-    """Hash of the source of the modules a stage runs: changing a formula re-runs that stage."""
-    key = tuple(modules)
+def _norm_src(src: str) -> str:
+    """Source as syntax: comments, docstrings and formatting do not count (a comment never re-runs hours of work)."""
+    import ast
+    tree = ast.parse(src)
+    for node in ast.walk(tree):
+        body = getattr(node, "body", None)
+        if isinstance(body, list) and body and isinstance(body[0], ast.Expr) \
+                and isinstance(getattr(body[0], "value", None), ast.Constant) and isinstance(body[0].value.value, str):
+            body.pop(0)
+    return ast.dump(tree, annotate_fields=False, include_attributes=False)
+
+
+def _reachable_src(src: str, entry: str) -> str:
+    """The part of a module a stage runs: its function and every top-level function, class or constant of the same
+    module it reaches by name (transitively), as normalised syntax. Editing another stage in stages.py no longer
+    changes this stage's fingerprint (10-11: identity v10 re-ran the fine pass of every match for hours)."""
+    import ast
+    tree = ast.parse(src)
+    defs: dict[str, list] = {}
+    for n in tree.body:
+        if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)):
+            defs.setdefault(n.name, []).append(n)
+        elif isinstance(n, (ast.Assign, ast.AnnAssign)):
+            for t in (n.targets if isinstance(n, ast.Assign) else [n.target]):
+                for x in ast.walk(t):
+                    if isinstance(x, ast.Name):
+                        defs.setdefault(x.id, []).append(n)
+    if entry not in defs:
+        return _norm_src(src)
+    seen, todo = set(), [entry]
+    while todo:
+        k = todo.pop()
+        if k in seen or k not in defs:
+            continue
+        seen.add(k)
+        for node in defs[k]:
+            todo += [x.id for x in ast.walk(node) if isinstance(x, ast.Name) and x.id in defs]
+    parts = []
+    for k in sorted(seen):
+        for node in defs[k]:
+            parts.append(_norm_src(ast.unparse(node)))
+    return "\n".join(dict.fromkeys(parts))
+
+
+def code_fingerprint(modules: tuple[str, ...], entry: str | None = None) -> str:
+    """Hash of the code a stage runs: changing a formula re-runs that stage, a comment or another stage does not.
+    Each module counts as normalised syntax; the module that defines the stage (stages.py, view_stages.py) counts
+    only by what its function reaches (entry: the stage function's name)."""
+    key = (tuple(modules), entry)
     if key not in _code_cache:
         root = Path(__file__).resolve().parent
-        h = hashlib.sha1()
+        h = hashlib.sha1(b"code2")
         for m in modules:
             f = root / (m.replace(".", "/") + ".py")
             if f.exists():
-                h.update(f.read_bytes().replace(b"\r\n", b"\n"))
+                src = f.read_text(encoding="utf-8")
+                h.update(m.encode())
+                h.update((_reachable_src(src, entry) if entry and m in ("stages", "view_stages") else _norm_src(src)).encode())
         _code_cache[key] = h.hexdigest()[:16]
     return _code_cache[key]
 
@@ -317,7 +365,7 @@ def fingerprint(name: str, ctx: Context, manifest: dict, by_content: bool = True
     fingerprint, the former scheme (only to recognise manifests written before, see _migrate)."""
     st = STAGES[name]
     key = {"stage": name, "version": st.version, "video": video_fingerprint(ctx.match.video, ctx.dir),
-           "settings": st.settings(ctx.cfg), "code": code_fingerprint(st.code) if st.code else None,
+           "settings": st.settings(ctx.cfg), "code": code_fingerprint(st.code, st.run.__name__) if st.code else None,
            "match": st.match_fields(ctx.match) if st.match_fields else None,
            "deps": {d: (_dep_key(manifest, d) if by_content else manifest.get(d, {}).get("fingerprint"))
                     for d in st.all_deps(ctx.cfg)}}
