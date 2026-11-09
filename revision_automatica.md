@@ -1,10 +1,10 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-368 cumplidos · 17 no cumplidos · 126 sin golpes suficientes · 103 avisos (antes: 370 cumplidos, 17 no cumplidos)
+372 cumplidos · 17 no cumplidos · 128 sin golpes suficientes · 99 avisos (antes: 368 cumplidos, 17 no cumplidos)
 
-## Peticiones del usuario SIN TERMINAR: 113 de 245
+## Peticiones del usuario SIN TERMINAR: 112 de 245
 
-Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 122 hechas · 96 a medias · 16 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
 - **#189 [FALTA]** «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4) — falta: No está en `learn.py`.
@@ -112,7 +112,6 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - **#214 [PARCIAL]** Fuentes de Ivanovic §3 #17 (Auditorías 17-10, técnica #18) — falta: Ver hueco 17 de Ivanovic.
 - **#215 [PARCIAL]** Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22) — falta: Unificar en «armado completo cuando bota».
 - **#218 [PARCIAL]** La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (velocidad normal o cámara lent… — falta: Falta validarlo con los partidos reales (umbrales de clasificación), medir sobre esas tomas (pasada fina en la cámara lenta: `views.fine_on_slowmo`, pendiente)…
-- **#219 [PARCIAL]** Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa distancia, no descartados (19-… — falta: Hasta el 08-11: se confirmaban ~20 % de los golpes del fondo (Zheng: 36 de ~175; nota desfasada). 08-11 (B4), salidas del PC del 08-11: **contados**, frente a …
 - **#233 [PARCIAL]** Una referencia completa y medida antes de validar nada (26-10 11:09) — falta: 799 golpes suyos en 4 partidos (27-10). 08-11: la referencia se ha rehecho (1016 golpes suyos; «Partido …: salida de cada etapa» ✔ en los 4, ningún golpe falli…
 - **#235 [PARCIAL]** Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) — falta: Cadena en orden 79 % y pasos medidos 87 % en los 193 golpes; falta verlo recalculado en el PC.
 - **#236 [PARCIAL]** Huellas numeradas sobre los pies y patrones de pasos (27-10 09:38) — falta: Patrón típico de pasos por situación (frecuencia de cada secuencia).
@@ -141,7 +140,14 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 
-## Empeora respecto a la ejecución anterior
+## Mejora
 
-- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: la última petición (09-11 03:20) no empezó por GitHub Actions; el último trabajo por Actions fue el 09-11 02:55
-- **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (09-11 03:20) no empezó por GitHub Actions; el último trabajo por Actions fue el 09-11 02:
+- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok
+- #218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v: aviso → pocos datos
+- #219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d: aviso → ok
+- #237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min: aviso → ok
+
+## Comprobaciones nuevas
+
+- Repeticiones en el informe: smoke_tennis-yusipopen-final-sobolenko-rybakin: ok (100% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (22 de 22) · 101 recortes en el partido)
+- Medidas en la cámara lenta: smoke_tennis-yusipopen-final-sobolenko-rybakin: pocos datos (ninguno de sus 13 golpes cercanos (forehand) tiene repetición a cámara lenta con su instante)

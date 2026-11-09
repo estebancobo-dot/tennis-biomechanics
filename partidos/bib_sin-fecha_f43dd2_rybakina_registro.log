@@ -9278,3 +9278,30 @@
 2026-11-09 04:02:35   ventana w003863426_3600: pose hybrid en 123 de 123 fotogramas (0 s; modelo 0 s; pies en 95) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 181 px (segments)
 2026-11-09 04:02:35   fine_doubtful: 100 % (14/14 golpes candidatos · 4 confirmados · 0 ventanas descartadas sin pose) · 6 s · quedan ≈ 0 s
 2026-11-09 04:02:35 [us-open-2026-r4-naomi-osaka-elena-rybakina] fine_doubtful terminada a las 04:02:35 en 9 s
+2026-11-09 05:44:32 [us-open-2026-r4-naomi-osaka-elena-rybakina] view_clips… (2026-11-09 05:44:32, etapa 13 de 16)
+2026-11-09 05:44:32   view_clips:   0 % (1/291 recortes de repeticiones y otras cámaras) · 0 s · quedan ≈ 0 s
+2026-11-09 05:45:02   view_clips:  11 % (33/291 recortes de repeticiones y otras cámaras) · 30 s · quedan ≈ 4 min
+2026-11-09 05:45:32   view_clips:  23 % (68/291 recortes de repeticiones y otras cámaras) · 61 s · quedan ≈ 3 min
+2026-11-09 05:45:51   AVISO: toma sin recorte (v001604700_00700.mp4): no se pudo recortar la toma de 0.7 s en 1604.7 s (40e5c0] mmco: unref short failure
+[h264 @ 000002122840e5c0] number of reference frames (0+5) exceeds max (4; p
+2026-11-09 05:46:00   AVISO: toma sin recorte (v001709800_00700.mp4): no se pudo recortar la toma de 0.7 s en 1709.8 s (60780] Decoding error: Invalid data found when processing input
+[h264 @ 000001c41193e440] reference picture mi
+2026-11-09 05:46:03   view_clips:  35 % (101/291 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 3 min
+2026-11-09 05:46:23   AVISO: toma sin recorte (v002066000_00700.mp4): no se pudo recortar la toma de 0.7 s en 2066.0 s (ort failure
+[h264 @ 0000022ffba73e40] reference picture missing during reorder
+[h264 @ 0000022ffba73e40] Missi
+2026-11-09 05:46:34   view_clips:  46 % (133/291 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 2 min
+2026-11-09 05:47:05   view_clips:  56 % (162/291 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 2 min
+2026-11-09 05:47:36   view_clips:  65 % (190/291 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 2 min
+2026-11-09 05:48:07   view_clips:  75 % (218/291 recortes de repeticiones y otras cámaras) · 4 min · quedan ≈ 72 s
+2026-11-09 05:48:37   view_clips:  88 % (257/291 recortes de repeticiones y otras cámaras) · 4 min · quedan ≈ 32 s
+2026-11-09 05:49:02   AVISO: toma sin recorte (v004053600_00700.mp4): no se pudo recortar la toma de 0.7 s en 4053.6 s (de: -1145393733 (Error number -1145393733 occurred)
+[vist#0:0/h264 @ 000002a1f43cca40] [dec:h264 @ 000002a1f39
+2026-11-09 05:49:02   view_clips: 100 % (291/291 recortes de repeticiones y otras cámaras) · 5 min · quedan ≈ 0 s
+2026-11-09 05:49:03   tomas recortadas: 287 nuevas, 0 ya hechas, 4 fallidas, de 159 golpes
+2026-11-09 05:49:03 [us-open-2026-r4-naomi-osaka-elena-rybakina] view_clips terminada a las 05:49:03 en 4.5 min
+2026-11-09 05:49:04 [us-open-2026-r4-naomi-osaka-elena-rybakina] slowmo_fine… (2026-11-09 05:49:04, etapa 14 de 16)
+2026-11-09 05:49:04   slowmo_fine:  50 % (1/2 golpes en la repetición a cámara lenta) · 0 s · quedan ≈ 0 s
+2026-11-09 05:49:10   slowmo_fine: 100 % (2/2 golpes en la repetición a cámara lenta) · 6 s · quedan ≈ 0 s
+2026-11-09 05:49:12   cámara lenta: 2 de 2 golpes medidos (59 fotogramas, 8 s)
+2026-11-09 05:49:12 [us-open-2026-r4-naomi-osaka-elena-rybakina] slowmo_fine terminada a las 05:49:12 en 8 s
