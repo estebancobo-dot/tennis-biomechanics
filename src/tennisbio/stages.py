@@ -1359,14 +1359,14 @@ def _surname(name: str) -> str:
     return name.strip().split()[-1] if name and name.strip() else ""
 
 
-@stage("score", "6", deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
+@stage("score", "7", deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
        outputs=("score.json",), match_fields=lambda m: {"player": m.player.name, "opponent": m.opponent}, resource="cpu")
 def st_score(ctx: Context):
     """TV scoreboard every few seconds of main camera (sets, games, points, pressure)."""
     sc = _read(ctx.path("scenes.json"))
     fps, every = sc["fps"], (ctx.cfg.get("score") or {}).get("every_s", 5.0)
     try:
-        from .scoreboard import ScoreReader, discover_opponent
+        from .scoreboard import ScoreReader, discover_opponent, learn_server
     except ImportError:
         _write(ctx.path("score.json"), {"readings": [], "note": "uv sync --extra ocr"})
         return {"readings": 0, "note": "sin OCR instalado"}
@@ -1386,7 +1386,7 @@ def st_score(ctx: Context):
         return {"readings": 0}
     # OCR of the scoreboard region is repeated at least every 30 s even when its pixels look unchanged
     reader = ScoreReader(*names, max_reuse=max(0, int(30.0 / every + 1e-9) - 1))
-    out, shots, samples, by_shot = [], [], [], {}
+    out, shots, samples, by_shot, profiles = [], [], [], {}, []
     # only match play is sampled (main camera with the court found, as the players stage): in the rest
     # of the "main camera" (close-ups, crowd, graphics) there is often no scoreboard, and every miss
     # there is an OCR of the whole frame (~2.5 s): it was two thirds of the stage for nothing
@@ -1415,12 +1415,25 @@ def st_score(ctx: Context):
         if st is not None:
             sh["read"] += 1
             out.append({"t": round(t, 2), **st.to_dict()})
-    _write(ctx.path("score.json"), {"readings": out, "names": names, "opponent": opponent, "shots": shots})
+            profiles.append(st.profile)
+    # v7 (09-11): who serves, wherever this broadcast draws its marker (Indian Wells / Miami 2026: the colour rule read
+    # no server, 0 serve votes for the identity); learned over the match from the alternation of the serve
+    servers, srv = learn_server(out, profiles)
+    for r, v in zip(out, servers):
+        r["server_marker"], r["server"] = r["server"], v
+    _write(ctx.path("score.json"), {"readings": out, "names": names, "opponent": opponent, "shots": shots,
+                                    "server_check": srv, "roi": list(reader.roi) if reader.roi else None})
     if not out:
         ctx.log(f"  AVISO: no se pudo leer el marcador con «{names[0]}» y «{names[1]}»: sin marcador no se sabe "
                 f"quién está en cada lado; compruebe que el partido es de {ctx.match.player.name}")
     ctx.log(f"  marcador: {len(samples)} muestras en juego, {reader.ocr_calls} OCR ({len(out)} lecturas)")
-    return {"readings": len(out), "pressure": sum(r["pressure"] for r in out), "samples": len(samples), "ocr_calls": reader.ocr_calls}
+    ctx.log(f"  saque en el marcador: {srv['server_read']} de {len(out)} lecturas ({srv['source']}; marca de color "
+            f"{srv['marker_read']}, sigue la alternancia en {srv['marker_agree']:.0%} de {srv['marker_checked']}; "
+            f"aprendida {'sí' if srv['learned'] else 'no'}"
+            + (f", sigue la alternancia en {srv['learned_agree']:.0%} de {srv['learned_checked']}" if srv['learned_agree'] is not None else "")
+            + ")")
+    return {"readings": len(out), "pressure": sum(r["pressure"] for r in out), "samples": len(samples), "ocr_calls": reader.ocr_calls,
+            "server_read": srv["server_read"], "server_source": srv["source"]}
 
 
 def score_at(score: dict, t: float, max_age_s=40.0):

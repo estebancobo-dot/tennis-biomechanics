@@ -7,6 +7,7 @@ glued together by the OCR ("472"), and set scores are single digits, so they are
 """
 import difflib
 import re
+import warnings
 from dataclasses import dataclass, field
 
 import numpy as np
@@ -22,6 +23,9 @@ class ScoreState:
     banner: str = ""                       # e.g. "BREAK POINT", "SET POINT" when the broadcast shows it
     server: int | None = None              # 0 player, 1 opponent (serve marker on the scoreboard)
     flags: list[str] = field(default_factory=list)
+    # 09-11: row 0 minus row 1 salience per x-bin (row_profile), for learning where this broadcast's serve
+    # marker is (learn_server); not part of the reading written to score.json
+    profile: np.ndarray | None = field(default=None, repr=False, compare=False)
 
     @property
     def set_number(self) -> int:
@@ -99,17 +103,78 @@ def serve_marker(image: np.ndarray, items: list, rows_y: tuple[float, float], mi
         cv2.fillPoly(m, [b], 0)
     gap = abs(rows_y[0] - rows_y[1])
     n, _, st, cen = cv2.connectedComponentsWithStats(m)
-    hits = [0.0, 0.0]
+    cand = []                                                   # (row, x0, x1, area)
     for i in range(1, n):
         x, y, w, h, area = st[i]
         if area < min_area or h > 0.8 * gap or w > 3 * gap:     # banners and big panels are not markers
             continue
         for k, ry in enumerate(rows_y):
             if abs(cen[i][1] - ry) < 0.35 * gap:
-                hits[k] += area
+                cand.append((k, x, x + w, area))
+    # 09-11: a coloured element drawn on both rows (a highlighted points cell, a coloured seed or country box, two
+    # flags of one colour) is part of the layout, not the marker: it made both rows equal and the reading None
+    twin = set()
+    for a, ca in enumerate(cand):
+        for b, cb in enumerate(cand):
+            if ca[0] == 0 and cb[0] == 1:
+                ov = min(ca[2], cb[2]) - max(ca[1], cb[1])
+                if ov >= 0.5 * min(ca[2] - ca[1], cb[2] - cb[1]) and 0.5 <= ca[3] / max(cb[3], 1) <= 2.0:
+                    twin.update((a, b))
+    hits = [0.0, 0.0]
+    for a, (k, _, _, area) in enumerate(cand):
+        if a not in twin:
+            hits[k] += area
     if max(hits) == 0 or min(hits) > 0.5 * max(hits):
         return None
     return int(np.argmax(hits))
+
+
+PROFILE_BINS = (-4.0, 14.0, 0.25)        # x from the names' left edge, in row gaps: from, to, bin width
+
+
+def row_profile(image: np.ndarray, items: list, rows_y: tuple[float, float], name_boxes: list) -> np.ndarray | None:
+    """Row 0 minus row 1 salience (colour distance from the scoreboard's background, the median colour of the
+    region) per x-bin, bins in row gaps from the names' left edge (PROFILE_BINS), NaN where there is no image.
+    Text other than the names is masked (its digits change with the score); the names are kept, because a
+    serve marker drawn next to a name often falls inside its OCR box. Whatever marks the server shows up as
+    a difference that flips sign when the serve changes hands, which learn_server finds over the match."""
+    import cv2
+
+    if image is None or image.ndim != 3 or not name_boxes:
+        return None
+    gap = abs(rows_y[0] - rows_y[1])
+    if gap < 4:
+        return None
+    img = image.astype(np.float32)
+    mask = np.zeros(image.shape[:2], np.uint8)
+    for box, _, _ in items:
+        if not any(box is nb for nb in name_boxes):
+            cv2.fillPoly(mask, [np.asarray(box, np.int32)], 1)
+    keep = mask == 0
+    if not keep.any():
+        return None
+    bg = np.median(img[keep], axis=0)
+    sal = np.abs(img - bg).max(axis=2)
+    sal[~keep] = np.nan
+    h, w = sal.shape
+    lo, hi, step = PROFILE_BINS
+    x_ref = min(float(np.asarray(b, float)[:, 0].min()) for b in name_boxes)
+    nb = int(round((hi - lo) / step))
+    edges = x_ref + (lo + step * np.arange(nb + 1)) * gap
+    prof = []
+    for ry in rows_y:
+        y0, y1 = int(max(0, round(ry - 0.3 * gap))), int(min(h, round(ry + 0.3 * gap) + 1))
+        band = sal[y0:y1]
+        out = np.full(nb, np.nan, np.float32)
+        with warnings.catch_warnings():
+            warnings.simplefilter("ignore", RuntimeWarning)          # columns that are all text
+            col = np.nanmean(band, axis=0) if band.size else np.full(w, np.nan)
+            for b in range(nb):
+                a, c = max(int(np.floor(edges[b])), 0), min(int(np.ceil(edges[b + 1])), w)
+                if c - a >= 1 and np.isfinite(col[a:c]).any():
+                    out[b] = float(np.nanmean(col[a:c]))
+        prof.append(out)
+    return prof[0] - prof[1]
 
 
 def parse(items: list, surnames: tuple[str, str], image: np.ndarray | None = None) -> ScoreState | None:
@@ -122,7 +187,7 @@ def parse(items: list, surnames: tuple[str, str], image: np.ndarray | None = Non
     tol = abs(y_p - y_o) * 0.45 or 10
     banner = ""
     cells = {0: [], 1: []}
-    name_x = {}
+    name_x, name_box = {}, {}
     for box, text, _ in items:
         x, y = _center(box)
         up = _norm(text)
@@ -132,7 +197,7 @@ def parse(items: list, surnames: tuple[str, str], image: np.ndarray | None = Non
         for k, yr in enumerate((y_p, y_o)):
             if abs(y - yr) <= tol:
                 if _is_name(text, surnames[k]):
-                    name_x[k] = x
+                    name_x[k], name_box[k] = x, box
                 else:
                     cells[k].append((x, text))
     if len(name_x) < 2:
@@ -163,7 +228,104 @@ def parse(items: list, surnames: tuple[str, str], image: np.ndarray | None = Non
     if pts[1] is None and pts[0] == "AD":
         pts[1] = "40"
     server = serve_marker(image, items, (y_p, y_o)) if image is not None else None
-    return ScoreState(games, pts, banner, server, flags)
+    prof = row_profile(image, items, (y_p, y_o), list(name_box.values())) if image is not None else None
+    return ScoreState(games, pts, banner, server, flags, prof)
+
+
+def serve_parity(reading: dict) -> int | None:
+    """Games played in the match mod 2 (the serve changes hands every game, a tie-break counting as one game
+    in the set's score), or None in a tie-break (the serve changes every two points) or without games."""
+    g = reading.get("games")
+    if not g or reading.get("tiebreak"):
+        return None
+    try:
+        return int(sum(int(a) + int(b) for a, b in g)) % 2
+    except (TypeError, ValueError):
+        return None
+
+
+def _parity_agreement(values, parities) -> tuple[float, int]:
+    """Share of readings (server 0/1 with a known parity) that follow «server = first server XOR parity» for
+    the better of the two first servers, and how many readings it is measured on."""
+    pairs = [(v, p) for v, p in zip(values, parities) if v in (0, 1) and p is not None]
+    if not pairs:
+        return 0.0, 0
+    same = sum(v == p for v, p in pairs)
+    return max(same, len(pairs) - same) / len(pairs), len(pairs)
+
+
+def learn_server(readings: list[dict], profiles: list, min_readings=20, min_corr=0.6, min_agree=0.8,
+                 marker_agree=0.7) -> tuple[list, dict]:
+    """Who serves in each reading, wherever this broadcast draws its serve marker (09-11: on the Indian Wells and
+    Miami 2026 broadcasts the colour-blob rule of serve_marker read no server at all, 0 serve votes).
+
+    The rule of tennis gives the times the serve changes hands (every game: games played mod 2), never who
+    serves. The x-bins of the row-difference profile (row_profile) whose value flips with that parity are where
+    the marker is; in each reading, the sign of the profile there says which row has it (the marker is drawn
+    on the server's row: more salient than the scoreboard's background). The learned marker is kept only when
+    its readings follow the alternation (≥ min_agree) on ≥ min_readings readings.
+
+    The per-frame colour marker (reading["server"]) is kept when it follows the alternation (≥ marker_agree: some
+    readings fall between a game's end and the marker moving); a marker that does
+    not (a coloured flag or panel on one row read as the server) is replaced by the learned one, or dropped.
+    Returns (server per reading: 0/1/None, summary for score.json)."""
+    n = len(readings)
+    par = [serve_parity(r) for r in readings]
+    raw = [r.get("server") for r in readings]
+    raw_agree, raw_n = _parity_agreement(raw, par)
+    summ = {"marker_read": sum(v in (0, 1) for v in raw), "marker_agree": round(raw_agree, 3), "marker_checked": raw_n,
+            "learned": False, "learned_agree": None, "learned_checked": 0, "bins": [], "source": "marker"}
+    learned = [None] * n
+    rows = [i for i, p in enumerate(profiles) if p is not None and par[i] is not None]
+    if len(rows) >= min_readings and len({par[i] for i in rows}) == 2:
+        P = np.vstack([np.asarray(profiles[i], np.float64) for i in rows])
+        z = np.array([1.0 if par[i] == 0 else -1.0 for i in rows])
+        corr = np.zeros(P.shape[1])
+        for b in range(P.shape[1]):
+            ok = np.isfinite(P[:, b])
+            if ok.sum() < min_readings or len(set(z[ok])) < 2:
+                continue
+            x, y = P[ok, b], z[ok]
+            if x.std() < 1e-6:
+                continue
+            corr[b] = float(np.corrcoef(x, y)[0, 1])
+        # the marker: every bin that flips with the serve as the strongest one does (the icon right after each name
+        # sits at a different x on each row when the names differ in length; both spots flip the same way), at
+        # least two bins (a small icon spans a few; one isolated bin is noise)
+        best = int(np.argmax(np.abs(corr)))
+        sgn = np.sign(corr[best])
+        bins = [b for b in range(len(corr)) if corr[b] * sgn >= 0.75 * min_corr]
+        if abs(corr[best]) >= min_corr and len(bins) >= 2:
+            means = np.full(n, np.nan)
+            for i, p in enumerate(profiles):
+                if p is not None:
+                    v = np.asarray(p, np.float64)[bins]
+                    if np.isfinite(v).any():
+                        means[i] = float(np.nanmean(v))
+            # a reading says who serves only when its difference there is clear (≥ a quarter of the typical one)
+            amp = float(np.nanmedian(np.abs(means))) if np.isfinite(means).any() else 0.0
+            for i, m in enumerate(means):
+                if np.isfinite(m) and amp > 0 and abs(m) >= 0.25 * amp:
+                    learned[i] = 0 if m > 0 else 1
+            agree, checked = _parity_agreement(learned, par)
+            lo, step = PROFILE_BINS[0], PROFILE_BINS[2]
+            summ.update(learned_agree=round(agree, 3), learned_checked=checked, corr=round(float(corr[best]), 3),
+                        bins=[[round(lo + step * b, 2), round(lo + step * (b + 1), 2)] for b in bins])
+            summ["learned"] = checked >= min_readings and agree >= min_agree
+    if not summ["learned"]:
+        learned = [None] * n
+    raw_ok = raw_n >= 6 and raw_agree >= marker_agree
+    if raw_ok or (raw_n < 6 and not summ["learned"]):
+        out = [v if v is not None else learned[i] for i, v in enumerate(raw)]      # few or good marker readings: as before
+        summ["source"] = "marker" + (" + aprendido" if summ["learned"] and any(v is None for v in raw) else "")
+    elif summ["learned"]:
+        out = learned
+        summ["source"] = "aprendido"
+    else:
+        out = [None] * n
+        summ["source"] = "ninguno: el marcador no sigue la alternancia del saque"
+    summ["server_read"] = sum(v in (0, 1) for v in out)
+    return out, summ
 
 
 def crop_changed(a: np.ndarray | None, b: np.ndarray | None, thresh: float = 20.0, k: int = 5) -> bool:

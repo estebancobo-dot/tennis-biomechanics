@@ -186,7 +186,7 @@ def test_score_stage_samples_the_same_times_with_one_sequential_read(tmp_path, m
             t += 5.0
     assert [r["t"] for r in res["readings"]] == exp
     assert [(x["tried"], x["read"]) for x in res["shots"]] == [(2, 2), (0, 0), (3, 3)]
-    assert set(res["readings"][0]) == {"t", "games", "points", "banner", "server", "set", "sets_won", "tiebreak",
+    assert set(res["readings"][0]) == {"t", "games", "points", "banner", "server", "server_marker", "set", "sets_won", "tiebreak",
                                        "pressure", "flags"}
     assert res["readings"][0]["games"] == [[3, 2]] and res["names"] == ["Player", "Rival"]
     # the first OCR (full-frame search) saw exactly the frame a seek to 0.5 s gives

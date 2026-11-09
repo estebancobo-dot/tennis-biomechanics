@@ -22,6 +22,27 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
 ## 19-10: el plan vigente está en `docs/plan_maestro.md` (leer primero)
 Todo lo pendiente, en orden, con su criterio de cierre medido en el PC. Almacenamiento definitivo: `docs/almacenamiento.md`.
 
+## 09-11: el saque en el marcador de otras retransmisiones (etapa `score` v7)
+- Problema: en Indian Wells 2026 (Zverev–Sinner) y Miami 2026 (Rybakina–Pegula) el marcador se leía (92 y 407
+  lecturas, con juegos y puntos) pero la identidad tuvo 0 votos de saque y decidió 0 de 167 y 0 de 320 planos. El
+  único lector del saque era una mancha de color saturado no tapada por texto en la fila del nombre (`serve_marker`),
+  pensado para la pelota amarilla del US Open. En marcadores de retransmisión mundial (banderas de país junto a los
+  nombres, celda de puntos de color en las dos filas, marca de saque blanca o dentro de la caja de texto del nombre)
+  ese criterio da «ninguno» (dos filas iguales) o siempre la misma fila (la bandera más saturada).
+- Ahora, sin nada por torneo: (1) los elementos de color que aparecen en las dos filas a la misma altura y tamaño
+  (celdas, banderas iguales) no cuentan como marca; (2) cada lectura guarda la diferencia fila 0 − fila 1 de lo que
+  destaca del fondo del marcador por columnas (en «alturas de fila» desde el nombre, `row_profile`), y al final del
+  partido `learn_server` busca las columnas que cambian de signo cuando cambia el saque (cada juego: juegos jugados
+  impares/pares, regla del tenis; los tie-breaks no cuentan): ahí está la marca, sea cual sea su forma o color. La
+  regla solo dice **cuándo** cambia el saque; **quién** saca lo dice la marca leída en cada lectura. La marca
+  aprendida se acepta si sigue la alternancia en ≥ 80 % de ≥ 20 lecturas. La de color se mantiene si sigue la
+  alternancia (≥ 70 %; el US Open queda igual); si no la sigue (una bandera), se sustituye por la aprendida o se
+  quita (nunca votos falsos). `score.json`: `server` (el que se usa), `server_marker` (el de color, como antes),
+  `server_check` (cuántas, de dónde, acuerdo con la alternancia, columnas) y `roi`. Registro: «saque en el marcador».
+- Diagnóstico en el PC si no bastara: `scripts/diag_scoreboard.py` (petición `medir`, `script: diag_scoreboard`)
+  guarda recortes ampliados del marcador con lo que leyó el OCR, la máscara de color y el saque, en
+  `pc-logs/capturas_diag/marcador_<partido>_<k>.jpg` y `diag_marcador.json`.
+
 ## 09-11: fotos del clic de la misma persona (petición 167, etapa `identity` v9)
 - Problema: en Rybakina–Pegula (Miami 2026) las dos fotos del clic eran la misma mujer (vestido blanco, visera
   naranja). Las dos visten de blanco: los dos grupos de ropa no eran las dos personas (separación 1,78, igual de
