@@ -966,5 +966,13 @@
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-09 06:18"
   }
+ ],
+ "court:unidad": [
+  {
+   "s": 0.1328,
+   "units": 635,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-09 07:09"
+  }
  ]
 }

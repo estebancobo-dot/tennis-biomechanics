@@ -10,10 +10,12 @@
    "size": "1920x1080",
    "cleaned": false,
    "vfr": false
-  }
+  },
+  "out_hash": "0acdd924e8c8ce0a934a",
+  "scheme": 2
  },
  "scenes": {
-  "fingerprint": "85cd8609dc7fb082",
+  "fingerprint": "1fb6a4ef06e6d006",
   "version": "3",
   "seconds": 420.7,
   "finished": "2026-10-18 23:37:28",
@@ -25,17 +27,21 @@
    "main_rule": "lines",
    "main_camera_min_colour": 62.6,
    "main_views": 133
-  }
+  },
+  "out_hash": "4e4158f2b389482888c3",
+  "scheme": 2
  },
  "audio": {
-  "fingerprint": "4a57bca93f41a694",
+  "fingerprint": "2330b6375013eca0",
   "version": "2",
   "seconds": 145.5,
   "finished": "2026-10-18 23:39:53",
   "summary": {
    "onsets": 4332,
    "tracks": 4
-  }
+  },
+  "out_hash": "1a370fcd76e0adf417b3",
+  "scheme": 2
  },
  "court": {
   "fingerprint": "e494247cb43e073e",
@@ -54,10 +60,11 @@
    "court_min": 15.2,
    "court_share": 0.806,
    "pitch_deg_median": 19.0
-  }
+  },
+  "scheme": 2
  },
  "score": {
-  "fingerprint": "a31e052688801efa",
+  "fingerprint": "f04f6c9a2324dd28",
   "version": "6",
   "seconds": 516.2,
   "finished": "2026-10-18 23:53:00",
@@ -66,10 +73,12 @@
    "pressure": 12,
    "samples": 234,
    "ocr_calls": 242
-  }
+  },
+  "out_hash": "c2e31859c52fbe2ef312",
+  "scheme": 2
  },
  "players": {
-  "fingerprint": "b19b61a4daee2ccd",
+  "fingerprint": "6ca053fe8d02fe61",
   "version": "4",
   "seconds": 680.1,
   "finished": "2026-10-18 23:55:44",
@@ -81,7 +90,9 @@
    "wait_min": 0.8,
    "appearance_min": 0.2
   },
-  "overlap_s": 516.2
+  "overlap_s": 516.2,
+  "out_hash": "5f81bb9a3a35b3567c02",
+  "scheme": 2
  },
  "identity": {
   "fingerprint": "9442f2cacf754a26",
@@ -115,7 +126,8 @@
     "same_game_pairs": 48,
     "same_game_same": 0.9
    }
-  }
+  },
+  "scheme": 2
  },
  "candidates": {
   "fingerprint": "8d628d2caacc36f4",
@@ -131,7 +143,8 @@
    "replay_runs_skipped": 69,
    "replays_by_path": 13,
    "audio_track": 3
-  }
+  },
+  "scheme": 2
  },
  "fine": {
   "fingerprint": "47688478cf74f797",
@@ -184,7 +197,8 @@
     "frames_modelo_hybrid": 1234,
     "windows_ball_ahead": 7
    }
-  }
+  },
+  "scheme": 2
  },
  "fine_opponent": {
   "fingerprint": "f3d894e91aaada9c",
@@ -193,6 +207,7 @@
   "finished": "2026-10-19 00:16:39",
   "summary": {
    "enabled": false
-  }
+  },
+  "scheme": 2
  }
 }
