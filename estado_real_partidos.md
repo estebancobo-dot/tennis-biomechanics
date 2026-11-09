@@ -6,8 +6,8 @@
 |---|---|
 | 0 sin construir | 16 |
 | 1 construido, sin comprobar | 63 |
-| 2 comprobación que falla | 65 |
-| 3 comprobado en salidas | 93 |
+| 2 comprobación que falla | 64 |
+| 3 comprobado en salidas | 94 |
 | 4 validado con verdad | 0 |
 
 ## Por paquete del plan (en el orden de ejecución)
@@ -19,7 +19,7 @@
 | B1 Base · velocidad y uso del PC | 10 | 0 | 0 | 0 | 10 | 0 | Prueba desde cero de 35 min en ≤ 45 min; CPU/iGPU por etapa medidas en cada ejecución | ok | **sí** |
 | B2 Base · robustez (nada se cuelga, todo se recupera) | 3 | 0 | 0 | 0 | 3 | 0 | Prueba por cada caso de error y cuelgue; 0 etapas con error en la referencia | ok | **sí** |
 | B3 Base · mejores modelos (estado del arte medido) | 10 | 0 | 0 | 0 | 10 | 0 | Cada candidato medido frente al actual (precisión con datos anotados y fotogramas/s en el PC) | ok | **sí** |
-| B4 Base · no perder golpes | 6 | 0 | 0 | 2 | 4 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | ok | no |
+| B4 Base · no perder golpes | 6 | 0 | 0 | 1 | 5 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | ok | no |
 | B5 Base · exportación | 1 | 0 | 0 | 0 | 1 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues | ok | **sí** |
 | B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 3 | 1 | 0 | 4 partidos sin errores de etapa; auditoría generada | ok | no |
 | B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 2 | 34 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | ok | no |
@@ -40,7 +40,7 @@
 
 Lo que le falta a cada paquete de la Base para cerrarse:
 
-- **B4**: peticiones sin comprobar o que fallan: #218, #219
+- **B4**: peticiones sin comprobar o que fallan: #218
 - **B6**: peticiones sin comprobar o que fallan: #1, #134, #233
 - **B7**: peticiones sin comprobar o que fallan: #45, #242
 
@@ -258,8 +258,8 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 215 | Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22) | M5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#215); sin comprobación automática asignada |
 | 216 | Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Audi | M4 | FALTA | 0 sin construir | SIN HACER según el registro (#216, docs/peticiones_usuario.md) |
 | 217 | Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26 | D | FALTA | 0 sin construir | SIN HACER según el registro (#217, docs/peticiones_usuario.md) |
-| 218 | La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen | B4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok |
-| 219 | Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y co | B4 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok |
+| 218 | La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen | B4 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 17 comprobaciones: 1 pocos datos, 16 ok; la peor: «Medidas en la cámara lenta:  |
+| 219 | Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y co | B4 | HECHO | 3 comprobado en salidas | 9 comprobaciones: 9 ok |
 | 220 | Almacenamiento definitivo: árbol por jugador, partido y golpe; nombres, colisiones y todos | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
 | 221 | Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano  | B3 | HECHO | 3 comprobado en salidas | 8 comprobaciones: 8 ok |
 | 222 | Un clic por partido para decir quién es ella (19-10 19:57) | B7 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |

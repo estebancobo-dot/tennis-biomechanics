@@ -1,10 +1,10 @@
 # Auditoría de requisitos (forehand)
 
-265 golpes del lado cercano. ✔ 460 cumplidos · ✘ 25 no cumplidos · … 56 sin golpes suficientes en esta ejecución · ! 109 avisos
+265 golpes del lado cercano. ✔ 468 cumplidos · ✘ 25 no cumplidos · … 58 sin golpes suficientes en esta ejecución · ! 107 avisos
 
-## Peticiones del usuario SIN TERMINAR: 113 de 245
+## Peticiones del usuario SIN TERMINAR: 112 de 245
 
-Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 122 hechas · 96 a medias · 16 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
 - **#189 [FALTA]** «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4) — falta: No está en `learn.py`.
@@ -112,7 +112,6 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - **#214 [PARCIAL]** Fuentes de Ivanovic §3 #17 (Auditorías 17-10, técnica #18) — falta: Ver hueco 17 de Ivanovic.
 - **#215 [PARCIAL]** Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22) — falta: Unificar en «armado completo cuando bota».
 - **#218 [PARCIAL]** La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (velocidad normal o cámara lent… — falta: Falta validarlo con los partidos reales (umbrales de clasificación), medir sobre esas tomas (pasada fina en la cámara lenta: `views.fine_on_slowmo`, pendiente)…
-- **#219 [PARCIAL]** Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa distancia, no descartados (19-… — falta: Hasta el 08-11: se confirmaban ~20 % de los golpes del fondo (Zheng: 36 de ~175; nota desfasada). 08-11 (B4), salidas del PC del 08-11: **contados**, frente a …
 - **#233 [PARCIAL]** Una referencia completa y medida antes de validar nada (26-10 11:09) — falta: 799 golpes suyos en 4 partidos (27-10). 08-11: la referencia se ha rehecho (1016 golpes suyos; «Partido …: salida de cada etapa» ✔ en los 4, ningún golpe falli…
 - **#235 [PARCIAL]** Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) — falta: Cadena en orden 79 % y pasos medidos 87 % en los 193 golpes; falta verlo recalculado en el PC.
 - **#236 [PARCIAL]** Huellas numeradas sobre los pies y patrones de pasos (27-10 09:38) — falta: Patrón típico de pasos por situación (frecuencia de cada secuencia).
@@ -349,19 +348,27 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 
 - ✘ **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 598 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
 - ! **Tablas a la vista en «Conclusiones (Panel y Comparativas)»**: 1 tablas (el usuario pidió información en frases, no tablas)
+- … **Medidas en la cámara lenta: sin-fecha_b8b713_rybakina**: ninguno de sus 67 golpes cercanos (forehand) tiene repetición a cámara lenta con su instante
+- ✔ **Repeticiones en el informe: sin-fecha_f43dd2_rybakina**: 97% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (75 de 77) · 2 sin recorte · 291 recortes en el partido
+- ✔ **Repeticiones en el informe: sin-fecha_584c5b_rybakina**: 100% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (134 de 134) · 582 recortes en el partido
+- ✔ **Repeticiones en el informe: sin-fecha_580c6f_rybakina**: 100% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (103 de 103) · 618 recortes en el partido
+- ✔ **Repeticiones en el informe: sin-fecha_b8b713_rybakina**: 100% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (118 de 118) · 713 recortes en el partido
+- ✔ **Medidas en la cámara lenta: sin-fecha_f43dd2_rybakina**: 100% de sus golpes con repetición a cámara lenta medidos en ella (1 de 1, 6 valores junto a los del directo) · 59 fotogramas en 8 s · 1 de 1 con «en la repetición a cámara lenta» en el informe
+- ✔ **Medidas en la cámara lenta: sin-fecha_584c5b_rybakina**: 100% de sus golpes con repetición a cámara lenta medidos en ella (2 de 2, 12 valores junto a los del directo) · 317 fotogramas en 30 s · 2 de 2 con «en la repetición a cámara lenta» en el informe
+- ✔ **Medidas en la cámara lenta: sin-fecha_580c6f_rybakina**: 100% de sus golpes con repetición a cámara lenta medidos en ella (1 de 1, 3 valores junto a los del directo) · 148 fotogramas en 14 s · 1 de 1 con «en la repetición a cámara lenta» en el informe
 - ✔ **Cada golpe de entrenamiento tiene su vídeo con el esqueleto**: 91 de 91
 - ✔ **Cada golpe tiene su vídeo**: 265 de 265 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 265 de 265
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 3088 caracteres de texto, 7 vídeos, 21 gráficos
-- ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 8245 caracteres de texto, 7 vídeos, 1 gráficos
-- ✔ **Pantalla «Análisis de golpe»**: 5236 caracteres de texto, 8 vídeos, 33 gráficos
-- ✔ **Pantalla «Comparar dos golpes»**: 54630 caracteres de texto, 7 vídeos, 2 gráficos
-- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 5644 caracteres de texto, 7 vídeos, 22 gráficos
-- ✔ **Pantalla «Tabla de golpes (Explorador)»**: 5068 caracteres de texto, 7 vídeos, 0 gráficos
-- ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 7 vídeos, 0 gráficos
-- ✔ **Pantalla «Fiabilidad de las medidas»**: 2433 caracteres de texto, 7 vídeos, 0 gráficos
-- ✔ **Pantalla «Datos del análisis»**: 2592 caracteres de texto, 7 vídeos, 0 gráficos
+- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 3088 caracteres de texto, 12 vídeos, 21 gráficos
+- ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 8245 caracteres de texto, 12 vídeos, 1 gráficos
+- ✔ **Pantalla «Análisis de golpe»**: 5871 caracteres de texto, 13 vídeos, 33 gráficos
+- ✔ **Pantalla «Comparar dos golpes»**: 54630 caracteres de texto, 12 vídeos, 2 gráficos
+- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 5644 caracteres de texto, 12 vídeos, 22 gráficos
+- ✔ **Pantalla «Tabla de golpes (Explorador)»**: 5068 caracteres de texto, 12 vídeos, 0 gráficos
+- ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 12 vídeos, 0 gráficos
+- ✔ **Pantalla «Fiabilidad de las medidas»**: 2433 caracteres de texto, 12 vídeos, 0 gráficos
+- ✔ **Pantalla «Datos del análisis»**: 2589 caracteres de texto, 12 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
@@ -493,24 +500,24 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - ✔ **Pruebas en este PC: test_project_context**: 3 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
-- ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (63/63), 47 s, quedan ≈ 0 s, a las 2026-11-09 04:34:23
+- ✔ **Progreso visible (progreso.json)**: último: slowmo_fine de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (6/6), 31 s, quedan ≈ 0 s, a las 2026-11-09 06:19:01
 - ✔ **Registros con fecha y duración**: 56 de 56 registros con fecha de inicio y de fin o duración
-- ✔ **Tamaño de la salida (tamanos.txt)**: 41 carpetas, 28.6 GB en total (2026-11-09T04:41:37); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 41 carpetas, 28.9 GB en total (2026-11-09T06:24:53); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB
 - ✔ **Carpetas de pruebas antiguas**: ninguna carpeta de pruebas con más de 14 días sin usar
 - ✔ **Aplicación: ventana real y pantallas**: 56 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 1 análisis y 18 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
 - ✔ **Aplicación: un partido nuevo de principio a fin**: terminó 2026-11-07T17:47:21 en 62.6 min; análisis actualizado
-- ✔ **Partido sin-fecha_f43dd2_rybakina: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 169 golpes con ventana y serie
-- ✔ **Partido sin-fecha_584c5b_rybakina: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 286 golpes con ventana y serie
-- ✔ **Partido sin-fecha_580c6f_rybakina: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 271 golpes con ventana y serie
-- ✔ **Partido sin-fecha_b8b713_rybakina: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 295 golpes con ventana y serie
+- ✔ **Partido sin-fecha_f43dd2_rybakina: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 169 golpes con ventana y serie
+- ✔ **Partido sin-fecha_584c5b_rybakina: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 286 golpes con ventana y serie
+- ✔ **Partido sin-fecha_580c6f_rybakina: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 271 golpes con ventana y serie
+- ✔ **Partido sin-fecha_b8b713_rybakina: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 295 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 444 golpes; series que faltan 0, miniaturas que faltan 0
-- ✔ **Exportación: resumen PDF y un vídeo por golpe**: 445 vídeos
-- ✔ **Exportación terminada: exportar_derecha**: terminó el 2026-11-09 02:50:51 en 0 min: 445 vídeos de 445 golpes
-- ✔ **Exportación terminada: exportar_reves**: terminó el 2026-11-09 02:51:20 en 0 min: 284 vídeos de 284 golpes
-- ✔ **Exportación terminada: exportar_saque**: terminó el 2026-11-09 02:51:41 en 0 min: 292 vídeos de 292 golpes
+- ✔ **Exportación: resumen PDF y un vídeo por golpe**: 444 vídeos
+- ✔ **Exportación terminada: exportar_derecha**: terminó el 2026-11-09 05:01:36 en 18 min: 444 vídeos de 444 golpes
+- ✔ **Exportación terminada: exportar_reves**: terminó el 2026-11-09 05:13:36 en 12 min: 283 vídeos de 283 golpes
+- ✔ **Exportación terminada: exportar_saque**: terminó el 2026-11-09 05:25:49 en 12 min: 294 vídeos de 294 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
-- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 09-11 03:20, la empezó el ciclo programado a las 03:58; el PC estaba con otro trabajo hasta las 03:58 (38.0 min, no cuentan), 0.2 min después de quedar libre (objetivo ≤ 10 min)
+- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 09-11 05:43, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
 
@@ -520,23 +527,23 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 
 ## 9. Rendimiento: un partido en horas, no días
 
-- ✔ **Tiempo: sin-fecha_f43dd2_rybakina**: 29 min para 71 min de vídeo ≈ 1.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
+- ✔ **Tiempo: sin-fecha_f43dd2_rybakina**: 34 min para 71 min de vídeo ≈ 1.7 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
 - ✔ **Tomas de cámara: sin-fecha_f43dd2_rybakina**: 2.0 min (objetivo ≤ 15 min)
-- ✔ **Tiempo: sin-fecha_584c5b_rybakina**: 56 min para 117 min de vídeo ≈ 1.7 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
+- ✔ **Tiempo: sin-fecha_584c5b_rybakina**: 66 min para 117 min de vídeo ≈ 2.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
 - ✔ **Tomas de cámara: sin-fecha_584c5b_rybakina**: 3.2 min (objetivo ≤ 15 min)
-- ✔ **Tiempo: sin-fecha_580c6f_rybakina**: 65 min para 133 min de vídeo ≈ 1.7 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
+- ✔ **Tiempo: sin-fecha_580c6f_rybakina**: 74 min para 133 min de vídeo ≈ 1.9 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
 - ✔ **Tomas de cámara: sin-fecha_580c6f_rybakina**: 4.7 min (objetivo ≤ 15 min)
-- ✔ **Tiempo: sin-fecha_b8b713_rybakina**: 92 min para 210 min de vídeo ≈ 1.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
+- ✔ **Tiempo: sin-fecha_b8b713_rybakina**: 104 min para 210 min de vídeo ≈ 1.7 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
 - ✔ **Tomas de cámara: sin-fecha_b8b713_rybakina**: 8.0 min (objetivo ≤ 15 min)
-- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina**: 3 etapas comparadas con su mediana aquí; las que más tardan: players 10.8 min, score 7.3 min, scenes 7.0 min, fine 3.6 min, audio 2.4 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina**: 3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, fine 10.4 min, score 8.6 min, views 3.2 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_580c6f_rybakina**: 4 etapas comparadas con su mediana aquí; las que más tardan: players 24.4 min, scenes 17.2 min, score 9.5 min, fine 8.6 min, views 4.7 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_b8b713_rybakina**: 4 etapas comparadas con su mediana aquí; las que más tardan: players 30.0 min, scenes 28.5 min, score 12.9 min, fine 10.0 min, views 8.0 min; ninguna pasa de 2 veces su ritmo habitual
+- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina**: 4 etapas comparadas con su mediana aquí; las que más tardan: players 10.8 min, score 7.3 min, scenes 7.0 min, view_clips 4.5 min, fine 3.6 min; ninguna pasa de 2 veces su ritmo habitual
+- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina**: 4 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, fine 10.4 min, view_clips 9.2 min, score 8.6 min; ninguna pasa de 2 veces su ritmo habitual
+- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_580c6f_rybakina**: 5 etapas comparadas con su mediana aquí; las que más tardan: players 24.4 min, scenes 17.2 min, score 9.5 min, fine 8.6 min, view_clips 8.3 min; ninguna pasa de 2 veces su ritmo habitual
+- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_b8b713_rybakina**: 5 etapas comparadas con su mediana aquí; las que más tardan: players 30.0 min, scenes 28.5 min, score 12.9 min, view_clips 10.9 min, fine 10.0 min; ninguna pasa de 2 veces su ritmo habitual
 - ✔ **Etapas a la vez: sin-fecha_f43dd2_rybakina**: 7.3 min ganados con etapas a la vez (players 7.3 min)
 - ✔ **Etapas a la vez: sin-fecha_584c5b_rybakina**: 8.6 min ganados con etapas a la vez (players 8.6 min)
 - ✔ **Etapas a la vez: sin-fecha_580c6f_rybakina**: 9.5 min ganados con etapas a la vez (players 9.5 min)
 - ✔ **Etapas a la vez: sin-fecha_b8b713_rybakina**: 12.9 min ganados con etapas a la vez (players 12.9 min)
-- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-09_0320.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (3.2 min): CPU 20/31/49 %, iGPU 0/46/100 %, RAM máx 9.4 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 50/50/50 %, iGPU 100/100/100 %, RAM máx 8.7 GB → iGPU al límite; zheng-qinwen-elena-rybakina fine (9.0 min): CPU 16/33/67 %, iGPU 0/62/100 %, RAM máx 9.4 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 26/26/27 %, iGPU 0/0/1 %, RAM máx 8.4 GB → equipo infrautilizado: trabajo en serie (se puede repartir); tennis-yusipopen-polufinal-gau fine (7.8 min): CPU 19/36/85 %, iGPU 0/57/100 %, RAM máx 9.3 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (1.0 min): CPU 24/34/50 %, iGPU 0/63/100 %, RAM máx 9.2 GB → uso medio: margen para repartir trabajo; 42.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)
+- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-09_0540.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el view_clips (4.2 min): CPU 25/68/100 %, iGPU 0/0/1 %, RAM máx 8.7 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina view_clips (8.2 min): CPU 28/65/98 %, iGPU 0/0/0 %, RAM máx 11.7 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina slowmo_fine (0.5 min): CPU 19/22/25 %, iGPU 84/92/99 %, RAM máx 6.0 GB → iGPU al límite; tennis-yusipopen-polufinal-gau view_clips (7.8 min): CPU 27/55/83 %, iGPU 0/0/0 %, RAM máx 6.3 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau slowmo_fine (0.2 min): CPU 24/24/24 %, iGPU 86/86/86 %, RAM máx 6.0 GB → iGPU al límite; tennis-yusipopen-final-sobolen view_clips (9.8 min): CPU 12/47/82 %, iGPU 0/0/0 %, RAM máx 6.2 GB → uso medio: margen para repartir trabajo; 11.5 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
@@ -650,8 +657,6 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - ! **#213 Textos COACH (el porqué con fuente) en todas las claves de la lección (Auditorías 17-10, técnica #17)**: A MEDIAS según el registro (#213); sin comprobación automática asignada
 - ! **#214 Fuentes de Ivanovic §3 #17 (Auditorías 17-10, técnica #18)**: A MEDIAS según el registro (#214); sin comprobación automática asignada
 - ! **#215 Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22)**: A MEDIAS según el registro (#215); sin comprobación automática asignada
-- ! **#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok
-- ! **#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 9 comprobaciones: 9 ok
 - ! **#233 Una referencia completa y medida antes de validar nada**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
 - ! **#235 Cadena cinética, footwork y timing: lo que define el golpe**: A MEDIAS según el registro (#235); sin comprobación automática asignada
 - ! **#236 Huellas numeradas sobre los pies y patrones de pasos**: A MEDIAS según el registro (#236); sin comprobación automática asignada
@@ -680,6 +685,7 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - … **#157 bola corta baja cerca de la red (Chat, 19-10 08:11)**: 1 comprobaciones: 1 pocos datos; la peor: «Bola corta baja cerca de la red (#157)» (0 golpes de 265 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa))
 - … **#158 bola corta alta cerca de la red (Chat, 19-10 08:11)**: 1 comprobaciones: 1 pocos datos; la peor: «Bola corta alta cerca de la red (#158)» (0 golpes de 265 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa))
 - … **#159 volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (Chat, 19-10 08:11)**: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 pocos datos; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 265 (la clase «Contacto» se pudo decidir en 122; sin señal, ninguna clase: nunca se inventa); sin golpes suf)
+- … **#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v**: a medias según el registro (ver docs/peticiones_usuario.md); 17 comprobaciones: 1 pocos datos, 16 ok; la peor: «Medidas en la cámara lenta: sin-fecha_b8b713_rybakina» (ninguno de sus 67 golpes cercanos (forehand) tiene repetición a cámara lenta con su instante)
 - ✔ **#8 Cuerdas y cara (suelo, valla lateral o trasera, ángulos, cierre muñeca–raqueta) en todas las fases. Obligatori**: 7 comprobaciones: 7 ok
 - ✔ **#10 Ver los cambios en la prueba rápida, sin 1 h**: 12 comprobaciones: 12 ok
 - ✔ **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: 2 comprobaciones: 2 ok
@@ -761,6 +767,7 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - ✔ **#203 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10)**: 3 comprobaciones: 3 ok
 - ✔ **#204 Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10)**: 8 comprobaciones: 8 ok
 - ✔ **#205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3)**: 1 comprobaciones: 1 ok
+- ✔ **#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d**: 9 comprobaciones: 9 ok
 - ✔ **#220 Almacenamiento definitivo: árbol por jugador, partido y golpe; nombres, colisiones y todos los escenarios**: 2 comprobaciones: 2 ok
 - ✔ **#221 Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano**: 8 comprobaciones: 8 ok
 - ✔ **#222 Un clic por partido para decir quién es ella**: 1 comprobaciones: 1 ok
