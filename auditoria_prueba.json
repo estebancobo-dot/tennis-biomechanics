@@ -2916,7 +2916,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2030 caracteres de texto, 9 vídeos, 0 gráficos",
+   "detail": "2027 caracteres de texto, 9 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3444,14 +3444,14 @@
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
    "status": "falta",
-   "detail": "57 de 58 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas"
+   "detail": "58 de 59 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "42 carpetas, 28.9 GB en total (2026-11-09T13:22:51); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB"
+   "detail": "42 carpetas, 29.4 GB en total (2026-11-09T21:14:53); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB"
   },
   {
    "req": 5,
@@ -3472,7 +3472,7 @@
    "area": "Aplicación",
    "name": "Aplicación: análisis en su índice",
    "status": "ok",
-   "detail": "1 análisis y 22 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)"
+   "detail": "2 análisis y 22 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)"
   },
   {
    "req": 5,
@@ -3507,7 +3507,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-09 13:22:03 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-09 21:13:45 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3647,14 +3647,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-09_1310.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el score (3.2 min): CPU 62/78/100 %, iGPU 0/0/0 %, RAM máx 13.7 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el identity (0.5 min): CPU 45/62/79 %, iGPU 0/0/0 %, RAM máx 9.5 GB → uso medio: margen para repartir trabajo; 12.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
+   "detail": "recursos_2026-11-09_1310.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el score (3.2 min): CPU 62/78/100 %, iGPU 0/0/0 %, RAM máx 13.7 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el identity (1.5 min): CPU 22/58/84 %, iGPU 0/0/0 %, RAM máx 9.5 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el views (2.0 min): CPU 20/34/47 %, iGPU 51/71/92 %, RAM máx 7.1 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine (3.5 min): CPU 22/48/100 %, iGPU 0/42/96 %, RAM máx 18.5 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el view_clips (0.2 min): CPU 35/35/35 %, iGPU 0/0/0 %, RAM máx 7.7 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 46/46/46 %, iGPU 0/0/0 %, RAM máx 8.3 GB → uso medio: margen para repartir trabajo; 65.5 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-09_2110.csv, recursos_2026-11-09_2020.csv"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 09-11 13:21, empezó a los 0.2 min; el PC estaba con otro trabajo hasta las 13:22 (1.0 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 09-11 21:13, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -4109,7 +4109,7 @@
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
    "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (57 de 58 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas)"
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (58 de 59 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas)"
   },
   {
    "req": 11,
