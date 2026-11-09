@@ -32,10 +32,18 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     matches = [m for m in load_matches(cfg) if not args.match or m.id in args.match]
     state = {}
+    from tennisbio import layout
     for m in matches:
         t0 = time.time()
-        d = root / m.id
-        print(f"[{m.id}] pasada barata hasta la identidad", flush=True)
+        # the match's real folder, the one the analysis uses (09-11: «root / m.id» was another folder, so the cheap pass
+        # was redone from scratch for the 4 reference matches and the click would not reach the analysis)
+        d = layout.dir_of(root, m, cfg)
+        if d.exists() and ic.state(d).get("done"):
+            state[m.id] = {"listo": True, "grupos": 2, "clic_hecho": True, "minutos": 0.0}
+            print(f"[{m.id}] clic ya hecho: nada que preparar", flush=True)
+            (out / "estado.json").write_text(json.dumps(state, ensure_ascii=False, indent=1), encoding="utf-8")
+            continue
+        print(f"[{m.id}] pasada barata hasta la identidad ({d})", flush=True)
         try:
             pipeline.run(pipeline.Context(m, cfg, d, log=lambda s: print(f"  {s}", flush=True)), ["identity"])
             st = ic.state(d)

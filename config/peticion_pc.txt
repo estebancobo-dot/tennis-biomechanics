@@ -452,6 +452,12 @@ accion: completo
 ---
 id: 166
 accion: identidad
+---
+id: 167
+accion: identidad
+# 167 (09-11): la 166 usaba otra carpeta (el id del partido, no la carpeta real) y rehacia la pasada barata de los 4
+# partidos de referencia; parada (parar_pc id 13). Ahora usa la carpeta real y salta los partidos con el clic hecho:
+# solo prepara los 2 videos nuevos del usuario
 # 166 (09-11): la Base cerrada salvo #242: los 2 videos nuevos del usuario (Sinner y Rybakina-Pegula) entran en el
 # catalogo; se prepara la foto de cada grupo de ropa para el clic de identidad en la aplicacion (nunca hace el clic)
 # 165 (09-11): auditoria final de la Base con #218 y #219 hechas (sin casos a camara lenta = nada que medir, no falla)
