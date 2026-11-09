@@ -344,3 +344,52 @@
 2026-11-09 18:36:40 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] views_link terminada a las 18:36:40 en 0 s
 2026-11-09 18:36:40 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] view_clips… (2026-11-09 18:36:40, etapa 13 de 16)
 2026-11-09 18:36:40   view_clips:   0 % (1/250 recortes de repeticiones y otras cámaras) · 0 s · quedan ≈ 0 s
+2026-11-09 18:37:11   view_clips:  10 % (26/250 recortes de repeticiones y otras cámaras) · 31 s · quedan ≈ 4 min
+2026-11-09 18:37:41   view_clips:  20 % (51/250 recortes de repeticiones y otras cámaras) · 61 s · quedan ≈ 4 min
+2026-11-09 18:38:11   view_clips:  32 % (79/250 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 3 min
+2026-11-09 18:38:41   view_clips:  43 % (107/250 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 3 min
+2026-11-09 18:39:12   view_clips:  55 % (137/250 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 2 min
+2026-11-09 18:39:42   view_clips:  65 % (163/250 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 2 min
+2026-11-09 18:40:12   view_clips:  76 % (191/250 recortes de repeticiones y otras cámaras) · 4 min · quedan ≈ 66 s
+2026-11-09 18:40:43   view_clips:  88 % (220/250 recortes de repeticiones y otras cámaras) · 4 min · quedan ≈ 33 s
+2026-11-09 18:41:14   view_clips: 100 % (250/250 recortes de repeticiones y otras cámaras) · 5 min · quedan ≈ 0 s
+2026-11-09 18:41:16   tomas recortadas: 250 nuevas, 0 ya hechas, 0 fallidas, de 181 golpes
+2026-11-09 18:41:16 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] view_clips terminada a las 18:41:16 en 4.6 min
+2026-11-09 18:41:16 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] slowmo_fine… (2026-11-09 18:41:16, etapa 14 de 16)
+2026-11-09 18:41:17   slowmo_fine:  25 % (1/4 golpes en la repetición a cámara lenta) · 0 s · quedan ≈ 0 s
+2026-11-09 18:41:36   slowmo_fine: 100 % (4/4 golpes en la repetición a cámara lenta) · 19 s · quedan ≈ 0 s
+2026-11-09 18:41:42   cámara lenta: 4 de 4 golpes medidos (279 fotogramas, 26 s)
+2026-11-09 18:41:42 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] slowmo_fine terminada a las 18:41:42 en 26 s
+2026-11-09 18:41:43 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] fine_opponent… (2026-11-09 18:41:43, etapa 15 de 16)
+2026-11-09 18:41:43 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] fine_opponent terminada a las 18:41:43 en 0 s
+2026-11-09 18:41:43 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] fine_doubtful… (2026-11-09 18:41:43, etapa 16 de 16)
+2026-11-09 18:41:47   fine_doubtful:   2 % (1/56 golpes candidatos · 0 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-11-09 18:42:16   ventana w000115299_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 18:42:16   ventana w000115299_3600: pose yolo en 216 de 216 fotogramas (16 s; modelo 16 s) · bola 7 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 118 px (court)
+2026-11-09 18:43:28   ventana w000861696_5219 (far, 2 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 18:43:28   ventana w000861696_5219: pose yolo en 312 de 312 fotogramas (36 s; modelo 36 s, 310 a 960 px por perderla) · bola 8 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura nan px (pose)
+2026-11-09 18:43:28   ventana w000861696_5219: pose solo para medir (lejana, buscándola de nuevo) en 21 s; buscada 9 veces, encontrada 3
+2026-11-09 18:43:28   fine_doubtful:  12 % (7/56 golpes candidatos · 3 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 12 min
+2026-11-09 18:44:12   ventana w000837500_11400 (far, 4 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 18:44:12   ventana w000837500_11400: pose yolo en 684 de 684 fotogramas (60 s; modelo 60 s, 301 a 960 px por perderla) · bola 19 s · raqueta 0 s (4 de 5 impactos) · 5 golpes posibles · altura 103 px (court)
+2026-11-09 18:44:12   ventana w000837500_11400: pose solo para medir (lejana, buscándola de nuevo) en 55 s; buscada 11 veces, encontrada 2
+2026-11-09 18:44:12   fine_doubtful:  20 % (11/56 golpes candidatos · 7 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 10 min
+2026-11-09 18:44:27   ventana w001189014_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 18:44:27   ventana w001189014_3600: pose yolo en 216 de 216 fotogramas (20 s; modelo 20 s, 214 a 960 px por perderla) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura nan px (pose)
+2026-11-09 18:44:27   ventana w001189014_3600: pose solo para medir (lejana, buscándola de nuevo) en 23 s; buscada 14 veces, encontrada 0
+2026-11-09 18:44:41   ventana w001430593_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 18:44:41   ventana w001430593_3600: pose yolo en 216 de 216 fotogramas (16 s; modelo 16 s, 82 a 960 px por perderla) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 116 px (segments)
+2026-11-09 18:44:43   fine_doubtful:  29 % (16/56 golpes candidatos · 9 confirmados · 0 ventanas descartadas sin pose) · 3 min · quedan ≈ 7 min
+2026-11-09 18:45:10   ventana w001811323_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 18:45:10   ventana w001811323_3600: pose yolo en 216 de 216 fotogramas (18 s; modelo 17 s) · bola 7 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 118 px (court)
+2026-11-09 18:45:23   ventana w001630390_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 18:45:23   ventana w001630390_3600: pose yolo en 216 de 216 fotogramas (21 s; modelo 21 s, 214 a 960 px por perderla) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura nan px (pose)
+2026-11-09 18:45:23   ventana w001630390_3600: pose solo para medir (lejana, buscándola de nuevo) en 23 s; buscada 21 veces, encontrada 7
+2026-11-09 18:45:23   fine_doubtful:  32 % (18/56 golpes candidatos · 11 confirmados · 0 ventanas descartadas sin pose) · 4 min · quedan ≈ 8 min
+2026-11-09 18:45:32   ventana w001955501_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 18:45:32   ventana w001955501_3600: pose yolo en 216 de 216 fotogramas (13 s; modelo 13 s) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 117 px (court)
+2026-11-09 18:45:49   ventana w001959716_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 18:45:49   ventana w001959716_3600: pose yolo en 215 de 215 fotogramas (18 s; modelo 17 s, 67 a 960 px por perderla) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 118 px (court)
+2026-11-09 18:45:54   fine_doubtful:  41 % (23/56 golpes candidatos · 13 confirmados · 0 ventanas descartadas sin pose) · 4 min · quedan ≈ 6 min
+2026-11-09 18:46:03   ventana w002000726_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.8 s
+2026-11-09 18:46:03   ventana w002000726_3600: pose yolo en 216 de 216 fotogramas (12 s; modelo 12 s, 93 a 960 px por perderla) · bola 7 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 158 px (court)

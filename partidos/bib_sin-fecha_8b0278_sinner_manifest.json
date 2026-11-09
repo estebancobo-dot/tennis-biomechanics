@@ -288,5 +288,55 @@
   "rewrote": {
    "fine": "fb692b0da85d7649261d"
   }
+ },
+ "view_clips": {
+  "fingerprint": "577440b676a6a2ae",
+  "version": "1",
+  "seconds": 275.5,
+  "finished": "2026-11-09 18:41:16",
+  "summary": {
+   "enabled": true,
+   "linked_strokes": 181,
+   "views": 457,
+   "clips": 250,
+   "cut": 250,
+   "reused": 0,
+   "failed": 0,
+   "seconds": 275.4,
+   "clip_seconds": 1559.1,
+   "strokes_with_clip": 181
+  },
+  "out_hash": "3091258f09d18c9f9819",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "slowmo_fine": {
+  "fingerprint": "9a2121f2b53ca9c7",
+  "version": "1",
+  "seconds": 26.2,
+  "finished": "2026-11-09 18:41:42",
+  "summary": {
+   "enabled": true,
+   "slowmo_strokes": 4,
+   "measured": 4,
+   "failed": 0,
+   "frames": 279,
+   "seconds": 26.1
+  },
+  "out_hash": "f3c670bc060bd846d4f4",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "fine_opponent": {
+  "fingerprint": "15398ea0f283a9d9",
+  "version": "9",
+  "seconds": 0.0,
+  "finished": "2026-11-09 18:41:43",
+  "summary": {
+   "enabled": false
+  },
+  "out_hash": "dafe9abfb6c998959474",
+  "scheme": 2,
+  "rewrote": {}
  }
 }
