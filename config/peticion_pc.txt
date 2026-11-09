@@ -699,7 +699,7 @@ horas_max: 14
 # app_fotos.json); se guarda en la carpeta del analisis. 180 = analisis completo: Pegula con el clic, identidad v10
 ---
 id: 181
-accion: completo
-horas_max: 22
+accion: prevision
+# 181 cambiada a prevision (09-11): el usuario pide no lanzar los partidos hasta arreglar todos los fallos
 # 181 (09-11): la 180 no se lanzo (peor caso previsto 20.2 h > 14). La ultima vez los 6 partidos tardaron 6.6 h
 # (13:23-20:02); el peor caso de la prevision cuenta la pasada fina entera de cada partido
