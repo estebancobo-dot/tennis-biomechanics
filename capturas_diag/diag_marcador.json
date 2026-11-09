@@ -171,18 +171,33 @@
    "Pegula"
   ],
   "opponent": "Pegula",
-  "roi": null,
+  "roi": [
+   93,
+   818,
+   965,
+   1019
+  ],
   "server": {
-   "1": 379,
-   "0": 6,
-   "None": 22
+   "1": 166,
+   "None": 32,
+   "0": 209
   },
   "server_marker": {
-   "1": 379,
-   "0": 6,
-   "None": 22
+   "1": 166,
+   "None": 32,
+   "0": 209
   },
-  "server_check": null,
+  "server_check": {
+   "marker_read": 375,
+   "marker_agree": 0.751,
+   "marker_checked": 369,
+   "learned": false,
+   "learned_agree": null,
+   "learned_checked": 0,
+   "bins": [],
+   "source": "marker",
+   "server_read": 375
+  },
   "games_distinct": 51,
   "points": {
    "[null, null]": 57,
