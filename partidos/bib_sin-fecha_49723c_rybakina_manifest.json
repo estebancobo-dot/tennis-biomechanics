@@ -104,14 +104,14 @@
   "rewrote": {}
  },
  "identity": {
-  "fingerprint": "f159de3128b07ab3",
+  "fingerprint": "7ba0e6bb78ac7788",
   "version": "9",
-  "seconds": 241.5,
-  "finished": "2026-11-09 11:43:31",
+  "seconds": 169.5,
+  "finished": "2026-11-09 12:26:18",
   "summary": {
    "runs": 320,
-   "confidence": 0.58,
-   "votes": 169,
+   "confidence": 0.0,
+   "votes": 0,
    "agree": 0,
    "ends_only": 0,
    "clothes_only": 0,
@@ -144,7 +144,7 @@
     }
    }
   },
-  "out_hash": "a2bd048710c6b4070582",
+  "out_hash": "64afe3026e0f2e0b2ee2",
   "scheme": 2,
   "rewrote": {}
  }

@@ -28,3 +28,21 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
 C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
   sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
     identity:   0 % (1/1892 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+    identity:  18 % (341/1892 fotogramas (ropa)) · 30 s · quedan ≈ 2 min
+    identity:  37 % (692/1892 fotogramas (ropa)) · 60 s · quedan ≈ 2 min
+    identity:  55 % (1041/1892 fotogramas (ropa)) · 2 min · quedan ≈ 74 s
+    identity:  74 % (1396/1892 fotogramas (ropa)) · 2 min · quedan ≈ 43 s
+    identity:  92 % (1745/1892 fotogramas (ropa)) · 3 min · quedan ≈ 13 s
+    identity: 100 % (1892/1892 fotogramas (ropa)) · 3 min · quedan ≈ 0 s
+    ropa: 1892 fotogramas · leerlos 147 s, medir la ropa 17 s
+    identidad: 0/320 planos · ropa y cambios de lado de acuerdo en 0, solo cambios de lado 0, solo ropa 0, la ropa corrige el marcador en 0, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 1.78
+    grupos de ropa: NO distinguibles (los grupos no siguen los cambios de lado del marcador (59 % de 240 planos); de acuerdo con los cambios de lado 0.59 en 240 planos, distancia entre su ropa típica 0.59) · clic por los cambios de lado
+  [elena-rybakina-jessica-pegula-miami-2026-quarter-final] identity terminada a las 12:26:18 en 2.8 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[elena-rybakina-jessica-pegula-miami-2026-quarter-final] {'listo': True, 'grupos': 2, 'clic_hecho': False, 'minutos': 8.8, 'fotos': 'fotos no distinguibles', 'motivo': 'los grupos no siguen los cambios de lado del marcador (59 % de 240 planos)', 'fotos_por': 'cambios de lado del marcador', 'distancia_fotos': None}
+[zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] clic ya hecho: nada que preparar
+
+Listos para el clic: 6 de 6 partidos.
+Fotos no distinguibles por la ropa: elena-rybakina-jessica-pegula-miami-2026-quarter-final
+termina 2026-11-09T12:26:22
