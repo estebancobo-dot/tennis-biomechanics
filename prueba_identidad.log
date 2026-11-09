@@ -1,2 +1,14 @@
 ﻿Peticion 168: preparar el clic de identidad (2026-11-09T11:17:11)
 Vídeos en C:\tenis\videos: 6 en el catálogo (0 nuevos: —)
+[us-open-2026-r4-naomi-osaka-elena-rybakina] clic ya hecho: nada que preparar
+[zheng-qinwen-elena-rybakina] clic ya hecho: nada que preparar
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] clic ya hecho: nada que preparar
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] clic ya hecho: nada que preparar
+[elena-rybakina-jessica-pegula-miami-2026-quarter-final] pasada barata hasta la identidad (C:\tenis\biblioteca\partidos\sin-fecha\sin-fecha_49723c_rybakina)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[elena-rybakina-jessica-pegula-miami-2026-quarter-final] {'listo': True, 'grupos': 2, 'clic_hecho': False, 'minutos': 0.1}
+[zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] clic ya hecho: nada que preparar
+
+Listos para el clic: 6 de 6 partidos.
+termina 2026-11-09T11:17:22

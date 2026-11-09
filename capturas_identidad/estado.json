@@ -2,37 +2,37 @@
  "us-open-2026-r4-naomi-osaka-elena-rybakina": {
   "listo": true,
   "grupos": 2,
-  "clic_hecho": false,
+  "clic_hecho": true,
   "minutos": 0.0
  },
  "zheng-qinwen-elena-rybakina": {
   "listo": true,
   "grupos": 2,
-  "clic_hecho": false,
-  "minutos": 0.1
+  "clic_hecho": true,
+  "minutos": 0.0
  },
  "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5": {
   "listo": true,
   "grupos": 2,
-  "clic_hecho": false,
-  "minutos": 0.1
+  "clic_hecho": true,
+  "minutos": 0.0
  },
  "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5": {
   "listo": true,
   "grupos": 2,
-  "clic_hecho": false,
-  "minutos": 0.1
+  "clic_hecho": true,
+  "minutos": 0.0
  },
  "elena-rybakina-jessica-pegula-miami-2026-quarter-final": {
   "listo": true,
   "grupos": 2,
   "clic_hecho": false,
-  "minutos": 46.7
+  "minutos": 0.1
  },
  "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final": {
   "listo": true,
   "grupos": 2,
-  "clic_hecho": false,
-  "minutos": 28.9
+  "clic_hecho": true,
+  "minutos": 0.0
  }
 }
