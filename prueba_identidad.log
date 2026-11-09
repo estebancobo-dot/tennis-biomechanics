@@ -174,3 +174,25 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
     scenes:  68 % (72626/106507 fotogramas) · 6 min · quedan ≈ 3 min
     scenes:  74 % (78708/106507 fotogramas) · 7 min · quedan ≈ 2 min
     scenes:  80 % (84756/106507 fotogramas) · 7 min · quedan ≈ 2 min
+    scenes:  85 % (90741/106507 fotogramas) · 8 min · quedan ≈ 78 s
+    scenes:  91 % (96734/106507 fotogramas) · 8 min · quedan ≈ 49 s
+    scenes:  96 % (102774/106507 fotogramas) · 9 min · quedan ≈ 19 s
+  [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] scenes terminada a las 10:21:37 en 9.0 min
+  [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] court… (2026-11-09 10:21:37, etapa 3 de 16)
+    court:   8 % (64/827 fotogramas) · 0 s · quedan ≈ 0 s
+    court:  39 % (320/827 fotogramas) · 35 s · quedan ≈ 56 s
+    court:  70 % (576/827 fotogramas) · 68 s · quedan ≈ 29 s
+    court: 100 % (827/827 fotogramas) · 2 min · quedan ≈ 0 s
+  [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] court terminada a las 10:24:08 en 2.5 min
+  [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] players… (2026-11-09 10:24:08, etapa 4 de 16)
+    [players] juego con pista: 21.3 min de 24.9 min de cámara principal
+  [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] score… (2026-11-09 10:24:08, etapa 5 de 16, a la vez que players)
+    [players] players:   0 % (1/12760 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+    [score] score:   0 % (1/325 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+    [players] players:   3 % (327/12760 fotogramas con jugadoras) · 30 s · quedan ≈ 19 min
+    [score] score:   8 % (26/325 muestras · 16 lecturas · 22 OCR) · 31 s · quedan ≈ 6 min
+    [players] players:   5 % (636/12760 fotogramas con jugadoras) · 61 s · quedan ≈ 19 min
+    [score] score:  18 % (60/325 muestras · 31 lecturas · 47 OCR) · 61 s · quedan ≈ 5 min
+    [players] players:   7 % (954/12760 fotogramas con jugadoras) · 2 min · quedan ≈ 19 min
+    [score] score:  27 % (87/325 muestras · 31 lecturas · 72 OCR) · 2 min · quedan ≈ 4 min
+    [players] players:  10 % (1263/12760 fotogramas con jugadoras) · 2 min · quedan ≈ 18 min

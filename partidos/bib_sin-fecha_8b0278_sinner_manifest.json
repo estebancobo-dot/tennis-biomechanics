@@ -14,5 +14,45 @@
   "out_hash": "6f297e6c22f0160a3087",
   "scheme": 2,
   "rewrote": {}
+ },
+ "scenes": {
+  "fingerprint": "6c238d88fd1bd6f1",
+  "version": "3",
+  "seconds": 537.4,
+  "finished": "2026-11-09 10:21:37",
+  "summary": {
+   "shots": 558,
+   "main_camera_shots": 163,
+   "detector": "transnetv2",
+   "main_camera_min": 24.9,
+   "main_rule": "lines",
+   "main_camera_min_colour": 30.6,
+   "main_views": 256
+  },
+  "out_hash": "d2f7f1dd8c7f3c1ea69d",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "court": {
+  "fingerprint": "917f35c143110afd",
+  "version": "5",
+  "seconds": 151.2,
+  "finished": "2026-11-09 10:24:08",
+  "summary": {
+   "segments": 326,
+   "with_court": 281,
+   "known_court_reused": 750,
+   "searched": 93,
+   "filled_same_view": 83,
+   "samples": 1092,
+   "court_presets": 64,
+   "main_camera_min": 24.9,
+   "court_min": 21.3,
+   "court_share": 0.853,
+   "pitch_deg_median": 16.0
+  },
+  "out_hash": "e101770424e2fd2d42ee",
+  "scheme": 2,
+  "rewrote": {}
  }
 }
