@@ -118,8 +118,8 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 91 a medias · 16 sin hacer
 ## No cumplidos
 
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
-- **Registros con fecha y duración**: 58 de 59 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas
-- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (58 de 59 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas)
+- **Registros con fecha y duración**: 59 de 60 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas
+- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (59 de 60 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
 - **#193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10)**: SIN HACER según el registro (#193, docs/peticiones_usuario.md)
