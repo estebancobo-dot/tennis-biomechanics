@@ -288,5 +288,26 @@
   "rewrote": {
    "fine": "9ae6bc602694319e3437"
   }
+ },
+ "view_clips": {
+  "fingerprint": "3baf5ffb65ef8f7c",
+  "version": "1",
+  "seconds": 522.6,
+  "finished": "2026-11-09 16:29:43",
+  "summary": {
+   "enabled": true,
+   "linked_strokes": 251,
+   "views": 780,
+   "clips": 541,
+   "cut": 541,
+   "reused": 0,
+   "failed": 0,
+   "seconds": 522.5,
+   "clip_seconds": 2824.0,
+   "strokes_with_clip": 251
+  },
+  "out_hash": "731b6f6cdd0feee923be",
+  "scheme": 2,
+  "rewrote": {}
  }
 }
