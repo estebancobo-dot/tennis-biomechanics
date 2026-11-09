@@ -194,5 +194,25 @@
   "out_hash": "6d192cc3a7fa487a54a7",
   "scheme": 2,
   "rewrote": {}
+ },
+ "views": {
+  "fingerprint": "51ccae92484b5d82",
+  "version": "6",
+  "seconds": 188.9,
+  "finished": "2026-11-09 14:41:17",
+  "summary": {
+   "views": 926,
+   "repeticion_principal": 81,
+   "lateral": 24,
+   "frontal": 7,
+   "primer_plano": 742,
+   "otra": 72,
+   "links": 2016,
+   "linked_views": 837,
+   "slowmo_links": 34
+  },
+  "out_hash": "e2d41758ede77cf768b4",
+  "scheme": 2,
+  "rewrote": {}
  }
 }

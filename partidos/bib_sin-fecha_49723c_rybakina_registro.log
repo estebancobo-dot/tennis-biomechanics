@@ -12,3 +12,30 @@
 2026-11-09 14:38:43   views:  16 % (261/1615 fotogramas de otras tomas) · 30 s · quedan ≈ 3 min
 2026-11-09 14:39:13   views:  32 % (509/1615 fotogramas de otras tomas) · 60 s · quedan ≈ 2 min
 2026-11-09 14:39:44   views:  49 % (794/1615 fotogramas de otras tomas) · 2 min · quedan ≈ 2 min
+2026-11-09 14:40:14   views:  65 % (1047/1615 fotogramas de otras tomas) · 2 min · quedan ≈ 65 s
+2026-11-09 14:40:44   views:  82 % (1325/1615 fotogramas de otras tomas) · 3 min · quedan ≈ 33 s
+2026-11-09 14:41:14   views:  99 % (1598/1615 fotogramas de otras tomas) · 3 min · quedan ≈ 2 s
+2026-11-09 14:41:16   views: 100 % (1615/1615 fotogramas de otras tomas) · 3 min · quedan ≈ 0 s
+2026-11-09 14:41:16   tomas: 1530 fotogramas clave y 85 exactos (3365 claves en el vídeo); lectura 7 s, personas 126 s, pista 39 s; 71 ajustes de pista
+2026-11-09 14:41:17 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] views terminada a las 14:41:17 en 3.1 min
+2026-11-09 14:41:17 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] fine… (2026-11-09 14:41:17, etapa 11 de 16)
+2026-11-09 14:41:45   ventana w001873084_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 14:41:45   ventana w001873084_3600: pose yolo en 215 de 215 fotogramas (12 s; modelo 12 s) · bola 8 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 120 px (court)
+2026-11-09 14:41:45   fine:   0 % (1/274 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-11-09 14:41:50   ventana w001325897_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 14:41:50   ventana w001325897_3600: pose yolo en 216 de 216 fotogramas (16 s; modelo 16 s, 82 a 960 px por perderla) · bola 8 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 147 px (segments)
+2026-11-09 14:42:16   ventana w001935000_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 14:42:16   ventana w001935000_3600: pose yolo en 216 de 216 fotogramas (19 s; modelo 19 s, 184 a 960 px por perderla) · bola 6 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 275 px (segments)
+2026-11-09 14:42:16   fine:   1 % (4/274 golpes candidatos · 3 confirmados · 0 ventanas descartadas sin pose) · 31 s · quedan ≈ 35 min
+2026-11-09 14:42:18   ventana w001965994_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.23 s
+2026-11-09 14:42:18   ventana w001965994_3600: pose yolo en 216 de 216 fotogramas (17 s; modelo 16 s, 4 a 960 px por perderla) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 118 px (court)
+2026-11-09 14:42:43   ventana w002071702_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 14:42:43   ventana w002071702_3600: pose yolo en 215 de 215 fotogramas (15 s; modelo 15 s, 91 a 960 px por perderla) · bola 8 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 203 px (segments)
+2026-11-09 14:42:43   ventana w001978400_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.27 s
+2026-11-09 14:42:43   ventana w001978400_3600: pose yolo en 216 de 216 fotogramas (15 s; modelo 15 s) · bola 8 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 116 px (court)
+2026-11-09 14:43:33   ventana w002135804_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.77 s
+2026-11-09 14:43:33   ventana w002135804_3600: pose yolo en 215 de 215 fotogramas (22 s; modelo 22 s, 212 a 960 px por perderla) · bola 8 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura nan px (pose)
+2026-11-09 14:43:33   ventana w002135804_3600: pose solo para medir (lejana, buscándola de nuevo) en 14 s; buscada 4 veces, encontrada 0
+2026-11-09 14:43:33   fine:   3 % (8/274 golpes candidatos · 7 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 60 min
+2026-11-09 14:44:00   ventana w002152359_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.87 s
+2026-11-09 14:44:00   ventana w002152359_3600: pose yolo en 216 de 216 fotogramas (16 s; modelo 16 s, 89 a 960 px por perderla) · bola 8 s · raqueta 0 s (1 de 3 impactos) · 3 golpes posibles · altura 159 px (segments)
