@@ -135,7 +135,7 @@ class Api:
         import base64
         from . import identity_click as ic
         with self._lock:
-            d = self._app.engine.dir(match_id)
+            d = self._ident_dir(match_id)
             video = self._app.engine.match(match_id).video
         st = ic.state(d)
         if not st["possible"]:
@@ -149,12 +149,32 @@ class Api:
                 "photos": [{"cluster": p["cluster"], "t": p["t"], "src": "data:image/jpeg;base64,"
                             + base64.b64encode(Path(p["path"]).read_bytes()).decode()} for p in ps["photos"]]}
 
+    def _ident_dir(self, match_id: str) -> Path:
+        """The folder the analysis reads her identity from (09-11): the app's index could point at an older copy of a
+        match (<output>/<id>, made before the library), whose identity.json the scoreboard fix never reached: the
+        photos there were two of Pegula while the analysis' own folder had one of each. The catalogue's folder
+        (layout.dir_of, what the cycle and the full analysis use) wins when it has the identity; else the index's."""
+        from .. import match_files as mf
+        from ..catalog import load_matches
+        from ..config import load_config
+        from ..layout import dir_of
+        try:
+            cfg = load_config()
+            m = next((x for x in load_matches(cfg) if x.id == match_id), None)
+            if m is not None:
+                d = dir_of(Path((cfg.get("paths") or {}).get("output") or "output"), m, cfg)
+                if mf.at(d, "identity.json").exists():
+                    return d
+        except Exception:  # noqa: BLE001 — the index's folder still works
+            pass
+        return self._app.engine.dir(match_id)
+
     def identity_pick(self, match_id: str, t: float) -> str:
         """Only saves the click (24-10): the strokes are redone in the final pass of the 4 matches, with the
         trained detector; redoing them now would keep the PC busy for hours with the old one."""
         from . import identity_click as ic
         with self._lock:
-            ic.save_pick(self._app.engine.dir(match_id), t, True)
+            ic.save_pick(self._ident_dir(match_id), t, True)
         return "Guardado. Se usará en el análisis definitivo de este partido; no hace falta nada más."
 
     def archive(self, match_id: str) -> str:

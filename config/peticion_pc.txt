@@ -680,3 +680,9 @@ accion: identidad
 # 177 (09-11): identidad v10 (solo lecturas del marcador posibles y sin retroceso cuentan los cambios de lado: en Miami
 # un rotulo de estadisticas y una lectura sin el 2o set invertian el lado). Fotos de Rybakina-Pegula (las dos de blanco:
 # fotos por cambios de lado) para comprobar que son dos personas antes de pedir el clic
+---
+id: 178
+accion: medir
+script: app_identity_photos
+# 178 (09-11): las fotos del clic tal y como las ensena la aplicacion (su propio Api.identity_photos con su indice
+# real): el usuario vio a Pegula en las dos, las del PC eran una de cada. Carpeta usada, carpeta del indice y fotos
