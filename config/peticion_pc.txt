@@ -657,3 +657,13 @@ script: diag_scoreboard
 #   recall = golpes encontrados frente a los anotados por personas (F3Set), por lado, tipo y etapa (puntos: N para una prueba corta;
 #            detector: si = candidatos del detector entrenado, informe recall_validation_detector.*)
 #   entreno = datos para entrenar el detector de golpes: partidos de F3Set (pasada barata) exportados como numeros a pc-logs/entreno_golpes (partidos: N, horas: H; fps: F; bola: si = tambien la bola, a pc-logs/entreno_golpes_bola)
+---
+id: 174
+accion: app
+---
+id: 175
+accion: completo
+horas_max: 14
+# 174-175 (09-11): la app no tiene trabajo en cola para Zverev-Sinner tras el clic (los 2 partidos entraron por el
+# catalogo del ciclo, no por la app). 174 = que dice el indice de la app (por que no encolo nada); 175 = analisis
+# completo de los 6 partidos con el clic de Sinner (Pegula con la identidad automatica; se revisa con su auditoria)
