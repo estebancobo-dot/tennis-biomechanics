@@ -15918,3 +15918,38 @@
 2026-11-09 13:51:48   [score] score:  15 % (81/531 muestras · 0 lecturas · 36 OCR) · 30 s · quedan ≈ 3 min
 2026-11-09 13:52:19   [score] score:  28 % (150/531 muestras · 34 lecturas · 76 OCR) · 61 s · quedan ≈ 3 min
 2026-11-09 13:52:49   [score] score:  38 % (200/531 muestras · 78 lecturas · 119 OCR) · 2 min · quedan ≈ 3 min
+2026-11-09 13:53:19   [score] score:  48 % (255/531 muestras · 127 lecturas · 163 OCR) · 2 min · quedan ≈ 2 min
+2026-11-09 13:53:50   [score] score:  57 % (304/531 muestras · 175 lecturas · 208 OCR) · 3 min · quedan ≈ 2 min
+2026-11-09 13:54:21   [score] score:  67 % (358/531 muestras · 226 lecturas · 253 OCR) · 3 min · quedan ≈ 88 s
+2026-11-09 13:54:51   [score] score:  76 % (405/531 muestras · 271 lecturas · 297 OCR) · 4 min · quedan ≈ 66 s
+2026-11-09 13:55:22   [score] score:  85 % (454/531 muestras · 319 lecturas · 342 OCR) · 4 min · quedan ≈ 41 s
+2026-11-09 13:55:52   [score] score:  95 % (503/531 muestras · 365 lecturas · 383 OCR) · 5 min · quedan ≈ 15 s
+2026-11-09 13:56:11   [score] score: 100 % (531/531 muestras · 386 lecturas · 410 OCR) · 5 min · quedan ≈ 0 s
+2026-11-09 13:56:12   [score] marcador: 531 muestras en juego, 411 OCR (386 lecturas)
+2026-11-09 13:56:12   [score] saque en el marcador: 375 de 386 lecturas (marker; marca de color 375, sigue la alternancia en 100% de 375; aprendida no, sigue la alternancia en 76% de 283)
+2026-11-09 13:56:12 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] score terminada a las 13:56:12 en 5.0 min
+2026-11-09 13:56:12 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] identity… (2026-11-09 13:56:12, etapa 7 de 16)
+2026-11-09 13:56:20   identity:   0 % (1/1681 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+2026-11-09 13:56:50   identity:  16 % (277/1681 fotogramas (ropa)) · 30 s · quedan ≈ 3 min
+2026-11-09 13:57:20   identity:  33 % (553/1681 fotogramas (ropa)) · 60 s · quedan ≈ 2 min
+2026-11-09 13:57:50   identity:  49 % (830/1681 fotogramas (ropa)) · 2 min · quedan ≈ 2 min
+2026-11-09 13:58:20   identity:  66 % (1104/1681 fotogramas (ropa)) · 2 min · quedan ≈ 63 s
+2026-11-09 13:58:51   identity:  82 % (1377/1681 fotogramas (ropa)) · 3 min · quedan ≈ 33 s
+2026-11-09 13:59:21   identity:  98 % (1653/1681 fotogramas (ropa)) · 3 min · quedan ≈ 3 s
+2026-11-09 13:59:24   identity: 100 % (1681/1681 fotogramas (ropa)) · 3 min · quedan ≈ 0 s
+2026-11-09 13:59:24   ropa: 1681 fotogramas · leerlos 170 s, medir la ropa 15 s
+2026-11-09 13:59:24   identidad: 281/285 planos · ropa y cambios de lado de acuerdo en 199, solo cambios de lado 13, solo ropa 62, la ropa corrige el marcador en 7, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 2.97
+2026-11-09 13:59:24   grupos de ropa: dos personas (dos personas (ropa distinta y de acuerdo con los cambios de lado); de acuerdo con los cambios de lado 0.97 en 206 planos, distancia entre su ropa típica 0.459) · clic por la ropa
+2026-11-09 13:59:24 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] identity terminada a las 13:59:24 en 3.2 min
+2026-11-09 13:59:24 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] spotting… (2026-11-09 13:59:24, etapa 8 de 16)
+2026-11-09 13:59:56   detector entrenado: 643 golpes (344 cercanos, 299 lejanos) en 133 min de vídeo · umbral 0.1 · 29 s (jugadores_y_audio 3 s, rasgos 28 s, bola 0 s, modelo 0 s)
+2026-11-09 13:59:56 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] spotting terminada a las 13:59:56 en 32 s
+2026-11-09 13:59:56 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] candidates… (2026-11-09 13:59:56, etapa 9 de 16)
+2026-11-09 13:59:59   sonido: pista 1 de 2 (la que coincide con los golpes)
+2026-11-09 13:59:59   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 0, 'changed': 0, 'by_click': 268}
+2026-11-09 14:00:02   tramos que son repeticiones: 1 lenta, 8 sin marcador
+2026-11-09 14:00:02   identidad por el marcador (su saque, primer golpe del punto, identidad sin decidir): 5
+2026-11-09 14:00:02   saques añadidos por el marcador (su saque no visto, el resto de la rival sí): 25
+2026-11-09 14:00:02   candidatos del detector entrenado: 650 (307 lejanos; 18 en repeticiones, fuera)
+2026-11-09 14:00:02 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] candidates terminada a las 14:00:02 en 6 s
+2026-11-09 14:00:02 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] views… (2026-11-09 14:00:02, etapa 10 de 16)
