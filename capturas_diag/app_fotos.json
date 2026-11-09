@@ -1,0 +1,566 @@
+[
+ {
+  "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+  "index_dir": "C:\\tenis\\output\\elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+  "used_dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_49723c_rybakina",
+  "possible": true,
+  "done": false,
+  "pick": null,
+  "check": {
+   "distinguishable": false,
+   "why": "los grupos no siguen los cambios de lado del marcador (50 % de 231 planos)",
+   "photo_dist": null,
+   "verified": null
+  },
+  "by": "ends",
+  "photos": [
+   {
+    "file": "app_foto_elena-rybakina-jessica-pegula-miami-2026_0.jpg",
+    "t": 5438.1,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_elena-rybakina-jessica-pegula-miami-2026_1.jpg",
+    "t": 6402.2,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "poc31_35:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "index_dir": "C:\\tenis\\output\\_poc31_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "used_dir": "C:\\tenis\\output\\_poc31_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "possible": false,
+  "done": false,
+  "pick": null,
+  "photos": []
+ },
+ {
+  "match": "poc31_4:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "index_dir": "C:\\tenis\\output\\_poc31_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "used_dir": "C:\\tenis\\output\\_poc31_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "possible": false,
+  "done": false,
+  "pick": null,
+  "photos": []
+ },
+ {
+  "match": "poc67_35:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "index_dir": "C:\\tenis\\output\\_poc67_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "used_dir": "C:\\tenis\\output\\_poc67_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "possible": true,
+  "done": false,
+  "pick": null,
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas",
+   "photo_dist": 0.7,
+   "verified": false
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_poc67_35:smoke_tennis-yusipopen-final-so_0.jpg",
+    "t": 1071.9,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_poc67_35:smoke_tennis-yusipopen-final-so_1.jpg",
+    "t": 75.6,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "poc67_4:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "index_dir": "C:\\tenis\\output\\_poc67_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "used_dir": "C:\\tenis\\output\\_poc67_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "possible": true,
+  "done": false,
+  "pick": null,
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas",
+   "photo_dist": 0.582,
+   "verified": false
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_poc67_4:smoke_tennis-yusipopen-final-sob_0.jpg",
+    "t": 15.8,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_poc67_4:smoke_tennis-yusipopen-final-sob_1.jpg",
+    "t": 75.6,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "poc70_35:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "index_dir": "C:\\tenis\\output\\_poc70_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "used_dir": "C:\\tenis\\output\\_poc70_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "possible": true,
+  "done": false,
+  "pick": null,
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas",
+   "photo_dist": 0.7,
+   "verified": false
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_poc70_35:smoke_tennis-yusipopen-final-so_0.jpg",
+    "t": 1071.9,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_poc70_35:smoke_tennis-yusipopen-final-so_1.jpg",
+    "t": 75.6,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "poc70_4:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "index_dir": "C:\\tenis\\output\\_poc70_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "used_dir": "C:\\tenis\\output\\_poc70_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "possible": true,
+  "done": false,
+  "pick": null,
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas",
+   "photo_dist": 0.582,
+   "verified": false
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_poc70_4:smoke_tennis-yusipopen-final-sob_0.jpg",
+    "t": 15.8,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_poc70_4:smoke_tennis-yusipopen-final-sob_1.jpg",
+    "t": 75.6,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "poc71_35:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "index_dir": "C:\\tenis\\output\\_poc71_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "used_dir": "C:\\tenis\\output\\_poc71_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "possible": true,
+  "done": false,
+  "pick": null,
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas",
+   "photo_dist": 0.7,
+   "verified": false
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_poc71_35:smoke_tennis-yusipopen-final-so_0.jpg",
+    "t": 1071.9,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_poc71_35:smoke_tennis-yusipopen-final-so_1.jpg",
+    "t": 75.6,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "poc71_4:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "index_dir": "C:\\tenis\\output\\_poc71_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "used_dir": "C:\\tenis\\output\\_poc71_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "possible": true,
+  "done": false,
+  "pick": null,
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas",
+   "photo_dist": 0.582,
+   "verified": false
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_poc71_4:smoke_tennis-yusipopen-final-sob_0.jpg",
+    "t": 15.8,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_poc71_4:smoke_tennis-yusipopen-final-sob_1.jpg",
+    "t": 75.6,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "poc74_35:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "index_dir": "C:\\tenis\\output\\_poc74_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "used_dir": "C:\\tenis\\output\\_poc74_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "possible": true,
+  "done": false,
+  "pick": null,
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas",
+   "photo_dist": 0.7,
+   "verified": false
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_poc74_35:smoke_tennis-yusipopen-final-so_0.jpg",
+    "t": 1071.9,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_poc74_35:smoke_tennis-yusipopen-final-so_1.jpg",
+    "t": 75.6,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "poc74_4:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "index_dir": "C:\\tenis\\output\\_poc74_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "used_dir": "C:\\tenis\\output\\_poc74_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "possible": true,
+  "done": false,
+  "pick": null,
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas",
+   "photo_dist": 0.582,
+   "verified": false
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_poc74_4:smoke_tennis-yusipopen-final-sob_0.jpg",
+    "t": 15.8,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_poc74_4:smoke_tennis-yusipopen-final-sob_1.jpg",
+    "t": 75.6,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "poc76_35:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "index_dir": "C:\\tenis\\output\\_poc76_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "used_dir": "C:\\tenis\\output\\_poc76_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "possible": true,
+  "done": false,
+  "pick": null,
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas",
+   "photo_dist": 0.7,
+   "verified": false
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_poc76_35:smoke_tennis-yusipopen-final-so_0.jpg",
+    "t": 1071.9,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_poc76_35:smoke_tennis-yusipopen-final-so_1.jpg",
+    "t": 75.6,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "poc76_4:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "index_dir": "C:\\tenis\\output\\_poc76_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "used_dir": "C:\\tenis\\output\\_poc76_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "possible": true,
+  "done": false,
+  "pick": null,
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas",
+   "photo_dist": 0.582,
+   "verified": false
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_poc76_4:smoke_tennis-yusipopen-final-sob_0.jpg",
+    "t": 15.8,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_poc76_4:smoke_tennis-yusipopen-final-sob_1.jpg",
+    "t": 75.6,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "index_dir": "C:\\tenis\\output\\_poc9_largo\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "used_dir": "C:\\tenis\\output\\_poc9_largo\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "possible": false,
+  "done": false,
+  "pick": null,
+  "photos": []
+ },
+ {
+  "match": "sin-fecha_49723c_rybakina",
+  "index_dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_49723c_rybakina",
+  "used_dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_49723c_rybakina",
+  "possible": true,
+  "done": false,
+  "pick": null,
+  "check": {
+   "distinguishable": false,
+   "why": "los grupos no siguen los cambios de lado del marcador (50 % de 231 planos)",
+   "photo_dist": null,
+   "verified": null
+  },
+  "by": "ends",
+  "photos": [
+   {
+    "file": "app_foto_sin-fecha_49723c_rybakina_0.jpg",
+    "t": 5438.1,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_sin-fecha_49723c_rybakina_1.jpg",
+    "t": 6402.2,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "sin-fecha_8b0278_sinner",
+  "index_dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_8b0278_sinner",
+  "used_dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_8b0278_sinner",
+  "possible": true,
+  "done": true,
+  "pick": {
+   "t": 1409.7,
+   "near_is_her": true,
+   "when": "2026-11-09 11:02"
+  },
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
+   "photo_dist": 0.423,
+   "verified": true
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_sin-fecha_8b0278_sinner_0.jpg",
+    "t": 179.5,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_sin-fecha_8b0278_sinner_1.jpg",
+    "t": 1553.2,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "index_dir": "C:\\tenis\\output\\_smoke\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "used_dir": "C:\\tenis\\output\\_smoke\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "possible": true,
+  "done": false,
+  "pick": null,
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
+   "photo_dist": 0.918,
+   "verified": true
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_smoke:smoke_tennis-yusipopen-final-sobol_0.jpg",
+    "t": 2072.3,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_smoke:smoke_tennis-yusipopen-final-sobol_1.jpg",
+    "t": 1472.6,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+  "index_dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_b8b713_rybakina",
+  "used_dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_b8b713_rybakina",
+  "possible": true,
+  "done": true,
+  "pick": {
+   "t": 6957.1,
+   "near_is_her": true,
+   "when": "2026-10-25 14:37"
+  },
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
+   "photo_dist": 0.981,
+   "verified": true
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_tennis-yusipopen-final-sobolenko-rybakin_0.jpg",
+    "t": 3795.9,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_tennis-yusipopen-final-sobolenko-rybakin_1.jpg",
+    "t": 9844.5,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "index_dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_580c6f_rybakina",
+  "used_dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_580c6f_rybakina",
+  "possible": true,
+  "done": true,
+  "pick": {
+   "t": 4634.6,
+   "near_is_her": true,
+   "when": "2026-10-25 14:38"
+  },
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
+   "photo_dist": 0.468,
+   "verified": true
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_tennis-yusipopen-polufinal-gauff-rybakin_0.jpg",
+    "t": 4687.4,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_tennis-yusipopen-polufinal-gauff-rybakin_1.jpg",
+    "t": 5373.1,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+  "index_dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_f43dd2_rybakina",
+  "used_dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_f43dd2_rybakina",
+  "possible": true,
+  "done": true,
+  "pick": {
+   "t": 1557.0,
+   "near_is_her": true,
+   "when": "2026-10-25 14:38"
+  },
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
+   "photo_dist": 0.834,
+   "verified": true
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_us-open-2026-r4-naomi-osaka-elena-rybaki_0.jpg",
+    "t": 1557.0,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_us-open-2026-r4-naomi-osaka-elena-rybaki_1.jpg",
+    "t": 2573.5,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "zheng-qinwen-elena-rybakina",
+  "index_dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_584c5b_rybakina",
+  "used_dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_584c5b_rybakina",
+  "possible": true,
+  "done": true,
+  "pick": {
+   "t": 1999.3,
+   "near_is_her": true,
+   "when": "2026-10-25 14:39"
+  },
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
+   "photo_dist": 0.96,
+   "verified": true
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_zheng-qinwen-elena-rybakina_0.jpg",
+    "t": 4052.0,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_zheng-qinwen-elena-rybakina_1.jpg",
+    "t": 5177.7,
+    "cluster": 1
+   }
+  ]
+ },
+ {
+  "match": "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
+  "index_dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_8b0278_sinner",
+  "used_dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_8b0278_sinner",
+  "possible": true,
+  "done": true,
+  "pick": {
+   "t": 1409.7,
+   "near_is_her": true,
+   "when": "2026-11-09 11:02"
+  },
+  "check": {
+   "distinguishable": true,
+   "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
+   "photo_dist": 0.423,
+   "verified": true
+  },
+  "by": "clothes",
+  "photos": [
+   {
+    "file": "app_foto_zverev-alexander-sinner-jannik-indian-we_0.jpg",
+    "t": 179.5,
+    "cluster": 0
+   },
+   {
+    "file": "app_foto_zverev-alexander-sinner-jannik-indian-we_1.jpg",
+    "t": 1553.2,
+    "cluster": 1
+   }
+  ]
+ }
+]

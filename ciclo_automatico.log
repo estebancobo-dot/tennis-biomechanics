@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261109214224
+Start time: 20261109220717
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 4424
+Process ID: 18764
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -16,9 +16,11 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Registro enviado a Claude (no hace falta copiar nada).
-Empezado 2026-11-09 21:42:20 - terminado 2026-11-09 21:46:38 - duracion total 4 min 18 s
+
+==> [2026-11-09 22:07:17] Peticion 178: medida scripts\app_identity_photos.py
+    (paso terminado en 43 s)
+Empezado 2026-11-09 22:07:14 - terminado 2026-11-09 22:08:01 - duracion total 46 s
 **********************
 Windows PowerShell transcript end
-End time: 20261109214638
+End time: 20261109220801
 **********************
