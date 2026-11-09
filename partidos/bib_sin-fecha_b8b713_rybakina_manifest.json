@@ -65,18 +65,21 @@
   "scheme": 2
  },
  "score": {
-  "fingerprint": "bddd506775da4785",
-  "version": "6",
-  "seconds": 772.8,
-  "finished": "2026-11-03 23:42:14",
+  "fingerprint": "fa002bacd376ade1",
+  "version": "8",
+  "seconds": 393.2,
+  "finished": "2026-11-09 14:16:32",
   "summary": {
    "readings": 534,
    "pressure": 161,
    "samples": 648,
-   "ocr_calls": 567
+   "ocr_calls": 567,
+   "server_read": 523,
+   "server_source": "marker"
   },
-  "out_hash": "1f7dd0716cac177120fd",
-  "scheme": 2
+  "out_hash": "830f4b4f781e436161ee",
+  "scheme": 2,
+  "rewrote": {}
  },
  "players": {
   "fingerprint": "e6dccaa9af40d862",
