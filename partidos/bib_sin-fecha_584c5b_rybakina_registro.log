@@ -17031,3 +17031,41 @@
 2026-11-09 05:58:58 [zheng-qinwen-elena-rybakina] slowmo_fine terminada a las 05:58:58 en 30 s
 2026-11-09 13:23:24 [zheng-qinwen-elena-rybakina] score… (2026-11-09 13:23:24, etapa 5 de 16)
 2026-11-09 13:23:37 [zheng-qinwen-elena-rybakina] score falló: UnicodeEncodeError: 'charmap' codec can't encode character '\u2248' in position 76: character maps to <undefined>
+2026-11-09 13:35:14 [zheng-qinwen-elena-rybakina] score… (2026-11-09 13:35:14, etapa 5 de 16)
+2026-11-09 13:35:19   [score] score:   0 % (1/483 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+2026-11-09 13:35:49   [score] score:  10 % (49/483 muestras · 28 lecturas · 41 OCR) · 31 s · quedan ≈ 5 min
+2026-11-09 13:36:19   [score] score:  24 % (116/483 muestras · 95 lecturas · 87 OCR) · 61 s · quedan ≈ 3 min
+2026-11-09 13:36:50   [score] score:  36 % (175/483 muestras · 154 lecturas · 133 OCR) · 2 min · quedan ≈ 3 min
+2026-11-09 13:37:20   [score] score:  49 % (235/483 muestras · 213 lecturas · 179 OCR) · 2 min · quedan ≈ 2 min
+2026-11-09 13:37:50   [score] score:  59 % (286/483 muestras · 263 lecturas · 225 OCR) · 3 min · quedan ≈ 2 min
+2026-11-09 13:38:21   [score] score:  71 % (344/483 muestras · 317 lecturas · 271 OCR) · 3 min · quedan ≈ 74 s
+2026-11-09 13:38:51   [score] score:  83 % (401/483 muestras · 374 lecturas · 317 OCR) · 4 min · quedan ≈ 43 s
+2026-11-09 13:39:21   [score] score:  94 % (455/483 muestras · 426 lecturas · 364 OCR) · 4 min · quedan ≈ 15 s
+2026-11-09 13:39:36   [score] score: 100 % (483/483 muestras · 453 lecturas · 387 OCR) · 4 min · quedan ≈ 0 s
+2026-11-09 13:39:37   [score] marcador: 483 muestras en juego, 388 OCR (454 lecturas)
+2026-11-09 13:39:37   [score] saque en el marcador: 433 de 454 lecturas (marker + aprendido; marca de color 52, sigue la alternancia en 98% de 52; aprendida sí, sigue la alternancia en 92% de 431)
+2026-11-09 13:39:37 [zheng-qinwen-elena-rybakina] score terminada a las 13:39:37 en 4.4 min
+2026-11-09 13:39:37 [zheng-qinwen-elena-rybakina] identity… (2026-11-09 13:39:37, etapa 7 de 16)
+2026-11-09 13:39:45   identity:   0 % (1/1625 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+2026-11-09 13:40:15   identity:  22 % (353/1625 fotogramas (ropa)) · 30 s · quedan ≈ 2 min
+2026-11-09 13:40:45   identity:  43 % (701/1625 fotogramas (ropa)) · 60 s · quedan ≈ 79 s
+2026-11-09 13:41:15   identity:  65 % (1049/1625 fotogramas (ropa)) · 2 min · quedan ≈ 50 s
+2026-11-09 13:41:45   identity:  86 % (1405/1625 fotogramas (ropa)) · 2 min · quedan ≈ 19 s
+2026-11-09 13:42:04   identity: 100 % (1625/1625 fotogramas (ropa)) · 2 min · quedan ≈ 0 s
+2026-11-09 13:42:04   ropa: 1625 fotogramas · leerlos 126 s, medir la ropa 14 s
+2026-11-09 13:42:04   identidad: 274/276 planos · ropa y cambios de lado de acuerdo en 240, solo cambios de lado 10, solo ropa 9, la ropa corrige el marcador en 13, el saque visto en 2, dudosos 2 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 3.52
+2026-11-09 13:42:04   grupos de ropa: dos personas (dos personas (ropa distinta y de acuerdo con los cambios de lado); de acuerdo con los cambios de lado 0.93 en 257 planos, distancia entre su ropa típica 0.892) · clic por la ropa
+2026-11-09 13:42:04 [zheng-qinwen-elena-rybakina] identity terminada a las 13:42:04 en 2.4 min
+2026-11-09 13:42:04 [zheng-qinwen-elena-rybakina] spotting… (2026-11-09 13:42:04, etapa 8 de 16)
+2026-11-09 13:42:26   detector entrenado: 604 golpes (324 cercanos, 280 lejanos) en 117 min de vídeo · umbral 0.1 · 22 s (jugadores_y_audio 0 s, rasgos 21 s, bola 0 s, modelo 0 s)
+2026-11-09 13:42:26 [zheng-qinwen-elena-rybakina] spotting terminada a las 13:42:26 en 22 s
+2026-11-09 13:42:26 [zheng-qinwen-elena-rybakina] candidates… (2026-11-09 13:42:26, etapa 9 de 16)
+2026-11-09 13:42:26   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 0, 'changed': 4, 'by_click': 268}
+2026-11-09 13:42:29   tramos que son repeticiones: 3 sin marcador
+2026-11-09 13:42:29   identidad por el marcador (su saque, primer golpe del punto, identidad sin decidir): 2
+2026-11-09 13:42:29   saques añadidos por el marcador (su saque no visto, el resto de la rival sí): 24
+2026-11-09 13:42:29   candidatos del detector entrenado: 624 (288 lejanos; 4 en repeticiones, fuera)
+2026-11-09 13:42:29 [zheng-qinwen-elena-rybakina] candidates terminada a las 13:42:29 en 3 s
+2026-11-09 13:42:29 [zheng-qinwen-elena-rybakina] views… (2026-11-09 13:42:29, etapa 10 de 16)
+2026-11-09 13:42:34   views:   0 % (1/1654 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+2026-11-09 13:43:04   views:  16 % (258/1654 fotogramas de otras tomas) · 30 s · quedan ≈ 3 min
