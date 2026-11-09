@@ -1013,6 +1013,12 @@
    "units": 234,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-09 07:18"
+  },
+  {
+   "s": 1.0486,
+   "units": 483,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-09 07:34"
   }
  ],
  "score:minuto": [
@@ -1021,6 +1027,12 @@
    "video_min": 71.4,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-09 07:18"
+  },
+  {
+   "s": 4.419,
+   "video_min": 116.7,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-09 07:34"
   }
  ],
  "players:unidad": [
@@ -1029,6 +1041,12 @@
    "units": 9155,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-09 07:21"
+  },
+  {
+   "s": 0.0694,
+   "units": 19461,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-09 07:48"
   }
  ],
  "players:minuto": [
@@ -1037,6 +1055,12 @@
    "video_min": 71.4,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-09 07:21"
+  },
+  {
+   "s": 11.592,
+   "video_min": 116.7,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-09 07:48"
   }
  ]
 }

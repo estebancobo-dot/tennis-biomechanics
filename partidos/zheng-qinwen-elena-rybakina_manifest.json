@@ -66,35 +66,37 @@
   "rewrote": {}
  },
  "score": {
-  "fingerprint": "53eb797df9f3e7c0",
+  "fingerprint": "8d696ede071acb4c",
   "version": "6",
-  "seconds": 861.4,
-  "finished": "2026-10-19 00:49:18",
+  "seconds": 515.6,
+  "finished": "2026-11-09 07:34:43",
   "summary": {
-   "readings": 455,
+   "readings": 454,
    "pressure": 137,
-   "samples": 484,
+   "samples": 483,
    "ocr_calls": 388
   },
-  "out_hash": "effdf310cced4d0ecc17",
-  "scheme": 2
+  "out_hash": "4c15ec9e215fe2217eb6",
+  "scheme": 2,
+  "rewrote": {}
  },
  "players": {
-  "fingerprint": "9872f7b3c23a1e51",
+  "fingerprint": "905dc0ac4e2ee64f",
   "version": "4",
-  "seconds": 1431.1,
-  "finished": "2026-10-19 00:58:48",
+  "seconds": 1352.7,
+  "finished": "2026-11-09 07:48:41",
   "summary": {
-   "frames": 19526,
-   "wall_min": 23.8,
-   "model_min": 21.3,
-   "read_min": 20.6,
-   "wait_min": 2.5,
-   "appearance_min": 0.4
+   "frames": 19461,
+   "wall_min": 22.5,
+   "model_min": 19.4,
+   "read_min": 22.5,
+   "wait_min": 3.1,
+   "appearance_min": 0.3
   },
-  "overlap_s": 861.4,
-  "out_hash": "a2d7092eea0fee2db6ec",
-  "scheme": 2
+  "out_hash": "a831073a141d05f557c8",
+  "scheme": 2,
+  "rewrote": {},
+  "overlap_s": 515.6
  },
  "identity": {
   "fingerprint": "ee07d2add6ca6a8b",

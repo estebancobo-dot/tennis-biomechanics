@@ -96,3 +96,53 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
     [score] score:  38 % (183/483 muestras · 162 lecturas · 138 OCR) · 3 min · quedan ≈ 5 min
     [players] players:  11 % (2220/19461 fotogramas con jugadoras) · 4 min · quedan ≈ 27 min
     [score] score:  44 % (211/483 muestras · 189 lecturas · 161 OCR) · 4 min · quedan ≈ 5 min
+    [players] players:  13 % (2532/19461 fotogramas con jugadoras) · 4 min · quedan ≈ 27 min
+    [score] score:  50 % (241/483 muestras · 219 lecturas · 184 OCR) · 4 min · quedan ≈ 4 min
+    [players] players:  15 % (2842/19461 fotogramas con jugadoras) · 5 min · quedan ≈ 26 min
+    [score] score:  55 % (266/483 muestras · 243 lecturas · 208 OCR) · 5 min · quedan ≈ 4 min
+    [players] players:  16 % (3156/19461 fotogramas con jugadoras) · 5 min · quedan ≈ 26 min
+    [score] score:  61 % (295/483 muestras · 272 lecturas · 232 OCR) · 5 min · quedan ≈ 3 min
+    [players] players:  18 % (3476/19461 fotogramas con jugadoras) · 6 min · quedan ≈ 25 min
+    [score] score:  67 % (325/483 muestras · 299 lecturas · 255 OCR) · 6 min · quedan ≈ 3 min
+    [players] players:  19 % (3787/19461 fotogramas con jugadoras) · 6 min · quedan ≈ 25 min
+    [score] score:  73 % (352/483 muestras · 325 lecturas · 279 OCR) · 6 min · quedan ≈ 2 min
+    [players] players:  21 % (4096/19461 fotogramas con jugadoras) · 7 min · quedan ≈ 24 min
+    [score] score:  79 % (381/483 muestras · 354 lecturas · 304 OCR) · 7 min · quedan ≈ 2 min
+    [players] players:  23 % (4413/19461 fotogramas con jugadoras) · 7 min · quedan ≈ 24 min
+    [score] score:  86 % (413/483 muestras · 386 lecturas · 327 OCR) · 7 min · quedan ≈ 73 s
+    [players] players:  24 % (4733/19461 fotogramas con jugadoras) · 8 min · quedan ≈ 23 min
+    [score] score:  92 % (442/483 muestras · 415 lecturas · 351 OCR) · 8 min · quedan ≈ 43 s
+    [players] players:  26 % (5051/19461 fotogramas con jugadoras) · 8 min · quedan ≈ 23 min
+    [score] score:  97 % (468/483 muestras · 439 lecturas · 375 OCR) · 8 min · quedan ≈ 16 s
+    [players] players:  28 % (5356/19461 fotogramas con jugadoras) · 9 min · quedan ≈ 22 min
+    [score] score: 100 % (483/483 muestras · 453 lecturas · 387 OCR) · 8 min · quedan ≈ 0 s
+    [score] marcador: 483 muestras en juego, 388 OCR (454 lecturas)
+  [zheng-qinwen-elena-rybakina] score terminada a las 07:34:43 en 8.6 min
+    [players] players:  30 % (5847/19461 fotogramas con jugadoras) · 9 min · quedan ≈ 21 min
+    [players] players:  33 % (6360/19461 fotogramas con jugadoras) · 10 min · quedan ≈ 20 min
+    [players] players:  35 % (6864/19461 fotogramas con jugadoras) · 10 min · quedan ≈ 18 min
+    [players] players:  38 % (7372/19461 fotogramas con jugadoras) · 11 min · quedan ≈ 17 min
+    [players] players:  40 % (7869/19461 fotogramas con jugadoras) · 11 min · quedan ≈ 16 min
+    [players] players:  43 % (8381/19461 fotogramas con jugadoras) · 12 min · quedan ≈ 15 min
+    [players] players:  46 % (8893/19461 fotogramas con jugadoras) · 12 min · quedan ≈ 14 min
+    [players] players:  48 % (9395/19461 fotogramas con jugadoras) · 13 min · quedan ≈ 13 min
+    [players] players:  51 % (9896/19461 fotogramas con jugadoras) · 13 min · quedan ≈ 13 min
+    [players] players:  53 % (10398/19461 fotogramas con jugadoras) · 14 min · quedan ≈ 12 min
+    [players] players:  56 % (10895/19461 fotogramas con jugadoras) · 14 min · quedan ≈ 11 min
+    [players] players:  59 % (11399/19461 fotogramas con jugadoras) · 15 min · quedan ≈ 10 min
+    [players] players:  61 % (11906/19461 fotogramas con jugadoras) · 15 min · quedan ≈ 10 min
+    [players] players:  64 % (12411/19461 fotogramas con jugadoras) · 16 min · quedan ≈ 9 min
+    [players] players:  66 % (12917/19461 fotogramas con jugadoras) · 16 min · quedan ≈ 8 min
+    [players] players:  69 % (13420/19461 fotogramas con jugadoras) · 17 min · quedan ≈ 7 min
+    [players] players:  72 % (13924/19461 fotogramas con jugadoras) · 17 min · quedan ≈ 7 min
+    [players] players:  74 % (14418/19461 fotogramas con jugadoras) · 18 min · quedan ≈ 6 min
+    [players] players:  77 % (14922/19461 fotogramas con jugadoras) · 18 min · quedan ≈ 5 min
+    [players] players:  79 % (15432/19461 fotogramas con jugadoras) · 19 min · quedan ≈ 5 min
+    [players] players:  82 % (15938/19461 fotogramas con jugadoras) · 19 min · quedan ≈ 4 min
+    [players] players:  85 % (16453/19461 fotogramas con jugadoras) · 20 min · quedan ≈ 4 min
+    [players] players:  87 % (16961/19461 fotogramas con jugadoras) · 20 min · quedan ≈ 3 min
+    [players] players:  90 % (17472/19461 fotogramas con jugadoras) · 21 min · quedan ≈ 2 min
+    [players] players:  92 % (17966/19461 fotogramas con jugadoras) · 21 min · quedan ≈ 2 min
+    [players] players:  95 % (18477/19461 fotogramas con jugadoras) · 22 min · quedan ≈ 69 s
+    [players] players:  97 % (18971/19461 fotogramas con jugadoras) · 22 min · quedan ≈ 34 s
+    [players] players: 100 % (19461/19461 fotogramas con jugadoras) · 23 min · quedan ≈ 0 s
