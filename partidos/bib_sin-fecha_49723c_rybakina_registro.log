@@ -633,3 +633,14 @@
 2026-11-09 16:55:22   ventana w000733500_6144 (near, 2 candidatos): pasa · golpe de bola en su lado a 4.7 s
 2026-11-09 16:55:22   ventana w000733500_6144: pose hybrid en 369 de 369 fotogramas (66 s; modelo 66 s; pies en 29) · bola 10 s · raqueta 30 s (2 de 2 impactos) · 2 golpes posibles · altura 1510 px (segments)
 2026-11-09 16:55:22   fine_doubtful:  70 % (104/149 golpes candidatos · 76 confirmados · 0 ventanas descartadas sin pose) · 25 min · quedan ≈ 11 min
+2026-11-09 16:57:06   ventana w000807298_5611 (near, 2 candidatos): pasa · golpe de bola en su lado a 4.23 s
+2026-11-09 16:57:06   ventana w000807298_5611: pose hybrid en 337 de 337 fotogramas (54 s; modelo 53 s; pies en 337) · bola 10 s · raqueta 28 s (2 de 2 impactos) · 2 golpes posibles · altura 235 px (court)
+2026-11-09 16:57:06   fine_doubtful:  71 % (106/149 golpes candidatos · 78 confirmados · 0 ventanas descartadas sin pose) · 27 min · quedan ≈ 11 min
+2026-11-09 16:57:24   ventana w000776600_8378 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.17 s
+2026-11-09 16:57:24   ventana w000776600_8378: pose hybrid en 503 de 503 fotogramas (86 s; modelo 85 s; pies en 503) · bola 15 s · raqueta 46 s (3 de 4 impactos) · 4 golpes posibles · altura 246 px (court)
+2026-11-09 16:59:11   ventana w000888452_5748 (near, 2 candidatos): pasa · golpe de bola en su lado a 4.25 s
+2026-11-09 16:59:11   ventana w000888452_5748: pose hybrid en 344 de 344 fotogramas (54 s; modelo 54 s; pies en 344) · bola 10 s · raqueta 27 s (2 de 2 impactos) · 2 golpes posibles · altura 228 px (court)
+2026-11-09 16:59:11   fine_doubtful:  74 % (111/149 golpes candidatos · 83 confirmados · 0 ventanas descartadas sin pose) · 29 min · quedan ≈ 10 min
+2026-11-09 16:59:58   ventana w000853400_9200 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.23 s
+2026-11-09 16:59:58   ventana w000853400_9200: pose hybrid en 552 de 552 fotogramas (89 s; modelo 88 s; pies en 552) · bola 14 s · raqueta 47 s (3 de 4 impactos) · 4 golpes posibles · altura 238 px (court)
+2026-11-09 16:59:58   fine_doubtful:  77 % (114/149 golpes candidatos · 86 confirmados · 0 ventanas descartadas sin pose) · 29 min · quedan ≈ 9 min
