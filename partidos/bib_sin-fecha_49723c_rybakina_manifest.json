@@ -102,14 +102,14 @@
   "rewrote": {}
  },
  "identity": {
-  "fingerprint": "27e6bc4f95c3f54c",
-  "version": "8",
-  "seconds": 167.4,
-  "finished": "2026-11-09 10:12:32",
+  "fingerprint": "f159de3128b07ab3",
+  "version": "9",
+  "seconds": 241.5,
+  "finished": "2026-11-09 11:43:31",
   "summary": {
    "runs": 320,
-   "confidence": 0.56,
-   "votes": 157,
+   "confidence": 0.58,
+   "votes": 169,
    "agree": 0,
    "ends_only": 0,
    "clothes_only": 0,
@@ -117,6 +117,7 @@
    "clothes_won": 0,
    "doubtful": 0,
    "none": 320,
+   "click_by": "ends",
    "by_end_changes": 0,
    "by_clothes": 0,
    "conflicts": 0,
@@ -131,10 +132,17 @@
     "far_pairs": 1,
     "far_opposite": 0.0,
     "same_game_pairs": 125,
-    "same_game_same": 0.94
+    "same_game_same": 0.94,
+    "check": {
+     "distinguishable": false,
+     "why": "los grupos no siguen los cambios de lado del marcador (59 % de 240 planos)",
+     "parity_runs": 240,
+     "parity_agree": 0.59,
+     "centroid_dist": 0.59
+    }
    }
   },
-  "out_hash": "25a6533b0799a42d2aaa",
+  "out_hash": "a2bd048710c6b4070582",
   "scheme": 2,
   "rewrote": {}
  }

@@ -27,7 +27,11 @@
   "listo": true,
   "grupos": 2,
   "clic_hecho": false,
-  "minutos": 0.1
+  "minutos": 4.1,
+  "fotos": "fotos no distinguibles",
+  "motivo": "los grupos no siguen los cambios de lado del marcador (59 % de 240 planos)",
+  "fotos_por": "cambios de lado del marcador",
+  "distancia_fotos": null
  },
  "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final": {
   "listo": true,
