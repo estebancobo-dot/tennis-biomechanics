@@ -337,7 +337,7 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - ✔ **Cada golpe tiene su vídeo**: 13 de 13 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 13 de 13
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 2446 caracteres de texto, 7 vídeos, 19 gráficos
+- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 2446 caracteres de texto, 6 vídeos, 19 gráficos
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 4456 caracteres de texto, 7 vídeos, 1 gráficos
 - ✔ **Pantalla «Análisis de golpe»**: 4979 caracteres de texto, 8 vídeos, 31 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 4320 caracteres de texto, 7 vídeos, 2 gráficos
@@ -345,7 +345,7 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 4697 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 3424 caracteres de texto, 7 vídeos, 0 gráficos
-- ✔ **Pantalla «Datos del análisis»**: 2028 caracteres de texto, 7 vídeos, 0 gráficos
+- ✔ **Pantalla «Datos del análisis»**: 2031 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
@@ -431,7 +431,7 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - ✔ **Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)**: 80 medidas: 4 dudosa, 52 fiable, 13 no comprobable, 2 ruido, 1 sesgo, 8 sin juzgar. No se dan como valor suyo (ruido): impact.face_tilt ±5.85, takeback.shoulder_turn ±3.3. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
 - ✔ **Frenado de los hombros antes del contacto**: medido en 10 de 13 golpes; en «Aprende»; fiabilidad: no comprobable
 - ✔ **Lo no medible se dice**: 17 elementos en «Lo que la tele no permite medir»
-- ✔ **Validación con clips anotados (F3Set)**: golpes: precisión 0.917, recall 0.647; derecha/revés 0.969; dirección 0.885. Solo detección y clases: el valor de cada medida (codo, rodillas, pasos…) aún no tiene clips anotados con los que compararse
+- ✔ **Validación con clips anotados (F3Set)**: camino antiguo (run_clip, no el detector del análisis; el del análisis: recall_validation) — golpes: precisión 0.917, recall 0.647; derecha/revés 0.969; dirección 0.885. Solo detección y clases: el valor de cada medida (codo, rodillas, pasos…) aún no tiene clips anotados con los que compararse
 
 ## 4. Cuerdas / orientación de la cara de la raqueta
 
@@ -479,7 +479,7 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
 - ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (26/26), 61 s, quedan ≈ 0 s, a las 2026-11-09 01:16:27
-- ✔ **Tamaño de la salida (tamanos.txt)**: 41 carpetas, 28.6 GB en total (2026-11-09T01:10:07); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 41 carpetas, 28.6 GB en total (2026-11-09T01:22:18); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB
 - ✔ **Carpetas de pruebas antiguas**: ninguna carpeta de pruebas con más de 14 días sin usar
 - ✔ **Aplicación: ventana real y pantallas**: 56 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 1 análisis y 18 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
@@ -487,9 +487,9 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 77 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 25 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 25 vídeos
-- ✔ **Exportación terminada: exportar**: terminó el 2026-11-09 01:18:39 en 2 min: 25 vídeos de 25 golpes
+- ✔ **Exportación terminada: exportar**: terminó el 2026-11-09 01:22:39 en 0 min: 25 vídeos de 25 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
-- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 09-11 01:08, empezó a los 0.1 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
+- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 09-11 01:19, empezó a los 2.7 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
 

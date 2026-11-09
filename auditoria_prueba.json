@@ -2834,7 +2834,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "2446 caracteres de texto, 7 vídeos, 19 gráficos",
+   "detail": "2446 caracteres de texto, 6 vídeos, 19 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2898,7 +2898,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2028 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2031 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3186,7 +3186,7 @@
    "area": "Validación",
    "name": "Validación con clips anotados (F3Set)",
    "status": "ok",
-   "detail": "golpes: precisión 0.917, recall 0.647; derecha/revés 0.969; dirección 0.885. Solo detección y clases: el valor de cada medida (codo, rodillas, pasos…) aún no tiene clips anotados con los que compararse"
+   "detail": "camino antiguo (run_clip, no el detector del análisis; el del análisis: recall_validation) — golpes: precisión 0.917, recall 0.647; derecha/revés 0.969; dirección 0.885. Solo detección y clases: el valor de cada medida (codo, rodillas, pasos…) aún no tiene clips anotados con los que compararse"
   },
   {
    "req": 5,
@@ -3433,7 +3433,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "41 carpetas, 28.6 GB en total (2026-11-09T01:10:07); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
+   "detail": "41 carpetas, 28.6 GB en total (2026-11-09T01:22:18); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
   },
   {
    "req": 5,
@@ -3489,7 +3489,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-09 01:18:39 en 2 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-09 01:22:39 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3636,7 +3636,7 @@
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 09-11 01:08, empezó a los 0.1 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 09-11 01:19, empezó a los 2.7 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
