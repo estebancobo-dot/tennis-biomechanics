@@ -66,18 +66,19 @@
   "rewrote": {}
  },
  "score": {
-  "fingerprint": "080d42650660c559",
+  "fingerprint": "a0a35a3e620b3e2c",
   "version": "6",
-  "seconds": 982.1,
-  "finished": "2026-10-19 04:39:43",
+  "seconds": 598.5,
+  "finished": "2026-11-09 08:04:44",
   "summary": {
-   "readings": 388,
+   "readings": 386,
    "pressure": 60,
-   "samples": 533,
-   "ocr_calls": 413
+   "samples": 531,
+   "ocr_calls": 411
   },
-  "out_hash": "03d01adcdde961a9581e",
-  "scheme": 2
+  "out_hash": "14445e938301931db501",
+  "scheme": 2,
+  "rewrote": {}
  },
  "players": {
   "fingerprint": "b313b48fcb65418e",

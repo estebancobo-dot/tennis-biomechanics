@@ -197,3 +197,33 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
     [score] score:  53 % (284/531 muestras · 155 lecturas · 188 OCR) · 5 min · quedan ≈ 4 min
     [players] players:  15 % (3179/21340 fotogramas con jugadoras) · 5 min · quedan ≈ 29 min
     [score] score:  58 % (308/531 muestras · 179 lecturas · 212 OCR) · 5 min · quedan ≈ 4 min
+    [players] players:  16 % (3493/21340 fotogramas con jugadoras) · 6 min · quedan ≈ 28 min
+    [score] score:  63 % (335/531 muestras · 204 lecturas · 235 OCR) · 6 min · quedan ≈ 3 min
+    [players] players:  18 % (3815/21340 fotogramas con jugadoras) · 6 min · quedan ≈ 28 min
+    [score] score:  68 % (361/531 muestras · 229 lecturas · 256 OCR) · 6 min · quedan ≈ 3 min
+    [players] players:  19 % (4134/21340 fotogramas con jugadoras) · 7 min · quedan ≈ 27 min
+    [score] score:  73 % (385/531 muestras · 253 lecturas · 278 OCR) · 7 min · quedan ≈ 3 min
+    [players] players:  21 % (4441/21340 fotogramas con jugadoras) · 7 min · quedan ≈ 27 min
+    [score] score:  77 % (409/531 muestras · 275 lecturas · 300 OCR) · 7 min · quedan ≈ 2 min
+    [players] players:  22 % (4772/21340 fotogramas con jugadoras) · 8 min · quedan ≈ 26 min
+    [score] score:  81 % (432/531 muestras · 298 lecturas · 321 OCR) · 8 min · quedan ≈ 2 min
+    [players] players:  24 % (5106/21340 fotogramas con jugadoras) · 8 min · quedan ≈ 25 min
+    [score] score:  85 % (454/531 muestras · 319 lecturas · 342 OCR) · 8 min · quedan ≈ 84 s
+    [players] players:  25 % (5436/21340 fotogramas con jugadoras) · 9 min · quedan ≈ 25 min
+    [score] score:  90 % (479/531 muestras · 342 lecturas · 364 OCR) · 9 min · quedan ≈ 57 s
+    [players] players:  27 % (5740/21340 fotogramas con jugadoras) · 9 min · quedan ≈ 25 min
+    [score] score:  95 % (507/531 muestras · 368 lecturas · 387 OCR) · 9 min · quedan ≈ 26 s
+    [players] players:  28 % (6042/21340 fotogramas con jugadoras) · 10 min · quedan ≈ 24 min
+    [score] score: 100 % (530/531 muestras · 386 lecturas · 409 OCR) · 10 min · quedan ≈ 1 s
+    [score] score: 100 % (531/531 muestras · 386 lecturas · 410 OCR) · 10 min · quedan ≈ 0 s
+    [score] marcador: 531 muestras en juego, 411 OCR (386 lecturas)
+  [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] score terminada a las 08:04:44 en 10.0 min
+    [players] players:  30 % (6374/21340 fotogramas con jugadoras) · 10 min · quedan ≈ 24 min
+    [players] players:  32 % (6882/21340 fotogramas con jugadoras) · 11 min · quedan ≈ 22 min
+    [players] players:  35 % (7393/21340 fotogramas con jugadoras) · 11 min · quedan ≈ 21 min
+    [players] players:  37 % (7915/21340 fotogramas con jugadoras) · 12 min · quedan ≈ 20 min
+    [players] players:  39 % (8429/21340 fotogramas con jugadoras) · 12 min · quedan ≈ 18 min
+    [players] players:  42 % (8937/21340 fotogramas con jugadoras) · 13 min · quedan ≈ 17 min
+    [players] players:  44 % (9435/21340 fotogramas con jugadoras) · 13 min · quedan ≈ 16 min
+    [players] players:  47 % (9942/21340 fotogramas con jugadoras) · 14 min · quedan ≈ 16 min
+    [players] players:  49 % (10435/21340 fotogramas con jugadoras) · 14 min · quedan ≈ 15 min
