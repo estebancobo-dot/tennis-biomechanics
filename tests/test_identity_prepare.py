@@ -31,3 +31,16 @@ def test_it_uses_the_real_match_folder_and_skips_clicked_matches(tmp_path, monke
     st = json.loads((tmp_path / "fotos" / "estado.json").read_text(encoding="utf-8"))
     assert st["old-match"]["clic_hecho"] and "new-match" in st
     assert not (out_root / "old-match").exists() and not (out_root / "new-match").exists()
+
+
+def test_the_click_of_a_library_match_is_found_and_written_in_its_stages_folder(tmp_path):
+    """09-11: the app read <match>/identidad_clic.json; in the library it lives in <match>/etapas/."""
+    from tennisbio.app import identity_click as ic
+    d = tmp_path / "sin-fecha_abc_rybakina"
+    (d / "etapas").mkdir(parents=True)
+    (d / "etapas" / "identidad_clic.json").write_text(json.dumps({"cluster": 1}), encoding="utf-8")
+    assert ic.state(d)["done"] is True
+    flat = tmp_path / "flat"
+    flat.mkdir()
+    (flat / "identidad_clic.json").write_text(json.dumps({"cluster": 0}), encoding="utf-8")
+    assert ic.state(flat)["done"] is True

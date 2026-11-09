@@ -19,7 +19,10 @@ def state(match_dir: Path) -> dict:
     """{"needed", "done", "pick"}: the photos can be made once the identity stage has split the clothes."""
     d = Path(match_dir)
     ident = _mf.at(d, "identity.json")
-    pick = json.loads((d / PICK_FILE).read_text(encoding="utf-8")) if (d / PICK_FILE).exists() else None
+    # through match_files (09-11): in a library folder the click lives in etapas/, with the identity it decides; read
+    # straight from the folder, the 4 clicked reference matches looked unclicked
+    pf = _mf.at(d, PICK_FILE)
+    pick = json.loads(pf.read_text(encoding="utf-8")) if pf.exists() else None
     groups = set()
     if ident.exists():
         groups = {r.get("cluster", -1) for r in json.loads(ident.read_text(encoding="utf-8")).get("runs", [])} - {-1}
@@ -79,5 +82,7 @@ def photos(match_dir: Path, video: Path, height: int = 360) -> list[dict]:
 def save_pick(match_dir: Path, t: float, near_is_her: bool = True) -> dict:
     """Saves the click (the user's own decision: written only when the user clicks)."""
     pick = {"t": round(float(t), 3), "near_is_her": bool(near_is_her), "when": time.strftime("%Y-%m-%d %H:%M")}
-    (Path(match_dir) / PICK_FILE).write_text(json.dumps(pick, ensure_ascii=False), encoding="utf-8")
+    pf = _mf.at(Path(match_dir), PICK_FILE)
+    pf.parent.mkdir(parents=True, exist_ok=True)
+    pf.write_text(json.dumps(pick, ensure_ascii=False), encoding="utf-8")
     return pick
