@@ -419,6 +419,13 @@ detector: si
 ---
 id: 157
 accion: completo
+---
+id: 158
+accion: medir
+script: validate_rv_strokes
+argumentos: --clips 12
+# 158 (09-11, B4): RacketVision con el detector del analisis (detector aprendido, candidatos y pasada fina); la 154
+# medio el camino antiguo (reglas de pose y bola) y no vale para el programa actual
 # 156-157 (09-11, #219): lado lejano: el recorte que la sigue la perdia al empezar la ventana y, creciendo hasta 16
 # veces su altura, ya no la veia ("altura nan" en el registro). Ahora empieza donde far_start la encontro y la busca
 # de nuevo en la mitad lejana mientras esta perdida (cache de pose lejana nueva _f2). 156 = F3Set (precision >= 0,94),
