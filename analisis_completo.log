@@ -233902,3 +233902,134 @@ Vídeos en C:\tenis\videos: 4 en el catálogo (0 nuevos: —); en espera hasta c
     (paso terminado en 0 s)
 
 ==> [2026-11-09 05:44:30] 2/5 Analisis de los partidos (horas; se puede cortar y relanzar)
+[us-open-2026-r4-naomi-osaka-elena-rybakina] view_clips… (2026-11-09 05:44:32, etapa 13 de 16)
+  view_clips:   0 % (1/291 recortes de repeticiones y otras cámaras) · 0 s · quedan ≈ 0 s
+  view_clips:  11 % (33/291 recortes de repeticiones y otras cámaras) · 30 s · quedan ≈ 4 min
+  view_clips:  23 % (68/291 recortes de repeticiones y otras cámaras) · 61 s · quedan ≈ 3 min
+  AVISO: toma sin recorte (v001604700_00700.mp4): no se pudo recortar la toma de 0.7 s en 1604.7 s (40e5c0] mmco: unref short failure
+[h264 @ 000002122840e5c0] number of reference frames (0+5) exceeds max (4; p
+  AVISO: toma sin recorte (v001709800_00700.mp4): no se pudo recortar la toma de 0.7 s en 1709.8 s (60780] Decoding error: Invalid data found when processing input
+[h264 @ 000001c41193e440] reference picture mi
+  view_clips:  35 % (101/291 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 3 min
+  AVISO: toma sin recorte (v002066000_00700.mp4): no se pudo recortar la toma de 0.7 s en 2066.0 s (ort failure
+[h264 @ 0000022ffba73e40] reference picture missing during reorder
+[h264 @ 0000022ffba73e40] Missi
+  view_clips:  46 % (133/291 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 2 min
+  view_clips:  56 % (162/291 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 2 min
+  view_clips:  65 % (190/291 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 2 min
+  view_clips:  75 % (218/291 recortes de repeticiones y otras cámaras) · 4 min · quedan ≈ 72 s
+  view_clips:  88 % (257/291 recortes de repeticiones y otras cámaras) · 4 min · quedan ≈ 32 s
+  AVISO: toma sin recorte (v004053600_00700.mp4): no se pudo recortar la toma de 0.7 s en 4053.6 s (de: -1145393733 (Error number -1145393733 occurred)
+[vist#0:0/h264 @ 000002a1f43cca40] [dec:h264 @ 000002a1f39
+  view_clips: 100 % (291/291 recortes de repeticiones y otras cámaras) · 5 min · quedan ≈ 0 s
+  tomas recortadas: 287 nuevas, 0 ya hechas, 4 fallidas, de 159 golpes
+[us-open-2026-r4-naomi-osaka-elena-rybakina] view_clips terminada a las 05:49:03 en 4.5 min
+[us-open-2026-r4-naomi-osaka-elena-rybakina] slowmo_fine… (2026-11-09 05:49:04, etapa 14 de 16)
+  slowmo_fine:  50 % (1/2 golpes en la repetición a cámara lenta) · 0 s · quedan ≈ 0 s
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
+  slowmo_fine: 100 % (2/2 golpes en la repetición a cámara lenta) · 6 s · quedan ≈ 0 s
+  cámara lenta: 2 de 2 golpes medidos (59 fotogramas, 8 s)
+[us-open-2026-r4-naomi-osaka-elena-rybakina] slowmo_fine terminada a las 05:49:12 en 8 s
+us-open-2026-r4-naomi-osaka-elena-rybakina: ejecutado view_clips, slowmo_fine
+[zheng-qinwen-elena-rybakina] view_clips… (2026-11-09 05:49:13, etapa 13 de 16)
+  view_clips:   0 % (1/582 recortes de repeticiones y otras cámaras) · 0 s · quedan ≈ 0 s
+  view_clips:   5 % (29/582 recortes de repeticiones y otras cámaras) · 30 s · quedan ≈ 10 min
+  view_clips:  10 % (60/582 recortes de repeticiones y otras cámaras) · 61 s · quedan ≈ 9 min
+  view_clips:  15 % (88/582 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 9 min
+  view_clips:  21 % (122/582 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 8 min
+  view_clips:  27 % (159/582 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 7 min
+  view_clips:  32 % (189/582 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 6 min
+  view_clips:  38 % (224/582 recortes de repeticiones y otras cámaras) · 4 min · quedan ≈ 6 min
+  view_clips:  44 % (258/582 recortes de repeticiones y otras cámaras) · 4 min · quedan ≈ 5 min
+  view_clips:  50 % (292/582 recortes de repeticiones y otras cámaras) · 5 min · quedan ≈ 5 min
+  view_clips:  57 % (330/582 recortes de repeticiones y otras cámaras) · 5 min · quedan ≈ 4 min
+  view_clips:  62 % (361/582 recortes de repeticiones y otras cámaras) · 6 min · quedan ≈ 3 min
+  view_clips:  67 % (391/582 recortes de repeticiones y otras cámaras) · 6 min · quedan ≈ 3 min
+  view_clips:  73 % (424/582 recortes de repeticiones y otras cámaras) · 7 min · quedan ≈ 2 min
+  view_clips:  78 % (456/582 recortes de repeticiones y otras cámaras) · 7 min · quedan ≈ 2 min
+  view_clips:  84 % (487/582 recortes de repeticiones y otras cámaras) · 8 min · quedan ≈ 90 s
+  view_clips:  89 % (520/582 recortes de repeticiones y otras cámaras) · 8 min · quedan ≈ 59 s
+  view_clips:  95 % (551/582 recortes de repeticiones y otras cámaras) · 9 min · quedan ≈ 29 s
+  view_clips: 100 % (582/582 recortes de repeticiones y otras cámaras) · 9 min · quedan ≈ 0 s
+  tomas recortadas: 582 nuevas, 0 ya hechas, 0 fallidas, de 283 golpes
+[zheng-qinwen-elena-rybakina] view_clips terminada a las 05:58:27 en 9.2 min
+[zheng-qinwen-elena-rybakina] slowmo_fine… (2026-11-09 05:58:27, etapa 14 de 16)
+  slowmo_fine:  17 % (1/6 golpes en la repetición a cámara lenta) · 0 s · quedan ≈ 0 s
+  slowmo_fine: 100 % (6/6 golpes en la repetición a cámara lenta) · 25 s · quedan ≈ 0 s
+  cámara lenta: 6 de 6 golpes medidos (317 fotogramas, 30 s)
+[zheng-qinwen-elena-rybakina] slowmo_fine terminada a las 05:58:58 en 30 s
+zheng-qinwen-elena-rybakina: ejecutado view_clips, slowmo_fine
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] view_clips… (2026-11-09 05:58:58, etapa 13 de 16)
+  view_clips:   0 % (1/618 recortes de repeticiones y otras cámaras) · 0 s · quedan ≈ 0 s
+  view_clips:   7 % (42/618 recortes de repeticiones y otras cámaras) · 30 s · quedan ≈ 7 min
+  view_clips:  13 % (78/618 recortes de repeticiones y otras cámaras) · 60 s · quedan ≈ 7 min
+  view_clips:  18 % (112/618 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 7 min
+  view_clips:  25 % (152/618 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 6 min
+  view_clips:  31 % (191/618 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 6 min
+  view_clips:  37 % (227/618 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 5 min
+  view_clips:  43 % (264/618 recortes de repeticiones y otras cámaras) · 4 min · quedan ≈ 5 min
+  view_clips:  49 % (301/618 recortes de repeticiones y otras cámaras) · 4 min · quedan ≈ 4 min
+  view_clips:  55 % (340/618 recortes de repeticiones y otras cámaras) · 5 min · quedan ≈ 4 min
+  view_clips:  61 % (375/618 recortes de repeticiones y otras cámaras) · 5 min · quedan ≈ 3 min
+  view_clips:  66 % (408/618 recortes de repeticiones y otras cámaras) · 6 min · quedan ≈ 3 min
+  view_clips:  72 % (448/618 recortes de repeticiones y otras cámaras) · 6 min · quedan ≈ 2 min
+  view_clips:  79 % (489/618 recortes de repeticiones y otras cámaras) · 7 min · quedan ≈ 2 min
+  view_clips:  85 % (525/618 recortes de repeticiones y otras cámaras) · 7 min · quedan ≈ 75 s
+  view_clips:  91 % (564/618 recortes de repeticiones y otras cámaras) · 8 min · quedan ≈ 44 s
+  view_clips:  97 % (602/618 recortes de repeticiones y otras cámaras) · 8 min · quedan ≈ 13 s
+  view_clips: 100 % (618/618 recortes de repeticiones y otras cámaras) · 8 min · quedan ≈ 0 s
+  tomas recortadas: 618 nuevas, 0 ya hechas, 0 fallidas, de 254 golpes
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] view_clips terminada a las 06:07:19 en 8.3 min
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] slowmo_fine… (2026-11-09 06:07:20, etapa 14 de 16)
+  slowmo_fine:  50 % (1/2 golpes en la repetición a cámara lenta) · 0 s · quedan ≈ 0 s
+  slowmo_fine: 100 % (2/2 golpes en la repetición a cámara lenta) · 6 s · quedan ≈ 0 s
+  cámara lenta: 2 de 2 golpes medidos (148 fotogramas, 14 s)
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] slowmo_fine terminada a las 06:07:34 en 14 s
+tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: ejecutado view_clips, slowmo_fine
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] view_clips… (2026-11-09 06:07:34, etapa 13 de 16)
+  view_clips:   0 % (1/713 recortes de repeticiones y otras cámaras) · 0 s · quedan ≈ 0 s
+  view_clips:   5 % (37/713 recortes de repeticiones y otras cámaras) · 30 s · quedan ≈ 9 min
+  view_clips:  10 % (70/713 recortes de repeticiones y otras cámaras) · 61 s · quedan ≈ 9 min
+  view_clips:  14 % (101/713 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 9 min
+  view_clips:  19 % (134/713 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 9 min
+  view_clips:  24 % (170/713 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 8 min
+  view_clips:  28 % (203/713 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 8 min
+  view_clips:  34 % (240/713 recortes de repeticiones y otras cámaras) · 4 min · quedan ≈ 7 min
+  view_clips:  38 % (272/713 recortes de repeticiones y otras cámaras) · 4 min · quedan ≈ 7 min
+  view_clips:  43 % (306/713 recortes de repeticiones y otras cámaras) · 5 min · quedan ≈ 6 min
+  view_clips:  48 % (342/713 recortes de repeticiones y otras cámaras) · 5 min · quedan ≈ 6 min
+  view_clips:  52 % (374/713 recortes de repeticiones y otras cámaras) · 6 min · quedan ≈ 5 min
+  view_clips:  57 % (406/713 recortes de repeticiones y otras cámaras) · 6 min · quedan ≈ 5 min
+  view_clips:  62 % (442/713 recortes de repeticiones y otras cámaras) · 7 min · quedan ≈ 4 min
+  view_clips:  67 % (477/713 recortes de repeticiones y otras cámaras) · 7 min · quedan ≈ 4 min
+  view_clips:  71 % (509/713 recortes de repeticiones y otras cámaras) · 8 min · quedan ≈ 3 min
+  view_clips:  76 % (541/713 recortes de repeticiones y otras cámaras) · 8 min · quedan ≈ 3 min
+  view_clips:  80 % (572/713 recortes de repeticiones y otras cámaras) · 9 min · quedan ≈ 2 min
+  view_clips:  85 % (605/713 recortes de repeticiones y otras cámaras) · 9 min · quedan ≈ 2 min
+  view_clips:  89 % (635/713 recortes de repeticiones y otras cámaras) · 10 min · quedan ≈ 71 s
+  view_clips:  93 % (665/713 recortes de repeticiones y otras cámaras) · 10 min · quedan ≈ 44 s
+  view_clips:  98 % (699/713 recortes de repeticiones y otras cámaras) · 11 min · quedan ≈ 13 s
+  view_clips: 100 % (713/713 recortes de repeticiones y otras cámaras) · 11 min · quedan ≈ 0 s
+  tomas recortadas: 713 nuevas, 0 ya hechas, 0 fallidas, de 291 golpes
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] view_clips terminada a las 06:18:29 en 10.9 min
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] slowmo_fine… (2026-11-09 06:18:29, etapa 14 de 16)
+  slowmo_fine:  17 % (1/6 golpes en la repetición a cámara lenta) · 0 s · quedan ≈ 0 s
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+  slowmo_fine: 100 % (6/6 golpes en la repetición a cámara lenta) · 31 s · quedan ≈ 0 s
+  cámara lenta: 6 de 6 golpes medidos (345 fotogramas, 36 s)
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] slowmo_fine terminada a las 06:19:06 en 37 s
+tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5: ejecutado view_clips, slowmo_fine
+us-open-2026-r4-naomi-osaka-elena-rybakina probe:ok  scenes:ok  court:ok  players:ok  score:ok  audio:ok  identity:ok  spotting:ok  candidates:ok  views:ok  fine:ok  views_link:ok  view_clips:ok  slowmo_fine:ok  fine_opponent:ok  fine_doubtful:ok
+zheng-qinwen-elena-rybakina probe:ok  scenes:ok  court:ok  players:ok  score:ok  audio:ok  identity:ok  spotting:ok  candidates:ok  views:ok  fine:ok  views_link:ok  view_clips:ok  slowmo_fine:ok  fine_opponent:ok  fine_doubtful:ok
+tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 probe:ok  scenes:ok  court:ok  players:ok  score:ok  audio:ok  identity:ok  spotting:ok  candidates:ok  views:ok  fine:ok  views_link:ok  view_clips:ok  slowmo_fine:ok  fine_opponent:ok  fine_doubtful:ok
+tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 probe:ok  scenes:ok  court:ok  players:ok  score:ok  audio:ok  identity:ok  spotting:ok  candidates:ok  views:ok  fine:ok  views_link:ok  view_clips:ok  slowmo_fine:ok  fine_opponent:ok  fine_doubtful:ok
+    (paso terminado en 34 min 37 s)
+
+==> [2026-11-09 06:19:08] 3/5 Informes
+informe: C:\tenis\output\informe_derecha\index.html
+informe: C:\tenis\output\informe_reves\index.html
+informe: C:\tenis\output\informe_saque\index.html
+    (paso terminado en 12 s)
+
+==> [2026-11-09 06:19:20] 3b/5 Analisis en la aplicacion (solo sus informes)
