@@ -69,5 +69,73 @@
   "out_hash": "ca138aa66d637c04e59a",
   "scheme": 2,
   "rewrote": {}
+ },
+ "players": {
+  "fingerprint": "b4a7a9b965ebb060",
+  "version": "4",
+  "seconds": 1478.7,
+  "finished": "2026-11-09 10:09:32",
+  "summary": {
+   "frames": 20637,
+   "wall_min": 24.6,
+   "model_min": 20.5,
+   "read_min": 24.6,
+   "wait_min": 4.1,
+   "appearance_min": 0.3
+  },
+  "out_hash": "1e8edb750375f35c480a",
+  "scheme": 2,
+  "rewrote": {},
+  "overlap_s": 570.2
+ },
+ "audio": {
+  "fingerprint": "11db176574e0c7ac",
+  "version": "2",
+  "seconds": 12.6,
+  "finished": "2026-11-09 10:09:45",
+  "summary": {
+   "onsets": 7420,
+   "tracks": 1
+  },
+  "out_hash": "3259f47cdaa7e933fef4",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "identity": {
+  "fingerprint": "27e6bc4f95c3f54c",
+  "version": "8",
+  "seconds": 167.4,
+  "finished": "2026-11-09 10:12:32",
+  "summary": {
+   "runs": 320,
+   "confidence": 0.56,
+   "votes": 157,
+   "agree": 0,
+   "ends_only": 0,
+   "clothes_only": 0,
+   "ends_won": 0,
+   "clothes_won": 0,
+   "doubtful": 0,
+   "none": 320,
+   "by_end_changes": 0,
+   "by_clothes": 0,
+   "conflicts": 0,
+   "conflicts_resolved": 0,
+   "decided": 0,
+   "clothes": {
+    "source": "ropa (torso y pantalón o falda, sin la pista)",
+    "runs": 320,
+    "clear": 288,
+    "margin_median": 0.29,
+    "separation": 1.78,
+    "far_pairs": 1,
+    "far_opposite": 0.0,
+    "same_game_pairs": 125,
+    "same_game_same": 0.94
+   }
+  },
+  "out_hash": "25a6533b0799a42d2aaa",
+  "scheme": 2,
+  "rewrote": {}
  }
 }

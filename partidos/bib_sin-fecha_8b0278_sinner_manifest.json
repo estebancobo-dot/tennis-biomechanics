@@ -1,0 +1,18 @@
+{
+ "probe": {
+  "fingerprint": "bb1e0488f16b3316",
+  "version": "2",
+  "seconds": 3.6,
+  "finished": "2026-11-09 10:12:39",
+  "summary": {
+   "duration_min": 71.0,
+   "fps": 59.94100294985251,
+   "size": "1920x1080",
+   "cleaned": false,
+   "vfr": false
+  },
+  "out_hash": "6f297e6c22f0160a3087",
+  "scheme": 2,
+  "rewrote": {}
+ }
+}
