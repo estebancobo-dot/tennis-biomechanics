@@ -35,6 +35,9 @@ def cheap_stages(cfg: dict) -> list[str]:
     return [n for n in pipeline.order(list(CHEAP) + list(FINE), cfg) if n not in EXPENSIVE and n not in FINE]
 FINE = ("fine", "fine_opponent", "fine_doubtful", "views_link")                           # always re-run
 # views_link after the fine passes: it adds the linked replays and cameras to the new strokes.json
+# #218 (09-11): after them, when stale (their outputs follow the new strokes.json): the clips of the replays and other
+# cameras for the report and the measures on the slow-motion replay (cut and pose cached: only what is new is done)
+AFTER_FINE = ("view_clips", "slowmo_fine")
 VIDEO_EXT = {".mp4", ".mkv", ".ts", ".mov", ".avi", ".m4v", ".webm"}
 CLIP_NAME = re.compile(r"_\d+_\d+m$")          # smoke_test.py: <ascii>_<start>_<minutes>m.<ext>
 
@@ -121,6 +124,7 @@ def recompute(d: Path, out_root: Path, cfg: dict, player) -> dict:
     print(f"[{now()}] Etapas baratas rehechas: {', '.join(done) or 'ninguna (al día)'} ({took(t0)})", flush=True)
     t0 = time.time()
     done += pipeline.run(ctx, list(FINE), force=True, upstream=False)
+    done += pipeline.run(ctx, list(AFTER_FINE), upstream=False)
     times["medidas de los golpes"] = time.time() - t0
     m = pipeline.load_manifest(d)
     fs = m.get("fine", {}).get("summary", {})

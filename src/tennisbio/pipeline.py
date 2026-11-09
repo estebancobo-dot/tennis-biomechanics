@@ -593,3 +593,9 @@ def run(ctx: Context, names=None, force=False, upstream=True, parallel: bool | N
     if errors:
         raise errors[0]
     return done
+
+
+# the stages that show and measure the replays linked to her strokes (#218, 09-11) live in their own module, so that
+# adding them does not change stages.py (part of the fine pass's code fingerprint); imported here, they are always
+# registered with the others
+from . import view_stages  # noqa: E402,F401

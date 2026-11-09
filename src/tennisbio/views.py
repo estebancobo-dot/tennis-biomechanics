@@ -447,13 +447,271 @@ def coverage(strokes: list[dict]) -> dict:
             "replay_share": round(rep / n, 3) if n else 0.0, "other_share": round(oth / n, 3) if n else 0.0}
 
 
-def fine_on_slowmo(video, stroke: dict, view: dict, cfg: dict) -> dict | None:
-    """Fine pass on the impact frames of a main-camera slow-motion replay of `stroke` (less motion blur
-    per frame: `view["slowmo"]` frames of the broadcast per real frame).
+# --- clips of the views, for the report (#218, 09-11) ------------------------------------------------------
+CLIP_DIR = "view_clips"          # beside windows/ in the match folder (match_files.at)
+CLIP_PRE_S = 1.0                 # live seconds before her impact kept in a clip whose impact instant is known
+CLIP_POST_S = 0.8                # ... and after (× the slow-motion factor inside the replay)
+CLIP_MAX_S = 10.0                # a view without a known instant: the shot from its start, at most this long
+CLIP_WIDTH = 1280                # clips for watching (the report), not for measuring: lighter than the windows
+CLIP_CRF = 23
 
-    TODO(#218, plan_maestro block 2.1): cut the replay around `view["impact_t"]` (± 0.2 s × factor),
-    run the same pose / racket models as the fine pass on it, map its frames back to live time
-    (live t = impact live t + (t - impact_t) / factor) and return the racket face and the arm at the
-    impact measured there, beside (never instead of) the live values. Until then the stroke only says
-    it has such a view (`slowmo_view`)."""
-    raise NotImplementedError("pasada fina sobre la repetición a cámara lenta: pendiente (#218)")
+
+def clip_settings(cfg: dict) -> dict:
+    """`views.clips` of the configuration with its defaults (the view_clips stage's fingerprint)."""
+    c = ((cfg or {}).get("views") or {}).get("clips") or {}
+    return {"enabled": bool(c.get("enabled", True)), "pre_s": float(c.get("pre_s", CLIP_PRE_S)),
+            "post_s": float(c.get("post_s", CLIP_POST_S)), "max_s": float(c.get("max_s", CLIP_MAX_S)),
+            "width": int(c.get("width", CLIP_WIDTH)), "crf": int(c.get("crf", CLIP_CRF))}
+
+
+def stroke_key(s: dict) -> str | None:
+    """The key that joins a stroke of strokes.json with its clips and its slow-motion measures: side and match
+    time (both stay the same when the fine pass runs again)."""
+    t = s.get("match_time_s")
+    if t is None:
+        return None
+    return f"{s.get('side') or 'near'}@{float(t):.3f}"
+
+
+def clip_spec(view: dict, st: dict | None = None) -> dict | None:
+    """Where the clip of one linked view of a stroke is cut (match seconds) and where her impact falls in it.
+
+    With the impact instant inside the replay (a main-camera replay linked by her feet path): from pre_s live
+    seconds before to post_s after it, times the slow-motion factor, inside the shot. Otherwise (linked by
+    order: the instant is not known): the shot from its start, at most max_s; impact_in_clip None.
+    {t0, dur, impact_in_clip, whole_shot, file} or None for a view too short to show."""
+    st = st or clip_settings({})
+    a, b = float(view["t0"]), float(view["t1"])
+    it = view.get("impact_t")
+    if it is not None and a - 0.5 <= it <= b + 0.5:
+        f = float(view.get("slowmo") or 1.0)
+        t0, t1 = max(a, it - st["pre_s"] * f), min(b, it + st["post_s"] * f)
+        imp, whole = round(float(it) - t0, 3), False
+    else:
+        t0, t1, imp, whole = a, min(b, a + st["max_s"]), None, b - a <= st["max_s"]
+    if t1 - t0 < MIN_SHOT_S:
+        return None
+    t0, dur = round(t0, 3), round(t1 - t0, 3)
+    return {"t0": t0, "dur": dur, "impact_in_clip": imp if imp is None or 0 <= imp <= dur else None,
+            "whole_shot": bool(whole), "file": f"v{int(round(t0 * 1000)):09d}_{int(round(dur * 1000)):05d}.mp4"}
+
+
+def clip_plan(strokes: list[dict], st: dict | None = None) -> list[dict]:
+    """One row per linked view of each stroke (strokes.json `views`), with the clip that shows it. Strokes shown
+    by the same view at nearby instants share a clip file only when it is exactly the same cut."""
+    out = []
+    for s in strokes:
+        key = stroke_key(s)
+        if key is None:
+            continue
+        for v in s.get("views") or []:
+            c = clip_spec(v, st)
+            if c is None:
+                continue
+            out.append({"key": key, "stroke_id": s.get("stroke_id"), "stroke": s.get("stroke"), "side": s.get("side") or "near",
+                        "view_t0": v["t0"], "view_t1": v["t1"], "kind": v["kind"], "label": v.get("label") or LABELS.get(v["kind"], ""),
+                        "speed": v.get("speed"), "slowmo": v.get("slowmo"), "method": v.get("method"),
+                        "confidence": v.get("confidence"), **{k: c[k] for k in ("file", "impact_in_clip", "whole_shot")},
+                        "clip_t0": c["t0"], "clip_dur": c["dur"]})
+    return out
+
+
+def cut_view_clip(video, t0: float, dur: float, dest, interlaced: bool = False, audio_track: int = 0,
+                  width: int = 0, max_width: int = CLIP_WIDTH, crf: int = CLIP_CRF, timeout: int = 300):
+    """A short clip of the broadcast for the report: re-encoded (H.264, yuv420p: what every browser plays), at most
+    max_width wide, deinterlaced one frame per frame (yadif) when the source is interlaced, the chosen audio track.
+    Written through a temporary file and checked, so an interrupted cut is never reused. Returns dest."""
+    import os
+    import subprocess
+    from pathlib import Path
+
+    from .io.video import probe
+
+    dest = Path(dest)
+
+    def valid(p) -> bool:
+        try:
+            return probe(p).duration > 0.2
+        except Exception:                        # noqa: BLE001 — unreadable: not valid
+            return False
+
+    if dest.exists() and valid(dest):
+        return dest
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    tmp = dest.with_name(dest.stem + ".part" + dest.suffix)
+    filters = ["yadif=0"] if interlaced else []
+    if width and width > max_width:
+        filters.append(f"scale={max_width}:-2")
+    vf = ["-vf", ",".join(filters)] if filters else []
+    r = subprocess.run(["ffmpeg", "-v", "error", "-y", "-ss", f"{max(0.0, t0):.3f}", "-i", str(video), "-t", f"{dur:.3f}",
+                        "-map", "0:v:0", "-map", f"0:a:{audio_track}?", *vf, "-c:v", "libx264", "-crf", str(int(crf)),
+                        "-preset", "veryfast", "-g", "12", "-pix_fmt", "yuv420p", "-movflags", "+faststart",
+                        "-c:a", "aac", "-ac", "2", "-b:a", "96k", str(tmp)], capture_output=True, text=True,
+                       encoding="utf-8", errors="replace", timeout=timeout)
+    if r.returncode != 0 or not valid(tmp):
+        tmp.unlink(missing_ok=True)
+        raise RuntimeError(f"no se pudo recortar la toma de {dur:.1f} s en {t0:.1f} s ({(r.stderr or '').strip()[-200:]})")
+    os.replace(tmp, dest)
+    return dest
+
+
+# --- the fine pass on the slow-motion replay (#218, 09-11) ---------------------------------------------------
+SLOWMO_HALF_S = 0.4      # live seconds either side of her impact cut from the slow-motion replay (× the factor)
+SLOWMO_SEARCH_S = 0.12   # live seconds either side of the mapped instant where the wrist's speed peak is the impact
+MIN_SLOWMO = NORMAL_SPEED[1]     # a replay slower than this is «a cámara lenta»
+# what the slow-motion replay measures, beside the live value of the same name (strokes.json `metrics` / `racket`)
+SLOWMO_MEASURES = {"elbow_impact_deg": ("Codo en el impacto", "°", ("metrics", "elbow_impact_deg")),
+                   "contact_height_pct": ("Altura de la mano en el impacto", "% de su altura", ("metrics", "contact_height_pct")),
+                   "contact_lateral_pct": ("Mano separada de la cadera", "% de su altura", ("metrics", "contact_lateral_pct")),
+                   "racket_elevation_deg": ("Raqueta en el impacto (inclinación)", "°", ("racket", "impact", "elevation_deg")),
+                   "racket_head_above_wrist_cm": ("Cabeza de la raqueta sobre la mano", "cm", ("racket", "impact", "head_above_wrist_cm"))}
+
+
+def slowmo_settings(cfg: dict) -> dict:
+    """`views.fine_on_slowmo` (on/off) and its parameters (the slowmo_fine stage's fingerprint). The models are those
+    of the fine pass (fine_pass.pose_model, racket_face.pose_onnx)."""
+    v = (cfg or {}).get("views") or {}
+    on = v.get("fine_on_slowmo", True)
+    on = bool(on.get("enabled", True)) if isinstance(on, dict) else bool(on)
+    return {"enabled": on, "half_s": float(v.get("slowmo_half_s", SLOWMO_HALF_S)),
+            "racket": bool(v.get("slowmo_racket", True)), "imgsz": int((cfg or {}).get("fine_imgsz", 960)),
+            "pose_model": ((cfg or {}).get("fine_pass") or {}).get("pose_model", "yolo")}
+
+
+def slowmo_view(stroke: dict) -> dict | None:
+    """The slowest main-camera replay of a stroke with her impact instant inside it, or None."""
+    vs = [v for v in stroke.get("views") or [] if v.get("kind") == "repeticion_principal"
+          and (v.get("slowmo") or 0) > MIN_SLOWMO and v.get("impact_t") is not None]
+    return max(vs, key=lambda v: v["slowmo"]) if vs else None
+
+
+def _live_value(stroke: dict, path: tuple):
+    v = stroke
+    for k in path:
+        v = v.get(k) if isinstance(v, dict) else None
+    return None if v is None else float(v)
+
+
+def _racket_at(video, frames: list[int], wrist: np.ndarray, height_px: float, height_m: float, racket) -> dict:
+    """Racket of the 5-point model (RacketVision: 0 tip, 1 throat, 2 handle, 3-4 sides) on a few frames of the
+    replay, in a box around her dominant wrist: elevation of handle → head centre (as racket.RacketObs, + head
+    above the handle) and the head's height above the wrist in cm. Medians over the frames read; {} without any."""
+    import cv2
+
+    from .io.video import open_capture
+
+    cap = open_capture(video)
+    els, abv = [], []
+    try:
+        for f in frames:
+            if not np.isfinite(wrist[f]).all():
+                continue
+            cap.set(cv2.CAP_PROP_POS_FRAMES, int(f))
+            ok, fr = cap.read()
+            if not ok:
+                continue
+            half = 0.45 * height_px
+            box = np.array([wrist[f][0] - half, wrist[f][1] - half, wrist[f][0] + half, wrist[f][1] + half], float)
+            kp, sc = racket(fr, box[None])
+            if not len(kp) or np.mean(sc[0]) < 0.3:
+                continue
+            head = kp[0][[0, 1, 3, 4]].mean(0)
+            d = head - kp[0][2]
+            els.append(float(np.degrees(np.arctan2(-d[1], abs(d[0])))))
+            abv.append(float((wrist[f][1] - head[1]) / height_px * height_m * 100))
+    finally:
+        cap.release()
+    if not els:
+        return {}
+    return {"racket_elevation_deg": round(float(np.median(els)), 1), "racket_head_above_wrist_cm": round(float(np.median(abv)), 1),
+            "racket_frames": len(els)}
+
+
+def slowmo_measures(run, guess: int, factor: float, search_s: float = SLOWMO_SEARCH_S) -> dict | None:
+    """Her arm at the impact in the slow-motion replay, from the pose of the replay clip (clip_pipeline.ClipRun):
+    the impact is the dominant wrist's speed peak (relative to her body) within ±search_s live seconds of the instant
+    mapped from the live impact (`guess`, a frame of the clip), else that instant; each value is the median of the
+    impact frame and its two neighbours (in slow motion they are 1/factor as far apart in real time). The same
+    definitions as the live stroke (stroke_analysis): elbow angle, hand height above the lower foot and hand to
+    the side of the hips, in % of her height. None when she is not seen at the impact."""
+    from .kinematics import joint_angle, speed, to_body_frame
+
+    sk, img = run.sk, np.asarray(run.img, float)
+    T = len(img)
+    if T == 0 or not (0 <= guess < T):
+        return None
+    h = run.height_t if run.height_t is not None and np.isfinite(run.height_t).any() else run.height_px
+    if not np.isfinite(np.nanmean(np.asarray(h, float))):
+        return None
+    with np.errstate(invalid="ignore", divide="ignore"):
+        body = to_body_frame(img, sk, h)
+        dw = sk["dom_wrist"]
+        v = np.asarray(speed(body[:, dw], run.fps), float)
+        r = max(1, int(round(search_s * factor * run.fps)))
+        lo, hi = max(0, guess - r), min(T, guess + r + 1)
+        seg = v[lo:hi]
+        if np.isfinite(seg).any():
+            k, by = lo + int(np.nanargmax(seg)), "muñeca"
+        else:
+            k, by = guess, "tiempo"
+        nb = list(range(max(0, k - 1), min(T, k + 2)))
+        elbow = joint_angle(body[:, sk["dom_shoulder"]], body[:, sk["dom_elbow"]], body[:, dw])
+        feet_y = np.fmin(body[:, sk["left_ankle"], 1], body[:, sk["right_ankle"], 1])
+        med = lambda a: None if not np.isfinite(a[nb]).any() else round(float(np.nanmedian(a[nb])), 1)
+        m = {"elbow_impact_deg": med(elbow), "contact_height_pct": med((body[:, dw, 1] - feet_y) * 100),
+             "contact_lateral_pct": med(np.abs(body[:, dw, 0]) * 100)}
+    if all(x is None for x in m.values()):
+        return None
+    return {"impact_frame": int(k), "impact_by": by, "frames": nb, "measures": m}
+
+
+def fine_on_slowmo(video, stroke: dict, view: dict, cfg: dict, dest_dir=None, interlaced: bool = False,
+                   cut_args: dict | None = None, hand: str = "right", height_m: float = 1.84, racket=None,
+                   runner=None, log=print) -> dict | None:
+    """Fine pass on the impact frames of a main-camera slow-motion replay of `stroke` (less motion blur per real
+    instant: `view["slowmo"]` frames of the broadcast per live frame), never instead of the live values.
+
+    The replay is cut around `view["impact_t"]` (± slowmo_half_s live seconds × the factor, inside the shot, with
+    the fine pass's cut: full quality, one frame per field) into dest_dir, her pose is run on it (the fine pass's
+    model, pose only: clip_pipeline.run_clip(pose_only=True), cached beside the clip) and, with `racket` (the
+    5-point racket model), the racket at the impact. Her impact in the replay comes from the live one through
+    the factor (live t = live impact + (t - impact_t) / factor) and is refined by the wrist's speed peak
+    (slowmo_measures). Returns {clip, clip_t0, slowmo, impact_in_clip, impact_by, fps, frames, tracked, measures,
+    live} or None (no slow-motion view with its instant, or she is not seen at the impact)."""
+    from pathlib import Path
+
+    if not view or view.get("impact_t") is None or (view.get("slowmo") or 0) <= MIN_SLOWMO:
+        return None
+    st = slowmo_settings(cfg)
+    f = float(view["slowmo"])
+    it = float(view["impact_t"])
+    t0, t1 = max(float(view["t0"]), it - st["half_s"] * f), min(float(view["t1"]), it + st["half_s"] * f)
+    if t1 - t0 < 0.2:
+        return None
+    dest_dir = Path(dest_dir or ".")
+    name = f"s{int(round(t0 * 1000)):09d}_{int(round((t1 - t0) * 1000)):05d}.mp4"
+    if runner is None:
+        from .clip_pipeline import run_clip as runner
+    from .stages import cut_window
+    clip = cut_window(Path(video), t0, t1 - t0, dest_dir / name, interlaced, **(cut_args or {}))
+    run = runner(clip, clip.with_name(f"{clip.stem}_pose.npz"), hand, height_m, rackets=False, init_mode="largest",
+                 imgsz=st["imgsz"], log=log, pose_model=st["pose_model"], pose_only=True)
+    if not len(run.img):
+        return None
+    guess = int(round((it - t0) * run.fps))
+    got = slowmo_measures(run, min(max(guess, 0), len(run.img) - 1), f)
+    if got is None:
+        return None
+    m = dict(got["measures"])
+    if racket is not None and st["racket"]:
+        k = got["impact_frame"]
+        h = run.height_t[k] if run.height_t is not None and np.isfinite(run.height_t[k]) else run.height_px
+        if np.isfinite(h) and h > 0:
+            m.update(_racket_at(clip, got["frames"], run.img[:, run.sk["dom_wrist"]], float(h), height_m, racket))
+    live = {k: _live_value(stroke, path) for k, (_, _, path) in SLOWMO_MEASURES.items()}
+    return {"clip": name, "clip_t0": round(t0, 3), "slowmo": f, "impact_in_clip": round(got["impact_frame"] / run.fps, 3),
+            "impact_by": got["impact_by"], "fps": float(run.fps), "frames": len(run.img),
+            "tracked": round(float(run.tracked_frac), 3), "measures": m,
+            "live": {k: (None if v is None else round(v, 1)) for k, v in live.items()}}
+
+

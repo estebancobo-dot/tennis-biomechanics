@@ -221,3 +221,17 @@ catalog:
   hold:
     - "Zverev Alexander - Sinner Jannik - Indian Wells - 2026 - Semi final.mkv"
     - "Elena Rybakina - Jessica Pegula - Miami - 2026 - Quarter final.mkv"
+
+# Repeticiones y otras cámaras enlazadas a sus golpes (#218, tennisbio.views; etapas view_clips y slowmo_fine).
+# Las etapas views / views_link solo leen people, max_fits y samples (sus valores por defecto: no cambian aquí).
+views:
+  # recortes para la ficha del golpe del informe: alrededor del impacto (1 s antes, 0,8 s después, × el factor de
+  # cámara lenta) o la toma desde su inicio (≤ 10 s) cuando no se sabe el instante; ligeros (≤ 1280 px, CRF 23).
+  # Medido el 09-11 en un vídeo sintético de 1080p: 1,3 s y ~1 MB por toma de 4 s (unas 150-300 por partido).
+  clips:
+    enabled: true
+  # pasada fina sobre la repetición a cámara lenta: pose (y raqueta, con su modelo) en ±0,4 s × el factor alrededor
+  # del impacto; sus medidas van aparte (slowmo_measures.json), nunca en lugar de las del directo. Coste estimado:
+  # ~15 golpes × ~120 fotogramas por partido ≈ 4 min de pose en la iGPU (135 ms/fotograma), 8 con el híbrido;
+  # medido en la nube (CPU): 0,67 s/fotograma. Pequeño frente a la pasada fina (~1 h): encendido.
+  fine_on_slowmo: true

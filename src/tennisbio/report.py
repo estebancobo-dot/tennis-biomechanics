@@ -462,6 +462,8 @@ def collect(matches: list[Match], out_root: Path, stroke="forehand", player_id: 
             r["idx"] = len(strokes)
             # the folder of the strokes (windows/ and series/ are beside them: golpes/<jugadora>/ in the library)
             r["_dir"], r["_window"], r["_series"] = str(f.parent), s.get("window"), s.get("series")
+            from .views import stroke_key
+            r["_key"] = None if is_opp else stroke_key(s)      # her replays and other cameras (#218): view_clips.json
             r["_phases"] = s.get("phases", {})
             strokes.append(r)
             review += bool(r["review"])
@@ -567,6 +569,57 @@ def practice_data(out_root: Path, dest: Path) -> dict | None:
     return None
 
 
+def stroke_views_of(d: Path) -> tuple[dict, dict]:
+    """The replays / other cameras of a match folder's strokes (#218): {stroke key: [clip rows]} from
+    view_clips.json and {stroke key: measures} from slowmo_measures.json (the stages view_clips and slowmo_fine);
+    empty when they have not run."""
+    from .view_stages import CLIPS_FILE, SLOWMO_FILE
+
+    def load(name):
+        f = _mf.at(d, name)
+        try:
+            doc = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+        except (OSError, ValueError):
+            doc = {}
+        return doc if isinstance(doc, dict) else {}
+
+    clips: dict = {}
+    cdoc = load(CLIPS_FILE)
+    for c in cdoc.get("clips") or []:
+        clips.setdefault(c.get("key"), []).append({**c, "_folder": cdoc.get("dir") or "view_clips"})
+    slow = {m["key"]: m for m in (load(SLOWMO_FILE).get("strokes") or []) if m.get("key")}
+    return clips, slow
+
+
+def add_views(r: dict, clips: dict, slow: dict, d: Path, dest: Path) -> None:
+    """r["views"]: the clips of the replays and other cameras that show this stroke, playable from the report
+    (path relative to the report, where her impact is in each clip, speed); r["slowmo"]: what the slow-motion replay
+    measured at the impact, beside the live value (never in its place). Only clips that exist."""
+    from .views import CLIP_DIR, SLOWMO_MEASURES
+
+    key = r.pop("_key", None)
+    if key is None:
+        return
+    vs = []
+    for c in clips.get(key, []):
+        f = _mf.at(d, c["_folder"]) / c["file"]
+        if not c.get("ok", True) or not f.exists():
+            continue
+        vs.append({"kind": c["kind"], "label": c.get("label"), "speed": c.get("speed"), "slowmo": c.get("slowmo"),
+                   "clip": Path(os.path.relpath(f, dest)).as_posix(), "impact": c.get("impact_in_clip"),
+                   "whole": bool(c.get("whole_shot")), "dur": c.get("clip_dur"), "method": c.get("method"),
+                   "conf": c.get("confidence")})
+    if vs:
+        r["views"] = vs
+    m = slow.get(key)
+    if m and m.get("measures"):
+        f = _mf.at(d, CLIP_DIR) / "slowmo" / m["clip"] if m.get("clip") else None
+        r["slowmo"] = {"factor": m.get("slowmo"), "impact": m.get("impact_in_clip"), "by": m.get("impact_by"),
+                       "clip": Path(os.path.relpath(f, dest)).as_posix() if f is not None and f.exists() else None,
+                       "rows": [{"k": k, "n": n, "u": u, "v": m["measures"].get(k), "live": (m.get("live") or {}).get(k)}
+                                for k, (n, u, _) in SLOWMO_MEASURES.items() if m["measures"].get(k) is not None]}
+
+
 def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke="forehand",
           player: dict | None = None, player_id: str | None = None) -> Path:
     """Write the report (index.html + series/*.js) and return the path of index.html.
@@ -577,9 +630,14 @@ def build(matches: list[Match], out_root: Path, dest: Path | None = None, stroke
     dest = Path(dest or out_root / "informe")
     (dest / "series").mkdir(parents=True, exist_ok=True)
     data = prepare(matches, out_root, stroke, player_id)
+    shown_views: dict[str, tuple] = {}
     for r in data["strokes"]:
         r.pop("_phases", None)
-        d = Path(r.pop("_dir"))
+        d = Path(r["_dir"])
+        if d.as_posix() not in shown_views:
+            shown_views[d.as_posix()] = stroke_views_of(d)
+        add_views(r, *shown_views[d.as_posix()], d, dest)
+        r.pop("_dir")
         win, ser = r.pop("_window"), r.pop("_series")
         box = None
         if ser and (d / ser).exists():

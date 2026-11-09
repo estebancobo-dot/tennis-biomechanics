@@ -257,6 +257,8 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
         serve_html = (report_dir if stroke == "overhead" else report_dir.parent / "informe_saque") / "index.html"
         items.append(serve_coverage_item(match_dirs, serve_html))
     items += views_items(match_dirs)
+    items += view_clips_items(match_dirs, report_dir, stroke)    # #218 (09-11): the clips on the stroke's page
+    items += slowmo_items(match_dirs, report_dir, stroke)        # #218 (09-11): measured on the slow-motion replay
     items += camera_items(match_dirs, stroke)
 
     # 1. taxonomy: each row of the coverage matrix
@@ -1011,6 +1013,126 @@ def views_items(match_dirs: list[Path], min_strokes: int = 20) -> list[dict]:
     return out
 
 
+VIEW_CLIPS_OK = 0.9        # share of her linked strokes whose clips exist and are in the report
+SLOWMO_OK = 0.5            # share of her slow-motion replays measured (she can be out of the replay's frame)
+
+
+def _json_doc(f: Path) -> dict:
+    try:
+        doc = json.loads(f.read_text(encoding="utf-8")) if f.exists() else {}
+    except (OSError, ValueError):
+        return {}
+    return doc if isinstance(doc, dict) else {}
+
+
+def view_clips_items(match_dirs: list[Path], report_dir: Path | None, stroke: str = "forehand") -> list[dict]:
+    """#218 (09-11): per match, «Repeticiones en el informe: <partido>»: of her strokes of this type with a linked
+    replay or other camera (strokes.json `views`), the share whose every clip exists (view_clips stage) and is
+    referenced in the report's page (the stroke's «Análisis de golpe»). Its detail says what is missing."""
+    from .view_stages import CLIPS_FILE
+    from .views import stroke_key
+
+    html = ""
+    if report_dir is not None and (report_dir / "index.html").exists():
+        try:
+            html = (report_dir / "index.html").read_text(encoding="utf-8")
+        except OSError:
+            html = ""
+    out = []
+    for d in match_dirs:
+        st = _mf.at(d, "strokes.json")
+        if not st.exists():
+            continue
+        name = f"Repeticiones en el informe: {d.name}"
+        try:
+            strokes = [s for s in json.loads(st.read_text(encoding="utf-8")) if s.get("stroke") == stroke]
+        except (OSError, ValueError):
+            continue
+        linked = [s for s in strokes if s.get("views")]
+        if not linked:
+            out.append(_item(2, "Repeticiones y otras cámaras", name, "pocos datos",
+                             f"ninguno de sus {len(strokes)} golpes ({stroke}) tiene repeticiones u otras cámaras enlazadas"))
+            continue
+        doc = _json_doc(_mf.at(d, CLIPS_FILE))
+        if not doc.get("clips") and not doc.get("summary"):
+            out.append(_item(2, "Repeticiones y otras cámaras", name, "aviso",
+                             f"{len(linked)} golpes con tomas enlazadas, pero la etapa «view_clips» no se ha ejecutado (sin {CLIPS_FILE})"))
+            continue
+        folder = _mf.at(d, doc.get("dir") or "view_clips")
+        by_key: dict = {}
+        for c in doc.get("clips") or []:
+            by_key.setdefault(c.get("key"), []).append(c)
+        ok = no_clip = not_shown = 0
+        for s in linked:
+            cs = by_key.get(stroke_key(s), [])
+            exists = bool(cs) and all(c.get("ok", True) and (folder / c["file"]).exists() and (folder / c["file"]).stat().st_size > 0
+                                      for c in cs)
+            shown = bool(cs) and bool(html) and all(f"{folder.name}/{c['file']}" in html for c in cs)
+            ok += exists and shown
+            no_clip += not exists
+            not_shown += exists and not shown
+        share = ok / len(linked)
+        det = (f"{share:.0%} de sus golpes con tomas enlazadas tienen sus recortes y están en el informe ({ok} de {len(linked)})"
+               + (f" · {no_clip} sin recorte" if no_clip else "") + (f" · {not_shown} con recorte pero no en el informe" if not_shown else "")
+               + ("" if html else " · sin informe (index.html) que comprobar")
+               + f" · {(doc.get('summary') or {}).get('clips', 0)} recortes en el partido")
+        out.append(_item(2, "Repeticiones y otras cámaras", name, "ok" if share >= VIEW_CLIPS_OK else "aviso", det,
+                         linked=len(linked), shown=ok, no_clip=no_clip, not_shown=not_shown))
+    return out
+
+
+def slowmo_items(match_dirs: list[Path], report_dir: Path | None, stroke: str = "forehand") -> list[dict]:
+    """#218 (09-11), with `views.fine_on_slowmo` on: per match, «Medidas en la cámara lenta: <partido>»: of her
+    near strokes of this type with a slow-motion replay whose impact instant is known, the share measured on it
+    (slowmo_fine stage) and shown in the report; every measured value kept beside, never in place of, the live one
+    (the live values of strokes.json are not touched). Not written when the switch is off."""
+    from .view_stages import SLOWMO_FILE
+    from .views import slowmo_view, stroke_key
+
+    html = None
+    if report_dir is not None and (report_dir / "index.html").exists():
+        try:
+            html = (report_dir / "index.html").read_text(encoding="utf-8")
+        except OSError:
+            html = None
+    out = []
+    for d in match_dirs:
+        st = _mf.at(d, "strokes.json")
+        f = _mf.at(d, SLOWMO_FILE)
+        doc = _json_doc(f)
+        if not st.exists() or (f.exists() and doc.get("enabled") is False):
+            continue
+        name = f"Medidas en la cámara lenta: {d.name}"
+        try:
+            strokes = [s for s in json.loads(st.read_text(encoding="utf-8")) if s.get("stroke") == stroke and s.get("side") != "far"]
+        except (OSError, ValueError):
+            continue
+        want = [s for s in strokes if slowmo_view(s) is not None]
+        if not want:
+            out.append(_item(2, "Repeticiones y otras cámaras", name, "pocos datos",
+                             f"ninguno de sus {len(strokes)} golpes cercanos ({stroke}) tiene repetición a cámara lenta con su instante"))
+            continue
+        if not f.exists():
+            out.append(_item(2, "Repeticiones y otras cámaras", name, "aviso",
+                             f"{len(want)} golpes con cámara lenta, pero la etapa «slowmo_fine» no se ha ejecutado (sin {SLOWMO_FILE})"))
+            continue
+        got = {m.get("key"): m for m in doc.get("strokes") or [] if m.get("measures")}
+        measured = [s for s in want if stroke_key(s) in got]
+        share = len(measured) / len(want)
+        vals = sum(len(got[stroke_key(s)]["measures"]) for s in measured)
+        # in the report: the stroke's slow-motion clip is referenced in its page (with its measures beside it)
+        n_shown = sum(f"slowmo/{got[stroke_key(s)].get('clip')}" in html for s in measured) if html is not None else 0
+        det = (f"{share:.0%} de sus golpes con repetición a cámara lenta medidos en ella ({len(measured)} de {len(want)}, "
+               f"{vals} valores junto a los del directo) · {(doc.get('summary') or {}).get('frames', 0)} fotogramas en "
+               f"{(doc.get('summary') or {}).get('seconds', 0):.0f} s"
+               + (f" · {n_shown} de {len(measured)} con «en la repetición a cámara lenta» en el informe" if html is not None
+                  else " · sin informe que comprobar"))
+        bad = share < SLOWMO_OK or (html is not None and n_shown < len(measured))
+        out.append(_item(2, "Repeticiones y otras cámaras", name, "aviso" if bad else "ok", det,
+                         slowmo=len(want), measured=len(measured), shown=n_shown))
+    return out
+
+
 def situation_items(strokes: list[dict], min_n: int) -> list[dict]:
     """Each situation the user named (plan block 3, situations.ASKED): her strokes in it, the strokes where
     its signals were measured, and whether «Aprende» offers it as a condition. «pocos datos» = «sin golpes
@@ -1432,6 +1554,11 @@ PETITIONS.update({
     218: r"^Repeticiones y otras cámaras$|^Golpes del fondo: |^Golpes del fondo frente a F3Set",
     219: r"^Golpes encontrados frente al marcador|^Golpes del fondo: |^Golpes del fondo frente a F3Set",
 })
+# #218 (09-11): the replays and other cameras shown on the stroke's page and measured on the slow-motion replay; until
+# 09-11 r"^Repeticiones y otras cámaras$|^Golpes del fondo: |^Golpes del fondo frente a F3Set" (the area of the linking
+# check and the far end's checks). The new checks are in the same area: the rule names them as well.
+PETITIONS[218] = (r"^Repeticiones y otras cámaras$|^Golpes del fondo: |^Golpes del fondo frente a F3Set"
+                  r"|^Repeticiones en el informe: |^Medidas en la cámara lenta: ")
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 SPEED_TARGET = 45 / 35          # hours of processing per hour of video (Base step 1: 35 min in ≤ 45 min)
 

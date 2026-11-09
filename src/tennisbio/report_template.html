@@ -203,6 +203,11 @@ table.data tbody tr.sel td { background: rgba(212,240,58,.07); }
 .news ul { margin: 8px 0 2px; padding-left: 18px; display: grid; gap: 5px; color: var(--ink-2); }
 .news li b { color: var(--ink); }
 .bmwrap { padding: 0 12px 12px; }
+.vgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+.vcard { background: var(--panel-2, rgba(127,127,127,.08)); border-radius: 8px; overflow: hidden; }
+.vcard video { width: 100%; display: block; background: #000; aspect-ratio: 16 / 9; }
+.vcard .vcap { padding: 6px 8px 8px; font-size: 12.5px; color: var(--ink-2); display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.vcard .vcap b { color: var(--ink); }
 .feetwrap { padding: 0 12px 14px; }
 .lctx { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; margin: 0 0 10px; font-size: 14px; }
 .lquick { display: flex; gap: 6px; flex-wrap: wrap; } .lquick button { border: 1px solid var(--line); background: transparent; color: var(--ink-2); border-radius: 999px; padding: 4px 10px; font: inherit; font-size: 12.5px; cursor: pointer; }
@@ -547,6 +552,8 @@ details.tech > summary { cursor: pointer; color: var(--ink-2); padding: 10px 2px
       <div class="timeline" id="timeline"></div>
       </div>
       <div class="kf" id="kf"></div>
+      <div class="bmwrap" id="g-views" hidden><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">Repeticiones y otras cámaras de este golpe</b> · las tomas de la retransmisión que lo enseñan otra vez (repetición, a velocidad normal o a cámara lenta, cámara lateral, frontal, primer plano), enlazadas a este golpe en directo</div>
+        <div class="vgrid" id="g-views-list"></div><div id="g-slowmo"></div></div>
       <div class="bmwrap" id="bmwrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">La bola y ella</b> · qué está haciendo cuando golpea la rival, cuando la bola cruza la red, cuando bota, cuando llega a lo más alto y cuando ella golpea (pulsa para ir a ese momento)</div><div class="bm" id="bm"></div></div>
       <details class="extra secx" id="g-more" style="margin:0 12px 12px"><summary><b>Su cuerpo y sus pies en este golpe</b> · bajar y subir, base, tronco al terminar, cada paso (fotogramas reales con medidas)</summary>
       <div class="bmwrap" id="bodywrap"><div class="note" style="margin:0 0 6px"><b style="color:var(--ink)">Su cuerpo en este golpe</b> · fotogramas reales con la medida dibujada encima (pulsa para ir a ese momento)</div>
@@ -1670,6 +1677,35 @@ function renderHeights() {
   document.getElementById("g-hts-leg").innerHTML = lines.map(l => `<span><i style="background:${l.col}"></i>${l.n}</span>`).join("") + (Object.keys(s.ballT || {}).length ? `<span><i style="background:var(--accent)"></i>momentos de la bola</span>` : "");
   document.getElementById("g-hts-txt").textContent = s.side === "far" ? "Lado lejano: las alturas no son fiables a esa distancia." : (sc.racket ? "" : "La raqueta solo se ve en algunos fotogramas; sin ella, solo el cuerpo.");
 }
+// #218: the replays (normal speed or slow motion) and the other cameras of the broadcast that show this stroke, as
+// clips next to the live window; and what the slow-motion replay measured at the impact, beside the live value
+const VSPEED = v => v.kind !== "repeticion_principal" ? "" : v.speed === "lenta" ? ` · a cámara lenta (${fmt(v.slowmo, 1)}× más despacio)` : v.speed === "normal" ? " · a velocidad normal" : v.speed === "rapida" ? " · acelerada" : "";
+function renderViews(s) {
+  const box = document.getElementById("g-views"), list = document.getElementById("g-views-list"), sm = document.getElementById("g-slowmo");
+  const vs = s.views || [];
+  box.hidden = !vs.length && !s.slowmo;
+  list.innerHTML = vs.map((v, i) => `<div class="vcard" data-clip="${v.clip}"><video controls playsinline preload="metadata" src="${v.clip}" data-i="${i}"></video>
+    <div class="vcap"><b>${v.label || "Otra toma"}</b><span>${VSPEED(v)}</span>
+    ${isN(v.impact) ? `<button class="btn" data-vimp="${i}" title="Ir al instante de su impacto en esta toma">▶ Impacto (${fmt(v.impact, 1)} s)</button>` : `<span class="dim3">${v.whole ? "toma completa" : `primeros ${fmt(v.dur, 0)} s de la toma`}: el instante de su impacto no se conoce</span>`}
+    <span class="seg"><button data-vrate="${i}" data-v="1" aria-pressed="true">1×</button><button data-vrate="${i}" data-v="0.25" aria-pressed="false">0,25×</button></span></div></div>`).join("");
+  list.querySelectorAll("video").forEach(V => {
+    const v = vs[+V.dataset.i];
+    if (isN(v.impact)) V.addEventListener("loadedmetadata", () => { try { V.currentTime = v.impact; } catch (e) { } }, { once: true });
+  });
+  list.querySelectorAll("[data-vimp]").forEach(b => b.addEventListener("click", () => {
+    const i = +b.dataset.vimp, V = list.querySelector(`video[data-i="${i}"]`); if (!V) return;
+    stopPlay(); V.pause(); const t = vs[i].impact - (vs[i].slowmo && vs[i].slowmo > 1 ? .4 * vs[i].slowmo : .5);
+    try { V.currentTime = Math.max(0, t); V.play().catch(() => { }); } catch (e) { }
+  }));
+  list.querySelectorAll("[data-vrate]").forEach(b => b.addEventListener("click", () => {
+    const i = +b.dataset.vrate, V = list.querySelector(`video[data-i="${i}"]`); if (!V) return;
+    V.playbackRate = +b.dataset.v; b.parentElement.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  }));
+  const m = s.slowmo;
+  sm.innerHTML = !m ? "" : `<div class="sub3" style="margin-top:10px"><b>En la repetición a cámara lenta</b> <span class="dim3">${fmt(m.factor, 1)}× más despacio: menos desenfoque en el impacto; medido aparte, nunca en lugar del directo</span></div>
+    <ul class="say">${m.rows.map(x => `<li>${x.n}: <b>${fmt(x.v, 0)} ${x.u}</b> en la repetición a cámara lenta${isN(x.live) ? ` · ${fmt(x.live, 0)} ${x.u} en directo` : " · no medido en directo"}</li>`).join("")}</ul>
+    <p class="note">Impacto en la repetición ${m.by === "muñeca" ? "por el pico de velocidad de la muñeca junto al instante calculado con el factor de cámara lenta" : "calculado con el factor de cámara lenta"}. Una diferencia con el directo solo cuenta si supera el error de medida.</p>`;
+}
 let kfDone = Promise.resolve();
 async function loadStroke(s, fromList = false) {
   if (!fromList) endPlaylist();
@@ -1679,8 +1715,8 @@ async function loadStroke(s, fromList = false) {
   tNow = 0;
   if (s.video && video.getAttribute("src") !== s.video) { video.src = s.video; await new Promise(r => { video.addEventListener("loadeddata", r, { once: true }); video.addEventListener("error", r, { once: true }); }); }
   const vw = video.videoWidth || 16, vh = video.videoHeight || 9; cv.height = Math.round(cv.width * (view === "full" ? vh / vw : 9 / 16));
-  renderCtx(); renderMetricsPanel(); renderRacket(); renderHeights(); renderFeetPanel();
-  const cols = ["var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)"];
+  renderCtx(); renderMetricsPanel(); renderRacket(); renderHeights(); renderFeetPanel(); renderViews(s);
+  const cols =["var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)"];
   // peaks: the ones the pipeline used to judge the order (between the backswing and contact)
   const PK = { Cadera: "pelvis", Pelvis: "pelvis", Tronco: "trunk", Brazo: "arm" }, cp = s.chainPeaks || {};
   const kin = ser ? Object.entries(ser.kin).map(([n, v], i) => { const t = cp[PK[n]], pf = isN(t) ? fIdx(t) : -1; return { n, v, col: cols[i], pf, pk: isN(t) ? t : NaN }; }) : [];

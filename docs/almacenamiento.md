@@ -16,6 +16,9 @@ C:\tenis\
       etapas\                     pasada barata: planos, sonido, pista, marcador, jugadoras, identidad
       golpes\<jugadora>\          pasada fina por jugadora: golpes, series, ventanas de vídeo
       repeticiones\  tomas\       repeticiones y otras cámaras, enlazadas a su golpe en directo
+                                  (09-11, #218: hoy sus recortes están en golpes\<jugadora>\view_clips\ junto a
+                                  windows\, con view_clips.json; la cámara lenta en view_clips\slowmo\ y
+                                  slowmo_measures.json)
     analisis\<jugadora>\<golpe>\  actual\, v1..vN\, pendiente\
     exportar\<jugadora>\<golpe>\  movil\  copias\  diagnostico\
     pruebas\                      ejecuciones del ciclo y validaciones (nunca junto a lo real)

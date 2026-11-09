@@ -314,9 +314,11 @@ def test_coverage_and_audit_item(tmp_path):
     assert views_items([d])[0]["status"] == "pocos datos"
 
 
-def test_fine_on_slowmo_is_a_declared_todo():
-    with pytest.raises(NotImplementedError):
-        V.fine_on_slowmo(None, {}, {}, {})
+def test_fine_on_slowmo_needs_a_slowmo_view_with_its_instant():
+    """Was a declared TODO until 09-11 (NotImplementedError); now done (tests/test_view_clips.py). Without a slow-motion
+    view whose impact instant is known it measures nothing and touches nothing."""
+    assert V.fine_on_slowmo(None, {}, {}, {}) is None
+    assert V.fine_on_slowmo(None, {}, {"kind": "repeticion_principal", "slowmo": 1.0, "impact_t": 3.0}, {}) is None
 
 
 def test_shot_frames_come_from_a_keyframe_inside_each_shot(tmp_path):
