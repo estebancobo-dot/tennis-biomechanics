@@ -412,6 +412,17 @@ argumentos: --clips 12 --ball auto --device dml
 ---
 id: 155
 accion: completo
+---
+id: 156
+accion: recall
+detector: si
+---
+id: 157
+accion: completo
+# 156-157 (09-11, #219): lado lejano: el recorte que la sigue la perdia al empezar la ventana y, creciendo hasta 16
+# veces su altura, ya no la veia ("altura nan" en el registro). Ahora empieza donde far_start la encontro y la busca
+# de nuevo en la mitad lejana mientras esta perdida (cache de pose lejana nueva _f2). 156 = F3Set (precision >= 0,94),
+# 157 = los 4 partidos ("Golpes del fondo: <partido>" con posicion >= 80 %)
 # 155 (08-11, #218): views_link se repite en f43dd2 y 580c6f (la pasada fina reescribia strokes.json sin sus
 # repeticiones y la huella no cambiaba); comprobar "Repeticiones y otras camaras enlazadas" OK en los 4 partidos.
 # Tambien #219: la posicion en pista del lado lejano sale del fotograma con pies mas cercano al contacto (<= 0,2 s);
