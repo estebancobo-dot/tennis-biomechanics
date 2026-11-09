@@ -99,14 +99,14 @@
   "scheme": 2
  },
  "identity": {
-  "fingerprint": "08beae2691284b51",
-  "version": "9",
-  "seconds": 77.3,
-  "finished": "2026-11-09 13:28:19",
+  "fingerprint": "f40bd5a7a758f1ea",
+  "version": "10",
+  "seconds": 80.4,
+  "finished": "2026-11-09 23:30:35",
   "summary": {
    "runs": 148,
-   "confidence": 0.58,
-   "votes": 62,
+   "confidence": 0.59,
+   "votes": 61,
    "agree": 0,
    "ends_only": 0,
    "clothes_only": 0,
@@ -128,26 +128,26 @@
     "separation": 4.4,
     "far_pairs": 0,
     "far_opposite": null,
-    "same_game_pairs": 117,
+    "same_game_pairs": 120,
     "same_game_same": 0.95,
     "check": {
      "distinguishable": true,
      "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
      "parity_runs": 136,
-     "parity_agree": 0.95,
+     "parity_agree": 0.96,
      "centroid_dist": 0.845
     }
    }
   },
-  "out_hash": "d9a00df5f73f5fe67242",
+  "out_hash": "1471a14b8158a52b3c76",
   "scheme": 2,
   "rewrote": {}
  },
  "candidates": {
-  "fingerprint": "e31b8c6037cded5a",
+  "fingerprint": "cf97e770b26f1e7d",
   "version": "15",
-  "seconds": 3.0,
-  "finished": "2026-11-09 13:28:39",
+  "seconds": 3.2,
+  "finished": "2026-11-09 23:30:56",
   "summary": {
    "candidates": 359,
    "far": 162,
@@ -164,10 +164,10 @@
   "rewrote": {}
  },
  "fine": {
-  "fingerprint": "86d7f8398e933638",
+  "fingerprint": "2c49eb06435c9c26",
   "version": "16",
-  "seconds": 238.2,
-  "finished": "2026-11-09 13:34:44",
+  "seconds": 140.9,
+  "finished": "2026-11-09 23:33:17",
   "summary": {
    "candidates": 176,
    "confirmed": 172,
@@ -187,17 +187,14 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "raqueta": 98.4,
-    "pose": 65.8,
-    "pose_modelo_hybrid": 61.7,
-    "cuerdas_y_3d": 45.8,
-    "jugadora_lejana": 31.3,
-    "pista_ventana": 31.0,
-    "analisis_ventana": 25.6,
-    "bola": 17.6,
-    "recorte": 10.4,
-    "cribado": 5.6,
-    "pose_medida_lejana": 0.6
+    "cuerdas_y_3d": 37.6,
+    "jugadora_lejana": 36.0,
+    "pista_ventana": 29.9,
+    "analisis_ventana": 26.9,
+    "recorte": 7.3,
+    "cribado": 5.9,
+    "pose_medida_lejana": 0.7,
+    "pose": 0.6
    },
    "counts": {
     "overlap_s": 0.0,
@@ -205,11 +202,10 @@
     "posed_frames": 23980,
     "impacts": 246,
     "kept_impacts": 173,
-    "racket_frames": 236,
+    "racket_frames": 0,
     "whole_window_again": 0,
     "frames_960_far": 0,
-    "far_measure_windows": 11,
-    "frames_modelo_hybrid": 568
+    "far_measure_windows": 11
    }
   },
   "out_hash": "e354b69590c516bc273f",
@@ -217,10 +213,10 @@
   "rewrote": {}
  },
  "fine_opponent": {
-  "fingerprint": "45f77ca370e2db81",
+  "fingerprint": "b19fced31bfebedd",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-09 13:35:05",
+  "finished": "2026-11-09 23:33:18",
   "summary": {
    "enabled": false
   },
@@ -229,10 +225,10 @@
   "rewrote": {}
  },
  "spotting": {
-  "fingerprint": "57cb46d3c7f20d4b",
+  "fingerprint": "bcee0bf6f30ad603",
   "version": "1",
-  "seconds": 16.8,
-  "finished": "2026-11-09 13:28:36",
+  "seconds": 17.5,
+  "finished": "2026-11-09 23:30:53",
   "summary": {
    "enabled": true,
    "strokes": 351,
@@ -245,8 +241,8 @@
    "feature_dim": 122,
    "audio_track": 3,
    "seconds": {
-    "jugadores_y_audio": 1.5,
-    "rasgos": 15.2,
+    "jugadores_y_audio": 1.6,
+    "rasgos": 15.8,
     "bola": 0.0,
     "modelo": 0.1
    }
@@ -279,7 +275,7 @@
   "fingerprint": "701a97c53cc33a43",
   "version": "1",
   "seconds": 0.2,
-  "finished": "2026-11-09 13:34:44",
+  "finished": "2026-11-09 23:33:17",
   "summary": {
    "strokes": 172,
    "with_replay": 26,
@@ -295,10 +291,10 @@
   }
  },
  "fine_doubtful": {
-  "fingerprint": "975be0b9c9cbadf2",
+  "fingerprint": "f30f0266aa64bfbc",
   "version": "1",
-  "seconds": 8.1,
-  "finished": "2026-11-09 13:35:13",
+  "seconds": 7.8,
+  "finished": "2026-11-09 23:33:25",
   "summary": {
    "candidates": 13,
    "confirmed": 3,
@@ -317,7 +313,7 @@
    },
    "seconds": {
     "analisis_ventana": 3.0,
-    "cuerdas_y_3d": 1.1,
+    "cuerdas_y_3d": 1.2,
     "recorte": 0.8,
     "cribado": 0.1,
     "pose": 0.0,
