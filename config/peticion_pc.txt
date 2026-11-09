@@ -443,6 +443,12 @@ detector: si
 ---
 id: 163
 accion: completo
+---
+id: 164
+accion: completo
+# 164 (09-11, #218): repeticiones y otras camaras en la ficha del golpe (etapa view_clips) y medidas en la repeticion
+# a camara lenta (etapa slowmo_fine, views.fine_on_slowmo: true); la pasada fina no se rehace. Comprobar
+# "Repeticiones en el informe: <partido>" y "Medidas en la camara lenta: <partido>" OK en los 4 partidos
 # 162-163 (09-11, #219): lado lejano, pose SOLO para medir: la deteccion no cambia (far_refind sigue apagado) y cada
 # golpe lejano confirmado sin pose a +-0,3 s del impacto toma posicion, desplazamiento y altura del impacto de una
 # segunda pose lejana que la busca de nuevo (cache _f2m; fine_pass.far_measure_refind: true). 162 = F3Set (debe dar
