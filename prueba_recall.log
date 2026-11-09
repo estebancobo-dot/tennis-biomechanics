@@ -1,1 +1,39 @@
 ﻿Peticion 162: medida de golpes encontrados frente a anotados (2026-11-09T03:39:31)
+370 puntos anotados de Rybakina en 4 partidos; 650 golpes suyos
+
+[20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin] 84 puntos en 76 tramos (22 min)
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 10/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 20/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 30/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 40/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 50/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 60/76 tramos descargados
+  20200218-W-Dubai-R32-Elena_Rybakina-Sofia_Kenin: 70/76 tramos descargados
+[recall_20200218_w_dubai_r32_elena_rybakina_sofia_kenin] fine… (2026-11-09 03:39:42, etapa 11 de 14)
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+  ventana w000006800_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+  ventana w000006800_3600: pose yolo en 89 de 89 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 67 px (court)
+  fine:   1 % (1/139 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
