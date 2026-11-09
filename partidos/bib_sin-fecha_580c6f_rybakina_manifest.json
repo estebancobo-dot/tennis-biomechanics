@@ -324,5 +324,43 @@
   "out_hash": "92266e1830ecaa1b7934",
   "scheme": 2,
   "rewrote": {}
+ },
+ "view_clips": {
+  "fingerprint": "b12c1ab6f02965f9",
+  "version": "1",
+  "seconds": 500.9,
+  "finished": "2026-11-09 06:07:19",
+  "summary": {
+   "enabled": true,
+   "linked_strokes": 254,
+   "views": 912,
+   "clips": 618,
+   "cut": 618,
+   "reused": 0,
+   "failed": 0,
+   "seconds": 500.9,
+   "clip_seconds": 3263.9,
+   "strokes_with_clip": 254
+  },
+  "out_hash": "c9d46682e3ae1ed5dbad",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "slowmo_fine": {
+  "fingerprint": "08662386d64bbb3e",
+  "version": "1",
+  "seconds": 13.8,
+  "finished": "2026-11-09 06:07:34",
+  "summary": {
+   "enabled": true,
+   "slowmo_strokes": 2,
+   "measured": 2,
+   "failed": 0,
+   "frames": 148,
+   "seconds": 13.7
+  },
+  "out_hash": "5716bc08755bee02db95",
+  "scheme": 2,
+  "rewrote": {}
  }
 }
