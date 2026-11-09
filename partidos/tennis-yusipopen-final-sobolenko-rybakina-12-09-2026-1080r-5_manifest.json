@@ -81,21 +81,22 @@
   "rewrote": {}
  },
  "players": {
-  "fingerprint": "3e71fab94da38e96",
+  "fingerprint": "e6dccaa9af40d862",
   "version": "4",
-  "seconds": 1904.5,
-  "finished": "2026-10-19 08:53:58",
+  "seconds": 1796.5,
+  "finished": "2026-11-09 08:58:16",
   "summary": {
-   "frames": 25165,
-   "wall_min": 31.5,
-   "model_min": 27.5,
-   "read_min": 29.0,
-   "wait_min": 4.0,
-   "appearance_min": 0.5
+   "frames": 25156,
+   "wall_min": 29.9,
+   "model_min": 25.5,
+   "read_min": 29.9,
+   "wait_min": 4.4,
+   "appearance_min": 0.4
   },
-  "overlap_s": 1328.7,
-  "out_hash": "b404af62018782947e21",
-  "scheme": 2
+  "out_hash": "4ba01fc230de0dacab74",
+  "scheme": 2,
+  "rewrote": {},
+  "overlap_s": 741.4
  },
  "identity": {
   "fingerprint": "374e55993e26fd86",
