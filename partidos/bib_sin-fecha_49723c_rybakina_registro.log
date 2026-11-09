@@ -131,3 +131,56 @@
 2026-11-09 14:53:41   fine:  20 % (55/274 golpes candidatos · 51 confirmados · 0 ventanas descartadas sin pose) · 12 min · quedan ≈ 48 min
 2026-11-09 14:53:51   ventana w003599909_5926 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.27 s
 2026-11-09 14:53:51   ventana w003599909_5926: pose yolo en 356 de 356 fotogramas (22 s; modelo 22 s) · bola 12 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 116 px (court)
+2026-11-09 14:54:37   ventana w003728245_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.23 s
+2026-11-09 14:54:37   ventana w003728245_3600: pose yolo en 216 de 216 fotogramas (25 s; modelo 25 s, 214 a 960 px por perderla) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura nan px (pose)
+2026-11-09 14:54:37   ventana w003728245_3600: pose solo para medir (lejana, buscándola de nuevo) en 19 s; buscada 7 veces, encontrada 0
+2026-11-09 14:54:37   fine:  22 % (59/274 golpes candidatos · 54 confirmados · 0 ventanas descartadas sin pose) · 13 min · quedan ≈ 47 min
+2026-11-09 14:54:56   ventana w003792600_9062 (far, 4 candidatos): pasa · golpe de bola en su lado a 4.0 s
+2026-11-09 14:54:56   ventana w003792600_9062: pose yolo en 544 de 544 fotogramas (38 s; modelo 37 s, 91 a 960 px por perderla) · bola 18 s · raqueta 0 s (4 de 4 impactos) · 4 golpes posibles · altura 114 px (court)
+2026-11-09 14:54:57   ventana w003840611_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+2026-11-09 14:54:57   ventana w003840611_3600: pose yolo en 216 de 216 fotogramas (11 s; modelo 11 s) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 113 px (court)
+2026-11-09 14:55:19   ventana w003887122_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.23 s
+2026-11-09 14:55:19   ventana w003887122_3600: pose yolo en 215 de 215 fotogramas (13 s; modelo 13 s) · bola 7 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 114 px (court)
+2026-11-09 14:55:19   fine:  24 % (66/274 golpes candidatos · 60 confirmados · 0 ventanas descartadas sin pose) · 14 min · quedan ≈ 43 min
+2026-11-09 14:55:19   ventana w003912737_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 14:55:19   ventana w003912737_3600: pose yolo en 215 de 215 fotogramas (13 s; modelo 13 s) · bola 7 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 115 px (court)
+2026-11-09 14:55:58   ventana w003937075_6474 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.08 s
+2026-11-09 14:55:58   ventana w003937075_6474: pose yolo en 388 de 388 fotogramas (23 s; modelo 22 s, 3 a 960 px por perderla) · bola 12 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 126 px (court)
+2026-11-09 14:55:58   fine:  25 % (69/274 golpes candidatos · 63 confirmados · 0 ventanas descartadas sin pose) · 14 min · quedan ≈ 42 min
+2026-11-09 14:56:01   ventana w003925583_7155 (far, 3 candidatos): pasa · golpe de bola en su lado a 5.62 s
+2026-11-09 14:56:01   ventana w003925583_7155: pose yolo en 430 de 430 fotogramas (25 s; modelo 24 s) · bola 13 s · raqueta 0 s (3 de 3 impactos) · 3 golpes posibles · altura 115 px (court)
+2026-11-09 14:56:21   ventana w003986000_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.1 s
+2026-11-09 14:56:21   ventana w003986000_3600: pose yolo en 216 de 216 fotogramas (13 s; modelo 13 s) · bola 8 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 113 px (court)
+2026-11-09 14:56:22   ventana w003990896_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 14:56:22   ventana w003990896_3600: pose yolo en 216 de 216 fotogramas (12 s; modelo 12 s) · bola 7 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 112 px (court)
+2026-11-09 14:56:46   ventana w004020655_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 14:56:46   ventana w004020655_3600: pose yolo en 215 de 215 fotogramas (15 s; modelo 15 s) · bola 7 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 114 px (court)
+2026-11-09 14:56:46   fine:  27 % (75/274 golpes candidatos · 68 confirmados · 0 ventanas descartadas sin pose) · 15 min · quedan ≈ 40 min
+2026-11-09 14:57:58   ventana w004278102_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 14:57:58   ventana w004278102_3600: pose yolo en 215 de 215 fotogramas (23 s; modelo 23 s, 213 a 960 px por perderla) · bola 7 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura nan px (pose)
+2026-11-09 14:57:58   ventana w004278102_3600: pose solo para medir (lejana, buscándola de nuevo) en 23 s; buscada 15 veces, encontrada 0
+2026-11-09 14:57:58   fine:  28 % (76/274 golpes candidatos · 69 confirmados · 0 ventanas descartadas sin pose) · 16 min · quedan ≈ 42 min
+2026-11-09 14:58:23   ventana w004227100_9415 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.07 s
+2026-11-09 14:58:23   ventana w004227100_9415: pose yolo en 565 de 565 fotogramas (64 s; modelo 64 s, 399 a 960 px por perderla) · bola 16 s · raqueta 0 s (3 de 4 impactos) · 4 golpes posibles · altura 110 px (court)
+2026-11-09 14:58:23   ventana w004227100_9415: pose solo para medir (lejana, buscándola de nuevo) en 36 s; buscada 3 veces, encontrada 3
+2026-11-09 14:58:32   ventana w004324000_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 14:58:32   ventana w004324000_3600: pose yolo en 216 de 216 fotogramas (13 s; modelo 13 s) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura nan px (pose)
+2026-11-09 14:58:32   ventana w004324000_3600: pose solo para medir (lejana, buscándola de nuevo) en 12 s
+2026-11-09 14:58:32   fine:  29 % (80/274 golpes candidatos · 73 confirmados · 0 ventanas descartadas sin pose) · 17 min · quedan ≈ 41 min
+2026-11-09 14:58:45   ventana w004346667_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.2 s
+2026-11-09 14:58:45   ventana w004346667_3600: pose yolo en 216 de 216 fotogramas (13 s; modelo 12 s) · bola 6 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 121 px (court)
+2026-11-09 14:58:52   ventana w004394900_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.28 s
+2026-11-09 14:58:52   ventana w004394900_3600: pose yolo en 216 de 216 fotogramas (12 s; modelo 11 s) · bola 6 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 118 px (court)
+2026-11-09 14:59:19   ventana w005241900_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 14:59:19   ventana w005241900_3600: pose yolo en 216 de 216 fotogramas (16 s; modelo 16 s, 129 a 960 px por perderla) · bola 7 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 115 px (court)
+2026-11-09 14:59:19   fine:  30 % (83/274 golpes candidatos · 76 confirmados · 0 ventanas descartadas sin pose) · 18 min · quedan ≈ 40 min
+2026-11-09 14:59:24   ventana w005213347_6050 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.23 s
+2026-11-09 14:59:24   ventana w005213347_6050: pose yolo en 363 de 363 fotogramas (25 s; modelo 24 s) · bola 12 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 115 px (court)
+2026-11-09 14:59:44   ventana w005359421_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.75 s
+2026-11-09 14:59:44   ventana w005359421_3600: pose yolo en 215 de 215 fotogramas (13 s; modelo 13 s, 3 a 960 px por perderla) · bola 7 s · raqueta 0 s (1 de 3 impactos) · 3 golpes posibles · altura 295 px (segments)
+2026-11-09 15:00:03   ventana w005390000_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 15:00:03   ventana w005390000_3600: pose yolo en 216 de 216 fotogramas (12 s; modelo 12 s) · bola 7 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura nan px (pose)
+2026-11-09 15:00:03   ventana w005390000_3600: pose solo para medir (lejana, buscándola de nuevo) en 13 s
+2026-11-09 15:00:03   fine:  32 % (87/274 golpes candidatos · 80 confirmados · 0 ventanas descartadas sin pose) · 18 min · quedan ≈ 39 min
+2026-11-09 15:00:05   ventana w005613153_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 15:00:05   ventana w005613153_3600: pose yolo en 215 de 215 fotogramas (13 s; modelo 13 s) · bola 6 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 118 px (court)
