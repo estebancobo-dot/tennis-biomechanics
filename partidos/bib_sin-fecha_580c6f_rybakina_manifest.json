@@ -164,10 +164,10 @@
   "rewrote": {}
  },
  "fine": {
-  "fingerprint": "59da74ccff28c8de",
+  "fingerprint": "29eb70c968119e73",
   "version": "16",
-  "seconds": 516.2,
-  "finished": "2026-11-09 04:21:58",
+  "seconds": 240.0,
+  "finished": "2026-11-09 14:08:54",
   "summary": {
    "candidates": 278,
    "confirmed": 271,
@@ -187,14 +187,14 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "pose_medida_lejana": 1115.5,
-    "jugadora_lejana": 76.9,
-    "cuerdas_y_3d": 72.1,
-    "pista_ventana": 50.2,
-    "analisis_ventana": 36.2,
-    "recorte": 12.2,
-    "cribado": 9.0,
-    "pose": 1.1
+    "jugadora_lejana": 86.9,
+    "cuerdas_y_3d": 71.1,
+    "pista_ventana": 49.6,
+    "analisis_ventana": 37.0,
+    "recorte": 11.4,
+    "cribado": 8.5,
+    "pose_medida_lejana": 1.8,
+    "pose": 1.0
    },
    "counts": {
     "overlap_s": 1.1,
@@ -208,15 +208,15 @@
     "far_measure_windows": 35
    }
   },
-  "out_hash": "2225f5ee0fae335f6d63",
+  "out_hash": "b6ed6b266b3f49e73475",
   "scheme": 2,
   "rewrote": {}
  },
  "fine_opponent": {
-  "fingerprint": "8180933b18a1c672",
+  "fingerprint": "c5df673e32651eb3",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-09 04:21:59",
+  "finished": "2026-11-09 14:09:23",
   "summary": {
    "enabled": false
   },
@@ -252,10 +252,10 @@
   "rewrote": {}
  },
  "views": {
-  "fingerprint": "faafb729ce43d0e2",
+  "fingerprint": "cb06ffacb1621242",
   "version": "6",
-  "seconds": 280.2,
-  "finished": "2026-11-08 03:37:48",
+  "seconds": 292.2,
+  "finished": "2026-11-09 14:04:54",
   "summary": {
    "views": 1093,
    "repeticion_principal": 76,
@@ -268,13 +268,14 @@
    "slowmo_links": 16
   },
   "out_hash": "c1a6c73253253a0e0703",
-  "scheme": 2
+  "scheme": 2,
+  "rewrote": {}
  },
  "views_link": {
-  "fingerprint": "8fbb94f181400c06",
+  "fingerprint": "4c40c346f42370dd",
   "version": "1",
-  "seconds": 0.3,
-  "finished": "2026-11-09 04:21:59",
+  "seconds": 0.4,
+  "finished": "2026-11-09 14:08:55",
   "summary": {
    "strokes": 271,
    "with_replay": 54,
@@ -286,14 +287,14 @@
   "out_hash": "97e470ce6f0a3c2789f8",
   "scheme": 2,
   "rewrote": {
-   "fine": "f7df1df347e0b9bdaafc"
+   "fine": "e8f1084bd0e7579b1fed"
   }
  },
  "fine_doubtful": {
-  "fingerprint": "9a3578209a0c7028",
+  "fingerprint": "b876d49d3f03941d",
   "version": "1",
-  "seconds": 70.2,
-  "finished": "2026-11-09 04:23:09",
+  "seconds": 35.8,
+  "finished": "2026-11-09 14:09:59",
   "summary": {
    "candidates": 53,
    "confirmed": 30,
@@ -313,14 +314,14 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "pose_medida_lejana": 136.6,
-    "jugadora_lejana": 12.6,
-    "cuerdas_y_3d": 8.2,
-    "analisis_ventana": 6.9,
-    "pista_ventana": 6.7,
+    "jugadora_lejana": 12.7,
+    "cuerdas_y_3d": 7.8,
+    "pista_ventana": 7.1,
+    "analisis_ventana": 7.0,
     "recorte": 3.2,
-    "cribado": 1.2,
-    "pose": 0.2
+    "cribado": 1.1,
+    "pose_medida_lejana": 0.2,
+    "pose": 0.1
    },
    "counts": {
     "overlap_s": 0.0,
@@ -339,38 +340,38 @@
   "rewrote": {}
  },
  "view_clips": {
-  "fingerprint": "b12c1ab6f02965f9",
+  "fingerprint": "17b6840e4d53d64f",
   "version": "1",
-  "seconds": 500.9,
-  "finished": "2026-11-09 06:07:19",
+  "seconds": 26.2,
+  "finished": "2026-11-09 14:09:22",
   "summary": {
    "enabled": true,
    "linked_strokes": 254,
    "views": 912,
    "clips": 618,
-   "cut": 618,
-   "reused": 0,
+   "cut": 0,
+   "reused": 618,
    "failed": 0,
-   "seconds": 500.9,
+   "seconds": 26.1,
    "clip_seconds": 3263.9,
    "strokes_with_clip": 254
   },
-  "out_hash": "c9d46682e3ae1ed5dbad",
+  "out_hash": "db06fccf81b41a3eca13",
   "scheme": 2,
   "rewrote": {}
  },
  "slowmo_fine": {
-  "fingerprint": "08662386d64bbb3e",
+  "fingerprint": "edba69132b813d1b",
   "version": "1",
-  "seconds": 13.8,
-  "finished": "2026-11-09 06:07:34",
+  "seconds": 0.9,
+  "finished": "2026-11-09 14:09:23",
   "summary": {
    "enabled": true,
    "slowmo_strokes": 2,
    "measured": 2,
    "failed": 0,
    "frames": 148,
-   "seconds": 13.7
+   "seconds": 0.8
   },
   "out_hash": "5716bc08755bee02db95",
   "scheme": 2,
