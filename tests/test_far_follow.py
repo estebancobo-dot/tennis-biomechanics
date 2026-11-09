@@ -209,7 +209,8 @@ def test_near_windows_unchanged(tmp_path, monkeypatch):
     monkeypatch.setattr(clip_pipeline, "run_clip", lambda *a, **k: calls.append(k) or SimpleNamespace(
         timing={}, strokes=[], fps=FPS, stats={}))
     monkeypatch.setattr("tennisbio.pose.backend.set_device", lambda *a: None)
-    ctx = SimpleNamespace(cfg={"fine_pass": {"height_scale": "pose"}, "device": "cpu"}, log=lambda *_: None,
+    # the far refind is off by default since 09-11 (request 156); this test checks the path when it is on
+    ctx = SimpleNamespace(cfg={"fine_pass": {"height_scale": "pose", "far_refind": True}, "device": "cpu"}, log=lambda *_: None,
                           path=lambda nm: tmp_path / nm, video=tmp_path / "v.mp4")
     for side in ("near", "far"):
         stages._fine_one(ctx, SimpleNamespace(hand="right", height_m=1.84), [{"t": 12.0, "side": side}], 2.0, 1.0,
@@ -218,3 +219,10 @@ def test_near_windows_unchanged(tmp_path, monkeypatch):
     assert not {"init_frame", "far_H", "roi", "init_box", "side"} & set(near)
     assert far["init_frame"] == 7 and far["roi"] == "follow" and far["side"] == "far"
     assert np.array_equal(far["far_H"], np.eye(3))
+
+
+
+def test_the_far_refind_is_off_by_default():
+    """09-11, request 156: on, F3Set fell to 455/517 found and precision 0.93 (from 466 and 0.94)."""
+    from tennisbio.config import load_config
+    assert (load_config().get("fine_pass") or {}).get("far_refind") is False

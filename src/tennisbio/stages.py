@@ -2092,6 +2092,10 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
         if fi is None:
             _drop(group, "jugadora_lejana_no_encontrada")
             return []                         # no court or no far player found: nothing reliable
+        if not fp.get("far_refind", False):
+            # off since 09-11 (request 156): searching her again and starting at init_frame lowered F3Set to 455/517
+            # found and precision 0.93 (from 466 and 0.94); kept in the code, off until measured better
+            fi = {k: v for k, v in fi.items() if k not in ("init_frame", "far_H")}
         extra, cache = dict(side="far", **fi), clip.with_name(f"{clip.stem}_{ph}_far.npz")
     # cascade: the ball alone rules out windows without a possible stroke before any pose is run
     dec = _gate_passes(ctx, group, t0, wid, clip, cache, side, ball, cut_s)
