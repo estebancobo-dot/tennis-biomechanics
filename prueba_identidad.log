@@ -20,3 +20,73 @@ Vídeos en C:\tenis\videos: 6 en el catálogo (2 nuevos: elena-rybakina-jessica-
     [players] players:  15 % (1367/9155 fotogramas con jugadoras) · 2 min · quedan ≈ 11 min
     [score] score:   3 % (6/234 muestras · 0 lecturas · 6 OCR) · 2 min · quedan ≈ 77 min
     [players] players:  18 % (1668/9155 fotogramas con jugadoras) · 3 min · quedan ≈ 11 min
+    [score] score:   3 % (8/234 muestras · 0 lecturas · 9 OCR) · 3 min · quedan ≈ 72 min
+    [players] players:  22 % (1984/9155 fotogramas con jugadoras) · 3 min · quedan ≈ 11 min
+    [score] score:  12 % (28/234 muestras · 6 lecturas · 30 OCR) · 3 min · quedan ≈ 22 min
+    [players] players:  25 % (2324/9155 fotogramas con jugadoras) · 4 min · quedan ≈ 10 min
+    [score] score:  24 % (56/234 muestras · 31 lecturas · 52 OCR) · 4 min · quedan ≈ 11 min
+    [players] players:  29 % (2687/9155 fotogramas con jugadoras) · 4 min · quedan ≈ 10 min
+    [score] score:  36 % (85/234 muestras · 55 lecturas · 73 OCR) · 4 min · quedan ≈ 7 min
+    [players] players:  33 % (3043/9155 fotogramas con jugadoras) · 5 min · quedan ≈ 9 min
+    [score] score:  47 % (109/234 muestras · 75 lecturas · 96 OCR) · 5 min · quedan ≈ 5 min
+    [players] players:  37 % (3397/9155 fotogramas con jugadoras) · 5 min · quedan ≈ 9 min
+    [score] score:  57 % (134/234 muestras · 100 lecturas · 117 OCR) · 5 min · quedan ≈ 4 min
+    [players] players:  41 % (3761/9155 fotogramas con jugadoras) · 6 min · quedan ≈ 8 min
+    [score] score:  67 % (156/234 muestras · 121 lecturas · 139 OCR) · 6 min · quedan ≈ 3 min
+    [players] players:  45 % (4118/9155 fotogramas con jugadoras) · 6 min · quedan ≈ 7 min
+    [score] score:  78 % (183/234 muestras · 141 lecturas · 161 OCR) · 6 min · quedan ≈ 2 min
+    [players] players:  49 % (4473/9155 fotogramas con jugadoras) · 7 min · quedan ≈ 7 min
+    [score] score:  88 % (205/234 muestras · 158 lecturas · 183 OCR) · 7 min · quedan ≈ 56 s
+    [players] players:  53 % (4834/9155 fotogramas con jugadoras) · 7 min · quedan ≈ 6 min
+    [score] score:  98 % (230/234 muestras · 181 lecturas · 205 OCR) · 7 min · quedan ≈ 7 s
+    [players] players:  57 % (5198/9155 fotogramas con jugadoras) · 8 min · quedan ≈ 6 min
+    [score] score: 100 % (234/234 muestras · 184 lecturas · 209 OCR) · 7 min · quedan ≈ 0 s
+    [score] marcador: 234 muestras en juego, 210 OCR (185 lecturas)
+  [us-open-2026-r4-naomi-osaka-elena-rybakina] score terminada a las 07:18:12 en 7.6 min
+    [players] players:  63 % (5732/9155 fotogramas con jugadoras) · 8 min · quedan ≈ 5 min
+    [players] players:  69 % (6283/9155 fotogramas con jugadoras) · 9 min · quedan ≈ 4 min
+    [players] players:  75 % (6837/9155 fotogramas con jugadoras) · 9 min · quedan ≈ 3 min
+    [players] players:  81 % (7386/9155 fotogramas con jugadoras) · 10 min · quedan ≈ 2 min
+    [players] players:  87 % (7937/9155 fotogramas con jugadoras) · 10 min · quedan ≈ 2 min
+    [players] players:  93 % (8489/9155 fotogramas con jugadoras) · 11 min · quedan ≈ 50 s
+    [players] players:  99 % (9038/9155 fotogramas con jugadoras) · 11 min · quedan ≈ 9 s
+    [players] players: 100 % (9155/9155 fotogramas con jugadoras) · 11 min · quedan ≈ 0 s
+    [players] tiempo: 11.1 min para 9155 fotogramas a 960 px · modelo 10.5 min · leer vídeo y preparar la entrada 8.1 min en otro hilo (espera real 0.7 min) · apariencia 0.2 min en otro hilo
+  [us-open-2026-r4-naomi-osaka-elena-rybakina] players terminada a las 07:21:46 en 11.2 min (7.6 min a la vez que otra etapa)
+  [us-open-2026-r4-naomi-osaka-elena-rybakina] identity… (2026-11-09 07:21:46, etapa 7 de 16)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+    identity:   0 % (1/880 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+    identity:  43 % (376/880 fotogramas (ropa)) · 30 s · quedan ≈ 40 s
+    identity:  82 % (718/880 fotogramas (ropa)) · 60 s · quedan ≈ 14 s
+    identity: 100 % (880/880 fotogramas (ropa)) · 73 s · quedan ≈ 0 s
+    ropa: 880 fotogramas · leerlos 63 s, medir la ropa 10 s
+    identidad: 148/148 planos · ropa y cambios de lado de acuerdo en 129, solo cambios de lado 0, solo ropa 12, la ropa corrige el marcador en 7, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 4.4
+  [us-open-2026-r4-naomi-osaka-elena-rybakina] identity terminada a las 07:23:01 en 1.3 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[us-open-2026-r4-naomi-osaka-elena-rybakina] {'listo': True, 'grupos': 2, 'clic_hecho': True, 'minutos': 14.7}
+[zheng-qinwen-elena-rybakina] pasada barata hasta la identidad
+  [zheng-qinwen-elena-rybakina] court… (2026-11-09 07:23:03, etapa 3 de 16)
+    court:   5 % (64/1229 fotogramas) · 0 s · quedan ≈ 0 s
+    court:  31 % (384/1229 fotogramas) · 36 s · quedan ≈ 78 s
+    court:  52 % (640/1229 fotogramas) · 68 s · quedan ≈ 63 s
+    court:  73 % (896/1229 fotogramas) · 2 min · quedan ≈ 38 s
+    court:  94 % (1152/1229 fotogramas) · 2 min · quedan ≈ 9 s
+    court: 100 % (1229/1229 fotogramas) · 2 min · quedan ≈ 0 s
+  [zheng-qinwen-elena-rybakina] court terminada a las 07:26:08 en 3.1 min
+  [zheng-qinwen-elena-rybakina] players… (2026-11-09 07:26:08, etapa 4 de 16)
+    [players] juego con pista: 32.4 min de 36.6 min de cámara principal
+  [zheng-qinwen-elena-rybakina] score… (2026-11-09 07:26:08, etapa 5 de 16, a la vez que players)
+    [players] players:   0 % (1/19461 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+    [score] score:   0 % (1/483 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+    [players] players:   2 % (334/19461 fotogramas con jugadoras) · 30 s · quedan ≈ 29 min
+    [score] score:   5 % (22/483 muestras · 1 lecturas · 22 OCR) · 33 s · quedan ≈ 12 min
+    [players] players:   3 % (669/19461 fotogramas con jugadoras) · 60 s · quedan ≈ 28 min
+    [score] score:  12 % (56/483 muestras · 35 lecturas · 45 OCR) · 64 s · quedan ≈ 8 min
+    [players] players:   5 % (976/19461 fotogramas con jugadoras) · 2 min · quedan ≈ 28 min
+    [score] score:  19 % (91/483 muestras · 70 lecturas · 69 OCR) · 2 min · quedan ≈ 7 min
+    [players] players:   7 % (1289/19461 fotogramas con jugadoras) · 2 min · quedan ≈ 28 min
+    [score] score:  25 % (121/483 muestras · 100 lecturas · 92 OCR) · 2 min · quedan ≈ 6 min

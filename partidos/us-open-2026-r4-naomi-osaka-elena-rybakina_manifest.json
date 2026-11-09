@@ -66,70 +66,74 @@
   "rewrote": {}
  },
  "score": {
-  "fingerprint": "f04f6c9a2324dd28",
+  "fingerprint": "ba8af82e644599b0",
   "version": "6",
-  "seconds": 516.2,
-  "finished": "2026-10-18 23:53:00",
+  "seconds": 455.7,
+  "finished": "2026-11-09 07:18:12",
   "summary": {
-   "readings": 21,
-   "pressure": 12,
+   "readings": 185,
+   "pressure": 38,
    "samples": 234,
-   "ocr_calls": 242
+   "ocr_calls": 210
   },
-  "out_hash": "c2e31859c52fbe2ef312",
-  "scheme": 2
+  "out_hash": "e23fdec9cfc6175e145f",
+  "scheme": 2,
+  "rewrote": {}
  },
  "players": {
-  "fingerprint": "6ca053fe8d02fe61",
+  "fingerprint": "46f4fd8f8696d2b3",
   "version": "4",
-  "seconds": 680.1,
-  "finished": "2026-10-18 23:55:44",
+  "seconds": 669.6,
+  "finished": "2026-11-09 07:21:46",
   "summary": {
-   "frames": 9149,
-   "wall_min": 11.2,
-   "model_min": 10.4,
-   "read_min": 7.8,
-   "wait_min": 0.8,
+   "frames": 9155,
+   "wall_min": 11.1,
+   "model_min": 10.5,
+   "read_min": 8.1,
+   "wait_min": 0.7,
    "appearance_min": 0.2
   },
-  "overlap_s": 516.2,
-  "out_hash": "5f81bb9a3a35b3567c02",
-  "scheme": 2
+  "out_hash": "ebb69a0294d7896e443a",
+  "scheme": 2,
+  "rewrote": {},
+  "overlap_s": 455.7
  },
  "identity": {
-  "fingerprint": "9442f2cacf754a26",
-  "version": "5",
-  "seconds": 12679.4,
-  "finished": "2026-10-24 03:25:48",
+  "fingerprint": "8c43c70885810de6",
+  "version": "8",
+  "seconds": 75.4,
+  "finished": "2026-11-09 07:23:01",
   "summary": {
    "runs": 148,
-   "confidence": 0.91,
-   "votes": 56,
-   "agree": 51,
-   "ends_only": 1,
-   "clothes_only": 91,
-   "ends_won": 1,
-   "clothes_won": 4,
+   "confidence": 0.95,
+   "votes": 136,
+   "agree": 129,
+   "ends_only": 0,
+   "clothes_only": 12,
+   "ends_won": 0,
+   "clothes_won": 7,
    "doubtful": 0,
    "none": 0,
-   "by_end_changes": 53,
-   "by_clothes": 146,
+   "by_end_changes": 129,
+   "by_clothes": 148,
    "conflicts": 0,
-   "conflicts_resolved": 5,
+   "conflicts_resolved": 7,
    "decided": 148,
    "clothes": {
     "source": "ropa (torso y pantalón o falda, sin la pista)",
     "runs": 148,
-    "clear": 147,
-    "margin_median": 0.57,
-    "separation": 3.46,
+    "clear": 148,
+    "margin_median": 0.62,
+    "separation": 4.4,
     "far_pairs": 0,
     "far_opposite": null,
-    "same_game_pairs": 48,
-    "same_game_same": 0.9
+    "same_game_pairs": 117,
+    "same_game_same": 0.95
    }
   },
-  "scheme": 2
+  "out_hash": "b26672998987ba611a36",
+  "scheme": 2,
+  "rewrote": {}
  },
  "candidates": {
   "fingerprint": "8d628d2caacc36f4",

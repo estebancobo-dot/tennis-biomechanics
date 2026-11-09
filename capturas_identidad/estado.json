@@ -2,25 +2,7 @@
  "us-open-2026-r4-naomi-osaka-elena-rybakina": {
   "listo": true,
   "grupos": 2,
-  "clic_hecho": false,
-  "minutos": 0.0
- },
- "zheng-qinwen-elena-rybakina": {
-  "listo": true,
-  "grupos": 2,
-  "clic_hecho": false,
-  "minutos": 0.3
- },
- "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5": {
-  "listo": true,
-  "grupos": 2,
-  "clic_hecho": false,
-  "minutos": 0.3
- },
- "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5": {
-  "listo": true,
-  "grupos": 2,
-  "clic_hecho": false,
-  "minutos": 149.8
+  "clic_hecho": true,
+  "minutos": 14.7
  }
 }
