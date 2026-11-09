@@ -333,7 +333,7 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 91 a medias · 16 sin hacer
 - ✔ **Cada golpe tiene su vídeo**: 13 de 13 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 13 de 13
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 2446 caracteres de texto, 9 vídeos, 19 gráficos
+- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 2446 caracteres de texto, 8 vídeos, 19 gráficos
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 4462 caracteres de texto, 9 vídeos, 1 gráficos
 - ✔ **Pantalla «Análisis de golpe»**: 5365 caracteres de texto, 10 vídeos, 31 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 4320 caracteres de texto, 9 vídeos, 2 gráficos
@@ -442,7 +442,7 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 91 a medias · 16 sin hacer
 - ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 8 de 13 del lado cercano (62%); motivos: phase 20, elbow_implausible_at_impact 3, impact_without_audio 2, half_volley_candidate 1. Otros 5 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
 - ✔ **Golpes que fallaron al procesarse**: ninguno
 - ✔ **Nada pide revisión manual**: 20 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
-- ✔ **Pruebas del código en este PC**: código 1b7c8cf (2026-11-09T09:31:45): 926 bien, 0 fallan, 0 errores
+- ✔ **Pruebas del código en este PC**: código 57eacee (2026-11-09T11:12:10): 927 bien, 0 fallan, 0 errores
 - ✔ **Pruebas en este PC: test_pipeline**: 17 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_auto_cycle**: 15 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_pc_requests**: 9 bien, 0 fallan, 0 omitidas
@@ -475,17 +475,17 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 91 a medias · 16 sin hacer
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
 - ✔ **Progreso visible (progreso.json)**: último: view_clips de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (101/101), 139 s, quedan ≈ 0 s, a las 2026-11-09 05:48:00
 - ✔ **Registros con fecha y duración**: 56 de 56 registros con fecha de inicio y de fin o duración
-- ✔ **Tamaño de la salida (tamanos.txt)**: 42 carpetas, 28.9 GB en total (2026-11-09T10:41:29); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 42 carpetas, 28.9 GB en total (2026-11-09T11:17:24); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB
 - ✔ **Carpetas de pruebas antiguas**: ninguna carpeta de pruebas con más de 14 días sin usar
 - ✔ **Aplicación: ventana real y pantallas**: 56 pantallas pintadas, 0 problemas; ventana real: carga
-- ✔ **Aplicación: análisis en su índice**: 1 análisis y 18 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
+- ✔ **Aplicación: análisis en su índice**: 1 análisis y 22 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
 - ✔ **Aplicación: un partido nuevo de principio a fin**: terminó 2026-11-07T17:47:21 en 62.6 min; análisis actualizado
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 77 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 25 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 25 vídeos
-- ✔ **Exportación terminada: exportar**: terminó el 2026-11-09 10:57:22 en 0 min: 25 vídeos de 25 golpes
+- ✔ **Exportación terminada: exportar**: terminó el 2026-11-09 11:16:44 en 0 min: 25 vídeos de 25 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
-- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 09-11 09:22, empezó a los 3.5 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
+- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 09-11 11:16, empezó a los 0.2 min; el PC estaba con otro trabajo hasta las 11:17 (1.0 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
 
@@ -499,7 +499,7 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 91 a medias · 16 sin hacer
 - ! **Etapas a la vez: smoke_tennis-yusipopen-final-sobolenko-rybakin**: todas las etapas de su última ejecución corrieron en serie
 - ✔ **Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 0.8 min (objetivo ≤ 15 min)
 - ✔ **Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, view_clips 2.3 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-09_0707.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el court (2.0 min): CPU 33/59/85 %, iGPU 0/0/1 %, RAM máx 8.6 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el players (7.5 min): CPU 18/56/97 %, iGPU 70/90/100 %, RAM máx 16.7 GB → iGPU al límite; us-open-2026-r4-naomi-osaka-el score (2.2 min): CPU 17/66/100 %, iGPU 46/82/98 %, RAM máx 14.3 GB → iGPU al límite; us-open-2026-r4-naomi-osaka-el identity (1.5 min): CPU 53/65/94 %, iGPU 0/0/0 %, RAM máx 5.9 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina court (2.5 min): CPU 16/48/73 %, iGPU 0/0/0 %, RAM máx 6.2 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina score (4.8 min): CPU 22/64/87 %, iGPU 11/78/100 %, RAM máx 6.9 GB → uso medio: margen para repartir trabajo; 3.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-09_1057.csv
+- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-09_0707.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el court (2.0 min): CPU 33/59/85 %, iGPU 0/0/1 %, RAM máx 8.6 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el players (7.5 min): CPU 18/56/97 %, iGPU 70/90/100 %, RAM máx 16.7 GB → iGPU al límite; us-open-2026-r4-naomi-osaka-el score (2.2 min): CPU 17/66/100 %, iGPU 46/82/98 %, RAM máx 14.3 GB → iGPU al límite; us-open-2026-r4-naomi-osaka-el identity (1.5 min): CPU 53/65/94 %, iGPU 0/0/0 %, RAM máx 5.9 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina court (2.5 min): CPU 16/48/73 %, iGPU 0/0/0 %, RAM máx 6.2 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina score (4.8 min): CPU 22/64/87 %, iGPU 11/78/100 %, RAM máx 6.9 GB → uso medio: margen para repartir trabajo; 3.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-09_1116.csv, recursos_2026-11-09_1057.csv
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
