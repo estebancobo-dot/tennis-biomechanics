@@ -164,37 +164,37 @@
   "rewrote": {}
  },
  "fine": {
-  "fingerprint": "b4b06107429b9cd4",
+  "fingerprint": "f48f26f6379d6ef1",
   "version": "16",
-  "seconds": 623.4,
-  "finished": "2026-11-09 04:12:59",
+  "seconds": 284.7,
+  "finished": "2026-11-09 13:50:24",
   "summary": {
    "candidates": 289,
    "confirmed": 286,
    "errors": 0,
    "warnings": [],
-   "forehands": 134,
+   "forehands": 132,
    "windows": 191,
    "gate": {
     "windows_gated": 0,
     "windows_passed": 189,
     "windows_ungated": 0,
     "reasons": {
-     "detector": 43,
      "golpe_de_bola": 64,
+     "detector": 43,
      "bola_no_vista": 82
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "pose_medida_lejana": 1396.2,
-    "jugadora_lejana": 163.2,
-    "cuerdas_y_3d": 72.4,
+    "jugadora_lejana": 192.0,
+    "cuerdas_y_3d": 71.5,
     "pista_ventana": 39.6,
-    "analisis_ventana": 35.5,
+    "analisis_ventana": 35.7,
     "recorte": 11.6,
-    "cribado": 7.9,
-    "pose": 1.1
+    "cribado": 7.1,
+    "pose_medida_lejana": 1.9,
+    "pose": 1.0
    },
    "counts": {
     "overlap_s": 2.2,
@@ -208,15 +208,15 @@
     "far_measure_windows": 41
    }
   },
-  "out_hash": "02e73da45743b84d109e",
+  "out_hash": "ca251c644ef08c60eb7c",
   "scheme": 2,
   "rewrote": {}
  },
  "fine_opponent": {
-  "fingerprint": "4aec041da1e8974d",
+  "fingerprint": "6064340b05ce0c38",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-09 04:13:00",
+  "finished": "2026-11-09 13:50:52",
   "summary": {
    "enabled": false
   },
@@ -252,10 +252,10 @@
   "rewrote": {}
  },
  "views": {
-  "fingerprint": "94cdc2e16f0b234c",
+  "fingerprint": "f03bdd04644f0d24",
   "version": "6",
-  "seconds": 190.8,
-  "finished": "2026-11-08 03:27:59",
+  "seconds": 189.9,
+  "finished": "2026-11-09 13:45:39",
   "summary": {
    "views": 828,
    "repeticion_principal": 38,
@@ -268,13 +268,14 @@
    "slowmo_links": 27
   },
   "out_hash": "217f91ca2f6a48a08a18",
-  "scheme": 2
+  "scheme": 2,
+  "rewrote": {}
  },
  "views_link": {
-  "fingerprint": "178b6d44d74e7864",
+  "fingerprint": "0ae88caa7dc9f205",
   "version": "1",
-  "seconds": 0.3,
-  "finished": "2026-11-09 04:13:00",
+  "seconds": 0.4,
+  "finished": "2026-11-09 13:50:24",
   "summary": {
    "strokes": 286,
    "with_replay": 41,
@@ -286,14 +287,14 @@
   "out_hash": "8fef5afbca775a26c12d",
   "scheme": 2,
   "rewrote": {
-   "fine": "dd258702be3efbedece8"
+   "fine": "408b1519fd7924a4bfc9"
   }
  },
  "fine_doubtful": {
-  "fingerprint": "94e6dafa929963a1",
+  "fingerprint": "92628de55186b3ae",
   "version": "1",
-  "seconds": 21.9,
-  "finished": "2026-11-09 04:13:22",
+  "seconds": 21.1,
+  "finished": "2026-11-09 13:51:13",
   "summary": {
    "candidates": 47,
    "confirmed": 16,
@@ -313,10 +314,10 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 8.0,
+    "cuerdas_y_3d": 7.9,
     "analisis_ventana": 4.7,
-    "recorte": 2.9,
-    "jugadora_lejana": 2.8,
+    "jugadora_lejana": 2.9,
+    "recorte": 2.8,
     "pista_ventana": 1.2,
     "cribado": 0.6,
     "pose": 0.1
@@ -332,43 +333,43 @@
     "frames_960_far": 0
    }
   },
-  "out_hash": "7f2216991bf3260bd611",
+  "out_hash": "98097708a71426a43159",
   "scheme": 2,
   "rewrote": {}
  },
  "view_clips": {
-  "fingerprint": "aa203363260bc9e5",
+  "fingerprint": "bfffdf6087c77caa",
   "version": "1",
-  "seconds": 554.2,
-  "finished": "2026-11-09 05:58:27",
+  "seconds": 24.3,
+  "finished": "2026-11-09 13:50:49",
   "summary": {
    "enabled": true,
    "linked_strokes": 283,
    "views": 900,
    "clips": 582,
-   "cut": 582,
-   "reused": 0,
+   "cut": 0,
+   "reused": 582,
    "failed": 0,
-   "seconds": 554.1,
+   "seconds": 24.2,
    "clip_seconds": 3305.0,
    "strokes_with_clip": 283
   },
-  "out_hash": "8b2690a620d062f8a4a9",
+  "out_hash": "c658148190040c074b57",
   "scheme": 2,
   "rewrote": {}
  },
  "slowmo_fine": {
-  "fingerprint": "01c26e9b96f5902b",
+  "fingerprint": "b85371f06f83e675",
   "version": "1",
-  "seconds": 30.5,
-  "finished": "2026-11-09 05:58:58",
+  "seconds": 1.8,
+  "finished": "2026-11-09 13:50:51",
   "summary": {
    "enabled": true,
    "slowmo_strokes": 6,
    "measured": 6,
    "failed": 0,
    "frames": 317,
-   "seconds": 30.4
+   "seconds": 1.7
   },
   "out_hash": "fdc76d076726ad90d4ab",
   "scheme": 2,
