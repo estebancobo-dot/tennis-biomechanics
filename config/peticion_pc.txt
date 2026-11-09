@@ -686,3 +686,14 @@ accion: medir
 script: app_identity_photos
 # 178 (09-11): las fotos del clic tal y como las ensena la aplicacion (su propio Api.identity_photos con su indice
 # real): el usuario vio a Pegula en las dos, las del PC eran una de cada. Carpeta usada, carpeta del indice y fotos
+---
+id: 179
+accion: medir
+script: save_identity_pick
+argumentos: --match pegula --t 6402.2
+---
+id: 180
+accion: completo
+horas_max: 14
+# 179-180 (09-11): el usuario dice en el chat que Rybakina es la foto 2 (t 6402.2 s, fotos del codigo de la app,
+# app_fotos.json); se guarda en la carpeta del analisis. 180 = analisis completo: Pegula con el clic, identidad v10
