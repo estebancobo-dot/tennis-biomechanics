@@ -79,3 +79,47 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
     [players] players:  13 % (2727/20637 fotogramas con jugadoras) · 5 min · quedan ≈ 30 min
     [score] score:  49 % (255/522 muestras · 145 lecturas · 232 OCR) · 5 min · quedan ≈ 5 min
     [players] players:  15 % (3032/20637 fotogramas con jugadoras) · 5 min · quedan ≈ 29 min
+    [score] score:  54 % (281/522 muestras · 171 lecturas · 258 OCR) · 5 min · quedan ≈ 4 min
+    [players] players:  16 % (3337/20637 fotogramas con jugadoras) · 6 min · quedan ≈ 29 min
+    [score] score:  59 % (310/522 muestras · 199 lecturas · 286 OCR) · 6 min · quedan ≈ 4 min
+    [players] players:  18 % (3634/20637 fotogramas con jugadoras) · 6 min · quedan ≈ 28 min
+    [score] score:  65 % (340/522 muestras · 227 lecturas · 314 OCR) · 6 min · quedan ≈ 3 min
+    [players] players:  19 % (3935/20637 fotogramas con jugadoras) · 7 min · quedan ≈ 28 min
+    [score] score:  71 % (370/522 muestras · 255 lecturas · 343 OCR) · 7 min · quedan ≈ 3 min
+    [players] players:  21 % (4232/20637 fotogramas con jugadoras) · 7 min · quedan ≈ 27 min
+    [score] score:  77 % (402/522 muestras · 287 lecturas · 371 OCR) · 7 min · quedan ≈ 2 min
+    [players] players:  22 % (4528/20637 fotogramas con jugadoras) · 8 min · quedan ≈ 27 min
+    [score] score:  82 % (430/522 muestras · 315 lecturas · 398 OCR) · 8 min · quedan ≈ 2 min
+    [players] players:  23 % (4840/20637 fotogramas con jugadoras) · 8 min · quedan ≈ 26 min
+    [score] score:  88 % (459/522 muestras · 344 lecturas · 427 OCR) · 8 min · quedan ≈ 68 s
+    [players] players:  25 % (5124/20637 fotogramas con jugadoras) · 9 min · quedan ≈ 26 min
+    [score] score:  94 % (489/522 muestras · 374 lecturas · 454 OCR) · 9 min · quedan ≈ 35 s
+    [players] players:  26 % (5429/20637 fotogramas con jugadoras) · 9 min · quedan ≈ 25 min
+    [score] score:  99 % (517/522 muestras · 402 lecturas · 479 OCR) · 9 min · quedan ≈ 5 s
+    [score] score: 100 % (522/522 muestras · 406 lecturas · 484 OCR) · 9 min · quedan ≈ 0 s
+    [score] marcador: 522 muestras en juego, 485 OCR (407 lecturas)
+  [elena-rybakina-jessica-pegula-miami-2026-quarter-final] score terminada a las 09:54:24 en 9.5 min
+    [players] players:  28 % (5753/20637 fotogramas con jugadoras) · 10 min · quedan ≈ 25 min
+    [players] players:  30 % (6245/20637 fotogramas con jugadoras) · 10 min · quedan ≈ 23 min
+    [players] players:  33 % (6743/20637 fotogramas con jugadoras) · 11 min · quedan ≈ 22 min
+    [players] players:  35 % (7256/20637 fotogramas con jugadoras) · 11 min · quedan ≈ 20 min
+    [players] players:  38 % (7752/20637 fotogramas con jugadoras) · 12 min · quedan ≈ 19 min
+    [players] players:  40 % (8240/20637 fotogramas con jugadoras) · 12 min · quedan ≈ 18 min
+    [players] players:  42 % (8734/20637 fotogramas con jugadoras) · 13 min · quedan ≈ 17 min
+    [players] players:  45 % (9210/20637 fotogramas con jugadoras) · 13 min · quedan ≈ 16 min
+    [players] players:  47 % (9701/20637 fotogramas con jugadoras) · 14 min · quedan ≈ 15 min
+    [players] players:  49 % (10190/20637 fotogramas con jugadoras) · 14 min · quedan ≈ 14 min
+    [players] players:  52 % (10686/20637 fotogramas con jugadoras) · 15 min · quedan ≈ 14 min
+    [players] players:  54 % (11175/20637 fotogramas con jugadoras) · 15 min · quedan ≈ 13 min
+    [players] players:  57 % (11668/20637 fotogramas con jugadoras) · 16 min · quedan ≈ 12 min
+    [players] players:  59 % (12161/20637 fotogramas con jugadoras) · 16 min · quedan ≈ 11 min
+    [players] players:  61 % (12662/20637 fotogramas con jugadoras) · 17 min · quedan ≈ 10 min
+    [players] players:  64 % (13163/20637 fotogramas con jugadoras) · 17 min · quedan ≈ 10 min
+    [players] players:  66 % (13645/20637 fotogramas con jugadoras) · 18 min · quedan ≈ 9 min
+    [players] players:  69 % (14139/20637 fotogramas con jugadoras) · 18 min · quedan ≈ 8 min
+    [players] players:  71 % (14634/20637 fotogramas con jugadoras) · 19 min · quedan ≈ 8 min
+    [players] players:  73 % (15129/20637 fotogramas con jugadoras) · 19 min · quedan ≈ 7 min
+    [players] players:  76 % (15625/20637 fotogramas con jugadoras) · 20 min · quedan ≈ 6 min
+    [players] players:  78 % (16122/20637 fotogramas con jugadoras) · 20 min · quedan ≈ 6 min
+    [players] players:  81 % (16625/20637 fotogramas con jugadoras) · 21 min · quedan ≈ 5 min
+    [players] players:  83 % (17119/20637 fotogramas con jugadoras) · 21 min · quedan ≈ 4 min
