@@ -1,2 +1,25 @@
 ﻿Peticion 167: preparar el clic de identidad (2026-11-09T09:25:37)
 Vídeos en C:\tenis\videos: 6 en el catálogo (0 nuevos: —)
+[us-open-2026-r4-naomi-osaka-elena-rybakina] pasada barata hasta la identidad (C:\tenis\biblioteca\partidos\sin-fecha\sin-fecha_f43dd2_rybakina)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[us-open-2026-r4-naomi-osaka-elena-rybakina] {'listo': True, 'grupos': 2, 'clic_hecho': False, 'minutos': 0.0}
+[zheng-qinwen-elena-rybakina] pasada barata hasta la identidad (C:\tenis\biblioteca\partidos\sin-fecha\sin-fecha_584c5b_rybakina)
+[zheng-qinwen-elena-rybakina] {'listo': True, 'grupos': 2, 'clic_hecho': False, 'minutos': 0.1}
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] pasada barata hasta la identidad (C:\tenis\biblioteca\partidos\sin-fecha\sin-fecha_580c6f_rybakina)
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] {'listo': True, 'grupos': 2, 'clic_hecho': False, 'minutos': 0.1}
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] pasada barata hasta la identidad (C:\tenis\biblioteca\partidos\sin-fecha\sin-fecha_b8b713_rybakina)
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] {'listo': True, 'grupos': 2, 'clic_hecho': False, 'minutos': 0.1}
+[elena-rybakina-jessica-pegula-miami-2026-quarter-final] pasada barata hasta la identidad (C:\tenis\biblioteca\partidos\sin-fecha\sin-fecha_49723c_rybakina)
+  [elena-rybakina-jessica-pegula-miami-2026-quarter-final] probe… (2026-11-09 09:25:56, etapa 1 de 16)
+  [elena-rybakina-jessica-pegula-miami-2026-quarter-final] probe terminada a las 09:25:58 en 2 s
+  [elena-rybakina-jessica-pegula-miami-2026-quarter-final] scenes… (2026-11-09 09:25:58, etapa 2 de 16)
+    scenes:   0 % (1/168278 fotogramas) · 0 s · quedan ≈ 0 s
+    scenes:   3 % (5426/168278 fotogramas) · 30 s · quedan ≈ 15 min
+    scenes:   7 % (11026/168278 fotogramas) · 61 s · quedan ≈ 14 min
+    scenes:  10 % (16826/168278 fotogramas) · 2 min · quedan ≈ 14 min
+    scenes:  13 % (22712/168278 fotogramas) · 2 min · quedan ≈ 13 min
+    scenes:  16 % (27725/168278 fotogramas) · 3 min · quedan ≈ 13 min
+    scenes:  20 % (33175/168278 fotogramas) · 3 min · quedan ≈ 12 min
+    scenes:  23 % (38626/168278 fotogramas) · 4 min · quedan ≈ 12 min
+    scenes:  27 % (44626/168278 fotogramas) · 4 min · quedan ≈ 11 min
