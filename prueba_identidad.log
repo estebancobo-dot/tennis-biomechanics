@@ -90,3 +90,9 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
     [score] score:  19 % (91/483 muestras · 70 lecturas · 69 OCR) · 2 min · quedan ≈ 7 min
     [players] players:   7 % (1289/19461 fotogramas con jugadoras) · 2 min · quedan ≈ 28 min
     [score] score:  25 % (121/483 muestras · 100 lecturas · 92 OCR) · 2 min · quedan ≈ 6 min
+    [players] players:   8 % (1598/19461 fotogramas con jugadoras) · 3 min · quedan ≈ 28 min
+    [score] score:  31 % (148/483 muestras · 127 lecturas · 115 OCR) · 3 min · quedan ≈ 6 min
+    [players] players:  10 % (1909/19461 fotogramas con jugadoras) · 3 min · quedan ≈ 28 min
+    [score] score:  38 % (183/483 muestras · 162 lecturas · 138 OCR) · 3 min · quedan ≈ 5 min
+    [players] players:  11 % (2220/19461 fotogramas con jugadoras) · 4 min · quedan ≈ 27 min
+    [score] score:  44 % (211/483 muestras · 189 lecturas · 161 OCR) · 4 min · quedan ≈ 5 min
