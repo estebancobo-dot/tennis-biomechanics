@@ -1,6 +1,6 @@
-# Revisión automática: FALLOS
+# Revisión automática: REGRESIÓN
 
-373 cumplidos · 19 no cumplidos · 126 sin golpes suficientes · 98 avisos (antes: 373 cumplidos, 19 no cumplidos)
+371 cumplidos · 19 no cumplidos · 126 sin golpes suficientes · 100 avisos (antes: 373 cumplidos, 19 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 107 de 245
 
@@ -136,3 +136,8 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 91 a medias · 16 sin hacer
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
+
+## Empeora respecto a la ejecución anterior
+
+- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: la última petición (09-11 22:27) no empezó por GitHub Actions; el último trabajo por Actions fue el 09-11 22:06
+- **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (09-11 22:27) no empezó por GitHub Actions; el último trabajo por Actions fue el 09-11 22:
