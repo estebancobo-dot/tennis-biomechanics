@@ -1,0 +1,248 @@
+[
+ {
+  "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+  "readings": 185,
+  "names": [
+   "Rybakina",
+   "Osakajpn"
+  ],
+  "opponent": "Osakajpn",
+  "roi": null,
+  "server": {
+   "1": 100,
+   "0": 83,
+   "None": 2
+  },
+  "server_marker": {
+   "1": 100,
+   "0": 83,
+   "None": 2
+  },
+  "server_check": null,
+  "games_distinct": 17,
+  "points": {
+   "[\"15\", null]": 25,
+   "[\"30\", \"15\"]": 23,
+   "[\"30\", null]": 19,
+   "[\"40\", \"15\"]": 19,
+   "[\"15\", \"15\"]": 19,
+   "[null, null]": 18,
+   "[\"30\", \"30\"]": 12,
+   "[\"40\", \"AD\"]": 11
+  },
+  "shots_tried": 234,
+  "shots_read": 185,
+  "images": [
+   "marcador_us-open-2026-r4-naomi-osaka-elena-rybakina_0.jpg",
+   "marcador_us-open-2026-r4-naomi-osaka-elena-rybakina_1.jpg",
+   "marcador_us-open-2026-r4-naomi-osaka-elena-rybakina_2.jpg",
+   "marcador_us-open-2026-r4-naomi-osaka-elena-rybakina_3.jpg",
+   "marcador_us-open-2026-r4-naomi-osaka-elena-rybakina_4.jpg",
+   "marcador_us-open-2026-r4-naomi-osaka-elena-rybakina_5.jpg"
+  ]
+ },
+ {
+  "match": "zheng-qinwen-elena-rybakina",
+  "readings": 454,
+  "names": [
+   "Rybakina",
+   "Chn"
+  ],
+  "opponent": "Chn",
+  "roi": null,
+  "server": {
+   "1": 262,
+   "0": 187,
+   "None": 5
+  },
+  "server_marker": {
+   "1": 262,
+   "0": 187,
+   "None": 5
+  },
+  "server_check": null,
+  "games_distinct": 29,
+  "points": {
+   "[null, null]": 54,
+   "[\"40\", \"40\"]": 49,
+   "[\"15\", null]": 39,
+   "[\"30\", null]": 34,
+   "[\"30\", \"15\"]": 33,
+   "[\"30\", \"40\"]": 30,
+   "[\"30\", \"30\"]": 27,
+   "[\"15\", \"30\"]": 26
+  },
+  "shots_tried": 483,
+  "shots_read": 454,
+  "images": [
+   "marcador_zheng-qinwen-elena-rybakina_0.jpg",
+   "marcador_zheng-qinwen-elena-rybakina_1.jpg",
+   "marcador_zheng-qinwen-elena-rybakina_2.jpg",
+   "marcador_zheng-qinwen-elena-rybakina_3.jpg",
+   "marcador_zheng-qinwen-elena-rybakina_4.jpg",
+   "marcador_zheng-qinwen-elena-rybakina_5.jpg"
+  ]
+ },
+ {
+  "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "readings": 386,
+  "names": [
+   "Rybakina",
+   "Usa"
+  ],
+  "opponent": "Usa",
+  "roi": null,
+  "server": {
+   "0": 166,
+   "None": 9,
+   "1": 211
+  },
+  "server_marker": {
+   "0": 166,
+   "None": 9,
+   "1": 211
+  },
+  "server_check": null,
+  "games_distinct": 30,
+  "points": {
+   "[null, null]": 64,
+   "[\"15\", \"15\"]": 40,
+   "[null, \"15\"]": 31,
+   "[\"15\", \"30\"]": 31,
+   "[\"15\", null]": 31,
+   "[\"30\", \"30\"]": 25,
+   "[\"30\", \"15\"]": 25,
+   "[\"15\", \"40\"]": 23
+  },
+  "shots_tried": 531,
+  "shots_read": 386,
+  "images": [
+   "marcador_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5_0.jpg",
+   "marcador_tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5_4.jpg"
+  ]
+ },
+ {
+  "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+  "readings": 534,
+  "names": [
+   "Rybakina",
+   "Sabalenka"
+  ],
+  "opponent": "Sabalenka",
+  "roi": null,
+  "server": {
+   "0": 240,
+   "1": 283,
+   "None": 11
+  },
+  "server_marker": {
+   "0": 240,
+   "1": 283,
+   "None": 11
+  },
+  "server_check": null,
+  "games_distinct": 41,
+  "points": {
+   "[null, null]": 68,
+   "[\"15\", \"15\"]": 52,
+   "[\"15\", null]": 45,
+   "[\"40\", \"40\"]": 45,
+   "[\"30\", \"15\"]": 45,
+   "[\"40\", \"30\"]": 41,
+   "[\"30\", \"30\"]": 39,
+   "[null, \"15\"]": 36
+  },
+  "shots_tried": 648,
+  "shots_read": 534,
+  "images": [
+   "marcador_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5_0.jpg",
+   "marcador_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5_1.jpg",
+   "marcador_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5_2.jpg",
+   "marcador_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5_3.jpg",
+   "marcador_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5_4.jpg",
+   "marcador_tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5_5.jpg"
+  ]
+ },
+ {
+  "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+  "readings": 407,
+  "names": [
+   "Rybakina",
+   "Pegula"
+  ],
+  "opponent": "Pegula",
+  "roi": null,
+  "server": {
+   "1": 379,
+   "0": 6,
+   "None": 22
+  },
+  "server_marker": {
+   "1": 379,
+   "0": 6,
+   "None": 22
+  },
+  "server_check": null,
+  "games_distinct": 51,
+  "points": {
+   "[null, null]": 57,
+   "[\"40\", \"40\"]": 44,
+   "[\"AD\", \"40\"]": 34,
+   "[\"15\", \"15\"]": 33,
+   "[\"15\", \"30\"]": 30,
+   "[\"15\", \"0\"]": 28,
+   "[\"40\", \"30\"]": 24,
+   "[\"30\", \"30\"]": 23
+  },
+  "shots_tried": 522,
+  "shots_read": 407,
+  "images": [
+   "marcador_elena-rybakina-jessica-pegula-miami-2026-quarter-final_0.jpg",
+   "marcador_elena-rybakina-jessica-pegula-miami-2026-quarter-final_1.jpg",
+   "marcador_elena-rybakina-jessica-pegula-miami-2026-quarter-final_2.jpg",
+   "marcador_elena-rybakina-jessica-pegula-miami-2026-quarter-final_3.jpg",
+   "marcador_elena-rybakina-jessica-pegula-miami-2026-quarter-final_4.jpg",
+   "marcador_elena-rybakina-jessica-pegula-miami-2026-quarter-final_5.jpg"
+  ]
+ },
+ {
+  "match": "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
+  "readings": 92,
+  "names": [
+   "Sinner",
+   "Zverev"
+  ],
+  "opponent": "Zverev",
+  "roi": null,
+  "server": {
+   "1": 82,
+   "None": 7,
+   "0": 3
+  },
+  "server_marker": {
+   "1": 82,
+   "None": 7,
+   "0": 3
+  },
+  "server_check": null,
+  "games_distinct": 18,
+  "points": {
+   "[null, null]": 57,
+   "[\"30\", null]": 5,
+   "[\"40\", \"30\"]": 5,
+   "[\"AD\", \"40\"]": 4,
+   "[\"40\", null]": 4,
+   "[null, \"30\"]": 3,
+   "[null, \"0\"]": 2,
+   "[\"30\", \"0\"]": 2
+  },
+  "shots_tried": 325,
+  "shots_read": 92,
+  "images": [
+   "marcador_zverev-alexander-sinner-jannik-indian-wells-2026-semi-final_0.jpg",
+   "marcador_zverev-alexander-sinner-jannik-indian-wells-2026-semi-final_2.jpg",
+   "marcador_zverev-alexander-sinner-jannik-indian-wells-2026-semi-final_3.jpg",
+   "marcador_zverev-alexander-sinner-jannik-indian-wells-2026-semi-final_4.jpg"
+  ]
+ }
+]

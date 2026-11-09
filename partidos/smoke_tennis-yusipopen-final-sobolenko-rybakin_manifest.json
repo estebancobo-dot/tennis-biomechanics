@@ -137,10 +137,10 @@
   "rewrote": {}
  },
  "fine": {
-  "fingerprint": "438f14c49ea0ee2d",
+  "fingerprint": "668e85b341e6dccf",
   "version": "16",
-  "seconds": 117.3,
-  "finished": "2026-11-09 11:42:13",
+  "seconds": 104.0,
+  "finished": "2026-11-09 12:17:07",
   "summary": {
    "candidates": 80,
    "confirmed": 77,
@@ -160,14 +160,14 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "pista_ventana": 37.8,
-    "jugadora_lejana": 36.5,
-    "analisis_ventana": 29.2,
-    "cuerdas_y_3d": 19.3,
-    "recorte": 5.8,
-    "cribado": 4.3,
-    "pose_medida_lejana": 0.5,
-    "pose": 0.3
+    "jugadora_lejana": 35.7,
+    "pista_ventana": 29.1,
+    "analisis_ventana": 24.0,
+    "cuerdas_y_3d": 21.1,
+    "recorte": 5.4,
+    "cribado": 5.1,
+    "pose_medida_lejana": 0.8,
+    "pose": 0.5
    },
    "counts": {
     "overlap_s": 0.0,
@@ -186,10 +186,10 @@
   "rewrote": {}
  },
  "fine_opponent": {
-  "fingerprint": "f85fc6e1ff206051",
+  "fingerprint": "32dc9bcbf540023a",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-09 11:42:13",
+  "finished": "2026-11-09 12:17:07",
   "summary": {
    "enabled": false
   },
