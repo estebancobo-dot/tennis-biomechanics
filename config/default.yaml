@@ -26,6 +26,10 @@ spotter:
 fine_pass:
   # far end: search her again when the follow loses her (#219, 08-11); off: F3Set fell to 455/517, precision 0.93
   far_refind: false
+  # far end, measuring only (#219, 09-11): a confirmed far stroke with no keypoint of hers within 0.3 s of contact
+  # takes position, displacement and contact height from a second far pose that searches her again (cache _f2m);
+  # which strokes exist, their contact, type and confirmation never change
+  far_measure_refind: true
   window_s: 1.0
   # con bola: la ventana empieza antes para incluir el golpe de la rival (tiempo disponible)
   ball_lead_s: 2.2

@@ -2079,7 +2079,7 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
     extra, cache = {}, clip.with_name(f"{clip.stem}_{ph}.npz")
     cut_s = time.time() - t_
     fp = ctx.cfg.get("fine_pass") or {}
-    H_far = None
+    H_far, fi_measure = None, {}
     if side == "far":
         t_ = time.time()
         H_far = court_at(court, c["t"], ws)[0]
@@ -2092,6 +2092,7 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
         if fi is None:
             _drop(group, "jugadora_lejana_no_encontrada")
             return []                         # no court or no far player found: nothing reliable
+        fi_measure = fi                       # with init_frame and far_H: the measurement-only far pose (#219, 09-11)
         if not fp.get("far_refind", False):
             # off since 09-11 (request 156): searching her again and starting at init_frame lowered F3Set to 455/517
             # found and precision 0.93 (from 466 and 0.94); kept in the code, off until measured better
@@ -2174,14 +2175,98 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
     if not run.strokes:
         _drop(group, "sin_golpe_en_la_pose" if side == "near" else "lejana_sin_bola_ni_detector")
         return []
+    # #219 (09-11): the confirmed far strokes without her pose at contact are measured from a second far pose of the
+    # window that searches for her again (computed once, only when one of them needs it); the strokes, their
+    # contact, type and confirmation are decided above, from the first pose, and never change
+    mrun = None
+    if side == "far" and fp.get("far_measure_refind", True) and fi_measure.get("far_H") is not None:
+        memo: dict = {}
+
+        def mrun():
+            if "run" not in memo:
+                memo["run"] = _far_measure_run(ctx, p, clip, cache, fi_measure, H_win, hmode, fp)
+            return memo["run"]
     out, used = [], set()
     for c in group:
-        d = _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets, scenes, rpose, wb3d, fcfg)
+        d = _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets, scenes, rpose, wb3d, fcfg,
+                         mrun=mrun)
         if d is not None:
             out.append(d)
         else:
             near = min((abs(t0 + s.impact_frame / run.fps - c["t"]) for s in run.strokes), default=None)
             _drop([c], "sin_impacto_cerca", impacto_mas_cercano_s=None if near is None else round(near, 2))
+    return out
+
+
+FAR_MEASURE_POSE_S = 0.3      # «sin pose en el contacto»: no keypoint of hers within this of the impact
+
+
+def pose_at_contact(run, frame: int, span_s: float = FAR_MEASURE_POSE_S) -> bool:
+    """Whether any keypoint of hers (run.img, NaN where she was not tracked) is within span_s of the frame."""
+    img = getattr(run, "img", None)
+    if img is None or not len(img) or frame is None:
+        return False
+    w = int(round(span_s * float(run.fps)))
+    a, b = max(0, int(frame) - w), min(len(img), int(frame) + w + 1)
+    return b > a and bool(np.isfinite(img[a:b]).any())
+
+
+def _far_measure_run(ctx, p, clip: Path, cache: Path, fi: dict, H_win, hmode: str, fp: dict):
+    """#219 (09-11): the far pose of a window with the follow that searches for her again (init_frame, far_H:
+    the code behind fine_pass.far_refind), for measuring only (clip_pipeline.run_clip pose_only: no sound, ball,
+    impacts nor strokes), in caches of its own (clip_pipeline.FAR_MEASURE_TAG). That refind, used to decide the
+    strokes, raised the far measures but lowered the detection on F3Set (request 156: 455/517, precision 0.93, from
+    466 and 0.94): here it never decides anything. None when it fails (the strokes keep what they had)."""
+    import time
+    from .clip_pipeline import FAR_MEASURE_TAG, run_clip
+
+    t_ = time.time()
+    try:
+        m = run_clip(clip, cache, p.hand, p.height_m, init_mode="near", rackets=False, log=lambda *_: None, ball=None,
+                     side="far", prefetch=fp.get("pose_prefetch", True), court_H=H_win, height_scale=hmode,
+                     follow_tag=FAR_MEASURE_TAG, pose_only=True,
+                     **{k: fi.get(k) for k in ("roi", "init_box", "max_bottom", "init_frame", "far_H")})
+    except Exception as e:  # noqa: BLE001 — measuring only: the strokes stay as decided, said in the log
+        ctx.log(f"  ventana {clip.stem}: pose para medir (lejana) no disponible: {e}")
+        return None
+    st = m.stats or {}
+    _TIMES["pose_medida_lejana"] = _TIMES.get("pose_medida_lejana", 0.0) + float(m.timing.get("pose", 0.0))
+    _COUNTS["far_measure_windows"] = _COUNTS.get("far_measure_windows", 0) + 1
+    _took("pose_medida_lejana", t_)
+    ctx.log(f"  ventana {clip.stem}: pose solo para medir (lejana, buscándola de nuevo) en {time.time() - t_:.0f} s"
+            + (f"; buscada {st['far_searches']} veces, encontrada {st.get('far_refound', 0)}" if st.get("far_searches") else ""))
+    return m
+
+
+def _far_measures(m, H, stroke: str, impact: int, opp: int | None, height_m: float) -> dict:
+    """The far-reliable measures of a stroke from the measurement-only far pose `m` (_far_measure_run): position
+    (court_metrics, the nearest frame with feet ≤ 0.2 s), displacement, serve landing and contact height; never
+    stance nor base width (too rough at that distance). {} when she is not there either."""
+    if m is None or not pose_at_contact(m, impact):
+        return {}
+    out: dict = {}
+    if H is not None:
+        from .court_metrics import court_metrics, feet_on_court
+        cm = court_metrics(m.img, m.sk, H, stroke, impact, opp, feet=m.feet, feet_conf=m.feet_conf, fps=m.fps)
+        out.update({k: v for k, v in cm.items() if k not in ("stance", "stance_angle_deg", "stance_width_m")})
+        if stroke == "overhead":
+            ft = feet_on_court(m.img, min(len(m.img) - 1, impact + int(0.4 * m.fps)), m.sk, H)
+            if ft is not None:
+                out["landing_inside_m"] = round(float((ft[0][1] + ft[1][1]) / 2), 2)
+    try:
+        from .limits import sanitize
+        from .stroke_analysis import analyze_stroke
+        img_a = m.img.copy()
+        if m.frame_w:                      # facing the camera: mirrored as run_clip does for the analysis
+            img_a[..., 0] = m.frame_w - img_a[..., 0]
+        res = analyze_stroke(img_a, m.conf, m.sk, m.fps, m.height_px, int(impact), "refind", None, height_m, opp,
+                             scale=m.height_t)
+        ch = {"contact_height_pct": res.metrics.get("contact_height_pct")}
+        sanitize(ch)
+        if ch["contact_height_pct"] is not None:
+            out["contact_height_pct"] = ch["contact_height_pct"]
+    except Exception:  # noqa: BLE001 — her height or the window too short: no contact height, as without pose
+        pass
     return out
 
 
@@ -2277,8 +2362,12 @@ def stroke_from_spotter(r, c: dict) -> None:
     r.stroke_source = "detector" if k is not None else "pose"
 
 
-def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets, scenes, rpose, wb3d, fcfg):
-    """One confirmed stroke of an analysed window, or None."""
+def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets, scenes, rpose, wb3d, fcfg, mrun=None):
+    """One confirmed stroke of an analysed window, or None.
+    mrun (far end, fine_pass.far_measure_refind; #219 09-11): () → the measurement-only far pose of the window
+    (_far_measure_run) or None. Asked for only once the stroke is confirmed and when it has no keypoint of hers
+    within FAR_MEASURE_POSE_S of the contact; the far-reliable measures it lacks are then taken from it (never
+    overwritten), with far_measure_source "refind" and the keys in far_measure_refind."""
     target = (c["t"] - t0) * run.fps
     free = [s for s in run.strokes if s.impact_frame not in used]
     if not free:
@@ -2315,6 +2404,11 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
     if H is not None:
         from .court_metrics import player_frame_H
         H = player_frame_H(H, side)            # her own court frame at either end
+    far_m: dict = {}                          # the far-reliable measures of the measurement-only pose (#219, 09-11)
+    if side == "far" and mrun is not None and not pose_at_contact(run, r.impact_frame):
+        ta_m = r.metrics.get("time_available_s")
+        far_m = _far_measures(mrun(), H, r.stroke, r.impact_frame,
+                              None if ta_m is None else r.impact_frame - int(round(ta_m * run.fps)), p.height_m)
     if H is not None:
         from .court_metrics import court_metrics
         ta = r.metrics.get("time_available_s")
@@ -2330,6 +2424,10 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
             ft = feet_on_court(run.img, min(len(run.img) - 1, r.impact_frame + int(0.4 * run.fps)), run.sk, H)
             if ft is not None:
                 d["landing_inside_m"] = round(float((ft[0][1] + ft[1][1]) / 2), 2)
+        for k, v in far_m.items():           # only what the first pose could not measure (#219, 09-11)
+            if k != "contact_height_pct" and d.get(k) is None:
+                d[k] = v
+                d.setdefault("far_measure_refind", []).append(k)
         if r.ball.get("shot_bounce_candidates"):   # where her shot landed on the far court
             from .court_metrics import shot_landing
             d.update(shot_landing(H, r.ball["shot_bounce_candidates"], (d.get("court_pos_m") or [None])[0],
@@ -2339,6 +2437,13 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
             bx, by = to_court(H, np.array([r.ball["bounce_px"]]))[0]
             if -1.5 <= by <= 11.885 and abs(bx) <= 6.5:
                 d["bounce_court_m"] = [round(float(bx), 2), round(float(by), 2)]
+    if far_m.get("contact_height_pct") is not None and d["metrics"].get("contact_height_pct") is None:
+        d["metrics"]["contact_height_pct"] = far_m["contact_height_pct"]
+        d.setdefault("far_measure_refind", []).append("contact_height_pct")
+    if d.get("far_measure_refind"):
+        d["far_measure_source"] = "refind"
+        if "court_pos_m" in d["far_measure_refind"] and d.get("shot_direction") in ("paralela", "cruzada"):
+            d["far_measure_refind"].append("shot_direction")      # down the line / cross court: from that position
     # what happened with the shot (out / net / probable winner / rally)
     from .outcome import crossed_net, shot_outcome
     sfps = scenes["fps"]
@@ -2462,7 +2567,8 @@ def _fine_stroke(ctx, p, c, t0, wid, clip, side, run, used, court, score, onsets
             r.impact_frame, frames, r.stroke, H if side == "near" else None, opp_f, (r.ball or {}).get("bounce_frame"),
             ser.get("face"), None,
             {"court_pos": d.get("court_pos_m"), "displacement": d.get("displacement_m"), "t_avail": ta,
-             "contact_h": r.metrics.get("contact_height_pct"), "shot_direction": d.get("shot_direction"),
+             "contact_h": r.metrics.get("contact_height_pct") if r.metrics.get("contact_height_pct") is not None
+             else far_m.get("contact_height_pct"), "shot_direction": d.get("shot_direction"),
              "split": (r.phases.get("ready") or {}).get("method") == "split_step_landing",
              "surface": ctx.match.surface or "", "next_opp": ret, "return": is_return, "ball": ball_m,
              "head_motion_cm": r.metrics.get("head_motion_impact_cm"),

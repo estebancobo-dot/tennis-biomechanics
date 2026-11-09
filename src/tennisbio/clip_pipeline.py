@@ -48,6 +48,7 @@ class ClipRun:
     # feet_conf (T, 6), 0 when unseen. All NaN / 0 with the YOLO pose (far side, or pose_model: yolo).
     feet: np.ndarray | None = None
     feet_conf: np.ndarray | None = None
+    frame_w: int | None = None                  # window width in px (set by run_clip's pose_only run)
 
 
 def _cv2_frames(video: Path):
@@ -140,6 +141,9 @@ def pick_initial(boxes, mode="largest") -> tuple[int, np.ndarray]:
 
 
 FOLLOW_CACHE_TAG = "f2"     # pose caches of the far follow that searches for her again (#219, 08-11)
+# the far follow that searches for her again, run only to measure the confirmed far strokes without pose at contact
+# (#219, 09-11: fine_pass.far_measure_refind; stages._far_measure_run): pose caches of its own
+FAR_MEASURE_TAG = "f2m"
 
 
 def keep_key(keep) -> str:
@@ -180,7 +184,8 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
              keep: np.ndarray | None = None, inits: dict | None = None, anchors: list | None = None,
              split: bool = True, pose_model: str = "yolo", court_H: np.ndarray | None = None,
              height_scale: str = "court", spotted: list | None = None, bounce_model=None,
-             init_frame: int | None = None, far_H: np.ndarray | None = None) -> ClipRun:
+             init_frame: int | None = None, far_H: np.ndarray | None = None,
+             follow_tag: str = FOLLOW_CACHE_TAG, pose_only: bool = False) -> ClipRun:
     """Pose, tracking, impacts and stroke analysis of a short clip (cached).
 
     bounce_model: None = the bounce rule (tennisbio.ball.bounce_before / bounce_after); else our learned model
@@ -217,7 +222,11 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     init_frame / far_H (far end, roi "follow"; stages.far_start, #219 08-11): the frame where init_box was found,
     from which the follow restarts and her tracking runs both ways, and the court with which the follow searches
     the far half again while it has lost her (pose.yolo.extract_follow). Their pose cache carries
-    FOLLOW_CACHE_TAG (a cache of the former follow, which never found her again once lost, is not reused)."""
+    FOLLOW_CACHE_TAG (a cache of the former follow, which never found her again once lost, is not reused).
+    follow_tag: that tag (FAR_MEASURE_TAG for the measurement-only far pose: a cache of its own).
+    pose_only (#219, 09-11): only her pose, tracking and height scale (run.img / conf / boxes / feet, run.height_t /
+    height_px, run.frame_w); no sound, impacts, ball, rackets or strokes (run.impacts and run.strokes empty). For
+    the measurement-only far pose (stages._far_measure_run), from which no stroke is ever decided."""
     import time
     video, cache = Path(video), Path(cache)
     cache.parent.mkdir(parents=True, exist_ok=True)
@@ -228,7 +237,7 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
         ball_track = _load_ball_cache(bcache)
     t_ = time.time()
     # the far follow that searches for her again: caches of its own (the ball's stays next to `cache`)
-    wcache = cache.with_name(f"{cache.stem}_{FOLLOW_CACHE_TAG}.npz") if roi == "follow" and far_H is not None else cache
+    wcache = cache.with_name(f"{cache.stem}_{follow_tag}.npz") if roi == "follow" and far_H is not None else cache
     if keep is not None and wcache.exists() and load_npz(wcache) is not None:
         keep = inits = None                 # the whole window is already posed (an earlier run): reused
     pcache = wcache if keep is None else wcache.with_name(f"{wcache.stem}_r{keep_key(keep)}.npz")
@@ -336,6 +345,12 @@ def run_clip(video: str | Path, cache: str | Path, hand="right", height_m=1.84, 
     from .body_scale import height_scale as _height_scale
     height_t, h_src, h_info = _height_scale(img, sk, fps, height_m, court_H, (fh, fw), height_scale)
     height_px = (pose_h if h_src == "pose" else float(np.nanmedian(height_t)))
+    if pose_only:                          # the measurement-only far pose: no stroke is decided from it
+        prun = ClipRun(fps, sk, img, cf, boxes_t, float(np.mean(sel >= 0)), height_px, np.zeros(0), [])
+        prun.side, prun.height_t, prun.height_source, prun.height_info = side, height_t, h_src, h_info
+        prun.timing, prun.stats, prun.frame_w = timing, {**stats, "height_scale": h_src}, fw
+        prun.feet, prun.feet_conf = tracked_feet(d, sel)
+        return prun
     det_t = scale_track(img, sk, pose_h, fps) if np.isfinite(pose_h) else height_t
     body = to_body_frame(img_a, sk, det_t)
     swings = swing_peaks(speed(body[:, sk["dom_wrist"]], fps), fps)
