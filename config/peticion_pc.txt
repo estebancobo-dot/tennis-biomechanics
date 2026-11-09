@@ -455,6 +455,11 @@ accion: identidad
 ---
 id: 167
 accion: identidad
+---
+id: 168
+accion: identidad
+# 168 (09-11): comprobar que el clic del usuario en Zverev-Sinner ha llegado (estado.json clic_hecho); los partidos
+# con el clic hecho se saltan, es rapido
 # 167 (09-11): la 166 usaba otra carpeta (el id del partido, no la carpeta real) y rehacia la pasada barata de los 4
 # partidos de referencia; parada (parar_pc id 13). Ahora usa la carpeta real y salta los partidos con el clic hecho:
 # solo prepara los 2 videos nuevos del usuario
