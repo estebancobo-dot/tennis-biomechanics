@@ -506,3 +506,34 @@
 2026-11-09 16:29:43 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] view_clips terminada a las 16:29:43 en 8.7 min
 2026-11-09 16:29:44 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] slowmo_fine… (2026-11-09 16:29:44, etapa 14 de 16)
 2026-11-09 16:29:44   slowmo_fine:  17 % (1/6 golpes en la repetición a cámara lenta) · 0 s · quedan ≈ 0 s
+2026-11-09 16:30:19   slowmo_fine: 100 % (6/6 golpes en la repetición a cámara lenta) · 35 s · quedan ≈ 0 s
+2026-11-09 16:30:25   cámara lenta: 6 de 6 golpes medidos (377 fotogramas, 41 s)
+2026-11-09 16:30:25 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] slowmo_fine terminada a las 16:30:25 en 41 s
+2026-11-09 16:30:25 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] fine_opponent… (2026-11-09 16:30:25, etapa 15 de 16)
+2026-11-09 16:30:25 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] fine_opponent terminada a las 16:30:25 en 0 s
+2026-11-09 16:30:25 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] fine_doubtful… (2026-11-09 16:30:25, etapa 16 de 16)
+2026-11-09 16:30:29   fine_doubtful:   1 % (1/149 golpes candidatos · 0 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-11-09 16:31:13   ventana w000105717_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.57 s
+2026-11-09 16:31:13   ventana w000105717_3600: pose yolo en 216 de 216 fotogramas (20 s; modelo 20 s, 128 a 960 px por perderla) · bola 11 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 120 px (segments)
+2026-11-09 16:31:13   fine_doubtful:   2 % (3/149 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 44 s · quedan ≈ 36 min
+2026-11-09 16:31:34   ventana w000171649_6551 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.27 s
+2026-11-09 16:31:34   ventana w000171649_6551: pose yolo en 394 de 394 fotogramas (22 s; modelo 22 s) · bola 13 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 112 px (court)
+2026-11-09 16:31:56   ventana w000180244_6550 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.23 s
+2026-11-09 16:31:56   ventana w000180244_6550: pose yolo en 393 de 393 fotogramas (29 s; modelo 28 s) · bola 11 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 115 px (court)
+2026-11-09 16:31:56   fine_doubtful:   5 % (7/149 golpes candidatos · 5 confirmados · 0 ventanas descartadas sin pose) · 87 s · quedan ≈ 29 min
+2026-11-09 16:32:24   ventana w000231382_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 16:32:24   ventana w000231382_3600: pose yolo en 216 de 216 fotogramas (17 s; modelo 17 s, 56 a 960 px por perderla) · bola 8 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 117 px (court)
+2026-11-09 16:32:48   fine_doubtful:   6 % (9/149 golpes candidatos · 5 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 36 min
+2026-11-09 16:32:48   ALARMA de tiempo: fine_doubtful: 15.38 s por unidad frente a 2.22 de presupuesto (la más lenta de 2 ejecuciones aquí), 6.9 veces; a este ritmo quedan 36 min
+2026-11-09 16:33:15   ventana w000210415_5261 (far, 2 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 16:33:15   ventana w000210415_5261: pose yolo en 313 de 313 fotogramas (31 s; modelo 31 s, 126 a 960 px por perderla) · bola 9 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura nan px (pose)
+2026-11-09 16:33:15   ventana w000210415_5261: pose solo para medir (lejana, buscándola de nuevo) en 30 s; buscada 12 veces, encontrada 1
+2026-11-09 16:33:49   ventana w000307732_6130 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.07 s
+2026-11-09 16:33:49   ventana w000307732_6130: pose yolo en 368 de 368 fotogramas (21 s; modelo 21 s) · bola 10 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 116 px (court)
+2026-11-09 16:33:49   fine_doubtful:   9 % (13/149 golpes candidatos · 9 confirmados · 0 ventanas descartadas sin pose) · 3 min · quedan ≈ 35 min
+2026-11-09 16:33:49   ventana w000270002_10697 (far, 4 candidatos): pasa · golpe de bola en su lado a 2.27 s
+2026-11-09 16:33:49   ventana w000270002_10697: pose yolo en 641 de 641 fotogramas (37 s; modelo 37 s) · bola 18 s · raqueta 0 s (4 de 5 impactos) · 5 golpes posibles · altura 115 px (court)
+2026-11-09 16:35:12   ventana w000508372_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 16:35:12   ventana w000508372_3600: pose yolo en 215 de 215 fotogramas (32 s; modelo 32 s, 213 a 960 px por perderla) · bola 10 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura nan px (pose)
+2026-11-09 16:35:12   ventana w000508372_3600: pose solo para medir (lejana, buscándola de nuevo) en 33 s; buscada 28 veces, encontrada 6
+2026-11-09 16:35:12   fine_doubtful:  12 % (18/149 golpes candidatos · 14 confirmados · 0 ventanas descartadas sin pose) · 5 min · quedan ≈ 34 min

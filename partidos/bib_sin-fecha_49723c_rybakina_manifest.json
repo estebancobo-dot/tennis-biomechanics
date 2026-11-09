@@ -309,5 +309,34 @@
   "out_hash": "731b6f6cdd0feee923be",
   "scheme": 2,
   "rewrote": {}
+ },
+ "slowmo_fine": {
+  "fingerprint": "7d1dfaaee3f461ce",
+  "version": "1",
+  "seconds": 41.2,
+  "finished": "2026-11-09 16:30:25",
+  "summary": {
+   "enabled": true,
+   "slowmo_strokes": 6,
+   "measured": 6,
+   "failed": 0,
+   "frames": 377,
+   "seconds": 41.1
+  },
+  "out_hash": "687b961c02a777861944",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "fine_opponent": {
+  "fingerprint": "ac51988ddf62bf37",
+  "version": "9",
+  "seconds": 0.0,
+  "finished": "2026-11-09 16:30:25",
+  "summary": {
+   "enabled": false
+  },
+  "out_hash": "dafe9abfb6c998959474",
+  "scheme": 2,
+  "rewrote": {}
  }
 }

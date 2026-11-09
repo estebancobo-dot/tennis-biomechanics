@@ -35,6 +35,12 @@
    "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
    "etapa": "fine",
    "texto": "fine: 14.19 s por unidad frente a 5.39 de presupuesto (la más lenta de 30 ejecuciones aquí), 2.6 veces; a este ritmo quedan 61 min"
+  },
+  {
+   "hora": "2026-11-09 16:32:48",
+   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "etapa": "fine_doubtful",
+   "texto": "fine_doubtful: 15.38 s por unidad frente a 2.22 de presupuesto (la más lenta de 2 ejecuciones aquí), 6.9 veces; a este ritmo quedan 36 min"
   }
  ]
 }
