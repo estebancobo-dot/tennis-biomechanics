@@ -1045,6 +1045,12 @@
    "units": 1355,
    "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
    "date": "2026-11-09 09:21"
+  },
+  {
+   "s": 0.1306,
+   "units": 1355,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-09 09:43"
   }
  ],
  "court:minuto": [
@@ -1071,6 +1077,12 @@
    "video_min": 210.4,
    "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
    "date": "2026-11-09 08:28"
+  },
+  {
+   "s": 2.227,
+   "video_min": 112.2,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-09 09:44"
   }
  ],
  "score:unidad": [
@@ -1183,6 +1195,12 @@
    "units": 168278,
    "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
    "date": "2026-11-09 09:18"
+  },
+  {
+   "s": 0.0052,
+   "units": 168278,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-09 09:40"
   }
  ],
  "scenes:minuto": [
@@ -1191,6 +1209,12 @@
    "video_min": 112.2,
    "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
    "date": "2026-11-09 09:18"
+  },
+  {
+   "s": 7.893,
+   "video_min": 112.2,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-09 09:40"
   }
  ]
 }
