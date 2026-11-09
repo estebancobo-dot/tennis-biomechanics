@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261109025544
+Start time: 20261109054334
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 8816
+Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 2340
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,10 +17,39 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-11-09 02:55:44] Peticion 161: medida scripts\validate_rv_strokes.py
-    (paso terminado en 4 min 47 s)
-Empezado 2026-11-09 02:55:42 - terminado 2026-11-09 03:00:32 - duracion total 4 min 49 s
-**********************
-Windows PowerShell transcript end
-End time: 20261109030032
-**********************
+==> [2026-11-09 05:43:34] Codigo nuevo (fce2cf4 -> d9386d3): 14 ficheros
+    config/default.yaml
+    config/peticion_pc.txt
+    config/stage_code.json
+    docs/almacenamiento.md
+    docs/peticiones_usuario.md
+    scripts/recompute_measures.py
+    src/tennisbio/audit.py
+    src/tennisbio/pipeline.py
+    src/tennisbio/report.py
+    src/tennisbio/report_template.html
+    src/tennisbio/view_stages.py
+    src/tennisbio/views.py
+    tests/test_view_clips.py
+    tests/test_views.py
+Updating fce2cf4..d9386d3
+Fast-forward
+ config/default.yaml                |  14 ++
+ config/peticion_pc.txt             |   6 +
+ config/stage_code.json             |   4 +-
+ docs/almacenamiento.md             |   3 +
+ docs/peticiones_usuario.md         |   2 +-
+ scripts/recompute_measures.py      |   4 +
+ src/tennisbio/audit.py             | 127 ++++++++++++
+ src/tennisbio/pipeline.py          |   6 +
+ src/tennisbio/report.py            |  60 +++++-
+ src/tennisbio/report_template.html |  40 +++-
+ src/tennisbio/view_stages.py       | 161 +++++++++++++++
+ src/tennisbio/views.py             | 278 ++++++++++++++++++++++++-
+ tests/test_view_clips.py           | 409 +++++++++++++++++++++++++++++++++++++
+ tests/test_views.py                |   8 +-
+ 14 files changed, 1103 insertions(+), 19 deletions(-)
+ create mode 100644 src/tennisbio/view_stages.py
+ create mode 100644 tests/test_view_clips.py
+Resolved 124 packages in 0.96ms
+Checked 89 packages in 10ms
