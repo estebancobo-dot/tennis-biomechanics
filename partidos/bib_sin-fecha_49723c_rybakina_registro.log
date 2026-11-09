@@ -458,3 +458,38 @@
 2026-11-09 16:14:55   ventana w005570914_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.27 s
 2026-11-09 16:14:56   ventana w005570914_3600: pose hybrid en 216 de 216 fotogramas (31 s; modelo 31 s; pies en 216) · bola 7 s · raqueta 15 s (1 de 1 impactos) · 1 golpes posibles · altura 251 px (court)
 2026-11-09 16:14:56   fine:  95 % (261/274 golpes candidatos · 250 confirmados · 0 ventanas descartadas sin pose) · 93 min · quedan ≈ 5 min
+2026-11-09 16:15:26   ventana w005718870_3600 (near, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 16:15:26   ventana w005718870_3600: pose hybrid en 215 de 215 fotogramas (30 s; modelo 30 s; pies en 215) · bola 7 s · raqueta 17 s (1 de 1 impactos) · 1 golpes posibles · altura 251 px (court)
+2026-11-09 16:15:26   fine:  96 % (262/274 golpes candidatos · 251 confirmados · 0 ventanas descartadas sin pose) · 94 min · quedan ≈ 4 min
+2026-11-09 16:16:44   ventana w005731746_5954 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.23 s
+2026-11-09 16:16:44   ventana w005731746_5954: pose hybrid en 358 de 358 fotogramas (53 s; modelo 53 s; pies en 358) · bola 11 s · raqueta 30 s (2 de 2 impactos) · 2 golpes posibles · altura 232 px (court)
+2026-11-09 16:16:44   fine:  96 % (264/274 golpes candidatos · 253 confirmados · 0 ventanas descartadas sin pose) · 95 min · quedan ≈ 4 min
+2026-11-09 16:17:42   ventana w006120098_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.7 s): puede haber golpe
+2026-11-09 16:17:42   ventana w006120098_3600: pose hybrid en 216 de 216 fotogramas (32 s; modelo 32 s; pies en 70) · bola 7 s · raqueta 17 s (1 de 1 impactos) · 1 golpes posibles · altura 838 px (segments)
+2026-11-09 16:17:42   fine:  97 % (265/274 golpes candidatos · 254 confirmados · 0 ventanas descartadas sin pose) · 96 min · quedan ≈ 3 min
+2026-11-09 16:18:40   ventana w006170749_3600 (near, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-09 16:18:40   ventana w006170749_3600: pose hybrid en 216 de 216 fotogramas (31 s; modelo 30 s; pies en 21) · bola 7 s · raqueta 15 s (1 de 1 impactos) · 1 golpes posibles · altura nan px (pose)
+2026-11-09 16:18:40   fine:  97 % (266/274 golpes candidatos · 255 confirmados · 0 ventanas descartadas sin pose) · 97 min · quedan ≈ 3 min
+2026-11-09 16:19:16   ventana w005948750_11450 (near, 4 candidatos): pasa · golpe de bola en su lado a 2.25 s
+2026-11-09 16:19:16   ventana w005948750_11450: pose hybrid en 687 de 687 fotogramas (133 s; modelo 132 s; pies en 33) · bola 21 s · raqueta 61 s (4 de 4 impactos) · 4 golpes posibles · altura 721 px (segments)
+2026-11-09 16:19:16   fine:  99 % (270/274 golpes candidatos · 259 confirmados · 0 ventanas descartadas sin pose) · 98 min · quedan ≈ 87 s
+2026-11-09 16:20:35   ventana w006229036_7170 (near, 2 candidatos): pasa · bola no vista cerca de un candidato (5.83 s): puede haber golpe
+2026-11-09 16:20:35   ventana w006229036_7170: pose hybrid en 430 de 430 fotogramas (58 s; modelo 58 s; pies en 347) · bola 12 s · raqueta 31 s (2 de 2 impactos) · 2 golpes posibles · altura 276 px (court)
+2026-11-09 16:20:35   fine:  99 % (272/274 golpes candidatos · 261 confirmados · 0 ventanas descartadas sin pose) · 99 min · quedan ≈ 44 s
+2026-11-09 16:20:57   ventana w006275068_6532 (near, 2 candidatos): pasa · bola no vista cerca de un candidato (1.7 s): puede haber golpe
+2026-11-09 16:20:57   ventana w006275068_6532: pose hybrid en 391 de 391 fotogramas (58 s; modelo 57 s; pies en 318) · bola 12 s · raqueta 21 s (2 de 2 impactos) · 2 golpes posibles · altura 839 px (segments)
+2026-11-09 16:20:57   fine: 100 % (274/274 golpes candidatos · 263 confirmados · 0 ventanas descartadas sin pose) · 99 min · quedan ≈ 0 s
+2026-11-09 16:20:59   saques por la regla del tenis (primer golpe suyo en un punto de su saque): 4
+2026-11-09 16:20:59 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] fine terminada a las 16:20:59 en 99.7 min
+2026-11-09 16:21:00 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] views_link… (2026-11-09 16:21:00, etapa 12 de 16)
+2026-11-09 16:21:00 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] views_link terminada a las 16:21:00 en 0 s
+2026-11-09 16:21:01 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] view_clips… (2026-11-09 16:21:01, etapa 13 de 16)
+2026-11-09 16:21:01   view_clips:   0 % (1/541 recortes de repeticiones y otras cámaras) · 0 s · quedan ≈ 0 s
+2026-11-09 16:21:32   view_clips:   6 % (32/541 recortes de repeticiones y otras cámaras) · 31 s · quedan ≈ 8 min
+2026-11-09 16:22:02   view_clips:  12 % (66/541 recortes de repeticiones y otras cámaras) · 61 s · quedan ≈ 7 min
+2026-11-09 16:22:33   view_clips:  18 % (100/541 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 7 min
+2026-11-09 16:23:03   view_clips:  24 % (131/541 recortes de repeticiones y otras cámaras) · 2 min · quedan ≈ 6 min
+2026-11-09 16:23:35   view_clips:  30 % (164/541 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 6 min
+2026-11-09 16:24:06   view_clips:  37 % (201/541 recortes de repeticiones y otras cámaras) · 3 min · quedan ≈ 5 min
+2026-11-09 16:24:37   view_clips:  43 % (231/541 recortes de repeticiones y otras cámaras) · 4 min · quedan ≈ 5 min
+2026-11-09 16:25:08   view_clips:  49 % (264/541 recortes de repeticiones y otras cámaras) · 4 min · quedan ≈ 4 min
