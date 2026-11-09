@@ -14,5 +14,23 @@
   "out_hash": "e913ef5a65b9e58860b7",
   "scheme": 2,
   "rewrote": {}
+ },
+ "scenes": {
+  "fingerprint": "f49c288ae8eccbfa",
+  "version": "3",
+  "seconds": 929.2,
+  "finished": "2026-11-09 09:18:20",
+  "summary": {
+   "shots": 1147,
+   "main_camera_shots": 324,
+   "detector": "transnetv2",
+   "main_camera_min": 39.9,
+   "main_rule": "lines",
+   "main_camera_min_colour": 102.4,
+   "main_views": 256
+  },
+  "out_hash": "8e07fad5095352745159",
+  "scheme": 2,
+  "rewrote": {}
  }
 }

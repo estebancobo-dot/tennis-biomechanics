@@ -2852,7 +2852,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "2446 caracteres de texto, 8 vídeos, 19 gráficos",
+   "detail": "2446 caracteres de texto, 9 vídeos, 19 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2884,7 +2884,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4043 caracteres de texto, 9 vídeos, 12 gráficos",
+   "detail": "4055 caracteres de texto, 9 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2916,7 +2916,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2027 caracteres de texto, 9 vídeos, 0 gráficos",
+   "detail": "2030 caracteres de texto, 9 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3451,7 +3451,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "41 carpetas, 28.9 GB en total (2026-11-09T07:10:08); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB"
+   "detail": "42 carpetas, 28.9 GB en total (2026-11-09T09:09:23); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB"
   },
   {
    "req": 5,
@@ -3507,7 +3507,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-09 07:07:48 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-09 09:22:33 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3647,14 +3647,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-09_0707.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el court (2.0 min): CPU 33/59/85 %, iGPU 0/0/1 %, RAM máx 8.6 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el players (1.2 min): CPU 34/76/97 %, iGPU 82/91/100 %, RAM máx 15.0 GB → iGPU al límite; us-open-2026-r4-naomi-osaka-el score (1.0 min): CPU 55/80/100 %, iGPU 58/81/91 %, RAM máx 14.3 GB → iGPU al límite; 0.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
+   "detail": "recursos_2026-11-09_0707.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el court (2.0 min): CPU 33/59/85 %, iGPU 0/0/1 %, RAM máx 8.6 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el players (7.5 min): CPU 18/56/97 %, iGPU 70/90/100 %, RAM máx 16.7 GB → iGPU al límite; us-open-2026-r4-naomi-osaka-el score (2.2 min): CPU 17/66/100 %, iGPU 46/82/98 %, RAM máx 14.3 GB → iGPU al límite; us-open-2026-r4-naomi-osaka-el identity (1.5 min): CPU 53/65/94 %, iGPU 0/0/0 %, RAM máx 5.9 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina court (2.5 min): CPU 16/48/73 %, iGPU 0/0/0 %, RAM máx 6.2 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina score (4.8 min): CPU 22/64/87 %, iGPU 11/78/100 %, RAM máx 6.9 GB → uso medio: margen para repartir trabajo; 3.3 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 09-11 07:07, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 09-11 09:22, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,

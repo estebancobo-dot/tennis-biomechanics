@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261109070737
+Start time: 20261109092221
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 3208
+Process ID: 16748
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,22 +17,21 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-11-09 07:07:37] Codigo nuevo (ef310ba -> db18f78): 5 ficheros
-    config/default.yaml
+==> [2026-11-09 09:22:21] Codigo nuevo (db18f78 -> 1b7c8cf): 4 ficheros
+    config/parar_pc.txt
     config/peticion_pc.txt
-    docs/peticiones_usuario.md
-    scripts/windows/ciclo_automatico.ps1
-    tests/test_auto_catalog_rename.py
-Updating ef310ba..db18f78
+    scripts/identity_prepare.py
+    tests/test_identity_prepare.py
+Updating db18f78..1b7c8cf
 Fast-forward
- config/default.yaml                  |  6 +++---
- config/peticion_pc.txt               |  5 +++++
- docs/peticiones_usuario.md           | 12 ++++++------
- scripts/windows/ciclo_automatico.ps1 |  2 ++
- tests/test_auto_catalog_rename.py    |  6 +++---
- 5 files changed, 19 insertions(+), 12 deletions(-)
-Resolved 124 packages in 0.94ms
-Checked 89 packages in 3ms
+ config/parar_pc.txt            |  2 +-
+ config/peticion_pc.txt         |  6 ++++++
+ scripts/identity_prepare.py    | 12 ++++++++++--
+ tests/test_identity_prepare.py | 33 +++++++++++++++++++++++++++++++++
+ 4 files changed, 50 insertions(+), 3 deletions(-)
+ create mode 100644 tests/test_identity_prepare.py
+Resolved 124 packages in 1ms
+Checked 89 packages in 8ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -45,9 +44,9 @@ yolo11m-pose_960.onnx OK 84 MB
 yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
-    (paso terminado en 4 s)
+    (paso terminado en 5 s)
 
-==> [2026-11-09 07:07:42] Que hace falta: informe
+==> [2026-11-09 09:22:26] Que hace falta: informe
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (77 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Golpes: 0 nuevos, 25 en C:\tenis\output\_smoke\exportar\golpes
@@ -75,15 +74,15 @@ Auditoría: 373 cumplidos, 19 no cumplidos, 126 sin golpes suficientes, 98 aviso
   ✘ #240 Comparar la aplicación con las profesionales una vez estén los golpes: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
   ✘ #244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10): SIN HACER según el registro (#244, docs/peticiones_usuario.md)
   ✘ #245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10): SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-Hecho en 340 s, sin volver a analizar vídeo.
-    (paso terminado en 5 min 41 s)
+Hecho en 181 s, sin volver a analizar vídeo.
+    (paso terminado en 3 min 01 s)
 
-==> [2026-11-09 07:13:23] Revision automatica frente a la ejecucion anterior
-# Revisión automática: REGRESIÓN
+==> [2026-11-09 09:25:28] Revision automatica frente a la ejecucion anterior
+# Revisión automática: FALLOS
 Ciclo automatico terminado (informe).
-    (paso terminado en 1 s)
-Empezado 2026-11-09 07:07:35 - terminado 2026-11-09 07:13:24 - duracion total 5 min 48 s
+    (paso terminado en 0 s)
+Empezado 2026-11-09 09:22:17 - terminado 2026-11-09 09:25:28 - duracion total 3 min 11 s
 **********************
 Windows PowerShell transcript end
-End time: 20261109071324
+End time: 20261109092528
 **********************

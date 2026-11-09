@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-373 cumplidos · 19 no cumplidos · 126 sin golpes suficientes · 98 avisos (antes: 374 cumplidos, 17 no cumplidos)
+373 cumplidos · 19 no cumplidos · 126 sin golpes suficientes · 98 avisos (antes: 373 cumplidos, 19 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 107 de 245
 
@@ -136,12 +136,3 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 91 a medias · 16 sin hacer
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-
-## Empeora respecto a la ejecución anterior
-
-- **Registros con fecha y duración**: ok → falta: 55 de 56 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos
-- **#66 Fechas y duración en los registros**: ok → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (55 de 56 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos)
-
-## Mejora
-
-- #45 Todo automático y completo: el usuario no revisa nada: aviso → ok
