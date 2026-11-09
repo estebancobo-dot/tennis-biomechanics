@@ -227,3 +227,61 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
     [players] players:  44 % (9435/21340 fotogramas con jugadoras) · 13 min · quedan ≈ 16 min
     [players] players:  47 % (9942/21340 fotogramas con jugadoras) · 14 min · quedan ≈ 16 min
     [players] players:  49 % (10435/21340 fotogramas con jugadoras) · 14 min · quedan ≈ 15 min
+    [players] players:  51 % (10938/21340 fotogramas con jugadoras) · 15 min · quedan ≈ 14 min
+    [players] players:  54 % (11443/21340 fotogramas con jugadoras) · 15 min · quedan ≈ 13 min
+    [players] players:  56 % (11945/21340 fotogramas con jugadoras) · 16 min · quedan ≈ 12 min
+    [players] players:  58 % (12462/21340 fotogramas con jugadoras) · 16 min · quedan ≈ 11 min
+    [players] players:  61 % (12960/21340 fotogramas con jugadoras) · 17 min · quedan ≈ 11 min
+    [players] players:  63 % (13473/21340 fotogramas con jugadoras) · 17 min · quedan ≈ 10 min
+    [players] players:  66 % (13980/21340 fotogramas con jugadoras) · 18 min · quedan ≈ 9 min
+    [players] players:  68 % (14491/21340 fotogramas con jugadoras) · 18 min · quedan ≈ 9 min
+    [players] players:  70 % (15018/21340 fotogramas con jugadoras) · 19 min · quedan ≈ 8 min
+    [players] players:  73 % (15533/21340 fotogramas con jugadoras) · 19 min · quedan ≈ 7 min
+    [players] players:  75 % (16037/21340 fotogramas con jugadoras) · 20 min · quedan ≈ 6 min
+    [players] players:  77 % (16537/21340 fotogramas con jugadoras) · 20 min · quedan ≈ 6 min
+    [players] players:  80 % (17038/21340 fotogramas con jugadoras) · 21 min · quedan ≈ 5 min
+    [players] players:  82 % (17543/21340 fotogramas con jugadoras) · 21 min · quedan ≈ 5 min
+    [players] players:  85 % (18051/21340 fotogramas con jugadoras) · 22 min · quedan ≈ 4 min
+    [players] players:  87 % (18551/21340 fotogramas con jugadoras) · 22 min · quedan ≈ 3 min
+    [players] players:  89 % (19063/21340 fotogramas con jugadoras) · 23 min · quedan ≈ 3 min
+    [players] players:  92 % (19570/21340 fotogramas con jugadoras) · 23 min · quedan ≈ 2 min
+    [players] players:  94 % (20087/21340 fotogramas con jugadoras) · 24 min · quedan ≈ 88 s
+    [players] players:  97 % (20596/21340 fotogramas con jugadoras) · 24 min · quedan ≈ 52 s
+    [players] players:  99 % (21121/21340 fotogramas con jugadoras) · 25 min · quedan ≈ 15 s
+    [players] players: 100 % (21340/21340 fotogramas con jugadoras) · 25 min · quedan ≈ 0 s
+    [players] tiempo: 24.8 min para 21340 fotogramas a 960 px · modelo 21.4 min · leer vídeo y preparar la entrada 24.7 min en otro hilo (espera real 3.3 min) · apariencia 0.3 min en otro hilo
+  [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] players terminada a las 08:19:32 en 24.8 min (10.0 min a la vez que otra etapa)
+  [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] identity… (2026-11-09 08:19:32, etapa 7 de 16)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+    identity:   0 % (1/1681 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+    identity:  17 % (285/1681 fotogramas (ropa)) · 30 s · quedan ≈ 2 min
+    identity:  34 % (573/1681 fotogramas (ropa)) · 60 s · quedan ≈ 2 min
+    identity:  51 % (861/1681 fotogramas (ropa)) · 2 min · quedan ≈ 86 s
+    identity:  68 % (1145/1681 fotogramas (ropa)) · 2 min · quedan ≈ 56 s
+    identity:  85 % (1433/1681 fotogramas (ropa)) · 3 min · quedan ≈ 26 s
+    identity: 100 % (1681/1681 fotogramas (ropa)) · 3 min · quedan ≈ 0 s
+    ropa: 1681 fotogramas · leerlos 163 s, medir la ropa 15 s
+    identidad: 281/285 planos · ropa y cambios de lado de acuerdo en 199, solo cambios de lado 13, solo ropa 62, la ropa corrige el marcador en 7, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 2.97
+  [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] identity terminada a las 08:22:37 en 3.1 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] {'listo': True, 'grupos': 2, 'clic_hecho': True, 'minutos': 31.6}
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] pasada barata hasta la identidad
+  [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] court… (2026-11-09 08:22:40, etapa 3 de 16)
+    court:   4 % (64/1814 fotogramas) · 0 s · quedan ≈ 0 s
+    court:  14 % (256/1814 fotogramas) · 36 s · quedan ≈ 4 min
+    court:  28 % (512/1814 fotogramas) · 69 s · quedan ≈ 3 min
+    court:  42 % (768/1814 fotogramas) · 2 min · quedan ≈ 2 min
+    court:  56 % (1024/1814 fotogramas) · 2 min · quedan ≈ 2 min
+    court:  71 % (1280/1814 fotogramas) · 3 min · quedan ≈ 76 s
+    court:  85 % (1536/1814 fotogramas) · 4 min · quedan ≈ 40 s
+    court:  95 % (1728/1814 fotogramas) · 4 min · quedan ≈ 13 s
+    court: 100 % (1814/1814 fotogramas) · 4 min · quedan ≈ 0 s
+  [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] court terminada a las 08:28:20 en 5.7 min
+  [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] players… (2026-11-09 08:28:20, etapa 4 de 16)
+    [players] juego con pista: 41.9 min de 54.9 min de cámara principal
+  [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] score… (2026-11-09 08:28:20, etapa 5 de 16, a la vez que players)
+    [players] players:   0 % (1/25156 fotogramas con jugadoras) · 0 s · quedan ≈ 0 s
+    [score] score:   0 % (1/648 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+    [players] players:   1 % (340/25156 fotogramas con jugadoras) · 30 s · quedan ≈ 37 min
