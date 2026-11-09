@@ -1,2 +1,2 @@
-arranque: 2026-11-09T23:33:30 (pid 7552)
-2026-11-09T23:33:32 otro analisis en marcha (17332,6596,13272,1220,12048,14408)
+arranque: 2026-11-09T23:40:13 (pid 5132)
+2026-11-09T23:40:15 sin codigo nuevo (4f65cf8)
