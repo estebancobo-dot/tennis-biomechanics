@@ -379,3 +379,33 @@ C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN s
     identity:  12 % (241/2027 fotogramas (ropa)) · 30 s · quedan ≈ 4 min
     identity:  24 % (481/2027 fotogramas (ropa)) · 60 s · quedan ≈ 3 min
     identity:  36 % (723/2027 fotogramas (ropa)) · 2 min · quedan ≈ 3 min
+    identity:  47 % (957/2027 fotogramas (ropa)) · 2 min · quedan ≈ 2 min
+    identity:  59 % (1197/2027 fotogramas (ropa)) · 3 min · quedan ≈ 2 min
+    identity:  71 % (1437/2027 fotogramas (ropa)) · 3 min · quedan ≈ 74 s
+    identity:  83 % (1673/2027 fotogramas (ropa)) · 4 min · quedan ≈ 45 s
+    identity:  94 % (1913/2027 fotogramas (ropa)) · 4 min · quedan ≈ 14 s
+    identity: 100 % (2027/2027 fotogramas (ropa)) · 4 min · quedan ≈ 0 s
+    ropa: 2027 fotogramas · leerlos 237 s, medir la ropa 18 s
+    identidad: 327/342 planos · ropa y cambios de lado de acuerdo en 282, solo cambios de lado 15, solo ropa 21, la ropa corrige el marcador en 9, el saque visto en 0, dudosos 2 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 5.84
+  [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] identity terminada a las 09:02:43 en 4.4 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] {'listo': True, 'grupos': 2, 'clic_hecho': True, 'minutos': 40.1}
+[elena-rybakina-jessica-pegula-miami-2026-quarter-final] pasada barata hasta la identidad
+  [elena-rybakina-jessica-pegula-miami-2026-quarter-final] probe… (2026-11-09 09:02:46, etapa 1 de 16)
+  [elena-rybakina-jessica-pegula-miami-2026-quarter-final] probe terminada a las 09:02:50 en 4 s
+  [elena-rybakina-jessica-pegula-miami-2026-quarter-final] scenes… (2026-11-09 09:02:50, etapa 2 de 16)
+    scenes:   0 % (1/168278 fotogramas) · 0 s · quedan ≈ 0 s
+    scenes:   3 % (5226/168278 fotogramas) · 30 s · quedan ≈ 16 min
+    scenes:   6 % (10426/168278 fotogramas) · 60 s · quedan ≈ 15 min
+    scenes:   9 % (15660/168278 fotogramas) · 2 min · quedan ≈ 15 min
+    scenes:  12 % (20926/168278 fotogramas) · 2 min · quedan ≈ 14 min
+    scenes:  16 % (26122/168278 fotogramas) · 3 min · quedan ≈ 14 min
+    scenes:  19 % (31366/168278 fotogramas) · 3 min · quedan ≈ 13 min
+    scenes:  22 % (36445/168278 fotogramas) · 4 min · quedan ≈ 13 min
+    scenes:  25 % (41626/168278 fotogramas) · 4 min · quedan ≈ 12 min
+    scenes:  28 % (46826/168278 fotogramas) · 5 min · quedan ≈ 12 min
+    scenes:  31 % (52054/168278 fotogramas) · 5 min · quedan ≈ 11 min
+    scenes:  34 % (57226/168278 fotogramas) · 6 min · quedan ≈ 11 min
+    scenes:  37 % (62311/168278 fotogramas) · 6 min · quedan ≈ 10 min
+    scenes:  40 % (67278/168278 fotogramas) · 7 min · quedan ≈ 10 min
