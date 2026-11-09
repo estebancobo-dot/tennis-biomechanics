@@ -7974,7 +7974,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2589 caracteres de texto, 7 vídeos, 0 gráficos",
+   "detail": "2592 caracteres de texto, 7 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -8304,15 +8304,15 @@
    "area": "Validación",
    "name": "Validación con clips anotados (F3Set)",
    "status": "ok",
-   "detail": "golpes: precisión 0.917, recall 0.647; derecha/revés 0.969; dirección 0.885. Solo detección y clases: el valor de cada medida (codo, rodillas, pasos…) aún no tiene clips anotados con los que compararse"
+   "detail": "camino antiguo (run_clip, no el detector del análisis; el del análisis: recall_validation) — golpes: precisión 0.917, recall 0.647; derecha/revés 0.969; dirección 0.885. Solo detección y clases: el valor de cada medida (codo, rodillas, pasos…) aún no tiene clips anotados con los que compararse"
   },
   {
    "req": 5,
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código f9ef9eb (2026-11-08T21:36:35): 881 bien, 0 fallan, 0 errores",
-   "passed": 881,
+   "detail": "código 49cdde1 (2026-11-09T02:19:17): 901 bien, 0 fallan, 0 errores",
+   "passed": 901,
    "failed": 0
   },
   {
@@ -8537,7 +8537,7 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (63/63), 30 s, quedan ≈ 0 s, a las 2026-11-08 22:39:45"
+   "detail": "último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (63/63), 30 s, quedan ≈ 0 s, a las 2026-11-09 02:41:28"
   },
   {
    "req": 5,
@@ -8551,7 +8551,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "41 carpetas, 28.6 GB en total (2026-11-08T22:46:09); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
+   "detail": "41 carpetas, 28.6 GB en total (2026-11-09T02:50:06); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB"
   },
   {
    "req": 5,
@@ -8628,21 +8628,21 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_derecha",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 21:11:06 en 0 min: 445 vídeos de 445 golpes"
+   "detail": "terminó el 2026-11-08 23:06:29 en 18 min: 445 vídeos de 445 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_reves",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 21:11:34 en 0 min: 284 vídeos de 284 golpes"
+   "detail": "terminó el 2026-11-08 23:07:07 en 0 min: 284 vídeos de 284 golpes"
   },
   {
    "req": 5,
    "area": "Ficheros",
    "name": "Exportación terminada: exportar_saque",
    "status": "ok",
-   "detail": "terminó el 2026-11-08 21:11:56 en 0 min: 292 vídeos de 292 golpes"
+   "detail": "terminó el 2026-11-08 23:07:33 en 0 min: 292 vídeos de 292 golpes"
   },
   {
    "req": 5,
@@ -8789,14 +8789,14 @@
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina",
    "status": "ok",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 10.8 min, score 7.3 min, scenes 7.0 min, fine 4.3 min, audio 2.4 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 10.8 min, score 7.3 min, scenes 7.0 min, fine 4.2 min, audio 2.4 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina",
    "status": "ok",
-   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 7.4 min, views 3.2 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 7.6 min, views 3.2 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -8845,14 +8845,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-08_2125.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (4.0 min): CPU 17/47/97 %, iGPU 0/20/96 %, RAM máx 14.8 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine (7.0 min): CPU 12/26/59 %, iGPU 0/21/100 %, RAM máx 9.7 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 31/38/44 %, iGPU 0/46/91 %, RAM máx 10.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine (3.2 min): CPU 19/38/62 %, iGPU 0/22/100 %, RAM máx 10.8 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.8 min): CPU 21/36/64 %, iGPU 0/0/1 %, RAM máx 10.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-final-sobolen fine (5.5 min): CPU 20/40/95 %, iGPU 0/40/100 %, RAM máx 11.0 GB → uso medio: margen para repartir trabajo; 51.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
+   "detail": "recursos_2026-11-09_0109.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (15.8 min): CPU 17/36/100 %, iGPU 0/63/100 %, RAM máx 13.1 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.5 min): CPU 26/28/31 %, iGPU 0/46/92 %, RAM máx 10.0 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine (30.0 min): CPU 13/33/96 %, iGPU 0/65/100 %, RAM máx 14.2 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (1.8 min): CPU 26/36/48 %, iGPU 0/63/100 %, RAM máx 13.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine (11.8 min): CPU 18/48/97 %, iGPU 0/28/100 %, RAM máx 16.6 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.8 min): CPU 32/33/34 %, iGPU 0/60/100 %, RAM máx 10.7 GB → uso medio: margen para repartir trabajo; 23.5 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 08-11 22:13, empezó a los 1.2 min; el PC estaba con otro trabajo hasta las 22:14 (1.0 min, no cuentan), empezó 0.2 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 09-11 02:05, empezó a los 4.7 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,

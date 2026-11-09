@@ -361,7 +361,7 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 5068 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 2433 caracteres de texto, 7 vídeos, 0 gráficos
-- ✔ **Pantalla «Datos del análisis»**: 2589 caracteres de texto, 7 vídeos, 0 gráficos
+- ✔ **Pantalla «Datos del análisis»**: 2592 caracteres de texto, 7 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
@@ -447,7 +447,7 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - ✔ **Frenado de los hombros antes del contacto**: medido en 201 de 265 golpes; en «Aprende»; fiabilidad: fiable
 - ✔ **Cada frase lleva cuántos golpes la respaldan y su fiabilidad**: 98 frases
 - ✔ **Lo no medible se dice**: 17 elementos en «Lo que la tele no permite medir»
-- ✔ **Validación con clips anotados (F3Set)**: golpes: precisión 0.917, recall 0.647; derecha/revés 0.969; dirección 0.885. Solo detección y clases: el valor de cada medida (codo, rodillas, pasos…) aún no tiene clips anotados con los que compararse
+- ✔ **Validación con clips anotados (F3Set)**: camino antiguo (run_clip, no el detector del análisis; el del análisis: recall_validation) — golpes: precisión 0.917, recall 0.647; derecha/revés 0.969; dirección 0.885. Solo detección y clases: el valor de cada medida (codo, rodillas, pasos…) aún no tiene clips anotados con los que compararse
 
 ## 4. Cuerdas / orientación de la cara de la raqueta
 
@@ -462,7 +462,7 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 172 de 265 del lado cercano (65%); motivos: phase 372, impact_without_audio 107, elbow_implausible_at_impact 39, half_volley_candidate 5. Otros 70 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
 - ✔ **Golpes que fallaron al procesarse**: ninguno
 - ✔ **Nada pide revisión manual**: 318 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
-- ✔ **Pruebas del código en este PC**: código f9ef9eb (2026-11-08T21:36:35): 881 bien, 0 fallan, 0 errores
+- ✔ **Pruebas del código en este PC**: código 49cdde1 (2026-11-09T02:19:17): 901 bien, 0 fallan, 0 errores
 - ✔ **Pruebas en este PC: test_pipeline**: 17 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_auto_cycle**: 15 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_pc_requests**: 9 bien, 0 fallan, 0 omitidas
@@ -493,9 +493,9 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - ✔ **Pruebas en este PC: test_project_context**: 3 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
-- ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (63/63), 30 s, quedan ≈ 0 s, a las 2026-11-08 22:39:45
+- ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (63/63), 30 s, quedan ≈ 0 s, a las 2026-11-09 02:41:28
 - ✔ **Registros con fecha y duración**: 56 de 56 registros con fecha de inicio y de fin o duración
-- ✔ **Tamaño de la salida (tamanos.txt)**: 41 carpetas, 28.6 GB en total (2026-11-08T22:46:09); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 41 carpetas, 28.6 GB en total (2026-11-09T02:50:06); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.3 GB
 - ✔ **Carpetas de pruebas antiguas**: ninguna carpeta de pruebas con más de 14 días sin usar
 - ✔ **Aplicación: ventana real y pantallas**: 56 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 1 análisis y 18 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
@@ -506,11 +506,11 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - ✔ **Partido sin-fecha_b8b713_rybakina: salida de cada etapa, ventanas y series**: 15 ficheros de etapa, 295 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 445 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 445 vídeos
-- ✔ **Exportación terminada: exportar_derecha**: terminó el 2026-11-08 21:11:06 en 0 min: 445 vídeos de 445 golpes
-- ✔ **Exportación terminada: exportar_reves**: terminó el 2026-11-08 21:11:34 en 0 min: 284 vídeos de 284 golpes
-- ✔ **Exportación terminada: exportar_saque**: terminó el 2026-11-08 21:11:56 en 0 min: 292 vídeos de 292 golpes
+- ✔ **Exportación terminada: exportar_derecha**: terminó el 2026-11-08 23:06:29 en 18 min: 445 vídeos de 445 golpes
+- ✔ **Exportación terminada: exportar_reves**: terminó el 2026-11-08 23:07:07 en 0 min: 284 vídeos de 284 golpes
+- ✔ **Exportación terminada: exportar_saque**: terminó el 2026-11-08 23:07:33 en 0 min: 292 vídeos de 292 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
-- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 08-11 22:13, empezó a los 1.2 min; el PC estaba con otro trabajo hasta las 22:14 (1.0 min, no cuentan), empezó 0.2 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
+- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 09-11 02:05, empezó a los 4.7 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
 
@@ -528,15 +528,15 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - ✔ **Tomas de cámara: sin-fecha_580c6f_rybakina**: 4.7 min (objetivo ≤ 15 min)
 - ✔ **Tiempo: sin-fecha_b8b713_rybakina**: 88 min para 210 min de vídeo ≈ 1.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
 - ✔ **Tomas de cámara: sin-fecha_b8b713_rybakina**: 8.0 min (objetivo ≤ 15 min)
-- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina**: 3 etapas comparadas con su mediana aquí; las que más tardan: players 10.8 min, score 7.3 min, scenes 7.0 min, fine 4.3 min, audio 2.4 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina**: 3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 7.4 min, views 3.2 min; ninguna pasa de 2 veces su ritmo habitual
+- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina**: 3 etapas comparadas con su mediana aquí; las que más tardan: players 10.8 min, score 7.3 min, scenes 7.0 min, fine 4.2 min, audio 2.4 min; ninguna pasa de 2 veces su ritmo habitual
+- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina**: 3 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, score 8.6 min, fine 7.6 min, views 3.2 min; ninguna pasa de 2 veces su ritmo habitual
 - ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_580c6f_rybakina**: 3 etapas comparadas con su mediana aquí; las que más tardan: players 24.4 min, scenes 17.2 min, score 9.5 min, views 4.7 min, fine 4.0 min; ninguna pasa de 2 veces su ritmo habitual
 - ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_b8b713_rybakina**: 3 etapas comparadas con su mediana aquí; las que más tardan: players 30.0 min, scenes 28.5 min, score 12.9 min, views 8.0 min, fine 6.0 min; ninguna pasa de 2 veces su ritmo habitual
 - ✔ **Etapas a la vez: sin-fecha_f43dd2_rybakina**: 7.3 min ganados con etapas a la vez (players 7.3 min)
 - ✔ **Etapas a la vez: sin-fecha_584c5b_rybakina**: 8.6 min ganados con etapas a la vez (players 8.6 min)
 - ✔ **Etapas a la vez: sin-fecha_580c6f_rybakina**: 9.5 min ganados con etapas a la vez (players 9.5 min)
 - ✔ **Etapas a la vez: sin-fecha_b8b713_rybakina**: 12.9 min ganados con etapas a la vez (players 12.9 min)
-- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-08_2125.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (4.0 min): CPU 17/47/97 %, iGPU 0/20/96 %, RAM máx 14.8 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine (7.0 min): CPU 12/26/59 %, iGPU 0/21/100 %, RAM máx 9.7 GB → equipo infrautilizado: trabajo en serie (se puede repartir); zheng-qinwen-elena-rybakina fine_doubtful (0.5 min): CPU 31/38/44 %, iGPU 0/46/91 %, RAM máx 10.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine (3.2 min): CPU 19/38/62 %, iGPU 0/22/100 %, RAM máx 10.8 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.8 min): CPU 21/36/64 %, iGPU 0/0/1 %, RAM máx 10.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-final-sobolen fine (5.5 min): CPU 20/40/95 %, iGPU 0/40/100 %, RAM máx 11.0 GB → uso medio: margen para repartir trabajo; 51.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)
+- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-09_0109.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el fine (15.8 min): CPU 17/36/100 %, iGPU 0/63/100 %, RAM máx 13.1 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.5 min): CPU 26/28/31 %, iGPU 0/46/92 %, RAM máx 10.0 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine (30.0 min): CPU 13/33/96 %, iGPU 0/65/100 %, RAM máx 14.2 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina fine_doubtful (1.8 min): CPU 26/36/48 %, iGPU 0/63/100 %, RAM máx 13.7 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine (11.8 min): CPU 18/48/97 %, iGPU 0/28/100 %, RAM máx 16.6 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau fine_doubtful (0.8 min): CPU 32/33/34 %, iGPU 0/60/100 %, RAM máx 10.7 GB → uso medio: margen para repartir trabajo; 23.5 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
