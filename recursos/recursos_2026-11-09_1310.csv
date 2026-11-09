@@ -1082,3 +1082,15 @@ hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram
 2026-11-09T18:15:49,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,fine,42.0,7.4,50.3,18.0,19.8,11.2,85.0,0.0,0.0,0.0,2026-11-09 18:14:32,73.8
 2026-11-09T18:16:06,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,fine,28.0,35.4,0.0,18.2,19.8,12.0,96.0,0.0,0.0,0.0,2026-11-09 18:15:49,74.9
 2026-11-09T18:16:23,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,fine,22.0,13.7,0.0,18.4,19.8,12.2,100.0,0.0,0.0,0.0,2026-11-09 18:15:49,74.9
+2026-11-09T18:16:40,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,fine,33.0,12.8,0.0,18.3,19.8,12.0,94.0,0.0,0.0,0.0,2026-11-09 18:15:49,74.9
+2026-11-09T18:16:57,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,fine,33.0,12.8,0.0,18.3,19.8,12.0,100.0,0.0,0.0,0.0,2026-11-09 18:15:49,74.9
+2026-11-09T18:17:15,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,fine,38.0,17.5,0.0,18.1,19.8,11.9,95.0,0.0,0.0,0.0,2026-11-09 18:15:49,74.9
+2026-11-09T18:17:32,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,fine,22.0,23.4,0.0,18.0,19.8,11.7,93.0,0.0,0.0,1.0,2026-11-09 18:15:49,74.9
+2026-11-09T18:17:49,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,fine,21.0,17.9,0.0,17.9,19.8,11.7,96.0,0.0,0.0,0.0,2026-11-09 18:15:49,74.9
+2026-11-09T18:18:06,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,fine,27.0,15.3,0.0,17.9,19.8,11.7,100.0,0.0,0.0,0.0,2026-11-09 18:18:01,77.0
+2026-11-09T18:18:24,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,fine,36.0,16.3,0.0,17.9,19.8,11.6,98.0,0.0,0.0,0.0,2026-11-09 18:18:01,77.0
+2026-11-09T18:18:41,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,fine,32.0,22.9,0.0,17.5,19.8,11.4,84.0,0.0,0.0,0.0,2026-11-09 18:18:01,77.0
+2026-11-09T18:19:01,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,fine,75.0,5.4,0.0,17.8,19.8,11.6,0.0,0.0,0.0,0.0,2026-11-09 18:18:58,79.1
+2026-11-09T18:19:18,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,fine,28.0,14.9,0.0,17.8,19.8,11.8,100.0,0.0,0.0,49.0,2026-11-09 18:18:58,79.1
+2026-11-09T18:19:35,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,fine,35.0,16.8,0.0,17.8,19.8,11.8,100.0,0.0,0.0,0.0,2026-11-09 18:18:58,79.1
+2026-11-09T18:19:53,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,fine,28.0,22.3,0.0,17.7,19.8,11.7,87.0,0.0,0.0,0.0,2026-11-09 18:18:58,79.1
