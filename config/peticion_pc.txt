@@ -468,6 +468,16 @@ script: diag_scoreboard
 ---
 id: 171
 accion: identidad
+---
+id: 172
+accion: identidad
+---
+id: 173
+accion: medir
+script: diag_scoreboard
+# 172-173 (09-11): en Miami la marca de saque es un punto verde junto al tanteo de quien saca, pero las franjas rojas
+# de la bandera de EEUU (fila de Pegula) contaban como marca (379 de 407 lecturas "saca Pegula"). Ahora la marca debe
+# ser un punto compacto (score v8). 172 = fotos de Rybakina-Pegula con el saque bien leido; 173 = recortes y conteos
 # 170-171 (09-11): score v7: quien saca se aprende del marcador (la marca que cambia de fila cada juego), no solo de
 # la bola amarilla del US Open. 170 = recortes del marcador de cada partido (capturas_diag/marcador_*.jpg); 171 =
 # fotos de Rybakina-Pegula con el saque leido (prueba_identidad.log: "saque en el marcador: ...", planos decididos)

@@ -108,6 +108,11 @@ def serve_marker(image: np.ndarray, items: list, rows_y: tuple[float, float], mi
         x, y, w, h, area = st[i]
         if area < min_area or h > 0.8 * gap or w > 3 * gap:     # banners and big panels are not markers
             continue
+        # 09-11 (Miami 2026, diag_scoreboard): a marker is a compact mark (dot, ball, arrow), not the stripes of a flag:
+        # the red stripes of the US flag on Pegula's row were read as her serve in 379 of 407 readings, while the real
+        # marker, a green dot by the server's score, was there too
+        if not (0.4 <= w / max(h, 1) <= 2.5 and area >= 0.45 * w * h and max(w, h) <= 0.7 * gap):
+            continue
         for k, ry in enumerate(rows_y):
             if abs(cen[i][1] - ry) < 0.35 * gap:
                 cand.append((k, x, x + w, area))

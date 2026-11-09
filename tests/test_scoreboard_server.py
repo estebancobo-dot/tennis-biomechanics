@@ -123,3 +123,22 @@ def test_serve_parity_counts_every_game_and_skips_tiebreaks():
     assert serve_parity({"games": [[7, 6], [0, 0]]}) == 1
     assert serve_parity({"games": [[6, 6]], "tiebreak": True}) is None
     assert serve_parity({"games": []}) is None
+
+
+def test_flag_stripes_are_not_the_serve_marker():
+    """09-11 (Miami 2026): the red stripes of the US flag on the opponent's row were read as her serve in 379 of 407
+    readings; the real marker, a small green dot by the server's score, is a compact mark."""
+    import cv2
+    import numpy as np
+    from tennisbio.scoreboard import serve_marker
+
+    img = np.full((120, 600, 3), (90, 70, 20), np.uint8)               # dark teal background (BGR)
+    for k in range(6):                                                    # US-flag-like stripes on row 1 (y ~ 80)
+        cv2.rectangle(img, (5, 62 + 6 * k), (60, 64 + 6 * k), (40, 40, 220), -1)
+    cv2.circle(img, (480, 30), 7, (40, 220, 60), -1)                      # green dot on row 0 (y ~ 30)
+    assert serve_marker(img, [], (30.0, 80.0)) == 0
+    img2 = np.full((120, 600, 3), (90, 70, 20), np.uint8)
+    for k in range(6):
+        cv2.rectangle(img2, (5, 62 + 6 * k), (60, 64 + 6 * k), (40, 40, 220), -1)
+    cv2.circle(img2, (480, 80), 7, (40, 220, 60), -1)                     # the dot on row 1
+    assert serve_marker(img2, [], (30.0, 80.0)) == 1
