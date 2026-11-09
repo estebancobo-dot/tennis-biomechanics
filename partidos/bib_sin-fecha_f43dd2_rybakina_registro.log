@@ -9305,3 +9305,20 @@
 2026-11-09 05:49:10   slowmo_fine: 100 % (2/2 golpes en la repetición a cámara lenta) · 6 s · quedan ≈ 0 s
 2026-11-09 05:49:12   cámara lenta: 2 de 2 golpes medidos (59 fotogramas, 8 s)
 2026-11-09 05:49:12 [us-open-2026-r4-naomi-osaka-elena-rybakina] slowmo_fine terminada a las 05:49:12 en 8 s
+2026-11-09 13:23:02 [us-open-2026-r4-naomi-osaka-elena-rybakina] score… (2026-11-09 13:23:02, etapa 5 de 16)
+2026-11-09 13:23:06 [us-open-2026-r4-naomi-osaka-elena-rybakina] score… (2026-11-09 13:23:06, etapa 5 de 16)
+2026-11-09 13:23:14   [score] score:   0 % (1/234 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+2026-11-09 13:23:24 [us-open-2026-r4-naomi-osaka-elena-rybakina] score falló: UnicodeEncodeError: 'charmap' codec can't encode character '\u2248' in position 76: character maps to <undefined>
+2026-11-09 13:23:51   [score] score:   1 % (3/234 muestras · 0 lecturas · 3 OCR) · 36 s · quedan ≈ 47 min
+2026-11-09 13:24:25   [score] score:   3 % (6/234 muestras · 0 lecturas · 6 OCR) · 70 s · quedan ≈ 45 min
+2026-11-09 13:24:55   [score] score:  15 % (34/234 muestras · 10 lecturas · 36 OCR) · 2 min · quedan ≈ 10 min
+2026-11-09 13:25:25   [score] score:  38 % (90/234 muestras · 59 lecturas · 78 OCR) · 2 min · quedan ≈ 3 min
+2026-11-09 13:25:56   [score] score:  57 % (134/234 muestras · 100 lecturas · 117 OCR) · 3 min · quedan ≈ 2 min
+2026-11-09 13:26:27   [score] score:  77 % (181/234 muestras · 139 lecturas · 159 OCR) · 3 min · quedan ≈ 56 s
+2026-11-09 13:26:57   [score] score:  97 % (228/234 muestras · 179 lecturas · 203 OCR) · 4 min · quedan ≈ 6 s
+2026-11-09 13:27:01   [score] score: 100 % (234/234 muestras · 184 lecturas · 209 OCR) · 4 min · quedan ≈ 0 s
+2026-11-09 13:27:02   [score] marcador: 234 muestras en juego, 210 OCR (185 lecturas)
+2026-11-09 13:27:02   [score] saque en el marcador: 132 de 185 lecturas (marker + aprendido; marca de color 62, sigue la alternancia en 100% de 62; aprendida sí, sigue la alternancia en 81% de 120)
+2026-11-09 13:27:02 [us-open-2026-r4-naomi-osaka-elena-rybakina] score terminada a las 13:27:02 en 4.0 min
+2026-11-09 13:27:02 [us-open-2026-r4-naomi-osaka-elena-rybakina] identity… (2026-11-09 13:27:02, etapa 7 de 16)
+2026-11-09 13:27:04   identity:   0 % (1/880 fotogramas (ropa)) · 0 s · quedan ≈ 0 s

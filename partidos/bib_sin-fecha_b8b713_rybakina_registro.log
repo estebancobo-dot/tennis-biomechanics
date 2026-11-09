@@ -18256,3 +18256,5 @@
 2026-11-09 06:19:01   slowmo_fine: 100 % (6/6 golpes en la repetición a cámara lenta) · 31 s · quedan ≈ 0 s
 2026-11-09 06:19:06   cámara lenta: 6 de 6 golpes medidos (345 fotogramas, 36 s)
 2026-11-09 06:19:06 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] slowmo_fine terminada a las 06:19:06 en 37 s
+2026-11-09 13:23:52 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] score… (2026-11-09 13:23:52, etapa 5 de 16)
+2026-11-09 13:24:16 [tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] score falló: UnicodeEncodeError: 'charmap' codec can't encode character '\u2248' in position 76: character maps to <undefined>

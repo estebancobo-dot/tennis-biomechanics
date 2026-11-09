@@ -1,0 +1,30 @@
+
+== 2026-11-09 13:23:05 cola
+[us-open-2026-r4-naomi-osaka-elena-rybakina] score… (2026-11-09 13:23:06, etapa 5 de 16)
+[us-open-2026-r4-naomi-osaka-elena-rybakina] score falló: UnicodeEncodeError: 'charmap' codec can't encode character '\u2248' in position 76: character maps to <undefined>
+[zheng-qinwen-elena-rybakina] score… (2026-11-09 13:23:24, etapa 5 de 16)
+[zheng-qinwen-elena-rybakina] score falló: UnicodeEncodeError: 'charmap' codec can't encode character '\u2248' in position 76: character maps to <undefined>
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] score… (2026-11-09 13:23:37, etapa 5 de 16)
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] score falló: UnicodeEncodeError: 'charmap' codec can't encode character '\u2248' in position 76: character maps to <undefined>
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] score… (2026-11-09 13:23:52, etapa 5 de 16)
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] score falló: UnicodeEncodeError: 'charmap' codec can't encode character '\u2248' in position 76: character maps to <undefined>
+Traceback (most recent call last):
+  File "C:\tenis\tennis-biomech\src\tennisbio\cli.py", line 23, in main
+    return _main(argv)
+           ^^^^^^^^^^^
+  File "C:\tenis\tennis-biomech\src\tennisbio\cli.py", line 65, in _main
+    return app_main(args.rest)
+           ^^^^^^^^^^^^^^^^^^^
+  File "C:\tenis\tennis-biomech\src\tennisbio\app\cli.py", line 119, in main
+    print(app.status())
+  File "C:\Users\esteb\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\Lib\encodings\cp1252.py", line 19, in encode
+    return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+UnicodeEncodeError: 'charmap' codec can't encode character '\u2248' in position 3197: character maps to <undefined>
+trabajo #30: error
+trabajo #31: error
+trabajo #32: error
+trabajo #33: error
+
+ERROR: 'charmap' codec can't encode character '\u2248' in position 3197: character maps to <undefined>
+Pasa a Claude el fichero de registro (.log) de C:\tenis\output.
