@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261109234008
+Start time: 20261109234439
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 16296
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 660
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,15 +17,16 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-11-09 23:40:08] Codigo nuevo (3e316dd -> 4f65cf8): 2 ficheros
-    config/parar_pc.txt
-    config/peticion_pc.txt
-Updating 3e316dd..4f65cf8
+==> [2026-11-09 23:44:39] Codigo nuevo (4f65cf8 -> 3ee5aef): 2 ficheros
+    src/tennisbio/pipeline.py
+    tests/test_code_fingerprint.py
+Updating 4f65cf8..3ee5aef
 Fast-forward
- config/parar_pc.txt    | 2 +-
- config/peticion_pc.txt | 4 ++--
- 2 files changed, 3 insertions(+), 3 deletions(-)
-Resolved 124 packages in 0.65ms
+ src/tennisbio/pipeline.py      | 60 +++++++++++++++++++++++++++++++++++++-----
+ tests/test_code_fingerprint.py | 41 +++++++++++++++++++++++++++++
+ 2 files changed, 95 insertions(+), 6 deletions(-)
+ create mode 100644 tests/test_code_fingerprint.py
+Resolved 124 packages in 0.93ms
 Checked 89 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
@@ -39,9 +40,9 @@ yolo11m-pose_960.onnx OK 84 MB
 yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
-    (paso terminado en 4 s)
+    (paso terminado en 5 s)
 
-==> [2026-11-09 23:40:12] Que hace falta: informe
+==> [2026-11-09 23:44:44] Que hace falta: informe
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (77 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Golpes: 0 nuevos, 25 en C:\tenis\output\_smoke\exportar\golpes
@@ -69,15 +70,15 @@ Auditoría: 371 cumplidos, 19 no cumplidos, 126 sin golpes suficientes, 100 avis
   ✘ #240 Comparar la aplicación con las profesionales una vez estén los golpes: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
   ✘ #244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10): SIN HACER según el registro (#244, docs/peticiones_usuario.md)
   ✘ #245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10): SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-Hecho en 182 s, sin volver a analizar vídeo.
-    (paso terminado en 3 min 02 s)
+Hecho en 172 s, sin volver a analizar vídeo.
+    (paso terminado en 2 min 52 s)
 
-==> [2026-11-09 23:43:15] Revision automatica frente a la ejecucion anterior
+==> [2026-11-09 23:47:36] Revision automatica frente a la ejecucion anterior
 # Revisión automática: FALLOS
 Ciclo automatico terminado (informe).
     (paso terminado en 0 s)
-Empezado 2026-11-09 23:40:02 - terminado 2026-11-09 23:43:15 - duracion total 3 min 12 s
+Empezado 2026-11-09 23:44:36 - terminado 2026-11-09 23:47:36 - duracion total 2 min 59 s
 **********************
 Windows PowerShell transcript end
-End time: 20261109234315
+End time: 20261109234736
 **********************
