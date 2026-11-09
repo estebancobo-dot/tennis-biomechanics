@@ -489,6 +489,12 @@
    "video_min": 71.4,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-09 07:23"
+  },
+  {
+   "s": 1.215,
+   "video_min": 116.7,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-09 07:51"
   }
  ],
  "views:unidad": [
@@ -891,6 +897,12 @@
    "units": 880,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-09 07:23"
+  },
+  {
+   "s": 0.0827,
+   "units": 1625,
+   "match": "zheng-qinwen-elena-rybakina",
+   "date": "2026-11-09 07:51"
   }
  ],
  "fine_doubtful:unidad": [
@@ -991,6 +1003,12 @@
    "units": 1229,
    "match": "zheng-qinwen-elena-rybakina",
    "date": "2026-11-09 07:25"
+  },
+  {
+   "s": 0.1163,
+   "units": 1424,
+   "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+   "date": "2026-11-09 07:54"
   }
  ],
  "court:minuto": [
@@ -1005,6 +1023,12 @@
    "video_min": 116.7,
    "match": "zheng-qinwen-elena-rybakina",
    "date": "2026-11-09 07:26"
+  },
+  {
+   "s": 1.652,
+   "video_min": 133.4,
+   "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+   "date": "2026-11-09 07:54"
   }
  ],
  "score:unidad": [
