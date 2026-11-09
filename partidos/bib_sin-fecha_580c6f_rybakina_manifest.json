@@ -152,10 +152,10 @@
   "rewrote": {}
  },
  "fine": {
-  "fingerprint": "f4cb4dd091e1a900",
+  "fingerprint": "dcb1d4ed958e8f80",
   "version": "16",
-  "seconds": 237.5,
-  "finished": "2026-11-08 22:32:22",
+  "seconds": 238.2,
+  "finished": "2026-11-09 02:34:11",
   "summary": {
    "candidates": 278,
    "confirmed": 271,
@@ -175,13 +175,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 86.2,
-    "cuerdas_y_3d": 70.8,
-    "pista_ventana": 48.1,
-    "analisis_ventana": 35.2,
-    "recorte": 10.9,
-    "cribado": 8.6,
-    "pose": 1.0
+    "jugadora_lejana": 89.8,
+    "cuerdas_y_3d": 69.8,
+    "pista_ventana": 49.1,
+    "analisis_ventana": 36.4,
+    "recorte": 11.1,
+    "cribado": 8.3,
+    "pose": 1.1
    },
    "counts": {
     "overlap_s": 1.1,
@@ -199,10 +199,10 @@
   "rewrote": {}
  },
  "fine_opponent": {
-  "fingerprint": "dc6ee157f6736efc",
+  "fingerprint": "557cf3f961018af6",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-08 22:32:23",
+  "finished": "2026-11-09 02:34:12",
   "summary": {
    "enabled": false
   },
@@ -258,8 +258,8 @@
  "views_link": {
   "fingerprint": "16e9d349da73e870",
   "version": "1",
-  "seconds": 0.4,
-  "finished": "2026-11-08 22:32:23",
+  "seconds": 0.3,
+  "finished": "2026-11-09 02:34:12",
   "summary": {
    "strokes": 271,
    "with_replay": 54,
@@ -275,10 +275,10 @@
   }
  },
  "fine_doubtful": {
-  "fingerprint": "d678d10ce09abf75",
+  "fingerprint": "9a66d9d6e2963ab3",
   "version": "1",
-  "seconds": 34.8,
-  "finished": "2026-11-08 22:32:58",
+  "seconds": 35.0,
+  "finished": "2026-11-09 02:34:47",
   "summary": {
    "candidates": 53,
    "confirmed": 30,
@@ -298,11 +298,11 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 12.9,
-    "cuerdas_y_3d": 8.1,
-    "analisis_ventana": 6.6,
-    "pista_ventana": 6.3,
-    "recorte": 2.8,
+    "jugadora_lejana": 13.1,
+    "cuerdas_y_3d": 7.8,
+    "analisis_ventana": 6.8,
+    "pista_ventana": 6.4,
+    "recorte": 2.9,
     "cribado": 1.2,
     "pose": 0.1
    },
