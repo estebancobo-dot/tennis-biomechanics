@@ -245,3 +245,15 @@ C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN s
   sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
     identity:   0 % (1/979 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
     identity:  27 % (261/979 fotogramas (ropa)) · 30 s · quedan ≈ 84 s
+    identity:  53 % (517/979 fotogramas (ropa)) · 60 s · quedan ≈ 54 s
+    identity:  79 % (777/979 fotogramas (ropa)) · 2 min · quedan ≈ 24 s
+    identity: 100 % (979/979 fotogramas (ropa)) · 2 min · quedan ≈ 0 s
+    ropa: 979 fotogramas · leerlos 106 s, medir la ropa 8 s
+    identidad: 0/167 planos · ropa y cambios de lado de acuerdo en 0, solo cambios de lado 0, solo ropa 0, la ropa corrige el marcador en 0, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 1.65
+  [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] identity terminada a las 10:41:25 en 2.0 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] {'listo': True, 'grupos': 2, 'clic_hecho': False, 'minutos': 28.9}
+
+Listos para el clic: 6 de 6 partidos.
+termina 2026-11-09T10:41:28
