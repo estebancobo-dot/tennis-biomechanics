@@ -56,17 +56,19 @@
   "rewrote": {}
  },
  "score": {
-  "fingerprint": "8767f6ad28deb607",
-  "version": "6",
-  "seconds": 372.9,
-  "finished": "2026-11-09 10:30:21",
+  "fingerprint": "c5ae7331e460b454",
+  "version": "8",
+  "seconds": 226.3,
+  "finished": "2026-11-09 17:20:37",
   "summary": {
    "readings": 92,
    "pressure": 14,
    "samples": 325,
-   "ocr_calls": 291
+   "ocr_calls": 291,
+   "server_read": 82,
+   "server_source": "marker"
   },
-  "out_hash": "732ce6d1543f092e1a55",
+  "out_hash": "232c946b9eec128f28d7",
   "scheme": 2,
   "rewrote": {}
  },
@@ -102,26 +104,27 @@
   "rewrote": {}
  },
  "identity": {
-  "fingerprint": "12f97c95c0b81e31",
-  "version": "8",
-  "seconds": 118.0,
-  "finished": "2026-11-09 10:41:25",
+  "fingerprint": "7eb2dbee78c71f96",
+  "version": "9",
+  "seconds": 122.1,
+  "finished": "2026-11-09 17:22:39",
   "summary": {
    "runs": 167,
-   "confidence": 0.69,
-   "votes": 32,
+   "confidence": 0.71,
+   "votes": 31,
    "agree": 0,
    "ends_only": 0,
-   "clothes_only": 0,
+   "clothes_only": 153,
    "ends_won": 0,
    "clothes_won": 0,
    "doubtful": 0,
-   "none": 167,
+   "none": 14,
+   "click_by": "clothes",
    "by_end_changes": 0,
-   "by_clothes": 0,
+   "by_clothes": 153,
    "conflicts": 0,
    "conflicts_resolved": 0,
-   "decided": 0,
+   "decided": 153,
    "clothes": {
     "source": "ropa (torso y pantalón o falda, sin la pista)",
     "runs": 167,
@@ -131,10 +134,84 @@
     "far_pairs": 1,
     "far_opposite": 1.0,
     "same_game_pairs": 68,
-    "same_game_same": 0.96
+    "same_game_same": 0.96,
+    "check": {
+     "distinguishable": true,
+     "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
+     "parity_runs": 93,
+     "parity_agree": 0.91,
+     "centroid_dist": 0.406
+    }
    }
   },
-  "out_hash": "7d3a61f0c36137ae7c10",
+  "out_hash": "665b7ec582e56856803c",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "spotting": {
+  "fingerprint": "6a52a29ca5dd2c2d",
+  "version": "1",
+  "seconds": 13.6,
+  "finished": "2026-11-09 17:22:53",
+  "summary": {
+   "enabled": true,
+   "strokes": 436,
+   "near": 239,
+   "far": 197,
+   "out_of_play": 2478,
+   "threshold": 0.1,
+   "fps": 10.0,
+   "model_fps": 10.0,
+   "feature_dim": 122,
+   "audio_track": 0,
+   "seconds": {
+    "jugadores_y_audio": 0.1,
+    "rasgos": 13.4,
+    "bola": 0.0,
+    "modelo": 0.1
+   }
+  },
+  "out_hash": "89d27c1f0895e5a39cde",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "candidates": {
+  "fingerprint": "b3eb2aaff651bc7b",
+  "version": "15",
+  "seconds": 1.9,
+  "finished": "2026-11-09 17:22:55",
+  "summary": {
+   "candidates": 436,
+   "far": 197,
+   "with_audio": 349,
+   "source": "spotter",
+   "opponent_strokes": 189,
+   "identity_unknown": 56,
+   "replay_strokes_skipped": 0,
+   "replay_runs": 1,
+   "audio_track": 0
+  },
+  "out_hash": "ae8e676bb0ba1a3f461a",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "views": {
+  "fingerprint": "87dca45e445c9990",
+  "version": "6",
+  "seconds": 153.1,
+  "finished": "2026-11-09 17:25:28",
+  "summary": {
+   "views": 427,
+   "repeticion_principal": 24,
+   "lateral": 13,
+   "frontal": 9,
+   "primer_plano": 340,
+   "otra": 41,
+   "links": 1059,
+   "linked_views": 378,
+   "slowmo_links": 28
+  },
+  "out_hash": "62666bf3d88590b3969c",
   "scheme": 2,
   "rewrote": {}
  }

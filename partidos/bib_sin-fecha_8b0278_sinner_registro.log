@@ -1,0 +1,44 @@
+2026-11-09 17:16:51 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] score… (2026-11-09 17:16:51, etapa 5 de 16)
+2026-11-09 17:16:57   [score] score:   0 % (1/325 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
+2026-11-09 17:17:28   [score] score:  15 % (50/325 muestras · 31 lecturas · 39 OCR) · 30 s · quedan ≈ 3 min
+2026-11-09 17:17:58   [score] score:  30 % (99/325 muestras · 32 lecturas · 81 OCR) · 61 s · quedan ≈ 2 min
+2026-11-09 17:18:28   [score] score:  42 % (135/325 muestras · 33 lecturas · 118 OCR) · 2 min · quedan ≈ 2 min
+2026-11-09 17:18:59   [score] score:  54 % (175/325 muestras · 43 lecturas · 156 OCR) · 2 min · quedan ≈ 2 min
+2026-11-09 17:19:30   [score] score:  68 % (222/325 muestras · 57 lecturas · 195 OCR) · 3 min · quedan ≈ 71 s
+2026-11-09 17:20:00   [score] score:  81 % (263/325 muestras · 57 lecturas · 236 OCR) · 3 min · quedan ≈ 43 s
+2026-11-09 17:20:30   [score] score:  96 % (313/325 muestras · 82 lecturas · 281 OCR) · 4 min · quedan ≈ 8 s
+2026-11-09 17:20:36   [score] score: 100 % (325/325 muestras · 91 lecturas · 290 OCR) · 4 min · quedan ≈ 0 s
+2026-11-09 17:20:37   [score] marcador: 325 muestras en juego, 291 OCR (92 lecturas)
+2026-11-09 17:20:37   [score] saque en el marcador: 82 de 92 lecturas (marker; marca de color 82, sigue la alternancia en 71% de 82; aprendida no, sigue la alternancia en 70% de 83)
+2026-11-09 17:20:37 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] score terminada a las 17:20:37 en 3.8 min
+2026-11-09 17:20:37 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] identity… (2026-11-09 17:20:37, etapa 7 de 16)
+2026-11-09 17:20:43   identity:   0 % (1/979 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+2026-11-09 17:21:13   identity:  26 % (253/979 fotogramas (ropa)) · 30 s · quedan ≈ 87 s
+2026-11-09 17:21:43   identity:  52 % (507/979 fotogramas (ropa)) · 60 s · quedan ≈ 56 s
+2026-11-09 17:22:13   identity:  78 % (760/979 fotogramas (ropa)) · 2 min · quedan ≈ 26 s
+2026-11-09 17:22:39   identity: 100 % (979/979 fotogramas (ropa)) · 2 min · quedan ≈ 0 s
+2026-11-09 17:22:39   ropa: 979 fotogramas · leerlos 108 s, medir la ropa 8 s
+2026-11-09 17:22:39   identidad: 153/167 planos · ropa y cambios de lado de acuerdo en 0, solo cambios de lado 0, solo ropa 153, la ropa corrige el marcador en 0, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 1.65
+2026-11-09 17:22:39   grupos de ropa: dos personas (dos personas (ropa distinta y de acuerdo con los cambios de lado); de acuerdo con los cambios de lado 0.91 en 93 planos, distancia entre su ropa típica 0.406) · clic por la ropa
+2026-11-09 17:22:39 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] identity terminada a las 17:22:39 en 2.0 min
+2026-11-09 17:22:39 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] spotting… (2026-11-09 17:22:39, etapa 8 de 16)
+2026-11-09 17:22:53   detector entrenado: 436 golpes (239 cercanos, 197 lejanos) en 71 min de vídeo · umbral 0.1 · 14 s (jugadores_y_audio 0 s, rasgos 13 s, bola 0 s, modelo 0 s)
+2026-11-09 17:22:53 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] spotting terminada a las 17:22:53 en 14 s
+2026-11-09 17:22:53 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] candidates… (2026-11-09 17:22:53, etapa 9 de 16)
+2026-11-09 17:22:53   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 1, 'changed': 153, 'by_click': 153}
+2026-11-09 17:22:55   tramos que son repeticiones: 1 sin sonido
+2026-11-09 17:22:55   candidatos del detector entrenado: 436 (197 lejanos; 0 en repeticiones, fuera)
+2026-11-09 17:22:55 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] candidates terminada a las 17:22:55 en 2 s
+2026-11-09 17:22:55 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] views… (2026-11-09 17:22:55, etapa 10 de 16)
+2026-11-09 17:22:59   views:   0 % (1/890 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+2026-11-09 17:23:29   views:  20 % (175/890 fotogramas de otras tomas) · 30 s · quedan ≈ 2 min
+2026-11-09 17:24:00   views:  41 % (361/890 fotogramas de otras tomas) · 60 s · quedan ≈ 88 s
+2026-11-09 17:24:30   views:  59 % (525/890 fotogramas de otras tomas) · 2 min · quedan ≈ 63 s
+2026-11-09 17:25:00   views:  81 % (723/890 fotogramas de otras tomas) · 2 min · quedan ≈ 28 s
+2026-11-09 17:25:28   views: 100 % (890/890 fotogramas de otras tomas) · 2 min · quedan ≈ 0 s
+2026-11-09 17:25:28   tomas: 873 fotogramas clave y 17 exactos (2128 claves en el vídeo); lectura 20 s, personas 81 s, pista 43 s; 53 ajustes de pista
+2026-11-09 17:25:28 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] views terminada a las 17:25:28 en 2.6 min
+2026-11-09 17:25:28 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] fine… (2026-11-09 17:25:28, etapa 11 de 16)
+2026-11-09 17:25:56   ventana w000243274_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.3 s
+2026-11-09 17:25:56   ventana w000243274_3600: pose yolo en 216 de 216 fotogramas (13 s; modelo 12 s) · bola 8 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 120 px (court)
+2026-11-09 17:25:56   fine:   1 % (1/191 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
