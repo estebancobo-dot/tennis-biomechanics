@@ -1,4 +1,4 @@
-fecha: 2026-11-09T19:27:39
+fecha: 2026-11-09T19:30:11
      265.6 MB  \output\analisis
        4.2 MB  \output\auditoria
        5.7 MB  \output\benchmark
@@ -7,7 +7,7 @@ fecha: 2026-11-09T19:27:39
        0.1 MB  \output\capturas_identidad
        0.2 MB  \output\elena-rybakina-jessica-pegula-miami-2026-quarter-final
      450.2 MB  \output\entrenamiento
-     808.4 MB  \output\exportar_derecha
+     887.8 MB  \output\exportar_derecha
        536 MB  \output\exportar_reves
      525.2 MB  \output\exportar_saque
       91.8 MB  \output\informe_derecha
