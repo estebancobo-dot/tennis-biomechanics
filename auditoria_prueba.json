@@ -3,10 +3,10 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 374,
-  "falta": 17,
+  "ok": 373,
+  "falta": 19,
   "pocos datos": 126,
-  "aviso": 99
+  "aviso": 98
  },
  "items": [
   {
@@ -2884,7 +2884,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "4055 caracteres de texto, 9 vídeos, 12 gráficos",
+   "detail": "4043 caracteres de texto, 9 vídeos, 12 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -3443,15 +3443,15 @@
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
-   "status": "ok",
-   "detail": "56 de 56 registros con fecha de inicio y de fin o duración"
+   "status": "falta",
+   "detail": "55 de 56 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "41 carpetas, 28.9 GB en total (2026-11-09T06:43:22); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB"
+   "detail": "41 carpetas, 28.9 GB en total (2026-11-09T07:10:08); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB"
   },
   {
    "req": 5,
@@ -3507,7 +3507,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-09 06:42:46 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-09 07:07:48 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3647,14 +3647,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-09_0540.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el view_clips (4.2 min): CPU 25/68/100 %, iGPU 0/0/1 %, RAM máx 8.7 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina view_clips (8.2 min): CPU 28/65/98 %, iGPU 0/0/0 %, RAM máx 11.7 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina slowmo_fine (0.5 min): CPU 19/22/25 %, iGPU 84/92/99 %, RAM máx 6.0 GB → iGPU al límite; tennis-yusipopen-polufinal-gau view_clips (7.8 min): CPU 27/55/83 %, iGPU 0/0/0 %, RAM máx 6.3 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau slowmo_fine (0.2 min): CPU 24/24/24 %, iGPU 86/86/86 %, RAM máx 6.0 GB → iGPU al límite; tennis-yusipopen-final-sobolen view_clips (9.8 min): CPU 12/47/82 %, iGPU 0/0/0 %, RAM máx 6.2 GB → uso medio: margen para repartir trabajo; 27.5 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
+   "detail": "recursos_2026-11-09_0707.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el court (2.0 min): CPU 33/59/85 %, iGPU 0/0/1 %, RAM máx 8.6 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el players (1.2 min): CPU 34/76/97 %, iGPU 82/91/100 %, RAM máx 15.0 GB → iGPU al límite; us-open-2026-r4-naomi-osaka-el score (1.0 min): CPU 55/80/100 %, iGPU 58/81/91 %, RAM máx 14.3 GB → iGPU al límite; 0.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 09-11 06:42, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 09-11 07:07, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -3689,7 +3689,7 @@
    "area": "Peticiones",
    "name": "#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 1 aviso, 1 pocos datos, 3 ok; la peor: «Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin» (10 de 13 puntos de su saque vistos con su saque encontrado (77%; objetivo ≥ 85%) (1 puntos más sin nadie jugando en la c)"
+   "detail": "5 comprobaciones: 1 aviso, 1 pocos datos, 3 ok; la peor: «Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin» (10 de 13 puntos de su saque vistos con su saque encontrado (77%; objetivo ≥ 85%) (1 puntos más sin nadie jugando en la c)"
   },
   {
    "req": 11,
@@ -3989,8 +3989,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#45 Todo automático y completo: el usuario no revisa nada",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
+   "status": "ok",
+   "detail": "3 comprobaciones: 3 ok"
   },
   {
    "req": 11,
@@ -4108,8 +4108,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "ok",
-   "detail": "2 comprobaciones: 2 ok"
+   "status": "falta",
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (55 de 56 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_automatico.log: sin la fecha de sus pasos)"
   },
   {
    "req": 11,
@@ -4550,7 +4550,7 @@
    "area": "Peticiones",
    "name": "#134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06)",
    "status": "pocos datos",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
+   "detail": "2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
   },
   {
    "req": 11,
@@ -5236,7 +5236,7 @@
    "area": "Peticiones",
    "name": "#233 Una referencia completa y medida antes de validar nada",
    "status": "pocos datos",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
+   "detail": "2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 12 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
   },
   {
    "req": 11,

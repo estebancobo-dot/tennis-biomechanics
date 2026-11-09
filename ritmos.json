@@ -974,5 +974,13 @@
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-09 07:09"
   }
+ ],
+ "court:minuto": [
+  {
+   "s": 1.917,
+   "video_min": 71.4,
+   "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
+   "date": "2026-11-09 07:10"
+  }
  ]
 }

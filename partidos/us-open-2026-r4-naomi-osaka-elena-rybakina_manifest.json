@@ -44,24 +44,26 @@
   "scheme": 2
  },
  "court": {
-  "fingerprint": "e494247cb43e073e",
-  "version": "4",
-  "seconds": 270.2,
-  "finished": "2026-10-18 23:44:23",
+  "fingerprint": "614262dffcbb7884",
+  "version": "5",
+  "seconds": 136.8,
+  "finished": "2026-11-09 07:10:36",
   "summary": {
-   "segments": 275,
-   "with_court": 195,
-   "known_court_reused": 616,
-   "searched": 109,
-   "filled_same_view": 21,
-   "samples": 879,
-   "court_presets": 60,
+   "segments": 278,
+   "with_court": 197,
+   "known_court_reused": 613,
+   "searched": 111,
+   "filled_same_view": 26,
+   "samples": 881,
+   "court_presets": 62,
    "main_camera_min": 18.9,
-   "court_min": 15.2,
+   "court_min": 15.3,
    "court_share": 0.806,
-   "pitch_deg_median": 19.0
+   "pitch_deg_median": 18.9
   },
-  "scheme": 2
+  "out_hash": "83355a626b3a377e6a8a",
+  "scheme": 2,
+  "rewrote": {}
  },
  "score": {
   "fingerprint": "f04f6c9a2324dd28",
