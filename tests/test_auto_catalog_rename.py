@@ -52,7 +52,7 @@ def test_held_videos_wait_until_the_base_is_closed(tmp_path, monkeypatch):
     assert [m["video"] for m in ms] == ["old final.mp4"]
 
 
-def test_the_real_config_holds_the_users_new_videos():
+def test_the_real_config_releases_the_users_new_videos_once_the_base_is_closed():
+    """09-11: B1-B6 closed and B7 waiting only on #242 (the final test with these videos): the hold is empty."""
     from tennisbio.config import load_config
-    hold = (load_config().get("catalog") or {}).get("hold") or []
-    assert any("Sinner" in h for h in hold) and any("Pegula" in h for h in hold)
+    assert ((load_config().get("catalog") or {}).get("hold") or []) == []

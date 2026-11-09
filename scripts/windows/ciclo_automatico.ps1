@@ -273,6 +273,8 @@ function Hacer-Peticion($p) {
         # ropa (scripts/identity_prepare.py), para que la aplicacion las ensene al momento; nunca hace el clic
         $lg = "$Base\output\prueba_identidad.log"
         "Peticion $($p['id']): preparar el clic de identidad ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        # los videos nuevos de la carpeta entran antes en el catalogo (09-11: la prueba final con los videos del usuario)
+        & uv run python scripts/auto_catalog.py 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
         Subir-Registros | Out-Null
         $script:subido = Get-Date
         & uv run python scripts/identity_prepare.py "$Base\output\capturas_identidad" 2>&1 | ForEach-Object {

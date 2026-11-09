@@ -218,9 +218,9 @@ budgets:
 
 catalog:
   # the user's new videos for the final test (07-11): not added to the catalogue until the Base is closed
-  hold:
-    - "Zverev Alexander - Sinner Jannik - Indian Wells - 2026 - Semi final.mkv"
-    - "Elena Rybakina - Jessica Pegula - Miami - 2026 - Quarter final.mkv"
+  # released 09-11: the automatic table says B1-B6 closed and B7 waits only on #242 (closed by the final test with
+  # these videos); the list stays empty so new final-test videos can be held the same way
+  hold: []
 
 # Repeticiones y otras cámaras enlazadas a sus golpes (#218, tennisbio.views; etapas view_clips y slowmo_fine).
 # Las etapas views / views_link solo leen people, max_fits y samples (sus valores por defecto: no cambian aquí).
