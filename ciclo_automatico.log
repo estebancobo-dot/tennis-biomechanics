@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261109124137
+Start time: 20261109132236
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 6204
+Process ID: 17628
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -16,14 +16,76 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Registro enviado a Claude (no hace falta copiar nada).
-Registro enviado a Claude (no hace falta copiar nada).
 
+==> [2026-11-09 13:22:36] Peticion 174: indice de la aplicacion local (registro: C:\tenis\output\prueba_app.log)
+Ahora: nada en curso
+Jugadoras: 3 · partidos: 22
 
-==> [2026-11-09 12:51:10] Peticion 173: medida scripts\diag_scoreboard.py
-    (paso terminado en 1 min 02 s)
-Empezado 2026-11-09 12:41:34 - terminado 2026-11-09 12:52:13 - duracion total 10 min 38 s
-**********************
-Windows PowerShell transcript end
-End time: 20261109125213
-**********************
+Análisis:
+  rybakina · derecha: v1 · pendiente de revisar · REGRESIÓN · 444 golpes
+Partidos:
+  elena-rybakina-jessica-pegula-miami-2026-quarter-final: en curso
+  poc31_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc31_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc67_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc67_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc70_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc70_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc71_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc71_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc74_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc74_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc76_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc76_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  sin-fecha_49723c_rybakina: en curso
+  sin-fecha_8b0278_sinner: en curso
+  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5: analizado
+  tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: analizado
+  us-open-2026-r4-naomi-osaka-elena-rybakina: analizado
+  zheng-qinwen-elena-rybakina: analizado
+  zverev-alexander-sinner-jannik-indian-wells-2026-semi-final: nuevo
+Cola (0):
+Avisos:
+  [crit] Derecha de Elena Rybakina empeoró con la versión nueva: se sigue mostrando la versión 1. La nueva queda «pendiente de revisar»; en Calidad se ve qué empeoró.
+  [ok] Derecha de Elena Rybakina actualizada: 423 ✔, 34 ✘.
+4 partido(s) a recalcular, 0 informe(s); 14 prueba(s) del ciclo automático: las mantiene el ciclo
+Ahora: nada en curso
+En cola: ≈ 1 h 24 min, termina hacia las 14:47
+Jugadoras: 3 · partidos: 22
+
+Análisis:
+  rybakina · derecha: v1 · pendiente de revisar · REGRESIÓN · 444 golpes
+Partidos:
+  elena-rybakina-jessica-pegula-miami-2026-quarter-final: en curso
+  poc31_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc31_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc67_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc67_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc70_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc70_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc71_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc71_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc74_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc74_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc76_35:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  poc76_4:smoke_tennis-yusipopen-final-sobolenko-rybakin: identidad dudosa — Identidad dudosa: decidida en el 82 % de los planos, 18 % en conflicto: se analiza, pero no entra en las comparativas.
+  poc9_largo:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  sin-fecha_49723c_rybakina: en curso
+  sin-fecha_8b0278_sinner: en curso
+  smoke:smoke_tennis-yusipopen-final-sobolenko-rybakin: analizado
+  tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5: analizado
+  tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: analizado
+  us-open-2026-r4-naomi-osaka-elena-rybakina: analizado
+  zheng-qinwen-elena-rybakina: analizado
+  zverev-alexander-sinner-jannik-indian-wells-2026-semi-final: nuevo
+Cola (4):
+  #30 partido us-open-2026-r4-naomi-osaka-elena-rybakina rybakina  · pendiente · nueva versión: cambió score, identity, fine, fine_doubtful
+  #31 partido zheng-qinwen-elena-rybakina rybakina  · pendiente · nueva versión: cambió score, identity, fine, fine_doubtful
+  #32 partido tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 rybakina  · pendiente · nueva versión: cambió score, identity, fine, fine_doubtful
+  #33 partido tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 rybakina  · pendiente · nueva versión: cambió score, identity, fine, fine_doubtful
+Avisos:
+  [info] Nueva versión: recalcula 4 partido(s) ≈ 1 h 24 min, desde las cachés.
+  [crit] Derecha de Elena Rybakina empeoró con la versión nueva: se sigue mostrando la versión 1. La nueva queda «pendiente de revisar»; en Calidad se ve qué empeoró.
+  [ok] Derecha de Elena Rybakina actualizada: 423 ✔, 34 ✘.
