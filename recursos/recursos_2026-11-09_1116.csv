@@ -1,1 +1,2 @@
 hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram_python_gb,gpu_3d,gpu_compute,gpu_decode,disco,progreso_hora,progreso_pct
+2026-11-09T11:16:49,zverev-alexander-sinner-jannik-indian-wells-2026-semi-final,identity,19.0,3.0,0.0,8.1,19.8,0.3,0.0,0.0,0.0,0.0,2026-11-09 10:41:25,100.0
