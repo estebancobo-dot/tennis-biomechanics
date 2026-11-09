@@ -14942,3 +14942,15 @@
 2026-11-08 22:32:57   ventana w007936731_3600: pose hybrid en 178 de 178 fotogramas (0 s; modelo 0 s; pies en 160) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 201 px (court)
 2026-11-08 22:32:57   fine_doubtful: 100 % (53/53 golpes candidatos · 30 confirmados · 0 ventanas descartadas sin pose) · 32 s · quedan ≈ 0 s
 2026-11-08 22:32:58 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine_doubtful terminada a las 22:32:58 en 35 s
+2026-11-09 02:08:33 [tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] fine… (2026-11-09 02:08:33, etapa 11 de 14)
+2026-11-09 02:08:35   ventana w000796677_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+2026-11-09 02:08:46   ventana w000796677_3600: pose yolo en 180 de 180 fotogramas (10 s; modelo 10 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 102 px (court)
+2026-11-09 02:08:46   fine:   0 % (1/278 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-11-09 02:08:46   ventana w000828054_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.18 s
+2026-11-09 02:08:59   ventana w000828054_3600: pose yolo en 180 de 180 fotogramas (12 s; modelo 12 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 102 px (court)
+2026-11-09 02:09:01   ventana w000906110_6053 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.26 s
+2026-11-09 02:09:16   ventana w000906110_6053: pose yolo en 302 de 302 fotogramas (14 s; modelo 14 s, 2 a 960 px por perderla) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 104 px (court)
+2026-11-09 02:09:17   fine:   1 % (4/278 golpes candidatos · 4 confirmados · 0 ventanas descartadas sin pose) · 31 s · quedan ≈ 35 min
+2026-11-09 02:09:17   ventana w000935308_5536 (far, 2 candidatos): pasa · golpe de bola en su lado a 1.76 s
+2026-11-09 02:09:37   ventana w000935308_5536: pose yolo en 276 de 276 fotogramas (19 s; modelo 16 s, 47 a 960 px por perderla; buscada de nuevo 6 veces, encontrada 0) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 103 px (court)
+2026-11-09 02:09:43   ventana w001543200_8057 (far, 3 candidatos): pasa · golpe de bola en su lado a 4.68 s

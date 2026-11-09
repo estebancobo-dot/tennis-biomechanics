@@ -1,25 +1,122 @@
-﻿Peticion 154: medir validate_rv_strokes (2026-11-08T21:27:47)
-  match1_000: referencia []  detectados []  seguida 98%
+﻿Peticion 158: medir validate_rv_strokes (2026-11-09T01:51:34)
+Camino de PRODUCCIÓN: detector entrenado (spotter.enabled: true) → candidates → pasada fina
+  match1_000: analizando con las etapas del análisis…
+    AVISO: el vídeo no tiene sonido; los golpes se detectan solo con la imagen (algo peor)
+    [score] AVISO: no se pudo leer el marcador con «Rybakina» y «RacketVision»: sin marcador no se sabe quién está en cada lado; compruebe que el partido es de Elena Rybakina
+    detector entrenado: 3 golpes (2 cercanos, 1 lejanos) en 0 min de vídeo · umbral 0.1 · 14 s (jugadores_y_audio 0 s, rasgos 0 s, bola 14 s, modelo 0 s)
+    candidatos del detector entrenado: 3 (1 lejanos; 0 en repeticiones, fuera)
+    [rv_match1_000] fine terminada a las 01:52:09 en 0 s
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+    ventana w000006645_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+    fine_doubtful:  33 % (1/3 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+    ventana w000000500_3600 (near, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+load C:\Users\esteb\.cache\rtmlib\hub\checkpoints\rtmpose-x_simcc-body7_pt-body7-halpe26_700e-384x288-7fb6e239_20230606.onnx with onnxruntime backend
+    fine_doubtful:  67 % (2/3 golpes candidatos · 2 confirmados · 0 ventanas descartadas sin pose) · 66 s · quedan ≈ 33 s
+    ventana w000005649_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.33 s
+    fine_doubtful: 100 % (3/3 golpes candidatos · 3 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 0 s
+  match1_000: referencia {'near': [], 'far': [459]}  detectados {'near': [161, 479], 'far': [531]}  (detector 3, candidatos 3 de spotter)
+  match101_000: analizando con las etapas del análisis…
+    AVISO: el vídeo no tiene sonido; los golpes se detectan solo con la imagen (algo peor)
+    [score] AVISO: no se pudo leer el marcador con «Rybakina» y «RacketVision»: sin marcador no se sabe quién está en cada lado; compruebe que el partido es de Elena Rybakina
+    detector entrenado: 5 golpes (3 cercanos, 2 lejanos) en 0 min de vídeo · umbral 0.1 · 14 s (jugadores_y_audio 0 s, rasgos 0 s, bola 14 s, modelo 0 s)
+    AVISO: parece un partido de dobles (dos jugadores en la mitad cercana); no se analiza
+    [rv_match101_000] fine terminada a las 01:55:34 en 0 s
   match101_000: dobles, se omite
-  match104_000: referencia [31, 179, 315]  detectados [20, 178, 318, 451]  seguida 100%
-  match107_000: referencia [139, 329, 471]  detectados [134, 300, 472]  seguida 100%
+  match104_000: analizando con las etapas del análisis…
+    AVISO: el vídeo no tiene sonido; los golpes se detectan solo con la imagen (algo peor)
+    [score] AVISO: no se pudo leer el marcador con «Rybakina» y «RacketVision»: sin marcador no se sabe quién está en cada lado; compruebe que el partido es de Elena Rybakina
+    detector entrenado: 4 golpes (3 cercanos, 1 lejanos) en 0 min de vídeo · umbral 0.1 · 14 s (jugadores_y_audio 0 s, rasgos 0 s, bola 14 s, modelo 0 s)
+    candidatos del detector entrenado: 4 (1 lejanos; 0 en repeticiones, fuera)
+    [rv_match104_000] fine terminada a las 01:56:08 en 0 s
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+    ventana w000000000_3102 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.5 s
+    fine_doubtful:  25 % (1/4 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+    ventana w000000000_6750 (near, 3 candidatos): pasa · golpe de bola en su lado a 0.33 s
+    fine_doubtful: 100 % (4/4 golpes candidatos · 4 confirmados · 0 ventanas descartadas sin pose) · 2 min · quedan ≈ 0 s
+  match104_000: referencia {'near': [31, 179, 315], 'far': []}  detectados {'near': [20, 182, 318], 'far': [90]}  (detector 4, candidatos 4 de spotter)
+  match107_000: analizando con las etapas del análisis…
+    AVISO: el vídeo no tiene sonido; los golpes se detectan solo con la imagen (algo peor)
+    [score] AVISO: no se pudo leer el marcador con «Rybakina» y «RacketVision»: sin marcador no se sabe quién está en cada lado; compruebe que el partido es de Elena Rybakina
+    detector entrenado: 5 golpes (3 cercanos, 2 lejanos) en 0 min de vídeo · umbral 0.1 · 14 s (jugadores_y_audio 0 s, rasgos 0 s, bola 14 s, modelo 0 s)
+    AVISO: parece un partido de dobles (dos jugadores en la mitad cercana); no se analiza
+    [rv_match107_000] fine terminada a las 01:59:05 en 0 s
+  match107_000: dobles, se omite
+  match11_000: analizando con las etapas del análisis…
+    AVISO: el vídeo no tiene sonido; los golpes se detectan solo con la imagen (algo peor)
+    [score] AVISO: no se pudo leer el marcador con «Rybakina» y «RacketVision»: sin marcador no se sabe quién está en cada lado; compruebe que el partido es de Elena Rybakina
+    detector entrenado: 4 golpes (0 cercanos, 4 lejanos) en 0 min de vídeo · umbral 0.1 · 17 s (jugadores_y_audio 0 s, rasgos 0 s, bola 17 s, modelo 0 s)
+    AVISO: parece un partido de dobles (dos jugadores en la mitad cercana); no se analiza
+    [rv_match11_000] fine terminada a las 01:59:40 en 0 s
   match11_000: dobles, se omite
-  match112_000: referencia [51, 112, 192]  detectados [51, 119, 196]  seguida 100%
-  match115_000: referencia [22, 80, 152]  detectados [21, 83, 151]  seguida 100%
-  match118_000: referencia [554]  detectados [31, 358]  seguida 100%
-  match120_000: referencia [139, 341]  detectados [54, 138, 340]  seguida 86%
-  match123_000: referencia [46, 112]  detectados [45]  seguida 82%
-  match126_000: referencia [63, 202]  detectados [68, 135, 206]  seguida 100%
-  match129_000: dobles, se omite
-
-RESUMEN (jugador cercano, sin audio)
-  gt                           19
-  detected                     22
-  true_positives               14
-  precision                    0.636
-  recall                       0.737
-  f1                           0.683
-  timing_err_frames_median     1.0
-  timing_bias_frames           0.64
-  gate_misses                  0
-termina 2026-11-08T22:14:31
+  match112_000: analizando con las etapas del análisis…
+    AVISO: el vídeo no tiene sonido; los golpes se detectan solo con la imagen (algo peor)
+    [score] AVISO: no se pudo leer el marcador con «Rybakina» y «RacketVision»: sin marcador no se sabe quién está en cada lado; compruebe que el partido es de Elena Rybakina
+    detector entrenado: 8 golpes (4 cercanos, 4 lejanos) en 0 min de vídeo · umbral 0.1 · 18 s (jugadores_y_audio 0 s, rasgos 0 s, bola 18 s, modelo 0 s)
+    candidatos del detector entrenado: 8 (4 lejanos; 0 en repeticiones, fuera)
+    [rv_match112_000] fine terminada a las 02:00:16 en 0 s
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+    ventana w000000000_10324 (far, 4 candidatos): pasa · golpe de bola en su lado a 0.84 s
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+    fine_doubtful:  50 % (4/8 golpes candidatos · 4 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+    ventana w000000000_9200 (near, 4 candidatos): pasa · golpe de bola en su lado a 2.04 s
+    fine_doubtful: 100 % (8/8 golpes candidatos · 8 confirmados · 0 ventanas descartadas sin pose) · 70 s · quedan ≈ 0 s
+  match112_000: referencia {'near': [51, 112, 192], 'far': [23, 84, 155, 225]}  detectados {'near': [0, 51, 119, 196], 'far': [21, 86, 151, 225]}  (detector 8, candidatos 8 de spotter)
+  match115_000: analizando con las etapas del análisis…
+    AVISO: el vídeo no tiene sonido; los golpes se detectan solo con la imagen (algo peor)
+    [score] AVISO: no se pudo leer el marcador con «Rybakina» y «RacketVision»: sin marcador no se sabe quién está en cada lado; compruebe que el partido es de Elena Rybakina
+    detector entrenado: 6 golpes (3 cercanos, 3 lejanos) en 0 min de vídeo · umbral 0.1 · 13 s (jugadores_y_audio 0 s, rasgos 0 s, bola 12 s, modelo 0 s)
+    candidatos del detector entrenado: 6 (3 lejanos; 0 en repeticiones, fuera)
+    [rv_match115_000] fine terminada a las 02:02:23 en 0 s
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+    ventana w000000000_8700 (far, 3 candidatos): pasa · golpe de bola en su lado a 2.12 s
+    fine_doubtful:  50 % (3/6 golpes candidatos · 3 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+    ventana w000000000_7362 (near, 3 candidatos): pasa · golpe de bola en su lado a 0.84 s
+    fine_doubtful: 100 % (6/6 golpes candidatos · 6 confirmados · 0 ventanas descartadas sin pose) · 57 s · quedan ≈ 0 s
+  match115_000: referencia {'near': [22, 80, 152], 'far': [53, 116, 184]}  detectados {'near': [21, 83, 151], 'far': [53, 120, 182]}  (detector 6, candidatos 6 de spotter)
+  match118_000: analizando con las etapas del análisis…
+    AVISO: no se ven las líneas de la pista desde el fondo; cámara principal solo por el color
+    AVISO: el vídeo no tiene sonido; los golpes se detectan solo con la imagen (algo peor)
+    [score] AVISO: no se pudo leer el marcador con «Rybakina» y «RacketVision»: sin marcador no se sabe quién está en cada lado; compruebe que el partido es de Elena Rybakina
+    detector entrenado: 3 golpes (2 cercanos, 1 lejanos) en 0 min de vídeo · umbral 0.1 · 11 s (jugadores_y_audio 0 s, rasgos 0 s, bola 11 s, modelo 0 s)
+    candidatos del detector entrenado: 3 (1 lejanos; 0 en repeticiones, fuera)
+    [rv_match118_000] fine terminada a las 02:04:07 en 0 s
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+    ventana w000000000_2638 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+    fine_doubtful:  33 % (1/3 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+    ventana w000001300_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 1.9 s
+    fine_doubtful:  67 % (2/3 golpes candidatos · 2 confirmados · 0 ventanas descartadas sin pose) · 49 s · quedan ≈ 25 s
+    ventana w000006950_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.27 s
+    fine_doubtful: 100 % (3/3 golpes candidatos · 3 confirmados · 0 ventanas descartadas sin pose) · 80 s · quedan ≈ 0 s
+  match118_000: referencia {'near': [554], 'far': []}  detectados {'near': [214, 553], 'far': [73]}  (detector 3, candidatos 3 de spotter)
+  match120_000: analizando con las etapas del análisis…
+    AVISO: el vídeo no tiene sonido; los golpes se detectan solo con la imagen (algo peor)
+    [score] AVISO: no se pudo leer el marcador con «Rybakina» y «RacketVision»: sin marcador no se sabe quién está en cada lado; compruebe que el partido es de Elena Rybakina
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+    detector entrenado: 5 golpes (4 cercanos, 1 lejanos) en 0 min de vídeo · umbral 0.1 · 13 s (jugadores_y_audio 0 s, rasgos 0 s, bola 13 s, modelo 0 s)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+    candidatos del detector entrenado: 5 (1 lejanos; 0 en repeticiones, fuera)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+    [rv_match120_000] fine terminada a las 02:06:14 en 0 s
+load C:\tenis\tennis-biomech\models\rtmw3d-x.onnx with onnxruntime backend
+    ventana w000002806_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\.venv\Lib\site-packages\numpy\lib\_nanfunctions_impl.py:1396: RuntimeWarning: All-NaN slice encountered
+  return _nanquantile_unchecked(
+C:\tenis\tennis-biomech\src\tennisbio\phases.py:209: RuntimeWarning: All-NaN slice encountered
+  pk_v = np.nanmax(wv[max(0, impact - s(0.25)):impact + 2]) if impact + 2 <= T else np.nan
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning
