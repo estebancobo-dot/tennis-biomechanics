@@ -1,2 +1,33 @@
 ﻿Peticion 177: preparar el clic de identidad (2026-11-09T21:42:24)
 Vídeos en C:\tenis\videos: 6 en el catálogo (0 nuevos: —)
+[us-open-2026-r4-naomi-osaka-elena-rybakina] clic ya hecho: nada que preparar
+[zheng-qinwen-elena-rybakina] clic ya hecho: nada que preparar
+[tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5] clic ya hecho: nada que preparar
+[tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5] clic ya hecho: nada que preparar
+[elena-rybakina-jessica-pegula-miami-2026-quarter-final] pasada barata hasta la identidad (C:\tenis\biblioteca\partidos\sin-fecha\sin-fecha_49723c_rybakina)
+  [elena-rybakina-jessica-pegula-miami-2026-quarter-final] identity… (2026-11-09 21:42:33, etapa 7 de 16)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:173: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+    identity:   0 % (1/1892 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+    identity:  11 % (203/1892 fotogramas (ropa)) · 30 s · quedan ≈ 4 min
+    identity:  22 % (417/1892 fotogramas (ropa)) · 60 s · quedan ≈ 4 min
+    identity:  36 % (684/1892 fotogramas (ropa)) · 2 min · quedan ≈ 3 min
+    identity:  51 % (960/1892 fotogramas (ropa)) · 2 min · quedan ≈ 2 min
+    identity:  63 % (1191/1892 fotogramas (ropa)) · 3 min · quedan ≈ 89 s
+    identity:  76 % (1440/1892 fotogramas (ropa)) · 3 min · quedan ≈ 57 s
+    identity:  91 % (1715/1892 fotogramas (ropa)) · 4 min · quedan ≈ 22 s
+    identity: 100 % (1892/1892 fotogramas (ropa)) · 4 min · quedan ≈ 0 s
+    ropa: 1892 fotogramas · leerlos 210 s, medir la ropa 20 s
+    identidad: 258/320 planos · ropa y cambios de lado de acuerdo en 0, solo cambios de lado 258, solo ropa 0, la ropa corrige el marcador en 0, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 1.78
+    grupos de ropa: NO distinguibles (los grupos no siguen los cambios de lado del marcador (50 % de 231 planos); de acuerdo con los cambios de lado 0.5 en 231 planos, distancia entre su ropa típica 0.59) · clic por los cambios de lado
+  [elena-rybakina-jessica-pegula-miami-2026-quarter-final] identity terminada a las 21:46:34 en 4.0 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[elena-rybakina-jessica-pegula-miami-2026-quarter-final] {'listo': True, 'grupos': 2, 'clic_hecho': False, 'minutos': 4.1, 'fotos': 'fotos no distinguibles', 'motivo': 'los grupos no siguen los cambios de lado del marcador (50 % de 231 planos)', 'fotos_por': 'cambios de lado del marcador', 'distancia_fotos': None}
+[zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] clic ya hecho: nada que preparar
+
+Listos para el clic: 6 de 6 partidos.
+Fotos no distinguibles por la ropa: elena-rybakina-jessica-pegula-miami-2026-quarter-final
+termina 2026-11-09T21:46:38
