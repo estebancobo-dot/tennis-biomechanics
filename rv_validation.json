@@ -1,0 +1,269 @@
+{
+ "path": "production",
+ "path_label": "producción: las etapas del análisis (detector entrenado (spotter.enabled: true) → candidates → pasada fina)",
+ "detector": "detector entrenado (spotter.enabled: true) → candidates → pasada fina",
+ "spotter_enabled": true,
+ "spotter_unavailable": null,
+ "clips_selected": 12,
+ "clips_used": 8,
+ "clips_doubles": 4,
+ "clips_failed": 0,
+ "tol_frames": 6,
+ "tol_s": 0.24,
+ "summary": {
+  "near": {
+   "gt": 16,
+   "detected": 25,
+   "true_positives": 12,
+   "precision": 0.48,
+   "recall": 0.75,
+   "f1": 0.585,
+   "timing_err_frames_median": 2.0,
+   "timing_bias_frames": 1.5
+  },
+  "far": {
+   "gt": 13,
+   "detected": 14,
+   "true_positives": 9,
+   "precision": 0.643,
+   "recall": 0.692,
+   "f1": 0.667,
+   "timing_err_frames_median": 2.0,
+   "timing_bias_frames": -0.56
+  }
+ },
+ "notes": [
+  "Los clips de RacketVision no tienen sonido: los rasgos de sonido del detector entrenado van vacíos (se entrenó con ellos).",
+  "Cada clip dura 10 s (100 fotogramas a los 10 fps del detector): poco contexto, ninguno antes del primer segundo ni después del último.",
+  "La identidad no se puede decidir en 10 s de jugadores desconocidos: sus golpes van a strokes_doubtful.json (la aplicación también los cuenta como encontrados); aquí se leen strokes.json y strokes_doubtful.json por lado.",
+  "Referencia: contactos deducidos de la bola anotada (validation.ball_hits, la misma que el camino antiguo); la bola está anotada cada ~12 fotogramas a 60 fps."
+ ],
+ "legacy_reference": "petición 154: precisión 0,64, recall 0,74, 19 golpes (lado cercano, run_clip)",
+ "clips": [
+  {
+   "clip": "match1_000",
+   "gt": {
+    "near": [],
+    "far": [
+     459
+    ]
+   },
+   "pred": {
+    "near": [
+     161,
+     479
+    ],
+    "far": [
+     531
+    ]
+   },
+   "spotted": 3,
+   "candidates": 3,
+   "candidate_source": "spotter",
+   "fps": 60.0,
+   "doubtful": 3
+  },
+  {
+   "clip": "match104_000",
+   "gt": {
+    "near": [
+     31,
+     179,
+     315
+    ],
+    "far": []
+   },
+   "pred": {
+    "near": [
+     20,
+     182,
+     318
+    ],
+    "far": [
+     90
+    ]
+   },
+   "spotted": 4,
+   "candidates": 4,
+   "candidate_source": "spotter",
+   "fps": 60.0,
+   "doubtful": 4
+  },
+  {
+   "clip": "match112_000",
+   "gt": {
+    "near": [
+     51,
+     112,
+     192
+    ],
+    "far": [
+     23,
+     84,
+     155,
+     225
+    ]
+   },
+   "pred": {
+    "near": [
+     0,
+     51,
+     119,
+     196
+    ],
+    "far": [
+     21,
+     86,
+     151,
+     225
+    ]
+   },
+   "spotted": 8,
+   "candidates": 8,
+   "candidate_source": "spotter",
+   "fps": 25.0,
+   "doubtful": 8
+  },
+  {
+   "clip": "match115_000",
+   "gt": {
+    "near": [
+     22,
+     80,
+     152
+    ],
+    "far": [
+     53,
+     116,
+     184
+    ]
+   },
+   "pred": {
+    "near": [
+     21,
+     83,
+     151
+    ],
+    "far": [
+     53,
+     120,
+     182
+    ]
+   },
+   "spotted": 6,
+   "candidates": 6,
+   "candidate_source": "spotter",
+   "fps": 25.0,
+   "doubtful": 6
+  },
+  {
+   "clip": "match118_000",
+   "gt": {
+    "near": [
+     554
+    ],
+    "far": []
+   },
+   "pred": {
+    "near": [
+     214,
+     553
+    ],
+    "far": [
+     74
+    ]
+   },
+   "spotted": 3,
+   "candidates": 3,
+   "candidate_source": "spotter",
+   "fps": 60.0,
+   "doubtful": 3
+  },
+  {
+   "clip": "match120_000",
+   "gt": {
+    "near": [
+     139,
+     341
+    ],
+    "far": []
+   },
+   "pred": {
+    "near": [
+     168,
+     371,
+     447,
+     582
+    ],
+    "far": [
+     300
+    ]
+   },
+   "spotted": 5,
+   "candidates": 5,
+   "candidate_source": "spotter",
+   "fps": 60.0,
+   "doubtful": 5
+  },
+  {
+   "clip": "match123_000",
+   "gt": {
+    "near": [
+     46,
+     112
+    ],
+    "far": [
+     23,
+     79,
+     159
+    ]
+   },
+   "pred": {
+    "near": [
+     0,
+     45,
+     112
+    ],
+    "far": [
+     21
+    ]
+   },
+   "spotted": 4,
+   "candidates": 4,
+   "candidate_source": "spotter",
+   "fps": 25.0,
+   "doubtful": 4
+  },
+  {
+   "clip": "match126_000",
+   "gt": {
+    "near": [
+     63,
+     202
+    ],
+    "far": [
+     103,
+     175
+    ]
+   },
+   "pred": {
+    "near": [
+     4,
+     68,
+     135,
+     206
+    ],
+    "far": [
+     174,
+     235
+    ]
+   },
+   "spotted": 6,
+   "candidates": 6,
+   "candidate_source": "spotter",
+   "fps": 25.0,
+   "doubtful": 6
+  }
+ ],
+ "minutes": 4.8
+}
