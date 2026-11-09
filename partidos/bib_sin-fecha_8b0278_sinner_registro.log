@@ -429,3 +429,20 @@
 2026-11-09 18:56:14   ventana w002370137_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.7 s): puede haber golpe
 2026-11-09 18:56:14   ventana w002370137_3600: pose hybrid en 215 de 215 fotogramas (27 s; modelo 27 s; pies en 157) · bola 6 s · raqueta 40 s (1 de 3 impactos) · 3 golpes posibles · altura 961 px (segments)
 2026-11-09 18:56:14   fine_doubtful:  88 % (49/56 golpes candidatos · 31 confirmados · 0 ventanas descartadas sin pose) · 14 min · quedan ≈ 2 min
+2026-11-09 18:57:18   ventana w002925156_6949 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.04 s
+2026-11-09 18:57:18   ventana w002925156_6949: pose hybrid en 417 de 417 fotogramas (68 s; modelo 67 s; pies en 154) · bola 13 s · raqueta 32 s (2 de 2 impactos) · 2 golpes posibles · altura 1005 px (segments)
+2026-11-09 18:57:18   fine_doubtful:  91 % (51/56 golpes candidatos · 33 confirmados · 0 ventanas descartadas sin pose) · 16 min · quedan ≈ 2 min
+2026-11-09 18:57:25   ventana w003180226_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.7 s): puede haber golpe
+2026-11-09 18:57:25   ventana w003180226_3600: pose hybrid en 216 de 216 fotogramas (34 s; modelo 34 s; pies en 54) · bola 7 s · raqueta 26 s (1 de 2 impactos) · 2 golpes posibles · altura 562 px (segments)
+2026-11-09 18:58:16   ventana w003264421_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.7 s): puede haber golpe
+2026-11-09 18:58:16   ventana w003264421_3600: pose hybrid en 216 de 216 fotogramas (31 s; modelo 31 s; pies en 91) · bola 6 s · raqueta 16 s (1 de 1 impactos) · 1 golpes posibles · altura 698 px (segments)
+2026-11-09 18:58:16   fine_doubtful:  95 % (53/56 golpes candidatos · 35 confirmados · 0 ventanas descartadas sin pose) · 16 min · quedan ≈ 56 s
+2026-11-09 18:58:37   ventana w003367404_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.7 s): puede haber golpe
+2026-11-09 18:58:37   ventana w003367404_3600: pose hybrid en 215 de 215 fotogramas (35 s; modelo 34 s; pies en 137) · bola 7 s · raqueta 25 s (1 de 2 impactos) · 2 golpes posibles · altura 962 px (segments)
+2026-11-09 18:59:31   ventana w003817207_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (2.55 s): puede haber golpe
+2026-11-09 18:59:31   ventana w003817207_3600: pose hybrid en 216 de 216 fotogramas (31 s; modelo 31 s; pies en 216) · bola 7 s · raqueta 30 s (1 de 2 impactos) · 2 golpes posibles · altura 329 px (court)
+2026-11-09 18:59:31   fine_doubtful:  98 % (55/56 golpes candidatos · 37 confirmados · 0 ventanas descartadas sin pose) · 18 min · quedan ≈ 19 s
+2026-11-09 18:59:35   ventana w004015998_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+2026-11-09 18:59:35   ventana w004015998_3600: pose hybrid en 215 de 215 fotogramas (32 s; modelo 31 s; pies en 215) · bola 7 s · raqueta 14 s (1 de 1 impactos) · 1 golpes posibles · altura 241 px (segments)
+2026-11-09 18:59:35   fine_doubtful: 100 % (56/56 golpes candidatos · 38 confirmados · 0 ventanas descartadas sin pose) · 18 min · quedan ≈ 0 s
+2026-11-09 18:59:37 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] fine_doubtful terminada a las 18:59:37 en 17.9 min
