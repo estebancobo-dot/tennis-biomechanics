@@ -196,3 +196,52 @@ C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN 
     [players] players:   7 % (954/12760 fotogramas con jugadoras) · 2 min · quedan ≈ 19 min
     [score] score:  27 % (87/325 muestras · 31 lecturas · 72 OCR) · 2 min · quedan ≈ 4 min
     [players] players:  10 % (1263/12760 fotogramas con jugadoras) · 2 min · quedan ≈ 18 min
+    [score] score:  35 % (115/325 muestras · 32 lecturas · 96 OCR) · 2 min · quedan ≈ 4 min
+    [players] players:  12 % (1574/12760 fotogramas con jugadoras) · 3 min · quedan ≈ 18 min
+    [score] score:  42 % (136/325 muestras · 33 lecturas · 120 OCR) · 3 min · quedan ≈ 4 min
+    [players] players:  15 % (1883/12760 fotogramas con jugadoras) · 3 min · quedan ≈ 17 min
+    [score] score:  50 % (162/325 muestras · 34 lecturas · 145 OCR) · 3 min · quedan ≈ 3 min
+    [players] players:  17 % (2216/12760 fotogramas con jugadoras) · 4 min · quedan ≈ 17 min
+    [score] score:  60 % (195/325 muestras · 51 lecturas · 171 OCR) · 4 min · quedan ≈ 2 min
+    [players] players:  20 % (2519/12760 fotogramas con jugadoras) · 4 min · quedan ≈ 16 min
+    [score] score:  68 % (221/325 muestras · 57 lecturas · 194 OCR) · 4 min · quedan ≈ 2 min
+    [players] players:  22 % (2845/12760 fotogramas con jugadoras) · 5 min · quedan ≈ 16 min
+    [score] score:  75 % (245/325 muestras · 57 lecturas · 219 OCR) · 5 min · quedan ≈ 2 min
+    [players] players:  25 % (3150/12760 fotogramas con jugadoras) · 5 min · quedan ≈ 15 min
+    [score] score:  82 % (268/325 muestras · 57 lecturas · 242 OCR) · 5 min · quedan ≈ 66 s
+    [players] players:  27 % (3464/12760 fotogramas con jugadoras) · 6 min · quedan ≈ 15 min
+    [score] score:  93 % (303/325 muestras · 73 lecturas · 272 OCR) · 6 min · quedan ≈ 25 s
+    [players] players:  29 % (3753/12760 fotogramas con jugadoras) · 6 min · quedan ≈ 14 min
+    [score] score: 100 % (325/325 muestras · 91 lecturas · 290 OCR) · 6 min · quedan ≈ 0 s
+    [score] marcador: 325 muestras en juego, 291 OCR (92 lecturas)
+  [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] score terminada a las 10:30:21 en 6.2 min
+    [players] players:  33 % (4181/12760 fotogramas con jugadoras) · 7 min · quedan ≈ 13 min
+    [players] players:  37 % (4683/12760 fotogramas con jugadoras) · 7 min · quedan ≈ 12 min
+    [players] players:  41 % (5181/12760 fotogramas con jugadoras) · 8 min · quedan ≈ 11 min
+    [players] players:  45 % (5694/12760 fotogramas con jugadoras) · 8 min · quedan ≈ 10 min
+    [players] players:  49 % (6189/12760 fotogramas con jugadoras) · 9 min · quedan ≈ 9 min
+    [players] players:  52 % (6686/12760 fotogramas con jugadoras) · 9 min · quedan ≈ 8 min
+    [players] players:  56 % (7172/12760 fotogramas con jugadoras) · 10 min · quedan ≈ 7 min
+    [players] players:  60 % (7664/12760 fotogramas con jugadoras) · 10 min · quedan ≈ 7 min
+    [players] players:  64 % (8168/12760 fotogramas con jugadoras) · 11 min · quedan ≈ 6 min
+    [players] players:  68 % (8680/12760 fotogramas con jugadoras) · 11 min · quedan ≈ 5 min
+    [players] players:  72 % (9177/12760 fotogramas con jugadoras) · 12 min · quedan ≈ 5 min
+    [players] players:  76 % (9672/12760 fotogramas con jugadoras) · 12 min · quedan ≈ 4 min
+    [players] players:  80 % (10167/12760 fotogramas con jugadoras) · 13 min · quedan ≈ 3 min
+    [players] players:  84 % (10666/12760 fotogramas con jugadoras) · 13 min · quedan ≈ 3 min
+    [players] players:  88 % (11174/12760 fotogramas con jugadoras) · 14 min · quedan ≈ 2 min
+    [players] players:  92 % (11678/12760 fotogramas con jugadoras) · 14 min · quedan ≈ 78 s
+    [players] players:  95 % (12141/12760 fotogramas con jugadoras) · 15 min · quedan ≈ 44 s
+    [players] players:  99 % (12629/12760 fotogramas con jugadoras) · 15 min · quedan ≈ 9 s
+    [players] players: 100 % (12760/12760 fotogramas con jugadoras) · 15 min · quedan ≈ 0 s
+    [players] tiempo: 15.2 min para 12760 fotogramas a 960 px · modelo 12.7 min · leer vídeo y preparar la entrada 15.1 min en otro hilo (espera real 2.4 min) · apariencia 0.2 min en otro hilo
+  [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] players terminada a las 10:39:19 en 15.2 min (6.2 min a la vez que otra etapa)
+  [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] audio… (2026-11-09 10:39:19, etapa 6 de 16)
+    audio:   7 % (300/4260 s de sonido) · 0 s · quedan ≈ 0 s
+    audio: 100 % (4260/4260 s de sonido) · 8 s · quedan ≈ 0 s
+  [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] audio terminada a las 10:39:27 en 8 s
+  [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] identity… (2026-11-09 10:39:27, etapa 7 de 16)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+    identity:   0 % (1/979 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+    identity:  27 % (261/979 fotogramas (ropa)) · 30 s · quedan ≈ 84 s

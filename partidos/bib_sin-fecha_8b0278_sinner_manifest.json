@@ -54,5 +54,51 @@
   "out_hash": "e101770424e2fd2d42ee",
   "scheme": 2,
   "rewrote": {}
+ },
+ "score": {
+  "fingerprint": "8767f6ad28deb607",
+  "version": "6",
+  "seconds": 372.9,
+  "finished": "2026-11-09 10:30:21",
+  "summary": {
+   "readings": 92,
+   "pressure": 14,
+   "samples": 325,
+   "ocr_calls": 291
+  },
+  "out_hash": "732ce6d1543f092e1a55",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "players": {
+  "fingerprint": "6a7e3fe811e933eb",
+  "version": "4",
+  "seconds": 910.6,
+  "finished": "2026-11-09 10:39:19",
+  "summary": {
+   "frames": 12760,
+   "wall_min": 15.2,
+   "model_min": 12.7,
+   "read_min": 15.1,
+   "wait_min": 2.4,
+   "appearance_min": 0.2
+  },
+  "out_hash": "2b924f8b6b073b46fbfd",
+  "scheme": 2,
+  "rewrote": {},
+  "overlap_s": 372.9
+ },
+ "audio": {
+  "fingerprint": "908cb475876cb10e",
+  "version": "2",
+  "seconds": 8.4,
+  "finished": "2026-11-09 10:39:27",
+  "summary": {
+   "onsets": 4759,
+   "tracks": 1
+  },
+  "out_hash": "7010857a970e64547781",
+  "scheme": 2,
+  "rewrote": {}
  }
 }
