@@ -682,6 +682,37 @@ def _sides_of(item: dict | None) -> tuple[int, int] | None:
     return (int(m.group(1)), int(m.group(2))) if m else None
 
 
+def with_click(d: Path, summ: dict | None) -> dict | None:
+    """The identity summary once the user's click is applied (09-11): the click (identidad_clic.json) is applied by the
+    candidates stage, never written back to identity.json, so the stage's own summary still said «0 decididos» for a
+    match decided by the click (Osaka: 0 of 148 in the audit, 148 of 148 in the analysis). With a click, the runs decided
+    are those of identity.json after apply_pick, and the two cues compared are the clothes groups and the end changes
+    (the identity stage's own check, parity_agree): the click names her group, the groups are checked by the ends."""
+    from .identity import PICK_FILE, apply_pick
+    if not summ:
+        return summ
+    pf, idf = _mf.at(d, PICK_FILE), _mf.at(d, "identity.json")
+    if not pf.exists() or not idf.exists():
+        return summ
+    try:
+        ident = json.loads(idf.read_text(encoding="utf-8"))
+        pick = json.loads(pf.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return summ
+    new, why = apply_pick(ident, pick)
+    if why.get("pick") != "aplicado":
+        return summ
+    runs = new.get("runs", [])
+    out = {**summ, "runs": len(runs), "decided": sum(r.get("near_is_target") is not None for r in runs),
+           "none": sum(r.get("near_is_target") is None for r in runs), "click": int(why.get("by_click") or 0)}
+    ck = ((summ.get("clothes") or {}).get("check") or {})
+    if ck.get("parity_agree") is not None and ck.get("parity_runs"):
+        n = int(ck["parity_runs"])
+        out.update(agree=int(round(float(ck["parity_agree"]) * n)), ends_won=n - int(round(float(ck["parity_agree"]) * n)),
+                   clothes_won=0, doubtful=0)
+    return out
+
+
 def identity_item(match: str, summ: dict | None, sides: tuple[int, int] | None) -> dict:
     """#23: she is followed across the changes of ends in one match, from the identity stage's summary (manifest):
     the runs decided, the two independent cues agreeing (end changes read on the scoreboard and her clothes), the
@@ -718,6 +749,7 @@ def identity_item(match: str, summ: dict | None, sides: tuple[int, int] | None) 
                  + ("" if same is None else f"; misma ropa dentro de un juego {same:.0%} (objetivo ≥ "
                     f"{IDENTITY_SAME_GAME_MIN:.0%})") + ends
                  + (f"; dudosos {summ.get('doubtful', 0)}, sin decidir {summ.get('none', 0)}")
+                 + (f"; con su clic {summ['click']}" if summ.get("click") else "")
                  + (f" · falla: {', '.join(bad)}" if bad else "") + ". Sin verdad anotada: coherencia, no validación")
 
 
@@ -839,7 +871,7 @@ def b4_items(match_dirs: list[Path], items: list[dict], stroke: str, near: int, 
             mf = _mf.at(d, "manifest.json")
             man = json.loads(mf.read_text(encoding="utf-8")) if mf.exists() else {}
             sides = _sides_of(found[d.name])
-            out.append(identity_item(d.name, (man.get("identity") or {}).get("summary"), sides))
+            out.append(identity_item(d.name, with_click(d, (man.get("identity") or {}).get("summary")), sides))
             st = _mf.at(d, "strokes.json")
             far_s = [s for s in json.loads(st.read_text(encoding="utf-8")) if s.get("side") == "far"] if st.exists() else None
             cf, n_far = _mf.at(d, "candidates.json"), None

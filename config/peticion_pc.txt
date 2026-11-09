@@ -674,3 +674,9 @@ script: diag_identity
 # 176 (09-11): la identidad de Rybakina-Pegula decide 0 de 148 planos en el analisis completo. Fotogramas enteros
 # de 24 planos de cada partido con lo que uso la identidad (juegos leidos, cambios de lado, grupo de ropa, votos),
 # para ver que senal falla; los 4 partidos de siempre sirven de comparacion. A pc-logs/capturas_diag
+---
+id: 177
+accion: identidad
+# 177 (09-11): identidad v10 (solo lecturas del marcador posibles y sin retroceso cuentan los cambios de lado: en Miami
+# un rotulo de estadisticas y una lectura sin el 2o set invertian el lado). Fotos de Rybakina-Pegula (las dos de blanco:
+# fotos por cambios de lado) para comprobar que son dos personas antes de pedir el clic

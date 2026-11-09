@@ -79,3 +79,16 @@ def test_near_receives_when_the_opponent_serves():
     kps[8, 10] = [115, 200]
     kps[22:26, 10] = [115, 200]                                   # no return (an ace): no answer
     assert near_receives(kps, conf, fps, 200, [12]) is None
+
+
+def test_clean_games_drops_statistics_boxes_and_lost_set_columns():
+    # 09-11, Rybakina-Pegula: «1ST SERVE PTS WON 10/18 9/10» read as games, and a reading with the first set only
+    from tennisbio.identity import clean_games
+    R = [{"t": 1, "games": [[0, 1]]}, {"t": 2, "games": [[1, 4]]}, {"t": 3, "games": [[1, 9], [0, 1], [1, 0]]},
+         {"t": 4, "games": [[2, 6], [0, 0]]}, {"t": 5, "games": [[2, 6], [2, 1]]}, {"t": 6, "games": [[2, 6]]},
+         {"t": 7, "games": [[2, 6], [2, 2]]}, {"t": 8, "points": ["15", "0"]}]
+    assert [r["t"] for r in clean_games(R)] == [1, 2, 4, 5, 7, 8]
+    # a finished set read at its end, then the new set's column: kept
+    R = [{"t": 1, "games": [[5, 2]]}, {"t": 2, "games": [[6, 2]]}, {"t": 3, "games": [[6, 2], [0, 0]]}]
+    assert len(clean_games(R)) == 3
+    assert clean_games([]) == []

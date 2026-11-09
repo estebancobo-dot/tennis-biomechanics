@@ -129,3 +129,19 @@ def test_far_end_detail_lists_what_is_measured_there():
     assert "posición en la pista 80%" in d and "desplazamiento 80%" in d and "altura del impacto 80%" in d
     assert "destino 70%" in d and "≤ 0,2 s del impacto en 1" in d and "2 sin pose" in d
     assert A.far_end_item("m", (10, 10), fine, far[:7] + far[8:] + far[8:9])["status"] == "aviso"     # 70 % with position
+
+
+def test_identity_counts_the_users_click(tmp_path):
+    # 09-11 (Osaka): the click decides every run in the analysis, but identity.json (before the click) said 0 decided
+    runs = [{"start": i * 100, "end": i * 100 + 90, "cluster": i % 2, "clothes_margin": 0.6, "near_is_target": None,
+             "method": None} for i in range(148)]
+    (tmp_path / "identity.json").write_text(json.dumps({"fps": 25.0, "click_by": "clothes", "runs": runs}), encoding="utf-8")
+    summ = {"runs": 148, "decided": 0, "agree": 0, "none": 148,
+            "clothes": {"same_game_same": 0.95, "check": {"parity_agree": 0.95, "parity_runs": 136}}}
+    assert A.identity_item("m", A.with_click(tmp_path, summ), (93, 79))["status"] == "aviso"    # no click: undecided
+    (tmp_path / "identidad_clic.json").write_text(json.dumps({"t": 2.0, "near_is_her": True}), encoding="utf-8")
+    s = A.with_click(tmp_path, summ)
+    assert s["decided"] == 148 and s["click"] == 148
+    it = A.identity_item("m", s, (93, 79))
+    assert it["status"] == "ok", it["detail"]
+    assert "con su clic 148" in it["detail"]
