@@ -30694,7 +30694,7 @@
    "elbow_impact_deg": null,
    "non_elbow_impact_deg": null,
    "non_arm_extension_loaded_deg": null,
-   "contact_height_pct": null,
+   "contact_height_pct": 42.43157334995911,
    "contact_lateral_pct": null,
    "toss_above_head_bh": -0.18062993451774884,
    "base_width_loaded_pct": null,
@@ -30783,16 +30783,36 @@
    "pose_ratio": 0.74
   },
   "camera_pitch_deg": 18.5,
+  "court_pos_m": [
+   2.49,
+   -4.31
+  ],
+  "far_measure_refind": [
+   "court_pos_m",
+   "displacement_m",
+   "pos_at_opp_m",
+   "contact_height_pct"
+  ],
+  "displacement_m": 7.77,
+  "pos_at_opp_m": [
+   -3.74,
+   0.35
+  ],
   "bounce_court_m": [
    2.5,
    1.23
   ],
+  "far_measure_source": "refind",
   "point_won": false,
   "is_return": false,
   "technique": {
    "classes": {
     "ball_speed": "lenta",
-    "intent": "neutra",
+    "ball_height": "cadera",
+    "depth": "muy atrás",
+    "court_side": "lado de su derecha",
+    "width": "muy abierta",
+    "intent": "defensa",
     "contact_type": "tras el bote",
     "play": "inicio del punto"
    },
@@ -33364,7 +33384,7 @@
    "elbow_impact_deg": null,
    "non_elbow_impact_deg": null,
    "non_arm_extension_loaded_deg": null,
-   "contact_height_pct": null,
+   "contact_height_pct": 48.43674981838909,
    "contact_lateral_pct": null,
    "toss_above_head_bh": null,
    "base_width_loaded_pct": null,
@@ -33441,11 +33461,23 @@
    "court": "sin_pies"
   },
   "camera_pitch_deg": 18.3,
+  "court_pos_m": [
+   3.79,
+   -1.54
+  ],
+  "far_measure_refind": [
+   "court_pos_m",
+   "contact_height_pct"
+  ],
+  "far_measure_source": "refind",
   "outcome": "rally",
   "point_won": false,
   "technique": {
    "classes": {
     "ball_speed": "rápida",
+    "ball_height": "cadera",
+    "depth": "1-2 m detrás",
+    "court_side": "lado de su derecha",
     "intent": "neutra"
    },
    "phases": {},
@@ -33935,7 +33967,7 @@
    "elbow_impact_deg": null,
    "non_elbow_impact_deg": null,
    "non_arm_extension_loaded_deg": null,
-   "contact_height_pct": null,
+   "contact_height_pct": 29.796858779835837,
    "contact_lateral_pct": null,
    "toss_above_head_bh": null,
    "base_width_loaded_pct": null,
@@ -34010,10 +34042,22 @@
    "court": "sin_pies"
   },
   "camera_pitch_deg": 18.3,
+  "court_pos_m": [
+   3.82,
+   -1.97
+  ],
+  "far_measure_refind": [
+   "court_pos_m",
+   "contact_height_pct"
+  ],
+  "far_measure_source": "refind",
   "outcome": "rally",
   "point_won": true,
   "technique": {
    "classes": {
+    "ball_height": "rodilla",
+    "depth": "1-2 m detrás",
+    "court_side": "lado de su derecha",
     "intent": "neutra",
     "play": "resto",
     "return_side": "iguales"
@@ -34101,7 +34145,7 @@
    "elbow_impact_deg": null,
    "non_elbow_impact_deg": null,
    "non_arm_extension_loaded_deg": null,
-   "contact_height_pct": null,
+   "contact_height_pct": 43.995606363175305,
    "contact_lateral_pct": null,
    "toss_above_head_bh": null,
    "base_width_loaded_pct": null,
@@ -34198,15 +34242,35 @@
    "court": "sin_pies"
   },
   "camera_pitch_deg": 18.3,
+  "court_pos_m": [
+   4.15,
+   -1.2
+  ],
+  "far_measure_refind": [
+   "court_pos_m",
+   "displacement_m",
+   "pos_at_opp_m",
+   "contact_height_pct"
+  ],
+  "displacement_m": 0.78,
+  "pos_at_opp_m": [
+   3.65,
+   -1.8
+  ],
   "bounce_court_m": [
    3.78,
    5.0
   ],
+  "far_measure_source": "refind",
   "point_won": true,
   "is_return": false,
   "technique": {
    "classes": {
     "ball_speed": "muy rápida",
+    "ball_height": "cadera",
+    "depth": "1-2 m detrás",
+    "court_side": "lado de su derecha",
+    "width": "centrada",
     "intent": "defensa",
     "contact_type": "tras el bote"
    },
@@ -40230,7 +40294,7 @@
    "elbow_impact_deg": null,
    "non_elbow_impact_deg": null,
    "non_arm_extension_loaded_deg": null,
-   "contact_height_pct": null,
+   "contact_height_pct": 38.61130973616096,
    "contact_lateral_pct": null,
    "toss_above_head_bh": null,
    "base_width_loaded_pct": null,
@@ -40307,11 +40371,31 @@
    "court": "sin_pies"
   },
   "camera_pitch_deg": 18.2,
+  "court_pos_m": [
+   3.75,
+   -1.53
+  ],
+  "far_measure_refind": [
+   "court_pos_m",
+   "displacement_m",
+   "pos_at_opp_m",
+   "contact_height_pct"
+  ],
+  "displacement_m": 0.0,
+  "pos_at_opp_m": [
+   3.75,
+   -1.54
+  ],
+  "far_measure_source": "refind",
   "outcome": "rally",
   "point_won": false,
   "technique": {
    "classes": {
     "ball_speed": "muy rápida",
+    "ball_height": "cadera",
+    "depth": "1-2 m detrás",
+    "court_side": "lado de su derecha",
+    "width": "centrada",
     "intent": "defensa"
    },
    "phases": {},

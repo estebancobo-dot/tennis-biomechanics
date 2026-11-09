@@ -1,6 +1,6 @@
-# Revisión automática: FALLOS
+# Revisión automática: REGRESIÓN
 
-370 cumplidos · 17 no cumplidos · 126 sin golpes suficientes · 101 avisos (antes: 367 cumplidos, 21 no cumplidos)
+368 cumplidos · 17 no cumplidos · 126 sin golpes suficientes · 103 avisos (antes: 370 cumplidos, 17 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 113 de 245
 
@@ -141,9 +141,7 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 
-## Mejora
+## Empeora respecto a la ejecución anterior
 
-- Registros con fecha y duración: falta → ok
-- Golpes inventados: precisión en F3Set ≥ 0.94: falta → ok
-- #66 Fechas y duración en los registros: falta → ok
-- #155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1: falta → aviso
+- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: la última petición (09-11 03:20) no empezó por GitHub Actions; el último trabajo por Actions fue el 09-11 02:55
+- **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (09-11 03:20) no empezó por GitHub Actions; el último trabajo por Actions fue el 09-11 02:
