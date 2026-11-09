@@ -99,26 +99,27 @@
   "scheme": 2
  },
  "identity": {
-  "fingerprint": "8c43c70885810de6",
-  "version": "8",
-  "seconds": 82.1,
-  "finished": "2026-11-08 10:44:43",
+  "fingerprint": "08beae2691284b51",
+  "version": "9",
+  "seconds": 77.3,
+  "finished": "2026-11-09 13:28:19",
   "summary": {
    "runs": 148,
-   "confidence": 0.95,
-   "votes": 136,
-   "agree": 129,
+   "confidence": 0.58,
+   "votes": 62,
+   "agree": 0,
    "ends_only": 0,
-   "clothes_only": 12,
+   "clothes_only": 0,
    "ends_won": 0,
-   "clothes_won": 7,
+   "clothes_won": 0,
    "doubtful": 0,
-   "none": 0,
-   "by_end_changes": 129,
-   "by_clothes": 148,
+   "none": 148,
+   "click_by": "clothes",
+   "by_end_changes": 0,
+   "by_clothes": 0,
    "conflicts": 0,
-   "conflicts_resolved": 7,
-   "decided": 148,
+   "conflicts_resolved": 0,
+   "decided": 0,
    "clothes": {
     "source": "ropa (torso y pantalón o falda, sin la pista)",
     "runs": 148,
@@ -128,29 +129,37 @@
     "far_pairs": 0,
     "far_opposite": null,
     "same_game_pairs": 117,
-    "same_game_same": 0.95
+    "same_game_same": 0.95,
+    "check": {
+     "distinguishable": true,
+     "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
+     "parity_runs": 136,
+     "parity_agree": 0.95,
+     "centroid_dist": 0.845
+    }
    }
   },
-  "out_hash": "b26672998987ba611a36",
-  "scheme": 2
+  "out_hash": "d9a00df5f73f5fe67242",
+  "scheme": 2,
+  "rewrote": {}
  },
  "candidates": {
-  "fingerprint": "3fab17a7b559f8f7",
+  "fingerprint": "e31b8c6037cded5a",
   "version": "15",
-  "seconds": 4.1,
-  "finished": "2026-11-08 22:15:59",
+  "seconds": 3.0,
+  "finished": "2026-11-09 13:28:39",
   "summary": {
-   "candidates": 357,
+   "candidates": 359,
    "far": 162,
    "with_audio": 312,
    "source": "spotter",
    "opponent_strokes": 170,
-   "identity_unknown": 14,
+   "identity_unknown": 13,
    "replay_strokes_skipped": 5,
    "replay_runs": 2,
    "audio_track": 3
   },
-  "out_hash": "d8914555de5044e41503",
+  "out_hash": "83a871df73b77cd105c6",
   "scheme": 2,
   "rewrote": {}
  },
@@ -216,10 +225,10 @@
   "rewrote": {}
  },
  "spotting": {
-  "fingerprint": "1828e31ffb03ec34",
+  "fingerprint": "57cb46d3c7f20d4b",
   "version": "1",
   "seconds": 16.8,
-  "finished": "2026-11-04 16:53:26",
+  "finished": "2026-11-09 13:28:36",
   "summary": {
    "enabled": true,
    "strokes": 351,
@@ -233,13 +242,14 @@
    "audio_track": 3,
    "seconds": {
     "jugadores_y_audio": 1.5,
-    "rasgos": 15.1,
+    "rasgos": 15.2,
     "bola": 0.0,
     "modelo": 0.1
    }
   },
   "out_hash": "8e8ed78f84dde2e080a1",
-  "scheme": 2
+  "scheme": 2,
+  "rewrote": {}
  },
  "views": {
   "fingerprint": "c8ab1a4971274109",

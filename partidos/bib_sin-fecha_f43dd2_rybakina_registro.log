@@ -9322,3 +9322,25 @@
 2026-11-09 13:27:02 [us-open-2026-r4-naomi-osaka-elena-rybakina] score terminada a las 13:27:02 en 4.0 min
 2026-11-09 13:27:02 [us-open-2026-r4-naomi-osaka-elena-rybakina] identity… (2026-11-09 13:27:02, etapa 7 de 16)
 2026-11-09 13:27:04   identity:   0 % (1/880 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+2026-11-09 13:27:34   identity:  43 % (376/880 fotogramas (ropa)) · 31 s · quedan ≈ 41 s
+2026-11-09 13:28:04   identity:  80 % (706/880 fotogramas (ropa)) · 61 s · quedan ≈ 15 s
+2026-11-09 13:28:19   identity: 100 % (880/880 fotogramas (ropa)) · 75 s · quedan ≈ 0 s
+2026-11-09 13:28:19   ropa: 880 fotogramas · leerlos 64 s, medir la ropa 11 s
+2026-11-09 13:28:19   identidad: 0/148 planos · ropa y cambios de lado de acuerdo en 0, solo cambios de lado 0, solo ropa 0, la ropa corrige el marcador en 0, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 4.4
+2026-11-09 13:28:19   grupos de ropa: dos personas (dos personas (ropa distinta y de acuerdo con los cambios de lado); de acuerdo con los cambios de lado 0.95 en 136 planos, distancia entre su ropa típica 0.845) · clic por la ropa
+2026-11-09 13:28:19 [us-open-2026-r4-naomi-osaka-elena-rybakina] identity terminada a las 13:28:19 en 1.3 min
+2026-11-09 13:28:19 [us-open-2026-r4-naomi-osaka-elena-rybakina] spotting… (2026-11-09 13:28:19, etapa 8 de 16)
+2026-11-09 13:28:36   detector entrenado: 351 golpes (192 cercanos, 159 lejanos) en 71 min de vídeo · umbral 0.1 · 15 s (jugadores_y_audio 2 s, rasgos 15 s, bola 0 s, modelo 0 s)
+2026-11-09 13:28:36 [us-open-2026-r4-naomi-osaka-elena-rybakina] spotting terminada a las 13:28:36 en 17 s
+2026-11-09 13:28:36 [us-open-2026-r4-naomi-osaka-elena-rybakina] candidates… (2026-11-09 13:28:36, etapa 9 de 16)
+2026-11-09 13:28:37   sonido: pista 4 de 4 (la que coincide con los golpes)
+2026-11-09 13:28:37   identidad con el clic: {'pick': 'aplicado', 'her_cluster': 0, 'changed': 148, 'by_click': 148}
+2026-11-09 13:28:39   tramos que son repeticiones: 2 lenta
+2026-11-09 13:28:39   identidad por el marcador (su saque, primer golpe del punto, identidad sin decidir): 4
+2026-11-09 13:28:39   saques añadidos por el marcador (su saque no visto, el resto de la rival sí): 13
+2026-11-09 13:28:39   candidatos del detector entrenado: 359 (162 lejanos; 5 en repeticiones, fuera)
+2026-11-09 13:28:39 [us-open-2026-r4-naomi-osaka-elena-rybakina] candidates terminada a las 13:28:39 en 3 s
+2026-11-09 13:28:39 [us-open-2026-r4-naomi-osaka-elena-rybakina] views… (2026-11-09 13:28:39, etapa 10 de 16)
+2026-11-09 13:28:43   views:   0 % (1/964 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+2026-11-09 13:29:13   views:  25 % (239/964 fotogramas de otras tomas) · 30 s · quedan ≈ 2 min
+2026-11-09 13:29:43   views:  49 % (468/964 fotogramas de otras tomas) · 60 s · quedan ≈ 64 s
