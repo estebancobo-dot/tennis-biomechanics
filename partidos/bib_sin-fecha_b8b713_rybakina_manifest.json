@@ -252,10 +252,10 @@
   "rewrote": {}
  },
  "views": {
-  "fingerprint": "b96234985a5585fa",
+  "fingerprint": "b41910e1ffc57278",
   "version": "6",
-  "seconds": 477.4,
-  "finished": "2026-11-08 03:50:28",
+  "seconds": 501.2,
+  "finished": "2026-11-09 14:30:21",
   "summary": {
    "views": 1673,
    "repeticion_principal": 76,
@@ -268,7 +268,8 @@
    "slowmo_links": 41
   },
   "out_hash": "13c46c9e5af228853e84",
-  "scheme": 2
+  "scheme": 2,
+  "rewrote": {}
  },
  "views_link": {
   "fingerprint": "18454ee3322f1079",
