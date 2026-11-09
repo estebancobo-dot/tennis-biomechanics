@@ -458,6 +458,12 @@ accion: identidad
 ---
 id: 168
 accion: identidad
+---
+id: 169
+accion: identidad
+# 169 (09-11): las 2 fotos de Rybakina-Pegula eran la misma jugadora (las dos de blanco: los grupos de ropa no eran
+# las dos personas). Etapa identity v9: los grupos deben seguir los cambios de lado del marcador; si no, fotos por
+# lado de pista o sin clic. Comprobar en estado.json "fotos" de cada partido y <partido>_identidad.json
 # 168 (09-11): comprobar que el clic del usuario en Zverev-Sinner ha llegado (estado.json clic_hecho); los partidos
 # con el clic hecho se saltan, es rapido
 # 167 (09-11): la 166 usaba otra carpeta (el id del partido, no la carpeta real) y rehacia la pasada barata de los 4
