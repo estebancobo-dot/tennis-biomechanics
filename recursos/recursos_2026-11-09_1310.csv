@@ -178,3 +178,15 @@ hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram
 2026-11-09T13:59:25,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,identity,16.0,6.2,0.0,6.7,19.8,0.5,0.0,0.0,0.0,0.0,2026-11-09 13:59:24,100.0
 2026-11-09T13:59:41,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,identity,22.0,6.1,3.0,6.8,19.8,0.5,0.0,0.0,0.0,0.0,2026-11-09 13:59:24,100.0
 2026-11-09T13:59:58,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,identity,34.0,6.2,0.0,6.7,19.8,0.5,0.0,0.0,0.0,0.0,2026-11-09 13:59:24,100.0
+2026-11-09T14:00:14,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,views,34.0,11.9,0.0,7.1,19.8,0.5,63.0,0.0,0.0,3.0,2026-11-09 14:00:08,0.1
+2026-11-09T14:00:31,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,views,45.0,13.8,0.0,7.0,19.8,0.5,59.0,0.0,0.0,0.0,2026-11-09 14:00:08,0.1
+2026-11-09T14:00:48,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,views,83.0,10.7,0.0,6.8,19.8,0.6,78.0,0.0,0.0,0.0,2026-11-09 14:00:39,10.3
+2026-11-09T14:01:05,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,views,35.0,1.4,24.9,6.7,19.8,0.5,71.0,0.0,0.0,0.0,2026-11-09 14:00:39,10.3
+2026-11-09T14:01:22,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,views,86.0,11.3,0.0,7.0,19.8,0.5,71.0,0.0,0.0,0.0,2026-11-09 14:01:10,21.0
+2026-11-09T14:01:39,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,views,43.0,12.6,0.0,6.8,19.8,0.5,75.0,0.0,0.0,0.0,2026-11-09 14:01:10,21.0
+2026-11-09T14:01:56,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,views,21.0,3.4,0.0,6.7,19.8,0.5,66.0,0.0,0.0,0.0,2026-11-09 14:01:40,31.9
+2026-11-09T14:02:12,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,views,24.0,7.1,0.0,6.7,19.8,0.5,85.0,0.0,0.0,0.0,2026-11-09 14:02:10,42.5
+2026-11-09T14:02:29,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,views,21.0,3.9,30.1,6.7,19.8,0.5,0.0,0.0,0.0,0.0,2026-11-09 14:02:10,42.5
+2026-11-09T14:02:46,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,views,77.0,11.1,0.0,6.7,19.8,0.5,52.0,0.0,0.0,0.0,2026-11-09 14:02:40,53.2
+2026-11-09T14:03:03,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,views,65.0,17.0,0.0,6.8,19.8,0.5,0.0,0.0,0.0,0.0,2026-11-09 14:02:40,53.2
+2026-11-09T14:03:20,tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5,views,25.0,2.8,65.6,6.7,19.8,0.5,76.0,0.0,0.0,0.0,2026-11-09 14:03:10,63.9
