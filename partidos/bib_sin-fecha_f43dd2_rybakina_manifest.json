@@ -152,10 +152,10 @@
   "rewrote": {}
  },
  "fine": {
-  "fingerprint": "7d7d877796063f1d",
+  "fingerprint": "83a9537190c6dbeb",
   "version": "16",
-  "seconds": 251.9,
-  "finished": "2026-11-09 02:22:01",
+  "seconds": 216.4,
+  "finished": "2026-11-09 04:02:26",
   "summary": {
    "candidates": 173,
    "confirmed": 169,
@@ -168,22 +168,21 @@
     "windows_passed": 102,
     "windows_ungated": 0,
     "reasons": {
-     "detector": 41,
      "golpe_de_bola": 40,
+     "detector": 41,
      "bola_no_vista": 21
     },
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 35.3,
-    "jugadora_lejana": 28.6,
-    "pista_ventana": 26.5,
-    "analisis_ventana": 22.8,
-    "recorte": 6.6,
-    "cribado": 5.3,
-    "pose": 0.5,
-    "bola_en_paralelo_cpu": 0,
-    "espera_bola_en_paralelo": 0.0
+    "pose_medida_lejana": 337.0,
+    "cuerdas_y_3d": 35.8,
+    "jugadora_lejana": 29.4,
+    "pista_ventana": 26.3,
+    "analisis_ventana": 23.5,
+    "recorte": 6.8,
+    "cribado": 5.9,
+    "pose": 0.6
    },
    "counts": {
     "overlap_s": 0.0,
@@ -194,18 +193,18 @@
     "racket_frames": 0,
     "whole_window_again": 0,
     "frames_960_far": 0,
-    "windows_ball_ahead": 97
+    "far_measure_windows": 11
    }
   },
-  "out_hash": "a5d0c3c90c211fc91d19",
+  "out_hash": "4db8019f2c2a557a0469",
   "scheme": 2,
   "rewrote": {}
  },
  "fine_opponent": {
-  "fingerprint": "41fc944330ea2b93",
+  "fingerprint": "6dc7a26840aa752b",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-09 02:22:02",
+  "finished": "2026-11-09 04:02:26",
   "summary": {
    "enabled": false
   },
@@ -259,10 +258,10 @@
   "scheme": 2
  },
  "views_link": {
-  "fingerprint": "bea677500c7fbbb3",
+  "fingerprint": "9cdea294b0f1ffb4",
   "version": "1",
   "seconds": 0.2,
-  "finished": "2026-11-09 02:22:02",
+  "finished": "2026-11-09 04:02:26",
   "summary": {
    "strokes": 169,
    "with_replay": 26,
@@ -274,14 +273,14 @@
   "out_hash": "0b738111f33c8c5cd656",
   "scheme": 2,
   "rewrote": {
-   "fine": "a5fae33b64a0ea0d1610"
+   "fine": "a6eaa278b3b44afae167"
   }
  },
  "fine_doubtful": {
-  "fingerprint": "005f173d9199d451",
+  "fingerprint": "b63b786dac4647a9",
   "version": "1",
-  "seconds": 9.1,
-  "finished": "2026-11-09 02:22:11",
+  "seconds": 8.9,
+  "finished": "2026-11-09 04:02:35",
   "summary": {
    "candidates": 14,
    "confirmed": 4,
@@ -300,15 +299,13 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
+    "analisis_ventana": 3.1,
     "cuerdas_y_3d": 1.9,
-    "recorte": 1.2,
-    "analisis_ventana": 0.6,
+    "recorte": 0.9,
     "cribado": 0.2,
-    "pose": 0.1,
-    "jugadora_lejana": 0.0,
+    "pose": 0.0,
     "pista_ventana": 0.0,
-    "bola_en_paralelo_cpu": 0,
-    "espera_bola_en_paralelo": 0.0
+    "jugadora_lejana": 0.0
    },
    "counts": {
     "overlap_s": 0.0,
@@ -318,8 +315,7 @@
     "kept_impacts": 4,
     "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 0,
-    "windows_ball_ahead": 5
+    "frames_960_far": 0
    }
   },
   "out_hash": "3a53ef263aed529d13ce",
