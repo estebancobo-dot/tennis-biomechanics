@@ -306,3 +306,41 @@
 2026-11-09 18:26:35   ventana w003535693_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.17 s
 2026-11-09 18:26:35   ventana w003535693_3600: pose hybrid en 216 de 216 fotogramas (34 s; modelo 34 s; pies en 216) · bola 7 s · raqueta 15 s (1 de 1 impactos) · 1 golpes posibles · altura 229 px (court)
 2026-11-09 18:26:35   fine:  87 % (167/191 golpes candidatos · 166 confirmados · 0 ventanas descartadas sin pose) · 61 min · quedan ≈ 9 min
+2026-11-09 18:28:23   ventana w003567400_5900 (near, 2 candidatos): pasa · golpe de bola en su lado a 2.1 s
+2026-11-09 18:28:23   ventana w003567400_5900: pose hybrid en 353 de 353 fotogramas (54 s; modelo 54 s; pies en 353) · bola 11 s · raqueta 30 s (2 de 2 impactos) · 2 golpes posibles · altura 213 px (court)
+2026-11-09 18:28:23   fine:  88 % (169/191 golpes candidatos · 168 confirmados · 0 ventanas descartadas sin pose) · 62 min · quedan ≈ 8 min
+2026-11-09 18:28:52   ventana w003523350_10859 (near, 4 candidatos): pasa · golpe de bola en su lado a 2.14 s
+2026-11-09 18:28:52   ventana w003523350_10859: pose hybrid en 651 de 651 fotogramas (99 s; modelo 99 s; pies en 636) · bola 19 s · raqueta 64 s (4 de 5 impactos) · 5 golpes posibles · altura 215 px (court)
+2026-11-09 18:29:16   ventana w003640000_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.24 s
+2026-11-09 18:29:16   ventana w003640000_3600: pose hybrid en 216 de 216 fotogramas (23 s; modelo 23 s; pies en 216) · bola 6 s · raqueta 16 s (1 de 1 impactos) · 1 golpes posibles · altura 212 px (court)
+2026-11-09 18:29:16   fine:  91 % (174/191 golpes candidatos · 173 confirmados · 0 ventanas descartadas sin pose) · 63 min · quedan ≈ 6 min
+2026-11-09 18:30:17   ventana w003691000_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.17 s
+2026-11-09 18:30:17   ventana w003691000_3600: pose hybrid en 216 de 216 fotogramas (33 s; modelo 33 s; pies en 216) · bola 6 s · raqueta 15 s (1 de 1 impactos) · 1 golpes posibles · altura 211 px (court)
+2026-11-09 18:30:17   fine:  92 % (175/191 golpes candidatos · 174 confirmados · 0 ventanas descartadas sin pose) · 64 min · quedan ≈ 6 min
+2026-11-09 18:31:18   ventana w003701096_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.14 s
+2026-11-09 18:31:18   ventana w003701096_3600: pose hybrid en 216 de 216 fotogramas (33 s; modelo 33 s; pies en 216) · bola 7 s · raqueta 15 s (1 de 1 impactos) · 1 golpes posibles · altura 211 px (court)
+2026-11-09 18:31:18   fine:  92 % (176/191 golpes candidatos · 175 confirmados · 0 ventanas descartadas sin pose) · 65 min · quedan ≈ 6 min
+2026-11-09 18:33:04   ventana w003650500_13019 (near, 5 candidatos): pasa · golpe de bola en su lado a 2.17 s
+2026-11-09 18:33:04   ventana w003650500_13019: pose hybrid en 780 de 780 fotogramas (116 s; modelo 116 s; pies en 752) · bola 22 s · raqueta 83 s (5 de 6 impactos) · 6 golpes posibles · altura 230 px (court)
+2026-11-09 18:33:04   fine:  95 % (181/191 golpes candidatos · 180 confirmados · 0 ventanas descartadas sin pose) · 67 min · quedan ≈ 4 min
+2026-11-09 18:33:46   ventana w003706300_8550 (near, 3 candidatos): pasa · golpe de bola en su lado a 2.14 s
+2026-11-09 18:33:46   ventana w003706300_8550: pose hybrid en 513 de 513 fotogramas (73 s; modelo 73 s; pies en 513) · bola 15 s · raqueta 41 s (3 de 3 impactos) · 3 golpes posibles · altura 223 px (court)
+2026-11-09 18:33:46   fine:  96 % (184/191 golpes candidatos · 183 confirmados · 0 ventanas descartadas sin pose) · 68 min · quedan ≈ 3 min
+2026-11-09 18:34:47   ventana w003829711_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (1.7 s): puede haber golpe
+2026-11-09 18:34:47   ventana w003829711_3600: pose hybrid en 215 de 215 fotogramas (34 s; modelo 34 s; pies en 128) · bola 7 s · raqueta 13 s (1 de 1 impactos) · 1 golpes posibles · altura 831 px (segments)
+2026-11-09 18:34:47   fine:  97 % (185/191 golpes candidatos · 184 confirmados · 0 ventanas descartadas sin pose) · 69 min · quedan ≈ 2 min
+2026-11-09 18:35:11   ventana w003739723_7922 (near, 3 candidatos): pasa · golpe de bola en su lado a 4.37 s
+2026-11-09 18:35:11   ventana w003739723_7922: pose hybrid en 474 de 474 fotogramas (63 s; modelo 62 s; pies en 128) · bola 14 s · raqueta 43 s (3 de 3 impactos) · 3 golpes posibles · altura 2405 px (segments)
+2026-11-09 18:35:46   ventana w003836389_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 1.84 s
+2026-11-09 18:35:46   ventana w003836389_3600: pose hybrid en 215 de 215 fotogramas (31 s; modelo 31 s; pies en 215) · bola 6 s · raqueta 15 s (1 de 1 impactos) · 1 golpes posibles · altura 318 px (court)
+2026-11-09 18:35:46   fine:  99 % (189/191 golpes candidatos · 188 confirmados · 0 ventanas descartadas sin pose) · 70 min · quedan ≈ 44 s
+2026-11-09 18:36:11   ventana w003909749_3600 (near, 1 candidatos): pasa · golpe de bola en su lado a 2.17 s
+2026-11-09 18:36:11   ventana w003909749_3600: pose hybrid en 216 de 216 fotogramas (29 s; modelo 29 s; pies en 216) · bola 7 s · raqueta 16 s (1 de 1 impactos) · 1 golpes posibles · altura 297 px (court)
+2026-11-09 18:36:37   ventana w003981444_3600 (near, 1 candidatos): pasa · bola no vista cerca de un candidato (2.62 s): puede haber golpe
+2026-11-09 18:36:37   ventana w003981444_3600: pose hybrid en 216 de 216 fotogramas (24 s; modelo 24 s; pies en 158) · bola 7 s · raqueta 14 s (1 de 2 impactos) · 2 golpes posibles · altura 287 px (court)
+2026-11-09 18:36:37   fine: 100 % (191/191 golpes candidatos · 190 confirmados · 0 ventanas descartadas sin pose) · 71 min · quedan ≈ 0 s
+2026-11-09 18:36:39 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] fine terminada a las 18:36:39 en 71.2 min
+2026-11-09 18:36:40 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] views_link… (2026-11-09 18:36:40, etapa 12 de 16)
+2026-11-09 18:36:40 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] views_link terminada a las 18:36:40 en 0 s
+2026-11-09 18:36:40 [zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] view_clips… (2026-11-09 18:36:40, etapa 13 de 16)
+2026-11-09 18:36:40   view_clips:   0 % (1/250 recortes de repeticiones y otras cámaras) · 0 s · quedan ≈ 0 s
