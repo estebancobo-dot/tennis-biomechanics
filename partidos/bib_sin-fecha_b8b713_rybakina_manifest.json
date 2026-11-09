@@ -99,10 +99,10 @@
   "scheme": 2
  },
  "identity": {
-  "fingerprint": "eb819aa4a463df6d",
-  "version": "8",
-  "seconds": 252.9,
-  "finished": "2026-11-08 10:54:08",
+  "fingerprint": "b7b983eef6233d2a",
+  "version": "9",
+  "seconds": 272.5,
+  "finished": "2026-11-09 14:21:05",
   "summary": {
    "runs": 342,
    "confidence": 0.96,
@@ -114,6 +114,7 @@
    "clothes_won": 9,
    "doubtful": 2,
    "none": 13,
+   "click_by": "clothes",
    "by_end_changes": 297,
    "by_clothes": 312,
    "conflicts": 2,
@@ -128,17 +129,25 @@
     "far_pairs": 8,
     "far_opposite": 0.25,
     "same_game_pairs": 243,
-    "same_game_same": 0.98
+    "same_game_same": 0.98,
+    "check": {
+     "distinguishable": true,
+     "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
+     "parity_runs": 293,
+     "parity_agree": 0.96,
+     "centroid_dist": 0.866
+    }
    }
   },
-  "out_hash": "e3bceb2217b2b993da6e",
-  "scheme": 2
+  "out_hash": "f28d6311fdfcac58807e",
+  "scheme": 2,
+  "rewrote": {}
  },
  "candidates": {
-  "fingerprint": "4a321c78a2e65f72",
+  "fingerprint": "9150c536bc48f01c",
   "version": "15",
-  "seconds": 7.3,
-  "finished": "2026-11-08 22:33:05",
+  "seconds": 7.0,
+  "finished": "2026-11-09 14:22:00",
   "summary": {
    "candidates": 668,
    "far": 333,
@@ -216,10 +225,10 @@
   "rewrote": {}
  },
  "spotting": {
-  "fingerprint": "2973c411fbea1440",
+  "fingerprint": "c47475e101c898e9",
   "version": "1",
-  "seconds": 47.4,
-  "finished": "2026-11-04 11:28:06",
+  "seconds": 47.1,
+  "finished": "2026-11-09 14:21:52",
   "summary": {
    "enabled": true,
    "strokes": 656,
@@ -233,13 +242,14 @@
    "audio_track": 0,
    "seconds": {
     "jugadores_y_audio": 3.5,
-    "rasgos": 43.4,
+    "rasgos": 43.2,
     "bola": 0.0,
-    "modelo": 0.3
+    "modelo": 0.2
    }
   },
   "out_hash": "7ce4e9ecd9dfa8a30909",
-  "scheme": 2
+  "scheme": 2,
+  "rewrote": {}
  },
  "views": {
   "fingerprint": "b96234985a5585fa",
