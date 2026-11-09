@@ -806,3 +806,9 @@ C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN 
   ventana w000929600_5700 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.16 s
   ventana w000929600_5700: pose yolo en 142 de 142 fotogramas (5 s; modelo 5 s) · bola 0 s · raqueta 0 s (2 de 2 impactos) · 2 golpes posibles · altura 85 px (court)
   ventana w001043415_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+  ventana w001043415_3600: pose yolo en 90 de 90 fotogramas (5 s; modelo 4 s, 23 a 960 px por perderla; buscada de nuevo 3 veces, encontrada 0) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 82 px (court)
+C:\tenis\tennis-biomech\src\tennisbio\technique.py:168: RuntimeWarning: All-NaN axis encountered
+  feet_y = np.nanmin([j("left_ankle")[1], j("right_ankle")[1]])
+  fine:  49 % (39/79 golpes candidatos · 34 confirmados · 0 ventanas descartadas sin pose) · 3 min · quedan ≈ 3 min
+  ventana w001052300_9000 (far, 3 candidatos): pasa · golpe de bola en su lado a 1.76 s
+  ventana w001052300_9000: pose yolo en 225 de 225 fotogramas (8 s; modelo 7 s, 1 a 960 px por perderla; buscada de nuevo 1 veces, encontrada 1) · bola 0 s · raqueta 0 s (3 de 3 impactos) · 3 golpes posibles · altura 86 px (court)
