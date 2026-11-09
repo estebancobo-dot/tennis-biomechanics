@@ -461,6 +461,16 @@ accion: identidad
 ---
 id: 169
 accion: identidad
+---
+id: 170
+accion: medir
+script: diag_scoreboard
+---
+id: 171
+accion: identidad
+# 170-171 (09-11): score v7: quien saca se aprende del marcador (la marca que cambia de fila cada juego), no solo de
+# la bola amarilla del US Open. 170 = recortes del marcador de cada partido (capturas_diag/marcador_*.jpg); 171 =
+# fotos de Rybakina-Pegula con el saque leido (prueba_identidad.log: "saque en el marcador: ...", planos decididos)
 # 169 (09-11): las 2 fotos de Rybakina-Pegula eran la misma jugadora (las dos de blanco: los grupos de ropa no eran
 # las dos personas). Etapa identity v9: los grupos deben seguir los cambios de lado del marcador; si no, fotos por
 # lado de pista o sin clic. Comprobar en estado.json "fotos" de cada partido y <partido>_identidad.json
