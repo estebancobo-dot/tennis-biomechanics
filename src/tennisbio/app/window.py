@@ -139,13 +139,15 @@ class Api:
             video = self._app.engine.match(match_id).video
         st = ic.state(d)
         if not st["possible"]:
-            return {**st, "photos": []}
+            ck = ic.stage_check(d)
+            return {**st, "photos": [], **({"check": ck} if ck and ck.get("distinguishable") is False else {})}
         try:
-            ph = ic.photos(d, Path(video))
+            ps = ic.photo_set(d, Path(video))      # 09-11: checked photos (by clothes, or by ends when alike)
         except Exception as e:  # noqa: BLE001 — the screen says why instead of failing
             return {**st, "photos": [], "error": f"{type(e).__name__}: {e}"[:200]}
-        return {**st, "photos": [{"cluster": p["cluster"], "t": p["t"], "src": "data:image/jpeg;base64,"
-                                  + base64.b64encode(Path(p["path"]).read_bytes()).decode()} for p in ph]}
+        return {**st, "by": ps["by"], "check": ps["check"],
+                "photos": [{"cluster": p["cluster"], "t": p["t"], "src": "data:image/jpeg;base64,"
+                            + base64.b64encode(Path(p["path"]).read_bytes()).decode()} for p in ps["photos"]]}
 
     def identity_pick(self, match_id: str, t: float) -> str:
         """Only saves the click (24-10): the strokes are redone in the final pass of the 4 matches, with the

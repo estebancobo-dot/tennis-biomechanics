@@ -485,7 +485,7 @@ def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run
     return codes, far
 
 
-@stage("identity", "8", deps=("players", "score", "court", "audio"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
+@stage("identity", "9", deps=("players", "score", "court", "audio"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
 def st_identity(ctx: Context):
     """Is the near player the target in each run? Two independent cues, fused:
     - the end-change chain: serves + the scoreboard's serve marker name who is near in some runs
@@ -535,9 +535,13 @@ def st_identity(ctx: Context):
     ends = [None if base is None or p is None else bool(base ^ bool(p % 2)) for p in parities]
     direct = [r.get("serve_vote", r.get("return_vote")) for r in runs]
     codes, far = run_clothes(ctx, d, tracks, court) if runs else (None, [])
-    per, summ = identity_from_cues(codes, far, np.array(feats) if feats else None, ends, direct, votes, games)
-    for r, p, par, e in zip(runs, per, parities, ends):
+    per, summ = identity_from_cues(codes, far, np.array(feats) if feats else None, ends, direct, votes, games,
+                                   parities=parities)
+    for i, (r, p, par, e) in enumerate(zip(runs, per, parities, ends)):
         r["end_changes"] = par
+        if codes is not None and np.isfinite(codes[i]).any():
+            # v9 (09-11): each run's clothing code, so the click's photos can be checked against their group
+            r["clothes_code"] = [None if not np.isfinite(v) else round(float(v), 4) for v in codes[i]]
         r["cluster"] = p["clothes"]["group"] if p["clothes"] else -1
         r["near_is_target"], r["method"] = p["near_is_target"], p["method"]
         if p["clothes"]:
@@ -545,11 +549,17 @@ def st_identity(ctx: Context):
         if e is not None and e != r["near_is_target"]:
             r["ends_said"] = e                         # what the end-change chain said, overruled or doubtful
     _write(ctx.path("identity.json"), {"fps": fps, "target_cluster": summ["target_cluster"], "confidence": summ["confidence"],
-                                       "votes": summ["votes"], "ends_base": base, "clothes": summ["clothes"], "runs": runs})
+                                       "votes": summ["votes"], "ends_base": base, "clothes": summ["clothes"],
+                                       "click_by": summ["click_by"], "runs": runs})
     ctx.log(f"  identidad: {summ['decided']}/{len(runs)} planos · ropa y cambios de lado de acuerdo en {summ['agree']}, "
             f"solo cambios de lado {summ['ends_only']}, solo ropa {summ['clothes_only']}, la ropa corrige el marcador en "
             f"{summ['clothes_won']}, el saque visto en {summ['ends_won']}, dudosos {summ['doubtful']} · "
             f"ropa: {summ['clothes']['source']}, separación {summ['clothes']['separation']}")
+    ck = summ["clothes"]["check"]
+    ctx.log(f"  grupos de ropa: {'dos personas' if ck['distinguishable'] else 'NO distinguibles' if ck['distinguishable'] is False else 'sin comprobar'}"
+            f" ({ck['why'] or 'sin cambios de lado ni ropa con que comprobarlo'}; de acuerdo con los cambios de lado "
+            f"{ck['parity_agree']} en {ck['parity_runs']} planos, distancia entre su ropa típica {ck['centroid_dist']}) · "
+            f"clic por {({'clothes': 'la ropa', 'ends': 'los cambios de lado'}).get(summ['click_by'], 'nada: no se puede pedir')}")
     return {"runs": len(runs), **{k: v for k, v in summ.items() if k != "target_cluster"}}
 
 

@@ -823,9 +823,14 @@ body.web .webview { height: 100vh; }
   function whoPanel(m) {
     var w = WHO[m.id];
     if (!w) return '<p class="dim sm">Cargando las fotos…</p>';
+    if (!w.possible && w.check && w.check.distinguishable === false) return '<p class="sm">Las dos visten casi igual y la ropa no las separa (' + esc(w.check.why || "") + "). El marcador no da los cambios de lado, así que no se puede pedir el clic: se decide solo, con el icono de saque del marcador, y los golpes dudosos se marcan.</p>";
     if (!w.possible) return '<p class="dim sm">Las fotos salen cuando el análisis haya separado a las dos jugadoras por su ropa.</p>';
     if (w.error) return '<p class="dim sm">No se pudieron sacar las fotos: ' + esc(w.error) + "</p>";
+    /* 09-11: the two players dressed alike (Rybakina–Pegula, both in white): said, not asked on two photos of one person */
+    var alike = w.check && w.check.distinguishable === false;
+    if (alike && !(w.photos || []).length) return '<p class="sm">Las dos visten casi igual y la ropa no las separa' + (w.check.why ? " (" + esc(w.check.why) + ")" : "") + ". El marcador no da los cambios de lado, así que no se puede pedir el clic: se decide solo, con el icono de saque del marcador, y los golpes dudosos se marcan.</p>";
     var txt = w.done ? "Elegida por ti. Si te equivocaste, toca la otra." : "Toca la foto de " + esc(m.player_name) + ": con eso se sabe quién es en todo el partido (un clic, una vez).";
+    if (alike) txt = "Las dos visten casi igual: estas fotos no se separan por la ropa sino por el lado de la pista (cambios de lado del marcador); fíjate en la cara, el pelo o la gorra. " + txt;
     return '<p class="sm" style="margin-bottom:10px">' + txt + '</p><div class="row-btns">' + (w.photos || []).map(function (p) {
       var on = w.pick && Math.abs(w.pick.t - p.t) < 0.01;
       return '<button class="btn' + (on ? " pri" : " ghost") + '" style="padding:4px" data-act="who" data-arg="' + esc(m.id) + "|" + p.t + '"><img alt="Jugadora ' + (p.cluster + 1) + '" src="' + p.src + '" style="height:180px;display:block;border-radius:6px"></button>';

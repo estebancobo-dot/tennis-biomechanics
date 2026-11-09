@@ -328,8 +328,74 @@ def fuse(labels, margins, ends: list, direct: list, votes=(), weak=0.08, strong=
     return out, {"target_cluster": target, "confidence": round(share, 2), "votes": used, **counts}
 
 
+MIN_CENTROID_DIST = 0.10    # clothes groups whose typical codes are closer than this are the same clothes
+                            # (synthetic: one white dress under other light 0.04, two outfits 0.96)
+MIN_PARITY_SHARE = 0.70     # two people follow the end changes: ≥ 70 % of runs on the side the parity says
+MIN_FAR_OPPOSITE = 0.60     # the near and far player of the same frames fall in different groups
+MIN_CHECK_RUNS = 8
+
+
+def group_centroids(codes, labels, margins=None, weak=0.08) -> list:
+    """Typical clothing code of each group (0, 1): `aggregate` of its runs with a clear margin (all its runs
+    when none is clear); None for a group without codes."""
+    X = np.asarray(codes, np.float32).reshape(-1, CLOTHES_DIM)
+    lab = np.asarray(labels)
+    out = []
+    for g in (0, 1):
+        sel = (lab == g) & np.isfinite(X).any(1)
+        if margins is not None and (sel & (np.asarray(margins) >= weak)).any():
+            sel &= np.asarray(margins) >= weak
+        out.append(aggregate(X[sel]) if sel.any() else None)
+    return out
+
+
+def groups_check(codes, labels, margins, parities: list | None = None, far_pairs=0, far_opposite=None,
+                 weak=0.08) -> dict:
+    """Are the two clothes groups two people? (09-11, request 167: in the Rybakina–Pegula match both photos of
+    the click were the same woman: both players in white, the split followed something else, the light or the
+    camera, and a separation of 1.78 looked as good as Zverev–Sinner's 1.65; one white dress under changing
+    light splits with a separation of 2.5 on synthetic runs.) The separation cannot tell it; three checks can:
+    - the end changes: the near player changes every odd game, so two people's groups follow the parity of
+      the end changes read on the scoreboard (no serve needs to be seen): share ≥ MIN_PARITY_SHARE;
+    - the near and far player of the same frames fall in different groups (when the far one was measured);
+    - the typical codes of the two groups are not the same clothes (≥ MIN_CENTROID_DIST).
+    Returns {"distinguishable": True / False / None (nothing to check with), "why", "parity_runs",
+    "parity_agree", "centroid_dist"}."""
+    lab, mar = np.asarray(labels), np.asarray(margins, float)
+    out = {"distinguishable": None, "why": None, "parity_runs": 0, "parity_agree": None, "centroid_dist": None}
+    if codes is not None and len(codes) and (lab >= 0).any():
+        c0, c1 = group_centroids(codes, lab, mar, weak)
+        if c0 is not None and c1 is not None:
+            d = clothes_distances(np.array([c0, c1]))[0, 1]
+            out["centroid_dist"] = None if not np.isfinite(d) else round(float(d), 3)
+    if parities is not None:
+        ok = [i for i in range(len(lab)) if lab[i] >= 0 and mar[i] >= weak and i < len(parities) and parities[i] is not None]
+        if ok:
+            a = float(np.mean([int(lab[i]) == int(parities[i]) % 2 for i in ok]))
+            out["parity_runs"], out["parity_agree"] = len(ok), round(max(a, 1 - a), 2)
+    why, checked = [], False
+    if out["centroid_dist"] is not None:
+        checked = True
+        if out["centroid_dist"] < MIN_CENTROID_DIST:
+            why.append(f"la ropa típica de los dos grupos es casi igual (distancia {out['centroid_dist']})")
+    if out["parity_runs"] >= MIN_CHECK_RUNS:
+        checked = True
+        if out["parity_agree"] < MIN_PARITY_SHARE:
+            why.append(f"los grupos no siguen los cambios de lado del marcador ({round(100 * out['parity_agree'])} % "
+                       f"de {out['parity_runs']} planos)")
+    # the far player's codes are small and noisy: only when the scoreboard gives no end changes to check with
+    if out["parity_runs"] < MIN_CHECK_RUNS and far_pairs >= MIN_CHECK_RUNS and far_opposite is not None:
+        checked = True
+        if far_opposite < MIN_FAR_OPPOSITE:
+            why.append(f"la jugadora del fondo cae en el mismo grupo que la cercana ({round(100 * (1 - far_opposite))} %)")
+    if checked:
+        out["distinguishable"] = not why
+        out["why"] = "; ".join(why) or "dos personas (ropa distinta y de acuerdo con los cambios de lado)"
+    return out
+
+
 def identity_from_cues(codes, far, feats, ends: list, direct: list, votes=(), games: list | None = None,
-                       weak=0.08, **kw) -> tuple[list[dict], dict]:
+                       weak=0.08, parities: list | None = None, **kw) -> tuple[list[dict], dict]:
     """The identity stage's decision from its cues (pure: the stage reads the video and the scoreboard).
 
     codes: (R, CLOTHES_DIM) clothing code per run, or None without video; far: [(run, far player's
@@ -352,7 +418,24 @@ def identity_from_cues(codes, far, feats, ends: list, direct: list, votes=(), ga
         D, source = np.full((n, n), np.nan), "ninguna"
     sp = split_two(D, links, n_core=n)
     labels, margins = sp["labels"][:n], sp["margins"][:n]
-    per, summ = fuse(labels, margins, ends, direct, votes, weak=weak, **kw)
+    has_codes = codes is not None and len(codes) and np.isfinite(codes).any()
+    check = groups_check(np.asarray(codes, np.float32)[:n] if has_codes else None, labels, margins, parities,
+                         len(links), sp["links_ok"], weak)
+    # two groups that are not two people decide nothing (their margins are not used); the click then goes by the
+    # end changes when the scoreboard gives them (click_by «ends»), else there is no click to ask
+    per, summ = fuse(labels, margins if check["distinguishable"] is not False else np.zeros(n), ends, direct, votes,
+                     weak=weak, **kw)
+    for p, m in zip(per, margins):
+        if p["clothes"]:
+            p["clothes"]["margin"] = round(float(m), 2)          # the real margin, kept for the diagnosis
+    with_par = [p for p in (parities or []) if p is not None]
+    if check["distinguishable"] is not False:
+        click_by = "clothes" if (labels >= 0).any() and len(set(labels[labels >= 0].tolist())) == 2 else None
+    elif len(with_par) >= MIN_CHECK_RUNS // 2 and len({p % 2 for p in with_par}) == 2:
+        click_by = "ends"
+    else:
+        click_by = None
+    summ["click_by"] = click_by
     same = [bool(labels[i] == labels[i + 1]) for i in range(n - 1)
             if games and games[i] is not None and games[i] == games[i + 1]
             and min(labels[i], labels[i + 1]) >= 0 and min(margins[i], margins[i + 1]) >= weak]
@@ -365,5 +448,6 @@ def identity_from_cues(codes, far, feats, ends: list, direct: list, votes=(), ga
         "clothes": {"source": source, "runs": int((labels >= 0).sum()), "clear": int((clear >= weak).sum()),
                     "margin_median": round(float(np.median(clear)), 2) if len(clear) else None,
                     "separation": sp["separation"], "far_pairs": len(links), "far_opposite": sp["links_ok"],
-                    "same_game_pairs": len(same), "same_game_same": round(float(np.mean(same)), 2) if same else None}})
+                    "same_game_pairs": len(same), "same_game_same": round(float(np.mean(same)), 2) if same else None,
+                    "check": check}})
     return per, summ

@@ -155,6 +155,25 @@ def apply_pick(identity: dict, pick: dict | None, weak: float = 0.08) -> tuple[d
     fps = identity.get("fps") or 1.0
     f = float(pick["t"]) * fps
     at = next((r for r in runs if r["start"] <= f < r["end"]), None)
+    # 09-11 (request 167): when the clothes groups are not two people (both in white) the photos are of the two
+    # ends (even / odd number of end changes on the scoreboard) and the click names her end; with neither, no click
+    # (a click says who is near at its moment, whatever photos it was made on: the grouping the evidence trusts is used)
+    by = "ends" if "ends" in (pick.get("by"), identity.get("click_by")) else identity.get("click_by", "clothes")
+    if by == "ends":
+        if at is None or at.get("end_changes") is None:
+            return out, {"pick": "sin cambios de lado leídos en ese momento"}
+        hers = at["end_changes"] % 2 if pick.get("near_is_her", True) else 1 - at["end_changes"] % 2
+        changed = 0
+        for r in runs:
+            if r.get("end_changes") is not None:
+                v = r["end_changes"] % 2 == hers
+                changed += r.get("near_is_target") != v
+                r["near_is_target"], r["method"] = v, "cambios de lado + clic"
+        out["target_parity"] = hers
+        return out, {"pick": "aplicado", "by": "ends", "her_parity": hers, "changed": changed,
+                     "by_click": sum(r.get("method") == "cambios de lado + clic" for r in runs)}
+    if by != "clothes":
+        return out, {"pick": "no aplicable: las dos jugadoras no se distinguen por la ropa ni por los cambios de lado"}
     if at is None or at.get("cluster", -1) < 0:
         return out, {"pick": "sin grupo de ropa en ese momento"}
     hers = at["cluster"] if pick.get("near_is_her", True) else 1 - at["cluster"]

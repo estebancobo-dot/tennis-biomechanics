@@ -22,6 +22,21 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
 ## 19-10: el plan vigente está en `docs/plan_maestro.md` (leer primero)
 Todo lo pendiente, en orden, con su criterio de cierre medido en el PC. Almacenamiento definitivo: `docs/almacenamiento.md`.
 
+## 09-11: fotos del clic de la misma persona (petición 167, etapa `identity` v9)
+- Problema: en Rybakina–Pegula (Miami 2026) las dos fotos del clic eran la misma mujer (vestido blanco, visera
+  naranja). Las dos visten de blanco: los dos grupos de ropa no eran las dos personas (separación 1,78, igual de
+  "buena" que Zverev–Sinner con 1,65; un mismo vestido blanco con luz distinta se separa con 2,5 en datos sintéticos).
+  Nada lo comprobaba: sin votos de saque (0 en los dos partidos) no había cambios de lado decididos que lo desmintieran.
+- Ahora la etapa comprueba sus grupos (`clothes.groups_check`): deben seguir la paridad de los cambios de lado
+  leída en el marcador (≥ 70 % de los planos, no hace falta ver un saque), la jugadora del fondo debe caer en el
+  otro grupo y la ropa típica de los dos grupos debe diferir (≥ 0,10). Si no, la ropa no decide nada y el clic va
+  por los **cambios de lado** (`click_by: ends`: una foto de cada lado de la pista; el clic dice en qué paridad está
+  ella cerca, `identity.apply_pick`); sin marcador, no se pide clic y la aplicación lo dice.
+- Fotos (`app/identity_click.photo_set`): de cada grupo, el plano más típico de su ropa; la ropa se mide en la foto
+  misma y debe parecerse más a su grupo que al otro; las dos fotos deben diferir (≥ 0,10). La caché de fotos sigue a
+  `identity.json` (antes una foto vieja no se rehacía nunca). `estado.json` marca «fotos no distinguibles» con el
+  motivo, y se sube `<partido>_identidad.json` (resumen sin códigos) para diagnosticarlo sin pedir nada.
+
 ## 19-10: la ropa vuelve a contar en la identidad (etapa `identity` v5)
 - Problema (partidos completos): la ropa no decidía nunca (`by_clothes` = 0 en los 4; confianzas 0,50-0,64).
   La apariencia era el histograma de la caja entera (casi todo pista) y el k-means se sembraba con los dos
