@@ -56,17 +56,19 @@
   "rewrote": {}
  },
  "score": {
-  "fingerprint": "de9d1c2b4fc03ad5",
-  "version": "6",
-  "seconds": 570.2,
-  "finished": "2026-11-09 09:54:24",
+  "fingerprint": "9da2d83f65f4c9e0",
+  "version": "7",
+  "seconds": 356.1,
+  "finished": "2026-11-09 12:23:28",
   "summary": {
    "readings": 407,
    "pressure": 147,
    "samples": 522,
-   "ocr_calls": 485
+   "ocr_calls": 485,
+   "server_read": 0,
+   "server_source": "ninguno: el marcador no sigue la alternancia del saque"
   },
-  "out_hash": "ca138aa66d637c04e59a",
+  "out_hash": "0cddda5bdc8b644fa009",
   "scheme": 2,
   "rewrote": {}
  },

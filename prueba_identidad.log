@@ -11,3 +11,20 @@ Vídeos en C:\tenis\videos: 6 en el catálogo (0 nuevos: —)
     [score] score:  17 % (88/522 muestras · 9 lecturas · 79 OCR) · 62 s · quedan ≈ 5 min
     [score] score:  27 % (142/522 muestras · 39 lecturas · 122 OCR) · 2 min · quedan ≈ 4 min
     [score] score:  35 % (184/522 muestras · 78 lecturas · 165 OCR) · 2 min · quedan ≈ 4 min
+    [score] score:  43 % (225/522 muestras · 116 lecturas · 202 OCR) · 3 min · quedan ≈ 3 min
+    [score] score:  51 % (266/522 muestras · 156 lecturas · 243 OCR) · 3 min · quedan ≈ 3 min
+    [score] score:  60 % (315/522 muestras · 204 lecturas · 290 OCR) · 4 min · quedan ≈ 2 min
+    [score] score:  70 % (364/522 muestras · 249 lecturas · 337 OCR) · 4 min · quedan ≈ 2 min
+    [score] score:  80 % (415/522 muestras · 300 lecturas · 383 OCR) · 5 min · quedan ≈ 71 s
+    [score] score:  87 % (455/522 muestras · 340 lecturas · 423 OCR) · 5 min · quedan ≈ 45 s
+    [score] score:  96 % (501/522 muestras · 386 lecturas · 463 OCR) · 6 min · quedan ≈ 14 s
+    [score] score: 100 % (522/522 muestras · 406 lecturas · 484 OCR) · 6 min · quedan ≈ 0 s
+    [score] marcador: 522 muestras en juego, 485 OCR (407 lecturas)
+    [score] saque en el marcador: 0 de 407 lecturas (ninguno: el marcador no sigue la alternancia del saque; marca de color 385, sigue la alternancia en 53% de 379; aprendida no)
+  [elena-rybakina-jessica-pegula-miami-2026-quarter-final] score terminada a las 12:23:28 en 5.9 min
+  [elena-rybakina-jessica-pegula-miami-2026-quarter-final] identity… (2026-11-09 12:23:28, etapa 7 de 16)
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN slice encountered
+  sh = np.nanmin(seg[:, [5, 6], 1], axis=1)                      # higher shoulder (image y)
+    identity:   0 % (1/1892 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
