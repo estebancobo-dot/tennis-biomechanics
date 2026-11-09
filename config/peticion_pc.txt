@@ -667,3 +667,10 @@ horas_max: 14
 # 174-175 (09-11): la app no tiene trabajo en cola para Zverev-Sinner tras el clic (los 2 partidos entraron por el
 # catalogo del ciclo, no por la app). 174 = que dice el indice de la app (por que no encolo nada); 175 = analisis
 # completo de los 6 partidos con el clic de Sinner (Pegula con la identidad automatica; se revisa con su auditoria)
+---
+id: 176
+accion: medir
+script: diag_identity
+# 176 (09-11): la identidad de Rybakina-Pegula decide 0 de 148 planos en el analisis completo. Fotogramas enteros
+# de 24 planos de cada partido con lo que uso la identidad (juegos leidos, cambios de lado, grupo de ropa, votos),
+# para ver que senal falla; los 4 partidos de siempre sirven de comparacion. A pc-logs/capturas_diag
