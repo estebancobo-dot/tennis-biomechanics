@@ -2852,7 +2852,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "2446 caracteres de texto, 9 vídeos, 19 gráficos",
+   "detail": "2446 caracteres de texto, 8 vídeos, 19 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2916,7 +2916,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2027 caracteres de texto, 9 vídeos, 0 gráficos",
+   "detail": "2031 caracteres de texto, 9 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3211,8 +3211,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 57eacee (2026-11-09T11:12:10): 927 bien, 0 fallan, 0 errores",
-   "passed": 927,
+   "detail": "código 174ed87 (2026-11-09T22:40:03): 946 bien, 0 fallan, 0 errores",
+   "passed": 946,
    "failed": 0
   },
   {
@@ -3444,14 +3444,14 @@
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
    "status": "falta",
-   "detail": "59 de 60 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas"
+   "detail": "60 de 61 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "42 carpetas, 29.4 GB en total (2026-11-09T22:27:50); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB"
+   "detail": "42 carpetas, 29.4 GB en total (2026-11-09T23:20:05); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB"
   },
   {
    "req": 5,
@@ -3507,7 +3507,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-09 22:27:30 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-09 23:25:49 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3647,14 +3647,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-09_2130.csv (mín/media/máx): elena-rybakina-jessica-pegula- identity (4.5 min): CPU 17/58/95 %, iGPU 0/18/100 %, RAM máx 10.4 GB → uso medio: margen para repartir trabajo; 13.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-09_2220.csv, recursos_2026-11-09_2200.csv"
+   "detail": "recursos_2026-11-09_2130.csv (mín/media/máx): elena-rybakina-jessica-pegula- identity (4.5 min): CPU 17/58/95 %, iGPU 0/18/100 %, RAM máx 10.4 GB → uso medio: margen para repartir trabajo; 13.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-09_2250.csv, recursos_2026-11-09_2220.csv, recursos_2026-11-09_2200.csv"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "aviso",
-   "detail": "la última petición (09-11 22:27) no empezó por GitHub Actions; el último trabajo por Actions fue el 09-11 22:06"
+   "detail": "la última petición (09-11 23:24) no empezó por GitHub Actions; el último trabajo por Actions fue el 09-11 22:06"
   },
   {
    "req": 1,
@@ -4109,7 +4109,7 @@
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
    "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (59 de 60 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas)"
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (60 de 61 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas)"
   },
   {
    "req": 11,
@@ -5264,7 +5264,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (09-11 22:27) no empezó por GitHub Actions; el último trabajo por Actions fue el 09-11 22:06)"
+   "detail": "1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (09-11 23:24) no empezó por GitHub Actions; el último trabajo por Actions fue el 09-11 22:06)"
   },
   {
    "req": 11,
