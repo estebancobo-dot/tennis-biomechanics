@@ -66,10 +66,10 @@
   "rewrote": {}
  },
  "score": {
-  "fingerprint": "831f5fdc0c5e25b5",
+  "fingerprint": "bddd506775da4785",
   "version": "6",
-  "seconds": 1328.7,
-  "finished": "2026-10-19 08:44:22",
+  "seconds": 741.4,
+  "finished": "2026-11-09 08:40:41",
   "summary": {
    "readings": 534,
    "pressure": 161,
@@ -77,7 +77,8 @@
    "ocr_calls": 567
   },
   "out_hash": "1f7dd0716cac177120fd",
-  "scheme": 2
+  "scheme": 2,
+  "rewrote": {}
  },
  "players": {
   "fingerprint": "3e71fab94da38e96",
