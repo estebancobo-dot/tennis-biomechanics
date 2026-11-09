@@ -1,10 +1,10 @@
 # Auditoría de requisitos (forehand)
 
-265 golpes del lado cercano. ✔ 470 cumplidos · ✘ 25 no cumplidos · … 56 sin golpes suficientes en esta ejecución · ! 107 avisos
+359 golpes del lado cercano. ✔ 465 cumplidos · ✘ 36 no cumplidos · … 51 sin golpes suficientes en esta ejecución · ! 131 avisos
 
-## Peticiones del usuario SIN TERMINAR: 111 de 245
+## Peticiones del usuario SIN TERMINAR: 107 de 245
 
-Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 127 hechas · 91 a medias · 16 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
 - **#189 [FALTA]** «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4) — falta: No está en `learn.py`.
@@ -22,7 +22,6 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - **#240 [FALTA]** Comparar la aplicación con las profesionales una vez estén los golpes (27-10 11:42) — falta: Bloque B1 del plan: pantalla a pantalla con los datos reales.
 - **#244 [FALTA]** Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10) — falta: Revisar ganadores y errores con el marcador y la bola; no mostrar hasta que sea creíble.
 - **#245 [FALTA]** Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10) — falta: Usar los datos del catálogo y del nombre del vídeo (como la lista de la aplicación).
-- **#1 [PARCIAL]** Derecha de Rybakina en sus 4 partidos completos, una vez y al final (10-10 17:27; 11-10 19:37) — falta: Ningún partido completo analizado. 19-10: el análisis de los 4 partidos encuentra como mucho el 43 % de sus golpes y el 29 % de sus saques (`audit.recall_items…
 - **#2 [PARCIAL]** Ver informe y salidas en el móvil (11-10 18:21, 18:29, 18:33) — falta: 19-10: copia hecha; el paso directo al Pixel 8 sin probar en el teléfono.
 - **#4 [PARCIAL]** Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como base para cualquiera (11-10 19… — falta: Valores de 1 a 10 golpes, todos «provisional». SuD, `copy_cue` y `COACH` no se ven (≥12).
 - **#5 [PARCIAL]** Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto, apoyo, dirección, ataque/de… — falta: 0 de 2.992 combinaciones con ≥12. Niveles vacíos: parada 0, paralela 0, rodilla 0, en el aire 0. 19-10: faltaban de su mensaje del 10-10 18:05 «ángulos» (golpe…
@@ -36,7 +35,6 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - **#17 [PARCIAL]** Una entrada que se entienda sola: «no entiendo nada ni cómo usarla» (12-10 16:22) — falta: La segunda pestaña (SuD) está vacía. Aprende y SuD se solapan. Las «Novedades» están en SuD.
 - **#25 [PARCIAL]** Métricas por derecha: apoyo, base, rodillas, cadera, hombros, X-factor, codo, impacto, cadena, pista (10-10 17:27) — falta: X-factor 2D: mediana de 1° en Aprende, sospechoso (fila 113). 19-10: giro de hombros y X-factor 2D salen «sesgo» y no se dan; rodillas con escorzo; impacto del…
 - **#36 [PARCIAL]** Mano y antebrazo, cierre de la muñeca (11-10 09:56, 10:19) — falta: El lag sale en el 40 % de los golpes y Aprende lo da con **1 golpe**.
-- **#45 [PARCIAL]** Todo automático y completo: el usuario no revisa nada (11-10 09:05, 19:38; 12-10 11:41) — falta: 4 golpes fallaron (`strokes_errores.json`) y nadie los recupera. (04-11: 0 golpes fallaron en la referencia; uno que falle se rehace cuando cambia el código de…
 - **#55 [PARCIAL]** Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo (12-10 17:40) — falta: En sus datos hay 0 paralelas y 1 cerrado más «invertida paralela»: el ejemplo no se puede ver. 19-10: apoyo cerrado + paralela sí se combinan; «cerca de la red…
 - **#64 [PARCIAL]** Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la inversa» (12-10 18:03, 18:06;… — falta: El paso cruzado no aparece en ningún golpe. El primer paso y el ajuste salen «no medible» si los tobillos se ven quietos menos del 40 % del tiempo.
 - **#68 [PARCIAL]** La meta: mejorar mi derecha tomando la de X como base (12-10 22:25; 13-10 05:48 p5) — falta: Valores provisionales de 1-10 golpes. Sin progresión ni prioridad (qué copiar primero según lo que la distingue).
@@ -64,7 +62,6 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - **#113 [PARCIAL]** Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25) — falta: Nada confirmado ni refutado. R2 apunta a un fallo de `ready_hands` (100 % «mano libre separada»).
 - **#124 [PARCIAL]** Hacia dónde mira el tronco y las manos en la espera, medidas fiables (13-10 13:00) — falta: Manos en la espera solo en 3 de 10 golpes (la raqueta casi no se ve en la espera).
 - **#130 [PARCIAL]** Resto de derecha (devolver el saque) con todas sus variantes, en la matriz y en la aplicación (13-10 14:30) — falta: Pocos restos en la prueba corta; primer/segundo saque es probable (un corte entre saques lo confunde); el tipo de resto sale de las clases de preparación, term…
-- **#134 [PARCIAL]** prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06) — falta: 08-11: la referencia completa existe (4 partidos completos, 1016 golpes suyos), pero la auditoría del PC 08-11 09:30 (`auditoria_partidos.json`) da «Golpes enc…
 - **#135 [PARCIAL]** distancia al fondo, red (Chat, 11-10 19:23) — falta: Hay distancia al fondo, pero no a la red: «dentro de la pista» junta todo lo que está a más de 0,5 m dentro de la línea, de la zona de saque a la red. 20-10: h…
 - **#140 [PARCIAL]** de la jugadora de fondo se sacan imagenes para la captura de datos en vista frontal? (Chat, 14-10 20:08) — falta: No se usa como vista frontal para medidas del cuerpo: a 60-90 px los tobillos y la raqueta salen imprecisos.
 - **#142 [PARCIAL]** (punto 2) como se puede hacer una aplicacion profesional ... mas jugadores, mas golpes ... como se lanza, almacenamiento, videos, progreso … — falta: Construida y probada, pero el análisis real de los 4 partidos (18-10) se lanzó con el ciclo, no desde la aplicación; nunca usada con datos correctos.
@@ -111,7 +108,6 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - **#213 [PARCIAL]** Textos COACH (el porqué con fuente) en todas las claves de la lección (Auditorías 17-10, técnica #17) — falta: Sin COACH: `footwork.recovery_start_s`, `class.recovery_first_step`, `footwork.rear_leg_step_after`, `class.approach_main`.
 - **#214 [PARCIAL]** Fuentes de Ivanovic §3 #17 (Auditorías 17-10, técnica #18) — falta: Ver hueco 17 de Ivanovic.
 - **#215 [PARCIAL]** Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22) — falta: Unificar en «armado completo cuando bota».
-- **#233 [PARCIAL]** Una referencia completa y medida antes de validar nada (26-10 11:09) — falta: 799 golpes suyos en 4 partidos (27-10). 08-11: la referencia se ha rehecho (1016 golpes suyos; «Partido …: salida de cada etapa» ✔ en los 4, ningún golpe falli…
 - **#235 [PARCIAL]** Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) — falta: Cadena en orden 79 % y pasos medidos 87 % en los 193 golpes; falta verlo recalculado en el PC.
 - **#236 [PARCIAL]** Huellas numeradas sobre los pies y patrones de pasos (27-10 09:38) — falta: Patrón típico de pasos por situación (frecuencia de cada secuencia).
 - **#238 [PARCIAL]** La validación es siempre automática; el usuario no valida la aplicación (27-10 11:42) — falta: Que cada pantalla nueva entre con su comprobación automática.
@@ -121,21 +117,33 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 
 ## 1. Toda la taxonomía del golpe y todas sus variantes (situaciones)
 
-- ✘ **La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo**: 9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección mide 1419 px (más de pantalla y media)
+- ✘ **Bola alta / baja**: rodilla 12, cadera 50, cintura-pecho 113, pecho-hombro 84, por encima del hombro 15 (se muestra con ≥ 12 golpes); con golpes suficientes y sin mostrar: rodilla
+- ✘ **Dirección del golpe**: cruzada 33, paralela 19, al centro 39, invertida cruzada 14, invertida paralela 10, invertida al centro 10 (se muestra con ≥ 12 golpes); con golpes suficientes y sin mostrar: invertida cruzada
+- ✘ **Bola alta / baja: cada medida en cada nivel**: 73 medidas × 5 niveles = 365 combinaciones; 265 mostradas con ≥ 12 golpes; niveles con pocos golpes: rodilla 12; PROBLEMAS: rodilla: 12 golpes y no está en «Su derecha»
+- ✘ **Dirección del golpe: cada medida en cada nivel**: 73 medidas × 6 niveles = 438 combinaciones; 200 mostradas con ≥ 12 golpes; niveles con pocos golpes: invertida cruzada 14, invertida paralela 10, invertida al centro 10; PROBLEMAS: invertida cruzada: 14 golpes y no está en «Su derecha»
+- ✘ **La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo**: 9 de 9 fases con claves suyas fiables; FALLOS: takeback: 121 palabras en las claves (máximo 120); loaded: la lección mide 1401 px (más de pantalla y media); acceleration: la lección mide 1401 px (más de pantalla y media); impact: la lección mide 1457 px (más de pantalla y media)
+- ! **Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina**: marcador: 91-99 puntos jugados (16 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-138 saques (1 o 2 por punto de saque) y 146-257 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 172 golpes, 52 saques/remates → como mucho 100% de sus golpes y 83% de sus saques (sin 2 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 2 de su saque) (93 cerca, 79 lejos); además 3 de identidad dudosa, apartados (no cuentan como suyos)
+- ! **Saques por punto de su saque: sin-fecha_f43dd2_rybakina**: 35 de 46 puntos de su saque vistos con su saque encontrado (76%; objetivo ≥ 85%) (2 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 7, golpes suyos, pero ningún saque 6; sus saques encontrados caen en puntos de su saque 41, de la rival 3, fuera de los puntos leídos 8; en los puntos sin saque, su primer golpe encontrado llega 7.5 s (mediana de 6) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 6): tipo {'backhand/detector': 2, 'forehand/detector': 4}, lado {'near': 4, 'far': 2}, 4 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 3, 'nada_antes': 3, 'sin_primer_golpe': 7}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 5, sin golpes de nadie 2, cámara principal 6.3 s (mediana), candidatos {'suyos_perdidos_despues': 1, 'solo_de_la_rival': 3, 'identidad_sin_decidir': 1, 'sin_candidatos': 2}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 1}, motivos del descarte {'lejana_sin_bola_ni_detector': 1}; primeros: 19.0-19.9 min (sin_golpes), 20.5-20.9 min (sin_golpes), 22.6-23.1 min (sin_golpes), 23.4-23.9 min (sin_saque), 36.6-37.1 min (sin_golpes), 37.0-37.6 min (sin_saque), 38.9-39.4 min (sin_golpes), 39.3-39.9 min (sin_saque)
+- ! **Saques por punto de su saque: sin-fecha_584c5b_rybakina**: 45 de 54 puntos de su saque vistos con su saque encontrado (83%; objetivo ≥ 85%); SESGO: los puntos sin saque son del lado lejano en un 86% frente al 33% de sus saques encontrados (7 con lado conocido); aceptado como limitación conocida del lado lejano (08-11), dicho en el informe (3 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 5, golpes suyos, pero ningún saque 7; sus saques encontrados caen en puntos de su saque 59, de la rival 4, fuera de los puntos leídos 13; en los puntos sin saque, su primer golpe encontrado llega 9.9 s (mediana de 7) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 7): tipo {'backhand/detector': 4, 'forehand/detector': 3}, lado {'far': 6, 'near': 1}, 6 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 1, 'golpe_de_la_rival_antes': 6, 'nada_antes': 0, 'sin_primer_golpe': 5}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 2, sin golpes de nadie 3, cámara principal 12.3 s (mediana), candidatos {'suyos_perdidos_despues': 0, 'solo_de_la_rival': 1, 'identidad_sin_decidir': 1, 'sin_candidatos': 3}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 0}; saques del marcador descartados en la pasada fina: {'jugadora_lejana_no_encontrada': 1}; primeros: 17.9-18.4 min (sin_saque), 55.6-56.1 min (sin_golpes), 56.7-57.4 min (sin_golpes), 63.3-64.1 min (sin_golpes), 70.9-71.1 min (sin_golpes), 101.3-102.2 min (sin_saque), 103.2-103.9 min (sin_golpes), 107.0-107.8 min (sin_saque)
+- ! **Golpes encontrados frente al marcador: sin-fecha_49723c_rybakina**: marcador: 162-214 puntos jugados (20 juegos leídos, 6 sin leer), 88 con su saque. Esperados: 88-232 saques (1 o 2 por punto de saque) y 259-556 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 263 golpes, 80 saques/remates → como mucho 100% de sus golpes y 91% de sus saques (sin 3 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 0 de su saque) (163 cerca, 100 lejos); además 121 de identidad dudosa, apartados (no cuentan como suyos)
+- ! **Identidad en los cambios de lado: sin-fecha_f43dd2_rybakina**: 0 de 148 planos decididos (0%; objetivo ≥ 95%); misma ropa dentro de un juego 95% (objetivo ≥ 95%); sus golpes: 93 cerca y 79 lejos (46% en el lado con menos); dudosos 0, sin decidir 148 · falla: planos decididos 0% < 95%, cambios de lado y ropa sin comparar. Sin verdad anotada: coherencia, no validación
+- ! **Identidad en los cambios de lado: sin-fecha_49723c_rybakina**: 267 de 320 planos decididos (83%; objetivo ≥ 95%); misma ropa dentro de un juego 94% (objetivo ≥ 95%); sus golpes: 163 cerca y 100 lejos (38% en el lado con menos); dudosos 0, sin decidir 53 · falla: planos decididos 83% < 95%, cambios de lado y ropa sin comparar, ropa igual dentro de un juego 94% < 95%. Sin verdad anotada: coherencia, no validación
+- ! **Identidad en los cambios de lado: sin-fecha_8b0278_sinner**: 153 de 167 planos decididos (92%; objetivo ≥ 95%); misma ropa dentro de un juego 96% (objetivo ≥ 95%); sus golpes: 121 cerca y 69 lejos (36% en el lado con menos); dudosos 0, sin decidir 14 · falla: planos decididos 92% < 95%, cambios de lado y ropa sin comparar. Sin verdad anotada: coherencia, no validación
+- ! **Cobertura del saque dicha en el informe**: el informe del saque no dice su cobertura con los números del marcador: sin-fecha_8b0278_sinner: falta «Saques analizados: 0 de los ~0 puntos de su saque que enseña la tele»
 - ! **Fotograma clave: inicio de preparación**: encontrado en el 73% de los golpes
-- ! **Fotograma clave: armado**: encontrado en el 78% de los golpes
+- ! **Fotograma clave: armado**: encontrado en el 77% de los golpes
 - ! **Fotograma clave: inicio de aceleración**: encontrado en el 77% de los golpes
-- ! **Fotograma clave: terminación**: encontrado en el 78% de los golpes
-- ! **Fotograma clave: recuperación**: encontrado en el 78% de los golpes
+- ! **Fotograma clave: terminación**: encontrado en el 77% de los golpes
+- ! **Fotograma clave: recuperación**: encontrado en el 77% de los golpes
 - … **1. Fases · Golpe del rival → split step**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- … **1. Fases · Final del armado (máximo giro, raqueta más atrás)**: se mide (78% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **1. Fases · Final del armado (máximo giro, raqueta más atrás)**: se mide (77% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **1. Fases · Inicio del swing hacia delante**: se mide (77% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **1. Fases · Final de la extensión**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- … **1. Fases · Primer paso de recuperación**: se mide (78% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **1. Fases · Primer paso de recuperación**: se mide (77% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **3. Pies y desplazamiento · Presencia del split**: se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- … **5. Bola, resultado y contexto · Bote: profundidad, anchura, dentro/fuera**: se mide (42% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- … **5. Bola, resultado y contexto · Velocidad media de la bola en pista**: se mide (34% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
-- … **5. Bola, resultado y contexto · Calidad del golpe (sustituto: profundidad, anchura, velocidad media)**: se mide (38% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **5. Bola, resultado y contexto · Bote: profundidad, anchura, dentro/fuera**: se mide (50% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **5. Bola, resultado y contexto · Velocidad media de la bola en pista**: se mide (39% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
+- … **5. Bola, resultado y contexto · Calidad del golpe (sustituto: profundidad, anchura, velocidad media)**: se mide (44% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **5. Bola, resultado y contexto · Longitud del peloteo**: se mide (84% de los golpes); el informe lo enseñará con más golpes o más fiabilidad
 - … **6. Matriz del usuario · Caída de la raqueta por debajo de la bola**: vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más
 - … **6. Matriz del usuario · Zona de impacto: delante de la cadera**: vista lateral de entrenamiento: contact_in_front_pct en 6 derechas de lado; se resume con 12 o más
@@ -143,12 +151,12 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - … **6. Matriz del usuario · Ángulo real del swing de abajo arriba (+10° a +45°)**: vista lateral de entrenamiento: swing_angle_deg en 6 derechas de lado; se resume con 12 o más
 - … **6. Matriz del usuario · Rodilla de atrás en la carga (110–130°) y de delante en el impacto**: vista lateral de entrenamiento: back_knee_loaded_deg en 6 derechas de lado, front_knee_impact_deg en 6 derechas de lado; se resume con 12 o más
 - … **6. Matriz del usuario · Inclinación del tronco hacia delante o atrás en el impacto**: vista lateral de entrenamiento: trunk_lean_impact_deg en 6 derechas de lado; se resume con 12 o más
-- … **Golpe angulado (#132)**: 0 golpes de 265 (la clase «Golpe angulado» se pudo decidir en 81; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
-- … **Bola corta baja cerca de la red (#157)**: 0 golpes de 265 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
-- … **Bola corta alta cerca de la red (#158)**: 0 golpes de 265 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
-- … **Volea a media pista con golpe de fondo (#159)**: 0 golpes de 265 (la clase «Contacto» se pudo decidir en 122; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
-- … **Volea fuera de la línea de saque**: 0 golpes de 265 (la clase «Contacto» se pudo decidir en 122; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
-- … **Botepronto / media volea: casos (#16)**: 5 golpes de 265 (la clase «Contacto» se pudo decidir en 122; sin señal, ninguna clase: nunca se inventa); candidatos marcados por la misma regla: 5; golpes sin bote visto: 143 (la bola no deja ver un bote a menos de 0,06 s del impacto a 50 fps, 0,08 s a 25: ball.min_bounce_to_impact_s); sin golpes suficientes (se enseña con ≥ 12)
+- … **Golpe angulado (#132)**: 1 golpes de 359 (la clase «Golpe angulado» se pudo decidir en 126; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
+- … **Bola corta baja cerca de la red (#157)**: 0 golpes de 359 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
+- … **Bola corta alta cerca de la red (#158)**: 0 golpes de 359 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
+- … **Volea a media pista con golpe de fondo (#159)**: 0 golpes de 359 (la clase «Contacto» se pudo decidir en 182; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
+- … **Volea fuera de la línea de saque**: 0 golpes de 359 (la clase «Contacto» se pudo decidir en 182; sin señal, ninguna clase: nunca se inventa); sin golpes suficientes (se enseña con ≥ 12)
+- … **Botepronto / media volea: casos (#16)**: 6 golpes de 359 (la clase «Contacto» se pudo decidir en 182; sin señal, ninguna clase: nunca se inventa); candidatos marcados por la misma regla: 6; golpes sin bote visto: 178 (la bola no deja ver un bote a menos de 0,06 s del impacto a 50 fps, 0,08 s a 25: ball.min_bounce_to_impact_s); sin golpes suficientes (se enseña con ≥ 12)
 - … **Impacto delante de la cadera**: 6 derechas de lado con esta medida
 - … **Ángulo del swing (de abajo arriba)**: 6 derechas de lado con esta medida
 - … **Codo en el impacto**: 6 derechas de lado con esta medida
@@ -159,173 +167,170 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - … **Ángulo antebrazo–raqueta al acelerar**: 5 derechas de lado con esta medida
 - … **Ángulo antebrazo–raqueta antes del impacto**: 6 derechas de lado con esta medida
 - … **Cabeza girada hacia el impacto**: 0 derechas de frente con esta medida
-- … **Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha**: 0 golpes exactos, 1 parecidos; 75 de 90 puntos con su valor medido
-- ✔ **forehand: golpes analizados**: 265 del lado cercano (con todo el detalle), 179 del lejano
-- ✔ **Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina**: marcador: 91-99 puntos jugados (16 juegos leídos, 0 sin leer), 44 con su saque. Esperados: 44-92 saques (1 o 2 por punto de saque) y 146-257 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 169 golpes, 46 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (sin 2 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 0 de su saque) (90 cerca, 79 lejos); además 4 de identidad dudosa, apartados (no cuentan como suyos)
-- ✔ **Saques por punto de su saque: sin-fecha_f43dd2_rybakina**: 27 de 30 puntos de su saque vistos con su saque encontrado (90%; objetivo ≥ 85%); sin saque: sin ningún golpe suyo 2, golpes suyos, pero ningún saque 1; sus saques encontrados caen en puntos de su saque 33, de la rival 5, fuera de los puntos leídos 8; en los puntos sin saque, su primer golpe encontrado llega 8.8 s (mediana de 1) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 1): tipo {'forehand/detector': 1}, lado {'near': 1}, 0 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 1, 'sin_primer_golpe': 2}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 2, sin golpes de nadie 0, cámara principal 16.4 s (mediana), candidatos {'suyos_perdidos_despues': 0, 'solo_de_la_rival': 1, 'identidad_sin_decidir': 1, 'sin_candidatos': 0}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 0}; primeros: 19.0-19.9 min (sin_golpes), 20.5-20.9 min (sin_golpes), 64.2-64.7 min (sin_saque)
-- ✔ **Golpes encontrados frente al marcador: sin-fecha_584c5b_rybakina**: marcador: 153-167 puntos jugados (24 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-134 saques (1 o 2 por punto de saque) y 245-434 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 286 golpes, 74 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (sin 5 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 3 de su saque) (180 cerca, 106 lejos); además 16 de identidad dudosa, apartados (no cuentan como suyos)
-- ✔ **Saques por punto de su saque: sin-fecha_584c5b_rybakina**: 42 de 47 puntos de su saque vistos con su saque encontrado (89%; objetivo ≥ 85%) (3 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 5, golpes suyos, pero ningún saque 3; sus saques encontrados caen en puntos de su saque 57, de la rival 4, fuera de los puntos leídos 13; en los puntos sin saque, su primer golpe encontrado llega 9.7 s (mediana de 3) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 3): tipo {'backhand/detector': 1, 'forehand/detector': 2}, lado {'far': 2, 'near': 1}, 3 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 1, 'golpe_de_la_rival_antes': 2, 'nada_antes': 0, 'sin_primer_golpe': 5}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 2, sin golpes de nadie 3, cámara principal 12.3 s (mediana), candidatos {'suyos_perdidos_despues': 0, 'solo_de_la_rival': 1, 'identidad_sin_decidir': 1, 'sin_candidatos': 3}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 0}; saques del marcador descartados en la pasada fina: {'jugadora_lejana_no_encontrada': 1}; primeros: 17.9-18.4 min (sin_saque), 55.6-56.1 min (sin_golpes), 56.7-57.4 min (sin_golpes), 63.3-64.1 min (sin_golpes), 70.9-71.1 min (sin_golpes), 101.3-102.2 min (sin_saque), 103.2-103.9 min (sin_golpes), 113.3-113.9 min (sin_saque)
+- … **Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha**: 0 golpes exactos, 3 parecidos; 83 de 90 puntos con su valor medido
+- ✔ **forehand: golpes analizados**: 359 del lado cercano (con todo el detalle), 242 del lejano
+- ✔ **Golpes encontrados frente al marcador: sin-fecha_584c5b_rybakina**: marcador: 153-167 puntos jugados (24 juegos leídos, 0 sin leer), 73 con su saque. Esperados: 73-158 saques (1 o 2 por punto de saque) y 245-434 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 286 golpes, 76 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (sin 5 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 3 de su saque) (180 cerca, 106 lejos); además 16 de identidad dudosa, apartados (no cuentan como suyos)
 - ✔ **Golpes encontrados frente al marcador: sin-fecha_580c6f_rybakina**: marcador: 125-129 puntos jugados (24 juegos leídos, 0 sin leer), 57 con su saque. Esperados: 57-114 saques (1 o 2 por punto de saque) y 200-335 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 271 golpes, 82 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (sin 10 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 6 de su saque) (140 cerca, 131 lejos); además 30 de identidad dudosa, apartados (no cuentan como suyos)
 - ✔ **Saques por punto de su saque: sin-fecha_580c6f_rybakina**: 38 de 44 puntos de su saque vistos con su saque encontrado (86%; objetivo ≥ 85%) (6 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 10, golpes suyos, pero ningún saque 2; sus saques encontrados caen en puntos de su saque 49, de la rival 9, fuera de los puntos leídos 24; en los puntos sin saque, su primer golpe encontrado llega 11.7 s (mediana de 2) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 2): tipo {'backhand/detector': 1, 'forehand/detector': 1}, lado {'near': 1, 'far': 1}, 1 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 0, 'nada_antes': 2, 'sin_primer_golpe': 10}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 4, sin golpes de nadie 6, cámara principal 7.9 s (mediana), candidatos {'suyos_perdidos_despues': 1, 'solo_de_la_rival': 0, 'identidad_sin_decidir': 3, 'sin_candidatos': 6}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 1}, motivos del descarte {'lejana_sin_bola_ni_detector': 1}; saques del marcador descartados en la pasada fina: {'sin_impacto_cerca': 1}; primeros: 34.8-35.4 min (sin_saque), 42.4-42.9 min (sin_saque), 60.0-60.6 min (sin_golpes), 66.0-66.4 min (sin_golpes), 79.8-80.2 min (sin_golpes), 89.9-90.4 min (sin_golpes), 97.8-98.3 min (sin_golpes), 103.4-104.0 min (sin_golpes)
 - ✔ **Golpes encontrados frente al marcador: sin-fecha_b8b713_rybakina**: marcador: 173-193 puntos jugados (30 juegos leídos, 0 sin leer), 78 con su saque. Esperados: 78-172 saques (1 o 2 por punto de saque) y 277-502 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 295 golpes, 92 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (sin 14 puntos en los que nadie juega en la cámara principal: la tele no los enseñó, 8 de su saque) (160 cerca, 135 lejos); además 33 de identidad dudosa, apartados (no cuentan como suyos)
 - ✔ **Saques por punto de su saque: sin-fecha_b8b713_rybakina**: 55 de 62 puntos de su saque vistos con su saque encontrado (89%; objetivo ≥ 85%) (8 puntos más sin nadie jugando en la cámara principal: la tele no los enseñó, no cuentan); sin saque: sin ningún golpe suyo 10, golpes suyos, pero ningún saque 5; sus saques encontrados caen en puntos de su saque 72, de la rival 7, fuera de los puntos leídos 13; en los puntos sin saque, su primer golpe encontrado llega 3.7 s (mediana de 5) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 5): tipo {'backhand/detector': 4, 'forehand/detector': 1}, lado {'far': 3, 'near': 2}, 2 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 1, 'golpe_de_la_rival_antes': 2, 'nada_antes': 2, 'sin_primer_golpe': 10}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 2, sin golpes de nadie 8, cámara principal 8.2 s (mediana), candidatos {'suyos_perdidos_despues': 1, 'solo_de_la_rival': 1, 'identidad_sin_decidir': 0, 'sin_candidatos': 8}, golpes suyos perdidos {'de_identidad_dudosa': 0, 'descartados_en_la_pasada_fina': 1}, motivos del descarte {'lejana_sin_bola_ni_detector': 1}; primeros: 47.2-47.8 min (sin_golpes), 62.3-62.7 min (sin_golpes), 63.2-63.7 min (sin_golpes), 79.2-79.7 min (sin_golpes), 100.9-101.5 min (sin_saque), 106.8-107.3 min (sin_saque), 110.5-110.9 min (sin_golpes), 110.8-111.4 min (sin_golpes)
-- ✔ **Volumen: forehand analizados en los partidos**: 444 golpes (265 cerca con todo el detalle, 179 lejos) en 4 partidos; objetivo ≥ 400 (docs/comparativa_apps.md §4.3)
-- ✔ **Identidad en los cambios de lado: sin-fecha_f43dd2_rybakina**: 148 de 148 planos decididos (100%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 129 de 136 planos con las dos señales (95%; objetivo ≥ 90%); misma ropa dentro de un juego 95% (objetivo ≥ 95%); sus golpes: 90 cerca y 79 lejos (47% en el lado con menos); dudosos 0, sin decidir 0. Sin verdad anotada: coherencia, no validación
-- ✔ **Golpes del fondo: sin-fecha_f43dd2_rybakina**: 79 de sus 169 golpes en el lado lejano (47%; objetivo ≥ 25%); confirmados 79 de 82 candidatos suyos del fondo (96%); con su posición en la pista 85% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino); de sus 79 golpes del fondo: desplazamiento 73%, altura del impacto 86%, destino 16%; 19 sin pose en la ventana (confirmados por la bola o el detector)
+- ✔ **Saques por punto de su saque: sin-fecha_49723c_rybakina**: 35 de 41 puntos de su saque vistos con su saque encontrado (85%; objetivo ≥ 85%); sin saque: sin ningún golpe suyo 4, golpes suyos, pero ningún saque 2; sus saques encontrados caen en puntos de su saque 48, de la rival 3, fuera de los puntos leídos 29; en los puntos sin saque, su primer golpe encontrado llega 1.5 s (mediana de 2) después de que vuelva la cámara principal; ese primer golpe (puntos con golpes y sin saque, 2): tipo {'backhand/detector': 1, 'forehand/detector': 1}, lado {'near': 2}, 0 detrás de la línea de fondo; lo que vio el detector antes de su primer golpe: {'saque_suyo_visto_y_perdido': 0, 'golpe_suyo_visto_y_perdido': 0, 'golpe_de_la_rival_antes': 1, 'nada_antes': 1, 'sin_primer_golpe': 4}; en los puntos sin ningún golpe suyo: con golpes de alguien (detector) 4, sin golpes de nadie 0, cámara principal 9.9 s (mediana), candidatos {'suyos_perdidos_despues': 3, 'solo_de_la_rival': 0, 'identidad_sin_decidir': 1, 'sin_candidatos': 0}, golpes suyos perdidos {'de_identidad_dudosa': 1, 'descartados_en_la_pasada_fina': 2}, motivos del descarte {'jugadora_lejana_no_encontrada': 1, 'lejana_sin_bola_ni_detector': 1}; saques del marcador descartados en la pasada fina: {'jugadora_lejana_no_encontrada': 1}; primeros: 31.9-32.3 min (sin_golpes), 33.5-34.0 min (sin_golpes), 44.9-46.1 min (sin_golpes), 91.4-93.6 min (sin_saque), 102.8-103.8 min (sin_saque), 109.5-110.4 min (sin_golpes)
+- ✔ **Golpes encontrados frente al marcador: sin-fecha_8b0278_sinner**: marcador: 41-61 puntos jugados (6 juegos leídos, 3 sin leer), 6 con su saque. Esperados: 6-30 saques (1 o 2 por punto de saque) y 66-159 golpes en total (rango típico de 1.6-2.6 golpes suyos por punto, no exacto). Encontrados: 190 golpes, 50 saques/remates → como mucho 100% de sus golpes y 100% de sus saques (121 cerca, 69 lejos); además 38 de identidad dudosa, apartados (no cuentan como suyos)
+- ✔ **Volumen: forehand analizados en los partidos**: 601 golpes (359 cerca con todo el detalle, 242 lejos) en 6 partidos; objetivo ≥ 400 (docs/comparativa_apps.md §4.3)
+- ✔ **Golpes del fondo: sin-fecha_f43dd2_rybakina**: 79 de sus 172 golpes en el lado lejano (46%; objetivo ≥ 25%); confirmados 79 de 82 candidatos suyos del fondo (96%); con su posición en la pista 85% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino); de sus 79 golpes del fondo: desplazamiento 73%, altura del impacto 86%, destino 16%; 19 sin pose en la ventana (confirmados por la bola o el detector)
 - ✔ **Identidad en los cambios de lado: sin-fecha_584c5b_rybakina**: 274 de 276 planos decididos (99%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 240 de 257 planos con las dos señales (93%; objetivo ≥ 90%); misma ropa dentro de un juego 100% (objetivo ≥ 95%); sus golpes: 180 cerca y 106 lejos (37% en el lado con menos); dudosos 2, sin decidir 0. Sin verdad anotada: coherencia, no validación
 - ✔ **Golpes del fondo: sin-fecha_584c5b_rybakina**: 106 de sus 286 golpes en el lado lejano (37%; objetivo ≥ 25%); confirmados 106 de 109 candidatos suyos del fondo (97%); con su posición en la pista 90% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino); de sus 106 golpes del fondo: desplazamiento 72%, altura del impacto 89%, destino 18%; posición de un fotograma a ≤ 0,2 s del impacto en 1; 56 sin pose en la ventana (confirmados por la bola o el detector)
 - ✔ **Identidad en los cambios de lado: sin-fecha_580c6f_rybakina**: 281 de 285 planos decididos (99%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 199 de 206 planos con las dos señales (97%; objetivo ≥ 90%); misma ropa dentro de un juego 99% (objetivo ≥ 95%); sus golpes: 140 cerca y 131 lejos (48% en el lado con menos); dudosos 0, sin decidir 4. Sin verdad anotada: coherencia, no validación
 - ✔ **Golpes del fondo: sin-fecha_580c6f_rybakina**: 131 de sus 271 golpes en el lado lejano (48%; objetivo ≥ 25%); confirmados 131 de 137 candidatos suyos del fondo (96%); con su posición en la pista 84% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino); de sus 131 golpes del fondo: desplazamiento 73%, altura del impacto 82%, destino 30%; 52 sin pose en la ventana (confirmados por la bola o el detector)
 - ✔ **Identidad en los cambios de lado: sin-fecha_b8b713_rybakina**: 327 de 342 planos decididos (96%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 282 de 293 planos con las dos señales (96%; objetivo ≥ 90%); misma ropa dentro de un juego 98% (objetivo ≥ 95%); sus golpes: 160 cerca y 135 lejos (46% en el lado con menos); dudosos 2, sin decidir 13. Sin verdad anotada: coherencia, no validación
 - ✔ **Golpes del fondo: sin-fecha_b8b713_rybakina**: 135 de sus 295 golpes en el lado lejano (46%; objetivo ≥ 25%); confirmados 135 de 143 candidatos suyos del fondo (94%); con su posición en la pista 85% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino); de sus 135 golpes del fondo: desplazamiento 61%, altura del impacto 84%, destino 24%; posición de un fotograma a ≤ 0,2 s del impacto en 1; 45 sin pose en la ventana (confirmados por la bola o el detector)
-- ✔ **Cobertura del saque dicha en el informe**: el informe del saque lo dice: sin-fecha_f43dd2_rybakina: Saques analizados: 27 de los ~30 puntos de su saque que enseña la tele (90 %); sin-fecha_584c5b_rybakina: Saques analizados: 42 de los ~47 puntos de su saque que enseña la tele (89 %); sin-fecha_580c6f_rybakina: Saques analizados: 38 de los ~44 puntos de su saque que enseña la tele (86 %); sin-fecha_b8b713_rybakina: Saques analizados: 55 de los ~62 puntos de su saque que enseña la tele (89 %); total: Saques analizados: 162 de los ~183 puntos de su saque que enseña la tele (89 %); limitación: el saque del lado lejano está menos cubierto: el detector no ve algunos de sus saques de ese lado (limitación conocida)
-- ✔ **Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina**: 15% de sus golpes con repetición enlazada (26 de 169, 6 a cámara lenta) · 93% con otra cámara (157) · tomas: 30 repeticiones, 25 laterales, 6 frontales, 408 primeros planos, 17 otras
+- ✔ **Golpes del fondo: sin-fecha_49723c_rybakina**: 100 de sus 263 golpes en el lado lejano (38%; objetivo ≥ 25%); confirmados 100 de 111 candidatos suyos del fondo (90%); con su posición en la pista 93% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino); de sus 100 golpes del fondo: desplazamiento 73%, altura del impacto 89%, destino 30%; posición de un fotograma a ≤ 0,2 s del impacto en 4; 23 sin pose en la ventana (confirmados por la bola o el detector)
+- ✔ **Golpes del fondo: sin-fecha_8b0278_sinner**: 69 de sus 190 golpes en el lado lejano (36%; objetivo ≥ 25%); confirmados 69 de 70 candidatos suyos del fondo (99%); con su posición en la pista 90% (objetivo ≥ 80%; en el fondo solo lo fiable a esa distancia: posición, desplazamiento, altura del impacto, destino); de sus 69 golpes del fondo: desplazamiento 68%, altura del impacto 90%, destino 41%; 16 sin pose en la ventana (confirmados por la bola o el detector)
+- ✔ **Repeticiones y otras cámaras enlazadas: sin-fecha_f43dd2_rybakina**: 15% de sus golpes con repetición enlazada (26 de 172, 6 a cámara lenta) · 94% con otra cámara (161) · tomas: 30 repeticiones, 25 laterales, 6 frontales, 408 primeros planos, 17 otras
 - ✔ **Repeticiones y otras cámaras enlazadas: sin-fecha_584c5b_rybakina**: 14% de sus golpes con repetición enlazada (41 de 286, 12 a cámara lenta) · 98% con otra cámara (279) · tomas: 38 repeticiones, 29 laterales, 11 frontales, 734 primeros planos, 16 otras
 - ✔ **Repeticiones y otras cámaras enlazadas: sin-fecha_580c6f_rybakina**: 20% de sus golpes con repetición enlazada (54 de 271, 7 a cámara lenta) · 92% con otra cámara (250) · tomas: 76 repeticiones, 80 laterales, 18 frontales, 868 primeros planos, 51 otras
 - ✔ **Repeticiones y otras cámaras enlazadas: sin-fecha_b8b713_rybakina**: 15% de sus golpes con repetición enlazada (45 de 295, 20 a cámara lenta) · 98% con otra cámara (290) · tomas: 76 repeticiones, 103 laterales, 33 frontales, 1380 primeros planos, 81 otras
+- ✔ **Repeticiones y otras cámaras enlazadas: sin-fecha_49723c_rybakina**: 18% de sus golpes con repetición enlazada (48 de 263, 19 a cámara lenta) · 95% con otra cámara (249) · tomas: 81 repeticiones, 24 laterales, 7 frontales, 742 primeros planos, 72 otras
+- ✔ **Repeticiones y otras cámaras enlazadas: sin-fecha_8b0278_sinner**: 15% de sus golpes con repetición enlazada (28 de 190, 12 a cámara lenta) · 94% con otra cámara (178) · tomas: 24 repeticiones, 13 laterales, 9 frontales, 340 primeros planos, 41 otras
 - ✔ **1. Fases · Inicio del giro de bloque (preparación)**: medido en el 73% de los golpes y en el informe
 - ✔ **1. Fases · Impacto**: implementado (sin nombre de dato en la matriz)
-- ✔ **1. Fases · Final de la terminación**: medido en el 78% de los golpes y en el informe
-- ✔ **2. Cuerpo · Postura de espera (rodillas, base, peso)**: medido en el 78% de los golpes y en el informe
+- ✔ **1. Fases · Final de la terminación**: medido en el 77% de los golpes y en el informe
+- ✔ **2. Cuerpo · Postura de espera (rodillas, base, peso)**: medido en el 77% de los golpes y en el informe
 - ✔ **2. Cuerpo · Mano libre en la garganta de la raqueta en la espera / giro de bloque**: medido en el 78% de los golpes y en el informe
-- ✔ **2. Cuerpo · Momento del armado respecto al bote ("armado completo al botar")**: medido en el 38% de los golpes y en el informe
-- ✔ **2. Cuerpo · Giro de cadera y de hombros al final del armado**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **2. Cuerpo · Separación cadera–hombros (X-factor)**: medido en el 76% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **2. Cuerpo · Brazo libre extendido y cruzado**: medido en el 78% de los golpes y en el informe
-- ✔ **2. Cuerpo · Carga de la pierna exterior / descenso de cadera**: medido en el 78% de los golpes y en el informe
+- ✔ **2. Cuerpo · Momento del armado respecto al bote ("armado completo al botar")**: medido en el 40% de los golpes y en el informe
+- ✔ **2. Cuerpo · Giro de cadera y de hombros al final del armado**: medido en el 76% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **2. Cuerpo · Separación cadera–hombros (X-factor)**: medido en el 75% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **2. Cuerpo · Brazo libre extendido y cruzado**: medido en el 77% de los golpes y en el informe
+- ✔ **2. Cuerpo · Carga de la pierna exterior / descenso de cadera**: medido en el 77% de los golpes y en el informe
 - ✔ **2. Cuerpo · Peso entre los pies / equilibrio**: medido en el 78% de los golpes y en el informe
 - ✔ **2. Cuerpo · Cadena cinética (orden pelvis → tronco → brazo → antebrazo)**: implementado (sin nombre de dato en la matriz)
-- ✔ **2. Cuerpo · Altura del contacto (respecto a rodilla, cadera, hombro)**: medido en el 78% de los golpes y en el informe
+- ✔ **2. Cuerpo · Altura del contacto (respecto a rodilla, cadera, hombro)**: medido en el 77% de los golpes y en el informe
 - ✔ **2. Cuerpo · Separación lateral del contacto**: medido en el 77% de los golpes y en el informe
-- ✔ **2. Cuerpo · Ángulo del codo en el impacto (brazo recto / doble flexión)**: medido en el 24% de los golpes y en el informe
-- ✔ **2. Cuerpo · Cabeza estable en el impacto**: medido en el 77% de los golpes y en el informe
-- ✔ **2. Cuerpo · Cabeza quieta tras el impacto**: medido en el 78% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **2. Cuerpo · Hombros más girados que la cadera en el impacto**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **2. Cuerpo · Extensión tras el contacto**: medido en el 78% de los golpes y en el informe
-- ✔ **2. Cuerpo · Terminación sobre el hombro / limpiaparabrisas / alrededor / invertida**: medido en el 78% de los golpes y en el informe
-- ✔ **2. Cuerpo · "3 × 90°" al final**: medido en el 29% de los golpes y en el informe
-- ✔ **2. Cuerpo · Paso adelante de la pierna trasera tras el impacto**: medido en el 64% de los golpes y en el informe
+- ✔ **2. Cuerpo · Ángulo del codo en el impacto (brazo recto / doble flexión)**: medido en el 30% de los golpes y en el informe
+- ✔ **2. Cuerpo · Cabeza estable en el impacto**: medido en el 76% de los golpes y en el informe
+- ✔ **2. Cuerpo · Cabeza quieta tras el impacto**: medido en el 76% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **2. Cuerpo · Hombros más girados que la cadera en el impacto**: medido en el 76% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **2. Cuerpo · Extensión tras el contacto**: medido en el 77% de los golpes y en el informe
+- ✔ **2. Cuerpo · Terminación sobre el hombro / limpiaparabrisas / alrededor / invertida**: medido en el 77% de los golpes y en el informe
+- ✔ **2. Cuerpo · "3 × 90°" al final**: medido en el 27% de los golpes y en el informe
+- ✔ **2. Cuerpo · Paso adelante de la pierna trasera tras el impacto**: medido en el 61% de los golpes y en el informe
 - ✔ **2. Cuerpo · Altura y separación del codo (armado e impacto)**: medido en el 78% de los golpes y en el informe
 - ✔ **2. Cuerpo · Transferencia de peso del armado al impacto**: medido en el 75% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **2. Cuerpo · Empuje de piernas («bajar y subir»)**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **3. Pies y desplazamiento · Split step: aterrizaje respecto al golpe del rival**: medido en el 100% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Split step: despegue y aterrizaje respecto al golpe del rival**: medido en el 22% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Velocidad 0,2 s antes y después del split**: medido en el 62% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Primer paso: momento (reacción)**: medido en el 64% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Split step: despegue y aterrizaje respecto al golpe del rival**: medido en el 19% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Velocidad 0,2 s antes y después del split**: medido en el 61% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Primer paso: momento (reacción)**: medido en el 60% de los golpes y en el informe
 - ✔ **3. Pies y desplazamiento · Primer paso: tipo (gravity, jab, pivot, counter, cruzado, lateral)**: implementado (sin nombre de dato en la matriz) (parcial: ver la matriz)
-- ✔ **3. Pies y desplazamiento · Primer paso: dirección correcta respecto a la bola**: medido en el 42% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Número de pasos hasta la bola**: medido en el 64% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Longitud de cada paso; anchura del primero**: medido en el 64% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Pasos de ajuste**: medido en el 64% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Primer paso: dirección correcta respecto a la bola**: medido en el 41% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Número de pasos hasta la bola**: medido en el 61% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Longitud de cada paso; anchura del primero**: medido en el 60% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Pasos de ajuste**: medido en el 61% de los golpes y en el informe
 - ✔ **3. Pies y desplazamiento · Distribución lateral / delante / atrás**: medido en el 77% de los golpes y en el informe
 - ✔ **3. Pies y desplazamiento · Cambios de dirección**: medido en el 77% de los golpes y en el informe
 - ✔ **3. Pies y desplazamiento · Velocidad media y máxima de carrera**: medido en el 77% de los golpes y en el informe
 - ✔ **3. Pies y desplazamiento · Recorrido hasta la bola**: medido en el 77% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Tipo de apoyo (abierto, semiabierto, neutro, cerrado)**: medido en el 77% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Subtipos: abierto de ataque, abierto defensivo, neutro de ataque**: medido en el 77% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Pierna que carga**: medido en el 61% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Tipo de apoyo (abierto, semiabierto, neutro, cerrado)**: medido en el 76% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Subtipos: abierto de ataque, abierto defensivo, neutro de ataque**: medido en el 76% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Pierna que carga**: medido en el 58% de los golpes y en el informe
 - ✔ **3. Pies y desplazamiento · En carrera, en salto, a un pie, deslizando**: medido en el 77% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Última zancada más larga en carrera**: medido en el 58% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Recuperación: distancia, dirección, tiempo**: medido en el 75% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Cada paso nombrado: lateral (sin cruzar), cruzado, de carrera, hacia delante, hacia atrás, de ajuste**: medido en el 64% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **3. Pies y desplazamiento · Rodear la bola para la derecha invertida**: medido en el 23% de los golpes y en el informe
-- ✔ **3. Pies y desplazamiento · Frenado: último paso largo con caída de la velocidad**: medido en el 57% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **3. Pies y desplazamiento · Patada atrás (tijera) tras el impacto**: medido en el 64% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **3. Pies y desplazamiento · Recuperación: tipo de cada paso de vuelta, cuándo empieza**: medido en el 64% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **3. Pies y desplazamiento · Orientación del pie (talón → dedo gordo respecto a la línea de fondo) en el armado y el impacto**: medido en el 43% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **3. Pies y desplazamiento · Última zancada más larga en carrera**: medido en el 55% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Recuperación: distancia, dirección, tiempo**: medido en el 74% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Cada paso nombrado: lateral (sin cruzar), cruzado, de carrera, hacia delante, hacia atrás, de ajuste**: medido en el 61% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **3. Pies y desplazamiento · Rodear la bola para la derecha invertida**: medido en el 22% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Frenado: último paso largo con caída de la velocidad**: medido en el 53% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **3. Pies y desplazamiento · Patada atrás (tijera) tras el impacto**: medido en el 61% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **3. Pies y desplazamiento · Recuperación: tipo de cada paso de vuelta, cuándo empieza**: medido en el 61% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **3. Pies y desplazamiento · Orientación del pie (talón → dedo gordo respecto a la línea de fondo) en el armado y el impacto**: medido en el 45% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **3. Pies y desplazamiento · Pivote sobre la punta del pie de atrás (talón arriba, punta apoyada)**: medido en el 74% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **3. Pies y desplazamiento · Base y anchura de la base sobre la pista**: medido en el 77% de los golpes y en el informe
+- ✔ **3. Pies y desplazamiento · Base y anchura de la base sobre la pista**: medido en el 76% de los golpes y en el informe
 - ✔ **4. Raqueta, swing y empuñadura · Forma del armado: bucle, recto, "pat the dog"**: medido en el 73% de los golpes y en el informe
-- ✔ **4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)**: medido en el 48% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **4. Raqueta, swing y empuñadura · Inicio de la aceleración respecto al bote; girar mientras se desplaza**: medido en el 53% de los golpes y en el informe
+- ✔ **4. Raqueta, swing y empuñadura · Raqueta al lado del cuerpo o por detrás de la espalda en el armado (debate WTA/ATP)**: medido en el 51% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **4. Raqueta, swing y empuñadura · Inicio de la aceleración respecto al bote; girar mientras se desplaza**: medido en el 50% de los golpes y en el informe
 - ✔ **4. Raqueta, swing y empuñadura · Altura de la mano en el armado (no por encima de la cabeza)**: medido en el 77% de los golpes y en el informe
-- ✔ **4. Raqueta, swing y empuñadura · Cara de la raqueta al final del armado**: medido en el 48% de los golpes y en el informe
+- ✔ **4. Raqueta, swing y empuñadura · Cara de la raqueta al final del armado**: medido en el 51% de los golpes y en el informe
 - ✔ **4. Raqueta, swing y empuñadura · Caída de la raqueta antes de acelerar**: medido en el 77% de los golpes y en el informe
-- ✔ **4. Raqueta, swing y empuñadura · Retraso de la muñeca (lag)**: medido en el 55% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **4. Raqueta, swing y empuñadura · Retraso de la muñeca (lag)**: medido en el 58% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **4. Raqueta, swing y empuñadura · Trayectoria de abajo arriba (signo) / liftado-plano-cortado**: medido en el 77% de los golpes y en el informe
 - ✔ **4. Raqueta, swing y empuñadura · Cara en el impacto**: implementado (sin nombre de dato en la matriz) (parcial: ver la matriz)
-- ✔ **4. Raqueta, swing y empuñadura · Velocidad de la raqueta relativa entre golpes**: medido en el 60% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **4. Raqueta, swing y empuñadura · Velocidad de la raqueta relativa entre golpes**: medido en el 62% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **4. Raqueta, swing y empuñadura · Posición de la mano en el mango**: medido en el 79% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **4. Raqueta, swing y empuñadura · Empuñadura: "compatible con este / semioccidental-occidental"**: implementado (sin nombre de dato en la matriz)
-- ✔ **5. Bola, resultado y contexto · Dirección cruzada, paralela, al centro, invertidas**: medido en el 29% de los golpes y en el informe
-- ✔ **5. Bola, resultado y contexto · Golpe angulado (cruzado, corto y junto al lateral)**: medido en el 31% de los golpes y en el informe
-- ✔ **5. Bola, resultado y contexto · Bola corta cerca de la red: baja, media, alta**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **5. Bola, resultado y contexto · Altura de la bola en su vuelo, bote, punto más alto; contacto subiendo / arriba / cayendo**: medido en el 36% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **5. Bola, resultado y contexto · Qué hace ella en cada momento de la bola (cruza la red, bota, punto más alto)**: medido en el 46% de los golpes y en el informe
+- ✔ **5. Bola, resultado y contexto · Dirección cruzada, paralela, al centro, invertidas**: medido en el 35% de los golpes y en el informe
+- ✔ **5. Bola, resultado y contexto · Golpe angulado (cruzado, corto y junto al lateral)**: medido en el 35% de los golpes y en el informe
+- ✔ **5. Bola, resultado y contexto · Bola corta cerca de la red: baja, media, alta**: medido en el 76% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **5. Bola, resultado y contexto · Altura de la bola en su vuelo, bote, punto más alto; contacto subiendo / arriba / cayendo**: medido en el 38% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **5. Bola, resultado y contexto · Qué hace ella en cada momento de la bola (cruza la red, bota, punto más alto)**: medido en el 50% de los golpes y en el informe
 - ✔ **5. Bola, resultado y contexto · Curvas de altura (cabeza, cadera, mano, cabeza de la raqueta) a lo largo del golpe, con su curva típica y su franja**: implementado (sin nombre de dato en la matriz)
 - ✔ **5. Bola, resultado y contexto · Fase ataque / neutra / defensa**: medido en el 100% de los golpes y en el informe
-- ✔ **5. Bola, resultado y contexto · Puntos ganados en ataque / en defensa**: medido en el 84% de los golpes y en el informe
-- ✔ **5. Bola, resultado y contexto · Resto, globo, dejada, volea, subida a la red**: medido en el 97% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **5. Bola, resultado y contexto · Puntos ganados en ataque / en defensa**: medido en el 76% de los golpes y en el informe
+- ✔ **5. Bola, resultado y contexto · Resto, globo, dejada, volea, subida a la red**: medido en el 96% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **5. Bola, resultado y contexto · Ganador / error (forzado o no)**: implementado (sin nombre de dato en la matriz) (parcial: ver la matriz)
 - ✔ **5. Bola, resultado y contexto · Presión, set, fatiga**: implementado (sin nombre de dato en la matriz)
-- ✔ **5b. Resto de derecha · Resto: reconocerlo (saca la rival y es su primer golpe del punto)**: medido en el 97% de los golpes y en el informe
-- ✔ **5b. Resto de derecha · Resto de primer o de segundo saque**: medido en el 21% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **5b. Resto de derecha · Dirección del saque recibido: abierto, al cuerpo, a la T**: medido en el 11% de los golpes y en el informe
-- ✔ **5b. Resto de derecha · Lado del resto: iguales / ventaja**: medido en el 27% de los golpes y en el informe
-- ✔ **5b. Resto de derecha · Resto: posición de espera**: medido en el 25% de los golpes y en el informe
-- ✔ **5b. Resto de derecha · Resto: entrar hacia la bola**: medido en el 25% de los golpes y en el informe
-- ✔ **5b. Resto de derecha · Resto: split step respecto al saque**: medido en el 22% de los golpes y en el informe
+- ✔ **5b. Resto de derecha · Resto: reconocerlo (saca la rival y es su primer golpe del punto)**: medido en el 96% de los golpes y en el informe
+- ✔ **5b. Resto de derecha · Resto de primer o de segundo saque**: medido en el 17% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **5b. Resto de derecha · Dirección del saque recibido: abierto, al cuerpo, a la T**: medido en el 10% de los golpes y en el informe
+- ✔ **5b. Resto de derecha · Lado del resto: iguales / ventaja**: medido en el 21% de los golpes y en el informe
+- ✔ **5b. Resto de derecha · Resto: posición de espera**: medido en el 19% de los golpes y en el informe
+- ✔ **5b. Resto de derecha · Resto: entrar hacia la bola**: medido en el 19% de los golpes y en el informe
+- ✔ **5b. Resto de derecha · Resto: split step respecto al saque**: medido en el 19% de los golpes y en el informe
 - ✔ **5b. Resto de derecha · Resto: armado corto (bloqueo) o swing completo; terminación**: medido en el 77% de los golpes y en el informe
-- ✔ **5b. Resto de derecha · Resto: dirección y profundidad de su resto**: medido en el 42% de los golpes y en el informe
-- ✔ **5b. Resto de derecha · Resto: tiempo que tiene desde el saque**: medido en el 100% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Empuje de piernas / extensión triple (tobillo, rodilla, cadera)**: medido en el 78% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Rotación pélvica**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Separación cadera–hombro (torque)**: medido en el 76% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **5b. Resto de derecha · Resto: dirección y profundidad de su resto**: medido en el 50% de los golpes y en el informe
+- ✔ **5b. Resto de derecha · Resto: tiempo que tiene desde el saque**: medido en el 99% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Empuje de piernas / extensión triple (tobillo, rodilla, cadera)**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Rotación pélvica**: medido en el 76% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Separación cadera–hombro (torque)**: medido en el 75% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **6. Matriz del usuario · Giro de hombros (unit turn)**: medido en el 78% de los golpes y en el informe
 - ✔ **6. Matriz del usuario · Extensión del codo**: medido en el 78% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Retraso de la muñeca (lag) y su liberación**: medido en el 55% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Retraso de la muñeca (lag) y su liberación**: medido en el 58% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **6. Matriz del usuario · Cabeza estable y eje vertical**: medido en el 78% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Brazo recto o doble flexión**: medido en el 61% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Brazo libre paralelo a la línea de fondo en el giro; distancia a la bola**: medido en el 78% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Brazo libre recogido al pecho tras el contacto («catch»)**: medido en el 77% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Brazo recto o doble flexión**: medido en el 63% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Brazo libre paralelo a la línea de fondo en el giro; distancia a la bola**: medido en el 77% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Brazo libre recogido al pecho tras el contacto («catch»)**: medido en el 76% de los golpes y en el informe
 - ✔ **6. Matriz del usuario · Inclinación lateral del tronco**: medido en el 78% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Carga: flexión de rodillas**: medido en el 78% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Pie de arrastre (pie trasero que se arrastra)**: medido en el 63% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Carga: flexión de rodillas**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Pie de arrastre (pie trasero que se arrastra)**: medido en el 60% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **6. Matriz del usuario · Bucle de la preparación (forma)**: medido en el 73% de los golpes y en el informe
 - ✔ **6. Matriz del usuario · Caída de la raqueta por debajo de la mano**: medido en el 77% de los golpes y en el informe
 - ✔ **6. Matriz del usuario · Cara de la raqueta en la caída y en el impacto**: medido en el 79% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **6. Matriz del usuario · Trayectoria vertical del swing (de abajo arriba)**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Apoyos abierto, semiabierto, neutro, cerrado**: medido en el 77% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Apoyos abierto, semiabierto, neutro, cerrado**: medido en el 76% de los golpes y en el informe
 - ✔ **6. Matriz del usuario · Apoyo en suspensión (salto)**: medido en el 77% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Apoyo abierto extremo defensivo**: medido en el 77% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Split step**: medido en el 22% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Pasos de ajuste**: medido en el 64% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Apoyo abierto extremo defensivo**: medido en el 76% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Split step**: medido en el 19% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Pasos de ajuste**: medido en el 61% de los golpes y en el informe
 - ✔ **6. Matriz del usuario · Pasos cruzados**: medido en el 99% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Paso de ataque hacia dentro de la pista (step-in)**: medido en el 64% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Pasos de recuperación (laterales o cruzados)**: medido en el 57% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Paso de ataque hacia dentro de la pista (step-in)**: medido en el 61% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Pasos de recuperación (laterales o cruzados)**: medido en el 54% de los golpes y en el informe
 - ✔ **6. Matriz del usuario · Golpe plano, liftado o cortado**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Botepronto (media volea)**: medido en el 46% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Volea de derecha**: medido en el 46% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Terminación sobre el hombro contrario**: medido en el 78% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Terminación en látigo sobre el mismo hombro (buggy whip)**: medido en el 78% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Terminación baja, a la cintura contraria**: medido en el 78% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Adaptación a bola rápida, corta, alta, abierta**: medido en el 100% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Dirección: cruzado, paralelo, dentro-fuera, dentro-dentro**: medido en el 29% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Zona de impacto: altura y separación lateral**: medido en el 78% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Equilibrio al terminar**: medido en el 78% de los golpes y en el informe
-- ✔ **6. Matriz del usuario · Latencia de reacción al golpe de la rival**: medido en el 64% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Apertura prematura de hombros (fuga de energía)**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Botepronto (media volea)**: medido en el 51% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Volea de derecha**: medido en el 51% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Terminación sobre el hombro contrario**: medido en el 77% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Terminación en látigo sobre el mismo hombro (buggy whip)**: medido en el 77% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Terminación baja, a la cintura contraria**: medido en el 77% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Adaptación a bola rápida, corta, alta, abierta**: medido en el 99% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Dirección: cruzado, paralelo, dentro-fuera, dentro-dentro**: medido en el 35% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Zona de impacto: altura y separación lateral**: medido en el 77% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Equilibrio al terminar**: medido en el 77% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Latencia de reacción al golpe de la rival**: medido en el 60% de los golpes y en el informe (parcial: ver la matriz)
+- ✔ **6. Matriz del usuario · Apertura prematura de hombros (fuga de energía)**: medido en el 76% de los golpes y en el informe (parcial: ver la matriz)
 - ✔ **6. Matriz del usuario · Fuerza en dirección incorrecta (horizontal o descendente)**: medido en el 77% de los golpes y en el informe (parcial: ver la matriz)
-- ✔ **6. Matriz del usuario · Superficie de la pista**: medido en el 69% de los golpes y en el informe
+- ✔ **6. Matriz del usuario · Superficie de la pista**: medido en el 77% de los golpes y en el informe
 - ✔ **Cada punto de la matriz del usuario tiene su sitio en la pantalla**: 59 de 59
-- ✔ **Bola rápida / lenta**: lenta 52, media 97, rápida 53, muy rápida 62 (se muestra con ≥ 12 golpes)
-- ✔ **Bola alta / baja**: rodilla 2, cadera 32, cintura-pecho 88, pecho-hombro 69, por encima del hombro 13 (se muestra con ≥ 12 golpes)
-- ✔ **Bola corta / profunda**: dentro de la pista 19, sobre la línea 35, 1-2 m detrás 97, 2-4 m detrás 53, muy atrás 1 (se muestra con ≥ 12 golpes)
-- ✔ **En carrera / parada / en salto**: parada 28, en movimiento 101, en carrera 72, deslizando 0, en el aire 4 (se muestra con ≥ 12 golpes)
-- ✔ **Cada apoyo**: abierto 76, semiabierto 73, neutro 41, cerrado 13 (se muestra con ≥ 12 golpes)
-- ✔ **Dirección del golpe**: cruzada 20, paralela 8, al centro 27, invertida cruzada 8, invertida paralela 8, invertida al centro 7 (se muestra con ≥ 12 golpes)
-- ✔ **Ataque / defensa**: ataque 26, neutra 152, defensa 87 (se muestra con ≥ 12 golpes)
-- ✔ **Bola subiendo / arriba / cayendo**: bola subiendo 71, bola arriba 19, bola cayendo 6 (se muestra con ≥ 12 golpes)
-- ✔ **Bola centrada / abierta**: centrada 80, abierta 85, muy abierta 37 (se muestra con ≥ 12 golpes)
-- ✔ **Bola rápida / lenta: cada medida en cada nivel**: 73 medidas × 4 niveles = 292 combinaciones; 271 mostradas con ≥ 12 golpes
-- ✔ **Bola alta / baja: cada medida en cada nivel**: 73 medidas × 5 niveles = 365 combinaciones; 254 mostradas con ≥ 12 golpes; niveles con pocos golpes: rodilla 2
-- ✔ **Bola corta / profunda: cada medida en cada nivel**: 73 medidas × 5 niveles = 365 combinaciones; 262 mostradas con ≥ 12 golpes; niveles con pocos golpes: muy atrás 1
-- ✔ **En carrera / parada / en salto: cada medida en cada nivel**: 73 medidas × 5 niveles = 365 combinaciones; 203 mostradas con ≥ 12 golpes; niveles con pocos golpes: deslizando 0, en el aire 4
-- ✔ **Cada apoyo: cada medida en cada nivel**: 73 medidas × 4 niveles = 292 combinaciones; 256 mostradas con ≥ 12 golpes
-- ✔ **Dirección del golpe: cada medida en cada nivel**: 73 medidas × 6 niveles = 438 combinaciones; 123 mostradas con ≥ 12 golpes; niveles con pocos golpes: paralela 8, invertida cruzada 8, invertida paralela 8, invertida al centro 7
-- ✔ **Ataque / defensa: cada medida en cada nivel**: 73 medidas × 3 niveles = 219 combinaciones; 208 mostradas con ≥ 12 golpes
-- ✔ **Bola subiendo / arriba / cayendo: cada medida en cada nivel**: 73 medidas × 3 niveles = 219 combinaciones; 135 mostradas con ≥ 12 golpes; niveles con pocos golpes: bola cayendo 6
-- ✔ **Bola centrada / abierta: cada medida en cada nivel**: 73 medidas × 3 niveles = 219 combinaciones; 216 mostradas con ≥ 12 golpes
+- ✔ **Bola rápida / lenta**: lenta 65, media 125, rápida 78, muy rápida 89 (se muestra con ≥ 12 golpes)
+- ✔ **Bola corta / profunda**: dentro de la pista 31, sobre la línea 44, 1-2 m detrás 126, 2-4 m detrás 69, muy atrás 6 (se muestra con ≥ 12 golpes)
+- ✔ **En carrera / parada / en salto**: parada 34, en movimiento 129, en carrera 107, deslizando 0, en el aire 5 (se muestra con ≥ 12 golpes)
+- ✔ **Cada apoyo**: abierto 91, semiabierto 98, neutro 64, cerrado 19 (se muestra con ≥ 12 golpes)
+- ✔ **Ataque / defensa**: ataque 28, neutra 207, defensa 124 (se muestra con ≥ 12 golpes)
+- ✔ **Bola subiendo / arriba / cayendo**: bola subiendo 95, bola arriba 32, bola cayendo 11 (se muestra con ≥ 12 golpes)
+- ✔ **Bola centrada / abierta**: centrada 110, abierta 116, muy abierta 46 (se muestra con ≥ 12 golpes)
+- ✔ **Bola rápida / lenta: cada medida en cada nivel**: 73 medidas × 4 niveles = 292 combinaciones; 287 mostradas con ≥ 12 golpes
+- ✔ **Bola corta / profunda: cada medida en cada nivel**: 73 medidas × 5 niveles = 365 combinaciones; 284 mostradas con ≥ 12 golpes; niveles con pocos golpes: muy atrás 6
+- ✔ **En carrera / parada / en salto: cada medida en cada nivel**: 73 medidas × 5 niveles = 365 combinaciones; 204 mostradas con ≥ 12 golpes; niveles con pocos golpes: deslizando 0, en el aire 5
+- ✔ **Cada apoyo: cada medida en cada nivel**: 73 medidas × 4 niveles = 292 combinaciones; 266 mostradas con ≥ 12 golpes
+- ✔ **Ataque / defensa: cada medida en cada nivel**: 73 medidas × 3 niveles = 219 combinaciones; 211 mostradas con ≥ 12 golpes
+- ✔ **Bola subiendo / arriba / cayendo: cada medida en cada nivel**: 73 medidas × 3 niveles = 219 combinaciones; 142 mostradas con ≥ 12 golpes; niveles con pocos golpes: bola cayendo 11
+- ✔ **Bola centrada / abierta: cada medida en cada nivel**: 73 medidas × 3 niveles = 219 combinaciones; 217 mostradas con ≥ 12 golpes
 - ✔ **Fotograma clave: espera / split step**: encontrado en el 100% de los golpes
 - ✔ **Fotograma clave: impacto**: encontrado en el 100% de los golpes
 - ✔ **Fotograma clave: extensión**: encontrado en el 100% de los golpes
@@ -334,9 +339,9 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - ✔ **Codo en el impacto (3D)**: 12 derechas con estimación 3D con esta medida; mediana 95.65
 - ✔ **Rodilla de atrás en el armado (3D)**: 12 derechas con estimación 3D con esta medida; mediana 148.05
 - ✔ **Tronco en el impacto (3D)**: 12 derechas con estimación 3D con esta medida; mediana 8.95
-- ✔ **La pantalla responde a cada combinación**: 2050 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 184500 puntos de control comprobados; 1217 con golpes exactos
+- ✔ **La pantalla responde a cada combinación**: 2050 combinaciones (cada condición, cada pareja y el ejemplo del usuario), 184500 puntos de control comprobados; 1256 con golpes exactos
 - ✔ **Lo que la distingue: su firma (rasgos que repite) con vídeo**: 1 rasgos que repite en ≥ 75 % de sus golpes, solo de medidas fiables
-- ✔ **Estilo de su derecha en una frase**: Estilo de su derecha: preparación amplia (67 %) · apoyo variable (la más frecuente, abierto, en 37 %) · efecto liftado (de abajo arriba) (70 %).
+- ✔ **Estilo de su derecha en una frase**: Estilo de su derecha: preparación amplia (68 %) · apoyo variable (la más frecuente, semiabierto, en 37 %) · efecto liftado (de abajo arriba) (71 %).
 - ✔ **Puntos de «Aprende» con su valor medido (todas sus derechas)**: 86 de 90; el resto dice por qué falta
 - ✔ **«Tu objetivo»: la consigna con su número en cada medida suya fiable**: 54 medidas con su número para copiar (las ruidosas o sesgadas no lo llevan); 76 palabras con su explicación al tocarlas; guía de primer uso y glosario comprobados
 - ✔ **Golpes inventados: precisión en F3Set ≥ 0.94**: precisión 0.942, encontrados 466 de 517 (90%) en recall_validation_detector.json
@@ -345,29 +350,33 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 
 ## 2. Información, no tablas: vídeo real como prueba en cada pantalla
 
-- ✘ **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 598 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
+- ✘ **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 639 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
+- ! **Repeticiones en el informe: sin-fecha_8b0278_sinner**: 0% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (0 de 59) · 59 con recorte pero no en el informe · 250 recortes en el partido
+- ! **Medidas en la cámara lenta: sin-fecha_8b0278_sinner**: 100% de sus golpes con repetición a cámara lenta medidos en ella (1 de 1, 6 valores junto a los del directo) · 279 fotogramas en 26 s · 0 de 1 con «en la repetición a cámara lenta» en el informe
 - ! **Tablas a la vista en «Conclusiones (Panel y Comparativas)»**: 1 tablas (el usuario pidió información en frases, no tablas)
-- ✔ **Repeticiones en el informe: sin-fecha_f43dd2_rybakina**: 97% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (75 de 77) · 2 sin recorte · 291 recortes en el partido
-- ✔ **Repeticiones en el informe: sin-fecha_584c5b_rybakina**: 100% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (134 de 134) · 582 recortes en el partido
+- ✔ **Repeticiones en el informe: sin-fecha_f43dd2_rybakina**: 97% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (73 de 75) · 2 sin recorte · 299 recortes en el partido
+- ✔ **Repeticiones en el informe: sin-fecha_584c5b_rybakina**: 100% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (132 de 132) · 582 recortes en el partido
 - ✔ **Repeticiones en el informe: sin-fecha_580c6f_rybakina**: 100% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (103 de 103) · 618 recortes en el partido
 - ✔ **Repeticiones en el informe: sin-fecha_b8b713_rybakina**: 100% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (118 de 118) · 713 recortes en el partido
-- ✔ **Medidas en la cámara lenta: sin-fecha_f43dd2_rybakina**: 100% de sus golpes con repetición a cámara lenta medidos en ella (1 de 1, 6 valores junto a los del directo) · 59 fotogramas en 8 s · 1 de 1 con «en la repetición a cámara lenta» en el informe
-- ✔ **Medidas en la cámara lenta: sin-fecha_584c5b_rybakina**: 100% de sus golpes con repetición a cámara lenta medidos en ella (2 de 2, 12 valores junto a los del directo) · 317 fotogramas en 30 s · 2 de 2 con «en la repetición a cámara lenta» en el informe
-- ✔ **Medidas en la cámara lenta: sin-fecha_580c6f_rybakina**: 100% de sus golpes con repetición a cámara lenta medidos en ella (1 de 1, 3 valores junto a los del directo) · 148 fotogramas en 14 s · 1 de 1 con «en la repetición a cámara lenta» en el informe
+- ✔ **Repeticiones en el informe: sin-fecha_49723c_rybakina**: 100% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (95 de 95) · 541 recortes en el partido
+- ✔ **Medidas en la cámara lenta: sin-fecha_f43dd2_rybakina**: 100% de sus golpes con repetición a cámara lenta medidos en ella (1 de 1, 6 valores junto a los del directo) · 59 fotogramas en 1 s · 1 de 1 con «en la repetición a cámara lenta» en el informe
+- ✔ **Medidas en la cámara lenta: sin-fecha_584c5b_rybakina**: 100% de sus golpes con repetición a cámara lenta medidos en ella (2 de 2, 12 valores junto a los del directo) · 317 fotogramas en 2 s · 2 de 2 con «en la repetición a cámara lenta» en el informe
+- ✔ **Medidas en la cámara lenta: sin-fecha_580c6f_rybakina**: 100% de sus golpes con repetición a cámara lenta medidos en ella (1 de 1, 3 valores junto a los del directo) · 148 fotogramas en 1 s · 1 de 1 con «en la repetición a cámara lenta» en el informe
 - ✔ **Medidas en la cámara lenta: sin-fecha_b8b713_rybakina**: ninguno de sus 67 golpes cercanos (forehand) tiene repetición a cámara lenta con su instante: nada que medir en este partido
+- ✔ **Medidas en la cámara lenta: sin-fecha_49723c_rybakina**: 100% de sus golpes con repetición a cámara lenta medidos en ella (3 de 3, 12 valores junto a los del directo) · 377 fotogramas en 41 s · 3 de 3 con «en la repetición a cámara lenta» en el informe
 - ✔ **Cada golpe de entrenamiento tiene su vídeo con el esqueleto**: 91 de 91
-- ✔ **Cada golpe tiene su vídeo**: 265 de 265 golpes con vídeo
-- ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 265 de 265
+- ✔ **Cada golpe tiene su vídeo**: 319 de 319 golpes con vídeo
+- ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 319 de 319
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 3088 caracteres de texto, 12 vídeos, 21 gráficos
-- ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 8245 caracteres de texto, 12 vídeos, 1 gráficos
-- ✔ **Pantalla «Análisis de golpe»**: 5871 caracteres de texto, 13 vídeos, 33 gráficos
-- ✔ **Pantalla «Comparar dos golpes»**: 54630 caracteres de texto, 12 vídeos, 2 gráficos
-- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 5644 caracteres de texto, 12 vídeos, 22 gráficos
-- ✔ **Pantalla «Tabla de golpes (Explorador)»**: 5068 caracteres de texto, 12 vídeos, 0 gráficos
+- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 3258 caracteres de texto, 12 vídeos, 21 gráficos
+- ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 8358 caracteres de texto, 12 vídeos, 1 gráficos
+- ✔ **Pantalla «Análisis de golpe»**: 5859 caracteres de texto, 13 vídeos, 33 gráficos
+- ✔ **Pantalla «Comparar dos golpes»**: 66286 caracteres de texto, 12 vídeos, 2 gráficos
+- ✔ **Pantalla «Conclusiones (Panel y Comparativas)»**: 5595 caracteres de texto, 12 vídeos, 22 gráficos
+- ✔ **Pantalla «Tabla de golpes (Explorador)»**: 5318 caracteres de texto, 12 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 12 vídeos, 0 gráficos
-- ✔ **Pantalla «Fiabilidad de las medidas»**: 2433 caracteres de texto, 12 vídeos, 0 gráficos
-- ✔ **Pantalla «Datos del análisis»**: 2589 caracteres de texto, 12 vídeos, 0 gráficos
+- ✔ **Pantalla «Fiabilidad de las medidas»**: 2435 caracteres de texto, 12 vídeos, 0 gráficos
+- ✔ **Pantalla «Datos del análisis»**: 2685 caracteres de texto, 12 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
@@ -398,13 +407,13 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 
 ## 3. Nada inventado: valores posibles, respaldados por sus golpes; lo no medible se dice
 
-- ✘ **Valores dentro de límites físicos**: ball_flight.apex_height_m: 2 de 96 fuera de 0.2–4.0
-- ! **forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)**: 482 medidas en 263 golpes de 4 partidos; dependen de la cámara: stroke.return_ready_depth_m 70% (azar 29%), stroke.return_step_in_m 57% (azar 22%), ball_flight.fit_rms_m 39% (azar 13%), footwork.feet_still_share 31% (azar 4%), ball_bounce.arm_extension 31% (azar 16%), metrics.shoulder_turn_3d_deg 30% (azar 15%), ready.shoulder_tilt 26% (azar 8%), metrics.hip_turn_3d_deg 22% (azar 16%), metrics.x_factor_3d_deg 20% (azar 9%), ready.racket_head_vs_wrist 20% (azar 15%), ready.racket_tip_vs_head 19% (azar 14%), finish.shoulder_turn 14% (azar 8%); prueba débil con 4 partidos (cámaras parecidas): «dentro del azar» no demuestra que no dependan
+- ✘ **Valores dentro de límites físicos**: ball_flight.apex_height_m: 3 de 138 fuera de 0.2–4.0
+- ! **forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)**: 489 medidas en 355 golpes de 6 partidos; dependen de la cámara: stroke.return_ready_depth_m 82% (azar 56%), ball_flight.fit_rms_m 31% (azar 11%), footwork.feet_still_share 29% (azar 4%), takeback.body_height 19% (azar 7%), metrics.x_factor_3d_deg 17% (azar 6%), metrics.shoulder_turn_3d_deg 17% (azar 8%), ball_bounce.arm_extension 17% (azar 10%), footwork.move_dy_m 15% (azar 9%), loaded.body_height 15% (azar 8%), stroke.acceleration_vs_bounce 14% (azar 8%), ready.shoulder_tilt 14% (azar 5%), stroke.takeback_vs_first_step 13% (azar 7%)
+- ! **R10 Armado completo cuando bota la bola (±0,1 s)**: refuta: mediana +0.12 s respecto al bote
 - ! **R17 La terminación más frecuente es sobre el hombro**: refuta: la más frecuente: limpiaparabrisas
-- ! **R18 Preparación compacta**: refuta: compacta 20%
-- ! **R21 El peso pasa del pie de atrás al de delante**: refuta: cambio mediano +0.08
-- ! **R23 La cadera llega a su máximo giro antes que los hombros**: refuta: hombros +0.00 s después de la cadera; orden completo de la cadena en el 73%
-- … **Punta de la raqueta respecto a la cabeza en el armado**: medido en 128 de 265 golpes; en «Aprende»; fiabilidad: fiable
+- ! **R18 Preparación compacta**: refuta: compacta 21%
+- ! **R21 El peso pasa del pie de atrás al de delante**: refuta: cambio mediano +0.07
+- ! **R23 La cadera llega a su máximo giro antes que los hombros**: refuta: hombros +0.00 s después de la cadera; orden completo de la cadena en el 71%
 - ✔ **2. Cuerpo · Pausa entre armado y swing**: no observable desde la tele; el informe lo dice
 - ✔ **2. Cuerpo · Momento de los picos en ms**: no observable desde la tele; el informe lo dice
 - ✔ **2. Cuerpo · Rotación interna del hombro, pronación, desviaciones de la muñeca**: no observable desde la tele; el informe lo dice
@@ -434,23 +443,23 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - ✔ **6. Matriz del usuario · Activación muscular (electromiografía)**: no observable desde la tele; el informe lo dice
 - ✔ **6. Matriz del usuario · Rangos articulares de muñeca, codo y hombro; cargas del codo**: no observable desde la tele; el informe lo dice
 - ✔ **6. Matriz del usuario · Aerodinámica, altitud, temperatura, humedad**: no observable desde la tele; el informe lo dice
-- ✔ **R1 Golpe liftado de trayectoria moderada, no extrema**: confirma: liftado 70%, inclinación mediana 49°
-- ✔ **R2 Dos manos en la raqueta en la espera (≥ 80 %)**: confirma: dos manos 80%
-- ✔ **R4 Empieza a preparar antes del bote**: confirma: mediana -0.43 s respecto al bote
-- ✔ **R6 Brazo libre casi extendido en el armado (codo 130-170°)**: confirma: codo libre mediano 157°
-- ✔ **R7 La mano libre pasa al lado del brazo en el armado**: confirma: posición lateral mediana +7
-- ✔ **R10 Armado completo cuando bota la bola (±0,1 s)**: confirma: mediana +0.08 s respecto al bote
-- ✔ **R11 Con bola rápida sigue armando a tiempo (no más de 0,1 s más tarde)**: confirma: rápida +0.10 s, lenta +0.08 s
-- ✔ **R12 Con bola alta se va más hacia atrás**: confirma: hacia atrás: alta 13%, resto 7%
-- ✔ **R13 La mano cae antes de acelerar en la mayoría**: confirma: cae en el 76%
+- ✔ **R1 Golpe liftado de trayectoria moderada, no extrema**: confirma: liftado 71%, inclinación mediana 47°
+- ✔ **R2 Dos manos en la raqueta en la espera (≥ 80 %)**: confirma: dos manos 81%
+- ✔ **R4 Empieza a preparar antes del bote**: confirma: mediana -0.46 s respecto al bote
+- ✔ **R6 Brazo libre casi extendido en el armado (codo 130-170°)**: confirma: codo libre mediano 156°
+- ✔ **R7 La mano libre pasa al lado del brazo en el armado**: confirma: posición lateral mediana +10
+- ✔ **R11 Con bola rápida sigue armando a tiempo (no más de 0,1 s más tarde)**: confirma: rápida +0.12 s, lenta +0.12 s
+- ✔ **R12 Con bola alta se va más hacia atrás**: confirma: hacia atrás: alta 13%, resto 10%
+- ✔ **R13 La mano cae antes de acelerar en la mayoría**: confirma: cae en el 79%
 - ✔ **R14 La cadera gira hacia la pista entre armado e impacto (> 10°)**: confirma: giro mediano 18°
-- ✔ **R15 Contacto con el codo flexionado (doble flexión mayoritaria)**: confirma: doble flexión 75%
-- ✔ **R20 Más apoyos cerrados o neutros que el circuito (~16 %)**: confirma: cerrado o neutro 27%
+- ✔ **R15 Contacto con el codo flexionado (doble flexión mayoritaria)**: confirma: doble flexión 77%
+- ✔ **R20 Más apoyos cerrados o neutros que el circuito (~16 %)**: confirma: cerrado o neutro 31%
 - ✔ **R5 Brazo relajado (tensión muscular)**: no decidible: no se ve desde la tele: la app no lo afirma
 - ✔ **R16 Cuerdas casi hacia el suelo en el contacto**: no decidible: no se ve desde la tele: la app no lo afirma
 - ✔ **R3 Empuñadura semioccidental exacta**: no decidible: no se ve desde la tele: la app no lo afirma
-- ✔ **Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)**: 80 medidas: 3 dudosa, 62 fiable, 11 no comprobable, 1 ruido, 3 sesgo. No se dan como valor suyo (ruido): impact.face_tilt ±5.4. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
-- ✔ **Frenado de los hombros antes del contacto**: medido en 201 de 265 golpes; en «Aprende»; fiabilidad: fiable
+- ✔ **Cada medida comprobada: técnica o ruido (fotogramas vecinos frente a diferencias entre golpes)**: 80 medidas: 3 dudosa, 62 fiable, 11 no comprobable, 1 ruido, 3 sesgo. No se dan como valor suyo (ruido): impact.face_tilt ±5.05. «no comprobable»: no depende del instante de las fases (esta prueba no la valida). Con menos de 5 golpes no se juzga
+- ✔ **Punta de la raqueta respecto a la cabeza en el armado**: medido en 182 de 359 golpes; en «Aprende»; fiabilidad: fiable
+- ✔ **Frenado de los hombros antes del contacto**: medido en 267 de 359 golpes; en «Aprende»; fiabilidad: fiable
 - ✔ **Cada frase lleva cuántos golpes la respaldan y su fiabilidad**: 98 frases
 - ✔ **Lo no medible se dice**: 17 elementos en «Lo que la tele no permite medir»
 - ✔ **Validación con clips anotados (F3Set)**: camino antiguo (run_clip, no el detector del análisis; el del análisis: recall_validation) — golpes: precisión 0.917, recall 0.647; derecha/revés 0.969; dirección 0.885. Solo detección y clases: el valor de cada medida (codo, rodillas, pasos…) aún no tiene clips anotados con los que compararse
@@ -465,10 +474,11 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 
 ## 5. 100 % automático
 
-- ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 172 de 265 del lado cercano (65%); motivos: phase 372, impact_without_audio 107, elbow_implausible_at_impact 39, half_volley_candidate 5. Otros 70 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
+- ✘ **Registros con fecha y duración**: 56 de 58 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas; prueba_completo.log: sin «termina fecha» al final
+- ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 214 de 359 del lado cercano (60%); motivos: phase 515, impact_without_audio 126, elbow_implausible_at_impact 42, half_volley_candidate 6. Otros 111 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
 - ✔ **Golpes que fallaron al procesarse**: ninguno
-- ✔ **Nada pide revisión manual**: 317 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
-- ✔ **Pruebas del código en este PC**: código 17cfb32 (2026-11-09T03:41:59): 907 bien, 0 fallan, 0 errores
+- ✔ **Nada pide revisión manual**: 397 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
+- ✔ **Pruebas del código en este PC**: código 57eacee (2026-11-09T11:12:10): 927 bien, 0 fallan, 0 errores
 - ✔ **Pruebas en este PC: test_pipeline**: 17 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_auto_cycle**: 15 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_pc_requests**: 9 bien, 0 fallan, 0 omitidas
@@ -499,24 +509,25 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - ✔ **Pruebas en este PC: test_project_context**: 3 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
-- ✔ **Progreso visible (progreso.json)**: último: slowmo_fine de tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 al 100.0 % (6/6), 31 s, quedan ≈ 0 s, a las 2026-11-09 06:19:01
-- ✔ **Registros con fecha y duración**: 56 de 56 registros con fecha de inicio y de fin o duración
-- ✔ **Tamaño de la salida (tamanos.txt)**: 41 carpetas, 28.9 GB en total (2026-11-09T06:50:06); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB
+- ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de zverev-alexander-sinner-jannik-indian-wells-2026-semi-final al 100.0 % (56/56), 1069 s, quedan ≈ 0 s, a las 2026-11-09 18:59:35
+- ✔ **Tamaño de la salida (tamanos.txt)**: 42 carpetas, 29.1 GB en total (2026-11-09T19:07:15); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB
 - ✔ **Carpetas de pruebas antiguas**: ninguna carpeta de pruebas con más de 14 días sin usar
 - ✔ **Aplicación: ventana real y pantallas**: 56 pantallas pintadas, 0 problemas; ventana real: carga
-- ✔ **Aplicación: análisis en su índice**: 1 análisis y 18 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
+- ✔ **Aplicación: análisis en su índice**: 2 análisis y 22 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
 - ✔ **Aplicación: un partido nuevo de principio a fin**: terminó 2026-11-07T17:47:21 en 62.6 min; análisis actualizado
-- ✔ **Partido sin-fecha_f43dd2_rybakina: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 169 golpes con ventana y serie
+- ✔ **Partido sin-fecha_f43dd2_rybakina: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 172 golpes con ventana y serie
 - ✔ **Partido sin-fecha_584c5b_rybakina: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 286 golpes con ventana y serie
 - ✔ **Partido sin-fecha_580c6f_rybakina: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 271 golpes con ventana y serie
 - ✔ **Partido sin-fecha_b8b713_rybakina: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 295 golpes con ventana y serie
-- ✔ **Informe: index.html, series y miniaturas**: 444 golpes; series que faltan 0, miniaturas que faltan 0
+- ✔ **Partido sin-fecha_49723c_rybakina: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 263 golpes con ventana y serie
+- ✔ **Partido sin-fecha_8b0278_sinner: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 190 golpes con ventana y serie
+- ✔ **Informe: index.html, series y miniaturas**: 540 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 444 vídeos
-- ✔ **Exportación terminada: exportar_derecha**: terminó el 2026-11-09 06:28:36 en 0 min: 444 vídeos de 444 golpes
-- ✔ **Exportación terminada: exportar_reves**: terminó el 2026-11-09 06:29:04 en 0 min: 283 vídeos de 283 golpes
-- ✔ **Exportación terminada: exportar_saque**: terminó el 2026-11-09 06:29:26 en 0 min: 294 vídeos de 294 golpes
+- ✔ **Exportación terminada: exportar_derecha**: terminó el 2026-11-09 06:53:04 en 0 min: 444 vídeos de 444 golpes
+- ✔ **Exportación terminada: exportar_reves**: terminó el 2026-11-09 06:53:32 en 0 min: 283 vídeos de 283 golpes
+- ✔ **Exportación terminada: exportar_saque**: terminó el 2026-11-09 06:53:54 en 0 min: 294 vídeos de 294 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
-- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 09-11 06:42, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
+- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 09-11 13:21, empezó a los 0.2 min; el PC estaba con otro trabajo hasta las 13:22 (1.0 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
 
@@ -526,32 +537,46 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 
 ## 9. Rendimiento: un partido en horas, no días
 
-- ✔ **Tiempo: sin-fecha_f43dd2_rybakina**: 34 min para 71 min de vídeo ≈ 1.7 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
-- ✔ **Tomas de cámara: sin-fecha_f43dd2_rybakina**: 2.0 min (objetivo ≤ 15 min)
-- ✔ **Tiempo: sin-fecha_584c5b_rybakina**: 66 min para 117 min de vídeo ≈ 2.0 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
+- ! **Tiempo: sin-fecha_49723c_rybakina**: 203 min para 112 min de vídeo ≈ 6.3 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
+- ! **Tiempo: sin-fecha_8b0278_sinner**: 123 min para 71 min de vídeo ≈ 6.1 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
+- ✔ **Tiempo: sin-fecha_f43dd2_rybakina**: 27 min para 71 min de vídeo ≈ 1.3 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
+- ✔ **Tomas de cámara: sin-fecha_f43dd2_rybakina**: 2.1 min (objetivo ≤ 15 min)
+- ✔ **Tiempo: sin-fecha_584c5b_rybakina**: 47 min para 117 min de vídeo ≈ 1.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
 - ✔ **Tomas de cámara: sin-fecha_584c5b_rybakina**: 3.2 min (objetivo ≤ 15 min)
-- ✔ **Tiempo: sin-fecha_580c6f_rybakina**: 74 min para 133 min de vídeo ≈ 1.9 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
-- ✔ **Tomas de cámara: sin-fecha_580c6f_rybakina**: 4.7 min (objetivo ≤ 15 min)
-- ✔ **Tiempo: sin-fecha_b8b713_rybakina**: 104 min para 210 min de vídeo ≈ 1.7 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
-- ✔ **Tomas de cámara: sin-fecha_b8b713_rybakina**: 8.0 min (objetivo ≤ 15 min)
-- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina**: 4 etapas comparadas con su mediana aquí; las que más tardan: players 10.8 min, score 7.3 min, scenes 7.0 min, view_clips 4.5 min, fine 3.6 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina**: 4 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, fine 10.4 min, view_clips 9.2 min, score 8.6 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_580c6f_rybakina**: 5 etapas comparadas con su mediana aquí; las que más tardan: players 24.4 min, scenes 17.2 min, score 9.5 min, fine 8.6 min, view_clips 8.3 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_b8b713_rybakina**: 5 etapas comparadas con su mediana aquí; las que más tardan: players 30.0 min, scenes 28.5 min, score 12.9 min, view_clips 10.9 min, fine 10.0 min; ninguna pasa de 2 veces su ritmo habitual
+- ✔ **Tiempo: sin-fecha_580c6f_rybakina**: 56 min para 133 min de vídeo ≈ 1.5 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
+- ✔ **Tomas de cámara: sin-fecha_580c6f_rybakina**: 4.9 min (objetivo ≤ 15 min)
+- ✔ **Tiempo: sin-fecha_b8b713_rybakina**: 83 min para 210 min de vídeo ≈ 1.4 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ejecución)
+- ✔ **Tomas de cámara: sin-fecha_b8b713_rybakina**: 8.4 min (objetivo ≤ 15 min)
+- ✔ **Tomas de cámara: sin-fecha_49723c_rybakina**: 3.1 min (objetivo ≤ 15 min)
+- ✔ **Tomas de cámara: sin-fecha_8b0278_sinner**: 2.6 min (objetivo ≤ 15 min)
+- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina**: 7 etapas comparadas con su mediana aquí; las que más tardan: players 10.8 min, scenes 7.0 min, score 4.0 min, fine 4.0 min, audio 2.4 min; ninguna pasa de 2 veces su ritmo habitual
+- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina**: 7 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, fine 4.7 min, score 4.4 min, views 3.2 min; ninguna pasa de 2 veces su ritmo habitual
+- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_580c6f_rybakina**: 7 etapas comparadas con su mediana aquí; las que más tardan: players 24.4 min, scenes 17.2 min, score 5.0 min, views 4.9 min, fine 4.0 min; ninguna pasa de 2 veces su ritmo habitual
+- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_b8b713_rybakina**: 7 etapas comparadas con su mediana aquí; las que más tardan: players 30.0 min, scenes 28.5 min, views 8.4 min, score 6.6 min, fine 6.1 min; ninguna pasa de 2 veces su ritmo habitual
+- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_49723c_rybakina**: 9 etapas comparadas con su mediana aquí; las que más tardan: fine 99.7 min, fine_doubtful 46.4 min, players 24.6 min, scenes 14.8 min, view_clips 8.7 min; ninguna pasa de 2 veces su ritmo habitual
+- ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_8b0278_sinner**: 9 etapas comparadas con su mediana aquí; las que más tardan: fine 71.2 min, fine_doubtful 17.9 min, players 15.2 min, scenes 9.0 min, view_clips 4.6 min; ninguna pasa de 2 veces su ritmo habitual
 - ✔ **Etapas a la vez: sin-fecha_f43dd2_rybakina**: 7.3 min ganados con etapas a la vez (players 7.3 min)
 - ✔ **Etapas a la vez: sin-fecha_584c5b_rybakina**: 8.6 min ganados con etapas a la vez (players 8.6 min)
 - ✔ **Etapas a la vez: sin-fecha_580c6f_rybakina**: 9.5 min ganados con etapas a la vez (players 9.5 min)
 - ✔ **Etapas a la vez: sin-fecha_b8b713_rybakina**: 12.9 min ganados con etapas a la vez (players 12.9 min)
-- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-09_0540.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el view_clips (4.2 min): CPU 25/68/100 %, iGPU 0/0/1 %, RAM máx 8.7 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina view_clips (8.2 min): CPU 28/65/98 %, iGPU 0/0/0 %, RAM máx 11.7 GB → uso medio: margen para repartir trabajo; zheng-qinwen-elena-rybakina slowmo_fine (0.5 min): CPU 19/22/25 %, iGPU 84/92/99 %, RAM máx 6.0 GB → iGPU al límite; tennis-yusipopen-polufinal-gau view_clips (7.8 min): CPU 27/55/83 %, iGPU 0/0/0 %, RAM máx 6.3 GB → uso medio: margen para repartir trabajo; tennis-yusipopen-polufinal-gau slowmo_fine (0.2 min): CPU 24/24/24 %, iGPU 86/86/86 %, RAM máx 6.0 GB → iGPU al límite; tennis-yusipopen-final-sobolen view_clips (9.8 min): CPU 12/47/82 %, iGPU 0/0/0 %, RAM máx 6.2 GB → uso medio: margen para repartir trabajo; 33.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)
+- ✔ **Etapas a la vez: sin-fecha_49723c_rybakina**: 9.5 min ganados con etapas a la vez (players 9.5 min)
+- ✔ **Etapas a la vez: sin-fecha_8b0278_sinner**: 6.2 min ganados con etapas a la vez (players 6.2 min)
+- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-09_1310.csv (mín/media/máx): us-open-2026-r4-naomi-osaka-el score (3.2 min): CPU 62/78/100 %, iGPU 0/0/0 %, RAM máx 13.7 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el identity (1.5 min): CPU 22/58/84 %, iGPU 0/0/0 %, RAM máx 9.5 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el views (2.0 min): CPU 20/34/47 %, iGPU 51/71/92 %, RAM máx 7.1 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine (3.5 min): CPU 22/48/100 %, iGPU 0/42/96 %, RAM máx 18.5 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el view_clips (0.2 min): CPU 35/35/35 %, iGPU 0/0/0 %, RAM máx 7.7 GB → uso medio: margen para repartir trabajo; us-open-2026-r4-naomi-osaka-el fine_doubtful (0.2 min): CPU 46/46/46 %, iGPU 0/0/0 %, RAM máx 8.3 GB → uso medio: margen para repartir trabajo; 18.5 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
-- ✘ **#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b**: a medias según el registro (ver docs/peticiones_usuario.md); 201 comprobaciones: 1 falta, 23 pocos datos, 177 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )
-- ✘ **#5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto**: a medias según el registro (ver docs/peticiones_usuario.md); 32 comprobaciones: 1 falta, 7 pocos datos, 24 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )
-- ✘ **#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»**: a medias según el registro (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 falta, 1 pocos datos, 8 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )
-- ✘ **#46 Sin PDF enorme y sin inventar datos**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Valores dentro de límites físicos» (ball_flight.apex_height_m: 2 de 96 fuera de 0.2–4.0)
-- ✘ **#59 Diferencias solo por encima del error y en situaciones equivalentes**: 6 comprobaciones: 1 falta, 1 pocos datos, 4 ok; la peor: «Valores dentro de límites físicos» (ball_flight.apex_height_m: 2 de 96 fuera de 0.2–4.0)
-- ✘ **#68 La meta: mejorar mi derecha tomando la de X como base**: a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 falta, 1 pocos datos, 6 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 124 palabras en las claves (máximo 120); extension: la lección )
+- ✘ **#4 Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como b**: a medias según el registro (ver docs/peticiones_usuario.md); 201 comprobaciones: 5 falta, 23 pocos datos, 173 ok; la peor: «Bola alta / baja» (rodilla 12, cadera 50, cintura-pecho 113, pecho-hombro 84, por encima del hombro 15 (se muestra con ≥ 12 golpes); con go)
+- ✘ **#5 Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto**: a medias según el registro (ver docs/peticiones_usuario.md); 32 comprobaciones: 5 falta, 7 pocos datos, 20 ok; la peor: «Bola alta / baja» (rodilla 12, cadera 50, cintura-pecho 113, pecho-hombro 84, por encima del hombro 15 (se muestra con ≥ 12 golpes); con go)
+- ✘ **#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía**: a medias según el registro (ver docs/peticiones_usuario.md); 191 comprobaciones: 2 falta, 16 pocos datos, 173 ok; la peor: «Bola alta / baja: cada medida en cada nivel» (73 medidas × 5 niveles = 365 combinaciones; 265 mostradas con ≥ 12 golpes; niveles con pocos golpes: rodilla 12; PROBLEM)
+- ✘ **#17 Una entrada que se entienda sola: «no entiendo nada ni cómo usarla»**: a medias según el registro (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 falta, 1 pocos datos, 8 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 121 palabras en las claves (máximo 120); loaded: la lección mid)
+- ✘ **#38 Dirección y profundidad del golpe**: 6 comprobaciones: 2 falta, 1 pocos datos, 3 ok; la peor: «Dirección del golpe» (cruzada 33, paralela 19, al centro 39, invertida cruzada 14, invertida paralela 10, invertida al centro 10 (se muestra c)
+- ✘ **#46 Sin PDF enorme y sin inventar datos**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Valores dentro de límites físicos» (ball_flight.apex_height_m: 3 de 138 fuera de 0.2–4.0)
+- ✘ **#59 Diferencias solo por encima del error y en situaciones equivalentes**: 6 comprobaciones: 1 falta, 5 ok; la peor: «Valores dentro de límites físicos» (ball_flight.apex_height_m: 3 de 138 fuera de 0.2–4.0)
+- ✘ **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (56 de 58 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas; prueba_completo.log: si)
+- ✘ **#68 La meta: mejorar mi derecha tomando la de X como base**: a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 falta, 1 pocos datos, 6 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 121 palabras en las claves (máximo 120); loaded: la lección mid)
+- ✘ **#70 Las 2000 y pico combinaciones, usables y validadas**: a medias según el registro (ver docs/peticiones_usuario.md); 10 comprobaciones: 2 falta, 8 ok; la peor: «Bola alta / baja: cada medida en cada nivel» (73 medidas × 5 niveles = 365 combinaciones; 265 mostradas con ≥ 12 golpes; niveles con pocos golpes: rodilla 12; PROBLEM)
+- ✘ **#90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral)**: a medias según el registro (ver docs/peticiones_usuario.md); 16 comprobaciones: 2 falta, 6 pocos datos, 8 ok; la peor: «Bola alta / baja» (rodilla 12, cadera 50, cintura-pecho 113, pecho-hombro 84, por encima del hombro 15 (se muestra con ≥ 12 golpes); con go)
+- ✘ **#91 Matriz §8 Dirección (cruzado, paralelo, dentro-fuera, dentro-dentro)**: a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 2 falta, 1 ok; la peor: «Dirección del golpe» (cruzada 33, paralela 19, al centro 39, invertida cruzada 14, invertida paralela 10, invertida al centro 10 (se muestra c)
 - ✘ **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - ✘ **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
 - ✘ **#193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10)**: SIN HACER según el registro (#193, docs/peticiones_usuario.md)
@@ -568,45 +593,50 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - ✘ **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - ✘ **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - ✘ **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-- ! **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 14 comprobaciones: 14 ok
+- ! **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: 19 comprobaciones: 4 aviso, 15 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 91-99 puntos jugados (16 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-138 saques (1 o 2 por punt)
 - ! **#2 Ver informe y salidas en el móvil**: A MEDIAS según el registro (#2); no se comprueba en las salidas: aplazado por el usuario (móvil al final)
 - ! **#7 Empuñadura en la espera y al golpear**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
 - ! **#9 Información, no tablas; profesional, «con sentido humano», nivel de las apps punteras**: a medias según el registro (ver docs/peticiones_usuario.md); 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))
 - ! **#12 Validar cada medida con clips públicos anotados; el usuario no valida a mano**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
+- ! **#14 Rendimiento: un partido en horas, no días**: 12 comprobaciones: 2 aviso, 10 ok; la peor: «Tiempo: sin-fecha_49723c_rybakina» (203 min para 112 min de vídeo ≈ 6.3 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
 - ! **#15 Bajar y analizar vídeos de entrenadores de YouTube para aprender y encontrar huecos**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
+- ! **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 13 comprobaciones: 2 aviso, 11 ok; la peor: «Tiempo: sin-fecha_49723c_rybakina» (203 min para 112 min de vídeo ≈ 6.3 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
+- ! **#23 Seguir a la jugadora en los cambios de lado**: 7 comprobaciones: 3 aviso, 4 ok; la peor: «Identidad en los cambios de lado: sin-fecha_f43dd2_rybakina» (0 de 148 planos decididos (0%; objetivo ≥ 95%); misma ropa dentro de un juego 95% (objetivo ≥ 95%); sus golpes: 93 cerca)
 - ! **#25 Métricas por derecha: apoyo, base, rodillas, cadera, hombros, X-factor, codo, impacto, cadena, pista**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
 - ! **#26 Fases y cadena completa, del salto inicial a la terminación**: 8 comprobaciones: 5 aviso, 3 ok; la peor: «Fotograma clave: inicio de preparación» (encontrado en el 73% de los golpes)
+- ! **#29 Fase 0: entorno y fps reales, con YOLO**: 12 comprobaciones: 2 aviso, 10 ok; la peor: «Tiempo: sin-fecha_49723c_rybakina» (203 min para 112 min de vídeo ≈ 6.3 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
 - ! **#33 Capturas de los mejores golpes de cada tipo y N imágenes de un golpe**: 8 comprobaciones: 5 aviso, 3 ok; la peor: «Fotograma clave: inicio de preparación» (encontrado en el 73% de los golpes)
 - ! **#36 Mano y antebrazo, cierre de la muñeca**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#44 Sin vídeos del usuario, de entrenadores ni de otras jugadoras**: 11 comprobaciones: 1 aviso, 10 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))
-- ! **#45 Todo automático y completo: el usuario no revisa nada**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 6 comprobaciones: 6 ok
+- ! **#45 Todo automático y completo: el usuario no revisa nada**: 8 comprobaciones: 2 aviso, 6 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 91-99 puntos jugados (16 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-138 saques (1 o 2 por punt)
 - ! **#53 No pasar de 100 a 0: conservar lo anterior**: 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))
 - ! **#55 Ver una bola cerca de la red y un apoyo cerrado con golpe paralelo**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#57 Nada de gráficas de muchas líneas ni tablas sin frases**: 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))
 - ! **#64 Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la **: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok
 - ! **#67 No borrar el trabajo hecho: lo complejo como extra**: 14 comprobaciones: 1 aviso, 13 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))
-- ! **#70 Las 2000 y pico combinaciones, usables y validadas**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok
-- ! **#71 El conocimiento de los vídeos de entrenadores en la web**: a medias según el registro (ver docs/peticiones_usuario.md); 21 comprobaciones: 4 aviso, 17 ok; la peor: «R17 La terminación más frecuente es sobre el hombro» (refuta: la más frecuente: limpiaparabrisas)
+- ! **#71 El conocimiento de los vídeos de entrenadores en la web**: a medias según el registro (ver docs/peticiones_usuario.md); 21 comprobaciones: 5 aviso, 16 ok; la peor: «R10 Armado completo cuando bota la bola (±0,1 s)» (refuta: mediana +0.12 s respecto al bote)
 - ! **#73 Revisar la web de arriba abajo para que aporte valor**: a medias según el registro (ver docs/peticiones_usuario.md); 23 comprobaciones: 1 aviso, 22 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))
 - ! **#74 ¿El análisis de las apps de pago y libres fue profundo o superficial?**: A MEDIAS según el registro (#74); no se comprueba en las salidas: análisis documental (docs/comparativa_apps.md), no una salida
-- ! **#76 «Un 50 % de golpes dudosos»**: 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (172 de 265 del lado cercano (65%); motivos: phase 372, impact_without_audio 107, elbow_implausible_at_impact 39, half_vo)
+- ! **#75 Velocidad: «10 golpes en 5 horas es absurdo»**: 12 comprobaciones: 2 aviso, 10 ok; la peor: «Tiempo: sin-fecha_49723c_rybakina» (203 min para 112 min de vídeo ≈ 6.3 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
+- ! **#76 «Un 50 % de golpes dudosos»**: 1 comprobaciones: 1 aviso; la peor: «Golpes dudosos (duda sobre el golpe, no sobre una medida)» (214 de 359 del lado cercano (60%); motivos: phase 515, impact_without_audio 126, elbow_implausible_at_impact 42, half_vo)
 - ! **#78 No depender de que al usuario se le ocurran funciones**: A MEDIAS según el registro (#78); no se comprueba en las salidas: proceso: Claude propone las funciones desde la matriz y los entrenadores
 - ! **#84 Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok
 - ! **#88 Matriz §5 Pies (split, ajuste, cruzado, paso de ataque, recuperación)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 8 ok
-- ! **#91 Matriz §8 Dirección (cruzado, paralelo, dentro-fuera, dentro-dentro)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#95 Matriz §12 Neuro y visión (latencia, mirada, EMG)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
 - ! **#100 Mejora 2: raqueta al lado del cuerpo o detrás de la espalda, y adónde apunta la punta**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
 - ! **#109 Mejora 11: frases con datos existentes (mano libre, terminación, base al terminar, desplazarse bajo)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 4 comprobaciones: 4 ok
-- ! **#113 Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25)**: a medias según el registro (ver docs/peticiones_usuario.md); 19 comprobaciones: 4 aviso, 15 ok; la peor: «R17 La terminación más frecuente es sobre el hombro» (refuta: la más frecuente: limpiaparabrisas)
-- ! **#118 Validar cada medida de forma automática, no a mano: ¿técnica o ruido?**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)» (482 medidas en 263 golpes de 4 partidos; dependen de la cámara: stroke.return_ready_depth_m 70% (azar 29%), stroke.retur)
+- ! **#113 Mejora 15: examen interno con las afirmaciones de entrenadores (R1-R25)**: a medias según el registro (ver docs/peticiones_usuario.md); 19 comprobaciones: 5 aviso, 14 ok; la peor: «R10 Armado completo cuando bota la bola (±0,1 s)» (refuta: mediana +0.12 s respecto al bote)
+- ! **#118 Validar cada medida de forma automática, no a mano: ¿técnica o ruido?**: 2 comprobaciones: 1 aviso, 1 ok; la peor: «forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)» (489 medidas en 355 golpes de 6 partidos; dependen de la cámara: stroke.return_ready_depth_m 82% (azar 56%), ball_flight.)
 - ! **#120 Vídeo a pantalla completa**: 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))
 - ! **#121 Ver lo que se pinta por separado, por grupos o una a una**: 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))
 - ! **#122 Web en 2 vistas principales y el resto en «Más», en dos grupos (funcional y técnico), sin perder datos**: 10 comprobaciones: 1 aviso, 9 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió información en frases, no tablas))
 - ! **#124 Hacia dónde mira el tronco y las manos en la espera, medidas fiables**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
+- ! **#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno**: 12 comprobaciones: 2 aviso, 10 ok; la peor: «Tiempo: sin-fecha_49723c_rybakina» (203 min para 112 min de vídeo ≈ 6.3 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
 - ! **#130 Resto de derecha (devolver el saque) con todas sus variantes, en la matriz y en la aplicación**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 12 comprobaciones: 12 ok
 - ! **#131 detectar impactos de bola por AUDIO (Chat, 10-10 17:27)**: sin comprobación automática asignada
-- ! **#134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06)**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
+- ! **#134 prefiero una baseline completa a cerrar más golpes (Chat, 11-10 18:06)**: 7 comprobaciones: 2 aviso, 5 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 91-99 puntos jugados (16 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-138 saques (1 o 2 por punt)
 - ! **#135 distancia al fondo, red (Chat, 11-10 19:23)**: A MEDIAS según el registro (#135); sin comprobación automática asignada
+- ! **#137 hay algo que se pueda paralelizar ... threading (Chat, 13-10 18:31)**: 21 comprobaciones: 2 aviso, 19 ok; la peor: «Tiempo: sin-fecha_49723c_rybakina» (203 min para 112 min de vídeo ≈ 6.3 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
 - ! **#140 de la jugadora de fondo se sacan imagenes para la captura de datos en vista frontal? (Chat, 14-10 20:08)**: A MEDIAS según el registro (#140); sin comprobación automática asignada
 - ! **#141 (punto 0) la imagen ... Estroboscópica ... no vale para nada; ... Sus pies en este golpe tampoco (Chat, 17-10 **: sin comprobación automática asignada
 - ! **#142 (punto 2) como se puede hacer una aplicacion profesional ... mas jugadores, mas golpes ... como se lanza, alma**: A MEDIAS según el registro (#142); sin comprobación automática asignada
@@ -615,8 +645,10 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - ! **#148 empieza por la maqueta de una fase (Chat, 17-10 13:05)**: sin comprobación automática asignada
 - ! **#149 no se como validar eso lo tienes que hacer tu (Chat, 17-10 13:11)**: sin comprobación automática asignada
 - ! **#150 estos son mas videos de youtube para analizar (3 enlaces) (Chat, 17-10 17:21)**: sin comprobación automática asignada
+- ! **#151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25)**: 7 comprobaciones: 2 aviso, 5 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 91-99 puntos jugados (16 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-138 saques (1 o 2 por punt)
 - ! **#153 y analizo estos videos (2 enlaces de Olivari) (Chat, 18-10 11:19)**: sin comprobación automática asignada
 - ! **#154 mi movil es android google pixel 8 ... que copie directo al pixel (Chat, 18-10 12:11)**: A MEDIAS según el registro (#154); sin comprobación automática asignada
+- ! **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: 12 comprobaciones: 4 aviso, 8 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 91-99 puntos jugados (16 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-138 saques (1 o 2 por punt)
 - ! **#156 como sabes la identidad de la jugadora y porque hay fallos? porque no buscas en la web de la wta la imagen y a**: A MEDIAS según el registro (#156); sin comprobación automática asignada
 - ! **#162 Galerías ordenadas por calidad de captura, representatividad y resultado del punto (CLAUDE.md, Informe)**: A MEDIAS según el registro (#162); sin comprobación automática asignada
 - ! **#163 Final del armado (máximo giro, raqueta más atrás) (Matriz (literatura), §1)**: A MEDIAS según el registro (#163); sin comprobación automática asignada
@@ -656,7 +688,11 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - ! **#213 Textos COACH (el porqué con fuente) en todas las claves de la lección (Auditorías 17-10, técnica #17)**: A MEDIAS según el registro (#213); sin comprobación automática asignada
 - ! **#214 Fuentes de Ivanovic §3 #17 (Auditorías 17-10, técnica #18)**: A MEDIAS según el registro (#214); sin comprobación automática asignada
 - ! **#215 Armado «antes» o «al» bote según el sitio (Auditorías 17-10, técnica #22)**: A MEDIAS según el registro (#215); sin comprobación automática asignada
-- ! **#233 Una referencia completa y medida antes de validar nada**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
+- ! **#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v**: 25 comprobaciones: 2 aviso, 23 ok; la peor: «Repeticiones en el informe: sin-fecha_8b0278_sinner» (0% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (0 de 59) · 59 con recorte pero no en el )
+- ! **#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d**: 13 comprobaciones: 2 aviso, 11 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 91-99 puntos jugados (16 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-138 saques (1 o 2 por punt)
+- ! **#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo**: 14 comprobaciones: 2 aviso, 12 ok; la peor: «Tiempo: sin-fecha_49723c_rybakina» (203 min para 112 min de vídeo ≈ 6.3 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
+- ! **#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta**: 19 comprobaciones: 2 aviso, 17 ok; la peor: «Tiempo: sin-fecha_49723c_rybakina» (203 min para 112 min de vídeo ≈ 6.3 h para un partido de 3,5 h (objetivo ≤ 4.5 h; con las etapas medidas en su última ej)
+- ! **#233 Una referencia completa y medida antes de validar nada**: 7 comprobaciones: 2 aviso, 5 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 91-99 puntos jugados (16 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-138 saques (1 o 2 por punt)
 - ! **#235 Cadena cinética, footwork y timing: lo que define el golpe**: A MEDIAS según el registro (#235); sin comprobación automática asignada
 - ! **#236 Huellas numeradas sobre los pies y patrones de pasos**: A MEDIAS según el registro (#236); sin comprobación automática asignada
 - ! **#238 La validación es siempre automática; el usuario no valida la aplicación**: A MEDIAS según el registro (#238); sin comprobación automática asignada
@@ -664,40 +700,32 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - ! **#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
 - ! **#243 Todos los escenarios del producto los contempla Claude sin esperar a que se pidan**: A MEDIAS según el registro (#243); sin comprobación automática asignada
 - … **#6 Juego de pies: split step, primer paso, ajuste, reacción, recuperación**: a medias según el registro (ver docs/peticiones_usuario.md); 35 comprobaciones: 1 pocos datos, 34 ok; la peor: «3. Pies y desplazamiento · Presencia del split» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
-- … **#11 Validar solo que las salidas reales tienen todo lo pedido y todos los casos del modelo y la taxonomía**: a medias según el registro (ver docs/peticiones_usuario.md); 191 comprobaciones: 16 pocos datos, 175 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
-- … **#16 Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas**: a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 3 pocos datos, 2 ok; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 265 (la clase «Contacto» se pudo decidir en 122; sin señal, ninguna clase: nunca se inventa); sin golpes suf)
+- … **#16 Distinguir por contexto (derecha junto a la red o volea) y cubrir las medias voleas**: a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 3 pocos datos, 2 ok; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 359 (la clase «Contacto» se pudo decidir en 182; sin señal, ninguna clase: nunca se inventa); sin golpes suf)
 - … **#35 Medidas de la raqueta (altura, ángulos) en todo el golpe; qué miden los profesionales**: 11 comprobaciones: 2 pocos datos, 9 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más)
-- … **#38 Dirección y profundidad del golpe**: 6 comprobaciones: 1 pocos datos, 5 ok; la peor: «5. Bola, resultado y contexto · Bote: profundidad, anchura, dentro/fuera» (se mide (42% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
 - … **#47 Modelo técnico con fuentes; cómo saber si está completo**: 169 comprobaciones: 16 pocos datos, 153 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
-- … **#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica**: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 1 parecidos; 75 de 90 puntos con su valor medido)
+- … **#69 Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace ella y cómo replica**: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo cerrado, parada, plana, lado de su derecha» (0 golpes exactos, 3 parecidos; 83 de 90 puntos con su valor medido)
 - … **#72 El conocimiento del chat (modelo técnico, taxonomía, matriz) implementado en la web, no solo en documentos**: a medias según el registro (ver docs/peticiones_usuario.md); 170 comprobaciones: 16 pocos datos, 154 ok; la peor: «1. Fases · Golpe del rival → split step» (se mide (100% de los golpes); el informe lo enseñará con más golpes o más fiabilidad)
 - … **#79 Vídeos de entrenamiento con otras cámaras, en un apartado aparte y marcado**: a medias según el registro (ver docs/peticiones_usuario.md); 20 comprobaciones: 11 pocos datos, 9 ok; la peor: «Derechas filmadas de lado» (6 (se resume cada medida con 12 o más))
 - … **#85 Matriz §2 Cuerpo (cabeza, brazos, tronco, piernas, pie de arrastre)**: a medias según el registro (ver docs/peticiones_usuario.md); 14 comprobaciones: 3 pocos datos, 11 ok; la peor: «6. Matriz del usuario · Rodilla de atrás en la carga (110–130°) y de delante en el impacto» (vista lateral de entrenamiento: back_knee_loaded_deg en 6 derechas de lado, front_knee_impact_deg en 6 derechas de lado;)
 - … **#86 Matriz §3 Raqueta (bucle, caída, cara, trayectoria)**: a medias según el registro (ver docs/peticiones_usuario.md); 13 comprobaciones: 2 pocos datos, 11 ok; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más)
-- … **#89 Matriz §6 Modalidades (plano, liftado, cortado, botepronto, volea, 3 terminaciones)**: a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Botepronto / media volea: casos (#16)» (5 golpes de 265 (la clase «Contacto» se pudo decidir en 122; sin señal, ninguna clase: nunca se inventa); candidatos mar)
-- … **#90 Matriz §7 Adaptación a la bola (rápida, corta, alta, lateral)**: a medias según el registro (ver docs/peticiones_usuario.md); 16 comprobaciones: 6 pocos datos, 10 ok; la peor: «Golpe angulado (#132)» (0 golpes de 265 (la clase «Golpe angulado» se pudo decidir en 81; sin señal, ninguna clase: nunca se inventa); sin golpe)
+- … **#89 Matriz §6 Modalidades (plano, liftado, cortado, botepronto, volea, 3 terminaciones)**: a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Botepronto / media volea: casos (#16)» (6 golpes de 359 (la clase «Contacto» se pudo decidir en 182; sin señal, ninguna clase: nunca se inventa); candidatos mar)
 - … **#92 Matriz §9 Control (zona de impacto, relajación, equilibrio)**: a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Zona de impacto: delante de la cadera» (vista lateral de entrenamiento: contact_in_front_pct en 6 derechas de lado; se resume con 12 o más)
 - … **#97 Matriz §14 Fugas de energía (apertura prematura, casting, vector)**: a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «6. Matriz del usuario · Liberación anticipada de la muñeca («casting»)» (vista lateral de entrenamiento: lag_accel_deg en 5 derechas de lado, lag_pre_impact_deg en 6 derechas de lado; se resume)
-- … **#102 Mejora 4: punta de la raqueta respecto a la cabeza en el armado**: 1 comprobaciones: 1 pocos datos; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 128 de 265 golpes; en «Aprende»; fiabilidad: fiable)
 - … **#107 Mejora 9: caída por debajo de la bola**: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 pocos datos; la peor: «6. Matriz del usuario · Caída de la raqueta por debajo de la bola» (vista lateral de entrenamiento: racket_drop_below_contact_cm en 6 derechas de lado; se resume con 12 o más)
-- … **#132 ángulos (golpe angulado) — repetido el 19-10 08:11: «golpe angulado ... te lo he dicho muchas veces» (Chat, 10**: 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Golpe angulado (#132)» (0 golpes de 265 (la clase «Golpe angulado» se pudo decidir en 81; sin señal, ninguna clase: nunca se inventa); sin golpe)
-- … **#157 bola corta baja cerca de la red (Chat, 19-10 08:11)**: 1 comprobaciones: 1 pocos datos; la peor: «Bola corta baja cerca de la red (#157)» (0 golpes de 265 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa))
-- … **#158 bola corta alta cerca de la red (Chat, 19-10 08:11)**: 1 comprobaciones: 1 pocos datos; la peor: «Bola corta alta cerca de la red (#158)» (0 golpes de 265 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa))
-- … **#159 volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (Chat, 19-10 08:11)**: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 pocos datos; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 265 (la clase «Contacto» se pudo decidir en 122; sin señal, ninguna clase: nunca se inventa); sin golpes suf)
+- … **#132 ángulos (golpe angulado) — repetido el 19-10 08:11: «golpe angulado ... te lo he dicho muchas veces» (Chat, 10**: 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Golpe angulado (#132)» (1 golpes de 359 (la clase «Golpe angulado» se pudo decidir en 126; sin señal, ninguna clase: nunca se inventa); sin golp)
+- … **#157 bola corta baja cerca de la red (Chat, 19-10 08:11)**: 1 comprobaciones: 1 pocos datos; la peor: «Bola corta baja cerca de la red (#157)» (0 golpes de 359 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa))
+- … **#158 bola corta alta cerca de la red (Chat, 19-10 08:11)**: 1 comprobaciones: 1 pocos datos; la peor: «Bola corta alta cerca de la red (#158)» (0 golpes de 359 (la clase «Bola corta cerca de la red» se pudo decidir en 0; sin señal, ninguna clase: nunca se inventa))
+- … **#159 volea a media pista con el golpe de fondo derecha o reves (sin ser empuñadura de volea) (Chat, 19-10 08:11)**: a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 pocos datos; la peor: «Volea a media pista con golpe de fondo (#159)» (0 golpes de 359 (la clase «Contacto» se pudo decidir en 182; sin señal, ninguna clase: nunca se inventa); sin golpes suf)
 - ✔ **#8 Cuerdas y cara (suelo, valla lateral o trasera, ángulos, cierre muñeca–raqueta) en todas las fases. Obligatori**: 7 comprobaciones: 7 ok
 - ✔ **#10 Ver los cambios en la prueba rápida, sin 1 h**: 12 comprobaciones: 12 ok
 - ✔ **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: 2 comprobaciones: 2 ok
-- ✔ **#14 Rendimiento: un partido en horas, no días**: 8 comprobaciones: 8 ok
 - ✔ **#18 Herramienta Python cinemática 2D, 1 jugador y 1 golpe, parametrizable**: 1 comprobaciones: 1 ok
 - ✔ **#19 Vídeos y salidas fuera del repo, rutas por configuración**: 1 comprobaciones: 1 ok
-- ✔ **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 9 comprobaciones: 9 ok
 - ✔ **#21 Dos pasadas, barata y fina de ±1 s**: 1 comprobaciones: 1 ok
 - ✔ **#22 Solo la cámara principal, sin repeticiones ni primeros planos**: 1 comprobaciones: 1 ok
-- ✔ **#23 Seguir a la jugadora en los cambios de lado**: 5 comprobaciones: 5 ok
 - ✔ **#24 OCR del marcador y presión**: 1 comprobaciones: 1 ok
 - ✔ **#27 Agregados por partido y set, fatiga, ganadores y errores, presión**: 1 comprobaciones: 1 ok
 - ✔ **#28 Informe HTML con gráficos y esqueleto**: 2 comprobaciones: 2 ok
-- ✔ **#29 Fase 0: entorno y fps reales, con YOLO**: 8 comprobaciones: 8 ok
 - ✔ **#30 Estado del arte: igual, mejor o peor que otras apps**: 1 comprobaciones: 1 ok
 - ✔ **#31 Procesado incremental al añadir vídeos**: 1 comprobaciones: 1 ok
 - ✔ **#32 Ampliable a otros golpes y jugadores**: 2 comprobaciones: 2 ok
@@ -717,17 +745,16 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - ✔ **#56 Barras horizontales con la diferencia de altura de la cabeza**: 1 comprobaciones: 1 ok
 - ✔ **#58 La IA más moderna posible**: 15 comprobaciones: 15 ok
 - ✔ **#65 El play del vídeo funciona (no solo un fotograma)**: 11 comprobaciones: 11 ok
-- ✔ **#66 Fechas y duración en los registros**: 2 comprobaciones: 2 ok
-- ✔ **#75 Velocidad: «10 golpes en 5 horas es absurdo»**: 8 comprobaciones: 8 ok
 - ✔ **#77 No lanzar pruebas de 6 h para validar**: 2 comprobaciones: 2 ok
 - ✔ **#80 Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice**: 1 comprobaciones: 1 ok
 - ✔ **#81 Tamaño de la salida; comprobación sin gastar tokens**: 2 comprobaciones: 2 ok
 - ✔ **#82 Dónde se graban las salidas, qué va a git, qué se reutiliza**: 2 comprobaciones: 2 ok
-- ✔ **#83 Árbol de ficheros generados y validados**: 10 comprobaciones: 10 ok
+- ✔ **#83 Árbol de ficheros generados y validados**: 12 comprobaciones: 12 ok
 - ✔ **#87 Matriz §4 Apoyos (abierto, semiabierto, neutro o cerrado, salto, abierto extremo)**: 4 comprobaciones: 4 ok
 - ✔ **#98 Matriz §15 Contexto y ambiente (superficie, aerodinámica)**: 2 comprobaciones: 2 ok
 - ✔ **#99 Mejora 1 (entrenadores): líneas dibujadas sobre el fotograma**: 1 comprobaciones: 1 ok
 - ✔ **#101 Mejora 3: altura y separación del codo**: 1 comprobaciones: 1 ok
+- ✔ **#102 Mejora 4: punta de la raqueta respecto a la cabeza en el armado**: 1 comprobaciones: 1 ok
 - ✔ **#103 Mejora 5: transferencia de peso en una frase**: 1 comprobaciones: 1 ok
 - ✔ **#104 Mejora 6: empuje de piernas («bajar y subir»)**: 2 comprobaciones: 2 ok
 - ✔ **#105 Mejora 7: ritmo con la bola (caída al subir la bola)**: 1 comprobaciones: 1 ok
@@ -742,20 +769,16 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - ✔ **#117 Hacia dónde mira el tronco al terminar (valla lateral, de frente, girado) según el golpe**: 1 comprobaciones: 1 ok
 - ✔ **#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa**: 2 comprobaciones: 2 ok
 - ✔ **#123 Lo que se aprende en una sesión: plan de 3 prioridades en orden, foco externo por fase, detalle plegado**: 1 comprobaciones: 1 ok
-- ✔ **#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno**: 8 comprobaciones: 8 ok
 - ✔ **#126 Consignas con su número en «Cómo hacerlo tú» («baja unos 14 cm desde la espera, como ella»), solo si es fiable**: 1 comprobaciones: 1 ok
 - ✔ **#127 Guía de primer uso, «empieza aquí»**: 2 comprobaciones: 2 ok
 - ✔ **#128 Glosario de términos**: 2 comprobaciones: 2 ok
 - ✔ **#136 lo puedes añadir al contexto o fichero base? (Chat, 13-10 09:47)**: 1 comprobaciones: 1 ok
-- ✔ **#137 hay algo que se pueda paralelizar ... threading (Chat, 13-10 18:31)**: 15 comprobaciones: 15 ok
 - ✔ **#138 se puede hacer modelos hibridos de alguna manera? (Chat, 13-10 18:34)**: 2 comprobaciones: 2 ok
 - ✔ **#139 si se pierde calidad no tocamos nada (Chat, 14-10 20:08)**: 1 comprobaciones: 1 ok
 - ✔ **#144 (punto 4) hay tareas o schedulers ... salen terminales y se apagan solos (Chat, 17-10 09:49)**: 1 comprobaciones: 1 ok
 - ✔ **#145 no quiero nada en la nube ni pagar ni nada (Chat, 17-10 10:09)**: 1 comprobaciones: 1 ok
 - ✔ **#146 borra las carpetas de pruebas antiguas (Chat, 17-10 10:49)**: 1 comprobaciones: 1 ok
-- ✔ **#151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25)**: 5 comprobaciones: 5 ok
 - ✔ **#152 como queda la estructura de directorios ... carpeta normalizada de los jugadores (Chat, 18-10 10:12)**: 2 comprobaciones: 2 ok
-- ✔ **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: 9 comprobaciones: 9 ok
 - ✔ **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 5 comprobaciones: 5 ok
 - ✔ **#161 como se enlazan los partidos de una jugadora ... tienen que estar el analisis junto (Chat, 19-10 08:11)**: 1 comprobaciones: 1 ok
 - ✔ **#199 Bote: GBDT/CatBoost sobre la trayectoria (Estado del arte, 13-10)**: 2 comprobaciones: 2 ok
@@ -763,19 +786,15 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - ✔ **#201 Marcador: rapidocr 3.x con PP-OCRv5 (Estado del arte, 13-10)**: 2 comprobaciones: 2 ok
 - ✔ **#202 Bola: probar WASB (Estado del arte, 13-10)**: 3 comprobaciones: 3 ok
 - ✔ **#203 3D: prueba A/B con MotionAGFormer (Estado del arte, 13-10)**: 3 comprobaciones: 3 ok
-- ✔ **#204 Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10)**: 8 comprobaciones: 8 ok
+- ✔ **#204 Golpe: clasificador aprendido con F3Set (E2E-Spot/F3ED) (Estado del arte, 13-10)**: 10 comprobaciones: 10 ok
 - ✔ **#205 Volumen: unos 400 golpes con 4 partidos (Comparativa apps, §4.3)**: 1 comprobaciones: 1 ok
-- ✔ **#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v**: 17 comprobaciones: 17 ok
-- ✔ **#219 Las tomas de la cámara de fondo cuentan para los dos lados: golpes del fondo contados y con lo medible a esa d**: 9 comprobaciones: 9 ok
 - ✔ **#220 Almacenamiento definitivo: árbol por jugador, partido y golpe; nombres, colisiones y todos los escenarios**: 2 comprobaciones: 2 ok
-- ✔ **#221 Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano**: 8 comprobaciones: 8 ok
+- ✔ **#221 Detectar golpes con modelos entrenados, como las apps profesionales, no con reglas a mano**: 10 comprobaciones: 10 ok
 - ✔ **#222 Un clic por partido para decir quién es ella**: 1 comprobaciones: 1 ok
 - ✔ **#225 La aplicación no se cuelga ni ralentiza el PC**: 3 comprobaciones: 3 ok
 - ✔ **#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)**: 1 comprobaciones: 1 ok
 - ✔ **#227 Pantalla completa en la aplicación**: 1 comprobaciones: 1 ok
 - ✔ **#229 Renombrar el vídeo no rompe nada; el partido se identifica por su contenido**: 2 comprobaciones: 2 ok
-- ✔ **#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo**: 10 comprobaciones: 10 ok
-- ✔ **#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta**: 13 comprobaciones: 13 ok
 - ✔ **#232 Ningún proceso que se pueda colgar sin probar; la exportación del revés se colgó**: 7 comprobaciones: 7 ok
 - ✔ **#234 Prueba de valor de la aplicación con los datos reales**: 3 comprobaciones: 3 ok
 - ✔ **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: 1 comprobaciones: 1 ok
@@ -798,8 +817,10 @@ Registro `docs/peticiones_usuario.md`: 123 hechas · 95 a medias · 16 sin hacer
 - ✔ **Modelo en uso: bola (TrackNetV3 de RacketVision)**: elegido y con su modelo en este PC (ball.onnx: models/balltrack.onnx)
 - ✔ **Modelo en uso: raqueta (RTMPose de RacketVision)**: elegido y con su modelo en este PC (racket_face.pose_onnx: models/racketpose.onnx)
 - ✔ **Modelo en uso: cortes de plano (TransNetV2)**: elegido y con su modelo en este PC (scenes.onnx: models/transnetv2.onnx)
-- ✔ **Golpes del detector aprendido: sin-fecha_f43dd2_rybakina**: 357 candidatos del detector entrenado con F3Set (192 cerca, 159 lejos, umbral 0.1)
+- ✔ **Golpes del detector aprendido: sin-fecha_f43dd2_rybakina**: 359 candidatos del detector entrenado con F3Set (192 cerca, 159 lejos, umbral 0.1)
 - ✔ **Golpes del detector aprendido: sin-fecha_584c5b_rybakina**: 624 candidatos del detector entrenado con F3Set (324 cerca, 280 lejos, umbral 0.1)
 - ✔ **Golpes del detector aprendido: sin-fecha_580c6f_rybakina**: 650 candidatos del detector entrenado con F3Set (344 cerca, 299 lejos, umbral 0.1)
 - ✔ **Golpes del detector aprendido: sin-fecha_b8b713_rybakina**: 668 candidatos del detector entrenado con F3Set (324 cerca, 332 lejos, umbral 0.1)
+- ✔ **Golpes del detector aprendido: sin-fecha_49723c_rybakina**: 665 candidatos del detector entrenado con F3Set (358 cerca, 313 lejos, umbral 0.1)
+- ✔ **Golpes del detector aprendido: sin-fecha_8b0278_sinner**: 436 candidatos del detector entrenado con F3Set (239 cerca, 197 lejos, umbral 0.1)
 - ✔ **Comparativa con otras apps al día (docs/comparativa_apps.md)**: 15 modelos que nombra, todos en uso o medidos en el PC; cifras de detección al día: P 0.95 / R 0.89 en el documento frente a P 0.94 / R 0.90 de recall_validation_detector.json (466 de 517); fecha 07-11-2026 frente a la última medida de modelos 07-11-2026
