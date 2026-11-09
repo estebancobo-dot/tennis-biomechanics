@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-367 cumplidos · 21 no cumplidos · 126 sin golpes suficientes · 100 avisos (antes: 368 cumplidos, 19 no cumplidos)
+370 cumplidos · 17 no cumplidos · 126 sin golpes suficientes · 101 avisos (antes: 367 cumplidos, 21 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 113 de 245
 
@@ -124,10 +124,6 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 ## No cumplidos
 
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
-- **Registros con fecha y duración**: 55 de 56 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_actions.log: sin la fecha de sus pasos
-- **Golpes inventados: precisión en F3Set ≥ 0.94**: precisión 0.931, encontrados 455 de 517 (88%) en recall_validation_detector.json
-- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (55 de 56 registros con fecha de inicio y de fin o duración; sin ellas: ciclo_actions.log: sin la fecha de sus pasos)
-- **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Golpes inventados: precisión en F3Set ≥ 0.94» (precisión 0.931, encontrados 455 de 517 (88%) en recall_validation_detector.json)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
 - **#193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10)**: SIN HACER según el registro (#193, docs/peticiones_usuario.md)
@@ -145,7 +141,9 @@ Registro `docs/peticiones_usuario.md`: 121 hechas · 97 a medias · 16 sin hacer
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 
-## Empeora respecto a la ejecución anterior
+## Mejora
 
-- **Golpes inventados: precisión en F3Set ≥ 0.94**: ok → falta: precisión 0.931, encontrados 455 de 517 (88%) en recall_validation_detector.json
-- **#155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1**: aviso → falta: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Golpes inventados: precisión en F3Set ≥ 0.94» (precisión 0.931, encontrados 455 de 517 (88%) en recall_validation_detector.json)
+- Registros con fecha y duración: falta → ok
+- Golpes inventados: precisión en F3Set ≥ 0.94: falta → ok
+- #66 Fechas y duración en los registros: falta → ok
+- #155 es fisicamente imposible que en un partido solo de 86 o 77 golpes ... no quiero que se pierdan golpes (Chat, 1: falta → aviso
