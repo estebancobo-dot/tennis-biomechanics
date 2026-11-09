@@ -30,3 +30,20 @@ C:\tenis\tennis-biomech\src\tennisbio\identity.py:128: RuntimeWarning: All-NaN s
     identity:   0 % (1/1892 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
     identity:  15 % (279/1892 fotogramas (ropa)) · 30 s · quedan ≈ 3 min
     identity:  30 % (563/1892 fotogramas (ropa)) · 60 s · quedan ≈ 2 min
+    identity:  48 % (903/1892 fotogramas (ropa)) · 2 min · quedan ≈ 2 min
+    identity:  64 % (1202/1892 fotogramas (ropa)) · 2 min · quedan ≈ 69 s
+    identity:  81 % (1539/1892 fotogramas (ropa)) · 3 min · quedan ≈ 35 s
+    identity: 100 % (1885/1892 fotogramas (ropa)) · 3 min · quedan ≈ 1 s
+    identity: 100 % (1892/1892 fotogramas (ropa)) · 3 min · quedan ≈ 0 s
+    ropa: 1892 fotogramas · leerlos 163 s, medir la ropa 19 s
+    identidad: 267/320 planos · ropa y cambios de lado de acuerdo en 0, solo cambios de lado 267, solo ropa 0, la ropa corrige el marcador en 0, el saque visto en 0, dudosos 0 · ropa: ropa (torso y pantalón o falda, sin la pista), separación 1.78
+    grupos de ropa: NO distinguibles (los grupos no siguen los cambios de lado del marcador (59 % de 240 planos); de acuerdo con los cambios de lado 0.59 en 240 planos, distancia entre su ropa típica 0.59) · clic por los cambios de lado
+  [elena-rybakina-jessica-pegula-miami-2026-quarter-final] identity terminada a las 12:51:00 en 3.1 min
+C:\tenis\tennis-biomech\src\tennisbio\kinematics.py:51: RuntimeWarning: All-NaN slice encountered
+  return float(np.nanmedian(feet - kp[:, sk["nose"], 1]) * 1.08)
+[elena-rybakina-jessica-pegula-miami-2026-quarter-final] {'listo': True, 'grupos': 2, 'clic_hecho': False, 'minutos': 9.3, 'fotos': 'fotos no distinguibles', 'motivo': 'los grupos no siguen los cambios de lado del marcador (59 % de 240 planos)', 'fotos_por': 'cambios de lado del marcador', 'distancia_fotos': None}
+[zverev-alexander-sinner-jannik-indian-wells-2026-semi-final] clic ya hecho: nada que preparar
+
+Listos para el clic: 6 de 6 partidos.
+Fotos no distinguibles por la ropa: elena-rybakina-jessica-pegula-miami-2026-quarter-final
+termina 2026-11-09T12:51:04

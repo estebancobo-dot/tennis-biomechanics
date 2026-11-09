@@ -31,3 +31,10 @@ hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram
 2026-11-09T12:48:30,elena-rybakina-jessica-pegula-miami-2026-quarter-final,identity,88.0,42.0,3.3,12.3,19.8,4.0,0.0,0.0,0.0,0.0,2026-11-09 12:48:29,14.7
 2026-11-09T12:48:47,elena-rybakina-jessica-pegula-miami-2026-quarter-final,identity,43.0,12.7,0.0,9.5,19.8,1.2,0.0,0.0,0.0,0.0,2026-11-09 12:48:29,14.7
 2026-11-09T12:49:03,elena-rybakina-jessica-pegula-miami-2026-quarter-final,identity,56.0,9.1,0.0,7.6,19.8,1.2,0.0,0.0,0.0,1.0,2026-11-09 12:48:59,29.8
+2026-11-09T12:49:20,elena-rybakina-jessica-pegula-miami-2026-quarter-final,identity,46.0,9.0,0.0,7.1,19.8,0.7,0.0,0.0,0.0,0.0,2026-11-09 12:48:59,29.8
+2026-11-09T12:49:37,elena-rybakina-jessica-pegula-miami-2026-quarter-final,identity,66.0,54.9,0.0,7.1,19.8,0.7,0.0,0.0,0.0,1.0,2026-11-09 12:49:29,47.7
+2026-11-09T12:49:53,elena-rybakina-jessica-pegula-miami-2026-quarter-final,identity,84.0,36.9,28.9,7.4,19.8,1.1,0.0,0.0,0.0,0.0,2026-11-09 12:49:29,47.7
+2026-11-09T12:50:10,elena-rybakina-jessica-pegula-miami-2026-quarter-final,identity,52.0,8.4,0.0,7.0,19.8,0.7,0.0,0.0,0.0,0.0,2026-11-09 12:50:00,63.5
+2026-11-09T12:50:26,elena-rybakina-jessica-pegula-miami-2026-quarter-final,identity,35.0,10.0,0.0,7.0,19.8,0.7,0.0,0.0,0.0,0.0,2026-11-09 12:50:00,63.5
+2026-11-09T12:50:43,elena-rybakina-jessica-pegula-miami-2026-quarter-final,identity,77.0,6.5,0.0,7.1,19.8,0.7,0.0,0.0,0.0,0.0,2026-11-09 12:50:30,81.3
+2026-11-09T12:50:59,elena-rybakina-jessica-pegula-miami-2026-quarter-final,identity,60.0,7.0,7.4,7.2,19.8,0.7,0.0,0.0,0.0,0.0,2026-11-09 12:50:30,81.3
