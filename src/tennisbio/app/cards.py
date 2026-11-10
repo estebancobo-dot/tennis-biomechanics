@@ -19,7 +19,9 @@ TOURNAMENTS = {
     "usopen": ("US Open", "#1f5fbf"), "australian open": ("Australian Open", "#1c9ad6"), "avstral": ("Australian Open", "#1c9ad6"),
     "wimbledon": ("Wimbledon", "#3b7a3b"), "uimbldon": ("Wimbledon", "#3b7a3b"), "roland": ("Roland Garros", "#c4612a"),
 }
-ROUNDS = [(r"\b(final)\b", "Final"), (r"polufinal|\bsf\b|semifinal", "Semifinal"), (r"chetvertfinal|\bqf\b|cuartos", "Cuartos de final"),
+# 10-11: the specific rounds before «final» («Quarter final» and «Semi-final» were read as a final)
+ROUNDS = [(r"polufinal|\bsf\b|semi ?final", "Semifinal"), (r"chetvertfinal|\bqf\b|cuartos|quarter ?final", "Cuartos de final"),
+          (r"\b(final)\b", "Final"),
           (r"\br4\b|octavos", "Octavos de final"), (r"\br3\b", "Tercera ronda"), (r"\br2\b", "Segunda ronda"), (r"\br1\b", "Primera ronda")]
 # full names of the players met so far (the file names carry surnames, often transliterated)
 PLAYERS = {"rybakin": "Elena Rybakina", "sobolenko": "Aryna Sabalenka", "sabalenka": "Aryna Sabalenka", "gauff": "Coco Gauff",
@@ -147,10 +149,25 @@ def _thumb(d: Path, video: str, dest: Path) -> str:
         return ""
 
 
+CARD_VERSION = "2"     # 10-11: rounds and the rival read on the scoreboard; a new version rebuilds the cached cards
+
+
+def _board_rival(d: Path) -> str:
+    """The rival's name as the scoreboard writes it (score.json «opponent»), when nothing else names him or her
+    (Zverev-Sinner: «Rival»)."""
+    try:
+        sc = json.loads(mf.at(d, "score.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return ""
+    o = str(sc.get("opponent") or "").strip()
+    return o.title() if o else ""
+
+
 def card(m: dict, d: Path, data_dir: Path, her_name: str) -> dict:
     """The card of one match row (m: the index row with vpath)."""
     cache = data_dir / "tarjetas" / f"{re.sub(r'[^A-Za-z0-9_-]+', '_', m['id'])}.json"
     stamp = [str(p.stat().st_mtime) if p.exists() else "" for p in (mf.at(d, "identidad_clic.json"), mf.at(d, "identity.json"))]
+    stamp.append(CARD_VERSION)
     try:
         c = json.loads(cache.read_text(encoding="utf-8"))
         if c.get("stamp") == stamp and (not c.get("thumb") or Path(c["thumb"]).exists()):
@@ -162,7 +179,7 @@ def card(m: dict, d: Path, data_dir: Path, her_name: str) -> dict:
     color = info["color"] or next((c for k, (t, c) in TOURNAMENTS.items() if t.lower() == (tour or "").lower()), "#555")
     people = info["players"]
     her = her_name or _default_name()
-    rival = next((p for p in people if p != her), "") or (m.get("opponent") or "")
+    rival = next((p for p in people if p != her), "") or (m.get("opponent") or "") or _board_rival(d)
     photos = _photos(d)
     hc = _her_cluster(d, photos)
     ph_her = next((p["path"] for p in photos if p["cluster"] == hc), "") if hc is not None else ""

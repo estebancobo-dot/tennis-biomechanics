@@ -327,7 +327,9 @@ def worker(cfg: dict, stop: threading.Event, idle_s: float = 30.0, tray=None, lo
                 flags = getattr(subprocess, "CREATE_NO_WINDOW", 0)
                 child = subprocess.Popen([sys.executable, "-c", "import sys; from tennisbio.cli import main; "
                                           "sys.exit(main(['app', 'work']))"], stdout=out, stderr=subprocess.STDOUT,
-                                         creationflags=flags)
+                                         creationflags=flags,
+                                         # its output is a file: UTF-8, not the ANSI code page (10-11)
+                                         env={**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"})
                 if log:
                     log(f"cola: trabajo en otro proceso (pid {child.pid})")
             notify.send_pending(app.db)

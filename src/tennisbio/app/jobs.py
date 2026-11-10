@@ -172,7 +172,7 @@ def _what(db: DB, job: dict) -> str:
 def after_match(db: DB, engine, job: dict):
     """A match finished: its state from what the stages found, and the analyses it feeds go to the queue."""
     from .index import state_from_manifest
-    state, note = state_from_manifest(engine.manifest(job["match"]))
+    state, note = state_from_manifest(engine.manifest(job["match"]), engine.dir(job["match"]))
     db.x("UPDATE matches SET state=?, note=? WHERE id=?", state, note, job["match"])
     if state in ("excluido", "sin la jugadora"):
         return

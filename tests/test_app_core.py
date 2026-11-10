@@ -772,3 +772,27 @@ def test_a_library_folder_of_a_catalogue_match_is_that_match_not_a_second_one(tm
     assert dict(_with_library(res, lib)) == {"pegula-miami": old, "sin-fecha_49723c_rybakina": d}       # before
     got = dict(_with_library(res, lib, {str(d.resolve()): "pegula-miami"}))
     assert got == {"pegula-miami": d}
+
+
+def test_card_rounds_and_rival_from_the_scoreboard(tmp_path):
+    # 10-11: «Quarter final» and «Semi-final» were read as «Final»; Zverev-Sinner showed «Rival»
+    import json as _json
+    from tennisbio.app.cards import _board_rival, parse_name
+    assert parse_name("Elena Rybakina - Jessica Pegula - Miami - 2026 - Quarter final")["round"] == "Cuartos de final"
+    assert parse_name("Zverev Alexander - Sinner Jannik - Indian Wells - 2026 - Semi-final")["round"] == "Semifinal"
+    assert parse_name("tennis-yusipopen-final-sobolenko-rybakina-12-09-2026")["round"] == "Final"
+    (tmp_path / "score.json").write_text(_json.dumps({"opponent": "ZVEREV"}), encoding="utf-8")
+    assert _board_rival(tmp_path) == "Zverev"
+    assert _board_rival(tmp_path / "none") == ""
+
+
+def test_cli_writes_utf8_when_its_output_is_a_cp1252_file(tmp_path):
+    # 10-11: the app's queue child printed «≈» into app_cola.log with the ANSI code page and died
+    import subprocess
+    import sys as _sys
+    code = ("import io, sys; sys.stdout = io.TextIOWrapper(open(sys.argv[1], 'wb'), encoding='cp1252'); "
+            "from tennisbio.cli import _utf8_streams; _utf8_streams(); print('≈ ✔'); sys.stdout.flush()")
+    f = tmp_path / "out.log"
+    r = subprocess.run([_sys.executable, "-c", code, str(f)], capture_output=True, text=True)
+    assert r.returncode == 0, r.stderr
+    assert "≈ ✔" in f.read_text(encoding="utf-8")

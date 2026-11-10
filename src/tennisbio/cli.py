@@ -1,5 +1,6 @@
 """Command line: `tennisbio run --all`, `tennisbio run --match ID --stages fine`, `tennisbio status`."""
 import argparse
+import sys
 from pathlib import Path
 
 from . import layout
@@ -18,7 +19,19 @@ def _out_name(kind: str, pid: str | None, stroke: str, own: str | None) -> str:
     return f"{kind}_{es}" if pid is None or pid == own else f"{kind}_{pid}_{es}"
 
 
+def _utf8_streams():
+    """10-11: the app's queue runs this in a child whose output goes to a file; on Windows Python then writes in the
+    ANSI code page (cp1252) and the first «≈» or «✔» killed the work (the 4 matches «Error: UnicodeEncodeError»)."""
+    for s in (sys.stdout, sys.stderr):
+        try:
+            if s is not None and (getattr(s, "encoding", "") or "").lower().replace("-", "") != "utf8":
+                s.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError):
+            pass
+
+
 def main(argv=None):
+    _utf8_streams()
     try:
         return _main(argv)
     except KeyboardInterrupt:

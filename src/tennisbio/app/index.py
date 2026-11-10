@@ -83,7 +83,7 @@ def import_catalog(db: DB, cfg: dict, config_dir: Path = CONFIG_DIR):
                               "opponent_id": str(e.get("opponent_id", "") or ""), "state": "nuevo", "created": now()})
 
 
-def state_from_manifest(man: dict) -> tuple[str, str]:
+def state_from_manifest(man: dict, d: Path | None = None) -> tuple[str, str]:
     """What a match's manifest says about it, in the application's words (state, note)."""
     if not man:
         return "nuevo", ""
@@ -95,7 +95,11 @@ def state_from_manifest(man: dict) -> tuple[str, str]:
     if not s("fine").get("confirmed") and not s("candidates").get("candidates"):
         return "sin la jugadora", "La identidad no la encuentra en el vídeo; no se analiza a otra persona."
     notes = []
-    doubt = identity_doubt(s("identity"))
+    ident = s("identity")
+    if d is not None:            # 10-11: with the user's click (Osaka «decidida en el 0 %» while the click decided all)
+        from ..audit import with_click
+        ident = with_click(d, ident) or ident
+    doubt = identity_doubt(ident)
     if doubt:
         notes.append(doubt)
     if "audio" in man and not s("audio").get("onsets"):
@@ -138,7 +142,7 @@ def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR, fres
                                      "added": now()}, "sample")
         except (OSError, ValueError):
             pass
-        state, note = state_from_manifest(man)
+        state, note = state_from_manifest(man, d)
         # relative inside <output>; a library folder is outside it (absolute: Engine.dir joins it as it is)
         rel = d.relative_to(paths.output).as_posix() if d.is_relative_to(paths.output) else d.as_posix()
         row = db.one("SELECT * FROM matches WHERE id=?", mid)
