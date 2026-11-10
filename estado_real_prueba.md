@@ -16,7 +16,7 @@
 
 | Paquete | Peticiones | sin construir | construido, sin comprobar | comprobación que falla | comprobado en salidas | validado con verdad | Se cierra con | Prueba principal | ¿Cerrado? |
 |---|---|---|---|---|---|---|---|---|---|
-| B1 Base · velocidad y uso del PC | 10 | 0 | 0 | 7 | 3 | 0 | Prueba desde cero de 35 min en ≤ 45 min; CPU/iGPU por etapa medidas en cada ejecución | falla | no |
+| B1 Base · velocidad y uso del PC | 10 | 0 | 0 | 7 | 3 | 0 | Un partido de 3,5 h desde cero en una noche (≤ 8 h) sin perder calidad (10-11, con el usuario); CPU/iGPU por etapa medidas en cada ejecución | falla | no |
 | B2 Base · robustez (nada se cuelga, todo se recupera) | 3 | 0 | 0 | 1 | 2 | 0 | Prueba por cada caso de error y cuelgue; 0 etapas con error en la referencia | ok | no |
 | B3 Base · mejores modelos (estado del arte medido) | 10 | 0 | 0 | 0 | 10 | 0 | Cada candidato medido frente al actual (precisión con datos anotados y fotogramas/s en el PC) | ok | **sí** |
 | B4 Base · no perder golpes | 6 | 0 | 0 | 4 | 2 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | falla | no |
@@ -110,7 +110,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 59 | Diferencias solo por encima del error y en situaciones equivalentes (10-10 18:05) | M5 | HECHO | 2 comprobación que falla | 6 comprobaciones: 2 pocos datos, 4 ok; la peor: «Punta de la raqueta respecto a la cabeza en el armado» (medido en 6 de 13 golpes; en «Apren |
 | 64 | Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso | M2 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 10 comprobaciones: 2 pocos datos, 8 ok; la peor: «3. Pies y desplazamiento · Sp |
 | 65 | El play del vídeo funciona (no solo un fotograma) (12-10 18:14, 21:03, 21:14) | P2 | HECHO | 3 comprobado en salidas | 11 comprobaciones: 11 ok |
-| 66 | Fechas y duración en los registros (12-10 18:25) | B7 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (59 de 62 registros con fecha de inicio y de fin o duración; sin  |
+| 66 | Fechas y duración en los registros (12-10 18:25) | B7 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (60 de 62 registros con fecha de inicio y de fin o duración; sin  |
 | 67 | No borrar el trabajo hecho: lo complejo como extra (12-10 22:35; 13-10 05:48 p6) | P2 | HECHO | 3 comprobado en salidas | 13 comprobaciones: 13 ok |
 | 68 | La meta: mejorar mi derecha tomando la de X como base (12-10 22:25; 13-10 05:48 p5) | P1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 pocos datos, 7 ok; la peor: «Tu ejemplo: derecha paralela,  |
 | 69 | Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace | M5 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo  |
