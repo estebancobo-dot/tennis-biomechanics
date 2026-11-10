@@ -1,4 +1,4 @@
-fecha: 2026-11-10T19:05:01
+fecha: 2026-11-10T19:25:15
      265.6 MB  \output\analisis
        4.2 MB  \output\auditoria
        5.7 MB  \output\benchmark
