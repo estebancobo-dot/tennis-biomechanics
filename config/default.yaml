@@ -239,3 +239,8 @@ views:
   # ~15 golpes × ~120 fotogramas por partido ≈ 4 min de pose en la iGPU (135 ms/fotograma), 8 con el híbrido;
   # medido en la nube (CPU): 0,67 s/fotograma. Pequeño frente a la pasada fina (~1 h): encendido.
   fine_on_slowmo: true
+
+# registro unico de partidos (10-11, docs/orquestador.md): «db» = la base de datos de la aplicacion es la lista de
+# partidos de todos (ciclo, linea de ordenes, auditoria, aplicacion); «yaml» = config/matches.yaml solo, como antes
+registry:
+  source: db

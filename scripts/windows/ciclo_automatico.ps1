@@ -590,6 +590,12 @@ try {
     Actualizar-Codigo
     Comprobar-Instalacion
     Set-Location $RepoDir
+    # registro unico de partidos (10-11, fase A del orquestador unico): catalogo y carpetas al registro de la
+    # aplicacion, y su lista a pc-logs (registro_partidos.json), la misma que ve la aplicacion
+    try {
+        & uv run tennisbio registry sync 2>&1 | Out-Host
+        & uv run tennisbio registry list --json "$Out\registro_partidos.json" 2>&1 | Out-Null
+    } catch { Write-Host "registro de partidos: $_" -ForegroundColor Yellow }
     # las pruebas del codigo nuevo en este PC, en segundo plano y por debajo de lo normal (03-11; pruebas_fondo.ps1)
     try {
         Start-Process wscript.exe -ArgumentList @("//B", "`"$(Join-Path $PSScriptRoot 'oculto.vbs')`"",

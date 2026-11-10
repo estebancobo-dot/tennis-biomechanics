@@ -83,6 +83,7 @@ function Subir-Registros {
         else { git -C $d checkout -q -B pc-logs 2>$null }
         Copy-Item "$Base\output\*.log" $d -Force -ErrorAction SilentlyContinue
         Copy-Item "$Base\output\revision_automatica.md" $d -Force -ErrorAction SilentlyContinue
+        Copy-Item "$Base\output\registro_partidos.json" $d -Force -ErrorAction SilentlyContinue
         Estado-Ciclo
         Copy-Item "$Base\output\ciclo_vivo.txt", "$Base\output\ciclo_tarea.txt", "$Base\output\ciclo_arranque.txt" $d -Force -ErrorAction SilentlyContinue
         New-Item -ItemType Directory -Force -Path "$d\partidos" | Out-Null

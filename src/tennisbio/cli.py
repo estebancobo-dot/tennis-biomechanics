@@ -30,6 +30,68 @@ def _utf8_streams():
             pass
 
 
+def _jobs(args) -> int:
+    import json
+    from . import orchestrator as O
+    cfg = load_config()
+    out = Path(cfg.get("paths", {}).get("output", "output"))
+    status_file = out / "estado_trabajos.json"
+    if args.cmd == "worker":
+        return O.serve(cfg, once=args.once, status_file=status_file)
+    rest = [a for a in (args.rest or []) if a != "--"]
+    if args.action == "run-one":
+        return O.run_one(cfg, int(rest[0]))
+    db = O.open_db(cfg)
+    try:
+        if args.action == "submit":
+            if not rest:
+                print("falta qué hacer: tennisbio jobs submit -- run --all")
+                return 2
+            jid = O.submit(db, "comando", args=rest, source=args.source)
+            print(f"trabajo {jid} en la cola: tennisbio {' '.join(rest)}")
+        elif args.action == "pause":
+            print(O.pause(db, now_=bool(rest and rest[0] == "now"), source=args.source))
+        elif args.action == "resume":
+            print(O.resume(db, source=args.source))
+        elif args.action == "cancel":
+            n = O.cancel(db, None if rest and rest[0] == "all" else int(rest[0]), all_=bool(rest and rest[0] == "all"),
+                         source=args.source)
+            print(f"{n} trabajos cancelados o parándose")
+        st = O.status(db, output=out)
+        if args.json:
+            Path(args.json).write_text(json.dumps(st, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
+        O.write_status(db, status_file)
+        if args.action == "status":
+            w = st["ejecutor"]
+            print(f"ejecutor: {'en marcha' if w.get('vivo') else 'parado'} · cola {'en pausa' if st['pausa'] else 'activa'}")
+            for r in st["en_curso"]:
+                print(f"  en curso  #{r['id']} {r['kind']} {r.get('reason') or ''}")
+            for r in st["pendientes"]:
+                print(f"  pendiente #{r['id']} {r['kind']} {r.get('reason') or ''}")
+            for r in st["recientes"][:5]:
+                print(f"  {r['state']:<9} #{r['id']} {r['kind']} {r.get('reason') or ''} {r.get('message') or ''}")
+    finally:
+        db.close()
+    return 0
+
+
+def _registry(args) -> int:
+    import json
+    from . import registry
+    cfg = load_config()
+    if args.action == "sync":
+        print(f"registro de partidos: {registry.sync(cfg)}")
+        return 0
+    rows = [{"id": m.id, "jugador": m.player.id, "rival": m.opponent, "video": str(m.video),
+             "carpeta": str(layout.dir_of(Path(cfg.get("paths", {}).get("output", "output")), m, cfg))}
+            for m in load_matches(cfg)]
+    for r in rows:
+        print(f"{r['id']:<62} {r['jugador']:<10} {r['carpeta']}")
+    if args.json:
+        Path(args.json).write_text(json.dumps(rows, ensure_ascii=False, indent=1), encoding="utf-8")
+    return 0
+
+
 def main(argv=None):
     _utf8_streams()
     try:
@@ -70,9 +132,24 @@ def _main(argv=None):
     au.add_argument("--stroke", default="forehand", choices=["forehand", "backhand", "overhead"])
     au.add_argument("--root", help="carpeta con las carpetas de los partidos (por defecto <output>)")
     au.add_argument("--out", help="carpeta de la auditoría (por defecto <output>/auditoria)")
+    wk = sub.add_parser("worker", help="el ejecutor único de la cola (uno por PC): ejecuta los trabajos y obedece pausar/parar")
+    wk.add_argument("--once", action="store_true", help="sale cuando no queda nada que hacer")
+    jb = sub.add_parser("jobs", help="la cola: submit | status | pause | resume | cancel | run-one (docs/orquestador.md)")
+    jb.add_argument("action", choices=("submit", "status", "pause", "resume", "cancel", "run-one"))
+    jb.add_argument("rest", nargs=argparse.REMAINDER,
+                    help="submit: -- <argumentos de tennisbio> | cancel: ID o all | run-one: ID | pause: now")
+    jb.add_argument("--source", default="cli", help="quién lo pide (app, ciclo, claude…), para el registro de eventos")
+    jb.add_argument("--json", default=None, help="status: escribe el estado en este fichero")
+    rg = sub.add_parser("registry", help="registro único de partidos: sync (catálogo y carpetas) | list [--json FICHERO]")
+    rg.add_argument("action", choices=("sync", "list"))
+    rg.add_argument("--json", default=None, help="list: escribe también la lista en este fichero (para pc-logs)")
     apl = sub.add_parser("app", help="la aplicación local: tennisbio app status|add|also|plan|work|… (ver app/cli.py)")
     apl.add_argument("rest", nargs=argparse.REMAINDER)
     args = ap.parse_args(argv)
+    if args.cmd in ("worker", "jobs"):          # 10-11: the single worker and the queue's controls
+        return _jobs(args)
+    if args.cmd == "registry":                  # 10-11: the one registry of matches (tennisbio.registry)
+        return _registry(args)
     if args.cmd == "app":                       # its own catalogue (the index): no matches.yaml needed
         from .app.cli import main as app_main
         return app_main(args.rest)

@@ -23,7 +23,7 @@ from ..pipeline import DiskFull, MissingVideo
 from . import quality, storage
 from .db import DB, Paths, now
 
-HEAVY = {"partido", "rival"}
+HEAVY = {"partido", "rival", "comando"}     # «comando» (10-11): any tennisbio command from the cycle or Claude
 PRIORITY = {"informe": 3, "partido": 5, "rival": 6}
 ACTIVE = ("pendiente", "en curso", "esperando espacio", "por confirmar")
 GPU_RETRIES = 2               # on the iGPU before falling back to the CPU
@@ -185,7 +185,11 @@ def after_match(db: DB, engine, job: dict):
 def run_one(db: DB, paths: Paths, engine, cfg: dict, job: dict) -> str:
     """Runs one job and returns its final state ('hecho', 'pendiente' when retried, 'aviso', 'error',
     'esperando espacio')."""
-    if job["kind"] in HEAVY:
+    if job["kind"] == "comando":                 # 10-11: a tennisbio command (tennisbio.orchestrator)
+        from ..orchestrator import run_command
+        db.x("UPDATE jobs SET state='en curso', started=?, pid=?, message='' WHERE id=?", now(), os.getpid(), job["id"])
+        return "hecho" if run_command(db, job) == 0 else "error"
+    if job["kind"] in HEAVY and job.get("match"):
         size = engine.video_size(job["match"])
         ok, why = storage.can_start_match(paths.output, size) if size else (True, "")
         if not ok:

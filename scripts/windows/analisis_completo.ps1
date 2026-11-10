@@ -15,6 +15,8 @@ try {
 
     Paso "1/5 Catalogo de partidos (se anaden solos los videos nuevos)"
     Ejecutar uv @("run", "python", "scripts/auto_catalog.py")
+    # registro unico de partidos (10-11): lo que el catalogo y las carpetas dicen, antes de analizar
+    Ejecutar uv @("run", "tennisbio", "registry", "sync")
 
     Paso "2/5 Analisis de los partidos (horas; se puede cortar y relanzar)"
     Ejecutar uv @("run", "tennisbio", "run", "--all")

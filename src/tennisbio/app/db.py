@@ -92,6 +92,13 @@ class DB:
         self.con = sqlite3.connect(str(self.path), timeout=30, check_same_thread=False)
         self.lock = threading.RLock()
         self.con.row_factory = sqlite3.Row
+        # 10-11: the registry and the queue are shared by the window, the worker and the PC's cycle (other processes):
+        # WAL lets them read while one writes, and a writer waits for the other instead of failing
+        try:
+            self.con.execute("PRAGMA journal_mode=WAL")
+            self.con.execute("PRAGMA busy_timeout=30000")
+        except sqlite3.DatabaseError:
+            pass
         self.con.executescript(SCHEMA)
         cols = {r[1] for r in self.con.execute("PRAGMA table_info(matches)")}
         if "dir" not in cols:                       # an index from before the match folder was kept
@@ -99,6 +106,8 @@ class DB:
         if "toasted" not in {r[1] for r in self.con.execute("PRAGMA table_info(notices)")}:   # before part 3
             self.con.execute("ALTER TABLE notices ADD COLUMN toasted INTEGER DEFAULT 1")
         self.con.commit()
+        from ..orchestrator import ensure_schema      # the queue's controls and events (10-11, docs/orquestador.md)
+        ensure_schema(self)
 
     def close(self):
         self.con.close()

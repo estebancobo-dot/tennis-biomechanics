@@ -64,6 +64,19 @@ def load_player(player_id: str, config_dir: Path = CONFIG_DIR) -> Player:
 
 
 def load_matches(cfg: dict, config_dir: Path = CONFIG_DIR) -> list[Match]:
+    """The matches every entry point works on: the registry (tennisbio.registry, the application's database) once it
+    exists, else config/matches.yaml as it is. config `registry.source: yaml` keeps the catalogue alone."""
+    out = _load_yaml(cfg, config_dir)
+    from . import registry
+    if registry.enabled(cfg):
+        try:
+            return registry.matches(cfg, out, config_dir)
+        except Exception as e:  # noqa: BLE001 — a broken database never stops the analysis: the catalogue
+            print(f"AVISO: registro de partidos no legible ({type(e).__name__}: {e}); se usa config/matches.yaml")
+    return out
+
+
+def _load_yaml(cfg: dict, config_dir: Path = CONFIG_DIR) -> list[Match]:
     path = config_dir / "matches.yaml"
     if not path.exists():
         raise FileNotFoundError(f"Falta {path}: copia config/matches.example.yaml y rellénalo")

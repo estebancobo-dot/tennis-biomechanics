@@ -181,7 +181,7 @@ def catalog_origins(cfg: dict, paths: Paths) -> dict:
     whose folder is in the library (layout.dir_of: the folder the cycle and the full analysis use)."""
     out: dict = {"dirs": {}, "_renamed": {}}
     try:
-        from ..catalog import load_matches
+        from ..catalog import _load_yaml as load_matches   # the sources, not the registry being built
         from ..layout import dir_of, library_active_at
         if library_active_at(paths.library_root) is None:
             return out
