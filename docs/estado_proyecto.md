@@ -19,6 +19,34 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
 - El partido completo (los 4 partidos) se ejecuta **una sola vez, al final**, cuando todo funcione.
 - Móvil y nube: al final, después de que el PC funcione.
 
+## 10-11: dónde estamos y cómo seguir (LEER PRIMERO; se actualiza en cada cambio)
+**Regla del usuario (09-11):** no se lanza ningún análisis completo mientras haya fallos conocidos (#247).
+
+**En marcha ahora:** nada. PC sin trabajos (la petición 181 se paró el 09-11 23:40; la cola del PC está vacía);
+ninguna tarea en la nube. Todo lo hecho está subido a la rama; nada vive solo en una sesión.
+
+**Orden de trabajo (paquete B8 de `config/plan_peticiones.yaml`, peticiones #246-251):**
+| Paso | Qué | Estado |
+|---|---|---|
+| 1 | Fase A: registro único de partidos (`registry.py`) | hecho, subido; falta verlo en el PC (`registro_partidos.json` en pc-logs) |
+| 2 | Fase B: ejecutor único (`orchestrator.py`, `tennisbio worker`, `tennisbio jobs`) | hecho, subido |
+| 3 | Fase D: el ciclo del PC y el chat mandan trabajos a la cola (no ejecutan); sync del registro en cada vuelta; `estado_trabajos.json` a pc-logs | siguiente |
+| 4 | Fase C: flujos en `config/flujos.yaml` (el análisis completo como flujo) | pendiente |
+| 5 | Fase E: la aplicación por la misma cola (su «Cola» lee trabajos y eventos) | pendiente |
+| 6 | Fase F: prueba de extremo a extremo en el PC (enviar aquí, pausar en la app, reanudar aquí) | pendiente |
+| 7 | Saques de Pegula (76 %, objetivo 85 %): medir con la identidad corregida y arreglar lo que quede | pendiente (tras el análisis) |
+| 8 | Un único análisis completo de los 6 partidos por la cola, y leer su auditoría (cierra la Base y #242) | al final |
+
+**Hecho el 09-10 y 10-11 (subido, con pruebas):** identidad v10 (marcador imposible fuera), auditoría con el clic y por
+jugador, huellas de código por etapa, fotos y clic en la carpeta del análisis, partido repetido en la app, UTF-8 en la cola
+de la app, rondas y rival en las tarjetas, registros con fecha de fin, objetivo de velocidad ≤ 8 h por partido
+(mitad de fotogramas medida con `scripts/bench_fine_fps.py` y descartada por calidad; `fine_pass.max_fps: 0`).
+Clic de Pegula guardado (foto 2, t 6402,2 s).
+
+**Si se acaban los tokens:** se puede apagar el PC y cerrar todo. Al volver: leer esta sección, `git fetch origin
+pc-logs` y seguir por el primer paso no hecho de la tabla. Los análisis reanudan desde sus cachés (huellas por etapa) y la
+cola vive en `datos/tennisbio.db`.
+
 ## 19-10: el plan vigente está en `docs/plan_maestro.md` (leer primero)
 Todo lo pendiente, en orden, con su criterio de cierre medido en el PC. Almacenamiento definitivo: `docs/almacenamiento.md`.
 

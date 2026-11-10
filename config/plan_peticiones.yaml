@@ -39,6 +39,11 @@ paquetes:
     peticiones: [18, 19, 20, 21, 22, 31, 32, 37, 40, 43, 45, 49, 50, 51, 52, 66, 80, 81, 82, 83, 119, 136, 139,
                  144, 145, 146, 152, 160, 161, 220, 222, 226, 227, 229, 241, 242]
     prueba: ["^Aplicación: ventana real", "^Aplicación: análisis en su índice", "^Aplicación: un partido nuevo de principio a fin", "^Pruebas del código en este PC", "^Pruebas en este PC", "^Progreso visible", "^Nada pide revisión manual"]
+  B8:
+    nombre: "Base · orquestador único (aplicación y chat con el mismo código y los mismos datos)"
+    cierre: "Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC"
+    peticiones: [246, 247, 248, 249, 250, 251]
+    prueba: ["^Orquestador: "]
   M1:
     nombre: "Medidas · fases, cadena cinética y ritmo"
     cierre: "Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara"

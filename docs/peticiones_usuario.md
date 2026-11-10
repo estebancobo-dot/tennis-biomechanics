@@ -54,11 +54,11 @@ la auditoría las marcará «sin comprobación automática asignada».
 | Estado | Nº |
 |---|---|
 | HECHO | 127 |
-| PARCIAL | 91 |
+| PARCIAL | 97 |
 | FALTA | 16 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **245** |
+| **Total** | **251** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -333,6 +333,12 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 243 | Todos los escenarios del producto los contempla Claude sin esperar a que se pidan (27-10 12:09) | PARCIAL | `docs/escenarios_producto.md` | — | — | Bloque E1: cada ✘ y ◐ con su prueba automática. |
 | 244 | Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10) | FALTA | `outcome.py` | Conclusiones | — | Revisar ganadores y errores con el marcador y la bola; no mostrar hasta que sea creíble. |
 | 245 | Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10) | FALTA | `report.prepare` | Conclusiones, Partidos | — | Usar los datos del catálogo y del nombre del vídeo (como la lista de la aplicación). |
+| 246 | Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, parar y arrancar desde los dos sin colisiones; moderno, configurable y extensible (Chat, 10-11) | PARCIAL | `registry.py`, `orchestrator.py`, `docs/orquestador.md` | Aplicación (Cola) | `tests/test_registry.py`, `tests/test_orchestrator.py` | Fases C-F de `docs/orquestador.md` (flujos, ciclo y chat por la cola, aplicación por la cola, prueba de extremo a extremo en el PC). |
+| 247 | No lanzar los partidos completos con fallos conocidos: arreglar todo antes (Chat, 09-11) | PARCIAL | `config/peticion_pc.txt` (181 cambiada a previsión) | — | — | Se cumple mientras no haya análisis completo; el único se lanza al cerrar B8 y los puntos de la Base. |
+| 248 | Velocidad sin perder calidad ni puntuación: un partido de 3,5 h desde cero en una noche (≤ 8 h) (Chat, 10-11) | PARCIAL | `audit.SPEED_TARGET`, `fine_pass.max_fps: 0`, `scripts/bench_fine_fps.py` | — | «Tiempo: …» | Mitad de fotogramas medida y descartada (medidas del impacto ±50 % de su dispersión). Falta el tiempo desde cero con la identidad corregida (menos golpes dudosos). |
+| 249 | Parar el PC a distancia al momento, sin tener que apagarlo (Chat, 09-11) | PARCIAL | `config/parar_pc.txt` (sin esperar a las pruebas), `orchestrator.cancel/pause` | Aplicación (Cola) | `tests/test_orchestrator.py` | Fase D: la parada por la cola del ejecutor único (en segundos). |
+| 250 | Si se acaban los tokens se puede apagar todo y seguir después sin perder nada (Chat, 10-11) | PARCIAL | `docs/estado_proyecto.md` (estado y plan), cachés por huella, cola en la base de datos | — | — | Fase D: la cola del ejecutor sobrevive a reinicios; documentar el punto exacto donde seguir en cada cambio. |
+| 251 | Tareas nuevas asociadas a peticiones y al plan, encadenadas sin olvidarse (Chat, 10-11) | PARCIAL | `config/plan_peticiones.yaml` (B8), `docs/estado_proyecto.md` | — | `scripts/check_requests.py` | Mantener B8 y la tabla al día en cada cambio. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)
 
