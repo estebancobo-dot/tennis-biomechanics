@@ -753,3 +753,22 @@ def test_after_the_cycles_full_run_the_index_holds_its_analyses(env):
     a.db.set_setting("pausa", True)
     os.utime(d / "manifest.json", (far, far))
     assert a.after_full_run()["ran"] == [] and a.db.q("SELECT id FROM jobs WHERE state='pendiente' AND kind='informe'")
+
+
+def test_a_library_folder_of_a_catalogue_match_is_that_match_not_a_second_one(tmp_path):
+    # 10-11: the cycle's library folder for Rybakina-Pegula had no «origen» and was listed next to the catalogue's
+    import json as _json
+    from tennisbio.app.index import _with_library
+    from tennisbio.layout import ACTIVE
+    lib = tmp_path / "biblioteca"
+    (lib / "datos").mkdir(parents=True)
+    (lib / "datos" / ACTIVE).write_text("{}", encoding="utf-8")
+    d = lib / "partidos" / "sin-fecha" / "sin-fecha_49723c_rybakina"
+    (d / "etapas").mkdir(parents=True)
+    (d / "etapas" / "manifest.json").write_text("{}", encoding="utf-8")
+    (d / "partido.json").write_text(_json.dumps({"jugadoras": []}), encoding="utf-8")
+    old = tmp_path / "output" / "pegula-miami"
+    res = [("pegula-miami", old)]
+    assert dict(_with_library(res, lib)) == {"pegula-miami": old, "sin-fecha_49723c_rybakina": d}       # before
+    got = dict(_with_library(res, lib, {str(d.resolve()): "pegula-miami"}))
+    assert got == {"pegula-miami": d}

@@ -151,3 +151,20 @@ def test_every_infrastructure_item_is_tied_to_its_request(tmp_path):
     assert 81 in by["Tamaño de la salida (tamanos.txt)"] and 146 in by["Carpetas de pruebas antiguas"]
     assert {160, 242} <= set(by["Aplicación: ventana real y pantallas"]) & set(by["Aplicación: análisis en su índice"])
     assert 242 in by["Aplicación: un partido nuevo de principio a fin"]
+
+
+def test_app_queue_log_and_a_request_log_open_while_its_analysis_runs(tmp_path):
+    # 10-11 (#66): app_cola.log «sin fechas», prueba_completo.log audited from inside the analysis it launched
+    import os
+    import time as _t
+    from tennisbio.audit import log_dates, logs_item
+    q = "\n== 2026-11-09 21:00:00 cola\nanalizando...\n== 2026-11-09 22:00:00 fin (código 0)\n"
+    assert log_dates(q, 86400) == ""
+    assert log_dates("\n== 2026-11-09 21:00:00 cola\nanalizando...\n", 86400) == "sin «== fecha fin» al final"
+    (tmp_path / "prueba_completo.log").write_text("Peticion 181: analisis completo (2026-11-09T23:29:01)\n  video: x\n",
+                                                  encoding="utf-8")
+    old = _t.time() - 5 * 3600
+    os.utime(tmp_path / "prueba_completo.log", (old, old))
+    assert logs_item([tmp_path])["status"] == "falta"
+    (tmp_path / "progreso.json").write_text("{}", encoding="utf-8")         # the analysis is still writing its progress
+    assert logs_item([tmp_path])["status"] == "ok"

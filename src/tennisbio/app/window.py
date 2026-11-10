@@ -313,7 +313,13 @@ def worker(cfg: dict, stop: threading.Event, idle_s: float = 30.0, tray=None, lo
                 tray.update(tray_text(app))
             if not ran:
                 stop.wait(idle_s)
+        out = None
         while not stop.is_set():
+            if out is not None and child is not None and child.poll() is not None:
+                # 10-11 (#66): each run of the queue says when it ended, not only when it started
+                out.write(f"== {time.strftime('%Y-%m-%d %H:%M:%S')} fin (código {child.returncode})\n")
+                out.close()
+                out = None
             if (child is None or child.poll() is not None) and jobs.next_job(app.db) is not None:
                 out = open(app.paths.output / "app_cola.log", "a", encoding="utf-8")
                 out.write(f"\n== {time.strftime('%Y-%m-%d %H:%M:%S')} cola\n")

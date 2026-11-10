@@ -2214,6 +2214,9 @@ def log_dates(text: str, age_s: float) -> str:
     if lines[0].startswith("commit:"):
         head = "\n".join(lines[:5])
         return "" if re.search(r"inicio: " + _DATE, head) and re.search(r"fin: " + _DATE, head) else "sin inicio y fin"
+    heads = [ln for ln in lines if re.match(r"== " + _DATE, ln)]
+    if heads:          # the app's queue (app_cola.log): «== fecha cola» … the work's output … «== fecha fin (código N)»
+        return "" if heads[-1].split(" ", 3)[-1].startswith("fin") or age_s < LOG_RUNNING_S else "sin «== fecha fin» al final"
     dated = sum(bool(re.match(_DATE, ln)) for ln in lines)
     if dated and dated >= 0.8 * len(lines):          # an event log: each line with its date (tracebacks in between)
         return ""
@@ -2230,10 +2233,15 @@ def logs_item(bases: list[Path], now: float | None = None) -> dict:
     if folder is None:
         return _item(5, "Infraestructura", name, "aviso", "no se encontró ningún registro (.log) del PC")
     logs = sorted(folder.glob("*.log"))
+    # 10-11: the audit of a full analysis runs inside it, while its request log (prueba_completo.log) is still open and
+    # silent for hours: a request log counts as running while the work's progress (progreso.json) is fresh
+    pj = folder / "progreso.json"
+    live = pj.exists() and now - pj.stat().st_mtime < 600
     bad = []
     for f in logs:
         try:
-            why = log_dates(f.read_text(encoding="utf-8-sig", errors="replace"), now - f.stat().st_mtime)
+            age = now - f.stat().st_mtime
+            why = log_dates(f.read_text(encoding="utf-8-sig", errors="replace"), 0.0 if live else age)
         except OSError as e:
             why = f"ilegible ({e})"
         if why:

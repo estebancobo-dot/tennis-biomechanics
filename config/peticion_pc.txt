@@ -711,3 +711,8 @@ argumentos: --match pegula --minutes 20 --max-fps 30
 # 182 (10-11): velocidad. 20 min de Rybakina-Pegula (60 fps, alrededor del clic) analizados dos veces en
 # output\_bench_fps: ventanas a 60 fps (A) y a 30 (B). Tiempo de la pasada fina, golpes iguales y medidas
 # comparadas con su dispersion. A pc-logs/capturas_diag/bench_fps.json. No toca ningun partido
+---
+id: 183
+accion: ventana
+# 183 (10-11): pantallas de la aplicacion con su indice real (ventana oculta) tras quitar el partido repetido, para
+# que Claude vea los errores que vio el usuario sin pedirle que la abra. A pc-logs/capturas_app

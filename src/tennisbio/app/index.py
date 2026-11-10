@@ -113,7 +113,13 @@ def rebuild(db: DB, paths: Paths, cfg: dict, config_dir: Path = CONFIG_DIR, fres
     the cycle, a folder copied in) and reads again what the folders say about the others; what only the
     application knows (archived, a notice about the video) is kept."""
     import_catalog(db, cfg, config_dir)
-    for mid, d in match_dirs(paths.output, paths.library_root):
+    origins = catalog_origins(cfg, paths)
+    # 10-11: a library folder the cycle made for a catalogue match (no «origen» in its partido.json) was listed as a
+    # second match next to the catalogue's (Rybakina-Pegula twice, one of them without photos): it is that match
+    for lib_id, cat_id in origins.get("_renamed", {}).items():
+        if lib_id != cat_id and db.one("SELECT id FROM matches WHERE id=?", cat_id):
+            db.x("DELETE FROM matches WHERE id=?", lib_id)
+    for mid, d in match_dirs(paths.output, paths.library_root, origins.get("dirs")):
         man = load_manifest(d)
         info = {}
         if _mf.test_info(d).exists():
@@ -166,7 +172,26 @@ def app_decided(row: dict) -> bool:
     return row["state"] == "archivado" or (row["state"] == "con aviso" and (row["note"] or "").startswith("El vídeo"))
 
 
-def match_dirs(out: Path, library: Path | None = None) -> list[tuple[str, Path]]:
+def catalog_origins(cfg: dict, paths: Paths) -> dict:
+    """{"dirs": {library folder: catalogue id}, "_renamed": {folder name: catalogue id}} for the catalogue's matches
+    whose folder is in the library (layout.dir_of: the folder the cycle and the full analysis use)."""
+    out: dict = {"dirs": {}, "_renamed": {}}
+    try:
+        from ..catalog import load_matches
+        from ..layout import dir_of, library_active_at
+        if library_active_at(paths.library_root) is None:
+            return out
+        for m in load_matches(cfg):
+            d = dir_of(paths.output, m, cfg)
+            if d.exists():
+                out["dirs"][str(Path(d).resolve())] = m.id
+                out["_renamed"][Path(d).name] = m.id
+    except Exception:  # noqa: BLE001 — without the catalogue the folders are listed as before
+        pass
+    return out
+
+
+def match_dirs(out: Path, library: Path | None = None, origins: dict | None = None) -> list[tuple[str, Path]]:
     """Every match folder (with a manifest) under the output: <output>/<match> and, one level down, the
     test runs (<output>/_smoke/<match>, <output>/_poc9_largo/<match>). The id of a nested one carries its
     group («smoke:…», «poc9_largo:…»): the same video in two runs stays two matches."""
@@ -180,10 +205,10 @@ def match_dirs(out: Path, library: Path | None = None) -> list[tuple[str, Path]]
         for sub in sorted(d.iterdir()):
             if sub.is_dir() and (sub / "manifest.json").exists():
                 res.append((f"{d.name.lstrip('_')}:{sub.name}", sub))
-    return _with_library(res, library if library is not None else Path(out).parent / "biblioteca")
+    return _with_library(res, library if library is not None else Path(out).parent / "biblioteca", origins)
 
 
-def _with_library(res: list[tuple[str, Path]], library: Path) -> list[tuple[str, Path]]:
+def _with_library(res: list[tuple[str, Path]], library: Path, origins: dict | None = None) -> list[tuple[str, Path]]:
     """Once the library is switched on (tennisbio.layout), its match folders replace the old ones they were
     copied from (same id: the old folder name, «origen» in partido.json); the old folders stay on disk until
     the user removes them, but are not used any more."""
@@ -195,9 +220,10 @@ def _with_library(res: list[tuple[str, Path]], library: Path) -> list[tuple[str,
     for m in sorted((root / "partidos").glob("*/*/etapas/manifest.json")):
         d = m.parent.parent
         try:
-            mid = json.loads((d / "partido.json").read_text(encoding="utf-8")).get("origen") or d.name
+            mid = json.loads((d / "partido.json").read_text(encoding="utf-8")).get("origen")
         except (OSError, ValueError):
-            mid = d.name
+            mid = None
+        mid = mid or (origins or {}).get(str(d.resolve())) or d.name
         by[mid] = d
     return sorted(by.items())
 

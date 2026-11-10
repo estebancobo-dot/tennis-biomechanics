@@ -144,7 +144,7 @@ function Hacer-Peticion($p) {
         & uv run python scripts/preflight.py --max-h $mx 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
         $pf = $LASTEXITCODE
         Subir-Registros | Out-Null
-        if ($pf -eq 3) { "Peticion $($p['id']): no se lanza, la prevision supera $mx h (prevision.md)" | Add-Content $lg -Encoding UTF8; return }
+        if ($pf -eq 3) { "Peticion $($p['id']): no se lanza, la prevision supera $mx h (prevision.md)" | Add-Content $lg -Encoding UTF8; "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8; return }
         Paso "Peticion $($p['id']): analisis completo de todos los partidos (horas; registro: analisis_completo.log)"
         & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $RepoDir "scripts\windows\analisis_completo.ps1") | Out-Host
         "termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
