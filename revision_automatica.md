@@ -1,6 +1,6 @@
-# Revisión automática: FALLOS
+# Revisión automática: REGRESIÓN
 
-373 cumplidos · 19 no cumplidos · 126 sin golpes suficientes · 98 avisos (antes: 373 cumplidos, 19 no cumplidos)
+390 cumplidos · 19 no cumplidos · 102 sin golpes suficientes · 105 avisos (antes: 373 cumplidos, 19 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 107 de 245
 
@@ -117,7 +117,7 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 91 a medias · 16 sin hacer
 
 ## No cumplidos
 
-- **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
+- **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 609 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
 - **Registros con fecha y duración**: 60 de 62 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
 - **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (60 de 62 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
@@ -136,3 +136,35 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 91 a medias · 16 sin hacer
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
+
+## Empeora respecto a la ejecución anterior
+
+- **Repeticiones en el informe: smoke_tennis-yusipopen-final-sobolenko-rybakin**: ok → aviso: 0% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (0 de 22) · 22 con recorte pero no en el informe · 101 recortes en el partido
+- **#7 Empuñadura en la espera y al golpear**: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
+- **#36 Mano y antebrazo, cierre de la muñeca**: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
+- **#64 Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la **: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok
+- **#84 Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca)**: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok
+- **#88 Matriz §5 Pies (split, ajuste, cruzado, paso de ataque, recuperación)**: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 8 ok
+- **#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v**: ok → aviso: 5 comprobaciones: 1 aviso, 4 ok; la peor: «Repeticiones en el informe: smoke_tennis-yusipopen-final-sobolenko-rybakin» (0% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (
+
+## Mejora
+
+- 2. Cuerpo · Hombros más girados que la cadera en el impacto: pocos datos → ok
+- 2. Cuerpo · "3 × 90°" al final: pocos datos → ok
+- 3. Pies y desplazamiento · Split step: aterrizaje respecto al golpe del rival: pocos datos → ok
+- 3. Pies y desplazamiento · Número de pasos hasta la bola: pocos datos → ok
+- 3. Pies y desplazamiento · Subtipos: abierto de ataque, abierto defensivo, neutro de ataque: pocos datos → ok
+- 4. Raqueta, swing y empuñadura · Velocidad de la raqueta relativa entre golpes: pocos datos → ok
+- 4. Raqueta, swing y empuñadura · Posición de la mano en el mango: pocos datos → ok
+- 6. Matriz del usuario · Rotación pélvica: pocos datos → ok
+- 6. Matriz del usuario · Apoyo abierto extremo defensivo: pocos datos → ok
+- Bola rápida / lenta: pocos datos → ok
+- Bola alta / baja: pocos datos → ok
+- Bola corta / profunda: pocos datos → ok
+- En carrera / parada / en salto: pocos datos → ok
+- Cada apoyo: pocos datos → ok
+- Ataque / defensa: pocos datos → ok
+- Bola subiendo / arriba / cayendo: pocos datos → ok
+- Bola centrada / abierta: pocos datos → ok
+- Cada frase lleva cuántos golpes la respaldan y su fiabilidad: pocos datos → ok
+- #87 Matriz §4 Apoyos (abierto, semiabierto, neutro o cerrado, salto, abierto extremo): pocos datos → ok
