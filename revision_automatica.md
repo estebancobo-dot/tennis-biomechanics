@@ -1,6 +1,6 @@
 # Revisión automática: FALLOS
 
-369 cumplidos · 24 no cumplidos · 126 sin golpes suficientes · 97 avisos (antes: 369 cumplidos, 24 no cumplidos)
+373 cumplidos · 19 no cumplidos · 126 sin golpes suficientes · 98 avisos (antes: 369 cumplidos, 24 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 107 de 245
 
@@ -118,12 +118,8 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 91 a medias · 16 sin hacer
 ## No cumplidos
 
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=589–943 de 900; al abrir 2 títulos, 473 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=943 (más abajo que la primera pantalla, 900)
-- **Pruebas del código en este PC**: código 4f65cf8 (2026-11-09T23:54:46): 945 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
-- **Registros con fecha y duración**: 60 de 62 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas; prueba_completo.log: sin «termina fecha» al final
-- **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 4f65cf8 (2026-11-09T23:54:46): 945 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-- **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 4f65cf8 (2026-11-09T23:54:46): 945 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-- **#51 El código de la prueba es el de los casos reales**: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 4f65cf8 (2026-11-09T23:54:46): 945 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (60 de 62 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin fechas; prueba_completo.log: si)
+- **Registros con fecha y duración**: 60 de 62 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
+- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (60 de 62 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
 - **#193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10)**: SIN HACER según el registro (#193, docs/peticiones_usuario.md)
@@ -138,6 +134,13 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 91 a medias · 16 sin hacer
 - **#223 Revés y derecha cortados**: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
 - **#224 Saques: plano, cortado o kick; primero o segundo**: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
-- **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 4f65cf8 (2026-11-09T23:54:46): 945 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
+
+## Mejora
+
+- Pruebas del código en este PC: falta → ok
+- #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: falta → ok
+- #20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML: falta → aviso
+- #51 El código de la prueba es el de los casos reales: falta → ok
+- #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: falta → ok
