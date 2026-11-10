@@ -703,3 +703,11 @@ accion: prevision
 # 181 cambiada a prevision (09-11): el usuario pide no lanzar los partidos hasta arreglar todos los fallos
 # 181 (09-11): la 180 no se lanzo (peor caso previsto 20.2 h > 14). La ultima vez los 6 partidos tardaron 6.6 h
 # (13:23-20:02); el peor caso de la prevision cuenta la pasada fina entera de cada partido
+---
+id: 182
+accion: medir
+script: bench_fine_fps
+argumentos: --match pegula --minutes 20 --max-fps 30
+# 182 (10-11): velocidad. 20 min de Rybakina-Pegula (60 fps, alrededor del clic) analizados dos veces en
+# output\_bench_fps: ventanas a 60 fps (A) y a 30 (B). Tiempo de la pasada fina, golpes iguales y medidas
+# comparadas con su dispersion. A pc-logs/capturas_diag/bench_fps.json. No toca ningun partido

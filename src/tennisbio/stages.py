@@ -1993,6 +1993,27 @@ def _cut_args(ctx: Context) -> dict:
     return {"audio_track": track, "width": pr.get("width", 0), "cfr_fps": pr.get("fps") if pr.get("vfr") else None}
 
 
+def _fine_cut(ctx: Context) -> tuple[dict, str]:
+    """How the fine pass cuts its windows: (cut_window's arguments, suffix of the window's file name). With
+    fine_pass.max_fps (10-11, speed: the pose of every frame was most of the fine pass; at 50-60 fps it costs twice
+    what it costs at 25-30), a window whose frame rate (one frame per field when interlaced) is at least twice
+    max_fps keeps one frame in round(rate / max_fps): 60 → 30, 50 → 25, as the 25-30 fps broadcasts already are.
+    Off (0) by default; the windows then are exactly as before (no suffix, the same caches)."""
+    args = _cut_args(ctx)
+    mx = float((ctx.cfg.get("fine_pass") or {}).get("max_fps") or 0)
+    if mx <= 0:
+        return args, ""
+    pr = _read(ctx.path("probe.json")) if ctx.path("probe.json").exists() else {}
+    fps = float(pr.get("fps") or 0)
+    il = bool(pr.get("interlaced"))
+    rate = fps * (2 if il else 1)
+    n = int(round(rate / mx)) if rate else 1
+    if n < 2:
+        return args, ""
+    target = rate / n
+    return {**args, "cfr_fps": target / (2 if il else 1)}, f"_f{int(round(target))}"
+
+
 def _ahead_job(ctx: Context, groups: list, pre: float, post: float, interlaced: bool, ph: str, bpath):
     """job(i) of fine_ahead.BallAhead: cut window i and cache its ball track, with the ball model on the
     CPU (its own session, `fine_speed.ball_ahead_threads` threads), exactly where the fine pass reads it."""
@@ -2001,7 +2022,7 @@ def _ahead_job(ctx: Context, groups: list, pre: float, post: float, interlaced: 
 
     fs = ctx.cfg.get("fine_speed") or {}
     bcfg = ctx.cfg.get("ball") or {}
-    args = _cut_args(ctx)
+    args, sfx = _fine_cut(ctx)
     model: list = []
 
     def job(i: int):
@@ -2011,7 +2032,7 @@ def _ahead_job(ctx: Context, groups: list, pre: float, post: float, interlaced: 
                                      batch=max(1, int(fs.get("ball_ahead_batch", 1) or 1)),
                                      threads=int(fs.get("ball_ahead_threads", 4) or 0) or None))
         t0, dur, wid = _window_of(groups[i], pre, post)
-        clip = cut_window(ctx.video, t0, dur, ctx.path("windows") / f"{wid}.mp4", interlaced, **args)
+        clip = cut_window(ctx.video, t0, dur, ctx.path("windows") / f"{wid}{sfx}.mp4", interlaced, **args)
         took = window_ball(clip, clip.with_name(f"{clip.stem}_{ph}.npz"), model[0])[1]
         if took:
             _BALL_AHEAD[wid] = took
@@ -2095,10 +2116,10 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
 
     c = group[0]
     t0, dur, wid = _window_of(group, pre, post)
-    args = _cut_args(ctx)
+    args, sfx = _fine_cut(ctx)
     import time
     t_ = time.time()
-    clip = cut_window(ctx.video, t0, dur, ctx.path("windows") / f"{wid}.mp4", interlaced, **args)
+    clip = cut_window(ctx.video, t0, dur, ctx.path("windows") / f"{wid}{sfx}.mp4", interlaced, **args)
     _took("recorte", t_)
     ws = window_scale(args["width"])
     side = c.get("side", "near")

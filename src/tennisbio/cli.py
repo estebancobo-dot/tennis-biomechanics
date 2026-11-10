@@ -79,7 +79,9 @@ def _main(argv=None):
     if args.cmd == "audit":
         lib_dirs = None
         if not args.root and layout.library_active(cfg):     # the matches live in the library, not in <output>
-            lib_dirs = [layout.dir_of(out_root, m, cfg) for m in matches]
+            # 10-11: only the matches of the report's player (the audit of Rybakina's report counted Sinner's strokes
+            # and looked for his replays in her report)
+            lib_dirs = [layout.dir_of(out_root, m, cfg) for m in matches if m.player.id == own]
         return run_audit(Path(args.root) if args.root else out_root,
                          Path(args.report) if args.report else out_root / _out_name("informe", own, args.stroke, own),
                          Path(args.out) if args.out else out_root / "auditoria", args.stroke, dirs=lib_dirs)
