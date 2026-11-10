@@ -6,7 +6,7 @@
   "ok": 390,
   "falta": 19,
   "pocos datos": 102,
-  "aviso": 105
+  "aviso": 111
  },
  "items": [
   {
@@ -2876,7 +2876,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "3105 caracteres de texto, 15 vídeos, 21 gráficos",
+   "detail": "3105 caracteres de texto, 16 vídeos, 21 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -2940,7 +2940,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2084 caracteres de texto, 16 vídeos, 0 gráficos",
+   "detail": "2146 caracteres de texto, 16 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3475,7 +3475,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "43 carpetas, 30.7 GB en total (2026-11-10T12:00:05); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB"
+   "detail": "43 carpetas, 30.9 GB en total (2026-11-10T12:20:06); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3531,7 +3531,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-10 12:06:16 en 5 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-10 12:38:34 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 5,
@@ -3671,7 +3671,7 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-10_1140.csv (mín/media/máx): zheng-qinwen-elena-rybakina fine (26.5 min): CPU 6/30/100 %, iGPU 0/1/49 %, RAM máx 17.1 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
+   "detail": "recursos_2026-11-10_1220.csv (mín/media/máx): zheng-qinwen-elena-rybakina fine (19.8 min): CPU 9/19/30 %, iGPU 0/0/2 %, RAM máx 8.9 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
   },
   {
    "req": 5,
@@ -5345,6 +5345,48 @@
    "name": "#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)",
    "status": "falta",
    "detail": "SIN HACER según el registro (#245, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, ",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#246); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#247 No lanzar los partidos completos con fallos conocidos: arreglar todo antes (Chat, 09-11)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#247); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#248 Velocidad sin perder calidad ni puntuación: un partido de 3,5 h desde cero en una noche (≤ 8 h) (Chat, 10-11)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#248); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#249 Parar el PC a distancia al momento, sin tener que apagarlo (Chat, 09-11)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#249); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#250 Si se acaban los tokens se puede apagar todo y seguir después sin perder nada (Chat, 10-11)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#250); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#251 Tareas nuevas asociadas a peticiones y al plan, encadenadas sin olvidarse (Chat, 10-11)",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#251); sin comprobación automática asignada"
   }
  ]
 }

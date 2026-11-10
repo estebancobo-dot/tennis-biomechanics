@@ -1,10 +1,10 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-390 cumplidos · 19 no cumplidos · 102 sin golpes suficientes · 105 avisos (antes: 373 cumplidos, 19 no cumplidos)
+390 cumplidos · 19 no cumplidos · 102 sin golpes suficientes · 111 avisos (antes: 390 cumplidos, 19 no cumplidos)
 
-## Peticiones del usuario SIN TERMINAR: 107 de 245
+## Peticiones del usuario SIN TERMINAR: 113 de 251
 
-Registro `docs/peticiones_usuario.md`: 127 hechas · 91 a medias · 16 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 127 hechas · 97 a medias · 16 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
 - **#189 [FALTA]** «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4) — falta: No está en `learn.py`.
@@ -113,6 +113,12 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 91 a medias · 16 sin hacer
 - **#238 [PARCIAL]** La validación es siempre automática; el usuario no valida la aplicación (27-10 11:42) — falta: Que cada pantalla nueva entre con su comprobación automática.
 - **#242 [PARCIAL]** Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis por persona (27-10 12:06) — falta: Medir el detector con partidos masculinos; probar el flujo entero con capturas. 06-11: sigue igual. La ventana y sus 56 pantallas ✔, pero «Aplicación: análisis…
 - **#243 [PARCIAL]** Todos los escenarios del producto los contempla Claude sin esperar a que se pidan (27-10 12:09) — falta: Bloque E1: cada ✘ y ◐ con su prueba automática.
+- **#246 [PARCIAL]** Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, parar y arrancar desde los do… — falta: Fases C-F de `docs/orquestador.md` (flujos, ciclo y chat por la cola, aplicación por la cola, prueba de extremo a extremo en el PC).
+- **#247 [PARCIAL]** No lanzar los partidos completos con fallos conocidos: arreglar todo antes (Chat, 09-11) — falta: Se cumple mientras no haya análisis completo; el único se lanza al cerrar B8 y los puntos de la Base.
+- **#248 [PARCIAL]** Velocidad sin perder calidad ni puntuación: un partido de 3,5 h desde cero en una noche (≤ 8 h) (Chat, 10-11) — falta: Mitad de fotogramas medida y descartada (medidas del impacto ±50 % de su dispersión). Falta el tiempo desde cero con la identidad corregida (menos golpes dudos…
+- **#249 [PARCIAL]** Parar el PC a distancia al momento, sin tener que apagarlo (Chat, 09-11) — falta: Fase D: la parada por la cola del ejecutor único (en segundos).
+- **#250 [PARCIAL]** Si se acaban los tokens se puede apagar todo y seguir después sin perder nada (Chat, 10-11) — falta: Fase D: la cola del ejecutor sobrevive a reinicios; documentar el punto exacto donde seguir en cada cambio.
+- **#251 [PARCIAL]** Tareas nuevas asociadas a peticiones y al plan, encadenadas sin olvidarse (Chat, 10-11) — falta: Mantener B8 y la tabla al día en cada cambio.
 
 
 ## No cumplidos
@@ -137,34 +143,11 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 91 a medias · 16 sin hacer
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 
-## Empeora respecto a la ejecución anterior
+## Comprobaciones nuevas
 
-- **Repeticiones en el informe: smoke_tennis-yusipopen-final-sobolenko-rybakin**: ok → aviso: 0% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (0 de 22) · 22 con recorte pero no en el informe · 101 recortes en el partido
-- **#7 Empuñadura en la espera y al golpear**: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
-- **#36 Mano y antebrazo, cierre de la muñeca**: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
-- **#64 Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso; «hay que hacer la **: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok
-- **#84 Matriz §1 Cadena cinética (suelo → pelvis → separación → tronco → codo → muñeca)**: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok
-- **#88 Matriz §5 Pies (split, ajuste, cruzado, paso de ataque, recuperación)**: pocos datos → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 8 ok
-- **#218 La fuente son los partidos: que funcione la vista de fondo en los dos lados, que funcionen las repeticiones (v**: ok → aviso: 5 comprobaciones: 1 aviso, 4 ok; la peor: «Repeticiones en el informe: smoke_tennis-yusipopen-final-sobolenko-rybakin» (0% de sus golpes con tomas enlazadas tienen sus recortes y están en el informe (
-
-## Mejora
-
-- 2. Cuerpo · Hombros más girados que la cadera en el impacto: pocos datos → ok
-- 2. Cuerpo · "3 × 90°" al final: pocos datos → ok
-- 3. Pies y desplazamiento · Split step: aterrizaje respecto al golpe del rival: pocos datos → ok
-- 3. Pies y desplazamiento · Número de pasos hasta la bola: pocos datos → ok
-- 3. Pies y desplazamiento · Subtipos: abierto de ataque, abierto defensivo, neutro de ataque: pocos datos → ok
-- 4. Raqueta, swing y empuñadura · Velocidad de la raqueta relativa entre golpes: pocos datos → ok
-- 4. Raqueta, swing y empuñadura · Posición de la mano en el mango: pocos datos → ok
-- 6. Matriz del usuario · Rotación pélvica: pocos datos → ok
-- 6. Matriz del usuario · Apoyo abierto extremo defensivo: pocos datos → ok
-- Bola rápida / lenta: pocos datos → ok
-- Bola alta / baja: pocos datos → ok
-- Bola corta / profunda: pocos datos → ok
-- En carrera / parada / en salto: pocos datos → ok
-- Cada apoyo: pocos datos → ok
-- Ataque / defensa: pocos datos → ok
-- Bola subiendo / arriba / cayendo: pocos datos → ok
-- Bola centrada / abierta: pocos datos → ok
-- Cada frase lleva cuántos golpes la respaldan y su fiabilidad: pocos datos → ok
-- #87 Matriz §4 Apoyos (abierto, semiabierto, neutro o cerrado, salto, abierto extremo): pocos datos → ok
+- #246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, : aviso (A MEDIAS según el registro (#246); sin comprobación automática asignada)
+- #247 No lanzar los partidos completos con fallos conocidos: arreglar todo antes (Chat, 09-11): aviso (A MEDIAS según el registro (#247); sin comprobación automática asignada)
+- #248 Velocidad sin perder calidad ni puntuación: un partido de 3,5 h desde cero en una noche (≤ 8 h) (Chat, 10-11): aviso (A MEDIAS según el registro (#248); sin comprobación automática asignada)
+- #249 Parar el PC a distancia al momento, sin tener que apagarlo (Chat, 09-11): aviso (A MEDIAS según el registro (#249); sin comprobación automática asignada)
+- #250 Si se acaban los tokens se puede apagar todo y seguir después sin perder nada (Chat, 10-11): aviso (A MEDIAS según el registro (#250); sin comprobación automática asignada)
+- #251 Tareas nuevas asociadas a peticiones y al plan, encadenadas sin olvidarse (Chat, 10-11): aviso (A MEDIAS según el registro (#251); sin comprobación automática asignada)
