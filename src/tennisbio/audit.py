@@ -485,7 +485,7 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
         secs = total_seconds(man)          # stages run at the same time count once
         if dur:
             per_h = secs / 3600 / (dur / 60) if dur else None        # hours of processing per hour of video
-            # paso 1 de la Base (B1, 02-11): 35 min de vídeo desde cero en ≤ 45 min, ≈ 1,3 h por hora de vídeo
+            # B1 (10-11, with the user): a 3.5 h match from scratch in one night, ≤ 8 h (SPEED_TARGET)
             st = "ok" if per_h is not None and per_h <= SPEED_TARGET else "aviso"
             items.append(_item(9, "Rendimiento", f"Tiempo: {m}", st,
                                f"{secs / 60:.0f} min para {dur:.0f} min de vídeo ≈ {per_h * 3.5:.1f} h para un partido de 3,5 h "
@@ -1595,7 +1595,10 @@ PETITIONS.update({
 PETITIONS[218] = (r"^Repeticiones y otras cámaras$|^Golpes del fondo: |^Golpes del fondo frente a F3Set"
                   r"|^Repeticiones en el informe: |^Medidas en la cámara lenta: ")
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
-SPEED_TARGET = 45 / 35          # hours of processing per hour of video (Base step 1: 35 min in ≤ 45 min)
+# hours of processing per hour of video. The user's requirement 9 is «un partido en horas, no días»; the former
+# 45/35 (35 min in ≤ 45 min) was Claude's own target. 10-11, with the user: a 3.5 h match in one night, ≤ 8 h
+# from scratch, without losing quality (halving the frames was measured and refused: bench_fine_fps)
+SPEED_TARGET = 8 / 3.5
 
 
 def parse_petitions(path: Path = PETITIONS_DOC) -> list[tuple[int, str, str]]:

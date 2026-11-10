@@ -5,7 +5,7 @@
 paquetes:
   B1:
     nombre: "Base · velocidad y uso del PC"
-    cierre: "Prueba desde cero de 35 min en ≤ 45 min; CPU/iGPU por etapa medidas en cada ejecución"
+    cierre: "Un partido de 3,5 h desde cero en una noche (≤ 8 h) sin perder calidad (10-11, con el usuario); CPU/iGPU por etapa medidas en cada ejecución"
     peticiones: [10, 14, 29, 75, 77, 125, 137, 230, 231, 237]
     prueba: ["^Tiempo: ", "^Uso del PC por etapa", "^Peticiones por GitHub Actions", "^Tomas de cámara"]
   B2:
