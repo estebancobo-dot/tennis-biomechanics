@@ -139,8 +139,8 @@
  "fine": {
   "fingerprint": "2e6f39a5e704a009",
   "version": "16",
-  "seconds": 83.9,
-  "finished": "2026-11-10 08:17:36",
+  "seconds": 71.4,
+  "finished": "2026-11-10 11:59:42",
   "summary": {
    "candidates": 80,
    "confirmed": 77,
@@ -160,14 +160,14 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 29.1,
-    "pista_ventana": 24.8,
-    "cuerdas_y_3d": 17.2,
-    "analisis_ventana": 17.2,
-    "recorte": 4.6,
-    "cribado": 3.4,
-    "pose": 0.4,
-    "pose_medida_lejana": 0.4
+    "jugadora_lejana": 27.5,
+    "pista_ventana": 20.2,
+    "analisis_ventana": 15.1,
+    "cuerdas_y_3d": 12.7,
+    "recorte": 4.8,
+    "cribado": 3.2,
+    "pose_medida_lejana": 0.3,
+    "pose": 0.3
    },
    "counts": {
     "overlap_s": 0.0,
@@ -189,7 +189,7 @@
   "fingerprint": "fdc048a93df2d54b",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-10 08:17:36",
+  "finished": "2026-11-10 11:59:43",
   "summary": {
    "enabled": false
   },
