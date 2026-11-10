@@ -3451,7 +3451,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "43 carpetas, 30.7 GB en total (2026-11-10T10:56:09); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB"
+   "detail": "43 carpetas, 30.7 GB en total (2026-11-10T11:17:26); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.5 GB"
   },
   {
    "req": 5,
@@ -3465,7 +3465,7 @@
    "area": "Aplicación",
    "name": "Aplicación: ventana real y pantallas",
    "status": "ok",
-   "detail": "56 pantallas pintadas, 0 problemas; ventana real: carga"
+   "detail": "66 pantallas pintadas, 0 problemas; ventana real: carga"
   },
   {
    "req": 5,
@@ -3507,7 +3507,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-10 10:55:27 en 0 min: 25 vídeos de 25 golpes"
+   "detail": "terminó el 2026-11-10 11:17:28 en 0 min: 25 vídeos de 25 golpes"
   },
   {
    "req": 5,
@@ -3647,14 +3647,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-10_1056.csv (mín/media/máx): zheng-qinwen-elena-rybakina fine (2.2 min): CPU 10/26/41 %, iGPU 0/0/0 %, RAM máx 8.3 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
+   "detail": "recursos_2026-11-10_1110.csv (mín/media/máx): zheng-qinwen-elena-rybakina fine (9.5 min): CPU 0/18/32 %, iGPU 0/0/0 %, RAM máx 8.3 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 10-11 10:55, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 10-11 10:55, empezó a los 3.4 min; el PC estaba con otro trabajo hasta las 10:58 (3.9 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
