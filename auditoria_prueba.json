@@ -3,8 +3,8 @@
  "strokes": 26,
  "near": 13,
  "summary": {
-  "ok": 392,
-  "falta": 21,
+  "ok": 390,
+  "falta": 24,
   "pocos datos": 102,
   "aviso": 113
  },
@@ -2876,7 +2876,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "3105 caracteres de texto, 16 vídeos, 21 gráficos",
+   "detail": "3105 caracteres de texto, 15 vídeos, 21 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -3467,15 +3467,15 @@
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
-   "status": "ok",
-   "detail": "63 de 63 registros con fecha de inicio y de fin o duración"
+   "status": "falta",
+   "detail": "61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T16:30:53); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T17:10:51); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3531,7 +3531,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-11 16:32:37 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-11 17:10:35 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 5,
@@ -3671,7 +3671,7 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-11_1630.csv (mín/media/máx): elena-rybakina-jessica-pegula- score (3.5 min): CPU 31/75/100 %, iGPU 0/0/0 %, RAM máx 10.9 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- identity (2.0 min): CPU 19/50/83 %, iGPU 0/0/1 %, RAM máx 11.4 GB → uso medio: margen para repartir trabajo"
+   "detail": "recursos_2026-11-11_1700.csv (mín/media/máx): elena-rybakina-jessica-pegula- fine_doubtful (0.2 min): CPU 32/32/32 %, iGPU 99/99/99 %, RAM máx 10.3 GB → iGPU al límite"
   },
   {
    "req": 5,
@@ -4132,8 +4132,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "ok",
-   "detail": "2 comprobaciones: 2 ok"
+   "status": "falta",
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)"
   },
   {
    "req": 11,
@@ -5429,6 +5429,13 @@
    "name": "#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, ",
    "status": "falta",
    "detail": "SIN HACER según el registro (#257, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#258, docs/peticiones_usuario.md)"
   }
  ]
 }

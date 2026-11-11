@@ -44,3 +44,47 @@ Registro enviado a Claude (no hace falta copiar nada).
     (paso terminado en 30 s)
 
 ==> [2026-11-11 17:10:26] Que hace falta: informe
+Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (78 golpes)
+Informe: C:\tenis\output\_smoke\informe\index.html
+Golpes: 0 nuevos, 118 en C:\tenis\output\_smoke\exportar\golpes
+Montajes: 9 en C:\tenis\output\_smoke\exportar\montajes
+Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
+Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
+Peticiones: 21 sin construir · 71 construido, sin comprobar · 73 comprobación que falla · 85 comprobado en salidas · 0 validado con verdad
+Auditoría: 390 cumplidos, 24 no cumplidos, 102 sin golpes suficientes, 113 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+  ✘ Primera pantalla, anchura y nombres (diseño definitivo): vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 609 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
+  ✘ Registros con fecha y duración: 61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
+  ✘ #66 Fechas y duración en los registros: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
+  ✘ #176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3): SIN HACER según el registro (#176, docs/peticiones_usuario.md)
+  ✘ #189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4): SIN HACER según el registro (#189, docs/peticiones_usuario.md)
+  ✘ #193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10): SIN HACER según el registro (#193, docs/peticiones_usuario.md)
+  ✘ #196 Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18): SIN HACER según el registro (#196, docs/peticiones_usuario.md)
+  ✘ #197 Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19): SIN HACER según el registro (#197, docs/peticiones_usuario.md)
+  ✘ #198 Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20): SIN HACER según el registro (#198, docs/peticiones_usuario.md)
+  ✘ #209 Passing y globo (Revisión completa, §3 B): SIN HACER según el registro (#209, docs/peticiones_usuario.md)
+  ✘ #210 Dejada (bote muy corto en campo rival) (Revisión completa, §3 B): SIN HACER según el registro (#210, docs/peticiones_usuario.md)
+  ✘ #211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5): SIN HACER según el registro (#211, docs/peticiones_usuario.md)
+  ✘ #216 Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnic: SIN HACER según el registro (#216, docs/peticiones_usuario.md)
+  ✘ #217 Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26): SIN HACER según el registro (#217, docs/peticiones_usuario.md)
+  ✘ #223 Revés y derecha cortados: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
+  ✘ #224 Saques: plano, cortado o kick; primero o segundo: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
+  ✘ #240 Comparar la aplicación con las profesionales una vez estén los golpes: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
+  ✘ #244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10): SIN HACER según el registro (#244, docs/peticiones_usuario.md)
+  ✘ #245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10): SIN HACER según el registro (#245, docs/peticiones_usuario.md)
+  ✘ #252 Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps profesionales, UX y : SIN HACER según el registro (#252, docs/peticiones_usuario.md)
+  ✘ #254 Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista lateral de entreno : SIN HACER según el registro (#254, docs/peticiones_usuario.md)
+  ✘ #255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente): SIN HACER según el registro (#255, docs/peticiones_usuario.md)
+  ✘ #257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, : SIN HACER según el registro (#257, docs/peticiones_usuario.md)
+  ✘ #258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
+Hecho en 193 s, sin volver a analizar vídeo.
+    (paso terminado en 3 min 13 s)
+
+==> [2026-11-11 17:13:40] Revision automatica frente a la ejecucion anterior
+# Revisión automática: REGRESIÓN
+Ciclo automatico terminado (informe).
+    (paso terminado en 0 s)
+Empezado 2026-11-11 17:09:43 - terminado 2026-11-11 17:13:40 - duracion total 3 min 56 s
+**********************
+Windows PowerShell transcript end
+End time: 20261111171340
+**********************

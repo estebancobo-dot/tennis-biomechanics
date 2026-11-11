@@ -1,10 +1,10 @@
-# Revisión automática: FALLOS
+# Revisión automática: REGRESIÓN
 
-392 cumplidos · 21 no cumplidos · 102 sin golpes suficientes · 113 avisos (antes: 390 cumplidos, 23 no cumplidos)
+390 cumplidos · 24 no cumplidos · 102 sin golpes suficientes · 113 avisos (antes: 392 cumplidos, 21 no cumplidos)
 
-## Peticiones del usuario SIN TERMINAR: 118 de 257
+## Peticiones del usuario SIN TERMINAR: 119 de 258
 
-Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 20 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 21 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
 - **#189 [FALTA]** «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4) — falta: No está en `learn.py`.
@@ -26,6 +26,7 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 20 sin hacer
 - **#254 [FALTA]** Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista lateral de entreno o clips anotados (Estado del … — falta: Comparar el giro medido en el partido con el de la vista lateral o con clips anotados; hoy solo se compara 2D con 3D.
 - **#255 [FALTA]** Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente) — falta: Medida nueva desde la raqueta y los hombros en el armado (fiable solo de lado: vista lateral de entreno).
 - **#257 [FALTA]** Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, Sportsbox, Dartfish…), apps d… — falta: Parte del análisis de P0: catálogo `config/referencias.yaml` (tipo, fuente, qué mide, cómo lo enseña, gráficos, UX, precio, plataforma), evaluación de cada ref…
+- **#258 [FALTA]** Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha pública completa de las dos jugad… — falta: P0 (gestión y catálogo): fuentes abiertas (p. ej. Wikidata) con caché; el revés que falte se deduce del vídeo o se pregunta solo eso; renombrar es seguro porqu…
 - **#2 [PARCIAL]** Ver informe y salidas en el móvil (11-10 18:21, 18:29, 18:33) — falta: 19-10: copia hecha; el paso directo al Pixel 8 sin probar en el teléfono.
 - **#4 [PARCIAL]** Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como base para cualquiera (11-10 19… — falta: Valores de 1 a 10 golpes, todos «provisional». SuD, `copy_cue` y `COACH` no se ven (≥12).
 - **#5 [PARCIAL]** Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto, apoyo, dirección, ataque/de… — falta: 0 de 2.992 combinaciones con ≥12. Niveles vacíos: parada 0, paralela 0, rodilla 0, en el aire 0. 19-10: faltaban de su mensaje del 10-10 18:05 «ángulos» (golpe…
@@ -129,6 +130,8 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 20 sin hacer
 ## No cumplidos
 
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 609 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
+- **Registros con fecha y duración**: 61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
+- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
 - **#193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10)**: SIN HACER según el registro (#193, docs/peticiones_usuario.md)
@@ -149,8 +152,13 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 20 sin hacer
 - **#254 Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista lateral de entreno **: SIN HACER según el registro (#254, docs/peticiones_usuario.md)
 - **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
+- **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
 
-## Mejora
+## Empeora respecto a la ejecución anterior
 
-- Registros con fecha y duración: falta → ok
-- #66 Fechas y duración en los registros: falta → ok
+- **Registros con fecha y duración**: ok → falta: 61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
+- **#66 Fechas y duración en los registros**: ok → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
+
+## Comprobaciones nuevas
+
+- #258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ: falta (SIN HACER según el registro (#258, docs/peticiones_usuario.md))
