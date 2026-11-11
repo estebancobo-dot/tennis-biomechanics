@@ -712,3 +712,43 @@
 2026-11-09 17:16:49   fine_doubtful: 100 % (149/149 golpes candidatos · 121 confirmados · 0 ventanas descartadas sin pose) · 46 min · quedan ≈ 0 s
 2026-11-09 17:16:51 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] fine_doubtful terminada a las 17:16:51 en 46.4 min
 2026-11-11 13:30:45 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] spotting… (2026-11-11 13:30:45, etapa 8 de 16)
+2026-11-11 13:31:14   detector entrenado: 671 golpes (358 cercanos, 313 lejanos) en 112 min de vídeo · umbral 0.1 · 29 s (jugadores_y_audio 0 s, rasgos 29 s, bola 0 s, modelo 0 s)
+2026-11-11 13:31:14 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] spotting terminada a las 13:31:14 en 29 s
+2026-11-11 13:31:14 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] candidates… (2026-11-11 13:31:14, etapa 9 de 16)
+2026-11-11 13:31:14   identidad con el clic: {'pick': 'aplicado', 'by': 'ends', 'her_parity': 1, 'changed': 0, 'by_click': 258}
+2026-11-11 13:31:18   tramos que son repeticiones: 4 sin marcador
+2026-11-11 13:31:18   identidad por el marcador (su saque, primer golpe del punto, identidad sin decidir): 4
+2026-11-11 13:31:18   saques añadidos por el marcador (su saque no visto, el resto de la rival sí): 14
+2026-11-11 13:31:18   candidatos del detector entrenado: 664 (313 lejanos; 21 en repeticiones, fuera)
+2026-11-11 13:31:18 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] candidates terminada a las 13:31:18 en 4 s
+2026-11-11 13:31:18 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] views… (2026-11-11 13:31:18, etapa 10 de 16)
+2026-11-11 13:31:24   views:   0 % (1/1615 fotogramas de otras tomas) · 0 s · quedan ≈ 0 s
+2026-11-11 13:31:54   views:  14 % (223/1615 fotogramas de otras tomas) · 30 s · quedan ≈ 3 min
+2026-11-11 13:32:24   views:  26 % (427/1615 fotogramas de otras tomas) · 60 s · quedan ≈ 3 min
+2026-11-11 13:32:54   views:  42 % (681/1615 fotogramas de otras tomas) · 2 min · quedan ≈ 2 min
+2026-11-11 13:33:24   views:  55 % (896/1615 fotogramas de otras tomas) · 2 min · quedan ≈ 2 min
+2026-11-11 13:33:54   views:  69 % (1113/1615 fotogramas de otras tomas) · 3 min · quedan ≈ 68 s
+2026-11-11 13:34:24   views:  82 % (1325/1615 fotogramas de otras tomas) · 3 min · quedan ≈ 39 s
+2026-11-11 13:34:55   views:  98 % (1576/1615 fotogramas de otras tomas) · 4 min · quedan ≈ 5 s
+2026-11-11 13:35:01   views: 100 % (1615/1615 fotogramas de otras tomas) · 4 min · quedan ≈ 0 s
+2026-11-11 13:35:01   tomas: 1530 fotogramas clave y 85 exactos (3365 claves en el vídeo); lectura 25 s, personas 135 s, pista 47 s; 71 ajustes de pista
+2026-11-11 13:35:01 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] views terminada a las 13:35:01 en 3.7 min
+2026-11-11 13:35:02 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] fine… (2026-11-11 13:35:02, etapa 11 de 16)
+2026-11-11 13:35:04   ventana w001873084_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-11 13:35:07   ventana w001873084_3600: pose yolo en 215 de 215 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 120 px (court)
+2026-11-11 13:35:07   fine:   0 % (1/264 golpes candidatos · 1 confirmados · 0 ventanas descartadas sin pose) · 0 s · quedan ≈ 0 s
+2026-11-11 13:35:08   ventana w001935000_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-11 13:35:09   ventana w001935000_3600: pose yolo en 216 de 216 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 2 impactos) · 2 golpes posibles · altura 275 px (segments)
+2026-11-11 13:35:10   ventana w001965994_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.23 s
+2026-11-11 13:35:11   ventana w001965994_3600: pose yolo en 216 de 216 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 118 px (court)
+2026-11-11 13:35:12   ventana w001978400_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 2.27 s
+2026-11-11 13:35:13   ventana w001978400_3600: pose yolo en 216 de 216 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 116 px (court)
+2026-11-11 13:35:14   ventana w002071702_3600 (far, 1 candidatos): pasa · golpe del detector (sin golpe de bola visto)
+2026-11-11 13:35:15   ventana w002071702_3600: pose yolo en 215 de 215 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura 203 px (segments)
+2026-11-11 13:35:18   ventana w002135804_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.77 s
+2026-11-11 13:35:18   ventana w002135804_3600: pose yolo en 215 de 215 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (1 de 1 impactos) · 1 golpes posibles · altura nan px (pose)
+2026-11-11 13:35:18   ventana w002135804_3600: pose solo para medir (lejana, buscándola de nuevo) en 0 s
+2026-11-11 13:35:19   ventana w002145049_6051 (far, 2 candidatos): pasa · golpe de bola en su lado a 2.3 s
+2026-11-11 13:35:20   ventana w002145049_6051: pose yolo en 364 de 364 fotogramas (0 s; modelo 0 s) · bola 0 s · raqueta 0 s (2 de 3 impactos) · 3 golpes posibles · altura 352 px (segments)
+2026-11-11 13:35:21   ventana w002145049_6051: pose solo para medir (lejana, buscándola de nuevo) en 0 s
+2026-11-11 13:35:22   ventana w002152359_3600 (far, 1 candidatos): pasa · golpe de bola en su lado a 1.87 s

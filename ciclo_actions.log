@@ -45,3 +45,45 @@ el ejecutor se reinicia al acabar el trabajo en curso
     (paso terminado en 23 s)
 
 ==> [2026-11-11 13:30:35] Que hace falta: informe
+Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (77 golpes)
+Informe: C:\tenis\output\_smoke\informe\index.html
+Golpes: 0 nuevos, 118 en C:\tenis\output\_smoke\exportar\golpes
+Montajes: 9 en C:\tenis\output\_smoke\exportar\montajes
+Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
+Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
+Peticiones: 16 sin construir · 69 construido, sin comprobar · 75 comprobación que falla · 83 comprobado en salidas · 0 validado con verdad
+Auditoría: 388 cumplidos, 22 no cumplidos, 102 sin golpes suficientes, 110 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+  ✘ Primera pantalla, anchura y nombres (diseño definitivo): vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 609 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
+  ✘ Pruebas del código en este PC: código 47c499e (2026-11-11T13:23:00): 972 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
+  ✘ #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 47c499e (2026-11-11T13:23:00): 972 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+  ✘ #20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 47c499e (2026-11-11T13:23:00): 972 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+  ✘ #51 El código de la prueba es el de los casos reales: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 47c499e (2026-11-11T13:23:00): 972 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+  ✘ #176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3): SIN HACER según el registro (#176, docs/peticiones_usuario.md)
+  ✘ #189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4): SIN HACER según el registro (#189, docs/peticiones_usuario.md)
+  ✘ #193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10): SIN HACER según el registro (#193, docs/peticiones_usuario.md)
+  ✘ #196 Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18): SIN HACER según el registro (#196, docs/peticiones_usuario.md)
+  ✘ #197 Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19): SIN HACER según el registro (#197, docs/peticiones_usuario.md)
+  ✘ #198 Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20): SIN HACER según el registro (#198, docs/peticiones_usuario.md)
+  ✘ #209 Passing y globo (Revisión completa, §3 B): SIN HACER según el registro (#209, docs/peticiones_usuario.md)
+  ✘ #210 Dejada (bote muy corto en campo rival) (Revisión completa, §3 B): SIN HACER según el registro (#210, docs/peticiones_usuario.md)
+  ✘ #211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5): SIN HACER según el registro (#211, docs/peticiones_usuario.md)
+  ✘ #216 Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnic: SIN HACER según el registro (#216, docs/peticiones_usuario.md)
+  ✘ #217 Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26): SIN HACER según el registro (#217, docs/peticiones_usuario.md)
+  ✘ #223 Revés y derecha cortados: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
+  ✘ #224 Saques: plano, cortado o kick; primero o segundo: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
+  ✘ #240 Comparar la aplicación con las profesionales una vez estén los golpes: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
+  ✘ #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 47c499e (2026-11-11T13:23:00): 972 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+  ✘ #244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10): SIN HACER según el registro (#244, docs/peticiones_usuario.md)
+  ✘ #245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10): SIN HACER según el registro (#245, docs/peticiones_usuario.md)
+Hecho en 285 s, sin volver a analizar vídeo.
+    (paso terminado en 4 min 45 s)
+
+==> [2026-11-11 13:35:20] Revision automatica frente a la ejecucion anterior
+# Revisión automática: FALLOS
+Ciclo automatico terminado (informe).
+    (paso terminado en 0 s)
+Empezado 2026-11-11 13:29:58 - terminado 2026-11-11 13:35:20 - duracion total 5 min 21 s
+**********************
+Windows PowerShell transcript end
+End time: 20261111133520
+**********************

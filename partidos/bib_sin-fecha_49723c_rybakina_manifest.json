@@ -149,10 +149,10 @@
   "rewrote": {}
  },
  "spotting": {
-  "fingerprint": "f5b7249c8f52399f",
+  "fingerprint": "28a0bf0c08fd5f30",
   "version": "1",
-  "seconds": 25.2,
-  "finished": "2026-11-09 14:38:04",
+  "seconds": 29.3,
+  "finished": "2026-11-11 13:31:14",
   "summary": {
    "enabled": true,
    "strokes": 671,
@@ -165,8 +165,8 @@
    "feature_dim": 122,
    "audio_track": 0,
    "seconds": {
-    "jugadores_y_audio": 0.1,
-    "rasgos": 24.9,
+    "jugadores_y_audio": 0.2,
+    "rasgos": 28.8,
     "bola": 0.0,
     "modelo": 0.1
    }
@@ -176,30 +176,30 @@
   "rewrote": {}
  },
  "candidates": {
-  "fingerprint": "99d81032bbfbe523",
+  "fingerprint": "c151654a8b683324",
   "version": "15",
-  "seconds": 3.2,
-  "finished": "2026-11-09 14:38:08",
+  "seconds": 3.7,
+  "finished": "2026-11-11 13:31:18",
   "summary": {
-   "candidates": 665,
+   "candidates": 664,
    "far": 313,
    "with_audio": 591,
    "source": "spotter",
-   "opponent_strokes": 242,
-   "identity_unknown": 149,
+   "opponent_strokes": 235,
+   "identity_unknown": 165,
    "replay_strokes_skipped": 21,
    "replay_runs": 4,
    "audio_track": 0
   },
-  "out_hash": "6d192cc3a7fa487a54a7",
+  "out_hash": "56e36875bea10ccd2aa5",
   "scheme": 2,
   "rewrote": {}
  },
  "views": {
-  "fingerprint": "51ccae92484b5d82",
+  "fingerprint": "f5b9004d0d4e04c5",
   "version": "6",
-  "seconds": 188.9,
-  "finished": "2026-11-09 14:41:17",
+  "seconds": 223.3,
+  "finished": "2026-11-11 13:35:01",
   "summary": {
    "views": 926,
    "repeticion_principal": 81,
@@ -207,11 +207,11 @@
    "frontal": 7,
    "primer_plano": 742,
    "otra": 72,
-   "links": 2016,
+   "links": 2017,
    "linked_views": 837,
    "slowmo_links": 34
   },
-  "out_hash": "e2d41758ede77cf768b4",
+  "out_hash": "eca9ad85f46db36eaaa1",
   "scheme": 2,
   "rewrote": {}
  },

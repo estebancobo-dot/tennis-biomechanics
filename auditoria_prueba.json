@@ -3,8 +3,8 @@
  "strokes": 25,
  "near": 13,
  "summary": {
-  "ok": 386,
-  "falta": 24,
+  "ok": 388,
+  "falta": 22,
   "pocos datos": 102,
   "aviso": 110
  },
@@ -3467,15 +3467,15 @@
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
-   "status": "falta",
-   "detail": "61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final"
+   "status": "ok",
+   "detail": "63 de 63 registros con fecha de inicio y de fin o duración"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T13:22:43); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T13:31:12); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3531,7 +3531,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-11 13:22:57 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-11 13:30:44 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 5,
@@ -3671,14 +3671,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-11_1313.csv (mín/media/máx): zheng-qinwen-elena-rybakina fine (11.8 min): CPU 9/27/62 %, iGPU 0/0/1 %, RAM máx 12.2 GB → equipo infrautilizado: trabajo en serie (se puede repartir)"
+   "detail": "recursos_2026-11-11_1330.csv (mín/media/máx): zheng-qinwen-elena-rybakina fine (0.5 min): CPU 30/40/49 %, iGPU 0/0/0 %, RAM máx 9.9 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- views (3.5 min): CPU 30/51/84 %, iGPU 0/46/96 %, RAM máx 10.2 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- fine (0.2 min): CPU 51/51/51 %, iGPU 0/0/0 %, RAM máx 8.9 GB → uso medio: margen para repartir trabajo"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 11-11 13:12, empezó a los 9.4 min; el PC estaba con otro trabajo hasta las 13:17 (4.8 min, no cuentan), empezó 4.6 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 11-11 13:29, empezó a los 0.4 min; el PC estaba con otro trabajo hasta las 13:31 (1.3 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -4132,8 +4132,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
