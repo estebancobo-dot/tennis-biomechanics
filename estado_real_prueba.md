@@ -5,8 +5,8 @@
 | Nivel | Peticiones |
 |---|---|
 | 0 sin construir | 21 |
-| 1 construido, sin comprobar | 73 |
-| 2 comprobación que falla | 83 |
+| 1 construido, sin comprobar | 71 |
+| 2 comprobación que falla | 85 |
 | 3 comprobado en salidas | 75 |
 | 4 validado con verdad | 0 |
 
@@ -23,7 +23,7 @@
 | B5 Base · exportación | 1 | 0 | 0 | 1 | 0 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues | ok | no |
 | B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 4 | 0 | 0 | 4 partidos sin errores de etapa; auditoría generada | ok | no |
 | B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 11 | 25 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | falla | no |
-| B8 Base · orquestador único (aplicación y chat con el mismo código y los mismos datos) | 8 | 0 | 8 | 0 | 0 | 0 | Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC | sin medir | no |
+| B8 Base · orquestador único (aplicación y chat con el mismo código y los mismos datos) | 8 | 0 | 6 | 2 | 0 | 0 | Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC | falla | no |
 | P0 Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos) | 4 | 3 | 1 | 0 | 0 | 0 | Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código | sin medir | no |
 | M1 Medidas · fases, cadena cinética y ritmo | 12 | 0 | 7 | 4 | 1 | 0 | Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara | — | — |
 | M2 Medidas · pies y apoyos | 20 | 2 | 10 | 3 | 5 | 0 | Pasos y apoyos medidos en la mayoría de golpes; fiables en la auditoría | — | — |
@@ -42,14 +42,14 @@
 
 Lo que le falta a cada paquete de la Base para cerrarse:
 
-- **B1**: prueba principal: Tiempo desde cero: pocos datos, Peticiones por GitHub Actions: espera hasta empezar: aviso; peticiones sin comprobar o que fallan: #14, #29, #75, #125, #137, #230, #231, #237
+- **B1**: prueba principal: Tiempo desde cero: pocos datos; peticiones sin comprobar o que fallan: #14, #29, #75, #125, #137, #230, #231, #237
 - **B2**: peticiones sin comprobar o que fallan: #13, #225
 - **B3**: peticiones sin comprobar o que fallan: #58
 - **B4**: prueba principal: Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso, Cobertura del saque dicha en el informe: aviso; peticiones sin comprobar o que fallan: #23, #151, #155, #205, #218
 - **B5**: peticiones sin comprobar o que fallan: #41
 - **B6**: peticiones sin comprobar o que fallan: #1, #134, #233, #234
 - **B7**: prueba principal: Aplicación: un partido nuevo de principio a fin: falta; peticiones sin comprobar o que fallan: #18, #20, #21, #22, #37, #51, #66, #119, #160, #226, #242
-- **B8**: prueba principal: Orquestador: : sin medir; peticiones sin comprobar o que fallan: #246, #247, #248, #249, #250, #251, #259, #260
+- **B8**: prueba principal: Orquestador: espera hasta empezar cada trabajo: aviso; peticiones sin comprobar o que fallan: #246, #247, #248, #249, #250, #251, #259, #260
 - **P0**: prueba principal: Aplicación: rediseño : sin medir; peticiones sin comprobar o que fallan: #256, #257, #252, #258
 
 ## Cada petición
@@ -169,7 +169,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 116 | Distancia entre las piernas en los golpes: base y estabilidad (13-10 11:50) | M2 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 117 | Hacia dónde mira el tronco al terminar (valla lateral, de frente, girado) según el golpe ( | M3 | HECHO | 3 comprobado en salidas | 1 comprobaciones: 1 ok |
 | 118 | Validar cada medida de forma automática, no a mano: ¿técnica o ruido? (13-10 08:40-10:30) | P3 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)» (13  |
-| 119 | Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa (13-10 10:40, 11: | B7 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok |
+| 119 | Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa (13-10 10:40, 11: | B7 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar ca |
 | 120 | Vídeo a pantalla completa (13-10 12:00) | P2 | HECHO | 3 comprobado en salidas | 9 comprobaciones: 9 ok |
 | 121 | Ver lo que se pinta por separado, por grupos o una a una (13-10 12:00) | P2 | HECHO | 3 comprobado en salidas | 9 comprobaciones: 9 ok |
 | 122 | Web en 2 vistas principales y el resto en «Más», en dos grupos (funcional y técnico), sin  | P2 | HECHO | 3 comprobado en salidas | 9 comprobaciones: 9 ok |
@@ -284,7 +284,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 234 | Prueba de valor de la aplicación con los datos reales (27-10 07:21) | B6 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok |
 | 235 | Cadena cinética, footwork y timing: lo que define el golpe (27-10 09:33) | M1 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#235); sin comprobación automática asignada |
 | 236 | Huellas numeradas sobre los pies y patrones de pasos (27-10 09:38) | M2 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#236); sin comprobación automática asignada |
-| 237 | El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min (27-10 10 | B1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hast |
+| 237 | El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min (27-10 10 | B1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar ca |
 | 238 | La validación es siempre automática; el usuario no valida la aplicación (27-10 11:42) | P3 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#238); sin comprobación automática asignada |
 | 239 | No se descarta ninguna petición (27-10 11:42) | D | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
 | 240 | Comparar la aplicación con las profesionales una vez estén los golpes (27-10 11:42) | P4 | FALTA | 0 sin construir | SIN HACER según el registro (#240, docs/peticiones_usuario.md) |
@@ -293,10 +293,10 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 243 | Todos los escenarios del producto los contempla Claude sin esperar a que se pidan (27-10 1 | P5 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#243); sin comprobación automática asignada |
 | 244 | Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-1 | M7 | FALTA | 0 sin construir | SIN HACER según el registro (#244, docs/peticiones_usuario.md) |
 | 245 | Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10) | M7 | FALTA | 0 sin construir | SIN HACER según el registro (#245, docs/peticiones_usuario.md) |
-| 246 | Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; m | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#246); sin comprobación automática asignada |
+| 246 | Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; m | B8 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar ca |
 | 247 | No lanzar los partidos completos con fallos conocidos: arreglar todo antes (Chat, 09-11) | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#247); sin comprobación automática asignada |
 | 248 | Velocidad sin perder calidad ni puntuación: un partido de 3,5 h desde cero en una noche (≤ | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#248); sin comprobación automática asignada |
-| 249 | Parar el PC a distancia al momento, sin tener que apagarlo (Chat, 09-11) | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#249); sin comprobación automática asignada |
+| 249 | Parar el PC a distancia al momento, sin tener que apagarlo (Chat, 09-11) | B8 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok |
 | 250 | Si se acaban los tokens se puede apagar todo y seguir después sin perder nada (Chat, 10-11 | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#250); sin comprobación automática asignada |
 | 251 | Tareas nuevas asociadas a peticiones y al plan, encadenadas sin olvidarse (Chat, 10-11) | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#251); sin comprobación automática asignada |
 | 252 | Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps  | P0 | FALTA | 0 sin construir | SIN HACER según el registro (#252, docs/peticiones_usuario.md) |

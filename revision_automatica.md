@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-381 cumplidos · 27 no cumplidos · 111 sin golpes suficientes · 117 avisos (antes: 386 cumplidos, 29 no cumplidos)
+384 cumplidos · 27 no cumplidos · 111 sin golpes suficientes · 117 avisos (antes: 381 cumplidos, 27 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -173,34 +173,12 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
 
-## Empeora respecto a la ejecución anterior
-
-- **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: ok → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok
-- **#41 Exportación: cómo se ven y se graban**: ok → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
-- **#51 El código de la prueba es el de los casos reales**: ok → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
-- **#58 La IA más moderna posible**: ok → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 15 comprobaciones: 15 ok
-- **#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa**: ok → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok
-- **#225 La aplicación no se cuelga ni ralentiza el PC**: ok → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
-- **#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)**: ok → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok
-- **#234 Prueba de valor de la aplicación con los datos reales**: ok → aviso: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok
-
 ## Mejora
 
-- Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin: aviso → pocos datos
-- #14 Rendimiento: un partido en horas, no días: aviso → pocos datos
-- #20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML: aviso → pocos datos
-- #29 Fase 0: entorno y fps reales, con YOLO: aviso → pocos datos
-- #75 Velocidad: «10 golpes en 5 horas es absurdo»: aviso → pocos datos
-- #125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno: aviso → pocos datos
-- #230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo: aviso → pocos datos
-- #231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta: aviso → pocos datos
-- #259 Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir m: falta → aviso
-- #260 Revisar de verdad todo el bloque Base, no solo la velocidad: en cada tarea, si su prueba mide lo pedido, si fa: falta → aviso
+- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok
 
 ## Comprobaciones nuevas
 
-- Golpes con dudas marcadas (se enseñan, no se piden): ok (20 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario)
-- Tiempo desde cero: pocos datos (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC))
-- Golpes encontrados frente a F3Set (detector del análisis): ok (466 de 517 golpes suyos anotados encontrados (90%; objetivo ≥ 85%) en recall_validation_detector.json)
-- Tipo de golpe frente a F3Set (anotado): ok (derecha/revés con su tipo 327 de 336 (97.3%), saques 129 de 129 (100.0%); objetivo ≥ 95%; confusiones: forehand→backhand 5, forehand→overhead 2, backhand→foreha)
-- Comprobaciones que saben fallar: aviso (sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json))
+- Orquestador: prueba de extremo a extremo: ok (5 de 5 comprobaciones bien; termina 2026-11-11T17:19:19)
+- Orquestador: ejecutor vivo cuando hay trabajo: ok (ejecutor vivo; 0 trabajos esperando)
+- Orquestador: espera hasta empezar cada trabajo: aviso (28 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)

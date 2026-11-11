@@ -1,32 +1,13 @@
 {
- "at": "2026-11-11 23:21:19",
- "firma": "e3b77aca1e68",
+ "at": "2026-11-11 23:24:41",
+ "firma": "7681b157de0f",
  "ejecutor": {
   "vivo": true,
   "pid": 2136,
-  "at": 1794435679.0817542
+  "at": 1794435881.1431994
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 57,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script tiempos_etapas",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-11 23:21:00",
-   "started": "2026-11-11 23:21:19",
-   "finished": null,
-   "args": "[\"script\", \"tiempos_etapas\"]",
-   "source": "claude 212",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_57.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 57,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script tiempos_etapas",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-11 23:21:00",
+   "started": "2026-11-11 23:21:19",
+   "finished": "2026-11-11 23:21:20",
+   "args": "[\"script\", \"tiempos_etapas\"]",
+   "source": "claude 212",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_57.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 56,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_43.log",
    "paso": 5,
    "pasos": 5
-  },
-  {
-   "id": 42,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "hecho",
-   "message": "3 pasos",
-   "created": "2026-11-11 14:27:18",
-   "started": "2026-11-11 14:31:41",
-   "finished": "2026-11-11 14:36:07",
-   "args": "[\"informe\"]",
-   "source": "claude 194",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_42.log",
-   "paso": 3,
-   "pasos": 3
   }
  ],
  "eventos": [
+  {
+   "id": 222,
+   "job": 57,
+   "at": "2026-11-11 23:21:21",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 221,
    "job": 57,
@@ -513,13 +501,6 @@
    "at": "2026-11-11 21:10:49",
    "kind": "ejecutor",
    "text": "arranca (pid 10712)"
-  },
-  {
-   "id": 192,
-   "job": 55,
-   "at": "2026-11-11 21:08:25",
-   "kind": "enviado",
-   "text": "tennisbio script diag_app_nuevo (claude 209)"
   }
  ]
 }

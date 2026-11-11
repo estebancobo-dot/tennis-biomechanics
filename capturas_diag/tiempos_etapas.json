@@ -219,7 +219,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-11 20:51:11"
  },
  {
   "carpeta": "C:\\tenis\\output\\_bench_fps\\A",
@@ -447,7 +450,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-10 08:53:16"
  },
  {
   "carpeta": "C:\\tenis\\output\\_bench_fps\\B",
@@ -675,7 +681,459 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-10 09:08:50"
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\_poc211_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 35.0,
+  "total_min": 49.4,
+  "veces_el_video": 1.41,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 1190.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 22:49:39",
+    "partes_s": {
+     "pose": 1185.1,
+     "pose_modelo_hybrid": 652.3,
+     "pose_modelo_yolo": 516.5,
+     "pose_medida_lejana": 376.2,
+     "bola": 360.0,
+     "raqueta": 353.9,
+     "cuerdas_y_3d": 73.3,
+     "recorte": 69.0,
+     "jugadora_lejana": 40.7,
+     "pista_ventana": 16.1,
+     "analisis_ventana": 14.5,
+     "cribado": 2.5
+    },
+    "cuentas": {
+     "overlap_s": 0.0,
+     "frames": 11469,
+     "posed_frames": 11469,
+     "impacts": 81,
+     "kept_impacts": 71,
+     "racket_frames": 822,
+     "whole_window_again": 0,
+     "frames_960_far": 2076,
+     "frames_modelo_yolo": 7099,
+     "far_measure_windows": 13,
+     "frames_modelo_hybrid": 4370
+    },
+    "resumen": {
+     "windows": 55,
+     "confirmed": 68,
+     "candidates": 71,
+     "gate": {
+      "windows_gated": 0,
+      "windows_passed": 55,
+      "windows_ungated": 0,
+      "reasons": {
+       "detector": 26,
+       "golpe_de_bola": 27,
+       "bola_no_vista": 2
+      },
+      "seconds_in_gated_windows": 0.0
+     }
+    },
+    "s_por_min_video": 34.01,
+    "parte": 0.38
+   },
+   {
+    "etapa": "spotting",
+    "s": 654.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 22:28:29",
+    "partes_s": {
+     "jugadores_y_audio": 0.0,
+     "rasgos": 7.7,
+     "bola": 646.5,
+     "modelo": 0.0
+    },
+    "s_por_min_video": 18.71,
+    "parte": 0.209
+   },
+   {
+    "etapa": "players",
+    "s": 392.7,
+    "a_la_vez_s": 169.2,
+    "terminada": "2026-11-11 22:16:33",
+    "s_por_min_video": 11.22,
+    "parte": 0.125
+   },
+   {
+    "etapa": "scenes",
+    "s": 241.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 22:08:49",
+    "s_por_min_video": 6.9,
+    "parte": 0.077
+   },
+   {
+    "etapa": "score",
+    "s": 169.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 22:12:50",
+    "s_por_min_video": 4.83,
+    "parte": 0.054
+   },
+   {
+    "etapa": "view_clips",
+    "s": 159.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 22:52:18",
+    "s_por_min_video": 4.55,
+    "parte": 0.051
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 114.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 22:54:13",
+    "partes_s": {
+     "pose": 109.0,
+     "pose_modelo_hybrid": 105.7,
+     "raqueta": 52.8,
+     "bola": 23.5,
+     "recorte": 11.1,
+     "cuerdas_y_3d": 5.7,
+     "analisis_ventana": 3.6,
+     "pista_ventana": 2.4,
+     "cribado": 0.2,
+     "jugadora_lejana": 0.0
+    },
+    "cuentas": {
+     "overlap_s": 0.0,
+     "frames": 719,
+     "posed_frames": 719,
+     "impacts": 4,
+     "kept_impacts": 4,
+     "racket_frames": 124,
+     "whole_window_again": 0,
+     "frames_960_far": 0,
+     "frames_modelo_hybrid": 719
+    },
+    "resumen": {
+     "windows": 8,
+     "confirmed": 4,
+     "candidates": 8,
+     "gate": {
+      "windows_gated": 0,
+      "windows_passed": 4,
+      "windows_ungated": 0,
+      "reasons": {
+       "bola_no_vista": 3,
+       "golpe_de_bola": 1
+      },
+      "seconds_in_gated_windows": 0.0
+     }
+    },
+    "s_por_min_video": 3.26,
+    "parte": 0.036
+   },
+   {
+    "etapa": "views",
+    "s": 78.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 22:29:48",
+    "s_por_min_video": 2.23,
+    "parte": 0.025
+   },
+   {
+    "etapa": "court",
+    "s": 71.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 22:10:01",
+    "s_por_min_video": 2.04,
+    "parte": 0.023
+   },
+   {
+    "etapa": "identity",
+    "s": 54.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 22:17:34",
+    "s_por_min_video": 1.55,
+    "parte": 0.017
+   },
+   {
+    "etapa": "audio",
+    "s": 6.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 22:16:40",
+    "s_por_min_video": 0.18,
+    "parte": 0.002
+   },
+   {
+    "etapa": "probe",
+    "s": 0.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 22:04:48",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "candidates",
+    "s": 0.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 22:28:30",
+    "resumen": {
+     "candidates": 158
+    },
+    "s_por_min_video": 0.02,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 22:49:39",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "slowmo_fine",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 22:52:18",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 22:52:19",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-11 22:54:13"
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\_poc211_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 4.0,
+  "total_min": 7.8,
+  "veces_el_video": 1.94,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 198.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 21:55:03",
+    "partes_s": {
+     "pose": 179.3,
+     "pose_modelo_hybrid": 173.2,
+     "raqueta": 109.4,
+     "bola": 37.5,
+     "cuerdas_y_3d": 18.6,
+     "recorte": 6.1,
+     "analisis_ventana": 4.2,
+     "pista_ventana": 1.5,
+     "cribado": 0.3
+    },
+    "cuentas": {
+     "overlap_s": 0.0,
+     "frames": 1143,
+     "posed_frames": 1143,
+     "impacts": 9,
+     "kept_impacts": 7,
+     "racket_frames": 256,
+     "whole_window_again": 0,
+     "frames_960_far": 0,
+     "frames_modelo_hybrid": 1143
+    },
+    "resumen": {
+     "windows": 5,
+     "confirmed": 7,
+     "candidates": 7,
+     "gate": {
+      "windows_gated": 0,
+      "windows_passed": 5,
+      "windows_ungated": 0,
+      "reasons": {
+       "golpe_de_bola": 5
+      },
+      "seconds_in_gated_windows": 0.0
+     }
+    },
+    "s_por_min_video": 49.6,
+    "parte": 0.396
+   },
+   {
+    "etapa": "spotting",
+    "s": 90.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 21:51:33",
+    "partes_s": {
+     "jugadores_y_audio": 0.0,
+     "rasgos": 1.0,
+     "bola": 89.2,
+     "modelo": 0.0
+    },
+    "s_por_min_video": 22.57,
+    "parte": 0.18
+   },
+   {
+    "etapa": "players",
+    "s": 62.1,
+    "a_la_vez_s": 35.4,
+    "terminada": "2026-11-11 21:49:52",
+    "s_por_min_video": 15.53,
+    "parte": 0.124
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 36.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 21:55:53",
+    "partes_s": {
+     "pose": 15.7,
+     "pose_modelo_hybrid": 15.1,
+     "raqueta": 9.9,
+     "bola": 4.6,
+     "cuerdas_y_3d": 2.1,
+     "recorte": 0.9,
+     "analisis_ventana": 0.3,
+     "pista_ventana": 0.2,
+     "cribado": 0.1
+    },
+    "cuentas": {
+     "overlap_s": 0.0,
+     "frames": 179,
+     "posed_frames": 179,
+     "impacts": 1,
+     "kept_impacts": 1,
+     "racket_frames": 31,
+     "whole_window_again": 0,
+     "frames_960_far": 0,
+     "frames_modelo_hybrid": 179
+    },
+    "resumen": {
+     "windows": 1,
+     "confirmed": 1,
+     "candidates": 1,
+     "gate": {
+      "windows_gated": 0,
+      "windows_passed": 1,
+      "windows_ungated": 0,
+      "reasons": {
+       "golpe_de_bola": 1
+      },
+      "seconds_in_gated_windows": 0.0
+     }
+    },
+    "s_por_min_video": 9.12,
+    "parte": 0.073
+   },
+   {
+    "etapa": "score",
+    "s": 35.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 21:49:25",
+    "s_por_min_video": 8.85,
+    "parte": 0.071
+   },
+   {
+    "etapa": "scenes",
+    "s": 29.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 21:48:36",
+    "s_por_min_video": 7.45,
+    "parte": 0.059
+   },
+   {
+    "etapa": "court",
+    "s": 13.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 21:48:50",
+    "s_por_min_video": 3.42,
+    "parte": 0.027
+   },
+   {
+    "etapa": "view_clips",
+    "s": 13.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 21:55:16",
+    "s_por_min_video": 3.27,
+    "parte": 0.026
+   },
+   {
+    "etapa": "views",
+    "s": 11.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 21:51:44",
+    "s_por_min_video": 2.75,
+    "parte": 0.022
+   },
+   {
+    "etapa": "identity",
+    "s": 8.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 21:50:03",
+    "s_por_min_video": 2.23,
+    "parte": 0.018
+   },
+   {
+    "etapa": "audio",
+    "s": 1.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 21:49:54",
+    "s_por_min_video": 0.42,
+    "parte": 0.003
+   },
+   {
+    "etapa": "probe",
+    "s": 0.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 21:48:07",
+    "s_por_min_video": 0.05,
+    "parte": 0.0
+   },
+   {
+    "etapa": "candidates",
+    "s": 0.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 21:51:33",
+    "resumen": {
+     "candidates": 20
+    },
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 21:55:03",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "slowmo_fine",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 21:55:16",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 21:55:16",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-11 21:55:53"
  },
  {
   "carpeta": "C:\\tenis\\output\\_poc67_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
@@ -877,7 +1335,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-10-29 12:28:43"
  },
  {
   "carpeta": "C:\\tenis\\output\\_poc67_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
@@ -1072,7 +1533,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-10-29 10:26:47"
  },
  {
   "carpeta": "C:\\tenis\\output\\_poc70_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
@@ -1274,7 +1738,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-02 20:16:02"
  },
  {
   "carpeta": "C:\\tenis\\output\\_poc70_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
@@ -1469,7 +1936,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-02 18:47:08"
  },
  {
   "carpeta": "C:\\tenis\\output\\_poc71_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
@@ -1677,7 +2147,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-02 22:22:16"
  },
  {
   "carpeta": "C:\\tenis\\output\\_poc71_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
@@ -1878,7 +2351,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-02 20:54:51"
  },
  {
   "carpeta": "C:\\tenis\\output\\_poc74_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
@@ -2086,7 +2562,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-03 01:24:55"
  },
  {
   "carpeta": "C:\\tenis\\output\\_poc74_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
@@ -2287,7 +2766,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-03 00:37:16"
  },
  {
   "carpeta": "C:\\tenis\\output\\_poc76_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
@@ -2495,7 +2977,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-03 05:08:59"
  },
  {
   "carpeta": "C:\\tenis\\output\\_poc76_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
@@ -2696,7 +3181,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-03 04:17:42"
  },
  {
   "carpeta": "C:\\tenis\\output\\_smoke\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
@@ -2912,7 +3400,13 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": false,
+  "releidas": [
+   "spotting",
+   "fine"
+  ],
+  "fecha": "2026-11-11 16:31:23"
  },
  {
   "carpeta": "C:\\tenis\\output\\elena-rybakina-jessica-pegula-miami-2026-quarter-final",
@@ -2936,7 +3430,10 @@
     "s_por_min_video": 0.04,
     "parte": 0.005
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-09 09:18:20"
  },
  {
   "carpeta": "C:\\tenis\\output\\tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
@@ -3071,7 +3568,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-09 09:02:43"
  },
  {
   "carpeta": "C:\\tenis\\output\\tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
@@ -3206,7 +3706,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-09 08:22:37"
  },
  {
   "carpeta": "C:\\tenis\\output\\us-open-2026-r4-naomi-osaka-elena-rybakina",
@@ -3341,7 +3844,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-09 07:23:01"
  },
  {
   "carpeta": "C:\\tenis\\output\\zheng-qinwen-elena-rybakina",
@@ -3476,7 +3982,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-11-09 07:51:02"
  },
  {
   "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_49723c_rybakina",
@@ -3707,7 +4216,12 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": false,
+  "releidas": [
+   "spotting"
+  ],
+  "fecha": "2026-11-11 17:02:20"
  },
  {
   "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_580c6f_rybakina",
@@ -3926,7 +4440,13 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": false,
+  "releidas": [
+   "spotting",
+   "fine"
+  ],
+  "fecha": "2026-11-09 14:09:59"
  },
  {
   "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_584c5b_rybakina",
@@ -4143,7 +4663,13 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": false,
+  "releidas": [
+   "spotting",
+   "fine"
+  ],
+  "fecha": "2026-11-09 23:36:31"
  },
  {
   "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_8b0278_sinner",
@@ -4374,7 +4900,12 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": false,
+  "releidas": [
+   "spotting"
+  ],
+  "fecha": "2026-11-09 18:59:37"
  },
  {
   "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_b8b713_rybakina",
@@ -4593,7 +5124,13 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": false,
+  "releidas": [
+   "spotting",
+   "fine"
+  ],
+  "fecha": "2026-11-09 14:37:39"
  },
  {
   "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_f43dd2_rybakina",
@@ -4808,7 +5345,13 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": false,
+  "releidas": [
+   "spotting",
+   "fine"
+  ],
+  "fecha": "2026-11-09 23:33:25"
  },
  {
   "carpeta": "C:\\tenis\\biblioteca\\pruebas\\poc31_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
@@ -4942,7 +5485,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-10-18 18:14:08"
  },
  {
   "carpeta": "C:\\tenis\\biblioteca\\pruebas\\poc31_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
@@ -5072,7 +5618,10 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": true,
+  "releidas": [],
+  "fecha": "2026-10-18 17:05:39"
  },
  {
   "carpeta": "C:\\tenis\\biblioteca\\pruebas\\poc9_largo\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
@@ -5201,7 +5750,12 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": false,
+  "releidas": [
+   "fine"
+  ],
+  "fecha": "2026-10-17 19:28:23"
  },
  {
   "carpeta": "C:\\tenis\\biblioteca\\pruebas\\smoke\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
@@ -5390,6 +5944,11 @@
     "s_por_min_video": 0.0,
     "parte": 0.0
    }
-  ]
+  ],
+  "desde_cero": false,
+  "releidas": [
+   "fine"
+  ],
+  "fecha": "2026-10-26 00:46:27"
  }
 ]
