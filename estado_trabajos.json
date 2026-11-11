@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 14:27:14",
- "firma": "665576bacb6c",
+ "at": "2026-11-11 14:27:23",
+ "firma": "86b6fb039de4",
  "ejecutor": {
   "vivo": true,
   "pid": 14680,
-  "at": 1794403623.551346
+  "at": 1794403639.5703292
  },
  "pausa": false,
  "en_curso": [
@@ -37,7 +37,26 @@
   "quedan_s": 0,
   "hora": "2026-11-11 14:27:10"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 42,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-11 14:27:18",
+   "started": null,
+   "finished": null,
+   "args": "[\"informe\"]",
+   "source": "claude 194",
+   "log": "",
+   "paso": 0,
+   "pasos": 3
+  }
+ ],
  "recientes": [
   {
    "id": 40,
@@ -312,6 +331,13 @@
  ],
  "eventos": [
   {
+   "id": 58,
+   "job": 42,
+   "at": "2026-11-11 14:27:18",
+   "kind": "enviado",
+   "text": "flujo informe (claude 194)"
+  },
+  {
    "id": 57,
    "job": 41,
    "at": "2026-11-11 14:27:03",
@@ -513,13 +539,6 @@
    "at": "2026-11-11 13:17:46",
    "kind": "paso",
    "text": "3/3 Auditoria"
-  },
-  {
-   "id": 28,
-   "job": 38,
-   "at": "2026-11-11 13:17:39",
-   "kind": "paso",
-   "text": "2/3 Informe de la derecha"
   }
  ]
 }

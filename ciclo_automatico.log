@@ -17,3 +17,11 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 Registro enviado a Claude (no hace falta copiar nada).
+git : Everything up-to-date
+At C:\tenis\tennis-biomech\scripts\windows\comun.ps1:241 char:9
++         git -C $d push -q origin pc-logs 2>$null
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Everything up-to-date:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+Registro enviado a Claude (no hace falta copiar nada).
+
