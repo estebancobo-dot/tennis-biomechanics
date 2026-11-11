@@ -1,10 +1,10 @@
 # Estado real de las peticiones (generado por `scripts/real_status.py`; no editar a mano)
 
-243 peticiones (sin las que no aplican). «HECHO» en el registro es la etiqueta de Claude; aquí cuenta solo lo que se comprueba. «Comprobado en salidas» = existe y es coherente con los datos reales, no que sea correcto; eso es «validado con verdad».
+245 peticiones (sin las que no aplican). «HECHO» en el registro es la etiqueta de Claude; aquí cuenta solo lo que se comprueba. «Comprobado en salidas» = existe y es coherente con los datos reales, no que sea correcto; eso es «validado con verdad».
 
 | Nivel | Peticiones |
 |---|---|
-| 0 sin construir | 16 |
+| 0 sin construir | 18 |
 | 1 construido, sin comprobar | 69 |
 | 2 comprobación que falla | 76 |
 | 3 comprobado en salidas | 82 |
@@ -31,13 +31,14 @@
 | M5 Medidas · bola y situación del golpe | 18 | 0 | 4 | 12 | 2 | 0 | Cada situación con golpes suficientes o «pocos datos» dicho; diferencias solo por encima del ruido | — | — |
 | M6 Medidas · tipos de golpe | 11 | 4 | 3 | 4 | 0 | 0 | Recall por tipo con datos anotados | — | — |
 | M7 Medidas · contexto del punto | 7 | 3 | 2 | 0 | 2 | 0 | Resultado del punto coherente con el marcador; nombres y fechas correctos | — | — |
+| P0 Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos) | 1 | 1 | 0 | 0 | 0 | 0 | Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código | sin medir | no |
 | P1 Producto · contenido para copiar su golpe (Cópiala / Aprende) | 32 | 2 | 11 | 10 | 9 | 0 | Cada consigna con su medida, su fuente y su vídeo; examen interno R1-R25 pasado | — | — |
 | P2 Producto · pantallas e informe | 18 | 0 | 5 | 3 | 10 | 0 | Capturas automáticas de todas las pantallas sin fallos; nada borrado de lo anterior | — | — |
 | P3 Producto · validación automática | 6 | 0 | 2 | 4 | 0 | 0 | Cada medida y cada petición con una prueba automática y su umbral | — | — |
 | P4 Producto · comparación con las apps profesionales | 3 | 1 | 2 | 0 | 0 | 0 | Cada diferencia con su decisión y su prueba | — | — |
 | P5 Producto · escenarios y genericidad | 4 | 0 | 4 | 0 | 0 | 0 | Cada escenario de docs/escenarios_producto.md con su prueba | — | — |
 | P6 Producto · móvil (al final) | 2 | 0 | 2 | 0 | 0 | 0 | Copia al móvil comprobada | — | — |
-| D Documentación y reglas de trabajo | 2 | 1 | 1 | 0 | 0 | 0 | Documentos al día con el código (prueba de enlaces y fechas) | — | — |
+| D Documentación y reglas de trabajo | 3 | 2 | 1 | 0 | 0 | 0 | Documentos al día con el código (prueba de enlaces y fechas) | — | — |
 
 Lo que le falta a cada paquete de la Base para cerrarse:
 
@@ -47,6 +48,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 - **B6**: peticiones sin comprobar o que fallan: #1, #134, #233
 - **B7**: prueba principal: Pruebas del código en este PC: falta; peticiones sin comprobar o que fallan: #18, #20, #21, #22, #37, #51, #66, #241, #242
 - **B8**: prueba principal: Orquestador: : sin medir; peticiones sin comprobar o que fallan: #246, #247, #248, #249, #250, #251
+- **P0**: prueba principal: Aplicación: rediseño : sin medir; peticiones sin comprobar o que fallan: #252
 
 ## Cada petición
 
@@ -295,3 +297,5 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 249 | Parar el PC a distancia al momento, sin tener que apagarlo (Chat, 09-11) | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#249); sin comprobación automática asignada |
 | 250 | Si se acaban los tokens se puede apagar todo y seguir después sin perder nada (Chat, 10-11 | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#250); sin comprobación automática asignada |
 | 251 | Tareas nuevas asociadas a peticiones y al plan, encadenadas sin olvidarse (Chat, 10-11) | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#251); sin comprobación automática asignada |
+| 252 | Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps  | P0 | FALTA | 0 sin construir | SIN HACER según el registro (#252, docs/peticiones_usuario.md) |
+| 253 | Lo marcado como histórico en `docs/estado_proyecto.md` debe estar contemplado: hecho, en u | D | FALTA | 0 sin construir | SIN HACER según el registro (#253, docs/peticiones_usuario.md) |
