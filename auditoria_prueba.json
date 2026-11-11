@@ -4,7 +4,7 @@
  "near": 13,
  "summary": {
   "ok": 388,
-  "falta": 28,
+  "falta": 29,
   "pocos datos": 102,
   "aviso": 112
  },
@@ -2876,7 +2876,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "3105 caracteres de texto, 16 vídeos, 21 gráficos",
+   "detail": "3105 caracteres de texto, 15 vídeos, 21 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -3475,7 +3475,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "44 carpetas, 31.7 GB en total (2026-11-11T20:55:03); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "44 carpetas, 31.7 GB en total (2026-11-11T20:58:25); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3531,7 +3531,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-11 20:55:16 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-11 20:59:07 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 5,
@@ -3678,7 +3678,7 @@
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 11-11 20:00, empezó a los 54.3 min; el PC estaba con otro trabajo hasta las 20:54 (53.8 min, no cuentan), empezó 0.5 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 11-11 20:00, empezó a los 58.2 min; el PC estaba con otro trabajo hasta las 20:54 (53.8 min, no cuentan), empezó 4.4 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -5443,6 +5443,13 @@
    "name": "#259 Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir m",
    "status": "falta",
    "detail": "SIN HACER según el registro (#259, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#260 Revisar de verdad todo el bloque Base, no solo la velocidad: en cada tarea, si su prueba mide lo pedido, si fa",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#260, docs/peticiones_usuario.md)"
   }
  ]
 }

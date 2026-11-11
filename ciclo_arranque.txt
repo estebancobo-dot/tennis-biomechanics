@@ -1,3 +1,2 @@
-arranque: 2026-11-11T20:50:44 (pid 16688)
-2026-11-11T20:50:48 otro analisis en marcha (6592,10440,13692,6956)
-2026-11-11T20:54:28 GitHub Actions: libre tras 53.9 min de espera
+arranque: 2026-11-11T21:00:44 (pid 14400)
+2026-11-11T21:00:46 otro analisis en marcha (4348,2912)

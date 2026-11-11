@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261111205438
+Start time: 20261111205835
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 4348
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 2912
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,28 +17,23 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-11-11 20:54:38] Codigo nuevo (5c18e40 -> 2378677): 7 ficheros
-    config/peticion_pc.txt
+==> [2026-11-11 20:58:35] Codigo nuevo (2378677 -> fb96762): 5 ficheros
     config/plan_peticiones.yaml
+    docs/README.md
     docs/estado_proyecto.md
     docs/peticiones_usuario.md
-    scripts/tiempos_etapas.py
-    scripts/windows/comun.ps1
-    tests/test_tiempos_etapas.py
-Updating 5c18e40..2378677
+    docs/revision_base_11-11.md
+Updating 2378677..fb96762
 Fast-forward
- config/peticion_pc.txt       |  6 +++
- config/plan_peticiones.yaml  |  2 +-
- docs/estado_proyecto.md      |  1 +
- docs/peticiones_usuario.md   |  5 ++-
- scripts/tiempos_etapas.py    | 88 ++++++++++++++++++++++++++++++++++++++++++++
- scripts/windows/comun.ps1    |  2 +-
- tests/test_tiempos_etapas.py | 35 ++++++++++++++++++
- 7 files changed, 135 insertions(+), 4 deletions(-)
- create mode 100644 scripts/tiempos_etapas.py
- create mode 100644 tests/test_tiempos_etapas.py
-Resolved 126 packages in 1ms
-Checked 91 packages in 6ms
+ config/plan_peticiones.yaml |  2 +-
+ docs/README.md              |  1 +
+ docs/estado_proyecto.md     |  5 +++--
+ docs/peticiones_usuario.md  |  5 +++--
+ docs/revision_base_11-11.md | 36 ++++++++++++++++++++++++++++++++++++
+ 5 files changed, 44 insertions(+), 5 deletions(-)
+ create mode 100644 docs/revision_base_11-11.md
+Resolved 126 packages in 0.74ms
+Checked 91 packages in 3ms
 balltrack.onnx     OK 45 MB
 racketpose.onnx    OK 53 MB
 transnetv2.onnx    OK 31 MB
@@ -52,18 +47,17 @@ yolo11m-pose_1280.onnx OK 85 MB
 yolo11m-pose_1920.onnx OK 86 MB
 Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
 el ejecutor se reinicia al acabar el trabajo en curso
-Registro enviado a Claude (no hace falta copiar nada).
-    (paso terminado en 29 s)
+    (paso terminado en 23 s)
 
-==> [2026-11-11 20:55:07] Que hace falta: informe
+==> [2026-11-11 20:58:58] Que hace falta: informe
 Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (78 golpes)
 Informe: C:\tenis\output\_smoke\informe\index.html
 Golpes: 0 nuevos, 118 en C:\tenis\output\_smoke\exportar\golpes
 Montajes: 9 en C:\tenis\output\_smoke\exportar\montajes
 Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
 Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
-Peticiones: 22 sin construir · 71 construido, sin comprobar · 74 comprobación que falla · 84 comprobado en salidas · 0 validado con verdad
-Auditoría: 388 cumplidos, 28 no cumplidos, 102 sin golpes suficientes, 112 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
+Peticiones: 23 sin construir · 71 construido, sin comprobar · 74 comprobación que falla · 84 comprobado en salidas · 0 validado con verdad
+Auditoría: 388 cumplidos, 29 no cumplidos, 102 sin golpes suficientes, 112 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
   ✘ Primera pantalla, anchura y nombres (diseño definitivo): vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 609 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
   ✘ Registros con fecha y duración: 62 de 64 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
   ✘ Aplicación: un partido nuevo de principio a fin: terminó 2026-11-11T20:54:10 en 79.1 min; análisis actualizado; errores: hecho     #2 informe partido prueba-app-35m analizado FALLOS · versión 1 · al día
@@ -92,15 +86,16 @@ Auditoría: 388 cumplidos, 28 no cumplidos, 102 sin golpes suficientes, 112 avis
   ✘ #257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, : SIN HACER según el registro (#257, docs/peticiones_usuario.md)
   ✘ #258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
   ✘ #259 Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir m: SIN HACER según el registro (#259, docs/peticiones_usuario.md)
-Hecho en 195 s, sin volver a analizar vídeo.
-    (paso terminado en 3 min 15 s)
+  ✘ #260 Revisar de verdad todo el bloque Base, no solo la velocidad: en cada tarea, si su prueba mide lo pedido, si fa: SIN HACER según el registro (#260, docs/peticiones_usuario.md)
+Hecho en 196 s, sin volver a analizar vídeo.
+    (paso terminado en 3 min 16 s)
 
-==> [2026-11-11 20:58:23] Revision automatica frente a la ejecucion anterior
+==> [2026-11-11 21:02:15] Revision automatica frente a la ejecucion anterior
 # Revisión automática: FALLOS
 Ciclo automatico terminado (informe).
     (paso terminado en 0 s)
-Empezado 2026-11-11 20:00:35 - terminado 2026-11-11 20:58:23 - duracion total 57 min 48 s
+Empezado 2026-11-11 20:58:30 - terminado 2026-11-11 21:02:15 - duracion total 3 min 44 s
 **********************
 Windows PowerShell transcript end
-End time: 20261111205823
+End time: 20261111210215
 **********************
