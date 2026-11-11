@@ -96,16 +96,33 @@ function Peticion-Pendiente {
 # unico vivo (tennisbio worker: el unico que ejecuta trabajos; la aplicacion y Claude solo los piden) y su estado
 # (estado_trabajos.json) a pc-logs cuando cambia. Desde GitHub Actions no se arranca el ejecutor: el ejecutor de
 # Actions mata al acabar los procesos que deja; lo arranca el ciclo de la tarea de Windows (cada 10 min)
+# las ordenes de tennisbio del ciclo (11-11): sin reinstalar el proyecto (--no-sync; la instalacion la hacen los .bat y el
+# codigo es editable) y con python -m, nunca con tennisbio.exe: el ejecutor arrancado con tennisbio.exe lo dejaba
+# bloqueado y cada "uv run" que queria reinstalar fallaba (peticion 185: "failed to remove file ... tennisbio.exe")
+function Tb { & uv --directory $RepoDir run --no-sync python -m tennisbio.cli @args }
 function Orquestador {
     $ErrorActionPreference = "Continue"
     try {
         Push-Location $RepoDir
-        & uv run tennisbio registry sync 2>&1 | Out-Null
-        & uv run tennisbio registry list --json "$Out\registro_partidos.json" 2>&1 | Out-Null
-        $firma = "$((& uv run tennisbio jobs status --source ciclo --json "$Out\estado_trabajos.json" 2>$null | Select-Object -First 1))"
+        # un ejecutor antiguo arrancado con tennisbio.exe y sin trabajo en curso se cierra (nada se pierde: la cola esta
+        # en la base de datos) y se arranca otra vez con python -m
+        $viejos = @(Get-CimInstance Win32_Process -ErrorAction SilentlyContinue |
+            Where-Object { $_.CommandLine -match 'tennisbio(\.exe)?"?\s+worker' -and $_.CommandLine -notmatch 'tennisbio\.cli' })
+        $trabajando = @(Get-CimInstance Win32_Process -Filter "Name='python.exe'" -ErrorAction SilentlyContinue |
+            Where-Object { $_.CommandLine -match "jobs run-one" })
+        if ($viejos.Count -and -not $trabajando.Count) {
+            foreach ($v in $viejos) { & taskkill.exe /T /F /PID $v.ProcessId 2>&1 | Out-Null }
+            "$(Get-Date -Format s) ejecutor antiguo (tennisbio.exe) cerrado sin trabajo en curso" | Add-Content "$Out\ciclo_arranque.txt"
+            Start-Sleep -Seconds 3
+        }
+        Tb registry sync 2>&1 | Out-Null
+        Tb registry list --json "$Out\registro_partidos.json" 2>&1 | Out-Null
+        Tb jobs status --source ciclo --json "$Out\estado_trabajos.json" 2>&1 | Out-Null
         $st = Get-Content "$Out\estado_trabajos.json" -Raw -Encoding UTF8 | ConvertFrom-Json
-        if (-not $st.ejecutor.vivo -and -not $env:GITHUB_ACTIONS) {
-            Start-Process -FilePath "uv" -ArgumentList @("run", "tennisbio", "worker") -WorkingDirectory $RepoDir -WindowStyle Hidden
+        $vivo = $st.ejecutor.vivo -and -not ($viejos.Count -and -not $trabajando.Count)
+        if (-not $vivo -and -not $env:GITHUB_ACTIONS) {
+            Start-Process -FilePath "uv" -ArgumentList @("--directory", $RepoDir, "run", "--no-sync", "python", "-m", "tennisbio.cli", "worker") `
+                -WorkingDirectory $RepoDir -WindowStyle Hidden
             "$(Get-Date -Format s) ejecutor unico arrancado" | Add-Content "$Out\ciclo_arranque.txt"
         }
         $marca = "$Out\estado_trabajos.firma"
@@ -237,7 +254,7 @@ function Hacer-Peticion($p) {
         $lg = "$Base\output\trabajos.log"
         if (-not $c -or $c -notmatch '^[A-Za-z0-9_,. =:/-]+$') {
             "$(Get-Date -Format s) peticion $($p['id']): comando no valido: '$c'" | Add-Content $lg -Encoding UTF8; return }
-        $r = & uv run tennisbio jobs submit --source "claude $($p['id'])" -- @($c -split '\s+') 2>&1
+        $r = Tb jobs submit --source "claude $($p['id'])" -- @($c -split '\s+') 2>&1
         "$(Get-Date -Format s) peticion $($p['id']): $r" | Add-Content $lg -Encoding UTF8
         Orquestador
     } elseif ($p["accion"] -eq "control") {
@@ -250,7 +267,7 @@ function Hacer-Peticion($p) {
             $a = if ($t -eq "todos") { @("cancel", "all") } elseif ($t -match '^\d+$') { @("cancel", $t) } else { $null }
         } else { $a = $map[$o] }
         if (-not $a) { "$(Get-Date -Format s) peticion $($p['id']): orden no valida: '$o'" | Add-Content $lg -Encoding UTF8; return }
-        $r = & uv run tennisbio jobs @($a[0]) --source "claude $($p['id'])" @($a | Select-Object -Skip 1) 2>&1
+        $r = Tb jobs @($a[0]) --source "claude $($p['id'])" @($a | Select-Object -Skip 1) 2>&1
         "$(Get-Date -Format s) peticion $($p['id']): $o -> $r" | Add-Content $lg -Encoding UTF8
         Orquestador
     } elseif ($p["accion"] -eq "medir") {
@@ -555,7 +572,7 @@ if ($ocupado) {
             if ($hechas -notcontains $idp) {
                 $idp | Add-Content "$Out\paradas_hechas.txt"
                 $pids = ($ocupado | ForEach-Object { $_.ProcessId }) -join ','
-                try { & uv --directory $RepoDir run tennisbio jobs pause now --source parada 2>&1 | Out-Null } catch {}
+                try { & uv --directory $RepoDir run --no-sync python -m tennisbio.cli jobs pause now --source parada 2>&1 | Out-Null } catch {}
                 foreach ($o in $ocupado) { & taskkill.exe /T /F /PID $o.ProcessId 2>&1 | Out-Null }
                 "$(Get-Date -Format s) parada $idp pedida por Claude: cortados $pids" | Add-Content "$Out\paradas.log"
                 $ocupado = $null
@@ -655,7 +672,8 @@ try {
     Comprobar-Instalacion
     Set-Location $RepoDir
     # codigo nuevo: el ejecutor unico se reinicia entre dos trabajos (nunca a mitad) para usarlo (10-11, fase D)
-    try { & uv run tennisbio jobs restart --source ciclo 2>&1 | Out-Host } catch {}
+    try { Tb jobs restart --source ciclo 2>&1 | Out-Host } catch {}
+    Start-Sleep -Seconds 15          # un ejecutor sin trabajo sale en ~10 s; Orquestador arranca el nuevo
     Orquestador
     # las pruebas del codigo nuevo en este PC, en segundo plano y por debajo de lo normal (03-11; pruebas_fondo.ps1)
     try {

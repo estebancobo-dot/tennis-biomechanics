@@ -731,3 +731,9 @@ id: 185
 accion: control
 orden: reanudar
 # 185 (11-11): la parada 15 (ciclos atascados) dejo la cola en pausa; se reanuda para que el ejecutor haga el 184 (trabajo 36)
+---
+id: 186
+accion: control
+orden: reanudar
+# 186 (11-11): la 185 fallo ("uv run" quiso reinstalar con tennisbio.exe bloqueado por el ejecutor). Con el ciclo nuevo
+# (ordenes con --no-sync y python -m; el ejecutor antiguo sin trabajo se cierra y se arranca de nuevo) se reanuda la cola
