@@ -1,6 +1,6 @@
 # Revisión automática: FALLOS
 
-388 cumplidos · 29 no cumplidos · 102 sin golpes suficientes · 112 avisos (antes: 388 cumplidos, 28 no cumplidos)
+388 cumplidos · 29 no cumplidos · 102 sin golpes suficientes · 112 avisos (antes: 388 cumplidos, 29 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 121 de 260
 
@@ -160,7 +160,3 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 23 sin hacer
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
 - **#259 Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir m**: SIN HACER según el registro (#259, docs/peticiones_usuario.md)
 - **#260 Revisar de verdad todo el bloque Base, no solo la velocidad: en cada tarea, si su prueba mide lo pedido, si fa**: SIN HACER según el registro (#260, docs/peticiones_usuario.md)
-
-## Comprobaciones nuevas
-
-- #260 Revisar de verdad todo el bloque Base, no solo la velocidad: en cada tarea, si su prueba mide lo pedido, si fa: falta (SIN HACER según el registro (#260, docs/peticiones_usuario.md))

@@ -1,5 +1,5 @@
 {
- "at": "2026-11-11 21:02:32",
+ "at": "2026-11-11 21:04:52",
  "firma": "cc677543e9de",
  "ejecutor": {
   "vivo": false,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 191,
+   "job": null,
+   "at": "2026-11-11 21:04:34",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 190,
    "job": 54,
    "at": "2026-11-11 21:02:29",
@@ -513,13 +520,6 @@
    "at": "2026-11-11 17:10:21",
    "kind": "ejecutor",
    "text": "arranca (pid 10388)"
-  },
-  {
-   "id": 161,
-   "job": null,
-   "at": "2026-11-11 17:10:04",
-   "kind": "ejecutor",
-   "text": "termina"
   }
  ]
 }
