@@ -145,7 +145,7 @@ def test_every_infrastructure_item_is_tied_to_its_request(tmp_path):
     import re
     names = [i["name"] for i in infrastructure_items(tmp_path / "output")]
     # 07-11: + the application's new match from start to end (B7's main test); 11-11 (R7): + the queue's 3 (B8's)
-    assert len(names) == 10
+    assert len(names) == 11            # 11-11 (R6): + the match list's data (#226)
     by = {n: [r for r, rule in PETITIONS.items() if isinstance(rule, str) and type(rule) is str and re.search(rule, n)]
           for n in names}
     assert 50 in by["Progreso visible (progreso.json)"] and 66 in by["Registros con fecha y duración"]
@@ -183,3 +183,12 @@ def test_new_match_through_the_single_worker(tmp_path):
     assert it["status"] == "ok", it["detail"]
     (tmp_path / "prueba_app_nuevo.log").write_text("Peticion 1\n  error     #3 partido x\ntermina 2026-11-11T22:10:00\n", encoding="utf-8")
     assert new_match_item([tmp_path])["status"] == "falta"
+
+
+def test_a_transcript_still_being_written_is_not_a_log_without_dates():
+    # 11-11 (R6): the app's new-match test audited the cycle that was running it, whose transcript had no steps yet
+    from tennisbio.audit import LOG_RUNNING_S, log_dates
+    t = "**********************\nWindows PowerShell transcript start\nStart time: 20261111193452\n**********************\n"
+    assert log_dates(t, 60) == ""
+    assert log_dates(t, LOG_RUNNING_S + 1) == "sin la fecha de sus pasos"           # hours later and still no step
+    assert log_dates(t + "End time: 20261111205410\n**********************\n", 60) == "sin la fecha de sus pasos"

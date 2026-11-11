@@ -47,6 +47,28 @@ def player_of(file_name: str, default: str, config_dir: Path) -> str:
     return named[0]
 
 
+FROM_NAME = ("opponent", "tournament", "date", "round")
+
+
+def fill_from_names(entries: list[dict], config_dir: Path) -> list[str]:
+    """11-11 (R6, #226): the rival, tournament, date and round that the video's name says (tennisbio.match_name), only
+    where the entry has none: what is written is never replaced. Returns «id: campos» of the entries filled."""
+    from tennisbio.match_name import parse
+    out = []
+    for m in entries:
+        try:
+            name = (yaml.safe_load((config_dir / "players" / f"{m.get('player')}.yaml").read_text(encoding="utf-8")) or {}).get("name", "")
+        except (OSError, yaml.YAMLError):
+            name = ""
+        got = parse(Path(str(m.get("video", ""))).stem, name, str(m.get("player") or ""))
+        new = [k for k in FROM_NAME if not str(m.get(k) or "").strip() and got.get(k)]
+        for k in new:
+            m[k] = got[k]
+        if new:
+            out.append(f"{m.get('id')}: {', '.join(new)}")
+    return out
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--player", default=None, help="id de config/players/<id>.yaml (por defecto `player` de la configuración)")
@@ -97,11 +119,13 @@ def main():
         ids.add(mid)
         data["matches"].append({"id": mid, "video": f.name, "player": player_of(f.stem, args.player, CONFIG_DIR)})
         added.append(mid)
+    filled = fill_from_names(data["matches"], CONFIG_DIR)
     path.write_text("# Generado automáticamente por scripts/auto_catalog.py; se puede editar.\n"
                     + yaml.safe_dump(data, allow_unicode=True, sort_keys=False), encoding="utf-8")
     print(f"Vídeos en {videos}: {len(data['matches'])} en el catálogo ({len(added)} nuevos: {', '.join(added) or '—'})"
           + (f"; renombrados (se conserva lo analizado): {'; '.join(renamed)}" if renamed else "")
-          + (f"; en espera hasta cerrar la Base (catalog.hold): {', '.join(held)}" if held else ""))
+          + (f"; en espera hasta cerrar la Base (catalog.hold): {', '.join(held)}" if held else "")
+          + (f"; datos leídos del nombre del vídeo: {'; '.join(filled)}" if filled else ""))
     if not data["matches"]:
         print(f"No hay vídeos. Copia los partidos a {videos} y vuelve a ejecutar.")
         sys.exit(1)

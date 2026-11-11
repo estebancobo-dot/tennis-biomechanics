@@ -54,3 +54,15 @@ def test_a_missing_or_empty_file_is_still_reported(tmp_path):
     it = _item(file_tree_items([d], None, tmp_path / "output"), d)
     assert it["status"] == "falta" and "scenes/scenes.json" in it["detail"] and "serie de g1" in it["detail"]
     assert "probe/probe.json" not in it["detail"]
+
+
+def test_the_opponent_stage_is_required_only_once_it_ran(tmp_path):
+    # 11-11 (R6): a match the application analysed has no fine_opponent (its own job there) and failed for it
+    d = tmp_path / "output" / "app_match"
+    _full_match(d, library=False)
+    (d / "strokes_opponent.json").unlink()
+    (d / "manifest.json").write_text(json.dumps({"probe": {"seconds": 1}, "fine": {"seconds": 9}}), encoding="utf-8")
+    assert _item(file_tree_items([d], None, tmp_path / "output"), d)["status"] == "ok"
+    (d / "manifest.json").write_text(json.dumps({"probe": {"seconds": 1}, "fine_opponent": {"seconds": 9}}), encoding="utf-8")
+    it = _item(file_tree_items([d], None, tmp_path / "output"), d)
+    assert it["status"] == "falta" and "fine_opponent/strokes_opponent.json" in it["detail"]

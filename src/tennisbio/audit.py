@@ -1667,6 +1667,7 @@ PETITIONS[218] = (r"^Repeticiones y otras cámaras$|^Golpes del fondo: |^Golpes 
 # and #237 (start each job at once) also the queue's own wait, not only the GitHub Actions job's
 PETITIONS.update({
     246: r"^Orquestador: ", 249: r"^Orquestador: prueba de extremo a extremo",
+    226: r"^Lista de partidos: rival, torneo, ronda y fecha",
     237: r"^Peticiones por GitHub Actions|^Orquestador: espera hasta empezar|^Orquestador: ejecutor vivo",
     119: r"^Orquestador: ejecutor vivo|^Orquestador: espera hasta empezar",
 })
@@ -2310,6 +2311,8 @@ def log_dates(text: str, age_s: float) -> str:
     if not lines:
         return "vacío"
     if "Windows PowerShell transcript start" in text[:400]:
+        if "End time:" not in text[-400:] and age_s < LOG_RUNNING_S:
+            return ""          # 11-11 (R6): a transcript still being written (PowerShell writes its steps late)
         if not re.search(r"==> \[" + _DATE + r"\]|Empezado " + _DATE, text):
             return "sin la fecha de sus pasos"
         if "End time:" in text[-400:] and "duracion total" not in text:
@@ -2478,9 +2481,63 @@ def app_index_counts(bases: list[Path]) -> tuple[int, int] | None:
     return None
 
 
+MATCH_LIST_ITEM = "Lista de partidos: rival, torneo, ronda y fecha"
+MATCH_LIST_FIELDS = (("opponent", "rival"), ("tournament", "torneo"), ("round", "ronda"), ("date", "fecha"))
+
+
+def match_list_item(bases: list[Path]) -> dict:
+    """#226 (11-11, R6 of the review of the Base: its test passed with invented rows): every match of the real registry
+    (<base>/datos/tennisbio.db, read only; not the test runs nor the archived ones) has its rival, tournament, round and
+    date. On 11-11 the 6 had no rival and their library folders were all «sin-fecha»."""
+    import sqlite3
+    f = next((b / "datos" / "tennisbio.db" for b in bases if (b / "datos" / "tennisbio.db").is_file()), None)
+    if f is None:
+        return _item(5, "Aplicación", MATCH_LIST_ITEM, "aviso", "sin el registro de partidos (datos/tennisbio.db)")
+    try:
+        con = sqlite3.connect(f"{f.resolve().as_uri()}?mode=ro", uri=True, timeout=10)
+        con.row_factory = sqlite3.Row
+        try:
+            rows = [dict(r) for r in con.execute("SELECT * FROM matches")]
+        finally:
+            con.close()
+    except sqlite3.Error as e:
+        return _item(5, "Aplicación", MATCH_LIST_ITEM, "aviso", f"no se pudo leer el registro ({e})")
+    rows = [r for r in rows if ":" not in str(r.get("id")) and r.get("state") != "archivado"]
+    if not rows:
+        return _item(5, "Aplicación", MATCH_LIST_ITEM, "aviso", "ningún partido en el registro")
+    gaps = {es: [r["id"] for r in rows if not str(r.get(k) or "").strip()] for k, es in MATCH_LIST_FIELDS}
+    bad = {es: ids for es, ids in gaps.items() if ids}
+    return _item(5, "Aplicación", MATCH_LIST_ITEM, "falta" if bad else "ok",
+                 f"{len(rows)} partidos; " + ("; ".join(f"sin {es}: {len(ids)} ({', '.join(ids[:2])}{'…' if len(ids) > 2 else ''})"
+                                                       for es, ids in bad.items()) if bad else "todos con sus cuatro datos"))
+
+
 NEW_MATCH_ITEM = "Aplicación: un partido nuevo de principio a fin"
 # a run before this day was made with older code (candidates v14, app index step: 07-11) and does not count
 NEW_MATCH_SINCE = "2026-11-11"     # 11-11: through the single worker (tennisbio worker), not the app's own runner
+
+
+NEW_MATCH_OWN_AREAS = ("Ficheros", "Automático")       # files of every stage, failed strokes, errors of a stage
+
+
+def new_match_own_failures(base: Path) -> list[str] | None:
+    """The checks of the new match itself that fail in the application's own audit of its analysis (the test's folder:
+    <output>/_app_nuevo/output/analisis/<id>/actual|pendiente/auditoria/auditoria.json): its files and errors, and the
+    checks that name the match (identity, strokes found). None without that audit."""
+    folder = Path(base) / "_app_nuevo" / "output" / "analisis"
+    auds = sorted(folder.glob("*/*/auditoria/auditoria.json")) if folder.is_dir() else []
+    if not auds:
+        return None
+    out = []
+    for a in auds:
+        try:
+            items = json.loads(a.read_text(encoding="utf-8")).get("items", [])
+        except (OSError, ValueError):
+            out.append(f"{a.parents[1].name}: auditoría ilegible")
+            continue
+        out += [f"{i.get('name')}: {(i.get('detail') or '')[:120]}" for i in items if i.get("status") == "falta"
+                and (i.get("area") in NEW_MATCH_OWN_AREAS or (i.get("area") == "Golpes" and "prueba-app" in str(i.get("name"))))]
+    return out
 
 
 def new_match_item(bases: list[Path]) -> dict:
@@ -2491,9 +2548,15 @@ def new_match_item(bases: list[Path]) -> dict:
         return _item(5, "Aplicación", NEW_MATCH_ITEM, "aviso", "sin ejecutar todavía (petición «app_nuevo» del PC)")
     txt = f.read_text(encoding="utf-8", errors="replace")
     end = re.search(r"termina (\d{4}-\d{2}-\d{2}T[\d:]+)", txt)
-    # 11-11: an analysis «FALLOS» or a doubtful identity also fails (a run on another player's match passed before)
-    bad = [l.strip() for l in txt.splitlines()
-           if re.search(r"Traceback|ERROR|\[error\]|\[fallo\]|analizado FALLOS|identidad dudosa", l)]
+    # 11-11: a doubtful identity also fails (a run on another player's match passed before). The analysis is judged by
+    # the checks of the match itself (R6): its «FALLOS» also counted requests outside the Base and the audit of the
+    # whole PC (32 checks on request 207, only 4 of them about the match)
+    bad = [l.strip() for l in txt.splitlines() if re.search(r"Traceback|ERROR|\[error\]|\[fallo\]|identidad dudosa", l)]
+    own = new_match_own_failures(f.parent)
+    if own is None:
+        bad += [l.strip() for l in txt.splitlines() if "analizado FALLOS" in l]       # without its audit: the summary
+    else:
+        bad += own
     # the app's former runner printed «[ok]»; the single worker's queue says the match job «hecho» (jobs status)
     done = "[ok]" in txt or re.search(r"^\s*hecho\s+#\d+ partido", txt, re.M) is not None
     ok = end is not None and not bad and done
@@ -2605,7 +2668,7 @@ def infrastructure_items(out_root: Path) -> list[dict]:
     (the single worker's queue)."""
     bases = [out_root, out_root.parent, out_root.parent.parent]
     return ([progress_item(bases), logs_item(bases), sizes_item(bases), old_test_folders_item(bases)] + app_items(bases)
-            + [new_match_item(bases)] + orchestrator_items(bases))
+            + [new_match_item(bases), match_list_item(bases)] + orchestrator_items(bases))
 
 
 MANUAL_REVIEW_ITEM = "Nada pide revisión manual"
@@ -2674,6 +2737,9 @@ def side_checks(out_root: Path) -> list[dict]:
     return items
 
 
+OPTIONAL_STAGES = {"fine_opponent"}     # its own job in the application: required only once it ran
+
+
 def file_tree_items(match_dirs: list[Path], report_dir: Path | None, out_root: Path) -> list[dict]:
     """Every file a run must leave, checked to exist and not be empty: each stage's outputs per match,
     a video window and a frame-by-frame series per stroke, the report with its series and thumbnails,
@@ -2686,7 +2752,14 @@ def file_tree_items(match_dirs: list[Path], report_dir: Path | None, out_root: P
     for d in match_dirs:
         # each file where the stages write it (match_files.at): in a library folder the cheap pass is in etapas/
         # and the rest in golpes/<jugadora>/ (04-11: read beside the folder, every library match lacked them all)
-        miss = [f"{n}/{o}" for n, st in STAGES.items() for o in st.outputs if not ok(_mf.at(d, o))]
+        # 11-11 (R6): the opponent's strokes are a job of their own in the application (app/engine.MAIN_STAGES); a match
+        # the application analysed has not run that stage, and that is not a missing file (the app's new match failed so)
+        try:
+            ran = set(json.loads(_mf.at(d, "manifest.json").read_text(encoding="utf-8")))
+        except (OSError, ValueError):
+            ran = set()
+        miss = [f"{n}/{o}" for n, st in STAGES.items() for o in st.outputs
+                if not ok(_mf.at(d, o)) and not (n in OPTIONAL_STAGES and n not in ran)]
         st_file = _mf.at(d, "strokes.json")
         strokes = json.loads(st_file.read_text(encoding="utf-8")) if ok(st_file) else []
         win = [x for x in strokes if x.get("window") and not ok(_mf.at(d, "windows") / x["window"])]

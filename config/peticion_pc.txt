@@ -889,3 +889,13 @@ id: 212
 accion: medir
 script: tiempos_etapas
 # 212 (11-11): tiempos por etapa con la prueba 211 terminada (mismo tramo que el 03-11, desde cero) para R2
+---
+id: 213
+accion: trabajo
+comando: script auto_catalog
+# 213 (11-11, R6 #226): el catalogo rellena rival, torneo, fecha y ronda desde el nombre de cada video (solo lo vacio)
+---
+id: 214
+accion: trabajo
+comando: flujo informe
+# 214 (11-11): registro, informes, auditoria y calidad con las comprobaciones nuevas de la revision (R1, R2, R4, R6, R7)

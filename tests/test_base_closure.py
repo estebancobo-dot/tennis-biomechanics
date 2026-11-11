@@ -48,3 +48,26 @@ def test_new_match_item_reads_the_app_new_log(tmp_path):
     assert new_match_item([tmp_path])["status"] == "falta"          # another player's match: not a pass
     (tmp_path / "prueba_app_nuevo.log").write_text("Traceback (most recent call last):\n", encoding="utf-8")
     assert new_match_item([tmp_path])["status"] == "falta"
+
+
+def test_the_new_match_is_judged_by_its_own_checks(tmp_path):
+    # 11-11 (R6): request 207 said «FALLOS» for 32 checks: 20 requests outside the Base, the PC's logs, the test itself
+    import json
+    from tennisbio.audit import new_match_item
+    log = ("  hecho     #2 informe partido prueba-app-35m analizado FALLOS · versión 1 · al día\n"
+           "  hecho     #1 partido partido nuevo \n  [ok] Derecha de Elena Rybakina actualizada: 356 ✔, 32 ✘.\n"
+           "duracion total: 79.1 min; termina 2026-11-11T20:54:10\n")
+    (tmp_path / "prueba_app_nuevo.log").write_text(log, encoding="utf-8")
+    aud = tmp_path / "_app_nuevo" / "output" / "analisis" / "rybakina_forehand" / "actual" / "auditoria"
+    aud.mkdir(parents=True)
+    items = [{"area": "Peticiones", "name": "#176 Nuevo split step", "status": "falta"},
+             {"area": "Infraestructura", "name": "Registros con fecha y duración", "status": "falta"},
+             {"area": "Fases", "name": "Fotograma clave: inicio de preparación", "status": "falta"},
+             {"area": "Ficheros", "name": "Partido prueba-app-35m: salida de cada etapa, ventanas y series", "status": "ok"}]
+    (aud / "auditoria.json").write_text(json.dumps({"items": items}), encoding="utf-8")
+    assert new_match_item([tmp_path])["status"] == "ok"
+    items[3]["status"] = "falta"
+    items[3]["detail"] = "faltan o están vacíos: fine/strokes.json"
+    (aud / "auditoria.json").write_text(json.dumps({"items": items}), encoding="utf-8")
+    it = new_match_item([tmp_path])
+    assert it["status"] == "falta" and "fine/strokes.json" in it["detail"]
