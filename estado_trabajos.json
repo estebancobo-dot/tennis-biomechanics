@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 21:29:35",
- "firma": "5074e23cbf65",
+ "at": "2026-11-11 21:32:56",
+ "firma": "b50813d83946",
  "ejecutor": {
-  "vivo": false,
-  "pid": null,
-  "at": 1794428965.2323685
+  "vivo": true,
+  "pid": 1580,
+  "at": 1794429176.3767507
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,13 @@
  ],
  "eventos": [
   {
+   "id": 204,
+   "job": null,
+   "at": "2026-11-11 21:29:36",
+   "kind": "ejecutor",
+   "text": "arranca (pid 1580)"
+  },
+  {
    "id": 203,
    "job": null,
    "at": "2026-11-11 21:29:25",
@@ -494,13 +501,6 @@
    "at": "2026-11-11 17:17:48",
    "kind": "paso",
    "text": "2/3 Espera de 90 s (aqui se pausa)"
-  },
-  {
-   "id": 174,
-   "job": 53,
-   "at": "2026-11-11 17:17:47",
-   "kind": "empieza",
-   "text": "flujo «prueba_pausa»: Comprobacion de extremo a extremo: un paso largo para pausar el flujo a mitad y reanudarlo"
   }
  ]
 }
