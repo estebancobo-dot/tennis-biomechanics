@@ -54,5 +54,22 @@
   "out_hash": "09495ba9024fcdc8ae93",
   "scheme": 2,
   "rewrote": {}
+ },
+ "score": {
+  "fingerprint": "c4189d906bdd806d",
+  "version": "9",
+  "seconds": 169.2,
+  "finished": "2026-11-11 22:12:50",
+  "summary": {
+   "readings": 139,
+   "pressure": 53,
+   "samples": 143,
+   "ocr_calls": 124,
+   "server_read": 138,
+   "server_source": "marker"
+  },
+  "out_hash": "408234299bf839ae102f",
+  "scheme": 2,
+  "rewrote": {}
  }
 }
