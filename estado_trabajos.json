@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 14:18:49",
- "firma": "0158d3122417",
+ "at": "2026-11-11 14:19:22",
+ "firma": "2645ffb2f3fb",
  "ejecutor": {
-  "vivo": true,
-  "pid": 6760,
-  "at": 1794403123.7220252
+  "vivo": false,
+  "pid": null,
+  "at": 1794403153.731785
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,27 @@
  ],
  "eventos": [
   {
+   "id": 50,
+   "job": null,
+   "at": "2026-11-11 14:19:13",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 49,
+   "job": null,
+   "at": "2026-11-11 14:19:13",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 48,
+   "job": null,
+   "at": "2026-11-11 14:19:05",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 47,
    "job": 40,
    "at": "2026-11-11 14:18:23",
@@ -480,27 +501,6 @@
    "at": "2026-11-11 13:13:08",
    "kind": "reiniciar",
    "text": "ciclo"
-  },
-  {
-   "id": 20,
-   "job": null,
-   "at": "2026-11-11 13:07:48",
-   "kind": "ejecutor",
-   "text": "arranca (pid 10056)"
-  },
-  {
-   "id": 19,
-   "job": null,
-   "at": "2026-11-11 13:07:18",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 18,
-   "job": null,
-   "at": "2026-11-11 13:07:18",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
