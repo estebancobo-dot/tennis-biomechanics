@@ -1,2 +1,1 @@
-arranque: 2026-11-11T14:20:44 (pid 14016)
-2026-11-11T14:20:49 ejecutor unico arrancado
+arranque: 2026-11-11T14:26:37 (pid 13692)
