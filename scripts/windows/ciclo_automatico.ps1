@@ -275,8 +275,13 @@ function Hacer-Peticion($p) {
         "Peticion $($p['id']): partido nuevo con la aplicacion ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
         Remove-Item $sbx -Recurse -Force -ErrorAction SilentlyContinue
         New-Item -ItemType Directory -Force -Path "$sbx\videos", "$sbx\output", "$sbx\datos" | Out-Null
-        $src = Get-ChildItem "$Base\videos" -Recurse -File -ErrorAction SilentlyContinue |
-            Where-Object { $_.Extension -match '^\.(mp4|mkv|ts|mov)$' } | Sort-Object Length | Select-Object -First 1
+        $jug = "$(uv run --no-sync python -c "from tennisbio.config import default_player; print(default_player())" 2>$null)".Trim()
+        # 11-11: un partido de la jugadora analizada (antes el mas pequeno de todos: salio Zverev-Sinner y la
+        # identidad de Rybakina dio 0 %); si ninguno lleva su nombre, el mas pequeno
+        $vids = Get-ChildItem "$Base\videos" -Recurse -File -ErrorAction SilentlyContinue |
+            Where-Object { $_.Extension -match '^\.(mp4|mkv|ts|mov)$' } | Sort-Object Length
+        $suyos = @($vids | Where-Object { $jug -and $_.Name -match [regex]::Escape($jug) })
+        $src = if ($suyos.Count -gt 0) { $suyos[0] } else { $vids | Select-Object -First 1 }
         $min = if ($p["minutos"]) { [int]$p["minutos"] } else { 35 }
         $clip = "$sbx\videos\prueba_app_$($min)m$($src.Extension)"
         & ffmpeg -v error -y -ss 1800 -i $src.FullName -t ($min * 60) -c copy $clip 2>&1 | Add-Content $lg -Encoding UTF8
@@ -285,7 +290,6 @@ function Hacer-Peticion($p) {
         $env:TENNISBIO_SANDBOX = "$sbx\sandbox.yaml"
         "  tramo: $min min de $($src.Name) desde 30:00" | Add-Content $lg -Encoding UTF8
         $t0 = Get-Date
-        $jug = "$(uv run --no-sync python -c "from tennisbio.config import default_player; print(default_player())" 2>$null)".Trim()
         & uv run --no-sync python -m tennisbio.cli app add $clip --si --usar nuevo --jugadora $jug 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
         # 11-11: el ejecutor unico (el de la aplicacion y el chat), en la carpeta aparte (su propia base y su bloqueo)
         & uv run --no-sync python -m tennisbio.cli worker --once 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8

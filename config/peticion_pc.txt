@@ -854,3 +854,9 @@ accion: app_nuevo
 minutos: 35
 # 206 (11-11): tarea 10b de B8 (B7, #242). 35 min de un partido como partido nuevo con la aplicacion y el ejecutor
 # unico, en una carpeta aparte (su propia base y su bloqueo; nunca el indice real): todas las etapas desde cero
+---
+id: 207
+accion: app_nuevo
+minutos: 35
+# 207 (11-11): tarea 10b de B8 (B7, #242), repetida: la 206 tomo el video mas pequeno (Zverev-Sinner) y lo analizo
+# como la jugadora por defecto (identidad 0 %). Ahora el tramo sale de un partido de la jugadora analizada

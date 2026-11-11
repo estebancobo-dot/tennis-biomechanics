@@ -2385,7 +2385,9 @@ def new_match_item(bases: list[Path]) -> dict:
         return _item(5, "Aplicación", NEW_MATCH_ITEM, "aviso", "sin ejecutar todavía (petición «app_nuevo» del PC)")
     txt = f.read_text(encoding="utf-8", errors="replace")
     end = re.search(r"termina (\d{4}-\d{2}-\d{2}T[\d:]+)", txt)
-    bad = [l.strip() for l in txt.splitlines() if re.search(r"Traceback|ERROR|\[error\]|\[fallo\]", l)]
+    # 11-11: an analysis «FALLOS» or a doubtful identity also fails (a run on another player's match passed before)
+    bad = [l.strip() for l in txt.splitlines()
+           if re.search(r"Traceback|ERROR|\[error\]|\[fallo\]|analizado FALLOS|identidad dudosa", l)]
     # the app's former runner printed «[ok]»; the single worker's queue says the match job «hecho» (jobs status)
     done = "[ok]" in txt or re.search(r"^\s*hecho\s+#\d+ partido", txt, re.M) is not None
     ok = end is not None and not bad and done

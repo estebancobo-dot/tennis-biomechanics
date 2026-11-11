@@ -41,5 +41,10 @@ def test_new_match_item_reads_the_app_new_log(tmp_path):
     assert it["name"] == NEW_MATCH_ITEM and it["status"] == "ok" and "60.5 min" in it["detail"]
     (tmp_path / "prueba_app_nuevo.log").write_text("  [ok] x\ntermina 2026-11-08T13:28:01\n", encoding="utf-8")
     assert new_match_item([tmp_path])["status"] == "aviso"          # made with older code
+    (tmp_path / "prueba_app_nuevo.log").write_text(
+        "  hecho     #2 informe partido x analizado FALLOS\n  hecho     #1 partido partido nuevo\n"
+        "  x: identidad dudosa — Identidad dudosa: decidida en el 0 % de los planos\n"
+        "duracion total: 115.6 min; termina 2026-11-11T19:27:39\n", encoding="utf-8")
+    assert new_match_item([tmp_path])["status"] == "falta"          # another player's match: not a pass
     (tmp_path / "prueba_app_nuevo.log").write_text("Traceback (most recent call last):\n", encoding="utf-8")
     assert new_match_item([tmp_path])["status"] == "falta"
