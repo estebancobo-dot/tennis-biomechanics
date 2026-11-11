@@ -101,3 +101,13 @@ def test_fill_parities_from_agreeing_neighbours_close_in_time():
     t = [0, 30, 60, 90, 120, 150, 600, 700]
     assert fill_parities(P, t) == [3, 3, 3, 3, None, 4, None, None]     # 3..4 differ; nothing after the last read
     assert fill_parities([1, None, 1], [0, 100, 300]) == [1, None, 1]    # too far apart: a change of ends could fit
+
+
+def test_parity_between_the_readings_around_a_run():
+    from tennisbio.identity import parity_between
+    R = [{"t": 0, "games": [[2, 1]]}, {"t": 50, "points": ["15", "0"]}, {"t": 400, "games": [[2, 2]]},
+         {"t": 900, "games": [[3, 2]]}, {"t": 2000, "games": [[4, 2]]}]
+    assert parity_between(R, 200) == 2                       # 2-1 and 2-2: two changes of ends, same before and after
+    assert parity_between(R, 600) is None                    # 2-2 → 3-2: a change of ends between them
+    assert parity_between(R, 1500) is None                   # too far apart
+    assert parity_between(R, -5) is None and parity_between(R, 2500) is None

@@ -485,7 +485,7 @@ def run_clothes(ctx: Context, d: dict, tracks: list, court: dict | None, per_run
     return codes, far
 
 
-@stage("identity", "11", deps=("players", "score", "court", "audio"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
+@stage("identity", "12", deps=("players", "score", "court", "audio"), outputs=("identity.json",), match_fields=lambda m: {"player": m.player.name})
 def st_identity(ctx: Context):
     """Is the near player the target in each run? Two independent cues, fused:
     - the end-change chain: serves + the scoreboard's serve marker name who is near in some runs
@@ -495,7 +495,7 @@ def st_identity(ctx: Context):
     Agreement decides with high confidence; a disagreement is won by the stronger evidence or left
     «dudoso» (clothes.fuse)."""
     from .clothes import identity_from_cues
-    from .identity import clean_games, decide_by_ends, end_changes, fill_parities, near_receives, near_serves
+    from .identity import clean_games, decide_by_ends, end_changes, fill_parities, near_receives, near_serves, parity_between
 
     d = _players(ctx)
     fps, frames = float(d["fps"]), d["frames"]
@@ -536,6 +536,9 @@ def st_identity(ctx: Context):
         games.append(None if sr is None or not sr.get("games") else json.dumps(sr["games"]))
     # v11 (11-11): a run with no scoreboard read takes its neighbours' end changes when both agree within 4 min
     parities = fill_parities(parities, [(r["start"] + r["end"]) / 2 / fps for r in runs])
+    # v12 (11-11): and from the readings around it, however old, when both say the same within 10 min
+    rd = sorted((score or {}).get("readings", []), key=lambda x: x["t"])
+    parities = [p if p is not None else parity_between(rd, (r["start"] + r["end"]) / 2 / fps) for p, r in zip(parities, runs)]
     base = decide_by_ends(parities, votes)
     ends = [None if base is None or p is None else bool(base ^ bool(p % 2)) for p in parities]
     direct = [r.get("serve_vote", r.get("return_vote")) for r in runs]

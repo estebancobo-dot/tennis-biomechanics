@@ -135,6 +135,26 @@ def fill_parities(parities: list, mids_s: list[float], max_gap_s: float = 240.0)
     return out
 
 
+def parity_between(readings: list, t: float, max_gap_s: float = 600.0) -> int | None:
+    """End changes at time t from the scoreboard readings around it, however old (11-11, v12: runs far from any reading
+    stayed undecided): the last reading with games before t and the first after it give the same number, and are at
+    most max_gap_s apart (two changes of ends that cancel need at least two games and two changeovers). Else None."""
+    before = after = None
+    for r in readings:
+        if not r.get("games"):
+            continue
+        if r["t"] <= t:
+            before = r
+        elif after is None:
+            after = r
+            break
+    if before is None or after is None or after["t"] - before["t"] > max_gap_s:
+        return None
+    a = end_changes(before.get("games"), before.get("points"), before.get("tiebreak", False))
+    b = end_changes(after.get("games"), after.get("points"), after.get("tiebreak", False))
+    return a if a is not None and a == b else None
+
+
 def decide_by_ends(parities: list, votes: list[tuple[int, bool]], min_share=0.75) -> bool | None:
     """Is the near player the target at an even number of end changes? One consistent vote is
     enough (the rule is exact); conflicting votes need a clear majority."""

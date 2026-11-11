@@ -26,8 +26,8 @@
   ]
  },
  "identity": {
-  "version": "11",
-  "hash": "2a4a03a86c22381a",
+  "version": "12",
+  "hash": "91a3dfd9749dac48",
   "modules": [
    "clothes",
    "identity"
@@ -43,7 +43,7 @@
  },
  "candidates": {
   "version": "15",
-  "hash": "9babc1ee5fa99f4c",
+  "hash": "a0492ef4cffe2f6f",
   "modules": [
    "court_metrics",
    "identity"

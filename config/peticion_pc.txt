@@ -790,3 +790,13 @@ accion: trabajo
 comando: flujo informe
 # 195 (11-11): el flujo "informe" con los tres informes (derecha, reves y saque) antes de la auditoria: la cobertura del
 # saque se comparaba con un informe del saque viejo
+---
+id: 196
+accion: trabajo
+comando: run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
+---
+id: 197
+accion: trabajo
+comando: flujo informe
+# 196-197 (11-11): identidad v12 (un plano sin lectura cercana toma los cambios de lado de la ultima lectura antes y la
+# primera despues si coinciden a menos de 10 min). Pegula otra vez y su informe: identidad >= 95 % de planos decididos
