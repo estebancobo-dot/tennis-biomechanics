@@ -1,5 +1,8 @@
 # Plan maestro (19-10): todo lo pendiente, en orden
 
+> **Histórico (11-11): sustituido por `config/plan_peticiones.yaml` (plan) y `docs/estado_proyecto.md` (estado y tarea actual).** No se sigue; se conserva. Índice: `docs/README.md`.
+
+
 Única lista de trabajo. La mantiene Claude: cada sesión empieza aquí. Cada bloque tiene un **criterio de cierre
 medido por un script en el PC** (nunca «revisado en el chat»). Un bloque no se da por hecho sin ese número.
 Regla del usuario (19-10): **nada nuevo hasta que la base (golpes que no se pierden e identidad) esté bien.**

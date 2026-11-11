@@ -24,6 +24,9 @@ Conceptos (glosario en `CLAUDE.md`): **Plan** (corto / medio / largo) → **Paqu
 usuario pertenece a un paquete; un paquete está **aceptado** cuando su prueba principal pasa en las salidas reales
 (tabla «¿Cerrado?» de `estado_real_partidos.md`, calculada, no a mano).
 
+**Índice de documentos:** `docs/README.md` (cuál manda para cada cosa). **Guía de Ivanovic** (#143, #189-#198) y **matriz del
+usuario de 15 puntos** (#84-#98): sus puntos son peticiones de los paquetes M1-M7 y P1, que van después de la Base.
+
 **Plan a corto plazo: cerrar la Base.** Paquetes B1-B7 (ver la tabla automática) y **B8, orquestador único** (el actual).
 Después: medio plazo = paquetes M1-M7 (medidas); largo = P1-P6 (producto; el móvil, el último).
 

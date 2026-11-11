@@ -1,0 +1,40 @@
+# Índice de documentos (11-11)
+
+Cada documento tiene **un solo papel**. Si dos dicen cosas distintas, manda el **vigente** de su papel. Nada se borra
+(decisión del usuario): lo sustituido lleva al principio «Histórico: sustituido por …».
+
+## Vigentes: los que se siguen y se actualizan en cada cambio
+| Papel | Documento | Qué contiene |
+|---|---|---|
+| Reglas | `../CLAUDE.md` | Requisitos del usuario, forma de trabajar de Claude, glosario (plan → paquete → tarea) |
+| Estado y tarea actual | `estado_proyecto.md` (sección «Estado», arriba) | El paquete en curso, sus tareas en orden, qué hace el PC y qué hace Claude |
+| Plan (todos los paquetes, en orden) | `../config/plan_peticiones.yaml` | Base B1-B8 → Medidas M1-M7 → Producto P1-P6; cada petición en un paquete y su prueba de cierre |
+| Peticiones del usuario | `peticiones_usuario.md` | Las 251 peticiones con su estado y lo que falta (comprobado por `scripts/check_requests.py`) |
+| Aceptación (calculada) | `pc-logs:estado_real_partidos.md` (de `scripts/real_status.py`) | Nivel real de cada petición y «¿Cerrado?» de cada paquete, desde la auditoría del PC |
+| Taxonomía de la derecha | `matriz_cobertura.md` | Cada elemento del golpe con su fuente y si se mide (§6: la matriz del usuario de 15 puntos) |
+| Diseño del orquestador | `orquestador.md` | Registro único, ejecutor único, flujos, órdenes desde la aplicación y el chat |
+| Flujos de trabajo del PC | `../config/flujos.yaml` | Los pasos de cada flujo (completo, informe, previsión, pruebas) |
+| Aplicación | `aplicacion_local.md` | Pantallas, casos y comportamiento de la aplicación del PC |
+| Almacenamiento | `almacenamiento.md` | Árbol de la biblioteca de partidos |
+| Validación | `validacion.md`, `validacion_detector.md` | Cómo se valida cada medida y el detector con datos anotados |
+| Velocidad | `pruebas_velocidad.md` | Cambios de velocidad, sus escenarios y lo medido |
+
+## Referencia: fuentes que alimentan las peticiones (se consultan; sus huecos ya son peticiones)
+| Documento | Dónde están sus puntos en el plan |
+|---|---|
+| `comparacion_guia_ivanovic.md` (guía «Derecha estilo Ivanovic») | Peticiones #143 y #189-#198 → paquetes M2, M3, M4, M7 y P1 (después de la Base) |
+| Matriz del usuario (15 puntos), `matriz_cobertura.md` §6 | Peticiones #84-#98 → paquetes M1-M7 y P1 (después de la Base) |
+| `aprendido_entrenadores.md`, `investigacion_youtube_usuario.md`, `analisis_referencias.md`, `referencias_externas.md` | Contenido de «Cópiala/Aprende» (paquete P1) |
+| `estado_del_arte.md`, `comparativa_apps.md` | Modelos (B3) y comparación con las apps profesionales (P4) |
+| `escenarios_producto.md`, `arquitectura_producto.md`, `diseno_definitivo.md` | Producto (P2, P5) |
+| `maqueta-informe.html`, `maqueta_leccion_armado.html`, `maqueta_aplicacion.html` | Maquetas de diseño (datos inventados) |
+| `matriz_en_la_web.md` | Generado por `scripts/matrix_in_web.py`: qué punto de la matriz se ve en la web |
+| `como_ejecutar.md` | Instrucciones de instalación en el PC |
+
+## Históricos: sustituidos (no se siguen; se conservan)
+| Documento | Sustituido por |
+|---|---|
+| `plan_maestro.md` (19-10) | `config/plan_peticiones.yaml` + `estado_proyecto.md` |
+| `plan_corto_plazo.md` (02-11) | `estado_proyecto.md` (sección «Estado») |
+| `estado_real_peticiones.md` (copia del 07-11) | `pc-logs:estado_real_partidos.md` (se regenera en cada auditoría) |
+| `revision_completa.md`, `revision_base.md`, `revision_peticiones_19-10.md`, `auditoria_17_10/` | Sus hallazgos ya son peticiones de `peticiones_usuario.md` |

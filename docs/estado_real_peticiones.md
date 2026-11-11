@@ -1,5 +1,8 @@
 # Estado real de las peticiones (generado por `scripts/real_status.py`; no editar a mano)
 
+> **Histórico (11-11): copia del 07-11; el estado real se regenera en cada auditoría del PC (`pc-logs:estado_real_partidos.md`).** Índice: `docs/README.md`.
+
+
 237 peticiones (sin las que no aplican). «HECHO» en el registro es la etiqueta de Claude; aquí cuenta solo lo que se comprueba. «Comprobado en salidas» = existe y es coherente con los datos reales, no que sea correcto; eso es «validado con verdad».
 
 | Nivel | Peticiones |

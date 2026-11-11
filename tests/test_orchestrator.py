@@ -207,3 +207,28 @@ def test_submit_without_the_double_dash_as_powershell_passes_it(env):
     row = db.q("SELECT * FROM jobs ORDER BY id DESC LIMIT 1")[0]
     assert json.loads(row["args"]) == ["run", "--match", "m-1", "--force"] and row["source"] == "claude 191"
     db.close()
+
+
+def test_two_processes_upgrading_the_same_old_database_at_once(env, tmp_path):
+    # 11-11: «duplicate column name» when the window and the worker added the queue's columns at the same moment: here
+    # the other process added every column between this one's look at the table and its ALTER
+    from tennisbio.app.db import DB
+    db = DB(tmp_path / "t.db")                                 # every column already there
+
+    class Late:                                                # the table as this process saw it a moment before
+        def __init__(self, con):
+            self.con = con
+        def execute(self, sql, *a):
+            if sql.startswith("PRAGMA table_info(jobs)"):
+                return [r for r in self.con.execute(sql, *a) if r[1] not in ("args", "control", "paso")]
+            return self.con.execute(sql, *a)
+        def __getattr__(self, k):
+            return getattr(self.con, k)
+
+    real = db.con
+    db.con = Late(real)
+    O.ensure_schema(db)                                        # no error: the other process's columns are kept
+    db.con = real
+    cols = {r[1] for r in db.con.execute("PRAGMA table_info(jobs)")}
+    assert {"args", "control", "paso", "pasos", "log", "source"} <= cols
+    db.close()

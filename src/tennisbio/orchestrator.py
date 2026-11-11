@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import json
 import os
+import sqlite3
 import subprocess
 import sys
 import time
@@ -46,7 +47,11 @@ def ensure_schema(db) -> None:
     for name, decl in (("args", "TEXT DEFAULT ''"), ("control", "TEXT DEFAULT ''"), ("log", "TEXT DEFAULT ''"),
                        ("source", "TEXT DEFAULT ''"), ("paso", "INTEGER DEFAULT 0"), ("pasos", "INTEGER DEFAULT 0")):
         if name not in cols:
-            db.con.execute(f"ALTER TABLE jobs ADD COLUMN {name} {decl}")
+            try:
+                db.con.execute(f"ALTER TABLE jobs ADD COLUMN {name} {decl}")
+            except sqlite3.OperationalError as e:      # 11-11: another process (the window, the worker) added it first
+                if "duplicate column" not in str(e).lower():
+                    raise
     db.con.commit()
 
 

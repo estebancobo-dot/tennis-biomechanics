@@ -1,5 +1,8 @@
 # Plan a corto plazo, al detalle (02-11)
 
+> **Histórico (11-11): sustituido por `docs/estado_proyecto.md` (sección «Estado»).** No se sigue; se conserva. Índice: `docs/README.md`.
+
+
 Este documento manda sobre el resto del plan. Se actualiza en cada paso con el número medido y se sube con el código.
 Lo leen igual el usuario y cualquier sesión de Claude que continúe.
 
