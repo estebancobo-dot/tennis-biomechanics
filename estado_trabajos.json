@@ -1,13 +1,32 @@
 {
- "at": "2026-11-11 16:19:12",
- "firma": "38071072ad73",
+ "at": "2026-11-11 16:19:18",
+ "firma": "96adc0c14762",
  "ejecutor": {
   "vivo": true,
   "pid": 6316,
   "at": 1794410348.2590683
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 50,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-11 16:19:08",
+   "started": "2026-11-11 16:19:18",
+   "finished": null,
+   "args": "[\"script\", \"diag_scoreboard\", \"--match\", \"pegula\", \"--times\", \"120,300,700,900,1100,1250\"]",
+   "source": "claude 202",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_50.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "identity",
@@ -18,26 +37,7 @@
   "quedan_s": 0,
   "hora": "2026-11-11 15:08:18"
  },
- "pendientes": [
-  {
-   "id": 50,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-11 16:19:08",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"diag_scoreboard\", \"--match\", \"pegula\", \"--times\", \"120,300,700,900,1100,1250\"]",
-   "source": "claude 202",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 49,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 141,
+   "job": 50,
+   "at": "2026-11-11 16:19:18",
+   "kind": "empieza",
+   "text": "script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250"
+  },
+  {
    "id": 140,
    "job": 50,
    "at": "2026-11-11 16:19:08",
@@ -513,13 +520,6 @@
    "at": "2026-11-11 15:35:07",
    "kind": "empieza",
    "text": "calidad"
-  },
-  {
-   "id": 111,
-   "job": 47,
-   "at": "2026-11-11 15:35:03",
-   "kind": "enviado",
-   "text": "tennisbio calidad (claude 199)"
   }
  ]
 }
