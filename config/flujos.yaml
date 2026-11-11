@@ -22,6 +22,7 @@ completo:
     - {nombre: "Informe del saque", tennisbio: [report, --stroke, overhead, --out, "{salida}/informe_saque"], si_falla: seguir}
     - {nombre: "Analisis en la aplicacion", tennisbio: [app, tras-completo], si_falla: seguir}
     - {nombre: "Auditoria", tennisbio: [audit, --stroke, forehand]}
+    - {nombre: "Modelo de calidad", tennisbio: [calidad], si_falla: seguir}
     - {nombre: "Exportar la derecha", tennisbio: [export, --stroke, forehand, --out, "{salida}/exportar_derecha"], si_falla: seguir, limite_min: 240}
     - {nombre: "Exportar el reves", tennisbio: [export, --stroke, backhand, --out, "{salida}/exportar_reves"], si_falla: seguir, limite_min: 240}
     - {nombre: "Exportar el saque", tennisbio: [export, --stroke, overhead, --out, "{salida}/exportar_saque"], si_falla: seguir, limite_min: 240}
@@ -35,6 +36,7 @@ informe:
     - {nombre: "Informe del reves", tennisbio: [report, --stroke, backhand, --out, "{salida}/informe_reves"], si_falla: seguir}
     - {nombre: "Informe del saque", tennisbio: [report, --stroke, overhead, --out, "{salida}/informe_saque"], si_falla: seguir}
     - {nombre: "Auditoria", tennisbio: [audit, --stroke, forehand]}
+    - {nombre: "Modelo de calidad", tennisbio: [calidad], si_falla: seguir}
 
 prevision:
   descripcion: "Que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada"

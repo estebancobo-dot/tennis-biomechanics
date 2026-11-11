@@ -1,0 +1,94 @@
+# Modelo de calidad de la aplicacion (11-11, peticion #256): el "cubo".
+# Cada comprobacion de la auditoria (area de audit.py) va a una casilla: dominio x caracteristica (ISO/IEC 25010,
+# mas "exactitud" frente a datos anotados) x capa (donde se comprueba). La puntuacion de una casilla es la parte de sus
+# comprobaciones que se cumplen (ok / ok+aviso+falta); "pocos datos" se cuenta aparte. Las casillas "esperadas" sin
+# ninguna comprobacion salen como SIN MEDIR: son los huecos del modelo, no aprobados.
+# Se calcula con `tennisbio calidad` (tennisbio/quality_model.py) desde auditoria_partidos.json.
+
+dominios:
+  golpes: "Deteccion de golpes e identidad"
+  taxonomia: "Taxonomia del golpe (fases, cuerpo, pies, raqueta)"
+  situaciones: "Situaciones del golpe"
+  aprendizaje: "Aprendizaje (Copiala / Aprende, examen de entrenadores)"
+  pantallas: "Pantallas, video y UX"
+  datos: "Catalogo, registro y datos"
+  plataforma: "Orquestacion, PC y resiliencia"
+  modelos: "Modelos de IA"
+  exportacion: "Exportacion"
+
+caracteristicas:
+  funcional: "Adecuacion funcional (hace lo pedido)"
+  exactitud: "Exactitud (frente a datos anotados o limites fisicos)"
+  rendimiento: "Eficiencia y rendimiento"
+  fiabilidad: "Fiabilidad y resiliencia (fallos, pausa, reanudacion)"
+  usabilidad: "Usabilidad y aprendizaje del usuario"
+  mantenibilidad: "Mantenibilidad (pruebas, nada fijo en el codigo)"
+  portabilidad: "Portabilidad (Windows, sin CUDA, movil)"
+
+capas:
+  codigo: "Codigo y pruebas automaticas"
+  pc: "PC con datos reales"
+  pantallas: "Pantallas (capturas del navegador)"
+  verdad: "Validacion con verdad anotada"
+
+# area de la auditoria -> casilla. "agregado": no cuenta (resume otras comprobaciones)
+areas:
+  "Peticiones": agregado
+  "Taxonomía": [taxonomia, funcional, pc]
+  "Fases": [taxonomia, funcional, pc]
+  "Cuerdas": [taxonomia, funcional, pc]
+  "Valores posibles": [taxonomia, exactitud, pc]
+  "Fiabilidad": [taxonomia, exactitud, pc]
+  "Vista lateral (entrenamiento)": [taxonomia, funcional, pc]
+  "Golpes": [golpes, funcional, pc]
+  "Validación": [golpes, exactitud, verdad]
+  "Situaciones": [situaciones, funcional, pc]
+  "Combinaciones": [aprendizaje, funcional, pantallas]
+  "Aprende su derecha": [aprendizaje, usabilidad, pantallas]
+  "Aprendizaje": [aprendizaje, usabilidad, pantallas]
+  "Examen de entrenadores": [aprendizaje, exactitud, verdad]
+  "Pantallas": [pantallas, usabilidad, pantallas]
+  "Diseño": [pantallas, usabilidad, pantallas]
+  "Vistas pedidas": [pantallas, funcional, pantallas]
+  "Vídeo": [pantallas, funcional, pantallas]
+  "Repeticiones y otras cámaras": [pantallas, funcional, pc]
+  "Ficheros": [datos, fiabilidad, pc]
+  "Aplicación": [datos, funcional, pc]
+  "Rendimiento": [plataforma, rendimiento, pc]
+  "Tiempo por etapa": [plataforma, rendimiento, pc]
+  "Trabajo en paralelo": [plataforma, rendimiento, pc]
+  "Uso del PC": [plataforma, rendimiento, pc]
+  "Automático": [plataforma, fiabilidad, pc]
+  "Infraestructura": [plataforma, fiabilidad, pc]
+  "Peticiones del PC": [plataforma, fiabilidad, pc]
+  "Pruebas en este PC": [plataforma, mantenibilidad, codigo]
+  "Modelos": [modelos, exactitud, verdad]
+  "PDF": [exportacion, funcional, pc]
+  "Informe": [pantallas, funcional, pantallas]
+  "Auditoría": [plataforma, mantenibilidad, codigo]
+
+# casillas que una aplicacion profesional debe medir: sin comprobaciones, salen SIN MEDIR (huecos)
+esperadas:
+  - [golpes, exactitud, verdad]
+  - [golpes, funcional, pc]
+  - [taxonomia, exactitud, verdad]
+  - [taxonomia, funcional, pc]
+  - [situaciones, exactitud, verdad]
+  - [situaciones, funcional, pc]
+  - [aprendizaje, usabilidad, pantallas]
+  - [aprendizaje, exactitud, verdad]
+  - [pantallas, usabilidad, pantallas]
+  - [pantallas, rendimiento, pantallas]
+  - [pantallas, portabilidad, pantallas]
+  - [datos, funcional, pc]
+  - [datos, fiabilidad, pc]
+  - [datos, mantenibilidad, codigo]
+  - [plataforma, fiabilidad, pc]
+  - [plataforma, rendimiento, pc]
+  - [plataforma, mantenibilidad, codigo]
+  - [plataforma, portabilidad, pc]
+  - [modelos, exactitud, verdad]
+  - [modelos, rendimiento, pc]
+  - [exportacion, funcional, pc]
+
+umbral_aceptacion: 0.95     # una casilla esta aceptada con >= 95 % de sus comprobaciones cumplidas

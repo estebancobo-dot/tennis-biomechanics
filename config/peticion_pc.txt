@@ -806,3 +806,9 @@ accion: trabajo
 comando: script diag_identity --match pegula --n 12
 # 198 (11-11): la identidad de Rybakina-Pegula sigue en 258 de 320 planos con v11 y v12: cada plano sin decidir con su
 # instante y las lecturas del marcador antes y despues (capturas_diag/diag_identidad.json, "sin_decidir")
+---
+id: 199
+accion: trabajo
+comando: calidad
+# 199 (11-11): primera puntuacion del modelo de calidad (#256, el "cubo") en el PC con su ultima auditoria; a pc-logs
+# calidad.md y calidad.json. Desde ahora los flujos "informe" y "completo" lo calculan tras la auditoria

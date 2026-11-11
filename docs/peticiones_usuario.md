@@ -54,11 +54,11 @@ la auditoría las marcará «sin comprobación automática asignada».
 | Estado | Nº |
 |---|---|
 | HECHO | 128 |
-| PARCIAL | 97 |
+| PARCIAL | 98 |
 | FALTA | 19 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **255** |
+| **Total** | **256** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -343,6 +343,7 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 253 | Lo marcado como histórico en `docs/estado_proyecto.md` debe estar contemplado: hecho, en una petición o descartado con motivo (Chat, 11-11) | HECHO (11-11) | `docs/estado_proyecto.md` (tabla «Notas históricas: dónde está cada pendiente») | — | `scripts/check_requests.py` | — |
 | 254 | Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista lateral de entreno o clips anotados (Estado del proyecto, 13-10, pendiente) | FALTA | `reliability` (sesgo 2D frente a 3D), `practice.metrics_3d` | — | — | Comparar el giro medido en el partido con el de la vista lateral o con clips anotados; hoy solo se compara 2D con 3D. |
 | 255 | Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente) | FALTA | — | — | — | Medida nueva desde la raqueta y los hombros en el armado (fiable solo de lado: vista lateral de entreno). |
+| 256 | Modelo de calidad de la aplicación como un cubo: dominio (taxonomía del golpe, situaciones, identidad, catálogo y registro, aprendizaje, pantallas) × calidad ISO 25010 (funcional, exactitud, rendimiento, fiabilidad y resiliencia, usabilidad, mantenibilidad, portabilidad) × capa (código, PC con datos reales, pantallas, verdad anotada), con métricas, umbrales y puntuación por casilla; mide aceptación y completitud (Chat, 11-11) | PARCIAL | `config/calidad.yaml`, `quality_model.py`, `tennisbio calidad` (11-11) | Panel de calidad | — | Hecho el cálculo (dominio × característica × capa, «sin medir» para las casillas vacías; tras cada auditoría en los flujos). Falta: métricas para las 7 casillas sin medir, pesos por casilla y el panel en la aplicación (P0). |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)
 

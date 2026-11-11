@@ -28,8 +28,9 @@ usuario pertenece a un paquete; un paquete está **aceptado** cuando su prueba p
 usuario de 15 puntos** (#84-#98): sus puntos son peticiones de los paquetes M1-M7 y P1, que van después de la Base.
 
 **Plan a corto plazo: cerrar la Base.** Paquetes B1-B7 (ver la tabla automática) y **B8, orquestador único** (el actual).
-Después (decisión del usuario, 11-11): **P0, rehacer la aplicación por completo** (análisis a fondo de lo actual y del estado
-del arte, huecos y lo que sobra; diseño, prototipo, aplicación nueva). Medio plazo = M1-M7 (medidas); largo = P1-P6 (el móvil, el último).
+Después (decisión del usuario, 11-11): **P0, rehacer la aplicación por completo**: primero el modelo de calidad (#256, el «cubo»:
+dominio × calidad ISO 25010 × capa, con puntuación por casilla), después el análisis a fondo de lo actual y del estado del
+arte, huecos y lo que sobra; diseño, prototipo, aplicación nueva (#252). Medio plazo = M1-M7 (medidas); largo = P1-P6 (el móvil, el último).
 #253 hecha (11-11): la tabla «Notas históricas: dónde está cada pendiente», abajo; dos pendientes nuevos: #254 y #255.
 
 **Paquete actual: B8 — tareas en orden**

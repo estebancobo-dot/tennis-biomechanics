@@ -181,6 +181,9 @@ def _main(argv=None):
     au.add_argument("--stroke", default="forehand", choices=["forehand", "backhand", "overhead"])
     au.add_argument("--root", help="carpeta con las carpetas de los partidos (por defecto <output>)")
     au.add_argument("--out", help="carpeta de la auditoría (por defecto <output>/auditoria)")
+    cal = sub.add_parser("calidad", help="modelo de calidad (el «cubo», config/calidad.yaml) desde la última auditoría")
+    cal.add_argument("--audit", default=None, help="auditoría JSON (por defecto <salida>/auditoria/auditoria.json)")
+    cal.add_argument("--out", default=None, help="carpeta de calidad.md y calidad.json (por defecto <salida>)")
     scp = sub.add_parser("script", help="un script del repositorio (scripts/NOMBRE.py) con sus argumentos, como trabajo de la cola")
     scp.add_argument("name")
     scp.add_argument("rest", nargs=argparse.REMAINDER)
@@ -198,6 +201,19 @@ def _main(argv=None):
     apl = sub.add_parser("app", help="la aplicación local: tennisbio app status|add|also|plan|work|… (ver app/cli.py)")
     apl.add_argument("rest", nargs=argparse.REMAINDER)
     args = ap.parse_args(argv)
+    if args.cmd == "calidad":                   # 11-11 (#256): the quality model's score from the latest audit
+        from .quality_model import run as _q
+        cfg = load_config()
+        out = Path(cfg.get("paths", {}).get("output", "output"))
+        aud = Path(args.audit) if args.audit else next((p for p in (out / "auditoria" / "auditoria.json",
+                                                                    out / "auditoria_partidos.json") if p.exists()), None)
+        if aud is None or not aud.exists():
+            print("no hay auditoría que puntuar")
+            return 2
+        r = _q(aud, Path(args.out) if args.out else out)
+        t = r["total"]
+        print(f"calidad: {t['ok']}/{t['n']} comprobaciones, casillas aceptadas {t['accepted']}/{t['cells']}, sin medir {t['unmeasured']}")
+        return 0
     if args.cmd == "script":                    # 11-11: a repository script as a job of the single queue («medir»)
         return _script(args.name, [a for a in (args.rest or []) if a != "--"])
     if args.cmd in ("worker", "jobs"):          # 10-11: the single worker and the queue's controls

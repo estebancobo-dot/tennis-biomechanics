@@ -48,7 +48,7 @@ paquetes:
     # 11-11 (usuario): justo después de la Base y antes de las medidas
     nombre: "Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos)"
     cierre: "Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código"
-    peticiones: [252]
+    peticiones: [256, 252]
     prueba: ["^Aplicación: rediseño "]
   M1:
     nombre: "Medidas · fases, cadena cinética y ritmo"

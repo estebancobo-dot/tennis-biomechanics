@@ -154,7 +154,7 @@ def test_a_flow_runs_its_steps_and_a_resumed_one_goes_on_where_it_was(env):
 def test_every_step_of_every_flow_is_a_known_command_or_script():
     from tennisbio import cli
     root = Path(O.FLOWS_FILE).parents[1]
-    known = {"run", "status", "report", "export", "audit", "app", "registry", "jobs", "worker"}
+    known = {"run", "status", "report", "export", "audit", "app", "registry", "jobs", "worker", "calidad", "script"}
     for name, fl in O.flows().items():
         assert fl.get("pasos"), name
         for st in fl["pasos"]:
