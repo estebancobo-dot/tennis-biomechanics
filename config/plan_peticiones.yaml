@@ -44,6 +44,12 @@ paquetes:
     cierre: "Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC"
     peticiones: [246, 247, 248, 249, 250, 251]
     prueba: ["^Orquestador: "]
+  P0:
+    # 11-11 (usuario): justo después de la Base y antes de las medidas
+    nombre: "Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos)"
+    cierre: "Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código"
+    peticiones: [252]
+    prueba: ["^Aplicación: rediseño "]
   M1:
     nombre: "Medidas · fases, cadena cinética y ritmo"
     cierre: "Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara"
@@ -55,11 +61,11 @@ paquetes:
   M3:
     nombre: "Medidas · cuerpo"
     cierre: "Fiables en la auditoría y sin depender de la cámara"
-    peticiones: [48, 54, 56, 85, 92, 95, 101, 114, 115, 117, 124, 167, 192, 193]
+    peticiones: [48, 54, 56, 85, 92, 95, 101, 114, 115, 117, 124, 167, 192, 193, 254]
   M4:
     nombre: "Medidas · raqueta, mano y empuñadura"
     cierre: "Fiables o «no medible desde la tele» dicho; cara del impacto marcada como estimación"
-    peticiones: [7, 8, 35, 36, 86, 100, 102, 107, 179, 181, 182, 183, 190, 191, 206, 211, 212, 216]
+    peticiones: [7, 8, 35, 36, 86, 100, 102, 107, 179, 181, 182, 183, 190, 191, 206, 211, 212, 216, 255]
   M5:
     nombre: "Medidas · bola y situación del golpe"
     cierre: "Cada situación con golpes suficientes o «pocos datos» dicho; diferencias solo por encima del ruido"
@@ -72,11 +78,6 @@ paquetes:
     nombre: "Medidas · contexto del punto"
     cierre: "Resultado del punto coherente con el marcador; nombres y fechas correctos"
     peticiones: [24, 98, 185, 187, 198, 244, 245]
-  P0:
-    nombre: "Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos)"
-    cierre: "Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código"
-    peticiones: [252]
-    prueba: ["^Aplicación: rediseño "]
   P1:
     nombre: "Producto · contenido para copiar su golpe (Cópiala / Aprende)"
     cierre: "Cada consigna con su medida, su fuente y su vídeo; examen interno R1-R25 pasado"

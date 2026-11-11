@@ -28,7 +28,9 @@ usuario pertenece a un paquete; un paquete está **aceptado** cuando su prueba p
 usuario de 15 puntos** (#84-#98): sus puntos son peticiones de los paquetes M1-M7 y P1, que van después de la Base.
 
 **Plan a corto plazo: cerrar la Base.** Paquetes B1-B7 (ver la tabla automática) y **B8, orquestador único** (el actual).
-Después: medio plazo = paquetes M1-M7 (medidas); largo = P1-P6 (producto; el móvil, el último).
+Después (decisión del usuario, 11-11): **P0, rehacer la aplicación por completo** (análisis a fondo de lo actual y del estado
+del arte, huecos y lo que sobra; diseño, prototipo, aplicación nueva). Medio plazo = M1-M7 (medidas); largo = P1-P6 (el móvil, el último).
+#253 hecha (11-11): la tabla «Notas históricas: dónde está cada pendiente», abajo; dos pendientes nuevos: #254 y #255.
 
 **Paquete actual: B8 — tareas en orden**
 | # | Tarea | Dónde se ejecuta | Validación | Estado |
@@ -56,6 +58,32 @@ abrirse comprueba que el ejecutor único vive y si no lo arranca; (2) pausar/rea
 sigue por la primera tarea no hecha de esta tabla.
 
 ---
+
+## Notas históricas: dónde está cada pendiente (petición #253, 11-11)
+Cada cosa pendiente que dicen las notas de abajo está hecha, es una petición de un paquete (se implementa allí) o está
+descartada con su motivo. Nada queda solo aquí.
+| Nota (fecha) | Pendiente que dice | Dónde está |
+|---|---|---|
+| 17-10 orden 2 | Huecos 1-6 de la guía de Ivanovic | Peticiones #189-#198 (M2, M3, M4, M7, P1) |
+| 17-10 orden 3 | Huella del vídeo por contenido | Hecho: #229 |
+| 17-10 orden 3 | Huella de código en todas las etapas | Hecho (10-11): huellas por etapa (`pipeline.code_fingerprint`) |
+| 17-10 orden 3 | Integración continua | Hecho: las pruebas corren en el PC con cada código nuevo (`pruebas_fondo.ps1`, auditoría «Pruebas del código en este PC») y en la nube antes de cada subida |
+| 17-10 orden 3 | Liberar las carpetas `_poc*` | Hecho: #146 (petición `borrar`); `_poc9_largo` se conserva hasta la limpieza final con el usuario |
+| 17-10 | «Cópiala» como lección | P1 (#4, #46, #47…) |
+| 13-10 Pendiente | Más golpes por situación | Hecho: los 4 partidos (#205, 445 derechas) |
+| 13-10 Pendiente | Velocidad | B1 (#14, #248) |
+| 13-10 Pendiente | Validar los giros del tronco con una referencia | **Nueva: #254** (M3) |
+| 13-10 Pendiente | Los 4 partidos y móvil/nube al final | B6 (#1) y P6 (#2, #154) |
+| 12-10 entrenadores | Raqueta al lado/detrás del cuerpo (plano del swing) | **Nueva: #255** (M4) |
+| 12-10 entrenadores | Punta frente a cabeza; freno de hombros | Hechos: #102, #106 |
+| 12-10 entrenadores | «Lo que la distingue»; clase de estilo | #194 (P1); #112 hecho |
+| 12-10 entrenadores | Examen de 25 afirmaciones | #113 (P1) |
+| 12-10 vista lateral | Verla en el PC | #79 (P1) |
+| 12-10 repeticiones | Otras cámaras de la retransmisión como vista lateral enlazada | #218 (B4; enlazadas 95 % en Pegula; medir en ellas: #218) |
+| 12-10 auditoría | Combinaciones medida × situación; peticiones y afirmaciones como comprobaciones; más medidas con clips anotados | #11, #12, #113, #238 (P3) |
+| 12-10 informe | Entrada que se entienda sola | #17 (P2) y el rediseño P0 (#252) |
+| 12-10 PC | Instalación, prueba rápida, F3Set, los 4 partidos | Hecho (instalación, pruebas en el PC, F3Set 466/517); el análisis final es la tarea 11 de B8 |
+| Limitaciones asumidas | Empuñadura exacta, ruido de medida, apoyo sin datos anotados, velocidad absoluta de raqueta, efecto | Descartadas con motivo: no se pueden medir desde la tele sin falsa precisión (CLAUDE.md, «Limitaciones asumidas»); se dicen «no medible desde la tele» |
 
 # HISTÓRICO (no se sigue; notas fechadas que se conservan). Lo vigente es la sección «Estado» de arriba, `CLAUDE.md` y `docs/README.md`.
 

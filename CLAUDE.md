@@ -63,14 +63,16 @@ ERROR) y lo sube a `pc-logs`. No pedir al usuario que lance 2c/2d tras cada camb
   Excepción: una subida que solo contiene una parada (`config/parar_pc.txt`) no espera a las pruebas.
 - **Comprobar, no suponer:** nunca decir «hecho» o «en marcha» sin verlo en pc-logs o en la salida real (09-11: se
   dijo que un análisis había arrancado y no era así).
-- **Conceptos (uno por nivel; no inventar otros):** **Plan** = horizonte (corto: cerrar la Base B1-B8; medio: medidas
-  M1-M7; largo: producto P1-P6, el móvil al final) → **Paquete** = grupo de peticiones con un criterio de cierre
+- **Conceptos (uno por nivel; no inventar otros):** **Plan** = horizonte (corto: cerrar la Base B1-B8 y después rehacer la aplicación, P0; medio:
+  medidas M1-M7; largo: producto P1-P6, el móvil al final) → **Paquete** = grupo de peticiones con un criterio de cierre
   (`config/plan_peticiones.yaml`) → **Tarea** = trabajo concreto, en orden, para cerrar el paquete (tabla de
   `docs/estado_proyecto.md`). **Petición** = lo que pidió el usuario (`docs/peticiones_usuario.md`), siempre en un
   paquete. **Validación** = comprobación automática en las salidas reales; **aceptación** = el paquete pasa su prueba
   principal (calculada, no a mano). **Dónde se ejecuta:** nube = Claude (código y pruebas); PC = análisis por la cola
   única, de uno en uno. **Flujo** = lista fija de pasos que el PC hace en orden (`config/flujos.yaml`). Paralelo = Claude
   programa mientras el PC trabaja; secuencial = una tarea que necesita el resultado de otra la espera.
+- **Nada se descarta sin motivo real:** una tarea o nota pendiente está hecha (con su prueba), es una petición de un
+  paquete (se implementará) o se descarta con su motivo escrito (decisión del usuario, 11-11).
 - **Una sola tabla que seguir:** la de tareas del paquete actual en `docs/estado_proyecto.md`; Claude no salta a otra
   cosa por lo último que falló o se preguntó: lo añade como tarea en su sitio y sigue el orden.
 - **Si se acaban los tokens:** todo queda en la rama y en el PC (cachés, cola en `datos/tennisbio.db`); la sesión
