@@ -4,19 +4,18 @@
    "dominio": "golpes",
    "caracteristica": "funcional",
    "capa": "pc",
-   "ok": 21,
-   "aviso": 5,
+   "ok": 22,
+   "aviso": 4,
    "falta": 0,
    "pocos datos": 0,
    "fallan": [
     "Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina",
     "Saques por punto de su saque: sin-fecha_f43dd2_rybakina",
     "Saques por punto de su saque: sin-fecha_584c5b_rybakina",
-    "Golpes encontrados frente al marcador: sin-fecha_49723c_rybakina",
     "Identidad en los cambios de lado: sin-fecha_49723c_rybakina"
    ],
    "n": 26,
-   "score": 0.8076923076923077,
+   "score": 0.8461538461538461,
    "accepted": false
   },
   {
@@ -160,16 +159,15 @@
    "dominio": "plataforma",
    "caracteristica": "fiabilidad",
    "capa": "pc",
-   "ok": 7,
+   "ok": 8,
    "aviso": 1,
-   "falta": 1,
+   "falta": 0,
    "pocos datos": 0,
    "fallan": [
-    "Golpes dudosos (duda sobre el golpe, no sobre una medida)",
-    "Pruebas del código en este PC"
+    "Golpes dudosos (duda sobre el golpe, no sobre una medida)"
    ],
    "n": 9,
-   "score": 0.7777777777777778,
+   "score": 0.8888888888888888,
    "accepted": false
   },
   {
@@ -364,12 +362,12 @@
  ],
  "domains": {
   "golpes": {
-   "ok": 22,
+   "ok": 23,
    "n": 27,
    "cells": 2,
    "unmeasured": 0,
    "accepted": 1,
-   "score": 0.8148148148148148
+   "score": 0.8518518518518519
   },
   "pantallas": {
    "ok": 53,
@@ -404,12 +402,12 @@
    "score": 1.0
   },
   "plataforma": {
-   "ok": 58,
+   "ok": 59,
    "n": 60,
    "cells": 4,
    "unmeasured": 1,
    "accepted": 2,
-   "score": 0.9666666666666667
+   "score": 0.9833333333333333
   },
   "exportacion": {
    "ok": 1,
@@ -438,12 +436,12 @@
  },
  "characteristics": {
   "funcional": {
-   "ok": 255,
+   "ok": 256,
    "n": 265,
    "cells": 8,
    "unmeasured": 0,
    "accepted": 7,
-   "score": 0.9622641509433962
+   "score": 0.9660377358490566
   },
   "exactitud": {
    "ok": 40,
@@ -462,12 +460,12 @@
    "score": 0.8421052631578947
   },
   "fiabilidad": {
-   "ok": 18,
+   "ok": 19,
    "n": 20,
    "cells": 2,
    "unmeasured": 0,
    "accepted": 1,
-   "score": 0.9
+   "score": 0.95
   },
   "rendimiento": {
    "ok": 21,
@@ -496,12 +494,12 @@
  },
  "layers": {
   "pc": {
-   "ok": 260,
+   "ok": 262,
    "n": 274,
    "cells": 12,
    "unmeasured": 2,
    "accepted": 7,
-   "score": 0.948905109489051
+   "score": 0.9562043795620438
   },
   "pantallas": {
    "ok": 54,
@@ -531,9 +529,9 @@
  "unmapped": {},
  "threshold": 0.95,
  "total": {
-  "ok": 380,
+  "ok": 382,
   "n": 402,
-  "score": 0.945273631840796,
+  "score": 0.9502487562189055,
   "cells": 25,
   "accepted": 12,
   "unmeasured": 7
