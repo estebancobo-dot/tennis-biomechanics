@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 23:20:53",
- "firma": "92c6a7db6509",
+ "at": "2026-11-11 23:21:03",
+ "firma": "7b1c8a57b774",
  "ejecutor": {
-  "vivo": true,
-  "pid": 10472,
-  "at": 1794435653.2381258
+  "vivo": false,
+  "pid": null,
+  "at": 1794435663.2422245
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-11 17:02:19"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 57,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script tiempos_etapas",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-11 23:21:00",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"tiempos_etapas\"]",
+   "source": "claude 212",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 56,
@@ -293,6 +312,34 @@
  ],
  "eventos": [
   {
+   "id": 219,
+   "job": null,
+   "at": "2026-11-11 23:21:03",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 218,
+   "job": null,
+   "at": "2026-11-11 23:21:03",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 217,
+   "job": null,
+   "at": "2026-11-11 23:21:00",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
+   "id": 216,
+   "job": 57,
+   "at": "2026-11-11 23:21:00",
+   "kind": "enviado",
+   "text": "tennisbio script tiempos_etapas (claude 212)"
+  },
+  {
    "id": 215,
    "job": null,
    "at": "2026-11-11 23:11:13",
@@ -473,34 +520,6 @@
    "at": "2026-11-11 21:02:29",
    "kind": "enviado",
    "text": "tennisbio script tiempos_etapas (claude 208)"
-  },
-  {
-   "id": 189,
-   "job": null,
-   "at": "2026-11-11 20:58:41",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 188,
-   "job": null,
-   "at": "2026-11-11 20:54:48",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 187,
-   "job": null,
-   "at": "2026-11-11 20:54:48",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 186,
-   "job": null,
-   "at": "2026-11-11 20:54:44",
-   "kind": "reiniciar",
-   "text": "ciclo"
   }
  ]
 }
