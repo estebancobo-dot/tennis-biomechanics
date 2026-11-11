@@ -1,5 +1,5 @@
-﻿commit: c20cbd3
-inicio: 2026-11-11T12:13:16
-fin: 2026-11-11T12:13:16
+﻿commit: 1cc10b6
+inicio: 2026-11-11T12:18:39
+fin: 2026-11-11T12:18:39
 codigo: 2
 error: failed to remove file `C:\tenis\tennis-biomech\.venv\Lib\site-packages\../../Scripts/tennisbio.exe`: The process cannot access the file because it is being used by another process. (os error 32)
