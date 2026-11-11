@@ -40,19 +40,24 @@ def _jobs(args) -> int:
         return O.serve(cfg, once=args.once, status_file=status_file)
     # the options can come before or after the action's own words (argparse.REMAINDER keeps them all): parsed here;
     # what follows «--» is the tennisbio command of «submit» (its own options are never read as ours)
+    # 11-11: PowerShell eats «--» when the cycle calls this through a function (request 189: «unrecognized arguments:
+    # --match …»), so only our two options are taken out, wherever they are, and every other word, options included, is
+    # the action's (the tennisbio command of «submit»)
     rest = list(args.rest or [])
     cmd_args: list[str] = []
     if "--" in rest:
         i = rest.index("--")
         rest, cmd_args = rest[:i], rest[i + 1:]
-    sp = argparse.ArgumentParser(prog="tennisbio jobs", add_help=False)
-    sp.add_argument("--source", default=None)
-    sp.add_argument("--json", default=None)
-    sp.add_argument("pos", nargs="*")
-    ns = sp.parse_args(rest)
-    args.source = ns.source or args.source
-    args.json = ns.json or args.json
-    rest = ns.pos
+    words: list[str] = []
+    k = 0
+    while k < len(rest):
+        if rest[k] in ("--source", "--json") and k + 1 < len(rest):
+            setattr(args, rest[k][2:], rest[k + 1])
+            k += 2
+            continue
+        words.append(rest[k])
+        k += 1
+    rest = words
     if args.action == "run-one":
         return O.run_one(cfg, int(rest[0]))
     db = O.open_db(cfg)

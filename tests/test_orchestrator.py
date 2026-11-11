@@ -197,3 +197,13 @@ def test_end_to_end_submit_as_the_chat_pause_in_the_app_resume_as_the_chat(env, 
         stop.set()
         t.join(30)
     assert res["ok"], res
+
+
+def test_submit_without_the_double_dash_as_powershell_passes_it(env):
+    # 11-11, request 189: PowerShell removed «--» and «--match ID» was taken as an option of the queue
+    from tennisbio import cli
+    assert cli.main(["jobs", "submit", "--source", "claude 191", "run", "--match", "m-1", "--force"]) == 0
+    db = O.open_db(env)
+    row = db.q("SELECT * FROM jobs ORDER BY id DESC LIMIT 1")[0]
+    assert json.loads(row["args"]) == ["run", "--match", "m-1", "--force"] and row["source"] == "claude 191"
+    db.close()

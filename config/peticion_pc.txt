@@ -758,3 +758,13 @@ accion: trabajo
 comando: flujo informe
 # 189-190 (11-11): tarea 6 del paquete B8. Solo Rybakina-Pegula por la cola (identidad v10 con el clic, saques), y
 # despues el flujo "informe" (informe y auditoria): identidad >= 95 %, saques >= 85 %. No es el analisis completo
+---
+id: 191
+accion: trabajo
+comando: run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
+---
+id: 192
+accion: trabajo
+comando: flujo informe
+# 191-192 (11-11): la 189 no entro en la cola (PowerShell quito el "--" y --match se leyo como opcion de la cola).
+# Otra vez: solo Rybakina-Pegula por la cola y despues el flujo "informe" (informe y auditoria)
