@@ -13,19 +13,19 @@
  "live": {
   "opened": true,
   "ready": true,
-  "bridge": "0.0.1 · ba6ec8e · 22 partidos",
+  "bridge": "0.0.1 · 59c6ba5 · 22 partidos",
   "step": "hecho",
-  "page_kb": 164,
+  "page_kb": 168,
   "events": [
-   "before_show 0.6 s",
-   "shown 0.6 s",
-   "before_load 1.1 s",
-   "loaded 1.1 s"
+   "before_show 0.7 s",
+   "shown 0.7 s",
+   "before_load 1.2 s",
+   "loaded 1.2 s"
   ]
  },
  "backup": {
   "ficheros": 18237,
-  "bytes": 39409351146
+  "bytes": 39409351247
  },
  "index": {
   "matches": 22,

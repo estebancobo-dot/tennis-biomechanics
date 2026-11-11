@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261111130109
+Start time: 20261111130748
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 2420
+Process ID: 19020
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -16,9 +16,11 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Registro enviado a Claude (no hace falta copiar nada).
-Empezado 2026-11-11 13:00:58 - terminado 2026-11-11 13:01:18 - duracion total 20 s
+
+==> [2026-11-11 13:07:48] Peticion 188: pantallas de la aplicacion en output\capturas_app (registro: C:\tenis\output\prueba_ventana.log)
+    (paso terminado en 32 s)
+Empezado 2026-11-11 13:07:42 - terminado 2026-11-11 13:08:20 - duracion total 38 s
 **********************
 Windows PowerShell transcript end
-End time: 20261111130118
+End time: 20261111130820
 **********************
