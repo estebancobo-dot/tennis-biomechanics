@@ -1,13 +1,32 @@
 {
- "at": "2026-11-11 13:30:32",
- "firma": "b92295f18e29",
+ "at": "2026-11-11 13:30:44",
+ "firma": "ce88ef8d62c8",
  "ejecutor": {
-  "vivo": false,
-  "pid": null,
-  "at": 1794400224.670555
+  "vivo": true,
+  "pid": 6760,
+  "at": 1794400233.9143796
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 39,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-11 13:30:41",
+   "started": "2026-11-11 13:30:43",
+   "finished": null,
+   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
+   "source": "claude 191",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_39.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "zheng-qinwen-elena-rybakina",
   "etapa": "fine",
@@ -293,6 +312,27 @@
  ],
  "eventos": [
   {
+   "id": 40,
+   "job": 39,
+   "at": "2026-11-11 13:30:43",
+   "kind": "empieza",
+   "text": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final"
+  },
+  {
+   "id": 39,
+   "job": 39,
+   "at": "2026-11-11 13:30:41",
+   "kind": "enviado",
+   "text": "tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final (claude 191)"
+  },
+  {
+   "id": 38,
+   "job": null,
+   "at": "2026-11-11 13:30:33",
+   "kind": "ejecutor",
+   "text": "arranca (pid 6760)"
+  },
+  {
    "id": 37,
    "job": null,
    "at": "2026-11-11 13:30:24",
@@ -480,27 +520,6 @@
    "at": "2026-11-11 12:54:34",
    "kind": "ejecutor",
    "text": "arranca (pid 9200)"
-  },
-  {
-   "id": 10,
-   "job": null,
-   "at": "2026-11-11 12:54:22",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 9,
-   "job": null,
-   "at": "2026-11-11 12:54:22",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 8,
-   "job": null,
-   "at": "2026-11-11 12:54:15",
-   "kind": "reiniciar",
-   "text": "ciclo"
   }
  ]
 }

@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261111131719
+Start time: 20261111133040
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 1928
+Process ID: 14076
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -15,19 +15,4 @@ CLRVersion: 4.0.30319.42000
 WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
-**********************
-uv.exe : usage: tennisbio jobs [--source SOURCE] [--json JSON] [pos ...]
-At C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1:102 char:15
-+ ... nction Tb { & uv --directory $RepoDir run --no-sync python -m tennisb ...
-+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (usage: tennisbi...JSON] [pos ...]:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
-tennisbio jobs: error: unrecognized arguments: --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
-Registro enviado a Claude (no hace falta copiar nada).
-
-Registro enviado a Claude (no hace falta copiar nada).
-Empezado 2026-11-11 13:17:08 - terminado 2026-11-11 13:17:38 - duracion total 30 s
-**********************
-Windows PowerShell transcript end
-End time: 20261111131738
 **********************
