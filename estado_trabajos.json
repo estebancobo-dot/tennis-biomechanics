@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 15:24:40",
- "firma": "8d4f8535f0e7",
+ "at": "2026-11-11 15:26:50",
+ "firma": "39d205e785ef",
  "ejecutor": {
-  "vivo": true,
-  "pid": 8984,
-  "at": 1794407080.0955153
+  "vivo": false,
+  "pid": null,
+  "at": 1794407210.1365442
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-11 15:08:18"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 46,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_identity --match pegula --n 12",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-11 15:26:45",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"diag_identity\", \"--match\", \"pegula\", \"--n\", \"12\"]",
+   "source": "claude 198",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 45,
@@ -293,6 +312,34 @@
  ],
  "eventos": [
   {
+   "id": 103,
+   "job": null,
+   "at": "2026-11-11 15:26:50",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 102,
+   "job": null,
+   "at": "2026-11-11 15:26:50",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 101,
+   "job": 46,
+   "at": "2026-11-11 15:26:45",
+   "kind": "enviado",
+   "text": "tennisbio script diag_identity --match pegula --n 12 (claude 198)"
+  },
+  {
+   "id": 100,
+   "job": null,
+   "at": "2026-11-11 15:26:40",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 99,
    "job": null,
    "at": "2026-11-11 15:21:20",
@@ -473,34 +520,6 @@
    "at": "2026-11-11 14:50:55",
    "kind": "enviado",
    "text": "tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final (claude 196)"
-  },
-  {
-   "id": 73,
-   "job": null,
-   "at": "2026-11-11 14:50:54",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 72,
-   "job": null,
-   "at": "2026-11-11 14:50:49",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 71,
-   "job": null,
-   "at": "2026-11-11 14:50:49",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 70,
-   "job": null,
-   "at": "2026-11-11 14:50:49",
-   "kind": "ejecutor",
-   "text": "arranca (pid 15864)"
   }
  ]
 }
