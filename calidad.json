@@ -4,18 +4,17 @@
    "dominio": "golpes",
    "caracteristica": "funcional",
    "capa": "pc",
-   "ok": 22,
-   "aviso": 4,
+   "ok": 25,
+   "aviso": 3,
    "falta": 0,
    "pocos datos": 0,
    "fallan": [
     "Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina",
     "Saques por punto de su saque: sin-fecha_f43dd2_rybakina",
-    "Saques por punto de su saque: sin-fecha_584c5b_rybakina",
-    "Identidad en los cambios de lado: sin-fecha_49723c_rybakina"
+    "Saques por punto de su saque: sin-fecha_584c5b_rybakina"
    ],
-   "n": 26,
-   "score": 0.8461538461538461,
+   "n": 28,
+   "score": 0.8928571428571429,
    "accepted": false
   },
   {
@@ -159,27 +158,30 @@
    "dominio": "plataforma",
    "caracteristica": "fiabilidad",
    "capa": "pc",
-   "ok": 8,
-   "aviso": 1,
-   "falta": 0,
+   "ok": 10,
+   "aviso": 3,
+   "falta": 1,
    "pocos datos": 0,
    "fallan": [
-    "Golpes dudosos (duda sobre el golpe, no sobre una medida)"
+    "Golpes dudosos (duda sobre el golpe, no sobre una medida)",
+    "Registros con fecha y duración",
+    "Orquestador: espera hasta empezar cada trabajo",
+    "Comprobaciones que saben fallar"
    ],
-   "n": 9,
-   "score": 0.8888888888888888,
+   "n": 14,
+   "score": 0.7142857142857143,
    "accepted": false
   },
   {
    "dominio": "plataforma",
    "caracteristica": "rendimiento",
    "capa": "pc",
-   "ok": 21,
+   "ok": 17,
    "aviso": 0,
    "falta": 0,
-   "pocos datos": 0,
+   "pocos datos": 5,
    "fallan": [],
-   "n": 21,
+   "n": 17,
    "score": 1.0,
    "accepted": true
   },
@@ -226,14 +228,17 @@
    "dominio": "datos",
    "caracteristica": "funcional",
    "capa": "pc",
-   "ok": 3,
+   "ok": 2,
    "aviso": 0,
-   "falta": 0,
+   "falta": 2,
    "pocos datos": 0,
-   "fallan": [],
-   "n": 3,
-   "score": 1.0,
-   "accepted": true
+   "fallan": [
+    "Aplicación: un partido nuevo de principio a fin",
+    "Lista de partidos: rival, torneo, ronda y fecha"
+   ],
+   "n": 4,
+   "score": 0.5,
+   "accepted": false
   },
   {
    "dominio": "datos",
@@ -362,12 +367,12 @@
  ],
  "domains": {
   "golpes": {
-   "ok": 23,
-   "n": 27,
+   "ok": 26,
+   "n": 29,
    "cells": 2,
    "unmeasured": 0,
    "accepted": 1,
-   "score": 0.8518518518518519
+   "score": 0.896551724137931
   },
   "pantallas": {
    "ok": 53,
@@ -402,12 +407,12 @@
    "score": 1.0
   },
   "plataforma": {
-   "ok": 59,
-   "n": 60,
+   "ok": 57,
+   "n": 61,
    "cells": 4,
    "unmeasured": 1,
    "accepted": 2,
-   "score": 0.9833333333333333
+   "score": 0.9344262295081968
   },
   "exportacion": {
    "ok": 1,
@@ -418,12 +423,12 @@
    "score": 1.0
   },
   "datos": {
-   "ok": 14,
-   "n": 14,
+   "ok": 13,
+   "n": 15,
    "cells": 3,
    "unmeasured": 1,
-   "accepted": 2,
-   "score": 1.0
+   "accepted": 1,
+   "score": 0.8666666666666667
   },
   "modelos": {
    "ok": 21,
@@ -436,12 +441,12 @@
  },
  "characteristics": {
   "funcional": {
-   "ok": 256,
-   "n": 265,
+   "ok": 258,
+   "n": 268,
    "cells": 8,
    "unmeasured": 0,
-   "accepted": 7,
-   "score": 0.9660377358490566
+   "accepted": 6,
+   "score": 0.9626865671641791
   },
   "exactitud": {
    "ok": 40,
@@ -460,16 +465,16 @@
    "score": 0.8421052631578947
   },
   "fiabilidad": {
-   "ok": 19,
-   "n": 20,
+   "ok": 21,
+   "n": 25,
    "cells": 2,
    "unmeasured": 0,
    "accepted": 1,
-   "score": 0.95
+   "score": 0.84
   },
   "rendimiento": {
-   "ok": 21,
-   "n": 21,
+   "ok": 17,
+   "n": 17,
    "cells": 3,
    "unmeasured": 2,
    "accepted": 1,
@@ -495,11 +500,11 @@
  "layers": {
   "pc": {
    "ok": 262,
-   "n": 274,
+   "n": 278,
    "cells": 12,
    "unmeasured": 2,
-   "accepted": 7,
-   "score": 0.9562043795620438
+   "accepted": 6,
+   "score": 0.9424460431654677
   },
   "pantallas": {
    "ok": 54,
@@ -530,10 +535,10 @@
  "threshold": 0.95,
  "total": {
   "ok": 382,
-  "n": 402,
-  "score": 0.9502487562189055,
+  "n": 406,
+  "score": 0.9408866995073891,
   "cells": 25,
-  "accepted": 12,
+  "accepted": 11,
   "unmeasured": 7
  }
 }

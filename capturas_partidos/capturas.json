@@ -30,7 +30,7 @@
   },
   {
    "title": "Sus golpes (Videoteca y pista)",
-   "text_chars": 8357,
+   "text_chars": 8534,
    "charts": 1,
    "videos": 12,
    "black_canvases": 0,
@@ -57,7 +57,7 @@
   },
   {
    "title": "Análisis de golpe",
-   "text_chars": 5859,
+   "text_chars": 5861,
    "charts": 33,
    "videos": 13,
    "black_canvases": 0,
@@ -85,7 +85,7 @@
   },
   {
    "title": "Comparar dos golpes",
-   "text_chars": 68630,
+   "text_chars": 73872,
    "charts": 2,
    "videos": 12,
    "black_canvases": 0,
@@ -112,13 +112,13 @@
   },
   {
    "title": "Conclusiones (Panel y Comparativas)",
-   "text_chars": 5606,
+   "text_chars": 5655,
    "charts": 22,
    "videos": 12,
    "black_canvases": 0,
    "videos_failed": [],
    "empty_msgs": [],
-   "dashes": 12,
+   "dashes": 4,
    "ball_moments": 0,
    "feet_cycle": 0,
    "ball_measures": 0,
@@ -139,7 +139,7 @@
   },
   {
    "title": "Tabla de golpes (Explorador)",
-   "text_chars": 5293,
+   "text_chars": 5466,
    "charts": 0,
    "videos": 12,
    "black_canvases": 0,
@@ -220,7 +220,7 @@
   },
   {
    "title": "Datos del análisis",
-   "text_chars": 2685,
+   "text_chars": 2747,
    "charts": 0,
    "videos": 12,
    "black_canvases": 0,

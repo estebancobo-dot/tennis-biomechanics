@@ -3,10 +3,10 @@
  "strokes": 561,
  "near": 324,
  "summary": {
-  "ok": 474,
-  "falta": 29,
-  "pocos datos": 56,
-  "aviso": 124
+  "ok": 459,
+  "falta": 37,
+  "pocos datos": 61,
+  "aviso": 138
  },
  "items": [
   {
@@ -1092,8 +1092,8 @@
    "req": 1,
    "area": "Golpes",
    "name": "Identidad en los cambios de lado: sin-fecha_49723c_rybakina",
-   "status": "aviso",
-   "detail": "313 de 320 planos decididos (98%; objetivo ≥ 95%); misma ropa dentro de un juego 92% (objetivo ≥ 95%); sus golpes: 175 cerca y 141 lejos (45% en el lado con menos); dudosos 0, sin decidir 7; con su clic 313 · falla: ropa igual dentro de un juego 92% < 95%. Sin verdad anotada: coherencia, no validación"
+   "status": "ok",
+   "detail": "313 de 320 planos decididos (98%; objetivo ≥ 95%); misma ropa dentro de un juego 92% (objetivo ≥ 95%); sus golpes: 175 cerca y 141 lejos (45% en el lado con menos); dudosos 0, sin decidir 7; con su clic 313. Sin verdad anotada: coherencia, no validación"
   },
   {
    "req": 1,
@@ -8392,7 +8392,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Sus golpes (Videoteca y pista)»",
    "status": "ok",
-   "detail": "8357 caracteres de texto, 12 vídeos, 1 gráficos",
+   "detail": "8534 caracteres de texto, 12 vídeos, 1 gráficos",
    "file": "pantalla_2_videoteca.jpg"
   },
   {
@@ -8400,7 +8400,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Análisis de golpe»",
    "status": "ok",
-   "detail": "5859 caracteres de texto, 13 vídeos, 33 gráficos",
+   "detail": "5861 caracteres de texto, 13 vídeos, 33 gráficos",
    "file": "pantalla_3_golpe.jpg"
   },
   {
@@ -8408,7 +8408,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Comparar dos golpes»",
    "status": "ok",
-   "detail": "68630 caracteres de texto, 12 vídeos, 2 gráficos",
+   "detail": "73872 caracteres de texto, 12 vídeos, 2 gráficos",
    "file": "pantalla_4_comparar.jpg"
   },
   {
@@ -8423,7 +8423,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "5606 caracteres de texto, 12 vídeos, 22 gráficos",
+   "detail": "5655 caracteres de texto, 12 vídeos, 22 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -8431,7 +8431,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Tabla de golpes (Explorador)»",
    "status": "ok",
-   "detail": "5293 caracteres de texto, 12 vídeos, 0 gráficos",
+   "detail": "5466 caracteres de texto, 12 vídeos, 0 gráficos",
    "file": "pantalla_6_explorador.jpg"
   },
   {
@@ -8455,7 +8455,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2685 caracteres de texto, 12 vídeos, 0 gráficos",
+   "detail": "2747 caracteres de texto, 12 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -8713,16 +8713,16 @@
   {
    "req": 5,
    "area": "Automático",
-   "name": "Nada pide revisión manual",
+   "name": "Golpes con dudas marcadas (se enseñan, no se piden)",
    "status": "ok",
    "detail": "370 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario"
   },
   {
    "req": 9,
-   "area": "Rendimiento",
+   "area": "Rendimiento (información)",
    "name": "Tiempo: sin-fecha_f43dd2_rybakina",
-   "status": "ok",
-   "detail": "25 min para 71 min de vídeo ≈ 1.2 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejecución)"
+   "status": "pocos datos",
+   "detail": "25 min para 71 min de vídeo ≈ 1.2 h para un partido de 3,5 h, pero no es desde cero: releyeron sus datos guardados spotting, fine. La cifra que cuenta es «Tiempo desde cero»"
   },
   {
    "req": 9,
@@ -8733,10 +8733,10 @@
   },
   {
    "req": 9,
-   "area": "Rendimiento",
+   "area": "Rendimiento (información)",
    "name": "Tiempo: sin-fecha_584c5b_rybakina",
-   "status": "ok",
-   "detail": "47 min para 117 min de vídeo ≈ 1.4 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejecución)"
+   "status": "pocos datos",
+   "detail": "47 min para 117 min de vídeo ≈ 1.4 h para un partido de 3,5 h, pero no es desde cero: releyeron sus datos guardados spotting, fine. La cifra que cuenta es «Tiempo desde cero»"
   },
   {
    "req": 9,
@@ -8747,10 +8747,10 @@
   },
   {
    "req": 9,
-   "area": "Rendimiento",
+   "area": "Rendimiento (información)",
    "name": "Tiempo: sin-fecha_580c6f_rybakina",
-   "status": "ok",
-   "detail": "56 min para 133 min de vídeo ≈ 1.5 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejecución)"
+   "status": "pocos datos",
+   "detail": "56 min para 133 min de vídeo ≈ 1.5 h para un partido de 3,5 h, pero no es desde cero: releyeron sus datos guardados spotting, fine. La cifra que cuenta es «Tiempo desde cero»"
   },
   {
    "req": 9,
@@ -8761,10 +8761,10 @@
   },
   {
    "req": 9,
-   "area": "Rendimiento",
+   "area": "Rendimiento (información)",
    "name": "Tiempo: sin-fecha_b8b713_rybakina",
-   "status": "ok",
-   "detail": "83 min para 210 min de vídeo ≈ 1.4 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejecución)"
+   "status": "pocos datos",
+   "detail": "83 min para 210 min de vídeo ≈ 1.4 h para un partido de 3,5 h, pero no es desde cero: releyeron sus datos guardados spotting, fine. La cifra que cuenta es «Tiempo desde cero»"
   },
   {
    "req": 9,
@@ -8775,10 +8775,10 @@
   },
   {
    "req": 9,
-   "area": "Rendimiento",
+   "area": "Rendimiento (información)",
    "name": "Tiempo: sin-fecha_49723c_rybakina",
-   "status": "ok",
-   "detail": "67 min para 112 min de vídeo ≈ 2.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejecución)"
+   "status": "pocos datos",
+   "detail": "67 min para 112 min de vídeo ≈ 2.1 h para un partido de 3,5 h, pero no es desde cero: releyeron sus datos guardados spotting. La cifra que cuenta es «Tiempo desde cero»"
   },
   {
    "req": 9,
@@ -8795,6 +8795,13 @@
    "detail": "6 páginas, 1.1 MB"
   },
   {
+   "req": 5,
+   "area": "Automático",
+   "name": "Nada pide revisión manual",
+   "status": "ok",
+   "detail": "ningún trabajo espera al usuario en la aplicación (el clic de quién es ella no cuenta)"
+  },
+  {
    "req": 3,
    "area": "Validación",
    "name": "Validación con clips anotados (F3Set)",
@@ -8806,8 +8813,8 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 90f16b0 (2026-11-11T16:15:53): 981 bien, 0 fallan, 0 errores",
-   "passed": 981,
+   "detail": "código 7a37ec9 (2026-11-11T23:21:47): 998 bien, 0 fallan, 0 errores",
+   "passed": 998,
    "failed": 0
   },
   {
@@ -9038,15 +9045,15 @@
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
-   "status": "ok",
-   "detail": "63 de 63 registros con fecha de inicio y de fin o duración"
+   "status": "falta",
+   "detail": "64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T16:50:56); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "47 carpetas, 34.1 GB en total (2026-11-11T23:42:43); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -9067,14 +9074,42 @@
    "area": "Aplicación",
    "name": "Aplicación: análisis en su índice",
    "status": "ok",
-   "detail": "2 análisis y 22 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)"
+   "detail": "2 análisis y 24 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)"
   },
   {
    "req": 5,
    "area": "Aplicación",
    "name": "Aplicación: un partido nuevo de principio a fin",
+   "status": "falta",
+   "detail": "terminó 2026-11-11T20:54:10 en 79.1 min; análisis actualizado; errores: Partido prueba-app-35m: salida de cada etapa, ventanas y series: 17 ficheros de etapa, 119 golpes con ventana y serie; faltan o están vacíos: fine_opponent/strokes_opponent.json"
+  },
+  {
+   "req": 5,
+   "area": "Aplicación",
+   "name": "Lista de partidos: rival, torneo, ronda y fecha",
+   "status": "falta",
+   "detail": "6 partidos; sin rival: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…); sin torneo: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…); sin ronda: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…); sin fecha: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…)"
+  },
+  {
+   "req": 5,
+   "area": "Orquestador",
+   "name": "Orquestador: prueba de extremo a extremo",
    "status": "ok",
-   "detail": "terminó 2026-11-07T17:47:21 en 62.6 min; análisis actualizado"
+   "detail": "5 de 5 comprobaciones bien; termina 2026-11-11T17:19:19"
+  },
+  {
+   "req": 5,
+   "area": "Orquestador",
+   "name": "Orquestador: ejecutor vivo cuando hay trabajo",
+   "status": "ok",
+   "detail": "ejecutor vivo; 0 trabajos esperando"
+  },
+  {
+   "req": 5,
+   "area": "Orquestador",
+   "name": "Orquestador: espera hasta empezar cada trabajo",
+   "status": "aviso",
+   "detail": "30 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min"
   },
   {
    "req": 5,
@@ -9365,17 +9400,24 @@
   },
   {
    "req": 9,
+   "area": "Rendimiento",
+   "name": "Tiempo desde cero",
+   "status": "ok",
+   "detail": "49 min para 35 min de vídeo (1.41 veces) ≈ 4.9 h para un partido de 3,5 h (objetivo ≤ 8.0 h); smoke_tennis-yusipopen-final-sobolenko-rybakin, 2026-11-11 22:54:13; las que más tardan: fine 20 min, spotting 11 min, players 7 min, scenes 4 min"
+  },
+  {
+   "req": 9,
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-11_1700.csv (mín/media/máx): elena-rybakina-jessica-pegula- fine_doubtful (0.2 min): CPU 32/32/32 %, iGPU 99/99/99 %, RAM máx 10.3 GB → iGPU al límite"
+   "detail": "recursos_2026-11-11_1700.csv (mín/media/máx): elena-rybakina-jessica-pegula- fine_doubtful (0.2 min): CPU 32/32/32 %, iGPU 99/99/99 %, RAM máx 10.3 GB → iGPU al límite; más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-11_2339.csv, recursos_2026-11-11_2321.csv, recursos_2026-11-11_2143.csv"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 11-11 16:28, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 11-11 23:38, empezó a los 0.2 min; el PC estaba con otro trabajo hasta las 23:39 (1.2 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -9383,6 +9425,20 @@
    "name": "Golpes inventados: precisión en F3Set ≥ 0.94",
    "status": "ok",
    "detail": "precisión 0.942, encontrados 466 de 517 (90%) en recall_validation_detector.json"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Golpes encontrados frente a F3Set (detector del análisis)",
+   "status": "ok",
+   "detail": "466 de 517 golpes suyos anotados encontrados (90%; objetivo ≥ 85%) en recall_validation_detector.json"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Tipo de golpe frente a F3Set (anotado)",
+   "status": "ok",
+   "detail": "derecha/revés con su tipo 327 de 336 (97.3%), saques 129 de 129 (100.0%); objetivo ≥ 95%; confusiones: forehand→backhand 5, forehand→overhead 2, backhand→forehand 2 (recall_validation_detector.json)"
   },
   {
    "req": 1,
@@ -9486,15 +9542,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe",
-   "status": "ok",
-   "detail": "2 comprobaciones: 2 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
-   "status": "ok",
-   "detail": "10 comprobaciones: 10 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 6 comprobaciones: 6 ok"
   },
   {
    "req": 11,
@@ -9536,7 +9592,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "ok",
-   "detail": "11 comprobaciones: 11 ok"
+   "detail": "7 comprobaciones: 7 ok"
   },
   {
    "req": 11,
@@ -9556,8 +9612,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#23 Seguir a la jugadora en los cambios de lado",
-   "status": "aviso",
-   "detail": "6 comprobaciones: 1 aviso, 5 ok; la peor: «Identidad en los cambios de lado: sin-fecha_49723c_rybakina» (313 de 320 planos decididos (98%; objetivo ≥ 95%); misma ropa dentro de un juego 92% (objetivo ≥ 95%); sus golpes: 175 c)"
+   "status": "ok",
+   "detail": "6 comprobaciones: 6 ok"
   },
   {
    "req": 11,
@@ -9599,7 +9655,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "ok",
-   "detail": "10 comprobaciones: 10 ok"
+   "detail": "6 comprobaciones: 6 ok"
   },
   {
    "req": 11,
@@ -9682,8 +9738,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#41 Exportación: cómo se ven y se graban",
-   "status": "ok",
-   "detail": "1 comprobaciones: 1 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -9752,8 +9808,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#51 El código de la prueba es el de los casos reales",
-   "status": "ok",
-   "detail": "1 comprobaciones: 1 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -9801,8 +9857,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#58 La IA más moderna posible",
-   "status": "ok",
-   "detail": "15 comprobaciones: 15 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 15 comprobaciones: 15 ok"
   },
   {
    "req": 11,
@@ -9829,8 +9885,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "ok",
-   "detail": "2 comprobaciones: 2 ok"
+   "status": "falta",
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)"
   },
   {
    "req": 11,
@@ -9892,8 +9948,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
-   "status": "ok",
-   "detail": "10 comprobaciones: 10 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 6 comprobaciones: 6 ok"
   },
   {
    "req": 11,
@@ -10179,8 +10235,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa",
-   "status": "ok",
-   "detail": "2 comprobaciones: 2 ok"
+   "status": "aviso",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (30 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -10221,8 +10277,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
-   "status": "ok",
-   "detail": "10 comprobaciones: 10 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 6 comprobaciones: 6 ok"
   },
   {
    "req": 11,
@@ -10291,8 +10347,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#137 hay algo que se pueda paralelizar ... threading (Chat, 13-10 18:31)",
-   "status": "ok",
-   "detail": "18 comprobaciones: 18 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 14 comprobaciones: 14 ok"
   },
   {
    "req": 11,
@@ -10390,7 +10446,7 @@
    "area": "Peticiones",
    "name": "#151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25)",
    "status": "aviso",
-   "detail": "6 comprobaciones: 1 aviso, 5 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 91-99 puntos jugados (16 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-138 saques (1 o 2 por punt)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 7 comprobaciones: 1 aviso, 6 ok; la peor: «Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina» (marcador: 91-99 puntos jugados (16 juegos leídos, 0 sin leer), 63 con su saque. Esperados: 63-138 saques (1 o 2 por punt)"
   },
   {
    "req": 11,
@@ -10452,8 +10508,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)",
-   "status": "ok",
-   "detail": "5 comprobaciones: 5 ok"
+   "status": "falta",
+   "detail": "5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (terminó 2026-11-11T20:54:10 en 79.1 min; análisis actualizado; errores: Partido prueba-app-35m: salida de cada etapa, ve)"
   },
   {
    "req": 11,
@@ -10907,15 +10963,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#225 La aplicación no se cuelga ni ralentiza el PC",
-   "status": "ok",
-   "detail": "3 comprobaciones: 3 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)",
-   "status": "ok",
-   "detail": "1 comprobaciones: 1 ok"
+   "status": "falta",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Lista de partidos: rival, torneo, ronda y fecha» (6 partidos; sin rival: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…); sin torneo: 6 (us-o)"
   },
   {
    "req": 11,
@@ -10935,15 +10991,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo",
-   "status": "ok",
-   "detail": "12 comprobaciones: 12 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 8 comprobaciones: 8 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
    "status": "ok",
-   "detail": "16 comprobaciones: 16 ok"
+   "detail": "12 comprobaciones: 12 ok"
   },
   {
    "req": 11,
@@ -10963,8 +11019,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#234 Prueba de valor de la aplicación con los datos reales",
-   "status": "ok",
-   "detail": "3 comprobaciones: 3 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
   },
   {
    "req": 11,
@@ -10984,8 +11040,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
-   "status": "ok",
-   "detail": "1 comprobaciones: 1 ok"
+   "status": "aviso",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (30 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -11019,8 +11075,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po",
-   "status": "aviso",
-   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok"
+   "status": "falta",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (terminó 2026-11-11T20:54:10 en 79.1 min; análisis actualizado; errores: Partido prueba-app-35m: salida de cada etapa, ve)"
   },
   {
    "req": 11,
@@ -11048,7 +11104,7 @@
    "area": "Peticiones",
    "name": "#246 Un único orquestador: mismo código y misma fuente de datos para la aplicación y el chat; monitorizar, pausar, ",
    "status": "aviso",
-   "detail": "A MEDIAS según el registro (#246); sin comprobación automática asignada"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (30 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
   },
   {
    "req": 11,
@@ -11069,7 +11125,7 @@
    "area": "Peticiones",
    "name": "#249 Parar el PC a distancia al momento, sin tener que apagarlo (Chat, 09-11)",
    "status": "aviso",
-   "detail": "A MEDIAS según el registro (#249); sin comprobación automática asignada"
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -11126,6 +11182,34 @@
    "name": "#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, ",
    "status": "falta",
    "detail": "SIN HACER según el registro (#257, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#258, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#259 Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir m",
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#259); sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#260 Revisar de verdad todo el bloque Base, no solo la velocidad: en cada tarea, si su prueba mide lo pedido, si fa",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 5,
+   "area": "Automático",
+   "name": "Comprobaciones que saben fallar",
+   "status": "aviso",
+   "detail": "sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)"
   }
  ]
 }
