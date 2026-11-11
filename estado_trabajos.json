@@ -1,32 +1,13 @@
 {
- "at": "2026-11-11 21:33:26",
- "firma": "5ffcae4b77cc",
+ "at": "2026-11-11 21:33:28",
+ "firma": "92c6a7db6509",
  "ejecutor": {
   "vivo": true,
   "pid": 1580,
   "at": 1794429196.381109
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 56,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script tiempos_etapas",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-11 21:33:24",
-   "started": "2026-11-11 21:33:26",
-   "finished": null,
-   "args": "[\"script\", \"tiempos_etapas\"]",
-   "source": "claude 210",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_56.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 56,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script tiempos_etapas",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-11 21:33:24",
+   "started": "2026-11-11 21:33:26",
+   "finished": "2026-11-11 21:33:27",
+   "args": "[\"script\", \"tiempos_etapas\"]",
+   "source": "claude 210",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_56.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 55,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_42.log",
    "paso": 3,
    "pasos": 3
-  },
-  {
-   "id": 41,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-11 14:26:59",
-   "started": "2026-11-11 14:27:03",
-   "finished": "2026-11-11 14:31:40",
-   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
-   "source": "claude 193",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_41.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 207,
+   "job": 56,
+   "at": "2026-11-11 21:33:28",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 206,
    "job": 56,
@@ -513,13 +501,6 @@
    "at": "2026-11-11 17:31:45",
    "kind": "reiniciar",
    "text": "ciclo"
-  },
-  {
-   "id": 177,
-   "job": 53,
-   "at": "2026-11-11 17:19:19",
-   "kind": "hecho",
-   "text": "código 0"
   }
  ]
 }
