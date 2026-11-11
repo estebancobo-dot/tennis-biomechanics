@@ -115,6 +115,26 @@ def clean_games(readings: list) -> list:
     return [r for i, r in enumerate(readings) if not r.get("games") or i in keep]
 
 
+def fill_parities(parities: list, mids_s: list[float], max_gap_s: float = 240.0) -> list:
+    """End changes for the runs where no scoreboard was read (11-11, Rybakina-Pegula: 62 of 320 runs undecided): a run
+    takes its neighbours' number when the nearest read run before it and the nearest after it say the same and are at
+    most max_gap_s apart (no change of ends fits in that time: it needs two games and the changeover). Otherwise it
+    stays unknown. Read runs never change."""
+    out = list(parities)
+    known = [i for i, p in enumerate(parities) if p is not None]
+    for i, p in enumerate(parities):
+        if p is not None:
+            continue
+        before = [k for k in known if k < i]
+        after = [k for k in known if k > i]
+        if not before or not after:
+            continue
+        a, b = before[-1], after[0]
+        if parities[a] == parities[b] and mids_s[b] - mids_s[a] <= max_gap_s:
+            out[i] = parities[a]
+    return out
+
+
 def decide_by_ends(parities: list, votes: list[tuple[int, bool]], min_share=0.75) -> bool | None:
     """Is the near player the target at an even number of end changes? One consistent vote is
     enough (the rule is exact); conflicting votes need a clear majority."""

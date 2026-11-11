@@ -92,3 +92,12 @@ def test_clean_games_drops_statistics_boxes_and_lost_set_columns():
     R = [{"t": 1, "games": [[5, 2]]}, {"t": 2, "games": [[6, 2]]}, {"t": 3, "games": [[6, 2], [0, 0]]}]
     assert len(clean_games(R)) == 3
     assert clean_games([]) == []
+
+
+def test_fill_parities_from_agreeing_neighbours_close_in_time():
+    # 11-11, Rybakina-Pegula: runs with no scoreboard read stayed undecided
+    from tennisbio.identity import fill_parities
+    P = [3, None, None, 3, None, 4, None, None]
+    t = [0, 30, 60, 90, 120, 150, 600, 700]
+    assert fill_parities(P, t) == [3, 3, 3, 3, None, 4, None, None]     # 3..4 differ; nothing after the last read
+    assert fill_parities([1, None, 1], [0, 100, 300]) == [1, None, 1]    # too far apart: a change of ends could fit

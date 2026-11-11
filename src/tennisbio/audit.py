@@ -706,7 +706,7 @@ def with_click(d: Path, summ: dict | None) -> dict | None:
     out = {**summ, "runs": len(runs), "decided": sum(r.get("near_is_target") is not None for r in runs),
            "none": sum(r.get("near_is_target") is None for r in runs), "click": int(why.get("by_click") or 0)}
     ck = ((summ.get("clothes") or {}).get("check") or {})
-    if ck.get("parity_agree") is not None and ck.get("parity_runs"):
+    if ck.get("parity_agree") is not None and ck.get("parity_runs") and ck.get("distinguishable") is not False:
         n = int(ck["parity_runs"])
         out.update(agree=int(round(float(ck["parity_agree"]) * n)), ends_won=n - int(round(float(ck["parity_agree"]) * n)),
                    clothes_won=0, doubtful=0)
@@ -728,7 +728,10 @@ def identity_item(match: str, summ: dict | None, sides: tuple[int, int] | None) 
     bad = []
     if decided < IDENTITY_DECIDED_MIN - 1e-9:
         bad.append(f"planos decididos {decided:.0%} < {IDENTITY_DECIDED_MIN:.0%}")
-    if agree is None or agree < IDENTITY_AGREE_MIN - 1e-9:
+    # 11-11: when the clothes do not tell the two players apart (both in white) their agreement with the end changes
+    # says nothing; the end changes and the user's click decide, and only the runs decided count
+    alike = ((summ.get("clothes") or {}).get("check") or {}).get("distinguishable") is False
+    if not alike and (agree is None or agree < IDENTITY_AGREE_MIN - 1e-9):
         bad.append("cambios de lado y ropa sin comparar" if agree is None else
                    f"cambios de lado y ropa de acuerdo {agree:.0%} < {IDENTITY_AGREE_MIN:.0%}")
     if same is not None and same < IDENTITY_SAME_GAME_MIN - 1e-9:

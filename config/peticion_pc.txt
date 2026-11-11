@@ -774,3 +774,13 @@ accion: trabajo
 comando: flujo informe
 # 191-192 (11-11): la 189 no entro en la cola (PowerShell quito el "--" y --match se leyo como opcion de la cola).
 # Otra vez: solo Rybakina-Pegula por la cola y despues el flujo "informe" (informe y auditoria)
+---
+id: 193
+accion: trabajo
+comando: run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
+---
+id: 194
+accion: trabajo
+comando: flujo informe
+# 193-194 (11-11): identidad v11 (los planos sin marcador toman los cambios de lado de sus vecinos si coinciden a menos
+# de 4 min). Pegula otra vez por la cola y su informe y auditoria: identidad >= 95 % de planos decididos
