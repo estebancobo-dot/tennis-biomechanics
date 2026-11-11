@@ -1,5 +1,5 @@
 {
- "at": "2026-11-11 12:54:22",
+ "at": "2026-11-11 12:54:33",
  "firma": "81a86f89ebcd",
  "ejecutor": {
   "vivo": false,
@@ -34,7 +34,9 @@
    "finished": "2026-11-11 12:35:20",
    "args": "[\"registry\", \"list\"]",
    "source": "claude 184",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_36.log"
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_36.log",
+   "paso": 0,
+   "pasos": 0
   },
   {
    "id": 35,
@@ -50,7 +52,9 @@
    "finished": "2026-11-09 19:06:30",
    "args": "",
    "source": "",
-   "log": ""
+   "log": "",
+   "paso": 0,
+   "pasos": 0
   },
   {
    "id": 34,
@@ -66,7 +70,9 @@
    "finished": "2026-11-09 19:04:00",
    "args": "",
    "source": "",
-   "log": ""
+   "log": "",
+   "paso": 0,
+   "pasos": 0
   },
   {
    "id": 33,
@@ -82,7 +88,9 @@
    "finished": "2026-11-09 13:24:16",
    "args": "",
    "source": "",
-   "log": ""
+   "log": "",
+   "paso": 0,
+   "pasos": 0
   },
   {
    "id": 32,
@@ -98,7 +106,9 @@
    "finished": "2026-11-09 13:23:52",
    "args": "",
    "source": "",
-   "log": ""
+   "log": "",
+   "paso": 0,
+   "pasos": 0
   },
   {
    "id": 31,
@@ -114,7 +124,9 @@
    "finished": "2026-11-09 13:23:37",
    "args": "",
    "source": "",
-   "log": ""
+   "log": "",
+   "paso": 0,
+   "pasos": 0
   },
   {
    "id": 30,
@@ -130,7 +142,9 @@
    "finished": "2026-11-09 13:23:24",
    "args": "",
    "source": "",
-   "log": ""
+   "log": "",
+   "paso": 0,
+   "pasos": 0
   },
   {
    "id": 29,
@@ -146,7 +160,9 @@
    "finished": "2026-11-09 06:49:00",
    "args": "",
    "source": "",
-   "log": ""
+   "log": "",
+   "paso": 0,
+   "pasos": 0
   },
   {
    "id": 28,
@@ -162,7 +178,9 @@
    "finished": "2026-11-09 06:24:33",
    "args": "",
    "source": "",
-   "log": ""
+   "log": "",
+   "paso": 0,
+   "pasos": 0
   },
   {
    "id": 27,
@@ -178,7 +196,9 @@
    "finished": "2026-11-09 04:39:37",
    "args": "",
    "source": "",
-   "log": ""
+   "log": "",
+   "paso": 0,
+   "pasos": 0
   },
   {
    "id": 26,
@@ -194,7 +214,9 @@
    "finished": "2026-11-09 02:46:46",
    "args": "",
    "source": "",
-   "log": ""
+   "log": "",
+   "paso": 0,
+   "pasos": 0
   },
   {
    "id": 25,
@@ -210,7 +232,9 @@
    "finished": "2026-11-08 22:45:05",
    "args": "",
    "source": "",
-   "log": ""
+   "log": "",
+   "paso": 0,
+   "pasos": 0
   },
   {
    "id": 24,
@@ -226,7 +250,9 @@
    "finished": "2026-11-08 21:06:59",
    "args": "",
    "source": "",
-   "log": ""
+   "log": "",
+   "paso": 0,
+   "pasos": 0
   },
   {
    "id": 23,
@@ -242,7 +268,9 @@
    "finished": "2026-11-08 20:08:45",
    "args": "",
    "source": "",
-   "log": ""
+   "log": "",
+   "paso": 0,
+   "pasos": 0
   },
   {
    "id": 22,
@@ -258,7 +286,9 @@
    "finished": "2026-11-08 18:12:26",
    "args": "",
    "source": "",
-   "log": ""
+   "log": "",
+   "paso": 0,
+   "pasos": 0
   }
  ],
  "eventos": [
