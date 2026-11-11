@@ -1,10 +1,10 @@
 # Revisión automática: FALLOS
 
-386 cumplidos · 27 no cumplidos · 102 sin golpes suficientes · 111 avisos (antes: 386 cumplidos, 27 no cumplidos)
+386 cumplidos · 27 no cumplidos · 102 sin golpes suficientes · 112 avisos (antes: 386 cumplidos, 27 no cumplidos)
 
-## Peticiones del usuario SIN TERMINAR: 116 de 255
+## Peticiones del usuario SIN TERMINAR: 117 de 256
 
-Registro `docs/peticiones_usuario.md`: 128 hechas · 97 a medias · 19 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 19 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
 - **#189 [FALTA]** «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4) — falta: No está en `learn.py`.
@@ -122,16 +122,17 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 97 a medias · 19 sin hacer
 - **#249 [PARCIAL]** Parar el PC a distancia al momento, sin tener que apagarlo (Chat, 09-11) — falta: Fase D: la parada por la cola del ejecutor único (en segundos).
 - **#250 [PARCIAL]** Si se acaban los tokens se puede apagar todo y seguir después sin perder nada (Chat, 10-11) — falta: Fase D: la cola del ejecutor sobrevive a reinicios; documentar el punto exacto donde seguir en cada cambio.
 - **#251 [PARCIAL]** Tareas nuevas asociadas a peticiones y al plan, encadenadas sin olvidarse (Chat, 10-11) — falta: Mantener B8 y la tabla al día en cada cambio.
+- **#256 [PARCIAL]** Modelo de calidad de la aplicación como un cubo: dominio (taxonomía del golpe, situaciones, identidad, catálogo y registro, aprendizaje, pa… — falta: Hecho el cálculo (dominio × característica × capa, «sin medir» para las casillas vacías; tras cada auditoría en los flujos). Falta: métricas para las 7 casilla…
 
 
 ## No cumplidos
 
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 609 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
-- **Pruebas del código en este PC**: código 47c499e (2026-11-11T13:23:00): 972 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
+- **Pruebas del código en este PC**: código dadf175 (2026-11-11T15:35:53): 979 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
 - **Registros con fecha y duración**: 61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
-- **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 47c499e (2026-11-11T13:23:00): 972 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-- **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 47c499e (2026-11-11T13:23:00): 972 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-- **#51 El código de la prueba es el de los casos reales**: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 47c499e (2026-11-11T13:23:00): 972 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código dadf175 (2026-11-11T15:35:53): 979 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código dadf175 (2026-11-11T15:35:53): 979 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- **#51 El código de la prueba es el de los casos reales**: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código dadf175 (2026-11-11T15:35:53): 979 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
 - **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -147,9 +148,13 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 97 a medias · 19 sin hacer
 - **#223 Revés y derecha cortados**: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
 - **#224 Saques: plano, cortado o kick; primero o segundo**: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
 - **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
-- **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 47c499e (2026-11-11T13:23:00): 972 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código dadf175 (2026-11-11T15:35:53): 979 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 - **#252 Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps profesionales, UX y **: SIN HACER según el registro (#252, docs/peticiones_usuario.md)
 - **#254 Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista lateral de entreno **: SIN HACER según el registro (#254, docs/peticiones_usuario.md)
 - **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
+
+## Comprobaciones nuevas
+
+- #256 Modelo de calidad de la aplicación como un cubo: dominio (taxonomía del golpe, situaciones, identidad, catálog: aviso (A MEDIAS según el registro (#256); sin comprobación automática asignada)
