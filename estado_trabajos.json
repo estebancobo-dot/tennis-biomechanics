@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 13:01:13",
- "firma": "e254018c8a55",
+ "at": "2026-11-11 13:01:18",
+ "firma": "0dfbbf74330a",
  "ejecutor": {
   "vivo": true,
   "pid": 9200,
-  "at": 1794398454.7107682
+  "at": 1794398474.7143571
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,8 @@
   "quedan_s": 130,
   "hora": "2026-11-09 23:39:49"
  },
- "pendientes": [
+ "pendientes": [],
+ "recientes": [
   {
    "id": 37,
    "kind": "flujo",
@@ -26,19 +27,17 @@
    "player": null,
    "stroke": null,
    "reason": "flujo «prueba»: Comprobacion del ejecutor y de los flujos: dos pasos ligeros",
-   "state": "pendiente",
-   "message": "",
+   "state": "hecho",
+   "message": "2 pasos",
    "created": "2026-11-11 13:01:10",
-   "started": null,
-   "finished": null,
+   "started": "2026-11-11 13:01:14",
+   "finished": "2026-11-11 13:01:17",
    "args": "[\"prueba\"]",
    "source": "claude 187",
-   "log": "",
-   "paso": 0,
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_37.log",
+   "paso": 2,
    "pasos": 2
-  }
- ],
- "recientes": [
+  },
   {
    "id": 36,
    "kind": "comando",
@@ -290,27 +289,37 @@
    "log": "",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 22,
-   "kind": "informe",
-   "match": null,
-   "player": "rybakina",
-   "stroke": "forehand",
-   "reason": "análisis completo del ciclo: sus partidos tienen resultados nuevos",
-   "state": "hecho",
-   "message": "REGRESIÓN · versión 1 · pendiente de revisar",
-   "created": "2026-11-08 18:07:24",
-   "started": "2026-11-08 18:07:24",
-   "finished": "2026-11-08 18:12:26",
-   "args": "",
-   "source": "",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 16,
+   "job": 37,
+   "at": "2026-11-11 13:01:18",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 15,
+   "job": 37,
+   "at": "2026-11-11 13:01:16",
+   "kind": "paso",
+   "text": "2/2 Lista de partidos"
+  },
+  {
+   "id": 14,
+   "job": 37,
+   "at": "2026-11-11 13:01:15",
+   "kind": "paso",
+   "text": "1/2 Registro de partidos"
+  },
+  {
+   "id": 13,
+   "job": 37,
+   "at": "2026-11-11 13:01:14",
+   "kind": "empieza",
+   "text": "flujo «prueba»: Comprobacion del ejecutor y de los flujos: dos pasos ligeros"
+  },
   {
    "id": 12,
    "job": 37,
