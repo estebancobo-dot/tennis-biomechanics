@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 14:43:05",
- "firma": "2cd8b14c0ee3",
+ "at": "2026-11-11 14:50:58",
+ "firma": "7d9b8533f6f4",
  "ejecutor": {
   "vivo": false,
   "pid": null,
-  "at": 1794404198.1395352
+  "at": 1794405049.2577267
  },
  "pausa": false,
  "en_curso": [],
@@ -19,6 +19,24 @@
   "hora": "2026-11-11 14:31:39"
  },
  "pendientes": [
+  {
+   "id": 44,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-11 14:50:55",
+   "started": null,
+   "finished": null,
+   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
+   "source": "claude 196",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 43,
    "kind": "flujo",
@@ -312,6 +330,41 @@
  ],
  "eventos": [
   {
+   "id": 74,
+   "job": 44,
+   "at": "2026-11-11 14:50:55",
+   "kind": "enviado",
+   "text": "tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final (claude 196)"
+  },
+  {
+   "id": 73,
+   "job": null,
+   "at": "2026-11-11 14:50:54",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
+   "id": 72,
+   "job": null,
+   "at": "2026-11-11 14:50:49",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 71,
+   "job": null,
+   "at": "2026-11-11 14:50:49",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 70,
+   "job": null,
+   "at": "2026-11-11 14:50:49",
+   "kind": "ejecutor",
+   "text": "arranca (pid 15864)"
+  },
+  {
    "id": 69,
    "job": null,
    "at": "2026-11-11 14:42:47",
@@ -485,41 +538,6 @@
    "at": "2026-11-11 14:14:09",
    "kind": "paso",
    "text": "2/3 Informe de la derecha"
-  },
-  {
-   "id": 44,
-   "job": 40,
-   "at": "2026-11-11 14:14:08",
-   "kind": "paso",
-   "text": "1/3 Registro de partidos"
-  },
-  {
-   "id": 43,
-   "job": 40,
-   "at": "2026-11-11 14:14:07",
-   "kind": "empieza",
-   "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
-  },
-  {
-   "id": 42,
-   "job": 39,
-   "at": "2026-11-11 14:14:07",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 41,
-   "job": 40,
-   "at": "2026-11-11 13:30:59",
-   "kind": "enviado",
-   "text": "flujo informe (claude 192)"
-  },
-  {
-   "id": 40,
-   "job": 39,
-   "at": "2026-11-11 13:30:43",
-   "kind": "empieza",
-   "text": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final"
   }
  ]
 }

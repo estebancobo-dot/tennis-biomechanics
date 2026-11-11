@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261111142659
+Start time: 20261111145049
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 11360
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 11464
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -16,18 +16,27 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Registro enviado a Claude (no hace falta copiar nada).
-git : Everything up-to-date
-At C:\tenis\tennis-biomech\scripts\windows\comun.ps1:241 char:9
-+         git -C $d push -q origin pc-logs 2>$null
-+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (Everything up-to-date:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
-Registro enviado a Claude (no hace falta copiar nada).
 
-Registro enviado a Claude (no hace falta copiar nada).
-Empezado 2026-11-11 14:26:54 - terminado 2026-11-11 14:27:32 - duracion total 38 s
-**********************
-Windows PowerShell transcript end
-End time: 20261111142732
-**********************
+==> [2026-11-11 14:50:49] Codigo nuevo (8d52be0 -> 0311301): 2 ficheros
+    config/plan_peticiones.yaml
+    docs/peticiones_usuario.md
+Updating 8d52be0..0311301
+Fast-forward
+ config/plan_peticiones.yaml | 7 ++++++-
+ docs/peticiones_usuario.md  | 6 ++++--
+ 2 files changed, 10 insertions(+), 3 deletions(-)
+Resolved 126 packages in 0.72ms
+Checked 91 packages in 3ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+motionagformer_xs.onnx OK 9 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+el ejecutor se reinicia al acabar el trabajo en curso
