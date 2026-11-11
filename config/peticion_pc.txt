@@ -748,3 +748,13 @@ id: 188
 accion: ventana
 # 188 (11-11): fase E. Pantallas de la aplicacion con el ejecutor unico (la Cola con paso N de M, quien lo pidio y los
 # ultimos eventos) para comprobarla en el PC. A pc-logs/capturas_app
+---
+id: 189
+accion: trabajo
+comando: run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
+---
+id: 190
+accion: trabajo
+comando: flujo informe
+# 189-190 (11-11): tarea 6 del paquete B8. Solo Rybakina-Pegula por la cola (identidad v10 con el clic, saques), y
+# despues el flujo "informe" (informe y auditoria): identidad >= 95 %, saques >= 85 %. No es el analisis completo
