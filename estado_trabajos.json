@@ -1,6 +1,6 @@
 {
- "at": "2026-11-11 11:49:10",
- "firma": "58721d2f95aa",
+ "at": "2026-11-11 11:49:22",
+ "firma": "01a13b495650",
  "ejecutor": {
   "vivo": false
  },
@@ -16,7 +16,24 @@
   "quedan_s": 130,
   "hora": "2026-11-09 23:39:49"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 36,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "registry list",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-11 11:49:19",
+   "started": null,
+   "finished": null,
+   "args": "[\"registry\", \"list\"]",
+   "source": "claude 184",
+   "log": ""
+  }
+ ],
  "recientes": [
   {
    "id": 35,
@@ -260,6 +277,13 @@
   }
  ],
  "eventos": [
+  {
+   "id": 2,
+   "job": 36,
+   "at": "2026-11-11 11:49:19",
+   "kind": "enviado",
+   "text": "tennisbio registry list (claude 184)"
+  },
   {
    "id": 1,
    "job": null,
