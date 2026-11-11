@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 19:27:37",
- "firma": "dd21cfa81085",
+ "at": "2026-11-11 19:34:44",
+ "firma": "4fd2f5c863d7",
  "ejecutor": {
-  "vivo": true,
-  "pid": 2140,
-  "at": 1794421657.612121
+  "vivo": false,
+  "pid": null,
+  "at": 1794422067.7055
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,27 @@
  ],
  "eventos": [
   {
+   "id": 184,
+   "job": null,
+   "at": "2026-11-11 19:34:27",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 183,
+   "job": null,
+   "at": "2026-11-11 19:34:27",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 182,
+   "job": null,
+   "at": "2026-11-11 19:34:26",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 181,
    "job": null,
    "at": "2026-11-11 17:31:55",
@@ -480,27 +501,6 @@
    "at": "2026-11-11 17:02:43",
    "kind": "paso",
    "text": "4/6 Informe del saque"
-  },
-  {
-   "id": 154,
-   "job": 52,
-   "at": "2026-11-11 17:02:35",
-   "kind": "paso",
-   "text": "3/6 Informe del reves"
-  },
-  {
-   "id": 153,
-   "job": 52,
-   "at": "2026-11-11 17:02:23",
-   "kind": "paso",
-   "text": "2/6 Informe de la derecha"
-  },
-  {
-   "id": 152,
-   "job": 52,
-   "at": "2026-11-11 17:02:22",
-   "kind": "paso",
-   "text": "1/6 Registro de partidos"
   }
  ]
 }
