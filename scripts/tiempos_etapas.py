@@ -12,10 +12,12 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from tennisbio.config import load_config  # noqa: E402
 
-SKIP = {"windows", "series", "clips", "informe", "capturas_diag", "videos", "datos", "biblioteca"}
+# the real matches live in the library (biblioteca/partidos/<año>/<partido>/etapas/manifest.json), the application's
+# test in <output>/_app_nuevo (with its own library inside): both are searched
+SKIP = {"windows", "series", "clips", "informe", "capturas_diag", "videos", "datos", "golpes", "identidad_fotos"}
 
 
-def manifests(root: Path, depth: int = 4) -> list[Path]:
+def manifests(root: Path, depth: int = 7) -> list[Path]:
     out, todo = [], [(root, 0)]
     while todo:
         d, k = todo.pop()
@@ -45,14 +47,28 @@ def table(f: Path) -> dict | None:
     for r in rows:
         r["s_por_min_video"] = round(r["s"] / dur, 2) if dur else None
         r["parte"] = round(r["s"] / sum(x["s"] for x in rows), 3) if rows else None
-    return {"carpeta": str(f.parent), "minutos_video": dur, "total_min": round(wall / 60, 1),
+    d = f.parent.parent if f.parent.name == "etapas" else f.parent
+    return {"carpeta": str(d), "minutos_video": dur, "total_min": round(wall / 60, 1),
             "veces_el_video": round(wall / 60 / dur, 2) if dur else None, "etapas": rows}
 
 
 def main() -> None:
     cfg = load_config()
     root = Path((cfg.get("paths") or {}).get("output") or "output")
-    res = [t for f in manifests(root) if (t := table(f))]
+    from tennisbio.library import library_root
+    roots = [root]
+    try:
+        lib = library_root(cfg)
+        if lib.exists() and not str(lib.resolve()).startswith(str(root.resolve())):
+            roots.append(lib)
+    except Exception:  # noqa: BLE001 - without a library only the output is read
+        pass
+    seen, res = set(), []
+    for r in roots:
+        for f in manifests(r):
+            if f.resolve() not in seen and (t := table(f)):
+                seen.add(f.resolve())
+                res.append(t)
     dst = root / "capturas_diag"
     dst.mkdir(parents=True, exist_ok=True)
     (dst / "tiempos_etapas.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
