@@ -1,6 +1,6 @@
 # Revisión automática: FALLOS
 
-386 cumplidos · 27 no cumplidos · 102 sin golpes suficientes · 111 avisos (antes: 386 cumplidos, 26 no cumplidos)
+386 cumplidos · 27 no cumplidos · 102 sin golpes suficientes · 111 avisos (antes: 386 cumplidos, 27 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 116 de 255
 
@@ -153,12 +153,3 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 97 a medias · 19 sin hacer
 - **#252 Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps profesionales, UX y **: SIN HACER según el registro (#252, docs/peticiones_usuario.md)
 - **#254 Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista lateral de entreno **: SIN HACER según el registro (#254, docs/peticiones_usuario.md)
 - **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
-
-## Mejora
-
-- #253 Lo marcado como histórico en `docs/estado_proyecto.md` debe estar contemplado: hecho, en una petición o descar: falta → aviso
-
-## Comprobaciones nuevas
-
-- #254 Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista lateral de entreno : falta (SIN HACER según el registro (#254, docs/peticiones_usuario.md))
-- #255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente): falta (SIN HACER según el registro (#255, docs/peticiones_usuario.md))
