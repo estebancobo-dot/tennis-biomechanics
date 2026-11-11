@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 17:31:54",
- "firma": "4fd2f5c863d7",
+ "at": "2026-11-11 17:32:03",
+ "firma": "dd21cfa81085",
  "ejecutor": {
-  "vivo": false,
-  "pid": null,
-  "at": 1794414709.71062
+  "vivo": true,
+  "pid": 2140,
+  "at": 1794414715.3839207
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,13 @@
  ],
  "eventos": [
   {
+   "id": 181,
+   "job": null,
+   "at": "2026-11-11 17:31:55",
+   "kind": "ejecutor",
+   "text": "arranca (pid 2140)"
+  },
+  {
    "id": 180,
    "job": null,
    "at": "2026-11-11 17:31:49",
@@ -494,13 +501,6 @@
    "at": "2026-11-11 17:02:22",
    "kind": "paso",
    "text": "1/6 Registro de partidos"
-  },
-  {
-   "id": 151,
-   "job": 52,
-   "at": "2026-11-11 17:02:21",
-   "kind": "empieza",
-   "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
   }
  ]
 }
