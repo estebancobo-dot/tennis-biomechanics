@@ -30,3 +30,16 @@ Fast-forward
  create mode 100644 docs/p0_plan.md
 Resolved 126 packages in 0.61ms
 Checked 91 packages in 2ms
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+motionagformer_xs.onnx OK 9 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+el ejecutor se reinicia al acabar el trabajo en curso

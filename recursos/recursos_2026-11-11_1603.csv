@@ -1,1 +1,2 @@
 hora,partido,etapa,cpu_total,cpu_python,cpu_ffmpeg,ram_usada_gb,ram_total_gb,ram_python_gb,gpu_3d,gpu_compute,gpu_decode,disco,progreso_hora,progreso_pct
+2026-11-11T16:03:05,elena-rybakina-jessica-pegula-miami-2026-quarter-final,identity,7.0,0.0,0.0,6.9,19.8,0.0,0.0,0.0,0.0,3.0,2026-11-11 15:08:18,100.0
