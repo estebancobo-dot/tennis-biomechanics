@@ -1,10 +1,10 @@
 # Estado real de las peticiones (generado por `scripts/real_status.py`; no editar a mano)
 
-248 peticiones (sin las que no aplican). «HECHO» en el registro es la etiqueta de Claude; aquí cuenta solo lo que se comprueba. «Comprobado en salidas» = existe y es coherente con los datos reales, no que sea correcto; eso es «validado con verdad».
+249 peticiones (sin las que no aplican). «HECHO» en el registro es la etiqueta de Claude; aquí cuenta solo lo que se comprueba. «Comprobado en salidas» = existe y es coherente con los datos reales, no que sea correcto; eso es «validado con verdad».
 
 | Nivel | Peticiones |
 |---|---|
-| 0 sin construir | 19 |
+| 0 sin construir | 20 |
 | 1 construido, sin comprobar | 71 |
 | 2 comprobación que falla | 76 |
 | 3 comprobado en salidas | 82 |
@@ -24,7 +24,7 @@
 | B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 3 | 1 | 0 | 4 partidos sin errores de etapa; auditoría generada | ok | no |
 | B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 9 | 27 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | falla | no |
 | B8 Base · orquestador único (aplicación y chat con el mismo código y los mismos datos) | 6 | 0 | 6 | 0 | 0 | 0 | Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC | sin medir | no |
-| P0 Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos) | 2 | 1 | 1 | 0 | 0 | 0 | Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código | sin medir | no |
+| P0 Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos) | 3 | 2 | 1 | 0 | 0 | 0 | Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código | sin medir | no |
 | M1 Medidas · fases, cadena cinética y ritmo | 12 | 0 | 7 | 4 | 1 | 0 | Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara | — | — |
 | M2 Medidas · pies y apoyos | 20 | 2 | 10 | 3 | 5 | 0 | Pasos y apoyos medidos en la mayoría de golpes; fiables en la auditoría | — | — |
 | M3 Medidas · cuerpo | 15 | 2 | 2 | 4 | 7 | 0 | Fiables en la auditoría y sin depender de la cámara | — | — |
@@ -48,7 +48,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 - **B6**: peticiones sin comprobar o que fallan: #1, #134, #233
 - **B7**: prueba principal: Pruebas del código en este PC: falta; peticiones sin comprobar o que fallan: #18, #20, #21, #22, #37, #51, #66, #241, #242
 - **B8**: prueba principal: Orquestador: : sin medir; peticiones sin comprobar o que fallan: #246, #247, #248, #249, #250, #251
-- **P0**: prueba principal: Aplicación: rediseño : sin medir; peticiones sin comprobar o que fallan: #256, #252
+- **P0**: prueba principal: Aplicación: rediseño : sin medir; peticiones sin comprobar o que fallan: #256, #257, #252
 
 ## Cada petición
 
@@ -302,3 +302,4 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 254 | Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista | M3 | FALTA | 0 sin construir | SIN HACER según el registro (#254, docs/peticiones_usuario.md) |
 | 255 | Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, | M4 | FALTA | 0 sin construir | SIN HACER según el registro (#255, docs/peticiones_usuario.md) |
 | 256 | Modelo de calidad de la aplicación como un cubo: dominio (taxonomía del golpe, situaciones | P0 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#256); sin comprobación automática asignada |
+| 257 | Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/Tenn | P0 | FALTA | 0 sin construir | SIN HACER según el registro (#257, docs/peticiones_usuario.md) |

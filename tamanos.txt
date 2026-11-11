@@ -1,34 +1,17 @@
-fecha: 2026-11-11T15:40:48
-    1373.8 MB  \output\_bench_fps
-    1373.2 MB  \output\_poc67_35
-     167.9 MB  \output\_poc67_4
-    1300.4 MB  \output\_poc70_35
-     167.9 MB  \output\_poc70_4
-    1300.4 MB  \output\_poc71_35
-     167.9 MB  \output\_poc71_4
-    1300.5 MB  \output\_poc74_35
-     167.9 MB  \output\_poc74_4
+fecha: 2026-11-11T15:44:15
      265.6 MB  \output\analisis
        4.2 MB  \output\auditoria
        5.7 MB  \output\benchmark
-    1383.8 MB  \output\_poc76_35
        2.4 MB  \output\capturas_app
        9.8 MB  \output\capturas_diag
-       168 MB  \output\_poc76_4
        0.1 MB  \output\capturas_identidad
        0.2 MB  \output\elena-rybakina-jessica-pegula-miami-2026-quarter-final
      450.2 MB  \output\entrenamiento
          0 MB  \output\esperando
      874.9 MB  \output\exportar_derecha
      636.3 MB  \output\exportar_reves
-    2786.9 MB  \output\_smoke
-         4 MB  \output\_smoke\auditoria
-       2.5 MB  \output\_smoke\diag
-     286.5 MB  \output\_smoke\exportar
      636.3 MB  \output\exportar_saque
-      20.2 MB  \output\_smoke\informe
       90.8 MB  \output\informe_derecha
-    1416.9 MB  \output\_smoke\smoke_tennis-yusipopen-final-sobolenko-rybakin
       60.4 MB  \output\informe_reves
         59 MB  \output\informe_saque
        0.1 MB  \output\investigacion
