@@ -1,5 +1,5 @@
 {
- "at": "2026-11-11 14:40:36",
+ "at": "2026-11-11 14:43:05",
  "firma": "2cd8b14c0ee3",
  "ejecutor": {
   "vivo": false,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 69,
+   "job": null,
+   "at": "2026-11-11 14:42:47",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 68,
    "job": 43,
    "at": "2026-11-11 14:40:33",
@@ -513,13 +520,6 @@
    "at": "2026-11-11 13:30:43",
    "kind": "empieza",
    "text": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final"
-  },
-  {
-   "id": 39,
-   "job": 39,
-   "at": "2026-11-11 13:30:41",
-   "kind": "enviado",
-   "text": "tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final (claude 191)"
   }
  ]
 }

@@ -1052,7 +1052,7 @@
   {
    "start": 9114,
    "end": 9348,
-   "end_changes": null,
+   "end_changes": 11,
    "clothes_code": [
     0.0,
     0.0,
@@ -1086,8 +1086,8 @@
     0.0876
    ],
    "cluster": 1,
-   "near_is_target": null,
-   "method": null,
+   "near_is_target": false,
+   "method": "cambios de lado",
    "clothes_margin": 0.02,
    "clothes_says": null
   },

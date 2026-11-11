@@ -32417,6 +32417,212 @@
   ]
  },
  {
+  "impact_frame": 106,
+  "impact_source": "ball+swing",
+  "stroke": "forehand",
+  "phases": {
+   "ready": {
+    "frame": 54,
+    "t_rel": -1.04,
+    "method": "split_step_landing",
+    "confidence": 0.84
+   },
+   "takeback": {
+    "frame": 60,
+    "t_rel": -0.92,
+    "method": "shoulders_start_turning",
+    "confidence": 0.79
+   },
+   "loaded": {
+    "frame": 86,
+    "t_rel": -0.4,
+    "method": "wrist_pause_before_forward_swing",
+    "confidence": 0.89
+   },
+   "acceleration": {
+    "frame": 103,
+    "t_rel": -0.06,
+    "method": "wrist_low_point",
+    "confidence": 0.69
+   },
+   "impact": {
+    "frame": 106,
+    "t_rel": 0.0,
+    "method": "given",
+    "confidence": 0.99
+   },
+   "extension": {
+    "frame": 108,
+    "t_rel": 0.04,
+    "method": "impact_plus_50ms",
+    "confidence": 0.8
+   },
+   "finish": {
+    "frame": 120,
+    "t_rel": 0.28,
+    "method": "wrist_high_point",
+    "confidence": 0.89
+   },
+   "recovery": {
+    "frame": 128,
+    "t_rel": 0.44,
+    "method": "first_step",
+    "confidence": 0.8
+   }
+  },
+  "metrics": {
+   "shoulder_turn_loaded_deg": 54.05005780996099,
+   "hip_turn_loaded_deg": 85.26033105001518,
+   "x_factor_deg": -31.210273240054192,
+   "elbow_impact_deg": 164.67076996058023,
+   "non_elbow_impact_deg": 175.90333450169487,
+   "non_arm_extension_loaded_deg": 170.65268087946023,
+   "contact_height_pct": 26.467578259482195,
+   "contact_lateral_pct": 34.50217485828453,
+   "toss_above_head_bh": -0.08802896701527807,
+   "base_width_loaded_pct": 35.73635061469623,
+   "hip_drop_pct": -6.270010507408835,
+   "finish_wrist_height_pct": 16.55264274998814,
+   "head_motion_impact_cm": 10.482121601791663,
+   "time_ready_to_impact_s": 1.04,
+   "time_takeback_to_impact_s": 0.92,
+   "time_loaded_to_impact_s": 0.4,
+   "time_acceleration_to_impact_s": 0.06,
+   "time_impact_to_finish_s": 0.28,
+   "ball_seen_pre_share": 0.836,
+   "ball_gap_pre_s": 0.06,
+   "bounce_to_impact_s": 0.76,
+   "time_available_s": 1.2,
+   "opponent_hit_source": "ball"
+  },
+  "racket": {},
+  "racket_track": [],
+  "ball": {
+   "bounce_px": [
+    712.5,
+    371.2
+   ],
+   "bounce_frame": 68
+  },
+  "chain": {
+   "peaks_s": {
+    "pelvis": -0.22,
+    "trunk": -0.22,
+    "arm": -0.16
+   },
+   "order": [
+    "pelvis",
+    "trunk",
+    "arm"
+   ],
+   "version": 2,
+   "proximal_to_distal": true
+  },
+  "review": [],
+  "stroke_pose": "forehand",
+  "stroke_source": "detector",
+  "window": "w000927542_3600.mp4",
+  "window_start_s": 927.5419999999999,
+  "match_time_s": 929.6619999999999,
+  "candidate_audio": true,
+  "identity": false,
+  "target": true,
+  "stroke_id": "smoke_tennis-yusipopen-final-sobolenko-rybakin-0092966",
+  "surface": "dura",
+  "score": {
+   "games": [
+    [
+     6,
+     4
+    ],
+    [
+     5,
+     7
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "points": [
+    null,
+    null
+   ],
+   "banner": "",
+   "set": 3,
+   "sets_won": [
+    1,
+    1
+   ],
+   "tiebreak": false,
+   "pressure": false,
+   "server": 1
+  },
+  "court_check": "ok",
+  "side": "far",
+  "height_scale": {
+   "source": "court",
+   "px": 106.6,
+   "segments_ratio": 0.859,
+   "pose_ratio": 0.701
+  },
+  "court_pos_m": [
+   6.12,
+   -0.35
+  ],
+  "displacement_m": 2.92,
+  "pos_at_opp_m": [
+   3.7,
+   -1.99
+  ],
+  "camera_pitch_deg": 18.3,
+  "bounce_court_m": [
+   3.55,
+   6.87
+  ],
+  "outcome": "rally",
+  "point_won": false,
+  "is_return": true,
+  "technique": {
+   "classes": {
+    "ball_speed": "media",
+    "ball_height": "rodilla",
+    "depth": "sobre la línea",
+    "court_side": "lado de su derecha",
+    "width": "muy abierta",
+    "intent": "neutra",
+    "contact_type": "tras el bote",
+    "play": "resto",
+    "serve_number": "segundo saque",
+    "serve_dir": "abierto",
+    "return_side": "iguales"
+   },
+   "phases": {},
+   "stroke": {
+    "return_ready_depth_m": -1.99,
+    "return_step_in_m": 1.64
+   },
+   "footwork": {}
+  },
+  "series": "series/w000927542_3600_far_106.json",
+  "window_impact_s": 2.12,
+  "shot_in_point": 1,
+  "shots_in_point": 1,
+  "views": [
+   {
+    "kind": "primer_plano",
+    "label": "Primer plano",
+    "t0": 934.8,
+    "t1": 936.7,
+    "slowmo": null,
+    "speed": null,
+    "impact_t": null,
+    "method": "orden",
+    "confidence": 0.3
+   }
+  ]
+ },
+ {
   "impact_frame": 108,
   "impact_source": "ball+swing",
   "stroke": "backhand",
