@@ -39,3 +39,24 @@ def test_the_catalogue_fills_only_what_is_empty(tmp_path):
     assert es[0]["opponent"] == "Naomi Osaka" and es[0]["round"] == "R4" and es[0]["date"] == "2026"
     assert es[1]["opponent"] == "Qinwen Zheng" and "tournament" not in es[1]        # written by hand: kept; nothing else said
     assert filled == ["a: opponent, tournament, date, round"]
+
+
+def test_the_registry_takes_the_catalogue_data_into_empty_fields_only(tmp_path):
+    # 11-11 (R6): import_catalog skipped a known match whole, so the 6 matches never got their rival
+    import yaml
+    from tennisbio.app.db import DB
+    from tennisbio.app.index import import_catalog
+    cdir = tmp_path / "config"
+    (cdir / "players").mkdir(parents=True)
+    (cdir / "players" / "rybakina.yaml").write_text("name: Elena Rybakina\nheight_m: 1.84\n", encoding="utf-8")
+    (cdir / "matches.yaml").write_text(yaml.safe_dump({"matches": [
+        {"id": "m1", "video": "x.ts", "player": "rybakina", "opponent": "Naomi Osaka", "tournament": "US Open",
+         "round": "R4", "date": "2026"}]}), encoding="utf-8")
+    db = DB(tmp_path / "datos" / "tennisbio.db")
+    db.upsert("matches", {"id": "m1", "video": "", "player": "rybakina", "opponent": "", "tournament": "",
+                          "round": "QF", "date": "", "state": "analizado", "note": "lo aprendido"})
+    import_catalog(db, {"paths": {"videos": str(tmp_path / "videos")}}, cdir)
+    r = db.one("SELECT * FROM matches WHERE id='m1'")
+    assert (r["opponent"], r["tournament"], r["date"]) == ("Naomi Osaka", "US Open", "2026")
+    assert r["round"] == "QF" and r["state"] == "analizado" and r["note"] == "lo aprendido"     # never replaced
+    db.close()

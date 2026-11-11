@@ -56,6 +56,9 @@ def import_players(db: DB, config_dir: Path = CONFIG_DIR):
                               "aliases": (known or {}).get("aliases") or json.dumps(d.get("aliases", []))})
 
 
+META_FIELDS = ("tournament", "date", "round", "surface", "opponent")
+
+
 def import_catalog(db: DB, cfg: dict, config_dir: Path = CONFIG_DIR):
     """config/matches.yaml → matches and videos. Idempotent; never overwrites what the application learnt
     (states, notes) about a match it already has."""
@@ -70,7 +73,16 @@ def import_catalog(db: DB, cfg: dict, config_dir: Path = CONFIG_DIR):
     videos = Path(cfg.get("paths", {}).get("videos", "."))
     for e in entries:
         mid = str(e.get("id"))
-        if not mid or db.one("SELECT id FROM matches WHERE id=?", mid):
+        if not mid:
+            continue
+        have = db.one("SELECT * FROM matches WHERE id=?", mid)
+        if have:
+            # 11-11 (R6, #226): what the catalogue knows and the registry lacks (rival, tournament, round, date, surface,
+            # read from the video's name by scripts/auto_catalog.py) fills the empty fields; nothing the application
+            # learnt or anything already written is replaced (before, a known match was skipped whole: the 6 had none)
+            fill = {k: str(e.get(k)) for k in META_FIELDS if e.get(k) and not str(have.get(k) or "").strip()}
+            if fill:
+                db.upsert("matches", {"id": mid, **fill})
             continue
         vpath = videos / str(e.get("video", ""))
         sample = ""
