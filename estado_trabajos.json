@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 20:54:31",
- "firma": "dd21cfa81085",
+ "at": "2026-11-11 20:55:01",
+ "firma": "4fd2f5c863d7",
  "ejecutor": {
-  "vivo": true,
-  "pid": 8024,
-  "at": 1794426858.7662134
+  "vivo": false,
+  "pid": null,
+  "at": 1794426888.7768493
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,27 @@
  ],
  "eventos": [
   {
+   "id": 188,
+   "job": null,
+   "at": "2026-11-11 20:54:48",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 187,
+   "job": null,
+   "at": "2026-11-11 20:54:48",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 186,
+   "job": null,
+   "at": "2026-11-11 20:54:44",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 185,
    "job": null,
    "at": "2026-11-11 19:34:59",
@@ -480,27 +501,6 @@
    "at": "2026-11-11 17:10:03",
    "kind": "reiniciar",
    "text": "ciclo"
-  },
-  {
-   "id": 158,
-   "job": 52,
-   "at": "2026-11-11 17:06:53",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 157,
-   "job": 52,
-   "at": "2026-11-11 17:06:51",
-   "kind": "paso",
-   "text": "6/6 Modelo de calidad"
-  },
-  {
-   "id": 156,
-   "job": 52,
-   "at": "2026-11-11 17:02:51",
-   "kind": "paso",
-   "text": "5/6 Auditoria"
   }
  ]
 }
