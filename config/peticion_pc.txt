@@ -726,3 +726,8 @@ accion: trabajo
 comando: registry list
 # 184 (11-11): fase D del orquestador unico. Un trabajo ligero por la cola: el ejecutor unico lo hace y
 # pc-logs/estado_trabajos.json lo muestra hecho (con sus eventos); registro_partidos.json con los 6 partidos
+---
+id: 185
+accion: control
+orden: reanudar
+# 185 (11-11): la parada 15 (ciclos atascados) dejo la cola en pausa; se reanuda para que el ejecutor haga el 184 (trabajo 36)
