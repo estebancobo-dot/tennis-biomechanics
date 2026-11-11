@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 21:29:06",
- "firma": "b50813d83946",
+ "at": "2026-11-11 21:29:35",
+ "firma": "5074e23cbf65",
  "ejecutor": {
-  "vivo": true,
-  "pid": 9420,
-  "at": 1794428945.228516
+  "vivo": false,
+  "pid": null,
+  "at": 1794428965.2323685
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,27 @@
  ],
  "eventos": [
   {
+   "id": 203,
+   "job": null,
+   "at": "2026-11-11 21:29:25",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 202,
+   "job": null,
+   "at": "2026-11-11 21:29:25",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 201,
+   "job": null,
+   "at": "2026-11-11 21:29:17",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 200,
    "job": 55,
    "at": "2026-11-11 21:13:05",
@@ -480,27 +501,6 @@
    "at": "2026-11-11 17:17:47",
    "kind": "empieza",
    "text": "flujo «prueba_pausa»: Comprobacion de extremo a extremo: un paso largo para pausar el flujo a mitad y reanudarlo"
-  },
-  {
-   "id": 173,
-   "job": null,
-   "at": "2026-11-11 17:17:37",
-   "kind": "reanudar",
-   "text": "claude e2e"
-  },
-  {
-   "id": 172,
-   "job": 53,
-   "at": "2026-11-11 17:17:37",
-   "kind": "parado",
-   "text": "vuelve a la cola; reanuda desde las cachés"
-  },
-  {
-   "id": 171,
-   "job": null,
-   "at": "2026-11-11 17:17:35",
-   "kind": "pausa",
-   "text": "ya (app)"
   }
  ]
 }
