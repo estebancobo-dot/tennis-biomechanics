@@ -1,10 +1,10 @@
 # Auditoría de requisitos (forehand)
 
-13 golpes del lado cercano. ✔ 388 cumplidos · ✘ 27 no cumplidos · … 102 sin golpes suficientes en esta ejecución · ! 112 avisos
+13 golpes del lado cercano. ✔ 388 cumplidos · ✘ 28 no cumplidos · … 102 sin golpes suficientes en esta ejecución · ! 112 avisos
 
-## Peticiones del usuario SIN TERMINAR: 119 de 258
+## Peticiones del usuario SIN TERMINAR: 120 de 259
 
-Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 21 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 22 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
 - **#189 [FALTA]** «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4) — falta: No está en `learn.py`.
@@ -27,6 +27,7 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 21 sin hacer
 - **#255 [FALTA]** Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente) — falta: Medida nueva desde la raqueta y los hombros en el armado (fiable solo de lado: vista lateral de entreno).
 - **#257 [FALTA]** Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, Sportsbox, Dartfish…), apps d… — falta: Parte del análisis de P0: catálogo `config/referencias.yaml` (tipo, fuente, qué mide, cómo lo enseña, gráficos, UX, precio, plataforma), evaluación de cada ref…
 - **#258 [FALTA]** Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha pública completa de las dos jugad… — falta: P0 (gestión y catálogo): fuentes abiertas (p. ej. Wikidata) con caché; el revés que falte se deduce del vídeo o se pregunta solo eso; renombrar es seguro porqu…
+- **#259 [FALTA]** Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir más rápido sin perder calidad … — falta: Tabla de tiempos de la prueba desde cero (petición 207) + por cada etapa pesada: alternativas medidas (tiempo y calidad); el indicador «Tiempo» de la auditoría…
 - **#2 [PARCIAL]** Ver informe y salidas en el móvil (11-10 18:21, 18:29, 18:33) — falta: 19-10: copia hecha; el paso directo al Pixel 8 sin probar en el teléfono.
 - **#4 [PARCIAL]** Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como base para cualquiera (11-10 19… — falta: Valores de 1 a 10 golpes, todos «provisional». SuD, `copy_cue` y `COACH` no se ven (≥12).
 - **#5 [PARCIAL]** Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto, apoyo, dirección, ataque/de… — falta: 0 de 2.992 combinaciones con ≥12. Niveles vacíos: parada 0, paralela 0, rodilla 0, en el aire 0. 19-10: faltaban de su mensaje del 10-10 18:05 «ángulos» (golpe…
@@ -353,7 +354,7 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 21 sin hacer
 - ✔ **Pantalla «Tabla de golpes (Explorador)»**: 4815 caracteres de texto, 16 vídeos, 0 gráficos
 - ✔ **Pantalla «Vista lateral (entreno)»**: 7620 caracteres de texto, 16 vídeos, 0 gráficos
 - ✔ **Pantalla «Fiabilidad de las medidas»**: 2541 caracteres de texto, 16 vídeos, 0 gráficos
-- ✔ **Pantalla «Datos del análisis»**: 2146 caracteres de texto, 16 vídeos, 0 gráficos
+- ✔ **Pantalla «Datos del análisis»**: 2143 caracteres de texto, 16 vídeos, 0 gráficos
 - ✔ **Reproducir: «Su derecha» → ▶ Ver sus golpes típicos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Videoteca → ▶ Reproducir todos**: el vídeo arranca y avanza
 - ✔ **Reproducir: Análisis de golpe → ▶**: el vídeo arranca y avanza
@@ -451,8 +452,8 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 21 sin hacer
 
 ## 5. 100 % automático
 
-- ✘ **Registros con fecha y duración**: 61 de 64 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; ciclo_automatico.log: sin la fecha de sus pasos; prueba_completo.log: sin «termina fecha» al final
-- ✘ **Aplicación: un partido nuevo de principio a fin**: sin terminar; sin análisis actualizado
+- ✘ **Registros con fecha y duración**: 62 de 64 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
+- ✘ **Aplicación: un partido nuevo de principio a fin**: terminó 2026-11-11T20:54:10 en 79.1 min; análisis actualizado; errores: hecho     #2 informe partido prueba-app-35m analizado FALLOS · versión 1 · al día
 - ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 8 de 13 del lado cercano (62%); motivos: phase 20, elbow_implausible_at_impact 3, impact_without_audio 2, half_volley_candidate 1. Otros 5 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
 - ✔ **Golpes que fallaron al procesarse**: ninguno
 - ✔ **Nada pide revisión manual**: 20 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
@@ -488,16 +489,16 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 21 sin hacer
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
 - ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (20/20), 34 s, quedan ≈ 0 s, a las 2026-11-11 16:31:21
-- ✔ **Tamaño de la salida (tamanos.txt)**: 44 carpetas, 30.6 GB en total (2026-11-11T19:38:05); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 44 carpetas, 31.7 GB en total (2026-11-11T20:55:03); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB
 - ✔ **Carpetas de pruebas antiguas**: ninguna carpeta de pruebas con más de 14 días sin usar
 - ✔ **Aplicación: ventana real y pantallas**: 66 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 2 análisis y 22 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 78 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 118 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 118 vídeos
-- ✔ **Exportación terminada: exportar**: terminó el 2026-11-11 19:35:00 en 0 min: 118 vídeos de 118 golpes
+- ✔ **Exportación terminada: exportar**: terminó el 2026-11-11 20:55:16 en 0 min: 118 vídeos de 118 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
-- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 11-11 19:34, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
+- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 11-11 20:00, empezó a los 54.3 min; el PC estaba con otro trabajo hasta las 20:54 (53.8 min, no cuentan), empezó 0.5 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
 
@@ -515,8 +516,8 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 21 sin hacer
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
-- ✘ **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 64 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; ciclo_)
-- ✘ **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (sin terminar; sin análisis actualizado)
+- ✘ **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (62 de 64 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
+- ✘ **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (terminó 2026-11-11T20:54:10 en 79.1 min; análisis actualizado; errores: hecho     #2 informe partido prueba-app-35m anal)
 - ✘ **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - ✘ **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
 - ✘ **#193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10)**: SIN HACER según el registro (#193, docs/peticiones_usuario.md)
@@ -531,7 +532,7 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 21 sin hacer
 - ✘ **#223 Revés y derecha cortados**: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
 - ✘ **#224 Saques: plano, cortado o kick; primero o segundo**: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
 - ✘ **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
-- ✘ **#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po**: a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (sin terminar; sin análisis actualizado)
+- ✘ **#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po**: a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (terminó 2026-11-11T20:54:10 en 79.1 min; análisis actualizado; errores: hecho     #2 informe partido prueba-app-35m anal)
 - ✘ **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - ✘ **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 - ✘ **#252 Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps profesionales, UX y **: SIN HACER según el registro (#252, docs/peticiones_usuario.md)
@@ -539,6 +540,7 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 21 sin hacer
 - ✘ **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
 - ✘ **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - ✘ **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
+- ✘ **#259 Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir m**: SIN HACER según el registro (#259, docs/peticiones_usuario.md)
 - ! **#1 Derecha de Rybakina en sus 4 partidos completos, una vez y al final**: 5 comprobaciones: 1 aviso, 1 pocos datos, 3 ok; la peor: «Saques por punto de su saque: smoke_tennis-yusipopen-final-sobolenko-rybakin» (10 de 13 puntos de su saque vistos con su saque encontrado (77%; objetivo ≥ 85%) (1 puntos más sin nadie jugando en la c)
 - ! **#2 Ver informe y salidas en el móvil**: A MEDIAS según el registro (#2); no se comprueba en las salidas: aplazado por el usuario (móvil al final)
 - ! **#7 Empuñadura en la espera y al golpear**: sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 5 comprobaciones: 5 ok
