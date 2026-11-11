@@ -1,0 +1,363 @@
+{
+"real": 544,
+"sin_prueba": [
+[
+"Valores posibles",
+"Cada medida comprobada"
+],
+[
+"Valores posibles",
+"Cada frase lleva cuántos golpes la respaldan y su fiabilidad"
+],
+[
+"Valores posibles",
+"Lo no medible se dice"
+],
+[
+"Vista lateral (entrenamiento)",
+"Vídeos de entrenamiento analizados"
+],
+[
+"Vista lateral (entrenamiento)",
+"Derechas filmadas de lado"
+],
+[
+"Vista lateral (entrenamiento)",
+"Impacto delante de la cadera"
+],
+[
+"Vista lateral (entrenamiento)",
+"Ángulo del swing (de abajo arriba)"
+],
+[
+"Vista lateral (entrenamiento)",
+"Codo en el impacto"
+],
+[
+"Vista lateral (entrenamiento)",
+"Rodilla de atrás en el armado"
+],
+[
+"Vista lateral (entrenamiento)",
+"Rodilla de delante en el impacto"
+],
+[
+"Vista lateral (entrenamiento)",
+"Tronco en el impacto"
+],
+[
+"Vista lateral (entrenamiento)",
+"Caída de la raqueta bajo el impacto"
+],
+[
+"Vista lateral (entrenamiento)",
+"Ángulo antebrazo–raqueta al acelerar"
+],
+[
+"Vista lateral (entrenamiento)",
+"Ángulo antebrazo–raqueta antes del impacto"
+],
+[
+"Vista lateral (entrenamiento)",
+"Cabeza girada hacia el impacto"
+],
+[
+"Vista lateral (entrenamiento)",
+"Impacto delante de la cadera (ND)"
+],
+[
+"Vista lateral (entrenamiento)",
+"Ángulo del swing (ND)"
+],
+[
+"Vista lateral (entrenamiento)",
+"Codo en el impacto (ND)"
+],
+[
+"Vista lateral (entrenamiento)",
+"Rodilla de atrás en el armado (ND)"
+],
+[
+"Vista lateral (entrenamiento)",
+"Tronco en el impacto (ND)"
+],
+[
+"Vista lateral (entrenamiento)",
+"Cada golpe de entrenamiento tiene su vídeo con el esqueleto"
+],
+[
+"Vídeo",
+"Cada golpe tiene su vídeo"
+],
+[
+"Vídeo",
+"Cada golpe tiene su esqueleto fotograma a fotograma"
+],
+[
+"Vídeo",
+"El navegador puede reproducir los vídeos"
+],
+[
+"Pantallas",
+"Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»"
+],
+[
+"Pantallas",
+"Pantalla «Sus golpes (Videoteca y pista)»"
+],
+[
+"Pantallas",
+"Pantalla «Análisis de golpe»"
+],
+[
+"Pantallas",
+"Pantalla «Comparar dos golpes»"
+],
+[
+"Pantallas",
+"Tablas a la vista en «Conclusiones (Panel y Comparativas)»"
+],
+[
+"Pantallas",
+"Pantalla «Conclusiones (Panel y Comparativas)»"
+],
+[
+"Pantallas",
+"Pantalla «Tabla de golpes (Explorador)»"
+],
+[
+"Pantallas",
+"Pantalla «Vista lateral (entreno)»"
+],
+[
+"Pantallas",
+"Pantalla «Fiabilidad de las medidas»"
+],
+[
+"Pantallas",
+"Pantalla «Datos del análisis»"
+],
+[
+"Vídeo",
+"Reproducir"
+],
+[
+"Vídeo",
+"El vídeo del golpe se reproduce al pulsar ▶"
+],
+[
+"Aprende su derecha",
+"La pantalla responde a cada combinación"
+],
+[
+"Aprende su derecha",
+"Tu ejemplo"
+],
+[
+"Aprende su derecha",
+"Lo que la distingue"
+],
+[
+"Aprende su derecha",
+"Estilo de su derecha en una frase"
+],
+[
+"Aprende su derecha",
+"Puntos de «Aprende» con su valor medido (todas sus derechas)"
+],
+[
+"Aprende su derecha",
+"«Tu objetivo»"
+],
+[
+"Diseño",
+"Primera pantalla, anchura y nombres (diseño definitivo)"
+],
+[
+"Aprende su derecha",
+"La lección"
+],
+[
+"Vídeo",
+"La lección enseña su vídeo de cada fase, en bucle"
+],
+[
+"Vídeo",
+"La tira de fases enseña su golpe en fotos reales, como las secuencias de los entrenadores"
+],
+[
+"Vistas pedidas",
+"«La bola y ella»"
+],
+[
+"Vistas pedidas",
+"«Sus pies en este golpe»"
+],
+[
+"Vistas pedidas",
+"«Bajar y subir»"
+],
+[
+"Vistas pedidas",
+"«Base»"
+],
+[
+"Vistas pedidas",
+"«Tronco al terminar»"
+],
+[
+"Vistas pedidas",
+"Barras de altura de la cabeza y la cadera sobre el vídeo"
+],
+[
+"Vistas pedidas",
+"Filtros combinables de la videoteca (apoyo, dirección, bola, contacto…)"
+],
+[
+"Vistas pedidas",
+"Novedades de la versión (en «Datos del análisis»)"
+],
+[
+"Vistas pedidas",
+"«Análisis de golpe»"
+],
+[
+"Vistas pedidas",
+"«Explorador»"
+],
+[
+"Vistas pedidas",
+"«Conclusiones»"
+],
+[
+"Vistas pedidas",
+"«Comparar golpes»"
+],
+[
+"Rendimiento",
+"Tomas de cámara"
+],
+[
+"PDF",
+"Resumen PDF"
+],
+[
+"Validación",
+"Validación con clips anotados (FNSet)"
+],
+[
+"Aprendizaje",
+"Vídeos de análisis de entrenadores (solo para aprender)"
+],
+[
+"Ficheros",
+"Partido sin-fecha_NcNb_rybakina"
+],
+[
+"Ficheros",
+"Partido sin-fecha_NcNf_rybakina"
+],
+[
+"Ficheros",
+"Partido sin-fecha_bNbN_rybakina"
+],
+[
+"Ficheros",
+"Partido sin-fecha_Nc_rybakina"
+],
+[
+"Ficheros",
+"Exportación"
+],
+[
+"Ficheros",
+"Vista lateral"
+]
+],
+"nunca_falla": [
+[
+"Taxonomía",
+"N. Fases · Impacto"
+],
+[
+"Taxonomía",
+"N. Cuerpo · Cadena cinética (orden pelvis → tronco → brazo → antebrazo)"
+],
+[
+"Taxonomía",
+"N. Pies y desplazamiento · Cada paso nombrado"
+],
+[
+"Taxonomía",
+"N. Pies y desplazamiento · Orientación del pie (talón → dedo gordo respecto a la línea de fondo) en el armado y el impacto"
+],
+[
+"Taxonomía",
+"N. Pies y desplazamiento · Pivote sobre la punta del pie de atrás (talón arriba, punta apoyada)"
+],
+[
+"Taxonomía",
+"N. Raqueta, swing y empuñadura · Cara en el impacto"
+],
+[
+"Taxonomía",
+"N. Raqueta, swing y empuñadura · Empuñadura"
+],
+[
+"Taxonomía",
+"N. Bola, resultado y contexto · Altura de la bola en su vuelo, bote, punto más alto; contacto subiendo / arriba / cayendo"
+],
+[
+"Taxonomía",
+"N. Bola, resultado y contexto · Curvas de altura (cabeza, cadera, mano, cabeza de la raqueta) a lo largo del golpe, con su curva típica y su franja"
+],
+[
+"Taxonomía",
+"N. Bola, resultado y contexto · Ganador / error (forzado o no)"
+],
+[
+"Taxonomía",
+"N. Bola, resultado y contexto · Presión, set, fatiga"
+],
+[
+"Aprende su derecha",
+"Cada punto de la matriz del usuario tiene su sitio en la pantalla"
+],
+[
+"Examen de entrenadores",
+"RN Brazo relajado (tensión muscular)"
+],
+[
+"Examen de entrenadores",
+"RN Cuerdas casi hacia el suelo en el contacto"
+],
+[
+"Examen de entrenadores",
+"RN Empuñadura semioccidental exacta"
+],
+[
+"Automático",
+"Golpes que fallaron al procesarse"
+],
+[
+"Automático",
+"Golpes dudosos (duda sobre el golpe, no sobre una medida)"
+],
+[
+"Automático",
+"Nada pide revisión manual"
+],
+[
+"Rendimiento",
+"Tiempo"
+],
+[
+"Ficheros",
+"Partido sin-fecha_fNddN_rybakina"
+],
+[
+"Peticiones",
+"#N Maqueta con datos inventados, con apoyos"
+]
+]
+}
