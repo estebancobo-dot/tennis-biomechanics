@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 15:20:48",
- "firma": "8d4f8535f0e7",
+ "at": "2026-11-11 15:21:19",
+ "firma": "108df78f0581",
  "ejecutor": {
-  "vivo": true,
-  "pid": 9496,
-  "at": 1794406835.7243755
+  "vivo": false,
+  "pid": null,
+  "at": 1794406865.7322528
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,27 @@
  ],
  "eventos": [
   {
+   "id": 98,
+   "job": null,
+   "at": "2026-11-11 15:21:05",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 97,
+   "job": null,
+   "at": "2026-11-11 15:21:05",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 96,
+   "job": null,
+   "at": "2026-11-11 15:21:01",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 95,
    "job": 45,
    "at": "2026-11-11 15:12:45",
@@ -480,27 +501,6 @@
    "at": "2026-11-11 14:42:47",
    "kind": "reiniciar",
    "text": "ciclo"
-  },
-  {
-   "id": 68,
-   "job": 43,
-   "at": "2026-11-11 14:40:33",
-   "kind": "enviado",
-   "text": "flujo informe (claude 195)"
-  },
-  {
-   "id": 67,
-   "job": null,
-   "at": "2026-11-11 14:36:38",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 66,
-   "job": null,
-   "at": "2026-11-11 14:36:38",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
