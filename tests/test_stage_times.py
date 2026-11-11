@@ -46,7 +46,8 @@ def test_the_scratch_time_takes_the_last_run_from_scratch_and_can_fail(tmp_path)
     it = scratch_time_item(tabs, today="2026-11-12")
     assert it["name"] == SCRATCH_TIME_ITEM and it["status"] == "ok" and "prueba" in it["detail"]
     assert scratch_time_item(tabs, today="2026-12-12")["status"] == "aviso"          # a month old: other code
-    slow = {**FRESH, "fine": {"seconds": 6000, "summary": {"seconds": {"pose": 5000.0}}, "finished": "2026-11-11 22:00:00"}}
+    slow = {**FRESH, "fine": {"seconds": 6000, "summary": {"seconds": {"pose": 5000.0}}, "finished": "2026-11-10 22:00:00"}}
     _dir(tmp_path / "out", "_poc9_35/m", slow)
-    assert scratch_time_item(all_tables([tmp_path / "out"]), today="2026-11-12")["status"] == "aviso"   # > 8 h
+    it = scratch_time_item(all_tables([tmp_path / "out"]), today="2026-11-12")
+    assert it["status"] == "aviso" and "_poc9_35" not in it["detail"] and "m," in it["detail"]   # the slowest, though older
     assert scratch_time_item(all_tables([tmp_path / "nada"]))["status"] == "pocos datos"

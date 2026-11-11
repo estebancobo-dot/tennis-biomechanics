@@ -2231,11 +2231,14 @@ SCRATCH_MAX_DAYS = 14          # a run from scratch older than this was made wit
 
 
 def scratch_time_item(tables: list[dict], today: str | None = None) -> dict:
-    """B1's main test (11-11, R2 of the review of the Base): the last run from scratch (all its heavy stages computed,
-    stage_times.not_real) of at least 20 min of video, as hours for a 3.5 h match; ≤ 8 h (SPEED_TARGET)."""
+    """B1's main test (11-11, R2 of the review of the Base): the slowest run from scratch of the last SCRATCH_MAX_DAYS
+    (all its heavy stages computed, stage_times.not_real; at least 20 min of video), as hours for a 3.5 h match;
+    ≤ 8 h (SPEED_TARGET)."""
     import datetime as _dt
     from .stage_times import latest_from_scratch
-    t = latest_from_scratch(tables)
+    day0 = (today or _dt.date.today().isoformat())[:10]
+    since = (_dt.date.fromisoformat(day0) - _dt.timedelta(days=SCRATCH_MAX_DAYS)).isoformat()
+    t = latest_from_scratch(tables, since=since)       # the slowest of the last 14 days: it must hold for every video
     if t is None:
         return _item(9, "Rendimiento", SCRATCH_TIME_ITEM, "pocos datos",
                      "ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC)")

@@ -84,8 +84,10 @@ Durante esa prueba la iGPU estuvo al 99-100 % y el procesador al 30 %.
 - 02-11: 83 min;
 - 03-11: 44-47 min.
 
-Después no se volvió a medir desde cero hasta hoy. La petición 211 repite ese tramo con el código de hoy, para comparar
-igual con igual.
+Después no se volvió a medir desde cero hasta hoy. **Petición 211 (11-11), mismo tramo con el código de hoy: 49,4 min
+(1,41 veces el vídeo ≈ 4,9 h por partido)**, un 4-12 % más que el 03-11. Lo añadido es la pose de medida del fondo (+6,3 min,
+#219, 09-11) y los recortes de repeticiones (+2,7 min). El tramo de Pegula (60 fps, más golpes) tarda 2,17 veces: el
+tiempo depende del vídeo, y «Tiempo desde cero» toma el más lento de los últimos 14 días.
 
 | # | Petición | Qué mira su prueba | Hallazgo | Veredicto |
 |---|---|---|---|---|

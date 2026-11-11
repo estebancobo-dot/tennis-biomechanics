@@ -121,7 +121,14 @@ def all_tables(roots: list[Path]) -> list[dict]:
     return res
 
 
-def latest_from_scratch(tables: list[dict], min_video_min: float = 20.0) -> dict | None:
-    """The most recent run from scratch of at least `min_video_min` minutes of video."""
+def latest_from_scratch(tables: list[dict], min_video_min: float = 20.0, since: str | None = None) -> dict | None:
+    """The run from scratch of at least `min_video_min` minutes of video that counts: the slowest per minute of video of
+    those since `since` (a date; 11-11: the same code took 1.41 times the video on the 50 fps final and 2.17 on the
+    60 fps Pegula clip, and «a 3.5 h match in one night» must hold for every video), else the most recent one."""
     ok = [t for t in tables if t["desde_cero"] and (t["minutos_video"] or 0) >= min_video_min and t.get("fecha")]
-    return max(ok, key=lambda t: t["fecha"]) if ok else None
+    if not ok:
+        return None
+    recent = [t for t in ok if since and t["fecha"][:10] >= since]
+    if recent:
+        return max(recent, key=lambda t: t["total_min"] / t["minutos_video"])
+    return max(ok, key=lambda t: t["fecha"])
