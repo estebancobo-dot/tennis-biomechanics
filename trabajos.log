@@ -18,3 +18,4 @@
 2026-11-11T16:19:09 peticion 202: trabajo 50 en la cola: tennisbio script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250
 2026-11-11T16:29:15 peticion 203: trabajo 51 en la cola: tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
 2026-11-11T16:29:38 peticion 204: trabajo 52 en la cola: flujo informe
+2026-11-11T21:02:29 peticion 208: trabajo 54 en la cola: tennisbio script tiempos_etapas

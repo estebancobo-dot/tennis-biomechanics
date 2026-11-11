@@ -1,6 +1,6 @@
 {
- "at": "2026-11-11 20:58:58",
- "firma": "4fd2f5c863d7",
+ "at": "2026-11-11 21:02:32",
+ "firma": "cc677543e9de",
  "ejecutor": {
   "vivo": false,
   "pid": null,
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-11 17:02:19"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 54,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script tiempos_etapas",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-11 21:02:29",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"tiempos_etapas\"]",
+   "source": "claude 208",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 53,
@@ -293,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 190,
+   "job": 54,
+   "at": "2026-11-11 21:02:29",
+   "kind": "enviado",
+   "text": "tennisbio script tiempos_etapas (claude 208)"
+  },
+  {
    "id": 189,
    "job": null,
    "at": "2026-11-11 20:58:41",
@@ -494,13 +520,6 @@
    "at": "2026-11-11 17:10:04",
    "kind": "ejecutor",
    "text": "termina"
-  },
-  {
-   "id": 160,
-   "job": null,
-   "at": "2026-11-11 17:10:04",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
