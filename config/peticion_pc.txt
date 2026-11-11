@@ -848,3 +848,9 @@ accion: e2e
 # 205 (11-11): tarea 7 de B8. Envia el flujo "prueba_pausa" como el chat, lo pausa con el boton "Parar ya" de la
 # aplicacion y lo reanuda como el chat: debe acabar hecho, seguir en el paso cortado y no repetir el primero
 # (capturas_diag/e2e_orquestador.json, prueba_e2e.log)
+---
+id: 206
+accion: app_nuevo
+minutos: 35
+# 206 (11-11): tarea 10b de B8 (B7, #242). 35 min de un partido como partido nuevo con la aplicacion y el ejecutor
+# unico, en una carpeta aparte (su propia base y su bloqueo; nunca el indice real): todas las etapas desde cero

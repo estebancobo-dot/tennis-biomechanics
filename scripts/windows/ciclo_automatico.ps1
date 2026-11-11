@@ -285,10 +285,12 @@ function Hacer-Peticion($p) {
         $env:TENNISBIO_SANDBOX = "$sbx\sandbox.yaml"
         "  tramo: $min min de $($src.Name) desde 30:00" | Add-Content $lg -Encoding UTF8
         $t0 = Get-Date
-        $jug = "$(uv run python -c "from tennisbio.config import default_player; print(default_player())" 2>$null)".Trim()
-        & uv run --extra app tennisbio app add $clip --si --usar nuevo --jugadora $jug 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
-        & uv run --extra app tennisbio app work 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
-        & uv run --extra app tennisbio app status 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        $jug = "$(uv run --no-sync python -c "from tennisbio.config import default_player; print(default_player())" 2>$null)".Trim()
+        & uv run --no-sync python -m tennisbio.cli app add $clip --si --usar nuevo --jugadora $jug 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        # 11-11: el ejecutor unico (el de la aplicacion y el chat), en la carpeta aparte (su propia base y su bloqueo)
+        & uv run --no-sync python -m tennisbio.cli worker --once 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        & uv run --no-sync python -m tennisbio.cli jobs status 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        & uv run --no-sync python -m tennisbio.cli app status 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
         Remove-Item Env:\TENNISBIO_SANDBOX -ErrorAction SilentlyContinue
         "duracion total: $([math]::Round(((Get-Date) - $t0).TotalMinutes, 1)) min; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
     } elseif ($p["accion"] -eq "prevision") {

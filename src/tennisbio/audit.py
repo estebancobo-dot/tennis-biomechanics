@@ -2374,7 +2374,7 @@ def app_index_counts(bases: list[Path]) -> tuple[int, int] | None:
 
 NEW_MATCH_ITEM = "Aplicación: un partido nuevo de principio a fin"
 # a run before this day was made with older code (candidates v14, app index step: 07-11) and does not count
-NEW_MATCH_SINCE = "2026-11-07"
+NEW_MATCH_SINCE = "2026-11-11"     # 11-11: through the single worker (tennisbio worker), not the app's own runner
 
 
 def new_match_item(bases: list[Path]) -> dict:
@@ -2386,7 +2386,9 @@ def new_match_item(bases: list[Path]) -> dict:
     txt = f.read_text(encoding="utf-8", errors="replace")
     end = re.search(r"termina (\d{4}-\d{2}-\d{2}T[\d:]+)", txt)
     bad = [l.strip() for l in txt.splitlines() if re.search(r"Traceback|ERROR|\[error\]|\[fallo\]", l)]
-    ok = end is not None and not bad and "[ok]" in txt
+    # the app's former runner printed «[ok]»; the single worker's queue says the match job «hecho» (jobs status)
+    done = "[ok]" in txt or re.search(r"^\s*hecho\s+#\d+ partido", txt, re.M) is not None
+    ok = end is not None and not bad and done
     if ok and end.group(1)[:10] < NEW_MATCH_SINCE:
         return _item(5, "Aplicación", NEW_MATCH_ITEM, "aviso",
                      f"la última ejecución (termina {end.group(1)}) es anterior al código actual ({NEW_MATCH_SINCE}): "
@@ -2395,7 +2397,7 @@ def new_match_item(bases: list[Path]) -> dict:
     return _item(5, "Aplicación", NEW_MATCH_ITEM, "ok" if ok else "falta",
                  (f"terminó {end.group(1)}" if end else "sin terminar")
                  + (f" en {dur.group(1)} min" if dur else "")
-                 + ("; análisis actualizado" if "[ok]" in txt else "; sin análisis actualizado")
+                 + ("; análisis actualizado" if done else "; sin análisis actualizado")
                  + (f"; errores: {'; '.join(bad[:3])}" if bad else ""))
 
 

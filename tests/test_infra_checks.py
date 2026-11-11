@@ -168,3 +168,15 @@ def test_app_queue_log_and_a_request_log_open_while_its_analysis_runs(tmp_path):
     assert logs_item([tmp_path])["status"] == "falta"
     (tmp_path / "progreso.json").write_text("{}", encoding="utf-8")         # the analysis is still writing its progress
     assert logs_item([tmp_path])["status"] == "ok"
+
+
+def test_new_match_through_the_single_worker(tmp_path):
+    # 11-11: B7's run now goes through `tennisbio worker --once`; its queue says the match job «hecho»
+    from tennisbio.audit import new_match_item
+    (tmp_path / "prueba_app_nuevo.log").write_text(
+        "Peticion 206: partido nuevo\nejecutor: parado · cola activa\n  hecho     #3 partido partido nuevo \n"
+        "duracion total: 52.1 min; termina 2026-11-11T22:10:00\n", encoding="utf-8")
+    it = new_match_item([tmp_path])
+    assert it["status"] == "ok", it["detail"]
+    (tmp_path / "prueba_app_nuevo.log").write_text("Peticion 1\n  error     #3 partido x\ntermina 2026-11-11T22:10:00\n", encoding="utf-8")
+    assert new_match_item([tmp_path])["status"] == "falta"
