@@ -55,10 +55,10 @@ la auditoría las marcará «sin comprobación automática asignada».
 |---|---|
 | HECHO | 128 |
 | PARCIAL | 98 |
-| FALTA | 21 |
+| FALTA | 22 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **258** |
+| **Total** | **259** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
