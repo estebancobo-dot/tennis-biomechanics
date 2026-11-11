@@ -1,8 +1,10 @@
 {
- "at": "2026-11-11 11:49:22",
- "firma": "01a13b495650",
+ "at": "2026-11-11 11:56:22",
+ "firma": "255253833cda",
  "ejecutor": {
-  "vivo": false
+  "vivo": true,
+  "pid": 5380,
+  "at": 1794394569.3384008
  },
  "pausa": true,
  "en_curso": [],
@@ -277,6 +279,13 @@
   }
  ],
  "eventos": [
+  {
+   "id": 3,
+   "job": null,
+   "at": "2026-11-11 11:50:49",
+   "kind": "ejecutor",
+   "text": "arranca (pid 5380)"
+  },
   {
    "id": 2,
    "job": 36,
