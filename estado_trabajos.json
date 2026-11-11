@@ -1,32 +1,13 @@
 {
- "at": "2026-11-11 13:20:39",
- "firma": "72afa7cd15f4",
+ "at": "2026-11-11 13:22:08",
+ "firma": "982fc4a54b56",
  "ejecutor": {
   "vivo": true,
   "pid": 7220,
-  "at": 1794399639.530321
+  "at": 1794399727.5679295
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 38,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "en curso",
-   "message": "paso 3/3: Auditoria",
-   "created": "2026-11-11 13:17:30",
-   "started": "2026-11-11 13:17:37",
-   "finished": null,
-   "args": "[\"informe\"]",
-   "source": "claude 190",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_38.log",
-   "paso": 2,
-   "pasos": 3
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "zheng-qinwen-elena-rybakina",
   "etapa": "fine",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 38,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "hecho",
+   "message": "3 pasos",
+   "created": "2026-11-11 13:17:30",
+   "started": "2026-11-11 13:17:37",
+   "finished": "2026-11-11 13:21:57",
+   "args": "[\"informe\"]",
+   "source": "claude 190",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_38.log",
+   "paso": 3,
+   "pasos": 3
+  },
   {
    "id": 37,
    "kind": "flujo",
@@ -290,27 +289,16 @@
    "log": "",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 23,
-   "kind": "informe",
-   "match": null,
-   "player": "rybakina",
-   "stroke": "forehand",
-   "reason": "nueva versión del informe",
-   "state": "hecho",
-   "message": "REGRESIÓN · versión 1 · pendiente de revisar",
-   "created": "2026-11-08 20:03:44",
-   "started": "2026-11-08 20:03:44",
-   "finished": "2026-11-08 20:08:45",
-   "args": "",
-   "source": "",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 30,
+   "job": 38,
+   "at": "2026-11-11 13:21:57",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 29,
    "job": 38,
