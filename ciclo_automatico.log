@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261111114901
+Start time: 20261111121313
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 4236
+Process ID: 14368
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -17,38 +17,56 @@ PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
 
-==> [2026-11-11 11:49:01] Codigo nuevo (d9023cf -> 01da25f): 9 ficheros
-    config/parar_pc.txt
-    config/peticion_pc.txt
-    docs/estado_proyecto.md
-    docs/orquestador.md
-    scripts/windows/ciclo_automatico.ps1
-    scripts/windows/comun.ps1
-    src/tennisbio/cli.py
-    src/tennisbio/orchestrator.py
-    tests/test_orchestrator.py
-Updating d9023cf..01da25f
+==> [2026-11-11 12:13:13] Codigo nuevo (01da25f -> c20cbd3): 7 ficheros
+    config/stage_code.json
+    pyproject.toml
+    src/tennisbio/io/video.py
+    src/tennisbio/learn_check.py
+    tests/conftest.py
+    tests/test_learn_web.py
+    uv.lock
+Updating 01da25f..c20cbd3
 Fast-forward
- config/parar_pc.txt                  |  2 +-
- config/peticion_pc.txt               | 10 +++++
- docs/estado_proyecto.md              |  2 +-
- docs/orquestador.md                  |  2 +-
- scripts/windows/ciclo_automatico.ps1 | 87 ++++++++++++++++++++++++++++++------
- scripts/windows/comun.ps1            |  2 +-
- src/tennisbio/cli.py                 | 30 ++++++++++---
- src/tennisbio/orchestrator.py        | 17 ++++++-
- tests/test_orchestrator.py           | 30 +++++++++++++
- 9 files changed, 158 insertions(+), 24 deletions(-)
-Resolved 124 packages in 12ms
-Checked 89 packages in 16ms
-balltrack.onnx     OK 45 MB
-racketpose.onnx    OK 53 MB
-transnetv2.onnx    OK 31 MB
-rtmw3d-x.onnx      OK 369 MB
-rtmw-x_384x288.onnx OK 229 MB
-court_tcd.onnx     OK 42 MB
-motionagformer_xs.onnx OK 9 MB
-yolo11m-pose_640.onnx OK 84 MB
-yolo11m-pose_960.onnx OK 84 MB
-yolo11m-pose_1280.onnx OK 85 MB
-yolo11m-pose_1920.onnx OK 86 MB
+ config/stage_code.json       |  2 +-
+ pyproject.toml               |  2 +-
+ src/tennisbio/io/video.py    |  5 ++++-
+ src/tennisbio/learn_check.py | 10 ++++++++--
+ tests/conftest.py            |  7 +++++++
+ tests/test_learn_web.py      | 24 ++++++++++++++++++++----
+ uv.lock                      | 24 ++++++++++++++++++++++++
+ 7 files changed, 65 insertions(+), 9 deletions(-)
+Resolved 126 packages in 2ms
+   Building tennisbio @ file:///C:/tenis/tennis-biomech
+      Built tennisbio @ file:///C:/tenis/tennis-biomech
+Prepared 3 packages in 616ms
+error: failed to remove file `C:\tenis\tennis-biomech\.venv\Lib\site-packages\../../Scripts/tennisbio.exe`: The process cannot access the file because it is being used by another process. (os error 32)
+error: failed to remove file `C:\tenis\tennis-biomech\.venv\Lib\site-packages\../../Scripts/tennisbio.exe`: The process cannot access the file because it is being used by another process. (os error 32)
+error: failed to remove file `C:\tenis\tennis-biomech\.venv\Lib\site-packages\../../Scripts/tennisbio.exe`: The process cannot access the file because it is being used by another process. (os error 32)
+error: failed to remove file `C:\tenis\tennis-biomech\.venv\Lib\site-packages\../../Scripts/tennisbio.exe`: The process cannot access the file because it is being used by another process. (os error 32)
+uv.exe : error: failed to remove file `C:\tenis\tennis-biomech\.venv\Lib\site-packages\../../Scripts/tennisbio.exe`:
+The process cannot access the file because it is being used by another process. (os error 32)
+At C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1:658 char:11
++     try { & uv run tennisbio jobs restart --source ciclo 2>&1 | Out-H ...
++           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error: failed t.... (os error 32):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+uv.exe : error: failed to remove file `C:\tenis\tennis-biomech\.venv\Lib\site-packages\../../Scripts/tennisbio.exe`: 
+The process cannot access the file because it is being used by another process. (os error 32)
+At C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1:105 char:22
++ ... firma = "$((& uv run tennisbio jobs status --source ciclo --json "$Ou ...
++                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (error: failed t.... (os error 32):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+    (paso terminado en 2 s)
+
+==> [2026-11-11 12:13:16] Que hace falta: informe
+error: failed to remove file `C:\tenis\tennis-biomech\.venv\Lib\site-packages\../../Scripts/tennisbio.exe`: The process cannot access the file because it is being used by another process. (os error 32)
+PS>TerminatingError(): "Fallo: uv run python scripts/rebuild_report.py (codigo 2)"
+ERROR: Fallo: uv run python scripts/rebuild_report.py (codigo 2)
+    (paso terminado en 0 s)
+Empezado 2026-11-11 12:13:05 - terminado 2026-11-11 12:13:16 - duracion total 11 s
+**********************
+Windows PowerShell transcript end
+End time: 20261111121316
+**********************
