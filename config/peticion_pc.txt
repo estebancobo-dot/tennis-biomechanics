@@ -872,3 +872,9 @@ accion: medir
 script: diag_app_nuevo
 # 209 (11-11): que comprobaciones no pasan en la prueba del partido nuevo (207: 356 bien, 32 no): su auditoria en
 # output\_app_nuevo, a capturas_diag/app_nuevo_fallos.md. Solo lee
+---
+id: 210
+accion: medir
+script: tiempos_etapas
+# 210 (11-11): otra vez los tiempos, ahora con lo que tarda cada parte dentro de la pasada fina (pose, raqueta,
+# bola, recorte...) y sus cuentas, del resumen de cada etapa. Solo lee

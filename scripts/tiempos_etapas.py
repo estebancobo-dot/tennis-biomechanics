@@ -32,6 +32,21 @@ def manifests(root: Path, depth: int = 7) -> list[Path]:
     return sorted(out)
 
 
+def _parts(e: dict) -> dict:
+    """Inside a stage (the fine passes write it in their summary): seconds per part (pose, racket, ball, cut...) and
+    the counts (windows, frames posed...), only what was computed then, not read from the caches."""
+    sm = e.get("summary") or {}
+    out = {}
+    if isinstance(sm.get("seconds"), dict):
+        out["partes_s"] = sm["seconds"]
+    if isinstance(sm.get("counts"), dict):
+        out["cuentas"] = sm["counts"]
+    for k in ("windows", "confirmed", "candidates", "gate"):
+        if k in sm:
+            out.setdefault("resumen", {})[k] = sm[k]
+    return out
+
+
 def table(f: Path) -> dict | None:
     try:
         man = json.loads(f.read_text(encoding="utf-8"))
@@ -42,7 +57,7 @@ def table(f: Path) -> dict | None:
     if not st:
         return None
     rows = sorted(({"etapa": n, "s": float(e.get("seconds") or 0), "a_la_vez_s": float(e.get("overlap_s") or 0),
-                    "terminada": e.get("finished")} for n, e in st.items()), key=lambda r: -r["s"])
+                    "terminada": e.get("finished"), **_parts(e)} for n, e in st.items()), key=lambda r: -r["s"])
     wall = sum(r["s"] - r["a_la_vez_s"] for r in rows)
     for r in rows:
         r["s_por_min_video"] = round(r["s"] / dur, 2) if dur else None
@@ -79,6 +94,10 @@ def main() -> None:
                "|---|---|---|---|---|"]
         md += [f"| {r['etapa']} | {r['s'] / 60:.1f} | {r['s_por_min_video']} | {100 * (r['parte'] or 0):.0f} % | {r['terminada']} |"
                for r in t["etapas"]]
+        for r in t["etapas"]:
+            if r.get("partes_s"):
+                top = ", ".join(f"{k} {v / 60:.1f} min" for k, v in list(r["partes_s"].items())[:8])
+                md.append(f"- dentro de {r['etapa']}: {top}" + (f"; cuentas {r['cuentas']}" if r.get("cuentas") else ""))
         md.append("")
     (dst / "tiempos_etapas.md").write_text("\n".join(md), encoding="utf-8")
     print("\n".join(md))

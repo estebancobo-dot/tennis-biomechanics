@@ -33,3 +33,15 @@ def test_overlapping_stages_are_counted_once_and_a_manifest_without_times_is_ski
     (tmp_path / "b").mkdir()
     (tmp_path / "b" / "manifest.json").write_text("{}", encoding="utf-8")
     assert te.table(tmp_path / "b" / "manifest.json") is None
+
+
+def test_the_parts_inside_a_fine_pass_are_kept(tmp_path):
+    d = tmp_path / "m"
+    d.mkdir()
+    (d / "manifest.json").write_text(json.dumps({
+        "probe": {"seconds": 6, "summary": {"duration_min": 35}},
+        "fine": {"seconds": 2000, "summary": {"seconds": {"pose": 1500.0, "recorte": 100.0}, "counts": {"frames": 9},
+                                              "windows": 40}}}), encoding="utf-8")
+    r = te.table(d / "manifest.json")["etapas"][0]
+    assert r["partes_s"] == {"pose": 1500.0, "recorte": 100.0} and r["cuentas"] == {"frames": 9}
+    assert r["resumen"] == {"windows": 40}
