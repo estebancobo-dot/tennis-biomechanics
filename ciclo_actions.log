@@ -19,3 +19,18 @@ SerializationVersion: 1.1.0.1
 Registro enviado a Claude (no hace falta copiar nada).
 Registro enviado a Claude (no hace falta copiar nada).
 
+git : To https://github.com/estebancobo-dot/tennis-biomechanics.git
+At C:\tenis\tennis-biomech\scripts\windows\comun.ps1:241 char:9
++         git -C $d push -q origin pc-logs 2>$null
++         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (To https://gith...iomechanics.git:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ ! [remote rejected]   pc-logs -> pc-logs (cannot lock ref 'refs/heads/pc-logs': is at 
+58ee1092c51450f7b9a9cf9faff7fa664895ed9d but expected c9fac014d85ce81a1eacd00689e900670aff9e2d)
+error: failed to push some refs to 'https://github.com/estebancobo-dot/tennis-biomechanics.git'
+No se pudo enviar el registro a Claude (sin red o sin permiso en GitHub).
+Empezado 2026-11-11 14:50:18 - terminado 2026-11-11 14:51:20 - duracion total 1 min 01 s
+**********************
+Windows PowerShell transcript end
+End time: 20261111145120
+**********************
