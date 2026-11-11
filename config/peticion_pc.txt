@@ -652,6 +652,10 @@ script: diag_scoreboard
 #   rehacer = un partido entero de nuevo (partido: <id>) y despues el analisis completo
 #   app_nuevo = un tramo (minutos: 35) como partido nuevo con la aplicacion, sin el ciclo, en output\_app_nuevo
 #   prevision = que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada (etapas: opcional)
+#   trabajo = un trabajo para el ejecutor unico (10-11, docs/orquestador.md): comando: run --all -> tennisbio jobs submit;
+#             lo ejecuta el ejecutor (uno por PC), se ve en pc-logs/estado_trabajos.json y en la Cola de la aplicacion
+#   control = ordenes a la cola, las mismas que la aplicacion: orden: pausar | pausar_ya | reanudar | reiniciar |
+#             cancelar (trabajo: N o todos)
 #   medir = una medida con un script del repositorio (script: bench_ball; argumentos: --only ocr5 opcional), registro output\medir_<script>.log
 #   repetir = unas etapas de todos los partidos aunque esten al dia (etapas: fine[,fine_doubtful]) y despues el analisis completo
 #   recall = golpes encontrados frente a los anotados por personas (F3Set), por lado, tipo y etapa (puntos: N para una prueba corta;
@@ -716,3 +720,9 @@ id: 183
 accion: ventana
 # 183 (10-11): pantallas de la aplicacion con su indice real (ventana oculta) tras quitar el partido repetido, para
 # que Claude vea los errores que vio el usuario sin pedirle que la abra. A pc-logs/capturas_app
+---
+id: 184
+accion: trabajo
+comando: registry list
+# 184 (11-11): fase D del orquestador unico. Un trabajo ligero por la cola: el ejecutor unico lo hace y
+# pc-logs/estado_trabajos.json lo muestra hecho (con sus eventos); registro_partidos.json con los 6 partidos

@@ -92,6 +92,31 @@ function Peticion-Pendiente {
 }
 # todas las pendientes seguidas en este ciclo; para si una accion es desconocida (llega con codigo nuevo)
 # o si hay codigo nuevo en GitHub: el siguiente ciclo sigue con el script nuevo
+# orquestador unico (10-11, fase D de docs/orquestador.md): en cada ciclo, el registro de partidos al dia, el ejecutor
+# unico vivo (tennisbio worker: el unico que ejecuta trabajos; la aplicacion y Claude solo los piden) y su estado
+# (estado_trabajos.json) a pc-logs cuando cambia. Desde GitHub Actions no se arranca el ejecutor: el ejecutor de
+# Actions mata al acabar los procesos que deja; lo arranca el ciclo de la tarea de Windows (cada 10 min)
+function Orquestador {
+    $ErrorActionPreference = "Continue"
+    try {
+        Push-Location $RepoDir
+        & uv run tennisbio registry sync 2>&1 | Out-Null
+        & uv run tennisbio registry list --json "$Out\registro_partidos.json" 2>&1 | Out-Null
+        $firma = "$((& uv run tennisbio jobs status --source ciclo --json "$Out\estado_trabajos.json" 2>$null | Select-Object -First 1))"
+        $st = Get-Content "$Out\estado_trabajos.json" -Raw -Encoding UTF8 | ConvertFrom-Json
+        if (-not $st.ejecutor.vivo -and -not $env:GITHUB_ACTIONS) {
+            Start-Process -FilePath "uv" -ArgumentList @("run", "tennisbio", "worker") -WorkingDirectory $RepoDir -WindowStyle Hidden
+            "$(Get-Date -Format s) ejecutor unico arrancado" | Add-Content "$Out\ciclo_arranque.txt"
+        }
+        $marca = "$Out\estado_trabajos.firma"
+        $antes = if (Test-Path $marca) { "$(Get-Content $marca -Raw)".Trim() } else { "" }
+        if ($st.firma -and $st.firma -ne $antes) {
+            Subir-Registros | Out-Null
+            Set-Content $marca $st.firma
+        }
+    } catch { Write-Host "orquestador: $_" -ForegroundColor Yellow }
+    finally { Pop-Location }
+}
 function Hacer-Peticiones {
     $ErrorActionPreference = "Continue"
     $n = 0
@@ -205,6 +230,29 @@ function Hacer-Peticion($p) {
         & uv run python scripts/preflight.py @ar 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
         # como todos los registros: cuando termina (04-11, peticion #66; antes solo decia cuando empezaba)
         "codigo de salida: $LASTEXITCODE; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+    } elseif ($p["accion"] -eq "trabajo") {
+        # un trabajo para el ejecutor unico (10-11, fase D): "comando: run --all" -> tennisbio jobs submit -- run --all;
+        # no se ejecuta aqui: lo hace el ejecutor (uno por PC), y se ve en estado_trabajos.json
+        $c = "$($p['comando'])".Trim()
+        $lg = "$Base\output\trabajos.log"
+        if (-not $c -or $c -notmatch '^[A-Za-z0-9_,. =:/-]+$') {
+            "$(Get-Date -Format s) peticion $($p['id']): comando no valido: '$c'" | Add-Content $lg -Encoding UTF8; return }
+        $r = & uv run tennisbio jobs submit --source "claude $($p['id'])" -- @($c -split '\s+') 2>&1
+        "$(Get-Date -Format s) peticion $($p['id']): $r" | Add-Content $lg -Encoding UTF8
+        Orquestador
+    } elseif ($p["accion"] -eq "control") {
+        # pausar | pausar_ya | reanudar | cancelar (trabajo: N o todos) | reiniciar: las mismas ordenes que la aplicacion
+        $o = "$($p['orden'])".Trim()
+        $lg = "$Base\output\trabajos.log"
+        $map = @{ "pausar" = @("pause"); "pausar_ya" = @("pause", "now"); "reanudar" = @("resume"); "reiniciar" = @("restart") }
+        if ($o -eq "cancelar") {
+            $t = "$($p['trabajo'])".Trim()
+            $a = if ($t -eq "todos") { @("cancel", "all") } elseif ($t -match '^\d+$') { @("cancel", $t) } else { $null }
+        } else { $a = $map[$o] }
+        if (-not $a) { "$(Get-Date -Format s) peticion $($p['id']): orden no valida: '$o'" | Add-Content $lg -Encoding UTF8; return }
+        $r = & uv run tennisbio jobs @($a[0]) --source "claude $($p['id'])" @($a | Select-Object -Skip 1) 2>&1
+        "$(Get-Date -Format s) peticion $($p['id']): $o -> $r" | Add-Content $lg -Encoding UTF8
+        Orquestador
     } elseif ($p["accion"] -eq "medir") {
         # una medida de Claude con un script del repositorio (script: bench_ball -> scripts\bench_ball.py, sin
         # tocar ningun analisis); registro output\medir_<script>.log (se sube solo)
@@ -480,10 +528,16 @@ function Otros-Analisis {
     # para el trabajo de GitHub Actions, un ciclo que solo espera novedades (Esperar-Novedades) no es trabajo
     $esperando = -1
     if ($env:GITHUB_ACTIONS) { try { $esperando = [int]("$(Get-Content "$Out\ciclo_esperando.txt" -ErrorAction Stop)".Trim()) } catch {} }
+    # 11-11: dos ciclos de GitHub Actions que esperan a "otro analisis" se esperaban el uno al otro (desde el 10-11
+    # 12:41 hasta la parada 15): un ciclo que solo espera se apunta en output\esperando\<pid> y no cuenta como trabajo
+    $quietos = @(Get-ChildItem "$Out\esperando" -File -ErrorAction SilentlyContinue | ForEach-Object { [int]$_.Name })
     return @(Get-CimInstance Win32_Process -Filter "Name='powershell.exe'" -ErrorAction SilentlyContinue |
         Where-Object { $_.ProcessId -ne $PID -and $_.ProcessId -ne $PadrePid -and $MisAntecesores -notcontains $_.ProcessId -and
-            $_.ProcessId -ne $esperando -and
-            $_.CommandLine -match "prueba_rapida|analisis_completo|recalcular_medidas|solo_informe|ciclo_automatico|instalar" })
+            $_.ProcessId -ne $esperando -and $quietos -notcontains $_.ProcessId -and
+            $_.CommandLine -match "prueba_rapida|analisis_completo|recalcular_medidas|solo_informe|ciclo_automatico|instalar" }) +
+        # un trabajo del ejecutor unico (10-11, docs/orquestador.md) tambien es un analisis en marcha
+        @(Get-CimInstance Win32_Process -Filter "Name='python.exe'" -ErrorAction SilentlyContinue |
+            Where-Object { $_.CommandLine -match "jobs run-one" })
 }
 $ocupado = Otros-Analisis
 if (-not $ocupado.Count) { $ocupado = $null }
@@ -501,6 +555,7 @@ if ($ocupado) {
             if ($hechas -notcontains $idp) {
                 $idp | Add-Content "$Out\paradas_hechas.txt"
                 $pids = ($ocupado | ForEach-Object { $_.ProcessId }) -join ','
+                try { & uv --directory $RepoDir run tennisbio jobs pause now --source parada 2>&1 | Out-Null } catch {}
                 foreach ($o in $ocupado) { & taskkill.exe /T /F /PID $o.ProcessId 2>&1 | Out-Null }
                 "$(Get-Date -Format s) parada $idp pedida por Claude: cortados $pids" | Add-Content "$Out\paradas.log"
                 $ocupado = $null
@@ -545,11 +600,19 @@ if ($ocupado -and $env:GITHUB_ACTIONS) {
     $guion = (Get-Item $PSCommandPath).LastWriteTime
     try { "$(Get-Date -Format s) GitHub Actions espera a que acabe otro analisis ($(($ocupado | ForEach-Object { $_.ProcessId }) -join ','))" |
         Add-Content "$Out\ciclo_arranque.txt" } catch {}
-    while ($ocupado -and ((Get-Date) - $t0).TotalHours -lt 70) {
-        Start-Sleep -Seconds 30
-        $ocupado = Otros-Analisis
-        if (-not $ocupado.Count) { $ocupado = $null }
-    }
+    New-Item -ItemType Directory -Force -Path "$Out\esperando" | Out-Null
+    $yo = "$Out\esperando\$PID"
+    "$(Get-Date -Format s)" | Set-Content $yo
+    try {
+        while ($ocupado -and ((Get-Date) - $t0).TotalHours -lt 70) {
+            Start-Sleep -Seconds 30
+            $ocupado = Otros-Analisis
+            if (-not $ocupado.Count) { $ocupado = $null }
+        }
+    } finally { Remove-Item $yo -Force -ErrorAction SilentlyContinue }
+    # los apuntes de ciclos que ya no existen (cortados por una parada o un reinicio) se borran
+    Get-ChildItem "$Out\esperando" -File -ErrorAction SilentlyContinue | Where-Object {
+        -not (Get-Process -Id ([int]$_.Name) -ErrorAction SilentlyContinue) } | Remove-Item -Force -ErrorAction SilentlyContinue
     if (-not $ocupado) {
         try { "$(Get-Date -Format s) GitHub Actions: libre tras $([math]::Round(((Get-Date) - $t0).TotalMinutes, 1)) min de espera" |
             Add-Content "$Out\ciclo_arranque.txt" } catch {}
@@ -560,6 +623,7 @@ if ($ocupado) { Senal-Vida "otro analisis en marcha ($(($ocupado | ForEach-Objec
 
 Refrescar-Path
 Registrar-Ciclo          # tarea de Windows al dia (limite de 12 h, instancias en paralelo) aunque no haya codigo nuevo
+Orquestador              # registro unico, ejecutor vivo y su estado a pc-logs cuando cambia (10-11, fase D)
 if (-not (Tiene git) -or -not (Test-Path "$RepoDir\.git")) { Senal-Vida "sin git o sin repositorio en $RepoDir" }
 $ErrorActionPreference = "Continue"
 git -C $RepoDir fetch -q origin $Rama 2>$null
@@ -590,12 +654,9 @@ try {
     Actualizar-Codigo
     Comprobar-Instalacion
     Set-Location $RepoDir
-    # registro unico de partidos (10-11, fase A del orquestador unico): catalogo y carpetas al registro de la
-    # aplicacion, y su lista a pc-logs (registro_partidos.json), la misma que ve la aplicacion
-    try {
-        & uv run tennisbio registry sync 2>&1 | Out-Host
-        & uv run tennisbio registry list --json "$Out\registro_partidos.json" 2>&1 | Out-Null
-    } catch { Write-Host "registro de partidos: $_" -ForegroundColor Yellow }
+    # codigo nuevo: el ejecutor unico se reinicia entre dos trabajos (nunca a mitad) para usarlo (10-11, fase D)
+    try { & uv run tennisbio jobs restart --source ciclo 2>&1 | Out-Host } catch {}
+    Orquestador
     # las pruebas del codigo nuevo en este PC, en segundo plano y por debajo de lo normal (03-11; pruebas_fondo.ps1)
     try {
         Start-Process wscript.exe -ArgumentList @("//B", "`"$(Join-Path $PSScriptRoot 'oculto.vbs')`"",

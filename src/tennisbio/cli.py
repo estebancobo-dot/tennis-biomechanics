@@ -38,21 +38,38 @@ def _jobs(args) -> int:
     status_file = out / "estado_trabajos.json"
     if args.cmd == "worker":
         return O.serve(cfg, once=args.once, status_file=status_file)
-    rest = [a for a in (args.rest or []) if a != "--"]
+    # the options can come before or after the action's own words (argparse.REMAINDER keeps them all): parsed here;
+    # what follows «--» is the tennisbio command of «submit» (its own options are never read as ours)
+    rest = list(args.rest or [])
+    cmd_args: list[str] = []
+    if "--" in rest:
+        i = rest.index("--")
+        rest, cmd_args = rest[:i], rest[i + 1:]
+    sp = argparse.ArgumentParser(prog="tennisbio jobs", add_help=False)
+    sp.add_argument("--source", default=None)
+    sp.add_argument("--json", default=None)
+    sp.add_argument("pos", nargs="*")
+    ns = sp.parse_args(rest)
+    args.source = ns.source or args.source
+    args.json = ns.json or args.json
+    rest = ns.pos
     if args.action == "run-one":
         return O.run_one(cfg, int(rest[0]))
     db = O.open_db(cfg)
     try:
         if args.action == "submit":
-            if not rest:
+            what = cmd_args or rest
+            if not what:
                 print("falta qué hacer: tennisbio jobs submit -- run --all")
                 return 2
-            jid = O.submit(db, "comando", args=rest, source=args.source)
-            print(f"trabajo {jid} en la cola: tennisbio {' '.join(rest)}")
+            jid = O.submit(db, "comando", args=what, source=args.source)
+            print(f"trabajo {jid} en la cola: tennisbio {' '.join(what)}")
         elif args.action == "pause":
             print(O.pause(db, now_=bool(rest and rest[0] == "now"), source=args.source))
         elif args.action == "resume":
             print(O.resume(db, source=args.source))
+        elif args.action == "restart":
+            print(O.restart(db, source=args.source))
         elif args.action == "cancel":
             n = O.cancel(db, None if rest and rest[0] == "all" else int(rest[0]), all_=bool(rest and rest[0] == "all"),
                          source=args.source)
@@ -63,7 +80,8 @@ def _jobs(args) -> int:
         O.write_status(db, status_file)
         if args.action == "status":
             w = st["ejecutor"]
-            print(f"ejecutor: {'en marcha' if w.get('vivo') else 'parado'} · cola {'en pausa' if st['pausa'] else 'activa'}")
+            print(f"ejecutor: {'en marcha' if w.get('vivo') else 'parado'} · cola {'en pausa' if st['pausa'] else 'activa'}"
+                  f" · firma {st['firma']}")
             for r in st["en_curso"]:
                 print(f"  en curso  #{r['id']} {r['kind']} {r.get('reason') or ''}")
             for r in st["pendientes"]:
@@ -135,7 +153,7 @@ def _main(argv=None):
     wk = sub.add_parser("worker", help="el ejecutor único de la cola (uno por PC): ejecuta los trabajos y obedece pausar/parar")
     wk.add_argument("--once", action="store_true", help="sale cuando no queda nada que hacer")
     jb = sub.add_parser("jobs", help="la cola: submit | status | pause | resume | cancel | run-one (docs/orquestador.md)")
-    jb.add_argument("action", choices=("submit", "status", "pause", "resume", "cancel", "run-one"))
+    jb.add_argument("action", choices=("submit", "status", "pause", "resume", "cancel", "restart", "run-one"))
     jb.add_argument("rest", nargs=argparse.REMAINDER,
                     help="submit: -- <argumentos de tennisbio> | cancel: ID o all | run-one: ID | pause: now")
     jb.add_argument("--source", default="cli", help="quién lo pide (app, ciclo, claude…), para el registro de eventos")

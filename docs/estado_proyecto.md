@@ -30,7 +30,7 @@ ninguna tarea en la nube. Todo lo hecho está subido a la rama; nada vive solo e
 |---|---|---|
 | 1 | Fase A: registro único de partidos (`registry.py`) | hecho, subido; falta verlo en el PC (`registro_partidos.json` en pc-logs) |
 | 2 | Fase B: ejecutor único (`orchestrator.py`, `tennisbio worker`, `tennisbio jobs`) | hecho, subido |
-| 3 | Fase D: el ciclo del PC y el chat mandan trabajos a la cola (no ejecutan); sync del registro en cada vuelta; `estado_trabajos.json` a pc-logs | siguiente |
+| 3 | Fase D: el ciclo del PC y el chat mandan trabajos a la cola (no ejecutan); sync del registro en cada vuelta; `estado_trabajos.json` a pc-logs | hecho en código (11-11); falta verlo en el PC: ejecutor arrancado, `registro_partidos.json` y `estado_trabajos.json` en pc-logs |
 | 4 | Fase C: flujos en `config/flujos.yaml` (el análisis completo como flujo) | pendiente |
 | 5 | Fase E: la aplicación por la misma cola (su «Cola» lee trabajos y eventos) | pendiente |
 | 6 | Fase F: prueba de extremo a extremo en el PC (enviar aquí, pausar en la app, reanudar aquí) | pendiente |

@@ -135,6 +135,13 @@ def pause(db, now_: bool = False, source: str = "") -> str:
     return "cola en pausa" + (": el trabajo en curso se para y vuelve a la cola" if now_ else "")
 
 
+def restart(db, source: str = "") -> str:
+    """The worker ends between two jobs (never in the middle of one) and the cycle starts it again with the new code."""
+    db.set_setting("reiniciar_ejecutor", True)
+    event(db, None, "reiniciar", source)
+    return "el ejecutor se reinicia al acabar el trabajo en curso"
+
+
 def resume(db, source: str = "") -> str:
     db.set_setting("pausa", False)
     event(db, None, "reanudar", source)
@@ -205,6 +212,10 @@ def serve(cfg: dict, once: bool = False, idle_s: float = 10.0, stop=lambda: Fals
                 db.set_setting("ejecutor", {"pid": os.getpid(), "at": time.time()})
                 last_beat = time.time()
                 write_status(db, status_file)
+            if db.setting("reiniciar_ejecutor", False):   # new code arrived: exit between jobs, the cycle starts a new one
+                db.set_setting("reiniciar_ejecutor", False)
+                event(db, None, "ejecutor", "se reinicia con el código nuevo")
+                break
             job = jobs.next_job(db)
             if job is None:
                 if once:
@@ -309,7 +320,11 @@ def status(db, events: int = 30, output: Path | None = None) -> dict:
             prog = json.loads(pf.read_text(encoding="utf-8"))
         except (OSError, ValueError):
             prog = None
-    return {"at": time.strftime("%Y-%m-%d %H:%M:%S"), "ejecutor": {"vivo": alive, **w}, "pausa": bool(db.setting("pausa", False)),
+    import hashlib
+    firma = hashlib.sha1(json.dumps([alive, bool(db.setting("pausa", False)),
+                                     [(r["id"], r["state"], r.get("message")) for r in rows]], default=str).encode()).hexdigest()[:12]
+    return {"at": time.strftime("%Y-%m-%d %H:%M:%S"), "firma": firma,
+            "ejecutor": {"vivo": alive, **w}, "pausa": bool(db.setting("pausa", False)),
             "en_curso": running, "progreso": prog,
             "pendientes": [r for r in rows if r["state"] in ("pendiente", "esperando espacio", "por confirmar")],
             "recientes": [r for r in rows if r["state"] not in ("pendiente", "en curso", "esperando espacio", "por confirmar")][:15],

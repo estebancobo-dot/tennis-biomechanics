@@ -98,3 +98,33 @@ def test_a_second_worker_does_nothing(env):
             assert O.serve(env, once=True) == 3
     finally:
         lock.release()
+
+
+def test_restart_ends_the_worker_between_jobs_and_the_signature_changes(env):
+    db = O.open_db(env)
+    f0 = O.status(db)["firma"]
+    O.restart(db, source="ciclo")
+    j = O.submit(db, "comando", args=["registry", "list"], source="claude")
+    assert O.status(db)["firma"] != f0
+    db.close()
+    assert O.serve(env, idle_s=0.1) == 0                    # without once: it ends because of the restart
+    db = O.open_db(env)
+    assert db.one("SELECT state FROM jobs WHERE id=?", j)["state"] == "pendiente"     # untouched, for the new worker
+    assert db.setting("reiniciar_ejecutor") is False
+    db.close()
+
+
+def test_the_command_line_as_the_cycle_calls_it(env, tmp_path):
+    # 10-11: argparse.REMAINDER kept «--source» and «--json» as words of the action
+    from tennisbio import cli
+    st = tmp_path / "estado.json"
+    assert cli.main(["jobs", "submit", "--source", "claude 184", "--", "run", "--all"]) == 0
+    assert cli.main(["jobs", "pause", "--source", "app", "now"]) == 0
+    assert cli.main(["jobs", "cancel", "--source", "app", "all"]) == 0
+    assert cli.main(["jobs", "resume", "--source", "claude"]) == 0
+    assert cli.main(["jobs", "status", "--source", "ciclo", "--json", str(st)]) == 0
+    s = json.loads(st.read_text(encoding="utf-8"))
+    job = s["recientes"][0]
+    assert json.loads(job["args"]) == ["run", "--all"] and job["source"] == "claude 184" and job["state"] == "cancelado"
+    assert s["pausa"] is False and s["firma"]
+    assert {e["kind"] for e in s["eventos"]} >= {"enviado", "pausa", "cancelar", "reanudar"}
