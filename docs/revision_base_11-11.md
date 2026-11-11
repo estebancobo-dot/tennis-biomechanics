@@ -151,7 +151,7 @@ partidos son del 09-11, con la identidad y el marcador anteriores. Se recalculan
 | # | Petición | Hallazgo | Veredicto |
 |---|---|---|---|
 | 23 | Seguirla en los cambios de lado | Frente a F3Set: 99 %. Pegula: ropa igual dentro de un juego 92 % (< 95 %). | = (abierta) |
-| 151 | Cómo se separan derecha, revés, saque y volea | La prueba solo cuenta golpes. Hay verdad sin usar: F3Set da derecha/revés bien en 327 de 334 (97,9 %) y saques en 129 de 130. Ninguna comprobación lo mira. | **P** (R4) |
+| 151 | Cómo se separan derecha, revés, saque y volea | La prueba solo cuenta golpes. Hay verdad sin usar: F3Set da derecha/revés bien en 327 de 336 (97,3 %) y saques en 129 de 130. Ninguna comprobación lo mira. | **P** (R4) |
 | 155 | No perder golpes | Osaka: saques encontrados 76 % (< 85 %). La prueba principal de B4 falla, como ya decía la tabla de cierre. | = (abierta) |
 | 205 | Unos 400 golpes | 561 derechas. | V |
 | 218 | Fondo, repeticiones y otras cámaras | Fondo frente a F3Set: 88 % frente al 93 % del lado cercano; repeticiones enlazadas. | V |

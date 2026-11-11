@@ -669,6 +669,60 @@ def f3set_precision_item(out_root: Path) -> dict:
                  f"precisión {p:.3f}, encontrados {found} de {gt} ({rec:.0%}) en {f}")
 
 
+F3SET_RECALL_MIN = 0.85         # 11-11 (R4): her annotated strokes found by the analysis's detector (0.90 on 08-11)
+F3SET_KIND_MIN = 0.95           # 11-11 (R4): found strokes given their annotated kind (derecha/revés; saque)
+F3SET_RECALL_ITEM = "Golpes encontrados frente a F3Set (detector del análisis)"
+F3SET_KIND_ITEM = "Tipo de golpe frente a F3Set (anotado)"
+
+
+def _latest_recall_summary(out_root: Path) -> tuple[str, dict] | None:
+    for name in ("recall_validation_detector.json", "recall_validation.json"):
+        f = _find(out_root, name, f"datasets/reports/{name}")
+        if f is None:
+            continue
+        try:
+            r = json.loads(f.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            continue
+        s = r.get("summary_valid") or r.get("summary") or {}
+        if s:
+            return name, s
+    return None
+
+
+def f3set_detector_items(out_root: Path) -> list[dict]:
+    """B4's main test (11-11, R4 of the review of the Base): the analysis's own detector against the strokes people
+    annotated in F3Set (scripts/validate_recall.py), not the old clip path that «Validación con clips anotados» measures
+    (51 strokes, recall 0.65, passed with F1 ≥ 0.6). #151: the kind of each found stroke against its annotated kind
+    (the confusion was measured but no check read it)."""
+    r = _latest_recall_summary(out_root)
+    if r is None:
+        return [_item(1, "Golpes", n, "aviso", "sin recuento de F3Set (recall_validation_detector.json)")
+                for n in (F3SET_RECALL_ITEM, F3SET_KIND_ITEM)]
+    f, s = r
+    tot = s.get("total") or {}
+    rec = tot.get("recall")
+    out = [_item(1, "Golpes", F3SET_RECALL_ITEM, "aviso" if rec is None else "ok" if rec >= F3SET_RECALL_MIN else "falta",
+                 f"{tot.get('found')} de {tot.get('gt')} golpes suyos anotados encontrados"
+                 + (f" ({rec:.0%}; objetivo ≥ {F3SET_RECALL_MIN:.0%})" if rec is not None else "") + f" en {f}")]
+    conf = s.get("kind_confusion") or {}
+    pairs = [(k.split("->")[0], k.split("->")[1], int(v)) for k, v in conf.items() if "->" in k]
+    grd = [x for x in pairs if x[0] in ("forehand", "backhand")]
+    srv = [x for x in pairs if x[0] == "serve"]
+    if not grd or not srv:
+        out.append(_item(1, "Golpes", F3SET_KIND_ITEM, "aviso", f"sin la confusión de tipos en {f} (kind_confusion)"))
+        return out
+    g_ok, g_n = sum(n for a, b, n in grd if a == b), sum(n for _, _, n in grd)
+    s_ok, s_n = sum(n for _, b, n in srv if b == "overhead"), sum(n for _, _, n in srv)
+    ga, sa = g_ok / g_n, s_ok / s_n
+    worst = sorted(((n, f"{a}→{b}") for a, b, n in grd + srv if not (a == b or (a == "serve" and b == "overhead"))), reverse=True)
+    out.append(_item(1, "Golpes", F3SET_KIND_ITEM, "ok" if min(ga, sa) >= F3SET_KIND_MIN else "falta",
+                     f"derecha/revés con su tipo {g_ok} de {g_n} ({ga:.1%}), saques {s_ok} de {s_n} ({sa:.1%}); objetivo ≥ "
+                     f"{F3SET_KIND_MIN:.0%}" + (f"; confusiones: {', '.join(f'{k} {n}' for n, k in worst[:4])}" if worst else "")
+                     + f" ({f})"))
+    return out
+
+
 # --- package B4 (08-11): the requests that had no check of their own on the outputs --------------------------------
 # #23 (follow her across the changes of ends) was checked only by «golpes analizados» (any stroke analysed), #205
 # (about 400 strokes with the 4 matches) and #155 were FALTA with no rule, #219 (far end counted and measured) borrowed
@@ -1523,7 +1577,7 @@ PETITIONS = {
     233: r"golpes analizados|Etapas con errores|Golpes encontrados frente al marcador",
     134: r"golpes analizados|Golpes encontrados frente al marcador",
     234: Note("prueba de valor del 27-10 (docs/plan_maestro.md, R2)"),
-    151: r"golpes analizados|Golpes encontrados frente al marcador", 219: r"^Repeticiones y otras cámaras$|Golpes encontrados frente al marcador",
+    151: r"golpes analizados|Golpes encontrados frente al marcador|^Tipo de golpe frente a F3Set", 219: r"^Repeticiones y otras cámaras$|Golpes encontrados frente al marcador",
     132: r"Golpe angulado", 157: r"Bola corta baja cerca de la red", 158: r"Bola corta alta cerca de la red",
     159: r"Volea a media pista con golpe de fondo|Volea fuera de la línea de saque",
 }
@@ -2196,7 +2250,7 @@ def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) 
                lambda: stage_time_items(match_dirs, out_root), lambda: parallel_items(match_dirs),
                lambda: [_scratch_time(out_root, cfg)],
                lambda: resources_items(out_root), lambda: [actions_item(out_root)],
-               lambda: [f3set_precision_item(out_root)],
+               lambda: [f3set_precision_item(out_root)], lambda: f3set_detector_items(out_root),
                lambda: f3set_sides_items(out_root),          # B4 (08-11): identity and far end against F3Set
                # #30: after the model items, which it reads
                lambda: [comparison_doc_item(items, out_root)]):
