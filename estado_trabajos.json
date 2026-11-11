@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 14:19:22",
- "firma": "2645ffb2f3fb",
+ "at": "2026-11-11 14:22:30",
+ "firma": "0158d3122417",
  "ejecutor": {
-  "vivo": false,
-  "pid": null,
-  "at": 1794403153.731785
+  "vivo": true,
+  "pid": 18768,
+  "at": 1794403350.4456718
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,13 @@
  ],
  "eventos": [
   {
+   "id": 51,
+   "job": null,
+   "at": "2026-11-11 14:20:50",
+   "kind": "ejecutor",
+   "text": "arranca (pid 18768)"
+  },
+  {
    "id": 50,
    "job": null,
    "at": "2026-11-11 14:19:13",
@@ -494,13 +501,6 @@
    "at": "2026-11-11 13:13:18",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 21,
-   "job": null,
-   "at": "2026-11-11 13:13:08",
-   "kind": "reiniciar",
-   "text": "ciclo"
   }
  ]
 }
