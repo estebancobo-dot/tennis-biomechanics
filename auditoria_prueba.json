@@ -3,10 +3,10 @@
  "strokes": 26,
  "near": 13,
  "summary": {
-  "ok": 386,
-  "falta": 28,
+  "ok": 390,
+  "falta": 23,
   "pocos datos": 102,
-  "aviso": 112
+  "aviso": 113
  },
  "items": [
   {
@@ -3234,10 +3234,10 @@
    "req": 5,
    "area": "Automático",
    "name": "Pruebas del código en este PC",
-   "status": "falta",
-   "detail": "código 34d2866 (2026-11-11T15:50:55): 980 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end",
-   "passed": 980,
-   "failed": 1
+   "status": "ok",
+   "detail": "código 90f16b0 (2026-11-11T16:15:53): 981 bien, 0 fallan, 0 errores",
+   "passed": 981,
+   "failed": 0
   },
   {
    "req": 5,
@@ -3475,7 +3475,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T16:11:07); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T16:20:51); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3531,7 +3531,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-11 16:09:23 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-11 16:18:55 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 5,
@@ -3678,7 +3678,7 @@
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 11-11 16:08, empezó a los 0.3 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 11-11 16:18, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -3789,8 +3789,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe",
-   "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 34d2866 (2026-11-11T15:50:55): 980 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -3838,8 +3838,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
-   "status": "falta",
-   "detail": "3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 34d2866 (2026-11-11T15:50:55): 980 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)"
+   "status": "aviso",
+   "detail": "3 comprobaciones: 1 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
   },
   {
    "req": 11,
@@ -4055,8 +4055,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#51 El código de la prueba es el de los casos reales",
-   "status": "falta",
-   "detail": "1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 34d2866 (2026-11-11T15:50:55): 980 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)"
+   "status": "ok",
+   "detail": "1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -5315,8 +5315,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código",
-   "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 34d2866 (2026-11-11T15:50:55): 980 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
