@@ -1,6 +1,6 @@
 {
- "at": "2026-11-11 13:01:03",
- "firma": "0367a42dbb16",
+ "at": "2026-11-11 13:01:13",
+ "firma": "e254018c8a55",
  "ejecutor": {
   "vivo": true,
   "pid": 9200,
@@ -18,7 +18,26 @@
   "quedan_s": 130,
   "hora": "2026-11-09 23:39:49"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 37,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «prueba»: Comprobacion del ejecutor y de los flujos: dos pasos ligeros",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-11 13:01:10",
+   "started": null,
+   "finished": null,
+   "args": "[\"prueba\"]",
+   "source": "claude 187",
+   "log": "",
+   "paso": 0,
+   "pasos": 2
+  }
+ ],
  "recientes": [
   {
    "id": 36,
@@ -292,6 +311,13 @@
   }
  ],
  "eventos": [
+  {
+   "id": 12,
+   "job": 37,
+   "at": "2026-11-11 13:01:10",
+   "kind": "enviado",
+   "text": "flujo prueba (claude 187)"
+  },
   {
    "id": 11,
    "job": null,
