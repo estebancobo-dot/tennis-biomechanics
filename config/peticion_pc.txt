@@ -826,3 +826,9 @@ comando: script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250
 # 201 (11-11): la estatura no separa a Rybakina y Pegula plano a plano (72 % en los decididos): descartada. La causa de
 # los 62 planos sin decidir es el marcador sin leer (antes de 427 s y de 427 a 1356 s). Recortes del marcador en esos
 # momentos para ver por que no se lee (capturas_diag/marcador_*_t*.jpg)
+---
+id: 202
+accion: trabajo
+comando: script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250
+# 202 (11-11): a los 700 s el lector lee bien el marcador (0-2, 15-40) pero score.json no tiene lecturas de 427 a 1356 s:
+# en cada momento, si contaba como juego (camara principal con pista) y que da una lectura completa (read)

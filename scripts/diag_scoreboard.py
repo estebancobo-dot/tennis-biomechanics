@@ -94,10 +94,26 @@ def diag(m, cfg, root: Path, out: Path, n: int, times: list[float] | None = None
     saved = []
     if times:                       # 11-11: moments with NO reading (why the reader missed them): what it sees there
         roi0 = score.get("roi")
+        # was the moment sampled as play (main camera with the court found)? and what does a full read() say?
+        try:
+            sc = json.loads(mf.at(d, "scenes.json").read_text(encoding="utf-8"))
+            court = json.loads(mf.at(d, "court.json").read_text(encoding="utf-8")) if mf.at(d, "court.json").exists() else None
+            play_m = stages.play_mask(sc, court or None)
+            fps_s = float(sc["fps"])
+        except Exception as e:  # noqa: BLE001 — the crops still help
+            play_m, fps_s = None, 1.0
+            res["play_mask_error"] = str(e)[:200]
+        res["momentos"] = []
         for k, t in enumerate(times):
             fr = stages.grab_frame(Path(video), float(t))
             if fr is None:
                 continue
+            fresh = ScoreReader(*names)
+            st = fresh.read(fr)
+            near = [x for x in rd if abs(x["t"] - t) < 60]
+            res["momentos"].append({"t": t, "juego": None if play_m is None else bool(int(t * fps_s) < len(play_m) and play_m[int(t * fps_s)]),
+                                    "read": None if st is None else st.to_dict().get("games"),
+                                    "lecturas_a_menos_de_60s": len(near)})
             small = cv2.resize(fr, (960, int(fr.shape[0] * 960 / fr.shape[1])))
             cv2.imwrite(str(out / f"marcador_{m.id[:40]}_t{int(t)}_entero.jpg"), small, [cv2.IMWRITE_JPEG_QUALITY, 80])
             saved.append(f"marcador_{m.id[:40]}_t{int(t)}_entero.jpg")
