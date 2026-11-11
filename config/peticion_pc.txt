@@ -819,3 +819,10 @@ comando: script diag_height
 # 200 (11-11): en Rybakina-Pegula los 62 planos sin decidir estan donde el marcador no se leyo (antes de la primera
 # lectura y 13 min sin lecturas entre las 0-1 y 1-4). Con las dos de blanco, la estatura (1,84 frente a 1,70) las
 # separaria: estatura de cada plano frente a la pista, por jugadora, en los 6 partidos (capturas_diag/diag_estatura.json)
+---
+id: 201
+accion: trabajo
+comando: script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250
+# 201 (11-11): la estatura no separa a Rybakina y Pegula plano a plano (72 % en los decididos): descartada. La causa de
+# los 62 planos sin decidir es el marcador sin leer (antes de 427 s y de 427 a 1356 s). Recortes del marcador en esos
+# momentos para ver por que no se lee (capturas_diag/marcador_*_t*.jpg)

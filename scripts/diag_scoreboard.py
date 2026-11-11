@@ -72,7 +72,7 @@ def sheet(frame, roi, items, names, reading) -> np.ndarray:
     return np.vstack([big, mk, pad])
 
 
-def diag(m, cfg, root: Path, out: Path, n: int) -> dict:
+def diag(m, cfg, root: Path, out: Path, n: int, times: list[float] | None = None) -> dict:
     from tennisbio import layout
     from tennisbio import match_files as mf
     from tennisbio.scoreboard import ScoreReader
@@ -92,6 +92,23 @@ def diag(m, cfg, root: Path, out: Path, n: int) -> dict:
     if reader is None:
         return {**res, "error": "sin nombres"}
     saved = []
+    if times:                       # 11-11: moments with NO reading (why the reader missed them): what it sees there
+        roi0 = score.get("roi")
+        for k, t in enumerate(times):
+            fr = stages.grab_frame(Path(video), float(t))
+            if fr is None:
+                continue
+            small = cv2.resize(fr, (960, int(fr.shape[0] * 960 / fr.shape[1])))
+            cv2.imwrite(str(out / f"marcador_{m.id[:40]}_t{int(t)}_entero.jpg"), small, [cv2.IMWRITE_JPEG_QUALITY, 80])
+            saved.append(f"marcador_{m.id[:40]}_t{int(t)}_entero.jpg")
+            if roi0:
+                roi = [int(v) for v in roi0]
+                items = reader._items(fr[roi[1]:roi[3], roi[0]:roi[2]], cls=False)
+                img = sheet(fr, roi, items, names, {"t": float(t), "games": None, "points": None, "server": None})
+                p = out / f"marcador_{m.id[:40]}_t{int(t)}.jpg"
+                cv2.imwrite(str(p), img, [cv2.IMWRITE_JPEG_QUALITY, 85])
+                saved.append(p.name)
+        return {**res, "images": saved}
     for k, r in enumerate(pick(rd, n)):
         fr = stages.grab_frame(Path(video), float(r["t"]))
         if fr is None:
@@ -130,6 +147,7 @@ def main():
     ap.add_argument("out", nargs="?")
     ap.add_argument("--match", nargs="+")
     ap.add_argument("--n", type=int, default=6)
+    ap.add_argument("--times", default="", help="seconds without a reading to look at, comma separated (e.g. 200,700,1100)")
     args = ap.parse_args()
     cfg = load_config()
     root = Path(cfg.get("paths", {}).get("output", "output"))
@@ -137,10 +155,10 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     rep = []
     for m in load_matches(cfg):
-        if args.match and m.id not in args.match:
+        if args.match and not any(x in m.id for x in args.match):
             continue
         try:
-            r = diag(m, cfg, root, out, args.n)
+            r = diag(m, cfg, root, out, args.n, [float(x) for x in args.times.split(",") if x.strip()] or None)
         except Exception as e:  # noqa: BLE001 — one broken match never stops the others
             r = {"match": m.id, "error": f"{type(e).__name__}: {e}"[:300]}
         print(json.dumps(r, ensure_ascii=False), flush=True)
