@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 15:34:19",
- "firma": "cac61da33147",
+ "at": "2026-11-11 15:34:51",
+ "firma": "f25db1c858d1",
  "ejecutor": {
-  "vivo": true,
-  "pid": 13008,
-  "at": 1794407645.486363
+  "vivo": false,
+  "pid": null,
+  "at": 1794407675.5006242
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,27 @@
  ],
  "eventos": [
   {
+   "id": 109,
+   "job": null,
+   "at": "2026-11-11 15:34:35",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 108,
+   "job": null,
+   "at": "2026-11-11 15:34:35",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 107,
+   "job": null,
+   "at": "2026-11-11 15:34:33",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 106,
    "job": 46,
    "at": "2026-11-11 15:30:55",
@@ -480,27 +501,6 @@
    "at": "2026-11-11 15:00:49",
    "kind": "empieza",
    "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
-  },
-  {
-   "id": 79,
-   "job": null,
-   "at": "2026-11-11 15:00:49",
-   "kind": "ejecutor",
-   "text": "arranca (pid 9496)"
-  },
-  {
-   "id": 78,
-   "job": null,
-   "at": "2026-11-11 14:51:13",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 77,
-   "job": null,
-   "at": "2026-11-11 14:51:13",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
