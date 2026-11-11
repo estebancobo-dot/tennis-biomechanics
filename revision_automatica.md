@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-390 cumplidos · 24 no cumplidos · 102 sin golpes suficientes · 113 avisos (antes: 392 cumplidos, 21 no cumplidos)
+390 cumplidos · 24 no cumplidos · 102 sin golpes suficientes · 113 avisos (antes: 390 cumplidos, 24 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 119 de 258
 
@@ -130,8 +130,8 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 21 sin hacer
 ## No cumplidos
 
 - **Primera pantalla, anchura y nombres (diseño definitivo)**: vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 609 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
-- **Registros con fecha y duración**: 61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
-- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
+- **Registros con fecha y duración**: 62 de 64 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
+- **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (62 de 64 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
 - **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
 - **#193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10)**: SIN HACER según el registro (#193, docs/peticiones_usuario.md)
@@ -153,12 +153,3 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 21 sin hacer
 - **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
 - **#257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, **: SIN HACER según el registro (#257, docs/peticiones_usuario.md)
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
-
-## Empeora respecto a la ejecución anterior
-
-- **Registros con fecha y duración**: ok → falta: 61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
-- **#66 Fechas y duración en los registros**: ok → falta: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
-
-## Comprobaciones nuevas
-
-- #258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ: falta (SIN HACER según el registro (#258, docs/peticiones_usuario.md))
