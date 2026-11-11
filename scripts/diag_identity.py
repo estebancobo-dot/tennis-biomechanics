@@ -80,6 +80,20 @@ def diag(m, cfg, root: Path, out: Path, n: int) -> dict:
             res["games_sequence"].append([round(float(x["t"])), x.get("games"), x.get("server")])
             last = g
     res["games_sequence"] = res["games_sequence"][:120]
+    # 11-11: the runs left undecided (no end changes) with the readings around them, to see why
+    gm = [x for x in rd if x.get("games")]
+    und = []
+    for r in runs:
+        if r.get("end_changes") is not None:
+            continue
+        t = (r["start"] + r["end"]) / 2 / fps
+        b = max((x["t"] for x in gm if x["t"] <= t), default=None)
+        a = min((x["t"] for x in gm if x["t"] > t), default=None)
+        und.append({"t": round(t), "s": round((r["end"] - r["start"]) / fps, 1), "lectura_antes_s": None if b is None else round(t - b),
+                    "lectura_despues_s": None if a is None else round(a - t)})
+    res["sin_decidir"] = und
+    res["lecturas"] = {"total": len(rd), "con_juegos": len(gm), "primera_t": round(gm[0]["t"]) if gm else None,
+                       "ultima_t": round(gm[-1]["t"]) if gm else None}
     video = pipeline.Context(m, cfg, d).video
     if not Path(video).exists() or not runs:
         return {**res, "error": "sin vídeo" if runs else "sin planos"}

@@ -800,3 +800,9 @@ accion: trabajo
 comando: flujo informe
 # 196-197 (11-11): identidad v12 (un plano sin lectura cercana toma los cambios de lado de la ultima lectura antes y la
 # primera despues si coinciden a menos de 10 min). Pegula otra vez y su informe: identidad >= 95 % de planos decididos
+---
+id: 198
+accion: trabajo
+comando: script diag_identity --match pegula --n 12
+# 198 (11-11): la identidad de Rybakina-Pegula sigue en 258 de 320 planos con v11 y v12: cada plano sin decidir con su
+# instante y las lecturas del marcador antes y despues (capturas_diag/diag_identidad.json, "sin_decidir")
