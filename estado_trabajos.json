@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 16:13:50",
- "firma": "a268077c2556",
+ "at": "2026-11-11 16:18:40",
+ "firma": "71c78326467c",
  "ejecutor": {
-  "vivo": true,
-  "pid": 5916,
-  "at": 1794410028.1745236
+  "vivo": false,
+  "pid": null,
+  "at": 1794410308.23038
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,27 @@
  ],
  "eventos": [
   {
+   "id": 138,
+   "job": null,
+   "at": "2026-11-11 16:18:28",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 137,
+   "job": null,
+   "at": "2026-11-11 16:18:28",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 136,
+   "job": null,
+   "at": "2026-11-11 16:18:22",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 135,
    "job": 49,
    "at": "2026-11-11 16:11:08",
@@ -480,27 +501,6 @@
    "at": "2026-11-11 15:34:35",
    "kind": "ejecutor",
    "text": "termina"
-  },
-  {
-   "id": 108,
-   "job": null,
-   "at": "2026-11-11 15:34:35",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 107,
-   "job": null,
-   "at": "2026-11-11 15:34:33",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 106,
-   "job": 46,
-   "at": "2026-11-11 15:30:55",
-   "kind": "hecho",
-   "text": "código 0"
   }
  ]
 }
