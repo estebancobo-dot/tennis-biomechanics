@@ -1,13 +1,32 @@
 {
- "at": "2026-11-11 21:33:16",
- "firma": "b50813d83946",
+ "at": "2026-11-11 21:33:26",
+ "firma": "5ffcae4b77cc",
  "ejecutor": {
   "vivo": true,
   "pid": 1580,
   "at": 1794429196.381109
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 56,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script tiempos_etapas",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-11 21:33:24",
+   "started": "2026-11-11 21:33:26",
+   "finished": null,
+   "args": "[\"script\", \"tiempos_etapas\"]",
+   "source": "claude 210",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_56.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -293,6 +312,20 @@
  ],
  "eventos": [
   {
+   "id": 206,
+   "job": 56,
+   "at": "2026-11-11 21:33:26",
+   "kind": "empieza",
+   "text": "script tiempos_etapas"
+  },
+  {
+   "id": 205,
+   "job": 56,
+   "at": "2026-11-11 21:33:24",
+   "kind": "enviado",
+   "text": "tennisbio script tiempos_etapas (claude 210)"
+  },
+  {
    "id": 204,
    "job": null,
    "at": "2026-11-11 21:29:36",
@@ -487,20 +520,6 @@
    "at": "2026-11-11 17:19:19",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 176,
-   "job": 53,
-   "at": "2026-11-11 17:19:18",
-   "kind": "paso",
-   "text": "3/3 Lista de partidos"
-  },
-  {
-   "id": 175,
-   "job": 53,
-   "at": "2026-11-11 17:17:48",
-   "kind": "paso",
-   "text": "2/3 Espera de 90 s (aqui se pausa)"
   }
  ]
 }
