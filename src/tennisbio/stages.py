@@ -2045,6 +2045,34 @@ def _ahead_job(ctx: Context, groups: list, pre: float, post: float, interlaced: 
     return job
 
 
+def _ball_from_spotting(ctx, clip: Path, cache: Path, t0: float) -> bool:
+    """fine_pass.ball_from_spotting (11-11, R2; off): write the window's ball cache from the detector's ball over the play
+    (ball_track.npz, computed once for the whole match by the spotting stage), where the gate, the CPU ball-ahead and
+    run_clip read it, so the window's ball model is not run again. False (nothing written) without that track."""
+    from .ball_reuse import window_from_play
+    from .clip_pipeline import ball_cache_path
+    from .pipeline import save_npy_atomic
+    import cv2
+    bcache = ball_cache_path(cache)
+    f = ctx.path("ball_track.npz")
+    if bcache.exists() or not f.exists():
+        return False
+    with np.load(f) as z:
+        track = z["track"]
+    cap = cv2.VideoCapture(str(clip))
+    try:
+        n, fps = int(cap.get(cv2.CAP_PROP_FRAME_COUNT)), float(cap.get(cv2.CAP_PROP_FPS) or 0)
+        w, h = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)), int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
+    finally:
+        cap.release()
+    if n <= 0 or fps <= 0:
+        return False
+    bcache.parent.mkdir(parents=True, exist_ok=True)
+    save_npy_atomic(bcache, window_from_play(track, t0, n, fps, w, h))
+    _COUNTS["windows_ball_from_spotting"] = _COUNTS.get("windows_ball_from_spotting", 0) + 1
+    return True
+
+
 def _took(key: str, t0: float):
     import time
     _TIMES[key] = _TIMES.get(key, 0.0) + time.time() - t0
@@ -2152,6 +2180,8 @@ def _fine_one(ctx, p, group, pre, post, interlaced, ph, court, score, onsets, sc
             fi = {k: v for k, v in fi.items() if k not in ("init_frame", "far_H")}
         extra, cache = dict(side="far", **fi), clip.with_name(f"{clip.stem}_{ph}_far.npz")
     # cascade: the ball alone rules out windows without a possible stroke before any pose is run
+    if fp.get("ball_from_spotting", False) and ball is not None:
+        _ball_from_spotting(ctx, clip, cache, t0)      # R2 (11-11): the detector's ball, measured A/B before adopting it
     dec = _gate_passes(ctx, group, t0, wid, clip, cache, side, ball, cut_s)
     if not dec:
         _drop(group, "cribado_por_la_bola")
