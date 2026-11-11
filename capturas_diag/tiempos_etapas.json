@@ -1,0 +1,3306 @@
+[
+ {
+  "carpeta": "C:\\tenis\\output\\_app_nuevo\\output\\prueba-app-35m",
+  "minutos_video": 35.0,
+  "total_min": 76.1,
+  "veces_el_video": 2.17,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 2013.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 20:37:57",
+    "s_por_min_video": 57.53,
+    "parte": 0.426
+   },
+   {
+    "etapa": "spotting",
+    "s": 782.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 20:03:23",
+    "s_por_min_video": 22.36,
+    "parte": 0.166
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 592.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 20:51:11",
+    "s_por_min_video": 16.92,
+    "parte": 0.125
+   },
+   {
+    "etapa": "players",
+    "s": 458.5,
+    "a_la_vez_s": 160.6,
+    "terminada": "2026-11-11 19:49:16",
+    "s_por_min_video": 13.1,
+    "parte": 0.097
+   },
+   {
+    "etapa": "scenes",
+    "s": 301.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 19:40:07",
+    "s_por_min_video": 8.61,
+    "parte": 0.064
+   },
+   {
+    "etapa": "view_clips",
+    "s": 184.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 20:41:02",
+    "s_por_min_video": 5.27,
+    "parte": 0.039
+   },
+   {
+    "etapa": "score",
+    "s": 160.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 19:44:18",
+    "s_por_min_video": 4.59,
+    "parte": 0.034
+   },
+   {
+    "etapa": "court",
+    "s": 90.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 19:41:37",
+    "s_por_min_video": 2.59,
+    "parte": 0.019
+   },
+   {
+    "etapa": "views",
+    "s": 59.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 20:04:23",
+    "s_por_min_video": 1.7,
+    "parte": 0.013
+   },
+   {
+    "etapa": "identity",
+    "s": 59.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 19:50:20",
+    "s_por_min_video": 1.69,
+    "parte": 0.013
+   },
+   {
+    "etapa": "slowmo_fine",
+    "s": 16.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 20:41:18",
+    "s_por_min_video": 0.47,
+    "parte": 0.003
+   },
+   {
+    "etapa": "audio",
+    "s": 5.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 19:49:21",
+    "s_por_min_video": 0.14,
+    "parte": 0.001
+   },
+   {
+    "etapa": "candidates",
+    "s": 1.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 20:03:24",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "probe",
+    "s": 0.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 19:35:05",
+    "s_por_min_video": 0.02,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 20:37:57",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\_bench_fps\\A",
+  "minutos_video": 15.5,
+  "total_min": 36.5,
+  "veces_el_video": 2.35,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 960.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:44:52",
+    "s_por_min_video": 61.95,
+    "parte": 0.424
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 425.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:53:16",
+    "s_por_min_video": 27.47,
+    "parte": 0.188
+   },
+   {
+    "etapa": "spotting",
+    "s": 287.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:28:24",
+    "s_por_min_video": 18.54,
+    "parte": 0.127
+   },
+   {
+    "etapa": "players",
+    "s": 196.5,
+    "a_la_vez_s": 77.4,
+    "terminada": "2026-11-10 08:23:08",
+    "s_por_min_video": 12.68,
+    "parte": 0.087
+   },
+   {
+    "etapa": "scenes",
+    "s": 148.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:19:15",
+    "s_por_min_video": 9.56,
+    "parte": 0.065
+   },
+   {
+    "etapa": "score",
+    "s": 77.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:21:09",
+    "s_por_min_video": 4.99,
+    "parte": 0.034
+   },
+   {
+    "etapa": "view_clips",
+    "s": 77.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:46:09",
+    "s_por_min_video": 4.97,
+    "parte": 0.034
+   },
+   {
+    "etapa": "court",
+    "s": 36.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:19:52",
+    "s_por_min_video": 2.36,
+    "parte": 0.016
+   },
+   {
+    "etapa": "views",
+    "s": 26.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:28:51",
+    "s_por_min_video": 1.74,
+    "parte": 0.012
+   },
+   {
+    "etapa": "identity",
+    "s": 25.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:23:37",
+    "s_por_min_video": 1.65,
+    "parte": 0.011
+   },
+   {
+    "etapa": "audio",
+    "s": 3.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:23:11",
+    "s_por_min_video": 0.19,
+    "parte": 0.001
+   },
+   {
+    "etapa": "probe",
+    "s": 0.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:16:47",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "candidates",
+    "s": 0.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:28:24",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:44:52",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "slowmo_fine",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:46:09",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:46:10",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\_bench_fps\\B",
+  "minutos_video": 15.5,
+  "total_min": 27.6,
+  "veces_el_video": 1.78,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 638.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 09:03:54",
+    "s_por_min_video": 41.17,
+    "parte": 0.368
+   },
+   {
+    "etapa": "spotting",
+    "s": 287.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:28:24",
+    "s_por_min_video": 18.54,
+    "parte": 0.166
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 287.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 09:08:50",
+    "s_por_min_video": 18.52,
+    "parte": 0.165
+   },
+   {
+    "etapa": "players",
+    "s": 196.5,
+    "a_la_vez_s": 77.4,
+    "terminada": "2026-11-10 08:23:08",
+    "s_por_min_video": 12.68,
+    "parte": 0.113
+   },
+   {
+    "etapa": "scenes",
+    "s": 148.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:19:15",
+    "s_por_min_video": 9.56,
+    "parte": 0.085
+   },
+   {
+    "etapa": "score",
+    "s": 77.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:21:09",
+    "s_por_min_video": 4.99,
+    "parte": 0.045
+   },
+   {
+    "etapa": "court",
+    "s": 36.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:19:52",
+    "s_por_min_video": 2.36,
+    "parte": 0.021
+   },
+   {
+    "etapa": "views",
+    "s": 26.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:28:51",
+    "s_por_min_video": 1.74,
+    "parte": 0.015
+   },
+   {
+    "etapa": "identity",
+    "s": 25.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:23:37",
+    "s_por_min_video": 1.65,
+    "parte": 0.015
+   },
+   {
+    "etapa": "view_clips",
+    "s": 8.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 09:04:03",
+    "s_por_min_video": 0.57,
+    "parte": 0.005
+   },
+   {
+    "etapa": "audio",
+    "s": 3.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:23:11",
+    "s_por_min_video": 0.19,
+    "parte": 0.002
+   },
+   {
+    "etapa": "probe",
+    "s": 0.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:16:47",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "candidates",
+    "s": 0.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 08:28:24",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 09:03:54",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "slowmo_fine",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 09:04:03",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-10 09:04:03",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\_poc67_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 35.0,
+  "total_min": 116.6,
+  "veces_el_video": 3.33,
+  "etapas": [
+   {
+    "etapa": "spotting",
+    "s": 2975.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 11:41:01",
+    "s_por_min_video": 85.03,
+    "parte": 0.408
+   },
+   {
+    "etapa": "fine",
+    "s": 2557.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 12:26:04",
+    "s_por_min_video": 73.07,
+    "parte": 0.351
+   },
+   {
+    "etapa": "players",
+    "s": 417.7,
+    "a_la_vez_s": 292.9,
+    "terminada": "2026-10-29 10:46:14",
+    "s_por_min_video": 11.93,
+    "parte": 0.057
+   },
+   {
+    "etapa": "identity",
+    "s": 311.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:51:26",
+    "s_por_min_video": 8.91,
+    "parte": 0.043
+   },
+   {
+    "etapa": "score",
+    "s": 292.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:44:09",
+    "s_por_min_video": 8.37,
+    "parte": 0.04
+   },
+   {
+    "etapa": "scenes",
+    "s": 283.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:36:50",
+    "s_por_min_video": 8.09,
+    "parte": 0.039
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 158.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 12:28:43",
+    "s_por_min_video": 4.54,
+    "parte": 0.022
+   },
+   {
+    "etapa": "views",
+    "s": 144.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 11:43:27",
+    "s_por_min_video": 4.12,
+    "parte": 0.02
+   },
+   {
+    "etapa": "court",
+    "s": 122.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:39:16",
+    "s_por_min_video": 3.5,
+    "parte": 0.017
+   },
+   {
+    "etapa": "audio",
+    "s": 23.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:37:13",
+    "s_por_min_video": 0.68,
+    "parte": 0.003
+   },
+   {
+    "etapa": "probe",
+    "s": 0.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:32:06",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "candidates",
+    "s": 0.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 11:41:02",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 12:26:04",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 12:26:04",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\_poc67_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 4.0,
+  "total_min": 16.5,
+  "veces_el_video": 4.12,
+  "etapas": [
+   {
+    "etapa": "spotting",
+    "s": 450.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:20:00",
+    "s_por_min_video": 112.6,
+    "parte": 0.429
+   },
+   {
+    "etapa": "fine",
+    "s": 354.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:26:06",
+    "s_por_min_video": 88.72,
+    "parte": 0.338
+   },
+   {
+    "etapa": "players",
+    "s": 65.8,
+    "a_la_vez_s": 60.1,
+    "terminada": "2026-10-29 10:12:20",
+    "s_por_min_video": 16.45,
+    "parte": 0.063
+   },
+   {
+    "etapa": "score",
+    "s": 60.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:12:14",
+    "s_por_min_video": 15.03,
+    "parte": 0.057
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 41.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:26:47",
+    "s_por_min_video": 10.25,
+    "parte": 0.039
+   },
+   {
+    "etapa": "scenes",
+    "s": 31.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:10:48",
+    "s_por_min_video": 7.83,
+    "parte": 0.03
+   },
+   {
+    "etapa": "court",
+    "s": 13.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:11:14",
+    "s_por_min_video": 3.25,
+    "parte": 0.012
+   },
+   {
+    "etapa": "audio",
+    "s": 12.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:11:01",
+    "s_por_min_video": 3.2,
+    "parte": 0.012
+   },
+   {
+    "etapa": "views",
+    "s": 10.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:20:11",
+    "s_por_min_video": 2.55,
+    "parte": 0.01
+   },
+   {
+    "etapa": "identity",
+    "s": 10.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:12:30",
+    "s_por_min_video": 2.5,
+    "parte": 0.01
+   },
+   {
+    "etapa": "probe",
+    "s": 0.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:10:17",
+    "s_por_min_video": 0.07,
+    "parte": 0.0
+   },
+   {
+    "etapa": "candidates",
+    "s": 0.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:20:00",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:26:06",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-29 10:26:06",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\_poc70_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 35.0,
+  "total_min": 84.1,
+  "veces_el_video": 2.4,
+  "etapas": [
+   {
+    "etapa": "spotting",
+    "s": 2536.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 19:53:36",
+    "s_por_min_video": 72.46,
+    "parte": 0.476
+   },
+   {
+    "etapa": "fine",
+    "s": 1089.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:14:15",
+    "s_por_min_video": 31.13,
+    "parte": 0.205
+   },
+   {
+    "etapa": "players",
+    "s": 422.9,
+    "a_la_vez_s": 281.9,
+    "terminada": "2026-11-02 19:06:07",
+    "s_por_min_video": 12.08,
+    "parte": 0.079
+   },
+   {
+    "etapa": "identity",
+    "s": 313.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 19:11:20",
+    "s_por_min_video": 8.94,
+    "parte": 0.059
+   },
+   {
+    "etapa": "score",
+    "s": 281.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 19:03:46",
+    "s_por_min_video": 8.05,
+    "parte": 0.053
+   },
+   {
+    "etapa": "scenes",
+    "s": 267.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:56:25",
+    "s_por_min_video": 7.63,
+    "parte": 0.05
+   },
+   {
+    "etapa": "views",
+    "s": 136.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 19:56:05",
+    "s_por_min_video": 3.89,
+    "parte": 0.026
+   },
+   {
+    "etapa": "court",
+    "s": 112.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:59:04",
+    "s_por_min_video": 3.21,
+    "parte": 0.021
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 106.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:16:02",
+    "s_por_min_video": 3.05,
+    "parte": 0.02
+   },
+   {
+    "etapa": "audio",
+    "s": 47.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:57:12",
+    "s_por_min_video": 1.35,
+    "parte": 0.009
+   },
+   {
+    "etapa": "candidates",
+    "s": 13.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 19:53:49",
+    "s_por_min_video": 0.37,
+    "parte": 0.002
+   },
+   {
+    "etapa": "probe",
+    "s": 0.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:51:57",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:14:15",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:14:15",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\_poc70_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 4.0,
+  "total_min": 14.7,
+  "veces_el_video": 3.68,
+  "etapas": [
+   {
+    "etapa": "spotting",
+    "s": 402.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:41:19",
+    "s_por_min_video": 100.6,
+    "parte": 0.425
+   },
+   {
+    "etapa": "fine",
+    "s": 242.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:45:37",
+    "s_por_min_video": 60.52,
+    "parte": 0.256
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 90.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:47:08",
+    "s_por_min_video": 22.65,
+    "parte": 0.096
+   },
+   {
+    "etapa": "score",
+    "s": 63.1,
+    "a_la_vez_s": 62.2,
+    "terminada": "2026-11-02 18:34:26",
+    "s_por_min_video": 15.78,
+    "parte": 0.067
+   },
+   {
+    "etapa": "players",
+    "s": 62.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:34:26",
+    "s_por_min_video": 15.55,
+    "parte": 0.066
+   },
+   {
+    "etapa": "scenes",
+    "s": 31.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:32:55",
+    "s_por_min_video": 7.75,
+    "parte": 0.033
+   },
+   {
+    "etapa": "court",
+    "s": 16.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:33:23",
+    "s_por_min_video": 4.08,
+    "parte": 0.017
+   },
+   {
+    "etapa": "views",
+    "s": 14.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:41:35",
+    "s_por_min_video": 3.52,
+    "parte": 0.015
+   },
+   {
+    "etapa": "audio",
+    "s": 12.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:33:07",
+    "s_por_min_video": 3.02,
+    "parte": 0.013
+   },
+   {
+    "etapa": "identity",
+    "s": 10.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:34:37",
+    "s_por_min_video": 2.55,
+    "parte": 0.011
+   },
+   {
+    "etapa": "candidates",
+    "s": 2.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:41:21",
+    "s_por_min_video": 0.55,
+    "parte": 0.002
+   },
+   {
+    "etapa": "probe",
+    "s": 0.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:32:24",
+    "s_por_min_video": 0.05,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:45:38",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 18:45:38",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\_poc71_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 35.0,
+  "total_min": 82.8,
+  "veces_el_video": 2.36,
+  "etapas": [
+   {
+    "etapa": "spotting",
+    "s": 2603.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 22:02:16",
+    "s_por_min_video": 74.4,
+    "parte": 0.494
+   },
+   {
+    "etapa": "fine",
+    "s": 989.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 22:20:43",
+    "s_por_min_video": 28.28,
+    "parte": 0.188
+   },
+   {
+    "etapa": "players",
+    "s": 426.4,
+    "a_la_vez_s": 308.3,
+    "terminada": "2026-11-02 21:13:44",
+    "s_por_min_video": 12.18,
+    "parte": 0.081
+   },
+   {
+    "etapa": "score",
+    "s": 308.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 21:11:46",
+    "s_por_min_video": 8.81,
+    "parte": 0.058
+   },
+   {
+    "etapa": "identity",
+    "s": 307.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 21:18:52",
+    "s_por_min_video": 8.8,
+    "parte": 0.058
+   },
+   {
+    "etapa": "scenes",
+    "s": 275.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 21:04:07",
+    "s_por_min_video": 7.88,
+    "parte": 0.052
+   },
+   {
+    "etapa": "court",
+    "s": 133.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 21:06:38",
+    "s_por_min_video": 3.81,
+    "parte": 0.025
+   },
+   {
+    "etapa": "views",
+    "s": 115.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 22:04:13",
+    "s_por_min_video": 3.31,
+    "parte": 0.022
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 93.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 22:22:16",
+    "s_por_min_video": 2.67,
+    "parte": 0.018
+   },
+   {
+    "etapa": "audio",
+    "s": 17.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 21:04:24",
+    "s_por_min_video": 0.5,
+    "parte": 0.003
+   },
+   {
+    "etapa": "candidates",
+    "s": 1.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 22:02:17",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "probe",
+    "s": 0.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:59:31",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 22:20:43",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 22:20:43",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\_poc71_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 4.0,
+  "total_min": 14.6,
+  "veces_el_video": 3.64,
+  "etapas": [
+   {
+    "etapa": "spotting",
+    "s": 403.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:49:24",
+    "s_por_min_video": 100.75,
+    "parte": 0.431
+   },
+   {
+    "etapa": "fine",
+    "s": 229.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:53:30",
+    "s_por_min_video": 57.27,
+    "parte": 0.245
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 80.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:54:51",
+    "s_por_min_video": 20.18,
+    "parte": 0.086
+   },
+   {
+    "etapa": "players",
+    "s": 64.0,
+    "a_la_vez_s": 60.9,
+    "terminada": "2026-11-02 20:42:33",
+    "s_por_min_video": 16.0,
+    "parte": 0.068
+   },
+   {
+    "etapa": "score",
+    "s": 60.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:42:30",
+    "s_por_min_video": 15.22,
+    "parte": 0.065
+   },
+   {
+    "etapa": "scenes",
+    "s": 32.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:40:49",
+    "s_por_min_video": 8.05,
+    "parte": 0.034
+   },
+   {
+    "etapa": "audio",
+    "s": 25.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:41:14",
+    "s_por_min_video": 6.47,
+    "parte": 0.028
+   },
+   {
+    "etapa": "court",
+    "s": 14.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:41:29",
+    "s_por_min_video": 3.65,
+    "parte": 0.016
+   },
+   {
+    "etapa": "views",
+    "s": 13.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:49:41",
+    "s_por_min_video": 3.4,
+    "parte": 0.015
+   },
+   {
+    "etapa": "identity",
+    "s": 8.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:42:41",
+    "s_por_min_video": 2.08,
+    "parte": 0.009
+   },
+   {
+    "etapa": "candidates",
+    "s": 2.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:49:27",
+    "s_por_min_video": 0.68,
+    "parte": 0.003
+   },
+   {
+    "etapa": "probe",
+    "s": 0.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:40:16",
+    "s_por_min_video": 0.07,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:53:30",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-02 20:53:30",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\_poc74_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 35.0,
+  "total_min": 44.1,
+  "veces_el_video": 1.26,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 903.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 01:23:27",
+    "s_por_min_video": 25.8,
+    "parte": 0.32
+   },
+   {
+    "etapa": "spotting",
+    "s": 653.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 01:07:18",
+    "s_por_min_video": 18.67,
+    "parte": 0.232
+   },
+   {
+    "etapa": "players",
+    "s": 388.6,
+    "a_la_vez_s": 173.7,
+    "terminada": "2026-11-03 00:52:24",
+    "s_por_min_video": 11.1,
+    "parte": 0.138
+   },
+   {
+    "etapa": "scenes",
+    "s": 249.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:45:00",
+    "s_por_min_video": 7.11,
+    "parte": 0.088
+   },
+   {
+    "etapa": "identity",
+    "s": 241.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:56:25",
+    "s_por_min_video": 6.89,
+    "parte": 0.086
+   },
+   {
+    "etapa": "score",
+    "s": 173.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:48:49",
+    "s_por_min_video": 4.96,
+    "parte": 0.062
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 87.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 01:24:55",
+    "s_por_min_video": 2.49,
+    "parte": 0.031
+   },
+   {
+    "etapa": "views",
+    "s": 65.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 01:08:24",
+    "s_por_min_video": 1.86,
+    "parte": 0.023
+   },
+   {
+    "etapa": "court",
+    "s": 49.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:45:55",
+    "s_por_min_video": 1.41,
+    "parte": 0.018
+   },
+   {
+    "etapa": "audio",
+    "s": 5.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:45:06",
+    "s_por_min_video": 0.17,
+    "parte": 0.002
+   },
+   {
+    "etapa": "probe",
+    "s": 0.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:40:51",
+    "s_por_min_video": 0.02,
+    "parte": 0.0
+   },
+   {
+    "etapa": "candidates",
+    "s": 0.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 01:07:19",
+    "s_por_min_video": 0.02,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 01:23:28",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 01:23:28",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\_poc74_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 4.0,
+  "total_min": 7.0,
+  "veces_el_video": 1.75,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 186.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:36:41",
+    "s_por_min_video": 46.67,
+    "parte": 0.41
+   },
+   {
+    "etapa": "spotting",
+    "s": 87.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:33:25",
+    "s_por_min_video": 21.9,
+    "parte": 0.192
+   },
+   {
+    "etapa": "players",
+    "s": 56.2,
+    "a_la_vez_s": 34.4,
+    "terminada": "2026-11-03 00:31:51",
+    "s_por_min_video": 14.05,
+    "parte": 0.123
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 34.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:37:16",
+    "s_por_min_video": 8.7,
+    "parte": 0.076
+   },
+   {
+    "etapa": "score",
+    "s": 34.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:31:29",
+    "s_por_min_video": 8.6,
+    "parte": 0.076
+   },
+   {
+    "etapa": "scenes",
+    "s": 29.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:30:44",
+    "s_por_min_video": 7.25,
+    "parte": 0.064
+   },
+   {
+    "etapa": "court",
+    "s": 9.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:30:54",
+    "s_por_min_video": 2.35,
+    "parte": 0.021
+   },
+   {
+    "etapa": "views",
+    "s": 8.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:33:34",
+    "s_por_min_video": 2.2,
+    "parte": 0.019
+   },
+   {
+    "etapa": "identity",
+    "s": 6.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:31:57",
+    "s_por_min_video": 1.7,
+    "parte": 0.015
+   },
+   {
+    "etapa": "audio",
+    "s": 1.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:30:45",
+    "s_por_min_video": 0.38,
+    "parte": 0.003
+   },
+   {
+    "etapa": "probe",
+    "s": 0.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:30:15",
+    "s_por_min_video": 0.05,
+    "parte": 0.0
+   },
+   {
+    "etapa": "candidates",
+    "s": 0.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:33:25",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:36:41",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 00:36:41",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\_poc76_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 35.0,
+  "total_min": 47.5,
+  "veces_el_video": 1.36,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 978.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 05:06:56",
+    "s_por_min_video": 27.95,
+    "parte": 0.322
+   },
+   {
+    "etapa": "spotting",
+    "s": 721.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:49:22",
+    "s_por_min_video": 20.62,
+    "parte": 0.238
+   },
+   {
+    "etapa": "players",
+    "s": 403.9,
+    "a_la_vez_s": 184.6,
+    "terminada": "2026-11-03 04:33:32",
+    "s_por_min_video": 11.54,
+    "parte": 0.133
+   },
+   {
+    "etapa": "scenes",
+    "s": 254.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:25:44",
+    "s_por_min_video": 7.26,
+    "parte": 0.084
+   },
+   {
+    "etapa": "identity",
+    "s": 227.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:37:20",
+    "s_por_min_video": 6.5,
+    "parte": 0.075
+   },
+   {
+    "etapa": "score",
+    "s": 184.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:29:53",
+    "s_por_min_video": 5.27,
+    "parte": 0.061
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 123.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 05:08:59",
+    "s_por_min_video": 3.51,
+    "parte": 0.041
+   },
+   {
+    "etapa": "views",
+    "s": 74.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:50:38",
+    "s_por_min_video": 2.14,
+    "parte": 0.025
+   },
+   {
+    "etapa": "court",
+    "s": 57.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:26:48",
+    "s_por_min_video": 1.64,
+    "parte": 0.019
+   },
+   {
+    "etapa": "audio",
+    "s": 7.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:25:51",
+    "s_por_min_video": 0.21,
+    "parte": 0.002
+   },
+   {
+    "etapa": "probe",
+    "s": 1.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:21:30",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "candidates",
+    "s": 0.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:49:23",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 05:06:56",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 05:06:56",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\_poc76_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 4.0,
+  "total_min": 7.4,
+  "veces_el_video": 1.85,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 194.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:17:04",
+    "s_por_min_video": 48.6,
+    "parte": 0.406
+   },
+   {
+    "etapa": "spotting",
+    "s": 96.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:13:40",
+    "s_por_min_video": 24.2,
+    "parte": 0.202
+   },
+   {
+    "etapa": "players",
+    "s": 56.9,
+    "a_la_vez_s": 34.3,
+    "terminada": "2026-11-03 04:11:56",
+    "s_por_min_video": 14.22,
+    "parte": 0.119
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 37.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:17:42",
+    "s_por_min_video": 9.35,
+    "parte": 0.078
+   },
+   {
+    "etapa": "score",
+    "s": 34.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:11:34",
+    "s_por_min_video": 8.57,
+    "parte": 0.072
+   },
+   {
+    "etapa": "scenes",
+    "s": 29.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:10:47",
+    "s_por_min_video": 7.38,
+    "parte": 0.062
+   },
+   {
+    "etapa": "court",
+    "s": 10.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:10:59",
+    "s_por_min_video": 2.62,
+    "parte": 0.022
+   },
+   {
+    "etapa": "views",
+    "s": 9.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:13:50",
+    "s_por_min_video": 2.42,
+    "parte": 0.02
+   },
+   {
+    "etapa": "identity",
+    "s": 6.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:12:03",
+    "s_por_min_video": 1.7,
+    "parte": 0.014
+   },
+   {
+    "etapa": "audio",
+    "s": 1.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:10:49",
+    "s_por_min_video": 0.47,
+    "parte": 0.004
+   },
+   {
+    "etapa": "probe",
+    "s": 0.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:10:18",
+    "s_por_min_video": 0.07,
+    "parte": 0.001
+   },
+   {
+    "etapa": "candidates",
+    "s": 0.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:13:40",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:17:04",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 04:17:04",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\_smoke\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 35.0,
+  "total_min": 91.3,
+  "veces_el_video": 2.61,
+  "etapas": [
+   {
+    "etapa": "players",
+    "s": 2894.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-13 02:40:52",
+    "s_por_min_video": 82.69,
+    "parte": 0.528
+   },
+   {
+    "etapa": "score",
+    "s": 1153.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-13 03:00:06",
+    "s_por_min_video": 32.95,
+    "parte": 0.21
+   },
+   {
+    "etapa": "court",
+    "s": 998.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-13 01:52:38",
+    "s_por_min_video": 28.53,
+    "parte": 0.182
+   },
+   {
+    "etapa": "scenes",
+    "s": 142.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-13 01:35:35",
+    "s_por_min_video": 4.06,
+    "parte": 0.026
+   },
+   {
+    "etapa": "fine",
+    "s": 113.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 16:30:40",
+    "s_por_min_video": 3.24,
+    "parte": 0.021
+   },
+   {
+    "etapa": "identity",
+    "s": 54.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 14:44:01",
+    "s_por_min_video": 1.55,
+    "parte": 0.01
+   },
+   {
+    "etapa": "views",
+    "s": 41.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 14:44:52",
+    "s_por_min_video": 1.19,
+    "parte": 0.008
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 40.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 16:31:23",
+    "s_por_min_video": 1.17,
+    "parte": 0.007
+   },
+   {
+    "etapa": "audio",
+    "s": 24.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-13 01:36:00",
+    "s_por_min_video": 0.7,
+    "parte": 0.004
+   },
+   {
+    "etapa": "spotting",
+    "s": 8.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 14:44:10",
+    "s_por_min_video": 0.25,
+    "parte": 0.002
+   },
+   {
+    "etapa": "view_clips",
+    "s": 6.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 14:46:27",
+    "s_por_min_video": 0.18,
+    "parte": 0.001
+   },
+   {
+    "etapa": "probe",
+    "s": 0.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-13 01:33:13",
+    "s_por_min_video": 0.02,
+    "parte": 0.0
+   },
+   {
+    "etapa": "candidates",
+    "s": 0.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 14:44:11",
+    "s_por_min_video": 0.02,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 16:31:23",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 16:30:41",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "slowmo_fine",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 14:46:27",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+  "minutos_video": 112.2,
+  "total_min": 15.6,
+  "veces_el_video": 0.14,
+  "etapas": [
+   {
+    "etapa": "scenes",
+    "s": 929.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 09:18:20",
+    "s_por_min_video": 8.28,
+    "parte": 0.995
+   },
+   {
+    "etapa": "probe",
+    "s": 4.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 09:02:50",
+    "s_por_min_video": 0.04,
+    "parte": 0.005
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
+  "minutos_video": 210.4,
+  "total_min": 261.4,
+  "veces_el_video": 1.24,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 11250.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 12:03:17",
+    "s_por_min_video": 53.47,
+    "parte": 0.685
+   },
+   {
+    "etapa": "players",
+    "s": 1796.5,
+    "a_la_vez_s": 741.4,
+    "terminada": "2026-11-09 08:58:16",
+    "s_por_min_video": 8.54,
+    "parte": 0.109
+   },
+   {
+    "etapa": "scenes",
+    "s": 1708.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 08:08:24",
+    "s_por_min_video": 8.12,
+    "parte": 0.104
+   },
+   {
+    "etapa": "score",
+    "s": 741.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 08:40:41",
+    "s_por_min_video": 3.52,
+    "parte": 0.045
+   },
+   {
+    "etapa": "court",
+    "s": 339.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 08:28:20",
+    "s_por_min_video": 1.61,
+    "parte": 0.021
+   },
+   {
+    "etapa": "identity",
+    "s": 266.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 09:02:43",
+    "s_por_min_video": 1.27,
+    "parte": 0.016
+   },
+   {
+    "etapa": "audio",
+    "s": 250.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 08:12:34",
+    "s_por_min_video": 1.19,
+    "parte": 0.015
+   },
+   {
+    "etapa": "candidates",
+    "s": 49.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 08:55:46",
+    "s_por_min_video": 0.24,
+    "parte": 0.003
+   },
+   {
+    "etapa": "probe",
+    "s": 23.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 07:39:55",
+    "s_por_min_video": 0.11,
+    "parte": 0.001
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 12:03:17",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
+  "minutos_video": 133.4,
+  "total_min": 220.8,
+  "veces_el_video": 1.66,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 10110.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 07:39:32",
+    "s_por_min_video": 75.79,
+    "parte": 0.73
+   },
+   {
+    "etapa": "players",
+    "s": 1486.2,
+    "a_la_vez_s": 598.5,
+    "terminada": "2026-11-09 08:19:32",
+    "s_por_min_video": 11.14,
+    "parte": 0.107
+   },
+   {
+    "etapa": "scenes",
+    "s": 1032.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 04:14:28",
+    "s_por_min_video": 7.74,
+    "parte": 0.075
+   },
+   {
+    "etapa": "score",
+    "s": 598.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 08:04:44",
+    "s_por_min_video": 4.49,
+    "parte": 0.043
+   },
+   {
+    "etapa": "court",
+    "s": 220.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 07:54:46",
+    "s_por_min_video": 1.65,
+    "parte": 0.016
+   },
+   {
+    "etapa": "identity",
+    "s": 184.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 08:22:37",
+    "s_por_min_video": 1.39,
+    "parte": 0.013
+   },
+   {
+    "etapa": "audio",
+    "s": 147.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 04:16:55",
+    "s_por_min_video": 1.1,
+    "parte": 0.011
+   },
+   {
+    "etapa": "candidates",
+    "s": 55.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 04:51:01",
+    "s_por_min_video": 0.41,
+    "parte": 0.004
+   },
+   {
+    "etapa": "probe",
+    "s": 12.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 03:57:16",
+    "s_por_min_video": 0.09,
+    "parte": 0.001
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 07:39:32",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\us-open-2026-r4-naomi-osaka-elena-rybakina",
+  "minutos_video": 71.4,
+  "total_min": 44.9,
+  "veces_el_video": 0.63,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 1191.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 00:16:39",
+    "s_por_min_video": 16.68,
+    "parte": 0.378
+   },
+   {
+    "etapa": "players",
+    "s": 669.6,
+    "a_la_vez_s": 455.7,
+    "terminada": "2026-11-09 07:21:46",
+    "s_por_min_video": 9.38,
+    "parte": 0.213
+   },
+   {
+    "etapa": "score",
+    "s": 455.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 07:18:12",
+    "s_por_min_video": 6.38,
+    "parte": 0.145
+   },
+   {
+    "etapa": "scenes",
+    "s": 420.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 23:37:28",
+    "s_por_min_video": 5.89,
+    "parte": 0.134
+   },
+   {
+    "etapa": "audio",
+    "s": 145.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 23:39:53",
+    "s_por_min_video": 2.04,
+    "parte": 0.046
+   },
+   {
+    "etapa": "court",
+    "s": 136.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 07:10:36",
+    "s_por_min_video": 1.92,
+    "parte": 0.043
+   },
+   {
+    "etapa": "identity",
+    "s": 75.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 07:23:01",
+    "s_por_min_video": 1.06,
+    "parte": 0.024
+   },
+   {
+    "etapa": "candidates",
+    "s": 47.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 23:56:48",
+    "s_por_min_video": 0.66,
+    "parte": 0.015
+   },
+   {
+    "etapa": "probe",
+    "s": 7.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 23:30:27",
+    "s_por_min_video": 0.11,
+    "parte": 0.002
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 00:16:39",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\output\\zheng-qinwen-elena-rybakina",
+  "minutos_video": 116.7,
+  "total_min": 221.0,
+  "veces_el_video": 1.89,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 10653.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 03:57:04",
+    "s_por_min_video": 91.29,
+    "parte": 0.773
+   },
+   {
+    "etapa": "players",
+    "s": 1352.7,
+    "a_la_vez_s": 515.6,
+    "terminada": "2026-11-09 07:48:41",
+    "s_por_min_video": 11.59,
+    "parte": 0.098
+   },
+   {
+    "etapa": "scenes",
+    "s": 867.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 00:31:14",
+    "s_por_min_video": 7.44,
+    "parte": 0.063
+   },
+   {
+    "etapa": "score",
+    "s": 515.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 07:34:43",
+    "s_por_min_video": 4.42,
+    "parte": 0.037
+   },
+   {
+    "etapa": "court",
+    "s": 185.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 07:26:08",
+    "s_por_min_video": 1.59,
+    "parte": 0.013
+   },
+   {
+    "etapa": "identity",
+    "s": 141.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 07:51:02",
+    "s_por_min_video": 1.22,
+    "parte": 0.01
+   },
+   {
+    "etapa": "candidates",
+    "s": 39.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 00:59:31",
+    "s_por_min_video": 0.33,
+    "parte": 0.003
+   },
+   {
+    "etapa": "audio",
+    "s": 13.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 00:31:27",
+    "s_por_min_video": 0.11,
+    "parte": 0.001
+   },
+   {
+    "etapa": "probe",
+    "s": 7.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 00:16:47",
+    "s_por_min_video": 0.06,
+    "parte": 0.001
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 03:57:04",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_49723c_rybakina",
+  "minutos_video": 112.2,
+  "total_min": 67.2,
+  "veces_el_video": 0.6,
+  "etapas": [
+   {
+    "etapa": "players",
+    "s": 1478.7,
+    "a_la_vez_s": 570.2,
+    "terminada": "2026-11-09 10:09:32",
+    "s_por_min_video": 13.18,
+    "parte": 0.321
+   },
+   {
+    "etapa": "fine",
+    "s": 987.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 16:58:07",
+    "s_por_min_video": 8.8,
+    "parte": 0.215
+   },
+   {
+    "etapa": "scenes",
+    "s": 885.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 09:40:44",
+    "s_por_min_video": 7.89,
+    "parte": 0.192
+   },
+   {
+    "etapa": "score",
+    "s": 311.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 16:34:36",
+    "s_por_min_video": 2.77,
+    "parte": 0.068
+   },
+   {
+    "etapa": "court",
+    "s": 249.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 09:44:54",
+    "s_por_min_video": 2.23,
+    "parte": 0.054
+   },
+   {
+    "etapa": "identity",
+    "s": 201.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 16:37:58",
+    "s_por_min_video": 1.8,
+    "parte": 0.044
+   },
+   {
+    "etapa": "views",
+    "s": 194.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 16:41:40",
+    "s_por_min_video": 1.74,
+    "parte": 0.042
+   },
+   {
+    "etapa": "view_clips",
+    "s": 132.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 17:00:21",
+    "s_por_min_video": 1.18,
+    "parte": 0.029
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 115.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 17:02:20",
+    "s_por_min_video": 1.03,
+    "parte": 0.025
+   },
+   {
+    "etapa": "spotting",
+    "s": 23.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 16:38:21",
+    "s_por_min_video": 0.21,
+    "parte": 0.005
+   },
+   {
+    "etapa": "audio",
+    "s": 12.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 10:09:45",
+    "s_por_min_video": 0.11,
+    "parte": 0.003
+   },
+   {
+    "etapa": "candidates",
+    "s": 3.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 16:38:25",
+    "s_por_min_video": 0.03,
+    "parte": 0.001
+   },
+   {
+    "etapa": "probe",
+    "s": 2.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 09:25:58",
+    "s_por_min_video": 0.02,
+    "parte": 0.0
+   },
+   {
+    "etapa": "slowmo_fine",
+    "s": 1.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 17:00:24",
+    "s_por_min_video": 0.02,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 16:58:08",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-11 17:00:24",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_580c6f_rybakina",
+  "minutos_video": 133.4,
+  "total_min": 56.4,
+  "veces_el_video": 0.42,
+  "etapas": [
+   {
+    "etapa": "players",
+    "s": 1466.1,
+    "a_la_vez_s": 569.7,
+    "terminada": "2026-11-03 21:11:31",
+    "s_por_min_video": 10.99,
+    "parte": 0.371
+   },
+   {
+    "etapa": "scenes",
+    "s": 1032.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 04:14:28",
+    "s_por_min_video": 7.74,
+    "parte": 0.261
+   },
+   {
+    "etapa": "score",
+    "s": 298.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 13:56:12",
+    "s_por_min_video": 2.24,
+    "parte": 0.076
+   },
+   {
+    "etapa": "views",
+    "s": 292.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:04:54",
+    "s_por_min_video": 2.19,
+    "parte": 0.074
+   },
+   {
+    "etapa": "fine",
+    "s": 240.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:08:54",
+    "s_por_min_video": 1.8,
+    "parte": 0.061
+   },
+   {
+    "etapa": "identity",
+    "s": 192.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 13:59:24",
+    "s_por_min_video": 1.44,
+    "parte": 0.049
+   },
+   {
+    "etapa": "court",
+    "s": 171.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 20:47:05",
+    "s_por_min_video": 1.28,
+    "parte": 0.043
+   },
+   {
+    "etapa": "audio",
+    "s": 147.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 04:16:55",
+    "s_por_min_video": 1.1,
+    "parte": 0.037
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 35.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:09:59",
+    "s_por_min_video": 0.27,
+    "parte": 0.009
+   },
+   {
+    "etapa": "spotting",
+    "s": 31.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 13:59:56",
+    "s_por_min_video": 0.24,
+    "parte": 0.008
+   },
+   {
+    "etapa": "view_clips",
+    "s": 26.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:09:22",
+    "s_por_min_video": 0.2,
+    "parte": 0.007
+   },
+   {
+    "etapa": "probe",
+    "s": 12.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 03:57:16",
+    "s_por_min_video": 0.09,
+    "parte": 0.003
+   },
+   {
+    "etapa": "candidates",
+    "s": 6.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:00:02",
+    "s_por_min_video": 0.05,
+    "parte": 0.002
+   },
+   {
+    "etapa": "slowmo_fine",
+    "s": 0.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:09:23",
+    "s_por_min_video": 0.01,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:08:55",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:09:23",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_584c5b_rybakina",
+  "minutos_video": 116.7,
+  "total_min": 47.2,
+  "veces_el_video": 0.4,
+  "etapas": [
+   {
+    "etapa": "players",
+    "s": 1335.2,
+    "a_la_vez_s": 515.1,
+    "terminada": "2026-11-03 19:01:20",
+    "s_por_min_video": 11.44,
+    "parte": 0.399
+   },
+   {
+    "etapa": "scenes",
+    "s": 867.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 00:31:14",
+    "s_por_min_video": 7.44,
+    "parte": 0.259
+   },
+   {
+    "etapa": "fine",
+    "s": 284.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 13:50:24",
+    "s_por_min_video": 2.44,
+    "parte": 0.085
+   },
+   {
+    "etapa": "score",
+    "s": 263.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 13:39:37",
+    "s_por_min_video": 2.26,
+    "parte": 0.079
+   },
+   {
+    "etapa": "views",
+    "s": 189.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 13:45:39",
+    "s_por_min_video": 1.63,
+    "parte": 0.057
+   },
+   {
+    "etapa": "identity",
+    "s": 159.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 23:36:05",
+    "s_por_min_video": 1.36,
+    "parte": 0.048
+   },
+   {
+    "etapa": "court",
+    "s": 151.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 18:39:05",
+    "s_por_min_video": 1.3,
+    "parte": 0.045
+   },
+   {
+    "etapa": "view_clips",
+    "s": 24.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 13:50:49",
+    "s_por_min_video": 0.21,
+    "parte": 0.007
+   },
+   {
+    "etapa": "spotting",
+    "s": 23.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 23:36:28",
+    "s_por_min_video": 0.2,
+    "parte": 0.007
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 21.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 13:51:13",
+    "s_por_min_video": 0.18,
+    "parte": 0.006
+   },
+   {
+    "etapa": "audio",
+    "s": 13.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 00:31:27",
+    "s_por_min_video": 0.11,
+    "parte": 0.004
+   },
+   {
+    "etapa": "probe",
+    "s": 7.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 00:16:47",
+    "s_por_min_video": 0.06,
+    "parte": 0.002
+   },
+   {
+    "etapa": "candidates",
+    "s": 3.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 23:36:31",
+    "s_por_min_video": 0.03,
+    "parte": 0.001
+   },
+   {
+    "etapa": "slowmo_fine",
+    "s": 1.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 13:50:51",
+    "s_por_min_video": 0.02,
+    "parte": 0.001
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 13:50:24",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 13:50:52",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_8b0278_sinner",
+  "minutos_video": 71.0,
+  "total_min": 123.4,
+  "veces_el_video": 1.74,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 4271.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 18:36:39",
+    "s_por_min_video": 60.15,
+    "parte": 0.549
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 1074.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 18:59:37",
+    "s_por_min_video": 15.13,
+    "parte": 0.138
+   },
+   {
+    "etapa": "players",
+    "s": 910.6,
+    "a_la_vez_s": 372.9,
+    "terminada": "2026-11-09 10:39:19",
+    "s_por_min_video": 12.83,
+    "parte": 0.117
+   },
+   {
+    "etapa": "scenes",
+    "s": 537.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 10:21:37",
+    "s_por_min_video": 7.57,
+    "parte": 0.069
+   },
+   {
+    "etapa": "view_clips",
+    "s": 275.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 18:41:16",
+    "s_por_min_video": 3.88,
+    "parte": 0.035
+   },
+   {
+    "etapa": "score",
+    "s": 226.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 17:20:37",
+    "s_por_min_video": 3.19,
+    "parte": 0.029
+   },
+   {
+    "etapa": "views",
+    "s": 153.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 17:25:28",
+    "s_por_min_video": 2.16,
+    "parte": 0.02
+   },
+   {
+    "etapa": "court",
+    "s": 151.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 10:24:08",
+    "s_por_min_video": 2.13,
+    "parte": 0.019
+   },
+   {
+    "etapa": "identity",
+    "s": 122.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 17:22:39",
+    "s_por_min_video": 1.72,
+    "parte": 0.016
+   },
+   {
+    "etapa": "slowmo_fine",
+    "s": 26.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 18:41:42",
+    "s_por_min_video": 0.37,
+    "parte": 0.003
+   },
+   {
+    "etapa": "spotting",
+    "s": 13.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 17:22:53",
+    "s_por_min_video": 0.19,
+    "parte": 0.002
+   },
+   {
+    "etapa": "audio",
+    "s": 8.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 10:39:27",
+    "s_por_min_video": 0.12,
+    "parte": 0.001
+   },
+   {
+    "etapa": "probe",
+    "s": 3.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 10:12:39",
+    "s_por_min_video": 0.05,
+    "parte": 0.0
+   },
+   {
+    "etapa": "candidates",
+    "s": 1.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 17:22:55",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 18:36:40",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 18:41:43",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_b8b713_rybakina",
+  "minutos_video": 210.4,
+  "total_min": 82.6,
+  "veces_el_video": 0.39,
+  "etapas": [
+   {
+    "etapa": "players",
+    "s": 1797.4,
+    "a_la_vez_s": 772.8,
+    "terminada": "2026-11-03 23:59:18",
+    "s_por_min_video": 8.54,
+    "parte": 0.314
+   },
+   {
+    "etapa": "scenes",
+    "s": 1708.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 08:08:24",
+    "s_por_min_video": 8.12,
+    "parte": 0.298
+   },
+   {
+    "etapa": "views",
+    "s": 501.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:30:21",
+    "s_por_min_video": 2.38,
+    "parte": 0.088
+   },
+   {
+    "etapa": "score",
+    "s": 393.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:16:32",
+    "s_por_min_video": 1.87,
+    "parte": 0.069
+   },
+   {
+    "etapa": "fine",
+    "s": 366.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:36:27",
+    "s_por_min_video": 1.74,
+    "parte": 0.064
+   },
+   {
+    "etapa": "court",
+    "s": 289.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 23:29:21",
+    "s_por_min_video": 1.38,
+    "parte": 0.051
+   },
+   {
+    "etapa": "identity",
+    "s": 272.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:21:05",
+    "s_por_min_video": 1.3,
+    "parte": 0.048
+   },
+   {
+    "etapa": "audio",
+    "s": 250.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 08:12:34",
+    "s_por_min_video": 1.19,
+    "parte": 0.044
+   },
+   {
+    "etapa": "spotting",
+    "s": 47.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:21:52",
+    "s_por_min_video": 0.22,
+    "parte": 0.008
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 37.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:37:39",
+    "s_por_min_video": 0.18,
+    "parte": 0.007
+   },
+   {
+    "etapa": "view_clips",
+    "s": 30.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:36:59",
+    "s_por_min_video": 0.14,
+    "parte": 0.005
+   },
+   {
+    "etapa": "probe",
+    "s": 23.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 07:39:55",
+    "s_por_min_video": 0.11,
+    "parte": 0.004
+   },
+   {
+    "etapa": "candidates",
+    "s": 7.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:22:00",
+    "s_por_min_video": 0.03,
+    "parte": 0.001
+   },
+   {
+    "etapa": "slowmo_fine",
+    "s": 2.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:37:01",
+    "s_por_min_video": 0.01,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:36:28",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 14:37:02",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_f43dd2_rybakina",
+  "minutos_video": 71.4,
+  "total_min": 25.2,
+  "veces_el_video": 0.35,
+  "etapas": [
+   {
+    "etapa": "players",
+    "s": 647.0,
+    "a_la_vez_s": 440.7,
+    "terminada": "2026-11-03 17:50:19",
+    "s_por_min_video": 9.06,
+    "parte": 0.331
+   },
+   {
+    "etapa": "scenes",
+    "s": 420.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 23:37:28",
+    "s_por_min_video": 5.89,
+    "parte": 0.215
+   },
+   {
+    "etapa": "score",
+    "s": 240.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 13:27:02",
+    "s_por_min_video": 3.36,
+    "parte": 0.123
+   },
+   {
+    "etapa": "audio",
+    "s": 145.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 23:39:53",
+    "s_por_min_video": 2.04,
+    "parte": 0.075
+   },
+   {
+    "etapa": "fine",
+    "s": 140.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 23:33:17",
+    "s_por_min_video": 1.97,
+    "parte": 0.072
+   },
+   {
+    "etapa": "views",
+    "s": 126.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 13:30:46",
+    "s_por_min_video": 1.77,
+    "parte": 0.065
+   },
+   {
+    "etapa": "court",
+    "s": 94.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-03 17:39:32",
+    "s_por_min_video": 1.32,
+    "parte": 0.048
+   },
+   {
+    "etapa": "identity",
+    "s": 80.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 23:30:35",
+    "s_por_min_video": 1.13,
+    "parte": 0.041
+   },
+   {
+    "etapa": "view_clips",
+    "s": 19.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 13:35:04",
+    "s_por_min_video": 0.27,
+    "parte": 0.01
+   },
+   {
+    "etapa": "spotting",
+    "s": 17.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 23:30:53",
+    "s_por_min_video": 0.25,
+    "parte": 0.009
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 7.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 23:33:25",
+    "s_por_min_video": 0.11,
+    "parte": 0.004
+   },
+   {
+    "etapa": "probe",
+    "s": 7.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 23:30:27",
+    "s_por_min_video": 0.11,
+    "parte": 0.004
+   },
+   {
+    "etapa": "candidates",
+    "s": 3.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 23:30:56",
+    "s_por_min_video": 0.04,
+    "parte": 0.002
+   },
+   {
+    "etapa": "slowmo_fine",
+    "s": 0.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 13:35:05",
+    "s_por_min_video": 0.01,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 23:33:17",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-11-09 23:33:18",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\biblioteca\\pruebas\\poc31_35\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 35.0,
+  "total_min": 62.2,
+  "veces_el_video": 1.78,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 2829.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 18:14:08",
+    "s_por_min_video": 80.84,
+    "parte": 0.701
+   },
+   {
+    "etapa": "players",
+    "s": 416.4,
+    "a_la_vez_s": 305.8,
+    "terminada": "2026-10-18 17:26:36",
+    "s_por_min_video": 11.9,
+    "parte": 0.103
+   },
+   {
+    "etapa": "score",
+    "s": 305.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 17:24:45",
+    "s_por_min_video": 8.74,
+    "parte": 0.076
+   },
+   {
+    "etapa": "scenes",
+    "s": 294.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 17:16:51",
+    "s_por_min_video": 8.43,
+    "parte": 0.073
+   },
+   {
+    "etapa": "court",
+    "s": 132.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 17:19:39",
+    "s_por_min_video": 3.78,
+    "parte": 0.033
+   },
+   {
+    "etapa": "audio",
+    "s": 36.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 17:17:27",
+    "s_por_min_video": 1.04,
+    "parte": 0.009
+   },
+   {
+    "etapa": "candidates",
+    "s": 13.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 17:26:58",
+    "s_por_min_video": 0.39,
+    "parte": 0.003
+   },
+   {
+    "etapa": "identity",
+    "s": 8.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 17:26:44",
+    "s_por_min_video": 0.25,
+    "parte": 0.002
+   },
+   {
+    "etapa": "probe",
+    "s": 1.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 17:11:56",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 18:14:08",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\biblioteca\\pruebas\\poc31_4\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 4.0,
+  "total_min": 13.0,
+  "veces_el_video": 3.25,
+  "etapas": [
+   {
+    "etapa": "fine",
+    "s": 637.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 17:05:39",
+    "s_por_min_video": 159.4,
+    "parte": 0.76
+   },
+   {
+    "etapa": "score",
+    "s": 62.7,
+    "a_la_vez_s": 58.5,
+    "terminada": "2026-10-18 16:54:57",
+    "s_por_min_video": 15.68,
+    "parte": 0.075
+   },
+   {
+    "etapa": "players",
+    "s": 58.5,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 16:54:53",
+    "s_por_min_video": 14.62,
+    "parte": 0.07
+   },
+   {
+    "etapa": "scenes",
+    "s": 31.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 16:53:10",
+    "s_por_min_video": 7.97,
+    "parte": 0.038
+   },
+   {
+    "etapa": "court",
+    "s": 26.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 16:53:54",
+    "s_por_min_video": 6.72,
+    "parte": 0.032
+   },
+   {
+    "etapa": "audio",
+    "s": 17.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 16:53:27",
+    "s_por_min_video": 4.4,
+    "parte": 0.021
+   },
+   {
+    "etapa": "candidates",
+    "s": 2.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 16:55:01",
+    "s_por_min_video": 0.5,
+    "parte": 0.002
+   },
+   {
+    "etapa": "identity",
+    "s": 1.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 16:54:59",
+    "s_por_min_video": 0.45,
+    "parte": 0.002
+   },
+   {
+    "etapa": "probe",
+    "s": 0.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 16:52:38",
+    "s_por_min_video": 0.05,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-18 17:05:39",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\biblioteca\\pruebas\\poc9_largo\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 210.4,
+  "total_min": 105.5,
+  "veces_el_video": 0.5,
+  "etapas": [
+   {
+    "etapa": "players",
+    "s": 2005.5,
+    "a_la_vez_s": 1147.1,
+    "terminada": "2026-10-14 23:47:11",
+    "s_por_min_video": 9.53,
+    "parte": 0.268
+   },
+   {
+    "etapa": "fine",
+    "s": 1869.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-17 19:28:23",
+    "s_por_min_video": 8.89,
+    "parte": 0.25
+   },
+   {
+    "etapa": "scenes",
+    "s": 1664.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-14 23:02:05",
+    "s_por_min_video": 7.91,
+    "parte": 0.223
+   },
+   {
+    "etapa": "score",
+    "s": 1147.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-14 23:32:53",
+    "s_por_min_video": 5.45,
+    "parte": 0.153
+   },
+   {
+    "etapa": "court",
+    "s": 578.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-14 23:13:46",
+    "s_por_min_video": 2.75,
+    "parte": 0.077
+   },
+   {
+    "etapa": "audio",
+    "s": 122.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-14 23:04:08",
+    "s_por_min_video": 0.58,
+    "parte": 0.016
+   },
+   {
+    "etapa": "identity",
+    "s": 45.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-14 23:47:56",
+    "s_por_min_video": 0.21,
+    "parte": 0.006
+   },
+   {
+    "etapa": "probe",
+    "s": 23.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-14 22:34:20",
+    "s_por_min_video": 0.11,
+    "parte": 0.003
+   },
+   {
+    "etapa": "candidates",
+    "s": 20.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-14 23:48:17",
+    "s_por_min_video": 0.1,
+    "parte": 0.003
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-17 19:28:23",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ },
+ {
+  "carpeta": "C:\\tenis\\biblioteca\\pruebas\\smoke\\smoke_tennis-yusipopen-final-sobolenko-rybakin",
+  "minutos_video": 35.0,
+  "total_min": 205.3,
+  "veces_el_video": 5.86,
+  "etapas": [
+   {
+    "etapa": "identity",
+    "s": 5886.7,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-19 19:05:15",
+    "s_por_min_video": 168.19,
+    "parte": 0.478
+   },
+   {
+    "etapa": "players",
+    "s": 2894.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-13 02:40:52",
+    "s_por_min_video": 82.69,
+    "parte": 0.235
+   },
+   {
+    "etapa": "score",
+    "s": 1153.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-13 03:00:06",
+    "s_por_min_video": 32.95,
+    "parte": 0.094
+   },
+   {
+    "etapa": "court",
+    "s": 998.6,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-13 01:52:38",
+    "s_por_min_video": 28.53,
+    "parte": 0.081
+   },
+   {
+    "etapa": "views",
+    "s": 834.3,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-20 10:03:19",
+    "s_por_min_video": 23.84,
+    "parte": 0.068
+   },
+   {
+    "etapa": "fine",
+    "s": 342.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-26 00:45:49",
+    "s_por_min_video": 9.79,
+    "parte": 0.028
+   },
+   {
+    "etapa": "scenes",
+    "s": 142.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-13 01:35:35",
+    "s_por_min_video": 4.06,
+    "parte": 0.012
+   },
+   {
+    "etapa": "fine_doubtful",
+    "s": 38.2,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-26 00:46:27",
+    "s_por_min_video": 1.09,
+    "parte": 0.003
+   },
+   {
+    "etapa": "audio",
+    "s": 24.4,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-13 01:36:00",
+    "s_por_min_video": 0.7,
+    "parte": 0.002
+   },
+   {
+    "etapa": "candidates",
+    "s": 0.9,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-20 02:44:07",
+    "s_por_min_video": 0.03,
+    "parte": 0.0
+   },
+   {
+    "etapa": "probe",
+    "s": 0.8,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-13 01:33:13",
+    "s_por_min_video": 0.02,
+    "parte": 0.0
+   },
+   {
+    "etapa": "views_link",
+    "s": 0.1,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-26 00:46:27",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   },
+   {
+    "etapa": "fine_opponent",
+    "s": 0.0,
+    "a_la_vez_s": 0.0,
+    "terminada": "2026-10-26 00:45:49",
+    "s_por_min_video": 0.0,
+    "parte": 0.0
+   }
+  ]
+ }
+]
