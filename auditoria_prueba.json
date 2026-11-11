@@ -3475,7 +3475,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T14:30:50); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T14:36:54); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3531,7 +3531,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-11 14:32:06 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-11 14:37:07 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 5,
@@ -3671,14 +3671,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-11_1429.csv (mín/media/máx): elena-rybakina-jessica-pegula- identity (3.0 min): CPU 13/46/81 %, iGPU 0/12/94 %, RAM máx 10.5 GB → uso medio: margen para repartir trabajo; 2.5 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
+   "detail": "recursos_2026-11-11_1429.csv (mín/media/máx): elena-rybakina-jessica-pegula- identity (3.0 min): CPU 13/46/81 %, iGPU 0/12/94 %, RAM máx 10.5 GB → uso medio: margen para repartir trabajo; 7.0 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 11-11 14:26, empezó a los 0.3 min; el PC estaba con otro trabajo hasta las 14:27 (1.1 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 11-11 14:32, empezó a los 4.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
