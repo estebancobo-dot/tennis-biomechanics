@@ -2876,7 +2876,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "3105 caracteres de texto, 16 vídeos, 21 gráficos",
+   "detail": "3105 caracteres de texto, 15 vídeos, 21 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -3482,7 +3482,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "47 carpetas, 34.1 GB en total (2026-11-11T23:49:56); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "47 carpetas, 34.1 GB en total (2026-11-11T23:54:00); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3510,7 +3510,7 @@
    "area": "Aplicación",
    "name": "Aplicación: un partido nuevo de principio a fin",
    "status": "falta",
-   "detail": "terminó 2026-11-11T20:54:10 en 79.1 min; análisis actualizado; errores: Partido prueba-app-35m: salida de cada etapa, ventanas y series: 17 ficheros de etapa, 119 golpes con ventana y serie; faltan o están vacíos: fine_opponent/strokes_opponent.json"
+   "detail": "sin terminar; sin análisis actualizado"
   },
   {
    "req": 5,
@@ -4812,7 +4812,7 @@
    "area": "Peticiones",
    "name": "#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)",
    "status": "falta",
-   "detail": "5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (terminó 2026-11-11T20:54:10 en 79.1 min; análisis actualizado; errores: Partido prueba-app-35m: salida de cada etapa, ve)"
+   "detail": "5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (sin terminar; sin análisis actualizado)"
   },
   {
    "req": 11,
@@ -5379,7 +5379,7 @@
    "area": "Peticiones",
    "name": "#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po",
    "status": "falta",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (terminó 2026-11-11T20:54:10 en 79.1 min; análisis actualizado; errores: Partido prueba-app-35m: salida de cada etapa, ve)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (sin terminar; sin análisis actualizado)"
   },
   {
    "req": 11,

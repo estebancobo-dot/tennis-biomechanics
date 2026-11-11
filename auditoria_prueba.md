@@ -363,7 +363,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✔ **Cada golpe tiene su vídeo**: 67 de 67 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 67 de 67
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 3105 caracteres de texto, 16 vídeos, 21 gráficos
+- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 3105 caracteres de texto, 15 vídeos, 21 gráficos
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 8866 caracteres de texto, 16 vídeos, 1 gráficos
 - ✔ **Pantalla «Análisis de golpe»**: 6151 caracteres de texto, 17 vídeos, 33 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 16472 caracteres de texto, 16 vídeos, 2 gráficos
@@ -470,7 +470,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 ## 5. 100 % automático
 
 - ✘ **Registros con fecha y duración**: 64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
-- ✘ **Aplicación: un partido nuevo de principio a fin**: terminó 2026-11-11T20:54:10 en 79.1 min; análisis actualizado; errores: Partido prueba-app-35m: salida de cada etapa, ventanas y series: 17 ficheros de etapa, 119 golpes con ventana y serie; faltan o están vacíos: fine_opponent/strokes_opponent.json
+- ✘ **Aplicación: un partido nuevo de principio a fin**: sin terminar; sin análisis actualizado
 - ✘ **Lista de partidos: rival, torneo, ronda y fecha**: 6 partidos; sin rival: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…); sin torneo: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…); sin ronda: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…); sin fecha: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…)
 - ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 8 de 13 del lado cercano (62%); motivos: phase 20, elbow_implausible_at_impact 3, impact_without_audio 2, half_volley_candidate 1. Otros 5 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
 - ! **Orquestador: espera hasta empezar cada trabajo**: 30 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min
@@ -511,7 +511,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
 - ✔ **Progreso visible (progreso.json)**: último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (20/20), 34 s, quedan ≈ 0 s, a las 2026-11-11 16:31:21
-- ✔ **Tamaño de la salida (tamanos.txt)**: 47 carpetas, 34.1 GB en total (2026-11-11T23:49:56); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 47 carpetas, 34.1 GB en total (2026-11-11T23:54:00); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB
 - ✔ **Carpetas de pruebas antiguas**: ninguna carpeta de pruebas con más de 14 días sin usar
 - ✔ **Aplicación: ventana real y pantallas**: 66 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 2 análisis y 24 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
@@ -541,7 +541,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
 - ✘ **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
-- ✘ **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (terminó 2026-11-11T20:54:10 en 79.1 min; análisis actualizado; errores: Partido prueba-app-35m: salida de cada etapa, ve)
+- ✘ **#160 la app que hiciste completa como se arranca, se puede usar ahora? (Chat, 19-10 08:11)**: 5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (sin terminar; sin análisis actualizado)
 - ✘ **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - ✘ **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
 - ✘ **#193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10)**: SIN HACER según el registro (#193, docs/peticiones_usuario.md)
@@ -557,7 +557,7 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 - ✘ **#224 Saques: plano, cortado o kick; primero o segundo**: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
 - ✘ **#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)**: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Lista de partidos: rival, torneo, ronda y fecha» (6 partidos; sin rival: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…); sin torneo: 6 (us-o)
 - ✘ **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
-- ✘ **#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po**: a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (terminó 2026-11-11T20:54:10 en 79.1 min; análisis actualizado; errores: Partido prueba-app-35m: salida de cada etapa, ve)
+- ✘ **#242 Flujo de la aplicación: añadir N partidos, elegir la persona, jugadores masculinos y femeninos, un análisis po**: a medias según el registro (ver docs/peticiones_usuario.md); 5 comprobaciones: 1 falta, 4 ok; la peor: «Aplicación: un partido nuevo de principio a fin» (sin terminar; sin análisis actualizado)
 - ✘ **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - ✘ **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 - ✘ **#252 Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps profesionales, UX y **: SIN HACER según el registro (#252, docs/peticiones_usuario.md)
