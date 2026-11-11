@@ -27,7 +27,7 @@ paquetes:
     nombre: "Base · exportación"
     cierre: "Vídeos por golpe en ≤ 20 min sin cuelgues"
     peticiones: [41]
-    prueba: ["^Exportación"]
+    prueba: ["^Exportación", "^Vídeos exportados: "]
   B6:
     nombre: "Base · referencia definitiva de los 4 partidos"
     cierre: "4 partidos sin errores de etapa; auditoría generada"

@@ -1668,6 +1668,7 @@ PETITIONS[218] = (r"^Repeticiones y otras cámaras$|^Golpes del fondo: |^Golpes 
 PETITIONS.update({
     246: r"^Orquestador: ", 249: r"^Orquestador: prueba de extremo a extremo",
     226: r"^Lista de partidos: rival, torneo, ronda y fecha",
+    41: r"Resumen PDF|^Vídeos exportados: |^Exportación terminada: ",
     237: r"^Peticiones por GitHub Actions|^Orquestador: espera hasta empezar|^Orquestador: ejecutor vivo",
     119: r"^Orquestador: ejecutor vivo|^Orquestador: espera hasta empezar",
 })
@@ -2788,6 +2789,7 @@ def file_tree_items(match_dirs: list[Path], report_dir: Path | None, out_root: P
                                f"{len(clips)} vídeos" + (f"; vacíos: {', '.join(empty[:4])}" if empty else "")
                                + ("" if ok(exp / "resumen.pdf") else "; falta resumen.pdf")))
         items += export_end_items(report_dir.parent)
+        items += [it for d in export_dirs(report_dir.parent) if (it := export_videos_item(d)) is not None]   # R5
     pr = next((b / "entrenamiento" for b in (out_root, out_root.parent) if (b / "entrenamiento" / "entrenamiento.json").exists()), None)
     if pr is not None:
         st = json.loads((pr / "entrenamiento.json").read_text(encoding="utf-8")).get("strokes", [])
@@ -2798,13 +2800,76 @@ def file_tree_items(match_dirs: list[Path], report_dir: Path | None, out_root: P
     return items
 
 
+EXPORT_SAMPLE = 8               # 11-11 (R5): videos looked at per export folder, spread over the list
+EXPORT_DUR_S = (2.0, 60.0)      # real speed → slow motion → freeze: seconds of a stroke video
+EXPORT_SKEL_PX = 40             # pixels of each side's skeleton colour in a frame of the real-speed part
+EXPORT_SKEL_SHARE = 0.75        # the share of the sampled videos that must show it
+
+
+def _skeleton_pixels(video: Path, t: float = 0.5) -> tuple[int, int] | None:
+    """Pixels of the export's left and right skeleton colours (export.SKC, BGR) in the frame at t, or None."""
+    import cv2
+
+    from .export import SKC
+    try:
+        r = subprocess.run(["ffmpeg", "-v", "error", "-ss", f"{t:.2f}", "-i", str(video), "-frames:v", "1", "-f", "image2pipe",
+                            "-vcodec", "png", "-"], capture_output=True, timeout=30)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    img = cv2.imdecode(np.frombuffer(r.stdout, np.uint8), cv2.IMREAD_COLOR) if r.stdout else None
+    if img is None:
+        return None
+    near = lambda c: int((np.abs(img.astype(np.int16) - np.array(c, np.int16)).max(axis=2) <= 30).sum())
+    return near(SKC["l"]), near(SKC["r"])
+
+
+def export_videos_item(d: Path) -> dict | None:
+    """#41 (11-11, R5 of the review of the Base: its test was «the PDF exists»): in each export folder, a sample of the
+    stroke videos (golpes/*.mp4) plays in a browser (codec), lasts what a stroke video lasts (real speed, slow motion,
+    freeze) and carries the skeleton (its colours in a frame of the real-speed part)."""
+    vids = sorted((Path(d) / "golpes").glob("*.mp4"))
+    if not vids:
+        return None
+    name = f"Vídeos exportados: {Path(d).name}"
+    if not shutil.which("ffprobe") or not shutil.which("ffmpeg"):
+        return _item(2, "Ficheros", name, "aviso", "sin ffprobe/ffmpeg para mirarlos")
+    k = min(EXPORT_SAMPLE, len(vids))
+    sample = [vids[round(i * (len(vids) - 1) / max(1, k - 1))] for i in range(k)]
+    bad, skel = [], 0
+    for v in sample:
+        try:
+            r = subprocess.run(["ffprobe", "-v", "error", "-select_streams", "v:0", "-show_entries",
+                                "stream=codec_name:format=duration", "-of", "default=nw=1", str(v)],
+                               capture_output=True, text=True, timeout=20)
+            info = dict(ln.split("=", 1) for ln in r.stdout.splitlines() if "=" in ln)
+        except (OSError, subprocess.SubprocessError):
+            info = {}
+        codec, dur = info.get("codec_name", "?"), float(info.get("duration") or 0)
+        if codec not in BROWSER_CODECS:
+            bad.append(f"{v.name}: formato {codec}")
+        elif not EXPORT_DUR_S[0] <= dur <= EXPORT_DUR_S[1]:
+            bad.append(f"{v.name}: dura {dur:.1f} s")
+        px = _skeleton_pixels(v)
+        if px is not None and min(px) >= EXPORT_SKEL_PX:
+            skel += 1
+    st = "falta" if bad or skel < EXPORT_SKEL_SHARE * k else "ok"
+    return _item(2, "Ficheros", name, st,
+                 f"{k} de {len(vids)} vídeos mirados: {k - len(bad)} se reproducen con su duración, {skel} con el esqueleto"
+                 + (f"; mal: {'; '.join(bad[:3])}" if bad else ""))
+
+
 def export_end_items(out_dir: Path) -> list[dict]:
     """Request 232 (27-10: the backhand export hung twice): one item per export folder beside the reports
     (exportar_derecha, exportar_reves, exportar_saque, another player's…) saying whether its last export ended;
     the «Exportación: resumen PDF…» item above only looks at the forehand one."""
     from .export import END_RECORD
 
-    return [export_end_item(d) for d in sorted(p for p in Path(out_dir).glob("exportar*") if p.is_dir())
+    return [export_end_item(d) for d in export_dirs(out_dir)]
+
+
+def export_dirs(out_dir: Path) -> list[Path]:
+    from .export import END_RECORD
+    return [d for d in sorted(p for p in Path(out_dir).glob("exportar*") if p.is_dir())
             if any((d / n).exists() for n in (END_RECORD, "pila.txt", "resumen.pdf", "golpes"))]
 
 

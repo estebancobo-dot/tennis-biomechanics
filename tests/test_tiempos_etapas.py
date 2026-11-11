@@ -45,3 +45,15 @@ def test_the_parts_inside_a_fine_pass_are_kept(tmp_path):
     r = te.table(d / "manifest.json")["etapas"][0]
     assert r["partes_s"] == {"pose": 1500.0, "recorte": 100.0} and r["cuentas"] == {"frames": 9}
     assert r["resumen"] == {"windows": 40}
+
+
+def test_the_ab_bench_sets_any_key_of_b():
+    spec = importlib.util.spec_from_file_location(
+        "bench_fine_fps", Path(__file__).resolve().parents[1] / "scripts" / "bench_fine_fps.py")
+    b = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(b)
+    cfg = {"fine_pass": {"refine": "rtmpose-x"}}
+    b.set_key(cfg, "fine_pass.refine=rtmw-x")
+    b.set_key(cfg, "fine_pass.max_fps=30")
+    b.set_key(cfg, "trunk3d.enabled=false")
+    assert cfg == {"fine_pass": {"refine": "rtmw-x", "max_fps": 30}, "trunk3d": {"enabled": False}}

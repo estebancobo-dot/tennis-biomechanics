@@ -4,7 +4,12 @@ by their time within 0.12 s), their side and kind, and how much each measure mov
 absolute differences, per metric, against the spread of that metric between strokes). Nothing of a real match is
 touched: <output>/_bench_fps/A and B. Writes <output>/capturas_diag/bench_fps.json (uploaded to pc-logs).
 
-    uv run python scripts/bench_fine_fps.py --match pegula [--minutes 20] [--start 1800] [--max-fps 30]"""
+    uv run python scripts/bench_fine_fps.py --match pegula [--minutes 20] [--start 1800] [--max-fps 30]
+
+11-11 (R2/R3 of the review of the Base): any setting as B instead of max_fps, in folders of its own, from scratch:
+    uv run python scripts/bench_fine_fps.py --match pegula --minutes 15 --tag rtmw --set fine_pass.refine=rtmw-x
+writes <output>/_bench_<tag>/A and B (removed first: both runs compute now, with today's code) and
+capturas_diag/bench_<tag>.json."""
 import argparse
 import copy
 import json
@@ -34,6 +39,19 @@ def run(match, cfg, d: Path) -> dict:
     return {"seconds": round(time.time() - t0, 1), "done": done,
             "fine_s": round(sum(float((man.get(k) or {}).get("seconds") or 0) for k in FINE), 1),
             "stage_s": {k: round(float(v.get("seconds") or 0), 1) for k, v in man.items()}, "strokes": st}
+
+
+def set_key(cfg: dict, kv: str) -> None:
+    """«fine_pass.refine=rtmw-x» → cfg["fine_pass"]["refine"] = "rtmw-x" (the value read as YAML: true, 30, 0.5…)."""
+    import yaml
+    k, _, v = kv.partition("=")
+    if not k or not _:
+        raise SystemExit(f"--set sin «=»: {kv}")
+    d = cfg
+    *path, last = k.split(".")
+    for p in path:
+        d = d.setdefault(p, {})
+    d[last] = yaml.safe_load(v)
 
 
 def flat(s: dict) -> dict:
@@ -91,6 +109,8 @@ def main():
     ap.add_argument("--minutes", type=float, default=20)
     ap.add_argument("--start", type=float, default=None, help="default: centred on the user's click of this match")
     ap.add_argument("--max-fps", type=float, default=30)
+    ap.add_argument("--set", action="append", default=[], help="clave.subclave=valor para B (en lugar de max_fps)")
+    ap.add_argument("--tag", default="", help="carpeta _bench_<tag> y capturas_diag/bench_<tag>.json, desde cero")
     args = ap.parse_args()
     cfg = load_config()
     root = Path((cfg.get("paths") or {}).get("output") or "output")
@@ -107,7 +127,10 @@ def main():
     if args.start is None:
         pt = float(json.loads(pick.read_text(encoding="utf-8"))["t"]) if pick.exists() else 1800.0
         args.start = max(0.0, pt - args.minutes * 30)
-    out = root / "_bench_fps"
+    out = root / (f"_bench_{args.tag}" if args.tag else "_bench_fps")
+    if args.tag:                       # from scratch: A also computes now (an older A kept older caches and times)
+        for sub in ("A", "B"):
+            shutil.rmtree(out / sub, ignore_errors=True)
     out.mkdir(parents=True, exist_ok=True)
     clip = out / f"tramo_{int(args.start)}_{int(args.minutes)}m{src.suffix}"
     if not clip.exists():
@@ -130,8 +153,14 @@ def main():
     if not db.exists():          # the cheap pass and everything before the fine pass, from A
         shutil.copytree(da, db, ignore=shutil.ignore_patterns("windows", "series", "informe"))
     cfg_b = copy.deepcopy(cfg)
-    cfg_b.setdefault("fine_pass", {})["max_fps"] = args.max_fps
-    print(f"B: ventanas a max_fps {args.max_fps:g} ({time.strftime('%H:%M:%S')})", flush=True)
+    if args.set:
+        for kv in args.set:
+            set_key(cfg_b, kv)
+        rep["set"] = args.set
+        print(f"B: {', '.join(args.set)} ({time.strftime('%H:%M:%S')})", flush=True)
+    else:
+        cfg_b.setdefault("fine_pass", {})["max_fps"] = args.max_fps
+        print(f"B: ventanas a max_fps {args.max_fps:g} ({time.strftime('%H:%M:%S')})", flush=True)
     rb = run(match, cfg_b, db)
     print(f"B: {rb['seconds'] / 60:.1f} min, pasadas finas {rb['fine_s'] / 60:.1f} min, {len(rb['strokes'])} golpes", flush=True)
     rep.update({"A": {k: v for k, v in ra.items() if k != "strokes"}, "B": {k: v for k, v in rb.items() if k != "strokes"},
@@ -139,7 +168,8 @@ def main():
     rep["fine_speedup"] = round(ra["fine_s"] / rb["fine_s"], 2) if rb["fine_s"] else None
     dst = root / "capturas_diag"
     dst.mkdir(parents=True, exist_ok=True)
-    (dst / "bench_fps.json").write_text(json.dumps(rep, ensure_ascii=False, indent=1), encoding="utf-8")
+    (dst / (f"bench_{args.tag}.json" if args.tag else "bench_fps.json")).write_text(
+        json.dumps(rep, ensure_ascii=False, indent=1), encoding="utf-8")
     print(json.dumps({k: rep[k] for k in ("fine_speedup", "compare")}, ensure_ascii=False, indent=1))
 
 
