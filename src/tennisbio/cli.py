@@ -30,6 +30,26 @@ def _utf8_streams():
             pass
 
 
+def _script(name: str, argv: list[str]) -> int:
+    """scripts/<name>.py run in this process with its arguments (names: lowercase letters, digits and «_» only)."""
+    import re
+    import runpy
+    root = Path(__file__).resolve().parents[2] / "scripts"
+    f = root / f"{name}.py"
+    if not re.fullmatch(r"[a-z0-9_]+", name) or not f.exists():
+        print(f"script no válido: {name}")
+        return 2
+    old = sys.argv
+    sys.argv = [str(f), *argv]
+    try:
+        runpy.run_path(str(f), run_name="__main__")
+    except SystemExit as e:
+        return e.code if isinstance(e.code, int) else (0 if e.code is None else 1)
+    finally:
+        sys.argv = old
+    return 0
+
+
 def _jobs(args) -> int:
     import json
     from . import orchestrator as O
@@ -161,6 +181,9 @@ def _main(argv=None):
     au.add_argument("--stroke", default="forehand", choices=["forehand", "backhand", "overhead"])
     au.add_argument("--root", help="carpeta con las carpetas de los partidos (por defecto <output>)")
     au.add_argument("--out", help="carpeta de la auditoría (por defecto <output>/auditoria)")
+    scp = sub.add_parser("script", help="un script del repositorio (scripts/NOMBRE.py) con sus argumentos, como trabajo de la cola")
+    scp.add_argument("name")
+    scp.add_argument("rest", nargs=argparse.REMAINDER)
     wk = sub.add_parser("worker", help="el ejecutor único de la cola (uno por PC): ejecuta los trabajos y obedece pausar/parar")
     wk.add_argument("--once", action="store_true", help="sale cuando no queda nada que hacer")
     jb = sub.add_parser("jobs", help="la cola: submit | status | pause | resume | cancel | run-one (docs/orquestador.md)")
@@ -175,6 +198,8 @@ def _main(argv=None):
     apl = sub.add_parser("app", help="la aplicación local: tennisbio app status|add|also|plan|work|… (ver app/cli.py)")
     apl.add_argument("rest", nargs=argparse.REMAINDER)
     args = ap.parse_args(argv)
+    if args.cmd == "script":                    # 11-11: a repository script as a job of the single queue («medir»)
+        return _script(args.name, [a for a in (args.rest or []) if a != "--"])
     if args.cmd in ("worker", "jobs"):          # 10-11: the single worker and the queue's controls
         return _jobs(args)
     if args.cmd == "registry":                  # 10-11: the one registry of matches (tennisbio.registry)

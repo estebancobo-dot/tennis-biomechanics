@@ -232,3 +232,10 @@ def test_two_processes_upgrading_the_same_old_database_at_once(env, tmp_path):
     cols = {r[1] for r in db.con.execute("PRAGMA table_info(jobs)")}
     assert {"args", "control", "paso", "pasos", "log", "source"} <= cols
     db.close()
+
+
+def test_a_repository_script_as_a_job(env, tmp_path):
+    # 11-11: «medir» requests go through the queue as `tennisbio script NAME args`
+    from tennisbio import cli
+    assert cli.main(["script", "esperar", "0.1"]) == 0
+    assert cli.main(["script", "../evil"]) == 2 and cli.main(["script", "no_existe"]) == 2

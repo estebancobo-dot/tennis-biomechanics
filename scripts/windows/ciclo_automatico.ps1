@@ -154,10 +154,62 @@ function Hacer-Peticiones {
         }
     }
 }
+# todo el trabajo del PC por la cola unica (11-11, tarea 8 del paquete B8): estas peticiones ya no ejecutan nada aqui,
+# solo envian trabajos al ejecutor unico (tennisbio jobs). $PorCola = $false vuelve a lo anterior (no se borra nada)
+$PorCola = $true
+$AccionesDeCola = @("trabajo", "control", "completo", "prevision", "medir", "rehacer", "repetir")
+function Es-De-Cola($p) { return $PorCola -and ($AccionesDeCola -contains "$($p['accion'])") }
+function Encolar($id, [string[]]$orden) {
+    $lg = "$Base\output\trabajos.log"
+    $r = Tb jobs submit --source "claude $id" @orden 2>&1
+    "$(Get-Date -Format s) peticion $($id): $r" | Add-Content $lg -Encoding UTF8
+}
+function Peticion-Por-Cola($p) {
+    $id = $p["id"]
+    switch ("$($p['accion'])") {
+        "completo"  { Encolar $id @("flujo", "completo"); return $true }
+        "prevision" { Encolar $id @("flujo", "prevision"); return $true }
+        "medir" {
+            $sc = "$($p['script'])"
+            $ar = @()
+            if ($p["argumentos"]) { $ar = @("$($p['argumentos'])".Trim() -split '\s+') }
+            if ($sc -notmatch '^[a-z0-9_]+$' -or ("$($p['argumentos'])" -and "$($p['argumentos'])" -notmatch '^[A-Za-z0-9_,. =-]+$')) {
+                "$(Get-Date -Format s) peticion $($id): script o argumentos no validos" | Add-Content "$Base\output\trabajos.log" -Encoding UTF8
+                return $true }
+            Encolar $id (@("script", $sc) + $ar); return $true
+        }
+        "rehacer" {
+            $m = "$($p['partido'])"
+            if ($m -notmatch '^[a-z0-9][a-z0-9-]+$') { return $true }
+            Encolar $id @("run", "--match", $m, "--force"); Encolar $id @("flujo", "completo"); return $true
+        }
+        "repetir" {
+            $et = @("$($p['etapas'])" -split '[,\s]+' | Where-Object { $_ -match '^[a-z_]+$' })
+            if (-not $et) { return $true }
+            Encolar $id (@("run", "--all", "--stages") + $et + @("--force")); Encolar $id @("flujo", "completo"); return $true
+        }
+    }
+    return $false            # trabajo y control: sus ramas de siempre (ya envian a la cola)
+}
+# las peticiones que solo encolan, en orden, aunque el ejecutor este ocupado con un trabajo largo (11-11: mientras
+# hacia Pegula, ninguna peticion llegaba, ni siquiera "pausar"); la primera que no es de cola espera, como siempre
+function Hacer-Peticiones-De-Cola {
+    $ErrorActionPreference = "Continue"
+    $n = 0
+    while ($n -lt 20) {
+        $p = Peticion-Pendiente
+        if (-not $p -or -not (Es-De-Cola $p)) { break }
+        Hacer-Peticion $p
+        $n++
+    }
+    if ($n) { Orquestador }
+    return $n
+}
 function Hacer-Peticion($p) {
     $script:PeticionDesconocida = $false
     $p["id"] | Add-Content "$Out\peticiones_hechas.txt"        # una sola vez, salga bien o mal
     $ps1 = Join-Path $RepoDir "scripts\windows\prueba_rapida.ps1"
+    if ((Es-De-Cola $p) -and (Peticion-Por-Cola $p)) { Orquestador; return }
     if ($p["accion"] -eq "poc") {
         # carpetas nuevas por peticion: sin caches de otra prueba, el tiempo medido es el real
         $s4 = "_poc4"; $s35 = "_poc"
@@ -635,6 +687,25 @@ if ($ocupado -and $env:GITHUB_ACTIONS) {
             Add-Content "$Out\ciclo_arranque.txt" } catch {}
         if ((Get-Item $PSCommandPath).LastWriteTime -gt $guion) { Relanzar }
     }
+}
+# solo el ejecutor unico trabajando (11-11): la cola de peticiones se trae (solo ese fichero y docs, nunca codigo con un
+# trabajo en marcha) y se hacen las que solo encolan; las demas esperan a que la cola quede libre
+if ($ocupado -and -not @($ocupado | Where-Object { $_.CommandLine -notmatch "jobs run-one" }).Count) {
+    $ErrorActionPreference = "Continue"
+    try {
+        git -C $RepoDir fetch -q origin $Rama 2>$null
+        $h = (git -C $RepoDir rev-parse HEAD).Trim()
+        $f = "$(git -C $RepoDir rev-parse FETCH_HEAD 2>$null)".Trim()
+        if ($f -and $h -ne $f) {
+            $files = @(git -C $RepoDir diff --name-only $h $f)
+            $otros = @($files | Where-Object { $_ -and $_ -notmatch '^(config/peticion_pc\.txt|config/parar_pc\.txt|docs/|src/tennisbio/app/)' })
+            if ($files.Count -and -not $otros.Count) { git -C $RepoDir merge -q --ff-only $f 2>&1 | Out-Null }
+        }
+        Set-Location $RepoDir
+        $hechas = Hacer-Peticiones-De-Cola
+        if ($hechas) { "$(Get-Date -Format s) $hechas peticiones de cola con el ejecutor ocupado" | Add-Content "$Out\ciclo_arranque.txt" }
+        Orquestador
+    } catch { Write-Host "peticiones de cola: $_" -ForegroundColor Yellow }
 }
 if ($ocupado) { Senal-Vida "otro analisis en marcha ($(($ocupado | ForEach-Object { $_.ProcessId }) -join ','))" }
 

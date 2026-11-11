@@ -40,7 +40,10 @@ Después: medio plazo = paquetes M1-M7 (medidas); largo = P1-P6 (producto; el m�
 | 5 | E: la aplicación por la misma cola (detalle abajo) | nube | pruebas + capturas de su «Cola» en el PC | código hecho (11-11); captura en el PC con la petición 188 |
 | 6 | Pegula sola por la cola (identidad v10 y saques con datos reales; no es el análisis completo) | PC, **en paralelo** con 5 y 7 | su auditoría (identidad ≥ 95 %, saques ≥ 85 %) | enviada (peticiones 189-190) |
 | 7 | F: extremo a extremo automático (enviar como el chat, pausar con el código de la app, reanudar como el chat) | PC | `scripts/e2e_orquestador.py` (flujo «prueba_pausa»): acaba hecho, sigue en el paso cortado, no repite el primero | código y prueba local hechos (11-11); se lanza en el PC cuando la cola quede libre tras la tarea 6 |
-| 8 | Análisis completo de los 6 partidos (flujo «completo») | PC (una noche) | su auditoría cierra B1-B7 y #242 | al final, sin fallos conocidos (#247) |
+| 8 | Todo el trabajo del PC por la cola única: completo, prevision, medir, rehacer y repetir encolan; las peticiones de cola se atienden aunque el ejecutor esté ocupado | nube + PC | una petición `control` atendida mientras Pegula se analiza | código hecho (11-11) |
+| 9 | Documentos normalizados: índice `docs/README.md`, históricos marcados, `aplicacion_local.md` y la cabecera de la cola del PC al día | nube | — | hecho (11-11) |
+| 10 | Continuidad sin el chat: avisos programados a esta sesión que retoman la cadena si una vigilancia muere | nube | un aviso que llega y sigue la tabla | siguiente |
+| 11 | Análisis completo de los 6 partidos (flujo «completo») | PC (una noche) | su auditoría cierra B1-B7 y #242 | al final, sin fallos conocidos (#247) |
 
 Detalle de la tarea 5 (E): (1) `window.worker` deja de lanzar procesos propios (desactivado por configuración): al
 abrirse comprueba que el ejecutor único vive y si no lo arranca; (2) pausar/reanudar/cancelar/reanalizar llaman a
@@ -51,6 +54,10 @@ abrirse comprueba que el ejecutor único vive y si no lo arranca; (2) pausar/rea
 **Ahora mismo:** PC = ejecutor único vivo, cola reanudada, sin análisis. Nube = Claude (tareas 4 → 5).
 **Si se acaban los tokens:** todo está en la rama y en el PC (cachés, cola en `datos/tennisbio.db`); la sesión siguiente
 sigue por la primera tarea no hecha de esta tabla.
+
+---
+
+# HISTÓRICO (no se sigue; notas fechadas que se conservan). Lo vigente es la sección «Estado» de arriba, `CLAUDE.md` y `docs/README.md`.
 
 ## 19-10: el plan vigente está en `docs/plan_maestro.md` (leer primero)
 Todo lo pendiente, en orden, con su criterio de cierre medido en el PC. Almacenamiento definitivo: `docs/almacenamiento.md`.

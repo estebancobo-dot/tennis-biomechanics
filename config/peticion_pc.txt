@@ -626,6 +626,12 @@ script: diag_scoreboard
 # 03-11: pausa quitada (el usuario lo pide). En orden: 79 = paso 3 (golpes perdidos como repeticion, regla v11);
 # 80 = paso 4.1 (codificador de la iGPU frente a libx264: tiempo por video e imagen)
 # Pruebas que Claude pide al PC (el ciclo automatico las hace una vez por id):
+# VIGENTE (11-11, docs/orquestador.md): todo el trabajo del PC va por la cola del ejecutor unico. Estas acciones solo
+#   envian trabajos a la cola y se atienden aunque el ejecutor este ocupado: trabajo (comando: ...), control (orden: ...),
+#   completo (flujo completo), prevision (flujo prevision), medir (tennisbio script NOMBRE args), rehacer (run --match
+#   --force + flujo completo), repetir (run --all --stages ... --force + flujo completo). Las demas (poc, recall, entreno,
+#   diag, identidad, youtube, app, ventana, movil, migrar, borrar, informe de carpeta, largo, app_nuevo, referencia) se
+#   hacen en el ciclo cuando la cola esta libre. Estado de la cola: pc-logs/estado_trabajos.json.
 # Cola: se pueden poner varias peticiones seguidas, separadas por una linea con solo "---"; cada bloque
 #   lleva su "id:", su "accion:" y sus parametros. El PC las hace en orden, una detras de otra en el mismo
 #   ciclo (sin esperar 10 min), y para si llega codigo nuevo (el siguiente ciclo sigue con el script nuevo)

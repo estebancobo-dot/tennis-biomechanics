@@ -86,9 +86,12 @@ La aplicación es la capa de alrededor: elegir qué análisis ver, lanzar trabaj
    - Cada partido: sus datos, sus jugadoras, sus golpes por tipo y qué falta. Botones «Reanalizar» y «Archivar».
 4. **Jugadoras**
    - Fichas: datos, foto (el fotograma más nítido suyo), partidos en los que sale, golpes analizados por tipo y botón «Analizar sus golpes».
-5. **Cola**
-   - Trabajos pendientes, en curso y hechos, cada uno con su porqué («partido nuevo», «cambió el cálculo de las medidas»).
-   - Prioridad, pausar y reanudar.
+5. **Cola** (11-11: la del ejecutor único del PC, la misma que usa Claude desde el chat; `docs/orquestador.md`)
+   - Trabajos pendientes, en curso y hechos, cada uno con su porqué («partido nuevo», «cambió el cálculo de las medidas»),
+     quién lo pidió (la aplicación, Claude, el ciclo) y, en un flujo, en qué paso va («paso 3 de 11»).
+   - Prioridad, pausar, «Parar ya» (el trabajo vuelve a la cola y sigue luego desde su paso), reanudar y cancelar.
+   - Si el ejecutor único está vivo y los últimos eventos de la cola. La ventana no ejecuta trabajos: mantiene vivo el
+     ejecutor (`app.ejecutor: unico`); cerrarla no para la cola.
    - Franja horaria opcional, por ejemplo solo de noche.
 6. **Calidad**
    - El resultado de la auditoría de cada análisis: cumplidos, faltas, pocos datos.
