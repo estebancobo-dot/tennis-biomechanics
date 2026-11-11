@@ -193,6 +193,9 @@ def read_frames(
 
 _SHOWINFO_TB = re.compile(r"config in time_base:\s*(\d+)/(\d+)")
 _SHOWINFO_PTS = re.compile(r"\bn:\s*\d+\s+pts:\s*(-?\d+)")
+# 11-11: showinfo writes a frame's line before the frame reaches the pipe, so once a frame is read its time is either
+# there or never comes (an ffmpeg whose lines cannot be read): 10 s, not 120 s, before the one-seek-per-time fallback
+PTS_WAIT_S = 10.0
 
 
 def _frames_at_run(info: VideoInfo, targets: list[str], hwaccel: str | None,
@@ -257,7 +260,7 @@ def _frames_at_run(info: VideoInfo, targets: list[str], hwaccel: str | None,
             if len(buf) < frame_bytes:
                 break
             try:
-                ft = times.get(timeout=120)
+                ft = times.get(timeout=PTS_WAIT_S)
             except queue.Empty:
                 ft = None
             if ft is None:

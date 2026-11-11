@@ -1,5 +1,12 @@
+import os
 import sys
 from pathlib import Path
+
+# 11-11: with the tests on several cores (pytest -n, pytest-xdist) each worker gets one thread for the numeric
+# libraries; otherwise every worker starts as many as there are cores and they fight (2 s alone, 216 s at once)
+if os.environ.get("PYTEST_XDIST_WORKER"):
+    for _v in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS"):
+        os.environ.setdefault(_v, "1")
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 

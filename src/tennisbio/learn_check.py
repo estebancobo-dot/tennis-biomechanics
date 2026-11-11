@@ -84,8 +84,10 @@ def combos(conditions: dict, extra: list[dict] | None = None, pairs: bool = True
     return out + (extra or [])
 
 
-def check_page(pg, pairs: bool = True, extra: list[dict] | None = None) -> dict:
-    """Runs every combination on an open report page (Playwright). Returns the summary and failures."""
+def check_page(pg, pairs: bool = True, extra: list[dict] | None = None, part: int = 0, parts: int = 1) -> dict:
+    """Runs every combination on an open report page (Playwright). Returns the summary and failures.
+    part/parts (11-11): one share of the combinations, so that the tests run them on several cores at once; together
+    the parts cover every combination exactly once, and part 0 holds the whole page ({}) and the user's example."""
     pg.evaluate("document.querySelector('.nav button[data-tab=\"aprende\"]').click()")
     # the full list of measures is folded under the lesson: unfolded to read it as the user would
     pg.evaluate("['a-more', 'a-phases-d'].forEach(id => { const d = document.getElementById(id); if (d) d.open = true; })")
@@ -97,6 +99,10 @@ def check_page(pg, pairs: bool = True, extra: list[dict] | None = None) -> dict:
     want = {d: list(v["levels"]) for d, v in c["conditions"].items()}
     missing = {d: [l for l in lv if l not in conds.get(d, [])] for d, lv in want.items()}
     todo = combos(want, extra, pairs)
+    if parts > 1:
+        special = [x for x in todo if not x or x == USER_EXAMPLE]
+        rest = [x for x in todo if x and x != USER_EXAMPLE]
+        todo = (special if part == 0 else []) + rest[part::parts]
     fails, rows, with_strokes, extra_out = [], 0, 0, {}
     for sel in todo:
         r = pg.evaluate(_JS_CHECK, [sel, expect])

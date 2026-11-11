@@ -47,8 +47,12 @@ def synthetic(n=400, seed=3):
     return out
 
 
+PARTS = 4      # 11-11: the >600 combinations in 4 shares that run at once (pytest -n); together, every one once
+
+
 @pytest.mark.skipif(not CHROMIUM.exists(), reason="sin navegador para la prueba de la web")
-def test_every_combination_of_learn_screen(tmp_path):
+@pytest.mark.parametrize("part", range(PARTS))
+def test_every_combination_of_learn_screen(tmp_path, part):
     from playwright.sync_api import sync_playwright
 
     from tennisbio.learn_check import check_page
@@ -65,12 +69,24 @@ def test_every_combination_of_learn_screen(tmp_path):
         pg.on("pageerror", lambda e: errors.append(str(e)))
         pg.goto(html.resolve().as_uri())
         pg.wait_for_timeout(500)
-        r = check_page(pg)
+        r = check_page(pg, part=part, parts=PARTS)
         b.close()
     assert not errors, errors[:3]
-    assert r["combinations"] > 600 and r["with_exact_strokes"] > 400
+    assert r["combinations"] > 600 // PARTS and r["with_exact_strokes"] > 400 // PARTS
     assert not r["failures"], r["failures"][:5]
-    assert r["example"]["rows"] > 40 and r["rows_all"] >= r["valued_all"] > 0
+    if part == 0:
+        assert r["example"]["rows"] > 40 and r["rows_all"] >= r["valued_all"] > 0
+
+
+def test_the_parts_cover_every_combination_once():
+    from tennisbio.learn import content
+    from tennisbio.learn_check import USER_EXAMPLE, combos
+    want = {d: list(v["levels"]) for d, v in content()["conditions"].items()}
+    todo = combos(want, None, True)
+    special = [x for x in todo if not x or x == USER_EXAMPLE]
+    rest = [x for x in todo if x and x != USER_EXAMPLE]
+    shares = [(special if k == 0 else []) + rest[k::PARTS] for k in range(PARTS)]
+    assert sum(len(x) for x in shares) == len(todo)
 
 
 @pytest.mark.skipif(not CHROMIUM.exists(), reason="sin navegador para la prueba de la web")
