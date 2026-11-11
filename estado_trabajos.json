@@ -1,12 +1,12 @@
 {
- "at": "2026-11-11 12:34:09",
- "firma": "255253833cda",
+ "at": "2026-11-11 12:35:13",
+ "firma": "d35ff6d64912",
  "ejecutor": {
   "vivo": true,
-  "pid": 5380,
-  "at": 1794396849.9373984
+  "pid": 17788,
+  "at": 1794396909.7712207
  },
- "pausa": true,
+ "pausa": false,
  "en_curso": [],
  "progreso": {
   "partido": "zheng-qinwen-elena-rybakina",
@@ -279,6 +279,20 @@
   }
  ],
  "eventos": [
+  {
+   "id": 5,
+   "job": null,
+   "at": "2026-11-11 12:35:10",
+   "kind": "reanudar",
+   "text": "claude 186"
+  },
+  {
+   "id": 4,
+   "job": null,
+   "at": "2026-11-11 12:35:09",
+   "kind": "ejecutor",
+   "text": "arranca (pid 17788)"
+  },
   {
    "id": 3,
    "job": null,

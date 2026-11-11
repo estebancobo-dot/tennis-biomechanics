@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261111121857
+Start time: 20261111123509
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 3896
+Process ID: 8208
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -15,16 +15,4 @@ CLRVersion: 4.0.30319.42000
 WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
-**********************
-uv.exe : error: failed to remove file `C:\tenis\tennis-biomech\.venv\Lib\site-packages\../../Scripts/tennisbio.exe`: 
-The process cannot access the file because it is being used by another process. (os error 32)
-At C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1:105 char:22
-+ ... firma = "$((& uv run tennisbio jobs status --source ciclo --json "$Ou ...
-+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (error: failed t.... (os error 32):String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
-Empezado 2026-11-11 12:18:50 - terminado 2026-11-11 12:18:57 - duracion total 6 s
-**********************
-Windows PowerShell transcript end
-End time: 20261111121857
 **********************

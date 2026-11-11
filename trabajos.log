@@ -1,2 +1,3 @@
 ﻿2026-11-11T11:49:19 peticion 184: trabajo 36 en la cola: tennisbio registry list
 2026-11-11T12:18:57 peticion 185: reanudar -> error: failed to remove file `C:\tenis\tennis-biomech\.venv\Lib\site-packages\../../Scripts/tennisbio.exe`: The process cannot access the file because it is being used by another process. (os error 32)
+2026-11-11T12:35:10 peticion 186: reanudar -> cola en marcha
