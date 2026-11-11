@@ -1,13 +1,32 @@
 {
- "at": "2026-11-11 15:50:54",
- "firma": "aa76d746de07",
+ "at": "2026-11-11 15:51:06",
+ "firma": "2af3bc9cf6f2",
  "ejecutor": {
   "vivo": true,
   "pid": 18052,
-  "at": 1794408650.347653
+  "at": 1794408666.3606415
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 48,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_height",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-11 15:50:51",
+   "started": "2026-11-11 15:51:00",
+   "finished": null,
+   "args": "[\"script\", \"diag_height\"]",
+   "source": "claude 200",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_48.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "identity",
@@ -18,26 +37,7 @@
   "quedan_s": 0,
   "hora": "2026-11-11 15:08:18"
  },
- "pendientes": [
-  {
-   "id": 48,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_height",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-11 15:50:51",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"diag_height\"]",
-   "source": "claude 200",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 47,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 123,
+   "job": 48,
+   "at": "2026-11-11 15:51:00",
+   "kind": "empieza",
+   "text": "script diag_height"
+  },
+  {
    "id": 122,
    "job": 48,
    "at": "2026-11-11 15:50:51",
@@ -513,13 +520,6 @@
    "at": "2026-11-11 15:08:37",
    "kind": "paso",
    "text": "5/5 Auditoria"
-  },
-  {
-   "id": 93,
-   "job": 45,
-   "at": "2026-11-11 15:08:33",
-   "kind": "paso",
-   "text": "4/5 Informe del saque"
   }
  ]
 }
