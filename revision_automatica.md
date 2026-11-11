@@ -1,6 +1,6 @@
-# Revisión automática: REGRESIÓN
+# Revisión automática: FALLOS
 
-386 cumplidos · 29 no cumplidos · 102 sin golpes suficientes · 114 avisos (antes: 388 cumplidos, 29 no cumplidos)
+386 cumplidos · 29 no cumplidos · 102 sin golpes suficientes · 114 avisos (antes: 386 cumplidos, 29 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 121 de 260
 
@@ -160,8 +160,3 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 23 sin hacer
 - **#258 Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha públ**: SIN HACER según el registro (#258, docs/peticiones_usuario.md)
 - **#259 Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir m**: SIN HACER según el registro (#259, docs/peticiones_usuario.md)
 - **#260 Revisar de verdad todo el bloque Base, no solo la velocidad: en cada tarea, si su prueba mide lo pedido, si fa**: SIN HACER según el registro (#260, docs/peticiones_usuario.md)
-
-## Empeora respecto a la ejecución anterior
-
-- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: la última petición (11-11 21:28) no empezó por GitHub Actions; el último trabajo por Actions fue el 11-11 21:08
-- **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (11-11 21:28) no empezó por GitHub Actions; el último trabajo por Actions fue el 11-11 21:
