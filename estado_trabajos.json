@@ -1,43 +1,25 @@
 {
- "at": "2026-11-11 14:10:35",
- "firma": "797f6ef63a3c",
+ "at": "2026-11-11 14:18:49",
+ "firma": "0158d3122417",
  "ejecutor": {
   "vivo": true,
   "pid": 6760,
-  "at": 1794402635.4868352
+  "at": 1794403123.7220252
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 39,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-11 13:30:41",
-   "started": "2026-11-11 13:30:43",
-   "finished": null,
-   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
-   "source": "claude 191",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_39.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
-  "hecho": 128,
+  "hecho": 165,
   "total": 165,
-  "porcentaje": 77.6,
-  "segundos": 359,
-  "quedan_s": 104,
-  "hora": "2026-11-11 14:10:10"
+  "porcentaje": 100.0,
+  "segundos": 595,
+  "quedan_s": 0,
+  "hora": "2026-11-11 14:14:05"
  },
- "pendientes": [
+ "pendientes": [],
+ "recientes": [
   {
    "id": 40,
    "kind": "flujo",
@@ -45,19 +27,35 @@
    "player": null,
    "stroke": null,
    "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "pendiente",
-   "message": "",
+   "state": "hecho",
+   "message": "3 pasos",
    "created": "2026-11-11 13:30:59",
-   "started": null,
-   "finished": null,
+   "started": "2026-11-11 14:14:07",
+   "finished": "2026-11-11 14:18:21",
    "args": "[\"informe\"]",
    "source": "claude 192",
-   "log": "",
-   "paso": 0,
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_40.log",
+   "paso": 3,
    "pasos": 3
-  }
- ],
- "recientes": [
+  },
+  {
+   "id": 39,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-11 13:30:41",
+   "started": "2026-11-11 13:30:43",
+   "finished": "2026-11-11 14:14:06",
+   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
+   "source": "claude 191",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_39.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 38,
    "kind": "flujo",
@@ -291,45 +289,51 @@
    "log": "",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 25,
-   "kind": "informe",
-   "match": null,
-   "player": "rybakina",
-   "stroke": "forehand",
-   "reason": "nueva versión del informe; análisis completo del ciclo: sus partidos tienen resultados nuevos",
-   "state": "hecho",
-   "message": "REGRESIÓN · versión 1 · pendiente de revisar",
-   "created": "2026-11-08 22:40:01",
-   "started": "2026-11-08 22:40:01",
-   "finished": "2026-11-08 22:45:05",
-   "args": "",
-   "source": "",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  },
-  {
-   "id": 24,
-   "kind": "informe",
-   "match": null,
-   "player": "rybakina",
-   "stroke": "forehand",
-   "reason": "nueva versión del informe",
-   "state": "hecho",
-   "message": "REGRESIÓN · versión 1 · pendiente de revisar",
-   "created": "2026-11-08 21:01:57",
-   "started": "2026-11-08 21:01:57",
-   "finished": "2026-11-08 21:06:59",
-   "args": "",
-   "source": "",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 47,
+   "job": 40,
+   "at": "2026-11-11 14:18:23",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 46,
+   "job": 40,
+   "at": "2026-11-11 14:14:18",
+   "kind": "paso",
+   "text": "3/3 Auditoria"
+  },
+  {
+   "id": 45,
+   "job": 40,
+   "at": "2026-11-11 14:14:09",
+   "kind": "paso",
+   "text": "2/3 Informe de la derecha"
+  },
+  {
+   "id": 44,
+   "job": 40,
+   "at": "2026-11-11 14:14:08",
+   "kind": "paso",
+   "text": "1/3 Registro de partidos"
+  },
+  {
+   "id": 43,
+   "job": 40,
+   "at": "2026-11-11 14:14:07",
+   "kind": "empieza",
+   "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
+  },
+  {
+   "id": 42,
+   "job": 39,
+   "at": "2026-11-11 14:14:07",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 41,
    "job": 40,
@@ -497,48 +501,6 @@
    "at": "2026-11-11 13:07:18",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 17,
-   "job": null,
-   "at": "2026-11-11 13:07:09",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 16,
-   "job": 37,
-   "at": "2026-11-11 13:01:18",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 15,
-   "job": 37,
-   "at": "2026-11-11 13:01:16",
-   "kind": "paso",
-   "text": "2/2 Lista de partidos"
-  },
-  {
-   "id": 14,
-   "job": 37,
-   "at": "2026-11-11 13:01:15",
-   "kind": "paso",
-   "text": "1/2 Registro de partidos"
-  },
-  {
-   "id": 13,
-   "job": 37,
-   "at": "2026-11-11 13:01:14",
-   "kind": "empieza",
-   "text": "flujo «prueba»: Comprobacion del ejecutor y de los flujos: dos pasos ligeros"
-  },
-  {
-   "id": 12,
-   "job": 37,
-   "at": "2026-11-11 13:01:10",
-   "kind": "enviado",
-   "text": "flujo prueba (claude 187)"
   }
  ]
 }

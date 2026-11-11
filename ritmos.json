@@ -1115,6 +1115,12 @@
    "units": 56,
    "match": "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
    "date": "2026-11-09 18:59"
+  },
+  {
+   "s": 3.6032,
+   "units": 165,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-11 14:14"
   }
  ],
  "fine_doubtful:minuto": [
@@ -1147,6 +1153,12 @@
    "video_min": 71.0,
    "match": "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
    "date": "2026-11-09 18:59"
+  },
+  {
+   "s": 5.316,
+   "video_min": 112.2,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-11 14:14"
   }
  ],
  "view_clips:unidad": [
