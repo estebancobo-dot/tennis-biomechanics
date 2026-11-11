@@ -1,3 +1,1 @@
-arranque: 2026-11-11T13:13:01 (pid 12304)
-2026-11-11T13:13:03 GitHub Actions espera a que acabe otro analisis (3004,17832)
-2026-11-11T13:13:26 ejecutor unico arrancado
+arranque: 2026-11-11T13:17:08 (pid 1928)
