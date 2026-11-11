@@ -1051,7 +1051,7 @@
    "area": "Golpes",
    "name": "Identidad en los cambios de lado: sin-fecha_49723c_rybakina",
    "status": "aviso",
-   "detail": "258 de 320 planos decididos (81%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 116 de 231 planos con las dos señales (50%; objetivo ≥ 90%); misma ropa dentro de un juego 95% (objetivo ≥ 95%); sus golpes: 157 cerca y 97 lejos (38% en el lado con menos); dudosos 0, sin decidir 62; con su clic 258 · falla: planos decididos 81% < 95%, cambios de lado y ropa de acuerdo 50% < 90%. Sin verdad anotada: coherencia, no validación"
+   "detail": "258 de 320 planos decididos (81%; objetivo ≥ 95%); misma ropa dentro de un juego 95% (objetivo ≥ 95%); sus golpes: 157 cerca y 97 lejos (38% en el lado con menos); dudosos 0, sin decidir 62; con su clic 258 · falla: planos decididos 81% < 95%. Sin verdad anotada: coherencia, no validación"
   },
   {
    "req": 1,
@@ -8727,7 +8727,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_49723c_rybakina",
    "status": "ok",
-   "detail": "88 min para 112 min de vídeo ≈ 2.7 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejecución)"
+   "detail": "88 min para 112 min de vídeo ≈ 2.8 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -8981,7 +8981,7 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: fine_doubtful de elena-rybakina-jessica-pegula-miami-2026-quarter-final al 100.0 % (165/165), 595 s, quedan ≈ 0 s, a las 2026-11-11 14:14:05"
+   "detail": "último: identity de elena-rybakina-jessica-pegula-miami-2026-quarter-final al 100.0 % (1892/1892), 269 s, quedan ≈ 0 s, a las 2026-11-11 14:31:39"
   },
   {
    "req": 5,
@@ -8995,7 +8995,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T14:10:48); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T14:35:32); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -9317,14 +9317,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-11_1410.csv (mín/media/máx): elena-rybakina-jessica-pegula- fine_doubtful (0.2 min): CPU 47/47/47 %, iGPU 82/82/82 %, RAM máx 11.1 GB → iGPU al límite; más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-11_1416.csv"
+   "detail": "recursos_2026-11-11_1429.csv (mín/media/máx): elena-rybakina-jessica-pegula- identity (3.0 min): CPU 13/46/81 %, iGPU 0/12/94 %, RAM máx 10.5 GB → uso medio: margen para repartir trabajo; 3.2 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 11-11 13:29, empezó a los 0.4 min; el PC estaba con otro trabajo hasta las 13:31 (1.3 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 11-11 14:26, empezó a los 0.3 min; el PC estaba con otro trabajo hasta las 14:27 (1.1 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -9506,7 +9506,7 @@
    "area": "Peticiones",
    "name": "#23 Seguir a la jugadora en los cambios de lado",
    "status": "aviso",
-   "detail": "6 comprobaciones: 1 aviso, 5 ok; la peor: «Identidad en los cambios de lado: sin-fecha_49723c_rybakina» (258 de 320 planos decididos (81%; objetivo ≥ 95%); cambios de lado del marcador y ropa de acuerdo en 116 de 231 planos c)"
+   "detail": "6 comprobaciones: 1 aviso, 5 ok; la peor: «Identidad en los cambios de lado: sin-fecha_49723c_rybakina» (258 de 320 planos decididos (81%; objetivo ≥ 95%); misma ropa dentro de un juego 95% (objetivo ≥ 95%); sus golpes: 157 c)"
   },
   {
    "req": 11,
