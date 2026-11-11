@@ -1,13 +1,32 @@
 {
- "at": "2026-11-11 23:21:03",
- "firma": "7b1c8a57b774",
+ "at": "2026-11-11 23:21:19",
+ "firma": "e3b77aca1e68",
  "ejecutor": {
-  "vivo": false,
-  "pid": null,
-  "at": 1794435663.2422245
+  "vivo": true,
+  "pid": 2136,
+  "at": 1794435679.0817542
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 57,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script tiempos_etapas",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-11 23:21:00",
+   "started": "2026-11-11 23:21:19",
+   "finished": null,
+   "args": "[\"script\", \"tiempos_etapas\"]",
+   "source": "claude 212",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_57.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -18,26 +37,7 @@
   "quedan_s": 0,
   "hora": "2026-11-11 17:02:19"
  },
- "pendientes": [
-  {
-   "id": 57,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script tiempos_etapas",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-11 23:21:00",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"tiempos_etapas\"]",
-   "source": "claude 212",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 56,
@@ -312,6 +312,20 @@
  ],
  "eventos": [
   {
+   "id": 221,
+   "job": 57,
+   "at": "2026-11-11 23:21:19",
+   "kind": "empieza",
+   "text": "script tiempos_etapas"
+  },
+  {
+   "id": 220,
+   "job": null,
+   "at": "2026-11-11 23:21:19",
+   "kind": "ejecutor",
+   "text": "arranca (pid 2136)"
+  },
+  {
    "id": 219,
    "job": null,
    "at": "2026-11-11 23:21:03",
@@ -506,20 +520,6 @@
    "at": "2026-11-11 21:08:25",
    "kind": "enviado",
    "text": "tennisbio script diag_app_nuevo (claude 209)"
-  },
-  {
-   "id": 191,
-   "job": null,
-   "at": "2026-11-11 21:04:34",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 190,
-   "job": 54,
-   "at": "2026-11-11 21:02:29",
-   "kind": "enviado",
-   "text": "tennisbio script tiempos_etapas (claude 208)"
   }
  ]
 }
