@@ -1,26 +1,6 @@
-﻿Peticion 206: partido nuevo con la aplicacion (2026-11-11T17:32:02)
-  tramo: 35 min de Zverev Alexander - Sinner Jannik - Indian Wells - 2026 - Semi final.mkv desde 30:00
+﻿Peticion 207: partido nuevo con la aplicacion (2026-11-11T19:34:58)
+  tramo: 35 min de Elena Rybakina - Jessica Pegula - Miami - 2026 - Quarter final.mkv desde 30:00
 prueba_app_35m.mkv: 35 min, 60 fps
   propuesta: ¿torneo?  · ¿superficie? · ¿jugadoras? → prueba-app-35m
   [sin_jugadora] No reconozco a ninguna jugadora en el nombre: elige quién es (o añade su ficha).
   añadido: prueba-app-35m (en la cola)
-ejecutor: parado · cola activa · firma eb59132a5f69
-  hecho     #2 informe partido prueba-app-35m analizado FALLOS · versión 1 · al día
-  hecho     #1 partido partido nuevo 
-Ahora: nada en curso
-Jugadoras: 3 · partidos: 7
-
-Análisis:
-  rybakina · derecha: v1 · al día · FALLOS · 0 golpes
-Partidos:
-  elena-rybakina-jessica-pegula-miami-2026-quarter-final: nuevo
-  prueba-app-35m: identidad dudosa — Identidad dudosa: decidida en el 0 % de los planos: se analiza, pero no entra en las comparativas.
-  tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5: nuevo
-  tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5: nuevo
-  us-open-2026-r4-naomi-osaka-elena-rybakina: nuevo
-  zheng-qinwen-elena-rybakina: nuevo
-  zverev-alexander-sinner-jannik-indian-wells-2026-semi-final: nuevo
-Cola (0):
-Avisos:
-  [ok] Derecha de Elena Rybakina actualizada: 157 ✔, 41 ✘.
-duracion total: 115.6 min; termina 2026-11-11T19:27:39

@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 19:34:44",
- "firma": "4fd2f5c863d7",
+ "at": "2026-11-11 19:37:59",
+ "firma": "dd21cfa81085",
  "ejecutor": {
-  "vivo": false,
-  "pid": null,
-  "at": 1794422067.7055
+  "vivo": true,
+  "pid": 8024,
+  "at": 1794422279.1456532
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,13 @@
  ],
  "eventos": [
   {
+   "id": 185,
+   "job": null,
+   "at": "2026-11-11 19:34:59",
+   "kind": "ejecutor",
+   "text": "arranca (pid 8024)"
+  },
+  {
    "id": 184,
    "job": null,
    "at": "2026-11-11 19:34:27",
@@ -494,13 +501,6 @@
    "at": "2026-11-11 17:02:51",
    "kind": "paso",
    "text": "5/6 Auditoria"
-  },
-  {
-   "id": 155,
-   "job": 52,
-   "at": "2026-11-11 17:02:43",
-   "kind": "paso",
-   "text": "4/6 Informe del saque"
   }
  ]
 }
