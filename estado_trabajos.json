@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 14:50:58",
- "firma": "7d9b8533f6f4",
+ "at": "2026-11-11 14:51:14",
+ "firma": "f862e1d2b01b",
  "ejecutor": {
   "vivo": false,
   "pid": null,
-  "at": 1794405049.2577267
+  "at": 1794405073.172097
  },
  "pausa": false,
  "en_curso": [],
@@ -19,6 +19,24 @@
   "hora": "2026-11-11 14:31:39"
  },
  "pendientes": [
+  {
+   "id": 45,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-11 14:51:11",
+   "started": null,
+   "finished": null,
+   "args": "[\"informe\"]",
+   "source": "claude 197",
+   "log": "",
+   "paso": 0,
+   "pasos": 5
+  },
   {
    "id": 44,
    "kind": "comando",
@@ -330,6 +348,34 @@
  ],
  "eventos": [
   {
+   "id": 78,
+   "job": null,
+   "at": "2026-11-11 14:51:13",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 77,
+   "job": null,
+   "at": "2026-11-11 14:51:13",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 76,
+   "job": null,
+   "at": "2026-11-11 14:51:13",
+   "kind": "ejecutor",
+   "text": "arranca (pid 5820)"
+  },
+  {
+   "id": 75,
+   "job": 45,
+   "at": "2026-11-11 14:51:11",
+   "kind": "enviado",
+   "text": "flujo informe (claude 197)"
+  },
+  {
    "id": 74,
    "job": 44,
    "at": "2026-11-11 14:50:55",
@@ -510,34 +556,6 @@
    "at": "2026-11-11 14:19:13",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 48,
-   "job": null,
-   "at": "2026-11-11 14:19:05",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 47,
-   "job": 40,
-   "at": "2026-11-11 14:18:23",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 46,
-   "job": 40,
-   "at": "2026-11-11 14:14:18",
-   "kind": "paso",
-   "text": "3/3 Auditoria"
-  },
-  {
-   "id": 45,
-   "job": 40,
-   "at": "2026-11-11 14:14:09",
-   "kind": "paso",
-   "text": "2/3 Informe de la derecha"
   }
  ]
 }
