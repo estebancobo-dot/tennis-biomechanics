@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261111123509
+Start time: 20261111125410
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
 Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 8208
+Process ID: 15560
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -16,9 +16,48 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Registro enviado a Claude (no hace falta copiar nada).
-Empezado 2026-11-11 12:35:00 - terminado 2026-11-11 12:35:18 - duracion total 18 s
-**********************
-Windows PowerShell transcript end
-End time: 20261111123518
-**********************
+
+==> [2026-11-11 12:54:10] Codigo nuevo (eed1fe3 -> 818cc2a): 10 ficheros
+    CLAUDE.md
+    config/flujos.yaml
+    config/peticion_pc.txt
+    docs/estado_proyecto.md
+    docs/orquestador.md
+    src/tennisbio/app/jobs.py
+    src/tennisbio/catalog.py
+    src/tennisbio/cli.py
+    src/tennisbio/orchestrator.py
+    tests/test_orchestrator.py
+Updating eed1fe3..818cc2a
+Fast-forward
+ CLAUDE.md                     | 28 ++++++++++++++
+ config/flujos.yaml            | 46 +++++++++++++++++++++++
+ config/peticion_pc.txt        |  6 +++
+ docs/estado_proyecto.md       | 48 ++++++++++++------------
+ docs/orquestador.md           |  2 +-
+ src/tennisbio/app/jobs.py     |  9 +++--
+ src/tennisbio/catalog.py      |  9 ++++-
+ src/tennisbio/cli.py          | 12 ++++--
+ src/tennisbio/orchestrator.py | 86 +++++++++++++++++++++++++++++++++++++++----
+ tests/test_orchestrator.py    | 46 +++++++++++++++++++++++
+ 10 files changed, 253 insertions(+), 39 deletions(-)
+ create mode 100644 config/flujos.yaml
+Resolved 126 packages in 1ms
+Uninstalled 1 package in 1ms
+Installed 3 packages in 8ms
+ + execnet==2.1.2
+ + pytest-xdist==3.8.0
+ ~ tennisbio==0.0.1 (from file:///C:/tenis/tennis-biomech)
+balltrack.onnx     OK 45 MB
+racketpose.onnx    OK 53 MB
+transnetv2.onnx    OK 31 MB
+rtmw3d-x.onnx      OK 369 MB
+rtmw-x_384x288.onnx OK 229 MB
+court_tcd.onnx     OK 42 MB
+motionagformer_xs.onnx OK 9 MB
+yolo11m-pose_640.onnx OK 84 MB
+yolo11m-pose_960.onnx OK 84 MB
+yolo11m-pose_1280.onnx OK 85 MB
+yolo11m-pose_1920.onnx OK 86 MB
+Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
+el ejecutor se reinicia al acabar el trabajo en curso

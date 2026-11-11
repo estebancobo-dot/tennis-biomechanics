@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 12:40:48",
- "firma": "0367a42dbb16",
+ "at": "2026-11-11 12:54:22",
+ "firma": "81a86f89ebcd",
  "ejecutor": {
-  "vivo": true,
-  "pid": 17788,
-  "at": 1794397231.8539624
+  "vivo": false,
+  "pid": null,
+  "at": 1794398062.0379367
  },
  "pausa": false,
  "en_curso": [],
@@ -262,6 +262,27 @@
   }
  ],
  "eventos": [
+  {
+   "id": 10,
+   "job": null,
+   "at": "2026-11-11 12:54:22",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 9,
+   "job": null,
+   "at": "2026-11-11 12:54:22",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 8,
+   "job": null,
+   "at": "2026-11-11 12:54:15",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
   {
    "id": 7,
    "job": 36,
