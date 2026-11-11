@@ -1,0 +1,383 @@
+{
+ "probe": {
+  "fingerprint": "b3340450bbc493a7",
+  "version": "2",
+  "seconds": 0.2,
+  "finished": "2026-11-11 21:48:07",
+  "summary": {
+   "duration_min": 4.0,
+   "fps": 50.0,
+   "size": "1920x1080",
+   "cleaned": false,
+   "vfr": true
+  },
+  "out_hash": "11cfb2f18a3d2df4f56a",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "scenes": {
+  "fingerprint": "a32ae35165ab9b65",
+  "version": "3",
+  "seconds": 29.8,
+  "finished": "2026-11-11 21:48:36",
+  "summary": {
+   "shots": 41,
+   "main_camera_shots": 11,
+   "detector": "transnetv2",
+   "main_camera_min": 1.4,
+   "main_rule": "lines",
+   "main_camera_min_colour": 3.5,
+   "main_views": 10
+  },
+  "out_hash": "f72eda95150ad5661a5a",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "court": {
+  "fingerprint": "45d58b2aecba2e80",
+  "version": "5",
+  "seconds": 13.7,
+  "finished": "2026-11-11 21:48:50",
+  "summary": {
+   "segments": 29,
+   "with_court": 26,
+   "known_court_reused": 61,
+   "searched": 3,
+   "filled_same_view": 3,
+   "samples": 75,
+   "court_presets": 9,
+   "main_camera_min": 1.4,
+   "court_min": 1.3,
+   "court_share": 0.887,
+   "pitch_deg_median": 18.4
+  },
+  "out_hash": "9b5d32f2b05ddd8ca264",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "score": {
+  "fingerprint": "6908ca2859c9d370",
+  "version": "9",
+  "seconds": 35.4,
+  "finished": "2026-11-11 21:49:25",
+  "summary": {
+   "readings": 19,
+   "pressure": 7,
+   "samples": 19,
+   "ocr_calls": 18,
+   "server_read": 19,
+   "server_source": "marker"
+  },
+  "out_hash": "4b85b04f6dd3308669e0",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "players": {
+  "fingerprint": "13b7e6e78c4a26dc",
+  "version": "4",
+  "seconds": 62.1,
+  "finished": "2026-11-11 21:49:52",
+  "summary": {
+   "frames": 751,
+   "wall_min": 1.0,
+   "model_min": 0.9,
+   "read_min": 1.0,
+   "wait_min": 0.2,
+   "appearance_min": 0.0
+  },
+  "out_hash": "488fe7a239642e6ce161",
+  "scheme": 2,
+  "rewrote": {},
+  "overlap_s": 35.4
+ },
+ "audio": {
+  "fingerprint": "c8a9fa519665289a",
+  "version": "2",
+  "seconds": 1.7,
+  "finished": "2026-11-11 21:49:54",
+  "summary": {
+   "onsets": 243,
+   "tracks": 1
+  },
+  "out_hash": "216485bbf80dcb1fa4d2",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "identity": {
+  "fingerprint": "e23acfb8d74d64ab",
+  "version": "12",
+  "seconds": 8.9,
+  "finished": "2026-11-11 21:50:03",
+  "summary": {
+   "runs": 11,
+   "confidence": 0.73,
+   "votes": 11,
+   "agree": 8,
+   "ends_only": 0,
+   "clothes_only": 0,
+   "ends_won": 1,
+   "clothes_won": 0,
+   "doubtful": 2,
+   "none": 0,
+   "click_by": "clothes",
+   "by_end_changes": 9,
+   "by_clothes": 8,
+   "conflicts": 2,
+   "conflicts_resolved": 1,
+   "decided": 9,
+   "clothes": {
+    "source": "ropa (torso y pantalón o falda, sin la pista)",
+    "runs": 11,
+    "clear": 11,
+    "margin_median": 0.2,
+    "separation": 1.52,
+    "far_pairs": 0,
+    "far_opposite": null,
+    "same_game_pairs": 10,
+    "same_game_same": 0.9,
+    "check": {
+     "distinguishable": true,
+     "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
+     "parity_runs": 11,
+     "parity_agree": 0.73,
+     "centroid_dist": 0.151
+    }
+   }
+  },
+  "out_hash": "5fcc6fb7d20c2cf55685",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "spotting": {
+  "fingerprint": "d6fd0df0865aeb94",
+  "version": "1",
+  "seconds": 90.3,
+  "finished": "2026-11-11 21:51:33",
+  "summary": {
+   "enabled": true,
+   "strokes": 20,
+   "near": 8,
+   "far": 12,
+   "out_of_play": 126,
+   "threshold": 0.1,
+   "fps": 10.0,
+   "model_fps": 10.0,
+   "feature_dim": 122,
+   "audio_track": 0,
+   "seconds": {
+    "jugadores_y_audio": 0.0,
+    "rasgos": 1.0,
+    "bola": 89.2,
+    "modelo": 0.0
+   }
+  },
+  "out_hash": "7c3e8477160bd30d0c6a",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "candidates": {
+  "fingerprint": "7a2d1791520fee39",
+  "version": "15",
+  "seconds": 0.1,
+  "finished": "2026-11-11 21:51:33",
+  "summary": {
+   "candidates": 20,
+   "far": 12,
+   "with_audio": 14,
+   "source": "spotter",
+   "opponent_strokes": 12,
+   "identity_unknown": 1,
+   "replay_strokes_skipped": 0,
+   "replay_runs": 0,
+   "audio_track": 0
+  },
+  "out_hash": "ab0dc70d6a904c655c49",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "views": {
+  "fingerprint": "2f356aac050b7b9c",
+  "version": "6",
+  "seconds": 11.0,
+  "finished": "2026-11-11 21:51:44",
+  "summary": {
+   "views": 31,
+   "repeticion_principal": 1,
+   "lateral": 2,
+   "frontal": 0,
+   "primer_plano": 28,
+   "otra": 0,
+   "links": 65,
+   "linked_views": 31,
+   "slowmo_links": 1
+  },
+  "out_hash": "2141f8df62d5bc93b0b2",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "fine": {
+  "fingerprint": "44d8a8b273227567",
+  "version": "16",
+  "seconds": 198.4,
+  "finished": "2026-11-11 21:55:03",
+  "summary": {
+   "candidates": 7,
+   "confirmed": 7,
+   "errors": 0,
+   "warnings": [],
+   "forehands": 6,
+   "windows": 5,
+   "gate": {
+    "windows_gated": 0,
+    "windows_passed": 5,
+    "windows_ungated": 0,
+    "reasons": {
+     "golpe_de_bola": 5
+    },
+    "seconds_in_gated_windows": 0.0
+   },
+   "seconds": {
+    "pose": 179.3,
+    "pose_modelo_hybrid": 173.2,
+    "raqueta": 109.4,
+    "bola": 37.5,
+    "cuerdas_y_3d": 18.6,
+    "recorte": 6.1,
+    "analisis_ventana": 4.2,
+    "pista_ventana": 1.5,
+    "cribado": 0.3
+   },
+   "counts": {
+    "overlap_s": 0.0,
+    "frames": 1143,
+    "posed_frames": 1143,
+    "impacts": 9,
+    "kept_impacts": 7,
+    "racket_frames": 256,
+    "whole_window_again": 0,
+    "frames_960_far": 0,
+    "frames_modelo_hybrid": 1143
+   }
+  },
+  "out_hash": "1fc60609362a44011df8",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "views_link": {
+  "fingerprint": "f376291d2c2e7e17",
+  "version": "1",
+  "seconds": 0.0,
+  "finished": "2026-11-11 21:55:03",
+  "summary": {
+   "strokes": 7,
+   "with_replay": 0,
+   "with_other_camera": 7,
+   "with_slowmo": 0,
+   "replay_share": 0.0,
+   "other_share": 1.0
+  },
+  "out_hash": "c18a81c46313993e789d",
+  "scheme": 2,
+  "rewrote": {
+   "fine": "4aa76d51e769f583fe5e"
+  }
+ },
+ "view_clips": {
+  "fingerprint": "46b3afbb7e9a399a",
+  "version": "1",
+  "seconds": 13.1,
+  "finished": "2026-11-11 21:55:16",
+  "summary": {
+   "enabled": true,
+   "linked_strokes": 7,
+   "views": 24,
+   "clips": 16,
+   "cut": 16,
+   "reused": 0,
+   "failed": 0,
+   "seconds": 13.1,
+   "clip_seconds": 88.8,
+   "strokes_with_clip": 7
+  },
+  "out_hash": "3ab8f2b8113e6cf58224",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "slowmo_fine": {
+  "fingerprint": "fc4563f7a87a02c5",
+  "version": "1",
+  "seconds": 0.0,
+  "finished": "2026-11-11 21:55:16",
+  "summary": {
+   "enabled": true,
+   "slowmo_strokes": 0,
+   "measured": 0,
+   "failed": 0,
+   "frames": 0,
+   "seconds": 0.0
+  },
+  "out_hash": "6c2bc5a218d0ed9fedad",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "fine_opponent": {
+  "fingerprint": "7d6fd07068a44757",
+  "version": "9",
+  "seconds": 0.0,
+  "finished": "2026-11-11 21:55:16",
+  "summary": {
+   "enabled": false
+  },
+  "out_hash": "dafe9abfb6c998959474",
+  "scheme": 2,
+  "rewrote": {}
+ },
+ "fine_doubtful": {
+  "fingerprint": "d9789890c96f881d",
+  "version": "1",
+  "seconds": 36.5,
+  "finished": "2026-11-11 21:55:53",
+  "summary": {
+   "candidates": 1,
+   "confirmed": 1,
+   "errors": 0,
+   "warnings": [],
+   "forehands": 0,
+   "windows": 1,
+   "gate": {
+    "windows_gated": 0,
+    "windows_passed": 1,
+    "windows_ungated": 0,
+    "reasons": {
+     "golpe_de_bola": 1
+    },
+    "seconds_in_gated_windows": 0.0
+   },
+   "seconds": {
+    "pose": 15.7,
+    "pose_modelo_hybrid": 15.1,
+    "raqueta": 9.9,
+    "bola": 4.6,
+    "cuerdas_y_3d": 2.1,
+    "recorte": 0.9,
+    "analisis_ventana": 0.3,
+    "pista_ventana": 0.2,
+    "cribado": 0.1
+   },
+   "counts": {
+    "overlap_s": 0.0,
+    "frames": 179,
+    "posed_frames": 179,
+    "impacts": 1,
+    "kept_impacts": 1,
+    "racket_frames": 31,
+    "whole_window_again": 0,
+    "frames_960_far": 0,
+    "frames_modelo_hybrid": 179
+   }
+  },
+  "out_hash": "db3620c6eaa850fb0b53",
+  "scheme": 2,
+  "rewrote": {}
+ }
+}
