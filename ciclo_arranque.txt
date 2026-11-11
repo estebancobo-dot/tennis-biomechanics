@@ -1,1 +1,2 @@
 arranque: 2026-11-11T17:09:43 (pid 7244)
+2026-11-11T17:10:21 ejecutor unico arrancado
