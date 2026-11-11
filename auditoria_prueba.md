@@ -344,7 +344,7 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 20 sin hacer
 - ✔ **Cada golpe tiene su vídeo**: 67 de 67 golpes con vídeo
 - ✔ **Cada golpe tiene su esqueleto fotograma a fotograma**: 67 de 67
 - ✔ **El navegador puede reproducir los vídeos**: formatos: h264
-- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 3105 caracteres de texto, 16 vídeos, 21 gráficos
+- ✔ **Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»**: 3105 caracteres de texto, 15 vídeos, 21 gráficos
 - ✔ **Pantalla «Sus golpes (Videoteca y pista)»**: 8866 caracteres de texto, 16 vídeos, 1 gráficos
 - ✔ **Pantalla «Análisis de golpe»**: 6151 caracteres de texto, 17 vídeos, 33 gráficos
 - ✔ **Pantalla «Comparar dos golpes»**: 16472 caracteres de texto, 16 vídeos, 2 gráficos
@@ -450,7 +450,7 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 20 sin hacer
 
 ## 5. 100 % automático
 
-- ✘ **Pruebas del código en este PC**: código dadf175 (2026-11-11T15:35:53): 979 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
+- ✘ **Pruebas del código en este PC**: código 34d2866 (2026-11-11T15:50:55): 980 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
 - ✘ **Registros con fecha y duración**: 61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
 - ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 8 de 13 del lado cercano (62%); motivos: phase 20, elbow_implausible_at_impact 3, impact_without_audio 2, half_volley_candidate 1. Otros 5 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
 - ✔ **Golpes que fallaron al procesarse**: ninguno
@@ -486,7 +486,7 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 20 sin hacer
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
 - ✔ **Progreso visible (progreso.json)**: último: view_clips de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (102/102), 6 s, quedan ≈ 0 s, a las 2026-11-11 14:46:27
-- ✔ **Tamaño de la salida (tamanos.txt)**: 44 carpetas, 30.9 GB en total (2026-11-11T15:40:48); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 44 carpetas, 30.9 GB en total (2026-11-11T15:51:08); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB
 - ✔ **Carpetas de pruebas antiguas**: ninguna carpeta de pruebas con más de 14 días sin usar
 - ✔ **Aplicación: ventana real y pantallas**: 66 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 2 análisis y 22 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
@@ -494,9 +494,9 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 20 sin hacer
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 78 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 118 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 118 vídeos
-- ✔ **Exportación terminada: exportar**: terminó el 2026-11-11 15:41:02 en 0 min: 118 vídeos de 118 golpes
+- ✔ **Exportación terminada: exportar**: terminó el 2026-11-11 15:48:02 en 0 min: 118 vídeos de 118 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
-- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 11-11 15:34, empezó a los 0.4 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
+- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 11-11 15:47, empezó a los 0.3 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
 
@@ -514,9 +514,9 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 20 sin hacer
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
-- ✘ **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código dadf175 (2026-11-11T15:35:53): 979 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-- ✘ **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código dadf175 (2026-11-11T15:35:53): 979 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-- ✘ **#51 El código de la prueba es el de los casos reales**: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código dadf175 (2026-11-11T15:35:53): 979 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- ✘ **#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 34d2866 (2026-11-11T15:50:55): 980 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- ✘ **#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML**: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código 34d2866 (2026-11-11T15:50:55): 980 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- ✘ **#51 El código de la prueba es el de los casos reales**: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 34d2866 (2026-11-11T15:50:55): 980 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
 - ✘ **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
 - ✘ **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - ✘ **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -532,7 +532,7 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 20 sin hacer
 - ✘ **#223 Revés y derecha cortados**: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
 - ✘ **#224 Saques: plano, cortado o kick; primero o segundo**: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
 - ✘ **#240 Comparar la aplicación con las profesionales una vez estén los golpes**: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
-- ✘ **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código dadf175 (2026-11-11T15:35:53): 979 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
+- ✘ **#241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código 34d2866 (2026-11-11T15:50:55): 980 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
 - ✘ **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - ✘ **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 - ✘ **#252 Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps profesionales, UX y **: SIN HACER según el registro (#252, docs/peticiones_usuario.md)
