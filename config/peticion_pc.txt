@@ -860,3 +860,9 @@ accion: app_nuevo
 minutos: 35
 # 207 (11-11): tarea 10b de B8 (B7, #242), repetida: la 206 tomo el video mas pequeno (Zverev-Sinner) y lo analizo
 # como la jugadora por defecto (identidad 0 %). Ahora el tramo sale de un partido de la jugadora analizada
+---
+id: 208
+accion: medir
+script: tiempos_etapas
+# 208 (11-11): donde se va el tiempo. Tiempo de cada etapa de cada partido (y de la prueba _app_nuevo) segun su
+# manifest: capturas_diag/tiempos_etapas.md. Solo lee
