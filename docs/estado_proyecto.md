@@ -19,33 +19,35 @@ plan están en `CLAUDE.md`; la taxonomía en `docs/matriz_cobertura.md`; las val
 - El partido completo (los 4 partidos) se ejecuta **una sola vez, al final**, cuando todo funcione.
 - Móvil y nube: al final, después de que el PC funcione.
 
-## 10-11: dónde estamos y cómo seguir (LEER PRIMERO; se actualiza en cada cambio)
-**Regla del usuario (09-11):** no se lanza ningún análisis completo mientras haya fallos conocidos (#247).
+## Estado (LEER PRIMERO; Claude lo actualiza en cada cambio) — 11-11
+Conceptos (glosario en `CLAUDE.md`): **Plan** (corto / medio / largo) → **Paquete** → **Tarea**; cada **Petición** del
+usuario pertenece a un paquete; un paquete está **aceptado** cuando su prueba principal pasa en las salidas reales
+(tabla «¿Cerrado?» de `estado_real_partidos.md`, calculada, no a mano).
 
-**En marcha ahora:** nada. PC sin trabajos (la petición 181 se paró el 09-11 23:40; la cola del PC está vacía);
-ninguna tarea en la nube. Todo lo hecho está subido a la rama; nada vive solo en una sesión.
+**Plan a corto plazo: cerrar la Base.** Paquetes B1-B7 (ver la tabla automática) y **B8, orquestador único** (el actual).
+Después: medio plazo = paquetes M1-M7 (medidas); largo = P1-P6 (producto; el móvil, el último).
 
-**Orden de trabajo (paquete B8 de `config/plan_peticiones.yaml`, peticiones #246-251):**
-| Paso | Qué | Estado |
-|---|---|---|
-| 1 | Fase A: registro único de partidos (`registry.py`) | hecho, subido; falta verlo en el PC (`registro_partidos.json` en pc-logs) |
-| 2 | Fase B: ejecutor único (`orchestrator.py`, `tennisbio worker`, `tennisbio jobs`) | hecho, subido |
-| 3 | Fase D: el ciclo del PC y el chat mandan trabajos a la cola (no ejecutan); sync del registro en cada vuelta; `estado_trabajos.json` a pc-logs | hecho en código (11-11); falta verlo en el PC: ejecutor arrancado, `registro_partidos.json` y `estado_trabajos.json` en pc-logs |
-| 4 | Fase C: flujos en `config/flujos.yaml` (el análisis completo como flujo) | pendiente |
-| 5 | Fase E: la aplicación por la misma cola (su «Cola» lee trabajos y eventos) | pendiente |
-| 6 | Fase F: prueba de extremo a extremo en el PC (enviar aquí, pausar en la app, reanudar aquí) | pendiente |
-| 7 | Saques de Pegula (76 %, objetivo 85 %): medir con la identidad corregida y arreglar lo que quede | pendiente (tras el análisis) |
-| 8 | Un único análisis completo de los 6 partidos por la cola, y leer su auditoría (cierra la Base y #242) | al final |
+**Paquete actual: B8 — tareas en orden**
+| # | Tarea | Dónde se ejecuta | Validación | Estado |
+|---|---|---|---|---|
+| 1 | A: registro único de partidos | nube (código) | pruebas + `registro_partidos.json` en pc-logs | hecho |
+| 2 | B: ejecutor único (`tennisbio worker`, `tennisbio jobs`) | nube | pruebas | hecho |
+| 3 | D: el ciclo del PC y el chat por la cola única | nube + PC | petición 184 hecha por la cola en el PC | **aceptada** (11-11 12:35) |
+| 4 | C: flujos (`config/flujos.yaml`) | nube + PC | petición 187: flujo «prueba» hecho en el PC | código hecho; esperando al PC |
+| 5 | E: la aplicación por la misma cola (detalle abajo) | nube | pruebas + capturas de su «Cola» en el PC | siguiente |
+| 6 | Pegula sola por la cola (identidad v10 y saques con datos reales; no es el análisis completo) | PC, **en paralelo** con 5 | su auditoría (identidad ≥ 95 %, saques ≥ 85 %) | tras 4 |
+| 7 | F: extremo a extremo automático (enviar como el chat, pausar con el código de la app, reanudar como el chat) | PC | el flujo acaba hecho desde el paso donde se pausó | tras 5 |
+| 8 | Análisis completo de los 6 partidos (flujo «completo») | PC (una noche) | su auditoría cierra B1-B7 y #242 | al final, sin fallos conocidos (#247) |
 
-**Hecho el 09-10 y 10-11 (subido, con pruebas):** identidad v10 (marcador imposible fuera), auditoría con el clic y por
-jugador, huellas de código por etapa, fotos y clic en la carpeta del análisis, partido repetido en la app, UTF-8 en la cola
-de la app, rondas y rival en las tarjetas, registros con fecha de fin, objetivo de velocidad ≤ 8 h por partido
-(mitad de fotogramas medida con `scripts/bench_fine_fps.py` y descartada por calidad; `fine_pass.max_fps: 0`).
-Clic de Pegula guardado (foto 2, t 6402,2 s).
+Detalle de la tarea 5 (E): (1) `window.worker` deja de lanzar procesos propios (desactivado por configuración): al
+abrirse comprueba que el ejecutor único vive y si no lo arranca; (2) pausar/reanudar/cancelar/reanalizar llaman a
+`orchestrator.pause/resume/cancel/submit`; (3) partido/rival/informe los hace el mismo ejecutor; (4) la «Cola» lee
+`orchestrator.status` (en curso, paso N de M, eventos, pausa); (5) el icono junto al reloj, del mismo estado;
+(6) «Añadir partido» → registro único + trabajo en la cola; (7) pruebas y capturas en el PC.
 
-**Si se acaban los tokens:** se puede apagar el PC y cerrar todo. Al volver: leer esta sección, `git fetch origin
-pc-logs` y seguir por el primer paso no hecho de la tabla. Los análisis reanudan desde sus cachés (huellas por etapa) y la
-cola vive en `datos/tennisbio.db`.
+**Ahora mismo:** PC = ejecutor único vivo, cola reanudada, sin análisis. Nube = Claude (tareas 4 → 5).
+**Si se acaban los tokens:** todo está en la rama y en el PC (cachés, cola en `datos/tennisbio.db`); la sesión siguiente
+sigue por la primera tarea no hecha de esta tabla.
 
 ## 19-10: el plan vigente está en `docs/plan_maestro.md` (leer primero)
 Todo lo pendiente, en orden, con su criterio de cierre medido en el PC. Almacenamiento definitivo: `docs/almacenamiento.md`.

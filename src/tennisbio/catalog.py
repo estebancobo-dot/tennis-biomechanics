@@ -66,8 +66,15 @@ def load_player(player_id: str, config_dir: Path = CONFIG_DIR) -> Player:
 def load_matches(cfg: dict, config_dir: Path = CONFIG_DIR) -> list[Match]:
     """The matches every entry point works on: the registry (tennisbio.registry, the application's database) once it
     exists, else config/matches.yaml as it is. config `registry.source: yaml` keeps the catalogue alone."""
-    out = _load_yaml(cfg, config_dir)
     from . import registry
+    try:
+        out = _load_yaml(cfg, config_dir)
+    except FileNotFoundError:
+        # 11-11: without config/matches.yaml the registry alone (matches added in the application); without either,
+        # the error says what is missing, as before
+        if not (registry.enabled(cfg) and registry.open_db(cfg) is not None):
+            raise
+        out = []
     if registry.enabled(cfg):
         try:
             return registry.matches(cfg, out, config_dir)

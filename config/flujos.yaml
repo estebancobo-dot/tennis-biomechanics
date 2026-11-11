@@ -1,0 +1,46 @@
+# Flujos de trabajo del ejecutor unico (11-11, fase C de docs/orquestador.md).
+# Un flujo es una lista de pasos que el ejecutor hace en orden, en el proceso del trabajo; cada paso es idempotente
+# (las etapas se saltan si estan al dia: huellas por etapa), asi que un flujo pausado o cortado sigue en el paso donde
+# se quedo. Anadir un flujo = anadir aqui sus pasos, sin codigo.
+#
+# Cada paso:
+#   nombre:   lo que se ve en la cola y en los eventos
+#   tennisbio: argumentos de `tennisbio` (p. ej. [run, --all])
+#   script:    un script del repositorio con sus argumentos (p. ej. [scripts/auto_catalog.py])
+#   si_falla:  parar (por defecto) | seguir
+#   limite_min: minutos como mucho (opcional); pasado ese tiempo el paso se corta y cuenta como fallo
+# {salida} se sustituye por la carpeta de salidas (config paths.output).
+
+completo:
+  descripcion: "Los partidos del registro de principio a fin: etapas, informes, auditoria y exportacion"
+  pasos:
+    - {nombre: "Catalogo de partidos (videos nuevos)", script: [scripts/auto_catalog.py]}
+    - {nombre: "Registro de partidos", tennisbio: [registry, sync]}
+    - {nombre: "Analisis de los partidos", tennisbio: [run, --all]}
+    - {nombre: "Informe de la derecha", tennisbio: [report, --stroke, forehand, --out, "{salida}/informe_derecha"]}
+    - {nombre: "Informe del reves", tennisbio: [report, --stroke, backhand, --out, "{salida}/informe_reves"], si_falla: seguir}
+    - {nombre: "Informe del saque", tennisbio: [report, --stroke, overhead, --out, "{salida}/informe_saque"], si_falla: seguir}
+    - {nombre: "Analisis en la aplicacion", tennisbio: [app, tras-completo], si_falla: seguir}
+    - {nombre: "Auditoria", tennisbio: [audit, --stroke, forehand]}
+    - {nombre: "Exportar la derecha", tennisbio: [export, --stroke, forehand, --out, "{salida}/exportar_derecha"], si_falla: seguir, limite_min: 240}
+    - {nombre: "Exportar el reves", tennisbio: [export, --stroke, backhand, --out, "{salida}/exportar_reves"], si_falla: seguir, limite_min: 240}
+    - {nombre: "Exportar el saque", tennisbio: [export, --stroke, overhead, --out, "{salida}/exportar_saque"], si_falla: seguir, limite_min: 240}
+
+informe:
+  descripcion: "Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
+  pasos:
+    - {nombre: "Registro de partidos", tennisbio: [registry, sync]}
+    - {nombre: "Informe de la derecha", tennisbio: [report, --stroke, forehand, --out, "{salida}/informe_derecha"]}
+    - {nombre: "Auditoria", tennisbio: [audit, --stroke, forehand]}
+
+prevision:
+  descripcion: "Que etapas se rehacen en cada partido y cuanto tardarian, sin ejecutar nada"
+  pasos:
+    - {nombre: "Registro de partidos", tennisbio: [registry, sync]}
+    - {nombre: "Prevision", script: [scripts/preflight.py, --max-h, "99"], si_falla: seguir}
+
+prueba:
+  descripcion: "Comprobacion del ejecutor y de los flujos: dos pasos ligeros"
+  pasos:
+    - {nombre: "Registro de partidos", tennisbio: [registry, sync]}
+    - {nombre: "Lista de partidos", tennisbio: [registry, list, --json, "{salida}/registro_partidos.json"]}

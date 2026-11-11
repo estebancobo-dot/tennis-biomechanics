@@ -44,7 +44,7 @@ def ensure_schema(db) -> None:
     db.con.executescript(EXTRA_SCHEMA)
     cols = {r[1] for r in db.con.execute("PRAGMA table_info(jobs)")}
     for name, decl in (("args", "TEXT DEFAULT ''"), ("control", "TEXT DEFAULT ''"), ("log", "TEXT DEFAULT ''"),
-                       ("source", "TEXT DEFAULT ''")):
+                       ("source", "TEXT DEFAULT ''"), ("paso", "INTEGER DEFAULT 0"), ("pasos", "INTEGER DEFAULT 0")):
         if name not in cols:
             db.con.execute(f"ALTER TABLE jobs ADD COLUMN {name} {decl}")
     db.con.commit()
@@ -112,11 +112,19 @@ def submit(db, kind: str, args: list[str] | None = None, source: str = "", reaso
     """A new job; «comando» carries its `tennisbio` arguments. Returns its id."""
     from .app import jobs
     from .app.db import now
-    if kind == "comando":       # two commands are two jobs (enqueue merges jobs of the same kind and match)
-        jid = db.x("INSERT INTO jobs (kind, reason, priority, state, created, light, estimate_s, args, source) "
-                   "VALUES ('comando', ?, ?, 'pendiente', ?, 0, 0, ?, ?)", reason or " ".join(args or []),
-                   5 if priority is None else int(priority), now(), json.dumps(args or []), source)
-        event(db, jid, "enviado", f"tennisbio {' '.join(args or [])} ({source or 'sin origen'})")
+    if kind in ("comando", "flujo"):   # two commands are two jobs (enqueue merges jobs of the same kind and match)
+        if kind == "flujo":
+            fl = flows()
+            if not args or args[0] not in fl:
+                raise ValueError(f"flujo desconocido: {args[0] if args else '(ninguno)'}; hay {', '.join(sorted(fl))}")
+            reason = reason or f"flujo «{args[0]}»: {fl[args[0]].get('descripcion', '')}"
+            n = len(fl[args[0]].get("pasos") or [])
+        else:
+            n = 0
+        jid = db.x("INSERT INTO jobs (kind, reason, priority, state, created, light, estimate_s, args, source, paso, pasos) "
+                   "VALUES (?, ?, ?, 'pendiente', ?, 0, 0, ?, ?, 0, ?)", kind, reason or " ".join(args or []),
+                   5 if priority is None else int(priority), now(), json.dumps(args or []), source, n)
+        event(db, jid, "enviado", f"{'flujo' if kind == 'flujo' else 'tennisbio'} {' '.join(args or [])} ({source or 'sin origen'})")
         return jid
     jid = jobs.enqueue(db, kind, reason=reason, **fields)
     db.x("UPDATE jobs SET args=?, source=? WHERE id=?", json.dumps(args or []), source, jid)
@@ -264,6 +272,68 @@ def serve(cfg: dict, once: bool = False, idle_s: float = 10.0, stop=lambda: Fals
     return 0
 
 
+FLOWS_FILE = Path(__file__).resolve().parents[2] / "config" / "flujos.yaml"
+
+
+def flows(path: Path | None = None) -> dict:
+    """The flows of config/flujos.yaml: name → {descripcion, pasos: [{nombre, tennisbio | script, si_falla, limite_min}]}."""
+    import yaml
+    f = Path(path) if path else FLOWS_FILE
+    return (yaml.safe_load(f.read_text(encoding="utf-8")) or {}) if f.exists() else {}
+
+
+def _step_argv(step: dict, out: Path) -> list[str]:
+    sub = lambda a: str(a).replace("{salida}", str(out))
+    if step.get("tennisbio"):
+        return [sys.executable, "-m", "tennisbio.cli", *[sub(a) for a in step["tennisbio"]]]
+    if step.get("script"):
+        sc = [sub(a) for a in step["script"]]
+        return [sys.executable, str(FLOWS_FILE.parents[1] / sc[0]), *sc[1:]]
+    raise ValueError(f"paso sin «tennisbio» ni «script»: {step}")
+
+
+def run_flow(db, job: dict, cfg: dict) -> int:
+    """A «flujo» job: its steps in order from the one it reached (a paused or cut flow goes on where it was; each step
+    is idempotent). Each step is a process of its own with an optional time limit; its output goes to the job's log."""
+    from .app import jobs
+    name = (json.loads(job.get("args") or "[]") or [""])[0]
+    fl = flows().get(name)
+    t0 = time.time()
+    if fl is None:
+        jobs._finish(db, job, "error", f"flujo desconocido: {name}", t0)
+        return 1
+    steps = fl.get("pasos") or []
+    out = Path((cfg.get("paths") or {}).get("output") or "output")
+    start = int(job.get("paso") or 0)
+    failed = []
+    for i in range(start, len(steps)):
+        st = steps[i]
+        db.x("UPDATE jobs SET paso=?, pasos=?, message=? WHERE id=?", i, len(steps), f"paso {i + 1}/{len(steps)}: {st.get('nombre', '')}",
+             job["id"])
+        event(db, job["id"], "paso", f"{i + 1}/{len(steps)} {st.get('nombre', '')}")
+        print(f"== paso {i + 1}/{len(steps)}: {st.get('nombre', '')} ({time.strftime('%Y-%m-%d %H:%M:%S')})", flush=True)
+        lim = float(st.get("limite_min") or 0) * 60 or None
+        ok = True
+        try:
+            r = subprocess.run(_step_argv(st, out), timeout=lim, env={**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"})
+            ok = r.returncode == 0
+            why = f"código {r.returncode}"
+        except subprocess.TimeoutExpired:
+            ok, why = False, f"más de {st.get('limite_min')} min"
+        except Exception as e:  # noqa: BLE001 — said in the job
+            ok, why = False, f"{type(e).__name__}: {e}"
+        if not ok:
+            event(db, job["id"], "paso fallido", f"{i + 1} {st.get('nombre', '')}: {why}")
+            failed.append(f"{st.get('nombre', '')} ({why})")
+            if (st.get("si_falla") or "parar") != "seguir":
+                db.x("UPDATE jobs SET paso=? WHERE id=?", i, job["id"])
+                jobs._finish(db, job, "error", f"paso {i + 1}/{len(steps)} {st.get('nombre', '')}: {why}", t0)
+                return 1
+        db.x("UPDATE jobs SET paso=? WHERE id=?", i + 1, job["id"])
+    jobs._finish(db, job, "hecho", f"{len(steps)} pasos" + (f"; con fallos que no paran: {'; '.join(failed)}" if failed else ""), t0)
+    return 0
+
+
 def run_command(db, job: dict) -> int:
     """A «comando» job: `tennisbio <args>` in this process; its end said in the job."""
     from .app import jobs
@@ -295,6 +365,8 @@ def run_one(cfg: dict, job_id: int) -> int:
             return 2
         if job["kind"] == "comando":
             return run_command(db, job)
+        if job["kind"] == "flujo":
+            return run_flow(db, job, cfg)
         from .app.core import App
         app = App(cfg)
         try:
@@ -311,7 +383,7 @@ def status(db, events: int = 30, output: Path | None = None) -> dict:
     w = db.setting("ejecutor", None) or {}
     alive = bool(w.get("pid")) and time.time() - float(w.get("at") or 0) < ALIVE_S
     rows = db.q("SELECT id, kind, match, player, stroke, reason, state, message, created, started, finished, args, "
-                "source, log FROM jobs ORDER BY id DESC LIMIT 60")
+                "source, log, paso, pasos FROM jobs ORDER BY id DESC LIMIT 60")
     running = [r for r in rows if r["state"] == "en curso"]
     prog = None
     pf = Path(output) / "progreso.json" if output else None

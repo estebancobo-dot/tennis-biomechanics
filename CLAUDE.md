@@ -48,6 +48,34 @@ el código nuevo de la rama, ejecuta lo necesario (`scripts/auto_cycle.py decide
 solo informe o nada), revisa frente a la ejecución anterior (`revision_automatica.md`: OK / REGRESIÓN /
 ERROR) y lo sube a `pc-logs`. No pedir al usuario que lance 2c/2d tras cada cambio.
 
+## Forma de trabajar de Claude (OBLIGATORIA; decisiones del usuario, 09-11 y 11-11)
+- **Autónomo y encadenado:** Claude encadena las tareas del plan sin pararse a preguntar ni a informar en cada paso
+  (pruebas → subida → comprobación en el PC por pc-logs → siguiente tarea). Solo escribe al usuario al terminar una
+  fase, si algo falla y no puede arreglarlo, o si necesita algo que solo el usuario puede hacer.
+- **El estado siempre en el repositorio:** `docs/estado_proyecto.md`, sección «dónde estamos y cómo seguir» (pasos en
+  orden con su estado, qué está en marcha en el PC y en la nube). Se actualiza en cada cambio. Toda petición nueva del
+  usuario va a `docs/peticiones_usuario.md` y a un paquete de `config/plan_peticiones.yaml` (nada solo en el chat).
+- **Nunca un análisis completo con fallos conocidos** (#247). Antes: todo arreglado y probado en pequeño.
+- **Calidad antes que velocidad:** nada que pierda calidad o puntuación para ir más rápido (#248).
+- **Orquestador único** (`docs/orquestador.md`): todo trabajo del PC va por la cola del ejecutor único
+  (`tennisbio jobs`, peticiones `trabajo`/`control`); la aplicación y el chat usan el mismo código y los mismos datos.
+- **Pruebas antes de cada subida:** `uv run pytest -q -n 4` (todas, en paralelo, ~5,5 min); se sube solo con 0 fallos.
+  Excepción: una subida que solo contiene una parada (`config/parar_pc.txt`) no espera a las pruebas.
+- **Comprobar, no suponer:** nunca decir «hecho» o «en marcha» sin verlo en pc-logs o en la salida real (09-11: se
+  dijo que un análisis había arrancado y no era así).
+- **Conceptos (uno por nivel; no inventar otros):** **Plan** = horizonte (corto: cerrar la Base B1-B8; medio: medidas
+  M1-M7; largo: producto P1-P6, el móvil al final) → **Paquete** = grupo de peticiones con un criterio de cierre
+  (`config/plan_peticiones.yaml`) → **Tarea** = trabajo concreto, en orden, para cerrar el paquete (tabla de
+  `docs/estado_proyecto.md`). **Petición** = lo que pidió el usuario (`docs/peticiones_usuario.md`), siempre en un
+  paquete. **Validación** = comprobación automática en las salidas reales; **aceptación** = el paquete pasa su prueba
+  principal (calculada, no a mano). **Dónde se ejecuta:** nube = Claude (código y pruebas); PC = análisis por la cola
+  única, de uno en uno. **Flujo** = lista fija de pasos que el PC hace en orden (`config/flujos.yaml`). Paralelo = Claude
+  programa mientras el PC trabaja; secuencial = una tarea que necesita el resultado de otra la espera.
+- **Una sola tabla que seguir:** la de tareas del paquete actual en `docs/estado_proyecto.md`; Claude no salta a otra
+  cosa por lo último que falló o se preguntó: lo añade como tarea en su sitio y sigue el orden.
+- **Si se acaban los tokens:** todo queda en la rama y en el PC (cachés, cola en `datos/tennisbio.db`); la sesión
+  siguiente lee `docs/estado_proyecto.md` y sigue por el primer paso no hecho.
+
 ## Plan vigente (en orden)
 1. Corregir los fallos graves de `docs/revision_completa.md` (identidad, cara en el impacto,
    cadena cinética, medidas con escala por fotograma, ventana previa, entrelazado, robustez,

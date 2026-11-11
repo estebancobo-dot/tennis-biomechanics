@@ -60,10 +60,14 @@ def _jobs(args) -> int:
         if args.action == "submit":
             what = cmd_args or rest
             if not what:
-                print("falta qué hacer: tennisbio jobs submit -- run --all")
+                print("falta qué hacer: tennisbio jobs submit -- run --all | tennisbio jobs submit flujo completo")
                 return 2
-            jid = O.submit(db, "comando", args=what, source=args.source)
-            print(f"trabajo {jid} en la cola: tennisbio {' '.join(what)}")
+            if what[0] == "flujo":       # «submit flujo NOMBRE» (also after «--»: no tennisbio command is called «flujo»)
+                jid = O.submit(db, "flujo", args=what[1:2], source=args.source)
+                print(f"trabajo {jid} en la cola: flujo {what[1] if len(what) > 1 else ''}")
+            else:
+                jid = O.submit(db, "comando", args=what, source=args.source)
+                print(f"trabajo {jid} en la cola: tennisbio {' '.join(what)}")
         elif args.action == "pause":
             print(O.pause(db, now_=bool(rest and rest[0] == "now"), source=args.source))
         elif args.action == "resume":
@@ -76,6 +80,7 @@ def _jobs(args) -> int:
             print(f"{n} trabajos cancelados o parándose")
         st = O.status(db, output=out)
         if args.json:
+            Path(args.json).parent.mkdir(parents=True, exist_ok=True)
             Path(args.json).write_text(json.dumps(st, ensure_ascii=False, indent=1, default=str), encoding="utf-8")
         O.write_status(db, status_file)
         if args.action == "status":
@@ -106,6 +111,7 @@ def _registry(args) -> int:
     for r in rows:
         print(f"{r['id']:<62} {r['jugador']:<10} {r['carpeta']}")
     if args.json:
+        Path(args.json).parent.mkdir(parents=True, exist_ok=True)
         Path(args.json).write_text(json.dumps(rows, ensure_ascii=False, indent=1), encoding="utf-8")
     return 0
 

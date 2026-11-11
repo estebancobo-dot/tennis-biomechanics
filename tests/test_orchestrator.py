@@ -128,3 +128,49 @@ def test_the_command_line_as_the_cycle_calls_it(env, tmp_path):
     assert json.loads(job["args"]) == ["run", "--all"] and job["source"] == "claude 184" and job["state"] == "cancelado"
     assert s["pausa"] is False and s["firma"]
     assert {e["kind"] for e in s["eventos"]} >= {"enviado", "pausa", "cancelar", "reanudar"}
+
+
+def test_a_flow_runs_its_steps_and_a_resumed_one_goes_on_where_it_was(env):
+    # 11-11, phase C: config/flujos.yaml «prueba» (registry sync, registry list)
+    assert {"completo", "informe", "prevision", "prueba"} <= set(O.flows())
+    db = O.open_db(env)
+    a = O.submit(db, "flujo", args=["prueba"], source="claude")
+    b = O.submit(db, "flujo", args=["prueba"], source="claude")
+    db.x("UPDATE jobs SET paso=1 WHERE id=?", b)               # b was cut after its first step
+    with pytest.raises(ValueError):
+        O.submit(db, "flujo", args=["no-existe"])
+    db.close()
+    assert O.serve(env, once=True, idle_s=0.1) == 0
+    db = O.open_db(env)
+    for j, steps in ((a, 2), (b, 1)):
+        row = db.one("SELECT * FROM jobs WHERE id=?", j)
+        assert row["state"] == "hecho" and row["paso"] == 2 and row["pasos"] == 2, Path(row["log"]).read_text(encoding="utf-8")
+        assert len([e for e in O.status(db, events=200)["eventos"] if e["job"] == j and e["kind"] == "paso"]) == steps
+    out = Path(env["paths"]["output"])
+    assert (out / "registro_partidos.json").exists()
+    db.close()
+
+
+def test_every_step_of_every_flow_is_a_known_command_or_script():
+    from tennisbio import cli
+    root = Path(O.FLOWS_FILE).parents[1]
+    known = {"run", "status", "report", "export", "audit", "app", "registry", "jobs", "worker"}
+    for name, fl in O.flows().items():
+        assert fl.get("pasos"), name
+        for st in fl["pasos"]:
+            assert bool(st.get("tennisbio")) != bool(st.get("script")), (name, st)
+            if st.get("tennisbio"):
+                assert st["tennisbio"][0] in known, (name, st)
+            else:
+                assert (root / st["script"][0]).exists(), (name, st)
+            assert st.get("si_falla", "parar") in ("parar", "seguir")
+    assert cli is not None
+
+
+def test_a_flow_submitted_the_way_the_cycle_does(env):
+    from tennisbio import cli
+    assert cli.main(["jobs", "submit", "--source", "claude 187", "--", "flujo", "prueba"]) == 0
+    db = O.open_db(env)
+    row = db.q("SELECT * FROM jobs ORDER BY id DESC LIMIT 1")[0]
+    assert row["kind"] == "flujo" and json.loads(row["args"]) == ["prueba"] and row["pasos"] == 2
+    db.close()
