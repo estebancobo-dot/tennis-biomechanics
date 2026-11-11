@@ -1,13 +1,32 @@
 {
- "at": "2026-11-11 13:17:32",
- "firma": "8d79b96e06ee",
+ "at": "2026-11-11 13:17:37",
+ "firma": "ad27c79d3b49",
  "ejecutor": {
   "vivo": true,
   "pid": 7220,
   "at": 1794399447.444957
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 38,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-11 13:17:30",
+   "started": "2026-11-11 13:17:37",
+   "finished": null,
+   "args": "[\"informe\"]",
+   "source": "claude 190",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_38.log",
+   "paso": 0,
+   "pasos": 3
+  }
+ ],
  "progreso": {
   "partido": "zheng-qinwen-elena-rybakina",
   "etapa": "fine",
@@ -18,26 +37,7 @@
   "quedan_s": 130,
   "hora": "2026-11-09 23:39:49"
  },
- "pendientes": [
-  {
-   "id": 38,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-11 13:17:30",
-   "started": null,
-   "finished": null,
-   "args": "[\"informe\"]",
-   "source": "claude 190",
-   "log": "",
-   "paso": 0,
-   "pasos": 3
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 37,
@@ -311,6 +311,13 @@
   }
  ],
  "eventos": [
+  {
+   "id": 26,
+   "job": 38,
+   "at": "2026-11-11 13:17:37",
+   "kind": "empieza",
+   "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
+  },
   {
    "id": 25,
    "job": 38,
