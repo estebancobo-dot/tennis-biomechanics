@@ -145,7 +145,7 @@ def test_every_infrastructure_item_is_tied_to_its_request(tmp_path):
     import re
     names = [i["name"] for i in infrastructure_items(tmp_path / "output")]
     # 07-11: + the application's new match from start to end (B7's main test); 11-11 (R7): + the queue's 3 (B8's)
-    assert len(names) == 11            # 11-11 (R6): + the match list's data (#226)
+    assert len(names) == 12            # 11-11 (R6): + the match list's data (#226); (R8) + what the app costs (#225)
     by = {n: [r for r, rule in PETITIONS.items() if isinstance(rule, str) and type(rule) is str and re.search(rule, n)]
           for n in names}
     assert 50 in by["Progreso visible (progreso.json)"] and 66 in by["Registros con fecha y duración"]

@@ -1669,6 +1669,7 @@ PETITIONS.update({
     246: r"^Orquestador: ", 249: r"^Orquestador: prueba de extremo a extremo",
     226: r"^Lista de partidos: rival, torneo, ronda y fecha",
     41: r"Resumen PDF|^Vídeos exportados: |^Exportación terminada: ",
+    225: r"^Aplicación: lo que consume abierta|Golpes que fallaron|Etapas con errores|Pruebas en este PC: (test_no_unbounded_calls|test_app_window)$",
     237: r"^Peticiones por GitHub Actions|^Orquestador: espera hasta empezar|^Orquestador: ejecutor vivo",
     119: r"^Orquestador: ejecutor vivo|^Orquestador: espera hasta empezar",
 })
@@ -2485,6 +2486,35 @@ def app_index_counts(bases: list[Path]) -> tuple[int, int] | None:
     return None
 
 
+APP_COST_ITEM = "Aplicación: lo que consume abierta"
+APP_CPU_MAX = 5.0             # % of the whole PC, mean over a minute with the window open (and nothing to do)
+APP_RAM_MAX = 800             # MB, the process and its WebView2 children together
+APP_COST_DAYS = 14
+
+
+def app_cost_item(bases: list[Path], today: str | None = None) -> dict:
+    """#225 (11-11, R8 of the review of the Base: «no se cuelga ni ralentiza el PC», never measured): what the open window
+    costs, from scripts/app_recursos.py (capturas_diag/app_recursos.json, a PC request «medir»)."""
+    import datetime as _dt
+    f = next((b / "capturas_diag" / "app_recursos.json" for b in bases if (b / "capturas_diag" / "app_recursos.json").exists()), None)
+    if f is None:
+        return _item(5, "Aplicación", APP_COST_ITEM, "aviso", "sin medir (petición «medir app_recursos» del PC)")
+    try:
+        r = json.loads(f.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        return _item(5, "Aplicación", APP_COST_ITEM, "aviso", f"app_recursos.json ilegible ({e})")
+    if r.get("error") or r.get("cpu_media_pct") is None:
+        return _item(5, "Aplicación", APP_COST_ITEM, "falta", f"no se pudo medir: {r.get('error') or 'sin muestras'}")
+    day = (today or _dt.date.today().isoformat())[:10]
+    age = (_dt.date.fromisoformat(day) - _dt.date.fromisoformat(str(r.get("fecha", day))[:10])).days
+    ok = r["cpu_media_pct"] <= APP_CPU_MAX and (r.get("ram_max_mb") or 0) <= APP_RAM_MAX
+    st = "falta" if not ok else "aviso" if age > APP_COST_DAYS else "ok"
+    return _item(5, "Aplicación", APP_COST_ITEM, st,
+                 f"CPU media {r['cpu_media_pct']} % (máx {r.get('cpu_max_pct')} %; objetivo ≤ {APP_CPU_MAX:g} %), memoria hasta "
+                 f"{r.get('ram_max_mb')} MB (objetivo ≤ {APP_RAM_MAX}) en {r.get('procesos')} procesos; {r.get('fecha')}"
+                 + (f" (hace {age} días: repetirla)" if age > APP_COST_DAYS else ""))
+
+
 MATCH_LIST_ITEM = "Lista de partidos: rival, torneo, ronda y fecha"
 MATCH_LIST_FIELDS = (("opponent", "rival"), ("tournament", "torneo"), ("round", "ronda"), ("date", "fecha"))
 
@@ -2672,7 +2702,7 @@ def infrastructure_items(out_root: Path) -> list[dict]:
     (the single worker's queue)."""
     bases = [out_root, out_root.parent, out_root.parent.parent]
     return ([progress_item(bases), logs_item(bases), sizes_item(bases), old_test_folders_item(bases)] + app_items(bases)
-            + [new_match_item(bases), match_list_item(bases)] + orchestrator_items(bases))
+            + [new_match_item(bases), match_list_item(bases), app_cost_item(bases)] + orchestrator_items(bases))
 
 
 MANUAL_REVIEW_ITEM = "Nada pide revisión manual"
