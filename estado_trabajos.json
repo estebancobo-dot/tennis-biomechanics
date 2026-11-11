@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 17:10:21",
- "firma": "ea9ed8e7c560",
+ "at": "2026-11-11 17:10:49",
+ "firma": "3b83411b8329",
  "ejecutor": {
-  "vivo": false,
-  "pid": null,
-  "at": 1794413404.031255
+  "vivo": true,
+  "pid": 10388,
+  "at": 1794413441.8920891
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,13 @@
  ],
  "eventos": [
   {
+   "id": 162,
+   "job": null,
+   "at": "2026-11-11 17:10:21",
+   "kind": "ejecutor",
+   "text": "arranca (pid 10388)"
+  },
+  {
    "id": 161,
    "job": null,
    "at": "2026-11-11 17:10:04",
@@ -494,13 +501,6 @@
    "at": "2026-11-11 16:10:50",
    "kind": "enviado",
    "text": "tennisbio script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250 (claude 201)"
-  },
-  {
-   "id": 132,
-   "job": null,
-   "at": "2026-11-11 16:10:50",
-   "kind": "ejecutor",
-   "text": "arranca (pid 5916)"
   }
  ]
 }
