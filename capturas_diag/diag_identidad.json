@@ -1,2379 +1,12 @@
 [
  {
-  "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
-  "dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_f43dd2_rybakina",
-  "runs": 148,
-  "ends_base": null,
-  "click_by": "clothes",
-  "target_cluster": null,
-  "votes": 62,
-  "clothes": {
-   "source": "ropa (torso y pantalón o falda, sin la pista)",
-   "runs": 148,
-   "clear": 148,
-   "margin_median": 0.62,
-   "separation": 4.4,
-   "far_pairs": 0,
-   "far_opposite": null,
-   "same_game_pairs": 117,
-   "same_game_same": 0.95,
-   "check": {
-    "distinguishable": true,
-    "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
-    "parity_runs": 136,
-    "parity_agree": 0.95,
-    "centroid_dist": 0.845
-   }
-  },
-  "decided": 0,
-  "methods": {
-   "None": 148
-  },
-  "parity_by_cluster": {
-   "g0_par1": 62,
-   "g1_par1": 4,
-   "g1_par0": 67,
-   "g0_par0": 3
-  },
-  "votes_by_parity": {
-   "par1_votoTrue": 15,
-   "par0_votoFalse": 21,
-   "par0_votoTrue": 14,
-   "par1_votoFalse": 12
-  },
-  "games_sequence": [
-   [
-    679,
-    [
-     [
-      1,
-      0
-     ]
-    ],
-    1
-   ],
-   [
-    801,
-    [
-     [
-      1,
-      1
-     ]
-    ],
-    null
-   ],
-   [
-    927,
-    [
-     [
-      2,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    1072,
-    [
-     [
-      3,
-      1
-     ]
-    ],
-    null
-   ],
-   [
-    1333,
-    [
-     [
-      4,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    1484,
-    [
-     [
-      5,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    1809,
-    [
-     [
-      6,
-      1
-     ],
-     [
-      0,
-      0
-     ]
-    ],
-    1
-   ],
-   [
-    1999,
-    [
-     [
-      6,
-      1
-     ],
-     [
-      0,
-      1
-     ]
-    ],
-    null
-   ],
-   [
-    2157,
-    [
-     [
-      6,
-      1
-     ],
-     [
-      1,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    2290,
-    [
-     [
-      6,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    2301,
-    [
-     [
-      1,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    2311,
-    [
-     [
-      6,
-      1
-     ],
-     [
-      1,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    2438,
-    [
-     [
-      6,
-      1
-     ],
-     [
-      1,
-      2
-     ]
-    ],
-    null
-   ],
-   [
-    2661,
-    [
-     [
-      6,
-      1
-     ],
-     [
-      2,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    2972,
-    [
-     [
-      6,
-      1
-     ],
-     [
-      2,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    3187,
-    [
-     [
-      6,
-      1
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    3374,
-    [
-     [
-      6,
-      1
-     ],
-     [
-      4,
-      3
-     ]
-    ],
-    null
-   ],
-   [
-    3546,
-    [
-     [
-      6,
-      1
-     ],
-     [
-      5,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    3855,
-    [
-     [
-      6,
-      1
-     ],
-     [
-      5,
-      4
-     ]
-    ],
-    0
-   ]
-  ],
-  "images": [
-   "identidad_us-open-2026-r4-naomi-osaka-elena-rybaki_0.jpg",
-   "identidad_us-open-2026-r4-naomi-osaka-elena-rybaki_1.jpg"
-  ]
- },
- {
-  "match": "zheng-qinwen-elena-rybakina",
-  "dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_584c5b_rybakina",
-  "runs": 276,
-  "ends_base": true,
-  "click_by": "clothes",
-  "target_cluster": 0,
-  "votes": 257,
-  "clothes": {
-   "source": "ropa (torso y pantalón o falda, sin la pista)",
-   "runs": 276,
-   "clear": 266,
-   "margin_median": 0.51,
-   "separation": 3.52,
-   "far_pairs": 1,
-   "far_opposite": 0.0,
-   "same_game_pairs": 207,
-   "same_game_same": 1.0,
-   "check": {
-    "distinguishable": true,
-    "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
-    "parity_runs": 257,
-    "parity_agree": 0.93,
-    "centroid_dist": 0.892
-   }
-  },
-  "decided": 274,
-  "methods": {
-   "ropa": 9,
-   "ropa y cambios de lado": 240,
-   "cambios de lado": 12,
-   "dudoso": 2,
-   "ropa (corrige el marcador)": 13
-  },
-  "parity_by_cluster": {
-   "g1_par1": 107,
-   "g0_par0": 140,
-   "g0_par1": 18,
-   "g1_par0": 2
-  },
-  "votes_by_parity": {
-   "par1_votoFalse": 62,
-   "par0_votoTrue": 99,
-   "par1_votoTrue": 19,
-   "par0_votoFalse": 2
-  },
-  "games_sequence": [
-   [
-    412,
-    [
-     [
-      1,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    700,
-    [
-     [
-      1,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    932,
-    [
-     [
-      2,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    1082,
-    [
-     [
-      2,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    1305,
-    [
-     [
-      3,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    1458,
-    [
-     [
-      3,
-      4
-     ]
-    ],
-    0
-   ],
-   [
-    1538,
-    [
-     [
-      7,
-      6
-     ],
-     [
-      1,
-      8
-     ],
-     [
-      1,
-      7
-     ],
-     [
-      6,
-      5
-     ]
-    ],
-    0
-   ],
-   [
-    1548,
-    [
-     [
-      3,
-      4
-     ]
-    ],
-    0
-   ],
-   [
-    1785,
-    [
-     [
-      3,
-      5
-     ]
-    ],
-    1
-   ],
-   [
-    2707,
-    [
-     [
-      3,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    2723,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      0,
-      0
-     ]
-    ],
-    0
-   ],
-   [
-    2734,
-    [
-     [
-      3,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    2901,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      1,
-      0
-     ]
-    ],
-    1
-   ],
-   [
-    3210,
-    [
-     [
-      3,
-      6
-     ]
-    ],
-    1
-   ],
-   [
-    3341,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      2,
-      0
-     ]
-    ],
-    0
-   ],
-   [
-    3499,
-    [
-     [
-      3,
-      6
-     ]
-    ],
-    1
-   ],
-   [
-    3537,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      3,
-      0
-     ]
-    ],
-    1
-   ],
-   [
-    3646,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      3,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    3742,
-    [
-     [
-      3,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    3767,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      3,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    3772,
-    [
-     [
-      3,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    3778,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      3,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    3811,
-    [
-     [
-      3,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    3848,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      3,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    3897,
-    [
-     [
-      3,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    3957,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      4,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    4024,
-    [
-     [
-      3,
-      6
-     ]
-    ],
-    1
-   ],
-   [
-    4040,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      4,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    4257,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      5,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    4371,
-    [
-     [
-      3,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    4376,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      5,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    4426,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      1
-     ],
-     [
-      0,
-      0
-     ]
-    ],
-    1
-   ],
-   [
-    4669,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      1
-     ],
-     [
-      0,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    4843,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      1
-     ],
-     [
-      1,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    4975,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    5006,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      1
-     ],
-     [
-      1,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    5039,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    5093,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      1
-     ],
-     [
-      1,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    5248,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      1
-     ],
-     [
-      2,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    5711,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      1
-     ],
-     [
-      2,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    5867,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      1
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    6082,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      1
-     ],
-     [
-      3,
-      4
-     ]
-    ],
-    0
-   ],
-   [
-    6427,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      1
-     ],
-     [
-      4,
-      4
-     ]
-    ],
-    0
-   ],
-   [
-    6512,
-    [
-     [
-      2,
-      1
-     ],
-     [
-      0,
-      7
-     ]
-    ],
-    0
-   ],
-   [
-    6517,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      1
-     ],
-     [
-      4,
-      4
-     ]
-    ],
-    0
-   ],
-   [
-    6806,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      1
-     ],
-     [
-      5,
-      4
-     ]
-    ],
-    0
-   ],
-   [
-    6862,
-    [
-     [
-      1,
-      4
-     ]
-    ],
-    0
-   ],
-   [
-    6873,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      1
-     ],
-     [
-      5,
-      4
-     ]
-    ],
-    null
-   ]
-  ],
-  "images": [
-   "identidad_zheng-qinwen-elena-rybakina_0.jpg",
-   "identidad_zheng-qinwen-elena-rybakina_1.jpg"
-  ]
- },
- {
-  "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
-  "dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_580c6f_rybakina",
-  "runs": 285,
-  "ends_base": false,
-  "click_by": "clothes",
-  "target_cluster": 0,
-  "votes": 206,
-  "clothes": {
-   "source": "ropa (torso y pantalón o falda, sin la pista)",
-   "runs": 285,
-   "clear": 268,
-   "margin_median": 0.53,
-   "separation": 2.97,
-   "far_pairs": 0,
-   "far_opposite": null,
-   "same_game_pairs": 167,
-   "same_game_same": 0.99,
-   "check": {
-    "distinguishable": true,
-    "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
-    "parity_runs": 206,
-    "parity_agree": 0.97,
-    "centroid_dist": 0.459
-   }
-  },
-  "decided": 281,
-  "methods": {
-   "ropa": 62,
-   "None": 4,
-   "ropa y cambios de lado": 199,
-   "cambios de lado": 13,
-   "ropa (corrige el marcador)": 7
-  },
-  "parity_by_cluster": {
-   "g0_par1": 95,
-   "g0_par0": 13,
-   "g1_par0": 109,
-   "g1_par1": 2
-  },
-  "votes_by_parity": {
-   "par1_votoTrue": 65,
-   "par1_votoFalse": 3,
-   "par0_votoTrue": 8,
-   "par0_votoFalse": 84
-  },
-  "games_sequence": [
-   [
-    2094,
-    [
-     [
-      2,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    2159,
-    [
-     [
-      6,
-      6
-     ]
-    ],
-    null
-   ],
-   [
-    2164,
-    [
-     [
-      2,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    2395,
-    [
-     [
-      2,
-      4
-     ]
-    ],
-    1
-   ],
-   [
-    2549,
-    [
-     [
-      2,
-      5
-     ]
-    ],
-    0
-   ],
-   [
-    2767,
-    [
-     [
-      3,
-      5
-     ]
-    ],
-    null
-   ],
-   [
-    3074,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      0,
-      0
-     ]
-    ],
-    0
-   ],
-   [
-    3238,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      1,
-      0
-     ]
-    ],
-    1
-   ],
-   [
-    3516,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      1,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    3521,
-    [
-     [
-      3,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    3528,
-    [
-     [
-      1,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    3553,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      1,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    3732,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      2,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    3858,
-    [
-     [
-      3,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    3868,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      2,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    3938,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      3,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    4083,
-    [
-     [
-      6,
-      7
-     ],
-     [
-      9,
-      3
-     ]
-    ],
-    null
-   ],
-   [
-    4093,
-    [
-     [
-      3,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    4103,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      4,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    4342,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      4,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    4599,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      4,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    4779,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      4,
-      4
-     ]
-    ],
-    0
-   ],
-   [
-    4944,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      5,
-      4
-     ]
-    ],
-    1
-   ],
-   [
-    5233,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      4
-     ],
-     [
-      0,
-      0
-     ]
-    ],
-    0
-   ],
-   [
-    5496,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      4
-     ],
-     [
-      1,
-      0
-     ]
-    ],
-    1
-   ],
-   [
-    5833,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      4
-     ],
-     [
-      1,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    5994,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      4
-     ],
-     [
-      2,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    6170,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      4
-     ],
-     [
-      2,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    6350,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      4
-     ],
-     [
-      3,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    6786,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      4
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    6816,
-    [
-     [
-      7,
-      7
-     ],
-     [
-      5,
-      5
-     ]
-    ],
-    null
-   ],
-   [
-    6821,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      4
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    6934,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      4
-     ],
-     [
-      4,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    7151,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    7398,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      4
-     ]
-    ],
-    1
-   ],
-   [
-    7947,
-    [
-     [
-      2,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    7970,
-    [
-     [
-      3,
-      6
-     ],
-     [
-      1,
-      0
-     ]
-    ],
-    1
-   ]
-  ],
-  "images": [
-   "identidad_tennis-yusipopen-polufinal-gauff-rybakin_0.jpg",
-   "identidad_tennis-yusipopen-polufinal-gauff-rybakin_1.jpg"
-  ]
- },
- {
-  "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
-  "dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_b8b713_rybakina",
-  "runs": 342,
-  "ends_base": true,
-  "click_by": "clothes",
-  "target_cluster": 1,
-  "votes": 293,
-  "clothes": {
-   "source": "ropa (torso y pantalón o falda, sin la pista)",
-   "runs": 342,
-   "clear": 314,
-   "margin_median": 0.72,
-   "separation": 5.84,
-   "far_pairs": 8,
-   "far_opposite": 0.25,
-   "same_game_pairs": 243,
-   "same_game_same": 0.98,
-   "check": {
-    "distinguishable": true,
-    "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
-    "parity_runs": 293,
-    "parity_agree": 0.96,
-    "centroid_dist": 0.866
-   }
-  },
-  "decided": 327,
-  "methods": {
-   "ropa": 21,
-   "None": 13,
-   "ropa y cambios de lado": 282,
-   "cambios de lado": 15,
-   "ropa (corrige el marcador)": 9,
-   "dudoso": 2
-  },
-  "parity_by_cluster": {
-   "g0_par1": 153,
-   "g1_par0": 136,
-   "g0_par0": 7,
-   "g1_par1": 12
-  },
-  "votes_by_parity": {
-   "par1_votoFalse": 101,
-   "par0_votoTrue": 90,
-   "par1_votoTrue": 1,
-   "par0_votoFalse": 1
-  },
-  "games_sequence": [
-   [
-    1030,
-    [
-     [
-      5,
-      1
-     ],
-     [
-      6,
-      4
-     ],
-     [
-      4,
-      6
-     ],
-     [
-      0,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    1035,
-    [
-     [
-      5,
-      4
-     ],
-     [
-      6,
-      6
-     ],
-     [
-      4,
-      3
-     ]
-    ],
-    null
-   ],
-   [
-    1044,
-    [
-     [
-      5,
-      1
-     ],
-     [
-      6,
-      4
-     ],
-     [
-      4,
-      6
-     ],
-     [
-      4,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    1053,
-    [
-     [
-      5,
-      1
-     ],
-     [
-      6,
-      4
-     ],
-     [
-      4,
-      6
-     ],
-     [
-      5,
-      4
-     ]
-    ],
-    0
-   ],
-   [
-    2654,
-    [
-     [
-      0,
-      0
-     ]
-    ],
-    1
-   ],
-   [
-    2774,
-    [
-     [
-      0,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    2908,
-    [
-     [
-      1,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    3305,
-    [
-     [
-      1,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    3489,
-    [
-     [
-      2,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    3742,
-    [
-     [
-      3,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    3815,
-    [
-     [
-      3,
-      1
-     ]
-    ],
-    null
-   ],
-   [
-    3820,
-    [
-     [
-      3,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    3863,
-    [
-     [
-      4,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    4212,
-    [
-     [
-      4,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    4520,
-    [
-     [
-      5,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    4701,
-    [
-     [
-      5,
-      4
-     ]
-    ],
-    0
-   ],
-   [
-    5226,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      0,
-      0
-     ]
-    ],
-    1
-   ],
-   [
-    5418,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      0,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    5455,
-    [
-     [
-      8,
-      2
-     ],
-     [
-      3,
-      5
-     ],
-     [
-      1,
-      4
-     ],
-     [
-      2,
-      1
-     ],
-     [
-      6,
-      6
-     ]
-    ],
-    null
-   ],
-   [
-    5476,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      0,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    5615,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      1,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    5964,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      1,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    5969,
-    [
-     [
-      6,
-      4
-     ]
-    ],
-    0
-   ],
-   [
-    5993,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      1,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    6129,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      2,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    6294,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      2,
-      3
-     ]
-    ],
-    0
-   ],
-   [
-    6489,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      3,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    6633,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      3,
-      4
-     ]
-    ],
-    0
-   ],
-   [
-    6822,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      4,
-      4
-     ]
-    ],
-    1
-   ],
-   [
-    6960,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      4,
-      5
-     ]
-    ],
-    0
-   ],
-   [
-    7241,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      5
-     ]
-    ],
-    1
-   ],
-   [
-    7642,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    8183,
-    [
-     [
-      7,
-      7
-     ],
-     [
-      1,
-      1
-     ]
-    ],
-    null
-   ],
-   [
-    8188,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      7
-     ],
-     [
-      0,
-      0
-     ]
-    ],
-    1
-   ],
-   [
-    8678,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      7
-     ],
-     [
-      0,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    8789,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      7
-     ],
-     [
-      1,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    9137,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      7
-     ],
-     [
-      2,
-      1
-     ]
-    ],
-    0
-   ],
-   [
-    9332,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      7
-     ],
-     [
-      3,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    9366,
-    [
-     [
-      1,
-      3
-     ]
-    ],
-    null
-   ],
-   [
-    9371,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      7
-     ],
-     [
-      3,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    9460,
-    [
-     [
-      5,
-      4
-     ],
-     [
-      5,
-      1
-     ],
-     [
-      1,
-      0
-     ]
-    ],
-    null
-   ],
-   [
-    9464,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      7
-     ],
-     [
-      3,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    9594,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      7
-     ],
-     [
-      3,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    9729,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      7
-     ],
-     [
-      4,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    9766,
-    [
-     [
-      1,
-      6
-     ]
-    ],
-    null
-   ],
-   [
-    9771,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      7
-     ],
-     [
-      4,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    10126,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      7
-     ],
-     [
-      5,
-      2
-     ]
-    ],
-    0
-   ],
-   [
-    11550,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      5
-     ]
-    ],
-    1
-   ],
-   [
-    11558,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      6
-     ]
-    ],
-    0
-   ],
-   [
-    11638,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      7
-     ],
-     [
-      4,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    11651,
-    [
-     [
-      6,
-      4
-     ],
-     [
-      5,
-      7
-     ],
-     [
-      5,
-      2
-     ]
-    ],
-    0
-   ]
-  ],
-  "images": [
-   "identidad_tennis-yusipopen-final-sobolenko-rybakin_0.jpg",
-   "identidad_tennis-yusipopen-final-sobolenko-rybakin_1.jpg"
-  ]
- },
- {
   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_49723c_rybakina",
   "runs": 320,
   "ends_base": false,
   "click_by": "ends",
   "target_cluster": null,
-  "votes": 163,
+  "votes": 116,
   "clothes": {
    "source": "ropa (torso y pantalón o falda, sin la pista)",
    "runs": 320,
@@ -2382,32 +15,32 @@
    "separation": 1.78,
    "far_pairs": 1,
    "far_opposite": 0.0,
-   "same_game_pairs": 125,
-   "same_game_same": 0.94,
+   "same_game_pairs": 193,
+   "same_game_same": 0.95,
    "check": {
     "distinguishable": false,
-    "why": "los grupos no siguen los cambios de lado del marcador (59 % de 240 planos)",
-    "parity_runs": 240,
-    "parity_agree": 0.59,
+    "why": "los grupos no siguen los cambios de lado del marcador (50 % de 231 planos)",
+    "parity_runs": 231,
+    "parity_agree": 0.5,
     "centroid_dist": 0.59
    }
   },
-  "decided": 267,
+  "decided": 258,
   "methods": {
-   "None": 53,
-   "cambios de lado": 267
+   "None": 62,
+   "cambios de lado": 258
   },
   "parity_by_cluster": {
-   "g1_par1": 98,
-   "g0_par1": 39,
-   "g0_par0": 53,
-   "g1_par0": 77
+   "g1_par1": 81,
+   "g0_par1": 43,
+   "g0_par0": 42,
+   "g1_par0": 92
   },
   "votes_by_parity": {
-   "par1_votoTrue": 66,
-   "par1_votoFalse": 24,
-   "par0_votoFalse": 62,
-   "par0_votoTrue": 11
+   "par1_votoTrue": 58,
+   "par1_votoFalse": 2,
+   "par0_votoFalse": 52,
+   "par0_votoTrue": 4
   },
   "games_sequence": [
    [
@@ -4167,299 +1800,388 @@
     0
    ]
   ],
-  "images": [
-   "identidad_elena-rybakina-jessica-pegula-miami-2026_0.jpg",
-   "identidad_elena-rybakina-jessica-pegula-miami-2026_1.jpg"
-  ]
- },
- {
-  "match": "zverev-alexander-sinner-jannik-indian-wells-2026-semi-final",
-  "dir": "C:\\tenis\\biblioteca\\partidos\\sin-fecha\\sin-fecha_8b0278_sinner",
-  "runs": 167,
-  "ends_base": null,
-  "click_by": "clothes",
-  "target_cluster": 0,
-  "votes": 31,
-  "clothes": {
-   "source": "ropa (torso y pantalón o falda, sin la pista)",
-   "runs": 167,
-   "clear": 153,
-   "margin_median": 0.28,
-   "separation": 1.65,
-   "far_pairs": 1,
-   "far_opposite": 1.0,
-   "same_game_pairs": 68,
-   "same_game_same": 0.96,
-   "check": {
-    "distinguishable": true,
-    "why": "dos personas (ropa distinta y de acuerdo con los cambios de lado)",
-    "parity_runs": 93,
-    "parity_agree": 0.91,
-    "centroid_dist": 0.406
+  "sin_decidir": [
+   {
+    "t": 65,
+    "s": 3.3,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 362
+   },
+   {
+    "t": 73,
+    "s": 4.1,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 354
+   },
+   {
+    "t": 86,
+    "s": 6.3,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 341
+   },
+   {
+    "t": 91,
+    "s": 2.0,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 336
+   },
+   {
+    "t": 108,
+    "s": 3.5,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 319
+   },
+   {
+    "t": 119,
+    "s": 7.0,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 308
+   },
+   {
+    "t": 125,
+    "s": 1.1,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 302
+   },
+   {
+    "t": 149,
+    "s": 4.8,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 278
+   },
+   {
+    "t": 152,
+    "s": 1.0,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 275
+   },
+   {
+    "t": 168,
+    "s": 5.1,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 258
+   },
+   {
+    "t": 172,
+    "s": 1.0,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 255
+   },
+   {
+    "t": 180,
+    "s": 13.9,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 247
+   },
+   {
+    "t": 213,
+    "s": 3.4,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 213
+   },
+   {
+    "t": 234,
+    "s": 2.5,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 193
+   },
+   {
+    "t": 237,
+    "s": 1.4,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 190
+   },
+   {
+    "t": 243,
+    "s": 1.6,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 184
+   },
+   {
+    "t": 267,
+    "s": 5.2,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 160
+   },
+   {
+    "t": 277,
+    "s": 11.5,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 150
+   },
+   {
+    "t": 305,
+    "s": 3.3,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 122
+   },
+   {
+    "t": 313,
+    "s": 9.1,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 114
+   },
+   {
+    "t": 343,
+    "s": 9.7,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 84
+   },
+   {
+    "t": 358,
+    "s": 8.5,
+    "lectura_antes_s": null,
+    "lectura_despues_s": 68
+   },
+   {
+    "t": 695,
+    "s": 12.6,
+    "lectura_antes_s": 161,
+    "lectura_despues_s": 632
+   },
+   {
+    "t": 725,
+    "s": 4.8,
+    "lectura_antes_s": 191,
+    "lectura_despues_s": 602
+   },
+   {
+    "t": 738,
+    "s": 7.3,
+    "lectura_antes_s": 204,
+    "lectura_despues_s": 589
+   },
+   {
+    "t": 764,
+    "s": 3.7,
+    "lectura_antes_s": 230,
+    "lectura_despues_s": 563
+   },
+   {
+    "t": 780,
+    "s": 12.2,
+    "lectura_antes_s": 246,
+    "lectura_despues_s": 547
+   },
+   {
+    "t": 810,
+    "s": 7.7,
+    "lectura_antes_s": 276,
+    "lectura_despues_s": 516
+   },
+   {
+    "t": 815,
+    "s": 1.2,
+    "lectura_antes_s": 281,
+    "lectura_despues_s": 512
+   },
+   {
+    "t": 842,
+    "s": 4.5,
+    "lectura_antes_s": 309,
+    "lectura_despues_s": 484
+   },
+   {
+    "t": 858,
+    "s": 12.3,
+    "lectura_antes_s": 324,
+    "lectura_despues_s": 468
+   },
+   {
+    "t": 891,
+    "s": 6.8,
+    "lectura_antes_s": 358,
+    "lectura_despues_s": 435
+   },
+   {
+    "t": 910,
+    "s": 8.5,
+    "lectura_antes_s": 376,
+    "lectura_despues_s": 417
+   },
+   {
+    "t": 929,
+    "s": 4.7,
+    "lectura_antes_s": 395,
+    "lectura_despues_s": 397
+   },
+   {
+    "t": 941,
+    "s": 9.4,
+    "lectura_antes_s": 408,
+    "lectura_despues_s": 385
+   },
+   {
+    "t": 968,
+    "s": 13.8,
+    "lectura_antes_s": 435,
+    "lectura_despues_s": 358
+   },
+   {
+    "t": 998,
+    "s": 5.7,
+    "lectura_antes_s": 465,
+    "lectura_despues_s": 328
+   },
+   {
+    "t": 1015,
+    "s": 10.1,
+    "lectura_antes_s": 481,
+    "lectura_despues_s": 312
+   },
+   {
+    "t": 1040,
+    "s": 7.0,
+    "lectura_antes_s": 507,
+    "lectura_despues_s": 286
+   },
+   {
+    "t": 1052,
+    "s": 4.3,
+    "lectura_antes_s": 518,
+    "lectura_despues_s": 275
+   },
+   {
+    "t": 1063,
+    "s": 1.5,
+    "lectura_antes_s": 529,
+    "lectura_despues_s": 264
+   },
+   {
+    "t": 1076,
+    "s": 12.6,
+    "lectura_antes_s": 543,
+    "lectura_despues_s": 250
+   },
+   {
+    "t": 1110,
+    "s": 5.3,
+    "lectura_antes_s": 576,
+    "lectura_despues_s": 217
+   },
+   {
+    "t": 1127,
+    "s": 4.0,
+    "lectura_antes_s": 593,
+    "lectura_despues_s": 200
+   },
+   {
+    "t": 1139,
+    "s": 8.3,
+    "lectura_antes_s": 605,
+    "lectura_despues_s": 188
+   },
+   {
+    "t": 1163,
+    "s": 5.4,
+    "lectura_antes_s": 629,
+    "lectura_despues_s": 164
+   },
+   {
+    "t": 1184,
+    "s": 7.3,
+    "lectura_antes_s": 650,
+    "lectura_despues_s": 143
+   },
+   {
+    "t": 1225,
+    "s": 4.5,
+    "lectura_antes_s": 691,
+    "lectura_despues_s": 101
+   },
+   {
+    "t": 1251,
+    "s": 5.3,
+    "lectura_antes_s": 717,
+    "lectura_despues_s": 76
+   },
+   {
+    "t": 1265,
+    "s": 4.3,
+    "lectura_antes_s": 731,
+    "lectura_despues_s": 62
+   },
+   {
+    "t": 1278,
+    "s": 10.8,
+    "lectura_antes_s": 745,
+    "lectura_despues_s": 48
+   },
+   {
+    "t": 1287,
+    "s": 1.1,
+    "lectura_antes_s": 754,
+    "lectura_despues_s": 39
+   },
+   {
+    "t": 1309,
+    "s": 6.5,
+    "lectura_antes_s": 775,
+    "lectura_despues_s": 18
+   },
+   {
+    "t": 1328,
+    "s": 3.1,
+    "lectura_antes_s": 1,
+    "lectura_despues_s": 28
+   },
+   {
+    "t": 1341,
+    "s": 6.9,
+    "lectura_antes_s": 14,
+    "lectura_despues_s": 15
+   },
+   {
+    "t": 1836,
+    "s": 8.0,
+    "lectura_antes_s": 116,
+    "lectura_despues_s": 18
+   },
+   {
+    "t": 2471,
+    "s": 6.2,
+    "lectura_antes_s": 3,
+    "lectura_despues_s": 2
+   },
+   {
+    "t": 2488,
+    "s": 1.6,
+    "lectura_antes_s": 0,
+    "lectura_despues_s": 7
+   },
+   {
+    "t": 2498,
+    "s": 7.0,
+    "lectura_antes_s": 3,
+    "lectura_despues_s": 2
+   },
+   {
+    "t": 2519,
+    "s": 4.3,
+    "lectura_antes_s": 2,
+    "lectura_despues_s": 14
+   },
+   {
+    "t": 4492,
+    "s": 7.4,
+    "lectura_antes_s": 3,
+    "lectura_despues_s": 2
+   },
+   {
+    "t": 4522,
+    "s": 4.9,
+    "lectura_antes_s": 2,
+    "lectura_despues_s": 23
    }
-  },
-  "decided": 153,
-  "methods": {
-   "ropa": 153,
-   "None": 14
-  },
-  "parity_by_cluster": {
-   "g0_par1": 38,
-   "g0_par0": 7,
-   "g1_par0": 51,
-   "g1_par1": 5
-  },
-  "votes_by_parity": {
-   "par1_votoTrue": 10,
-   "par1_votoFalse": 4,
-   "par0_votoFalse": 11,
-   "par0_votoTrue": 6
-  },
-  "games_sequence": [
-   [
-    189,
-    [
-     [
-      0,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    349,
-    [
-     [
-      1,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    365,
-    [
-     [
-      7,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    387,
-    [
-     [
-      1,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    403,
-    [
-     [
-      7,
-      7
-     ]
-    ],
-    1
-   ],
-   [
-    408,
-    [
-     [
-      1,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    470,
-    [
-     [
-      1,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    1305,
-    [
-     [
-      3,
-      2
-     ],
-     [
-      4,
-      7
-     ]
-    ],
-    null
-   ],
-   [
-    1633,
-    [
-     [
-      6,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    1886,
-    [
-     [
-      0,
-      0
-     ]
-    ],
-    1
-   ],
-   [
-    2190,
-    [
-     [
-      7,
-      2
-     ]
-    ],
-    null
-   ],
-   [
-    2197,
-    [
-     [
-      2,
-      2
-     ]
-    ],
-    null
-   ],
-   [
-    2203,
-    [
-     [
-      4,
-      2
-     ]
-    ],
-    null
-   ],
-   [
-    2210,
-    [
-     [
-      5,
-      2
-     ]
-    ],
-    null
-   ],
-   [
-    2239,
-    [
-     [
-      0,
-      1
-     ]
-    ],
-    1
-   ],
-   [
-    2606,
-    [
-     [
-      1,
-      2
-     ]
-    ],
-    1
-   ],
-   [
-    3472,
-    [
-     [
-      6,
-      2
-     ],
-     [
-      3,
-      1
-     ]
-    ],
-    null
-   ],
-   [
-    3482,
-    [
-     [
-      6,
-      0
-     ],
-     [
-      3,
-      2
-     ]
-    ],
-    null
-   ],
-   [
-    3487,
-    [
-     [
-      6,
-      2
-     ],
-     [
-      3,
-      3
-     ],
-     [
-      1,
-      1
-     ]
-    ],
-    null
-   ],
-   [
-    3640,
-    [
-     [
-      4,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    3832,
-    [
-     [
-      5,
-      3
-     ]
-    ],
-    1
-   ],
-   [
-    4042,
-    [
-     [
-      5,
-      4
-     ]
-    ],
-    1
-   ]
   ],
+  "lecturas": {
+   "total": 407,
+   "con_juegos": 407,
+   "primera_t": 427,
+   "ultima_t": 6686
+  },
   "images": [
-   "identidad_zverev-alexander-sinner-jannik-indian-we_0.jpg",
-   "identidad_zverev-alexander-sinner-jannik-indian-we_1.jpg"
+   "identidad_elena-rybakina-jessica-pegula-miami-2026_0.jpg"
   ]
  }
 ]
