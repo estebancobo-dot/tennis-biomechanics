@@ -1,0 +1,541 @@
+{
+ "cells": [
+  {
+   "dominio": "golpes",
+   "caracteristica": "funcional",
+   "capa": "pc",
+   "ok": 21,
+   "aviso": 5,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [
+    "Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina",
+    "Saques por punto de su saque: sin-fecha_f43dd2_rybakina",
+    "Saques por punto de su saque: sin-fecha_584c5b_rybakina",
+    "Golpes encontrados frente al marcador: sin-fecha_49723c_rybakina",
+    "Identidad en los cambios de lado: sin-fecha_49723c_rybakina"
+   ],
+   "n": 26,
+   "score": 0.8076923076923077,
+   "accepted": false
+  },
+  {
+   "dominio": "pantallas",
+   "caracteristica": "funcional",
+   "capa": "pc",
+   "ok": 15,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 15,
+   "score": 1.0,
+   "accepted": true
+  },
+  {
+   "dominio": "taxonomia",
+   "caracteristica": "exactitud",
+   "capa": "pc",
+   "ok": 4,
+   "aviso": 1,
+   "falta": 1,
+   "pocos datos": 1,
+   "fallan": [
+    "forehand: medidas que dependen de la cámara (la cámara explica ≥ 10% de su variación)",
+    "Valores dentro de límites físicos"
+   ],
+   "n": 6,
+   "score": 0.6666666666666666,
+   "accepted": false
+  },
+  {
+   "dominio": "taxonomia",
+   "caracteristica": "funcional",
+   "capa": "pc",
+   "ok": 168,
+   "aviso": 5,
+   "falta": 0,
+   "pocos datos": 27,
+   "fallan": [
+    "Fotograma clave: inicio de preparación",
+    "Fotograma clave: armado",
+    "Fotograma clave: inicio de aceleración",
+    "Fotograma clave: terminación",
+    "Fotograma clave: recuperación"
+   ],
+   "n": 173,
+   "score": 0.9710982658959537,
+   "accepted": true
+  },
+  {
+   "dominio": "aprendizaje",
+   "caracteristica": "usabilidad",
+   "capa": "pantallas",
+   "ok": 7,
+   "aviso": 0,
+   "falta": 1,
+   "pocos datos": 1,
+   "fallan": [
+    "La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo"
+   ],
+   "n": 8,
+   "score": 0.875,
+   "accepted": false
+  },
+  {
+   "dominio": "situaciones",
+   "caracteristica": "funcional",
+   "capa": "pc",
+   "ok": 9,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 6,
+   "fallan": [],
+   "n": 9,
+   "score": 1.0,
+   "accepted": true
+  },
+  {
+   "dominio": "aprendizaje",
+   "caracteristica": "funcional",
+   "capa": "pantallas",
+   "ok": 9,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 9,
+   "score": 1.0,
+   "accepted": true
+  },
+  {
+   "dominio": "aprendizaje",
+   "caracteristica": "exactitud",
+   "capa": "verdad",
+   "ok": 14,
+   "aviso": 5,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [
+    "R10 Armado completo cuando bota la bola (±0,1 s)",
+    "R17 La terminación más frecuente es sobre el hombro",
+    "R18 Preparación compacta",
+    "R21 El peso pasa del pie de atrás al de delante",
+    "R23 La cadera llega a su máximo giro antes que los hombros"
+   ],
+   "n": 19,
+   "score": 0.7368421052631579,
+   "accepted": false
+  },
+  {
+   "dominio": "pantallas",
+   "caracteristica": "funcional",
+   "capa": "pantallas",
+   "ok": 29,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 29,
+   "score": 1.0,
+   "accepted": true
+  },
+  {
+   "dominio": "pantallas",
+   "caracteristica": "usabilidad",
+   "capa": "pantallas",
+   "ok": 9,
+   "aviso": 1,
+   "falta": 1,
+   "pocos datos": 0,
+   "fallan": [
+    "Tablas a la vista en «Conclusiones (Panel y Comparativas)»",
+    "Primera pantalla, anchura y nombres (diseño definitivo)"
+   ],
+   "n": 11,
+   "score": 0.8181818181818182,
+   "accepted": false
+  },
+  {
+   "dominio": "plataforma",
+   "caracteristica": "fiabilidad",
+   "capa": "pc",
+   "ok": 7,
+   "aviso": 1,
+   "falta": 1,
+   "pocos datos": 0,
+   "fallan": [
+    "Golpes dudosos (duda sobre el golpe, no sobre una medida)",
+    "Pruebas del código en este PC"
+   ],
+   "n": 9,
+   "score": 0.7777777777777778,
+   "accepted": false
+  },
+  {
+   "dominio": "plataforma",
+   "caracteristica": "rendimiento",
+   "capa": "pc",
+   "ok": 21,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 21,
+   "score": 1.0,
+   "accepted": true
+  },
+  {
+   "dominio": "exportacion",
+   "caracteristica": "funcional",
+   "capa": "pc",
+   "ok": 1,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 1,
+   "score": 1.0,
+   "accepted": true
+  },
+  {
+   "dominio": "golpes",
+   "caracteristica": "exactitud",
+   "capa": "verdad",
+   "ok": 1,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 1,
+   "score": 1.0,
+   "accepted": true
+  },
+  {
+   "dominio": "plataforma",
+   "caracteristica": "mantenibilidad",
+   "capa": "codigo",
+   "ok": 30,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 30,
+   "score": 1.0,
+   "accepted": true
+  },
+  {
+   "dominio": "datos",
+   "caracteristica": "funcional",
+   "capa": "pc",
+   "ok": 3,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 3,
+   "score": 1.0,
+   "accepted": true
+  },
+  {
+   "dominio": "datos",
+   "caracteristica": "fiabilidad",
+   "capa": "pc",
+   "ok": 11,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 11,
+   "score": 1.0,
+   "accepted": true
+  },
+  {
+   "dominio": "modelos",
+   "caracteristica": "exactitud",
+   "capa": "verdad",
+   "ok": 21,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 21,
+   "score": 1.0,
+   "accepted": true
+  },
+  {
+   "dominio": "taxonomia",
+   "caracteristica": "exactitud",
+   "capa": "verdad",
+   "ok": 0,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 0,
+   "score": null,
+   "accepted": false,
+   "unmeasured": true
+  },
+  {
+   "dominio": "situaciones",
+   "caracteristica": "exactitud",
+   "capa": "verdad",
+   "ok": 0,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 0,
+   "score": null,
+   "accepted": false,
+   "unmeasured": true
+  },
+  {
+   "dominio": "pantallas",
+   "caracteristica": "rendimiento",
+   "capa": "pantallas",
+   "ok": 0,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 0,
+   "score": null,
+   "accepted": false,
+   "unmeasured": true
+  },
+  {
+   "dominio": "pantallas",
+   "caracteristica": "portabilidad",
+   "capa": "pantallas",
+   "ok": 0,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 0,
+   "score": null,
+   "accepted": false,
+   "unmeasured": true
+  },
+  {
+   "dominio": "datos",
+   "caracteristica": "mantenibilidad",
+   "capa": "codigo",
+   "ok": 0,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 0,
+   "score": null,
+   "accepted": false,
+   "unmeasured": true
+  },
+  {
+   "dominio": "plataforma",
+   "caracteristica": "portabilidad",
+   "capa": "pc",
+   "ok": 0,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 0,
+   "score": null,
+   "accepted": false,
+   "unmeasured": true
+  },
+  {
+   "dominio": "modelos",
+   "caracteristica": "rendimiento",
+   "capa": "pc",
+   "ok": 0,
+   "aviso": 0,
+   "falta": 0,
+   "pocos datos": 0,
+   "fallan": [],
+   "n": 0,
+   "score": null,
+   "accepted": false,
+   "unmeasured": true
+  }
+ ],
+ "domains": {
+  "golpes": {
+   "ok": 22,
+   "n": 27,
+   "cells": 2,
+   "unmeasured": 0,
+   "accepted": 1,
+   "score": 0.8148148148148148
+  },
+  "pantallas": {
+   "ok": 53,
+   "n": 55,
+   "cells": 5,
+   "unmeasured": 2,
+   "accepted": 2,
+   "score": 0.9636363636363636
+  },
+  "taxonomia": {
+   "ok": 172,
+   "n": 179,
+   "cells": 3,
+   "unmeasured": 1,
+   "accepted": 1,
+   "score": 0.9608938547486033
+  },
+  "aprendizaje": {
+   "ok": 30,
+   "n": 36,
+   "cells": 3,
+   "unmeasured": 0,
+   "accepted": 1,
+   "score": 0.8333333333333334
+  },
+  "situaciones": {
+   "ok": 9,
+   "n": 9,
+   "cells": 2,
+   "unmeasured": 1,
+   "accepted": 1,
+   "score": 1.0
+  },
+  "plataforma": {
+   "ok": 58,
+   "n": 60,
+   "cells": 4,
+   "unmeasured": 1,
+   "accepted": 2,
+   "score": 0.9666666666666667
+  },
+  "exportacion": {
+   "ok": 1,
+   "n": 1,
+   "cells": 1,
+   "unmeasured": 0,
+   "accepted": 1,
+   "score": 1.0
+  },
+  "datos": {
+   "ok": 14,
+   "n": 14,
+   "cells": 3,
+   "unmeasured": 1,
+   "accepted": 2,
+   "score": 1.0
+  },
+  "modelos": {
+   "ok": 21,
+   "n": 21,
+   "cells": 2,
+   "unmeasured": 1,
+   "accepted": 1,
+   "score": 1.0
+  }
+ },
+ "characteristics": {
+  "funcional": {
+   "ok": 255,
+   "n": 265,
+   "cells": 8,
+   "unmeasured": 0,
+   "accepted": 7,
+   "score": 0.9622641509433962
+  },
+  "exactitud": {
+   "ok": 40,
+   "n": 47,
+   "cells": 6,
+   "unmeasured": 2,
+   "accepted": 2,
+   "score": 0.851063829787234
+  },
+  "usabilidad": {
+   "ok": 16,
+   "n": 19,
+   "cells": 2,
+   "unmeasured": 0,
+   "accepted": 0,
+   "score": 0.8421052631578947
+  },
+  "fiabilidad": {
+   "ok": 18,
+   "n": 20,
+   "cells": 2,
+   "unmeasured": 0,
+   "accepted": 1,
+   "score": 0.9
+  },
+  "rendimiento": {
+   "ok": 21,
+   "n": 21,
+   "cells": 3,
+   "unmeasured": 2,
+   "accepted": 1,
+   "score": 1.0
+  },
+  "mantenibilidad": {
+   "ok": 30,
+   "n": 30,
+   "cells": 2,
+   "unmeasured": 1,
+   "accepted": 1,
+   "score": 1.0
+  },
+  "portabilidad": {
+   "ok": 0,
+   "n": 0,
+   "cells": 2,
+   "unmeasured": 2,
+   "accepted": 0,
+   "score": null
+  }
+ },
+ "layers": {
+  "pc": {
+   "ok": 260,
+   "n": 274,
+   "cells": 12,
+   "unmeasured": 2,
+   "accepted": 7,
+   "score": 0.948905109489051
+  },
+  "pantallas": {
+   "ok": 54,
+   "n": 57,
+   "cells": 6,
+   "unmeasured": 2,
+   "accepted": 2,
+   "score": 0.9473684210526315
+  },
+  "verdad": {
+   "ok": 36,
+   "n": 41,
+   "cells": 5,
+   "unmeasured": 2,
+   "accepted": 2,
+   "score": 0.8780487804878049
+  },
+  "codigo": {
+   "ok": 30,
+   "n": 30,
+   "cells": 2,
+   "unmeasured": 1,
+   "accepted": 1,
+   "score": 1.0
+  }
+ },
+ "unmapped": {},
+ "threshold": 0.95,
+ "total": {
+  "ok": 380,
+  "n": 402,
+  "score": 0.945273631840796,
+  "cells": 25,
+  "accepted": 12,
+  "unmeasured": 7
+ }
+}

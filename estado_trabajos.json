@@ -1,32 +1,13 @@
 {
- "at": "2026-11-11 15:35:07",
- "firma": "886965f6251b",
+ "at": "2026-11-11 15:35:09",
+ "firma": "81288674d2f4",
  "ejecutor": {
   "vivo": true,
   "pid": 16064,
   "at": 1794407697.2014894
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 47,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "calidad",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-11 15:35:03",
-   "started": "2026-11-11 15:35:07",
-   "finished": null,
-   "args": "[\"calidad\"]",
-   "source": "claude 199",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_47.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "identity",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 47,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "calidad",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-11 15:35:03",
+   "started": "2026-11-11 15:35:07",
+   "finished": "2026-11-11 15:35:08",
+   "args": "[\"calidad\"]",
+   "source": "claude 199",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_47.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 46,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 32,
-   "kind": "partido",
-   "match": "tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5",
-   "player": "rybakina",
-   "stroke": null,
-   "reason": "nueva versión: cambió score, identity, fine, fine_doubtful",
-   "state": "error",
-   "message": "UnicodeEncodeError: 'charmap' codec can't encode character '\\u2248' in position 76: character maps to <undefined>",
-   "created": "2026-11-09 13:22:39",
-   "started": "2026-11-09 13:23:37",
-   "finished": "2026-11-09 13:23:52",
-   "args": "",
-   "source": "",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 113,
+   "job": 47,
+   "at": "2026-11-11 15:35:09",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 112,
    "job": 47,
@@ -513,13 +501,6 @@
    "at": "2026-11-11 15:01:03",
    "kind": "paso",
    "text": "4/5 Informe del saque"
-  },
-  {
-   "id": 83,
-   "job": 43,
-   "at": "2026-11-11 15:00:57",
-   "kind": "paso",
-   "text": "3/5 Informe del reves"
   }
  ]
 }
