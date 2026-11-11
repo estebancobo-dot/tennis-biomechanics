@@ -322,6 +322,15 @@ function Hacer-Peticion($p) {
         $r = Tb jobs @($a[0]) --source "claude $($p['id'])" @($a | Select-Object -Skip 1) 2>&1
         "$(Get-Date -Format s) peticion $($p['id']): $o -> $r" | Add-Content $lg -Encoding UTF8
         Orquestador
+    } elseif ($p["accion"] -eq "e2e") {
+        # prueba de extremo a extremo del orquestador (11-11, tarea 7 de B8): fuera de la cola (envia un flujo, lo pausa
+        # con el codigo de la aplicacion y lo reanuda como el chat; dentro de la cola esperaria a su propio trabajo)
+        $lg = "$Base\output\prueba_e2e.log"
+        "Peticion $($p['id']): prueba de extremo a extremo del orquestador ($(Get-Date -Format s))" | Set-Content $lg -Encoding UTF8
+        Orquestador
+        & uv run --no-sync python scripts/e2e_orquestador.py --timeout-min 30 2>&1 | ForEach-Object { "$_" } | Add-Content $lg -Encoding UTF8
+        "codigo de salida: $LASTEXITCODE; termina $(Get-Date -Format s)" | Add-Content $lg -Encoding UTF8
+        Orquestador
     } elseif ($p["accion"] -eq "medir") {
         # una medida de Claude con un script del repositorio (script: bench_ball -> scripts\bench_ball.py, sin
         # tocar ningun analisis); registro output\medir_<script>.log (se sube solo)

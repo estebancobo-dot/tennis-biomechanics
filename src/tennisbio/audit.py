@@ -734,7 +734,8 @@ def identity_item(match: str, summ: dict | None, sides: tuple[int, int] | None) 
     if not alike and (agree is None or agree < IDENTITY_AGREE_MIN - 1e-9):
         bad.append("cambios de lado y ropa sin comparar" if agree is None else
                    f"cambios de lado y ropa de acuerdo {agree:.0%} < {IDENTITY_AGREE_MIN:.0%}")
-    if same is not None and same < IDENTITY_SAME_GAME_MIN - 1e-9:
+    if same is not None and same < IDENTITY_SAME_GAME_MIN - 1e-9 and not alike:
+        # (11-11) players dressed alike: their clothes groups are not two people, so their stability says nothing
         bad.append(f"ropa igual dentro de un juego {same:.0%} < {IDENTITY_SAME_GAME_MIN:.0%}")
     ends = ""
     if sides is None:

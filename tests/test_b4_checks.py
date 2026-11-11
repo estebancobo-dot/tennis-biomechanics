@@ -150,7 +150,7 @@ def test_identity_counts_the_users_click(tmp_path):
 def test_identity_of_players_dressed_alike_is_judged_by_the_runs_decided():
     # 11-11: both in white: the clothes-vs-ends agreement says nothing and is not required
     s = {**SUMM, "agree": 116, "ends_won": 115, "clothes_won": 0, "doubtful": 0, "decided": 270, "runs": 276,
-         "clothes": {"same_game_same": 0.95, "check": {"distinguishable": False, "parity_agree": 0.5, "parity_runs": 231}}}
+         "clothes": {"same_game_same": 0.92, "check": {"distinguishable": False, "parity_agree": 0.5, "parity_runs": 231}}}
     assert A.identity_item("m", s, (157, 97))["status"] == "ok"
     s2 = {**s, "clothes": {**s["clothes"], "check": {**s["clothes"]["check"], "distinguishable": True}}}
     assert A.identity_item("m", s2, (157, 97))["status"] == "aviso"

@@ -842,3 +842,9 @@ accion: trabajo
 comando: flujo informe
 # 203-204 (11-11): marcador v9 (los juegos de las dos filas leidos como una sola caja, "02", se separan: 13 min de
 # Rybakina-Pegula sin lecturas). Pegula otra vez y su informe: identidad >= 95 % de planos decididos
+---
+id: 205
+accion: e2e
+# 205 (11-11): tarea 7 de B8. Envia el flujo "prueba_pausa" como el chat, lo pausa con el boton "Parar ya" de la
+# aplicacion y lo reanuda como el chat: debe acabar hecho, seguir en el paso cortado y no repetir el primero
+# (capturas_diag/e2e_orquestador.json, prueba_e2e.log)
