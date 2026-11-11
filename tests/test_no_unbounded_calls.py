@@ -38,6 +38,8 @@ def test_every_subprocess_run_has_a_timeout():
 def test_long_lived_processes_are_the_known_watched_ones():
     found = sorted(f"{f.relative_to(SRC).as_posix()}" for f in SRC.rglob("*.py")
                    for _ in _calls(ast.parse(f.read_text(encoding="utf-8")), "Popen"))
-    # orchestrator.py (10-11): the single worker's job child, polled every POLL_S and killed on pause/cancel
-    assert found == sorted(["app/window.py", "export.py", "io/video.py", "io/video.py", "orchestrator.py", "pose/yolo.py",
+    # orchestrator.py (10-11): the single worker's job child, polled every POLL_S and killed on pause/cancel;
+    # app/window.py twice (11-11): its former queue child and ensure_worker, the single worker (one per PC by its
+    # lock, its life seen by its heartbeat in orchestrator.status)
+    assert found == sorted(["app/window.py", "app/window.py", "export.py", "io/video.py", "io/video.py", "orchestrator.py", "pose/yolo.py",
                             "spotting.py"]), found

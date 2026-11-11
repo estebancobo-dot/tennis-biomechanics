@@ -874,21 +874,23 @@ body.web .webview { height: 100vh; }
     var cls = j.state === "error" ? "crit" : j.state === "esperando espacio" || j.state === "por confirmar" || j.device === "cpu" ? "warn" : "";
     var right = j.state === "error" ? '<button class="btn sm" data-act="retry" data-arg="' + j.id + '">Reintentar</button>' + (j.diag ? '<button class="btn ghost sm" data-act="open_path" data-arg="' + esc(j.diag) + '">Diagnóstico</button>' : "")
       : done ? '<span class="dim3">' + esc(when(j.finished)) + "</span>"
-      : j.state === "en curso" ? '<span class="dim3">desde ' + esc(when(j.started)) + "</span>"
+      : j.state === "en curso" ? '<span class="dim3">desde ' + esc(when(j.started)) + '</span><button class="btn ghost sm" data-act="cancel_job" data-arg="' + j.id + '">Cancelar</button>'
       : j.state === "por confirmar" ? '<button class="btn pri sm" data-act="confirm_plan">Confirmar</button>'
       : '<span class="prio"><button aria-label="Subir" data-act="prio" data-arg="' + j.id + '|-1">▲</button><button aria-label="Bajar" data-act="prio" data-arg="' + j.id + '|1">▼</button></span>';
     var dotc = ST[j.state === "hecho" ? "al día" : j.state === "en curso" ? "en curso" : j.state === "error" ? "pendiente de revisar" : j.state === "aviso" || j.state === "esperando espacio" || j.state === "por confirmar" ? "con aviso" : "nuevo"];
     return '<div class="job ' + cls + '"><span class="n"><span class="st ' + dotc + '" title="' + esc(j.state) + '"><i></i></span></span>' +
-      '<div><div class="t">' + esc(j.what) + '</div><div class="s">' + esc(j.state + (j.device ? " · " + (j.device === "cpu" ? "CPU" : "iGPU") : "") + (j.estimate_s && !done ? " · ≈ " + dur(j.estimate_s / 60) : "")) + '</div><span class="why">' + esc(j.reason) + "</span></div>" +
+      '<div><div class="t">' + esc(j.what) + '</div><div class="s">' + esc(j.state + (j.steps ? " · paso " + Math.min(j.step + 1, j.steps) + " de " + j.steps : "") + (j.source ? " · pedido por " + j.source : "") + (j.device ? " · " + (j.device === "cpu" ? "CPU" : "iGPU") : "") + (j.estimate_s && !done ? " · ≈ " + dur(j.estimate_s / 60) : "")) + '</div><span class="why">' + esc(j.reason) + "</span></div>" +
       '<div class="r">' + right + "</div>" + (j.message ? '<div class="explain">' + esc(j.message) + "</div>" : "") + "</div>";
   }
   R.cola = function () {
     var Q = S.queue, set = S.settings;
-    var h = '<div class="head"><div><h1>Cola</h1><p class="sub">Un trabajo pesado cada vez en la iGPU; los informes van primero.</p></div><div class="row-btns"><button class="btn" data-act="pause" data-arg="' + (set.pausa ? "0" : "1") + '"><svg><use href="#i-pause"/></svg><span>' + (set.pausa ? "Reanudar" : "Pausar") + "</span></button></div></div>";
+    var W = Q.worker || {};
+    var h = '<div class="head"><div><h1>Cola</h1><p class="sub">Un solo ejecutor en este PC hace todos los trabajos, los pida esta ventana o Claude' + (W.alive === false ? ' · <b>ejecutor parado</b> (se arranca solo)' : "") + '.</p></div><div class="row-btns"><button class="btn" data-act="pause" data-arg="' + (set.pausa ? "0" : "1") + '"><svg><use href="#i-pause"/></svg><span>' + (set.pausa ? "Reanudar" : "Pausar") + "</span></button>" + (set.pausa ? "" : '<button class="btn ghost" data-act="pause_now">Parar ya</button>') + "</div></div>";
     h += '<div class="panel"><div class="body" style="padding-top:14px"><div class="toolbar"><label class="sw"><input type="checkbox" id="nightOnly"' + (set.franja ? " checked" : "") + '><span class="k"></span><span><svg style="width:15px;height:15px;vertical-align:-3px;color:var(--ink-2)"><use href="#i-moon"/></svg> Solo de noche</span></label><span class="window"><span class="mono">' + esc(set.franja ? set.franja.join(" – ") : "23:00 – 08:00") + '</span><a class="dim sm" href="#ajustes">cambiar</a></span></div></div></div>';
     h += '<div class="panel"><header><h3>En curso</h3></header><div class="body">' + (Q.running.length ? Q.running.map(function (j) { return job(j); }).join("") : '<p class="dim">Nada en curso.</p>') + "</div></div>";
     h += '<div class="panel"><header><h3>Pendientes</h3><span class="dim3 sm">' + Q.pending.length + (S.eta.ends ? " · terminan hacia las " + esc(S.eta.ends) : "") + "</span></header><div class=\"body\">" + (Q.pending.length ? Q.pending.map(function (j) { return job(j); }).join("") : '<p class="dim">Nada pendiente.</p>') + "</div></div>";
     h += '<div class="panel"><header><h3>Hechos</h3><span class="dim3 sm">últimos 7 días</span></header><div class="body">' + (Q.done.length ? Q.done.map(function (j) { return job(j, true); }).join("") : '<p class="dim">Nada todavía.</p>') + "</div></div>";
+    h += '<div class="panel"><header><h3>Lo último que ha pasado</h3></header><div class="body">' + ((Q.events || []).length ? (Q.events || []).map(function (e) { return '<div class="sm"><span class="mono dim3">' + esc(e.at) + "</span> " + esc(e.kind) + (e.job ? " #" + e.job : "") + " " + esc(e.text || "") + "</div>"; }).join("") : '<p class="dim">Nada todavía.</p>') + "</div></div>";
     return h;
   };
   R.calidad = function () {
@@ -1029,6 +1031,8 @@ body.web .webview { height: 100vh; }
       var act = b.dataset.act, arg = b.dataset.arg;
       if (act === "confirm_plan") call("confirm_plan").then(done("Plan confirmado: empieza en la cola")).catch(fail);
       else if (act === "plan") call("plan").then(done("Comprobado")).catch(fail);
+      else if (act === "pause_now") call("pause", true, true).then(done("Parado: el trabajo vuelve a la cola y sigue luego donde se quedó")).catch(fail);
+      else if (act === "cancel_job") call("cancel", parseInt(arg, 10)).then(done("Cancelado")).catch(fail);
       else if (act === "pause") call("pause", arg === "1").then(done(arg === "1" ? "Cola en pausa: el trabajo en curso guarda lo hecho" : "Cola reanudada donde se quedó")).catch(fail);
       else if (act === "retry") call("retry", Number(arg)).then(done("Vuelve a la cola")).catch(fail);
       else if (act === "prio") call("priority", Number(arg.split("|")[0]), Number(arg.split("|")[1])).then(done("Prioridad cambiada")).catch(fail);

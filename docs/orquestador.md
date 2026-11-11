@@ -29,7 +29,7 @@ rehacer partidos que el ciclo ya había hecho, y dos procesos pesados a la vez.
 | B | Ejecutor único con bloqueo y `tennisbio jobs` (`tennisbio worker`; `tennisbio/orchestrator.py`) | hecho (10-11) |
 | C | Flujos en `config/flujos.yaml` (completo, informe, prevision, prueba); trabajo «flujo» que sigue en el paso donde se quedó | hecho en código (11-11); falta verlo en el PC (petición 187) |
 | D | Ciclo del PC y chat por B: peticiones `trabajo` y `control`; en cada ciclo registro al día, ejecutor vivo y `estado_trabajos.json` a pc-logs cuando cambia su firma; código nuevo = el ejecutor se reinicia entre dos trabajos; una parada pausa la cola ya | hecho (11-11), falta verlo en el PC |
-| E | La aplicación por B (su «Cola» lee los mismos trabajos y eventos) | pendiente |
+| E | La aplicación por B: la ventana mantiene vivo el ejecutor único y no ejecuta nada (`app.ejecutor: unico`; «propio» = como antes); Pausar / Parar ya / Cancelar = las órdenes del chat; la «Cola» muestra paso N de M, quién lo pidió, el ejecutor y los últimos eventos; el icono junto al reloj, igual | hecho en código (11-11); falta la captura de la «Cola» en el PC |
 | F | Prueba de extremo a extremo en el PC (enviar aquí, pausar en la app, reanudar aquí) | pendiente |
 
 Nada se borra: lo antiguo queda desactivado por configuración (`registry.source: yaml` vuelve al catálogo solo).

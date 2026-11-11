@@ -197,12 +197,19 @@ def _queue(app, labels: dict) -> dict:
     def row(j):
         what = (f"Informe · {STROKE_ES.get(j['stroke'], j['stroke']).capitalize()} de {names.get(j['player'], j['player'])}"
                 if j["kind"] == "informe"
+                else (j.get("reason") or "trabajo") if j["kind"] in ("comando", "flujo")
                 else f"{labels.get(j['match'], j['match'])} · {KIND_ES.get(j['kind'], j['kind'])}")
         return {"id": j["id"], "kind": j["kind"], "what": what, "state": j["state"], "reason": j["reason"] or "",
                 "message": j["message"] or "", "device": j["device"] or "", "diag": j["diag"] or "",
                 "estimate_s": j["estimate_s"], "finished": j["finished"] or "", "started": j["started"] or "",
-                "attempts": j["attempts"]}
+                "attempts": j["attempts"], "source": j.get("source") or "",
+                # a flow says its step (11-11, the single orchestrator): «paso 3 de 11: Informe del revés»
+                "step": j.get("paso") or 0, "steps": j.get("pasos") or 0}
+    from ..orchestrator import status as _status
+    st = _status(db, events=15, output=app.paths.output)
     return {
+        "worker": {"alive": st["ejecutor"]["vivo"], "paused": st["pausa"]},
+        "events": [{"at": e["at"], "kind": e["kind"], "text": e["text"], "job": e["job"]} for e in st["eventos"]],
         "running": [row(j) for j in db.q("SELECT * FROM jobs WHERE state='en curso' ORDER BY id")],
         "pending": [row(j) for j in db.q("SELECT * FROM jobs WHERE state IN ('pendiente', 'esperando espacio', 'por confirmar', 'error') "
                                          "ORDER BY state='error' DESC, priority, id")],

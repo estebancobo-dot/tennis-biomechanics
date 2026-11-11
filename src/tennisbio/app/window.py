@@ -107,9 +107,21 @@ class Api:
         with self._lock:
             return f"{self._app.confirm_plan()} trabajos confirmados"
 
-    def pause(self, on: bool) -> str:
-        self._app.db.set_setting("pausa", bool(on))
-        return "Cola en pausa: el trabajo en curso termina y guarda lo hecho" if on else "Cola reanudada donde se quedó"
+    def pause(self, on: bool, now_: bool = False) -> str:
+        """The same orders as the chat's (11-11, the single orchestrator): «now» stops the running job too (it goes back
+        to the queue and resumes from its caches)."""
+        from .. import orchestrator as O
+        if on:
+            O.pause(self._app.db, now_=bool(now_), source="app")
+            return ("Cola en pausa: el trabajo en curso se para ya y sigue luego donde se quedó" if now_
+                    else "Cola en pausa: el trabajo en curso termina y guarda lo hecho")
+        O.resume(self._app.db, source="app")
+        return "Cola reanudada donde se quedó"
+
+    def cancel(self, job_id: int) -> str:
+        from .. import orchestrator as O
+        n = O.cancel(self._app.db, int(job_id), source="app")
+        return "Cancelado" if n else "Ese trabajo ya no está en la cola"
 
     def band(self, band: list | None) -> str:
         self._app.db.set_setting("franja", band or None)
@@ -296,6 +308,26 @@ class Api:
         return getattr(self, "mobile_progress", None)
 
 
+def single_worker(cfg: dict) -> bool:
+    """config `app.ejecutor`: «unico» (11-11, the default) = the PC's one worker runs every job (tennisbio worker, the same
+    the cycle and the chat use); «propio» = the window's own child process, as before."""
+    return str(((cfg.get("app") or {}).get("ejecutor") or "unico")).lower() != "propio"
+
+
+def ensure_worker(cfg: dict, app) -> str:
+    """Starts the single worker when it is not alive (a second one would find the lock taken and end at once). It is
+    not a child of the window: closing the window never stops the queue (the PC's cycle keeps it alive too)."""
+    import subprocess
+    from .. import orchestrator as O
+    if O.status(app.db)["ejecutor"]["vivo"]:
+        return "vivo"
+    kw = ({"creationflags": getattr(subprocess, "CREATE_NO_WINDOW", 0) | getattr(subprocess, "DETACHED_PROCESS", 0)}
+          if os.name == "nt" else {"start_new_session": True})
+    subprocess.Popen([sys.executable, "-m", "tennisbio.cli", "worker"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+                     env={**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}, **kw)
+    return "arrancado"
+
+
 def worker(cfg: dict, stop: threading.Event, idle_s: float = 30.0, tray=None, log=None, in_process: bool = False):
     """The queue while the program runs: the jobs run in a process of their own (`tennisbio app work`, 24-10:
     run in a thread of the window's process, a long analysis left the window frozen), started when there is a
@@ -306,6 +338,20 @@ def worker(cfg: dict, stop: threading.Event, idle_s: float = 30.0, tray=None, lo
     app = App(cfg)
     child = None
     try:
+        # 11-11: the single worker (tennisbio.orchestrator) runs the jobs; the window only keeps it alive, sends the
+        # notifications and keeps the tray label current (the former child of its own: app.ejecutor «propio»)
+        while not in_process and single_worker(cfg) and not stop.is_set():
+            try:
+                r = ensure_worker(cfg, app)
+                if r == "arrancado" and log:
+                    log("cola: ejecutor único arrancado")
+            except Exception as e:  # noqa: BLE001 — the window goes on; the cycle starts the worker too
+                if log:
+                    log(f"cola: no se pudo arrancar el ejecutor único ({type(e).__name__}: {e})")
+            notify.send_pending(app.db)
+            if tray is not None:
+                tray.update(tray_text(app))
+            stop.wait(idle_s)
         while in_process and not stop.is_set():
             ran = jobs.work(app.db, app.paths, app.engine, cfg, once=True, max_jobs=1, stop=stop.is_set)
             notify.send_pending(app.db)
@@ -353,7 +399,9 @@ def tray_text(app) -> str:
         txt = "Tennisbio · cola en pausa"
     elif run_:
         what = (f"informe {STROKE_ES.get(run_['stroke'], run_['stroke'])} de {run_['player']}" if run_["kind"] == "informe"
-                else f"{run_['match']}")
+                else (f"{run_.get('reason') or 'trabajo'}"[:60] + (f" · paso {(run_.get('paso') or 0) + 1}/{run_['pasos']}"
+                                                                  if run_.get("pasos") else ""))
+                if run_["kind"] in ("comando", "flujo") else f"{run_['match']}")
         e = jobs.eta(db)
         txt = f"Tennisbio · analizando {what}" + (f" · termina {e['ends']}" if e["ends"] else "")
     else:

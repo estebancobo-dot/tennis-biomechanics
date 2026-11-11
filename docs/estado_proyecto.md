@@ -34,7 +34,7 @@ Después: medio plazo = paquetes M1-M7 (medidas); largo = P1-P6 (producto; el m�
 | 2 | B: ejecutor único (`tennisbio worker`, `tennisbio jobs`) | nube | pruebas | hecho |
 | 3 | D: el ciclo del PC y el chat por la cola única | nube + PC | petición 184 hecha por la cola en el PC | **aceptada** (11-11 12:35) |
 | 4 | C: flujos (`config/flujos.yaml`) | nube + PC | petición 187: flujo «prueba» hecho en el PC | código hecho; esperando al PC |
-| 5 | E: la aplicación por la misma cola (detalle abajo) | nube | pruebas + capturas de su «Cola» en el PC | siguiente |
+| 5 | E: la aplicación por la misma cola (detalle abajo) | nube | pruebas + capturas de su «Cola» en el PC | código hecho (11-11); captura en el PC con la petición 188 |
 | 6 | Pegula sola por la cola (identidad v10 y saques con datos reales; no es el análisis completo) | PC, **en paralelo** con 5 | su auditoría (identidad ≥ 95 %, saques ≥ 85 %) | tras 4 |
 | 7 | F: extremo a extremo automático (enviar como el chat, pausar con el código de la app, reanudar como el chat) | PC | el flujo acaba hecho desde el paso donde se pausó | tras 5 |
 | 8 | Análisis completo de los 6 partidos (flujo «completo») | PC (una noche) | su auditoría cierra B1-B7 y #242 | al final, sin fallos conocidos (#247) |

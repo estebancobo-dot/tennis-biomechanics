@@ -743,3 +743,8 @@ accion: trabajo
 comando: flujo prueba
 # 187 (11-11): fase C. El flujo "prueba" de config/flujos.yaml (2 pasos ligeros) por la cola del ejecutor unico;
 # estado_trabajos.json debe mostrarlo hecho con sus 2 pasos
+---
+id: 188
+accion: ventana
+# 188 (11-11): fase E. Pantallas de la aplicacion con el ejecutor unico (la Cola con paso N de M, quien lo pidio y los
+# ultimos eventos) para comprobarla en el PC. A pc-logs/capturas_app

@@ -244,3 +244,8 @@ views:
 # partidos de todos (ciclo, linea de ordenes, auditoria, aplicacion); «yaml» = config/matches.yaml solo, como antes
 registry:
   source: db
+
+# la aplicacion y el ejecutor unico (11-11, docs/orquestador.md): «unico» = los trabajos los hace el ejecutor del PC
+# (tennisbio worker, el mismo del ciclo y del chat); «propio» = el proceso propio de la ventana, como antes
+app:
+  ejecutor: unico
