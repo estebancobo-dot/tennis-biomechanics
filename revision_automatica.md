@@ -1,6 +1,6 @@
-# Revisión automática: FALLOS
+# Revisión automática: REGRESIÓN
 
-390 cumplidos · 19 no cumplidos · 102 sin golpes suficientes · 111 avisos (antes: 384 cumplidos, 24 no cumplidos)
+388 cumplidos · 19 no cumplidos · 102 sin golpes suficientes · 113 avisos (antes: 390 cumplidos, 19 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 113 de 251
 
@@ -143,12 +143,7 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 97 a medias · 16 sin hacer
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 
-## Mejora
+## Empeora respecto a la ejecución anterior
 
-- Pruebas del código en este PC: falta → ok
-- Peticiones por GitHub Actions: espera hasta empezar: aviso → ok
-- #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: falta → ok
-- #20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML: falta → aviso
-- #51 El código de la prueba es el de los casos reales: falta → ok
-- #237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min: aviso → ok
-- #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: falta → ok
+- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: la última petición (11-11 13:12) no empezó por GitHub Actions; el último trabajo por Actions fue el 11-11 13:07
+- **#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min**: ok → aviso: 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (11-11 13:12) no empezó por GitHub Actions; el último trabajo por Actions fue el 11-11 13:
