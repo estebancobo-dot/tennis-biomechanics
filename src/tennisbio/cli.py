@@ -318,6 +318,11 @@ def run_audit(root: Path, report: Path, dest: Path, stroke: str = "forehand", di
     res["items"] += file_tree_items(dirs, report, root)
     res["items"] += base_items(dirs, root)          # Base packages B1 and B3: models, stage times, PC use, Actions (04-11)
     res["items"] += petition_items(res["items"])
+    try:                                       # 11-11 (R1): which checks no test has ever made fail
+        from .check_coverage import coverage_item
+        res["items"].append(coverage_item(res["items"], [root, root.parent, root.parent.parent]))
+    except Exception as e:                     # noqa: BLE001 — never stops the audit
+        print(f"AVISO: no se pudo comparar la auditoría con las pruebas ({e})")
     res["summary"] = {st: sum(i["status"] == st for i in res["items"]) for st in ("ok", "falta", "pocos datos", "aviso")}
     md = write(res, dest)
     try:                                       # the honest status of every request, per plan package (02-11)

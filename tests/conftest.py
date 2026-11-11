@@ -10,6 +10,17 @@ if os.environ.get("PYTEST_XDIST_WORKER"):
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
+# 11-11 (R1 of the review of the Base): on the PC the background tests record which audit checks they make fail
+_REC_DUMP = None
+if os.environ.get("TENNISBIO_REC_CHECKS"):
+    from tennisbio.check_coverage import install as _install_rec
+    _REC_DUMP = _install_rec(os.environ["TENNISBIO_REC_CHECKS"])
+
+
+def pytest_unconfigure(config):
+    if _REC_DUMP is not None:
+        _REC_DUMP()
+
 
 import pytest
 

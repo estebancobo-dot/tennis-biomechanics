@@ -57,3 +57,30 @@ def test_head_after_impact_is_in_the_matrix_and_the_audit_checks_it(tmp_path):
     (d / "strokes.json").write_text(json.dumps([s]), encoding="utf-8")
     item = next(i for i in audit([d], None)["items"] if i["name"].endswith("Cabeza quieta tras el impacto"))
     assert item["status"] != "ok"                          # missing from the data: the audit says so
+
+
+def _run(tmp_path, name, manifest, errors=None):
+    d = tmp_path / name
+    d.mkdir()
+    s = {"stroke": "forehand", "side": "near", "phases": {"impact": {"frame": 50}}, "metrics": {}, "technique": {}}
+    (d / "strokes.json").write_text(json.dumps([s]), encoding="utf-8")
+    (d / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
+    if errors is not None:
+        (d / "strokes_errores.json").write_text(json.dumps(errors), encoding="utf-8")
+    return d
+
+
+def test_failed_strokes_camera_shots_and_time_can_fail(tmp_path):
+    # 11-11 (review of the Base, R1): these three checks of the main tests of B1, B2 and B6 had never been seen failing
+    bad = _run(tmp_path, "bad", {"probe": {"seconds": 1, "summary": {"duration_min": 10}},
+                                 "views": {"seconds": 1000}, "fine": {"seconds": 3000}},
+               errors=[{"t": 1.0, "error": "x"}, {"t": 2.0, "error": "y"}])
+    by = {i["name"].split(":")[0]: i for i in audit([bad], None)["items"]}
+    assert by["Golpes que fallaron al procesarse"]["status"] == "aviso" and "2 golpes" in by["Golpes que fallaron al procesarse"]["detail"]
+    assert by["Tomas de cámara"]["status"] == "aviso"                   # 16.7 min > 15
+    assert by["Tiempo"]["status"] == "aviso"                            # 67 min for 10 min of video: 23 h for 3.5 h
+    good = _run(tmp_path, "good", {"probe": {"seconds": 1, "summary": {"duration_min": 60}},
+                                   "views": {"seconds": 100}, "fine": {"seconds": 1800}}, errors=[])
+    by = {i["name"].split(":")[0]: i for i in audit([good], None)["items"]}
+    assert by["Golpes que fallaron al procesarse"]["status"] == "ok"
+    assert by["Tomas de cámara"]["status"] == "ok" and by["Tiempo"]["status"] == "ok"

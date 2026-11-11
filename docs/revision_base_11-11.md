@@ -222,7 +222,7 @@ partidos son del 09-11, con la identidad y el marcador anteriores. Se recalculan
 
 | Tarea | Qué | Cómo se acepta |
 |---|---|---|
-| R1 | Toda comprobación con un caso que la haga fallar: `scripts/cobertura_comprobaciones.py` (lo medido aquí) en el PC, tras cada auditoría, y pruebas para las 83, primero las de las pruebas principales de B1-B8 | 0 comprobaciones de las pruebas principales sin caso que falle; el número total, en la auditoría |
+| R1 | Toda comprobación con un caso que la haga fallar: `tennisbio.check_coverage` (lo medido aquí) con las pruebas del PC y en cada auditoría («Comprobaciones que saben fallar»), y pruebas para las 83, primero las de las pruebas principales de B1-B8 | 0 comprobaciones de las pruebas principales sin caso que falle; el número total, en la auditoría |
 | R2 | B1: la prueba «Tiempo» solo con ejecuciones desde cero; alternativas 1-5 medidas (tarea 10c) | prueba desde cero ≤ 8 h por partido de 3,5 h y cada alternativa adoptada o descartada con su medida de calidad |
 | R3 | B3: RF-DETR medido en la pasada real (coste frente a +10 puntos); RTMW resuelto con A/B desde cero; lista de candidatos renovada (modelos de 2025-2026) | cada candidato con su medida y una decisión por «calidad antes que velocidad» |
 | R4 | B4: la prueba principal con el detector actual frente a F3Set (no el camino antiguo); comprobación nueva «Tipo de golpe frente a F3Set» (≥ 95 %) | las dos en la auditoría, con su caso que falla |

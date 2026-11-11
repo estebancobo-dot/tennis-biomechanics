@@ -12,6 +12,11 @@ $log = "$Base\output\pruebas.log"
 $tmp = "$Base\output\pruebas_en_curso.txt"
 $commit = "$(git -C $RepoDir rev-parse --short HEAD 2>$null)".Trim()
 $t0 = Get-Date
+# 11-11 (R1 de la revision de la Base): las pruebas apuntan que comprobaciones de la auditoria hacen fallar; la auditoria
+# compara (tennisbio.check_coverage, "Comprobaciones que saben fallar")
+$rec = "$Base\output\comprobaciones_pruebas"
+Remove-Item "$rec\rec_*.json" -Force -ErrorAction SilentlyContinue
+$env:TENNISBIO_REC_CHECKS = $rec
 # pruebas.xml: el resultado de cada prueba con su nombre, para que la auditoria enlace cada peticion con las suyas
 $p = Start-Process uv -ArgumentList @("run", "pytest", "-q", "-p", "no:cacheprovider", "--junitxml", "`"$Base\output\pruebas.xml`"") -WorkingDirectory $RepoDir `
     -NoNewWindow -PassThru -RedirectStandardOutput $tmp -RedirectStandardError "$tmp.err"

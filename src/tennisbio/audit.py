@@ -478,7 +478,9 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
                            f"{sum(bool(doubts(s.get('review'))) for s in nr)} de {len(nr)} del lado cercano ({share:.0%}); motivos: {', '.join(f'{k} {v}' for k, v in sorted(kinds.items(), key=lambda kv: -kv[1])) or 'ninguno'}. "
                            f"Otros {notes} golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): "
                            "son válidos y no cuentan como dudosos"))
-    items.append(_item(5, "Automático", "Nada pide revisión manual", "ok",
+    # 11-11 (review of the Base, R1): this was «Nada pide revisión manual», always ok; that check now looks at what the
+    # application waits for from the user (manual_review_item, in side_checks); this one only says what is marked
+    items.append(_item(5, "Automático", "Golpes con dudas marcadas (se enseñan, no se piden)", "ok",
                        f"{review} golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario"))
     for m, man in manifests.items():
         dur = ((man.get("probe") or {}).get("summary") or {}).get("duration_min")
@@ -2410,11 +2412,41 @@ def infrastructure_items(out_root: Path) -> list[dict]:
             + [new_match_item(bases)])
 
 
+MANUAL_REVIEW_ITEM = "Nada pide revisión manual"
+
+
+def manual_review_item(bases: list[Path]) -> dict:
+    """#45 and B7's main test (11-11, R1 of the review of the Base; before, an item that was always ok): nothing waits
+    for the user in the application's index (<base>/datos/tennisbio.db, read only): no job «por confirmar» (a long
+    recomputation waiting for a click). The one click allowed (who she is in a match, 19-10) is not a job and does not
+    count."""
+    import sqlite3
+    for b in bases:
+        f = b / "datos" / "tennisbio.db"
+        if not f.is_file():
+            continue
+        try:
+            con = sqlite3.connect(f"{f.resolve().as_uri()}?mode=ro", uri=True, timeout=10)
+            try:
+                rows = con.execute("SELECT id, kind, match, reason FROM jobs WHERE state='por confirmar' ORDER BY id").fetchall()
+            finally:
+                con.close()
+        except sqlite3.Error as e:
+            return _item(5, "Automático", MANUAL_REVIEW_ITEM, "aviso", f"no se pudo leer el índice de la aplicación ({e})")
+        if rows:
+            ex = "; ".join(f"#{r[0]} {r[1]} {r[2] or ''} ({(r[3] or '')[:60]})" for r in rows[:3])
+            return _item(5, "Automático", MANUAL_REVIEW_ITEM, "aviso",
+                         f"{len(rows)} trabajos esperan a que el usuario los confirme: {ex}")
+        return _item(5, "Automático", MANUAL_REVIEW_ITEM, "ok",
+                     "ningún trabajo espera al usuario en la aplicación (el clic de quién es ella no cuenta)")
+    return _item(5, "Automático", MANUAL_REVIEW_ITEM, "aviso", "sin el índice de la aplicación (datos/tennisbio.db)")
+
+
 def side_checks(out_root: Path) -> list[dict]:
     """Outputs that live next to the match folders: the validation with annotated public clips and the
-    coach videos Claude learned from."""
+    coach videos Claude learned from; what the application waits for from the user."""
     base = [out_root, out_root.parent, out_root.parent.parent]
-    items = []
+    items = [manual_review_item(base)]
     f3 = next((b / "datasets" / "reports" / "f3set_validation.json" for b in base
                if (b / "datasets" / "reports" / "f3set_validation.json").exists()), None)
     if f3 is None:
