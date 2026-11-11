@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 17:17:16",
- "firma": "3b83411b8329",
+ "at": "2026-11-11 17:19:23",
+ "firma": "dd21cfa81085",
  "ejecutor": {
   "vivo": true,
   "pid": 14348,
-  "at": 1794413827.3958943
+  "at": 1794413947.53084
  },
  "pausa": false,
  "en_curso": [],
@@ -20,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 53,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «prueba_pausa»: Comprobacion de extremo a extremo: un paso largo para pausar el flujo a mitad y reanudarlo",
+   "state": "hecho",
+   "message": "3 pasos",
+   "created": "2026-11-11 17:17:24",
+   "started": "2026-11-11 17:17:47",
+   "finished": "2026-11-11 17:19:19",
+   "args": "[\"prueba_pausa\"]",
+   "source": "claude e2e",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_53.log",
+   "paso": 3,
+   "pasos": 3
+  },
   {
    "id": 52,
    "kind": "flujo",
@@ -271,27 +289,86 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_39.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 38,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "hecho",
-   "message": "3 pasos",
-   "created": "2026-11-11 13:17:30",
-   "started": "2026-11-11 13:17:37",
-   "finished": "2026-11-11 13:21:57",
-   "args": "[\"informe\"]",
-   "source": "claude 190",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_38.log",
-   "paso": 3,
-   "pasos": 3
   }
  ],
  "eventos": [
+  {
+   "id": 177,
+   "job": 53,
+   "at": "2026-11-11 17:19:19",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 176,
+   "job": 53,
+   "at": "2026-11-11 17:19:18",
+   "kind": "paso",
+   "text": "3/3 Lista de partidos"
+  },
+  {
+   "id": 175,
+   "job": 53,
+   "at": "2026-11-11 17:17:48",
+   "kind": "paso",
+   "text": "2/3 Espera de 90 s (aqui se pausa)"
+  },
+  {
+   "id": 174,
+   "job": 53,
+   "at": "2026-11-11 17:17:47",
+   "kind": "empieza",
+   "text": "flujo «prueba_pausa»: Comprobacion de extremo a extremo: un paso largo para pausar el flujo a mitad y reanudarlo"
+  },
+  {
+   "id": 173,
+   "job": null,
+   "at": "2026-11-11 17:17:37",
+   "kind": "reanudar",
+   "text": "claude e2e"
+  },
+  {
+   "id": 172,
+   "job": 53,
+   "at": "2026-11-11 17:17:37",
+   "kind": "parado",
+   "text": "vuelve a la cola; reanuda desde las cachés"
+  },
+  {
+   "id": 171,
+   "job": null,
+   "at": "2026-11-11 17:17:35",
+   "kind": "pausa",
+   "text": "ya (app)"
+  },
+  {
+   "id": 170,
+   "job": 53,
+   "at": "2026-11-11 17:17:29",
+   "kind": "paso",
+   "text": "2/3 Espera de 90 s (aqui se pausa)"
+  },
+  {
+   "id": 169,
+   "job": 53,
+   "at": "2026-11-11 17:17:28",
+   "kind": "paso",
+   "text": "1/3 Registro de partidos"
+  },
+  {
+   "id": 168,
+   "job": 53,
+   "at": "2026-11-11 17:17:27",
+   "kind": "empieza",
+   "text": "flujo «prueba_pausa»: Comprobacion de extremo a extremo: un paso largo para pausar el flujo a mitad y reanudarlo"
+  },
+  {
+   "id": 167,
+   "job": 53,
+   "at": "2026-11-11 17:17:24",
+   "kind": "enviado",
+   "text": "flujo prueba_pausa (claude e2e)"
+  },
   {
    "id": 166,
    "job": null,
@@ -424,83 +501,6 @@
    "at": "2026-11-11 16:29:24",
    "kind": "empieza",
    "text": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final"
-  },
-  {
-   "id": 147,
-   "job": 51,
-   "at": "2026-11-11 16:29:14",
-   "kind": "enviado",
-   "text": "tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final (claude 203)"
-  },
-  {
-   "id": 146,
-   "job": null,
-   "at": "2026-11-11 16:29:14",
-   "kind": "ejecutor",
-   "text": "arranca (pid 9780)"
-  },
-  {
-   "id": 145,
-   "job": null,
-   "at": "2026-11-11 16:28:30",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 144,
-   "job": null,
-   "at": "2026-11-11 16:28:30",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 143,
-   "job": null,
-   "at": "2026-11-11 16:28:21",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 142,
-   "job": 50,
-   "at": "2026-11-11 16:19:40",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 141,
-   "job": 50,
-   "at": "2026-11-11 16:19:18",
-   "kind": "empieza",
-   "text": "script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250"
-  },
-  {
-   "id": 140,
-   "job": 50,
-   "at": "2026-11-11 16:19:08",
-   "kind": "enviado",
-   "text": "tennisbio script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250 (claude 202)"
-  },
-  {
-   "id": 139,
-   "job": null,
-   "at": "2026-11-11 16:19:08",
-   "kind": "ejecutor",
-   "text": "arranca (pid 6316)"
-  },
-  {
-   "id": 138,
-   "job": null,
-   "at": "2026-11-11 16:18:28",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 137,
-   "job": null,
-   "at": "2026-11-11 16:18:28",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }

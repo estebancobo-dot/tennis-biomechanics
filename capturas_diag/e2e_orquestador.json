@@ -1,0 +1,103 @@
+{
+ "checks": {
+  "llega al paso largo": true,
+  "la pausa lo devuelve a la cola en su paso": true,
+  "reanudado, acaba hecho": true,
+  "no repite el primer paso": true,
+  "repite solo el paso cortado": true
+ },
+ "job": 53,
+ "app_says": "Cola en pausa: el trabajo en curso se para ya y sigue luego donde se quedó",
+ "events": [
+  {
+   "id": 167,
+   "job": 53,
+   "at": "2026-11-11 17:17:24",
+   "kind": "enviado",
+   "text": "flujo prueba_pausa (claude e2e)"
+  },
+  {
+   "id": 168,
+   "job": 53,
+   "at": "2026-11-11 17:17:27",
+   "kind": "empieza",
+   "text": "flujo «prueba_pausa»: Comprobacion de extremo a extremo: un paso largo para pausar el flujo a mitad y reanudarlo"
+  },
+  {
+   "id": 169,
+   "job": 53,
+   "at": "2026-11-11 17:17:28",
+   "kind": "paso",
+   "text": "1/3 Registro de partidos"
+  },
+  {
+   "id": 170,
+   "job": 53,
+   "at": "2026-11-11 17:17:29",
+   "kind": "paso",
+   "text": "2/3 Espera de 90 s (aqui se pausa)"
+  },
+  {
+   "id": 172,
+   "job": 53,
+   "at": "2026-11-11 17:17:37",
+   "kind": "parado",
+   "text": "vuelve a la cola; reanuda desde las cachés"
+  },
+  {
+   "id": 174,
+   "job": 53,
+   "at": "2026-11-11 17:17:47",
+   "kind": "empieza",
+   "text": "flujo «prueba_pausa»: Comprobacion de extremo a extremo: un paso largo para pausar el flujo a mitad y reanudarlo"
+  },
+  {
+   "id": 175,
+   "job": 53,
+   "at": "2026-11-11 17:17:48",
+   "kind": "paso",
+   "text": "2/3 Espera de 90 s (aqui se pausa)"
+  },
+  {
+   "id": 176,
+   "job": 53,
+   "at": "2026-11-11 17:19:18",
+   "kind": "paso",
+   "text": "3/3 Lista de partidos"
+  },
+  {
+   "id": 177,
+   "job": 53,
+   "at": "2026-11-11 17:19:19",
+   "kind": "hecho",
+   "text": "código 0"
+  }
+ ],
+ "row": {
+  "id": 53,
+  "kind": "flujo",
+  "match": null,
+  "player": null,
+  "stroke": null,
+  "reason": "flujo «prueba_pausa»: Comprobacion de extremo a extremo: un paso largo para pausar el flujo a mitad y reanudarlo",
+  "priority": 5,
+  "state": "hecho",
+  "attempts": 0,
+  "device": "",
+  "light": 0,
+  "created": "2026-11-11 17:17:24",
+  "started": "2026-11-11 17:17:47",
+  "finished": "2026-11-11 17:19:19",
+  "pid": null,
+  "message": "3 pasos",
+  "diag": "",
+  "estimate_s": 0.0,
+  "args": "[\"prueba_pausa\"]",
+  "control": "",
+  "log": "C:\\tenis\\datos\\trabajos\\trabajo_53.log",
+  "source": "claude e2e",
+  "paso": 3,
+  "pasos": 3
+ },
+ "ok": true
+}

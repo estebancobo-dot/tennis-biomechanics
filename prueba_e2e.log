@@ -1,1 +1,14 @@
 ﻿Peticion 205: prueba de extremo a extremo del orquestador (2026-11-11T17:17:13)
+trabajo 53 en la cola: flujo prueba_pausa
+cola en marcha
+{
+ "ok": true,
+ "checks": {
+  "llega al paso largo": true,
+  "la pausa lo devuelve a la cola en su paso": true,
+  "reanudado, acaba hecho": true,
+  "no repite el primer paso": true,
+  "repite solo el paso cortado": true
+ }
+}
+codigo de salida: 0; termina 2026-11-11T17:19:19
