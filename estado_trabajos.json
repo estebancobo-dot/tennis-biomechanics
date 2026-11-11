@@ -1,32 +1,13 @@
 {
- "at": "2026-11-11 16:11:00",
- "firma": "4b564b6291d8",
+ "at": "2026-11-11 16:12:28",
+ "firma": "a268077c2556",
  "ejecutor": {
   "vivo": true,
   "pid": 5916,
-  "at": 1794409850.120806
+  "at": 1794409948.1569924
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 49,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-11 16:10:50",
-   "started": "2026-11-11 16:11:00",
-   "finished": null,
-   "args": "[\"script\", \"diag_scoreboard\", \"--match\", \"pegula\", \"--times\", \"120,300,700,900,1100,1250\"]",
-   "source": "claude 201",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_49.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "identity",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 49,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-11 16:10:50",
+   "started": "2026-11-11 16:11:00",
+   "finished": "2026-11-11 16:11:06",
+   "args": "[\"script\", \"diag_scoreboard\", \"--match\", \"pegula\", \"--times\", \"120,300,700,900,1100,1250\"]",
+   "source": "claude 201",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_49.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 48,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 34,
-   "kind": "informe",
-   "match": null,
-   "player": "sinner",
-   "stroke": "forehand",
-   "reason": "partido(s) ya analizado(s) sin su análisis: sin-fecha_8b0278_sinner",
-   "state": "hecho",
-   "message": "FALLOS · versión 1 · al día",
-   "created": "2026-11-09 19:00:38",
-   "started": "2026-11-09 19:00:38",
-   "finished": "2026-11-09 19:04:00",
-   "args": "",
-   "source": "",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 135,
+   "job": 49,
+   "at": "2026-11-11 16:11:08",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 134,
    "job": 49,
@@ -513,13 +501,6 @@
    "at": "2026-11-11 15:30:55",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 105,
-   "job": 46,
-   "at": "2026-11-11 15:30:49",
-   "kind": "empieza",
-   "text": "script diag_identity --match pegula --n 12"
   }
  ]
 }

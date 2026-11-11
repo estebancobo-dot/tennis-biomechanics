@@ -486,7 +486,7 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 20 sin hacer
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
 - ✔ **Progreso visible (progreso.json)**: último: view_clips de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (102/102), 6 s, quedan ≈ 0 s, a las 2026-11-11 14:46:27
-- ✔ **Tamaño de la salida (tamanos.txt)**: 44 carpetas, 30.9 GB en total (2026-11-11T15:51:08); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB
+- ✔ **Tamaño de la salida (tamanos.txt)**: 44 carpetas, 30.9 GB en total (2026-11-11T16:11:07); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB
 - ✔ **Carpetas de pruebas antiguas**: ninguna carpeta de pruebas con más de 14 días sin usar
 - ✔ **Aplicación: ventana real y pantallas**: 66 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 2 análisis y 22 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
@@ -494,9 +494,9 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 20 sin hacer
 - ✔ **Partido smoke_tennis-yusipopen-final-sobolenko-rybakin: salida de cada etapa, ventanas y series**: 17 ficheros de etapa, 78 golpes con ventana y serie
 - ✔ **Informe: index.html, series y miniaturas**: 118 golpes; series que faltan 0, miniaturas que faltan 0
 - ✔ **Exportación: resumen PDF y un vídeo por golpe**: 118 vídeos
-- ✔ **Exportación terminada: exportar**: terminó el 2026-11-11 15:48:02 en 0 min: 118 vídeos de 118 golpes
+- ✔ **Exportación terminada: exportar**: terminó el 2026-11-11 16:09:23 en 0 min: 118 vídeos de 118 golpes
 - ✔ **Vista lateral: entrenamiento.json y un vídeo con esqueleto por golpe**: 91 de 91 vídeos
-- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 11-11 15:47, empezó a los 0.3 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
+- ✔ **Peticiones por GitHub Actions: espera hasta empezar**: petición del 11-11 16:08, empezó a los 0.3 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)
 
 ## 6. Sin fuentes externas (nada de vídeos de otros)
 
@@ -510,7 +510,7 @@ Registro `docs/peticiones_usuario.md`: 128 hechas · 98 a medias · 20 sin hacer
 - ! **Etapas a la vez: smoke_tennis-yusipopen-final-sobolenko-rybakin**: todas las etapas de su última ejecución corrieron en serie
 - ✔ **Tomas de cámara: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 0.7 min (objetivo ≤ 15 min)
 - ✔ **Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin**: 1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.2 min; ninguna pasa de 2 veces su ritmo habitual
-- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-11_1501.csv (mín/media/máx): elena-rybakina-jessica-pegula- identity (3.5 min): CPU 16/39/66 %, iGPU 0/0/1 %, RAM máx 8.3 GB → uso medio: margen para repartir trabajo; 5.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-11_1540.csv
+- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-11_1501.csv (mín/media/máx): elena-rybakina-jessica-pegula- identity (3.5 min): CPU 16/39/66 %, iGPU 0/0/1 %, RAM máx 8.3 GB → uso medio: margen para repartir trabajo; 5.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-11_1603.csv, recursos_2026-11-11_1540.csv
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
