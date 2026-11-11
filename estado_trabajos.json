@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 16:09:08",
- "firma": "ac47b4712772",
+ "at": "2026-11-11 16:10:54",
+ "firma": "8173544844fd",
  "ejecutor": {
-  "vivo": false,
-  "pid": null,
-  "at": 1794409737.5873244
+  "vivo": true,
+  "pid": 5916,
+  "at": 1794409850.120806
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-11 15:08:18"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 49,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-11 16:10:50",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"diag_scoreboard\", \"--match\", \"pegula\", \"--times\", \"120,300,700,900,1100,1250\"]",
+   "source": "claude 201",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 48,
@@ -293,6 +312,20 @@
  ],
  "eventos": [
   {
+   "id": 133,
+   "job": 49,
+   "at": "2026-11-11 16:10:50",
+   "kind": "enviado",
+   "text": "tennisbio script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250 (claude 201)"
+  },
+  {
+   "id": 132,
+   "job": null,
+   "at": "2026-11-11 16:10:50",
+   "kind": "ejecutor",
+   "text": "arranca (pid 5916)"
+  },
+  {
    "id": 131,
    "job": null,
    "at": "2026-11-11 16:08:57",
@@ -487,20 +520,6 @@
    "at": "2026-11-11 15:30:49",
    "kind": "ejecutor",
    "text": "arranca (pid 13008)"
-  },
-  {
-   "id": 103,
-   "job": null,
-   "at": "2026-11-11 15:26:50",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 102,
-   "job": null,
-   "at": "2026-11-11 15:26:50",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
