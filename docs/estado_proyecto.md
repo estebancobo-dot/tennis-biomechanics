@@ -36,7 +36,7 @@ Después: medio plazo = paquetes M1-M7 (medidas); largo = P1-P6 (producto; el m�
 | 4 | C: flujos (`config/flujos.yaml`) | nube + PC | petición 187: flujo «prueba» hecho en el PC | **aceptada** (11-11 13:01, 2/2 pasos) |
 | 5 | E: la aplicación por la misma cola (detalle abajo) | nube | pruebas + capturas de su «Cola» en el PC | código hecho (11-11); captura en el PC con la petición 188 |
 | 6 | Pegula sola por la cola (identidad v10 y saques con datos reales; no es el análisis completo) | PC, **en paralelo** con 5 y 7 | su auditoría (identidad ≥ 95 %, saques ≥ 85 %) | enviada (peticiones 189-190) |
-| 7 | F: extremo a extremo automático (enviar como el chat, pausar con el código de la app, reanudar como el chat) | PC | el flujo acaba hecho desde el paso donde se pausó | tras 5 |
+| 7 | F: extremo a extremo automático (enviar como el chat, pausar con el código de la app, reanudar como el chat) | PC | `scripts/e2e_orquestador.py` (flujo «prueba_pausa»): acaba hecho, sigue en el paso cortado, no repite el primero | código y prueba local hechos (11-11); se lanza en el PC cuando la cola quede libre tras la tarea 6 |
 | 8 | Análisis completo de los 6 partidos (flujo «completo») | PC (una noche) | su auditoría cierra B1-B7 y #242 | al final, sin fallos conocidos (#247) |
 
 Detalle de la tarea 5 (E): (1) `window.worker` deja de lanzar procesos propios (desactivado por configuración): al

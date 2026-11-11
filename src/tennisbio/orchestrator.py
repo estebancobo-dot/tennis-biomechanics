@@ -272,7 +272,8 @@ def serve(cfg: dict, once: bool = False, idle_s: float = 10.0, stop=lambda: Fals
     return 0
 
 
-FLOWS_FILE = Path(__file__).resolve().parents[2] / "config" / "flujos.yaml"
+# TENNISBIO_FLUJOS: another flows file (the tests; the worker's job children inherit it)
+FLOWS_FILE = Path(os.environ.get("TENNISBIO_FLUJOS") or Path(__file__).resolve().parents[2] / "config" / "flujos.yaml")
 
 
 def flows(path: Path | None = None) -> dict:
@@ -288,7 +289,7 @@ def _step_argv(step: dict, out: Path) -> list[str]:
         return [sys.executable, "-m", "tennisbio.cli", *[sub(a) for a in step["tennisbio"]]]
     if step.get("script"):
         sc = [sub(a) for a in step["script"]]
-        return [sys.executable, str(FLOWS_FILE.parents[1] / sc[0]), *sc[1:]]
+        return [sys.executable, str(Path(__file__).resolve().parents[2] / sc[0]), *sc[1:]]
     raise ValueError(f"paso sin «tennisbio» ni «script»: {step}")
 
 

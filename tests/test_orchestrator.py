@@ -174,3 +174,26 @@ def test_a_flow_submitted_the_way_the_cycle_does(env):
     row = db.q("SELECT * FROM jobs ORDER BY id DESC LIMIT 1")[0]
     assert row["kind"] == "flujo" and json.loads(row["args"]) == ["prueba"] and row["pasos"] == 2
     db.close()
+
+
+def test_end_to_end_submit_as_the_chat_pause_in_the_app_resume_as_the_chat(env, monkeypatch):
+    # task 7 of B8 (phase F): scripts/e2e_orquestador.py against a real worker, with a shorter long step
+    import yaml
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "scripts"))
+    import e2e_orquestador as E
+    fl = O.flows()
+    fl["prueba_pausa"]["pasos"][1]["script"] = ["scripts/esperar.py", "12"]
+    f = Path(env["paths"]["output"]).parent / "flujos.yaml"
+    f.write_text(yaml.safe_dump(fl, allow_unicode=True), encoding="utf-8")
+    monkeypatch.setattr(O, "FLOWS_FILE", f)
+    monkeypatch.setenv("TENNISBIO_FLUJOS", str(f))                  # the job's child process reads the same flows
+    monkeypatch.setattr(O, "POLL_S", 0.3)
+    stop = threading.Event()
+    t = threading.Thread(target=O.serve, args=(env,), kwargs={"idle_s": 0.2, "stop": stop.is_set})
+    t.start()
+    try:
+        res = E.run(env, timeout_s=120, poll_s=0.3)
+    finally:
+        stop.set()
+        t.join(30)
+    assert res["ok"], res

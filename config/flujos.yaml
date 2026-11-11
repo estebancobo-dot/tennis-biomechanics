@@ -44,3 +44,10 @@ prueba:
   pasos:
     - {nombre: "Registro de partidos", tennisbio: [registry, sync]}
     - {nombre: "Lista de partidos", tennisbio: [registry, list, --json, "{salida}/registro_partidos.json"]}
+
+prueba_pausa:
+  descripcion: "Comprobacion de extremo a extremo: un paso largo para pausar el flujo a mitad y reanudarlo"
+  pasos:
+    - {nombre: "Registro de partidos", tennisbio: [registry, sync]}
+    - {nombre: "Espera de 90 s (aqui se pausa)", script: [scripts/esperar.py, "90"]}
+    - {nombre: "Lista de partidos", tennisbio: [registry, list, --json, "{salida}/registro_partidos.json"]}
