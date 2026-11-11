@@ -878,3 +878,9 @@ accion: medir
 script: tiempos_etapas
 # 210 (11-11): otra vez los tiempos, ahora con lo que tarda cada parte dentro de la pasada fina (pose, raqueta,
 # bola, recorte...) y sus cuentas, del resumen de cada etapa. Solo lee
+---
+id: 211
+accion: poc
+# 211 (11-11, revision de la Base #260, B1): el mismo tramo de la final que las pruebas 74 y 76 (03-11: 44-47 min para
+# 35 min de video, desde cero) con el codigo de hoy, desde cero, para comparar igual con igual (output\_poc211_4 y
+# _poc211_35). La prueba de la aplicacion de hoy (76 min) es otro partido (60 fps)
