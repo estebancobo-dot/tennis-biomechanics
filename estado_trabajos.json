@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 16:08:37",
- "firma": "988fbbed80b3",
+ "at": "2026-11-11 16:09:08",
+ "firma": "ac47b4712772",
  "ejecutor": {
-  "vivo": true,
-  "pid": 16368,
-  "at": 1794409707.5758924
+  "vivo": false,
+  "pid": null,
+  "at": 1794409737.5873244
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,27 @@
  ],
  "eventos": [
   {
+   "id": 131,
+   "job": null,
+   "at": "2026-11-11 16:08:57",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 130,
+   "job": null,
+   "at": "2026-11-11 16:08:57",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 129,
+   "job": null,
+   "at": "2026-11-11 16:08:50",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 128,
    "job": null,
    "at": "2026-11-11 16:03:27",
@@ -480,27 +501,6 @@
    "at": "2026-11-11 15:26:50",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 101,
-   "job": 46,
-   "at": "2026-11-11 15:26:45",
-   "kind": "enviado",
-   "text": "tennisbio script diag_identity --match pegula --n 12 (claude 198)"
-  },
-  {
-   "id": 100,
-   "job": null,
-   "at": "2026-11-11 15:26:40",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 99,
-   "job": null,
-   "at": "2026-11-11 15:21:20",
-   "kind": "ejecutor",
-   "text": "arranca (pid 8984)"
   }
  ]
 }
