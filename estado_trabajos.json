@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 15:47:47",
- "firma": "2b1d5e737aff",
+ "at": "2026-11-11 15:50:54",
+ "firma": "aa76d746de07",
  "ejecutor": {
-  "vivo": false,
-  "pid": null,
-  "at": 1794408458.120711
+  "vivo": true,
+  "pid": 18052,
+  "at": 1794408650.347653
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-11 15:08:18"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 48,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_height",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-11 15:50:51",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"diag_height\"]",
+   "source": "claude 200",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 47,
@@ -293,6 +312,20 @@
  ],
  "eventos": [
   {
+   "id": 122,
+   "job": 48,
+   "at": "2026-11-11 15:50:51",
+   "kind": "enviado",
+   "text": "tennisbio script diag_height (claude 200)"
+  },
+  {
+   "id": 121,
+   "job": null,
+   "at": "2026-11-11 15:50:50",
+   "kind": "ejecutor",
+   "text": "arranca (pid 18052)"
+  },
+  {
    "id": 120,
    "job": null,
    "at": "2026-11-11 15:47:38",
@@ -487,20 +520,6 @@
    "at": "2026-11-11 15:08:33",
    "kind": "paso",
    "text": "4/5 Informe del saque"
-  },
-  {
-   "id": 92,
-   "job": 45,
-   "at": "2026-11-11 15:08:29",
-   "kind": "paso",
-   "text": "3/5 Informe del reves"
-  },
-  {
-   "id": 91,
-   "job": 45,
-   "at": "2026-11-11 15:08:23",
-   "kind": "paso",
-   "text": "2/5 Informe de la derecha"
   }
  ]
 }

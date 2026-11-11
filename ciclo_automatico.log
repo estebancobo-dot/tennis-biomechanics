@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261111154024
+Start time: 20261111155050
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 16960
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 12128
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -15,89 +15,4 @@ CLRVersion: 4.0.30319.42000
 WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
-**********************
-
-==> [2026-11-11 15:40:24] Codigo nuevo (224a91d -> 34d2866): 2 ficheros
-    config/plan_peticiones.yaml
-    docs/peticiones_usuario.md
-Updating 224a91d..34d2866
-Fast-forward
- config/plan_peticiones.yaml | 2 +-
- docs/peticiones_usuario.md  | 5 +++--
- 2 files changed, 4 insertions(+), 3 deletions(-)
-Resolved 126 packages in 0.63ms
-Checked 91 packages in 3ms
-balltrack.onnx     OK 45 MB
-racketpose.onnx    OK 53 MB
-transnetv2.onnx    OK 31 MB
-rtmw3d-x.onnx      OK 369 MB
-rtmw-x_384x288.onnx OK 229 MB
-court_tcd.onnx     OK 42 MB
-motionagformer_xs.onnx OK 9 MB
-yolo11m-pose_640.onnx OK 84 MB
-yolo11m-pose_960.onnx OK 84 MB
-yolo11m-pose_1280.onnx OK 85 MB
-yolo11m-pose_1920.onnx OK 86 MB
-Acceso directo: C:\Users\esteb\Desktop\Tennisbio.lnk (ya estaba)
-el ejecutor se reinicia al acabar el trabajo en curso
-git : To https://github.com/estebancobo-dot/tennis-biomechanics.git
-At C:\tenis\tennis-biomech\scripts\windows\comun.ps1:241 char:9
-+         git -C $d push -q origin pc-logs 2>$null
-+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : NotSpecified: (To https://gith...iomechanics.git:String) [], RemoteException
-    + FullyQualifiedErrorId : NativeCommandError
- ! [remote rejected]   pc-logs -> pc-logs (cannot lock ref 'refs/heads/pc-logs': is at 
-67ca3554f205d3119af180f79876725d8b30b654 but expected dbaa5bf2a826d743c8ad8cc63188a9605001cf55)
-error: failed to push some refs to 'https://github.com/estebancobo-dot/tennis-biomechanics.git'
-No se pudo enviar el registro a Claude (sin red o sin permiso en GitHub).
-    (paso terminado en 29 s)
-
-==> [2026-11-11 15:40:53] Que hace falta: informe
-Partido analizado: smoke_tennis-yusipopen-final-sobolenko-rybakin (78 golpes)
-Informe: C:\tenis\output\_smoke\informe\index.html
-Golpes: 0 nuevos, 118 en C:\tenis\output\_smoke\exportar\golpes
-Montajes: 9 en C:\tenis\output\_smoke\exportar\montajes
-Resumen: C:\tenis\output\_smoke\exportar\resumen.pdf
-Vídeos y resumen PDF: C:\tenis\output\_smoke\exportar
-Peticiones: 20 sin construir · 71 construido, sin comprobar · 76 comprobación que falla · 82 comprobado en salidas · 0 validado con verdad
-Auditoría: 386 cumplidos, 28 no cumplidos, 102 sin golpes suficientes, 112 avisos → C:\tenis\output\_smoke\auditoria\auditoria.md
-  ✘ Primera pantalla, anchura y nombres (diseño definitivo): vídeo de la lección en y=805–1159 de 900; al abrir 2 títulos, 609 palabras, 25 botones; FALLOS: el vídeo de la lección acaba en y=1159 (más abajo que la primera pantalla, 900)
-  ✘ Pruebas del código en este PC: código dadf175 (2026-11-11T15:35:53): 979 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
-  ✘ Registros con fecha y duración: 61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
-  ✘ #13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código dadf175 (2026-11-11T15:35:53): 979 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-  ✘ #20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML: 3 comprobaciones: 1 falta, 1 aviso, 1 ok; la peor: «Pruebas del código en este PC» (código dadf175 (2026-11-11T15:35:53): 979 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-  ✘ #51 El código de la prueba es el de los casos reales: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código dadf175 (2026-11-11T15:35:53): 979 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-  ✘ #66 Fechas y duración en los registros: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
-  ✘ #176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3): SIN HACER según el registro (#176, docs/peticiones_usuario.md)
-  ✘ #189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4): SIN HACER según el registro (#189, docs/peticiones_usuario.md)
-  ✘ #193 Mano libre en la aceleración y el impacto (pliegue, que no cruce) (Guía Ivanovic, hueco 10): SIN HACER según el registro (#193, docs/peticiones_usuario.md)
-  ✘ #196 Medidas de lado: codo por delante de la cadera, inclinación del tronco en la espera (Guía Ivanovic, hueco 18): SIN HACER según el registro (#196, docs/peticiones_usuario.md)
-  ✘ #197 Progresión por etapas sin calendario y paso a pista (Guía Ivanovic, hueco 19): SIN HACER según el registro (#197, docs/peticiones_usuario.md)
-  ✘ #198 Tiempo entre puntos (rutina) bajo presión (Guía Ivanovic, hueco 20): SIN HACER según el registro (#198, docs/peticiones_usuario.md)
-  ✘ #209 Passing y globo (Revisión completa, §3 B): SIN HACER según el registro (#209, docs/peticiones_usuario.md)
-  ✘ #210 Dejada (bote muy corto en campo rival) (Revisión completa, §3 B): SIN HACER según el registro (#210, docs/peticiones_usuario.md)
-  ✘ #211 CHECKS de la mano en el armado da por hecho que va por debajo del hombro (Auditorías 17-10, técnica #5): SIN HACER según el registro (#211, docs/peticiones_usuario.md)
-  ✘ #216 Pendiente de la guía: punta arriba/codo alto, terminación hacia adelante, codo libre (Auditorías 17-10, técnic: SIN HACER según el registro (#216, docs/peticiones_usuario.md)
-  ✘ #217 Documentos desactualizados (aprendido_entrenadores §2 y §4) (Auditorías 17-10, técnica #26): SIN HACER según el registro (#217, docs/peticiones_usuario.md)
-  ✘ #223 Revés y derecha cortados: SIN HACER según el registro (#223, docs/peticiones_usuario.md)
-  ✘ #224 Saques: plano, cortado o kick; primero o segundo: SIN HACER según el registro (#224, docs/peticiones_usuario.md)
-  ✘ #240 Comparar la aplicación con las profesionales una vez estén los golpes: SIN HACER según el registro (#240, docs/peticiones_usuario.md)
-  ✘ #241 Aplicación genérica: jugadores, golpes y partidos por configuración, nada fijo en el código: 2 comprobaciones: 1 falta, 1 ok; la peor: «Pruebas del código en este PC» (código dadf175 (2026-11-11T15:35:53): 979 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
-  ✘ #244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10): SIN HACER según el registro (#244, docs/peticiones_usuario.md)
-  ✘ #245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10): SIN HACER según el registro (#245, docs/peticiones_usuario.md)
-  ✘ #252 Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps profesionales, UX y : SIN HACER según el registro (#252, docs/peticiones_usuario.md)
-  ✘ #254 Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista lateral de entreno : SIN HACER según el registro (#254, docs/peticiones_usuario.md)
-  ✘ #255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente): SIN HACER según el registro (#255, docs/peticiones_usuario.md)
-  ✘ #257 Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, : SIN HACER según el registro (#257, docs/peticiones_usuario.md)
-Hecho en 200 s, sin volver a analizar vídeo.
-    (paso terminado en 3 min 20 s)
-
-==> [2026-11-11 15:44:13] Revision automatica frente a la ejecucion anterior
-# Revisión automática: FALLOS
-Ciclo automatico terminado (informe).
-    (paso terminado en 0 s)
-Empezado 2026-11-11 15:40:19 - terminado 2026-11-11 15:44:13 - duracion total 3 min 54 s
-**********************
-Windows PowerShell transcript end
-End time: 20261111154413
 **********************
