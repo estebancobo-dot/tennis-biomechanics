@@ -3,8 +3,8 @@
  "strokes": 26,
  "near": 13,
  "summary": {
-  "ok": 390,
-  "falta": 23,
+  "ok": 392,
+  "falta": 21,
   "pocos datos": 102,
   "aviso": 113
  },
@@ -2876,7 +2876,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Cópiala (Aprende su derecha, con su patrón típico)»",
    "status": "ok",
-   "detail": "3105 caracteres de texto, 15 vídeos, 21 gráficos",
+   "detail": "3105 caracteres de texto, 16 vídeos, 21 gráficos",
    "file": "pantalla_1_aprende.jpg"
   },
   {
@@ -3207,7 +3207,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "aviso",
-   "detail": "90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejecución)"
+   "detail": "91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -3461,21 +3461,21 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: view_clips de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (102/102), 6 s, quedan ≈ 0 s, a las 2026-11-11 14:46:27"
+   "detail": "último: fine_doubtful de smoke_tennis-yusipopen-final-sobolenko-rybakin al 100.0 % (20/20), 34 s, quedan ≈ 0 s, a las 2026-11-11 16:31:21"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
-   "status": "falta",
-   "detail": "61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final"
+   "status": "ok",
+   "detail": "63 de 63 registros con fecha de inicio y de fin o duración"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T16:20:51); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T16:30:53); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3531,7 +3531,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-11 16:18:55 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-11 16:32:37 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 5,
@@ -3657,7 +3657,7 @@
    "area": "Tiempo por etapa",
    "name": "Tiempo de cada etapa frente a su ritmo en este PC: smoke_tennis-yusipopen-final-sobolenko-rybakin",
    "status": "ok",
-   "detail": "1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.2 min; ninguna pasa de 2 veces su ritmo habitual"
+   "detail": "1 etapas comparadas con su mediana aquí; las que más tardan: players 48.2 min, score 19.2 min, court 16.6 min, scenes 2.4 min, fine 1.9 min; ninguna pasa de 2 veces su ritmo habitual"
   },
   {
    "req": 9,
@@ -3671,14 +3671,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-11_1501.csv (mín/media/máx): elena-rybakina-jessica-pegula- identity (3.5 min): CPU 16/39/66 %, iGPU 0/0/1 %, RAM máx 8.3 GB → uso medio: margen para repartir trabajo; 5.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-11_1603.csv, recursos_2026-11-11_1540.csv"
+   "detail": "recursos_2026-11-11_1630.csv (mín/media/máx): elena-rybakina-jessica-pegula- score (3.5 min): CPU 31/75/100 %, iGPU 0/0/0 %, RAM máx 10.9 GB → uso medio: margen para repartir trabajo; elena-rybakina-jessica-pegula- identity (2.0 min): CPU 19/50/83 %, iGPU 0/0/1 %, RAM máx 11.4 GB → uso medio: margen para repartir trabajo"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
    "status": "ok",
-   "detail": "petición del 11-11 16:18, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "detail": "petición del 11-11 16:28, empezó a los 0.2 min; el PC estaba libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
   },
   {
    "req": 1,
@@ -3797,7 +3797,7 @@
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
    "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
   },
   {
    "req": 11,
@@ -3839,7 +3839,7 @@
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
    "status": "aviso",
-   "detail": "3 comprobaciones: 1 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "detail": "3 comprobaciones: 1 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
   },
   {
    "req": 11,
@@ -3902,7 +3902,7 @@
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
    "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
   },
   {
    "req": 11,
@@ -4132,8 +4132,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -4196,7 +4196,7 @@
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
    "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
   },
   {
    "req": 11,
@@ -4525,7 +4525,7 @@
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
    "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
   },
   {
    "req": 11,
@@ -4595,7 +4595,7 @@
    "area": "Peticiones",
    "name": "#137 hay algo que se pueda paralelizar ... threading (Chat, 13-10 18:31)",
    "status": "aviso",
-   "detail": "6 comprobaciones: 2 aviso, 4 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "detail": "6 comprobaciones: 2 aviso, 4 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
   },
   {
    "req": 11,
@@ -5239,14 +5239,14 @@
    "area": "Peticiones",
    "name": "#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo",
    "status": "aviso",
-   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
    "status": "aviso",
-   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (90 min para 35 min de vídeo ≈ 9.0 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
   },
   {
    "req": 11,

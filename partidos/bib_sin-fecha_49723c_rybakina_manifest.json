@@ -56,19 +56,19 @@
   "rewrote": {}
  },
  "score": {
-  "fingerprint": "ced925e8fc84ff41",
-  "version": "8",
-  "seconds": 368.1,
-  "finished": "2026-11-09 12:47:52",
+  "fingerprint": "35cc46cef887c078",
+  "version": "9",
+  "seconds": 311.1,
+  "finished": "2026-11-11 16:34:36",
   "summary": {
-   "readings": 407,
-   "pressure": 147,
+   "readings": 500,
+   "pressure": 172,
    "samples": 522,
-   "ocr_calls": 485,
-   "server_read": 375,
+   "ocr_calls": 379,
+   "server_read": 460,
    "server_source": "marker"
   },
-  "out_hash": "f92fb7cb4b1679f3bbf1",
+  "out_hash": "f35fa23f8eaa27ef227e",
   "scheme": 2,
   "rewrote": {}
  },

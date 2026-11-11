@@ -1380,3 +1380,20 @@
 2026-11-11 16:29:32   [score] score:   0 % (1/522 muestras · 0 lecturas · 0 OCR) · 0 s · quedan ≈ 0 s
 2026-11-11 16:30:02   [score] score:   8 % (41/522 muestras · 35 lecturas · 31 OCR) · 30 s · quedan ≈ 6 min
 2026-11-11 16:30:32   [score] score:  17 % (90/522 muestras · 83 lecturas · 61 OCR) · 61 s · quedan ≈ 5 min
+2026-11-11 16:31:03   [score] score:  27 % (142/522 muestras · 135 lecturas · 99 OCR) · 2 min · quedan ≈ 4 min
+2026-11-11 16:31:33   [score] score:  35 % (185/522 muestras · 169 lecturas · 138 OCR) · 2 min · quedan ≈ 4 min
+2026-11-11 16:32:03   [score] score:  47 % (244/522 muestras · 226 lecturas · 179 OCR) · 3 min · quedan ≈ 3 min
+2026-11-11 16:32:34   [score] score:  58 % (301/522 muestras · 282 lecturas · 220 OCR) · 3 min · quedan ≈ 2 min
+2026-11-11 16:33:04   [score] score:  69 % (360/522 muestras · 338 lecturas · 263 OCR) · 4 min · quedan ≈ 2 min
+2026-11-11 16:33:34   [score] score:  79 % (414/522 muestras · 392 lecturas · 299 OCR) · 4 min · quedan ≈ 63 s
+2026-11-11 16:34:05   [score] score:  89 % (462/522 muestras · 440 lecturas · 337 OCR) · 5 min · quedan ≈ 35 s
+2026-11-11 16:34:35   [score] score: 100 % (522/522 muestras · 499 lecturas · 378 OCR) · 5 min · quedan ≈ 0 s
+2026-11-11 16:34:36   [score] marcador: 522 muestras en juego, 379 OCR (500 lecturas)
+2026-11-11 16:34:36   [score] saque en el marcador: 460 de 500 lecturas (marker; marca de color 460, sigue la alternancia en 92% de 460; aprendida no, sigue la alternancia en 54% de 493)
+2026-11-11 16:34:36 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] score terminada a las 16:34:36 en 5.2 min
+2026-11-11 16:34:36 [elena-rybakina-jessica-pegula-miami-2026-quarter-final] identity… (2026-11-11 16:34:36, etapa 7 de 16)
+2026-11-11 16:34:43   identity:   0 % (1/1892 fotogramas (ropa)) · 0 s · quedan ≈ 0 s
+2026-11-11 16:35:13   identity:  15 % (290/1892 fotogramas (ropa)) · 30 s · quedan ≈ 3 min
+2026-11-11 16:35:43   identity:  30 % (567/1892 fotogramas (ropa)) · 60 s · quedan ≈ 2 min
+2026-11-11 16:36:13   identity:  43 % (814/1892 fotogramas (ropa)) · 2 min · quedan ≈ 2 min
+2026-11-11 16:36:43   identity:  58 % (1102/1892 fotogramas (ropa)) · 2 min · quedan ≈ 86 s
