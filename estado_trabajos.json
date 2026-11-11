@@ -1,6 +1,6 @@
 {
- "at": "2026-11-11 14:36:52",
- "firma": "6cd9a2ef009e",
+ "at": "2026-11-11 14:40:36",
+ "firma": "2cd8b14c0ee3",
  "ejecutor": {
   "vivo": false,
   "pid": null,
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-11 14:31:39"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 43,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-11 14:40:33",
+   "started": null,
+   "finished": null,
+   "args": "[\"informe\"]",
+   "source": "claude 195",
+   "log": "",
+   "paso": 0,
+   "pasos": 5
+  }
+ ],
  "recientes": [
   {
    "id": 42,
@@ -293,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 68,
+   "job": 43,
+   "at": "2026-11-11 14:40:33",
+   "kind": "enviado",
+   "text": "flujo informe (claude 195)"
+  },
+  {
    "id": 67,
    "job": null,
    "at": "2026-11-11 14:36:38",
@@ -494,13 +520,6 @@
    "at": "2026-11-11 13:30:41",
    "kind": "enviado",
    "text": "tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final (claude 191)"
-  },
-  {
-   "id": 38,
-   "job": null,
-   "at": "2026-11-11 13:30:33",
-   "kind": "ejecutor",
-   "text": "arranca (pid 6760)"
   }
  ]
 }
