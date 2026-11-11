@@ -3,10 +3,10 @@
  "strokes": 26,
  "near": 13,
  "summary": {
-  "ok": 384,
+  "ok": 383,
   "falta": 29,
   "pocos datos": 111,
-  "aviso": 116
+  "aviso": 117
  },
  "items": [
   {
@@ -2908,7 +2908,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Conclusiones (Panel y Comparativas)»",
    "status": "ok",
-   "detail": "3610 caracteres de texto, 16 vídeos, 20 gráficos",
+   "detail": "3619 caracteres de texto, 16 vídeos, 20 gráficos",
    "file": "pantalla_5_conclusiones.jpg"
   },
   {
@@ -2940,7 +2940,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2143 caracteres de texto, 16 vídeos, 0 gráficos",
+   "detail": "2159 caracteres de texto, 16 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3482,7 +3482,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "47 carpetas, 34.1 GB en total (2026-11-11T23:39:44); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "47 carpetas, 34.1 GB en total (2026-11-11T23:49:56); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3566,7 +3566,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-11 23:39:14 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-11 23:51:25 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 5,
@@ -3713,14 +3713,14 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-11_1700.csv (mín/media/máx): elena-rybakina-jessica-pegula- fine_doubtful (0.2 min): CPU 32/32/32 %, iGPU 99/99/99 %, RAM máx 10.3 GB → iGPU al límite; más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-11_2339.csv, recursos_2026-11-11_2321.csv, recursos_2026-11-11_2143.csv"
+   "detail": "recursos_2026-11-11_1700.csv (mín/media/máx): elena-rybakina-jessica-pegula- fine_doubtful (0.2 min): CPU 32/32/32 %, iGPU 99/99/99 %, RAM máx 10.3 GB → iGPU al límite; más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-11_2350.csv, recursos_2026-11-11_2339.csv, recursos_2026-11-11_2321.csv"
   },
   {
    "req": 5,
    "area": "Peticiones del PC",
    "name": "Peticiones por GitHub Actions: espera hasta empezar",
-   "status": "ok",
-   "detail": "petición del 11-11 23:38, empezó a los 0.2 min; el PC estaba con otro trabajo hasta las 23:39 (1.2 min, no cuentan), empezó 0.0 min después de quedar libre (objetivo ≤ 10 min desde la petición o desde que acaba el trabajo anterior)"
+   "status": "aviso",
+   "detail": "la última petición (11-11 23:50) no empezó por GitHub Actions; el último trabajo por Actions fue el 11-11 23:38"
   },
   {
    "req": 1,
@@ -5344,7 +5344,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 aviso, 2 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (30 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 2 aviso, 1 ok; la peor: «Orquestador: espera hasta empezar cada trabajo» (30 trabajos en 7 días; la mayor espera 46.0 min (trabajo 36); 5 esperaron más de 5 min)"
   },
   {
    "req": 11,

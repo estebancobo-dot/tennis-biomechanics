@@ -1,6 +1,6 @@
 # Revisión automática: REGRESIÓN
 
-384 cumplidos · 29 no cumplidos · 111 sin golpes suficientes · 116 avisos (antes: 384 cumplidos, 27 no cumplidos)
+383 cumplidos · 29 no cumplidos · 111 sin golpes suficientes · 117 avisos (antes: 384 cumplidos, 29 no cumplidos)
 
 ## Peticiones del usuario SIN TERMINAR: 135 de 260
 
@@ -177,8 +177,4 @@ Registro `docs/peticiones_usuario.md`: 114 hechas · 114 a medias · 21 sin hace
 
 ## Empeora respecto a la ejecución anterior
 
-- **#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)**: aviso → falta: a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 falta; la peor: «Lista de partidos: rival, torneo, ronda y fecha» (6 partidos; sin rival: 6 (us-open-2026-r4-naomi-osak
-
-## Comprobaciones nuevas
-
-- Lista de partidos: rival, torneo, ronda y fecha: falta (6 partidos; sin rival: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, zheng-qinwen-elena-rybakina…); sin torneo: 6 (us-open-2026-r4-naomi-osaka-elena-rybakina, )
+- **Peticiones por GitHub Actions: espera hasta empezar**: ok → aviso: la última petición (11-11 23:50) no empezó por GitHub Actions; el último trabajo por Actions fue el 11-11 23:38
