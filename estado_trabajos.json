@@ -1,6 +1,6 @@
 {
- "at": "2026-11-11 21:04:52",
- "firma": "cc677543e9de",
+ "at": "2026-11-11 21:08:27",
+ "firma": "ff548da80edd",
  "ejecutor": {
   "vivo": false,
   "pid": null,
@@ -19,6 +19,24 @@
   "hora": "2026-11-11 17:02:19"
  },
  "pendientes": [
+  {
+   "id": 55,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_app_nuevo",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-11 21:08:25",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"diag_app_nuevo\"]",
+   "source": "claude 209",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 54,
    "kind": "comando",
@@ -312,6 +330,13 @@
  ],
  "eventos": [
   {
+   "id": 192,
+   "job": 55,
+   "at": "2026-11-11 21:08:25",
+   "kind": "enviado",
+   "text": "tennisbio script diag_app_nuevo (claude 209)"
+  },
+  {
    "id": 191,
    "job": null,
    "at": "2026-11-11 21:04:34",
@@ -513,13 +538,6 @@
    "at": "2026-11-11 17:16:46",
    "kind": "reiniciar",
    "text": "ciclo"
-  },
-  {
-   "id": 162,
-   "job": null,
-   "at": "2026-11-11 17:10:21",
-   "kind": "ejecutor",
-   "text": "arranca (pid 10388)"
   }
  ]
 }
