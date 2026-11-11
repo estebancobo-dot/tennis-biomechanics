@@ -182,6 +182,29 @@ def row_profile(image: np.ndarray, items: list, rows_y: tuple[float, float], nam
     return prof[0] - prof[1]
 
 
+def _split_stacked(items: list, y_a: float, y_b: float) -> list:
+    """11-11 (Rybakina-Pegula, Miami): the text detector boxed the two players' games, one above the other in the same
+    column, as one word («02»): the second row then had no games and the reading was dropped (13 min of the match without
+    the scoreboard). A digits-only box as tall as both rows, one digit per row, is split into one item per row."""
+    lo, hi = sorted((y_a, y_b))
+    out = []
+    for box, text, conf in items:
+        t = str(text).strip()
+        b = np.asarray(box, float)
+        top, bot = b[:, 1].min(), b[:, 1].max()
+        if t.isdigit() and 2 <= len(t) <= 4 and top <= lo + 0.25 * (hi - lo) and bot >= hi - 0.25 * (hi - lo):
+            # digits stacked: as many rows as digits only when there are two rows to share (one digit or two each)
+            k = len(t) // 2
+            first, second = (t[:1], t[1:]) if len(t) == 2 else (t[:k], t[k:])
+            for dig, y in ((first, y_a if y_a < y_b else y_b), (second, y_b if y_a < y_b else y_a)):
+                bb = b.copy()
+                bb[:, 1] = y
+                out.append((bb, dig, conf))
+            continue
+        out.append((box, text, conf))
+    return out
+
+
 def parse(items: list, surnames: tuple[str, str], image: np.ndarray | None = None) -> ScoreState | None:
     """Score state from OCR items of the scoreboard region (any coordinates); with the region
     image, also who serves."""
@@ -190,6 +213,7 @@ def parse(items: list, surnames: tuple[str, str], image: np.ndarray | None = Non
         return None
     y_p, y_o, _ = rows
     tol = abs(y_p - y_o) * 0.45 or 10
+    items = _split_stacked(items, y_p, y_o)
     banner = ""
     cells = {0: [], 1: []}
     name_x, name_box = {}, {}

@@ -832,3 +832,13 @@ accion: trabajo
 comando: script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250
 # 202 (11-11): a los 700 s el lector lee bien el marcador (0-2, 15-40) pero score.json no tiene lecturas de 427 a 1356 s:
 # en cada momento, si contaba como juego (camara principal con pista) y que da una lectura completa (read)
+---
+id: 203
+accion: trabajo
+comando: run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
+---
+id: 204
+accion: trabajo
+comando: flujo informe
+# 203-204 (11-11): marcador v9 (los juegos de las dos filas leidos como una sola caja, "02", se separan: 13 min de
+# Rybakina-Pegula sin lecturas). Pegula otra vez y su informe: identidad >= 95 % de planos decididos

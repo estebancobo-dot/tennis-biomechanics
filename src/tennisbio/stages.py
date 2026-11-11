@@ -1367,7 +1367,8 @@ def _surname(name: str) -> str:
     return name.strip().split()[-1] if name and name.strip() else ""
 
 
-@stage("score", "8", deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
+@stage("score", "9",   # 9 (11-11): games stacked in one OCR box split between the rows
+       deps=("scenes", "court"), settings=lambda c: {"every_s": (c.get("score") or {}).get("every_s", 5.0)},
        outputs=("score.json",), match_fields=lambda m: {"player": m.player.name, "opponent": m.opponent}, resource="cpu")
 def st_score(ctx: Context):
     """TV scoreboard every few seconds of main camera (sets, games, points, pressure)."""

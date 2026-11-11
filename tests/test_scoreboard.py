@@ -191,3 +191,16 @@ def test_score_stage_samples_the_same_times_with_one_sequential_read(tmp_path, m
     assert res["readings"][0]["games"] == [[3, 2]] and res["names"] == ["Player", "Rival"]
     # the first OCR (full-frame search) saw exactly the frame a seek to 0.5 s gives
     assert np.array_equal(seen[0], stages.grab_frame(video, 0.5))
+
+
+def test_games_stacked_in_one_box_are_split_between_the_rows():
+    # 11-11, Miami: «02» boxed across both rows (her 0 above the rival's 2): the rival's row had no games
+    import numpy as np
+    from tennisbio.scoreboard import parse
+
+    def box(x, y, w=40, h=26):
+        return np.array([[x, y], [x + w, y], [x + w, y + h], [x, y + h]], float)
+    items = [(box(49, 34, 180), "RYBAKINA", 0.99), (box(272, 30, 30, 60), "02", 0.9), (box(317, 34), "15", 0.99),
+             (box(48, 66, 150), "PEGULA", 0.99), (box(313, 64), "40", 0.99)]
+    st = parse(items, ("RYBAKINA", "PEGULA"))
+    assert st is not None and st.games == [[0, 2]] and list(st.points) == ["15", "40"]
