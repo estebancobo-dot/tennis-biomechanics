@@ -4,9 +4,9 @@
  "near": 13,
  "summary": {
   "ok": 386,
-  "falta": 26,
+  "falta": 27,
   "pocos datos": 102,
-  "aviso": 110
+  "aviso": 111
  },
  "items": [
   {
@@ -2940,7 +2940,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2146 caracteres de texto, 16 vídeos, 0 gráficos",
+   "detail": "2143 caracteres de texto, 16 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3475,7 +3475,7 @@
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "44 carpetas, 30.8 GB en total (2026-11-11T14:51:22); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.6 GB"
+   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T15:21:30); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3531,7 +3531,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-11 14:51:30 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-11 15:21:34 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 5,
@@ -3671,7 +3671,7 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-11_1429.csv (mín/media/máx): elena-rybakina-jessica-pegula- identity (3.0 min): CPU 13/46/81 %, iGPU 0/12/94 %, RAM máx 10.5 GB → uso medio: margen para repartir trabajo; 7.5 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-11_1450.csv"
+   "detail": "recursos_2026-11-11_1501.csv (mín/media/máx): elena-rybakina-jessica-pegula- identity (3.5 min): CPU 16/39/66 %, iGPU 0/0/1 %, RAM máx 8.3 GB → uso medio: margen para repartir trabajo; 5.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
@@ -5399,8 +5399,22 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#253 Lo marcado como histórico en `docs/estado_proyecto.md` debe estar contemplado: hecho, en una petición o descar",
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#254 Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista lateral de entreno ",
    "status": "falta",
-   "detail": "SIN HACER según el registro (#253, docs/peticiones_usuario.md)"
+   "detail": "SIN HACER según el registro (#254, docs/peticiones_usuario.md)"
+  },
+  {
+   "req": 11,
+   "area": "Peticiones",
+   "name": "#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)",
+   "status": "falta",
+   "detail": "SIN HACER según el registro (#255, docs/peticiones_usuario.md)"
   }
  ]
 }

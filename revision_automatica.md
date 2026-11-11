@@ -1,10 +1,10 @@
 # Revisión automática: FALLOS
 
-386 cumplidos · 26 no cumplidos · 102 sin golpes suficientes · 110 avisos (antes: 386 cumplidos, 24 no cumplidos)
+386 cumplidos · 27 no cumplidos · 102 sin golpes suficientes · 111 avisos (antes: 386 cumplidos, 26 no cumplidos)
 
-## Peticiones del usuario SIN TERMINAR: 115 de 253
+## Peticiones del usuario SIN TERMINAR: 116 de 255
 
-Registro `docs/peticiones_usuario.md`: 127 hechas · 97 a medias · 18 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
+Registro `docs/peticiones_usuario.md`: 128 hechas · 97 a medias · 19 sin hacer · 3 no medibles desde la tele · 8 no aplican. Que las comprobaciones de abajo pasen **no** significa que estas estén hechas.
 
 - **#176 [FALTA]** Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3) — falta: La ventana acaba 0,8 s tras el impacto: medible alargándola.
 - **#189 [FALTA]** «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4) — falta: No está en `learn.py`.
@@ -22,8 +22,9 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 97 a medias · 18 sin hacer
 - **#240 [FALTA]** Comparar la aplicación con las profesionales una vez estén los golpes (27-10 11:42) — falta: Bloque B1 del plan: pantalla a pantalla con los datos reales.
 - **#244 [FALTA]** Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10) — falta: Revisar ganadores y errores con el marcador y la bola; no mostrar hasta que sea creíble.
 - **#245 [FALTA]** Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10) — falta: Usar los datos del catálogo y del nombre del vídeo (como la lista de la aplicación).
-- **#252 [FALTA]** Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps profesionales, UX y usabilidad, aprendizaje, gest… — falta: Paquete P0 del plan: diseño basado en la comparativa (#240), prototipo, rehacer pantallas y gráficos, capturas automáticas.
-- **#253 [FALTA]** Lo marcado como histórico en `docs/estado_proyecto.md` debe estar contemplado: hecho, en una petición o descartado con motivo (Chat, 11-11) — falta: Revisar cada nota fechada: lo pendiente pasa a una petición del registro; lo hecho o descartado se dice.
+- **#252 [FALTA]** Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps profesionales, UX y usabilidad, aprendizaje, gest… — falta: Paquete P0, justo después de la Base (decisión del usuario, 11-11). Primero un análisis a fondo de la aplicación actual y del estado del arte (apps profesional…
+- **#254 [FALTA]** Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista lateral de entreno o clips anotados (Estado del … — falta: Comparar el giro medido en el partido con el de la vista lateral o con clips anotados; hoy solo se compara 2D con 3D.
+- **#255 [FALTA]** Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente) — falta: Medida nueva desde la raqueta y los hombros en el armado (fiable solo de lado: vista lateral de entreno).
 - **#2 [PARCIAL]** Ver informe y salidas en el móvil (11-10 18:21, 18:29, 18:33) — falta: 19-10: copia hecha; el paso directo al Pixel 8 sin probar en el teléfono.
 - **#4 [PARCIAL]** Responder de forma profesional a «¿qué hay que hacer para pegar como X?», con todas las posibilidades y como base para cualquiera (11-10 19… — falta: Valores de 1 a 10 golpes, todos «provisional». SuD, `copy_cue` y `COACH` no se ven (≥12).
 - **#5 [PARCIAL]** Taxonomía completa con todas las variantes (bola rápida/lenta, alta/baja, corta/profunda, carrera/parada/salto, apoyo, dirección, ataque/de… — falta: 0 de 2.992 combinaciones con ≥12. Niveles vacíos: parada 0, paralela 0, rodilla 0, en el aire 0. 19-10: faltaban de su mensaje del 10-10 18:05 «ángulos» (golpe…
@@ -150,9 +151,14 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 97 a medias · 18 sin hacer
 - **#244 Resultado del punto creíble (hoy 2 golpes ganadores en 191 derechas) (prueba de valor 27-10)**: SIN HACER según el registro (#244, docs/peticiones_usuario.md)
 - **#245 Rivales, fechas y rondas bien escritos en el informe (prueba de valor 27-10)**: SIN HACER según el registro (#245, docs/peticiones_usuario.md)
 - **#252 Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps profesionales, UX y **: SIN HACER según el registro (#252, docs/peticiones_usuario.md)
-- **#253 Lo marcado como histórico en `docs/estado_proyecto.md` debe estar contemplado: hecho, en una petición o descar**: SIN HACER según el registro (#253, docs/peticiones_usuario.md)
+- **#254 Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista lateral de entreno **: SIN HACER según el registro (#254, docs/peticiones_usuario.md)
+- **#255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente)**: SIN HACER según el registro (#255, docs/peticiones_usuario.md)
+
+## Mejora
+
+- #253 Lo marcado como histórico en `docs/estado_proyecto.md` debe estar contemplado: hecho, en una petición o descar: falta → aviso
 
 ## Comprobaciones nuevas
 
-- #252 Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps profesionales, UX y : falta (SIN HACER según el registro (#252, docs/peticiones_usuario.md))
-- #253 Lo marcado como histórico en `docs/estado_proyecto.md` debe estar contemplado: hecho, en una petición o descar: falta (SIN HACER según el registro (#253, docs/peticiones_usuario.md))
+- #254 Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista lateral de entreno : falta (SIN HACER según el registro (#254, docs/peticiones_usuario.md))
+- #255 Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, 12-10, pendiente): falta (SIN HACER según el registro (#255, docs/peticiones_usuario.md))

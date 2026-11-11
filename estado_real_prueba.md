@@ -1,11 +1,11 @@
 # Estado real de las peticiones (generado por `scripts/real_status.py`; no editar a mano)
 
-245 peticiones (sin las que no aplican). «HECHO» en el registro es la etiqueta de Claude; aquí cuenta solo lo que se comprueba. «Comprobado en salidas» = existe y es coherente con los datos reales, no que sea correcto; eso es «validado con verdad».
+247 peticiones (sin las que no aplican). «HECHO» en el registro es la etiqueta de Claude; aquí cuenta solo lo que se comprueba. «Comprobado en salidas» = existe y es coherente con los datos reales, no que sea correcto; eso es «validado con verdad».
 
 | Nivel | Peticiones |
 |---|---|
-| 0 sin construir | 18 |
-| 1 construido, sin comprobar | 69 |
+| 0 sin construir | 19 |
+| 1 construido, sin comprobar | 70 |
 | 2 comprobación que falla | 76 |
 | 3 comprobado en salidas | 82 |
 | 4 validado con verdad | 0 |
@@ -24,21 +24,21 @@
 | B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 3 | 1 | 0 | 4 partidos sin errores de etapa; auditoría generada | ok | no |
 | B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 9 | 27 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | falla | no |
 | B8 Base · orquestador único (aplicación y chat con el mismo código y los mismos datos) | 6 | 0 | 6 | 0 | 0 | 0 | Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC | sin medir | no |
+| P0 Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos) | 1 | 1 | 0 | 0 | 0 | 0 | Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código | sin medir | no |
 | M1 Medidas · fases, cadena cinética y ritmo | 12 | 0 | 7 | 4 | 1 | 0 | Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara | — | — |
 | M2 Medidas · pies y apoyos | 20 | 2 | 10 | 3 | 5 | 0 | Pasos y apoyos medidos en la mayoría de golpes; fiables en la auditoría | — | — |
-| M3 Medidas · cuerpo | 14 | 1 | 2 | 4 | 7 | 0 | Fiables en la auditoría y sin depender de la cámara | — | — |
-| M4 Medidas · raqueta, mano y empuñadura | 18 | 2 | 8 | 7 | 1 | 0 | Fiables o «no medible desde la tele» dicho; cara del impacto marcada como estimación | — | — |
+| M3 Medidas · cuerpo | 15 | 2 | 2 | 4 | 7 | 0 | Fiables en la auditoría y sin depender de la cámara | — | — |
+| M4 Medidas · raqueta, mano y empuñadura | 19 | 3 | 8 | 7 | 1 | 0 | Fiables o «no medible desde la tele» dicho; cara del impacto marcada como estimación | — | — |
 | M5 Medidas · bola y situación del golpe | 18 | 0 | 4 | 12 | 2 | 0 | Cada situación con golpes suficientes o «pocos datos» dicho; diferencias solo por encima del ruido | — | — |
 | M6 Medidas · tipos de golpe | 11 | 4 | 3 | 4 | 0 | 0 | Recall por tipo con datos anotados | — | — |
 | M7 Medidas · contexto del punto | 7 | 3 | 2 | 0 | 2 | 0 | Resultado del punto coherente con el marcador; nombres y fechas correctos | — | — |
-| P0 Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos) | 1 | 1 | 0 | 0 | 0 | 0 | Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código | sin medir | no |
 | P1 Producto · contenido para copiar su golpe (Cópiala / Aprende) | 32 | 2 | 11 | 10 | 9 | 0 | Cada consigna con su medida, su fuente y su vídeo; examen interno R1-R25 pasado | — | — |
 | P2 Producto · pantallas e informe | 18 | 0 | 5 | 3 | 10 | 0 | Capturas automáticas de todas las pantallas sin fallos; nada borrado de lo anterior | — | — |
 | P3 Producto · validación automática | 6 | 0 | 2 | 4 | 0 | 0 | Cada medida y cada petición con una prueba automática y su umbral | — | — |
 | P4 Producto · comparación con las apps profesionales | 3 | 1 | 2 | 0 | 0 | 0 | Cada diferencia con su decisión y su prueba | — | — |
 | P5 Producto · escenarios y genericidad | 4 | 0 | 4 | 0 | 0 | 0 | Cada escenario de docs/escenarios_producto.md con su prueba | — | — |
 | P6 Producto · móvil (al final) | 2 | 0 | 2 | 0 | 0 | 0 | Copia al móvil comprobada | — | — |
-| D Documentación y reglas de trabajo | 3 | 2 | 1 | 0 | 0 | 0 | Documentos al día con el código (prueba de enlaces y fechas) | — | — |
+| D Documentación y reglas de trabajo | 3 | 1 | 2 | 0 | 0 | 0 | Documentos al día con el código (prueba de enlaces y fechas) | — | — |
 
 Lo que le falta a cada paquete de la Base para cerrarse:
 
@@ -298,4 +298,6 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 250 | Si se acaban los tokens se puede apagar todo y seguir después sin perder nada (Chat, 10-11 | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#250); sin comprobación automática asignada |
 | 251 | Tareas nuevas asociadas a peticiones y al plan, encadenadas sin olvidarse (Chat, 10-11) | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#251); sin comprobación automática asignada |
 | 252 | Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps  | P0 | FALTA | 0 sin construir | SIN HACER según el registro (#252, docs/peticiones_usuario.md) |
-| 253 | Lo marcado como histórico en `docs/estado_proyecto.md` debe estar contemplado: hecho, en u | D | FALTA | 0 sin construir | SIN HACER según el registro (#253, docs/peticiones_usuario.md) |
+| 253 | Lo marcado como histórico en `docs/estado_proyecto.md` debe estar contemplado: hecho, en u | D | HECHO | 1 construido, sin comprobar | sin comprobación automática asignada |
+| 254 | Validar los giros del tronco (cadera, hombros, X-factor 2D y 3D) con una referencia: vista | M3 | FALTA | 0 sin construir | SIN HACER según el registro (#254, docs/peticiones_usuario.md) |
+| 255 | Plano del swing: raqueta al lado o detrás del cuerpo en el armado (Vídeos de entrenadores, | M4 | FALTA | 0 sin construir | SIN HACER según el registro (#255, docs/peticiones_usuario.md) |
