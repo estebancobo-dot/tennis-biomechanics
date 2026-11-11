@@ -3,10 +3,10 @@
  "strokes": 26,
  "near": 13,
  "summary": {
-  "ok": 386,
-  "falta": 29,
-  "pocos datos": 102,
-  "aviso": 114
+  "ok": 381,
+  "falta": 27,
+  "pocos datos": 111,
+  "aviso": 117
  },
  "items": [
   {
@@ -2940,7 +2940,7 @@
    "area": "Pantallas",
    "name": "Pantalla «Datos del análisis»",
    "status": "ok",
-   "detail": "2146 caracteres de texto, 16 vídeos, 0 gráficos",
+   "detail": "2143 caracteres de texto, 16 vídeos, 0 gráficos",
    "file": "pantalla_9_datos.jpg"
   },
   {
@@ -3198,16 +3198,16 @@
   {
    "req": 5,
    "area": "Automático",
-   "name": "Nada pide revisión manual",
+   "name": "Golpes con dudas marcadas (se enseñan, no se piden)",
    "status": "ok",
    "detail": "20 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario"
   },
   {
    "req": 9,
-   "area": "Rendimiento",
+   "area": "Rendimiento (información)",
    "name": "Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin",
-   "status": "aviso",
-   "detail": "91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejecución)"
+   "status": "pocos datos",
+   "detail": "91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h, pero no es desde cero: releyeron sus datos guardados spotting, fine. La cifra que cuenta es «Tiempo desde cero»"
   },
   {
    "req": 9,
@@ -3224,6 +3224,13 @@
    "detail": "6 páginas, 1.0 MB"
   },
   {
+   "req": 5,
+   "area": "Automático",
+   "name": "Nada pide revisión manual",
+   "status": "ok",
+   "detail": "ningún trabajo espera al usuario en la aplicación (el clic de quién es ella no cuenta)"
+  },
+  {
    "req": 3,
    "area": "Validación",
    "name": "Validación con clips anotados (F3Set)",
@@ -3235,7 +3242,7 @@
    "area": "Automático",
    "name": "Pruebas del código en este PC",
    "status": "ok",
-   "detail": "código 5604e77 (2026-11-11T21:39:54): 987 bien, 0 fallan, 0 errores",
+   "detail": "código f472ba3 (2026-11-11T21:53:19): 987 bien, 0 fallan, 0 errores",
    "passed": 987,
    "failed": 0
   },
@@ -3468,14 +3475,14 @@
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
    "status": "falta",
-   "detail": "62 de 64 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final"
+   "detail": "64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "44 carpetas, 31.7 GB en total (2026-11-11T21:44:08); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "46 carpetas, 34.1 GB en total (2026-11-11T23:11:14); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -3496,7 +3503,7 @@
    "area": "Aplicación",
    "name": "Aplicación: análisis en su índice",
    "status": "ok",
-   "detail": "2 análisis y 22 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)"
+   "detail": "2 análisis y 24 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)"
   },
   {
    "req": 5,
@@ -3531,7 +3538,7 @@
    "area": "Ficheros",
    "name": "Exportación terminada: exportar",
    "status": "ok",
-   "detail": "terminó el 2026-11-11 21:44:22 en 0 min: 118 vídeos de 118 golpes"
+   "detail": "terminó el 2026-11-11 23:11:27 en 0 min: 118 vídeos de 118 golpes"
   },
   {
    "req": 5,
@@ -3668,6 +3675,13 @@
   },
   {
    "req": 9,
+   "area": "Rendimiento",
+   "name": "Tiempo desde cero",
+   "status": "pocos datos",
+   "detail": "ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC)"
+  },
+  {
+   "req": 9,
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
@@ -3686,6 +3700,20 @@
    "name": "Golpes inventados: precisión en F3Set ≥ 0.94",
    "status": "ok",
    "detail": "precisión 0.942, encontrados 466 de 517 (90%) en recall_validation_detector.json"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Golpes encontrados frente a F3Set (detector del análisis)",
+   "status": "ok",
+   "detail": "466 de 517 golpes suyos anotados encontrados (90%; objetivo ≥ 85%) en recall_validation_detector.json"
+  },
+  {
+   "req": 1,
+   "area": "Golpes",
+   "name": "Tipo de golpe frente a F3Set (anotado)",
+   "status": "ok",
+   "detail": "derecha/revés con su tipo 327 de 336 (97.3%), saques 129 de 129 (100.0%); objetivo ≥ 95%; confusiones: forehand→backhand 5, forehand→overhead 2, backhand→forehand 2 (recall_validation_detector.json)"
   },
   {
    "req": 1,
@@ -3789,15 +3817,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#13 Casos nominales, límite, esquina y error en fuentes, algoritmos, IA, procesado, rendimiento e informe",
-   "status": "ok",
-   "detail": "2 comprobaciones: 2 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#14 Rendimiento: un partido en horas, no días",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "status": "pocos datos",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC))"
   },
   {
    "req": 11,
@@ -3838,8 +3866,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#20 Windows nativo sin NVIDIA ni WSL, ONNX en CPU o DirectML",
-   "status": "aviso",
-   "detail": "3 comprobaciones: 1 aviso, 2 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "status": "pocos datos",
+   "detail": "3 comprobaciones: 1 pocos datos, 2 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC))"
   },
   {
    "req": 11,
@@ -3901,8 +3929,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#29 Fase 0: entorno y fps reales, con YOLO",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "status": "pocos datos",
+   "detail": "2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC))"
   },
   {
    "req": 11,
@@ -3985,8 +4013,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#41 Exportación: cómo se ven y se graban",
-   "status": "ok",
-   "detail": "1 comprobaciones: 1 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -4055,8 +4083,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#51 El código de la prueba es el de los casos reales",
-   "status": "ok",
-   "detail": "1 comprobaciones: 1 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -4104,8 +4132,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#58 La IA más moderna posible",
-   "status": "ok",
-   "detail": "15 comprobaciones: 15 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 15 comprobaciones: 15 ok"
   },
   {
    "req": 11,
@@ -4133,7 +4161,7 @@
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
    "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (62 de 64 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)"
+   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (64 de 66 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)"
   },
   {
    "req": 11,
@@ -4195,8 +4223,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#75 Velocidad: «10 golpes en 5 horas es absurdo»",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "status": "pocos datos",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC))"
   },
   {
    "req": 11,
@@ -4482,8 +4510,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#119 Automatizar todo el ciclo en el PC: el usuario no lanza pruebas ni avisa",
-   "status": "ok",
-   "detail": "2 comprobaciones: 2 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
@@ -4524,8 +4552,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#125 Velocidad, rendimiento y algoritmia antes del tramo largo nocturno",
-   "status": "aviso",
-   "detail": "2 comprobaciones: 1 aviso, 1 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "status": "pocos datos",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 2 comprobaciones: 1 pocos datos, 1 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC))"
   },
   {
    "req": 11,
@@ -4595,7 +4623,7 @@
    "area": "Peticiones",
    "name": "#137 hay algo que se pueda paralelizar ... threading (Chat, 13-10 18:31)",
    "status": "aviso",
-   "detail": "6 comprobaciones: 2 aviso, 4 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 6 comprobaciones: 1 aviso, 1 pocos datos, 4 ok; la peor: «Etapas a la vez: smoke_tennis-yusipopen-final-sobolenko-rybakin» (todas las etapas de su última ejecución corrieron en serie)"
   },
   {
    "req": 11,
@@ -4693,7 +4721,7 @@
    "area": "Peticiones",
    "name": "#151 como se separan los golpes (derecha, reves, saque, voleas), los jugadores, los partidos (Chat, 17-10 17:25)",
    "status": "pocos datos",
-   "detail": "2 comprobaciones: 1 pocos datos, 1 ok; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 13 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 3 comprobaciones: 1 pocos datos, 2 ok; la peor: «forehand: golpes analizados» (13 del lado cercano (con todo el detalle), 13 del lejano; con menos de 20 muchas situaciones no se pueden describir)"
   },
   {
    "req": 11,
@@ -5210,15 +5238,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#225 La aplicación no se cuelga ni ralentiza el PC",
-   "status": "ok",
-   "detail": "3 comprobaciones: 3 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#226 Lista de partidos profesional: nombres normalizados, torneo, ronda, fecha, fotos; sin pruebas (24-10, 25-10)",
-   "status": "ok",
-   "detail": "1 comprobaciones: 1 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 ok"
   },
   {
    "req": 11,
@@ -5238,15 +5266,15 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#230 Uso de CPU, RAM, iGPU y disco por etapa (mín, media, máx) y aprovechar el equipo",
-   "status": "aviso",
-   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "status": "pocos datos",
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 4 comprobaciones: 1 pocos datos, 3 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC))"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#231 Un partido no puede tardar el doble sin saber la causa; la etapa de tomas lenta",
-   "status": "aviso",
-   "detail": "4 comprobaciones: 1 aviso, 3 ok; la peor: «Tiempo: smoke_tennis-yusipopen-final-sobolenko-rybakin» (91 min para 35 min de vídeo ≈ 9.1 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejec)"
+   "status": "pocos datos",
+   "detail": "4 comprobaciones: 1 pocos datos, 3 ok; la peor: «Tiempo desde cero» (ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC))"
   },
   {
    "req": 11,
@@ -5266,8 +5294,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#234 Prueba de valor de la aplicación con los datos reales",
-   "status": "ok",
-   "detail": "3 comprobaciones: 3 ok"
+   "status": "aviso",
+   "detail": "sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 3 comprobaciones: 3 ok"
   },
   {
    "req": 11,
@@ -5288,7 +5316,7 @@
    "area": "Peticiones",
    "name": "#237 El PC empieza cada trabajo al momento (GitHub Actions), sin esperas de 10-40 min",
    "status": "aviso",
-   "detail": "1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (11-11 21:43) no empezó por GitHub Actions; el último trabajo por Actions fue el 11-11 21:08)"
+   "detail": "a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 aviso; la peor: «Peticiones por GitHub Actions: espera hasta empezar» (la última petición (11-11 21:43) no empezó por GitHub Actions; el último trabajo por Actions fue el 11-11 21:08)"
   },
   {
    "req": 11,
@@ -5441,15 +5469,22 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#259 Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir m",
-   "status": "falta",
-   "detail": "SIN HACER según el registro (#259, docs/peticiones_usuario.md)"
+   "status": "aviso",
+   "detail": "A MEDIAS según el registro (#259); sin comprobación automática asignada"
   },
   {
    "req": 11,
    "area": "Peticiones",
    "name": "#260 Revisar de verdad todo el bloque Base, no solo la velocidad: en cada tarea, si su prueba mide lo pedido, si fa",
-   "status": "falta",
-   "detail": "SIN HACER según el registro (#260, docs/peticiones_usuario.md)"
+   "status": "aviso",
+   "detail": "sin comprobación automática asignada"
+  },
+  {
+   "req": 5,
+   "area": "Automático",
+   "name": "Comprobaciones que saben fallar",
+   "status": "aviso",
+   "detail": "sin el registro de las pruebas en este PC (comprobaciones_pruebas/rec_*.json)"
   }
  ]
 }

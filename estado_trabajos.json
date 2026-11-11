@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 23:11:12",
- "firma": "95b6e225b2a4",
+ "at": "2026-11-11 23:14:33",
+ "firma": "92c6a7db6509",
  "ejecutor": {
-  "vivo": false,
-  "pid": null,
-  "at": 1794435059.5491924
+  "vivo": true,
+  "pid": 10472,
+  "at": 1794435273.1522942
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,13 @@
  ],
  "eventos": [
   {
+   "id": 215,
+   "job": null,
+   "at": "2026-11-11 23:11:13",
+   "kind": "ejecutor",
+   "text": "arranca (pid 10472)"
+  },
+  {
    "id": 214,
    "job": null,
    "at": "2026-11-11 23:10:59",
@@ -494,13 +501,6 @@
    "at": "2026-11-11 20:54:44",
    "kind": "reiniciar",
    "text": "ciclo"
-  },
-  {
-   "id": 185,
-   "job": null,
-   "at": "2026-11-11 19:34:59",
-   "kind": "ejecutor",
-   "text": "arranca (pid 8024)"
   }
  ]
 }
