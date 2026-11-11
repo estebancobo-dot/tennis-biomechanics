@@ -13,6 +13,7 @@ Cada documento tiene **un solo papel**. Si dos dicen cosas distintas, manda el *
 | Aceptación (calculada) | `pc-logs:estado_real_partidos.md` (de `scripts/real_status.py`) | Nivel real de cada petición y «¿Cerrado?» de cada paquete, desde la auditoría del PC |
 | Taxonomía de la derecha | `matriz_cobertura.md` | Cada elemento del golpe con su fuente y si se mide (§6: la matriz del usuario de 15 puntos) |
 | Diseño del orquestador | `orquestador.md` | Registro único, ejecutor único, flujos, órdenes desde la aplicación y el chat |
+| Revisión de toda la Base (11-11) | `revision_base_11-11.md` | Por cada petición de B1-B8: si su prueba mide lo pedido, si falla cuando debe, datos desde cero y alternativas medidas (#260) |
 | Flujos de trabajo del PC | `../config/flujos.yaml` | Los pasos de cada flujo (completo, informe, previsión, pruebas) |
 | Aplicación | `aplicacion_local.md` | Pantallas, casos y comportamiento de la aplicación del PC |
 | Almacenamiento | `almacenamiento.md` | Árbol de la biblioteca de partidos |

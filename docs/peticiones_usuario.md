@@ -55,10 +55,10 @@ la auditoría las marcará «sin comprobación automática asignada».
 |---|---|
 | HECHO | 128 |
 | PARCIAL | 98 |
-| FALTA | 22 |
+| FALTA | 23 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **259** |
+| **Total** | **260** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -347,6 +347,7 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 257 | Comparativa a fondo y catalogada con todo lo que existe: apps profesionales (Hawk-Eye/TennisViz, SwingVision, Sportsbox, Dartfish…), apps de aficionados y proyectos de GitHub, vídeos y Shorts de YouTube con explicaciones o gráficos en pantalla, gráficos de las retransmisiones, sistemas de laboratorio y otros; cómo se cataloga y cómo se hace (Chat, 11-11) | FALTA | `docs/comparativa_apps.md` (parcial, 10-11 fuentes), `docs/investigacion_youtube_usuario.md` (2 canales) | — | — | Parte del análisis de P0: catálogo `config/referencias.yaml` (tipo, fuente, qué mide, cómo lo enseña, gráficos, UX, precio, plataforma), evaluación de cada referencia con las casillas del modelo de calidad (#256) y heurísticas de usabilidad, capturas o fotogramas de cada patrón; los huecos salen como peticiones. Los vídeos de YouTube solo para aprender cómo se explica (requisito 6), nunca como datos. |
 | 258 | Partidos y jugadores automáticos desde un nombre de fichero mínimo: normalizar los nombres, leer la ficha pública completa de las dos jugadoras (nombre, estatura, mano, revés, país, nacimiento) y del torneo (superficie, categoría, fechas, ronda), renombrar el fichero con un nombre estándar y guardar las fichas (Chat, 11-11) | FALTA | `app/videos.py` (propuesta por nombre), `app/cards.py` (rondas, nombres conocidos) | Partidos, Jugadoras | — | P0 (gestión y catálogo): fuentes abiertas (p. ej. Wikidata) con caché; el revés que falte se deduce del vídeo o se pregunta solo eso; renombrar es seguro porque el partido se identifica por su contenido (#229). Datos del jugador y del torneo, no de golpes (no choca con el requisito 6). |
 | 259 | Saber dónde se va el tiempo de cada etapa, medido desde cero, y demostrar con medidas si cada etapa puede ir más rápido sin perder calidad (alternativas probadas, no supuestas), antes del análisis completo; confianza en la aplicación vista como usuario (Chat, 11-11) | FALTA | `scripts/tiempos_etapas.py`, `ritmos.json`, `docs/pruebas_velocidad.md` (última medida desde cero: 18-10) | — | — | Tabla de tiempos de la prueba desde cero (petición 207) + por cada etapa pesada: alternativas medidas (tiempo y calidad); el indicador «Tiempo» de la auditoría solo con ejecuciones desde cero. |
+| 260 | Revisar de verdad todo el bloque Base, no solo la velocidad: en cada tarea, si su prueba mide lo pedido, si falla cuando debe, si sus números salen de una ejecución desde cero con el código actual y si se analizaron y midieron las alternativas (Chat, 11-11: «no creo que el bloque base pueda ser válido») | FALTA | `docs/revision_base_11-11.md` | — | — | Revisión paquete a paquete (B1-B8, 77 peticiones) con veredicto por petición; lo que no pase vuelve a FALTA o PARCIAL con su tarea. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)
 
