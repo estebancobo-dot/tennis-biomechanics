@@ -206,7 +206,19 @@ def _spawn(job_id: int, log: Path, extra_env: dict | None = None) -> subprocess.
                             stdout=out, stderr=subprocess.STDOUT, env=env, **kw)
 
 
-def serve(cfg: dict, once: bool = False, idle_s: float = 10.0, stop=lambda: False, status_file: Path | None = None) -> int:
+def _start_successor() -> subprocess.Popen:
+    """11-11 (R7 of the review of the Base): a worker that ends for new code starts the next one itself, detached, once
+    its lock is released (a fresh interpreter: it imports the new code). Before, it waited for the cycle to start it:
+    a cycle from GitHub Actions never does, and on 11-11 the queue had no worker for 18 min (20:54-21:13)."""
+    env = {**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}
+    kw = {"creationflags": getattr(subprocess, "CREATE_NO_WINDOW", 0) | getattr(subprocess, "CREATE_NEW_PROCESS_GROUP", 0)
+          | getattr(subprocess, "DETACHED_PROCESS", 0)} if os.name == "nt" else {"start_new_session": True}
+    return subprocess.Popen([sys.executable, "-m", "tennisbio.cli", "worker"], stdin=subprocess.DEVNULL,
+                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, env=env, **kw)
+
+
+def serve(cfg: dict, once: bool = False, idle_s: float = 10.0, stop=lambda: False, status_file: Path | None = None,
+          successor=_start_successor) -> int:
     """The worker's loop. Returns 0, or 3 when another worker already runs on this PC (nothing done)."""
     from .app import jobs
     from .app.db import Paths, now
@@ -216,6 +228,7 @@ def serve(cfg: dict, once: bool = False, idle_s: float = 10.0, stop=lambda: Fals
         return 3
     db = open_db(cfg)
     paths = Paths.from_config(cfg)
+    renew = False
     try:
         jobs.recover(db)
         event(db, None, "ejecutor", f"arranca (pid {os.getpid()})")
@@ -228,6 +241,7 @@ def serve(cfg: dict, once: bool = False, idle_s: float = 10.0, stop=lambda: Fals
             if db.setting("reiniciar_ejecutor", False):   # new code arrived: exit between jobs, the cycle starts a new one
                 db.set_setting("reiniciar_ejecutor", False)
                 event(db, None, "ejecutor", "se reinicia con el código nuevo")
+                renew = not once
                 break
             job = jobs.next_job(db)
             if job is None:
@@ -272,8 +286,14 @@ def serve(cfg: dict, once: bool = False, idle_s: float = 10.0, stop=lambda: Fals
         event(db, None, "ejecutor", "termina")
         db.set_setting("ejecutor", {"pid": None, "at": time.time()})
         write_status(db, status_file)
+        lock.release()                     # first: the successor takes the lock (it stops if another worker holds it)
+        if renew:
+            try:
+                p = successor()
+                event(db, None, "ejecutor", f"arranca el siguiente con el código nuevo (pid {getattr(p, 'pid', '?')})")
+            except Exception as e:  # noqa: BLE001 — the cycle starts one if this failed
+                event(db, None, "ejecutor", f"no pudo arrancar el siguiente ({e}): lo arrancará el ciclo")
         db.close()
-        lock.release()
     return 0
 
 

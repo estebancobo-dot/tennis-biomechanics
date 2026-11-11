@@ -144,13 +144,16 @@ def test_app_index_item_reads_the_index_itself_not_an_old_window_check(tmp_path)
 def test_every_infrastructure_item_is_tied_to_its_request(tmp_path):
     import re
     names = [i["name"] for i in infrastructure_items(tmp_path / "output")]
-    assert len(names) == 7             # 07-11: + the application's new match from start to end (B7's main test)
+    # 07-11: + the application's new match from start to end (B7's main test); 11-11 (R7): + the queue's 3 (B8's)
+    assert len(names) == 10
     by = {n: [r for r, rule in PETITIONS.items() if isinstance(rule, str) and type(rule) is str and re.search(rule, n)]
           for n in names}
     assert 50 in by["Progreso visible (progreso.json)"] and 66 in by["Registros con fecha y duración"]
     assert 81 in by["Tamaño de la salida (tamanos.txt)"] and 146 in by["Carpetas de pruebas antiguas"]
     assert {160, 242} <= set(by["Aplicación: ventana real y pantallas"]) & set(by["Aplicación: análisis en su índice"])
     assert 242 in by["Aplicación: un partido nuevo de principio a fin"]
+    assert 249 in by["Orquestador: prueba de extremo a extremo"] and 237 in by["Orquestador: espera hasta empezar cada trabajo"]
+    assert 246 in by["Orquestador: ejecutor vivo cuando hay trabajo"]
 
 
 def test_app_queue_log_and_a_request_log_open_while_its_analysis_runs(tmp_path):

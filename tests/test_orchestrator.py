@@ -107,11 +107,33 @@ def test_restart_ends_the_worker_between_jobs_and_the_signature_changes(env):
     j = O.submit(db, "comando", args=["registry", "list"], source="claude")
     assert O.status(db)["firma"] != f0
     db.close()
-    assert O.serve(env, idle_s=0.1) == 0                    # without once: it ends because of the restart
+    started = []
+
+    def successor():
+        # 11-11 (R7): the next worker starts once this one let go of the lock (else it would stop at once)
+        lk = O.WorkerLock(O.lock_path(env))
+        started.append(lk.acquire())
+        lk.release()
+        return type("P", (), {"pid": 4242})()
+
+    assert O.serve(env, idle_s=0.1, successor=successor) == 0    # without once: it ends because of the restart
+    assert started == [True]
     db = O.open_db(env)
     assert db.one("SELECT state FROM jobs WHERE id=?", j)["state"] == "pendiente"     # untouched, for the new worker
     assert db.setting("reiniciar_ejecutor") is False
+    texts = [e["text"] for e in db.q("SELECT text FROM events WHERE kind='ejecutor' ORDER BY id")]
+    assert texts[-1] == "arranca el siguiente con el código nuevo (pid 4242)"
     db.close()
+
+
+def test_a_worker_ending_for_any_other_reason_starts_no_successor(env):
+    called = []
+    assert O.serve(env, once=True, idle_s=0.1, successor=lambda: called.append(1)) == 0
+    db = O.open_db(env)
+    O.restart(db, source="ciclo")
+    db.close()
+    assert O.serve(env, once=True, idle_s=0.1, successor=lambda: called.append(1)) == 0   # «once»: the app's test
+    assert called == []
 
 
 def test_the_command_line_as_the_cycle_calls_it(env, tmp_path):

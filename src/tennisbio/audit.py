@@ -1663,6 +1663,13 @@ PETITIONS.update({
 # check and the far end's checks). The new checks are in the same area: the rule names them as well.
 PETITIONS[218] = (r"^Repeticiones y otras cámaras$|^Golpes del fondo: |^Golpes del fondo frente a F3Set"
                   r"|^Repeticiones en el informe: |^Medidas en la cámara lenta: ")
+# 11-11 (R7 of the review of the Base): B8 had no check of its own («sin medir»); the queue's checks name its requests,
+# and #237 (start each job at once) also the queue's own wait, not only the GitHub Actions job's
+PETITIONS.update({
+    246: r"^Orquestador: ", 249: r"^Orquestador: prueba de extremo a extremo",
+    237: r"^Peticiones por GitHub Actions|^Orquestador: espera hasta empezar|^Orquestador: ejecutor vivo",
+    119: r"^Orquestador: ejecutor vivo|^Orquestador: espera hasta empezar",
+})
 ORDER = {"falta": 0, "aviso": 1, "pocos datos": 2, "ok": 3}
 # hours of processing per hour of video. The user's requirement 9 is «un partido en horas, no días»; the former
 # 45/35 (35 min in ≤ 45 min) was Claude's own target. 10-11, with the user: a 3.5 h match in one night, ≤ 8 h
@@ -2502,11 +2509,103 @@ def new_match_item(bases: list[Path]) -> dict:
                  + (f"; errores: {'; '.join(bad[:3])}" if bad else ""))
 
 
+ORCH_E2E_ITEM = "Orquestador: prueba de extremo a extremo"
+ORCH_ALIVE_ITEM = "Orquestador: ejecutor vivo cuando hay trabajo"
+ORCH_WAIT_ITEM = "Orquestador: espera hasta empezar cada trabajo"
+ORCH_WAIT_MAX_S = 5 * 60       # a job starts within 5 min of being queued, or of the end of the job before it
+ORCH_HEARTBEAT_S = 3 * 60      # the worker says it lives every HEARTBEAT_S (30 s): 3 min without it, it is not running
+ORCH_DAYS = 7                  # the waits of the last week's jobs
+
+
+def orchestrator_items(bases: list[Path], now_s: float | None = None) -> list[dict]:
+    """B8's main test (11-11, R7 of the review of the Base; «Orquestador: …» had no check, so it was «sin medir»):
+    - the end-to-end test on the PC (request e2e → prueba_e2e.log): sent as the chat, paused as the application,
+      resumed as the chat, all its checks true;
+    - the worker is alive whenever jobs are waiting (datos/tennisbio.db: its heartbeat);
+    - every job of the last week started at most ORCH_WAIT_MAX_S after it was queued or after the job before it ended
+      (on 11-11 two waited 5-11 min: the worker had ended for new code and nobody started the next one)."""
+    import sqlite3
+    import time as _time
+    now_s = _time.time() if now_s is None else now_s
+    out = []
+    f = next((b / "prueba_e2e.log" for b in bases if (b / "prueba_e2e.log").exists()), None)
+    if f is None:
+        out.append(_item(5, "Orquestador", ORCH_E2E_ITEM, "aviso", "sin ejecutar (petición «e2e» del PC)"))
+    else:
+        txt = f.read_text(encoding="utf-8", errors="replace")
+        m = re.search(r"\{.*\}", txt, re.S)
+        try:
+            res = json.loads(m.group(0)) if m else {}
+        except ValueError:
+            res = {}
+        checks = res.get("checks") or {}
+        bad = [k for k, v in checks.items() if v is not True]
+        end = re.search(r"termina (\S+)", txt)
+        ok = res.get("ok") is True and checks and not bad
+        out.append(_item(5, "Orquestador", ORCH_E2E_ITEM, "ok" if ok else "falta",
+                         f"{len(checks) - len(bad)} de {len(checks)} comprobaciones bien"
+                         + (f"; fallan: {', '.join(bad)}" if bad else "") + (f"; termina {end.group(1)}" if end else "")))
+    db = next((b / "datos" / "tennisbio.db" for b in bases if (b / "datos" / "tennisbio.db").is_file()), None)
+    if db is None:
+        return out + [_item(5, "Orquestador", n, "aviso", "sin la base de la cola (datos/tennisbio.db)")
+                      for n in (ORCH_ALIVE_ITEM, ORCH_WAIT_ITEM)]
+    try:
+        con = sqlite3.connect(f"{db.resolve().as_uri()}?mode=ro", uri=True, timeout=10)
+        con.row_factory = sqlite3.Row
+        try:
+            beat = con.execute("SELECT value FROM settings WHERE key='ejecutor'").fetchone()
+            waiting = con.execute("SELECT count(*) FROM jobs WHERE state='pendiente'").fetchone()[0]
+            paused = con.execute("SELECT value FROM settings WHERE key='pausa'").fetchone()
+            rows = [dict(r) for r in con.execute(
+                "SELECT id, created, started, finished FROM jobs WHERE started IS NOT NULL AND created IS NOT NULL "
+                "ORDER BY started")]
+        finally:
+            con.close()
+    except sqlite3.Error as e:
+        return out + [_item(5, "Orquestador", n, "aviso", f"no se pudo leer la cola ({e})") for n in (ORCH_ALIVE_ITEM, ORCH_WAIT_ITEM)]
+    try:
+        hb = json.loads(beat[0]) if beat else {}
+    except (TypeError, ValueError):
+        hb = {}
+    alive = bool(hb.get("pid")) and now_s - float(hb.get("at") or 0) <= ORCH_HEARTBEAT_S
+    is_paused = bool(paused) and str(paused[0]).lower() in ("true", "1")
+    st = "ok" if alive or not waiting or is_paused else "falta"
+    out.append(_item(5, "Orquestador", ORCH_ALIVE_ITEM, st,
+                     f"ejecutor {'vivo' if alive else 'parado'}; {waiting} trabajos esperando"
+                     + ("; cola en pausa" if is_paused else "")))
+    from datetime import datetime as _d
+
+    def ts(x):
+        try:
+            return _d.strptime(str(x)[:19], "%Y-%m-%d %H:%M:%S").timestamp()
+        except ValueError:
+            return None
+    # a job's wait: from its queuing to its start, minus the time another job was running (it waited its turn)
+    spans = [(ts(r["started"]), ts(r["finished"]) or now_s) for r in rows if ts(r["started"]) is not None]
+    waits = []
+    for r in rows:
+        c, s0 = ts(r["created"]), ts(r["started"])
+        if c is None or s0 is None or now_s - s0 > ORCH_DAYS * 86400 or s0 <= c:
+            continue
+        busy = sum(max(0.0, min(b, s0) - max(a, c)) for a, b in spans if (a, b) != (s0, ts(r["finished"]) or now_s))
+        waits.append((max(0.0, s0 - c - busy), r["id"]))
+    if not waits:
+        out.append(_item(5, "Orquestador", ORCH_WAIT_ITEM, "pocos datos", f"ningún trabajo en los últimos {ORCH_DAYS} días"))
+    else:
+        worst = max(waits)
+        late = [w for w in waits if w[0] > ORCH_WAIT_MAX_S]
+        out.append(_item(5, "Orquestador", ORCH_WAIT_ITEM, "ok" if not late else "aviso",
+                         f"{len(waits)} trabajos en {ORCH_DAYS} días; la mayor espera {worst[0] / 60:.1f} min (trabajo {worst[1]}); "
+                         f"{len(late)} esperaron más de {ORCH_WAIT_MAX_S // 60} min"))
+    return out
+
+
 def infrastructure_items(out_root: Path) -> list[dict]:
-    """The B7 checks read from the PC's own files (progress, logs, sizes, old test folders, the application)."""
+    """The B7 checks read from the PC's own files (progress, logs, sizes, old test folders, the application) and B8's
+    (the single worker's queue)."""
     bases = [out_root, out_root.parent, out_root.parent.parent]
     return ([progress_item(bases), logs_item(bases), sizes_item(bases), old_test_folders_item(bases)] + app_items(bases)
-            + [new_match_item(bases)])
+            + [new_match_item(bases)] + orchestrator_items(bases))
 
 
 MANUAL_REVIEW_ITEM = "Nada pide revisión manual"

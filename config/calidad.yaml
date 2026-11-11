@@ -61,6 +61,7 @@ areas:
   "Uso del PC": [plataforma, rendimiento, pc]
   "Automático": [plataforma, fiabilidad, pc]
   "Infraestructura": [plataforma, fiabilidad, pc]
+  "Orquestador": [plataforma, fiabilidad, pc]
   "Peticiones del PC": [plataforma, fiabilidad, pc]
   "Pruebas en este PC": [plataforma, mantenibilidad, codigo]
   "Modelos": [modelos, exactitud, verdad]
