@@ -1,6 +1,6 @@
 {
- "at": "2026-11-11 13:30:49",
- "firma": "ce88ef8d62c8",
+ "at": "2026-11-11 13:31:02",
+ "firma": "797f6ef63a3c",
  "ejecutor": {
   "vivo": true,
   "pid": 6760,
@@ -37,7 +37,26 @@
   "quedan_s": 130,
   "hora": "2026-11-09 23:39:49"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 40,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-11 13:30:59",
+   "started": null,
+   "finished": null,
+   "args": "[\"informe\"]",
+   "source": "claude 192",
+   "log": "",
+   "paso": 0,
+   "pasos": 3
+  }
+ ],
  "recientes": [
   {
    "id": 38,
@@ -312,6 +331,13 @@
  ],
  "eventos": [
   {
+   "id": 41,
+   "job": 40,
+   "at": "2026-11-11 13:30:59",
+   "kind": "enviado",
+   "text": "flujo informe (claude 192)"
+  },
+  {
    "id": 40,
    "job": 39,
    "at": "2026-11-11 13:30:43",
@@ -513,13 +539,6 @@
    "at": "2026-11-11 13:01:10",
    "kind": "enviado",
    "text": "flujo prueba (claude 187)"
-  },
-  {
-   "id": 11,
-   "job": null,
-   "at": "2026-11-11 12:54:34",
-   "kind": "ejecutor",
-   "text": "arranca (pid 9200)"
   }
  ]
 }

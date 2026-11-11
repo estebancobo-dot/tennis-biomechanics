@@ -5,3 +5,4 @@
 2026-11-11T13:17:20 peticion 189: usage: tennisbio jobs [--source SOURCE] [--json JSON] [pos ...] tennisbio jobs: error: unrecognized arguments: --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
 2026-11-11T13:17:30 peticion 190: trabajo 38 en la cola: flujo informe
 2026-11-11T13:30:41 peticion 191: trabajo 39 en la cola: tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final
+2026-11-11T13:30:59 peticion 192: trabajo 40 en la cola: flujo informe
