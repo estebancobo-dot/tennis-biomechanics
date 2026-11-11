@@ -1,13 +1,13 @@
 # Estado real de las peticiones (generado por `scripts/real_status.py`; no editar a mano)
 
-243 peticiones (sin las que no aplican). «HECHO» en el registro es la etiqueta de Claude; aquí cuenta solo lo que se comprueba. «Comprobado en salidas» = existe y es coherente con los datos reales, no que sea correcto; eso es «validado con verdad».
+245 peticiones (sin las que no aplican). «HECHO» en el registro es la etiqueta de Claude; aquí cuenta solo lo que se comprueba. «Comprobado en salidas» = existe y es coherente con los datos reales, no que sea correcto; eso es «validado con verdad».
 
 | Nivel | Peticiones |
 |---|---|
-| 0 sin construir | 16 |
+| 0 sin construir | 18 |
 | 1 construido, sin comprobar | 69 |
-| 2 comprobación que falla | 71 |
-| 3 comprobado en salidas | 87 |
+| 2 comprobación que falla | 72 |
+| 3 comprobado en salidas | 86 |
 | 4 validado con verdad | 0 |
 
 ## Por paquete del plan (en el orden de ejecución)
@@ -22,7 +22,7 @@
 | B4 Base · no perder golpes | 6 | 0 | 0 | 4 | 2 | 0 | Recall F3Set y RacketVision por lado y tipo, sin bajar la precisión | falla | no |
 | B5 Base · exportación | 1 | 0 | 0 | 0 | 1 | 0 | Vídeos por golpe en ≤ 20 min sin cuelgues | ok | **sí** |
 | B6 Base · referencia definitiva de los 4 partidos | 4 | 0 | 0 | 3 | 1 | 0 | 4 partidos sin errores de etapa; auditoría generada | ok | no |
-| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 5 | 31 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | falla | no |
+| B7 Base · aplicación autónoma e infraestructura | 36 | 0 | 0 | 6 | 30 | 0 | Un partido nuevo de principio a fin sin el ciclo ni el chat; capturas de cada pantalla sin fallos | falla | no |
 | B8 Base · orquestador único (aplicación y chat con el mismo código y los mismos datos) | 6 | 0 | 6 | 0 | 0 | 0 | Fases A-F de docs/orquestador.md; un trabajo enviado desde el chat, pausado en la aplicación y reanudado desde el chat en el PC | sin medir | no |
 | M1 Medidas · fases, cadena cinética y ritmo | 12 | 0 | 7 | 4 | 1 | 0 | Cada medida: fiable en la auditoría (ruido < variación) y sin depender de la cámara | — | — |
 | M2 Medidas · pies y apoyos | 20 | 2 | 10 | 3 | 5 | 0 | Pasos y apoyos medidos en la mayoría de golpes; fiables en la auditoría | — | — |
@@ -31,21 +31,23 @@
 | M5 Medidas · bola y situación del golpe | 18 | 0 | 4 | 11 | 3 | 0 | Cada situación con golpes suficientes o «pocos datos» dicho; diferencias solo por encima del ruido | — | — |
 | M6 Medidas · tipos de golpe | 11 | 4 | 3 | 4 | 0 | 0 | Recall por tipo con datos anotados | — | — |
 | M7 Medidas · contexto del punto | 7 | 3 | 2 | 0 | 2 | 0 | Resultado del punto coherente con el marcador; nombres y fechas correctos | — | — |
+| P0 Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos) | 1 | 1 | 0 | 0 | 0 | 0 | Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código | sin medir | no |
 | P1 Producto · contenido para copiar su golpe (Cópiala / Aprende) | 32 | 2 | 11 | 13 | 6 | 0 | Cada consigna con su medida, su fuente y su vídeo; examen interno R1-R25 pasado | — | — |
 | P2 Producto · pantallas e informe | 18 | 0 | 5 | 8 | 5 | 0 | Capturas automáticas de todas las pantallas sin fallos; nada borrado de lo anterior | — | — |
 | P3 Producto · validación automática | 6 | 0 | 2 | 4 | 0 | 0 | Cada medida y cada petición con una prueba automática y su umbral | — | — |
 | P4 Producto · comparación con las apps profesionales | 3 | 1 | 2 | 0 | 0 | 0 | Cada diferencia con su decisión y su prueba | — | — |
 | P5 Producto · escenarios y genericidad | 4 | 0 | 4 | 0 | 0 | 0 | Cada escenario de docs/escenarios_producto.md con su prueba | — | — |
 | P6 Producto · móvil (al final) | 2 | 0 | 2 | 0 | 0 | 0 | Copia al móvil comprobada | — | — |
-| D Documentación y reglas de trabajo | 2 | 1 | 1 | 0 | 0 | 0 | Documentos al día con el código (prueba de enlaces y fechas) | — | — |
+| D Documentación y reglas de trabajo | 3 | 2 | 1 | 0 | 0 | 0 | Documentos al día con el código (prueba de enlaces y fechas) | — | — |
 
 Lo que le falta a cada paquete de la Base para cerrarse:
 
 - **B2**: peticiones sin comprobar o que fallan: #13
-- **B4**: prueba principal: Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina: aviso, Golpes encontrados frente al marcador: sin-fecha_49723c_rybakina: aviso, Saques por punto de su saque: sin-fecha_f43dd2_rybakina: aviso, Saques por punto de su saque: sin-fecha_584c5b_rybakina: aviso, Cobertura del saque dicha en el informe: aviso; peticiones sin comprobar o que fallan: #23, #151, #155, #219
+- **B4**: prueba principal: Golpes encontrados frente al marcador: sin-fecha_f43dd2_rybakina: aviso, Golpes encontrados frente al marcador: sin-fecha_49723c_rybakina: aviso, Saques por punto de su saque: sin-fecha_f43dd2_rybakina: aviso, Saques por punto de su saque: sin-fecha_584c5b_rybakina: aviso; peticiones sin comprobar o que fallan: #23, #151, #155, #219
 - **B6**: peticiones sin comprobar o que fallan: #1, #134, #233
-- **B7**: prueba principal: Pruebas del código en este PC: falta; peticiones sin comprobar o que fallan: #20, #45, #51, #241, #242
+- **B7**: prueba principal: Pruebas del código en este PC: falta; peticiones sin comprobar o que fallan: #20, #45, #51, #66, #241, #242
 - **B8**: prueba principal: Orquestador: : sin medir; peticiones sin comprobar o que fallan: #246, #247, #248, #249, #250, #251
+- **P0**: prueba principal: Aplicación: rediseño : sin medir; peticiones sin comprobar o que fallan: #252
 
 ## Cada petición
 
@@ -111,7 +113,7 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 59 | Diferencias solo por encima del error y en situaciones equivalentes (10-10 18:05) | M5 | HECHO | 2 comprobación que falla | 6 comprobaciones: 1 falta, 1 pocos datos, 4 ok; la peor: «Valores dentro de límites físicos» (ball_flight.apex_height_m: 2 de 116 fuera de 0 |
 | 64 | Todos los tipos de desplazamiento, del split step a la recuperación, con cada tipo de paso | M2 | PARCIAL | 2 comprobación que falla | sus comprobaciones se cumplen, pero sigue a medias (ver docs/peticiones_usuario.md); 10 comprobaciones: 10 ok |
 | 65 | El play del vídeo funciona (no solo un fotograma) (12-10 18:14, 21:03, 21:14) | P2 | HECHO | 3 comprobado en salidas | 11 comprobaciones: 11 ok |
-| 66 | Fechas y duración en los registros (12-10 18:25) | B7 | HECHO | 3 comprobado en salidas | 2 comprobaciones: 2 ok |
+| 66 | Fechas y duración en los registros (12-10 18:25) | B7 | HECHO | 2 comprobación que falla | 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 63 registros con fecha de inicio y de fin o duración; sin  |
 | 67 | No borrar el trabajo hecho: lo complejo como extra (12-10 22:35; 13-10 05:48 p6) | P2 | HECHO | 2 comprobación que falla | 14 comprobaciones: 1 aviso, 13 ok; la peor: «Tablas a la vista en «Conclusiones (Panel y Comparativas)»» (1 tablas (el usuario pidió informa |
 | 68 | La meta: mejorar mi derecha tomando la de X como base (12-10 22:25; 13-10 05:48 p5) | P1 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 falta, 1 pocos datos, 6 ok; la peor: «La lección: como much |
 | 69 | Ejemplo: «derecha paralela, apoyo cerrado, parada, bola plana, lado derecho» (cómo lo hace | M5 | PARCIAL | 2 comprobación que falla | a medias según el registro (ver docs/peticiones_usuario.md); 1 comprobaciones: 1 pocos datos; la peor: «Tu ejemplo: derecha paralela, apoyo  |
@@ -294,3 +296,5 @@ Lo que le falta a cada paquete de la Base para cerrarse:
 | 249 | Parar el PC a distancia al momento, sin tener que apagarlo (Chat, 09-11) | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#249); sin comprobación automática asignada |
 | 250 | Si se acaban los tokens se puede apagar todo y seguir después sin perder nada (Chat, 10-11 | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#250); sin comprobación automática asignada |
 | 251 | Tareas nuevas asociadas a peticiones y al plan, encadenadas sin olvidarse (Chat, 10-11) | B8 | PARCIAL | 1 construido, sin comprobar | A MEDIAS según el registro (#251); sin comprobación automática asignada |
+| 252 | Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps  | P0 | FALTA | 0 sin construir | SIN HACER según el registro (#252, docs/peticiones_usuario.md) |
+| 253 | Lo marcado como histórico en `docs/estado_proyecto.md` debe estar contemplado: hecho, en u | D | FALTA | 0 sin construir | SIN HACER según el registro (#253, docs/peticiones_usuario.md) |
