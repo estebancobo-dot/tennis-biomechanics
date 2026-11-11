@@ -7,7 +7,7 @@ paquetes:
     nombre: "Base · velocidad y uso del PC"
     cierre: "Un partido de 3,5 h desde cero en una noche (≤ 8 h) sin perder calidad (10-11, con el usuario); CPU/iGPU por etapa medidas en cada ejecución"
     peticiones: [10, 14, 29, 75, 77, 125, 137, 230, 231, 237]
-    prueba: ["^Tiempo: ", "^Uso del PC por etapa", "^Peticiones por GitHub Actions", "^Tomas de cámara"]
+    prueba: ["^Tiempo desde cero", "^Uso del PC por etapa", "^Peticiones por GitHub Actions", "^Tomas de cámara"]
   B2:
     nombre: "Base · robustez (nada se cuelga, todo se recupera)"
     cierre: "Prueba por cada caso de error y cuelgue; 0 etapas con error en la referencia"

@@ -20,14 +20,14 @@ def test_kinds_without_a_failing_test_are_found_and_main_ones_named():
 
 
 def test_the_audit_item_fails_while_a_main_check_cannot_fail_and_says_when_there_is_no_record(tmp_path):
-    items = [_it("Rendimiento", "Tiempo: m"), _it("Golpes", "Volumen: forehand")]
+    items = [_it("Rendimiento", "Tiempo desde cero"), _it("Golpes", "Volumen: forehand")]
     assert coverage_item(items, [tmp_path])["status"] == "aviso"                    # no record of the tests
     d = tmp_path / "comprobaciones_pruebas"
     d.mkdir()
-    (d / "rec_gw0.json").write_text(json.dumps([["Rendimiento", "Tiempo", "ok"], ["Golpes", "Volumen", "aviso"]]),
+    (d / "rec_gw0.json").write_text(json.dumps([["Rendimiento", "Tiempo desde cero", "ok"], ["Golpes", "Volumen", "aviso"]]),
                                     encoding="utf-8")
-    assert recorded(d)[("Rendimiento", "Tiempo")] == {"ok"}
+    assert recorded(d)[("Rendimiento", "Tiempo desde cero")] == {"ok"}
     it = coverage_item(items, [tmp_path])
-    assert it["status"] == "aviso" and "Tiempo" in it["detail"]                     # «Tiempo» is in B1's main test
-    (d / "rec_gw1.json").write_text(json.dumps([["Rendimiento", "Tiempo", "aviso"]]), encoding="utf-8")
+    assert it["status"] == "aviso" and "Tiempo desde cero" in it["detail"]          # it is in B1's main test
+    (d / "rec_gw1.json").write_text(json.dumps([["Rendimiento", "Tiempo desde cero", "aviso"]]), encoding="utf-8")
     assert coverage_item(items, [tmp_path])["status"] == "ok"

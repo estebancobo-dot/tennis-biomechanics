@@ -55,6 +55,7 @@ areas:
   "Ficheros": [datos, fiabilidad, pc]
   "Aplicación": [datos, funcional, pc]
   "Rendimiento": [plataforma, rendimiento, pc]
+  "Rendimiento (información)": [plataforma, rendimiento, pc]
   "Tiempo por etapa": [plataforma, rendimiento, pc]
   "Trabajo en paralelo": [plataforma, rendimiento, pc]
   "Uso del PC": [plataforma, rendimiento, pc]

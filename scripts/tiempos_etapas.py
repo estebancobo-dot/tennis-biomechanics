@@ -12,85 +12,21 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 from tennisbio.config import load_config  # noqa: E402
 
-# the real matches live in the library (biblioteca/partidos/<año>/<partido>/etapas/manifest.json), the application's
-# test in <output>/_app_nuevo (with its own library inside): both are searched
-SKIP = {"windows", "series", "clips", "informe", "capturas_diag", "videos", "datos", "golpes", "identidad_fotos"}
-
-
-def manifests(root: Path, depth: int = 7) -> list[Path]:
-    out, todo = [], [(root, 0)]
-    while todo:
-        d, k = todo.pop()
-        f = d / "manifest.json"
-        if f.exists():
-            out.append(f)
-        if k < depth:
-            try:
-                todo += [(c, k + 1) for c in d.iterdir() if c.is_dir() and c.name not in SKIP]
-            except OSError:
-                pass
-    return sorted(out)
-
-
-def _parts(e: dict) -> dict:
-    """Inside a stage (the fine passes write it in their summary): seconds per part (pose, racket, ball, cut...) and
-    the counts (windows, frames posed...), only what was computed then, not read from the caches."""
-    sm = e.get("summary") or {}
-    out = {}
-    if isinstance(sm.get("seconds"), dict):
-        out["partes_s"] = sm["seconds"]
-    if isinstance(sm.get("counts"), dict):
-        out["cuentas"] = sm["counts"]
-    for k in ("windows", "confirmed", "candidates", "gate"):
-        if k in sm:
-            out.setdefault("resumen", {})[k] = sm[k]
-    return out
-
-
-def table(f: Path) -> dict | None:
-    try:
-        man = json.loads(f.read_text(encoding="utf-8"))
-    except (OSError, ValueError):
-        return None
-    dur = ((man.get("probe") or {}).get("summary") or {}).get("duration_min")
-    st = {n: e for n, e in man.items() if isinstance(e, dict) and "seconds" in e}
-    if not st:
-        return None
-    rows = sorted(({"etapa": n, "s": float(e.get("seconds") or 0), "a_la_vez_s": float(e.get("overlap_s") or 0),
-                    "terminada": e.get("finished"), **_parts(e)} for n, e in st.items()), key=lambda r: -r["s"])
-    wall = sum(r["s"] - r["a_la_vez_s"] for r in rows)
-    for r in rows:
-        r["s_por_min_video"] = round(r["s"] / dur, 2) if dur else None
-        r["parte"] = round(r["s"] / sum(x["s"] for x in rows), 3) if rows else None
-    d = f.parent.parent if f.parent.name == "etapas" else f.parent
-    return {"carpeta": str(d), "minutos_video": dur, "total_min": round(wall / 60, 1),
-            "veces_el_video": round(wall / 60 / dur, 2) if dur else None, "etapas": rows}
+from tennisbio.stage_times import all_tables, manifests, roots_of, table  # noqa: E402,F401  (the tests use them)
 
 
 def main() -> None:
     cfg = load_config()
     root = Path((cfg.get("paths") or {}).get("output") or "output")
-    from tennisbio.library import library_root
-    roots = [root]
-    try:
-        lib = library_root(cfg)
-        if lib.exists() and not str(lib.resolve()).startswith(str(root.resolve())):
-            roots.append(lib)
-    except Exception:  # noqa: BLE001 - without a library only the output is read
-        pass
-    seen, res = set(), []
-    for r in roots:
-        for f in manifests(r):
-            if f.resolve() not in seen and (t := table(f)):
-                seen.add(f.resolve())
-                res.append(t)
+    res = all_tables(roots_of(cfg))
     dst = root / "capturas_diag"
     dst.mkdir(parents=True, exist_ok=True)
     (dst / "tiempos_etapas.json").write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
     md = ["# Tiempo de cada etapa (última ejecución de cada etapa, según su manifest)", ""]
     for t in res:
         md += [f"## {Path(t['carpeta']).name}", f"vídeo {t['minutos_video']} min · total {t['total_min']} min · "
-               f"{t['veces_el_video']} veces la duración del vídeo", "", "| etapa | min | s por min de vídeo | parte | terminada |",
+               f"{t['veces_el_video']} veces la duración del vídeo · "
+               + ("desde cero" if t["desde_cero"] else f"no es desde cero (releídas: {', '.join(t['releidas'])})"), "", "| etapa | min | s por min de vídeo | parte | terminada |",
                "|---|---|---|---|---|"]
         md += [f"| {r['etapa']} | {r['s'] / 60:.1f} | {r['s_por_min_video']} | {100 * (r['parte'] or 0):.0f} % | {r['terminada']} |"
                for r in t["etapas"]]

@@ -487,11 +487,20 @@ def audit(match_dirs: list[Path], report_dir: Path | None, stroke: str = "foreha
         secs = total_seconds(man)          # stages run at the same time count once
         if dur:
             per_h = secs / 3600 / (dur / 60) if dur else None        # hours of processing per hour of video
-            # B1 (10-11, with the user): a 3.5 h match from scratch in one night, ≤ 8 h (SPEED_TARGET)
-            st = "ok" if per_h is not None and per_h <= SPEED_TARGET else "aviso"
-            items.append(_item(9, "Rendimiento", f"Tiempo: {m}", st,
-                               f"{secs / 60:.0f} min para {dur:.0f} min de vídeo ≈ {per_h * 3.5:.1f} h para un partido de 3,5 h "
-                               f"(objetivo ≤ {SPEED_TARGET * 3.5:.1f} h; con las etapas medidas en su última ejecución)"))
+            # B1 (10-11, with the user): a 3.5 h match from scratch in one night, ≤ 8 h (SPEED_TARGET). 11-11 (review of
+            # the Base, R2): only a run whose heavy stages computed is a time; one that re-read its caches is not (it
+            # said 1,2-2,1 h while a run from scratch took 7,6 h): that one is information, in another area
+            from .stage_times import not_real
+            reread = not_real(man)
+            est = f"{secs / 60:.0f} min para {dur:.0f} min de vídeo ≈ {per_h * 3.5:.1f} h para un partido de 3,5 h"
+            if reread:
+                items.append(_item(9, "Rendimiento (información)", f"Tiempo: {m}", "pocos datos",
+                                   f"{est}, pero no es desde cero: releyeron sus datos guardados {', '.join(reread)}. "
+                                   "La cifra que cuenta es «Tiempo desde cero»"))
+            else:
+                st = "ok" if per_h is not None and per_h <= SPEED_TARGET else "aviso"
+                items.append(_item(9, "Rendimiento", f"Tiempo: {m}", st,
+                                   f"{est} (objetivo ≤ {SPEED_TARGET * 3.5:.1f} h; todas sus etapas pesadas calcularon)"))
         views = (man.get("views") or {}).get("seconds")
         if views is not None:                     # B-3: the camera-shots stage under 15 min a match
             items.append(_item(9, "Rendimiento", f"Tomas de cámara: {m}", "ok" if views <= 900 else "aviso",
@@ -2155,11 +2164,37 @@ def comparison_doc_item(items: list[dict], out_root: Path, doc: Path | None = No
                  else "; ".join(good))
 
 
+SCRATCH_TIME_ITEM = "Tiempo desde cero"
+SCRATCH_MAX_DAYS = 14          # a run from scratch older than this was made with other code
+
+
+def scratch_time_item(tables: list[dict], today: str | None = None) -> dict:
+    """B1's main test (11-11, R2 of the review of the Base): the last run from scratch (all its heavy stages computed,
+    stage_times.not_real) of at least 20 min of video, as hours for a 3.5 h match; ≤ 8 h (SPEED_TARGET)."""
+    import datetime as _dt
+    from .stage_times import latest_from_scratch
+    t = latest_from_scratch(tables)
+    if t is None:
+        return _item(9, "Rendimiento", SCRATCH_TIME_ITEM, "pocos datos",
+                     "ninguna ejecución desde cero de 20 min de vídeo o más (prueba app_nuevo o poc del PC)")
+    per = t["total_min"] / t["minutos_video"]
+    top = ", ".join(f"{r['etapa']} {r['s'] / 60:.0f} min" for r in t["etapas"][:4])
+    day = (today or _dt.date.today().isoformat())[:10]
+    age = (_dt.date.fromisoformat(day) - _dt.date.fromisoformat(t["fecha"][:10])).days
+    st = "ok" if per <= SPEED_TARGET and age <= SCRATCH_MAX_DAYS else "aviso"
+    return _item(9, "Rendimiento", SCRATCH_TIME_ITEM, st,
+                 f"{t['total_min']:.0f} min para {t['minutos_video']:.0f} min de vídeo ({per:.2f} veces) ≈ {per * 3.5:.1f} h "
+                 f"para un partido de 3,5 h (objetivo ≤ {SPEED_TARGET * 3.5:.1f} h); {Path(t['carpeta']).name}, {t['fecha']}"
+                 + (f" (hace {age} días: más de {SCRATCH_MAX_DAYS}, repetirla)" if age > SCRATCH_MAX_DAYS else "")
+                 + f"; las que más tardan: {top}")
+
+
 def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) -> list[dict]:
     """Every check of the Base packages B1 and B3 that is not in audit() itself (cli.run_audit)."""
     items = []
     for fn in (lambda: candidate_items(out_root), lambda: models_in_use_items(cfg), lambda: spotter_items(match_dirs),
                lambda: stage_time_items(match_dirs, out_root), lambda: parallel_items(match_dirs),
+               lambda: [_scratch_time(out_root, cfg)],
                lambda: resources_items(out_root), lambda: [actions_item(out_root)],
                lambda: [f3set_precision_item(out_root)],
                lambda: f3set_sides_items(out_root),          # B4 (08-11): identity and far end against F3Set
@@ -2170,6 +2205,14 @@ def base_items(match_dirs: list[Path], out_root: Path, cfg: dict | None = None) 
         except Exception as e:  # noqa: BLE001 — one check that breaks never stops the audit
             items.append(_item(9, "Auditoría", "Comprobaciones de la base (B1, B3)", "aviso", f"no se pudo calcular ({e})"))
     return items
+
+def _scratch_time(out_root: Path, cfg: dict | None) -> dict:
+    from .config import load_config
+    from .stage_times import all_tables, roots_of
+    c = dict(cfg or load_config())
+    c["paths"] = {**(c.get("paths") or {}), "output": str(out_root)}
+    return scratch_time_item(all_tables(roots_of(c)))
+
 
 # --- the PC's infrastructure, read from the files it leaves (package B7, 04-11) ----------------------------------------
 _DATE = r"\d{4}-\d{2}-\d{2}[T ]\d{2}:\d{2}(:\d{2})?"
