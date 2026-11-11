@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 23:30:48",
- "firma": "7681b157de0f",
+ "at": "2026-11-11 23:39:17",
+ "firma": "267f1f6435d6",
  "ejecutor": {
   "vivo": true,
-  "pid": 2136,
-  "at": 1794436241.2233741
+  "pid": 15844,
+  "at": 1794436752.537729
  },
  "pausa": false,
  "en_curso": [],
@@ -18,7 +18,26 @@
   "quedan_s": 0,
   "hora": "2026-11-11 17:02:19"
  },
- "pendientes": [],
+ "pendientes": [
+  {
+   "id": 58,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script auto_catalog",
+   "state": "pendiente",
+   "message": "",
+   "created": "2026-11-11 23:39:14",
+   "started": null,
+   "finished": null,
+   "args": "[\"script\", \"auto_catalog\"]",
+   "source": "claude 213",
+   "log": "",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "recientes": [
   {
    "id": 57,
@@ -293,6 +312,48 @@
  ],
  "eventos": [
   {
+   "id": 228,
+   "job": 58,
+   "at": "2026-11-11 23:39:14",
+   "kind": "enviado",
+   "text": "tennisbio script auto_catalog (claude 213)"
+  },
+  {
+   "id": 227,
+   "job": null,
+   "at": "2026-11-11 23:38:52",
+   "kind": "ejecutor",
+   "text": "arranca (pid 15844)"
+  },
+  {
+   "id": 226,
+   "job": null,
+   "at": "2026-11-11 23:38:51",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 4176)"
+  },
+  {
+   "id": 225,
+   "job": null,
+   "at": "2026-11-11 23:38:51",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 224,
+   "job": null,
+   "at": "2026-11-11 23:38:51",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 223,
+   "job": null,
+   "at": "2026-11-11 23:38:47",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 222,
    "job": 57,
    "at": "2026-11-11 23:21:21",
@@ -459,48 +520,6 @@
    "at": "2026-11-11 21:13:02",
    "kind": "empieza",
    "text": "script diag_app_nuevo"
-  },
-  {
-   "id": 198,
-   "job": 54,
-   "at": "2026-11-11 21:13:02",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 197,
-   "job": 54,
-   "at": "2026-11-11 21:13:00",
-   "kind": "empieza",
-   "text": "script tiempos_etapas"
-  },
-  {
-   "id": 196,
-   "job": null,
-   "at": "2026-11-11 21:13:00",
-   "kind": "ejecutor",
-   "text": "arranca (pid 9420)"
-  },
-  {
-   "id": 195,
-   "job": null,
-   "at": "2026-11-11 21:10:49",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 194,
-   "job": null,
-   "at": "2026-11-11 21:10:49",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 193,
-   "job": null,
-   "at": "2026-11-11 21:10:49",
-   "kind": "ejecutor",
-   "text": "arranca (pid 10712)"
   }
  ]
 }
