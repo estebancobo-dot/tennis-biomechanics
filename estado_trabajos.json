@@ -1,13 +1,32 @@
 {
- "at": "2026-11-11 14:26:41",
- "firma": "0158d3122417",
+ "at": "2026-11-11 14:27:03",
+ "firma": "665576bacb6c",
  "ejecutor": {
   "vivo": true,
-  "pid": 18768,
-  "at": 1794403590.5000534
+  "pid": 14680,
+  "at": 1794403623.551346
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 41,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-11 14:26:59",
+   "started": "2026-11-11 14:27:03",
+   "finished": null,
+   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
+   "source": "claude 193",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_41.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -293,6 +312,48 @@
  ],
  "eventos": [
   {
+   "id": 57,
+   "job": 41,
+   "at": "2026-11-11 14:27:03",
+   "kind": "empieza",
+   "text": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final"
+  },
+  {
+   "id": 56,
+   "job": null,
+   "at": "2026-11-11 14:27:03",
+   "kind": "ejecutor",
+   "text": "arranca (pid 14680)"
+  },
+  {
+   "id": 55,
+   "job": null,
+   "at": "2026-11-11 14:27:00",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 54,
+   "job": null,
+   "at": "2026-11-11 14:27:00",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 53,
+   "job": 41,
+   "at": "2026-11-11 14:26:59",
+   "kind": "enviado",
+   "text": "tennisbio run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final (claude 193)"
+  },
+  {
+   "id": 52,
+   "job": null,
+   "at": "2026-11-11 14:26:54",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 51,
    "job": null,
    "at": "2026-11-11 14:20:50",
@@ -459,48 +520,6 @@
    "at": "2026-11-11 13:17:39",
    "kind": "paso",
    "text": "2/3 Informe de la derecha"
-  },
-  {
-   "id": 27,
-   "job": 38,
-   "at": "2026-11-11 13:17:38",
-   "kind": "paso",
-   "text": "1/3 Registro de partidos"
-  },
-  {
-   "id": 26,
-   "job": 38,
-   "at": "2026-11-11 13:17:37",
-   "kind": "empieza",
-   "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
-  },
-  {
-   "id": 25,
-   "job": 38,
-   "at": "2026-11-11 13:17:30",
-   "kind": "enviado",
-   "text": "flujo informe (claude 190)"
-  },
-  {
-   "id": 24,
-   "job": null,
-   "at": "2026-11-11 13:13:27",
-   "kind": "ejecutor",
-   "text": "arranca (pid 7220)"
-  },
-  {
-   "id": 23,
-   "job": null,
-   "at": "2026-11-11 13:13:18",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 22,
-   "job": null,
-   "at": "2026-11-11 13:13:18",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
   }
  ]
 }
