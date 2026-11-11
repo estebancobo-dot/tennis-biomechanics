@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 17:13:21",
- "firma": "3b83411b8329",
+ "at": "2026-11-11 17:17:06",
+ "firma": "ea9ed8e7c560",
  "ejecutor": {
-  "vivo": true,
-  "pid": 10388,
-  "at": 1794413601.9294283
+  "vivo": false,
+  "pid": null,
+  "at": 1794413811.9784184
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,27 @@
  ],
  "eventos": [
   {
+   "id": 165,
+   "job": null,
+   "at": "2026-11-11 17:16:51",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 164,
+   "job": null,
+   "at": "2026-11-11 17:16:51",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 163,
+   "job": null,
+   "at": "2026-11-11 17:16:46",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 162,
    "job": null,
    "at": "2026-11-11 17:10:21",
@@ -480,27 +501,6 @@
    "at": "2026-11-11 16:18:22",
    "kind": "reiniciar",
    "text": "ciclo"
-  },
-  {
-   "id": 135,
-   "job": 49,
-   "at": "2026-11-11 16:11:08",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 134,
-   "job": 49,
-   "at": "2026-11-11 16:11:00",
-   "kind": "empieza",
-   "text": "script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250"
-  },
-  {
-   "id": 133,
-   "job": 49,
-   "at": "2026-11-11 16:10:50",
-   "kind": "enviado",
-   "text": "tennisbio script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250 (claude 201)"
   }
  ]
 }
