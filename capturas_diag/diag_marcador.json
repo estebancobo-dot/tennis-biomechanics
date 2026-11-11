@@ -47,6 +47,44 @@
   },
   "shots_tried": 522,
   "shots_read": 407,
+  "momentos": [
+   {
+    "t": 120.0,
+    "juego": true,
+    "read": null,
+    "lecturas_a_menos_de_60s": 0
+   },
+   {
+    "t": 300.0,
+    "juego": false,
+    "read": null,
+    "lecturas_a_menos_de_60s": 0
+   },
+   {
+    "t": 700.0,
+    "juego": true,
+    "read": null,
+    "lecturas_a_menos_de_60s": 0
+   },
+   {
+    "t": 900.0,
+    "juego": false,
+    "read": null,
+    "lecturas_a_menos_de_60s": 0
+   },
+   {
+    "t": 1100.0,
+    "juego": false,
+    "read": null,
+    "lecturas_a_menos_de_60s": 0
+   },
+   {
+    "t": 1250.0,
+    "juego": true,
+    "read": null,
+    "lecturas_a_menos_de_60s": 0
+   }
+  ],
   "images": [
    "marcador_elena-rybakina-jessica-pegula-miami-2026_t120_entero.jpg",
    "marcador_elena-rybakina-jessica-pegula-miami-2026_t120.jpg",

@@ -1,32 +1,13 @@
 {
- "at": "2026-11-11 16:19:18",
- "firma": "96adc0c14762",
+ "at": "2026-11-11 16:20:49",
+ "firma": "94adc91f6f56",
  "ejecutor": {
   "vivo": true,
   "pid": 6316,
-  "at": 1794410348.2590683
+  "at": 1794410440.307211
  },
  "pausa": false,
- "en_curso": [
-  {
-   "id": 50,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250",
-   "state": "en curso",
-   "message": "",
-   "created": "2026-11-11 16:19:08",
-   "started": "2026-11-11 16:19:18",
-   "finished": null,
-   "args": "[\"script\", \"diag_scoreboard\", \"--match\", \"pegula\", \"--times\", \"120,300,700,900,1100,1250\"]",
-   "source": "claude 202",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_50.log",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "en_curso": [],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "identity",
@@ -39,6 +20,24 @@
  },
  "pendientes": [],
  "recientes": [
+  {
+   "id": 50,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_scoreboard --match pegula --times 120,300,700,900,1100,1250",
+   "state": "hecho",
+   "message": "",
+   "created": "2026-11-11 16:19:08",
+   "started": "2026-11-11 16:19:18",
+   "finished": "2026-11-11 16:19:39",
+   "args": "[\"script\", \"diag_scoreboard\", \"--match\", \"pegula\", \"--times\", \"120,300,700,900,1100,1250\"]",
+   "source": "claude 202",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_50.log",
+   "paso": 0,
+   "pasos": 0
+  },
   {
    "id": 49,
    "kind": "comando",
@@ -290,27 +289,16 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_36.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 35,
-   "kind": "informe",
-   "match": null,
-   "player": "rybakina",
-   "stroke": "forehand",
-   "reason": "análisis completo del ciclo: sus partidos tienen resultados nuevos",
-   "state": "error",
-   "message": "UnicodeEncodeError: 'charmap' codec can't encode character '\\u2192' in position 81: character maps to <undefined>",
-   "created": "2026-11-09 19:00:38",
-   "started": "2026-11-09 19:00:56",
-   "finished": "2026-11-09 19:06:30",
-   "args": "",
-   "source": "",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 142,
+   "job": 50,
+   "at": "2026-11-11 16:19:40",
+   "kind": "hecho",
+   "text": "código 0"
+  },
   {
    "id": 141,
    "job": 50,
@@ -513,13 +501,6 @@
    "at": "2026-11-11 15:35:09",
    "kind": "hecho",
    "text": "código 0"
-  },
-  {
-   "id": 112,
-   "job": 47,
-   "at": "2026-11-11 15:35:07",
-   "kind": "empieza",
-   "text": "calidad"
   }
  ]
 }
