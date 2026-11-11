@@ -1,3 +1,2 @@
-arranque: 2026-11-11T12:54:25 (pid 424)
-2026-11-11T12:54:27 otro analisis en marcha (17108,15560)
-2026-11-11T12:54:33 ejecutor unico arrancado
+arranque: 2026-11-11T13:00:44 (pid 5420)
+2026-11-11T13:00:46 otro analisis en marcha (17108,15560)

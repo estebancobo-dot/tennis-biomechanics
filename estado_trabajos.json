@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 12:54:33",
- "firma": "81a86f89ebcd",
+ "at": "2026-11-11 13:00:34",
+ "firma": "0367a42dbb16",
  "ejecutor": {
-  "vivo": false,
-  "pid": null,
-  "at": 1794398062.0379367
+  "vivo": true,
+  "pid": 9200,
+  "at": 1794398434.7068877
  },
  "pausa": false,
  "en_curso": [],
@@ -292,6 +292,13 @@
   }
  ],
  "eventos": [
+  {
+   "id": 11,
+   "job": null,
+   "at": "2026-11-11 12:54:34",
+   "kind": "ejecutor",
+   "text": "arranca (pid 9200)"
+  },
   {
    "id": 10,
    "job": null,

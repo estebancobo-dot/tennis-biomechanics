@@ -139,8 +139,8 @@
  "fine": {
   "fingerprint": "2e6f39a5e704a009",
   "version": "16",
-  "seconds": 71.4,
-  "finished": "2026-11-10 11:59:42",
+  "seconds": 111.8,
+  "finished": "2026-11-11 12:56:32",
   "summary": {
    "candidates": 80,
    "confirmed": 77,
@@ -160,14 +160,16 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "jugadora_lejana": 27.5,
-    "pista_ventana": 20.2,
-    "analisis_ventana": 15.1,
-    "cuerdas_y_3d": 12.7,
-    "recorte": 4.8,
-    "cribado": 3.2,
+    "jugadora_lejana": 20.6,
+    "pista_ventana": 16.3,
+    "analisis_ventana": 12.6,
+    "cuerdas_y_3d": 11.6,
+    "recorte": 3.6,
+    "cribado": 2.7,
     "pose_medida_lejana": 0.3,
-    "pose": 0.3
+    "pose": 0.3,
+    "bola_en_paralelo_cpu": 0,
+    "espera_bola_en_paralelo": 0.0
    },
    "counts": {
     "overlap_s": 0.0,
@@ -178,7 +180,8 @@
     "racket_frames": 0,
     "whole_window_again": 0,
     "frames_960_far": 0,
-    "far_measure_windows": 7
+    "far_measure_windows": 7,
+    "windows_ball_ahead": 58
    }
   },
   "out_hash": "8405cf4cf81fae48347c",
@@ -189,7 +192,7 @@
   "fingerprint": "fdc048a93df2d54b",
   "version": "9",
   "seconds": 0.0,
-  "finished": "2026-11-10 11:59:43",
+  "finished": "2026-11-11 12:56:33",
   "summary": {
    "enabled": false
   },
@@ -200,8 +203,8 @@
  "fine_doubtful": {
   "fingerprint": "3140d7560ae0bec5",
   "version": "1",
-  "seconds": 23.0,
-  "finished": "2026-11-10 12:00:06",
+  "seconds": 30.7,
+  "finished": "2026-11-11 12:57:04",
   "summary": {
    "candidates": 26,
    "confirmed": 17,
@@ -220,13 +223,15 @@
     "seconds_in_gated_windows": 0.0
    },
    "seconds": {
-    "cuerdas_y_3d": 7.5,
-    "analisis_ventana": 4.9,
-    "jugadora_lejana": 1.9,
+    "cuerdas_y_3d": 7.0,
+    "analisis_ventana": 2.2,
     "pista_ventana": 1.4,
     "recorte": 1.3,
-    "cribado": 0.6,
-    "pose": 0.1
+    "jugadora_lejana": 0.9,
+    "cribado": 0.5,
+    "pose": 0.1,
+    "bola_en_paralelo_cpu": 0,
+    "espera_bola_en_paralelo": 0.0
    },
    "counts": {
     "overlap_s": 0.0,
@@ -236,7 +241,8 @@
     "kept_impacts": 17,
     "racket_frames": 0,
     "whole_window_again": 0,
-    "frames_960_far": 0
+    "frames_960_far": 0,
+    "windows_ball_ahead": 16
    }
   },
   "out_hash": "e9e5d67f4e7e277c3b90",
@@ -266,7 +272,7 @@
   "fingerprint": "f3bfdf40ecea7cc4",
   "version": "1",
   "seconds": 0.1,
-  "finished": "2026-11-10 12:00:06",
+  "finished": "2026-11-11 12:57:04",
   "summary": {
    "strokes": 77,
    "with_replay": 26,
