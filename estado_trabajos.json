@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 14:27:23",
+ "at": "2026-11-11 14:30:47",
  "firma": "86b6fb039de4",
  "ejecutor": {
   "vivo": true,
   "pid": 14680,
-  "at": 1794403639.5703292
+  "at": 1794403847.9202971
  },
  "pausa": false,
  "en_curso": [
@@ -30,12 +30,12 @@
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "identity",
-  "hecho": 1,
+  "hecho": 1437,
   "total": 1892,
-  "porcentaje": 0.1,
-  "segundos": 0,
-  "quedan_s": 0,
-  "hora": "2026-11-11 14:27:10"
+  "porcentaje": 76.0,
+  "segundos": 213,
+  "quedan_s": 67,
+  "hora": "2026-11-11 14:30:42"
  },
  "pendientes": [
   {
