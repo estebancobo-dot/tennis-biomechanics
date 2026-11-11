@@ -220,6 +220,18 @@ partidos son del 09-11, con la identidad y el marcador anteriores. Se recalculan
 4. **Dos veces se dijo al usuario que la última medida desde cero era del 18-10 o del 26-27-10.** Hubo más: 29-10,
    02-11 y 03-11. Corregido aquí.
 
+### R3 · candidatos de 2025-2026 (búsqueda del 11-11)
+
+| Pieza | Candidato | Qué se sabe | Decisión |
+|---|---|---|---|
+| Bola | TrackNetV4 (ICASSP 2025; mapas de atención al movimiento sobre TrackNet; código en github.com/TrackNetV4/TrackNetV4) | Su página no dice si hay pesos de tenis ni su licencia | **medir** si hay pesos públicos de tenis (con `bench_candidates.py`, como WASB); si no, entrenarlo con el conjunto TrackNet del PC |
+| Bola | TOTNet (2025, MIT; 5 fotogramas de 288×512, datos de tenis de WASB y TrackNet; github.com/AugustRushG/TOTNet) | Pesos de tenis sin enlace claro | igual que TrackNetV4 |
+| Golpes | T-DEED (CVPRW 2024), UMEG-Net (2025, esqueleto + bola + pista, evaluado en F3Set) | El detector propio da F1 0,997 en la prueba de F3Set (F3ED 0,994). De los 648 golpes anotados, se pierden 84 «fuera de cámara», que ningún modelo recupera, y 43 «no candidato», donde sí ayudaría un detector mejor | **más adelante**: solo si «no candidato» pasa a ser la mayor pérdida que queda |
+| Esqueleto | Nada posterior a RTMPose/RTMW en tiempo real (la búsqueda solo devuelve RTMPose 2023 y RTMW 2024) | RTMW-x: banco «3 veces más rápido», pasada real del 03-11 «más lento» | **A/B desde cero esta noche** (`bench_fine_fps.py --tag rtmw`) |
+| Jugadora del fondo | RF-DETR | +10 puntos de detección, 2,6 veces más lento | **no**: en F3Set, no encontrar a la jugadora del fondo hace perder 2 de 517 golpes |
+
+Fuentes: [TrackNetV4](https://arxiv.org/pdf/2409.14543) · [web de TrackNetV4](https://tracknetv4.github.io) · [TOTNet](https://github.com/AugustRushG/TOTNet) · [T-DEED](https://huggingface.co/papers/2404.05392.md) · [UMEG-Net y F3Set (AAAI)](https://ojs.aaai.org/index.php/AAAI/article/view/37681/41643) · [RTMPose](https://arxiv.org/pdf/2303.07399.pdf)
+
 ## Tareas que salen de la revisión (en este orden, antes de la tarea 11)
 
 | Tarea | Qué | Cómo se acepta |
