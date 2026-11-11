@@ -1,10 +1,10 @@
 {
- "at": "2026-11-11 15:37:59",
- "firma": "81288674d2f4",
+ "at": "2026-11-11 15:40:47",
+ "firma": "2b1d5e737aff",
  "ejecutor": {
-  "vivo": true,
-  "pid": 16064,
-  "at": 1794407879.2666328
+  "vivo": false,
+  "pid": null,
+  "at": 1794408029.3019743
  },
  "pausa": false,
  "en_curso": [],
@@ -293,6 +293,27 @@
  ],
  "eventos": [
   {
+   "id": 116,
+   "job": null,
+   "at": "2026-11-11 15:40:29",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 115,
+   "job": null,
+   "at": "2026-11-11 15:40:29",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 114,
+   "job": null,
+   "at": "2026-11-11 15:40:29",
+   "kind": "reiniciar",
+   "text": "ciclo"
+  },
+  {
    "id": 113,
    "job": 47,
    "at": "2026-11-11 15:35:09",
@@ -480,27 +501,6 @@
    "at": "2026-11-11 15:05:13",
    "kind": "empieza",
    "text": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final"
-  },
-  {
-   "id": 86,
-   "job": 43,
-   "at": "2026-11-11 15:05:13",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 85,
-   "job": 43,
-   "at": "2026-11-11 15:01:09",
-   "kind": "paso",
-   "text": "5/5 Auditoria"
-  },
-  {
-   "id": 84,
-   "job": 43,
-   "at": "2026-11-11 15:01:03",
-   "kind": "paso",
-   "text": "4/5 Informe del saque"
   }
  ]
 }
