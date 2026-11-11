@@ -1,12 +1,6 @@
 {
  "fine:unidad": [
   {
-   "s": 1.0004,
-   "units": 303,
-   "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
-   "date": "2026-11-08 10:15"
-  },
-  {
    "s": 1.4138,
    "units": 173,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
@@ -179,15 +173,15 @@
    "units": 176,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-09 23:33"
+  },
+  {
+   "s": 6.4311,
+   "units": 264,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-11 14:03"
   }
  ],
  "fine:minuto": [
-  {
-   "s": 1.494,
-   "video_min": 210.4,
-   "match": "tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5",
-   "date": "2026-11-08 10:15"
-  },
   {
    "s": 3.519,
    "video_min": 71.4,
@@ -361,6 +355,12 @@
    "video_min": 71.4,
    "match": "us-open-2026-r4-naomi-osaka-elena-rybakina",
    "date": "2026-11-09 23:33"
+  },
+  {
+   "s": 15.19,
+   "video_min": 112.2,
+   "match": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "date": "2026-11-11 14:03"
   }
  ],
  "identity:minuto": [
