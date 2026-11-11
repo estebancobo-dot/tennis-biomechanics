@@ -1,13 +1,32 @@
 {
- "at": "2026-11-11 16:29:19",
- "firma": "6cb0a19f194d",
+ "at": "2026-11-11 16:29:24",
+ "firma": "b60023cb235e",
  "ejecutor": {
   "vivo": true,
   "pid": 9780,
   "at": 1794410954.152675
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 51,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-11 16:29:14",
+   "started": "2026-11-11 16:29:24",
+   "finished": null,
+   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
+   "source": "claude 203",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_51.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "identity",
@@ -18,26 +37,7 @@
   "quedan_s": 0,
   "hora": "2026-11-11 15:08:18"
  },
- "pendientes": [
-  {
-   "id": 51,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-11 16:29:14",
-   "started": null,
-   "finished": null,
-   "args": "[\"run\", \"--match\", \"elena-rybakina-jessica-pegula-miami-2026-quarter-final\"]",
-   "source": "claude 203",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 50,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 148,
+   "job": 51,
+   "at": "2026-11-11 16:29:24",
+   "kind": "empieza",
+   "text": "run --match elena-rybakina-jessica-pegula-miami-2026-quarter-final"
+  },
+  {
    "id": 147,
    "job": 51,
    "at": "2026-11-11 16:29:14",
@@ -513,13 +520,6 @@
    "at": "2026-11-11 15:47:38",
    "kind": "ejecutor",
    "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 118,
-   "job": null,
-   "at": "2026-11-11 15:47:29",
-   "kind": "reiniciar",
-   "text": "ciclo"
   }
  ]
 }
