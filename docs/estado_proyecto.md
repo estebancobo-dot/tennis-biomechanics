@@ -46,7 +46,13 @@ arte, huecos y lo que sobra; diseño, prototipo, aplicación nueva (#252). Medio
 | 8 | Todo el trabajo del PC por la cola única: completo, prevision, medir, rehacer y repetir encolan; las peticiones de cola se atienden aunque el ejecutor esté ocupado | nube + PC | una petición `control` atendida mientras Pegula se analiza | código hecho (11-11) |
 | 9 | Documentos normalizados: índice `docs/README.md`, históricos marcados, `aplicacion_local.md` y la cabecera de la cola del PC al día | nube | — | hecho (11-11) |
 | 10 | Continuidad sin el chat: avisos programados a esta sesión que retoman la cadena si una vigilancia muere | nube | un aviso que llega y sigue la tabla | siguiente |
-| 11 | Análisis completo de los 6 partidos (flujo «completo») | PC (una noche) | su auditoría cierra B1-B7 y #242 | al final, sin fallos conocidos (#247) |
+| 10b | B7 (#242): un partido nuevo de principio a fin desde la aplicación, por el ejecutor único, sin el ciclo ni el chat | PC | auditoría «Aplicación: un partido nuevo de principio a fin» | pendiente (antes de 11) |
+| 11 | Análisis completo de los 6 partidos (flujo «completo») | PC (una noche) | su auditoría y la tabla de cierre recalculada (`estado_real_partidos.md`) cierran B1-B7 y #242 | al final, sin fallos conocidos (#247) |
+
+**P0 (después de la Base; su análisis y diseño se adelantan en paralelo en la nube):** P0.1 plan de bajo nivel (`docs/p0_plan.md`:
+tareas, arquitectura de la interfaz, sistema de diseño y gráficos, modelo de datos, pantallas, métricas de aceptación por casilla) ·
+P0.2 modelo de calidad completo (#256: métricas de las casillas sin medir) · P0.3 comparativa catalogada (#257) · P0.4 diseño y
+prototipo (una revisión del usuario) · P0.5 construcción (tras cerrar la Base) · P0.6 aceptación por el modelo de calidad.
 
 Detalle de la tarea 5 (E): (1) `window.worker` deja de lanzar procesos propios (desactivado por configuración): al
 abrirse comprueba que el ejecutor único vive y si no lo arranca; (2) pausar/reanudar/cancelar/reanalizar llaman a

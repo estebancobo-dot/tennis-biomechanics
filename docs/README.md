@@ -18,6 +18,7 @@ Cada documento tiene **un solo papel**. Si dos dicen cosas distintas, manda el *
 | Almacenamiento | `almacenamiento.md` | Árbol de la biblioteca de partidos |
 | Validación | `validacion.md`, `validacion_detector.md` | Cómo se valida cada medida y el detector con datos anotados |
 | Velocidad | `pruebas_velocidad.md` | Cambios de velocidad, sus escenarios y lo medido |
+| Plan de P0 (rehacer la aplicación) | `p0_plan.md` | Punto de partida, arquitectura, tareas P0.1-P0.6 y métricas de aceptación |
 
 ## Referencia: fuentes que alimentan las peticiones (se consultan; sus huecos ya son peticiones)
 | Documento | Dónde están sus puntos en el plan |
