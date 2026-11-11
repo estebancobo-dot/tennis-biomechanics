@@ -899,3 +899,9 @@ id: 214
 accion: trabajo
 comando: flujo informe
 # 214 (11-11): registro, informes, auditoria y calidad con las comprobaciones nuevas de la revision (R1, R2, R4, R6, R7)
+---
+id: 215
+accion: app_nuevo
+minutos: 35
+# 215 (11-11, tarea 10b tras R6): otra vez el partido nuevo con la aplicacion (35 min de un partido de la jugadora), con
+# las correcciones de R6 (etapa del rival, juicio con sus propias comprobaciones). Va despues de 213 y 214 (cola libre)
