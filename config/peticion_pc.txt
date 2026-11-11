@@ -884,3 +884,8 @@ accion: poc
 # 211 (11-11, revision de la Base #260, B1): el mismo tramo de la final que las pruebas 74 y 76 (03-11: 44-47 min para
 # 35 min de video, desde cero) con el codigo de hoy, desde cero, para comparar igual con igual (output\_poc211_4 y
 # _poc211_35). La prueba de la aplicacion de hoy (76 min) es otro partido (60 fps)
+---
+id: 212
+accion: medir
+script: tiempos_etapas
+# 212 (11-11): tiempos por etapa con la prueba 211 terminada (mismo tramo que el 03-11, desde cero) para R2
