@@ -866,3 +866,9 @@ accion: medir
 script: tiempos_etapas
 # 208 (11-11): donde se va el tiempo. Tiempo de cada etapa de cada partido (y de la prueba _app_nuevo) segun su
 # manifest: capturas_diag/tiempos_etapas.md. Solo lee
+---
+id: 209
+accion: medir
+script: diag_app_nuevo
+# 209 (11-11): que comprobaciones no pasan en la prueba del partido nuevo (207: 356 bien, 32 no): su auditoria en
+# output\_app_nuevo, a capturas_diag/app_nuevo_fallos.md. Solo lee

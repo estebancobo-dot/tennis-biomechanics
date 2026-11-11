@@ -188,7 +188,7 @@ function Subir-Registros {
             Copy-Item "$Base\output\capturas_identidad\*" "$d\capturas_identidad" -Force -ErrorAction SilentlyContinue
         }
         # diagnostico de planos de los partidos (peticion "diag") y del marcador (09-11, scripts/diag_scoreboard.py)
-        if ((Test-Path "$Base\output\capturas_diag\diag_scenes.json") -or (Test-Path "$Base\output\capturas_diag\diag_marcador.json") -or (Test-Path "$Base\output\capturas_diag\tiempos_etapas.json")) {
+        if ((Test-Path "$Base\output\capturas_diag\diag_scenes.json") -or (Test-Path "$Base\output\capturas_diag\diag_marcador.json") -or (Test-Path "$Base\output\capturas_diag\tiempos_etapas.json") -or (Test-Path "$Base\output\capturas_diag\app_nuevo_fallos.json")) {
             New-Item -ItemType Directory -Force -Path "$d\capturas_diag" | Out-Null
             Copy-Item "$Base\output\capturas_diag\*" "$d\capturas_diag" -Force -ErrorAction SilentlyContinue
         }
