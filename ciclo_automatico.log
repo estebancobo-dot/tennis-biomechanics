@@ -1,12 +1,12 @@
 ﻿**********************
 Windows PowerShell transcript start
-Start time: 20261111155050
+Start time: 20261111160303
 Username: esteban\esteb
 RunAs User: esteban\esteb
 Configuration Name: 
 Machine: ESTEBAN (Microsoft Windows NT 10.0.26200.0)
-Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -WindowStyle Hidden -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
-Process ID: 12128
+Host Application: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:\tenis\tennis-biomech\scripts\windows\ciclo_automatico.ps1
+Process ID: 15732
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -16,9 +16,17 @@ WSManStackVersion: 3.0
 PSRemotingProtocolVersion: 2.3
 SerializationVersion: 1.1.0.1
 **********************
-Registro enviado a Claude (no hace falta copiar nada).
-Empezado 2026-11-11 15:50:44 - terminado 2026-11-11 15:51:06 - duracion total 22 s
-**********************
-Windows PowerShell transcript end
-End time: 20261111155106
-**********************
+
+==> [2026-11-11 16:03:03] Codigo nuevo (46888a4 -> 90f16b0): 3 ficheros
+    docs/README.md
+    docs/estado_proyecto.md
+    docs/p0_plan.md
+Updating 46888a4..90f16b0
+Fast-forward
+ docs/README.md          |  1 +
+ docs/estado_proyecto.md |  8 +++++++-
+ docs/p0_plan.md         | 54 +++++++++++++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 62 insertions(+), 1 deletion(-)
+ create mode 100644 docs/p0_plan.md
+Resolved 126 packages in 0.61ms
+Checked 91 packages in 2ms
