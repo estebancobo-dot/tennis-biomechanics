@@ -1,3 +1,2 @@
-arranque: 2026-11-11T13:20:44 (pid 8216)
-2026-11-11T13:20:46 otro analisis en marcha (18664,8428)
-2026-11-11T13:22:05 GitHub Actions: libre tras 9 min de espera
+arranque: 2026-11-11T13:23:19 (pid 19328)
+2026-11-11T13:23:23 ejecutor unico arrancado
