@@ -55,10 +55,10 @@ la auditoría las marcará «sin comprobación automática asignada».
 |---|---|
 | HECHO | 127 |
 | PARCIAL | 97 |
-| FALTA | 16 |
+| FALTA | 18 |
 | NO MEDIBLE | 3 |
 | NO APLICA | 8 |
-| **Total** | **251** |
+| **Total** | **253** |
 
 **27-10:** filas 220-245 nuevas: todo lo pedido en el chat del 19-10 al 27-10 (releídos los mensajes) y lo que
 salió en la prueba de valor; ninguna fila borrada.
@@ -339,6 +339,8 @@ lateral (entreno)» · ≥12 = solo se muestra con 12 golpes o más (`model.MIN_
 | 249 | Parar el PC a distancia al momento, sin tener que apagarlo (Chat, 09-11) | PARCIAL | `config/parar_pc.txt` (sin esperar a las pruebas), `orchestrator.cancel/pause` | Aplicación (Cola) | `tests/test_orchestrator.py` | Fase D: la parada por la cola del ejecutor único (en segundos). |
 | 250 | Si se acaban los tokens se puede apagar todo y seguir después sin perder nada (Chat, 10-11) | PARCIAL | `docs/estado_proyecto.md` (estado y plan), cachés por huella, cola en la base de datos | — | — | Fase D: la cola del ejecutor sobrevive a reinicios; documentar el punto exacto donde seguir en cada cambio. |
 | 251 | Tareas nuevas asociadas a peticiones y al plan, encadenadas sin olvidarse (Chat, 10-11) | PARCIAL | `config/plan_peticiones.yaml` (B8), `docs/estado_proyecto.md` | — | `scripts/check_requests.py` | Mantener B8 y la tabla al día en cada cambio. |
+| 252 | Rehacer la aplicación por completo como una profesional: comparativa a fondo con las apps profesionales, UX y usabilidad, aprendizaje, gestión de partidos, jugadores y catálogo, nada fijo en el código, quitar lo que no sirve, gráficos de nivel profesional (hoy «de un niño de 5 años») (Chat, 11-11) | FALTA | `src/tennisbio/app/`, `report_template.html` | Todas | — | Paquete P0 del plan: diseño basado en la comparativa (#240), prototipo, rehacer pantallas y gráficos, capturas automáticas. |
+| 253 | Lo marcado como histórico en `docs/estado_proyecto.md` debe estar contemplado: hecho, en una petición o descartado con motivo (Chat, 11-11) | FALTA | `docs/estado_proyecto.md` (HISTÓRICO) | — | `scripts/check_requests.py` | Revisar cada nota fechada: lo pendiente pasa a una petición del registro; lo hecho o descartado se dice. |
 
 ## Lo más grave que falta (por impacto en «copiar su derecha»)
 

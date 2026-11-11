@@ -72,6 +72,11 @@ paquetes:
     nombre: "Medidas · contexto del punto"
     cierre: "Resultado del punto coherente con el marcador; nombres y fechas correctos"
     peticiones: [24, 98, 185, 187, 198, 244, 245]
+  P0:
+    nombre: "Producto · rediseño completo de la aplicación (comparativa profesional, UX, aprendizaje, gestión, gráficos)"
+    cierre: "Diseño desde la comparativa con las apps profesionales; capturas de cada pantalla comparadas con las de referencia, sin restos inútiles ni nada fijo en el código"
+    peticiones: [252]
+    prueba: ["^Aplicación: rediseño "]
   P1:
     nombre: "Producto · contenido para copiar su golpe (Cópiala / Aprende)"
     cierre: "Cada consigna con su medida, su fuente y su vídeo; examen interno R1-R25 pasado"
@@ -100,4 +105,4 @@ paquetes:
   D:
     nombre: "Documentación y reglas de trabajo"
     cierre: "Documentos al día con el código (prueba de enlaces y fechas)"
-    peticiones: [217, 239]
+    peticiones: [217, 239, 253]
