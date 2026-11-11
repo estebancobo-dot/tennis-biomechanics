@@ -784,3 +784,9 @@ accion: trabajo
 comando: flujo informe
 # 193-194 (11-11): identidad v11 (los planos sin marcador toman los cambios de lado de sus vecinos si coinciden a menos
 # de 4 min). Pegula otra vez por la cola y su informe y auditoria: identidad >= 95 % de planos decididos
+---
+id: 195
+accion: trabajo
+comando: flujo informe
+# 195 (11-11): el flujo "informe" con los tres informes (derecha, reves y saque) antes de la auditoria: la cobertura del
+# saque se comparaba con un informe del saque viejo

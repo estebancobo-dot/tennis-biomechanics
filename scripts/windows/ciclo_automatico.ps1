@@ -698,7 +698,7 @@ if ($ocupado -and -not @($ocupado | Where-Object { $_.CommandLine -notmatch "job
         $f = "$(git -C $RepoDir rev-parse FETCH_HEAD 2>$null)".Trim()
         if ($f -and $h -ne $f) {
             $files = @(git -C $RepoDir diff --name-only $h $f)
-            $otros = @($files | Where-Object { $_ -and $_ -notmatch '^(config/peticion_pc\.txt|config/parar_pc\.txt|docs/|src/tennisbio/app/)' })
+            $otros = @($files | Where-Object { $_ -and $_ -notmatch '^(config/peticion_pc\.txt|config/parar_pc\.txt|config/flujos\.yaml|docs/|src/tennisbio/app/)' })
             if ($files.Count -and -not $otros.Count) { git -C $RepoDir merge -q --ff-only $f 2>&1 | Out-Null }
         }
         Set-Location $RepoDir
