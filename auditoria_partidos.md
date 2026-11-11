@@ -1,6 +1,6 @@
 # Auditoría de requisitos (forehand)
 
-318 golpes del lado cercano. ✔ 466 cumplidos · ✘ 34 no cumplidos · … 56 sin golpes suficientes en esta ejecución · ! 123 avisos
+318 golpes del lado cercano. ✔ 468 cumplidos · ✘ 32 no cumplidos · … 56 sin golpes suficientes en esta ejecución · ! 123 avisos
 
 ## Peticiones del usuario SIN TERMINAR: 115 de 253
 
@@ -477,7 +477,6 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 97 a medias · 18 sin hacer
 ## 5. 100 % automático
 
 - ✘ **Pruebas del código en este PC**: código 47c499e (2026-11-11T13:23:00): 972 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_its_last_frame_without_decoding_to_the_end
-- ✘ **Registros con fecha y duración**: 61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final
 - ! **Golpes dudosos (duda sobre el golpe, no sobre una medida)**: 196 de 318 del lado cercano (62%); motivos: phase 463, impact_without_audio 120, elbow_implausible_at_impact 38, half_volley_candidate 5. Otros 94 golpes solo tienen una medida que falta (raqueta no vista, valor imposible descartado): son válidos y no cuentan como dudosos
 - ✔ **Golpes que fallaron al procesarse**: ninguno
 - ✔ **Nada pide revisión manual**: 358 golpes llevan dudas marcadas; el informe las enseña, no se piden al usuario
@@ -511,8 +510,9 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 97 a medias · 18 sin hacer
 - ✔ **Pruebas en este PC: test_project_context**: 3 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_speed_keeps_quality**: 4 bien, 0 fallan, 0 omitidas
 - ✔ **Pruebas en este PC: test_export_end**: 6 bien, 0 fallan, 0 omitidas
-- ✔ **Progreso visible (progreso.json)**: último: identity de elena-rybakina-jessica-pegula-miami-2026-quarter-final al 100.0 % (1892/1892), 269 s, quedan ≈ 0 s, a las 2026-11-11 14:31:39
-- ✔ **Tamaño de la salida (tamanos.txt)**: 44 carpetas, 30.9 GB en total (2026-11-11T14:54:35); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB
+- ✔ **Progreso visible (progreso.json)**: último: identity de elena-rybakina-jessica-pegula-miami-2026-quarter-final al 100.0 % (1892/1892), 177 s, quedan ≈ 0 s, a las 2026-11-11 15:08:18
+- ✔ **Registros con fecha y duración**: 63 de 63 registros con fecha de inicio y de fin o duración
+- ✔ **Tamaño de la salida (tamanos.txt)**: 44 carpetas, 30.9 GB en total (2026-11-11T15:11:15); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB
 - ✔ **Carpetas de pruebas antiguas**: ninguna carpeta de pruebas con más de 14 días sin usar
 - ✔ **Aplicación: ventana real y pantallas**: 66 pantallas pintadas, 0 problemas; ventana real: carga
 - ✔ **Aplicación: análisis en su índice**: 2 análisis y 22 partidos en el índice de la aplicación (leído del índice, datos/tennisbio.db)
@@ -546,7 +546,7 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 97 a medias · 18 sin hacer
 - ✔ **Tomas de cámara: sin-fecha_580c6f_rybakina**: 4.9 min (objetivo ≤ 15 min)
 - ✔ **Tiempo: sin-fecha_b8b713_rybakina**: 83 min para 210 min de vídeo ≈ 1.4 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejecución)
 - ✔ **Tomas de cámara: sin-fecha_b8b713_rybakina**: 8.4 min (objetivo ≤ 15 min)
-- ✔ **Tiempo: sin-fecha_49723c_rybakina**: 88 min para 112 min de vídeo ≈ 2.8 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejecución)
+- ✔ **Tiempo: sin-fecha_49723c_rybakina**: 87 min para 112 min de vídeo ≈ 2.7 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejecución)
 - ✔ **Tomas de cámara: sin-fecha_49723c_rybakina**: 3.7 min (objetivo ≤ 15 min)
 - ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_f43dd2_rybakina**: 7 etapas comparadas con su mediana aquí; las que más tardan: players 10.8 min, scenes 7.0 min, score 4.0 min, audio 2.4 min, fine 2.3 min; ninguna pasa de 2 veces su ritmo habitual
 - ✔ **Tiempo de cada etapa frente a su ritmo en este PC: sin-fecha_584c5b_rybakina**: 7 etapas comparadas con su mediana aquí; las que más tardan: players 22.3 min, scenes 14.5 min, fine 4.7 min, score 4.4 min, views 3.2 min; ninguna pasa de 2 veces su ritmo habitual
@@ -558,7 +558,7 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 97 a medias · 18 sin hacer
 - ✔ **Etapas a la vez: sin-fecha_580c6f_rybakina**: 9.5 min ganados con etapas a la vez (players 9.5 min)
 - ✔ **Etapas a la vez: sin-fecha_b8b713_rybakina**: 12.9 min ganados con etapas a la vez (players 12.9 min)
 - ✔ **Etapas a la vez: sin-fecha_49723c_rybakina**: 9.5 min ganados con etapas a la vez (players 9.5 min)
-- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-11_1429.csv (mín/media/máx): elena-rybakina-jessica-pegula- identity (3.0 min): CPU 13/46/81 %, iGPU 0/12/94 %, RAM máx 10.5 GB → uso medio: margen para repartir trabajo; 7.5 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-11_1501.csv, recursos_2026-11-11_1450.csv
+- ✔ **Uso del PC por etapa (CPU, RAM, iGPU y disco)**: recursos_2026-11-11_1501.csv (mín/media/máx): elena-rybakina-jessica-pegula- identity (3.5 min): CPU 16/39/66 %, iGPU 0/0/1 %, RAM máx 8.3 GB → uso medio: margen para repartir trabajo; 5.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)
 
 ## 11. Cada petición del usuario en el chat (docs/peticiones_usuario.md), una a una
 
@@ -570,7 +570,6 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 97 a medias · 18 sin hacer
 - ✘ **#46 Sin PDF enorme y sin inventar datos**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Valores dentro de límites físicos» (ball_flight.apex_height_m: 2 de 116 fuera de 0.2–4.0)
 - ✘ **#51 El código de la prueba es el de los casos reales**: 1 comprobaciones: 1 falta; la peor: «Pruebas del código en este PC» (código 47c499e (2026-11-11T13:23:00): 972 bien, 1 fallan, 0 errores; fallan: tests/test_video.py::test_a_run_hands_over_)
 - ✘ **#59 Diferencias solo por encima del error y en situaciones equivalentes**: 6 comprobaciones: 1 falta, 1 pocos datos, 4 ok; la peor: «Valores dentro de límites físicos» (ball_flight.apex_height_m: 2 de 116 fuera de 0.2–4.0)
-- ✘ **#66 Fechas y duración en los registros**: 2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)
 - ✘ **#68 La meta: mejorar mi derecha tomando la de X como base**: a medias según el registro (ver docs/peticiones_usuario.md); 8 comprobaciones: 1 falta, 1 pocos datos, 6 ok; la peor: «La lección: como mucho 3 claves por fase, cada una con su valor, ejercicio y cómo comprobarlo» (9 de 9 fases con claves suyas fiables; FALLOS: takeback: 121 palabras en las claves (máximo 120); loaded: la lección mid)
 - ✘ **#176 Nuevo split step antes del siguiente golpe de la rival (Matriz (literatura), §3)**: SIN HACER según el registro (#176, docs/peticiones_usuario.md)
 - ✘ **#189 «Cómo» de la fase 1: «mirando la raqueta de la rival» (YouTube, 18-10 Olivari 4)**: SIN HACER según el registro (#189, docs/peticiones_usuario.md)
@@ -746,6 +745,7 @@ Registro `docs/peticiones_usuario.md`: 127 hechas · 97 a medias · 18 sin hacer
 - ✔ **#56 Barras horizontales con la diferencia de altura de la cabeza**: 1 comprobaciones: 1 ok
 - ✔ **#58 La IA más moderna posible**: 15 comprobaciones: 15 ok
 - ✔ **#65 El play del vídeo funciona (no solo un fotograma)**: 11 comprobaciones: 11 ok
+- ✔ **#66 Fechas y duración en los registros**: 2 comprobaciones: 2 ok
 - ✔ **#75 Velocidad: «10 golpes en 5 horas es absurdo»**: 10 comprobaciones: 10 ok
 - ✔ **#77 No lanzar pruebas de 6 h para validar**: 2 comprobaciones: 2 ok
 - ✔ **#80 Encadenar solo la prueba y las comprobaciones; que Claude lo monitorice**: 1 comprobaciones: 1 ok

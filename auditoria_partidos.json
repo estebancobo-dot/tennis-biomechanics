@@ -3,8 +3,8 @@
  "strokes": 533,
  "near": 318,
  "summary": {
-  "ok": 466,
-  "falta": 34,
+  "ok": 468,
+  "falta": 32,
   "pocos datos": 56,
   "aviso": 123
  },
@@ -8727,7 +8727,7 @@
    "area": "Rendimiento",
    "name": "Tiempo: sin-fecha_49723c_rybakina",
    "status": "ok",
-   "detail": "88 min para 112 min de vídeo ≈ 2.8 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejecución)"
+   "detail": "87 min para 112 min de vídeo ≈ 2.7 h para un partido de 3,5 h (objetivo ≤ 8.0 h; con las etapas medidas en su última ejecución)"
   },
   {
    "req": 9,
@@ -8981,21 +8981,21 @@
    "area": "Infraestructura",
    "name": "Progreso visible (progreso.json)",
    "status": "ok",
-   "detail": "último: identity de elena-rybakina-jessica-pegula-miami-2026-quarter-final al 100.0 % (1892/1892), 269 s, quedan ≈ 0 s, a las 2026-11-11 14:31:39"
+   "detail": "último: identity de elena-rybakina-jessica-pegula-miami-2026-quarter-final al 100.0 % (1892/1892), 177 s, quedan ≈ 0 s, a las 2026-11-11 15:08:18"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Registros con fecha y duración",
-   "status": "falta",
-   "detail": "61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba_completo.log: sin «termina fecha» al final"
+   "status": "ok",
+   "detail": "63 de 63 registros con fecha de inicio y de fin o duración"
   },
   {
    "req": 5,
    "area": "Infraestructura",
    "name": "Tamaño de la salida (tamanos.txt)",
    "status": "ok",
-   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T14:54:35); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
+   "detail": "44 carpetas, 30.9 GB en total (2026-11-11T15:11:15); las mayores: tennis-yusipopen-final-sobolenko-rybakina-12-09-2026-1080r-5 7.5 GB, tennis-yusipopen-polufinal-gauff-rybakina-10-09-2026-1080r-5 5.4 GB, _smoke 2.7 GB"
   },
   {
    "req": 5,
@@ -9317,7 +9317,7 @@
    "area": "Uso del PC",
    "name": "Uso del PC por etapa (CPU, RAM, iGPU y disco)",
    "status": "ok",
-   "detail": "recursos_2026-11-11_1429.csv (mín/media/máx): elena-rybakina-jessica-pegula- identity (3.0 min): CPU 13/46/81 %, iGPU 0/12/94 %, RAM máx 10.5 GB → uso medio: margen para repartir trabajo; 7.5 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa); más recientes sin muestras de una etapa en marcha (ejecuciones desde las cachés): recursos_2026-11-11_1501.csv, recursos_2026-11-11_1450.csv"
+   "detail": "recursos_2026-11-11_1501.csv (mín/media/máx): elena-rybakina-jessica-pegula- identity (3.5 min): CPU 16/39/66 %, iGPU 0/0/1 %, RAM máx 8.3 GB → uso medio: margen para repartir trabajo; 5.8 min de muestras con la etapa ya terminada (no cuentan para ninguna etapa)"
   },
   {
    "req": 5,
@@ -9778,8 +9778,8 @@
    "req": 11,
    "area": "Peticiones",
    "name": "#66 Fechas y duración en los registros",
-   "status": "falta",
-   "detail": "2 comprobaciones: 1 falta, 1 ok; la peor: «Registros con fecha y duración» (61 de 63 registros con fecha de inicio y de fin o duración; sin ellas: app_cola.log: sin «== fecha fin» al final; prueba)"
+   "status": "ok",
+   "detail": "2 comprobaciones: 2 ok"
   },
   {
    "req": 11,
