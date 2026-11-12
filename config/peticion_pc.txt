@@ -1160,3 +1160,11 @@ accion: medir
 script: diag_saques
 argumentos: --match 49723c --max 14
 # 258 (12-11, B4): lo mismo en Pegula (50 de 60, 83 %). Solo lee
+---
+id: 259
+accion: medir
+script: diag_detector
+argumentos: --match f43dd2 --t 2096.0 2124.5 1984.0 3856.8 2777.7
+# 259 (12-11, B4): que vio el detector de golpes alrededor de 3 saques cercanos de Rybakina en Osaka que no encontro
+# (34:56, 35:24, 33:04 y 64:17, todos a 1,5-2,5 s de volver la camara principal) y de uno que si (46:17): marca de
+# juego, jugadoras vistas y probabilidad de saque. Solo lee (no escribe nada del partido)
