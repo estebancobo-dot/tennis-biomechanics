@@ -995,3 +995,10 @@ id: 230
 accion: trabajo
 comando: flujo informe
 # 230 (12-11): auditoria con Pegula y el recuento v13
+---
+id: 231
+accion: medir
+script: validate_recall
+argumentos: --spotter --tag v13bola --from v13 --drop-ball-caches --set fine_pass.ball_from_spotting=true
+# 231 (12-11, R2): el recuento v13 con la bola del detector reutilizada (desde salidas_v13 con la pose guardada y sin la
+# bola de cada ventana): recall, precision e identidad frente al v13 (465 de 517, 0.945)
