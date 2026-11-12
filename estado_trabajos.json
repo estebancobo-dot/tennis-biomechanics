@@ -1,13 +1,32 @@
 {
- "at": "2026-11-12 10:00:12",
- "firma": "02aa8bf3d5b7",
+ "at": "2026-11-12 10:00:17",
+ "firma": "6f461f550a4d",
  "ejecutor": {
   "vivo": true,
   "pid": 4792,
   "at": 1794474007.369628
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 78,
+   "kind": "comando",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "script diag_export_clip 0312430 0966569 0925800 0048549",
+   "state": "en curso",
+   "message": "",
+   "created": "2026-11-12 10:00:09",
+   "started": "2026-11-12 10:00:17",
+   "finished": null,
+   "args": "[\"script\", \"diag_export_clip\", \"0312430\", \"0966569\", \"0925800\", \"0048549\"]",
+   "source": "claude 235",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_78.log",
+   "paso": 0,
+   "pasos": 0
+  }
+ ],
  "progreso": {
   "partido": "elena-rybakina-jessica-pegula-miami-2026-quarter-final",
   "etapa": "fine_doubtful",
@@ -18,26 +37,7 @@
   "quedan_s": 0,
   "hora": "2026-11-12 08:59:52"
  },
- "pendientes": [
-  {
-   "id": 78,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script diag_export_clip 0312430 0966569 0925800 0048549",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-12 10:00:09",
-   "started": null,
-   "finished": null,
-   "args": "[\"script\", \"diag_export_clip\", \"0312430\", \"0966569\", \"0925800\", \"0048549\"]",
-   "source": "claude 235",
-   "log": "",
-   "paso": 0,
-   "pasos": 0
-  }
- ],
+ "pendientes": [],
  "recientes": [
   {
    "id": 77,
@@ -312,6 +312,13 @@
  ],
  "eventos": [
   {
+   "id": 386,
+   "job": 78,
+   "at": "2026-11-12 10:00:17",
+   "kind": "empieza",
+   "text": "script diag_export_clip 0312430 0966569 0925800 0048549"
+  },
+  {
    "id": 385,
    "job": 78,
    "at": "2026-11-12 10:00:09",
@@ -513,13 +520,6 @@
    "at": "2026-11-12 09:28:35",
    "kind": "empieza",
    "text": "script diag_export_esqueleto"
-  },
-  {
-   "id": 356,
-   "job": 75,
-   "at": "2026-11-12 09:28:25",
-   "kind": "enviado",
-   "text": "tennisbio script diag_export_esqueleto (claude 232)"
   }
  ]
 }
