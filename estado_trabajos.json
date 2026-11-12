@@ -1,13 +1,32 @@
 {
- "at": "2026-11-12 11:07:31",
- "firma": "b4f88eef18a8",
+ "at": "2026-11-12 11:27:39",
+ "firma": "10effa369317",
  "ejecutor": {
-  "vivo": false,
-  "pid": 4892,
-  "at": 1794477600.4702315
+  "vivo": true,
+  "pid": 16604,
+  "at": 1794479255.0691671
  },
  "pausa": false,
- "en_curso": [],
+ "en_curso": [
+  {
+   "id": 84,
+   "kind": "flujo",
+   "match": null,
+   "player": null,
+   "stroke": null,
+   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
+   "state": "en curso",
+   "message": "paso 2/6: Informe de la derecha",
+   "created": "2026-11-12 10:37:05",
+   "started": "2026-11-12 11:27:35",
+   "finished": null,
+   "args": "[\"informe\"]",
+   "source": "claude 241",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_84.log",
+   "paso": 1,
+   "pasos": 6
+  }
+ ],
  "progreso": {
   "partido": "us-open-2026-r4-naomi-osaka-elena-rybakina",
   "etapa": "fine_doubtful",
@@ -36,25 +55,9 @@
    "log": "",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 84,
-   "kind": "flujo",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)",
-   "state": "pendiente",
-   "message": "",
-   "created": "2026-11-12 10:37:05",
-   "started": null,
-   "finished": null,
-   "args": "[\"informe\"]",
-   "source": "claude 241",
-   "log": "",
-   "paso": 0,
-   "pasos": 6
-  },
+  }
+ ],
+ "recientes": [
   {
    "id": 83,
    "kind": "comando",
@@ -62,14 +65,14 @@
    "player": null,
    "stroke": null,
    "reason": "script validate_recall --spotter --tag v13r --from v13",
-   "state": "pendiente",
+   "state": "hecho",
    "message": "",
    "created": "2026-11-12 10:36:35",
-   "started": null,
-   "finished": null,
+   "started": "2026-11-12 11:08:28",
+   "finished": "2026-11-12 11:27:34",
    "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"v13r\", \"--from\", \"v13\"]",
    "source": "claude 240",
-   "log": "",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_83.log",
    "paso": 0,
    "pasos": 0
   },
@@ -80,19 +83,17 @@
    "player": null,
    "stroke": null,
    "reason": "script diag_pose_contacto",
-   "state": "pendiente",
+   "state": "hecho",
    "message": "",
    "created": "2026-11-12 10:36:03",
-   "started": null,
-   "finished": null,
+   "started": "2026-11-12 11:08:22",
+   "finished": "2026-11-12 11:08:27",
    "args": "[\"script\", \"diag_pose_contacto\"]",
    "source": "claude 239",
-   "log": "",
+   "log": "C:\\tenis\\datos\\trabajos\\trabajo_82.log",
    "paso": 0,
    "pasos": 0
-  }
- ],
- "recientes": [
+  },
   {
    "id": 81,
    "kind": "comando",
@@ -326,45 +327,93 @@
    "log": "C:\\tenis\\datos\\trabajos\\trabajo_69.log",
    "paso": 0,
    "pasos": 0
-  },
-  {
-   "id": 68,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag bola --set fine_pass.ball_from_spotting=true",
-   "state": "cancelado",
-   "message": "cancelado",
-   "created": "2026-11-12 04:07:14",
-   "started": "2026-11-12 07:26:17",
-   "finished": "2026-11-12 07:50:08",
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"bola\", \"--set\", \"fine_pass.ball_from_spotting=true\"]",
-   "source": "claude 224",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_68.log",
-   "paso": 0,
-   "pasos": 0
-  },
-  {
-   "id": 67,
-   "kind": "comando",
-   "match": null,
-   "player": null,
-   "stroke": null,
-   "reason": "script validate_recall --spotter --tag base",
-   "state": "hecho",
-   "message": "",
-   "created": "2026-11-12 04:06:54",
-   "started": "2026-11-12 04:06:58",
-   "finished": "2026-11-12 07:26:15",
-   "args": "[\"script\", \"validate_recall\", \"--spotter\", \"--tag\", \"base\"]",
-   "source": "claude 223",
-   "log": "C:\\tenis\\datos\\trabajos\\trabajo_67.log",
-   "paso": 0,
-   "pasos": 0
   }
  ],
  "eventos": [
+  {
+   "id": 432,
+   "job": 84,
+   "at": "2026-11-12 11:27:36",
+   "kind": "paso",
+   "text": "2/6 Informe de la derecha"
+  },
+  {
+   "id": 431,
+   "job": 84,
+   "at": "2026-11-12 11:27:35",
+   "kind": "paso",
+   "text": "1/6 Registro de partidos"
+  },
+  {
+   "id": 430,
+   "job": 84,
+   "at": "2026-11-12 11:27:35",
+   "kind": "empieza",
+   "text": "flujo «informe»: Informes y auditoria desde los golpes guardados (minutos, ninguna etapa)"
+  },
+  {
+   "id": 429,
+   "job": 83,
+   "at": "2026-11-12 11:27:35",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 428,
+   "job": 83,
+   "at": "2026-11-12 11:08:28",
+   "kind": "empieza",
+   "text": "script validate_recall --spotter --tag v13r --from v13"
+  },
+  {
+   "id": 427,
+   "job": 82,
+   "at": "2026-11-12 11:08:28",
+   "kind": "hecho",
+   "text": "código 0"
+  },
+  {
+   "id": 426,
+   "job": 82,
+   "at": "2026-11-12 11:08:22",
+   "kind": "empieza",
+   "text": "script diag_pose_contacto"
+  },
+  {
+   "id": 425,
+   "job": null,
+   "at": "2026-11-12 11:08:22",
+   "kind": "ejecutor",
+   "text": "arranca (pid 16604)"
+  },
+  {
+   "id": 424,
+   "job": null,
+   "at": "2026-11-12 11:08:21",
+   "kind": "ejecutor",
+   "text": "arranca el siguiente con el código nuevo (pid 13240)"
+  },
+  {
+   "id": 423,
+   "job": null,
+   "at": "2026-11-12 11:08:21",
+   "kind": "ejecutor",
+   "text": "termina"
+  },
+  {
+   "id": 422,
+   "job": null,
+   "at": "2026-11-12 11:08:21",
+   "kind": "ejecutor",
+   "text": "se reinicia con el código nuevo"
+  },
+  {
+   "id": 421,
+   "job": null,
+   "at": "2026-11-12 11:08:21",
+   "kind": "ejecutor",
+   "text": "arranca (pid 4284)"
+  },
   {
    "id": 420,
    "job": 85,
@@ -490,90 +539,6 @@
    "at": "2026-11-12 10:23:59",
    "kind": "ejecutor",
    "text": "termina"
-  },
-  {
-   "id": 402,
-   "job": null,
-   "at": "2026-11-12 10:23:59",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 401,
-   "job": null,
-   "at": "2026-11-12 10:23:57",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 400,
-   "job": null,
-   "at": "2026-11-12 10:18:39",
-   "kind": "ejecutor",
-   "text": "arranca (pid 14620)"
-  },
-  {
-   "id": 399,
-   "job": null,
-   "at": "2026-11-12 10:18:38",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 10980)"
-  },
-  {
-   "id": 398,
-   "job": null,
-   "at": "2026-11-12 10:18:38",
-   "kind": "ejecutor",
-   "text": "termina"
-  },
-  {
-   "id": 397,
-   "job": null,
-   "at": "2026-11-12 10:18:38",
-   "kind": "ejecutor",
-   "text": "se reinicia con el código nuevo"
-  },
-  {
-   "id": 396,
-   "job": null,
-   "at": "2026-11-12 10:18:31",
-   "kind": "reiniciar",
-   "text": "ciclo"
-  },
-  {
-   "id": 395,
-   "job": 79,
-   "at": "2026-11-12 10:08:38",
-   "kind": "hecho",
-   "text": "código 0"
-  },
-  {
-   "id": 394,
-   "job": 79,
-   "at": "2026-11-12 10:08:32",
-   "kind": "empieza",
-   "text": "script diag_pose_contacto"
-  },
-  {
-   "id": 393,
-   "job": 79,
-   "at": "2026-11-12 10:08:24",
-   "kind": "enviado",
-   "text": "tennisbio script diag_pose_contacto (claude 236)"
-  },
-  {
-   "id": 392,
-   "job": null,
-   "at": "2026-11-12 10:07:52",
-   "kind": "ejecutor",
-   "text": "arranca (pid 6856)"
-  },
-  {
-   "id": 391,
-   "job": null,
-   "at": "2026-11-12 10:07:51",
-   "kind": "ejecutor",
-   "text": "arranca el siguiente con el código nuevo (pid 9200)"
   }
  ]
 }

@@ -453,13 +453,13 @@
  },
  "sin-fecha_f43dd2_rybakina": {
   "far/forehand": {
-   "golpes": 30,
-   "sin_pose_en_el_contacto": 7,
-   "de_ellos_con_medidas": 3,
+   "golpes": 29,
+   "sin_pose_en_el_contacto": 6,
+   "de_ellos_con_medidas": 2,
    "ejemplos": [
     "us-open-2026-r4-naomi-osaka-elena-rybakina-0107453",
     "us-open-2026-r4-naomi-osaka-elena-rybakina-0108003",
-    "us-open-2026-r4-naomi-osaka-elena-rybakina-0180742"
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0267950"
    ]
   },
   "far/backhand": {
@@ -473,44 +473,32 @@
    ]
   },
   "far/overhead": {
-   "golpes": 20,
+   "golpes": 19,
    "sin_pose_en_el_contacto": 6,
    "de_ellos_con_medidas": 2,
    "ejemplos": [
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0056490",
     "us-open-2026-r4-naomi-osaka-elena-rybakina-0060754",
-    "us-open-2026-r4-naomi-osaka-elena-rybakina-0107255",
-    "us-open-2026-r4-naomi-osaka-elena-rybakina-0120449"
+    "us-open-2026-r4-naomi-osaka-elena-rybakina-0107255"
    ]
   },
   "near/forehand": {
-   "golpes": 49,
-   "sin_pose_en_el_contacto": 13,
+   "golpes": 50,
+   "sin_pose_en_el_contacto": 0,
    "de_ellos_con_medidas": 0,
-   "ejemplos": [
-    "us-open-2026-r4-naomi-osaka-elena-rybakina-0065660",
-    "us-open-2026-r4-naomi-osaka-elena-rybakina-0081631",
-    "us-open-2026-r4-naomi-osaka-elena-rybakina-0087351"
-   ]
+   "ejemplos": []
   },
   "near/backhand": {
    "golpes": 12,
-   "sin_pose_en_el_contacto": 5,
+   "sin_pose_en_el_contacto": 0,
    "de_ellos_con_medidas": 0,
-   "ejemplos": [
-    "us-open-2026-r4-naomi-osaka-elena-rybakina-0081879",
-    "us-open-2026-r4-naomi-osaka-elena-rybakina-0082201",
-    "us-open-2026-r4-naomi-osaka-elena-rybakina-0141094"
-   ]
+   "ejemplos": []
   },
   "near/overhead": {
-   "golpes": 32,
-   "sin_pose_en_el_contacto": 18,
+   "golpes": 28,
+   "sin_pose_en_el_contacto": 0,
    "de_ellos_con_medidas": 0,
-   "ejemplos": [
-    "us-open-2026-r4-naomi-osaka-elena-rybakina-0078367",
-    "us-open-2026-r4-naomi-osaka-elena-rybakina-0081351",
-    "us-open-2026-r4-naomi-osaka-elena-rybakina-0084760"
-   ]
+   "ejemplos": []
   }
  }
 }
