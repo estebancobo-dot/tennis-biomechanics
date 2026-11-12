@@ -958,3 +958,10 @@ script: validate_recall
 argumentos: --spotter --tag bola --set fine_pass.ball_from_spotting=true
 # 224 (12-11, R2): el mismo recuento con la bola del detector reutilizada en la pasada fina: recall, precision e instante
 # frente a los golpes anotados (la prueba de 15 min de Pegula: 14 % menos de pasada fina, 42 de 43 golpes iguales)
+---
+id: 225
+accion: medir
+script: diag_identidad_f3set
+argumentos: --match azarenka
+# 225 (12-11): por que la identidad deja 78 planos sin decidir en la compilacion de Azarenka (F3Set) con el codigo de
+# hoy frente al 08-11: recall 68 % en el recuento 223 (124 golpes dudosos, 122 de ese partido). Solo lee
