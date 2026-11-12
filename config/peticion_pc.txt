@@ -1033,3 +1033,10 @@ accion: medir
 script: diag_pose_contacto
 # 236 (12-12, R5): cuantos golpes analizados no tienen su pose en el contacto (por partido, lado y golpe) y si aun llevan
 # medidas del cuerpo. Solo lee
+---
+id: 237
+accion: medir
+script: diag_sin_pose
+argumentos: --match b8b713 --n 4
+# 237 (12-12, R10): por que golpes cercanos de la final no tienen su pose en el contacto: personas que vio la pose en
+# esos fotogramas y su ultimo recuadro antes del hueco. Solo lee
